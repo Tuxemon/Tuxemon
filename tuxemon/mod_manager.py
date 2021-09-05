@@ -1,6 +1,7 @@
 import urllib.request
 
 from tuxemon.constants import paths
+from tuxemon.symlink_missing import symlink_missing
 import pathlib
 import os
 import json
@@ -72,14 +73,13 @@ class Manager:
 
     def download_package(self, name, release, repo=None, dont_extract=False, install_deps=True):
         """Downloads the specified package"""
-        print(name, release, repo)
         if repo is None:
             repo = self.get_package_repo(name)
 
             # Remove trailing slash
             if repo[-1] == "/":
                 repo = repo[:-1]
-        
+
         url = str(repo) + f"/packages/{name}/releases/{str(release)}/download"
         filename = os.path.join(paths.CACHE_DIR + f"/downloaded_packages/{name}.{release}.zip")
 
@@ -89,7 +89,6 @@ class Manager:
         urllib.request.urlretrieve(url, filename=filename)
 
         outfolder = os.path.join(paths.BASEDIR, "mods", f"{name}")
-        print(outfolder, "\n", paths.BASEDIR, "\n")
 
         self.write_package_to_list(outfolder, name)
 
@@ -103,8 +102,11 @@ class Manager:
             # This function calls download_package, might cause issues
             self.install_dependencies(name, release, repo, dont_extract=dont_extract)
 
-    def install_dependencies(self, name, release, repo, dont_extract=False):
-        """Same as the download_package(), but it includes dependency installing"""
+    def install_dependencies(self, name, release, repo, dont_extract=False, symlink=True):
+        """
+        Same as the download_package(), but it includes dependency installing.
+        When symlink is True, dependency's files will be linked.
+        """
         # Get info
         meta = self.get_package_info(name, repo)
         if "dependencies" in meta:
@@ -112,7 +114,12 @@ class Manager:
 
             for pack in dependencies:
                 self.download_package(pack, release, repo, dont_extract=dont_extract, install_deps=False)
-        else: print("no deps")
+
+                # Symlink deps
+                mainfolder = os.path.join(paths.BASEDIR, "mods", name)
+                depfolder = os.path.join(paths.BASEDIR, "mods", pack)
+                symlink_missing(mainfolder, depfolder)
+        else: pass
 
     def extract(self, file, outfolder):
         """Extracts the specified zip archive to the mods directory"""
@@ -127,16 +134,14 @@ class Manager:
     def get_package_repo(self, name):
         """Reads the origin of an package.
         Returns None, if key 'mods' doesn't exist"""
-        #print()
         for i in self.packages:
             if i["name"] == name:
-                print(i)
                 return i["repo"]
                 """
                 if "repo" in i: return i["repo"]
                 else: return None
                 """
-            else: print(f"{i} not in the name")
+            else: continue
 
     def write_package_to_list(self, path_to_folder, name):
         """Writes specified package to the package list"""
@@ -158,15 +163,7 @@ class Manager:
         #try:
         with open(paths.USER_GAME_DATA_DIR + "/package.list") as file:
             data = file.read()
-            print(f"DEBUG_READPKG: {data}\n{paths.USER_GAME_DATA_DIR + '/package.list'}")
             return json.loads(data)[name]
-            """else:
-                print("Empty")
-                return None
-                #raise ValueError"""
-        #except (FileNotFoundError, ValueError) as e:
-        #    print(e, "Error")
-        #    return None
 
     def remove_package_from_list(self, name):
         """Removes specified package from the package list"""

@@ -11,17 +11,29 @@ def symlink_missing(target, *sources):
         target: The directory where symlinks are created
         sources: The source directories
     """
-    missing = {}
 
     for source in sources:
+        # Read the source directory
         for i in os.listdir(source):
-            #print(f"File {i}")
-            if i != "meta.json":
-                #print(f"symlink {i}")
-                try:
-                    os.symlink(
-                        os.path.join(source, i),
-                        os.path.join(target, i)
-                    )
-                except FileExistsError:
-                    continue
+            if i != "meta.json":  # Ignore symlinking meta.json
+
+                # Link the contents on an directory
+                full_path = os.path.join(source, i)
+                if os.path.isdir(full_path):
+                    for a in os.listdir(full_path): # For file in the folder
+                        try:
+                            os.symlink(
+                                os.path.join(source, i, a),
+                                os.path.join(target, i, a)
+                            )
+                        except FileExistsError:
+                            continue
+                # Symlink the individual files
+                else:
+                    try:
+                        os.symlink(
+                            os.path.join(source, i),
+                            os.path.join(target, i)
+                        )
+                    except FileExistsError:
+                        continue

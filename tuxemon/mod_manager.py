@@ -96,7 +96,7 @@ class Manager:
             self.extract(filename, outfolder)
             with open(f"{outfolder}/meta.json", "w") as metafile:
                 meta = self.get_package_info(name, repo)
-                metafile.write(json.dumps(meta, indent=4))
+                metafile.write(json.dumps(meta, indent=4, sort_keys=False))
 
         if install_deps:
             # This function calls download_package, might cause issues

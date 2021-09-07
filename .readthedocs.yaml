@@ -12,3 +12,5 @@ sphinx:
 # 3.8 is required, anything lower will fail to build the actions
 python:
     version: 3.8
+    install:
+    - requirements: docs/requirements.txt

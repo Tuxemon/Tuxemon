@@ -28,6 +28,10 @@
 #
 
 
+# Note: this script, in its current state, is non-functional and the Tuxemon selected here
+# serve only as examples of potential fusions.
+
+
 try:
     from PIL import Image
 except ImportError:
@@ -43,15 +47,15 @@ class Body:
 
     **Example:**
 
-    >>> bulbasaur = Body()
-    >>> bulbasaur.load('fusion/Bulbasaur.json') # Load the sprite data from a json file
+    >>> sapsnap = Body()
+    >>> sapsnap.load('fusion/Sapsnap.json') # Load the sprite data from a json file
     >>>
-    >>> gyarados = Body()
-    >>> gyarados.load('fusion/Gyarados.json')   # Load the sprite data from a json file
+    >>> vivitron = Body()
+    >>> vivitron.load('fusion/Vivitron.json')   # Load the sprite data from a json file
     >>>
     >>> # Fuse the sprites.
-    >>> fuse(body=bulbasaur, face=gyarados)
-    >>> fuse(body=gyarados, face=bulbasaur)
+    >>> fuse(body=sapsnap, face=vivitron)
+    >>> fuse(body=vivitron, face=sapsnap)
 
     """
 
@@ -159,8 +163,8 @@ class Body:
 
         **Example:**
 
-        >>> bulbasaur = Body()
-        >>> bulbasaur.load('fusion/Bulbasaur.json')
+        >>> sapsnap = Body()
+        >>> sapsnap.load('fusion/Sapsnap.json')
 
         """
 
@@ -266,15 +270,15 @@ def fuse(body, face, save=True, filename=None):
 
     **Example:**
 
-    >>> bulbasaur = Body()
-    >>> bulbasaur.load('fusion/Bulbasaur.json')
+    >>> sapsnap = Body()
+    >>> sapsnap.load('fusion/Sapsnap.json')
     >>>
-    >>> gyarados = Body()
-    >>> gyarados.load('fusion/Gyarados.json')
+    >>> vivitron = Body()
+    >>> vivitron.load('fusion/Vivitron.json')
     >>>
     >>> # Fuse the sprites.
-    >>> fuse(body=bulbasaur, face=gyarados)
-    >>> fuse(body=gyarados, face=bulbasaur)
+    >>> fuse(body=sapsnap, face=vivitron)
+    >>> fuse(body=vivitron, face=sapsnap)
 
 
     """

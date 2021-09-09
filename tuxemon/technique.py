@@ -355,10 +355,8 @@ class Technique:
         """
         Apply damage.
 
-        This effect applies damage to a target monster. Damage calculations
-        are based upon the original Pokemon battle damage formula. This
-        effect will be applied if "damage" is defined in this technique's
-        effect list.
+        This effect applies damage to a target monster. This effect will only be applied if "damage" is defined in the
+        relevant technique's effect list.
 
         Parameters:
             user: The Monster object that used this technique.

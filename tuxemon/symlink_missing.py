@@ -26,13 +26,18 @@ def symlink_missing(target, *sources):
                         except FileExistsError:
                             pass
 
-                        try:
-                            os.symlink(
-                                os.path.join(source, i, a),
-                                os.path.join(target, i, a)
-                            )
-                        except FileExistsError:
-                            continue
+                        while True:
+                            try:
+                                os.symlink(
+                                    os.path.join(source, i, a),
+                                    os.path.join(target, i, a)
+                                )
+                                break
+                            except FileExistsError:
+                                os.replace(
+                                    os.path.join(target, i, a),
+                                    os.path.join(target, i, a + ".old")
+                                )
                 # Symlink the individual files
                 else:
                     try:

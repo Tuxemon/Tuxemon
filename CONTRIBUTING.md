@@ -39,7 +39,7 @@ Artistic content is defined as image files or sound files.  This includes sprite
 window decorations, fonts, sound effects, music, and anything similar.  All content must
 be under a free license, such as CC0.  For questions about the license, open a github issue.
 
-If you are modifying existing content and making dirivatives, please find the license the
+If you are modifying existing content and making derivatives, please find the license the
 original asset is released under and me mindful of any requirements the license specifies.
 
 It will be helpful if you tell the team first what you plan on doing, especially with game
@@ -87,7 +87,7 @@ that we support.
 
 ## Map Guidelines
 We use the Tiled map editor to create the game maps and story content.  There are a few
-guidelines to follow when adding new maps or modifiying existing ones.
+guidelines to follow when adding new maps or modifying existing ones.
 
 - All events and collisions must be grid-aligned.  (View -> Snap to grid)
 - Like other assets, the map filename must be lower case only
@@ -162,10 +162,10 @@ that an admin needs to resolve.  Please open an issue or contact a team member i
 discord if your weblate contributions are not being merged into the project.
 
 ### Translations Guidelines
-- Right-to-left langauges are not supported
+- Right-to-left languages are not supported
 - Only the standard latin alphabet with some accents is supported
 - Our text rendering currently may not support your target language, but you can still
-  submit translations anyway.  When possible, we will add support for your lanaguage.
+  submit translations anyway.  When possible, we will add support for your language.
 - After translation, some dialogs may not look correct because they are too long or short...
   that is a limitation of our game right now and we will fix it sometime.  If possible, 
   please leave the dialogs "long" or overflowing and eventually a fix will be made so they

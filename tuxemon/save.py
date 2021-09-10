@@ -42,6 +42,8 @@ from tuxemon.session import Session
 from typing import Mapping, Any, Optional, Dict
 from tuxemon.client import LocalPygameClient
 from tuxemon.states.world.worldstate import WorldState
+from tuxemon import prepare
+from tuxemon.lib import compress_json
 
 try:
     import cbor
@@ -52,128 +54,174 @@ logger = logging.getLogger(__name__)
 
 slot_number = None
 TIME_FORMAT = "%Y-%m-%d %H:%M"
-
-
-def get_save_data(session: Session) -> Mapping[str, Any]:
-    """
-    Gets a dictionary which represents the state of the session.
-
-    Parameters:
-        session: Game session.
-
-    Returns:
-        Game data to save, must be JSON encodable.
-
-    """
-    save_data = session.player.get_state(session)
-    screenshot = capture_screenshot(session.client)
-    save_data["screenshot"] = base64.b64encode(
-        pygame.image.tostring(screenshot, "RGB")).decode("utf-8")
-    save_data["screenshot_width"] = screenshot.get_width()
-    save_data["screenshot_height"] = screenshot.get_height()
-    save_data["time"] = datetime.datetime.now().strftime(TIME_FORMAT)
-    save_data["version"] = SAVE_VERSION
-    return save_data
-
+config = prepare.CONFIG
 
 def capture_screenshot(client: LocalPygameClient) -> pygame.surface.Surface:
-    """
-    Capture a screenshot.
+	"""
+	Capture a screenshot.
 
-    Parameters:
-        client: Tuxemon client.
+	Parameters:
+		client: Tuxemon client.
 
-    Returns:
-        Captured image.
+	Returns:
+		Captured image.
 
-    """
-    screenshot = pygame.Surface(client.screen.get_size())
-    world = client.get_state_by_name(WorldState)
-    assert world
-    world.draw(screenshot)
-    return screenshot
+	"""
+	screenshot = pygame.Surface(client.screen.get_size())
+	world = client.get_state_by_name(WorldState)
+	assert world
+	world.draw(screenshot)
+	return screenshot
 
+def get_save_data(session: Session) -> Mapping[str, Any]:
+	"""
+	Gets a dictionary which represents the state of the session.
+
+	Parameters:
+		session: Game session.
+
+	Returns:
+		Game data to save, must be JSON encodable.
+
+	"""
+	save_data = session.player.get_state(session)
+	screenshot = capture_screenshot(session.client)
+	save_data["screenshot"] = base64.b64encode(pygame.image.tostring(screenshot, "RGB")).decode("utf-8")
+	save_data["screenshot_width"] = screenshot.get_width()
+	save_data["screenshot_height"] = screenshot.get_height()
+	save_data["time"] = datetime.datetime.now().strftime(TIME_FORMAT)
+	save_data["version"] = SAVE_VERSION
+	return save_data
+
+def open_save_file(save_path: str) -> Optional[Dict[str, Any]]:
+
+	if config.compress_save:
+		try:
+			DATA = compress_json.load(
+				save_path
+			)
+			return DATA
+		except Exception as e:
+			logger.info(e)
+			return None
+	else:
+		try:
+			with open(save_path) as save_file:
+				try:
+					return json.load(save_file)
+				except ValueError as e:
+					logger.error("cannot decode JSON: %s", save_path)
+
+				try:
+					return cbor.load(save_file)
+				except ValueError as e:
+					logger.error("cannot decode save CBOR: %s", save_path)
+
+				return {}
+
+		except OSError as e:
+			logger.info(e)
+			return None
 
 def save(
-    save_data: Mapping[str, Any],
-    slot: int,
+	save_data: Mapping[str, Any],
+	slot: int,
 ) -> None:
-    """
-    Saves the current game state to a file using CBOR or JSON.
+	"""
+	Saves the current game state to a file using gzip compressed JSON.
 
-    Parameters:
-        save_data: The data to save.
-        slot: The save slot to save the data to.
+	Parameters:
+		save_data: The data to save.
+		slot: The save slot to save the data to.
 
-    """
-    # Save a screenshot of the current frame
-    save_path = prepare.SAVE_PATH + str(slot) + ".save"
-    if prepare.SAVE_METHOD == "CBOR":
-        text = cbor.dumps(save_data)
-    else:
-        text = json.dumps(save_data, indent=4, separators=(",", ": "))
-    with open(save_path, "w") as f:
-        logger.info("Saving data to save file: " + save_path)
-        # Don't dump straight to the file: if we crash it would corrupt
-        # the save_data
-        f.write(text)
+	"""
+	# Save a screenshot of the current frame
+	# if/else paradise
+	if config.compress_save:
+		if config.csave_lzma:
+			save_path = prepare.SAVE_PATH + str(slot) + ".csave.lza"
+			text = compress_json.dump(
+			save_data,
+			save_path,
+			compression_kwargs = {},
+			json_kwargs = { "indent": 4, 'separators': (",", ": ") }
+		)
+		else:
+			save_path = prepare.SAVE_PATH + str(slot) + ".csave.gz"
+			text = compress_json.dump(
+			save_data,
+			save_path,
+			compression_kwargs = {'compresslevel': 9},
+			json_kwargs = { "indent": 4, 'separators': (",", ": ") }
+		)
+	else:
+		save_path = prepare.SAVE_PATH + str(slot) + ".save"
+		if prepare.SAVE_METHOD == "CBOR":
+			text = cbor.dumps(save_data)
+		else:
+			text = json.dumps(save_data, indent=4, separators=(",", ": "))
+		with open(save_path, "w") as f:
+			logger.info("Saving data to save file: " + save_path)
+			# Don't dump straight to the file: if we crash it would corrupt
+			# the save_data
+			f.write(text)
+	#text = json.dumps(save_data, indent=4, separators=(",", ": "))
 
 
 def load(slot: int) -> Optional[Mapping[str, Any]]:
-    """
-    Loads game state data from a save file.
+	"""
+	Loads game state data from a save file.
 
-    Parameters:
-        slot: The save slot to load game data from.
+	Parameters:
+		slot: The save slot to load game data from.
 
-    Returns:
-        Dictionary containing game data to load.
+	Returns:
+		Dictionary containing game data to load.
 
-    """
-    save_path = f"{prepare.SAVE_PATH}{slot}.save"
-    save_data = open_save_file(save_path)
-    if save_data:
-        return upgrade_save(save_data)
-    elif save_data is None:
-        # File not found; it probably wasn't ever created, so don't panic
-        return None
-    else:
-        save_data["error"] = "Save file corrupted"
-        save_data["player_name"] = "BROKEN SAVE!"
-        logger.error("Failed loading save file.")
-        return save_data
+	"""
+	if config.compress_save:
+		if config.csave_lzma:
+			save_path = f"{prepare.SAVE_PATH}{slot}.csave.lza"
+		else:
+			save_path = f"{prepare.SAVE_PATH}{slot}.csave.gz"
+	else:
+		save_path = f"{prepare.SAVE_PATH}{slot}.save"
 
+	save_data = open_save_file(save_path)
 
-def open_save_file(save_path: str) -> Optional[Dict[str, Any]]:
-    try:
-        with open(save_path) as save_file:
-            try:
-                return json.load(save_file)
-            except ValueError as e:
-                logger.error("cannot decode JSON: %s", save_path)
+	# DEBUG STUFF HERE
+	#print("ayo look here")
+	#print(save_data)
 
-            try:
-                return cbor.load(save_file)
-            except ValueError as e:
-                logger.error("cannot decode save CBOR: %s", save_path)
-
-            return {}
-
-    except OSError as e:
-        logger.info(e)
-        return None
-
+	if save_data:
+		return upgrade_save(save_data)
+	elif save_data is None:
+		# File not found; it probably wasn't ever created, so don't panic
+		return None
+	else:
+		save_data["error"] = "Save file corrupted"
+		save_data["player_name"] = "BROKEN SAVE!"
+		logger.error("Failed loading save file.")
+		return save_data
 
 def get_index_of_latest_save() -> Optional[int]:
-    times = []
-    for slot_index in range(3):
-        save_path = f"{prepare.SAVE_PATH}{slot_index + 1}.save"
-        save_data = open_save_file(save_path)
-        if save_data is not None:
-            time_of_save = datetime.datetime.strptime(save_data["time"], TIME_FORMAT)
-            times.append((slot_index, time_of_save))
-    if len(times) > 0:
-        s = max(times, key=itemgetter(1))
-        return s[0]
-    else:
-        return None
+	times = []
+	for slot_index in range(3):
+		if config.compress_save:
+			if config.csave_lzma:
+				save_path = f"{prepare.SAVE_PATH}{slot_index + 1}.csave.lza"
+			else:
+				save_path = f"{prepare.SAVE_PATH}{slot_index + 1}.csave.gz"
+		else:
+			save_path = f"{prepare.SAVE_PATH}{slot_index + 1}.save"
+		save_data = open_save_file(save_path)
+		if save_data is not None:
+			time_of_save = datetime.datetime.strptime(save_data["time"], TIME_FORMAT)
+			times.append((slot_index, time_of_save))
+	if len(times) > 0:
+		s = max(times, key=itemgetter(1))
+		return s[0]
+	else:
+		return None
+
+

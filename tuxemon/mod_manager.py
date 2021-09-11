@@ -70,7 +70,7 @@ class Manager:
         """Returns package dictionary, either from the server or the cache"""
         return self.packages
 
-    def download_package(self, name, release, repo=None, dont_extract=False, install_deps=True):
+    def download_package(self, name, release, repo=None, dont_extract=False, install_deps=True, installed=None):
         """Downloads the specified package"""
         if repo is None:
             repo = self.get_package_repo(name)
@@ -104,9 +104,9 @@ class Manager:
 
         if install_deps:
             # This function calls download_package, might cause issues
-            self.install_dependencies(name, release, repo, dont_extract=dont_extract)
+            self.install_dependencies(name, release, repo, dont_extract=dont_extract, done=installed)
 
-    def install_dependencies(self, name, release, repo, dont_extract=False, symlink=True):
+    def install_dependencies(self, name, release, repo, dont_extract=False, symlink=True, done=None):
         """
         Same as the download_package(), but it includes dependency installing.
         When symlink is True, dependency's files will be linked.
@@ -115,6 +115,10 @@ class Manager:
             name = name.replace(char, "_")
         # Get info
         meta = self.get_package_info(name, repo)
+
+        installed = done
+        if installed is None:
+            installed = [name]
         if "dependencies" in meta:
             dependencies = meta["dependencies"]
 
@@ -122,7 +126,10 @@ class Manager:
                 # Sanitize name and release
                 for char in '/\\?%*:|"<>.,;= ':
                     pack = str(pack).replace(char, "_")
-                self.download_package(pack, release, repo, dont_extract=dont_extract)
+
+                if pack in installed: continue
+                
+                self.download_package(pack, release, repo, dont_extract=dont_extract, installed=installed)
 
                 # Symlink deps
                 mainfolder = os.path.join(paths.BASEDIR, "mods", name)

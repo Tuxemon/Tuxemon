@@ -122,7 +122,7 @@ class Manager:
                 # Sanitize name and release
                 for char in '/\\?%*:|"<>.,;= ':
                     pack = str(pack).replace(char, "_")
-                self.download_package(pack, release, repo, dont_extract=dont_extract, install_deps=False)
+                self.download_package(pack, release, repo, dont_extract=dont_extract)
 
                 # Symlink deps
                 mainfolder = os.path.join(paths.BASEDIR, "mods", name)

@@ -173,7 +173,6 @@ class Manager:
 
     def read_package_from_list(self, name):
         """Reads path of the specified mod"""
-        #try:
         with open(paths.USER_GAME_DATA_DIR + "/package.list") as file:
             data = file.read()
             return json.loads(data)[name]

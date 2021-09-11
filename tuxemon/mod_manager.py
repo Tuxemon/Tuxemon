@@ -15,8 +15,6 @@ class Manager:
         """
         (basic) Mod managment library.
         """
-        # TODO: Recreate the __init__
-        # TODO: Cache updates by default
 
 
         if len(other_urls) == 0:
@@ -150,10 +148,6 @@ class Manager:
         for i in self.packages:
             if i["name"] == name:
                 return i["repo"]
-                """
-                if "repo" in i: return i["repo"]
-                else: return None
-                """
             else: continue
 
     def write_package_to_list(self, path_to_folder, name):
@@ -197,7 +191,6 @@ class Manager:
         """Removes the local package"""
         # Get the path
         path = self.read_package_from_list(name)
-        breakpoint()
         for char in '?%*:|"<>.,;= ':
             if char in path:
                 raise ValueError(f"Detected incorrect character ({char})")

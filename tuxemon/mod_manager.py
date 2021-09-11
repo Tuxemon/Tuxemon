@@ -7,6 +7,7 @@ import os
 import json
 import zipfile
 import shutil
+import string
 
 class Manager:
 
@@ -80,8 +81,13 @@ class Manager:
             if repo[-1] == "/":
                 repo = repo[:-1]
 
+        # Sanitize name and release
+        for char in '/\\?%*:|"<>.,;= ':
+            name = name.replace(char, "_")
+            release = str(release).replace(char, "_")
+
         url = str(repo) + f"/packages/{name}/releases/{str(release)}/download"
-        filename = os.path.join(paths.CACHE_DIR + f"/downloaded_packages/{name}.{release}.zip")
+        filename = os.path.join(paths.CACHE_DIR, f"downloaded_packages/{name}.{release}.zip")
 
         # Apperantly this function is ported from urllib from python2.
         # Maybe replace this in the future?
@@ -107,12 +113,17 @@ class Manager:
         Same as the download_package(), but it includes dependency installing.
         When symlink is True, dependency's files will be linked.
         """
+        for char in '/\\?%*:|"<>.,;= ':
+            name = name.replace(char, "_")
         # Get info
         meta = self.get_package_info(name, repo)
         if "dependencies" in meta:
             dependencies = meta["dependencies"]
 
             for pack in dependencies:
+                # Sanitize name and release
+                for char in '/\\?%*:|"<>.,;= ':
+                    pack = str(pack).replace(char, "_")
                 self.download_package(pack, release, repo, dont_extract=dont_extract, install_deps=False)
 
                 # Symlink deps
@@ -128,6 +139,8 @@ class Manager:
 
     def get_package_info(self, name, repo):
         """Get specified package info. Always downloads the info from the server."""
+        for char in '/\\?%*:|"<>.,;= ':
+            name = name.replace(char, "_")
         with urllib.request.urlopen(repo + f"/api/packages/{name}") as packages:
             return json.loads(packages.read().decode("UTF-8"))
 
@@ -185,6 +198,9 @@ class Manager:
         """Removes the local package"""
         # Get the path
         path = self.read_package_from_list(name)
-
+        breakpoint()
+        for char in '?%*:|"<>.,;= ':
+            if char in path:
+                raise ValueError(f"Detected incorrect character ({char})")
         shutil.rmtree(path, ignore_errors=True)
         self.remove_package_from_list(name)

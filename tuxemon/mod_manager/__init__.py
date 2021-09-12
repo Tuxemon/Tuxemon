@@ -87,9 +87,8 @@ class Manager:
                 repo = repo[:-1]
 
         # Sanitize name and release
-        for char in '/\\?%*:|"<>.,;= ':
-            name = name.replace(char, "_")
-            release = str(release).replace(char, "_")
+        name = sanitize_paths(name)
+        release = sanitize_paths(str(release))
 
         url = str(repo) + f"/packages/{name}/releases/{str(release)}/download"
         filename = os.path.join(paths.CACHE_DIR, f"downloaded_packages/{name}.{release}.zip")
@@ -101,7 +100,7 @@ class Manager:
 
         outfolder = os.path.join(paths.BASEDIR, "mods", f"{name}")
 
-        self.write_package_to_list(outfolder, name)
+        self.write_package_to_list(os.path.relpath(outfolder), name)
 
         if not dont_extract:
             self.extract(filename, outfolder)
@@ -118,8 +117,7 @@ class Manager:
         Same as the download_package(), but it includes dependency installing.
         When symlink is True, dependency's files will be linked.
         """
-        for char in '/\\?%*:|"<>.,;= ':
-            name = name.replace(char, "_")
+        name = sanitize_paths(name)
         # Get info
         meta = self.get_package_info(name, repo)
 
@@ -205,8 +203,7 @@ class Manager:
         """Removes the local package"""
         # Get the path
         path = self.read_package_from_list(name)
-        for char in '?%*:|"<>.,;= ':
-            if char in path:
-                raise ValueError(f"Detected incorrect character ({char})")
+        if path != sanitize_paths(path):
+            raise ValueError("Detected incorrect characters in path")
         shutil.rmtree(path, ignore_errors=True)
         self.remove_package_from_list(name)

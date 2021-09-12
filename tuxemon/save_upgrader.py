@@ -133,9 +133,9 @@ def _transfer_storage_boxes(save_data: Dict[str, Any]) -> None:
 
     Item and monster storage used to be handled in a single
     dictionary, with "item" and "monster" keys. Now they're two
-    dictionaries where the keys are "boxes", like in the Pokemon
-    games. This also allows "hidden" boxes for scripts to move
-    items and monsters around.
+    dictionaries where the keys are "boxes", like in other popular
+    games of the genre. This also allows "hidden" boxes for scripts
+    to move items and monsters around.
 
     Parameters:
         save_data: The save data.

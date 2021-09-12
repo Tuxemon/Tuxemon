@@ -203,6 +203,8 @@ class Manager:
         """Removes the local package"""
         # Get the path
         path = self.read_package_from_list(name)
+        if os.path.isabs(path):
+            raise IOError("Path is absolute")
         if path != sanitize_paths(path):
             raise ValueError("Detected incorrect characters in path")
         shutil.rmtree(path, ignore_errors=True)

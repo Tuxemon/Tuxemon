@@ -13,9 +13,11 @@ from tuxemon.menu.menu import PopUpMenu
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
 from tuxemon.ui import text
+from tuxemon.save import get_save_path
 
 logger = logging.getLogger(__name__)
 
+cfgcheck = prepare.CONFIG
 
 class SaveMenuState(PopUpMenu):
     number_of_slots = 3
@@ -32,7 +34,8 @@ class SaveMenuState(PopUpMenu):
         slot_rect = Rect(0, 0, rect.width * 0.80, rect.height // 6)
         for i in range(self.number_of_slots):
             # Check to see if a save exists for the current slot
-            if os.path.exists(prepare.SAVE_PATH + str(i + 1) + ".save"):
+            save_path = get_save_path(i + 1)
+            if os.path.exists(save_path):
                 image = self.render_slot(slot_rect, i + 1)
                 item = MenuItem(image, T.translate("menu_save"), None, None)
                 self.add(item)

@@ -3,7 +3,7 @@ import pygame
 
 from tuxemon import tools, graphics
 from tuxemon.ui.draw import GraphicBox
-from typing import ClassVar, Optional
+from typing import ClassVar, Optional, Callable
 
 
 class Bar():
@@ -94,7 +94,24 @@ class ExpBar(Bar):
 
 
 class MenuItem(pygame.sprite.Sprite):
-    def __init__(self, image, label, description, game_object):
+    """
+    Item from a menu.
+
+    Parameters:
+        image: Image of the menu item.
+        label: Name of the menu item.
+        description: Description of the menu item.
+        game_object: Callable used when the menu item is selected.
+
+    """
+
+    def __init__(
+        self,
+        image: pygame.surface.Surface,
+        label: Optional[str],
+        description: Optional[str],
+        game_object: Optional[Callable[[], None]],
+    ):
         super().__init__()
         self.image = image
         if image:
@@ -106,20 +123,30 @@ class MenuItem(pygame.sprite.Sprite):
         self.enabled = True
         self._in_focus = False
 
-    def toggle_focus(self):
+    def toggle_focus(self) -> None:
+        """Toggles the focus of the menu item."""
         self._in_focus = not self._in_focus
 
     @property
-    def in_focus(self):
+    def in_focus(self) -> bool:
         return self._in_focus
 
     @in_focus.setter
-    def in_focus(self, value):
+    def in_focus(self, value: bool) -> None:
         self._in_focus = bool(value)
 
 
 class MenuCursor(pygame.sprite.Sprite):
-    def __init__(self, image):
+    """
+    Menu cursor.
+
+    Typically it is an arrow that shows the currently selected menu item.
+
+    Parameters:
+        image: Image that represents the cursor.
+    """
+
+    def __init__(self, image: pygame.surface.Surface) -> None:
         super().__init__()
         self.image = image
         self.rect = image.get_rect()

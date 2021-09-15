@@ -1,9 +1,12 @@
+from __future__ import annotations
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu
+from typing import Any
 
 
 class ChoiceState(PopUpMenu):
-    """Game state with a graphic box and some text in it
+    """
+    Game state with a graphic box and some text in it.
 
     Pressing the action button:
     * if text is being displayed, will cause text speed to go max
@@ -14,12 +17,12 @@ class ChoiceState(PopUpMenu):
     shrink_to_items = True
     escape_key_exits = None
 
-    def startup(self, **kwargs):
+    def startup(self, **kwargs: Any) -> None:
         super().startup(**kwargs)
         self.menu = kwargs.get("menu", list())
         self.escape_key_exits = kwargs.get("escape_key_exits", False)
 
-    def initialize_items(self):
+    def initialize_items(self) -> None:
         for key, label, callback in self.menu:
             image = self.shadow_text(label)
             item = MenuItem(image, label, None, callback)

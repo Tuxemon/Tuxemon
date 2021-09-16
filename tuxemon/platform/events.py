@@ -20,18 +20,29 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 from __future__ import annotations
-from typing import Sequence, Mapping, Optional, Generator
-import pygame
+from typing import (
+    Any,
+    Generator,
+    Generic,
+    Mapping,
+    Optional,
+    Sequence,
+    TypeVar,
+)
+from abc import ABC, abstractmethod
 
 
-class EventQueueHandler:
+_InputEventType = TypeVar("_InputEventType", contravariant=True)
+
+
+class EventQueueHandler(ABC):
     """Event QueueHandler for different platforms.
 
     * Only one per game
     * Sole manager of platform events of type
     """
 
-    _inputs: Mapping[int, Sequence[InputHandler]]
+    _inputs: Mapping[int, Sequence[InputHandler[Any]]]
 
     def release_controls(self) -> Generator[PlayerInput, None, None]:
         """
@@ -47,23 +58,38 @@ class EventQueueHandler:
             for inp in value:
                 yield from inp.virtual_stop_events()
 
-    def process_events(self) -> None:
+    @abstractmethod
+    def process_events(self) -> Generator[PlayerInput, None, None]:
+        """
+        Process all pygame events.
+
+        * Should never return pygame-unique events
+        * All events returned should be Tuxemon game specific
+        * This must be the only function to get events from the pygame event
+          queue
+
+        Yields:
+            Game events.
+
+        """
         raise NotImplementedError
 
 
-class InputHandler:
+class InputHandler(ABC, Generic[_InputEventType]):
     """
     Enables basic input device with discrete inputs.
 
     Parameters:
-        event_map: Mapping of pygame identifiers to button identifiers.
+        event_map: Mapping of original identifiers to button identifiers.
 
     """
 
-    event_type = None
-    default_input_map: Mapping[int, int]
+    default_input_map: Mapping[Optional[int], int]
 
-    def __init__(self, event_map: Optional[Mapping[int, int]] = None):
+    def __init__(
+        self,
+        event_map: Optional[Mapping[Optional[int], int]] = None,
+    ) -> None:
         if event_map is None:
             event_map = self.default_input_map
         self.buttons = dict()
@@ -71,7 +97,15 @@ class InputHandler:
         for button in event_map.values():
             self.buttons[button] = PlayerInput(button)
 
-    def process_event(self, pg_event: pygame.event.Event) -> None:
+    @abstractmethod
+    def process_event(self, input_event: _InputEventType) -> None:
+        """
+        Process a input event, such as a Pygame event.
+
+        Parameters:
+            input_event: Input event to process.
+
+        """
         raise NotImplementedError
 
     def virtual_stop_events(self) -> Generator[PlayerInput, None, None]:

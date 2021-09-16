@@ -23,7 +23,7 @@ try:
 except ImportError:
     pass
 
-if mixer is None:
+if android is None:
     try:
         import pygame.mixer
         mixer = pygame.mixer

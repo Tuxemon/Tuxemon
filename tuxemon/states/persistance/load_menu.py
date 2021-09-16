@@ -1,6 +1,6 @@
 import logging
 
-from tuxemon import save
+from tuxemon import save, prepare
 from .save_menu import SaveMenuState
 from tuxemon.session import local_session
 
@@ -32,7 +32,11 @@ class LoadMenuState(SaveMenuState):
                 self.client.pop_state(self)
                 self.client.pop_state(old_world)
 
-            self.client.push_state("WorldState")
+            map_path = prepare.fetch("maps", save_data["current_map"])
+            self.client.push_state(
+                "WorldState",
+                map_name=map_path,
+            )
 
             # teleport the player to the correct position using an event engine action
             tele_x, tele_y = save_data["tile_pos"]

@@ -27,7 +27,7 @@ from typing import (
     Mapping,
     Optional,
     Sequence,
-    TypeVar,
+    TypeVar, ClassVar,
 )
 from abc import ABC, abstractmethod
 
@@ -84,7 +84,7 @@ class InputHandler(ABC, Generic[_InputEventType]):
 
     """
 
-    default_input_map: Mapping[Optional[int], int]
+    default_input_map: ClassVar[Mapping[Optional[int], int]]
 
     def __init__(
         self,

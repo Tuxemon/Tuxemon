@@ -6,7 +6,7 @@ from tuxemon.ui.draw import GraphicBox
 from typing import ClassVar, Optional, Callable
 
 
-class Bar():
+class Bar:
     """Common bar class for UI elements."""
 
     border_filename: ClassVar[str]

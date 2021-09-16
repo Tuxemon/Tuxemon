@@ -21,8 +21,6 @@ class FadeTransitionBase(State):
         self.state_duration = kwargs.get("state_duration", self.state_duration)
         self.fade_duration = kwargs.get("fade_duration", self.fade_duration)
         self.caller = kwargs.get("caller")
-
-    def resume(self):
         size = self.client.screen.get_size()
         self.transition_surface = pygame.Surface(size)
         self.transition_surface.fill(self.color)

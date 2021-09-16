@@ -375,9 +375,6 @@ class Menu(state.State):
 
         self.sprites.draw(surface)
 
-        # debug = show the menu items area
-        # surface.fill((255, 0, 0), self.calc_internal_rect(), 2)
-
     def set_font(self, size=5, font=None, color=(10, 10, 10), line_spacing=10):
         """Set the font properties that the menu uses including font _color, size, typeface,
         and line spacing.

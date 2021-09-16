@@ -85,7 +85,8 @@ class State:
     force_draw = False  # draw even if completely under another state
 
     def __init__(self, parent: StateManager) -> None:
-        """Constructor
+        """
+        Constructor
 
         Parameters:
             parent: The StateManager class that this state belongs to.
@@ -219,6 +220,8 @@ class State:
         same for a given game time. Any game changes should be done during
         update.
 
+        The state can prepare to be drawn during State.startup
+
         Parameters:
             surface: Surface to be rendered onto.
 
@@ -231,6 +234,8 @@ class State:
         This will be called:
         * after state is pushed and before next update
         * just once during the life of a state
+
+        Important!  The state must be ready to be drawn after this is called
 
         Example uses: loading images, configuration, sounds, etc.
 

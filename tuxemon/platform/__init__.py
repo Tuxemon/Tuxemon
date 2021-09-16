@@ -1,35 +1,38 @@
 """
 Put platform specific fixes here
 """
-
+from __future__ import annotations
 import logging
 import os.path
+from typing import Optional, Sequence
+import types
+import pygame
 
 __all__ = ("android", "init", "mixer", "get_user_storage_dir")
 
 logger = logging.getLogger(__name__)
 
 _pygame = False
-mixer = None
 android = None
 
 # TODO: more graceful handling of android and pygame deps.
 try:
     import android
-    import android.mixed as mixer
+    import android.mixer
+    mixer = android.mixer
 except ImportError:
     pass
 
 if mixer is None:
     try:
-        import pygame.mixer as mixer
-
+        import pygame.mixer
+        mixer = pygame.mixer
         _pygame = True
     except ImportError:
         pass
 
 
-def init():
+def init() -> None:
     """Must be called before pygame.init() to enable low latency sound"""
     # reduce sound latency.  the pygame defaults were ok for 2001,
     # but these values are more acceptable for faster computers
@@ -38,7 +41,7 @@ def init():
         mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=1024)
 
 
-def get_user_storage_dir():
+def get_user_storage_dir() -> str:
     """
 
     Mutable storage for things like config, save games, mods, cache
@@ -52,7 +55,7 @@ def get_user_storage_dir():
         return os.path.join(os.path.expanduser("~"), ".tuxemon")
 
 
-def get_system_storage_dirs():
+def get_system_storage_dirs() -> Sequence[str]:
     """
 
     Should be immutable storage for things like system installed code/mods

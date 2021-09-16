@@ -88,6 +88,9 @@ class TuxemonConfig:
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean("game", "recompile_translations")
         self.skip_titlescreen = cfg.getboolean("game", "skip_titlescreen")
+        self.compress_save: Optional[str] = cfg.get("game", "compress_save")
+        if self.compress_save == "None":
+            self.compress_save = None
 
         # [gameplay]
         self.items_consumed_on_failure = cfg.getboolean("gameplay", "items_consumed_on_failure")
@@ -200,6 +203,7 @@ def get_defaults() -> Mapping[str, Any]:
                         ("locale", "en_US"),
                         ("dev_tools", False),
                         ("recompile_translations", True),
+                        ("compress_save", None),
                     )
                 ),
             ),

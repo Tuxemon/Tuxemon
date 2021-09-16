@@ -89,7 +89,7 @@ class WorldState(state.State):
         buttons.BACK: intentions.WORLD_MENU,
     }
 
-    def startup(self, **kwargs: Any) -> None:
+    def startup(self, *, map_name: Optional[str] = None, **kwargs: Any) -> None:
         # Provide access to the screen surface
         self.screen = self.client.screen
         self.screen_rect = self.screen.get_rect()
@@ -110,7 +110,7 @@ class WorldState(state.State):
         #                              Map                                   #
         ######################################################################
 
-        self.current_map: Optional[TuxemonMap] = None
+        self.current_map: TuxemonMap
 
         ######################################################################
         #                            Transitions                             #
@@ -164,6 +164,11 @@ class WorldState(state.State):
         self.cinema_bottom["on_position"] = [0, self.resolution[1] - self.cinema_bottom["surface"].get_height()]
 
         self.map_animations = dict()
+
+        if map_name:
+            self.change_map(map_name)
+        else:
+            raise ValueError("You must pass the map name to load")
 
     def resume(self) -> None:
         """Called after returning focus to this state"""

@@ -12,7 +12,8 @@ from tuxemon.platform.const import buttons
 from tuxemon.sprite import RelativeGroup, VisualSpriteList
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
-from typing import Any, Callable, Optional, Literal, Dict, Sequence, Tuple
+from typing import Any, Callable, Optional, Literal, Dict, Sequence, Tuple,\
+    Generator
 from tuxemon.graphics import ColorLike
 from tuxemon.platform.events import PlayerInput
 from tuxemon.animation import Animation
@@ -186,7 +187,7 @@ class Menu(state.State):
 
         self.animate_text(find_textarea(), message, callback)
 
-    def initialize_items(self) -> Optional[Sequence[MenuItem]]:
+    def initialize_items(self) -> Generator[MenuItem, None, None]:
         """
         Advanced way to fill in menu items.
 

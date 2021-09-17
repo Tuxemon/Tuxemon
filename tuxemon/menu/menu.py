@@ -361,7 +361,9 @@ class Menu(state.State):
         if self.arrow not in self.menu_sprites:
             self.menu_sprites.add(self.arrow)
         self.trigger_cursor_update(False)
-        self.get_selected_item().in_focus = True
+        selected = self.get_selected_item()
+        assert selected
+        selected.in_focus = True
 
     def hide_cursor(self) -> None:
         """Hide the cursor that indicates the selected object."""
@@ -496,7 +498,9 @@ class Menu(state.State):
             handled_event = True
             if valid_change:
                 self.menu_select_sound.play()
-                self.on_menu_selection(self.get_selected_item())
+                selected = self.get_selected_item()
+                assert selected
+                self.on_menu_selection(selected)
 
         # cursor movement
         if event.button in (buttons.UP, buttons.DOWN, buttons.LEFT, buttons.RIGHT):
@@ -522,12 +526,19 @@ class Menu(state.State):
                 except AttributeError:
                     pass
                 else:
-                    mouse_pos = [a - b for a, b in zip(mouse_pos, self.menu_items.rect.topleft)]
+                    mouse_pos = [
+                        a - b for a, b in zip(
+                            mouse_pos,
+                            self.menu_items.rect.topleft,
+                        )
+                    ]
 
                 for index, item in enumerate([i for i in self.menu_items if i.enabled]):
                     if item.rect.collidepoint(mouse_pos):
                         self.change_selection(index)
-                        self.on_menu_selection(self.get_selected_item())
+                        selected = self.get_selected_item()
+                        assert selected
+                        self.on_menu_selection(selected)
 
         return event if not handled_event else None
 
@@ -544,7 +555,9 @@ class Menu(state.State):
         self.selected_index = index  # update the selection index
         self.menu_select_sound.play()  # play a sound
         self.trigger_cursor_update(animate)  # move cursor and [maybe] animate it
-        self.get_selected_item().in_focus = True  # set focus flag of new item
+        selected = self.get_selected_item()
+        assert selected
+        selected.in_focus = True  # set focus flag of new item
         self.on_menu_selection_change()  # let subclass know menu has changed
 
     def search_items(self, game_object: Any) -> Optional[MenuItem]:
@@ -626,7 +639,12 @@ class Menu(state.State):
                     self._show_contents = True
                     # TODO: make some "dirty" or invalidate layout API
                     # this will make sure items are arranged as menu opens
-                    ani.update_callback = partial(setattr, self.menu_items, "_needs_arrange", True)
+                    ani.update_callback = partial(
+                        setattr,
+                        self.menu_items,
+                        "_needs_arrange",
+                        True,
+                    )
                 ani.callback = show_items
             else:
                 self.state = "normal"
@@ -656,9 +674,10 @@ class Menu(state.State):
 
         Take care to make sure values do not overlap.
 
-        :param attribute:
-        :param value:
-        :return:
+        Parameters:
+            attribute: Rect attribute to specify.
+            value: Value of the attribute.
+
         """
         if value is None:
             del self._anchors[attribute]
@@ -768,21 +787,10 @@ class Menu(state.State):
 
 
 class PopUpMenu(Menu):
-    """Menu with "pop up" style animation"""
+    """Menu with "pop up" style animation."""
 
-    def animate_open(self):
-        """Called when menu is going to open
+    def animate_open(self) -> Animation:
 
-        Menu will not receive input during the animation
-        Menu will only play this animation once
-
-        Must return either an Animation or Task to attach callback
-        Only modify state of the menu Rect
-        Do not change important state attributes
-
-        :returns: Animation or Task
-        :rtype: tuxemon.animation.Animation
-        """
         # anchor the center of the popup
         rect = self.client.screen.get_rect()
         self.anchor("center", rect.center)
@@ -800,6 +808,11 @@ class PopUpMenu(Menu):
         self._needs_refresh = False
 
         # create animation to open window with
-        ani = self.animate(self.rect, height=rect.height, width=rect.width, duration=0.20)
+        ani = self.animate(
+            self.rect,
+            height=rect.height,
+            width=rect.width,
+            duration=0.20,
+        )
         ani.update_callback = lambda: setattr(self.rect, "center", rect.center)
         return ani

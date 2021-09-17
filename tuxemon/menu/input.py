@@ -1,32 +1,42 @@
+from __future__ import annotations
 from functools import partial
 
-from tuxemon.compat import Rect
+from pygame.rect import Rect
 from tuxemon import tools
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.platform.const import events
 from tuxemon.ui.text import TextArea
+from typing import Any, Generator, Optional, Callable
+from tuxemon.platform.events import PlayerInput
 
 
 class InputMenu(Menu):
     background = None
     draw_borders = False
 
-    def startup(self, *items, **kwargs):
+    def startup(
+        self,
+        *items: Any,
+        prompt: str = "",
+        callback: Optional[Callable[[str], None]] = None,
+        initial: str = "",
+        **kwargs: Any,
+    ) -> None:
         """
+        Initialize the input menu.
 
-        Accepted Keyword Arguments:
-            prompt:   String used to let user know what value is being inputted (ie "Name?", "IP Address?")
-            callback: Function to be called when dialog is confirmed.  The value will be sent as only argument
+        Parameters:
+            prompt:   String used to let user know what value is being
+                inputted (ie "Name?", "IP Address?").
+            callback: Function to be called when dialog is confirmed. The
+                value will be sent as only argument.
             initial:  Optional string to pre-fill the input box with.
 
-        :param items:
-        :param kwargs:
-        :return:
         """
         super().startup(*items, **kwargs)
-        self.input_string = kwargs.get("initial", "")
+        self.input_string = initial
         self.chars = T.translate("menu_alphabet").replace(r"\0", "\0")
         self.n_columns = int(T.translate("menu_alphabet_n_columns"))
 
@@ -43,18 +53,18 @@ class InputMenu(Menu):
         self.prompt.rect = Rect(tools.scale_sequence([50, 20, 80, 100]))
         self.sprites.add(self.prompt)
 
-        self.prompt.text = kwargs.get("prompt", "")
-        self.callback = kwargs.get("callback")
+        self.prompt.text = prompt
+        self.callback = callback
         assert self.callback
 
-    def calc_internal_rect(self):
+    def calc_internal_rect(self) -> Rect:
         w = self.rect.width - self.rect.width * 0.8
         h = self.rect.height - self.rect.height * 0.5
         rect = self.rect.inflate(-w, -h)
-        rect.top = self.rect.centery * 0.7
+        rect.top = int(self.rect.centery * 0.7)
         return rect
 
-    def initialize_items(self):
+    def initialize_items(self) -> Generator[MenuItem, None, None]:
         self.menu_items.columns = self.n_columns
 
         # add the keys
@@ -64,7 +74,12 @@ class InputMenu(Menu):
                 empty.enabled = False
                 yield empty
             else:
-                yield MenuItem(self.shadow_text(char), None, None, partial(self.add_input_char, char))
+                yield MenuItem(
+                    self.shadow_text(char),
+                    None,
+                    None,
+                    partial(self.add_input_char, char),
+                )
 
         # backspace key
         yield MenuItem(self.shadow_text("←"), None, None, self.backspace)
@@ -72,52 +87,41 @@ class InputMenu(Menu):
         # button to confirm the input and close the dialog
         yield MenuItem(self.shadow_text("END"), None, None, self.confirm)
 
-    def process_event(self, event):
-        """Handles player input events. This function is only called when the
-        player provides input such as pressing a key or clicking the mouse.
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
 
-        Since this is part of a chain of event handlers, the return value
-        from this method becomes input for the next one.  Returning None
-        signifies that this method has dealt with an event and wants it
-        exclusively.  Return the event and others can use it as well.
+        maybe_event = super().process_event(event)
 
-        You should return None if you have handled input here.
-
-        :type event: tuxemon.input.PlayerInput
-        :rtype: Optional[input.PlayerInput]
-        """
-        event = super().process_event(event)
-
-        if event and event.pressed:
-            if event.button == events.BACKSPACE:
+        if maybe_event and maybe_event.pressed:
+            if maybe_event.button == events.BACKSPACE:
                 self.backspace()
-                return
+                return None
 
-            if event.button == events.UNICODE:
-                char = event.value
+            if maybe_event.button == events.UNICODE:
+                char = maybe_event.value
                 if char == " " or char in self.chars:
                     self.add_input_char(char)
-                return
+                return None
 
-        return event
+        return maybe_event
 
-    def backspace(self):
+    def backspace(self) -> None:
         self.input_string = self.input_string[:-1]
         self.update_text_area()
 
-    def add_input_char(self, char):
+    def add_input_char(self, char: str) -> None:
         self.input_string += char
         self.update_text_area()
 
-    def update_text_area(self):
+    def update_text_area(self) -> None:
         self.text_area.text = self.input_string
 
-    def confirm(self):
-        """Confirm the input
+    def confirm(self) -> None:
+        """
+        Confirm the input.
 
         This is called when user selects "End".  Override, maybe?
 
-        :return:
         """
+        assert self.callback
         self.callback(self.input_string)
         self.client.pop_state(self)

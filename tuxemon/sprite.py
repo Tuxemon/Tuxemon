@@ -37,7 +37,8 @@ from tuxemon.platform.const import buttons
 from tuxemon.pyganim import PygAnimation
 from tuxemon import graphics
 from tuxemon.tools import scale as set
-from typing import Optional, Callable, Any, Sequence, List, Union, TYPE_CHECKING
+from typing import Optional, Callable, Any, Sequence, List, Union, TYPE_CHECKING,\
+    TypeVar, Generic, Iterator, overload
 from tuxemon.platform.events import PlayerInput
 
 if TYPE_CHECKING:
@@ -229,7 +230,10 @@ class CaptureDeviceSprite(Sprite):
         animate(sprite.rect, bottom=self.tray.rect.top + set(3))
 
 
-class SpriteGroup(pygame.sprite.LayeredUpdates):
+_GroupElement = TypeVar("_GroupElement", bound=pygame.sprite.Sprite)
+
+
+class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
     """
     Sane variation of a pygame sprite group.
 
@@ -245,13 +249,37 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
     def __init__(self, *, default_layer: int = 0) -> None:
         super().__init__(default_layer=default_layer)
 
+    def add(self, *sprites: pygame.sprite.Sprite, **kwargs: Any) -> None:
+        return pygame.sprite.LayeredUpdates.add(self, *sprites, **kwargs)
+
+    def __iter__(self) -> Iterator[_GroupElement]:
+        return pygame.sprite.LayeredUpdates.__iter__(self)
+
+    def sprites(self) -> Sequence[_GroupElement]:
+        # Pygame typing is awful. Ignore Mypy here.
+        return pygame.sprite.LayeredUpdates.sprites(self)
+
     def __nonzero__(self) -> bool:
         return bool(self.sprites())
+
+    @overload
+    def __getitem__(
+        self,
+        item: int,
+    ) -> _GroupElement:
+        pass
+
+    @overload
+    def __getitem__(
+        self,
+        item: slice,
+    ) -> Sequence[_GroupElement]:
+        pass
 
     def __getitem__(
         self,
         item: Union[int, slice],
-    ) -> Union[pygame.sprite.Sprite, Sequence[pygame.sprite.Sprite]]:
+    ) -> Union[_GroupElement, Sequence[_GroupElement]]:
         # patch in indexing / slicing support
         return self.sprites()[item]
 
@@ -300,7 +328,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
             return sprites[0].rect.unionall([s.rect for s in sprites[1:]])
 
 
-class RelativeGroup(SpriteGroup):
+class RelativeGroup(SpriteGroup[_GroupElement]):
     """
     Drawing operations are relative to the group's rect.
     """
@@ -310,7 +338,7 @@ class RelativeGroup(SpriteGroup):
     def __init__(
         self,
         *,
-        parent: Union[RelativeGroup, Callable[[], pygame.rect.Rect],  None] = None,
+        parent: Union[RelativeGroup[Any], Callable[[], pygame.rect.Rect],  None] = None,
         **kwargs: Any,
     ) -> None:
         self.parent = parent
@@ -363,7 +391,7 @@ class RelativeGroup(SpriteGroup):
         return dirty
 
 
-class MenuSpriteGroup(SpriteGroup):
+class MenuSpriteGroup(SpriteGroup[_GroupElement]):
     """
     Sprite Group to be used for menus.
 
@@ -414,7 +442,7 @@ class MenuSpriteGroup(SpriteGroup):
         return index
 
 
-class VisualSpriteList(RelativeGroup):
+class VisualSpriteList(RelativeGroup[_GroupElement]):
     """
     Sprite group which can be configured to arrange the children
     sprites into columns.

@@ -14,7 +14,7 @@ from tuxemon.platform.events import (
 from tuxemon.session import local_session
 from tuxemon.ui.draw import blit_alpha
 from typing import List, Dict, Generator, Optional, Mapping, Any, TypedDict,\
-    Tuple
+    Tuple, ClassVar
 import pygame
 
 
@@ -234,7 +234,7 @@ class PygameTouchOverlayInput(PygameEventHandler):
         transparency: Transparency of the drawn overlay.
 
     """
-    default_input_map: Mapping[Optional[int], int] = {}
+    default_input_map: ClassVar[Mapping[Optional[int], int]] = {}
 
     def __init__(self, transparency: int) -> None:
         super().__init__()

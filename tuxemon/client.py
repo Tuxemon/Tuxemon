@@ -49,6 +49,7 @@ from tuxemon.platform.events import PlayerInput
 from typing import Iterable, Generator, Optional, Tuple, Mapping, Any, Dict,\
     overload, Type, TypeVar, Union, Sequence
 from tuxemon.states.world.worldstate import WorldState
+from tuxemon.event import EventObject
 
 
 StateType = TypeVar("StateType", bound=State)
@@ -71,7 +72,10 @@ class LocalPygameClient:
     def __init__(self, config: TuxemonConfig) -> None:
         self.config = config
 
-        self.state_manager = StateManager("tuxemon.states", on_state_change=self.on_state_change)
+        self.state_manager = StateManager(
+            "tuxemon.states",
+            on_state_change=self.on_state_change,
+        )
         self.state_manager.auto_state_discovery()
         self.screen = pg.display.get_surface()
         self.caption = config.window_caption
@@ -81,19 +85,24 @@ class LocalPygameClient:
         self.current_time = 0.0
 
         # somehow this value is being patched somewhere
-        self.events = list()
-        self.inits = list()
-        self.interacts = list()
+        self.events: Sequence[EventObject] = []
+        self.inits: Sequence[EventObject] = []
+        self.interacts: Sequence[EventObject] = []
 
         # setup controls
         keyboard = PygameKeyboardInput(config.keyboard_button_map)
-        gamepad = PygameGamepadInput(config.gamepad_button_map, config.gamepad_deadzone)
+        gamepad = PygameGamepadInput(
+            config.gamepad_button_map,
+            config.gamepad_deadzone,
+        )
         self.input_manager = PygameEventQueueHandler()
         self.input_manager.add_input(0, keyboard)
         self.input_manager.add_input(0, gamepad)
         self.controller_overlay = None
         if config.controller_overlay:
-            self.controller_overlay = PygameTouchOverlayInput(config.controller_transparency)
+            self.controller_overlay = PygameTouchOverlayInput(
+                config.controller_transparency,
+            )
             self.controller_overlay.load()
             self.input_manager.add_input(0, self.controller_overlay)
         if not config.hide_mouse:
@@ -116,12 +125,14 @@ class LocalPygameClient:
         # Set up our game's event engine which executes actions based on
         # conditions defined in map files.
         self.event_engine = EventEngine(local_session)
-        self.event_conditions = {}
-        self.event_actions = {}
         self.event_persist: Dict[str, Mapping[str, Any]] = {}
 
         # Set up a variable that will keep track of currently playing music.
-        self.current_music = {"status": "stopped", "song": None, "previoussong": None}
+        self.current_music = {
+            "status": "stopped",
+            "song": None,
+            "previoussong": None,
+        }
 
         # Set up the command line. This provides a full python shell for
         # troubleshooting. You can view and manipulate any variables in
@@ -135,10 +146,10 @@ class LocalPygameClient:
         self.rumble = self.rumble_manager.rumbler
 
         # TODO: phase these out
-        self.key_events = list()
+        self.key_events: Sequence[PlayerInput] = []
         self.event_data = dict()
 
-    def on_state_change(self):
+    def on_state_change(self) -> None:
         logger.debug("resetting controls due to state change")
         self.release_controls()
 
@@ -194,7 +205,7 @@ class LocalPygameClient:
     def process_events(
         self,
         events: Iterable[PlayerInput],
-    ) -> Generator[pg.event.Event, None, None]:
+    ) -> Generator[PlayerInput, None, None]:
         """
         Process all events for this frame.
 
@@ -321,10 +332,10 @@ class LocalPygameClient:
         events = self.input_manager.process_events()
 
         # process the events and collect the unused ones
-        events = list(self.process_events(events))
+        key_events = list(self.process_events(events))
 
         # TODO: phase this out in favor of event-dispatch
-        self.key_events = events
+        self.key_events = key_events
 
         # Run our event engine which will check to see if game conditions
         # are met and run an action associated with that condition.
@@ -383,7 +394,11 @@ class LocalPygameClient:
 
             # if this state covers the screen
             # break here so lower screens are not drawn
-            if not state.transparent and state.rect == full_screen and not state.force_draw:
+            if (
+                not state.transparent
+                and state.rect == full_screen
+                and not state.force_draw
+            ):
                 break
 
         # draw from bottom up for proper layering

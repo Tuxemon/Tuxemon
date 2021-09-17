@@ -739,7 +739,8 @@ class Menu(state.State):
         Override in subclass, if you want to.
 
         """
-        if item.enabled and item.game_object is not None:
+        if item.enabled:
+            assert item.game_object is not None
             item.game_object()
 
     def on_menu_selection_change(self) -> None:

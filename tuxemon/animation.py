@@ -369,6 +369,8 @@ class Animation(pygame.sprite.Sprite):
 
     default_duration = 1000.0
     default_transition = "linear"
+    callback: Callable[[], None]
+    update_callback: Callable[[], None]
 
     def __init__(
         self,

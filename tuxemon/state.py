@@ -48,7 +48,7 @@ from typing import (
     Callable,
 )
 
-from tuxemon.compat import Rect
+from pygame.rect import Rect
 from tuxemon.constants import paths
 from tuxemon import prepare, graphics
 from tuxemon.animation import Animation

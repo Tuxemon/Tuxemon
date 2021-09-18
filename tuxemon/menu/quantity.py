@@ -1,46 +1,59 @@
+from __future__ import annotations
 import logging
 
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.platform.const import intentions
 from tuxemon.platform.const import buttons
+from tuxemon.platform.events import PlayerInput
+from typing import Optional, Any, Callable, Generator
 
 logger = logging.getLogger(__name__)
 
 
 class QuantityMenu(Menu):
-    def startup(self, *items, **kwargs):
-        super().startup()
-        self.quantity = kwargs.get("quantity", 1)
-        self.max_quantity = kwargs.get("max_quantity")
-        self.callback = kwargs.get("callback")
-        self.shrink_to_items = kwargs.get("shrink_to_items", False)
+    """Menu used to select quantities."""
 
-    def process_event(self, event):
-        """Handles player input events. This function is only called when the
-        player provides input such as pressing a key or clicking the mouse.
-
-        Since this is part of a chain of event handlers, the return value
-        from this method becomes input for the next one.  Returning None
-        signifies that this method has dealt with an event and wants it
-        exclusively.  Return the event and others can use it as well.
-
-        You should return None if you have handled input here.
-
-        :type event: tuxemon.input.PlayerInput
-        :rtype: Optional[input.PlayerInput]
+    def startup(
+        self,
+        *items: Any,
+        quantity: int = 1,
+        max_quantity: Optional[int] = None,
+        callback: Optional[Callable[[int], None]] = None,
+        shrink_to_items: bool = False,
+        **kwargs: Any,
+    ) -> None:
         """
+        Initialize the quantity menu.
+
+        Parameters:
+            quantity: Default selected quantity.
+            max_quantity: Maximum selectable quantity.
+            callback: Function to be called when dialog is confirmed. The
+                quantity will be sent as only argument.
+            shrink_to_items: Whether to fit the border to contents.
+
+        """
+        super().startup()
+        self.quantity = quantity
+        self.max_quantity = max_quantity
+        assert callback
+        self.callback = callback
+        self.shrink_to_items = shrink_to_items
+
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+
         if event.pressed:
             if event.button in (buttons.B, buttons.BACK, intentions.MENU_CANCEL):
                 self.close()
                 self.callback(0)
-                return
+                return None
 
             elif event.button == buttons.A:
                 self.menu_select_sound.play()
                 self.close()
                 self.callback(self.quantity)
-                return
+                return None
 
             elif event.button == buttons.UP:
                 self.quantity += 1
@@ -56,12 +69,17 @@ class QuantityMenu(Menu):
 
             if self.quantity < 0:
                 self.quantity = 0
-            elif self.max_quantity is not None and self.quantity > self.max_quantity:
+            elif (
+                self.max_quantity is not None
+                and self.quantity > self.max_quantity
+            ):
                 self.quantity = self.max_quantity
 
             self.reload_items()
 
-    def initialize_items(self):
+        return None
+
+    def initialize_items(self) -> Generator[MenuItem, None, None]:
         # TODO: move this and other format strings to a locale or config file
         label_format = "x {:>{count_len}}".format
         count_len = 3

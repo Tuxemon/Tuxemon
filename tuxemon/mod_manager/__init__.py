@@ -8,7 +8,7 @@ import os
 import json
 import zipfile
 import shutil
-
+import configparser
 
 def sanitize_paths(path):
     """Removes path specific characters like /."""
@@ -77,7 +77,7 @@ class Manager:
         """Returns package dictionary, either from the server or the cache"""
         return self.packages
 
-    def download_package(self, name, release, repo=None, dont_extract=False, install_deps=True, installed=None):
+    def download_package(self, author, name, release, repo=None, dont_extract=False, install_deps=True, installed=None):
         """Downloads the specified package"""
         if repo is None:
             repo = self.get_package_repo(name)
@@ -90,23 +90,37 @@ class Manager:
         name = sanitize_paths(name)
         release = sanitize_paths(str(release))
 
-        url = str(repo) + f"/packages/{name}/releases/{str(release)}/download"
+        url = str(repo) + f"/packages/{author}/{name}/releases/{str(release)}/download"
         filename = os.path.join(paths.CACHE_DIR, f"downloaded_packages/{name}.{release}.zip")
 
         # Apperantly this function is ported from urllib from python2.
         # Maybe replace this in the future?
         # https://docs.python.org/3/library/urllib.request.html#urllib.request.urlretrieve
-        urllib.request.urlretrieve(url, filename=filename)
+        #urllib.request.urlretrieve(url, filename=filename)
 
-        outfolder = os.path.join(paths.BASEDIR, "mods", f"{name}")
+        # Based on answer from https://stackoverflow.com/a/16696317/14590202
+        with requests.get(url, stream=True) as r:
+            file_size = r.headers["content-length"]
+            downloaded_size = 0
+            r.raise_for_status()
+            with open(filename, "wb") as file:
+                for chunk in r.iter_content(chunk_size=8096):
+                    file.write(chunk)
+                    downloaded_size += 8096
+                    #print(f"{downloaded_size}/{file_size}", int(file_size) - downloaded_size)
+
+        outfolder = os.path.join(paths.BASEDIR, "mods")
 
         self.write_package_to_list(os.path.relpath(outfolder), name)
 
         if not dont_extract:
-            self.extract(filename, outfolder)
-            with open(f"{outfolder}/meta.json", "w") as metafile:
-                meta = self.get_package_info(name, repo)
-                metafile.write(json.dumps(meta, indent=4, sort_keys=False))
+            with zipfile.ZipFile(filename) as zip_:
+                print(zip_.namelist())
+                zip_.extractall(path=os.path.join(paths.BASEDIR, "mods", outfolder))
+            #self.extract(filename, outfolder)
+            #with open(f"{outfolder}/meta.json", "w") as metafile:
+            #    meta = self.get_package_info(name, repo)
+            #    metafile.write(json.dumps(meta, indent=4, sort_keys=False))
 
         if install_deps:
             # This function calls download_package, might cause issues
@@ -119,13 +133,14 @@ class Manager:
         """
         name = sanitize_paths(name)
         # Get info
-        meta = self.get_package_info(name, repo)
-
-        installed = done
-        if installed is None:
-            installed = [name]
-        if "dependencies" in meta:
-            dependencies = meta["dependencies"]
+        with open(os.path.join(paths.BASEDIR, "mods", name, "mod.conf")) as file:
+            raw_meta = file.read()
+            
+        #installed = done
+        #if installed is None:
+        #    installed = [name]
+        if "depends" in meta:
+            dependencies = meta["depends"]
 
             for pack in dependencies:
                 # Sanitize name and release
@@ -142,17 +157,27 @@ class Manager:
                 symlink_missing(mainfolder, depfolder)
         else: pass
 
-    def extract(self, file, outfolder):
-        """Extracts the specified zip archive to the mods directory"""
-        with zipfile.ZipFile(file) as zip_:
-            zip_.extractall(path=os.path.join(paths.BASEDIR, "mods", outfolder))
+    def parse_mod_conf(self, content):
+        """
+        Parses the minetest's mod.conf files.
+        Returns: dict
+        """
+        out = {}
+        for line in content.split("\n"):
+            # Remove spaces and split into parts
+            parts = line\
+                .split(" = ")
+            if parts[0] == "depends":
+                element_list = parts[1].split(", ")
+                parts[1] = element_list
+            out = {**out, **{parts[0]:parts[1]}}
+        return out
 
-    def get_package_info(self, name, repo):
+    def get_package_info(self, author, name, repo):
         """Get specified package info. Always downloads the info from the server."""
         for char in '/\\?%*:|"<>.,;= ':
             name = name.replace(char, "_")
-        with urllib.request.urlopen(repo + f"/api/packages/{name}") as packages:
-            return json.loads(packages.read().decode("UTF-8"))
+        r = requests.get(repo + "/api/packages/{author}/{name}/")
 
     def get_package_repo(self, name):
         """Reads the origin of an package.

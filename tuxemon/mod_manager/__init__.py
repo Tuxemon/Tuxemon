@@ -1,5 +1,5 @@
 import urllib.request
-import request
+import requests
 
 from tuxemon.constants import paths
 from tuxemon.symlink_missing import symlink_missing

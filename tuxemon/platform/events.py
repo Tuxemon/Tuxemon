@@ -184,9 +184,11 @@ class PlayerInput:
 
     Parameters:
         button: Identifier of the button that caused this input.
-        value: Intensity of the press in the range [0, 1]. 0 is not pressed
+        value: Value associated with the event. For buttons it is the
+            intensity of the press in the range [0, 1]. 0 is not pressed
             and 1 is fully pressed. Some inputs, such as analog sticks may
-            support intermediate values.
+            support intermediate or negative values. Other input may store
+            the unicode key pressed, or the mouse coordinates.
         hold_time: The number of frames this input has been hold.
 
     """
@@ -196,7 +198,7 @@ class PlayerInput:
     def __init__(
         self,
         button: int,
-        value: float = 0,
+        value: Any = 0,
         hold_time: int = 0,
     ) -> None:
         self.button = button

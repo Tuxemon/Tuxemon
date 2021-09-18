@@ -8,7 +8,7 @@ from abc import ABC, abstractmethod
 SelfType = TypeVar("SelfType", bound="Vector")
 
 
-class Vector(ABC, Iterable[float]):
+class Vector(ABC, Sequence[float]):
 
     @abstractmethod
     def __init__(
@@ -30,7 +30,18 @@ class Vector(ABC, Iterable[float]):
     def __len__(self) -> int:
         return len(tuple(iter(self)))
 
+    @overload
     def __getitem__(self, key: int) -> float:
+        pass
+
+    @overload
+    def __getitem__(self, key: slice) -> Sequence[float]:
+        pass
+
+    def __getitem__(
+        self,
+        key: Union[int, slice],
+    ) -> Union[float, Sequence[float]]:
         return tuple(self)[key]
 
     def __add__(self: SelfType, other: SelfType) -> SelfType:

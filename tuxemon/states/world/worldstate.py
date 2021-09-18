@@ -42,13 +42,13 @@ from tuxemon.platform.const import intentions
 from tuxemon.platform.const import buttons, events
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
-from tuxemon.tools import nearest
 from tuxemon.graphics import ColorLike
 from typing import Optional, Sequence, Mapping, Tuple, Union, TypedDict, Dict,\
-    List, Set, Any
+    List, Set, Any, Literal
 from tuxemon.player import Player
 from tuxemon.entity import Entity
 from tuxemon.npc import NPC
+from tuxemon.pyganim import PygAnimation, PygConductor
 
 logger = logging.getLogger(__name__)
 
@@ -59,9 +59,25 @@ direction_map: Mapping[int, Direction] = {
     intentions.RIGHT: "right",
 }
 
+CinemaState = Literal["off", "on", "turning on", "turning off"]
+
 
 class EntityCollision(TypedDict):
     entity: Entity
+
+
+class AnimationInfo(TypedDict):
+    animation: PygAnimation
+    conductor: PygConductor
+    position: Tuple[int, int]
+    layer: int
+
+
+class CinemaSurfaceInfo(TypedDict):
+    surface: pygame.surface.Surface
+    on_position: List[int]
+    off_position: List[int]
+    position: List[int]
 
 
 CollisionDict = Dict[
@@ -89,7 +105,12 @@ class WorldState(state.State):
         buttons.BACK: intentions.WORLD_MENU,
     }
 
-    def startup(self, *, map_name: Optional[str] = None, **kwargs: Any) -> None:
+    def startup(
+        self,
+        *,
+        map_name: Optional[str] = None,
+        **kwargs: Any,
+    ) -> None:
         # Provide access to the screen surface
         self.screen = self.client.screen
         self.screen_rect = self.screen.get_rect()
@@ -102,7 +123,6 @@ class WorldState(state.State):
 
         self.npcs: Dict[str, NPC] = {}
         self.npcs_off_map: Dict[str, NPC] = {}
-        self.player: Optional[Player] = None
         self.wants_to_move_player: Optional[Direction] = None
         self.allow_player_movement = True
 
@@ -136,11 +156,11 @@ class WorldState(state.State):
 
         # The cinema bars are used for cinematic moments.
         # The cinema state can be: "off", "on", "turning on" or "turning off"
-        self.cinema_state = "off"
+        self.cinema_state: CinemaState = "off"
         self.cinema_speed = 15 * prepare.SCALE  # Pixels per second speed of the animation.
 
-        self.cinema_top = {}
-        self.cinema_bottom = {}
+        self.cinema_top: CinemaSurfaceInfo = {}  # type: ignore
+        self.cinema_bottom: CinemaSurfaceInfo = {}  # type: ignore
 
         # Create a surface that we'll use as black bars for a cinematic
         # experience
@@ -163,7 +183,7 @@ class WorldState(state.State):
         self.cinema_top["on_position"] = [0, 0]
         self.cinema_bottom["on_position"] = [0, self.resolution[1] - self.cinema_bottom["surface"].get_height()]
 
-        self.map_animations = dict()
+        self.map_animations: Dict[str, AnimationInfo] = {}
 
         if map_name:
             self.change_map(map_name)
@@ -215,7 +235,13 @@ class WorldState(state.State):
 
         """
         self.set_transition_surface()
-        self.animate(self, transition_alpha=0, initial=255, duration=duration, round_values=True)
+        self.animate(
+            self,
+            transition_alpha=0,
+            initial=255,
+            duration=duration,
+            round_values=True,
+        )
         self.task(self.unlock_controls, duration - 0.5)  # unlock controls before fade ends
 
     def trigger_fade_out(self, duration: float = 2) -> None:
@@ -229,7 +255,13 @@ class WorldState(state.State):
 
         """
         self.set_transition_surface()
-        self.animate(self, transition_alpha=255, initial=0, duration=duration, round_values=True)
+        self.animate(
+            self,
+            transition_alpha=255,
+            initial=0,
+            duration=duration,
+            round_values=True,
+        )
         self.stop_player()
         self.lock_controls()
 
@@ -310,13 +342,21 @@ class WorldState(state.State):
 
     def translate_input_event(self, event: PlayerInput) -> PlayerInput:
         try:
-            return PlayerInput(self.keymap[event.button], event.value, event.hold_time)
+            return PlayerInput(
+                self.keymap[event.button],
+                event.value,
+                event.hold_time,
+            )
         except KeyError:
             pass
 
         if event.button == events.UNICODE:
             if event.value == "n":
-                return PlayerInput(intentions.NOCLIP, event.value, event.hold_time)
+                return PlayerInput(
+                    intentions.NOCLIP,
+                    event.value,
+                    event.hold_time,
+                )
 
         return event
 
@@ -411,7 +451,7 @@ class WorldState(state.State):
             self.current_map.initialize_renderer()
 
         # get player coords to center map
-        cx, cy = nearest(self.project(self.player.position3))
+        cx, cy = self.project(self.player.position3)
 
         # offset center point for player sprite
         cx += prepare.TILE_SIZE[0] // 2
@@ -447,7 +487,7 @@ class WorldState(state.State):
             h = s.get_height()
             if h > prepare.TILE_SIZE[1]:
                 # offset for center and image height
-                c = nearest((c[0], c[1] - h // 2))
+                c = (c[0], c[1] - h // 2)
 
             screen_surfaces.append((s, c, l))
 
@@ -663,7 +703,7 @@ class WorldState(state.State):
             return adjacent_tiles
         except KeyError:
             pass
-        
+
         return None
 
     def get_exits(
@@ -699,7 +739,11 @@ class WorldState(state.State):
         # handles 'continue' and 'exits'
         tile_data = collision_map.get(position)
         if tile_data:
-            exits = self.get_explicit_tile_exits(position, tile_data, skip_nodes)
+            exits = self.get_explicit_tile_exits(
+                position,
+                tile_data,
+                skip_nodes,
+            )
         else:
             exits = None
 
@@ -712,7 +756,7 @@ class WorldState(state.State):
             ("left", (position[0] - 1, position[1])),
         ):
             # if exits are defined make sure the neighbor is present there
-            if exits and not neighbor in exits:
+            if exits and neighbor not in exits:
                 continue
 
             # check if the neighbor region is present in skipped nodes
@@ -833,9 +877,12 @@ class WorldState(state.State):
 
     def project(
         self,
-        position: Tuple[int, int],
+        position: Sequence[float],
     ) -> Tuple[int, int]:
-        return position[0] * self.tile_size[0], position[1] * self.tile_size[1]
+        return (
+            int(position[0] * self.tile_size[0]),
+            int(position[1] * self.tile_size[1]),
+        )
 
     def move_npcs(self, time_delta: float) -> None:
         """

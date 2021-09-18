@@ -428,7 +428,7 @@ class TuxemonMap:
         self.size = raw_data.width, raw_data.height
         self.inits = inits
         self.events = events
-        self.renderer = None
+        self.renderer: Optional[pyscroll.BufferedRenderer] = None
         self.edges = edges
         self.data = raw_data
         self.sprite_layer = 2

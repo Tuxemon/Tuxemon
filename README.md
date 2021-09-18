@@ -1,9 +1,10 @@
-Tuxemon 0.4.27
+Tuxemon 0.4.28
 ==============
 
 Tuxemon is a free, open source monster-fighting RPG.
 
 [![Build Status](https://travis-ci.org/Tuxemon/Tuxemon.svg?branch=development)](https://travis-ci.org/Tuxemon/Tuxemon)
+[![Documentation Status](https://readthedocs.org/projects/tuxemon/badge/?version=latest)](https://tuxemon.readthedocs.io/en/latest/?badge=latest)
 
 ![screenshot](https://www.tuxemon.org/images/featurette-01.png)
 
@@ -155,7 +156,7 @@ cli_enabled = True
  - `exit` — exits the game
  - `python` — Starts the python shell, that you can use to modify the game directly. For advanced users.
  - `add_item <slug> [amount]` — Adds the item (defined in `slug` parameter)
- - `add_monster <slug> [level]` — Adds the item (defined in `slug` parameter). Default level is set to 20.
+ - `add_monster <slug> [level]` — Adds the monster (defined in `slug` parameter). Default level is set to 20.
  - `set_health <target_level> [slot]` — Sets the health of the monster in your party. Must be a number between 0 and 100. If `slot` argument isn't specified, all monsters in your party will be affected.
  - `random_encounter` — Sets you in a wild tuxemon battle, similar to walking in tall grass.
  - `trainer_battle <npc_slug>` — Sets you in a trainer battle with specified npc.
@@ -207,3 +208,4 @@ External links
 * Discord: [Tuxemon](https://discord.gg/3ZffZwz)
 * Reddit: [/r/Tuxemon](https://www.reddit.com/r/tuxemon)
 * YouTube: [Tuxemon](https://www.youtube.com/channel/UC6BJ6H7dB2Dpb8wzcYhDU3w)
+* Readthedocs: https://tuxemon.readthedocs.io/en/latest/

@@ -28,7 +28,7 @@
 #
 #
 from __future__ import annotations
-from typing import Mapping, Any, Optional
+from typing import Mapping, Any, Optional, Dict
 """
 NOTE: REWRITE WHEN py2.7 SUPPORT IS DROPPED!
 """
@@ -88,6 +88,9 @@ class TuxemonConfig:
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean("game", "recompile_translations")
         self.skip_titlescreen = cfg.getboolean("game", "skip_titlescreen")
+        self.compress_save: Optional[str] = cfg.get("game", "compress_save")
+        if self.compress_save == "None":
+            self.compress_save = None
 
         # [gameplay]
         self.items_consumed_on_failure = cfg.getboolean("gameplay", "items_consumed_on_failure")
@@ -111,8 +114,8 @@ class TuxemonConfig:
         #     states.combat, states.world, event,
         #     neteria.server, neteria.client, neteria.core
         # Comma-seperated list of which modules to enable logging on
-        self.loggers = cfg.get("logging", "loggers")
-        self.loggers = self.loggers.replace(" ", "").split(",")
+        loggers_str = cfg.get("logging", "loggers")
+        self.loggers = loggers_str.replace(" ", "").split(",")
         self.debug_logging = cfg.getboolean("logging", "debug_logging")
         self.debug_level = cfg.get("logging", "debug_level")
 
@@ -127,18 +130,18 @@ class TuxemonConfig:
 
 def get_custom_pygame_keyboard_controls(
     cfg: configparser.ConfigParser,
-) -> Mapping[Optional[str], int]:
+) -> Mapping[Optional[int], int]:
     import pygame.locals
 
-    custom_controls: Mapping[Optional[str], int] = {None: events.UNICODE}
+    custom_controls: Dict[Optional[int], int] = {None: events.UNICODE}
     for key, values in cfg.items("controls"):
         key = key.upper()
-        button_value = getattr(buttons, key, None)
-        event_value = getattr(events, key, None)
+        button_value: Optional[int] = getattr(buttons, key, None)
+        event_value: Optional[int] = getattr(events, key, None)
         for each in values.split(", "):
             # pygame.locals uses all caps for constants except for letters
             each = each.lower() if len(each) == 1 else each.upper()
-            pygame_value = getattr(pygame.locals, "K_" + each, None)
+            pygame_value: int = getattr(pygame.locals, "K_" + each, None)
             if pygame_value is not None and button_value is not None:
                 custom_controls[pygame_value] = button_value
             elif pygame_value is not None and event_value is not None:
@@ -199,7 +202,8 @@ def get_defaults() -> Mapping[str, Any]:
                         ("net_controller_enabled", False),
                         ("locale", "en_US"),
                         ("dev_tools", False),
-                        ("recompile_translations", False),
+                        ("recompile_translations", True),
+                        ("compress_save", None),
                     )
                 ),
             ),

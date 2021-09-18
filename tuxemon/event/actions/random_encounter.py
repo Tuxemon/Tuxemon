@@ -29,6 +29,8 @@ from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
 from typing import NamedTuple, Union, final
+from tuxemon.states.world.worldstate import WorldState
+from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
 
@@ -84,7 +86,9 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             )
 
             # stop the player
-            world = self.session.client.get_state_by_name("WorldState")
+            world = self.session.client.get_state_by_name(WorldState)
+            if world is None:
+                return
             world.lock_controls()
             world.stop_player()
 
@@ -96,7 +100,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             self.session.client.event_engine.execute_action("play_music", [filename])
 
     def update(self):
-        if self.session.client.get_state_by_name("CombatState") is None:
+        if self.session.client.get_state_by_name(CombatState) is None:
             self.stop()
 
 

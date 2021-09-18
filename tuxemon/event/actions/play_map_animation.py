@@ -26,6 +26,7 @@ from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import load_animation_from_frames
 from typing import NamedTuple, Union, final
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -73,7 +74,7 @@ class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
 
         # Check to see if this animation has already been loaded.
         # If it has, play the animation using the animation's conductor.
-        world_state = self.session.client.get_state_by_name("WorldState")
+        world_state = self.session.client.get_state_by_name(WorldState)
 
         if world_state is None:
             logger.error("Cannot run MapAnimation outside of world state")

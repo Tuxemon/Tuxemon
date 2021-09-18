@@ -79,9 +79,8 @@ class StartState(PopUpMenu):
 
         def new_game():
             # load the starting map
-            state = self.client.replace_state("WorldState")
             map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
-            state.change_map(map_name)
+            state = self.client.replace_state("WorldState", map_name=map_name)
             self.client.push_state(
                 state_name="InputMenu",
                 prompt=T.translate("input_name"),

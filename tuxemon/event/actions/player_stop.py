@@ -22,6 +22,7 @@
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 from typing import NamedTuple, final
+from tuxemon.states.world.worldstate import WorldState
 
 
 class PlayerStopActionParameters(NamedTuple):
@@ -40,7 +41,7 @@ class PlayerStopAction(EventAction[PlayerStopActionParameters]):
 
     def start(self) -> None:
         # Get a copy of the world state.
-        world = self.session.client.get_state_by_name("WorldState")
+        world = self.session.client.get_state_by_name(WorldState)
         if not world:
             return
 

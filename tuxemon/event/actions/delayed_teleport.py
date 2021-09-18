@@ -22,6 +22,7 @@
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 from typing import NamedTuple, final
+from tuxemon.states.world.worldstate import WorldState
 
 
 class DelayedTeleportActionParameters(NamedTuple):
@@ -45,7 +46,9 @@ class DelayedTeleportAction(EventAction[DelayedTeleportActionParameters]):
 
     def start(self) -> None:
         # Get the world object from the session
-        world = self.session.client.get_state_by_name("WorldState")
+        world = self.session.client.get_state_by_name(WorldState)
+        if not world:
+            return
 
         # give up if there is a teleport in progress
         if world.delayed_teleport:

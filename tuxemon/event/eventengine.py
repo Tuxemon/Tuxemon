@@ -39,6 +39,7 @@ from tuxemon.event.eventcondition import EventCondition
 from tuxemon.event.eventaction import EventAction
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import Session
+from tuxemon.map import TuxemonMap
 
 logger = logging.getLogger(__name__)
 
@@ -126,7 +127,7 @@ class EventEngine:
 
         self.running_events: Dict[int, RunningEvent] = dict()
         self.name = "Event"
-        self.current_map = None
+        self.current_map: Optional[TuxemonMap] = None
         self.timer = 0.0
         self.wait = 0.0
         self.button = None

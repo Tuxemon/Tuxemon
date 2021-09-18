@@ -27,6 +27,7 @@ from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from typing import NamedTuple, final
+from tuxemon.menu.input import InputMenu
 
 
 class RenamePlayerActionParameters(NamedTuple):
@@ -56,5 +57,5 @@ class RenamePlayerAction(EventAction[RenamePlayerActionParameters]):
         )
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name("InputMenu") is None:
+        if self.session.client.get_state_by_name(InputMenu) is None:
             self.stop()

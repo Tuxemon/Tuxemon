@@ -27,6 +27,7 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import open_dialog
 from tuxemon.graphics import get_avatar
 from typing import NamedTuple, final
+from tuxemon.states.dialog import DialogState
 
 logger = logging.getLogger(__name__)
 
@@ -75,7 +76,7 @@ class TranslatedDialogAction(EventAction[TranslatedDialogActionParameters]):
         )
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name("DialogState") is None:
+        if self.session.client.get_state_by_name(DialogState) is None:
             self.stop()
 
     def open_dialog(self, pages, avatar):

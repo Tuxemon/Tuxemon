@@ -23,6 +23,7 @@ from __future__ import annotations
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from typing import NamedTuple, final
+from tuxemon.states.world.worldstate import WorldState
 
 
 class TeleportActionParameters(NamedTuple):
@@ -43,7 +44,10 @@ class TeleportAction(EventAction[TeleportActionParameters]):
 
     def start(self) -> None:
         player = self.session.player
-        world = self.session.client.get_state_by_name("WorldState")
+        world = self.session.client.get_state_by_name(WorldState)
+        if not world:
+            return
+
         map_name = self.parameters.map_name
 
         # If we're doing a screen transition with this teleport, set the map name that we'll

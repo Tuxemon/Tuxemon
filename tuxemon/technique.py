@@ -39,11 +39,12 @@ from tuxemon.db import db, process_targets, JSONStat
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 from typing import Optional, Sequence, TYPE_CHECKING, TypedDict, List, Tuple
-
+import operator
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 logger = logging.getLogger(__name__)
+
 
 class EffectResult(TypedDict, total=False):
     damage: int
@@ -62,7 +63,10 @@ class TechniqueResult(EffectResult):
     statuses: List[Optional[Technique]]
 
 
-def merge_results(result: EffectResult, meta_result: TechniqueResult) -> TechniqueResult:
+def merge_results(
+    result: EffectResult,
+    meta_result: TechniqueResult,
+) -> TechniqueResult:
     status = result.pop("status", None)
     if status:
         meta_result["statuses"].append(status)
@@ -72,8 +76,15 @@ def merge_results(result: EffectResult, meta_result: TechniqueResult) -> Techniq
 
 
 class Technique:
-    """A technique object is a particular skill that tuxemon monsters can use
-    in battle.
+    """
+    Particular skill that tuxemon monsters can use in battle.
+
+    Parameters:
+        slug: Slug of the technique.
+        carrier: Monster affected by a status technique.
+        link: Additional monster linked to the effect of the status technique.
+            For example, monster that obtains life with lifeleech.
+
     """
     def __init__(
         self,
@@ -98,12 +109,12 @@ class Technique:
         self.next_use = 0.0
         self.potency = 0.0
         self.power = 1.0
-        self.statspeed: db.JSONStat
-        self.stathp: db.JSONStat
-        self.statarmour: db.JSONStat
-        self.statdodge: db.JSONStat
-        self.statmelee: db.JSONStat
-        self.statranged: db.JSONStat
+        self.statspeed: JSONStat
+        self.stathp: JSONStat
+        self.statarmour: JSONStat
+        self.statdodge: JSONStat
+        self.statmelee: JSONStat
+        self.statranged: JSONStat
         self.range: Optional[str] = None
         self.recharge_length = 0
         self.sfx = ""
@@ -116,6 +127,7 @@ class Technique:
         self.use_success = ""
         self.use_failure = ""
         self.use_tech = ""
+        self.old_stats_data: List[Sequence[int]] = []
 
 
         # If a slug of the technique was provided, autoload it.
@@ -140,7 +152,8 @@ class Technique:
         self.sort = results["sort"]
 
         # technique use notifications (translated!)
-        # NOTE: should be `self.use_tech`, but Technique and Item have overlapping checks
+        # NOTE: should be `self.use_tech`, but Technique and Item have
+        # overlapping checks
         self.use_item = T.maybe_translate(results.get("use_tech"))
         self.use_success = T.maybe_translate(results.get("use_success"))
         self.use_failure = T.maybe_translate(results.get("use_failure"))
@@ -184,7 +197,9 @@ class Technique:
             directory = prepare.fetch("animations", "technique")
             self.images = animation_frame_files(directory, self.animation)
             if self.animation and not self.images:
-                logger.error(f"Cannot find animation frames for: {self.animation}")
+                logger.error(
+                    f"Cannot find animation frames for: {self.animation}",
+                )
 
         # Load the sound effect for this technique
         self.sfx = results["sfx"]
@@ -215,8 +230,15 @@ class Technique:
         """Reset the combat counter."""
         self._combat_counter = 0
 
+    def keep_old_stats(self) -> Sequence[Sequence[int]]:
+        mon = self.target
+        self.old_stats_data.append([
+            mon.speed, mon.hp, mon.armour,
+            mon.melee, mon.ranged, mon.dodge,
+        ])
+        return self.old_stats_data
+
     def use(self, user: Monster, target: Monster) -> TechniqueResult:
-        
         """
         Apply the technique.
 
@@ -241,12 +263,14 @@ class Technique:
         >>> bulbatux.moves[0].use(user=bulbatux, target=tuxmander)
 
         """
-        # Loop through all the effects of this technique and execute the effect's function.
+        # Loop through all the effects of this technique and execute the
+        # effect's function.
         # TODO: more robust API
         # TODO: separate classes for each Technique
         # TODO: consider moving message templates to the JSON DB
 
-        # defaults for the return. items can override these values in their return.
+        # Defaults for the return. items can override these values in their
+        # return.
         meta_result: TechniqueResult = {
             "name": self.name,
             "success": False,
@@ -256,7 +280,6 @@ class Technique:
         }
         # TODO: handle conflicting values from multiple technique actions
         # TODO: for example, how to handle one saying success, and another not?
-       
         for effect in self.effect:
             if effect == "damage":
                 result = self.damage(user, target)
@@ -287,36 +310,63 @@ class Technique:
         self.next_use = self.recharge_length
 
         return meta_result
-    
+
     def changestats(self, user: Monster, target: Monster) -> EffectResult:
-        ''' JSON SYNTAX:
-        Value: the number to change the stat by, default is add, use negative to subtract.
-        Dividing: set this to True to divide instead of adding or subtracting the value.
-        Overridetofull: in most cases you wont need this, if True it will set the stat to its original value rather than the specified value, but due to the way the 
-        game is coded, it currently only works on hp.
-        '''
-        statsmaster = [self.statspeed, self.stathp, self.statarmour, self.statmelee, self.statranged, self.statdodge]
+        """
+        Change combat stats.
+
+        JSON SYNTAX:
+            value: The number to change the stat by, default is add, use
+                negative to subtract.
+            dividing: Set this to True to divide instead of adding or
+                subtracting the value.
+            overridetofull: In most cases you wont need this. If ``True`` it
+                will set the stat to its original value rather than the
+                specified value, but due to the way the
+                game is coded, it currently only works on hp.
+
+        """
+        statsmaster = [
+            self.statspeed, self.stathp, self.statarmour,
+            self.statmelee, self.statranged, self.statdodge,
+        ]
         statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
-        for stat, slug in zip(statsmaster, statslugs):
+        newstatvalue = 0
+        for stat, slugdata in zip(statsmaster, statslugs):
             if not stat:
                 continue
-            value = stat['value']
-            dividing = stat['dividing']
-            override = stat['overridetofull']
-            basestatvalue = getattr(target, slug)
-            if value > 0 and override == False:
-                if dividing == False:
-                    newstatvalue = basestatvalue + value
-                else:
-                    newstatvalue = basestatvalue // value
-                success = True
-                setattr(target, slug, newstatvalue)
-            if override == True and slug == 'hp':
-                success = True
-                target.current_hp = target.hp
+            value = stat.get('value', 0)
+            max_deviation = stat.get('max_deviation', 0)
+            operation = stat.get('operation', '+')
+            override = stat.get('overridetofull', False)
+            basestatvalue = getattr(target, slugdata)
+            if max_deviation:
+                value = random.randint(
+                    value - max_deviation,
+                    value + max_deviation,
+                )
+
+            if value > 0 and override is not True:
+                ops_dict = {
+                    "+": operator.add,
+                    "-": operator.sub,
+                    "*": operator.mul,
+                    "/": operator.floordiv,
+                }
+                newstatvalue = ops_dict[operation](basestatvalue, value)
+                setattr(target, slugdata, newstatvalue)
+            if slugdata == 'hp':
+                if override:
+                    target.current_hp = target.hp
+                newstatvalue = 1
+                setattr(target, slugdata, newstatvalue)
+            if newstatvalue <= 0:
+                newstatvalue = 1
+                setattr(target, slugdata, newstatvalue)
         return {
-            "success": bool(stat)
+            "success": bool(newstatvalue)
         }
+
     def calculate_damage(
         self,
         user: Monster,
@@ -339,10 +389,9 @@ class Technique:
         """
         Apply damage.
 
-        This effect applies damage to a target monster. Damage calculations
-        are based upon the original Pokemon battle damage formula. This
-        effect will be applied if "damage" is defined in this technique's
-        effect list.
+        This effect applies damage to a target monster. This effect will only
+        be applied if "damage" is defined in the relevant technique's effect
+        list.
 
         Parameters:
             user: The Monster object that used this technique.
@@ -382,9 +431,12 @@ class Technique:
             Dict summarizing the result.
 
         """
-        
         already_applied = any(t for t in target.status if t.slug == slug)
-        success = not already_applied and self.can_apply_status and self.potency >= random.random()
+        success = (
+            not already_applied
+            and self.can_apply_status
+            and self.potency >= random.random(),
+        )
         tech = None
         if success:
             tech = Technique(slug, carrier=target)
@@ -406,7 +458,9 @@ class Technique:
             Dict summarizing the result.
 
         """
-        already_applied = any(t for t in target.status if t.slug == "status_lifeleech")
+        already_applied = any(
+            t for t in target.status if t.slug == "status_lifeleech"
+        )
         success = not already_applied and self.potency >= random.random()
         tech = None
         if success:
@@ -415,16 +469,7 @@ class Technique:
         return {
             "status": tech,
         }
-    def apply_overfeed(self, user: Monster, target: Monster) -> EffectResult:
-        already_applied = any(t for t in target.status if t.slug == "status_overfeed")
-        success = not already_applied and self.can_apply_status and self.potency >= random.random()
-        tech = None
-        if success:
-            tech = Technique("status_overfeed", carrier=target, link=user)
-            target.apply_status(tech)
-        return {
-            "status": tech,
-        }
+
     def poison(self, target: Monster) -> EffectResult:
         damage = formula.simple_poison(self, self.link, target)
         target.current_hp -= damage
@@ -454,17 +499,7 @@ class Technique:
             "should_tackle": bool(damage),
             "success": bool(damage),
         }
-    def overfeed(self, target: Monster) -> EffectResult:
-        user = self.link
-        assert user
-        target.current_hp = target.hp
-        target.speed = formula.simple_overfeed(self, user, target)
-            
-                
-        return {
-            "speed": target.speed,
-            "success": bool(target.speed),
-        }
+
     def faint(self, user: Monster, target: Monster) -> EffectResult:
         """
         Faint this monster.
@@ -481,7 +516,9 @@ class Technique:
         """
         # TODO: implement into the combat state, currently not used
 
-        already_fainted = any(t for t in target.status if t.name == "status_faint")
+        already_fainted = any(
+            t for t in target.status if t.name == "status_faint"
+        )
 
         if already_fainted:
             raise RuntimeError
@@ -504,7 +541,8 @@ class Technique:
 
         """
         # TODO: implement actions as events, so that combat state can find them
-        # TODO: relies on setting "combat_state" attribute.  maybe clear it up later
+        # TODO: relies on setting "combat_state" attribute.  maybe clear it up
+        # later
         # TODO: these values are set in combat_menus.py
 
         def swap_add() -> None:
@@ -530,5 +568,6 @@ class Technique:
             "success": True,
             "should_tackle": False,
         }
+
     def get_state(self) -> Optional[str]:
         return self.slug

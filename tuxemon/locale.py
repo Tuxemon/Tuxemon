@@ -79,6 +79,7 @@ class TranslatorPo:
             The information of each locale.
 
         """
+        logger.debug("searching locales...")
         root = prepare.fetch("l18n")
         for locale in os.listdir(root):
             locale_path = os.path.join(root, locale)
@@ -90,12 +91,14 @@ class TranslatorPo:
                             path = os.path.join(category_path, name)
                             if os.path.isfile(path) and name.endswith(".po"):
                                 domain = name[:-3]
-                                yield LocaleInfo(
+                                info = LocaleInfo(
                                     locale,
                                     category,
                                     domain,
                                     path,
                                 )
+                                logger.debug("found: %s", info)
+                                yield info
 
     def collect_languages(self, recompile_translations: bool = False) -> None:
         """
@@ -163,6 +166,7 @@ class TranslatorPo:
             domain: Name of the domain.
 
         """
+        logger.debug("loading translator for: %s", locale_name)
         localedir = os.path.join(paths.CACHE_DIR, "l18n")
         fallback = gettext.translation("base", localedir, [FALLBACK_LOCALE])
 
@@ -176,7 +180,7 @@ class TranslatorPo:
                 trans.add_fallback(fallback)
                 break
         else:
-            logger.warning(f"Locale {locale_name} not found. Using fallback.")
+            logger.warning("Locale %s not found. Using fallback.", locale_name)
             trans = fallback
         trans.install()
         self.translate = trans.gettext

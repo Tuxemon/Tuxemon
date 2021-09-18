@@ -27,6 +27,7 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import open_dialog
 from tuxemon.graphics import get_avatar
 from typing import NamedTuple, final
+from tuxemon.states.dialog import DialogState
 
 logger = logging.getLogger(__name__)
 
@@ -66,7 +67,7 @@ class DialogChainAction(EventAction[DialogChainActionParameters]):
             self.stop()
 
             # is a dialog already open?
-            dialog = self.session.client.get_state_by_name("DialogState")
+            dialog = self.session.client.get_state_by_name(DialogState)
 
             if dialog:
                 # yes, so just add text to it
@@ -80,7 +81,7 @@ class DialogChainAction(EventAction[DialogChainActionParameters]):
         # hack to allow unescaped commas in the dialog string
         text = ", ".join(self.raw_parameters)
         if text == "${{end}}":
-            if self.session.client.get_state_by_name("DialogState") is None:
+            if self.session.client.get_state_by_name(DialogState) is None:
                 self.stop()
 
     def open_dialog(self, initial_text, avatar):

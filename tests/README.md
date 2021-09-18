@@ -1,8 +1,8 @@
 Tuxemon Unit Tests
 ==================
 
-Currently, there is no standard framework for testing any code which requires
-a pygame window.  This code should be handled as part of short playthrough.
+Tests in this folder should be non-interactive and runnable with a test
+framework.  Tests should use the built in unittest module.
 
 Please follow this testing convention.  If you feel like changes should be
 made to the convention, please open a github issue with your proposal.
@@ -13,10 +13,9 @@ made to the convention, please open a github issue with your proposal.
 * TestCases for large classes can be broken up to focus on a feature
 * File structure should mirror the project
 * File names should be the same as the file they test, or close to it
-* Tests are written for python 3.6+ only
-* Do not add tests targeting python 2.7 code or style
 * Unit testing should not create a pygame window
 * Tests on code which require graphics are not required at this time
+* Interactive tests can be placed in the scripts folder for now
 
 ## Style
 

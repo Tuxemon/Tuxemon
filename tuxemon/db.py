@@ -106,10 +106,13 @@ class JSONMonster(JSONMonsterOptionalFields):
     weight: float
     sprites: JSONMonsterSprites
 
-class JSONStat(TypedDict):
-    value: int 
-    dividing: bool
+
+class JSONStat(TypedDict, total=False):
+    value: int
+    max_deviation: int
+    operation: str
     overridetofull: bool
+
 
 class JSONTechniqueOptionalFields(TypedDict, total=False):
     use_tech: str
@@ -129,6 +132,13 @@ class JSONTechniqueOptionalFields(TypedDict, total=False):
     statdodge: JSONStat
     statmelee: JSONStat
     statranged: JSONStat
+    userstatspeed: JSONStat
+    usertathp: JSONStat
+    userstatarmour: JSONStat
+    userstatdodge: JSONStat
+    userstatmelee: JSONStat
+    userstatranged: JSONStat
+
 
 class JSONTechnique(JSONTechniqueOptionalFields):
     slug: str
@@ -158,6 +168,7 @@ class JSONEnvironment(TypedDict):
     battle_music: str
     battle_graphics: JSONBattleGraphics
 
+
 def process_targets(json_targets: JSONTarget) -> Sequence[str]:
     """Return values in order of preference for targeting things.
 
@@ -183,6 +194,8 @@ def process_targets(json_targets: JSONTarget) -> Sequence[str]:
             )
         )
     )
+
+
 class JSONDatabase:
     """
     Handles connecting to the game database for resources.

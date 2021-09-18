@@ -55,10 +55,9 @@ def main(
     config = prepare.CONFIG
 
     import pygame
-    from tuxemon.client import Client
+    from tuxemon.client import LocalPygameClient
 
-    client = Client(config.window_caption)
-    client.auto_state_discovery()
+    client = LocalPygameClient(config)
 
     # global/singleton hack for now
     setattr(prepare, "GLOBAL_CONTROL", client)
@@ -88,9 +87,8 @@ def main(
 
     # TODO: rename this to "debug map" or something
     if config.skip_titlescreen:
-        state = client.push_state("WorldState")
         map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
-        state.change_map(map_name)
+        state = client.push_state("WorldState", map_name=map_name)
 
     # block of code useful for testing
     if config.collision_map:

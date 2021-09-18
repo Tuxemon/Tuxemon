@@ -22,6 +22,7 @@
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 from typing import NamedTuple, final
+from tuxemon.states.world.worldstate import WorldState
 
 
 class ScreenTransitionActionParameters(NamedTuple):
@@ -42,7 +43,7 @@ class ScreenTransitionAction(EventAction[ScreenTransitionActionParameters]):
         pass
 
     def update(self) -> None:
-        world = self.session.client.get_state_by_name("WorldState")
+        world = self.session.client.get_state_by_name(WorldState)
 
         if world is not None:
             if not world.in_transition:

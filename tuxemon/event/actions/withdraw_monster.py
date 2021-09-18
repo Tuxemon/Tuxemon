@@ -27,6 +27,7 @@ from tuxemon.event.eventaction import EventAction
 import logging
 import uuid
 from typing import NamedTuple, final
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -51,9 +52,9 @@ class WithdrawMonsterAction(EventAction[WithdrawMonsterActionParameters]):
 
     def start(self) -> None:
         trainer, monster_id = self.parameters
-        world = self.session.client.get_state_by_name("WorldState")
+        world = self.session.client.get_state_by_name(WorldState)
         if not world:
-            return False
+            return
 
         trainer = trainer.replace("player", "npc_red")
         npc = world.get_entity(trainer)

@@ -13,25 +13,13 @@
   "potency": 1,
   "power": 0,
   "statspeed": {
-    "value": 2, "dividing":true, "overridetofull":false
+    "value": 2, "operation":"/"
   },
   "stathp": {
-    "value": 0, "dividing":false, "overridetofull":true
-  },
-  "statarmour": {
-    "value": 0, "dividing":false, "overridetofull":false
-  },
-  "statdodge": {
-    "value": 0, "dividing":false, "overridetofull":false
-  },
-  "statmelee": {
-    "value": 0, "dividing":false, "overridetofull":false
-  },
-  "statranged": {
-    "value": 0, "dividing":false, "overridetofull":false
+    "value": 0, "operation":".", "overridetofull":true
   },
   "range": "melee",
-  "recharge": 1,
+  "recharge": 8,
   "sfx": "sfx_pulse",
   "slug": "overfeed",
   "sort": "meta",

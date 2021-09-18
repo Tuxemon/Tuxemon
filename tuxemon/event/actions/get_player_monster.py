@@ -26,6 +26,7 @@ from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 import logging
 from typing import NamedTuple, final
+from tuxemon.states.monster import MonsterMenuState
 
 logger = logging.getLogger(__name__)
 
@@ -59,5 +60,5 @@ class GetPlayerMonsterAction(EventAction[GetPlayerMonsterActionParameters]):
         menu.on_menu_selection = self.set_var
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name("MonsterMenuState") is None:
+        if self.session.client.get_state_by_name(MonsterMenuState) is None:
             self.stop()

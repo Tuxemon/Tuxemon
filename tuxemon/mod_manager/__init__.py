@@ -1,4 +1,5 @@
 import urllib.request
+import request
 
 from tuxemon.constants import paths
 from tuxemon.symlink_missing import symlink_missing
@@ -22,7 +23,6 @@ class Manager:
         """
         (basic) Mod managment library.
         """
-
 
         if len(other_urls) == 0:
             other_urls = ["http://127.0.0.1:5000"]
@@ -56,8 +56,8 @@ class Manager:
 
     def update(self, url):
         """Returns the response from the server"""
-        with urllib.request.urlopen(url + "/api/packages") as packages:
-            return json.loads(packages.read().decode("UTF-8"))
+        packages = requests.get(url + "/api/packages")
+        return packages.json()
 
     def update_all(self):
         """

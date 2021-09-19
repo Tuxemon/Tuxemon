@@ -100,7 +100,7 @@ class Manager:
         # Sanitize name and release
         name = sanitize_paths(name)
         release = sanitize_paths(str(release))
-        uwu = input( " ".join([author, name, release, repo, str(dont_extract), str(install_deps), str(installed)]) ) 
+        print( " ".join([author, name, release, repo, str(dont_extract), str(install_deps), str(installed)]) ) 
         url = str(repo) + f"/packages/{author}/{name}/releases/{str(release)}/download"
 
         filename = os.path.join(paths.CACHE_DIR, f"downloaded_packages/{name}.{release}.zip")
@@ -121,7 +121,7 @@ class Manager:
                     downloaded_size += 8096
                     print(f"{downloaded_size}/{file_size}", int(file_size) - downloaded_size)
 
-        outfolder = os.path.join(paths.BASEDIR, "mods")
+        outfolder = os.path.join(paths.BASEDIR, "mods", name)
 
         self.write_package_to_list(os.path.relpath(outfolder), name)
 
@@ -142,14 +142,18 @@ class Manager:
         """Recursively resolve dependencies and symlink them"""
         print(author, name, repo)
         # Request dependencies for specified package
-        r = requests.get(f"https://content.minetest.net/api/packages/{author}/{name}/dependencies/?only_hard=1")
-        #print(r.text, author, name)
+        r = requests.get(f"{repo}/api/packages/{author}/{name}/dependencies/?only_hard=1")
+        if r.status_code == 404:
+            return
+        print(r.text, author, name)
         dep_list = r.json()
         # Resolve dependencies
         for dependency in dep_list:
             for entry in dep_list[dependency]:
                 for package in entry["packages"]:
                     if os.path.exists(os.path.join(paths.BASEDIR, "mods", package)):
+                        continue
+                    if package == "default":
                         continue
                     self.download_package(
                         package.split("/")[0],

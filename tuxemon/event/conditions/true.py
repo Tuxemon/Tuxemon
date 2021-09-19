@@ -18,26 +18,35 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+from __future__ import annotations
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.event import MapCondition
+from tuxemon.session import Session
 
 
 class TrueCondition(EventCondition):
-    """This function always returns true unless the operator is set to "is_not" """
+    """
+    This condition always returns true.
+
+    Script usage:
+        .. code-block::
+
+            is true
+
+    """
 
     name = "true"
 
-    def test(self, session, condition):
-        """This function always returns true unless the operator is set to "is_not"
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        This function always returns true.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
+        Returns:
+            Always ``True``.
 
-        :rtype: Boolean
-        :returns: True or False
         """
         return True

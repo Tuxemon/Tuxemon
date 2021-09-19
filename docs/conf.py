@@ -61,7 +61,13 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 autodoc_typehints = "description"
+
 napoleon_numpy_docstring = False
+
+napoleon_custom_sections = [
+    "Script usage",
+    ("Script parameters", "params_style")
+]
 
 
 # Apidoc call to generate automatic reference docs. Taken from

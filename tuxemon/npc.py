@@ -470,7 +470,7 @@ class NPC(Entity):
         return tile in self.world.get_exits(self.tile_pos) or self.ignore_collisions
 
     @property
-    def move_destination(self) -> Optional[Sequence[int]]:
+    def move_destination(self) -> Optional[Tuple[int, int]]:
         """Only used for the player_moved condition."""
         if self.path:
             return self.path[-1]

@@ -18,37 +18,44 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
-from tuxemon.event import get_npc
+from __future__ import annotations
+from tuxemon.event import get_npc, MapCondition
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
 
 
 class NPCFacingCondition(EventCondition):
-    """Checks to see where an NPC is facing"""
+    """
+    Check to see where a character is facing.
+
+    Script usage:
+        .. code-block::
+
+            is npc_facing <character> <direction>
+
+    Script parameters:
+        character: Either "player" or npc slug name (e.g. "npc_maple").
+        direction: One of "up", "down", "left" or "right".
+
+    """
 
     name = "npc_facing"
 
-    def test(self, session, condition):
-        """Checks to see where an NPC is facing
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check to see where a character is facing.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
+        Returns:
+            Whether the chosen character faces the chosen direction.
 
-        :rtype: Boolean
-        :returns: True or False
-
-        Valid Parameters: npc_slug, direction ("up", "down", "left" or "right")
         """
         player = get_npc(session, condition.parameters[0])
         if not player:
             return False
         facing = condition.parameters[1]
 
-        if player.facing == facing:
-            return True
-        else:
-            return False
+        return player.facing == facing

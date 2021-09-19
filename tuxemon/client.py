@@ -125,7 +125,7 @@ class LocalPygameClient:
         # Set up our game's event engine which executes actions based on
         # conditions defined in map files.
         self.event_engine = EventEngine(local_session)
-        self.event_persist: Dict[str, Mapping[str, Any]] = {}
+        self.event_persist: Dict[str, Dict[str, Any]] = {}
 
         # Set up a variable that will keep track of currently playing music.
         self.current_music = {

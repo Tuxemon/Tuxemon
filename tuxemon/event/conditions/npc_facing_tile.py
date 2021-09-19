@@ -18,32 +18,45 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+from __future__ import annotations
 import logging
 
-from tuxemon.event import get_npc
+from tuxemon.event import get_npc, MapCondition
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
 
 class NPCFacingTileCondition(EventCondition):
-    """Checks to see if an NPC is facing a tile position"""
+    """
+    Check to see if a character is facing a tile position.
+
+    This is checked against all the tiles included in the condition object.
+
+    Script usage:
+        .. code-block::
+
+            is npc_facing_tile <character>
+
+    Script parameters:
+        character: Either "player" or npc slug name (e.g. "npc_maple").
+
+    """
 
     name = "npc_facing_tile"
 
-    def test(self, session, condition):
-        """Checks to see if an NPC is facing a tile position
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check to see if a character is facing a tile position.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
+        Returns:
+            Whether the chosen character faces one of the condition tiles.
 
-        :rtype: Boolean
-        :returns: True or False
         """
         # Get the npc object from the game.
         npc = get_npc(session, condition.parameters[0])
@@ -51,13 +64,15 @@ class NPCFacingTileCondition(EventCondition):
             return False
 
         tiles = [
-            (condition.x + w, condition.y + h) for w in range(0, condition.width) for h in range(0, condition.height)
+            (condition.x + w, condition.y + h)
+            for w in range(0, condition.width)
+            for h in range(0, condition.height)
         ]
         tile_location = None
 
         for coordinates in tiles:
-            # Next, we check the npc position and see if we're one tile away from
-            # the tile.
+            # Next, we check the npc position and see if we're one tile away
+            # from the tile.
             if coordinates[1] == npc.tile_pos[1]:
                 # Check to see if the tile is to the left of the npc
                 if coordinates[0] == npc.tile_pos[0] - 1:

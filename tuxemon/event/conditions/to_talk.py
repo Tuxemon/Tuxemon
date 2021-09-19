@@ -18,33 +18,46 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+from __future__ import annotations
 from tuxemon.event import MapCondition
 from tuxemon.event.conditions.button_pressed import ButtonPressedCondition
 from tuxemon.event.conditions.player_facing_npc import PlayerFacingNPCCondition
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
 
 
 class ToTalkCondition(EventCondition):
-    """Checks if we are attempting to talk to an npc"""
+    """
+    Check if we are attempting to talk to an npc.
+
+    Script usage:
+        .. code-block::
+
+            is to_talk <character>
+
+    Script parameters:
+        character: Npc slug name (e.g. "npc_maple").
+
+    """
 
     name = "to_talk"
 
-    def test(self, session, condition):
-        """Checks to see the player is next to and facing a particular NPC and that the Return button is pressed.
-
-        :param session: The session object
-        :param condition: The condition details.
-
-        :type session: tuxemon.session.Session
-        :type condition: NamedTuple
-
-        :rtype: Boolean
-        :returns: True or False
-
-        Valid Parameters: npc slug
+    def test(self, session: Session, condition: MapCondition) -> bool:
         """
-        player_next_to_and_facing_target = PlayerFacingNPCCondition().test(session, condition)
+        Check if we are attempting to talk to an npc.
+
+        Parameters:
+            session: The session object
+            condition: The map condition object.
+
+        Returns:
+            Whether the player attempts to talk with the npc.
+
+        """
+        player_next_to_and_facing_target = PlayerFacingNPCCondition().test(
+            session,
+            condition,
+        )
         button_pressed = ButtonPressedCondition().test(
             session,
             MapCondition(

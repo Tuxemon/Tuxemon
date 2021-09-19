@@ -18,27 +18,39 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+from __future__ import annotations
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
+from tuxemon.event import MapCondition
 
 
 class EvolveMonstersCondition(EventCondition):
-    """Checks to see if monsters can be evolved on the specified evolutionary path"""
+    """
+    Check to see if monsters can be evolved on a evolutionary path.
+
+    Script usage:
+        .. code-block::
+
+            is evolve_monsters <evolution>
+
+    Script parameters:
+        evolution: Name of a monster evolution.
+
+    """
 
     name = "evolve_monsters"
 
-    def test(self, session, condition):
-        """Checks to see if a monster can be evolved on the specified evolutionary path
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check to see if a monster can be evolved on a evolutionary path.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
-
-        :rtype: Boolean
-        :returns: True or False
+        Returns:
+            Whether a monster in the player party can evolve to the
+            specified evolution.
 
         """
         player = session.player

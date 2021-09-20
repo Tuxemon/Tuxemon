@@ -41,12 +41,12 @@ class Menu(state.State):
     will receive player input and respond to it.  They may be
     stacked, so that menus are nested.
 
-    :background: String
+    Attributes:
+        rect: The rect of the menu in pixels, defaults to 0, 0, 400, 200.
+        state: An arbitrary state of the menu. E.g. "opening" or "closing".
+        selected_index: The index position of the currently selected menu item.
+        menu_items: A list of available menu items.
 
-    :ivar rect: The rect of the menu in pixels, defaults to 0, 0, 400, 200.
-    :ivar state: An arbitrary state of the menu. E.g. "opening" or "closing".
-    :ivar selected_index: The index position of the currently selected menu item.
-    :ivar menu_items: A list of available menu items.
     """
 
     # defaults for the menu

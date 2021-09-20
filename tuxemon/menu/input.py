@@ -13,6 +13,7 @@ from tuxemon.platform.events import PlayerInput
 
 
 class InputMenu(Menu):
+    """Menu used to input text."""
     background = None
     draw_borders = False
 
@@ -28,11 +29,11 @@ class InputMenu(Menu):
         Initialize the input menu.
 
         Parameters:
-            prompt:   String used to let user know what value is being
+            prompt: String used to let user know what value is being
                 inputted (ie "Name?", "IP Address?").
             callback: Function to be called when dialog is confirmed. The
                 value will be sent as only argument.
-            initial:  Optional string to pre-fill the input box with.
+            initial: Optional string to pre-fill the input box with.
 
         """
         super().startup(*items, **kwargs)

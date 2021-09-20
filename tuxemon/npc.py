@@ -152,7 +152,7 @@ class NPC(Entity):
         self.path_origin: Optional[Tuple[int, int]] = None
 
         # movement related
-        self.move_direction = None  # Set this value to move the npc (see below)
+        self.move_direction: Optional[Direction] = None  # Set this value to move the npc (see below)
         self.facing = "down"  # Set this value to change the facing direction
         self.moverate = CONFIG.player_walkrate  # walk by default
         self.ignore_collisions = False

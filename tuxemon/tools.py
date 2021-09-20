@@ -189,12 +189,6 @@ def open_dialog(
     )
 
 
-def nearest(l: Iterable[float]) -> Sequence[int]:
-    """
-    Use rounding to find nearest tile."""
-    return tuple(int(round(i)) for i in l)
-
-
 def vector2_to_tile_pos(vector: Vector2) -> Tuple[int, int]:
     return (int(vector[0]), int(vector[1]))
 

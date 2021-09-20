@@ -18,34 +18,41 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+from __future__ import annotations
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
+from tuxemon.event import MapCondition
 
 
 class PlayerFacingCondition(EventCondition):
-    """Checks to see where an NPC is facing"""
+    """
+    Check to see where an NPC is facing.
+
+    Script usage:
+        .. code-block::
+
+            is player_facing <direction>
+
+    Script parameters:
+        direction: One of "up", "down", "left" or "right".
+
+    """
 
     name = "player_facing"
 
-    def test(self, session, condition):
-        """Checks to see where the player is facing
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check to see where the player is facing
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
+        Returns:
+            Whether the player faces the chosen direction.
 
-        :rtype: Boolean
-        :returns: True or False
-
-        Valid Parameters: direction ("up", "down", "left" or "right")
         """
         player = session.player
         facing = condition.parameters[0]
 
-        if player.facing == facing:
-            return True
-        else:
-            return False
+        return player.facing == facing

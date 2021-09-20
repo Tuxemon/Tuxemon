@@ -18,40 +18,51 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+from __future__ import annotations
 import logging
 
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
+from tuxemon.event import MapCondition
 
 logger = logging.getLogger(__name__)
 
 
 class PlayerFacingTileCondition(EventCondition):
-    """Checks to see if an NPC is facing a tile position"""
+    """
+    Check to see if an NPC is facing a tile position.
+
+    Script usage:
+        .. code-block::
+
+            is player_facing_tile
+
+    """
 
     name = "player_facing_tile"
 
-    def test(self, session, condition):
-        """Checks to see the player is facing a tile position
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check to see the player is facing a tile position.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
+        Returns:
+            Whether the player faces one of the condition tiles.
 
-        :rtype: Boolean
-        :returns: True or False
         """
 
         tiles = [
-            (condition.x + w, condition.y + h) for w in range(0, condition.width) for h in range(0, condition.height)
+            (condition.x + w, condition.y + h)
+            for w in range(0, condition.width)
+            for h in range(0, condition.height)
         ]
         tile_location = None
 
-        # Next, we check the player position and see if we're one tile away from
-        # the tile.
+        # Next, we check the player position and see if we're one tile
+        # away from the tile.
         for coordinates in tiles:
             if coordinates[1] == session.player.tile_pos[1]:
                 # Check to see if the tile is to the left of the player

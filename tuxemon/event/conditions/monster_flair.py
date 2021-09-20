@@ -18,30 +18,43 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+from __future__ import annotations
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
+from tuxemon.event import MapCondition
 
 
 class MonsterFlairCondition(EventCondition):
-    """Checks to see if the given monster flair matches the expected value"""
+    """
+    Check to see if the given monster flair matches the expected value.
+
+    Script usage:
+        .. code-block::
+
+            is monster_flair <slot> <category> <name>
+
+    Script parameters:
+        slot: Position of the monster in the player monster list.
+        category: Category of the flair.
+        name: Name of the flair.
+
+    """
 
     name = "monster_flair"
 
-    def test(self, session, condition):
-        """Checks to see if the given monster flair matches the expected value
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check to see if the given monster flair matches the expected value.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
-
-        :rtype: Boolean
-        :returns: True or False
+        Returns:
+            Whether the monster flair matches the expected value.
 
         """
-        slot = condition.parameters[0]
+        slot = int(condition.parameters[0])
         category = condition.parameters[1]
         name = condition.parameters[2]
 

@@ -32,20 +32,17 @@ from __future__ import annotations
 import logging
 from itertools import product
 from math import pi, atan2
-from typing import Dict, Optional, Literal, Generator, Tuple, TypeVar, Mapping,\
-    Any, Sequence, List, Set, TYPE_CHECKING, TypedDict
+from typing import Optional, Literal, Generator, Tuple, TypeVar, Mapping,\
+    Sequence, List, Set, TypedDict
 
 import pyscroll
 
-from tuxemon.compat import Rect, ReadOnlyRect
+from tuxemon.compat import ReadOnlyRect
 from tuxemon import prepare
-from tuxemon.math import Vector2, Vector3, Point2
+from tuxemon.math import Vector2, Vector3
 from tuxemon.tools import round_to_divisible
 from tuxemon.event import EventObject
 from pytmx.pytmx import TiledMap
-
-if TYPE_CHECKING:
-    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 

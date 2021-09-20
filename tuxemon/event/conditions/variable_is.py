@@ -18,41 +18,47 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+from __future__ import annotations
 import logging
 
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.tools import number_or_variable
+from tuxemon.session import Session
+from tuxemon.event import MapCondition
 
 logger = logging.getLogger(__name__)
 
 
 class VariableIsCondition(EventCondition):
-    """Checks to see if a player game variable has been set. This will look for a particular
-    key in the player.game_variables dictionary and see if it exists. If it exists, it will
-    return true.
+    """
+    Check an operation over a variable.
+
+    Script usage:
+        .. code-block::
+
+            is variable_is <value1> <operation> <value2>
+
+    Script parameters:
+        value1: Either a variable or a number.
+        operation: One of "==", "!=", ">", ">=", "<" or "<=".
+        value2: Either a variable or a number.
+
     """
 
     name = "variable_is"
 
-    def test(self, session, condition):
-        """Checks to see if a player game variable meets a given condition. This will look
-        for a particular key in the player.game_variables dictionary and see if it exists.
-        If it exists, it will return true if the variable is greater than the value.
-
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-        for the format of the dictionary.
-
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
-
-        :rtype: Boolean
-        :returns: True or False
-
-        Valid Parameters: variable_name, operation, value
+    def test(self, session: Session, condition: MapCondition) -> bool:
         """
-        player = session.player
+        Check an operation over a variable.
+
+        Parameters:
+            session: The session object
+            condition: The map condition object.
+
+        Returns:
+            Result of the operation over the variable.
+
+        """
 
         # Read the parameters
         operand1 = number_or_variable(session, condition.parameters[0])

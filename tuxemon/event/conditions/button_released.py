@@ -23,7 +23,7 @@ from tuxemon.event.eventcondition import EventCondition
 
 
 class ButtonReleasedCondition(EventCondition):
-    """Checks to see if a particular key was released"""
+    """Checks to see if a particular key was released."""
 
     name = "button_released"
 

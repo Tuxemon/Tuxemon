@@ -18,36 +18,45 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+from __future__ import annotations
 import logging
 
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
+from tuxemon.event import MapCondition
 
 logger = logging.getLogger(__name__)
 
 
 class PartySizeCondition(EventCondition):
-    """Checks to see where an NPC is facing"""
+    """
+    Check the party size.
+
+    Script usage:
+        .. code-block::
+
+            is party_size <operator> <value>
+
+    Script parameters:
+        operator: One of "equals", "less_than" or "greater_than".
+        value: The value to compare the party size with.
+
+    """
 
     name = "party_size"
 
-    def test(self, session, condition):
-        """Perform various checks about the player's party size. With this condition you can see if
-        the player's party is less than, greater than, or equal to then number you specify.
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check the party size.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
+        Returns:
+            Result of the comparison between the party size and the chosen
+            value.
 
-        :rtype: Boolean
-        :returns: True or False
-
-        Valid Parameters: check,party_size
-
-        The "check" parameter can be one of the following: "equals", "less_than", or "greater_than".
         """
         check = str(condition.parameters[0])
         number = int(condition.parameters[1])
@@ -56,24 +65,15 @@ class PartySizeCondition(EventCondition):
         # Check to see if the player's party size equals this number.
         if check == "equals":
             logger.debug("Equal check")
-            if party_size == number:
-                return True
-            else:
-                return False
+            return party_size == number
 
         # Check to see if the player's party size is LESS than this number.
         elif check == "less_than":
-            if party_size < number:
-                return True
-            else:
-                return False
+            return party_size < number
 
         # Check to see if the player's part size is GREATER than this number.
         elif check == "greater_than":
-            if party_size > number:
-                return True
-            else:
-                return False
+            return party_size > number
 
         else:
             raise Exception("Party size check parameters are incorrect.")

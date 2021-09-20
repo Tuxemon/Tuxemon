@@ -18,39 +18,47 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+from __future__ import annotations
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
+from tuxemon.event import MapCondition
 
 
 class PlayerAtCondition(EventCondition):
-    """Checks to see if an npc is at a current position on the map."""
+    """
+    Check to see if the player is at the condition position on the map.
+
+    Script usage:
+        .. code-block::
+
+            is player_at
+
+    """
 
     name = "player_at"
 
-    def test(self, session, condition):
-        """Checks to see if the player is at a current position on the map.
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check to see if the player is at the condition position on the map.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
+        Returns:
+            Whether the player is in the condition position.
 
-        :rtype: Boolean
-        :returns: True or False
         """
         player = session.player
 
-        # Get the condition's rectangle area. If we're on a tile in that area, then this condition
-        # should return True.
+        # Get the condition's rectangle area. If we're on a tile in that area,
+        # then this condition should return True.
         area_x = range(condition.x, condition.x + condition.width)
         area_y = range(condition.y, condition.y + condition.height)
 
-        # If the player is at the coordinates and the operator is set to true then return true
-        if round(player.tile_pos[0]) in area_x and round(player.tile_pos[1]) in area_y:
-            return True
-
-        # If the player is at the coordinates and the operator is set to false then return false
-        else:
-            return False
+        # If the player is at the coordinates and the operator is set to true
+        # then return true
+        return (
+            round(player.tile_pos[0]) in area_x
+            and round(player.tile_pos[1]) in area_y
+        )

@@ -46,7 +46,7 @@ class RemoveMonsterAction(EventAction[RemoveMonsterActionParameters]):
     def start(self) -> None:
         iid = self.session.player.game_variables[self.parameters.instance_id]
         instance_id = uuid.UUID(iid)
-        trainer_slug = self.parameters.trainer
+        trainer_slug = self.parameters.trainer_slug
 
         if trainer_slug is None:
             trainer = self.session.player

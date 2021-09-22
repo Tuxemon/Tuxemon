@@ -1,6 +1,5 @@
 #!/bin/bash
 # debian 10
-buildconfig/setup_wine_debian10.sh
 wine python -m pip install -U setuptools wheel cx_Freeze
 wine python -m pip install -U -r requirements.txt
 find . -name "*pyc" -delete

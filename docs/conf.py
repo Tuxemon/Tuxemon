@@ -12,6 +12,7 @@
 #
 import os
 import sys
+sys.path.append(os.path.abspath("./ext"))
 sys.path.insert(0, os.path.abspath('../'))
 
 
@@ -37,6 +38,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
     'sphinx.ext.napoleon',
+    'script_documenter',
 ]
 
 # Add any paths that contain templates here, relative to this directory.

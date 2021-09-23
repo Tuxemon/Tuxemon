@@ -10,7 +10,7 @@ Welcome to Tuxemon's documentation!
    :maxdepth: 4
    :caption: Contents:
 
-
+   handcrafted/scripting
 
 Indices and tables
 ==================

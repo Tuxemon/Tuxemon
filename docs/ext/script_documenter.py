@@ -15,7 +15,7 @@ class ScriptClassDocumenter(ClassDocumenter):
         name = self.format_name()
 
         self.add_line(name, sourcename)
-        self.add_line("-" * len(name), sourcename)
+        self.add_line("^" * len(name), sourcename)
 
     def add_content(
         self,

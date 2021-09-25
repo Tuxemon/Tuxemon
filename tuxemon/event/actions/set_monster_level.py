@@ -21,12 +21,12 @@
 
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, final
+from typing import NamedTuple, final, Union
 
 
 class SetMonsterLevelActionParameters(NamedTuple):
-    slot: int
-    level: int
+    slot: Union[int, None]
+    level: Union[int, None]
 
 
 @final
@@ -42,7 +42,7 @@ class SetMonsterLevelAction(EventAction[SetMonsterLevelActionParameters]):
     param_class = SetMonsterLevelActionParameters
 
     def start(self) -> None:
-        if not self.session.player.monsters > 0:
+        if not len(self.session.player.monsters) > 0:
             return
 
         monster_slot = self.parameters[0]

@@ -164,11 +164,11 @@ class Manager:
                     )
                     
 
-    """def install_dependencies(self, name, release, repo, dont_extract=False, symlink=True, done=None):
-        "#""
+    def install_dependencies(self, name, release, repo, dont_extract=False, symlink=True, done=None):
+        """
         Same as the download_package(), but it includes dependency installing.
         When symlink is True, dependency's files will be linked.
-        "#""
+        """
         name = sanitize_paths(name)
         # Get info
         with open(os.path.join(paths.BASEDIR, "mods", name, "mod.conf")) as file:
@@ -196,25 +196,25 @@ class Manager:
                 depfolder = os.path.join(paths.BASEDIR, "mods", pack)
                 symlink_missing(mainfolder, depfolder)
         else: pass
-    """
 
-    """    def parse_mod_conf(self, content):
-        "#""
-        Parses the minetest's mod.conf files.
-        Returns: dict
-        "#""
-        out = {}
-        for line in content.split("\n"):
-            # Remove spaces and split into parts
-            parts = line\
-                .split(" = ")
-            if len(parts[0]) == 0:
-                continue
-            if parts[0] == "depends":
-                element_list = parts[1].split(", ")
-                parts[1] = element_list
-            out = {**out, **{parts[0]:parts[1]}}
-        return out"""
+
+    def parse_mod_conf(self, content):
+            """
+            Parses the minetest's mod.conf files.
+            Returns: dict
+            """
+            out = {}
+            for line in content.split("\n"):
+                # Remove spaces and split into parts
+                parts = line\
+                    .split(" = ")
+                if len(parts[0]) == 0:
+                    continue
+                if parts[0] == "depends":
+                    element_list = parts[1].split(", ")
+                    parts[1] = element_list
+                out = {**out, **{parts[0]:parts[1]}}
+            return out
 
     def get_package_info(self, author, name, repo):
         """Get specified package info. Always downloads the info from the server."""

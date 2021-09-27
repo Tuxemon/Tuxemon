@@ -129,6 +129,7 @@ class Manager:
             with zipfile.ZipFile(filename) as zip_:
                 print(zip_.namelist())
                 zip_.extractall(path=os.path.join(paths.BASEDIR, "mods", outfolder))
+
             #self.extract(filename, outfolder)
             #with open(f"{outfolder}/meta.json", "w") as metafile:
             #    meta = self.get_package_info(name, repo)
@@ -163,12 +164,12 @@ class Manager:
                         
                     )
                     
-
+"""
     def install_dependencies(self, name, release, repo, dont_extract=False, symlink=True, done=None):
-        """
+        "#""
         Same as the download_package(), but it includes dependency installing.
         When symlink is True, dependency's files will be linked.
-        """
+        "#""
         name = sanitize_paths(name)
         # Get info
         with open(os.path.join(paths.BASEDIR, "mods", name, "mod.conf")) as file:
@@ -196,7 +197,7 @@ class Manager:
                 depfolder = os.path.join(paths.BASEDIR, "mods", pack)
                 symlink_missing(mainfolder, depfolder)
         else: pass
-
+"""
 
     def parse_mod_conf(self, content):
             """
@@ -266,7 +267,6 @@ class Manager:
                 json.dumps(before, indent=4)
             )
 
-
     def remove_package(self, name):
         """Removes the local package"""
         # Get the path
@@ -277,3 +277,14 @@ class Manager:
             raise ValueError("Detected incorrect characters in path")
         shutil.rmtree(path, ignore_errors=True)
         self.remove_package_from_list(name)
+
+    def install_local_package(self, filename, name=None, download_deps=False, link_deps=False):
+        """
+        Installs local packages.
+        Based on the download_package function, but without the downloads
+        """
+        # TODO:  
+        outfolder = os.path.join(paths.BASEDIR, "mods", name)
+        self.write_package_to_list(os.path.relpath(outfolder), name)
+        with zipfile.ZipFile(filename) as zipf:
+            zipf.extractall(path=os.path.join(paths.BASEDIR, "mods", outfolder))

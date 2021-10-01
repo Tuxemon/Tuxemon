@@ -42,7 +42,7 @@ class SetMonsterLevelAction(EventAction[SetMonsterLevelActionParameters]):
     param_class = SetMonsterLevelActionParameters
 
     def start(self) -> None:
-        if not len(self.session.player.monsters) > 0:
+        if not self.session.player.monsters:
             return
 
         monster_slot = self.parameters[0]

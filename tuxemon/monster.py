@@ -460,6 +460,7 @@ class Monster:
 
         Sets the Monster's level to the specified arbitrary level,
         and modifies experience accordingly.
+        Does not let level go above MAX_LEVEL or below 1.
 
         Parameters:
             level: The level to set the monster to.
@@ -469,6 +470,10 @@ class Monster:
         >>> bulbatux.set_level(20)
 
         """
+        if level > MAX_LEVEL:
+            level = MAX_LEVEL
+        elif level < 1:
+            level = 1
         self.level = level
         self.total_experience = self.experience_required()
         self.set_stats()

@@ -34,16 +34,33 @@ class SetInventoryActionParameters(NamedTuple):
 
 @final
 class SetInventoryAction(EventAction[SetInventoryActionParameters]):
-    """Overwrites the inventory of the npc or player."""
+    """
+    Overwrite the inventory of the npc or player.
+
+    Script usage:
+        .. code-block::
+
+            set_inventory <npc_slug>,<inventory_slug>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        inventory_slug: Slug of an inventory.
+
+    """
 
     name = "set_inventory"
     param_class = SetInventoryActionParameters
 
     def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
-        if self.parameters.inventory_slug == "None":
+        assert npc
+        if self.parameters.inventory_slug is None:
             npc.inventory = {}
             return
 
-        entry = db.database["inventory"][self.parameters.inventory_slug].get("inventory", {})
+        entry = db.lookup(
+            self.parameters.inventory_slug,
+            table="inventory",
+        ).get("inventory", {})
+
         npc.inventory = decode_inventory(self.session, npc, entry)

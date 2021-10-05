@@ -34,7 +34,15 @@ class StopCinemaModeActionParameters(NamedTuple):
 
 @final
 class StopCinemaModeAction(EventAction[StopCinemaModeActionParameters]):
-    """Stops cinema mode by animating moving black bars to back to the normal aspect ratio."""
+    """
+    Stop cinema mode by animating black bars back to the normal aspect ratio.
+
+    Script usage:
+        .. code-block::
+
+            stop_cinema_mode
+
+    """
 
     name = "stop_cinema_mode"
     param_class = StopCinemaModeActionParameters

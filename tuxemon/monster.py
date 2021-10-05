@@ -38,6 +38,7 @@ from tuxemon.locale import T
 from tuxemon.technique import Technique
 from tuxemon.config import TuxemonConfig
 from typing import Optional, List, TYPE_CHECKING, Any, Mapping, Sequence, Dict
+from tuxemon.sprite import Sprite
 
 if TYPE_CHECKING:
     import pygame
@@ -502,7 +503,7 @@ class Monster:
                     return evolution["monster_slug"]
         return None
 
-    def get_sprite(self, sprite: str, **kwargs: Any) -> pygame.surface.Surface:
+    def get_sprite(self, sprite: str, **kwargs: Any) -> Sprite:
         """
         Gets a specific type of sprite for the monster.
 

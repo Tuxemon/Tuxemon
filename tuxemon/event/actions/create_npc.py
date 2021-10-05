@@ -25,7 +25,7 @@ import tuxemon.npc
 from tuxemon import ai
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, final
+from typing import NamedTuple, final, Union
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -35,15 +35,27 @@ class CreateNpcActionParameters(NamedTuple):
     npc_slug: str
     tile_pos_x: int
     tile_pos_y: int
-    animations: str
-    behavior: str
+    animations: Union[str, None]
+    behavior: Union[str, None]
 
 
 @final
 class CreateNpcAction(EventAction[CreateNpcActionParameters]):
-    """Creates an NPC object and adds it to the game's current list of NPC's.
+    """
+    Create an NPC object and adds it to the game's current list of NPC's.
 
-    Valid Parameters: slug, tile_pos_x, tile_pos_y, animations, behavior.
+    Script usage:
+        .. code-block::
+
+            create_npc <npc_slug>,<tile_pos_x>,<tile_pos_y>[,<animations>][,<behavior>]
+
+    Script parameters:
+        npc_slug: NPC slug to look up in the NPC database.
+        tile_pos_x: X position to place the NPC on.
+        tile_pos_y: Y position to place the NPC on.
+        animations: Sprite of the NPC. Deprecated in favor of the JSON.
+        behavior: Behavior of the NPC (e.g. "wander"). Unused for now.
+
     """
 
     name = "create_npc"

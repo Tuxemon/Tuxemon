@@ -31,9 +31,17 @@ class RemoveNpcActionParameters(NamedTuple):
 
 @final
 class RemoveNpcAction(EventAction[RemoveNpcActionParameters]):
-    """Removes an NPC object from the list of NPCs.
+    """
+    Remove an NPC object from the list of NPCs.
 
-    Valid Parameters: slug
+    Script usage:
+        .. code-block::
+
+            remove_npc <npc_slug>
+
+    Script parameters:
+        npc_slug: Npc slug name (e.g. "npc_maple").
+
     """
 
     name = "remove_npc"

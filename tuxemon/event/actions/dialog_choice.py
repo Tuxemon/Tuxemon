@@ -39,9 +39,18 @@ class DialogChoiceActionParameters(NamedTuple):
 
 @final
 class DialogChoiceAction(EventAction[DialogChoiceActionParameters]):
-    """Asks the player to make a choice.
+    """
+    Ask the player to make a choice.
 
-    Valid Parameters: choice1:choice2, var_key
+    Script usage:
+        .. code-block::
+
+            dialog_choice <choices>,<variable>
+
+    Script parameters:
+        choices: List of possible choices, separated by a colon ":".
+        variable: Variable to store the result of the choice.
+
     """
 
     name = "dialog_choice"

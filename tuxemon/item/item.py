@@ -290,8 +290,8 @@ class Item:
 def decode_inventory(
     session: Session,
     owner: NPC,
-    data: Mapping[str, Any],
-) -> Mapping[str, InventoryItem]:
+    data: Mapping[str, Optional[int]],
+) -> Dict[str, InventoryItem]:
     """
     Reconstruct inventory from a data dict.
 
@@ -323,7 +323,7 @@ def decode_inventory(
 
 def encode_inventory(
     inventory: Mapping[str, InventoryItem],
-) -> Mapping[str, Any]:
+) -> Mapping[str, Optional[int]]:
     """
     Construct JSON encodable dict for saving.
 

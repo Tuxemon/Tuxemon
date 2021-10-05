@@ -32,10 +32,17 @@ class AddItemActionParameters(NamedTuple):
 @final
 class AddItemAction(EventAction[AddItemActionParameters]):
     """
-    Adds an item to the current player's inventory.
+    Add an item to the current player's inventory.
 
-    The action parameter must contain an item name to look up in the item
-    database.
+    Script usage:
+        .. code-block::
+
+            add_item <item_slug>[,quantity]
+
+    Script parameters:
+        item_slug: Item name to look up in the item database.
+        quantity: Quantity of the item to add. By default it is 1.
+
     """
 
     name = "add_item"

@@ -41,16 +41,23 @@ class PlayMapAnimationActionParameters(NamedTuple):
 
 @final
 class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
-    """Plays a map animation at a given position in the world map.
+    """
+    Play a map animation at a given position in the world map.
 
-    Valid Parameters: animation_name, duration, loop, tile_pos_x, tile_pos_y
+    Script usage:
+        .. code-block::
 
-    * animation_name - The name of the animation stored under resources/animations/tileset.
-        For example, an animation called "grass" will load frames called "grass.xxx.png".
-    * duration - The duration of each frame of the animation in seconds.
-    * loop - Can be either "loop" or "noloop" to loop the animation.
-    * position - Can be either an x,y coordinate or "player" to draw the animation at the
-        player's location.
+            play_map_animation <animation_name> <duration> <loop> "player"
+            play_map_animation <animation_name> <duration> <loop> <tile_pos_x> <tile_pos_y>
+
+    Script parameters:
+        animation_name: The name of the animation stored under
+            resources/animations/tileset. For example, an animation called
+            "grass" will load frames called "grass.xxx.png".
+        duration: The duration of each frame of the animation in seconds.
+        loop: Can be either "loop" or "noloop" to loop the animation.
+        tile_pos: Can be either an x,y coordinate or "player" to draw the
+            animation at the player's location.
 
     """
 
@@ -85,7 +92,11 @@ class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
         if self.parameters[3] == "player":
             position = self.session.player.tile_pos
         else:
-            position = int(self.parameters.tile_pos_x), int(self.parameters.tile_pos_y)
+            assert self.parameters.tile_pos_y
+            position = (
+                int(self.parameters.tile_pos_x),
+                int(self.parameters.tile_pos_y),
+            )
 
         animations = world_state.map_animations
         if animation_name in animations:
@@ -94,7 +105,12 @@ class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
 
         else:
             # Not loaded already, so load it...
-            animation, conductor = load_animation_from_frames(directory, animation_name, duration, loop)
+            animation, conductor = load_animation_from_frames(
+                directory,
+                animation_name,
+                duration,
+                loop,
+            )
 
             animations[animation_name] = {
                 "animation": animation,

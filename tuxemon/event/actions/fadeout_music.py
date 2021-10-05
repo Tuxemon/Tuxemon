@@ -36,9 +36,16 @@ class FadeoutMusicActionParameters(NamedTuple):
 @final
 class FadeoutMusicAction(EventAction[FadeoutMusicActionParameters]):
     """
-    Fades out the music over a set amount of time in milliseconds.
+    Fade out the music over a set amount of time in milliseconds.
 
-    Valid Parameters: time_milliseconds
+    Script usage:
+        .. code-block::
+
+            fadeout_music <duration>
+
+    Script parameters:
+        duration: Number of milliseconds to fade out the music over.
+
     """
 
     name = "fadeout_music"

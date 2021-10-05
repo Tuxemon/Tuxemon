@@ -34,7 +34,8 @@ import os
 from operator import itemgetter
 
 from tuxemon import prepare
-from typing import Any, Mapping, Dict, Sequence, TypedDict, overload, Literal
+from typing import Any, Mapping, Dict, Sequence, TypedDict, overload, Literal,\
+    Optional
 
 logger = logging.getLogger(__name__)
 
@@ -167,6 +168,22 @@ class JSONEnvironment(TypedDict):
     slug: str
     battle_music: str
     battle_graphics: JSONBattleGraphics
+
+
+class JSONEncounterItem(TypedDict):
+    monster: str
+    encounter_rate: float
+    level_range: Sequence[int]
+
+
+class JSONEncounter(TypedDict):
+    slug: str
+    monsters: Sequence[JSONEncounterItem]
+
+
+class JSONInventory(TypedDict):
+    slug: str
+    inventory: Mapping[str, Optional[int]]
 
 
 def process_targets(json_targets: JSONTarget) -> Sequence[str]:
@@ -303,6 +320,14 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["npc"]) -> JSONNpc:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["encounter"]) -> JSONEncounter:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["inventory"]) -> JSONInventory:
         pass
 
     @overload

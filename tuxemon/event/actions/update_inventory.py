@@ -34,8 +34,21 @@ class UpdateInventoryActionParameters(NamedTuple):
 
 @final
 class UpdateInventoryAction(EventAction[UpdateInventoryActionParameters]):
-    """Updates the inventory of the npc or player. Overwrites the quantity of an item if it's already present,
+    """
+    Update the inventory of the npc or player.
+
+    Overwrites the quantity of an item if it's already present,
     but leaves other items alone.
+
+    Script usage:
+        .. code-block::
+
+            update_inventory <npc_slug>,<inventory_slug>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        inventory_slug: Slug of an inventory.
+
     """
 
     name = "update_inventory"
@@ -43,11 +56,17 @@ class UpdateInventoryAction(EventAction[UpdateInventoryActionParameters]):
 
     def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
+        assert npc
         if self.parameters.inventory_slug is None:
             return
 
         npc.inventory.update(
             decode_inventory(
-                self.session, npc, db.database["inventory"][self.parameters.inventory_slug].get("inventory", {})
+                self.session,
+                npc,
+                db.lookup(
+                    self.parameters.inventory_slug,
+                    table="inventory",
+                ).get("inventory", {})
             )
         )

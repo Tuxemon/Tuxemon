@@ -30,9 +30,17 @@ class NpcRunActionParameters(NamedTuple):
 
 @final
 class NpcRun(EventAction[NpcRunActionParameters]):
-    """Sets the NPC movement speed to the global run speed
+    """
+    Set the NPC movement speed to the global run speed.
 
-    Valid Parameters: npc_slug
+    Script usage:
+        .. code-block::
+
+            npc_run <npc_slug>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+
     """
 
     name = "npc_run"
@@ -40,4 +48,5 @@ class NpcRun(EventAction[NpcRunActionParameters]):
 
     def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
+        assert npc
         npc.moverate = self.session.client.config.player_runrate

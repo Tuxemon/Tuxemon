@@ -38,11 +38,25 @@ class VariableMathActionParameters(NamedTuple):
 
 @final
 class VariableMathAction(EventAction[VariableMathActionParameters]):
-    """Performs a mathematical operation on the key in the player.game_variables dictionary.
-    Optionally accepts a fourth parameter to store the result, otherwise it is stored in
-    variable1.
+    """
+    Perform a mathematical operation on the player.game_variables dictionary.
 
-    Valid Parameters: variable1, operation, variable2(, result_variable_name)
+    Optionally accepts a fourth parameter to store the result, otherwise it
+    is stored in ``var1``.
+
+    Script usage:
+        .. code-block::
+
+            variable_math <var1>,<operation>,<var2>,<result>
+            variable_math <var1>,<operation>,<var2>
+
+    Script parameters:
+        var1: First operand.
+        operation: Operator symbol.
+        var2: Second operand.
+        result: Variable where to store the result. If missing, it will be
+            ``var1``.
+
     """
 
     name = "variable_math"

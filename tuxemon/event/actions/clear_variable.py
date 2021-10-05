@@ -37,9 +37,17 @@ class ClearVariableActionParameters(NamedTuple):
 # noinspection PyAttributeOutsideInit
 @final
 class ClearVariableAction(EventAction[ClearVariableActionParameters]):
-    """Clears the value of var from the game.
+    """
+    Clear the value of a variable from the game.
 
-    Valid Parameters: string variable_name
+    Script usage:
+        .. code-block::
+
+            clear_variable <variable>
+
+    Script parameters:
+        variable: The variable to clear.
+
     """
 
     name = "clear_variable"

@@ -22,6 +22,7 @@
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 from typing import NamedTuple, final
+from tuxemon.monster import Flair
 
 
 class SetMonsterFlairActionParameters(NamedTuple):
@@ -32,15 +33,28 @@ class SetMonsterFlairActionParameters(NamedTuple):
 
 @final
 class SetMonsterFlairAction(EventAction[SetMonsterFlairActionParameters]):
-    """Sets a monster's flair to the given value
+    """
+    Set a monster's flair to the given value.
 
-    Valid Parameters: slot, name, value
+    Script usage:
+        .. code-block::
+
+            set_monster_flair <slot>,<category>,<name>
+
+    Script parameters:
+        slot: Slot of the monster in the party.
+        category: Category of the monster flair.
+        name: Name of the monster flair.
+
     """
 
     name = "set_monster_flair"
     param_class = SetMonsterFlairActionParameters
 
     def start(self) -> None:
-        monster = session.player.monsters[self.parameters.slot]
+        monster = self.session.player.monsters[self.parameters.slot]
         if self.parameters.category in monster.flairs:
-            monster.flairs[self.parameters.category] = Flair(self.parameters.category, self.parameters.name)
+            monster.flairs[self.parameters.category] = Flair(
+                self.parameters.category,
+                self.parameters.name,
+            )

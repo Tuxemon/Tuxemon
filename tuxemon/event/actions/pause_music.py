@@ -35,9 +35,14 @@ class PauseMusicActionParameters(NamedTuple):
 
 @final
 class PauseMusicAction(EventAction[PauseMusicActionParameters]):
-    """Pauses the current music playback
+    """
+    Pause the current music playback.
 
-    Valid Parameters: None
+    Script usage:
+        .. code-block::
+
+            pause_music
+
     """
 
     name = "pause_music"

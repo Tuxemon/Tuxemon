@@ -32,9 +32,18 @@ class NpcSpeedActionParameters(NamedTuple):
 
 @final
 class NpcSpeed(EventAction[NpcSpeedActionParameters]):
-    """Sets the NPC movement speed to a custom value
+    """
+    Set the NPC movement speed to a custom value.
 
-    Valid Parameters: npc_slug
+    Script usage:
+        .. code-block::
+
+            npc_speed <npc_slug> <speed>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        speed: Speed amount.
+
     """
 
     name = "npc_speed"
@@ -42,5 +51,7 @@ class NpcSpeed(EventAction[NpcSpeedActionParameters]):
 
     def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
+        assert npc
         npc.moverate = self.parameters.speed
-        assert 0 < npc.moverate < 20  # just set some sane limit to avoid losing sprites
+        # Just set some sane limit to avoid losing sprites
+        assert 0 < npc.moverate < 20

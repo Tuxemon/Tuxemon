@@ -25,10 +25,10 @@ import random
 
 from tuxemon import ai, monster, prepare
 from tuxemon.combat import check_battle_legal
-from tuxemon.db import db
+from tuxemon.db import db, JSONEncounterItem
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
-from typing import NamedTuple, Union, final
+from typing import NamedTuple, Union, final, Sequence, Optional
 from tuxemon.states.world.worldstate import WorldState
 from tuxemon.states.combat.combat import CombatState
 
@@ -42,14 +42,26 @@ class RandomEncounterActionParameters(NamedTuple):
 
 @final
 class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
-    """Randomly starts a battle with a monster defined in the "encounter" table in the
-    "monster.db" database. The chance that this will start a battle depends on the
-    "encounter_rate" specified in the database. The "encounter_rate" number is the chance
-    walking in to this tile will trigger a battle out of 100.
-    "total_prob" is an optional override which scales the probabilities so that the sum is
-    equal to "total_prob".
+    """
+    Randomly start a encounter.
 
-    Valid Parameters: encounter_slug, total_prob
+    Randomly starts a battle with a monster defined in the "encounter" table
+    in the "monster.db" database. The chance that this will start a battle
+    depends on the "encounter_rate" specified in the database. The
+    "encounter_rate" number is the chance
+    walking in to this tile will trigger a battle out of 100.
+    "total_prob" is an optional override which scales the probabilities so
+    that the sum is equal to "total_prob".
+
+    Script usage:
+        .. code-block::
+
+            random_encounter <encounter_slug>[,total_prob]
+
+    Script parameters:
+        encounter_slug: Slug of the encounter list.
+        total_prob: Total sum of the probabilities.
+
     """
 
     name = "random_encounter"
@@ -60,14 +72,14 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
-            return False
+            return
 
         slug = self.parameters.encounter_slug
-        encounters = db.database["encounter"][slug]["monsters"]
+        encounters = db.lookup(slug, table="encounter")["monsters"]
         encounter = _choose_encounter(encounters, self.parameters.total_prob)
 
-        # If a random encounter was successfully rolled, look up the monster and start the
-        # battle.
+        # If a random encounter was successfully rolled, look up the monster
+        # and start the battle.
         if encounter:
             logger.info("Starting random encounter!")
 
@@ -80,9 +92,13 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             env = db.lookup(env_slug, table="environment")
 
             # Add our players and setup combat
-            # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
+            # "queueing" it will mean it starts after the top of the stack
+            # is popped (or replaced)
             self.session.client.queue_state(
-                "CombatState", players=(player, npc), combat_type="monster", graphics=env["battle_graphics"]
+                "CombatState",
+                players=(player, npc),
+                combat_type="monster",
+                graphics=env["battle_graphics"],
             )
 
             # stop the player
@@ -97,18 +113,26 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
 
             # Start some music!
             filename = env["battle_music"]
-            self.session.client.event_engine.execute_action("play_music", [filename])
+            self.session.client.event_engine.execute_action(
+                "play_music",
+                [filename],
+            )
 
-    def update(self):
+    def update(self) -> None:
         if self.session.client.get_state_by_name(CombatState) is None:
             self.stop()
 
 
-def _choose_encounter(encounters, total_prob: Union[float, None]):
-    total = 0
+def _choose_encounter(
+    encounters: Sequence[JSONEncounterItem],
+    total_prob: Optional[float],
+) -> Optional[JSONEncounterItem]:
+    total = 0.0
     roll = random.random() * 100
     if total_prob is not None:
-        current_total = sum(encounter["encounter_rate"] for encounter in encounters)
+        current_total = sum(
+            encounter["encounter_rate"] for encounter in encounters
+        )
         scale = float(total_prob) / current_total
     else:
         scale = 1
@@ -120,13 +144,18 @@ def _choose_encounter(encounters, total_prob: Union[float, None]):
         if total >= roll:
             return encounter
 
+    return None
 
-def _create_monster_npc(encounter):
+
+def _create_monster_npc(encounter: JSONEncounterItem) -> NPC:
     current_monster = monster.Monster()
     current_monster.load_from_db(encounter["monster"])
     # Set the monster's level based on the specified level range
     if len(encounter["level_range"]) > 1:
-        level = random.randrange(encounter["level_range"][0], encounter["level_range"][1])
+        level = random.randrange(
+            encounter["level_range"][0],
+            encounter["level_range"][1],
+        )
     else:
         level = encounter["level_range"][0]
     # Set the monster's level

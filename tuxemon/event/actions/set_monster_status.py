@@ -37,11 +37,20 @@ class SetMonsterStatusActionParameters(NamedTuple):
 
 @final
 class SetMonsterStatusAction(EventAction[SetMonsterStatusActionParameters]):
-    """Changes the status of a monster in the current player's party. The action parameters
-    may contain a monster slot and the new status to be appended. If no slot is specified,
-    all monsters are modified. If no status is specified, the status is cleared.
+    """
+    Change the status of a monster in the current player's party.
 
-    Valid Parameters: slot, status
+    Script usage:
+        .. code-block::
+
+            set_monster_status [slot][,status]
+
+    Script parameters:
+        slot: Slot of the monster in the party. If no slot is specified, all
+            monsters are modified.
+        status: Status to set. If no status is specified, the status is
+            cleared.
+
     """
 
     name = "set_monster_status"

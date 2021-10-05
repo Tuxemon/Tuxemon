@@ -34,9 +34,19 @@ class TeleportActionParameters(NamedTuple):
 
 @final
 class TeleportAction(EventAction[TeleportActionParameters]):
-    """Teleport the player to a particular map and tile coordinates
+    """
+    Teleport the player to a particular map and tile coordinates.
 
-    Valid Parameters: map_name, coordinate_x, coordinate_y
+    Script usage:
+        .. code-block::
+
+            teleport <map_name>,<x>,<y>
+
+    Script parameters:
+        map_name: Name of the map to teleport to.
+        x: X coordinate of the map to teleport to.
+        y: Y coordinate of the map to teleport to.
+
     """
 
     name = "teleport"
@@ -50,14 +60,14 @@ class TeleportAction(EventAction[TeleportActionParameters]):
 
         map_name = self.parameters.map_name
 
-        # If we're doing a screen transition with this teleport, set the map name that we'll
-        # load during the apex of the transition.
+        # If we're doing a screen transition with this teleport, set the map
+        # name that we'll load during the apex of the transition.
         # TODO: This only needs to happen once.
         if world.in_transition:
             world.delayed_mapname = map_name
 
-        # Check to see if we're also performing a transition. If we are, wait to perform the
-        # teleport at the apex of the transition
+        # Check to see if we're also performing a transition. If we are, wait
+        # to perform the teleport at the apex of the transition
         if world.in_transition:
             # the world state will handle the teleport/transition, hopefully
             world.delayed_teleport = True
@@ -74,11 +84,13 @@ class TeleportAction(EventAction[TeleportActionParameters]):
             elif map_path != world.current_map.filename:
                 world.change_map(map_path)
 
-            # Stop the player's movement so they don't continue their move after they teleported.
+            # Stop the player's movement so they don't continue their move
+            # after they teleported.
             player.cancel_path()
 
             # must change position after the map is loaded
             player.set_position((self.parameters.x, self.parameters.y))
 
-            # unlock_controls will reset controls, but start moving if keys are pressed
+            # unlock_controls will reset controls, but start moving if keys
+            # are pressed
             world.unlock_controls()

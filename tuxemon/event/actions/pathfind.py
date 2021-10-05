@@ -33,11 +33,19 @@ class PathfindActionParameters(NamedTuple):
 
 @final
 class PathfindAction(EventAction[PathfindActionParameters]):
-    """Pathfind the player / npc to the given location
+    """
+    Pathfind the player / npc to the given location.
 
     This action blocks until the destination is reached.
 
-    Valid Parameters: npc_slug, tile_pos_x, tile_pos_y
+    Script usage:
+        .. code-block::
+
+            open_shop <npc_slug>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+
     """
 
     name = "pathfind"

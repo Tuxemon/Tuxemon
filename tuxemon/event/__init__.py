@@ -79,11 +79,13 @@ def get_npc(session: Session, slug: str) -> Optional[NPC]:
         The NPC object or None if the NPC is not found.
 
     """
+    from tuxemon.states.world.worldstate import WorldState
+
     if slug == "player":
         return session.player
 
     # Loop through the NPC list and see if the slug matches any in the list
-    world = session.client.get_state_by_name("WorldState")
+    world = session.client.get_state_by_name(WorldState)
     if world is None:
         logger.error("Cannot search for NPC if world doesn't exist: " + slug)
         return None

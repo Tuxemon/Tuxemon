@@ -280,7 +280,7 @@ def animation_frame_files(
 
 def create_animation(
     frames: Iterable[pygame.surface.Surface],
-    duration: int,
+    duration: float,
     loop: bool,
 ) -> Tuple[PygAnimation, PygConductor]:
     """
@@ -304,7 +304,7 @@ def create_animation(
 def load_animation_from_frames(
     directory: str,
     name: str,
-    duration: int,
+    duration: float,
     loop: bool = False,
 ) -> Tuple[PygAnimation, PygConductor]:
     """
@@ -471,7 +471,7 @@ def capture_screenshot(game: LocalPygameClient) -> pygame.surface.Surface:
 def get_avatar(
     session: Session,
     avatar: str,
-) -> Optional[pygame.surface.Surface]:
+) -> Optional[Sprite]:
     """
     Gets the avatar sprite of a monster or NPC.
 

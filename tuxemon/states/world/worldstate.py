@@ -148,7 +148,7 @@ class WorldState(state.State):
 
         # The delayed facing variable used to change the player's facing in
         # the middle of a transition.
-        self.delayed_facing = None
+        self.delayed_facing: Optional[Direction] = None
 
         ######################################################################
         #                       Fullscreen Animations                        #

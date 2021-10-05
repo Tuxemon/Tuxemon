@@ -10,3 +10,10 @@ Below is the list of all conditions usable inside scripts, along with a descript
 In order to negate a condition, it is enough to replace ``is`` by ``not``.
 
 .. include:: condition_list.rst
+
+Actions
+-------
+
+Below is the list of all actions usable inside scripts, along with a description of their parameters, if any.
+
+.. include:: action_list.rst

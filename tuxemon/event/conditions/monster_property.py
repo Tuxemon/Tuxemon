@@ -31,7 +31,7 @@ class MonsterPropertyCondition(EventCondition):
     Script usage:
         .. code-block::
 
-            is monster_property <slot> <property> <value>
+            is monster_property <slot>,<property>,<value>
 
     Script parameters:
         slot: Position of the monster in the player monster list.

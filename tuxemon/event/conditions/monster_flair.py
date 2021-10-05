@@ -31,7 +31,7 @@ class MonsterFlairCondition(EventCondition):
     Script usage:
         .. code-block::
 
-            is monster_flair <slot> <category> <name>
+            is monster_flair <slot>,<category>,<name>
 
     Script parameters:
         slot: Position of the monster in the player monster list.

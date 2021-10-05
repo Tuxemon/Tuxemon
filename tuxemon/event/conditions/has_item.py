@@ -43,7 +43,7 @@ class HasItemCondition(EventCondition):
     Script usage:
         .. code-block::
 
-            is has_item <character> <item> [operator] [quantity]
+            is has_item <character>,<item>[,operator][,quantity]
 
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").

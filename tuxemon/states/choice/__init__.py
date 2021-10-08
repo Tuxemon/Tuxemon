@@ -1,7 +1,7 @@
 from __future__ import annotations
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu
-from typing import Any
+from typing import Any, Generator, Callable, Tuple, Sequence
 
 
 class ChoiceState(PopUpMenu):
@@ -15,15 +15,21 @@ class ChoiceState(PopUpMenu):
     """
 
     shrink_to_items = True
-    escape_key_exits = None
+    escape_key_exits = False
 
-    def startup(self, **kwargs: Any) -> None:
+    def startup(
+        self,
+        *,
+        menu: Sequence[Tuple[str, str, Callable[[], None]]] = (),
+        escape_key_exits: bool = False,
+        **kwargs: Any,
+    ) -> None:
         super().startup(**kwargs)
-        self.menu = kwargs.get("menu", list())
-        self.escape_key_exits = kwargs.get("escape_key_exits", False)
+        self.menu = menu
+        self.escape_key_exits = escape_key_exits
 
     def initialize_items(self) -> None:
-        for key, label, callback in self.menu:
+        for _key, label, callback in self.menu:
             image = self.shadow_text(label)
             item = MenuItem(image, label, None, callback)
             self.add(item)

@@ -13,7 +13,7 @@ from tuxemon.sprite import RelativeGroup, VisualSpriteList
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
 from typing import Any, Callable, Optional, Literal, Dict, Sequence, Tuple,\
-    Generator
+    Iterable
 from tuxemon.graphics import ColorLike
 from tuxemon.platform.events import PlayerInput
 from tuxemon.animation import Animation
@@ -68,7 +68,7 @@ class Menu(state.State):
     animate_contents = False  # show contents while window opens
     touch_aware = True  # if true, then menu items can be selected with the mouse/touch
 
-    def startup(self, *items: Any, selected_index: int = 0, **kwargs: Any) -> None:
+    def startup(self, *, selected_index: int = 0, **kwargs: Any) -> None:
         self.rect = self.rect.copy()  # do not remove!
         self.selected_index = selected_index  # track which menu item is selected
         self.state: MenuState = "closed"  # closed, opening, normal, disabled, closing
@@ -187,7 +187,7 @@ class Menu(state.State):
 
         self.animate_text(find_textarea(), message, callback)
 
-    def initialize_items(self) -> Generator[MenuItem, None, None]:
+    def initialize_items(self) -> Optional[Iterable[MenuItem]]:
         """
         Advanced way to fill in menu items.
 

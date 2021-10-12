@@ -7,6 +7,7 @@ import pygame
 from tuxemon.state import State
 from typing import Any, Optional
 from tuxemon.platform.events import PlayerInput
+from tuxemon.graphics import ColorLike
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +18,7 @@ class FadeTransitionBase(State):
     force_draw = True
     state_duration = 1.0
     fade_duration = 1.5
-    color = (0, 0, 0)
+    color: ColorLike = (0, 0, 0)
 
     def startup(
         self,

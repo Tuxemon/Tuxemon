@@ -134,7 +134,7 @@ class Manager:
         print(author, name, repo)
         # Request dependencies for specified package
         r = requests.get(f"{repo}/api/packages/{author}/{name}/dependencies/?only_hard=1")
-        if r.status_code == 404:
+        if r.status_code != 200:
             return
         print(r.text, author, name)
         dep_list = r.json()
@@ -239,7 +239,7 @@ class Manager:
         Installs local packages.
         Based on the download_package function, but without the downloads
         """
-        # TODO:  
+        # TODO:
         outfolder = os.path.join(paths.BASEDIR, "mods", name)
         self.write_package_to_list(os.path.relpath(outfolder), name)
         with zipfile.ZipFile(filename) as zipf:

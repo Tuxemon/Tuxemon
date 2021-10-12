@@ -105,11 +105,6 @@ class Manager:
 
         filename = os.path.join(paths.CACHE_DIR, f"downloaded_packages/{name}.{release}.zip")
 
-        # Apperantly this function is ported from urllib from python2.
-        # Maybe replace this in the future?
-        # https://docs.python.org/3/library/urllib.request.html#urllib.request.urlretrieve
-        #urllib.request.urlretrieve(url, filename=filename)
-
         # Based on answer from https://stackoverflow.com/a/16696317/14590202
         with requests.get(url, stream=True) as r:
             file_size = r.headers["content-length"]
@@ -129,11 +124,6 @@ class Manager:
             with zipfile.ZipFile(filename) as zip_:
                 print(zip_.namelist())
                 zip_.extractall(path=os.path.join(paths.BASEDIR, "mods", outfolder))
-
-            #self.extract(filename, outfolder)
-            #with open(f"{outfolder}/meta.json", "w") as metafile:
-            #    meta = self.get_package_info(name, repo)
-            #    metafile.write(json.dumps(meta, indent=4, sort_keys=False))
 
         if install_deps:
             # This function calls download_package, might cause issues
@@ -164,40 +154,6 @@ class Manager:
                         
                     )
                     
-"""
-    def install_dependencies(self, name, release, repo, dont_extract=False, symlink=True, done=None):
-        "#""
-        Same as the download_package(), but it includes dependency installing.
-        When symlink is True, dependency's files will be linked.
-        "#""
-        name = sanitize_paths(name)
-        # Get info
-        with open(os.path.join(paths.BASEDIR, "mods", name, "mod.conf")) as file:
-            raw_meta = file.read()
-            meta = self.parse_mod_conf(raw_meta)
-            
-        installed = done
-        if installed is None:
-            installed = [name]
-        if "depends" in meta:
-            dependencies = meta["depends"]
-
-            for pack in dependencies:
-                # Sanitize name and release
-                for char in '/\\?%*:|"<>.,;= ':
-                    pack = str(pack).replace(char, "_")
-
-                if pack in installed: continue
-                
-                
-                self.download_package(pack, release, repo=repo, dont_extract=dont_extract, installed=installed)
-
-                # Symlink deps
-                mainfolder = os.path.join(paths.BASEDIR, "mods", name)
-                depfolder = os.path.join(paths.BASEDIR, "mods", pack)
-                symlink_missing(mainfolder, depfolder)
-        else: pass
-"""
 
     def parse_mod_conf(self, content):
             """

@@ -14,8 +14,7 @@ print(
     sep="\n"
 )
 
-if not os.path.exists(os.path.expanduser("~/.tuxemon/cache/downloaded_packages")):
-    os.mkdir(os.path.expanduser("~/.tuxemon/cache/downloaded_packages"))
+os.makedirs(os.path.expanduser("~/.tuxemon/cache/downloaded_packages"), exist_ok=True)
 
 ip = input("Enter the server URL with format: http://ip:port/\n> ")
 man = Manager(ip)
@@ -26,7 +25,7 @@ man.write_to_cache()
 print("Press [CTRL] + [C] or [CTRL] + [D] to exit")
 while True:
     try:
-        author = input("Enter the package's author: ")
+        author = input("Enter the package's author ([CTRL] + [C] to exit): ")
         name = input("Enter the package name: ")
         while True:
             try:

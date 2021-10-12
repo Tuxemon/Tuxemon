@@ -41,7 +41,7 @@ class PathfindAction(EventAction[PathfindActionParameters]):
     Script usage:
         .. code-block::
 
-            open_shop <npc_slug>
+            pathfind <npc_slug>
 
     Script parameters:
         npc_slug: Either "player" or npc slug name (e.g. "npc_maple").

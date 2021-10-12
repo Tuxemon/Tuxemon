@@ -9,6 +9,9 @@ import json
 import zipfile
 import shutil
 import configparser
+import logging
+
+logger = logging.getLogger(__name__)
 
 def sanitize_paths(path):
     """Removes path specific characters like /."""
@@ -88,8 +91,8 @@ class Manager:
 
         if release is None:
             r = requests.get(repo + f"/api/packages/{author}/{name}/releases")
-            print(r.text, author, name)
-            print(repo + f"/api/packages/{author}/{name}/releases")
+            logger.debug(r.text, author, name)
+            logger.debug(repo + f"/api/packages/{author}/{name}/releases")
             # Get latest release (largest number).
             latest = 0
             for i in r.json():
@@ -100,7 +103,7 @@ class Manager:
         # Sanitize name and release
         name = sanitize_paths(name)
         release = sanitize_paths(str(release))
-        print( " ".join([author, name, release, repo, str(dont_extract), str(install_deps), str(installed)]) ) 
+        logger.debug( " ".join([author, name, release, repo, str(dont_extract), str(install_deps), str(installed)]) ) 
         url = str(repo) + f"/packages/{author}/{name}/releases/{str(release)}/download"
 
         filename = os.path.join(paths.CACHE_DIR, f"downloaded_packages/{name}.{release}.zip")
@@ -114,7 +117,7 @@ class Manager:
                 for chunk in r.iter_content(chunk_size=8096):
                     file.write(chunk)
                     downloaded_size += 8096
-                    print(f"{downloaded_size}/{file_size}", int(file_size) - downloaded_size)
+                    logger.debug(f"Downloaded {downloaded_size} bytes")
 
         outfolder = os.path.join(paths.BASEDIR, "mods", name)
 
@@ -122,7 +125,6 @@ class Manager:
 
         if not dont_extract:
             with zipfile.ZipFile(filename) as zip_:
-                print(zip_.namelist())
                 zip_.extractall(path=os.path.join(paths.BASEDIR, "mods", outfolder))
 
         if install_deps:
@@ -131,12 +133,12 @@ class Manager:
 
     def install_dependencies(self, author, name, repo, symlink=True, **args):
         """Recursively resolve dependencies and symlink them"""
-        print(author, name, repo)
+        logger.debug(author, name, repo)
         # Request dependencies for specified package
         r = requests.get(f"{repo}/api/packages/{author}/{name}/dependencies/?only_hard=1")
         if r.status_code != 200:
             return
-        print(r.text, author, name)
+        logger.debug(r.text, author, name)
         dep_list = r.json()
         # Resolve dependencies
         for dependency in dep_list:

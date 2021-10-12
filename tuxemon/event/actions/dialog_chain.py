@@ -26,8 +26,9 @@ from tuxemon.locale import replace_text
 from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import open_dialog
 from tuxemon.graphics import get_avatar
-from typing import NamedTuple, final
+from typing import NamedTuple, final, Optional
 from tuxemon.states.dialog import DialogState
+from tuxemon.sprite import Sprite
 
 logger = logging.getLogger(__name__)
 
@@ -40,18 +41,28 @@ class DialogChainActionParameters(NamedTuple):
 @final
 class DialogChainAction(EventAction[DialogChainActionParameters]):
     """
-    Opens a dialog and waits.
+    Open a dialog and waits.
 
     Other dialog chains will add text to the dialog
     without closing it. Dialog chains must be ended with the ${{end}} keyword.
-
-    Valid Parameters: text_to_display
 
     You may also use special variables in dialog events. Here is a list of
     available variables:
 
     * ${{name}} - The current player's name.
     * ${{end}} - Ends the dialog chain.
+
+    Script usage:
+        .. code-block::
+
+            dialog_chain <text>,<avatar>
+
+    Script parameters:
+        text: Text of the dialog.
+        avatar: Monster avatar. If it is a number, the monster is the
+            corresponding monster slot in the player's party.
+            If it is a string, we're referring to a monster by name.
+
     """
 
     name = "dialog_chain"
@@ -84,6 +95,6 @@ class DialogChainAction(EventAction[DialogChainActionParameters]):
             if self.session.client.get_state_by_name(DialogState) is None:
                 self.stop()
 
-    def open_dialog(self, initial_text, avatar):
+    def open_dialog(self, initial_text: str, avatar: Optional[Sprite]) -> None:
         logger.info("Opening chain dialog window")
         open_dialog(self.session, [initial_text], avatar)

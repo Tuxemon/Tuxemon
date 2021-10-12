@@ -38,10 +38,18 @@ class CopyVariableActionParameters(NamedTuple):
 # noinspection PyAttributeOutsideInit
 @final
 class CopyVariableAction(EventAction[CopyVariableActionParameters]):
-    """Copies the value of var2 into var1,
-    (e.g. var1 = var 2)
+    """
+    Copy the value of var2 into var1 (e.g. var1 = var 2).
 
-    Valid Parameters: string variable_name
+    Script usage:
+        .. code-block::
+
+            copy_variable <var1>,<var2>
+
+    Script parameters:
+        var1: The variable to copy to.
+        var2: The variable to copy from.
+
     """
 
     name = "copy_variable"

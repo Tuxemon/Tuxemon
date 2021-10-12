@@ -24,6 +24,7 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import get_direction, dirs2
 from typing import NamedTuple, final
+from tuxemon.npc import NPC
 
 
 class NpcFaceActionParameters(NamedTuple):
@@ -33,11 +34,19 @@ class NpcFaceActionParameters(NamedTuple):
 
 @final
 class NpcFaceAction(EventAction[NpcFaceActionParameters]):
-    """Makes the NPC face a certain direction.
+    """
+    Make the NPC face a certain direction.
 
-    Valid Parameters: npc_slug, direction
+    Script usage:
+        .. code-block::
 
-    Direction parameter can be: "left", "right", "up", "down", or "player"
+            npc_face <npc_slug>,<direction>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        direction: Direction to face. It can be: "left", "right", "up", "down",
+             "player" or a npc slug.
+
     """
 
     name = "npc_face"
@@ -45,12 +54,17 @@ class NpcFaceAction(EventAction[NpcFaceActionParameters]):
 
     def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
+        assert npc
         direction = self.parameters.direction
+
+        target: NPC
         if direction not in dirs2:
             if direction == "player":
                 target = self.session.player
             else:
-                target = get_npc(self.session, direction)
+                maybe_target = get_npc(self.session, direction)
+                assert maybe_target
+                target = maybe_target
             direction = get_direction(npc.tile_pos, target.tile_pos)
 
         npc.facing = direction

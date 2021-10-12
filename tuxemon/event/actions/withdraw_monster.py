@@ -40,11 +40,21 @@ class WithdrawMonsterActionParameters(NamedTuple):
 @final
 class WithdrawMonsterAction(EventAction[WithdrawMonsterActionParameters]):
     """
-    Pulls a monster from the given trainer's storage (identified by slug and instance_id respectively)
-    and puts it in their party. Note: If the trainer's party is already full then the monster will be
-    deposited into the default storage box automatically.
+    Pull a monster from the given trainer's storage and puts it in their party.
 
-    Valid Parameters: trainer, monster_id
+    Note:
+        If the trainer's party is already full then the monster will be
+        deposited into the default storage box automatically.
+
+    Script usage:
+        .. code-block::
+
+            withdraw_monster <trainer>,<monster_id>
+
+    Script parameters:
+        trainer: The trainer slug.
+        monster_id: The id of the monster to pull.
+
     """
 
     name = "withdraw_monster"
@@ -58,8 +68,10 @@ class WithdrawMonsterAction(EventAction[WithdrawMonsterActionParameters]):
 
         trainer = trainer.replace("player", "npc_red")
         npc = world.get_entity(trainer)
+        assert npc
         instance_id = uuid.UUID(npc.game_variables[monster_id])
         mon = npc.find_monster_in_storage(instance_id)
+        assert mon
 
         npc.remove_monster_from_storage(mon)
         npc.add_monster(mon)

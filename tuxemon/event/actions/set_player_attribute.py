@@ -26,16 +26,24 @@ from typing import NamedTuple, final
 
 
 class SetPlayerAttributeActionParameters(NamedTuple):
-    npc_slug: str
     name: str
     value: str
 
 
 @final
 class SetPlayerAttributeAction(EventAction[SetPlayerAttributeActionParameters]):
-    """Sets the given attribute of the player character to the given value.
+    """
+    Set the given attribute of the player character to the given value.
 
-    Valid Parameters: attribute, value
+    Script usage:
+        .. code-block::
+
+            set_player_attribute <name>,<value>
+
+    Script parameters:
+        name: Name of the attribute.
+        value: Value of the attribute.
+
     """
 
     name = "set_player_attribute"

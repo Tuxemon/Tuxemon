@@ -24,6 +24,7 @@
 #
 
 import logging
+from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
@@ -44,19 +45,19 @@ class CommonAction:
     name = "Common"
 
     @staticmethod
-    def set_character_attribute(character, attribute, value):
-        """Set's a character's (npc or player) attribute.
+    def set_character_attribute(
+        character: NPC,
+        attribute: str,
+        value: str,
+    ) -> None:
+        """
+        Set a character's (npc or player) attribute.
 
-        :param character: The Player object to modify.
-        :param attribute: The attribute to modify.
-        :param value: The value to set the attribute to, as a string.
+        Parameters:
+            character: The NPC object to modify.
+            attribute: The attribute to modify.
+            value: The value to set the attribute to, as a string.
 
-        :type character: tuxemon.Player
-        :type attribute: String
-        :type value: String
-
-        :rtype: None
-        :returns: None
         """
 
         # check for valid inputs
@@ -77,21 +78,23 @@ class CommonAction:
         setattr(character, attribute, val)
 
     @staticmethod
-    def modify_character_attribute(character, attribute, modifier):
-        """Modifies a character's (npc or player) attribute. Default behavior is to add
-        the given mod to the attribute, but prepending a percent (%) symbol will
-        cause the mod to be used as a multiplier.
+    def modify_character_attribute(
+        character: NPC,
+        attribute: str,
+        modifier: str,
+    ) -> None:
+        """
+        Modify a character's (npc or player) attribute.
 
-        :param character: The Player object to modify.
-        :param attribute: The attribute to modify.
-        :param modifier: The modifier to apply the attribute by.
+        Default behavior is to add the given mod to the attribute, but
+        prepending a percent (%) symbol will cause the mod to be used
+        as a multiplier.
 
-        :type character: tuxemon.Player
-        :type attribute: String
-        :type modifier: string
+        Parameters:
+            character: The Player object to modify.
+            attribute: The attribute to modify.
+            modifier: The modifier to apply the attribute by.
 
-        :rtype: None
-        :returns: None
         """
 
         # check for valid inputs

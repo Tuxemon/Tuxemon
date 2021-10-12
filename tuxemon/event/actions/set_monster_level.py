@@ -31,18 +31,19 @@ class SetMonsterLevelActionParameters(NamedTuple):
 
 @final
 class SetMonsterLevelAction(EventAction[SetMonsterLevelActionParameters]):
-    """Changes the level of a monster in the current player's party. The action parameters
-    may contain a monster slot and the amount by which to level. If no slot is specified,
-    all monsters are leveled. The level parameter can be negative, which decreases
-    the monster's level. The new level never goes below 1 or above MAX_LEVEL.
+    """
+    Change the level of a monster in the current player's party.
 
-    Examples:
-    set_player_monster 0,5 # Increases the monster in the first slot's level by 5
-    set_player_monster ,1  # Increases all player's monsters by 1 level
-    set_player_monster 4,-100 # Decreases the monster in the fifth slot's level
-                # by 100 levels, but sets it to 1 if the new level is 0 or negative.
+    Script usage:
+        .. code-block::
 
-    Valid Parameters: slot, level
+            set_monster_level [slot][,level]
+
+    Script parameters:
+        slot: Slot of the monster in the party. If no slot is specified, all
+            monsters are leveled.
+        level: Number of levels to add. Negative numbers are allowed.
+
     """
 
     name = "set_monster_level"

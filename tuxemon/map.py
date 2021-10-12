@@ -66,13 +66,13 @@ class RegionProperties(RegionPropertiesOptional):
 
 
 # direction => vector
-dirs3 = {
+dirs3: Mapping[Direction, Vector3] = {
     "up": Vector3(0, -1, 0),
     "down": Vector3(0, 1, 0),
     "left": Vector3(-1, 0, 0),
     "right": Vector3(1, 0, 0),
 }
-dirs2 = {
+dirs2: Mapping[Direction, Vector2] = {
     "up": Vector2(0, -1),
     "down": Vector2(0, 1),
     "left": Vector2(-1, 0),

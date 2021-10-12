@@ -31,9 +31,17 @@ class EvolveMonstersActionParameters(NamedTuple):
 
 @final
 class EvolveMonstersAction(EventAction[EvolveMonstersActionParameters]):
-    """Evolves all monsters in the player's party for the specified evolutionary path.
+    """
+    Evolve all monsters in the player's party for a evolutionary path.
 
-    Valid Parameters: path
+    Script usage:
+        .. code-block::
+
+            evolve_monsters <path>
+
+    Script parameters:
+        path: Name of the intended evolution.
+
     """
 
     name = "evolve_monsters"
@@ -61,14 +69,17 @@ class EvolveMonstersAction(EventAction[EvolveMonstersActionParameters]):
                 new_monster.name = old_name
                 player.add_monster(new_monster)
 
-                # If the new monster has a flair matching that of the old monster, copy it
+                # If the new monster has a flair matching that of the old
+                # monster, copy it
                 for new_flair in new_monster.flairs.values():
                     for old_flair in old_flairs.values():
                         if new_flair.category == old_flair.category:
                             new_monster.flairs[new_flair.category] = old_flair
 
-                # Removing the old monster caused all monsters in front to move a slot back
-                # Bring our new monster from the end of the list to its previous position
+                # Removing the old monster caused all monsters in front to move
+                # a slot back
+                # Bring our new monster from the end of the list to its
+                # previous position
                 for i in range(len(player.monsters) - 1, slot, -1):
                     player.switch_monsters(i, i - 1)
 

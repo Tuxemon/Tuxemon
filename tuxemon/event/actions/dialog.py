@@ -26,8 +26,9 @@ from tuxemon.locale import replace_text
 from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import open_dialog
 from tuxemon.graphics import get_avatar
-from typing import NamedTuple, final
+from typing import NamedTuple, final, Optional
 from tuxemon.states.dialog import DialogState
+from tuxemon.sprite import Sprite
 
 logger = logging.getLogger(__name__)
 
@@ -39,14 +40,25 @@ class DialogActionParameters(NamedTuple):
 
 @final
 class DialogAction(EventAction[DialogActionParameters]):
-    """Opens a single dialog and waits until it is closed.
-
-    Valid Parameters: text_to_display
+    """
+    Open a single dialog and waits until it is closed.
 
     You may also use special variables in dialog events.
     Here is a list of available variables:
 
     * ${{name}} - The current player's name.
+
+    Script usage:
+        .. code-block::
+
+            dialog <text>,<avatar>
+
+    Script parameters:
+        text: Text of the dialog.
+        avatar: Monster avatar. If it is a number, the monster is the
+            corresponding monster slot in the player's party.
+            If it is a string, we're referring to a monster by name.
+
     """
 
     name = "dialog"
@@ -61,6 +73,6 @@ class DialogAction(EventAction[DialogActionParameters]):
         if self.session.client.get_state_by_name(DialogState) is None:
             self.stop()
 
-    def open_dialog(self, initial_text, avatar) -> None:
+    def open_dialog(self, initial_text: str, avatar: Optional[Sprite]) -> None:
         logger.info("Opening dialog window")
         open_dialog(self.session, [initial_text], avatar)

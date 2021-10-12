@@ -31,7 +31,7 @@ class NPCFacingCondition(EventCondition):
     Script usage:
         .. code-block::
 
-            is npc_facing <character> <direction>
+            is npc_facing <character>,<direction>
 
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").

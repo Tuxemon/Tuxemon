@@ -22,26 +22,34 @@
 from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map import dirs2
-from typing import NamedTuple, final, Sequence
+from tuxemon.map import dirs2, Direction
+from typing import NamedTuple, final, Sequence, Tuple, Generator
+from tuxemon.math import Vector2
 
 
-def simple_path(origin, direction, tiles):
-    origin = tuple(origin)  # make copy to prevent modifying the npc
-    for i in range(tiles):
-        origin += dirs2[direction]
-        yield tuple(int(i) for i in origin)
+def simple_path(
+    origin: Tuple[int, int],
+    direction: Direction,
+    tiles: int,
+) -> Generator[Tuple[int, int], None, None]:
+    origin_vec = Vector2(origin)
+    for _ in range(tiles):
+        origin_vec += dirs2[direction]
+        yield (int(origin_vec[0]), int(origin_vec[0]))
 
 
 def parse_path_parameters(
-    origin,
+    origin: Tuple[int, int],
     move_list: Sequence[str],
-):
+) -> Generator[Tuple[int, int], None, None]:
     for move in move_list:
         try:
             direction, tiles = move.strip().split()
         except ValueError:
-            direction, tiles = move.strip(), 1
+            direction, tiles = move.strip(), "1"
+
+        # Pending https://github.com/python/mypy/issues/9718
+        assert direction in dirs2
         for point in simple_path(origin, direction, int(tiles)):
             yield point
         origin = point
@@ -53,19 +61,26 @@ class NpcMoveActionParameters(NamedTuple):
 
 @final
 class NpcMoveAction(EventAction[NpcMoveActionParameters]):
-    """Relative tile movement for NPC
+    """
+    Relative tile movement for NPC.
 
     This action blocks until the destination is reached.
 
-    npc_move npc_slug, direction, amount_of_tiles, ...
 
-    number of tiles is optional, defaults to 1 if omitted
+    Script usage:
+        .. code-block::
 
-    for example: up 10, down 5, left 5
+            npc_move <npc_slug>,<move>...
 
-    Direction parameter can be: "left", "right", "up", or "down"
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        move: A tuple with format ``<direction> [amount_of_tiles]`` where
+            ``direction`` can be one of "up", "down", "left" and "right" and
+            ``amount_of_tiles`` is the number of tiles moved in that direction,
+            being 1 by default. Several movements can be passed, that will be
+            executed one after the other. For example:
+            ``up 10, down 5, left 5``.
 
-    Valid Parameters: npc_slug, movement pairs
     """
 
     name = "npc_move"
@@ -80,7 +95,10 @@ class NpcMoveAction(EventAction[NpcMoveActionParameters]):
         if self.npc is None:
             return
 
-        path = list(parse_path_parameters(self.npc.tile_pos, self.raw_parameters[1:]))
+        path = list(parse_path_parameters(
+            self.npc.tile_pos,
+            self.raw_parameters[1:],
+        ))
         path.reverse()
         self.npc.path = path
         self.npc.next_waypoint()

@@ -27,20 +27,28 @@ from typing import NamedTuple, final
 
 class ModifyPlayerAttributeActionParameters(NamedTuple):
     name: str
-    value: float
+    value: str
 
 
 @final
 class ModifyPlayerAttributeAction(
     EventAction[ModifyPlayerAttributeActionParameters],
 ):
-    """Modifies the given attribute of the player character by modifier. By default
-    this is achieved via addition, but prepending a '%' will cause it to be
-    multiplied by the attribute.
+    """
+    Modify the given attribute of the player character by modifier.
 
-    Valid Parameters: attribute, modifier
+    By default this is achieved via addition, but prepending a '%' will cause
+    it to be multiplied by the attribute.
 
-    EventAction parameter 'modifier' must be an int (positive or negative)
+    Script usage:
+        .. code-block::
+
+            modify_player_attribute <name>,<value>
+
+    Script parameters:
+        name: Name of the attribute to modify.
+        value: Value of the attribute modifier.
+
     """
 
     name = "modify_player_attribute"
@@ -49,4 +57,8 @@ class ModifyPlayerAttributeAction(
     def start(self) -> None:
         attribute = self.parameters[0]
         modifier = self.parameters[1]
-        CommonAction.modify_character_attribute(self.session.player, attribute, modifier)
+        CommonAction.modify_character_attribute(
+            self.session.player,
+            attribute,
+            modifier,
+        )

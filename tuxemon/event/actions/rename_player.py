@@ -36,9 +36,14 @@ class RenamePlayerActionParameters(NamedTuple):
 
 @final
 class RenamePlayerAction(EventAction[RenamePlayerActionParameters]):
-    """Opens the text input screen to rename the player.
+    """
+    Open the text input screen to rename the player.
 
-    Valid Parameters: None
+    Script usage:
+        .. code-block::
+
+            rename_player
+
     """
 
     name = "rename_player"

@@ -31,9 +31,14 @@ class PlayerStopActionParameters(NamedTuple):
 
 @final
 class PlayerStopAction(EventAction[PlayerStopActionParameters]):
-    """Makes the player stop moving.
+    """
+    Make the player stop moving.
 
-    Valid Parameters: None
+    Script usage:
+        .. code-block::
+
+            player_stop
+
     """
 
     name = "player_stop"

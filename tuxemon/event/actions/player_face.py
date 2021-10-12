@@ -33,11 +33,18 @@ class PlayerFaceActionParameters(NamedTuple):
 
 @final
 class PlayerFaceAction(EventAction[PlayerFaceActionParameters]):
-    """Makes the player face a certain direction.
+    """
+    Make the player face a certain direction.
 
-    Valid Parameters: direction
+    Script usage:
+        .. code-block::
 
-    EventAction parameter can be: "left", "right", "up", or "down"
+            player_face <direction>
+
+    Script parameters:
+        direction: Direction to face. It can be a npc slug to face or one of
+            "left", "right", "up", or "down".
+
     """
 
     name = "player_face"
@@ -48,10 +55,14 @@ class PlayerFaceAction(EventAction[PlayerFaceActionParameters]):
         direction = self.parameters.direction
         if direction not in dirs2:
             target = get_npc(self.session, direction)
-            direction = get_direction(self.session.player.tilepos, target.tilepos)
+            assert target
+            direction = get_direction(
+                self.session.player.tile_pos,
+                target.tile_pos,
+            )
 
-        # If we're doing a transition, only change the player's facing when we've reached the apex
-        # of the transition.
+        # If we're doing a transition, only change the player's facing when
+        # we've reached the apex of the transition.
         world_state = self.session.client.get_state_by_name(WorldState)
         if world_state is None:
             return

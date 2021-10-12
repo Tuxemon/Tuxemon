@@ -32,11 +32,17 @@ class WaitActionParameters(NamedTuple):
 
 @final
 class WaitAction(EventAction[WaitActionParameters]):
-    """Blocks event chain for some time
+    """
+    Block event chain for some time.
 
-    Valid Parameters: duration
+    Script usage:
+        .. code-block::
 
-    * duration (float): time in seconds to wait for
+            wait <seconds>
+
+    Script parameters:
+        seconds: Time in seconds for the event engine to wait for.
+
     """
 
     name = "wait"

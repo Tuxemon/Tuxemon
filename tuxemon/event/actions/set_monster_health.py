@@ -36,13 +36,21 @@ class SetMonsterHealthActionParameters(NamedTuple):
 
 @final
 class SetMonsterHealthAction(EventAction[SetMonsterHealthActionParameters]):
-    """Changes the hp of a monster in the current player's party. The action parameters
-    may contain a monster slot and the amount of health. If no slot is specified,
-    all monsters are healed. If no health is specified, the hp is maxed out.
+    """
+    Change the hp of a monster in the current player's party.
 
-    health is a float value between 0 and 1, which is the percent of max hp to be restored to
+    Script usage:
+        .. code-block::
 
-    Valid Parameters: slot, health
+            set_monster_health [slot][,health]
+
+    Script parameters:
+        slot: Slot of the monster in the party. If no slot is specified, all
+            monsters are healed.
+        health: A float value between 0 and 1, which is the percent of max
+            hp to be restored to. If no health is specified, the hp is maxed
+            out.
+
     """
 
     name = "set_monster_health"

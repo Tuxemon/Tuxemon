@@ -38,10 +38,17 @@ class StartBattleActionParameters(NamedTuple):
 
 @final
 class StartBattleAction(EventAction[StartBattleActionParameters]):
-    """Start a battle and switch to the combat module. The parameters must
-    contain an NPC slug in the NPC database.
+    """
+    Start a battle with the given npc and switch to the combat module.
 
-    Valid Parameters: npc_slug
+    Script usage:
+        .. code-block::
+
+            start_battle <npc_slug>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+
     """
 
     name = "start_battle"
@@ -60,6 +67,7 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
             return
 
         npc = world.get_entity(self.parameters.npc_slug)
+        assert npc
         if len(npc.monsters) == 0:
             return
 
@@ -72,12 +80,18 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
         # Add our players and setup combat
         logger.debug("Starting battle!")
         self.session.client.push_state(
-            "CombatState", players=(player, npc), combat_type="trainer", graphics=env["battle_graphics"]
+            "CombatState",
+            players=(player, npc),
+            combat_type="trainer",
+            graphics=env["battle_graphics"],
         )
 
         # Start some music!
         filename = env["battle_music"]
-        self.session.client.event_engine.execute_action("play_music", [filename])
+        self.session.client.event_engine.execute_action(
+            "play_music",
+            [filename],
+        )
 
     def update(self) -> None:
         if self.session.client.get_state_by_name(CombatState) is None:

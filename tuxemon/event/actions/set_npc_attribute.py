@@ -34,9 +34,19 @@ class SetNpcAttributeActionParameters(NamedTuple):
 
 @final
 class SetNpcAttributeAction(EventAction[SetNpcAttributeActionParameters]):
-    """Sets the given attribute of the npc to the given value.
+    """
+    Set the given attribute of the npc to the given value.
 
-    Valid Parameters: slug, attribute, value
+    Script usage:
+        .. code-block::
+
+            set_npc_attribute <npc_slug>,<name>,<value>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        name: Name of the attribute.
+        value: Value of the attribute.
+
     """
 
     name = "set_npc_attribute"
@@ -44,6 +54,7 @@ class SetNpcAttributeAction(EventAction[SetNpcAttributeActionParameters]):
 
     def start(self) -> None:
         npc = get_npc(self.session, self.parameters[0])
+        assert npc
         attribute = self.parameters[1]
         value = self.parameters[2]
         CommonAction.set_character_attribute(npc, attribute, value)

@@ -30,6 +30,7 @@ from typing import NamedTuple, final
 from tuxemon.states.world.worldstate import WorldState
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.menu.input import InputMenu
+from tuxemon.menu.interface import MenuItem
 
 
 class RenameMonsterActionParameters(NamedTuple):
@@ -38,9 +39,14 @@ class RenameMonsterActionParameters(NamedTuple):
 
 @final
 class RenameMonsterAction(EventAction[RenameMonsterActionParameters]):
-    """Opens the monster menu and text input screens to rename a selected monster.
+    """
+    Open the monster menu and text input screens to rename a selected monster.
 
-    Valid Parameters: None
+    Script usage:
+        .. code-block::
+
+            rename_monster
+
     """
 
     name = "rename_monster"
@@ -69,7 +75,7 @@ class RenameMonsterAction(EventAction[RenameMonsterActionParameters]):
         if monster_menu_state:
             monster_menu_state.refresh_menu_items()
 
-    def prompt_for_name(self, menu_item):
+    def prompt_for_name(self, menu_item: MenuItem) -> None:
         self.monster = menu_item.game_object
 
         self.session.client.push_state(

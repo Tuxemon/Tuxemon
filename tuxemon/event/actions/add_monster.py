@@ -23,7 +23,8 @@ from __future__ import annotations
 from tuxemon import monster
 from tuxemon.event.eventaction import EventAction
 from tuxemon.event import get_npc
-from typing import Union, NamedTuple, final
+from typing import Union, NamedTuple, final, Optional
+from tuxemon.npc import NPC
 
 
 class AddMonsterActionParameters(NamedTuple):
@@ -34,13 +35,20 @@ class AddMonsterActionParameters(NamedTuple):
 
 @final
 class AddMonsterAction(EventAction[AddMonsterActionParameters]):
-    """Adds a monster to the specified trainer's party if there is room.
-    If no is trainer specified it defaults to the current player.
+    """
+    Add a monster to the specified trainer's party if there is room.
 
-    The action parameter must contain a monster slug to look up in the monster
-    database.
+    Script usage:
+        .. code-block::
 
-    Valid Parameters: monster_slug, level(, trainer_slug)
+            add_monster <monster_slug>,<monster_level>[,trainer_slug]
+
+    Script parameters:
+        monster_slug: Monster slug to look up in the monster database.
+        monster_level: Level of the added monster.
+        trainer_slug: Slug of the trainer that will receive the monster. It
+            defaults to the current player.
+
     """
 
     name = "add_monster"
@@ -50,12 +58,15 @@ class AddMonsterAction(EventAction[AddMonsterActionParameters]):
 
         monster_slug, monster_level, trainer_slug = self.parameters
 
+        trainer: Optional[NPC]
         if trainer_slug is None:
             trainer = self.session.player
         else:
             trainer = get_npc(self.session, trainer_slug)
 
-        assert trainer, "No Trainer found with slug '{}'".format(trainer_slug or "player")
+        assert trainer, "No Trainer found with slug '{}'".format(
+            trainer_slug or "player"
+        )
 
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_slug)

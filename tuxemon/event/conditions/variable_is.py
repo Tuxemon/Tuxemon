@@ -36,7 +36,7 @@ class VariableIsCondition(EventCondition):
     Script usage:
         .. code-block::
 
-            is variable_is <value1> <operation> <value2>
+            is variable_is <value1>,<operation>,<value2>
 
     Script parameters:
         value1: Either a variable or a number.

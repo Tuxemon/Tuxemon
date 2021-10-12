@@ -30,11 +30,17 @@ class ChangeStateActionParameters(NamedTuple):
 
 @final
 class ChangeStateAction(EventAction[ChangeStateActionParameters]):
-    """Changes to the specified state.
+    """
+    Change to the specified state.
 
-    Valid Parameters: state_name
+    Script usage:
+        .. code-block::
 
-    * state_name (str): The state name to switch to.
+            change_state <state_name>
+
+    Script parameters:
+        state_name: The state name to switch to (e.g. PCState).
+
     """
 
     name = "change_state"

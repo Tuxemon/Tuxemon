@@ -30,11 +30,17 @@ class WaitForSecsActionParameters(NamedTuple):
 
 @final
 class WaitForSecsAction(EventAction[WaitForSecsActionParameters]):
-    """Pauses the event engine for n number of seconds.
+    """
+    Pause the event engine for a number of seconds.
 
-    Valid Parameters: duration
+    Script usage:
+        .. code-block::
 
-    * duration (float): time in seconds for the event engine to wait for
+            wait_for_secs <seconds>
+
+    Script parameters:
+        seconds: Time in seconds for the event engine to wait for.
+
     """
 
     name = "wait_for_secs"

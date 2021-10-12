@@ -30,9 +30,17 @@ class CallEventActionParameters(NamedTuple):
 
 @final
 class CallEventAction(EventAction[CallEventActionParameters]):
-    """Executes the specified event's actions by id.
+    """
+    Execute the specified event's actions by id.
 
-    Valid Parameters: event_id
+    Script usage:
+        .. code-block::
+
+            call_event <event_id>
+
+    Script parameters:
+        event_id: The id of the event whose actions will be executed.
+
     """
 
     name = "call_event"

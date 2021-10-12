@@ -29,20 +29,29 @@ from typing import NamedTuple, final
 class ModifyNpcAttributeActionParameters(NamedTuple):
     npc_slug: str
     name: str
-    value: float
+    value: str
 
 
 @final
 class ModifyNpcAttributeAction(
     EventAction[ModifyNpcAttributeActionParameters],
 ):
-    """Modifies the given attribute of the npc by modifier. By default
-    this is achieved via addition, but prepending a '%' will cause it to be
-    multiplied by the attribute.
+    """
+    Modify the given attribute of the npc by modifier.
 
-    Valid Parameters: slug, attribute, modifier
+    By default this is achieved via addition, but prepending a '%' will cause
+    it to be multiplied by the attribute.
 
-    EventAction parameter 'modifier' must be a number (positive or negative)
+    Script usage:
+        .. code-block::
+
+            modify_npc_attribute <npc_slug>,<name>,<value>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        name: Name of the attribute to modify.
+        value: Value of the attribute modifier.
+
     """
 
     name = "modify_npc_attribute"
@@ -50,6 +59,7 @@ class ModifyNpcAttributeAction(
 
     def start(self) -> None:
         npc = get_npc(self.session, self.parameters[0])
+        assert npc
         attribute = self.parameters[1]
         modifier = self.parameters[2]
         CommonAction.modify_character_attribute(npc, attribute, modifier)

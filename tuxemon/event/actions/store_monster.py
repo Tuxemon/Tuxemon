@@ -39,10 +39,21 @@ class StoreMonsterActionParameters(NamedTuple):
 # noinspection PyAttributeOutsideInit
 @final
 class StoreMonsterAction(EventAction[StoreMonsterActionParameters]):
-    """Save the player's monster with the given instance_id to
+    """
+    Store a monster in a box.
+
+    Save the player's monster with the given instance_id to
     the named storage box, removing it from the player party.
 
-    Valid Parameters: string monster_id, string box
+    Script usage:
+        .. code-block::
+
+            store_monster <monster_id>,<box>
+
+    Script parameters:
+        monster_id: Id of the monster to store.
+        box: Box where the monster will be stored.
+
     """
 
     name = "store_monster"
@@ -50,11 +61,15 @@ class StoreMonsterAction(EventAction[StoreMonsterActionParameters]):
 
     def start(self) -> None:
         player = self.session.player
-        instance_id = uuid.UUID(player.game_variables[self.parameters.monster_id])
+        instance_id = uuid.UUID(
+            player.game_variables[self.parameters.monster_id],
+        )
         box = self.parameters.box
         monster = player.find_monster_by_id(instance_id)
         if monster is None:
-            raise ValueError(f"No monster found with instance_id {instance_id}")
+            raise ValueError(
+                f"No monster found with instance_id {instance_id}",
+            )
 
         if box not in player.monster_boxes.keys():
             player.monster_boxes[box] = list()

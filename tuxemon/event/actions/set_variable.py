@@ -30,9 +30,18 @@ class SetVariableActionParameters(NamedTuple):
 
 @final
 class SetVariableAction(EventAction[SetVariableActionParameters]):
-    """Sets the key in the player.game_variables dictionary.
+    """
+    Set the key in the player.game_variables dictionary.
 
-    Valid Parameters: variable_name:value
+    Script usage:
+        .. code-block::
+
+            set_variable <variable>:<value>
+
+    Script parameters:
+        variable: Name of the variable.
+        value: Value of the variable.
+
     """
 
     name = "set_variable"

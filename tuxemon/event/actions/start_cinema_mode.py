@@ -30,7 +30,15 @@ class StartCinemaModeActionParameters(NamedTuple):
 
 @final
 class StartCinemaModeAction(EventAction[StartCinemaModeActionParameters]):
-    """Starts cinema mode by animating moving black bars to narrow the aspect ratio."""
+    """
+    Start cinema mode by animating black bars to narrow the aspect ratio.
+
+    Script usage:
+        .. code-block::
+
+            start_cinema_mode
+
+    """
 
     name = "start_cinema_mode"
     param_class = StartCinemaModeActionParameters

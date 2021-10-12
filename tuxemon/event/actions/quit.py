@@ -30,7 +30,15 @@ class QuitActionParameters(NamedTuple):
 
 @final
 class QuitAction(EventAction[QuitActionParameters]):
-    """Completely quit the game"""
+    """
+    Completely quit the game.
+
+    Script usage:
+        .. code-block::
+
+            quit
+
+    """
 
     name = "quit"
     param_class = QuitActionParameters

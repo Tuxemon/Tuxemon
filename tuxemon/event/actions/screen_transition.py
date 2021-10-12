@@ -31,9 +31,17 @@ class ScreenTransitionActionParameters(NamedTuple):
 
 @final
 class ScreenTransitionAction(EventAction[ScreenTransitionActionParameters]):
-    """Initiates a screen transition
+    """
+    Initiate a screen transition.
 
-    Valid Parameters: transition_time_in_seconds
+    Script usage:
+        .. code-block::
+
+            screen_transition <transition_time>
+
+    Script parameters:
+        transition_time: Transition time in seconds.
+
     """
 
     name = "screen_transition"

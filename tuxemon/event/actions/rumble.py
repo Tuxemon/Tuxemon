@@ -31,12 +31,18 @@ class RumbleActionParameters(NamedTuple):
 
 @final
 class RumbleAction(EventAction[RumbleActionParameters]):
-    """Rumbles available controllers with rumble support
+    """
+    Rumble available controllers with rumble support.
 
-    Valid Parameters: duration,power
+    Script usage:
+        .. code-block::
 
-    * duration (float): time in seconds to rumble for
-    * power (int): percentage of power to rumble. (1-100)
+            rumble <duration>,<power>
+
+    Script parameters:
+        duration: Time in seconds to rumble for.
+        power: Percentage of power to rumble.
+
     """
 
     name = "rumble"

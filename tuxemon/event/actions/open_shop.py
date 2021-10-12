@@ -31,6 +31,19 @@ class OpenShopActionParameters(NamedTuple):
 
 @final
 class OpenShopAction(EventAction[OpenShopActionParameters]):
+    """
+    Open the shop menu for a NPC.
+
+    Script usage:
+        .. code-block::
+
+            open_shop <npc_slug>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+
+    """
+
     name = "open_shop"
     param_class = OpenShopActionParameters
 

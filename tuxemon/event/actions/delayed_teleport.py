@@ -39,6 +39,17 @@ class DelayedTeleportAction(EventAction[DelayedTeleportActionParameters]):
     Teleport will be triggered during screen transition.
 
     Only use this if followed by a transition.
+
+    Script usage:
+        .. code-block::
+
+            delayed_teleport <map_name>,<position_x>,<position_y>
+
+    Script parameters:
+        map_name: Name of the map to teleport to.
+        position_x: X position to teleport to.
+        position_y: Y position to teleport to.
+
     """
 
     name = "delayed_teleport"

@@ -33,11 +33,22 @@ class RemoveMonsterActionParameters(NamedTuple):
 
 @final
 class RemoveMonsterAction(EventAction[RemoveMonsterActionParameters]):
-    """Removes a monster from the given trainer's party if the monster is there.
-    Monster is determined by instance_id, which must be passed in a game variable.
-    If no trainer slug is passed it defaults to the current player.
+    """
+    Remove a monster from the given trainer's party if the monster is there.
 
-    Valid Parameters: instance_id
+    Monster is determined by instance_id, which must be passed in a game
+    variable.
+
+    Script usage:
+        .. code-block::
+
+            remove_monster <instance_id>[,trainer_slug]
+
+    Script parameters:
+        instance_id: Id of the monster.
+        trainer_slug: Slug of the trainer. If no trainer slug is passed
+            it defaults to the current player.
+
     """
 
     name = "remove_monster"
@@ -48,10 +59,11 @@ class RemoveMonsterAction(EventAction[RemoveMonsterActionParameters]):
         instance_id = uuid.UUID(iid)
         trainer_slug = self.parameters.trainer_slug
 
-        if trainer_slug is None:
-            trainer = self.session.player
-        else:
-            trainer = get_npc(trainer_slug)
+        trainer = (
+            self.session.player if trainer_slug is None
+            else get_npc(self.session, trainer_slug)
+        )
+        assert trainer
 
         monster = trainer.find_monster_by_id(instance_id)
         if monster is not None:

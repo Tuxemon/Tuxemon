@@ -36,9 +36,18 @@ class NpcWanderActionParameters(NamedTuple):
 
 @final
 class NpcWanderAction(EventAction[NpcWanderActionParameters]):
-    """Makes an NPC wander around the map
+    """
+    Make an NPC wander around the map.
 
-    Valid Parameters: npc_slug, frequency
+    Script usage:
+        .. code-block::
+
+            npc_wander <npc_slug> <frequency>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        frequency: Frequency of movements.
+
     """
 
     name = "npc_wander"
@@ -47,8 +56,7 @@ class NpcWanderAction(EventAction[NpcWanderActionParameters]):
     def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
         maybe_world = self.session.client.get_state_by_name(WorldState)
-        if not maybe_world:
-            return
+        assert maybe_world
 
         world = maybe_world
 
@@ -58,7 +66,8 @@ class NpcWanderAction(EventAction[NpcWanderActionParameters]):
                 return
 
             # Suspend wandering if a dialog window is open
-            # TODO: this should only be done for the NPC the player is conversing with, not everyone
+            # TODO: this should only be done for the NPC the player is
+            # conversing with, not everyone
             for state in self.session.client.active_states:
                 if state.name == "DialogState":
                     return
@@ -71,13 +80,15 @@ class NpcWanderAction(EventAction[NpcWanderActionParameters]):
                 npc.next_waypoint()
 
         def schedule() -> None:
-            # The timer is randomized between 0.5 and 1.0 of the frequency parameter
-            # Frequency can be set to 0 to indicate that we want to stop wandering
+            # The timer is randomized between 0.5 and 1.0 of the frequency
+            # parameter
+            # Frequency can be set to 0 to indicate that we want to stop
+            # wandering
             world.remove_animations_of(schedule)
             if npc is None or self.parameters.frequency == 0:
                 return
             else:
-                frequency = 1
+                frequency = 1.0
                 if self.parameters.frequency:
                     frequency = min(5, max(0.5, self.parameters.frequency))
                 time = (0.5 + 0.5 * random.random()) * frequency

@@ -31,9 +31,14 @@ class PlayerResumeActionParameters(NamedTuple):
 
 @final
 class PlayerResumeAction(EventAction[PlayerResumeActionParameters]):
-    """Makes the player resume movement.
+    """
+    Make the player resume movement.
 
-    Valid Parameters: None
+    Script usage:
+        .. code-block::
+
+            player_resume
+
     """
 
     name = "player_resume"

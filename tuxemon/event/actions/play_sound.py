@@ -31,9 +31,17 @@ class PlaySoundActionParameters(NamedTuple):
 
 @final
 class PlaySoundAction(EventAction[PlaySoundActionParameters]):
-    """Plays a sound from "resources/sounds/"
+    """
+    Play a sound from "resources/sounds/".
 
-    Valid Parameters: filename
+    Script usage:
+        .. code-block::
+
+            play_sound <filename>
+
+    Script parameters:
+        filename: Sound file to load.
+
     """
 
     name = "play_sound"

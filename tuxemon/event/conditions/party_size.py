@@ -35,7 +35,7 @@ class PartySizeCondition(EventCondition):
     Script usage:
         .. code-block::
 
-            is party_size <operator> <value>
+            is party_size <operator>,<value>
 
     Script parameters:
         operator: One of "equals", "less_than" or "greater_than".

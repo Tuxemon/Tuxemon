@@ -1,10 +1,11 @@
+from __future__ import annotations
 import logging
 import os
 from base64 import b64decode
 
 import pygame
 
-from tuxemon.compat import Rect
+from pygame import Rect
 from tuxemon import prepare
 from tuxemon import save
 from tuxemon.locale import T
@@ -14,21 +15,23 @@ from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
 from tuxemon.ui import text
 from tuxemon.save import get_save_path
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
 cfgcheck = prepare.CONFIG
 
+
 class SaveMenuState(PopUpMenu):
     number_of_slots = 3
     shrink_to_items = True
 
-    def startup(self, *items, **kwargs):
+    def startup(self, **kwargs: Any) -> None:
         if "selected_index" not in kwargs:
             kwargs["selected_index"] = save.slot_number or 0
-        super().startup(*items, **kwargs)
+        super().startup(**kwargs)
 
-    def initialize_items(self):
+    def initialize_items(self) -> None:
         empty_image = None
         rect = self.client.screen.get_rect()
         slot_rect = Rect(0, 0, rect.width * 0.80, rect.height // 6)
@@ -45,49 +48,93 @@ class SaveMenuState(PopUpMenu):
                 item = MenuItem(empty_image, "SAVE", None, None)
                 self.add(item)
 
-    def render_empty_slot(self, rect):
+    def render_empty_slot(
+        self,
+        rect: pygame.rect.Rect,
+    ) -> pygame.surface.Surface:
         slot_image = pygame.Surface(rect.size, pygame.SRCALPHA)
         rect = rect.move(0, rect.height // 2 - 10)
-        text.draw_text(slot_image, T.translate("empty_slot"), rect, font=self.font)
+        text.draw_text(
+            slot_image,
+            T.translate("empty_slot"),
+            rect,
+            font=self.font,
+        )
         return slot_image
 
-    def render_slot(self, rect, slot_num):
+    def render_slot(
+        self,
+        rect: pygame.rect.Rect,
+        slot_num: int,
+    ) -> pygame.surface.Surface:
         slot_image = pygame.Surface(rect.size, pygame.SRCALPHA)
 
         # Try and load the save game and draw details about the save
         save_data = save.load(slot_num)
+        assert save_data
         if "screenshot" in save_data:
             screenshot = b64decode(save_data["screenshot"])
-            size = save_data["screenshot_width"], save_data["screenshot_height"]
-            thumb_image = pygame.image.fromstring(screenshot, size, "RGB").convert()
+            size = (
+                save_data["screenshot_width"],
+                save_data["screenshot_height"],
+            )
+            thumb_image = pygame.image.frombuffer(
+                screenshot,
+                size,
+                "RGB",
+            ).convert()
             thumb_rect = thumb_image.get_rect().fit(rect)
-            thumb_image = pygame.transform.smoothscale(thumb_image, thumb_rect.size)
+            thumb_image = pygame.transform.smoothscale(
+                thumb_image,
+                thumb_rect.size,
+            )
         else:
             thumb_rect = rect.copy()
-            thumb_rect.width /= 5.0
+            thumb_rect.width //= 5
             thumb_image = pygame.Surface(thumb_rect.size)
             thumb_image.fill((255, 255, 255))
 
         if "error" in save_data:
             red = (255, 0, 0)
             pygame.draw.line(thumb_image, red, [0, 0], thumb_rect.size, 3)
-            pygame.draw.line(thumb_image, red, [0, thumb_rect.height], [thumb_rect.width, 0], 3)
+            pygame.draw.line(
+                thumb_image,
+                red,
+                [0, thumb_rect.height],
+                [thumb_rect.width, 0],
+                3,
+            )
 
         # Draw the screenshot
         slot_image.blit(thumb_image, (rect.width * 0.20, 0))
 
         # Draw the slot text
         rect = rect.move(0, rect.height // 2 - 10)
-        text.draw_text(slot_image, T.translate("slot") + " " + str(slot_num), rect, font=self.font)
+        text.draw_text(
+            slot_image,
+            T.translate("slot") + " " + str(slot_num),
+            rect,
+            font=self.font,
+        )
 
         x = int(rect.width * 0.5)
-        text.draw_text(slot_image, save_data["player_name"], (x, 0, 500, 500), font=self.font)
+        text.draw_text(
+            slot_image,
+            save_data["player_name"],
+            (x, 0, 500, 500),
+            font=self.font,
+        )
         if "error" not in save_data:
-            text.draw_text(slot_image, save_data["time"], (x, 50, 500, 500), font=self.font)
+            text.draw_text(
+                slot_image,
+                save_data["time"],
+                (x, 50, 500, 500),
+                font=self.font,
+            )
 
         return slot_image
 
-    def save(self):
+    def save(self) -> None:
         logger.info("Saving!")
         try:
             save_data = save.get_save_data(
@@ -106,24 +153,34 @@ class SaveMenuState(PopUpMenu):
         else:
             open_dialog(local_session, [T.translate("save_success")])
 
-    def on_menu_selection(self, menuitem):
-        def positive_answer():
+    def on_menu_selection(self, menuitem: MenuItem) -> None:
+        def positive_answer() -> None:
             self.client.pop_state()  # close confirmation menu
             self.client.pop_state()  # close save menu
 
             self.save()
 
-        def negative_answer():
+        def negative_answer() -> None:
             self.client.pop_state()  # close confirmation menu
 
-        def ask_confirmation():
+        def ask_confirmation() -> None:
             # open menu to confirm the save
             menu = self.client.push_state("Menu")
             menu.shrink_to_items = True
 
             # add choices
-            yes = MenuItem(self.shadow_text(T.translate("save_overwrite")), None, None, positive_answer)
-            no = MenuItem(self.shadow_text(T.translate("save_keep")), None, None, negative_answer)
+            yes = MenuItem(
+                self.shadow_text(T.translate("save_overwrite")),
+                None,
+                None,
+                positive_answer,
+            )
+            no = MenuItem(
+                self.shadow_text(T.translate("save_keep")),
+                None,
+                None,
+                negative_answer,
+            )
 
             menu.add(yes)
             menu.add(no)

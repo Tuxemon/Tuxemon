@@ -64,7 +64,7 @@ T = TypeVar("T")
 
 logger = logging.getLogger(__name__)
 
-slot_number = None
+slot_number: Optional[int] = None
 TIME_FORMAT = "%Y-%m-%d %H:%M"
 config = prepare.CONFIG
 

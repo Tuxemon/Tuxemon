@@ -26,11 +26,11 @@
 # states.start Handles the splash screen and start menu.
 #
 #
-
+from __future__ import annotations
 import logging
-from typing import Optional
+from typing import Optional, Any
 
-from pygame import Surface
+import pygame
 
 from tuxemon import audio
 from tuxemon import prepare
@@ -47,21 +47,29 @@ class SplashState(state.State):
     """
     default_duration = 3
 
-    def startup(self, **kwargs):
+    def startup(self, **kwargs: Any) -> None:
         # this task will skip the splash screen after some time
         self.task(self.fade_out, self.default_duration)
         self.triggered = False
 
         width, height = prepare.SCREEN_SIZE
-        splash_border = prepare.SCREEN_SIZE[0] / 20  # The space between the edge of the screen
+
+        # The space between the edge of the screen
+        splash_border = prepare.SCREEN_SIZE[0] / 20
 
         # Set up the splash screen logos
         logo = self.load_sprite("gfx/ui/intro/pygame_logo.png")
-        logo.rect.topleft = splash_border, height - splash_border - logo.rect.height
+        logo.rect.topleft = (
+            splash_border,
+            height - splash_border - logo.rect.height,
+        )
 
         # Set up the splash screen logos
         cc = self.load_sprite("gfx/ui/intro/creative_commons.png")
-        cc.rect.topleft = width - splash_border - cc.rect.width, height - splash_border - cc.rect.height
+        cc.rect.topleft = (
+            width - splash_border - cc.rect.width,
+            height - splash_border - cc.rect.height,
+        )
 
         audio.load_sound("sound_ding").play()
 
@@ -75,11 +83,11 @@ class SplashState(state.State):
             self.fade_out()
         return None
 
-    def draw(self, surface: Surface):
+    def draw(self, surface: pygame.surface.Surface) -> None:
         if not self.triggered:
             surface.fill((15, 15, 15))
             self.sprites.draw(surface)
 
-    def fade_out(self):
+    def fade_out(self) -> None:
         self.triggered = True
         self.parent.push_state("FadeOutTransition")

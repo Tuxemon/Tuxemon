@@ -29,9 +29,12 @@
 #
 """This module contains the Start state.
 """
-
+from __future__ import annotations
 import logging
 from functools import partial
+from typing import Any, Callable, Union
+
+import pygame
 
 from tuxemon import prepare
 from tuxemon.locale import T
@@ -55,7 +58,7 @@ class BackgroundState(State):
     eventually the need for this will be phased out
     """
 
-    def draw(self, surface):
+    def draw(self, surface: pygame.surface.Surface) -> None:
         surface.fill((0, 0, 0, 0))
 
 
@@ -65,22 +68,29 @@ class StartState(PopUpMenu):
     escape_key_exits = False
     shrink_to_items = True
 
-    def startup(self, *args, **kwargs):
+    def startup(self, **kwargs: Any) -> None:
         # If there is a save, then move the cursor to "Load game" first
         index = get_index_of_latest_save()
         kwargs["selected_index"] = 0 if index is None else 1
-        super().startup(*args, **kwargs)
+        super().startup(**kwargs)
 
-        def change_state(state, **change_state_kwargs):
-            return partial(self.client.push_state, state, **change_state_kwargs)
+        def change_state(
+            state: Union[State, str],
+            **change_state_kwargs: Any,
+        ) -> Callable[[], State]:
+            return partial(
+                self.client.push_state,
+                state,
+                **change_state_kwargs,
+            )
 
-        def set_player_name(text):
+        def set_player_name(text: str) -> None:
             local_session.player.name = text
 
-        def new_game():
+        def new_game() -> None:
             # load the starting map
             map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
-            state = self.client.replace_state("WorldState", map_name=map_name)
+            self.client.replace_state("WorldState", map_name=map_name)
             self.client.push_state(
                 state_name="InputMenu",
                 prompt=T.translate("input_name"),
@@ -89,10 +99,10 @@ class StartState(PopUpMenu):
             )
             self.client.push_state("FadeInTransition")
 
-        def options():
+        def options() -> None:
             pass
 
-        def exit_game():
+        def exit_game() -> None:
             self.client.exit = True
 
         menu_items_map = (

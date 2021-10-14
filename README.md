@@ -1,4 +1,4 @@
-Tuxemon 0.4.29
+Tuxemon 0.4.30
 ==============
 
 Tuxemon is a free, open source monster-fighting RPG.
@@ -8,28 +8,12 @@ Tuxemon is a free, open source monster-fighting RPG.
 
 ![screenshot](https://www.tuxemon.org/images/featurette-01.png)
 
-Requirements
-------------
-
-Tuxemon uses a number of open source projects to work properly:
-
-* *python* - version 3.8+
-* *python-pygame* - python game library
-* *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
-* *python-pyscroll* - fast module for animated scrolling maps.
-* *[neteria](https://github.com/ShadowBlip/Neteria)* - Game networking framework for Python.
-
-*Optional*
-
-* *libShake* - rumble library for Linux.
 
 Installation
 ------------
 
-If you want to try the game, its recommended to download and try the master branch
-first. The default development branch is often more up to date, but might have
-breaking bugs. If you want to try the latest version or contribute code changes,
-please use the development branch.
+If you want to try the game, its recommended to download and try the development branch
+first. The master branch be stable, but is often out of date.
 
 
 **Windows Source**
@@ -140,6 +124,7 @@ Controls
 
 Use *Tiled* map editor: http://www.mapeditor.org/
 
+
 CLI Interface
 --------------
 **Setting up**
@@ -163,6 +148,7 @@ cli_enabled = True
  - `trainer_battle list` — Gives you a list of fightable trainers.
  - `teleport <x> <y> [map_file]` — Teleports you to the specific tile. If `map_file` argument is specified, you'll get teleported to a selected map file.
  - `whereami` — Prints out the map filename
+
 
 Building
 --------
@@ -198,6 +184,7 @@ by the Free Software Foundation, either version 3 of the License, or (at your
 option) any later version.  See the file [LICENSE](LICENSE) for the conditions
 under which this software is made available.  Tuxemon also contains code from
 other sources.
+
 
 External links
 --------------

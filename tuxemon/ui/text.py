@@ -5,7 +5,7 @@ from pygame.rect import Rect
 from tuxemon.sprite import Sprite
 from tuxemon.ui import draw
 from tuxemon.graphics import ColorLike
-from typing import Optional, Literal, List
+from typing import Optional, Literal, List, Tuple, Union
 
 min_font_size = 7
 
@@ -73,8 +73,8 @@ class TextArea(Sprite):
 
 def draw_text(
     surface: pygame.surface.Surface,
-    text: Optional[str] = None,
-    rect: Optional[Rect] = None,
+    text: str,
+    rect: Union[Rect, Tuple[int, int, int, int]],
     *,
     justify: Literal["left", "center", "right"] = "left",
     align: Literal["top", "middle", "bottom"] = "top",

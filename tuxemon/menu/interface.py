@@ -110,7 +110,7 @@ class MenuItem(pygame.sprite.Sprite):
         image: pygame.surface.Surface,
         label: Optional[str],
         description: Optional[str],
-        game_object: Optional[Callable[[], None]],
+        game_object: Optional[Callable[[], object]],
     ):
         super().__init__()
         self.image = image

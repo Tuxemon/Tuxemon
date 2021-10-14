@@ -104,6 +104,9 @@ class RunningEvent:
 
         return action
 
+    def advance(self):
+        self.action_index += 1
+
 
 class EventEngine:
     """
@@ -447,7 +450,7 @@ class EventEngine:
                     # action finished, so continue and do the next one,
                     # if available
                     action.cleanup()
-                    e.action_index += 1
+                    e.advance()
                     e.current_action = None
                     logger.debug(f"action finished: {action}")
 

@@ -137,7 +137,7 @@ class Manager:
         # Request dependencies for specified package
         r = requests.get(f"{repo}/api/packages/{author}/{name}/dependencies/?only_hard=1")
         if r.status_code != 200:
-            return
+            raise ValueError(f"Requested {r.url}, received status code {r.status_code}")
         logger.debug(r.text, author, name)
         dep_list = r.json()
         # Resolve dependencies

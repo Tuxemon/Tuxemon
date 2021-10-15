@@ -2,7 +2,7 @@ import urllib.request
 import requests
 
 from tuxemon.constants import paths
-from tuxemon.symlink_missing import symlink_missing
+from tuxemon.mod_manager.symlink_missing import symlink_missing
 import pathlib
 import os
 import json

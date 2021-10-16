@@ -29,39 +29,48 @@
 #
 """ This module contains the PCState state.
 """
+from __future__ import annotations
 
 import logging
 from functools import partial
 
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import PopUpMenu
+from tuxemon.menu.menu import PopUpMenu, Menu
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
+
+from typing import Any, Generator, Callable, Sequence, Tuple
 
 logger = logging.getLogger(__name__)
 
 
-def add_menu_items(state, items):
+MenuGameObj = Callable[[], object]
+
+
+def add_menu_items(
+    state: Menu[MenuGameObj],
+    items: Sequence[Tuple[str, MenuGameObj]],
+) -> None:
     for key, callback in items:
         label = T.translate(key).upper()
 
         state.build_item(label, callback)
 
 
-def not_implemented_dialog():
+def not_implemented_dialog() -> None:
     open_dialog(local_session, [T.translate("not_implemented")])
 
 
-class PCState(PopUpMenu):
+class PCState(PopUpMenu[MenuGameObj]):
     """The state responsible in game settings."""
 
     shrink_to_items = True
 
-    def startup(self, *items, **kwargs):
-        super().startup(*items, **kwargs)
+    def startup(self, **kwargs: Any) -> None:
+        super().startup(**kwargs)
 
-        def change_state(state, **kwargs):
+        def change_state(state: str, **kwargs: Any) -> MenuGameObj:
             return partial(self.client.replace_state, state, **kwargs)
 
         add_menu_items(
@@ -75,7 +84,7 @@ class PCState(PopUpMenu):
         )
 
 
-class MultiplayerMenu(PopUpMenu):
+class MultiplayerMenu(PopUpMenu[MenuGameObj]):
     """MP Menu
 
     code salvaged from commit 6fa20da714c7b794cbe1e8a22168fa66cda13a9e
@@ -83,8 +92,8 @@ class MultiplayerMenu(PopUpMenu):
 
     shrink_to_items = True
 
-    def startup(self, *items, **kwargs):
-        super().startup(*items, **kwargs)
+    def startup(self, **kwargs: Any) -> None:
+        super().startup(**kwargs)
 
         add_menu_items(
             self,
@@ -95,7 +104,7 @@ class MultiplayerMenu(PopUpMenu):
             ),
         )
 
-    def host_game(self):
+    def host_game(self) -> None:
 
         # check if server is already hosting a game
         if self.game.server.listening:
@@ -126,7 +135,7 @@ class MultiplayerMenu(PopUpMenu):
             # inform player that hosting is ready
             open_dialog(local_session, [T.translate("multiplayer_hosting_ready")])
 
-    def scan_for_games(self):
+    def scan_for_games(self) -> None:
         # start the game scanner
         if not self.game.ishost:
             self.game.client.enable_join_multiplayer = True
@@ -136,10 +145,10 @@ class MultiplayerMenu(PopUpMenu):
         # open menu to select games
         self.game.push_state("MultiplayerSelect")
 
-    def join_by_ip(self):
+    def join_by_ip(self) -> None:
         self.game.push_state("InputMenu", prompt=T.translate("multiplayer_join_prompt"))
 
-    def join(self):
+    def join(self) -> None:
         if self.game.ishost:
             return
         else:
@@ -148,18 +157,18 @@ class MultiplayerMenu(PopUpMenu):
             self.game.client.game.listen()
 
 
-class MultiplayerSelect(PopUpMenu):
+class MultiplayerSelect(PopUpMenu[None]):
     """Menu to show games found by the network game scanner"""
 
     shrink_to_items = True
 
-    def startup(self, *items, **kwargs):
-        super().startup(*items, **kwargs)
+    def startup(self, **kwargs: Any) -> None:
+        super().startup(**kwargs)
 
         # make a timer to refresh the menu items every second
         self.task(self.reload_items, 1, -1)
 
-    def initialize_items(self):
+    def initialize_items(self) -> Generator[MenuItem[None], None, None]:
         servers = self.game.client.server_list
         if servers:
             for server in servers:

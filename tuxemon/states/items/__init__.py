@@ -154,7 +154,10 @@ class ItemMenuState(Menu[Item]):
             menu = self.client.push_state("Menu")
             menu.shrink_to_items = True
 
-            menu_items_map = (("item_confirm_use", confirm), ("item_confirm_cancel", cancel))
+            menu_items_map = (
+                ("item_confirm_use", confirm),
+                ("item_confirm_cancel", cancel),
+            )
 
             # add our options to the menu
             for key, callback in menu_items_map:
@@ -279,7 +282,10 @@ class ShopMenuState(Menu[Item]):
                 self.on_menu_selection_change()
 
         item_dict = self.seller.inventory[item.slug]
-        max_quantity = None if item_dict.get("infinite") else item_dict["quantity"]
+        max_quantity = (
+            None if item_dict.get("infinite")
+            else item_dict["quantity"]
+        )
         self.client.push_state(
             "QuantityMenu",
             callback=use_item,
@@ -316,7 +322,12 @@ class ShopMenuState(Menu[Item]):
                 label = label_format_2
             else:
                 label = label_format_1
-            formatted_name = label(obj.name, properties["quantity"], name_len=name_len, count_len=count_len)
+            formatted_name = label(
+                obj.name,
+                properties["quantity"],
+                name_len=name_len,
+                count_len=count_len,
+            )
             image = self.shadow_text(formatted_name, bg=(128, 128, 128))
             yield MenuItem(image, obj.name, obj.description, obj)
 

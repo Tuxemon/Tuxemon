@@ -13,7 +13,7 @@ from tuxemon.sprite import RelativeGroup, VisualSpriteList
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
 from typing import Any, Callable, Optional, Literal, Dict, Sequence, Tuple,\
-    Iterable
+    Iterable, TypeVar, Generic
 from tuxemon.graphics import ColorLike
 from tuxemon.platform.events import PlayerInput
 from tuxemon.animation import Animation
@@ -32,8 +32,10 @@ def layout_func(scale: float) -> Callable[[Sequence[float]], Sequence[float]]:
 
 layout = layout_func(prepare.SCALE)
 
+T = TypeVar("T", covariant=True)
 
-class Menu(state.State):
+
+class Menu(Generic[T], state.State):
     """
     A class to create menu objects.
 
@@ -56,7 +58,7 @@ class Menu(state.State):
     background = None  # Image used to draw the background
     background_color: ColorLike = (248, 248, 248)  # The window's background color
     unavailable_color: ColorLike = (220, 220, 220)  # Font color when the action is unavailable
-    background_filename = None  # File to load for image background
+    background_filename: Optional[str] = None  # File to load for image background
     menu_select_sound_filename = "sound_menu_select"
     font_filename = "PressStart2P.ttf"
     borders_filename = "gfx/dialog-borders01.png"
@@ -93,7 +95,7 @@ class Menu(state.State):
 
         """
         # contains the selectable elements of the menu
-        self.menu_items: VisualSpriteList[MenuItem] = VisualSpriteList(
+        self.menu_items: VisualSpriteList[MenuItem[T]] = VisualSpriteList(
             parent=self.calc_menu_items_rect,
         )
         self.menu_items.columns = self.columns
@@ -182,12 +184,15 @@ class Menu(state.State):
             for sprite in self.sprites:
                 if isinstance(sprite, TextArea):
                     return sprite
-            logger.error("attempted to use 'alert' on state without a TextArea", message)
+            logger.error(
+                "attempted to use 'alert' on state without a TextArea",
+                message,
+            )
             raise RuntimeError
 
         self.animate_text(find_textarea(), message, callback)
 
-    def initialize_items(self) -> Optional[Iterable[MenuItem]]:
+    def initialize_items(self) -> Optional[Iterable[MenuItem[T]]]:
         """
         Advanced way to fill in menu items.
 
@@ -234,7 +239,8 @@ class Menu(state.State):
             if hasattr(self.menu_items, "arrange_menu_items"):
                 self.menu_items.arrange_menu_items()
             for index, item in enumerate(self.menu_items):
-                # TODO: avoid introspection of the items to implement different behavior
+                # TODO: avoid introspection of the items to implement
+                # different behavior
                 if item.game_object.__class__.__name__ != "Monster":
                     break
                 self.selected_index = index
@@ -242,7 +248,7 @@ class Menu(state.State):
                     break
 
     def build_item(
-        self,
+        self: Menu[Callable[[], None]],
         label: str,
         callback: Callable[[], None],
         icon: Optional[pygame.surface.Surface] = None,
@@ -260,7 +266,7 @@ class Menu(state.State):
         item = MenuItem(image, label, None, callback)
         self.add(item)
 
-    def add(self, item: MenuItem) -> None:
+    def add(self, item: MenuItem[T]) -> None:
         """
         Add a menu item.
 
@@ -492,7 +498,10 @@ class Menu(state.State):
         disabled = True
         if hasattr(self, "menu_items") and event.pressed:
             disabled = all(not i.enabled for i in self.menu_items)
-        valid_change = event.pressed and self.state == "normal" and not disabled and self.menu_items
+        valid_change = (
+            event.pressed and self.state == "normal"
+            and not disabled and self.menu_items
+        )
 
         # confirm selection
         if event.button in (buttons.A, intentions.SELECT):
@@ -504,10 +513,18 @@ class Menu(state.State):
                 self.on_menu_selection(selected)
 
         # cursor movement
-        if event.button in (buttons.UP, buttons.DOWN, buttons.LEFT, buttons.RIGHT):
+        if event.button in (
+            buttons.UP,
+            buttons.DOWN,
+            buttons.LEFT,
+            buttons.RIGHT,
+        ):
             handled_event = True
             if valid_change:
-                index = self.menu_items.determine_cursor_movement(self.selected_index, event)
+                index = self.menu_items.determine_cursor_movement(
+                    self.selected_index,
+                    event,
+                )
                 if not self.selected_index == index:
                     self.change_selection(index)
 
@@ -561,7 +578,7 @@ class Menu(state.State):
         selected.in_focus = True  # set focus flag of new item
         self.on_menu_selection_change()  # let subclass know menu has changed
 
-    def search_items(self, game_object: Any) -> Optional[MenuItem]:
+    def search_items(self, game_object: Any) -> Optional[MenuItem[T]]:
         """
         Non-optimised search through menu_items for a particular thing.
 
@@ -608,7 +625,7 @@ class Menu(state.State):
             self.arrow.rect.midright = x, y
             return None
 
-    def get_selected_item(self) -> Optional[MenuItem]:
+    def get_selected_item(self) -> Optional[MenuItem[T]]:
         """
         Get the Menu Item that is currently selected.
 
@@ -733,7 +750,7 @@ class Menu(state.State):
     def on_open(self) -> None:
         """Hook is called after opening animation has finished."""
 
-    def on_menu_selection(self, item: MenuItem) -> None:
+    def on_menu_selection(self, item: MenuItem[T]) -> None:
         """
         Hook for things to happen when player selects a menu option.
 
@@ -742,6 +759,7 @@ class Menu(state.State):
         """
         if item.enabled:
             assert item.game_object is not None
+            assert callable(item.game_object)
             item.game_object()
 
     def on_menu_selection_change(self) -> None:
@@ -788,7 +806,7 @@ class Menu(state.State):
         return None
 
 
-class PopUpMenu(Menu):
+class PopUpMenu(Menu[T]):
     """Menu with "pop up" style animation."""
 
     def animate_open(self) -> Animation:

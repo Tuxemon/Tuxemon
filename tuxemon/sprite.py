@@ -455,7 +455,7 @@ class VisualSpriteList(RelativeGroup[_GroupElement]):
         super().__init__(**kwargs)
         self._needs_arrange = False
         self._columns = 1
-        self.line_spacing = None
+        self.line_spacing: Optional[int] = None
 
     @property
     def columns(self) -> int:

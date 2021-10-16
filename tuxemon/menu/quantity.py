@@ -11,7 +11,7 @@ from typing import Optional, Any, Callable, Generator
 logger = logging.getLogger(__name__)
 
 
-class QuantityMenu(Menu):
+class QuantityMenu(Menu[None]):
     """Menu used to select quantities."""
 
     def startup(
@@ -79,7 +79,7 @@ class QuantityMenu(Menu):
 
         return None
 
-    def initialize_items(self) -> Generator[MenuItem, None, None]:
+    def initialize_items(self) -> Generator[MenuItem[None], None, None]:
         # TODO: move this and other format strings to a locale or config file
         label_format = "x {:>{count_len}}".format
         count_len = 3

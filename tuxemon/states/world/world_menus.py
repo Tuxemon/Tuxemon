@@ -8,9 +8,12 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
+from typing import Callable, Tuple, Sequence
 
 logger = logging.getLogger(__name__)
 
+
+WorldMenuGameObj = Callable[[], None]
 
 def adapter(name, *args):
     from collections import namedtuple
@@ -23,7 +26,10 @@ def adapter(name, *args):
     return func
 
 
-def add_menu_items(state, items):
+def add_menu_items(
+    state: Menu[WorldMenuGameObj],
+    items: Sequence[Tuple[str, WorldMenuGameObj]],
+) -> None:
     for key, callback in items:
         label = T.translate(key).upper()
         image = state.shadow_text(label)
@@ -31,7 +37,7 @@ def add_menu_items(state, items):
         state.add(item)
 
 
-class WorldMenuState(Menu):
+class WorldMenuState(Menu[WorldMenuGameObj]):
     """
     Menu for the world state
     """

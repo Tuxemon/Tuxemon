@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 cfgcheck = prepare.CONFIG
 
 
-class SaveMenuState(PopUpMenu):
+class SaveMenuState(PopUpMenu[None]):
     number_of_slots = 3
     shrink_to_items = True
 
@@ -153,7 +153,7 @@ class SaveMenuState(PopUpMenu):
         else:
             open_dialog(local_session, [T.translate("save_success")])
 
-    def on_menu_selection(self, menuitem: MenuItem) -> None:
+    def on_menu_selection(self, menuitem: MenuItem[None]) -> None:
         def positive_answer() -> None:
             self.client.pop_state()  # close confirmation menu
             self.client.pop_state()  # close save menu

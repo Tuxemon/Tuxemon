@@ -46,6 +46,8 @@ from tuxemon.state import State
 
 logger = logging.getLogger(__name__)
 
+StartGameObj = Callable[[], object]
+
 
 class BackgroundState(State):
     """background state is used to prevent other states from
@@ -62,7 +64,7 @@ class BackgroundState(State):
         surface.fill((0, 0, 0, 0))
 
 
-class StartState(PopUpMenu):
+class StartState(PopUpMenu[StartGameObj]):
     """The state responsible for the start menu."""
 
     escape_key_exits = False

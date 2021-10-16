@@ -1,29 +1,21 @@
+from __future__ import annotations
 import logging
 from functools import partial
 
-from tuxemon.compat import Rect
+from pygame.rect import Rect
 from tuxemon import prepare
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
-from typing import Callable, Tuple, Sequence
+from typing import Callable, Tuple, Sequence, Any
+from tuxemon.animation import Animation
 
 logger = logging.getLogger(__name__)
 
 
-WorldMenuGameObj = Callable[[], None]
-
-def adapter(name, *args):
-    from collections import namedtuple
-
-    nt = namedtuple(name, "parameters")
-
-    def func(*args):
-        return nt(args)
-
-    return func
+WorldMenuGameObj = Callable[[], object]
 
 
 def add_menu_items(
@@ -45,16 +37,16 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
     shrink_to_items = True  # this menu will shrink, but size is adjusted when opened
     animate_contents = True
 
-    def startup(self, *args, **kwargs):
-        super().startup(*args, **kwargs)
+    def startup(self, **kwargs: Any) -> None:
+        super().startup(**kwargs)
 
-        def change_state(state, **kwargs):
+        def change_state(state: str, **kwargs: Any) -> Callable[[], object]:
             return partial(self.client.replace_state, state, **kwargs)
 
-        def exit_game():
+        def exit_game() -> None:
             self.client.event_engine.execute_action("quit")
 
-        def not_implemented_dialog():
+        def not_implemented_dialog() -> None:
             open_dialog(local_session, [T.translate("not_implemented")])
 
         # Main Menu - Allows users to open the main menu in game.
@@ -70,16 +62,16 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
         )
         add_menu_items(self, menu_items_map)
 
-    def open_monster_menu(self):
+    def open_monster_menu(self) -> None:
         from tuxemon.states.monster import MonsterMenuState
 
-        def monster_menu_hook():
-            """Used to rearrange monsters interactively
+        def monster_menu_hook() -> None:
+            """
+            Used to rearrange monsters interactively.
 
             This is slow b/c forces each slot to be re-rendered.
             Probably not an issue except for very slow systems.
 
-            :return: None
             """
             monster = context.get("monster")
             if monster:
@@ -109,7 +101,7 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
             # TODO: maybe add more hooks to eliminate this runtime patching
             MonsterMenuState.on_menu_selection_change(monster_menu)
 
-        def select_first_monster():
+        def select_first_monster() -> None:
             # TODO: API for getting the game player obj
             player = local_session.player
             monster = monster_menu.get_selected_item().game_object
@@ -117,10 +109,12 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
             context["old_index"] = player.monsters.index(monster)
             self.client.pop_state()  # close the info/move menu
 
-        def open_monster_stats():
+        def open_monster_stats() -> None:
             open_dialog(local_session, [T.translate("not_implemented")])
 
-        def open_monster_submenu(menu_item):
+        def open_monster_submenu(
+            menu_item: MenuItem[WorldMenuGameObj],
+        ) -> None:
             menu_items_map = (
                 ("monster_menu_info", open_monster_stats),
                 ("monster_menu_move", select_first_monster),
@@ -129,7 +123,7 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
             menu.shrink_to_items = True
             add_menu_items(menu, menu_items_map)
 
-        def handle_selection(menu_item):
+        def handle_selection(menu_item: MenuItem[WorldMenuGameObj]) -> None:
             if "monster" in context:
                 del context["monster"]
             else:
@@ -140,14 +134,18 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
         monster_menu.on_menu_selection = handle_selection
         monster_menu.on_menu_selection_change = monster_menu_hook
 
-    def animate_open(self):
-        """Animate the menu sliding in
+    def animate_open(self) -> Animation:
+        """
+        Animate the menu sliding in.
 
-        :return:
+        Returns:
+            Sliding in animation.
+
         """
         self.state = "opening"  # required
 
-        # position the menu off screen.  it will be slid into view with an animation
+        # position the menu off screen.  it will be slid into view with
+        # an animation
         right, height = prepare.SCREEN_SIZE
 
         # TODO: more robust API for sizing (kivy esque?)
@@ -170,10 +168,12 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
         ani.callback = lambda: setattr(self, "state", "normal")
         return ani
 
-    def animate_close(self):
-        """Animate the menu sliding out
+    def animate_close(self) -> Animation:
+        """Animate the menu sliding out.
 
-        :return:
+        Returns:
+            Sliding out animation.
+
         """
         ani = self.animate(self.rect, x=prepare.SCREEN_SIZE[0], duration=0.50)
         return ani

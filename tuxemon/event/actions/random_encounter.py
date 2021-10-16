@@ -172,5 +172,5 @@ def _create_monster_npc(encounter: JSONEncounterItem) -> NPC:
     npc.party_limit = 0
 
     # Set the NPC object's AI model.
-    npc.ai = ai.AI()
+    npc.ai = ai.RandomAI()
     return npc

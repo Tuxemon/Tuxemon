@@ -3,7 +3,7 @@ import pygame
 
 from tuxemon import tools, graphics
 from tuxemon.ui.draw import GraphicBox
-from typing import ClassVar, Optional, Callable
+from typing import ClassVar, Optional, Callable, Generic, TypeVar
 
 
 class Bar:
@@ -93,7 +93,10 @@ class ExpBar(Bar):
     bg_color = None
 
 
-class MenuItem(pygame.sprite.Sprite):
+T = TypeVar("T", covariant=True)
+
+
+class MenuItem(Generic[T], pygame.sprite.Sprite):
     """
     Item from a menu.
 
@@ -110,7 +113,7 @@ class MenuItem(pygame.sprite.Sprite):
         image: pygame.surface.Surface,
         label: Optional[str],
         description: Optional[str],
-        game_object: Optional[Callable[[], object]],
+        game_object: T,
     ):
         super().__init__()
         self.image = image

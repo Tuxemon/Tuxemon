@@ -20,7 +20,7 @@ class LoadMenuState(SaveMenuState):
             self.selected_index = slot - 1
             self.on_menu_selection(None)
 
-    def on_menu_selection(self, menuitem: Optional[MenuItem]) -> None:
+    def on_menu_selection(self, menuitem: Optional[MenuItem[None]]) -> None:
         save_data = save.load(self.selected_index + 1)
         if save_data and "error" not in save_data:
             # TODO: Get player from whatever place and use self.client in

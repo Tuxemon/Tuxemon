@@ -12,7 +12,10 @@ from typing import Any, Generator, Optional, Callable
 from tuxemon.platform.events import PlayerInput
 
 
-class InputMenu(Menu):
+InputMenuGameObj = Callable[[], None]
+
+
+class InputMenu(Menu[InputMenuGameObj]):
     """Menu used to input text."""
     background = None
     draw_borders = False
@@ -65,13 +68,15 @@ class InputMenu(Menu):
         rect.top = int(self.rect.centery * 0.7)
         return rect
 
-    def initialize_items(self) -> Generator[MenuItem, None, None]:
+    def initialize_items(
+        self,
+    ) -> Generator[MenuItem[InputMenuGameObj], None, None]:
         self.menu_items.columns = self.n_columns
 
         # add the keys
         for char in self.chars:
             if char == "\0":
-                empty = MenuItem(self.shadow_text(" "), None, None, None)
+                empty = MenuItem(self.shadow_text(" "), None, None, self.empty)
                 empty.enabled = False
                 yield empty
             else:
@@ -104,6 +109,9 @@ class InputMenu(Menu):
                 return None
 
         return maybe_event
+    
+    def empty(self) -> None:
+        pass
 
     def backspace(self) -> None:
         self.input_string = self.input_string[:-1]

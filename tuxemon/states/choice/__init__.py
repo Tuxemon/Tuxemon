@@ -4,7 +4,10 @@ from tuxemon.menu.menu import PopUpMenu
 from typing import Any, Generator, Callable, Tuple, Sequence
 
 
-class ChoiceState(PopUpMenu):
+ChoiceMenuGameObj = Callable[[], None]
+
+
+class ChoiceState(PopUpMenu[ChoiceMenuGameObj]):
     """
     Game state with a graphic box and some text in it.
 

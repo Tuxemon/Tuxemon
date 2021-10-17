@@ -78,7 +78,7 @@ class Manager:
 
     def list_packages(self):
         """Returns package dictionary, either from the server or the cache"""
-        return self.packages
+        return self.packages # why
 
     def download_package(self, author, name, release=None, repo=None, dont_extract=False, install_deps=True, installed=None):
         """Downloads the specified package"""
@@ -90,6 +90,7 @@ class Manager:
                 repo = repo[:-1]
 
         if release is None:
+            logging.info("Getting latest release...")
             r = requests.get(repo + f"/api/packages/{author}/{name}/releases")
             logger.debug(r.text, author, name)
             logger.debug(repo + f"/api/packages/{author}/{name}/releases")
@@ -108,6 +109,7 @@ class Manager:
 
         filename = os.path.join(paths.CACHE_DIR, f"downloaded_packages/{name}.{release}.zip")
 
+        logging.info(f"Downloading release {release} of {author}/{name}")
         # Based on answer from https://stackoverflow.com/a/16696317/14590202
         with requests.get(url, stream=True) as r:
             file_size = r.headers["content-length"]
@@ -124,12 +126,14 @@ class Manager:
         self.write_package_to_list(os.path.relpath(outfolder), name)
 
         if not dont_extract:
-            with zipfile.ZipFile(filename) as zip_:
-                zip_.extractall(path=os.path.join(paths.BASEDIR, "mods", outfolder))
+            logging.info("Extracting...")
+            self.install_local_package(filename, name=name)
+            # zip_.extractall(path=os.path.join(paths.BASEDIR, "mods", outfolder))
 
         if install_deps:
             # This function calls download_package, might cause issues
             self.install_dependencies(author, name, repo, dont_extract=dont_extract, done=installed)
+        logging.info("Done!")
 
     def install_dependencies(self, author, name, repo, symlink=True, **args):
         """Recursively resolve dependencies and symlink them"""

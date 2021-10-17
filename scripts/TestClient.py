@@ -39,7 +39,7 @@ while True:
         else:
             install_deps = False
 
-        man.download_package(author, name, release=release, repo=ip, dont_extract=True, install_deps=install_deps)
+        man.download_package(author, name, release=release, repo=ip, dont_extract=dont_extract, install_deps=install_deps)
 
     except EOFError:
         break

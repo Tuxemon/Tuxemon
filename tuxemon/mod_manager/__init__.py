@@ -129,7 +129,7 @@ class Manager:
 
         if install_deps:
             # This function calls download_package, might cause issues
-            self.install_dependencies(name, release, repo, dont_extract=dont_extract, done=installed)
+            self.install_dependencies(author, name, repo, dont_extract=dont_extract, done=installed)
 
     def install_dependencies(self, author, name, repo, symlink=True, **args):
         """Recursively resolve dependencies and symlink them"""

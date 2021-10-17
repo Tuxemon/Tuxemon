@@ -101,7 +101,8 @@ class Manager:
                     latest = i["id"]
             release = latest
 
-        # Sanitize name and release
+        # Sanitize author, name and release
+        author = sanitize_paths(author)
         name = sanitize_paths(name)
         release = sanitize_paths(str(release))
         logger.debug( " ".join([author, name, release, repo, str(dont_extract), str(install_deps), str(installed)]) ) 

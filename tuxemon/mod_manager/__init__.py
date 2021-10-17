@@ -111,6 +111,7 @@ class Manager:
         filename = os.path.join(paths.CACHE_DIR, f"downloaded_packages/{name}.{release}.zip")
 
         logging.info(f"Downloading release {release} of {author}/{name}")
+
         # Based on answer from https://stackoverflow.com/a/16696317/14590202
         with requests.get(url, stream=True) as r:
             file_size = r.headers["content-length"]
@@ -129,8 +130,7 @@ class Manager:
         if not dont_extract:
             logging.info("Extracting...")
             self.install_local_package(filename, name=name)
-            # zip_.extractall(path=os.path.join(paths.BASEDIR, "mods", outfolder))
-
+            
         if install_deps:
             # This function calls download_package, might cause issues
             self.install_dependencies(author, name, repo, dont_extract=dont_extract, done=installed)
@@ -246,7 +246,7 @@ class Manager:
         Installs local packages.
         Based on the download_package function, but without the downloads
         """
-        # TODO:
+        # TODO: Write an TODO comment
         outfolder = os.path.join(paths.BASEDIR, "mods", name)
         self.write_package_to_list(os.path.relpath(outfolder), name)
         with zipfile.ZipFile(filename) as zipf:

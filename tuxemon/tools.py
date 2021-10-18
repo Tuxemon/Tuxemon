@@ -27,7 +27,7 @@
 #
 from __future__ import annotations
 from typing import (Any, Optional, Protocol, Sequence, Tuple, Type, TypeVar,
-    Union, Mapping, Iterable, TYPE_CHECKING, Callable)
+    Union, Mapping, Iterable, TYPE_CHECKING, Callable, NoReturn)
 import typing
 from tuxemon.math import Vector2
 
@@ -389,3 +389,14 @@ def copy_dict_with_keys(
 
     """
     return {k: source[k] for k in keys if k in source}
+
+
+def assert_never(value: NoReturn) -> NoReturn:
+    """
+    Assertion for exhaustive checking of a variable.
+
+    Parameters:
+        value: The value that will be checked for exhaustiveness.
+
+    """
+    assert False, f'Unhandled value: {value} ({type(value).__name__})'

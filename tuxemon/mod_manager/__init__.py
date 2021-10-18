@@ -155,27 +155,25 @@ class Manager:
                         package.split("/")[1],
                         repo=repo,
                         install_deps=False
-                        
                     )
-                    
 
     def parse_mod_conf(self, content):
-            """
-            Parses the minetest's mod.conf files.
-            Returns: dict
-            """
-            out = {}
-            for line in content.split("\n"):
-                # Remove spaces and split into parts
-                parts = line\
-                    .split(" = ")
-                if len(parts[0]) == 0:
-                    continue
-                if parts[0] == "depends":
-                    element_list = parts[1].split(", ")
-                    parts[1] = element_list
-                out = {**out, **{parts[0]:parts[1]}}
-            return out
+        """
+        Parses the minetest's mod.conf files.
+        Returns: dict
+        """
+        out = {}
+        for line in content.split("\n"):
+            # Remove spaces and split into parts
+            parts = line\
+                .split(" = ")
+            if len(parts[0]) == 0:
+                continue
+            if parts[0] == "depends":
+                element_list = parts[1].split(", ")
+                parts[1] = element_list
+                out = {**out, **{parts[0]: parts[1]}}
+        return out
 
     def get_package_info(self, author, name, repo):
         """Get specified package info. Always downloads the info from the server."""
@@ -243,8 +241,7 @@ class Manager:
         Installs local packages.
         Based on the download_package function, but without the downloads
         """
-        # TODO: Write an TODO comment
-        outfolder = os.path.join(paths.BASEDIR, "mods", name)
+        outfolder = os.path.join(paths.BASEDIR, "mods")
         self.write_package_to_list(os.path.relpath(outfolder), name)
         with zipfile.ZipFile(filename) as zipf:
-            zipf.extractall(path=os.path.join(paths.BASEDIR, "mods", outfolder))
+            zipf.extractall(path=os.path.join(outfolder, name))

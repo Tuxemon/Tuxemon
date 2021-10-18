@@ -244,4 +244,8 @@ class Manager:
         outfolder = os.path.join(paths.BASEDIR, "mods")
         self.write_package_to_list(os.path.relpath(outfolder), name)
         with zipfile.ZipFile(filename) as zipf:
+            free = shutil.disk_usage(os.getcwd()).free
+            zipsize = sum([zinfo.file_size for zinfo in zipf.filelist]) # get the filesize, based on https://stackoverflow.com/a/39953116/14590202
+            if zipsize > free:
+                raise IOError(f"Zip contents are bigger than available disk space ({zipsize} > {free})")
             zipf.extractall(path=os.path.join(outfolder, name))

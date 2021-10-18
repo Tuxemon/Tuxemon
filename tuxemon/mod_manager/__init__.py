@@ -145,6 +145,7 @@ class Manager:
         for dependency in dep_list:
             for entry in dep_list[dependency]:
                 for package in entry["packages"]:
+                    package = sanitize_paths(package)
                     if os.path.exists(os.path.join(paths.BASEDIR, "mods", package)):
                         continue
                     if package == "default":

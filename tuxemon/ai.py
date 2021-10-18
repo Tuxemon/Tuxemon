@@ -27,25 +27,40 @@
 # ai Artificial intelligence module.
 #
 #
-
+from __future__ import annotations
 import logging
 from random import choice
+from abc import ABC, abstractmethod
+from typing import Sequence, Tuple, TYPE_CHECKING
+from tuxemon.technique import Technique
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
 
 logger = logging.getLogger(__name__)
 
 
 # Class definition for an AI model.
-# TODO: use ABC meta.
 # TODO: allow AI to target self or own team
-class AI:
+class AI(ABC):
     """Base class for an AI model object."""
 
-    def make_decision(self, npc, opponents):
-        """Given a npc, and list of opponents, decide an action to take
+    @abstractmethod
+    def make_decision(
+        self,
+        monster: Monster,
+        opponents: Sequence[Monster],
+    ) -> Tuple[Technique, Monster]:
+        """
+        Given a npc, and list of opponents, decide an action to take.
 
-        :param npc: The monster whose decision is being decided
-        :param opponents: List of possible targets
-        :return: Technique, Target
+        Parameters:
+            monster: The monster whose decision is being decided.
+            opponents: Sequence of possible targets.
+
+        Returns:
+            Chosen technique and target.
+
         """
         raise NotImplementedError
 
@@ -53,25 +68,21 @@ class AI:
 class SimpleAI(AI):
     """Very simple AI.  Always uses first technique against first opponent."""
 
-    def make_decision(self, npc, opponents):
-        """Given a npc, and list of opponents, decide an action to take
-
-        :param npc: The monster whose decision is being decided
-        :param opponents: List of possible targets
-        :return: Technique, Target
-        """
-        return npc.moves[0], opponents[0]
+    def make_decision(
+        self,
+        monster: Monster,
+        opponents: Sequence[Monster],
+    ) -> Tuple[Technique, Monster]:
+        return monster.moves[0], opponents[0]
 
 
 class RandomAI(AI):
     """AI will use random technique against random opponent"""
 
-    def make_decision(self, npc, opponents):
-        """Given a npc, and list of opponents, decide an action to take
-
-        :param npc: The monster whose decision is being decided
-        :param opponents: List of possible targets
-        :return: Technique, Target
-        """
+    def make_decision(
+        self,
+        monster: Monster,
+        opponents: Sequence[Monster],
+    ) -> Tuple[Technique, Monster]:
         # TODO: healing and whatnot
-        return choice(npc.moves), choice(opponents)
+        return choice(monster.moves), choice(opponents)

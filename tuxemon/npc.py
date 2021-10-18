@@ -36,6 +36,7 @@ from typing import List, Optional, Mapping, Any, Sequence, TYPE_CHECKING, Tuple,
     TypedDict, Dict, Iterable, Union
 import uuid
 
+from tuxemon.ai import AI
 from tuxemon.compat import Rect
 from tuxemon import pyganim
 from tuxemon.db import db
@@ -136,7 +137,7 @@ class NPC(Entity):
         self.item_boxes: Dict[str, Mapping[str, InventoryItem]] = {}
 
         # combat related
-        self.ai = None  # Whether or not this player has AI associated with it
+        self.ai: Optional[AI] = None  # Whether or not this player has AI associated with it
         self.speed = 10  # To determine combat order (not related to movement!)
         self.moves: Sequence[Technique] = []  # list of techniques
 

@@ -248,9 +248,9 @@ class Menu(Generic[T], state.State):
                     break
 
     def build_item(
-        self: Menu[Callable[[], None]],
+        self: Menu[Callable[[], object]],
         label: str,
-        callback: Callable[[], None],
+        callback: Callable[[], object],
         icon: Optional[pygame.surface.Surface] = None,
     ) -> None:
         """

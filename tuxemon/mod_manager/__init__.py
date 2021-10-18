@@ -76,10 +76,6 @@ class Manager:
 
         self.write_to_cache()
 
-    def list_packages(self):
-        """Returns package dictionary, either from the server or the cache"""
-        return self.packages # why
-
     def download_package(self, author, name, release=None, repo=None, dont_extract=False, install_deps=True, installed=None):
         """Downloads the specified package"""
         if repo is None:

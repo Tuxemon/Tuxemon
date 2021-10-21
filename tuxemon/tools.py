@@ -327,30 +327,6 @@ def show_item_result_as_dialog(
         open_dialog(session, [message])
 
 
-def split_escaped(string_to_split: str, delim: str = ",") -> Sequence[str]:
-    """
-    Splits a string by the specified deliminator excluding escaped ones.
-
-    Parameters:
-        string_to_split: The string to split.
-        delim: The deliminator to split the string by.
-
-    Returns:
-        A list of the splitted string.
-
-    """
-    # Split by "," unless it is escaped by a "\"
-    split_list = re.split(r"(?<!\\)" + delim, string_to_split)
-
-    # Remove the escape character from the split list
-    split_list = [w.replace(r"\,", ",") for w in split_list]
-
-    # strip whitespace around each
-    split_list = [i.strip() for i in split_list]
-
-    return split_list
-
-
 def round_to_divisible(x: float, base: int = 16) -> int:
     """
     Rounds a number to a divisible base.

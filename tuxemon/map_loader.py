@@ -26,7 +26,7 @@
 
 import logging
 from math import cos, sin, pi
-from typing import Iterator, Tuple, Sequence, Generator, Optional, Mapping, Any
+from typing import Iterator, Tuple, Generator, Optional, Mapping, Any
 
 import pytmx
 import yaml
@@ -45,9 +45,15 @@ from tuxemon.map import (
     orientation_by_angle,
     extract_region_properties,
     Orientation,
-    Direction, RegionProperties,
+    Direction,
+    RegionProperties,
 )
-from tuxemon.tools import split_escaped, copy_dict_with_keys
+from tuxemon.script.parser import (
+    parse_action_string,
+    parse_condition_string,
+    parse_behav_string,
+)
+from tuxemon.tools import copy_dict_with_keys
 from tuxemon.lib.bresenham import bresenham
 
 logger = logging.getLogger(__name__)
@@ -67,36 +73,6 @@ region_properties = [
     "exit_to",
     "continue",
 ]
-
-
-def parse_action_string(text: str) -> Tuple[str, Sequence[str]]:
-    words = text.split(" ", 1)
-    act_type = words[0]
-    if len(words) > 1:
-        args = split_escaped(words[1])
-    else:
-        args = list()
-    return act_type, args
-
-
-def parse_condition_string(text: str) -> Tuple[str, str, Sequence[str]]:
-    words = text.split(" ", 2)
-    operator, cond_type = words[0:2]
-    if len(words) > 2:
-        args = split_escaped(words[2])
-    else:
-        args = list()
-    return operator, cond_type, args
-
-
-def parse_behav_string(behav_string: str) -> Tuple[str, Sequence[str]]:
-    words = behav_string.split(" ", 1)
-    behav_type = words[0]
-    if len(words) > 1:
-        args = split_escaped(words[1])
-    else:
-        args = list()
-    return behav_type, args
 
 
 class YAMLEventLoader:

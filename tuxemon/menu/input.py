@@ -109,7 +109,7 @@ class InputMenu(Menu[InputMenuGameObj]):
                 return None
 
         return maybe_event
-    
+
     def empty(self) -> None:
         pass
 
@@ -131,6 +131,8 @@ class InputMenu(Menu[InputMenuGameObj]):
         This is called when user selects "End".  Override, maybe?
 
         """
+        if not self.text_area.text:
+            return
         assert self.callback
         self.callback(self.input_string)
         self.client.pop_state(self)

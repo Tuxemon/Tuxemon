@@ -32,13 +32,13 @@ import pygame
 from pygame.transform import rotozoom
 from pygame.transform import scale
 
-from tuxemon.compat import Rect
+from pygame.rect import Rect
 from tuxemon.platform.const import buttons
 from tuxemon.pyganim import PygAnimation
 from tuxemon import graphics
 from tuxemon.tools import scale as set
 from typing import Optional, Callable, Any, Sequence, List, Union, TYPE_CHECKING,\
-    TypeVar, Generic, Iterator, overload
+    TypeVar, Generic, Iterator, overload, Final
 from tuxemon.platform.events import PlayerInput
 
 if TYPE_CHECKING:
@@ -47,15 +47,26 @@ if TYPE_CHECKING:
 logger = logging.getLogger()
 
 
-class Sprite(pygame.sprite.DirtySprite):
-    dirty = False
+dummy_image: Final = pygame.surface.Surface((0, 0))
 
-    def __init__(self, *args: pygame.sprite.Group) -> None:
+
+class Sprite(pygame.sprite.DirtySprite):
+    _original_image: pygame.surface.Surface
+    _image: pygame.surface.Surface
+    _rect: pygame.rect.Rect
+    image: pygame.surface.Surface
+    rect: pygame.rect.Rect
+
+    def __init__(
+        self,
+        *args: pygame.sprite.Group,
+        image: Optional[pygame.surface.Surface] = None,
+    ) -> None:
         super().__init__(*args)
         self.visible = True
         self._rotation = 0
-        self._image: Optional[pygame.surface.Surface] = None
-        self._original_image: Optional[pygame.surface.Surface] = None
+        self._rect = dummy_image.get_rect()
+        self.image = image
         self._width = 0
         self._height = 0
         self._needs_rescale = False
@@ -93,7 +104,17 @@ class Sprite(pygame.sprite.DirtySprite):
         return surface.blit(self._image, rect)
 
     @property
-    def image(self) -> Optional[pygame.surface.Surface]:
+    def rect(self) -> Rect:
+        return self._rect
+
+    @rect.setter
+    def rect(self, rect: Rect) -> None:
+        if not rect == self._rect:
+            self._rect = rect
+            self._needs_update = True
+
+    @property
+    def image(self) -> pygame.surface.Surface:
         # should always be a cached copy
         if self._needs_update:
             self.update_image()
@@ -104,14 +125,12 @@ class Sprite(pygame.sprite.DirtySprite):
     @image.setter
     def image(self, image: Optional[pygame.surface.Surface]) -> None:
         if image is None:
-            self._original_image = None
-            return
+            image = dummy_image
 
-        if hasattr(self, "rect"):
-            self.rect.size = image.get_size()
-        else:
-            self.rect = image.get_rect()
+        rect = image.get_rect()
+        self.rect.size = rect.size
         self._original_image = image
+        self._image = image
         self._needs_update = True
 
     def update_image(self) -> None:

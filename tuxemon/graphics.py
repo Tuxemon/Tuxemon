@@ -173,8 +173,7 @@ def load_sprite(
         Loaded sprite.
 
     """
-    sprite = Sprite()
-    sprite.image = load_and_scale(filename)
+    sprite = Sprite(image=load_and_scale(filename))
     sprite.rect = sprite.image.get_rect(**rect_kwargs)
     return sprite
 

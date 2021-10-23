@@ -589,7 +589,7 @@ class CombatState(CombatAnimations):
             )
             if positions_available:
                 available = get_awake_monsters(player)
-                for i in range(positions_available):
+                for _ in range(positions_available):
                     released = True
                     if player in humans and ask:
                         self.ask_player_for_monster(player)
@@ -698,8 +698,11 @@ class CombatState(CombatAnimations):
         rect = Rect(0, 0, rect_screen.w // 2.5, rect_screen.h // 4)
         rect.bottomright = rect_screen.w, rect_screen.h
 
-        state = self.client.push_state("MainCombatMenuState", columns=2)
-        state.monster = monster
+        state = self.client.push_state(
+            "MainCombatMenuState",
+            monster=monster,
+            columns=2,
+        )
         state.rect = rect
 
     def skip_phase_change(self) -> None:
@@ -715,7 +718,7 @@ class CombatState(CombatAnimations):
         self,
         user: Union[NPC, Monster, None],
         technique: Technique,
-        target: Union[NPC, Monster, None] = None,
+        target: Monster,
     ) -> None:
         """
         Add some technique or status to the action queue.
@@ -811,7 +814,7 @@ class CombatState(CombatAnimations):
     @overload
     def perform_action(
         self,
-        user: Monster,
+        user: Optional[Monster],
         technique: Technique,
         target: Monster,
     ) -> None:
@@ -820,7 +823,7 @@ class CombatState(CombatAnimations):
     @overload
     def perform_action(
         self,
-        user: NPC,
+        user: Optional[NPC],
         technique: Item,
         target: Monster,
     ) -> None:
@@ -828,7 +831,7 @@ class CombatState(CombatAnimations):
 
     def perform_action(
         self,
-        user: Union[Monster, NPC],
+        user: Union[Monster, NPC, None],
         technique: Union[Technique, Item],
         target: Monster,
     ) -> None:
@@ -912,8 +915,8 @@ class CombatState(CombatAnimations):
                         target,
                     )
 
-                    # TODO: Don't end combat right away; only works with SP, and 1 member parties
-                    # end combat right here
+                    # TODO: Don't end combat right away; only works with SP,
+                    # and 1 member parties end combat right here
                     if result["success"]:
                         self.task(self.end_combat, action_time + 0.5)  # Display 'Gotcha!' first.
                         self.task(partial(self.alert, T.translate("gotcha")), action_time)
@@ -922,7 +925,9 @@ class CombatState(CombatAnimations):
 
                 # generic handling of anything else
                 else:
-                    msg_type = "use_success" if result["success"] else "use_failure"
+                    msg_type = (
+                        "use_success" if result["success"] else "use_failure"
+                    )
                     template = getattr(technique, msg_type)
                     if template:
                         message += "\n" + T.translate(template)
@@ -942,7 +947,10 @@ class CombatState(CombatAnimations):
         if result["success"] and target_sprite and tech_sprite:
             tech_sprite.rect.center = target_sprite.rect.center
             self.task(tech_sprite.image.play, hit_delay)
-            self.task(partial(self.sprites.add, tech_sprite, layer=50), hit_delay)
+            self.task(
+                partial(self.sprites.add, tech_sprite, layer=50),
+                hit_delay,
+            )
             self.task(tech_sprite.kill, 3)
 
     def faint_monster(self, monster: Monster) -> None:

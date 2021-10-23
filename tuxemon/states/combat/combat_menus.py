@@ -32,11 +32,22 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
     """
     Main menu for combat: Fight, Item, Swap, Run
 
-    TODO: there needs to be more general use registers in the combat state to query
-          what player is doing what.  there's lots of spaghetti right now.
+    TODO: there needs to be more general use registers in the combat state to
+    query what player is doing what. There's lots of spaghetti right now.
     """
 
     escape_key_exits = False
+
+    def startup(
+        self,
+        *,
+        monster: Optional[Monster] = None,
+        **kwargs: Any,
+    ) -> None:
+        super().startup(**kwargs)
+
+        assert monster
+        self.monster = monster
 
     def initialize_items(self) -> Generator[MenuItem[MenuGameObj], None, None]:
         menu_items_map = (
@@ -67,9 +78,18 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         if combat_state.is_trainer_battle:
 
             def open_menu() -> None:
-                combat_state.task(partial(combat_state.show_monster_action_menu, self.monster), 1)
+                combat_state.task(
+                    partial(
+                        combat_state.show_monster_action_menu,
+                        self.monster,
+                    ),
+                    1,
+                )
 
-            combat_state.alert(T.translate("combat_can't_run_from_trainer"), open_menu)
+            combat_state.alert(
+                T.translate("combat_can't_run_from_trainer"),
+                open_menu,
+            )
         else:
             combat_state.trigger_player_run(combat_state.players[0])
 
@@ -78,13 +98,14 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         def swap_it(menuitem: MenuItem[Monster]) -> None:
             monster = menuitem.game_object
 
-            if monster in self.client.get_state_by_name("CombatState").active_monsters:
+            if monster in self.client.get_state_by_name(CombatState).active_monsters:
                 tools.open_dialog(local_session, [T.format("combat_isactive", {"name": monster.name})])
                 return
             elif monster.current_hp < 1:
                 tools.open_dialog(local_session, [T.format("combat_fainted", {"name": monster.name})])
                 return
-            combat_state = self.client.get_state_by_name("CombatState")
+            combat_state = self.client.get_state_by_name(CombatState)
+            assert combat_state
             swap = Technique("swap")
             swap.combat_state = combat_state
             player = local_session.player
@@ -179,7 +200,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 )
                 return
 
-            combat_state = self.client.get_state_by_name("CombatState")
+            combat_state = self.client.get_state_by_name(CombatState)
+            assert combat_state
             state = self.client.push_state(
                 "CombatTargetMenuState",
                 player=combat_state.players[0],
@@ -271,8 +293,9 @@ class CombatTargetMenuState(Menu[Monster]):
 
                 self.targeting_map[targeting_class].append(monster)
 
-                # TODO: handle odd cases where a situation creates no valid targets
-                # if this target type is not handled by this action, then skip it
+                # TODO: handle odd cases where a situation creates no valid
+                # targets if this target type is not handled by this action,
+                # then skip it
                 if targeting_class not in self.action.target:
                     continue
 
@@ -293,11 +316,12 @@ class CombatTargetMenuState(Menu[Monster]):
             for tag in self.action.target:
                 for target in self.targeting_map[tag]:
                     menu_item = self.search_items(target)
+                    assert menu_item
                     if menu_item.enabled:
                         # TODO: some API for this mess
                         # get the index of the menu_item
                         # change it
-                        index = self.menu_items._spritelist.index(menu_item)
+                        index = self.menu_items.sprites().index(menu_item)
                         self.selected_index = index
                         return
 

@@ -50,7 +50,7 @@ def fainted(monster: Monster) -> bool:
     return check_status(monster, "status_faint") or monster.current_hp <= 0
 
 
-def get_awake_monsters(player: Player) -> Generator[Monster, None, None]:
+def get_awake_monsters(player: NPC) -> Generator[Monster, None, None]:
     """
     Iterate all non-fainted monsters in party.
 

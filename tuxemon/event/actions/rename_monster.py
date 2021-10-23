@@ -31,6 +31,7 @@ from tuxemon.states.world.worldstate import WorldState
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.menu.input import InputMenu
 from tuxemon.menu.interface import MenuItem
+from tuxemon.monster import Monster
 
 
 class RenameMonsterActionParameters(NamedTuple):
@@ -59,7 +60,7 @@ class RenameMonsterAction(EventAction[RenameMonsterActionParameters]):
             return
 
         # pull up the monster menu so we know which one we are renaming
-        menu = self.session.client.push_state("MonsterMenuState")
+        menu = self.session.client.push_state(MonsterMenuState)
         menu.on_menu_selection = self.prompt_for_name
 
     def update(self) -> None:
@@ -71,15 +72,17 @@ class RenameMonsterAction(EventAction[RenameMonsterActionParameters]):
 
     def set_monster_name(self, name: str) -> None:
         self.monster.name = name
-        monster_menu_state = self.session.client.get_state_by_name(MonsterMenuState)
+        monster_menu_state = self.session.client.get_state_by_name(
+            MonsterMenuState,
+        )
         if monster_menu_state:
             monster_menu_state.refresh_menu_items()
 
-    def prompt_for_name(self, menu_item: MenuItem) -> None:
+    def prompt_for_name(self, menu_item: MenuItem[Monster]) -> None:
         self.monster = menu_item.game_object
 
         self.session.client.push_state(
-            state_name="InputMenu",
+            state_name=InputMenu,
             prompt=T.translate("input_monster_name"),
             callback=self.set_monster_name,
             escape_key_exits=False,

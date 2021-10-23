@@ -54,7 +54,7 @@ class RenamePlayerAction(EventAction[RenamePlayerActionParameters]):
 
     def start(self) -> None:
         self.session.client.push_state(
-            state_name="InputMenu",
+            state_name=InputMenu,
             prompt=T.translate("input_name"),
             callback=self.set_player_name,
             escape_key_exits=False,

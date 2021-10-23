@@ -36,6 +36,7 @@ from tuxemon import audio
 from tuxemon import prepare
 from tuxemon import state
 from tuxemon.platform.events import PlayerInput
+from tuxemon.states.transition.fade import FadeOutTransition
 
 logger = logging.getLogger(__name__)
 
@@ -90,4 +91,4 @@ class SplashState(state.State):
 
     def fade_out(self) -> None:
         self.triggered = True
-        self.parent.push_state("FadeOutTransition")
+        self.parent.push_state(FadeOutTransition)

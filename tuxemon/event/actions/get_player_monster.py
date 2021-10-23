@@ -28,6 +28,7 @@ import logging
 from typing import NamedTuple, final
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.menu.interface import MenuItem
+from tuxemon.monster import Monster
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +56,7 @@ class GetPlayerMonsterAction(EventAction[GetPlayerMonsterActionParameters]):
     name = "get_player_monster"
     param_class = GetPlayerMonsterActionParameters
 
-    def set_var(self, menu_item: MenuItem) -> None:
+    def set_var(self, menu_item: MenuItem[Monster]) -> None:
         self.player.game_variables[self.variable] = (
             menu_item.game_object.instance_id.hex
         )
@@ -66,7 +67,7 @@ class GetPlayerMonsterAction(EventAction[GetPlayerMonsterActionParameters]):
         self.variable = self.parameters.variable_name
 
         # pull up the monster menu so we know which one we are saving
-        menu = self.session.client.push_state("MonsterMenuState")
+        menu = self.session.client.push_state(MonsterMenuState)
         menu.on_menu_selection = self.set_var
 
     def update(self) -> None:

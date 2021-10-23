@@ -6,6 +6,7 @@ from .save_menu import SaveMenuState
 from tuxemon.session import local_session
 from typing import Any, Optional
 from tuxemon.menu.interface import MenuItem
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -39,7 +40,7 @@ class LoadMenuState(SaveMenuState):
 
             map_path = prepare.fetch("maps", save_data["current_map"])
             self.client.push_state(
-                "WorldState",
+                WorldState,
                 map_name=map_path,
             )
 

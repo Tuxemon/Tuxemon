@@ -29,7 +29,6 @@ from tuxemon.locale import T, replace_text
 from typing import NamedTuple, final, Sequence, Callable, Tuple
 from tuxemon.states.choice import ChoiceState
 from tuxemon.session import Session
-from tuxemon.state import State
 
 logger = logging.getLogger(__name__)
 
@@ -90,6 +89,6 @@ class TranslatedDialogChoiceAction(
         self,
         session: Session,
         menu: Sequence[Tuple[str, str, Callable[[], None]]],
-    ) -> State:
+    ) -> ChoiceState:
         logger.info("Opening choice window")
-        return session.client.push_state("ChoiceState", menu=menu)
+        return session.client.push_state(ChoiceState, menu=menu)

@@ -179,9 +179,11 @@ def open_dialog(
         The pushed dialog state.
 
     """
+    from tuxemon.states.dialog import DialogState
+
     rect = calc_dialog_rect(session.client.screen.get_rect())
     return session.client.push_state(
-        "DialogState",
+        DialogState,
         text=text,
         avatar=avatar,
         rect=rect,

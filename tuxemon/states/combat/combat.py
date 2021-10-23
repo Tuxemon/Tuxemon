@@ -55,6 +55,8 @@ from tuxemon.monster import Monster
 from tuxemon.menu.interface import MenuItem, ExpBar, HpBar
 from tuxemon.animation import Task
 from tuxemon.item.item import Item
+from tuxemon.states.monster import MonsterMenuState
+from tuxemon.states.transition.fade import FadeOutTransition
 
 if TYPE_CHECKING:
     from tuxemon.player import Player
@@ -399,7 +401,7 @@ class CombatState(CombatAnimations):
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
             # if you run in PvP, you need "defeated message"
-            self.task(partial(self.client.push_state, "WaitForInputState"), 2)
+            self.task(partial(self.client.push_state, WaitForInputState), 2)
             self.suppress_phase_change(3)
 
         elif phase == "draw match":
@@ -411,7 +413,7 @@ class CombatState(CombatAnimations):
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
-            self.task(partial(self.client.push_state, "WaitForInputState"), 2)
+            self.task(partial(self.client.push_state, WaitForInputState), 2)
             self.suppress_phase_change(3)
 
         elif phase == "has winner":
@@ -428,7 +430,7 @@ class CombatState(CombatAnimations):
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
-            self.task(partial(self.client.push_state, "WaitForInputState"), 2)
+            self.task(partial(self.client.push_state, WaitForInputState), 2)
             self.suppress_phase_change(3)
 
         elif phase == "end combat":
@@ -563,7 +565,7 @@ class CombatState(CombatAnimations):
                 self.add_monster_into_play(player, monster)
                 self.client.pop_state()
 
-        state = self.client.push_state("MonsterMenuState")
+        state = self.client.push_state(MonsterMenuState)
         # must use a partial because alert relies on a text box that may not
         # exist until after the state hs been startup
         state.task(partial(state.alert, T.translate("combat_replacement")), 0)
@@ -692,6 +694,8 @@ class CombatState(CombatAnimations):
             monster: Monster to choose an action for.
 
         """
+        from tuxemon.states.combat.combat_menus import MainCombatMenuState
+
         message = T.format("combat_monster_choice", {"name": monster.name})
         self.alert(message)
         rect_screen = self.client.screen.get_rect()
@@ -699,7 +703,7 @@ class CombatState(CombatAnimations):
         rect.bottomright = rect_screen.w, rect_screen.h
 
         state = self.client.push_state(
-            "MainCombatMenuState",
+            MainCombatMenuState,
             monster=monster,
             columns=2,
         )
@@ -1115,4 +1119,4 @@ class CombatState(CombatAnimations):
         while self.client.current_state is not self:
             self.client.pop_state()
 
-        self.client.push_state("FadeOutTransition", caller=self)
+        self.client.push_state(FadeOutTransition, caller=self)

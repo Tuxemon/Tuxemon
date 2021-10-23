@@ -49,6 +49,7 @@ from tuxemon.player import Player
 from tuxemon.entity import Entity
 from tuxemon.npc import NPC
 from tuxemon.pyganim import PygAnimation, PygConductor
+from tuxemon.states.world.world_menus import WorldMenuState
 
 logger = logging.getLogger(__name__)
 
@@ -388,7 +389,7 @@ class WorldState(state.State):
             if event.pressed:
                 logger.info("Opening main menu!")
                 self.client.release_controls()
-                self.client.push_state("WorldMenuState")
+                self.client.push_state(WorldMenuState)
                 return None
 
         # map may not have a player registered

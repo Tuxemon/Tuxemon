@@ -58,7 +58,7 @@ class SetMonsterStatusAction(EventAction[SetMonsterStatusActionParameters]):
 
     @staticmethod
     def set_status(monster: Monster, value: Optional[str]) -> None:
-        if value is None:
+        if not value:
             monster.status = list()
         else:
             # TODO: own class for status effect

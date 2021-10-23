@@ -754,5 +754,5 @@ class NPC(Entity):
 
         return success
 
-    def speed_test(self, action: EnqueuedAction) -> float:
+    def speed_test(self, action: EnqueuedAction) -> int:
         return self.speed

@@ -9,7 +9,7 @@ from tuxemon import audio, prepare, state, tools, graphics
 from tuxemon.menu.interface import MenuCursor, MenuItem
 from tuxemon.platform.const import intentions
 from tuxemon.platform.const import buttons
-from tuxemon.sprite import RelativeGroup, VisualSpriteList
+from tuxemon.sprite import RelativeGroup, VisualSpriteList, SpriteGroup
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
 from typing import Any, Callable, Optional, Literal, Dict, Sequence, Tuple,\
@@ -101,7 +101,7 @@ class Menu(Generic[T], state.State):
         self.menu_items.columns = self.columns
 
         # generally just for the cursor arrow
-        self.menu_sprites: RelativeGroup[MenuCursor] = RelativeGroup(
+        self.menu_sprites: SpriteGroup[MenuCursor] = RelativeGroup(
             parent=self.menu_items,
         )
 

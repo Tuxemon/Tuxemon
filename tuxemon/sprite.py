@@ -177,7 +177,7 @@ class CaptureDeviceSprite(Sprite):
         self,
         *,
         tray: Sprite,
-        monster: Monster,
+        monster: Optional[Monster],
         sprite: Sprite,
         state: str,
     ) -> None:
@@ -201,20 +201,22 @@ class CaptureDeviceSprite(Sprite):
         """
         if self.state == "empty":
             self.sprite.image = self.empty
-        elif any(t for t in self.monster.status if t.slug == "status_faint"):
-            self.state = "faint"
-            self.sprite.image = self.faint
-        elif len(self.monster.status) > 0:
-            self.state = "effected"
-            self.sprite.image = self.effected
         else:
-            self.state = "alive"
-            self.sprite.image = self.alive
+            assert self.monster
+            if any(t for t in self.monster.status if t.slug == "status_faint"):
+                self.state = "faint"
+                self.sprite.image = self.faint
+            elif len(self.monster.status) > 0:
+                self.state = "effected"
+                self.sprite.image = self.effected
+            else:
+                self.state = "alive"
+                self.sprite.image = self.alive
         return self.state
 
     def draw(
         self,
-        animate: Callable[..., None],
+        animate: Callable[..., object],
     ) -> None:
         """
         Animates the capture device in game.

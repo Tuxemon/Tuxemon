@@ -12,6 +12,7 @@ from typing import Generator, Sequence, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from tuxemon.player import Player
+    from tuxemon.npc import NPC
     from tuxemon.monster import Monster
 
 
@@ -49,7 +50,7 @@ def fainted(monster: Monster) -> bool:
     return check_status(monster, "status_faint") or monster.current_hp <= 0
 
 
-def get_awake_monsters(player: Player) -> Generator[Monster, None, None]:
+def get_awake_monsters(player: NPC) -> Generator[Monster, None, None]:
     """
     Iterate all non-fainted monsters in party.
 
@@ -69,5 +70,5 @@ def fainted_party(party: Sequence[Monster]) -> bool:
     return all(map(fainted, party))
 
 
-def defeated(player: Player) -> bool:
+def defeated(player: NPC) -> bool:
     return fainted_party(player.monsters)

@@ -650,9 +650,9 @@ class Monster:
         else:
             self.status = []
 
-    def speed_test(self, action: EnqueuedAction) -> float:
+    def speed_test(self, action: EnqueuedAction) -> int:
         if action.technique.is_fast:
-            return random.randrange(0, self.speed) * 1.5
+            return int(random.randrange(0, self.speed) * 1.5)
         else:
             return random.randrange(0, self.speed)
 

@@ -256,7 +256,7 @@ class Item:
         the item database.
 
         Parameters:
-            user: The monster or object that is using this item.
+            user: The npc that is using this item.
             target: The monster or object that we are using this item on.
 
         Returns:

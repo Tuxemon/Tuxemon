@@ -17,12 +17,14 @@ from tuxemon.menu.menu import Menu
 from tuxemon.pyganim import PygAnimation
 from tuxemon.sprite import Sprite, CaptureDeviceSprite
 from tuxemon.tools import scale, scale_sequence
-from typing import Tuple, Any, Literal, TYPE_CHECKING
+from typing import Tuple, Any, Literal, TYPE_CHECKING, Sequence, \
+    List, MutableMapping, Optional, Mapping
 from tuxemon.monster import Monster
+from abc import ABC, abstractmethod
+from tuxemon.animation import Task
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
-    from tuxemon.player import Player
 
 logger = logging.getLogger(__name__)
 
@@ -35,11 +37,11 @@ def toggle_visible(sprite: Sprite) -> None:
     sprite.visible = not sprite.visible
 
 
-def scale_area(area: Tuple[int, ...]) -> Rect:
+def scale_area(area: Tuple[int, int, int, int]) -> Rect:
     return Rect(tools.scale_sequence(area))
 
 
-class CombatAnimations(Menu):
+class CombatAnimations(ABC, Menu[None]):
     """
     Collection of combat animations.
 
@@ -52,39 +54,56 @@ class CombatAnimations(Menu):
     but never game objects.
     """
 
-    def startup(self, **kwargs: Any) -> None:
+    def startup(
+        self,
+        *,
+        players: Sequence[NPC] = (),
+        graphics: Optional[Mapping[str, str]] = None,
+        **kwargs: Any,
+    ) -> None:
         super().startup(**kwargs)
-        self._monster_sprite_map = dict()
-        self.hud = dict()
-        self.is_trainer_battle = None
-        self.capdevs = list()
+        self.players = list(players)
+
+        assert graphics is not None
+        self.graphics = graphics
+
+        self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
+        self.hud: MutableMapping[Monster, Sprite] = {}
+        self.is_trainer_battle = False
+        self.capdevs: List[CaptureDeviceSprite] = []
 
         # eventually store in a config somewhere
         # is a tuple because more areas is needed for multi monster, etc
-        layout = list()
-
         player = dict()
         player["home"] = ((0, 62, 95, 70),)
         player["hud"] = ((145, 45, 110, 50),)
         player["party"] = ((152, 57, 110, 50),)
-        layout.append(player)
 
         opponent = dict()
         opponent["home"] = ((140, 10, 95, 70),)
         opponent["hud"] = ((18, 0, 85, 30),)
         opponent["party"] = ((18, 12, 85, 30),)
-        layout.append(opponent)
-        # end config =========================================
 
         # convert the list/tuple of coordinates to Rects
-        for position in layout:
-            for key, value in position.items():
-                position[key] = list(map(scale_area, value))
+        layout = [
+            {key: list(map(scale_area, value)) for key, value in p.items()}
+            for p in (player, opponent)
+        ]
+
+        # end config =========================================
 
         # map positions to players
-        self._layout = dict()
-        for index, player in enumerate(self.players):
-            self._layout[player] = layout[index]
+        self._layout = {
+            player: layout[index]
+            for index, player in enumerate(self.players)
+        }
+
+    @abstractmethod
+    def suppress_phase_change(
+        self,
+        delay: float = 3.0,
+    ) -> Optional[Task]:
+        raise NotImplementedError
 
     def animate_open(self) -> None:
         self.transition_none_normal()
@@ -105,7 +124,7 @@ class CombatAnimations(Menu):
 
         self.task(partial(toggle_visible, sprite), 0.20, 8)
 
-    def animate_trainer_leave(self, trainer) -> None:
+    def animate_trainer_leave(self, trainer: Monster) -> None:
 
         sprite = self._monster_sprite_map[trainer]
         if self.get_side(sprite.rect) == "left":
@@ -401,7 +420,7 @@ class CombatAnimations(Menu):
         if hud.player:
             self.build_animate_exp_bar(monster)
 
-    def animate_party_hud_in(self, player: Player, home: Rect) -> None:
+    def animate_party_hud_in(self, player: NPC, home: Rect) -> None:
         """
         Party HUD is the arrow thing with balls.  Yes, that one.
 
@@ -434,6 +453,8 @@ class CombatAnimations(Menu):
 
         for index in range(player.party_limit):
             status = None
+
+            monster: Optional[Monster]
             # opponent tuxemon should order from left to right
             if self.get_side(home) == "left":
                 pos = len(player.monsters) - index - 1
@@ -488,7 +509,7 @@ class CombatAnimations(Menu):
             )
             capdev.draw(animate)
 
-    def animate_update_party_hud(self, player: Player, home: Rect) -> None:
+    def animate_update_party_hud(self, player: NPC, home: Rect) -> None:
         """
         Update the balls in the party HUD to reflect fainted Tuxemon.
 

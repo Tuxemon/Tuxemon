@@ -12,6 +12,7 @@ from typing import Generator, Sequence, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from tuxemon.player import Player
+    from tuxemon.npc import NPC
     from tuxemon.monster import Monster
 
 
@@ -69,5 +70,5 @@ def fainted_party(party: Sequence[Monster]) -> bool:
     return all(map(fainted, party))
 
 
-def defeated(player: Player) -> bool:
+def defeated(player: NPC) -> bool:
     return fainted_party(player.monsters)

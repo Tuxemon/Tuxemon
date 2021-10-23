@@ -60,12 +60,13 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         """
         # TODO: only works for player0
         self.client.pop_state(self)
-        combat_state = self.client.get_state_by_name(CombatState)
-        assert combat_state
+        maybe_combat_state = self.client.get_state_by_name(CombatState)
+        assert maybe_combat_state
+        combat_state = maybe_combat_state
 
         if combat_state.is_trainer_battle:
 
-            def open_menu():
+            def open_menu() -> None:
                 combat_state.task(partial(combat_state.show_monster_action_menu, self.monster), 1)
 
             combat_state.alert(T.translate("combat_can't_run_from_trainer"), open_menu)

@@ -7,7 +7,7 @@ from pygame import mixer
 
 from tuxemon.db import db
 from tuxemon.tools import transform_resource_filename
-from typing import Protocol, Any
+from typing import Protocol, Any, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +24,7 @@ class DummySound():
         pass
 
 
-def load_sound(slug: str) -> SoundProtocol:
+def load_sound(slug: Optional[str]) -> SoundProtocol:
     """
     Load a sound from disk, identified by it's slug in the db.
 

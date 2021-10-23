@@ -46,12 +46,13 @@ from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
 from .combat_animations import CombatAnimations
 from typing import Dict, Optional, Any, Literal, Tuple, Union, TYPE_CHECKING,\
-    Sequence, Iterable
+    Sequence, Iterable, Mapping, List, MutableMapping, AbstractSet, NamedTuple,\
+    overload, Set
 from tuxemon.platform.events import PlayerInput
 import pygame
 from tuxemon.tools import assert_never
 from tuxemon.monster import Monster
-from tuxemon.menu.interface import MenuItem
+from tuxemon.menu.interface import MenuItem, ExpBar, HpBar
 from tuxemon.animation import Task
 from tuxemon.item.item import Item
 
@@ -76,7 +77,12 @@ CombatPhase = Literal[
     "end combat",
 ]
 
-EnqueuedAction = namedtuple("EnqueuedAction", "user technique target")
+
+class EnqueuedAction(NamedTuple):
+    user: Union[NPC, Monster, None]
+    technique: Union[Technique, Item]
+    target: Monster
+
 
 # TODO: move to mod config
 MULT_MAP = {
@@ -89,9 +95,9 @@ MULT_MAP = {
 
 class TechniqueAnimationCache:
     def __init__(self) -> None:
-        self._sprites: Dict[Technique, Sprite] = {}
+        self._sprites: Dict[Technique, Optional[Sprite]] = {}
 
-    def get(self, technique: Technique) -> Sprite:
+    def get(self, technique: Technique) -> Optional[Sprite]:
         """
         Return a sprite usable as a technique animation.
 
@@ -110,7 +116,7 @@ class TechniqueAnimationCache:
             return sprite
 
     @staticmethod
-    def load_technique_animation(technique: Technique) -> Sprite:
+    def load_technique_animation(technique: Technique) -> Optional[Sprite]:
         """
         Return animated sprite from a technique.
 
@@ -167,27 +173,29 @@ class CombatState(CombatAnimations):
     draw_borders = False
     escape_key_exits = False
 
-    def startup(self, **kwargs: Any) -> None:
+    def startup(
+        self,
+        combat_type: Optional[Literal["monster", "trainer"]] = None,
+        **kwargs: Any,
+    ) -> None:
         self.max_positions = 1  # TODO: make dependant on match type
         self.phase = None
-        self.monsters_in_play = defaultdict(list)
-        self._damage_map = defaultdict(set)  # track damage so experience can be awarded later
+        self.monsters_in_play: MutableMapping[NPC, List[Monster]] = defaultdict(list)
+        self._damage_map: MutableMapping[Monster, Set[Monster]] = defaultdict(set)  # track damage so experience can be awarded later
         self._technique_cache = TechniqueAnimationCache()
-        self._decision_queue = list()  # queue for monsters that need decisions
-        self._position_queue = list()  # queue for asking players to add a monster into play (subject to change)
-        self._action_queue = list()  # queue for techniques, items, and status effects
-        self._status_icons = list()  # list of sprites that are status icons
-        self._monster_sprite_map = dict()  # monster => sprite
-        self._hp_bars = dict()  # monster => hp bar
-        self._exp_bars = dict()  # monster => exp bar
+        self._decision_queue: List[Monster] = []  # queue for monsters that need decisions
+        self._action_queue: List[EnqueuedAction] = []  # queue for techniques, items, and status effects
+        self._status_icons: List[Sprite] = []  # list of sprites that are status icons
+        self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
+        self._hp_bars: MutableMapping[Monster, HpBar] = {}
+        self._exp_bars: MutableMapping[Monster, ExpBar] = {}
         self._layout = dict()  # player => home areas on screen
         self._animation_in_progress = False  # if true, delay phase change
         self._round = 0
 
         super().startup(**kwargs)
-        self.is_trainer_battle = kwargs.get("combat_type") == "trainer"
+        self.is_trainer_battle = combat_type == "trainer"
         self.players = list(self.players)
-        self.graphics = kwargs.get("graphics")
         self.show_combat_dialog()
         self.transition_phase("begin")
         self.task(partial(setattr, self, "phase", "ready"), 3)
@@ -467,6 +475,7 @@ class CombatState(CombatAnimations):
             else:
                 # TODO: determine the secondary sort element,
                 # monster speed, trainer speed, etc
+                assert action.user
                 return primary_order, action.user.speed_test(action)
 
         # TODO: move to mod config
@@ -517,7 +526,7 @@ class CombatState(CombatAnimations):
             self.check_party_hp()
             self.task(self.animate_party_status, 3)
 
-    def ask_player_for_monster(self, player: Player) -> None:
+    def ask_player_for_monster(self, player: NPC) -> None:
         """
         Open dialog to allow player to choose a Tuxemon to enter into play.
 
@@ -575,7 +584,9 @@ class CombatState(CombatAnimations):
         # TODO: integrate some values for different match types
         released = False
         for player in self.active_players:
-            positions_available = self.max_positions - len(self.monsters_in_play[player])
+            positions_available = (
+                self.max_positions - len(self.monsters_in_play[player])
+            )
             if positions_available:
                 available = get_awake_monsters(player)
                 for i in range(positions_available):
@@ -590,7 +601,7 @@ class CombatState(CombatAnimations):
 
     def add_monster_into_play(
         self,
-        player: Player,
+        player: NPC,
         monster: Monster,
     ) -> None:
         """
@@ -649,14 +660,18 @@ class CombatState(CombatAnimations):
                     # get the rect of the monster
                     rect = self._monster_sprite_map[monster].rect
                     # load the sprite and add it to the display
-                    self.load_sprite(status.icon, layer=200, center=rect.topleft)
+                    self.load_sprite(
+                        status.icon,
+                        layer=200,
+                        center=rect.topleft,
+                    )
 
     def show_combat_dialog(self) -> None:
         """Create and show the area where battle messages are displayed."""
         # make the border and area at the bottom of the screen for messages
-        x, y, w, h = self.client.screen.get_rect()
-        rect = Rect(0, 0, w, h // 4)
-        rect.bottomright = w, h
+        rect_screen = self.client.screen.get_rect()
+        rect = Rect(0, 0, rect_screen.w, rect_screen.h // 4)
+        rect.bottomright = rect_screen.w, rect_screen.h
         border = graphics.load_and_scale(self.borders_filename)
         self.dialog_box = GraphicBox(border, None, self.background_color)
         self.dialog_box.rect = rect
@@ -679,9 +694,9 @@ class CombatState(CombatAnimations):
         """
         message = T.format("combat_monster_choice", {"name": monster.name})
         self.alert(message)
-        x, y, w, h = self.client.screen.get_rect()
-        rect = Rect(0, 0, w // 2.5, h // 4)
-        rect.bottomright = w, h
+        rect_screen = self.client.screen.get_rect()
+        rect = Rect(0, 0, rect_screen.w // 2.5, rect_screen.h // 4)
+        rect.bottomright = rect_screen.w, rect_screen.h
 
         state = self.client.push_state("MainCombatMenuState", columns=2)
         state.monster = monster
@@ -698,7 +713,7 @@ class CombatState(CombatAnimations):
 
     def enqueue_action(
         self,
-        user: NPC,
+        user: Union[NPC, Monster, None],
         technique: Technique,
         target: Union[NPC, Monster, None] = None,
     ) -> None:
@@ -734,7 +749,7 @@ class CombatState(CombatAnimations):
 
     def remove_monster_from_play(
         self,
-        trainer,
+        trainer: Monster,
         monster: Monster,
     ) -> None:
         """
@@ -764,12 +779,14 @@ class CombatState(CombatAnimations):
         for action in self._action_queue:
             if action.user is monster or action.target is monster:
                 to_remove.add(action)
-        [self._action_queue.remove(action) for action in to_remove]
+
+        for action in to_remove:
+            self._action_queue.remove(action)
 
     def suppress_phase_change(
         self,
         delay: float = 3.0,
-    ) -> Task:
+    ) -> Optional[Task]:
         """
         Prevent the combat phase from changing for a limited time.
 
@@ -783,7 +800,7 @@ class CombatState(CombatAnimations):
         """
         if self._animation_in_progress:
             logger.debug("double suppress: bug?")
-            return
+            return None
 
         self._animation_in_progress = True
         return self.task(
@@ -791,11 +808,29 @@ class CombatState(CombatAnimations):
             delay,
         )
 
+    @overload
     def perform_action(
         self,
         user: Monster,
+        technique: Technique,
+        target: Monster,
+    ) -> None:
+        pass
+
+    @overload
+    def perform_action(
+        self,
+        user: NPC,
+        technique: Item,
+        target: Monster,
+    ) -> None:
+        pass
+
+    def perform_action(
+        self,
+        user: Union[Monster, NPC],
         technique: Union[Technique, Item],
-        target: Optional[Monster] = None,
+        target: Monster,
     ) -> None:
         """
         Perform the action.
@@ -810,6 +845,7 @@ class CombatState(CombatAnimations):
 
         # This is the time, in seconds, that the animation takes to finish.
         action_time = 3.0
+
         result = technique.use(user, target)
 
         if technique.use_item:
@@ -832,7 +868,7 @@ class CombatState(CombatAnimations):
 
         # slightly delay the monster shake, so technique animation
         # is synchronized with the damage shake motion
-        hit_delay = 0
+        hit_delay = 0.0
         if user:
 
             # TODO: a real check or some params to test if should tackle, etc
@@ -871,7 +907,10 @@ class CombatState(CombatAnimations):
                 if result["capture"]:
                     message += "\n" + T.translate("attempting_capture")
                     action_time = result["num_shakes"] + 1.8
-                    self.animate_capture_monster(result["success"], result["num_shakes"], target)
+                    self.animate_capture_monster(
+                        result["success"], result["num_shakes"],
+                        target,
+                    )
 
                     # TODO: Don't end combat right away; only works with SP, and 1 member parties
                     # end combat right here
@@ -894,7 +933,10 @@ class CombatState(CombatAnimations):
         else:
             if result["success"]:
                 self.suppress_phase_change()
-                self.alert(T.format("combat_status_damage", {"name": target.name, "status": technique.name}))
+                self.alert(T.format(
+                    "combat_status_damage",
+                    {"name": target.name, "status": technique.name},
+                ))
 
         tech_sprite = self._technique_cache.get(technique)
         if result["success"] and target_sprite and tech_sprite:
@@ -923,8 +965,9 @@ class CombatState(CombatAnimations):
         if monster in self._damage_map:
             # Award Experience
             awarded_exp = (
-                monster.total_experience / monster.level
-                / len(self._damage_map[monster])
+                monster.total_experience // (
+                    monster.level * len(self._damage_map[monster])
+                )
             )
             for winners in self._damage_map[monster]:
                 winners.give_experience(awarded_exp)
@@ -1032,7 +1075,7 @@ class CombatState(CombatAnimations):
         # instead of player/trainer
         return [p for p in self.players if not defeated(p)]
 
-    def trigger_player_run(self, player: Player) -> None:
+    def trigger_player_run(self, player: NPC) -> None:
         """
         WIP.  make player run from battle.
 

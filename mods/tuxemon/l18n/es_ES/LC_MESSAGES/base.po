@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2021-08-18 23:34+0000\n"
+"PO-Revision-Date: 2021-10-25 12:59+0000\n"
 "Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -3403,3 +3403,26 @@ msgstr "¡Espero poder volver antes de que mi experimento se desintegre!"
 
 msgid "spyder_route6_orion1"
 msgstr "Estaba en medio de un experimento muy importante."
+
+msgid "spyder_route3_qqq1"
+msgstr "¡Ah, se suponía que los Ejecutores no debían dejar salir a nadie!"
+
+msgid "spyder_route3_surat1"
+msgstr ""
+" Lo llaman la \"arteria oscura\": la sangre y huesos fosilizados de un "
+"Tuxemon antiguo bajo la tierra.\n"
+"¡Y vamos a excavarlo!"
+
+msgid "spyder_route3_surat3"
+msgstr "¡Largo! Estás interponiéndote en nuestro camino."
+
+msgid "spyder_flower_teach1"
+msgstr "Oh, ¿dónde se ha metido mi otro estudiante?"
+
+msgid "spyder_flowerhouse1_firefighter"
+msgstr ""
+"Los cinco Pilares son las únicas grandes empresas en esta región. Tienen "
+"mucha influencia."
+
+msgid "spyder_flower_sandy_notweesher"
+msgstr "Oh, no importa. Veo que no tienes un Tweesher."

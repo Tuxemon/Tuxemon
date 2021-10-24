@@ -74,8 +74,6 @@ class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
     def start(self) -> None:
         npc_slug, breeding_mother, breeding_father = self.parameters
         world = self.session.client.get_state_by_name(WorldState)
-        if not world:
-            return
 
         npc_slug = npc_slug.replace("player", "npc_red")
         trainer = world.get_entity(npc_slug)
@@ -119,7 +117,9 @@ class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
         )
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name(DialogState) is None:
+        try:
+            self.session.client.get_state_by_name(DialogState)
+        except ValueError:
             self.stop()
 
     def open_dialog(

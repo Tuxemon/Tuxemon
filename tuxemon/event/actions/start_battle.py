@@ -63,8 +63,6 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
             return
 
         world = self.session.client.get_state_by_name(WorldState)
-        if not world:
-            return
 
         npc = world.get_entity(self.parameters.npc_slug)
         assert npc
@@ -94,5 +92,7 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
         )
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name(CombatState) is None:
+        try:
+            self.session.client.get_state_by_name(CombatState)
+        except ValueError:
             self.stop()

@@ -103,8 +103,6 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
 
             # stop the player
             world = self.session.client.get_state_by_name(WorldState)
-            if world is None:
-                return
             world.lock_controls()
             world.stop_player()
 
@@ -119,7 +117,9 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             )
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name(CombatState) is None:
+        try:
+            self.session.client.get_state_by_name(CombatState)
+        except ValueError:
             self.stop()
 
 

@@ -40,7 +40,7 @@ class LoadMenuState(SaveMenuState):
 
             map_path = prepare.fetch("maps", save_data["current_map"])
             self.client.push_state(
-                "WorldState",
+                WorldState,
                 map_name=map_path,
             )
 

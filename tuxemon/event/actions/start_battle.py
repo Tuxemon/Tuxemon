@@ -78,7 +78,7 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
         # Add our players and setup combat
         logger.debug("Starting battle!")
         self.session.client.push_state(
-            "CombatState",
+            CombatState,
             players=(player, npc),
             combat_type="trainer",
             graphics=env["battle_graphics"],

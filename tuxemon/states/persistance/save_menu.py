@@ -10,7 +10,7 @@ from tuxemon import prepare
 from tuxemon import save
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import PopUpMenu
+from tuxemon.menu.menu import PopUpMenu, Menu
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
 from tuxemon.ui import text
@@ -165,7 +165,7 @@ class SaveMenuState(PopUpMenu[None]):
 
         def ask_confirmation() -> None:
             # open menu to confirm the save
-            menu = self.client.push_state("Menu")
+            menu = self.client.push_state(Menu)
             menu.shrink_to_items = True
 
             # add choices

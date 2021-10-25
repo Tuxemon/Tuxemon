@@ -5,6 +5,7 @@ from tuxemon.ui.text import TextArea
 from typing import Any, Optional, Sequence, Tuple, Callable
 from tuxemon.platform.events import PlayerInput
 from tuxemon.sprite import Sprite
+from tuxemon.states.choice import ChoiceState
 
 
 class DialogState(PopUpMenu):
@@ -53,7 +54,7 @@ class DialogState(PopUpMenu):
             elif self.next_text() is None:
                 if self.menu:
                     self.client.push_state(
-                        "ChoiceState",
+                        ChoiceState,
                         menu=self.menu,
                         rect=self.text_area.rect,
                     )

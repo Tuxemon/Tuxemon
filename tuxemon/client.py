@@ -544,7 +544,23 @@ class LocalPygameClient:
         """Pop current state, or another"""
         self.state_manager.pop_state(state)
 
+    @overload
     def push_state(self, state_name: str, **kwargs: Any) -> State:
+        pass
+
+    @overload
+    def push_state(
+        self,
+        state_name: Type[StateType],
+        **kwargs: Any,
+    ) -> StateType:
+        pass
+
+    def push_state(
+        self,
+        state_name: Union[str, Type[StateType]],
+        **kwargs: Any,
+    ) -> State:
         """Push new state, by name"""
         return self.state_manager.push_state(state_name, **kwargs)
 

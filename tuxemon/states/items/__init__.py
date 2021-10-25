@@ -11,6 +11,7 @@ from typing import Any, Generator, Sequence, Tuple, Iterable
 import pygame
 from tuxemon.item.item import Item, InventoryItem
 from tuxemon.monster import Monster
+from tuxemon.states.monster import MonsterMenuState
 
 # The import is required for PushState to work.
 # But linters may say the import is unused.
@@ -141,7 +142,7 @@ class ItemMenuState(Menu[Item]):
             self.client.pop_state()  # close the confirm dialog
             # TODO: allow items to be used on player or "in general"
 
-            menu = self.client.push_state("MonsterMenuState")
+            menu = self.client.push_state(MonsterMenuState)
             menu.is_valid_entry = item.validate
             menu.on_menu_selection = use_item
 
@@ -150,7 +151,7 @@ class ItemMenuState(Menu[Item]):
 
         def open_choice_menu() -> None:
             # open the menu for use/cancel
-            menu = self.client.push_state("Menu")
+            menu = self.client.push_state(Menu)
             menu.shrink_to_items = True
 
             menu_items_map = (
@@ -285,7 +286,7 @@ class ShopMenuState(Menu[Item]):
             else item_dict["quantity"]
         )
         self.client.push_state(
-            "QuantityMenu",
+            QuantityMenu,
             callback=use_item,
             max_quantity=max_quantity,
             quantity=1,

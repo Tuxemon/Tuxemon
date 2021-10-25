@@ -18,6 +18,8 @@ from typing import Callable, Generator, Any, Optional, Union, TYPE_CHECKING
 from tuxemon.states.combat.combat import CombatState
 from tuxemon.monster import Monster
 from tuxemon.item.item import Item
+from tuxemon.states.monster import MonsterMenuState
+from tuxemon.states.items import ItemMenuState
 
 if TYPE_CHECKING:
     from tuxemon.player import Player
@@ -111,7 +113,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             self.client.pop_state()  # close technique menu
             self.client.pop_state()  # close the monster action menu
 
-        menu = self.client.push_state("MonsterMenuState")
+        menu = self.client.push_state(MonsterMenuState)
         menu.on_menu_selection = swap_it
         menu.anchor("bottom", self.rect.top)
         menu.anchor("right", self.client.screen.get_rect().right)
@@ -122,7 +124,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_item() -> None:
             # open menu to choose item
-            menu = self.client.push_state("ItemMenuState")
+            menu = self.client.push_state(ItemMenuState)
 
             # set next menu after after selection is made
             menu.on_menu_selection = choose_target
@@ -134,7 +136,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             # TODO: don't hardcode to player0
             combat_state = self.client.get_state_by_name(CombatState)
             state = self.client.push_state(
-                "CombatTargetMenuState",
+                CombatTargetMenuState,
                 player=combat_state.players[0],
                 user=combat_state.players[0],
                 action=item,
@@ -165,7 +167,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_technique() -> None:
             # open menu to choose technique
-            menu = self.client.push_state("Menu")
+            menu = self.client.push_state(Menu)
             menu.shrink_to_items = True
 
             # add techniques to the menu
@@ -197,7 +199,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             combat_state = self.client.get_state_by_name(CombatState)
             state = self.client.push_state(
-                "CombatTargetMenuState",
+                CombatTargetMenuState,
                 player=combat_state.players[0],
                 user=self.monster,
                 action=technique,

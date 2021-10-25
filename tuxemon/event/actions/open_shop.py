@@ -23,6 +23,8 @@ from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from typing import NamedTuple, final
+from tuxemon.states.items import ShopMenuState
+from tuxemon.states.choice import ChoiceState
 
 
 class OpenShopActionParameters(NamedTuple):
@@ -53,7 +55,7 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
         def buy_menu() -> None:
             self.session.client.pop_state()
             self.session.client.push_state(
-                "ShopMenuState",
+                ShopMenuState,
                 buyer=self.session.player,
                 seller=npc,
             )
@@ -61,7 +63,7 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
         def sell_menu() -> None:
             self.session.client.pop_state()
             self.session.client.push_state(
-                "ShopMenuState",
+                ShopMenuState,
                 buyer=None,
                 seller=self.session.player,
             )
@@ -72,7 +74,7 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
         ]
 
         self.session.client.push_state(
-            "ChoiceState",
+            ChoiceState,
             menu=var_menu,
             escape_key_exits=True,
         )

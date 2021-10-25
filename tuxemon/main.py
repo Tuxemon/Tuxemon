@@ -33,6 +33,11 @@ from tuxemon import log
 from tuxemon import prepare
 from tuxemon.player import Player
 from tuxemon.session import local_session
+from tuxemon.states.start import BackgroundState, StartState
+from tuxemon.states.persistance.load_menu import LoadMenuState
+from tuxemon.states.splash import SplashState
+from tuxemon.states.transition.fade import FadeInTransition
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -76,19 +81,19 @@ def main(
     # "Background state" will do that.  The alternative is creating
     # a system for states to clean up their dirty screen areas.
     if not config.skip_titlescreen:
-        client.push_state("BackgroundState")
-        client.push_state("StartState")
+        client.push_state(BackgroundState)
+        client.push_state(StartState)
 
     if load_slot:
-        client.push_state("LoadMenuState", load_slot=load_slot)
+        client.push_state(LoadMenuState, load_slot=load_slot)
     elif config.splash:
-        client.push_state("SplashState")
-        client.push_state("FadeInTransition")
+        client.push_state(SplashState)
+        client.push_state(FadeInTransition)
 
     # TODO: rename this to "debug map" or something
     if config.skip_titlescreen:
         map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
-        state = client.push_state("WorldState", map_name=map_name)
+        client.push_state(WorldState, map_name=map_name)
 
     # block of code useful for testing
     if config.collision_map:
@@ -105,10 +110,10 @@ def main(
         action("add_item", ("cherry",))
         action("add_item", ("capture_device",))
 
-        for i in range(10):
+        for _ in range(10):
             action("add_item", ("super_potion",))
 
-        for i in range(100):
+        for _ in range(100):
             action("add_item", ("apple",))
 
     client.main()

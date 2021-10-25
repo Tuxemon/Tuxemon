@@ -31,6 +31,7 @@ from tuxemon.npc import NPC
 from typing import NamedTuple, Union, final, Sequence, Optional
 from tuxemon.states.world.worldstate import WorldState
 from tuxemon.states.combat.combat import CombatState
+from tuxemon.states.transition.flash import FlashTransition
 
 logger = logging.getLogger(__name__)
 
@@ -107,7 +108,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             world.stop_player()
 
             # flash the screen
-            self.session.client.push_state("FlashTransition")
+            self.session.client.push_state(FlashTransition)
 
             # Start some music!
             filename = env["battle_music"]

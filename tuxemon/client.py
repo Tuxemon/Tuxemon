@@ -464,9 +464,6 @@ class LocalPygameClient:
 
         """
         world = self.get_state_by_name(WorldState)
-        if not world:
-            return
-
         world.npcs = {}
         world.npcs_off_map = {}
         for client in registry:
@@ -498,9 +495,6 @@ class LocalPygameClient:
 
         """
         world = self.get_state_by_name(WorldState)
-        if not world:
-            return None
-
         return world.current_map.filename
 
     def get_map_name(self) -> Optional[str]:
@@ -523,20 +517,20 @@ class LocalPygameClient:
     """
 
     @overload
-    def get_state_by_name(self, state_name: str) -> Optional[State]:
+    def get_state_by_name(self, state_name: str) -> State:
         pass
 
     @overload
     def get_state_by_name(
         self,
         state_name: Type[StateType],
-    ) -> Optional[StateType]:
+    ) -> StateType:
         pass
 
     def get_state_by_name(
         self,
         state_name: Union[str, Type[State]],
-    ) -> Optional[State]:
+    ) -> State:
         """
         Query the state stack for a state by the name supplied.
         """

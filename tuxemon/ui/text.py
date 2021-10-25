@@ -29,7 +29,6 @@ class TextArea(Sprite):
         self.font_bg = bg
         self._rendered_text = None
         self._text_rect = None
-        self._image = None
         self._text = ""
 
     def __iter__(self) -> TextArea:
@@ -56,7 +55,7 @@ class TextArea(Sprite):
         if self.animated:
             try:
                 dest, scrap = next(self._iter)
-                self._image.blit(scrap, dest)
+                self.image.blit(scrap, dest)
             except StopIteration:
                 self.drawing_text = False
                 raise

@@ -648,20 +648,20 @@ class StateManager:
         return self._state_stack[:]
 
     @overload
-    def get_state_by_name(self, state_name: str) -> Optional[State]:
+    def get_state_by_name(self, state_name: str) -> State:
         pass
 
     @overload
     def get_state_by_name(
         self,
         state_name: Type[StateType],
-    ) -> Optional[StateType]:
+    ) -> StateType:
         pass
 
     def get_state_by_name(
         self,
         state_name: Union[str, Type[State]],
-    ) -> Optional[State]:
+    ) -> State:
         """
         Query the state stack for a state by the name supplied.
 
@@ -679,4 +679,4 @@ class StateManager:
             ):
                 return state
 
-        return None
+        raise ValueError(f"Missing state {state_name}")

@@ -83,10 +83,6 @@ class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
         # If it has, play the animation using the animation's conductor.
         world_state = self.session.client.get_state_by_name(WorldState)
 
-        if world_state is None:
-            logger.error("Cannot run MapAnimation outside of world state")
-            raise RuntimeError
-
         # Determine the tile position where to draw the animation.
         # TODO: unify npc/player sprites and map animations
         if self.parameters[3] == "player":

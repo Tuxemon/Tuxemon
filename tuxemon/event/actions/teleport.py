@@ -55,8 +55,6 @@ class TeleportAction(EventAction[TeleportActionParameters]):
     def start(self) -> None:
         player = self.session.player
         world = self.session.client.get_state_by_name(WorldState)
-        if not world:
-            return
 
         map_name = self.parameters.map_name
 

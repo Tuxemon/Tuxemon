@@ -71,5 +71,7 @@ class GetPlayerMonsterAction(EventAction[GetPlayerMonsterActionParameters]):
         menu.on_menu_selection = self.set_var
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name(MonsterMenuState) is None:
+        try:
+            self.session.client.get_state_by_name(MonsterMenuState)
+        except ValueError:
             self.stop()

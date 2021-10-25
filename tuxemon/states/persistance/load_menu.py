@@ -28,15 +28,15 @@ class LoadMenuState(SaveMenuState):
             # order to build a Session
             local_session.player.set_state(local_session, save_data)
 
-            old_world = self.client.get_state_by_name("WorldState")
-            if old_world is None:
-                # when game is loaded from the start menu
-                self.client.pop_state()  # close this menu
-                self.client.pop_state()  # close the start menu
-            else:
+            try:
+                old_world = self.client.get_state_by_name(WorldState)
                 # when game is loaded from world menu
                 self.client.pop_state(self)
                 self.client.pop_state(old_world)
+            except ValueError:
+                # when game is loaded from the start menu
+                self.client.pop_state()  # close this menu
+                self.client.pop_state()  # close the start menu
 
             map_path = prepare.fetch("maps", save_data["current_map"])
             self.client.push_state(

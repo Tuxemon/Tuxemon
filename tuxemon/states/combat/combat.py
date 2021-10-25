@@ -525,7 +525,7 @@ class CombatState(CombatAnimations):
         if self._action_queue:
             action = self._action_queue.pop()
             self.perform_action(*action)
-            self.check_party_hp()
+            self.task(self.check_party_hp, 1)
             self.task(self.animate_party_status, 3)
 
     def ask_player_for_monster(self, player: NPC) -> None:
@@ -1031,7 +1031,7 @@ class CombatState(CombatAnimations):
                     # Enemies don't have a bar, doing it for them will
                     # cause a crash
                     for monster in self.monsters_in_play[local_session.player]:
-                        self.animate_exp(monster)
+                        self.task(partial(self.animate_exp, monster), 2.5)
 
     @property
     def active_players(self) -> Iterable[NPC]:

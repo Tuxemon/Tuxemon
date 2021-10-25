@@ -56,19 +56,9 @@ class GraphicBox(Sprite):
         self._fill_tiles = fill_tiles
         self._tiles: List[pygame.surface.Surface] = []
         self._tile_size = 0, 0
-        self._rect: Optional[pygame.rect.Rect] = None
+
         if border:
             self._set_border(border)
-
-    @property
-    def rect(self) -> Optional[Rect]:
-        return self._rect
-
-    @rect.setter
-    def rect(self, rect: Optional[Rect]) -> None:
-        if not rect == self._rect:
-            self._rect = rect
-            self._needs_update = True
 
     def calc_inner_rect(self, rect: Rect) -> Rect:
         if self._tiles:

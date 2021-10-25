@@ -58,7 +58,6 @@ class ItemMenuState(Menu[Item]):
         # its also animated to pop out of the backpack
         self.item_center = self.rect.width * 0.164, self.rect.height * 0.13
         self.item_sprite = Sprite()
-        self.item_sprite.image = None
         self.sprites.add(self.item_sprite)
 
         # do not move this line
@@ -221,7 +220,6 @@ class ShopMenuState(Menu[Item]):
         # this sprite is used to display the item
         self.item_center = self.rect.width * 0.164, self.rect.height * 0.13
         self.item_sprite = Sprite()
-        self.item_sprite.image = None
         self.sprites.add(self.item_sprite)
 
         # do not move this line

@@ -63,8 +63,6 @@ class WithdrawMonsterAction(EventAction[WithdrawMonsterActionParameters]):
     def start(self) -> None:
         trainer, monster_id = self.parameters
         world = self.session.client.get_state_by_name(WorldState)
-        if not world:
-            return
 
         trainer = trainer.replace("player", "npc_red")
         npc = world.get_entity(trainer)

@@ -47,7 +47,4 @@ class PlayerStopAction(EventAction[PlayerStopActionParameters]):
     def start(self) -> None:
         # Get a copy of the world state.
         world = self.session.client.get_state_by_name(WorldState)
-        if not world:
-            return
-
         world.stop_player()

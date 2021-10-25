@@ -83,7 +83,9 @@ class TranslatedDialogChoiceAction(
         self.open_choice_dialog(self.session, var_menu)
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name(ChoiceState) is None:
+        try:
+            self.session.client.get_state_by_name(ChoiceState)
+        except ValueError:
             self.stop()
 
     def open_choice_dialog(

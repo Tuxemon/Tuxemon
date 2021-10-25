@@ -463,7 +463,6 @@ def capture_screenshot(game: LocalPygameClient) -> pygame.surface.Surface:
 
     screenshot = pygame.Surface(game.screen.get_size())
     world = game.get_state_by_name(WorldState)
-    assert world
     world.draw(screenshot)
     return screenshot
 

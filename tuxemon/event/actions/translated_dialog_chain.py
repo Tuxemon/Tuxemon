@@ -95,16 +95,18 @@ class TranslatedDialogChainAction(
             replace,
         )
 
-        dialog = self.session.client.get_state_by_name(DialogState)
-        if dialog:
+        try:
+            dialog = self.session.client.get_state_by_name(DialogState)
             dialog.text_queue += pages
-        else:
+        except ValueError:
             self.open_dialog(pages, avatar)
 
     def update(self) -> None:
         key = self.raw_parameters[0]
         if key == "${{end}}":
-            if self.session.client.get_state_by_name(DialogState) is None:
+            try:
+                self.session.client.get_state_by_name(DialogState)
+            except ValueError:
                 self.stop()
 
     def open_dialog(

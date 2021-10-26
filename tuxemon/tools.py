@@ -26,9 +26,16 @@
 #
 #
 from __future__ import annotations
-from typing import (Any, Optional, Protocol, Sequence, Tuple, Type, TypeVar,
-    Union, Mapping, Iterable, TYPE_CHECKING, Callable, NoReturn)
+
+import logging
 import typing
+from itertools import zip_longest
+from typing import (TYPE_CHECKING, Any, Callable, Iterable, Mapping, NoReturn,
+                    Optional, Protocol, Sequence, Tuple, Type, TypeVar, Union)
+
+from tuxemon import prepare
+from tuxemon.compat import ReadOnlyRect
+from tuxemon.locale import T
 from tuxemon.math import Vector2
 
 """
@@ -41,13 +48,7 @@ if more appropriate.  Ideally this should be kept small.
 
 """
 
-import logging
-import re
-from itertools import zip_longest
 
-from tuxemon.compat import ReadOnlyRect
-from tuxemon import prepare
-from tuxemon.locale import T
 
 if TYPE_CHECKING:
     from tuxemon.session import Session
@@ -251,32 +252,31 @@ def cast_values(
     def cast(
         i: Tuple[Tuple[ValidParameterTypes, str], Any],
     ) -> Any:
-        ve = False
-        t, v = i
-        try:
-            for tt in t[0]:
-                if tt is None or tt is type(None):
-                    return None
 
-                if v is None:
-                    return None
+        (type_constructors, param_name), value = i
 
+        if not isinstance(type_constructors, Sequence):
+            type_constructors = [type_constructors]
+
+        if (
+            value is None or value == ""
+        ) and (
+            None in type_constructors or type(None) in type_constructors
+        ):
+            return None
+
+        for constructor in type_constructors:
+
+            if constructor:
                 try:
-                    return tt(v)
-                except ValueError:
-                    ve = True
+                    return constructor(value)
+                except (ValueError, TypeError):
+                    pass
 
-        except TypeError:
-            if v is None:
-                return None
-
-            if v == "":
-                return None
-
-            return t[0](v)
-
-        if ve:
-            raise ValueError
+        raise ValueError(
+            f"Error parsing parameter {param_name} with value {value} and "
+            f"constructor list {type_constructors}",
+        )
 
     try:
         return list(map(cast, zip_longest(valid_parameters, parameters)))
@@ -301,7 +301,8 @@ def cast_parameters_to_namedtuple(
     namedtuple_class: Type[NamedTupleTypeVar],
 ) -> NamedTupleTypeVar:
     valid_parameters = [
-        (get_types_tuple(typing.get_type_hints(namedtuple_class)[f]), f) for f in namedtuple_class._fields
+        (get_types_tuple(typing.get_type_hints(namedtuple_class)[f]), f)
+        for f in namedtuple_class._fields
     ]
 
     values = cast_values(parameters, valid_parameters)

@@ -24,14 +24,14 @@ import random
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, final
+from typing import NamedTuple, final, Union
 from tuxemon.states.world.worldstate import WorldState
 from tuxemon.npc import NPC
 
 
 class NpcWanderActionParameters(NamedTuple):
     npc_slug: str
-    frequency: float
+    frequency: Union[float, None]
 
 
 @final
@@ -42,11 +42,13 @@ class NpcWanderAction(EventAction[NpcWanderActionParameters]):
     Script usage:
         .. code-block::
 
-            npc_wander <npc_slug> <frequency>
+            npc_wander <npc_slug> [frequency]
 
     Script parameters:
         npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
-        frequency: Frequency of movements.
+        frequency: Frequency of movements. 0 to stop wandering. If set to
+            a different value it will be clipped to the range [0.5, 5].
+            If not passed the default value is 1.
 
     """
 

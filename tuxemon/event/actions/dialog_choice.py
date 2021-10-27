@@ -25,7 +25,6 @@ from functools import partial
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import replace_text
 from tuxemon.session import Session
-from tuxemon.state import State
 from typing import NamedTuple, final, Tuple, Callable, Sequence
 from tuxemon.states.choice import ChoiceState
 
@@ -75,13 +74,15 @@ class DialogChoiceAction(EventAction[DialogChoiceActionParameters]):
         self.open_choice_dialog(self.session, var_menu)
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name(ChoiceState) is None:
+        try:
+            self.session.client.get_state_by_name(ChoiceState)
+        except ValueError:
             self.stop()
 
     def open_choice_dialog(
         self,
         session: Session,
         menu: Sequence[Tuple[str, str, Callable[[], None]]],
-    ) -> State:
+    ) -> ChoiceState:
         logger.info("Opening choice window")
-        return session.client.push_state("ChoiceState", menu=menu)
+        return session.client.push_state(ChoiceState, menu=menu)

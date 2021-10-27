@@ -30,6 +30,7 @@
 """This module contains the Start state.
 """
 from __future__ import annotations
+
 import logging
 from functools import partial
 from typing import Any, Callable, Union
@@ -43,6 +44,8 @@ from tuxemon.menu.menu import PopUpMenu
 from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
 from tuxemon.state import State
+from tuxemon.menu.input import InputMenu
+from tuxemon.states.transition.fade import FadeInTransition
 
 logger = logging.getLogger(__name__)
 
@@ -94,12 +97,12 @@ class StartState(PopUpMenu[StartGameObj]):
             map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
             self.client.replace_state("WorldState", map_name=map_name)
             self.client.push_state(
-                state_name="InputMenu",
+                state_name=InputMenu,
                 prompt=T.translate("input_name"),
                 callback=set_player_name,
                 escape_key_exits=False,
             )
-            self.client.push_state("FadeInTransition")
+            self.client.push_state(FadeInTransition)
 
         def options() -> None:
             pass

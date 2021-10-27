@@ -62,6 +62,7 @@ logger = logging.getLogger(__name__)
 
 StateType = TypeVar("StateType", bound="State")
 
+
 class State:
     """This is a prototype class for States.
 
@@ -104,8 +105,13 @@ class State:
         self.parent = parent
         self.start_time = 0.0
         self.current_time = 0.0
-        self.animations = pygame.sprite.Group()  # only animations and tasks
-        self.sprites = SpriteGroup()  # all sprites that draw on the screen
+
+        # Only animations and tasks
+        self.animations = pygame.sprite.Group()
+
+        # All sprites that draw on the screen
+        self.sprites: SpriteGroup[Sprite] = SpriteGroup()
+
         # TODO: fix local session
         self.client = local_session.client
 
@@ -406,7 +412,8 @@ class StateManager:
         """
         Run update on all active states, which doing some internal housekeeping
 
-        WIP.  This may change at some point, especially handling of paused states.
+        WIP.  This may change at some point, especially handling of paused
+        states.
 
         Parameters:
             time_delta: Amount of time passed since last frame.
@@ -495,7 +502,9 @@ class StateManager:
         try:
             index = self._state_stack.index(state)
         except IndexError:
-            logger.critical("Attempted to pop state when state was not active.")
+            logger.critical(
+                "Attempted to pop state when state was not active.",
+            )
             raise RuntimeError
 
         if index == 0:
@@ -523,7 +532,9 @@ class StateManager:
         try:
             index = self._state_stack.index(state)
         except IndexError:
-            logger.critical("Attempted to remove state which is not in the stack")
+            logger.critical(
+                "Attempted to remove state which is not in the stack",
+            )
             raise RuntimeError
 
         if index == 0:
@@ -534,7 +545,23 @@ class StateManager:
             self._state_stack.remove(state)
             state.shutdown()
 
+    @overload
     def push_state(self, state_name: str, **kwargs: Any) -> State:
+        pass
+
+    @overload
+    def push_state(
+        self,
+        state_name: Type[StateType],
+        **kwargs: Any,
+    ) -> StateType:
+        pass
+
+    def push_state(
+        self,
+        state_name: Union[str, Type[StateType]],
+        **kwargs: Any,
+    ) -> State:
         """
         Pause currently running state and start new one.
 
@@ -553,7 +580,11 @@ class StateManager:
             self._check_resume(previous)
             previous.pause()
 
-        instance = self._instance(state_name)
+        if isinstance(state_name, str):
+            instance = self._instance(state_name)
+        else:
+            instance = state_name(self)
+
         instance.startup(**kwargs)
         self._resume_set.add(instance)
         self._state_stack.insert(0, instance)
@@ -617,20 +648,20 @@ class StateManager:
         return self._state_stack[:]
 
     @overload
-    def get_state_by_name(self, state_name: str) -> Optional[State]:
+    def get_state_by_name(self, state_name: str) -> State:
         pass
 
     @overload
     def get_state_by_name(
         self,
         state_name: Type[StateType],
-    ) -> Optional[StateType]:
+    ) -> StateType:
         pass
 
     def get_state_by_name(
         self,
         state_name: Union[str, Type[State]],
-    ) -> Optional[State]:
+    ) -> State:
         """
         Query the state stack for a state by the name supplied.
 
@@ -648,4 +679,4 @@ class StateManager:
             ):
                 return state
 
-        return None
+        raise ValueError(f"Missing state {state_name}")

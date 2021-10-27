@@ -18,6 +18,8 @@ from typing import Callable, Generator, Any, Optional, Union, TYPE_CHECKING
 from tuxemon.states.combat.combat import CombatState
 from tuxemon.monster import Monster
 from tuxemon.item.item import Item
+from tuxemon.states.monster import MonsterMenuState
+from tuxemon.states.items import ItemMenuState
 
 if TYPE_CHECKING:
     from tuxemon.player import Player
@@ -71,9 +73,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         """
         # TODO: only works for player0
         self.client.pop_state(self)
-        maybe_combat_state = self.client.get_state_by_name(CombatState)
-        assert maybe_combat_state
-        combat_state = maybe_combat_state
+        combat_state = self.client.get_state_by_name(CombatState)
 
         if combat_state.is_trainer_battle:
 
@@ -105,7 +105,6 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 tools.open_dialog(local_session, [T.format("combat_fainted", {"name": monster.name})])
                 return
             combat_state = self.client.get_state_by_name(CombatState)
-            assert combat_state
             swap = Technique("swap")
             swap.combat_state = combat_state
             player = local_session.player
@@ -114,7 +113,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             self.client.pop_state()  # close technique menu
             self.client.pop_state()  # close the monster action menu
 
-        menu = self.client.push_state("MonsterMenuState")
+        menu = self.client.push_state(MonsterMenuState)
         menu.on_menu_selection = swap_it
         menu.anchor("bottom", self.rect.top)
         menu.anchor("right", self.client.screen.get_rect().right)
@@ -125,7 +124,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_item() -> None:
             # open menu to choose item
-            menu = self.client.push_state("ItemMenuState")
+            menu = self.client.push_state(ItemMenuState)
 
             # set next menu after after selection is made
             menu.on_menu_selection = choose_target
@@ -136,9 +135,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             self.client.pop_state()  # close the item menu
             # TODO: don't hardcode to player0
             combat_state = self.client.get_state_by_name(CombatState)
-            assert combat_state
             state = self.client.push_state(
-                "CombatTargetMenuState",
+                CombatTargetMenuState,
                 player=combat_state.players[0],
                 user=combat_state.players[0],
                 action=item,
@@ -155,7 +153,6 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             # enqueue the item
             combat_state = self.client.get_state_by_name(CombatState)
-            assert combat_state
             # TODO: don't hardcode to player0
             combat_state.enqueue_action(combat_state.players[0], item, target)
 
@@ -170,7 +167,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_technique() -> None:
             # open menu to choose technique
-            menu = self.client.push_state("Menu")
+            menu = self.client.push_state(Menu)
             menu.shrink_to_items = True
 
             # add techniques to the menu
@@ -201,9 +198,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 return
 
             combat_state = self.client.get_state_by_name(CombatState)
-            assert combat_state
             state = self.client.push_state(
-                "CombatTargetMenuState",
+                CombatTargetMenuState,
                 player=combat_state.players[0],
                 user=self.monster,
                 action=technique,
@@ -217,7 +213,6 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             # enqueue the technique
             target = menu_item.game_object
             combat_state = self.client.get_state_by_name(CombatState)
-            assert combat_state
             combat_state.enqueue_action(self.monster, technique, target)
 
             # close all the open menus
@@ -268,7 +263,6 @@ class CombatTargetMenuState(Menu[Monster]):
     def initialize_items(self) -> Generator[MenuItem[Monster], None, None]:
         # get a ref to the combat state
         combat_state = self.client.get_state_by_name(CombatState)
-        assert combat_state
 
         # TODO: trainer targeting
         # TODO: cleanup how monster sprites and whatnot are managed

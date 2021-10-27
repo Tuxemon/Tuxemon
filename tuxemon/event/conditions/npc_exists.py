@@ -54,7 +54,5 @@ class NPCExistsCondition(EventCondition):
 
         """
         world = session.client.get_state_by_name(WorldState)
-        if not world:
-            return False
 
         return get_npc(session, condition.parameters[0]) is not None

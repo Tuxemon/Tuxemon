@@ -119,7 +119,7 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
                 ("monster_menu_info", open_monster_stats),
                 ("monster_menu_move", select_first_monster),
             )
-            menu = self.client.push_state("Menu")
+            menu = self.client.push_state(Menu)
             menu.shrink_to_items = True
             add_menu_items(menu, menu_items_map)
 

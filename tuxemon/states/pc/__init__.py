@@ -35,6 +35,7 @@ import logging
 from functools import partial
 
 from tuxemon.locale import T
+from tuxemon.menu.input import InputMenu
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu, Menu
 from tuxemon.session import local_session
@@ -143,10 +144,10 @@ class MultiplayerMenu(PopUpMenu[MenuGameObj]):
             self.game.client.client.listen()
 
         # open menu to select games
-        self.game.push_state("MultiplayerSelect")
+        self.game.push_state(MultiplayerSelect)
 
     def join_by_ip(self) -> None:
-        self.game.push_state("InputMenu", prompt=T.translate("multiplayer_join_prompt"))
+        self.game.push_state(InputMenu, prompt=T.translate("multiplayer_join_prompt"))
 
     def join(self) -> None:
         if self.game.ishost:

@@ -63,8 +63,6 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
             return
 
         world = self.session.client.get_state_by_name(WorldState)
-        if not world:
-            return
 
         npc = world.get_entity(self.parameters.npc_slug)
         assert npc
@@ -80,7 +78,7 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
         # Add our players and setup combat
         logger.debug("Starting battle!")
         self.session.client.push_state(
-            "CombatState",
+            CombatState,
             players=(player, npc),
             combat_type="trainer",
             graphics=env["battle_graphics"],
@@ -94,5 +92,7 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
         )
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name(CombatState) is None:
+        try:
+            self.session.client.get_state_by_name(CombatState)
+        except ValueError:
             self.stop()

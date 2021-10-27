@@ -93,7 +93,9 @@ class TranslatedDialogAction(EventAction[TranslatedDialogActionParameters]):
         )
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name(DialogState) is None:
+        try:
+            self.session.client.get_state_by_name(DialogState)
+        except ValueError:
             self.stop()
 
     def open_dialog(

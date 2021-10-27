@@ -78,12 +78,11 @@ class DialogChainAction(EventAction[DialogChainActionParameters]):
             self.stop()
 
             # is a dialog already open?
-            dialog = self.session.client.get_state_by_name(DialogState)
-
-            if dialog:
+            try:
+                dialog = self.session.client.get_state_by_name(DialogState)
                 # yes, so just add text to it
                 dialog.text_queue.append(text)
-            else:
+            except ValueError:
                 # no, so create new dialog with this line
                 avatar = get_avatar(self.session, self.parameters.avatar)
                 self.open_dialog(text, avatar)
@@ -92,7 +91,9 @@ class DialogChainAction(EventAction[DialogChainActionParameters]):
         # hack to allow unescaped commas in the dialog string
         text = ", ".join(self.raw_parameters)
         if text == "${{end}}":
-            if self.session.client.get_state_by_name(DialogState) is None:
+            try:
+                self.session.client.get_state_by_name(DialogState)
+            except ValueError:
                 self.stop()
 
     def open_dialog(self, initial_text: str, avatar: Optional[Sprite]) -> None:

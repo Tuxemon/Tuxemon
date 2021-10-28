@@ -369,8 +369,6 @@ class Animation(pygame.sprite.Sprite):
 
     default_duration = 1000.0
     default_transition = "linear"
-    callback: Callable[[], None]
-    update_callback: Callable[[], None]
 
     def __init__(
         self,
@@ -385,6 +383,9 @@ class Animation(pygame.sprite.Sprite):
     ) -> None:
 
         super().__init__()
+        self.callback: Callable[[], None]
+        self.update_callback: Callable[[], None]
+
         self.targets: List[Tuple[object, Mapping[str, Tuple[float, float]]]] = list()
         self._targets: Sequence[object] = list()
         self.delay = delay

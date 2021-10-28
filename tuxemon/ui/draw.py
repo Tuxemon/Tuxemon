@@ -87,12 +87,15 @@ class GraphicBox(Sprite):
         self,
         surface: pygame.surface.Surface,
         rect: Rect,
-    ) -> None:
+    ) -> Rect:
         inner = self.calc_inner_rect(rect)
 
         # fill center with a _background surface
         if self._background:
-            surface.blit(pygame.transform.scale(self._background, inner.size), inner)
+            surface.blit(
+                pygame.transform.scale(self._background, inner.size),
+                inner,
+            )
 
         # fill center with solid _color
         elif self._color:
@@ -101,13 +104,26 @@ class GraphicBox(Sprite):
         # fill center with tiles from the border file
         elif self._fill_tiles:
             tw, th = self._tile_size
-            p = product(range(inner.left, inner.right, tw), range(inner.top, inner.bottom, th))
+            p = product(
+                range(inner.left, inner.right, tw),
+                range(inner.top, inner.bottom, th),
+            )
             [surface.blit(self._tiles[4], pos) for pos in p]
 
         # draw the border
         if self._tiles:
             surface_blit = surface.blit
-            tile_nw, tile_w, tile_sw, tile_n, tile_c, tile_s, tile_ne, tile_e, tile_se = self._tiles
+            (
+                tile_nw,
+                tile_w,
+                tile_sw,
+                tile_n,
+                tile_c,
+                tile_s,
+                tile_ne,
+                tile_e,
+                tile_se,
+            ) = self._tiles
             left, top = rect.topleft
             tw, th = self._tile_size
 
@@ -136,6 +152,8 @@ class GraphicBox(Sprite):
             surface_blit(tile_sw, (left, inner.bottom))
             surface_blit(tile_ne, (inner.right, top))
             surface_blit(tile_se, (inner.right, inner.bottom))
+
+        return rect
 
 
 def guest_font_height(font: pygame.font.Font) -> int:
@@ -183,7 +201,10 @@ def iter_render_text(
                 continue
             dirty_length = font.size(scrap[:-1])[0]
             surface = shadow_text(font, fg, bg, scrap[-1])
-            update_rect = surface.get_rect(top=top, left=rect.left + dirty_length)
+            update_rect = surface.get_rect(
+                top=top,
+                left=rect.left + dirty_length,
+            )
             yield update_rect, surface
 
 
@@ -237,7 +258,8 @@ def blit_alpha(
     opacity: int,
 ) -> None:
     """
-    Blits a surface with alpha that can also have it's overall transparency modified
+    Blits a surface with alpha that can also have it's overall transparency
+    modified.
     Taken from http://nerdparadise.com/tech/python/pygame/blitopacity/
 
     NOTE: This should be removed because of the performance implications.

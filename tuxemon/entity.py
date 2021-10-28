@@ -26,7 +26,8 @@
 from __future__ import annotations
 from tuxemon.math import Vector3, Point3
 from tuxemon.map import proj
-from typing import Sequence, Mapping, Optional, TYPE_CHECKING
+from typing import Sequence, Mapping, Optional, TYPE_CHECKING, Any, TypeVar,\
+    Generic
 from tuxemon.session import Session
 from tuxemon.tools import vector2_to_tile_pos
 
@@ -34,7 +35,10 @@ if TYPE_CHECKING:
     from tuxemon.states.world.worldstate import WorldState
 
 
-class Entity:
+SaveDict = TypeVar("SaveDict", bound=Mapping[str, Any])
+
+
+class Entity(Generic[SaveDict]):
     """
     Entity in the game.
 
@@ -104,7 +108,7 @@ class Entity:
         """
         return not self.velocity3 == (0, 0, 0)
 
-    def get_state(self, session: Session) -> Mapping[str, str]:
+    def get_state(self, session: Session) -> SaveDict:
         """
         Get Entities internal state for saving/loading.
 
@@ -117,7 +121,7 @@ class Entity:
     def set_state(
         self,
         session: Session,
-        save_data: Mapping[str, str],
+        save_data: SaveDict,
     ) -> None:
         """
         Recreates entity from saved data.

@@ -50,6 +50,8 @@ from tuxemon.entity import Entity
 from tuxemon.npc import NPC
 from tuxemon.pyganim import PygAnimation, PygConductor
 from tuxemon.states.world.world_menus import WorldMenuState
+from tuxemon.sprite import Sprite
+from tuxemon.math import Vector2
 
 logger = logging.getLogger(__name__)
 
@@ -445,7 +447,9 @@ class WorldState(state.State):
         # TODO: move all drawing into a "WorldView" widget
         # interlace player sprites with tiles surfaces.
         # eventually, maybe use pygame sprites or something similar
-        world_surfaces = list()
+        world_surfaces: List[
+            Tuple[pygame.surface.Surface, Vector2, int]
+        ] = list()
 
         # temporary
         if self.current_map.renderer is None:
@@ -470,7 +474,7 @@ class WorldState(state.State):
         for anim_data in self.map_animations.values():
             anim = anim_data["animation"]
             if not anim.isFinished() and anim.visibility:
-                frame = (anim.getCurrentFrame(), anim_data["position"], anim_data["layer"])
+                frame = (anim.getCurrentFrame(), Vector2(anim_data["position"]), anim_data["layer"])
                 world_surfaces.append(frame)
 
         # position the surfaces correctly

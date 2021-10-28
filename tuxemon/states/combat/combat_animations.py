@@ -71,6 +71,8 @@ class CombatAnimations(ABC, Menu[None]):
         self.hud: MutableMapping[Monster, Sprite] = {}
         self.is_trainer_battle = False
         self.capdevs: List[CaptureDeviceSprite] = []
+        self._hp_bars: MutableMapping[Monster, HpBar] = {}
+        self._exp_bars: MutableMapping[Monster, ExpBar] = {}
 
         # eventually store in a config somewhere
         # is a tuple because more areas is needed for multi monster, etc

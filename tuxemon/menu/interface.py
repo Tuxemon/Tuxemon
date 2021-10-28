@@ -4,6 +4,7 @@ import pygame
 from tuxemon import tools, graphics
 from tuxemon.ui.draw import GraphicBox
 from typing import ClassVar, Optional, Callable, Generic, TypeVar
+from tuxemon.sprite import Sprite
 
 
 class Bar:
@@ -96,7 +97,7 @@ class ExpBar(Bar):
 T = TypeVar("T", covariant=True)
 
 
-class MenuItem(Generic[T], pygame.sprite.Sprite):
+class MenuItem(Generic[T], Sprite):
     """
     Item from a menu.
 
@@ -117,8 +118,7 @@ class MenuItem(Generic[T], pygame.sprite.Sprite):
     ):
         super().__init__()
         self.image = image
-        if image:
-            self.rect = image.get_rect()
+        self.rect = image.get_rect() if image else pygame.rect.Rect(0, 0, 0, 0)
         self.label = label
         self.description = description
         self.game_object = game_object
@@ -139,7 +139,7 @@ class MenuItem(Generic[T], pygame.sprite.Sprite):
         self._in_focus = bool(value)
 
 
-class MenuCursor(pygame.sprite.Sprite):
+class MenuCursor(Sprite):
     """
     Menu cursor.
 

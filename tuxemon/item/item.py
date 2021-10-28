@@ -109,9 +109,8 @@ class Item:
                 interface=ItemCondition,
             )
 
-        # If a slug of the item was provided, auto-load it from the item database.
-        if slug:
-            self.load(slug)
+        # Auto-load the item from the item database.
+        self.load(slug)
 
     def load(self, slug: str) -> None:
         """Loads and sets this items's attributes from the item.db database.

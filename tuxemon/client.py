@@ -497,17 +497,17 @@ class LocalPygameClient:
         world = self.get_state_by_name(WorldState)
         return world.current_map.filename
 
-    def get_map_name(self) -> Optional[str]:
+    def get_map_name(self) -> str:
         """
         Gets the name of the current map.
 
         Returns:
-            Name of the current map, if there is one.
+            Name of the current map.
 
         """
         map_path = self.get_map_filepath()
         if map_path is None:
-            return None
+            raise ValueError("Name of the map requested when no map is active")
 
         # extract map name from path
         return os.path.basename(map_path)

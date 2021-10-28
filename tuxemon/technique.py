@@ -109,12 +109,6 @@ class Technique:
         self.next_use = 0.0
         self.potency = 0.0
         self.power = 1.0
-        self.statspeed: JSONStat
-        self.stathp: JSONStat
-        self.statarmour: JSONStat
-        self.statdodge: JSONStat
-        self.statmelee: JSONStat
-        self.statranged: JSONStat
         self.range: Optional[str] = None
         self.recharge_length = 0
         self.sfx = ""

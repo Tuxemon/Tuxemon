@@ -51,13 +51,19 @@ class Entity(Generic[SaveDict]):
 
     """
 
-    def __init__(self) -> None:
-        self.slug = ""
-        self.world: Optional[WorldState] = None
+    def __init__(
+        self,
+        *,
+        slug: str = "",
+        world: WorldState,
+    ) -> None:
+        self.slug = slug
+        self.world = world
+        world.add_entity(self)
         self.instance_id = None
         self.tile_pos = (0, 0)
         self.position3 = Point3(0, 0, 0)
-        self.acceleration3 = Vector3(0, 0, 0)  # not used currently, just set velocity
+        self.acceleration3 = Vector3(0, 0, 0)  # not used currently
         self.velocity3 = Vector3(0, 0, 0)
         self.update_location = False
 

@@ -594,7 +594,23 @@ class StateManager:
 
         return instance
 
+    @overload
     def replace_state(self, state_name: str, **kwargs: Any) -> State:
+        pass
+
+    @overload
+    def replace_state(
+        self,
+        state_name: Type[StateType],
+        **kwargs: Any,
+    ) -> StateType:
+        pass
+
+    def replace_state(
+        self,
+        state_name: Union[str, Type[State]],
+        **kwargs: Any,
+    ) -> State:
         """
         Replace the currently running state with a new one.
 

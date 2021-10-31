@@ -53,6 +53,7 @@ from tuxemon.session import Session
 from tuxemon.math import Vector2
 from tuxemon.technique import Technique
 from tuxemon.states.combat.combat import EnqueuedAction
+from tuxemon.states.world.worldstate import WorldState
 
 if TYPE_CHECKING:
     import pygame
@@ -109,16 +110,17 @@ class NPC(Entity[NPCState]):
     def __init__(
         self,
         npc_slug: str,
+        *,
         sprite_name: Optional[str] = None,
         combat_front: Optional[str] = None,
         combat_back: Optional[str] = None,
+        world: WorldState,
     ) -> None:
-        super().__init__()
+
+        super().__init__(slug=npc_slug, world=world)
 
         # load initial data from the npc database
         npc_data = db.lookup(npc_slug, table="npc")
-
-        self.slug = npc_slug
 
         # This is the NPC's name to be used in dialog
         self.name = T.translate(self.slug)

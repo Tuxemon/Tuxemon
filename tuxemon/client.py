@@ -564,7 +564,23 @@ class LocalPygameClient:
         """Push new state, by name"""
         return self.state_manager.push_state(state_name, **kwargs)
 
+    @overload
     def replace_state(self, state_name: str, **kwargs: Any) -> State:
+        pass
+
+    @overload
+    def replace_state(
+        self,
+        state_name: Type[StateType],
+        **kwargs: Any,
+    ) -> StateType:
+        pass
+
+    def replace_state(
+        self,
+        state_name: Union[str, Type[State]],
+        **kwargs: Any,
+    ) -> State:
         """Replace current state with new one"""
         return self.state_manager.replace_state(state_name, **kwargs)
 

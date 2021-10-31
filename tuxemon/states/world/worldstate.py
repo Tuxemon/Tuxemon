@@ -44,14 +44,15 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 from tuxemon.graphics import ColorLike
 from typing import Optional, Sequence, Mapping, Tuple, Union, TypedDict, Dict,\
-    List, Set, Any, Literal
-from tuxemon.player import Player
+    List, Set, Any, Literal, TYPE_CHECKING
 from tuxemon.entity import Entity
-from tuxemon.npc import NPC
 from tuxemon.pyganim import PygAnimation, PygConductor
 from tuxemon.states.world.world_menus import WorldMenuState
-from tuxemon.sprite import Sprite
 from tuxemon.math import Vector2
+
+if TYPE_CHECKING:
+    from tuxemon.player import Player
+    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
@@ -66,7 +67,7 @@ CinemaState = Literal["off", "on", "turning on", "turning off"]
 
 
 class EntityCollision(TypedDict):
-    entity: Entity
+    entity: Entity[Any]
 
 
 class AnimationInfo(TypedDict):
@@ -114,6 +115,8 @@ class WorldState(state.State):
         map_name: Optional[str] = None,
         **kwargs: Any,
     ) -> None:
+        from tuxemon.player import Player
+
         # Provide access to the screen surface
         self.screen = self.client.screen
         self.screen_rect = self.screen.get_rect()
@@ -187,6 +190,11 @@ class WorldState(state.State):
         self.cinema_bottom["on_position"] = [0, self.resolution[1] - self.cinema_bottom["surface"].get_height()]
 
         self.map_animations: Dict[str, AnimationInfo] = {}
+
+        if local_session.player is None:
+
+            new_player = Player(prepare.CONFIG.player_npc, world=self)
+            local_session.player = new_player
 
         if map_name:
             self.change_map(map_name)
@@ -523,7 +531,7 @@ class WorldState(state.State):
         self.player = player
         self.add_entity(player)
 
-    def add_entity(self, entity: NPC) -> None:
+    def add_entity(self, entity: Entity[Any]) -> None:
         """
         Add an entity to the world.
 
@@ -531,8 +539,13 @@ class WorldState(state.State):
             entity: Entity to add.
 
         """
+        from tuxemon.npc import NPC
+
         entity.world = self
-        self.npcs[entity.slug] = entity
+
+        # Maybe in the future the world should have a dict of entities instead?
+        if isinstance(entity, NPC):
+            self.npcs[entity.slug] = entity
 
     def get_entity(self, slug: str) -> Optional[NPC]:
         """

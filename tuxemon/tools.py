@@ -25,11 +25,6 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 #
-from __future__ import annotations
-from typing import (Any, Optional, Protocol, Sequence, Tuple, Type, TypeVar,
-    Union, Mapping, Iterable, TYPE_CHECKING, Callable, NoReturn)
-import typing
-from tuxemon.math import Vector2
 
 """
 
@@ -41,20 +36,28 @@ if more appropriate.  Ideally this should be kept small.
 
 """
 
+from __future__ import annotations
+from typing import (Any, Optional, Protocol, Sequence, Tuple, Type, TypeVar,
+    Union, Mapping, Iterable, TYPE_CHECKING, Callable, NoReturn)
+import typing
+from tuxemon.math import Vector2
+
 import logging
-import re
 from itertools import zip_longest
 
 from tuxemon.compat import ReadOnlyRect
 from tuxemon import prepare
 from tuxemon.locale import T
+from tuxemon.session import local_session
 
 if TYPE_CHECKING:
     from tuxemon.session import Session
     from tuxemon.sprite import Sprite
     from tuxemon.item.item import Item
     from tuxemon.state import State
+    from tuxemon.client import LocalPygameClient
     import pygame
+
 
 logger = logging.getLogger(__name__)
 
@@ -378,3 +381,20 @@ def assert_never(value: NoReturn) -> NoReturn:
 
     """
     assert False, f'Unhandled value: {value} ({type(value).__name__})'
+
+
+def create_world_and_player(
+    client: LocalPygameClient,
+    map_name: str,
+    replace_state: bool = False,
+) -> None:
+    from tuxemon.player import Player
+    from tuxemon.states.world.worldstate import WorldState
+
+    if replace_state:
+        world = client.replace_state(WorldState, map_name=map_name)
+    else:
+        world = client.push_state(WorldState, map_name=map_name)
+
+    new_player = Player(prepare.CONFIG.player_npc, world=world)
+    local_session.player = new_player

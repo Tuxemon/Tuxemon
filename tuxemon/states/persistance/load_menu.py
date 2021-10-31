@@ -7,7 +7,6 @@ from tuxemon.session import local_session
 from typing import Any, Optional
 from tuxemon.menu.interface import MenuItem
 from tuxemon.states.world.worldstate import WorldState
-from tuxemon.tools import create_world_and_player
 
 logger = logging.getLogger(__name__)
 

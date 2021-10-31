@@ -38,7 +38,6 @@ from tuxemon.states.persistance.load_menu import LoadMenuState
 from tuxemon.states.splash import SplashState
 from tuxemon.states.transition.fade import FadeInTransition
 from tuxemon.states.world.worldstate import WorldState
-from tuxemon.tools import create_world_and_player
 
 logger = logging.getLogger(__name__)
 

@@ -497,17 +497,17 @@ class LocalPygameClient:
         world = self.get_state_by_name(WorldState)
         return world.current_map.filename
 
-    def get_map_name(self) -> Optional[str]:
+    def get_map_name(self) -> str:
         """
         Gets the name of the current map.
 
         Returns:
-            Name of the current map, if there is one.
+            Name of the current map.
 
         """
         map_path = self.get_map_filepath()
         if map_path is None:
-            return None
+            raise ValueError("Name of the map requested when no map is active")
 
         # extract map name from path
         return os.path.basename(map_path)
@@ -564,7 +564,23 @@ class LocalPygameClient:
         """Push new state, by name"""
         return self.state_manager.push_state(state_name, **kwargs)
 
+    @overload
     def replace_state(self, state_name: str, **kwargs: Any) -> State:
+        pass
+
+    @overload
+    def replace_state(
+        self,
+        state_name: Type[StateType],
+        **kwargs: Any,
+    ) -> StateType:
+        pass
+
+    def replace_state(
+        self,
+        state_name: Union[str, Type[State]],
+        **kwargs: Any,
+    ) -> State:
         """Replace current state with new one"""
         return self.state_manager.replace_state(state_name, **kwargs)
 

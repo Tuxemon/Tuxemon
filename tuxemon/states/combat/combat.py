@@ -189,8 +189,6 @@ class CombatState(CombatAnimations):
         self._action_queue: List[EnqueuedAction] = []  # queue for techniques, items, and status effects
         self._status_icons: List[Sprite] = []  # list of sprites that are status icons
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
-        self._hp_bars: MutableMapping[Monster, HpBar] = {}
-        self._exp_bars: MutableMapping[Monster, ExpBar] = {}
         self._layout = dict()  # player => home areas on screen
         self._animation_in_progress = False  # if true, delay phase change
         self._round = 0

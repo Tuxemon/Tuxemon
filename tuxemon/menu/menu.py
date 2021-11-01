@@ -551,7 +551,9 @@ class Menu(Generic[T], state.State):
                         )
                     ]
 
-                for index, item in enumerate([i for i in self.menu_items if i.enabled]):
+                for index, item in enumerate([
+                    i for i in self.menu_items if i.enabled
+                ]):
                     if item.rect.collidepoint(mouse_pos):
                         self.change_selection(index)
                         selected = self.get_selected_item()

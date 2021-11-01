@@ -42,6 +42,7 @@ from tuxemon.sprite import Sprite
 
 if TYPE_CHECKING:
     import pygame
+    from tuxemon.npc import NPC
     from tuxemon.states.combat.combat import EnqueuedAction
 
 logger = logging.getLogger(__name__)
@@ -218,7 +219,7 @@ class Monster:
         self.battle_cry = ""  # slug for a sound file, used primarly when they enter battle
         self.faint_cry = ""  # slug for a sound file, used when the monster faints
         self.ai: Optional[ai.AI] = None
-        self.owner = None  # set to NPC instance if they own it
+        self.owner: Optional[NPC] = None  # set to NPC instance if they own it
 
         # The multiplier for experience
         self.experience_required_modifier = 1
@@ -658,8 +659,8 @@ class Monster:
 
 
 def decode_monsters(
-    json_data: Sequence[Mapping[str, Any]],
-) -> Sequence[Monster]:
+    json_data: Optional[Sequence[Mapping[str, Any]]],
+) -> List[Monster]:
     return [Monster(save_data=mon) for mon in json_data or {}]
 
 

@@ -24,9 +24,6 @@ class LoadMenuState(SaveMenuState):
     def on_menu_selection(self, menuitem: Optional[MenuItem[None]]) -> None:
         save_data = save.load(self.selected_index + 1)
         if save_data and "error" not in save_data:
-            # TODO: Get player from whatever place and use self.client in
-            # order to build a Session
-            local_session.player.set_state(local_session, save_data)
 
             try:
                 old_world = self.client.get_state_by_name(WorldState)
@@ -43,6 +40,10 @@ class LoadMenuState(SaveMenuState):
                 WorldState,
                 map_name=map_path,
             )
+
+            # TODO: Get player from whatever place and use self.client in
+            # order to build a Session
+            local_session.player.set_state(local_session, save_data)
 
             # teleport the player to the correct position using an event
             # engine action

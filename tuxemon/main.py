@@ -67,12 +67,8 @@ def main(
     # global/singleton hack for now
     setattr(prepare, "GLOBAL_CONTROL", client)
 
-    # load the player npc
-    new_player = Player(config.player_npc)
-
     # WIP.  Will be more complete with game-view
     local_session.client = client
-    local_session.player = new_player
 
     # background state is used to prevent other states from
     # being required to track dirty screen areas.  for example,

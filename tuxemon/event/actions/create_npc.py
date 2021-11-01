@@ -88,13 +88,10 @@ class CreateNpcAction(EventAction[CreateNpcActionParameters]):
             sprite = db.database["npc"][slug].get("sprite_name")
 
         # Create a new NPC object
-        npc = tuxemon.npc.NPC(slug, sprite_name=sprite)
+        npc = tuxemon.npc.NPC(slug, sprite_name=sprite, world=world)
         npc.set_position((pos_x, pos_y))
 
         # Set the NPC object's variables
         npc.behavior = behavior
         npc.ai = ai.RandomAI()
         npc.load_party()
-
-        # Add the NPC to the game's NPC list
-        world.add_entity(npc)

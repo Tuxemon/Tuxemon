@@ -32,6 +32,7 @@ import logging
 
 from tuxemon.npc import NPC
 from tuxemon.map import proj
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -40,8 +41,12 @@ logger = logging.getLogger(__name__)
 class Player(NPC):
     """Object for Players.  WIP"""
 
-    def __init__(self, npc_slug: str) -> None:
-        super().__init__(npc_slug)
+    def __init__(
+        self,
+        npc_slug: str,
+        world: WorldState,
+    ) -> None:
+        super().__init__(npc_slug, world=world)
         self.isplayer = True
 
         # Game variables for use with events

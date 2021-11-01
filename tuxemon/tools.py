@@ -25,18 +25,6 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 #
-from __future__ import annotations
-
-import logging
-import typing
-from itertools import zip_longest
-from typing import (TYPE_CHECKING, Any, Callable, Iterable, Mapping, NoReturn,
-                    Optional, Protocol, Sequence, Tuple, Type, TypeVar, Union)
-
-from tuxemon import prepare
-from tuxemon.compat import ReadOnlyRect
-from tuxemon.locale import T
-from tuxemon.math import Vector2
 
 """
 
@@ -48,14 +36,28 @@ if more appropriate.  Ideally this should be kept small.
 
 """
 
+from __future__ import annotations
+from typing import (Any, Optional, Protocol, Sequence, Tuple, Type, TypeVar,
+    Union, Mapping, Iterable, TYPE_CHECKING, Callable, NoReturn)
+import typing
+from tuxemon.math import Vector2
 
+import logging
+from itertools import zip_longest
+
+from tuxemon.compat import ReadOnlyRect
+from tuxemon import prepare
+from tuxemon.locale import T
+from tuxemon.session import local_session
 
 if TYPE_CHECKING:
     from tuxemon.session import Session
     from tuxemon.sprite import Sprite
     from tuxemon.item.item import Item
     from tuxemon.state import State
+    from tuxemon.client import LocalPygameClient
     import pygame
+
 
 logger = logging.getLogger(__name__)
 

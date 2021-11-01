@@ -53,6 +53,7 @@ from tuxemon.session import Session
 from tuxemon.math import Vector2
 from tuxemon.technique import Technique
 from tuxemon.states.combat.combat import EnqueuedAction
+from tuxemon.states.world.worldstate import WorldState
 
 if TYPE_CHECKING:
     import pygame
@@ -63,6 +64,19 @@ if TYPE_CHECKING:
     ]
 
 logger = logging.getLogger(__name__)
+
+
+class NPCState(TypedDict):
+    current_map: str
+    facing: Direction
+    game_variables: Dict[str, Any]
+    inventory: Mapping[str, Optional[int]]
+    monsters: Sequence[Mapping[str, Any]]
+    player_name: str
+    monster_boxes: Dict[str, Sequence[Mapping[str, Any]]]
+    item_boxes: Dict[str, Mapping[str, Optional[int]]]
+    tile_pos: Tuple[int, int]
+
 
 # reference direction and movement states to animation names
 # this dictionary is kinda wip, idk
@@ -78,7 +92,7 @@ def tile_distance(tile0: Iterable[float], tile1: Iterable[float]) -> float:
     return hypot(x1 - x0, y1 - y0)
 
 
-class NPC(Entity):
+class NPC(Entity[NPCState]):
     """
     Class for humanoid type game objects, NPC, Players, etc.
 
@@ -96,16 +110,17 @@ class NPC(Entity):
     def __init__(
         self,
         npc_slug: str,
+        *,
         sprite_name: Optional[str] = None,
         combat_front: Optional[str] = None,
         combat_back: Optional[str] = None,
+        world: WorldState,
     ) -> None:
-        super().__init__()
+
+        super().__init__(slug=npc_slug, world=world)
 
         # load initial data from the npc database
         npc_data = db.lookup(npc_slug, table="npc")
-
-        self.slug = npc_slug
 
         # This is the NPC's name to be used in dialog
         self.name = T.translate(self.slug)
@@ -154,7 +169,7 @@ class NPC(Entity):
 
         # movement related
         self.move_direction: Optional[Direction] = None  # Set this value to move the npc (see below)
-        self.facing = "down"  # Set this value to change the facing direction
+        self.facing: Direction = "down"  # Set this value to change the facing direction
         self.moverate = CONFIG.player_walkrate  # walk by default
         self.ignore_collisions = False
 
@@ -177,7 +192,7 @@ class NPC(Entity):
             self.playerHeight),
         )  # Collision rect
 
-    def get_state(self, session: Session) -> Mapping[str, Any]:
+    def get_state(self, session: Session) -> NPCState:
         """
         Prepares a dictionary of the npc to be saved to a file.
 
@@ -189,7 +204,7 @@ class NPC(Entity):
 
         """
 
-        state = {
+        state: NPCState = {
             "current_map": session.client.get_map_name(),
             "facing": self.facing,
             "game_variables": self.game_variables,
@@ -201,17 +216,18 @@ class NPC(Entity):
             "tile_pos": self.tile_pos,
         }
 
-        for key, value in self.monster_boxes.items():
-            state["monster_boxes"][key] = encode_monsters(value)
-        for key, value in self.item_boxes.items():
-            state["item_boxes"][key] = encode_inventory(value)
+        for monsterkey, monstervalue in self.monster_boxes.items():
+            state["monster_boxes"][monsterkey] = encode_monsters(monstervalue)
+
+        for itemkey, itemvalue in self.item_boxes.items():
+            state["item_boxes"][itemkey] = encode_inventory(itemvalue)
 
         return state
 
     def set_state(
         self,
         session: Session,
-        save_data: Mapping[str, Any],
+        save_data: NPCState,
     ) -> None:
         """
         Recreates npc from saved data.
@@ -223,13 +239,21 @@ class NPC(Entity):
         """
         self.facing = save_data.get("facing", "down")
         self.game_variables = save_data["game_variables"]
-        self.inventory = decode_inventory(session, self, save_data.get("inventory", {}))
+        self.inventory = decode_inventory(
+            session,
+            self,
+            save_data.get("inventory", {}),
+        )
         self.monsters = decode_monsters(save_data.get("monsters"))
         self.name = save_data["player_name"]
-        for key, value in save_data["monster_boxes"].items():
-            self.monster_boxes[key] = decode_monsters(value)
-        for key, value in save_data["item_boxes"].items():
-            self.item_boxes[key] = decode_inventory(session, self, value)
+        for monsterkey, monstervalue in save_data["monster_boxes"].items():
+            self.monster_boxes[monsterkey] = decode_monsters(monstervalue)
+        for itemkey, itemvalue in save_data["item_boxes"].items():
+            self.item_boxes[itemkey] = decode_inventory(
+                session,
+                self,
+                itemvalue,
+            )
 
     def load_sprites(self) -> None:
         """Load sprite graphics."""

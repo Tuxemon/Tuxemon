@@ -180,7 +180,7 @@ def load_sprite(
 
 def load_animated_sprite(
     filenames: Iterable[str],
-    delay: int,
+    delay: float,
     **rect_kwargs: Any,
 ) -> Sprite:
     """
@@ -359,8 +359,8 @@ def scale_sprite(
 
     """
     center = sprite.rect.center
-    sprite.rect.width *= ratio
-    sprite.rect.height *= ratio
+    sprite.rect.width = int(sprite.rect.width * ratio)
+    sprite.rect.height = int(sprite.rect.height * ratio)
     sprite.rect.center = center
     sprite._original_image = pygame.transform.scale(sprite._original_image, sprite.rect.size)
     sprite._needs_update = True

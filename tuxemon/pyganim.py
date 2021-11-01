@@ -51,6 +51,7 @@ import pygame
 from pygame.rect import Rect
 from typing import Union, Literal, Sequence, Tuple, Optional, Any, Final, List,\
     TypeVar, Mapping
+import bisect
 
 PLAYING: Final = "playing"
 PAUSED: Final = "paused"
@@ -147,8 +148,7 @@ class PygAnimation:
             self.state = STOPPED
         if not self.visibility or self.state == STOPPED:
             return
-        frameNum = findStartTime(self._startTimes, self.elapsed)
-        destSurface.blit(self.getFrame(frameNum), dest)
+        destSurface.blit(self.getCurrentFrame(), dest)
 
     def getFrame(self, frameNum: int) -> pygame.surface.Surface:
         # Returns the pygame.Surface object of the frameNum-th frame in this
@@ -303,7 +303,7 @@ class PygAnimation:
         if self._loop:
             elapsed = elapsed % self._startTimes[-1]
         else:
-            elapsed = getInBetweenValue(0, elapsed, self._startTimes[-1])
+            elapsed = clip(elapsed, 0, self._startTimes[-1])
 
         rightNow = time.time()
         self._playingStartTime = rightNow - (elapsed * self.rate)
@@ -336,7 +336,7 @@ class PygAnimation:
         if self._loop:
             elapsed = elapsed % self._startTimes[-1]
         else:
-            elapsed = getInBetweenValue(0, elapsed, self._startTimes[-1])
+            elapsed = clip(elapsed, 0, self._startTimes[-1])
         elapsed += 0.00001  # done to compensate for rounding errors
         return elapsed
 
@@ -345,14 +345,14 @@ class PygAnimation:
     def _propGetCurrentFrameNum(self) -> int:
         # Return the frame number of the frame that will be currently
         # displayed if the animation object were drawn right now.
-        return findStartTime(self._startTimes, self.elapsed)
+        return bisect.bisect(self._startTimes, self.elapsed) - 1
 
     def _propSetCurrentFrameNum(self, frameNum: int) -> None:
         # Change the elapsed time to the beginning of a specific frame.
         if self.loop:
             frameNum = frameNum % len(self._images)
         else:
-            frameNum = getInBetweenValue(0, frameNum, len(self._images) - 1)
+            frameNum = clip(frameNum, 0, len(self._images) - 1)
         self.elapsed = self._startTimes[frameNum]
 
     currentFrameNum = property(_propGetCurrentFrameNum, _propSetCurrentFrameNum)
@@ -438,45 +438,7 @@ class PygConductor:
 
 T = TypeVar("T", bound=float)
 
-def getInBetweenValue(lowerBound: T, value: T, upperBound: T) -> T:
-    # Returns the value within the bounds of the lower and upper bound parameters.
-    # If value is less than lowerBound, then return lowerBound.
-    # If value is greater than upperBound, then return upperBound.
-    # Otherwise, just return value as it is.
-    if value < lowerBound:
-        return lowerBound
-    elif value > upperBound:
-        return upperBound
-    return value
 
-
-def findStartTime(startTimes: Sequence[float], target: float) -> int:
-    # With startTimes as a list of sequential numbers and target as a number,
-    # returns the index of the number in startTimes that preceeds target.
-    #
-    # For example, if startTimes was [0, 2, 4.5, 7.3, 10] and target was 6,
-    # then findStartTime() would return 2. If target was 12, returns 4.
-    assert startTimes[0] == 0
-    lb = 0  # "lb" is lower bound
-    ub = len(startTimes) - 1  # "ub" is upper bound
-
-    # handle special cases:
-    if not startTimes:
-        return 0
-    if target >= startTimes[-1]:
-        return ub - 1
-
-    # perform binary search:
-    while True:
-        i = int((ub - lb) / 2) + lb
-
-        if startTimes[i] == target or (startTimes[i] < target and startTimes[i + 1] > target):
-            if i == len(startTimes):
-                return i - 1
-            else:
-                return i
-
-        if startTimes[i] < target:
-            lb = i
-        elif startTimes[i] > target:
-            ub = i
+def clip(value: T, lower: T, upper: T) -> T:
+    """Clip value to [lower, upper] range."""
+    return lower if value < lower else upper if value > upper else value

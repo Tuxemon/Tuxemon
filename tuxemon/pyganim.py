@@ -242,22 +242,23 @@ class PygAnimation:
         maxWidth, maxHeight = self.getMaxSize()
         return Rect(0, 0, maxWidth, maxHeight)
 
-    # Getter and setter methods for properties
-    def _propGetRate(self) -> float:
+    @property
+    def rate(self) -> float:
         return self._rate
 
-    def _propSetRate(self, rate: float) -> None:
+    @rate.setter
+    def rate(self, rate: float) -> None:
         rate = float(rate)
         if rate < 0:
             raise ValueError("rate must be greater than 0.")
         self._rate = rate
 
-    rate = property(_propGetRate, _propSetRate)
-
-    def _propGetLoop(self) -> bool:
+    @property
+    def loop(self) -> bool:
         return self._loop
 
-    def _propSetLoop(self, loop: bool) -> None:
+    @loop.setter
+    def loop(self, loop: bool) -> None:
         if self.state == PLAYING and self._loop and not loop:
             # if we are turning off looping while the animation is playing,
             # we need to modify the _playingStartTime so that the rest of
@@ -266,15 +267,15 @@ class PygAnimation:
             self._playingStartTime = time.time() - self.elapsed
         self._loop = bool(loop)
 
-    loop = property(_propGetLoop, _propSetLoop)
-
-    def _propGetState(self) -> State:
+    @property
+    def state(self) -> State:
         if self.isFinished():
             self._state = STOPPED  # if finished playing, then set state to STOPPED.
 
         return self._state
 
-    def _propSetState(self, state: State) -> None:
+    @state.setter
+    def state(self, state: State) -> None:
         if state not in (PLAYING, PAUSED, STOPPED):
             raise ValueError("state must be one of pyganim.PLAYING, pyganim.PAUSED, or pyganim.STOPPED")
         if state == PLAYING:
@@ -284,35 +285,16 @@ class PygAnimation:
         elif state == STOPPED:
             self.stop()
 
-    state = property(_propGetState, _propSetState)
-
-    def _propGetVisibility(self) -> bool:
+    @property
+    def visibility(self) -> bool:
         return self._visibility
 
-    def _propSetVisibility(self, visibility: bool) -> None:
+    @visibility.setter
+    def visibility(self, visibility: bool) -> None:
         self._visibility = bool(visibility)
 
-    visibility = property(_propGetVisibility, _propSetVisibility)
-
-    def _propSetElapsed(self, elapsed: float) -> None:
-        # NOTE: Do to floating point rounding errors, this doesn't work precisely.
-        elapsed += 0.00001  # done to compensate for rounding errors
-        # TODO - I really need to find a better way to handle the floating point thing.
-
-        # Set the elapsed time to a specific value.
-        if self._loop:
-            elapsed = elapsed % self._startTimes[-1]
-        else:
-            elapsed = clip(elapsed, 0, self._startTimes[-1])
-
-        rightNow = time.time()
-        self._playingStartTime = rightNow - (elapsed * self.rate)
-
-        if self.state in (PAUSED, STOPPED):
-            self.state = PAUSED  # if stopped, then set to paused
-            self._pausedStartTime = rightNow
-
-    def _propGetElapsed(self) -> float:
+    @property
+    def elapsed(self) -> float:
         # NOTE: Do to floating point rounding errors, this doesn't work precisely.
 
         # To prevent infinite recursion, don't use the self.state property,
@@ -340,22 +322,39 @@ class PygAnimation:
         elapsed += 0.00001  # done to compensate for rounding errors
         return elapsed
 
-    elapsed = property(_propGetElapsed, _propSetElapsed)
+    @elapsed.setter
+    def elapsed(self, elapsed: float) -> None:
+        # NOTE: Do to floating point rounding errors, this doesn't work precisely.
+        elapsed += 0.00001  # done to compensate for rounding errors
+        # TODO - I really need to find a better way to handle the floating point thing.
 
-    def _propGetCurrentFrameNum(self) -> int:
+        # Set the elapsed time to a specific value.
+        if self._loop:
+            elapsed = elapsed % self._startTimes[-1]
+        else:
+            elapsed = clip(elapsed, 0, self._startTimes[-1])
+
+        rightNow = time.time()
+        self._playingStartTime = rightNow - (elapsed * self.rate)
+
+        if self.state in (PAUSED, STOPPED):
+            self.state = PAUSED  # if stopped, then set to paused
+            self._pausedStartTime = rightNow
+
+    @property
+    def currentFrameNum(self) -> int:
         # Return the frame number of the frame that will be currently
         # displayed if the animation object were drawn right now.
         return bisect.bisect(self._startTimes, self.elapsed) - 1
 
-    def _propSetCurrentFrameNum(self, frameNum: int) -> None:
+    @currentFrameNum.setter
+    def currentFrameNum(self, frameNum: int) -> None:
         # Change the elapsed time to the beginning of a specific frame.
         if self.loop:
             frameNum = frameNum % len(self._images)
         else:
             frameNum = clip(frameNum, 0, len(self._images) - 1)
         self.elapsed = self._startTimes[frameNum]
-
-    currentFrameNum = property(_propGetCurrentFrameNum, _propSetCurrentFrameNum)
 
 
 class PygConductor:
@@ -392,15 +391,16 @@ class PygConductor:
                 assert isinstance(anim, PygAnimation)
                 self._animations.append(anim)
 
-    def _propGetAnimations(self) -> Sequence[PygAnimation]:
+    @property
+    def animations(self) -> Sequence[PygAnimation]:
         return self._animations
 
-    def _propSetAnimations(self, val: List[PygAnimation]) -> None:
+    @animations.setter
+    def animations(self, val: List[PygAnimation]) -> None:
         self._animations = val
 
-    animations = property(_propGetAnimations, _propSetAnimations)
-
-    def _propGetState(self) -> State:
+    @property
+    def state(self) -> State:
         if self.isFinished():
             self._state = STOPPED
 
@@ -409,8 +409,6 @@ class PygConductor:
     def isFinished(self) -> bool:
         result = all(a.isFinished() for a in self._animations)
         return result
-
-    state = property(_propGetState)
 
     def play(self, startTime: Optional[float] = None) -> None:
         if startTime is None:

@@ -118,9 +118,9 @@ class PygAnimation:
             frame_img = pygame.image.load(frame[0]) if isinstance(frame[0], str) else frame[0]
             self._images.append(frame_img)
             self._durations.append(frame[1])
-        self._startTimes = self._getStartTimes()
+        self._startTimes = self._get_start_times()
 
-    def _getStartTimes(self) -> Sequence[float]:
+    def _get_start_times(self) -> Sequence[float]:
         # Internal method to get the start times based off of the _durations list.
         # Don't call this method.
         startTimes = [0.0]
@@ -144,13 +144,13 @@ class PygAnimation:
         #     The position to draw the frame. This is passed to Pygame's Surface's
         #     blit() function, so it can be either a (top, left) tuple or a Rect
         #     object.
-        if self.isFinished():
+        if self.is_finished():
             self.state = STOPPED
         if not self.visibility or self.state == STOPPED:
             return
-        destSurface.blit(self.getCurrentFrame(), dest)
+        destSurface.blit(self.get_current_frame(), dest)
 
-    def getFrame(self, frameNum: int) -> pygame.surface.Surface:
+    def get_frame(self, frameNum: int) -> pygame.surface.Surface:
         # Returns the pygame.Surface object of the frameNum-th frame in this
         # animation object. If there is a transformed version of the frame,
         # it will return that one.
@@ -159,13 +159,13 @@ class PygAnimation:
         else:
             return self._transformedImages[frameNum]
 
-    def getCurrentFrame(self) -> pygame.surface.Surface:
+    def get_current_frame(self) -> pygame.surface.Surface:
         # Returns the pygame.Surface object of the frame that would be drawn
         # if the blit() method were called right now. If there is a transformed
         # version of the frame, it will return that one.
-        return self.getFrame(self.currentFrameNum)
+        return self.get_frame(self.current_frame_num)
 
-    def isFinished(self) -> bool:
+    def is_finished(self) -> bool:
         # Returns True if this animation doesn't loop and has finished playing
         # all the frames it has.
         return not self.loop and self.elapsed >= self._startTimes[-1]
@@ -180,7 +180,7 @@ class PygAnimation:
             startTime = time.time()
 
         if self._state == PLAYING:
-            if self.isFinished():
+            if self.is_finished():
                 # if the animation doesn't loop and has already finished, then
                 # calling play() causes it to replay from the beginning.
                 self._playingStartTime = startTime
@@ -220,7 +220,7 @@ class PygAnimation:
             return  # do nothing
         self._state = STOPPED
 
-    def getMaxSize(self) -> Tuple[int, int]:
+    def get_max_size(self) -> Tuple[int, int]:
         # Goes through all the Surface objects in this animation object
         # and returns the max width and max height that it finds. (These
         # widths and heights may be on different Surface objects.)
@@ -238,8 +238,8 @@ class PygAnimation:
     def get_rect(self) -> pygame.rect.Rect:
         # Returns a Rect object for this animation object.
         # The top and left will be set to 0, 0, and the width and height
-        # will be set to what is returned by getMaxSize().
-        maxWidth, maxHeight = self.getMaxSize()
+        # will be set to what is returned by get_max_size().
+        maxWidth, maxHeight = self.get_max_size()
         return Rect(0, 0, maxWidth, maxHeight)
 
     @property
@@ -269,7 +269,7 @@ class PygAnimation:
 
     @property
     def state(self) -> State:
-        if self.isFinished():
+        if self.is_finished():
             self._state = STOPPED  # if finished playing, then set state to STOPPED.
 
         return self._state
@@ -342,13 +342,13 @@ class PygAnimation:
             self._pausedStartTime = rightNow
 
     @property
-    def currentFrameNum(self) -> int:
+    def current_frame_num(self) -> int:
         # Return the frame number of the frame that will be currently
         # displayed if the animation object were drawn right now.
         return bisect.bisect(self._startTimes, self.elapsed) - 1
 
-    @currentFrameNum.setter
-    def currentFrameNum(self, frameNum: int) -> None:
+    @current_frame_num.setter
+    def current_frame_num(self, frameNum: int) -> None:
         # Change the elapsed time to the beginning of a specific frame.
         if self.loop:
             frameNum = frameNum % len(self._images)
@@ -401,13 +401,13 @@ class PygConductor:
 
     @property
     def state(self) -> State:
-        if self.isFinished():
+        if self.is_finished():
             self._state = STOPPED
 
         return self._state
 
-    def isFinished(self) -> bool:
-        result = all(a.isFinished() for a in self._animations)
+    def is_finished(self) -> bool:
+        result = all(a.is_finished() for a in self._animations)
         return result
 
     def play(self, startTime: Optional[float] = None) -> None:

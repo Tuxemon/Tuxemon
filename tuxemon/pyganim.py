@@ -52,6 +52,7 @@ from pygame.rect import Rect
 from typing import Union, Literal, Sequence, Tuple, Optional, Any, Final, List,\
     TypeVar, Mapping
 import bisect
+import itertools
 
 PLAYING: Final = "playing"
 PAUSED: Final = "paused"
@@ -61,185 +62,190 @@ State = Literal["playing", "paused", "stopped"]
 
 
 class PygAnimation:
+    """
+    Animation of Pygame surfaces. Starts off in the STOPPED state.
+
+    Parameters:
+        frames: A list of tuples (image, duration) for each frame of
+            animation, where image can be either a Pygame surface or a
+            path to an image, and duration is the duration in seconds.
+            Note that the images and duration cannot be changed. A new
+            PygAnimation object will have to be created.
+        loop: Tells the animation object to keep playing in a loop.
+
+    """
+
     def __init__(
         self,
-        frames: Union[
-            Literal["_copy"],
-            Sequence[Tuple[Union[str, pygame.surface.Surface], float]]
-        ],
+        frames: Sequence[Tuple[Union[str, pygame.surface.Surface], float]],
         loop: bool = True,
     ) -> None:
-        # Constructor function for the animation object. Starts off in the STOPPED state.
-        #
-        # @param frames
-        #     A list of tuples for each frame of animation, in one of the following format:
-        #       (image_of_frame<pygame.Surface>, duration_in_seconds<int>)
-        #       (filename_of_image<str>, duration_in_seconds<int>)
-        #     Note that the images and duration cannot be changed. A new PygAnimation object
-        #     will have to be created.
-        # @param loop Tells the animation object to keep playing in a loop.
 
         # _images stores the pygame.Surface objects of each frame
         self._images = []
+
         # _durations stores the durations (in seconds) of each frame.
         # e.g. [1, 1, 2.5] means the first and second frames last one second,
         # and the third frame lasts for two and half seconds.
         self._durations = []
-        # _startTimes shows when each frame begins. len(self._startTimes) will
-        # always be one more than len(self._images), because the last number
-        # will be when the last frame ends, rather than when it starts.
-        # The values are in seconds.
-        # So self._startTimes[-1] tells you the length of the entire animation.
-        # e.g. if _durations is [1, 1, 2.5], then _startTimes will be [0, 1, 2, 4.5]
 
-        # if the sprites are transformed, the originals are kept in _images
-        # and the transformed sprites are kept in _transformedImages.
-        self._transformedImages: List[pygame.surface.Surface] = []
+        self._state: State = STOPPED
+        self._loop = loop
+        self._rate = 1.0
+        self._visibility = True
 
-        self._state: State = STOPPED  # The state is always either PLAYING, PAUSED, or STOPPED
-        self._loop = loop  # If True, the animation will keep looping. If False, the animation stops after playing once.
-        self._rate = 1.0  # 2.0 means play the animation twice as fast, 0.5 means twice as slow
-        self._visibility = True  # If False, then nothing is drawn when the blit() methods are called
+        # The time that the play() function was last called.
+        self._playing_start_time = 0.0
 
-        self._playingStartTime = 0.0  # the time that the play() function was last called.
-        self._pausedStartTime = 0.0  # the time that the pause() function was last called.
+        # The time that the pause() function was last called.
+        self._paused_start_time = 0.0
 
-        self.numFrames = len(frames)
-        assert self.numFrames > 0, "Must contain at least one frame."
-        for i in range(self.numFrames):
-            # load each frame of animation into _images
+        self.num_frames = len(frames)
+        assert self.num_frames > 0, "Must contain at least one frame."
+
+        # Load each frame of animation into _images
+        for i in range(self.num_frames):
+
             frame = frames[i]
-            assert type(frame) in (list, tuple) and len(frame) == 2, "Frame %s has incorrect format." % (i)
+            assert isinstance(frame, tuple) and len(frame) == 2, (
+                f"Frame {i} has incorrect format."
+            )
             assert type(frame[0]) in (
                 str,
                 pygame.Surface,
-            ), "Frame %s image must be a string filename or a pygame.Surface" % (i)
-            assert frame[1] > 0, "Frame %s duration must be greater than zero." % (i)
-            frame_img = pygame.image.load(frame[0]) if isinstance(frame[0], str) else frame[0]
+            ), f"Frame {i} image must be a string filename or a pygame.Surface"
+            assert frame[1] > 0, (
+                f"Frame {i} duration must be greater than zero."
+            )
+            frame_img = (
+                pygame.image.load(frame[0])
+                if isinstance(frame[0], str)
+                else frame[0]
+            )
             self._images.append(frame_img)
             self._durations.append(frame[1])
-        self._startTimes = self._get_start_times()
 
-    def _get_start_times(self) -> Sequence[float]:
-        # Internal method to get the start times based off of the _durations list.
-        # Don't call this method.
-        startTimes = [0.0]
-        for i in range(self.numFrames):
-            startTimes.append(startTimes[-1] + self._durations[i])
-        return startTimes
+        # _start_times shows when each frame begins. len(self._start_times)
+        # will always be one more than len(self._images), because the last
+        # number will be when the last frame ends, rather than when it starts.
+        # The values are in seconds.
+        # So self._start_times[-1] tells you the length of the entire
+        # animation. e.g. if _durations is [1, 1, 2.5], then _start_times will
+        # be [0, 1, 2, 4.5]
+        self._start_times = (0.0,) + tuple(
+            itertools.accumulate(self._durations),
+        )
 
     def blit(
         self,
-        destSurface: pygame.surface.Surface,
+        dest_surface: pygame.surface.Surface,
         dest: pygame.rect.Rect,
     ) -> None:
-        # Draws the appropriate frame of the animation to the destination Surface
-        # at the specified position.
-        #
-        # NOTE: If the visibility attribute is False, then nothing will be drawn.
-        #
-        # @param destSurface
-        #     The Surface object to draw the frame
-        # @param dest
-        #     The position to draw the frame. This is passed to Pygame's Surface's
-        #     blit() function, so it can be either a (top, left) tuple or a Rect
-        #     object.
+        """
+        Draw the appropriate frame of the animation to the destination Surface.
+
+        Note:
+            If the visibility attribute is False, then nothing will be drawn.
+
+        Parameters:
+            dest_surface: The Surface object to draw the frame to.
+            dest: The position to draw the frame.
+
+        """
         if self.is_finished():
             self.state = STOPPED
         if not self.visibility or self.state == STOPPED:
             return
-        destSurface.blit(self.get_current_frame(), dest)
+        dest_surface.blit(self.get_current_frame(), dest)
 
-    def get_frame(self, frameNum: int) -> pygame.surface.Surface:
-        # Returns the pygame.Surface object of the frameNum-th frame in this
-        # animation object. If there is a transformed version of the frame,
-        # it will return that one.
-        if self._transformedImages == []:
-            return self._images[frameNum]
-        else:
-            return self._transformedImages[frameNum]
+    def get_frame(self, frame_num: int) -> pygame.surface.Surface:
+        """Return the pygame.Surface object of the frame_num-th frame."""
+        return self._images[frame_num]
 
     def get_current_frame(self) -> pygame.surface.Surface:
-        # Returns the pygame.Surface object of the frame that would be drawn
-        # if the blit() method were called right now. If there is a transformed
-        # version of the frame, it will return that one.
+        """Return the current frame."""
         return self.get_frame(self.current_frame_num)
 
     def is_finished(self) -> bool:
-        # Returns True if this animation doesn't loop and has finished playing
-        # all the frames it has.
-        return not self.loop and self.elapsed >= self._startTimes[-1]
+        """"Return ``True`` if this animation has finished playing."""
+        return not self.loop and self.elapsed >= self._start_times[-1]
 
-    def play(self, startTime: Optional[float] = None) -> None:
-        # Start playing the animation.
-
-        # play() is essentially a setter function for self._state
-        # NOTE: Don't adjust the self.state property, only self._state
-
-        if startTime is None:
-            startTime = time.time()
+    def play(self, start_time: Optional[float] = None) -> None:
+        """Start playing the animation."""
+        if start_time is None:
+            start_time = time.time()
 
         if self._state == PLAYING:
             if self.is_finished():
                 # if the animation doesn't loop and has already finished, then
                 # calling play() causes it to replay from the beginning.
-                self._playingStartTime = startTime
+                self._playing_start_time = start_time
         elif self._state == STOPPED:
             # if animation was stopped, start playing from the beginning
-            self._playingStartTime = startTime
+            self._playing_start_time = start_time
         elif self._state == PAUSED:
             # if animation was paused, start playing from where it was paused
-            self._playingStartTime = startTime - (self._pausedStartTime - self._playingStartTime)
+            self._playing_start_time = start_time - (
+                self._paused_start_time - self._playing_start_time
+            )
         self._state = PLAYING
 
-    def pause(self, startTime: Optional[float] = None) -> None:
-        # Stop having the animation progress, and keep it at the current frame.
-
-        # pause() is essentially a setter function for self._state
-        # NOTE: Don't adjust the self.state property, only self._state
-
-        if startTime is None:
-            startTime = time.time()
+    def pause(self, start_time: Optional[float] = None) -> None:
+        """Stop having the animation progress."""
+        if start_time is None:
+            start_time = time.time()
 
         if self._state == PAUSED:
             return  # do nothing
         elif self._state == PLAYING:
-            self._pausedStartTime = startTime
+            self._paused_start_time = start_time
         elif self._state == STOPPED:
             rightNow = time.time()
-            self._playingStartTime = rightNow
-            self._pausedStartTime = rightNow
+            self._playing_start_time = rightNow
+            self._paused_start_time = rightNow
         self._state = PAUSED
 
     def stop(self) -> None:
-        # Reset the animation to the beginning frame, and do not continue playing
-
-        # stop() is essentially a setter function for self._state
-        # NOTE: Don't adjust the self.state property, only self._state
+        """Reset the animation to the beginning frame, and stop."""
         if self._state == STOPPED:
             return  # do nothing
         self._state = STOPPED
 
-    def get_max_size(self) -> Tuple[int, int]:
-        # Goes through all the Surface objects in this animation object
-        # and returns the max width and max height that it finds. (These
-        # widths and heights may be on different Surface objects.)
-        frameWidths = []
-        frameHeights = []
+    def _get_max_size(self) -> Tuple[int, int]:
+        """
+        Get the maximum size of the animation.
+
+        Goes through all the Surface objects in this animation object
+        and returns the max width and max height that it finds, as these
+        widths and heights may be on different Surface objects.
+
+        Returns:
+            Max size in the form (width, height).
+
+        """
+        frame_widths = []
+        frame_heights = []
         for i in range(len(self._images)):
             frameWidth, frameHeight = self._images[i].get_size()
-            frameWidths.append(frameWidth)
-            frameHeights.append(frameHeight)
-        maxWidth = max(frameWidths)
-        maxHeight = max(frameHeights)
+            frame_widths.append(frameWidth)
+            frame_heights.append(frameHeight)
+        maxWidth = max(frame_widths)
+        maxHeight = max(frame_heights)
 
         return (maxWidth, maxHeight)
 
     def get_rect(self) -> pygame.rect.Rect:
-        # Returns a Rect object for this animation object.
-        # The top and left will be set to 0, 0, and the width and height
-        # will be set to what is returned by get_max_size().
-        maxWidth, maxHeight = self.get_max_size()
+        """
+        Returns a Rect object for this animation object.
+
+        The top and left will be set to 0, 0, and the width and height
+        will be set to the maximum size of the animation.
+
+        Returns:
+            Rect object of maximum size.
+
+        """
+        maxWidth, maxHeight = self._get_max_size()
         return Rect(0, 0, maxWidth, maxHeight)
 
     @property
@@ -260,24 +266,28 @@ class PygAnimation:
     @loop.setter
     def loop(self, loop: bool) -> None:
         if self.state == PLAYING and self._loop and not loop:
-            # if we are turning off looping while the animation is playing,
-            # we need to modify the _playingStartTime so that the rest of
-            # the animation will play, and then stop. (Otherwise, the
-            # animation will immediately stop playing if it has already looped.)
-            self._playingStartTime = time.time() - self.elapsed
+            # If we are turning off looping while the animation is playing,
+            # we need to modify the _playing_start_time so that the rest of
+            # the animation will play, and then stop. Otherwise, the
+            # animation will immediately stop playing if it has already looped.
+            self._playing_start_time = time.time() - self.elapsed
         self._loop = bool(loop)
 
     @property
     def state(self) -> State:
         if self.is_finished():
-            self._state = STOPPED  # if finished playing, then set state to STOPPED.
+            # If finished playing, then set state to STOPPED.
+            self._state = STOPPED
 
         return self._state
 
     @state.setter
     def state(self, state: State) -> None:
         if state not in (PLAYING, PAUSED, STOPPED):
-            raise ValueError("state must be one of pyganim.PLAYING, pyganim.PAUSED, or pyganim.STOPPED")
+            raise ValueError(
+                "state must be one of pyganim.PLAYING, pyganim.PAUSED, or "
+                "pyganim.STOPPED",
+            )
         if state == PLAYING:
             self.play()
         elif state == PAUSED:
@@ -295,7 +305,8 @@ class PygAnimation:
 
     @property
     def elapsed(self) -> float:
-        # NOTE: Do to floating point rounding errors, this doesn't work precisely.
+        # NOTE: Do to floating point rounding errors, this doesn't work
+        # precisely.
 
         # To prevent infinite recursion, don't use the self.state property,
         # just read/set self._state directly because the state getter calls
@@ -307,54 +318,59 @@ class PygAnimation:
             return 0
 
         if self._state == PLAYING:
-            # if playing, then draw the current frame (based on when the animation
-            # started playing). If not looping and the animation has gone through
-            # all the frames already, then draw the last frame.
-            elapsed = (time.time() - self._playingStartTime) * self.rate
+            # If playing, then draw the current frame (based on when the
+            # animation started playing). If not looping and the animation
+            # has gone through all the frames already, then draw the last
+            # frame.
+            elapsed = (time.time() - self._playing_start_time) * self.rate
         elif self._state == PAUSED:
-            # if paused, then draw the frame that was playing at the time the
+            # If paused, then draw the frame that was playing at the time the
             # PygAnimation object was paused
-            elapsed = (self._pausedStartTime - self._playingStartTime) * self.rate
+            elapsed = (
+                self._paused_start_time - self._playing_start_time
+            ) * self.rate
         if self._loop:
-            elapsed = elapsed % self._startTimes[-1]
+            elapsed = elapsed % self._start_times[-1]
         else:
-            elapsed = clip(elapsed, 0, self._startTimes[-1])
+            elapsed = clip(elapsed, 0, self._start_times[-1])
         elapsed += 0.00001  # done to compensate for rounding errors
         return elapsed
 
     @elapsed.setter
     def elapsed(self, elapsed: float) -> None:
-        # NOTE: Do to floating point rounding errors, this doesn't work precisely.
+        # NOTE: Do to floating point rounding errors, this doesn't work
+        # precisely.
         elapsed += 0.00001  # done to compensate for rounding errors
-        # TODO - I really need to find a better way to handle the floating point thing.
+        # TODO - I really need to find a better way to handle the floating
+        # point thing.
 
         # Set the elapsed time to a specific value.
         if self._loop:
-            elapsed = elapsed % self._startTimes[-1]
+            elapsed = elapsed % self._start_times[-1]
         else:
-            elapsed = clip(elapsed, 0, self._startTimes[-1])
+            elapsed = clip(elapsed, 0, self._start_times[-1])
 
         rightNow = time.time()
-        self._playingStartTime = rightNow - (elapsed * self.rate)
+        self._playing_start_time = rightNow - (elapsed * self.rate)
 
         if self.state in (PAUSED, STOPPED):
             self.state = PAUSED  # if stopped, then set to paused
-            self._pausedStartTime = rightNow
+            self._paused_start_time = rightNow
 
     @property
     def current_frame_num(self) -> int:
         # Return the frame number of the frame that will be currently
         # displayed if the animation object were drawn right now.
-        return bisect.bisect(self._startTimes, self.elapsed) - 1
+        return bisect.bisect(self._start_times, self.elapsed) - 1
 
     @current_frame_num.setter
-    def current_frame_num(self, frameNum: int) -> None:
+    def current_frame_num(self, frame_num: int) -> None:
         # Change the elapsed time to the beginning of a specific frame.
         if self.loop:
-            frameNum = frameNum % len(self._images)
+            frame_num = frame_num % len(self._images)
         else:
-            frameNum = clip(frameNum, 0, len(self._images) - 1)
-        self.elapsed = self._startTimes[frameNum]
+            frame_num = clip(frame_num, 0, len(self._images) - 1)
+        self.elapsed = self._start_times[frame_num]
 
 
 class PygConductor:
@@ -410,27 +426,27 @@ class PygConductor:
         result = all(a.is_finished() for a in self._animations)
         return result
 
-    def play(self, startTime: Optional[float] = None) -> None:
-        if startTime is None:
-            startTime = time.time()
+    def play(self, start_time: Optional[float] = None) -> None:
+        if start_time is None:
+            start_time = time.time()
 
-        for animObj in self._animations:
-            animObj.play(startTime)
+        for anim_obj in self._animations:
+            anim_obj.play(start_time)
 
         self._state = PLAYING
 
-    def pause(self, startTime: Optional[float] = None) -> None:
-        if startTime is None:
-            startTime = time.time()
+    def pause(self, start_time: Optional[float] = None) -> None:
+        if start_time is None:
+            start_time = time.time()
 
-        for animObj in self._animations:
-            animObj.pause(startTime)
+        for anim_obj in self._animations:
+            anim_obj.pause(start_time)
 
         self._state = PAUSED
 
     def stop(self) -> None:
-        for animObj in self._animations:
-            animObj.stop()
+        for anim_obj in self._animations:
+            anim_obj.stop()
         self._state = STOPPED
 
 

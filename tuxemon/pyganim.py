@@ -58,29 +58,6 @@ STOPPED: Final = "stopped"
 
 State = Literal["playing", "paused", "stopped"]
 
-# These values are used in the anchor() method.
-NORTHWEST: Final = "northwest"
-NORTH: Final = "north"
-NORTHEAST: Final = "northeast"
-WEST: Final = "west"
-CENTER: Final = "center"
-EAST: Final = "east"
-SOUTHWEST: Final = "southwest"
-SOUTH: Final = "south"
-SOUTHEAST: Final = "southeast"
-
-Anchor = Literal[
-    "northwest",
-    "north",
-    "northeast",
-    "west",
-    "center",
-    "east",
-    "southwest",
-    "south",
-    "southeast",
-]
-
 
 class PygAnimation:
     def __init__(
@@ -126,22 +103,21 @@ class PygAnimation:
         self._playingStartTime = 0.0  # the time that the play() function was last called.
         self._pausedStartTime = 0.0  # the time that the pause() function was last called.
 
-        if frames != "_copy":  # ('_copy' is passed for frames by the getCopies() method)
-            self.numFrames = len(frames)
-            assert self.numFrames > 0, "Must contain at least one frame."
-            for i in range(self.numFrames):
-                # load each frame of animation into _images
-                frame = frames[i]
-                assert type(frame) in (list, tuple) and len(frame) == 2, "Frame %s has incorrect format." % (i)
-                assert type(frame[0]) in (
-                    str,
-                    pygame.Surface,
-                ), "Frame %s image must be a string filename or a pygame.Surface" % (i)
-                assert frame[1] > 0, "Frame %s duration must be greater than zero." % (i)
-                frame_img = pygame.image.load(frame[0]) if isinstance(frame[0], str) else frame[0]
-                self._images.append(frame_img)
-                self._durations.append(frame[1])
-            self._startTimes = self._getStartTimes()
+        self.numFrames = len(frames)
+        assert self.numFrames > 0, "Must contain at least one frame."
+        for i in range(self.numFrames):
+            # load each frame of animation into _images
+            frame = frames[i]
+            assert type(frame) in (list, tuple) and len(frame) == 2, "Frame %s has incorrect format." % (i)
+            assert type(frame[0]) in (
+                str,
+                pygame.Surface,
+            ), "Frame %s image must be a string filename or a pygame.Surface" % (i)
+            assert frame[1] > 0, "Frame %s duration must be greater than zero." % (i)
+            frame_img = pygame.image.load(frame[0]) if isinstance(frame[0], str) else frame[0]
+            self._images.append(frame_img)
+            self._durations.append(frame[1])
+        self._startTimes = self._getStartTimes()
 
     def _getStartTimes(self) -> Sequence[float]:
         # Internal method to get the start times based off of the _durations list.
@@ -150,40 +126,6 @@ class PygAnimation:
         for i in range(self.numFrames):
             startTimes.append(startTimes[-1] + self._durations[i])
         return startTimes
-
-    def reverse(self) -> None:
-        # Reverses the order of the animations.
-        self.elapsed = self._startTimes[-1] - self.elapsed
-        self._images.reverse()
-        self._transformedImages.reverse()
-        self._durations.reverse()
-
-    def getCopy(self) -> PygAnimation:
-        # Returns a copy of this PygAnimation object, but one that refers to the
-        # Surface objects of the original so it efficiently uses memory.
-        #
-        # NOTE: Messing around with the original Surface objects will affect all
-        # the copies. If you want to modify the Surface objects, then just make
-        # copies using constructor function instead.
-        return self.getCopies(1)[0]
-
-    def getCopies(self, numCopies: int = 1) -> Sequence[PygAnimation]:
-        # Returns a list of copies of this PygAnimation object, but one that refers to the
-        # Surface objects of the original so it efficiently uses memory.
-        #
-        # NOTE: Messing around with the original Surface objects will affect all
-        # the copies. If you want to modify the Surface objects, then just make
-        # copies using constructor function instead.
-        retval = []
-        for i in range(numCopies):
-            newAnim = PygAnimation("_copy", loop=self.loop)
-            newAnim._images = self._images[:]
-            newAnim._transformedImages = self._transformedImages[:]
-            newAnim._durations = self._durations[:]
-            newAnim._startTimes = self._startTimes[:]
-            newAnim.numFrames = self.numFrames
-            retval.append(newAnim)
-        return retval
 
     def blit(
         self,
@@ -222,74 +164,6 @@ class PygAnimation:
         # if the blit() method were called right now. If there is a transformed
         # version of the frame, it will return that one.
         return self.getFrame(self.currentFrameNum)
-
-    def clearTransforms(self) -> None:
-        # Deletes all the transformed frames so that the animation object
-        # displays the original Surfaces/images as they were before
-        # transformation functions were called on them.
-        #
-        # This is handy to do for multiple transformation, where calling
-        # the rotation or scaling functions multiple times results in
-        # degraded/noisy images.
-        self._transformedImages = []
-
-    def makeTransformsPermanent(self) -> None:
-        self._images = [pygame.Surface(surfObj.get_size(), 0, surfObj) for surfObj in self._transformedImages]
-        for i in range(len(self._transformedImages)):
-            self._images[i].blit(self._transformedImages[i], (0, 0))
-
-    def blitFrameNum(
-        self,
-        frameNum: int,
-        destSurface: pygame.surface.Surface,
-        dest: pygame.rect.Rect,
-    ) -> None:
-        # Draws the specified frame of the animation object. This ignores the
-        # current playing state.
-        #
-        # NOTE: If the visibility attribute is False, then nothing will be drawn.
-        #
-        # @param frameNum
-        #     The frame to draw (the first frame is 0, not 1)
-        # @param destSurface
-        #     The Surface object to draw the frame
-        # @param dest
-        #     The position to draw the frame. This is passed to Pygame's Surface's
-        #     blit() function, so it can be either a (top, left) tuple or a Rect
-        #     object.
-        if self.isFinished():
-            self.state = STOPPED
-        if not self.visibility or self.state == STOPPED:
-            return
-        destSurface.blit(self.getFrame(frameNum), dest)
-
-    def blitFrameAtTime(
-        self,
-        elapsed: float,
-        destSurface: pygame.surface.Surface,
-        dest: pygame.rect.Rect,
-    ) -> None:
-        # Draws the frame the is "elapsed" number of seconds into the animation,
-        # rather than the time the animation actually started playing.
-        #
-        # NOTE: If the visibility attribute is False, then nothing will be drawn.
-        #
-        # @param elapsed
-        #     The amount of time into an animation to use when determining which
-        #     frame to draw. blitFrameAtTime() uses this parameter rather than
-        #     the actual time that the animation started playing. (In seconds)
-        # @param destSurface
-        #     The Surface object to draw the frame
-        # @param dest
-        #     The position to draw the frame. This is passed to Pygame's Surface's
-        #     blit() function, so it can be either a (top, left) tuple or a Rect
-        #     object.        elapsed = int(elapsed * self.rate)
-        if self.isFinished():
-            self.state = STOPPED
-        if not self.visibility or self.state == STOPPED:
-            return
-        frameNum = findStartTime(self._startTimes, elapsed)
-        destSurface.blit(self.getFrame(frameNum), dest)
 
     def isFinished(self) -> bool:
         # Returns True if this animation doesn't loop and has finished playing
@@ -346,33 +220,6 @@ class PygAnimation:
             return  # do nothing
         self._state = STOPPED
 
-    def togglePause(self) -> None:
-        # If paused, start playing. If playing, then pause.
-
-        # togglePause() is essentially a setter function for self._state
-        # NOTE: Don't adjust the self.state property, only self._state
-
-        if self._state == PLAYING:
-            if self.isFinished():
-                # the one exception: if this animation doesn't loop and it
-                # has finished playing, then toggling the pause will cause
-                # the animation to replay from the beginning.
-                # self._playingStartTime = time.time() # effectively the same as calling play()
-                self.play()
-            else:
-                self.pause()
-        elif self._state in (PAUSED, STOPPED):
-            self.play()
-
-    def areFramesSameSize(self) -> bool:
-        # Returns True if all the Surface objects in this animation object
-        # have the same width and height. Otherwise, returns False
-        width, height = self.getFrame(0).get_size()
-        for i in range(len(self._images)):
-            if self.getFrame(i).get_size() != (width, height):
-                return False
-        return True
-
     def getMaxSize(self) -> Tuple[int, int]:
         # Goes through all the Surface objects in this animation object
         # and returns the max width and max height that it finds. (These
@@ -394,93 +241,6 @@ class PygAnimation:
         # will be set to what is returned by getMaxSize().
         maxWidth, maxHeight = self.getMaxSize()
         return Rect(0, 0, maxWidth, maxHeight)
-
-    def anchor(self, anchorPoint: Anchor = "northwest") -> None:
-        # If the Surface objects are of different sizes, align them all to a
-        # specific "anchor point" (one of the NORTH, SOUTH, SOUTHEAST, etc. constants)
-        #
-        # By default, they are all anchored to the NORTHWEST corner.
-        if self.areFramesSameSize():
-            return  # nothing needs to be anchored
-            # This check also prevents additional calls to anchor() from doing
-            # anything, since anchor() sets all the image to the same size.
-            # The lesson is, you can only effectively call anchor() once.
-
-        self.clearTransforms()  # clears transforms since this method anchors the original images.
-
-        maxWidth, maxHeight = self.getMaxSize()
-        halfMaxWidth = int(maxWidth / 2)
-        halfMaxHeight = int(maxHeight / 2)
-
-        for i in range(len(self._images)):
-            # go through and copy all frames to a max-sized Surface object
-            # NOTE: This makes changes to the original images in self._images, not the transformed images in self._transformedImages
-            newSurf = pygame.Surface(
-                (maxWidth, maxHeight)
-            )  # TODO: this is probably going to have errors since I'm using the default depth.
-
-            # set the expanded areas to be transparent
-            newSurf = newSurf.convert_alpha()
-            newSurf.fill((0, 0, 0, 0))
-
-            frameWidth, frameHeight = self._images[i].get_size()
-            halfFrameWidth = int(frameWidth / 2)
-            halfFrameHeight = int(frameHeight / 2)
-
-            # position the Surface objects to the specified anchor point
-            if anchorPoint == NORTHWEST:
-                newSurf.blit(self._images[i], (0, 0))
-            elif anchorPoint == NORTH:
-                newSurf.blit(self._images[i], (halfMaxWidth - halfFrameWidth, 0))
-            elif anchorPoint == NORTHEAST:
-                newSurf.blit(self._images[i], (maxWidth - frameWidth, 0))
-            elif anchorPoint == WEST:
-                newSurf.blit(self._images[i], (0, halfMaxHeight - halfFrameHeight))
-            elif anchorPoint == CENTER:
-                newSurf.blit(self._images[i], (halfMaxWidth - halfFrameWidth, halfMaxHeight - halfFrameHeight))
-            elif anchorPoint == EAST:
-                newSurf.blit(self._images[i], (maxWidth - frameWidth, halfMaxHeight - halfFrameHeight))
-            elif anchorPoint == SOUTHWEST:
-                newSurf.blit(self._images[i], (0, maxHeight - frameHeight))
-            elif anchorPoint == SOUTH:
-                newSurf.blit(self._images[i], (halfMaxWidth - halfFrameWidth, maxHeight - frameHeight))
-            elif anchorPoint == SOUTHEAST:
-                newSurf.blit(self._images[i], (maxWidth - frameWidth, maxHeight - frameHeight))
-            self._images[i] = newSurf
-
-    def nextFrame(self, jump: int = 1) -> None:
-        # Set the elapsed time to the beginning of the next frame.
-        # You can jump ahead by multiple frames by specifying a different
-        # argument for jump.
-        # Negative values have the same effect as calling prevFrame()
-        self.currentFrameNum += int(jump)
-
-    def prevFrame(self, jump: int = 1) -> None:
-        # Set the elapsed time to the beginning of the previous frame.
-        # You can jump ahead by multiple frames by specifying a different
-        # argument for jump.
-        # Negative values have the same effect as calling nextFrame()
-        self.currentFrameNum -= int(jump)
-
-    def rewind(self, seconds: Optional[float] = None) -> None:
-        # Set the elapsed time back relative to the current elapsed time.
-        if seconds is None:
-            self.elapsed = 0.0
-        else:
-            self.elapsed -= seconds
-
-    def fastForward(self, seconds: Optional[float] = None) -> None:
-        # Set the elapsed time forward relative to the current elapsed time.
-        if seconds is None:
-            self.elapsed = self._startTimes[-1] - 0.00002  # done to compensate for rounding errors
-        else:
-            self.elapsed += seconds
-
-    def _makeTransformedSurfacesIfNeeded(self) -> None:
-        # Internal-method. Creates the Surface objects for the _transformedImages list.
-        # Don't call this method.
-        if self._transformedImages == []:
-            self._transformedImages = [surf.copy() for surf in self._images]
 
     # Getter and setter methods for properties
     def _propGetRate(self) -> float:
@@ -650,9 +410,6 @@ class PygConductor:
         result = all(a.isFinished() for a in self._animations)
         return result
 
-    def isStopped(self) -> bool:
-        return self._state == STOPPED
-
     state = property(_propGetState)
 
     def play(self, startTime: Optional[float] = None) -> None:
@@ -677,38 +434,6 @@ class PygConductor:
         for animObj in self._animations:
             animObj.stop()
         self._state = STOPPED
-
-    def reverse(self) -> None:
-        for animObj in self._animations:
-            animObj.reverse()
-
-    def clearTransforms(self) -> None:
-        for animObj in self._animations:
-            animObj.clearTransforms()
-
-    def makeTransformsPermanent(self) -> None:
-        for animObj in self._animations:
-            animObj.makeTransformsPermanent()
-
-    def togglePause(self) -> None:
-        for animObj in self._animations:
-            animObj.togglePause()
-
-    def nextFrame(self, jump: int = 1) -> None:
-        for animObj in self._animations:
-            animObj.nextFrame(jump)
-
-    def prevFrame(self, jump: int = 1) -> None:
-        for animObj in self._animations:
-            animObj.prevFrame(jump)
-
-    def rewind(self, seconds: Optional[float] = None) -> None:
-        for animObj in self._animations:
-            animObj.rewind(seconds)
-
-    def fastForward(self, seconds: Optional[float] = None) -> None:
-        for animObj in self._animations:
-            animObj.fastForward(seconds)
 
 
 T = TypeVar("T", bound=float)

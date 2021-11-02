@@ -314,7 +314,7 @@ class NPC(Entity[NPCState]):
         ) -> pygame.surface.Surface:
             frame = d[ani]
             if isinstance(frame, pyganim.PygAnimation):
-                surface = frame.getCurrentFrame()
+                surface = frame.get_current_frame()
                 frame.rate = self.moverate / CONFIG.player_walkrate
                 return surface
             else:

@@ -481,8 +481,8 @@ class WorldState(state.State):
         # get map_animations
         for anim_data in self.map_animations.values():
             anim = anim_data["animation"]
-            if not anim.isFinished() and anim.visibility:
-                frame = (anim.getCurrentFrame(), Vector2(anim_data["position"]), anim_data["layer"])
+            if not anim.is_finished() and anim.visibility:
+                frame = (anim.get_current_frame(), Vector2(anim_data["position"]), anim_data["layer"])
                 world_surfaces.append(frame)
 
         # position the surfaces correctly

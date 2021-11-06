@@ -34,7 +34,7 @@ from pygame.transform import scale
 
 from pygame.rect import Rect
 from tuxemon.platform.const import buttons
-from tuxemon.pyganim import PygAnimation
+from tuxemon.surfanim import SurfaceAnimation
 from tuxemon import graphics
 from tuxemon.tools import scale as set
 from typing import Optional, Callable, Any, Sequence, List, Union, TYPE_CHECKING,\
@@ -321,7 +321,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
             if not getattr(s, "visible", True):
                 continue
 
-            if isinstance(s.image, PygAnimation):
+            if isinstance(s.image, SurfaceAnimation):
                 s.image.blit(surface, s.rect)
                 continue
 

@@ -14,7 +14,7 @@ from tuxemon import audio, graphics, tools
 from tuxemon.locale import T
 from tuxemon.menu.interface import HpBar, ExpBar
 from tuxemon.menu.menu import Menu
-from tuxemon.pyganim import PygAnimation
+from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.sprite import Sprite, CaptureDeviceSprite
 from tuxemon.tools import scale, scale_sequence
 from typing import Tuple, Any, Literal, TYPE_CHECKING, Sequence, \
@@ -207,7 +207,7 @@ class CombatAnimations(ABC, Menu[None]):
             images.append((image, 0.07))
 
         delay = 1.3
-        tech = PygAnimation(images, False)
+        tech = SurfaceAnimation(images, False)
         sprite = Sprite()
         sprite.image = tech
         sprite.rect = tech.get_rect()
@@ -656,7 +656,7 @@ class CombatAnimations(ABC, Menu[None]):
             image = graphics.load_and_scale(fn)
             images.append((image, 0.07))
 
-        tech = PygAnimation(images, False)
+        tech = SurfaceAnimation(images, False)
         sprite = Sprite()
         sprite.image = tech
         sprite.rect = tech.get_rect()

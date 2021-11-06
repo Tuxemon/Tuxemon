@@ -38,7 +38,7 @@ import uuid
 
 from tuxemon.ai import AI
 from tuxemon.compat import Rect
-from tuxemon import pyganim
+from tuxemon import surfanim
 from tuxemon.db import db
 from tuxemon.entity import Entity
 from tuxemon.item.item import Item, InventoryItem
@@ -60,7 +60,7 @@ if TYPE_CHECKING:
 
     SpriteMap = Union[
         Mapping[str, pygame.surface.Surface],
-        Mapping[str, pyganim.PygAnimation],
+        Mapping[str, surfanim.SurfaceAnimation],
     ]
 
 logger = logging.getLogger(__name__)
@@ -182,8 +182,8 @@ class NPC(Entity[NPCState]):
         self.playerHeight = 0
         self.playerWidth = 0
         self.standing: Dict[str, pygame.surface.Surface] = {}  # Standing animation frames
-        self.sprite: Dict[str, pyganim.PygAnimation] = {}  # Moving animation frames
-        self.moveConductor = pyganim.PygConductor()
+        self.sprite: Dict[str, surfanim.SurfaceAnimation] = {}  # Moving animation frames
+        self.moveConductor = surfanim.SurfaceAnimationCollection()
         self.load_sprites()
         self.rect = Rect((
             self.tile_pos[0],
@@ -283,7 +283,7 @@ class NPC(Entity[NPCState]):
                 surface = load_and_scale(image)
                 frames.append((surface, frame_duration))
 
-            self.sprite[anim_type] = pyganim.PygAnimation(frames, loop=True)
+            self.sprite[anim_type] = surfanim.SurfaceAnimation(frames, loop=True)
 
         # Have the animation objects managed by a conductor.
         # With the conductor, we can call play() and stop() on all the animation objects
@@ -313,7 +313,7 @@ class NPC(Entity[NPCState]):
             ani: str,
         ) -> pygame.surface.Surface:
             frame = d[ani]
-            if isinstance(frame, pyganim.PygAnimation):
+            if isinstance(frame, surfanim.SurfaceAnimation):
                 surface = frame.get_current_frame()
                 frame.rate = self.moverate / CONFIG.player_walkrate
                 return surface
@@ -515,10 +515,10 @@ class NPC(Entity[NPCState]):
         direction = get_direction(proj(self.position3), target)
         self.facing = direction
         if self.valid_movement(target):
-            # pyganim has horrible clock drift.  even after one animation
+            # surfanim has horrible clock drift.  even after one animation
             # cycle, the time will be off.  drift causes the walking steps to not
             # align with tiles and some frames will only last one game frame.
-            # using play to start each tile will reset the pyganim timer
+            # using play to start each tile will reset the surfanim timer
             # and prevent the walking animation frames from coming out of sync.
             # it still occasionally happens though!
             # eventually, there will need to be a global clock for the game,

@@ -46,7 +46,7 @@ from tuxemon.graphics import ColorLike
 from typing import Optional, Sequence, Mapping, Tuple, Union, TypedDict, Dict,\
     List, Set, Any, Literal, TYPE_CHECKING
 from tuxemon.entity import Entity
-from tuxemon.pyganim import PygAnimation, PygConductor
+from tuxemon.surfanim import SurfaceAnimation, SurfaceAnimationCollection
 from tuxemon.states.world.world_menus import WorldMenuState
 from tuxemon.math import Vector2
 
@@ -71,8 +71,8 @@ class EntityCollision(TypedDict):
 
 
 class AnimationInfo(TypedDict):
-    animation: PygAnimation
-    conductor: PygConductor
+    animation: SurfaceAnimation
+    conductor: SurfaceAnimationCollection
     position: Tuple[int, int]
     layer: int
 

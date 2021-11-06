@@ -15,7 +15,7 @@ from pytmx.pytmx import TileFlags
 
 from tuxemon.compat import Rect
 from tuxemon import prepare
-from tuxemon.pyganim import PygAnimation, PygConductor
+from tuxemon.surfanim import SurfaceAnimation, SurfaceAnimationCollection
 from tuxemon.sprite import Sprite
 from tuxemon.tools import transform_resource_filename, scale_sequence
 from typing import Tuple, Sequence, Any, Iterable, Generator, Union, Optional,\
@@ -207,7 +207,7 @@ def load_animated_sprite(
             image = load_and_scale(filename)
             anim.append((image, delay))
 
-    tech = PygAnimation(anim, True)
+    tech = SurfaceAnimation(anim, True)
     tech.play()
     sprite = Sprite()
     sprite.image = tech
@@ -281,7 +281,7 @@ def create_animation(
     frames: Iterable[pygame.surface.Surface],
     duration: float,
     loop: bool,
-) -> Tuple[PygAnimation, PygConductor]:
+) -> Tuple[SurfaceAnimation, SurfaceAnimationCollection]:
     """
     Create animation from frames, a list of surfaces.
 
@@ -295,8 +295,8 @@ def create_animation(
 
     """
     data = [(f, duration) for f in frames]
-    animation = PygAnimation(data, loop=loop)
-    conductor = PygConductor({"animation": animation})
+    animation = SurfaceAnimation(data, loop=loop)
+    conductor = SurfaceAnimationCollection({"animation": animation})
     return animation, conductor
 
 
@@ -305,7 +305,7 @@ def load_animation_from_frames(
     name: str,
     duration: float,
     loop: bool = False,
-) -> Tuple[PygAnimation, PygConductor]:
+) -> Tuple[SurfaceAnimation, SurfaceAnimationCollection]:
     """
     Load animation from a collection of frame files.
 

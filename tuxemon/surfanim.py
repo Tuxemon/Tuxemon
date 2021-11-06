@@ -23,24 +23,15 @@
 # William Edwards <shadowapex@gmail.com>
 #
 #
-# pyganim A sprite animation module for Pygame.
-#
-# Pyganim (pyganim.py, ver 1)
-#
+# Based on pyganim: A sprite animation module for Pygame.
 #
 # By Al Sweigart al@inventwithpython.com
 # http://inventwithpython.com/pyganim
 # Released under a "Simplified BSD" license
-#
-# There's a tutorial (and sample code) on how to use this library at http://inventwithpython.com/pyganim
-# NOTE: This module requires Pygame to be installed to use. Download it from http://pygame.org
-#
-# This should be compatible with both Python 2 and Python 3. Please email any
-# bug reports to Al at al@inventwithpython.com
-#
 
 
-# TODO: Feature idea: if the same image file is specified, re-use the Surface object.
+# TODO: Feature idea: if the same image file is specified, re-use the Surface
+# object.
 # (Make this optional though.)
 from __future__ import annotations
 import time
@@ -61,7 +52,7 @@ STOPPED: Final = "stopped"
 State = Literal["playing", "paused", "stopped"]
 
 
-class PygAnimation:
+class SurfaceAnimation:
     """
     Animation of Pygame surfaces. Starts off in the STOPPED state.
 
@@ -70,7 +61,7 @@ class PygAnimation:
             animation, where image can be either a Pygame surface or a
             path to an image, and duration is the duration in seconds.
             Note that the images and duration cannot be changed. A new
-            PygAnimation object will have to be created.
+            SurfaceAnimation object will have to be created.
         loop: Tells the animation object to keep playing in a loop.
 
     """
@@ -285,8 +276,8 @@ class PygAnimation:
     def state(self, state: State) -> None:
         if state not in (PLAYING, PAUSED, STOPPED):
             raise ValueError(
-                "state must be one of pyganim.PLAYING, pyganim.PAUSED, or "
-                "pyganim.STOPPED",
+                "state must be one of surfanim.PLAYING, surfanim.PAUSED, or "
+                "surfanim.STOPPED",
             )
         if state == PLAYING:
             self.play()
@@ -325,7 +316,7 @@ class PygAnimation:
             elapsed = (time.time() - self._playing_start_time) * self.rate
         elif self._state == PAUSED:
             # If paused, then draw the frame that was playing at the time the
-            # PygAnimation object was paused
+            # SurfaceAnimation object was paused
             elapsed = (
                 self._paused_start_time - self._playing_start_time
             ) * self.rate
@@ -373,16 +364,16 @@ class PygAnimation:
         self.elapsed = self._start_times[frame_num]
 
 
-class PygConductor:
+class SurfaceAnimationCollection:
     def __init__(
         self,
         *animations: Union[
-            PygAnimation,
-            Sequence[PygAnimation],
-            Mapping[Any, PygAnimation],
+            SurfaceAnimation,
+            Sequence[SurfaceAnimation],
+            Mapping[Any, SurfaceAnimation],
         ],
     ) -> None:
-        self._animations: List[PygAnimation] = []
+        self._animations: List[SurfaceAnimation] = []
         if animations:
             self.add(*animations)
         self._state: State = STOPPED
@@ -390,9 +381,9 @@ class PygConductor:
     def add(
         self,
         *animations: Union[
-            PygAnimation,
-            Sequence[PygAnimation],
-            Mapping[Any, PygAnimation],
+            SurfaceAnimation,
+            Sequence[SurfaceAnimation],
+            Mapping[Any, SurfaceAnimation],
         ],
     ) -> None:
         if isinstance(animations[0], Mapping):
@@ -404,16 +395,12 @@ class PygConductor:
         else:
             for i in range(len(animations)):
                 anim = animations[i]
-                assert isinstance(anim, PygAnimation)
+                assert isinstance(anim, SurfaceAnimation)
                 self._animations.append(anim)
 
     @property
-    def animations(self) -> Sequence[PygAnimation]:
+    def animations(self) -> Sequence[SurfaceAnimation]:
         return self._animations
-
-    @animations.setter
-    def animations(self, val: List[PygAnimation]) -> None:
-        self._animations = val
 
     @property
     def state(self) -> State:
@@ -423,8 +410,7 @@ class PygConductor:
         return self._state
 
     def is_finished(self) -> bool:
-        result = all(a.is_finished() for a in self._animations)
-        return result
+        return all(a.is_finished() for a in self._animations)
 
     def play(self, start_time: Optional[float] = None) -> None:
         if start_time is None:

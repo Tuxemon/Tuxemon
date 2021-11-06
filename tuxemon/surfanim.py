@@ -67,7 +67,9 @@ class SurfaceAnimation:
         loop: bool = True,
     ) -> None:
 
-        self._internal_clock = 0.0
+        # Obtain constant precision setting the initial value to 2^32:
+        # https://randomascii.wordpress.com/2012/02/13/dont-store-that-in-a-float/
+        self._internal_clock = float(2**32)
 
         # _images stores the pygame.Surface objects of each frame
         self._images = []
@@ -140,8 +142,6 @@ class SurfaceAnimation:
             dest: The position to draw the frame.
 
         """
-        if self.is_finished():
-            self.state = STOPPED
         if not self.visibility or self.state == STOPPED:
             return
         dest_surface.blit(self.get_current_frame(), dest)
@@ -382,7 +382,6 @@ class SurfaceAnimationCollection:
             Mapping[Any, SurfaceAnimation],
         ],
     ) -> None:
-        self._internal_clock = 0.0
         self._animations: List[SurfaceAnimation] = []
         if animations:
             self.add(*animations)
@@ -423,8 +422,6 @@ class SurfaceAnimationCollection:
         return all(a.is_finished() for a in self._animations)
 
     def play(self, start_time: Optional[float] = None) -> None:
-        if start_time is None:
-            start_time = self._internal_clock
 
         for anim_obj in self._animations:
             anim_obj.play(start_time)
@@ -432,8 +429,6 @@ class SurfaceAnimationCollection:
         self._state = PLAYING
 
     def pause(self, start_time: Optional[float] = None) -> None:
-        if start_time is None:
-            start_time = self._internal_clock
 
         for anim_obj in self._animations:
             anim_obj.pause(start_time)
@@ -453,7 +448,6 @@ class SurfaceAnimationCollection:
             time_delta: Time elapsed since last call to update.
 
         """
-        self._internal_clock += time_delta
         for anim_obj in self._animations:
             anim_obj.update(time_delta)
 

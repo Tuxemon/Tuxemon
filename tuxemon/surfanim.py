@@ -28,22 +28,17 @@
 # By Al Sweigart al@inventwithpython.com
 # http://inventwithpython.com/pyganim
 # Released under a "Simplified BSD" license
-
-
-# TODO: Feature idea: if the same image file is specified, re-use the Surface
-# object.
-# (Make this optional though.)
 from __future__ import annotations
-import time
 
-import pygame
-
-# setting up constants
-from pygame.rect import Rect
-from typing import Union, Literal, Sequence, Tuple, Optional, Any, Final, List,\
-    TypeVar, Mapping
 import bisect
 import itertools
+from typing import (Any, Final, List, Literal, Mapping, Optional, Sequence,
+                    Tuple, TypeVar, Union)
+
+# TODO: Feature idea: if the same image file is specified, re-use the Surface
+import pygame
+# setting up constants
+from pygame.rect import Rect
 
 PLAYING: Final = "playing"
 PAUSED: Final = "paused"
@@ -325,7 +320,9 @@ class SurfaceAnimation:
             # animation started playing). If not looping and the animation
             # has gone through all the frames already, then draw the last
             # frame.
-            elapsed = (self._internal_clock - self._playing_start_time) * self.rate
+            elapsed = (
+                (self._internal_clock - self._playing_start_time) * self.rate
+            )
         elif self._state == PAUSED:
             # If paused, then draw the frame that was playing at the time the
             # SurfaceAnimation object was paused

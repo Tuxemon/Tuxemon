@@ -281,7 +281,7 @@ def create_animation(
     frames: Iterable[pygame.surface.Surface],
     duration: float,
     loop: bool,
-) -> Tuple[SurfaceAnimation, SurfaceAnimationCollection]:
+) -> SurfaceAnimation:
     """
     Create animation from frames, a list of surfaces.
 
@@ -291,13 +291,12 @@ def create_animation(
         loop: Whether the animation should loop or not.
 
     Returns:
-        Animation and conductor.
+        Created animation.
 
     """
     data = [(f, duration) for f in frames]
     animation = SurfaceAnimation(data, loop=loop)
-    conductor = SurfaceAnimationCollection({"animation": animation})
-    return animation, conductor
+    return animation
 
 
 def load_animation_from_frames(
@@ -305,7 +304,7 @@ def load_animation_from_frames(
     name: str,
     duration: float,
     loop: bool = False,
-) -> Tuple[SurfaceAnimation, SurfaceAnimationCollection]:
+) -> SurfaceAnimation:
     """
     Load animation from a collection of frame files.
 
@@ -316,7 +315,7 @@ def load_animation_from_frames(
         loop: Whether the animation should loop or not.
 
     Returns:
-        Animation and conductor.
+        Created animation.
 
     """
     frames = load_frames_files(directory, name)

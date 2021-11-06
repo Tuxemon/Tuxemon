@@ -72,6 +72,8 @@ class SurfaceAnimation:
         loop: bool = True,
     ) -> None:
 
+        self._internal_clock = 0.0
+
         # _images stores the pygame.Surface objects of each frame
         self._images = []
 
@@ -201,6 +203,16 @@ class SurfaceAnimation:
         if self._state == STOPPED:
             return  # do nothing
         self._state = STOPPED
+
+    def update(self, time_delta: float) -> None:
+        """
+        Update the internal clock with the elapsed time.
+
+        Parameters:
+            time_delta: Time elapsed since last call to update.
+
+        """
+        self._internal_clock += time_delta
 
     def _get_max_size(self) -> Tuple[int, int]:
         """
@@ -434,6 +446,17 @@ class SurfaceAnimationCollection:
         for anim_obj in self._animations:
             anim_obj.stop()
         self._state = STOPPED
+
+    def update(self, time_delta: float) -> None:
+        """
+        Update the internal clock with the elapsed time.
+
+        Parameters:
+            time_delta: Time elapsed since last call to update.
+
+        """
+        for anim_obj in self._animations:
+            anim_obj.update(time_delta)
 
 
 T = TypeVar("T", bound=float)

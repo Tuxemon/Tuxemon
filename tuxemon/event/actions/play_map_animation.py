@@ -80,7 +80,7 @@ class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
             raise ValueError
 
         # Check to see if this animation has already been loaded.
-        # If it has, play the animation using the animation's conductor.
+        # If it has, play the animation.
         world_state = self.session.client.get_state_by_name(WorldState)
 
         # Determine the tile position where to draw the animation.
@@ -97,11 +97,11 @@ class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
         animations = world_state.map_animations
         if animation_name in animations:
             animations[animation_name]["position"] = position
-            animations[animation_name]["conductor"].play()
+            animations[animation_name]["animation"].play()
 
         else:
             # Not loaded already, so load it...
-            animation, conductor = load_animation_from_frames(
+            animation = load_animation_from_frames(
                 directory,
                 animation_name,
                 duration,
@@ -110,9 +110,8 @@ class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
 
             animations[animation_name] = {
                 "animation": animation,
-                "conductor": conductor,
                 "position": position,
                 "layer": 4,
             }
 
-            conductor.play()
+            animation.play()

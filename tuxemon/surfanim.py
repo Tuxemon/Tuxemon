@@ -166,7 +166,7 @@ class SurfaceAnimation:
     def play(self, start_time: Optional[float] = None) -> None:
         """Start playing the animation."""
         if start_time is None:
-            start_time = time.time()
+            start_time = self._internal_clock
 
         if self._state == PLAYING:
             if self.is_finished():
@@ -186,14 +186,14 @@ class SurfaceAnimation:
     def pause(self, start_time: Optional[float] = None) -> None:
         """Stop having the animation progress."""
         if start_time is None:
-            start_time = time.time()
+            start_time = self._internal_clock
 
         if self._state == PAUSED:
             return  # do nothing
         elif self._state == PLAYING:
             self._paused_start_time = start_time
         elif self._state == STOPPED:
-            rightNow = time.time()
+            rightNow = self._internal_clock
             self._playing_start_time = rightNow
             self._paused_start_time = rightNow
         self._state = PAUSED
@@ -273,7 +273,7 @@ class SurfaceAnimation:
             # we need to modify the _playing_start_time so that the rest of
             # the animation will play, and then stop. Otherwise, the
             # animation will immediately stop playing if it has already looped.
-            self._playing_start_time = time.time() - self.elapsed
+            self._playing_start_time = self._internal_clock - self.elapsed
         self._loop = bool(loop)
 
     @property
@@ -325,7 +325,7 @@ class SurfaceAnimation:
             # animation started playing). If not looping and the animation
             # has gone through all the frames already, then draw the last
             # frame.
-            elapsed = (time.time() - self._playing_start_time) * self.rate
+            elapsed = (self._internal_clock - self._playing_start_time) * self.rate
         elif self._state == PAUSED:
             # If paused, then draw the frame that was playing at the time the
             # SurfaceAnimation object was paused
@@ -353,7 +353,7 @@ class SurfaceAnimation:
         else:
             elapsed = clip(elapsed, 0, self._start_times[-1])
 
-        rightNow = time.time()
+        rightNow = self._internal_clock
         self._playing_start_time = rightNow - (elapsed * self.rate)
 
         if self.state in (PAUSED, STOPPED):
@@ -385,6 +385,7 @@ class SurfaceAnimationCollection:
             Mapping[Any, SurfaceAnimation],
         ],
     ) -> None:
+        self._internal_clock = 0.0
         self._animations: List[SurfaceAnimation] = []
         if animations:
             self.add(*animations)
@@ -426,7 +427,7 @@ class SurfaceAnimationCollection:
 
     def play(self, start_time: Optional[float] = None) -> None:
         if start_time is None:
-            start_time = time.time()
+            start_time = self._internal_clock
 
         for anim_obj in self._animations:
             anim_obj.play(start_time)
@@ -435,7 +436,7 @@ class SurfaceAnimationCollection:
 
     def pause(self, start_time: Optional[float] = None) -> None:
         if start_time is None:
-            start_time = time.time()
+            start_time = self._internal_clock
 
         for anim_obj in self._animations:
             anim_obj.pause(start_time)
@@ -455,6 +456,7 @@ class SurfaceAnimationCollection:
             time_delta: Time elapsed since last call to update.
 
         """
+        self._internal_clock += time_delta
         for anim_obj in self._animations:
             anim_obj.update(time_delta)
 

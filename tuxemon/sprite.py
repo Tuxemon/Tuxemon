@@ -72,6 +72,13 @@ class Sprite(pygame.sprite.DirtySprite):
         self._needs_rescale = False
         self._needs_update = False
 
+    def update(self, time_delta: float = 0, *args: Any, **kwargs: Any) -> None:
+
+        super().update(time_delta, *args, **kwargs)
+
+        if isinstance(self.image, SurfaceAnimation):
+            self.image.update(time_delta)
+
     def draw(
         self,
         surface: pygame.surface.Surface,

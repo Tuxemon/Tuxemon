@@ -217,6 +217,7 @@ class State:
 
         """
         self.animations.update(time_delta)
+        self.sprites.update(time_delta)
 
     def draw(self, surface: pygame.surface.Surface) -> None:
         """

@@ -494,7 +494,7 @@ class Menu(Generic[T], state.State):
             handled_event = True
             if event.pressed and self.escape_key_exits:
                 self.close()
-    
+
         disabled = True
         if hasattr(self, "menu_items") and event.pressed:
             disabled = all(not i.enabled for i in self.menu_items)

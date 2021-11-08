@@ -90,17 +90,18 @@ class StartState(PopUpMenu[StartGameObj]):
             )
 
         def set_player_name(text: str) -> None:
+            map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
+            self.client.push_state("WorldState", map_name=map_name)
+            self.client.push_state(FadeInTransition)
             local_session.player.name = text
 
         def new_game() -> None:
             # load the starting map
-            map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
-            self.client.replace_state("WorldState", map_name=map_name)
             self.client.push_state(
                 state_name=InputMenu,
                 prompt=T.translate("input_name"),
                 callback=set_player_name,
-                escape_key_exits=False,
+                escape_key_exits=True
             )
             self.client.push_state(FadeInTransition)
 

@@ -101,6 +101,7 @@ class StartState(PopUpMenu[StartGameObj]):
                 prompt=T.translate("input_name"),
                 callback=set_player_name,
                 escape_key_exits=False,
+                back_state="StartState"
             )
             self.client.push_state(FadeInTransition)
 

@@ -17,6 +17,7 @@ from typing import Any, Callable, Optional, Literal, Dict, Sequence, Tuple,\
 from tuxemon.graphics import ColorLike
 from tuxemon.platform.events import PlayerInput
 from tuxemon.animation import Animation
+from tuxemon.states.transition.fade import FadeInTransition
 
 logger = logging.getLogger(__name__)
 
@@ -67,6 +68,7 @@ class Menu(Generic[T], state.State):
     default_character_delay = 0.05
     shrink_to_items = False  # fit the border to contents
     escape_key_exits = True  # escape key closes menu
+    back_state = None  # if escape_key_exits is false, then the escape key can change the state
     animate_contents = False  # show contents while window opens
     touch_aware = True  # if true, then menu items can be selected with the mouse/touch
 
@@ -495,6 +497,10 @@ class Menu(Generic[T], state.State):
             if event.pressed and self.escape_key_exits:
                 self.close()
 
+            if event.pressed and self.back_state != None and not self.escape_key_exits:
+                self.close()
+                self.client.replace_state(state_name=self.back_state)
+    
         disabled = True
         if hasattr(self, "menu_items") and event.pressed:
             disabled = all(not i.enabled for i in self.menu_items)

@@ -544,6 +544,9 @@ class LocalPygameClient:
         """Pop current state, or another"""
         self.state_manager.pop_state(state)
 
+    def remove_state(self, state: State) -> None:
+        self.state_manager.remove_state(state)
+
     @overload
     def push_state(self, state_name: str, **kwargs: Any) -> State:
         pass

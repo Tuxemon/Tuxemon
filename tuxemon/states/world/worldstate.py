@@ -46,7 +46,7 @@ from tuxemon.graphics import ColorLike
 from typing import Optional, Sequence, Mapping, Tuple, Union, TypedDict, Dict,\
     List, Set, Any, Literal, TYPE_CHECKING
 from tuxemon.entity import Entity
-from tuxemon.pyganim import PygAnimation, PygConductor
+from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.states.world.world_menus import WorldMenuState
 from tuxemon.math import Vector2
 
@@ -71,8 +71,7 @@ class EntityCollision(TypedDict):
 
 
 class AnimationInfo(TypedDict):
-    animation: PygAnimation
-    conductor: PygConductor
+    animation: SurfaceAnimation
     position: Tuple[int, int]
     layer: int
 
@@ -335,7 +334,10 @@ class WorldState(state.State):
 
         """
         super().update(time_delta)
-        self.move_npcs(time_delta)
+        self.update_npcs(time_delta)
+        for anim_data in self.map_animations.values():
+            anim_data["animation"].update(time_delta)
+
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player.game_variables))
 
@@ -903,9 +905,9 @@ class WorldState(state.State):
             int(position[1] * self.tile_size[1]),
         )
 
-    def move_npcs(self, time_delta: float) -> None:
+    def update_npcs(self, time_delta: float) -> None:
         """
-        Move NPCs and Players around according to their state.
+        Allow NPCs to be updated.
 
         Parameters:
             time_delta: Ellapsed time.
@@ -914,7 +916,7 @@ class WorldState(state.State):
         # TODO: This function may be moved to a server
         # Draw any game NPC's
         for entity in self.get_all_entities():
-            entity.move(time_delta)
+            entity.update(time_delta)
 
             if entity.update_location:
                 char_dict = {"tile_pos": entity.final_move_dest}
@@ -924,7 +926,7 @@ class WorldState(state.State):
         # Move any multiplayer characters that are off map so we know where
         # they should be when we change maps.
         for entity in self.npcs_off_map.values():
-            entity.move(time_delta, self)
+            entity.update(time_delta, self)
 
     def _collision_box_to_pgrect(self, box):
         """

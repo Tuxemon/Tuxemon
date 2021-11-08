@@ -38,7 +38,7 @@ from tuxemon import audio, state, tools, graphics
 from tuxemon.combat import check_status, fainted, get_awake_monsters, defeated
 from tuxemon.locale import T
 from tuxemon.platform.const import buttons
-from tuxemon.pyganim import PygAnimation
+from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
 from tuxemon.technique import Technique
@@ -136,7 +136,7 @@ class TechniqueAnimationCache:
         for fn in technique.images:
             image = graphics.load_and_scale(fn)
             images.append((image, frame_time))
-        tech = PygAnimation(images, False)
+        tech = SurfaceAnimation(images, False)
         sprite = Sprite()
         sprite.image = tech
         sprite.rect = tech.get_rect()

@@ -34,7 +34,7 @@ from pygame.transform import scale
 
 from pygame.rect import Rect
 from tuxemon.platform.const import buttons
-from tuxemon.pyganim import PygAnimation
+from tuxemon.surfanim import SurfaceAnimation
 from tuxemon import graphics
 from tuxemon.tools import scale as set
 from typing import Optional, Callable, Any, Sequence, List, Union, TYPE_CHECKING,\
@@ -71,6 +71,13 @@ class Sprite(pygame.sprite.DirtySprite):
         self._height = 0
         self._needs_rescale = False
         self._needs_update = False
+
+    def update(self, time_delta: float = 0, *args: Any, **kwargs: Any) -> None:
+
+        super().update(time_delta, *args, **kwargs)
+
+        if isinstance(self.image, SurfaceAnimation):
+            self.image.update(time_delta)
 
     def draw(
         self,
@@ -321,7 +328,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
             if not getattr(s, "visible", True):
                 continue
 
-            if isinstance(s.image, PygAnimation):
+            if isinstance(s.image, SurfaceAnimation):
                 s.image.blit(surface, s.rect)
                 continue
 

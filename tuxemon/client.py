@@ -545,6 +545,7 @@ class LocalPygameClient:
         self.state_manager.pop_state(state)
 
     def remove_state(self, state: State) -> None:
+        """Remove a state"""
         self.state_manager.remove_state(state)
 
     @overload

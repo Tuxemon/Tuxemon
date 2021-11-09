@@ -32,7 +32,8 @@ class LoadMenuState(SaveMenuState):
                 self.client.pop_state(old_world)
             except ValueError:
                 # when game is loaded from the start menu
-                pass
+                self.client.pop_state()
+                self.client.pop_state()
 
             map_path = prepare.fetch("maps", save_data["current_map"])
             self.client.push_state(

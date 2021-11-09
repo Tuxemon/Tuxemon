@@ -128,14 +128,12 @@ class Sprite(pygame.sprite.DirtySprite):
         # should always be a cached copy
         if self.animation is not None:
             return self.animation.get_current_frame()
-        elif self._image is None:
-            return dummy_image
 
         if self._needs_update:
             self.update_image()
             self._needs_update = False
             self._needs_rescale = False
-        return self._image
+        return self._image if self._image else dummy_image
 
     @image.setter
     def image(self, image: Optional[pygame.surface.Surface]) -> None:

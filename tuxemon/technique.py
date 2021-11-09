@@ -35,7 +35,7 @@ import random
 
 from tuxemon import formula
 from tuxemon import prepare
-from tuxemon.db import db, process_targets, JSONStat
+from tuxemon.db import db, process_targets
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 from typing import Optional, Sequence, TYPE_CHECKING, TypedDict, List, Tuple

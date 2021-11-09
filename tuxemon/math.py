@@ -2,7 +2,7 @@
 Math utilities that can be used without Pygame.
 '''
 from __future__ import annotations
-from typing import Sequence, overload, Union, Generator, TypeVar, Iterable
+from typing import Sequence, overload, Union, Generator, TypeVar
 from abc import ABC, abstractmethod
 
 SelfType = TypeVar("SelfType", bound="Vector")

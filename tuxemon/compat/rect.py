@@ -5,7 +5,7 @@ from typing import (
     Union,
     Tuple,
     Sequence,
-    TypeVar,
+    TypeVar, cast,
 )
 from abc import abstractmethod
 
@@ -239,11 +239,13 @@ class Rect(ReadOnlyRect):
             self._y = arg.y
             self._w = arg.w
             self._h = arg.h
-        elif isinstance(arg, list) or isinstance(arg, tuple):
+        elif isinstance(arg, (list, tuple)):
             if len(arg) == 2:
+                arg = cast(Tuple[Tuple[int, int], Tuple[int, int]], arg)
                 self._x, self._y = arg[0]
                 self._w, self._h = arg[1]
             elif len(arg) == 4:
+                arg = cast(Tuple[int, int, int, int], arg)
                 self._x, self._y, self._w, self._h = arg
         else:
             self._x, self._y, self._w, self._h = arg

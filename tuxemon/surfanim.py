@@ -148,6 +148,10 @@ class SurfaceAnimation:
 
     def get_frame(self, frame_num: int) -> pygame.surface.Surface:
         """Return the pygame.Surface object of the frame_num-th frame."""
+        from tuxemon.sprite import dummy_image
+        if frame_num >= len(self._images):
+            return dummy_image
+
         return self._images[frame_num]
 
     def get_current_frame(self) -> pygame.surface.Surface:

@@ -51,22 +51,22 @@ dummy_image: Final = pygame.surface.Surface((0, 0))
 
 
 class Sprite(pygame.sprite.DirtySprite):
-    _original_image: pygame.surface.Surface
-    _image: pygame.surface.Surface
+    _original_image: Optional[pygame.surface.Surface]
+    _image: Optional[pygame.surface.Surface]
     _rect: pygame.rect.Rect
-    image: pygame.surface.Surface
-    rect: pygame.rect.Rect
 
     def __init__(
         self,
         *args: pygame.sprite.Group,
         image: Optional[pygame.surface.Surface] = None,
+        animation: Optional[SurfaceAnimation] = None,
     ) -> None:
         super().__init__(*args)
         self.visible = True
         self._rotation = 0
-        self._rect = dummy_image.get_rect()
+        self._rect = Rect(0, 0, 0, 0)
         self.image = image
+        self.animation = animation
         self._width = 0
         self._height = 0
         self._needs_rescale = False
@@ -76,8 +76,8 @@ class Sprite(pygame.sprite.DirtySprite):
 
         super().update(time_delta, *args, **kwargs)
 
-        if isinstance(self.image, SurfaceAnimation):
-            self.image.update(time_delta)
+        if self.animation is not None:
+            self.animation.update(time_delta)
 
     def draw(
         self,
@@ -108,21 +108,29 @@ class Sprite(pygame.sprite.DirtySprite):
         surface: pygame.surface.Surface,
         rect: pygame.rect.Rect,
     ) -> pygame.rect.Rect:
-        return surface.blit(self._image, rect)
+        return surface.blit(self.image, rect)
 
     @property
     def rect(self) -> Rect:
         return self._rect
 
     @rect.setter
-    def rect(self, rect: Rect) -> None:
-        if not rect == self._rect:
+    def rect(self, rect: Optional[Rect]) -> None:
+        if rect is None:
+            rect = Rect(0, 0, 0, 0)
+
+        if rect != self._rect:
             self._rect = rect
             self._needs_update = True
 
     @property
     def image(self) -> pygame.surface.Surface:
         # should always be a cached copy
+        if self.animation is not None:
+            return self.animation.get_current_frame()
+        elif self._image is None:
+            return dummy_image
+
         if self._needs_update:
             self.update_image()
             self._needs_update = False
@@ -131,17 +139,31 @@ class Sprite(pygame.sprite.DirtySprite):
 
     @image.setter
     def image(self, image: Optional[pygame.surface.Surface]) -> None:
-        if image is None:
-            image = dummy_image
+        if image is not None:
+            self.animation = None
+            rect = image.get_rect()
+            self.rect.size = rect.size
 
-        rect = image.get_rect()
-        self.rect.size = rect.size
         self._original_image = image
         self._image = image
         self._needs_update = True
 
+    @property
+    def animation(self) -> Optional[SurfaceAnimation]:
+        return self._animation
+
+    @animation.setter
+    def animation(self, animation: Optional[SurfaceAnimation]) -> None:
+
+        self._animation = animation
+        if animation is not None:
+            self.image = None
+            self.rect.size = animation.get_rect().size
+
     def update_image(self) -> None:
-        if self._needs_rescale:
+
+        image: Optional[pygame.surface.Surface]
+        if self._original_image is not None and self._needs_rescale:
             w = self.rect.width if self._width is None else self._width
             h = self.rect.height if self._height is None else self._height
             image = scale(self._original_image, (w, h))
@@ -151,7 +173,7 @@ class Sprite(pygame.sprite.DirtySprite):
         else:
             image = self._original_image
 
-        if self._rotation:
+        if image is not None and self._rotation:
             image = rotozoom(image, self._rotation, 1)
             rect = image.get_rect(center=self.rect.center)
             self.rect.size = rect.size
@@ -322,14 +344,8 @@ class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
         dirty_append = dirty.append
 
         for s in self.sprites():
-            if getattr(s, "image", None) is None:
-                continue
 
             if not getattr(s, "visible", True):
-                continue
-
-            if isinstance(s.image, SurfaceAnimation):
-                s.image.blit(surface, s.rect)
                 continue
 
             r = spritedict[s]

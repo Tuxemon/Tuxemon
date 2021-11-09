@@ -81,8 +81,7 @@ def main(
 
     if load_slot:
         client.push_state(LoadMenuState, load_slot=load_slot)
-        if load_slot:
-            client.pop_state()
+        client.pop_state()
     elif config.splash:
         client.push_state(SplashState)
         client.push_state(FadeInTransition)

@@ -31,7 +31,6 @@ import logging
 
 from tuxemon import log
 from tuxemon import prepare
-from tuxemon.player import Player
 from tuxemon.session import local_session
 from tuxemon.states.start import BackgroundState, StartState
 from tuxemon.states.persistance.load_menu import LoadMenuState
@@ -82,6 +81,8 @@ def main(
 
     if load_slot:
         client.push_state(LoadMenuState, load_slot=load_slot)
+        if load_slot:
+            client.pop_state()
     elif config.splash:
         client.push_state(SplashState)
         client.push_state(FadeInTransition)

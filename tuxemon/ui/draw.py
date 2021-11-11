@@ -79,9 +79,8 @@ class GraphicBox(Sprite):
     def update_image(self) -> None:
         rect = Rect((0, 0), self._rect.size)
         surface = pygame.Surface(rect.size, pygame.SRCALPHA)
-        self._original_image = surface
-        self._image = surface
         self._draw(surface, rect)
+        self.image = surface
 
     def _draw(
         self,

@@ -83,7 +83,7 @@ with open(paths.USER_CONFIG_PATH, "w") as fp:
 SCREEN_SIZE = CONFIG.resolution
 
 # Set the native tile size so we know how much to scale our maps
-TILE_SIZE = [16, 16]  # 1 tile = 16 pixels
+TILE_SIZE = (16, 16)  # 1 tile = 16 pixels
 
 # Set the status icon size so we know how much to scale our menu icons
 ICON_SIZE = [7, 7]
@@ -101,12 +101,10 @@ NATIVE_RESOLUTION = [240, 160]
 # If scaling is enabled, scale the tiles based on the resolution
 if CONFIG.large_gui:
     SCALE = 2
-    TILE_SIZE[0] *= SCALE
-    TILE_SIZE[1] *= SCALE
+    TILE_SIZE = (TILE_SIZE[0] * SCALE, TILE_SIZE[1] * SCALE)
 elif CONFIG.scaling:
     SCALE = int(SCREEN_SIZE[0] / NATIVE_RESOLUTION[0])
-    TILE_SIZE[0] *= SCALE
-    TILE_SIZE[1] *= SCALE
+    TILE_SIZE = (TILE_SIZE[0] * SCALE, TILE_SIZE[1] * SCALE)
 else:
     SCALE = 1
 

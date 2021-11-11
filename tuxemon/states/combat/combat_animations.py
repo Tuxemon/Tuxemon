@@ -512,7 +512,7 @@ class CombatAnimations(ABC, Menu[None]):
                 duration=1.5,
                 delay=2.2 + index * 0.2,
             )
-            capdev.draw(animate)
+            capdev.animate_capture(animate)
 
     def animate_update_party_hud(self, player: NPC, home: Rect) -> None:
         """

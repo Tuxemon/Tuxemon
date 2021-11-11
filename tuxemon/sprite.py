@@ -231,10 +231,18 @@ class CaptureDeviceSprite(Sprite):
         self.monster = monster
         self.sprite = sprite
         self.state = state
-        self.empty = graphics.load_and_scale("gfx/ui/combat/empty_slot_icon.png")
-        self.faint = graphics.load_and_scale("gfx/ui/icons/party/party_icon03.png")
-        self.alive = graphics.load_and_scale("gfx/ui/icons/party/party_icon01.png")
-        self.effected = graphics.load_and_scale("gfx/ui/icons/party/party_icon02.png")
+        self.empty_img = graphics.load_and_scale(
+            "gfx/ui/combat/empty_slot_icon.png",
+        )
+        self.faint_img = graphics.load_and_scale(
+            "gfx/ui/icons/party/party_icon03.png",
+        )
+        self.alive_img = graphics.load_and_scale(
+            "gfx/ui/icons/party/party_icon01.png",
+        )
+        self.effected_img = graphics.load_and_scale(
+            "gfx/ui/icons/party/party_icon02.png",
+        )
         super().__init__()
 
     def update_state(self) -> str:
@@ -246,21 +254,21 @@ class CaptureDeviceSprite(Sprite):
 
         """
         if self.state == "empty":
-            self.sprite.image = self.empty
+            self.sprite.image = self.empty_img
         else:
             assert self.monster
             if any(t for t in self.monster.status if t.slug == "status_faint"):
                 self.state = "faint"
-                self.sprite.image = self.faint
+                self.sprite.image = self.faint_img
             elif len(self.monster.status) > 0:
                 self.state = "effected"
-                self.sprite.image = self.effected
+                self.sprite.image = self.effected_img
             else:
                 self.state = "alive"
-                self.sprite.image = self.alive
+                self.sprite.image = self.alive_img
         return self.state
 
-    def draw(
+    def animate_capture(
         self,
         animate: Callable[..., object],
     ) -> None:
@@ -278,7 +286,7 @@ class CaptureDeviceSprite(Sprite):
         animate(sprite.rect, bottom=self.tray.rect.top + set(3))
 
 
-_GroupElement = TypeVar("_GroupElement", bound=pygame.sprite.Sprite)
+_GroupElement = TypeVar("_GroupElement", bound=Sprite)
 
 
 class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
@@ -307,7 +315,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
         # Pygame typing is awful. Ignore Mypy here.
         return pygame.sprite.LayeredUpdates.sprites(self)
 
-    def __nonzero__(self) -> bool:
+    def __bool__(self) -> bool:
         return bool(self.sprites())
 
     @overload
@@ -335,36 +343,31 @@ class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
         self,
         surface: pygame.surface.Surface,
     ) -> List[pygame.rect.Rect]:
-        spritedict = self.spritedict
-        surface_blit = surface.blit
         dirty = self.lostsprites
         self.lostsprites = []
-        dirty_append = dirty.append
 
         for s in self.sprites():
 
             if not getattr(s, "visible", True):
                 continue
 
-            r = spritedict[s]
-            newrect = surface_blit(s.image, s.rect)
+            r = self.spritedict[s]
+            newrect = surface.blit(s.image, s.rect)
             if r:
                 if newrect.colliderect(r):
-                    dirty_append(newrect.union(r))
+                    dirty.append(newrect.union(r))
                 else:
-                    dirty_append(newrect)
-                    dirty_append(r)
+                    dirty.append(newrect)
+                    dirty.append(r)
             else:
-                dirty_append(newrect)
-            spritedict[s] = newrect
+                dirty.append(newrect)
+            self.spritedict[s] = newrect
         return dirty
 
     def calc_bounding_rect(self) -> pygame.rect.Rect:
         """A rect object that contains all sprites of this group"""
         sprites = self.sprites()
-        if not sprites:
-            return self.rect
-        elif len(sprites) == 1:
+        if len(sprites) == 1:
             return pygame.rect.Rect(sprites[0].rect)
         else:
             return sprites[0].rect.unionall([s.rect for s in sprites[1:]])
@@ -380,7 +383,7 @@ class RelativeGroup(SpriteGroup[_GroupElement]):
     def __init__(
         self,
         *,
-        parent: Union[RelativeGroup[Any], Callable[[], pygame.rect.Rect],  None] = None,
+        parent: Union[RelativeGroup[Any], Callable[[], pygame.rect.Rect]],
         **kwargs: Any,
     ) -> None:
         self.parent = parent
@@ -394,9 +397,9 @@ class RelativeGroup(SpriteGroup[_GroupElement]):
         return rect.move(self.rect.topleft)
 
     def update_rect_from_parent(self) -> None:
-        try:
+        if callable(self.parent):
             self.rect = self.parent()
-        except TypeError:
+        else:
             self.rect = pygame.rect.Rect(self.parent.rect)
 
     def draw(
@@ -456,7 +459,8 @@ class MenuSpriteGroup(SpriteGroup[_GroupElement]):
             New menu item offset
 
         """
-        # TODO: some sort of smart way to pick items based on location on screen
+        # TODO: some sort of smart way to pick items based on location on
+        # screen
         if not len(self):
             return 0
 
@@ -491,7 +495,7 @@ class VisualSpriteList(RelativeGroup[_GroupElement]):
     """
 
     orientation = "horizontal"  # default, and only implemented
-    expand = True  # will fill all space of parent, if false, will be more compact
+    expand = True  # True: fill all space of parent. False: more compact
 
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
@@ -583,132 +587,3 @@ class VisualSpriteList(RelativeGroup[_GroupElement]):
             item.rect.topleft = ox * column_spacing, oy * line_spacing
 
         self._needs_arrange = False
-
-    def determine_cursor_movement(
-        self,
-        index: int,
-        event: PlayerInput,
-    ) -> int:
-        """
-        Given an event, determine a new selected item offset.
-
-        You must pass the currently selected object.
-        The return value will be the newly selected object index.
-
-        Parameters:
-            index: Index of the item in the list.
-            event: Player event that may cause to select another menu item.
-
-        Returns:
-            New menu item offset
-
-        """
-        if self.orientation == "horizontal":
-            return self._determine_cursor_movement_horizontal(index, event)
-        else:
-            raise RuntimeError
-
-    def _determine_cursor_movement_horizontal(
-        self,
-        index: int,
-        event: PlayerInput,
-    ) -> int:
-        """Given an event, determine a new selected item offset
-
-        You must pass the currently selected object.
-        The return value will be the newly selected object index.
-
-        This is for menus that are laid out horizontally first:
-           [1] [2] [3]
-           [4] [5]
-
-        Works pretty well for most menus, but large grids may require
-        handling them differently.
-
-        Parameters:
-            index: Index of the item in the list.
-            event: Player event that may cause to select another menu item.
-
-        Returns:
-            New menu item offset
-
-        """
-        # sanity check:
-        # if there are 0 or 1 enabled items, then ignore movement
-        enabled = len([i for i in self if i.enabled])
-        if enabled < 2:
-            return index
-
-        if event.pressed:
-
-            # in order to accommodate disabled menu items,
-            # the mod incrementer will loop until a suitable
-            # index is found...one that is not disabled.
-            items = len(self)
-            mod = 0
-
-            # horizontal movement: left and right will inc/dec mod by one
-            if self.columns > 1:
-                if event.button == buttons.LEFT:
-                    mod -= 1
-
-                elif event.button == buttons.RIGHT:
-                    mod += 1
-
-            # vertical movement: up/down will inc/dec the mod by adjusted
-            # value of number of items in a column
-            rows, remainder = divmod(items, self.columns)
-            row, col = divmod(index, self.columns)
-
-            # down key pressed
-            if event.button == buttons.DOWN:
-                if remainder:
-                    if row == rows:
-                        mod += remainder
-
-                    elif col < remainder:
-                        mod += self.columns
-                    else:
-                        if row == rows - 1:
-                            mod += self.columns + remainder
-                        else:
-                            mod += self.columns
-
-                else:
-                    mod = self.columns
-
-            # up key pressed
-            elif event.button == buttons.UP:
-                if remainder:
-                    if row == 0:
-                        if col < remainder:
-                            mod -= remainder
-                        else:
-                            mod += self.columns * (rows - 1)
-                    else:
-                        mod -= self.columns
-
-                else:
-                    mod -= self.columns
-
-            original_index = index
-            seeking_index = True
-            # seeking_index once false, will exit the loop
-            while seeking_index and mod:
-                index += mod
-
-                # wrap the cursor position
-                if index < 0:
-                    index = items - abs(index)
-                if index >= items:
-                    index -= items
-
-                # while looking for a suitable index, we've looked over all choices
-                # just raise an error for now, instead of infinite looping
-                # TODO: some graceful way to handle situations where cannot find an index
-                if index == original_index:
-                    raise RuntimeError
-
-                seeking_index = not self._spritelist[index].enabled
-
-        return index

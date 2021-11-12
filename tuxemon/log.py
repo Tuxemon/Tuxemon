@@ -159,6 +159,7 @@ def send_logs():
     r = requests.post(config.log_host_url, files=send_files, headers={"Max-Days": config.log_storage_max_days, "User-Agent": "curl/7.80.0"})
     print(f"Report URL: {r.text}")
     file.close()
+    __import__("webbrowser").open_new_tab(r.text)
 
 def popup_send_log_consent():
     """

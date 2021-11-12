@@ -679,10 +679,10 @@ msgid "menu_down_key"
 msgstr "Down Key"
 
 msgid "menu_primary_select_key"
-msgstr "P-Select Key"
+msgstr "Action Key"
 
 msgid "menu_secondary_select_key"
-msgstr "S-Select Key"
+msgstr "Cancel Key"
 
 msgid "menu_back_key"
 msgstr "Back Key"

@@ -28,7 +28,7 @@
 """This module contains the Options state
 """
 from __future__ import annotations
-\
+
 from functools import partial
 from typing import Any, Callable, Union, Optional
 
@@ -75,6 +75,7 @@ class SetKeyState(PopUpMenu):
             self.add(item)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+        # must use get_pressed because the events do not contain references to pygame events
         pressed_key = None
         if pygame.key.get_pressed()[pygame.K_UP]: pressed_key = "up"
         if pygame.key.get_pressed()[pygame.K_DOWN]: pressed_key = "down"

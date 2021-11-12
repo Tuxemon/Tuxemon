@@ -27,7 +27,9 @@
 #
 #
 from argparse import ArgumentParser
-from tuxemon.log import send_logs
+from tuxemon.log import send_logs, popup_send_log_consent
+import logging
+logger = logging.getLogger(__name__)
 
 if __name__ == '__main__':
     from tuxemon import prepare, main
@@ -56,8 +58,13 @@ if __name__ == '__main__':
     try:
         main.main(load_slot=args.slot)
     except Exception as ex:
+        from pygame import quit as pg_quit
+        pg_quit()
+        
+        logging.error(ex, exc_info=True)
         if ex != KeyboardInterrupt and ex != EOFError:
             #if input("Send logs? (Y/N)\n> ").upper() == "Y":
-            send_logs()
-            #else:
-            #    print("Not sending logs.")
+            if popup_send_log_consent():
+                send_logs()
+            else:
+                print("Not sending logs.")

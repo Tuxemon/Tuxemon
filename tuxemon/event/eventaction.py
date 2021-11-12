@@ -130,10 +130,10 @@ class EventAction(ABC, Generic[ParameterClass]):
                 self.parameters = parameters
 
         except ValueError:
-            logger.error(f"error while parsing for {self.name}")
-            logger.error(f"cannot parse parameters: {parameters}")
-            logger.error(self.param_class)
-            logger.error("please check the parameters and verify they are correct")
+            logger.warning(f"error while parsing for {self.name}")
+            logger.warning(f"cannot parse parameters: {parameters}")
+            logger.warning(self.param_class)
+            logger.warning("please check the parameters and verify they are correct")
             self.parameters = None
 
         self._done = False

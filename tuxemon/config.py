@@ -107,6 +107,15 @@ class TuxemonConfig:
         self.player_walkrate = cfg.getfloat("player", "player_walkrate")  # tiles/second
         self.player_runrate = cfg.getfloat("player", "player_runrate")  # tiles/second
 
+        # [controls]
+        self.up = cfg.get("controls", "up")
+        self.left = cfg.get("controls", "left")
+        self.right = cfg.get("controls", "right")
+        self.down = cfg.get("controls", "down")
+        self.a = cfg.get("controls", "a")
+        self.b = cfg.get("controls", "b")
+        self.back = cfg.get("controls", "back")
+
         # [logging]
         # Log levels can be: debug, info, warning, error, or critical
         # Setting loggers to "all" will enable debug logging for all modules.

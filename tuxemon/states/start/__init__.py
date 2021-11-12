@@ -23,6 +23,7 @@
 # William Edwards <shadowapex@gmail.com>
 # Benjamin Bean <superman2k5@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
+# Andrew Hong <novialriptide@gmail.com>
 #
 #
 # states.start Handles the start screen which loads and creates new games
@@ -105,16 +106,13 @@ class StartState(PopUpMenu[StartGameObj]):
             )
             self.client.push_state(FadeInTransition)
 
-        def options() -> None:
-            pass
-
         def exit_game() -> None:
             self.client.exit = True
 
         menu_items_map = (
             ("menu_new_game", new_game),
             ("menu_load", change_state("LoadMenuState")),
-            ("menu_options", options),
+            ("menu_options", change_state("ControlState")),
             ("exit", exit_game),
         )
 

@@ -27,6 +27,7 @@
 #
 #
 from argparse import ArgumentParser
+from tuxemon.log import send_logs
 
 if __name__ == '__main__':
     from tuxemon import prepare, main
@@ -52,4 +53,11 @@ if __name__ == '__main__':
         config.skip_titlescreen = True
         config.splash = False
 
-    main.main(load_slot=args.slot)
+    try:
+        main.main(load_slot=args.slot)
+    except Exception as ex:
+        if ex != KeyboardInterrupt and ex != EOFError:
+            #if input("Send logs? (Y/N)\n> ").upper() == "Y":
+            send_logs()
+            #else:
+            #    print("Not sending logs.")

@@ -126,28 +126,12 @@ class SurfaceAnimation:
             itertools.accumulate(self._durations),
         )
 
-    def blit(
-        self,
-        dest_surface: pygame.surface.Surface,
-        dest: pygame.rect.Rect,
-    ) -> None:
-        """
-        Draw the appropriate frame of the animation to the destination Surface.
-
-        Note:
-            If the visibility attribute is False, then nothing will be drawn.
-
-        Parameters:
-            dest_surface: The Surface object to draw the frame to.
-            dest: The position to draw the frame.
-
-        """
-        if not self.visibility or self.state == STOPPED:
-            return
-        dest_surface.blit(self.get_current_frame(), dest)
-
     def get_frame(self, frame_num: int) -> pygame.surface.Surface:
         """Return the pygame.Surface object of the frame_num-th frame."""
+        from tuxemon.sprite import dummy_image
+        if frame_num >= len(self._images):
+            return dummy_image
+
         return self._images[frame_num]
 
     def get_current_frame(self) -> pygame.surface.Surface:

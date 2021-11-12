@@ -6,16 +6,28 @@ from tuxemon import tools
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
-from tuxemon.platform.const import events
+from tuxemon.platform.const import events, buttons, intentions
 from tuxemon.ui.text import TextArea
 from typing import Any, Generator, Optional, Callable
 from tuxemon.platform.events import PlayerInput
+from tuxemon.states.choice import ChoiceState
 
 
-InputMenuGameObj = Callable[[], None]
+class InputMenuObj:
+
+    def __init__(
+        self,
+        action: Callable[[], None],
+        char: Optional[str] = None,
+    ):
+        self.action = action
+        self.char = char
+
+    def __call__(self) -> None:
+        return self.action()
 
 
-class InputMenu(Menu[InputMenuGameObj]):
+class InputMenu(Menu[InputMenuObj]):
     """Menu used to input text."""
     background = None
     draw_borders = False
@@ -43,6 +55,15 @@ class InputMenu(Menu[InputMenuGameObj]):
         self.input_string = initial
         self.chars = T.translate("menu_alphabet").replace(r"\0", "\0")
         self.n_columns = int(T.translate("menu_alphabet_n_columns"))
+        self.char_variants = {
+            s[0]: s[1:] for s in T.translate("menu_char_variants").split("\n")
+        }
+        self.all_chars = self.chars + "".join(
+            v for v in self.char_variants.values()
+        )
+        # The following is necessary to prevent writting a char immediately
+        # after leaving the char variant dialog.
+        self.leaving_char_variant_dialog = False
 
         # area where the input will be shown
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 96))
@@ -70,13 +91,18 @@ class InputMenu(Menu[InputMenuGameObj]):
 
     def initialize_items(
         self,
-    ) -> Generator[MenuItem[InputMenuGameObj], None, None]:
+    ) -> Generator[MenuItem[InputMenuObj], None, None]:
         self.menu_items.columns = self.n_columns
 
         # add the keys
         for char in self.chars:
             if char == "\0":
-                empty = MenuItem(self.shadow_text(" "), None, None, self.empty)
+                empty = MenuItem(
+                    self.shadow_text(" "),
+                    None,
+                    None,
+                    InputMenuObj(self.empty),
+                )
                 empty.enabled = False
                 yield empty
             else:
@@ -84,16 +110,50 @@ class InputMenu(Menu[InputMenuGameObj]):
                     self.shadow_text(char),
                     None,
                     None,
-                    partial(self.add_input_char, char),
+                    InputMenuObj(partial(self.add_input_char, char), char),
                 )
 
         # backspace key
-        yield MenuItem(self.shadow_text("←"), None, None, self.backspace)
+        yield MenuItem(
+            self.shadow_text("←"),
+            None,
+            None,
+            InputMenuObj(self.backspace),
+        )
 
         # button to confirm the input and close the dialog
-        yield MenuItem(self.shadow_text("END"), None, None, self.confirm)
+        yield MenuItem(
+            self.shadow_text("END"),
+            None,
+            None,
+            InputMenuObj(self.confirm),
+        )
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+
+        if event.button in (buttons.A, intentions.SELECT):
+            menu_item = self.get_selected_item()
+            if menu_item is None:
+                return None
+
+            if event.triggered:
+                if self.leaving_char_variant_dialog:
+                    self.leaving_char_variant_dialog = False
+                else:
+                    menu_item.game_object()
+
+            # Wait roughly 1 sec before showing the char variants menu
+            elif event.held and event.hold_time > self.client.fps:
+                base_char = menu_item.game_object.char
+                if base_char:
+                    variants = self.char_variants.get(base_char, "")
+                    all_variants = base_char + variants
+                    choices = [
+                        (c, c, partial(self.add_input_char_and_pop, c))
+                        for c in all_variants
+                    ]
+                    self.client.push_state(ChoiceState, menu=choices)
+            return None
 
         maybe_event = super().process_event(event)
 
@@ -104,7 +164,7 @@ class InputMenu(Menu[InputMenuGameObj]):
 
             if maybe_event.button == events.UNICODE:
                 char = maybe_event.value
-                if char == " " or char in self.chars:
+                if char == " " or char in self.all_chars:
                     self.add_input_char(char)
                 return None
 
@@ -116,6 +176,11 @@ class InputMenu(Menu[InputMenuGameObj]):
     def backspace(self) -> None:
         self.input_string = self.input_string[:-1]
         self.update_text_area()
+
+    def add_input_char_and_pop(self, char: str) -> None:
+        self.leaving_char_variant_dialog = True
+        self.add_input_char(char)
+        self.client.pop_state()
 
     def add_input_char(self, char: str) -> None:
         self.input_string += char

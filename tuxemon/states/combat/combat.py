@@ -137,10 +137,7 @@ class TechniqueAnimationCache:
             image = graphics.load_and_scale(fn)
             images.append((image, frame_time))
         tech = SurfaceAnimation(images, False)
-        sprite = Sprite()
-        sprite.image = tech
-        sprite.rect = tech.get_rect()
-        return sprite
+        return Sprite(animation=tech)
 
 
 class WaitForInputState(state.State):
@@ -948,7 +945,7 @@ class CombatState(CombatAnimations):
         tech_sprite = self._technique_cache.get(technique)
         if result["success"] and target_sprite and tech_sprite:
             tech_sprite.rect.center = target_sprite.rect.center
-            self.task(tech_sprite.image.play, hit_delay)
+            self.task(tech_sprite.animation.play, hit_delay)
             self.task(
                 partial(self.sprites.add, tech_sprite, layer=50),
                 hit_delay,

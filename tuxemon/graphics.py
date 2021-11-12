@@ -181,7 +181,6 @@ def load_sprite(
 def load_animated_sprite(
     filenames: Iterable[str],
     delay: float,
-    **rect_kwargs: Any,
 ) -> Sprite:
     """
     Load a set of images and return an animated sprite.
@@ -195,7 +194,6 @@ def load_animated_sprite(
     Parameters:
         filenames: Filenames to load.
         delay: Frame interval; time between each frame.
-        rect_kwargs: Parameters for ``get_rect``.
 
     Returns:
         Loaded animated sprite.
@@ -209,10 +207,7 @@ def load_animated_sprite(
 
     tech = SurfaceAnimation(anim, True)
     tech.play()
-    sprite = Sprite()
-    sprite.image = tech
-    sprite.rect = sprite.image.get_rect(**rect_kwargs)
-    return sprite
+    return Sprite(animation=tech)
 
 
 def scale_surface(

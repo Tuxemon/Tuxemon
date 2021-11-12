@@ -23,6 +23,139 @@ logger = logging.getLogger(__name__)
 MenuState = Literal["closed", "opening", "normal", "disabled", "closing"]
 
 
+def determine_cursor_movement(
+    sprite_list: VisualSpriteList[MenuItem[Any]],
+    index: int,
+    event: PlayerInput,
+) -> int:
+    """
+    Given an event, determine a new selected item offset.
+
+    You must pass the currently selected object.
+    The return value will be the newly selected object index.
+
+    Parameters:
+        sprite_list: The sprite list in which to move.
+        index: Index of the item in the list.
+        event: Player event that may cause to select another menu item.
+
+    Returns:
+        New menu item offset
+
+    """
+    if sprite_list.orientation == "horizontal":
+        return _determine_cursor_movement_horizontal(sprite_list, index, event)
+    else:
+        raise RuntimeError
+
+def _determine_cursor_movement_horizontal(
+    sprite_list: VisualSpriteList[MenuItem[Any]],
+    index: int,
+    event: PlayerInput,
+) -> int:
+    """Given an event, determine a new selected item offset
+
+    You must pass the currently selected object.
+    The return value will be the newly selected object index.
+
+    This is for menus that are laid out horizontally first:
+       [1] [2] [3]
+       [4] [5]
+
+    Works pretty well for most menus, but large grids may require
+    handling them differently.
+
+    Parameters:
+        sprite_list: The sprite list in which to move.
+        index: Index of the item in the list.
+        event: Player event that may cause to select another menu item.
+
+    Returns:
+        New menu item offset
+
+    """
+    # sanity check:
+    # if there are 0 or 1 enabled items, then ignore movement
+    enabled = len([i for i in sprite_list if i.enabled])
+    if enabled < 2:
+        return index
+
+    if event.pressed:
+
+        # in order to accommodate disabled menu items,
+        # the mod incrementer will loop until a suitable
+        # index is found...one that is not disabled.
+        items = len(sprite_list)
+        mod = 0
+
+        # horizontal movement: left and right will inc/dec mod by one
+        if sprite_list.columns > 1:
+            if event.button == buttons.LEFT:
+                mod -= 1
+
+            elif event.button == buttons.RIGHT:
+                mod += 1
+
+        # vertical movement: up/down will inc/dec the mod by adjusted
+        # value of number of items in a column
+        rows, remainder = divmod(items, sprite_list.columns)
+        row, col = divmod(index, sprite_list.columns)
+
+        # down key pressed
+        if event.button == buttons.DOWN:
+            if remainder:
+                if row == rows:
+                    mod += remainder
+
+                elif col < remainder:
+                    mod += sprite_list.columns
+                else:
+                    if row == rows - 1:
+                        mod += sprite_list.columns + remainder
+                    else:
+                        mod += sprite_list.columns
+
+            else:
+                mod = sprite_list.columns
+
+        # up key pressed
+        elif event.button == buttons.UP:
+            if remainder:
+                if row == 0:
+                    if col < remainder:
+                        mod -= remainder
+                    else:
+                        mod += sprite_list.columns * (rows - 1)
+                else:
+                    mod -= sprite_list.columns
+
+            else:
+                mod -= sprite_list.columns
+
+        original_index = index
+        seeking_index = True
+        # seeking_index once false, will exit the loop
+        while seeking_index and mod:
+            index += mod
+
+            # wrap the cursor position
+            if index < 0:
+                index = items - abs(index)
+            if index >= items:
+                index -= items
+
+            # while looking for a suitable index, we've looked over all choices
+            # just raise an error for now, instead of infinite looping
+            # TODO: some graceful way to handle situations where cannot find an
+            # index
+            if index == original_index:
+                raise RuntimeError
+
+            seeking_index = not sprite_list.sprites()[index].enabled
+
+    return index
+
+
 def layout_func(scale: float) -> Callable[[Sequence[float]], Sequence[float]]:
     def func(area: Sequence[float]) -> Sequence[float]:
         return [scale * i for i in area]
@@ -521,7 +654,8 @@ class Menu(Generic[T], state.State):
         ):
             handled_event = True
             if valid_change:
-                index = self.menu_items.determine_cursor_movement(
+                index = determine_cursor_movement(
+                    self.menu_items,
                     self.selected_index,
                     event,
                 )

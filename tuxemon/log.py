@@ -32,7 +32,8 @@ import logging
 import sys
 
 from tuxemon import prepare
-
+from tuxemon.constants.paths import USER_STORAGE_DIR
+import requests
 
 def configure():
     """Configure logging based on the settings in the config file."""
@@ -72,8 +73,29 @@ def configure():
             log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"))
             logger.addHandler(log_hdlr)
 
+            # Logging to file
+            log_filehandler = logging.FileHandler(f"{USER_LOG_DIR}/latest.log")
+            log_filehandler.setLevel(logging.INFO)
+            log_filehandler.setFormatter(logging.Formatter("%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"))
+            logger.addHandler(log_filehandler)
+
             loggers[logger_name] = logger
 
             # prevent pyscroll redraw warnings
             pyscroll_logger = logging.getLogger("orthographic")
             pyscroll_logger.setLevel(logging.ERROR)
+
+def send_logs():
+    config = prepare.CONFIG
+
+    # Get file
+    file = open(f"{USER_STORAGE_DIR}/latest.log")
+    send_files = {"tuxemon_log.txt": file}
+    print(config.log_host_url, config.log_storage_max_days)
+    r = requests.post(config.log_host_url, files=send_files, headers={"Max-Days": config.log_storage_max_days})
+    logging.info(r.__dict__)
+    print(f"Report URL: {r.text}")
+    file.close()
+#    print("Not implemented (yet)")
+#    return
+

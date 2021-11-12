@@ -59,6 +59,10 @@ logger.debug("user game data: %s", USER_GAME_DATA_DIR)
 USER_GAME_SAVE_DIR = os.path.join(USER_STORAGE_DIR, "saves")
 logger.debug("save games: %s", USER_GAME_SAVE_DIR)
 
+# log dir
+USER_LOG_DIR = os.path.join(USER_STORAGE_DIR, "logs")
+logger.debug("logs: %s", USER_LOG_DIR)
+
 # game cache dir
 CACHE_DIR = os.path.join(USER_STORAGE_DIR, "cache")
 logger.debug("cache: %s", CACHE_DIR)

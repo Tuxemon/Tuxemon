@@ -70,6 +70,10 @@ if not os.path.isdir(paths.USER_GAME_DATA_DIR):
 if not os.path.isdir(paths.USER_GAME_SAVE_DIR):
     os.makedirs(paths.USER_GAME_SAVE_DIR)
 
+# Create log dir if missing
+if not os.path.isdir(paths.USER_LOG_DIR):
+    os.makedirs(paths.USER_LOG_DIR)
+
 # Generate default config
 config.generate_default_config()
 

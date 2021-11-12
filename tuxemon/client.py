@@ -27,6 +27,7 @@ from __future__ import annotations
 import logging
 import os.path
 import time
+from threading import Thread
 
 import pygame as pg
 
@@ -38,8 +39,9 @@ from tuxemon.platform.platform_pygame.events import (
     PygameMouseInput,
     PygameTouchOverlayInput,
 )
-from tuxemon import cli, networking
+from tuxemon import networking
 from tuxemon import rumble
+from tuxemon.cli.processor import CommandProcessor
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.session import local_session
 from tuxemon.state import StateManager, State
@@ -134,12 +136,16 @@ class LocalPygameClient:
             "previoussong": None,
         }
 
-        # Set up the command line. This provides a full python shell for
-        # troubleshooting. You can view and manipulate any variables in
-        # the game.
-        self.exit = False  # Allow exit from the CLI
         if self.config.cli:
-            self.cli = cli.CommandLine(self)
+            # TODO: There is no protection for the main thread from the cli
+            # actions that execute in this thread may have undefined
+            # behavior for the game.  at some point, a lock should be
+            # implemented so that actions executed here have exclusive
+            # control of the game loop and state.
+            self.cli = CommandProcessor(local_session)
+            thread = Thread(target=self.cli.run)
+            thread.daemon = True
+            thread.start()
 
         # Set up rumble support for gamepads
         self.rumble_manager = rumble.RumbleManager()
@@ -148,6 +154,7 @@ class LocalPygameClient:
         # TODO: phase these out
         self.key_events: Sequence[PlayerInput] = []
         self.event_data = dict()
+        self.exit = False
 
     def on_state_change(self) -> None:
         logger.debug("resetting controls due to state change")

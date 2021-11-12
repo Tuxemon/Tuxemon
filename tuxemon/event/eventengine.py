@@ -34,7 +34,18 @@ from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon import plugin
 from tuxemon import prepare
 from tuxemon.platform.const import buttons
-from typing import Any, Dict, Generator, Iterable, List, Optional, Sequence, Tuple, Union
+from typing import (
+    Any,
+    Dict,
+    Generator,
+    Iterable,
+    List,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+)
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.event.eventaction import EventAction
 from tuxemon.platform.events import PlayerInput
@@ -192,11 +203,18 @@ class EventEngine:
 
         except KeyError:
             error = f'Error: EventAction "{name}" not implemented'
-            logger.error(error)
+            logger.warning(error)
             return None
 
         else:
             return action(self.session, parameters)
+
+    def get_actions(self) -> List[Type[EventAction]]:
+        """
+        Return list of EventActions.
+
+        """
+        return list(self.actions.values())
 
     def get_condition(self, name: str) -> Optional[EventCondition]:
         """
@@ -220,16 +238,22 @@ class EventEngine:
 
         except KeyError:
             error = f'Error: EventCondition "{name}" not implemented'
-            logger.error(error)
+            logger.warning(error)
             return None
 
         else:
             return condition()
 
+    def get_conditions(self) -> List[EventCondition]:
+        """
+        Return list of EventConditions.
+
+        """
+        return list(self.conditions.values())
+
     def check_condition(
         self,
         cond_data: MapCondition,
-        map_event: EventObject,
     ) -> bool:
         """
         Check if condition is true of false.
@@ -238,21 +262,19 @@ class EventEngine:
 
         Parameters:
             cond_data: The condition to check.
-            map_event: Event that includes the condition.
 
         Returns:
             The value of the condition.
 
         """
-        with add_error_context(map_event, cond_data, self.session):
-            map_condition = self.get_condition(cond_data.type)
-            if map_condition is None:
-                logger.debug(f'map condition "{cond_data.type}" is not loaded')
-                return False
+        map_condition = self.get_condition(cond_data.type)
+        if map_condition is None:
+            logger.debug(f'map condition "{cond_data.type}" is not loaded')
+            return False
 
-            result = map_condition.test(self.session, cond_data) == (cond_data.operator == "is")
-            logger.debug(f'map condition "{map_condition.name}": {result} ({cond_data})')
-            return result
+        result = map_condition.test(self.session, cond_data) == (cond_data.operator == "is")
+        logger.debug(f'map condition "{map_condition.name}": {result} ({cond_data})')
+        return result
 
     def execute_action(
         self,
@@ -275,7 +297,7 @@ class EventEngine:
         action = self.get_action(action_name, parameters)
         if action is None:
             error_msg = f'Map action "{action_name}" is not loaded'
-            logger.debug(error_msg)
+            logger.warning(error_msg)
             raise ValueError(error_msg)
 
         return action.execute()
@@ -314,7 +336,8 @@ class EventEngine:
             started = 0
             conds = list()
             for cond in map_event.conds:
-                if self.check_condition(cond, map_event):
+                # TODO: wrap with add_error_context
+                if self.check_condition(cond):
                     conds.append((True, cond))
                     started += 1
                 else:
@@ -327,7 +350,7 @@ class EventEngine:
 
         else:
             # optimal, less debug
-            if all(self.check_condition(cond, map_event) for cond in map_event.conds):
+            if all(self.check_condition(cond) for cond in map_event.conds):
                 self.start_event(map_event)
 
     def process_map_events(self, events: Iterable[EventObject]) -> None:

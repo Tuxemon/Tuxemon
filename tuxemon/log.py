@@ -34,7 +34,11 @@ import sys
 from tuxemon import prepare
 from tuxemon.constants.paths import *
 import requests
-
+import gzip
+from shutil import copyfileobj, move
+from os import remove
+from os.path import exists
+from datetime import datetime
 # For messagebox
 import tkinter as tk
 from tkinter import messagebox
@@ -42,6 +46,20 @@ from tkinter import messagebox
 # For gathering system information
 import platform
 
+def archive_log():
+    """
+    Archives specified file, compressing it and renaming it to 
+    the current date using the %d-%m-%Y_%H:%M:%S format.
+    """
+    if not exists(USER_LOG_DIR + "/latest.log"):
+        return
+    # Compress the file...
+    with open(f"{USER_LOG_DIR}/latest.log", "rb") as uncompressed:
+        with gzip.open(f"{USER_LOG_DIR}/latest.log.gz", "wb") as compressed:
+            copyfileobj(uncompressed, compressed)
+    move(f"{USER_LOG_DIR}/latest.log.gz", 
+                f"{USER_LOG_DIR}/{datetime.now().strftime('%d-%m-%Y_%H:%M:%S')}.log.gz")
+    os.remove(f"{USER_LOG_DIR}/latest.log")
 def configure():
     """Configure logging based on the settings in the config file."""
     # Set our logging levels
@@ -80,6 +98,8 @@ def configure():
             log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"))
             logger.addHandler(log_hdlr)
 
+            # Archive previous log
+            archive_log()
             # Logging to file
             log_filehandler = logging.FileHandler(f"{USER_LOG_DIR}/latest.log")
             log_filehandler.setLevel(logging.INFO)
@@ -94,6 +114,7 @@ def configure():
 
 def send_logs():
     config = prepare.CONFIG
+    logging.info("="* 26)
 
     logging.info("=== System information ===")
 
@@ -141,10 +162,9 @@ def send_logs():
 
 def popup_send_log_consent():
     """
-    Popup requesting consent for sending crash report
+    Popup requesting consent for sending crash report.
+    Returns bool value with the choice.
     """
-    # DEBUG
-    return True
     title="Tuxemon", 
     text="Sadly, Tuxemon crashed. Do you want to send crash report to the tuxemon team?",
     choices=["yes", "no"]

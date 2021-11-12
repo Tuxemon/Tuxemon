@@ -28,6 +28,7 @@
 """This module contains the Options state
 """
 from __future__ import annotations
+\
 from functools import partial
 from typing import Any, Callable, Union, Optional
 
@@ -59,12 +60,19 @@ class SetKeyState(PopUpMenu):
     shrink_to_items = True
 
     def startup(self, **kwargs: Any) -> None:
-        super().startup(**kwargs)
         self.input = kwargs["input"]
-        label = T.translate("options_new_input_key")
-        image = self.shadow_text(label)
-        item = MenuItem(image, label, None, None)
-        self.add(item)
+        super().startup(**kwargs)
+
+        menu_items_map = (
+            T.translate("options_new_input_key0"),
+            T.translate("options_new_input_key1")
+        )
+
+        for key in menu_items_map:
+            label = T.translate(key).upper()
+            image = self.shadow_text(label)
+            item = MenuItem(image, label, None, None)
+            self.add(item)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         pressed_key = None

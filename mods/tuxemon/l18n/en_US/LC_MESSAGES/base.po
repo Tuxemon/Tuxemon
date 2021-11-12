@@ -687,8 +687,11 @@ msgstr "S-Select Key"
 msgid "menu_back_key"
 msgstr "Back Key"
 
-msgid "options_new_input_key"
+msgid "options_new_input_key0"
 msgstr "Press a key to set your new input key"
+
+msgid "options_new_input_key1"
+msgstr "Restart your game for changes to take effect!"
 
 # Multiplayer notifications
 msgid "multiplayer_accept"

@@ -34,7 +34,18 @@ from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon import plugin
 from tuxemon import prepare
 from tuxemon.platform.const import buttons
-from typing import Any, Dict, Generator, Iterable, List, Optional, Sequence, Tuple, Union
+from typing import (
+    Any,
+    Dict,
+    Generator,
+    Iterable,
+    List,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+)
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.event.eventaction import EventAction
 from tuxemon.platform.events import PlayerInput
@@ -198,9 +209,9 @@ class EventEngine:
         else:
             return action(self.session, parameters)
 
-    def get_actions(self) -> List[EventAction]:
+    def get_actions(self) -> List[Type[EventAction]]:
         """
-        Return list of EventAction
+        Return list of EventActions.
 
         """
         return list(self.actions.values())
@@ -235,7 +246,7 @@ class EventEngine:
 
     def get_conditions(self) -> List[EventCondition]:
         """
-        Return list of EventConditions
+        Return list of EventConditions.
 
         """
         return list(self.conditions.values())

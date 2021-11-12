@@ -1,17 +1,19 @@
 from __future__ import annotations
 
+import sys
+
 from tuxemon.cli.clicommand import CLICommand
 from tuxemon.cli.context import InvokeContext
 
 
 class WhereAmICommand(CLICommand):
     """
-    Display player map name
+    Display player map name.
 
     """
 
     name = "whereami"
-    description = "Print the filename of map where player is"
+    description = "Print the filename of map where player is."
     example = "whereami"
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:
@@ -24,8 +26,8 @@ class WhereAmICommand(CLICommand):
 
         """
         try:
-            filename = ctx.session.client.event_engine.current_map.data.filename
+            fn = ctx.session.client.event_engine.current_map.data.filename
         except AttributeError:
-            print("Cannot get filename from the game.")
+            print("Cannot get filename from the game.", file=sys.stderr)
         else:
-            print(filename)
+            print(fn)

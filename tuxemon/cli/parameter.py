@@ -6,9 +6,8 @@ import dataclasses
 @dataclasses.dataclass
 class Parameter:
     """
-    Used to categorize and manage parameters for commands
+    Used to categorize and manage parameters for commands.
 
     """
 
     name: str
-    klass: str

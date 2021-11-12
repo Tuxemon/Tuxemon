@@ -6,17 +6,17 @@ from tuxemon.cli.context import InvokeContext
 
 class QuitCommand(CLICommand):
     """
-    Quit the game
+    Quit the game.
 
     """
 
     name = "quit"
-    description = "Quit the game"
+    description = "Quit the game."
     example = "quit"
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:
         """
-        Quit the game
+        Quit the game.
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.

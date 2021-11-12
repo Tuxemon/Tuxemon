@@ -6,10 +6,10 @@ from typing import List, Tuple
 
 def parse(text: str) -> List[str]:
     """
-    Default parser for text input on the prompt
+    Default parser for text input on the prompt.
 
     Parameters:
-        text: str
+        text: Text to split into tokens.
 
     """
     return shlex.split(text)
@@ -17,10 +17,10 @@ def parse(text: str) -> List[str]:
 
 def split(line: str) -> Tuple[str, str]:
     """
-    Split text into head, tail tokens
+    Split text into head, tail tokens.  Text is split after 1st space.
 
     Parameters:
-        line: str
+        line: Text to split.
 
     """
     try:

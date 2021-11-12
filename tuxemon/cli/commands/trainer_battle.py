@@ -11,12 +11,12 @@ from tuxemon.event.actions.start_battle import StartBattleActionParameters
 
 class TrainerBattleCommand(CLICommand):
     """
-    Command to start a trainer battle
+    Command to start a trainer battle.
 
     """
 
     name = "trainer_battle"
-    description = "Start a trainer battle"
+    description = "Start a trainer battle."
     example = "trainer_battle maple_girl"
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:
@@ -37,7 +37,10 @@ class TrainerBattleCommand(CLICommand):
             try:
                 action = ctx.session.client.event_engine.execute_action
                 action("create_npc", (trainer, 7, 6))
-                action("start_battle", (StartBattleActionParameters(npc_slug=trainer)))
+                action(
+                    "start_battle",
+                    (StartBattleActionParameters(npc_slug=trainer)),
+                )
                 action("remove_npc", (trainer,))
             except:
                 traceback.print_exc()

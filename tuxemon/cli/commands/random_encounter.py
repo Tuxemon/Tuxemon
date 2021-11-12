@@ -6,17 +6,17 @@ from tuxemon.cli.context import InvokeContext
 
 class RandomEncounterCommand(CLICommand):
     """
-    Start random encounter using "default_encounter"
+    Start random encounter using "default_encounter".
 
     """
 
     name = "random_encounter"
-    description = "Start random encounter using 'default_encounter'"
+    description = "Start random encounter using 'default_encounter'."
     example = "random_encounter"
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:
         """
-        Start random encounter using "default_encounter"
+        Start random encounter using "default_encounter".
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.

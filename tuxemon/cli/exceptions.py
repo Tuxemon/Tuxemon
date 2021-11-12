@@ -1,6 +1,6 @@
 class CommandNotFoundError(Exception):
     """
-    Raised when a command is not found
+    Raised when a command is not found.
 
     """
 
@@ -9,7 +9,7 @@ class CommandNotFoundError(Exception):
 
 class ParseError(Exception):
     """
-    Raised when the input cannot be parsed due to bad syntax
+    Raised when the input cannot be parsed due to bad syntax.
 
     """
 

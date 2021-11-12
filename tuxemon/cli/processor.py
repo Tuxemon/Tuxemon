@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import sys
 from typing import Iterable
 
 from prompt_toolkit import PromptSession
@@ -18,30 +19,30 @@ class MetaCommand(CLICommand):
     Command to use at the prompt.  It is never invoked by name.
 
     Parameters:
-        commands: Sequence of commands to make available at the prompt
+        commands: Sequence of commands to make available at the prompt.
 
     """
 
     name = "Meta Command"
-    description = "Used as the primary command"
+    description = "Used as the primary command."
 
     def __init__(self, commands):
         self._commands = commands
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:
         """
-        Default when no arguments are entered
+        Default when no arguments are entered.
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
             line: Input text after the command name.
 
         """
-        print("???")
+        print("???", file=sys.stderr)
 
     def get_subcommands(self, ctx: InvokeContext) -> Iterable[CLICommand]:
         """
-        Return commands that can be used at the prompt
+        Return commands that can be used at the prompt.
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
@@ -99,9 +100,12 @@ class CommandProcessor:
                         ctx.current_command = command
                         command.invoke(ctx, tail)
                     except ParseError:
-                        print(f"Unknown syntax: {line}")
+                        print(f"Unknown syntax: {line}", file=sys.stderr)
                     except CommandNotFoundError:
-                        print(f"Cannot determine the command for: {line}")
+                        print(
+                            f"Cannot determine the command for: {line}",
+                            file=sys.stderr,
+                        )
 
             except KeyboardInterrupt:
                 print(f"Got KeyboardInterrupt")
@@ -112,7 +116,7 @@ class CommandProcessor:
 
     def collect_commands(self, folder: str) -> Iterable[CLICommand]:
         """
-        Use plugins to load CLICommand classes for commands
+        Use plugins to load CLICommand classes for commands.
 
         Parameters:
             folder: Folder to search.

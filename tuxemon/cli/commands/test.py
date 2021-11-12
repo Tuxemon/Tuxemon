@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 import traceback
 from typing import TYPE_CHECKING, Iterable
 
@@ -14,28 +15,28 @@ if TYPE_CHECKING:
 
 class TestConditionParentCommand(CLICommand):
     """
-    Command that will test a condition
+    Command that will test a condition.
 
     """
 
     name = "test"
-    description = "Evaluate condition and print the result"
+    description = "Evaluate condition and print the result."
     example = "test player_facing up"
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:
         """
-        Default when no arguments are entered
+        Default when no arguments are entered.
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
             line: Input text after the command name.
 
         """
-        print("need more arguments or syntax error")
+        print("need more arguments or syntax error", file=sys.stderr)
 
     def get_subcommands(self, ctx: InvokeContext) -> Iterable[CLICommand]:
         """
-        Return subcommands that will evaluate an EventCondition
+        Return subcommands that will evaluate an EventCondition.
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
@@ -51,7 +52,9 @@ class TestConditionParentCommand(CLICommand):
 
 class TestConditionCommand(CLICommand):
     """
-    Subcommand used by ``test`` to evaluate EventConditions.  "is" prefix is implied.
+    Subcommand used by ``test`` to evaluate EventConditions.
+
+    * "is" prefix is implied; do not include "is" or "not".
 
     """
 
@@ -59,9 +62,9 @@ class TestConditionCommand(CLICommand):
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:
         """
-        Test a condition
+        Test a condition.
 
-        * do not use "is" or "not"
+        * do not use "is" or "not".
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
@@ -79,4 +82,7 @@ class TestConditionCommand(CLICommand):
             print(str(result))
         except Exception as exc:
             traceback.print_exc()
-            print("Cannot test condition. Check the input and try again.")
+            print(
+                "Cannot test condition. Check the input and try again.",
+                file=sys.stderr,
+            )

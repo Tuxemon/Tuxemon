@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 import traceback
 from typing import TYPE_CHECKING, Iterable
 
@@ -12,7 +13,7 @@ if TYPE_CHECKING:
 
 class ActionParentCommand(CLICommand):
     """
-    Command allows actions to be executed directly
+    Command allows actions to be executed directly.
 
     Actions are listed as options, but when invoked, return
     subcommands that will execute the action.
@@ -20,23 +21,23 @@ class ActionParentCommand(CLICommand):
     """
 
     name = "action"
-    description = "Execute action in the game"
+    description = "Execute action in the game."
     example = "action add_item potion,10"
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:
         """
-        Default when no arguments are entered
+        Default when no arguments are entered.
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
             line: Input text after the command name.
 
         """
-        print("need more arguments or syntax error")
+        print("need more arguments or syntax error", file=sys.stderr)
 
     def get_subcommands(self, ctx: InvokeContext) -> Iterable[CLICommand]:
         """
-        Return subcommands that will execute an EventAction
+        Return subcommands that will execute an EventAction.
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
@@ -52,7 +53,7 @@ class ActionParentCommand(CLICommand):
 
 class ActionCommand(CLICommand):
     """
-    Subcommand used by ``action`` to invoke EventActions
+    Subcommand used by ``action`` to invoke EventActions.
 
     """
 
@@ -60,7 +61,7 @@ class ActionCommand(CLICommand):
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:
         """
-        Execute action directly
+        Execute action directly.
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
@@ -71,7 +72,9 @@ class ActionCommand(CLICommand):
         name, args = parse_action_string(line)
         try:
             ctx.session.client.event_engine.execute_action(name, args)
-            print("ok.")
         except Exception as exc:
             traceback.print_exc()
-            print("Cannot execute action. Check the input and try again.")
+            print(
+                "Cannot execute action. Check the input and try again.",
+                file=sys.stderr,
+            )

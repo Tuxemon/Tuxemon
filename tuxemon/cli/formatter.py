@@ -7,9 +7,9 @@ from typing import Optional
 
 class Formatter:
     """
-    Print formatted text things
+    Print formatted text things.
 
-    Currently just supports printing things in a table
+    Currently just supports printing things in a table.
 
     """
 
@@ -22,7 +22,7 @@ class Formatter:
         maxcol: int = 120,
     ) -> None:
         """
-        Print formatted table with header and footer
+        Print formatted table with header and footer.
 
         Parameters:
             header: Text to display as a heading.

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 @dataclasses.dataclass
 class InvokeContext:
     """
-    Context object for use by CLICommands
+    Context object for use by CLICommands.
 
     """
 

@@ -7,7 +7,7 @@ from tuxemon.cli.processor import MetaCommand
 
 class HelpCommand(CLICommand):
     """
-    Command to get list available commands and display help for them
+    Command to get list available commands and display help for them.
 
     """
 
@@ -17,7 +17,7 @@ class HelpCommand(CLICommand):
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:
         """
-        List available commands and display help for them
+        List available commands and display help for them.
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
@@ -36,7 +36,7 @@ class HelpCommand(CLICommand):
         if names:
             names.sort()
             if isinstance(command, MetaCommand):
-                footer = f"Enter 'help [command]' for more information"
+                footer = f"Enter 'help [command]' for more info."
             else:
-                footer = f"Enter 'help {command.name} [option]' for more information"
+                footer = f"Enter 'help {command.name} [option]' for more info."
             ctx.formatter.print_table("Available Options", names, footer)

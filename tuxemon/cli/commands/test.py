@@ -79,7 +79,7 @@ class TestConditionCommand(CLICommand):
             raise ParseError
         try:
             result = ctx.session.client.event_engine.check_condition(cond)
-            print(str(result))
+            print(result)
         except Exception as exc:
             traceback.print_exc()
             print(

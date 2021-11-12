@@ -33,7 +33,7 @@ import logging
 from itertools import product
 from math import pi, atan2
 from typing import Optional, Literal, Generator, Tuple, TypeVar, Mapping,\
-    Sequence, List, Set, TypedDict
+    Sequence, List, Set, TypedDict, Union
 
 import pyscroll
 
@@ -113,8 +113,8 @@ def translate_short_path(
 
 
 def get_direction(
-    base: Tuple[int, int],
-    target: Tuple[int, int],
+    base: Union[Vector2, Tuple[int, int]],
+    target: Union[Vector2, Tuple[int, int]],
 ) -> Direction:
     y_offset = base[1] - target[1]
     x_offset = base[0] - target[0]

@@ -147,8 +147,8 @@ class CombatAnimations(ABC, Menu[None]):
         :type monster: tuxemon.monster.Monster
         :return:
         """
-        feet = list(self._layout[npc]["home"][0].center)
-        feet[1] += tools.scale(11)
+        feet_list = list(self._layout[npc]["home"][0].center)
+        feet = (feet_list[0], feet_list[1] + tools.scale(11))
 
         capdev = self.load_sprite("gfx/items/capture_device.png")
         graphics.scale_sprite(capdev, 0.4)
@@ -156,7 +156,11 @@ class CombatAnimations(ABC, Menu[None]):
 
         # animate the capdev falling
         fall_time = 0.7
-        animate = partial(self.animate, duration=fall_time, transition="out_quad")
+        animate = partial(
+            self.animate,
+            duration=fall_time,
+            transition="out_quad",
+        )
         animate(capdev.rect, bottom=feet[1], transition="in_back")
         animate(capdev, rotation=720, initial=0)
 
@@ -189,7 +193,8 @@ class CombatAnimations(ABC, Menu[None]):
         self.sprites.add(monster_sprite)
         self._monster_sprite_map[monster] = monster_sprite
 
-        # position monster_sprite off screen and set animation to move it back to final spot
+        # position monster_sprite off screen and set animation to move it
+        # back to final spot
         monster_sprite.rect.top = self.client.screen.get_height()
         self.animate(
             monster_sprite.rect,
@@ -208,9 +213,7 @@ class CombatAnimations(ABC, Menu[None]):
 
         delay = 1.3
         tech = SurfaceAnimation(images, False)
-        sprite = Sprite()
-        sprite.image = tech
-        sprite.rect = tech.get_rect()
+        sprite = Sprite(animation=tech)
         sprite.rect.midbottom = feet
         self.task(tech.play, delay)
         self.task(partial(self.sprites.add, sprite), delay)
@@ -509,7 +512,7 @@ class CombatAnimations(ABC, Menu[None]):
                 duration=1.5,
                 delay=2.2 + index * 0.2,
             )
-            capdev.draw(animate)
+            capdev.animate_capture(animate)
 
     def animate_update_party_hud(self, player: NPC, home: Rect) -> None:
         """
@@ -633,7 +636,7 @@ class CombatAnimations(ABC, Menu[None]):
             monster: The monster to capture.
 
         """
-        monster_sprite = self._monster_sprite_map.get(monster, None)
+        monster_sprite = self._monster_sprite_map[monster]
         capdev = self.load_sprite("gfx/items/capture_device.png")
         animate = partial(self.animate, capdev.rect, transition="in_quad", duration=1.0)
         graphics.scale_sprite(capdev, 0.4)
@@ -657,9 +660,7 @@ class CombatAnimations(ABC, Menu[None]):
             images.append((image, 0.07))
 
         tech = SurfaceAnimation(images, False)
-        sprite = Sprite()
-        sprite.image = tech
-        sprite.rect = tech.get_rect()
+        sprite = Sprite(animation=tech)
         self.task(tech.play, 1.0)
         self.task(partial(self.sprites.add, sprite), 1.0)
         sprite.rect.midbottom = monster_sprite.rect.midbottom

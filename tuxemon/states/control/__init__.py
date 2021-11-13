@@ -36,11 +36,12 @@ import pygame
 
 from tuxemon import prepare, config
 from tuxemon.constants import paths
+from tuxemon.event.eventengine import EventEngine
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.platform.const import buttons
-from tuxemon.platform.platform_pygame.events import PygameMouseInput, PygameGamepadInput, PygameTouchOverlayInput, PygameKeyboardInput, PygameEventQueueHandler
+from tuxemon.platform.platform_pygame.events import PygameKeyboardInput
 from tuxemon.session import local_session
 from tuxemon.platform.events import PlayerInput
 from tuxemon.state import State
@@ -83,27 +84,22 @@ class SetKeyState(PopUpMenu):
         if pygame.key.get_pressed()[pygame.K_LEFT]: pressed_key = "left"
         for k in range(len(pygame.key.get_pressed())):
             if pygame.key.get_pressed()[k]: pressed_key = k
-        if pressed_key is not None and event.pressed or event.value == "": 
+        
+        # to prevent a KeyError from happening, the game won't let you
+        # input a key if that key has already been set a value
+        invalid_keys = []
+        pressed_key_str = None
+        for key, value in tuxe_config.cfg.items("controls"):
+            invalid_keys.append(value)
+        
+        if isinstance(pressed_key, str): pressed_key_str = pressed_key
+        if isinstance(pressed_key, int): pressed_key_str = pygame.key.name(pressed_key)
+        print(invalid_keys, pressed_key_str)
+        if pressed_key is not None and (event.pressed or event.value == "") and pressed_key_str not in invalid_keys: 
             # TODO: fix or rewrite PlayerInput
             # event.value is being compared here since sometimes the value just returns an empty 
             # string and event.pressed doesn't return True when a key is being pressed
-            if isinstance(pressed_key, str): pressed_key_str = pressed_key
-            if isinstance(pressed_key, int): pressed_key_str = pygame.key.name(pressed_key)
-
             tuxe_config.cfg.set("controls", self.input, pressed_key_str)
-            with open(paths.USER_CONFIG_PATH, "w") as fp:
-                tuxe_config.cfg.write(fp)
-
-            # reload inputs
-            tuxe_config.keyboard_button_map = config.get_custom_pygame_keyboard_controls(tuxe_config.cfg)
-
-            keyboard = PygameKeyboardInput(pre_config.keyboard_button_map)
-            local_session.client.input_manager.set_input(0, 0, keyboard)
-            print(local_session.client.input_manager._inputs[0])
-            
-            prepare.CONFIG = tuxe_config
-            local_session.client.config = tuxe_config
-
             self.client.replace_state(ControlState)
             self.close()
 
@@ -130,20 +126,33 @@ class ControlState(PopUpMenu[ControlStateObj]):
         display_buttons = {}
         key_names = config.get_custom_pygame_keyboard_controls_names(tuxe_config.cfg)
         for button in key_names:
-            if button is not None:
-                display_buttons[key_names[button]] = button
+            display_buttons[key_names[button]] = button
         key_items_map = (
-            ("menu_up_key", "up", display_buttons[buttons.UP]),
-            ("menu_left_key", "left", display_buttons[buttons.LEFT]),
-            ("menu_right_key", "right", display_buttons[buttons.RIGHT]),
-            ("menu_down_key", "down", display_buttons[buttons.DOWN]),
-            ("menu_primary_select_key", "a", display_buttons[buttons.A]),
-            ("menu_secondary_select_key", "b", display_buttons[buttons.B]),
-            ("menu_back_key", "back", display_buttons[buttons.BACK])
+            ("menu_up_key", display_buttons[buttons.UP], "up"),
+            ("menu_left_key", display_buttons[buttons.LEFT], "left"),
+            ("menu_right_key", display_buttons[buttons.RIGHT], "right"),
+            ("menu_down_key", display_buttons[buttons.DOWN], "down"),
+            ("menu_primary_select_key", display_buttons[buttons.A], "a"),
+            ("menu_secondary_select_key", display_buttons[buttons.B], "b"),
+            ("menu_back_key", display_buttons[buttons.BACK], "back")
         )
 
-        for key, key1, current_input in key_items_map:
+        for key, current_input, input in key_items_map:
             label = f"{T.translate(key).upper()} | {current_input}"
             image = self.shadow_text(label)
-            item = MenuItem(image, label, None, change_state(SetKeyState, input=key1))
+            item = MenuItem(image, label, None, change_state(SetKeyState, input=input))
             self.add(item)
+
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+        if PlayerInput.button == buttons.BACK:
+            with open(paths.USER_CONFIG_PATH, "w") as fp:
+                tuxe_config.cfg.write(fp)
+
+            # reload inputs
+            tuxe_config.keyboard_button_map = config.get_custom_pygame_keyboard_controls(tuxe_config.cfg)
+            prepare.CONFIG = tuxe_config
+            local_session.client.config = tuxe_config
+            keyboard = PygameKeyboardInput(pre_config.keyboard_button_map)
+            local_session.client.input_manager.set_input(0, 0, keyboard)
+            local_session.client.event_engine = EventEngine(local_session)
+        return super().process_event(event)

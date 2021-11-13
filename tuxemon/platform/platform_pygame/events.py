@@ -92,11 +92,7 @@ class PygameGamepadInput(PygameEventHandler):
         7: buttons.START,
     }
 
-    def __init__(
-        self,
-        event_map: Optional[Mapping[Optional[int], int]] = None,
-        deadzone: float = 0.25,
-    ) -> None:
+    def __init__(self, event_map: Optional[Mapping[Optional[int], int]] = None, deadzone: float = 0.25) -> None:
         super().__init__(event_map)
         self.deadzone = deadzone
 

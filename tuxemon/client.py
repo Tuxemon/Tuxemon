@@ -91,18 +91,13 @@ class LocalPygameClient:
 
         # setup controls
         keyboard = PygameKeyboardInput(config.keyboard_button_map)
-        gamepad = PygameGamepadInput(
-            config.gamepad_button_map,
-            config.gamepad_deadzone,
-        )
+        gamepad = PygameGamepadInput(config.gamepad_button_map, config.gamepad_deadzone)
         self.input_manager = PygameEventQueueHandler()
         self.input_manager.add_input(0, keyboard)
         self.input_manager.add_input(0, gamepad)
         self.controller_overlay = None
         if config.controller_overlay:
-            self.controller_overlay = PygameTouchOverlayInput(
-                config.controller_transparency,
-            )
+            self.controller_overlay = PygameTouchOverlayInput(config.controller_transparency)
             self.controller_overlay.load()
             self.input_manager.add_input(0, self.controller_overlay)
         if not config.hide_mouse:

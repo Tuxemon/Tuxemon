@@ -39,6 +39,7 @@ from tuxemon.constants import paths
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu
+from tuxemon.platform.const import buttons
 from tuxemon.platform.platform_pygame.events import PygameMouseInput, PygameGamepadInput, PygameTouchOverlayInput, PygameKeyboardInput, PygameEventQueueHandler
 from tuxemon.session import local_session
 from tuxemon.platform.events import PlayerInput
@@ -74,25 +75,6 @@ class SetKeyState(PopUpMenu):
             self.add(item)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-        """
-        Handles player input events.
-
-        This function is only called when the player provides input such
-        as pressing a key or clicking the mouse.
-
-        Since this is part of a chain of event handlers, the return value
-        from this method becomes input for the next one.  Returning None
-        signifies that this method has dealt with an event and wants it
-        exclusively.  Return the event and others can use it as well.
-
-        You should return None if you have handled input here.
-
-        Parameters:
-            event: PlayerInput to be checked
-
-        Returns:
-            Passed input if not handled here. ``None`` otherwise.
-        """
         # must use get_pressed because the events do not contain references to pygame events
         pressed_key = None
         if pygame.key.get_pressed()[pygame.K_UP]: pressed_key = "up"
@@ -117,6 +99,7 @@ class SetKeyState(PopUpMenu):
 
             keyboard = PygameKeyboardInput(pre_config.keyboard_button_map)
             local_session.client.input_manager.set_input(0, 0, keyboard)
+            print(local_session.client.input_manager._inputs[0])
             
             prepare.CONFIG = tuxe_config
             local_session.client.config = tuxe_config
@@ -144,14 +127,19 @@ class ControlState(PopUpMenu[ControlStateObj]):
         def change_state(state: Union[State, str], **change_state_kwargs: Any) -> Callable[[], State]:
             return partial(self.client.push_state, state, **change_state_kwargs)
 
+        display_buttons = {}
+        key_names = config.get_custom_pygame_keyboard_controls_names(tuxe_config.cfg)
+        for button in key_names:
+            if button is not None:
+                display_buttons[key_names[button]] = button
         key_items_map = (
-            ("menu_up_key", "up", pre_config.up),
-            ("menu_left_key", "left", pre_config.left),
-            ("menu_right_key", "right", pre_config.right),
-            ("menu_down_key", "down", pre_config.down),
-            ("menu_primary_select_key", "a", pre_config.a),
-            ("menu_secondary_select_key", "b", pre_config.b),
-            ("menu_back_key", "back", pre_config.back)
+            ("menu_up_key", "up", display_buttons[buttons.UP]),
+            ("menu_left_key", "left", display_buttons[buttons.LEFT]),
+            ("menu_right_key", "right", display_buttons[buttons.RIGHT]),
+            ("menu_down_key", "down", display_buttons[buttons.DOWN]),
+            ("menu_primary_select_key", "a", display_buttons[buttons.A]),
+            ("menu_secondary_select_key", "b", display_buttons[buttons.B]),
+            ("menu_back_key", "back", display_buttons[buttons.BACK])
         )
 
         for key, key1, current_input in key_items_map:

@@ -86,10 +86,7 @@ class InputHandler(ABC, Generic[_InputEventType]):
 
     default_input_map: ClassVar[Mapping[Optional[int], int]]
 
-    def __init__(
-        self,
-        event_map: Optional[Mapping[Optional[int], int]] = None,
-    ) -> None:
+    def __init__(self, event_map: Optional[Mapping[Optional[int], int]] = None) -> None:
         if event_map is None:
             event_map = self.default_input_map
         self.buttons = dict()

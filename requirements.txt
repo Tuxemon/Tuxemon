@@ -8,3 +8,4 @@ pytmx==3.29
 requests>=2.19.1
 natsort
 PyYAML>=5.4.1
+prompt_toolkit

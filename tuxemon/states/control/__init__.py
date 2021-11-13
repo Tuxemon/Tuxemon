@@ -23,7 +23,8 @@
 # Andrew Hong <novialriptide@gmail.com>
 #
 #
-# states.start Handles the start screen which loads and creates new games
+# states.SetKeyState Handles the input change screen 
+# states.ControlState Handles the list of inputs to change screen
 #
 """This module contains the Options state
 """
@@ -64,16 +65,10 @@ class SetKeyState(PopUpMenu):
         self.input = kwargs["input"]
         super().startup(**kwargs)
 
-        menu_items_map = (
-            T.translate("options_new_input_key0"),
-            T.translate("options_new_input_key1")
-        )
-
-        for key in menu_items_map:
-            label = T.translate(key).upper()
-            image = self.shadow_text(label)
-            item = MenuItem(image, label, None, None)
-            self.add(item)
+        label = T.translate(T.translate("options_new_input_key0")).upper()
+        image = self.shadow_text(label)
+        item = MenuItem(image, label, None, None)
+        self.add(item)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         # must use get_pressed because the events do not contain references to pygame events
@@ -84,17 +79,16 @@ class SetKeyState(PopUpMenu):
         if pygame.key.get_pressed()[pygame.K_LEFT]: pressed_key = "left"
         for k in range(len(pygame.key.get_pressed())):
             if pygame.key.get_pressed()[k]: pressed_key = k
-        
+
         # to prevent a KeyError from happening, the game won't let you
         # input a key if that key has already been set a value
         invalid_keys = []
         pressed_key_str = None
         for key, value in tuxe_config.cfg.items("controls"):
             invalid_keys.append(value)
-        
+
         if isinstance(pressed_key, str): pressed_key_str = pressed_key
         if isinstance(pressed_key, int): pressed_key_str = pygame.key.name(pressed_key)
-        print(invalid_keys, pressed_key_str)
         if pressed_key is not None and (event.pressed or event.value == "") and pressed_key_str not in invalid_keys: 
             # TODO: fix or rewrite PlayerInput
             # event.value is being compared here since sometimes the value just returns an empty 
@@ -117,7 +111,6 @@ class ControlState(PopUpMenu[ControlStateObj]):
         Used when initializing the state
         """
         # TODO: update the menu once a control key has been changed
-        # TODO: remove the need to restart the game for changes to take place
         super().startup(**kwargs)
 
         def change_state(state: Union[State, str], **change_state_kwargs: Any) -> Callable[[], State]:
@@ -144,7 +137,7 @@ class ControlState(PopUpMenu[ControlStateObj]):
             self.add(item)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-        if PlayerInput.button == buttons.BACK:
+        if event.button == buttons.BACK:
             with open(paths.USER_CONFIG_PATH, "w") as fp:
                 tuxe_config.cfg.write(fp)
 
@@ -152,7 +145,8 @@ class ControlState(PopUpMenu[ControlStateObj]):
             tuxe_config.keyboard_button_map = config.get_custom_pygame_keyboard_controls(tuxe_config.cfg)
             prepare.CONFIG = tuxe_config
             local_session.client.config = tuxe_config
-            keyboard = PygameKeyboardInput(pre_config.keyboard_button_map)
+            keyboard = PygameKeyboardInput(tuxe_config.keyboard_button_map)
             local_session.client.input_manager.set_input(0, 0, keyboard)
             local_session.client.event_engine = EventEngine(local_session)
+
         return super().process_event(event)

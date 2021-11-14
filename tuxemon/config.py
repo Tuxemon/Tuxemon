@@ -254,8 +254,8 @@ def get_defaults() -> Mapping[str, Any]:
                 OrderedDict(
                     (
                         ("log_host_url", "https://transfer.sh/"),
-                        ("log_host_max_storage_days", 1)
-                        ("crash_report_popup", None)
+                        ("log_host_max_storage_days", 1),
+                        ("crash_report_popup", None),
                     )
                 )
             ),

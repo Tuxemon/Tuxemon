@@ -123,6 +123,7 @@ class TuxemonConfig:
         self.log_host_url = cfg.get("crash_reporting", "log_host_url")  # URL to transfer.sh compatible
         #                                                   # file/log storage
         self.log_storage_max_days = cfg.get("crash_reporting", "log_host_max_storage_days")  # How much time should log be stored
+        self.log_storage_max_days = cfg.get("crash_reporting", "log_host_max_storage_days")  # Should the crash popup be displayed? (True/False/None)
 
 
         # input config (None means use default for the platform)
@@ -254,6 +255,7 @@ def get_defaults() -> Mapping[str, Any]:
                     (
                         ("log_host_url", "https://transfer.sh/"),
                         ("log_host_max_storage_days", 1)
+                        ("crash_report_popup", None)
                     )
                 )
             ),

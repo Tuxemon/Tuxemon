@@ -7,7 +7,7 @@
     "capture 100"
   ],
   "conditions": [
-    "is_wild_monster target"
+    "eval target.owner == None"
   ],
   "sort": "utility",
   "sprite": "gfx/items/capture_device.png",

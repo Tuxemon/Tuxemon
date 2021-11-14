@@ -27,6 +27,8 @@ from __future__ import annotations
 from tuxemon.item.itemcondition import ItemCondition
 from typing import NamedTuple, Union
 from tuxemon.monster import Monster
+from tuxemon.script_context import ScriptContext
+from tuxemon.item.item import ItemContext
 
 
 class TypeConditionParameters(NamedTuple):
@@ -48,16 +50,19 @@ class TypeCondition(ItemCondition[TypeConditionParameters]):
     name = "type"
     param_class = TypeConditionParameters
 
-    def test(self, target: Monster) -> bool:
+    def test(self, context: ScriptContext) -> bool:
+        if not isinstance(context, ItemContext):
+            return False
+
         ret = False
-        if target.type1 is not None:
+        if context.target.type1 is not None:
             ret = any(
-                target.type1.lower() == p.lower()
+                context.target.type1.lower() == p.lower()
                 for p in self.parameters if p is not None
             )
-        if target.type2 is not None:
+        if context.target.type2 is not None:
             ret = ret or any(
-                target.type2.lower() == p.lower()
+                context.target.type2.lower() == p.lower()
                 for p in self.parameters if p is not None
             )
 

@@ -33,6 +33,7 @@ from tuxemon.monster import Monster
 from typing import Generic, TypeVar, ClassVar, Type, Sequence, Any,\
     TYPE_CHECKING
 from tuxemon.session import Session
+from tuxemon.script_context import ScriptContext
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
@@ -89,7 +90,6 @@ class ItemCondition(Generic[ParameterClass]):
 
     def __init__(
         self,
-        context: str,
         session: Session,
         user: NPC,
         parameters: Sequence[Any],
@@ -97,7 +97,6 @@ class ItemCondition(Generic[ParameterClass]):
 
         self.session = session
         self.user = user
-        self.context = context
 
         # if you need the parameters before they are processed, use this
         self.raw_parameters = parameters
@@ -123,7 +122,7 @@ class ItemCondition(Generic[ParameterClass]):
 
         self._done = False
 
-    def test(self, target: Monster) -> bool:
+    def test(self, context: ScriptContext) -> bool:
         """
         Return True if satisfied, or False if not.
 

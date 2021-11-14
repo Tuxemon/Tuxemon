@@ -704,15 +704,6 @@ class CombatState(CombatAnimations):
         )
         state.rect = rect
 
-    def skip_phase_change(self) -> None:
-        """
-        Skip phase change animations.
-
-        Useful if player wants to skip a battle animation.
-        """
-        for ani in self.animations:
-            ani.finish()
-
     def enqueue_action(
         self,
         user: Union[NPC, Monster, None],

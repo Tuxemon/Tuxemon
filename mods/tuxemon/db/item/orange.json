@@ -7,8 +7,8 @@
     "heal 20"
   ],
   "conditions": [
-    "current_hp target,<,1.0",
-    "current_hp target,>,0"
+    "eval target.current_hp < target.hp",
+    "eval target.current_hp > 0"
   ],
   "sort": "food",
   "sprite": "gfx/items/orange.png",

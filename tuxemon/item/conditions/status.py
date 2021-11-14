@@ -27,6 +27,8 @@ from __future__ import annotations
 from tuxemon.item.itemcondition import ItemCondition
 from typing import NamedTuple
 from tuxemon.monster import Monster
+from tuxemon.script_context import ScriptContext
+from tuxemon.item.item import ItemContext
 
 
 class StatusConditionParameters(NamedTuple):
@@ -44,5 +46,8 @@ class StatusCondition(ItemCondition[StatusConditionParameters]):
     name = "status"
     param_class = StatusConditionParameters
 
-    def test(self, target: Monster) -> bool:
-        return self.parameters.expected in target.status
+    def test(self, context: ScriptContext) -> bool:
+        if not isinstance(context, ItemContext):
+            return False
+
+        return self.parameters.expected in context.target.status

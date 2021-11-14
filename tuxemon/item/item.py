@@ -45,12 +45,19 @@ from tuxemon.session import Session
 from typing import Mapping, Any, Type, Optional, Sequence, Dict, TYPE_CHECKING,\
     ClassVar, TypedDict
 import pygame
+from tuxemon.script_context import ScriptContext
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
+
+
+class ItemContext(ScriptContext):
+
+    def __init__(self, target: Monster):
+        self.target = target
 
 
 class InventoryItemOptional(TypedDict, total=False):
@@ -204,15 +211,14 @@ class Item:
             words = line.split()
             args = "".join(words[1:]).split(",")
             name = words[0]
-            context = args[0]
-            params = args[1:]
+            params = args[0:]
             try:
                 condition = Item.conditions_classes[name]
             except KeyError:
                 error = f'Error: ItemCondition "{name}" not implemented'
                 logger.error(error)
             else:
-                ret.append(condition(context, self.session, self.user, params))
+                ret.append(condition(self.session, self.user, params))
 
         return ret
 
@@ -245,7 +251,7 @@ class Item:
         result = True
 
         for condition in self.conditions:
-            result = result and condition.test(target)
+            result = result and condition.test(ItemContext(target))
 
         return result
 

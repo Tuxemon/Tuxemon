@@ -28,6 +28,8 @@ from tuxemon.item.itemcondition import ItemCondition
 from typing import NamedTuple, Union
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
+from tuxemon.script_context import ScriptContext
+from tuxemon.item.item import ItemContext
 
 
 class VariableConditionParameters(NamedTuple):
@@ -43,19 +45,23 @@ class VariableCondition(ItemCondition[VariableConditionParameters]):
     name = "variable"
     param_class = VariableConditionParameters
 
-    def test(self, target: Monster) -> bool:
+    def test(self, context: ScriptContext) -> bool:
+
+        if not isinstance(context, ItemContext):
+            return False
+
         var_name = self.parameters.var_name
         expect = self.parameters.expected
 
-        context: Union[NPC, Monster]
+        subcontext: Union[NPC, Monster]
         if self.context == "target":
-            context = target
+            subcontext = context.target
         else:
-            context = self.user
+            subcontext = self.user
 
         if type(expect) is str:
-            return context.game_variables[var_name] == expect
+            return subcontext.game_variables[var_name] == expect
         elif type(expect) is int:
-            return context.game_variables[var_name] >= expect
+            return subcontext.game_variables[var_name] >= expect
         else:
-            return not context.game_variables[var_name]
+            return not subcontext.game_variables[var_name]

@@ -27,6 +27,8 @@ from __future__ import annotations
 from tuxemon.item.itemcondition import ItemCondition
 from typing import Union, NamedTuple
 from tuxemon.monster import Monster
+from tuxemon.script_context import ScriptContext
+from tuxemon.item.item import ItemContext
 
 
 class ShapeConditionParameters(NamedTuple):
@@ -48,11 +50,14 @@ class ShapeCondition(ItemCondition[ShapeConditionParameters]):
     name = "shape"
     param_class = ShapeConditionParameters
 
-    def test(self, target: Monster) -> bool:
+    def test(self, context: ScriptContext) -> bool:
+        if not isinstance(context, ItemContext):
+            return False
+
         ret = False
-        if target.shape is not None:
+        if context.target.shape is not None:
             ret = any(
-                target.shape.lower() == p.lower()
+                context.target.shape.lower() == p.lower()
                 for p in self.parameters if p is not None
             )
 

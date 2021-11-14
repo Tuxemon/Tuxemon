@@ -7,7 +7,7 @@
       "learn avalanche"
     ],
     "conditions": [
-        "type target,Earth,Water"
+        "eval {target.type1, target.type2} & {\"earth\", \"water\"}"
     ],
     "sort": "utility",
     "sprite": "gfx/items/red-book.png",

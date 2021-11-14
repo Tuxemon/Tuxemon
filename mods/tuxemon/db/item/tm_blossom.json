@@ -7,7 +7,7 @@
       "learn blossom"
     ],
     "conditions": [
-        "type target,Wood"
+        "eval {target.type1, target.type2} & {\"wood\"}"
     ],
     "sort": "utility",
     "sprite": "gfx/items/red-book.png",

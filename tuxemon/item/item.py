@@ -209,16 +209,15 @@ class Item:
 
         for line in raw:
             words = line.split()
-            args = "".join(words[1:]).split(",")
+            args = " ".join(words[1:])
             name = words[0]
-            params = args[0:]
             try:
                 condition = Item.conditions_classes[name]
             except KeyError:
                 error = f'Error: ItemCondition "{name}" not implemented'
                 logger.error(error)
             else:
-                ret.append(condition(self.session, self.user, params))
+                ret.append(condition(self.session, self.user, (args,)))
 
         return ret
 

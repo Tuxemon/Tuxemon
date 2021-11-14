@@ -25,11 +25,12 @@
 
 from __future__ import annotations
 from tuxemon.item.itemcondition import ItemCondition
-from typing import NamedTuple, Any
+from typing import NamedTuple, Any, Mapping, Callable
 from tuxemon.script_context import ScriptContext
 import re
 import ast
 import operator
+import itertools
 
 # For now, the expression must be "<value> <op> <value>"
 # If the need arises more complex things can be implemented in the
@@ -37,21 +38,32 @@ import operator
 quoted_string_regex = r'(?:"(?:\\.|[^"\\])*")'
 number_regex = r'(?:(?:\+|-)?[0-9]+\.?[0-9]*)'
 variable_regex = r'(?:\w+(?:\.\w+)*)'
-operator_regex = r'(?:(?:==)|(?:!=)|(?:>=)|(?:<=)|>|<|(?:and)|(?:or))'
-value_regex = fr'(?:{quoted_string_regex}|{number_regex}|{variable_regex}|(?:True)|(?:False)|(?:None))'
+operator_regex = r'(?:(?:==)|(?:!=)|(?:>=)|(?:<=)|>|<|(?:and)|(?:or)|(?:in)|&|\|)'
+primitive_value_regex = fr'(?:{quoted_string_regex}|{number_regex}|{variable_regex}|(?:True)|(?:False)|(?:None))'
+set_regex = fr'(?:{{\s*{primitive_value_regex}(?:\s*,\s*{primitive_value_regex}\s*)*\s*}})'
+capture_set_regex = fr'{{\s*({primitive_value_regex})((?:\s*,\s*{primitive_value_regex}\s*)*)\s*}}'
+capture_set_last_element_regex = fr'\s*,\s*({primitive_value_regex})\s*'
+value_regex = fr'(?:{primitive_value_regex}|{set_regex})'
 full_regex = fr'({value_regex})\s*({operator_regex})\s*({value_regex})'
+compiled_capture_set_regex = re.compile(capture_set_regex)
+compiled_capture_set_last_element_regex = re.compile(
+    capture_set_last_element_regex,
+)
 compiled_regex = re.compile(full_regex)
 
 
-operator_dict = {
+operator_dict: Mapping[str, Callable[[Any, Any], bool]] = {
     "==": operator.eq,
     "!=": operator.ne,
     ">=": operator.ge,
     "<=": operator.le,
     ">": operator.gt,
     "<": operator.lt,
-    "and": operator.and_,
-    "or": operator.or_,
+    "and": lambda a, b: bool(a) and bool(b),
+    "or": lambda a, b: bool(a) or bool(b),
+    "in": lambda a, b: a in b,
+    "&": operator.and_,
+    "|": operator.or_,
 }
 
 
@@ -65,12 +77,42 @@ class EvalCondition(ItemCondition[EvalConditionParameters]):
     name = "eval"
     param_class = EvalConditionParameters
 
-    def _parse_value(self, value: str, context: ScriptContext) -> Any:
+    def _parse_primitive_value(
+        self, value: str,
+        context: ScriptContext,
+    ) -> Any:
 
         try:
             return ast.literal_eval(value)
         except ValueError:
             return context.get_variable(value)
+
+    def _parse_value(self, value: str, context: ScriptContext) -> Any:
+
+        result = compiled_capture_set_regex.fullmatch(
+            value,
+        )
+        if result:
+            # Parse a set
+
+            first, rest = result.groups()
+
+            return {
+                self._parse_primitive_value(v, context)
+                for v in itertools.chain(
+                    (first,),
+                    (
+                        x.group(1) for x
+                        in compiled_capture_set_last_element_regex.finditer(
+                            rest,
+                        )
+                    ),
+                )
+            }
+
+        else:
+            # Parse a primitive value
+            return self._parse_primitive_value(value, context)
 
     def test(self, context: ScriptContext) -> bool:
 

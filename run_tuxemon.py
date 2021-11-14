@@ -55,6 +55,7 @@ if __name__ == '__main__':
         config.skip_titlescreen = True
         config.splash = False
 
+    
     try:
         main.main(load_slot=args.slot)
     except Exception as ex:
@@ -63,7 +64,6 @@ if __name__ == '__main__':
         
         logging.error(ex, exc_info=True)
         if ex != KeyboardInterrupt and ex != EOFError:
-            #if input("Send logs? (Y/N)\n> ").upper() == "Y":
             if popup_send_log_consent():
                 send_logs()
             else:

@@ -119,7 +119,7 @@ class TuxemonConfig:
         self.debug_logging = cfg.getboolean("logging", "debug_logging")
         self.debug_level = cfg.get("logging", "debug_level")
 
-        
+        # [crash_reporting]        
         self.log_host_url = cfg.get("crash_reporting", "log_host_url")  # URL to transfer.sh compatible
         #                                                   # file/log storage
         self.log_storage_max_days = cfg.get("crash_reporting", "log_host_max_storage_days")  # How much time should log be stored

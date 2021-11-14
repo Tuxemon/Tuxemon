@@ -156,6 +156,10 @@ def send_logs():
     # Get file
     file = open(f"{USER_LOG_DIR}/latest.log")
     send_files = {"tuxemon_log.txt": file}
+
+    # TODO: Add other providers support
+    if "transfer.sh" not in config.log_host_url:
+        raise NotImplementedError("You can only use transfer.sh right now")
     r = requests.post(config.log_host_url, files=send_files, headers={"Max-Days": config.log_storage_max_days, "User-Agent": "curl/7.80.0"})
     print(f"Report URL: {r.text}")
     file.close()

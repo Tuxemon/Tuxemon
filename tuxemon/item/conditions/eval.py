@@ -114,7 +114,7 @@ class EvalCondition(ItemCondition[EvalConditionParameters]):
             # Parse a primitive value
             return self._parse_primitive_value(value, context)
 
-    def test(self, context: ScriptContext) -> bool:
+    def _test_no_eval(self, context: ScriptContext) -> bool:
 
         result = compiled_regex.fullmatch(self.parameters.expression)
         if result:
@@ -130,3 +130,16 @@ class EvalCondition(ItemCondition[EvalConditionParameters]):
                 f"Bad expression syntax: "
                 f"'{self.parameters.expression}' does not match '{full_regex}'"
             )
+
+    def _test_eval(self, context: ScriptContext) -> bool:
+
+        return bool(
+            eval(
+                self.parameters.expression,
+                globals(),
+                context.__dict__,
+            )
+        )
+
+    def test(self, context: ScriptContext) -> bool:
+        return self._test_eval(context)

@@ -9,7 +9,8 @@ from tuxemon import audio, prepare, state, tools, graphics
 from tuxemon.menu.interface import MenuCursor, MenuItem
 from tuxemon.platform.const import intentions
 from tuxemon.platform.const import buttons
-from tuxemon.sprite import RelativeGroup, VisualSpriteList, SpriteGroup
+from tuxemon.sprite import RelativeGroup, VisualSpriteList, SpriteGroup,\
+    MenuSpriteGroup
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
 from typing import Any, Callable, Optional, Literal, Dict, Sequence, Tuple,\
@@ -95,7 +96,7 @@ class Menu(Generic[T], state.State):
 
         """
         # contains the selectable elements of the menu
-        self.menu_items: VisualSpriteList[MenuItem[T]] = VisualSpriteList(
+        self.menu_items: MenuSpriteGroup[MenuItem[T]] = VisualSpriteList(
             parent=self.calc_menu_items_rect,
         )
         self.menu_items.columns = self.columns

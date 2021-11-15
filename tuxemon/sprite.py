@@ -36,13 +36,14 @@ from pygame.rect import Rect
 from tuxemon.platform.const import buttons
 from tuxemon.surfanim import SurfaceAnimation
 from tuxemon import graphics
-from tuxemon.tools import scale as set
+from tuxemon.tools import scale as tuxemon_scale
 from typing import Optional, Callable, Any, Sequence, List, Union, TYPE_CHECKING,\
-    TypeVar, Generic, Iterator, overload, Final, Tuple, Literal
+    TypeVar, Generic, Iterator, overload, Final, Tuple, Literal, Container
 from tuxemon.platform.events import PlayerInput
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
+    from tuxemon.menu.interface import MenuItem
 
 logger = logging.getLogger()
 
@@ -283,7 +284,7 @@ class CaptureDeviceSprite(Sprite):
         sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
         sprite.image.set_alpha(0)
         animate(sprite.image, set_alpha=255, initial=0)
-        animate(sprite.rect, bottom=self.tray.rect.top + set(3))
+        animate(sprite.rect, bottom=self.tray.rect.top + tuxemon_scale(3))
 
 
 _GroupElement = TypeVar("_GroupElement", bound=Sprite)
@@ -348,13 +349,31 @@ class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
             return sprites[0].rect.unionall([s.rect for s in sprites[1:]])
 
 
-class MenuSpriteGroup(SpriteGroup[_GroupElement]):
+_MenuElement = TypeVar("_MenuElement", bound="MenuItem[Any]")
+
+
+class MenuSpriteGroup(SpriteGroup[_MenuElement]):
     """
     Sprite Group to be used for menus.
 
     Includes functions for moving a cursor around the screen.
 
     """
+
+    _simple_movement_dict: Final = {
+        buttons.LEFT: -1,
+        buttons.RIGHT: 1,
+        buttons.UP: -1,
+        buttons.DOWN: 1,
+    }
+
+    def _allowed_input(self) -> Container[int]:
+        """Returns allowed buttons."""
+        return set(self._simple_movement_dict)
+
+    def _advance_input(self, index: int, button: int) -> int:
+        """Advance the index given the input."""
+        return (index + self._simple_movement_dict[button]) % len(self)
 
     def determine_cursor_movement(self, index: int, event: PlayerInput) -> int:
         """
@@ -376,21 +395,23 @@ class MenuSpriteGroup(SpriteGroup[_GroupElement]):
         if not len(self):
             return 0
 
-        movement = {
-            buttons.LEFT: -1,
-            buttons.RIGHT: 1,
-            buttons.UP: -1,
-            buttons.DOWN: 1,
-        }
+        if event.pressed and event.button in self._allowed_input():
 
-        if event.pressed:
-            index += movement.get(event.button, 0)
-            index %= len(self)
+            original_index = index
+
+            seeking_index = True
+            while seeking_index:
+                index = self._advance_input(index, event.button)
+
+                if index == original_index:
+                    raise RuntimeError
+
+                seeking_index = not self.sprites()[index].enabled
 
         return index
 
 
-class RelativeGroup(MenuSpriteGroup[_GroupElement]):
+class RelativeGroup(MenuSpriteGroup[_MenuElement]):
     """
     Drawing operations are relative to the group's rect.
     """
@@ -439,7 +460,7 @@ class RelativeGroup(MenuSpriteGroup[_GroupElement]):
         return dirty
 
 
-class VisualSpriteList(RelativeGroup[_GroupElement]):
+class VisualSpriteList(RelativeGroup[_MenuElement]):
     """
     Sprite group which can be configured to arrange the children
     sprites into columns.
@@ -447,6 +468,12 @@ class VisualSpriteList(RelativeGroup[_GroupElement]):
 
     orientation: Literal["horizontal"] = "horizontal"  # default, and only implemented
     expand = True  # True: fill all space of parent. False: more compact
+    _2d_movement_dict: Final = {
+        buttons.LEFT: ("lr", -1),
+        buttons.RIGHT: ("lr", 1),
+        buttons.UP: ("tb", -1),
+        buttons.DOWN: ("tb", 1),
+    }
 
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
@@ -578,68 +605,13 @@ class VisualSpriteList(RelativeGroup[_GroupElement]):
         else:
             raise NotImplementedError
 
+    def _allowed_input(self) -> Container[int]:
+        return set(self._2d_movement_dict)
 
-    def determine_cursor_movement(
-        self,
-        index: int,
-        event: PlayerInput,
-    ) -> int:
-        """
-        Given an event, determine a new selected item offset.
+    def _advance_input(self, index: int, button: int) -> int:
+        """Advance the index given the input."""
 
-        You must pass the currently selected object.
-        The return value will be the newly selected object index.
-
-        Parameters:
-            sprite_list: The sprite list in which to move.
-            index: Index of the item in the list.
-            event: Player event that may cause to select another menu item.
-
-        Returns:
-            New menu item offset
-
-        """
-        if self.orientation == "horizontal":
-            return self._determine_cursor_movement_horizontal(index, event)
-        else:
-            raise RuntimeError
-
-    def _determine_cursor_movement_horizontal(
-        self,
-        index: int,
-        event: PlayerInput,
-    ) -> int:
-        """Given an event, determine a new selected item offset
-
-        You must pass the currently selected object.
-        The return value will be the newly selected object index.
-
-        This is for menus that are laid out horizontally first:
-           [1] [2] [3]
-           [4] [5]
-
-        Works pretty well for most menus, but large grids may require
-        handling them differently.
-
-        Parameters:
-            sprite_list: The sprite list in which to move.
-            index: Index of the item in the list.
-            event: Player event that may cause to select another menu item.
-
-        Returns:
-            New menu item offset
-
-        """
-
-        original_index = index
-
-        # sanity check:
-        # if there are 0 or 1 enabled items, then ignore movement
-        enabled = len([i for i in self if i.enabled])
-        if enabled < 2:
-            return index
-
-        # Layout:
+        # Layout (horizontal):
         #        0 1 2 3 4 ... columns-1
         #      0 X X X X X ... X
         #      1 X X X X X ... X
@@ -651,52 +623,15 @@ class VisualSpriteList(RelativeGroup[_GroupElement]):
         #          |
         #       remainder=2
 
-        if (
-            event.pressed
-            and event.button in {
-                buttons.LEFT,
-                buttons.RIGHT,
-                buttons.DOWN,
-                buttons.UP,
-            }
-        ):
+        index_type, incr = self._2d_movement_dict[button]
 
-            # In order to accommodate disabled menu items,
-            # the mod incrementer will loop until a suitable
-            # index is found...one that is not disabled.
-            items = len(self)
+        if index_type == "tb":
+            index = self._lr_to_tb_index(index, self.orientation)
 
-            seeking_index = True
+        index += incr
+        index %= len(self)
 
-            while seeking_index:
-
-                # Horizontal movement: Use left/right indexes
-                if event.button == buttons.LEFT:
-                    index -= 1
-                    index %= items
-
-                elif event.button == buttons.RIGHT:
-                    index += 1
-                    index %= items
-
-                # Vertical movement: use top/bottom indexes
-                if event.button == buttons.DOWN:
-
-                    tb_index = self._lr_to_tb_index(index, self.orientation)
-                    tb_index += 1
-                    tb_index %= items
-                    index = self._tb_to_lr_index(tb_index, self.orientation)
-
-                elif event.button == buttons.UP:
-
-                    tb_index = self._lr_to_tb_index(index, self.orientation)
-                    tb_index -= 1
-                    tb_index %= items
-                    index = self._tb_to_lr_index(tb_index, self.orientation)
-
-                if index == original_index:
-                    raise RuntimeError
-
-                seeking_index = not self.sprites()[index].enabled
+        if index_type == "tb":
+            index = self._tb_to_lr_index(index, self.orientation)
 
         return index

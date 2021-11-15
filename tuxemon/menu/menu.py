@@ -237,8 +237,7 @@ class Menu(Generic[T], state.State):
                 if item.enabled:
                     item.enabled = self.is_valid_entry(item.game_object)
 
-            if hasattr(self.menu_items, "arrange_menu_items"):
-                self.menu_items.arrange_menu_items()
+            self.menu_items.arrange_menu_items()
             for index, item in enumerate(self.menu_items):
                 # TODO: avoid introspection of the items to implement
                 # different behavior

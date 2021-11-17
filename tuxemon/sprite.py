@@ -36,13 +36,14 @@ from pygame.rect import Rect
 from tuxemon.platform.const import buttons
 from tuxemon.surfanim import SurfaceAnimation
 from tuxemon import graphics
-from tuxemon.tools import scale as set
+from tuxemon.tools import scale as tuxemon_scale
 from typing import Optional, Callable, Any, Sequence, List, Union, TYPE_CHECKING,\
-    TypeVar, Generic, Iterator, overload, Final
+    TypeVar, Generic, Iterator, overload, Final, Tuple, Literal, Container
 from tuxemon.platform.events import PlayerInput
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
+    from tuxemon.menu.interface import MenuItem
 
 logger = logging.getLogger()
 
@@ -133,7 +134,7 @@ class Sprite(pygame.sprite.DirtySprite):
             self.update_image()
             self._needs_update = False
             self._needs_rescale = False
-        return self._image if self._image else dummy_image
+        return self._image if self._image and self.visible else dummy_image
 
     @image.setter
     def image(self, image: Optional[pygame.surface.Surface]) -> None:
@@ -283,7 +284,7 @@ class CaptureDeviceSprite(Sprite):
         sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
         sprite.image.set_alpha(0)
         animate(sprite.image, set_alpha=255, initial=0)
-        animate(sprite.rect, bottom=self.tray.rect.top + set(3))
+        animate(sprite.rect, bottom=self.tray.rect.top + tuxemon_scale(3))
 
 
 _GroupElement = TypeVar("_GroupElement", bound=Sprite)
@@ -339,31 +340,6 @@ class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
         # patch in indexing / slicing support
         return self.sprites()[item]
 
-    def draw(
-        self,
-        surface: pygame.surface.Surface,
-    ) -> List[pygame.rect.Rect]:
-        dirty = self.lostsprites
-        self.lostsprites = []
-
-        for s in self.sprites():
-
-            if not getattr(s, "visible", True):
-                continue
-
-            r = self.spritedict[s]
-            newrect = surface.blit(s.image, s.rect)
-            if r:
-                if newrect.colliderect(r):
-                    dirty.append(newrect.union(r))
-                else:
-                    dirty.append(newrect)
-                    dirty.append(r)
-            else:
-                dirty.append(newrect)
-            self.spritedict[s] = newrect
-        return dirty
-
     def calc_bounding_rect(self) -> pygame.rect.Rect:
         """A rect object that contains all sprites of this group"""
         sprites = self.sprites()
@@ -373,7 +349,74 @@ class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
             return sprites[0].rect.unionall([s.rect for s in sprites[1:]])
 
 
-class RelativeGroup(SpriteGroup[_GroupElement]):
+_MenuElement = TypeVar("_MenuElement", bound="MenuItem[Any]")
+
+
+class MenuSpriteGroup(SpriteGroup[_MenuElement]):
+    """
+    Sprite Group to be used for menus.
+
+    Includes functions for moving a cursor around the screen.
+
+    """
+
+    _simple_movement_dict: Final = {
+        buttons.LEFT: -1,
+        buttons.RIGHT: 1,
+        buttons.UP: -1,
+        buttons.DOWN: 1,
+    }
+    expand = False  # Used in subclasses only
+
+    def arrange_menu_items(self) -> None:
+        """Iterate through menu items and position them in the menu."""
+        pass
+
+    def _allowed_input(self) -> Container[int]:
+        """Returns allowed buttons."""
+        return set(self._simple_movement_dict)
+
+    def _advance_input(self, index: int, button: int) -> int:
+        """Advance the index given the input."""
+        return (index + self._simple_movement_dict[button]) % len(self)
+
+    def determine_cursor_movement(self, index: int, event: PlayerInput) -> int:
+        """
+        Given an event, determine a new selected item offset.
+
+        You must pass the currently selected object.
+        The return value will be the newly selected object index.
+
+        Parameters:
+            index: Index of the item in the list.
+            event: Player event that may cause to select another menu item.
+
+        Returns:
+            New menu item offset
+
+        """
+        # TODO: some sort of smart way to pick items based on location on
+        # screen
+        if not len(self):
+            return 0
+
+        if event.pressed and event.button in self._allowed_input():
+
+            original_index = index
+
+            seeking_index = True
+            while seeking_index:
+                index = self._advance_input(index, event.button)
+
+                if index == original_index:
+                    raise RuntimeError
+
+                seeking_index = not self.sprites()[index].enabled
+
+        return index
+
+
+class RelativeGroup(MenuSpriteGroup[_MenuElement]):
     """
     Drawing operations are relative to the group's rect.
     """
@@ -409,93 +452,33 @@ class RelativeGroup(SpriteGroup[_GroupElement]):
         self.update_rect_from_parent()
         topleft = self.rect.topleft
 
-        spritedict = self.spritedict
-        surface_blit = surface.blit
-        dirty = self.lostsprites
-        self.lostsprites = []
-        dirty_append = dirty.append
-
+        # The identity of the rectangle should be kept, as animations may
+        # keep a reference to it
         for s in self.sprites():
-            if s.image is None:
-                continue
+            s.rect.move_ip(topleft)
 
-            if not getattr(s, "visible", True):
-                continue
-
-            r = spritedict[s]
-            newrect = surface_blit(s.image, s.rect.move(topleft))
-            if r:
-                if newrect.colliderect(r):
-                    dirty_append(newrect.union(r))
-                else:
-                    dirty_append(newrect)
-                    dirty_append(r)
-            else:
-                dirty_append(newrect)
-            spritedict[s] = newrect
+        try:
+            dirty = super().draw(surface)
+        finally:
+            for s in self.sprites():
+                s.rect.move_ip((-topleft[0], -topleft[1]))
         return dirty
 
 
-class MenuSpriteGroup(SpriteGroup[_GroupElement]):
-    """
-    Sprite Group to be used for menus.
-
-    Includes functions for moving a cursor around the screen.
-
-    """
-
-    def determine_cursor_movement(self, index: int, event: PlayerInput) -> int:
-        """
-        Given an event, determine a new selected item offset.
-
-        You must pass the currently selected object.
-        The return value will be the newly selected object index.
-
-        Parameters:
-            index: Index of the item in the list.
-            event: Player event that may cause to select another menu item.
-
-        Returns:
-            New menu item offset
-
-        """
-        # TODO: some sort of smart way to pick items based on location on
-        # screen
-        if not len(self):
-            return 0
-
-        if event.pressed:
-            # ignore left/right if there is only one column
-            if event.button == buttons.LEFT:
-                index -= 1
-
-            elif event.button == buttons.RIGHT:
-                index += 1
-
-            if event.button == buttons.DOWN:
-                index += 1
-
-            elif event.button == buttons.UP:
-                index -= 1
-
-            # wrap the cursor position
-            items = len(self)
-            if index < 0:
-                index = items - abs(index)
-            if index >= items:
-                index -= items
-
-        return index
-
-
-class VisualSpriteList(RelativeGroup[_GroupElement]):
+class VisualSpriteList(RelativeGroup[_MenuElement]):
     """
     Sprite group which can be configured to arrange the children
     sprites into columns.
     """
 
-    orientation = "horizontal"  # default, and only implemented
+    orientation: Literal["horizontal"] = "horizontal"  # default, and only implemented
     expand = True  # True: fill all space of parent. False: more compact
+    _2d_movement_dict: Final = {
+        buttons.LEFT: ("lr", -1),
+        buttons.RIGHT: ("lr", 1),
+        buttons.UP: ("tb", -1),
+        buttons.DOWN: ("tb", 1),
+    }
 
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
@@ -587,3 +570,73 @@ class VisualSpriteList(RelativeGroup[_GroupElement]):
             item.rect.topleft = ox * column_spacing, oy * line_spacing
 
         self._needs_arrange = False
+
+    def _lr_to_tb_index(
+        self,
+        lr_index: int,
+        orientation: Literal["horizontal"],
+    ) -> int:
+        """Convert left/right index to top/bottom index."""
+        if orientation == "horizontal":
+            rows, remainder = divmod(len(self), self.columns)
+            row, col = divmod(lr_index, self.columns)
+
+            n_complete_columns = col if col < remainder else remainder
+            n_incomplete_columns = 0 if col < remainder else col - remainder
+            return (
+                n_complete_columns * (rows + 1)
+                + n_incomplete_columns * rows
+                + row
+            )
+        else:
+            raise NotImplementedError
+
+    def _tb_to_lr_index(
+        self,
+        tb_index: int,
+        orientation: Literal["horizontal"],
+    ) -> int:
+        """Convert top/bottom index to left/right index."""
+        if orientation == "horizontal":
+            rows, remainder = divmod(len(self), self.columns)
+
+            if tb_index < remainder * (rows + 1):
+                col, row = divmod(tb_index, rows + 1)
+            else:
+                col, row = divmod(tb_index - remainder * (rows + 1), rows)
+                col += remainder
+
+            return row * self.columns + col
+        else:
+            raise NotImplementedError
+
+    def _allowed_input(self) -> Container[int]:
+        return set(self._2d_movement_dict)
+
+    def _advance_input(self, index: int, button: int) -> int:
+        """Advance the index given the input."""
+
+        # Layout (horizontal):
+        #        0 1 2 3 4 ... columns-1
+        #      0 X X X X X ... X
+        #      1 X X X X X ... X
+        #      2 X X X X X ... X
+        #    ... . . . . . ... .
+        # rows-1 X X X X X ... X
+        #   rows X X _ _ _ ... _
+        #          ^
+        #          |
+        #       remainder=2
+
+        index_type, incr = self._2d_movement_dict[button]
+
+        if index_type == "tb":
+            index = self._lr_to_tb_index(index, self.orientation)
+
+        index += incr
+        index %= len(self)
+
+        if index_type == "tb":
+            index = self._tb_to_lr_index(index, self.orientation)
+
+        return index

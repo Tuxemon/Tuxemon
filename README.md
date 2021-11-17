@@ -141,6 +141,7 @@ Controls
 --------
 
 ##### Tuxemon
+###### You can also set your own inputs in the options menu or cfg file
 * *Arrow Keys* - Movement
 * *Enter* - Select/activate
 * *ESC* - Menu/Cancel

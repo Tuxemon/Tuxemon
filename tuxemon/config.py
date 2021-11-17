@@ -138,7 +138,7 @@ def get_custom_pygame_keyboard_controls(
         key = key.upper()
         button_value: Optional[int] = getattr(buttons, key, None)
         event_value: Optional[int] = getattr(events, key, None)
-        for each in values.split(", "):
+        for each in values.split(", "): # used incase of multiple keys assigned to 1 method
             # pygame.locals uses all caps for constants except for letters
             each = each.lower() if len(each) == 1 else each.upper()
             pygame_value: int = getattr(pygame.locals, "K_" + each, None)
@@ -146,6 +146,24 @@ def get_custom_pygame_keyboard_controls(
                 custom_controls[pygame_value] = button_value
             elif pygame_value is not None and event_value is not None:
                 custom_controls[pygame_value] = event_value
+
+    return custom_controls
+
+def get_custom_pygame_keyboard_controls_names(
+    cfg: configparser.ConfigParser
+) -> Mapping[Optional[str], int]:
+    custom_controls: Dict[Optional[int], int] = {None: events.UNICODE}
+    for key, values in cfg.items("controls"):
+        key = key.upper()
+        button_value: Optional[int] = getattr(buttons, key, None)
+        event_value: Optional[int] = getattr(events, key, None)
+        for each in values.split(", "): # used incase of multiple keys assigned to 1 method
+            # pygame.locals uses all caps for constants except for letters
+            each = each.lower() if len(each) == 1 else each.upper()
+            if each is not None and button_value is not None:
+                custom_controls[each] = button_value
+            elif each is not None and event_value is not None:
+                custom_controls[each] = event_value
 
     return custom_controls
 

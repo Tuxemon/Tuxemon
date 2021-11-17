@@ -35,6 +35,22 @@ class PygameEventQueueHandler(EventQueueHandler):
         """
         self._inputs[player].append(handler)
 
+    def set_input(
+        self,
+        player: int,
+        element: int,
+        handler: InputHandler[Any]
+    ) -> None:
+        """
+        Sets an input handler to process.
+
+        Parameters:
+            player: Number of the player the handler belongs to.
+            element: Index to modify
+            handler: Handler whose events will be processed from now on.
+        """
+        self._inputs[player][element] = handler
+
     def process_events(self) -> Generator[PlayerInput, None, None]:
         for pg_event in pg.event.get():
             for inputs in self._inputs.values():

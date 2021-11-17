@@ -101,12 +101,9 @@ class StartState(PopUpMenu[StartGameObj]):
                 state_name=InputMenu,
                 prompt=T.translate("input_name"),
                 callback=set_player_name,
-                escape_key_exits=True
+                escape_key_exits=True,
             )
             self.client.push_state(FadeInTransition)
-
-        def options() -> None:
-            pass
 
         def exit_game() -> None:
             self.client.exit = True
@@ -114,7 +111,7 @@ class StartState(PopUpMenu[StartGameObj]):
         menu_items_map = (
             ("menu_new_game", new_game),
             ("menu_load", change_state("LoadMenuState")),
-            ("menu_options", options),
+            ("menu_options", change_state("ControlState")),
             ("exit", exit_game),
         )
 

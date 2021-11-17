@@ -666,6 +666,33 @@ msgstr "Run"
 msgid "menu_save"
 msgstr "Save"
 
+msgid "menu_up_key"
+msgstr "Up Key"
+
+msgid "menu_left_key"
+msgstr "Left Key"
+
+msgid "menu_right_key"
+msgstr "Right Key"
+
+msgid "menu_down_key"
+msgstr "Down Key"
+
+msgid "menu_primary_select_key"
+msgstr "Action Key"
+
+msgid "menu_secondary_select_key"
+msgstr "Cancel Key"
+
+msgid "menu_back_key"
+msgstr "Back Key"
+
+msgid "options_new_input_key0"
+msgstr "Press a key to set your new input key"
+
+msgid "options_new_input_key1"
+msgstr "Restart your game for changes to take effect!"
+
 # Multiplayer notifications
 msgid "multiplayer_accept"
 msgstr "Accept"

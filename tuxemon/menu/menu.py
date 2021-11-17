@@ -277,6 +277,13 @@ class Menu(Generic[T], state.State):
         self.menu_items.add(item)
         self._needs_refresh = True
 
+    def clear(self) -> None:
+        """
+        Clears all menu items
+        """
+        self.menu_items.clear()
+        self._needs_refresh = True
+
     def fit_border(self) -> None:
         """Resize the window border to fit the contents of the menu."""
         # get bounding box of menu items and the cursor

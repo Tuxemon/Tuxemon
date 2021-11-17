@@ -94,6 +94,17 @@ guidelines to follow when adding new maps or modifying existing ones.
 - You must use `translated_dialog` for all dialogs
 - The "base64 zlib compressed" map format is preferred
 
+## Code Guidelines
+- New files should follow PEP8 -- this includes 79 char. line limit.
+- Do not change existing formatting unless you are modifying the code
+- Avoid adding dead code -- code that isn't used for anythin
+- Tests are not required but are encouraged on new code
+- Avoid duplication of existing code
+- Add TODOs: if you are introducing incomplete code paths
+- Don't excessively try to cover up errors or bugs
+- Raising an exception and crashing is preferred over excessive error handling
+- New dependancies are OK, but if it can be avoided, thats better
+
 ### Map Tileset Guidelines
 Please read and understand the following information to ensure that your new maps can be
 quickly accepted into the project.

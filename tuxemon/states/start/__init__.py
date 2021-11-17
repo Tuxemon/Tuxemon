@@ -80,15 +80,8 @@ class StartState(PopUpMenu[StartGameObj]):
         kwargs["selected_index"] = 0 if index is None else 1
         super().startup(**kwargs)
 
-        def change_state(
-            state: Union[State, str],
-            **change_state_kwargs: Any,
-        ) -> Callable[[], State]:
-            return partial(
-                self.client.push_state,
-                state,
-                **change_state_kwargs,
-            )
+        def change_state(state: Union[State, str], **change_state_kwargs: Any) -> Callable[[], State]:
+            return partial(self.client.push_state, state, **change_state_kwargs)
 
         def set_player_name(text: str) -> None:
             map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)

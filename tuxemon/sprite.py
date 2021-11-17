@@ -423,19 +423,11 @@ class RelativeGroup(MenuSpriteGroup[_MenuElement]):
 
     rect = pygame.rect.Rect(0, 0, 0, 0)
 
-    def __init__(
-        self,
-        *,
-        parent: Union[RelativeGroup[Any], Callable[[], pygame.rect.Rect]],
-        **kwargs: Any,
-    ) -> None:
+    def __init__(self, *, parent: Union[RelativeGroup[Any], Callable[[], pygame.rect.Rect]], **kwargs: Any) -> None:
         self.parent = parent
         super().__init__(**kwargs)
 
-    def calc_absolute_rect(
-        self,
-        rect: pygame.rect.Rect,
-    ) -> pygame.rect.Rect:
+    def calc_absolute_rect(self, rect: pygame.rect.Rect) -> pygame.rect.Rect:
         self.update_rect_from_parent()
         return rect.move(self.rect.topleft)
 
@@ -445,10 +437,7 @@ class RelativeGroup(MenuSpriteGroup[_MenuElement]):
         else:
             self.rect = pygame.rect.Rect(self.parent.rect)
 
-    def draw(
-        self,
-        surface: pygame.surface.Surface,
-    ) -> List[pygame.rect.Rect]:
+    def draw(self, surface: pygame.surface.Surface) -> List[pygame.rect.Rect]:
         self.update_rect_from_parent()
         topleft = self.rect.topleft
 
@@ -500,11 +489,7 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
             self.arrange_menu_items()
         return super().calc_bounding_rect()
 
-    def add(
-        self,
-        *sprites: pygame.sprite.Sprite,
-        **kwargs: Any,
-    ) -> None:
+    def add(self, *sprites: pygame.sprite.Sprite, **kwargs: Any) -> None:
         """
         Add something to the stacker.
 
@@ -517,17 +502,16 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         super().add(*sprites, **kwargs)
         self._needs_arrange = True
 
-    def remove(
-        self,
-        *items: pygame.sprite.Sprite,
-    ) -> None:
+    def remove(self, *items: pygame.sprite.Sprite) -> None:
         super().remove(*items)
         self._needs_arrange = True
 
-    def draw(
-        self,
-        surface: pygame.surface.Surface,
-    ) -> None:
+    def clear(self) -> None:
+        for i in self.sprites():
+            super().remove(i)
+        self._needs_arrange = True
+
+    def draw(self, surface: pygame.surface.Surface) -> None:
         if self._needs_arrange:
             self.arrange_menu_items()
         super().draw(surface)

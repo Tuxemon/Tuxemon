@@ -73,10 +73,17 @@ class SetKeyState(PopUpMenu):
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         # must use get_pressed because the events do not contain references to pygame events
         pressed_key = None
-        if pygame.key.get_pressed()[pygame.K_UP]: pressed_key = "up"
-        if pygame.key.get_pressed()[pygame.K_DOWN]: pressed_key = "down"
-        if pygame.key.get_pressed()[pygame.K_RIGHT]: pressed_key = "right"
-        if pygame.key.get_pressed()[pygame.K_LEFT]: pressed_key = "left"
+        arrow_keys = [
+            [pygame.K_UP, "up"],
+            [pygame.K_DOWN, 'down'],
+            [pygame.K_RIGHT, "right"],
+            [pygame.K_LEFT, "left"]
+        ]
+
+        for key in arrow_keys:
+            if pygame.key.get_pressed()[key[0]]:
+                pressed_key = key[1]
+
         for k in range(len(pygame.key.get_pressed())):
             if pygame.key.get_pressed()[k]: pressed_key = k
 
@@ -94,7 +101,7 @@ class SetKeyState(PopUpMenu):
             # event.value is being compared here since sometimes the value just returns an empty 
             # string and event.pressed doesn't return True when a key is being pressed
             tuxe_config.cfg.set("controls", self.input, pressed_key_str)
-            self.client.replace_state(ControlState)
+            self.client.get_state_by_name("ControlState").update_display_buttons()
             self.close()
 
         super().process_event(event)
@@ -110,16 +117,22 @@ class ControlState(PopUpMenu[ControlStateObj]):
         """
         Used when initializing the state
         """
-        # TODO: update the menu once a control key has been changed
         super().startup(**kwargs)
+        self.reload_controls()
+        self.update_display_buttons()
 
+    def update_display_buttons(self):
         def change_state(state: Union[State, str], **change_state_kwargs: Any) -> Callable[[], State]:
             return partial(self.client.push_state, state, **change_state_kwargs)
-
+        
         display_buttons = {}
         key_names = config.get_custom_pygame_keyboard_controls_names(tuxe_config.cfg)
         for button in key_names:
             display_buttons[key_names[button]] = button
+
+        self.clear()
+
+        # TODO: add a message that says "go back to the start menu to update controls" after changes are made
         key_items_map = (
             ("menu_up_key", display_buttons[buttons.UP], "up"),
             ("menu_left_key", display_buttons[buttons.LEFT], "left"),
@@ -133,20 +146,23 @@ class ControlState(PopUpMenu[ControlStateObj]):
         for key, current_input, input in key_items_map:
             label = f"{T.translate(key).upper()} | {current_input}"
             image = self.shadow_text(label)
-            item = MenuItem(image, label, None, change_state(SetKeyState, input=input))
+            item = MenuItem(image, label, None, change_state("SetKeyState", input=input))
             self.add(item)
+
+    def reload_controls(self):
+        with open(paths.USER_CONFIG_PATH, "w") as fp:
+            tuxe_config.cfg.write(fp)
+
+        # reload inputs
+        tuxe_config.keyboard_button_map = config.get_custom_pygame_keyboard_controls(tuxe_config.cfg)
+        prepare.CONFIG = tuxe_config
+        local_session.client.config = tuxe_config
+        keyboard = PygameKeyboardInput(tuxe_config.keyboard_button_map)
+        local_session.client.input_manager.set_input(0, 0, keyboard)
+        local_session.client.event_engine = EventEngine(local_session)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         if event.button == buttons.BACK:
-            with open(paths.USER_CONFIG_PATH, "w") as fp:
-                tuxe_config.cfg.write(fp)
-
-            # reload inputs
-            tuxe_config.keyboard_button_map = config.get_custom_pygame_keyboard_controls(tuxe_config.cfg)
-            prepare.CONFIG = tuxe_config
-            local_session.client.config = tuxe_config
-            keyboard = PygameKeyboardInput(tuxe_config.keyboard_button_map)
-            local_session.client.input_manager.set_input(0, 0, keyboard)
-            local_session.client.event_engine = EventEngine(local_session)
+            self.reload_controls()
 
         return super().process_event(event)

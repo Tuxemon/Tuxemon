@@ -503,9 +503,7 @@ class StateManager:
         try:
             index = self._state_stack.index(state)
         except IndexError:
-            logger.critical(
-                "Attempted to pop state when state was not active.",
-            )
+            logger.critical("Attempted to pop state when state was not active.")
             raise RuntimeError
 
         if index == 0:
@@ -551,18 +549,10 @@ class StateManager:
         pass
 
     @overload
-    def push_state(
-        self,
-        state_name: Type[StateType],
-        **kwargs: Any,
-    ) -> StateType:
+    def push_state(self, state_name: Type[StateType], **kwargs: Any) -> StateType:
         pass
 
-    def push_state(
-        self,
-        state_name: Union[str, Type[StateType]],
-        **kwargs: Any,
-    ) -> State:
+    def push_state(self, state_name: Union[str, Type[StateType]], **kwargs: Any) -> State:
         """
         Pause currently running state and start new one.
 
@@ -600,18 +590,10 @@ class StateManager:
         pass
 
     @overload
-    def replace_state(
-        self,
-        state_name: Type[StateType],
-        **kwargs: Any,
-    ) -> StateType:
+    def replace_state(self, state_name: Type[StateType], **kwargs: Any) -> StateType:
         pass
 
-    def replace_state(
-        self,
-        state_name: Union[str, Type[State]],
-        **kwargs: Any,
-    ) -> State:
+    def replace_state(self, state_name: Union[str, Type[State]], **kwargs: Any) -> State:
         """
         Replace the currently running state with a new one.
 

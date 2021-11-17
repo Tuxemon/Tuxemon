@@ -353,6 +353,8 @@ class LocalPygameClient:
 
         if self.exit:
             self.done = True
+        
+        print([i.name for i in self.state_manager.active_states])
 
     def release_controls(self) -> None:
         """
@@ -582,11 +584,7 @@ class LocalPygameClient:
     ) -> StateType:
         pass
 
-    def replace_state(
-        self,
-        state_name: Union[str, Type[State]],
-        **kwargs: Any,
-    ) -> State:
+    def replace_state(self, state_name: Union[str, Type[State]], **kwargs: Any) -> State:
         """Replace current state with new one"""
         return self.state_manager.replace_state(state_name, **kwargs)
 

@@ -312,7 +312,9 @@ class Menu(Generic[T], state.State):
             self.menu_select_sound_filename,
         )
 
-    def shadow_text(self, text: str,
+    def shadow_text(
+        self,
+        text: str,
         bg: ColorLike = (192, 192, 192),
         fg: Optional[ColorLike] = None,
     ) -> pygame.surface.Surface:

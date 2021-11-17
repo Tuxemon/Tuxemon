@@ -128,7 +128,9 @@ class TuxemonConfig:
         self.mods = ["tuxemon"]
 
 
-def get_custom_pygame_keyboard_controls(cfg: configparser.ConfigParser) -> Mapping[Optional[int], int]:
+def get_custom_pygame_keyboard_controls(
+    cfg: configparser.ConfigParser,
+) -> Mapping[Optional[int], int]:
     import pygame.locals
 
     custom_controls: Dict[Optional[int], int] = {None: events.UNICODE}
@@ -147,7 +149,9 @@ def get_custom_pygame_keyboard_controls(cfg: configparser.ConfigParser) -> Mappi
 
     return custom_controls
 
-def get_custom_pygame_keyboard_controls_names(cfg: configparser.ConfigParser) -> Mapping[Optional[str], int]:
+def get_custom_pygame_keyboard_controls_names(
+    cfg: configparser.ConfigParser
+) -> Mapping[Optional[str], int]:
     custom_controls: Dict[Optional[int], int] = {None: events.UNICODE}
     for key, values in cfg.items("controls"):
         key = key.upper()

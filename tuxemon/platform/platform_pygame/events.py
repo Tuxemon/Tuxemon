@@ -35,7 +35,20 @@ class PygameEventQueueHandler(EventQueueHandler):
         """
         self._inputs[player].append(handler)
 
-    def set_input(self, player: int, element: int, handler: InputHandler[Any]) -> None:
+    def set_input(
+        self,
+        player: int,
+        element: int,
+        handler: InputHandler[Any]
+    ) -> None:
+        """
+        Sets an input handler to process.
+
+        Parameters:
+            player: Number of the player the handler belongs to.
+            element: Index to modify
+            handler: Handler whose events will be processed from now on.
+        """
         self._inputs[player][element] = handler
 
     def process_events(self) -> Generator[PlayerInput, None, None]:
@@ -92,7 +105,11 @@ class PygameGamepadInput(PygameEventHandler):
         7: buttons.START,
     }
 
-    def __init__(self, event_map: Optional[Mapping[Optional[int], int]] = None, deadzone: float = 0.25) -> None:
+    def __init__(
+        self,
+        event_map: Optional[Mapping[Optional[int], int]] = None,
+        deadzone: float = 0.25,
+    ) -> None:
         super().__init__(event_map)
         self.deadzone = deadzone
 

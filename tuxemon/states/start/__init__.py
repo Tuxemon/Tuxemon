@@ -23,7 +23,6 @@
 # William Edwards <shadowapex@gmail.com>
 # Benjamin Bean <superman2k5@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
-# Andrew Hong <novialriptide@gmail.com>
 #
 #
 # states.start Handles the start screen which loads and creates new games
@@ -80,8 +79,15 @@ class StartState(PopUpMenu[StartGameObj]):
         kwargs["selected_index"] = 0 if index is None else 1
         super().startup(**kwargs)
 
-        def change_state(state: Union[State, str], **change_state_kwargs: Any) -> Callable[[], State]:
-            return partial(self.client.push_state, state, **change_state_kwargs)
+        def change_state(
+            state: Union[State, str],
+            **change_state_kwargs: Any,
+        ) -> Callable[[], State]:
+            return partial(
+                self.client.push_state,
+                state,
+                **change_state_kwargs,
+            )
 
         def set_player_name(text: str) -> None:
             map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
@@ -95,7 +101,7 @@ class StartState(PopUpMenu[StartGameObj]):
                 state_name=InputMenu,
                 prompt=T.translate("input_name"),
                 callback=set_player_name,
-                escape_key_exits=True
+                escape_key_exits=True,
             )
             self.client.push_state(FadeInTransition)
 

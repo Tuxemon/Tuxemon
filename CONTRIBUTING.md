@@ -95,14 +95,19 @@ guidelines to follow when adding new maps or modifying existing ones.
 - The "base64 zlib compressed" map format is preferred
 
 ## Code Guidelines
-- New files should follow PEP8 -- this includes 79 char. line limit.
+- New files should follow PEP8 -- this includes 79 char. line limit
+- Docstrings on new functions are mandatory, unless they are overloading a method
+- Function/method signatures should have basic typing information -- ask if help is needed
 - Do not change existing formatting unless you are modifying the code
-- Avoid adding dead code -- code that isn't used for anythin
+- Avoid adding dead code: code that isn't used for anything
+- Do not add print statements for debugging
+- Print statements should only be used if the player is using the CLI
+- Debugging or similar information should use `logger`
 - Tests are not required but are encouraged on new code
 - Avoid duplication of existing code
 - Add TODOs: if you are introducing incomplete code paths
-- Don't excessively try to cover up errors or bugs
-- Raising an exception and crashing is preferred over excessive error handling
+- Raising an exception and crashing is preferred over error handling
+- Don't excessively try to cover up errors or bugs; fix the cause first
 - New dependancies are OK, but if it can be avoided, thats better
 
 ### Map Tileset Guidelines

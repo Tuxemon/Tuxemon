@@ -353,8 +353,6 @@ class LocalPygameClient:
 
         if self.exit:
             self.done = True
-        
-        print([i.name for i in self.state_manager.active_states])
 
     def release_controls(self) -> None:
         """

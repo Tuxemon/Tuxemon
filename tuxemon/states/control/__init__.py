@@ -79,13 +79,12 @@ class SetKeyState(PopUpMenu):
             [pygame.K_RIGHT, "right"],
             [pygame.K_LEFT, "left"]
         ]
+        for k in range(len(pygame.key.get_pressed())):
+            if pygame.key.get_pressed()[k]: pressed_key = k
 
         for key in arrow_keys:
             if pygame.key.get_pressed()[key[0]]:
                 pressed_key = key[1]
-
-        for k in range(len(pygame.key.get_pressed())):
-            if pygame.key.get_pressed()[k]: pressed_key = k
 
         # to prevent a KeyError from happening, the game won't let you
         # input a key if that key has already been set a value
@@ -96,15 +95,13 @@ class SetKeyState(PopUpMenu):
 
         if isinstance(pressed_key, str): pressed_key_str = pressed_key
         if isinstance(pressed_key, int): pressed_key_str = pygame.key.name(pressed_key)
-        if pressed_key is not None and (event.pressed or event.value == "") and pressed_key_str not in invalid_keys: 
+        if pressed_key_str is not None and (event.pressed or event.value == "") and pressed_key_str not in invalid_keys: 
             # TODO: fix or rewrite PlayerInput
             # event.value is being compared here since sometimes the value just returns an empty 
             # string and event.pressed doesn't return True when a key is being pressed
             tuxe_config.cfg.set("controls", self.input, pressed_key_str)
-            self.client.get_state_by_name("ControlState").update_display_buttons()
+            self.client.get_state_by_name(ControlState).update_display_buttons()
             self.close()
-
-        super().process_event(event)
 
 class ControlState(PopUpMenu[ControlStateObj]):
     """

@@ -62,13 +62,10 @@ logger = logging.getLogger(__name__)
 class LocalPygameClient:
     """
     Client class for entire project.
-
     Contains the game loop, and contains
     the event_loop which passes events to States as needed.
-
     Parameters:
         config: The config for the game.
-
     """
 
     def __init__(self, config: TuxemonConfig) -> None:
@@ -93,13 +90,18 @@ class LocalPygameClient:
 
         # setup controls
         keyboard = PygameKeyboardInput(config.keyboard_button_map)
-        gamepad = PygameGamepadInput(config.gamepad_button_map, config.gamepad_deadzone)
+        gamepad = PygameGamepadInput(
+            config.gamepad_button_map,
+            config.gamepad_deadzone,
+        )
         self.input_manager = PygameEventQueueHandler()
         self.input_manager.add_input(0, keyboard)
         self.input_manager.add_input(0, gamepad)
         self.controller_overlay = None
         if config.controller_overlay:
-            self.controller_overlay = PygameTouchOverlayInput(config.controller_transparency)
+            self.controller_overlay = PygameTouchOverlayInput(
+                config.controller_transparency,
+            )
             self.controller_overlay.load()
             self.input_manager.add_input(0, self.controller_overlay)
         if not config.hide_mouse:
@@ -158,10 +160,8 @@ class LocalPygameClient:
     def load_map(self, map_data: TuxemonMap) -> None:
         """
         Load a map.
-
         Parameters:
             map_data: The map to load.
-
         """
         self.events = map_data.events
         self.inits = map_data.inits
@@ -172,7 +172,6 @@ class LocalPygameClient:
     def draw_event_debug(self) -> None:
         """
         Very simple overlay of event data.  Needs some love.
-
         """
         y = 20
         x = 4
@@ -210,7 +209,6 @@ class LocalPygameClient:
     ) -> Generator[PlayerInput, None, None]:
         """
         Process all events for this frame.
-
         Events are first sent to the active state.
         States can choose to keep the events or return them.
         If they are kept, no other state nor the event engine will get that
@@ -222,16 +220,12 @@ class LocalPygameClient:
         The event engine also can keep or return the event.
         All unused events will be added to Client.key_events each frame.
         Conditions in the the event system can then check that list.
-
         States can "keep" events by simply returning None from
         State.process_event
-
         Parameters:
             events: Sequence of events.
-
         Yields:
             Unprocessed event.
-
         """
         game_event: Optional[PlayerInput]
 
@@ -247,21 +241,16 @@ class LocalPygameClient:
     ) -> Optional[PlayerInput]:
         """
         Send event down processing chain
-
         Probably a poorly named method.  Beginning from top state,
         process event, then as long as a new event is returned from
         the state, the event will be processed by the next active
         state in the stack.
-
         The final destination for the event will be the event engine.
-
         Parameters:
             game_event: Event to process.
-
         Returns:
             The event if no state keeps it. If some state keeps the
             event then the return value is ``None``.
-
         """
         for state in self.active_states:
             maybe_game_event = state.process_event(game_event)
@@ -276,12 +265,10 @@ class LocalPygameClient:
     def main(self) -> None:
         """
         Initiates the main game loop.
-
         Since we are using Asteria networking to handle network events,
         we pass this session.Client instance to networking which in turn
         executes the "main_loop" method every frame.
         This leaves the networking component responsible for the main loop.
-
         """
         update = self.update
         draw = self.draw
@@ -313,15 +300,12 @@ class LocalPygameClient:
     def update(self, time_delta: float) -> None:
         """
         Main loop for entire game.
-
         This method gets update every frame
         by Asteria Networking's "listen()" function. Every frame we get the
         amount of time that has passed each frame, check game conditions,
         and draw the game to the screen.
-
         Parameters:
             time_delta: Elapsed time since last frame.
-
         """
         # Update our networking
         if self.client.listening:
@@ -357,9 +341,7 @@ class LocalPygameClient:
     def release_controls(self) -> None:
         """
         Send inputs which release held buttons/axis
-
         Use to prevent player from holding buttons while state changes.
-
         """
         events = self.input_manager.release_controls()
         self.key_events = list(self.process_events(events))
@@ -367,10 +349,8 @@ class LocalPygameClient:
     def update_states(self, time_delta: float) -> None:
         """
         Checks if a state is done or has called for a game quit.
-
         Parameters:
             time_delta: Amount of time passed since last frame.
-
         """
         self.state_manager.update(time_delta)
         if self.state_manager.current_state is None:
@@ -379,10 +359,8 @@ class LocalPygameClient:
     def draw(self, surface: pg.surface.Surface) -> None:
         """
         Draw all active states.
-
         Parameters:
             surface: Surface where the drawing takes place.
-
         """
         # TODO: refactor into Widget
 
@@ -423,25 +401,21 @@ class LocalPygameClient:
     ) -> Tuple[float, int]:
         """
         Compute and print the frames per second.
-
         This function only prints FPS if that option has been set in the
         config.
         In order to have a long enough time interval to accurately compute the
         FPS, it only prints the FPS if at least one second has elapsed since
         last time it printed them.
-
         Parameters:
             clock_tick: Seconds elapsed since the last ``update`` call.
             fps_timer: Number of seconds elapsed since the last time the FPS
                 were printed.
             frames: Number of frames printed since the last time the FPS were
                 printed.
-
         Returns:
             Updated values of ``fps_timer`` and ``frames``. They will be the
             same as the valued passed unless the FPS are printed, in wich case
             they are reset to 0.
-
         """
         if self.show_fps:
             fps_timer += clock_tick
@@ -455,15 +429,12 @@ class LocalPygameClient:
     def add_clients_to_map(self, registry: Mapping[str, Any]) -> None:
         """
         Add players in the current map as npcs.
-
         Checks to see if clients are supposed to be displayed on the current
         map. If they are on the same map as the host then it will add them to
         the npc's list. If they are still being displayed and have left the
         map it will remove them from the map.
-
         Parameters:
             registry: Locally hosted Neteria client/server registry.
-
         """
         world = self.get_state_by_name(WorldState)
         world.npcs = {}
@@ -491,10 +462,8 @@ class LocalPygameClient:
     def get_map_filepath(self) -> Optional[str]:
         """
         Gets the filepath of the current map.
-
         Returns:
             File path of the current map, if there is one.
-
         """
         world = self.get_state_by_name(WorldState)
         return world.current_map.filename
@@ -502,10 +471,8 @@ class LocalPygameClient:
     def get_map_name(self) -> str:
         """
         Gets the name of the current map.
-
         Returns:
             Name of the current map.
-
         """
         map_path = self.get_map_filepath()
         if map_path is None:
@@ -582,7 +549,11 @@ class LocalPygameClient:
     ) -> StateType:
         pass
 
-    def replace_state(self, state_name: Union[str, Type[State]], **kwargs: Any) -> State:
+    def replace_state(
+        self,
+        state_name: Union[str, Type[State]],
+        **kwargs: Any,
+    ) -> State:
         """Replace current state with new one"""
         return self.state_manager.replace_state(state_name, **kwargs)
 

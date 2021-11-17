@@ -87,13 +87,17 @@ class Sprite(pygame.sprite.DirtySprite):
     ) -> pygame.rect.Rect:
         """
         Draw the sprite to the surface.
+
         This operation does not scale the sprite, so it may exceed
         the size of the area passed.
+
         Parameters:
             surface: Surface to be drawn on.
             rect: Area to contain the sprite.
+
         Returns:
             Area of the surface that was modified.
+
         """
         # should draw to surface without generating a cached copy
         if rect is None:
@@ -245,8 +249,10 @@ class CaptureDeviceSprite(Sprite):
     def update_state(self) -> str:
         """
         Updates the state of the capture device.
+
         Returns:
             The new state.
+
         """
         if self.state == "empty":
             self.sprite.image = self.empty_img
@@ -269,8 +275,10 @@ class CaptureDeviceSprite(Sprite):
     ) -> None:
         """
         Animates the capture device in game.
+
         Parameters:
             animate: The animation function.
+
         """
         sprite = self.sprite
         sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
@@ -285,12 +293,14 @@ _GroupElement = TypeVar("_GroupElement", bound=Sprite)
 class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
     """
     Sane variation of a pygame sprite group.
+
     Features:
     * Supports Layers
     * Supports Index / Slice
     * Supports skipping sprites without an image
     * Supports sprites with visible flag
     * Get bounding rect of all children
+
     """
 
     def __init__(self, *, default_layer: int = 0) -> None:
@@ -345,7 +355,9 @@ _MenuElement = TypeVar("_MenuElement", bound="MenuItem[Any]")
 class MenuSpriteGroup(SpriteGroup[_MenuElement]):
     """
     Sprite Group to be used for menus.
+
     Includes functions for moving a cursor around the screen.
+
     """
 
     _simple_movement_dict: Final = {
@@ -371,13 +383,17 @@ class MenuSpriteGroup(SpriteGroup[_MenuElement]):
     def determine_cursor_movement(self, index: int, event: PlayerInput) -> int:
         """
         Given an event, determine a new selected item offset.
+
         You must pass the currently selected object.
         The return value will be the newly selected object index.
+
         Parameters:
             index: Index of the item in the list.
             event: Player event that may cause to select another menu item.
+
         Returns:
             New menu item offset
+
         """
         # TODO: some sort of smart way to pick items based on location on
         # screen
@@ -491,7 +507,9 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
     ) -> None:
         """
         Add something to the stacker.
+        
         Do not add iterables to this function. Use 'extend'.
+
         Parameters:
             item: Stuff to add.
         """
@@ -522,6 +540,7 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         """Iterate through menu items and position them in the menu
         Defaults to a multi-column layout with items placed horizontally first.
         :returns: None
+        
         """
         if not len(self):
             return

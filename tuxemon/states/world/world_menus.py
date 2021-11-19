@@ -57,7 +57,7 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
             ("menu_player", not_implemented_dialog),
             ("menu_save", change_state("SaveMenuState")),
             ("menu_load", change_state("LoadMenuState")),
-            ("menu_options", not_implemented_dialog),
+            ("menu_options", change_state("ControlState")),
             ("exit", exit_game),
         )
         add_menu_items(self, menu_items_map)

@@ -664,6 +664,17 @@ class StateManager:
         """
         return self._state_stack[:]
 
+    @property
+    def queued_states(self) -> Sequence[Tuple[str, Mapping[str, Any]]]:
+        """
+        Sequence of states that are queued.
+
+        Returns:
+            List of queued states
+
+        """
+        return self._state_queue[:]
+
     @overload
     def get_state_by_name(self, state_name: str) -> State:
         pass
@@ -697,3 +708,23 @@ class StateManager:
                 return state
 
         raise ValueError(f"Missing state {state_name}")
+
+    def get_queued_state_by_name(
+        self,
+        state_name: str,
+    ) -> Tuple[str, Mapping[str, Any]]:
+        """
+        Query the queued state stack for a state by the name supplied.
+
+        Parameters:
+            state_name: Name of a state.
+
+        Returns:
+            State with that name, if one exist. ``None`` otherwise.
+
+        """
+        for queued_state in self._state_queue:
+            if queued_state[0] == state_name:
+                return queued_state
+
+        raise ValueError(f"Missing queued state {state_name}")

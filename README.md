@@ -140,12 +140,17 @@ pip install -r requirements.txt
 Controls
 --------
 
-##### Tuxemon
+##### Game Controls
 ###### You can also set your own inputs in the options menu or cfg file
 * *Arrow Keys* - Movement
 * *Enter* - Select/activate
 * *ESC* - Menu/Cancel
 * *Shift* - Sprint
+
+##### Debugging
+These are enabled when "dev_tools = True" in the config 
+* *r* - Reload the map tiles
+* *n* - No clip
 
 ##### Map Editor
 

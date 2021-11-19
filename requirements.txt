@@ -3,7 +3,7 @@ cbor
 neteria
 pillow
 pygame==2.0.2
-pyscroll==2.26
+pyscroll==2.27
 pytmx==3.29
 requests>=2.19.1
 natsort

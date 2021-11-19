@@ -1,8 +1,7 @@
 from __future__ import annotations
 
 import cmd
-from collections import Sequence
-from typing import Optional
+from typing import Optional, Sequence
 
 
 class Formatter:

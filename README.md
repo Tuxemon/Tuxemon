@@ -1,4 +1,4 @@
-Tuxemon 0.4.33
+Tuxemon 0.4.34
 ==============
 
 Tuxemon is a free, open source monster-fighting RPG.  It's in constant

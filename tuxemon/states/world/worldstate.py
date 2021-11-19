@@ -373,6 +373,12 @@ class WorldState(state.State):
                     event.value,
                     event.hold_time,
                 )
+            if event.value == "r":
+                return PlayerInput(
+                    intentions.RELOAD_MAP,
+                    event.value,
+                    event.hold_time,
+                )
 
         return event
 
@@ -441,6 +447,10 @@ class WorldState(state.State):
         if prepare.DEV_TOOLS:
             if event.pressed and event.button == intentions.NOCLIP:
                 self.player.ignore_collisions = not self.player.ignore_collisions
+                return None
+
+            if event.pressed and event.button == intentions.RELOAD_MAP:
+                self.current_map.reload_tiles()
                 return None
 
         # if we made it this far, return the event for others to use

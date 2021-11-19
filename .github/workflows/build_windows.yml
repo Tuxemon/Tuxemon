@@ -1,6 +1,9 @@
 name: Build windows binary (cx_freeze)
 
-on: workflow_dispatch
+on:
+  release:
+    types: [published]
+    
 jobs:
   build_executable:
     runs-on: windows-latest

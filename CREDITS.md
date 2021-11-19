@@ -709,7 +709,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 ### Battle Backgrounds
 
-* ["Background_240px.png"](https://wiki.tuxemon.org/File:Background_(240px).png)
+* ["forest_background.png"](https://wiki.tuxemon.org/File:Background_(240px).png)
 Adapted by Sanglorian from a sprite by ["Catch
 Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack),
 is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)

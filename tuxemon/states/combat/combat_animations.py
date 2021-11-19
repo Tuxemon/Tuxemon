@@ -64,8 +64,8 @@ class CombatAnimations(ABC, Menu[None]):
 
         # Get background image if passed in
         background_filename_prefix = "gfx/ui/combat/"
-        if "background" in graphics and \
-           graphics["background"] > "":
+        background = graphics.get("background")
+        if background:
             self.background_filename = background_filename_prefix + graphics["background"]
         else:
             self.background_filename = background_filename_prefix + "battle_bg03.png"

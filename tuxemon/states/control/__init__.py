@@ -31,7 +31,7 @@
 from __future__ import annotations
 
 from functools import partial
-from typing import Any, Callable, Union, Optional
+from typing import Any, Callable, Generator, Union, Optional
 
 import pygame
 
@@ -93,14 +93,19 @@ class SetKeyState(PopUpMenu):
         for key, value in tuxe_config.cfg.items("controls"):
             invalid_keys.append(value)
 
-        if isinstance(pressed_key, str): pressed_key_str = pressed_key
-        if isinstance(pressed_key, int): pressed_key_str = pygame.key.name(pressed_key)
-        if pressed_key_str is not None and (event.pressed or event.value == "") and pressed_key_str not in invalid_keys: 
+        if isinstance(pressed_key, str): 
+            pressed_key_str = pressed_key
+        if isinstance(pressed_key, int): 
+            pressed_key_str = pygame.key.name(pressed_key)
+
+        is_pressed = (event.pressed or event.value == "") and pressed_key_str is not None
+        if is_pressed and pressed_key_str not in invalid_keys: 
             # TODO: fix or rewrite PlayerInput
-            # event.value is being compared here since sometimes the value just returns an empty 
-            # string and event.pressed doesn't return True when a key is being pressed
+            # event.value is being compared here since sometimes the 
+            # value just returns an empty string and event.pressed doesn't 
+            # return True when a key is being pressed
             tuxe_config.cfg.set("controls", self.input, pressed_key_str)
-            self.client.get_state_by_name(ControlState).update_display_buttons()
+            self.client.get_state_by_name(ControlState).initialize_items()
             self.close()
 
 class ControlState(PopUpMenu[ControlStateObj]):
@@ -109,6 +114,7 @@ class ControlState(PopUpMenu[ControlStateObj]):
     """
     escape_key_exits = True
     shrink_to_items = True
+    columns = 2
 
     def startup(self, **kwargs: Any) -> None:
         """
@@ -116,11 +122,17 @@ class ControlState(PopUpMenu[ControlStateObj]):
         """
         super().startup(**kwargs)
         self.reload_controls()
-        self.update_display_buttons()
 
-    def update_display_buttons(self):
-        def change_state(state: Union[State, str], **change_state_kwargs: Any) -> Callable[[], State]:
-            return partial(self.client.push_state, state, **change_state_kwargs)
+    def initialize_items(self) -> Generator[MenuItem[ControlStateObj], None, None]:
+        def change_state(
+            state: Union[State, str],
+            **change_state_kwargs: Any
+        ) -> Callable[[], State]:
+            return partial(
+                self.client.push_state,
+                state,
+                **change_state_kwargs
+            )
         
         display_buttons = {}
         key_names = config.get_custom_pygame_keyboard_controls_names(tuxe_config.cfg)
@@ -129,19 +141,28 @@ class ControlState(PopUpMenu[ControlStateObj]):
 
         self.clear()
 
-        # TODO: add a message that says "go back to the start menu to update controls" after changes are made
+        # TODO: add a message that says "go back to the 
+        #       start menu to update controls" after changes 
+        #       are made
         key_items_map = (
-            ("menu_up_key", display_buttons[buttons.UP], "up"),
-            ("menu_left_key", display_buttons[buttons.LEFT], "left"),
-            ("menu_right_key", display_buttons[buttons.RIGHT], "right"),
-            ("menu_down_key", display_buttons[buttons.DOWN], "down"),
-            ("menu_primary_select_key", display_buttons[buttons.A], "a"),
-            ("menu_secondary_select_key", display_buttons[buttons.B], "b"),
-            ("menu_back_key", display_buttons[buttons.BACK], "back")
+            ("menu_up_key", "up"),
+            (display_buttons[buttons.UP], None),
+            ("menu_left_key", "left"),
+            (display_buttons[buttons.LEFT], None),
+            ("menu_right_key", "right"),
+            (display_buttons[buttons.RIGHT], None),
+            ("menu_down_key", "down"),
+            (display_buttons[buttons.DOWN], None),
+            ("menu_primary_select_key", "a"),
+            (display_buttons[buttons.A], None),
+            ("menu_secondary_select_key", "b"),
+            (display_buttons[buttons.B], None),
+            ("menu_back_key", "back"),
+            (display_buttons[buttons.BACK], None)
         )
 
-        for key, current_input, input in key_items_map:
-            label = f"{T.translate(key).upper()} | {current_input}"
+        for key, input in key_items_map:
+            label = f"{T.translate(key).upper()}"
             image = self.shadow_text(label)
             item = MenuItem(image, label, None, change_state("SetKeyState", input=input))
             self.add(item)

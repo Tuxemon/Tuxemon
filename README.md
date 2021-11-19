@@ -23,6 +23,7 @@ Features
 - Animated maps
 - Lots of documentation
 - Python code can be modified without a compiler
+- CLI interface for live game debugging
 - Runs on Windows, Linux, OS X, and some support on Android
 - 183 monsters with sprites
 - 98 techniques to use in battle

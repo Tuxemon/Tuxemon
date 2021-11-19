@@ -45,9 +45,7 @@ from tuxemon.platform.const import buttons
 from tuxemon.platform.platform_pygame.events import PygameKeyboardInput
 from tuxemon.session import local_session
 from tuxemon.platform.events import PlayerInput
-from tuxemon.sprite import MenuSpriteGroup
 from tuxemon.state import State
-from tuxemon.states.combat.combat_menus import MenuGameObj
 
 ControlStateObj = Callable[[], object]
 tuxe_config = config.TuxemonConfig(paths.USER_CONFIG_PATH)

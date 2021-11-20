@@ -530,7 +530,7 @@ class CombatAnimations(ABC, Menu[None]):
             prev = dev.state
             if prev != dev.update_state():
                 animate = partial(self.animate, duration=0.1, delay=0.1)
-                dev.draw(animate)
+                dev.animate_capture(animate)
 
     def animate_parties_in(self) -> None:
         # TODO: break out functions here for each

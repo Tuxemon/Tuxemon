@@ -760,8 +760,6 @@ class CombatState(CombatAnimations):
         * Will remove actions as well
         * currently for 'swap' technique
 
-        :param monster:
-        :return:
         """
         self.remove_monster_actions_from_queue(monster)
         self.animate_monster_faint(monster)

@@ -83,11 +83,14 @@ class TuxepediaStore:
                     json.dump(txmn_json_full[txmn_name], f, indent=4)
 
     def update_txmn_json(self, txmn_name, txmn_json_new, overwrite=True):
-        """Update a tuxemon JSON file record
+        """
+        Update a tuxemon JSON file record
 
-        :param txmn_name: tuxemon name
-        :param txmn_json_new: new tuxemon JSON record
-        :param overwrite: toggle to overwrite existing JSON fields
+        Parameters:
+            txmn_name: tuxemon name
+            txmn_json_new: new tuxemon JSON record
+            overwrite: toggle to overwrite existing JSON fields
+
         """
 
         # full path to tuxemon JSON file
@@ -114,9 +117,12 @@ class TuxepediaStore:
             json.dump(txmn_json_old, f, indent=4)
 
     def get_txmn_json(self, txmn_name):
-        """Extract tuxemon JSON from file
+        """
+        Extract tuxemon JSON from file
 
-        :param txmn_name: tuxemon name
+        Parameters:
+            txmn_name: tuxemon name
+
         """
 
         txmn_json = None

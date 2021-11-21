@@ -224,7 +224,6 @@ class Menu(Generic[T], state.State):
 
         Only works if initialize_items is used
 
-        :return: None
         """
         self._needs_refresh = True
         items = self.initialize_items()

@@ -97,8 +97,9 @@ class Entity(Generic[SaveDict]):
     def set_position(self, pos: Sequence[float]) -> None:
         """Set the entity's position in the game world
 
-        :param pos:
-        :return:
+        Parameters:
+            pos: position to be set
+
         """
         self.position3.x = pos[0]
         self.position3.y = pos[1]

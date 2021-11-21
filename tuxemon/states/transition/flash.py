@@ -30,12 +30,12 @@ class FlashTransition(State):
         self.transition_surface.fill((255, 255, 255))
 
     def update(self, time_delta: float) -> None:
-        """Update function for state.
+        """
+        Update function for state.
 
-        :param time_delta: Time since last update in seconds
-        :type time_delta: Float
-        :rtype: None
-        :returns: None
+        Parameters:
+            time_delta: Time since last update in seconds
+
         """
         logger.info("Battle transition!")
 

@@ -39,9 +39,11 @@ class TuxepediaWebExtractor:
         return logging.getLogger(self.__class__.__name__)
 
     def get_completed_monsters(self):
-        """Extract monster data from the Tuxepedia Wiki page
+        """
+        Extract monster data from the Tuxepedia Wiki page
 
-        :return: dict/JSON of the Tuxepedia monster entries
+        Returns:
+            dict/JSON of the Tuxepedia monster entries
         """
         self.completed_monsters = True
 
@@ -83,9 +85,12 @@ class TuxepediaWebExtractor:
         return monsters
 
     def get_monsters(self):
-        """Extract monster data from the Tuxepedia Wiki page
+        """
+        Extract monster data from the Tuxepedia Wiki page
 
-        :return: dict/JSON of the Tuxepedia monster entries
+        Returns:
+            dict/JSON of the Tuxepedia monster entries
+
         """
         self.completed_monsters = False
 
@@ -115,10 +120,15 @@ class TuxepediaWebExtractor:
         return monsters
 
     def get_monster_category(self, monster_row):
-        """Get tuxemon types/elements from Tuxepedia table row
+        """
+        Get tuxemon types/elements from Tuxepedia table row
 
-        :param monster_row: HTML <tr> table row element
-        :return: list of tuxemon types/elements
+        Parameters:
+            monster_row: HTML <tr> table row element
+
+        Returns:
+            list of tuxemon types/elements
+
         """
 
         # get all type elements (<a> blocks)
@@ -128,19 +138,29 @@ class TuxepediaWebExtractor:
         return categories[0]
 
     def get_monster_name(self, monster_row):
-        """Get tuxemon name from Tuxepedia table row
+        """
+        Get tuxemon name from Tuxepedia table row
 
-        :param monster_row: HTML <tr> table row element
-        :return: monster name
+        Parameters:
+            monster_row: HTML <tr> table row element
+        
+        Returns:
+            monster name
+
         """
 
         return monster_row[0][0].text_content()
 
     def get_monster_url(self, monster_row):
-        """Get tuxemon entry URL from Tuxepedia table row
+        """
+        Get tuxemon entry URL from Tuxepedia table row
 
-        :param monster_row: HTML <tr> table row element
-        :return: monster record URL in Tuxepedia
+        Parameters:
+            monster_row: HTML <tr> table row element
+
+        Returns:
+            monster record URL in Tuxepedia
+
         """
 
         href = monster_row[0][0].get("href")
@@ -149,10 +169,15 @@ class TuxepediaWebExtractor:
         return self.tuxepedia_url + href
 
     def get_monster_types(self, monster_row):
-        """Get tuxemon types/elements from Tuxepedia table row
+        """
+        Get tuxemon types/elements from Tuxepedia table row
 
-        :param monster_row: HTML <tr> table row element
-        :return: list of tuxemon types/elements
+        Parameters:
+            monster_row: HTML <tr> table row element
+
+        Returns:
+            list of tuxemon types/elements
+
         """
 
         # get all type elements (<a> blocks)
@@ -167,10 +192,15 @@ class TuxepediaWebExtractor:
         return [el.text_content() for el in types]
 
     def get_complete_monster_sprites(self, monster_row):
-        """Get tuxemon sprites from Tuxepedia table row
+        """
+        Get tuxemon sprites from Tuxepedia table row
 
-        :param monster_row: HTML <tr> table row element
-        :return: dict/JSON of tuxemon sprites
+        Parameters:
+            monster_row: HTML <tr> table row element
+
+        Returns:
+            dict/JSON of tuxemon sprites
+
         """
 
         monster_url = self.get_monster_url(monster_row)
@@ -236,10 +266,14 @@ class TuxepediaWebExtractor:
         return sprites
 
     def get_incomplete_monster_sprites(self, monster_row):
-        """Get tuxemon sprites from Tuxepedia table row
+        """
+        Get tuxemon sprites from Tuxepedia table row
 
-        :param monster_row: HTML <tr> table row element
-        :return: dict/JSON of tuxemon sprites
+        Parameters:
+            monster_row: HTML <tr> table row element
+        Returns:
+            dict/JSON of tuxemon sprites
+
         """
 
         # get tuxemon name
@@ -290,19 +324,29 @@ class TuxepediaWebExtractor:
         return sprites
 
     def get_monster_shape(self, monster_row):
-        """Get tuxemon description/blurp from Tuxepedia table row
+        """
+        Get tuxemon description/blurp from Tuxepedia table row
 
-        :param monster_row: HTML <tr> table row element
-        :return: tuxemon description/blurp text
+        Parameters:
+            monster_row: HTML <tr> table row element
+        
+        Returns:
+            tuxemon description/blurp text
+
         """
 
         return monster_row[4].text_content()
 
     def get_monster_blurp(self, monster_row):
-        """Get tuxemon description/blurp from Tuxepedia table row
+        """
+        Get tuxemon description/blurp from Tuxepedia table row
 
-        :param monster_row: HTML <tr> table row element
-        :return: tuxemon description/blurp text
+        Parameters:
+            monster_row: HTML <tr> table row element
+
+        Returns:
+            tuxemon description/blurp text
+
         """
 
         if self.completed_monsters:
@@ -311,10 +355,15 @@ class TuxepediaWebExtractor:
             return monster_row[8].text_content()
 
     def get_monster_call(self, monster_row):
-        """Get tuxemon call/cry from Tuxepedia table row
+        """
+        Get tuxemon call/cry from Tuxepedia table row
 
-        :param monster_row: HTML <tr> table row element
-        :return: tuxemon call/cry URL
+        Parameters:
+            monster_row: HTML <tr> table row element
+
+        Returns:
+            tuxemon call/cry URL
+
         """
 
         # get tuxemon name
@@ -359,12 +408,17 @@ class TuxepediaWebExtractor:
             self.get_logger().warning(e)
 
     def url_to_html(self, url, params, headers = None):
-        """Extract Web content into an HTML tree object
+        """
+        Extract Web content into an HTML tree object
 
-        :param url: URL path string
-        :param params: requests auxiliary params
-        :param headers: extra header fields needed for the request
-        :return: HTML tree object or None on failure
+        Parameters:
+            url: URL path string
+            params: requests auxiliary params
+            headers: extra header fields needed for the request
+        
+        Returns:
+            HTML tree object or None on failure
+
         """
 
         content = self._exec_request(url, params, headers)
@@ -377,11 +431,13 @@ class TuxepediaWebExtractor:
         return html.fromstring(content)
 
     def url_to_file(self, url, file_path):
-        """Extract Web content into a local file
+        """
+        Extract Web content into a local file
 
-        :param url: URL path string
-        :param file_path: local file path target
-        :return:
+        Parameters:
+            url: URL path string
+            file_path: local file path target
+
         """
 
         # extract Web content as byte stream
@@ -395,13 +451,18 @@ class TuxepediaWebExtractor:
             shutil.copyfileobj(byte_stream, out_file)
 
     def _exec_request(self, url, params, headers = None, stream = False):
-        """Extract Web content
+        """
+        Extract Web content
 
-        :param url: URL path string
-        :param params: requests auxiliary params
-        :param headers: extra header fields needed for the request
-        :param stream: toggle for extracting byte streams directly
-        :return: request object/JSON or None on failure
+        Parameters:
+            url: URL path string
+            params: requests auxiliary params
+            headers: extra header fields needed for the request
+            stream: toggle for extracting byte streams directly
+
+        Returns:
+            request object/JSON or None on failure
+
         """
 
         if headers is None:

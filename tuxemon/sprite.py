@@ -537,10 +537,10 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         super().draw(surface)
 
     def arrange_menu_items(self) -> None:
-        """Iterate through menu items and position them in the menu
+        """
+        Iterate through menu items and position them in the menu
         Defaults to a multi-column layout with items placed horizontally first.
-        :returns: None
-        
+
         """
         if not len(self):
             return

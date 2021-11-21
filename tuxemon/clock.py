@@ -92,7 +92,7 @@ class Scheduler:
             if divs > 16:
                 return next_ts
 
-    def schedule(self, func, delay=0.0, repeat=False, soft=False):
+    def schedule(self, func, delay=0.0, repeat=False, soft=False) -> ScheduledItem:
         """
         Schedule a function to be run sometime in the future
 
@@ -133,13 +133,15 @@ class Scheduler:
         CPU is excessive for those intervals but idle outside.  Using
         the soft interval scheduling, the load is more evenly distributed.
 
+        Parameters:
+            func: Function to be called
+            delay: Delay in time unit until it is called
+            repeat: Function will be repeated every 'delay' units
+            soft: See notes about Soft Scheduling
+        
+        Returns:
+            Reference to scheduled item
 
-        :param func: Function to be called
-        :param delay: Delay in time unit until it is called
-        :param repeat: Function will be repeated every 'delay' units
-        :param soft: See notes about Soft Scheduling
-        :rtype: ScheduledItem
-        :return: Reference to scheduled item
         """
         last_ts = self._get_nearest_ts()
         if soft:
@@ -159,17 +161,19 @@ class Scheduler:
             heappush(self._scheduled_items, item)
         return item
 
-    def tick(self):
-        """Cause clock to update and call scheduled functions.
+    def tick(self) -> float:
+        """
+        Cause clock to update and call scheduled functions.
 
         This updates the clock's internal measure of time and returns
         the difference since the last update (or since the clock was created).
 
         Will call any scheduled functions that have elapsed.
 
-        :rtype: float
-        :return: The number of time units since the last "tick", or 0 if this
-                 was the first tick.
+        Returns:
+            The number of time units since the last "tick", or 0 if this
+            was the first tick.
+
         """
         delta_t = self.set_time(self._time())
         self._times.append(delta_t)
@@ -192,18 +196,18 @@ class Scheduler:
         except ZeroDivisionError:
             return 0.0
 
-    def set_time(self, time_stamp):
-        """Set the clock manually and do not call scheduled functions.  Return
+    def set_time(self, time_stamp: float) -> float:
+        """
+        Set the clock manually and do not call scheduled functions.  Return
         the difference in time from the last time clock was updated.
 
-        :Parameters:
-            `time_stamp` : float
-                This will become the new value of the clock.  Setting the clock
-                to negative values will have undefined results.
+        Parameters:
+            time_stamp: This will become the new value of the clock.  Setting the clock
+            to negative values will have undefined results.
 
-        :rtype: float
-        :return: The number of time units since the last update, or 0.0 if this
-                 was the first update.
+        Returns:
+            The number of time units since the last update, or 0.0 if this
+            was the first update.
 
         """
         # self._last_ts will be -1 before first time set
@@ -362,12 +366,17 @@ class Clock(Scheduler):
     """
 
     @staticmethod
-    def _least_squares(gradient=1, offset=0):
-        """source: pyglet.app.App
+    def _least_squares(
+        gradient: int = 1, 
+        offset: int = 0,
+    ):
+        """
+        source: pyglet.app.App
 
-        :param gradient:
-        :param offset:
-        :return:
+        Parameters:
+            gradient: 
+            offset:
+
         """
         X = 0
         Y = 0

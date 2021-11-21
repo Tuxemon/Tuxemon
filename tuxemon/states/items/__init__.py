@@ -294,10 +294,7 @@ class ShopMenuState(Menu[Item]):
         )
 
     def initialize_items(self) -> Generator[MenuItem[Item], None, None]:
-        """Get all player inventory items and add them to menu
-
-        :return:
-        """
+        """Get all player inventory items and add them to menu"""
         inventory = [
             item
             for item in self.seller.inventory.values()

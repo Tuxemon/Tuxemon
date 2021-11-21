@@ -168,7 +168,6 @@ class CombatState(CombatAnimations):
        obvs, not ideal, maybe someday make it better? (see transition_phase)
     """
 
-    background_filename = "gfx/ui/combat/battle_bg03.png"
     draw_borders = False
     escape_key_exits = False
 

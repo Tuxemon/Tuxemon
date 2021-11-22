@@ -80,7 +80,7 @@ class TuxemonServer:
         self.server = NeteriaServer(Multiplayer(self), server_port=40081, server_name=self.server_name)
 
     def update(self):
-        """Updates the server state with information sent from the clients"""
+        """Updates the server state with information sent from the clients."""
         self.server_timestamp = datetime.now()
         for cuuid in self.server.registry:
             try:
@@ -366,7 +366,7 @@ class TuxemonClient:
 
     def update(self, time_delta: float):
         """
-        Updates the client and local game state with information sent from the server
+        Updates the client and local game state with information sent from the server.
 
         Parameters:
             time_delta: Time since last frame.
@@ -388,11 +388,10 @@ class TuxemonClient:
         self.check_notify()
 
     def check_notify(self) -> None:
-        """Checks for notify events sent from the server and updates the local client registry
+        """
+        Checks for notify events sent from the
+        server and updates the local client registry
         to reflect the updated information.
-
-        :param: None
-
         """
         for euuid, event_data in self.client.event_notifies.items():
 
@@ -575,16 +574,13 @@ class TuxemonClient:
         self.event_list[event_type] += 1
         self.client.event(event_data)
 
-    def set_key_condition(self, event):
+    def set_key_condition(self, event) -> None:
         """Sends server information about a key condition being set or that an
         interaction has occurred.
 
         :param event: Pygame key event
 
         :type event: Dictionary
-
-        :rtype: None
-        :returns: None
 
         """
         if self.game.current_state != self.game.get_state_by_name("WorldState"):

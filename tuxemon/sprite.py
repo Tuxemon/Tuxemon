@@ -341,7 +341,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
         return self.sprites()[item]
 
     def calc_bounding_rect(self) -> pygame.rect.Rect:
-        """A rect object that contains all sprites of this group"""
+        """A rect object that contains all sprites of this group."""
         sprites = self.sprites()
         if len(sprites) == 1:
             return pygame.rect.Rect(sprites[0].rect)
@@ -538,7 +538,7 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
 
     def arrange_menu_items(self) -> None:
         """
-        Iterate through menu items and position them in the menu
+        Iterate through menu items and position them in the menu.
         Defaults to a multi-column layout with items placed horizontally first.
 
         """

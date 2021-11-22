@@ -220,16 +220,16 @@ class Scheduler:
         self._last_ts = time_stamp
         return delta_t
 
-    def call_scheduled_functions(self, dt):
-        """Call scheduled functions that elapsed on the last `update_time`.
+    def call_scheduled_functions(self, dt: float) -> bool:
+        """
+        Call scheduled functions that elapsed on the last `update_time`.
 
-        :Parameters:
-            dt : float
-                The elapsed time since the last update to pass to each
-                scheduled function.
+        Parameters
+            dt: The elapsed time since the last update to pass to each
+            scheduled function.
 
-        :rtype: bool
-        :return: True if any functions were called, otherwise False.
+        Returns
+            Returns True if any functions were called, otherwise False.
         """
         scheduled_items = self._scheduled_items
         now = self._last_ts
@@ -316,12 +316,13 @@ class Scheduler:
 
         return result
 
-    def get_idle_time(self):
-        """Get the time until the next item is scheduled.
+    def get_idle_time(self) -> float:
+        """
+        Get the time until the next item is scheduled.
 
-        :rtype: float
-        :return: Time until the next scheduled event in time units, or ``None``
-                 if there is no event scheduled.
+        Returns:
+            Time until the next scheduled event in time units, or ``None``
+            if there is no event scheduled.
         """
         if self._next_tick_items:
             return 0.0
@@ -332,17 +333,16 @@ class Scheduler:
         except IndexError:
             return None
 
-    def unschedule(self, func):
-        """Remove a function from the schedule.
+    def unschedule(self, func) -> None:
+        """
+        Remove a function from the schedule.
 
         If the function appears in the schedule more than once, all occurrences
         are removed.  If the function was not scheduled, no error is raised.
 
-        :Parameters:
-            `func` : function
-                The function to remove from the schedule.
+        Parameters:
+            func: The function to remove from the schedule.
 
-        :return: None
         """
 
         def remove(list_):

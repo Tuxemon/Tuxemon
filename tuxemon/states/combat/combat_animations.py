@@ -120,7 +120,7 @@ class CombatAnimations(ABC, Menu[None]):
         self.transition_none_normal()
 
     def transition_none_normal(self) -> None:
-        """From newly opened to normal"""
+        """From newly opened to normal."""
         self.animate_parties_in()
 
         for player, layout in self._layout.items():

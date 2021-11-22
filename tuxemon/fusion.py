@@ -149,7 +149,7 @@ class Body:
         Saves the current instance and all its properties to a json file.
 
         Parameters:
-            filename: The path to the file to save
+            filename: The path to the file to save.
 
         """
 

@@ -40,7 +40,7 @@ class TuxepediaWebExtractor:
 
     def get_completed_monsters(self):
         """
-        Extract monster data from the Tuxepedia Wiki page
+        Extract monster data from the Tuxepedia Wiki page.
 
         Returns:
             dict/JSON of the Tuxepedia monster entries
@@ -86,7 +86,7 @@ class TuxepediaWebExtractor:
 
     def get_monsters(self):
         """
-        Extract monster data from the Tuxepedia Wiki page
+        Extract monster data from the Tuxepedia Wiki page.
 
         Returns:
             dict/JSON of the Tuxepedia monster entries
@@ -121,7 +121,7 @@ class TuxepediaWebExtractor:
 
     def get_monster_category(self, monster_row):
         """
-        Get tuxemon types/elements from Tuxepedia table row
+        Get tuxemon types/elements from Tuxepedia table row.
 
         Parameters:
             monster_row: HTML <tr> table row element
@@ -139,7 +139,7 @@ class TuxepediaWebExtractor:
 
     def get_monster_name(self, monster_row):
         """
-        Get tuxemon name from Tuxepedia table row
+        Get tuxemon name from Tuxepedia table row.
 
         Parameters:
             monster_row: HTML <tr> table row element
@@ -153,7 +153,7 @@ class TuxepediaWebExtractor:
 
     def get_monster_url(self, monster_row):
         """
-        Get tuxemon entry URL from Tuxepedia table row
+        Get tuxemon entry URL from Tuxepedia table row.
 
         Parameters:
             monster_row: HTML <tr> table row element
@@ -170,7 +170,7 @@ class TuxepediaWebExtractor:
 
     def get_monster_types(self, monster_row):
         """
-        Get tuxemon types/elements from Tuxepedia table row
+        Get tuxemon types/elements from Tuxepedia table row.
 
         Parameters:
             monster_row: HTML <tr> table row element
@@ -193,7 +193,7 @@ class TuxepediaWebExtractor:
 
     def get_complete_monster_sprites(self, monster_row):
         """
-        Get tuxemon sprites from Tuxepedia table row
+        Get tuxemon sprites from Tuxepedia table row.
 
         Parameters:
             monster_row: HTML <tr> table row element
@@ -267,7 +267,7 @@ class TuxepediaWebExtractor:
 
     def get_incomplete_monster_sprites(self, monster_row):
         """
-        Get tuxemon sprites from Tuxepedia table row
+        Get tuxemon sprites from Tuxepedia table row.
 
         Parameters:
             monster_row: HTML <tr> table row element
@@ -325,7 +325,7 @@ class TuxepediaWebExtractor:
 
     def get_monster_shape(self, monster_row):
         """
-        Get tuxemon description/blurp from Tuxepedia table row
+        Get tuxemon description/blurp from Tuxepedia table row.
 
         Parameters:
             monster_row: HTML <tr> table row element
@@ -339,7 +339,7 @@ class TuxepediaWebExtractor:
 
     def get_monster_blurp(self, monster_row):
         """
-        Get tuxemon description/blurp from Tuxepedia table row
+        Get tuxemon description/blurp from Tuxepedia table row.
 
         Parameters:
             monster_row: HTML <tr> table row element
@@ -356,7 +356,7 @@ class TuxepediaWebExtractor:
 
     def get_monster_call(self, monster_row):
         """
-        Get tuxemon call/cry from Tuxepedia table row
+        Get tuxemon call/cry from Tuxepedia table row.
 
         Parameters:
             monster_row: HTML <tr> table row element
@@ -409,7 +409,7 @@ class TuxepediaWebExtractor:
 
     def url_to_html(self, url, params, headers = None):
         """
-        Extract Web content into an HTML tree object
+        Extract Web content into an HTML tree object.
 
         Parameters:
             url: URL path string
@@ -432,7 +432,7 @@ class TuxepediaWebExtractor:
 
     def url_to_file(self, url, file_path):
         """
-        Extract Web content into a local file
+        Extract Web content into a local file.
 
         Parameters:
             url: URL path string
@@ -452,7 +452,7 @@ class TuxepediaWebExtractor:
 
     def _exec_request(self, url, params, headers = None, stream = False):
         """
-        Extract Web content
+        Extract Web content.
 
         Parameters:
             url: URL path string

@@ -451,7 +451,7 @@ class CombatState(CombatAnimations):
         return EnqueuedAction(monster, technique, target)
 
     def sort_action_queue(self) -> None:
-        """Sort actions in the queue according to game rules
+        """Sort actions in the queue according to game rules.
 
         * Swap actions are always first
         * Techniques that damage are sorted by monster speed
@@ -963,8 +963,8 @@ class CombatState(CombatAnimations):
 
         """
         Experience is earned when the target monster is fainted.
-        Any monsters who contributed any amount of damage will be awarded
-        Experience is distributed evenly to all participants
+        Any monsters who contributed any amount of damage will be awarded.
+        Experience is distributed evenly to all participants.
         """
         if monster in self._damage_map:
             # Award Experience

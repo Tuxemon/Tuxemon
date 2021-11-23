@@ -19,7 +19,7 @@ class TuxepediaStore:
     """SQLite-based interface for the Tuxepedia backend."""
 
     def get_logger(self):
-        """Access a custom class logger"""
+        """Access a custom class logger."""
         return logging.getLogger(self.__class__.__name__)
 
     @contextmanager
@@ -87,9 +87,9 @@ class TuxepediaStore:
         Update a tuxemon JSON file record.
 
         Parameters:
-            txmn_name: tuxemon name
-            txmn_json_new: new tuxemon JSON record
-            overwrite: toggle to overwrite existing JSON fields
+            txmn_name: Tuxemon name.
+            txmn_json_new: New tuxemon JSON record.
+            overwrite: Toggle to overwrite existing JSON fields.
 
         """
 
@@ -121,7 +121,7 @@ class TuxepediaStore:
         Extract tuxemon JSON from file.
 
         Parameters:
-            txmn_name: tuxemon name
+            txmn_name: Tuxemon name.
 
         """
 

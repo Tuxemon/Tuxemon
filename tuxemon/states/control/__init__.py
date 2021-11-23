@@ -26,8 +26,7 @@
 # states.SetKeyState Handles the input change screen 
 # states.ControlState Handles the list of inputs to change screen
 #
-"""This module contains the Options state
-"""
+"""This module contains the Options state"""
 from __future__ import annotations
 
 from functools import partial
@@ -54,7 +53,7 @@ pre_config = prepare.CONFIG
 class SetKeyState(PopUpMenu):
     """
     This state is responsible for setting the input keys. 
-    This only works for pygame events
+    This only works for pygame events.
     """
     shrink_to_items = True
 
@@ -110,7 +109,7 @@ class SetKeyState(PopUpMenu):
 
 class ControlState(PopUpMenu[ControlStateObj]):
     """
-    This state is responsible for the option menu
+    This state is responsible for the option menu.
     """
     escape_key_exits = True
     shrink_to_items = True
@@ -118,7 +117,7 @@ class ControlState(PopUpMenu[ControlStateObj]):
 
     def startup(self, **kwargs: Any) -> None:
         """
-        Used when initializing the state
+        Used when initializing the state.
         """
         super().startup(**kwargs)
         self.reload_controls()

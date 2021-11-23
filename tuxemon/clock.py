@@ -94,7 +94,7 @@ class Scheduler:
 
     def schedule(self, func, delay=0.0, repeat=False, soft=False) -> ScheduledItem:
         """
-        Schedule a function to be run sometime in the future
+        Schedule a function to be run sometime in the future.
 
         The function should have a prototype that includes ``dt`` as the
         first argument, which gives the elapsed time, in time units, since the
@@ -224,11 +224,11 @@ class Scheduler:
         """
         Call scheduled functions that elapsed on the last `update_time`.
 
-        Parameters
+        Parameters:
             dt: The elapsed time since the last update to pass to each
             scheduled function.
 
-        Returns
+        Returns:
             Returns True if any functions were called, otherwise False.
         """
         scheduled_items = self._scheduled_items

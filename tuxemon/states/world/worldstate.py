@@ -23,7 +23,7 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
-# states.world Handles the world map and player movement.
+# states.WorldState Handles the world map and player movement.
 #
 #
 from __future__ import annotations

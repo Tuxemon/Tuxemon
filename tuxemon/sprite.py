@@ -392,7 +392,7 @@ class MenuSpriteGroup(SpriteGroup[_MenuElement]):
             event: Player event that may cause to select another menu item.
 
         Returns:
-            New menu item offset
+            New menu item offset.
 
         """
         # TODO: some sort of smart way to pick items based on location on

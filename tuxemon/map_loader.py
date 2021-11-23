@@ -77,15 +77,15 @@ region_properties = [
 
 class YAMLEventLoader:
     """
-    Support for reading game events from a YAML file
+    Support for reading game events from a YAML file.
     """
 
     def load_events(self, path: str) -> Iterator[EventObject]:
         """
-        Load EventObjects from YAML file
+        Load EventObjects from YAML file.
 
         Parameters:
-            path: Path to the file
+            path: Path to the file.
 
         """
         with open(path) as fp:
@@ -132,7 +132,7 @@ class TMXMapLoader:
     """
 
     def load(self, filename: str) -> TuxemonMap:
-        """Load map data from a tmx map file
+        """Load map data from a tmx map file.
 
         Loading the map data is done using the pytmx library.
 

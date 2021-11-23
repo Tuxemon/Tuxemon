@@ -54,7 +54,7 @@ class TuxemonServer:
     """Server class for multiplayer games. Creates a netaria server and
     synchronizes the local game with all client states.
 
-    :param game: instance of the local game.
+    :param game: Instance of the local game.
 
     :type game: tuxemon.control.Control object.
 
@@ -267,7 +267,7 @@ class ControllerServer:
         self.server = NeteriaServer(Controller(self))
 
     def update(self):
-        """Updates the server state with information sent from the clients"""
+        """Updates the server state with information sent from the clients."""
         # Loop through our network events and pass them to the current state.
         controller_events = self.net_controller_loop()
         if controller_events:
@@ -556,7 +556,7 @@ class TuxemonClient:
         Sends client's current map and location to the server.
 
         Parameters:
-            direction: Facing/Movement direction of clients character
+            direction: Facing/Movement direction of clients character.
             event_type: Event type sent to server used for event_legal() and event_execute() functions in middleware.
 
         """
@@ -578,7 +578,7 @@ class TuxemonClient:
         """Sends server information about a key condition being set or that an
         interaction has occurred.
 
-        :param event: Pygame key event
+        :param event: Pygame key event.
 
         :type event: Dictionary
 

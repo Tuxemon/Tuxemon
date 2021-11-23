@@ -9,19 +9,17 @@ if TYPE_CHECKING:
 
 class Session:
     """
+    Contains Client, World, and Player.
 
-    Contains Client, World, and Player
-
-    Eventually this will be extended to support network sessions
-
+    Eventually this will be extended to support network sessions.
     """
 
     def __init__(self, client: LocalPygameClient, world, player: Player) -> None:
         """
-        Parameters 
-            client: Game client
-            world: Game world
-            player: Player object
+        Parameters:
+            client: Game client.
+            world: Game world.
+            player: Player object.
 
         """
         self.client = client

@@ -23,6 +23,7 @@
 # William Edwards <shadowapex@gmail.com>
 # Benjamin Bean <superman2k5@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
+# Andrew Hong <novialriptide@gmail.com>
 #
 #
 # states.start Handles the start screen which loads and creates new games
@@ -53,14 +54,15 @@ StartGameObj = Callable[[], object]
 
 
 class BackgroundState(State):
-    """background state is used to prevent other states from
-    being required to track dirty screen areas.  for example,
+    """
+    Background state is used to prevent other states from
+    being required to track dirty screen areas. For example,
     in the start state, there is a menu on a blank background,
     since menus do not clean up dirty areas, the blank,
-    "Background state" will do that.  The alternative is creating
+    "Background state" will do that. The alternative is creating
     a system for states to clean up their dirty screen areas.
 
-    eventually the need for this will be phased out
+    Eventually the need for this will be phased out.
     """
 
     def draw(self, surface: pygame.surface.Surface) -> None:

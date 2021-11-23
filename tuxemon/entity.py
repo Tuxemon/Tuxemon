@@ -97,7 +97,7 @@ class Entity(Generic[SaveDict]):
         Set the entity's position in the game world.
 
         Parameters:
-            pos: position to be set
+            pos: Position to be set.
 
         """
         self.position3.x = pos[0]
@@ -108,10 +108,7 @@ class Entity(Generic[SaveDict]):
 
     @property
     def moving(self) -> bool:
-        """
-        Return ``True`` if the entity is moving.
-
-        """
+        """Return ``True`` if the entity is moving."""
         return not self.velocity3 == (0, 0, 0)
 
     def get_state(self, session: Session) -> SaveDict:

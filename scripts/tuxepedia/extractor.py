@@ -21,8 +21,10 @@ from . import WEB_PATHS, RESOURCE_PATHS
 logging.basicConfig(level=logging.INFO)
 
 class TuxepediaWebExtractor:
-    """requests + lxml wrapper class to extract Tuxemon
-    information from the Tuxepedia website"""
+    """
+    Requests + lxml wrapper class to extract Tuxemon
+    information from the Tuxepedia website.
+    """
 
     def __init__(self):
 
@@ -34,7 +36,7 @@ class TuxepediaWebExtractor:
         self.headers = {'User-agent': 'Mozilla/5.0'}
 
     def get_logger(self):
-        """Access a custom class logger"""
+        """Access a custom class logger."""
 
         return logging.getLogger(self.__class__.__name__)
 
@@ -43,7 +45,7 @@ class TuxepediaWebExtractor:
         Extract monster data from the Tuxepedia Wiki page.
 
         Returns:
-            dict/JSON of the Tuxepedia monster entries
+            Dict/JSON of the Tuxepedia monster entries.
         """
         self.completed_monsters = True
 
@@ -89,7 +91,7 @@ class TuxepediaWebExtractor:
         Extract monster data from the Tuxepedia Wiki page.
 
         Returns:
-            dict/JSON of the Tuxepedia monster entries
+            Dict/JSON of the Tuxepedia monster entries.
 
         """
         self.completed_monsters = False
@@ -124,10 +126,10 @@ class TuxepediaWebExtractor:
         Get tuxemon types/elements from Tuxepedia table row.
 
         Parameters:
-            monster_row: HTML <tr> table row element
+            monster_row: HTML <tr> table row element.
 
         Returns:
-            list of tuxemon types/elements
+            List of tuxemon types/elements.
 
         """
 
@@ -142,10 +144,10 @@ class TuxepediaWebExtractor:
         Get tuxemon name from Tuxepedia table row.
 
         Parameters:
-            monster_row: HTML <tr> table row element
+            monster_row: HTML <tr> table row element.
         
         Returns:
-            monster name
+            Monster name.
 
         """
 
@@ -156,10 +158,10 @@ class TuxepediaWebExtractor:
         Get tuxemon entry URL from Tuxepedia table row.
 
         Parameters:
-            monster_row: HTML <tr> table row element
+            monster_row: HTML <tr> table row element.
 
         Returns:
-            monster record URL in Tuxepedia
+            Monster record URL in Tuxepedia,
 
         """
 
@@ -173,10 +175,10 @@ class TuxepediaWebExtractor:
         Get tuxemon types/elements from Tuxepedia table row.
 
         Parameters:
-            monster_row: HTML <tr> table row element
+            monster_row: HTML <tr> table row element.
 
         Returns:
-            list of tuxemon types/elements
+            List of tuxemon types/elements.
 
         """
 
@@ -196,10 +198,10 @@ class TuxepediaWebExtractor:
         Get tuxemon sprites from Tuxepedia table row.
 
         Parameters:
-            monster_row: HTML <tr> table row element
+            monster_row: HTML <tr> table row element.
 
         Returns:
-            dict/JSON of tuxemon sprites
+            Dict/JSON of tuxemon sprites.
 
         """
 
@@ -270,9 +272,10 @@ class TuxepediaWebExtractor:
         Get tuxemon sprites from Tuxepedia table row.
 
         Parameters:
-            monster_row: HTML <tr> table row element
+            monster_row: HTML <tr> table row element.
+
         Returns:
-            dict/JSON of tuxemon sprites
+            Dict/JSON of tuxemon sprites.
 
         """
 
@@ -328,10 +331,10 @@ class TuxepediaWebExtractor:
         Get tuxemon description/blurp from Tuxepedia table row.
 
         Parameters:
-            monster_row: HTML <tr> table row element
+            monster_row: HTML <tr> table row element.
         
         Returns:
-            tuxemon description/blurp text
+            Tuxemon description/blurp text.
 
         """
 
@@ -342,10 +345,10 @@ class TuxepediaWebExtractor:
         Get tuxemon description/blurp from Tuxepedia table row.
 
         Parameters:
-            monster_row: HTML <tr> table row element
+            monster_row: HTML <tr> table row element.
 
         Returns:
-            tuxemon description/blurp text
+            Tuxemon description/blurp text.
 
         """
 
@@ -359,10 +362,10 @@ class TuxepediaWebExtractor:
         Get tuxemon call/cry from Tuxepedia table row.
 
         Parameters:
-            monster_row: HTML <tr> table row element
+            monster_row: HTML <tr> table row element.
 
         Returns:
-            tuxemon call/cry URL
+            Tuxemon call/cry URL.
 
         """
 
@@ -412,12 +415,12 @@ class TuxepediaWebExtractor:
         Extract Web content into an HTML tree object.
 
         Parameters:
-            url: URL path string
-            params: requests auxiliary params
-            headers: extra header fields needed for the request
+            url: URL path string.
+            params: Requests auxiliary params.
+            headers: Extra header fields needed for the request.
         
         Returns:
-            HTML tree object or None on failure
+            HTML tree object or None on failure.
 
         """
 
@@ -435,8 +438,8 @@ class TuxepediaWebExtractor:
         Extract Web content into a local file.
 
         Parameters:
-            url: URL path string
-            file_path: local file path target
+            url: URL path string.
+            file_path: Local file path target.
 
         """
 
@@ -455,13 +458,13 @@ class TuxepediaWebExtractor:
         Extract Web content.
 
         Parameters:
-            url: URL path string
-            params: requests auxiliary params
-            headers: extra header fields needed for the request
-            stream: toggle for extracting byte streams directly
+            url: URL path string.
+            params: Requests auxiliary params.
+            headers: Extra header fields needed for the request.
+            stream: Toggle for extracting byte streams directly.
 
         Returns:
-            request object/JSON or None on failure
+            Request object/JSON or None on failure.
 
         """
 

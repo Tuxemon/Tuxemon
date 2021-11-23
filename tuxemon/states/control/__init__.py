@@ -26,7 +26,7 @@
 # states.SetKeyState Handles the input change screen 
 # states.ControlState Handles the list of inputs to change screen
 #
-"""This module contains the Options state
+"""This module contains the Control Change state
 """
 from __future__ import annotations
 
@@ -165,8 +165,7 @@ class ControlState(PopUpMenu[ControlStateObj]):
             label = f"{T.translate(key).upper()}"
             image = self.shadow_text(label)
             item = MenuItem(image, label, None, change_state("SetKeyState", input=input))
-            if input is None:
-                item.enabled = False
+            item.enabled = item is not None
             self.add(item)
 
     def reload_controls(self):

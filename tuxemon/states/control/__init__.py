@@ -165,6 +165,8 @@ class ControlState(PopUpMenu[ControlStateObj]):
             label = f"{T.translate(key).upper()}"
             image = self.shadow_text(label)
             item = MenuItem(image, label, None, change_state("SetKeyState", input=input))
+            if input is None:
+                item.enabled = False
             self.add(item)
 
     def reload_controls(self):

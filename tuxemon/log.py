@@ -36,7 +36,7 @@ from tuxemon.constants.paths import *
 import requests
 import gzip
 from shutil import copyfileobj, move
-from os import remove
+from os import remove, environ
 from os.path import exists
 from datetime import datetime
 # For messagebox
@@ -46,8 +46,37 @@ from tkinter import messagebox
 # For gathering system information
 import platform
 
+class LogStorageProvider:
+    """Generic class for log providers"""    
+    remote_url = "http://127.0.0.1:8080"
+    local_url = "http://127.0.0.1:8080"  # For use with a local server
+    log_storage_max_days = "1"
+
+    def __init__(self, use_local_url=False):
+        if use_local_url:
+            self.url = self.local_url
+        else:
+            self.url = self.remote_url
+
+
+    def _send_log_file(self, file_obj):
+        """
+        Sends the specified file to the remote log/file storage
+        """
+        
+        r = requests.post(self.url, files={"tuxemon_log.txt", file_obj}, headers={"Max-Days": self.log_storage_max_days})
+
+    def send_log(self):
+        """Sends the logs"""
+        file = open(f"{USER_LOG_DIR}/latest.log")
+        self._send_log_file(file)
+        file.close()
+
+
+ 
 def archive_log():
     """
+
     Archives specified file, compressing it and renaming it to 
     the current date using the %d-%m-%Y_%H:%M:%S format.
     """
@@ -62,6 +91,7 @@ def archive_log():
     os.remove(f"{USER_LOG_DIR}/latest.log")
 def configure():
     """Configure logging based on the settings in the config file."""
+
     # Set our logging levels
     LOG_LEVELS = {
         "debug": logging.DEBUG,
@@ -72,12 +102,11 @@ def configure():
     }
     config = prepare.CONFIG
     loggers = {}
-
     if config.debug_level in LOG_LEVELS:
         log_level = LOG_LEVELS[config.debug_level]
+
     else:
         log_level = logging.INFO
-
     # Set up logging if the configuration has it enabled
     if config.debug_logging:
 
@@ -85,28 +114,29 @@ def configure():
 
             # Enable logging for all modules if specified.
             if logger_name == "all":
+
                 print("Enabling logging of all modules.")
                 logger = logging.getLogger()
             else:
                 print("Enabling logging for module: %s" % logger_name)
                 logger = logging.getLogger(logger_name)
-
             # Enable logging
             logger.setLevel(log_level)
+
             log_hdlr = logging.StreamHandler(sys.stdout)
             log_hdlr.setLevel(log_level)
             log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"))
             logger.addHandler(log_hdlr)
-
             # Archive previous log
             archive_log()
+
             # Logging to file
             log_filehandler = logging.FileHandler(f"{USER_LOG_DIR}/latest.log")
             log_filehandler.setLevel(logging.INFO)
             log_filehandler.setFormatter(logging.Formatter("%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"))
             logger.addHandler(log_filehandler)
-
             loggers[logger_name] = logger
+
 
             # prevent pyscroll redraw warnings
             pyscroll_logger = logging.getLogger("orthographic")
@@ -158,8 +188,7 @@ def send_logs():
     send_files = {"tuxemon_log.txt": file}
 
     # TODO: Add other providers support
-    if "transfer.sh" not in config.log_host_url:
-        raise NotImplementedError("You can only use transfer.sh right now")
+    
     r = requests.post(config.log_host_url, files=send_files, headers={"Max-Days": config.log_storage_max_days, "User-Agent": "curl/7.80.0"})
     print(f"Report URL: {r.text}")
     file.close()

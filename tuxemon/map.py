@@ -36,9 +36,11 @@ from typing import Optional, Literal, Generator, Tuple, TypeVar, Mapping,\
     Sequence, List, Set, TypedDict, Union
 
 import pyscroll
+from pytmx import pytmx
 
 from tuxemon.compat import ReadOnlyRect
 from tuxemon import prepare
+from tuxemon.graphics import scaled_image_loader
 from tuxemon.math import Vector2, Vector3
 from tuxemon.tools import round_to_divisible
 from tuxemon.event import EventObject
@@ -390,7 +392,7 @@ class TuxemonMap:
         interacts: Sequence[EventObject],
         collision_map: Mapping[Tuple[int, int], Optional[RegionProperties]],
         collisions_lines_map: Set[Tuple[Tuple[int, int], Direction]],
-        raw_data: TiledMap,
+        tiled_map: TiledMap,
         edges: str,
         filename: str,
     ) -> None:
@@ -414,7 +416,7 @@ class TuxemonMap:
             interacts: List of intractable spaces.
             collision_map: Collision map.
             collisions_lines_map: Collision map of lines.
-            raw_data: Original tiled map.
+            tiled_map: Original tiled map.
             edges: Behaviour at the edges.
             filename: Path of the map.
 
@@ -422,16 +424,16 @@ class TuxemonMap:
         self.interacts = interacts
         self.collision_map = collision_map
         self.collision_lines_map = collisions_lines_map
-        self.size = raw_data.width, raw_data.height
+        self.size = tiled_map.width, tiled_map.height
         self.inits = inits
         self.events = events
         self.renderer: Optional[pyscroll.BufferedRenderer] = None
         self.edges = edges
-        self.data = raw_data
+        self.data = tiled_map
         self.sprite_layer = 2
         self.filename = filename
 
-    def initialize_renderer(self) -> pyscroll.BufferedRenderer:
+    def initialize_renderer(self) -> None:
         """
         Initialize the renderer for the map and sprites.
 
@@ -439,7 +441,6 @@ class TuxemonMap:
             Renderer for the map.
 
         """
-        # TODO: Use self.edges == "stitched" here when implementing seamless maps
         visual_data = pyscroll.data.TiledMapData(self.data)
         clamp = self.edges == "clamped"
         self.renderer = pyscroll.BufferedRenderer(
@@ -448,3 +449,16 @@ class TuxemonMap:
             clamp_camera=clamp,
             tall_sprites=2,
         )
+
+    def reload_tiles(self):
+        """
+        Reload the map tiles
+
+        """
+        data = pytmx.TiledMap(
+            self.data.filename,
+            image_loader=scaled_image_loader,
+            pixelalpha=True
+        )
+        self.renderer.data.tmx.images = data.images
+        self.renderer.redraw_tiles(self.renderer._buffer)

@@ -61,6 +61,15 @@ class CombatAnimations(ABC, Menu[None]):
         graphics: Optional[Mapping[str, str]] = None,
         **kwargs: Any,
     ) -> None:
+
+        # Get background image if passed in
+        background_filename_prefix = "gfx/ui/combat/"
+        background = graphics.get("background")
+        if background:
+            self.background_filename = background_filename_prefix + background
+        else:
+            self.background_filename = background_filename_prefix + "battle_bg03.png"
+
         super().startup(**kwargs)
         self.players = list(players)
 
@@ -530,7 +539,7 @@ class CombatAnimations(ABC, Menu[None]):
             prev = dev.state
             if prev != dev.update_state():
                 animate = partial(self.animate, duration=0.1, delay=0.1)
-                dev.draw(animate)
+                dev.animate_capture(animate)
 
     def animate_parties_in(self) -> None:
         # TODO: break out functions here for each

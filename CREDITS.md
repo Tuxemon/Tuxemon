@@ -19,6 +19,7 @@ Programming
 * [dtdannen](https://github.com/dtdannen) for pathfinding and polyline collisions
 * [ChillyCider](https://github.com/ChillyCider) for improved event system
 * [treetrnk](https://github.com/treetrnk) for creature catching variability, bug fixes, and adding monster resources 
+* [Andrew Hong](https://github.com/novialriptide) for the custom controls menu
 
 
 Graphics
@@ -706,6 +707,13 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Whirlwind Attack"](https://forum.tuxemon.org/thread.php?pid=765#p765) by
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+### Battle Backgrounds
+
+* ["forest_background.png"](https://wiki.tuxemon.org/File:Background_(240px).png)
+Adapted by Sanglorian from a sprite by ["Catch
+Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack),
+is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 ## Concept Art
 

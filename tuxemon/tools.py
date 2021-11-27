@@ -283,9 +283,9 @@ def cast_values(
     try:
         return list(map(cast, zip_longest(valid_parameters, parameters)))
     except ValueError:
-        logger.error("Invalid parameters passed:")
-        logger.error(f"expected: {valid_parameters}")
-        logger.error(f"got: {parameters}")
+        logger.warning("Invalid parameters passed:")
+        logger.warning(f"expected: {valid_parameters}")
+        logger.warning(f"got: {parameters}")
         raise
 
 

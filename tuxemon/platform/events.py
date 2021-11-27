@@ -111,7 +111,6 @@ class InputHandler(ABC, Generic[_InputEventType]):
     def virtual_stop_events(self) -> Generator[PlayerInput, None, None]:
         """
         Send virtual input events simulating released buttons/axis.
-
         This is used to force a state to release inputs without changing input
         state.
 
@@ -175,7 +174,6 @@ class PlayerInput:
     * have float value 0-1
     * are "pressed" when value is above 0, for exactly one frame
     * are "held" when "pressed" for longer than zero frames
-
     Do not manipulate these values.
     Once created, these objects will not be destroyed.
     Input managers will set values on these objects.

@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2021-04-21 22:29+0000\n"
-"Last-Translator: David De Filippi <david.defilippi@hotmail.be>\n"
+"PO-Revision-Date: 2021-11-18 07:51+0000\n"
+"Last-Translator: Maxime Leroy <lisacintosh@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fr/>\n"
 "Language: fr_FR\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.9.1-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -129,12 +129,11 @@ msgid "combat_draw"
 msgstr "Tout le monde s'est évanoui !"
 
 msgid "combat_capturing_success"
-msgstr "Tu as capturé un {name} !"
+msgstr "Tu as capturé {name} !"
 
 msgid "combat_capturing_fail"
 msgstr "{name} s'est libéré !"
 
-#, fuzzy
 msgid "combat_recharging"
 msgstr "{name} a besoin d'une pause avant d'utiliser {move} à nouveau..."
 
@@ -148,7 +147,7 @@ msgid "combat_wild_appeared"
 msgstr "Un {name} sauvage apparait !"
 
 msgid "combat_monster_choice"
-msgstr "Que doit faire {name}?"
+msgstr "Que doit faire {name} ?"
 
 msgid "combat_fainted"
 msgstr "{name} est K.O. !"
@@ -186,7 +185,7 @@ msgid "item_failure"
 msgstr "Cela fonctionne !"
 
 msgid "attempting_capture"
-msgstr "Tentative de capture…"
+msgstr "Tentative de capture..."
 
 msgid "gotcha"
 msgstr "Je t'ai eu !"
@@ -306,10 +305,10 @@ msgid "multiplayer_accept"
 msgstr "Accepter"
 
 msgid "multiplayer_decline"
-msgstr "Décliner"
+msgstr "Refuser"
 
 msgid "multiplayer_duel"
-msgstr "{name} veut un duel !"
+msgstr "{name} veut un Duel !"
 
 msgid "multiplayer_host_game"
 msgstr "Jeu hôte"
@@ -330,7 +329,7 @@ msgid "multiplayer_no_servers"
 msgstr "Aucun serveur trouvé…"
 
 msgid "multiplayer_join_prompt"
-msgstr "Hostname or IP?"
+msgstr "Hôte ou adresse IP ?"
 
 ## MONSTER TRANSLATIONS ##
 # Monster details
@@ -338,7 +337,9 @@ msgid "aardart"
 msgstr "Aardart"
 
 msgid "aardart_description"
-msgstr "It keeps count of every ant it has eaten, and celebrates significant numbers."
+msgstr ""
+"Ça compte le nombre de fourmis que vous avez mangés, et récompense les "
+"nombres importants."
 
 msgid "aardorn"
 msgstr "Aardorn"
@@ -756,7 +757,7 @@ msgstr "Cheerful ZUNNA sucks up all the food it can find into its stomach."
 
 # Monster categories
 msgid "anteater"
-msgstr "Anteater"
+msgstr "Menace"
 
 msgid "snout"
 msgstr "Snout"
@@ -970,7 +971,7 @@ msgid "healmytuxemon"
 msgstr "Do you want to heal your Tuxemon?"
 
 msgid "haveagoodday"
-msgstr "Have a nice day!"
+msgstr "Bonne journée !"
 
 msgid "yes"
 msgstr "Yes"
@@ -1006,10 +1007,10 @@ msgid "route_2"
 msgstr "Route 2"
 
 msgid "sure_i_do"
-msgstr "Sure I do"
+msgstr "Bien sûr."
 
 msgid "not_really"
-msgstr "Not really"
+msgstr "Pas vraiment."
 
 # NPC dialogs
 msgid "professor_dialog\n"
@@ -1147,10 +1148,12 @@ msgstr ""
 "^ Cotonville --- Route 1 v\n"
 
 msgid "column1"
-msgstr "A rare and ancient column. This used to be a temple."
+msgstr "Une colonne ancienne et rare. Ce fut jadis un temple."
 
 msgid "column2"
-msgstr "A rare and ancient column. Other ruins from the same culture can be found in Route 3. "
+msgstr ""
+"Une colonne ancienne et rare. Des ruines de cette même civilisation peuvent "
+"être trouvées sur la Route 3. "
 
 msgid "cityparksign\n"
 msgstr "Welcome to City Park: A Taste of the Wild\n"
@@ -1172,7 +1175,8 @@ msgid "yestalk"
 msgstr "Really? Thanks..."
 
 msgid "notalk"
-msgstr "You insensitive person! You'll listen to me anyway!"
+msgstr ""
+"Quel manque de sensibilité ! Dommage, vous devrez tout de même m'écouter !"
 
 msgid "spillit\n"
 msgstr "You know that I am the leader of the Xero institute and that I recruited you to fight them. But you don't know something else.\n"
@@ -1182,7 +1186,9 @@ msgid "spillit3"
 msgstr "Whatever... Allie is my sister and means the world to me, so it destroyed me when I found out he had taken her to HQ."
 
 msgid "spillit4"
-msgstr "It may not seem like a bad thing, but it is. Do you know what they do to them? DO YOU!?"
+msgstr ""
+"Ça peut ne pas sembler bien méchant, mais ça l'est. Savez-vous ce qu'ils "
+"font à leurs recrus ? VRAIMENT ?"
 
 msgid "spillit5"
 msgstr "Because neither do I... All I know is that no one has ever left Omnichannel after being recruited."
@@ -1191,7 +1197,9 @@ msgid "spillit6"
 msgstr "Anyways... it doesn't concern you. All that matters is bringing down Omnichannel."
 
 msgid "spillit7"
-msgstr "I'm sorry for troubling you with my issues. City Park is up ahead when you want to move on"
+msgstr ""
+"Je suis désolé de vous embêter avec mes soucis. City Park est en face quand "
+"vous voudrez partir."
 
 msgid "leavemealone"
 msgstr "We used to play here all the time when we were younger..."
@@ -1220,7 +1228,7 @@ msgid "okaythen"
 msgstr "Okay! Just give me a second and I will heal your Tuxemon!"
 
 msgid "okaythen2"
-msgstr "Well, it looks like your Tuxemon are full of energy! Here they are!"
+msgstr "Voilà, il semble que vos Tuxemon sont en bonne forme ! Ils arrivent !"
 
 msgid "input_name"
 msgstr "Name?"
@@ -1363,9 +1371,8 @@ msgstr "Sable mouvant"
 msgid "levitate"
 msgstr "Levitation"
 
-#, fuzzy
 msgid "headbutt"
-msgstr "Coup de boule"
+msgstr "Coup de Boule"
 
 msgid "flood"
 msgstr "Inondation"
@@ -1373,9 +1380,8 @@ msgstr "Inondation"
 msgid "flamethrower"
 msgstr "Lance-flammes"
 
-#, fuzzy
 msgid "fire_claw"
-msgstr "Griffes enflammées"
+msgstr "Griffes Enflammées"
 
 msgid "fire_ball"
 msgstr "Boule de feu"
@@ -1386,9 +1392,8 @@ msgstr "Champ d'énergie"
 msgid "electrical_storm"
 msgstr "Orage électrique"
 
-#, fuzzy
 msgid "chill_mist"
-msgstr "Brouillard glacial"
+msgstr "Brouillard Glacial"
 
 msgid "blood_bond"
 msgstr "Lien de sang"
@@ -1418,7 +1423,7 @@ msgid "combat_state_recover_failure"
 msgstr "{user} ne peut pas se soigner davantage."
 
 msgid "combat_state_recover_get"
-msgstr "{target} commence à regagner de la vie."
+msgstr "{target} commence à regagner ses PV."
 
 msgid "uselessnes"
 msgstr ""
@@ -1472,7 +1477,7 @@ msgid "quicklyknight4"
 msgstr "Désolé, mais je devrais partir maintenant."
 
 msgid "quicklyknight3"
-msgstr "Allie, c’est ça. Allie est le nom."
+msgstr "Allie. Allie est un de ceux qu'ils ne veulent pas que vous connaissiez."
 
 msgid "thatsmeknight"
 msgstr ""
@@ -1500,7 +1505,459 @@ msgid "professor_yes"
 msgstr "Génial !"
 
 msgid "combat_state_lifeleech_success"
-msgstr "Les PV de {user} sont aspirés!"
+msgstr "Les PV de {user} sont aspirés !"
 
 msgid "reg_papers"
 msgstr "Documents d'inscription"
+
+msgid "status_recover"
+msgstr "Récupérer"
+
+msgid "maamnothing"
+msgstr "M'dame...\n"
+
+msgid "spyder_route6_frances2"
+msgstr "Vous devriez nous rendre visite parfois."
+
+msgid "spyder_route6_orion1"
+msgstr "J'étais au beau milieu d'une expérience extrêmement importante."
+
+msgid "mk01_beta"
+msgstr "Mk01 Béta"
+
+msgid "flow"
+msgstr "Flux"
+
+msgid "dodge_increased"
+msgstr "{stat} de {user} augmenté."
+
+msgid "attack_resisted"
+msgstr "L'attaque a résisté !"
+
+msgid "status_overfeed"
+msgstr "Sur-alimenter"
+
+msgid "feint"
+msgstr "Feindre"
+
+msgid "hp_restored"
+msgstr "Les PV de {user} ont été restaurés."
+
+msgid "combat_state_lifeleech_failure"
+msgstr "{link} ne peut guérir davantage."
+
+msgid "one_two"
+msgstr "Un-Deux"
+
+msgid "petrify"
+msgstr "Pétrifier"
+
+msgid "quicklyknight"
+msgstr ""
+"Je n'ai plus beaucoup de temps. Omnichannel va arriver...\n"
+"J'étais supposé rencontrer un contact, mais tu vas devoir le faire. Ils "
+"arrivent."
+
+msgid "spyder_tunnelb_iris"
+msgstr "Iris"
+
+msgid "template"
+msgstr "Nom du Modèle"
+
+msgid "dark_robo"
+msgstr "Robo Sombre"
+
+msgid "professor-tweesher"
+msgstr "Professeur"
+
+msgid "mistaken"
+msgstr "Tu t'es trompé."
+
+msgid "cash_register"
+msgstr "C'est une caisse enregistreuse, assez récente."
+
+msgid "darnitjohn9"
+msgstr ""
+"IMBÉCILE !\n"
+"Je ne le dirais qu'une seule fois :\n"
+"VA. CHERCHER. DANS. LES. MAISONS."
+
+msgid "maamiexist"
+msgstr "M'dame, Il n'est pas dans la maison."
+
+msgid "maamiexist2"
+msgstr "Y avait-il quelque chose d'intéressant ?"
+
+msgid "maamiexist3"
+msgstr ""
+"C'est un ordinateur sous Ubuntu.\n"
+"J'étais prêt à le confisquer, mais je sais bien que Gnome n'est pas ton "
+"genre..."
+
+msgid "spyder_scoop_berys1"
+msgstr ""
+"Vous vous apercevrez qu'aucun Tuxemon ici n'est malade – ils ont tous été "
+"abrités dans l'unité de confinement."
+
+msgid "spyder_scoop_alyssa2"
+msgstr "Puisque je vous le dis : nous avons la maladie sous contrôle !"
+
+msgid "spyder_scoop_weaver2"
+msgstr "Oups ! Il s'avère que le crime ne paye pas !"
+
+msgid "spyder_scoop_donald2"
+msgstr ""
+"Vous êtes certainement assez fort pour maitriser les Tuxemon evadés. Je vous "
+"supplie – faites-le pour nous. "
+
+msgid "spyder_scoop_alyssa1"
+msgstr ""
+"Dès que la maladie a été détectée, nous avons mis les Tuxemon infectés en "
+"quarantaine dans l'unité confinement."
+
+msgid "spyder_scoop_taggart2"
+msgstr "Si vous n'avez pas voler les Extreme Restraints, qui donc ? "
+
+msgid "spyder_scoop_arachne1"
+msgstr ""
+"Eh ! N'avez-vous pas vu que nous sommes au beau milieu d'un vilain plan ?"
+
+msgid "spyder_scoop_landrace3"
+msgstr ""
+"Merci de nous avoir débarrassé de cette brute qui nous bloquait le passage !"
+"\n"
+"On peut maintenant nous échapper avec les Extreme Restraints ! "
+
+msgid "spyder_route6_richard1"
+msgstr ""
+"Mec, le seul jour où je délaisse mon ordi pour aller faire un tour, tout ça "
+"arrive !"
+
+msgid "icicle_spear"
+msgstr "Lance Glacée"
+
+msgid "starfall"
+msgstr "Pluie d'Étoile"
+
+msgid "nudiflot_female_description"
+msgstr ""
+"Elle avale et stocke le poison des créatures marines dont elle se nourrit."
+
+msgid "thunderclap"
+msgstr "Coup de Tonnerre"
+
+msgid "sumchon"
+msgstr "Sumchon"
+
+## MENU TRANSLATIONS ##
+msgid "menu_alphabet"
+msgstr "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
+
+msgid "xeon"
+msgstr "Xénon"
+
+msgid "spyder_scoop_cochini2"
+msgstr "Groin."
+
+msgid "spyder_tunnelb_beryll1"
+msgstr "J'aime collectionner les cailloux."
+
+msgid "spyder_tunnelb_beryll2"
+msgstr "Ah ! J'ai renversé ma collection de cailloux !"
+
+msgid "spyder_tunnelb_lute1"
+msgstr "Les chauve-souris sont les meilleurs compagnons !"
+
+msgid "spyder_tunnelb_lute2"
+msgstr "... mais pas exactement les meilleurs combattants."
+
+msgid "spyder_tunnelb_meitner2"
+msgstr "Je trouve que vous avez piqué trop fort."
+
+msgid "spyder_tunnelb_greta2"
+msgstr "Oh non ! J'en veux plus !"
+
+msgid "combat_state_overfeed_get"
+msgstr "{user} a sur-alimenté {target}."
+
+msgid "combat_levitate_get"
+msgstr "{user} lévite haut dans les airs."
+
+msgid "combat_amnesia_get"
+msgstr "{user} est atteint d'amnésie."
+
+msgid "speed_halved"
+msgstr "Vitesse de {user} réduite de moitié."
+
+msgid "attacks_rose"
+msgstr "Efficacité des attaques de {user} augmentée."
+
+msgid "dodge_fell"
+msgstr "L'esquive de {user} à échoué."
+
+msgid "attack_weak"
+msgstr "L'attaque a fortement résisté !"
+
+msgid "biting_winds"
+msgstr "Vents mordants"
+
+msgid "blossom"
+msgstr "Éclore"
+
+msgid "breathe_fire"
+msgstr "Souffler du Feu"
+
+msgid "bullet"
+msgstr "Balle"
+
+msgid "energy_claws"
+msgstr "Griffes énergétiques"
+
+msgid "font"
+msgstr "Police"
+
+msgid "frostbite"
+msgstr "Gerçure"
+
+msgid "give_all"
+msgstr "Tout Donner"
+
+msgid "hibernate"
+msgstr "Hiberner"
+
+msgid "ice_claw"
+msgstr "Griffe Glaciale"
+
+## TECHNIQUE TRANSLATIONS ##
+msgid "all_in"
+msgstr "Tous dans"
+
+msgid "boulder"
+msgstr "Rocher"
+
+msgid "bubble_trap"
+msgstr "Piège à bulles"
+
+msgid "clamp_on"
+msgstr "S'accrocher"
+
+msgid "eyebite"
+msgstr "Œilleton"
+
+msgid "fester"
+msgstr "Fétide"
+
+msgid "fume"
+msgstr "Fumée"
+
+msgid "perfect_cut"
+msgstr "Coupure Net"
+
+msgid "ram"
+msgstr "Foncer"
+
+msgid "refresh"
+msgstr "Rafraichir"
+
+msgid "rock"
+msgstr "Roche"
+
+msgid "rot"
+msgstr "Pourrir"
+
+msgid "rust_bomb"
+msgstr "Bombe Rouillée"
+
+msgid "salamander"
+msgstr "Salamandre"
+
+msgid "sand_spray"
+msgstr "Jet de Sable"
+
+msgid "shrapnel"
+msgstr "Shrapnel"
+
+msgid "sleep_bomb"
+msgstr "Bombe Soporifique"
+
+msgid "spray"
+msgstr "Jet"
+
+msgid "static_field"
+msgstr "Champ Statique"
+
+msgid "strike"
+msgstr "Frapper"
+
+msgid "sudden_glow"
+msgstr "Insta-Luminescence"
+
+msgid "supernova"
+msgstr "Supernova"
+
+msgid "take_cover"
+msgstr "À Couvert"
+
+msgid "menu_alphabet_n_columns"
+msgstr "13"
+
+msgid "kindling_flame"
+msgstr "Flamme Brillante"
+
+msgid "midnight_mantle"
+msgstr "Manteau Minuit"
+
+msgid "muddle"
+msgstr "Brouillard"
+
+msgid "mudslide"
+msgstr "Glissement"
+
+msgid "overgrowth"
+msgstr "Gigantisme"
+
+msgid "peck"
+msgstr "Picorer"
+
+msgid "peregrine"
+msgstr "Faucon"
+
+msgid "splinter"
+msgstr "Éclat"
+
+msgid "stampede"
+msgstr "Stupeur"
+
+msgid "sting"
+msgstr "Dard"
+
+msgid "suck_poison"
+msgstr "Sucer le Poison"
+
+msgid "surge"
+msgstr "Décharge"
+
+msgid "thunderball"
+msgstr "Boule du Tonnerre"
+
+msgid "tonguespear"
+msgstr "Langue de Bois"
+
+msgid "wallow"
+msgstr "Se Vautrer"
+
+msgid "wing_tip"
+msgstr "Bout d'Aile"
+
+msgid "nudiflot_male_description"
+msgstr "Il avale et stocke le poison des créatures marines dont il se nourrit."
+
+msgid "nudiflot_female"
+msgstr "Nudiflot (F)"
+
+msgid "nudiflot_male"
+msgstr "Nudiflot (H)"
+
+msgid "xeon_2"
+msgstr "Xénon-2"
+
+msgid "mk01_alpha"
+msgstr "MK01 Alpha"
+
+msgid "hot_rock"
+msgstr "Pierre Chaude"
+
+msgid "sumchon_description"
+msgstr ""
+"Il utilise sa masse pour faire trébucher des ennemis bien plus gros. Il est "
+"aussi massif qu'une étoile."
+
+msgid "some_category_here"
+msgstr "Une catégorie ici"
+
+msgid "professor-cardiling"
+msgstr "Professeur"
+
+msgid "professor-rockitten"
+msgstr "Professeur"
+
+msgid "hey"
+msgstr "Hé !"
+
+msgid "capture_devices_in_shop"
+msgstr "Des appareils de capture. Comment les fabriquent-ils ?"
+
+msgid "quicklyknight2"
+msgstr "Deux personnes contrôlent Omnichannel. Le tableau est une blague.\n"
+
+msgid "darnitjohn2"
+msgstr "ENFIN JOHN ! Pars d'ici !"
+
+msgid "cometomepls"
+msgstr ""
+"TOUT LE MONDE, VENEZ MAINTENANT AU CENTRE DU VILLAGE. OMNICHANNEL VEUT VOUS "
+"PRÉSENTER !"
+
+msgid "whereismyhairbrush"
+msgstr "John, Grant, dispersez-vous. TROUVEZ-LE."
+
+msgid "oopsie"
+msgstr "Désolé mais tu devais voir ça. Il est TELLLLLEMENT inutile parfois."
+
+msgid "ourstuffisours"
+msgstr "Pourquoi êtes-vous actuellement ici ?"
+
+msgid "maamiexist4"
+msgstr ""
+"Nan, laisse-le. Ces gens n'ont visiblement aucun goût et détestent la "
+"praticité et la simplicité...\n"
+"Va plutôt vérifier le labo, Grant. J'attends John."
+
+msgid "itsmyaurababe3"
+msgstr "J'espère qu'on se reverra. "
+
+msgid "nodrink"
+msgstr "Je suis presque sûr que vous êtes trop jeune pour boire..."
+
+msgid "spyder_scoop_rubid1"
+msgstr "C'est en réalité la façon la plus humaine de garder Tuxemon."
+
+msgid "spyder_scoop_rubid2"
+msgstr ""
+"Des études ont montré que les Tuxemon trouvent les combats plus stressants "
+"que de vivre dans ces conditions. "
+
+msgid "spyder_scoop_berys2"
+msgstr "Scoop n'a pas diffusé la maladie ! Je vous le promets. "
+
+msgid "spyder_scoop_turner1"
+msgstr ""
+"Certaines personnes vous dirons que les Enforcers ont laissé la malade se "
+"propager. Ne les croyez pas !"
+
+msgid "spyder_scoop_orba1"
+msgstr "Oups ! Qu'est-ce que vous faites ici ?"
+
+msgid "spyder_scoop_orba2"
+msgstr "Qu'est-ce que je fais ici, à propos de quoi ?"
+
+msgid "spyder_scoop_landrace2"
+msgstr "Pff !"
+
+msgid "spyder_scoop_cochini1"
+msgstr "Groin-groin ! "
+
+msgid "spyder_scoop_lapinou2"
+msgstr "Hum ah !"
+
+msgid "spyder_tunnelb_iris1"
+msgstr "Eh ! Vous avez interrompu notre danse !"
+
+msgid "spyder_tunnelb_tommy1"
+msgstr "Avez-vous aperçu mon sandwich ?"
+
+msgid "spyder_route6_richard2"
+msgstr "Le pire jour. De ma vie."
+
+msgid "spyder_route6_orion2"
+msgstr "J'espère être revenu avant que mon expérience ait fondu !"

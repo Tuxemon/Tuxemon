@@ -47,32 +47,54 @@ from tkinter import messagebox
 import platform
 
 class LogStorageProvider:
-    """Generic class for log providers"""    
+    """
+    Generic class for log providers.
+    When inheriting, the following variables should be set:
+        remote_url: The url for remote provider
+        local_url (optional): The url for local provider (eg. 'http://127.0.0.1:8080').
+
+    The following methods can be changed, if needed (for example to change headers):
+        _send_log_file: For uploading logs
+    """    
     remote_url = "http://127.0.0.1:8080"
     local_url = "http://127.0.0.1:8080"  # For use with a local server
-    log_storage_max_days = "1"
 
-    def __init__(self, use_local_url=False):
+    def __init__(self, use_local_url=False, storage_time=1):
         if use_local_url:
             self.url = self.local_url
         else:
             self.url = self.remote_url
 
+        self.log_storage_max_days = storage_time
+
+
 
     def _send_log_file(self, file_obj):
         """
-        Sends the specified file to the remote log/file storage
+        Sends the specified file to the remote log/file storage.
+        Parameters:
+            file_obj: The file object to send
         """
         
-        r = requests.post(self.url, files={"tuxemon_log.txt", file_obj}, headers={"Max-Days": self.log_storage_max_days})
+        r = requests.post(
+                            self.url,
+                            files={"tuxemon_log.txt", file_obj},
+                            headers={"Max-Days": self.log_storage_max_days}
+        )
 
     def send_log(self):
-        """Sends the logs"""
+        """
+        Sends the latest.log file.
+        """
         file = open(f"{USER_LOG_DIR}/latest.log")
         self._send_log_file(file)
         file.close()
 
-
+class transfersh_provider(LogStorageProvider):
+    """
+    transfer.sh log storage provider
+    """
+    remote_url = "https://transfer.sh"
  
 def archive_log():
     """

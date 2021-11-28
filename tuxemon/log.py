@@ -221,10 +221,8 @@ def send_logs():
         response = provider.send_log()
         print(f"Report URL: {response[0]}")
         if config.auto_open_link.upper()[0] == "T":  # Using the standard "if config" didn't work for me
-            print("Reacted as true")
             __import__("webbrowser").open_new_tab(response[0])
         else: 
-            print("Reacted as false")
             pass
 
     except NameError:

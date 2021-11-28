@@ -77,11 +77,11 @@ class LogStorageProvider:
         Parameters:
             file_obj: The file object to send
         """
-        
+        files = {"tuxemon_log.txt": file_obj.read()}
         r = requests.post(
                             self.url,
-                            files={"tuxemon_log.txt", file_obj},
-                            headers={"Max-Days": self.log_storage_max_days}
+                            files=files,
+                            headers={"Max-Days": str(self.log_storage_max_days)}
         )
         return r.text, r.status_code
 
@@ -96,7 +96,7 @@ class LogStorageProvider:
         file.close()
         return response
 
-class transfersh_provider(LogStorageProvider):
+class transfersh(LogStorageProvider):
     """
     transfer.sh log storage provider
     """

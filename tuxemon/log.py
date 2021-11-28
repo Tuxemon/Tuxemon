@@ -212,22 +212,22 @@ def send_logs():
         pass
 
     # Get file
-    file = open(f"{USER_LOG_DIR}/latest.log")
-    send_files = {"tuxemon_log.txt": file}
+#    file = open(f"{USER_LOG_DIR}/latest.log")
+#    send_files = {"tuxemon_log.txt": file}
 
     # TODO: Add other providers support
     try:
         provider = eval(f"{config.log_host}()")
         response = provider.send_log()
         print(f"Report URL: {response[0]}")
+        __import__("webbrowser").open_new_tab(response[0])
+
     except NameError:
         logging.error(f"Attempted to load a non-existent provider {config.log_host}")
     except requests.exceptions.ConnectionError:
         logging.error("Connection to the provider failed.", exc_info=True)
     
 
-        file.close()
-    __import__("webbrowser").open_new_tab(r.text)
 
 def popup_send_log_consent():
     """

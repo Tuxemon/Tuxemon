@@ -72,6 +72,8 @@ class LogStorageProvider:
     def _send_log_file(self, file_obj):
         """
         Sends the specified file to the remote log/file storage.
+        Returns the text response and status code.
+        
         Parameters:
             file_obj: The file object to send
         """
@@ -81,14 +83,18 @@ class LogStorageProvider:
                             files={"tuxemon_log.txt", file_obj},
                             headers={"Max-Days": self.log_storage_max_days}
         )
+        return r.text, r.status_code
 
     def send_log(self):
         """
         Sends the latest.log file.
         """
         file = open(f"{USER_LOG_DIR}/latest.log")
-        self._send_log_file(file)
+        response = self._send_log_file(file)
+        if response[1] == 418:
+            logging.warning("The server informed about the inability to brew coffee, due to the fact that it is a teapot")
         file.close()
+        return response
 
 class transfersh_provider(LogStorageProvider):
     """
@@ -210,10 +216,17 @@ def send_logs():
     send_files = {"tuxemon_log.txt": file}
 
     # TODO: Add other providers support
+    try:
+        provider = eval(f"{config.log_host}()")
+        response = provider.send_log()
+        print(f"Report URL: {response[0]}")
+    except NameError:
+        logging.error(f"Attempted to load a non-existent provider {config.log_host}")
+    except requests.exceptions.ConnectionError:
+        logging.error("Connection to the provider failed.", exc_info=True)
     
-    r = requests.post(config.log_host_url, files=send_files, headers={"Max-Days": config.log_storage_max_days, "User-Agent": "curl/7.80.0"})
-    print(f"Report URL: {r.text}")
-    file.close()
+
+        file.close()
     __import__("webbrowser").open_new_tab(r.text)
 
 def popup_send_log_consent():

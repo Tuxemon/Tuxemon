@@ -217,7 +217,7 @@ def send_logs():
 
     # TODO: Add other providers support
     try:
-        provider = eval(f"{config.log_host}()")
+        provider = eval(f"{config.log_host}(storage_time={config.log_storage_max_days})")
         response = provider.send_log()
         print(f"Report URL: {response[0]}")
         __import__("webbrowser").open_new_tab(response[0])

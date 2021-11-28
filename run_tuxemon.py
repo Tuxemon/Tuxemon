@@ -61,8 +61,7 @@ if __name__ == '__main__':
     except Exception as ex:
         from pygame import quit as pg_quit
         pg_quit()
-        
-        logging.error(ex, exc_info=True)
+        logging.error("Exception occured", exc_info=True)
         if ex != KeyboardInterrupt and ex != EOFError:
             if popup_send_log_consent():
                 send_logs()

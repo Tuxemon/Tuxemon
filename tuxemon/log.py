@@ -220,7 +220,12 @@ def send_logs():
         provider = eval(f"{config.log_host}(storage_time={config.log_storage_max_days})")
         response = provider.send_log()
         print(f"Report URL: {response[0]}")
-        __import__("webbrowser").open_new_tab(response[0])
+        if config.auto_open_link.upper()[0] == "T":  # Using the standard "if config" didn't work for me
+            print("Reacted as true")
+            __import__("webbrowser").open_new_tab(response[0])
+        else: 
+            print("Reacted as false")
+            pass
 
     except NameError:
         logging.error(f"Attempted to load a non-existent provider {config.log_host}")

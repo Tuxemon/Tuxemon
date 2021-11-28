@@ -121,7 +121,8 @@ class TuxemonConfig:
 
         # [crash_reporting]        
         self.log_host = cfg.get("crash_reporting", "log_host")  # The log storage type.
-        #                                                   # file/log storage
+        self.auto_open_link = cfg.get("crash_reporting", "auto_open_link")  # Should the report link be opened automatically?
+
         self.log_storage_max_days = cfg.get("crash_reporting", "log_host_max_storage_days")  # How much time should log be stored
         self.popup = cfg.get("crash_reporting", "crash_report_popup")  # Should the crash popup be displayed? (True/False/None)
 
@@ -274,6 +275,7 @@ def get_defaults() -> Mapping[str, Any]:
                         ("log_host", "transfersh"),
                         ("log_host_max_storage_days", 1),
                         ("crash_report_popup", None),
+                        ("auto_open_link", False),
                     )
                 )
             ),

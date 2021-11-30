@@ -61,7 +61,7 @@ class SetKeyState(PopUpMenu):
         """
         Used when initializing the state
         """
-        self.input = kwargs["input"]
+        self.button = kwargs["button"]
         super().startup(**kwargs)
 
         label = T.translate(T.translate("options_new_input_key0")).upper()
@@ -103,7 +103,7 @@ class SetKeyState(PopUpMenu):
             # event.value is being compared here since sometimes the 
             # value just returns an empty string and event.pressed doesn't 
             # return True when a key is being pressed
-            tuxe_config.cfg.set("controls", self.input, pressed_key_str)
+            tuxe_config.cfg.set("controls", self.button, pressed_key_str)
             self.client.get_state_by_name(ControlState).initialize_items()
             self.close()
 
@@ -135,8 +135,8 @@ class ControlState(PopUpMenu[ControlStateObj]):
         
         display_buttons = {}
         key_names = config.get_custom_pygame_keyboard_controls_names(tuxe_config.cfg)
-        for button in key_names:
-            display_buttons[key_names[button]] = button
+        for k in key_names:
+            display_buttons[key_names[k]] = k
 
         self.clear()
 
@@ -160,10 +160,11 @@ class ControlState(PopUpMenu[ControlStateObj]):
             (display_buttons[buttons.BACK], None)
         )
 
-        for key, input in key_items_map:
+        for key, button in key_items_map:
             label = f"{T.translate(key).upper()}"
             image = self.shadow_text(label)
-            item = MenuItem(image, label, None, change_state("SetKeyState", input=input))
+            item = MenuItem(image, label, None, change_state("SetKeyState", button=button))
+            item.enabled = button is not None
             self.add(item)
 
     def reload_controls(self):

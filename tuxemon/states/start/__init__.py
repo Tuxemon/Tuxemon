@@ -103,6 +103,7 @@ class StartState(PopUpMenu[StartGameObj]):
                 callback=set_player_name,
                 escape_key_exits=True,
             )
+            self.client.pop_state(self)
             self.client.push_state(FadeInTransition)
 
         def exit_game() -> None:

@@ -94,6 +94,7 @@ class StartState(PopUpMenu[StartGameObj]):
             self.client.push_state("WorldState", map_name=map_name)
             self.client.push_state(FadeInTransition)
             local_session.player.name = text
+            self.client.pop_state(self)
 
         def new_game() -> None:
             # load the starting map

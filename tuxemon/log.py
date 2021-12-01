@@ -39,12 +39,14 @@ from shutil import copyfileobj, move
 from os import remove, environ
 from os.path import exists
 from datetime import datetime
+
 # For messagebox
 import tkinter as tk
 from tkinter import messagebox
 
 # For gathering system information
 import platform
+
 
 class LogStorageProvider:
     """
@@ -55,7 +57,8 @@ class LogStorageProvider:
 
     The following methods can be changed, if needed (for example to change headers):
         _send_log_file: For uploading logs
-    """    
+    """
+
     remote_url = "http://127.0.0.1:8080"
     local_url = "http://127.0.0.1:8080"  # For use with a local server
 
@@ -67,21 +70,19 @@ class LogStorageProvider:
 
         self.log_storage_max_days = storage_time
 
-
-
     def _send_log_file(self, file_obj):
         """
         Sends the specified file to the remote log/file storage.
         Returns the text response and status code.
-        
+
         Parameters:
             file_obj: The file object to send
         """
         files = {"tuxemon_log.txt": file_obj.read()}
         r = requests.post(
-                            self.url,
-                            files=files,
-                            headers={"Max-Days": str(self.log_storage_max_days)}
+            self.url,
+            files=files,
+            headers={"Max-Days": str(self.log_storage_max_days)},
         )
         return r.text, r.status_code
 
@@ -92,20 +93,25 @@ class LogStorageProvider:
         file = open(f"{USER_LOG_DIR}/latest.log")
         response = self._send_log_file(file)
         if response[1] == 418:
-            logging.warning("The server informed about the inability to brew coffee, due to the fact that it is a teapot")
+            logging.warning(
+                "The server informed about the inability to brew coffee, due to the fact that it is a teapot"
+            )
         file.close()
         return response
+
 
 class transfersh(LogStorageProvider):
     """
     transfer.sh log storage provider
     """
+
     remote_url = "https://transfer.sh"
- 
+
+
 def archive_log():
     """
 
-    Archives specified file, compressing it and renaming it to 
+    Archives specified file, compressing it and renaming it to
     the current date using the %d-%m-%Y_%H:%M:%S format.
     """
     if not exists(USER_LOG_DIR + "/latest.log"):
@@ -114,9 +120,13 @@ def archive_log():
     with open(f"{USER_LOG_DIR}/latest.log", "rb") as uncompressed:
         with gzip.open(f"{USER_LOG_DIR}/latest.log.gz", "wb") as compressed:
             copyfileobj(uncompressed, compressed)
-    move(f"{USER_LOG_DIR}/latest.log.gz", 
-                f"{USER_LOG_DIR}/{datetime.now().strftime('%d-%m-%Y_%H:%M:%S')}.log.gz")
+    move(
+        f"{USER_LOG_DIR}/latest.log.gz",
+        f"{USER_LOG_DIR}/{datetime.now().strftime('%d-%m-%Y_%H:%M:%S')}.log.gz",
+    )
     os.remove(f"{USER_LOG_DIR}/latest.log")
+
+
 def configure():
     """Configure logging based on the settings in the config file."""
 
@@ -153,7 +163,11 @@ def configure():
 
             log_hdlr = logging.StreamHandler(sys.stdout)
             log_hdlr.setLevel(log_level)
-            log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"))
+            log_hdlr.setFormatter(
+                logging.Formatter(
+                    "%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"
+                )
+            )
             logger.addHandler(log_hdlr)
             # Archive previous log
             archive_log()
@@ -161,18 +175,22 @@ def configure():
             # Logging to file
             log_filehandler = logging.FileHandler(f"{USER_LOG_DIR}/latest.log")
             log_filehandler.setLevel(logging.INFO)
-            log_filehandler.setFormatter(logging.Formatter("%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"))
+            log_filehandler.setFormatter(
+                logging.Formatter(
+                    "%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"
+                )
+            )
             logger.addHandler(log_filehandler)
             loggers[logger_name] = logger
-
 
             # prevent pyscroll redraw warnings
             pyscroll_logger = logging.getLogger("orthographic")
             pyscroll_logger.setLevel(logging.ERROR)
 
+
 def send_logs():
     config = prepare.CONFIG
-    logging.info("="* 26)
+    logging.info("=" * 26)
 
     logging.info("=== System information ===")
 
@@ -198,7 +216,7 @@ def send_logs():
         "pytmx": "pytmx",
         "requests": "requests",
         "natsort": "natsort",
-        "PyYaml": "yaml"
+        "PyYaml": "yaml",
     }
     for i in lib_entries:
         try:
@@ -207,29 +225,32 @@ def send_logs():
             logging.info(f"{i}\tunknown")
 
     try:
-        logging.info(f"pygame_sdl_version\t{__import__('pygame').get_sdl_version()}")
+        logging.info(
+            f"pygame_sdl_version\t{__import__('pygame').get_sdl_version()}"
+        )
     finally:
         pass
 
-    # Get file
-#    file = open(f"{USER_LOG_DIR}/latest.log")
-#    send_files = {"tuxemon_log.txt": file}
 
-    # TODO: Add other providers support
     try:
-        provider = eval(f"{config.log_host}(storage_time={config.log_storage_max_days})")
+        provider = eval(
+            f"{config.log_host}(storage_time={config.log_storage_max_days})"
+        )
         response = provider.send_log()
         print(f"Report URL: {response[0]}")
-        if config.auto_open_link.upper()[0] == "T":  # Using the standard "if config" didn't work for me
+        if (
+            config.auto_open_link.upper()[0] == "T"
+        ):  # Using the standard "if config" didn't work for me
             __import__("webbrowser").open_new_tab(response[0])
-        else: 
+        else:
             pass
 
     except NameError:
-        logging.error(f"Attempted to load a non-existent provider {config.log_host}")
+        logging.error(
+            f"Attempted to load a non-existent provider {config.log_host}"
+        )
     except requests.exceptions.ConnectionError:
         logging.error("Connection to the provider failed.", exc_info=True)
-    
 
 
 def popup_send_log_consent():
@@ -239,13 +260,15 @@ def popup_send_log_consent():
     """
     if prepare.CONFIG.popup:
         return True
-        
+
     elif not prepare.CONFIG.popup:
         return False
 
-    title="Tuxemon", 
-    text="Sadly, Tuxemon crashed. Do you want to send crash report to the tuxemon team?",
-    choices=["yes", "no"]
+    title = ("Tuxemon",)
+    text = (
+        "Sadly, Tuxemon crashed. Do you want to send crash report to the tuxemon team?",
+    )
+    choices = ["yes", "no"]
 
     tk.Tk().wm_withdraw()
     msgbox = messagebox.askyesno(title=title, message=text)

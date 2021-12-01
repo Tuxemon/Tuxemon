@@ -23,7 +23,7 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
-# states.world Handles the world map and player movement.
+# states.WorldState Handles the world map and player movement.
 #
 #
 from __future__ import annotations
@@ -706,7 +706,8 @@ class WorldState(state.State):
         tile: Union[RegionProperties, EntityCollision],
         skip_nodes: Optional[Set[Tuple[int, int]]] = None,
     ) -> Optional[Sequence[Tuple[int, int]]]:
-        """Check for exits from tile which are defined in the map.
+        """
+        Check for exits from tile which are defined in the map.
 
         This will return exits which were defined by the map creator.
 
@@ -716,7 +717,7 @@ class WorldState(state.State):
             position: Original position.
             tile: Region properties of the tile.
             skip_nodes: Set of nodes to skip.
-        :return: list
+
         """
         # Check if the players current position has any exit limitations.
         # this check is for tiles which define the only way to exit.
@@ -1160,8 +1161,6 @@ class WorldState(state.State):
         :type event_data: Dictionary
         :type registry: Dictionary
 
-        :rtype: None
-        :returns: None
         """
         target = registry[event_data["target"]]["sprite"]
         target_name = str(target.name)

@@ -3,7 +3,6 @@ Virtual buttons.  Input events from the platform will
 be transformed into these values.
 """
 
-
 # virtual controller
 HOME = 0
 UP = 1

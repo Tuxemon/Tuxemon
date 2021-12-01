@@ -117,7 +117,7 @@ DEV_TOOLS = CONFIG.dev_tools
 
 
 def pygame_init() -> None:
-    """Eventually refactor out of prepare"""
+    """Eventually refactor out of prepare."""
     global JOYSTICKS
     global FONTS
     global MUSIC

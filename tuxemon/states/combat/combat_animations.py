@@ -120,7 +120,7 @@ class CombatAnimations(ABC, Menu[None]):
         self.transition_none_normal()
 
     def transition_none_normal(self) -> None:
-        """From newly opened to normal"""
+        """From newly opened to normal."""
         self.animate_parties_in()
 
         for player, layout in self._layout.items():
@@ -151,10 +151,10 @@ class CombatAnimations(ABC, Menu[None]):
         monster: Monster,
     ) -> None:
         """
+        Parameters:
+            npc:
+            monster:
 
-        :type npc: tuxemon.npc.Npc
-        :type monster: tuxemon.monster.Monster
-        :return:
         """
         feet_list = list(self._layout[npc]["home"][0].center)
         feet = (feet_list[0], feet_list[1] + tools.scale(11))
@@ -243,9 +243,9 @@ class CombatAnimations(ABC, Menu[None]):
 
     def animate_sprite_tackle(self, sprite: Sprite) -> None:
         """
+        Parameters:
+            sprite:
 
-        :type sprite: tuxemon.sprite.Sprite
-        :return:
         """
         duration = 0.3
         original_x = sprite.rect.x

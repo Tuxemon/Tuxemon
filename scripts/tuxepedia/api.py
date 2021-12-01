@@ -16,15 +16,15 @@ from .extractor import TuxepediaWebExtractor, fix_name
 
 
 class TuxepediaStore:
-    """SQLite-based interface for the Tuxepedia backend"""
+    """SQLite-based interface for the Tuxepedia backend."""
 
     def get_logger(self):
-        """Access a custom class logger"""
+        """Access a custom class logger."""
         return logging.getLogger(self.__class__.__name__)
 
     @contextmanager
     def db_connect(self):
-        """Connect to the SQLite database backend to store information"""
+        """Connect to the SQLite database backend to store information."""
 
         self.connection = sqlite3.connect(RESOURCE_PATHS.database)
 
@@ -35,7 +35,7 @@ class TuxepediaStore:
 
     @contextmanager
     def cursor(self):
-        """Yield a cursor for database backend queries"""
+        """Yield a cursor for database backend queries."""
 
         if self.connection is None:
             error_msg = "Cursor for db {} could not be created"
@@ -48,7 +48,7 @@ class TuxepediaStore:
         self.connection.commit()
 
     def sync_with_remote(self, completed_monsters):
-        """Update local Tuxepedia content from Tuxepedia wiki pages"""
+        """Update local Tuxepedia content from Tuxepedia wiki pages."""
 
         # TODO: add version/timestamp check to decide whether a full pull is needed
         tuxepedia = TuxepediaWebExtractor()
@@ -83,11 +83,14 @@ class TuxepediaStore:
                     json.dump(txmn_json_full[txmn_name], f, indent=4)
 
     def update_txmn_json(self, txmn_name, txmn_json_new, overwrite=True):
-        """Update a tuxemon JSON file record
+        """
+        Update a tuxemon JSON file record.
 
-        :param txmn_name: tuxemon name
-        :param txmn_json_new: new tuxemon JSON record
-        :param overwrite: toggle to overwrite existing JSON fields
+        Parameters:
+            txmn_name: Tuxemon name.
+            txmn_json_new: New tuxemon JSON record.
+            overwrite: Toggle to overwrite existing JSON fields.
+
         """
 
         # full path to tuxemon JSON file
@@ -114,9 +117,12 @@ class TuxepediaStore:
             json.dump(txmn_json_old, f, indent=4)
 
     def get_txmn_json(self, txmn_name):
-        """Extract tuxemon JSON from file
+        """
+        Extract tuxemon JSON from file.
 
-        :param txmn_name: tuxemon name
+        Parameters:
+            txmn_name: Tuxemon name.
+
         """
 
         txmn_json = None

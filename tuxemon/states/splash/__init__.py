@@ -42,10 +42,7 @@ logger = logging.getLogger(__name__)
 
 
 class SplashState(state.State):
-    """
-    The state responsible for the splash screen
-
-    """
+    """The state responsible for the splash screen."""
     default_duration = 3
 
     def startup(self, **kwargs: Any) -> None:

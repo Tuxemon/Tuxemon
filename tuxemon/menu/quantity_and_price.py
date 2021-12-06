@@ -11,7 +11,7 @@ from typing import Optional, Any, Callable, Generator
 logger = logging.getLogger(__name__)
 
 
-class QuantityMenu(Menu[None]):
+class QuantityPriceMenu(Menu[None]):
     """Menu used to select quantities."""
 
     def startup(
@@ -42,6 +42,10 @@ class QuantityMenu(Menu[None]):
         assert callback
         self.callback = callback
         self.shrink_to_items = shrink_to_items
+
+    def on_open(self) -> None:
+        logger.error(f"on_open - ")
+        self.menu_items.arrange_menu_items()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
 
@@ -83,9 +87,14 @@ class QuantityMenu(Menu[None]):
 
     def initialize_items(self) -> Generator[MenuItem[None], None, None]:
         # TODO: move this and other format strings to a locale or config file
-        label_format = "x {:>{count_len}} {}".format
+        label_format = "x {:>{count_len}}".format
         count_len = 3
 
-        formatted_name = label_format(self.quantity, self.quantity * self.price, count_len=count_len)
+        formatted_name = label_format(self.quantity, count_len=count_len)
+        image = self.shadow_text(formatted_name, bg=(128, 128, 128))
+        yield MenuItem(image, formatted_name, None, None)
+        label_format = "$ {:>{count_len}}".format
+
+        formatted_name = label_format(self.quantity * self.price, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)

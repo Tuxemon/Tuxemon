@@ -33,6 +33,7 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.menu.quantity import QuantityMenu
+from tuxemon.menu.quantity_and_price import QuantityPriceMenu
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
 from tuxemon.ui.text import TextArea
@@ -45,6 +46,7 @@ from tuxemon.states.monster import MonsterMenuState
 # The import is required for PushState to work.
 # But linters may say the import is unused.
 assert QuantityMenu
+assert QuantityPriceMenu
 
 
 def sort_inventory(
@@ -314,12 +316,17 @@ class ShopMenuState(Menu[Item]):
             None if item_dict.get("infinite")
             else item_dict["quantity"]
         )
+        price = (
+            1 if not item_dict.get("price")
+            else item_dict["price"]
+        )
         self.client.push_state(
-            QuantityMenu,
+            QuantityPriceMenu,
             callback=use_item,
             max_quantity=max_quantity,
             quantity=1,
             shrink_to_items=True,
+            price=price,
         )
 
     def initialize_items(self) -> Generator[MenuItem[Item], None, None]:

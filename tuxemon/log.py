@@ -32,6 +32,7 @@ import logging
 import sys
 
 from tuxemon import prepare
+import warnings
 
 
 def configure():
@@ -54,6 +55,9 @@ def configure():
 
     # Set up logging if the configuration has it enabled
     if config.debug_logging:
+
+        # Enable suppressed warnings
+        warnings.filterwarnings("default")
 
         for logger_name in config.loggers:
 

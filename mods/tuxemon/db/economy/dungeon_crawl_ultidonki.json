@@ -1,0 +1,24 @@
+{
+  "slug": "dungeon_crawl_ultidonki",
+  "parent": null,
+  "items": [
+    {
+      "item_name": "potion",
+      "price": 10
+    },
+    {
+      "item_name": "revive",
+      "price": 100
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+

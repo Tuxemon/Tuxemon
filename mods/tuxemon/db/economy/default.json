@@ -1,0 +1,17 @@
+{
+  "slug": "default",
+  "parent": null,
+  "items": [
+    {
+      "item_name": "potion",
+      "price": 20,
+      "cost": 5
+    },
+    {
+      "item_name": "revive",
+      "price": 100,
+      "cost": 20
+    }
+  ]
+}
+

@@ -29,6 +29,7 @@ from tuxemon.graphics import get_avatar
 from typing import NamedTuple, final, Optional
 from tuxemon.states.dialog import DialogState
 from tuxemon.sprite import Sprite
+import warnings
 
 logger = logging.getLogger(__name__)
 
@@ -69,6 +70,14 @@ class DialogChainAction(EventAction[DialogChainActionParameters]):
     param_class = DialogChainActionParameters
 
     def start(self) -> None:
+        warnings.warn(
+            f"Found deprecated dialog_chain action, please use "
+            f"translated_dialog_chain instead. "
+            f"Action: {self.name}. "
+            f"Parameters: {self.raw_parameters}.",
+            DeprecationWarning,
+        )
+
         # hack to allow unescaped commas in the dialog string
         text = ", ".join(self.raw_parameters)
         text = replace_text(self.session, text)

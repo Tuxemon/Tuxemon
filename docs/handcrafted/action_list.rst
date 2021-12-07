@@ -8,7 +8,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.delayed_teleport.DelayedTeleportAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.dialog.DialogAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.dialog_chain.DialogChainAction 
-.. autoscriptinfoclass:: tuxemon.event.actions.dialog_choice.DialogChoiceAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.evolve_monsters.EvolveMonstersAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.fadeout_music.FadeoutMusicAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.get_player_monster.GetPlayerMonsterAction 

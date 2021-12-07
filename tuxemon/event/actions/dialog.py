@@ -29,6 +29,7 @@ from tuxemon.graphics import get_avatar
 from typing import NamedTuple, final, Optional
 from tuxemon.states.dialog import DialogState
 from tuxemon.sprite import Sprite
+import warnings
 
 logger = logging.getLogger(__name__)
 
@@ -65,6 +66,13 @@ class DialogAction(EventAction[DialogActionParameters]):
     param_class = DialogActionParameters
 
     def start(self) -> None:
+        warnings.warn(
+            f"Found deprecated dialog action, please use "
+            f"translated_dialog instead. "
+            f"Action: {self.name}. "
+            f"Parameters: {self.raw_parameters}.",
+            DeprecationWarning,
+        )
         text = replace_text(self.session, self.parameters.text)
         avatar = get_avatar(self.session, self.parameters.avatar)
         self.open_dialog(text, avatar)

@@ -6,7 +6,11 @@ from tuxemon.menu.menu import Menu
 from tuxemon.platform.const import intentions
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
-from typing import Optional, Any, Callable, Generator
+from typing import Optional, Any, Callable, Generator, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    #from tuxemon.monster import Monster
+    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
@@ -22,6 +26,7 @@ class QuantityPriceMenu(Menu[None]):
         callback: Optional[Callable[[int], None]] = None,
         shrink_to_items: bool = False,
         price: int = 1,
+        buyer: Optional[NPC] = None,
         **kwargs: Any,
     ) -> None:
         """
@@ -42,6 +47,7 @@ class QuantityPriceMenu(Menu[None]):
         assert callback
         self.callback = callback
         self.shrink_to_items = shrink_to_items
+        self.buyer    = buyer
 
     def on_open(self) -> None:
         logger.error(f"on_open - ")
@@ -96,5 +102,10 @@ class QuantityPriceMenu(Menu[None]):
         label_format = "$ {:>{count_len}}".format
 
         formatted_name = label_format(self.quantity * self.price, count_len=count_len)
+        image = self.shadow_text(formatted_name, bg=(128, 128, 128))
+        yield MenuItem(image, formatted_name, None, None)
+        label_format = "You have: ${:>{count_len}}".format
+
+        formatted_name = label_format(self.buyer.game_variables["money"], count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)

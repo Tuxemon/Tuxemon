@@ -327,6 +327,7 @@ class ShopMenuState(Menu[Item]):
             quantity=1,
             shrink_to_items=True,
             price=price,
+            buyer=self.buyer,
         )
 
     def initialize_items(self) -> Generator[MenuItem[Item], None, None]:

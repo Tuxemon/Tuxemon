@@ -106,6 +106,9 @@ class QuantityPriceMenu(Menu[None]):
         yield MenuItem(image, formatted_name, None, None)
         label_format = "You have: ${:>{count_len}}".format
 
-        formatted_name = label_format(self.buyer.game_variables["money"], count_len=count_len)
+        if self.buyer and self.buyer.game_variables and "money" in self.buyer.game_variables:
+            formatted_name = label_format(self.buyer.game_variables["money"], count_len=count_len)
+        else:
+            formatted_name = ""
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)

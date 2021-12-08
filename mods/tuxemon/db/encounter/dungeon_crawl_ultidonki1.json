@@ -1,0 +1,8 @@
+{"slug": "dungeon_crawl_ultidonki1","monsters": [
+
+{ "monster": "cardiling","encounter_rate":3.5,"level_range": [1,4]},
+{ "monster": "aardorn","encounter_rate":3.5,"level_range": [1,4]},
+{ "monster": "cataspike","encounter_rate":3.5,"level_range": [1,4]},
+{ "monster": "propellercat","encounter_rate":0.1,"level_range": [999,999]}
+
+] }

@@ -312,13 +312,15 @@ class ShopMenuState(Menu[Item]):
                 self.on_menu_selection_change()
 
         item_dict = self.seller.inventory[item.slug]
+        price = (
+            1 if not self.seller.economy.lookup_item_price(item.slug)
+            else self.seller.economy.lookup_item_price(item.slug)
+        )
+        # TODO: Make max_quantity the max price the buyer can afford
+        # with all its money, if there's a buyer and there's a seller.economy
         max_quantity = (
             None if item_dict.get("infinite")
             else item_dict["quantity"]
-        )
-        price = (
-            1 if not item_dict.get("price")
-            else item_dict["price"]
         )
         self.client.push_state(
             QuantityPriceMenu,

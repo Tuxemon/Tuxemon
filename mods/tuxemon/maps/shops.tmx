@@ -35,6 +35,7 @@
    <properties>
     <property name="act1" value="create_npc tuxemart_keeper,0,1"/>
     <property name="act20" value="set_inventory tuxemart_keeper,inv_basic_store"/>
+    <property name="act30" value="set_economy tuxemart_keeper,dungeon_crawl_ultidonki"/>
     <property name="cond1" value="not npc_exists tuxemart_keeper"/>
    </properties>
   </object>

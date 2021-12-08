@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="7">
+ <layer id="1" name="Tile Layer 1" width="8" height="8">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="8" height="8">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="3" name="events">
+  <object id="1" name="Shop1" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="open_shop tuxemart_keeper"/>
+    <property name="cond1" value="is to_talk tuxemart_keeper"/>
+   </properties>
+  </object>
+  <object id="2" name="Create NPC" type="event" x="0" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc tuxemart_keeper,0,1"/>
+    <property name="act20" value="set_inventory tuxemart_keeper,inv_basic_store"/>
+    <property name="cond1" value="not npc_exists tuxemart_keeper"/>
+   </properties>
+  </object>
+  <object id="3" name="Add ITems player" type="event" x="48" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="add_item potion,1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="give_money_player_layer" visible="0">
+  <object id="6" name="Player Moved?" type="event" x="0" y="0" width="128" height="128">
+   <properties>
+    <property name="act1" value="variable_math money,+,100,money"/>
+    <property name="cond1" value="is player_moved"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

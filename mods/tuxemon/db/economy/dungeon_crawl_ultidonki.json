@@ -1,6 +1,6 @@
 {
   "slug": "dungeon_crawl_ultidonki",
-  "parent": null,
+  "parent": "default",
   "items": [
     {
       "item_name": "potion",

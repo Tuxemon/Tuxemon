@@ -185,14 +185,18 @@ class JSONInventory(TypedDict):
     slug: str
     inventory: Mapping[str, Optional[int]]
 
-class JSONEconomyItem(TypedDict):
-    item: str
+class JSONEconomyItemOptionalFields(TypedDict, total=False):
     price: int
     cost: int
 
-class JSONEconomy(TypedDict):
+class JSONEconomyItem(TypedDict):
+    item_name: str
+
+class JSONEconomyOptionalFields(TypedDict, total=False):
+    parent: str
+
+class JSONEconomy(JSONEconomyOptionalFields):
     slug: str
-    parent: Optional[str]
     items: Sequence[JSONEconomyItem]
 
 def process_targets(json_targets: JSONTarget) -> Sequence[str]:

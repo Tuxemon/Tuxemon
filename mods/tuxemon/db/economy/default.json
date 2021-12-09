@@ -21,6 +21,11 @@
       "item_name": "tm_blossom",
       "price": 1000,
       "cost": 200
+    },
+    {
+      "item_name": "capture_device",
+      "price": 50,
+      "cost": 10
     }
   ]
 }

@@ -294,28 +294,34 @@ class ShopMenuState(Menu[Item]):
         """
         item = menu_item.game_object
 
+        item_dict = self.seller.inventory[item.slug]
+        price = (
+            1 if not self.seller.economy.lookup_item_price(item.slug)
+            else self.seller.economy.lookup_item_price(item.slug)
+        )
+        cost = (
+            1 if not self.seller.economy.lookup_item_cost(item.slug)
+            else self.seller.economy.lookup_item_cost(item.slug)
+        )
         def use_item(quantity: int) -> None:
             if not quantity:
                 return
 
             if self.buyer:
-                self.seller.give_item(self.client, self.buyer, item, quantity)
+                self.seller.sell_item(self.client, self.buyer, item, quantity, price)
             else:
-                self.seller.alter_item_quantity(
+                self.seller.buy_item(
                     self.client,
+                    self.buyer,
                     item.slug,
                     -quantity,
+                    cost,
                 )
             self.reload_items()
             if not self.seller.has_item(item.slug):
                 # We're pointing at a new item
                 self.on_menu_selection_change()
 
-        item_dict = self.seller.inventory[item.slug]
-        price = (
-            1 if not self.seller.economy.lookup_item_price(item.slug)
-            else self.seller.economy.lookup_item_price(item.slug)
-        )
         # TODO: Make max_quantity the max price the buyer can afford
         # with all its money, if there's a buyer and there's a seller.economy
         max_quantity = (

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.7.0" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+<tileset version="1.5" tiledversion="1.7.2" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
  <editorsettings>
   <export target="rubberduck_outdoor.tsx" format="tsx"/>
  </editorsettings>
@@ -3686,6 +3686,15 @@
    </object>
   </objectgroup>
  </tile>
+ <tile id="1482">
+  <animation>
+   <frame tileid="1482" duration="250"/>
+   <frame tileid="1483" duration="250"/>
+   <frame tileid="1484" duration="250"/>
+   <frame tileid="1485" duration="250"/>
+   <frame tileid="1486" duration="250"/>
+  </animation>
+ </tile>
  <tile id="1496">
   <objectgroup draworder="index" id="2">
    <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
@@ -3700,6 +3709,78 @@
   <objectgroup draworder="index" id="2">
    <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="1519">
+  <animation>
+   <frame tileid="1519" duration="250"/>
+   <frame tileid="1520" duration="250"/>
+   <frame tileid="1521" duration="250"/>
+   <frame tileid="1522" duration="250"/>
+   <frame tileid="1523" duration="250"/>
+  </animation>
+ </tile>
+ <tile id="1556">
+  <animation>
+   <frame tileid="1556" duration="250"/>
+   <frame tileid="1557" duration="250"/>
+   <frame tileid="1558" duration="250"/>
+   <frame tileid="1559" duration="250"/>
+   <frame tileid="1560" duration="250"/>
+  </animation>
+ </tile>
+ <tile id="1593">
+  <animation>
+   <frame tileid="1593" duration="250"/>
+   <frame tileid="1594" duration="250"/>
+   <frame tileid="1595" duration="250"/>
+   <frame tileid="1596" duration="250"/>
+   <frame tileid="1597" duration="250"/>
+  </animation>
+ </tile>
+ <tile id="1630">
+  <animation>
+   <frame tileid="1630" duration="250"/>
+   <frame tileid="1631" duration="250"/>
+   <frame tileid="1632" duration="250"/>
+   <frame tileid="1633" duration="250"/>
+   <frame tileid="1634" duration="250"/>
+  </animation>
+ </tile>
+ <tile id="1667">
+  <animation>
+   <frame tileid="1667" duration="250"/>
+   <frame tileid="1668" duration="250"/>
+   <frame tileid="1669" duration="250"/>
+   <frame tileid="1670" duration="250"/>
+   <frame tileid="1671" duration="250"/>
+  </animation>
+ </tile>
+ <tile id="1704">
+  <animation>
+   <frame tileid="1704" duration="250"/>
+   <frame tileid="1705" duration="250"/>
+   <frame tileid="1706" duration="250"/>
+   <frame tileid="1707" duration="250"/>
+   <frame tileid="1708" duration="250"/>
+  </animation>
+ </tile>
+ <tile id="1741">
+  <animation>
+   <frame tileid="1741" duration="250"/>
+   <frame tileid="1742" duration="250"/>
+   <frame tileid="1743" duration="250"/>
+   <frame tileid="1744" duration="250"/>
+   <frame tileid="1745" duration="250"/>
+  </animation>
+ </tile>
+ <tile id="1778">
+  <animation>
+   <frame tileid="1778" duration="250"/>
+   <frame tileid="1779" duration="250"/>
+   <frame tileid="1780" duration="250"/>
+   <frame tileid="1781" duration="250"/>
+   <frame tileid="1782" duration="250"/>
+  </animation>
  </tile>
  <wangsets>
   <wangset name="Rubberduck" type="corner" tile="-1"/>

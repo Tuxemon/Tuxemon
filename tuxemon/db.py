@@ -376,6 +376,21 @@ class JSONDatabase:
 
         return filename
 
+    def lookup_entire_table(self, table: str) -> Dict[str, Any]:
+        """
+        Returns an entire table from the database.
+
+        Useful if you need to loop through ALL items in a table.
+
+        Parameters:
+            table: The name of the table to return, like "monster" or "items".
+
+        Returns:
+            An entire table, exactly how it's represented in the DB.
+
+        """
+        return self.database[table]
+
 
 def set_defaults(results: Dict[str, Any], table: str) -> Mapping[str, Any]:
     if table == "monster":

@@ -77,7 +77,7 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
 
         # Main Menu - Allows users to open the main menu in game.
         menu_items_map = (
-            ("menu_journal", not_implemented_dialog),
+            ("menu_journal", self.open_journal_menu),
             ("menu_monster", self.open_monster_menu),
             ("menu_bag", change_state("ItemMenuState")),
             ("menu_player", not_implemented_dialog),
@@ -159,6 +159,12 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
         monster_menu = self.client.replace_state("MonsterMenuState")
         monster_menu.on_menu_selection = handle_selection
         monster_menu.on_menu_selection_change = monster_menu_hook
+
+    def open_journal_menu(self) -> None:
+        from tuxemon.states.monster import JournalMenuState
+
+        context = dict()  # dict passed around to hold info between menus/callbacks
+        monster_menu = self.client.replace_state("JournalMenuState")
 
     def animate_open(self) -> Animation:
         """

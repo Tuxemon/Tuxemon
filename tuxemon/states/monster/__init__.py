@@ -25,20 +25,30 @@
 #
 #
 # states.MonsterMenuState Handles creating monster menu objects
+# states.JournalMenuState Menu that shows list of all monsters
 #
 from __future__ import annotations
+import logging
 import pygame
 
 from pygame.rect import Rect
 from tuxemon import prepare, graphics
+from tuxemon.locale import T
+from tuxemon.db import db
 from tuxemon import tools
 from tuxemon.menu.interface import HpBar, ExpBar, MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.session import local_session
+from tuxemon.sprite import Sprite
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import draw_text, TextArea
 from typing import Any, Optional, Generator
 from tuxemon.monster import Monster
+from tuxemon.platform.const import buttons
+from math import floor
+import pygame
+
+logger = logging.getLogger(__name__)
 
 
 class MonsterMenuState(Menu[Optional[Monster]]):
@@ -262,3 +272,231 @@ class MonsterMenuState(Menu[Optional[Monster]]):
             image = pygame.Surface((1, 1), pygame.SRCALPHA)
         self.monster_portrait.image = image
         self.refresh_menu_items()
+
+
+class JournalMenuState(Menu[Monster]):
+    """The journal menu allows you to view all monsters."""
+
+    background_filename = "gfx/ui/item/item_menu_bg.png"
+    draw_borders = False
+
+    def startup(self, **kwargs: Any) -> None:
+        self.state = "normal"
+
+        self.monster_sprite = Sprite()
+        self.sprites.add(self.monster_sprite, layer=100)
+
+        # do not move this line
+        super().startup(**kwargs)
+        self.menu_items.line_spacing = tools.scale(7)
+
+        # this is the area where the item description is displayed
+        rect = self.client.screen.get_rect()
+        rect.top = tools.scale(106)
+        rect.left = tools.scale(3)
+        rect.width = tools.scale(250)
+        rect.height = tools.scale(32)
+        self.text_area = TextArea(self.font, self.font_color, (96, 96, 128))
+        self.text_area.rect = rect
+        self.sprites.add(self.text_area, layer=100)
+
+        self.monster_center = self.rect.width * 0.16, self.rect.height * 0.45
+        self.monsters = db.lookup_entire_table("monster")
+        self.monster_index = 0
+        # The number of monsters to show in the list at once
+        self.monsters_to_show = 11
+
+    def calc_internal_rect(self) -> pygame.rect.Rect:
+        # area in the screen where the item list is
+        rect = self.rect.copy()
+        rect.width = int(rect.width * 0.58)
+        rect.left = int(self.rect.width * 0.365)
+        rect.top = int(rect.height * 0.05)
+        rect.height = int(self.rect.height * 0.60)
+        return rect
+
+    def on_menu_selection(self, menu_item: MenuItem[Monster]) -> None:
+        """
+        Called when player has selected a monster.
+
+        Currently, does nothing.
+
+        TODO: Open a new menu that shows monster details or something.
+
+        Parameters:
+            menu_item: Selected menu monster.
+
+        """
+        monster = menu_item.game_object
+
+    def initialize_items(self) -> Generator[MenuItem[Monster], None, None]:
+        """Refresh the visible tuxemon that will appear in the list.
+
+        We mostly want the cursor to stay where it is, and scroll the list of
+        monsters, except for the beginning or end of the list.
+
+        Therefore, scroll the list by collecting N Tuxemon that we want to
+        display right now, depending on the current monster_index.
+
+        TODO: Maybe make this more efficient in the future, rather than looping
+        through every single tuxemon.
+
+        :return: List(MenuItem)
+        """
+        # The monster_index will always be the first tuxemon to display at the
+        # top of the list. We can assume it'll always be clamped correctly so
+        # we'll never go off the end of the list.
+        # TODO: This function will crash if there's less monsters than in
+        # self.monsters_to_show 
+        i = self.monster_index
+        j = 0
+        for slug, monster in self.monsters.items():
+            if j >= i and j < i + self.monsters_to_show:
+                # TODO: Show actual tuxemon ID, rather than this temp number
+                label = "{:>3}   {}".format
+                label = label(str(j + 1), T.translate(slug))
+                image = self.shadow_text(label)
+                desc = T.translate(slug + "_description")
+                item = MenuItem(
+                    image,
+                    label,
+                    desc,
+                    db.lookup(slug, "monster")
+                )
+                yield item
+            j += 1
+
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+        """Override normal event handling, so we can have 100% control over the
+        cursor.
+
+        If up or down is pushed, override how cursor moves using
+        change_selection(), as we want the cursor to stay where it is, and
+        scroll the list of monsters instead most of the time.
+
+        If left or right is pushed, skip backwards or forwards an entire screen.
+
+        :type event: tuxemon.input.PlayerInput
+        :rtype: Optional[input.PlayerInput]
+        """
+        handled_event = False
+
+        # cursor movement
+        if event.button in (buttons.UP, buttons.DOWN, buttons.LEFT, buttons.RIGHT):
+            handled_event = True
+            valid_change = event.pressed and self.state == "normal" and self.menu_items
+            if valid_change:
+                if event.button == buttons.UP or event.button == buttons.DOWN:
+                    index = self.menu_items.determine_cursor_movement(self.selected_index, event)
+                    if not self.selected_index == index:
+                        self.change_selection(index)
+                elif event.button == buttons.LEFT:
+                    # Loop up an entire screen
+                    for i in range(self.monsters_to_show):
+                        self.change_selection(self.selected_index - 1)
+                elif event.button == buttons.RIGHT:
+                    # Loop down an entire screen
+                    for i in range(self.monsters_to_show):
+                        self.change_selection(self.selected_index + 1)
+
+        if not handled_event:
+            event = super().process_event(event)
+            return event
+
+    def change_selection(self, index: int, animate: bool = True) -> None:
+        """If cursor is halfway up the screen, then keep the cursor there but
+        scroll list of monsters up or down by changing monster_index, which will
+        update the items when initialize_items is called.
+
+        If we're at the start or end of the list of monsters, then the screen
+        doesn't need to scroll anymore - so allow index to go up or down as
+        normal.
+
+        Assuming the halfway point is = 5, ie. 10 or 11 tuxemon are being
+        displayed:
+        If index = 5, then cursor is in the middle of the screen, so you're at
+        monster ID's between 5 and MAX-5, and need to scroll the screen by
+        changing monster_index.
+
+        If index < 4, then you're at monster ID's 0-4 - change index as normal.
+        If index > 6, then you're at monster ID's MAX-4 to MAX - change index as
+        normal.
+
+        If index < 0 or index > self.monsters_to_show -1, you've gone off the
+        menu and need to loop back to the start/end of the menu.
+
+        Assumes the index will only ever move up or down by 1 each time this is
+        called, and will raise a runtime error if it doesn't.
+
+        TODO: This function will crash if there's less than
+        self.monsters_to_show monsters in the monster journal.
+
+        :return: None
+        """
+
+        # The following code wraps the cursor around when moving from the top of
+        # the screen to the bottom, or vice versa.
+        if index < 0:
+            index = self.monsters_to_show - 1
+        if index > self.monsters_to_show - 1:
+            index = 0
+
+        # TODO: I can't explain why this code is needed, but it catches bugs
+        # caused by the hacky code in process_events, when using left/right to
+        # move by a screen, but across the start/end of the menu. 
+        # I can't explain why it's needed but changing this even a tiny bit
+        # causes bugs to appear, so be careful if changing it.
+        if index == 0:
+            self.monster_index = 0
+            super().change_selection(index, False)
+        if index == self.monsters_to_show - 1:
+            self.monster_index = len(self.monsters) - self.monsters_to_show
+            super().change_selection(index, False)
+
+        # If cursor is in the middle of the screen, handle it as a special case
+        # - figure out if we should scroll the screen by changing monster_index,
+        # or if we're near the end of the list then don't scroll and move the
+        # cursor as normal.
+        halfway_point = floor(self.monsters_to_show / 2)
+        if self.selected_index == halfway_point:
+            if index == halfway_point + 1:
+                if self.monster_index >= len(self.monsters) - self.monsters_to_show:
+                    # We're near the end of the list, so change index normally
+                    super().change_selection(index, False)
+                else:
+                    # We're between monster ID's 4 and MAX-4, so keep the index
+                    # the same and just increment monster_index
+                    self.monster_index += 1
+                    super().change_selection(self.selected_index, False)
+
+            elif index == halfway_point -1:
+                if self.monster_index == 0:
+                    # We're near the start of the list, so change index normally
+                    super().change_selection(index, False)
+                else:
+                    # We're between monster ID's 4 and MAX-4, so keep the index
+                    # the same and just increment monster_index
+                    self.monster_index -= 1
+                    super().change_selection(self.selected_index, False)
+
+            else:
+                raise RuntimeError(f"Index moved from 5 to non-6 or 4")
+
+        else:
+            super().change_selection(index, False)
+
+    def on_menu_selection_change(self) -> None:
+        """Called when menu selection changes."""
+        self.reload_items()
+
+        item = self.get_selected_item()
+        if item:
+            json_monster = item.game_object
+            current_monster = Monster()
+            current_monster.load_from_db(json_monster["slug"])
+
+            image = graphics.load_and_scale(current_monster.front_battle_sprite)
+            self.monster_sprite.image = image
+            self.monster_sprite.rect = image.get_rect(center=self.monster_center)
+
+            self.alert(item.description)

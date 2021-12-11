@@ -328,6 +328,10 @@ class ShopMenuState(Menu[Item]):
             None if item_dict.get("infinite")
             else item_dict["quantity"]
         )
+        qty_in_bag = (
+            self.buyer.inventory[item.slug]["quantity"] if item.slug in self.buyer.inventory
+            else 0
+        )
         self.client.push_state(
             QuantityPriceMenu,
             callback=use_item,
@@ -336,6 +340,7 @@ class ShopMenuState(Menu[Item]):
             shrink_to_items=True,
             price=price,
             buyer=self.buyer,
+            qty_in_bag=qty_in_bag,
         )
 
     def initialize_items(self) -> Generator[MenuItem[Item], None, None]:

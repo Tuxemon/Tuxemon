@@ -7,7 +7,7 @@ from tuxemon.platform.const import intentions
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from typing import Optional, Any, Callable, Generator, TYPE_CHECKING
-from math import floor
+from math import floor, inf
 
 if TYPE_CHECKING:
     #from tuxemon.monster import Monster
@@ -28,6 +28,7 @@ class QuantityPriceMenu(Menu[None]):
         shrink_to_items: bool = False,
         price: int = 1,
         buyer: Optional[NPC] = None,
+        qty_in_bag: int = 1,
         **kwargs: Any,
     ) -> None:
         """
@@ -45,16 +46,16 @@ class QuantityPriceMenu(Menu[None]):
         self.quantity = quantity
         self.price    = price
         buyer_money = buyer.game_variables["money"]
-        self.max_quantity = min(max_quantity, floor(buyer_money / price))
+        self.max_quantity = min(max_quantity if max_quantity else inf, floor(buyer_money / price))
         if self.quantity > self.max_quantity:
             self.quantity = self.max_quantity
         assert callback
         self.callback = callback
         self.shrink_to_items = shrink_to_items
         self.buyer    = buyer
+        self.qty_in_bag = qty_in_bag
 
     def on_open(self) -> None:
-        logger.error(f"on_open - ")
         self.menu_items.arrange_menu_items()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
@@ -118,5 +119,10 @@ class QuantityPriceMenu(Menu[None]):
             formatted_name = label_format(self.buyer.game_variables["money"], count_len=count_len)
         else:
             formatted_name = ""
+        image = self.shadow_text(formatted_name, bg=(128, 128, 128))
+        yield MenuItem(image, formatted_name, None, None)
+        label_format = "In bag: x{:>{count_len}}".format
+
+        formatted_name = label_format(self.qty_in_bag, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)

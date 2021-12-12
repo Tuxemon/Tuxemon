@@ -28,7 +28,9 @@ class QuantityPriceMenu(Menu[None]):
         shrink_to_items: bool = False,
         price: int = 1,
         buyer: Optional[NPC] = None,
+        seller: Optional[NPC] = None,
         qty_in_bag: int = 1,
+        economy: Any = None,
         **kwargs: Any,
     ) -> None:
         """
@@ -45,15 +47,24 @@ class QuantityPriceMenu(Menu[None]):
         super().startup()
         self.quantity = quantity
         self.price    = price
-        buyer_money = buyer.game_variables["money"]
-        self.max_quantity = min(max_quantity if max_quantity else inf, floor(buyer_money / price))
+        self.buyer    = buyer
+        self.seller   = seller
+        buyer_money = (
+          buyer.game_variables["money"] if buyer
+          else None
+        )
+        logger.error(f" {max_quantity}, {buyer_money} ")
+        self.max_quantity = min(
+          max_quantity if max_quantity else inf,
+          floor(buyer_money / price) if buyer_money != None else inf)
         if self.quantity > self.max_quantity:
             self.quantity = self.max_quantity
+        logger.error(f" {self.max_quantity}")
         assert callback
         self.callback = callback
         self.shrink_to_items = shrink_to_items
-        self.buyer    = buyer
         self.qty_in_bag = qty_in_bag
+        self.economy = economy
 
     def on_open(self) -> None:
         self.menu_items.arrange_menu_items()
@@ -117,6 +128,8 @@ class QuantityPriceMenu(Menu[None]):
 
         if self.buyer and self.buyer.game_variables and "money" in self.buyer.game_variables:
             formatted_name = label_format(self.buyer.game_variables["money"], count_len=count_len)
+        elif self.seller and self.seller.game_variables and "money" in self.seller.game_variables:
+            formatted_name = label_format(self.seller.game_variables["money"], count_len=count_len)
         else:
             formatted_name = ""
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))

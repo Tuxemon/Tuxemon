@@ -843,9 +843,12 @@ class NPC(Entity[NPCState]):
         give = self.alter_item_quantity_and_money(
             session, seller, item.slug, quantity, price
         )
-        subtract = seller.alter_item_quantity_and_money(
-            session, self, item.slug, -quantity, price
-        )
+        if seller:
+            subtract = seller.alter_item_quantity_and_money(
+                session, self, item.slug, -quantity, price
+            )
+        else:
+            subtract = True
         return give and subtract
 
     def has_item(self, item_slug: str) -> bool:

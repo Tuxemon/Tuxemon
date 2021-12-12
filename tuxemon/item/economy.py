@@ -221,7 +221,7 @@ class Economy:
         return price
 
     def lookup_item_cost(self, item_slug: str) -> int:
-        """Looks up the item price from this economy, or any parent economies.
+        """Looks up the item cost from this economy, or any parent economies.
 
         The item is looked up by its slug.
 
@@ -229,9 +229,34 @@ class Economy:
             item_slug: The item slug to look up in this, or any parent economy databases.
 
         Returns:
-            Price of item for this or parent economies.
+            Cost of item for this or parent economies.
         """
-        return 2
+        found_in_economy = False
+        for item in self.items:
+            if item["item_name"] == item_slug and "cost" in item:
+                logger.error(f"{item_slug} found in economy {item['cost']}")
+                cost = item["cost"]
+                found_in_economy = True
+
+        # If cost not in this economy, look up costs in all parents recursively:
+        if not found_in_economy:
+            if self.parent:
+                logger.error("looking in parent {self.parent}")
+                try:
+                    cost = self.parent.lookup_item_cost(item_slug)
+                except RuntimeError as e:
+                    raise RuntimeError(
+                        f"Cost for item '{item_slug}' not "
+                        f"found in economy '{self.slug}'"
+                    )
+
+            else:
+                raise RuntimeError(
+                    f"Cost for item '{item_slug}' not found in "
+                    f"economy '{self.slug}'"
+                )
+
+        return cost
 
 
 #     def parse_economy_items(

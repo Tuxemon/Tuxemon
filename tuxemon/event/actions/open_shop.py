@@ -58,6 +58,7 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
                 ShopMenuState,
                 buyer=self.session.player,
                 seller=npc,
+                economy=npc.economy,
             )
 
         def sell_menu() -> None:
@@ -66,6 +67,7 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
                 ShopMenuState,
                 buyer=None,
                 seller=self.session.player,
+                economy=npc.economy,
             )
 
         var_menu = [

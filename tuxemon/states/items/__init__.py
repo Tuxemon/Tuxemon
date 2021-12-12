@@ -28,6 +28,7 @@
 # states.ShopMenuState
 #
 from __future__ import annotations
+import logging
 from tuxemon import tools
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -47,6 +48,8 @@ from tuxemon.states.monster import MonsterMenuState
 # But linters may say the import is unused.
 assert QuantityMenu
 assert QuantityPriceMenu
+
+logger = logging.getLogger(__name__)
 
 
 def sort_inventory(
@@ -272,6 +275,7 @@ class ShopMenuState(Menu[Item]):
         self.buyer = kwargs["buyer"]
         self.seller = kwargs["seller"]
         self.buyer_purge = kwargs.get("buyer_purge", False)
+        self.economy = kwargs["economy"]
 
     def calc_internal_rect(self) -> pygame.rect.Rect:
         # area in the screen where the item list is
@@ -296,13 +300,14 @@ class ShopMenuState(Menu[Item]):
 
         item_dict = self.seller.inventory[item.slug]
         price = (
-            1 if not self.seller.economy.lookup_item_price(item.slug)
-            else self.seller.economy.lookup_item_price(item.slug)
+            1 if not self.economy or not self.economy.lookup_item_price(item.slug)
+            else self.economy.lookup_item_price(item.slug)
         )
         cost = (
-            1 if not self.seller.economy.lookup_item_cost(item.slug)
-            else self.seller.economy.lookup_item_cost(item.slug)
+            3 if not self.economy or not self.economy.lookup_item_cost(item.slug)
+            else self.economy.lookup_item_cost(item.slug)
         )
+
         def use_item(quantity: int) -> None:
             if not quantity:
                 return
@@ -313,7 +318,7 @@ class ShopMenuState(Menu[Item]):
                 self.seller.buy_item(
                     self.client,
                     self.buyer,
-                    item.slug,
+                    item,
                     -quantity,
                     cost,
                 )
@@ -329,7 +334,9 @@ class ShopMenuState(Menu[Item]):
             else item_dict["quantity"]
         )
         qty_in_bag = (
-            self.buyer.inventory[item.slug]["quantity"] if item.slug in self.buyer.inventory
+            self.buyer.inventory[item.slug]["quantity"] if self.buyer and item.slug in self.buyer.inventory
+            else 0 if self.buyer 
+            else self.seller.inventory[item.slug]["quantity"] if self.seller and item.slug in self.seller.inventory
             else 0
         )
         self.client.push_state(
@@ -338,8 +345,9 @@ class ShopMenuState(Menu[Item]):
             max_quantity=max_quantity,
             quantity=1,
             shrink_to_items=True,
-            price=price,
+            price=price if self.buyer else cost,
             buyer=self.buyer,
+            seller=self.seller,
             qty_in_bag=qty_in_bag,
         )
 

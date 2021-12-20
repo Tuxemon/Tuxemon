@@ -509,6 +509,7 @@ class WorldState(state.State):
 
             # project to pixel/screen coords
             c = self.get_pos_from_tilepos(c)
+            r = Rect(c, s.get_size())
 
             # TODO: better handling of tall sprites
             # handle tall sprites

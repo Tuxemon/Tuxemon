@@ -53,7 +53,7 @@ setup(name='tuxemon',
       license="GPLv3",
       long_description='https://github.com/Tuxemon/Tuxemon',
       install_requires=REQUIREMENTS,
-      python_requires='>=3.6',
+      python_requires='>=2.5',
       entry_points={
           'gui_scripts': [
               'tuxemon = tuxemon.__main__:main'

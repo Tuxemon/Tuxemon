@@ -77,7 +77,7 @@ class SimpleAI(AI):
 
 
 class RandomAI(AI):
-    """AI will use random technique against random opponent."""
+    """AI will use random technique against random opponent"""
 
     def make_decision(
         self,

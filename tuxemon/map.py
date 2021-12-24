@@ -101,8 +101,8 @@ def translate_short_path(
     Passing a position will make the path relative to that point.
 
     Parameters:
-        path: String of path directions; ie "uldr".
-        position: Starting point of the path.
+        path: string of path directions; ie "uldr"
+        position: starting point of the path
 
     Yields:
         Positions in the path.
@@ -282,7 +282,7 @@ def snap_rect(
 
 
 def orientation_by_angle(angle: float) -> Orientation:
-    """Return "horizontal" or "vertical".
+    """Return "horizontal" or "vertical"
 
     Parameters:
         angle: Angle with the horizontal axis.
@@ -380,9 +380,9 @@ class PathfindNode:
 
 class TuxemonMap:
     """
-    Contains collisions geometry and events loaded from a file.
+    Contains collisions geometry and events loaded from a file
 
-    Supports entity movement and pathfinding.
+    Supports entity movement and pathfinding
     """
 
     def __init__(
@@ -403,11 +403,11 @@ class TuxemonMap:
         from one to another. Items in this list should be in the
         form of pairs, signifying that it is NOT possible to travel
         from the first tile to the second (but reverse may be
-        possible, i.e. jumping). All pairs of tiles must be adjacent
-        (not diagonal).
+        possible, i.e. jumping) All pairs of tiles must be adjacent
+        (not diagonal)
 
         Collision Lines Map
-        Create a list of all pairs of adjacent tiles that are impassable (aka walls).
+        Create a list of all pairs of adjacent tiles that are impassable (aka walls)
         example: ((5,4),(5,3), both)
 
         Parameters:
@@ -451,7 +451,10 @@ class TuxemonMap:
         )
 
     def reload_tiles(self):
-        """Reload the map tiles."""
+        """
+        Reload the map tiles
+
+        """
         data = pytmx.TiledMap(
             self.data.filename,
             image_loader=scaled_image_loader,

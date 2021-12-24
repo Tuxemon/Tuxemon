@@ -206,7 +206,7 @@ class Menu(Generic[T], state.State):
         """
         Checked when items are loaded/reloaded.
 
-        The return value will enable/disable menu items.
+        The return value will enable/disable menu items
 
         WIP.  The value passed should be Item.game_object.
 
@@ -220,9 +220,11 @@ class Menu(Generic[T], state.State):
         return True
 
     def reload_items(self) -> None:
-        """
-        Empty all items in the menu and re-add them.
-        Only works if initialize_items is used.
+        """Empty all items in the menu and re-add them
+
+        Only works if initialize_items is used
+
+        :return: None
         """
         self._needs_refresh = True
         items = self.initialize_items()
@@ -276,7 +278,9 @@ class Menu(Generic[T], state.State):
         self._needs_refresh = True
 
     def clear(self) -> None:
-        """Clears all menu items."""
+        """
+        Clears all menu items
+        """
         self.menu_items.clear()
         self._needs_refresh = True
 

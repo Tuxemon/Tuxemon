@@ -18,51 +18,35 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-# Contributor(s):
-#
-# Adam Chevalier <chevalierAdam2@gmail.com>
-#
 
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
-from tuxemon.locale import T
 from typing import NamedTuple, final
-from tuxemon.menu.input import InputMenu
 
 
-class RenamePlayerActionParameters(NamedTuple):
-    pass
+class WaitForSecsActionParameters(NamedTuple):
+    seconds: float
 
 
 @final
-class RenamePlayerAction(EventAction[RenamePlayerActionParameters]):
+class WaitForSecsAction(EventAction[WaitForSecsActionParameters]):
     """
-    Open the text input screen to rename the player.
+    Pause the event engine for a number of seconds.
 
     Script usage:
         .. code-block::
 
-            rename_player
+            wait_for_secs <seconds>
+
+    Script parameters:
+        seconds: Time in seconds for the event engine to wait for.
 
     """
 
-    name = "rename_player"
-    param_class = RenamePlayerActionParameters
-
-    def set_player_name(self, name: str) -> None:
-        self.session.player.name = name
+    name = "wait_for_secs"
+    param_class = WaitForSecsActionParameters
 
     def start(self) -> None:
-        self.session.client.push_state(
-            state_name=InputMenu,
-            prompt=T.translate("input_name"),
-            callback=self.set_player_name,
-            escape_key_exits=False,
-            initial=self.session.player.name,
-        )
-
-    def update(self) -> None:
-        try:
-            self.session.client.get_state_by_name(InputMenu)
-        except ValueError:
-            self.stop()
+        secs = self.parameters.seconds
+        self.session.client.event_engine.state = "waiting"
+        self.session.client.event_engine.wait = secs

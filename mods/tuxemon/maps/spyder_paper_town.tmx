@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="451">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="451">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -133,20 +133,19 @@
  <tileset firstgid="8023" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="8127" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtljEOwjAMRbOUk3AATgITMABigMIJ2LtwS5AYYOUM2GosWcZxatQIhFrJcmNb9etPXPVZhTCtQvMvtoR3WUSbG+81GYXmlLCSWmyBifpuDD6q0fzA12r4Tf3OY31uuu5vyT20ns359nFOdvFM0tqaG+vZuRyfTZpR6YlFO/cUs/Y9x5DLU48ufg26HRSrIZbr82keubSeFFvFvcS6kjql+LFvKodxfv4Gvnetfk2/h/P/gO8vfU/4jPf9bUG+rowzcf5Qa2l9n0nik/4KLNwusEa+IxjNsuZryFvz5c1JrtT6HvmQEQ37BLi8/bz1KR4ZvwEP15PuUVdvT0+95PCuUVdPP2+tl0fWl+Z7AVRVsSk=
+   eAHtlsEKwjAMhnvR5/FJ9KQeVDzo9Am870EVPOjVZzDB/hBimy6ygsoGoWsSlm9/k7HHKITpKLT/Ykt6l0W0ufFek3FoTxmrqcWWmFB3Y/AhJ7UOfC8Nf1m/mmdoPVv23z7OyS72JPbW3FjPLsXkbGJG9QqWVN/DZ517iaEUR40u65p0OySsIV+pzqdx5krVhG8Vz5LzauqU4+e6uRj7Zf8NfO9afZt+d+f/gTxffE/kjPf9bWG+rowz1X+stba+exJ8er0Qi7Qz7ZnvSIZZTq0Nxa358sY0V25/i3zMyMZ1Al3eet78HI/2X4lH6ol71tVb05OvObx71tVTz5vr5dH5tfme2NOxUw==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG9VjlOA0EQnABzvIAHgJ1hHBLzCPgEICITIW0CyI8AwweQCIAvQE4IEhEi4vgB1ZLLXhXbM7PsGkulnj62q7bdHrm/EIoNoC82OJ/DTiic1DR8thiK0whOkFM+z9+Frh1A7ZSsdNjulRwcb8Rndgz+AUBf7Tlyyuf5nm7tWcc3fbF60+fxatzTHeufyuXo83g1rnrppzTE8jn6yJOyqpf+dTemIJ67x/d3F8EtcuRJWdUfZ26eVb6Ur/qbK4h3UL6UT/3xrvWyB7gj9zOwhxrye5b66ymYVY9kT7fAOQR6y7/vmHXE1gDat4w9pG7lmSn422lQoU87mT7ye7bp/JSTftX8mDPbhf6c+T11QjD89/w2J/q8uTH+gl0xPAPl92vjzD3zeuXMj8++TnS2oTf3u8jZP+pTa3o1Zr7dHccT2B1SVePF9M6xOu6/Z71eXvwdvznm7P8W92Relly5dnVpps+e8d67rfjXSiiOgCGQ0niFmkupm9fc2PcbfGPgArDzB/AJmG6z5lvc/EfgASi/R1tz8vr8AFMSVkA=
+   eAG1VjlOA0EQnABzvIAHcGQYhzyDyHyBABCRiZA2Ab8CDI/A/oLJCUEiQkQcP6BK2jJWsz0zSDOWSrV9bFftuL1yfyU0e0DfcHA+573QOKVFerwamusIrlCzel58BF9DwPJCbOni0Hg7NrFaJ9AfAIot36Bm9bzY821n/iemv1g//Xm6Nu/5js1P1XL8ebo2b/0qTnmI1XP8SSfF1q/iA2e3Yr5Um+H7m0bwgJp0Umz9S6MWW71UbP3X8qW5Vi8Vy7/uL8Fn2I3TDJygR/oey38JX5zBvR0Bu+t/3zHbyG0B4reMPZTvUv40Z9DhTzUx/Unf49LnJ+2u81ONvAP/Oef31AuBKP1Jnd9+6887N+VfsCvEM1Dao/bMm5tzfrr3tfVZ06+0xDn7p17L9GtzjPnuuGzBd0hXj5ez7xz2af899mZ5+Xf85lTj/y3tSS2WVi5vrv364z3ec5fKf22E5gIYASmP9+i5M321zk1zv6E3AW4BXn8AnwB9kxkzz/gRmAPLz1HqnLw5PwVpVGI=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFlrlOAzEQhi3Igmh4Bs6GI3TwDFwVhFCAqAgVQuKqAiwlHQlQcb0HV8VZ8BCIq+EsQRR8RhlhWTbKimWJ9GXs3zOef727SpRyf6YCFU46qE2pUCp8OZdVKvyAdwcXaFJfTgzolwI7+mq7DH86p7EmWr+rkj+7n2/u82HqWTwNWb7M9Q2lwnVYgyIUwFw3x+LP1H4a+3xnfvBj73eEn0M4gH3YAztH5uLP19fWpc4Vd+mzA9uwBZtg5+n7fY9+B7dwA9fge/7efvn8Sf9cs1Ln9DmDUziBY5B1M2YD7j9kQPRuYyxaA89qwPWkoNwota74ip8XeIYneAT7/XDVxanJdcS5Z5S9pL8vmnuNBd/3x9STGIs/6SVziVoXfyMJ+pT+vih+TX+j+OuoUGEa2qENWqEFzHwZN6E3QgPUQx3IWpxRzk/7G6ZHFoYgA4MwAK5+/eh90As90A2uPJfmOzfR07zr7aBrTX/L9FhBWyIuwgLkobOUq/P156FShfPoczALMzANX4sxfJm/XROcWw7GIYaty9pCzskX7U1Wq5PzZvcuZ16I4E///1qIgN0/T63v3ES3a6L4s2uTmBcjnJ/2I9f5VzGJa/7PHn91brLvJyzh3sY=
+   eAHFlrlOAzEQhi3Igmh4Bq4KSOjgGcJRQQgFiAqoEBJXFWAp6SBAxfUeXBVnwUMgroazBFHwGWWEZdkoKzZLpC9j/57x/OvdVaKU+zMVqHDSQX1KhVLhy7mqUeEnfDi4RJP6cmJAvxTY0VfbZfjTOc110fpdl/zZ/Xxznw9Tz+Np0PJlrm8qFW7AOhRhDcx1cyz+TO23sc937hc/9n7H+DmCQziAfbBzZC7+fH1tXepccY8+u7AD27AFdp6+3w/o93AHt3ADvufv/Y/Pn9n/gj7ncAancALmuozzAfcfciBa1hiL1sSzGnA9KSg3Sq0rvuHnFV7gGZ7Afj9cdXFqch1x7hllL+nvi+Zeo8HP/TH1JMbiT3rJXKLWxd9wgj6lvy+KX9PfCP46qlSYgTS0Qxu0gpkv4xb0ZmiCRmgAWYszyvlpf0P0yMMg5GAA+sHVrw+9F3qgG7LgynNpvnMTPcO7ngZda/pbpscK2hJxERagAJ2lXJ2vP4/VKpxHn4NZmIFp+F6M4cv87Zrg3MZhDGLYuqwt5Jx80d5ktTY5b3bvcuZrEfzp/18LEbD7F6j1nZvodk0Uf3ZtEvNihPPTfuQ6KxWTuOb/7FGpc5N9vwAio947
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">

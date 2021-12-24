@@ -74,10 +74,10 @@ def capture_screenshot(client: LocalPygameClient) -> pygame.surface.Surface:
     Capture a screenshot.
 
     Parameters:
-        client: Tuxemon client.
+            client: Tuxemon client.
 
     Returns:
-        Captured image.
+            Captured image.
 
     """
     screenshot = pygame.Surface(client.screen.get_size())
@@ -91,10 +91,10 @@ def get_save_data(session: Session) -> Mapping[str, Any]:
     Gets a dictionary which represents the state of the session.
 
     Parameters:
-        session: Game session.
+            session: Game session.
 
     Returns:
-        Game data to save, must be JSON encodable.
+            Game data to save, must be JSON encodable.
 
     """
     save_data = session.player.get_state(session)
@@ -213,8 +213,8 @@ def save(
     Saves the current game state to a file using gzip compressed JSON.
 
     Parameters:
-        save_data: The data to save.
-        slot: The save slot to save the data to.
+            save_data: The data to save.
+            slot: The save slot to save the data to.
 
     """
     # Save a screenshot of the current frame
@@ -243,10 +243,10 @@ def load(slot: int) -> Optional[Mapping[str, Any]]:
     Loads game state data from a save file.
 
     Parameters:
-        slot: The save slot to load game data from.
+            slot: The save slot to load game data from.
 
     Returns:
-        Dictionary containing game data to load.
+            Dictionary containing game data to load.
 
     """
     save_path = get_save_path(slot)

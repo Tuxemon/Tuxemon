@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 # Class definition for the player.
 class Player(NPC):
-    """Object for Players. WIP."""
+    """Object for Players.  WIP"""
 
     def __init__(
         self,

@@ -52,9 +52,11 @@ def snap_objects(tree):
 @click.argument("filename", nargs=-1)
 def click_shim(filename, write):
     """
-    Move all events and collisions in a file to align with the tile grid.
 
-    Can accept multiple filenames.
+    Move all events and collisions in a file to align with the tile grid
+
+    Can accept multiple filenames
+
     """
     for filepath in filename:
         tree = ET.parse(filepath)

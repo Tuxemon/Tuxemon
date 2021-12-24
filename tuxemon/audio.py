@@ -29,7 +29,7 @@ def load_sound(slug: Optional[str]) -> SoundProtocol:
     Load a sound from disk, identified by it's slug in the db.
 
     Parameters:
-        slug: Slug for the file record to load.
+        slug: slug for the file record to load
 
     Returns:
         Loaded sound, or a placeholder silent sound if it is

@@ -148,8 +148,12 @@ class Body:
         """
         Saves the current instance and all its properties to a json file.
 
-        Parameters:
-            filename: The path to the file to save.
+        :param filename: The path to the file to save.
+
+        :type filename: String
+
+        :rtype: None
+        :returns: None
 
         """
 

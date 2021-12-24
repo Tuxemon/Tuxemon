@@ -8,7 +8,7 @@ import os.path
 
 
 class WEB_PATHS:
-    """Listing of Web content resource paths for the Tuxepedia."""
+    """Listing of Web content resource paths for the Tuxepedia"""
 
     tuxepedia = "https://wiki.tuxemon.org"
 
@@ -19,7 +19,7 @@ class WEB_PATHS:
 
 
 class RESOURCE_PATHS:
-    """Listing of all resource paths for the Tuxepedia."""
+    """Listing of all resource paths for the Tuxepedia"""
 
     # TODO: add project root path from global constants if possible
     # main static resources path

@@ -23,7 +23,7 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
+# Leif Theden <leif.theden@gmail.com
 #
 #
 from argparse import ArgumentParser

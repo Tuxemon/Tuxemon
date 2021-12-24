@@ -129,12 +129,14 @@ class Technique:
             self.load(slug)
 
     def load(self, slug: str) -> None:
-        """
-        Loads and sets this technique's attributes from the technique
+        """Loads and sets this technique's attributes from the technique
         database. The technique is looked up in the database by slug.
 
-        Parameters:
-            The slug of the technique to look up in the database.
+        :param slug: The slug of the technique to look up in the database.
+
+        :type slug: String
+
+        :rtype: None
         """
 
         results = db.lookup(slug, table="technique")

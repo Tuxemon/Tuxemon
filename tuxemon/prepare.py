@@ -102,9 +102,6 @@ XP_COLOR = (248, 245, 71)
 # used for scaling.
 NATIVE_RESOLUTION = [240, 160]
 
-# Set the character limit for setting a player name.
-PLAYER_NAME_LIMIT = 30
-
 # If scaling is enabled, scale the tiles based on the resolution
 if CONFIG.large_gui:
     SCALE = 2
@@ -124,7 +121,7 @@ DEV_TOOLS = CONFIG.dev_tools
 
 
 def pygame_init() -> None:
-    """Eventually refactor out of prepare."""
+    """Eventually refactor out of prepare"""
     global JOYSTICKS
     global FONTS
     global MUSIC

@@ -143,11 +143,6 @@ class TuxemonConfig:
 def get_custom_pygame_keyboard_controls(
     cfg: configparser.ConfigParser,
 ) -> Mapping[Optional[int], int]:
-    """
-    Parameters:
-        cfg: Config parser.
-
-    """
     import pygame.locals
 
     custom_controls: Dict[Optional[int], int] = {None: events.UNICODE}
@@ -169,14 +164,6 @@ def get_custom_pygame_keyboard_controls(
 def get_custom_pygame_keyboard_controls_names(
     cfg: configparser.ConfigParser
 ) -> Mapping[Optional[str], int]:
-    """
-    Basically the same thing as `get_custom_pygame_keyboard_controls()`, but
-    returns with the key's string value instead of int
-
-    Parameters:
-        cfg: Config parser.
-
-    """
     custom_controls: Dict[Optional[int], int] = {None: events.UNICODE}
     for key, values in cfg.items("controls"):
         key = key.upper()
@@ -317,7 +304,10 @@ def get_defaults() -> Mapping[str, Any]:
 
 
 def generate_default_config() -> configparser.ConfigParser:
-    """Get new config file from defaults."""
+    """Get new config file from defaults
+
+    :rtype: configparser.ConfigParser
+    """
     cfg = configparser.ConfigParser()
     populate_config(cfg, get_defaults())
     return cfg

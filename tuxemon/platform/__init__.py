@@ -33,7 +33,7 @@ if android is None:
 
 
 def init() -> None:
-    """Must be called before pygame.init() to enable low latency sound."""
+    """Must be called before pygame.init() to enable low latency sound"""
     # reduce sound latency.  the pygame defaults were ok for 2001,
     # but these values are more acceptable for faster computers
     if _pygame:
@@ -44,7 +44,7 @@ def init() -> None:
 def get_user_storage_dir() -> str:
     """
 
-    Mutable storage for things like config, save games, mods, cache.
+    Mutable storage for things like config, save games, mods, cache
 
     """
     if android:
@@ -58,12 +58,12 @@ def get_user_storage_dir() -> str:
 def get_system_storage_dirs() -> Sequence[str]:
     """
 
-    Should be immutable storage for things like system installed code/mods.
+    Should be immutable storage for things like system installed code/mods
 
     Android storage is still WIP.  should be immutable, but its not...
 
     The primary user of this storage are packages for operating systems
-    that will install the mods into a folder like /usr/share/tuxemon.
+    that will install the mods into a folder like /usr/share/tuxemon
 
     """
     if android:

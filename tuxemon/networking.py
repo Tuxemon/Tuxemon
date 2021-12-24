@@ -54,9 +54,12 @@ class TuxemonServer:
     """Server class for multiplayer games. Creates a netaria server and
     synchronizes the local game with all client states.
 
-    :param game: Instance of the local game.
+    :param game: instance of the local game.
 
     :type game: tuxemon.control.Control object.
+
+    :rtype: None
+    :returns: None
 
     """
 
@@ -80,7 +83,16 @@ class TuxemonServer:
         self.server = NeteriaServer(Multiplayer(self), server_port=40081, server_name=self.server_name)
 
     def update(self):
-        """Updates the server state with information sent from the clients."""
+        """Updates the server state with information sent from the clients
+
+        :param None
+
+        :type None
+
+        :rtype: None
+        :returns: None
+
+        """
         self.server_timestamp = datetime.now()
         for cuuid in self.server.registry:
             try:
@@ -95,7 +107,7 @@ class TuxemonServer:
             except KeyError:
                 self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
 
-    def server_event_handler(self, cuuid, event_data) -> None:
+    def server_event_handler(self, cuuid, event_data):
         """Handles events sent from the middleware that are legal.
 
         :param cuuid: Clients unique user identification number.
@@ -103,6 +115,9 @@ class TuxemonServer:
 
         :type cuuid: String
         :type event_data: Dictionary
+
+        :rtype: None
+        :returns: None
 
         """
         # Only respond to the latest message of a given type
@@ -159,7 +174,7 @@ class TuxemonServer:
                 self.server.registry[cuuid]["map_name"] = event_data["map_name"]
             self.notify_client(cuuid, event_data)
 
-    def update_char_dict(self, cuuid, char_dict) -> None:
+    def update_char_dict(self, cuuid, char_dict):
         """Updates registry with player updates.
 
         :param cuuid: Clients unique user identification number.
@@ -167,17 +182,25 @@ class TuxemonServer:
 
         :type cuuid: String
         :type event_data: String
+
+        :rtype: None
+        :returns: None
+
         """
         for param in char_dict:
             self.server.registry[cuuid]["char_dict"][param] = char_dict[param]
 
-    def notify_client(self, cuuid: str, event_data: str) -> None:
-        """
-        Updates all clients with player updates.
+    def notify_client(self, cuuid, event_data):
+        """Updates all clients with player updates.
 
-        Parameters:
-            cuuid: Clients unique user identification number.
-            event_data: Notification flag information.
+        :param cuuid: Clients unique user identification number.
+        :param event_data: Notification flag information.
+
+        :type cuuid: String
+        :type event_data: String
+
+        :rtype: None
+        :returns: None
 
         """
         cuuid = str(cuuid)
@@ -192,7 +215,7 @@ class TuxemonServer:
             elif client_id != cuuid:
                 self.server.notify(client_id, event_data)
 
-    def notify_populate_client(self, cuuid, event_data) -> None:
+    def notify_populate_client(self, cuuid, event_data):
         """Updates all clients with the details of the new client.
 
         :param cuuid: Clients unique user identification number.
@@ -200,6 +223,9 @@ class TuxemonServer:
 
         :type cuuid: String
         :type event_data: Dictionary
+
+        :rtype: None
+        :returns: None
 
         """
         cuuid = str(cuuid)
@@ -227,7 +253,7 @@ class TuxemonServer:
                 }
                 self.server.notify(cuuid, event_data_2)
 
-    def notify_client_interaction(self, cuuid, event_data) -> None:
+    def notify_client_interaction(self, cuuid, event_data):
         """Notify a client that another client has interacted with them.
 
         :param cuuid: Clients unique user identification number.
@@ -235,6 +261,9 @@ class TuxemonServer:
 
         :type cuuid: String
         :type event_data: Dictionary
+
+        :rtype: None
+        :returns: None
 
         """
         cuuid = str(cuuid)
@@ -252,6 +281,9 @@ class ControllerServer:
 
     :type game: tuxemon.control.Control object.
 
+    :rtype: None
+    :returns: None
+
     """
 
     def __init__(self, game):
@@ -267,7 +299,16 @@ class ControllerServer:
         self.server = NeteriaServer(Controller(self))
 
     def update(self):
-        """Updates the server state with information sent from the clients."""
+        """Updates the server state with information sent from the clients
+
+        :param None
+
+        :type None
+
+        :rtype: None
+        :returns: None
+
+        """
         # Loop through our network events and pass them to the current state.
         controller_events = self.net_controller_loop()
         if controller_events:
@@ -276,10 +317,15 @@ class ControllerServer:
                 self.game.current_state.process_event(controller_event)
 
     def net_controller_loop(self):
-        """
-        Process all network events from controllers and pass them
+        """Process all network events from controllers and pass them
         down to current State. All network events are converted to keyboard
         events for compatibility.
+
+        :param None:
+
+        :rtype: None
+        :returns: None
+
         """
         events = []
         for event_data in self.network_events:
@@ -339,6 +385,9 @@ class TuxemonClient:
 
     :type game: tuxemon.control.Control object.
 
+    :rtype: None
+    :returns: None
+
     """
 
     def __init__(self, game):
@@ -364,12 +413,15 @@ class TuxemonClient:
         self.client = NeteriaClient(server_port=40081)
         self.client.registry = {}
 
-    def update(self, time_delta: float):
-        """
-        Updates the client and local game state with information sent from the server.
+    def update(self, time_delta):
+        """Updates the client and local game state with information sent from the server
 
-        Parameters:
-            time_delta: Time since last frame.
+        :param time_delta: Time since last frame.
+
+        :type time_delta: float
+
+        :rtype: None
+        :returns: None
 
         """
         if self.enable_join_multiplayer:
@@ -387,11 +439,15 @@ class TuxemonClient:
 
         self.check_notify()
 
-    def check_notify(self) -> None:
-        """
-        Checks for notify events sent from the
-        server and updates the local client registry
+    def check_notify(self):
+        """Checks for notify events sent from the server and updates the local client registry
         to reflect the updated information.
+
+        :param: None
+
+        :rtype: None
+        :returns: None
+
         """
         for euuid, event_data in self.client.event_notifies.items():
 
@@ -468,12 +524,15 @@ class TuxemonClient:
                         sprite.direction[d] = False
                 del self.client.event_notifies[euuid]
 
-    def join_multiplayer(self, time_delta: float):
-        """
-        Joins the client to the selected server.
+    def join_multiplayer(self, time_delta):
+        """Joins the client to the selected server.
 
-        Parameters:
-            time_delta: Time since last frame.
+        :param time_delta: Time since last frame.
+
+        :type time_delta: float
+
+        :rtype: None
+        :returns: None
 
         """
         # Don't allow player to join another game if they are hosting.
@@ -498,10 +557,15 @@ class TuxemonClient:
             self.wait_broadcast += time_delta
 
     def update_multiplayer_list(self):
-        """
-        Sends a broadcast to 'ping' all servers on the local network. Once a server responds
+        """Sends a broadcast to 'ping' all servers on the local network. Once a server responds
         it will verify that the server is not hosted by the client who sent the ping. Once a
         server has been identified it adds it to self.available_games.
+
+        :param None:
+
+        :rtype: None
+        :returns: None
+
         """
         self.client.autodiscover(autoregister=False)
 
@@ -525,7 +589,13 @@ class TuxemonClient:
                 self.server_list.append(host_name)
 
     def populate_player(self, event_type="PUSH_SELF"):
-        """Sends client character to the server."""
+        """Sends client character to the server.
+
+        :param None
+        :rtype: None
+        :returns: None
+
+        """
         if not event_type in self.event_list:
             self.event_list[event_type] = 0
         pd = prepare.player1.__dict__
@@ -547,17 +617,18 @@ class TuxemonClient:
         self.client.event(event_data)
         self.populated = True
 
-    def update_player(
-        self,
-        direction: str,
-        event_type: str = "CLIENT_MAP_UPDATE",
-    ):
-        """
-        Sends client's current map and location to the server.
+    def update_player(self, direction, event_type="CLIENT_MAP_UPDATE"):
+        """Sends client's current map and location to the server.
 
-        Parameters:
-            direction: Facing/Movement direction of clients character.
-            event_type: Event type sent to server used for event_legal() and event_execute() functions in middleware.
+        :param direction: Facing/Movement direction of clients character
+        :param event_type: Event type sent to server used for event_legal() and event_execute()
+        functions in middleware.
+
+        :type direction: String
+        :type type: String
+
+        :rtype: None
+        :returns: None
 
         """
         if not event_type in self.event_list:
@@ -574,13 +645,16 @@ class TuxemonClient:
         self.event_list[event_type] += 1
         self.client.event(event_data)
 
-    def set_key_condition(self, event) -> None:
+    def set_key_condition(self, event):
         """Sends server information about a key condition being set or that an
         interaction has occurred.
 
-        :param event: Pygame key event.
+        :param event: Pygame key event
 
         :type event: Dictionary
+
+        :rtype: None
+        :returns: None
 
         """
         if self.game.current_state != self.game.get_state_by_name("WorldState"):
@@ -646,7 +720,7 @@ class TuxemonClient:
                 self.event_list[event_type] += 1
                 self.client.event(event_data)
 
-    def update_client_map(self, cuuid, event_data) -> None:
+    def update_client_map(self, cuuid, event_data):
         """Updates client's current map and location to reflect the server registry.
 
         :param cuuid: Clients unique user identification number.
@@ -654,6 +728,9 @@ class TuxemonClient:
 
         :type cuuid: String
         :type event_data: Dictionary
+
+        :rtype: None
+        :returns: None
 
         """
         sprite = self.client.registry[cuuid]["sprite"]
@@ -696,10 +773,12 @@ class TuxemonClient:
     def route_combat(self, event):
         logger.debug(event)
 
-    def client_alive(self) -> None:
+    def client_alive(self):
         """Sends server a ping to let it know that it is still alive.
 
         :param: None
+        :rtype: None
+        :returns: None
 
         """
         event_type = "PING"
@@ -773,7 +852,7 @@ def populate_client(cuuid, event_data, game, registry):
     return sprite
 
 
-def update_client(sprite, char_dict, game) -> None:
+def update_client(sprite, char_dict, game):
     """Corrects character location when it changes map or loses sync.
 
     :param sprite: Local NPC sprite stored in the registry.
@@ -783,6 +862,9 @@ def update_client(sprite, char_dict, game) -> None:
     :type sprite: Player or Npc object from tuxemon.player
     :type event_data: Dictionary
     :type game: tuxemon.control.Control() object
+
+    :rtype: None
+    :returns: None
 
     """
 

@@ -2,9 +2,9 @@ babel
 cbor
 neteria
 pillow
-pygame==2.1.0
-pyscroll==2.28
-pytmx==3.30
+pygame==1.9.1
+pyscroll==2.12
+pytmx==?
 requests>=2.19.1
 natsort
 PyYAML>=5.4.1

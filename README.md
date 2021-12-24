@@ -38,11 +38,13 @@ If you want to try the game, it's recommended to download and try the
 development branch first. The master branch be stable, but is often out
 of date.
 
+Keep in mind this is the fork to work on older windows,such as 9x and NT 4.0.
+
 
 **Windows Source**
 
-Install the latest version of python 3 from
-[here](https://www.python.org/downloads/)
+Install Python 2.5.4 from
+[here](https://www.python.org/downloads/release/python-254/)
 
 Run:
 

@@ -32,12 +32,12 @@ for match in matches:
     modules.append(match)
 
 # Get the version from the README file.
-with open("README.md", "r") as f:
-    VERSION = f.readline().split(" ")[-1].replace("\n", "")
+with open("README.md", "r") as format:
+    VERSION = format.readline().split(" ")[-1].replace("\n", "")
 
 # Get the dependencies from requirements.text
-with open("requirements.txt", "r") as f:
-    REQUIREMENTS = f.read().splitlines()
+with open("requirements.txt", "r") as format:
+    REQUIREMENTS = format.read().splitlines()
 
 # Configure the setuptools
 setup(name='tuxemon',

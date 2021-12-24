@@ -67,10 +67,10 @@ class DialogAction(EventAction[DialogActionParameters]):
 
     def start(self) -> None:
         warnings.warn(
-            f"Found deprecated dialog action, please use "
-            f"translated_dialog instead. "
-            f"Action: {self.name}. "
-            f"Parameters: {self.raw_parameters}.",
+            format"Found deprecated dialog action, please use "
+            format"translated_dialog instead. "
+            format"Action: {self.name}. "
+            format"Parameters: {self.raw_parameters}.",
             DeprecationWarning,
         )
         text = replace_text(self.session, self.parameters.text)

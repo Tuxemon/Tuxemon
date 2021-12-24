@@ -120,11 +120,15 @@ class TuxemonConfig:
         self.debug_level = cfg.get("logging", "debug_level")
 
         # [crash_reporting]        
-        self.log_host = cfg.get("crash_reporting", "log_host")  # The log storage type.
-        self.auto_open_link = cfg.get("crash_reporting", "auto_open_link")  # Should the report link be opened automatically?
+        # The log storage type.
+        self.log_host = cfg.get("crash_reporting", "log_host")  
+        # Should the report link be opened automatically?
+        self.auto_open_link = cfg.get("crash_reporting", "auto_open_link")  
 
-        self.log_storage_max_days = cfg.get("crash_reporting", "log_host_max_storage_days")  # How much time should log be stored
-        self.popup = cfg.get("crash_reporting", "crash_report_popup")  # Should the crash popup be displayed? (True/False/None)
+        # How much time should log be stored
+        self.log_storage_max_days = cfg.get("crash_reporting", "log_host_max_storage_days")  
+        # Should the crash popup be displayed? (True/False/None)
+        self.popup = cfg.get("crash_reporting", "crash_report_popup")  
 
 
         # input config (None means use default for the platform)

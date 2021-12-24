@@ -161,7 +161,7 @@ class ControlState(PopUpMenu[ControlStateObj]):
         )
 
         for key, button in key_items_map:
-            label = f"{T.translate(key).upper()}"
+            label = format"{T.translate(key).upper()}"
             image = self.shadow_text(label)
             item = MenuItem(image, label, None, change_state("SetKeyState", button=button))
             item.enabled = button is not None

@@ -3,9 +3,9 @@ cbor
 neteria
 pillow
 pygame==1.9.1
-pyscroll==2.12
-pytmx==?
+pyscroll 
+pytmx
 requests>=2.19.1
 natsort
-PyYAML>=5.4.1
+PyYAML>
 prompt_toolkit

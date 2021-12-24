@@ -8,7 +8,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.delayed_teleport.DelayedTeleportAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.dialog.DialogAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.dialog_chain.DialogChainAction 
-.. autoscriptinfoclass:: tuxemon.event.actions.dialog_choice.DialogChoiceAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.evolve_monsters.EvolveMonstersAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.fadeout_music.FadeoutMusicAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.get_player_monster.GetPlayerMonsterAction 
@@ -58,6 +57,5 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog_choice.TranslatedDialogChoiceAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.update_inventory.UpdateInventoryAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.variable_math.VariableMathAction 
-.. autoscriptinfoclass:: tuxemon.event.actions.wait.WaitAction 
-.. autoscriptinfoclass:: tuxemon.event.actions.wait_for_secs.WaitForSecsAction 
+.. autoscriptinfoclass:: tuxemon.event.actions.wait.WaitAction
 .. autoscriptinfoclass:: tuxemon.event.actions.withdraw_monster.WithdrawMonsterAction

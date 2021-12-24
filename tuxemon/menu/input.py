@@ -38,6 +38,7 @@ class InputMenu(Menu[InputMenuObj]):
         prompt: str = "",
         callback: Optional[Callable[[str], None]] = None,
         initial: str = "",
+        char_limit: int = None,
         **kwargs: Any,
     ) -> None:
         """
@@ -80,6 +81,7 @@ class InputMenu(Menu[InputMenuObj]):
 
         self.prompt.text = prompt
         self.callback = callback
+        self.char_limit = char_limit
         assert self.callback
 
     def calc_internal_rect(self) -> Rect:
@@ -183,8 +185,9 @@ class InputMenu(Menu[InputMenuObj]):
         self.client.pop_state()
 
     def add_input_char(self, char: str) -> None:
-        self.input_string += char
-        self.update_text_area()
+        if self.char_limit is None or len(self.input_string) <= self.char_limit:
+            self.input_string += char
+            self.update_text_area()
 
     def update_text_area(self) -> None:
         self.text_area.text = self.input_string

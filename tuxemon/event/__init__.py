@@ -72,7 +72,7 @@ def get_npc(session: Session, slug: str) -> Optional[NPC]:
     Gets an NPC object by slug.
 
     Parameters:
-        session: The session object
+        session: The session object.
         slug: The slug of the NPC that exists on the current map.
 
     Returns:

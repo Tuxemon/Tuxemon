@@ -28,6 +28,7 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from typing import NamedTuple, final
 from tuxemon.menu.input import InputMenu
+from tuxemon import prepare
 
 
 class RenamePlayerActionParameters(NamedTuple):
@@ -59,6 +60,7 @@ class RenamePlayerAction(EventAction[RenamePlayerActionParameters]):
             callback=self.set_player_name,
             escape_key_exits=False,
             initial=self.session.player.name,
+            char_limit=prepare.PLAYER_NAME_LIMIT
         )
 
     def update(self) -> None:

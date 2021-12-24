@@ -19,7 +19,7 @@ Programming
 * [dtdannen](https://github.com/dtdannen) for pathfinding and polyline collisions
 * [ChillyCider](https://github.com/ChillyCider) for improved event system
 * [treetrnk](https://github.com/treetrnk) for creature catching variability, bug fixes, and adding monster resources 
-* [Andrew Hong](https://github.com/novialriptide) for the custom controls menu
+* [Andrew Hong](https://github.com/novialriptide) for the custom controls menu and docstring rewrites
 
 
 Graphics

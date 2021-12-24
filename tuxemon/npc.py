@@ -410,7 +410,6 @@ class NPC(Entity[NPCState]):
         This is a useful method if you want to abort a path movement
         and also don't want to advance to another tile.
 
-        :return:
         """
         if self.path_origin is not None:
             self.tile_pos = self.path_origin

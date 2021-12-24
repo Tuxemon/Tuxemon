@@ -70,12 +70,12 @@ class State:
     class should be created. Update must be overloaded in the child class.
 
     Overview of Methods:
-       startup       - Called when added to the state stack
-       resume        - Called each time state is updated for first time
-       update        - Called each frame while state is active
-       process_event - Called when there is a new input event
-       pause         - Called when state is no longer active
-       shutdown      - Called before state is destroyed
+     * startup       - Called when added to the state stack
+     * resume        - Called each time state is updated for first time
+     * update        - Called each frame while state is active
+     * process_event - Called when there is a new input event
+     * pause         - Called when state is no longer active
+     * shutdown      - Called before state is destroyed
 
     """
 
@@ -157,7 +157,7 @@ class State:
 
     def task(self, *args: Any, **kwargs: Any) -> Task:
         """
-        Create a task for this state
+        Create a task for this state.
 
         Tasks are processed even while state is inactive.
         If you want to pass positional arguments, use functools.partial.
@@ -213,7 +213,7 @@ class State:
         Time update function for state. Must be overloaded in children.
 
         Parameters:
-            time_delta: amount of time in fractional seconds since last update
+            time_delta: Amount of time in fractional seconds since last update.
 
         """
         self.animations.update(time_delta)
@@ -242,12 +242,12 @@ class State:
         * after state is pushed and before next update
         * just once during the life of a state
 
-        Important!  The state must be ready to be drawn after this is called
+        Important!  The state must be ready to be drawn after this is called.
 
         Example uses: loading images, configuration, sounds, etc.
 
         Parameters:
-            kwargs: Configuration options
+            kwargs: Configuration options.
 
         """
 
@@ -284,20 +284,20 @@ class State:
         """
 
     def shutdown(self) -> None:
-        """Called when state is removed from stack and will be destroyed
+        """
+        Called when state is removed from stack and will be destroyed.
 
         This will be called:
         * after update when state is popped
 
         Make sure to release any references to objects that may cause
         cyclical dependencies.
-
         """
 
 
 class StateManager:
     """
-    Allows game states to be managed like a queue
+    Allows game states to be managed like a queue.
 
     Parameters:
         package: Name of package to search for states.
@@ -322,7 +322,7 @@ class StateManager:
         """
         Scan a folder, load states found in it, and register them.
 
-        TODO: this functionality duplicates the plugin code
+        TODO: this functionality duplicates the plugin code.
 
         """
         state_folder = os.path.join(paths.LIBDIR, *self.package.split(".")[1:])
@@ -348,10 +348,10 @@ class StateManager:
 
     def _instance(self, state_name: str) -> State:
         """
-        Create new instance of State.  Builder patter, WIP
+        Create new instance of State. Builder patter, WIP.
 
         Parameters:
-            state_name: Name of state to create
+            state_name: Name of state to create.
 
         """
         try:
@@ -393,7 +393,7 @@ class StateManager:
         Load states from disk, but do not register it.
 
         Parameters:
-            folder: folder to load from
+            folder: Folder to load from.
 
         Yields:
             Each game state class.
@@ -411,9 +411,9 @@ class StateManager:
 
     def update(self, time_delta: float) -> None:
         """
-        Run update on all active states, which doing some internal housekeeping
+        Run update on all active states, which doing some internal housekeeping.
 
-        WIP.  This may change at some point, especially handling of paused
+        WIP. This may change at some point, especially handling of paused
         states.
 
         Parameters:
@@ -427,7 +427,7 @@ class StateManager:
 
     def _check_resume(self, state: State) -> None:
         """
-        Call resume on states that are in the resume set
+        Call resume on states that are in the resume set.
 
         Typically states will resume right before an update, but if an update
         has not been called before an update, then the resume will be missed.
@@ -645,7 +645,7 @@ class StateManager:
         Return the currently running state, if any.
 
         Returns:
-            Currently running state
+            Currently running state.
 
         """
         try:
@@ -659,7 +659,7 @@ class StateManager:
         Sequence of states that are active.
 
         Returns:
-            List of active states
+            List of active states.
 
         """
         return self._state_stack[:]

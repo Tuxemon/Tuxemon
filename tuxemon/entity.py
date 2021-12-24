@@ -78,9 +78,7 @@ class Entity(Generic[SaveDict]):
         self.velocity3.z = 0
 
     def pos_update(self) -> None:
-        """WIP.  Required to be called after position changes
-
-        """
+        """WIP.  Required to be called after position changes."""
         self.tile_pos = vector2_to_tile_pos(proj(self.position3))
 
     def update_physics(self, td: float) -> None:
@@ -95,10 +93,12 @@ class Entity(Generic[SaveDict]):
         self.pos_update()
 
     def set_position(self, pos: Sequence[float]) -> None:
-        """Set the entity's position in the game world
+        """
+        Set the entity's position in the game world.
 
-        :param pos:
-        :return:
+        Parameters:
+            pos: Position to be set.
+
         """
         self.position3.x = pos[0]
         self.position3.y = pos[1]
@@ -108,10 +108,7 @@ class Entity(Generic[SaveDict]):
 
     @property
     def moving(self) -> bool:
-        """
-        Return ``True`` if the entity is moving.
-
-        """
+        """Return ``True`` if the entity is moving."""
         return not self.velocity3 == (0, 0, 0)
 
     def get_state(self, session: Session) -> SaveDict:

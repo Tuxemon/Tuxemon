@@ -37,6 +37,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.rename_player.RenamePlayerAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.rumble.RumbleAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.screen_transition.ScreenTransitionAction 
+.. autoscriptinfoclass:: tuxemon.event.actions.set_economy.SetEconomyAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.set_inventory.SetInventoryAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_flair.SetMonsterFlairAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_health.SetMonsterHealthAction 

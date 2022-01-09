@@ -28,6 +28,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.player_face.PlayerFaceAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.player_resume.PlayerResumeAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.player_stop.PlayerStopAction 
+.. autoscriptinfoclass:: tuxemon.event.actions.print.PrintAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.quit.QuitAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.random_encounter.RandomEncounterAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_monster.RemoveMonsterAction 

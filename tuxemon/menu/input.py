@@ -188,6 +188,8 @@ class InputMenu(Menu[InputMenuObj]):
         if self.char_limit is None or len(self.input_string) <= self.char_limit:
             self.input_string += char
             self.update_text_area()
+        else:
+            self.text_area.text = "Please choose a shorter name!"
 
     def update_text_area(self) -> None:
         self.text_area.text = self.input_string

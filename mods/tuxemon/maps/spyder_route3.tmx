@@ -395,8 +395,10 @@
   </object>
   <object id="590" name="Shaft Plot Revealed" type="event" x="64" y="96" width="64" height="16">
    <properties>
-    <property name="act10" value="remove_npc spyder_route3_zoolander"/>
-    <property name="act11" value="create_npc spyder_route3_zoolander,6,11"/>
+    <property name="act1" value="stop_player"/>
+    <property name="act11" value="lock_controls"/>
+    <property name="act14" value="remove_npc spyder_route3_zoolander"/>
+    <property name="act15" value="create_npc spyder_route3_zoolander,6,11"/>
     <property name="act20" value="create_npc spyder_rookie,16,10"/>
     <property name="act30" value="pathfind spyder_rookie,9,8"/>
     <property name="act40" value="pathfind spyder_route3_zoolander,7,8"/>
@@ -409,6 +411,7 @@
     <property name="act81" value="remove_npc spyder_rookie"/>
     <property name="act82" value="remove_npc spyder_route3_zoolander"/>
     <property name="act83" value="set_variable shaftscheme:yes"/>
+    <property name="act84" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="not variable_set shaftscheme:yes"/>
    </properties>

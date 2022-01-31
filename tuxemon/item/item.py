@@ -170,7 +170,10 @@ class Item:
 
         for line in raw:
             name = line.split()[0]
-            params = line.split()[1].split(",")
+            if len(line.split()) > 1:
+                params = line.split()[1].split(",")
+            else:
+                params = None
             try:
                 effect = Item.effects_classes[name]
             except KeyError:

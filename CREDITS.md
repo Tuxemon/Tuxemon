@@ -192,6 +192,10 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Enforcer Boss"](https://wiki.tuxemon.org/index.php?title=Enforcer_Boss). Front sprite by Leo. Overland sprite by Superpowers Asset Packs, tweaked by Sanglorian. 
 
+* ["Penguin"](https://github.com/Tuxemon/Tuxemon/tree/development/mods/tuxemon/sprites)
+Overland sprites are by ultidonki, made for Tuxemon. Licensed under
+[CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
+
 ### Tilesets
 
 * ["Electronics Tileset"](https://git.tuxemon.org:3000/tuxemon/tuxemon/blob/development/resources/gfx/tilesets/electronics.png)

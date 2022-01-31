@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2022-01-31 02:09+0000\n"
+"PO-Revision-Date: 2022-01-31 08:11+0000\n"
 "Last-Translator: Pedro Avarao <espatux@vixej.com>\n"
 "Language-Team: Spanish (Mexico) <https://hosted.weblate.org/projects/tuxemon/"
 "tuxemon/es_MX/>\n"
@@ -38,56 +38,56 @@ msgid "apple"
 msgstr "Manzana"
 
 msgid "apple_description"
-msgstr "Sanar a un monstruo en 10 HP."
+msgstr "Sana a un monstruo en 10 HP."
 
 # Berry
 msgid "berry"
 msgstr "Baya"
 
 msgid "berry_description"
-msgstr "Sanar a un monstruo en 10 HP."
+msgstr "Sana a un monstruo en 10 HP."
 
 # Cherry
 msgid "cherry"
 msgstr "Cereza"
 
 msgid "cherry_description"
-msgstr "Sanar a un monstruo en 10 HP."
+msgstr "Sana a un monstruo en 10 HP."
 
 # Orange
 msgid "orange"
 msgstr "Naranja"
 
 msgid "orange_description"
-msgstr "Sanar a un monstruo en 20 HP."
+msgstr "Sana a un monstruo en 20 HP."
 
 # Potion
 msgid "potion"
 msgstr "Poción"
 
 msgid "potion_description"
-msgstr "Sanar a un monstruo en 50 HP."
+msgstr "Sana a un monstruo en 50 HP."
 
 # Super Potion
 msgid "super_potion"
 msgstr "Superpoción"
 
 msgid "super_potion_description"
-msgstr "Sanar a un monstruo en 150 HP."
+msgstr "Sana a un monstruo en 150 HP."
 
 # Imperial Potion
 msgid "imperial_potion"
 msgstr "Poción Imperial"
 
 msgid "imperial_potion_description"
-msgstr "Sanar a un monstruo en 350 HP."
+msgstr "Sana a un monstruo en 350 HP."
 
 # Capture Device
 msgid "capture_device"
-msgstr "Dispositivo de Captura"
+msgstr "Capturadoras"
 
 msgid "capture_device_description"
-msgstr "Capturaste a un monstruo."
+msgstr "Captura a un monstruo."
 
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
@@ -194,7 +194,7 @@ msgid "item_cannot_use_here"
 msgstr "¡{name} no se puede usar aquí!"
 
 msgid "receive_happiness"
-msgstr "¡Recibió 5 Dispositivos de Captura!"
+msgstr "¡Recibiste 5 Dispositivos de Captura!"
 
 msgid "received_x"
 msgstr "¡Recibido {name}!"
@@ -255,7 +255,7 @@ msgid "menu_bag"
 msgstr "Mochila"
 
 msgid "menu_fight"
-msgstr "Pelea"
+msgstr "Combatir"
 
 msgid "menu_item"
 msgstr "Ítem"
@@ -267,7 +267,7 @@ msgid "menu_journal"
 msgstr "Diario"
 
 msgid "menu_load"
-msgstr "Carga"
+msgstr "Cargar"
 
 msgid "menu_monster"
 msgstr "Tuxemon"
@@ -289,7 +289,7 @@ msgid "menu_player"
 msgstr "Jugador"
 
 msgid "menu_run"
-msgstr "Corre"
+msgstr "Huir"
 
 msgid "menu_save"
 msgstr "Guardar"
@@ -356,7 +356,7 @@ msgstr "Agnigon"
 
 msgid "agnigon_description"
 msgstr ""
-"Se le llama 'falso dragón', debido a que su apariencia se asemeja a la de un "
+"Se le llama «falso dragón», debido a que su apariencia se asemeja a la de un "
 "dragón, pero en realidad evolucionó a partir de una línea diferente de "
 "reptiles antiguos."
 
@@ -1334,15 +1334,15 @@ msgstr "You will? Splendid! Now, to find you a suitable Tuxemon...\n"
 "... ... You already have a Tuxemon? Well, I'm sure that you'd be able to handle yourself well...\n"
 
 msgid "cottonnurse_dialog"
-msgstr "¡Bienvenido al Tuxecenter de Pueblo Algodón!"
+msgstr "¡Bienvenido al Centro Tuxemon de Pueblo Algodón!"
 
 msgid "tabanurse_dialog\n"
 msgstr ""
-"¡Bienvenido al Tuxecenter de Pueblo Taba!\n"
-"¿Desea sanar a sus Tuxemon?\n"
+"¡Bienvenido al Centro Tuxemon de Pueblo Taba!\n"
+"¿Deseas sanar a tus Tuxemon?\n"
 
 msgid "okaythen"
-msgstr "¡Está bien! ¡Sólo deme un segundo y sanaré a sus Tuxemon!"
+msgstr "¡Está bien! ¡Sólo dame un segundo y sanaré a tus Tuxemon!"
 
 msgid "okaythen2"
 msgstr "¡Bueno, parece que tus Tuxemon están mejor ahora! ¡Aqui estan ellos!"
@@ -1351,7 +1351,7 @@ msgid "input_name"
 msgstr "¿Nombre?"
 
 msgid "reg_papers"
-msgstr "Documentos de Registro"
+msgstr "Doc. de Registro"
 
 msgid "attack_effective"
 msgstr "¡El ataque hizo daño extra!"
@@ -1500,7 +1500,7 @@ msgstr "Revive"
 
 # Allie's Address
 msgid "allies_address"
-msgstr "Dirección de Allie"
+msgstr "Dir. de Allie"
 
 msgid "combat_can't_run_from_trainer"
 msgstr "¡No se puede huir de las batallas con los entrenadores!"
@@ -1546,7 +1546,7 @@ msgid "combat_state_lifeleech_success"
 msgstr "¡{user} perdió salud por absorbe-vidas!"
 
 msgid "combat_trainer_appeared"
-msgstr "¡{name} quiere pelear!"
+msgstr "¡{name} desea entablar una batalla!"
 
 msgid "attack_resisted"
 msgstr "¡El ataque fue resistido!"
@@ -1640,7 +1640,7 @@ msgid "flood"
 msgstr "Inundar"
 
 msgid "flow"
-msgstr "Flujo"
+msgstr "Fluido"
 
 msgid "fluff_up"
 msgstr "Esponjar"
@@ -1655,7 +1655,7 @@ msgid "fume"
 msgstr "Humo"
 
 msgid "give_all"
-msgstr "Otorgar Todo"
+msgstr "Dar con Todo"
 
 msgid "glower"
 msgstr "Mirada con ceño"
@@ -1884,7 +1884,7 @@ msgstr ""
 "situación."
 
 msgid "yesmaam"
-msgstr "Sí, Señora."
+msgstr "Sí Señora."
 
 msgid "nopenotyet"
 msgstr ""
@@ -1902,7 +1902,7 @@ msgid "darnitjohn"
 msgstr "Espera... ¿Dónde está John?"
 
 msgid "darnitjohn2"
-msgstr "¡MALDITA SEA, JOHN! ¡Ven aquí!"
+msgstr "¡MALDITA SEA JOHN! ¡Ven aquí!"
 
 msgid "darnitjohn10"
 msgstr "¡AHORA!"
@@ -1991,7 +1991,7 @@ msgstr ""
 "DIRIGIRSE A USTEDES!"
 
 msgid "capture_devices_in_shop"
-msgstr "Dispositivos de captura. ¿Cómo los fabrican?"
+msgstr "Dispositivos de captura. ¿Cómo es que las fabrican?"
 
 msgid "quicklyknight4"
 msgstr "Lo siento, pero debo irme ahora."
@@ -2002,14 +2002,14 @@ msgstr ""
 "GRACIAS POR SINTONIZAR ESTE ANUNCIO OBLIGATORIO."
 
 msgid "chooseyerfate"
-msgstr "¿Qué Tuxemon desea?"
+msgstr "¿Cuál es el Tuxemon que deseas?"
 
 msgid "tweesher!"
 msgstr "¡Obtuviste un Tweesher!"
 
 msgid "choseTweesher"
 msgstr ""
-"Muy bien, ¡aquí tiene a su Tweesher! ¡Sé que ustedes dos vivirán grandes "
+"Muy bien, ¡aquí tienes a tu Tweesher! ¡Sé que ustedes dos vivirán grandes "
 "aventuras juntos!"
 
 msgid "professorexists1"
@@ -2017,14 +2017,14 @@ msgstr "Muchas gracias Ben."
 
 msgid "hellolovelypeople4"
 msgstr ""
-"Estoy bastante seguro de que hay casas en Pueblo Algodón más grandes que "
-"esta..."
+"Estoy bastante segura de que hay casas en Pueblo Algodón más grandes que "
+"esto..."
 
 msgid "hellolovelypeople5"
 msgstr ""
-"No... Espera... Nos falta una persona...\n"
+"No... Esperen... Nos falta una persona...\n"
 "El único criador de Tuxemon que queda en la región Fondent. El que se hace "
-"llamar a sí mismo el Profesor Tuxemon"
+"llamar a sí mismo Profesor Tuxemon"
 
 msgid "whereismyhairbrush"
 msgstr "John, Grant, sepárense. ENCUÉNTRENLO."
@@ -2041,19 +2041,19 @@ msgstr ""
 "Odio anunciar las malas noticias yo sola."
 
 msgid "maamiexist"
-msgstr "Señora, Él no está en la casa."
+msgstr "Señora, Él no está en esta casa."
 
 msgid "maamiexist3"
 msgstr ""
 "Hay un ordenador ejecutando Ubuntu.\n"
-"Pensaba confiscarlo, pero sé que Gnome no es tu estilo..."
+"Pensaba confiscarlo, pero sé que Gnome no es su estilo..."
 
 msgid "itsmyaurababe"
-msgstr "Ahora, ¿quién es usted?"
+msgstr "Ahora, ¿quién eres tú?"
 
 msgid "itsmyaurababe2"
 msgstr ""
-"Hmm, ahora que lo miro realmente, tiene un aura bastante misteriosa.\n"
+"Hmm, ahora que te miro realmente, tienes un aura bastante misteriosa.\n"
 "... ... ... ...\n"
 "Deberíamos hablar alguna vez. ¿Tal vez podríamos vernos en Pueblo Algodón?"
 
@@ -2075,7 +2075,7 @@ msgid "solongjohn2"
 msgstr "Vamos Grant, tenemos un itinerario que cumplir."
 
 msgid "seeme"
-msgstr "Procure venir a visitarme..."
+msgstr "Procura venir a visitarme..."
 
 msgid "knight4ispoor"
 msgstr "Ella, en realidad, no es una mala persona."
@@ -2096,7 +2096,7 @@ msgstr ""
 
 msgid "announcement3"
 msgstr ""
-"Gracias. Yo también te quiero\n"
+"Gracias. Yo también los quiero\n"
 "Ahora, a lo que nos interesa."
 
 msgid "announcement2"
@@ -2117,7 +2117,7 @@ msgid "depressedmom"
 msgstr "Por qué haría una cosa así... Pensé que le importaba..."
 
 msgid "waterwater"
-msgstr "¡El agua está bien fría y está deliciosa!"
+msgstr "El agua está deliciosa ¡bien fría, como me gusta!"
 
 msgid "grumble"
 msgstr ""
@@ -2127,21 +2127,20 @@ msgstr ""
 
 msgid "bobtalk"
 msgstr ""
-"Estaría bien que más gente como usted viniera a Saludar...\n"
-"A propósito, ¡Hola! ¡Que tenga un buen día! ¡Hoy o mañana o cualquier día "
-"será genial!"
+"Estaría bien que más gente como tú viniera a Saludar...\n"
+"A propósito, ¡Hola! ¡Que tengas un buen día! Hoy o Mañana o cualquier día, "
+"no importa, ¡será genial!"
 
 msgid "professorexists1.5"
 msgstr "Oh, ¡hola!"
 
 msgid "professorexists2"
 msgstr ""
-"¡Usted debe ser el hijo de Callie! He oído hablar mucho de usted por su "
-"madre.\n"
-"¿Qué lo trae por aquí?\n"
+"¡Tú debes ser el hijo de Callie! He oído hablar mucho de ti por tu madre.\n"
+"¿Qué te trae por aquí?\n"
 ".... .... ....\n"
 "¿Pociones? ¡Por supuesto, siempre son necesarias!\n"
-"Tome, tenga unas cuantas por cuenta de la casa, cortesía mía."
+"Toma, aquí tienes unas cuantas por galantería de la casa, cortesía mía."
 
 msgid "potions2"
 msgstr "¡Recibiste 2 pociones!"
@@ -2170,7 +2169,8 @@ msgstr ""
 
 msgid "hebenice"
 msgstr ""
-"Es un hombre agradable, tal vez deberías ver al menos lo que tiene que decir."
+"Es un hombre agradable, tal vez deberías ver, al menos, lo que tiene que "
+"decir."
 
 msgid "moverocky"
 msgstr "¡Vamos Rocky! ¡Tú puedes moverte! ¡Yo creo!"
@@ -2179,10 +2179,10 @@ msgid "moverocky2"
 msgstr "Bueno, vete cuando estés listo, Yo estaré aquí esperando."
 
 msgid "tuxemontime"
-msgstr "¡Ah, ha venido! ¡Grandioso!"
+msgstr "¡Ah, has venido! ¡Grandioso!"
 
 msgid "tuxemontime1.5"
-msgstr "¿Supongo que esto significa que ha decidido unirse a la Prueba?"
+msgstr "¿Supongo que esto significa que has decidido unirte a la Prueba?"
 
 msgid "tuxemontimechoiceyes"
 msgstr "¡Espléndido!"
@@ -2195,20 +2195,20 @@ msgstr "¡Vamos para allá!"
 
 msgid "tuxemontime3.1"
 msgstr ""
-"Aquí tiene sus documentos de registro, la primer Área de Batalla requerirá "
-"que los presente a cambio de una insignia de Entrenador.\n"
-"Después no necesitará los documentos.\n"
+"Aquí tienes tus documentos de registro, la primer Área de Batalla requerirá "
+"que los presentes a cambio de una insignia de Entrenador.\n"
+"Después no necesitarás los documentos.\n"
 
 msgid "chooseyerfateRockitten"
 msgstr ""
 "Una buena elección. Rockitten es un Tuxemon de tipo Tierra. En los tiempos "
 "medievales, se criaban Rockittens para que se sentaran junto a la puerta y "
 "se vieran lindos.\n"
-"¿Desea elegir a Rockitten?"
+"¿Deseas elegir a Rockitten?"
 
 msgid "choseRockitten"
 msgstr ""
-"Muy bien, ¡aquí tiene a su Rockitten! ¡Sé que ustedes dos vivirán grandes "
+"Muy bien, ¡aquí tienes a tu Rockitten! ¡Sé que ustedes dos vivirán grandes "
 "aventuras juntos!"
 
 msgid "choseRockitten2"
@@ -2222,7 +2222,7 @@ msgstr "¡Obtuviste un Rockitten!"
 
 msgid "choseCardiling"
 msgstr ""
-"Muy bien, ¡aquí tiene a su Cardiling! ¡Sé que ustedes dos vivirán grandes "
+"Muy bien, ¡aquí tienes a tu Cardiling! ¡Sé que ustedes dos vivirán grandes "
 "aventuras juntos!"
 
 msgid "choseCardiling2"
@@ -2238,7 +2238,7 @@ msgid "chooseyerfateTweesher"
 msgstr ""
 "¡Una gran elección! Tweesher es un Tuxemon de tipo Agua. Su evolución, "
 "Eagleace, es uno de los Tuxemon más rápidos.\n"
-"¿Desea elegir a Tweesher?"
+"¿Deseas elegir a Tweesher?"
 
 msgid "yahaha"
 msgstr "¡Ja, ja! ¡Lo encontré!"
@@ -2279,8 +2279,8 @@ msgstr "Estoy bastante seguro de que eres demasiado joven para beber..."
 
 msgid "professorswife"
 msgstr ""
-"¡Oh, no! Por poco lo encuentras. Creo que fue al pueblo, supongo. ¿Tal vez "
-"pueda comprobarlo allí?"
+"¡Oh No! Por poco lo encuentras. Creo que fue al pueblo, supongo. ¿Tal vez "
+"puedas comprobarlo allí?"
 
 msgid "waithere2"
 msgstr "¡Oh, Yo espero que nadie se haya hecho daño con el árbol caído!"
@@ -2290,13 +2290,13 @@ msgstr "¿Nombre de su Tuxemon?"
 
 msgid "happy_guy_dialog"
 msgstr ""
-"Happy: ¡Hola! Me encanta ponerle apodos a los Tuxemon, ¿quiere ponerle un "
-"apodo a los suyos?"
+"Happy: ¡Hola! Me encanta ponerle apodos a los Tuxemon, ¿quieres ponerle un "
+"apodo a los tuyos?"
 
 msgid "shady_guy_dialog"
 msgstr ""
-"Shady Guy: Oiga. Si tiene algún... 'problema' unido a su nombre puedo "
-"arreglarlo por usted..."
+"Shady Guy: Oye. Si tienes algún... «problema» unido a tu nombre puedo "
+"arreglarlo por ti..."
 
 msgid "shady_rename"
 msgstr "Shady Guy: Buena suerte con tu nuevo nombre, amigo..."
@@ -2351,42 +2351,42 @@ msgstr ""
 "naturaleza es segura.\n"
 "Sin embargo, los toques de queda aún deben ser aplicados, no somos una "
 "región sin ley después de todo.\n"
-"Después de todo... ¡SOMOS SEGURIDAD, SOMOS ORDEN, SOMOS OMNICHANNEL!"
+"A fin de cuentas... ¡SOMOS SEGURIDAD, SOMOS ORDEN, SOMOS OMNICHANNEL!"
 
 msgid "professorexists"
 msgstr "Me llevaré 12 pociones, por favor."
 
 msgid "watchmewatchme"
 msgstr ""
-"Por qué se dirige al pueblo, Usted sabe que hay un toque de queda.\n"
+"Por qué te diriges al pueblo, Tú sabes que hay toque de queda.\n"
 "... ... ... ...\n"
 "... ... ... ...\n"
-"Usted no parece una amenaza, por lo que puede dirigirse al pueblo...\n"
-"Sólo no se lo mencione a ninguno de esos matones de Omnichannel, que lo dejé "
-"pasar, ¿Bien?"
+"Tú no pareces una amenaza, por lo que puedes dirigirte al pueblo...\n"
+"Sólo no se lo menciones a ninguno de esos matones de Omnichannel, que te "
+"dejé pasar, ¿Bien?"
 
 msgid "professorexists3"
 msgstr ""
-"¡Oh! Perdone mis modales, ¡no puedo creer que no me haya presentado!\n"
+"¡Oh! Perdona mis modales, ¡No puedo creer que no me haya presentado!\n"
 "Mi nombre es Kay Wren, mejor conocido como el Profesor Tuxemon.\n"
 "Desde hace años soy la única persona en la Región Fondent a la que se le "
 "permite investigar a los Tuxemon."
 
 msgid "professorexists4"
 msgstr ""
-"Ahora, sé lo que estás pensando, ¿y por qué me lo permitirían?\n"
-"Desgraciadamente para usted, ¡Ese secreto es para mí y sólo para mí!\n"
-"Sin embargo, Omnichannel debería hacer un nuevo anuncio pronto y creo que le "
+"Ahora, sé lo que estás pensando, ¿y por qué es que se lo permitieron?\n"
+"Desgraciadamente para ti, ¡Ese secreto es para mí y sólo para mí!\n"
+"Sin embargo, Omnichannel debería hacer un nuevo anuncio pronto y creo que te "
 "gustará.\n"
-"Será mejor que regrese a casa y vea el segundo anuncio, ¡Vamos!"
+"Será mejor que regreses a casa y veas el segundo anuncio, ¡Vamos!"
 
 msgid "hmmm2"
 msgstr "Escuché que estaban haciendo un nuevo parque. Para «Enverdecer la Zona»"
 
 msgid "hmmm5"
 msgstr ""
-"Max, por mucho que quieras uno, ya hemos aclarado eso. No están haciendo, ni "
-"harán, un parque acuático."
+"Max, por mucho que quieras uno, ya hemos aclarado eso. No están haciendo ni "
+"harán un parque acuático."
 
 msgid "tuxemontime2"
 msgstr ""
@@ -2463,14 +2463,14 @@ msgid "ihaveyourmoney2"
 msgstr ""
 "Tengo un poco guardado que necesita ser usado de buena manera y Omnichannel "
 "me debe un favor.\n"
-"Estoy seguro de que se podría arreglar algo. Conseguir los papeles de "
+"Estoy seguro de que se podría arreglar algo. Conseguir los documentos de "
 "calificación es la parte fácil. Conseguir tu primer Tuxemon es un poco más "
 "difícil...\n"
 "Por suerte, Yo conozco a alguien que tiene acceso a varios Tuxemon "
 "diferentes...\n"
 "¡Yo!\n"
 "Ahora, Sé que es mucho para procesar, así que estaré en mi laboratorio "
-"esperando su decisión."
+"esperando tu decisión."
 
 msgid "obtainedpapers"
 msgstr "¡Recibiste los Documentos de Registro!"
@@ -2493,13 +2493,13 @@ msgstr ""
 
 msgid "chooseyerfateCardiling"
 msgstr ""
-"Una elección interesante, que habla de la chispa que lleva dentro. Cardiling "
-"es un Tuxemon de tipo Fuego, conocido por robar comida a amigos y enemigos "
-"por igual.\n"
-"¿Desea elegir a Cardiling?"
+"Una elección interesante, que habla de la chispa que llevas dentro. "
+"Cardiling es un Tuxemon de tipo Fuego, conocido por robar comida a amigos y "
+"enemigos por igual.\n"
+"¿Deseas elegir a Cardiling?"
 
 msgid "nochoiceTuxemon"
-msgstr "De acuerdo, ¿por qué no le echa un vistazo a los otros dos?"
+msgstr "De acuerdo, ¿por qué no le echas un vistazo a los otros dos?"
 
 msgid "chosefight"
 msgstr "Y... ¡VAMOS A LUCHAR!"
@@ -2525,7 +2525,7 @@ msgstr "Happy: ¡Es un gran nombre! Seguro que a tu Tuxemon le fascina :)"
 
 msgid "maamnothing2"
 msgstr ""
-"¡Maldición, John! ¡Estábamos teniendo un momento!\n"
+"¡Maldición John! ¡Estábamos teniendo un momento!\n"
 "¿Qué es lo que quieres?"
 
 msgid "maamnothing3"
@@ -2545,7 +2545,7 @@ msgid "hmmm6"
 msgstr ".... .... Está bien... Pero podría ser..."
 
 msgid "hmmm7"
-msgstr "Sin embargo, El Clima es agradable, ¿verdad que sí?"
+msgstr "Sin embargo El Clima es agradable, ¿verdad que sí?"
 
 msgid "timeforround2"
 msgstr ""
@@ -2571,3 +2571,6 @@ msgstr ""
 
 msgid "37707_sign_welcome"
 msgstr "¡Bienvenidos al pueblo 37707! Somos..."
+
+msgid "spyder_papertown_home"
+msgstr "¡Hogar dulce hogar!"

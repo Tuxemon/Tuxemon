@@ -23,7 +23,7 @@ class PrintCommand(CLICommand):
 
         """
         variable = line.strip()
-        if variable > "":
+        if variable:
             if variable in ctx.session.player.game_variables:
                 print(f"{variable}: {ctx.session.player.game_variables[variable]}")
             else:

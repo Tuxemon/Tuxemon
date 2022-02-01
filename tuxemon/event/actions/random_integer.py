@@ -64,4 +64,4 @@ class RandomIntegerAction(EventAction[RandomIntegerActionParameters]):
 
         # Append the game_variables dictionary with a random number between
         # upper and lower bound, inclusive:
-        player.game_variables[var] = str(randint(lower_bound, upper_bound))
+        player.game_variables[var] = randint(lower_bound, upper_bound)

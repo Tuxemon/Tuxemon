@@ -23,7 +23,7 @@ from __future__ import annotations
 import logging
 
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, Optional
+from typing import NamedTuple, Optional, final
 
 logger = logging.getLogger(__name__)
 
@@ -32,11 +32,12 @@ class PrintActionParameters(NamedTuple):
     variable: Optional[str]
 
 
+@final
 class PrintAction(EventAction[PrintActionParameters]):
     """
-    Print the current value of a game variable.
+    Print the current value of a game variable to the console.
 
-    If no variables are specified, print out values of all game variables.
+    If no variable is specified, print out values of all game variables.
 
     Script usage:
         .. code-block::
@@ -56,7 +57,7 @@ class PrintAction(EventAction[PrintActionParameters]):
         player = self.session.player
 
         variable = self.parameters.variable
-        if variable and variable > "":
+        if variable:
             if variable in player.game_variables:
                 print(f"{variable}: {player.game_variables[variable]}")
             else:

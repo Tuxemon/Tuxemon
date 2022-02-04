@@ -84,8 +84,8 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
         if encounter:
             logger.info("Starting random encounter!")
 
-            world = self.session.client.get_state_by_name(WorldState)
-            npc = _create_monster_npc(encounter, world=world)
+            self.world = self.session.client.get_state_by_name(WorldState)
+            npc = _create_monster_npc(encounter, world=self.world)
 
             # Lookup the environment
             env_slug = "grass"
@@ -104,8 +104,8 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             )
 
             # stop the player
-            world.lock_controls()
-            world.stop_player()
+            self.world.lock_controls()
+            self.world.stop_player()
 
             # flash the screen
             self.session.client.push_state(FlashTransition)
@@ -123,6 +123,9 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
         except ValueError:
             self.stop()
 
+    def cleanup(self) -> None:
+        npc = None
+        self.world.remove_entity("random_encounter_dummy")
 
 def _choose_encounter(
     encounters: Sequence[JSONEncounterItem],
@@ -168,7 +171,7 @@ def _create_monster_npc(
     current_monster.current_hp = current_monster.hp
 
     # Create an NPC object which will be this monster's "trainer"
-    npc = NPC("maple_girl", world=world)
+    npc = NPC("random_encounter_dummy", world=world)
     npc.add_monster(current_monster)
     # NOTE: random battles are implemented as trainer battles.
     #       this is a hack. remove this once trainer/random battlers are fixed

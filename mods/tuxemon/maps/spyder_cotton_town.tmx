@@ -324,7 +324,7 @@
     <property name="act30" value="pathfind spyder_cottontown_hacker,36,29"/>
     <property name="act40" value="translated_dialog spyder_cottontown_stopthere"/>
     <property name="act50" value="pathfind player,36,28"/>
-    <property name="act60" value="pathfind spyder_cottontown_hacker,23,28"/>
+    <property name="act60" value="pathfind spyder_cottontown_hacker,35,35"/>
     <property name="act80" value="remove_npc spyder_cottontown_hacker"/>
     <property name="act90" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>

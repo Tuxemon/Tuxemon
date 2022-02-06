@@ -1821,7 +1821,7 @@ msgstr "Cariño, espera. Acabo de encender la televisión y echaban una rueda de
 
 msgid "ipausedit"
 msgstr ""
-"He puesto la TV en pausa, para poder coger un vaso de agua y verla juntos."
+"He pausado la tele para poder coger un vaso de agua y verla juntos."
 
 msgid "announcement1"
 msgstr "¡SALUDOS, CIUDADANOS DE LA REGIÓN FONDENT!\n"
@@ -1881,7 +1881,7 @@ msgid "okaythen"
 msgstr "¡De acuerdo! ¡Solo dame un segundo y curaré tus Tuxemon!"
 
 msgid "okaythen2"
-msgstr "Bien, ¡parece que tus Tuxemon están mejor ahora ¡Aquí están!"
+msgstr "Bien, ¡parece que tus Tuxemon están mejor ahora! ¡Aquí están!"
 
 msgid "waithere"
 msgstr "Tenemos que esperar aquí de momento. Al parecer un árbol se ha caído más adelante."
@@ -1989,8 +1989,8 @@ msgstr ""
 "extraño viniendo de mí, pero necesito saberlo...\n"
 "Blank: ¿Sabes quién soy? ¿Me has... visto alguna vez? Tengo curiosidad: mi "
 "nombre, ¿tengo un...\n"
-"Blank: No. Lo siento: he cometido un error. Por favor, no le diga a ninguno "
-"que le pregunté. Continúa, disfruta tu viaje aquí."
+"Blank: No. Lo siento: he cometido un error. Por favor, no le digas a nadie "
+"que te he preguntado eso. Continúa, disfruta tu viaje aquí."
 
 msgid "37707_villager_male_2"
 msgstr "Blank: No puedes ayudarme más. No nos está permitido hablar de ello. No puedes entenderlo. Vete."
@@ -2493,7 +2493,7 @@ msgstr ""
 "Tienda de Arte!\n"
 "Desde que nos cortaron el presupuesto hemos tenido que vender las obras de "
 "arte en lugar de solo mostrarlas.\n"
-"La entrada cuesta 50$. Va a los dividendos anuales de la compañía."
+"La entrada cuesta 50${{currency}}. Va a los dividendos anuales de la compañía."
 
 msgid "spyder_cottonart_intro"
 msgstr ""
@@ -2501,7 +2501,7 @@ msgstr ""
 "Tienda de Arte!\n"
 " Desde que nos cortaron el presupuesto hemos tenido que vender las obras de "
 "arte en lugar de solo mostrarlas.\n"
-" La entrada es 50$. Va a los dividendos anuales de la compañía."
+" La entrada es 50${{currency}}. Va a los dividendos anuales de la compañía."
 
 msgid "spyder_cottoncafe_barmaid"
 msgstr "Bienvenido de nuevo. ¿Pongo a tus Tuxemon en la unidad de curación?"
@@ -2603,7 +2603,7 @@ msgstr ""
 msgid "hmmm2"
 msgstr ""
 "He oído que están haciendo un nuevo parque. Para \"crear espacios verdes en "
-"la zona\""
+"la zona\"."
 
 msgid "hmmm"
 msgstr "Me pregunto qué están haciendo por aquí..."
@@ -3478,61 +3478,61 @@ msgid "spyder_flower_sandy_notweesher"
 msgstr "Oh, no importa. Veo que no tienes un Tweesher."
 
 msgid "spyder_route2_roddick1"
-msgstr "Cuando fui emboscado en la duna por SPIGHTER estuve muy asustado."
+msgstr "Cuando fui emboscado en la duna por un SPIGHTER estuve muy asustado."
 
 msgid "spyder_route2_graf2"
-msgstr "Me sirvieron."
+msgstr "El tenis se me da mejor..."
 
 msgid "spyder_wayfarer1_bismuth2"
-msgstr "¡Gorrón!"
+msgstr "¡Qué mala suerte!"
 
 msgid "spyder_route2_roddick2"
-msgstr "Oye, ¡no parecías arrastrado en absoluto!"
+msgstr "Oye, ¡no parecías asustado en absoluto!"
 
 msgid "menu_down_key"
-msgstr "Tecla Bajar"
+msgstr "Abajo"
 
 msgid "menu_secondary_select_key"
-msgstr "Tecla Cancelar"
+msgstr "Botón Cancelar"
 
 msgid "spyder_route4_wulf2"
 msgstr "Ooh, ¡me siento tan castrado!"
 
 msgid "menu_left_key"
-msgstr "Tecla Izquierda"
+msgstr "Izquierda"
 
 msgid "dark_robo"
-msgstr "Robo Oscuro"
+msgstr "Robot Oscuro"
 
 msgid "spyder_citypark_maniac"
-msgstr "Phew, ¡lo hemos cagado!"
+msgstr "Puf, ¡la hemos cagado!"
 
 msgid "dodge_increased"
-msgstr "el {stat} de {user} ha incrementado."
+msgstr "{stat} de {user} ha aumentado."
 
 msgid "menu_up_key"
-msgstr "Tecla Subir"
+msgstr "Arriba"
 
 msgid "menu_right_key"
-msgstr "Tecla Derecha"
+msgstr "Derecha"
 
 msgid "menu_primary_select_key"
-msgstr "Tecla Acción"
+msgstr "Botón Acción"
 
 msgid "menu_back_key"
-msgstr "Tecla Volver"
+msgstr "Botón Retorno"
 
 msgid "options_new_input_key0"
-msgstr "Pulse una tecla para fijar su tecla de entrada nueva"
+msgstr "Pulsa una tecla para establecerla como nuevo valor de la entrada."
 
 msgid "options_new_input_key1"
-msgstr "Reinicie su juego para que los cambios surtan en efecto."
+msgstr "Reinicia el juego para que los cambios surtan efecto."
 
 msgid "xeon"
 msgstr "Xeón"
 
 msgid "spyder_route4_wulf1"
-msgstr "Ah, tan solo recoger algunos suplementos medicinales"
+msgstr "Ah, solo estaba recogiendo algunos suplementos medicinales."
 
 msgid "spyder_wayfarer1_bismuth1"
 msgstr ""

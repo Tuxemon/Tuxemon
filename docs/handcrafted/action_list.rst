@@ -31,6 +31,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.print.PrintAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.quit.QuitAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.random_encounter.RandomEncounterAction 
+.. autoscriptinfoclass:: tuxemon.event.actions.random_integer.RandomIntegerAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_monster.RemoveMonsterAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_npc.RemoveNpcAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.rename_monster.RenameMonsterAction 

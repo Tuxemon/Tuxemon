@@ -3536,11 +3536,11 @@ msgstr "Ah, tan solo recoger algunos suplementos medicinales"
 
 msgid "spyder_wayfarer1_bismuth1"
 msgstr ""
-"¡Espero que no esté relacionado a aquellos tuxemon enfermos en las granjas "
+"¡Espero que no esté relacionado con aquellos Tuxemon enfermos en las granjas "
 "Scoop!"
 
 msgid "hp_restored"
-msgstr "el hp del {user} ha sido recuperada"
+msgstr "La salud de {user} ha sido restaurada."
 
 msgid "combat_amnesia_get"
 msgstr "{user} ha tenido amnesia."

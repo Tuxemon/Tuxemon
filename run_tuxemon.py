@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -23,7 +23,7 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com
+# Leif Theden <leif.theden@gmail.com>
 #
 #
 from argparse import ArgumentParser

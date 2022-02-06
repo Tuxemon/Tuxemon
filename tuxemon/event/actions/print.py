@@ -20,33 +20,47 @@
 #
 
 from __future__ import annotations
+import logging
+
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, final
+from typing import NamedTuple, Optional, final
+
+logger = logging.getLogger(__name__)
 
 
-class WaitForSecsActionParameters(NamedTuple):
-    seconds: float
+class PrintActionParameters(NamedTuple):
+    variable: Optional[str]
 
 
 @final
-class WaitForSecsAction(EventAction[WaitForSecsActionParameters]):
+class PrintAction(EventAction[PrintActionParameters]):
     """
-    Pause the event engine for a number of seconds.
+    Print the current value of a game variable to the console.
+
+    If no variable is specified, print out values of all game variables.
 
     Script usage:
         .. code-block::
 
-            wait_for_secs <seconds>
+            print
+            print <variable>
 
-    Script parameters:
-        seconds: Time in seconds for the event engine to wait for.
+        Script parameters:
+            variable: Optional, prints out the value of this variable.
 
     """
 
-    name = "wait_for_secs"
-    param_class = WaitForSecsActionParameters
+    name = "print"
+    param_class = PrintActionParameters
 
     def start(self) -> None:
-        secs = self.parameters.seconds
-        self.session.client.event_engine.state = "waiting"
-        self.session.client.event_engine.wait = secs
+        player = self.session.player
+
+        variable = self.parameters.variable
+        if variable:
+            if variable in player.game_variables:
+                print(f"{variable}: {player.game_variables[variable]}")
+            else:
+                print(f"'{variable}' has not been set yet by map actions.")
+        else:
+            print(player.game_variables)

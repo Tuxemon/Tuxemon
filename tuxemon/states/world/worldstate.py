@@ -516,8 +516,8 @@ class WorldState(state.State):
             if h > prepare.TILE_SIZE[1]:
                 # offset for center and image height
                 c = (c[0], c[1] - h // 2)
-                r = Rect(c, s.get_size())
 
+            r = Rect(c, s.get_size())
             screen_surfaces.append((s, r, l))
 
         # draw the map and sprites

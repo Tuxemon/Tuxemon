@@ -1103,7 +1103,7 @@ msgstr "Zunna"
 
 # Monster categories
 msgid "anteater"
-msgstr "Amenaza"
+msgstr "Oso hormiguero"
 
 msgid "snout"
 msgstr "Hocico"
@@ -1639,7 +1639,7 @@ msgstr ""
 "Dos personas controlan Omnichannel. La junta de dirección es un chiste.\n"
 
 msgid "quicklyknight3"
-msgstr "Allie. Allie es el que no quiere que sepas algo."
+msgstr "Allie. Allie es la que no quiere que lo sepas."
 
 msgid "quicklyknight4"
 msgstr "Lo siento, pero he de irme ya."
@@ -1664,7 +1664,7 @@ msgstr "Lo siento, alguien ha resultado herido en la ruta. Ahora mismo está cer
 
 msgid "bothofyou"
 msgstr ""
-"Vosotros dos, venid fuera. Una representación de Omnichannel desea dirigirse "
+"Vosotros dos, venid fuera. Un representante de Omnichannel desea dirigirse "
 "a la ciudad."
 
 msgid "hellolovelypeople"
@@ -1714,7 +1714,7 @@ msgstr "AHORA, TODO EL MUNDO, POR FAVOR VENID AL CENTRO DEL PUEBLO. ¡OMNICHANNE
 
 msgid "hellolovelypeople2"
 msgstr ""
-"Sé que probablemente os preguntáis por qué mis Caballeros Omni y yo estamos "
+"Sé que probablemente os preguntáis por qué mis Omnicaballeros y yo estamos "
 "aquí.\n"
 "Espera..."
 

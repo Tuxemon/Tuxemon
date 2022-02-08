@@ -3496,7 +3496,7 @@ msgid "menu_secondary_select_key"
 msgstr "Botón Cancelar"
 
 msgid "spyder_route4_wulf2"
-msgstr "Ooh, ¡me siento tan castrado!"
+msgstr "Ooh, ¡me siento tan débil!"
 
 msgid "menu_left_key"
 msgstr "Izquierda"

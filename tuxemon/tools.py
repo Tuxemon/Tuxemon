@@ -48,7 +48,6 @@ from itertools import zip_longest
 from tuxemon.compat import ReadOnlyRect
 from tuxemon import prepare
 from tuxemon.locale import T
-from tuxemon.session import local_session
 
 if TYPE_CHECKING:
     from tuxemon.session import Session

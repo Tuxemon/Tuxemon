@@ -304,7 +304,7 @@
    <polyline points="0,0 16,0"/>
   </object>
  </objectgroup>
- <objectgroup color="#ffff00" id="7" name="Events" visible="0">
+ <objectgroup color="#ffff00" id="7" name="Events">
   <object id="559" type="collision-line" x="176" y="80">
    <polyline points="0,0 0,32"/>
   </object>

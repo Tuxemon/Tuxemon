@@ -402,8 +402,6 @@ class MenuSpriteGroup(SpriteGroup[_MenuElement]):
 
         if event.pressed and event.button in self._allowed_input():
 
-            original_index = index
-
             seeking_index = True
             while seeking_index:
                 index = self._advance_input(index, event.button)

@@ -124,7 +124,6 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             self.stop()
 
     def cleanup(self) -> None:
-        npc = None
         self.world.remove_entity("random_encounter_dummy")
 
 def _choose_encounter(

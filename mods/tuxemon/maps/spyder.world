@@ -106,6 +106,11 @@
             "y": 2688
         },
 				{
+            "fileName": "spyder_greenwash_level2.tmx",
+            "x": -640,
+            "y": 2688
+        },
+				{
             "fileName": "spyder_greenwash_greenhouse.tmx",
             "x": -320,
             "y": 3200

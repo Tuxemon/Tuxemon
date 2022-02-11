@@ -4,6 +4,7 @@ dont_extract = True  # Switching to false will make the download function
 
 from tuxemon.mod_manager import Manager
 import os
+import readline
 
 print(
     "",

@@ -24,6 +24,7 @@
 
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from tuxemon.prepare import CONFIG
 import logging
 import uuid
 from typing import NamedTuple, final
@@ -71,6 +72,8 @@ class StoreMonsterAction(EventAction[StoreMonsterActionParameters]):
                 f"No monster found with instance_id {instance_id}",
             )
 
+        if not box:
+            box = CONFIG.default_monster_storage_box
         if box not in player.monster_boxes.keys():
             player.monster_boxes[box] = list()
 

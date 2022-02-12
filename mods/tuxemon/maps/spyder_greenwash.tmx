@@ -42,12 +42,12 @@
  </tileset>
  <layer id="7" name="Tile Layer 1" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAH7LcnA8AeKtaQQbJgYOv0XqhZE/wNiZaAeFSBWBeIgEmk1oHpvIGaVZ2BgIwP7QfXrAvXqkYFH9UPCfzT8RtPPSMw/ID+Dyh9y0z+l+kHlJyX2w8pPct0P0w8qy/HhRcAwwpY+YPpBZT8+/BmHflj56wOU98WDcemH2V8C1FuKB2sD5bC5H2Y/If3BFOoH+Q2f/fjcDpIjxv0gP+DyBz73AwAh+7yW
+   eAH7LcnA8AeKtaQQbJgYOv0XqhZE/wNiZaAeFSBWBeIgEmk1oHpvIGaVZ2BgIwP7QfXrAvXqkYFH9UPCfzT8qJt+GICAmPQ4mv4GNv2B4ghU/pCb/inVDyo/KbEfVn6S636YflBZjg8vAoYRtvQM0w8q+/Hhzzj0w9K/D1DeFw/GpR9mfwlQbykerA2Uw+Z+mP2E9AdTqB/kN3z243M7SI4Y94P8gMsf+NwPALpAvEk=
   </data>
  </layer>
  <layer id="8" name="Tile Layer 2" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAFjYBj8wFSAgcEMiM2B2AKISQWuQD1uQOwOxB5k6A8F6gkD4nAgjiBDPynuxeZXUuynhV9JsZ8Uv46qHTwh4MfPwPCVj3z3pAD1cwMxseA7ml1VQL2KJOjnJUEtNjcpU6gf3f3Y7MAnNtDux+c2dLmbkgwMt6B4kRS6LGE+I1APExQzD4B+TaCdWlCsTYb9gUA9QVAcTIZ+YcJBhFfFH2DY/4ViFiLsDwLWUcFAHAKtq1SQ3K+Dph8AA2YdyA==
+   eAFjYBj8wFSAgcEMiM2B2AKISQWuQD1uQOwOxB5k6A8F6gkD4nAgjiBDPynuxeZXUuynhV9JsZ8Uv46qHTwh4MfPwPCVj3z3pAD1cwMxseA7ml1VQL2KJOjnJUEtNjcpU6gf3f3Y7MAnNtDux+c2dLmbkgwMt6DYUAFdljCfUYqBgQmKmYE0qYBS/ZpAO7WgWJsM+wOBeoKgOJgM/cKkehhN/R9g2P+FYhYi7A8C1lHBQBwCratUkNyvg6YfAEFhHV0=
   </data>
  </layer>
  <layer id="9" name="Tile Layer 3" width="16" height="32">

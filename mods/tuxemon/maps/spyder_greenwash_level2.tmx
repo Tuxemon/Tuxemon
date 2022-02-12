@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="86">
+<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="92">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -42,17 +42,17 @@
  </tileset>
  <layer id="7" name="Tile Layer 1" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAH7LcnA8AeKtaQQbJgYOv0XqhZE/wNiZaAeFSBWBeIgEmk1oHpvIGaVZ2BgIwP7QfXrAvXqkYEHUj87NwPDQNoPCq9R+yHpbyimn9H4G02/sPKT3PQ70PopLX8odT+l9g8H/QDD0qiw
+   eAH7LcnA8AeKtaQQbJgYOv0XqhZE/wNiZaAeFSBWBeIgEmk1oHpvIGaVZ2BgIwP7QfXrAvXqkYEHUj87NwPDQNoPCq9R+yHpbyilH0MFRFofjb+hF3/I5RSl8QcrP8lNvwOtn1r+j+ZhYEDHyOGMiw2zH10viI9LD7I4TD+54T8Y9AMA8Gapug==
   </data>
  </layer>
  <layer id="11" name="Tile Layer 2" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAHVlcEJAkEMRSNeBc/agVqNerQEbUJ78OLRrtRm/Dl8CGESduKCGvjsbNi/yTwyjEg7HguRF1SNyVJkClXj3/0r7H0DHeciJ6g3tvDuoTO8l4K/t94n3+usUE+sM92xJx9r5IZKmfrYITdUyvRXQ7kpn15+3A/PTMayxc/7M5YZP9bn/3qfY/gtu9asZT3pmSW7Si96Zsmu4re9jeW3PDhftk601vo3w4Ncsvmx/2L/5MFnNj8tv81F6+tMxIv1I4/NH+D3+raf94ftM1r73vWd90fkYf4Nm+9GKw==
+   eAHVlTsOAjEMRI1okaihSgtUfPYggAQFR4BLwC2ByzAuRrJCYpJQsFgabdbaSeKneCOSjvtE5Am1xmAqMoRa49/9M9S+gM5jkQtUG1t499AV3luDv3a9b75/4JyUahneV5qjzlIp0zh2yJVKmfY1VuEzxxQ/1qM9s8EcHssUP+vXnvVYevz60LNrw9BjxZrtU3uW7DrMU/v/0p4lu76xYH+WMsmdJe/8WJasnzz49M5Pym9zufEhiBwjcf2cx+ZPI5FYv/bz/rD7zI3jves774+ch/kX1rRC7A==
   </data>
  </layer>
  <layer id="12" name="Tile Layer 3" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAHd0rcNAkEUhOFpgJMIcAG0wWFyDlMArgBcD9ABRsKkIGFS6Ak6gBD4k0suAO0ikh3pC1Z6o9U+rST5KamAIkoowyQB81XUUEcDJmky30IbHXRhkh7zfQwwxAiu5OlJL7icZUZaYY0Nvp2ju9jTOeCIE76do33XzuH+5klpAdOE+9vS3SGWljyY5kz3gizdnEXf9L5P8+OENIFtpnRnP/Rt73Whd41LN+T5A77FP7jTfaBCN7Dou7DDf73hDZ5lKyk=
+   eAHd0rkJAkEYxfHXgAsGXoG24XrkrkcBXgWoaw/agQd4pAoeqfakHWio/uMNXGbEZB78gg++xzDDSJKfkUooo4IqTBKwX0cDTbRgkjb7HXTRQx8mGbA/xAghxnAlL096w+WsctIaG2wRN0ff4kDniBPOiJujfVfnRVpawjY7unskspIH01zoXpGnW7Dom573bX+SkqawzYzu/Ie+7bku9G5J6Y4if8C3+AcPuk/U6AYWfRfe8F93+AAdpChP
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
@@ -113,6 +113,60 @@
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="86" name="Create Aissa" type="event" x="176" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_greenwash_aissa,11,2"/>
+    <property name="act2" value="npc_face spyder_greenwash_aissa,down"/>
+    <property name="cond1" value="not npc_exists spyder_greenwash_aissa"/>
+    <property name="cond2" value="not variable_set greenwash_aissa:yes"/>
+   </properties>
+  </object>
+  <object id="87" name="Talk Aissa" type="event" x="160" y="32" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_greenwash_aissa1"/>
+    <property name="act3" value="start_battle spyder_greenwash_aissa"/>
+    <property name="act4" value="translated_dialog spyder_greenwash_aissa2"/>
+    <property name="act6" value="set_variable greenwashaissa:yes"/>
+    <property name="behav1" value="talk spyder_greenwash_aissa"/>
+    <property name="cond1" value="not variable_set greenwashaissa:yes"/>
+   </properties>
+  </object>
+  <object id="88" name="Create Moreau" type="event" x="144" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_greenwash_moreau,8,30"/>
+    <property name="act2" value="npc_face spyder_greenwash_moreau,down"/>
+    <property name="cond1" value="not npc_exists spyder_greenwash_moreau"/>
+    <property name="cond2" value="not variable_set greenwash_moreau:yes"/>
+   </properties>
+  </object>
+  <object id="89" name="Talk Moreau" type="event" x="128" y="480" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_greenwash_moreau1"/>
+    <property name="act3" value="start_battle spyder_greenwash_moreau"/>
+    <property name="act4" value="translated_dialog spyder_greenwash_moreau2"/>
+    <property name="act6" value="set_variable greenwashmoreau:yes"/>
+    <property name="behav1" value="talk spyder_greenwash_moreau"/>
+    <property name="cond1" value="not variable_set greenwashmoreau:yes"/>
+   </properties>
+  </object>
+  <object id="90" name="Create Dippel" type="event" x="144" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_greenwash_dippel,9,19"/>
+    <property name="act2" value="npc_face spyder_greenwash_dippel,right"/>
+    <property name="cond1" value="not npc_exists spyder_greenwash_dippel"/>
+    <property name="cond2" value="not variable_set greenwash_dippel:yes"/>
+   </properties>
+  </object>
+  <object id="91" name="Talk Dippel" type="event" x="128" y="304" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_greenwash_dippel1"/>
+    <property name="act3" value="start_battle spyder_greenwash_dippel"/>
+    <property name="act4" value="translated_dialog spyder_greenwash_dippel2"/>
+    <property name="act6" value="set_variable greenwashdippel:yes"/>
+    <property name="behav1" value="talk spyder_greenwash_dippel"/>
+    <property name="cond1" value="not variable_set greenwashdippel:yes"/>
    </properties>
   </object>
  </objectgroup>

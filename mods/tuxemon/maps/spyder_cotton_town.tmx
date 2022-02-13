@@ -207,12 +207,14 @@
   <object id="531" name="Talk hackerintro&#10;" type="event" x="400" y="608" width="128" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
-    <property name="act2" value="create_npc spyder_cottontown_hacker,25,30"/>
-    <property name="act3" value="pathfind spyder_cottontown_hacker,25,36"/>
-    <property name="act4" value="translated_dialog spyder_cottontown_hackerintro"/>
-    <property name="act5" value="pathfind spyder_cottontown_hacker,25,29"/>
-    <property name="act6" value="remove_npc spyder_cottontown_hacker"/>
-    <property name="act7" value="set_variable spokencottonhacker:yes"/>
+    <property name="act11" value="lock_controls"/>
+    <property name="act20" value="create_npc spyder_cottontown_hacker,25,30"/>
+    <property name="act30" value="pathfind spyder_cottontown_hacker,25,36"/>
+    <property name="act40" value="translated_dialog spyder_cottontown_hackerintro"/>
+    <property name="act50" value="pathfind spyder_cottontown_hacker,25,29"/>
+    <property name="act60" value="remove_npc spyder_cottontown_hacker"/>
+    <property name="act70" value="set_variable spokencottonhacker:yes"/>
+    <property name="act80" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="not variable_set spokencottonhacker:yes"/>
    </properties>
@@ -316,13 +318,15 @@
   <object id="548" name="Stop! Cotton" type="event" x="608" y="448" width="16" height="32">
    <properties>
     <property name="act1" value="player_stop"/>
-    <property name="act2" value="create_npc spyder_cottontown_hacker,35,35"/>
+    <property name="act11" value="lock_controls"/>
+    <property name="act20" value="create_npc spyder_cottontown_hacker,35,35"/>
     <property name="act21" value="pathfind spyder_cottontown_hacker,35,29"/>
     <property name="act30" value="pathfind spyder_cottontown_hacker,36,29"/>
     <property name="act40" value="translated_dialog spyder_cottontown_stopthere"/>
     <property name="act50" value="pathfind player,36,28"/>
-    <property name="act60" value="pathfind spyder_cottontown_hacker,23,28"/>
+    <property name="act60" value="pathfind spyder_cottontown_hacker,35,35"/>
     <property name="act80" value="remove_npc spyder_cottontown_hacker"/>
+    <property name="act90" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond3" value="not variable_set visitedcottoncafe:yes"/>
    </properties>

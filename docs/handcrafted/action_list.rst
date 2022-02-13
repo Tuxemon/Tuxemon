@@ -28,14 +28,17 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.player_face.PlayerFaceAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.player_resume.PlayerResumeAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.player_stop.PlayerStopAction 
+.. autoscriptinfoclass:: tuxemon.event.actions.print.PrintAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.quit.QuitAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.random_encounter.RandomEncounterAction 
+.. autoscriptinfoclass:: tuxemon.event.actions.random_integer.RandomIntegerAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_monster.RemoveMonsterAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_npc.RemoveNpcAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.rename_monster.RenameMonsterAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.rename_player.RenamePlayerAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.rumble.RumbleAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.screen_transition.ScreenTransitionAction 
+.. autoscriptinfoclass:: tuxemon.event.actions.set_economy.SetEconomyAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.set_inventory.SetInventoryAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_flair.SetMonsterFlairAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_health.SetMonsterHealthAction 

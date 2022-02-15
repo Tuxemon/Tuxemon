@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="11" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
+<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="11" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
  <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -9,10 +9,10 @@
  <tileset firstgid="161" name="electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="177" name="plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
+ <tileset firstgid="177" name="plants" tilewidth="16" tileheight="16" tilecount="2" columns="1">
+  <image source="../gfx/tilesets/plants.png" width="16" height="32"/>
  </tileset>
- <tileset firstgid="193" name="stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
+ <tileset firstgid="179" name="stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
   <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="11" height="9">
@@ -22,17 +22,17 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYKAeYEEzqhbIb4KKxQDpOCR5fiQ2iNkJxH1APAuIS4C4DIhB4CQQnwKzEMRUKJMTSHNBMTeQvgjEl4AYGxABCopCsRg2BUhi8kC2AhQrIonTmgkAWYwJLw==
+   eAFjYKAeYEEzqhbIb4KKxQDpOCR5fiQ2iNkJxH1APAuIS4C4DIhBYDcQ7wGzEMRUKJMTSHNBMTeQPgzER4AYGxABCopCsRg2BUhi8kC2AhQrIonTmgkAKywI9w==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYKAtWAo1fiGQXkSkVXVEqkNXdhkocAVdcAjxAeT5BA4=
+   eAFjYKAtWAo1fiGQXkSkVXVEqkNXdhQocAxdcAjxAdAxA/I=
   </data>
  </layer>
  <layer id="4" name="Above player" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYKA/OAy08ggOa2vQxE8D+WfQxAaKu5EEi7ciqZUEsglhkHIAFLAF4g==
+   eAFjYKA/2Aq0chsOa2vQxPcC+fvQxAaKu5EEizchqZUEsglhkHIA3AUFpw==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">

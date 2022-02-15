@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="678">
+<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="679">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -46,12 +46,12 @@
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHlmDtu1GAUhR1EAQGPaRBpgFCThBXwWkAylIBEEiRgAzQ0ELMDlgAVVZKl0LKFpEpJw+McyUc5uvrt8WsyAUY6uv/jPj7f3+N4cpRl5TF0tECbVZ/IweXLS1m5DNEurWRlBv2+kZW/oJ+Q78tvbCu+mFfrsnfAtgrdhm5BNyHtnQf7GDyPoIfQA+g+RK631xdHpzMnwUvw7EI70Db0AhLZVdyfW5WuwPpc67Ms45SvrdWZ0/8jeEpoD/oAvYeUZ91y38PY5/KZZRk3yyfue//ins+dpy/fFHyxxxuJNe+z96/pzDaray9g70IHUF6t+XWMMeZ1OKNyeo+0Fi17RzaqjX+MbztnHfmqb+qR1veWs9Wv0DdIa4yr85fPGNb51IcUT6w1teuKe2POU3xd8xdgnVTKB3L/CPFd+JxDPLT6ngy5F5tyq19rVQ+8to/JsZ8QuSjej/HeVe5Zln06DGJO1lOs6jRZfSe2EBfVhW3twmld1p8m8jG/P1+aaoulC4Oue4hlXxW/bmOuPb+Wlc+gp5B8ztIW4OE9pZq8/3Kb74JrB9o2vu+2r7h52MimGt7DN+B6Db0yPvnN2/q5ei3n8/V5j08unZ4ja503vnj9/wvf53AusQ995/9y/+Kzv2+PmuL+hv6dJJ61i3q+xF4O6d8K/scQ8w2ZXwzvCsw1hG8IC2PfJc4t5iTfp4Sfn2+B/UmD8kR8rNN3PkVuf7dSHuer67F84/uE1seykZHvf5vWk1l85Jg3ozN471jb9ziv+8S4Or8+687AOl/s75XvNeU+Sz5y6B008vH89Z4vuxHuiabr6LPnDLEPvsfccb9Nvfhe1ybGfZwh1ufeIXQA7UNx3/NorN5rPtQ6H7+LExN/m3Tlc57Ccnne1DiHr8dq7Hxac+t8kT9Vx9f8t5fnTI3rcnfJkcrbZu1JTW/axMrnD37PUOQ=
+   eAHlmD1uFEEQhduIAAyzS4JwApgY25wAsA9gr0NAwjYScAESEvBwA25BZPsopFzBRIQk/LwnzRPPpZ7Z+dn1Gljpqbqru6q+qZ4dz/o0pfIrdLpAm6pP5KD76lIqlyHapZVUJujXrVT+hH5Avq59s7bii3nll70HtlXoLnQHug1p7SLYLfBsQo+hR9BDiFxvbi6OTmdOghfgOYD2oT3oOSSy67g/dypdg/W5/NMs45SvrdWZc/8H8JTQIfQeegcpz7rlfoCxz7VnmmXctD1x3fsX13zuPH35JuCLPd7I+LzP3r+mM9uurn0Mex86horK59cxizGvwxmV03skX7TsHdmoNvtjfNs562iv+qYeyX+4nFY/QZ8h+RhXt197ZmGdT33I8cRaE7uuuDbLeY6va/4xWEeVioHc30N8Fz7nEA+tvidD7sWm3OrXWtUDr+1jchxlRC6K92O8d5V7mmWfToKYk/UUqzpNVt+JHcRFdWFbu/SnLutPMvmY358vTbXF0oVB1z3Esq+KX7cxfc9upPIp9ATSnvO0Y/DwnlJN3n+FzQ/AtQ/tGd8XW1fcPGxkUw3v4WtwvYJeGp/2zdv6uXot53P/vMdbV85WuGh8Z+lS+l/4NsO5xD70nf/L/YvP/r49aor7G/r3LfOsXdTzJfZySP9W8D+GmG/I/HJ4V2CuIXxDWBj7NnNuMSf5Pmb2+fmOsT5qUJGJj3X6zifI7e9WyuN8dT3W3vg+If+sbGTk+9+29WQaHznmzegM3jvW9jXO6z4xrm5fH78zsI7/vfK1ptznyUcOvYNGPp6/3vNlN8I90XQdfdacIfbB15g7rreptzvw/cEZYn2unUDH0BEU13N86n1urY/P+fhdHJn426QrnzOMLZfnzY0L7PVYjZ1PPrfOF/lzddznv708Z25cl7tLjlzeNr7dmt60idWe3/g3TNQ=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -300,8 +300,11 @@
   <object id="672" type="collision" x="112" y="160" width="16" height="16"/>
   <object id="673" type="collision" x="144" y="160" width="16" height="16"/>
   <object id="677" type="collision" x="96" y="80" width="32" height="16"/>
+  <object id="678" type="collision-line" x="240" y="496">
+   <polyline points="0,0 16,0"/>
+  </object>
  </objectgroup>
- <objectgroup color="#ffff00" id="7" name="Events">
+ <objectgroup color="#ffff00" id="7" name="Events" visible="0">
   <object id="559" type="collision-line" x="176" y="80">
    <polyline points="0,0 0,32"/>
   </object>
@@ -395,8 +398,10 @@
   </object>
   <object id="590" name="Shaft Plot Revealed" type="event" x="64" y="96" width="64" height="16">
    <properties>
-    <property name="act10" value="remove_npc spyder_route3_zoolander"/>
-    <property name="act11" value="create_npc spyder_route3_zoolander,6,11"/>
+    <property name="act1" value="stop_player"/>
+    <property name="act11" value="lock_controls"/>
+    <property name="act14" value="remove_npc spyder_route3_zoolander"/>
+    <property name="act15" value="create_npc spyder_route3_zoolander,6,11"/>
     <property name="act20" value="create_npc spyder_rookie,16,10"/>
     <property name="act30" value="pathfind spyder_rookie,9,8"/>
     <property name="act40" value="pathfind spyder_route3_zoolander,7,8"/>
@@ -409,6 +414,7 @@
     <property name="act81" value="remove_npc spyder_rookie"/>
     <property name="act82" value="remove_npc spyder_route3_zoolander"/>
     <property name="act83" value="set_variable shaftscheme:yes"/>
+    <property name="act84" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="not variable_set shaftscheme:yes"/>
    </properties>

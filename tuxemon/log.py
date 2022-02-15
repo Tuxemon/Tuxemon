@@ -245,11 +245,14 @@ def send_logs():
             __import__("webbrowser").open_new_tab(response[0])
         else:
             pass
+            
 
     except NameError:
         logging.error(
             f"Attempted to load a non-existent provider {config.log_host}"
         )
+
+        
     except requests.exceptions.ConnectionError:
         logging.error("Connection to the provider failed.", exc_info=True)
 

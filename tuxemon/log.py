@@ -107,6 +107,9 @@ class transfersh(LogStorageProvider):
 
     remote_url = "https://transfer.sh"
 
+providers = {
+    "transfersh": transfersh
+}
 
 def archive_log():
     """
@@ -233,9 +236,7 @@ def send_logs():
 
 
     try:
-        provider = eval(
-            f"{config.log_host}(storage_time={config.log_storage_max_days})"
-        )
+        provider = providers[config.log_host](storage_time=config.log_storage_max_days)
         response = provider.send_log()
         print(f"Report URL: {response[0]}")
         if (

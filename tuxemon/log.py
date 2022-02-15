@@ -259,13 +259,17 @@ def popup_send_log_consent():
     Popup requesting consent for sending crash report.
     Returns bool value with the choice.
     """
-    if prepare.CONFIG.popup:
+    breakpoint()
+    if prepare.CONFIG.popup == 'None':
+        pass
+
+    elif prepare.CONFIG.popup:
         return True
 
-    elif not prepare.CONFIG.popup:
+    else:
         return False
 
-    title = ("Tuxemon",)
+    title = ("Tuxemon")
     text = (
         "Sadly, Tuxemon crashed. Do you want to send crash report to the tuxemon team?",
     )

@@ -1,7 +1,7 @@
 """
 
 General "tools" code for pygame graphics operations that don't
-have a home in any specific place
+have a home in any specific place.
 
 """
 from __future__ import annotations
@@ -118,8 +118,8 @@ def load_and_scale(filename: str) -> pygame.surface.Surface:
     Load an image and scale it according to game settings.
 
     * Filename will be transformed to be loaded from game resource folder
-    * Will be converted if needed.
-    * Scale factor will match game setting.
+    * Will be converted if needed
+    * Scale factor will match game setting
 
     Parameters:
         filename: Path of the image file.
@@ -159,8 +159,8 @@ def load_sprite(
     """
     Load an image from disk and return a sprite.
 
-    Image name will be transformed and converted
-    Rect attribute will be set
+    Image name will be transformed and converted.
+    Rect attribute will be set.
 
     Any keyword arguments will be passed to the get_rect method
     of the image for positioning the rect.
@@ -185,8 +185,8 @@ def load_animated_sprite(
     """
     Load a set of images and return an animated sprite.
 
-    Image name will be transformed and converted
-    Rect attribute will be set
+    Image name will be transformed and converted.
+    Rect attribute will be set.
 
     Any keyword arguments will be passed to the get_rect method
     of the image for positioning the rect.

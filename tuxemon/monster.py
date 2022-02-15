@@ -297,7 +297,7 @@ class Monster:
         The monster is looked up in the database by name.
 
         Parameters:
-            slug: Slug to lookup
+            slug: Slug to lookup.
 
         """
 
@@ -498,7 +498,7 @@ class Monster:
         Checks if an evolution is valid and gets the resulting monster.
 
         Returns:
-            New monster slug if valid, None otherwise
+            New monster slug if valid, None otherwise.
 
         """
         for evolution in self.evolutions:

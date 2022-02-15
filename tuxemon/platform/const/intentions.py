@@ -6,7 +6,6 @@ using explicit buttons.
 Input handlers or widget can use these values.
 """
 
-
 RUN = 30000
 WORLD_MENU = 30001
 MENU_CANCEL = 30002

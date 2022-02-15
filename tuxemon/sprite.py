@@ -408,6 +408,9 @@ class MenuSpriteGroup(SpriteGroup[_MenuElement]):
             while seeking_index:
                 index = self._advance_input(index, event.button)
 
+                if index == original_index:
+                    raise RuntimeError
+
                 seeking_index = not self.sprites()[index].enabled
 
         return index

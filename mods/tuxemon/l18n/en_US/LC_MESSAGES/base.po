@@ -693,6 +693,13 @@ msgstr "Press a key to set your new input key"
 msgid "options_new_input_key1"
 msgstr "Restart your game for changes to take effect!"
 
+# Default mod names on selection menu
+msgid "default_campaign"
+msgstr "Tuxemon"
+
+msgid "spyder_campaign"
+msgstr "Spyder and the Cathedral"
+
 # Multiplayer notifications
 msgid "multiplayer_accept"
 msgstr "Accept"

@@ -68,7 +68,6 @@ class BackgroundState(State):
     def draw(self, surface: pygame.surface.Surface) -> None:
         surface.fill((0, 0, 0, 0))
 
-
 class StartState(PopUpMenu[StartGameObj]):
     """The state responsible for the start menu."""
 
@@ -91,14 +90,58 @@ class StartState(PopUpMenu[StartGameObj]):
                 **change_state_kwargs,
             )
 
+        def show_mod_menu() -> None:
+            self.client.replace_state("ModChooserMenuState")
+
+        def exit_game() -> None:
+            self.client.exit = True
+
+        menu_items_map = (
+            ("menu_new_game", show_mod_menu),
+            ("menu_load", change_state("LoadMenuState")),
+            ("menu_options", change_state("ControlState")),
+            ("exit", exit_game),
+        )
+
+        for key, callback in menu_items_map:
+            label = T.translate(key).upper()
+            image = self.shadow_text(label)
+            item = MenuItem(image, label, None, callback)
+            self.add(item)
+
+
+class ModChooserMenuState(PopUpMenu[StartGameObj]):
+    """This menu shows the 2 default mod campaigns at the moment."""
+
+    shrink_to_items = True
+    escape_key_exits = True
+
+    def close(self) -> None:
+        self.client.replace_state("StartState")
+
+    def startup(self, **kwargs: Any) -> None:
+
+        super().startup(**kwargs)
+
+        self.map_name = prepare.CONFIG.starting_map
+
+        def new_game_callback(
+            map_name: str,
+        ) -> Callable:
+            return partial(
+                new_game,
+                map_name
+            )
+
         def set_player_name(text: str) -> None:
-            map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
-            self.client.push_state("WorldState", map_name=map_name)
+            map_path = prepare.fetch("maps", self.map_name)
+            self.client.push_state("WorldState", map_name=map_path)
             self.client.push_state(FadeInTransition)
             local_session.player.name = text
             self.client.pop_state(self)
 
-        def new_game() -> None:
+        def new_game(map_name: str) -> None:
+            self.map_name = map_name
             # load the starting map
             self.client.push_state(
                 state_name=InputMenu,
@@ -109,14 +152,19 @@ class StartState(PopUpMenu[StartGameObj]):
             )
             self.client.push_state(FadeInTransition)
 
-        def exit_game() -> None:
-            self.client.exit = True
+        # Build a menu of the default mod choices:
+        menu_items_map = ()
 
-        menu_items_map = (
-            ("menu_new_game", new_game),
-            ("menu_load", change_state("LoadMenuState")),
-            ("menu_options", change_state("ControlState")),
-            ("exit", exit_game),
+        # If a different map has been passed as a parameter, show as an option:
+        if prepare.CONFIG.starting_map != "player_house_bedroom.tmx":
+            menu_items_map = menu_items_map + (
+                ("start", new_game_callback(prepare.CONFIG.starting_map)),
+            )
+
+        menu_items_map = menu_items_map + (
+            ("default_campaign", new_game_callback("player_house_bedroom.tmx")),
+            ("spyder_campaign", new_game_callback("spyder_bedroom.tmx")),
+            ("cancel", self.close),
         )
 
         for key, callback in menu_items_map:

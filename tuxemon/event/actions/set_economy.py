@@ -20,7 +20,6 @@
 #
 
 from __future__ import annotations
-from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.economy import Economy

@@ -7,7 +7,7 @@ from pygame import mixer
 
 from tuxemon.db import db
 from tuxemon.tools import transform_resource_filename
-from typing import Protocol, Any, Optional
+from typing import Protocol, Optional
 
 logger = logging.getLogger(__name__)
 

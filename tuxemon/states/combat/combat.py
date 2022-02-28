@@ -29,7 +29,7 @@
 #
 from __future__ import annotations
 import logging
-from collections import defaultdict, namedtuple
+from collections import defaultdict
 from functools import partial
 from itertools import chain
 
@@ -46,13 +46,13 @@ from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
 from .combat_animations import CombatAnimations
 from typing import Dict, Optional, Any, Literal, Tuple, Union, TYPE_CHECKING,\
-    Sequence, Iterable, Mapping, List, MutableMapping, AbstractSet, NamedTuple,\
+    Sequence, Iterable, List, MutableMapping, NamedTuple,\
     overload, Set
 from tuxemon.platform.events import PlayerInput
 import pygame
 from tuxemon.tools import assert_never
 from tuxemon.monster import Monster
-from tuxemon.menu.interface import MenuItem, ExpBar, HpBar
+from tuxemon.menu.interface import MenuItem
 from tuxemon.animation import Task
 from tuxemon.item.item import Item
 from tuxemon.states.monster import MonsterMenuState

@@ -158,18 +158,17 @@ class ModChooserMenuState(PopUpMenu[StartGameObj]):
         # If a different map has been passed as a parameter, show as an option:
         if prepare.CONFIG.starting_map != "player_house_bedroom.tmx":
             menu_items_map = menu_items_map + (
-                (str(prepare.CONFIG.starting_map), new_game_callback(prepare.CONFIG.starting_map)),
+                ("start", new_game_callback(prepare.CONFIG.starting_map)),
             )
 
         menu_items_map = menu_items_map + (
+            ("default_campaign", new_game_callback("player_house_bedroom.tmx")),
             ("spyder_campaign", new_game_callback("spyder_bedroom.tmx")),
-            ("xero_campaign", new_game_callback("player_house_bedroom.tmx")),
             ("cancel", self.close),
         )
 
         for key, callback in menu_items_map:
             label = T.translate(key).upper()
-            label = label.center(32)
             image = self.shadow_text(label)
             item = MenuItem(image, label, None, callback)
             self.add(item)

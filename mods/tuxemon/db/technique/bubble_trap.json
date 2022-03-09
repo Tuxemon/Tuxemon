@@ -3,7 +3,8 @@
   "animation": "bomb_bright",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "statchange"
   ],
   "healing_power": 0,
   "icon": "",
@@ -11,6 +12,9 @@
   "is_fast": false,
   "potency": 1,
   "power": 2.25,
+  "statspeed": {
+    "value": 3, "operation":"-"
+  },
   "range": "reach",
   "recharge": 3,
   "sfx": "sfx_bubbles",

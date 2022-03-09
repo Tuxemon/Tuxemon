@@ -3,7 +3,8 @@
   "animation": "disintegrate",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "poison"
   ],
   "healing_power": 0,
   "icon": "",
@@ -11,6 +12,12 @@
   "is_fast": false,
   "potency": 0.35,
   "power": 2.25,
+  "statranged": {
+    "value": 2,  "operation":"-"
+  },
+  "statmelee": {
+    "value": 2,  "operation":"-"
+  },
   "range": "ranged",
   "recharge": 2,
   "sfx": "sfx_bubbles",

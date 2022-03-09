@@ -3,7 +3,8 @@
   "animation": "gloop_orange",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "statchange"
   ],
   "healing_power": 0,
   "icon": "",
@@ -11,6 +12,9 @@
   "is_fast": false,
   "potency": 1,
   "power": 1.25,
+  "statspeed": {
+    "value": 3, "operation":"-"
+  },
   "range": "ranged",
   "recharge": 2,
   "sfx": "sfx_blaster",

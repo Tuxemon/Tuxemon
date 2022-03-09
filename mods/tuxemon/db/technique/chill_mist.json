@@ -3,14 +3,18 @@
   "animation": "water_spurt",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "statchange"
   ],
   "healing_power": 0,
   "icon": "",
   "is_area": true,
   "is_fast": false,
   "potency": null,
-  "power": 1.25,
+  "power": 2,
+  "statspeed": {
+    "value": 1, "operation":"-"
+  },
   "range": "reach",
   "recharge": 1,
   "sfx": "sfx_tornado",

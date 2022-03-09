@@ -10,14 +10,20 @@
   "is_area": false,
   "is_fast": false,
   "potency": 0.75,
-  "power": 3.0,
+  "power": 4.0,
+  "stathp": {
+    "value": 8, "operation":"-"
+  },
+  "statmelee": {
+    "value": 2, "operation":"*"
+  },
   "range": "touch",
   "recharge": 3,
   "sfx": "sfx_blaster",
   "slug": "all_in",
   "sort": "damage",
   "target": {
-    "enemy monster": 2,
+    "enemy monster": 0,
     "enemy team": 0,
     "enemy trainer": 0,
     "item": 0,

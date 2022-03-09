@@ -3,7 +3,8 @@
   "animation": "thud",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "statchange"
   ],
   "healing_power": 0,
   "icon": "",
@@ -11,6 +12,9 @@
   "is_fast": false,
   "potency": 0.8,
   "power": 2.25,
+  "statspeedd": {
+    "value": 3,  "operation":"-"
+  },
   "range": "ranged",
   "recharge": 3,
   "sfx": "sfx_crumble3",
@@ -29,6 +33,6 @@
     "earth"
   ],
   "use_failure": "combat_miss",
-  "use_success": null,
+  "use_success": "attacks_fell",
   "use_tech": "combat_used_x"
 }

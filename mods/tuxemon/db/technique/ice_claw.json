@@ -3,7 +3,8 @@
   "animation": "icetacle",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "statchange"
   ],
   "healing_power": 0,
   "icon": "",
@@ -11,6 +12,9 @@
   "is_fast": false,
   "potency": null,
   "power": 1.25,
+  "statdspeed": {
+    "value": 4, "operation":"-"
+  },
   "range": "melee",
   "recharge": 1,
   "sfx": "sfx_blaster",

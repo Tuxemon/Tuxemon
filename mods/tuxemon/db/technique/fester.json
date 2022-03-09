@@ -3,7 +3,8 @@
   "animation": "drip_green",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "statchange"
   ],
   "healing_power": 0,
   "icon": "",
@@ -11,6 +12,9 @@
   "is_fast": false,
   "potency": 0.8,
   "power": 2.25,
+  "statmelee": {
+    "value": 6, "operation":"-"
+  },
   "range": "reach",
   "recharge": 2,
   "sfx": "sfx_bubbles",

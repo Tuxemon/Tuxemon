@@ -224,10 +224,10 @@ class Technique:
 
     def keep_old_stats(self) -> Sequence[Sequence[int]]:
         mon = self.target
-        self.old_stats_data.append([
+        self.old_stats_data = [
             mon.speed, mon.hp, mon.armour,
             mon.melee, mon.ranged, mon.dodge,
-        ])
+        ]
         return self.old_stats_data
 
     def use(self, user: Monster, target: Monster) -> TechniqueResult:
@@ -283,8 +283,6 @@ class Technique:
                 result = self.apply_lifeleech(user, target)
             elif effect == "recover":
                 result = self.apply_status("status_recover", user)
-            elif effect == "overfeed":
-                result = self.apply_status("status_overfeed", target)
             elif effect == "status":
                 for category in self.category:
                     if category == "poison":
@@ -322,7 +320,7 @@ class Technique:
             self.statspeed, self.stathp, self.statarmour,
             self.statmelee, self.statranged, self.statdodge,
         ]
-        statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
+        statslugs = ['speed', 'current_hp', 'armour', 'melee', 'ranged', 'dodge']
         newstatvalue = 0
         for stat, slugdata in zip(statsmaster, statslugs):
             if not stat:
@@ -346,15 +344,12 @@ class Technique:
                     "/": operator.floordiv,
                 }
                 newstatvalue = ops_dict[operation](basestatvalue, value)
-                setattr(target, slugdata, newstatvalue)
-            if slugdata == 'hp':
+            if slugdata == 'current_hp':
                 if override:
                     target.current_hp = target.hp
-                newstatvalue = 1
-                setattr(target, slugdata, newstatvalue)
             if newstatvalue <= 0:
                 newstatvalue = 1
-                setattr(target, slugdata, newstatvalue)
+            setattr(target, slugdata, newstatvalue)
         return {
             "success": bool(newstatvalue)
         }

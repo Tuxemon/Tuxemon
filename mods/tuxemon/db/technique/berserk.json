@@ -3,7 +3,8 @@
   "animation": "constantburn",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "statchange"
   ],
   "healing_power": 0,
   "icon": "",
@@ -11,13 +12,22 @@
   "is_fast": false,
   "potency": 1,
   "power": 2.25,
+  "statmelee": {
+    "value": 6, "operation":"+"
+  },
+  "statdodge": {
+    "value": 2, "operation":"-"
+  },
+  "statarmour": {
+    "value": 2, "operation":"-"
+  },
   "range": "melee",
   "recharge": 3,
   "sfx": "sfx_growl",
   "slug": "berserk",
   "sort": "damage",
   "target": {
-    "enemy monster": 2,
+    "enemy monster": 0,
     "enemy team": 0,
     "enemy trainer": 0,
     "item": 0,

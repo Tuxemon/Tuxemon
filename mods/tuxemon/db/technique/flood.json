@@ -3,13 +3,17 @@
   "animation": "shot",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "statchange"
   ],
   "healing_power": 0,
   "icon": "",
   "is_area": true,
   "is_fast": false,
   "power": 1.5,
+  "statdodge": {
+    "minvalue": 3, "max_deviation": 1, "operation":"-"
+  },
   "range": "ranged",
   "recharge": 1,
   "sfx": "sfx_bubbles",

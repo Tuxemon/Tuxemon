@@ -645,7 +645,13 @@ class Monster:
     def end_combat(self) -> None:
         for move in self.moves:
             move.full_recharge()
-
+        old_stats = Technique.keep_old_stats(self)
+        self.speed = old_stats[0]
+        self.hp = old_stats[1]
+        self.armour = old_stats[2]
+        self.melee = old_stats[3]
+        self.ranged = old_stats[4]
+        self.dodge = old_stats[5]
         if "status_faint" in (s.slug for s in self.status):
             self.status = [Technique("status_faint")]
         else:

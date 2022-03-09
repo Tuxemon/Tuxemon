@@ -12,7 +12,7 @@
   "potency": null,
   "power": 2.25,
   "range": "touch",
-  "recharge": 3,
+  "recharge": 2,
   "sfx": "sfx_flames2",
   "slug": "breathe_fire",
   "sort": "damage",

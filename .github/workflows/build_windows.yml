@@ -1,0 +1,67 @@
+name: Build windows binary (cx_freeze)
+
+on:
+  release:
+    types: [published]
+    
+jobs:
+  build_executable:
+    runs-on: windows-latest
+    steps:
+      # Checkout the repo
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2.2.2
+        with:
+            # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+            python-version: 3.9 # optional, default is 3.x
+            # The target architecture (x86, x64) of the Python interpreter.
+            architecture: x64 # optional
+
+      - name: Install dependencies
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Install cx-freeze
+        run: python3 -m pip install cx-freeze
+
+      - name: Build
+        run: |
+          copy buildconfig/setup_cx_freeze.py setup_cx_freeze.py
+          python setup_cx_freeze.py build
+
+      - name: Upload build files
+        uses: actions/upload-artifact@v2.2.4
+        with:
+            name: tuxemon_windows_binary
+            path: build/exe.*
+
+  build_installer: 
+      runs-on: windows-latest
+      needs: "build_executable"
+      steps:
+        - uses: actions/checkout@v2
+
+        # Downloads the executable, might not be the most efficient,
+        # but it makes the graph cooler
+        - name: Download a Build Artifact
+          uses: actions/download-artifact@v2.0.10
+          with:
+            name: tuxemon_windows_binary
+            path: build
+
+        - name: Install nsis
+          run: |
+            Invoke-WebRequest -Uri "https://netcologne.dl.sourceforge.net/project/nsis/NSIS%203/3.06.1/nsis-3.06.1-setup.exe" -OutFile "nsis.exe"
+
+        - name: Build Installer
+          run: |
+            cd buildconfig
+            cmd.exe /c "build_installer.bat"
+            mkdir ../dist/
+            mv tuxemon-installer.exe ../dist/.
+        
+        - name: Upload installer
+          uses: actions/upload-artifact@v2.2.4
+          with:
+              name: tuxemon_windows_installer
+              path: dist
+            

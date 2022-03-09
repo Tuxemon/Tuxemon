@@ -8,12 +8,16 @@
             "technique": "fire_claw"
         },
         {
-            "level_learned": 2,
+            "level_learned": 5,
             "technique": "fire_ball"
         },
         {
-            "level_learned": 2,
+            "level_learned": 8,
             "technique": "fume"
+        },
+        {
+            "level_learned": 12,
+            "technique": "ignition"
         }
     ],
     "shape": "Dragon",

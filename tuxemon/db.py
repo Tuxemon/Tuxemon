@@ -122,6 +122,7 @@ class JSONTechniqueOptionalFields(TypedDict, total=False):
     types: Sequence[str]
     power: float
     is_fast: bool
+    guarantee_next_hit: bool
     recharge: int
     is_area: bool
     range: str

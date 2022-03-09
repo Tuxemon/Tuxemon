@@ -10,7 +10,7 @@
   "is_area": false,
   "is_fast": false,
   "potency": 1,
-  "power": 2.25,
+  "power": 0,
   "statdodge": {
     "minvalue": 0, "max_deviation": 3, "operation":"-"
   },
@@ -21,7 +21,7 @@
     "value": 2,  "operation":"+"
   },
   "stathp": {
-    "value": 4, "operation":"-"
+    "value": 4, "operation":"+"
   },
   "range": "reach",
   "recharge": 2,

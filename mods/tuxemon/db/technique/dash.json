@@ -1,27 +1,20 @@
 {
-  "accuracy": 0.75,
-  "animation": "metal tentacle",
+  "accuracy": 0.90,
+  "animation": "sparks_gold_alt",
   "category": "physical",
   "effects": [
-    "damage",
-    "statchange"
+    "damage"
   ],
   "healing_power": 0,
   "icon": "",
   "is_area": false,
-  "is_fast": false,
-  "potency": 0.75,
-  "power": 1.25,
-  "statdodge": {
-    "value": 5, "operation":"-"
-  },
-  "statspeed": {
-    "value": 3, "operation":"-"
-  },
-  "range": "reliable",
-  "recharge": 2,
+  "is_fast": true,
+  "potency": 0.90,
+  "power": 1.5,
+  "range": "touch",
+  "recharge": 3,
   "sfx": "sfx_blaster",
-  "slug": "constrict",
+  "slug": "dash",
   "sort": "damage",
   "target": {
     "enemy monster": 2,
@@ -33,7 +26,7 @@
     "own trainer": 0
   },
   "types": [
-    "metal"
+    "fire"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

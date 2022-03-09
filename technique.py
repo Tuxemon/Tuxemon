@@ -109,6 +109,7 @@ class Technique:
         self.next_use = 0.0
         self.potency = 0.0
         self.power = 1.0
+        self.recoil: Optional[int] = 0
         self.range: Optional[str] = None
         self.recharge_length = 0
         self.sfx = ""
@@ -129,12 +130,14 @@ class Technique:
             self.load(slug)
 
     def load(self, slug: str) -> None:
-        """
-        Loads and sets this technique's attributes from the technique
+        """Loads and sets this technique's attributes from the technique
         database. The technique is looked up in the database by slug.
 
-        Parameters:
-            The slug of the technique to look up in the database.
+        :param slug: The slug of the technique to look up in the database.
+
+        :type slug: String
+
+        :rtype: None
         """
 
         results = db.lookup(slug, table="technique")
@@ -146,9 +149,6 @@ class Technique:
         # technique use notifications (translated!)
         # NOTE: should be `self.use_tech`, but Technique and Item have
         # overlapping checks
-        self.now_asleep = T.maybe_translate(results.get("combat_now_asleep"))
-        self.sleeping = T.maybe_translate(results.get("combat_sleeping"))
-        self.woke = T.maybe_translate(results.get("combat_woke_up"))
         self.use_item = T.maybe_translate(results.get("use_tech"))
         self.use_success = T.maybe_translate(results.get("use_success"))
         self.use_failure = T.maybe_translate(results.get("use_failure"))
@@ -227,14 +227,13 @@ class Technique:
 
     def keep_old_stats(self) -> Sequence[Sequence[int]]:
         mon = self.target
-        self.old_stats_data = [
+        self.old_stats_data.append([
             mon.speed, mon.hp, mon.armour,
             mon.melee, mon.ranged, mon.dodge,
-        ]
+        ])
         return self.old_stats_data
 
     def use(self, user: Monster, target: Monster) -> TechniqueResult:
-
         """
         Apply the technique.
 
@@ -276,10 +275,6 @@ class Technique:
         }
         # TODO: handle conflicting values from multiple technique actions
         # TODO: for example, how to handle one saying success, and another not?
-        print(target.sleep)
-        if target.sleep > 0:
-            self.staysleep(target)
-            return meta_result
         for effect in self.effect:
             if effect == "damage":
                 result = self.damage(user, target)
@@ -291,21 +286,20 @@ class Technique:
                 result = self.apply_lifeleech(user, target)
             elif effect == "recover":
                 result = self.apply_status("status_recover", user)
-            elif effect == "sleep":
-                result = self.apply_sleep(user, target)
-                print("b")
+            elif effect == "overfeed":
+                result = self.apply_status("status_overfeed", target)
             elif effect == "status":
                 for category in self.category:
                     if category == "poison":
                         result = self.poison(target)
-                    elif category == "sleep":
-                        result = self.sleep(target)
                     elif category == "lifeleech":
                         result = self.lifeleech(target)
                     elif category == "recover":
                         result = self.recover(target)
                     else:
                         result = getattr(self, self.category)(target)
+            elif self.recoil > 0:
+                self.apply_recoil(user, target)
             else:
                 result = getattr(self, str(effect))(user, target)
             meta_result = merge_results(result, meta_result)
@@ -333,7 +327,7 @@ class Technique:
             self.statspeed, self.stathp, self.statarmour,
             self.statmelee, self.statranged, self.statdodge,
         ]
-        statslugs = ['speed', 'current_hp', 'armour', 'melee', 'ranged', 'dodge']
+        statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
         newstatvalue = 0
         for stat, slugdata in zip(statsmaster, statslugs):
             if not stat:
@@ -356,14 +350,16 @@ class Technique:
                     "*": operator.mul,
                     "/": operator.floordiv,
                 }
-
                 newstatvalue = ops_dict[operation](basestatvalue, value)
-            if slugdata == 'current_hp':
+                setattr(target, slugdata, newstatvalue)
+            if slugdata == 'hp':
                 if override:
                     target.current_hp = target.hp
+                newstatvalue = 1
+                setattr(target, slugdata, newstatvalue)
             if newstatvalue <= 0:
                 newstatvalue = 1
-            setattr(target, slugdata, newstatvalue)
+                setattr(target, slugdata, newstatvalue)
         return {
             "success": bool(newstatvalue)
         }
@@ -419,7 +415,13 @@ class Technique:
             "should_tackle": bool(damage),
             "success": bool(damage),
         }
-
+    def apply_recoil(self, user: Monster, target: Monster, recoil) -> EffectResult:
+        user.current_hp -= recoil
+        return {
+            "damage": recoil,
+            "should_tackle": bool(recoil),
+            "success": bool(recoil),
+        }
     def apply_status(self, slug: str, target: Monster) -> EffectResult:
         """
         This effect has a chance to apply a status effect to a target monster.
@@ -446,16 +448,7 @@ class Technique:
         return {
             "status": tech,
         }
-    def apply_sleep(self, user: Monster, target: Monster) -> EffectResult:
-        success = True
-        tech = None
-        if success:
-            tech = Technique("status_sleep", carrier=target)
-            target.apply_status(tech)
 
-        return {
-            "status": tech,
-        }
     def apply_lifeleech(self, user: Monster, target: Monster) -> EffectResult:
         """
         This effect has a chance to apply the lifeleech status effect.
@@ -480,23 +473,6 @@ class Technique:
             "status": tech,
         }
 
-    def staysleep(self, target: Monster) -> EffectResult:
-        if target.sleep > 0:
-            target.sleep -= 1
-            return {
-                "should_tackle": False,
-                "success": bool(target.sleep)
-            }
-    def sleep(self, target: Monster) -> EffectResult:
-        if target.sleep <= 0:
-            target.sleep = random.randint(2,5)
-        else:
-            pass
-        return {
-            "should_tackle": False,
-            "success": bool(target.sleep)
-
-        }
     def poison(self, target: Monster) -> EffectResult:
         damage = formula.simple_poison(self, self.link, target)
         target.current_hp -= damage

@@ -3,7 +3,8 @@
   "animation": "puff",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "statchange"
   ],
   "healing_power": 0,
   "icon": "",
@@ -11,10 +12,16 @@
   "is_fast": false,
   "potency": 0.5,
   "power": 2.25,
+  "statdodge": {
+    "value": 5, "operation":"-"
+  },
+  "statspeed": {
+    "value": 5, "operation":"-"
+  },
   "range": "ranged",
   "recharge": 2,
   "sfx": "sfx_blaster",
-  "slug": "rust_bomb",
+  "slug": "rustbomb",
   "sort": "damage",
   "target": {
     "enemy monster": 2,

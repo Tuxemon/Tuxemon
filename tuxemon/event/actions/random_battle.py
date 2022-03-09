@@ -56,7 +56,7 @@ class randomfight(EventAction[AddMonsterActionParameters]):
 
 
     def start(self) -> None:
-        file_path = '/Users/Brian/Documents/GitHub/tuxnew/Tuxemon/mods/tuxemon/db/monster/'
+        file_path = 'tuxemon/db/monster/'
         mon_files = listdir(file_path)
         mon_slug_list = []
         player = self.session.player

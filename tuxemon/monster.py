@@ -196,7 +196,7 @@ class Monster:
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         if save_data is None:
             save_data = dict()
-        self.sleep = 0
+
         self.slug = ""
         self.name = ""  # The display name of the Tuxemon
         self.category = ""

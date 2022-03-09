@@ -3,8 +3,7 @@
   "animation": "metal tentacle",
   "category": "physical",
   "effects": [
-    "damage",
-    "statchange"
+    "damage"
   ],
   "healing_power": 0,
   "icon": "",
@@ -12,12 +11,6 @@
   "is_fast": false,
   "potency": 0.75,
   "power": 1.25,
-  "statdodge": {
-    "value": 5, "operation":"-"
-  },
-  "statspeed": {
-    "value": 3, "operation":"-"
-  },
   "range": "reliable",
   "recharge": 2,
   "sfx": "sfx_blaster",

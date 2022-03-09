@@ -160,14 +160,8 @@ msgstr "Go {name}!"
 msgid "combat_opponent_call_tuxemon"
 msgstr "{user} sent out {name}!"
 
-msgid "combat_now_asleep"
-msgstr "{target} fell asleep."
-
-msgid "combat_sleeping"
-msgstr "{target} is still sleeping."
-
-msgid "combat_woke_up"
-msgstr "{target} woke up"
+msgid "combat_state_poison_get"
+msgstr "{target} is poisoned."
 
 msgid "combat_state_poison_damage"
 msgstr "{name} took poison damage!"
@@ -209,8 +203,6 @@ msgstr "{user} rose higher into the air."
 msgid "combat_amnesia_get"
 msgstr "{user} has gotten amnesia."
 
-msgid "combat_state_lock_on"
-msgstr "{target}, locked on \n, your next attack has 100% accuracy"
 msgid "combat_state_lifeleech_success"
 msgstr "{user} lost health to lifeleech!"
 

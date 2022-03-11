@@ -26,7 +26,7 @@
 from __future__ import annotations
 from tuxemon.math import Vector3, Point3
 from tuxemon.map import proj
-from typing import Sequence, Mapping, Optional, TYPE_CHECKING, Any, TypeVar,\
+from typing import Sequence, Mapping, TYPE_CHECKING, Any, TypeVar,\
     Generic
 from tuxemon.session import Session
 from tuxemon.tools import vector2_to_tile_pos

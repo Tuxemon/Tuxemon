@@ -13,9 +13,8 @@ import pygame
 from pytmx.util_pygame import smart_convert, handle_transformation
 from pytmx.pytmx import TileFlags
 
-from tuxemon.compat import Rect
 from tuxemon import prepare
-from tuxemon.surfanim import SurfaceAnimation, SurfaceAnimationCollection
+from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.sprite import Sprite
 from tuxemon.tools import transform_resource_filename, scale_sequence
 from typing import Tuple, Sequence, Any, Iterable, Generator, Union, Optional,\

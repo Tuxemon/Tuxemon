@@ -70,6 +70,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
 
     def start(self) -> None:
         player = self.session.player
+        self.world = None
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
@@ -118,14 +119,19 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             )
 
     def update(self) -> None:
+        # If state is not queued, AND state is not active, then stop.
         try:
-            self.session.client.get_state_by_name(CombatState)
+            self.session.client.get_queued_state_by_name("CombatState")
         except ValueError:
-            self.stop()
+            try:
+                self.session.client.get_state_by_name(CombatState)
+            except ValueError:
+                self.stop()
 
     def cleanup(self) -> None:
         npc = None
-        self.world.remove_entity("random_encounter_dummy")
+        if self.world:
+            self.world.remove_entity("random_encounter_dummy")
 
 def _choose_encounter(
     encounters: Sequence[JSONEncounterItem],

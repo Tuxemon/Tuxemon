@@ -38,7 +38,7 @@ from tuxemon.surfanim import SurfaceAnimation
 from tuxemon import graphics
 from tuxemon.tools import scale as tuxemon_scale
 from typing import Optional, Callable, Any, Sequence, List, Union, TYPE_CHECKING,\
-    TypeVar, Generic, Iterator, overload, Final, Tuple, Literal, Container
+    TypeVar, Generic, Iterator, overload, Final, Literal, Container
 from tuxemon.platform.events import PlayerInput
 
 if TYPE_CHECKING:
@@ -401,8 +401,6 @@ class MenuSpriteGroup(SpriteGroup[_MenuElement]):
             return 0
 
         if event.pressed and event.button in self._allowed_input():
-
-            original_index = index
 
             seeking_index = True
             while seeking_index:

@@ -542,6 +542,15 @@ class LocalPygameClient:
         """
         return self.state_manager.get_state_by_name(state_name)
 
+    def get_queued_state_by_name(
+        self,
+        state_name: str,
+    ) -> Tuple[str, Mapping[str, Any]]:
+        """
+        Query the state stack for a state by the name supplied.
+        """
+        return self.state_manager.get_queued_state_by_name(state_name)
+
     def queue_state(self, state_name: str, **kwargs: Any) -> None:
         """Queue a state"""
         self.state_manager.queue_state(state_name, **kwargs)

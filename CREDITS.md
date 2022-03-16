@@ -715,6 +715,14 @@ Adapted by Sanglorian from a sprite by ["Catch
 Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack),
 is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
+* ["cave_background.png"](https://wiki.tuxemon.org/File:5_(240px).png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["ocean_background.png"](https://wiki.tuxemon.org/File:Ocean_cropped.png)
+is by [KnoblePersona](https://opengameart.org/content/ocean-background), licensed under
+[CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+
 ## Concept Art
 
 * ["Concept Art"](https://forum.tuxemon.org/viewtopic.php?id=76) by

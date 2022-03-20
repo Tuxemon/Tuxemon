@@ -18,6 +18,9 @@ from typing import Any, Callable, Optional, Literal, Dict, Sequence, Tuple,\
 from tuxemon.graphics import ColorLike
 from tuxemon.platform.events import PlayerInput
 from tuxemon.animation import Animation
+import pygame_menu
+from tuxemon.menu.theme import TUXEMON_THEME
+from tuxemon.menu.events import playerinput_to_event
 
 logger = logging.getLogger(__name__)
 
@@ -87,6 +90,14 @@ class Menu(Generic[T], state.State):
         self.set_font()  # load default font
         self.load_graphics()  # load default graphics
         self.reload_sounds()  # load default sounds
+
+        self.use_pygame_menu = True
+        self._menu = pygame_menu.Menu(
+            "",
+            self.rect.width,
+            self.rect.height,
+            theme=TUXEMON_THEME,
+        )
 
     def create_new_menu_items_group(self) -> None:
         """
@@ -273,6 +284,13 @@ class Menu(Generic[T], state.State):
 
         """
         self.menu_items.add(item)
+        self._menu.add.button(
+            item.label,
+            action=item.game_object if callable(item.game_object) else None,
+            align=pygame_menu.locals.ALIGN_LEFT,
+        )
+        widgets_size = self._menu.get_size(widget=True)
+        self._menu.resize(widgets_size[0] + 50, widgets_size[1] + 50)
         self._needs_refresh = True
 
     def clear(self) -> None:
@@ -422,6 +440,9 @@ class Menu(Generic[T], state.State):
 
         self.sprites.draw(surface)
 
+        if self.use_pygame_menu:
+            self._menu.draw(surface)
+
     def set_font(
         self,
         size: int = 5,
@@ -491,10 +512,12 @@ class Menu(Generic[T], state.State):
 
         """
         handled_event = False
+        pygame_event = None
 
         # close menu
         if event.button in (buttons.B, buttons.BACK, intentions.MENU_CANCEL):
             handled_event = True
+            pygame_event = pygame.event.Event(pygame.KEYDOWN, key=pygame.K_ESCAPE)
             if event.pressed and self.escape_key_exits:
                 self.close()
 
@@ -562,6 +585,9 @@ class Menu(Generic[T], state.State):
                         selected = self.get_selected_item()
                         assert selected
                         self.on_menu_selection(selected)
+
+        if valid_change and self.use_pygame_menu:
+            self._menu.update([playerinput_to_event(event)])
 
         return event if not handled_event else None
 

@@ -610,6 +610,11 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Xeon"](https://wiki.tuxemon.org/index.php?title=Xeon) and ["Xeon-2"](https://wiki.tuxemon.org/index.php?title=Xeon-2) by Redshrike. 
 
+* ["Pilthropus"](https://wiki.tuxemon.org/index.php?title=Pilthropus) and
+["Coproblight"](https://wiki.tuxemon.org/index.php?title=Coproblight) 
+design and front sprite by [Tricoelacanth](https://twitter.com/@tricoelacanth),
+back and menu sprites by ultidonki based on the design by Tricoelacanth, all released under CC-BY-SA 4.0
+
 ### Items
 
 * ["Potions"](http://opengameart.org/content/potions-3)

@@ -722,6 +722,7 @@ which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/
 * ["ocean_background.png"](https://wiki.tuxemon.org/File:Ocean_cropped.png)
 is by [KnoblePersona](https://opengameart.org/content/ocean-background), licensed under
 [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+Changes made: This was cropped from the original image, the original was 480x216, this version has been cropped down to 240x112 resolution.
 
 ## Concept Art
 

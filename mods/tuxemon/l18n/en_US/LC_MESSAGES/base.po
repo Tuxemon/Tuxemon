@@ -847,6 +847,12 @@ msgstr "If it sneezes, an avalanche occurs. It has a permanent sniffle."
 msgid "conifrost"
 msgstr "Conifrost"
 
+msgid "coproblight_description"
+msgstr "Born from the feces of prehistoric Tuxemon, it used the shards of bone within itself for defense."
+
+msgid "coproblight"
+msgstr "Coproblight"
+
 msgid "corvix_description"
 msgstr "It arms its wings with bone shards from its victims."
 
@@ -1032,6 +1038,12 @@ msgstr ""
 
 msgid "pigabyte"
 msgstr "Pigabyte"
+
+msgid "pilthropus_description"
+msgstr "Found alongside Tuxemon such as Rhincus, Pilthropus was one of the oldest Tuxemon able to create its own tools."
+
+msgid "pilthropus"
+msgstr "Pilthropus"
 
 msgid "possessun_description"
 msgstr "It is a ghost that inhabits a dead CAIRFREY."

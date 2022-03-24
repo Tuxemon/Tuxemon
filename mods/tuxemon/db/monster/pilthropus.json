@@ -1,0 +1,27 @@
+{
+    "slug": "pilthropus",
+    "category": "tool_maker",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 1,
+            "technique": "eyebite"
+        },
+        {
+            "level_learned": 1,
+            "technique": "blade"
+        }
+    ],
+    "shape": "Humanoid",
+    "types": [
+        "Earth"
+    ],
+    "weight": 50,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}

@@ -22,6 +22,7 @@ TUXEMON_THEME: Final = pygame_menu.Theme(
     background_color=TUXEMON_BACKGROUND,
     title_font=FONT_FILENAME,
     widget_font=FONT_FILENAME,
+    widget_alignment=pygame_menu.locals.ALIGN_LEFT,
     title_font_size=20,
     widget_font_size=26,
     title=False,
@@ -29,6 +30,7 @@ TUXEMON_THEME: Final = pygame_menu.Theme(
     widget_font_color=(0, 0, 0),
     selection_color=(0, 0, 0),
     border_color=TUXEMON_BORDER,
+    border_width=32,
     scrollarea_position=pygame_menu.locals.SCROLLAREA_POSITION_NONE,
     widget_padding =(10, 20),
 )

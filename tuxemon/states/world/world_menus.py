@@ -37,8 +37,14 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
-from typing import Callable, Tuple, Sequence, Any
+from typing import Callable, Tuple, Sequence, Any, Optional
 from tuxemon.animation import Animation
+import pygame_menu
+from tuxemon.menu.theme import TUXEMON_THEME
+from tuxemon.state import State
+from tuxemon.menu.events import playerinput_to_event
+from tuxemon.platform.events import PlayerInput
+import pygame
 
 logger = logging.getLogger(__name__)
 
@@ -47,24 +53,40 @@ WorldMenuGameObj = Callable[[], object]
 
 
 def add_menu_items(
-    state: Menu[WorldMenuGameObj],
+    menu: pygame_menu.Menu,
     items: Sequence[Tuple[str, WorldMenuGameObj]],
 ) -> None:
+
     for key, callback in items:
         label = T.translate(key).upper()
-        image = state.shadow_text(label)
-        item = MenuItem(image, label, None, callback)
-        state.add(item)
+        menu.add.button(label, callback)
+
+    menu_size = menu.get_size()
+    widgets_size = menu.get_size(widget=True)
+    menu.resize(widgets_size[0], menu_size[1])
 
 
-class WorldMenuState(Menu[WorldMenuGameObj]):
+class WorldMenuState(State):
     """Menu for the world state."""
-
-    shrink_to_items = True  # this menu will shrink, but size is adjusted when opened
-    animate_contents = True
 
     def startup(self, **kwargs: Any) -> None:
         super().startup(**kwargs)
+
+        width, height = prepare.SCREEN_SIZE
+        self.border_width = TUXEMON_THEME.border_width
+
+        self.menu = pygame_menu.Menu(
+            "",
+            width,
+            height - 2 * self.border_width,
+            theme=TUXEMON_THEME,
+            position=(width, self.border_width, False),
+            center_content=False,
+            onclose=self.on_close,
+        )
+
+        self.animation_offset = 0
+        self.open = False
 
         def change_state(state: str, **kwargs: Any) -> Callable[[], object]:
             return partial(self.client.replace_state, state, **kwargs)
@@ -86,7 +108,29 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
             ("menu_options", change_state("ControlState")),
             ("exit", exit_game),
         )
-        add_menu_items(self, menu_items_map)
+        add_menu_items(self.menu, menu_items_map)
+
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+
+        pygame_event = playerinput_to_event(event)
+        if self.open is True and event.pressed and pygame_event is not None:
+            self.menu.update([pygame_event])
+
+        return event if pygame_event is None else None
+
+    def draw(
+        self,
+        surface: pygame.surface.Surface,
+    ) -> None:
+        self.menu.draw(surface)
+
+    def resume(self) -> None:
+        self.animate_open()
+
+    def on_close(self) -> None:
+        self.open = False
+        self.menu.enable()
+        self.animate_close()
 
     def open_monster_menu(self) -> None:
         from tuxemon.states.monster import MonsterMenuState
@@ -160,6 +204,9 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
         monster_menu.on_menu_selection = handle_selection
         monster_menu.on_menu_selection_change = monster_menu_hook
 
+    def update_animation_position(self) -> None:
+        self.menu.translate(-self.animation_offset, 0)
+
     def animate_open(self) -> Animation:
         """
         Animate the menu sliding in.
@@ -168,38 +215,34 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
             Sliding in animation.
 
         """
-        self.state = "opening"  # required
 
-        # position the menu off screen.  it will be slid into view with
-        # an animation
-        right, height = prepare.SCREEN_SIZE
+        width = self.menu.get_width() + 2 * self.border_width
+        self.animation_offset = 0
 
-        # TODO: more robust API for sizing (kivy esque?)
-        # this is highly irregular:
-        # shrink to get the final width
-        # record the width
-        # turn off shrink, then adjust size
-        self.shrink_to_items = True  # force shrink of menu
-        self.menu_items.expand = False  # force shrink of items
-        self.refresh_layout()  # rearrange items
-        width = self.rect.width  # store the ideal width
+        ani = self.animate(self, animation_offset=width, duration=0.50)
+        ani.update_callback = self.update_animation_position
 
-        self.shrink_to_items = False  # force menu to expand
-        self.menu_items.expand = True  # force menu to expand
-        self.refresh_layout()  # rearrange items
-        self.rect = Rect(right, 0, width, height)  # set new rect
+        def set_open() -> None:
+            self.open = True
 
-        # animate the menu sliding in
-        ani = self.animate(self.rect, x=right - width, duration=0.50)
-        ani.callback = lambda: setattr(self, "state", "normal")
+        ani.callback = set_open
+
         return ani
 
     def animate_close(self) -> Animation:
-        """Animate the menu sliding out.
+        """
+        Animate the menu sliding out.
 
         Returns:
             Sliding out animation.
 
         """
-        ani = self.animate(self.rect, x=prepare.SCREEN_SIZE[0], duration=0.50)
+        ani = self.animate(self, animation_offset=0, duration=0.50)
+        ani.update_callback = self.update_animation_position
+
+        def close_state() -> None:
+            self.client.pop_state()
+
+        ani.callback = close_state
+
         return ani

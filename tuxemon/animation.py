@@ -383,8 +383,8 @@ class Animation(pygame.sprite.Sprite):
     ) -> None:
 
         super().__init__()
-        self.callback: Callable[[], None]
-        self.update_callback: Callable[[], None]
+        self.callback: Callable[[], Any]
+        self.update_callback: Callable[[], Any]
 
         self.targets: List[Tuple[object, Mapping[str, Tuple[float, float]]]] = list()
         self._targets: Sequence[object] = list()

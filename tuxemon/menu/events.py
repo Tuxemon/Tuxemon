@@ -1,5 +1,5 @@
 import pygame
-from tuxemon.platform.const import buttons
+from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
 from typing import Final, Optional
 

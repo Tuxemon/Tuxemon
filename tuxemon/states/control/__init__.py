@@ -114,6 +114,7 @@ class ControlState(PopUpMenu[ControlStateObj]):
     escape_key_exits = True
     shrink_to_items = True
     columns = 2
+    rows = 7 # TODO: Compute it
 
     def startup(self, **kwargs: Any) -> None:
         """

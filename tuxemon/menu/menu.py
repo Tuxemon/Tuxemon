@@ -57,6 +57,7 @@ class Menu(Generic[T], state.State):
 
     # defaults for the menu
     columns = 1
+    rows = None
     min_font_size = 4
     draw_borders = True
     background = None  # Image used to draw the background
@@ -97,6 +98,8 @@ class Menu(Generic[T], state.State):
             self.rect.width,
             self.rect.height,
             theme=TUXEMON_THEME,
+            columns=self.columns,
+            rows=self.rows,
         )
 
     def create_new_menu_items_group(self) -> None:
@@ -284,13 +287,14 @@ class Menu(Generic[T], state.State):
 
         """
         self.menu_items.add(item)
-        self._menu.add.button(
+        button = self._menu.add.button(
             item.label,
             action=item.game_object if callable(item.game_object) else None,
             align=pygame_menu.locals.ALIGN_LEFT,
         )
+        button.readonly = not item.enabled
         widgets_size = self._menu.get_size(widget=True)
-        self._menu.resize(widgets_size[0] + 50, widgets_size[1] + 50)
+        self._menu.resize(*widgets_size)
         self._needs_refresh = True
 
     def clear(self) -> None:
@@ -586,8 +590,9 @@ class Menu(Generic[T], state.State):
                         assert selected
                         self.on_menu_selection(selected)
 
-        if valid_change and self.use_pygame_menu:
-            self._menu.update([playerinput_to_event(event)])
+        pygame_event = playerinput_to_event(event)
+        if valid_change and self.use_pygame_menu and pygame_event is not None:
+            self._menu.update([pygame_event])
 
         return event if not handled_event else None
 

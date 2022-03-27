@@ -29,4 +29,6 @@ TUXEMON_THEME: Final = pygame_menu.Theme(
     widget_font_color=(0, 0, 0),
     selection_color=(0, 0, 0),
     border_color=TUXEMON_BORDER,
+    scrollarea_position=pygame_menu.locals.SCROLLAREA_POSITION_NONE,
+    widget_padding =(10, 20),
 )

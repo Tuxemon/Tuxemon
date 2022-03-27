@@ -1,7 +1,7 @@
 import pygame
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
-from typing import Final
+from typing import Final, Optional
 
 
 _EVENT_MAP: Final = {
@@ -14,6 +14,6 @@ _EVENT_MAP: Final = {
 }
 
 
-def playerinput_to_event(event: PlayerInput) -> pygame.event.Event:
+def playerinput_to_event(event: PlayerInput) -> Optional[pygame.event.Event]:
 
-    return _EVENT_MAP[event.button]
+    return _EVENT_MAP.get(event.button)

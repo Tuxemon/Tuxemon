@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="108">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="108">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -42,7 +42,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="59" height="42">
   <data encoding="base64" compression="zlib">
-   eAHtmMlOG0EQhkfCDq8QIIGcgANw5AIJEE7AHW7scALegSRmObAEXgFIWMS+PQJHZFbzHqwJEl/LLmncGsYjoTGeVpf0uaa7a6bmr562p+0472d1Mcc5jWfnr6VP9YfhszPlrxVDTxx0k/6gvpNrdEEQr+fKV1vmTc8n/WF4PVe+2jIP7nzqeZb+MLw7V5SOU9o633a1T1zHomnXo0/G3uKDrLW3XF+dq7R6adKve5TRGJZWPV8YbX1ec+WwWnNVKLxxefZrPH6L3FnVuODu9zuO8rz66Tr2+B4yVatfHfzG5Lnyi5ExidW9jBe6l/eXIPcpsboPcm4hxMj7S5B7kVjdBznXxqQrkGtN6OOvtW09o1EBO3/e86T/J+AdFf3eJO8WCmu2AnoFEjne0fX4fLWLPjhODOKgLMg+Nx0Zvc9KNFZBdUbrJmtVYaK1obEdOjJa1R7H1H3OCBpHYcxgrTNom4U5mIffsACLYNK8bqFnG3aULtiDfTiAQzgCUyyJljM4hwu4hCu4hhTcgCl2i5Y7uIcHeIQn+Af/4RlMsY/FjlMCpVAGn+AzlEMFfAFTrAEtjfAVvkETNEMLfIdWMMW60dIDvdAH/TAAgzAEw2CKjaPlB/yEX5CACZiEKZgGU2wJLcuwAn/gL6zCGqzDBphs9QW6NzG55labrYCtgK2ArUC6Ai+7D2QG
+   eAHtmEkvBEEUxzsxw1ewc8IBRxc7J5xxs3PCd7BzsH8FO2HsPoKj2PkedhK/ykwlrdIyhfToqdRLfvO6al716/+rqknXOM7/WWnIcc7CX/OX0Cf6/fBfMyWuFUJPGFST/bq+hXu0go5XcyWqLedNzSf7/fBqrkS15Ty484n1LPv98O5cyXR9p+zziKt96rqWmvY8+uR3f/E6e83r/sXsO4GOCa1emtSxxzGNfmlV8+m2f6pV974iLmham5lTgY6pazjemKBplWs/3jqW8x8vzq0/aFrdz/aX6xOP3yFTtf62TnJd6YyXsarXGRuEGPn+ovMsMlb1OmODECPfX3SeRcaqXmesjYlWIN6eUL//rm3rmRwVsPPnPU/qfwLeUcnfe867hcCarYBagTHNM4k6zu92SqrjhCAMwnTOudHI5PssQGMhFMW0brNXBSZaAxoboSmmVZxxTD3n9KNxAAYN1jqNthmYhTmYhwVYBJPmdQc9EdgVumAfDuAQjuAYTLFztFzAJVzBNdzALdzBPZhiD2h5hCd4hhd4hTd4hw8wxdLTHCcDMiELsiEHciEP8sEUK0dLBVRCFVRDDdRCHdSDKdaGlnbogE7ogm7ogV7oA1NsCC3DMAKjMAbjMAGTMAWm2BJalmEFVmEN1mEDNmELTLaygJ5NTK651WYrYCtgK2ArEK3AJ5xEZXg=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="59" height="42">
@@ -72,7 +72,7 @@
   <object id="39" type="collision" x="112" y="64" width="352" height="16"/>
   <object id="41" type="collision" x="336" y="144" width="64" height="32"/>
   <object id="42" type="collision" x="336" y="96" width="64" height="32"/>
-  <object id="43" type="collision" x="560" y="64" width="32" height="32"/>
+  <object id="43" type="collision" x="560" y="64" width="32" height="64"/>
   <object id="44" type="collision" x="496" y="64" width="16" height="32"/>
   <object id="55" type="collision" x="128" y="176" width="272" height="48"/>
   <object id="56" type="collision" x="240" y="336" width="16" height="16"/>

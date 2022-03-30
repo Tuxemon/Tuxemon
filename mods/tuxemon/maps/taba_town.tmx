@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="159">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="159">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -766,6 +766,7 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
     <property name="cond3" value="not variable_set moveon:yes"/>
+    <property name="cond4" value="not variable_set timetomove:finite"/>
    </properties>
   </object>
   <object id="145" name="anouncement2part2" type="event" x="560" y="576" width="16" height="16">

@@ -556,6 +556,7 @@
     <property name="act20" value="npc_speed allie,1.5"/>
     <property name="act30" value="pathfind allie,37,46"/>
     <property name="act40" value="translated_dialog itsmyaurababe2"/>
+    <property name="act49" value="play_sound sound_confirm"/>
     <property name="act50" value="add_item allies_address"/>
     <property name="act60" value="translated_dialog itsmyduhduhduh"/>
     <property name="act70" value="translated_dialog itsmyaurababe3"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="112">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="116">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -213,6 +213,69 @@
     <property name="act22" value="create_npc npc_wife,33,26,,stand"/>
     <property name="act23" value="create_npc tuxemart_keeper,34,26,,stand"/>
     <property name="cond1" value="not variable_set letusthrough:no"/>
+   </properties>
+  </object>
+  <object id="112" name="they're angry" type="event" x="592" y="336" width="16" height="32">
+   <properties>
+    <property name="act10" value="lock_controls"/>
+    <property name="act20" value="translated_dialog heystop"/>
+    <property name="act30" value="pathfind player,31,25"/>
+    <property name="act31" value="npc_face player,right"/>
+    <property name="act40" value="translated_dialog heystop2"/>
+    <property name="act41" value="npc_face liela,right"/>
+    <property name="act50" value="npc_face bob,right"/>
+    <property name="act51" value="translated_dialog heystop3"/>
+    <property name="act52" value="npc_face tuxemart_keeper,left"/>
+    <property name="act53" value="translated_dialog heystop4"/>
+    <property name="act54" value="wait 0.4"/>
+    <property name="act55" value="npc_face npc_wife,right"/>
+    <property name="act56" value="wait 0.5"/>
+    <property name="act57" value="npc_face npc_wife,down"/>
+    <property name="act58" value="wait 0.4"/>
+    <property name="act59" value="npc_face npc_wife,right"/>
+    <property name="act60" value="translated_dialog heystop5"/>
+    <property name="act61" value="wait 1"/>
+    <property name="act62" value="translated_dialog heystop6"/>
+    <property name="act63" value="wait 0.5"/>
+    <property name="act64" value="npc_face npc_wife,down"/>
+    <property name="act65" value="wait 1"/>
+    <property name="act66" value="translated_dialog heystop7"/>
+    <property name="act99" value="set_variable letusthrough:maybe"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="not variable_set letusthrough:no"/>
+    <property name="cond3" value="not variable_set letusthrough:maybe"/>
+   </properties>
+  </object>
+  <object id="113" name="hello misa" type="event" x="432" y="272" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog soiwashearing"/>
+    <property name="act11" value="npc_face player,up"/>
+    <property name="act12" value="npc_face liela,up"/>
+    <property name="act13" value="npc_face bob,up"/>
+    <property name="act14" value="npc_face tuxemart_keeper,up"/>
+    <property name="act15" value="npc_face npc_wife,up"/>
+    <property name="act16" value="set_variable theyrehere:yes"/>
+    <property name="act17" value="create_npc misa,33,20,,stand"/>
+    <property name="act18" value="npc_move misa,down 3"/>
+    <property name="act98" value="set_variable letusthrough:no"/>
+    <property name="act99" value="set_variable whoartthou:florist"/>
+    <property name="cond1" value="is variable_set letusthrough:maybe"/>
+   </properties>
+  </object>
+  <object id="114" name="xero grunt" type="event" x="432" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc xerogrunt1,34,19,,stand"/>
+    <property name="act2" value="npc_move xerogrunt1,down 3"/>
+    <property name="cond1" value="is variable_set theyrehere:yes"/>
+    <property name="cond2" value="not npc_exists xerogrunt1"/>
+   </properties>
+  </object>
+  <object id="115" name="xero grunt2" type="event" x="432" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc xerogrunt2,32,19,,stand"/>
+    <property name="act2" value="npc_move xerogrunt2,down 3"/>
+    <property name="cond1" value="is variable_set theyrehere:yes"/>
+    <property name="cond2" value="not npc_exists xerogrunt2"/>
    </properties>
   </object>
  </objectgroup>

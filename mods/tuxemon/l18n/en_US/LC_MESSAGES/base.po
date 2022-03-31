@@ -2149,6 +2149,36 @@ msgid "rockywhy"
 msgstr "Wait, Rocky, don't stop here! We made it so far already!\n"
 "I know you like the grass, but we need to make it to Cotton Town!"
 
+msgid "heystop"
+msgstr "WHY ARE YOU DOING THIS?"
+
+msgid "heystop2"
+msgstr "Miss, we already told you. Under section 2 of article 3, Omnichannel reserves the right to close down and maintain areas as needed."
+
+msgid "heystop3"
+msgstr "I KNOW THAT, BUT WHY? YOU JUST KICKED US OUT!"
+
+msgid "heystop4"
+msgstr "Marissa, maybe we should leave for now, we'll come back another day."
+
+msgid "heystop5"
+msgstr "But... But... they dug up our flowers. Without a second thought, without asking."
+
+msgid "heystop6"
+msgstr "I know, but we can plant new flowers somewhere else. They'll still be special, because we'll plant them together."
+
+msgid "heystop7"
+msgstr "If they weren't so intent on bringing back Tuxemon, we'd still have our special flower patch..."
+
+msgid "soiwashearing"
+msgstr "Well it looks like we finally found a florist everyone."
+
+msgid "soiwashearing2"
+msgstr "You, the florist, who are you?"
+
+msgid "soiwashearing3"
+msgstr "My name is Marissa, and these... these... THUGS! Destroyed my flower patch."
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

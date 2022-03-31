@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="109">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="111">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -37,17 +37,17 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="59" height="42">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="59" height="42">
   <data encoding="base64" compression="zlib">
-   eAHtmMdOAzEQhlcigVegwwk4AEcudDgBd7jR4QS8Ax0O9Fegg+jtETiiUMN70EHisxJLi7UoBrRhY3mkL7N2xjv7j+1oHcf5PysPOc5F+Gv+MvpEvx/+a6bktULoCYNqsl/Xt3KPNtDxaq5kteW8qflkvx9ezZWstpwHdz6xnmW/H96dK5Wuo8o+33O1z13XUtOBR5/87i9eZ6953b+UfSfQMaHVS5M69jSu0S+taj7d9k+16t5XxAVN60+eXV3DicYGTatc+4nWsZz/RHFu/UHT6n62v1yfefwOmar1t3WS60pnvIxVvc7YIMTI9xedZ5GxqtcZG4QY+f6i8ywyVvU6Y21MrAKJ9oT6/XdtW8/UqICdP+95Uv8T8I5K/d4I7xYCa7YCagXGNc+a6ji/22npjhOCMAjTOefGIlPvswiNxVAS17rDXhWYaE1obIaWuFZxxjH1nDOAxkEYMljrDNpmYQ7mYQEWYQlMmtdd9OzBvtAFh3AEx3ACp2CKRdByCVdwDTdwC3cQhXswxR7Q8ghP8Awv8Apv8A4fYIplZjhOFmRDDuRCHuRDARSCKVaJliqohhqohTqohwZoBFOsHS0d0Ald0A090At90A+m2DBaRmAUxmAcJmASpmAaTLFltKzAKqzBOmzAJmzBNphsFQE9m5hcc6vNVsBWwFbAViBWgU+OdmTG
+   eAHtmMkyQ0EUhm+VhFcws8ICSxszK+zZmVnhHcwszK9gpszTI1iqGOM9zFT5uqSrrnYjHSpxdfWp+tK3O6eH/5zbqe44zt9ZacBxzoKf5y+hTbQnovw8U/JqAfQEQTXZrls2M0YL6JTqXMmqy7yp88n2RJTqXMmqyzy45ysmPwLdPMXr557rr5+lVp11hJV9vuOqn7qe5Vh7Hm3yu9+UOnvNa/x4tXppUsc9jmhMlFZ1Pt16vFp1xxV+ftMaz9rVdzhWX79ple++yO93JvMfy889ht+0utf2m+cTj98hU7X+NE7yvdLpL33VUqevH3zk+UVnLdJXLXX6+sHH63wTbV3SVy2j+dv2rxGItSfU76PVv45sW/wYAZs/76yo/wl4e/3/1hBnC4E1GwE1AqMxzuiqf7LqKamOE4AgCNO55354/r/PAjQWQlFE6xZ7VWCiNaCxEZoiWsUdx9R7Th8a+2HAYK1TaJuGGZiFOZiHBTApr9vo2YFdoQv24QAO4QiOwRQLoeUcLuASruAabiAMt2CK3aHlHh7gEZ7gGV7gFd7AFEtPc5wMyIQsyIYcyIU8yAdTrBwtFVAJVVANNVALdVAPplgrWtqgHTqgE7qgG3qgF0yxQbQMwTCMwCiMwThMwCSYYotoWYJlWIFVWIN12IBNMNnKfHo3MTnmVpuNgI2AjYCNwEcE3gHaz2RX
   </data>
  </layer>
  <layer id="4" name="Above Player" width="59" height="42">
   <data encoding="base64" compression="zlib">
-   eAHtkkFuwzAMBH1wntM+p/1rXlfnsJcBGElLqmaBGjCIlbjDZZzzPI7H9Z431QPPx5Xj83pnKqxDedeOmsuAOt9RdzBn/if6btxV57OV/nf6rl2/rv/p9/Xy0flspf+dvmvXd5l23Y12deaOmK/7O55RropMnFHBdBjMQe0w6dnB5IwZzRzUMwz2kBFp+nbrKIfOK+aLpVrBdBiaH1WHSQ/ZvP8tzRzUFTnIlK5grzA0N6orrKiX7KgvOqd/l47mr5wz24q3spc5qCtmkSldwV5haG5UV1hRL9lR3+5z5qCumJ9l0r+qtcPIp75MjWZkmI43yqFzh0mPWKq8H2n53Cr+yK++TOWMDCvjZQ7qDFteMqV1H1X1Zav4I476MpUzMqyMlzmoM2x5V5nsX9WayzrisN/R0QyH5Xiej+N4vVEOnTtsesRS5b207rNVPNWOuypbdb1zV3236p1GPM2N6sg/c0/2jGdHD3NQV8zcwXRyMQe1w+zq4W7UXXM7ubgbtcPs6uFu1F1zO7m4G7XD7OrhbtRdczu5uBu1w+zq4W7UXXM7ubgbtcPs6uFu1F1zO7m421/Vzu70aHee/+vev8APoagmOw==
+   eAHtkkFuwzAMBH1wntM+p/1rX1fnsJdBWElLqmaBGjCIlbjDZZzzPI7H9Z431QPP25Xj/XpnKqxDedeOmsuAOt9RdzBn/if6btxV57OV/p/0Xbt+XP/Tz+uNHt2PauR/dX7Xrq+y7D4b7erMHzGf93c8o1wVmTijgukwmIPaYdKzg8kZM5o5qGcY7CEj0vTt1lEOnVfMF0u1gukwND+qDpMesnn/W5o5qCtykCldwV5haG5UV1hRL9lRX3RO/y4dzV85Z7YVb2Uvc1BXzCJTuoK9wtDcqK6wol6yo77d58xBXTE/y6R/VWuHkU99mRrNyDAdb5RD5w6THrFUeT/S8rlV/JFffZnKGRlWxssc1Bm2vGRK6z6q6stW8Ucc9WUqZ2RYGS9zUGfY8q4y2b+qNZd1xGG/o6MZDsvxfD2O4/lGOXTusOkRS5X30rrPVvFUO+6qbNX1zl313ap3GvE0N6oj/8w92TOeHT3MQV0xcwfTycUc1A6zq4e7UXfN7eTibtQOs6uHu1F3ze3k4m7UDrOrh7tRd83t5OJu1A6zq4e7UXfN7eTibtQOs6uHu1F3ze3k4m5/VTu706Pdef6ve/8C35vxJYY=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -179,6 +179,23 @@
     <property name="act10" value="random_encounter route1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="109" name="hi rocky" type="event" x="464" y="208" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc rock,33,14,,stand"/>
+    <property name="act20" value="create_npc postboy,32,14,,stand"/>
+    <property name="act21" value="npc_face postboy,right"/>
+    <property name="cond1" value="not npc_exists rock"/>
+    <property name="cond2" value="not npc_exists postboy"/>
+   </properties>
+  </object>
+  <object id="110" name="move please" type="event" x="512" y="240" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog rockywhy"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

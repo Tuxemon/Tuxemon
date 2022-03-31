@@ -2145,6 +2145,9 @@ msgstr "So long ${{name}}! And good luck in the Trial, you'll need it."
 msgid "tabatownbattlearea"
 msgstr "Omnichannel Certified Battle Area - Taba Town"
 
+msgid "rockywhy"
+msgstr "Wait, Rocky, don't stop here! We made it so far already!\n"
+"I know you like the grass, but we need to make it to Cotton Town!"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

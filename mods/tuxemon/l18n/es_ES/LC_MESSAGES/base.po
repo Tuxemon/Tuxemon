@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2022-01-19 00:52+0000\n"
-"Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
+"PO-Revision-Date: 2022-04-03 02:08+0000\n"
+"Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
 "Language: es_ES\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -3547,3 +3547,197 @@ msgstr "{user} ha tenido amnesia."
 
 msgid "status_overfeed"
 msgstr "Sobrealimentar"
+
+msgid "spyder_papertown_myfirstmon1"
+msgstr "(Rebusca en la basura) "
+
+msgid "spyder_route3_weaver1"
+msgstr "¡Hey, saca tu culo de aquí! ¡Esta mina pertenece a Shaft!"
+
+msgid "spyder_flower_petshopkeeper3"
+msgstr "¿Has conseguido que Vivipere se transforme?"
+
+msgid "spyder_nimrod_thatcher2"
+msgstr "Sin comentarios. "
+
+msgid "spyder_scoop_berys2"
+msgstr "¡Scoop no propagó la enfermedad! Te lo prometo. "
+
+msgid "spyder_nimrod_archer2"
+msgstr "Mantén tu boca cerrada, ¿de acuerdo?"
+
+# Default mod names on selection menu
+msgid "xero_campaign"
+msgstr "Tuxemon: Xero"
+
+msgid "spyder_campaign"
+msgstr "Tuxemon: Spyder y la Catedral"
+
+msgid "spyder_route6_mungo1"
+msgstr ""
+"No puedo creer que nos encerraran fuera de la sede de Greenwash. ¡Me estaba "
+"acercando tanto a la cura del virus!"
+
+msgid "combat_state_overfeed_get"
+msgstr "{user} sobrealimentó a {target}."
+
+msgid "combat_levitate_get"
+msgstr "{user} se alzó alto en el aire."
+
+msgid "coproblight"
+msgstr "Coproblight"
+
+msgid "pilthropus"
+msgstr "Pilthropus"
+
+msgid "spyder_citypark_frances1"
+msgstr ""
+"Tengo los jardines más magníficos de toda la tierra. Por eso esos Shybulb "
+"siguen apareciendo."
+
+msgid "spyder_route3_roxby2"
+msgstr "¡Largo! "
+
+msgid "spyder_route3_roxby1"
+msgstr ""
+"¡Trae ese martinete aquí y que sea rápido! Espera... tú no pareces un "
+"minero. "
+
+msgid "spyder_flower_petshopkeeper2"
+msgstr ""
+"¿Sabes qué? ¿Por qué no te doy uno y así luego puedes volver y decirme en "
+"qué se transforma?"
+
+msgid "spyder_leatherhouse1_florist"
+msgstr ""
+"Solía haber varios canales de televisión y emisoras de radio, pero "
+"Omnichannel los sacó del negocio.\n"
+"Ahora no tenemos que preocuparnos de que los distintos periodistas se "
+"contradigan entre sí."
+
+msgid "spyder_leatherhouse2_scientist"
+msgstr ""
+"Trabajo para Shaft.\n"
+"...\n"
+"¿Que dónde está mi casco? No necesito uno, controlo el camión de forma "
+"remota desde nuestras oficinas.\n"
+"Muy pronto, la mayoría de trabajos en las minas serán automatizados. "
+
+msgid "spyder_leatherhouse2_miner"
+msgstr ""
+"No creerías lo que están excavando en la Ruta 3.\n"
+"Nunca he visto un huevo tan grande.\n"
+"Upps, he dicho demasiado. "
+
+msgid "spyder_nimrod_dirk1"
+msgstr ""
+"¿Estás aquí para la presentación de los accionistas?\n"
+"Las acciones de Nimrod son una buena inversión: ¡los ejércitos siempre "
+"necesitan armas!"
+
+msgid "spyder_nimrod_rebel2"
+msgstr ""
+"El cargamento por el que preguntaba estaba lleno de... hum... ositos de "
+"peluche."
+
+msgid "spyder_nimrod_mace1"
+msgstr "Quiero dejar mi trabajo y hacerme músico."
+
+msgid "spyder_nimrod_argon2"
+msgstr "Sabía que no sería capaz de convencerte."
+
+msgid "spyder_nimrod_zircon2"
+msgstr "Desearía haber reemplazado a mis Tuxemon por robots. "
+
+msgid "spyder_nimrod_bowie2"
+msgstr "Lo del hardware militar era hipotético, ¿de acuerdo?"
+
+msgid "spyder_nimrod_tru2"
+msgstr ""
+"Guardia, recupera los prototipos en la sala de pruebas. ¡Al menos podemos "
+"salvar algo! "
+
+msgid "spyder_route6_gunner1"
+msgstr ""
+"Disculpa, no se permite la entrada. Todos los empleados de Greenwash deben "
+"permanecer fuera de la ciudad."
+
+msgid "spyder_route6_gunner2"
+msgstr "¿Que no eres un empleado de Greenwash? ¡Eso ya lo he oído antes!"
+
+msgid "spyder_flower_muse2"
+msgstr ""
+"¿Qué? ¡Tienes una pintura! Ohh, ¿me dejarías comprarla? Tengo 2."
+"000${{currency}}."
+
+msgid "speed_halved"
+msgstr "La velocidad de {user} se redujo a la mitad."
+
+msgid "coproblight_description"
+msgstr ""
+"Nacido de las heces de Tuxemon prehistóricos, usa los fragmentos de hueso de "
+"su interior como defensa."
+
+msgid "pilthropus_description"
+msgstr ""
+"Encontrándose junto a Tuxemon como Rhincus, Pilthropus era uno de los "
+"Tuxemon más antiguos capaz de crear sus propias herramientas."
+
+msgid "spyder_route3_drag1"
+msgstr ""
+"AGENTE: ¿Qué ha pasado con la excavación?\n"
+"JEFE DE SHAFT: Fuimos... interrumpidos. Por... un niño.\n"
+"AGENTE: ¡¿Un niño?!\n"
+"JEFE DE SHAFT: Pero conseguimos recuperar un...\n"
+"AGENTE: ¡Chist! Sabes que eso es alto secreto. ¡Bien, dámelo y lárgate!\n"
+"JEFE DE SHAFT: De acuerdo, aquí... ¡uh!"
+
+msgid "spyder_flower_petshopkeeper1"
+msgstr ""
+"¡Encontré estos huevos en una rama de un árbol, y los he incubado!\n"
+"Parecen ser de un Tuxemon desconocido hasta ahora.\n"
+"¡Lo llamo Vivipere! Me pregunto en qué se transformarán."
+
+msgid "spyder_flower_petshopkeeper4"
+msgstr ""
+"¿Lograste que se transformara?\n"
+"...\n"
+"¿Y lo hiciste de esa forma?\n"
+"Ya veo. Hmmm, no me termina de gustar el aspecto de esa transformación.\n"
+"Si te doy otro Vivipere, ¿podrías traerlo de vuelta si se transforma en algo "
+"diferente?"
+
+msgid "spyder_flowerhouse2_soldier"
+msgstr ""
+"Trabajé para Nimrod durante la guerra.\n"
+"Tampoco es que me dieran una medalla. O un desfile.\n"
+"No conceden esas cosas a los mercenarios."
+
+msgid "spyder_nimrod_rebel1"
+msgstr ""
+"¿Te envía la Catedral para ese nuevo cargamento de...?\n"
+"¿No?\n"
+"Oh."
+
+msgid "spyder_nimrod_mace2"
+msgstr "Llamaré a mi banda, \"Los colegas de la Ametralladora\"."
+
+msgid "spyder_nimrod_zircon1"
+msgstr ""
+"Si de verdad amaras a los Tuxemon, apoyarías que los reemplacemos en la "
+"guerra por robots."
+
+msgid "spyder_nimrod_tru1"
+msgstr ""
+"Mis armas han ganado guerras y subyugado revueltas en cada punta del mundo, ¿"
+"y crees que tienes alguna oportunidad contra mí?"
+
+msgid "spyder_scoop_berys1"
+msgstr ""
+"Notarás que ninguno de los Tuxemon de aquí están enfermos. Todos esos se "
+"guardan en la unidad de confinamiento."
+
+msgid "spyder_flower_muse1"
+msgstr ""
+"Es muy duro consigo mismo, nunca contento con algo que haya pintado. Y muy "
+"olvidadizo, también. Quizás yo pueda comprar una pintura. "

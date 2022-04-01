@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="69">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="69">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -12,8 +12,8 @@
  <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
- <tileset firstgid="1473" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
-  <image source="../gfx/tilesets/items.png" width="160" height="160"/>
+ <tileset firstgid="1473" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
+  <image source="../gfx/tilesets/items.png" width="48" height="32"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="15">
   <data encoding="base64" compression="zlib">
@@ -37,7 +37,7 @@
  </layer>
  <layer id="5" name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgyUEDrEyMIDwQSAmFZwB6gHh02ToJdUudPWHgXaCMDngLFAfCI9kAABcNgf7
+   eAFjYBgFgyUEDrEyMIDwQSAmFRwF6gHhI2ToJdUudPWHgXaCMDngGFAfCI9kAAAqAgfY
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">
@@ -120,17 +120,17 @@
   </object>
   <object id="68" name="professor pls2" type="event" x="176" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind player, 7,9"/>
-    <property name="act2" value="translated_dialog professorexists2"/>
+    <property name="act10" value="pathfind player, 7,9"/>
+    <property name="act20" value="translated_dialog professorexists2"/>
     <property name="act21" value="add_item potion"/>
     <property name="act22" value="add_item potion"/>
-    <property name="act3" value="wait 0.7"/>
-    <property name="act4" value="translated_dialog potions2"/>
-    <property name="act5" value="wait 0.5"/>
-    <property name="act6" value="translated_dialog professorexists3"/>
-    <property name="act7" value="translated_dialog professorexists4"/>
-    <property name="act8" value="npc_speed professor,7"/>
-    <property name="act9" value="pathfind professor,7,12"/>
+    <property name="act30" value="wait 0.7"/>
+    <property name="act40" value="translated_dialog potions2"/>
+    <property name="act50" value="wait 0.5"/>
+    <property name="act60" value="translated_dialog professorexists3"/>
+    <property name="act70" value="translated_dialog professorexists4"/>
+    <property name="act80" value="npc_speed professor,7"/>
+    <property name="act90" value="pathfind professor,7,12"/>
     <property name="act91" value="remove_npc professor"/>
     <property name="act92" value="set_variable proftalk2:yes"/>
     <property name="act93" value="npc_face player,left"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="116">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="117">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -210,7 +210,7 @@
     <property name="act17" value="npc_face omnigrunt4,up"/>
     <property name="act20" value="create_npc liela,31,26,,stand"/>
     <property name="act21" value="create_npc bob,32,26,,stand"/>
-    <property name="act22" value="create_npc npc_wife,33,26,,stand"/>
+    <property name="act22" value="create_npc marissa,33,26,,stand"/>
     <property name="act23" value="create_npc tuxemart_keeper,34,26,,stand"/>
     <property name="cond1" value="not variable_set letusthrough:no"/>
    </properties>
@@ -228,16 +228,16 @@
     <property name="act52" value="npc_face tuxemart_keeper,left"/>
     <property name="act53" value="translated_dialog heystop4"/>
     <property name="act54" value="wait 0.4"/>
-    <property name="act55" value="npc_face npc_wife,right"/>
+    <property name="act55" value="npc_face marissa,right"/>
     <property name="act56" value="wait 0.5"/>
-    <property name="act57" value="npc_face npc_wife,down"/>
+    <property name="act57" value="npc_face marissa,down"/>
     <property name="act58" value="wait 0.4"/>
-    <property name="act59" value="npc_face npc_wife,right"/>
+    <property name="act59" value="npc_face marissa,right"/>
     <property name="act60" value="translated_dialog heystop5"/>
     <property name="act61" value="wait 1"/>
     <property name="act62" value="translated_dialog heystop6"/>
     <property name="act63" value="wait 0.5"/>
-    <property name="act64" value="npc_face npc_wife,down"/>
+    <property name="act64" value="npc_face marissa,down"/>
     <property name="act65" value="wait 1"/>
     <property name="act66" value="translated_dialog heystop7"/>
     <property name="act99" value="set_variable letusthrough:maybe"/>
@@ -253,7 +253,7 @@
     <property name="act12" value="npc_face liela,up"/>
     <property name="act13" value="npc_face bob,up"/>
     <property name="act14" value="npc_face tuxemart_keeper,up"/>
-    <property name="act15" value="npc_face npc_wife,up"/>
+    <property name="act15" value="npc_face marissa,up"/>
     <property name="act16" value="set_variable theyrehere:yes"/>
     <property name="act17" value="create_npc misa,33,20,,stand"/>
     <property name="act18" value="npc_move misa,down 3"/>
@@ -276,6 +276,60 @@
     <property name="act2" value="npc_move xerogrunt2,down 3"/>
     <property name="cond1" value="is variable_set theyrehere:yes"/>
     <property name="cond2" value="not npc_exists xerogrunt2"/>
+   </properties>
+  </object>
+  <object id="116" name="more misa" type="event" x="448" y="224" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog soiwashearing2"/>
+    <property name="act20" value="npc_move marissa,up 1"/>
+    <property name="act21" value="npc_face player,right"/>
+    <property name="act22" value="translated_dialog soiwashearing3"/>
+    <property name="act23" value="npc_face player,up"/>
+    <property name="act30" value="npc_move xerogrunt1,down 1"/>
+    <property name="act31" value="translated_dialog soiwashearing4"/>
+    <property name="act32" value="wait 0.5"/>
+    <property name="act33" value="npc_face xerogrunt1,left"/>
+    <property name="act34" value="wait 0.2"/>
+    <property name="act35" value="npc_face misa,right"/>
+    <property name="act36" value="translated_dialog soiwashearing5"/>
+    <property name="act37" value="wait 0.4"/>
+    <property name="act40" value="npc_face misa,down"/>
+    <property name="act41" value="wait 0.6"/>
+    <property name="act42" value="npc_face misa,right"/>
+    <property name="act43" value="translated_dialog soiwashearing6"/>
+    <property name="act44" value="npc_face xerogrunt1,down"/>
+    <property name="act45" value="npc_move misa, down 1"/>
+    <property name="act46" value="wait 1.2"/>
+    <property name="act47" value="npc_face misa,up"/>
+    <property name="act50" value="translated_dialog soiwashearing7"/>
+    <property name="act51" value="wait 0.4"/>
+    <property name="act52" value="npc_face misa,down"/>
+    <property name="act53" value="translated_dialog soiwashearing7.5"/>
+    <property name="act54" value="wait 0.6"/>
+    <property name="act55" value="npc_move misa,up 1"/>
+    <property name="act56" value="translated_dialog soiwashearing8"/>
+    <property name="act60" value="translated_dialog soiwashearing9"/>
+    <property name="act61" value="npc_move misa,down 1"/>
+    <property name="act62" value="wait 1"/>
+    <property name="act63" value="translated_dialog soiwashearing10"/>
+    <property name="act64" value="wait 1.4"/>
+    <property name="act65" value="translated_dialog understand?"/>
+    <property name="act66" value="wait 0.3"/>
+    <property name="act67" value="translated_dialog y-yes"/>
+    <property name="act70" value="translated_dialog soiwashearing11"/>
+    <property name="act71" value="translated_dialog yesmaam"/>
+    <property name="act72" value="npc_move marissa,right 1"/>
+    <property name="act73" value="npc_face marissa,left"/>
+    <property name="act74" value="npc_move misa, down 1"/>
+    <property name="act75" value="wait 0.3"/>
+    <property name="act76" value="npc_face misa,left"/>
+    <property name="act77" value="wait 0.4"/>
+    <property name="act78" value="npc_face misa,right"/>
+    <property name="act79" value="wait 0.3"/>
+    <property name="act80" value="npc_face misa,down"/>
+    <property name="act81" value="translated_dialog allofyounow"/>
+    <property name="act99" value="set_variable whoartthou:person"/>
+    <property name="cond1" value="is variable_set whoartthou:florist"/>
    </properties>
   </object>
  </objectgroup>

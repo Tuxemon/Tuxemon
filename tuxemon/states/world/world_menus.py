@@ -40,7 +40,7 @@ from tuxemon.tools import open_dialog
 from typing import Callable, Tuple, Sequence, Any, Optional
 from tuxemon.animation import Animation
 import pygame_menu
-from tuxemon.menu.theme import TUXEMON_THEME
+from tuxemon.menu.theme import get_theme, get_sound_engine
 from tuxemon.state import State
 from tuxemon.menu.events import playerinput_to_event
 from tuxemon.platform.events import PlayerInput
@@ -57,31 +57,40 @@ def add_menu_items(
     items: Sequence[Tuple[str, WorldMenuGameObj]],
 ) -> None:
 
+    menu.add.vertical_fill()
     for key, callback in items:
         label = T.translate(key).upper()
         menu.add.button(label, callback)
+        menu.add.vertical_fill()
+        pass
 
-    menu_size = menu.get_size()
+    width, height = prepare.SCREEN_SIZE
     widgets_size = menu.get_size(widget=True)
-    menu.resize(widgets_size[0], menu_size[1])
+    b_width, b_height = menu.get_scrollarea().get_border_size()
+    menu.resize(
+        widgets_size[0],
+        height - 2 * b_height,
+        position=(width + b_width, b_height, False),
+    )
+    menu.set_sound(get_sound_engine())
 
 
 class WorldMenuState(State):
     """Menu for the world state."""
 
+    transparent = True
+
     def startup(self, **kwargs: Any) -> None:
         super().startup(**kwargs)
 
         width, height = prepare.SCREEN_SIZE
-        self.border_width = TUXEMON_THEME.border_width
 
         self.menu = pygame_menu.Menu(
             "",
             width,
-            height - 2 * self.border_width,
-            theme=TUXEMON_THEME,
-            position=(width, self.border_width, False),
-            center_content=False,
+            height,
+            theme=get_theme(),
+            center_content=True,
             onclose=self.on_close,
         )
 
@@ -216,7 +225,7 @@ class WorldMenuState(State):
 
         """
 
-        width = self.menu.get_width() + 2 * self.border_width
+        width = self.menu.get_width(border=True)
         self.animation_offset = 0
 
         ani = self.animate(self, animation_offset=width, duration=0.50)

@@ -30,7 +30,6 @@ from __future__ import annotations
 import logging
 from functools import partial
 
-from pygame.rect import Rect
 from tuxemon import prepare
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem

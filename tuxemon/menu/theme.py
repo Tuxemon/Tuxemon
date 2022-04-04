@@ -1,10 +1,64 @@
 from tuxemon import prepare
 import pygame_menu
+from pygame_menu.widgets.core.selection import Selection
 from tuxemon.tools import transform_resource_filename
 from typing import Optional
 from tuxemon.audio import get_sound_filename
+import pygame
+from pygame_menu.widgets.core.widget import Widget
+from pygame.rect import Rect
 
 _theme: Optional[pygame_menu.themes.Theme] = None
+
+
+class TuxemonArrowSelection(Selection):
+
+    def __init__(self) -> None:
+        # Call the constructor of the Selection providing the left, right,
+        # top and bottom margins of your Selection effect box.
+        #
+        #  --------------------------
+        # |          ^ top           |  In this example, XXXX represents the
+        # | left  XXXXXXXXXXXX right |  Widget to be Selected.
+        # |<----> XXXXXXXXXXXX<----->|  left, right, top and bottom must be described
+        # |         v bottom         |  in pixels
+        #  --------------------------
+        #
+
+        arrow = pygame_menu.baseimage.BaseImage(
+            image_path=transform_resource_filename("gfx/arrow.png"),
+        ).scale(5, 5, smooth=False)
+
+        super().__init__(
+            margin_left=arrow.get_width(),
+            margin_right=0,
+            margin_top=0,
+            margin_bottom=0,
+        )
+        self.arrow = arrow
+
+    def draw(
+        self,
+        surface: pygame.surface.Surface,
+        widget: Widget,
+    ) -> Selection:
+        """
+        This method receives the surface to draw the selection and the
+        widget itself. For retrieving the Selection coordinates the rect
+        object from widget should be used.
+        """
+        widget_rect = widget.get_rect()
+        position = (
+            widget_rect.topleft[0] - self.arrow.get_width(),
+            widget_rect.topleft[1],
+        )
+
+        self.arrow.draw(
+            surface,
+            area=self.arrow.get_rect(),
+            position=position,
+        )
+        return self
 
 
 def get_theme() -> pygame_menu.themes.Theme:
@@ -17,7 +71,7 @@ def get_theme() -> pygame_menu.themes.Theme:
     font_filename = prepare.fetch("font", "PressStart2P.ttf")
     tuxemon_border = pygame_menu.baseimage.BaseImage(
         image_path=transform_resource_filename("gfx/dialog-borders01.png"),
-    ).scale(5, 5)
+    ).scale(5, 5, smooth=False)
 
     tuxemon_background_center_rect = tuxemon_border.get_rect()
     tuxemon_background_center_rect = tuxemon_background_center_rect.inflate(
@@ -35,7 +89,7 @@ def get_theme() -> pygame_menu.themes.Theme:
         title_font_size=20,
         widget_font_size=26,
         title=False,
-        widget_selection_effect=pygame_menu.widgets.LeftArrowSelection(),
+        widget_selection_effect=TuxemonArrowSelection(),
         widget_font_color=(0, 0, 0),
         selection_color=(0, 0, 0),
         border_color=tuxemon_border,

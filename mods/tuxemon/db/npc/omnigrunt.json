@@ -1,12 +1,12 @@
 {
-    "slug": "omnigrunt1",
+    "slug": "omnigrunt",
     "sprite_name": "knight",
     "combat_front": "knight_front.png",
     "combat_back": "red_back.png",
     "monsters": [
         {
             "level": 2,
-            "slug": "capiti",
+            "slug": "aardart",
             "exp_give_mod": 12,
             "exp_req_mod": 27
         }

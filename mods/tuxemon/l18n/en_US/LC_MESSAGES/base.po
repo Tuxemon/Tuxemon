@@ -2224,10 +2224,19 @@ msgid "taketheleft"
 msgstr "You take the one on the left and I'll take the other three."
 
 msgid "taketheleft2"
-msgid "Take the one on the left! Don't worry, I've got these three!"
+msgstr "Take the one on the left! Don't worry, I've got these three!"
 
 msgid "nobodygetsthrough"
-msgid "No matter who you bring with you, I won't let anyone through!"
+msgstr "No matter who you bring with you, I won't let anyone through!"
+
+msgid "staples"
+msgstr "Well, that was easy."
+
+msgid "higrunts"
+msgstr "These grunts don't even get proper training, so they were no match for me. You didn't do too bad either it looks like."
+
+msgid "higrunts2"
+msgstr "Here, I'll heal your Tuxemon."
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

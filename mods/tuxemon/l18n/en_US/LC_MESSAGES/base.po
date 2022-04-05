@@ -2214,8 +2214,20 @@ msgid "allofyounow"
 msgstr "Anyone without a Tuxemon needs to leave now. This could get messy."
 
 msgid "waityouhaveone"
-msgstr "Wait, you have a Tuxemon?\n"
-"Well, hopefully you're good in a fight! You take the one on the left and I'll take the other three."
+msgstr "You have a Tuxemon?\n"
+"Why is that?\n"
+"... .... ... ... \n"
+"... ... .... ... \n"
+"Trial eh? Well, hopefully you're good in a fight! I'll heal your Tuxemon real quick and then we'll see how good you really are."
+
+msgid "taketheleft"
+msgstr "You take the one on the left and I'll take the other three."
+
+msgid "taketheleft2"
+msgid "Take the one on the left! Don't worry, I've got these three!"
+
+msgid "nobodygetsthrough"
+msgid "No matter who you bring with you, I won't let anyone through!"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

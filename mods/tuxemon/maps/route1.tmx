@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="117">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="123">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -327,9 +327,75 @@
     <property name="act78" value="npc_face misa,right"/>
     <property name="act79" value="wait 0.3"/>
     <property name="act80" value="npc_face misa,down"/>
-    <property name="act81" value="translated_dialog allofyounow"/>
+    <property name="act81" value="npc_face player,right"/>
+    <property name="act82" value="translated_dialog allofyounow"/>
+    <property name="act83" value="set_variable getaway:pls"/>
     <property name="act99" value="set_variable whoartthou:person"/>
     <property name="cond1" value="is variable_set whoartthou:florist"/>
+   </properties>
+  </object>
+  <object id="117" name="move husband" type="event" x="448" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind marissa,37,22"/>
+    <property name="act2" value="npc_face marissa,left"/>
+    <property name="act3" value="pathfind tuxemart_keeper,37,21"/>
+    <property name="act4" value="npc_face tuxemart_keeper,left"/>
+    <property name="act5" value="set_variable getaway:weregone"/>
+    <property name="cond1" value="is variable_set getaway:pls"/>
+   </properties>
+  </object>
+  <object id="118" name="move bob" type="event" x="432" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind bob,36,23"/>
+    <property name="act2" value="npc_face bob,left"/>
+    <property name="cond1" value="is variable_set getaway:pls"/>
+   </properties>
+  </object>
+  <object id="119" name="move liela" type="event" x="416" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind liela,36,24"/>
+    <property name="act2" value="npc_face liela,left"/>
+    <property name="cond1" value="is variable_set getaway:pls"/>
+   </properties>
+  </object>
+  <object id="120" name="even more misa" type="event" x="432" y="224" width="16" height="16">
+   <properties>
+    <property name="act10" value="npc_face misa,right"/>
+    <property name="act20" value="wait 0.6"/>
+    <property name="act30" value="npc_face misa,left"/>
+    <property name="act40" value="wait 0.4"/>
+    <property name="act50" value="translated_dialog gasp"/>
+    <property name="act60" value="npc_move misa,left 1"/>
+    <property name="act70" value="wait 0.5"/>
+    <property name="act80" value="translated_dialog waityouhaveone"/>
+    <property name="act81" value="set_monster_health"/>
+    <property name="act82" value="set_monster_status"/>
+    <property name="act83" value="npc_move misa,right 1,down 1"/>
+    <property name="act84" value="wait 0.6"/>
+    <property name="act85" value="translated_dialog taketheleft"/>
+    <property name="act86" value="set_variable whoartthou:tuxemon"/>
+    <property name="act87" value="unlock_controls"/>
+    <property name="cond1" value="is variable_set getaway:weregone"/>
+    <property name="cond2" value="is variable_set whoartthou:person"/>
+   </properties>
+  </object>
+  <object id="121" name="battle!" type="event" x="496" y="416" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog nobodygetsthrough"/>
+    <property name="act20" value="start_battle omnigrunt1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is variable_set whoartthou:tuxemon"/>
+   </properties>
+  </object>
+  <object id="122" name="look at the other one" type="event" x="512" y="416" width="48" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog taketheleft2"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is variable_set whoartthou:tuxemon"/>
    </properties>
   </object>
  </objectgroup>

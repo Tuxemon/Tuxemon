@@ -2238,6 +2238,30 @@ msgstr "These grunts don't even get proper training, so they were no match for m
 msgid "higrunts2"
 msgstr "Here, I'll heal your Tuxemon."
 
+msgid "ohaimisa"
+msgstr "Well look who it is!"
+
+msgid "ohaimisa2"
+msgstr "I heard that some Xero thug was beating up my men, but I didn't think it'd be you Misa!"
+
+msgid "ohaimisa3"
+msgstr "Hi Kyle, why are you here?"
+
+msgid "ohaimisa4"
+msgstr "Why am I here? Why, I'm the head of this project! Building the model battle area for the entire region is an honor!\n"
+"Although, I can see why you wouldn't have heard the news, frolicking about with your new plaything and all.\n"
+"What's their name anyway?"
+
+msgid "ohaimisa5"
+msgstr "Wait, they aren't my-"
+
+msgid "ohaimisa6"
+msgstr "Ah, doesn't matter. I have more important things to attend to anyways. Have fun you two, AND STOP HURTING MY MEN!\n"
+"Toodles!\n"
+
+msgid "ohaimisa7"
+msgstr "Jack, Rick, Eddy, come with me. Jon, you stay here."
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

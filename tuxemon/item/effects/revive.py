@@ -20,32 +20,36 @@
 #
 # Contributor(s):
 #
+# William Edwards <shadowapex@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
+# Andy Mender <andymenderunix@gmail.com>
 # Adam Chevalier <chevalieradam2@gmail.com>
 #
 
 from __future__ import annotations
-import logging
-from tuxemon.item.itemcondition import ItemCondition
-from typing import NamedTuple
+from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+from typing import NamedTuple, Union
 from tuxemon.monster import Monster
 
-logger = logging.getLogger(__name__)
 
-class StatusConditionParameters(NamedTuple):
-    expected: str
+class ReviveEffectResult(ItemEffectResult):
+    pass
 
 
-class StatusCondition(ItemCondition[StatusConditionParameters]):
+class ReviveEffectParameters(NamedTuple):
+    pass
+
+
+class ReviveEffect(ItemEffect[ReviveEffectParameters]):
     """
-    Checks against the creature's current statuses.
-
-    Accepts a single parameter and returns whether it is applied.
-
+    Revives the target tuxemon, and sets HP to 1.
     """
 
-    name = "status"
-    param_class = StatusConditionParameters
+    name = "revive"
+    param_class = ReviveEffectParameters
 
-    def test(self, target: Monster) -> bool:
-        return self.parameters.expected in \
-            [x.slug for x in target.status if hasattr(x, "slug")]
+    def apply(self, target: Monster) -> ReviveEffectResult(ItemEffectResult):
+        target.status = []
+        target.current_hp = 1
+
+        return {"success": True}

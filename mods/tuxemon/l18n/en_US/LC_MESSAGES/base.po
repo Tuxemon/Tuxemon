@@ -1665,7 +1665,7 @@ msgid "quicklyknight2"
 msgstr "Two people control Omnichannel. The board is a joke.\n"
 
 msgid "quicklyknight3"
-msgstr "Allie. Allie is the one they don’t want you to know about."
+msgstr "Allie. Allie is the one they don't want you to know about."
 
 msgid "quicklyknight4"
 msgstr "Sorry, but I should leave now."
@@ -2211,7 +2211,7 @@ msgid "soiwashearing11"
 msgstr "Good, now move so I can talk to these so called \"knights.\""
 
 msgid "allofyounow"
-msgstr "Anyone without a Tuxemon needs to leave now. This could get messy."
+msgstr "Anyone without a Tuxemon needs to leave. This could get messy."
 
 msgid "waityouhaveone"
 msgstr "You have a Tuxemon?\n"
@@ -2249,8 +2249,7 @@ msgstr "Hi Kyle, why are you here?"
 
 msgid "ohaimisa4"
 msgstr "Why am I here? Why, I'm the head of this project! Building the model battle area for the entire region is an honor!\n"
-"Although, I can see why you wouldn't have heard the news, frolicking about with your new plaything and all.\n"
-"What's their name anyway?"
+"Although, I can see why you wouldn't have heard the news, frolicking about with your new plaything and all"
 
 msgid "ohaimisa5"
 msgstr "Wait, they aren't my-"
@@ -2261,6 +2260,42 @@ msgstr "Ah, doesn't matter. I have more important things to attend to anyways. H
 
 msgid "ohaimisa7"
 msgstr "Jack, Rick, Eddy, come with me. Jon, you stay here."
+
+msgid "kylekindasucks"
+msgstr "Sorry about that, Kyle is one of my least favorite people at Omnichannel. And that's saying something!\n" 
+"We were in the same cohort at The Academy and he's been nothing but trouble since. That's probably why Omnichannel recruited him actually.\n"
+"Luckily, I don't have to listen to his grating voice every day like some poor souls have to."
+
+msgid "kylekindasucks2"
+msgstr "On a different note, it looks like Kyle was here to open the path. It seems like the Battle Area is open now."
+
+msgid "kylekindasucks3"
+msgstr "I know you're going through the Trial and all, but watch your back. Omnichannel is everywhere, watching everything.\n"
+"They have no issue... disposing of troublesome individuals."
+
+msgid "kylekindasucks4"
+msgstr "I don't want to see another person disappear. Especially one as promising as you."
+
+msgid "kylekindasucks5"
+msgstr "Alright, I've probably been here long enough. Time for me to head back."
+
+msgid "kylekindasucks6"
+msgstr "Oh, and ${{name}}?"
+
+msgid "kylekindasucks7"
+msgstr "I'll be watching you. In fact, I may even root for you.\n"
+"Don't let me down okay?"
+
+msgid "kylekindasucks8"
+msgstr "You four, head home. Remember, YOU. SAW. NOTHING.\n"
+"Understand?\n"
+"Oh, and florist? Come find me at some point. My address is on the card I gave you. "
+
+msgid "misaisleavingfornow"
+msgstr "Matt, Julius, let's head out. "
+
+msgid "misaisleavingfornow"
+msgstr "Good Luck ${{name}}. I'm sure we'll see each other again. "
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

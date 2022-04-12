@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="127">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="134">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -213,6 +213,7 @@
     <property name="act22" value="create_npc marissa,33,26,,stand"/>
     <property name="act23" value="create_npc tuxemart_keeper,34,26,,stand"/>
     <property name="cond1" value="not variable_set letusthrough:no"/>
+    <property name="cond2" value="not variable_set letusthrough:almost"/>
    </properties>
   </object>
   <object id="112" name="they're angry" type="event" x="592" y="336" width="16" height="32">
@@ -244,6 +245,7 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="not variable_set letusthrough:no"/>
     <property name="cond3" value="not variable_set letusthrough:maybe"/>
+    <property name="cond4" value="not variable_set letusthrough:almost"/>
    </properties>
   </object>
   <object id="113" name="hello misa" type="event" x="432" y="272" width="16" height="16">
@@ -257,7 +259,7 @@
     <property name="act16" value="set_variable theyrehere:yes"/>
     <property name="act17" value="create_npc misa,33,20,,stand"/>
     <property name="act18" value="npc_move misa,down 3"/>
-    <property name="act98" value="set_variable letusthrough:no"/>
+    <property name="act98" value="set_variable letusthrough:almost"/>
     <property name="act99" value="set_variable whoartthou:florist"/>
     <property name="cond1" value="is variable_set letusthrough:maybe"/>
    </properties>
@@ -460,9 +462,9 @@
   </object>
   <object id="124" name="omnigruntmove" type="event" x="416" y="416" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind omnigrunt,32,31"/>
-    <property name="act2" value="remove_npc omnigrunt"/>
-    <property name="act3" value="set_variable threemusketeers:done"/>
+    <property name="act10" value="pathfind omnigrunt,32,31"/>
+    <property name="act20" value="remove_npc omnigrunt"/>
+    <property name="act30" value="set_variable threemusketeers:done"/>
     <property name="cond1" value="is variable_set threemusketeers:yay"/>
    </properties>
   </object>
@@ -479,7 +481,101 @@
     <property name="act10" value="wait 2.2"/>
     <property name="act11" value="pathfind omnigrunt3,32,31"/>
     <property name="act20" value="remove_npc omnigrunt3"/>
+    <property name="act21" value="set_variable completethis:now"/>
     <property name="cond1" value="is variable_set threemusketeers:yay"/>
+   </properties>
+  </object>
+  <object id="127" name="omnigrunt4move" type="event" x="416" y="384" width="16" height="16">
+   <properties>
+    <property name="act10" value="wait 1.6"/>
+    <property name="act20" value="npc_move omnigrunt4, up 1"/>
+    <property name="act30" value="npc_face omnigrunt4,left"/>
+    <property name="cond1" value="is variable_set threemusketeers:yay"/>
+   </properties>
+  </object>
+  <object id="128" name="kyle sucks" type="event" x="400" y="352" width="16" height="16">
+   <properties>
+    <property name="act10" value="wait 1.4"/>
+    <property name="act11" value="npc_face misa,left"/>
+    <property name="act12" value="npc_face player,right"/>
+    <property name="act13" value="wait 0.4"/>
+    <property name="act14" value="translated_dialog kylekindasucks"/>
+    <property name="act20" value="npc_face misa,down"/>
+    <property name="act21" value="wait 0.6"/>
+    <property name="act22" value="npc_face misa,left"/>
+    <property name="act23" value="translated_dialog kylekindasucks2"/>
+    <property name="act30" value="npc_face misa,down"/>
+    <property name="act31" value="wait 0.8"/>
+    <property name="act32" value="npc_face misa,left"/>
+    <property name="act33" value="wait 0.5"/>
+    <property name="act34" value="translated_dialog kylekindasucks3"/>
+    <property name="act35" value="wait 0.5"/>
+    <property name="act36" value="npc_face misa,right"/>
+    <property name="act37" value="wait 0.7"/>
+    <property name="act38" value="translated_dialog kylekindasucks4"/>
+    <property name="act39" value="wait 1.5"/>
+    <property name="act40" value="npc_face misa,left"/>
+    <property name="act41" value="wait 1.7"/>
+    <property name="act42" value="translated_dialog kylekindasucks5"/>
+    <property name="act43" value="wait 0.8"/>
+    <property name="act44" value="pathfind misa,33,23"/>
+    <property name="act45" value="pathfind player,33,26"/>
+    <property name="act46" value="translated_dialog kylekindasucks6"/>
+    <property name="act47" value="npc_face misa,down"/>
+    <property name="act48" value="npc_face player,up"/>
+    <property name="act49" value="wait 0.5"/>
+    <property name="act50" value="translated_dialog kylekindasucks7"/>
+    <property name="act51" value="wait 0.5"/>
+    <property name="act52" value="npc_move misa,up 1,right 1"/>
+    <property name="act53" value="translated_dialog kylekindasucks8"/>
+    <property name="act54" value="wait 0.3"/>
+    <property name="act55" value="translated_dialog yesmaam"/>
+    <property name="act56" value="set_variable begone:now"/>
+    <property name="cond1" value="is variable_set completethis:now"/>
+    <property name="cond2" value="not variable_set begone:now"/>
+    <property name="cond3" value="not variable_set begone:gone"/>
+   </properties>
+  </object>
+  <object id="129" name="backhomenow" type="event" x="400" y="320" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind tuxemart_keeper,39,18"/>
+    <property name="act3" value="set_variable begone:gone"/>
+    <property name="act4" value="remove_npc tuxemart_keeper"/>
+    <property name="cond1" value="is variable_set begone:now"/>
+   </properties>
+  </object>
+  <object id="130" name="backhomenow2" type="event" x="400" y="304" width="16" height="16">
+   <properties>
+    <property name="act10" value="wait 0.5"/>
+    <property name="act11" value="set_variable begone:gone"/>
+    <property name="act20" value="pathfind marissa,39,19"/>
+    <property name="act30" value="remove_npc marissa"/>
+    <property name="cond1" value="is variable_set begone:now"/>
+   </properties>
+  </object>
+  <object id="131" name="backhomenow3" type="event" x="400" y="304" width="16" height="16">
+   <properties>
+    <property name="act10" value="wait 1.3"/>
+    <property name="act11" value="set_variable begone:gone"/>
+    <property name="act20" value="pathfind bob,39,18"/>
+    <property name="act30" value="remove_npc bob"/>
+    <property name="cond1" value="is variable_set begone:now"/>
+   </properties>
+  </object>
+  <object id="132" name="backhomenow4" type="event" x="400" y="304" width="16" height="16">
+   <properties>
+    <property name="act10" value="wait 2"/>
+    <property name="act11" value="set_variable begone:gone"/>
+    <property name="act20" value="pathfind leila,39,19"/>
+    <property name="act30" value="remove_npc leila"/>
+    <property name="cond1" value="is variable_set begone:now"/>
+   </properties>
+  </object>
+  <object id="133" name="nowmisaleaves" type="event" x="400" y="224" width="16" height="16">
+   <properties>
+    <property name="act99" value="set_variable misaisgone:true"/>
+    <property name="cond1" value="is variable_set begone:gone"/>
+    <property name="cond2" value="not variable_set misaisgone:true"/>
    </properties>
   </object>
  </objectgroup>

@@ -4,10 +4,12 @@
   "use_success": "generic_success",
   "use_failure": "generic_failure",
   "effects": [
+    "revive",
     "heal 20"
   ],
   "conditions": [
-    "current_hp target,==,0"
+    "current_hp target,==,0",
+    "status target,status_faint"
   ],
   "sort": "food",
   "sprite": "gfx/items/revive.png",

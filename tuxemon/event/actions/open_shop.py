@@ -22,8 +22,9 @@
 from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.item.economy import Economy
 from typing import NamedTuple, final
-from tuxemon.states.items import ShopMenuState
+from tuxemon.states.items import ShopMenuState, ShopBuyMenuState
 from tuxemon.states.choice import ChoiceState
 
 
@@ -52,12 +53,18 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
     def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
 
+        if hasattr(npc, "economy"):
+            economy = npc.economy
+        else:
+            economy = Economy("default")
+
         def buy_menu() -> None:
             self.session.client.pop_state()
             self.session.client.push_state(
-                ShopMenuState,
+                ShopBuyMenuState,
                 buyer=self.session.player,
                 seller=npc,
+                economy=economy,
             )
 
         def sell_menu() -> None:
@@ -66,6 +73,7 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
                 ShopMenuState,
                 buyer=None,
                 seller=self.session.player,
+                economy=economy,
             )
 
         var_menu = [

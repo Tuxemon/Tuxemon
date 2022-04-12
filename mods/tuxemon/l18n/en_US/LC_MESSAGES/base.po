@@ -2117,7 +2117,7 @@ msgstr "What are you doing here with this... Criminal?\n"
 "... .... ....\n... ... ...\n"
 "Joining the trial? You'd really subject yourself to that nonsense?\n"
 "If all you want is a job at Omnichannel, you could have just asked me.\n"
-"I'm sure I can find a... use for you if you're interested."
+"I'm sure I can find a... use for you... if you're interested."
 
 msgid "brokethegasp"
 msgstr "Now, Miss, if I may, ${{name}} is doing it for more than a job."
@@ -2208,7 +2208,7 @@ msgid "y-yes"
 msgstr "Y-yes... Ma'am."
 
 msgid "soiwashearing11"
-msgstr "Good, now move so I can talk to these so called knights. They look more like grunts to me."
+msgstr "Good, now move so I can talk to these so called \"knights.\""
 
 msgid "allofyounow"
 msgstr "Anyone without a Tuxemon needs to leave now. This could get messy."

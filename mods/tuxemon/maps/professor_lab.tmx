@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="125">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="125">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -37,22 +37,22 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBg6gAXoVDYgzgQysoH4KBAfAwmigUPMDAyHgZgQkAEqkANiU1YGBnMgfgc06z2aeU5A+ddAs94QYR4h+2Dy6jAGnelPaH6js/UErbMAxgEhIABUIAjEQoQUEikPSgOyQAxKB/QGoHQ3GRgnMAxKg8iAkDyyWnqwFwHdtxgJL0FzL6luWAvUvw4Jr6fQvB1A/TuR8C4KzSPVP+jqHwLt5wQKcgExN5JkLZK7kOVB6ocaAADjNhwa
+   eAFjYBg6gAXoVDYgzgQysoH4KBAfAwmigUPMDAyHgZgQkAEqkANiU1YGBnMgfgc06z2aeU5A+ddAs94QYR4h+2Dy6jAGnelPaH6js/UErbMAxgEhIABUIAjEQoQUEikPSgOyQAxKB/QGoHQ3GRgnMAxKg8iAkDyyWnqwFwHdtxgJL0FzL6luWAvUvw4Jr6fQvB1A/TuR8C4KzSPVP+jq1wLjlhMoyAXE3EiStUjuQpYHqR9qAACOwBuw
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBg6wBPoVC8qOleNimaNGoU9BFiAwqxAzIZdelR0NARGQ2AIhwAAO0QAyQ==
+   eAFjYBg6wBPoVC8qOleNimaNGoU9BFiAwqxAzIZdmmTR50DDYJhkzaMaRkNgNASoGgIACvsDjQ==
   </data>
  </layer>
  <layer id="4" name="Above player" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgzUETrIMVpdB3LWbCPeBlLACMRuVvPIOaBgMU8lIoo3JBHomCwlno/mfkDzRFo0qHJAQaEGLT0KOIFU9IfOGojwAEhIJ0Q==
+   eAFjYBgFgzUETrIMVpdB3LWbCPeBlLACMdvg9gpRrssEeiYLCWej+Z+QPFGWjCoasBBoQYtPQg4hVT0h84aiPAD30Ab4
   </data>
  </layer>
  <layer id="7" name="Above Player 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyFAuxB4wsrAAMPUsOUd0DwYpoZ5o2aMhsBoCJAfAgCqrgWV
+   eAFjYBgFoyFAuxB4wsrAAMO0s2XU5NEQGA2BgQgBAJB7Arw=
   </data>
  </layer>
  <objectgroup color="#ffff00" id="5" name="Events">
@@ -75,7 +75,7 @@
     <property name="cond3" value="is player_facing down"/>
     <property name="cond4" value="is button_pressed K_RETURN"/>
     <property name="cond5" value="is variable_set gettuxemon:now"/>
-    <property name="cond6" value="not variable_set letmechoose:pls"/>
+    <property name="cond6" value="not variable_set havetuxemon:yes"/>
    </properties>
   </object>
   <object id="74" name="Choose Cardiling" type="event" x="208" y="112" width="16" height="16">
@@ -174,15 +174,16 @@
   </object>
   <object id="103" name="wemoving3" type="event" x="48" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="wait 2"/>
-    <property name="act2" value="translated_dialog tuxemontime3"/>
-    <property name="act3" value="pathfind professor,5,5"/>
-    <property name="act4" value="npc_face professor,down"/>
-    <property name="act5" value="translated_dialog tuxemontime3.1"/>
-    <property name="act6" value="add_item reg_papers"/>
-    <property name="act7" value="translated_dialog obtainedpapers"/>
-    <property name="act8" value="set_variable movingon:now"/>
-    <property name="act9" value="set_variable wemoving:finished"/>
+    <property name="act10" value="wait 2"/>
+    <property name="act20" value="translated_dialog tuxemontime3"/>
+    <property name="act30" value="pathfind professor,5,5"/>
+    <property name="act40" value="npc_face professor,down"/>
+    <property name="act50" value="translated_dialog tuxemontime3.1"/>
+    <property name="act60" value="add_item reg_papers"/>
+    <property name="act61" value="play_sound sound_confirm"/>
+    <property name="act70" value="translated_dialog obtainedpapers"/>
+    <property name="act80" value="set_variable movingon:now"/>
+    <property name="act90" value="set_variable wemoving:finished"/>
     <property name="cond1" value="is variable_set wemoving:done"/>
     <property name="cond2" value="not variable_set movingon:now"/>
    </properties>
@@ -215,6 +216,7 @@
   <object id="107" name="rockittenYES" type="event" x="192" y="112" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog choseRockitten"/>
+    <property name="act11" value="play_sound sound_confirm"/>
     <property name="act20" value="translated_dialog rockitten!"/>
     <property name="act30" value="add_monster rockitten,5"/>
     <property name="act40" value="pathfind professor,13,9"/>
@@ -252,6 +254,7 @@
   <object id="110" name="cardilingYES" type="event" x="208" y="112" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog choseCardiling"/>
+    <property name="act11" value="play_sound sound_confirm"/>
     <property name="act20" value="translated_dialog cardiling!"/>
     <property name="act30" value="add_monster cardiling,5"/>
     <property name="act40" value="pathfind professor,14,9"/>
@@ -273,6 +276,7 @@
   <object id="111" name="tweesherYES" type="event" x="224" y="112" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog choseTweesher"/>
+    <property name="act11" value="play_sound sound_confirm"/>
     <property name="act20" value="translated_dialog tweesher!"/>
     <property name="act30" value="add_monster tweesher,5"/>
     <property name="act40" value="pathfind professor,12,9"/>
@@ -308,6 +312,7 @@
     <property name="act91" value="set_monster_health"/>
     <property name="act92" value="set_monster_status"/>
     <property name="act93" value="set_variable ohnotyou:itsme"/>
+    <property name="act94" value="lock_controls"/>
     <property name="cond1" value="is variable_set startfirstbattle:yes"/>
     <property name="cond2" value="not variable_set firstbattledone:yes"/>
    </properties>
@@ -386,14 +391,16 @@
   </object>
   <object id="124" name="leavin" type="event" x="144" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_face player,left"/>
-    <property name="act2" value="translated_dialog goodbye"/>
-    <property name="act3" value="pathfind allie,9,17"/>
-    <property name="act4" value="npc_face player,down"/>
-    <property name="act5" value="translated_dialog goodbye2"/>
-    <property name="act6" value="remove_npc allie"/>
-    <property name="act7" value="set_variable timetomove:finite"/>
-    <property name="act8" value="set_variable announcetwo:done"/>
+    <property name="act10" value="npc_face player,left"/>
+    <property name="act20" value="translated_dialog goodbye"/>
+    <property name="act30" value="pathfind allie,9,17"/>
+    <property name="act40" value="npc_face player,down"/>
+    <property name="act50" value="translated_dialog goodbye2"/>
+    <property name="act60" value="remove_npc allie"/>
+    <property name="act70" value="set_variable timetomove:finite"/>
+    <property name="act80" value="set_variable announcetwo:done"/>
+    <property name="act90" value="wait 1"/>
+    <property name="act91" value="unlock_controls"/>
     <property name="cond1" value="is variable_set timetomove:done"/>
    </properties>
   </object>

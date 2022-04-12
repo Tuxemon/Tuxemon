@@ -660,6 +660,23 @@ class NPC(Entity[NPCState]):
 
         return monster
 
+    def release_monster(self, monster: Monster) -> bool:
+        """
+        Releases a monster from this npc's party. Used to release into wild.
+
+        Parameters:
+            monster: Monster to release into the wild. 
+
+        """
+        if len(self.monsters) == 1:
+            return False
+
+
+        if monster in self.monsters:
+            self.monsters.remove(monster)
+            self.set_party_status()
+            return True
+
     def remove_monster(self, monster: Monster) -> None:
         """
         Removes a monster from this npc's party.

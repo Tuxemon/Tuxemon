@@ -254,6 +254,19 @@ msgstr "Informoj"
 msgid "monster_menu_move"
 msgstr "Movi"
 
+msgid "monster_menu_release"
+msgstr "Release"
+
+#Release notifications
+msgid "cant_release"
+msgstr "Can't release only Tuxemon in party."
+
+msgid "release_confirmation"
+msgstr "Are you sure you would like to release {name}?"
+
+msgid "tuxemon_released"
+msgstr "{name} has been released. Refresh menu to view change."
+
 # Menu notifications
 msgid "log_off"
 msgstr "Elsaluti"

@@ -6,7 +6,7 @@
     "monsters": [
         {
             "level": 2,
-            "slug": "aardart",
+            "slug": "aardorn",
             "exp_give_mod": 30,
             "exp_req_mod": 27
         }

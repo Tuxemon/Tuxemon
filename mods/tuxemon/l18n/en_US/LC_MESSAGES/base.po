@@ -2294,8 +2294,13 @@ msgstr "You four, head home. Remember, YOU. SAW. NOTHING.\n"
 msgid "misaisleavingfornow"
 msgstr "Matt, Julius, let's head out. "
 
-msgid "misaisleavingfornow"
+msgid "misaisleavingfornow2"
 msgstr "Good Luck ${{name}}. I'm sure we'll see each other again. "
+
+msgid "imherenow"
+msgstr "I'm here to make sure nobody disrespects Omnichannel!\n"
+"... .... ... ...\n"
+"How do I do that? Well... Uh... Maybe I'll ask them nicely?"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

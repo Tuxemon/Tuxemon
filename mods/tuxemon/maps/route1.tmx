@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="134">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="142">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -270,6 +270,7 @@
     <property name="act2" value="npc_move xerogrunt1,down 3"/>
     <property name="cond1" value="is variable_set theyrehere:yes"/>
     <property name="cond2" value="not npc_exists xerogrunt1"/>
+    <property name="cond3" value="not variable_set misaisgone:true"/>
    </properties>
   </object>
   <object id="115" name="xero grunt2" type="event" x="432" y="288" width="16" height="16">
@@ -278,6 +279,7 @@
     <property name="act2" value="npc_move xerogrunt2,down 3"/>
     <property name="cond1" value="is variable_set theyrehere:yes"/>
     <property name="cond2" value="not npc_exists xerogrunt2"/>
+    <property name="cond3" value="not variable_set misaisgone:true"/>
    </properties>
   </object>
   <object id="116" name="more misa" type="event" x="448" y="224" width="16" height="16">
@@ -373,11 +375,13 @@
     <property name="act81" value="set_monster_health"/>
     <property name="act82" value="set_monster_status"/>
     <property name="act83" value="wait 1"/>
-    <property name="act84" value="npc_move misa,right 1,down 1"/>
-    <property name="act85" value="wait 0.6"/>
-    <property name="act86" value="translated_dialog taketheleft"/>
-    <property name="act87" value="set_variable whoartthou:tuxemon"/>
-    <property name="act88" value="unlock_controls"/>
+    <property name="act84" value="play_sound sound_confirm"/>
+    <property name="act85" value="wait 0.2"/>
+    <property name="act86" value="npc_move misa,right 1,down 1"/>
+    <property name="act87" value="wait 0.6"/>
+    <property name="act88" value="translated_dialog taketheleft"/>
+    <property name="act89" value="set_variable whoartthou:tuxemon"/>
+    <property name="act90" value="unlock_controls"/>
     <property name="cond1" value="is variable_set getaway:weregone"/>
     <property name="cond2" value="is variable_set whoartthou:person"/>
    </properties>
@@ -487,9 +491,9 @@
   </object>
   <object id="127" name="omnigrunt4move" type="event" x="416" y="384" width="16" height="16">
    <properties>
-    <property name="act10" value="wait 1.6"/>
+    <property name="act10" value="wait 2.2"/>
     <property name="act20" value="npc_move omnigrunt4, up 1"/>
-    <property name="act30" value="npc_face omnigrunt4,left"/>
+    <property name="act30" value="npc_face omnigrunt4,down"/>
     <property name="cond1" value="is variable_set threemusketeers:yay"/>
    </properties>
   </object>
@@ -538,7 +542,7 @@
   </object>
   <object id="129" name="backhomenow" type="event" x="400" y="320" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind tuxemart_keeper,39,18"/>
+    <property name="act1" value="pathfind tuxemart_keeper,40,20"/>
     <property name="act3" value="set_variable begone:gone"/>
     <property name="act4" value="remove_npc tuxemart_keeper"/>
     <property name="cond1" value="is variable_set begone:now"/>
@@ -548,7 +552,7 @@
    <properties>
     <property name="act10" value="wait 0.5"/>
     <property name="act11" value="set_variable begone:gone"/>
-    <property name="act20" value="pathfind marissa,39,19"/>
+    <property name="act20" value="pathfind marissa,39,18"/>
     <property name="act30" value="remove_npc marissa"/>
     <property name="cond1" value="is variable_set begone:now"/>
    </properties>
@@ -557,7 +561,7 @@
    <properties>
     <property name="act10" value="wait 1.3"/>
     <property name="act11" value="set_variable begone:gone"/>
-    <property name="act20" value="pathfind bob,39,18"/>
+    <property name="act20" value="pathfind bob,38,19"/>
     <property name="act30" value="remove_npc bob"/>
     <property name="cond1" value="is variable_set begone:now"/>
    </properties>
@@ -566,16 +570,97 @@
    <properties>
     <property name="act10" value="wait 2"/>
     <property name="act11" value="set_variable begone:gone"/>
-    <property name="act20" value="pathfind leila,39,19"/>
-    <property name="act30" value="remove_npc leila"/>
+    <property name="act20" value="pathfind liela,39,19"/>
+    <property name="act30" value="remove_npc liela"/>
     <property name="cond1" value="is variable_set begone:now"/>
    </properties>
   </object>
   <object id="133" name="nowmisaleaves" type="event" x="400" y="224" width="16" height="16">
    <properties>
+    <property name="act10" value="npc_move misa,left 1"/>
+    <property name="act11" value="npc_face misa,down"/>
+    <property name="act12" value="wait 0.4"/>
+    <property name="act13" value="npc_face xerogrunt1,up"/>
+    <property name="act14" value="wait 0.5"/>
+    <property name="act15" value="npc_face misa,left"/>
+    <property name="act16" value="npc_face xerogrunt2,right"/>
+    <property name="act17" value="wait 0.4"/>
+    <property name="act18" value="npc_face misa,down"/>
+    <property name="act20" value="translated_dialog misaisleavingfornow"/>
+    <property name="act21" value="npc_face misa,up"/>
+    <property name="act22" value="wait 1"/>
+    <property name="act23" value="npc_move misa,down 1"/>
+    <property name="act24" value="npc_face xerogrunt1,left"/>
+    <property name="act25" value="npc_face xerogrunt2,down"/>
+    <property name="act26" value="translated_dialog misaisleavingfornow2"/>
+    <property name="act27" value="wait 0.6"/>
+    <property name="act30" value="set_variable left:true"/>
+    <property name="act31" value="npc_move misa,up 3"/>
+    <property name="act32" value="remove_npc misa"/>
     <property name="act99" value="set_variable misaisgone:true"/>
     <property name="cond1" value="is variable_set begone:gone"/>
     <property name="cond2" value="not variable_set misaisgone:true"/>
+   </properties>
+  </object>
+  <object id="134" name="remove xerogrunts" type="event" x="400" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="wait 0.4"/>
+    <property name="act2" value="npc_move xerogrunt1,up 3"/>
+    <property name="act3" value="remove_npc xerogrunt1"/>
+    <property name="cond1" value="is variable_set left:true"/>
+    <property name="cond2" value="not variable_set misaisgone:true"/>
+   </properties>
+  </object>
+  <object id="135" name="remove xerogrunts2" type="event" x="400" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="wait 1"/>
+    <property name="act2" value="npc_move xerogrunt2,up 3"/>
+    <property name="act3" value="remove_npc xerogrunt2"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="cond1" value="is variable_set left:true"/>
+    <property name="cond2" value="not variable_set misaisgone:true"/>
+   </properties>
+  </object>
+  <object id="136" name="play music" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_chibi_ninja"/>
+    <property name="cond1" value="not music_playing music_chibi_ninja"/>
+   </properties>
+  </object>
+  <object id="137" name="talktojon" type="event" x="544" y="432" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog imherenow"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="138" name="talktojon2" type="event" x="528" y="416" width="16" height="16">
+   <properties>
+    <property name="act10" value="npc_face omnigrunt4,left"/>
+    <property name="act11" value="translated_dialog imherenow"/>
+    <property name="act12" value="npc_face omnigrunt4,down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="139" name="talktojon3" type="event" x="544" y="400" width="16" height="16">
+   <properties>
+    <property name="act10" value="npc_face omnigrunt4,up"/>
+    <property name="act11" value="translated_dialog imherenow"/>
+    <property name="act12" value="npc_face omnigrunt4,down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is variable_set misaisgone:true"/>
+   </properties>
+  </object>
+  <object id="141" name="omnigrunt4" type="event" x="400" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc omnigrunt4,34,26,,stand"/>
+    <property name="act2" value="npc_face omnigrunt4,down"/>
+    <property name="cond1" value="not npc_exists omnigrunt4"/>
    </properties>
   </object>
  </objectgroup>

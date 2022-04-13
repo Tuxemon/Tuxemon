@@ -44,14 +44,16 @@ CC0.  For questions about the license, open a GitHub issue.
 
 If you are modifying existing content and making derivatives, please find the
 license the original asset is released under and be mindful of any requirements
-the license specifies.
+the license specifies.  For example, you must ensure attribution under the terms
+of the license, if applicable.
 
 It will be helpful if you tell the team first what you plan on doing,
 especially with game artistic content.  Unlike game code, seeing the difference
 between artistic content is difficult during the PR review process.  The GitHub
 interface is not able to diff images, for example.  Therefore, it is ideal that
 content creators get a "lock" and agree with others that they will be making
-changes to binary game content.
+changes to binary game content.  Ask in the discord or open an issue if you
+plan on making changes to existing content.
 
 ### Content File Types
 - Images should be PNG format
@@ -116,6 +118,7 @@ written in other languages, but the guidelines are applicable to all
 contributed code.
 
 - New files should follow PEP8 -- this includes 79 char. line limit
+- use ``black -t py38 -l 79`` to format python files after you've made changes
 - Docstrings on new functions are mandatory, unless they are overloading
 - Function/method signatures should have basic typing information
 - Do not change existing formatting unless you are improving it
@@ -131,7 +134,7 @@ contributed code.
 - Interactive tests go in the "scripts" folder
 - Unit tests go in the "tests" folder
 
-## Pull Request Guidelines
+## General Pull Request Guidelines
 - You must target the development branch
 - You should work from a feature branch to avoid merge complications
 - Avoid excessive commits
@@ -140,8 +143,8 @@ contributed code.
 It is highly recommended that before starting your work, create a new branch
 and do not develop off the "development" branch.  Directly working off your
 "development" branch can will create a headache for you later, especially if
-your PR is not merged right away.  Before you make a single change, make a new
-git branch from development and work from that.  When finished, merge
+your PR is not merged right away.  **Before you make a single change, make a
+new git branch from development and work from that.**  When finished, merge
 development if needed and then open a PR from your feature branch to our
 development branch.
 
@@ -149,7 +152,8 @@ TL;DR: work from a feature branch, not the development branch.
 
 ### Pull Request Checklist
 - Fix any conflicts
-- Play test the game to confirm your changes don't break anything
+- Apply code formatting to changed files
+- **Play test the game to confirm your changes don't break anything**
 
 ## Play testing
 We currently do not have good test coverage.  Therefore, it is your
@@ -157,7 +161,7 @@ responsibility to test the game to ensure your changes 1) work and 2) don't
 break anything else.  A "play test" is roughly spending 10 minutes playing the
 game, catching monsters, moving between screens, interacting with NPCs,
 navigating the menus, and saving and loading.  Also, you must verify your
-changes work.  A play test should be conducted from a new game.
+changes work.  A play test should be conducted from a new game, not a save.
 
 It is an honor system, so please keep that in mind as we accept your changes.
 

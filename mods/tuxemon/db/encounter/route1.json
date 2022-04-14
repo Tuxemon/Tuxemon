@@ -3,7 +3,7 @@
 
 
 
-{ "monster": "cardiling","encounter_rate":3.5,"level_range": [1,4]},
+{ "monster": "pairagrin","encounter_rate":3.5,"level_range": [1,4]},
 { "monster": "aardorn","encounter_rate":3.5,"level_range": [1,4]},
 { "monster": "cataspike","encounter_rate":3.5,"level_range": [1,4]}
 

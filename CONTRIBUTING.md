@@ -173,6 +173,7 @@ language, there are possible translation errors.  We also acknowledge that some
 translations may have errors intentional or otherwise that could be offensive
 or inappropriate.
 
+### Quality
 We make every effort to test using automated tools such as google translate to
 test translations, but these are not perfect tools.
 
@@ -185,6 +186,29 @@ translations. It is a powerful platform, but not without issues.  Occasionally
 it will have problems that an admin needs to resolve.  Please open an issue or
 contact a team member in the discord if your Weblate contributions are not
 being merged into the project.
+
+### Fallback
+By default, Tuxemon will display text in the default language.  If that
+language is not English, then English will be the "fallback".  If some text
+in the primary language is not available, then English will be used
+automatically.  If English is not available either, the text slug/msgid will
+be used.
+
+There is no need to put English in the files for other languages.
+
+### Editing PO files
+It is possible to also directly edit the .po files to add or update
+translations.  When adding new text, only add the messages for the target
+language, unless you are also translating that content, too.
+
+Do not add text in a PO file that is not the language of the file.  Do not
+add English text to a Spanish base.po file.
+
+For example:
+- Adding English: Just add content to the English base.po file.  No others.
+- Adding English and Spanish: Only add content to their respective files.
+
+NOTE: The json locale files are for historical reference and will be removed.
 
 ### Translations Guidelines
 - Right-to-left languages are not supported

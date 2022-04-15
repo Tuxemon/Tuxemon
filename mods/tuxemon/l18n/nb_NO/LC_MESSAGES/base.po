@@ -400,19 +400,6 @@ msgstr "Element"
 msgid "monster_menu_move"
 msgstr "Flytt"
 
-msgid "monster_menu_release"
-msgstr "Release"
-
-#Release notifications
-msgid "cant_release"
-msgstr "Can't release only Tuxemon in party."
-
-msgid "release_confirmation"
-msgstr "Are you sure you would like to release {name}?"
-
-msgid "tuxemon_released"
-msgstr "{name} has been released. Refresh menu to view change."
-
 msgid "venomous_tentacle"
 msgstr "Giftig tentakkel"
 

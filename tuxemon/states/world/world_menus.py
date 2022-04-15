@@ -60,7 +60,9 @@ def add_menu_items(
 class WorldMenuState(Menu[WorldMenuGameObj]):
     """Menu for the world state."""
 
-    shrink_to_items = True  # this menu will shrink, but size is adjusted when opened
+    shrink_to_items = (
+        True
+    )  # this menu will shrink, but size is adjusted when opened
     animate_contents = True
 
     def startup(self, **kwargs: Any) -> None:
@@ -138,26 +140,24 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
         def open_monster_stats() -> None:
             open_dialog(local_session, [T.translate("not_implemented")])
 
-        
         def positive_answer() -> None:
             success = False
             player = local_session.player
             monster = monster_menu.get_selected_item().game_object
             success = player.release_monster(monster)
 
-            #TODO: Currently the menu does not close automatically.
+            # TODO: Currently the menu does not close automatically.
             # It needs to be completely refreshed (by backing out or moving the cursor) in order for the player to see the change.
-            # It still has the desired effect, but it would be better if the menu refreshed automatically. 
+            # It still has the desired effect, but it would be better if the menu refreshed automatically.
             if success:
                 self.client.pop_state()
                 self.client.pop_state()
-                open_dialog(local_session, [T.format(
-                    "tuxemon_released",
-                    {"name": monster.name},
-                )])
+                open_dialog(
+                    local_session,
+                    [T.format("tuxemon_released", {"name": monster.name})],
+                )
             else:
                 open_dialog(local_session, [T.translate("cant_release")])
-            
 
         def negative_answer() -> None:
             self.client.pop_state()  # close menu
@@ -165,20 +165,17 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
         def release_monster_from_party() -> None:
             monster = monster_menu.get_selected_item().game_object
             menu = self.client.push_state(Menu)
-            open_dialog(local_session, [T.format(
-                    "release_confirmation",
-                    {"name": monster.name},
-                )])
-            
+            open_dialog(
+                local_session,
+                [T.format("release_confirmation", {"name": monster.name})],
+            )
+
             menu_items_map = (
                 ("no", negative_answer),
-                ("yes", positive_answer)
+                ("yes", positive_answer),
             )
 
             add_menu_items(menu, menu_items_map)
-
-            
-
 
         def open_monster_submenu(
             menu_item: MenuItem[WorldMenuGameObj],
@@ -186,7 +183,7 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
             menu_items_map = (
                 ("monster_menu_info", open_monster_stats),
                 ("monster_menu_move", select_first_monster),
-                ("monster_menu_release", release_monster_from_party)
+                ("monster_menu_release", release_monster_from_party),
             )
             menu = self.client.push_state(Menu)
             menu.shrink_to_items = True
@@ -198,7 +195,9 @@ class WorldMenuState(Menu[WorldMenuGameObj]):
             else:
                 open_monster_submenu(menu_item)
 
-        context = dict()  # dict passed around to hold info between menus/callbacks
+        context = (
+            dict()
+        )  # dict passed around to hold info between menus/callbacks
         monster_menu = self.client.replace_state("MonsterMenuState")
         monster_menu.on_menu_selection = handle_selection
         monster_menu.on_menu_selection_change = monster_menu_hook

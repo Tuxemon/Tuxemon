@@ -2,42 +2,41 @@ import unittest
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
 from unittest import mock
-from tuxemon.prepare import CONFIG 
+from tuxemon.prepare import CONFIG
 
 
 def mockNPC(self) -> None:
 
-        self.monsters = []
-        self.isplayer = True
-        self.game_variables = {}
-        self.monster_boxes = {}
-        self.monster_boxes["Kennel"] = []
+    self.monsters = []
+    self.isplayer = True
+    self.game_variables = {}
+    self.monster_boxes = {}
+    self.monster_boxes["Kennel"] = []
+
 
 class TestCatchTuxemon(unittest.TestCase):
 
-
-    #Can't release Tuxemon if it is the only one in the party.
+    # Can't release Tuxemon if it is the only one in the party.
     def test_release_one(self):
         with mock.patch.object(NPC, "__init__", mockNPC):
             npc = NPC()
             self.assertEqual(len(npc.monsters), 0)
             self.assertEqual(len(npc.monster_boxes["Kennel"]), 0)
 
-            monster =  Monster()
+            monster = Monster()
             npc.add_monster(monster)
             self.assertEqual(len(npc.monsters), 1)
             npc.release_monster(monster)
             self.assertEqual(len(npc.monsters), 1)
 
-
-    #Tuxemon can be released if there is another in the party
+    # Tuxemon can be released if there is another in the party
     def test_release_two(self):
         with mock.patch.object(NPC, "__init__", mockNPC):
             npc = NPC()
-            monsterA =  Monster()
+            monsterA = Monster()
             npc.add_monster(monsterA)
             self.assertEqual(len(npc.monsters), 1)
-            
+
             monsterB = Monster()
             npc.add_monster(monsterB)
             self.assertEqual(len(npc.monsters), 2)
@@ -48,14 +47,13 @@ class TestCatchTuxemon(unittest.TestCase):
             self.assertEqual(npc.monsters[0], monsterB)
             self.assertNotEqual(npc.monsters[0], monsterA)
 
-
-    #Can't have more than 6 Tuxemon in party. The excess goes into the Kennel. 
+    # Can't have more than 6 Tuxemon in party. The excess goes into the Kennel.
     def test_catch_multiple(self):
         with mock.patch.object(NPC, "__init__", mockNPC):
             npc = NPC()
             self.assertEqual(len(npc.monsters), 0)
 
-            monsterA =  Monster()
+            monsterA = Monster()
             npc.add_monster(monsterA)
 
             monsterB = Monster()
@@ -80,10 +78,3 @@ class TestCatchTuxemon(unittest.TestCase):
             npc.add_monster(monsterG)
             self.assertEqual(len(npc.monsters), 6)
             self.assertEqual(len(npc.monster_boxes["Kennel"]), 1)
-            
-
-    
-        
-
-
-

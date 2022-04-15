@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2020-11-08 20:26+0000\n"
+"PO-Revision-Date: 2022-04-12 07:12+0000\n"
 "Last-Translator: Michael Moroni <michaelmoroni@disroot.org>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "it/>\n"
@@ -12,20 +12,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid "PROJECT DESCRIPTION\n"
-msgstr "<<MISSING>>"
+msgstr ""
 "Project-Id-Version: Insert package version from somewhere\n"
-"Report-Msgid-Bugs-To: andymenderunix@gmail.com\n"
-"POT-Creation-Date: 2018-10-07 20:58:38+0000\n"
-"PO-Revision-Date: 2018-10-07 20:58:38+0000\n"
-"Last-Translator: \n"
-"Language-Team: Italian\n"
+"Report-Msgid-Bugs-To: michaelmoroni@disroot.org\n"
+"POT-Creation-Date: 2022-04-07 10:43:20+0000\n"
+"PO-Revision-Date: 2022-04-07 10:43:20+0000\n"
+"Last-Translator: Michael Moroni <michaelmoroni@disroot.org>\n"
+"Language-Team: Italian <michaelmoroni@disroot.org>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +90,7 @@ msgid "capture_device_description"
 msgstr "Cattura un mostro."
 
 msgid "item_cannot_use_here"
-msgstr "{name} non può essere usato qui!"
+msgstr "Non si può usare {name} qui!"
 
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
@@ -131,7 +131,7 @@ msgid "combat_state_lifeleech_success"
 msgstr "{user} ha perso vita per succhiavita!"
 
 msgid "combat_state_lifeleech_failure"
-msgstr "{link} non può guarire di più."
+msgstr "{link} non può guarire maggiormente."
 
 msgid "combat_state_recover_get"
 msgstr "{target} ha iniziato a recuperare vita."
@@ -140,7 +140,7 @@ msgid "combat_state_recover_success"
 msgstr "{user} ha recuperato vita!"
 
 msgid "combat_state_recover_failure"
-msgstr "{user} non può guarire di più."
+msgstr "{user} non può guarire maggiormente."
 
 msgid "combat_status_damage"
 msgstr "{name} ha subito danno da {status}!"
@@ -530,19 +530,6 @@ msgstr "Informazioni"
 
 msgid "monster_menu_move"
 msgstr "Sposta"
-
-msgid "monster_menu_release"
-msgstr "Release"
-
-#Release notifications
-msgid "cant_release"
-msgstr "Can't release only Tuxemon in party."
-
-msgid "release_confirmation"
-msgstr "Are you sure you would like to release {name}?"
-
-msgid "tuxemon_released"
-msgstr "{name} has been released. Refresh menu to view change."
 
 # Menu notifications
 msgid "log_off"
@@ -1533,7 +1520,7 @@ msgid "combat_can't_run_from_trainer"
 msgstr "Non puoi scappare da una battaglia contro un allenatore!"
 
 msgid "item_no_available_target"
-msgstr "{name} non può essere usato su alcun tuo Tuxemon proprio ora."
+msgstr "Non si può usare {name} su alcun tuo Tuxemon ora."
 
 msgid "tm_blossom_description"
 msgstr ""
@@ -1575,3 +1562,28 @@ msgstr "Hai catturato {name}!"
 
 msgid "combat_trainer_appeared"
 msgstr "{name} vuole combattere!"
+
+# Allie's Address
+msgid "allies_address"
+msgstr "Indirizzo di Allie"
+
+msgid "reg_papers"
+msgstr "Documento di immatricolazione"
+
+msgid "speed_halved"
+msgstr "La velocità di {user} è stata dimezzata."
+
+msgid "reg_papers_description"
+msgstr "Un pacchetto di documenti di immatricolazione per Il processo"
+
+msgid "allies_address_description"
+msgstr ""
+"Stanza 31, Blocco 2, Torre Omnichannel, Cotton Town\n"
+"\n"
+"C'è il segno di un bacio vicino all'indirizzo"
+
+msgid "hp_restored"
+msgstr "La vita di {user} è stata ripristinata."
+
+msgid "combat_amnesia_get"
+msgstr "A {user} è venuta l'amnesia."

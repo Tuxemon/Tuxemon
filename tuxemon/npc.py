@@ -32,8 +32,19 @@ from __future__ import annotations
 import logging
 import os
 from math import hypot
-from typing import List, Optional, Mapping, Any, Sequence, TYPE_CHECKING, Tuple,\
-    TypedDict, Dict, Iterable, Union
+from typing import (
+    List,
+    Optional,
+    Mapping,
+    Any,
+    Sequence,
+    TYPE_CHECKING,
+    Tuple,
+    TypedDict,
+    Dict,
+    Iterable,
+    Union,
+)
 import uuid
 
 from tuxemon.ai import AI
@@ -45,7 +56,12 @@ from tuxemon.item.item import Item, InventoryItem
 from tuxemon.item.item import decode_inventory, encode_inventory
 from tuxemon.locale import T
 from tuxemon.map import proj, facing, dirs3, dirs2, get_direction, Direction
-from tuxemon.monster import Monster, MAX_LEVEL, decode_monsters, encode_monsters
+from tuxemon.monster import (
+    Monster,
+    MAX_LEVEL,
+    decode_monsters,
+    encode_monsters,
+)
 from tuxemon.prepare import CONFIG
 from tuxemon.tools import vector2_to_tile_pos
 from tuxemon.graphics import load_and_scale
@@ -81,7 +97,12 @@ class NPCState(TypedDict):
 # reference direction and movement states to animation names
 # this dictionary is kinda wip, idk
 animation_mapping = {
-    True: {"up": "back_walk", "down": "front_walk", "left": "left_walk", "right": "right_walk"},
+    True: {
+        "up": "back_walk",
+        "down": "front_walk",
+        "left": "left_walk",
+        "right": "right_walk",
+    },
     False: {"up": "back", "down": "front", "left": "left", "right": "right"},
 }
 
@@ -141,10 +162,16 @@ class NPC(Entity[NPCState]):
         # general
         self.behavior = "wander"  # not used for now
         self.game_variables: Dict[str, Any] = {}  # Tracks the game state
-        self.interactions: Sequence[str] = []  # List of ways player can interact with the Npc
+        self.interactions: Sequence[
+            str
+        ] = []  # List of ways player can interact with the Npc
         self.isplayer = False  # used for various tests, idk
-        self.monsters: List[Monster] = []  # This is a list of tuxemon the npc has. Do not modify directly
-        self.inventory: Dict[str, InventoryItem] = {}  # The Player's inventory.
+        self.monsters: List[
+            Monster
+        ] = []  # This is a list of tuxemon the npc has. Do not modify directly
+        self.inventory: Dict[
+            str, InventoryItem
+        ] = {}  # The Player's inventory.
         # Variables for long-term item and monster storage
         # Keeping these seperate so other code can safely
         # assume that all values are lists
@@ -152,14 +179,19 @@ class NPC(Entity[NPCState]):
         self.item_boxes: Dict[str, Mapping[str, InventoryItem]] = {}
 
         # combat related
-        self.ai: Optional[AI] = None  # Whether or not this player has AI associated with it
+        self.ai: Optional[
+            AI
+        ] = None  # Whether or not this player has AI associated with it
         self.speed = 10  # To determine combat order (not related to movement!)
         self.moves: Sequence[Technique] = []  # list of techniques
 
         # pathfinding and waypoint related
         self.pathfinding: Optional[Tuple[int, int]] = None
         self.path: List[Tuple[int, int]] = []
-        self.final_move_dest = [0, 0]  # Stores the final destination sent from a client
+        self.final_move_dest = [
+            0,
+            0,
+        ]  # Stores the final destination sent from a client
 
         # This is used to 'set back' when lost, and make movement robust.
         # If entity falls off of map due to a bug, it can be returned to this value.
@@ -168,7 +200,9 @@ class NPC(Entity[NPCState]):
         self.path_origin: Optional[Tuple[int, int]] = None
 
         # movement related
-        self.move_direction: Optional[Direction] = None  # Set this value to move the npc (see below)
+        self.move_direction: Optional[
+            Direction
+        ] = None  # Set this value to move the npc (see below)
         self.facing: Direction = "down"  # Set this value to change the facing direction
         self.moverate = CONFIG.player_walkrate  # walk by default
         self.ignore_collisions = False
@@ -181,15 +215,21 @@ class NPC(Entity[NPCState]):
         # TODO: move sprites into renderer so class can be used headless
         self.playerHeight = 0
         self.playerWidth = 0
-        self.standing: Dict[str, pygame.surface.Surface] = {}  # Standing animation frames
-        self.sprite: Dict[str, surfanim.SurfaceAnimation] = {}  # Moving animation frames
+        self.standing: Dict[
+            str, pygame.surface.Surface
+        ] = {}  # Standing animation frames
+        self.sprite: Dict[
+            str, surfanim.SurfaceAnimation
+        ] = {}  # Moving animation frames
         self.surface_animations = surfanim.SurfaceAnimationCollection()
         self.load_sprites()
-        self.rect = Rect((
-            self.tile_pos[0],
-            self.tile_pos[1],
-            self.playerWidth,
-            self.playerHeight),
+        self.rect = Rect(
+            (
+                self.tile_pos[0],
+                self.tile_pos[1],
+                self.playerWidth,
+                self.playerHeight,
+            )
         )  # Collision rect
 
     def get_state(self, session: Session) -> NPCState:
@@ -224,11 +264,7 @@ class NPC(Entity[NPCState]):
 
         return state
 
-    def set_state(
-        self,
-        session: Session,
-        save_data: NPCState,
-    ) -> None:
+    def set_state(self, session: Session, save_data: NPCState) -> None:
         """
         Recreates npc from saved data.
 
@@ -240,9 +276,7 @@ class NPC(Entity[NPCState]):
         self.facing = save_data.get("facing", "down")
         self.game_variables = save_data["game_variables"]
         self.inventory = decode_inventory(
-            session,
-            self,
-            save_data.get("inventory", {}),
+            session, self, save_data.get("inventory", {})
         )
         self.monsters = decode_monsters(save_data.get("monsters"))
         self.name = save_data["player_name"]
@@ -250,9 +284,7 @@ class NPC(Entity[NPCState]):
             self.monster_boxes[monsterkey] = decode_monsters(monstervalue)
         for itemkey, itemvalue in save_data["item_boxes"].items():
             self.item_boxes[itemkey] = decode_inventory(
-                session,
-                self,
-                itemvalue,
+                session, self, itemvalue
             )
 
     def load_sprites(self) -> None:
@@ -265,7 +297,9 @@ class NPC(Entity[NPCState]):
             path = os.path.join("sprites", filename)
             self.standing[standing_type] = load_and_scale(path)
 
-        self.playerWidth, self.playerHeight = self.standing["front"].get_size()  # The player's sprite size in pixels
+        self.playerWidth, self.playerHeight = self.standing[
+            "front"
+        ].get_size()  # The player's sprite size in pixels
 
         # avoid cutoff frames when steps don't line up with tile movement
         n_frames = 3
@@ -275,7 +309,10 @@ class NPC(Entity[NPCState]):
         anim_types = ["front_walk", "back_walk", "left_walk", "right_walk"]
         for anim_type in anim_types:
             images = [
-                "sprites/{}_{}.{}.png".format(self.sprite_name, anim_type, str(num).rjust(3, "0")) for num in range(4)
+                "sprites/{}_{}.{}.png".format(
+                    self.sprite_name, anim_type, str(num).rjust(3, "0")
+                )
+                for num in range(4)
             ]
 
             frames: List[Tuple[pygame.surface.Surface, float]] = []
@@ -283,7 +320,9 @@ class NPC(Entity[NPCState]):
                 surface = load_and_scale(image)
                 frames.append((surface, frame_duration))
 
-            self.sprite[anim_type] = surfanim.SurfaceAnimation(frames, loop=True)
+            self.sprite[anim_type] = surfanim.SurfaceAnimation(
+                frames, loop=True
+            )
 
         # Have the animation objects managed by a SurfaceAnimationCollection.
         # With the SurfaceAnimationCollection, we can call play() and stop() on
@@ -292,8 +331,7 @@ class NPC(Entity[NPCState]):
         self.surface_animations.add(self.sprite)
 
     def get_sprites(
-        self,
-        layer: int,
+        self, layer: int
     ) -> Sequence[Tuple[pygame.surface.Surface, Vector2, int]]:
         """
         Get the surfaces and layers for the sprite.
@@ -309,10 +347,7 @@ class NPC(Entity[NPCState]):
 
         """
 
-        def get_frame(
-            d: SpriteMap,
-            ani: str,
-        ) -> pygame.surface.Surface:
+        def get_frame(d: SpriteMap, ani: str) -> pygame.surface.Surface:
             frame = d[ani]
             if isinstance(frame, surfanim.SurfaceAnimation):
                 surface = frame.get_current_frame()
@@ -350,7 +385,9 @@ class NPC(Entity[NPCState]):
 
     def check_continue(self) -> None:
         try:
-            direction_next = self.world.collision_map[self.tile_pos]["continue"]
+            direction_next = self.world.collision_map[self.tile_pos][
+                "continue"
+            ]
             self.move_one_tile(direction_next)
         except (KeyError, TypeError):
             pass
@@ -477,7 +514,9 @@ class NPC(Entity[NPCState]):
             direction: Direction where to move.
 
         """
-        self.path.append(vector2_to_tile_pos(Vector2(self.tile_pos) + dirs2[direction]))
+        self.path.append(
+            vector2_to_tile_pos(Vector2(self.tile_pos) + dirs2[direction])
+        )
 
     def valid_movement(self, tile: Tuple[int, int]) -> bool:
         """
@@ -493,7 +532,10 @@ class NPC(Entity[NPCState]):
             If the tile can me moved into.
 
         """
-        return tile in self.world.get_exits(self.tile_pos) or self.ignore_collisions
+        return (
+            tile in self.world.get_exits(self.tile_pos)
+            or self.ignore_collisions
+        )
 
     @property
     def move_destination(self) -> Optional[Tuple[int, int]]:
@@ -570,12 +612,16 @@ class NPC(Entity[NPCState]):
     def network_notify_start_moving(self, direction: Direction) -> None:
         r"""WIP guesswork ¯\_(ツ)_/¯"""
         if self.world.game.isclient or self.world.game.ishost:
-            self.world.game.client.update_player(direction, event_type="CLIENT_MOVE_START")
+            self.world.game.client.update_player(
+                direction, event_type="CLIENT_MOVE_START"
+            )
 
     def network_notify_stop_moving(self) -> None:
         r"""WIP guesswork ¯\_(ツ)_/¯"""
         if self.world.game.isclient or self.world.game.ishost:
-            self.world.game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
+            self.world.game.client.update_player(
+                self.facing, event_type="CLIENT_MOVE_COMPLETE"
+            )
 
     def network_notify_location_change(self) -> None:
         r"""WIP guesswork ¯\_(ツ)_/¯"""
@@ -597,7 +643,9 @@ class NPC(Entity[NPCState]):
         """
         monster.owner = self
         if len(self.monsters) >= self.party_limit:
-            self.monster_boxes[CONFIG.default_monster_storage_box].append(monster)
+            self.monster_boxes[CONFIG.default_monster_storage_box].append(
+                monster
+            )
         else:
             self.monsters.append(monster)
             self.set_party_status()
@@ -631,13 +679,11 @@ class NPC(Entity[NPCState]):
 
         """
         return next(
-            (m for m in self.monsters if m.instance_id == instance_id),
-            None,
+            (m for m in self.monsters if m.instance_id == instance_id), None
         )
 
     def find_monster_in_storage(
-        self,
-        instance_id: uuid.UUID,
+        self, instance_id: uuid.UUID
     ) -> Optional[Monster]:
         """
         Finds a monster in the npc's storage boxes which has the given id.
@@ -652,8 +698,7 @@ class NPC(Entity[NPCState]):
         monster = None
         for box in self.monster_boxes.values():
             monster = next(
-                (m for m in box if m.instance_id == instance_id),
-                None,
+                (m for m in box if m.instance_id == instance_id), None
             )
             if monster is not None:
                 break
@@ -670,7 +715,6 @@ class NPC(Entity[NPCState]):
         """
         if len(self.monsters) == 1:
             return False
-
 
         if monster in self.monsters:
             self.monsters.remove(monster)
@@ -712,7 +756,10 @@ class NPC(Entity[NPCState]):
             index_2: The indexes of the monsters to switch in the npc's party.
 
         """
-        self.monsters[index_1], self.monsters[index_2] = self.monsters[index_2], self.monsters[index_1]
+        self.monsters[index_1], self.monsters[index_2] = (
+            self.monsters[index_2],
+            self.monsters[index_1],
+        )
 
     def load_party(self) -> None:
         """Loads the party of this npc from their npc.json entry."""
@@ -726,8 +773,12 @@ class NPC(Entity[NPCState]):
         npc_party = npc_details.get("monsters") or []
         for npc_monster_details in npc_party:
             monster = Monster(save_data=npc_monster_details)
-            monster.experience_give_modifier = npc_monster_details["exp_give_mod"]
-            monster.experience_required_modifier = npc_monster_details["exp_req_mod"]
+            monster.experience_give_modifier = npc_monster_details[
+                "exp_give_mod"
+            ]
+            monster.experience_required_modifier = npc_monster_details[
+                "exp_req_mod"
+            ]
             monster.set_level(monster.level)
             monster.current_hp = monster.hp
 
@@ -754,11 +805,7 @@ class NPC(Entity[NPCState]):
         self.game_variables["party_level_average"] = level_average
 
     def give_item(
-        self,
-        session: Session,
-        target: NPC,
-        item: Item,
-        quantity: int,
+        self, session: Session, target: NPC, item: Item, quantity: int
     ) -> bool:
         subtract = self.alter_item_quantity(session, item.slug, -quantity)
         give = target.alter_item_quantity(session, item.slug, quantity)
@@ -768,10 +815,7 @@ class NPC(Entity[NPCState]):
         return self.inventory.get(item_slug) is not None
 
     def alter_item_quantity(
-        self,
-        session: Session,
-        item_slug: str,
-        amount: int,
+        self, session: Session, item_slug: str, amount: int
     ) -> bool:
         success = True
         item = self.inventory.get(item_slug)

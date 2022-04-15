@@ -3,12 +3,12 @@
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_walls_and_floors.tsx"/>
  <layer id="1" name="Tile Layer 1" width="33" height="20">
   <data encoding="base64" compression="zlib">
-   eAH7xcPA8GsUj4bBaBoYTQNkpgFOBgaGNDIwN1APtcoec6BZU8jAIH3UdMMhoHmkYmq7oRvoBlLxqBsgYTYaDqPhgJx3hlt6SAWWDchlNagMRvYvrrI8HaiOmHISAKPaRHQ=
+   eAH7xcPA8GsUj4bBaBoYTQNkpgFOBgaGNBIwL1QtN5CmVtljDjRrCgkYph5EU9MNh4DmEYtBdoPUUtsNoowMDMTiVKD9oLizAWJqhgOx9oPUTQbaDYo7aofDc6CZxGCQGw4C1dIiLoixH13NQIUDsjtG3QBJO8MtHGD5HVZeg8pg5HjHVZanA9URUz4AABcNVPA=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="33" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKjIUB+COTzMDBo8JKOC4D6qAV+k2nWTzL1YXP3YHGDGtBxpOLhGA7Y4oiQ2Gg4QEJoNByGZzjMBZZ3Z5DwWbTy7zSSHLK6eWjqcOUjAEgLI9I=
+   eAFjYBgFoyEwGgKjIUB+COTzMDBo8BKPC4Dqf0Ex+bai6vwNNI8U8HMYu+EiCwPDJSLwZaAadWi8geKEWgAUF/+BZhMDGFkRqkBxQi0w1NzABAwHUJyB4mSgwgEW9qA4GXUDAwMtwkEXGLZ6SPgqNJ9cAdLI4jC2PpXjYi4wj51BwmeR8irIv6eR5JDVzQOKEwMAmAQ9TA==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="33" height="20">

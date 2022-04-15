@@ -306,6 +306,12 @@ adapted by ultidonki from ansimuz's GothicVania Town assets, originally released
 ultidonki's changes (brightening some of the colors, reducing some of the noisy textures to be more flat/use less colors, and changing the perspective) released under CC0 license, version 1.0 or higher.
 [CC-0](https://creativecommons.org/publicdomain/zero/1.0)
 
+* ["core_indoor_walls_and_floors"], by rubberduck, based on:
+Interior_Tiles_by_ArMM1998.png, by ArMM1998 (CC0), Interior_Floors_by_George.png, Interior_Walls_by_George.png by George_, (CC BY 3.0), floorsandwalls.png, stairs.png by Mike Bramson (CC BY-SA 4.0) and https://opengameart.org/content/lpc-floors by bluecarrot16 (CC BY-SA 4.0)
+tuxemon-themed walls are based on: fruitera-front.png, rockitten-front.png and ghosteeth-front.png
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+
 ### Tuxemon
 
 * ["Bamboon"](https://git.tuxemon.org:3000/tuxemon/tuxemon/blob/development/resources/gfx/sprites/battle/bamboon-front.png)

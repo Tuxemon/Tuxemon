@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="33" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="33" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="52">
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_walls_and_floors.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <layer id="1" name="Tile Layer 1" width="33" height="20">
   <data encoding="base64" compression="zlib">
-   eAH7xcPA8GsUj4bBaBoYTQNkpgFOBgaGNBIwL1QtN5CmVtljDjRrCgkYph5EU9MNh4DmEYtBdoPUUtsNoowMDMTiVKD9oLizAWJqhgOx9oPUTQbaDYo7aofDc6CZxGCQGw4C1dIiLoixH13NQIUDsjtG3QBJO8MtHGD5HVZeg8pg5HjHVZanA9URUz4AABcNVPA=
+   eAHtVDEOwjAMDCMqK29h4TulDwIeRHkMI2LtxJ3CSRbCaaXUEkOGUyLHic9nx9MupWkGh5TSfpPB/Zx/xHnjkHVvOjQd7P/6t37oMR9ODobPHCFn+nSAzaVmb3U4492LgyvsnGX0pw/Xmrj2ruVww7ujgzvs4kCfKA6a2aVV9TqCh82lZm91KMXWmeq1tg4P5LQE5KF6RXF4gov9F68CtygOylF9yT709Ini4MX7ZW8ccn3W1EH/Xb3IGWy13371qfwG2JfMhDeBqTLA
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="33" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKjIUB+COTzMDBo8BKPC4Dqf0Ex+bai6vwNNI8U8HMYu+EiCwPDJSLwZaAadWi8geKEWgAUF/+BZhMDGFkRqkBxQi0w1NzABAwHUJyB4mSgwgEW9qA4GXUDAwMtwkEXGLZ6SPgqNJ9cAdLI4jC2PpXjYi4wj51BwmeR8irIv6eR5JDVzQOKEwMAmAQ9TA==
+   eAFjYCAMfvMwMPxnYWBgZGVg+AlkDwQYdQMk1EfDYTQckPMfKD3I8Q+evKnOy8CggQe7Ad1aAHTzLyhG9gslbOR8QcicYqAbQOXYQLphAY3dwAQsqy8By2x8+DJQHhZfoDihFoDFBTHmgeoUGKBm3TKY3HAFGM7YwFUkcVh8geKEFuGAHM7IbgHV6+iA2vU8LC5gfkRPk8xIaQDmFlq5AWY+MTQt3FDIRozNCDVFQPXUTA9zgfn8DBI+C2TD0iEonZ5GkkNWNw8oTgwAAOl4Xek=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="33" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt0DEBAAAAwqD1T20Hb4hAYcCAAQMGDBgwYOAfGApQAAE=
+   eAFjYCAOtAkwMLQD8UCCzUD7twywGyKB9kcNsBsu8TMwXAbigQTeQPt9BtgNqkD71QbYDQMZBzC7pYBhIDPA4eAOtN+TCDdo8MJcTX06CGh/MBFuKCZCDbmuqwea3UCE+QuIUEOuG4jVR6/8G4elvIwHiiVgESfW7cNNXQ8wLHoHODx2Au3fRWc3dEDt60SytxuJTYt4joaaHwOlt0LpbUj27kBi08INg8lMUP0hDcTUqEMAU8UUmQ==
   </data>
  </layer>
  <layer id="4" name="Above player" width="33" height="20">
@@ -21,14 +22,17 @@
    eAHt0DEBAAAAwqD1T20Hb4hAYcCAAQMGDBgwYOAfGApQAAE=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
-  <object id="34" type="collision" x="144" y="128" width="16" height="192"/>
+ <objectgroup color="#ff0000" id="5" name="Collision" visible="0">
+  <object id="34" type="collision" x="144" y="0" width="16" height="320"/>
   <object id="36" type="collision" x="160" y="304" width="64" height="16"/>
   <object id="37" type="collision" x="272" y="304" width="112" height="16"/>
   <object id="41" type="collision" x="368" y="128" width="16" height="176"/>
-  <object id="44" type="collision" x="160" y="128" width="208" height="48"/>
+  <object id="44" type="collision" x="192" y="128" width="128" height="48"/>
+  <object id="45" type="collision" x="336" y="128" width="32" height="96"/>
+  <object id="47" type="collision" x="192" y="224" width="80" height="32"/>
+  <object id="51" type="collision" x="192" y="0" width="192" height="128"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="26" name="Player Spawn" type="event" x="240" y="208" width="16" height="16"/>
+ <objectgroup color="#ffff00" id="6" name="Events" visible="0">
+  <object id="26" name="Player Spawn" type="event" x="304" y="240" width="16" height="16"/>
  </objectgroup>
 </map>

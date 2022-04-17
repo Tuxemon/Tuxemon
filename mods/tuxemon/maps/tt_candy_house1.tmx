@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="80">
+ <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="161" name="stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
+  <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
+ </tileset>
+ <tileset firstgid="185" name="electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="201" name="kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="217" name="plants" tilewidth="16" tileheight="16" tilecount="2" columns="1">
+  <image source="../gfx/tilesets/plants.png" width="16" height="32"/>
+ </tileset>
+ <tileset firstgid="219" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
+  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
+ </tileset>
+ <tileset firstgid="1659" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
+ </tileset>
+ <tileset firstgid="2659" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
+ </tileset>
+ <tileset firstgid="4419" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
+ </tileset>
+ <tileset firstgid="4947" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
+ </tileset>
+ <tileset firstgid="7539" source="../gfx/tilesets/core_indoor_walls_and_floors.tsx"/>
+ <layer id="2" name="Tile Layer 2" width="12" height="9">
+  <data encoding="base64" compression="zlib">
+   eAHjU2VgyCYSCwDV2QDxTCIxSC0IHycSw9TPVmRgIAaPRPUAJeNIzQ==
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="12" height="9">
+  <data encoding="base64" compression="zlib">
+   eAFjYCAPMOPR9kCUgeEhECMDPmQOlL0OqGY9EH8A4o9I6o/JMjAQg7EYSXOh9xJA9wIxrYGACAODIBALATEyAAAlbxDr
+  </data>
+ </layer>
+ <layer id="7" name="Tile Layer 4" width="12" height="9">
+  <data encoding="base64" compression="zlib">
+   eAFjYKAMvBVF6EdmI0RRWX+R1COzUVVh5+0D6t0P0i/GwMAIxMMF6AL9pIcULuj+QpYHAGwnBwc=
+  </data>
+ </layer>
+ <layer id="4" name="Above player" width="12" height="9">
+  <data encoding="base64" compression="zlib">
+   eAHj0mRgOEwk5gaqmwbExIIpA6D+vAQDwwUgxgawuec+UO0DEtRjMxcmBjNfVpSBQQ6IcQGYPEw9LnXo4iD1AIQVGgg=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collision">
+  <object id="61" type="collision" x="16" y="16" width="160" height="32"/>
+  <object id="72" type="collision" x="80" y="96" width="16" height="16"/>
+  <object id="73" type="collision" x="16" y="128" width="32" height="16"/>
+  <object id="74" type="collision" x="144" y="128" width="32" height="16"/>
+  <object id="77" type="collision" x="176" y="16" width="16" height="128"/>
+  <object id="78" type="collision" x="0" y="16" width="16" height="128"/>
+  <object id="79" type="collision" x="112" y="48" width="32" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="75" name="Player Spawn" type="event" x="112" y="128" width="16" height="16"/>
+ </objectgroup>
+</map>

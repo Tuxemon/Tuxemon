@@ -769,6 +769,7 @@
     <property name="act40" value="pathfind npc_mom,38,38"/>
     <property name="act50" value="npc_face npc_mom,up"/>
     <property name="act60" value="set_variable moveon:yes"/>
+    <property name="act61" value="set_variable stahp:stop"/>
     <property name="act70" value="pathfind player,38,37"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>

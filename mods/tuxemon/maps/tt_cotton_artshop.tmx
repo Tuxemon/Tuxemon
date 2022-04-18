@@ -57,7 +57,7 @@
  <tileset firstgid="7574" source="../gfx/tilesets/core_indoor_walls_and_floors.tsx"/>
  <layer id="1" name="Layer 1" width="20" height="11">
   <data encoding="base64" compression="zlib">
-   eJyzlWdgsCURP5JjwAmy5UnHovL0M2+mPOnYGYhdcOD7wLC4J0caXQjUV4QDk2oWiJ4P1LcABybHfUdkGRg+yWKnyXEfLrNA9EhzHwD/oaTm
+   eJyzlWdgsCURP5JjwAmy5UnHovL0M2+mPOnYGYhdcOB8bQaGPG3S6EKgviIcmFSzQPR8oL4FODA57jsiy8DwSRY7TY77cJkFokea+wBIAoG1
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="20" height="11">

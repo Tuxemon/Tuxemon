@@ -41,22 +41,23 @@
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
  <tileset firstgid="8341" source="../gfx/tilesets/core_indoor_walls_and_floors.tsx"/>
+ <tileset firstgid="12205" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <layer id="1" name="Tile Layer 1" width="14" height="22">
   <data encoding="base64" compression="zlib">
-   eAF7psjA4KxEGn4B1CMC1FNIIr6kANE3H6iPFAzTd12ZgYEUPKoPe3iNhstouAz2fMQALGMYScRMQPUAQbUCuA==
+   eAGllDsOglAURAd7qFyAYoKdm3A/JKzIgo/ActwAVsZlMDdkGmJiJq84ebeYk9O9zxm4lx5fOkc6jcnrtHkPeg7y6hvwi6UC3mT//vPyK1CQ/SuvvQAOqV7HnoN6jhNbeT1vh1RvYM9BPceJrbwnb4dUb2TPQT3Hia28ibdDqjez56Ce48Q2PPCPyUwO3K+PN9WF
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="14" height="22">
   <data encoding="base64" compression="zlib">
-   eAFj1mVg2EMiZgGq7wdiYxEGhkQgRgbJQH4IEE9BEk8CskFqe6H6nIHsQiR5kP5iID8FiJcgiRcB2SC1MH0vFBgYSMEwfcjuA7EjJBkYIoE4CoijgRgE4pHsxaUvA6g2E4izgDgbqg+iG0Li0lcBVFsJxFVAXE2Cvg6g2k4g7gLibhL0IbsJGxuXO7GpRRYb1YccGgj2SAoXMU4GBnEgJgYgh4sdUI89CfoMgWVFAonYCKgeACHhTJg=
+   eAGlkDsvg1EYgE9CgkGFxHUykmiqlXZBu7FhIQiJCdH+BRUmbVLqMvEDJCosLglKTVjaH8CgYijaX9AmPIf3JCdNDI03eb73vJfnO1++KqdS1xVSzf4mVBqxf3q5TqUq4a/7Jtt/v/zUpdQZmGjsVaoJbK+Wug7syOK8Wp6feaDM81L7xEuTM+CABunp9wU5h8C+r8aaFzmXrPpC7kyTM2B79vfpswuvV9w38YrkkuU9St92Z3BmrTv1rIu6G+z7Um6lsh7+A+iIMI+WeePUE5YXZncFHH38B9ARp96CF5intwCLMjP3JZgdQT/9AZklqW+gXmr9rm3qHTCe7unI0XsHHR/kTznvSr4lp8B4X7rPe5uhRd7fSm6T8514eXLB8nqYO2Xn57Kyxx67++KWLG8KZxpWvUqtwQjnURgDHffsPojXTc985zK7YTiGEzAR9/FPYRsO6MfIG2C8Q3oJeIJnyEMBkuzcwC3ouCRfgfHW2YlAFHS0M+uQXV0PcvZDQHrGe2X/HC7EG2I+LDvaW+IchJD0tOeGuQrxsP8NRGaY0Q==
   </data>
  </layer>
  <layer id="5" name="Tile Layer 3" width="14" height="22">
   <data encoding="base64" compression="zlib">
-   eAFjYBhYsJqPgWENEMNANpCdg8SHiYPoYBEE7yBQzSEkdY1AdhMQ+0PVIKtF6GJgSAWqSUfDaUA+IVANVFOLhmuI0EfI3FH50RAYDQHqhQAAcvAMUA==
+   eAFjYKA/2GDBwLARiAOBOAiI8YH5phDZi0B1d4H4HhDXAXE9EHsDsQ8QTweqmQHEM4F4FlT9GSAtawbRy2XJwMANxKuBatcAcQUQVwLxEaCao0B8DIiPAzGlwMSAUhNI0+9EZ/sC6GwfizFp4UGpaiE626dAZ/sYofmB0nAiVj8/ne0DuQsAbKkYJQ==
   </data>
  </layer>
- <layer id="6" name="Tile Layer 4" width="14" height="22">
+ <layer id="6" name="Tile Layer 4" width="14" height="22" visible="0">
   <data encoding="base64" compression="zlib">
    eAFjYBi6wFsE4vZIPgaGKCDeBsTEgGiovnyg+gIgPkOkPmLMHlUzGgKjITBwIQAAhtQENw==
   </data>

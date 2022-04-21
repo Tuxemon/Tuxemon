@@ -1,0 +1,55 @@
+===========================================================================================================
+core_indoor_walls.png
+-----------------------------------------------------------------------------------------------------------
+by rubberduck, based on:
+Interior_Tiles_by_ArMM1998.png, by ArMM1998 (CC0),
+Interior_Walls_by_George.png, by George_ (CC BY 3.0)
+Interior_Tiles_by_Mike_Bramson.png, by Mike Bramson (CC BY-SA 4.0)
+and https://opengameart.org/content/lpc-floors by bluecarrot16 and various contributors** (CC BY-SA 4.0)
+
+tuxemon-themed walls are based on: fruitera-front.png, rockitten-front.png and ghosteeth-front.png
+
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+===========================================================================================================
+core_indoor_floors.png
+-----------------------------------------------------------------------------------------------------------
+by rubberduck, based on:
+Interior_Tiles_by_ArMM1998.png, by ArMM1998 (CC0),
+Interior_Walls_by_George.png, by George_ (CC BY 3.0)
+Interior_Tiles_by_Mike_Bramson.png, by Mike Bramson (CC BY-SA 4.0)
+and https://opengameart.org/content/lpc-floors by bluecarrot16 and various contributors** (CC BY-SA 4.0)
+
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+===========================================================================================================
+core_indoor_stairs.png
+-----------------------------------------------------------------------------------------------------------
+
+by rubberduck, stairs are based on:
+Interior_Tiles_by_ArMM1998.png, by ArMM1998 (CC0),
+Interior tileset by Redshrike (Interiors by Redshrike.png), (CC-BY 3.0)
+
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+
+===========================================================================================================
+tuxemon_colorpalette
+-----------------------------------------------------------------------------------------------------------
+
+based on colors from tilesets used in core_indoor_walls.png, core_indoor_floors.png and core_indoor_stairs.png (CC BY-SA 4.0)
+and colors from https://opengameart.org/content/aseprite-palette (CC0)
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------
+
+** "[LPC] Floors" by bluecarrot16, Lanea Zimmerman (Sharm), William Thompson (William.Thompsonj),
+ Hyptosis, SpiderDave, Cougarmint, Stephen Challener (Redshrike),
+ Bonsaiheldin, Tyler Olsen (Roots), Jetrel, jestan,
+ The Open Surge team (http://opensnc.sourceforge.net), Gaurav Munjal, Reemax,
+ Silveira Neto, bleutailfly, Casper Nilsson, NaRNeRZz, Buch,
+ keith karnage, Arthur Carvalho, Guilherme Vieira (n2liquid), Chris Hamons (maintainer). 

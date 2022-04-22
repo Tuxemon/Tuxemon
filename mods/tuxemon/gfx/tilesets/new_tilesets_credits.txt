@@ -33,16 +33,6 @@ Interior tileset by Redshrike (Interiors by Redshrike.png), (CC-BY 3.0)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 
-===========================================================================================================
-tuxemon_colorpalette
------------------------------------------------------------------------------------------------------------
-
-based on colors from tilesets used in core_indoor_walls.png, core_indoor_floors.png and core_indoor_stairs.png (CC BY-SA 4.0)
-and colors from https://opengameart.org/content/aseprite-palette (CC0)
-
-
-
-
 
 
 -----------------------------------------------------------------------------------------------------------

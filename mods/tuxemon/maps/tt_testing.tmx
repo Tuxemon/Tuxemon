@@ -5,12 +5,12 @@
  <tileset firstgid="6835" source="../gfx/tilesets/core_indoor_walls.tsx"/>
  <layer id="1" name="Tile Layer 1" width="33" height="20">
   <data encoding="base64" compression="zlib">
-   eAFT5WFgUB3Fo2EwmgZG08BoGhhNA6NpYDQNjKaB0TRAZhoAAG9cflU=
+   eAFT5WFgUB3FQyIMNPkYGEBYCwemRzyiu0EX6BY9IAbRIHcNlBtg7gC54SIvA8MlIKalW9DDARQG9A4HWvpv1Gzapp/R8B0N39E0MJoGhlsaAAASmICn
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="33" height="20">
   <data encoding="base64" compression="zlib">
-   eAETkGZgEBhgbAe0f6BxDtANA40ZoCAGSMfCOANEdwLt7Rogu0etHQ2B0RAYDYHREBgNgdEQGFohAACsGiQ4
+   eAETkGZgEMCDVykxMODD+YoMDNgwPjPR5eyA9uPDN4BuwIfnAt2ADeMzE10uB+gGfJhNmYEBHz4NdAM2jM9MdDkGKIgB0rEwDgn0JV4GhotAvBiKpYE0CJMDOoGauojQaAg0nwWIjaD2gOwHuQPmBhkgG4RpCa7zQEy/CqXRw8ELaD8I0xKguwE9HCqA9oPwKBgNgdEQGA2B0RAYDYHhGAIAjt9FVg==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="33" height="20">

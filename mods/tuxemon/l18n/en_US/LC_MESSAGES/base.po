@@ -250,6 +250,9 @@ msgstr "{name} fainted!"
 msgid "combat_isactive"
 msgstr "{name} is already in play."
 
+msgid "combat_target_itself"
+msgstr "{name} shouldn't attack itself."
+
 msgid "attack_very_effective"
 msgstr "The attack did a lot of extra damage!"
 

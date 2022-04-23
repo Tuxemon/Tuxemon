@@ -1,5 +1,5 @@
 GIMP Palette
-Name: tuxemon colors XL
+Name: tuxemon colors
 Columns: 16
 #
   0   0   0	Untitled (occurs 33895)
@@ -12,7 +12,7 @@ Columns: 16
 166 166 166	Untitled (occurs 280)
 197 185 185	Untitled (occurs 560)
 137 126 126	Untitled (occurs 560)
- 94  82  82	Untitled (occurs 560)
+ 98  84  84	Untitled (occurs 560)
 182  64  64	Untitled (occurs 560)
 226  40  40	Untitled (occurs 560)
  54   0   0	Untitled (occurs 280)
@@ -26,8 +26,10 @@ Columns: 16
 122  23  11	Untitled (occurs 280)
 174  32  15	Untitled (occurs 280)
 219  41  20	Untitled (occurs 280)
+105  75  71	Untitled
 167 103  94	Untitled (occurs 280)
 165  89  79	Untitled (occurs 560)
+ 68  29  24	Untitled
 233  85  64	Untitled (occurs 280)
 118  60  51	Untitled (occurs 560)
 234  31   0	Untitled (occurs 280)
@@ -68,13 +70,13 @@ Columns: 16
 219 133  92	Untitled (occurs 560)
 140  71  38	Untitled (occurs 560)
 190 134 107	Untitled (occurs 280)
-143  80  48	Untitled (occurs 560)
 119  65  38	Untitled (occurs 560)
  89  48  27	Untitled (occurs 560)
 131  69  39	Untitled (occurs 560)
 255 213 191	Untitled (occurs 280)
 238 196 173	Untitled (occurs 280)
 246 195 167	Untitled (occurs 280)
+145  83  49	Untitled (occurs 560)
 195 112  66	Untitled (occurs 560)
 112  50  16	Untitled (occurs 280)
 196  85  25	Untitled (occurs 280)
@@ -101,6 +103,7 @@ Columns: 16
 248 220 199	Untitled (occurs 560)
 108  95  85	Untitled (occurs 560)
 122  99  81	Untitled (occurs 280)
+136 107  85	Untitled
 230 168 122	Untitled (occurs 560)
 192 134  89	Untitled (occurs 560)
 121  83  54	Untitled (occurs 560)
@@ -122,7 +125,7 @@ Columns: 16
 110  77  45	Untitled (occurs 280)
  99  52   4	Untitled (occurs 280)
 163  84   5	Untitled (occurs 280)
-149 131 112	Untitled (occurs 560)
+154 136 117	Untitled (occurs 560)
 157 138 117	Untitled (occurs 560)
 235 186 134	Untitled (occurs 560)
 219 149  74	Untitled (occurs 560)
@@ -144,6 +147,7 @@ Columns: 16
  52  29   0	Untitled (occurs 280)
  71  56  37	Untitled (occurs 560)
 180 134  72	Untitled (occurs 560)
+ 79  57  29	Untitled
  66  46  20	Untitled (occurs 560)
 193 124  34	Untitled (occurs 280)
  30  17   0	Untitled (occurs 280)
@@ -159,6 +163,7 @@ Columns: 16
 104  75  35	Untitled (occurs 560)
 255 240 218	Untitled (occurs 280)
 121 113 101	Untitled (occurs 560)
+197 167 123	Untitled
 168 140  99	Untitled (occurs 560)
  91  66  28	Untitled (occurs 560)
 255 177  56	Untitled (occurs 280)
@@ -177,7 +182,6 @@ Columns: 16
 180 162 127	Untitled (occurs 560)
 194 182 157	Untitled (occurs 560)
 106  87  47	Untitled (occurs 280)
-196 165  90	Untitled (occurs 560)
 223 171  48	Untitled (occurs 280)
 135  99  17	Untitled (occurs 280)
 206 150  24	Untitled (occurs 280)
@@ -194,6 +198,7 @@ Columns: 16
 240 185   7	Untitled (occurs 280)
 255 240 187	Untitled (occurs 280)
  67  55  10	Untitled (occurs 280)
+213 205 173	Untitled
 200 190 152	Untitled (occurs 560)
 237 220 150	Untitled (occurs 560)
 247 223 128	Untitled (occurs 280)
@@ -230,6 +235,7 @@ Columns: 16
 234 234 230	Untitled (occurs 280)
 157 157 149	Untitled (occurs 560)
  84  84  77	Untitled (occurs 560)
+171 171 140	Untitled
 142 142 110	Untitled (occurs 560)
  81  81  56	Untitled (occurs 560)
 215 217  85	Untitled (occurs 560)
@@ -265,9 +271,9 @@ Columns: 16
  44 133  33	Untitled (occurs 280)
  29  56  28	Untitled (occurs 560)
  66 120  66	Untitled (occurs 560)
+120 186 122	Untitled
 185 225 187	Untitled (occurs 560)
 135 173 137	Untitled (occurs 560)
-123 186 126	Untitled (occurs 560)
  21  61  23	Untitled (occurs 280)
  34 236  47	Untitled (occurs 280)
  11 191  23	Untitled (occurs 280)
@@ -286,7 +292,7 @@ Columns: 16
 104 120 114	Untitled (occurs 560)
  47  68  60	Untitled (occurs 560)
  49  91  75	Untitled (occurs 560)
-  0 107  70	Untitled (occurs 560)
+  0 104  68	Untitled (occurs 560)
   7  92  64	Untitled (occurs 280)
  15 205 145	Untitled (occurs 280)
  11 154 108	Untitled (occurs 280)
@@ -347,7 +353,6 @@ Columns: 16
   6 114 255	Untitled (occurs 280)
   0  77 178	Untitled (occurs 280)
 178 188 202	Untitled (occurs 560)
- 12  80  77	Untitled
 129 156 194	Untitled (occurs 280)
 198 211 231	Untitled (occurs 560)
  83 108 146	Untitled (occurs 560)
@@ -390,6 +395,7 @@ Columns: 16
  75  75  84	Untitled (occurs 560)
 201 201 225	Untitled (occurs 280)
 193 193 221	Untitled (occurs 280)
+ 60  60  84	Untitled
  12  12  72	Untitled (occurs 280)
   8   8  58	Untitled (occurs 280)
   0   0  75	Untitled (occurs 280)
@@ -426,12 +432,12 @@ Columns: 16
  96  87 103	Untitled (occurs 560)
 129 117 136	Untitled (occurs 560)
 136 120 145	Untitled (occurs 560)
- 86  71  95	Untitled (occurs 560)
 173 142 191	Untitled (occurs 560)
 110  90 122	Untitled (occurs 560)
  46  36  52	Untitled (occurs 560)
 103  70 122	Untitled (occurs 560)
  66  43  78	Untitled (occurs 560)
+213 171 231	Untitled
 195 144 218	Untitled (occurs 280)
 182 124 209	Untitled (occurs 280)
 146  63 185	Untitled (occurs 280)
@@ -517,11 +523,3 @@ Columns: 16
  93  52  53	Untitled (occurs 560)
 255  11  15	Untitled (occurs 280)
 222   0   3	Untitled (occurs 280)
-136 107  85	Untitled
-197 167 123	Untitled
-213 205 173	Untitled
-105  75  71	Untitled
- 79  57  29	Untitled
-171 171 140	Untitled
- 68  29  24	Untitled
- 60  60  84	Untitled

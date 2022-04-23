@@ -5,12 +5,12 @@
  <tileset firstgid="6835" source="../gfx/tilesets/core_indoor_walls.tsx"/>
  <layer id="1" name="Tile Layer 1" width="33" height="20">
   <data encoding="base64" compression="zlib">
-   eAFT5WFgUB3FQyIMNPkYGEBYCwemRzyiu0EX6BY9IAbRIHcNlBtg7gC54SIvA8MlIKalW9DDARQG9A4HWvpv1Gzapp/R8B0N39E0MJoGhlsaAAASmICn
+   eAG11TdvFEEchvEF+5JtQDI51FQk+5KhIsMHoCI6lyQbJBC5IueSbJOcoCLnkorsBK7ISXSmAp5X7EirEeyuV3Lx08zshP+rubu9/mLH6feRK3GcLP7X2nuf+Jxlrw079quvXPY5vyJkaGJPM87jAi7iEi6jBe+o4+cR8x2sk+P0p/wjl53THofJ8JvzbXOG/c2m2vXUzbtZlkbI8JQznuE5XuAlXqETXdAdeOuvobYZa04ZetEO9XdHyKDzHPYNwVAUoBAxxKE6Iz11TX21JsMx1iiHMlyjb9910Hgqe6ZhOmagDOVIIwPV8dZV/6SbyWRIsaYOyvCWNqimPb+MPcuxAiuxCpWoQjVUx89D5lVb9J0sJZ9dI2i8h317sQ/7cQAHcQiHkR4xMLMjZLhOnRu4iVu4jTu4i3sYaIbVETLont/jAz7iEz7jC76icjifD8qhfoHbalwItVLmOhEhg77zozAaYzAW4zAeE6CaOn8TfWVQPT0zWfTsB1mVR88esy7o87fn9a6Zi3mYjwVYiEVYDJ2r83UXyqJWdZVJecxzk+snz+0aQWO9c9ZiHdajAY3YgI1Qjc1ua+7A1FYW5VJ9rVF/MoJq2vP6rZ/CaZzBWZxDE5rRym+uDea/6z73/gD2OWa8JEIGc9cx9saRQBIpFKGb+j2ooW4tvuE7tjC3FduwHTuwE7tg8oRtdX+62zQyyCKHPCqQoF4SR3AUE7mbSWhhrhVtaEcHruAqwtY268x3rIq91ahBLepQD7PO23byvAvd6EEvXuMN+uBdO1j9GO/OOBJIIoUiFKMEg1XXe67enRlkkUMeFZiJWfCuDdP/AydK6Q8=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="33" height="20">
   <data encoding="base64" compression="zlib">
-   eAETkGZgEMCDVykxMODD+YoMDNgwPjPR5eyA9uPDN4BuwIfnAt2ADeMzE10uB+gGfJhNmYEBHz4NdAM2jM9MdDkGKIgB0rEwDgn0JV4GhotAvBiKpYE0CJMDOoGauojQaAg0nwWIjaD2gOwHuQPmBhkgG4RpCa7zQEy/CqXRw8ELaD8I0xKguwE9HCqA9oPwKBgNgdEQGA2B0RAYDYHhGAIAjt9FVg==
+   eAGzUmZg2KiEHdsA5egB7gHtv48DPwCK0wPwAP3KiwPz0Skc6OHPUTtGQ2A0BEZDYDQERkNgNARGQ4DaIQAAZ1gPNw==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="33" height="20">

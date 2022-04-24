@@ -2303,7 +2303,25 @@ msgstr "I'm here to make sure nobody disrespects Omnichannel!\n"
 "How do I do that? Well... Uh... Maybe I'll ask them nicely?"
 
 msgid "oimate"
-msgstr "Hey! This is a restricted area! No one without a badge can enter!"
+msgstr "Hey! This is a restricted area! No one without a badge is allowed in!"
+
+msgid "welcometotaba"
+msgstr "Hello aspiring Tuxemon Trainers!"
+
+msgid "welcometotaba2"
+msgstr "Congratulations on passing the strict evaluation!\n"
+"You are the lucky group that has been chosen to be the first contestants in the trial!"
+
+msgid "welcometotaba3"
+msgstr "Aren't there only three of us? Seems like we barely qualify as a \"group\"."
+
+msgid "welcometotaba4"
+msgstr "To be honest, I thought more would pass the evaluation..."
+
+msgid "welcometotaba5"
+msgstr "Regardless, my name is Kevin and I am the lead architect behind the Battle Areas.\n"
+"I am here to inaugurate the first Fondent Region Battle Area and declare that...\n"
+"THE TRIAL HAS BEGUN!"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

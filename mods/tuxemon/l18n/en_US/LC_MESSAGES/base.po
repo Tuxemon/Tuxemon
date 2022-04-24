@@ -2302,6 +2302,9 @@ msgstr "I'm here to make sure nobody disrespects Omnichannel!\n"
 "... .... ... ...\n"
 "How do I do that? Well... Uh... Maybe I'll ask them nicely?"
 
+msgid "oimate"
+msgstr "Hey! This is a restricted area! No one without a badge can enter!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

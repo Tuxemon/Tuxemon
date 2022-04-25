@@ -1,0 +1,14 @@
+{
+    "slug": "omnigrunt",
+    "sprite_name": "knight",
+    "combat_front": "knight_front.png",
+    "combat_back": "red_back.png",
+    "monsters": [
+        {
+            "level": 2,
+            "slug": "aardorn",
+            "exp_give_mod": 30,
+            "exp_req_mod": 27
+        }
+    ]
+}

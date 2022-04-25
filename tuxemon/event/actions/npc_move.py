@@ -35,7 +35,7 @@ def simple_path(
     origin_vec = Vector2(origin)
     for _ in range(tiles):
         origin_vec += dirs2[direction]
-        yield (int(origin_vec[0]), int(origin_vec[0]))
+        yield (int(origin_vec[0]), int(origin_vec[1]))
 
 
 def parse_path_parameters(

@@ -35,8 +35,8 @@ Installation
 ------------
 
 If you want to try the game, it's recommended to download and try the
-development branch first. The master branch be stable, but is often out
-of date.
+development branch first. The master branch should be stable, but is
+often out of date.
 
 
 **Windows Source**
@@ -142,14 +142,23 @@ Controls
 --------
 
 ##### Game Controls
-###### You can also set your own inputs in the options menu or cfg file
+###### You can also set inputs in the options menu or config file
 * *Arrow Keys* - Movement
 * *Enter* - Select/activate
 * *ESC* - Menu/Cancel
 * *Shift* - Sprint
 
 ##### Debugging
-These are enabled when "dev_tools = True" in the config 
+
+You can enable dev_tools by changing `dev_tools` to `True` in the
+`tuxemon.cfg` file:
+
+```
+[game]
+dev_tools = True
+```
+
+These keyboard shortcuts are available with dev tools enabled
 * *r* - Reload the map tiles
 * *n* - No clip
 
@@ -166,7 +175,7 @@ maps. After you enable the CLI interface, you can use the terminal to
 enter commands.  You could, for example, give your self potions to
 battle, or add a monster directly to your party.  It's also possible to
 change game variables directly.  In fact, any action or condition that
-is usable in the map can be used with the CLI interface,
+is usable in the map can be used with the CLI interface.
 
 **Setting up**
 
@@ -230,8 +239,8 @@ True
 ```
 
 **NOTE!**  The CLI interface is new and the error messages are not very
-helpful. In general, you should be using the commands when the game is playing,
-and you are on the world map.
+helpful. In general, you should be using the commands when the game is
+playing, and you are on the world map.
 
 
 Check out the 
@@ -253,9 +262,10 @@ to build the portable pypy build:
 There will be a new directory called build, which will have the package
 if everything was successful.
 
-WARNING!  The build scripts are designed to be run in a dedicated VM.  They
-will add and remove packages and could leave you OS in a bad state.  You
-should not use them on your personal computer.  Use in a vm or container.
+WARNING!  The build scripts are designed to be run in a dedicated VM.
+They will add and remove packages and could leave your OS in a bad
+state.  You should not use them on your personal computer.  Use in a vm
+or container.
 
 
 License
@@ -269,11 +279,11 @@ GPL v3+
 Copyright (C) 2017 William Edwards <shadowapex@gmail.com>,     
 Benjamin Bean <superman2k5@gmail.com>
 
-This software is distributed under the GNU General Public Licence as published
-by the Free Software Foundation, either version 3 of the License, or (at your
-option) any later version.  See the file [LICENSE](LICENSE) for the conditions
-under which this software is made available.  Tuxemon also contains code from
-other sources.
+This software is distributed under the GNU General Public Licence as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.  See the file
+[LICENSE](LICENSE) for the conditions under which this software is made
+available.  Tuxemon also contains code from other sources.
 
 
 External links

@@ -32,7 +32,7 @@ from tuxemon import tools
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
-from tuxemon.menu.quantity import QuantityMenu
+from tuxemon.menu.quantity import QuantityMenu, QuantityAndPriceMenu
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
 from tuxemon.ui.text import TextArea
@@ -45,6 +45,7 @@ from tuxemon.states.monster import MonsterMenuState
 # The import is required for PushState to work.
 # But linters may say the import is unused.
 assert QuantityMenu
+assert QuantityAndPriceMenu
 
 
 def sort_inventory(
@@ -270,6 +271,7 @@ class ShopMenuState(Menu[Item]):
         self.buyer = kwargs["buyer"]
         self.seller = kwargs["seller"]
         self.buyer_purge = kwargs.get("buyer_purge", False)
+        self.economy = kwargs["economy"]
 
     def calc_internal_rect(self) -> pygame.rect.Rect:
         # area in the screen where the item list is
@@ -314,6 +316,7 @@ class ShopMenuState(Menu[Item]):
             None if item_dict.get("infinite")
             else item_dict["quantity"]
         )
+
         self.client.push_state(
             QuantityMenu,
             callback=use_item,
@@ -364,3 +367,56 @@ class ShopMenuState(Menu[Item]):
             self.item_sprite.image = image
             self.item_sprite.rect = image.get_rect(center=self.image_center)
             self.alert(item.description)
+
+
+class ShopBuyMenuState(ShopMenuState):
+    """This is the state for when a player wants to buy something."""
+
+    def on_menu_selection(self, menu_item: MenuItem[Item]) -> None:
+        """
+        Called when player has selected something from the shop's inventory.
+
+        Currently, opens a new menu depending on the state context.
+
+        Parameters:
+            menu_item: Selected menu item.
+
+        """
+        item = menu_item.game_object
+
+        def buy_item(quantity: int) -> None:
+            if not quantity:
+                return
+
+            ## TODO: Allow money to transfer between buyer and seller.
+            if self.buyer:
+                self.seller.give_item(self.client, self.buyer, item, quantity)
+            else:
+                self.seller.alter_item_quantity(
+                    self.client,
+                    item.slug,
+                    -quantity,
+                )
+            self.reload_items()
+            if not self.seller.has_item(item.slug):
+                # We're pointing at a new item
+                self.on_menu_selection_change()
+
+        item_dict = self.seller.inventory[item.slug]
+        max_quantity = (
+            None if item_dict.get("infinite")
+            else item_dict["quantity"]
+        )
+        price = (
+          1 if not self.economy or not self.economy.lookup_item_price(item.slug)
+          else self.economy.lookup_item_price(item.slug)
+        )
+
+        self.client.push_state(
+            QuantityAndPriceMenu,
+            callback=buy_item,
+            max_quantity=max_quantity,
+            quantity=1,
+            shrink_to_items=True,
+            price=price,
+        )

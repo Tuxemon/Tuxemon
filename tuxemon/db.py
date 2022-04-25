@@ -185,6 +185,16 @@ class JSONInventory(TypedDict):
     slug: str
     inventory: Mapping[str, Optional[int]]
 
+class JSONEconomyItemOptionalFields(TypedDict, total=False):
+    price: int
+    cost: int
+
+class JSONEconomyItem(TypedDict):
+    item_name: str
+
+class JSONEconomy(TypedDict):
+    slug: str
+    items: Sequence[JSONEconomyItem]
 
 def process_targets(json_targets: JSONTarget) -> Sequence[str]:
     """Return values in order of preference for targeting things.
@@ -233,6 +243,7 @@ class JSONDatabase:
             "environment": {},
             "sounds": {},
             "music": {},
+            "economy": {},
         }
         # self.load(dir)
 
@@ -256,6 +267,7 @@ class JSONDatabase:
             self.load_json("environment")
             self.load_json("sounds")
             self.load_json("music")
+            self.load_json("economy")
         else:
             self.load_json(directory)
 
@@ -328,6 +340,10 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["inventory"]) -> JSONInventory:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["economy"]) -> JSONEconomy:
         pass
 
     @overload

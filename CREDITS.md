@@ -192,6 +192,10 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Enforcer Boss"](https://wiki.tuxemon.org/index.php?title=Enforcer_Boss). Front sprite by Leo. Overland sprite by Superpowers Asset Packs, tweaked by Sanglorian. 
 
+* ["Penguin"](https://github.com/Tuxemon/Tuxemon/tree/development/mods/tuxemon/sprites)
+Overland sprites are by ultidonki, made for Tuxemon. Licensed under
+[CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
+
 ### Tilesets
 
 * ["Electronics Tileset"](https://git.tuxemon.org:3000/tuxemon/tuxemon/blob/development/resources/gfx/tilesets/electronics.png)
@@ -296,6 +300,11 @@ is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=
 * ["Drokoro"](https://wiki.tuxemon.org/index.php?title=File:Drokoro_overland_update.png) adapted by Sanglorian from a CC BY sprite by CharlesGabriel. 
 
 * ["MK Buildings"](https://wiki.tuxemon.org/index.php?title=File:MK_buildings.png) adapted by Mircea Kitsune from Buildings and Features and Doors by Kelvin Shadewing. Hospital adapted by Sanglorian.  
+
+* ["GothicVania"](https://opengameart.org/content/gothicvania-town)
+adapted by ultidonki from ansimuz's GothicVania Town assets, originally released into the Public Domain.
+ultidonki's changes (brightening some of the colors, reducing some of the noisy textures to be more flat/use less colors, and changing the perspective) released under CC0 license, version 1.0 or higher.
+[CC-0](https://creativecommons.org/publicdomain/zero/1.0)
 
 ### Tuxemon
 
@@ -610,6 +619,11 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Xeon"](https://wiki.tuxemon.org/index.php?title=Xeon) and ["Xeon-2"](https://wiki.tuxemon.org/index.php?title=Xeon-2) by Redshrike. 
 
+* ["Pilthropus"](https://wiki.tuxemon.org/index.php?title=Pilthropus) and
+["Coproblight"](https://wiki.tuxemon.org/index.php?title=Coproblight) 
+design and front sprite by [Tricoelacanth](https://twitter.com/@tricoelacanth),
+back and menu sprites by ultidonki based on the design by Tricoelacanth, all released under CC-BY-SA 4.0
+
 ### Items
 
 * ["Potions"](http://opengameart.org/content/potions-3)
@@ -714,6 +728,15 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 Adapted by Sanglorian from a sprite by ["Catch
 Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack),
 is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+* ["cave_background.png"](https://wiki.tuxemon.org/File:5_(240px).png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["ocean_background.png"](https://wiki.tuxemon.org/File:Ocean_cropped.png)
+is by [KnoblePersona](https://opengameart.org/content/ocean-background), licensed under
+[CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+Changes made: This was cropped from the original image, the original was 480x216, this version has been cropped down to 240x112 resolution.
 
 ## Concept Art
 

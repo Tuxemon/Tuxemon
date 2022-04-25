@@ -3,7 +3,7 @@ import pygame
 
 from tuxemon import tools, graphics
 from tuxemon.ui.draw import GraphicBox
-from typing import ClassVar, Optional, Callable, Generic, TypeVar
+from typing import ClassVar, Optional, Generic, TypeVar
 from tuxemon.sprite import Sprite
 
 

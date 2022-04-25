@@ -147,8 +147,9 @@
   <object id="27" name="Stop!" type="event" x="16" y="256" width="208" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
-    <property name="act2" value="create_npc spyder_dante,3,18"/>
-    <property name="act3" value="create_npc spyder_billie,2,18"/>
+    <property name="act10" value="lock_controls"/>
+    <property name="act20" value="create_npc spyder_dante,3,18"/>
+    <property name="act30" value="create_npc spyder_billie,2,18"/>
     <property name="act31" value="npc_face spyder_dante,up"/>
     <property name="act32" value="npc_face spyder_billie,up"/>
     <property name="act40" value="translated_dialog spyder_omnichannel_billie1"/>
@@ -159,6 +160,7 @@
     <property name="act90" value="start_battle spyder_omnichannel_beaverbrook"/>
     <property name="act91" value="translated_dialog spyder_omnichannel_beaverbrook2"/>
     <property name="act92" value="set_variable omnichannelbeaverbrook:yes"/>
+    <property name="act93" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
    </properties>
@@ -178,11 +180,13 @@
   <object id="31" name="Stop!" type="event" x="16" y="80" width="208" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
-    <property name="act2" value="translated_dialog spyder_omnichannel_radioannounce"/>
+    <property name="act11" value="lock_controls"/>
+    <property name="act20" value="translated_dialog spyder_omnichannel_radioannounce"/>
     <property name="act30" value="remove_npc spyder_omnichannel_beaverbrook"/>
     <property name="act31" value="remove_npc spyder_scoop_donald"/>
     <property name="act32" value="remove_npc spyder_route3_zoolander"/>
     <property name="act92" value="set_variable omnichannelradioannounce:yes"/>
+    <property name="act93" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="not variable_set omnichannelradioannounce:yes"/>
    </properties>

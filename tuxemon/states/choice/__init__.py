@@ -1,13 +1,19 @@
 from __future__ import annotations
-from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import PopUpMenu
-from typing import Any, Generator, Callable, Tuple, Sequence
 
+from typing import Any, Callable, Generator, Optional, Sequence, Tuple
+
+import pygame
+import pygame_menu
+from tuxemon.menu.events import playerinput_to_event
+from tuxemon.menu.interface import MenuItem
+from tuxemon.menu.menu import PopUpMenu, PygameMenuState
+from tuxemon.menu.theme import get_theme
+from tuxemon.platform.events import PlayerInput
 
 ChoiceMenuGameObj = Callable[[], None]
 
 
-class ChoiceState(PopUpMenu[ChoiceMenuGameObj]):
+class ChoiceState(PygameMenuState):
     """
     Game state with a graphic box and some text in it.
 
@@ -17,9 +23,6 @@ class ChoiceState(PopUpMenu[ChoiceMenuGameObj]):
     * if there are no more messages, then the dialog will close
     """
 
-    shrink_to_items = True
-    escape_key_exits = False
-
     def startup(
         self,
         *,
@@ -28,11 +31,11 @@ class ChoiceState(PopUpMenu[ChoiceMenuGameObj]):
         **kwargs: Any,
     ) -> None:
         super().startup(**kwargs)
-        self.menu = menu
-        self.escape_key_exits = escape_key_exits
 
-    def initialize_items(self) -> None:
-        for _key, label, callback in self.menu:
-            image = self.shadow_text(label)
-            item = MenuItem(image, label, None, callback)
-            self.add(item)
+        for _key, label, callback in menu:
+            self.menu.add.button(label, callback)
+
+        widgets_size = self.menu.get_size(widget=True)
+        self.menu.resize(*widgets_size)
+
+        self.escape_key_exits = escape_key_exits

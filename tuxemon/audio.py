@@ -8,6 +8,7 @@ from pygame import mixer
 from tuxemon.db import db
 from tuxemon.tools import transform_resource_filename
 from typing import Protocol, Optional
+from tuxemon import prepare
 
 logger = logging.getLogger(__name__)
 
@@ -70,7 +71,9 @@ def load_sound(slug: Optional[str]) -> SoundProtocol:
         return DummySound()
 
     try:
-        return mixer.Sound(filename)
+        sound = mixer.Sound(filename)
+        mixer.Sound.set_volume(sound, prepare.CONFIG.sound_volume)
+        return sound
     except MemoryError:
         # raised on some systems if there is no mixer
         logger.error("memoryerror, unable to load sound")

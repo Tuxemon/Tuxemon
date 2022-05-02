@@ -110,44 +110,44 @@ msgid "combat_used_x_on_y"
 msgstr "{user} benutzt {name} auf {target}!"
 
 msgid "combat_swap"
-msgstr "${{user}} sendet ${{target}} aus!"
+msgstr "{user} sendet {target} aus!"
 
 msgid "combat_call_tuxemon"
 msgstr "Los {name}!"
 
 # TODO: similar to combat_swap - refactor!
 msgid "combat_opponent_call_tuxemon"
-msgstr "${{user}} schickt ${{name}} in den Kampf!"
+msgstr "{user} schickt {name} in den Kampf!"
 
 msgid "combat_state_poison_get"
-msgstr "${{target}} ist vergiftet."
+msgstr "{target} ist vergiftet."
 
 msgid "combat_state_poison_damage"
 msgstr "Das Gift schadet {name}!"
 
 msgid "combat_state_lifeleech_get"
-msgstr "${{user}} absorbiert Gesundheit von ${{target}}."
+msgstr "{user}} absorbiert Gesundheit von {target}."
 
 msgid "combat_state_lifeleech_success"
-msgstr "${{user}} wurde Gesundheit absorbiert!"
+msgstr "{user} wurde Gesundheit absorbiert!"
 
 msgid "combat_state_lifeleech_failure"
-msgstr "${{link}} kann keine Gesundheit mehr absorbieren."
+msgstr "{link} kann keine Gesundheit mehr absorbieren."
 
 msgid "combat_state_recover_get"
-msgstr "${{target}} wird geheilt"
+msgstr "{target} wird geheilt"
 
 msgid "combat_state_recover_success"
-msgstr "${{user}} ist wieder gesund!"
+msgstr "{user} ist wieder gesund!"
 
 msgid "combat_state_recover_failure"
-msgstr "${{user}} kann nicht weiter geheilt werden."
+msgstr "{user} kann nicht weiter geheilt werden."
 
 msgid "combat_status_damage"
 msgstr "{name} erleidet Schaden durch {status}!"
 
 msgid "combat_trainer_appeared"
-msgstr "${{name}} möchte kämpfen!"
+msgstr "{name} möchte kämpfen!"
 
 msgid "combat_victory"
 msgstr "Du hast gewonnen!"
@@ -165,7 +165,7 @@ msgid "combat_capturing_fail"
 msgstr "{name} ist ausgebrochen!"
 
 msgid "combat_recharging"
-msgstr "${{name}} braucht eine Pause, bevor es ${{move}} wieder einsetzen kann..."
+msgstr "{name} braucht eine Pause, bevor es {move} wieder einsetzen kann..."
 
 msgid "combat_replacement"
 msgstr "Wähle einen Ersatz!"
@@ -184,6 +184,9 @@ msgstr "{name} ist erschöpft!"
 
 msgid "combat_isactive"
 msgstr "{name} kämpft bereits."
+
+msgid "combat_target_itself"
+msgstr "{name} sollte sich nicht selbst angreifen."
 
 # Generic notifications
 msgid "not_implemented"
@@ -1518,7 +1521,7 @@ msgid "route2speech"
 msgstr "EEK!!!"
 
 msgid "route2speech2\n"
-msgstr "Oh. Du bist es nur, ${{name}}...\n"
+msgstr "Oh. Du bist es nur, {name}...\n"
 "Sei das nächste Mal etwas rücksichtsvoller wenn du jemanden schubst. Die Klippe geht weiter runter als es aussieht...\n"
 
 msgid "route2speech3\n"

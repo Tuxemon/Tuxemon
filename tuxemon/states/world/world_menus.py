@@ -206,9 +206,4 @@ class WorldMenuState(PygameMenuState):
         ani = self.animate(self, animation_offset=0, duration=0.50)
         ani.update_callback = self.update_animation_position
 
-        def close_state() -> None:
-            self.client.pop_state()
-
-        ani.callback = close_state
-
         return ani

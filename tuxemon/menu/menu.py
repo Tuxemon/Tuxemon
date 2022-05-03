@@ -55,6 +55,7 @@ class PygameMenuState(state.State):
             theme = get_theme()
 
         self.open = False
+        self.escape_key_exits = True
 
         self.menu = pygame_menu.Menu(
             "",
@@ -67,6 +68,12 @@ class PygameMenuState(state.State):
         self.menu.set_sound(get_sound_engine())
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+
+        if (
+            event.button in {buttons.B, buttons.BACK, intentions.MENU_CANCEL}
+            and not self.escape_key_exits
+        ):
+            return None
 
         pygame_event = playerinput_to_event(event)
         if self.open is True and event.pressed and pygame_event is not None:
@@ -93,7 +100,11 @@ class PygameMenuState(state.State):
     def _on_close(self) -> None:
         self.open = False
         self.menu.enable()
-        self.animate_close()
+        animation = self.animate_close()
+        if animation:
+            animation.callback = self.client.pop_state
+        else:
+            self.client.pop_state()
 
     def animate_open(self) -> Optional[Animation]:
         """

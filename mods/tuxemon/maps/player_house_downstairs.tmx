@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="11" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="11" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
  <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -90,6 +90,7 @@
     <property name="cond32" value="not variable_set backhome:no"/>
     <property name="cond33" value="not variable_set backhome:tv"/>
     <property name="cond34" value="not variable_set dancininthemoonlight:yes"/>
+    <property name="cond35" value="not variable_set stahp:stop"/>
    </properties>
   </object>
   <object id="28" name="Player Spawn" type="event" x="80" y="64" width="16" height="16"/>
@@ -152,6 +153,8 @@
     <property name="act6" value="npc_face npc_mom,left"/>
     <property name="act7" value="set_variable comeinside:plsbedone"/>
     <property name="cond1" value="is variable_set comeinside:forreal"/>
+    <property name="cond2" value="not variable_set stahp:no"/>
+    <property name="cond3" value="not variable_set stahp:stop"/>
    </properties>
   </object>
   <object id="36" name="ohnoes" type="event" x="32" y="96" width="16" height="16">
@@ -201,8 +204,9 @@
   </object>
   <object id="41" name="new possibilities" type="event" x="0" y="64" width="16" height="16">
    <properties>
-    <property name="act10" value="wait 1"/>
-    <property name="act11" value="npc_face player,left"/>
+    <property name="act10" value="lock_controls"/>
+    <property name="act11" value="wait 1"/>
+    <property name="act12" value="npc_face player,left"/>
     <property name="act20" value="npc_face npc_mom,right"/>
     <property name="act30" value="translated_dialog youneedtodothis"/>
     <property name="act40" value="npc_face npc_mom,left"/>
@@ -225,6 +229,8 @@
     <property name="act5" value="npc_face professor,down"/>
     <property name="act6" value="wait 0.4"/>
     <property name="act7" value="remove_npc professor"/>
+    <property name="act8" value="set_variable stahp:no"/>
+    <property name="act9" value="unlock_controls"/>
     <property name="act99" value="set_variable welptheturkeyisgone:yes"/>
     <property name="cond1" value="is variable_set welpitsactuallyturkey:yes"/>
     <property name="cond2" value="not variable_set welptheturkeyisgone:yes"/>

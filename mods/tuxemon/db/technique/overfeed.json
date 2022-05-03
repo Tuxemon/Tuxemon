@@ -24,12 +24,12 @@
   "slug": "overfeed",
   "sort": "meta",
   "target": {
-    "enemy monster": 2,
+    "enemy monster": 0,
     "enemy team": 0,
     "enemy trainer": 0,
     "item": 0,
-    "own monster": 1,
-    "own team": 0,
+    "own monster": 0,
+    "own team": 2,
     "own trainer": 0
   },
   "types": [

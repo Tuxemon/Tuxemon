@@ -217,7 +217,7 @@ def get_defaults() -> Mapping[str, Any]:
                 "sound",
                 OrderedDict(
                     (
-                        ("sound_volume", 1.0),
+                        ("sound_volume", 0.3),
                         ("music_volume", 1.0),
                     )
                 ),

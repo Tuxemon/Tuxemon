@@ -306,6 +306,28 @@ adapted by ultidonki from ansimuz's GothicVania Town assets, originally released
 ultidonki's changes (brightening some of the colors, reducing some of the noisy textures to be more flat/use less colors, and changing the perspective) released under CC0 license, version 1.0 or higher.
 [CC-0](https://creativecommons.org/publicdomain/zero/1.0)
 
+* ["Core Indoor Walls"],["Core Indoor Floors"]
+by rubberduck, based on
+Interior_Tiles_by_ArMM1998.png, by ArMM1998 (CC0),
+Interior_Walls_by_George.png, by George_ (CC BY 3.0)
+Interior_Tiles_by_Mike_Bramson.png, by Mike Bramson (CC BY-SA 4.0)
+and https://opengameart.org/content/lpc-floors by bluecarrot16 and various contributors** (CC BY-SA 4.0)
+
+(** "[LPC] Floors" by bluecarrot16, Lanea Zimmerman (Sharm), William Thompson (William.Thompsonj),Hyptosis, SpiderDave, Cougarmint, Stephen Challener (Redshrike), Bonsaiheldin, Tyler Olsen (Roots), Jetrel, jestan,
+ The Open Surge team (http://opensnc.sourceforge.net), Gaurav Munjal, Reemax, Silveira Neto, bleutailfly, Casper Nilsson, NaRNeRZz, Buch, keith karnage, Arthur Carvalho, Guilherme Vieira (n2liquid), Chris Hamons (maintainer).)
+
+tuxemon-themed walls are based on: fruitera-front.png, rockitten-front.png and ghosteeth-front.png
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Core Indoor Stairs"]
+by rubberduck, stairs are based on:
+Interior_Tiles_by_ArMM1998.png, by ArMM1998 (CC0),
+Interior tileset by Redshrike (Interiors by Redshrike.png), (CC-BY 3.0)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+
+
+
 ### Tuxemon
 
 * ["Bamboon"](https://git.tuxemon.org:3000/tuxemon/tuxemon/blob/development/resources/gfx/sprites/battle/bamboon-front.png)

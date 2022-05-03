@@ -1,13 +1,21 @@
 from __future__ import annotations
-from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import PopUpMenu
-from typing import Any, Generator, Callable, Tuple, Sequence
 
+from typing import Any, Callable, Generator, Optional, Sequence, Tuple
+
+import pygame
+import pygame_menu
+
+from tuxemon.animation import Animation
+from tuxemon.menu.events import playerinput_to_event
+from tuxemon.menu.interface import MenuItem
+from tuxemon.menu.menu import PopUpMenu, PygameMenuState
+from tuxemon.menu.theme import get_theme
+from tuxemon.platform.events import PlayerInput
 
 ChoiceMenuGameObj = Callable[[], None]
 
 
-class ChoiceState(PopUpMenu[ChoiceMenuGameObj]):
+class ChoiceState(PygameMenuState):
     """
     Game state with a graphic box and some text in it.
 
@@ -17,9 +25,6 @@ class ChoiceState(PopUpMenu[ChoiceMenuGameObj]):
     * if there are no more messages, then the dialog will close
     """
 
-    shrink_to_items = True
-    escape_key_exits = False
-
     def startup(
         self,
         *,
@@ -28,11 +33,31 @@ class ChoiceState(PopUpMenu[ChoiceMenuGameObj]):
         **kwargs: Any,
     ) -> None:
         super().startup(**kwargs)
-        self.menu = menu
+
+        for _key, label, callback in menu:
+            self.menu.add.button(label, callback)
+
+        self.animation_size = 0.0
         self.escape_key_exits = escape_key_exits
 
-    def initialize_items(self) -> None:
-        for _key, label, callback in self.menu:
-            image = self.shadow_text(label)
-            item = MenuItem(image, label, None, callback)
-            self.add(item)
+    def update_animation_size(self) -> None:
+        widgets_size = self.menu.get_size(widget=True)
+        self.menu.resize(
+            max(1, int(widgets_size[0] * self.animation_size)),
+            max(1, int(widgets_size[1] * self.animation_size)),
+        )
+
+    def animate_open(self) -> Animation:
+        """
+        Animate the menu popping in.
+
+        Returns:
+            Popping in animation.
+
+        """
+        self.animation_size = 0.0
+
+        ani = self.animate(self, animation_size=1.0, duration=0.2)
+        ani.update_callback = self.update_animation_size
+
+        return ani

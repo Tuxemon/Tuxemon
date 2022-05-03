@@ -27,23 +27,20 @@
 # states.WorldMenuState
 #
 from __future__ import annotations
+
 import logging
 from functools import partial
+from typing import Any, Callable, Sequence, Tuple
+
+import pygame_menu
 
 from tuxemon import prepare
+from tuxemon.animation import Animation
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import Menu
+from tuxemon.menu.menu import Menu, PygameMenuState
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
-from typing import Callable, Tuple, Sequence, Any, Optional
-from tuxemon.animation import Animation
-import pygame_menu
-from tuxemon.menu.theme import get_theme, get_sound_engine
-from tuxemon.state import State
-from tuxemon.menu.events import playerinput_to_event
-from tuxemon.platform.events import PlayerInput
-import pygame
 
 logger = logging.getLogger(__name__)
 
@@ -71,30 +68,17 @@ def add_menu_items(
         height - 2 * b_height,
         position=(width + b_width, b_height, False),
     )
-    menu.set_sound(get_sound_engine())
 
 
-class WorldMenuState(State):
+class WorldMenuState(PygameMenuState):
     """Menu for the world state."""
 
-    transparent = True
-
     def startup(self, **kwargs: Any) -> None:
-        super().startup(**kwargs)
+        _, height = prepare.SCREEN_SIZE
 
-        width, height = prepare.SCREEN_SIZE
-
-        self.menu = pygame_menu.Menu(
-            "",
-            width,
-            height,
-            theme=get_theme(),
-            center_content=True,
-            onclose=self.on_close,
-        )
+        super().startup(height=height, **kwargs)
 
         self.animation_offset = 0
-        self.open = False
 
         def change_state(state: str, **kwargs: Any) -> Callable[[], object]:
             return partial(self.client.replace_state, state, **kwargs)
@@ -118,28 +102,6 @@ class WorldMenuState(State):
         )
         add_menu_items(self.menu, menu_items_map)
 
-    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-
-        pygame_event = playerinput_to_event(event)
-        if self.open is True and event.pressed and pygame_event is not None:
-            self.menu.update([pygame_event])
-
-        return event if pygame_event is None else None
-
-    def draw(
-        self,
-        surface: pygame.surface.Surface,
-    ) -> None:
-        self.menu.draw(surface)
-
-    def resume(self) -> None:
-        self.animate_open()
-
-    def on_close(self) -> None:
-        self.open = False
-        self.menu.enable()
-        self.animate_close()
-
     def open_monster_menu(self) -> None:
         from tuxemon.states.monster import MonsterMenuState
 
@@ -160,7 +122,8 @@ class WorldMenuState(State):
                 player = local_session.player
                 monster_list = player.monsters
 
-                # get the newly selected item.  it will be set to previous position
+                # get the newly selected item.  it will be set to previous
+                # position
                 original_monster = monster_menu.get_selected_item().game_object
 
                 # get the position in the list of the cursor
@@ -230,11 +193,6 @@ class WorldMenuState(State):
         ani = self.animate(self, animation_offset=width, duration=0.50)
         ani.update_callback = self.update_animation_position
 
-        def set_open() -> None:
-            self.open = True
-
-        ani.callback = set_open
-
         return ani
 
     def animate_close(self) -> Animation:
@@ -247,10 +205,5 @@ class WorldMenuState(State):
         """
         ani = self.animate(self, animation_offset=0, duration=0.50)
         ani.update_callback = self.update_animation_position
-
-        def close_state() -> None:
-            self.client.pop_state()
-
-        ani.callback = close_state
 
         return ani

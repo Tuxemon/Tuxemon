@@ -160,9 +160,14 @@ class WorldMenuState(PygameMenuState):
                 ("monster_menu_info", open_monster_stats),
                 ("monster_menu_move", select_first_monster),
             )
-            menu = self.client.push_state(Menu)
-            menu.shrink_to_items = True
-            add_menu_items(menu, menu_items_map)
+            menu = self.client.push_state(PygameMenuState)
+
+            for key, callback in menu_items_map:
+                label = T.translate(key).upper()
+                menu.menu.add.button(label, callback)
+
+            size = menu.menu.get_size(widget=True)
+            menu.menu.resize(*size)
 
         def handle_selection(menu_item: MenuItem[WorldMenuGameObj]) -> None:
             if "monster" in context:

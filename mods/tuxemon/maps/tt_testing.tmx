@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="33" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="51">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="33" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="51">
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <tileset firstgid="2971" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <tileset firstgid="6835" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="10699" source="../gfx/tilesets/core_outdoor_terrain.tsx"/>
+ <tileset firstgid="14795" source="../gfx/tilesets/prototyping_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="33" height="20">
   <data encoding="base64" compression="zlib">
-   eAG11TdvFEEchvEF+5JtQDI51FQk+5KhIsMHoCI6lyQbJBC5IueSbJOcoCLnkorsBK7ISXSmAp5X7EirEeyuV3Lx08zshP+rubu9/mLH6feRK3GcLP7X2nuf+Jxlrw079quvXPY5vyJkaGJPM87jAi7iEi6jBe+o4+cR8x2sk+P0p/wjl53THofJ8JvzbXOG/c2m2vXUzbtZlkbI8JQznuE5XuAlXqETXdAdeOuvobYZa04ZetEO9XdHyKDzHPYNwVAUoBAxxKE6Iz11TX21JsMx1iiHMlyjb9910Hgqe6ZhOmagDOVIIwPV8dZV/6SbyWRIsaYOyvCWNqimPb+MPcuxAiuxCpWoQjVUx89D5lVb9J0sJZ9dI2i8h317sQ/7cQAHcQiHkR4xMLMjZLhOnRu4iVu4jTu4i3sYaIbVETLont/jAz7iEz7jC76icjifD8qhfoHbalwItVLmOhEhg77zozAaYzAW4zAeE6CaOn8TfWVQPT0zWfTsB1mVR88esy7o87fn9a6Zi3mYjwVYiEVYDJ2r83UXyqJWdZVJecxzk+snz+0aQWO9c9ZiHdajAY3YgI1Qjc1ua+7A1FYW5VJ9rVF/MoJq2vP6rZ/CaZzBWZxDE5rRym+uDea/6z73/gD2OWa8JEIGc9cx9saRQBIpFKGb+j2ooW4tvuE7tjC3FduwHTuwE7tg8oRtdX+62zQyyCKHPCqQoF4SR3AUE7mbSWhhrhVtaEcHruAqwtY268x3rIq91ahBLepQD7PO23byvAvd6EEvXuMN+uBdO1j9GO/OOBJIIoUiFKMEg1XXe67enRlkkUMeFZiJWfCuDdP/AydK6Q8=
+   eAHtlV1Ow0AMhPcO5RIloRdrgYOlwGHKLfrDFZhZ/EXWaiNVSEU89GE0WSe1x2MnPaxL+RQOiY+6Bqe4Nu+HUnbCtNG1AG8jbt4qbuyE4amUMXAclVM4CW291WMpD0LmQWcwxrV5Ug3reFb+F+FVqFoi7vvWhbac13rQlOOum/tHHx6Y3T9xNLypzrvwERrcv/2Zn4s4ZzMe/MaH7CGzOKvGRfiKWq4P0G/tuV888GxyfMkH5mDOGvCBecPWBvCu7lHMHw/g7I/nkPcAfUsanNdg3jC57bN/692pexT7iAcwdeDuPihX7p+cMH2wB2iwz9ZBnOfqPkg7HuX4kg/UJzd60cCZ2dAfTJznzHjrHDm+tA+tBnQzf87UauM9H7IGfg/39qHVQI2Z4z2g1hTvh+8T847ifcvX+GBPgWdMDdh1QH0nXVvwt3GKd8Rx9rNl+od7PlB/nq9y52+z64D6Tro2z8S9W/tAfXru6bOGtn/O9A/3fGjndetz7/uAvr/iuw8//9t3H/6PD9+lPrCT
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="33" height="20">
   <data encoding="base64" compression="zlib">
-   eAGzUmZg2KiEHdsA5egB7gHtv48DPwCK0wPwAP3KiwPz0Skc6OHPUTtGQ2A0BEZDYDQERkNgNARGQ4DaIQAAZ1gPNw==
+   eAHtkktywjAQRHWdxL8Q4VPhzwLfCpIsZE4VjBf2AfLGGlV5Awu7kpAUXfU041nQrRHG3L9sZsyYerb01+QSYxqlpYq62JgL9BC/+NmS84T/DgpwcE05vpFiNUNCTSGDtRkOeB8XZCjxrqBemWHP/hv8J268xYDPyM4n6EVy9zl++jdPK3eLPFt6Ucl3BTUEuWd2pbRUUffEfxJ6KDZ+tuQ84bODApx6vlHf4UO/5XdzfD/xOoPVDAk1hQzWZjjgdYSQoaO/QA9BkiGCGEKGkr6CGtZk2LP/Bq8JfYvgO68DPiM7mKAXie8cP/3fp7PsSmmpou6VN4MezvDdytVXfKz2CTWFDH4rQ4l3BfUPZRjwGdn3BL1I7j7HTx/nYwP3v4Ev3/dgLg==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="33" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt0DEBAAAAwqD1T20Hb4hAYcCAAQMGDBgwYOAfGApQAAE=
+   eAHtlM0JgDAMRrOCrqIOojdHcyy9uY1fbyU09il4kQYCbfqSrz+hZsz2weyQ14xytTql9W406+V3tmqdcHc1orVNtWf5UtkD5SKdWvx077BrP4c8nT03yuU5b8ZJp5v0NvJ09sgoF+X7uO+1WfqL3BvlfB6Z016jHNHMGdprlMtrPxnTXqPcE+0SS3uNciUNEot60udSzue1+Xc34P/T75Ra5XYD/7iBCxpYLyc=
   </data>
  </layer>
- <layer id="4" name="Above player" width="33" height="20">
+ <layer id="7" name="Tile Layer 5" width="33" height="20" visible="0">
+  <data encoding="base64" compression="zlib">
+   eAG9lMFNA0EMRbeA5QKUEQpIoCpEJbSRY+hiE5CALuCAgAL4juZFxvJmos1qDtaf8Xj9vz2e7VdddyHrKzjc/o8bll1nvj3a+gxbiPtGVkPj83Fr7Rd353Fnusd6kfLN1IOoY6wXH+LrQ83m+ywWz2Le2v5NeWr2rpjBbOzOj52NfeP8P/q+Zr+Koe6t1rF+zsw/pSdX6nFmD06baUh7kPkzn6s5zVPObR6/ZMzld0MNcMZ5vHT9uS7zSCyYzsiEPsBNXnCnnjw7e9GaWNDmgPk4zMEEDXCSF3xVLt7L/l3U7rRw+/k8dUYj56ZwPwl5L48l/7F5Su9FuqMm3pRH+uBnEG4QDcRmeAqX5/Vr+oCGe9Uc3yozSezcSE1o4F+wVR+jETs3UpPXELnZEzs3UpPXgK8VUpPXgK8VUqvXgK8VUqvXgK8V/gE16eTa
+  </data>
+ </layer>
+ <layer id="8" name="Tile Layer 6" width="33" height="20" visible="0">
+  <data encoding="base64" compression="zlib">
+   eAFjYCAO+FgxMPgC8UCCnAG2H+T3s5aoeCDCg15uMLDG7Tt0N8D4uHWQJ5OLxw3YTKSFOwLwuAFmHzYam/vIFSOU97DZDxMj105K9cHsB9GjADMEBkuZmkvnchXmb3JpzJAcFRkNgdEQGAwhAAAgdzBh
+  </data>
+ </layer>
+ <layer id="4" name="Above player" width="33" height="20" visible="0">
   <data encoding="base64" compression="zlib">
    eAHt0DEBAAAAwqD1T20Hb4hAYcCAAQMGDBgwYOAfGApQAAE=
   </data>

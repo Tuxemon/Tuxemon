@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="28" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="242">
+ <properties>
+  <property name="edges" value="clamped"/>
+ </properties>
+ <tileset firstgid="1" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
+  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
+ </tileset>
+ <tileset firstgid="11" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ </tileset>
+ <tileset firstgid="167" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
+  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
+ </tileset>
+ <tileset firstgid="615" source="../gfx/tilesets/prototyping_outdoor.tsx"/>
+ <tileset firstgid="2663" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <layer id="1" name="PTT 1" width="28" height="40">
+  <data encoding="base64" compression="zlib">
+   eAGVlUFuZEUQRFsImEHiHsDVmNkB/Q0nQAM7wNW+wsAO8O8zsEauvgKYQ/BC6iclqf/tYRGKrMzIjMrqtnu8dzicwArOYFzPC3wDjmArNtf5W/QvPjgcXoKPwMo5c7tukrsA64P4BG7BVmyuc/eb9Gdu163kcg/rC/ENkO+J1ZiTv6YWxCv4hL0+BZ+BnNOrVp7kcg97BvEJyA/EaszJ3c8ZcnrVytbkBU3dz7N1Wa+6n7XKK/POYG/OoFb381xnVK89P+dP5l2Ac8w7z3Nn6+G9Wr3HuN67a807z3Nn68dyVzXW4vcF+PKKrza0C7l8XvasxHnvetca31KLp333xPZG9wP48YqfYHXyIJfPy55JnPeuHj2Op30PpTe6X8GfIJ7xUycv5Op+ufs37//XLztUT3tW8nkL7xqOzh3rfnroa0/u3uc/XOfoac8kn7ewd8tP7QndAuLbuc+Pj5qV+AzuQOYfr6zn3n7RDRDfzt7TfcJqJvEFrCC+t0Av+/IZ/gZ+B/apW8jdgH7POiOxOn0mufh2Xc5q7AkbD+IT0H+rPzl1kzg+9X6fc34N7FVjT9h4If4/+6mv93vDjO+Ln5rKxgOd+/314eHwd8EjsXdWJ5sPdz81lY0X9NlvBWdQvyM1VifHJ+/4CjyCul9qzpPtG9Sy3wQXUD1qrE52r+/oCbqf82T7VrTZS64eNV7Q3ABZvz/I/Qx+AcmJe2K1YfOTOHvJ5mV7BpoTkFN/C/Sp39fUHoo2Pc6Rnd/Z+c/p6vfVGSs+ebv0Okeub5fYnmjzjurMvwtP+vJ26XWOvOcXbd4xn8dzHndN4+ywc+Tu53lFmzfJ59H/PvO3+vLF/j2cHV5A3kl2fueJJm+yt9s/5X9C1ThXHszIO8ndp/Y+Fe/5OVde8NraL+8W7yN4ysda9+tzPesr9/1u8bt7B8+P2+fnvM51t4W59bxyPoPk63ek/v+umtrbZ3k+MWuALZ7kL6Xu21Xumr1Z5hfmbd1rJX8G8j1xfPJb8Poa52xdXshlXj+bH9ROoPMkdwFyvj+Z/wbU3wDr8qCeef1sfqGW+8jZw7i+m3H1U7fScy595rd4oMt95OxhrEc47/gKPAL3UzfJXYDnp3hBV/fzXL0SvwX5fau/cWr3eEXf9x7k6n6eu9/WWe0eT2b3vRdyW/sdyVePPd1z+ZU5dcfBeWu/2+a3p3suP5lTd/wXqH57LA==
+  </data>
+ </layer>
+ <layer id="2" name="PTT 2" width="28" height="40">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyFAfgg0M5Gvd1TnyA4BJ5aR7X9q+L6MmRqmEG/GNxLto9R9pOon1X3oPqdUP7p5o/zREBgNgdEQGOgQ2EZiuT3Q7h1q9leMhu9Qi7JR946GwICHAAAi+QZW
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="7" name="Collisions">
+  <object id="162" type="collision" x="0" y="0" width="32" height="640"/>
+  <object id="163" type="collision" x="416" y="0" width="32" height="640"/>
+  <object id="167" type="collision" x="32" y="624" width="80" height="16"/>
+  <object id="169" type="collision" x="160" y="608" width="256" height="32"/>
+  <object id="181" type="collision" x="160" y="480" width="64" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="191" type="collision" x="80" y="272" width="80" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="192" type="collision" x="208" y="400" width="80" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="193" type="collision" x="288" y="416" width="16" height="64">
+   <properties>
+    <property name="continue" value="left"/>
+    <property name="enter_from" value="right"/>
+    <property name="exit_to" value="left"/>
+   </properties>
+  </object>
+  <object id="194" type="collision" x="256" y="480" width="160" height="64"/>
+  <object id="195" type="collision" x="240" y="544" width="176" height="64"/>
+  <object id="196" type="collision" x="352" y="448" width="64" height="32"/>
+  <object id="197" type="collision" x="384" y="416" width="32" height="32"/>
+  <object id="198" type="collision" x="368" y="112" width="16" height="176"/>
+  <object id="199" type="collision" x="400" y="352" width="16" height="64"/>
+  <object id="200" type="collision" x="384" y="80" width="32" height="272"/>
+  <object id="201" type="collision" x="352" y="112" width="16" height="48"/>
+  <object id="203" type="collision" x="384" y="0" width="32" height="32"/>
+  <object id="204" type="collision" x="400" y="48" width="16" height="16"/>
+  <object id="205" type="collision" x="32" y="576" width="64" height="48"/>
+  <object id="206" type="collision" x="32" y="544" width="80" height="32"/>
+  <object id="207" type="collision" x="32" y="480" width="144" height="64"/>
+  <object id="208" type="collision" x="64" y="288" width="32" height="64"/>
+  <object id="209" type="collision" x="32" y="96" width="32" height="384"/>
+  <object id="210" type="collision" x="64" y="192" width="48" height="32"/>
+  <object id="211" type="collision" x="128" y="464" width="16" height="16"/>
+  <object id="212" type="collision" x="96" y="448" width="16" height="16"/>
+  <object id="213" type="collision" x="144" y="464" width="16" height="16"/>
+  <object id="214" type="collision" x="336" y="384" width="16" height="16"/>
+  <object id="217" type="collision" x="112" y="192" width="16" height="16"/>
+  <object id="218" type="collision" x="96" y="0" width="32" height="160"/>
+  <object id="219" type="collision" x="128" y="0" width="64" height="128"/>
+  <object id="220" type="collision" x="32" y="32" width="32" height="32"/>
+  <object id="221" type="collision" x="64" y="16" width="32" height="32"/>
+  <object id="222" type="collision" x="192" y="192" width="16" height="192"/>
+  <object id="223" type="collision" x="224" y="192" width="32" height="160"/>
+  <object id="224" type="collision" x="208" y="192" width="16" height="192"/>
+  <object id="225" type="collision" x="160" y="336" width="32" height="96"/>
+  <object id="226" type="collision" x="256" y="240" width="16" height="32"/>
+  <object id="227" type="collision" x="272" y="192" width="16" height="48"/>
+  <object id="228" type="collision" x="288" y="208" width="16" height="16"/>
+  <object id="229" type="collision" x="240" y="96" width="64" height="96"/>
+  <object id="230" type="collision" x="176" y="176" width="16" height="16"/>
+  <object id="232" type="collision" x="224" y="128" width="16" height="16"/>
+  <object id="233" type="collision" x="192" y="0" width="128" height="32"/>
+  <object id="234" type="collision" x="192" y="32" width="80" height="32"/>
+  <object id="235" type="collision" x="320" y="352" width="16" height="16"/>
+  <object id="237" type="collision" x="192" y="400" width="16" height="16"/>
+  <object id="238" type="collision" x="256" y="192" width="16" height="48"/>
+  <object id="239" type="collision" x="96" y="176" width="16" height="16"/>
+  <object id="240" type="collision" x="64" y="224" width="16" height="64"/>
+  <object id="241" type="collision" x="288" y="400" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="129" name="Teleport to Route1" type="event" x="112" y="624" width="48" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport tt_paper_town.tmx,14,4,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="159" name="Player Spawn" type="event" x="128" y="608" width="16" height="16"/>
+ </objectgroup>
+</map>

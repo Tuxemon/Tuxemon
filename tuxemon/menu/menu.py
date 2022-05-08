@@ -66,6 +66,12 @@ class PygameMenuState(state.State):
             onclose=self._on_close,
         )
         self.menu.set_sound(get_sound_engine())
+        # If we 'ignore nonphysical keyboard', pygame_menu will check the
+        # pygame event queue to make sure there is an actual keyboard event
+        # being pressed right now, and ignore the event if not, hence it won't
+        # work for controllers.
+        self.menu._keyboard_ignore_nonphysical = False
+
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
 

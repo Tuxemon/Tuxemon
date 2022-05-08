@@ -75,8 +75,8 @@ def main(
     # since menus do not clean up dirty areas, the blank,
     # "Background state" will do that.  The alternative is creating
     # a system for states to clean up their dirty screen areas.
+    client.push_state(BackgroundState)
     if not config.skip_titlescreen:
-        client.push_state(BackgroundState)
         client.push_state(StartState)
 
     if load_slot:

@@ -250,6 +250,9 @@ msgstr "{name} fainted!"
 msgid "combat_isactive"
 msgstr "{name} is already in play."
 
+msgid "combat_target_itself"
+msgstr "{name} shouldn't attack itself."
+
 msgid "attack_very_effective"
 msgstr "The attack did a lot of extra damage!"
 
@@ -1678,7 +1681,7 @@ msgid "quicklyknight2"
 msgstr "Two people control Omnichannel. The board is a joke.\n"
 
 msgid "quicklyknight3"
-msgstr "Allie. Allie is the one they don’t want you to know about."
+msgstr "Allie. Allie is the one they don't want you to know about."
 
 msgid "quicklyknight4"
 msgstr "Sorry, but I should leave now."
@@ -2130,7 +2133,7 @@ msgstr "What are you doing here with this... Criminal?\n"
 "... .... ....\n... ... ...\n"
 "Joining the trial? You'd really subject yourself to that nonsense?\n"
 "If all you want is a job at Omnichannel, you could have just asked me.\n"
-"I'm sure I can find a... use for you if you're interested."
+"I'm sure I can find a... use for you... if you're interested."
 
 msgid "brokethegasp"
 msgstr "Now, Miss, if I may, ${{name}} is doing it for more than a job."
@@ -2158,6 +2161,162 @@ msgstr "So long ${{name}}! And good luck in the Trial, you'll need it."
 msgid "tabatownbattlearea"
 msgstr "Omnichannel Certified Battle Area - Taba Town"
 
+msgid "rockywhy"
+msgstr "Wait, Rocky, don't stop here! We made it so far already!\n"
+"I know you like the grass, but we need to make it to Cotton Town!"
+
+msgid "heystop"
+msgstr "WHY ARE YOU DOING THIS?"
+
+msgid "heystop2"
+msgstr "Miss, we already told you. Under section 2 of article 3, Omnichannel reserves the right to close down and maintain areas as needed."
+
+msgid "heystop3"
+msgstr "I KNOW THAT, BUT WHY? YOU JUST KICKED US OUT!"
+
+msgid "heystop4"
+msgstr "Marissa, maybe we should leave for now, we'll come back another day."
+
+msgid "heystop5"
+msgstr "But... But... they dug up our flowers. Without a second thought, without asking."
+
+msgid "heystop6"
+msgstr "I know, but we can plant new flowers somewhere else. They'll still be special, because we'll plant them together."
+
+msgid "heystop7"
+msgstr "If they weren't so intent on bringing back Tuxemon, we'd still have our special flower patch..."
+
+msgid "soiwashearing"
+msgstr "Well it looks like we finally found a florist everyone."
+
+msgid "soiwashearing2"
+msgstr "You, the florist, who are you?"
+
+msgid "soiwashearing3"
+msgstr "My name is Marissa, and these... these... THUGS! Destroyed my flower patch."
+
+msgid "soiwashearing4"
+msgstr "How dare you...\n"
+"This is the Premier you're talking too! Have some respect!"
+
+msgid "soiwashearing5"
+msgstr "Ma'am, should I arrest her for addressing you so insolently?"
+
+msgid "soiwashearing6"
+msgstr "No Julius, I don't think that's necessary."
+
+msgid "soiwashearing7"
+msgstr "She looks scared, the poor thing."
+
+msgid "soiwashearing7.5"
+msgstr "But anyone who hates omnichannel is a friend of mine."
+
+msgid "soiwashearing8"
+msgstr "Not to mention that the prisons are already overflowing with the... Flower City incident."
+
+msgid "soiwashearing9"
+msgstr "However, in the future..."
+
+msgid "soiwashearing10"
+msgstr "I expect to be addressed CORRECTLY."
+
+msgid "y-yes"
+msgstr "Y-yes... Ma'am."
+
+msgid "soiwashearing11"
+msgstr "Good, now move so I can talk to these so called \"knights.\""
+
+msgid "allofyounow"
+msgstr "Anyone without a Tuxemon needs to leave. This could get messy."
+
+msgid "waityouhaveone"
+msgstr "You have a Tuxemon?\n"
+"Why is that?\n"
+"... .... ... ... \n"
+"... ... .... ... \n"
+"Trial eh? Well, hopefully you're good in a fight! I'll heal your Tuxemon real quick and then we'll see how good you really are."
+
+msgid "taketheleft"
+msgstr "You take the one on the left and I'll take the other three."
+
+msgid "taketheleft2"
+msgstr "Take the one on the left! Don't worry, I've got these three!"
+
+msgid "nobodygetsthrough"
+msgstr "No matter who you bring with you, I won't let anyone through!"
+
+msgid "staples"
+msgstr "Well, that was easy."
+
+msgid "higrunts"
+msgstr "These grunts don't even get proper training, so they were no match for me. You didn't do too bad either it looks like."
+
+msgid "higrunts2"
+msgstr "Here, I'll heal your Tuxemon."
+
+msgid "ohaimisa"
+msgstr "Well look who it is!"
+
+msgid "ohaimisa2"
+msgstr "I heard that some Xero thug was beating up my men, but I didn't think it'd be you Misa!"
+
+msgid "ohaimisa3"
+msgstr "Hi Kyle, why are you here?"
+
+msgid "ohaimisa4"
+msgstr "Why am I here? Why, I'm the head of this project! Building the model battle area for the entire region is an honor!\n"
+"Although, I can see why you wouldn't have heard the news, frolicking about with your new plaything and all"
+
+msgid "ohaimisa5"
+msgstr "Wait, they aren't my-"
+
+msgid "ohaimisa6"
+msgstr "Ah, doesn't matter. I have more important things to attend to anyways. Have fun you two, AND STOP HURTING MY MEN!\n"
+"Toodles!\n"
+
+msgid "ohaimisa7"
+msgstr "Jack, Rick, Eddy, come with me. Jon, you stay here."
+
+msgid "kylekindasucks"
+msgstr "Sorry about that, Kyle is one of my least favorite people at Omnichannel. And that's saying something!\n" 
+"We were in the same cohort at The Academy and he's been nothing but trouble since. That's probably why Omnichannel recruited him actually.\n"
+"Luckily, I don't have to listen to his grating voice every day like some poor souls have to."
+
+msgid "kylekindasucks2"
+msgstr "On a different note, it looks like Kyle was here to open the path. It seems like the Battle Area is open now."
+
+msgid "kylekindasucks3"
+msgstr "I know you're going through the Trial and all, but watch your back. Omnichannel is everywhere, watching everything.\n"
+"They have no issue... disposing of troublesome individuals."
+
+msgid "kylekindasucks4"
+msgstr "I don't want to see another person disappear. Especially one as promising as you."
+
+msgid "kylekindasucks5"
+msgstr "Alright, I've probably been here long enough. Time for me to head back."
+
+msgid "kylekindasucks6"
+msgstr "Oh, and ${{name}}?"
+
+msgid "kylekindasucks7"
+msgstr "I'll be watching you. In fact, I may even root for you.\n"
+"Don't let me down okay?"
+
+msgid "kylekindasucks8"
+msgstr "You four, head home. Remember, YOU. SAW. NOTHING.\n"
+"Understand?\n"
+"Oh, and florist? Come find me at some point. My address is on the card I gave you. "
+
+msgid "misaisleavingfornow"
+msgstr "Matt, Julius, let's head out. "
+
+msgid "misaisleavingfornow2"
+msgstr "Good Luck ${{name}}. I'm sure we'll see each other again. "
+
+msgid "imherenow"
+msgstr "I'm here to make sure nobody disrespects Omnichannel!\n"
+"... .... ... ...\n"
+"How do I do that? Well... Uh... Maybe I'll ask them nicely?"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"
@@ -2188,6 +2347,9 @@ msgstr "Oh No! You just missed him. I think he went into town though. Maybe chec
 
 msgid "waithere2"
 msgstr "Oh, I hope nobody got hurt from the fallen tree!"
+
+msgid "understand?"
+msgstr "Understand?"
 
 msgid "input_name"
 msgstr "Name?"
@@ -3098,8 +3260,6 @@ msgid "spyder_hospital_billie1"
 msgstr "${{name}}, your meddling has become too much! Just let the authorities do their jobs!"
 msgid "spyder_hospital_billie2"
 msgstr "Wait ... your tuxemon aren't sick! \n ... \n It was that simple? \n Then why did the Enforcers take our tuxemon instead of just curing them? ..."
-msgid "spyder_greenwash_looten1"
-msgstr "As the game is expanded, this dungeon may be expanded too. \n Without code for fusion, however, this dungeon is missing its main gimmick. \n So here's Aardant. \n It's an ant-Aardorn fusion that'll get you into the hospital."
 
 msgid "spyder_mansion_drinkingbuddya1"
 msgstr "I wonder where our drinking buddy has gotten to? "
@@ -3726,3 +3886,55 @@ msgstr "You got 5 Tuxeballs!"
 
 msgid "got_new_tuxemon"
 msgstr "You got a ${{monster_name}}!"
+
+msgid "spyder_greenwash_guard"
+msgstr "Alright, alright, nothing to see here."
+
+msgid "spyder_greenwash_gregor1"
+msgstr "I spend all day watching my CATEYE - I'm going to catch it blinking!"
+msgid "spyder_greenwash_chip1"
+msgstr "I have developed unmatched computing power!"
+msgid "spyder_greenwash_clarence1"
+msgstr "My tuxemon are unstoppable in the sunlight!"
+msgid "spyder_greenwash_gregor2"
+msgstr "Ugh, it didn't even blink when it fainted!"
+msgid "spyder_greenwash_chip2"
+msgstr "Needs more power!"
+msgid "spyder_greenwash_clarence2"
+msgstr "There was a cloud!"
+msgid "spyder_greenwash_louis1" 
+msgstr "The rules of this battle are the simple laws of natural selection: only the strong survive!"
+msgid "spyder_greenwash_louis2"
+msgstr "May I introduce you to the Gaia Hypothesis?"
+
+msgid "spyder_greenwash_louis"
+msgstr "louis"
+msgid "spyder_greenwash_clarence"
+msgstr "clarence"
+msgid "spyder_greenwash_chip"
+msgstr "chip"
+msgid "spyder_greenwash_gregor"
+msgstr "gregor"
+
+msgid "spyder_greenwash_looten1"
+msgstr "Well, I guess fusion technology isn't quite there yet. We've been working on it for years!"
+msgid "spyder_greenwash_looten2"
+msgstr "Here's the closest we've come -- it's a cute fusion of an ant and an Aardorn. Not exactly the ultimate killing machine Omnichannel wanted us to create. I mean … uh! You didn't hear that from me."
+msgid "spyder_greenwash_moreau1"
+msgstr "You shouldn't be here! "
+msgid "spyder_greenwash_moreau2"
+msgstr "The fusion experiment blew up!"
+msgid "spyder_greenwash_dippel1"
+msgstr "Maybe we went too far …"
+msgid "spyder_greenwash_dippel2"
+msgstr "Or not far enough! "
+msgid "spyder_greenwash_aissa1"
+msgstr "Stay out - Greenwash has this all under control."
+msgid "spyder_greenwash_aissa2"
+msgstr "We're all going to die!"
+msgid "spyder_greenwash_aissa"
+msgstr "aissa"
+msgid "spyder_greenwash_dippel"
+msgstr "dippel"
+msgid "spyder_greenwash_moreau"
+msgstr "moreau"

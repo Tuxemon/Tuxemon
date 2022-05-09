@@ -29,7 +29,7 @@
   "slug": "amnesia",
   "sort": "damage",
   "target": {
-    "enemy monster": 0,
+    "enemy monster": 2,
     "enemy team": 0,
     "enemy trainer": 0,
     "item": 0,

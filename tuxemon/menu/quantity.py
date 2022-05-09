@@ -21,6 +21,7 @@ class QuantityMenu(Menu[None]):
         max_quantity: Optional[int] = None,
         callback: Optional[Callable[[int], None]] = None,
         shrink_to_items: bool = False,
+        price: int = 0,
         **kwargs: Any,
     ) -> None:
         """
@@ -36,6 +37,7 @@ class QuantityMenu(Menu[None]):
         """
         super().startup()
         self.quantity = quantity
+        self.price = price
         self.max_quantity = max_quantity
         assert callback
         self.callback = callback
@@ -85,5 +87,31 @@ class QuantityMenu(Menu[None]):
         count_len = 3
 
         formatted_name = label_format(self.quantity, count_len=count_len)
+        image = self.shadow_text(formatted_name, bg=(128, 128, 128))
+        yield MenuItem(image, formatted_name, None, None)
+
+class QuantityAndPriceMenu(QuantityMenu):
+    """Menu used to select quantities, and also shows the price of items."""
+
+    def on_open(self) -> None:
+        # Do this to force the menu to resize when first opened, as currently
+        # it's way too big initially and then resizes after you change quantity.
+        self.menu_items.arrange_menu_items()
+
+    def initialize_items(self) -> Generator[MenuItem[None], None, None]:
+        # Show the quantity by using the method from the parent class:
+        for menu_item in super().initialize_items():
+            yield menu_item
+
+        # Now, show the price:
+        label_format = "$ {:>{count_len}}".format
+        count_len = 3
+
+        price = (
+          self.price if self.quantity == 0
+          else self.quantity * self.price
+        )
+
+        formatted_name = label_format(price, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)

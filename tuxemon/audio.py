@@ -8,6 +8,7 @@ from pygame import mixer
 from tuxemon.db import db
 from tuxemon.tools import transform_resource_filename
 from typing import Protocol, Optional
+from tuxemon import prepare
 
 logger = logging.getLogger(__name__)
 
@@ -24,6 +25,34 @@ class DummySound():
         pass
 
 
+def get_sound_filename(slug: Optional[str]) -> Optional[str]:
+    """
+    Get the filename of a sound slug.
+
+    Parameters:
+        slug: Slug of the file record.
+
+    Returns:
+        Filename if the sound is found.
+
+    """
+    if slug is None or slug == '':
+        return None
+
+    # Get the filename from the db
+    filename = db.lookup_file("sounds", slug)
+    filename = transform_resource_filename("sounds", filename)
+
+    # On some platforms, pygame will silently fail loading
+    # a sound if the filename is incorrect so we check here
+    if not os.path.exists(filename):
+        msg = f"audio file does not exist: {filename}"
+        logger.error(msg)
+        return None
+
+    return filename
+
+
 def load_sound(slug: Optional[str]) -> SoundProtocol:
     """
     Load a sound from disk, identified by it's slug in the db.
@@ -37,22 +66,14 @@ def load_sound(slug: Optional[str]) -> SoundProtocol:
 
     """
 
-    if slug is None or slug == '':
-        return DummySound()
-
-    # get the filename from the db
-    filename = db.lookup_file("sounds", slug)
-    filename = transform_resource_filename("sounds", filename)
-
-    # on some platforms, pygame will silently fail loading
-    # a sound if the filename is incorrect so we check here
-    if not os.path.exists(filename):
-        msg = f"audio file does not exist: {filename}"
-        logger.error(msg)
+    filename = get_sound_filename(slug)
+    if filename is None:
         return DummySound()
 
     try:
-        return mixer.Sound(filename)
+        sound = mixer.Sound(filename)
+        mixer.Sound.set_volume(sound, prepare.CONFIG.sound_volume)
+        return sound
     except MemoryError:
         # raised on some systems if there is no mixer
         logger.error("memoryerror, unable to load sound")

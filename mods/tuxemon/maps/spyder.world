@@ -90,6 +90,31 @@
             "x": 320,
             "y": 2240
         },
+		{
+            "fileName": "spyder_hospital.tmx",
+            "x": 0,
+            "y": 2240
+        },
+		{
+            "fileName": "spyder_hospital_alt.tmx",
+            "x": 0,
+            "y": 2560
+        },
+		{
+            "fileName": "spyder_greenwash.tmx",
+            "x": -320,
+            "y": 2688
+        },
+				{
+            "fileName": "spyder_greenwash_level2.tmx",
+            "x": -640,
+            "y": 2688
+        },
+				{
+            "fileName": "spyder_greenwash_greenhouse.tmx",
+            "x": -320,
+            "y": 3200
+        },
         {
             "fileName": "spyder_routec.tmx",
             "x": 960,

@@ -1,23 +1,26 @@
 from __future__ import annotations
+
 import logging
 import math
 from functools import partial
+from typing import (Any, Callable, Dict, Generic, Iterable, Literal, Optional,
+                    Sequence, Tuple, TypeVar)
 
 import pygame
+import pygame_menu
 
-from tuxemon import audio, prepare, state, tools, graphics
+from tuxemon import audio, graphics, prepare, state, tools
+from tuxemon.animation import Animation
+from tuxemon.graphics import ColorLike
+from tuxemon.menu.events import playerinput_to_event
 from tuxemon.menu.interface import MenuCursor, MenuItem
-from tuxemon.platform.const import intentions
-from tuxemon.platform.const import buttons
-from tuxemon.sprite import RelativeGroup, VisualSpriteList, SpriteGroup,\
-    MenuSpriteGroup
+from tuxemon.menu.theme import get_sound_engine, get_theme
+from tuxemon.platform.const import buttons, intentions
+from tuxemon.platform.events import PlayerInput
+from tuxemon.sprite import (MenuSpriteGroup, RelativeGroup, SpriteGroup,
+                            VisualSpriteList)
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
-from typing import Any, Callable, Optional, Literal, Dict, Sequence, Tuple,\
-    Iterable, TypeVar, Generic
-from tuxemon.graphics import ColorLike
-from tuxemon.platform.events import PlayerInput
-from tuxemon.animation import Animation
 
 logger = logging.getLogger(__name__)
 
@@ -34,6 +37,115 @@ def layout_func(scale: float) -> Callable[[Sequence[float]], Sequence[float]]:
 layout = layout_func(prepare.SCALE)
 
 T = TypeVar("T", covariant=True)
+
+
+class PygameMenuState(state.State):
+
+    transparent = True
+
+    def startup(
+        self,
+        width: int = 1,
+        height: int = 1,
+        theme: Optional[pygame_menu.themes.Theme] = None,
+        **kwargs: Any,
+    )->None:
+
+        if theme is None:
+            theme = get_theme()
+
+        self.open = False
+        self.escape_key_exits = True
+
+        self.menu = pygame_menu.Menu(
+            "",
+            width,
+            height,
+            theme=theme,
+            center_content=True,
+            onclose=self._on_close,
+        )
+        self.menu.set_sound(get_sound_engine())
+        # If we 'ignore nonphysical keyboard', pygame_menu will check the
+        # pygame event queue to make sure there is an actual keyboard event
+        # being pressed right now, and ignore the event if not, hence it won't
+        # work for controllers.
+        self.menu._keyboard_ignore_nonphysical = False
+
+
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+
+        if (
+            event.button in {buttons.B, buttons.BACK, intentions.MENU_CANCEL}
+            and not self.escape_key_exits
+        ):
+            return None
+
+        pygame_event = playerinput_to_event(event)
+        if self.open is True and event.pressed and pygame_event is not None:
+            self.menu.update([pygame_event])
+
+        return event if pygame_event is None else None
+
+    def draw(
+        self,
+        surface: pygame.surface.Surface,
+    ) -> None:
+        self.menu.draw(surface)
+
+    def _set_open(self) -> None:
+        self.open = True
+
+    def resume(self) -> None:
+        animation = self.animate_open()
+        if animation:
+            animation.callback = self._set_open
+        else:
+            self.open = True
+
+    def _on_close(self) -> None:
+        self.open = False
+        self.menu.enable()
+        animation = self.animate_close()
+        if animation:
+            animation.callback = self.client.pop_state
+        else:
+            self.client.pop_state()
+
+    def animate_open(self) -> Optional[Animation]:
+        """
+        Called when menu is going to open.
+
+        Menu will not receive input during the animation.
+        Menu will only play this animation once.
+
+        Must return either an Animation or Task to attach callback.
+        Only modify state of the menu Rect.
+        Do not change important state attributes.
+
+        Returns:
+            Open animation, if any.
+
+        """
+        return None
+
+    def animate_close(self) -> Optional[Animation]:
+        """
+        Called when menu is going to open.
+
+        Menu will not receive input during the animation.
+        Menu will play animation only once.
+        Menu will be popped after animation finished.
+
+        Must return either an Animation or Task to attach callback.
+        Only modify state of the menu Rect.
+        Do not change important state attributes.
+
+        Returns:
+            Close animation, if any.
+
+        """
+        return None
 
 
 class Menu(Generic[T], state.State):
@@ -57,9 +169,12 @@ class Menu(Generic[T], state.State):
     min_font_size = 4
     draw_borders = True
     background = None  # Image used to draw the background
-    background_color: ColorLike = (248, 248, 248)  # The window's background color
-    unavailable_color: ColorLike = (220, 220, 220)  # Font color when the action is unavailable
-    background_filename: Optional[str] = None  # File to load for image background
+    # The window's background color
+    background_color: ColorLike = (248, 248, 248)
+    # Font color when the action is unavailable
+    unavailable_color: ColorLike = (220, 220, 220)
+    # File to load for image background
+    background_filename: Optional[str] = None
     menu_select_sound_filename = "sound_menu_select"
     font_filename = "PressStart2P.ttf"
     borders_filename = "gfx/dialog-borders01.png"
@@ -77,7 +192,8 @@ class Menu(Generic[T], state.State):
         self.state: MenuState = "closed"  # closed, opening, normal, disabled, closing
         self._show_contents = False  # draw menu items, or not
         self._needs_refresh = False  # refresh layout on next draw
-        self._anchors: Dict[str, Tuple[int, int]] = {}  # used to position the menu/state
+        # used to position the menu/state
+        self._anchors: Dict[str, Tuple[int, int]] = {}
         self.__dict__.update(kwargs)  # may be removed in the future
 
         # holds sprites representing menu items
@@ -577,7 +693,8 @@ class Menu(Generic[T], state.State):
             previous.in_focus = False  # clear the focus flag of old item, if any
         self.selected_index = index  # update the selection index
         self.menu_select_sound.play()  # play a sound
-        self.trigger_cursor_update(animate)  # move cursor and [maybe] animate it
+        # move cursor and [maybe] animate it
+        self.trigger_cursor_update(animate)
         selected = self.get_selected_item()
         assert selected
         selected.in_focus = True  # set focus flag of new item

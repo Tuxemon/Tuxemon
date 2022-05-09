@@ -212,13 +212,20 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         ) -> None:
             # enqueue the technique
             target = menu_item.game_object
-            combat_state = self.client.get_state_by_name(CombatState)
-            combat_state.enqueue_action(self.monster, technique, target)
 
-            # close all the open menus
-            self.client.pop_state()  # close target chooser
-            self.client.pop_state()  # close technique menu
-            self.client.pop_state()  # close the monster action menu
+            if "damage" in technique.effect and target == self.monster:
+                params = {"name": self.monster.name}
+                msg = T.format("combat_target_itself", params)
+                tools.open_dialog(local_session, [msg])
+                return
+            else:
+                combat_state = self.client.get_state_by_name(CombatState)
+                combat_state.enqueue_action(self.monster, technique, target)
+
+                # close all the open menus
+                self.client.pop_state()  # close target chooser
+                self.client.pop_state()  # close technique menu
+                self.client.pop_state()  # close the monster action menu
 
         choose_technique()
 

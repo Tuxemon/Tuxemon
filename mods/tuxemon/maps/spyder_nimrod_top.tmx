@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="40">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="43">
  <tileset firstgid="1" name="factory" tilewidth="16" tileheight="16" tilecount="32" columns="8">
   <image source="../gfx/tilesets/factory.png" width="128" height="64"/>
  </tileset>
@@ -21,8 +21,8 @@
  <tileset firstgid="1401" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
   <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
  </tileset>
- <tileset firstgid="2841" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="640" height="400"/>
+ <tileset firstgid="2841" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
+  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="18" height="20">
   <data encoding="base64" compression="zlib">
@@ -31,7 +31,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBg6QAaIRZCwLAl6RZDY3Ghy0iSYw42DTYo5O7mpYw413AMLU1EKzUHXQ0tzRLCoQQfCDKhpBd2P5IJaRgaGOiCuB2JVJvLNOQvUfw6IzwOxLwXmjILhDQCSYQel
+   eJxjYBg6QAaIRZCwLAl6RZDY3Ghy0iSYw42DTYo5kdzUMYca7oGFqSiF5qDroaU5IljUoANhBtS0gu5HckEtIwNDHRDXA7EqE/nmnAXqPwfE54HYlwJzRsHwBgAB0gdF
   </data>
  </layer>
  <layer id="3" name="Tile Layer 4" width="18" height="20">
@@ -58,13 +58,13 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="14" name="Create Berke" type="event" x="144" y="256" width="16" height="16">
+  <object id="14" name="Create Berke" type="event" x="144" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scientist,9,15"/>
     <property name="cond1" value="not npc_exists spyder_scientist"/>
    </properties>
   </object>
-  <object id="15" name="Talk Berke" type="event" x="144" y="240" width="16" height="16">
+  <object id="15" name="Talk Berke" type="event" x="128" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_berke1"/>
     <property name="behav1" value="talk spyder_scientist"/>
@@ -77,13 +77,14 @@
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>
-  <object id="30" name="Create Maverick" type="event" x="144" y="128" width="16" height="16">
+  <object id="30" name="Create Maverick" type="event" x="128" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_maverick,8,8"/>
+    <property name="act2" value="npc_face spyder_nimrod_maverick,right"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_maverick"/>
    </properties>
   </object>
-  <object id="31" name="Talk Maverick" type="event" x="128" y="128" width="16" height="16">
+  <object id="31" name="Talk Maverick" type="event" x="128" y="144" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_nimrod_maverick1"/>
     <property name="act3" value="start_battle spyder_nimrod_maverick"/>
@@ -93,13 +94,14 @@
     <property name="cond1" value="not variable_set nimrodmaverick:yes"/>
    </properties>
   </object>
-  <object id="32" name="Create Justice" type="event" x="240" y="256" width="16" height="16">
+  <object id="32" name="Create Justice" type="event" x="224" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_justice,14,16"/>
+    <property name="act2" value="npc_face spyder_nimrod_justice,right"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_justice"/>
    </properties>
   </object>
-  <object id="33" name="Talk Justice" type="event" x="224" y="256" width="16" height="16">
+  <object id="33" name="Talk Justice" type="event" x="224" y="272" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_nimrod_justice1"/>
     <property name="act3" value="start_battle spyder_nimrod_justice"/>
@@ -109,13 +111,13 @@
     <property name="cond1" value="not variable_set nimrodjustice:yes"/>
    </properties>
   </object>
-  <object id="34" name="Create Zircon" type="event" x="192" y="160" width="16" height="16">
+  <object id="34" name="Create Zircon" type="event" x="176" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_zircon,11,10"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_zircon"/>
    </properties>
   </object>
-  <object id="35" name="Talk Zircon" type="event" x="176" y="160" width="16" height="16">
+  <object id="35" name="Talk Zircon" type="event" x="176" y="144" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_nimrod_zircon1"/>
     <property name="act3" value="start_battle spyder_nimrod_zircon"/>
@@ -129,6 +131,36 @@
    <properties>
     <property name="act1" value="set_variable environment:snow"/>
     <property name="cond1" value="not variable_set environment:snow"/>
+   </properties>
+  </object>
+  <object id="40" name="Talk Justice" type="event" x="240" y="256" width="48" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_justice1"/>
+    <property name="act3" value="start_battle spyder_nimrod_justice"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_justice2"/>
+    <property name="act6" value="set_variable nimrodjustice:yes"/>
+    <property name="cond1" value="not variable_set nimrodjustice:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="41" name="Talk Zircon" type="event" x="176" y="176" width="16" height="32">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_zircon1"/>
+    <property name="act3" value="start_battle spyder_nimrod_zircon"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_zircon2"/>
+    <property name="act6" value="set_variable nimrodzircon:yes"/>
+    <property name="cond1" value="not variable_set nimrodzircon:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="42" name="Talk Maverick" type="event" x="144" y="128" width="32" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_maverick1"/>
+    <property name="act3" value="start_battle spyder_nimrod_maverick"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_maverick2"/>
+    <property name="act6" value="set_variable nimrodmaverick:yes"/>
+    <property name="cond1" value="not variable_set nimrodmaverick:yes"/>
+    <property name="cond2" value="is player_at"/>
    </properties>
   </object>
  </objectgroup>

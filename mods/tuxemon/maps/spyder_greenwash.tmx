@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="75">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="79">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -105,7 +105,7 @@
   </object>
   <object id="46" name="Teleport to Greenhouse" type="event" x="240" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_greenwash_greenhouse.tmx,0,39,0.3"/>
+    <property name="act1" value="transition_teleport spyder_greenwash_greenhouse.tmx,1,7,0.3"/>
     <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
@@ -113,7 +113,7 @@
   </object>
   <object id="51" name="Teleport to Greenhouse" type="event" x="240" y="320" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_greenwash_greenhouse.tmx,0,40,0.3"/>
+    <property name="act1" value="transition_teleport spyder_greenwash_greenhouse.tmx,1,8,0.3"/>
     <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
@@ -130,7 +130,7 @@
   </object>
   <object id="68" name="Teleport to Level 2" type="event" x="16" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_greenwash_level2.tmx,0,40,0.3"/>
+    <property name="act1" value="transition_teleport spyder_greenwash_level2.tmx,13,5,0.3"/>
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
@@ -188,6 +188,42 @@
     <property name="act6" value="set_variable greenwashlouis:yes"/>
     <property name="behav1" value="talk spyder_greenwash_louis"/>
     <property name="cond1" value="not variable_set greenwashlouis:yes"/>
+   </properties>
+  </object>
+  <object id="75" name="Talk Chip" type="event" x="80" y="224" width="16" height="48">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_greenwash_chip1"/>
+    <property name="act3" value="start_battle spyder_greenwash_chip"/>
+    <property name="act4" value="translated_dialog spyder_greenwash_chip2"/>
+    <property name="act6" value="set_variable greenwashchip:yes"/>
+    <property name="cond1" value="not variable_set greenwashchip:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="76" name="Talk Louis" type="event" x="96" y="64" width="16" height="32">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_greenwash_louis1"/>
+    <property name="act3" value="start_battle spyder_greenwash_louis"/>
+    <property name="act4" value="translated_dialog spyder_greenwash_louis2"/>
+    <property name="act6" value="set_variable greenwashlouis:yes"/>
+    <property name="cond1" value="not variable_set greenwashlouis:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="77" name="Talk Clarence" type="event" x="208" y="48" width="16" height="48">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_greenwash_clarence1"/>
+    <property name="act3" value="start_battle spyder_greenwash_clarence"/>
+    <property name="act4" value="translated_dialog spyder_greenwash_clarence2"/>
+    <property name="act6" value="set_variable greenwashclarence:yes"/>
+    <property name="cond1" value="not variable_set greenwashclarence:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="78" name="Move Right" type="event" x="144" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_move player,right"/>
+    <property name="cond1" value="is player_at"/>
    </properties>
   </object>
  </objectgroup>

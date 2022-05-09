@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="92">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="102">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -145,14 +145,14 @@
     <property name="cond1" value="not variable_set dragonscavelessa:yes"/>
    </properties>
   </object>
-  <object id="65" name="Create Cailin" type="event" x="112" y="432" width="16" height="16">
+  <object id="65" name="Create Cailin" type="event" x="112" y="416" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_cailin,7,26"/>
     <property name="act2" value="npc_face spyder_dragonscave_cailin,right"/>
     <property name="cond1" value="not npc_exists spyder_dragonscave_cailin"/>
    </properties>
   </object>
-  <object id="66" name="Talk Cailin" type="event" x="112" y="416" width="16" height="16">
+  <object id="66" name="Talk Cailin" type="event" x="112" y="432" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_dragonscave_cailin1"/>
     <property name="act3" value="start_battle spyder_dragonscave_cailin"/>
@@ -169,7 +169,7 @@
     <property name="cond1" value="not npc_exists spyder_dragonscave_griffin"/>
    </properties>
   </object>
-  <object id="68" name="Talk Griffin" type="event" x="112" y="592" width="16" height="16">
+  <object id="68" name="Talk Griffin" type="event" x="96" y="608" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_dragonscave_griffin1"/>
     <property name="act3" value="start_battle spyder_dragonscave_griffin"/>
@@ -186,7 +186,7 @@
     <property name="cond1" value="not npc_exists spyder_dragonscave_daenny"/>
    </properties>
   </object>
-  <object id="70" name="Talk Daenny" type="event" x="192" y="480" width="16" height="16">
+  <object id="70" name="Talk Daenny" type="event" x="176" y="496" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_dragonscave_daenny1"/>
     <property name="act3" value="start_battle spyder_dragonscave_daenny"/>
@@ -293,7 +293,7 @@
     <property name="cond2" value="not variable_set dragonscavetru:yes"/>
    </properties>
   </object>
-  <object id="83" name="Talk Tru" type="event" x="240" y="144" width="16" height="16">
+  <object id="83" name="Talk Tru" type="event" x="224" y="160" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_dragonscave_tru1"/>
     <property name="act3" value="start_battle spyder_dragonscave_tru"/>
@@ -344,6 +344,108 @@
    <properties>
     <property name="act1" value="set_variable environment:cave"/>
     <property name="cond1" value="not variable_set environment:cave"/>
+   </properties>
+  </object>
+  <object id="92" name="Talk Tomas" type="event" x="240" y="528" width="48" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dragonscave_tomas1"/>
+    <property name="act3" value="start_battle spyder_dragonscave_tomas"/>
+    <property name="act4" value="translated_dialog spyder_dragonscave_tomas2"/>
+    <property name="act6" value="set_variable dragonscavetomas:yes"/>
+    <property name="cond1" value="not variable_set dragonscavetomas:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="93" name="Talk Daenny" type="event" x="192" y="432" width="16" height="64">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dragonscave_daenny1"/>
+    <property name="act3" value="start_battle spyder_dragonscave_daenny"/>
+    <property name="act4" value="translated_dialog spyder_dragonscave_daenny2"/>
+    <property name="act6" value="set_variable dragonscavedaenny:yes"/>
+    <property name="cond1" value="not variable_set dragonscavedaenny:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="94" name="Talk Cailin" type="event" x="128" y="416" width="32" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dragonscave_cailin1"/>
+    <property name="act3" value="start_battle spyder_dragonscave_cailin"/>
+    <property name="act4" value="translated_dialog spyder_dragonscave_cailin2"/>
+    <property name="act6" value="set_variable dragonscavecailin:yes"/>
+    <property name="cond1" value="not variable_set dragonscavecailin:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="95" name="Talk Lessa" type="event" x="256" y="336" width="16" height="48">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dragonscave_lessa1"/>
+    <property name="act3" value="start_battle spyder_dragonscave_lessa"/>
+    <property name="act4" value="translated_dialog spyder_dragonscave_lessa2"/>
+    <property name="act6" value="set_variable dragonscavelessa:yes"/>
+    <property name="cond1" value="not variable_set dragonscavelessa:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="96" name="Talk Griffin" type="event" x="112" y="528" width="16" height="80">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dragonscave_griffin1"/>
+    <property name="act3" value="start_battle spyder_dragonscave_griffin"/>
+    <property name="act4" value="translated_dialog spyder_dragonscave_griffin2"/>
+    <property name="act6" value="set_variable dragonscavegriffin:yes"/>
+    <property name="cond1" value="not variable_set dragonscavegriffin:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="97" name="Talk Benden" type="event" x="80" y="240" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dragonscave_benden1"/>
+    <property name="act3" value="start_battle spyder_dragonscave_benden"/>
+    <property name="act4" value="translated_dialog spyder_dragonscave_benden2"/>
+    <property name="act5" value="set_monster_health ,"/>
+    <property name="act7" value="set_monster_status ,"/>
+    <property name="act8" value="set_variable dragonscavebenden:yes"/>
+    <property name="cond1" value="not variable_set dragonscavebenden:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="98" name="Talk Ray" type="event" x="288" y="144" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dragonscave_ray1"/>
+    <property name="act3" value="start_battle spyder_dragonscave_ray"/>
+    <property name="act4" value="translated_dialog spyder_dragonscave_ray2"/>
+    <property name="act6" value="set_variable dragonscaveray:yes"/>
+    <property name="cond1" value="not variable_set dragonscaveray:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="99" name="Talk Tru" type="event" x="240" y="112" width="16" height="48">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dragonscave_tru1"/>
+    <property name="act3" value="start_battle spyder_dragonscave_tru"/>
+    <property name="act4" value="translated_dialog spyder_dragonscave_tru2"/>
+    <property name="act6" value="set_variable dragonscavetru:yes"/>
+    <property name="cond1" value="not variable_set dragonscavetru:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="100" name="Talk Lucille" type="event" x="208" y="128" width="16" height="32">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dragonscave_lucille1"/>
+    <property name="act3" value="start_battle spyder_dragonscave_lucille"/>
+    <property name="act4" value="translated_dialog spyder_dragonscave_lucille2"/>
+    <property name="act6" value="set_variable dragonscavelucille:yes"/>
+    <property name="cond1" value="not variable_set dragonscavelucille:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="101" name="Talk Mal" type="event" x="176" y="144" width="32" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dragonscave_mal1"/>
+    <property name="act3" value="start_battle spyder_dragonscave_mal"/>
+    <property name="act4" value="translated_dialog spyder_dragonscave_mal2"/>
+    <property name="act6" value="set_variable dragonscavemal:yes"/>
+    <property name="cond1" value="not variable_set dragonscavemal:yes"/>
+    <property name="cond2" value="is player_at"/>
    </properties>
   </object>
  </objectgroup>

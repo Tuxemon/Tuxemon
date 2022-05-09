@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="220">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="223">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -613,7 +613,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="208" name="Create Aquemini" type="event" x="544" y="256" width="16" height="16">
+  <object id="208" name="Create Aquemini" type="event" x="544" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dryadsgrove_aquemini,34,15"/>
     <property name="act2" value="npc_face spyder_dryadsgrove_aquemini,up"/>
@@ -621,7 +621,7 @@
     <property name="cond2" value="not variable_set dryadsgroveaquemini:yes"/>
    </properties>
   </object>
-  <object id="209" name="Talk Aquemini" type="event" x="544" y="240" width="16" height="16">
+  <object id="209" name="Talk Aquemini" type="event" x="528" y="240" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_dryadsgrove_aquemini1"/>
     <property name="act3" value="start_battle spyder_dryadsgrove_aquemini"/>
@@ -698,6 +698,36 @@
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="not variable_set environment:grass"/>
+   </properties>
+  </object>
+  <object id="220" name="Talk Aquemini" type="event" x="544" y="192" width="16" height="48">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dryadsgrove_aquemini1"/>
+    <property name="act3" value="start_battle spyder_dryadsgrove_aquemini"/>
+    <property name="act4" value="translated_dialog spyder_dryadsgrove_aquemini2"/>
+    <property name="act6" value="set_variable dryadsgroveaquemini:yes"/>
+    <property name="cond1" value="not variable_set dryadsgroveaquemini:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="221" name="Talk Ignatia" type="event" x="400" y="128" width="48" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dryadsgrove_ignatia1"/>
+    <property name="act3" value="start_battle spyder_dryadsgrove_ignatia"/>
+    <property name="act4" value="translated_dialog spyder_dryadsgrove_ignatia2"/>
+    <property name="act6" value="set_variable dryadsgroveignatia:yes"/>
+    <property name="cond1" value="not variable_set dryadsgroveignatia:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="222" name="Talk Petra" type="event" x="240" y="96" width="16" height="32">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dryadsgrove_petra1"/>
+    <property name="act3" value="start_battle spyder_dryadsgrove_petra"/>
+    <property name="act4" value="translated_dialog spyder_dryadsgrove_petra2"/>
+    <property name="act6" value="set_variable dryadsgrovepetra:yes"/>
+    <property name="cond1" value="not variable_set dryadsgrovepetra:yes"/>
+    <property name="cond2" value="is player_at"/>
    </properties>
   </object>
  </objectgroup>

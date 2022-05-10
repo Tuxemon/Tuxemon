@@ -125,6 +125,8 @@
   </object>
   <object id="29" name="Open Shop" type="event" x="48" y="96" width="16" height="16">
    <properties>
+    <property name="act1" value="npc_face spyder_shopkeeper,right"/>
+    <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
     <property name="act3" value="open_shop spyder_shopkeeper"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
@@ -133,6 +135,8 @@
   </object>
   <object id="30" name="Open Shop" type="event" x="16" y="128" width="16" height="16">
    <properties>
+    <property name="act1" value="npc_face spyder_shopkeeper,down"/>
+    <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
     <property name="act3" value="open_shop spyder_shopkeeper"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
@@ -141,6 +145,7 @@
   </object>
   <object id="31" name="Talk/Open Shop" type="event" x="0" y="80" width="16" height="16">
    <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
     <property name="act3" value="open_shop spyder_shopkeeper"/>
     <property name="behav1" value="talk spyder_shopkeeper"/>
    </properties>

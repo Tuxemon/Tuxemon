@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="44">
  <tileset firstgid="1" name="factory" tilewidth="16" tileheight="16" tilecount="32" columns="8">
   <image source="../gfx/tilesets/factory.png" width="128" height="64"/>
  </tileset>
@@ -30,8 +30,8 @@
  <tileset firstgid="3336" name="Cave_Tiles_by_George_" tilewidth="16" tileheight="16" tilecount="154" columns="14">
   <image source="../gfx/tilesets/Cave_Tiles_by_George_.png" width="224" height="181"/>
  </tileset>
- <tileset firstgid="3490" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="640" height="400"/>
+ <tileset firstgid="3490" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
+  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="18" height="20">
   <data encoding="base64" compression="zlib">
@@ -40,7 +40,7 @@
  </layer>
  <layer id="2" name="Tile Layer 3" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFQxV4MWGn8amhlTkXGBkYLpKILzHi998oGFrAiW+gXTD8AACSlA7F
+   eJxjYBgFQxV4MWGn8amhlTkXGBkYLpKILzHi998oGFrgEe9Au2D4AQBl0A9k
   </data>
  </layer>
  <layer id="3" name="Tile Layer 4" width="18" height="20">
@@ -61,8 +61,8 @@
   <object id="11" type="collision-line" x="32" y="272">
    <polyline points="0,0 0,32"/>
   </object>
-  <object id="12" type="collision-line" x="256" y="288">
-   <polyline points="0,0 0,32"/>
+  <object id="12" type="collision-line" x="256" y="304">
+   <polyline points="0,0 0,16"/>
   </object>
   <object id="15" type="collision" x="240" y="160" width="48" height="16"/>
   <object id="28" type="collision-line" x="32" y="288">
@@ -121,7 +121,7 @@
     <property name="cond1" value="not npc_exists spyder_nimrod_honour"/>
    </properties>
   </object>
-  <object id="17" name="Talk Honour" type="event" x="224" y="64" width="16" height="16">
+  <object id="17" name="Talk Honour" type="event" x="256" y="64" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_nimrod_honour1"/>
     <property name="act3" value="start_battle spyder_nimrod_honour"/>
@@ -184,15 +184,15 @@
     <property name="cond1" value="not variable_set nimrodbirbrobo_middle:yes"/>
    </properties>
   </object>
-  <object id="24" name="Create Xeon" type="event" x="160" y="224" width="16" height="16">
+  <object id="24" name="Create Xeon" type="event" x="160" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_nimrod_xeon,10,14"/>
+    <property name="act1" value="create_npc spyder_nimrod_xeon,10,15"/>
     <property name="act2" value="npc_face spyder_nimrod_xeon,up"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_xeon"/>
     <property name="cond2" value="not variable_set nimrodxeon_middle:yes"/>
    </properties>
   </object>
-  <object id="25" name="Talk Xeon" type="event" x="176" y="224" width="16" height="16">
+  <object id="25" name="Talk Xeon" type="event" x="176" y="240" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_nimrod_xeon1"/>
     <property name="act3" value="start_battle spyder_nimrod_xeon"/>
@@ -206,6 +206,7 @@
   <object id="26" name="Create Argon" type="event" x="208" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_argon,13,9"/>
+    <property name="act2" value="npc_face spyder_nimrod_argon,right"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_argon"/>
    </properties>
   </object>
@@ -226,7 +227,7 @@
     <property name="cond1" value="not npc_exists spyder_nimrod_archer"/>
    </properties>
   </object>
-  <object id="30" name="Talk Archer" type="event" x="48" y="192" width="16" height="16">
+  <object id="30" name="Talk Archer" type="event" x="32" y="208" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_nimrod_archer1"/>
     <property name="act3" value="start_battle spyder_nimrod_archer"/>
@@ -240,6 +241,79 @@
    <properties>
     <property name="act1" value="set_variable environment:snow"/>
     <property name="cond1" value="not variable_set environment:snow"/>
+   </properties>
+  </object>
+  <object id="37" name="Talk Argon" type="event" x="224" y="144" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_argon1"/>
+    <property name="act3" value="start_battle spyder_nimrod_argon"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_argon2"/>
+    <property name="act6" value="set_variable nimrodargon:yes"/>
+    <property name="cond1" value="not variable_set nimrodargon:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="38" name="Talk Honour" type="event" x="192" y="64" width="48" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_honour1"/>
+    <property name="act3" value="start_battle spyder_nimrod_honour"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_honour2"/>
+    <property name="act6" value="set_variable nimrodhonour:yes"/>
+    <property name="cond1" value="not variable_set nimrodhonour:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="39" name="Talk Birb Robo" type="event" x="192" y="192" width="16" height="64">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_birbrobo1"/>
+    <property name="act3" value="start_battle spyder_nimrod_birbrobo"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_birbrobo2"/>
+    <property name="act6" value="set_variable nimrodbirbrobo_middle:yes"/>
+    <property name="act7" value="remove_npc spyder_nimrod_birbrobo"/>
+    <property name="cond1" value="not variable_set nimrodbirbrobo_middle:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="40" name="Talk Xeon" type="event" x="160" y="176" width="16" height="64">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_xeon1"/>
+    <property name="act3" value="start_battle spyder_nimrod_xeon"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_xeon2"/>
+    <property name="act6" value="set_variable nimrodxeon_middle:yes"/>
+    <property name="act7" value="remove_npc spyder_nimrod_xeon"/>
+    <property name="cond1" value="not variable_set nimrodxeon_middle:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="41" name="Talk Chrome Robo" type="event" x="144" y="192" width="16" height="64">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_chromerobo1"/>
+    <property name="act3" value="start_battle spyder_nimrod_chromerobo"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_chromerobo2"/>
+    <property name="act6" value="set_variable nimrodchromerobo_middle:yes"/>
+    <property name="act7" value="remove_npc spyder_nimrod_chromerobo"/>
+    <property name="cond1" value="not variable_set nimrodchromerobo_middle:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="42" name="Talk Archer" type="event" x="64" y="208" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_archer1"/>
+    <property name="act3" value="start_battle spyder_nimrod_archer"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_archer2"/>
+    <property name="act6" value="set_variable nimrodarcher:yes"/>
+    <property name="cond1" value="not variable_set nimrodarcher:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="43" name="Talk Antimony" type="event" x="64" y="192" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_antimony1"/>
+    <property name="act3" value="start_battle spyder_nimrod_antimony"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_antimony2"/>
+    <property name="act6" value="set_variable nimrodantimony:yes"/>
+    <property name="cond1" value="not variable_set nimrodantimony:yes"/>
+    <property name="cond2" value="is player_at"/>
    </properties>
   </object>
  </objectgroup>

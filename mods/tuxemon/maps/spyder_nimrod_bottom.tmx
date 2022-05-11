@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="53">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="56">
  <tileset firstgid="1" name="factory" tilewidth="16" tileheight="16" tilecount="32" columns="8">
   <image source="../gfx/tilesets/factory.png" width="128" height="64"/>
  </tileset>
@@ -69,7 +69,7 @@
     <property name="cond1" value="not npc_exists spyder_enforcer_rookie"/>
    </properties>
   </object>
-  <object id="35" name="Talk Dirk" type="event" x="32" y="176" width="16" height="16">
+  <object id="35" name="Talk Dirk" type="event" x="48" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_dirk1"/>
     <property name="behav1" value="talk spyder_enforcer_rookie"/>
@@ -89,13 +89,14 @@
     <property name="behav1" value="talk spyder_soldier"/>
    </properties>
   </object>
-  <object id="40" name="Create Rebel" type="event" x="208" y="240" width="16" height="16">
+  <object id="40" name="Create Rebel" type="event" x="192" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_rebel,12,15"/>
+    <property name="act2" value="npc_face spyder_nimrod_rebel,right"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_rebel"/>
    </properties>
   </object>
-  <object id="41" name="Talk Rebel" type="event" x="192" y="240" width="16" height="16">
+  <object id="41" name="Talk Rebel" type="event" x="192" y="256" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_nimrod_rebel1"/>
     <property name="act3" value="start_battle spyder_nimrod_rebel"/>
@@ -105,13 +106,13 @@
     <property name="cond1" value="not variable_set nimrodrebel:yes"/>
    </properties>
   </object>
-  <object id="42" name="Create Bowie" type="event" x="32" y="240" width="16" height="16">
+  <object id="42" name="Create Bowie" type="event" x="16" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_bowie,1,15"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_bowie"/>
    </properties>
   </object>
-  <object id="43" name="Talk Bowie" type="event" x="16" y="240" width="16" height="16">
+  <object id="43" name="Talk Bowie" type="event" x="48" y="240" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_nimrod_bowie1"/>
     <property name="act3" value="start_battle spyder_nimrod_bowie"/>
@@ -128,7 +129,7 @@
     <property name="cond1" value="not npc_exists spyder_nimrod_tru"/>
    </properties>
   </object>
-  <object id="45" name="Talk Tru" type="event" x="32" y="288" width="16" height="16">
+  <object id="45" name="Talk Tru" type="event" x="16" y="304" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_nimrod_tru1"/>
     <property name="act3" value="start_battle spyder_nimrod_tru"/>
@@ -153,6 +154,39 @@
    <properties>
     <property name="act1" value="set_variable environment:snow"/>
     <property name="cond1" value="not variable_set environment:snow"/>
+   </properties>
+  </object>
+  <object id="53" name="Talk Rebel" type="event" x="208" y="240" width="32" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_rebel1"/>
+    <property name="act3" value="start_battle spyder_nimrod_rebel"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_rebel2"/>
+    <property name="act6" value="set_variable nimrodrebel:yes"/>
+    <property name="cond1" value="not variable_set nimrodrebel:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="54" name="Talk Tru" type="event" x="32" y="288" width="32" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_tru1"/>
+    <property name="act3" value="start_battle spyder_nimrod_tru"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_tru2"/>
+    <property name="act5" value="pathfind spyder_enforcer_rookie,5,17"/>
+    <property name="act6" value="set_variable nimrodtru:yes"/>
+    <property name="act7" value="pathfind spyder_soldier,0,17"/>
+    <property name="act8" value="remove_npc spyder_soldier"/>
+    <property name="cond1" value="not variable_set nimrodtru:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="55" name="Talk Bowie" type="event" x="16" y="256" width="16" height="32">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_bowie1"/>
+    <property name="act3" value="start_battle spyder_nimrod_bowie"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_bowie2"/>
+    <property name="act6" value="set_variable nimrodbowie:yes"/>
+    <property name="cond1" value="not variable_set nimrodbowie:yes"/>
+    <property name="cond2" value="is player_at"/>
    </properties>
   </object>
  </objectgroup>

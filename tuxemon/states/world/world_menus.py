@@ -27,23 +27,20 @@
 # states.WorldMenuState
 #
 from __future__ import annotations
+
 import logging
 from functools import partial
+from typing import Any, Callable, Sequence, Tuple
+
+import pygame_menu
 
 from tuxemon import prepare
+from tuxemon.animation import Animation
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import Menu
+from tuxemon.menu.menu import Menu, PygameMenuState
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
-from typing import Callable, Tuple, Sequence, Any, Optional
-from tuxemon.animation import Animation
-import pygame_menu
-from tuxemon.menu.theme import get_theme, get_sound_engine
-from tuxemon.state import State
-from tuxemon.menu.events import playerinput_to_event
-from tuxemon.platform.events import PlayerInput
-import pygame
 
 logger = logging.getLogger(__name__)
 
@@ -71,30 +68,17 @@ def add_menu_items(
         height - 2 * b_height,
         position=(width + b_width, b_height, False),
     )
-    menu.set_sound(get_sound_engine())
 
 
-class WorldMenuState(State):
+class WorldMenuState(PygameMenuState):
     """Menu for the world state."""
 
-    transparent = True
-
     def startup(self, **kwargs: Any) -> None:
-        super().startup(**kwargs)
+        _, height = prepare.SCREEN_SIZE
 
-        width, height = prepare.SCREEN_SIZE
-
-        self.menu = pygame_menu.Menu(
-            "",
-            width,
-            height,
-            theme=get_theme(),
-            center_content=True,
-            onclose=self.on_close,
-        )
+        super().startup(height=height, **kwargs)
 
         self.animation_offset = 0
-        self.open = False
 
         def change_state(state: str, **kwargs: Any) -> Callable[[], object]:
             return partial(self.client.replace_state, state, **kwargs)
@@ -118,28 +102,6 @@ class WorldMenuState(State):
         )
         add_menu_items(self.menu, menu_items_map)
 
-    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-
-        pygame_event = playerinput_to_event(event)
-        if self.open is True and event.pressed and pygame_event is not None:
-            self.menu.update([pygame_event])
-
-        return event if pygame_event is None else None
-
-    def draw(
-        self,
-        surface: pygame.surface.Surface,
-    ) -> None:
-        self.menu.draw(surface)
-
-    def resume(self) -> None:
-        self.animate_open()
-
-    def on_close(self) -> None:
-        self.open = False
-        self.menu.enable()
-        self.animate_close()
-
     def open_monster_menu(self) -> None:
         from tuxemon.states.monster import MonsterMenuState
 
@@ -160,7 +122,8 @@ class WorldMenuState(State):
                 player = local_session.player
                 monster_list = player.monsters
 
-                # get the newly selected item.  it will be set to previous position
+                # get the newly selected item.  it will be set to previous
+                # position
                 original_monster = monster_menu.get_selected_item().game_object
 
                 # get the position in the list of the cursor
@@ -190,16 +153,59 @@ class WorldMenuState(State):
         def open_monster_stats() -> None:
             open_dialog(local_session, [T.translate("not_implemented")])
 
+        def positive_answer() -> None:
+            success = False
+            player = local_session.player
+            monster = monster_menu.get_selected_item().game_object
+            success = player.release_monster(monster)
+
+            # TODO: Currently the menu does not close automatically.
+            # It needs to be completely refreshed (by backing out or moving the cursor) in order for the player to see the change.
+            # It still has the desired effect, but it would be better if the menu refreshed automatically.
+            if success:
+                self.client.pop_state()
+                self.client.pop_state()
+                open_dialog(
+                    local_session,
+                    [T.format("tuxemon_released", {"name": monster.name})],
+                )
+            else:
+                open_dialog(local_session, [T.translate("cant_release")])
+
+        def negative_answer() -> None:
+            self.client.pop_state()  # close menu
+
+        def release_monster_from_party() -> None:
+            monster = monster_menu.get_selected_item().game_object
+            menu = self.client.push_state(Menu)
+            open_dialog(
+                local_session,
+                [T.format("release_confirmation", {"name": monster.name})],
+            )
+
+            menu_items_map = (
+                ("no", negative_answer),
+                ("yes", positive_answer),
+            )
+
+            add_menu_items(menu, menu_items_map)
+
         def open_monster_submenu(
             menu_item: MenuItem[WorldMenuGameObj],
         ) -> None:
             menu_items_map = (
                 ("monster_menu_info", open_monster_stats),
                 ("monster_menu_move", select_first_monster),
+                ("monster_menu_release", release_monster_from_party),
             )
-            menu = self.client.push_state(Menu)
-            menu.shrink_to_items = True
-            add_menu_items(menu, menu_items_map)
+            menu = self.client.push_state(PygameMenuState)
+
+            for key, callback in menu_items_map:
+                label = T.translate(key).upper()
+                menu.menu.add.button(label, callback)
+
+            size = menu.menu.get_size(widget=True)
+            menu.menu.resize(*size)
 
         def handle_selection(menu_item: MenuItem[WorldMenuGameObj]) -> None:
             if "monster" in context:
@@ -207,7 +213,9 @@ class WorldMenuState(State):
             else:
                 open_monster_submenu(menu_item)
 
-        context = dict()  # dict passed around to hold info between menus/callbacks
+        context = (
+            dict()
+        )  # dict passed around to hold info between menus/callbacks
         monster_menu = self.client.replace_state("MonsterMenuState")
         monster_menu.on_menu_selection = handle_selection
         monster_menu.on_menu_selection_change = monster_menu_hook
@@ -230,11 +238,6 @@ class WorldMenuState(State):
         ani = self.animate(self, animation_offset=width, duration=0.50)
         ani.update_callback = self.update_animation_position
 
-        def set_open() -> None:
-            self.open = True
-
-        ani.callback = set_open
-
         return ani
 
     def animate_close(self) -> Animation:
@@ -247,10 +250,5 @@ class WorldMenuState(State):
         """
         ani = self.animate(self, animation_offset=0, duration=0.50)
         ani.update_callback = self.update_animation_position
-
-        def close_state() -> None:
-            self.client.pop_state()
-
-        ani.callback = close_state
 
         return ani

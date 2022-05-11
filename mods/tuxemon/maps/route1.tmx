@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="145">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="148">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -737,9 +737,57 @@
     <property name="act70" value="translated_dialog toodles"/>
     <property name="act71" value="wait 0.4"/>
     <property name="act72" value="remove_npc kyle"/>
+    <property name="act73" value="set_variable snark:now"/>
+    <property name="act74" value="set_variable consoleme:now"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond3" value="not variable_set snark:now"/>
     <property name="cond4" value="is variable_set misaisgone:true"/>
+   </properties>
+  </object>
+  <object id="145" name="have to head in" type="event" x="768" y="384" width="16" height="16">
+   <properties>
+    <property name="act10" value="npc_face christie,left"/>
+    <property name="act11" value="translated_dialog dowehavetogoin"/>
+    <property name="act12" value="npc_face player,right"/>
+    <property name="act13" value="wait 1"/>
+    <property name="act14" value="npc_face speck,right"/>
+    <property name="act15" value="wait 0.4"/>
+    <property name="act16" value="translated_dialog dowehavetogoin2"/>
+    <property name="act17" value="wait 0.3"/>
+    <property name="act18" value="npc_face speck,up"/>
+    <property name="act19" value="wait 0.8"/>
+    <property name="act20" value="translated_dialog dowehavetogoin3"/>
+    <property name="act21" value="wait 0.6"/>
+    <property name="act22" value="npc_face speck,  left"/>
+    <property name="act23" value="wait 0.4"/>
+    <property name="act24" value="npc_face speck,right"/>
+    <property name="act25" value="wait 0.2"/>
+    <property name="act26" value="translated_dialog dowehavetogoin4"/>
+    <property name="act27" value="wait 0.6"/>
+    <property name="act28" value="translated_dialog dowehavetogoin5"/>
+    <property name="act29" value="set_variable friends:maybe"/>
+    <property name="cond1" value="is variable_set consoleme:now"/>
+    <property name="cond2" value="not variable_set friends:maybe"/>
+   </properties>
+  </object>
+  <object id="147" name="friends or rivals" type="event" x="800" y="384" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog hichristie"/>
+    <property name="act11" value="translated_dialog hichristie2"/>
+    <property name="act12" value="set_variable rivals:maybe"/>
+    <property name="act20" value="npc_run christie"/>
+    <property name="act21" value="pathfind christie, 53,36"/>
+    <property name="act22" value="npc_face christie,down"/>
+    <property name="act23" value="npc_face speck,up"/>
+    <property name="act24" value="npc_face player,up"/>
+    <property name="act25" value="translated_dialog hiperson"/>
+    <property name="act30" value="translated_dialog hiperson2"/>
+    <property name="act31" value="npc_face speck,left"/>
+    <property name="act32" value="npc_face player,right"/>
+    <property name="act33" value="wait 0.3"/>
+    <property name="act34" value="translated_dialog hiperson3"/>
+    <property name="cond1" value="is variable_set friends:maybe"/>
+    <property name="cond2" value="not variable_set rivals:maybe"/>
    </properties>
   </object>
  </objectgroup>

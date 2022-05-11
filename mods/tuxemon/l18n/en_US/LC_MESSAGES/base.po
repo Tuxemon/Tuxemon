@@ -2335,7 +2335,7 @@ msgid "welcometotaba4"
 msgstr "To be honest, I thought more would pass the evaluation..."
 
 msgid "welcometotaba5"
-msgstr "Regardless, my name is Kevin and I am the lead architect behind the Battle Areas.\n"
+msgstr "Regardless, my name is Kyle and I am the lead architect behind the Battle Areas.\n"
 "I am here to inaugurate the first Fondent Region Battle Area and declare that...\n"
 "THE TRIAL HAS BEGUN!"
 
@@ -2384,6 +2384,39 @@ msgstr "Oh, and Speck? I enjoyed the screams"
 
 msgid "toodles"
 msgstr "Toodles!"
+
+msgid "dowehavetogoin"
+msgstr "You know, you don't have to go in. Just go through the standard training program, skip the Trial."
+
+msgid "dowehavetogoin2"
+msgstr "No, you don't understand. The only way I can get my family out of prison is if I reach a high enough rank in Omnichannel.\n"
+"Finishing the Trial would set me up in a position just below the CEO. I'd be able to change things.\n"
+"If I finish this, I can save my family..."
+
+msgid "dowehavetogoin3"
+msgstr "I have to go in, no matter how much I don't want to, I have to help the people I love."
+
+msgid "dowehavetogoin4"
+msgstr "Who knows, maybe I'll be able to fight him myself!"
+
+msgid "dowehavetogoin5"
+msgstr "By the way, what's your name? Kyle didn't seem to address you at all."
+
+msgid "hichristie"
+msgstr "Oh, my name is Christie! Sorry, I should have mentioned that before."
+
+msgid "hichristie2"
+msgstr "Hi Christie. As you know, I'm Speck. It's nice to meet you.\n"
+"Now..."
+
+msgid "hiperson"
+msgstr "Who are you, who's Misa, and who's Allie? Give us the deets!"
+
+msgid "hiperson2"
+msgstr "Whoa there Christie, don't overwhelm them."
+
+msgid "hiperson3"
+msgstr "How about we start with a name and where you're from?"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="143">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="145">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -671,6 +671,75 @@
     <property name="act13" value="npc_move player,right 1"/>
     <property name="act20" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="144" name="gym time" type="event" x="736" y="432" width="16" height="208">
+   <properties>
+    <property name="act10" value="lock_controls"/>
+    <property name="act11" value="create_npc christie,55,37,,stand"/>
+    <property name="act12" value="npc_face christie,up"/>
+    <property name="act13" value="create_npc kyle,54,33,,stand"/>
+    <property name="act14" value="create_npc speck,54,37,,stand"/>
+    <property name="act15" value="npc_face speck,up"/>
+    <property name="act16" value="translated_dialog welcometotaba"/>
+    <property name="act17" value="pathfind player,53,37"/>
+    <property name="act18" value="npc_face player,up"/>
+    <property name="act20" value="npc_move kyle,down 1"/>
+    <property name="act21" value="translated_dialog welcometotaba2"/>
+    <property name="act22" value="npc_move christie,up 1"/>
+    <property name="act23" value="translated_dialog welcometotaba3"/>
+    <property name="act24" value="npc_face kyle,right"/>
+    <property name="act25" value="translated_dialog welcometotaba4"/>
+    <property name="act26" value="wait 0.7"/>
+    <property name="act27" value="npc_face kyle,down"/>
+    <property name="act28" value="npc_move christie,down 1"/>
+    <property name="act29" value="npc_face christie,up"/>
+    <property name="act30" value="translated_dialog welcometotaba5"/>
+    <property name="act31" value="wait 1"/>
+    <property name="act32" value="translated_dialog welcometotaba6"/>
+    <property name="act33" value="npc_face kyle,right"/>
+    <property name="act34" value="wait 0.5"/>
+    <property name="act35" value="npc_face kyle,left"/>
+    <property name="act36" value="wait 0.5"/>
+    <property name="act37" value="npc_face kyle,down"/>
+    <property name="act38" value="translated_dialog welcometotaba7"/>
+    <property name="act39" value="translated_dialog gasp"/>
+    <property name="act40" value="pathfind kyle, 53,36"/>
+    <property name="act41" value="npc_face kyle, down"/>
+    <property name="act42" value="translated_dialog welcometotaba8"/>
+    <property name="act43" value="wait 0.4"/>
+    <property name="act44" value="translated_dialog welcometotaba9"/>
+    <property name="act45" value="pathfind kyle,54,34"/>
+    <property name="act46" value="npc_face kyle,down"/>
+    <property name="act47" value="translated_dialog welcometotaba10"/>
+    <property name="act48" value="npc_move speck,up 1"/>
+    <property name="act49" value="translated_dialog welcometotaba11"/>
+    <property name="act50" value="wait 0.3"/>
+    <property name="act51" value="translated_dialog welcometotaba12"/>
+    <property name="act52" value="translated_dialog welcometotaba13"/>
+    <property name="act53" value="npc_move kyle,down 1"/>
+    <property name="act54" value="translated_dialog welcometotaba14"/>
+    <property name="act55" value="wait 0.7"/>
+    <property name="act56" value="translated_dialog welcometotaba15"/>
+    <property name="act57" value="wait 0.4"/>
+    <property name="act58" value="translated_dialog kylereallysucks"/>
+    <property name="act59" value="npc_move speck,down 1"/>
+    <property name="act60" value="npc_face speck,up"/>
+    <property name="act61" value="npc_move kyle,up 1"/>
+    <property name="act62" value="npc_face kyle,down"/>
+    <property name="act63" value="translated_dialog kylereallysucks2"/>
+    <property name="act64" value="npc_move kyle,up 1"/>
+    <property name="act65" value="npc_face kyle,down"/>
+    <property name="act66" value="wait 0.2"/>
+    <property name="act67" value="translated_dialog kylereallysucks3"/>
+    <property name="act68" value="wait 0.5"/>
+    <property name="act69" value="npc_face kyle,up"/>
+    <property name="act70" value="translated_dialog toodles"/>
+    <property name="act71" value="wait 0.4"/>
+    <property name="act72" value="remove_npc kyle"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond3" value="not variable_set snark:now"/>
+    <property name="cond4" value="is variable_set misaisgone:true"/>
    </properties>
   </object>
  </objectgroup>

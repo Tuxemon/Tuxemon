@@ -2323,6 +2323,52 @@ msgstr "Regardless, my name is Kevin and I am the lead architect behind the Batt
 "I am here to inaugurate the first Fondent Region Battle Area and declare that...\n"
 "THE TRIAL HAS BEGUN!"
 
+msgid "welcometotaba6"
+msgstr "... .... ..."
+
+msgid "welcometotaba7"
+msgstr "I'm not going to lie, I expected more enthusiasm from the first Trial Members."
+
+msgid "welcometotaba8"
+msgstr "You're that thing that Misa was attached to. How'd you even get here? Did she falsify your papers to get you in?\n"
+"... .... ... ...\n"
+"Allie signed off on your papers? Interesting..."
+
+msgid "welcometotaba9"
+msgstr "Your papers seem to be in order. For now."
+
+msgid "welcometotaba10"
+msgstr "However, this still doesn't explain the lack of enthusiasm. This is a big honor!\n"
+"Both of you and Misa's plaything over there represent the best and brightest of the Fondent Region's youth!"
+
+msgid "welcometotaba11"
+msgstr "Sorry sir, but how is this an honor? I was forced into this. I didn't choose to be a part of the Trial."
+
+msgid "welcometotaba12"
+msgstr "Admittedly, we did take some promising Omnichannel recruits and sent them into Trial training, so I apologize if that's the case."
+
+msgid "welcometotaba13"
+msgstr "No sir, you imprisoned my family and forced me and my brother to join the Trial.\n"
+"So forgive me if I \"lack enthusiasm\" when you're talking about the Trial."
+
+msgid "welcometotaba14"
+msgstr "Ahh, you're the Flower City kid I've heard so much about. \"The future of Omnichannel.\" What's your name?"
+
+msgid "welcometotaba15"
+msgstr "My name is Speck, sir."
+
+msgid "kylereallysucks"
+msgstr "Well, Speck, if it's any consolation, I was the one that gave the order to attack."
+
+msgid "kylereallysucks2"
+msgstr "Good Luck everyone! I fully expect none of you to make it!"
+
+msgid "kylereallysucks3"
+msgstr "Oh, and Speck? I enjoyed the screams"
+
+msgid "toodles"
+msgstr "Toodles!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

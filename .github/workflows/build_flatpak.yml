@@ -1,0 +1,85 @@
+# https://docs.github.com/en/actions/learn-github-actions/contexts
+
+---
+name: Tuxemon
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+  page_build:
+  workflow_dispatch:
+
+
+jobs:
+  flatpak:
+    name: "Flatpak"
+    runs-on: ubuntu-latest
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:kde-5.15-21.08
+      options: --privileged
+    steps:
+    - name: Show environment variables
+      run: >
+        echo IS_RELEASE: ${{ env.IS_RELEASE }}
+
+    # https://stackoverflow.com/questions/60916931/github-action-does-the-if-have-an-else
+    - name: Determine flatpak release branch
+      uses: haya14busa/action-cond@v1
+      id: flatpak_release_branch
+      with:
+        cond: ${{ env.IS_RELEASE }}
+        if_true: 'stable'
+        if_false: 'development'
+
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Clone flatpak manifest from Flathub
+      uses: GuillaumeFalourd/clone-github-repo-action@v1
+      with:
+        owner: 'flathub'
+        repository: 'org.tuxemon.Tuxemon'
+  # TODO: check that only tuxemon will be changed
+    - name: Replace git tag by the commit id on which it runs
+      if: github.ref_type != 'tag'
+      run: >
+        sed -i 's@tag: v[0-9]*.[0-9]*.[0-9]*@commit: "${{ github.sha }}"@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+
+    - name: Use correct git tag
+      if: github.ref_type == 'tag'
+      run: >
+        sed -i 's@tag: .*$@tag: "${{ github.ref_name }}"@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+
+    - name: Replace source url
+      run: >
+        sed -i "s@url: .*Tuxemon/Tuxemon.git@url: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY@" org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+
+    - name: Add dev build marker to cmake options
+      if: github.ref_type != 'tag'
+      run: >
+        sed -i 's@config-opts: \["\(.*\)"\]@config-opts: ["\1", "-DDEV_BUILD=${{ github.ref_name }}"]@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+
+    - name: Replace desktop file name suffix
+      if: github.ref_type != 'tag'
+      run: >
+        sed -i 's@desktop-file-name-suffix: ""@desktop-file-name-suffix: " (Development)"@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+
+    - name: Show Flatpak manifest
+      run: cat org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+
+    - name: Build package
+      uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
+      with:
+        bundle: Tuxemon.flatpak
+        manifest-path: org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+        cache: false
+        branch: ${{ steps.flatpak_release_branch.outputs.value }}
+
+    - name: Publish build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        path: org.tuxemon.Tuxemon/*
+        name: Tuxemon Flatpak
+...

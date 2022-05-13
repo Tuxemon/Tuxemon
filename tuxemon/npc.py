@@ -175,7 +175,7 @@ class NPC(Entity[NPCState]):
         # Variables for long-term item and monster storage
         # Keeping these seperate so other code can safely
         # assume that all values are lists
-        self.monster_boxes: Dict[str, List[Monster]] = {}
+        self.monster_boxes: Dict[str, List[Monster]] = {CONFIG.default_monster_storage_box: []}
         self.item_boxes: Dict[str, Mapping[str, InventoryItem]] = {}
 
         # combat related

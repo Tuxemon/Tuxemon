@@ -393,36 +393,42 @@ class ShopBuyMenuState(ShopMenuState):
             if not quantity:
                 return
 
-            ## TODO: Allow money to transfer between buyer and seller.
-            if self.buyer:
-                self.seller.give_item(self.client, self.buyer, item, quantity)
-            else:
-                self.seller.alter_item_quantity(
-                    self.client,
-                    item.slug,
-                    -quantity,
-                )
+            self.buyer.buy_transaction(
+                self.client, self.seller, item.slug, quantity, price
+            )
+
             self.reload_items()
             if not self.seller.has_item(item.slug):
                 # We're pointing at a new item
                 self.on_menu_selection_change()
 
         item_dict = self.seller.inventory[item.slug]
-        max_quantity = (
-            None if item_dict.get("infinite") else item_dict["quantity"]
-        )
+
         price = (
             1
             if not self.economy
             or not self.economy.lookup_item_price(item.slug)
             else self.economy.lookup_item_price(item.slug)
         )
+        qty_buyer_can_afford = (
+            None
+            if not (
+                self.buyer.game_variables
+                and self.buyer.game_variables["money"]
+            )
+            else int(self.buyer.game_variables["money"] / price)
+        )
+        max_quantity = (
+            qty_buyer_can_afford
+            if item_dict.get("infinite")
+            else min(item_dict["quantity"], qty_buyer_can_afford)
+        )
 
         self.client.push_state(
             QuantityAndPriceMenu,
             callback=buy_item,
             max_quantity=max_quantity,
-            quantity=1,
+            quantity=0 if max_quantity == 0 else 1,
             shrink_to_items=True,
             price=price,
         )

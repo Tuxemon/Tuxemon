@@ -262,10 +262,10 @@ def animation_frame_files(
 
     """
     frames = list()
-    pattern = fr"{name}[0-9]*\..*"
+    pattern = re.compile(fr"{name}[0-9]*\..*")
     # might be slow on large folders
     for filename in os.listdir(directory):
-        if re.match(pattern, filename):
+        if pattern.match(filename):
             frames.append(os.path.join(directory, filename))
     frames.sort()
     return frames

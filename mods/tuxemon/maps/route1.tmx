@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="148">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="153">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -682,8 +682,9 @@
     <property name="act14" value="create_npc speck,54,37,,stand"/>
     <property name="act15" value="npc_face speck,up"/>
     <property name="act16" value="translated_dialog welcometotaba"/>
-    <property name="act17" value="pathfind player,53,37"/>
-    <property name="act18" value="npc_face player,up"/>
+    <property name="act17" value="npc_move player,right 3"/>
+    <property name="act18" value="pathfind player,53,37"/>
+    <property name="act19" value="npc_face player,up"/>
     <property name="act20" value="npc_move kyle,down 1"/>
     <property name="act21" value="translated_dialog welcometotaba2"/>
     <property name="act22" value="npc_move christie,up 1"/>
@@ -786,8 +787,55 @@
     <property name="act32" value="npc_face player,right"/>
     <property name="act33" value="wait 0.3"/>
     <property name="act34" value="translated_dialog hiperson3"/>
+    <property name="act35" value="translated_dialog hiperson4"/>
+    <property name="act36" value="npc_face player,up"/>
+    <property name="act37" value="translated_dialog hiperson5"/>
+    <property name="act38" value="translated_dialog hiperson6"/>
+    <property name="act40" value="translated_dialog_choice somebody:nobody,christieknows"/>
     <property name="cond1" value="is variable_set friends:maybe"/>
     <property name="cond2" value="not variable_set rivals:maybe"/>
+   </properties>
+  </object>
+  <object id="148" name="nobody talk" type="event" x="784" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog nobody2"/>
+    <property name="act2" value="set_variable christieknows:stop"/>
+    <property name="cond1" value="is variable_set christieknows:nobody"/>
+   </properties>
+  </object>
+  <object id="149" name="somebody talk" type="event" x="816" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog somebody2"/>
+    <property name="act2" value="set_variable christieknows:stop"/>
+    <property name="cond1" value="is variable_set christieknows:somebody"/>
+   </properties>
+  </object>
+  <object id="150" name="stop" type="event" x="752" y="352" width="16" height="16">
+   <properties>
+    <property name="act10" value="npc_face speck,up"/>
+    <property name="act11" value="translated_dialog stahp"/>
+    <property name="act12" value="npc_face christie,right"/>
+    <property name="act13" value="wait 0.6"/>
+    <property name="act14" value="translated_dialog stahp2"/>
+    <property name="act15" value="wait 0.3"/>
+    <property name="act16" value="npc_face christie,down"/>
+    <property name="act17" value="wait 0.2"/>
+    <property name="act18" value="translated_dialog stahp3"/>
+    <property name="act19" value="pathfind christie,54,33"/>
+    <property name="act20" value="remove_npc christie"/>
+    <property name="act21" value="wait 0.5"/>
+    <property name="act22" value="npc_face speck,left"/>
+    <property name="act23" value="npc_face player,right"/>
+    <property name="act24" value="translated_dialog stahp4"/>
+    <property name="act25" value="wait 0.4"/>
+    <property name="act26" value="npc_face speck,up"/>
+    <property name="act27" value="wait 1"/>
+    <property name="act28" value="translated_dialog stahp5"/>
+    <property name="act30" value="pathfind speck,54,33"/>
+    <property name="act31" value="remove_npc speck"/>
+    <property name="act32" value="unlock_controls"/>
+    <property name="act33" value="set_variable christieknows:gone"/>
+    <property name="cond1" value="is variable_set christieknows:stop"/>
    </properties>
   </object>
  </objectgroup>

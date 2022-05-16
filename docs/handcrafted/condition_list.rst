@@ -13,6 +13,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.npc_facing.NPCFacingCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_size.PartySizeCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.player_at.PlayerAtCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.player_defeated.PlayerDefeatedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.player_facing_npc.PlayerFacingNPCCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.player_facing_tile.PlayerFacingTileCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.player_facing.PlayerFacingCondition

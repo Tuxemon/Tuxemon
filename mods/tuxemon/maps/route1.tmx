@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="153">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="154">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -836,6 +836,13 @@
     <property name="act32" value="unlock_controls"/>
     <property name="act33" value="set_variable christieknows:gone"/>
     <property name="cond1" value="is variable_set christieknows:stop"/>
+   </properties>
+  </object>
+  <object id="153" name="enter the battle area" type="event" x="864" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_foyer.tmx,2,9,0.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

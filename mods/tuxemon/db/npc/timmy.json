@@ -1,0 +1,6 @@
+{
+    "slug": "timmy",
+    "sprite_name": "childactor",
+    "combat_front": "femaletrainer_front.png",
+    "combat_back": "red_back.png"
+}

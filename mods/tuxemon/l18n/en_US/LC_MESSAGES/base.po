@@ -2454,6 +2454,13 @@ msgstr "She means well..."
 msgid "stahp5"
 msgstr "... I think."
 
+msgid "mydadiscool"
+msgstr "My dad works in the Battle Area! He's pretty cool right?\n"
+"I have to wait out here while he works though because Tuxemon are dangerous..."
+
+msgid "mydadiscool2"
+msgstr "But... But that doesn't make him any less cool! He's brave and I'll be brave like him one day too!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

@@ -2461,6 +2461,72 @@ msgstr "My dad works in the Battle Area! He's pretty cool right?\n"
 msgid "mydadiscool2"
 msgstr "But... But that doesn't make him any less cool! He's brave and I'll be brave like him one day too!"
 
+msgid "welcomecontestants"
+msgstr "Welcome, Trial contestants!"
+
+msgid "itsforthefans"
+msgstr "And a huge welcome to everyone watching from home!"
+
+msgid "itsforthefans2"
+msgstr "You've all probably been on the edge of your seat waiting to see our first Trial contestants. Well, today you get to meet them!"
+
+msgid "itsforthefans3"
+msgstr "From Flower City! The one who fought Tuxemon with his bare hands! Speck!"
+
+msgid "itsforthefans4"
+msgstr "... .... ..."
+
+msgid "itsforthefans5"
+msgstr "DARNIT! CUT!"
+
+msgid "itsforthefans6"
+msgstr "The recording has been stopped, sir."
+
+msgid "itsforthefans7"
+msgstr "Good"
+
+msgid "itsforthefans8"
+msgstr "AS FOR YOU THREE!"
+
+msgid "itsforthefans9"
+msgstr "Each of you should be stepping forward when your name is called. I won't have a bunch of insignificant kids destroying this for me.\n"
+"Alright?"
+
+msgid "itsforthefans10"
+msgstr "START THE RECORDING! We'll pick it up at the introductions."
+
+msgid "yessir"
+msgstr "Yes, Sir"
+
+msgid "itsforthefans11"
+msgstr "From Paper Town! The one and only Flower Demon, Christie!"
+
+msgid "itsforthefans12"
+msgstr "And finally, the one you've all been hearing about. The one you've been talking about!\n"
+"From Taba Town! The Grunt subduer themselves!\n"
+"${{name}}!"
+
+msgid "abouttababa"
+msgstr "Now, you are probably all wondering what this Battle Area will entail. I know our Trial contestants want to know!\n"
+"The Taba Battle Area is the first of seven Battle Areas, culminating in the Championship battle in Cotton Town.\n"
+"Each Battle Area will have a different requirement. Some will be mind challenges, others more physical.\n"
+"This is all so that we can find the best of the best. The future of the Fondent Region and Omnichannel itself."
+
+msgid "abouttababa2"
+msgstr "Christie."
+
+msgid "abouttababa3"
+msgstr "Speck."
+
+msgid "abouttababa4"
+msgstr "${{name}}"
+
+msgid "abouttababa5"
+msgstr "The Requirement for the Taba Battle Area is...\n"
+
+msgid "abouttababa6"
+msgstr "Tuxemon Battles!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

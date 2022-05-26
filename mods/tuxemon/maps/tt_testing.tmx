@@ -1,50 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="33" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="51">
- <tileset firstgid="1" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
- <tileset firstgid="2971" source="../gfx/tilesets/core_indoor_floors.tsx"/>
- <tileset firstgid="6835" source="../gfx/tilesets/core_indoor_walls.tsx"/>
- <tileset firstgid="10699" source="../gfx/tilesets/core_outdoor_terrain.tsx"/>
- <tileset firstgid="14795" source="../gfx/tilesets/prototyping_outdoor.tsx"/>
- <layer id="1" name="Tile Layer 1" width="33" height="20">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="48" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="51">
+ <tileset firstgid="1" source="../gfx/tilesets/prototyping_outdoor.tsx"/>
+ <tileset firstgid="2049" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <tileset firstgid="10241" source="../gfx/tilesets/core_outdoor_water.tsx"/>
+ <layer id="1" name="PTT" width="48" height="48" visible="0">
   <data encoding="base64" compression="zlib">
-   eAHtlV1Ow0AMhPcO5RIloRdrgYOlwGHKLfrDFZhZ/EXWaiNVSEU89GE0WSe1x2MnPaxL+RQOiY+6Bqe4Nu+HUnbCtNG1AG8jbt4qbuyE4amUMXAclVM4CW291WMpD0LmQWcwxrV5Ug3reFb+F+FVqFoi7vvWhbac13rQlOOum/tHHx6Y3T9xNLypzrvwERrcv/2Zn4s4ZzMe/MaH7CGzOKvGRfiKWq4P0G/tuV888GxyfMkH5mDOGvCBecPWBvCu7lHMHw/g7I/nkPcAfUsanNdg3jC57bN/692pexT7iAcwdeDuPihX7p+cMH2wB2iwz9ZBnOfqPkg7HuX4kg/UJzd60cCZ2dAfTJznzHjrHDm+tA+tBnQzf87UauM9H7IGfg/39qHVQI2Z4z2g1hTvh+8T847ifcvX+GBPgWdMDdh1QH0nXVvwt3GKd8Rx9rNl+od7PlB/nq9y52+z64D6Tro2z8S9W/tAfXru6bOGtn/O9A/3fGjndetz7/uAvr/iuw8//9t3H/6PD9+lPrCT
+   eAHtllFqAzEMRHOWHqA/ofeHPVk90EemRrbLepP0YwxiZEmWxrMm5HbLigJRAAU+mzOzj5b/i816rHJwOYOr3nC/t+YzW/VR/vixvvYMb858Nafvx165q/jDHWSGcGfRZ3SP/84ffiD3YQ/2b2dURz15x6MJLfOY/J3FPJDe7B39DrM6PyOf2hG+ir/zgovHRj61I9zhP+o54kKcc+xnSK3w6EyxneW9K3/Ei9pR3uPUCt/N37lUvvPG97rw//3aXJvKR0OwqvEYdY6eP7o3pNzO8jnyfdbVvv/+ytddwv/xH6fSH82u+hb0E9KzuafX7P34LJ/HXH1/jJjQz/WaeI4zp8m3g/So0Get+HOP/kzPv5rzLP6aBZ9qLpwdqQffzb/iPYvBGxT/lT1T/xnXKgdvcMVd+awoEAWiQBSIAlEgCkSBKBAFokAUiAJRIApEgSiAAt8xvYua
   </data>
  </layer>
- <layer id="2" name="Tile Layer 2" width="33" height="20">
+ <layer id="2" name="base_terrain" width="48" height="48">
   <data encoding="base64" compression="zlib">
-   eAHtkktywjAQRHWdxL8Q4VPhzwLfCpIsZE4VjBf2AfLGGlV5Awu7kpAUXfU041nQrRHG3L9sZsyYerb01+QSYxqlpYq62JgL9BC/+NmS84T/DgpwcE05vpFiNUNCTSGDtRkOeB8XZCjxrqBemWHP/hv8J268xYDPyM4n6EVy9zl++jdPK3eLPFt6Ucl3BTUEuWd2pbRUUffEfxJ6KDZ+tuQ84bODApx6vlHf4UO/5XdzfD/xOoPVDAk1hQzWZjjgdYSQoaO/QA9BkiGCGEKGkr6CGtZk2LP/Bq8JfYvgO68DPiM7mKAXie8cP/3fp7PsSmmpou6VN4MezvDdytVXfKz2CTWFDH4rQ4l3BfUPZRjwGdn3BL1I7j7HTx/nYwP3v4Ev3/dgLg==
+   eAHtk0FOw0AQBBdO2Ceu8Bu4wQ/C/x+SbeGSWgOKbCaEAx1p1J7d7Uy5s1kexlhnLUXfZv9u6/RSyveXH/pH81Pn0ovR+dTX8n18qM76fvWy38T/kvvR+ZyvCh/r6mvp/bofvr+qZu3Jr/ro9/rDv///q0y9/Pchd1TnfN99PP/V/dHcyrfMtXUWWvfVU+6/9f3RbEqsKuemF6vOec+a+6/Jr1nMQLUmPu/hQrWvcyrOoVq75L8lP0xwo3v5v/N3+Z8ex6j1PNeY5fmxBre0etUf8Xf5T3OeV51/Nxnvt3shft5B7yV+9+r5qL/Lr3mUcmM+3C+T8XXjrvx6B7z40L3+Lv9py5+5KPNR2KXKnTvU9V+D/8Nyh5/c0Uv8HX+XX7xkKA7dIRU5LzPrdZbz+17X3+V3dvFTlbf29f7gQ+v52uMP/+f9ITe05lV78uv+fsn//+Wvu9O5P+7v3p/4k0ASSAJJIAkkgSSQBJJAEkgCSSAJJIEkkASSQBL4vQTO4PuraQ==
   </data>
  </layer>
- <layer id="3" name="Tile Layer 3" width="33" height="20">
+ <layer id="3" name="transitions_1" width="48" height="48">
   <data encoding="base64" compression="zlib">
-   eAHtlM0JgDAMRrOCrqIOojdHcyy9uY1fbyU09il4kQYCbfqSrz+hZsz2weyQ14xytTql9W406+V3tmqdcHc1orVNtWf5UtkD5SKdWvx077BrP4c8nT03yuU5b8ZJp5v0NvJ09sgoF+X7uO+1WfqL3BvlfB6Z016jHNHMGdprlMtrPxnTXqPcE+0SS3uNciUNEot60udSzue1+Xc34P/T75Ra5XYD/7iBCxpYLyc=
+   eAHtlE1uwjAQhb3s71FIuylCKFeCdlP+xJWgXSUR6rmSFHXRL2BLUytADIkqpLH0Es/Yb/zybMcYbeqAOqAO/K8D8Y0xyztj4sdmOlLmZyABVQvl71ntPZcPaLg15uf+b80e+iKrUY4U5EqQ27FQvqzVRn+J7i/0x+yBbCP0ja1GmU+Zm4EEVM3nD+w+HuLvWd0+++zJCu3rGv0FukuQW/11So7x6+afk+uhMQJP4Bn4bVCTk3Oa8Icnash6of0RtcfgFbyBoTg/KXGPOBI5v/4hfp/z04Tv1wuNV2hcgw/wCRae1hHx2MvJNQ7xp+78n+DLWuf0X9Cccncz+9/ZCK1zxlbEa5Hz19jxGc9AAkL5fr3Q+B2NBdpLq39rtX6Td20q+i7n3js+nBLkQPJn7MEC7jG+q3PJe8K6UzADcxDShnz3JfyQtbqYu0B/7u1P4cVdrNtWzY09d+4OJTZuq37Xdbbore6Ku0P5lemv82di/511Y5pTB9QBdUAdUAfUAXVAHVAH1AF1QB1QB9QBdUAdUAfUAXVAHWjmwC9fq1H7
   </data>
  </layer>
- <layer id="7" name="Tile Layer 5" width="33" height="20" visible="0">
+ <layer id="7" name="transitions_2" width="48" height="48">
   <data encoding="base64" compression="zlib">
-   eAG9lMFNA0EMRbeA5QKUEQpIoCpEJbSRY+hiE5CALuCAgAL4juZFxvJmos1qDtaf8Xj9vz2e7VdddyHrKzjc/o8bll1nvj3a+gxbiPtGVkPj83Fr7Rd353Fnusd6kfLN1IOoY6wXH+LrQ83m+ywWz2Le2v5NeWr2rpjBbOzOj52NfeP8P/q+Zr+Koe6t1rF+zsw/pSdX6nFmD06baUh7kPkzn6s5zVPObR6/ZMzld0MNcMZ5vHT9uS7zSCyYzsiEPsBNXnCnnjw7e9GaWNDmgPk4zMEEDXCSF3xVLt7L/l3U7rRw+/k8dUYj56ZwPwl5L48l/7F5Su9FuqMm3pRH+uBnEG4QDcRmeAqX5/Vr+oCGe9Uc3yozSezcSE1o4F+wVR+jETs3UpPXELnZEzs3UpPXgK8VUpPXgK8VUqvXgK8VUqvXgK8V/gE16eTa
+   eAHt0AENAAAAwqD3T20ON4hAYcCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMDA68AAJAAAAQ==
   </data>
  </layer>
- <layer id="8" name="Tile Layer 6" width="33" height="20" visible="0">
+ <layer id="8" name="trees_and_stuff" width="48" height="48">
   <data encoding="base64" compression="zlib">
-   eAFjYCAO+FgxMPgC8UCCnAG2H+T3s5aoeCDCg15uMLDG7Tt0N8D4uHWQJ5OLxw3YTKSFOwLwuAFmHzYam/vIFSOU97DZDxMj105K9cHsB9GjADMEBkuZmkvnchXmb3JpzJAcFRkNgdEQGAwhAAAgdzBh
+   eAHt0AENAAAAwqD3T20ON4hAYcCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMDA68AAJAAAAQ==
   </data>
  </layer>
- <layer id="4" name="Above player" width="33" height="20" visible="0">
+ <layer id="4" name="Above player" width="48" height="48" visible="0">
   <data encoding="base64" compression="zlib">
-   eAHt0DEBAAAAwqD1T20Hb4hAYcCAAQMGDBgwYOAfGApQAAE=
+   eAHt0AENAAAAwqD3T20ON4hAYcCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMDA68AAJAAAAQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision" visible="0">
-  <object id="34" type="collision" x="144" y="128" width="16" height="192"/>
-  <object id="36" type="collision" x="160" y="304" width="64" height="16"/>
-  <object id="37" type="collision" x="272" y="304" width="112" height="16"/>
-  <object id="41" type="collision" x="368" y="128" width="16" height="176"/>
-  <object id="44" type="collision" x="160" y="128" width="208" height="48"/>
-  <object id="45" type="collision" x="336" y="176" width="32" height="48"/>
-  <object id="47" type="collision" x="192" y="224" width="80" height="32"/>
+  <object id="34" type="collision" x="208" y="192" width="16" height="192"/>
+  <object id="36" type="collision" x="224" y="368" width="64" height="16"/>
+  <object id="37" type="collision" x="336" y="368" width="112" height="16"/>
+  <object id="41" type="collision" x="432" y="192" width="16" height="176"/>
+  <object id="44" type="collision" x="224" y="192" width="208" height="48"/>
+  <object id="45" type="collision" x="400" y="240" width="32" height="48"/>
+  <object id="47" type="collision" x="256" y="288" width="80" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events" visible="0">
-  <object id="26" name="Player Spawn" type="event" x="304" y="240" width="16" height="16"/>
+  <object id="26" name="Player Spawn" type="event" x="368" y="304" width="16" height="16"/>
  </objectgroup>
 </map>

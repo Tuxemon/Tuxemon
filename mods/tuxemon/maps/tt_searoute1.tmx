@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="265">
+ <properties>
+  <property name="edges" value="clamped"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/prototyping_outdoor.tsx"/>
+ <tileset firstgid="2049" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <tileset firstgid="10241" source="../gfx/tilesets/core_outdoor_water.tsx"/>
+ <layer id="8" name="Tile Layer 3" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHtl1FuEzEURQcQEintIkhTKbCLtl8pdBFNxUJQPyGraFgIiboH/tkI90zmSmbkGb9JMlI++Lh6Ho/9fHztcZyXT1X1cqC+v6uqH43OJlX1ReVDdK/+E+lMOpTN/d/OqwqlrGZ2fNL7PxpznWiamQ98C+lOcv6u6HHTmLZN60vlpcZr61l1V2JcK/6+2K3DSuUIXzreq49V9VpK60rlUh9Yp41c9rrm+LrGY5ztvKq+SV1tcvXX6vemZ14wtWUux1zedt2TuK6lm4H+kYe+MES8p63949tAbZbcMz7sw0auuq9ipH/Kx7eBcjyH1LEXNuKJ+MU478Vw3mirZ/yzov5FeWG7xWuNE/GL9o/i8VmZnnte5+jYkXb1WmrMSFvasJ6cLz4DU76F6sdY3yib+T6Iwx4O4fM+2miOS+WYSVfSkPFLbfHvUjmXk90aR/lgY6/Cxdwm6r9W/CmVxhzyHj6zsQejfHU/tYfvWRp6LkcZPys3c/fv84pnie+2b/+xz2/nOz4Yu/jSs+FC7aJcbsddAiY/m63ER/v6W1S8QeJ1jjQy//RsSN/tU7ZncLq8Tx73Yf6sDXe+hVTy0N9c19ltppSPu5LH2zfCCeO9Yl8O9vWD2vxSbDPCxLo6mtV3ub68kXftvZTr432du2uYZyy+HE+urt7Xrf1sJvvHs3mP5V+OJVpnlruGi2cY4TWfYzTnWO3M5Wgux7HGjebFO3zEu1P0z3yn7p85va6O0XUYq525HM3l2DWuz/7NfHd/74vts7crZ1c9azuUz2c/5z93BiJ3y2kTqeP5UppJ541Kv3k5xpTPeYi5XPZtO98xwQGTOWBJxX2OuVul37wSn/PUUblTXsrcmfEFv5B9elT5n75dz03O3NxzbNRNmlycM6UxvqoNfqWCM8zXjDHERzNF+B40fzy0b3Di55h8eAhjhI92MM4UU7X3mefcFYf4B5/Vle/o9XvsQxiPziGf+3IO9bEv1xjv/vP1r1/J81P2j//iK+1Pf5uRWJrvMd8P9Q7+v618whA=
+  </data>
+ </layer>
+ <layer id="9" name="Tile Layer 4" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHtl81OFEEUhUujMg0y8gAGZWGCJi51z190VIQNbjTGV4GBqFHQjW5Y4KsounCj7jX4KpyT7hNuypqmqnoG2oSb3Kme6r6nvrpV3X3buWY2ftu5CfjCrdLHi3/13nSce1vjjFnB+QLtNtpYm549uvI6juUzVT/PX4N/gq/ddG4MjPMVp3htu33XuR8d594ZJ5v4U9k4bsj20E9W//w62Dbg/YBvom8Oc5hHnHwBxzsd537Bydy9ERqt7FMuOG5o7MGR+Wf6GMvawaT9Vx5zfU6Kxx/dz2eIz485zf9t41vHftyA9+G0tvF9BtcX+H7l092Ss02/j3Hfttn4fAk909vE3CSHXczvSuVTI1gL6j8o8rOlufH5/n6IfLw3CrxTmrBxVjtg+nnHuUvQsmafDXw+bMK34LF2DnrnK029o2NjQ9dteXz+s+Er2L4l8M1Bj7XEIpxzf4XY3YT4EKPts/Nn/wWMkZJD1RKsGzj317PD5dP8uTay1Bwqbgx5+z6A7wX6c0zzV81HDebwouGN1WXunoLxWSD2AOdyGTk+OV9CW3tpqRqD9eoT+HFWlzvFPs/MoeKVS+0l9n8A28cIvrrcSb8pn3RyWvL9xjz+VH51wBr/bbjOOWyMuQeu+xib3oPXPWNOM49kZS7P+JiJPPsf8sd7JXSPcMbD3H+sGVLrBt4r/j0iHbbkS6lBQquoenEfevTUd56/xtKRVh+a1kMM7BOHale1fj3Hd14PmrG1g893ueOcnPWx5eXxoJpZdav4J4yO9CbRR6NObB59vlKh/O0VR6wcg/qr1Rj2Oh6LT1x+3njNsomNrR3IV3ePUJf2CNrUJ3Moh+J7iGt4bcgYqxzG8ukeISPfeXUmfbbaX2qZL+Y4lDerqRym7EP7zrNaoWOykcP347ikJT7+T9mHih91qzXQOLHrrOtPorWMbeRjDrTOZ3x5O0L5W8T7RN8oeUqjiSIf15bf4vzejbVD1zKtQw==
+  </data>
+ </layer>
+ <layer id="10" name="Tile Layer 5" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHFlk1uE0EQhTuRgHgBQgphC8sEyXCGmF8hdk5yiwQ2XCAka5Ds5BZ2cgXEzwVCcovkDLzP9oPSqMczTjJ2S8/VXV396k11z7hTqte6z1LaEubVdldS2m1VZ3u6nhLoSVs/o+99O6Unmt/X3M7GdL6vylm3XSp2r4a+VeU+Fy4E2uOJHY9S6krTlnAkHAvT2mHm+WL8h/v/Ry9a1fUravHqbemgVmjvyfaF22qfV1KytmL9XKdt5d0p1Cnmr1OrGD9L3+fuU2tcv650bAmPgp4j9Y8F12kW/pvGcu6sjfr1pKMv5FqTdcrlw1es31qJtrL1TfofqnbF+jWZ7zrcxfpdh6PJNbPWb1/fji8THMgeCk026jdspXQinAp12g9pAj+FX0KTjfpdCSfCqVC3vdS3/5XwuuI/oC7fdz3ng0x+6ve8Jci2M/M5/m+KeytdB0LVf1Rufc63VPKc1I/vHhr5H6nbbktXLp//B6hXW5o+Cv5Gey63blbfnZKaVPH4f4C95U5F/Ww9V8Uxj/lL6eK9tTYsLf73jj3z/6V2e4LPnzVaSdldyvNN24G0Xale7Uz9yF11p2paH/y58+e8vlN5vAhLDXPnL2rhTrzI5vPnb0xOyyLPIntsbX5/o0bfp6Nvnn3Xr/j+WsO0+7RjmrTUz9py9SP3+UaTCqZzD6RvoG+M97gYvcizZy1xj+2zPVtg7awh7rF9tr+l77ZryP17lhbrd0/7bayof912N/DclC/Wb0m8m4bOpbmxdfRaV0drl7UGPnO+Uz+2ut+ugdbxjgyFjvrwmpsxQHORP+Zy/01Y++855RtpFH98Rn+7Lja8utyicSjAiTastWFHvgJ/ZIt1Q4vXmse++IzxHJ6tR7byPnwGmshjbvqb0hj33H32M66jT7w5Rms1jvqiilXVsM7dHV70OBe8hn3kJAZrX4zBzxhLnGOxPF/c46ixzt09cpKbMRY4p/2MjaVJjOOx9nktduSborHq3sl6QF5y5PLF3MSRFzvKPRmbA7+xPInBlu2z751l77ZzRS7zk9N+4jzGRww++5nzfJyjD8r0eb/9bq+t2zO25oKb/rJAf3MCxvY5Js7HvmNZaz8WVOmLqv6Edwcu0BHg9zhqcp8YctnSZ85jW3zmwUd/Fn1o9bvzF3mGskc=
+  </data>
+ </layer>
+ <layer id="12" name="Tile Layer 6" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHtmE1OwzAQRtMuoMBZQrvhAOmiQkLiJv3Z9BycpGmPyPfUfMiLqBTHi5FwpMHOeDzzZmynCU0T73pblGX6aJvmU1LqOhbmK8X1JS5qtwzKR55tYLZS6/Af/bCur4HXdiu2XVA+zuxJ0gfli/q88/Ok7rv8J07kfZef1f0zOXuRr8hnr2Tdov9+lMy1+qoVqBWoFagVGK8A36+rwL/Le7EdAvOdxXYpxPcoP+2zvu0kiz/6TN+tHjQXX1P8je2WuXxuxbaTdE/6/4dax/mNl3crc601d617xP7e1eea8m4C30lMvWSm/lGt62n/1yjjfzeaw7xOAhv52R/5kuNWkvtti18YHYO+87f/MTLq5jzsg7nkB6fHyHHKN4a58EmfGD/5qw+j1zttWU/nwRwYzQlb+3LdM/eswVj+1uEbNrcpL3rEsZeKu5Jgi53z8D06BO5efOyZW2tghlst/joJMcziONbTMrZXvMPAZ11qY35zM0Ytc54NZobLflO+VD+TDfdnxboMfNiiSzlTfnNRS54NuetMHPuFAyEmYr1jwYM9YhvsEXTm5wyb66Q+65zLhy/7XarP/iJ2Gs+x5oPefLbn3mP44wybizEklw9f5tmr7/1FTdATN42F3mO2x86CP7NiN5XvG1JdVb0=
+  </data>
+ </layer>
+ <layer id="1" name="PTT1" width="40" height="40" visible="0">
+  <data encoding="base64" compression="zlib">
+   eAHFll1OFEEUhUceUWYEd8AjUUcwbAKJBnUVoA+oq5Dg27gLxqdxARoTo+LsQwNswfMlfZKbStV0tdPKw8mtrp9bX52qru7pymAwXaDJYDB4Lznm+u6p/VGjI8XNjL5pju8F/Vb9ivRL+iHd1fh1aUPKzRfrZurzUXKMbS4P1W7+yGrmRZH1mB22TT3Dty3tSJ6jFHfV52cQz7GvuWaqZx2w5jRS/aeMWM8LKa5hX881/kW2tRuaV4LVTLSbK67B5TjmVH0jd473c+DK+cd8aCJx5uI8V3o+b+oWMXkM8Z7WMwrrim1jtad+wmcu+2cWuDze87ttrrYz6X7jn/vVRMZeSPbeY3J+5vwzi8fF6DZ8+Bs2cjF2WljbS9U/bvREMedf5OmjzJm71FypX2lu2GBalW42uqXoffU+p+OWeYZtvMCvmHssli/SlsSdkt4r5oxjli13OQfm437hDjSfuf6Ff13WZ77oYbyXzVnK6XOUno9S/6715iN/3F9zLfIPtiuN+ypxPg4l7nfu9a4cpf7wRTbvr7nMmRs/11jY0J7UJ5fngy+u3es3lzndP0bO+YeGD8ZzKba7zPrj3eD6mgif176m8kjCQ3OZc1d1uXwwTtWGSncz649nJ5enVHeqscNG7xThJZe5zFniK+WN9ayffTmS3krcr7E9LfudS+9u39UPNd5c5uRfaRlGGOCEkfshZYrPc7VzXi6kyIh3t6U7EoxEc/pfrg/GtvfI5/pM8/vM2LsHDRdsKPoH40R18Z8qrrvPMoxmIy/ePZOeS9HD1L+Z2vn/7ZOlJhd8r6U3Eh4eSE+l1L++9rmGKfY5Fcuw0UjxWHolpf6Zj7jsWYzzdynjpX1zjFyU/9c5zHHDZ98cU77rOofwwsc7ciBxBimnfDxf5/7yjhxLnEHKKV+JzXf/pca0Kd69uX0s1fGu8I7AZQ9r+eYa43+aRXFV/fzPQGz75qWs3mN7mMsVPbRvVwlfyuE8J+q3GdT2zcvx4d+6tBHykJNvvOdxZP05v7aSsZEplp2z1kf7t638OxVzsP5l+MxKnonU9g2Fr+Sfc8XI+nMe1vrnXPDNJL6h8fyk++t3pNY/8nuPvOfEE8lz10T4Iksb41D9UU3uPvp4jewFnPBNpLb97mPuLjmijzPxtf0zdcndR9/Ih49tHvYxZ5ccKZ89LHF2yd1H35QPD5E5d5tn1/cxZ22OQ829n8xvjhhhtJ+1ufvoV/IusrlsP/8A+6VLyw==
+  </data>
+ </layer>
+ <layer id="2" name="PTT2" width="40" height="40" visible="0">
+  <data encoding="base64" compression="zlib">
+   eAHtlNENwCAIRE3Xahyk3aQdyhk1HYCEUBDN88Mvwt09CKXs/9qxf8bohFUheCpqKbUT0MzGrkYHCEAAAjkJ/HULpT7XiH7njP+5esb/JvbnaU2am6cuvdcgwH6sMSdcQiCKADchijQ6EIAABCAAgTkEOm9JBD0=
+  </data>
+ </layer>
+ <objectgroup id="4" name="Events" visible="0">
+  <object id="156" name="Teleport to Paper Town" type="event" x="624" y="512" width="16" height="96">
+   <properties>
+    <property name="act1" value="transition_teleport tt_paper_town.tmx,1,18,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="264" name="Player Spawn" type="event" x="608" y="544" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ff0000" id="3" name="Collisions" visible="0">
+  <object id="157" type="collision" x="272" y="0" width="256" height="32"/>
+  <object id="158" type="collision" x="528" y="0" width="80" height="32"/>
+  <object id="159" type="collision" x="544" y="32" width="64" height="16"/>
+  <object id="168" type="collision" x="256" y="32" width="64" height="16"/>
+  <object id="169" type="collision" x="240" y="48" width="48" height="16"/>
+  <object id="170" type="collision" x="208" y="48" width="32" height="32"/>
+  <object id="171" type="collision" x="96" y="32" width="80" height="16"/>
+  <object id="172" type="collision" x="80" y="48" width="48" height="16"/>
+  <object id="174" type="collision" x="32" y="304" width="32" height="16"/>
+  <object id="175" type="collision" x="0" y="288" width="48" height="16"/>
+  <object id="181" type="collision" x="592" y="48" width="16" height="448"/>
+  <object id="185" type="collision" x="576" y="608" width="64" height="32"/>
+  <object id="186" type="collision" x="512" y="576" width="64" height="32"/>
+  <object id="187" type="collision" x="528" y="560" width="16" height="16"/>
+  <object id="188" type="collision" x="512" y="528" width="16" height="48"/>
+  <object id="189" type="collision" x="480" y="528" width="32" height="16"/>
+  <object id="190" type="collision" x="432" y="512" width="64" height="16"/>
+  <object id="191" type="collision" x="432" y="496" width="48" height="16"/>
+  <object id="192" type="collision" x="384" y="464" width="48" height="32"/>
+  <object id="193" type="collision" x="320" y="432" width="80" height="32"/>
+  <object id="194" type="collision" x="432" y="480" width="32" height="16"/>
+  <object id="195" type="collision" x="32" y="320" width="32" height="32"/>
+  <object id="196" type="collision" x="576" y="592" width="16" height="16"/>
+  <object id="198" type="collision" x="608" y="320" width="32" height="192"/>
+  <object id="219" type="collision" x="80" y="64" width="32" height="32"/>
+  <object id="220" type="collision" x="0" y="64" width="16" height="64"/>
+  <object id="222" type="collision" x="224" y="448" width="96" height="32"/>
+  <object id="223" type="collision" x="224" y="480" width="16" height="48"/>
+  <object id="224" type="collision" x="160" y="512" width="64" height="16"/>
+  <object id="225" type="collision" x="144" y="496" width="16" height="32"/>
+  <object id="226" type="collision" x="128" y="464" width="16" height="48"/>
+  <object id="227" type="collision" x="64" y="464" width="64" height="16"/>
+  <object id="228" type="collision" x="0" y="448" width="64" height="32"/>
+  <object id="229" type="collision" x="64" y="448" width="32" height="16"/>
+  <object id="230" type="collision" x="64" y="336" width="16" height="112"/>
+  <object id="231" type="collision" x="80" y="352" width="16" height="64"/>
+  <object id="232" type="collision" x="0" y="272" width="32" height="16"/>
+  <object id="233" type="collision" x="0" y="240" width="16" height="32"/>
+  <object id="235" type="collision" x="240" y="256" width="48" height="16"/>
+  <object id="237" type="collision" x="288" y="256" width="32" height="48"/>
+  <object id="238" type="collision" x="240" y="224" width="64" height="32"/>
+  <object id="239" type="collision" x="272" y="272" width="16" height="16"/>
+  <object id="240" type="collision" x="576" y="48" width="16" height="368"/>
+  <object id="241" type="collision" x="560" y="304" width="16" height="32"/>
+  <object id="242" type="collision" x="544" y="272" width="32" height="32"/>
+  <object id="243" type="collision" x="528" y="112" width="48" height="144"/>
+  <object id="244" type="collision" x="560" y="256" width="16" height="16"/>
+  <object id="245" type="collision" x="496" y="192" width="32" height="48"/>
+  <object id="246" type="collision" x="512" y="176" width="16" height="16"/>
+  <object id="247" type="collision" x="512" y="112" width="16" height="48"/>
+  <object id="248" type="collision" x="512" y="32" width="16" height="16"/>
+  <object id="249" type="collision" x="192" y="16" width="32" height="32"/>
+  <object id="250" type="collision" x="128" y="0" width="64" height="32"/>
+  <object id="251" type="collision" x="112" y="80" width="32" height="32"/>
+  <object id="252" type="collision" x="16" y="48" width="64" height="32"/>
+  <object id="253" type="collision" x="16" y="80" width="32" height="16"/>
+  <object id="254" type="collision" x="16" y="96" width="16" height="16"/>
+  <object id="255" type="collision" x="528" y="32" width="16" height="16"/>
+  <object id="263" type="collision" x="352" y="288" width="32" height="32"/>
+ </objectgroup>
+</map>

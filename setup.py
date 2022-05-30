@@ -22,8 +22,8 @@ class InstallAndBuildTranslations(install):
 # Find all the python modules
 modules = []
 matches = []
-for root, dirnames, filenames in os.walk('tuxemon'):
-    for filename in fnmatch.filter(filenames, '__init__.py'):
+for root, dirnames, filenames in os.walk("tuxemon"):
+    for filename in fnmatch.filter(filenames, "__init__.py"):
         matches.append(os.path.join(root, filename))
 
 for match in matches:
@@ -40,34 +40,31 @@ with open("requirements.txt", "r") as f:
     REQUIREMENTS = f.read().splitlines()
 
 # Configure the setuptools
-setup(name='tuxemon',
-      version=VERSION,
-      description='Open source monster-fighting RPG',
-      author='William Edwards',
-      author_email='shadowapex@gmail.com',
-      maintainer='Tuxemon',
-      maintainer_email='info@tuxemon.org',
-      url='https://www.tuxemon.org',
-      include_package_data=True,
-      packages=modules,
-      license="GPLv3",
-      long_description='https://github.com/Tuxemon/Tuxemon',
-      install_requires=REQUIREMENTS,
-      python_requires='>=3.6',
-      entry_points={
-          'gui_scripts': [
-              'tuxemon = tuxemon.__main__:main'
-          ]
-      },
-      classifiers=[
-          "Intended Audience :: End Users/Desktop",
-          "Development Status :: 3 - Alpha",
-          "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
-          "Programming Language :: Python :: 3.8",
-          "Programming Language :: Python :: 3.9",
-          "Programming Language :: Python :: 3.10",
-          "Topic :: Games/Entertainment",
-          "Topic :: Games/Entertainment :: Role-Playing",
-      ],
-      cmdclass={'install': InstallAndBuildTranslations}
-      )
+setup(
+    name="tuxemon",
+    version=VERSION,
+    description="Open source monster-fighting RPG",
+    author="William Edwards",
+    author_email="shadowapex@gmail.com",
+    maintainer="Tuxemon",
+    maintainer_email="info@tuxemon.org",
+    url="https://www.tuxemon.org",
+    include_package_data=True,
+    packages=modules,
+    license="GPLv3",
+    long_description="https://github.com/Tuxemon/Tuxemon",
+    install_requires=REQUIREMENTS,
+    python_requires=">=3.8",
+    entry_points={"gui_scripts": ["tuxemon = tuxemon.__main__:main"]},
+    classifiers=[
+        "Intended Audience :: End Users/Desktop",
+        "Development Status :: 3 - Alpha",
+        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Topic :: Games/Entertainment",
+        "Topic :: Games/Entertainment :: Role-Playing",
+    ],
+    cmdclass={"install": InstallAndBuildTranslations},
+)

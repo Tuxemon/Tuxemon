@@ -4,12 +4,28 @@
   <metadata_license>FSFAP</metadata_license>
   <project_license>GPL-3.0</project_license>
   <name>Tuxemon</name>
-  <summary>Tuxemon</summary>
+  <summary>Tuxemon is a free, open source monster-fighting RPG.</summary>
 
   <description>
+    <p>Tuxemon is a free, open source monster-fighting RPG. It's in constant development and improving all the time! Contributors of all skill and level are welcome to join.</p>
     <p>Features:</p>
     <ul>
       <li></li>
+      <li>Game data is all json, easy to modify and extend</li>
+      <li>Game maps are created using the Tiled Map Editor</li>
+      <li>Simple game script to write the story</li>
+      <li>Dialogs, interactions on map, npc scripting</li>
+      <li>Localized in several languages</li>
+      <li>Seamless keyboard, mouse, and gamepad input</li>
+      <li>Animated maps</li>
+      <li>Lots of documentation</li>
+      <li>Python code can be modified without a compiler</li>
+      <li>CLI interface for live game debugging</li>
+      <li>Runs on Windows, Linux, OS X, and some support on Android</li>
+      <li>183 monsters with sprites</li>
+      <li>98 techniques to use in battle</li>
+      <li>221 NPC sprites</li>
+      <li>18 items</li>
     </ul>
   </description>
 
@@ -17,8 +33,24 @@
 
   <screenshots>
     <screenshot type="default">
-      <caption>The main view</caption>
-      <image>https://www.tuxemon.org/images/banner-02.png</image>
+      <caption>Overview</caption>
+      <image>https://github.com/Tuxemon/Tuxemon/raw/development/docs/screenshots/tuxemon-overworld.png</image>
+    </screenshot>
+	<screenshot>
+      <caption>Battle between Tuxemons</caption>
+	  <image>https://github.com/Tuxemon/Tuxemon/raw/development/docs/screenshots/2tuxemon-battle1.png</image>
+    </screenshot>
+	<screenshot>
+      <caption>Catching Tuxemons</caption>
+	  <image>https://github.com/Tuxemon/Tuxemon/raw/development/docs/screenshots/tuxemon-battle-caught.png</image>
+    </screenshot>
+	<screenshot>
+      <caption>Overview</caption>
+	  <image>https://github.com/Tuxemon/Tuxemon/raw/development/docs/screenshots/2tuxemon-overworld-talk0.png</image>
+    </screenshot>
+	<screenshot>
+      <caption>Tuxecenter</caption>
+	  <image>https://github.com/Tuxemon/Tuxemon/raw/development/docs/screenshots/tuxemon-tuxecenter-heal.png</image>
     </screenshot>
   </screenshots>
 
@@ -30,42 +62,25 @@
   </provides>
 
   <releases>
-    <release version="1.0" date="2018-09-14">
+    <release version="0.4.33" date="2021-11-19">
       <description>
         <p>Initial Flathub release</p>
+        <ul>
+          <li>Fix groups</li>
+          <li>Translations update from Hosted Weblate</li>
+          <li>Added options menu</li>
+          <li>fixed a mistake i made with newlines</li>
+          <li>Translations update from Hosted Weblate</li>
+          <li>added proper columns for control menu + pep8 formatting</li>
+        </ul>
       </description>
     </release>
   </releases>
 
- <content_rating type="oars-1.1">
-    <content_attribute id="violence-cartoon">none</content_attribute>
-    <content_attribute id="violence-fantasy">none</content_attribute>
-    <content_attribute id="violence-realistic">none</content_attribute>
-    <content_attribute id="violence-bloodshed">none</content_attribute>
-    <content_attribute id="violence-sexual">none</content_attribute>
-    <content_attribute id="violence-desecration">none</content_attribute>
-    <content_attribute id="violence-slavery">none</content_attribute>
-    <content_attribute id="violence-worship">none</content_attribute>
-    <content_attribute id="drugs-alcohol">none</content_attribute>
-    <content_attribute id="drugs-narcotics">none</content_attribute>
-    <content_attribute id="drugs-tobacco">none</content_attribute>
-    <content_attribute id="sex-nudity">none</content_attribute>
-    <content_attribute id="sex-themes">none</content_attribute>
-    <content_attribute id="sex-homosexuality">none</content_attribute>
-    <content_attribute id="sex-prostitution">none</content_attribute>
-    <content_attribute id="sex-adultery">none</content_attribute>
-    <content_attribute id="sex-appearance">none</content_attribute>
-    <content_attribute id="language-profanity">none</content_attribute>
-    <content_attribute id="language-humor">none</content_attribute>
-    <content_attribute id="language-discrimination">none</content_attribute>
-    <content_attribute id="social-chat">none</content_attribute>
-    <content_attribute id="social-info">none</content_attribute>
-    <content_attribute id="social-audio">none</content_attribute>
-    <content_attribute id="social-location">none</content_attribute>
-    <content_attribute id="social-contacts">none</content_attribute>
-    <content_attribute id="money-purchasing">none</content_attribute>
-    <content_attribute id="money-gambling">none</content_attribute>
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-fantasy">moderate</content_attribute>
   </content_rating>
+
   
 </component>
 

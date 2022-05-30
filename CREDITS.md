@@ -296,6 +296,14 @@ Interior_Tiles_by_ArMM1998.png, by ArMM1998 (CC0),
 Interior tileset by Redshrike (Interiors by Redshrike.png), (CC-BY 3.0)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Core Outdoor Nature"], ["Core Outdoor Water"]
+by rubberduck, based on
+Basic_Buch_Tiles_Compiled.png and the original PastTheFuture_Grass_Sand_Snow.png (by Buch, luke83and Past the Future, CC BY-SA 3.0)
+Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png, by ArMM1998 (CC0)
+Terrain_by_George.png, by George_ (CC BY 3.0)
+waterfall based on https://opengameart.org/content/lpc-animated-water-and-waterfalls, by ZaPaper, CC BY-SA 3.0
+
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 
 

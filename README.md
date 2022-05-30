@@ -41,12 +41,12 @@ often out of date.
 
 **Windows Source**
 
-Install the latest version of python 3 from
+Requires Python 3.8+ and git.
+Install the latest version of Python 3 from
 [here](https://www.python.org/downloads/)
 
 Run:
-
-```cmd
+```shell
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 python -m pip install -U -r requirements.txt
@@ -58,9 +58,24 @@ python run_tuxemon.py
 Check the [release page](https://github.com/Tuxemon/Tuxemon/releases) 
 for binaries.
 
-**Ubuntu**
 
-```sh
+**Debian/Ubuntu with virtual environment**
+
+This is the recommended way to run because it will not modify the
+system.
+```shell
+sudo apt install git python3-venv
+git clone https://github.com/Tuxemon/Tuxemon.git
+python3 -m venv venv
+source venv/bin/activate
+python3 -m pip install -U -r requirements.txt
+python3 run_tuxemon.py
+```
+
+**Debian/Ubuntu**
+
+*Not recommended* because it will change system-installed packages
+```shell
 sudo apt install python python-pygame python-pip python-imaging git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
@@ -68,50 +83,23 @@ sudo pip install -U -r requirements.txt
 python run_tuxemon.py
 ```
 
-**Ubuntu 18.04 w/venv**
+*Debian/Ubuntu optional rumble support*
 
-Use this if you don't want to modify your system packages
-```sh
-sudo apt install git python3-venv
-git clone https://github.com/Tuxemon/Tuxemon.git
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python3 run_tuxemon.py
-```
-
-**Debian**
-
-```sh
-sudo apt-get install python python-pygame python-pip python-imaging git
-git clone https://github.com/Tuxemon/Tuxemon.git
-cd Tuxemon
-sudo pip install -U -r requirements.txt
-python run_tuxemon.py
-```
-
-*Optional rumble support*
-
-```sh
+```shell
 sudo apt install build-essential
 git clone https://github.com/zear/libShake.git
 cd libShake/
 make BACKEND=LINUX; sudo make install BACKEND=LINUX
 ```
 
-**Mac OS X (Yosemite)**
+**Fedora Linux**
 
-```sh
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew tap Homebrew/python
-brew update
-brew install python
-brew install sdl sdl_image sdl_ttf portmidi git
-brew install sdl_mixer --with-libvorbis
-sudo pip install git+https://github.com/pygame/pygame.git
-sudo pip install -U -r requirements.txt 
-git clone https://github.com/Tuxemon/Tuxemon.git
-ulimit -n 10000; python run_tuxemon.py
+```shell
+sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel python3-devel virtualenv venv
+python3 -m venv venv
+source venv/bin/activate
+python3 -m pip install -U -r requirements.txt
+python3 run_tuxemon.py
 ```
 
 **Arch Linux**
@@ -129,14 +117,20 @@ folder.  Connect your device to your computer and make a folder called
 will also need file system permissions, which you can set in your phones
 settings.
 
-**Fedora Linux**
+**Mac OS X (Yosemite)**
 
+```shell
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew tap Homebrew/python
+brew update
+brew install python
+brew install sdl sdl_image sdl_ttf portmidi git
+brew install sdl_mixer --with-libvorbis
+sudo pip install git+https://github.com/pygame/pygame.git
+sudo pip install -U -r requirements.txt 
+git clone https://github.com/Tuxemon/Tuxemon.git
+ulimit -n 10000; python run_tuxemon.py
 ```
-sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel
-python3-devel virtualenv venv
-pip install -r requirements.txt
-```
-
 
 Controls
 --------
@@ -196,7 +190,7 @@ cli_enabled = True
 - `trainer_battle <npc_slug>` — Sets you in a trainer battle with specified npc.
 - `quit` — Quits the game.
 - `whereami` — Prints out the map filename
-- `shell` — Starts the python shell, that you can use to modify the game directly. For advanced users.
+- `shell` — Starts the Python shell, that you can use to modify the game directly. For advanced users.
 
 **CLI Examples**
 
@@ -255,7 +249,7 @@ There are many scripts for various builds in the buildconfig folder.
 These are meant to be run from the project root directory, for example,
 to build the portable pypy build:
 
-```
+```shell
 [user@localhost Tuxemon]$ buildconfig/build_pypy_portable_linux.sh
 ```
 

@@ -35,7 +35,9 @@ import os
 from enum import Enum
 from operator import itemgetter
 from typing import Any, Dict, Literal, Mapping, Optional, Sequence, TypedDict, overload
+
 from pydantic import BaseModel, Field, ValidationError, validator
+
 from tuxemon import prepare
 from tuxemon.constants import paths
 
@@ -142,14 +144,7 @@ class MonsterModel(BaseModel):
     weight: float = Field(..., description="The weight of the monster")
 
     # Optional fields
-    sprites: MonsterSpritesModel = Field(
-        MonsterSpritesModel(
-            battle1=f"gfx/sprites/battle/{slug}-front",
-            battle2="gfx/sprites/battle/{slug}-back",
-            menu1="gfx/sprites/battle/{slug}-menu01",
-            menu2="gfx/sprites/battle/{slug}-menu02",
-        )
-    )
+    sprites: Optional[MonsterSpritesModel]
     shape: str = Field("", description="The shape of the monster")
     types: Sequence[str] = Field([], description="The type(s) of this monster")
     catch_rate: float = Field(0, description="The catch rate of the monster")
@@ -168,7 +163,24 @@ class MonsterModel(BaseModel):
     flairs: Sequence[MonsterFlairItemModel] = Field(
         [], description="The flairs this monster has"
     )
-    sounds: MonsterSoundsModel = Field(None, description="The sounds this monster has")
+    sounds: MonsterSoundsModel = Field(
+        MonsterSoundsModel(combat_call="sound_cry1", faint_call="sound_faint1"),
+        description="The sounds this monster has",
+    )
+
+    class Config:
+        validate_assignment = True
+
+    @validator("sprites", always=True)
+    def set_default_sprites(cls, v, values, **kwargs):
+        slug = values["slug"]
+        default = MonsterSpritesModel(
+            battle1=f"gfx/sprites/battle/{slug}-front",
+            battle2=f"gfx/sprites/battle/{slug}-back",
+            menu1=f"gfx/sprites/battle/{slug}-menu01",
+            menu2=f"gfx/sprites/battle/{slug}-menu02",
+        )
+        return v or default
 
 
 class StatModel(BaseModel):
@@ -241,6 +253,15 @@ class TechniqueModel(BaseModel):
     userstatranged: Optional[StatModel] = Field(None)
 
 
+class PartyMemberModel(BaseModel):
+    slug: str = Field(..., description="Slug of the monster")
+    level: int = Field(..., description="Level of the monster")
+    exp_give_mod: float = Field(
+        ..., description="Modifier for experience this monster gives"
+    )
+    exp_req_mod: float = Field(..., description="Experience required modifier")
+
+
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
     sprite_name: str = Field(..., description="Name of the overworld sprite filename")
@@ -248,6 +269,9 @@ class NpcModel(BaseModel):
         ..., description="Name of the battle front sprite filename"
     )
     combat_back: str = Field(..., description="Name of the battle back sprite filename")
+    monsters: Sequence[PartyMemberModel] = Field(
+        [], description="List of monsters in the NPCs party"
+    )
 
 
 class BattleGraphicsModel(BaseModel):
@@ -290,6 +314,14 @@ class EconomyItemModel(BaseModel):
 class EconomyModel(BaseModel):
     slug: str = Field(..., description="Slug uniquely identifying the economy")
     items: Sequence[EconomyItemModel]
+
+
+class MusicItemModel(BaseModel):
+    slug: str = Field(..., description="Unique slug for the music")
+    file: str = Field(..., description="File for the music")
+
+
+MusicModel: Sequence[MusicItemModel]
 
 
 def process_targets(json_targets: Target) -> Sequence[str]:

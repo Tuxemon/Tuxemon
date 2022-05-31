@@ -77,7 +77,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             return
 
         slug = self.parameters.encounter_slug
-        encounters = db.lookup(slug, table="encounter")["monsters"]
+        encounters = db.lookup(slug, table="encounter").dict()["monsters"]
         encounter = _choose_encounter(encounters, self.parameters.total_prob)
 
         # If a random encounter was successfully rolled, look up the monster
@@ -92,7 +92,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             env_slug = "grass"
             if "environment" in player.game_variables:
                 env_slug = player.game_variables["environment"]
-            env = db.lookup(env_slug, table="environment")
+            env = db.lookup(env_slug, table="environment").dict()
 
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack

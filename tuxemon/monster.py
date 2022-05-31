@@ -576,7 +576,7 @@ class Monster:
         if len(self.flairs) > 0 or self.slug == "":
             return
 
-        results = db.lookup(self.slug, table="monster")
+        results = db.lookup(self.slug, table="monster").dict()
         flairs = results.get("flairs")
         if flairs:
             for flair in flairs:
@@ -606,7 +606,7 @@ class Monster:
         except OSError:
             pass
 
-        logger.debug(f"Could not find monster sprite {sprite}")
+        logger.error(f"Could not find monster sprite {sprite}")
         return MISSING_IMAGE
 
     def load_sprites(self) -> bool:

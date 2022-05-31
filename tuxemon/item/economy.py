@@ -39,12 +39,9 @@ logger = logging.getLogger(__name__)
 
 class Economy:
     """An Economy holds a list of item names and their price/cost for this
-    economy. """
+    economy."""
 
-    def __init__(
-        self,
-        slug: Optional[str] = None
-    ) -> None:
+    def __init__(self, slug: Optional[str] = None) -> None:
 
         # Auto-load the economy from the economy database.
         if slug:
@@ -61,7 +58,7 @@ class Economy:
         """
 
         try:
-            results = db.lookup(slug, table="economy")
+            results = db.lookup(slug, table="economy").dict()
         except KeyError:
             raise RuntimeError(f"Failed to find economy with slug {slug}")
 
@@ -104,8 +101,7 @@ class Economy:
 
         if not price:
             raise RuntimeError(
-                f"Price for item '{item_slug}' not found in "
-                f"economy '{self.slug}'"
+                f"Price for item '{item_slug}' not found in " f"economy '{self.slug}'"
             )
 
         return price
@@ -126,8 +122,7 @@ class Economy:
 
         if not cost:
             raise RuntimeError(
-                f"Cost for item '{item_slug}' not found in "
-                f"economy '{self.slug}'"
+                f"Cost for item '{item_slug}' not found in " f"economy '{self.slug}'"
             )
 
         return cost

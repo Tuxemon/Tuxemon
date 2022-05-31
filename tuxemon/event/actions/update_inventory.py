@@ -67,6 +67,8 @@ class UpdateInventoryAction(EventAction[UpdateInventoryActionParameters]):
                 db.lookup(
                     self.parameters.inventory_slug,
                     table="inventory",
-                ).get("inventory", {})
+                )
+                .dict()
+                .get("inventory", {}),
             )
         )

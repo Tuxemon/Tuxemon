@@ -137,7 +137,7 @@
     "userstatspeed": {
       "$ref": "#/definitions/StatModel"
     },
-    "usertathp": {
+    "userstathp": {
       "$ref": "#/definitions/StatModel"
     },
     "userstatarmour": {

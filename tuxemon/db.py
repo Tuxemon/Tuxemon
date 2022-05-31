@@ -249,7 +249,7 @@ class TechniqueModel(BaseModel):
     statmelee: Optional[StatModel] = Field(None)
     statranged: Optional[StatModel] = Field(None)
     userstatspeed: Optional[StatModel] = Field(None)
-    usertathp: Optional[StatModel] = Field(None)
+    userstathp: Optional[StatModel] = Field(None)
     userstatarmour: Optional[StatModel] = Field(None)
     userstatdodge: Optional[StatModel] = Field(None)
     userstatmelee: Optional[StatModel] = Field(None)

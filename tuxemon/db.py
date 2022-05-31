@@ -34,7 +34,16 @@ import logging
 import os
 from enum import Enum
 from operator import itemgetter
-from typing import Any, Dict, Literal, Mapping, Optional, Sequence, TypedDict, overload
+from typing import (
+    Any,
+    Dict,
+    Literal,
+    Mapping,
+    Optional,
+    Sequence,
+    TypedDict,
+    overload,
+)
 
 from pydantic import BaseModel, Field, ValidationError, validator
 
@@ -83,13 +92,19 @@ class ItemModel(BaseModel):
     )
     sort: ItemSort = Field(..., description="The kind of item this is.")
     sprite: str = Field(..., description="The sprite to use")
-    target: Target = Field(..., description="Target mapping of who to use the item on")
+    target: Target = Field(
+        ..., description="Target mapping of who to use the item on"
+    )
     type: ItemType = Field(..., description="The type of item this is")
     usable_in: Sequence[State] = Field(
         ..., description="State(s) where this item can be used."
     )
-    conditions: Sequence[str] = Field([], description="Conditions that must be met")
-    effects: Sequence[str] = Field([], description="Effects this item will have")
+    conditions: Sequence[str] = Field(
+        [], description="Conditions that must be met"
+    )
+    effects: Sequence[str] = Field(
+        [], description="Effects this item will have"
+    )
 
     class Config:
         title = "Item"
@@ -113,7 +128,8 @@ class MonsterMovesetItemModel(BaseModel):
 class MonsterEvolutionItemModel(BaseModel):
     path: str = Field(..., description="Path to evolution item")
     at_level: int = Field(
-        ..., description="The level at which this item can be used for evolution"
+        ...,
+        description="The level at which this item can be used for evolution",
     )
     monster_slug: str = Field(
         ..., description="The monster slug that this evolution item applies to"
@@ -133,8 +149,12 @@ class MonsterSpritesModel(BaseModel):
 
 
 class MonsterSoundsModel(BaseModel):
-    combat_call: str = Field(..., description="The sound used when entering combat")
-    faint_call: str = Field(..., description="The sound used when the monster faints")
+    combat_call: str = Field(
+        ..., description="The sound used when entering combat"
+    )
+    faint_call: str = Field(
+        ..., description="The sound used when the monster faints"
+    )
 
 
 class MonsterModel(BaseModel):
@@ -164,7 +184,9 @@ class MonsterModel(BaseModel):
         [], description="The flairs this monster has"
     )
     sounds: MonsterSoundsModel = Field(
-        MonsterSoundsModel(combat_call="sound_cry1", faint_call="sound_faint1"),
+        MonsterSoundsModel(
+            combat_call="sound_cry1", faint_call="sound_faint1"
+        ),
         description="The sounds this monster has",
     )
 
@@ -191,7 +213,9 @@ class StatModel(BaseModel):
     max_deviation: Optional[int] = Field(
         None, description="The maximum deviation of the stat"
     )
-    operation: str = Field(..., description="The operation to be done to the stat")
+    operation: str = Field(
+        ..., description="The operation to be done to the stat"
+    )
     overridetofull: Optional[bool] = Field(
         None, description="Whether or not to override to full"
     )
@@ -211,7 +235,9 @@ class TechniqueModel(BaseModel):
     sort: str = Field(..., description="The sort of technique this is")
     category: str = Field(..., description="The category of technique this is")
     icon: str = Field(..., description="The icon to use for the technique")
-    effects: Sequence[str] = Field(..., description="Effects this technique uses")
+    effects: Sequence[str] = Field(
+        ..., description="Effects this technique uses"
+    )
     target: Target = Field(
         ..., description="Target mapping of who this technique is used on"
     )
@@ -224,24 +250,32 @@ class TechniqueModel(BaseModel):
 
     # Optional fields
     use_tech: str = Field(
-        None, description="Slug of what string to display when technique is used"
+        None,
+        description="Slug of what string to display when technique is used",
     )
     use_success: str = Field(
-        None, description="Slug of what string to display when technique succeeds"
+        None,
+        description="Slug of what string to display when technique succeeds",
     )
     use_failure: str = Field(
         None, description="Slug of what string to display when technique fails"
     )
     types: Sequence[str] = Field([], description="Type(s) of the technique")
     power: float = Field(0, description="Power of the technique")
-    is_fast: bool = Field(False, description="Whether or not this is a fast technique")
+    is_fast: bool = Field(
+        False, description="Whether or not this is a fast technique"
+    )
     is_area: bool = Field(
         False, description="Whether or not this is an area of effect technique"
     )
     recharge: int = Field(0, description="Recharge of this technique")
-    range: Range = Field("melee", description="The attack range of this technique")
+    range: Range = Field(
+        "melee", description="The attack range of this technique"
+    )
     accuracy: float = Field(0, description="The accuracy of the technique")
-    potency: Optional[float] = Field(None, description="How potetent the technique is")
+    potency: Optional[float] = Field(
+        None, description="How potetent the technique is"
+    )
     statspeed: Optional[StatModel] = Field(None)
     stathp: Optional[StatModel] = Field(None)
     statarmour: Optional[StatModel] = Field(None)
@@ -260,7 +294,9 @@ class TechniqueModel(BaseModel):
     def range_validation(cls, v, values, **kwargs):
         # Special indicates that we are not doing damage
         if v == Range.special and "damage" in values["effects"]:
-            raise ValueError('"special" range cannot be used with effect "damage"')
+            raise ValueError(
+                '"special" range cannot be used with effect "damage"'
+            )
 
         return v
 
@@ -276,11 +312,15 @@ class PartyMemberModel(BaseModel):
 
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
-    sprite_name: str = Field(..., description="Name of the overworld sprite filename")
+    sprite_name: str = Field(
+        ..., description="Name of the overworld sprite filename"
+    )
     combat_front: str = Field(
         ..., description="Name of the battle front sprite filename"
     )
-    combat_back: str = Field(..., description="Name of the battle back sprite filename")
+    combat_back: str = Field(
+        ..., description="Name of the battle back sprite filename"
+    )
     monsters: Sequence[PartyMemberModel] = Field(
         [], description="List of monsters in the NPCs party"
     )
@@ -302,18 +342,24 @@ class EnvironmentModel(BaseModel):
 class EncounterItemModel(BaseModel):
     monster: str = Field(..., description="Monster slug for this encounter")
     encounter_rate: float = Field(..., description="Rate of this encounter")
-    level_range: Sequence[int] = Field(..., description="Level range to encounter")
+    level_range: Sequence[int] = Field(
+        ..., description="Level range to encounter"
+    )
 
 
 class EncounterModel(BaseModel):
-    slug: str = Field(..., description="Slug to uniquely identify this encounter")
+    slug: str = Field(
+        ..., description="Slug to uniquely identify this encounter"
+    )
     monsters: Sequence[EncounterItemModel] = Field(
         [], description="Monsters encounterable"
     )
 
 
 class InventoryModel(BaseModel):
-    slug: str = Field(..., description="Slug uniquely identifying the inventory")
+    slug: str = Field(
+        ..., description="Slug uniquely identifying the inventory"
+    )
     inventory: Mapping[str, Optional[int]] = Field(...)
 
 
@@ -458,7 +504,9 @@ class JSONDatabase:
         """
 
         if item["slug"] in self.database[table]:
-            logger.warning("Error: Item with slug %s was already loaded.", item)
+            logger.warning(
+                "Error: Item with slug %s was already loaded.", item
+            )
             return
 
         try:

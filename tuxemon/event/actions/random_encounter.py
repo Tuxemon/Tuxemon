@@ -141,7 +141,9 @@ def _choose_encounter(
     total = 0.0
     roll = random.random() * 100
     if total_prob is not None:
-        current_total = sum(encounter["encounter_rate"] for encounter in encounters)
+        current_total = sum(
+            encounter["encounter_rate"] for encounter in encounters
+        )
         scale = float(total_prob) / current_total
     else:
         scale = 1

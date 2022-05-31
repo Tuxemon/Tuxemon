@@ -101,7 +101,8 @@ class Economy:
 
         if not price:
             raise RuntimeError(
-                f"Price for item '{item_slug}' not found in " f"economy '{self.slug}'"
+                f"Price for item '{item_slug}' not found in "
+                f"economy '{self.slug}'"
             )
 
         return price
@@ -122,7 +123,8 @@ class Economy:
 
         if not cost:
             raise RuntimeError(
-                f"Cost for item '{item_slug}' not found in " f"economy '{self.slug}'"
+                f"Cost for item '{item_slug}' not found in "
+                f"economy '{self.slug}'"
             )
 
         return cost

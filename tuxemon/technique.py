@@ -94,7 +94,9 @@ class Technique:
         carrier: Optional[Monster] = None,
         link: Optional[Monster] = None,
     ) -> None:
-        self._combat_counter = 0  # number of turns that this technique has been active
+        self._combat_counter = (
+            0  # number of turns that this technique has been active
+        )
         self._life_counter = 0
         self.accuracy = 0.0
         self.animation = ""
@@ -458,7 +460,9 @@ class Technique:
             Dict summarizing the result.
 
         """
-        already_applied = any(t for t in target.status if t.slug == "status_lifeleech")
+        already_applied = any(
+            t for t in target.status if t.slug == "status_lifeleech"
+        )
         success = not already_applied and self.potency >= random.random()
         tech = None
         if success:
@@ -514,7 +518,9 @@ class Technique:
         """
         # TODO: implement into the combat state, currently not used
 
-        already_fainted = any(t for t in target.status if t.name == "status_faint")
+        already_fainted = any(
+            t for t in target.status if t.name == "status_faint"
+        )
 
         if already_fainted:
             raise RuntimeError

@@ -214,7 +214,9 @@ class Monster:
         self.hp = 0
         self.level = 0
 
-        self.moves: List[Technique] = []  # list of technique objects. Used in combat.
+        self.moves: List[
+            Technique
+        ] = []  # list of technique objects. Used in combat.
         self.moveset: List[
             MonsterMovesetItemModel
         ] = []  # list of possible technique objects.
@@ -227,7 +229,9 @@ class Monster:
         self.battle_cry = (
             ""  # slug for a sound file, used primarly when they enter battle
         )
-        self.faint_cry = ""  # slug for a sound file, used when the monster faints
+        self.faint_cry = (
+            ""  # slug for a sound file, used when the monster faints
+        )
         self.ai: Optional[ai.AI] = None
         self.owner: Optional[NPC] = None  # set to NPC instance if they own it
 
@@ -367,8 +371,12 @@ class Monster:
                 self.evolutions.append(evolution)
 
         # Look up the monster's sprite image paths
-        self.front_battle_sprite = self.get_sprite_path(results["sprites"]["battle1"])
-        self.back_battle_sprite = self.get_sprite_path(results["sprites"]["battle2"])
+        self.front_battle_sprite = self.get_sprite_path(
+            results["sprites"]["battle1"]
+        )
+        self.back_battle_sprite = self.get_sprite_path(
+            results["sprites"]["battle2"]
+        )
         self.menu_sprite_1 = self.get_sprite_path(results["sprites"]["menu1"])
         self.menu_sprite_2 = self.get_sprite_path(results["sprites"]["menu2"])
 
@@ -466,7 +474,8 @@ class Monster:
 
         """
         logger.info(
-            "Leveling %s from %i to %i!" % (self.name, self.level, self.level + 1)
+            "Leveling %s from %i to %i!"
+            % (self.name, self.level, self.level + 1)
         )
         # Increase Level and stats
         self.level += 1
@@ -477,7 +486,9 @@ class Monster:
         for move in self.moveset:
             if move["level_learned"] == self.level:
                 logger.info(
-                    "{} learned technique {}!".format(self.name, move["technique"])
+                    "{} learned technique {}!".format(
+                        self.name, move["technique"]
+                    )
                 )
                 technique = Technique(move["technique"])
                 self.learn(technique)
@@ -517,7 +528,9 @@ class Monster:
             Required experience.
 
         """
-        return self.experience_required_modifier * (self.level + level_ofs) ** 3
+        return (
+            self.experience_required_modifier * (self.level + level_ofs) ** 3
+        )
 
     def get_evolution(self, path: str) -> Optional[str]:
         """
@@ -531,7 +544,8 @@ class Monster:
             if evolution["path"] == path:
                 level_over = 0 < evolution["at_level"] <= self.level
                 level_under = (
-                    evolution["at_level"] < 0 and self.level <= -evolution["at_level"]
+                    evolution["at_level"] < 0
+                    and self.level <= -evolution["at_level"]
                 )
                 if level_over or level_under:
                     return evolution["monster_slug"]
@@ -620,7 +634,9 @@ class Monster:
         if len(self.sprites):
             return True
 
-        self.sprites["front"] = graphics.load_and_scale(self.front_battle_sprite)
+        self.sprites["front"] = graphics.load_and_scale(
+            self.front_battle_sprite
+        )
         self.sprites["back"] = graphics.load_and_scale(self.back_battle_sprite)
         self.sprites["menu"] = graphics.load_and_scale(self.menu_sprite_1)
         return False

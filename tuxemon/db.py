@@ -169,8 +169,11 @@ class MonsterModel(BaseModel):
     )
 
     class Config:
+        # Validate assignment allows us to assign a default inside a validator
         validate_assignment = True
 
+    # Set the default sprites based on slug. Specifying 'always' is needed
+    # because by default pydantic doesn't validate null fields.
     @validator("sprites", always=True)
     def set_default_sprites(cls, v, values, **kwargs):
         slug = values["slug"]
@@ -375,36 +378,40 @@ class JSONDatabase:
         }
         # self.load(dir)
 
-    def load(self, directory: str = "all") -> None:
+    def load(self, directory: str = "all", validate: bool = False) -> None:
         """
         Loads all data from JSON files located under our data path.
 
         Parameters:
             directory: The directory under mods/tuxemon/db/ to load. Defaults
                 to "all".
+            validate: Whether or not we should raise an exception if validation
+                fails
 
         """
         self.path = prepare.fetch("db")
         if directory == "all":
-            self.load_json("item")
-            self.load_json("monster")
-            self.load_json("npc")
-            self.load_json("technique")
-            self.load_json("encounter")
-            self.load_json("inventory")
-            self.load_json("environment")
-            self.load_json("sounds")
-            self.load_json("music")
-            self.load_json("economy")
+            self.load_json("item", validate)
+            self.load_json("monster", validate)
+            self.load_json("npc", validate)
+            self.load_json("technique", validate)
+            self.load_json("encounter", validate)
+            self.load_json("inventory", validate)
+            self.load_json("environment", validate)
+            self.load_json("sounds", validate)
+            self.load_json("music", validate)
+            self.load_json("economy", validate)
         else:
-            self.load_json(directory)
+            self.load_json(directory, validate)
 
-    def load_json(self, directory: str) -> None:
+    def load_json(self, directory: str, validate: bool = False) -> None:
         """
         Loads all JSON items under a specified path.
 
         Parameters:
             directory: The directory under mods/tuxemon/db/ to look in.
+            validate: Whether or not we should raise an exception if validation
+                fails
 
         """
         for json_item in os.listdir(os.path.join(self.path, directory)):
@@ -423,17 +430,21 @@ class JSONDatabase:
 
             if type(item) is list:
                 for sub in item:
-                    self.load_dict(sub, directory)
+                    self.load_dict(sub, directory, validate)
             else:
-                self.load_dict(item, directory)
+                self.load_dict(item, directory, validate)
 
-    def load_dict(self, item: Mapping[str, Any], table: str) -> None:
+    def load_dict(
+        self, item: Mapping[str, Any], table: str, validate: bool = False
+    ) -> None:
         """
         Loads a single json object and adds it to the appropriate db table.
 
         Parameters:
             item: The json object to load in.
             table: The db table to load the object into.
+            validate: Whether or not we should raise an exception if validation
+                fails
 
         """
 
@@ -476,7 +487,8 @@ class JSONDatabase:
                 self.database[table][item["slug"]] = item
         except ValidationError as e:
             logger.error(f"validation failed for '{item['slug']}': {e}")
-            # raise e
+            if validate:
+                raise e
 
     @overload
     def lookup(self, slug: str) -> MonsterModel:

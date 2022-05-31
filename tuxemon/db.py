@@ -255,6 +255,15 @@ class TechniqueModel(BaseModel):
     userstatmelee: Optional[StatModel] = Field(None)
     userstatranged: Optional[StatModel] = Field(None)
 
+    # Custom validation for range
+    @validator("range")
+    def range_validation(cls, v, values, **kwargs):
+        # Special indicates that we are not doing damage
+        if v == Range.special and "damage" in values["effects"]:
+            raise ValueError('"special" range cannot be used with effect "damage"')
+
+        return v
+
 
 class PartyMemberModel(BaseModel):
     slug: str = Field(..., description="Slug of the monster")

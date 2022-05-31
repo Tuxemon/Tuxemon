@@ -25,7 +25,7 @@ import random
 
 from tuxemon import ai, monster, prepare
 from tuxemon.combat import check_battle_legal
-from tuxemon.db import db, JSONEncounterItem
+from tuxemon.db import db, EncounterItemModel
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
 from typing import NamedTuple, Union, final, Sequence, Optional
@@ -133,16 +133,15 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
         if self.world:
             self.world.remove_entity("random_encounter_dummy")
 
+
 def _choose_encounter(
-    encounters: Sequence[JSONEncounterItem],
+    encounters: Sequence[EncounterItemModel],
     total_prob: Optional[float],
-) -> Optional[JSONEncounterItem]:
+) -> Optional[EncounterItemModel]:
     total = 0.0
     roll = random.random() * 100
     if total_prob is not None:
-        current_total = sum(
-            encounter["encounter_rate"] for encounter in encounters
-        )
+        current_total = sum(encounter["encounter_rate"] for encounter in encounters)
         scale = float(total_prob) / current_total
     else:
         scale = 1
@@ -158,7 +157,7 @@ def _choose_encounter(
 
 
 def _create_monster_npc(
-    encounter: JSONEncounterItem,
+    encounter: EncounterItemModel,
     world: WorldState,
 ) -> NPC:
     current_monster = monster.Monster()

@@ -305,10 +305,9 @@ class StateManager:
             changes.
 
     """
+
     def __init__(
-        self,
-        package: str,
-        on_state_change: Optional[Callable[[], None]] = None
+        self, package: str, on_state_change: Optional[Callable[[], None]] = None
     ) -> None:
         self.package = package
         # TODO: consider API for handling hooks
@@ -701,10 +700,7 @@ class StateManager:
 
         """
         for state in self.active_states:
-            if (
-                state.__class__.__name__ == state_name
-                or state.__class__ == state_name
-            ):
+            if state.__class__.__name__ == state_name or state.__class__ == state_name:
                 return state
 
         raise ValueError(f"Missing state {state_name}")

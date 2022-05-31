@@ -28,175 +28,271 @@
 #
 
 from __future__ import annotations
+
 import json
 import logging
 import os
+from enum import Enum
 from operator import itemgetter
-
+from typing import Any, Dict, Literal, Mapping, Optional, Sequence, TypedDict, overload
+from pydantic import BaseModel, Field, ValidationError, validator
 from tuxemon import prepare
-from typing import Any, Mapping, Dict, Sequence, TypedDict, overload, Literal,\
-    Optional
+from tuxemon.constants import paths
 
 logger = logging.getLogger(__name__)
 
-
-JSONTarget = Mapping[str, int]
-
-
-class JSONItemOptionalFields(TypedDict, total=False):
-    conditions: Sequence[str]
-    effects: Sequence[str]
+Target = Mapping[str, int]
 
 
-class JSONItem(JSONItemOptionalFields):
-    slug: str
-    use_item: str
-    use_success: str
-    use_failure: str
-    sort: str
-    sprite: str
-    target: JSONTarget
-    type: str
-    usable_in: Sequence[str]
+class ItemSort(str, Enum):
+    food = "food"
+    potion = "potion"
+    utility = "utility"
+    quest = "quest"
 
 
-class JSONMonsterMovesetItem(TypedDict):
-    level_learned: int
-    technique: str
+class ItemType(str, Enum):
+    consumable = "Consumable"
+    key_item = "KeyItem"
 
 
-class JSONMonsterEvolutionItem(TypedDict):
-    path: str
-    at_level: int
-    monster_slug: str
+# TODO: Automatically generate state enum through discovery
+states = {
+    "MainCombatMenuState": "MainCombatMenuState",
+    "WorldState": "WorldState",
+    "None": "",
+}
+State = Enum("State", states)
 
 
-class JSONMonsterFlairItem(TypedDict):
-    category: str
-    names: Sequence[str]
+class ItemModel(BaseModel):
+    slug: str = Field(..., description="Slug to use")
+    use_item: str = Field(
+        ...,
+        description="Slug to determine which text is displayed when this item is used",
+    )
+    use_success: str = Field(
+        "generic_success",
+        description="Slug to determine which text is displayed when this item is used successfully",
+    )
+    use_failure: str = Field(
+        "generic_failure",
+        description="Slug to determine which text is displayed when this item failed to be used",
+    )
+    sort: ItemSort = Field(..., description="The kind of item this is.")
+    sprite: str = Field(..., description="The sprite to use")
+    target: Target = Field(..., description="Target mapping of who to use the item on")
+    type: ItemType = Field(..., description="The type of item this is")
+    usable_in: Sequence[State] = Field(
+        ..., description="State(s) where this item can be used."
+    )
+    conditions: Sequence[str] = Field([], description="Conditions that must be met")
+    effects: Sequence[str] = Field([], description="Effects this item will have")
+
+    class Config:
+        title = "Item"
+
+    # Validators can be used with custom validation logic.
+    # TODO: Ensure this slug exists somewhere in a PO
+    @validator("slug")
+    def slug_must_exist(cls, v):
+        return v
 
 
-class JSONMonsterSprites(TypedDict):
-    battle1: str
-    battle2: str
-    menu1: str
-    menu2: str
+class MonsterMovesetItemModel(BaseModel):
+    level_learned: int = Field(
+        ..., description="Monster level in which this moveset is learned"
+    )
+    technique: str = Field(
+        ..., description="Name of the technique for this moveset item"
+    )
 
 
-class JSONMonsterSounds(TypedDict, total=False):
-    combat_call: str
-    faint_call: str
+class MonsterEvolutionItemModel(BaseModel):
+    path: str = Field(..., description="Path to evolution item")
+    at_level: int = Field(
+        ..., description="The level at which this item can be used for evolution"
+    )
+    monster_slug: str = Field(
+        ..., description="The monster slug that this evolution item applies to"
+    )
 
 
-class JSONMonsterOptionalFields(TypedDict, total=False):
-    shape: str
-    types: Sequence[str]
-    catch_rate: float
-    lower_catch_resistance: float
-    upper_catch_resistance: float
-    moveset: Sequence[JSONMonsterMovesetItem]
-    evolutions: Sequence[JSONMonsterEvolutionItem]
-    flairs: Sequence[JSONMonsterFlairItem]
-    sounds: JSONMonsterSounds
+class MonsterFlairItemModel(BaseModel):
+    category: str = Field(..., description="The category of this flair item")
+    names: Sequence[str] = Field(..., description="The names")
 
 
-class JSONMonster(JSONMonsterOptionalFields):
-    slug: str
-    category: str
-    ai: str
-    weight: float
-    sprites: JSONMonsterSprites
+class MonsterSpritesModel(BaseModel):
+    battle1: str = Field(..., description="The battle1 sprite")
+    battle2: str = Field(..., description="The battle2 sprite")
+    menu1: str = Field(..., description="The menu1 sprite")
+    menu2: str = Field(..., description="The menu2 sprite")
 
 
-class JSONStat(TypedDict, total=False):
-    value: int
-    max_deviation: int
-    operation: str
-    overridetofull: bool
+class MonsterSoundsModel(BaseModel):
+    combat_call: str = Field(..., description="The sound used when entering combat")
+    faint_call: str = Field(..., description="The sound used when the monster faints")
 
 
-class JSONTechniqueOptionalFields(TypedDict, total=False):
-    use_tech: str
-    use_success: str
-    use_failure: str
-    types: Sequence[str]
-    power: float
-    is_fast: bool
-    recharge: int
-    is_area: bool
-    range: str
-    accuracy: float
-    potency: float
-    statspeed: JSONStat
-    stathp: JSONStat
-    statarmour: JSONStat
-    statdodge: JSONStat
-    statmelee: JSONStat
-    statranged: JSONStat
-    userstatspeed: JSONStat
-    usertathp: JSONStat
-    userstatarmour: JSONStat
-    userstatdodge: JSONStat
-    userstatmelee: JSONStat
-    userstatranged: JSONStat
+class MonsterModel(BaseModel):
+    slug: str = Field(..., description="The slug of the monster")
+    category: str = Field(..., description="The category of monster")
+    ai: str = Field(..., description="The AI to use for this monster")
+    weight: float = Field(..., description="The weight of the monster")
+
+    # Optional fields
+    sprites: MonsterSpritesModel = Field(
+        MonsterSpritesModel(
+            battle1=f"gfx/sprites/battle/{slug}-front",
+            battle2="gfx/sprites/battle/{slug}-back",
+            menu1="gfx/sprites/battle/{slug}-menu01",
+            menu2="gfx/sprites/battle/{slug}-menu02",
+        )
+    )
+    shape: str = Field("", description="The shape of the monster")
+    types: Sequence[str] = Field([], description="The type(s) of this monster")
+    catch_rate: float = Field(0, description="The catch rate of the monster")
+    lower_catch_resistance: float = Field(
+        0, description="The lower catch resistance of the monster"
+    )
+    upper_catch_resistance: float = Field(
+        0, description="The upper catch resistance of the monster"
+    )
+    moveset: Sequence[MonsterMovesetItemModel] = Field(
+        [], description="The moveset of this monster"
+    )
+    evolutions: Sequence[MonsterEvolutionItemModel] = Field(
+        [], description="The evolutions this monster has"
+    )
+    flairs: Sequence[MonsterFlairItemModel] = Field(
+        [], description="The flairs this monster has"
+    )
+    sounds: MonsterSoundsModel = Field(None, description="The sounds this monster has")
 
 
-class JSONTechnique(JSONTechniqueOptionalFields):
-    slug: str
-    sort: str
-    category: str
-    icon: str
-    effects: Sequence[str]
-    target: JSONTarget
-    animation: str
-    sfx: str
+class StatModel(BaseModel):
+    value: Optional[int] = Field(None, description="The value of the stat")
+    max_deviation: Optional[int] = Field(
+        None, description="The maximum deviation of the stat"
+    )
+    operation: str = Field(..., description="The operation to be done to the stat")
+    overridetofull: Optional[bool] = Field(
+        None, description="Whether or not to override to full"
+    )
 
 
-class JSONNpc(TypedDict):
-    slug: str
-    sprite_name: str
-    combat_front: str
-    combat_back: str
+class Range(str, Enum):
+    special = "special"
+    melee = "melee"
+    ranged = "ranged"
+    touch = "touch"
+    reach = "reach"
+    reliable = "reliable"
 
 
-class JSONBattleGraphics(TypedDict):
-    island_back: str
-    island_front: str
+class TechniqueModel(BaseModel):
+    slug: str = Field(..., description="The slug of the technique")
+    sort: str = Field(..., description="The sort of technique this is")
+    category: str = Field(..., description="The category of technique this is")
+    icon: str = Field(..., description="The icon to use for the technique")
+    effects: Sequence[str] = Field(..., description="Effects this technique uses")
+    target: Target = Field(
+        ..., description="Target mapping of who this technique is used on"
+    )
+    animation: Optional[str] = Field(
+        None, description="Animation to play for this technique"
+    )
+    sfx: str = Field(
+        ..., description="Sound effect to play when this technique is used"
+    )
+
+    # Optional fields
+    use_tech: str = Field(
+        None, description="Slug of what string to display when technique is used"
+    )
+    use_success: str = Field(
+        None, description="Slug of what string to display when technique succeeds"
+    )
+    use_failure: str = Field(
+        None, description="Slug of what string to display when technique fails"
+    )
+    types: Sequence[str] = Field([], description="Type(s) of the technique")
+    power: float = Field(0, description="Power of the technique")
+    is_fast: bool = Field(False, description="Whether or not this is a fast technique")
+    is_area: bool = Field(
+        False, description="Whether or not this is an area of effect technique"
+    )
+    recharge: int = Field(0, description="Recharge of this technique")
+    range: Range = Field("melee", description="The attack range of this technique")
+    accuracy: float = Field(0, description="The accuracy of the technique")
+    potency: Optional[float] = Field(None, description="How potetent the technique is")
+    statspeed: Optional[StatModel] = Field(None)
+    stathp: Optional[StatModel] = Field(None)
+    statarmour: Optional[StatModel] = Field(None)
+    statdodge: Optional[StatModel] = Field(None)
+    statmelee: Optional[StatModel] = Field(None)
+    statranged: Optional[StatModel] = Field(None)
+    userstatspeed: Optional[StatModel] = Field(None)
+    usertathp: Optional[StatModel] = Field(None)
+    userstatarmour: Optional[StatModel] = Field(None)
+    userstatdodge: Optional[StatModel] = Field(None)
+    userstatmelee: Optional[StatModel] = Field(None)
+    userstatranged: Optional[StatModel] = Field(None)
 
 
-class JSONEnvironment(TypedDict):
-    slug: str
-    battle_music: str
-    battle_graphics: JSONBattleGraphics
+class NpcModel(BaseModel):
+    slug: str = Field(..., description="Slug of the name of the NPC")
+    sprite_name: str = Field(..., description="Name of the overworld sprite filename")
+    combat_front: str = Field(
+        ..., description="Name of the battle front sprite filename"
+    )
+    combat_back: str = Field(..., description="Name of the battle back sprite filename")
 
 
-class JSONEncounterItem(TypedDict):
-    monster: str
-    encounter_rate: float
-    level_range: Sequence[int]
+class BattleGraphicsModel(BaseModel):
+    island_back: str = Field(..., description="Sprite used for back combat")
+    island_front: str = Field(..., description="Sprite used for front combat")
 
 
-class JSONEncounter(TypedDict):
-    slug: str
-    monsters: Sequence[JSONEncounterItem]
+class EnvironmentModel(BaseModel):
+    slug: str = Field(..., description="Slug of the name of the environment")
+    battle_music: str = Field(
+        ..., description="Filename of the music to use for this environment"
+    )
+    battle_graphics: BattleGraphicsModel
 
 
-class JSONInventory(TypedDict):
-    slug: str
-    inventory: Mapping[str, Optional[int]]
+class EncounterItemModel(BaseModel):
+    monster: str = Field(..., description="Monster slug for this encounter")
+    encounter_rate: float = Field(..., description="Rate of this encounter")
+    level_range: Sequence[int] = Field(..., description="Level range to encounter")
 
-class JSONEconomyItemOptionalFields(TypedDict, total=False):
-    price: int
-    cost: int
 
-class JSONEconomyItem(TypedDict):
-    item_name: str
+class EncounterModel(BaseModel):
+    slug: str = Field(..., description="Slug to uniquely identify this encounter")
+    monsters: Sequence[EncounterItemModel] = Field(
+        [], description="Monsters encounterable"
+    )
 
-class JSONEconomy(TypedDict):
-    slug: str
-    items: Sequence[JSONEconomyItem]
 
-def process_targets(json_targets: JSONTarget) -> Sequence[str]:
+class InventoryModel(BaseModel):
+    slug: str = Field(..., description="Slug uniquely identifying the inventory")
+    inventory: Mapping[str, Optional[int]] = Field(...)
+
+
+class EconomyItemModel(BaseModel):
+    item_name: str = Field(..., description="Name of the item")
+    price: int = Field(0, description="Price of the item")
+    cost: int = Field(0, description="Cost of the item")
+
+
+class EconomyModel(BaseModel):
+    slug: str = Field(..., description="Slug uniquely identifying the economy")
+    items: Sequence[EconomyItemModel]
+
+
+def process_targets(json_targets: Target) -> Sequence[str]:
     """Return values in order of preference for targeting things.
 
     example: ["own monster", "enemy monster"]
@@ -218,7 +314,7 @@ def process_targets(json_targets: JSONTarget) -> Sequence[str]:
                     key=itemgetter(1),
                     reverse=True,
                 ),
-            )
+            ),
         )
     )
 
@@ -309,41 +405,77 @@ class JSONDatabase:
 
         """
 
-        if item["slug"] not in self.database[table]:
-            self.database[table][item["slug"]] = item
-        else:
+        if item["slug"] in self.database[table]:
             logger.warning("Error: Item with slug %s was already loaded.", item)
+            return
+
+        try:
+            if table == "economy":
+                economy = EconomyModel(**item)
+                self.database[table][economy.slug] = economy
+            elif table == "encounter":
+                encounter = EncounterModel(**item)
+                self.database[table][encounter.slug] = encounter
+            elif table == "environment":
+                env = EnvironmentModel(**item)
+                self.database[table][env.slug] = env
+            elif table == "inventory":
+                inventory = InventoryModel(**item)
+                self.database[table][inventory.slug] = inventory
+            elif table == "item":
+                itm = ItemModel(**item)
+                self.database[table][itm.slug] = itm
+            elif table == "monster":
+                mon = MonsterModel(**item)
+                self.database[table][mon.slug] = mon
+            # elif table == "music":
+            #    mon = (**item)
+            #    self.database[table][mon.slug] = mon
+            elif table == "npc":
+                npc = NpcModel(**item)
+                self.database[table][npc.slug] = npc
+            # elif table == "sounds":
+            #    mon = MonsterSoundsModel(**item)
+            #    self.database[table][mon.slug] = mon
+            elif table == "technique":
+                teq = TechniqueModel(**item)
+                self.database[table][teq.slug] = teq
+            else:
+                self.database[table][item["slug"]] = item
+        except ValidationError as e:
+            logger.error(f"validation failed for '{item['slug']}': {e}")
+            # raise e
 
     @overload
-    def lookup(self, slug: str) -> JSONMonster:
+    def lookup(self, slug: str) -> MonsterModel:
         pass
 
     @overload
-    def lookup(self, slug: str, table: Literal["monster"]) -> JSONMonster:
+    def lookup(self, slug: str, table: Literal["monster"]) -> MonsterModel:
         pass
 
     @overload
-    def lookup(self, slug: str, table: Literal["technique"]) -> JSONTechnique:
+    def lookup(self, slug: str, table: Literal["technique"]) -> TechniqueModel:
         pass
 
     @overload
-    def lookup(self, slug: str, table: Literal["item"]) -> JSONItem:
+    def lookup(self, slug: str, table: Literal["item"]) -> ItemModel:
         pass
 
     @overload
-    def lookup(self, slug: str, table: Literal["npc"]) -> JSONNpc:
+    def lookup(self, slug: str, table: Literal["npc"]) -> NpcModel:
         pass
 
     @overload
-    def lookup(self, slug: str, table: Literal["encounter"]) -> JSONEncounter:
+    def lookup(self, slug: str, table: Literal["encounter"]) -> EncounterModel:
         pass
 
     @overload
-    def lookup(self, slug: str, table: Literal["inventory"]) -> JSONInventory:
+    def lookup(self, slug: str, table: Literal["inventory"]) -> InventoryModel:
         pass
 
     @overload
-    def lookup(self, slug: str, table: Literal["economy"]) -> JSONEconomy:
+    def lookup(self, slug: str, table: Literal["economy"]) -> EconomyModel:
         pass
 
     @overload
@@ -351,7 +483,7 @@ class JSONDatabase:
         self,
         slug: str,
         table: Literal["environment"],
-    ) -> JSONEnvironment:
+    ) -> EnvironmentModel:
         pass
 
     def lookup(self, slug: str, table: str = "monster") -> Mapping[str, Any]:
@@ -368,7 +500,7 @@ class JSONDatabase:
             A dictionary from the resulting lookup.
 
         """
-        return set_defaults(self.database[table][slug], table)
+        return self.database[table][slug]
 
     def lookup_file(self, table: str, slug: str) -> str:
         """
@@ -388,27 +520,11 @@ class JSONDatabase:
 
         filename = self.database[table][slug]["file"] or slug
         if filename == slug:
-            logger.debug(f"Could not find a file record for slug {slug}, did you remember to create a database record?")
+            logger.debug(
+                f"Could not find a file record for slug {slug}, did you remember to create a database record?"
+            )
 
         return filename
-
-
-def set_defaults(results: Dict[str, Any], table: str) -> Mapping[str, Any]:
-    if table == "monster":
-        name = results["slug"]
-
-        sprites = results.setdefault("sprites", {})
-
-        for key, view in (
-            ("battle1", "front"),
-            ("battle2", "back"),
-            ("menu1", "menu01"),
-            ("menu2", "menu02"),
-        ):
-            if not results.get(key):
-                sprites[key] = f"gfx/sprites/battle/{name}-{view}"
-
-    return results
 
 
 # Global database container

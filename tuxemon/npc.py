@@ -141,7 +141,7 @@ class NPC(Entity[NPCState]):
         super().__init__(slug=npc_slug, world=world)
 
         # load initial data from the npc database
-        npc_data = db.lookup(npc_slug, table="npc")
+        npc_data = db.lookup(npc_slug, table="npc").dict()
 
         # This is the NPC's name to be used in dialog
         self.name = T.translate(self.slug)
@@ -169,13 +169,13 @@ class NPC(Entity[NPCState]):
         self.monsters: List[
             Monster
         ] = []  # This is a list of tuxemon the npc has. Do not modify directly
-        self.inventory: Dict[
-            str, InventoryItem
-        ] = {}  # The Player's inventory.
+        self.inventory: Dict[str, InventoryItem] = {}  # The Player's inventory.
         # Variables for long-term item and monster storage
         # Keeping these seperate so other code can safely
         # assume that all values are lists
-        self.monster_boxes: Dict[str, List[Monster]] = {CONFIG.default_monster_storage_box: []}
+        self.monster_boxes: Dict[str, List[Monster]] = {
+            CONFIG.default_monster_storage_box: []
+        }
         self.item_boxes: Dict[str, Mapping[str, InventoryItem]] = {}
 
         # combat related
@@ -275,17 +275,13 @@ class NPC(Entity[NPCState]):
         """
         self.facing = save_data.get("facing", "down")
         self.game_variables = save_data["game_variables"]
-        self.inventory = decode_inventory(
-            session, self, save_data.get("inventory", {})
-        )
+        self.inventory = decode_inventory(session, self, save_data.get("inventory", {}))
         self.monsters = decode_monsters(save_data.get("monsters"))
         self.name = save_data["player_name"]
         for monsterkey, monstervalue in save_data["monster_boxes"].items():
             self.monster_boxes[monsterkey] = decode_monsters(monstervalue)
         for itemkey, itemvalue in save_data["item_boxes"].items():
-            self.item_boxes[itemkey] = decode_inventory(
-                session, self, itemvalue
-            )
+            self.item_boxes[itemkey] = decode_inventory(session, self, itemvalue)
 
     def load_sprites(self) -> None:
         """Load sprite graphics."""
@@ -320,9 +316,7 @@ class NPC(Entity[NPCState]):
                 surface = load_and_scale(image)
                 frames.append((surface, frame_duration))
 
-            self.sprite[anim_type] = surfanim.SurfaceAnimation(
-                frames, loop=True
-            )
+            self.sprite[anim_type] = surfanim.SurfaceAnimation(frames, loop=True)
 
         # Have the animation objects managed by a SurfaceAnimationCollection.
         # With the SurfaceAnimationCollection, we can call play() and stop() on
@@ -385,9 +379,7 @@ class NPC(Entity[NPCState]):
 
     def check_continue(self) -> None:
         try:
-            direction_next = self.world.collision_map[self.tile_pos][
-                "continue"
-            ]
+            direction_next = self.world.collision_map[self.tile_pos]["continue"]
             self.move_one_tile(direction_next)
         except (KeyError, TypeError):
             pass
@@ -514,9 +506,7 @@ class NPC(Entity[NPCState]):
             direction: Direction where to move.
 
         """
-        self.path.append(
-            vector2_to_tile_pos(Vector2(self.tile_pos) + dirs2[direction])
-        )
+        self.path.append(vector2_to_tile_pos(Vector2(self.tile_pos) + dirs2[direction]))
 
     def valid_movement(self, tile: Tuple[int, int]) -> bool:
         """
@@ -532,10 +522,7 @@ class NPC(Entity[NPCState]):
             If the tile can me moved into.
 
         """
-        return (
-            tile in self.world.get_exits(self.tile_pos)
-            or self.ignore_collisions
-        )
+        return tile in self.world.get_exits(self.tile_pos) or self.ignore_collisions
 
     @property
     def move_destination(self) -> Optional[Tuple[int, int]]:
@@ -643,9 +630,7 @@ class NPC(Entity[NPCState]):
         """
         monster.owner = self
         if len(self.monsters) >= self.party_limit:
-            self.monster_boxes[CONFIG.default_monster_storage_box].append(
-                monster
-            )
+            self.monster_boxes[CONFIG.default_monster_storage_box].append(monster)
         else:
             self.monsters.append(monster)
             self.set_party_status()
@@ -678,13 +663,9 @@ class NPC(Entity[NPCState]):
             Monster found, or None.
 
         """
-        return next(
-            (m for m in self.monsters if m.instance_id == instance_id), None
-        )
+        return next((m for m in self.monsters if m.instance_id == instance_id), None)
 
-    def find_monster_in_storage(
-        self, instance_id: uuid.UUID
-    ) -> Optional[Monster]:
+    def find_monster_in_storage(self, instance_id: uuid.UUID) -> Optional[Monster]:
         """
         Finds a monster in the npc's storage boxes which has the given id.
 
@@ -697,9 +678,7 @@ class NPC(Entity[NPCState]):
         """
         monster = None
         for box in self.monster_boxes.values():
-            monster = next(
-                (m for m in box if m.instance_id == instance_id), None
-            )
+            monster = next((m for m in box if m.instance_id == instance_id), None)
             if monster is not None:
                 break
 
@@ -710,7 +689,7 @@ class NPC(Entity[NPCState]):
         Releases a monster from this npc's party. Used to release into wild.
 
         Parameters:
-            monster: Monster to release into the wild. 
+            monster: Monster to release into the wild.
 
         """
         if len(self.monsters) == 1:
@@ -769,16 +748,12 @@ class NPC(Entity[NPCState]):
         self.monsters = []
 
         # Look up the NPC's details from our NPC database
-        npc_details = db.database["npc"][self.slug]
+        npc_details = db.lookup(self.slug, "npc").dict()
         npc_party = npc_details.get("monsters") or []
         for npc_monster_details in npc_party:
             monster = Monster(save_data=npc_monster_details)
-            monster.experience_give_modifier = npc_monster_details[
-                "exp_give_mod"
-            ]
-            monster.experience_required_modifier = npc_monster_details[
-                "exp_req_mod"
-            ]
+            monster.experience_give_modifier = npc_monster_details["exp_give_mod"]
+            monster.experience_required_modifier = npc_monster_details["exp_req_mod"]
             monster.set_level(monster.level)
             monster.current_hp = monster.hp
 

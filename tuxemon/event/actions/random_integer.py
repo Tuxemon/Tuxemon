@@ -20,10 +20,12 @@
 #
 
 from __future__ import annotations
-from tuxemon.event.eventaction import EventAction
+
 import logging
-from typing import NamedTuple, final
 from random import randint
+from typing import NamedTuple, final
+
+from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
 

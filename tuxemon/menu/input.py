@@ -1,16 +1,18 @@
 from __future__ import annotations
+
 from functools import partial
+from typing import Any, Callable, Generator, Optional
 
 from pygame.rect import Rect
+
 from tuxemon import tools
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
-from tuxemon.platform.const import events, buttons, intentions
-from tuxemon.ui.text import TextArea
-from typing import Any, Generator, Optional, Callable
+from tuxemon.platform.const import buttons, events, intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.states.choice import ChoiceState
+from tuxemon.ui.text import TextArea
 
 
 class InputMenuObj:

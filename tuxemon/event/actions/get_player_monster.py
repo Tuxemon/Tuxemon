@@ -23,12 +23,14 @@
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
 from __future__ import annotations
-from tuxemon.event.eventaction import EventAction
+
 import logging
 from typing import NamedTuple, final
-from tuxemon.states.monster import MonsterMenuState
+
+from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.interface import MenuItem
 from tuxemon.monster import Monster
+from tuxemon.states.monster import MonsterMenuState
 
 logger = logging.getLogger(__name__)
 

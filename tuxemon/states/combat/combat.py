@@ -28,39 +28,55 @@
 #
 #
 from __future__ import annotations
+
 import logging
 from collections import defaultdict
 from functools import partial
 from itertools import chain
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    Iterable,
+    List,
+    Literal,
+    MutableMapping,
+    NamedTuple,
+    Optional,
+    Sequence,
+    Set,
+    Tuple,
+    Union,
+    overload,
+)
 
+import pygame
 from pygame.rect import Rect
-from tuxemon import audio, state, tools, graphics
-from tuxemon.combat import check_status, fainted, get_awake_monsters, defeated
+
+from tuxemon import audio, graphics, state, tools
+from tuxemon.animation import Task
+from tuxemon.combat import check_status, defeated, fainted, get_awake_monsters
+from tuxemon.item.item import Item
 from tuxemon.locale import T
+from tuxemon.menu.interface import MenuItem
+from tuxemon.monster import Monster
 from tuxemon.platform.const import buttons
-from tuxemon.surfanim import SurfaceAnimation
+from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
-from tuxemon.technique import Technique
-from tuxemon.ui.draw import GraphicBox
-from tuxemon.ui.text import TextArea
-from .combat_animations import CombatAnimations
-from typing import Dict, Optional, Any, Literal, Tuple, Union, TYPE_CHECKING,\
-    Sequence, Iterable, List, MutableMapping, NamedTuple,\
-    overload, Set
-from tuxemon.platform.events import PlayerInput
-import pygame
-from tuxemon.tools import assert_never
-from tuxemon.monster import Monster
-from tuxemon.menu.interface import MenuItem
-from tuxemon.animation import Task
-from tuxemon.item.item import Item
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.states.transition.fade import FadeOutTransition
+from tuxemon.surfanim import SurfaceAnimation
+from tuxemon.technique import Technique
+from tuxemon.tools import assert_never
+from tuxemon.ui.draw import GraphicBox
+from tuxemon.ui.text import TextArea
+
+from .combat_animations import CombatAnimations
 
 if TYPE_CHECKING:
-    from tuxemon.player import Player
     from tuxemon.npc import NPC
+    from tuxemon.player import Player
 
 logger = logging.getLogger(__name__)
 

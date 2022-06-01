@@ -25,25 +25,39 @@
 #
 
 from __future__ import annotations
+
 import logging
 import math
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Container,
+    Final,
+    Generic,
+    Iterator,
+    List,
+    Literal,
+    Optional,
+    Sequence,
+    TypeVar,
+    Union,
+    overload,
+)
 
 import pygame
-from pygame.transform import rotozoom
-from pygame.transform import scale
-
 from pygame.rect import Rect
-from tuxemon.platform.const import buttons
-from tuxemon.surfanim import SurfaceAnimation
+from pygame.transform import rotozoom, scale
+
 from tuxemon import graphics
-from tuxemon.tools import scale as tuxemon_scale
-from typing import Optional, Callable, Any, Sequence, List, Union, TYPE_CHECKING,\
-    TypeVar, Generic, Iterator, overload, Final, Literal, Container
+from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
+from tuxemon.surfanim import SurfaceAnimation
+from tuxemon.tools import scale as tuxemon_scale
 
 if TYPE_CHECKING:
-    from tuxemon.monster import Monster
     from tuxemon.menu.interface import MenuItem
+    from tuxemon.monster import Monster
 
 logger = logging.getLogger()
 

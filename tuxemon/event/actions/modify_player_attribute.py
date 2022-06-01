@@ -20,9 +20,11 @@
 #
 
 from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event.actions.common import CommonAction
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, final
 
 
 class ModifyPlayerAttributeActionParameters(NamedTuple):

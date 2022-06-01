@@ -23,10 +23,12 @@
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
 from __future__ import annotations
-from tuxemon.event.eventaction import EventAction
+
 import logging
 import uuid
 from typing import NamedTuple, final
+
+from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)

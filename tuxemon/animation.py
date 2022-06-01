@@ -1,10 +1,21 @@
 from __future__ import annotations
+
 import logging
 from collections import defaultdict
-from math import sqrt, cos, sin, pi
+from math import cos, pi, sin, sqrt
+from typing import (
+    Any,
+    Callable,
+    DefaultDict,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Tuple,
+    Union,
+)
 
 import pygame
-from typing import Any, Optional, Callable, Sequence, DefaultDict, List, Tuple, Mapping, Union
 
 __all__ = ("Task", "Animation", "remove_animations_of")
 

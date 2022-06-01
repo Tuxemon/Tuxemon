@@ -20,15 +20,16 @@
 #
 
 from __future__ import annotations
-import logging
 
-from tuxemon.locale import process_translate_text
+import logging
+from typing import NamedTuple, Optional, Sequence, final
+
 from tuxemon.event.eventaction import EventAction
-from tuxemon.tools import open_dialog
 from tuxemon.graphics import get_avatar
-from typing import NamedTuple, final, Sequence, Optional
-from tuxemon.states.dialog import DialogState
+from tuxemon.locale import process_translate_text
 from tuxemon.sprite import Sprite
+from tuxemon.states.dialog import DialogState
+from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
 

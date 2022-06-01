@@ -27,14 +27,15 @@
 # states.FlashTransition
 #
 from __future__ import annotations
+
 import logging
+from typing import Any, Optional
 
 import pygame
 
 from tuxemon import prepare
-from tuxemon.state import State
-from typing import Any, Optional
 from tuxemon.platform.events import PlayerInput
+from tuxemon.state import State
 
 logger = logging.getLogger(__name__)
 

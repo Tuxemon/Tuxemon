@@ -20,15 +20,16 @@
 #
 
 from __future__ import annotations
+
 import logging
 from functools import partial
+from typing import Callable, NamedTuple, Sequence, Tuple, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T, replace_text
-from typing import NamedTuple, final, Sequence, Callable, Tuple
-from tuxemon.states.choice import ChoiceState
 from tuxemon.session import Session
+from tuxemon.states.choice import ChoiceState
 
 logger = logging.getLogger(__name__)
 

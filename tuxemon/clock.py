@@ -1,6 +1,6 @@
 import collections
 import time
-from heapq import heappush, heapify, heappop, heappushpop
+from heapq import heapify, heappop, heappush, heappushpop
 
 __all__ = ("ScheduledItem", "Scheduler", "Clock")
 

@@ -20,12 +20,14 @@
 #
 
 from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.economy import Economy
-from typing import NamedTuple, final
-from tuxemon.states.items import ShopMenuState, ShopBuyMenuState
 from tuxemon.states.choice import ChoiceState
+from tuxemon.states.items import ShopBuyMenuState, ShopMenuState
 
 
 class OpenShopActionParameters(NamedTuple):

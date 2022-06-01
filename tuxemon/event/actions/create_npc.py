@@ -19,13 +19,14 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 from __future__ import annotations
+
 import logging
+from typing import NamedTuple, Union, final
 
 import tuxemon.npc
 from tuxemon import ai
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, final, Union
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)

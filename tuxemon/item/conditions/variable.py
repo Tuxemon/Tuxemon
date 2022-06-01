@@ -24,8 +24,10 @@
 #
 
 from __future__ import annotations
-from tuxemon.item.itemcondition import ItemCondition
+
 from typing import NamedTuple, Union
+
+from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
 

@@ -1,10 +1,12 @@
 from __future__ import annotations
+
+from typing import ClassVar, Generic, Optional, TypeVar
+
 import pygame
 
-from tuxemon import tools, graphics
-from tuxemon.ui.draw import GraphicBox
-from typing import ClassVar, Optional, Generic, TypeVar
+from tuxemon import graphics, tools
 from tuxemon.sprite import Sprite
+from tuxemon.ui.draw import GraphicBox
 
 
 class Bar:

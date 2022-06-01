@@ -20,10 +20,12 @@
 #
 
 from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import dirs2, get_direction
-from typing import NamedTuple, final
 from tuxemon.states.world.worldstate import WorldState
 
 

@@ -29,47 +29,42 @@
 #
 
 from __future__ import annotations
+
 import logging
 import os
+import uuid
 from math import hypot
 from typing import (
-    List,
-    Optional,
-    Mapping,
-    Any,
-    Sequence,
     TYPE_CHECKING,
-    Tuple,
-    TypedDict,
+    Any,
     Dict,
     Iterable,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Tuple,
+    TypedDict,
     Union,
 )
-import uuid
 
+from tuxemon import surfanim
 from tuxemon.ai import AI
 from tuxemon.compat import Rect
-from tuxemon import surfanim
 from tuxemon.db import db
 from tuxemon.entity import Entity
-from tuxemon.item.item import Item, InventoryItem
-from tuxemon.item.item import decode_inventory, encode_inventory
-from tuxemon.locale import T
-from tuxemon.map import proj, facing, dirs3, dirs2, get_direction, Direction
-from tuxemon.monster import (
-    Monster,
-    MAX_LEVEL,
-    decode_monsters,
-    encode_monsters,
-)
-from tuxemon.prepare import CONFIG
-from tuxemon.tools import vector2_to_tile_pos
 from tuxemon.graphics import load_and_scale
-from tuxemon.session import Session
+from tuxemon.item.item import InventoryItem, Item, decode_inventory, encode_inventory
+from tuxemon.locale import T
+from tuxemon.map import Direction, dirs2, dirs3, facing, get_direction, proj
 from tuxemon.math import Vector2
-from tuxemon.technique import Technique
+from tuxemon.monster import MAX_LEVEL, Monster, decode_monsters, encode_monsters
+from tuxemon.prepare import CONFIG
+from tuxemon.session import Session
 from tuxemon.states.combat.combat import EnqueuedAction
 from tuxemon.states.world.worldstate import WorldState
+from tuxemon.technique import Technique
+from tuxemon.tools import vector2_to_tile_pos
 
 if TYPE_CHECKING:
     import pygame

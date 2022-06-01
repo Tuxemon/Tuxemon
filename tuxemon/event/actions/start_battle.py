@@ -20,14 +20,15 @@
 #
 
 from __future__ import annotations
+
 import logging
+from typing import NamedTuple, final
 
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, final
-from tuxemon.states.world.worldstate import WorldState
 from tuxemon.states.combat.combat import CombatState
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 

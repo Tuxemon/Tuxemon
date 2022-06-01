@@ -20,13 +20,14 @@
 #
 
 from __future__ import annotations
+
 import random
+from typing import NamedTuple, Union, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, final, Union
-from tuxemon.states.world.worldstate import WorldState
 from tuxemon.npc import NPC
+from tuxemon.states.world.worldstate import WorldState
 
 
 class NpcWanderActionParameters(NamedTuple):

@@ -28,20 +28,22 @@
 #
 
 from __future__ import annotations
+
 import logging
 import random
 import uuid
+from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
 
 from tuxemon import ai, fusion, graphics
-from tuxemon.db import db, MonsterMovesetItemModel, MonsterEvolutionItemModel
-from tuxemon.locale import T
-from tuxemon.technique import Technique
 from tuxemon.config import TuxemonConfig
-from typing import Optional, List, TYPE_CHECKING, Any, Mapping, Sequence, Dict
+from tuxemon.db import MonsterEvolutionItemModel, MonsterMovesetItemModel, db
+from tuxemon.locale import T
 from tuxemon.sprite import Sprite
+from tuxemon.technique import Technique
 
 if TYPE_CHECKING:
     import pygame
+
     from tuxemon.npc import NPC
     from tuxemon.states.combat.combat import EnqueuedAction
 

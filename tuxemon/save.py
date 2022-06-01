@@ -28,30 +28,23 @@
 #
 
 from __future__ import annotations
+
 import base64
 import datetime
+import importlib
 import json
 import logging
+import os
 from operator import itemgetter
+from typing import Any, Callable, Literal, Mapping, Optional, TextIO, TypeVar
 
 import pygame
 
 from tuxemon import prepare
+from tuxemon.client import LocalPygameClient
 from tuxemon.save_upgrader import SAVE_VERSION, upgrade_save
 from tuxemon.session import Session
-from typing import (
-    Mapping,
-    Any,
-    Optional,
-    Callable,
-    TypeVar,
-    TextIO,
-    Literal,
-)
-from tuxemon.client import LocalPygameClient
 from tuxemon.states.world.worldstate import WorldState
-import importlib
-import os
 
 try:
     import cbor

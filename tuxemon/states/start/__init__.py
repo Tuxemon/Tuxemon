@@ -40,12 +40,12 @@ import pygame
 
 from tuxemon import prepare
 from tuxemon.locale import T
+from tuxemon.menu.input import InputMenu
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
 from tuxemon.state import State
-from tuxemon.menu.input import InputMenu
 from tuxemon.states.transition.fade import FadeInTransition
 
 logger = logging.getLogger(__name__)

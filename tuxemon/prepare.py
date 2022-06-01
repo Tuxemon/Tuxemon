@@ -27,7 +27,9 @@
 # prepare Prepares the game environment.
 #
 from __future__ import annotations
+
 from typing import TYPE_CHECKING, List
+
 """This module initializes the display and creates dictionaries of resources.
 It contains all the static and dynamic variables used throughout the game such
 as display resolution, scale, etc.
@@ -37,8 +39,8 @@ import logging
 import os.path
 import re
 
-from tuxemon.constants import paths
 from tuxemon import config
+from tuxemon.constants import paths
 
 if TYPE_CHECKING:
     import pygame as pg

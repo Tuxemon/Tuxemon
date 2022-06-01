@@ -25,15 +25,10 @@
 #
 
 from __future__ import annotations
+
 import logging
 from contextlib import contextmanager
 from textwrap import dedent
-
-from tuxemon.constants import paths
-from tuxemon.event import EventObject, MapAction, MapCondition
-from tuxemon import plugin
-from tuxemon import prepare
-from tuxemon.platform.const import buttons
 from typing import (
     Any,
     Dict,
@@ -46,11 +41,16 @@ from typing import (
     Type,
     Union,
 )
-from tuxemon.event.eventcondition import EventCondition
+
+from tuxemon import plugin, prepare
+from tuxemon.constants import paths
+from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.event.eventaction import EventAction
+from tuxemon.event.eventcondition import EventCondition
+from tuxemon.map import TuxemonMap
+from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import Session
-from tuxemon.map import TuxemonMap
 
 logger = logging.getLogger(__name__)
 

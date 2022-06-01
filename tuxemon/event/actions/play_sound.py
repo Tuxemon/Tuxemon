@@ -20,9 +20,11 @@
 #
 
 from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon import audio
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, final
 
 
 class PlaySoundActionParameters(NamedTuple):

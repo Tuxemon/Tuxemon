@@ -27,14 +27,13 @@
 #
 #
 from __future__ import annotations
+
 import logging
-from typing import Optional, Any
+from typing import Any, Optional
 
 import pygame
 
-from tuxemon import audio
-from tuxemon import prepare
-from tuxemon import state
+from tuxemon import audio, prepare, state
 from tuxemon.platform.events import PlayerInput
 from tuxemon.states.transition.fade import FadeOutTransition
 

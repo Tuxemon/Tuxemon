@@ -1,12 +1,14 @@
-from tuxemon import prepare
-import pygame_menu
-from pygame_menu.widgets.core.selection import Selection
-from tuxemon.tools import transform_resource_filename
 from typing import Optional
-from tuxemon.audio import get_sound_filename
+
 import pygame
-from pygame_menu.widgets.core.widget import Widget
+import pygame_menu
 from pygame.rect import Rect
+from pygame_menu.widgets.core.selection import Selection
+from pygame_menu.widgets.core.widget import Widget
+
+from tuxemon import prepare
+from tuxemon.audio import get_sound_filename
+from tuxemon.tools import transform_resource_filename
 
 _theme: Optional[pygame_menu.themes.Theme] = None
 

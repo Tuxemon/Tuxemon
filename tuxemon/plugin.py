@@ -28,28 +28,29 @@
 #
 
 from __future__ import annotations
+
 import importlib
 import inspect
 import logging
 import os
 import re
 import sys
+from types import ModuleType
 from typing import (
-    Mapping,
-    Sequence,
-    List,
+    ClassVar,
+    Generic,
     Iterable,
+    List,
+    Mapping,
     Protocol,
+    Sequence,
     Tuple,
     Type,
     TypeVar,
-    Generic,
-    overload,
     Union,
-    ClassVar,
+    overload,
     runtime_checkable,
 )
-from types import ModuleType
 
 logger = logging.getLogger(__name__)
 log_hdlr = logging.StreamHandler(sys.stdout)

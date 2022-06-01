@@ -1,13 +1,7 @@
 from __future__ import annotations
-from typing import (
-    Protocol,
-    runtime_checkable,
-    Union,
-    Tuple,
-    Sequence,
-    TypeVar, cast,
-)
+
 from abc import abstractmethod
+from typing import Protocol, Sequence, Tuple, TypeVar, Union, cast, runtime_checkable
 
 SelfRectType = TypeVar("SelfRectType", bound="ReadOnlyRect")
 RectType = TypeVar("RectType", bound="ReadOnlyRect", covariant=True)

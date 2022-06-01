@@ -20,10 +20,11 @@
 #
 
 from __future__ import annotations
+
 import time
+from typing import NamedTuple, final
 
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, final
 
 
 class WaitActionParameters(NamedTuple):

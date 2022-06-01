@@ -1,25 +1,25 @@
 from __future__ import annotations
+
 import logging
 from collections import defaultdict
 from functools import partial
+from typing import TYPE_CHECKING, Any, Callable, Generator, Optional, Union
 
 import pygame
 
-from tuxemon import tools, graphics
+from tuxemon import graphics, tools
+from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import Menu
-from tuxemon.menu.menu import PopUpMenu
+from tuxemon.menu.menu import Menu, PopUpMenu
+from tuxemon.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import MenuSpriteGroup, SpriteGroup
+from tuxemon.states.combat.combat import CombatState
+from tuxemon.states.items import ItemMenuState
+from tuxemon.states.monster import MonsterMenuState
 from tuxemon.technique import Technique
 from tuxemon.ui.draw import GraphicBox
-from typing import Callable, Generator, Any, Optional, Union, TYPE_CHECKING
-from tuxemon.states.combat.combat import CombatState
-from tuxemon.monster import Monster
-from tuxemon.item.item import Item
-from tuxemon.states.monster import MonsterMenuState
-from tuxemon.states.items import ItemMenuState
 
 if TYPE_CHECKING:
     from tuxemon.player import Player

@@ -30,6 +30,7 @@
 #
 
 from __future__ import annotations
+
 import logging
 
 from tuxemon.db import db

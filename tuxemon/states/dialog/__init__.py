@@ -27,13 +27,15 @@
 # states.DialogState Handles the dialogue
 #
 from __future__ import annotations
+
+from typing import Any, Callable, Optional, Sequence, Tuple
+
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.platform.const import buttons
-from tuxemon.ui.text import TextArea
-from typing import Any, Optional, Sequence, Tuple, Callable
 from tuxemon.platform.events import PlayerInput
 from tuxemon.sprite import Sprite
 from tuxemon.states.choice import ChoiceState
+from tuxemon.ui.text import TextArea
 
 
 class DialogState(PopUpMenu):

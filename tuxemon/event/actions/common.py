@@ -24,6 +24,7 @@
 #
 
 import logging
+
 from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)

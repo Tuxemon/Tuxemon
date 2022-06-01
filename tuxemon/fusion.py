@@ -31,7 +31,8 @@
 # Note: this script, in its current state, is non-functional and the Tuxemon selected here
 # serve only as examples of potential fusions.
 from __future__ import annotations
-from typing import Tuple, Optional, Mapping, Any
+
+from typing import Any, Mapping, Optional, Tuple
 
 try:
     from PIL import Image

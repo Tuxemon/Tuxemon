@@ -20,8 +20,10 @@
 #
 
 from __future__ import annotations
+
+from typing import NamedTuple, Union, final
+
 from tuxemon.event.eventaction import EventAction
-from typing import Union, NamedTuple, final
 
 
 class AddItemActionParameters(NamedTuple):

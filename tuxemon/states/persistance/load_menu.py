@@ -27,14 +27,16 @@
 # states.LoadMenuState
 #
 from __future__ import annotations
-import logging
 
-from tuxemon import save, prepare
-from .save_menu import SaveMenuState
-from tuxemon.session import local_session
+import logging
 from typing import Any, Optional
+
+from tuxemon import prepare, save
 from tuxemon.menu.interface import MenuItem
+from tuxemon.session import local_session
 from tuxemon.states.world.worldstate import WorldState
+
+from .save_menu import SaveMenuState
 
 logger = logging.getLogger(__name__)
 

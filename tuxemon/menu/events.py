@@ -1,8 +1,9 @@
-import pygame
-from tuxemon.platform.const import buttons, intentions
-from tuxemon.platform.events import PlayerInput
 from typing import Final, Optional
 
+import pygame
+
+from tuxemon.platform.const import buttons, intentions
+from tuxemon.platform.events import PlayerInput
 
 _EVENT_MAP: Final = {
     buttons.UP: pygame.event.Event(pygame.KEYDOWN, key=pygame.K_UP),

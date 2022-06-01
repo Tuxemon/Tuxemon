@@ -3,9 +3,11 @@ Mod manager support module TuxemonContentServer
 https://github.com/vXtreniusX/TuxemonContentServer
 """
 
-import urllib.request
-import requests
 import json
+import urllib.request
+
+import requests
+
 
 def update(url):
     """Returns the response from the server"""

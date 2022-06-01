@@ -27,8 +27,10 @@
 #
 
 from __future__ import annotations
-from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+
 from typing import NamedTuple, Union
+
+from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.monster import Monster
 
 

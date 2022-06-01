@@ -1,11 +1,13 @@
 from __future__ import annotations
-import pygame
 
+from typing import List, Literal, Optional, Tuple, Union
+
+import pygame
 from pygame.rect import Rect
+
+from tuxemon.graphics import ColorLike
 from tuxemon.sprite import Sprite
 from tuxemon.ui import draw
-from tuxemon.graphics import ColorLike
-from typing import Optional, Literal, List, Tuple, Union
 
 min_font_size = 7
 

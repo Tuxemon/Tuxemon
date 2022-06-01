@@ -30,9 +30,9 @@
 
 import logging
 import sys
+import warnings
 
 from tuxemon import prepare
-import warnings
 
 
 def configure():

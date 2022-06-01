@@ -3,6 +3,7 @@ from __future__ import annotations
 from tuxemon.cli.clicommand import CLICommand
 from tuxemon.cli.context import InvokeContext
 
+
 class PrintCommand(CLICommand):
     """
     Print variables set by map event actions.

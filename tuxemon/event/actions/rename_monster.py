@@ -24,14 +24,16 @@
 #
 
 from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
-from typing import NamedTuple, final
-from tuxemon.states.world.worldstate import WorldState
-from tuxemon.states.monster import MonsterMenuState
 from tuxemon.menu.input import InputMenu
 from tuxemon.menu.interface import MenuItem
 from tuxemon.monster import Monster
+from tuxemon.states.monster import MonsterMenuState
+from tuxemon.states.world.worldstate import WorldState
 
 
 class RenameMonsterActionParameters(NamedTuple):

@@ -24,35 +24,45 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 from __future__ import annotations
+
 import logging
 import os.path
 import time
 from threading import Thread
+from typing import (
+    Any,
+    Dict,
+    Generator,
+    Iterable,
+    Mapping,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
+    overload,
+)
 
 import pygame as pg
 
+from tuxemon import networking, rumble
+from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
+from tuxemon.event import EventObject
+from tuxemon.event.eventengine import EventEngine
+from tuxemon.map import TuxemonMap
+from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.platform_pygame.events import (
     PygameEventQueueHandler,
-    PygameKeyboardInput,
     PygameGamepadInput,
+    PygameKeyboardInput,
     PygameMouseInput,
     PygameTouchOverlayInput,
 )
-from tuxemon import networking
-from tuxemon import rumble
-from tuxemon.cli.processor import CommandProcessor
-from tuxemon.event.eventengine import EventEngine
 from tuxemon.session import local_session
-from tuxemon.state import StateManager, State
-from tuxemon.map import TuxemonMap
-from tuxemon.platform.events import PlayerInput
-
-from typing import Iterable, Generator, Optional, Tuple, Mapping, Any, Dict,\
-    overload, Type, TypeVar, Union, Sequence
+from tuxemon.state import State, StateManager
 from tuxemon.states.world.worldstate import WorldState
-from tuxemon.event import EventObject
-
 
 StateType = TypeVar("StateType", bound=State)
 

@@ -32,11 +32,22 @@ from __future__ import annotations
 
 import bisect
 import itertools
-from typing import (Any, Final, List, Literal, Mapping, Optional, Sequence,
-                    Tuple, TypeVar, Union)
+from typing import (
+    Any,
+    Final,
+    List,
+    Literal,
+    Mapping,
+    Optional,
+    Sequence,
+    Tuple,
+    TypeVar,
+    Union,
+)
 
 # TODO: Feature idea: if the same image file is specified, re-use the Surface
 import pygame
+
 # setting up constants
 from pygame.rect import Rect
 

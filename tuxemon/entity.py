@@ -24,10 +24,11 @@
 #
 
 from __future__ import annotations
-from tuxemon.math import Vector3, Point3
+
+from typing import TYPE_CHECKING, Any, Generic, Mapping, Sequence, TypeVar
+
 from tuxemon.map import proj
-from typing import Sequence, Mapping, TYPE_CHECKING, Any, TypeVar,\
-    Generic
+from tuxemon.math import Point3, Vector3
 from tuxemon.session import Session
 from tuxemon.tools import vector2_to_tile_pos
 

@@ -3,8 +3,18 @@ from __future__ import annotations
 import logging
 import math
 from functools import partial
-from typing import (Any, Callable, Dict, Generic, Iterable, Literal, Optional,
-                    Sequence, Tuple, TypeVar)
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Generic,
+    Iterable,
+    Literal,
+    Optional,
+    Sequence,
+    Tuple,
+    TypeVar,
+)
 
 import pygame
 import pygame_menu
@@ -17,8 +27,7 @@ from tuxemon.menu.interface import MenuCursor, MenuItem
 from tuxemon.menu.theme import get_sound_engine, get_theme
 from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
-from tuxemon.sprite import (MenuSpriteGroup, RelativeGroup, SpriteGroup,
-                            VisualSpriteList)
+from tuxemon.sprite import MenuSpriteGroup, RelativeGroup, SpriteGroup, VisualSpriteList
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
 

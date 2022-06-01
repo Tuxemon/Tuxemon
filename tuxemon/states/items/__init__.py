@@ -28,19 +28,22 @@
 # states.ShopMenuState
 #
 from __future__ import annotations
+
+from typing import Any, Generator, Iterable, Sequence, Tuple
+
+import pygame
+
 from tuxemon import tools
+from tuxemon.item.item import InventoryItem, Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
-from tuxemon.menu.quantity import QuantityMenu, QuantityAndPriceMenu
+from tuxemon.menu.quantity import QuantityAndPriceMenu, QuantityMenu
+from tuxemon.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
-from tuxemon.ui.text import TextArea
-from typing import Any, Generator, Sequence, Tuple, Iterable
-import pygame
-from tuxemon.item.item import Item, InventoryItem
-from tuxemon.monster import Monster
 from tuxemon.states.monster import MonsterMenuState
+from tuxemon.ui.text import TextArea
 
 # The import is required for PushState to work.
 # But linters may say the import is unused.

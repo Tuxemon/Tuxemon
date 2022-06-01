@@ -27,12 +27,13 @@
 #
 
 from __future__ import annotations
+
 import logging
-from typing import NamedTuple, Optional, Sequence, TYPE_CHECKING, Tuple
+from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 
 if TYPE_CHECKING:
-    from tuxemon.technique import Technique
     from tuxemon.monster import Monster
+    from tuxemon.technique import Technique
 
 logger = logging.getLogger(__name__)
 

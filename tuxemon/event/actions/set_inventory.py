@@ -20,11 +20,13 @@
 #
 
 from __future__ import annotations
+
+from typing import NamedTuple, Union, final
+
 from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.item import decode_inventory
-from typing import NamedTuple, Union, final
 
 
 class SetInventoryActionParameters(NamedTuple):

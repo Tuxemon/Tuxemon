@@ -24,11 +24,13 @@
 #
 
 from __future__ import annotations
+
+from typing import NamedTuple, final
+
+from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
-from typing import NamedTuple, final
 from tuxemon.menu.input import InputMenu
-from tuxemon import prepare
 
 
 class RenamePlayerActionParameters(NamedTuple):

@@ -34,14 +34,14 @@ import gettext
 import logging
 import os
 import os.path
+from typing import Any, Callable, Generator, Iterable, Mapping, Optional, Sequence
 
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
 
-from tuxemon.constants import paths
 from tuxemon import prepare
+from tuxemon.constants import paths
 from tuxemon.session import Session
-from typing import Generator, Optional, Mapping, Any, Iterable, Sequence, Callable
 
 logger = logging.getLogger(__name__)
 

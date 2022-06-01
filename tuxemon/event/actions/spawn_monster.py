@@ -22,17 +22,18 @@
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
 from __future__ import annotations
-import uuid
 
-from tuxemon.locale import process_translate_text
-from tuxemon.event.eventaction import EventAction
-from tuxemon.tools import open_dialog
-from tuxemon.graphics import get_avatar
 import logging
-from typing import NamedTuple, final, Sequence, Optional
-from tuxemon.states.world.worldstate import WorldState
-from tuxemon.states.dialog import DialogState
+import uuid
+from typing import NamedTuple, Optional, Sequence, final
+
+from tuxemon.event.eventaction import EventAction
+from tuxemon.graphics import get_avatar
+from tuxemon.locale import process_translate_text
 from tuxemon.sprite import Sprite
+from tuxemon.states.dialog import DialogState
+from tuxemon.states.world.worldstate import WorldState
+from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
 

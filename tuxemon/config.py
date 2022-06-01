@@ -28,7 +28,9 @@
 #
 #
 from __future__ import annotations
-from typing import Mapping, Any, Optional, Dict
+
+from typing import Any, Dict, Mapping, Optional
+
 """
 NOTE: REWRITE WHEN py2.7 SUPPORT IS DROPPED!
 """

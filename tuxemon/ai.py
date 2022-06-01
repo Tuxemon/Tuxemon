@@ -28,10 +28,12 @@
 #
 #
 from __future__ import annotations
+
 import logging
-from random import choice
 from abc import ABC, abstractmethod
-from typing import Sequence, Tuple, TYPE_CHECKING
+from random import choice
+from typing import TYPE_CHECKING, Sequence, Tuple
+
 from tuxemon.technique import Technique
 
 if TYPE_CHECKING:

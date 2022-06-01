@@ -37,25 +37,39 @@ if more appropriate.  Ideally this should be kept small.
 """
 
 from __future__ import annotations
-from typing import (Any, Optional, Protocol, Sequence, Tuple, Type, TypeVar,
-    Union, Mapping, Iterable, TYPE_CHECKING, Callable, NoReturn)
-import typing
-from tuxemon.math import Vector2
 
 import logging
+import typing
 from itertools import zip_longest
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Iterable,
+    Mapping,
+    NoReturn,
+    Optional,
+    Protocol,
+    Sequence,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
+)
 
-from tuxemon.compat import ReadOnlyRect
 from tuxemon import prepare
+from tuxemon.compat import ReadOnlyRect
 from tuxemon.locale import T
+from tuxemon.math import Vector2
 
 if TYPE_CHECKING:
+    import pygame
+
+    from tuxemon.client import LocalPygameClient
+    from tuxemon.item.item import Item
     from tuxemon.session import Session
     from tuxemon.sprite import Sprite
-    from tuxemon.item.item import Item
     from tuxemon.state import State
-    from tuxemon.client import LocalPygameClient
-    import pygame
 
 
 logger = logging.getLogger(__name__)

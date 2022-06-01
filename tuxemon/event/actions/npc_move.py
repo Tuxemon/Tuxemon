@@ -20,10 +20,12 @@
 #
 
 from __future__ import annotations
+
+from typing import Generator, NamedTuple, Sequence, Tuple, final
+
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map import dirs2, Direction
-from typing import NamedTuple, final, Sequence, Tuple, Generator
+from tuxemon.map import Direction, dirs2
 from tuxemon.math import Vector2
 
 

@@ -27,23 +27,23 @@
 # states.SaveMenuState
 #
 from __future__ import annotations
+
 import logging
 import os
 from base64 import b64decode
+from typing import Any
 
 import pygame
-
 from pygame import Rect
-from tuxemon import prepare
-from tuxemon import save
+
+from tuxemon import prepare, save
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import PopUpMenu, Menu
+from tuxemon.menu.menu import Menu, PopUpMenu
+from tuxemon.save import get_save_path
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
 from tuxemon.ui import text
-from tuxemon.save import get_save_path
-from typing import Any
 
 logger = logging.getLogger(__name__)
 

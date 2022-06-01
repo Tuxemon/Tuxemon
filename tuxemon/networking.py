@@ -35,14 +35,14 @@ from datetime import datetime
 import pygame as pg
 
 from tuxemon import prepare
-from tuxemon.middleware import Multiplayer, Controller
+from tuxemon.middleware import Controller, Multiplayer
 
 logger = logging.getLogger(__name__)
 pp = pprint.PrettyPrinter(indent=4)
 
 try:
-    from neteria.server import NeteriaServer
     from neteria.client import NeteriaClient
+    from neteria.server import NeteriaServer
 
     networking = True
 except ImportError:

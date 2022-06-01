@@ -1,14 +1,15 @@
 from __future__ import annotations
+
 import logging
 import os.path
+from typing import Optional, Protocol
 
 import pygame
 from pygame import mixer
 
+from tuxemon import prepare
 from tuxemon.db import db
 from tuxemon.tools import transform_resource_filename
-from typing import Protocol, Optional
-from tuxemon import prepare
 
 logger = logging.getLogger(__name__)
 

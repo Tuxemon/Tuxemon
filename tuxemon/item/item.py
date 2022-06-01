@@ -30,30 +30,29 @@
 #
 
 from __future__ import annotations
+
 import logging
-
-from tuxemon import prepare, graphics
-from tuxemon.db import db, process_targets
-from tuxemon.locale import T
-
-from tuxemon import plugin
-from tuxemon.constants import paths
-from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from tuxemon.item.itemcondition import ItemCondition
-from tuxemon.session import Session
-
 from typing import (
-    Mapping,
+    TYPE_CHECKING,
     Any,
-    Type,
+    ClassVar,
+    Dict,
+    Mapping,
     Optional,
     Sequence,
-    Dict,
-    TYPE_CHECKING,
-    ClassVar,
+    Type,
     TypedDict,
 )
+
 import pygame
+
+from tuxemon import graphics, plugin, prepare
+from tuxemon.constants import paths
+from tuxemon.db import db, process_targets
+from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+from tuxemon.locale import T
+from tuxemon.session import Session
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster

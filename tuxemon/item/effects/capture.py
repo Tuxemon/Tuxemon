@@ -27,15 +27,14 @@
 #
 
 from __future__ import annotations
+
 import logging
 import random
-
 from math import sqrt
+from typing import NamedTuple
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from typing import NamedTuple
 from tuxemon.monster import Monster
-
 
 logger = logging.getLogger(__name__)
 

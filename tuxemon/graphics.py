@@ -5,21 +5,31 @@ have a home in any specific place.
 
 """
 from __future__ import annotations
+
 import logging
 import os
 import re
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Generator,
+    Iterable,
+    Optional,
+    Protocol,
+    Sequence,
+    Tuple,
+    Union,
+)
 
 import pygame
-from pytmx.util_pygame import smart_convert, handle_transformation
 from pytmx.pytmx import TileFlags
+from pytmx.util_pygame import handle_transformation, smart_convert
 
 from tuxemon import prepare
-from tuxemon.surfanim import SurfaceAnimation
-from tuxemon.sprite import Sprite
-from tuxemon.tools import transform_resource_filename, scale_sequence
-from typing import Tuple, Sequence, Any, Iterable, Generator, Union, Optional,\
-    Protocol, TYPE_CHECKING
 from tuxemon.session import Session
+from tuxemon.sprite import Sprite
+from tuxemon.surfanim import SurfaceAnimation
+from tuxemon.tools import scale_sequence, transform_resource_filename
 
 if TYPE_CHECKING:
     from tuxemon.client import LocalPygameClient

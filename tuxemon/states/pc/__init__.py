@@ -33,15 +33,14 @@ from __future__ import annotations
 
 import logging
 from functools import partial
+from typing import Any, Callable, Generator, Sequence, Tuple
 
 from tuxemon.locale import T
 from tuxemon.menu.input import InputMenu
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import PopUpMenu, Menu
+from tuxemon.menu.menu import Menu, PopUpMenu
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
-
-from typing import Any, Generator, Callable, Sequence, Tuple
 
 logger = logging.getLogger(__name__)
 

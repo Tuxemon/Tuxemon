@@ -26,13 +26,13 @@
 #
 
 from __future__ import annotations
-import logging
 
-from tuxemon.tools import NamedTupleProtocol, cast_parameters_to_namedtuple
+import logging
+from typing import TYPE_CHECKING, Any, ClassVar, Generic, Sequence, Type, TypeVar
+
 from tuxemon.monster import Monster
-from typing import Generic, TypeVar, ClassVar, Type, Sequence, Any,\
-    TYPE_CHECKING
 from tuxemon.session import Session
+from tuxemon.tools import NamedTupleProtocol, cast_parameters_to_namedtuple
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC

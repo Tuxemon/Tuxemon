@@ -4,24 +4,34 @@ notably, the use of self.game
 """
 
 from __future__ import annotations
+
 import logging
+from abc import ABC, abstractmethod
 from functools import partial
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    List,
+    Literal,
+    Mapping,
+    MutableMapping,
+    Optional,
+    Sequence,
+    Tuple,
+)
 
 import pygame
-
 from pygame.rect import Rect
+
 from tuxemon import audio, graphics, tools
-from tuxemon.locale import T
-from tuxemon.menu.interface import HpBar, ExpBar
-from tuxemon.menu.menu import Menu
-from tuxemon.surfanim import SurfaceAnimation
-from tuxemon.sprite import Sprite, CaptureDeviceSprite
-from tuxemon.tools import scale, scale_sequence
-from typing import Tuple, Any, Literal, TYPE_CHECKING, Sequence, \
-    List, MutableMapping, Optional, Mapping
-from tuxemon.monster import Monster
-from abc import ABC, abstractmethod
 from tuxemon.animation import Task
+from tuxemon.locale import T
+from tuxemon.menu.interface import ExpBar, HpBar
+from tuxemon.menu.menu import Menu
+from tuxemon.monster import Monster
+from tuxemon.sprite import CaptureDeviceSprite, Sprite
+from tuxemon.surfanim import SurfaceAnimation
+from tuxemon.tools import scale, scale_sequence
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC

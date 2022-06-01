@@ -1,15 +1,16 @@
+import configparser
+import json
+import logging
+import os
+import pathlib
+import shutil
 import urllib.request
+import zipfile
+
 import requests
 
 from tuxemon.constants import paths
 from tuxemon.mod_manager.symlink_missing import symlink_missing
-import pathlib
-import os
-import json
-import zipfile
-import shutil
-import configparser
-import logging
 
 logger = logging.getLogger(__name__)
 

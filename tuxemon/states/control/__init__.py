@@ -30,20 +30,20 @@
 from __future__ import annotations
 
 from functools import partial
-from typing import Any, Callable, Generator, Union, Optional
+from typing import Any, Callable, Generator, Optional, Union
 
 import pygame
 
-from tuxemon import prepare, config
+from tuxemon import config, prepare
 from tuxemon.constants import paths
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.platform.const import buttons
+from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.platform_pygame.events import PygameKeyboardInput
 from tuxemon.session import local_session
-from tuxemon.platform.events import PlayerInput
 from tuxemon.state import State
 
 ControlStateObj = Callable[[], object]

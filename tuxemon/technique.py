@@ -29,17 +29,16 @@
 #
 
 from __future__ import annotations
+
 import logging
+import operator
 import random
+from typing import TYPE_CHECKING, List, Optional, Sequence, Tuple, TypedDict
 
-
-from tuxemon import formula
-from tuxemon import prepare
+from tuxemon import formula, prepare
 from tuxemon.db import db, process_targets
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
-from typing import Optional, Sequence, TYPE_CHECKING, TypedDict, List, Tuple
-import operator
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster

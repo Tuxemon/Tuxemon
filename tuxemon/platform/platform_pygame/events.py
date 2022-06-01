@@ -1,21 +1,27 @@
 from __future__ import annotations
-from collections import defaultdict
 
+from collections import defaultdict
+from typing import (
+    Any,
+    ClassVar,
+    Dict,
+    Generator,
+    List,
+    Mapping,
+    Optional,
+    Tuple,
+    TypedDict,
+)
+
+import pygame
 import pygame as pg
 from pygame.rect import Rect
 
 from tuxemon import graphics
 from tuxemon.platform.const import buttons, events
-from tuxemon.platform.events import (
-    InputHandler,
-    PlayerInput,
-    EventQueueHandler,
-)
+from tuxemon.platform.events import EventQueueHandler, InputHandler, PlayerInput
 from tuxemon.session import local_session
 from tuxemon.ui.draw import blit_alpha
-from typing import List, Dict, Generator, Optional, Mapping, Any, TypedDict,\
-    Tuple, ClassVar
-import pygame
 
 
 class PygameEventQueueHandler(EventQueueHandler):

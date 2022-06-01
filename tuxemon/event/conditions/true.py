@@ -19,8 +19,9 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 from __future__ import annotations
-from tuxemon.event.eventcondition import EventCondition
+
 from tuxemon.event import MapCondition
+from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
 

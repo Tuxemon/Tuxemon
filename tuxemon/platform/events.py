@@ -20,17 +20,18 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 from __future__ import annotations
+
+from abc import ABC, abstractmethod
 from typing import (
     Any,
+    ClassVar,
     Generator,
     Generic,
     Mapping,
     Optional,
     Sequence,
-    TypeVar, ClassVar,
+    TypeVar,
 )
-from abc import ABC, abstractmethod
-
 
 _InputEventType = TypeVar("_InputEventType", contravariant=True)
 

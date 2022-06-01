@@ -27,18 +27,19 @@
 # states.MonsterMenuState Handles creating monster menu objects
 #
 from __future__ import annotations
-import pygame
 
+from typing import Any, Generator, Optional
+
+import pygame
 from pygame.rect import Rect
-from tuxemon import prepare, graphics
-from tuxemon import tools
-from tuxemon.menu.interface import HpBar, ExpBar, MenuItem
+
+from tuxemon import graphics, prepare, tools
+from tuxemon.menu.interface import ExpBar, HpBar, MenuItem
 from tuxemon.menu.menu import Menu
+from tuxemon.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.ui.draw import GraphicBox
-from tuxemon.ui.text import draw_text, TextArea
-from typing import Any, Optional, Generator
-from tuxemon.monster import Monster
+from tuxemon.ui.text import TextArea, draw_text
 
 
 class MonsterMenuState(Menu[Optional[Monster]]):

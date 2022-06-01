@@ -25,36 +25,36 @@
 #
 
 import logging
-from math import cos, sin, pi
-from typing import Iterator, Tuple, Generator, Optional, Mapping, Any
+from math import cos, pi, sin
+from typing import Any, Generator, Iterator, Mapping, Optional, Tuple
 
 import pytmx
 import yaml
 from natsort import natsorted
 
-from tuxemon.compat import Rect
 from tuxemon import prepare
+from tuxemon.compat import Rect
 from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.graphics import scaled_image_loader
+from tuxemon.lib.bresenham import bresenham
 from tuxemon.map import (
-    TuxemonMap,
-    tiles_inside_rect,
-    snap_rect,
-    point_to_grid,
-    angle_of_points,
-    orientation_by_angle,
-    extract_region_properties,
-    Orientation,
     Direction,
+    Orientation,
     RegionProperties,
+    TuxemonMap,
+    angle_of_points,
+    extract_region_properties,
+    orientation_by_angle,
+    point_to_grid,
+    snap_rect,
+    tiles_inside_rect,
 )
 from tuxemon.script.parser import (
     parse_action_string,
-    parse_condition_string,
     parse_behav_string,
+    parse_condition_string,
 )
 from tuxemon.tools import copy_dict_with_keys
-from tuxemon.lib.bresenham import bresenham
 
 logger = logging.getLogger(__name__)
 

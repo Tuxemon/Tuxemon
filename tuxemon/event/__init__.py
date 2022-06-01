@@ -25,9 +25,11 @@
 #
 
 from __future__ import annotations
+
 import logging
 from collections import namedtuple
-from typing import NamedTuple, Sequence, Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence
+
 from tuxemon.session import Session
 
 if TYPE_CHECKING:

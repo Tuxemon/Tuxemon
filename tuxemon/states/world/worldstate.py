@@ -27,32 +27,51 @@
 #
 #
 from __future__ import annotations
+
 import itertools
 import logging
 import os
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    List,
+    Literal,
+    Mapping,
+    Optional,
+    Sequence,
+    Set,
+    Tuple,
+    TypedDict,
+    Union,
+)
 
 import pygame
-
 from pygame.rect import Rect
-from tuxemon import prepare, state, networking
-from tuxemon.map import PathfindNode, dirs2, pairs, proj, RegionProperties,\
-    Direction, TuxemonMap
+
+from tuxemon import networking, prepare, state
+from tuxemon.entity import Entity
+from tuxemon.graphics import ColorLike
+from tuxemon.map import (
+    Direction,
+    PathfindNode,
+    RegionProperties,
+    TuxemonMap,
+    dirs2,
+    pairs,
+    proj,
+)
 from tuxemon.map_loader import TMXMapLoader, YAMLEventLoader
-from tuxemon.platform.const import intentions
-from tuxemon.platform.const import buttons, events
+from tuxemon.math import Vector2
+from tuxemon.platform.const import buttons, events, intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
-from tuxemon.graphics import ColorLike
-from typing import Optional, Sequence, Mapping, Tuple, Union, TypedDict, Dict,\
-    List, Set, Any, Literal, TYPE_CHECKING
-from tuxemon.entity import Entity
-from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.states.world.world_menus import WorldMenuState
-from tuxemon.math import Vector2
+from tuxemon.surfanim import SurfaceAnimation
 
 if TYPE_CHECKING:
-    from tuxemon.player import Player
     from tuxemon.npc import NPC
+    from tuxemon.player import Player
 
 logger = logging.getLogger(__name__)
 

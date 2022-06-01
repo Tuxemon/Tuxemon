@@ -26,15 +26,15 @@
 # main Sets up the states and main game loop.
 #
 from __future__ import annotations
-from typing import Optional
-import logging
 
-from tuxemon import log
-from tuxemon import prepare
+import logging
+from typing import Optional
+
+from tuxemon import log, prepare
 from tuxemon.session import local_session
-from tuxemon.states.start import BackgroundState, StartState
 from tuxemon.states.persistance.load_menu import LoadMenuState
 from tuxemon.states.splash import SplashState
+from tuxemon.states.start import BackgroundState, StartState
 from tuxemon.states.transition.fade import FadeInTransition
 from tuxemon.states.world.worldstate import WorldState
 
@@ -59,6 +59,7 @@ def main(
     config = prepare.CONFIG
 
     import pygame
+
     from tuxemon.client import LocalPygameClient
 
     client = LocalPygameClient(config)

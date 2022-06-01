@@ -31,7 +31,6 @@ class CLICommand(ABC):
             line: Input text after the command name.
 
         """
-        pass
 
     def get_parameters(self, ctx: InvokeContext) -> Iterable[Parameter]:
         """

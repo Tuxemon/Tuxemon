@@ -58,7 +58,6 @@ def add_menu_items(
         label = T.translate(key).upper()
         menu.add.button(label, callback)
         menu.add.vertical_fill()
-        pass
 
     width, height = prepare.SCREEN_SIZE
     widgets_size = menu.get_size(widget=True)

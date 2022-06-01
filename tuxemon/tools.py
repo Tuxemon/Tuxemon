@@ -65,7 +65,6 @@ from tuxemon.math import Vector2
 if TYPE_CHECKING:
     import pygame
 
-    from tuxemon.client import LocalPygameClient
     from tuxemon.item.item import Item
     from tuxemon.session import Session
     from tuxemon.sprite import Sprite

@@ -384,7 +384,6 @@ class MenuSpriteGroup(SpriteGroup[_MenuElement]):
 
     def arrange_menu_items(self) -> None:
         """Iterate through menu items and position them in the menu."""
-        pass
 
     def _allowed_input(self) -> Container[int]:
         """Returns allowed buttons."""

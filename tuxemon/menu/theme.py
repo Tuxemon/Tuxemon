@@ -2,7 +2,6 @@ from typing import Optional
 
 import pygame
 import pygame_menu
-from pygame.rect import Rect
 from pygame_menu.widgets.core.selection import Selection
 from pygame_menu.widgets.core.widget import Widget
 

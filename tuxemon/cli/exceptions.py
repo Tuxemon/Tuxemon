@@ -4,7 +4,6 @@ class CommandNotFoundError(Exception):
 
     """
 
-    pass
 
 
 class ParseError(Exception):
@@ -13,4 +12,3 @@ class ParseError(Exception):
 
     """
 
-    pass

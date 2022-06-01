@@ -2,7 +2,7 @@ from typing import Final, Optional
 
 import pygame
 
-from tuxemon.platform.const import buttons, intentions
+from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 
 _EVENT_MAP: Final = {

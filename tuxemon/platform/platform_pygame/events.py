@@ -75,7 +75,6 @@ class PygameEventHandler(InputHandler[pygame.event.Event]):
     """
     Input handler of Pygame events.
     """
-    pass
 
 
 class PygameGamepadInput(PygameEventHandler):

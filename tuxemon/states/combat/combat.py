@@ -76,7 +76,6 @@ from .combat_animations import CombatAnimations
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
-    from tuxemon.player import Player
 
 logger = logging.getLogger(__name__)
 

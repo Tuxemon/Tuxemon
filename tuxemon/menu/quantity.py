@@ -100,8 +100,7 @@ class QuantityAndPriceMenu(QuantityMenu):
 
     def initialize_items(self) -> Generator[MenuItem[None], None, None]:
         # Show the quantity by using the method from the parent class:
-        for menu_item in super().initialize_items():
-            yield menu_item
+        yield from super().initialize_items()
 
         # Now, show the price:
         label_format = "$ {:>{count_len}}".format

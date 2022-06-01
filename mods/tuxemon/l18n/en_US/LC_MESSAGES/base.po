@@ -3436,6 +3436,9 @@ msgstr "Is Frostbite an Earth element technique or a Water element technique? "
 msgid "spyder_leatherhouse1_tennisplayer2"
 msgstr "Trick question - it's both!"
 
+msgid "spyder_scoop_welcome"
+msgstr "Welcome!"
+
 msgid "spyder_scoop_sign"
 msgstr "Scoop HQ: Almost good enough to eat!"
 

@@ -38,7 +38,7 @@ from tuxemon import prepare
 from tuxemon.animation import Animation
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import Menu, PygameMenuState
+from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
 
@@ -174,10 +174,14 @@ class WorldMenuState(PygameMenuState):
 
         def negative_answer() -> None:
             self.client.pop_state()  # close menu
+            self.client.pop_state()  # close confirmation dialog
 
         def release_monster_from_party() -> None:
+            """Show release monster confirmation dialog."""
+            # Remove the submenu and replace with a confirmation dialog
+            self.client.pop_state()
+
             monster = monster_menu.get_selected_item().game_object
-            menu = self.client.push_state(Menu)
             open_dialog(
                 local_session,
                 [T.format("release_confirmation", {"name": monster.name})],
@@ -187,8 +191,14 @@ class WorldMenuState(PygameMenuState):
                 ("no", negative_answer),
                 ("yes", positive_answer),
             )
+            menu = self.client.push_state(PygameMenuState)
 
-            add_menu_items(menu, menu_items_map)
+            for key, callback in menu_items_map:
+                label = T.translate(key).upper()
+                menu.menu.add.button(label, callback)
+
+            size = menu.menu.get_size(widget=True)
+            menu.menu.resize(*size)
 
         def open_monster_submenu(
             menu_item: MenuItem[WorldMenuGameObj],

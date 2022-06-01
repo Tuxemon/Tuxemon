@@ -2,8 +2,7 @@ import unittest
 from unittest import skip
 from unittest.mock import Mock
 
-from tuxemon.state import StateManager
-from tuxemon.state import State
+from tuxemon.state import State, StateManager
 
 
 def create_state(name):

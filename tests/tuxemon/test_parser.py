@@ -120,4 +120,7 @@ class TestParseConditionString(unittest.TestCase):
 
     def test_space_in_arg(self):
         result = parse_condition_string("spam eggs  ex parrot, cheese shop")
-        self.assertEqual(("spam", "eggs", ["ex parrot", "cheese shop"]), result)
+        self.assertEqual(
+            ("spam", "eggs", ["ex parrot", "cheese shop"]),
+            result,
+        )

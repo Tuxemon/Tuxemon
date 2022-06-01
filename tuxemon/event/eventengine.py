@@ -272,8 +272,12 @@ class EventEngine:
             logger.debug(f'map condition "{cond_data.type}" is not loaded')
             return False
 
-        result = map_condition.test(self.session, cond_data) == (cond_data.operator == "is")
-        logger.debug(f'map condition "{map_condition.name}": {result} ({cond_data})')
+        result = map_condition.test(self.session, cond_data) == (
+            cond_data.operator == "is"
+        )
+        logger.debug(
+            f'map condition "{map_condition.name}": {result} ({cond_data})'
+        )
         return result
 
     def execute_action(
@@ -553,12 +557,17 @@ def add_error_context(
                     Line {line_number}
                 """.format(
                     file_name=file_name,
-                    event=etree.tostring(event_node).decode().split("\n")[0].strip(),
+                    event=etree.tostring(event_node)
+                    .decode()
+                    .split("\n")[0]
+                    .strip(),
                     line_number=event_node.sourceline,
                 )
             else:
                 # This is either a condition or an action
-                child_node = event_node.find(".//property[@name='%s']" % (item.name))
+                child_node = event_node.find(
+                    ".//property[@name='%s']" % (item.name)
+                )
                 if child_node:
                     msg = """
                         Error in {file_name}
@@ -568,7 +577,10 @@ def add_error_context(
                         Line {line_number}
                     """.format(
                         file_name=file_name,
-                        event=etree.tostring(event_node).decode().split("\n")[0].strip(),
+                        event=etree.tostring(event_node)
+                        .decode()
+                        .split("\n")[0]
+                        .strip(),
                         line=etree.tostring(child_node).decode().strip(),
                         line_number=child_node.sourceline,
                     )

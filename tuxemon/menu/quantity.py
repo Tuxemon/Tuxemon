@@ -46,7 +46,11 @@ class QuantityMenu(Menu[None]):
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
 
         if event.pressed:
-            if event.button in (buttons.B, buttons.BACK, intentions.MENU_CANCEL):
+            if event.button in (
+                buttons.B,
+                buttons.BACK,
+                intentions.MENU_CANCEL,
+            ):
                 self.close()
                 self.callback(0)
                 return None
@@ -90,6 +94,7 @@ class QuantityMenu(Menu[None]):
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)
 
+
 class QuantityAndPriceMenu(QuantityMenu):
     """Menu used to select quantities, and also shows the price of items."""
 
@@ -107,8 +112,7 @@ class QuantityAndPriceMenu(QuantityMenu):
         count_len = 3
 
         price = (
-          self.price if self.quantity == 0
-          else self.quantity * self.price
+            self.price if self.quantity == 0 else self.quantity * self.price
         )
 
         formatted_name = label_format(price, count_len=count_len)

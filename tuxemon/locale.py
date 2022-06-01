@@ -34,7 +34,15 @@ import gettext
 import logging
 import os
 import os.path
-from typing import Any, Callable, Generator, Iterable, Mapping, Optional, Sequence
+from typing import (
+    Any,
+    Callable,
+    Generator,
+    Iterable,
+    Mapping,
+    Optional,
+    Sequence,
+)
 
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
@@ -243,13 +251,28 @@ def replace_text(session: Session, text: str) -> str:
     for i in range(len(session.player.monsters)):
         monster = session.player.monsters[i]
         text = text.replace("${{monster_" + str(i) + "_name}}", monster.name)
-        text = text.replace("${{monster_" + str(i) + "_desc}}", monster.description)
+        text = text.replace(
+            "${{monster_" + str(i) + "_desc}}",
+            monster.description,
+        )
         text = text.replace("${{monster_" + str(i) + "_type}}", monster.slug)
-        text = text.replace("${{monster_" + str(i) + "_category}}", monster.category)
+        text = text.replace(
+            "${{monster_" + str(i) + "_category}}",
+            monster.category,
+        )
         text = text.replace("${{monster_" + str(i) + "_shape}}", monster.shape)
-        text = text.replace("${{monster_" + str(i) + "_hp}}", str(monster.current_hp))
-        text = text.replace("${{monster_" + str(i) + "_hp_max}}", str(monster.hp))
-        text = text.replace("${{monster_" + str(i) + "_level}}", str(monster.level))
+        text = text.replace(
+            "${{monster_" + str(i) + "_hp}}",
+            str(monster.current_hp),
+        )
+        text = text.replace(
+            "${{monster_" + str(i) + "_hp_max}}",
+            str(monster.hp),
+        )
+        text = text.replace(
+            "${{monster_" + str(i) + "_level}}",
+            str(monster.level),
+        )
 
     return text
 

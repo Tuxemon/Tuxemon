@@ -27,7 +27,12 @@ from tuxemon.menu.interface import MenuCursor, MenuItem
 from tuxemon.menu.theme import get_sound_engine, get_theme
 from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
-from tuxemon.sprite import MenuSpriteGroup, RelativeGroup, SpriteGroup, VisualSpriteList
+from tuxemon.sprite import (
+    MenuSpriteGroup,
+    RelativeGroup,
+    SpriteGroup,
+    VisualSpriteList,
+)
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
 
@@ -58,7 +63,7 @@ class PygameMenuState(state.State):
         height: int = 1,
         theme: Optional[pygame_menu.themes.Theme] = None,
         **kwargs: Any,
-    )->None:
+    ) -> None:
 
         if theme is None:
             theme = get_theme()
@@ -80,7 +85,6 @@ class PygameMenuState(state.State):
         # being pressed right now, and ignore the event if not, hence it won't
         # work for controllers.
         self.menu._keyboard_ignore_nonphysical = False
-
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
 
@@ -193,17 +197,18 @@ class Menu(Generic[T], state.State):
     shrink_to_items = False  # fit the border to contents
     escape_key_exits = True  # escape key closes menu
     animate_contents = False  # show contents while window opens
-    touch_aware = True  # if true, then menu items can be selected with the mouse/touch
+    # if true, then menu items can be selected with the mouse/touch
+    touch_aware = True
 
     def startup(self, *, selected_index: int = 0, **kwargs: Any) -> None:
         self.rect = self.rect.copy()  # do not remove!
-        self.selected_index = selected_index  # track which menu item is selected
-        self.state: MenuState = "closed"  # closed, opening, normal, disabled, closing
-        self._show_contents = False  # draw menu items, or not
-        self._needs_refresh = False  # refresh layout on next draw
-        # used to position the menu/state
+        self.selected_index = selected_index
+        # state: closed, opening, normal, disabled, closing
+        self.state: MenuState = "closed"
+        self._show_contents = False
+        self._needs_refresh = False
         self._anchors: Dict[str, Tuple[int, int]] = {}
-        self.__dict__.update(kwargs)  # may be removed in the future
+        self.__dict__.update(kwargs)
 
         # holds sprites representing menu items
         self.create_new_menu_items_group()
@@ -257,6 +262,7 @@ class Menu(Generic[T], state.State):
             callback: Function called when alert is complete.
 
         """
+
         def next_character() -> None:
             try:
                 next(text_area)
@@ -627,8 +633,10 @@ class Menu(Generic[T], state.State):
         if hasattr(self, "menu_items") and event.pressed:
             disabled = all(not i.enabled for i in self.menu_items)
         valid_change = (
-            event.pressed and self.state == "normal"
-            and not disabled and self.menu_items
+            event.pressed
+            and self.state == "normal"
+            and not disabled
+            and self.menu_items
         )
 
         # confirm selection
@@ -673,15 +681,16 @@ class Menu(Generic[T], state.State):
                     pass
                 else:
                     mouse_pos = [
-                        a - b for a, b in zip(
+                        a - b
+                        for a, b in zip(
                             mouse_pos,
                             self.menu_items.rect.topleft,
                         )
                     ]
 
-                for index, item in enumerate([
-                    i for i in self.menu_items if i.enabled
-                ]):
+                for index, item in enumerate(
+                    [i for i in self.menu_items if i.enabled]
+                ):
                     if item.rect.collidepoint(mouse_pos):
                         self.change_selection(index)
                         selected = self.get_selected_item()
@@ -699,15 +708,14 @@ class Menu(Generic[T], state.State):
         """
         previous = self.get_selected_item()
         if previous is not None:
-            previous.in_focus = False  # clear the focus flag of old item, if any
-        self.selected_index = index  # update the selection index
-        self.menu_select_sound.play()  # play a sound
-        # move cursor and [maybe] animate it
+            previous.in_focus = False
+        self.selected_index = index
+        self.menu_select_sound.play()
         self.trigger_cursor_update(animate)
         selected = self.get_selected_item()
         assert selected
-        selected.in_focus = True  # set focus flag of new item
-        self.on_menu_selection_change()  # let subclass know menu has changed
+        selected.in_focus = True
+        self.on_menu_selection_change()
 
     def search_items(self, game_object: Any) -> Optional[MenuItem[T]]:
         """
@@ -751,7 +759,12 @@ class Menu(Generic[T], state.State):
 
         if animate:
             self.remove_animations_of(self.arrow.rect)
-            return self.animate(self.arrow.rect, right=x, centery=y, duration=self.cursor_move_duration)
+            return self.animate(
+                self.arrow.rect,
+                right=x,
+                centery=y,
+                duration=self.cursor_move_duration,
+            )
         else:
             self.arrow.rect.midright = x, y
             return None

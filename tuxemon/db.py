@@ -34,7 +34,16 @@ import logging
 import os
 from enum import Enum
 from operator import itemgetter
-from typing import Any, Dict, Literal, Mapping, Optional, Sequence, overload
+from typing import (
+    Any,
+    Dict,
+    Literal,
+    Mapping,
+    Optional,
+    Sequence,
+    TypedDict,
+    overload,
+)
 
 from pydantic import BaseModel, Field, ValidationError, validator
 
@@ -316,9 +325,23 @@ class NpcModel(BaseModel):
     )
 
 
+class JSONEconomyItemOptionalFields(TypedDict, total=False):
+    price: int
+    cost: int
+
+
 class BattleGraphicsModel(BaseModel):
     island_back: str = Field(..., description="Sprite used for back combat")
     island_front: str = Field(..., description="Sprite used for front combat")
+
+
+class JSONEconomyItem(TypedDict):
+    item_name: str
+
+
+class JSONEconomy(TypedDict):
+    slug: str
+    items: Sequence[JSONEconomyItem]
 
 
 class EnvironmentModel(BaseModel):
@@ -495,7 +518,8 @@ class JSONDatabase:
 
         if item["slug"] in self.database[table]:
             logger.warning(
-                "Error: Item with slug %s was already loaded.", item
+                "Error: Item with slug %s was already loaded.",
+                item,
             )
             return
 

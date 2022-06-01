@@ -78,7 +78,9 @@ class CombatAnimations(ABC, Menu[None]):
         if background:
             self.background_filename = background_filename_prefix + background
         else:
-            self.background_filename = background_filename_prefix + "battle_bg03.png"
+            self.background_filename = (
+                background_filename_prefix + "battle_bg03.png"
+            )
 
         super().startup(**kwargs)
         self.players = list(players)
@@ -115,8 +117,7 @@ class CombatAnimations(ABC, Menu[None]):
 
         # map positions to players
         self._layout = {
-            player: layout[index]
-            for index, player in enumerate(self.players)
+            player: layout[index] for index, player in enumerate(self.players)
         }
 
     @abstractmethod
@@ -397,7 +398,8 @@ class CombatAnimations(ABC, Menu[None]):
             x_diff = scale(150)
 
         cry = (
-            monster.combat_call if monster.current_hp > 0
+            monster.combat_call
+            if monster.current_hp > 0
             else monster.faint_call
         )
         sound = audio.load_sound(cry)
@@ -405,7 +407,6 @@ class CombatAnimations(ABC, Menu[None]):
         self.animate(sprite.rect, x=x_diff, relative=True, duration=2)
 
     def build_hud(self, home: Rect, monster: Monster) -> None:
-
         def build_left_hud() -> Sprite:
             hud = self.load_sprite(
                 "gfx/ui/combat/hp_opponent_nohp.png",
@@ -568,7 +569,8 @@ class CombatAnimations(ABC, Menu[None]):
 
         back_island = self.load_sprite(
             "gfx/ui/combat/" + self.graphics["island_back"],
-            bottom=opp_home.bottom + y_mod, right=0,
+            bottom=opp_home.bottom + y_mod,
+            right=0,
         )
 
         if self.is_trainer_battle:
@@ -621,24 +623,38 @@ class CombatAnimations(ABC, Menu[None]):
         self._monster_sprite_map[left_trainer] = trainer1
 
         def flip() -> None:
-            enemy.image = pygame.transform.flip(enemy.image, 1, 0)
-            trainer1.image = pygame.transform.flip(trainer1.image, 1, 0)
+            enemy.image = pygame.transform.flip(enemy.image, True, False)
+            trainer1.image = pygame.transform.flip(trainer1.image, True, False)
 
-        flip()  # flip images to opposite
-        self.task(flip, 1.5)  # flip the images to proper direction
+        flip()
+        self.task(flip, 1.5)
 
-        if not self.is_trainer_battle:  # the combat call is handled by fill_battlefield_positions for trainer battles
-            self.task(audio.load_sound(right_monster.combat_call).play, 1.5)  # play combat call when it turns back
+        if not self.is_trainer_battle:
+            self.task(audio.load_sound(right_monster.combat_call).play, 1.5)
 
-        animate = partial(self.animate, transition="out_quad", duration=duration)
+        animate = partial(
+            self.animate, transition="out_quad", duration=duration
+        )
 
         # top trainer
         animate(enemy.rect, back_island.rect, centerx=opp_home.centerx)
-        animate(enemy.rect, back_island.rect, y=-y_mod, transition="out_back", relative=True)
+        animate(
+            enemy.rect,
+            back_island.rect,
+            y=-y_mod,
+            transition="out_back",
+            relative=True,
+        )
 
         # bottom trainer
         animate(trainer1.rect, front_island.rect, centerx=player_home.centerx)
-        animate(trainer1.rect, front_island.rect, y=y_mod, transition="out_back", relative=True)
+        animate(
+            trainer1.rect,
+            front_island.rect,
+            y=y_mod,
+            transition="out_back",
+            relative=True,
+        )
 
     def animate_capture_monster(
         self,
@@ -657,12 +673,14 @@ class CombatAnimations(ABC, Menu[None]):
         """
         monster_sprite = self._monster_sprite_map[monster]
         capdev = self.load_sprite("gfx/items/capture_device.png")
-        animate = partial(self.animate, capdev.rect, transition="in_quad", duration=1.0)
+        animate = partial(
+            self.animate, capdev.rect, transition="in_quad", duration=1.0
+        )
         graphics.scale_sprite(capdev, 0.4)
         capdev.rect.center = scale(0), scale(0)
         animate(x=monster_sprite.rect.centerx)
         animate(y=monster_sprite.rect.centery)
-        self.task(partial(toggle_visible, monster_sprite), 1.0)  # make the monster go away temporarily
+        self.task(partial(toggle_visible, monster_sprite), 1.0)
 
         def kill() -> None:
             self._monster_sprite_map[monster].kill()
@@ -710,7 +728,8 @@ class CombatAnimations(ABC, Menu[None]):
             animate(capdev.rect, y=scale(3), relative=True)
 
         for i in range(0, num_shakes):
-            shake_ball(1.8 + i * 1.0)  # leave a 0.6s wait between each shake
+            # leave a 0.6s wait between each shake
+            shake_ball(1.8 + i * 1.0)
 
         if is_captured:
             self.task(kill, 2 + num_shakes)

@@ -132,7 +132,9 @@ class ItemEffect(Generic[ParameterClass]):
             logger.error(f"error while parsing for {self.name}")
             logger.error(f"cannot parse parameters: {parameters}")
             logger.error(self.param_class)
-            logger.error("please check the parameters and verify they are correct")
+            logger.error(
+                "please check the parameters and verify they are correct"
+            )
             self.parameters = None
 
         self._done = False

@@ -90,14 +90,10 @@ class Item:
         self.images: Sequence[str] = []
         self.type: Optional[str] = None
         self.sfx = None
-        self.sprite = ""  # The path to the sprite to load.
-        self.surface: Optional[
-            pygame.surface.Surface
-        ] = None  # The pygame.Surface object of the item.
-        self.surface_size_original = (
-            0,
-            0,
-        )  # The original size of the image before scaling.
+        # The path to the sprite to load.
+        self.sprite = ""
+        self.surface: Optional[pygame.surface.Surface] = None
+        self.surface_size_original = (0, 0)
 
         self.effects: Sequence[ItemEffect[Any]] = []
         self.conditions: Sequence[ItemCondition[Any]] = []
@@ -141,11 +137,9 @@ class Item:
             logger.error(msg=f"Failed to find item with slug {slug}")
             return
 
-        self.slug = results["slug"]  # short English identifier
-        self.name = T.translate(self.slug)  # translated name
-        self.description = T.translate(
-            f"{self.slug}_description"
-        )  # will be locale string
+        self.slug = results["slug"]
+        self.name = T.translate(self.slug)
+        self.description = T.translate(f"{self.slug}_description")
 
         # item use notifications (translated!)
         self.use_item = T.translate(results["use_item"])

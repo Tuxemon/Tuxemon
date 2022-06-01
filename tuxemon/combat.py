@@ -37,7 +37,9 @@ def check_battle_legal(player: Player) -> bool:
         return False
     else:
         if fainted_party(player.monsters):
-            logger.warning("Cannot start battle, player's monsters are all DEAD.")
+            logger.warning(
+                "Cannot start battle, player's monsters are all DEAD."
+            )
             return False
         else:
             return True

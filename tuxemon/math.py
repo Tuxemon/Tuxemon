@@ -10,7 +10,6 @@ SelfType = TypeVar("SelfType", bound="Vector")
 
 
 class Vector(ABC, Sequence[float]):
-
     @abstractmethod
     def __init__(
         self,
@@ -56,7 +55,6 @@ class Vector(ABC, Sequence[float]):
 
 
 class Vector3(Vector):
-
     @overload
     def __init__(
         self,
@@ -95,7 +93,6 @@ class Vector3(Vector):
 
 
 class Vector2(Vector):
-
     @overload
     def __init__(
         self,

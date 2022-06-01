@@ -78,7 +78,10 @@ class PCState(PopUpMenu[MenuGameObj]):
             (
                 ("menu_monsters", change_state("MonsterMenuState")),
                 ("menu_items", change_state("ItemMenuState")),
-                ("menu_multiplayer", not_implemented_dialog),  # change_state("MultiplayerMenu")),
+                (
+                    "menu_multiplayer",
+                    not_implemented_dialog,
+                ),  # change_state("MultiplayerMenu")),
                 ("log_off", self.client.pop_state),
             ),
         )
@@ -109,7 +112,9 @@ class MultiplayerMenu(PopUpMenu[MenuGameObj]):
         # check if server is already hosting a game
         if self.game.server.listening:
             self.game.pop_state(self)
-            open_dialog(local_session, [T.translate("multiplayer_already_hosting")])
+            open_dialog(
+                local_session, [T.translate("multiplayer_already_hosting")]
+            )
 
         # not hosting, so start the process
         elif not self.game.isclient:
@@ -133,7 +138,9 @@ class MultiplayerMenu(PopUpMenu[MenuGameObj]):
             self.game.pop_state(self)
 
             # inform player that hosting is ready
-            open_dialog(local_session, [T.translate("multiplayer_hosting_ready")])
+            open_dialog(
+                local_session, [T.translate("multiplayer_hosting_ready")]
+            )
 
     def scan_for_games(self) -> None:
         # start the game scanner
@@ -146,7 +153,9 @@ class MultiplayerMenu(PopUpMenu[MenuGameObj]):
         self.game.push_state(MultiplayerSelect)
 
     def join_by_ip(self) -> None:
-        self.game.push_state(InputMenu, prompt=T.translate("multiplayer_join_prompt"))
+        self.game.push_state(
+            InputMenu, prompt=T.translate("multiplayer_join_prompt")
+        )
 
     def join(self) -> None:
         if self.game.ishost:

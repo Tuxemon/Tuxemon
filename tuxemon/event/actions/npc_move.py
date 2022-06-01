@@ -97,10 +97,12 @@ class NpcMoveAction(EventAction[NpcMoveActionParameters]):
         if self.npc is None:
             return
 
-        path = list(parse_path_parameters(
-            self.npc.tile_pos,
-            self.raw_parameters[1:],
-        ))
+        path = list(
+            parse_path_parameters(
+                self.npc.tile_pos,
+                self.raw_parameters[1:],
+            )
+        )
         path.reverse()
         self.npc.path = path
         self.npc.next_waypoint()

@@ -184,15 +184,20 @@ class WorldState(state.State):
         # The cinema bars are used for cinematic moments.
         # The cinema state can be: "off", "on", "turning on" or "turning off"
         self.cinema_state: CinemaState = "off"
-        self.cinema_speed = 15 * prepare.SCALE  # Pixels per second speed of the animation.
+        # Pixels per second speed of the animation.
+        self.cinema_speed = 15 * prepare.SCALE
 
         self.cinema_top: CinemaSurfaceInfo = {}  # type: ignore
         self.cinema_bottom: CinemaSurfaceInfo = {}  # type: ignore
 
         # Create a surface that we'll use as black bars for a cinematic
         # experience
-        self.cinema_top["surface"] = pygame.Surface((self.resolution[0], self.resolution[1] / 6))
-        self.cinema_bottom["surface"] = pygame.Surface((self.resolution[0], self.resolution[1] / 6))
+        self.cinema_top["surface"] = pygame.Surface(
+            (self.resolution[0], self.resolution[1] / 6)
+        )
+        self.cinema_bottom["surface"] = pygame.Surface(
+            (self.resolution[0], self.resolution[1] / 6)
+        )
 
         # Fill our empty surface with black
         self.cinema_top["surface"].fill((0, 0, 0))
@@ -200,15 +205,23 @@ class WorldState(state.State):
 
         # When cinema mode is off, this will be the position we'll draw the
         # black bar.
-        self.cinema_top["off_position"] = [0, -self.cinema_top["surface"].get_height()]
+        self.cinema_top["off_position"] = [
+            0,
+            -self.cinema_top["surface"].get_height(),
+        ]
         self.cinema_bottom["off_position"] = [0, self.resolution[1]]
         self.cinema_top["position"] = list(self.cinema_top["off_position"])
-        self.cinema_bottom["position"] = list(self.cinema_bottom["off_position"])
+        self.cinema_bottom["position"] = list(
+            self.cinema_bottom["off_position"]
+        )
 
         # When cinema mode is ON, this will be the position we'll draw the
         # black bar.
         self.cinema_top["on_position"] = [0, 0]
-        self.cinema_bottom["on_position"] = [0, self.resolution[1] - self.cinema_bottom["surface"].get_height()]
+        self.cinema_bottom["on_position"] = [
+            0,
+            self.resolution[1] - self.cinema_bottom["surface"].get_height(),
+        ]
 
         self.map_animations: Dict[str, AnimationInfo] = {}
 
@@ -239,6 +252,7 @@ class WorldState(state.State):
             duration: Duration of the fade out. The fade in is slightly larger.
 
         """
+
         def cleanup() -> None:
             self.in_transition = False
 
@@ -274,7 +288,7 @@ class WorldState(state.State):
             duration=duration,
             round_values=True,
         )
-        self.task(self.unlock_controls, duration - 0.5)  # unlock controls before fade ends
+        self.task(self.unlock_controls, duration - 0.5)
 
     def trigger_fade_out(self, duration: float = 2) -> None:
         """
@@ -465,7 +479,9 @@ class WorldState(state.State):
 
         if prepare.DEV_TOOLS:
             if event.pressed and event.button == intentions.NOCLIP:
-                self.player.ignore_collisions = not self.player.ignore_collisions
+                self.player.ignore_collisions = (
+                    not self.player.ignore_collisions
+                )
                 return None
 
             if event.pressed and event.button == intentions.RELOAD_MAP:
@@ -510,13 +526,19 @@ class WorldState(state.State):
 
         # get npc surfaces/sprites
         for npc in self.npcs:
-            world_surfaces.extend(self.npcs[npc].get_sprites(self.current_map.sprite_layer))
+            world_surfaces.extend(
+                self.npcs[npc].get_sprites(self.current_map.sprite_layer)
+            )
 
         # get map_animations
         for anim_data in self.map_animations.values():
             anim = anim_data["animation"]
             if not anim.is_finished() and anim.visibility:
-                frame = (anim.get_current_frame(), Vector2(anim_data["position"]), anim_data["layer"])
+                frame = (
+                    anim.get_current_frame(),
+                    Vector2(anim_data["position"]),
+                    anim_data["layer"],
+                )
                 world_surfaces.append(frame)
 
         # position the surfaces correctly
@@ -540,7 +562,9 @@ class WorldState(state.State):
             screen_surfaces.append((s, r, l))
 
         # draw the map and sprites
-        self.rect = self.current_map.renderer.draw(surface, surface.get_rect(), screen_surfaces)
+        self.rect = self.current_map.renderer.draw(
+            surface, surface.get_rect(), screen_surfaces
+        )
 
         # If we want to draw the collision map for debug purposes
         if prepare.CONFIG.collision_map:
@@ -711,7 +735,8 @@ class WorldState(state.State):
             else:
                 for adj_pos in self.get_exits(
                     node.get_value(),
-                    collision_map, known_nodes,
+                    collision_map,
+                    known_nodes,
                 ):
                     new_node = PathfindNode(adj_pos, node)
                     known_nodes.add(new_node.get_value())
@@ -822,9 +847,9 @@ class WorldState(state.State):
 
             # We only need to check the perimeter,
             # as there is no way to get further out of bounds
-            if not (self.invalid_x[0] < neighbor[0] < self.invalid_x[1]) or not (
-                self.invalid_y[0] < neighbor[1] < self.invalid_y[1]
-            ):
+            if not (
+                self.invalid_x[0] < neighbor[0] < self.invalid_x[1]
+            ) or not (self.invalid_y[0] < neighbor[1] < self.invalid_y[1]):
                 continue
 
             # check to see if this tile is separated by a wall
@@ -1028,40 +1053,71 @@ class WorldState(state.State):
 
         if self.cinema_state == "turning on":
 
-            self.cinema_top["position"][1] += self.cinema_speed * self.time_passed_seconds
-            self.cinema_bottom["position"][1] -= self.cinema_speed * self.time_passed_seconds
+            self.cinema_top["position"][1] += (
+                self.cinema_speed * self.time_passed_seconds
+            )
+            self.cinema_bottom["position"][1] -= (
+                self.cinema_speed * self.time_passed_seconds
+            )
 
             # If we've reached our target position, stop the animation.
             if self.cinema_top["position"] >= self.cinema_top["on_position"]:
-                self.cinema_top["position"] = list(self.cinema_top["on_position"])
-                self.cinema_bottom["position"] = list(self.cinema_bottom["on_position"])
+                self.cinema_top["position"] = list(
+                    self.cinema_top["on_position"]
+                )
+                self.cinema_bottom["position"] = list(
+                    self.cinema_bottom["on_position"]
+                )
 
                 self.cinema_state = "on"
 
             # Draw the cinema bars
-            surface.blit(self.cinema_top["surface"], self.cinema_top["position"])
-            surface.blit(self.cinema_bottom["surface"], self.cinema_bottom["position"])
+            surface.blit(
+                self.cinema_top["surface"], self.cinema_top["position"]
+            )
+            surface.blit(
+                self.cinema_bottom["surface"], self.cinema_bottom["position"]
+            )
 
         elif self.cinema_state == "on":
             # Draw the cinema bars
-            surface.blit(self.cinema_top["surface"], self.cinema_top["position"])
-            surface.blit(self.cinema_bottom["surface"], self.cinema_bottom["position"])
+            surface.blit(
+                self.cinema_top["surface"], self.cinema_top["position"]
+            )
+            surface.blit(
+                self.cinema_bottom["surface"], self.cinema_bottom["position"]
+            )
 
         elif self.cinema_state == "turning off":
 
-            self.cinema_top["position"][1] -= self.cinema_speed * self.time_passed_seconds
-            self.cinema_bottom["position"][1] += self.cinema_speed * self.time_passed_seconds
+            self.cinema_top["position"][1] -= (
+                self.cinema_speed * self.time_passed_seconds
+            )
+            self.cinema_bottom["position"][1] += (
+                self.cinema_speed * self.time_passed_seconds
+            )
 
             # If we've reached our target position, stop the animation.
-            if self.cinema_top["position"][1] <= self.cinema_top["off_position"][1]:
-                self.cinema_top["position"] = list(self.cinema_top["off_position"])
-                self.cinema_bottom["position"] = list(self.cinema_bottom["off_position"])
+            if (
+                self.cinema_top["position"][1]
+                <= self.cinema_top["off_position"][1]
+            ):
+                self.cinema_top["position"] = list(
+                    self.cinema_top["off_position"]
+                )
+                self.cinema_bottom["position"] = list(
+                    self.cinema_bottom["off_position"]
+                )
 
                 self.cinema_state = "off"
 
             # Draw the cinema bars
-            surface.blit(self.cinema_top["surface"], self.cinema_top["position"])
-            surface.blit(self.cinema_bottom["surface"], self.cinema_bottom["position"])
+            surface.blit(
+                self.cinema_top["surface"], self.cinema_top["position"]
+            )
+            surface.blit(
+                self.cinema_bottom["surface"], self.cinema_bottom["position"]
+            )
 
     ####################################################
     #         Full Screen Animations Functions         #
@@ -1145,7 +1201,9 @@ class WorldState(state.State):
         """
         collision_dict = self.player.get_collision_map(self)
         player_tile_pos = self.player.tile_pos
-        collisions = self.player.collision_check(player_tile_pos, collision_dict, self.collision_lines_map)
+        collisions = self.player.collision_check(
+            player_tile_pos, collision_dict, self.collision_lines_map
+        )
         if not collisions:
             pass
         else:
@@ -1160,7 +1218,10 @@ class WorldState(state.State):
                     elif direction == "right":
                         tile = (player_tile_pos[0] + 1, player_tile_pos[1])
                     for npc in self.npcs.values():
-                        tile_pos = (int(round(npc.tile_pos[0])), int(round(npc.tile_pos[1])))
+                        tile_pos = (
+                            int(round(npc.tile_pos[0])),
+                            int(round(npc.tile_pos[1])),
+                        )
                         if tile_pos == tile:
                             logger.info("Opening interaction menu!")
                             self.client.push_state("InteractionMenu")
@@ -1190,7 +1251,11 @@ class WorldState(state.State):
                 self.interaction_menu.interactable = True
                 self.interaction_menu.player = target
                 self.interaction_menu.interaction = "DUEL"
-                self.interaction_menu.menu_items = [target_name + " would like to Duel!", "Accept", "Decline"]
+                self.interaction_menu.menu_items = [
+                    target_name + " would like to Duel!",
+                    "Accept",
+                    "Decline",
+                ]
             else:
                 if self.wants_duel:
                     if event_data["response"] == "Accept":
@@ -1201,6 +1266,11 @@ class WorldState(state.State):
                             "interaction": "START_DUEL",
                             "target": [event_data["target"]],
                             "response": None,
-                            "char_dict": {"monsters": pd["monsters"], "inventory": pd["inventory"]},
+                            "char_dict": {
+                                "monsters": pd["monsters"],
+                                "inventory": pd["inventory"],
+                            },
                         }
-                        self.client.server.notify_client_interaction(cuuid, event_data)
+                        self.client.server.notify_client_interaction(
+                            cuuid, event_data
+                        )

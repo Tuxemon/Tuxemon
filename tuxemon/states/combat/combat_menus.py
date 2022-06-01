@@ -95,14 +95,24 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
     def open_swap_menu(self) -> None:
         """Open menus to swap monsters in party."""
+
         def swap_it(menuitem: MenuItem[Monster]) -> None:
             monster = menuitem.game_object
 
-            if monster in self.client.get_state_by_name(CombatState).active_monsters:
-                tools.open_dialog(local_session, [T.format("combat_isactive", {"name": monster.name})])
+            if (
+                monster
+                in self.client.get_state_by_name(CombatState).active_monsters
+            ):
+                tools.open_dialog(
+                    local_session,
+                    [T.format("combat_isactive", {"name": monster.name})],
+                )
                 return
             elif monster.current_hp < 1:
-                tools.open_dialog(local_session, [T.format("combat_fainted", {"name": monster.name})])
+                tools.open_dialog(
+                    local_session,
+                    [T.format("combat_fainted", {"name": monster.name})],
+                )
                 return
             combat_state = self.client.get_state_by_name(CombatState)
             swap = Technique("swap")
@@ -175,7 +185,10 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 if tech.next_use <= 0:
                     image = self.shadow_text(tech.name)
                 else:
-                    image = self.shadow_text("%s %d" % (tech.name, abs(tech.next_use)), fg=self.unavailable_color)
+                    image = self.shadow_text(
+                        "%s %d" % (tech.name, abs(tech.next_use)),
+                        fg=self.unavailable_color,
+                    )
                 item = MenuItem(image, None, None, tech)
                 menu.add(item)
 

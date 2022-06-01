@@ -68,6 +68,7 @@ def sort_inventory(
         Sorted copy of the inventory.
 
     """
+
     def rank_item(properties: InventoryItem) -> Tuple[int, str]:
         item = properties["item"]
         primary_order = sort_order.index(item.sort)
@@ -112,7 +113,8 @@ class ItemMenuState(Menu[Item]):
         self.backpack_center = self.rect.width * 0.16, self.rect.height * 0.45
         self.load_sprite(
             "gfx/ui/item/backpack.png",
-            center=self.backpack_center, layer=100,
+            center=self.backpack_center,
+            layer=100,
         )
 
     def calc_internal_rect(self) -> pygame.rect.Rect:
@@ -161,6 +163,7 @@ class ItemMenuState(Menu[Item]):
             item: Selected item.
 
         """
+
         def use_item(menu_item: MenuItem[Monster]) -> None:
             player = local_session.player
             monster = menu_item.game_object
@@ -316,8 +319,7 @@ class ShopMenuState(Menu[Item]):
 
         item_dict = self.seller.inventory[item.slug]
         max_quantity = (
-            None if item_dict.get("infinite")
-            else item_dict["quantity"]
+            None if item_dict.get("infinite") else item_dict["quantity"]
         )
 
         self.client.push_state(
@@ -407,12 +409,13 @@ class ShopBuyMenuState(ShopMenuState):
 
         item_dict = self.seller.inventory[item.slug]
         max_quantity = (
-            None if item_dict.get("infinite")
-            else item_dict["quantity"]
+            None if item_dict.get("infinite") else item_dict["quantity"]
         )
         price = (
-          1 if not self.economy or not self.economy.lookup_item_price(item.slug)
-          else self.economy.lookup_item_price(item.slug)
+            1
+            if not self.economy
+            or not self.economy.lookup_item_price(item.slug)
+            else self.economy.lookup_item_price(item.slug)
         )
 
         self.client.push_state(

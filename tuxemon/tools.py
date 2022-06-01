@@ -272,9 +272,7 @@ def cast_values(
         if not isinstance(type_constructors, Sequence):
             type_constructors = [type_constructors]
 
-        if (
-            value is None or value == ""
-        ) and (
+        if (value is None or value == "") and (
             None in type_constructors or type(None) in type_constructors
         ):
             return None
@@ -392,4 +390,4 @@ def assert_never(value: NoReturn) -> NoReturn:
         value: The value that will be checked for exhaustiveness.
 
     """
-    assert False, f'Unhandled value: {value} ({type(value).__name__})'
+    assert False, f"Unhandled value: {value} ({type(value).__name__})"

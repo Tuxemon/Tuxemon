@@ -28,7 +28,15 @@
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Any, ClassVar, Generic, Sequence, Type, TypeVar
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    ClassVar,
+    Generic,
+    Sequence,
+    Type,
+    TypeVar,
+)
 
 from tuxemon.monster import Monster
 from tuxemon.session import Session
@@ -118,7 +126,9 @@ class ItemCondition(Generic[ParameterClass]):
             logger.error(f"error while parsing for {self.name}")
             logger.error(f"cannot parse parameters: {parameters}")
             logger.error(self.param_class)
-            logger.error("please check the parameters and verify they are correct")
+            logger.error(
+                "please check the parameters and verify they are correct"
+            )
             self.parameters = None
 
         self._done = False

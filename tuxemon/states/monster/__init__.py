@@ -190,9 +190,8 @@ class MonsterMenuState(Menu[Optional[Monster]]):
                 monster = None
             item.game_object = monster
 
-            item.enabled = (
-                (monster is not None)
-                and self.is_valid_entry(item.game_object)
+            item.enabled = (monster is not None) and self.is_valid_entry(
+                item.game_object
             )
             item.image.fill((0, 0, 0, 0))
             item.in_focus = (index == self.selected_index) and item.enabled

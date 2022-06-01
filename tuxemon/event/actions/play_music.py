@@ -68,6 +68,8 @@ class PlayMusicAction(EventAction[PlayMusicActionParameters]):
 
         # Keep track of what song we're currently playing
         if self.session.client.current_music["song"]:
-            self.session.client.current_music["previoussong"] = self.session.client.current_music["song"]
+            self.session.client.current_music[
+                "previoussong"
+            ] = self.session.client.current_music["song"]
         self.session.client.current_music["status"] = "playing"
         self.session.client.current_music["song"] = filename

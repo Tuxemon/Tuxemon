@@ -55,12 +55,14 @@ class TypeCondition(ItemCondition[TypeConditionParameters]):
         if target.type1 is not None:
             ret = any(
                 target.type1.lower() == p.lower()
-                for p in self.parameters if p is not None
+                for p in self.parameters
+                if p is not None
             )
         if target.type2 is not None:
             ret = ret or any(
                 target.type2.lower() == p.lower()
-                for p in self.parameters if p is not None
+                for p in self.parameters
+                if p is not None
             )
 
         return ret

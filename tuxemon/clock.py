@@ -92,7 +92,13 @@ class Scheduler:
             if divs > 16:
                 return next_ts
 
-    def schedule(self, func, delay=0.0, repeat=False, soft=False) -> ScheduledItem:
+    def schedule(
+        self,
+        func,
+        delay=0.0,
+        repeat=False,
+        soft=False,
+    ) -> ScheduledItem:
         """
         Schedule a function to be run sometime in the future.
 
@@ -138,7 +144,7 @@ class Scheduler:
             delay: Delay in time unit until it is called
             repeat: Function will be repeated every 'delay' units
             soft: See notes about Soft Scheduling
-        
+
         Returns:
             Reference to scheduled item
 
@@ -367,14 +373,14 @@ class Clock(Scheduler):
 
     @staticmethod
     def _least_squares(
-        gradient: int = 1, 
+        gradient: int = 1,
         offset: int = 0,
     ):
         """
         source: pyglet.app.App
 
         Parameters:
-            gradient: 
+            gradient:
             offset:
 
         """

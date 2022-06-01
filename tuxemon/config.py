@@ -72,8 +72,14 @@ class TuxemonConfig:
         self.scaling = cfg.getboolean("display", "scaling")
         self.collision_map = cfg.getboolean("display", "collision_map")
         self.large_gui = cfg.getboolean("display", "large_gui")
-        self.controller_overlay = cfg.getboolean("display", "controller_overlay")
-        self.controller_transparency = cfg.getint("display", "controller_transparency")
+        self.controller_overlay = cfg.getboolean(
+            "display",
+            "controller_overlay",
+        )
+        self.controller_transparency = cfg.getint(
+            "display",
+            "controller_transparency",
+        )
         self.hide_mouse = cfg.getboolean("display", "hide_mouse")
         self.window_caption = cfg.get("display", "window_caption")
 
@@ -85,29 +91,56 @@ class TuxemonConfig:
         self.data = cfg.get("game", "data")
         self.starting_map = cfg.get("game", "starting_map")
         self.cli = cfg.getboolean("game", "cli_enabled")
-        self.net_controller_enabled = cfg.getboolean("game", "net_controller_enabled")
+        self.net_controller_enabled = cfg.getboolean(
+            "game",
+            "net_controller_enabled",
+        )
         self.locale = cfg.get("game", "locale")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
-        self.recompile_translations = cfg.getboolean("game", "recompile_translations")
+        self.recompile_translations = cfg.getboolean(
+            "game",
+            "recompile_translations",
+        )
         self.skip_titlescreen = cfg.getboolean("game", "skip_titlescreen")
         self.compress_save: Optional[str] = cfg.get("game", "compress_save")
         if self.compress_save == "None":
             self.compress_save = None
 
         # [gameplay]
-        self.items_consumed_on_failure = cfg.getboolean("gameplay", "items_consumed_on_failure")
-        self.encounter_rate_modifier = cfg.getfloat("gameplay", "encounter_rate_modifier")
-        self.default_monster_storage_box = cfg.get("gameplay", "default_monster_storage_box")
-        self.default_item_storage_box = cfg.get("gameplay", "default_item_storage_box")
-        self.default_monster_catch_rate = cfg.getfloat("gameplay", "default_monster_catch_rate")
-        self.default_upper_monster_catch_resistance = cfg.getfloat("gameplay", "default_upper_monster_catch_resistance")
-        self.default_lower_monster_catch_resistance = cfg.getfloat("gameplay", "default_lower_monster_catch_resistance")
+        self.items_consumed_on_failure = cfg.getboolean(
+            "gameplay",
+            "items_consumed_on_failure",
+        )
+        self.encounter_rate_modifier = cfg.getfloat(
+            "gameplay",
+            "encounter_rate_modifier",
+        )
+        self.default_monster_storage_box = cfg.get(
+            "gameplay",
+            "default_monster_storage_box",
+        )
+        self.default_item_storage_box = cfg.get(
+            "gameplay",
+            "default_item_storage_box",
+        )
+        self.default_monster_catch_rate = cfg.getfloat(
+            "gameplay",
+            "default_monster_catch_rate",
+        )
+        self.default_upper_monster_catch_resistance = cfg.getfloat(
+            "gameplay",
+            "default_upper_monster_catch_resistance",
+        )
+        self.default_lower_monster_catch_resistance = cfg.getfloat(
+            "gameplay",
+            "default_lower_monster_catch_resistance",
+        )
 
         # [player]
         self.player_animation_speed = cfg.getfloat("player", "animation_speed")
         self.player_npc = cfg.get("player", "player_npc")
-        self.player_walkrate = cfg.getfloat("player", "player_walkrate")  # tiles/second
-        self.player_runrate = cfg.getfloat("player", "player_runrate")  # tiles/second
+        self.player_walkrate = cfg.getfloat("player", "player_walkrate")
+        self.player_runrate = cfg.getfloat("player", "player_runrate")
 
         # [logging]
         # Log levels can be: debug, info, warning, error, or critical
@@ -145,7 +178,8 @@ def get_custom_pygame_keyboard_controls(
         key = key.upper()
         button_value: Optional[int] = getattr(buttons, key, None)
         event_value: Optional[int] = getattr(events, key, None)
-        for each in values.split(", "): # used incase of multiple keys assigned to 1 method
+        for each in values.split(", "):
+            # used incase of multiple keys assigned to 1 method
             # pygame.locals uses all caps for constants except for letters
             each = each.lower() if len(each) == 1 else each.upper()
             pygame_value: int = getattr(pygame.locals, "K_" + each, None)
@@ -156,8 +190,9 @@ def get_custom_pygame_keyboard_controls(
 
     return custom_controls
 
+
 def get_custom_pygame_keyboard_controls_names(
-    cfg: configparser.ConfigParser
+    cfg: configparser.ConfigParser,
 ) -> Mapping[Optional[str], int]:
     """
     Basically the same thing as `get_custom_pygame_keyboard_controls()`, but
@@ -172,8 +207,9 @@ def get_custom_pygame_keyboard_controls_names(
         key = key.upper()
         button_value: Optional[int] = getattr(buttons, key, None)
         event_value: Optional[int] = getattr(events, key, None)
-        for each in values.split(", "): # used incase of multiple keys assigned to 1 method
-            # pygame.locals uses all caps for constants except for letters
+        # used incase of multiple keys assigned to 1 method
+        # pygame.locals uses all caps for constants except for letters
+        for each in values.split(", "):
             each = each.lower() if len(each) == 1 else each.upper()
             if each is not None and button_value is not None:
                 custom_controls[each] = button_value
@@ -273,7 +309,7 @@ def get_defaults() -> Mapping[str, Any]:
                         ("debug_logging", True),
                         ("debug_level", "error"),
                     )
-                )
+                ),
             ),
             (
                 "controls",

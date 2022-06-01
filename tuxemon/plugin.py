@@ -181,7 +181,9 @@ class PluginManager:
         # The typing error in issubclass will be solved
         # in https://github.com/python/typeshed/pull/5658
         predicate = (
-            inspect.isclass if interface is PluginObject else lambda c: inspect.isclass(c) and issubclass(c, interface)
+            inspect.isclass
+            if interface is PluginObject
+            else lambda c: inspect.isclass(c) and issubclass(c, interface)
         )
 
         members = inspect.getmembers(module, predicate=predicate)
@@ -248,7 +250,10 @@ def load_plugins(
 
 
 def load_plugins(
-    path: str, category: str = "plugins", *, interface: Union[Type[InterfaceValue], Type[PluginObject]] = PluginObject
+    path: str,
+    category: str = "plugins",
+    *,
+    interface: Union[Type[InterfaceValue], Type[PluginObject]] = PluginObject,
 ) -> Mapping[str, Union[Type[InterfaceValue], Type[PluginObject]]]:
     """
     Load classes using plugin system.

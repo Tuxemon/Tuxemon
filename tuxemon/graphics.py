@@ -46,7 +46,6 @@ ColorLike = Union[
 
 
 class LoaderProtocol(Protocol):
-
     def __call__(
         self,
         rect: Optional[Tuple[int, int, int, int]] = None,
@@ -272,7 +271,7 @@ def animation_frame_files(
 
     """
     frames = list()
-    pattern = re.compile(fr"{name}\.[0-9]+\.png")
+    pattern = re.compile(rf"{name}\.[0-9]+\.png")
     # might be slow on large folders
     for filename in os.listdir(directory):
         if pattern.match(filename):
@@ -365,7 +364,10 @@ def scale_sprite(
     sprite.rect.width = int(sprite.rect.width * ratio)
     sprite.rect.height = int(sprite.rect.height * ratio)
     sprite.rect.center = center
-    sprite._original_image = pygame.transform.scale(sprite._original_image, sprite.rect.size)
+    sprite._original_image = pygame.transform.scale(
+        sprite._original_image,
+        sprite.rect.size,
+    )
     sprite._needs_update = True
 
 

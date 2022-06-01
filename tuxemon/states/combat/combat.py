@@ -193,12 +193,17 @@ class CombatState(CombatAnimations):
     ) -> None:
         self.max_positions = 1  # TODO: make dependant on match type
         self.phase = None
-        self.monsters_in_play: MutableMapping[NPC, List[Monster]] = defaultdict(list)
-        self._damage_map: MutableMapping[Monster, Set[Monster]] = defaultdict(set)  # track damage so experience can be awarded later
+        self.monsters_in_play: MutableMapping[
+            NPC, List[Monster]
+        ] = defaultdict(list)
+        self._damage_map: MutableMapping[Monster, Set[Monster]] = defaultdict(
+            set
+        )
         self._technique_cache = TechniqueAnimationCache()
-        self._decision_queue: List[Monster] = []  # queue for monsters that need decisions
-        self._action_queue: List[EnqueuedAction] = []  # queue for techniques, items, and status effects
-        self._status_icons: List[Sprite] = []  # list of sprites that are status icons
+        self._decision_queue: List[Monster] = []
+        self._action_queue: List[EnqueuedAction] = []
+        # list of sprites that are status icons
+        self._status_icons: List[Sprite] = []
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self._layout = dict()  # player => home areas on screen
         self._animation_in_progress = False  # if true, delay phase change
@@ -288,8 +293,8 @@ class CombatState(CombatAnimations):
         elif phase == "housekeeping phase":
             # this will wait for players to fill battleground positions
             for player in self.active_players:
-                positions_available = (
-                    self.max_positions - len(self.monsters_in_play[player])
+                positions_available = self.max_positions - len(
+                    self.monsters_in_play[player]
                 )
                 if positions_available:
                     return None
@@ -372,11 +377,12 @@ class CombatState(CombatAnimations):
             # record the useful properties of the last monster we fought
             monster_record = self.monsters_in_play[self.players[1]][0]
             if monster_record in self.active_monsters:
-                self.players[0].game_variables["battle_last_monster_name"] = monster_record.name
-                self.players[0].game_variables["battle_last_monster_level"] = monster_record.level
-                self.players[0].game_variables["battle_last_monster_type"] = monster_record.slug
-                self.players[0].game_variables["battle_last_monster_category"] = monster_record.category
-                self.players[0].game_variables["battle_last_monster_shape"] = monster_record.shape
+                var = self.players[0].game_variables
+                var["battle_last_monster_name"] = monster_record.name
+                var["battle_last_monster_level"] = monster_record.level
+                var["battle_last_monster_type"] = monster_record.slug
+                var["battle_last_monster_category"] = monster_record.category
+                var["battle_last_monster_shape"] = monster_record.shape
 
         elif phase == "decision phase":
             self.reset_status_icons()
@@ -595,8 +601,8 @@ class CombatState(CombatAnimations):
         # TODO: integrate some values for different match types
         released = False
         for player in self.active_players:
-            positions_available = (
-                self.max_positions - len(self.monsters_in_play[player])
+            positions_available = self.max_positions - len(
+                self.monsters_in_play[player]
             )
             if positions_available:
                 available = get_awake_monsters(player)
@@ -892,8 +898,17 @@ class CombatState(CombatAnimations):
                 self.animate_sprite_tackle(user_sprite)
 
                 if target_sprite:
-                    self.task(partial(self.animate_sprite_take_damage, target_sprite), hit_delay + 0.2)
-                    self.task(partial(self.blink, target_sprite), hit_delay + 0.6)
+                    self.task(
+                        partial(
+                            self.animate_sprite_take_damage,
+                            target_sprite,
+                        ),
+                        hit_delay + 0.2,
+                    )
+                    self.task(
+                        partial(self.blink, target_sprite),
+                        hit_delay + 0.6,
+                    )
 
                 # TODO: track total damage
                 # Track damage
@@ -922,15 +937,20 @@ class CombatState(CombatAnimations):
                     message += "\n" + T.translate("attempting_capture")
                     action_time = result["num_shakes"] + 1.8
                     self.animate_capture_monster(
-                        result["success"], result["num_shakes"],
+                        result["success"],
+                        result["num_shakes"],
                         target,
                     )
 
                     # TODO: Don't end combat right away; only works with SP,
                     # and 1 member parties end combat right here
                     if result["success"]:
-                        self.task(self.end_combat, action_time + 0.5)  # Display 'Gotcha!' first.
-                        self.task(partial(self.alert, T.translate("gotcha")), action_time)
+                        # Display 'Gotcha!' first.
+                        self.task(self.end_combat, action_time + 0.5)
+                        self.task(
+                            partial(self.alert, T.translate("gotcha")),
+                            action_time,
+                        )
                         self._animation_in_progress = True
                         return
 
@@ -949,10 +969,12 @@ class CombatState(CombatAnimations):
         else:
             if result["success"]:
                 self.suppress_phase_change()
-                self.alert(T.format(
-                    "combat_status_damage",
-                    {"name": target.name, "status": technique.name},
-                ))
+                self.alert(
+                    T.format(
+                        "combat_status_damage",
+                        {"name": target.name, "status": technique.name},
+                    )
+                )
 
         tech_sprite = self._technique_cache.get(technique)
         if result["success"] and target_sprite and tech_sprite:
@@ -983,10 +1005,8 @@ class CombatState(CombatAnimations):
         """
         if monster in self._damage_map:
             # Award Experience
-            awarded_exp = (
-                monster.total_experience // (
-                    monster.level * len(self._damage_map[monster])
-                )
+            awarded_exp = monster.total_experience // (
+                monster.level * len(self._damage_map[monster])
             )
             for winners in self._damage_map[monster]:
                 winners.give_experience(awarded_exp)
@@ -1024,9 +1044,8 @@ class CombatState(CombatAnimations):
         for _, party in self.monsters_in_play.items():
             for monster in party:
                 self.animate_hp(monster)
-                if (
-                    monster.current_hp <= 0
-                    and not check_status(monster, "status_faint")
+                if monster.current_hp <= 0 and not check_status(
+                    monster, "status_faint"
                 ):
                     self.remove_monster_actions_from_queue(monster)
                     self.faint_monster(monster)

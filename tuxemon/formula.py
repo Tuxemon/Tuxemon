@@ -122,10 +122,17 @@ def simple_damage_calculate(
         user_strength = 7 + user.level
         target_resist = 1
     else:
-        logger.error("unhandled damage category %s %s", technique.category, technique.range)
+        logger.error(
+            "unhandled damage category %s %s",
+            technique.category,
+            technique.range,
+        )
         raise RuntimeError
 
-    mult = simple_damage_multiplier((technique.type1, technique.type2), (target.type1, target.type2))
+    mult = simple_damage_multiplier(
+        (technique.type1, technique.type2),
+        (target.type1, target.type2),
+    )
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)
     return damage, mult
@@ -190,10 +197,12 @@ def simple_lifeleech(
     """
     damage = min(target.hp // 2, target.current_hp, user.hp - user.current_hp)
     return damage
+
+
 def simple_overfeed(
-        technique: Technique,
-        user: Monster,
-        target: Monster,
+    technique: Technique,
+    user: Monster,
+    target: Monster,
 ) -> int:
     speed = target.speed // 2
     return speed

@@ -21,6 +21,7 @@ android = None
 try:
     import android
     import android.mixer
+
     mixer = android.mixer
 except ImportError:
     pass
@@ -28,6 +29,7 @@ except ImportError:
 if android is None:
     try:
         import pygame.mixer
+
         mixer = pygame.mixer
         _pygame = True
     except ImportError:

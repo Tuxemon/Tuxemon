@@ -200,12 +200,10 @@ class Monster:
             save_data = dict()
 
         self.slug = ""
-        self.name = ""  # The display name of the Tuxemon
+        self.name = ""
         self.category = ""
         self.description = ""
-        self.instance_id = (
-            uuid.uuid4()
-        )  # unique id for this specific, individual tuxemon
+        self.instance_id = uuid.uuid4()
 
         self.armour = 0
         self.dodge = 0
@@ -216,28 +214,15 @@ class Monster:
         self.hp = 0
         self.level = 0
 
-        self.moves: List[
-            Technique
-        ] = []  # list of technique objects. Used in combat.
-        self.moveset: List[
-            MonsterMovesetItemModel
-        ] = []  # list of possible technique objects.
-        self.evolutions: List[
-            MonsterEvolutionItemModel
-        ] = []  # list of possible evolution objects.
-        self.flairs: Dict[
-            str, Flair
-        ] = {}  # dictionary of flairs, one is picked randomly.
-        self.battle_cry = (
-            ""  # slug for a sound file, used primarly when they enter battle
-        )
-        self.faint_cry = (
-            ""  # slug for a sound file, used when the monster faints
-        )
+        self.moves: List[Technique] = []
+        self.moveset: List[MonsterMovesetItemModel] = []
+        self.evolutions: List[MonsterEvolutionItemModel] = []
+        self.flairs: Dict[str, Flair] = {}
+        self.battle_cry = ""
+        self.faint_cry = ""
         self.ai: Optional[ai.AI] = None
-        self.owner: Optional[NPC] = None  # set to NPC instance if they own it
+        self.owner: Optional[NPC] = None
 
-        # The multiplier for experience
         self.experience_required_modifier = 1
         self.total_experience = 0
 
@@ -330,12 +315,12 @@ class Monster:
             logger.error(f"monster {slug} is not found")
             raise RuntimeError
         self.level = random.randint(2, 5)
-        self.slug = results["slug"]  # short English identifier
-        self.name = T.translate(results["slug"])  # translated name
+        self.slug = results["slug"]
+        self.name = T.translate(results["slug"])
         self.description = T.translate(
             "{}_description".format(results["slug"])
-        )  # translated description
-        self.category = T.translate(results["category"])  # translated category
+        )
+        self.category = T.translate(results["category"])
         self.shape = results.get("shape", "landrace").lower()
         types = results.get("types")
         if types:

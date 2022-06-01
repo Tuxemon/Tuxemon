@@ -305,10 +305,11 @@ class StateManager:
             changes.
 
     """
+
     def __init__(
         self,
         package: str,
-        on_state_change: Optional[Callable[[], None]] = None
+        on_state_change: Optional[Callable[[], None]] = None,
     ) -> None:
         self.package = package
         # TODO: consider API for handling hooks

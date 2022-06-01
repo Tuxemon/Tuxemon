@@ -79,7 +79,9 @@ class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
         npc_slug = npc_slug.replace("player", "npc_red")
         trainer = world.get_entity(npc_slug)
         if trainer is None:
-            logger.error(f"Could not find NPC corresponding to slug {npc_slug}")
+            logger.error(
+                f"Could not find NPC corresponding to slug {npc_slug}"
+            )
             return
 
         mother_id = uuid.UUID(trainer.game_variables[breeding_mother])
@@ -96,10 +98,14 @@ class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
             father = trainer.find_monster_in_storage(father_id)
 
         if mother is None:
-            logger.error(f"Could not find (mother) monster with instance id {mother_id}")
+            logger.error(
+                f"Could not find (mother) monster with instance id {mother_id}"
+            )
             return
         if father is None:
-            logger.error(f"Could not find (father) monster with instance id {father_id}")
+            logger.error(
+                f"Could not find (father) monster with instance id {father_id}"
+            )
             return
 
         new_mon = mother.spawn(father)

@@ -62,6 +62,7 @@ class Body:
         >>> fuse(body=vivitron, face=sapsnap)
 
     """
+
     face_image: Image
     body_image: Image
 
@@ -84,11 +85,14 @@ class Body:
         # The head size differs from the face size to take beaks,
         # etc. into account.
         self.head_size = (0, 0)
-        self.face_center = (0, 0)  # The center of the face.
+        # The center of the face.
+        self.face_center = (0, 0)
 
         # Body properties
-        self.body_image_path = ""  # The path to the body image to use.
-        self.face_position = (0, 0)  # The center of the face on the body.
+        # The path to the body image to use.
+        self.body_image_path = ""
+        # The center of the face on the body.
+        self.face_position = (0, 0)
 
         # Colors
         self.primary_colors = [
@@ -330,14 +334,18 @@ def fuse(
     scale = 4
 
     # Scale the images
-    body_image = body_image.resize((
-        body_image.getdata().size[0] * scale,
-        body_image.getdata().size[1] * scale,
-    ))
-    face.face_image = face.face_image.resize((
+    body_image = body_image.resize(
+        (
+            body_image.getdata().size[0] * scale,
+            body_image.getdata().size[1] * scale,
+        )
+    )
+    face.face_image = face.face_image.resize(
+        (
             face.face_image.getdata().size[0] * scale,
             face.face_image.getdata().size[1] * scale,
-    ))
+        )
+    )
 
     # Update face size after we've performed our scaling.
     face.face_size = (

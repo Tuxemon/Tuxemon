@@ -16,7 +16,6 @@ from tuxemon.ui.text import TextArea
 
 
 class InputMenuObj:
-
     def __init__(
         self,
         action: Callable[[], None],
@@ -31,6 +30,7 @@ class InputMenuObj:
 
 class InputMenu(Menu[InputMenuObj]):
     """Menu used to input text."""
+
     background = None
     draw_borders = False
 
@@ -187,7 +187,10 @@ class InputMenu(Menu[InputMenuObj]):
         self.client.pop_state()
 
     def add_input_char(self, char: str) -> None:
-        if self.char_limit is None or len(self.input_string) <= self.char_limit:
+        if (
+            self.char_limit is None
+            or len(self.input_string) <= self.char_limit
+        ):
             self.input_string += char
             self.update_text_area()
         else:

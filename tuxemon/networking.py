@@ -77,14 +77,21 @@ class TuxemonServer:
             self.server = DummyNetworking()
             return
 
-        self.server = NeteriaServer(Multiplayer(self), server_port=40081, server_name=self.server_name)
+        self.server = NeteriaServer(
+            Multiplayer(self),
+            server_port=40081,
+            server_name=self.server_name,
+        )
 
     def update(self):
         """Updates the server state with information sent from the clients."""
         self.server_timestamp = datetime.now()
         for cuuid in self.server.registry:
             try:
-                difference = self.server_timestamp - self.server.registry[cuuid]["ping_timestamp"]
+                difference = (
+                    self.server_timestamp
+                    - self.server.registry[cuuid]["ping_timestamp"]
+                )
                 if difference.seconds > 15:
                     logger.info("Client Disconnected. CUUID: " + str(cuuid))
                     event_data = {"type": "CLIENT_DISCONNECTED"}
@@ -108,16 +115,25 @@ class TuxemonServer:
         # Only respond to the latest message of a given type
         if not "event_list" in self.server.registry[cuuid]:
             self.server.registry[cuuid]["event_list"] = {}
-        elif not event_data["type"] in self.server.registry[cuuid]["event_list"]:
+        elif (
+            not event_data["type"] in self.server.registry[cuuid]["event_list"]
+        ):
             self.server.registry[cuuid]["event_list"][event_data["type"]] = -1
 
-        elif event_data["event_number"] <= self.server.registry[cuuid]["event_list"][event_data["type"]]:
+        elif (
+            event_data["event_number"]
+            <= self.server.registry[cuuid]["event_list"][event_data["type"]]
+        ):
             return False
         else:
-            self.server.registry[cuuid]["event_list"][event_data["type"]] = event_data["event_number"]
+            self.server.registry[cuuid]["event_list"][
+                event_data["type"]
+            ] = event_data["event_number"]
 
         if event_data["type"] == "PUSH_SELF":
-            self.server.registry[cuuid]["sprite_name"] = event_data["sprite_name"]
+            self.server.registry[cuuid]["sprite_name"] = event_data[
+                "sprite_name"
+            ]
             self.server.registry[cuuid]["map_name"] = event_data["map_name"]
             self.server.registry[cuuid]["char_dict"] = event_data["char_dict"]
             self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
@@ -126,7 +142,10 @@ class TuxemonServer:
         elif event_data["type"] == "PING":
             self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
 
-        elif event_data["type"] == "CLIENT_INTERACTION" or event_data["type"] == "CLIENT_RESPONSE":
+        elif (
+            event_data["type"] == "CLIENT_INTERACTION"
+            or event_data["type"] == "CLIENT_RESPONSE"
+        ):
             self.notify_client_interaction(cuuid, event_data)
 
         elif event_data["type"] == "CLIENT_KEYDOWN":
@@ -156,7 +175,9 @@ class TuxemonServer:
         else:
             self.update_char_dict(cuuid, event_data["char_dict"])
             if "map_name" in event_data:
-                self.server.registry[cuuid]["map_name"] = event_data["map_name"]
+                self.server.registry[cuuid]["map_name"] = event_data[
+                    "map_name"
+                ]
             self.notify_client(cuuid, event_data)
 
     def update_char_dict(self, cuuid, char_dict) -> None:
@@ -350,7 +371,9 @@ class TuxemonClient:
         self.enable_join_multiplayer = False
         self.wait_broadcast = 0  # Used to delay autodiscover broadcast.
         self.wait_delay = 0.25  # Delay used in autodiscover broadcast.
-        self.join_self = False  # Default False. Set True for testing on one device.
+        self.join_self = (
+            False  # Default False. Set True for testing on one device.
+        )
         self.populated = False
         self.listening = False
         self.event_list = {}
@@ -402,7 +425,12 @@ class TuxemonClient:
             if event_data["type"] == "NOTIFY_PUSH_SELF":
                 if not event_data["cuuid"] in self.client.registry:
                     self.client.registry[str(event_data["cuuid"])] = {}
-                sprite = populate_client(event_data["cuuid"], event_data, self.game, self.client.registry)
+                sprite = populate_client(
+                    event_data["cuuid"],
+                    event_data,
+                    self.game,
+                    self.client.registry,
+                )
                 update_client(sprite, event_data["char_dict"], self.game)
                 del self.client.event_notifies[euuid]
 
@@ -583,7 +611,9 @@ class TuxemonClient:
         :type event: Dictionary
 
         """
-        if self.game.current_state != self.game.get_state_by_name("WorldState"):
+        if self.game.current_state != self.game.get_state_by_name(
+            "WorldState"
+        ):
             return False
 
         event_type = None
@@ -624,7 +654,12 @@ class TuxemonClient:
             elif event.key == pg.K_RIGHT:
                 kb_key = "right"
 
-        if kb_key == "up" or kb_key == "down" or kb_key == "left" or kb_key == "right":
+        if (
+            kb_key == "up"
+            or kb_key == "down"
+            or kb_key == "left"
+            or kb_key == "right"
+        ):
             event_type = "CLIENT_FACING"
 
         if not event_type in self.event_list:
@@ -641,8 +676,14 @@ class TuxemonClient:
                     self.event_list[event_type] += 1
                     self.client.event(event_data)
 
-            elif event_type == "CLIENT_KEYUP" or event_type == "CLIENT_KEYDOWN":
-                event_data = {"type": event_type, "event_number": self.event_list[event_type], "kb_key": kb_key}
+            elif (
+                event_type == "CLIENT_KEYUP" or event_type == "CLIENT_KEYDOWN"
+            ):
+                event_data = {
+                    "type": event_type,
+                    "event_number": self.event_list[event_type],
+                    "kb_key": kb_key,
+                }
                 self.event_list[event_type] += 1
                 self.client.event(event_data)
 
@@ -660,7 +701,13 @@ class TuxemonClient:
         self.client.registry[cuuid]["map_name"] = event_data["map_name"]
         update_client(sprite, event_data["char_dict"], self.game)
 
-    def player_interact(self, sprite, interaction, event_type="CLIENT_INTERACTION", response=None):
+    def player_interact(
+        self,
+        sprite,
+        interaction,
+        event_type="CLIENT_INTERACTION",
+        response=None,
+    ):
         """Sends client to client interaction request to the server.
 
         :param sprite: Character sprite being interacted with.
@@ -688,7 +735,10 @@ class TuxemonClient:
             "interaction": interaction,
             "target": cuuid,
             "response": response,
-            "char_dict": {"monsters": pd["monsters"], "inventory": pd["inventory"]},
+            "char_dict": {
+                "monsters": pd["monsters"],
+                "inventory": pd["inventory"],
+            },
         }
         self.event_list[event_type] += 1
         self.client.event(event_data)
@@ -708,7 +758,10 @@ class TuxemonClient:
         else:
             self.event_list[event_type] += 1
 
-        event_data = {"type": event_type, "event_number": self.event_list[event_type]}
+        event_data = {
+            "type": event_type,
+            "event_number": self.event_list[event_type],
+        }
 
         self.client.event(event_data)
 
@@ -761,7 +814,18 @@ def populate_client(cuuid, event_data, game, registry):
     tile_pos_y = int(char_dict["tile_pos"][1])
 
     sprite = Npc().create_npc(
-        game, (None, str(nm) + "," + str(tile_pos_x) + "," + str(tile_pos_y) + "," + str(sn) + ",network")
+        game,
+        (
+            None,
+            str(nm)
+            + ","
+            + str(tile_pos_x)
+            + ","
+            + str(tile_pos_y)
+            + ","
+            + str(sn)
+            + ",network",
+        ),
     )
     sprite.isplayer = True
     sprite.final_move_dest = sprite.tile_pos
@@ -797,8 +861,14 @@ def update_client(sprite, char_dict, game) -> None:
         # Get the pixel position of our tile position.
         if item == "tile_pos":
             tile_size = prepare.TILE_SIZE
-            position = [char_dict["tile_pos"][0] * tile_size[0], char_dict["tile_pos"][1] * tile_size[1]]
+            position = [
+                char_dict["tile_pos"][0] * tile_size[0],
+                char_dict["tile_pos"][1] * tile_size[1],
+            ]
             global_x = world.global_x
             global_y = world.global_y
-            abs_position = [position[0] + global_x, position[1] + (global_y - tile_size[1])]
+            abs_position = [
+                position[0] + global_x,
+                position[1] + (global_y - tile_size[1]),
+            ]
             sprite.__dict__["position"] = abs_position

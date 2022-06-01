@@ -54,11 +54,21 @@ from tuxemon.compat import Rect
 from tuxemon.db import db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
-from tuxemon.item.item import InventoryItem, Item, decode_inventory, encode_inventory
+from tuxemon.item.item import (
+    InventoryItem,
+    Item,
+    decode_inventory,
+    encode_inventory,
+)
 from tuxemon.locale import T
 from tuxemon.map import Direction, dirs2, dirs3, facing, get_direction, proj
 from tuxemon.math import Vector2
-from tuxemon.monster import MAX_LEVEL, Monster, decode_monsters, encode_monsters
+from tuxemon.monster import (
+    MAX_LEVEL,
+    Monster,
+    decode_monsters,
+    encode_monsters,
+)
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
 from tuxemon.states.combat.combat import EnqueuedAction
@@ -229,7 +239,7 @@ class NPC(Entity[NPCState]):
                 self.playerWidth,
                 self.playerHeight,
             )
-        )  # Collision rect
+        )
 
     def get_state(self, session: Session) -> NPCState:
         """
@@ -295,10 +305,8 @@ class NPC(Entity[NPCState]):
             filename = f"{self.sprite_name}_{standing_type}.png"
             path = os.path.join("sprites", filename)
             self.standing[standing_type] = load_and_scale(path)
-
-        self.playerWidth, self.playerHeight = self.standing[
-            "front"
-        ].get_size()  # The player's sprite size in pixels
+        # The player's sprite size in pixels
+        self.playerWidth, self.playerHeight = self.standing["front"].get_size()
 
         # avoid cutoff frames when steps don't line up with tile movement
         n_frames = 3
@@ -599,7 +607,7 @@ class NPC(Entity[NPCState]):
             self.set_position(target)
             self.path.pop()
             self.path_origin = None
-            self.check_continue()  # handle "continue" tiles
+            self.check_continue()
             if self.path:
                 self.next_waypoint()
 

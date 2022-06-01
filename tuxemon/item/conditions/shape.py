@@ -55,7 +55,8 @@ class ShapeCondition(ItemCondition[ShapeConditionParameters]):
         if target.shape is not None:
             ret = any(
                 target.shape.lower() == p.lower()
-                for p in self.parameters if p is not None
+                for p in self.parameters
+                if p is not None
             )
 
         return ret

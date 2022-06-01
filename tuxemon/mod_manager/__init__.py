@@ -14,6 +14,7 @@ from tuxemon.mod_manager.symlink_missing import symlink_missing
 
 logger = logging.getLogger(__name__)
 
+
 def sanitize_paths(path):
     """Removes path specific characters like /."""
     for char in '/\\?%*:|"<>.,;= ':
@@ -21,8 +22,8 @@ def sanitize_paths(path):
 
     return path
 
-class Manager:
 
+class Manager:
     def __init__(self, *other_urls, default_to_cache=True):
         """
         (basic) Mod managment library.
@@ -43,9 +44,8 @@ class Manager:
         """Writes self.packages to the cache file"""
 
         with open(self.packages_path, "w") as file:
-            file.write(
-                json.dumps(self.packages, indent=4)
-            )
+            file.write(json.dumps(self.packages, indent=4))
+
     def read_from_cache(self):
         """Read self.packages from the cache file"""
         with open(self.packages_path) as file:
@@ -77,7 +77,16 @@ class Manager:
 
         self.write_to_cache()
 
-    def download_package(self, author, name, release=None, repo=None, dont_extract=False, install_deps=True, installed=None):
+    def download_package(
+        self,
+        author,
+        name,
+        release=None,
+        repo=None,
+        dont_extract=False,
+        install_deps=True,
+        installed=None,
+    ):
         """Downloads the specified package"""
         if repo is None:
             repo = self.get_package_repo(name)
@@ -102,10 +111,27 @@ class Manager:
         author = sanitize_paths(author)
         name = sanitize_paths(name)
         release = sanitize_paths(str(release))
-        logger.debug( " ".join([author, name, release, repo, str(dont_extract), str(install_deps), str(installed)]) ) 
-        url = str(repo) + f"/packages/{author}/{name}/releases/{str(release)}/download"
+        logger.debug(
+            " ".join(
+                [
+                    author,
+                    name,
+                    release,
+                    repo,
+                    str(dont_extract),
+                    str(install_deps),
+                    str(installed),
+                ]
+            )
+        )
+        url = (
+            str(repo)
+            + f"/packages/{author}/{name}/releases/{str(release)}/download"
+        )
 
-        filename = os.path.join(paths.CACHE_DIR, f"downloaded_packages/{name}.{release}.zip")
+        filename = os.path.join(
+            paths.CACHE_DIR, f"downloaded_packages/{name}.{release}.zip"
+        )
 
         logging.info(f"Downloading release {release} of {author}/{name}")
 
@@ -127,19 +153,29 @@ class Manager:
         if not dont_extract:
             logging.info("Extracting...")
             self.install_local_package(filename, name=name)
-            
+
         if install_deps:
             # This function calls download_package, might cause issues
-            self.install_dependencies(author, name, repo, dont_extract=dont_extract, done=installed)
+            self.install_dependencies(
+                author=author,
+                name=name,
+                repo=repo,
+                dont_extract=dont_extract,
+                done=installed,
+            )
         logging.info("Done!")
 
     def install_dependencies(self, author, name, repo, symlink=True, **args):
         """Recursively resolve dependencies and symlink them"""
         logger.debug(author, name, repo)
         # Request dependencies for specified package
-        r = requests.get(f"{repo}/api/packages/{author}/{name}/dependencies/?only_hard=1")
+        r = requests.get(
+            f"{repo}/api/packages/{author}/{name}/dependencies/?only_hard=1"
+        )
         if r.status_code != 200:
-            raise ValueError(f"Requested {r.url}, received status code {r.status_code}")
+            raise ValueError(
+                f"Requested {r.url}, received status code {r.status_code}"
+            )
         logger.debug(r.text, author, name)
         dep_list = r.json()
         # Resolve dependencies
@@ -147,7 +183,9 @@ class Manager:
             for entry in dep_list[dependency]:
                 for package in entry["packages"]:
                     package = sanitize_paths(package)
-                    if os.path.exists(os.path.join(paths.BASEDIR, "mods", package)):
+                    if os.path.exists(
+                        os.path.join(paths.BASEDIR, "mods", package)
+                    ):
                         continue
                     if package == "default":
                         continue
@@ -155,7 +193,7 @@ class Manager:
                         package.split("/")[0],
                         package.split("/")[1],
                         repo=repo,
-                        install_deps=False
+                        install_deps=False,
                     )
 
     def parse_mod_conf(self, content):
@@ -166,8 +204,7 @@ class Manager:
         out = {}
         for line in content.split("\n"):
             # Remove spaces and split into parts
-            parts = line\
-                .split(" = ")
+            parts = line.split(" = ")
             if len(parts[0]) == 0:
                 continue
             if parts[0] == "depends":
@@ -188,7 +225,8 @@ class Manager:
         for i in self.packages:
             if i["name"] == name:
                 return i["repo"]
-            else: continue
+            else:
+                continue
 
     def write_package_to_list(self, path_to_folder, name):
         """Writes specified package to the package list"""
@@ -201,9 +239,7 @@ class Manager:
 
             to_append = {name: path_to_folder}
             after = {**before, **to_append}
-            file.write(
-                json.dumps(after, indent=4)
-            )
+            file.write(json.dumps(after, indent=4))
 
     def read_package_from_list(self, name):
         """Reads path of the specified mod"""
@@ -222,9 +258,7 @@ class Manager:
                 raise ValueError("The package.list is empty.")
 
             del before[name]
-            file.write(
-                json.dumps(before, indent=4)
-            )
+            file.write(json.dumps(before, indent=4))
 
     def remove_package(self, name):
         """Removes the local package"""
@@ -237,7 +271,13 @@ class Manager:
         shutil.rmtree(path, ignore_errors=True)
         self.remove_package_from_list(name)
 
-    def install_local_package(self, filename, name=None, download_deps=False, link_deps=False):
+    def install_local_package(
+        self,
+        filename,
+        name=None,
+        download_deps=False,
+        link_deps=False,
+    ):
         """
         Installs local packages.
         Based on the download_package function, but without the downloads
@@ -246,7 +286,10 @@ class Manager:
         self.write_package_to_list(os.path.relpath(outfolder), name)
         with zipfile.ZipFile(filename) as zipf:
             free = shutil.disk_usage(os.getcwd()).free
-            zipsize = sum(zinfo.file_size for zinfo in zipf.filelist) # get the filesize, based on https://stackoverflow.com/a/39953116/14590202
+            # get the filesize, based on https://stackoverflow.com/a/39953116/14590202
+            zipsize = sum(zinfo.file_size for zinfo in zipf.filelist)
             if zipsize > free:
-                raise OSError(f"Zip contents are bigger than available disk space ({zipsize} > {free})")
+                raise OSError(
+                    f"Zip contents are bigger than available disk space ({zipsize} > {free})"
+                )
             zipf.extractall(path=os.path.join(outfolder, name))

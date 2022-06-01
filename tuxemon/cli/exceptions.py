@@ -5,10 +5,8 @@ class CommandNotFoundError(Exception):
     """
 
 
-
 class ParseError(Exception):
     """
     Raised when the input cannot be parsed due to bad syntax.
 
     """
-

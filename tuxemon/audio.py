@@ -15,13 +15,11 @@ logger = logging.getLogger(__name__)
 
 
 class SoundProtocol(Protocol):
-
     def play(self) -> object:
         pass
 
 
-class DummySound():
-
+class DummySound:
     def play(self) -> None:
         pass
 
@@ -37,7 +35,7 @@ def get_sound_filename(slug: Optional[str]) -> Optional[str]:
         Filename if the sound is found.
 
     """
-    if slug is None or slug == '':
+    if slug is None or slug == "":
         return None
 
     # Get the filename from the db

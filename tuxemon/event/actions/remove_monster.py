@@ -61,7 +61,8 @@ class RemoveMonsterAction(EventAction[RemoveMonsterActionParameters]):
         trainer_slug = self.parameters.trainer_slug
 
         trainer = (
-            self.session.player if trainer_slug is None
+            self.session.player
+            if trainer_slug is None
             else get_npc(self.session, trainer_slug)
         )
         assert trainer

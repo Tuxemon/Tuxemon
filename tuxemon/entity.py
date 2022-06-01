@@ -64,7 +64,8 @@ class Entity(Generic[SaveDict]):
         self.instance_id = None
         self.tile_pos = (0, 0)
         self.position3 = Point3(0, 0, 0)
-        self.acceleration3 = Vector3(0, 0, 0)  # not used currently
+        # not used currently
+        self.acceleration3 = Vector3(0, 0, 0)
         self.velocity3 = Vector3(0, 0, 0)
         self.update_location = False
 

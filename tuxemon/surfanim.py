@@ -108,16 +108,16 @@ class SurfaceAnimation:
         for i in range(self.num_frames):
 
             frame = frames[i]
-            assert isinstance(frame, tuple) and len(frame) == 2, (
-                f"Frame {i} has incorrect format."
-            )
+            assert (
+                isinstance(frame, tuple) and len(frame) == 2
+            ), f"Frame {i} has incorrect format."
             assert type(frame[0]) in (
                 str,
                 pygame.Surface,
             ), f"Frame {i} image must be a string filename or a pygame.Surface"
-            assert frame[1] > 0, (
-                f"Frame {i} duration must be greater than zero."
-            )
+            assert (
+                frame[1] > 0
+            ), f"Frame {i} duration must be greater than zero."
             frame_img = (
                 pygame.image.load(frame[0])
                 if isinstance(frame[0], str)
@@ -140,6 +140,7 @@ class SurfaceAnimation:
     def get_frame(self, frame_num: int) -> pygame.surface.Surface:
         """Return the pygame.Surface object of the frame_num-th frame."""
         from tuxemon.sprite import dummy_image
+
         if frame_num >= len(self._images):
             return dummy_image
 
@@ -150,7 +151,7 @@ class SurfaceAnimation:
         return self.get_frame(self.current_frame_num)
 
     def is_finished(self) -> bool:
-        """"Return ``True`` if this animation has finished playing."""
+        """ "Return ``True`` if this animation has finished playing."""
         return not self.loop and self.elapsed >= self._start_times[-1]
 
     def play(self, start_time: Optional[float] = None) -> None:
@@ -316,8 +317,8 @@ class SurfaceAnimation:
             # has gone through all the frames already, then draw the last
             # frame.
             elapsed = (
-                (self._internal_clock - self._playing_start_time) * self.rate
-            )
+                self._internal_clock - self._playing_start_time
+            ) * self.rate
         elif self._state == PAUSED:
             # If paused, then draw the frame that was playing at the time the
             # SurfaceAnimation object was paused

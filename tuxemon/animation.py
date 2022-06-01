@@ -58,7 +58,9 @@ def remove_animations_of(target: object, group: pygame.sprite.Group) -> None:
 
     """
     animations = [ani for ani in group.sprites() if isinstance(ani, Animation)]
-    to_remove = [ani for ani in animations if target in [i[0] for i in ani.targets]]
+    to_remove = [
+        ani for ani in animations if target in [i[0] for i in ani.targets]
+    ]
     group.remove(*to_remove)
 
 
@@ -397,13 +399,17 @@ class Animation(pygame.sprite.Sprite):
         self.callback: Callable[[], Any]
         self.update_callback: Callable[[], Any]
 
-        self.targets: List[Tuple[object, Mapping[str, Tuple[float, float]]]] = list()
+        self.targets: List[
+            Tuple[object, Mapping[str, Tuple[float, float]]]
+        ] = list()
         self._targets: Sequence[object] = list()
         self.delay = delay
         self._state = ANIMATION_NOT_STARTED
         self._round_values = round_values
 
-        self._duration = self.default_duration if duration is None else duration
+        self._duration = (
+            self.default_duration if duration is None else duration
+        )
 
         if transition is None:
             transition = self.default_transition
@@ -823,4 +829,6 @@ class AnimationTransition:
         p = progress * 2.0
         if p < 1.0:
             return AnimationTransition._in_bounce_internal(p, 1.0) * 0.5
-        return AnimationTransition._out_bounce_internal(p - 1.0, 1.0) * 0.5 + 0.5
+        return (
+            AnimationTransition._out_bounce_internal(p - 1.0, 1.0) * 0.5 + 0.5
+        )

@@ -66,7 +66,10 @@ class MusicPlayingCondition(EventCondition):
         if not names.isdisjoint(combat_states):
             return True
 
-        if session.client.current_music["song"] == song and mixer.music.get_busy():
+        if (
+            session.client.current_music["song"] == song
+            and mixer.music.get_busy()
+        ):
             return True
         else:
             return False

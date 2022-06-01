@@ -467,7 +467,7 @@ class TuxemonMap:
         data = pytmx.TiledMap(
             self.data.filename,
             image_loader=scaled_image_loader,
-            pixelalpha=True
+            pixelalpha=True,
         )
         self.renderer.data.tmx.images = data.images
         self.renderer.redraw_tiles(self.renderer._buffer)

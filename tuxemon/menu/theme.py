@@ -13,7 +13,6 @@ _theme: Optional[pygame_menu.themes.Theme] = None
 
 
 class TuxemonArrowSelection(Selection):
-
     def __init__(self) -> None:
         # Call the constructor of the Selection providing the left, right,
         # top and bottom margins of your Selection effect box.
@@ -76,11 +75,13 @@ def get_theme() -> pygame_menu.themes.Theme:
 
     tuxemon_background_center_rect = tuxemon_border.get_rect()
     tuxemon_background_center_rect = tuxemon_background_center_rect.inflate(
-        - 2 * tuxemon_background_center_rect.width // 3,
-        - 2 * tuxemon_background_center_rect.height // 3,
+        -2 * tuxemon_background_center_rect.width // 3,
+        -2 * tuxemon_background_center_rect.height // 3,
     )
 
-    tuxemon_background = tuxemon_border.copy().crop_rect(tuxemon_background_center_rect)
+    tuxemon_background = tuxemon_border.copy().crop_rect(
+        tuxemon_background_center_rect
+    )
 
     theme = pygame_menu.Theme(
         background_color=tuxemon_background,

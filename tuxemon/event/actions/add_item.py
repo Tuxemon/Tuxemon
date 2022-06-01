@@ -56,4 +56,8 @@ class AddItemAction(EventAction[AddItemActionParameters]):
             quantity = 1
         else:
             quantity = self.parameters.quantity
-        player.alter_item_quantity(self.session, self.parameters.item_slug, quantity)
+        player.alter_item_quantity(
+            self.session,
+            self.parameters.item_slug,
+            quantity,
+        )

@@ -29,6 +29,7 @@ from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
 
+
 class RandomIntegerActionParameters(NamedTuple):
     var: str
     lower_bound: int

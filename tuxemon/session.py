@@ -14,7 +14,12 @@ class Session:
     Eventually this will be extended to support network sessions.
     """
 
-    def __init__(self, client: LocalPygameClient, world, player: Player) -> None:
+    def __init__(
+        self,
+        client: LocalPygameClient,
+        world,
+        player: Player,
+    ) -> None:
         """
         Parameters:
             client: Game client.

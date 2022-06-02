@@ -10,7 +10,9 @@ from tuxemon.db import (
     InventoryModel,
     ItemModel,
     MonsterModel,
+    MusicModel,
     NpcModel,
+    SoundModel,
     TechniqueModel,
 )
 
@@ -60,8 +62,12 @@ if __name__ == "__main__":
             f.write(ItemModel.schema_json(indent=2))
         with open(os.path.join(args.output, "monster-schema.json"), "w") as f:
             f.write(MonsterModel.schema_json(indent=2))
+        with open(os.path.join(args.output, "music-schema.json"), "w") as f:
+            f.write(MusicModel.schema_json(indent=2))
         with open(os.path.join(args.output, "npc-schema.json"), "w") as f:
             f.write(NpcModel.schema_json(indent=2))
+        with open(os.path.join(args.output, "sound-schema.json"), "w") as f:
+            f.write(SoundModel.schema_json(indent=2))
         with open(
             os.path.join(args.output, "technique-schema.json"), "w"
         ) as f:

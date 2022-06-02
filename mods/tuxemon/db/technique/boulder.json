@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/schemas/technique-schema.json",
   "accuracy": 1,
   "animation": "shield_rock",
   "category": "physical",
@@ -11,7 +12,7 @@
   "is_fast": false,
   "potency": null,
   "power": 1.0,
-  "range": "special",
+  "range": "ranged",
   "recharge": 2,
   "sfx": "sfx_crumble2",
   "slug": "boulder",

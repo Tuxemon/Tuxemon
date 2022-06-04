@@ -633,7 +633,7 @@ msgid "release_confirmation"
 msgstr "Are you sure you would like to release {name}?"
 
 msgid "tuxemon_released"
-msgstr "{name} has been released. Refresh menu to view change."
+msgstr "{name} has been released."
 
 # Menu notifications
 msgid "log_off"

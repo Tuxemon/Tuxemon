@@ -40,6 +40,7 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
+from tuxemon.states.choice import ChoiceState
 from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
@@ -159,9 +160,8 @@ class WorldMenuState(PygameMenuState):
             monster = monster_menu.get_selected_item().game_object
             success = player.release_monster(monster)
 
-            # TODO: Currently the menu does not close automatically.
-            # It needs to be completely refreshed (by backing out or moving the cursor) in order for the player to see the change.
-            # It still has the desired effect, but it would be better if the menu refreshed automatically.
+            # Close the dialog and confirmation menu, and inform the user 
+            # their tuxemon has been released.
             if success:
                 self.client.pop_state()
                 self.client.pop_state()
@@ -169,6 +169,7 @@ class WorldMenuState(PygameMenuState):
                     local_session,
                     [T.format("tuxemon_released", {"name": monster.name})],
                 )
+                monster_menu.refresh_menu_items()
             else:
                 open_dialog(local_session, [T.translate("cant_release")])
 
@@ -186,19 +187,13 @@ class WorldMenuState(PygameMenuState):
                 local_session,
                 [T.format("release_confirmation", {"name": monster.name})],
             )
-
-            menu_items_map = (
-                ("no", negative_answer),
-                ("yes", positive_answer),
+            self.client.push_state(
+                ChoiceState,
+                menu=(
+                    ("no", T.translate("no"), negative_answer),
+                    ("yes", T.translate("yes"), positive_answer),
+                ),
             )
-            menu = self.client.push_state(PygameMenuState)
-
-            for key, callback in menu_items_map:
-                label = T.translate(key).upper()
-                menu.menu.add.button(label, callback)
-
-            size = menu.menu.get_size(widget=True)
-            menu.menu.resize(*size)
 
         def open_monster_submenu(
             menu_item: MenuItem[WorldMenuGameObj],

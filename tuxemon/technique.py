@@ -291,6 +291,8 @@ class Technique:
                 result = self.apply_status("status_recover", user)
             elif effect == "overfeed":
                 result = self.apply_status("status_overfeed", target)
+            elif effect == "hardshell":
+                result = self.hardshell(user, target)
             elif effect == "status":
                 for category in self.category:
                     if category == "poison":
@@ -468,6 +470,15 @@ class Technique:
             target.apply_status(tech)
         return {
             "status": tech,
+        }
+
+    # TODO: Add implementation of hardshell to raise defense.
+    def hardshell(self, target: Monster) -> EffectResult:
+        logger.warning("Hardshell effect is not yet implemented!")
+        return {
+            "damage": 0,
+            "should_tackle": False,
+            "success": False,
         }
 
     def poison(self, target: Monster) -> EffectResult:

@@ -4,7 +4,7 @@
   "animation": "shield_rock",
   "category": "physical",
   "effects": [
-    "damage"
+    "hardshell"
   ],
   "healing_power": 0,
   "icon": "",
@@ -12,7 +12,7 @@
   "is_fast": false,
   "potency": null,
   "power": 1.0,
-  "range": "ranged",
+  "range": "special",
   "recharge": 2,
   "sfx": "sfx_crumble2",
   "slug": "boulder",

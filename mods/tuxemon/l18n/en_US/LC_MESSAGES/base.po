@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Tuxemon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
 "PO-Revision-Date: 2020-11-08 20:26+0000\n"
@@ -13,24 +13,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.3.2\n"
-
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR The Tuxemon Team
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-msgid "PROJECT DESCRIPTION\n"
-msgstr ""
-"Project-Id-Version: Insert package version from somewhere\n"
-"Report-Msgid-Bugs-To: andymenderunix@gmail.com\n"
-"POT-Creation-Date: 2018-10-07 20:58:38+0000\n"
-"PO-Revision-Date: 2018-10-07 20:58:38+0000\n"
-"Last-Translator: Andy Mender <andymenderunix@gmail.com>\n"
-"Language-Team: English <andymenderunix@gmail.com>\n"
-"Language: en_US\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 ## ITEM TRANSLATIONS ##
 # Apple
@@ -3001,8 +2983,8 @@ msgid "spyder_route5_granny"
 msgstr "This park is much more salubrious with the Nimrod construction keeping the Flower City riff-raff out. "
 msgid "spyder_leatherhouse1_florist"
 msgstr "There used to be several TV and radio stations operating, but Omnichannel ran them out of business. \n Now we don't have to worry about different journalists contradicting each other."
-msgid "spyder_leatherhouse1_radio"
-msgstr "An R&B song is playing. It's called \"Possessuns, Part II\". "
+# msgid "spyder_leatherhouse1_radio"
+# msgstr "An R&B song is playing. It's called \"Possessuns, Part II\". "
 msgid "spyder_leatherhouse2_tv"
 msgstr "A little green mon is lifting a ship out of a swamp."
 msgid "spyder_leatherhouse2_scientist"
@@ -3476,8 +3458,8 @@ msgstr "Dante"
 msgid "spyder_billie"
 msgstr "Billie"
 
-msgid "spyder_cottontown_monk"
-msgstr "Monk"
+# msgid "spyder_cottontown_monk"
+# msgstr "Monk"
 
 msgid "spyder_cottontown_hacker"
 msgstr "Hacker"
@@ -3518,8 +3500,8 @@ msgstr "Graf"
 msgid "spyder_maniac"
 msgstr "Maniac"
 
-msgid "spyder_citypark_florist"
-msgstr "Florist"
+# msgid "spyder_citypark_florist"
+# msgstr "Florist"
 
 msgid "spyder_citypark_frances"
 msgstr "Frances"
@@ -3850,9 +3832,6 @@ msgstr "Home sweet home!"
 
 msgid "spyder_papertown_restinbed"
 msgstr "You awake fully rested!"
-
-msgid "spyder_papertown_tvwatch"
-msgstr "What's on TV? A prom queen is breaking her tiara into pieces and handing it out."
 
 msgid "spyder_papertown_tvwatch"
 msgstr "What's on TV? A prom queen is breaking her tiara into pieces and handing it out."

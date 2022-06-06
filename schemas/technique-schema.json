@@ -23,11 +23,10 @@
       "type": "string"
     },
     "effects": {
-      "title": "Effects",
       "description": "Effects this technique uses",
       "type": "array",
       "items": {
-        "type": "string"
+        "$ref": "#/definitions/TechniqueEffect"
       }
     },
     "target": {
@@ -163,6 +162,23 @@
     "sfx"
   ],
   "definitions": {
+    "TechniqueEffect": {
+      "title": "TechniqueEffect",
+      "description": "An enumeration.",
+      "enum": [
+        "damage",
+        "hardshell",
+        "lifeleech",
+        "meta",
+        "overfeed",
+        "poison",
+        "recover",
+        "statchange",
+        "status",
+        "swap"
+      ],
+      "type": "string"
+    },
     "Range": {
       "title": "Range",
       "description": "An enumeration.",

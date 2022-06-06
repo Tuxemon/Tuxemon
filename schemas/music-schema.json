@@ -1,0 +1,20 @@
+{
+  "title": "MusicModel",
+  "type": "object",
+  "properties": {
+    "slug": {
+      "title": "Slug",
+      "description": "Unique slug for the music",
+      "type": "string"
+    },
+    "file": {
+      "title": "File",
+      "description": "File for the music",
+      "type": "string"
+    }
+  },
+  "required": [
+    "slug",
+    "file"
+  ]
+}

@@ -27,6 +27,7 @@
 #
 #
 
+
 from __future__ import annotations
 
 import json
@@ -41,19 +42,24 @@ from typing import (
     Mapping,
     Optional,
     Sequence,
-    TypedDict,
     overload,
 )
 
 from pydantic import BaseModel, Field, ValidationError, validator
 
 from tuxemon import prepare
+from tuxemon.locale import T
 
 logger = logging.getLogger(__name__)
 
+# Load the default translator for data validation
+T.load_translator()
+
+# Target is a mapping of who this targets
 Target = Mapping[str, int]
 
 
+# ItemSort defines the sort of item an item is.
 class ItemSort(str, Enum):
     food = "food"
     potion = "potion"
@@ -98,6 +104,8 @@ class ItemModel(BaseModel):
     usable_in: Sequence[State] = Field(
         ..., description="State(s) where this item can be used."
     )
+    # TODO: We'll need some more advanced validation logic here to parse item
+    # conditions and effects to ensure they are formatted properly.
     conditions: Sequence[str] = Field(
         [], description="Conditions that must be met"
     )
@@ -108,11 +116,19 @@ class ItemModel(BaseModel):
     class Config:
         title = "Item"
 
-    # Validators can be used with custom validation logic.
-    # TODO: Ensure this slug exists somewhere in a PO
-    @validator("slug")
-    def slug_must_exist(cls, v):
-        return v
+    # Validate fields that refer to translated text
+    @validator("use_item", "use_success", "use_failure")
+    def translation_exists(cls, v):
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    # Validate resources that should exist
+    @validator("sprite")
+    def file_exists(cls, v):
+        if has.file(v):
+            return v
+        raise ValueError(f"no resource exists with path: {v}")
 
 
 class MonsterMovesetItemModel(BaseModel):
@@ -122,6 +138,18 @@ class MonsterMovesetItemModel(BaseModel):
     technique: str = Field(
         ..., description="Name of the technique for this moveset item"
     )
+
+    @validator("level_learned")
+    def valid_level(cls, v):
+        if v < 0:
+            raise ValueError(f"invalid level learned: {v}")
+        return v
+
+    @validator("technique")
+    def technique_exists(cls, v):
+        if has.db_entry("technique", v):
+            return v
+        raise ValueError(f"no resource exists in db: {v}")
 
 
 class MonsterEvolutionItemModel(BaseModel):
@@ -134,6 +162,12 @@ class MonsterEvolutionItemModel(BaseModel):
         ..., description="The monster slug that this evolution item applies to"
     )
 
+    @validator("monster_slug")
+    def monster_exists(cls, v):
+        if has.db_entry("monster", v):
+            return v
+        raise ValueError(f"no resource exists in db: {v}")
+
 
 class MonsterFlairItemModel(BaseModel):
     category: str = Field(..., description="The category of this flair item")
@@ -145,6 +179,13 @@ class MonsterSpritesModel(BaseModel):
     battle2: str = Field(..., description="The battle2 sprite")
     menu1: str = Field(..., description="The menu1 sprite")
     menu2: str = Field(..., description="The menu2 sprite")
+
+    # Validate resources that should exist
+    @validator("battle1", "battle2", "menu1", "menu2")
+    def file_exists(cls, v):
+        if has.file(f"{v}.png"):
+            return v
+        raise ValueError(f"no resource exists with path: {v}")
 
 
 class MonsterSoundsModel(BaseModel):
@@ -229,12 +270,26 @@ class Range(str, Enum):
     reliable = "reliable"
 
 
+# TODO: We may change this if we refactor technique effects to be more item-like
+class TechniqueEffect(str, Enum):
+    damage = "damage"
+    hardshell = "hardshell"
+    lifeleech = "lifeleech"
+    meta = "meta"
+    overfeed = "overfeed"
+    poison = "poison"
+    recover = "recover"
+    statchange = "statchange"
+    status = "status"
+    swap = "swap"
+
+
 class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
     sort: str = Field(..., description="The sort of technique this is")
     category: str = Field(..., description="The category of technique this is")
     icon: str = Field(..., description="The icon to use for the technique")
-    effects: Sequence[str] = Field(
+    effects: Sequence[TechniqueEffect] = Field(
         ..., description="Effects this technique uses"
     )
     target: Target = Field(
@@ -248,16 +303,17 @@ class TechniqueModel(BaseModel):
     )
 
     # Optional fields
-    use_tech: str = Field(
+    use_tech: Optional[str] = Field(
         None,
         description="Slug of what string to display when technique is used",
     )
-    use_success: str = Field(
+    use_success: Optional[str] = Field(
         None,
         description="Slug of what string to display when technique succeeds",
     )
-    use_failure: str = Field(
-        None, description="Slug of what string to display when technique fails"
+    use_failure: Optional[str] = Field(
+        None,
+        description="Slug of what string to display when technique fails",
     )
     types: Sequence[str] = Field([], description="Type(s) of the technique")
     power: float = Field(0, description="Power of the technique")
@@ -288,6 +344,23 @@ class TechniqueModel(BaseModel):
     userstatmelee: Optional[StatModel] = Field(None)
     userstatranged: Optional[StatModel] = Field(None)
 
+    # Validate resources that should exist
+    @validator("icon")
+    def file_exists(cls, v):
+        if has.file(v):
+            return v
+        raise ValueError(f"no resource exists with path: {v}")
+
+    # Validate fields that refer to translated text
+    @validator("use_tech", "use_success", "use_failure")
+    def translation_exists(cls, v):
+        # None is ok here
+        if not v:
+            return v
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
     # Custom validation for range
     @validator("range")
     def range_validation(cls, v, values, **kwargs):
@@ -308,6 +381,12 @@ class PartyMemberModel(BaseModel):
     )
     exp_req_mod: float = Field(..., description="Experience required modifier")
 
+    @validator("slug")
+    def monster_exists(cls, v):
+        if has.db_entry("monster", v):
+            return v
+        raise ValueError(f"no resource exists in db: {v}")
+
 
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
@@ -324,24 +403,26 @@ class NpcModel(BaseModel):
         [], description="List of monsters in the NPCs party"
     )
 
-
-class JSONEconomyItemOptionalFields(TypedDict, total=False):
-    price: int
-    cost: int
+    # Validate resources that should exist
+    @validator("combat_front", "combat_back")
+    def combat_file_exists(cls, v):
+        file: str = f"gfx/sprites/player/{v}"
+        if has.file(file):
+            return v
+        raise ValueError(f"no resource exists with path: {file}")
 
 
 class BattleGraphicsModel(BaseModel):
     island_back: str = Field(..., description="Sprite used for back combat")
     island_front: str = Field(..., description="Sprite used for front combat")
 
-
-class JSONEconomyItem(TypedDict):
-    item_name: str
-
-
-class JSONEconomy(TypedDict):
-    slug: str
-    items: Sequence[JSONEconomyItem]
+    # Validate resources that should exist
+    @validator("island_back", "island_front")
+    def file_exists(cls, v):
+        file: str = f"gfx/ui/combat/{v}"
+        if has.file(file):
+            return v
+        raise ValueError(f"no resource exists with path: {file}")
 
 
 class EnvironmentModel(BaseModel):
@@ -358,6 +439,12 @@ class EncounterItemModel(BaseModel):
     level_range: Sequence[int] = Field(
         ..., description="Level range to encounter"
     )
+
+    @validator("monster")
+    def monster_exists(cls, v):
+        if has.db_entry("monster", v):
+            return v
+        raise ValueError(f"no resource exists in db: {v}")
 
 
 class EncounterModel(BaseModel):
@@ -387,12 +474,14 @@ class EconomyModel(BaseModel):
     items: Sequence[EconomyItemModel]
 
 
-class MusicItemModel(BaseModel):
+class MusicModel(BaseModel):
     slug: str = Field(..., description="Unique slug for the music")
     file: str = Field(..., description="File for the music")
 
 
-MusicModel: Sequence[MusicItemModel]
+class SoundModel(BaseModel):
+    slug: str = Field(..., description="Unique slug for the sound")
+    file: str = Field(..., description="File for the sound")
 
 
 def process_targets(json_targets: Target) -> Sequence[str]:
@@ -431,20 +520,43 @@ class JSONDatabase:
     """
 
     def __init__(self, dir: str = "all") -> None:
+        self._tables = [
+            "item",
+            "monster",
+            "npc",
+            "technique",
+            "encounter",
+            "inventory",
+            "environment",
+            "sounds",
+            "music",
+            "economy",
+        ]
+        self.preloaded: Dict[str, Dict[str, Any]] = {}
+        self.database: Dict[str, Dict[str, Any]] = {}
         self.path = ""
-        self.database: Dict[str, Dict[str, Any]] = {
-            "item": {},
-            "monster": {},
-            "npc": {},
-            "technique": {},
-            "encounter": {},
-            "inventory": {},
-            "environment": {},
-            "sounds": {},
-            "music": {},
-            "economy": {},
-        }
+        for table in self._tables:
+            self.preloaded[table] = {}
+            self.database[table] = {}
+
         # self.load(dir)
+
+    def preload(self, directory: str = "all") -> None:
+        """
+        Loads all data from JSON files located under our data path as an
+        untyped preloaded dictionary.
+
+        Parameters:
+            directory: The directory under mods/tuxemon/db/ to load. Defaults
+                to "all".
+
+        """
+        self.path = prepare.fetch("db")
+        if directory == "all":
+            for table in self._tables:
+                self.load_json(table)
+        else:
+            self.load_json(directory)
 
     def load(self, directory: str = "all", validate: bool = False) -> None:
         """
@@ -457,20 +569,11 @@ class JSONDatabase:
                 fails
 
         """
-        self.path = prepare.fetch("db")
-        if directory == "all":
-            self.load_json("item", validate)
-            self.load_json("monster", validate)
-            self.load_json("npc", validate)
-            self.load_json("technique", validate)
-            self.load_json("encounter", validate)
-            self.load_json("inventory", validate)
-            self.load_json("environment", validate)
-            self.load_json("sounds", validate)
-            self.load_json("music", validate)
-            self.load_json("economy", validate)
-        else:
-            self.load_json(directory, validate)
+        self.preload(directory)
+        for table, entries in self.preloaded.items():
+            for slug, item in entries.items():
+                self.load_model(item, table, validate)
+        self.preloaded.clear()
 
     def load_json(self, directory: str, validate: bool = False) -> None:
         """
@@ -498,15 +601,34 @@ class JSONDatabase:
 
             if type(item) is list:
                 for sub in item:
-                    self.load_dict(sub, directory, validate)
+                    self.load_dict(sub, directory)
             else:
-                self.load_dict(item, directory, validate)
+                self.load_dict(item, directory)
 
-    def load_dict(
-        self, item: Mapping[str, Any], table: str, validate: bool = False
-    ) -> None:
+    def load_dict(self, item: Mapping[str, Any], table: str) -> None:
         """
-        Loads a single json object and adds it to the appropriate db table.
+        Loads a single json object and adds it to the appropriate preload db
+        table.
+
+        Parameters:
+            item: The json object to load in.
+            table: The db table to load the object into.
+
+        """
+        if item["slug"] in self.preloaded[table]:
+            logger.warning(
+                "Error: Item with slug %s was already loaded.",
+                item,
+            )
+            return
+        self.preloaded[table][item["slug"]] = item
+
+    def load_model(
+        self, item: Mapping[str, Any], table: str, validate: bool = False
+    ):
+        """
+        Loads a single json object, casts it to the appropriate data model,
+        and adds it to the appropriate db table.
 
         Parameters:
             item: The json object to load in.
@@ -515,7 +637,6 @@ class JSONDatabase:
                 fails
 
         """
-
         if item["slug"] in self.database[table]:
             logger.warning(
                 "Error: Item with slug %s was already loaded.",
@@ -542,15 +663,15 @@ class JSONDatabase:
             elif table == "monster":
                 mon = MonsterModel(**item)
                 self.database[table][mon.slug] = mon
-            # elif table == "music":
-            #    mon = (**item)
-            #    self.database[table][mon.slug] = mon
+            elif table == "music":
+                music = MusicModel(**item)
+                self.database[table][music.slug] = music
             elif table == "npc":
                 npc = NpcModel(**item)
                 self.database[table][npc.slug] = npc
-            # elif table == "sounds":
-            #    mon = MonsterSoundsModel(**item)
-            #    self.database[table][mon.slug] = mon
+            elif table == "sounds":
+                sfx = SoundModel(**item)
+                self.database[table][sfx.slug] = sfx
             elif table == "technique":
                 teq = TechniqueModel(**item)
                 self.database[table][teq.slug] = teq
@@ -633,7 +754,7 @@ class JSONDatabase:
 
         """
 
-        filename = self.database[table][slug]["file"] or slug
+        filename = self.database[table][slug].dict()["file"] or slug
         if filename == slug:
             logger.debug(
                 f"Could not find a file record for slug {slug}, did you remember to create a database record?"
@@ -641,6 +762,72 @@ class JSONDatabase:
 
         return filename
 
+
+class Validator:
+    """
+    Helper class for validating resources exist.
+
+    """
+
+    def __init__(self):
+        self.db = JSONDatabase()
+        self.db.preload()
+
+    def translation(self, msgid: str) -> bool:
+        """
+        Check to see if a translation exists for the given slug
+
+        Parameters:
+            msgid: The slug of the text to translate. A short English
+                identifier.
+
+        Returns:
+            True if translation exists
+
+        """
+        return T.translate(msgid) != msgid
+
+    def file(self, file: str) -> bool:
+        """
+        Check to see if a given file exists
+
+        Parameters:
+            file: The file path relative to a mod directory
+
+        Returns:
+            True if file exists
+
+        """
+
+        try:
+            path = prepare.fetch(file)
+            return os.path.exists(path)
+        except OSError:
+            return False
+
+    def db_entry(self, table: str, slug: str) -> bool:
+        """
+        Check to see if the given slug exists in the database for the given
+        table.
+
+        Parameters:
+            slug: The slug of the monster, technique, item, or npc.  A short
+                English identifier.
+            table: Which index to do the search in. Can be: "monster",
+                "item", "npc", or "technique".
+
+        Returns:
+            True if entry exists
+
+        """
+
+        if slug in self.db.preloaded[table]:
+            return True
+        return False
+
+
+# Validator container
+has = Validator()
 
 # Global database container
 db = JSONDatabase()

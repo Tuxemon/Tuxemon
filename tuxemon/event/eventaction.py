@@ -24,13 +24,14 @@
 #
 
 from __future__ import annotations
-import logging
 
-from tuxemon.tools import cast_parameters_to_namedtuple, NamedTupleProtocol
-from typing import Any, ClassVar, Generic, Optional, Sequence, Type, TypeVar
-from types import TracebackType
-from tuxemon.session import Session
+import logging
 from abc import ABC, abstractmethod
+from types import TracebackType
+from typing import Any, ClassVar, Generic, Optional, Sequence, Type, TypeVar
+
+from tuxemon.session import Session
+from tuxemon.tools import NamedTupleProtocol, cast_parameters_to_namedtuple
 
 logger = logging.getLogger(__name__)
 
@@ -133,7 +134,9 @@ class EventAction(ABC, Generic[ParameterClass]):
             logger.warning(f"error while parsing for {self.name}")
             logger.warning(f"cannot parse parameters: {parameters}")
             logger.warning(self.param_class)
-            logger.warning("please check the parameters and verify they are correct")
+            logger.warning(
+                "please check the parameters and verify they are correct"
+            )
             self.parameters = None
 
         self._done = False

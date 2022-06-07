@@ -20,8 +20,10 @@
 #
 
 from __future__ import annotations
-from tuxemon.event.eventaction import EventAction
+
 from typing import NamedTuple, final
+
+from tuxemon.event.eventaction import EventAction
 
 
 class RumbleActionParameters(NamedTuple):
@@ -61,4 +63,8 @@ class RumbleAction(EventAction[RumbleActionParameters]):
             power = 100
 
         magnitude = int((power * 0.01) * max_power)
-        self.session.client.rumble.rumble(-1, length=duration, magnitude=magnitude)
+        self.session.client.rumble.rumble(
+            -1,
+            length=duration,
+            magnitude=magnitude,
+        )

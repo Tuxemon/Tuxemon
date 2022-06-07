@@ -20,18 +20,19 @@
 #
 
 from __future__ import annotations
+
 import logging
 import random
+from typing import NamedTuple, Optional, Sequence, Union, final
 
 from tuxemon import ai, monster, prepare
 from tuxemon.combat import check_battle_legal
-from tuxemon.db import db, JSONEncounterItem
+from tuxemon.db import EncounterItemModel, db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
-from typing import NamedTuple, Union, final, Sequence, Optional
-from tuxemon.states.world.worldstate import WorldState
 from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.transition.flash import FlashTransition
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -77,7 +78,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             return
 
         slug = self.parameters.encounter_slug
-        encounters = db.lookup(slug, table="encounter")["monsters"]
+        encounters = db.lookup(slug, table="encounter").dict()["monsters"]
         encounter = _choose_encounter(encounters, self.parameters.total_prob)
 
         # If a random encounter was successfully rolled, look up the monster
@@ -92,7 +93,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             env_slug = "grass"
             if "environment" in player.game_variables:
                 env_slug = player.game_variables["environment"]
-            env = db.lookup(env_slug, table="environment")
+            env = db.lookup(env_slug, table="environment").dict()
 
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack
@@ -133,10 +134,11 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
         if self.world:
             self.world.remove_entity("random_encounter_dummy")
 
+
 def _choose_encounter(
-    encounters: Sequence[JSONEncounterItem],
+    encounters: Sequence[EncounterItemModel],
     total_prob: Optional[float],
-) -> Optional[JSONEncounterItem]:
+) -> Optional[EncounterItemModel]:
     total = 0.0
     roll = random.random() * 100
     if total_prob is not None:
@@ -158,7 +160,7 @@ def _choose_encounter(
 
 
 def _create_monster_npc(
-    encounter: JSONEncounterItem,
+    encounter: EncounterItemModel,
     world: WorldState,
 ) -> NPC:
     current_monster = monster.Monster()

@@ -1,5 +1,3 @@
-from .combat import CombatState
-from .combat import WaitForInputState
+from .combat import CombatState, WaitForInputState
 from .combat_animations import CombatAnimations
-from .combat_menus import CombatTargetMenuState
-from .combat_menus import MainCombatMenuState
+from .combat_menus import CombatTargetMenuState, MainCombatMenuState

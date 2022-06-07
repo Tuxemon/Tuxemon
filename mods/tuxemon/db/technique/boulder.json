@@ -1,9 +1,10 @@
 {
+  "$schema": "https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/schemas/technique-schema.json",
   "accuracy": 1,
   "animation": "shield_rock",
   "category": "physical",
   "effects": [
-    "damage"
+    "hardshell"
   ],
   "healing_power": 0,
   "icon": "",

@@ -19,11 +19,12 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 from __future__ import annotations
+
 import logging
 
+from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
-from tuxemon.event import MapCondition
 
 logger = logging.getLogger(__name__)
 

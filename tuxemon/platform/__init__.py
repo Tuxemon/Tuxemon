@@ -2,10 +2,12 @@
 Put platform specific fixes here
 """
 from __future__ import annotations
+
 import logging
 import os.path
-from typing import Optional, Sequence
 import types
+from typing import Optional, Sequence
+
 import pygame
 
 __all__ = ("android", "init", "mixer", "get_user_storage_dir")
@@ -19,6 +21,7 @@ android = None
 try:
     import android
     import android.mixer
+
     mixer = android.mixer
 except ImportError:
     pass
@@ -26,6 +29,7 @@ except ImportError:
 if android is None:
     try:
         import pygame.mixer
+
         mixer = pygame.mixer
         _pygame = True
     except ImportError:

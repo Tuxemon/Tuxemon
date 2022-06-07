@@ -20,8 +20,10 @@
 #
 
 from __future__ import annotations
+
+from typing import NamedTuple, Union, final
+
 from tuxemon.event.eventaction import EventAction
-from typing import Union, NamedTuple, final
 
 
 class AddItemActionParameters(NamedTuple):
@@ -54,4 +56,8 @@ class AddItemAction(EventAction[AddItemActionParameters]):
             quantity = 1
         else:
             quantity = self.parameters.quantity
-        player.alter_item_quantity(self.session, self.parameters.item_slug, quantity)
+        player.alter_item_quantity(
+            self.session,
+            self.parameters.item_slug,
+            quantity,
+        )

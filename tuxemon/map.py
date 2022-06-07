@@ -29,22 +29,34 @@
 #
 
 from __future__ import annotations
+
 import logging
 from itertools import product
-from math import pi, atan2
-from typing import Optional, Literal, Generator, Tuple, TypeVar, Mapping,\
-    Sequence, List, Set, TypedDict, Union
+from math import atan2, pi
+from typing import (
+    Generator,
+    List,
+    Literal,
+    Mapping,
+    Optional,
+    Sequence,
+    Set,
+    Tuple,
+    TypedDict,
+    TypeVar,
+    Union,
+)
 
 import pyscroll
 from pytmx import pytmx
+from pytmx.pytmx import TiledMap
 
-from tuxemon.compat import ReadOnlyRect
 from tuxemon import prepare
+from tuxemon.compat import ReadOnlyRect
+from tuxemon.event import EventObject
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.math import Vector2, Vector3
 from tuxemon.tools import round_to_divisible
-from tuxemon.event import EventObject
-from pytmx.pytmx import TiledMap
 
 logger = logging.getLogger(__name__)
 
@@ -455,7 +467,7 @@ class TuxemonMap:
         data = pytmx.TiledMap(
             self.data.filename,
             image_loader=scaled_image_loader,
-            pixelalpha=True
+            pixelalpha=True,
         )
         self.renderer.data.tmx.images = data.images
         self.renderer.redraw_tiles(self.renderer._buffer)

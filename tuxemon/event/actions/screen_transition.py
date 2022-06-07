@@ -20,8 +20,10 @@
 #
 
 from __future__ import annotations
-from tuxemon.event.eventaction import EventAction
+
 from typing import NamedTuple, final
+
+from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
 
 

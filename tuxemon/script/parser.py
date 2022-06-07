@@ -1,5 +1,5 @@
 import re
-from typing import Tuple, Sequence
+from typing import Sequence, Tuple
 
 
 def split_escaped(

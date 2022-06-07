@@ -24,10 +24,11 @@
 #
 
 from __future__ import annotations
-from operator import eq, gt, lt, ge, le
+
+from operator import eq, ge, gt, le, lt
+from typing import Callable, Mapping, NamedTuple, Optional, Union
 
 from tuxemon.item.itemcondition import ItemCondition
-from typing import NamedTuple, Union, Mapping, Optional, Callable
 from tuxemon.monster import Monster
 
 cmp_dict: Mapping[Optional[str], Callable[[float, float], bool]] = {

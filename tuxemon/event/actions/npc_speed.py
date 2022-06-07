@@ -20,9 +20,11 @@
 #
 
 from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, final
 
 
 class NpcSpeedActionParameters(NamedTuple):

@@ -1,11 +1,13 @@
 from __future__ import annotations
-import pygame
 
+from typing import List, Literal, Optional, Tuple, Union
+
+import pygame
 from pygame.rect import Rect
+
+from tuxemon.graphics import ColorLike
 from tuxemon.sprite import Sprite
 from tuxemon.ui import draw
-from tuxemon.graphics import ColorLike
-from typing import Optional, Literal, List, Tuple, Union
 
 min_font_size = 7
 
@@ -49,7 +51,12 @@ class TextArea(Sprite):
         if self.animated:
             self._start_text_animation()
         else:
-            self.image = draw.shadow_text(self.font, self.font_color, self.font_bg, self._text)
+            self.image = draw.shadow_text(
+                self.font,
+                self.font_color,
+                self.font_bg,
+                self._text,
+            )
 
     def __next__(self) -> None:
         if self.animated:
@@ -67,7 +74,13 @@ class TextArea(Sprite):
     def _start_text_animation(self) -> None:
         self.drawing_text = True
         self.image = pygame.Surface(self.rect.size, pygame.SRCALPHA)
-        self._iter = draw.iter_render_text(self._text, self.font, self.font_color, self.font_bg, self.image.get_rect())
+        self._iter = draw.iter_render_text(
+            self._text,
+            self.font,
+            self.font_color,
+            self.font_bg,
+            self.image.get_rect(),
+        )
 
 
 def draw_text(
@@ -165,7 +178,9 @@ def draw_text(
     # If the justification was set, handle the position of the text automatically
     if justify == "center":
         if lines:
-            left = (left + (width / 2)) - ((len(lines[0]) * pixels_per_letter) / 2)
+            left = (left + (width / 2)) - (
+                (len(lines[0]) * pixels_per_letter) / 2
+            )
         else:
             left = 0
 
@@ -174,7 +189,9 @@ def draw_text(
 
     # If text alignment was set, handle the position of the text automatically
     if align == "middle":
-        top = (top + (height / 2)) - ((text_surface.get_height() * len(lines)) / 2)
+        top = (top + (height / 2)) - (
+            (text_surface.get_height() * len(lines)) / 2
+        )
 
     elif align == "bottom":
         raise NotImplementedError("Needs to be implemented")

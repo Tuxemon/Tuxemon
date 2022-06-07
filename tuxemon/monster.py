@@ -28,20 +28,22 @@
 #
 
 from __future__ import annotations
+
 import logging
 import random
 import uuid
+from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
 
 from tuxemon import ai, fusion, graphics
-from tuxemon.db import db, JSONMonsterMovesetItem, JSONMonsterEvolutionItem
-from tuxemon.locale import T
-from tuxemon.technique import Technique
 from tuxemon.config import TuxemonConfig
-from typing import Optional, List, TYPE_CHECKING, Any, Mapping, Sequence, Dict
+from tuxemon.db import MonsterEvolutionItemModel, MonsterMovesetItemModel, db
+from tuxemon.locale import T
 from tuxemon.sprite import Sprite
+from tuxemon.technique import Technique
 
 if TYPE_CHECKING:
     import pygame
+
     from tuxemon.npc import NPC
     from tuxemon.states.combat.combat import EnqueuedAction
 
@@ -198,10 +200,10 @@ class Monster:
             save_data = dict()
 
         self.slug = ""
-        self.name = ""  # The display name of the Tuxemon
+        self.name = ""
         self.category = ""
         self.description = ""
-        self.instance_id = uuid.uuid4()  # unique id for this specific, individual tuxemon
+        self.instance_id = uuid.uuid4()
 
         self.armour = 0
         self.dodge = 0
@@ -212,16 +214,15 @@ class Monster:
         self.hp = 0
         self.level = 0
 
-        self.moves: List[Technique] = []  # list of technique objects. Used in combat.
-        self.moveset: List[JSONMonsterMovesetItem] = []  # list of possible technique objects.
-        self.evolutions: List[JSONMonsterEvolutionItem] = []  # list of possible evolution objects.
-        self.flairs: Dict[str, Flair] = {}  # dictionary of flairs, one is picked randomly.
-        self.battle_cry = ""  # slug for a sound file, used primarly when they enter battle
-        self.faint_cry = ""  # slug for a sound file, used when the monster faints
+        self.moves: List[Technique] = []
+        self.moveset: List[MonsterMovesetItemModel] = []
+        self.evolutions: List[MonsterEvolutionItemModel] = []
+        self.flairs: Dict[str, Flair] = {}
+        self.battle_cry = ""
+        self.faint_cry = ""
         self.ai: Optional[ai.AI] = None
-        self.owner: Optional[NPC] = None  # set to NPC instance if they own it
+        self.owner: Optional[NPC] = None
 
-        # The multiplier for experience
         self.experience_required_modifier = 1
         self.total_experience = 0
 
@@ -243,8 +244,12 @@ class Monster:
 
         # The catch_resistance value is calculated during the capture. The upper and lower catch_resistance
         # set the span on which the catch_resistance will be. For more imformation check capture.py
-        self.upper_catch_resistance = TuxemonConfig().default_upper_monster_catch_resistance
-        self.lower_catch_Resistance = TuxemonConfig().default_lower_monster_catch_resistance
+        self.upper_catch_resistance = (
+            TuxemonConfig().default_upper_monster_catch_resistance
+        )
+        self.lower_catch_Resistance = (
+            TuxemonConfig().default_lower_monster_catch_resistance
+        )
 
         # The tuxemon's state is used for various animations, etc. For example
         # a tuxemon's state might be "attacking" or "fainting" so we know when
@@ -286,7 +291,9 @@ class Monster:
 
         father_tech_count = len(father.moves)
         tech_to_replace = random.randrange(0, 2)
-        child.moves[tech_to_replace] = father.moves[random.randrange(0, father_tech_count - 1)]
+        child.moves[tech_to_replace] = father.moves[
+            random.randrange(0, father_tech_count - 1)
+        ]
 
         return child
 
@@ -302,16 +309,18 @@ class Monster:
         """
 
         # Look up the monster by name and set the attributes in this instance
-        results = db.lookup(slug, table="monster")
+        results = db.lookup(slug, table="monster").dict()
 
         if results is None:
             logger.error(f"monster {slug} is not found")
             raise RuntimeError
-        self.level = random.randint(2,5)
-        self.slug = results["slug"]  # short English identifier
-        self.name = T.translate(results["slug"])  # translated name
-        self.description = T.translate("{}_description".format(results["slug"]))  # translated description
-        self.category = T.translate(results["category"])  # translated category
+        self.level = random.randint(2, 5)
+        self.slug = results["slug"]
+        self.name = T.translate(results["slug"])
+        self.description = T.translate(
+            "{}_description".format(results["slug"])
+        )
+        self.category = T.translate(results["category"])
         self.shape = results.get("shape", "landrace").lower()
         types = results.get("types")
         if types:
@@ -349,14 +358,22 @@ class Monster:
                 self.evolutions.append(evolution)
 
         # Look up the monster's sprite image paths
-        self.front_battle_sprite = self.get_sprite_path(results["sprites"]["battle1"])
-        self.back_battle_sprite = self.get_sprite_path(results["sprites"]["battle2"])
+        self.front_battle_sprite = self.get_sprite_path(
+            results["sprites"]["battle1"]
+        )
+        self.back_battle_sprite = self.get_sprite_path(
+            results["sprites"]["battle2"]
+        )
         self.menu_sprite_1 = self.get_sprite_path(results["sprites"]["menu1"])
         self.menu_sprite_2 = self.get_sprite_path(results["sprites"]["menu2"])
 
         # get sound slugs for this monster, defaulting to a generic type-based sound
-        self.combat_call = results.get("sounds", {}).get("combat_call", f"sound_{self.type1}_call")
-        self.faint_call = results.get("sounds", {}).get("faint_call", f"sound_{self.type1}_faint")
+        self.combat_call = results.get("sounds", {}).get(
+            "combat_call", f"sound_{self.type1}_call"
+        )
+        self.faint_call = results.get("sounds", {}).get(
+            "faint_call", f"sound_{self.type1}_faint"
+        )
 
         # Load the monster AI
         # TODO: clean up AI 'core' loading and what not
@@ -443,7 +460,10 @@ class Monster:
         Increases a Monster's level by one and increases stats accordingly.
 
         """
-        logger.info("Leveling %s from %i to %i!" % (self.name, self.level, self.level + 1))
+        logger.info(
+            "Leveling %s from %i to %i!"
+            % (self.name, self.level, self.level + 1)
+        )
         # Increase Level and stats
         self.level += 1
         self.level = min(self.level, MAX_LEVEL)
@@ -452,7 +472,11 @@ class Monster:
         # Learn New Moves
         for move in self.moveset:
             if move["level_learned"] == self.level:
-                logger.info("{} learned technique {}!".format(self.name, move["technique"]))
+                logger.info(
+                    "{} learned technique {}!".format(
+                        self.name, move["technique"]
+                    )
+                )
                 technique = Technique(move["technique"])
                 self.learn(technique)
 
@@ -491,7 +515,9 @@ class Monster:
             Required experience.
 
         """
-        return self.experience_required_modifier * (self.level + level_ofs)**3
+        return (
+            self.experience_required_modifier * (self.level + level_ofs) ** 3
+        )
 
     def get_evolution(self, path: str) -> Optional[str]:
         """
@@ -504,7 +530,10 @@ class Monster:
         for evolution in self.evolutions:
             if evolution["path"] == path:
                 level_over = 0 < evolution["at_level"] <= self.level
-                level_under = evolution["at_level"] < 0 and self.level <= -evolution["at_level"]
+                level_under = (
+                    evolution["at_level"] < 0
+                    and self.level <= -evolution["at_level"]
+                )
                 if level_over or level_under:
                     return evolution["monster_slug"]
         return None
@@ -526,13 +555,17 @@ class Monster:
         elif sprite == "back":
             surface = graphics.load_sprite(self.back_battle_sprite, **kwargs)
         elif sprite == "menu":
-            surface = graphics.load_animated_sprite([self.menu_sprite_1, self.menu_sprite_2], 0.25, **kwargs)
+            surface = graphics.load_animated_sprite(
+                [self.menu_sprite_1, self.menu_sprite_2], 0.25, **kwargs
+            )
         else:
             raise ValueError(f"Cannot find sprite for: {sprite}")
 
         # Apply flairs to the monster sprite
         for flair in self.flairs.values():
-            flair_path = self.get_sprite_path(f"gfx/sprites/battle/{self.slug}-{sprite}-{flair.name}")
+            flair_path = self.get_sprite_path(
+                f"gfx/sprites/battle/{self.slug}-{sprite}-{flair.name}"
+            )
             if flair_path != MISSING_IMAGE:
                 flair_sprite = graphics.load_sprite(flair_path, **kwargs)
                 surface.image.blit(flair_sprite.image, (0, 0))
@@ -544,7 +577,7 @@ class Monster:
         if len(self.flairs) > 0 or self.slug == "":
             return
 
-        results = db.lookup(self.slug, table="monster")
+        results = db.lookup(self.slug, table="monster").dict()
         flairs = results.get("flairs")
         if flairs:
             for flair in flairs:
@@ -574,7 +607,7 @@ class Monster:
         except OSError:
             pass
 
-        logger.debug(f"Could not find monster sprite {sprite}")
+        logger.error(f"Could not find monster sprite {sprite}")
         return MISSING_IMAGE
 
     def load_sprites(self) -> bool:
@@ -588,7 +621,9 @@ class Monster:
         if len(self.sprites):
             return True
 
-        self.sprites["front"] = graphics.load_and_scale(self.front_battle_sprite)
+        self.sprites["front"] = graphics.load_and_scale(
+            self.front_battle_sprite
+        )
         self.sprites["back"] = graphics.load_and_scale(self.back_battle_sprite)
         self.sprites["menu"] = graphics.load_and_scale(self.menu_sprite_1)
         return False
@@ -601,7 +636,11 @@ class Monster:
             Dictionary containing all the information about the monster.
 
         """
-        save_data = {attr: getattr(self, attr) for attr in SIMPLE_PERSISTANCE_ATTRIBUTES if getattr(self, attr)}
+        save_data = {
+            attr: getattr(self, attr)
+            for attr in SIMPLE_PERSISTANCE_ATTRIBUTES
+            if getattr(self, attr)
+        }
 
         save_data["instance_id"] = self.instance_id.hex
 

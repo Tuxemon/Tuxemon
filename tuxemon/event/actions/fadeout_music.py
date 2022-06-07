@@ -20,11 +20,12 @@
 #
 
 from __future__ import annotations
+
 import logging
+from typing import NamedTuple, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.platform import mixer
-from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 

@@ -25,25 +25,39 @@
 #
 
 from __future__ import annotations
+
 import logging
 import math
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Container,
+    Final,
+    Generic,
+    Iterator,
+    List,
+    Literal,
+    Optional,
+    Sequence,
+    TypeVar,
+    Union,
+    overload,
+)
 
 import pygame
-from pygame.transform import rotozoom
-from pygame.transform import scale
-
 from pygame.rect import Rect
-from tuxemon.platform.const import buttons
-from tuxemon.surfanim import SurfaceAnimation
+from pygame.transform import rotozoom, scale
+
 from tuxemon import graphics
-from tuxemon.tools import scale as tuxemon_scale
-from typing import Optional, Callable, Any, Sequence, List, Union, TYPE_CHECKING,\
-    TypeVar, Generic, Iterator, overload, Final, Literal, Container
+from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
+from tuxemon.surfanim import SurfaceAnimation
+from tuxemon.tools import scale as tuxemon_scale
 
 if TYPE_CHECKING:
-    from tuxemon.monster import Monster
     from tuxemon.menu.interface import MenuItem
+    from tuxemon.monster import Monster
 
 logger = logging.getLogger()
 
@@ -370,7 +384,6 @@ class MenuSpriteGroup(SpriteGroup[_MenuElement]):
 
     def arrange_menu_items(self) -> None:
         """Iterate through menu items and position them in the menu."""
-        pass
 
     def _allowed_input(self) -> Container[int]:
         """Returns allowed buttons."""
@@ -466,7 +479,8 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
     sprites into columns.
     """
 
-    orientation: Literal["horizontal"] = "horizontal"  # default, and only implemented
+    # default, and only implemented
+    orientation: Literal["horizontal"] = "horizontal"
     expand = True  # True: fill all space of parent. False: more compact
     _2d_movement_dict: Final = {
         buttons.LEFT: ("lr", -1),
@@ -502,7 +516,7 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
     ) -> None:
         """
         Add something to the stacker.
-        
+
         Do not add iterables to this function. Use 'extend'.
 
         Parameters:

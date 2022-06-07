@@ -1,18 +1,18 @@
-from tuxemon import prepare
+from typing import Optional
+
+import pygame
 import pygame_menu
 from pygame_menu.widgets.core.selection import Selection
-from tuxemon.tools import transform_resource_filename
-from typing import Optional
-from tuxemon.audio import get_sound_filename
-import pygame
 from pygame_menu.widgets.core.widget import Widget
-from pygame.rect import Rect
+
+from tuxemon import prepare
+from tuxemon.audio import get_sound_filename
+from tuxemon.tools import transform_resource_filename
 
 _theme: Optional[pygame_menu.themes.Theme] = None
 
 
 class TuxemonArrowSelection(Selection):
-
     def __init__(self) -> None:
         # Call the constructor of the Selection providing the left, right,
         # top and bottom margins of your Selection effect box.
@@ -75,11 +75,13 @@ def get_theme() -> pygame_menu.themes.Theme:
 
     tuxemon_background_center_rect = tuxemon_border.get_rect()
     tuxemon_background_center_rect = tuxemon_background_center_rect.inflate(
-        - 2 * tuxemon_background_center_rect.width // 3,
-        - 2 * tuxemon_background_center_rect.height // 3,
+        -2 * tuxemon_background_center_rect.width // 3,
+        -2 * tuxemon_background_center_rect.height // 3,
     )
 
-    tuxemon_background = tuxemon_border.copy().crop_rect(tuxemon_background_center_rect)
+    tuxemon_background = tuxemon_border.copy().crop_rect(
+        tuxemon_background_center_rect
+    )
 
     theme = pygame_menu.Theme(
         background_color=tuxemon_background,

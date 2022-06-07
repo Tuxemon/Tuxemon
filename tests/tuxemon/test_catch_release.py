@@ -1,8 +1,8 @@
 import unittest
+from unittest import mock
+
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
-from unittest import mock
-from tuxemon.prepare import CONFIG
 
 
 def mockNPC(self) -> None:

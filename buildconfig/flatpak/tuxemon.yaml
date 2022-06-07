@@ -1,8 +1,0 @@
-name: tuxemon
-buildsystem: simple
-build-commands:
-  - pip3 install -r requirements.txt
-sources:
-  - type: archive
-    url: # fill in
-    sha256: # fill in

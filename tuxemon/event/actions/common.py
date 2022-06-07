@@ -24,6 +24,7 @@
 #
 
 import logging
+
 from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
@@ -66,13 +67,19 @@ class CommonAction:
         try:
             attr = getattr(character, attribute)
         except AttributeError:
-            logger.warning("Player attribute '{0}' specified does not exist.", attribute)
+            logger.warning(
+                "Player attribute '{0}' specified does not exist.",
+                attribute,
+            )
             return
 
         try:
             val = type(attr)(value)
         except TypeError:
-            logger.warning("The value given cannot be parsed into the correct type for '{0}'", attribute)
+            logger.warning(
+                "The value given cannot be parsed into the correct type for '{0}'",
+                attribute,
+            )
             return
 
         setattr(character, attribute, val)
@@ -102,7 +109,10 @@ class CommonAction:
         try:
             attr = getattr(character, attribute)
         except AttributeError:
-            logger.warning("Player attribute '{0}' specified does not exist.", attribute)
+            logger.warning(
+                "Player attribute '{0}' specified does not exist.",
+                attribute,
+            )
             return
 
         if "%" in modifier:

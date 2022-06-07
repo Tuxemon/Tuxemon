@@ -23,12 +23,14 @@
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
 from __future__ import annotations
-from tuxemon.event.eventaction import EventAction
+
 import logging
 from typing import NamedTuple, final
-from tuxemon.states.monster import MonsterMenuState
+
+from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.interface import MenuItem
 from tuxemon.monster import Monster
+from tuxemon.states.monster import MonsterMenuState
 
 logger = logging.getLogger(__name__)
 
@@ -57,9 +59,9 @@ class GetPlayerMonsterAction(EventAction[GetPlayerMonsterActionParameters]):
     param_class = GetPlayerMonsterActionParameters
 
     def set_var(self, menu_item: MenuItem[Monster]) -> None:
-        self.player.game_variables[self.variable] = (
-            menu_item.game_object.instance_id.hex
-        )
+        self.player.game_variables[
+            self.variable
+        ] = menu_item.game_object.instance_id.hex
         self.session.client.pop_state()
 
     def start(self) -> None:

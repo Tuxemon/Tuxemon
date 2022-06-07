@@ -20,14 +20,15 @@
 #
 
 from __future__ import annotations
+
 import logging
+from typing import NamedTuple, final
 
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, final
-from tuxemon.states.world.worldstate import WorldState
 from tuxemon.states.combat.combat import CombatState
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -59,7 +60,7 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
-            logger.debug("battle is not legal, won't start")
+            logger.warning("battle is not legal, won't start")
             return
 
         world = self.session.client.get_state_by_name(WorldState)
@@ -67,16 +68,17 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
         npc = world.get_entity(self.parameters.npc_slug)
         assert npc
         if len(npc.monsters) == 0:
+            logger.warning("npc has no monsters, won't start")
             return
 
         # Lookup the environment
         env_slug = "grass"
         if "environment" in player.game_variables:
             env_slug = player.game_variables["environment"]
-        env = db.lookup(env_slug, table="environment")
+        env = db.lookup(env_slug, table="environment").dict()
 
         # Add our players and setup combat
-        logger.debug("Starting battle!")
+        logger.info("Starting battle!")
         self.session.client.push_state(
             CombatState,
             players=(player, npc),

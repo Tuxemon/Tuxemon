@@ -20,12 +20,13 @@
 #
 
 from __future__ import annotations
+
 import logging
+from typing import NamedTuple, Optional, Union, final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.technique import Technique
-from typing import NamedTuple, final, Union, Optional
 from tuxemon.monster import Monster
+from tuxemon.technique import Technique
 
 logger = logging.getLogger(__name__)
 

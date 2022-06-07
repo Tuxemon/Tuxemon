@@ -24,12 +24,15 @@
 #
 
 from __future__ import annotations
+
 import logging
-from tuxemon.item.itemcondition import ItemCondition
 from typing import NamedTuple
+
+from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.monster import Monster
 
 logger = logging.getLogger(__name__)
+
 
 class StatusConditionParameters(NamedTuple):
     expected: str
@@ -47,5 +50,6 @@ class StatusCondition(ItemCondition[StatusConditionParameters]):
     param_class = StatusConditionParameters
 
     def test(self, target: Monster) -> bool:
-        return self.parameters.expected in \
-            [x.slug for x in target.status if hasattr(x, "slug")]
+        return self.parameters.expected in [
+            x.slug for x in target.status if hasattr(x, "slug")
+        ]

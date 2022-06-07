@@ -30,9 +30,9 @@
 
 import logging
 import sys
+import warnings
 
 from tuxemon import prepare
-import warnings
 
 
 def configure():
@@ -73,7 +73,11 @@ def configure():
             logger.setLevel(log_level)
             log_hdlr = logging.StreamHandler(sys.stdout)
             log_hdlr.setLevel(log_level)
-            log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"))
+            log_hdlr.setFormatter(
+                logging.Formatter(
+                    "%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"
+                )
+            )
             logger.addHandler(log_hdlr)
 
             loggers[logger_name] = logger

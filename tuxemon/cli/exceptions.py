@@ -4,13 +4,9 @@ class CommandNotFoundError(Exception):
 
     """
 
-    pass
-
 
 class ParseError(Exception):
     """
     Raised when the input cannot be parsed due to bad syntax.
 
     """
-
-    pass

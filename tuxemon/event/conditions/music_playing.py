@@ -19,10 +19,11 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 from __future__ import annotations
+
+from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.platform import mixer
 from tuxemon.session import Session
-from tuxemon.event import MapCondition
 
 
 class MusicPlayingCondition(EventCondition):
@@ -65,7 +66,10 @@ class MusicPlayingCondition(EventCondition):
         if not names.isdisjoint(combat_states):
             return True
 
-        if session.client.current_music["song"] == song and mixer.music.get_busy():
+        if (
+            session.client.current_music["song"] == song
+            and mixer.music.get_busy()
+        ):
             return True
         else:
             return False

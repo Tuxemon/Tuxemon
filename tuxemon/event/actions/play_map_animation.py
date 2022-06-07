@@ -20,12 +20,13 @@
 #
 
 from __future__ import annotations
+
 import logging
+from typing import NamedTuple, Union, final
 
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import load_animation_from_frames
-from typing import NamedTuple, Union, final
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)

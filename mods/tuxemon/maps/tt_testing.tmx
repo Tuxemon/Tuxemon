@@ -1,38 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="33" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="51">
- <tileset firstgid="1" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
- <tileset firstgid="2971" source="../gfx/tilesets/core_indoor_floors.tsx"/>
- <tileset firstgid="6835" source="../gfx/tilesets/core_indoor_walls.tsx"/>
- <layer id="1" name="Tile Layer 1" width="33" height="20">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="48" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="51">
+ <tileset firstgid="1" source="../gfx/tilesets/prototyping_outdoor.tsx"/>
+ <tileset firstgid="2049" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <tileset firstgid="10241" source="../gfx/tilesets/core_outdoor_water.tsx"/>
+ <layer id="1" name="PTT" width="48" height="48" visible="0">
   <data encoding="base64" compression="zlib">
-   eAG11TdvFEEchvEF+5JtQDI51FQk+5KhIsMHoCI6lyQbJBC5IueSbJOcoCLnkorsBK7ISXSmAp5X7EirEeyuV3Lx08zshP+rubu9/mLH6feRK3GcLP7X2nuf+Jxlrw079quvXPY5vyJkaGJPM87jAi7iEi6jBe+o4+cR8x2sk+P0p/wjl53THofJ8JvzbXOG/c2m2vXUzbtZlkbI8JQznuE5XuAlXqETXdAdeOuvobYZa04ZetEO9XdHyKDzHPYNwVAUoBAxxKE6Iz11TX21JsMx1iiHMlyjb9910Hgqe6ZhOmagDOVIIwPV8dZV/6SbyWRIsaYOyvCWNqimPb+MPcuxAiuxCpWoQjVUx89D5lVb9J0sJZ9dI2i8h317sQ/7cQAHcQiHkR4xMLMjZLhOnRu4iVu4jTu4i3sYaIbVETLont/jAz7iEz7jC76icjifD8qhfoHbalwItVLmOhEhg77zozAaYzAW4zAeE6CaOn8TfWVQPT0zWfTsB1mVR88esy7o87fn9a6Zi3mYjwVYiEVYDJ2r83UXyqJWdZVJecxzk+snz+0aQWO9c9ZiHdajAY3YgI1Qjc1ua+7A1FYW5VJ9rVF/MoJq2vP6rZ/CaZzBWZxDE5rRym+uDea/6z73/gD2OWa8JEIGc9cx9saRQBIpFKGb+j2ooW4tvuE7tjC3FduwHTuwE7tg8oRtdX+62zQyyCKHPCqQoF4SR3AUE7mbSWhhrhVtaEcHruAqwtY268x3rIq91ahBLepQD7PO23byvAvd6EEvXuMN+uBdO1j9GO/OOBJIIoUiFKMEg1XXe67enRlkkUMeFZiJWfCuDdP/AydK6Q8=
+   eAHtllFqAzEMRHOWHqA/ofeHPVk90EemRrbLepP0YwxiZEmWxrMm5HbLigJRAAU+mzOzj5b/i816rHJwOYOr3nC/t+YzW/VR/vixvvYMb858Nafvx165q/jDHWSGcGfRZ3SP/84ffiD3YQ/2b2dURz15x6MJLfOY/J3FPJDe7B39DrM6PyOf2hG+ir/zgovHRj61I9zhP+o54kKcc+xnSK3w6EyxneW9K3/Ei9pR3uPUCt/N37lUvvPG97rw//3aXJvKR0OwqvEYdY6eP7o3pNzO8jnyfdbVvv/+ytddwv/xH6fSH82u+hb0E9KzuafX7P34LJ/HXH1/jJjQz/WaeI4zp8m3g/So0Get+HOP/kzPv5rzLP6aBZ9qLpwdqQffzb/iPYvBGxT/lT1T/xnXKgdvcMVd+awoEAWiQBSIAlEgCkSBKBAFokAUiAJRIApEgSiAAt8xvYua
   </data>
  </layer>
- <layer id="2" name="Tile Layer 2" width="33" height="20">
+ <layer id="2" name="base_terrain" width="48" height="48">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <layer id="3" name="Tile Layer 3" width="33" height="20">
+ <layer id="3" name="transitions_1" width="48" height="48">
   <data encoding="base64" compression="zlib">
-   eAHt0DEBAAAAwqD1T20Hb4hAYcCAAQMGDBgwYOAfGApQAAE=
+   eAHtlF1ugzAQhHns73F8r75wLAiQcDTeOyMYZeUIUSpBnWpW2qyNTfhmvFBVDjtgB/6jA+nleVWRfXxi/hrszBgN5i1SNa6VNK4/qmoi/+udSsx5ve8oZ0T+BHbx58w9tA3hHDQvRUECP3uHGi6oHVKMa1q0XooGcozvM400bLH/RMMXvDk6+jf0B5L8DWqLlAZVsebzK/bekGvRncDPZ4/sf/kPni4wif2hYg91T8t9axqOvk72FHj3Po/vz1qc0T8T+JkxGsxbpGpc2zM+un+mT/QNeyD4L+a87uE+ay/5x8CfM/c4gyGcg+Zn8W09ZwQ/e4caxC5GzVV1XXXrv89cT9DBEGtexZzX+a6/++3x7RuQ5G9QW+Qau65LwxV7b8gSYlq+gRfwdIFJrA8Ve6i7Xs6tBA2/YeD747ADdsAO2AE7YAfsgB2wA3bADtgBO2AH7IAdsAN2YHbgG+V3fys=
   </data>
  </layer>
- <layer id="4" name="Above player" width="33" height="20">
+ <layer id="7" name="transitions_2" width="48" height="48">
   <data encoding="base64" compression="zlib">
-   eAHt0DEBAAAAwqD1T20Hb4hAYcCAAQMGDBgwYOAfGApQAAE=
+   eAHtlc1uAiEYRVna2j5Ku/OxmD/1sdqdvpl7L4GTEMysTGTaXBLmCoKc7wyJIbjZgA3YwPYNxF0Igzq5VeLbPpPdxEqDedTc9AdqgDtlyz6Lf6lqYFzv6f35IL7U8A0jY2pinsy7tvE8lHvUMq+xb6WG+V33Qz21qBzUqYGEtR0ftfZU9uZf6P8cxTNVTLA/pNZQd3/q/0UQ33SP1Mm16q6fa9+8Zv5czj9X9wXmNl9D9NwpLfOsd7BU74Fxe8rXRwjf6j3aRXypwQ4jY5J5Mu/Kzyj2oRN/IriUs2FtE+Y2qeFH+3878M/6z1rK/1ZUDupr7MxTw1FrT2UvdfTOUTxTxQTrQ2oNdfdm9vk2YAM2YAM2YAM2YAM2YAM2YAM2YAM2YAM2YAM2kAzcARi/Snc=
+  </data>
+ </layer>
+ <layer id="8" name="trees_and_stuff" width="48" height="48">
+  <data encoding="base64" compression="zlib">
+   eAHtklEOgyAUBPls7VlQUe9/tq7RScjzAEC7JLjBoJkdSMnDBmzgHwzkV0qzJjlSZ5gX8a+DdYjsRfxb1YF1j+eBbxhZ04n3ZM8dYCZhjtm6Q5l0PzTPkZWzJt5JmGOXXXuP+9vrD+2fi3jWign2R2oPvdtT/xZBfuseaZIjtYM55ggdInPRGWzVObDusQvsMLImeU/23AFmEuaYrTuUj+6H5jmyctaEmYQ5rnftPe5vrz+0fy7iWSsm2B+pPfRuT20CG7ABG7ABG7ABG7ABG7ABG7ABG7ABG7ABG7ABGxjfwBeMjh7d
+  </data>
+ </layer>
+ <layer id="4" name="Above player" width="48" height="48" visible="0">
+  <data encoding="base64" compression="zlib">
+   eAHt0AENAAAAwqD3T20ON4hAYcCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMDA68AAJAAAAQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision" visible="0">
-  <object id="34" type="collision" x="144" y="128" width="16" height="192"/>
-  <object id="36" type="collision" x="160" y="304" width="64" height="16"/>
-  <object id="37" type="collision" x="272" y="304" width="112" height="16"/>
-  <object id="41" type="collision" x="368" y="128" width="16" height="176"/>
-  <object id="44" type="collision" x="160" y="128" width="208" height="48"/>
-  <object id="45" type="collision" x="336" y="176" width="32" height="48"/>
-  <object id="47" type="collision" x="192" y="224" width="80" height="32"/>
+  <object id="34" type="collision" x="208" y="192" width="16" height="192"/>
+  <object id="36" type="collision" x="224" y="368" width="64" height="16"/>
+  <object id="37" type="collision" x="336" y="368" width="112" height="16"/>
+  <object id="41" type="collision" x="432" y="192" width="16" height="176"/>
+  <object id="44" type="collision" x="224" y="192" width="208" height="48"/>
+  <object id="45" type="collision" x="400" y="240" width="32" height="48"/>
+  <object id="47" type="collision" x="256" y="288" width="80" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events" visible="0">
-  <object id="26" name="Player Spawn" type="event" x="304" y="240" width="16" height="16"/>
+  <object id="26" name="Player Spawn" type="event" x="368" y="304" width="16" height="16"/>
  </objectgroup>
 </map>

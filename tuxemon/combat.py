@@ -7,13 +7,14 @@ Code here might be shared by states, actions, conditions, etc.
 """
 
 from __future__ import annotations
+
 import logging
-from typing import Generator, Sequence, TYPE_CHECKING
+from typing import TYPE_CHECKING, Generator, Sequence
 
 if TYPE_CHECKING:
-    from tuxemon.player import Player
-    from tuxemon.npc import NPC
     from tuxemon.monster import Monster
+    from tuxemon.npc import NPC
+    from tuxemon.player import Player
 
 
 logger = logging.getLogger()
@@ -36,7 +37,9 @@ def check_battle_legal(player: Player) -> bool:
         return False
     else:
         if fainted_party(player.monsters):
-            logger.warning("Cannot start battle, player's monsters are all DEAD.")
+            logger.warning(
+                "Cannot start battle, player's monsters are all DEAD."
+            )
             return False
         else:
             return True

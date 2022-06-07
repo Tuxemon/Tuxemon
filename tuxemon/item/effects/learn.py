@@ -23,10 +23,12 @@
 #
 
 from __future__ import annotations
-from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from tuxemon.technique import Technique
+
 from typing import NamedTuple
+
+from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.monster import Monster
+from tuxemon.technique import Technique
 
 
 class LearnEffectResult(ItemEffectResult):

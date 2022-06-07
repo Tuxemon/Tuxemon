@@ -5,21 +5,31 @@ have a home in any specific place.
 
 """
 from __future__ import annotations
+
 import logging
 import os
 import re
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Generator,
+    Iterable,
+    Optional,
+    Protocol,
+    Sequence,
+    Tuple,
+    Union,
+)
 
 import pygame
-from pytmx.util_pygame import smart_convert, handle_transformation
 from pytmx.pytmx import TileFlags
+from pytmx.util_pygame import handle_transformation, smart_convert
 
 from tuxemon import prepare
-from tuxemon.surfanim import SurfaceAnimation
-from tuxemon.sprite import Sprite
-from tuxemon.tools import transform_resource_filename, scale_sequence
-from typing import Tuple, Sequence, Any, Iterable, Generator, Union, Optional,\
-    Protocol, TYPE_CHECKING
 from tuxemon.session import Session
+from tuxemon.sprite import Sprite
+from tuxemon.surfanim import SurfaceAnimation
+from tuxemon.tools import scale_sequence, transform_resource_filename
 
 if TYPE_CHECKING:
     from tuxemon.client import LocalPygameClient
@@ -36,7 +46,6 @@ ColorLike = Union[
 
 
 class LoaderProtocol(Protocol):
-
     def __call__(
         self,
         rect: Optional[Tuple[int, int, int, int]] = None,
@@ -262,7 +271,7 @@ def animation_frame_files(
 
     """
     frames = list()
-    pattern = re.compile(fr"{name}[0-9]*\..*")
+    pattern = re.compile(rf"{name}\.[0-9]+\.png")
     # might be slow on large folders
     for filename in os.listdir(directory):
         if pattern.match(filename):
@@ -355,7 +364,10 @@ def scale_sprite(
     sprite.rect.width = int(sprite.rect.width * ratio)
     sprite.rect.height = int(sprite.rect.height * ratio)
     sprite.rect.center = center
-    sprite._original_image = pygame.transform.scale(sprite._original_image, sprite.rect.size)
+    sprite._original_image = pygame.transform.scale(
+        sprite._original_image,
+        sprite.rect.size,
+    )
     sprite._needs_update = True
 
 

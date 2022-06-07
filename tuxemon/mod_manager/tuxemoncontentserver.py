@@ -3,9 +3,15 @@ Mod manager support module TuxemonContentServer
 https://github.com/vXtreniusX/TuxemonContentServer
 """
 
-import urllib.request
-import requests
 import json
+import os
+import urllib.request
+
+import requests
+
+from tuxemon.constants import paths
+from tuxemon.mod_manager import symlink_missing
+
 
 def update(url):
     """Returns the response from the server"""
@@ -13,7 +19,16 @@ def update(url):
     print(packages.text)
     return packages.json()
 
-def download_package(self, name, release, repo=None, dont_extract=False, install_deps=True, installed=None):
+
+def download_package(
+    self,
+    name,
+    release,
+    repo=None,
+    dont_extract=False,
+    install_deps=True,
+    installed=None,
+):
     """Downloads the specified package"""
     if repo is None:
         repo = self.get_package_repo(name)
@@ -28,9 +43,12 @@ def download_package(self, name, release, repo=None, dont_extract=False, install
         release = str(release).replace(char, "_")
 
     url = str(repo) + f"/packages/{name}/releases/{str(release)}/download"
-    filename = os.path.join(paths.CACHE_DIR, f"downloaded_packages/{name}.{release}.zip")
+    filename = os.path.join(
+        paths.CACHE_DIR,
+        f"downloaded_packages/{name}.{release}.zip",
+    )
 
-    # Apperantly this function is ported from urllib from python2.
+    # Apparently this function is ported from urllib from python2.
     # Maybe replace this in the future?
     # https://docs.python.org/3/library/urllib.request.html#urllib.request.urlretrieve
     urllib.request.urlretrieve(url, filename=filename)
@@ -47,9 +65,24 @@ def download_package(self, name, release, repo=None, dont_extract=False, install
 
     if install_deps:
         # This function calls download_package, might cause issues
-        self.install_dependencies(name, release, repo, dont_extract=dont_extract, done=installed)
+        self.install_dependencies(
+            author=name,
+            name=release,
+            repo=repo,
+            dont_extract=dont_extract,
+            done=installed,
+        )
 
-def install_dependencies(self, name, release, repo, dont_extract=False, symlink=True, done=None):
+
+def install_dependencies(
+    self,
+    name,
+    release,
+    repo,
+    dont_extract=False,
+    symlink=True,
+    done=None,
+):
     """
     Same as the download_package(), but it includes dependency installing.
     When symlink is True, dependency's files will be linked.
@@ -70,12 +103,20 @@ def install_dependencies(self, name, release, repo, dont_extract=False, symlink=
         for char in '/\\?%*:|"<>.,;= ':
             pack = str(pack).replace(char, "_")
 
-        if pack in installed: continue
-                
-        self.download_package(pack, release, repo, dont_extract=dont_extract, installed=installed)
+        if pack in installed:
+            continue
+
+        self.download_package(
+            pack,
+            release,
+            repo,
+            dont_extract=dont_extract,
+            installed=installed,
+        )
 
         # Symlink deps
         mainfolder = os.path.join(paths.BASEDIR, "mods", name)
         depfolder = os.path.join(paths.BASEDIR, "mods", pack)
         symlink_missing(mainfolder, depfolder)
-    else: pass
+    else:
+        pass

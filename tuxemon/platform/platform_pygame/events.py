@@ -1,21 +1,31 @@
 from __future__ import annotations
-from collections import defaultdict
 
+from collections import defaultdict
+from typing import (
+    Any,
+    ClassVar,
+    Dict,
+    Generator,
+    List,
+    Mapping,
+    Optional,
+    Tuple,
+    TypedDict,
+)
+
+import pygame
 import pygame as pg
 from pygame.rect import Rect
 
 from tuxemon import graphics
 from tuxemon.platform.const import buttons, events
 from tuxemon.platform.events import (
+    EventQueueHandler,
     InputHandler,
     PlayerInput,
-    EventQueueHandler,
 )
 from tuxemon.session import local_session
 from tuxemon.ui.draw import blit_alpha
-from typing import List, Dict, Generator, Optional, Mapping, Any, TypedDict,\
-    Tuple, ClassVar
-import pygame
 
 
 class PygameEventQueueHandler(EventQueueHandler):
@@ -39,7 +49,7 @@ class PygameEventQueueHandler(EventQueueHandler):
         self,
         player: int,
         element: int,
-        handler: InputHandler[Any]
+        handler: InputHandler[Any],
     ) -> None:
         """
         Sets an input handler to process.
@@ -69,7 +79,6 @@ class PygameEventHandler(InputHandler[pygame.event.Event]):
     """
     Input handler of Pygame events.
     """
-    pass
 
 
 class PygameGamepadInput(PygameEventHandler):
@@ -180,6 +189,7 @@ class PygameKeyboardInput(PygameEventHandler):
         event_map: Mapping of original identifiers to button identifiers.
 
     """
+
     default_input_map = {
         pg.K_UP: buttons.UP,
         pg.K_DOWN: buttons.DOWN,
@@ -250,6 +260,7 @@ class PygameTouchOverlayInput(PygameEventHandler):
         transparency: Transparency of the drawn overlay.
 
     """
+
     default_input_map: ClassVar[Mapping[Optional[int], int]] = {}
 
     def __init__(self, transparency: int) -> None:
@@ -326,7 +337,7 @@ class PygameTouchOverlayInput(PygameEventHandler):
             self.dpad["position"][1],  # Rectangle position_y
             self.dpad["surface"].get_width() / 3,  # Rectangle size_x
             self.dpad["surface"].get_height() / 2,
-        )  # Rectangle size_y
+        )
         self.dpad["rect"]["down"] = Rect(
             self.dpad["position"][0] + (self.dpad["surface"].get_width() / 3),
             self.dpad["position"][1] + (self.dpad["surface"].get_height() / 2),
@@ -417,6 +428,7 @@ class PygameMouseInput(PygameEventHandler):
         event_map: Mapping of original identifiers to button identifiers.
 
     """
+
     default_input_map = {
         pg.MOUSEBUTTONDOWN: buttons.MOUSELEFT,
         pg.MOUSEBUTTONUP: buttons.MOUSELEFT,

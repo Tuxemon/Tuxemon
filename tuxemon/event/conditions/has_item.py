@@ -19,12 +19,12 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-from operator import eq, gt, lt, ge, le
+from operator import eq, ge, gt, le, lt
+from typing import Callable, Mapping, Optional
 
-from tuxemon.event import get_npc, MapCondition
+from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
-from typing import Optional, Mapping, Callable
 
 cmp_dict: Mapping[Optional[str], Callable[[object, object], bool]] = {
     None: ge,

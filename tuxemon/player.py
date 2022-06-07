@@ -28,10 +28,11 @@
 #
 
 from __future__ import annotations
+
 import logging
 
-from tuxemon.npc import NPC
 from tuxemon.map import proj
+from tuxemon.npc import NPC
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)

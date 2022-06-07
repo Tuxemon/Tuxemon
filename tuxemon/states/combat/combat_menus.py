@@ -1,25 +1,25 @@
 from __future__ import annotations
+
 import logging
 from collections import defaultdict
 from functools import partial
+from typing import TYPE_CHECKING, Any, Callable, Generator, Optional, Union
 
 import pygame
 
-from tuxemon import tools, graphics
+from tuxemon import graphics, tools
+from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import Menu
-from tuxemon.menu.menu import PopUpMenu
+from tuxemon.menu.menu import Menu, PopUpMenu
+from tuxemon.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import MenuSpriteGroup, SpriteGroup
+from tuxemon.states.combat.combat import CombatState
+from tuxemon.states.items import ItemMenuState
+from tuxemon.states.monster import MonsterMenuState
 from tuxemon.technique import Technique
 from tuxemon.ui.draw import GraphicBox
-from typing import Callable, Generator, Any, Optional, Union, TYPE_CHECKING
-from tuxemon.states.combat.combat import CombatState
-from tuxemon.monster import Monster
-from tuxemon.item.item import Item
-from tuxemon.states.monster import MonsterMenuState
-from tuxemon.states.items import ItemMenuState
 
 if TYPE_CHECKING:
     from tuxemon.player import Player
@@ -95,14 +95,24 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
     def open_swap_menu(self) -> None:
         """Open menus to swap monsters in party."""
+
         def swap_it(menuitem: MenuItem[Monster]) -> None:
             monster = menuitem.game_object
 
-            if monster in self.client.get_state_by_name(CombatState).active_monsters:
-                tools.open_dialog(local_session, [T.format("combat_isactive", {"name": monster.name})])
+            if (
+                monster
+                in self.client.get_state_by_name(CombatState).active_monsters
+            ):
+                tools.open_dialog(
+                    local_session,
+                    [T.format("combat_isactive", {"name": monster.name})],
+                )
                 return
             elif monster.current_hp < 1:
-                tools.open_dialog(local_session, [T.format("combat_fainted", {"name": monster.name})])
+                tools.open_dialog(
+                    local_session,
+                    [T.format("combat_fainted", {"name": monster.name})],
+                )
                 return
             combat_state = self.client.get_state_by_name(CombatState)
             swap = Technique("swap")
@@ -175,7 +185,10 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 if tech.next_use <= 0:
                     image = self.shadow_text(tech.name)
                 else:
-                    image = self.shadow_text("%s %d" % (tech.name, abs(tech.next_use)), fg=self.unavailable_color)
+                    image = self.shadow_text(
+                        "%s %d" % (tech.name, abs(tech.next_use)),
+                        fg=self.unavailable_color,
+                    )
                 item = MenuItem(image, None, None, tech)
                 menu.add(item)
 

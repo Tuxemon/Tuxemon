@@ -1,7 +1,13 @@
 import unittest
 
 from tuxemon.compat import Rect
-from tuxemon.map import snap_interval, snap_point, snap_rect, tiles_inside_rect, point_to_grid
+from tuxemon.map import (
+    point_to_grid,
+    snap_interval,
+    snap_point,
+    snap_rect,
+    tiles_inside_rect,
+)
 
 
 class TestSnapInterval(unittest.TestCase):

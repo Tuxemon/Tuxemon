@@ -24,8 +24,10 @@
 #
 
 from __future__ import annotations
+
+from typing import NamedTuple, Union
+
 from tuxemon.item.itemcondition import ItemCondition
-from typing import Union, NamedTuple
 from tuxemon.monster import Monster
 
 
@@ -53,7 +55,8 @@ class ShapeCondition(ItemCondition[ShapeConditionParameters]):
         if target.shape is not None:
             ret = any(
                 target.shape.lower() == p.lower()
-                for p in self.parameters if p is not None
+                for p in self.parameters
+                if p is not None
             )
 
         return ret

@@ -22,17 +22,18 @@
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
 from __future__ import annotations
-import uuid
 
-from tuxemon.locale import process_translate_text
-from tuxemon.event.eventaction import EventAction
-from tuxemon.tools import open_dialog
-from tuxemon.graphics import get_avatar
 import logging
-from typing import NamedTuple, final, Sequence, Optional
-from tuxemon.states.world.worldstate import WorldState
-from tuxemon.states.dialog import DialogState
+import uuid
+from typing import NamedTuple, Optional, Sequence, final
+
+from tuxemon.event.eventaction import EventAction
+from tuxemon.graphics import get_avatar
+from tuxemon.locale import process_translate_text
 from tuxemon.sprite import Sprite
+from tuxemon.states.dialog import DialogState
+from tuxemon.states.world.worldstate import WorldState
+from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
 
@@ -78,7 +79,9 @@ class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
         npc_slug = npc_slug.replace("player", "npc_red")
         trainer = world.get_entity(npc_slug)
         if trainer is None:
-            logger.error(f"Could not find NPC corresponding to slug {npc_slug}")
+            logger.error(
+                f"Could not find NPC corresponding to slug {npc_slug}"
+            )
             return
 
         mother_id = uuid.UUID(trainer.game_variables[breeding_mother])
@@ -95,10 +98,14 @@ class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
             father = trainer.find_monster_in_storage(father_id)
 
         if mother is None:
-            logger.error(f"Could not find (mother) monster with instance id {mother_id}")
+            logger.error(
+                f"Could not find (mother) monster with instance id {mother_id}"
+            )
             return
         if father is None:
-            logger.error(f"Could not find (father) monster with instance id {father_id}")
+            logger.error(
+                f"Could not find (father) monster with instance id {father_id}"
+            )
             return
 
         new_mon = mother.spawn(father)

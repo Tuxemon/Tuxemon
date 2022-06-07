@@ -1,6 +1,4 @@
 import unittest
-from unittest import skip
-from unittest.mock import Mock
 
 from tuxemon.item.economy import Economy
 
@@ -8,24 +6,15 @@ from tuxemon.item.economy import Economy
 class EconomyTestBase(unittest.TestCase):
     pass
 
+
 class GetDefaultPriceAndCost(EconomyTestBase):
     def setUp(self):
         self.economy = Economy()
         self.economy.slug = "test_economy"
         self.economy.items = [
-          {
-            "item_name": "potion",
-            "price": 20,
-            "cost": 5
-          },
-          {
-            "item_name": "revive",
-            "price": 100
-          },
-          {
-            "item_name": "capture_device",
-            "cost": 10
-          }
+            {"item_name": "potion", "price": 20, "cost": 5},
+            {"item_name": "revive", "price": 100},
+            {"item_name": "capture_device", "cost": 10},
         ]
 
     def test_potion_price(self):

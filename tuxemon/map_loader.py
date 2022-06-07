@@ -25,36 +25,36 @@
 #
 
 import logging
-from math import cos, sin, pi
-from typing import Iterator, Tuple, Generator, Optional, Mapping, Any
+from math import cos, pi, sin
+from typing import Any, Generator, Iterator, Mapping, Optional, Tuple
 
 import pytmx
 import yaml
 from natsort import natsorted
 
-from tuxemon.compat import Rect
 from tuxemon import prepare
+from tuxemon.compat import Rect
 from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.graphics import scaled_image_loader
+from tuxemon.lib.bresenham import bresenham
 from tuxemon.map import (
-    TuxemonMap,
-    tiles_inside_rect,
-    snap_rect,
-    point_to_grid,
-    angle_of_points,
-    orientation_by_angle,
-    extract_region_properties,
-    Orientation,
     Direction,
+    Orientation,
     RegionProperties,
+    TuxemonMap,
+    angle_of_points,
+    extract_region_properties,
+    orientation_by_angle,
+    point_to_grid,
+    snap_rect,
+    tiles_inside_rect,
 )
 from tuxemon.script.parser import (
     parse_action_string,
-    parse_condition_string,
     parse_behav_string,
+    parse_condition_string,
 )
 from tuxemon.tools import copy_dict_with_keys
-from tuxemon.lib.bresenham import bresenham
 
 logger = logging.getLogger(__name__)
 
@@ -106,17 +106,50 @@ class YAMLEventLoader:
                 acts.append(action)
             for value in event_data.get("conditions", []):
                 operator, cond_type, args = parse_condition_string(value)
-                condition = MapCondition(cond_type, args, x, y, w, h, operator, None)
+                condition = MapCondition(
+                    type=cond_type,
+                    parameters=args,
+                    x=x,
+                    y=y,
+                    width=w,
+                    height=h,
+                    operator=operator,
+                    name="",
+                )
                 conds.append(condition)
             for value in event_data.get("behav", []):
                 behav_type, args = parse_behav_string(value)
                 if behav_type == "talk":
-                    conds.insert(0, MapCondition("to_talk", args, x, y, w, h, "is", None))
-                    acts.insert(0, MapAction("npc_face", [args[0], "player"], None))
+                    condition = MapCondition(
+                        type="to_talk",
+                        parameters=args,
+                        x=x,
+                        y=y,
+                        width=w,
+                        height=h,
+                        operator="is",
+                        name="",
+                    )
+                    conds.insert(0, condition)
+                    action = MapAction(
+                        type="npc_face",
+                        parameters=[args[0], "player"],
+                        name="",
+                    )
+                    acts.insert(0, action)
                 else:
                     raise Exception
             if event_type == "interact":
-                cond_data = MapCondition("player_facing_tile", list(), x, y, w, h, "is", None)
+                cond_data = MapCondition(
+                    "player_facing_tile",
+                    list(),
+                    x,
+                    y,
+                    w,
+                    h,
+                    "is",
+                    None,
+                )
                 conds.append(cond_data)
 
             yield EventObject(None, name, x, y, w, h, conds, acts)
@@ -161,13 +194,19 @@ class TMXMapLoader:
             The loaded map.
 
         """
-        data = pytmx.TiledMap(filename, image_loader=scaled_image_loader, pixelalpha=True)
+        data = pytmx.TiledMap(
+            filename=filename,
+            image_loader=scaled_image_loader,
+            pixelalpha=True,
+        )
         tile_size = (data.tilewidth, data.tileheight)
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
         events = list()
         inits = list()
         interacts = list()
-        collision_map: Mapping[Tuple[int, int], Optional[RegionProperties]] = {}
+        collision_map: Mapping[
+            Tuple[int, int], Optional[RegionProperties]
+        ] = {}
         collision_lines_map = set()
         edges = data.properties.get("edges")
 
@@ -191,11 +230,17 @@ class TMXMapLoader:
                 colliders = gids_with_colliders.get(gid)
                 if colliders is not None:
                     for obj in colliders:
-                        if obj.type and obj.type.lower().startswith("collision"):
+                        if obj.type and obj.type.lower().startswith(
+                            "collision"
+                        ):
                             if getattr(obj, "closed", True):
-                                region_conditions = copy_dict_with_keys(obj.properties, region_properties)
+                                region_conditions = copy_dict_with_keys(
+                                    obj.properties, region_properties
+                                )
                                 collision_map[(x, y)] = region_conditions
-                        for line in self.collision_lines_from_object(obj, tile_size):
+                        for line in self.collision_lines_from_object(
+                            obj, tile_size
+                        ):
                             coords, direction = line
                             lx, ly = coords
                             line = (lx + x, ly + y), direction
@@ -203,7 +248,9 @@ class TMXMapLoader:
 
         for obj in data.objects:
             if obj.type and obj.type.lower().startswith("collision"):
-                for tile_position, props in self.extract_tile_collisions(obj, tile_size):
+                for tile_position, props in self.extract_tile_collisions(
+                    obj, tile_size
+                ):
                     collision_map[tile_position] = props
                 for line in self.collision_lines_from_object(obj, tile_size):
                     collision_lines_map.add(line)
@@ -255,10 +302,14 @@ class TMXMapLoader:
         self,
         line: pytmx.TiledObject,
         tile_size: Tuple[int, int],
-    ) -> Generator[Tuple[Tuple[int, int], Tuple[int, int], Orientation], None, None]:
+    ) -> Generator[
+        Tuple[Tuple[int, int], Tuple[int, int], Orientation], None, None
+    ]:
         """Identify the tiles on either side of the line and block movement along it."""
         if len(line.points) < 2:
-            raise ValueError("Error: collision lines must be at least 2 points")
+            raise ValueError(
+                "Error: collision lines must be at least 2 points"
+            )
         for point_0, point_1 in zip(line.points, line.points[1:]):
             p0 = point_to_grid(point_0, tile_size)
             p1 = point_to_grid(point_1, tile_size)
@@ -267,7 +318,9 @@ class TMXMapLoader:
             orientation = orientation_by_angle(angle)
             for i in bresenham(p0[0], p0[1], p1[0], p1[1], include_end=False):
                 angle1 = angle - (pi / 2)
-                other = int(round(cos(angle1) + i[0])), int(round(sin(angle1) + i[1]))
+                other = int(round(cos(angle1) + i[0])), int(
+                    round(sin(angle1) + i[1])
+                )
                 yield i, other, orientation
 
     @staticmethod
@@ -331,7 +384,9 @@ class TMXMapLoader:
         for key, value in natsorted(obj.properties.items()):
             if key.startswith("cond"):
                 operator, cond_type, args = parse_condition_string(value)
-                condition = MapCondition(cond_type, args, x, y, w, h, operator, key)
+                condition = MapCondition(
+                    cond_type, args, x, y, w, h, operator, key
+                )
                 conds.append(condition)
             elif key.startswith("act"):
                 act_type, args = parse_action_string(value)
@@ -344,14 +399,20 @@ class TMXMapLoader:
                 behav_string = obj.properties[key]
                 behav_type, args = parse_behav_string(behav_string)
                 if behav_type == "talk":
-                    conds.insert(0, MapCondition("to_talk", args, x, y, w, h, "is", key))
-                    acts.insert(0, MapAction("npc_face", [args[0], "player"], key))
+                    conds.insert(
+                        0, MapCondition("to_talk", args, x, y, w, h, "is", key)
+                    )
+                    acts.insert(
+                        0, MapAction("npc_face", [args[0], "player"], key)
+                    )
                 else:
                     raise Exception
 
         # add a player_facing_tile condition automatically
         if obj.type == "interact":
-            cond_data = MapCondition("player_facing_tile", list(), x, y, w, h, "is", None)
+            cond_data = MapCondition(
+                "player_facing_tile", list(), x, y, w, h, "is", None
+            )
             logger.debug(cond_data)
             conds.append(cond_data)
 

@@ -20,9 +20,11 @@
 #
 
 from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, final
 
 
 class PathfindActionParameters(NamedTuple):
@@ -53,7 +55,9 @@ class PathfindAction(EventAction[PathfindActionParameters]):
 
     def start(self) -> None:
         self.npc = get_npc(self.session, self.parameters.npc_slug)
-        self.npc.pathfind((self.parameters.tile_pos_x, self.parameters.tile_pos_y))
+        self.npc.pathfind(
+            (self.parameters.tile_pos_x, self.parameters.tile_pos_y)
+        )
 
     def update(self) -> None:
         if not self.npc.moving and not self.npc.path:

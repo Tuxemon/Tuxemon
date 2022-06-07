@@ -40,12 +40,12 @@ import pygame
 
 from tuxemon import prepare
 from tuxemon.locale import T
+from tuxemon.menu.input import InputMenu
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
 from tuxemon.state import State
-from tuxemon.menu.input import InputMenu
 from tuxemon.states.transition.fade import FadeInTransition
 
 logger = logging.getLogger(__name__)
@@ -67,6 +67,7 @@ class BackgroundState(State):
 
     def draw(self, surface: pygame.surface.Surface) -> None:
         surface.fill((0, 0, 0, 0))
+
 
 class StartState(PopUpMenu[StartGameObj]):
     """The state responsible for the start menu."""
@@ -128,10 +129,7 @@ class ModChooserMenuState(PopUpMenu[StartGameObj]):
         def new_game_callback(
             map_name: str,
         ) -> Callable:
-            return partial(
-                new_game,
-                map_name
-            )
+            return partial(new_game, map_name)
 
         def set_player_name(text: str) -> None:
             map_path = prepare.fetch("maps", self.map_name)
@@ -148,7 +146,7 @@ class ModChooserMenuState(PopUpMenu[StartGameObj]):
                 prompt=T.translate("input_name"),
                 callback=set_player_name,
                 escape_key_exits=True,
-                char_limit=prepare.PLAYER_NAME_LIMIT
+                char_limit=prepare.PLAYER_NAME_LIMIT,
             )
             self.client.push_state(FadeInTransition)
 
@@ -158,7 +156,10 @@ class ModChooserMenuState(PopUpMenu[StartGameObj]):
         # If a different map has been passed as a parameter, show as an option:
         if prepare.CONFIG.starting_map != "player_house_bedroom.tmx":
             menu_items_map = menu_items_map + (
-                (str(prepare.CONFIG.starting_map), new_game_callback(prepare.CONFIG.starting_map)),
+                (
+                    str(prepare.CONFIG.starting_map),
+                    new_game_callback(prepare.CONFIG.starting_map),
+                ),
             )
 
         menu_items_map = menu_items_map + (

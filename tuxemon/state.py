@@ -24,39 +24,39 @@
 #
 
 from __future__ import annotations
+
 import inspect
 import logging
 import os.path
 import sys
 from abc import ABCMeta
 from importlib import import_module
-import pygame
 from typing import (
     Any,
-    Optional,
-    Type,
-    Generator,
-    Mapping,
-    Sequence,
-    List,
-    Tuple,
+    Callable,
     Dict,
+    Generator,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
     Set,
-    overload,
+    Tuple,
+    Type,
     TypeVar,
     Union,
-    Callable,
+    overload,
 )
 
+import pygame
 from pygame.rect import Rect
+
+from tuxemon import graphics, prepare
+from tuxemon.animation import Animation, Task, remove_animations_of
 from tuxemon.constants import paths
-from tuxemon import prepare, graphics
-from tuxemon.animation import Animation
-from tuxemon.animation import Task
-from tuxemon.animation import remove_animations_of
-from tuxemon.session import local_session
-from tuxemon.sprite import SpriteGroup, Sprite
 from tuxemon.platform.events import PlayerInput
+from tuxemon.session import local_session
+from tuxemon.sprite import Sprite, SpriteGroup
 
 logger = logging.getLogger(__name__)
 
@@ -305,10 +305,11 @@ class StateManager:
             changes.
 
     """
+
     def __init__(
         self,
         package: str,
-        on_state_change: Optional[Callable[[], None]] = None
+        on_state_change: Optional[Callable[[], None]] = None,
     ) -> None:
         self.package = package
         # TODO: consider API for handling hooks

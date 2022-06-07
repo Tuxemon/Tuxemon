@@ -30,16 +30,25 @@
 #
 
 from __future__ import annotations
-import logging
 
-from tuxemon.tools import NamedTupleProtocol, cast_parameters_to_namedtuple
-from typing import TypeVar, Generic, ClassVar, Type, Sequence, Any, TypedDict,\
-    TYPE_CHECKING
+import logging
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    ClassVar,
+    Generic,
+    Sequence,
+    Type,
+    TypedDict,
+    TypeVar,
+)
+
 from tuxemon.session import Session
+from tuxemon.tools import NamedTupleProtocol, cast_parameters_to_namedtuple
 
 if TYPE_CHECKING:
-    from tuxemon.npc import NPC
     from tuxemon.monster import Monster
+    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
@@ -123,7 +132,9 @@ class ItemEffect(Generic[ParameterClass]):
             logger.error(f"error while parsing for {self.name}")
             logger.error(f"cannot parse parameters: {parameters}")
             logger.error(self.param_class)
-            logger.error("please check the parameters and verify they are correct")
+            logger.error(
+                "please check the parameters and verify they are correct"
+            )
             self.parameters = None
 
         self._done = False

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from typing import NamedTuple, final
+
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.sink import SinkState
 

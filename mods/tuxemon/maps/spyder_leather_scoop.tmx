@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="19">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="22">
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
@@ -21,57 +21,57 @@
  <tileset firstgid="4926" name="Stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
   <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
  </tileset>
- <tileset firstgid="4950" name="Plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
+ <tileset firstgid="4950" name="Plants" tilewidth="16" tileheight="16" tilecount="2" columns="1">
+  <image source="../gfx/tilesets/plants.png" width="16" height="32"/>
  </tileset>
- <tileset firstgid="4966" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+ <tileset firstgid="4952" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
   <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
  </tileset>
- <tileset firstgid="5466" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
+ <tileset firstgid="5452" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
   <image source="../gfx/tilesets/Objects_by_ArMM1998.png" width="528" height="320"/>
  </tileset>
- <tileset firstgid="6126" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+ <tileset firstgid="6112" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="6142" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+ <tileset firstgid="6128" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="6230" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+ <tileset firstgid="6216" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
   <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
  </tileset>
- <tileset firstgid="7230" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
+ <tileset firstgid="7216" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
   <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
  </tileset>
- <tileset firstgid="7440" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+ <tileset firstgid="7426" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
   <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
  </tileset>
- <tileset firstgid="7494" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
+ <tileset firstgid="7480" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="7566" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+ <tileset firstgid="7552" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="7582" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
-  <image source="../gfx/tilesets/items.png" width="160" height="160"/>
+ <tileset firstgid="7568" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
+  <image source="../gfx/tilesets/items.png" width="48" height="32"/>
  </tileset>
  <layer id="1" name="Layer 1" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAEzk2BgMCMROwLVk4p9gHpIxdpAPaN48IYBAFaMKMg=
+   eAHTkGBg0CARGwPVk4rtgHpIxbJAPaN48IYBAInFIPY=
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYCAfsAih6iXEB6muE4boWQSkrwgyMFwFYhB7MRAvQZODmT4JKr4NSN8Dqr8PxCD2diDegSaHrgfGJ4aG2YOuVp+LgWEXEO8GYhAbBKqB9tYAMT49z4FqXyDp6QeqnwDEE4EYBLCZC5HBTYL0oJtLyBw9WaBdUGwApEEA3RwtHgYGGE4XZWAwB6qzgGJLIK0DlEcHAEOCJDI=
+   eAFjYCAfsAih6iXEB6kuEIbomQKkrwgyMFwFYhB7KhBPQ5ODmd4CFV8BpO8B1d8HYhB7JRCvQpND1wPjE0PD7EFXq8/FwLALiHcDMYgNArlAe/OAGJ+e50C1L5D0NALVNwFxMxCDADZzITK4SZAedHMJmaMgy8CgCMVKQBoE0M3R4mFggOFIUQYGTaA6LSjWBtI6QHl0AACpBCKc
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYKAv4Ocm3b464eGlh3TfDE4dABxyAl8=
+   eAFjYKAv4Ocm3b4C4cGpJw/oLnLcRrpvBqcOAFUvAqg=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYKAvmC9Lun0rydBDui34dYhLYZev48IuTqwoLnOJ1Y9NHRMPAwMMY5OnlhgAfkUClw==
+   eAFjYKAvmChLun1TyNBDui34dXBKYcrnCTMw1HFhipMigs1cUvRjU8vEw8AAw9jkqSUGAKsyAtk=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -102,6 +102,34 @@
    <properties>
     <property name="act1" value="play_music music_cathedral_theme"/>
     <property name="cond1" value="not music_playing music_cathedral_theme"/>
+   </properties>
+  </object>
+  <object id="19" name="Open Shop" type="event" x="48" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face spyder_shopkeeper,right"/>
+    <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
+    <property name="act3" value="open_shop spyder_shopkeeper"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="20" name="Open Shop" type="event" x="16" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face spyder_shopkeeper,down"/>
+    <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
+    <property name="act3" value="open_shop spyder_shopkeeper"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="21" name="Create Shopkeeper" type="event" x="16" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_shopkeeper,1,6"/>
+    <property name="act2" value="npc_face spyder_shopkeeper,right"/>
+    <property name="act20" value="set_inventory spyder_shopkeeper,inv_basic_store"/>
+    <property name="cond1" value="not npc_exists spyder_shopkeeper"/>
    </properties>
   </object>
  </objectgroup>

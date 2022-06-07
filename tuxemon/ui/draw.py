@@ -1,17 +1,24 @@
 from __future__ import annotations
+
 import logging
 import math
 from itertools import product
+from typing import (
+    Callable,
+    Generator,
+    Iterable,
+    List,
+    Optional,
+    Sequence,
+    Tuple,
+)
 
 import pygame
-
 from pygame.rect import Rect
 
 from tuxemon import prepare
 from tuxemon.graphics import ColorLike
 from tuxemon.sprite import Sprite
-from typing import Callable, Sequence, Optional, Tuple, Generator, Iterable,\
-    List
 
 logger = logging.getLogger(__name__)
 

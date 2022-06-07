@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/schemas/technique-schema.json",
   "accuracy": 1,
   "animation": "bolt",
   "category": "physical",
@@ -11,7 +12,7 @@
   "is_fast": false,
   "potency": 1,
   "power": 1,
-  "range": "special",
+  "range": "melee",
   "recharge": 1,
   "sfx": "sfx_feint",
   "slug": "feint",

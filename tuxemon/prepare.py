@@ -27,7 +27,9 @@
 # prepare Prepares the game environment.
 #
 from __future__ import annotations
+
 from typing import TYPE_CHECKING, List
+
 """This module initializes the display and creates dictionaries of resources.
 It contains all the static and dynamic variables used throughout the game such
 as display resolution, scale, etc.
@@ -37,11 +39,12 @@ import logging
 import os.path
 import re
 
-from tuxemon.constants import paths
 from tuxemon import config
+from tuxemon.constants import paths
 
 if TYPE_CHECKING:
     import pygame as pg
+
     SCREEN: pg.surface.Surface
     SCREEN_RECT: pg.rect.Rect
     JOYSTICKS: List[pg.joystick.Joystick]
@@ -83,7 +86,8 @@ with open(paths.USER_CONFIG_PATH, "w") as fp:
 SCREEN_SIZE = CONFIG.resolution
 
 # Set the native tile size so we know how much to scale our maps
-TILE_SIZE = (16, 16)  # 1 tile = 16 pixels
+# 1 tile = 16 pixels
+TILE_SIZE = (16, 16)
 
 # Set the status icon size so we know how much to scale our menu icons
 ICON_SIZE = [7, 7]

@@ -28,19 +28,22 @@
 # states.ShopMenuState
 #
 from __future__ import annotations
+
+from typing import Any, Generator, Iterable, Sequence, Tuple
+
+import pygame
+
 from tuxemon import tools
+from tuxemon.item.item import InventoryItem, Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
-from tuxemon.menu.quantity import QuantityMenu, QuantityAndPriceMenu
+from tuxemon.menu.quantity import QuantityAndPriceMenu, QuantityMenu
+from tuxemon.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
-from tuxemon.ui.text import TextArea
-from typing import Any, Generator, Sequence, Tuple, Iterable
-import pygame
-from tuxemon.item.item import Item, InventoryItem
-from tuxemon.monster import Monster
 from tuxemon.states.monster import MonsterMenuState
+from tuxemon.ui.text import TextArea
 
 # The import is required for PushState to work.
 # But linters may say the import is unused.
@@ -65,6 +68,7 @@ def sort_inventory(
         Sorted copy of the inventory.
 
     """
+
     def rank_item(properties: InventoryItem) -> Tuple[int, str]:
         item = properties["item"]
         primary_order = sort_order.index(item.sort)
@@ -109,7 +113,8 @@ class ItemMenuState(Menu[Item]):
         self.backpack_center = self.rect.width * 0.16, self.rect.height * 0.45
         self.load_sprite(
             "gfx/ui/item/backpack.png",
-            center=self.backpack_center, layer=100,
+            center=self.backpack_center,
+            layer=100,
         )
 
     def calc_internal_rect(self) -> pygame.rect.Rect:
@@ -158,6 +163,7 @@ class ItemMenuState(Menu[Item]):
             item: Selected item.
 
         """
+
         def use_item(menu_item: MenuItem[Monster]) -> None:
             player = local_session.player
             monster = menu_item.game_object
@@ -313,8 +319,7 @@ class ShopMenuState(Menu[Item]):
 
         item_dict = self.seller.inventory[item.slug]
         max_quantity = (
-            None if item_dict.get("infinite")
-            else item_dict["quantity"]
+            None if item_dict.get("infinite") else item_dict["quantity"]
         )
 
         self.client.push_state(
@@ -404,12 +409,13 @@ class ShopBuyMenuState(ShopMenuState):
 
         item_dict = self.seller.inventory[item.slug]
         max_quantity = (
-            None if item_dict.get("infinite")
-            else item_dict["quantity"]
+            None if item_dict.get("infinite") else item_dict["quantity"]
         )
         price = (
-          1 if not self.economy or not self.economy.lookup_item_price(item.slug)
-          else self.economy.lookup_item_price(item.slug)
+            1
+            if not self.economy
+            or not self.economy.lookup_item_price(item.slug)
+            else self.economy.lookup_item_price(item.slug)
         )
 
         self.client.push_state(

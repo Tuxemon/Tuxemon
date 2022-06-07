@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from tuxemon.state import State
-from tuxemon.platform.events import PlayerInput
 from typing import Optional
+
+from tuxemon.platform.events import PlayerInput
+from tuxemon.state import State
 
 
 class SinkState(State):

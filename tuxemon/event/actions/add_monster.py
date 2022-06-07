@@ -20,10 +20,12 @@
 #
 
 from __future__ import annotations
+
+from typing import NamedTuple, Optional, Union, final
+
 from tuxemon import monster
-from tuxemon.event.eventaction import EventAction
 from tuxemon.event import get_npc
-from typing import Union, NamedTuple, final, Optional
+from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
 
 

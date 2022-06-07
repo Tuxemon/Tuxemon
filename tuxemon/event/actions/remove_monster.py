@@ -19,11 +19,12 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 from __future__ import annotations
-import uuid
 
-from tuxemon.event.eventaction import EventAction
+import uuid
+from typing import NamedTuple, Union, final
+
 from tuxemon.event import get_npc
-from typing import Union, NamedTuple, final
+from tuxemon.event.eventaction import EventAction
 
 
 class RemoveMonsterActionParameters(NamedTuple):
@@ -60,7 +61,8 @@ class RemoveMonsterAction(EventAction[RemoveMonsterActionParameters]):
         trainer_slug = self.parameters.trainer_slug
 
         trainer = (
-            self.session.player if trainer_slug is None
+            self.session.player
+            if trainer_slug is None
             else get_npc(self.session, trainer_slug)
         )
         assert trainer

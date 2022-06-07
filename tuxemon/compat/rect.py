@@ -1,13 +1,15 @@
 from __future__ import annotations
+
+from abc import abstractmethod
 from typing import (
     Protocol,
-    runtime_checkable,
-    Union,
-    Tuple,
     Sequence,
-    TypeVar, cast,
+    Tuple,
+    TypeVar,
+    Union,
+    cast,
+    runtime_checkable,
 )
-from abc import abstractmethod
 
 SelfRectType = TypeVar("SelfRectType", bound="ReadOnlyRect")
 RectType = TypeVar("RectType", bound="ReadOnlyRect", covariant=True)
@@ -109,7 +111,11 @@ class ReadOnlyRect(Protocol):
         self: SelfRectType,
         __l: Sequence[RectLike[SelfRectType]],
     ) -> Sequence[int]:
-        return [i for i, rect in enumerate(__l) if intersect(self, type(self)(rect))]
+        return [
+            i
+            for i, rect in enumerate(__l)
+            if intersect(self, type(self)(rect))
+        ]
 
     @property
     def top(self) -> int:
@@ -205,9 +211,9 @@ class ReadOnlyRect(Protocol):
 
 
 def intersect(r1: ReadOnlyRect, r2: ReadOnlyRect) -> bool:
-    return ((r2.left <= r1.left < r2.right) or (r1.left <= r2.left < r1.right)) and (
-        (r2.top <= r1.top < r2.bottom) or (r1.top <= r2.top < r1.bottom)
-    )
+    return (
+        (r2.left <= r1.left < r2.right) or (r1.left <= r2.left < r1.right)
+    ) and ((r2.top <= r1.top < r2.bottom) or (r1.top <= r2.top < r1.bottom))
 
 
 class Rect(ReadOnlyRect):

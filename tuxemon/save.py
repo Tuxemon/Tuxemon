@@ -28,30 +28,23 @@
 #
 
 from __future__ import annotations
+
 import base64
 import datetime
+import importlib
 import json
 import logging
+import os
 from operator import itemgetter
+from typing import Any, Callable, Literal, Mapping, Optional, TextIO, TypeVar
 
 import pygame
 
 from tuxemon import prepare
+from tuxemon.client import LocalPygameClient
 from tuxemon.save_upgrader import SAVE_VERSION, upgrade_save
 from tuxemon.session import Session
-from typing import (
-    Mapping,
-    Any,
-    Optional,
-    Callable,
-    TypeVar,
-    TextIO,
-    Literal,
-)
-from tuxemon.client import LocalPygameClient
 from tuxemon.states.world.worldstate import WorldState
-import importlib
-import os
 
 try:
     import cbor
@@ -100,7 +93,8 @@ def get_save_data(session: Session) -> Mapping[str, Any]:
     save_data = session.player.get_state(session)
     screenshot = capture_screenshot(session.client)
     save_data["screenshot"] = base64.b64encode(
-        pygame.image.tostring(screenshot, "RGB")).decode("utf-8")
+        pygame.image.tostring(screenshot, "RGB")
+    ).decode("utf-8")
     save_data["screenshot_width"] = screenshot.get_width()
     save_data["screenshot_height"] = screenshot.get_height()
     save_data["time"] = datetime.datetime.now().strftime(TIME_FORMAT)
@@ -153,7 +147,6 @@ def json_dump(
     compression_kwargs: Optional[Mapping[str, Any]] = None,
     json_kwargs: Optional[Mapping[str, Any]] = None,
 ) -> None:
-
     def action_function(
         file: TextIO,
         json_kwargs: Mapping[str, Any],
@@ -174,7 +167,6 @@ def json_load(
     compression_kwargs: Optional[Mapping[str, Any]] = None,
     json_kwargs: Optional[Mapping[str, Any]] = None,
 ) -> Any:
-
     def action_function(
         file: TextIO,
         json_kwargs: Mapping[str, Any],
@@ -206,8 +198,8 @@ def open_save_file(save_path: str) -> Any:
 
 
 def save(
-        save_data: Mapping[str, Any],
-        slot: int,
+    save_data: Mapping[str, Any],
+    slot: int,
 ) -> None:
     """
     Saves the current game state to a file using gzip compressed JSON.
@@ -270,7 +262,10 @@ def get_index_of_latest_save() -> Optional[int]:
         save_path = get_save_path(slot_index + 1)
         save_data = open_save_file(save_path)
         if save_data is not None:
-            time_of_save = datetime.datetime.strptime(save_data["time"], TIME_FORMAT)
+            time_of_save = datetime.datetime.strptime(
+                save_data["time"],
+                TIME_FORMAT,
+            )
             times.append((slot_index, time_of_save))
     if len(times) > 0:
         s = max(times, key=itemgetter(1))

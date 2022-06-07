@@ -28,8 +28,10 @@
 #
 
 from __future__ import annotations
+
+from typing import Any, Dict, Mapping
+
 from tuxemon.prepare import CONFIG
-from typing import Any, Mapping, Dict
 
 """
 This module is for handling breaking changes to the save file.

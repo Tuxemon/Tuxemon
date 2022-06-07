@@ -20,16 +20,17 @@
 #
 
 from __future__ import annotations
-import logging
 
-from tuxemon.locale import replace_text
-from tuxemon.event.eventaction import EventAction
-from tuxemon.tools import open_dialog
-from tuxemon.graphics import get_avatar
-from typing import NamedTuple, final, Optional
-from tuxemon.states.dialog import DialogState
-from tuxemon.sprite import Sprite
+import logging
 import warnings
+from typing import NamedTuple, Optional, final
+
+from tuxemon.event.eventaction import EventAction
+from tuxemon.graphics import get_avatar
+from tuxemon.locale import replace_text
+from tuxemon.sprite import Sprite
+from tuxemon.states.dialog import DialogState
+from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
 

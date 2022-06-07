@@ -1,5 +1,6 @@
-from tuxemon.compat.rect import ReadOnlyRect
 from typing import Type
+
+from tuxemon.compat.rect import ReadOnlyRect
 
 Rect: Type[ReadOnlyRect]
 

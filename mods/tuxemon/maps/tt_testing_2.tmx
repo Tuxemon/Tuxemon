@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="33" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="51">
+ <tileset firstgid="1" source="../gfx/tilesets/prototyping_outdoor.tsx"/>
+ <tileset firstgid="2049" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="33" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20Hb4hAYcCAAQMGDBgwYOAfGApQAAE=
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="33" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20Hb4hAYcCAAQMGDBgwYOAfGApQAAE=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="33" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20Hb4hAYcCAAQMGDBgwYOAfGApQAAE=
+  </data>
+ </layer>
+ <layer id="4" name="Above player" width="33" height="20" visible="0">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20Hb4hAYcCAAQMGDBgwYOAfGApQAAE=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collision" visible="0">
+  <object id="34" type="collision" x="144" y="128" width="16" height="192"/>
+  <object id="36" type="collision" x="160" y="304" width="64" height="16"/>
+  <object id="37" type="collision" x="272" y="304" width="112" height="16"/>
+  <object id="41" type="collision" x="368" y="128" width="16" height="176"/>
+  <object id="44" type="collision" x="160" y="128" width="208" height="48"/>
+  <object id="45" type="collision" x="336" y="176" width="32" height="48"/>
+  <object id="47" type="collision" x="192" y="224" width="80" height="32"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events" visible="0">
+  <object id="26" name="Player Spawn" type="event" x="304" y="240" width="16" height="16"/>
+ </objectgroup>
+</map>

@@ -20,10 +20,12 @@
 #
 
 from __future__ import annotations
+
+from typing import Generator, NamedTuple, Sequence, Tuple, final
+
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map import dirs2, Direction
-from typing import NamedTuple, final, Sequence, Tuple, Generator
+from tuxemon.map import Direction, dirs2
 from tuxemon.math import Vector2
 
 
@@ -95,10 +97,12 @@ class NpcMoveAction(EventAction[NpcMoveActionParameters]):
         if self.npc is None:
             return
 
-        path = list(parse_path_parameters(
-            self.npc.tile_pos,
-            self.raw_parameters[1:],
-        ))
+        path = list(
+            parse_path_parameters(
+                self.npc.tile_pos,
+                self.raw_parameters[1:],
+            )
+        )
         path.reverse()
         self.npc.path = path
         self.npc.next_waypoint()

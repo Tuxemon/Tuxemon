@@ -25,9 +25,11 @@
 #
 
 from __future__ import annotations
-from tuxemon.session import Session
-from tuxemon.event import MapCondition
+
 from typing import Any, ClassVar, Dict
+
+from tuxemon.event import MapCondition
+from tuxemon.session import Session
 
 
 class EventCondition:

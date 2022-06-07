@@ -27,14 +27,15 @@
 # states.FlashTransition
 #
 from __future__ import annotations
+
 import logging
+from typing import Any, Optional
 
 import pygame
 
 from tuxemon import prepare
-from tuxemon.state import State
-from typing import Any, Optional
 from tuxemon.platform.events import PlayerInput
+from tuxemon.state import State
 
 logger = logging.getLogger(__name__)
 
@@ -86,7 +87,8 @@ class FlashTransition(State):
         # transition animation.
         if self.flash_count > self.max_flash_count:
             logger.info(
-                "Flashed " + str(self.flash_count)
+                "Flashed "
+                + str(self.flash_count)
                 + " times. Stopping transition.",
             )
             self.client.pop_state()

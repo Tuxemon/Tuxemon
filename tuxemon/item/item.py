@@ -30,21 +30,29 @@
 #
 
 from __future__ import annotations
+
 import logging
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    ClassVar,
+    Dict,
+    Mapping,
+    Optional,
+    Sequence,
+    Type,
+    TypedDict,
+)
 
-from tuxemon import prepare, graphics
-from tuxemon.db import db, process_targets
-from tuxemon.locale import T
-
-from tuxemon import plugin
-from tuxemon.constants import paths
-from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from tuxemon.item.itemcondition import ItemCondition
-from tuxemon.session import Session
-
-from typing import Mapping, Any, Type, Optional, Sequence, Dict, TYPE_CHECKING,\
-    ClassVar, TypedDict
 import pygame
+
+from tuxemon import graphics, plugin, prepare
+from tuxemon.constants import paths
+from tuxemon.db import db, process_targets
+from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+from tuxemon.locale import T
+from tuxemon.session import Session
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -82,9 +90,10 @@ class Item:
         self.images: Sequence[str] = []
         self.type: Optional[str] = None
         self.sfx = None
-        self.sprite = ""  # The path to the sprite to load.
-        self.surface: Optional[pygame.surface.Surface] = None  # The pygame.Surface object of the item.
-        self.surface_size_original = (0, 0)  # The original size of the image before scaling.
+        # The path to the sprite to load.
+        self.sprite = ""
+        self.surface: Optional[pygame.surface.Surface] = None
+        self.surface_size_original = (0, 0)
 
         self.effects: Sequence[ItemEffect[Any]] = []
         self.conditions: Sequence[ItemCondition[Any]] = []
@@ -123,14 +132,14 @@ class Item:
         """
 
         try:
-            results = db.lookup(slug, table="item")
+            results = db.lookup(slug, table="item").dict()
         except KeyError:
             logger.error(msg=f"Failed to find item with slug {slug}")
             return
 
-        self.slug = results["slug"]  # short English identifier
-        self.name = T.translate(self.slug)  # translated name
-        self.description = T.translate(f"{self.slug}_description")  # will be locale string
+        self.slug = results["slug"]
+        self.name = T.translate(self.slug)
+        self.description = T.translate(f"{self.slug}_description")
 
         # item use notifications (translated!)
         self.use_item = T.translate(results["use_item"])
@@ -280,7 +289,9 @@ class Item:
             meta_result.update(result)
 
         # If this is a consumable item, remove it from the player's inventory.
-        if (prepare.CONFIG.items_consumed_on_failure or meta_result["success"]) and self.type == "Consumable":
+        if (
+            prepare.CONFIG.items_consumed_on_failure or meta_result["success"]
+        ) and self.type == "Consumable":
             if user.inventory[self.slug]["quantity"] <= 1:
                 del user.inventory[self.slug]
             else:

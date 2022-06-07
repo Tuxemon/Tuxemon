@@ -29,15 +29,16 @@
 # states.FadeInTransition
 #
 from __future__ import annotations
+
 import logging
 from abc import abstractmethod
+from typing import Any, Optional
 
 import pygame
 
-from tuxemon.state import State
-from typing import Any, Optional
-from tuxemon.platform.events import PlayerInput
 from tuxemon.graphics import ColorLike
+from tuxemon.platform.events import PlayerInput
+from tuxemon.state import State
 
 logger = logging.getLogger(__name__)
 

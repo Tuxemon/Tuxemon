@@ -411,7 +411,7 @@ class ShopBuyMenuState(ShopMenuState):
             else self.economy.lookup_item_price(item.slug)
         )
         qty_buyer_can_afford = (
-            None
+            0
             if not (
                 self.buyer.game_variables
                 and self.buyer.game_variables["money"]

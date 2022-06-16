@@ -1972,7 +1972,7 @@ msgstr "I am sorry to give you such late notice about this address, but I believ
 "They would then use these Tuxemon to battle others and ascend rank in their town, with the best Tuxemon Trainers gaining status and power.\n"
 "We will be creating a version of this for the modern day. We will be forming battle areas in multiple cities across Fondent.\n"
 "Each Battle Area will need to be completed in order and the most promising trainer, or trainers, will be able to attempt the Championship.\n"
-"The Championship will be held on top of the Omnichannel Tower in Cotton Town, but only once a Tuxemon Trainer has made it through every Battle Area.\n"
+"The Championship will be held on top of Omnichannel Tower in Cotton Town, but only once a Tuxemon Trainer has made it through every Battle Area.\n"
 "The Trial is designed as a way to slowly introduce public life to Tuxemon and to encourage travel throughout the region.\n"
 "Who better to demonstrate this than our youth?\n"
 "Each Match will be broadcast live on Omnichannel-T, the newest television station devoted exclusively to Tuxemon-related programming!\n"

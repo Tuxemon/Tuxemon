@@ -856,20 +856,29 @@ class NPC(Entity[NPCState]):
 
     def can_sell_item(self, item_slug: str, qty: int, unit_price: int) -> bool:
         current_item = self.inventory.get(item_slug)
-        if item_slug:
+        if current_item:
             current_qty = current_item["quantity"]
             return current_qty >= qty or current_item["infinite"]
         # If they don't have the item, then they can't sell the item:
         return False
 
-    def buy_item(
-        self, session: Session, item_slug: str, qty: int, unit_price: int
+    def buy_decrease_money(
+        self,
+        session: Session,
+        seller: NPC,
+        item_slug: str,
+        qty: int,
+        unit_price: int,
     ) -> None:
-        """Decreases current money, and adds the items to the inventory.
+        """Decreases current money during a buy transaction, but doesn't change
+        an item's quantity (use NPC.give_item too after this)
 
         Raises an exception if there's not enough money to pay the price."""
+
+        # Only players will have game_variables, so only update money or raise
+        # exception if it exists:
         if self.game_variables:
-            if self.game_variables["money"] < qty * unit_price:
+            if not self.can_buy_item(item_slug, qty, unit_price):
                 raise Exception(
                     f"Tried to buy item with {self.game_variables['money']} coins "
                     f"but not enough money:\n"
@@ -878,30 +887,28 @@ class NPC(Entity[NPCState]):
 
             self.game_variables["money"] -= qty * unit_price
 
-        current_item = self.inventory.get(item_slug)
-        if current_item:
-            current_item["quantity"] += qty
-        else:
-            self.inventory[item_slug] = {
-                "item": Item(session, self, item_slug),
-                "quantity": qty,
-            }
-
-    def sell_item(
-        self, session: Session, item_slug: str, qty: int, unit_price: int
+    def sell_increase_money(
+        self,
+        session: Session,
+        buyer: NPC,
+        item_slug: str,
+        qty: int,
+        unit_price: int,
     ) -> None:
-        """Increases current money, and removes the items from the inventory.
+        """Increases current money during a sell transaction, but doesn't change
+        an item's quantity (use NPC.give_item too after this)
 
         Raises an exception if there's not enough items in the inventory."""
         current_item = self.inventory.get(item_slug)
-        if not current_item or (
-            current_item["quantity"] < qty and not current_item["infinite"]
+        if not current_item or not self.can_sell_item(
+            item_slug, qty, unit_price
         ):
             raise Exception(
                 f"Tried to sell item of qty {qty}, but not enough available."
             )
 
-        current_item["quantity"] -= qty
+        # Only players will have game_variables, so only update money
+        # if it exists:
         if self.game_variables:
             self.game_variables["money"] += qty * unit_price
 
@@ -918,8 +925,9 @@ class NPC(Entity[NPCState]):
 
         Raises an exception if the transaction can't be completed."""
 
-        self.buy_item(session, item_slug, qty, unit_price)
-        seller.sell_item(session, item_slug, qty, unit_price)
+        self.buy_decrease_money(session, seller, item_slug, qty, unit_price)
+        seller.sell_increase_money(session, self, item_slug, qty, unit_price)
+        seller.give_item(session, self, db.lookup(item_slug, "item"), qty)
 
     def speed_test(self, action: EnqueuedAction) -> int:
         return self.speed

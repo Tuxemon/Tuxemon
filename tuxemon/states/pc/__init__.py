@@ -35,12 +35,17 @@ import logging
 from functools import partial
 from typing import Any, Callable, Generator, Sequence, Tuple
 
+import pygame_menu
+
+from tuxemon import graphics, prepare
+from tuxemon.db import db
 from tuxemon.locale import T
 from tuxemon.menu.input import InputMenu
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import Menu, PopUpMenu
+from tuxemon.menu.menu import Menu, PopUpMenu, PygameMenuState
+from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
-from tuxemon.tools import open_dialog
+from tuxemon.tools import open_dialog, transform_resource_filename
 
 logger = logging.getLogger(__name__)
 
@@ -73,10 +78,20 @@ class PCState(PopUpMenu[MenuGameObj]):
         def change_state(state: str, **kwargs: Any) -> MenuGameObj:
             return partial(self.client.replace_state, state, **kwargs)
 
+        if len(local_session.player.monsters) == 6:
+            storage_callback = partial(
+                open_dialog,
+                local_session,
+                [T.translate("menu_storage_monsters_full")],
+            )
+        else:
+            storage_callback = change_state("MonsterBoxChooseState")
+
         add_menu_items(
             self,
             (
                 ("menu_monsters", change_state("MonsterMenuState")),
+                ("menu_storage", storage_callback),
                 ("menu_items", change_state("ItemMenuState")),
                 (
                     "menu_multiplayer",
@@ -188,3 +203,158 @@ class MultiplayerSelect(PopUpMenu[None]):
             item = MenuItem(label, None, None, None)
             item.enabled = False
             yield item
+
+
+class MonsterTakeState(PygameMenuState):
+    """Menu for the Monster Take state.
+
+    Shows all tuxemon currently in a storage kennel, and selecting one puts it
+    into your current party."""
+
+    def add_menu_items(
+        self: MonsterTakeState,
+        menu: pygame_menu.Menu,
+        items: Sequence[Tuple[str, MenuGameObj]],
+    ) -> None:
+
+        width, height = prepare.SCREEN_SIZE
+
+        for monster, callback in items:
+            label = T.translate(monster.name).upper()
+            new_button = menu.add.button(label, callback)
+            results = db.lookup(monster.slug, table="monster").dict()
+            new_image = menu.add.image(
+                graphics.transform_resource_filename(
+                    results["sprites"]["menu1"] + ".png"
+                )
+            )
+            new_image.scale(prepare.SCALE, prepare.SCALE)
+
+    def startup(self, box_name: String, **kwargs: Any) -> None:
+        width, height = prepare.SCREEN_SIZE
+
+        theme = get_theme()
+        theme.scrollarea_position = pygame_menu.locals.POSITION_EAST
+        columns = 3
+
+        self.box_name = box_name
+        self.player = local_session.player
+        self.box = self.player.monster_boxes[self.box_name]
+
+        num_mons = len(self.box)
+        # Widgets are like a pygame_menu label, image, etc.
+        num_widgets_per_monster = 2
+        rows = int(num_mons * num_widgets_per_monster / columns) + 1
+        # Make sure rows are divisible by num_widgets
+        while rows % num_widgets_per_monster != 0:
+            rows += 1
+
+        super().startup(
+            height=height, width=width, columns=columns, rows=rows, **kwargs
+        )
+
+        def take_monster(monster: monster) -> None:
+            self.player.remove_monster_from_storage(monster)
+            self.player.add_monster(monster)
+            open_dialog(
+                local_session,
+                [
+                    T.format(
+                        "menu_storage_take_monster", {"name": monster.name}
+                    )
+                ],
+            )
+            self.client.pop_state(self)
+
+        def take_monster_callback(monster: monster) -> Callable[[], object]:
+            return partial(take_monster, monster)
+
+        menu_items_map = []
+        for monster in self.box:
+            menu_items_map.append((monster, take_monster_callback(monster)))
+
+        self.add_menu_items(self.menu, menu_items_map)
+
+
+class MonsterBoxChooseState(PygameMenuState):
+    """Menu to choose a box, which you can then remove a tuxemon from."""
+
+    def add_menu_items(
+        self,
+        menu: pygame_menu.Menu,
+        items: Sequence[Tuple[str, MenuGameObj]],
+    ) -> None:
+
+        menu.add.vertical_fill()
+        for key, callback in items:
+            label = T.translate(key).upper()
+            menu.add.button(label, callback)
+            menu.add.vertical_fill()
+
+        width, height = prepare.SCREEN_SIZE
+        widgets_size = menu.get_size(widget=True)
+        b_width, b_height = menu.get_scrollarea().get_border_size()
+        menu.resize(
+            widgets_size[0],
+            height - 2 * b_height,
+            position=(width + b_width, b_height, False),
+        )
+
+    def startup(self, **kwargs: Any) -> None:
+        _, height = prepare.SCREEN_SIZE
+
+        super().startup(height=height, **kwargs)
+
+        self.animation_offset = 0
+
+        def change_state(state: str, **kwargs: Any) -> Callable[[], object]:
+            return partial(self.client.replace_state, state, **kwargs)
+
+        player = local_session.player
+        menu_items_map = []
+        for box_name in player.monster_boxes.keys():
+            if len(player.monster_boxes[box_name]) == 0:
+                menu_callback = partial(
+                    open_dialog,
+                    local_session,
+                    [T.translate("menu_storage_empty_kennel")],
+                )
+            else:
+                menu_callback = change_state(
+                    "MonsterTakeState", box_name=box_name
+                )
+            menu_items_map.append((box_name, menu_callback))
+        self.add_menu_items(self.menu, menu_items_map)
+
+    def update_animation_position(self) -> None:
+        self.menu.translate(-self.animation_offset, 0)
+
+    def animate_open(self) -> Animation:
+        """
+        Animate the menu sliding in.
+
+        Returns:
+            Sliding in animation.
+
+        """
+
+        width = self.menu.get_width(border=True)
+        self.animation_offset = 0
+
+        ani = self.animate(self, animation_offset=width, duration=0.50)
+        ani.update_callback = self.update_animation_position
+
+        return ani
+
+    def animate_close(self) -> Animation:
+        """
+        Animate the menu sliding out.
+
+        Returns:
+            Sliding out animation.
+
+        """
+        ani = self.animate(self, animation_offset=0, duration=0.50)
+        ani.update_callback = self.update_animation_position
+
+        return ani

@@ -35,15 +35,7 @@ import logging
 import os
 from enum import Enum
 from operator import itemgetter
-from typing import (
-    Any,
-    Dict,
-    Literal,
-    Mapping,
-    Optional,
-    Sequence,
-    overload,
-)
+from typing import Any, Dict, Literal, Mapping, Optional, Sequence, overload
 
 from pydantic import BaseModel, Field, ValidationError, validator
 
@@ -71,6 +63,12 @@ class ItemSort(str, Enum):
 class ItemType(str, Enum):
     consumable = "Consumable"
     key_item = "KeyItem"
+
+
+# ItemBattleMenu is which menu you want to use to choose the target.
+class ItemBattleMenu(str, Enum):
+    monster = "monster"
+    combat = "combat"
 
 
 # TODO: Automatically generate state enum through discovery
@@ -112,6 +110,10 @@ class ItemModel(BaseModel):
     )
     effects: Sequence[str] = Field(
         [], description="Effects this item will have"
+    )
+    ## Optional fields:
+    battle_menu: Optional[ItemBattleMenu] = Field(
+        "", description="Which menu should be used to choose the target of the item."
     )
 
     class Config:

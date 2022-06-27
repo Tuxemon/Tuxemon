@@ -145,13 +145,18 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             self.client.pop_state()  # close the item menu
             # TODO: don't hardcode to player0
             combat_state = self.client.get_state_by_name(CombatState)
-            state = self.client.push_state(
-                CombatTargetMenuState,
-                player=combat_state.players[0],
-                user=combat_state.players[0],
-                action=item,
-            )
-            state.on_menu_selection = partial(enqueue_item, item)
+
+            if item.battle_menu == "monster":
+                state = self.client.push_state(MonsterMenuState)
+                state.on_menu_selection = partial(enqueue_item, item)
+            else:
+                state = self.client.push_state(
+                    CombatTargetMenuState,
+                    player=combat_state.players[0],
+                    user=combat_state.players[0],
+                    action=item,
+                )
+                state.on_menu_selection = partial(enqueue_item, item)
 
         def enqueue_item(item: Item, menu_item: MenuItem[Monster]) -> None:
             target = menu_item.game_object

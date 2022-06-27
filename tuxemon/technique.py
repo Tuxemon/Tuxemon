@@ -304,7 +304,7 @@ class Technique:
                     else:
                         result = getattr(self, self.category)(target)
             else:
-                result = getattr(self, str(effect))(user, target)
+                result = getattr(self, effect)(user, target)
             meta_result = merge_results(result, meta_result)
 
         self.next_use = self.recharge_length

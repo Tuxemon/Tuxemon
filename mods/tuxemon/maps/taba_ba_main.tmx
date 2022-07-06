@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="19" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="18">
+<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="19" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="19">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -63,10 +63,72 @@
     <property name="act11" value="npc_face christie,up"/>
     <property name="act12" value="create_npc speck,8,8,,stand"/>
     <property name="act13" value="npc_face speck,up"/>
-    <property name="act14" value="create_npc,aeble,9,4,,stand"/>
+    <property name="act14" value="create_npc aeble,9,4,,stand"/>
     <property name="act20" value="create_npc omnigrunt2,17,2,,stand"/>
     <property name="act21" value="npc_face omnigrunt2,right"/>
-    <property name="cond1" value="not variable_set moveonnow"/>
+    <property name="act22" value="set_variable moveonnow:yes"/>
+    <property name="cond1" value="not variable_set moveonnow:yes"/>
+   </properties>
+  </object>
+  <object id="18" name="im here" type="event" x="144" y="144" width="16" height="16">
+   <properties>
+    <property name="act10" value="player_stop"/>
+    <property name="act11" value="lock_controls"/>
+    <property name="act12" value="wait 1"/>
+    <property name="act13" value="npc_move player,up 1"/>
+    <property name="act14" value="npc_move aeble,down 1"/>
+    <property name="act15" value="translated_dialog welcomecontestants"/>
+    <property name="act16" value="npc_face aeble,up"/>
+    <property name="act17" value="translated_dialog itsforthefans"/>
+    <property name="act18" value="translated_dialog itsforthefans2"/>
+    <property name="act19" value="translated_dialog itsforthefans3"/>
+    <property name="act20" value="wait 1.5"/>
+    <property name="act21" value="npc_face aeble,down"/>
+    <property name="act22" value="wait 0.7"/>
+    <property name="act23" value="translated_dialog itsforthefans4"/>
+    <property name="act24" value="translated_dialog itsforthefans5"/>
+    <property name="act25" value="pathfind omnigrunt2,15,4"/>
+    <property name="act26" value="npc_face omnigrunt2,left"/>
+    <property name="act27" value="wait 0.3"/>
+    <property name="act28" value="npc_face aeble,right"/>
+    <property name="act29" value="translated_dialog itsforthefans6"/>
+    <property name="act30" value="translated_dialog itsforthefans7"/>
+    <property name="act31" value="wait 1.2"/>
+    <property name="act32" value="npc_face aeble,down"/>
+    <property name="act33" value="translated_dialog itsforthefans8"/>
+    <property name="act34" value="npc_move aeble,down 1"/>
+    <property name="act35" value="translated_dialog itsforthefans9"/>
+    <property name="act36" value="wait 1.5"/>
+    <property name="act37" value="translated_dialog itsforthefans10"/>
+    <property name="act38" value="translated_dialog yessir"/>
+    <property name="act39" value="pathfind omnigrunt2,17,2"/>
+    <property name="act40" value="npc_move aeble,up 1"/>
+    <property name="act41" value="translated_dialog itsforthefans3"/>
+    <property name="act42" value="npc_move speck,up 1"/>
+    <property name="act43" value="wait 0.5"/>
+    <property name="act44" value="translated_dialog itsforthefans11"/>
+    <property name="act45" value="npc_move christie,up 1"/>
+    <property name="act46" value="wait 0.5"/>
+    <property name="act47" value="translated_dialog itsforthefans12"/>
+    <property name="act48" value="npc_move player,up 1"/>
+    <property name="act49" value="wait 1.2"/>
+    <property name="act50" value="translated_dialog abouttababa"/>
+    <property name="act51" value="npc_face aeble,down"/>
+    <property name="act52" value="wait 0.4"/>
+    <property name="act53" value="npc_face aeble,right"/>
+    <property name="act54" value="translated_dialog abouttababa2"/>
+    <property name="act55" value="wait 0.3"/>
+    <property name="act56" value="npc_face aeble,left"/>
+    <property name="act57" value="translated_dialog abouttababa3"/>
+    <property name="act58" value="wait 0.3"/>
+    <property name="act59" value="npc_face aeble,down"/>
+    <property name="act60" value="translated_dialog abouttababa4"/>
+    <property name="act61" value="wait 0.5"/>
+    <property name="act62" value="translated_dialog abouttababa5"/>
+    <property name="act63" value="translated_dialog abouttababa6"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="not variable_set searchrooms"/>
    </properties>
   </object>
  </objectgroup>

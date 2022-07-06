@@ -2447,7 +2447,7 @@ msgid "welcomecontestants"
 msgstr "Welcome, Trial contestants!"
 
 msgid "itsforthefans"
-msgstr "And a huge welcome to everyone watching from home!"
+msgstr "And a huge welcome to everyone watching from home! My name is Aeble and I am the CEO of Omnichannel."
 
 msgid "itsforthefans2"
 msgstr "You've all probably been on the edge of your seat waiting to see our first Trial contestants. Well, today you get to meet them!"

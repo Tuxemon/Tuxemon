@@ -2509,6 +2509,25 @@ msgstr "The Requirement for the Taba Battle Area is...\n"
 msgid "abouttababa6"
 msgstr "Tuxemon Battles!"
 
+msgid "abouttababa7"
+msgstr "Now, you will have to defeat all 4 Trial acolytes before being able to face the Battle Area Master.\n"
+"Once you've defeated the Battle Area master, you will receive your Trial medal for the Battle Area.\n"
+"Good luck to all three of you, and remember...\n"
+"WE ARE SAFETY, WE ARE ORDER, WE ARE OMNICHANNEL!"
+
+msgid "abouttababa8"
+msgstr "Oh, and one more thing you three, no matter what you might think...\n"
+"WE are Fondent. Omnichannel is Fondent. Stay in line and don't muck anything up, otherwise there could be... issues"
+
+msgid "abouttababa9"
+msgstr "Alright guys, CUT! That was great! I think we're good!"
+
+msgid "abouttababa10"
+msgstr "Just cut out the last section and it will be perfect!"
+
+msgid "buh-bye"
+msgstr "I'm heading out, but great work everyone! See you all later!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

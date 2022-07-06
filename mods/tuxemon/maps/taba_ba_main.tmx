@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="19" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="19">
+<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="19" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="20">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -114,7 +114,7 @@
     <property name="act49" value="wait 1.2"/>
     <property name="act50" value="translated_dialog abouttababa"/>
     <property name="act51" value="npc_face aeble,down"/>
-    <property name="act52" value="wait 0.4"/>
+    <property name="act52" value="wait 0.7"/>
     <property name="act53" value="npc_face aeble,right"/>
     <property name="act54" value="translated_dialog abouttababa2"/>
     <property name="act55" value="wait 0.3"/>
@@ -126,9 +126,29 @@
     <property name="act61" value="wait 0.5"/>
     <property name="act62" value="translated_dialog abouttababa5"/>
     <property name="act63" value="translated_dialog abouttababa6"/>
+    <property name="act99" value="set_variable seconddialog:start"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="not variable_set searchrooms"/>
+    <property name="cond3" value="not variable_set seconddialog"/>
+   </properties>
+  </object>
+  <object id="19" name="im here 2" type="event" x="144" y="144" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog abouttababa7"/>
+    <property name="act11" value="npc_move aeble,down 1"/>
+    <property name="act12" value="translated_dialog abouttababa8"/>
+    <property name="act13" value="wait 2"/>
+    <property name="act14" value="translated_dialog abouttababa9"/>
+    <property name="act15" value="npc_face aeble,up"/>
+    <property name="act16" value="wait 0.3"/>
+    <property name="act17" value="translated_dialog abouttababa10"/>
+    <property name="act18" value="npc_move aeble,up 1"/>
+    <property name="act19" value="translated_dialog buh-bye"/>
+    <property name="act20" value="pathfind aeble,17,3"/>
+    <property name="act21" value="remove_npc aeble"/>
+    <property name="act22" value="unlock_controls"/>
+    <property name="act99" value="set_variable seconddialog:end"/>
+    <property name="cond1" value="is variable_set seconddialog:start"/>
    </properties>
   </object>
  </objectgroup>

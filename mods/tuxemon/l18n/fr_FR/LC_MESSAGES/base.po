@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2021-12-05 22:08+0000\n"
+"PO-Revision-Date: 2022-07-16 23:21+0000\n"
 "Last-Translator: Maxime Leroy <lisacintosh@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fr/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.10-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -5303,3 +5303,128 @@ msgid "spyder_flower_artist1"
 msgstr ""
 "Des coups de pinceau simples et maladroits sur le thème du piéton. Bah ! "
 "Encore une toile de gâchée."
+
+msgid "spyder_greenwash_clarence"
+msgstr "clarence"
+
+msgid "spyder_greenwash_aissa2"
+msgstr "Nous allons tous mourir !"
+
+msgid "spyder_greenwash_dippel2"
+msgstr "Ou pas assez loin ! "
+
+msgid "spyder_greenwash_dippel1"
+msgstr "Peut-être que nous sommes allés trop loin…"
+
+msgid "spyder_greenwash_louis1"
+msgstr ""
+"Les règles de ce combat sont les règles basiques de la sélection naturelle : "
+"seul le plus fort survit !"
+
+msgid "nobody2"
+msgstr "D'accord ! Alors gardez vos secrets !"
+
+msgid "stahp5"
+msgstr "... Je pense."
+
+msgid "somebody"
+msgstr "Je préférerais ne pas parler d'eux"
+
+msgid "kylereallysucks2"
+msgstr ""
+"Bonne chance tout le monde ! Je m'attends à qu'aucun de vous n'y arrive !"
+
+msgid "misaisleavingfornow"
+msgstr "Matt, Julius, en avant. "
+
+msgid "welcometotaba9"
+msgstr "Vos papiers semblent en ordre. Pour l'instant."
+
+msgid "welcometotaba4"
+msgstr "Pour être honnête, je pensais que plus auraient réussi l'examen..."
+
+msgid "welcometotaba6"
+msgstr "... .... ..."
+
+msgid "welcometotaba3"
+msgstr ""
+"Nous n'êtes que vous trois ? C'est difficilement ce qu'on peut appeler un "
+"\"groupe\"."
+
+msgid "misaisleavingfornow2"
+msgstr "Bonne chance ${{name}}. Je suis sûr qu'on se reverra. "
+
+msgid "kylekindasucks6"
+msgstr "Oh ! et ${{name}} ?"
+
+msgid "ohaimisa7"
+msgstr "Jack, Rick, Eddy, venez avec moi. Jon, reste là."
+
+msgid "ohaimisa5"
+msgstr "Attendez, ça ne sont pas mes-"
+
+msgid "ohaimisa3"
+msgstr "Salut Kyle, qu'est-ce que tu fais là ?"
+
+msgid "understand?"
+msgstr "Compris ?"
+
+msgid "stahp2"
+msgstr "... Bien."
+
+msgid "nobody"
+msgstr "Je n'en sais rien"
+
+msgid "hiperson6"
+msgstr "Maintenant, qui sont Misa et Allie ?"
+
+msgid "hiperson5"
+msgstr "Oh ! donc vous êtes de Taba ! Cool !"
+
+msgid "hiperson4"
+msgstr ".... ... ...."
+
+msgid "hiperson3"
+msgstr "Pourquoi ne pas commencer par votre nom et d'où vous venez ?"
+
+msgid "hichristie2"
+msgstr ""
+"Salut Christie. Comme tu le sais, je suis Speck. Content de faire ta "
+"connaissance.\n"
+"Maintenant..."
+
+msgid "hichristie"
+msgstr "Oh ! mon nom est Christie ! Désolé, j'aurais dû le préciser plus tôt."
+
+msgid "welcometotaba15"
+msgstr "Je m'appelle Speck, Monsieur."
+
+msgid "spyder_greenwash_moreau2"
+msgstr "L'expérience de fusion a explosé !"
+
+msgid "spyder_greenwash_moreau1"
+msgstr "Vous ne devriez pas être ici ! "
+
+msgid "spyder_greenwash_louis"
+msgstr "louis"
+
+msgid "spyder_greenwash_chip2"
+msgstr "Plus de puissance nécessaire !"
+
+msgid "spyder_greenwash_clarence2"
+msgstr "Il y avait un nuage !"
+
+msgid "spyder_greenwash_louis2"
+msgstr "Puis-je vous présenter à l'Hypothèse de Gaïa ?"
+
+msgid "spyder_greenwash_clarence1"
+msgstr "Mon tuxemon est imbattable au soleil !"
+
+msgid "spyder_greenwash_chip1"
+msgstr "J'ai développé un ordinateur d'une puissance incomparable !"
+
+msgid "spyder_greenwash_guard"
+msgstr "Bon, bon, rien à voir ici."
+
+msgid "spyder_scoop_welcome"
+msgstr "Bienvenue !"

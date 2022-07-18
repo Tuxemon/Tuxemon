@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2022-07-16 23:21+0000\n"
+"PO-Revision-Date: 2022-07-19 05:18+0000\n"
 "Last-Translator: Maxime Leroy <lisacintosh@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fr/>\n"
@@ -5428,3 +5428,109 @@ msgstr "Bon, bon, rien à voir ici."
 
 msgid "spyder_scoop_welcome"
 msgstr "Bienvenue !"
+
+msgid "spyder_campaign"
+msgstr "Tuxemon : Spyder et la Cathédrale"
+
+# Default mod names on selection menu
+msgid "xero_campaign"
+msgstr "Tuxemon : Xero"
+
+msgid "coproblight"
+msgstr "Coproblight"
+
+msgid "tuxemon_released"
+msgstr "{name} vient d'être libéré."
+
+msgid "soiwashearing7"
+msgstr "Elle semble apeurée, la pauvre bête."
+
+msgid "allofyounow"
+msgstr ""
+"Ceux qui n'ont pas de Tuxemon doivent partir. Ça peut devenir dangereux."
+
+msgid "soiwashearing9"
+msgstr "Par contre, à l'avenir..."
+
+msgid "release_confirmation"
+msgstr "Êtes-vous sûr(e) de vouloir libérer {name} ?"
+
+msgid "soiwashearing6"
+msgstr "Non Julius, je ne pense pas que ça soit nécessaire."
+
+msgid "heystop"
+msgstr "POURQUOI FAÎTES-VOUS ÇA ?"
+
+msgid "soiwashearing2"
+msgstr "Vous, le fleuriste, qui êtes-vous ?"
+
+msgid "pilthropus"
+msgstr "Pilthropus"
+
+msgid "monster_menu_release"
+msgstr "Libérer"
+
+msgid "combat_target_itself"
+msgstr "{name} ne peut pas s'attaquer lui-même."
+
+msgid "y-yes"
+msgstr "Oui-oui... M'dame."
+
+msgid "heystop4"
+msgstr ""
+"Marissa, peut-être que nous devrions partir maintenant, nous reviendrons un "
+"autre jour."
+
+msgid "soiwashearing10"
+msgstr "J'attends à ce qu'on s'adresse à moi CORRECTEMENT."
+
+msgid "welcometotaba"
+msgstr "Bonjour Entraîneurs Tuxmon en herbe !"
+
+msgid "oimate"
+msgstr ""
+"Hé ! Ceci est une zone interdite ! Seuls ceux avec un badge sont autorisés à "
+"entrer !"
+
+msgid "kylekindasucks5"
+msgstr ""
+"D'accord, je suis sans doute ici depuis assez longtemps. Il est temps pour "
+"moi de repartir."
+
+msgid "ohaimisa"
+msgstr "Eh bien, voyez qui voilà !"
+
+msgid "higrunts2"
+msgstr "Voilà, je vais soigner votre Tuxemon."
+
+msgid "staples"
+msgstr "Alors, ça n'était pas simple."
+
+msgid "stahp4"
+msgstr "Elle veut du bien..."
+
+msgid "kylereallysucks3"
+msgstr "Oh ! et Spech ? J'ai apprécié les cris"
+
+msgid "kylereallysucks"
+msgstr ""
+"Bon, Speck, si ça peut te consoler, c'est moi qui ait donner l'ordre "
+"d'attaquer."
+
+msgid "spyder_greenwash_moreau"
+msgstr "moreau"
+
+msgid "spyder_greenwash_dippel"
+msgstr "dippel"
+
+msgid "spyder_greenwash_aissa"
+msgstr "aissa"
+
+msgid "spyder_greenwash_gregor"
+msgstr "gregor"
+
+msgid "spyder_greenwash_chip"
+msgstr "chip"
+
+msgid "spyder_greenwash_gregor2"
+msgstr "Mmm, je n'ai même pas cligné des yeux quand je me suis évanoui !"

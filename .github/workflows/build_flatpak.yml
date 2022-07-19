@@ -41,7 +41,12 @@ jobs:
       with:
         owner: 'flathub'
         repository: 'org.tuxemon.Tuxemon'
-  # TODO: check that only tuxemon will be changed
+
+    - name: Checkout development branch (TODO: remove this once a new version of tuxemon is released)
+      run: >
+        cd org.tuxemon.Tuxemon
+        git checkout org.tuxemon.Tuxemon.Development
+
     - name: Replace git tag by the commit id on which it runs
       if: github.ref_type != 'tag'
       run: >

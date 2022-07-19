@@ -44,6 +44,7 @@ from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.ui.text import TextArea
+from tuxemon.db import State
 
 # The import is required for PushState to work.
 # But linters may say the import is unused.
@@ -149,7 +150,7 @@ class ItemMenuState(Menu[Item]):
         ):
             msg = T.format("item_no_available_target", {"name": item.name})
             tools.open_dialog(local_session, [msg])
-        elif state not in item.usable_in:
+        elif State[state] not in item.usable_in:
             msg = T.format("item_cannot_use_here", {"name": item.name})
             tools.open_dialog(local_session, [msg])
         else:

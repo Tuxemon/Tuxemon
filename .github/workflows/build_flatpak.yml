@@ -10,6 +10,9 @@ on:
   page_build:
   workflow_dispatch:
 
+env:
+  IS_RELEASE: ${{ github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v') }}
+
 
 jobs:
   flatpak:

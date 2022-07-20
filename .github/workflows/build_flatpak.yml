@@ -42,7 +42,7 @@ jobs:
         owner: 'flathub'
         repository: 'org.tuxemon.Tuxemon'
 
-    - name: Checkout development branch (TODO: remove this once a new version of tuxemon is released)
+    - name: Checkout development branch (TODO - remove this once a new version of tuxemon is released)
       run: >
         cd org.tuxemon.Tuxemon
         git checkout org.tuxemon.Tuxemon.Development

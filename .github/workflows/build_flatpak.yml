@@ -39,6 +39,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    # Command copied from flathub build process
+    - name: Validate appdata file
+      if: matrix.env.ninja_platform == 'linux' && !matrix.qt.check_only
+      run: |
+        sudo apt install flatpak
+        sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        sudo flatpak install -y org.freedesktop.appstream-glib
+        flatpak run --env=G_DEBUG=fatal-criticals org.freedesktop.appstream-glib validate ./buildconfig/flatpak/org.tuxemon.Tuxemon.appdata.xml
+
     - name: Clone flatpak manifest from Flathub
       uses: GuillaumeFalourd/clone-github-repo-action@v1
       with:

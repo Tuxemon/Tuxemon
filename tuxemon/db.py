@@ -35,15 +35,7 @@ import logging
 import os
 from enum import Enum
 from operator import itemgetter
-from typing import (
-    Any,
-    Dict,
-    Literal,
-    Mapping,
-    Optional,
-    Sequence,
-    overload,
-)
+from typing import Any, Dict, Literal, Mapping, Optional, Sequence, overload
 
 from pydantic import BaseModel, Field, ValidationError, validator
 

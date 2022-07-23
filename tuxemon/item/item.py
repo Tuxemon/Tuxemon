@@ -104,6 +104,7 @@ class Item:
         self.use_failure = ""
         self.usable_in: Sequence[str] = []
         self.target: Sequence[str] = []
+        self.battle_menu = ""
 
         # load effect and condition plugins if it hasn't been done already
         if not Item.effects_classes:
@@ -154,6 +155,7 @@ class Item:
         self.usable_in = results["usable_in"]
         self.target = process_targets(results["target"])
         self.effects = self.parse_effects(results.get("effects", []))
+        self.battle_menu = results.get("battle_menu", "")
         self.conditions = self.parse_conditions(results.get("conditions", []))
         self.surface = graphics.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()

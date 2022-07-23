@@ -118,7 +118,7 @@ written in other languages, but the guidelines are applicable to all
 contributed code.
 
 - New files should follow PEP8 -- this includes 79 char. line limit
-- use ``black -t py38 -l 79`` to format python files after you've made changes
+- use ``black`` and ``isort`` to format python files after you've made changes
 - Docstrings on new functions are mandatory, unless they are overloading
 - Function/method signatures should have basic typing information
 - Do not change existing formatting unless you are improving it

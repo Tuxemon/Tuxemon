@@ -113,7 +113,8 @@ class ItemModel(BaseModel):
     )
     ## Optional fields:
     battle_menu: Optional[ItemBattleMenu] = Field(
-        "", description="Which menu should be used to choose the target of the item."
+        "",
+        description="Which menu should be used to choose the target of the item.",
     )
 
     class Config:

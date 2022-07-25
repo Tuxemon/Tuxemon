@@ -26,7 +26,7 @@
 
 import logging
 from math import cos, pi, sin
-from typing import Any, Generator, Iterator, Mapping, Optional, Tuple
+from typing import Any, Dict, Generator, Iterator, Mapping, Optional, Tuple
 
 import pytmx
 import yaml
@@ -204,9 +204,7 @@ class TMXMapLoader:
         events = list()
         inits = list()
         interacts = list()
-        collision_map: Mapping[
-            Tuple[int, int], Optional[RegionProperties]
-        ] = {}
+        collision_map: Dict[Tuple[int, int], Optional[RegionProperties]] = {}
         collision_lines_map = set()
         edges = data.properties.get("edges")
 

@@ -44,6 +44,7 @@ from typing import (
     Tuple,
     TypedDict,
     Union,
+    no_type_check,
 )
 
 import pygame
@@ -70,6 +71,7 @@ from tuxemon.states.world.world_menus import WorldMenuState
 from tuxemon.surfanim import SurfaceAnimation
 
 if TYPE_CHECKING:
+    from tuxemon.networking import EventData
     from tuxemon.npc import NPC
     from tuxemon.player import Player
 
@@ -667,7 +669,7 @@ class WorldState(state.State):
         self,
         start: Tuple[int, int],
         dest: Tuple[int, int],
-    ) -> Optional[Sequence[Tuple[int, int]]]:
+    ) -> Optional[List[Tuple[int, int]]]:
         """
         Pathfind.
 
@@ -987,7 +989,7 @@ class WorldState(state.State):
         # Move any multiplayer characters that are off map so we know where
         # they should be when we change maps.
         for entity in self.npcs_off_map.values():
-            entity.update(time_delta, self)
+            entity.update(time_delta)
 
     def _collision_box_to_pgrect(self, box):
         """
@@ -1131,6 +1133,7 @@ class WorldState(state.State):
 
         """
         if self.in_transition:
+            assert self.transition_surface
             self.transition_surface.set_alpha(self.transition_alpha)
             surface.blit(self.transition_surface, (0, 0))
 
@@ -1189,6 +1192,7 @@ class WorldState(state.State):
             txmn_map.events = new_events
         return txmn_map
 
+    @no_type_check  # only used by multiplayer which is disabled
     def check_interactable_space(self) -> bool:
         """
         Checks to see if any Npc objects around the player are interactable.
@@ -1199,7 +1203,9 @@ class WorldState(state.State):
             ``True`` if there is an Npc to interact with. ``False`` otherwise.
 
         """
-        collision_dict = self.player.get_collision_map(self)
+        collision_dict = self.player.get_collision_map(
+            self
+        )  # FIXME: method doesn't exist
         player_tile_pos = self.player.tile_pos
         collisions = self.player.collision_check(
             player_tile_pos, collision_dict, self.collision_lines_map
@@ -1231,7 +1237,10 @@ class WorldState(state.State):
 
         return False
 
-    def handle_interaction(self, event_data, registry) -> None:
+    @no_type_check  # FIXME: dead code
+    def handle_interaction(
+        self, event_data: EventData, registry: Mapping[str, Any]
+    ) -> None:
         """
         Presents options window when another player has interacted with this player.
 

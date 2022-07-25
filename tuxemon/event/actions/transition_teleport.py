@@ -66,9 +66,11 @@ class TransitionTeleportAction(
             "screen_transition",
             params,
         )
+        assert self.transition
         self.transition.start()
 
     def update(self) -> None:
+        assert self.transition
         if not self.transition.done:
             self.transition.update()
         if self.transition.done:

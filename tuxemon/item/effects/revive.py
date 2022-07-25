@@ -50,7 +50,7 @@ class ReviveEffect(ItemEffect[ReviveEffectParameters]):
     name = "revive"
     param_class = ReviveEffectParameters
 
-    def apply(self, target: Monster) -> ReviveEffectResult(ItemEffectResult):
+    def apply(self, target: Monster) -> ReviveEffectResult:
         target.status = []
         target.current_hp = 1
 

@@ -72,12 +72,14 @@ from tuxemon.monster import (
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
 from tuxemon.states.combat.combat import EnqueuedAction
-from tuxemon.states.world.worldstate import WorldState
 from tuxemon.technique import Technique
 from tuxemon.tools import vector2_to_tile_pos
 
 if TYPE_CHECKING:
     import pygame
+
+    from tuxemon.item.economy import Economy
+    from tuxemon.states.world.worldstate import WorldState
 
     SpriteMap = Union[
         Mapping[str, pygame.surface.Surface],
@@ -151,21 +153,26 @@ class NPC(Entity[NPCState]):
         # This is the NPC's name to be used in dialog
         self.name = T.translate(self.slug)
 
-        # use 'animations' passed in
+        if sprite_name is None:
+            # Try to use the sprites defined in the JSON data
+            sprite_name = npc_data["sprite_name"]
+        if combat_front is None:
+            combat_front = npc_data["combat_front"]
+        if combat_back is None:
+            combat_back = npc_data["combat_back"]
+
+        # enforced by pydantic
+        assert sprite_name
+        assert combat_front
+        assert combat_back
+
         # Hold on the the string so it can be sent over the network
         self.sprite_name = sprite_name
         self.combat_front = combat_front
         self.combat_back = combat_back
-        if self.sprite_name is None:
-            # Try to use the sprites defined in the JSON data
-            self.sprite_name = npc_data["sprite_name"]
-        if self.combat_front is None:
-            self.combat_front = npc_data["combat_front"]
-        if self.combat_back is None:
-            self.combat_back = npc_data["combat_back"]
 
         # general
-        self.behavior = "wander"  # not used for now
+        self.behavior: Optional[str] = "wander"  # not used for now
         self.game_variables: Dict[str, Any] = {}  # Tracks the game state
         self.interactions: Sequence[
             str
@@ -177,6 +184,7 @@ class NPC(Entity[NPCState]):
         self.inventory: Dict[
             str, InventoryItem
         ] = {}  # The Player's inventory.
+        self.economy: Optional[Economy] = None
         # Variables for long-term item and monster storage
         # Keeping these seperate so other code can safely
         # assume that all values are lists
@@ -618,15 +626,15 @@ class NPC(Entity[NPCState]):
 
     def network_notify_start_moving(self, direction: Direction) -> None:
         r"""WIP guesswork ¯\_(ツ)_/¯"""
-        if self.world.game.isclient or self.world.game.ishost:
-            self.world.game.client.update_player(
+        if self.world.client.isclient or self.world.client.ishost:
+            self.world.client.client.update_player(
                 direction, event_type="CLIENT_MOVE_START"
             )
 
     def network_notify_stop_moving(self) -> None:
         r"""WIP guesswork ¯\_(ツ)_/¯"""
-        if self.world.game.isclient or self.world.game.ishost:
-            self.world.game.client.update_player(
+        if self.world.client.isclient or self.world.client.ishost:
+            self.world.client.client.update_player(
                 self.facing, event_type="CLIENT_MOVE_COMPLETE"
             )
 
@@ -727,6 +735,8 @@ class NPC(Entity[NPCState]):
             self.monsters.remove(monster)
             self.set_party_status()
             return True
+        else:
+            return False
 
     def remove_monster(self, monster: Monster) -> None:
         """

@@ -540,10 +540,11 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
     def draw(
         self,
         surface: pygame.surface.Surface,
-    ) -> None:
+    ) -> List[Rect]:
         if self._needs_arrange:
             self.arrange_menu_items()
-        super().draw(surface)
+        dirty = super().draw(surface)
+        return dirty
 
     def arrange_menu_items(self) -> None:
         """
@@ -568,9 +569,7 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         if self.expand:
             logger.debug("expanding menu...")
             # fill available space
-            line_spacing = self.line_spacing
-            if not line_spacing:
-                line_spacing = height // items_per_column
+            line_spacing = self.line_spacing or (height // items_per_column)
         else:
             line_spacing = int(max_height * 1.2)
 

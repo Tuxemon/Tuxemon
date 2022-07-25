@@ -32,6 +32,7 @@
 from __future__ import annotations
 
 import logging
+from typing import Optional
 
 from tuxemon.db import db
 
@@ -66,7 +67,7 @@ class Economy:
         self.slug = results["slug"]
         self.items = results["items"]
 
-    def lookup_item_field(self, item_slug: str, field: str) -> int:
+    def lookup_item_field(self, item_slug: str, field: str) -> Optional[int]:
         """Looks up the item's field from this economy.
 
         The item and field is looked up by its slug.

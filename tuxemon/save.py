@@ -42,6 +42,7 @@ import pygame
 
 from tuxemon import prepare
 from tuxemon.client import LocalPygameClient
+from tuxemon.npc import NPCState
 from tuxemon.save_upgrader import SAVE_VERSION, upgrade_save
 from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
@@ -62,6 +63,14 @@ TIME_FORMAT = "%Y-%m-%d %H:%M"
 config = prepare.CONFIG
 
 
+class SaveData(NPCState):
+    screenshot: str  # screenshot encoded as a string
+    screenshot_width: int
+    screenshot_height: int
+    time: str
+    version: int
+
+
 def capture_screenshot(client: LocalPygameClient) -> pygame.surface.Surface:
     """
     Capture a screenshot.
@@ -79,7 +88,7 @@ def capture_screenshot(client: LocalPygameClient) -> pygame.surface.Surface:
     return screenshot
 
 
-def get_save_data(session: Session) -> Mapping[str, Any]:
+def get_save_data(session: Session) -> SaveData:
     """
     Gets a dictionary which represents the state of the session.
 
@@ -90,15 +99,18 @@ def get_save_data(session: Session) -> Mapping[str, Any]:
         Game data to save, must be JSON encodable.
 
     """
-    save_data = session.player.get_state(session)
     screenshot = capture_screenshot(session.client)
-    save_data["screenshot"] = base64.b64encode(
-        pygame.image.tostring(screenshot, "RGB")
-    ).decode("utf-8")
-    save_data["screenshot_width"] = screenshot.get_width()
-    save_data["screenshot_height"] = screenshot.get_height()
-    save_data["time"] = datetime.datetime.now().strftime(TIME_FORMAT)
-    save_data["version"] = SAVE_VERSION
+    npc_state = session.player.get_state(session)
+    save_data: SaveData = {
+        "screenshot": base64.b64encode(
+            pygame.image.tostring(screenshot, "RGB")
+        ).decode("utf-8"),
+        "screenshot_width": screenshot.get_width(),
+        "screenshot_height": screenshot.get_height(),
+        "time": datetime.datetime.now().strftime(TIME_FORMAT),
+        "version": SAVE_VERSION,
+        **npc_state,  # type: ignore[misc]
+    }
     return save_data
 
 
@@ -130,7 +142,7 @@ def json_action(
         open_function = open
     else:
         compression_tool = importlib.import_module(config.compress_save)
-        open_function = compression_tool.open
+        open_function = compression_tool.open  # type: ignore[attr-defined]
 
     with open_function(
         path,
@@ -182,7 +194,8 @@ def json_load(
     )
 
 
-def open_save_file(save_path: str) -> Any:
+# This isn't right as it could be an old format at this point
+def open_save_file(save_path: str) -> Optional[SaveData]:
 
     try:
         try:
@@ -192,13 +205,14 @@ def open_save_file(save_path: str) -> Any:
                 return json_load(save_path)
         except ValueError as e:
             logger.error("Cannot decode save: %s", save_path)
+            return None
     except OSError as e:
         logger.info(e)
         return None
 
 
 def save(
-    save_data: Mapping[str, Any],
+    save_data: SaveData,
     slot: int,
 ) -> None:
     """
@@ -230,7 +244,7 @@ def save(
     os.replace(save_path_tmp, save_path)
 
 
-def load(slot: int) -> Optional[Mapping[str, Any]]:
+def load(slot: int) -> Optional[SaveData]:
     """
     Loads game state data from a save file.
 

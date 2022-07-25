@@ -96,7 +96,7 @@ CombatPhase = Literal[
 
 
 class EnqueuedAction(NamedTuple):
-    user: Union[NPC, Monster, None]
+    user: Union[Monster, NPC, None]
     technique: Union[Technique, Item]
     target: Monster
 
@@ -192,10 +192,7 @@ class CombatState(CombatAnimations):
         **kwargs: Any,
     ) -> None:
         self.max_positions = 1  # TODO: make dependant on match type
-        self.phase = None
-        self.monsters_in_play: MutableMapping[
-            NPC, List[Monster]
-        ] = defaultdict(list)
+        self.phase: Optional[CombatPhase] = None
         self._damage_map: MutableMapping[Monster, Set[Monster]] = defaultdict(
             set
         )
@@ -211,7 +208,6 @@ class CombatState(CombatAnimations):
 
         super().startup(**kwargs)
         self.is_trainer_battle = combat_type == "trainer"
-        self.players = list(self.players)
         self.show_combat_dialog()
         self.transition_phase("begin")
         self.task(partial(setattr, self, "phase", "ready"), 3)
@@ -736,7 +732,7 @@ class CombatState(CombatAnimations):
     def enqueue_action(
         self,
         user: Union[NPC, Monster, None],
-        technique: Technique,
+        technique: Union[Item, Technique],
         target: Monster,
     ) -> None:
         """
@@ -771,7 +767,7 @@ class CombatState(CombatAnimations):
 
     def remove_monster_from_play(
         self,
-        trainer: Monster,
+        trainer: NPC,
         monster: Monster,
     ) -> None:
         """

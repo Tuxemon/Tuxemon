@@ -26,8 +26,12 @@ class WhereAmICommand(CLICommand):
 
         """
         try:
-            fn = ctx.session.client.event_engine.current_map.data.filename
+            current_map = ctx.session.client.event_engine.current_map
+            if current_map:
+                name = current_map.data.filename
+            else:
+                name = "No map set"
         except AttributeError:
             print("Cannot get filename from the game.", file=sys.stderr)
         else:
-            print(fn)
+            print(name)

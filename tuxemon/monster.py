@@ -32,7 +32,16 @@ from __future__ import annotations
 import logging
 import random
 import uuid
-from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    cast,
+)
 
 from tuxemon import ai, fusion, graphics
 from tuxemon.config import TuxemonConfig
@@ -223,6 +232,7 @@ class Monster:
         self.ai: Optional[ai.AI] = None
         self.owner: Optional[NPC] = None
 
+        self.experience_give_modifier = 1
         self.experience_required_modifier = 1
         self.total_experience = 0
 
@@ -471,13 +481,13 @@ class Monster:
 
         # Learn New Moves
         for move in self.moveset:
-            if move["level_learned"] == self.level:
+            if move.level_learned == self.level:
                 logger.info(
                     "{} learned technique {}!".format(
-                        self.name, move["technique"]
+                        self.name, move.technique
                     )
                 )
-                technique = Technique(move["technique"])
+                technique = Technique(move.technique)
                 self.learn(technique)
 
     def set_level(self, level: int = 5) -> None:
@@ -528,14 +538,14 @@ class Monster:
 
         """
         for evolution in self.evolutions:
-            if evolution["path"] == path:
-                level_over = 0 < evolution["at_level"] <= self.level
+            if evolution.path == path:
+                level_over = 0 < evolution.at_level <= self.level
                 level_under = (
-                    evolution["at_level"] < 0
-                    and self.level <= -evolution["at_level"]
+                    evolution.at_level < 0
+                    and self.level <= -evolution.at_level
                 )
                 if level_over or level_under:
-                    return evolution["monster_slug"]
+                    return evolution.monster_slug
         return None
 
     def get_sprite(self, sprite: str, **kwargs: Any) -> Sprite:
@@ -555,8 +565,11 @@ class Monster:
         elif sprite == "back":
             surface = graphics.load_sprite(self.back_battle_sprite, **kwargs)
         elif sprite == "menu":
+            assert (
+                not kwargs
+            ), "kwargs aren't supported for loading menu sprites"
             surface = graphics.load_animated_sprite(
-                [self.menu_sprite_1, self.menu_sprite_2], 0.25, **kwargs
+                [self.menu_sprite_1, self.menu_sprite_2], 0.25
             )
         else:
             raise ValueError(f"Cannot find sprite for: {sprite}")
@@ -577,15 +590,13 @@ class Monster:
         if len(self.flairs) > 0 or self.slug == "":
             return
 
-        results = db.lookup(self.slug, table="monster").dict()
-        flairs = results.get("flairs")
-        if flairs:
-            for flair in flairs:
-                new_flair = Flair(
-                    flair["category"],
-                    random.choice(flair["names"]),
-                )
-                self.flairs[new_flair.category] = new_flair
+        results = db.lookup(self.slug, table="monster")
+        for flair in results.flairs:
+            new_flair = Flair(
+                flair.category,
+                random.choice(flair.names),
+            )
+            self.flairs[new_flair.category] = new_flair
 
     def get_sprite_path(self, sprite: str) -> str:
         """
@@ -691,7 +702,8 @@ class Monster:
             self.status = []
 
     def speed_test(self, action: EnqueuedAction) -> int:
-        if action.technique.is_fast:
+        technique = cast(Technique, action.technique)
+        if technique.is_fast:
             return int(random.randrange(0, self.speed) * 1.5)
         else:
             return random.randrange(0, self.speed)

@@ -55,7 +55,8 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
     def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
 
-        if hasattr(npc, "economy"):
+        assert npc
+        if npc.economy:
             economy = npc.economy
         else:
             economy = Economy("default")

@@ -42,6 +42,8 @@ from tuxemon.locale import T
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
+    from tuxemon.player import Player
+    from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
 
@@ -101,6 +103,7 @@ class Technique:
         self.can_apply_status = False
         self.carrier = carrier
         self.category = "attack"
+        self.combat_state: Optional[CombatState] = None
         self.effect: Sequence[str] = []
         self.icon = ""
         self.images: Sequence[str] = []
@@ -138,8 +141,7 @@ class Technique:
         """
 
         results = db.lookup(slug, table="technique").dict()
-        self.slug = results["slug"]  # a short English identifier
-        self.name = T.translate(self.slug)
+        self.name = T.translate(slug)
 
         self.sort = results["sort"]
 
@@ -277,7 +279,7 @@ class Technique:
             elif effect == "overfeed":
                 result = self.apply_status("status_overfeed", target)
             elif effect == "hardshell":
-                result = self.hardshell(user, target)
+                result = self.hardshell(user)
             elif effect == "status":
                 for category in self.category:
                     if category == "poison":
@@ -467,7 +469,7 @@ class Technique:
         }
 
     def poison(self, target: Monster) -> EffectResult:
-        damage = formula.simple_poison(self, self.link, target)
+        damage = formula.simple_poison(self, target)
         target.current_hp -= damage
         return {
             "damage": damage,
@@ -526,7 +528,7 @@ class Technique:
             "success": True,
         }
 
-    def swap(self, user: Monster, target: Monster) -> EffectResult:
+    def swap(self, user: Player, target: Monster) -> EffectResult:
         """
         Used just for combat: change order of monsters.
 
@@ -541,12 +543,14 @@ class Technique:
         # later
         # TODO: these values are set in combat_menus.py
 
+        assert self.combat_state
+        # TODO: find a way to pass values. this will only work for SP games with one monster party
+        combat_state = self.combat_state
+
         def swap_add() -> None:
             # TODO: make accommodations for battlefield positions
             combat_state.add_monster_into_play(user, target)
 
-        # TODO: find a way to pass values. this will only work for SP games with one monster party
-        combat_state = self.combat_state
         # get the original monster to be swapped out
         original_monster = combat_state.monsters_in_play[user][0]
 

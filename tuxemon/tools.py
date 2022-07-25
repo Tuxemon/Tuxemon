@@ -382,7 +382,7 @@ def copy_dict_with_keys(
     return {k: source[k] for k in keys if k in source}
 
 
-def assert_never(value: NoReturn) -> NoReturn:
+def assert_never(value: str) -> NoReturn:
     """
     Assertion for exhaustive checking of a variable.
 

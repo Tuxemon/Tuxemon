@@ -3,7 +3,16 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from functools import partial
-from typing import TYPE_CHECKING, Any, Callable, Generator, Optional, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    DefaultDict,
+    Generator,
+    List,
+    Optional,
+    Union,
+)
 
 import pygame
 
@@ -15,6 +24,7 @@ from tuxemon.menu.menu import Menu, PopUpMenu
 from tuxemon.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import MenuSpriteGroup, SpriteGroup
+from tuxemon.state import State
 from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.items import ItemMenuState
 from tuxemon.states.monster import MonsterMenuState
@@ -146,6 +156,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             # TODO: don't hardcode to player0
             combat_state = self.client.get_state_by_name(CombatState)
 
+            state: State
             if item.battle_menu == "monster":
                 state = self.client.push_state(MonsterMenuState)
                 state.on_menu_selection = partial(enqueue_item, item)
@@ -299,7 +310,7 @@ class CombatTargetMenuState(Menu[Monster]):
         # this is used to determine who owns what monsters and what not
         # TODO: make less duplication of game data in memory, let combat
         # state have more registers, etc
-        self.targeting_map = defaultdict(list)
+        self.targeting_map: DefaultDict[str, List[Monster]] = defaultdict(list)
 
         for player, monsters in combat_state.monsters_in_play.items():
             for monster in monsters:

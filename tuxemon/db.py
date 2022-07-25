@@ -35,7 +35,16 @@ import logging
 import os
 from enum import Enum
 from operator import itemgetter
-from typing import Any, Dict, Literal, Mapping, Optional, Sequence, overload
+from typing import (
+    Any,
+    Dict,
+    Literal,
+    Mapping,
+    Optional,
+    Sequence,
+    Union,
+    overload,
+)
 
 from pydantic import BaseModel, Field, ValidationError, validator
 
@@ -50,7 +59,6 @@ T.load_translator()
 
 # Target is a mapping of who this targets
 Target = Mapping[str, int]
-
 
 # ItemSort defines the sort of item an item is.
 class ItemSort(str, Enum):
@@ -72,12 +80,14 @@ class ItemBattleMenu(str, Enum):
 
 
 # TODO: Automatically generate state enum through discovery
-states = {
-    "MainCombatMenuState": "MainCombatMenuState",
-    "WorldState": "WorldState",
-    "None": "",
-}
-State = Enum("State", states)
+State = Enum(
+    "State",
+    {
+        "MainCombatMenuState": "MainCombatMenuState",
+        "WorldState": "WorldState",
+        "None": "",
+    },
+)
 
 
 class ItemModel(BaseModel):
@@ -722,22 +732,51 @@ class JSONDatabase:
     def lookup(
         self,
         slug: str,
+        table: Literal["music"],
+    ) -> MusicModel:
+        pass
+
+    @overload
+    def lookup(
+        self,
+        slug: str,
+        table: Literal["sounds"],
+    ) -> SoundModel:
+        pass
+
+    @overload
+    def lookup(
+        self,
+        slug: str,
         table: Literal["environment"],
     ) -> EnvironmentModel:
         pass
 
-    def lookup(self, slug: str, table: str = "monster") -> Mapping[str, Any]:
+    def lookup(
+        self, slug: str, table: str = "monster"
+    ) -> Union[
+        EconomyModel,
+        EncounterModel,
+        EnvironmentModel,
+        InventoryModel,
+        ItemModel,
+        Mapping[str, Any],
+        MonsterModel,
+        MusicModel,
+        NpcModel,
+        SoundModel,
+        TechniqueModel,
+    ]:
         """
         Looks up a monster, technique, item, or npc based on slug.
 
         Parameters:
             slug: The slug of the monster, technique, item, or npc.  A short
                 English identifier.
-            table: Which index to do the search in. Can be: "monster",
-                "item", "npc", or "technique".
+            table: Which index to do the search in.
 
         Returns:
-            A dictionary from the resulting lookup.
+            A dictionary or pydantic.BaseModel from the resulting lookup.
 
         """
         return self.database[table][slug]

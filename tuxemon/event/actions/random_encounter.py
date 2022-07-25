@@ -78,7 +78,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             return
 
         slug = self.parameters.encounter_slug
-        encounters = db.lookup(slug, table="encounter").dict()["monsters"]
+        encounters = db.lookup(slug, table="encounter").monsters
         encounter = _choose_encounter(encounters, self.parameters.total_prob)
 
         # If a random encounter was successfully rolled, look up the monster
@@ -143,7 +143,7 @@ def _choose_encounter(
     roll = random.random() * 100
     if total_prob is not None:
         current_total = sum(
-            encounter["encounter_rate"] for encounter in encounters
+            encounter.encounter_rate for encounter in encounters
         )
         scale = float(total_prob) / current_total
     else:
@@ -152,7 +152,7 @@ def _choose_encounter(
     scale *= prepare.CONFIG.encounter_rate_modifier
 
     for encounter in encounters:
-        total += encounter["encounter_rate"] * scale
+        total += encounter.encounter_rate * scale
         if total >= roll:
             return encounter
 
@@ -164,15 +164,15 @@ def _create_monster_npc(
     world: WorldState,
 ) -> NPC:
     current_monster = monster.Monster()
-    current_monster.load_from_db(encounter["monster"])
+    current_monster.load_from_db(encounter.monster)
     # Set the monster's level based on the specified level range
-    if len(encounter["level_range"]) > 1:
+    if len(encounter.level_range) > 1:
         level = random.randrange(
-            encounter["level_range"][0],
-            encounter["level_range"][1],
+            encounter.level_range[0],
+            encounter.level_range[1],
         )
     else:
-        level = encounter["level_range"][0]
+        level = encounter.level_range[0]
     # Set the monster's level
     current_monster.level = 1
     current_monster.set_level(level)

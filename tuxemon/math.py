@@ -44,7 +44,7 @@ class Vector(ABC, Sequence[float]):
     ) -> Union[float, Sequence[float]]:
         return tuple(self)[key]
 
-    def __add__(self: SelfType, other: SelfType) -> SelfType:
+    def __add__(self: SelfType, other: Sequence[float]) -> SelfType:
         return type(self)([s + o for s, o in zip(self, other)])
 
     def __mul__(self: SelfType, scalar: float) -> SelfType:

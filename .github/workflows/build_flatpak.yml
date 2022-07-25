@@ -55,7 +55,7 @@ jobs:
         repository: 'org.tuxemon.Tuxemon'
 
     - name: Checkout development branch (TODO - remove this once a new version of tuxemon is released)
-      run: >
+      run: |
         cd org.tuxemon.Tuxemon
         git checkout org.tuxemon.Tuxemon.Development
 

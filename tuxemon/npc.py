@@ -848,8 +848,8 @@ class NPC(Entity[NPCState]):
         return success
 
     def can_buy_item(self, item_slug: str, qty: int, unit_price: int) -> bool:
-        current_money = self.game_variables["money"]
-        if current_money:
+        current_money = self.game_variables.get("money", None)
+        if current_money != None:
             return current_money >= qty * unit_price
         # If no 'money' variable, must be an NPC. Always allow buying:
         return True
@@ -875,9 +875,9 @@ class NPC(Entity[NPCState]):
 
         Raises an exception if there's not enough money to pay the price."""
 
-        # Only players will have game_variables, so only update money or raise
+        # Only players will have money in game_variables, so only update money or raise
         # exception if it exists:
-        if self.game_variables:
+        if self.game_variables.get("money", None):
             if not self.can_buy_item(item_slug, qty, unit_price):
                 raise Exception(
                     f"Tried to buy item with {self.game_variables['money']} coins "
@@ -907,9 +907,9 @@ class NPC(Entity[NPCState]):
                 f"Tried to sell item of qty {qty}, but not enough available."
             )
 
-        # Only players will have game_variables, so only update money
+        # Only players will have money in game_variables, so only update money
         # if it exists:
-        if self.game_variables:
+        if self.game_variables.get("money", None):
             self.game_variables["money"] += qty * unit_price
 
     def buy_transaction(

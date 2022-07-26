@@ -7,10 +7,9 @@
   <summary>Tuxemon is a free, open source monster-fighting RPG.</summary>
 
   <description>
-    <p>Tuxemon is a free, open source monster-fighting RPG. It's in constant development and improving all the time! Contributors of all skill and level are welcome to join.</p>
+    <p>Tuxemon is a free, open source monster-fighting RPG. It's in constant development and improving all the time! Contributors of all skill levels are welcome to join.</p>
     <p>Features:</p>
     <ul>
-      <li></li>
       <li>Game data is all json, easy to modify and extend</li>
       <li>Game maps are created using the Tiled Map Editor</li>
       <li>Simple game script to write the story</li>

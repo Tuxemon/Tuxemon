@@ -221,8 +221,8 @@ class WorldMenuState(PygameMenuState):
             str, Any
         ] = dict()  # dict passed around to hold info between menus/callbacks
         monster_menu = self.client.replace_state(MonsterMenuState)
-        monster_menu.on_menu_selection = handle_selection
-        monster_menu.on_menu_selection_change = monster_menu_hook
+        monster_menu.on_menu_selection = handle_selection  # type: ignore[assignment]
+        monster_menu.on_menu_selection_change = monster_menu_hook  # type: ignore[assignment]
 
     def update_animation_position(self) -> None:
         self.menu.translate(-self.animation_offset, 0)

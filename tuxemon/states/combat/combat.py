@@ -580,7 +580,7 @@ class CombatState(CombatAnimations):
         # must use a partial because alert relies on a text box that may not
         # exist until after the state hs been startup
         state.task(partial(state.alert, T.translate("combat_replacement")), 0)
-        state.on_menu_selection = add
+        state.on_menu_selection = add  # type: ignore[assignment]
         state.escape_key_exits = False
 
     def fill_battlefield_positions(self, ask: bool = False) -> None:

@@ -134,7 +134,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             self.client.pop_state()  # close the monster action menu
 
         menu = self.client.push_state(MonsterMenuState)
-        menu.on_menu_selection = swap_it
+        menu.on_menu_selection = swap_it  # type: ignore[assignment]
         menu.anchor("bottom", self.rect.top)
         menu.anchor("right", self.client.screen.get_rect().right)
         menu.monster = self.monster
@@ -147,7 +147,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             menu = self.client.push_state(ItemMenuState)
 
             # set next menu after after selection is made
-            menu.on_menu_selection = choose_target
+            menu.on_menu_selection = choose_target  # type: ignore[assignment]
 
         def choose_target(menu_item: MenuItem[Item]) -> None:
             # open menu to choose target of item
@@ -159,7 +159,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             state: State
             if item.battle_menu == "monster":
                 state = self.client.push_state(MonsterMenuState)
-                state.on_menu_selection = partial(enqueue_item, item)
+                state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[assignment]
             else:
                 state = self.client.push_state(
                     CombatTargetMenuState,
@@ -167,7 +167,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                     user=combat_state.players[0],
                     action=item,
                 )
-                state.on_menu_selection = partial(enqueue_item, item)
+                state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[assignment]
 
         def enqueue_item(item: Item, menu_item: MenuItem[Monster]) -> None:
             target = menu_item.game_object
@@ -213,7 +213,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             menu.anchor("right", self.client.screen.get_rect().right)
 
             # set next menu after after selection is made
-            menu.on_menu_selection = choose_target
+            menu.on_menu_selection = choose_target  # type: ignore[assignment]
 
         def choose_target(menu_item: MenuItem[Technique]) -> None:
             # open menu to choose target of technique
@@ -233,7 +233,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 user=self.monster,
                 action=technique,
             )
-            state.on_menu_selection = partial(enqueue_technique, technique)
+            state.on_menu_selection = partial(enqueue_technique, technique)  # type: ignore[assignment]
 
         def enqueue_technique(
             technique: Technique,

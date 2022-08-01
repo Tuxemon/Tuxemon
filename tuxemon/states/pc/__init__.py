@@ -33,7 +33,7 @@ from __future__ import annotations
 
 import logging
 from functools import partial
-from typing import Any, Callable, Generator, Sequence, Tuple
+from typing import TYPE_CHECKING, Any, Callable, Generator, Sequence, Tuple
 
 import pygame_menu
 
@@ -48,6 +48,9 @@ from tuxemon.session import local_session
 from tuxemon.tools import open_dialog, transform_resource_filename
 
 logger = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
 
 
 MenuGameObj = Callable[[], object]
@@ -217,8 +220,6 @@ class MonsterTakeState(PygameMenuState):
         items: Sequence[Tuple[str, MenuGameObj]],
     ) -> None:
 
-        width, height = prepare.SCREEN_SIZE
-
         for monster, callback in items:
             label = T.translate(monster.name).upper()
             new_button = menu.add.button(label, callback)
@@ -253,7 +254,7 @@ class MonsterTakeState(PygameMenuState):
             height=height, width=width, columns=columns, rows=rows, **kwargs
         )
 
-        def take_monster(monster: monster) -> None:
+        def take_monster(monster: Monster) -> None:
             self.player.remove_monster_from_storage(monster)
             self.player.add_monster(monster)
             open_dialog(
@@ -266,7 +267,7 @@ class MonsterTakeState(PygameMenuState):
             )
             self.client.pop_state(self)
 
-        def take_monster_callback(monster: monster) -> Callable[[], object]:
+        def take_monster_callback(monster: Monster) -> Callable[[], object]:
             return partial(take_monster, monster)
 
         menu_items_map = []
@@ -312,8 +313,8 @@ class MonsterBoxChooseState(PygameMenuState):
 
         player = local_session.player
         menu_items_map = []
-        for box_name in player.monster_boxes.keys():
-            if len(player.monster_boxes[box_name]) == 0:
+        for box_name, monsters in player.monster_boxes.items():
+            if not monsters:
                 menu_callback = partial(
                     open_dialog,
                     local_session,

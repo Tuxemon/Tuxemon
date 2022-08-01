@@ -217,7 +217,7 @@ class MonsterTakeState(PygameMenuState):
     def add_menu_items(
         self: MonsterTakeState,
         menu: pygame_menu.Menu,
-        items: Sequence[Tuple[str, MenuGameObj]],
+        items: Sequence[Tuple[Monster, MenuGameObj]],
     ) -> None:
 
         for monster, callback in items:

@@ -410,14 +410,8 @@ class ShopBuyMenuState(ShopMenuState):
             or not self.economy.lookup_item_price(item.slug)
             else self.economy.lookup_item_price(item.slug)
         )
-        qty_buyer_can_afford = (
-            0
-            if not (
-                self.buyer.game_variables
-                and self.buyer.game_variables["money"]
-            )
-            else int(self.buyer.game_variables["money"] / price)
-        )
+        money = self.buyer.game_variables.get("money")
+        qty_buyer_can_afford = int(money / price) if money else 0
         max_quantity = (
             qty_buyer_can_afford
             if item_dict.get("infinite")

@@ -57,7 +57,7 @@ jobs:
     - name: Checkout development branch (TODO - remove this once a new version of tuxemon is released)
       run: |
         cd org.tuxemon.Tuxemon
-        git checkout org.tuxemon.Tuxemon.Development
+        git checkout development
 
     - name: Replace git tag by the commit id on which it runs
       if: github.ref_type != 'tag'

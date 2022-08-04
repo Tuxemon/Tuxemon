@@ -61,6 +61,21 @@
   </provides>
 
   <releases>
+	<release version="0.4.34" date="2022-08-03">
+      <description>
+        <p>Bug and Feature Release</p>
+        <ul>
+		  <li>2 new cutscenes in Xero campaign by Zhongtiao</li>
+		  <li>Greenwash dungeon added to Spyder campaign by Sanglorian</li>
+		  <li>Battles now start automatically in Spyder campaign if a trainer spots the player</li>
+		  <li>Shopkeepers added to every town in Spyder campaign</li>
+		  <li>Added battle background images for Forest, Cave, and Ocean battles</li>
+		  <li>Many bug fixes</li>
+		  <li>Dancing flowers! Added by freshreplicant</li>
+
+        </ul>
+      </description>
+    </release>
     <release version="0.4.33" date="2021-11-19">
       <description>
         <p>Initial Flathub release</p>

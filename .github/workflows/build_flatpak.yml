@@ -42,7 +42,7 @@ jobs:
     # Command copied from flathub build process
     - name: Validate appdata file
       run: |
-        sudo apt install flatpak
+        sudo apt-get install flatpak
         sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         sudo flatpak install -y org.freedesktop.appstream-glib
         flatpak run --env=G_DEBUG=fatal-criticals org.freedesktop.appstream-glib validate ./buildconfig/flatpak/org.tuxemon.Tuxemon.appdata.xml

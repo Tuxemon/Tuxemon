@@ -57,10 +57,14 @@ jobs:
         owner: 'flathub'
         repository: 'org.tuxemon.Tuxemon'
 
-    - name: Checkout development branch (TODO - remove this once a new version of tuxemon is released)
-      run: |
-        cd org.tuxemon.Tuxemon
-        git checkout development
+    # Turn this on once the requirements (requirements.txt) changed and the build is not working anymore
+    # Create development branch at https://github.com/flathub/org.tuxemon.Tuxemon and
+    # update the requirements as described in the Readme. Turn it off again when the requirements in the
+    # master branch on flathub are aligned again with the Tuxemon requirements
+    # - name: Checkout development branch
+      # run: |
+        # cd org.tuxemon.Tuxemon
+        # git checkout development
 
     - name: Replace git tag by the commit id on which it runs
       if: github.ref_type != 'tag'

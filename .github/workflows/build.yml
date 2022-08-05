@@ -225,7 +225,7 @@ jobs:
         id: release_title
         with:
           cond: ${{ env.IS_RELEASE }}
-          if_true: 'Gittyup Release ${{ github.ref_name }}'
+          if_true: 'Tuxemon Release ${{ github.ref_name }}'
           if_false: 'Latest Build (Development)'
 
       - name: Determine release tag

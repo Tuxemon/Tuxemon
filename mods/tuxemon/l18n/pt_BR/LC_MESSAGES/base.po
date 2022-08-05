@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-03-06 01:50+0000\n"
-"Last-Translator: Marcelo da Silva Janke <marcelo.janke@benner.com.br>\n"
+"PO-Revision-Date: 2022-08-06 16:14+0000\n"
+"Last-Translator: Éderson Ataídes de Matos <eddiemattosdesign@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "tuxemon/tuxemon/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.5.1\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 msgid "combat_state_lifeleech_get"
 msgstr "{user} está sugando saúde de {target}."
@@ -163,3 +163,18 @@ msgstr "Cura um monstro em 10 HP."
 # Apple
 msgid "apple"
 msgstr "Maçã"
+
+msgid "reg_papers"
+msgstr "Documentos de Registro"
+
+msgid "reg_papers_description"
+msgstr "Um pacote de documentos de registro para A Prova"
+
+msgid "hp_restored"
+msgstr "Os pontos de vida de {user} foram restaurados."
+
+msgid "dodge_increased"
+msgstr "A {stat} de {user} aumentou."
+
+msgid "speed_halved"
+msgstr "A velocidade de {user} foi diminuída pela metade."

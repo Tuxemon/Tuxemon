@@ -236,15 +236,15 @@ jobs:
           if_true: 'stable'
           if_false: 'latest'
 
-#      - name: Update GitHub release
-#        uses: marvinpinto/action-automatic-releases@latest
-#        with:
-#          repo_token: ${{ secrets.GITHUB_TOKEN }}
-#          prerelease: ${{ env.IS_RELEASE == 'false' }}
-#          title: ${{ steps.release_title.outputs.value }}
-#          automatic_release_tag: ${{ steps.release_tag.outputs.value }}
-#          files: |
-#            **/artifacts/tuxemon_windows_installer/*
-#            **/artifacts/Tuxemon Flatpak/org.tuxemon.Tuxemon.yml
-#            **/Tuxemon-x86_64/*.flatpak
+      - name: Update GitHub release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: ${{ env.IS_RELEASE == 'false' }}
+          title: ${{ steps.release_title.outputs.value }}
+          automatic_release_tag: ${{ steps.release_tag.outputs.value }}
+          files: |
+            **/artifacts/tuxemon_windows_installer/*.exe
+            **/artifacts/Tuxemon Flatpak/org.tuxemon.Tuxemon.yml
+            **/Tuxemon-x86_64/Tuxemon.flatpak
 ...

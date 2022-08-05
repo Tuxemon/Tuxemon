@@ -107,7 +107,7 @@ jobs:
         path: org.tuxemon.Tuxemon/*
         name: Tuxemon Flatpak
 
-  build_executable_windows:
+  build_installer_windows:
     runs-on: windows-latest
     steps:
       # Checkout the repo
@@ -130,42 +130,22 @@ jobs:
           copy buildconfig/setup_cx_freeze.py setup_cx_freeze.py
           python setup_cx_freeze.py build
 
-      - name: Upload build files
+      - name: Install nsis
+        run: |
+          Invoke-WebRequest -Uri "https://netcologne.dl.sourceforge.net/project/nsis/NSIS%203/3.06.1/nsis-3.06.1-setup.exe" -OutFile "nsis.exe"
+
+      - name: Build Installer
+        run: |
+          cd buildconfig
+          cmd.exe /c "build_installer.bat"
+          mkdir ../dist/
+          mv tuxemon-installer.exe ../dist/.
+
+      - name: Upload installer
         uses: actions/upload-artifact@v2.2.4
         with:
-            name: tuxemon_windows_binary
-            path: build/exe.*
-
-  build_installer_windows: 
-      runs-on: windows-latest
-      needs: "build_executable_windows"
-      steps:
-        - uses: actions/checkout@v2
-
-        # Downloads the executable, might not be the most efficient,
-        # but it makes the graph cooler
-        - name: Download a Build Artifact
-          uses: actions/download-artifact@v2.0.10
-          with:
-            name: tuxemon_windows_binary
-            path: build
-
-        - name: Install nsis
-          run: |
-            Invoke-WebRequest -Uri "https://netcologne.dl.sourceforge.net/project/nsis/NSIS%203/3.06.1/nsis-3.06.1-setup.exe" -OutFile "nsis.exe"
-
-        - name: Build Installer
-          run: |
-            cd buildconfig
-            cmd.exe /c "build_installer.bat"
-            mkdir ../dist/
-            mv tuxemon-installer.exe ../dist/.
-        
-        - name: Upload installer
-          uses: actions/upload-artifact@v2.2.4
-          with:
-              name: tuxemon_windows_installer
-              path: dist
+            name: tuxemon_windows_installer
+            path: dist
               
   python-app:
 

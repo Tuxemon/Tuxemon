@@ -184,7 +184,7 @@ jobs:
     # last condition is the same as IS_RELEASE,
     # but environment variables cannot be used outside of steps
     # so it was copied to here too
-    #if: ${{ github.ref == 'refs/heads/development' || (github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v'))  }}
+    if: ${{ github.ref == 'refs/heads/development' || (github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v'))  }}
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v2

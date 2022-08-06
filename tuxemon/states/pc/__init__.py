@@ -215,14 +215,13 @@ class MonsterTakeState(PygameMenuState):
     into your current party."""
 
     def add_menu_items(
-        self: MonsterTakeState,
+        self,
         menu: pygame_menu.Menu,
         items: Sequence[Tuple[Monster, MenuGameObj]],
     ) -> None:
 
         for monster, callback in items:
             label = T.translate(monster.name).upper()
-            new_button = menu.add.button(label, callback)
             results = db.lookup(monster.slug, table="monster").dict()
             new_image = menu.add.image(
                 graphics.transform_resource_filename(
@@ -230,6 +229,7 @@ class MonsterTakeState(PygameMenuState):
                 )
             )
             new_image.scale(prepare.SCALE, prepare.SCALE)
+            new_button = menu.add.button(label, callback)
 
     def startup(self, box_name: String, **kwargs: Any) -> None:
         width, height = prepare.SCREEN_SIZE

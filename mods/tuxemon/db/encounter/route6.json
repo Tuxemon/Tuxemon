@@ -1,5 +1,5 @@
 {"slug": "route6","monsters": [
-{ "monster":"txmn_dandicub","encounter_rate":10,"level_range": [19,20]},
-{ "monster":"txmn_dandylion","encounter_rate":5,"level_range": [21,23]},
-{ "monster":"txmn_capiti","encounter_rate":10,"level_range": [19,22]}
+{ "monster":"dandicub","encounter_rate":10,"level_range": [19,20]},
+{ "monster":"dandylion","encounter_rate":5,"level_range": [21,23]},
+{ "monster":"capiti","encounter_rate":10,"level_range": [19,22]}
 ] }

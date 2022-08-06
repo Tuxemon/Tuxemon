@@ -909,7 +909,7 @@ class NPC(Entity[NPCState]):
 
         # Only players will have money in game_variables, so only update money
         # if it exists:
-        if self.game_variables.get("money"):
+        if self.game_variables.get("money") is not None:
             self.game_variables["money"] += qty * unit_price
 
     def buy_transaction(

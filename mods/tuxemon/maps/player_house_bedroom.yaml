@@ -9,11 +9,6 @@ events:
     width: 1
     x: 8
     y: 3
-  Player Spawn:
-    height: 1
-    width: 1
-    x: 4
-    y: 5
   Use Computer:
     actions:
     - change_state PCState
@@ -25,3 +20,20 @@ events:
     width: 1
     x: 4
     y: 3
+    type: "event"
+  Give Money:
+    actions:
+    - variable_math money,+,1000000
+    - set_variable xero_starting_money:yes
+    conditions:
+    - not variable_set xero_starting_money:yes
+    height: 1
+    width: 1
+    x: 2
+    y: 1
+    type: "event"
+  Player Spawn:
+    height: 1
+    width: 1
+    x: 4
+    y: 5

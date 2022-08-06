@@ -101,12 +101,6 @@ jobs:
         cache: false
         branch: ${{ steps.flatpak_release_branch.outputs.value }}
 
-    - name: Publish build artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        path: org.tuxemon.Tuxemon/*
-        name: Tuxemon Flatpak
-
   build_installer_windows:
     runs-on: windows-latest
     steps:

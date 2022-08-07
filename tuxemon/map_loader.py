@@ -152,7 +152,7 @@ class YAMLEventLoader:
                 )
                 conds.append(cond_data)
 
-            yield EventObject(None, name, x, y, w, h, conds, acts)
+            yield EventObject(name, name, x, y, w, h, conds, acts)
 
 
 class TMXMapLoader:

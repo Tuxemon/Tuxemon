@@ -73,6 +73,10 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+# Used to indicate that a function should never be called
+# https://typing.readthedocs.io/en/latest/source/unreachable.html
+Never = NoReturn
+
 TVar = TypeVar("TVar")
 TVarSequence = TypeVar("TVarSequence", bound=Tuple[int, ...])
 
@@ -382,7 +386,7 @@ def copy_dict_with_keys(
     return {k: source[k] for k in keys if k in source}
 
 
-def assert_never(value: str) -> NoReturn:
+def assert_never(value: Never) -> NoReturn:
     """
     Assertion for exhaustive checking of a variable.
 

@@ -89,7 +89,7 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
         if i == 1:
             _transfer_storage_boxes(save_data)
 
-    return save_data
+    return save_data  # type: ignore[return-value]
 
 
 def _update_current_map(version: int, save_data: Dict[str, Any]) -> None:

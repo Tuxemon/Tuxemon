@@ -36,7 +36,17 @@ import json
 import logging
 import os
 from operator import itemgetter
-from typing import Any, Callable, Literal, Mapping, Optional, TextIO, TypeVar
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Literal,
+    Mapping,
+    NewType,
+    Optional,
+    TextIO,
+    TypeVar,
+)
 
 import pygame
 
@@ -62,9 +72,11 @@ slot_number: Optional[int] = None
 TIME_FORMAT = "%Y-%m-%d %H:%M"
 config = prepare.CONFIG
 
+EncodedScreenshot = NewType("EncodedScreenshot", str)
+
 
 class SaveData(NPCState):
-    screenshot: str  # screenshot encoded as a string
+    screenshot: EncodedScreenshot
     screenshot_width: int
     screenshot_height: int
     time: str
@@ -194,9 +206,7 @@ def json_load(
     )
 
 
-# This isn't right as it could be an old format at this point
-def open_save_file(save_path: str) -> Optional[SaveData]:
-
+def open_save_file(save_path: str) -> Optional[Dict[str, Any]]:
     try:
         try:
             if config.compress_save is None and prepare.SAVE_METHOD == "CBOR":

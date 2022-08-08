@@ -21,7 +21,7 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, cast, final
+from typing import NamedTuple, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
@@ -47,6 +47,7 @@ class StartCinemaModeAction(EventAction[StartCinemaModeActionParameters]):
     param_class = StartCinemaModeActionParameters
 
     def start(self) -> None:
-        world = cast(WorldState, self.session.client.current_state)
+        world = self.session.client.current_state
+        assert isinstance(world, WorldState)
         if world.cinema_state == "off":
             world.cinema_state = "turning on"

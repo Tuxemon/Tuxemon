@@ -1,0 +1,197 @@
+events:
+  Route Music:
+    actions:
+    - play_music music_the_wild_places
+    conditions:
+    - not music_playing music_the_wild_places
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+  Teleport to Paper Town1:
+    actions:
+    - transition_teleport spyder_paper_town.tmx,14,0,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 1
+    x: 14
+    y: 19
+  Teleport to Paper Town2:
+    actions:
+    - transition_teleport spyder_paper_town.tmx,13,0,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 1
+    x: 13
+    y: 19
+  Encounters1:
+    actions:
+    - random_encounter route1,11
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_moved
+    - is player_at
+    height: 4
+    width: 8
+    x: 20
+    y: 11
+  Encounters2:
+    actions:
+    - random_encounter route1,11
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_moved
+    - is player_at
+    height: 4
+    width: 6
+    x: 10
+    y: 11
+  Encounters3:
+    actions:
+    - random_encounter route1,11
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_moved
+    - is player_at
+    height: 3
+    width: 7
+    x: 13
+    y: 7
+  Encounters4:
+    actions:
+    - random_encounter route1,11
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_moved
+    - is player_at
+    height: 3
+    width: 9
+    x: 10
+    y: 3
+  Player Spawn:
+    height: 1
+    width: 1
+    x: 13
+    y: 18
+    Route 1 Sign:
+    actions:
+    - translated_dialog spyder_route1_routesign
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    height: 1
+    width: 1
+    x: 24
+    y: 17
+  Teleport to Cotton Town1:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,21,39,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 21
+    y: 0
+  Teleport to Cotton Town2:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,22,39,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 22
+    y: 0
+  Teleport to Cotton Town3:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,23,39,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 23
+    y: 0
+  Teleport to Cotton Town4:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,24,39,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 24
+    y: 0  
+  Teleport to Cotton Town5:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,25,39,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 25
+    y: 0
+  Teleport to Cotton Town6:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,26,39,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 26
+    y: 0  
+  Teleport to Cotton Town7:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,27,39,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 27
+    y: 0
+  Create Beachcomber:
+    actions:
+    - create_npc spyder_beachcomber,13,11
+    - npc_wander spyder_beachcomber
+    conditions:
+    - not npc_exists spyder_beachcomber
+    height: 1
+    width: 1
+    x: 13
+    y: 11
+  Talk Beachcomber:
+    actions:
+    - translated_dialog spyder_route1_beachcomber
+    - npc_run spyder_beachcomber
+    behav:
+    - talk spyder_beachcomber
+    height: 1
+    width: 1
+    x: 13
+    y: 10
+  Environment:
+    actions:
+    - set_variable environment:grass
+    conditions:
+    - not variable_set environment:grass
+    height: 1
+    width: 1
+    x: 1
+    y: 0

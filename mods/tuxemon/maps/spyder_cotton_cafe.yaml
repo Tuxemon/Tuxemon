@@ -1,0 +1,187 @@
+events:
+  Teleport to Cotton Town:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,28,17,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 3
+    x: 7
+    y: 11
+  Player Spawn:
+    height: 1
+    width: 1
+    x: 7
+    y: 9
+  Create Hacker:
+    actions:
+    - create_npc spyder_cottontown_hacker,10,4
+    conditions:
+    - not npc_exists spyder_cottontown_hacker
+    height: 1
+    width: 1
+    x: 1
+    y: 4
+  Talk Barmaid Intro:
+    actions:
+    - translated_dialog spyder_cottoncafe_barmaidintro
+    - set_variable introdcottoncafe:yes
+    conditions:
+    - not variable_set introdcottoncafe:yes
+    behav:
+    - talk spyder_cottontown_barmaid
+    height: 1
+    width: 1
+    x: 10
+    y: 9
+  Create Barmaid:
+    actions:
+    - create_npc spyder_cottontown_barmaid,0,4
+    conditions:
+    - not npc_exists spyder_cottontown_barmaid
+    height: 1
+    width: 1
+    x: 0
+    y: 4
+  Talk Hacker:
+    actions:
+    - translated_dialog spyder_cottoncafe_hackerchat
+    behav:
+    - talk spyder_cottontown_hacker
+    height: 1
+    width: 1
+    x: 9
+    y: 9
+  Talk Barmaid:
+    actions:
+    - translated_dialog spyder_cottoncafe_barmaid
+    - translated_dialog_choice yes:no,chooses
+    conditions:
+    - is variable_set visitedcottoncafe:yes
+    - not variable_set chooses:yes
+    - is variable_set introdcottoncafe2:yes
+    - is player_at
+    - is player_facing up
+    - is button_pressed K_RETURN
+    height: 1
+    width: 1
+    x: 0
+    y: 6
+  First Visit to Cotton Cafe:
+    actions:
+    - wait 0.1
+    - player_stop
+    - lock_controls
+    - pathfind spyder_cottontown_hacker,7,3
+    - npc_face spyder_cottontown_hacker,down
+    - npc_face spyder_florist,up
+    - npc_face spyder_granny,up
+    - npc_face spyder_goth,up
+    - npc_face spyder_shopassistant,up
+    - npc_face spyder_homemaker,up
+    - translated_dialog spyder_cotton_tuxepediaintro
+    - translated_dialog spyder_cotton_tuxepediaintro2
+    - screen_transition 0.5
+    - wait 0.5
+    - set_variable visitedcottoncafe:yes
+    - remove_npc spyder_florist
+    - remove_npc spyder_granny
+    - remove_npc spyder_goth
+    - remove_npc spyder_shopassistant
+    - remove_npc spyder_homemaker
+    - pathfind spyder_cottontown_hacker,7,5
+    - translated_dialog spyder_cotton_tuxepediaintro4
+    - unlock_controls
+    conditions:
+    - not variable_set visitedcottoncafe:yes
+    - is player_at
+    height: 1
+    width: 7
+    x: 5
+    y: 6
+  Create Homemaker (1st):
+    actions:
+    - create_npc spyder_homemaker,8,9
+    conditions:
+    - not npc_exists spyder_homemaker
+    - not variable_set visitedcottoncafe:yes
+    height: 1
+    width: 1
+    x: 8
+    y: 9
+  Create Granny (1st):
+    actions:
+    - create_npc spyder_granny,3,7
+    - npc_face spyder_granny,right
+    conditions:
+    - not npc_exists spyder_granny
+    - not variable_set visitedcottoncafe:yes
+    height: 1
+    width: 1
+    x: 3
+    y: 7
+  Create Goth (1st):
+    actions:
+    - create_npc spyder_goth,2,6
+    conditions:
+    - not npc_exists spyder_goth
+    - not variable_set visitedcottoncafe:yes
+    height: 1
+    width: 1
+    x: 2
+    y: 6
+  Create Assistant (1st):
+    actions:
+    - create_npc spyder_shopassistant,10,7
+    conditions:
+    - not npc_exists spyder_shopassistant
+    - not variable_set visitedcottoncafe:yes
+    height: 1
+    width: 1
+    x: 10
+    y: 7
+  Create Florist (1st):
+    actions:
+    - create_npc spyder_florist,11,6
+    - npc_face spyder_florist,left
+    conditions:
+    - not npc_exists spyder_florist
+    - not variable_set visitedcottoncafe:yes
+    height: 1
+    width: 1
+    x: 11
+    y: 6
+  Heal Tuxemon:
+    actions:
+    - set_monster_health ,
+    - set_monster_status ,
+    - translated_dialog okaythen
+    - npc_face spyder_cottontown_barmaid,up
+    - wait 1
+    - npc_face spyder_cottontown_barmaid,down
+    - translated_dialog okaythen2
+    - set_variable chooses:none
+    conditions:
+    - is variable_set chooses:yes
+    height: 1
+    width: 1
+    x: 0
+    y: 8
+  Talk Barmaid (1st):
+    actions:
+    - translated_dialog spyder_cottoncafe_barmaidintro
+    - translated_dialog_choice yes:no,chooses
+    - set_variable introdcottoncafe2:yes
+    conditions:
+    - is variable_set visitedcottoncafe:yes
+    - not variable_set chooses:yes
+    - not variable_set introdcottoncafe2:yes
+    - is player_at
+    - is player_facing up
+    - is button_pressed K_RETURN
+    height: 1
+    width: 1
+    x: 0
+    y: 6

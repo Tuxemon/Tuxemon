@@ -1,0 +1,140 @@
+events:
+  Teleport to Cotton Town:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,30,35,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 2
+    x: 5
+    y: 10
+  Player Spawn:
+    height: 1
+    width: 1
+    x: 5
+    y: 7
+  Create Shopkeeper:
+    actions:
+    - create_npc spyder_shopkeeper,1,6
+    - npc_face spyder_shopkeeper,right
+    - set_inventory spyder_shopkeeper,inv_basic_store
+    conditions:
+    - not npc_exists spyder_shopkeeper
+    height: 1
+    width: 1
+    x: 0
+    y: 4
+  Create Assistant:
+    actions:
+    - create_npc spyder_shopassistant,7,8
+    conditions:
+    - not npc_exists spyder_shopassistant
+    height: 1
+    width: 1
+    x: 3
+    y: 5
+  Assistant Talk:
+    actions:
+    - translated_dialog spyder_cottonscoop_shopassistant
+    conditions:
+    - is variable_set visitcottonmart:yes
+    behav:
+    - talk spyder_shopassistant
+    height: 1
+    width: 1
+    x: 7
+    y: 7
+  Devices, no explain:
+    actions:
+    - translated_dialog spyder_cottonscoop_devicenoexplan
+    - pathfind spyder_shopkeeper,1,6
+    - set_variable heardcapture:null
+    conditions:
+    - is variable_set heardcapture:yes
+    height: 1
+    width: 1
+    x: 8
+    y: 8
+  Devices, explain:
+    actions:
+    - player_stop
+    - lock_controls
+    - translated_dialog spyder_cottonscoop_deviceexplan
+    - pathfind spyder_shopkeeper,1,6
+    - pathfind spyder_shopassistant,6,9
+    - translated_dialog spyder_cottonscoop_deviceexplan2
+    - set_variable heardcapture:null
+    - unlock_controls
+    conditions:
+    - is variable_set heardcapture:no
+    height: 1
+    width: 1
+    x: 2
+    y: 8
+  Receive capture device:
+    actions:
+    - player_stop
+    - lock_controls
+    - pathfind spyder_shopkeeper,5,9
+    - translated_dialog spyder_cottonscoop_deviceoffer
+    - translated_dialog_choice yes:no,heardcapture
+    - add_item capture_device
+    - add_item capture_device
+    - add_item capture_device
+    - add_item capture_device
+    - add_item capture_device
+    - set_variable visitcottonmart:yes
+    - unlock_controls
+    conditions:
+    - not variable_set visitcottonmart:yes
+    height: 1
+    width: 1
+    x: 1
+    y: 6
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+  Talk Open Shop:
+    actions:
+    - translated_dialog spyder_scoop_welcome
+    - open_shop spyder_shopkeeper
+    behav:
+    - talk spyder_shopkeeper
+    height: 1
+    width: 1
+    x: 0
+    y: 5
+  Open Shop1:
+    actions:
+    - npc_face spyder_shopkeeper,right
+    - translated_dialog spyder_scoop_welcome
+    - open_shop spyder_shopkeeper
+    conditions:
+    - is player_at
+    - is player_facing left
+    - is button_pressed K_RETURN
+    height: 1
+    width: 1
+    x: 3
+    y: 6
+  Open Shop2:
+    actions:
+    - npc_face spyder_shopkeeper,down
+    - translated_dialog spyder_scoop_welcome
+    - open_shop spyder_shopkeeper
+    conditions:
+    - is player_at
+    - is player_facing up
+    - is button_pressed K_RETURN
+    height: 1
+    width: 1
+    x: 1
+    y: 8

@@ -1,0 +1,68 @@
+events:
+  Create Picnicker:
+    actions:
+    - create_npc spyder_picnicker,3,2
+    - npc_face spyder_picnicker,up
+    conditions:
+    - not npc_exists spyder_picnicker
+    height: 1
+    width: 1
+    x: 4
+    y: 2
+  Talk Picnicker:
+    actions:
+    - translated_dialog spyder_cottonhouse2_magician
+    behav:
+    - talk spyder_picnicker
+    height: 1
+    width: 1
+    x: 5
+    y: 2
+  Create Catgirl:
+    actions:
+    - create_npc spyder_catgirl,0,6
+    - npc_face spyder_catgirl,up
+    conditions:
+    - not npc_exists spyder_catgirl
+    height: 1
+    width: 1
+    x: 3
+    y: 6 
+  Talk Catgirl:
+    actions:
+    - translated_dialog spyder_cottonhouse2_catgirl
+    behav:
+    - talk spyder_catgirl
+    height: 1
+    width: 1
+    x: 0
+    y: 5
+  Create Shopkeeper:
+    actions:
+    - create_npc spyder_shopkeeper,9,3
+    - npc_face spyder_shopkeeper,left
+    conditions:
+    - not npc_exists spyder_shopkeeper
+    height: 1
+    width: 1
+    x: 9
+    y: 3 
+  Talk Shopkeeper:
+    actions:
+    - translated_dialog spyder_cottonhouse2_shopkeeper
+    behav:
+    - talk spyder_shopkeeper
+    height: 1
+    width: 1
+    x: 8
+    y: 5 
+  Go outside:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,25,9,0.3
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 2
+    x: 6
+    y: 7

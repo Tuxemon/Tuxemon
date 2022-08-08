@@ -1,0 +1,149 @@
+events:
+  Teleport to Cotton Town:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,16,17,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 2
+    x: 1
+    y: 10
+  Play Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+  Make Barmaid:
+    actions:
+    - create_npc spyder_cottontown_barmaid,10,5
+    - npc_wander spyder_cottontown_barmaid
+    conditions:
+    - not npc_exists spyder_cottontown_barmaid
+    height: 1
+    width: 1
+    x: 10
+    y: 5
+  Florist Talk:
+    actions:
+    - translated_dialog spyder_cottonart_florist
+    behav:
+    - talk spyder_florist
+    height: 1
+    width: 1
+    x: 2
+    y: 5
+  Make Granny:
+    actions:
+    - create_npc spyder_granny,15,8
+    - npc_wander spyder_granny
+    conditions:
+    - not npc_exists spyder_granny
+    height: 1
+    width: 1
+    x: 15
+    y: 8
+  Granny Talk:
+    actions:
+    - translated_dialog spyder_cottonart_granny
+    behav:
+    - talk spyder_granny
+    height: 1
+    width: 1
+    x: 16
+    y: 7
+  Goth Talk:
+    actions:
+    - translated_dialog spyder_cottonart_goth
+    behav:
+    - talk spyder_goth
+    height: 1
+    width: 1
+    x: 18
+    y: 7
+  Make Goth:
+    actions:
+    - create_npc spyder_goth,17,8
+    - npc_wander spyder_goth
+    conditions:
+    - not npc_exists spyder_goth
+    height: 1
+    width: 1
+    x: 17
+    y: 8
+  Make Florist:
+    actions:
+    - create_npc spyder_florist,1,6
+    - npc_wander spyder_florist
+    conditions:
+    - not npc_exists spyder_florist
+    height: 1
+    width: 1
+    x: 1
+    y: 6
+  Barmaid Talk:
+    actions:
+    - translated_dialog spyder_cottonart_barmaid
+    behav:
+    - talk spyder_cottontown_barmaid
+    height: 1
+    width: 1
+    x: 11
+    y: 4
+  Make Shopkeeper:
+    actions:
+    - create_npc spyder_shopkeeper,4,9
+    - npc_face spyder_shopkeeper,left
+    conditions:
+    - not npc_exists spyder_shopkeeper
+    height: 1
+    width: 1
+    x: 4
+    y: 9
+  Shopkeeper Talk:
+    actions:
+    - translated_dialog spyder_cottonart_shopkeeper
+    behav:
+    - talk spyder_shopkeeper
+    height: 1
+    width: 1
+    x: 5
+    y: 8
+  Pay Up:
+    actions:
+    - translated_dialog spyder_cottonart_shopkeeper
+    - translated_dialog_choice yes:no,paygallery
+    conditions:
+    - is player_at
+    - is player_facing up
+    - not variable_set paygallery:yes
+    - not variable_set paygallery:no
+    height: 1
+    width: 2
+    x: 1
+    y: 9
+  Pay:
+    actions:
+    - pathfind player,2,8
+    - set_variable paygallery:null
+    conditions:
+    - is variable_set paygallery:yes
+    height: 1
+    width: 1
+    x: 0
+    y: 7
+  No Pay:
+    actions:
+    - pathfind player,2,10
+    - set_variable paygallery:null
+    conditions:
+    - is variable_set paygallery:no
+    height: 1
+    width: 1
+    x: 0
+    y: 8

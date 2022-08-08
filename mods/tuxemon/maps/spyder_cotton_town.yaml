@@ -1,0 +1,365 @@
+events:
+  Teleport to Route 1:
+    actions:
+    - transition_teleport spyder_route1.tmx,22,0,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 1
+    x: 22
+    y: 39 
+  Teleport to Cotton Mart:
+    actions:
+    - transition_teleport spyder_cotton_scoop.tmx,5,10,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 30
+    y: 34 
+  Sign - Cotton Scoop:
+    actions:
+    - translated_dialog spyder_multi_martsign
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    height: 1
+    width: 1
+    x: 27
+    y: 35 
+  Talk hackerintro10:
+    actions:
+    - player_stop
+    - lock_controls
+    - create_npc spyder_cottontown_hacker,25,30
+    - pathfind spyder_cottontown_hacker,25,36
+    - translated_dialog spyder_cottontown_hackerintro
+    - pathfind spyder_cottontown_hacker,25,29
+    - remove_npc spyder_cottontown_hacker
+    - set_variable spokencottonhacker:yes
+    - unlock_controls
+    conditions:
+    - is player_at
+    - not variable_set spokencottonhacker:yes
+    height: 1
+    width: 8
+    x: 25
+    y: 38 
+  Teleport to Cotton Cathedral:
+    actions:
+    - transition_teleport spyder_healing_center.tmx,7,12,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 20
+    y: 26 
+  Sign - Cathedral Centre:
+    actions:
+    - translated_dialog Cathedral_Center
+    conditions:
+    - is button_pressed K_RETURN
+    - is player_facing_tile
+    height: 1
+    width: 1
+    x: 17
+    y: 26 
+  Teleport to Cafe:
+    actions:
+    - transition_teleport spyder_cotton_cafe.tmx,8,11,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 28
+    y: 16 
+  Fountain:
+    actions:
+    - translated_dialog cotton_town_fountain
+    conditions:
+    - is to_use_tile
+    height: 2
+    width: 3
+    x: 8
+    y: 23 
+  Teleport to Dryad's Grove1:
+    actions:
+    - transition_teleport spyder_dryadsgrove.tmx,39,7,0.3
+    - player_face left
+    conditions:
+    - is player_at
+    - is player_facing left
+    height: 1
+    width: 1
+    x: 0
+    y: 7 
+  Teleport to Dryad's Grove2:
+    actions:
+    - transition_teleport spyder_dryadsgrove.tmx,39,8,0.3
+    - player_face left
+    conditions:
+    - is player_at
+    - is player_facing left
+    height: 1
+    width: 1
+    x: 0
+    y: 8 
+  Sign - Omnichannel HQ:
+    actions:
+    - dialog_chain Omnichannel HQ - We Make Headlines
+    - dialog_chain ${{end}}
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    height: 1
+    width: 1
+    x: 22
+    y: 9 
+  Create Monk:
+    actions:
+    - create_npc spyder_cottontown_monk,5,7
+    - npc_wander spyder_cottontown_monk
+    conditions:
+    - not npc_exists spyder_cottontown_monk
+    - not variable_set dragonscavebenden:yes
+    height: 1
+    width: 1
+    x: 5
+    y: 7 
+  Talk monk:
+    actions:
+    - translated_dialog spyder_cottontown_monk
+    behav:
+    - talk spyder_cottontown_monk
+    height: 1
+    width: 1
+    x: 6
+    y: 8 
+  Create Enforcer:
+    actions:
+    - create_npc spyder_omnichannel_enforcer,17,10
+    conditions:
+    - not npc_exists spyder_omnichannel_enforcer
+    - not variable_set dragonscavebenden:yes
+    height: 1
+    width: 1
+    x: 17
+    y: 10 
+  Talk Enforcer:
+    actions:
+    - translated_dialog spyder_cottontown_enforcer
+    behav:
+    - talk spyder_omnichannel_enforcer
+    height: 1
+    width: 1
+    x: 18
+    y: 11 
+  Teleport to Route 2a:
+    actions:
+    - transition_teleport spyder_route2.tmx,0,9,0.3
+    - player_face right
+    conditions:
+    - is player_at
+    - is player_facing right
+    height: 1
+    width: 1
+    x: 39
+    y: 29 
+  Teleport to Route 2b:
+    actions:
+    - transition_teleport spyder_route2.tmx,0,8,0.3
+    - player_face right
+    conditions:
+    - is player_at
+    - is player_facing right
+    height: 1
+    width: 1
+    x: 39
+    y: 28 
+  Stop! Cotton:
+    actions:
+    - player_stop
+    - lock_controls
+    - create_npc spyder_cottontown_hacker,35,35
+    - pathfind spyder_cottontown_hacker,35,29
+    - pathfind spyder_cottontown_hacker,36,29
+    - translated_dialog spyder_cottontown_stopthere
+    - pathfind player,36,28
+    - pathfind spyder_cottontown_hacker,35,35
+    - remove_npc spyder_cottontown_hacker
+    - unlock_controls
+    conditions:
+    - is player_at
+    - not variable_set visitedcottoncafe:yes
+    height: 2
+    width: 1
+    x: 38
+    y: 28
+  Teleport to Art Shop:
+    actions:
+    - transition_teleport spyder_cotton_artshop.tmx,2,10,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 16
+    y: 16
+  Teleport to Route 1a:
+    actions:
+    - transition_teleport spyder_route1.tmx,21,0,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 1
+    x: 21
+    y: 39
+  Teleport to Route 1b:
+    actions:
+    - transition_teleport spyder_route1.tmx,23,0,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 1
+    x: 23
+    y: 39
+  Teleport to Route 1c:
+    actions:
+    - transition_teleport spyder_route1.tmx,24,0,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 1
+    x: 24
+    y: 39
+  Teleport to Route 1d:
+    actions:
+    - transition_teleport spyder_route1.tmx,25,0,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 1
+    x: 25
+    y: 39
+  Teleport to Route 1e:
+    actions:
+    - transition_teleport spyder_route1.tmx,26,0,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 1
+    x: 26
+    y: 39
+  Teleport to Route 1f:
+    actions:
+    - transition_teleport spyder_route1.tmx,27,0,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 1
+    x: 27
+    y: 39
+  Sign - Cotton Town:
+    actions:
+    - translated_dialog spyder_cottontown_townsign
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    height: 1
+    width: 1
+    x: 24
+    y: 37
+  Play Music:
+    actions:
+    - play_music music_town_theme
+    conditions:
+    - not music_playing music_town_theme
+    height: 1
+    width: 1
+    x: 0
+    y: 0 
+  Teleport to Cotton House 1:
+    actions:
+    - transition_teleport spyder_cotton_house1.tmx,6,7,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 27
+    y: 26 
+  Teleport to Cotton House 2a:
+    actions:
+    - transition_teleport spyder_cotton_house2.tmx,6,7,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 25
+    y: 8
+  Teleport to Omnichannel:
+    actions:
+    - transition_teleport spyder_omnichannel1.tmx,2,12,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 17
+    y: 9
+  Teleport to Cotton Tunnel:
+    actions:
+    - transition_teleport spyder_cotton_tunnel.tmx,36,4,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 2
+    y: 35 
+  Create Statue:
+    actions:
+    - create_npc spyder_statue,3,7
+    conditions:
+    - not npc_exists spyder_statue
+    - not variable_set dragonscavebenden:yes
+    height: 1
+    width: 1
+    x: 3
+    y: 7 
+  Environment:
+    actions:
+    - set_variable environment:grass
+    conditions:
+    - not variable_set environment:grass
+    height: 1
+    width: 1
+    x: 1
+    y: 0
+ 

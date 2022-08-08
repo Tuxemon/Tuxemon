@@ -51,46 +51,4 @@
   <object id="67" type="collision" x="144" y="96" width="16" height="32"/>
   <object id="71" type="collision" x="144" y="32" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="59" name="Create Homemaker" type="event" x="48" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_homemaker,3,5"/>
-    <property name="act2" value="npc_wander spyder_homemaker"/>
-    <property name="cond1" value="not npc_exists spyder_homemaker"/>
-   </properties>
-  </object>
-  <object id="60" name="Talk Homemaker" type="event" x="48" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_cottonhouse1_homemaker"/>
-    <property name="behav1" value="talk spyder_homemaker"/>
-   </properties>
-  </object>
-  <object id="61" name="Create Firefighter" type="event" x="112" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_firefighter,7,2"/>
-    <property name="cond1" value="not npc_exists spyder_firefighter"/>
-   </properties>
-  </object>
-  <object id="62" name="Talk Firefighter" type="event" x="112" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_cottonhouse1_firefighter"/>
-    <property name="behav1" value="talk spyder_firefighter"/>
-   </properties>
-  </object>
-  <object id="70" name="Go outside" type="event" x="96" y="112" width="32" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,27,27,0.3"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="73" name="Watch TV" type="event" x="144" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_cottonhouse1_tvwatch"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond3" value="is player_facing up"/>
-    <property name="cond4" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
- </objectgroup>
 </map>

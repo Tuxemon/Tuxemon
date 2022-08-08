@@ -1,0 +1,60 @@
+events:
+  Create Homemaker:
+    actions:
+    - create_npc spyder_homemaker,3,5
+    - npc_wander spyder_homemaker
+    conditions:
+    - not npc_exists spyder_homemaker
+    height: 1
+    width: 1
+    x: 3
+    y: 5
+  Talk Homemaker:
+    actions:
+    - translated_dialog spyder_cottonhouse1_homemaker
+    behav:
+    - talk spyder_homemaker
+    height: 1
+    width: 1
+    x: 3
+    y: 4
+  Create Firefighter:
+    actions:
+    - create_npc spyder_firefighter,7,2
+    conditions:
+    - not npc_exists spyder_firefighter
+    height: 1
+    width: 1
+    x: 7
+    y: 3
+  Talk Firefighter:
+    actions:
+    - translated_dialog spyder_cottonhouse1_firefighter
+    behav:
+    - talk spyder_firefighter
+    height: 1
+    width: 1
+    x: 7
+    y: 2
+  Go outside:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,27,27,0.3
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 2
+    x: 6
+    y: 7
+  Watch TV:
+    actions:
+    - translated_dialog spyder_cottonhouse1_tvwatch
+    conditions:
+    - is player_at
+    - is player_facing up
+    - is button_pressed K_RETURN
+    height: 1
+    width: 1
+    x: 9
+    y: 3
+ 

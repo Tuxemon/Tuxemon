@@ -142,7 +142,7 @@ def json_action(
         open_function = open
     else:
         compression_tool = importlib.import_module(config.compress_save)
-        open_function = compression_tool.open  # type: ignore[attr-defined]
+        open_function = compression_tool.open
 
     with open_function(
         path,

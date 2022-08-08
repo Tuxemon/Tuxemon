@@ -189,42 +189,49 @@ class WorldState(state.State):
         # Pixels per second speed of the animation.
         self.cinema_speed = 15 * prepare.SCALE
 
-        self.cinema_top: CinemaSurfaceInfo = {}  # type: ignore
-        self.cinema_bottom: CinemaSurfaceInfo = {}  # type: ignore
-
         # Create a surface that we'll use as black bars for a cinematic
         # experience
-        self.cinema_top["surface"] = pygame.Surface(
+        top_surface = pygame.Surface(
             (self.resolution[0], self.resolution[1] / 6)
         )
-        self.cinema_bottom["surface"] = pygame.Surface(
+        bottom_surface = pygame.Surface(
             (self.resolution[0], self.resolution[1] / 6)
         )
 
         # Fill our empty surface with black
-        self.cinema_top["surface"].fill((0, 0, 0))
-        self.cinema_bottom["surface"].fill((0, 0, 0))
+        top_surface.fill((0, 0, 0))
+        bottom_surface.fill((0, 0, 0))
 
         # When cinema mode is off, this will be the position we'll draw the
         # black bar.
-        self.cinema_top["off_position"] = [
+        top_off_position = [
             0,
-            -self.cinema_top["surface"].get_height(),
+            -top_surface.get_height(),
         ]
-        self.cinema_bottom["off_position"] = [0, self.resolution[1]]
-        self.cinema_top["position"] = list(self.cinema_top["off_position"])
-        self.cinema_bottom["position"] = list(
-            self.cinema_bottom["off_position"]
-        )
+        bottom_off_position = [0, self.resolution[1]]
+        top_position = list(top_off_position)
+        bottom_position = list(bottom_off_position)
 
         # When cinema mode is ON, this will be the position we'll draw the
         # black bar.
-        self.cinema_top["on_position"] = [0, 0]
-        self.cinema_bottom["on_position"] = [
+        top_on_position = [0, 0]
+        bottom_on_position = [
             0,
-            self.resolution[1] - self.cinema_bottom["surface"].get_height(),
+            self.resolution[1] - bottom_surface.get_height(),
         ]
 
+        self.cinema_top: CinemaSurfaceInfo = {
+            "surface": top_surface,
+            "on_position": top_on_position,
+            "off_position": top_off_position,
+            "position": top_position,
+        }
+        self.cinema_bottom: CinemaSurfaceInfo = {
+            "surface": bottom_surface,
+            "on_position": bottom_on_position,
+            "off_position": bottom_off_position,
+            "position": bottom_position,
+        }
         self.map_animations: Dict[str, AnimationInfo] = {}
 
         if local_session.player is None:

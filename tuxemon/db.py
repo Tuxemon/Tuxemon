@@ -690,8 +690,8 @@ class JSONDatabase:
                 teq = TechniqueModel(**item)
                 self.database[table][teq.slug] = teq
             else:
-                self.database[table][item["slug"]] = item
-        except ValidationError as e:
+                raise ValueError(f"Unexpected {table =}")
+        except (ValidationError, ValueError) as e:
             logger.error(f"validation failed for '{item['slug']}': {e}")
             if validate:
                 raise e

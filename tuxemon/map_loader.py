@@ -26,7 +26,17 @@
 
 import logging
 from math import cos, pi, sin
-from typing import Any, Dict, Generator, Iterator, Mapping, Optional, Tuple
+from typing import (
+    Any,
+    Dict,
+    Generator,
+    Iterator,
+    Mapping,
+    Optional,
+    Sequence,
+    Tuple,
+    cast,
+)
 
 import pytmx
 import yaml
@@ -377,9 +387,12 @@ class TMXMapLoader:
         w = int(obj.width / tile_size[0])
         h = int(obj.height / tile_size[1])
 
+        properties = cast(Dict[str, Any], obj.properties)
+        keys = cast(Sequence[str], natsorted(properties.keys()))
         # Conditions & actions are stored as Tiled properties.
         # We need to sort them by name, so that "act1" comes before "act2" and so on..
-        for key, value in natsorted(obj.properties.items()):
+        for key in keys:
+            value = properties[key]
             if key.startswith("cond"):
                 operator, cond_type, args = parse_condition_string(value)
                 condition = MapCondition(
@@ -391,10 +404,9 @@ class TMXMapLoader:
                 action = MapAction(act_type, args, key)
                 acts.append(action)
 
-        keys = natsorted(obj.properties.keys())
         for key in keys:
             if key.startswith("behav"):
-                behav_string = obj.properties[key]
+                behav_string = properties[key]
                 behav_type, args = parse_behav_string(behav_string)
                 if behav_type == "talk":
                     conds.insert(

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import os
 import sys
-from typing import Iterable, List
+from typing import Iterable
 
 from prompt_toolkit import PromptSession
 
@@ -64,12 +64,9 @@ class CommandProcessor:
     def __init__(self, session: Session, prompt: str = "> ") -> None:
         self.prompt = prompt
         self.session = session
-        commands: List[CLICommand] = []
-        folders: List[str] = []
-        folders.append(os.path.join(os.path.dirname(__file__), "commands"))
+        folder = os.path.join(os.path.dirname(__file__), "commands")
         # TODO: add folder(s) from mods
-        for folder in folders:
-            commands.extend(self.collect_commands(folder))
+        commands = [self.collect_commands(folder)]
         self.root_command = MetaCommand(commands)
 
     def run(self) -> None:

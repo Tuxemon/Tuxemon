@@ -676,7 +676,7 @@ class WorldState(state.State):
         self,
         start: Tuple[int, int],
         dest: Tuple[int, int],
-    ) -> Optional[List[Tuple[int, int]]]:
+    ) -> Optional[Sequence[Tuple[int, int]]]:
         """
         Pathfind.
 

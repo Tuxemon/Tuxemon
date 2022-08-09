@@ -1,0 +1,105 @@
+events:
+  Teleport to Cotton Town:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,2,36,0.3
+    - player_face right
+    conditions:
+    - is player_at
+    - is player_facing right
+    x: 36
+    y: 4
+    width: 1
+    height: 1
+  Teleport to Dragon's Cave:
+    actions:
+    - transition_teleport spyder_dragonscave.tmx,16,5,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    - is variable_set dragonscavedrokoro:yes
+    x: 3
+    y: 16
+    width: 1
+    height: 1
+  Reject Teleport to Dragon's Cave:
+    actions:
+    - translated_dialog spyder_dragonscave_blocked
+    - pathfind player,3,14
+    conditions:
+    - is player_at
+    - is player_facing down
+    - not variable_set dragonscavedrokoro:yes
+    x: 3
+    y: 16
+    width: 1
+    height: 1
+  Create Brute1:
+    actions:
+    - create_npc spyder_dragonscave_angrybrute,10,3
+    - npc_face spyder_dragonscave_angrybrute,right
+    conditions:
+    - not npc_exists spyder_dragonscave_angrybrute
+    - is variable_set dragonscavedrokoro:yes
+    x: 10
+    y: 4
+    width: 1
+    height: 1
+  Talk Brute1:
+    actions:
+    - translated_dialog spyder_dragonscave_angrybrute1
+    behav:
+    - talk spyder_dragonscave_angrybrute
+    x: 10
+    y: 3
+    width: 1
+    height: 1
+  Create Brute2:
+    actions:
+    - create_npc spyder_dragonscave_lazybrute,12,6
+    - npc_face spyder_dragonscave_lazybrute,up
+    conditions:
+    - not npc_exists spyder_dragonscave_lazybrute
+    - is variable_set dragonscavedrokoro:yes
+    x: 12
+    y: 7
+    width: 1
+    height: 1
+  Talk Brute2:
+    actions:
+    - translated_dialog spyder_dragonscave_lazybrute1
+    behav:
+    - talk spyder_dragonscave_lazybrute
+    x: 12
+    y: 6
+    width: 1
+    height: 1
+  Create Brute3:
+    actions:
+    - create_npc spyder_dragonscave_concernedbrute,13,4
+    - npc_face spyder_dragonscave_concernedbrute,left
+    conditions:
+    - not npc_exists spyder_dragonscave_concernedbrute
+    - is variable_set dragonscavedrokoro:yes
+    x: 13
+    y: 4
+    width: 1
+    height: 1
+  Talk Brute3:
+    actions:
+    - translated_dialog spyder_dragonscave_concernedbrute1
+    behav:
+    - talk spyder_dragonscave_concernedbrute
+    x: 13
+    y: 3
+    width: 1
+    height: 1
+  Environment:
+    actions:
+    - set_variable environment:cave
+    conditions:
+    - not variable_set environment:cave
+    x: 1
+    y: 0
+    width: 1
+    height: 1

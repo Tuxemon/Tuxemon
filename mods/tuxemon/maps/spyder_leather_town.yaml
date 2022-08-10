@@ -1,0 +1,369 @@
+events:
+  Teleport to City Park1:
+    actions:
+    - transition_teleport spyder_citypark.tmx,0,12,0.3
+    - player_face right
+    conditions:
+    - is player_at
+    - is player_facing right
+    x: 39
+    y: 32
+    width: 1
+    height: 1
+  Teleport to City Park2:
+    actions:
+    - transition_teleport spyder_citypark.tmx,0,13,0.3
+    - player_face right
+    conditions:
+    - is player_at
+    - is player_facing right
+    x: 39
+    y: 33
+    width: 1
+    height: 1
+  Teleport to Route 3a:
+    actions:
+    - transition_teleport spyder_route3.tmx,9,39,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    x: 10
+    y: 1
+    width: 1
+    height: 1
+  Teleport to Route 3b:
+    actions:
+    - transition_teleport spyder_route3.tmx,8,39,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    x: 9
+    y: 1
+    width: 1
+    height: 1
+  Teleport to Route 3c:
+    actions:
+    - transition_teleport spyder_route3.tmx,7,39,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    x: 8
+    y: 1
+    width: 1
+    height: 1
+  Teleport to Route 3d:
+    actions:
+    - transition_teleport spyder_route3.tmx,6,39,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    x: 7
+    y: 1
+    width: 1
+    height: 1
+  Teleport to Route 3e:
+    actions:
+    - transition_teleport spyder_route3.tmx,5,39,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    x: 6
+    y: 1
+    width: 1
+    height: 1
+  Teleport to Leather Mart:
+    actions:
+    - transition_teleport spyder_leather_scoop.tmx,5,10,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    x: 15
+    y: 9
+    width: 1
+    height: 1
+  Sign - Route 3:
+    actions:
+    - translated_dialog spyder_route3_sign
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 5
+    y: 1
+    width: 1
+    height: 1
+  Sign - Open Air:
+    actions:
+    - translated_dialog spyder_leathercafe_sign
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 9
+    y: 24
+    width: 1
+    height: 1
+  Teleport to Leather Museum:
+    actions:
+    - transition_teleport spyder_leather_museum.tmx,1,10,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    x: 25
+    y: 14
+    width: 1
+    height: 1
+  Sign - Leather Town:
+    actions:
+    - translated_dialog spyder_leathertown_sign
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 36
+    y: 30
+    width: 1
+    height: 1
+  Sign - Shaft 1:
+    actions:
+    - translated_dialog spyder_shaft1_sign
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 14
+    y: 3
+    width: 1
+    height: 1
+  Sign - Leather CBD:
+    actions:
+    - translated_dialog spyder_leathercbd_sign
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 18
+    y: 11
+    width: 1
+    height: 1
+  Make Scout:
+    actions:
+    - create_npc spyder_maniac,18,15
+    conditions:
+    - not npc_exists spyder_maniac
+    x: 18
+    y: 15
+    width: 1
+    height: 1
+  Scout Talk:
+    actions:
+    - translated_dialog spyder_leather_maniac
+    behav:
+    - talk spyder_maniac
+    x: 19
+    y: 14
+    width: 1
+    height: 1
+  Make Barmaid:
+    actions:
+    - create_npc spyder_barmaid,6,10
+    conditions:
+    - not npc_exists spyder_barmaid
+    x: 6
+    y: 10
+    width: 1
+    height: 1
+  Heal Tuxemon:
+    actions:
+    - set_monster_health ,
+    - set_monster_status ,
+    - translated_dialog okaythen
+    - npc_face spyder_barmaid,up
+    - wait 1
+    - npc_face spyder_barmaid,down
+    - translated_dialog okaythen2
+    - set_variable chooses:none
+    conditions:
+    - is variable_set chooses:yes
+    x: 7
+    y: 10
+    width: 1
+    height: 1
+  Talk Barmaid (1st):
+    actions:
+    - translated_dialog spyder_cottoncafe_barmaid
+    - translated_dialog_choice yes:no,chooses
+    conditions:
+    - not variable_set chooses:yes
+    - is player_at
+    - is player_facing up
+    - is button_pressed K_RETURN
+    x: 6
+    y: 12
+    width: 1
+    height: 1
+  Sign - Shaft 2:
+    actions:
+    - translated_dialog spyder_shaft2_sign
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 21
+    y: 3
+    width: 1
+    height: 1
+  Teleport to Leather House 1:
+    actions:
+    - transition_teleport spyder_leather_house1.tmx,4,7,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    x: 19
+    y: 34
+    width: 1
+    height: 1
+  Teleport to Leather House 2:
+    actions:
+    - transition_teleport spyder_leather_house2.tmx,2,7,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    x: 30
+    y: 27
+    width: 1
+    height: 1
+  Play Music:
+    actions:
+    - play_music music_town_theme
+    conditions:
+    - not music_playing music_town_theme
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  Create Captain:
+    actions:
+    - create_npc spyder_captain,15,19
+    - npc_face spyder_captain,right
+    conditions:
+    - not npc_exists spyder_captain
+    - is variable_set captainreturns:yes
+    x: 15
+    y: 19
+    width: 1
+    height: 1
+  Talk Captain - Flower:
+    actions:
+    - translated_dialog spyder_river_captain2
+    - translated_dialog_choice paper:leather:flower,rivergoto
+    behav:
+    - talk spyder_captain
+    conditions:
+    - not variable_set seentimber:yes
+    x: 15
+    y: 16
+    width: 1
+    height: 1
+  Destination - Flower:
+    actions:
+    - set_variable rivergoto:nothing
+    - player_face up
+    - transition_teleport spyder_flower_city.tmx,17,30,0.3
+    conditions:
+    - is variable_set rivergoto:flower
+    x: 14
+    y: 17
+    width: 1
+    height: 1
+  Destination - Leather:
+    actions:
+    - set_variable rivergoto:nothing
+    - transition_teleport spyder_leather_town.tmx,17,19,0.3
+    - player_face right
+    conditions:
+    - is variable_set rivergoto:leather
+    x: 13
+    y: 18
+    width: 1
+    height: 1
+  Destination - Paper:
+    actions:
+    - set_variable rivergoto:nothing
+    - transition_teleport spyder_paper_town.tmx,4,13,0.3
+    - player_face up
+    conditions:
+    - is variable_set rivergoto:paper
+    x: 12
+    y: 17
+    width: 1
+    height: 1
+  Talk Captain - Timber:
+    actions:
+    - translated_dialog spyder_river_captain2
+    - translated_dialog_choice paper:leather:flower:timber,rivergoto
+    behav:
+    - talk spyder_captain
+    conditions:
+    - not variable_set seencandy:yes
+    - is variable_set seentimber:yes
+    x: 16
+    y: 16
+    width: 1
+    height: 1
+  Destination - Timber:
+    actions:
+    - set_variable rivergoto:nothing
+    - player_face up
+    conditions:
+    - is variable_set rivergoto:timber
+    x: 11
+    y: 18
+    width: 1
+    height: 1
+  Destination - Candy:
+    actions:
+    - set_variable rivergoto:nothing
+    - transition_teleport spyder_candy_town.tmx,26,29,0.3
+    - player_face down
+    conditions:
+    - is variable_set rivergoto:candy
+    x: 10
+    y: 17
+    width: 1
+    height: 1
+  Talk Captain - Candy:
+    actions:
+    - translated_dialog spyder_river_captain2
+    - translated_dialog_choice paper:leather:flower:timber:candy,rivergoto
+    behav:
+    - talk spyder_captain
+    conditions:
+    - is variable_set seencandy:yes
+    x: 17
+    y: 16
+    width: 1
+    height: 1
+  Teleport to Leather Centre:
+    actions:
+    - transition_teleport spyder_leather_center.tmx,7,12,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    x: 23
+    y: 9
+    width: 1
+    height: 1
+  Environment:
+    actions:
+    - set_variable environment:grass
+    conditions:
+    - not variable_set environment:grass
+    x: 1
+    y: 0
+    width: 1
+    height: 1

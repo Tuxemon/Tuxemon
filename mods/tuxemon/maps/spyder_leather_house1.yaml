@@ -1,0 +1,60 @@
+events:
+  Go outside:
+    actions:
+    - transition_teleport spyder_leather_town.tmx,19,35,0.3
+    conditions:
+    - is player_at
+    - is player_facing down
+    x: 4
+    y: 7
+    width: 2
+    height: 1
+  Create Florist:
+    actions:
+    - create_npc spyder_florist,1,5
+    conditions:
+    - not npc_exists spyder_florist
+    x: 1
+    y: 5
+    width: 1
+    height: 1
+  Talk Florist:
+    actions:
+    - translated_dialog spyder_leatherhouse1_florist
+    behav:
+    - talk spyder_florist
+    x: 1
+    y: 4
+    width: 1
+    height: 1
+  Radio:
+    actions:
+    - translated_dialog spyder_leatherhouse1_radio
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 7
+    y: 5
+    width: 1
+    height: 32.002
+  Create Tennis Player:
+    actions:
+    - create_npc spyder_tennisplayer,9,3
+    - npc_wander spyder_tennisplayer
+    conditions:
+    - not npc_exists spyder_tennisplayer
+    x: 9
+    y: 3
+    width: 1
+    height: 1
+  Talk Tennis Player:
+    actions:
+    - translated_dialog spyder_leatherhouse1_tennisplayer1
+    - translated_dialog_choice earth:water,frostbitetype
+    - translated_dialog spyder_leatherhouse1_tennisplayer2
+    behav:
+    - talk spyder_tennisplayer
+    x: 9
+    y: 2
+    width: 1
+    height: 1

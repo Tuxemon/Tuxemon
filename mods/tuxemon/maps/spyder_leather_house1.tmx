@@ -56,47 +56,4 @@
   <object id="65" type="collision" x="16" y="32" width="32" height="16"/>
   <object id="66" type="collision" x="112" y="32" width="32" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="62" name="Go outside" type="event" x="64" y="112" width="32" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_leather_town.tmx,19,35,0.3"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="63" name="Create Florist" type="event" x="16" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_florist,1,5"/>
-    <property name="cond1" value="not npc_exists spyder_florist"/>
-   </properties>
-  </object>
-  <object id="64" name="Talk Florist" type="event" x="16" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_leatherhouse1_florist"/>
-    <property name="behav1" value="talk spyder_florist"/>
-   </properties>
-  </object>
-  <object id="67" name="Radio" type="event" x="112" y="80" width="16" height="32.002">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_leatherhouse1_radio"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="68" name="Create Tennis Player" type="event" x="144" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_tennisplayer,9,3"/>
-    <property name="act2" value="npc_wander spyder_tennisplayer"/>
-    <property name="cond1" value="not npc_exists spyder_tennisplayer"/>
-   </properties>
-  </object>
-  <object id="69" name="Talk Tennis Player" type="event" x="144" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_leatherhouse1_tennisplayer1"/>
-    <property name="act2" value="translated_dialog_choice earth:water,frostbitetype"/>
-    <property name="act3" value="translated_dialog spyder_leatherhouse1_tennisplayer2"/>
-    <property name="behav1" value="talk spyder_tennisplayer"/>
-   </properties>
-  </object>
- </objectgroup>
 </map>

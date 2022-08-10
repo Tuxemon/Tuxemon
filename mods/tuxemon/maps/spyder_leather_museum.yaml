@@ -1,0 +1,262 @@
+events:
+  Teleport to Leather Town:
+    actions:
+    - transition_teleport spyder_leather_town.tmx,25,15,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    x: 1
+    y: 10
+    width: 2
+    height: 1
+  Play Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  Make Miner:
+    actions:
+    - create_npc spyder_miner,23,9
+    - npc_wander spyder_miner
+    conditions:
+    - not npc_exists spyder_miner
+    x: 26
+    y: 9
+    width: 1
+    height: 1
+  Make Postboy:
+    actions:
+    - create_npc spyder_postboy,12,10
+    - npc_wander spyder_postboy
+    conditions:
+    - not npc_exists spyder_postboy
+    x: 12
+    y: 10
+    width: 1
+    height: 1
+  Postboy Talk:
+    actions:
+    - translated_dialog spyder_museum_postboy1
+    behav:
+    - talk spyder_postboy
+    x: 13
+    y: 9
+    width: 1
+    height: 1
+  Miner Talk:
+    actions:
+    - translated_dialog spyder_museum_miner1
+    behav:
+    - talk spyder_miner
+    x: 25
+    y: 8
+    width: 1
+    height: 1
+  Make Shopkeeper:
+    actions:
+    - create_npc spyder_maniac,2,9
+    - npc_face spyder_maniac,left
+    conditions:
+    - not npc_exists spyder_maniac
+    x: 2
+    y: 9
+    width: 1
+    height: 1
+  Shopkeeper Talk:
+    actions:
+    - translated_dialog spyder_museum_shopkeeper_chat
+    behav:
+    - talk spyder_maniac
+    x: 5
+    y: 8
+    width: 1
+    height: 1
+  Pay Option:
+    actions:
+    - translated_dialog spyder_museum_entrance1
+    - translated_dialog_choice yes:no,paymuseum
+    conditions:
+    - is player_at
+    - is player_facing up
+    - not variable_set paymuseum:yes
+    - not variable_set paymuseum:no
+    - not variable_set notpaidmuseum:yes
+    x: 1
+    y: 9
+    width: 1
+    height: 1
+  Pay:
+    actions:
+    - lock_controls
+    - pathfind player,1,8
+    - set_variable paymuseum:null
+    - translated_dialog spyder_museum_entrance2
+    - unlock_controls
+    conditions:
+    - is variable_set paymuseum:yes
+    x: 2
+    y: 6
+    width: 1
+    height: 1
+  No Pay (Required):
+    actions:
+    - lock_controls
+    - pathfind player,1,10
+    - set_variable paymuseum:null
+    - unlock_controls
+    conditions:
+    - is variable_set paymuseum:no
+    - is variable_set notpaidmuseum:yes
+    x: 0
+    y: 7
+    width: 1
+    height: 1
+  Pay Requirement:
+    actions:
+    - player_stop
+    - lock_controls
+    - translated_dialog spyder_museum_entrance3
+    - npc_face spyder_maniac,up
+    - translated_dialog_choice yes:no,paymuseum
+    - unlock_controls
+    conditions:
+    - is player_at
+    - is player_facing up
+    - not variable_set paymuseum:yes
+    - not variable_set paymuseum:no
+    - is variable_set notpaidmuseum:yes
+    x: 1
+    y: 9
+    width: 1
+    height: 1
+  No Pay (Not Required):
+    actions:
+    - player_stop
+    - lock_controls
+    - translated_dialog spyder_museum_entrance2
+    - pathfind player,1,8
+    - set_variable paymuseum:null
+    - set_variable notpaidmuseum:yes
+    - unlock_controls
+    conditions:
+    - is variable_set paymuseum:no
+    - not variable_set notpaidmuseum:yes
+    x: 0
+    y: 8
+    width: 1
+    height: 1
+  Plaque - Ruby:
+    actions:
+    - translated_dialog spyder_ruby_plaque
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 10
+    y: 7
+    width: 1
+    height: 1
+  Plaque - Opal:
+    actions:
+    - translated_dialog spyder_opal_plaque
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 7
+    y: 7
+    width: 1
+    height: 1
+  Plaque - Emerald:
+    actions:
+    - translated_dialog spyder_emerald_plaque
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 9
+    y: 7
+    width: 1
+    height: 1
+  Plaque - Agate:
+    actions:
+    - translated_dialog spyder_agate_plaque
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 6
+    y: 7
+    width: 1
+    height: 1
+  Plaque - Diamond:
+    actions:
+    - translated_dialog spyder_diamond_plaque
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 13
+    y: 7
+    width: 1
+    height: 1
+  Plaque - Quartz:
+    actions:
+    - translated_dialog spyder_quartz_plaque
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 12
+    y: 7
+    width: 1
+    height: 1
+  Plaque - Shaft:
+    actions:
+    - translated_dialog spyder_shaft_plaque
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 7
+    y: 5
+    width: 1
+    height: 1
+  Plaque - Nimrod1:
+    actions:
+    - translated_dialog spyder_nimrod_plaque
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 16
+    y: 3
+    width: 1
+    height: 1
+  Plaque - Nimrod2:
+    actions:
+    - translated_dialog spyder_nimrod2_plaque
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 19
+    y: 3
+    width: 1
+    height: 1
+  Plaque - Nimrod3:
+    actions:
+    - translated_dialog spyder_nimrod3_plaque
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 22
+    y: 3
+    width: 1
+    height: 1
+  Plaque - Nimrod4:
+    actions:
+    - translated_dialog spyder_nimrod4_plaque
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 25
+    y: 3
+    width: 1
+    height: 1

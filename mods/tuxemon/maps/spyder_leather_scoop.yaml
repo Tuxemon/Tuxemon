@@ -1,0 +1,58 @@
+events:
+  Teleport to Leather Town:
+    actions:
+    - transition_teleport spyder_leather_town.tmx,15,10,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    x: 5
+    y: 10
+    width: 2
+    height: 1
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  Open Shop1:
+    actions:
+    - npc_face spyder_shopkeeper,right
+    - translated_dialog spyder_scoop_welcome
+    - open_shop spyder_shopkeeper
+    conditions:
+    - is player_at
+    - is player_facing left
+    - is button_pressed K_RETURN
+    x: 3
+    y: 6
+    width: 1
+    height: 1
+  Open Shop2:
+    actions:
+    - npc_face spyder_shopkeeper,down
+    - translated_dialog spyder_scoop_welcome
+    - open_shop spyder_shopkeeper
+    conditions:
+    - is player_at
+    - is player_facing up
+    - is button_pressed K_RETURN
+    x: 1
+    y: 8
+    width: 1
+    height: 1
+  Create Shopkeeper:
+    actions:
+    - create_npc spyder_shopkeeper,1,6
+    - npc_face spyder_shopkeeper,right
+    - set_inventory spyder_shopkeeper,inv_basic_store
+    conditions:
+    - not npc_exists spyder_shopkeeper
+    x: 1
+    y: 6
+    width: 1
+    height: 1

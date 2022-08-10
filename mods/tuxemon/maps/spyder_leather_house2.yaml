@@ -1,0 +1,75 @@
+events:
+  Go outside:
+    actions:
+    - transition_teleport spyder_leather_town.tmx,30,28,0.3
+    conditions:
+    - is player_at
+    - is player_facing down
+    x: 2
+    y: 7
+    width: 2
+    height: 1
+  TV:
+    actions:
+    - translated_dialog spyder_leatherhouse2_tv
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    x: 3
+    y: 2
+    width: 2
+    height: 1
+  Create Scientist:
+    actions:
+    - create_npc spyder_scientist,6,6
+    conditions:
+    - not npc_exists spyder_scientist
+    x: 6
+    y: 6
+    width: 1
+    height: 1
+  Talk Scientist:
+    actions:
+    - translated_dialog spyder_leatherhouse2_scientist
+    behav:
+    - talk spyder_scientist
+    x: 6
+    y: 5
+    width: 1
+    height: 1
+  Create Miner:
+    actions:
+    - create_npc spyder_miner,0,4
+    conditions:
+    - not npc_exists spyder_miner
+    x: 0
+    y: 4
+    width: 1
+    height: 1
+  Talk Miner:
+    actions:
+    - translated_dialog spyder_leatherhouse2_miner
+    behav:
+    - talk spyder_miner
+    x: 0
+    y: 3
+    width: 1
+    height: 1
+  Create Snugglepot:
+    actions:
+    - create_npc spyder_snugglepot,9,4
+    conditions:
+    - not npc_exists spyder_snugglepot
+    x: 9
+    y: 4
+    width: 1
+    height: 1
+  Talk Snugglepot:
+    actions:
+    - translated_dialog spyder_leatherhouse2_snugglepot
+    behav:
+    - talk spyder_snugglepot
+    x: 9
+    y: 3
+    width: 1
+    height: 1

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-11 00:00+0000\n"
-"PO-Revision-Date: 2022-06-13 18:15+0000\n"
-"Last-Translator: LINUX-SAUNA <linuxsauna@protonmail.com>\n"
+"PO-Revision-Date: 2022-08-13 02:17+0000\n"
+"Last-Translator: Keri Z Volans <keri.volans@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fi/>\n"
 "Language: fi\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 ## ITEM TRANSLATIONS ##
 # Apple
@@ -26,13 +26,13 @@ msgid "tm_blossom_description"
 msgstr "Tekniikkaopas joka opettaa Puu-Tuxemonille kukintatekniikan."
 
 msgid "item_no_available_target"
-msgstr "{nimi} ei voida käyttää yhteenkään Tuxemoniisi tällä hetkellä."
+msgstr "{name} ei voida käyttää yhteenkään Tuxemoniisi tällä hetkellä."
 
 msgid "combat_replacement_is_fainted"
 msgstr "Tuo hirviö on jo valmiiksi pyörtynyt!"
 
 msgid "dodge_increased"
-msgstr "{käyttäjä}'n {tilasto} koheni."
+msgstr "{user}'n {stat} koheni."
 
 msgid "cherry_description"
 msgstr "Parantaa hirviötä 10:llä terveyspisteellä."
@@ -55,22 +55,22 @@ msgstr "Keisarillinen rohdos"
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
 msgid "combat_run"
-msgstr "{käyttäjä} juoksi livohkaan!"
+msgstr "{user} juoksi livohkaan!"
 
 msgid "attacks_rose"
-msgstr "{käyttäjän}'n hyökkäystuholaadut kohosivat."
+msgstr "{user}'n hyökkäystuholaadut kohosivat."
 
 msgid "combat_amnesia_get"
-msgstr "{käyttäjä} kärsii muistinmenetyksestä."
+msgstr "{user} kärsii muistinmenetyksestä."
 
 msgid "combat_state_recover_failure"
-msgstr "{käyttäjä} enempää ei voida parantaa."
+msgstr "{user} enempää ei voida parantaa."
 
 msgid "combat_defeat"
 msgstr "Sinut päihitettiin!"
 
 msgid "combat_recharging"
-msgstr "{nimi} tarvitsee lepotauon ennen {liikkumista} uudelleen..."
+msgstr "{name} tarvitsee lepotauon ennen {move} uudelleen..."
 
 msgid "attack_resisted"
 msgstr "Hyökkäys torjuttiin!"
@@ -208,7 +208,7 @@ msgid "tm_blossom"
 msgstr "TO: Kukinta"
 
 msgid "item_cannot_use_here"
-msgstr "{nimi} ei voida käyttää tässä!"
+msgstr "{name} ei voida käyttää tässä!"
 
 msgid "reg_papers"
 msgstr "Rekisteröinnin asiakirjat"
@@ -236,62 +236,62 @@ msgid "combat_player_run"
 msgstr "Juoksit pois!"
 
 msgid "combat_used_x"
-msgstr "{käyttäjä} käytti {nimi}!"
+msgstr "{user} käytti {name}!"
 
 msgid "combat_used_x_on_y"
-msgstr "{käyttäjä} käytti {nimi} kohteessa {kohde}!"
+msgstr "{user} käytti {name} kohteessa {target}!"
 
 msgid "combat_swap"
-msgstr "{käyttäjä} lähetti {kohde}!"
+msgstr "{user} lähetti {target}!"
 
 msgid "combat_call_tuxemon"
-msgstr "Mene {nimi}!"
+msgstr "Mene {name}!"
 
 # TODO: similar to combat_swap - refactor!
 msgid "combat_opponent_call_tuxemon"
-msgstr "{käyttäjä} lähetti {nimi}!"
+msgstr "{user} lähetti {name}!"
 
 msgid "combat_state_poison_get"
-msgstr "{kohde} on myrkytetty."
+msgstr "{target} on myrkytetty."
 
 msgid "combat_state_poison_damage"
-msgstr "{nimi} otti myrkkyosumaa!"
+msgstr "{name} otti myrkkyosumaa!"
 
 msgid "combat_state_lifeleech_get"
-msgstr "{käyttäjä} kuppaa terveyttä {kohteesta}."
+msgstr "{user} kuppaa terveyttä {target}."
 
 msgid "speed_halved"
-msgstr "{käyttäjä}'n nopeus puolittui."
+msgstr "{user}'n nopeus puolittui."
 
 msgid "hp_restored"
-msgstr "{käyttäjä}'n tp palautettiin."
+msgstr "{user}'n tp palautettiin."
 
 msgid "combat_state_overfeed_get"
-msgstr "{käyttäjä} Ylisyötti {kohteen}."
+msgstr "{user} Ylisyötti {target}."
 
 msgid "dodge_fell"
-msgstr "{käyttäjä}'n väistökyky putosi."
+msgstr "{user}'n väistökyky putosi."
 
 msgid "combat_levitate_get"
-msgstr "{käyttäjä} kohosi ylemmäksi ilmaan."
+msgstr "{user} kohosi ylemmäksi ilmaan."
 
 msgid "combat_state_lifeleech_success"
-msgstr "{käyttäjä} menetti terveyttä elämänkupparille!"
+msgstr "{user} menetti terveyttä elämänkupparille!"
 
 msgid "combat_state_lifeleech_failure"
-msgstr "{linkki} enempää ei voida parantaa."
+msgstr "{link} enempää ei voida parantaa."
 
 msgid "combat_state_recover_get"
-msgstr "{kohde} alkoi elpyä terveydeltään."
+msgstr "{target} alkoi elpyä terveydeltään."
 
 msgid "combat_state_recover_success"
-msgstr "{käyttäjä} terveys palannut!"
+msgstr "{user} terveys palannut!"
 
 msgid "combat_status_damage"
-msgstr "{nimi} otti {tila} osumaa!"
+msgstr "{name} otti {status} osumaa!"
 
 msgid "combat_trainer_appeared"
-msgstr "{nimi} haluaa taistella!"
+msgstr "{name} haluaa taistella!"
 
 msgid "combat_victory"
 msgstr "Sinä voitit!"
@@ -300,28 +300,28 @@ msgid "combat_draw"
 msgstr "Kaikki seurueet pyörtyivät!"
 
 msgid "combat_capturing_success"
-msgstr "Sinä vangitsit {nimi}!"
+msgstr "Sinä vangitsit {name}!"
 
 msgid "combat_capturing_fail"
-msgstr "{nimi} irtautui vapaaksi!"
+msgstr "{name} irtautui vapaaksi!"
 
 msgid "combat_replacement"
 msgstr "Valitse vaihdokki!"
 
 msgid "combat_wild_appeared"
-msgstr "Villi {nimi} ilmestyi!"
+msgstr "Villi {name} ilmestyi!"
 
 msgid "combat_monster_choice"
-msgstr "Mitä aikoo {nimi} tehdä?"
+msgstr "Mitä aikoo {name} tehdä?"
 
 msgid "combat_fainted"
-msgstr "{nimi} pyörtyi!"
+msgstr "{name} pyörtyi!"
 
 msgid "combat_isactive"
-msgstr "{nimi} on jo valmiiksi pelissä."
+msgstr "{name} on jo valmiiksi pelissä."
 
 msgid "combat_target_itself"
-msgstr "{nimi} ei pitäisi hyökkiä itseään vastaan."
+msgstr "{name} ei pitäisi hyökkiä itseään vastaan."
 
 msgid "attack_very_effective"
 msgstr "Hyökkäys aiheutti kosolti lisävahinkoa!"
@@ -349,7 +349,7 @@ msgid "attempting_capture"
 msgstr "Yritetään vangitsemista..."
 
 msgid "received_x"
-msgstr "Saatiin {nimi}!"
+msgstr "Saatiin {name}!"
 
 msgid "save_success"
 msgstr "Tallennettu!"
@@ -625,10 +625,10 @@ msgid "cant_release"
 msgstr "Ainoata seurueen Tuxemonia ei voi vapauttaa."
 
 msgid "release_confirmation"
-msgstr "Haluatko aivan varmasti vapauttaa {nimi}?"
+msgstr "Haluatko aivan varmasti vapauttaa {name}?"
 
 msgid "tuxemon_released"
-msgstr "{nimi} on vapautettu. Virkistä valikko nähdäksesi muutokset."
+msgstr "{name} on vapautettu. Virkistä valikko nähdäksesi muutokset."
 
 # Menu notifications
 msgid "log_off"

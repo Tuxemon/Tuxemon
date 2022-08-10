@@ -79,7 +79,7 @@ events:
     width: 1
     x: 13
     y: 18
-    Route 1 Sign:
+  Route 1 Sign:
     actions:
     - translated_dialog spyder_route1_routesign
     conditions:

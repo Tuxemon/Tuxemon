@@ -36,7 +36,7 @@ events:
     x: 7
     y: 5
     width: 1
-    height: 32.002
+    height: 2
   Create Tennis Player:
     actions:
     - create_npc spyder_tennisplayer,9,3

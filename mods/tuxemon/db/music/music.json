@@ -16,10 +16,6 @@
         "file" : "JRPG_royalCourt_loop.ogg"
     },
     {
-        "slug" : "music_gadget_store",
-        "file" : "488524_Purple---8-bit.ogg"
-    },
-    {
         "slug" : "music_dojo_theme",
         "file" : "taking_poison.ogg"
     },
@@ -69,6 +65,6 @@
     },
     {
         "slug" : "music_sphalian_theme",
-        "file" : "Digital_Native.ogg"
+        "file" : "Digital Native.ogg"
     }
 ]

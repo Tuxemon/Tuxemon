@@ -25,12 +25,6 @@
     <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="10" name="Play Music" type="event" x="16" y="48" width="16" height="16">
-   <properties>
-    <property name="act10" value="play_music music_gadget_store"/>
-    <property name="cond10" value="not music_playing music_gadget_store"/>
-   </properties>
-  </object>
   <object id="11" name="Player Spawn" type="event" x="128" y="160" width="16" height="16"/>
  </objectgroup>
  <layer id="3" name="Tile Layer 2" width="20" height="13">

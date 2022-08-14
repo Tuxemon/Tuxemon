@@ -949,7 +949,6 @@ by [Minorthreat0987](http://minorthreat0987.deviantart.com/) and
 [tilman](http://tilman.newgrounds.com/) is licensed under
 [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 
-* ["Purple - [8-bit]"](http://www.newgrounds.com/audio/listen/488524) by
 [Coffee-Break](http://coffee-break.newgrounds.com/) is licensed under
 [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

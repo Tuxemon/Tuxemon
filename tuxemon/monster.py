@@ -702,7 +702,8 @@ class Monster:
             self.status = []
 
     def speed_test(self, action: EnqueuedAction) -> int:
-        technique = cast(Technique, action.technique)
+        assert isinstance(action.technique, Technique)
+        technique = action.technique
         if technique.is_fast:
             return int(random.randrange(0, self.speed) * 1.5)
         else:

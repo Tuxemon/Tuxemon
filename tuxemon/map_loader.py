@@ -35,7 +35,6 @@ from typing import (
     Optional,
     Sequence,
     Tuple,
-    cast,
 )
 
 import pytmx
@@ -387,8 +386,8 @@ class TMXMapLoader:
         w = int(obj.width / tile_size[0])
         h = int(obj.height / tile_size[1])
 
-        properties = cast(Dict[str, Any], obj.properties)
-        keys = cast(Sequence[str], natsorted(properties.keys()))
+        properties = obj.properties
+        keys = natsorted(properties.keys())
         # Conditions & actions are stored as Tiled properties.
         # We need to sort them by name, so that "act1" comes before "act2" and so on..
         for key in keys:

@@ -723,6 +723,129 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Appearance"](https://wiki.tuxemon.org/File:Appearance.gif) source is unknown
+
+* ["Beartrap"](https://wiki.tuxemon.org/File:Beartrap.gif) source is unknown
+
+* ["Bite Zombie"](https://wiki.tuxemon.org/File:Bite_zombie.gif) is by https://opengameart.org/content/bite
+
+* ["Bomb"](https://wiki.tuxemon.org/File:Bomb.gif) From the Superpowers Asset Packs.
+
+* ["Buff Armour"](https://wiki.tuxemon.org/File:Buff_armour.gif) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Buff Fast"](https://wiki.tuxemon.org/File:Buff_fast.gif) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Buff Fast"](https://wiki.tuxemon.org/File:Buff_fast.gif) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+
+* ["Buff Rage"](https://wiki.tuxemon.org/File:Buff_rage.gif) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Buff Ranged"](https://wiki.tuxemon.org/File:Buff_ranged.gif) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Capture"](https://wiki.tuxemon.org/File:Capture_1.gif) source is unknown
+
+* ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif) Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Constant Burn"](https://wiki.tuxemon.org/File:Constantburn.gif) source is unknown
+
+* ["Crystal"](https://wiki.tuxemon.org/File:Crystal.gif) From the Superpowers Asset Packs.
+
+* ["Debuff Melee"](https://wiki.tuxemon.org/File:Debuff_melee.gif) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Explosion Burst"](https://wiki.tuxemon.org/File:Explosion_burst.gif) CC0 on OGA
+
+* ["Explosion Small"](https://wiki.tuxemon.org/File:Explosion_small.gif) From the Superpowers Asset Packs.
+
+* ["Fire Fade"](https://wiki.tuxemon.org/File:Fire_fade.gif) By tamashihoshi
+
+* ["Firelion Back"](https://wiki.tuxemon.org/File:Firelion_back.gif) By daneeklu, adapted by Sanglorian for 64x64px. CC BY-SA 3.0, on OpenGameArt
+
+* ["Firelion Front"](https://wiki.tuxemon.org/File:Firelion_front.gif) By daneeklu, adapted by Sanglorian for 64x64px. CC BY-SA 3.0, on OpenGameArt
+
+* ["Firetwirl"](https://wiki.tuxemon.org/File:Firetwirl.gif) From the Superpowers Asset Packs.
+
+* ["Fireworks"](https://wiki.tuxemon.org/File:Fireworks.gif) Unknown
+
+* ["Gloop Blue"](https://wiki.tuxemon.org/File:Gloop_blue.gif) Adapted by Sanglorian from a sprite from Catch Challenger (CC BY), art director Jordan Brule. Project developer Herman Brule.
+
+* ["Gloop Orange"](https://wiki.tuxemon.org/File:Gloop_orange.gif) Adapted by Sanglorian from a sprite from Catch Challenger (CC BY), art director Jordan Brule. Project developer Herman Brule.
+
+* ["Heal Swarm"](https://wiki.tuxemon.org/File:Heal_swarm.gif) Adapted to 64px by Sanglorian. From the Superpowers Asset Packs.
+
+* ["12 Hits For Sepearation"](https://wiki.tuxemon.org/File:12_hits_for_separation.gif) CC BY on OGA This work, made by Viktor Hahn (Viktor.Hahn@web.de), is licensed under the Creative Commons Attribution 4.0 International License. http://creativecommons.org/licenses/by/4.0/
+
+* ["Icetacle"](https://wiki.tuxemon.org/File:Icetacle.gif) By daneeklu, adapted by Sanglorian for 64x64px. CC BY-SA 3.0, on OpenGameArt
+
+* ["Lance Ice"](https://wiki.tuxemon.org/File:Lance_ice.gif) Resized by Sanglorian from the Superpowers Asset Packs.
+
+* ["Lightning Claw"](https://wiki.tuxemon.org/File:Lightning_claw.gif) By daneeklu, adapted by Sanglorian for 64x64px. CC BY-SA 3.0, on OpenGameArt
+
+* ["Metal Delete"](https://wiki.tuxemon.org/File:Metal_Delete.gif) By josepharaoh99
+
+* ["Misc Hit"](https://wiki.tuxemon.org/File:Misc_Hit_preview.gif) CC BY on OGA This work, made by Viktor Hahn (Viktor.Hahn@web.de), is licensed under the Creative Commons Attribution 4.0 International License. http://creativecommons.org/licenses/by/4.0/
+
+* ["Pound Bright"](https://wiki.tuxemon.org/File:Pound_bright.gif) From the Superpowers Asset Packs.
+
+* ["Pushtrap Front"](https://wiki.tuxemon.org/File:Pushtrap_front.gif) https://opengameart.org/content/animated-traps
+
+* ["Pushtrap Right"](https://wiki.tuxemon.org/File:Pushtrap_right.gif) https://opengameart.org/content/animated-traps
+
+* ["Screen"](https://wiki.tuxemon.org/File:Screen.gif) Adapted by Sanglorian from a sprite from Catch Challenger (CC BY), art director Jordan Brule. Project developer Herman Brule.
+
+* ["Shield Ice"](https://wiki.tuxemon.org/File:Shield_ice.gif) By daneeklu, adapted by Sanglorian for 64x64px. CC BY-SA 3.0, on OpenGameArt
+
+* ["Slash Fire"](https://wiki.tuxemon.org/File:Slash_fire.gif) From the Superpowers Asset Packs.
+
+* ["Smokebomb Plumb"](https://wiki.tuxemon.org/File:Smokebomb_plume.gif) https://opengameart.org/content/gotthicvania-swamp
+
+* ["Smokebomb"](https://wiki.tuxemon.org/File:Smokebomb.gif) From the Superpowers Asset Packs.
+
+* ["Snake Right"](https://wiki.tuxemon.org/File:Snake_right.gif) By daneeklu, adapted by Sanglorian for 64x64px.
+
+* ["Sparks Gold"](https://wiki.tuxemon.org/File:Sparks_gold.gif) http://opengameart.org/content/sparks-fire-ice-blood
+
+* ["Sparks Gold Alt"](https://wiki.tuxemon.org/File:Sparks_gold_alt.gif) http://opengameart.org/content/sparks-fire-ice-blood
+
+* ["Sparks Red"](https://wiki.tuxemon.org/File:Sparks_red.gif) http://opengameart.org/content/sparks-fire-ice-blood
+
+* ["Sparks Red Alt"](https://wiki.tuxemon.org/File:Sparks_red_alt.gif) http://opengameart.org/content/sparks-fire-ice-blood
+
+* ["Sparks White Alt"](https://wiki.tuxemon.org/File:Sparks_white_alt.gif) http://opengameart.org/content/sparks-fire-ice-blood
+
+* ["Sparks White"](https://wiki.tuxemon.org/File:Sparks_white.gif) http://opengameart.org/content/sparks-fire-ice-blood
+
+* ["Spike Ice"](https://wiki.tuxemon.org/File:Spike_ice.gif) By daneeklu
+
+* ["Spike Rock"](https://wiki.tuxemon.org/File:Spike_rock.gif) By daneeklu
+
+* ["Spikes Fire"](https://wiki.tuxemon.org/File:Spikes_fire.gif) https://opengameart.org/content/animated-traps
+
+* ["Spikes Ice"](https://wiki.tuxemon.org/File:Spikes_ice.gif) By daneeklu
+
+* ["Spikes Metal"](https://wiki.tuxemon.org/File:Spikes_metal.gif) by daneeklu
+
+* ["Spikes Rock"](https://wiki.tuxemon.org/File:Spikes_rock.gif) By daneeklu
+
+* ["Tentacle Metal"](https://wiki.tuxemon.org/File:Tentacle_metal.gif) https://opengameart.org/content/custom-enemies
+
+* ["Tentacles Water"](https://wiki.tuxemon.org/File:Tentacles_water.gif) By daneeklu, adapted by Sanglorian for 64x64pxThunderstrike | https://wiki.tuxemon.org/File:Thunderstrike.gif | Unknown
+
+* ["Tornado Basic"](https://wiki.tuxemon.org/File:Tornado_basic.gif) Unknown
+
+* ["Tornado Bulk"](https://wiki.tuxemon.org/File:Tornado_bulk.gif) By daneeklu, adapted by Sanglorian for 64x64px.
+
+* ["Tornado Volume"](https://wiki.tuxemon.org/File:Tornado_volume.gif) Unknown
+
+* ["Waterfall"](https://wiki.tuxemon.org/File:Waterfall.gif) By josepharaoh99
+
+* ["Watershot"](https://wiki.tuxemon.org/File:Watershot.gif) tamashihoshi
+
+* ["Waterspurt"](https://wiki.tuxemon.org/File:Waterspurt.gif) Unknown
+
+* ["Whisp Fire"](https://wiki.tuxemon.org/File:Whisp_fire.gif) https://opengameart.org/content/gothicvania-cemetery-pack
+
+* ["X Attack"](https://wiki.tuxemon.org/File:X_attack.gif) Unknown
+
 ### Battle Backgrounds
 
 * ["forest_background.png"](https://wiki.tuxemon.org/File:Background_(240px).png)

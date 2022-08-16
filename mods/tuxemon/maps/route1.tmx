@@ -214,6 +214,7 @@
     <property name="act23" value="create_npc tuxemart_keeper,34,26,,stand"/>
     <property name="cond1" value="not variable_set letusthrough:no"/>
     <property name="cond2" value="not variable_set letusthrough:almost"/>
+    <property name="cond3" value="not npc_exists omnigrunt"/>
    </properties>
   </object>
   <object id="112" name="they're angry" type="event" x="592" y="336" width="16" height="32">

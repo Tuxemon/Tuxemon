@@ -876,7 +876,7 @@
     <property name="cond20" value="is variable_set greeter_greets:yes"/>
    </properties>
   </object>
-  <object id="135" name="secret_tuxeball" type="event" x="625" y="240.5" width="16" height="16">
+  <object id="135" name="secret_tuxeball" type="event" x="624" y="240" width="16" height="16">
    <properties>
     <property name="act10" value="set_variable secret_ball:found"/>
     <property name="act20" value="add_item capture_device,5"/>

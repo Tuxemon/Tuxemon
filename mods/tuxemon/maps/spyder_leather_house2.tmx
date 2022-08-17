@@ -57,7 +57,7 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="63" name="TV" type="event" x="48" y="32.002" width="32.002" height="16">
+  <object id="63" name="TV" type="event" x="48" y="32" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leatherhouse2_tv"/>
     <property name="cond1" value="is player_facing_tile"/>

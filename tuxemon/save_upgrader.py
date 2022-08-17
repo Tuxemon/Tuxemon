@@ -78,6 +78,8 @@ def upgrade_save(save_data: Dict[str, Any]) -> Dict[str, Any]:
     if "steps" not in save_data["game_variables"]:
         save_data["game_variables"]["steps"] = 0
 
+    save_data["battle_history"] = save_data.get("battle_history", {})
+
     version = save_data.get("version", 0)
     for i in range(version, SAVE_VERSION):
         _update_current_map(i, save_data)

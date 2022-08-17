@@ -30,6 +30,7 @@
 from __future__ import annotations
 
 import logging
+import datetime as dt
 
 from tuxemon.map import proj
 from tuxemon.npc import NPC
@@ -76,3 +77,31 @@ class Player(NPC):
         diff_y = abs(after.y - before.y)
 
         self.game_variables["steps"] += diff_x + diff_y
+        """
+        %H - Hour 00-23
+        %j - Day number of year 001-366
+        """
+        self.game_variables["hour"] = dt.datetime.now().strftime("%H")
+        self.game_variables["daynr"] = dt.datetime.now().strftime("%j")
+
+        # Day and night basic cycle (12h cycle)
+        if int(dt.datetime.now().strftime("%H")) < 6:
+            self.game_variables["b_timeofday"] = "night"
+        elif 6 <= int(dt.datetime.now().strftime("%H")) < 18:
+            self.game_variables["b_timeofday"] = "day"
+        else:
+            self.game_variables["b_timeofday"] = "night"
+
+        # Day and night complex cycle (4h cycle)
+        if int(dt.datetime.now().strftime("%H")) < 4:
+            self.game_variables["c_timeofday"] = "night"
+        elif 4 <= int(dt.datetime.now().strftime("%H")) < 8:
+            self.game_variables["c_timeofday"] = "dawn"
+        elif 8 <= int(dt.datetime.now().strftime("%H")) < 12:
+            self.game_variables["c_timeofday"] = "morning"
+        elif 12 <= int(dt.datetime.now().strftime("%H")) < 16:
+            self.game_variables["c_timeofday"] = "afternoon"
+        elif 16 <= int(dt.datetime.now().strftime("%H")) < 20:
+            self.game_variables["c_timeofday"] = "dusk"
+        else:
+            self.game_variables["c_timeofday"] = "night"

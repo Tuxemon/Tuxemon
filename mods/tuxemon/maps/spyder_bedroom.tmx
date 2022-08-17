@@ -62,11 +62,13 @@
    </properties>
   </object>
   <object id="26" name="Player Spawn" type="event" x="64" y="80" width="16" height="16"/>
-  <object id="27" name="Resting in Bed" type="interact" x="16" y="48" width="16" height="32">
+  <object id="27" name="Resting in Bed" type="event" x="16" y="48" width="16" height="32">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_restinbed"/>
     <property name="act2" value="set_monster_health ,"/>
     <property name="act3" value="set_monster_status ,"/>
+    <property name="cond1" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is player_facing_tile"/>
    </properties>
   </object>
  </objectgroup>

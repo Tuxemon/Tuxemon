@@ -76,7 +76,7 @@
     <property name="behav1" value="talk spyder_florist"/>
    </properties>
   </object>
-  <object id="67" name="Radio" type="event" x="112" y="80" width="16" height="32.002">
+  <object id="67" name="Radio" type="event" x="112" y="80" width="16" height="32">
    <properties>
     <property name="act1" value="translated_dialog spyder_leatherhouse1_radio"/>
     <property name="cond1" value="is player_facing_tile"/>

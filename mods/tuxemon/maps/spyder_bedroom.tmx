@@ -68,6 +68,7 @@
     <property name="act2" value="set_monster_health ,"/>
     <property name="act3" value="set_monster_status ,"/>
     <property name="cond1" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is player_facing_tile"/>
    </properties>
   </object>
  </objectgroup>

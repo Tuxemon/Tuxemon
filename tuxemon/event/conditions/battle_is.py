@@ -36,13 +36,13 @@ class BattleIsCondition(EventCondition):
     Script usage:
         .. code-block::
 
-            is battle_is <character>,<result>,<operation>,<value1>
+            is battle_is <character>,<result>,<operation>,<value>
 
     Script parameters:
         character: Npc slug name (e.g. "npc_maple").
         result: One of "won", "lost" or "draw"
         operation: One of "==", "!=", ">", ">=", "<" or "<=".
-        value2: A number.
+        value: A number.
 
     """
 
@@ -66,7 +66,7 @@ class BattleIsCondition(EventCondition):
         npc = condition.parameters[0]
         result = condition.parameters[1]
         operation = condition.parameters[2]
-        value1 = condition.parameters[3]
+        value = condition.parameters[3]
 
         # Union
         battle_mix = str(npc) + " - " + result
@@ -79,17 +79,17 @@ class BattleIsCondition(EventCondition):
 
         # Check if the condition is true
         if operation == "==":
-            return int(count) == int(value1)
+            return int(count) == int(value)
         elif operation == "!=":
-            return int(count) != int(value1)
+            return int(count) != int(value)
         elif operation == ">":
-            return int(count) > int(value1)
+            return int(count) > int(value)
         elif operation == ">=":
-            return int(count) >= int(value1)
+            return int(count) >= int(value)
         elif operation == "<":
-            return int(count) < int(value1)
+            return int(count) < int(value)
         elif operation == "<=":
-            return int(count) <= int(value1)
+            return int(count) <= int(value)
         else:
             logger.error(f"invalid operation type {operation}")
             raise ValueError

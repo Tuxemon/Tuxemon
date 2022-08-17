@@ -387,10 +387,6 @@ class CombatState(CombatAnimations):
                 var["battle_last_monster_category"] = monster_record.category
                 var["battle_last_monster_shape"] = monster_record.shape
 
-            # update battle_total only once after each battle
-            if self.is_trainer_battle:
-                var["battle_total"] = +1
-
         elif phase == "decision phase":
             self.reset_status_icons()
             if not self._decision_queue:
@@ -413,7 +409,10 @@ class CombatState(CombatAnimations):
                     self.enqueue_action(None, technique, monster)
 
         elif phase == "resolve match":
-            pass
+            # update battle_total only once after each battle
+            if self.is_trainer_battle:
+                var = self.players[0].game_variables
+                var["battle_total"] = +1
 
         elif phase == "ran away":
             self.players[0].set_party_status()

@@ -387,7 +387,7 @@ class CombatState(CombatAnimations):
                 var["battle_last_monster_category"] = monster_record.category
                 var["battle_last_monster_shape"] = monster_record.shape
 
-            # update total number of battles (trainers)
+            # update battle_total only once after each battle
             if self.is_trainer_battle:
                 var["battle_total"] = +1
 

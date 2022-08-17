@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="56">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="57">
  <tileset firstgid="1" name="factory" tilewidth="16" tileheight="16" tilecount="32" columns="8">
   <image source="../gfx/tilesets/factory.png" width="128" height="64"/>
  </tileset>
@@ -187,6 +187,12 @@
     <property name="act6" value="set_variable nimrodbowie:yes"/>
     <property name="cond1" value="not variable_set nimrodbowie:yes"/>
     <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="56" name="Exhausted" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_flower_center.tmx,7,12,0.3"/>
+    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
  </objectgroup>

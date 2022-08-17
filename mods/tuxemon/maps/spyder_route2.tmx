@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="191">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="192">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -628,6 +628,12 @@
     <property name="act4" value="set_variable route2graf:yes"/>
     <property name="cond1" value="not variable_set route2graf:yes"/>
     <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="191" name="Exhausted" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_healing_center.tmx,7,12,0.3"/>
+    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
  </objectgroup>

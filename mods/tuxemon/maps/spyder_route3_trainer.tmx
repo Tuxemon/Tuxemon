@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="-1" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="688">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="-1" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="689">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -790,6 +790,12 @@
     <property name="cond1" value="is variable_set battle_last_result:won"/>
     <property name="cond2" value="not variable_set spyder_weaver_won:yes"/>
     <property name="cond3" value="is variable_set after_spyder_weaver:yes"/>
+   </properties>
+  </object>
+  <object id="688" name="Exhausted" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_leather_center.tmx,7,12,0.3"/>
+    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
  </objectgroup>

@@ -111,7 +111,7 @@
    <properties>
     <property name="act1" value="create_npc professor,7,6,,stand"/>
     <property name="act2" value="npc_face professor,up"/>
-    <property name="cond1" value="is variable_set dancininthemoonlight:heckyeah"/>
+    <property name="cond1" value="is variable_set go_get_tuxemon:yes"/>
     <property name="cond2" value="not npc_exists professor"/>
     <property name="cond3" value="not variable_set havetuxemon:yes"/>
    </properties>
@@ -127,7 +127,7 @@
     <property name="act7" value="translated_dialog tuxemontime1.5"/>
     <property name="act8" value="translated_dialog_choice yes:no,startchoice"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is variable_set dancininthemoonlight:heckyeah"/>
+    <property name="cond2" value="is variable_set go_get_tuxemon:yes"/>
     <property name="cond3" value="is player_facing up"/>
     <property name="cond4" value="not variable_set startchoice:yes"/>
     <property name="cond5" value="not variable_set startchoice:no"/>

@@ -210,7 +210,7 @@
   </object>
   <object id="53" name="Exhausted" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_timber_center.tmx,7,12,0.3"/>
+    <property name="act1" value="teleport_center"/>
     <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>

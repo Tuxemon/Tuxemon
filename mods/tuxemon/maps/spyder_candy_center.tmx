@@ -51,6 +51,7 @@
     <property name="act50" value="npc_face tabanurse,down"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
+    <property name="act80" value="set_variable lastcenter:spyder_candy_center.tmx"/>
     <property name="cond1" value="is variable_set chooses:yes"/>
    </properties>
   </object>

@@ -33,15 +33,12 @@ class TeleportCenterActionParameters(NamedTuple):
 @final
 class TeleportCenterAction(EventAction[TeleportCenterActionParameters]):
     """
-    Teleport the player to the point in the teleport_faint variable.
-
-    Usually used to teleport to the last visited Tuxcenter, as when
-    all monsters in the party faint.
+    Teleport the player to the last visited Tuxcenter.
 
     Script usage:
         .. code-block::
 
-            teleport_faint
+            teleport_center
 
     """
 

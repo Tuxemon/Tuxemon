@@ -86,22 +86,22 @@ class Player(NPC):
 
         # Day and night basic cycle (12h cycle)
         if int(dt.datetime.now().strftime("%H")) < 6:
-            self.game_variables["b_timeofday"] = "night"
+            self.game_variables["daytime"] = False
         elif 6 <= int(dt.datetime.now().strftime("%H")) < 18:
-            self.game_variables["b_timeofday"] = "day"
+            self.game_variables["daytime"] = True
         else:
-            self.game_variables["b_timeofday"] = "night"
+            self.game_variables["daytime"] = False
 
         # Day and night complex cycle (4h cycle)
         if int(dt.datetime.now().strftime("%H")) < 4:
-            self.game_variables["c_timeofday"] = "night"
+            self.game_variables["stageofday"] = "night"
         elif 4 <= int(dt.datetime.now().strftime("%H")) < 8:
-            self.game_variables["c_timeofday"] = "dawn"
+            self.game_variables["stageofday"] = "dawn"
         elif 8 <= int(dt.datetime.now().strftime("%H")) < 12:
-            self.game_variables["c_timeofday"] = "morning"
+            self.game_variables["stageofday"] = "morning"
         elif 12 <= int(dt.datetime.now().strftime("%H")) < 16:
-            self.game_variables["c_timeofday"] = "afternoon"
+            self.game_variables["stageofday"] = "afternoon"
         elif 16 <= int(dt.datetime.now().strftime("%H")) < 20:
-            self.game_variables["c_timeofday"] = "dusk"
+            self.game_variables["stageofday"] = "dusk"
         else:
-            self.game_variables["c_timeofday"] = "night"
+            self.game_variables["stageofday"] = "night"

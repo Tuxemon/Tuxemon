@@ -440,7 +440,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="125" name="random battle25" type="event" x="64" y="128" width="16" height="32.5">
+  <object id="125" name="random battle25" type="event" x="64" y="128" width="16" height="32">
    <properties>
     <property name="act1" value="random_encounter route2"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>

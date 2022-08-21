@@ -135,6 +135,11 @@ class TuxemonConfig:
             "gameplay",
             "default_lower_monster_catch_resistance",
         )
+        self.dialog_speed = cfg.get(
+            "gameplay",
+            "dialog_speed",
+        )
+        assert self.dialog_speed in ("slow", "max")
 
         # [player]
         self.player_animation_speed = cfg.getfloat("player", "animation_speed")
@@ -287,6 +292,7 @@ def get_defaults() -> Mapping[str, Any]:
                         ("default_monster_catch_rate", 125),
                         ("default_upper_monster_catch_resistance", 1),
                         ("default_lower_monster_catch_resistance", 1),
+                        ("dialog_speed", "slow"),
                     )
                 ),
             ),

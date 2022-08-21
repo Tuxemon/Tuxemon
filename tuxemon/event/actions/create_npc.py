@@ -20,7 +20,9 @@
 #
 from __future__ import annotations
 
+import difflib
 import logging
+import sys
 from typing import NamedTuple, Union, final
 
 import tuxemon.npc
@@ -86,7 +88,10 @@ class CreateNpcAction(EventAction[CreateNpcActionParameters]):
                 slug,
             )
         else:
-            sprite = db.lookup(slug, "npc").sprite_name
+            try:
+                sprite = db.lookup(slug, "npc").sprite_name
+            except KeyError as e:
+                log_and_exit(slug)
 
         # Create a new NPC object
         npc = tuxemon.npc.NPC(slug, sprite_name=sprite, world=world)
@@ -96,3 +101,24 @@ class CreateNpcAction(EventAction[CreateNpcActionParameters]):
         npc.behavior = behavior
         npc.ai = ai.RandomAI()
         npc.load_party()
+
+
+def log_and_exit(slug: str):
+    if "npc" not in db.database:
+        logger.error("NPC table wasn't loaded")
+        sys.exit()
+    else:
+        options = difflib.get_close_matches(slug, db.database["npc"].keys())
+        options = [repr(s) for s in options]
+        if len(options) >= 2:
+            options_string = ", ".join(
+                (*options[:-2], options[-2] + " or " + options[-1])
+            )
+            hint = f"Did you mean {options_string}?"
+        elif len(options) == 1:
+            options_string = options[0]
+            hint = f"Did you mean {options_string}?"
+        else:
+            hint = "No similar slugs. Are you sure it's in the DB?"
+        logger.error(f"'create_npc' called with unknown npc '{slug}'. {hint}")
+        sys.exit()

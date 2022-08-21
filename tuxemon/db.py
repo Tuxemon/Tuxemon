@@ -30,9 +30,11 @@
 
 from __future__ import annotations
 
+import difflib
 import json
 import logging
 import os
+import sys
 from enum import Enum
 from operator import itemgetter
 from typing import Any, Dict, Literal, Mapping, Optional, Sequence, overload
@@ -113,7 +115,8 @@ class ItemModel(BaseModel):
     )
     ## Optional fields:
     battle_menu: Optional[ItemBattleMenu] = Field(
-        "", description="Which menu should be used to choose the target of the item."
+        "",
+        description="Which menu should be used to choose the target of the item.",
     )
 
     class Config:
@@ -739,7 +742,14 @@ class JSONDatabase:
             A dictionary from the resulting lookup.
 
         """
-        return self.database[table][slug]
+        table_entry = self.database[table]
+        if not table_entry:
+            logger.exception(f"{table} table wasn't loaded")
+            sys.exit()
+        if slug not in table_entry:
+            self.log_missing_entry_and_exit(table, slug)
+        else:
+            return table_entry[slug]
 
     def lookup_file(self, table: str, slug: str) -> str:
         """
@@ -764,6 +774,22 @@ class JSONDatabase:
             )
 
         return filename
+
+    def log_missing_entry_and_exit(self, table: str, slug: str):
+        options = difflib.get_close_matches(slug, self.database[table].keys())
+        options = [repr(s) for s in options]
+        if len(options) >= 2:
+            options_string = ", ".join(
+                (*options[:-2], options[-2] + " or " + options[-1])
+            )
+            hint = f"Did you mean {options_string}?"
+        elif len(options) == 1:
+            options_string = options[0]
+            hint = f"Did you mean {options_string}?"
+        else:
+            hint = "No similar slugs. Are you sure it's in the DB?"
+        logger.exception(f"Lookup failed for unknown {table} '{slug}'. {hint}")
+        sys.exit()
 
 
 class Validator:

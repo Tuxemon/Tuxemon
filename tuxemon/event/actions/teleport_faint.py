@@ -51,10 +51,11 @@ class TeleportFaintAction(EventAction[TeleportFaintActionParameters]):
     def start(self) -> None:
         player = self.session.player
 
-        # Start with the default value, override if game variable exists
-        teleport = ["healing_center.tmx", 7, 10]
-        if "teleport_faint" in player.game_variables:
-            teleport = player.game_variables["teleport_faint"].split(" ")
+        # Check if it's spyder_bedroom
+        if player.game_variables["lastcenter"] == "spyder_bedroom.tmx":
+            teleport = [player.game_variables["lastcenter"], 7, 6]
+        else:
+            teleport = [player.game_variables["lastcenter"], 7, 10]
 
         # Start the screen transition
         # self.game.event_engine.execute_action("screen_transition", [.3])

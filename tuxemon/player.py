@@ -81,27 +81,28 @@ class Player(NPC):
         %H - Hour 00-23
         %j - Day number of year 001-366
         """
-        self.game_variables["hour"] = dt.datetime.now().strftime("%H")
-        self.game_variables["daynr"] = dt.datetime.now().strftime("%j")
+        var = self.game_variables
+        var["hour"] = dt.datetime.now().strftime("%H")
+        var["daynr"] = dt.datetime.now().strftime("%j")
 
         # Day and night basic cycle (12h cycle)
-        if int(dt.datetime.now().strftime("%H")) < 6:
-            self.game_variables["daytime"] = False
-        elif 6 <= int(dt.datetime.now().strftime("%H")) < 18:
-            self.game_variables["daytime"] = True
+        if int(var["hour"]) < 6:
+            var["daytime"] = False
+        elif 6 <= int(var["hour"]) < 18:
+            var["daytime"] = True
         else:
-            self.game_variables["daytime"] = False
+            var["daytime"] = False
 
         # Day and night complex cycle (4h cycle)
-        if int(dt.datetime.now().strftime("%H")) < 4:
-            self.game_variables["stageofday"] = "night"
-        elif 4 <= int(dt.datetime.now().strftime("%H")) < 8:
-            self.game_variables["stageofday"] = "dawn"
-        elif 8 <= int(dt.datetime.now().strftime("%H")) < 12:
-            self.game_variables["stageofday"] = "morning"
-        elif 12 <= int(dt.datetime.now().strftime("%H")) < 16:
-            self.game_variables["stageofday"] = "afternoon"
-        elif 16 <= int(dt.datetime.now().strftime("%H")) < 20:
-            self.game_variables["stageofday"] = "dusk"
+        if int(var["hour"]) < 4:
+            var["stageofday"] = "night"
+        elif 4 <= int(var["hour"]) < 8:
+            var["stageofday"] = "dawn"
+        elif 8 <= int(var["hour"]) < 12:
+            var["stageofday"] = "morning"
+        elif 12 <= int(var["hour"]) < 16:
+            var["stageofday"] = "afternoon"
+        elif 16 <= int(var["hour"]) < 20:
+            var["stageofday"] = "dusk"
         else:
-            self.game_variables["stageofday"] = "night"
+            var["stageofday"] = "night"

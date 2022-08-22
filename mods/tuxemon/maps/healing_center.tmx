@@ -72,7 +72,7 @@
     <property name="act60" value="npc_face tabanurse,down"/>
     <property name="act70" value="translated_dialog okaythen2"/>
     <property name="act80" value="set_variable chooses:none"/>
-    <property name="act90" value="set_variable lastcenter:healing_center.tmx"/>
+    <property name="act90" value="set_variable teleport_faint:healing_center.tmx 7 10"/>
     <property name="cond10" value="is variable_set chooses:yes"/>
    </properties>
   </object>

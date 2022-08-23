@@ -775,7 +775,6 @@
     <property name="act30" value="set_variable spyder_weaver_lose:yes"/>
     <property name="act40" value="set_monster_health ,"/>
     <property name="act41" value="set_monster_status ,"/>
-    <property name="act42" value="teleport_faint"/>
     <property name="cond1" value="is variable_set battle_last_result:lost"/>
     <property name="cond2" value="is variable_set spyder_weaver_fought:yes"/>
     <property name="cond3" value="is variable_set after_spyder_weaver:yes"/>

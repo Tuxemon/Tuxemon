@@ -248,6 +248,14 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
+  <object id="379" name="encounter 3" type="event" x="256" y="0" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter route6,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
   <object id="380" name="Teleport to Candy House 1" type="event" x="64" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_house1.tmx,6,7,0.3"/>

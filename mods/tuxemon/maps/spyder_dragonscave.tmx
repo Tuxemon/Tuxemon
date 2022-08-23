@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="103">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="102">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -446,12 +446,6 @@
     <property name="act6" value="set_variable dragonscavemal:yes"/>
     <property name="cond1" value="not variable_set dragonscavemal:yes"/>
     <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="102" name="Exhausted" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
  </objectgroup>

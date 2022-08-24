@@ -59,7 +59,7 @@
     <property name="cond20" value="is player_at"/>
     <property name="cond30" value="is player_facing up"/>
     <property name="cond40" value="is button_pressed K_RETURN"/>
-    <property name="cond50" value="not variable_set comeinside:done"/>
+    <property name="cond50" value="not variable_set scene:yes"/>
    </properties>
   </object>
   <object id="25" name="Read Sign" type="event" x="32" y="48" width="16" height="16">
@@ -75,8 +75,7 @@
     <property name="act10" value="transition_teleport player_house_bedroom.tmx,9,3,0.3"/>
     <property name="act20" value="player_face down"/>
     <property name="cond10" value="is player_at 1,2"/>
-    <property name="cond20" value="not variable_set comeinside:done"/>
-    <property name="cond21" value="not variable_set comeinside:donefr"/>
+    <property name="cond20" value="not variable_set scene:yes"/>
    </properties>
   </object>
   <object id="27" name="Go Outside" type="event" x="80" y="112" width="16" height="16">
@@ -85,12 +84,7 @@
     <property name="act20" value="player_face down"/>
     <property name="cond10" value="is player_at 5,7"/>
     <property name="cond20" value="is player_facing down"/>
-    <property name="cond30" value="not variable_set comeinside:done"/>
-    <property name="cond31" value="not variable_set comeinside:donefr"/>
-    <property name="cond32" value="not variable_set backhome:no"/>
-    <property name="cond33" value="not variable_set backhome:tv"/>
-    <property name="cond34" value="not variable_set dancininthemoonlight:yes"/>
-    <property name="cond35" value="not variable_set stahp:stop"/>
+    <property name="cond30" value="not variable_set scene:yes"/>
    </properties>
   </object>
   <object id="28" name="Player Spawn" type="event" x="80" y="64" width="16" height="16"/>
@@ -101,16 +95,30 @@
     <property name="act40" value="npc_wander npc_mom,3.0"/>
     <property name="cond10" value="not npc_exists npc_mom"/>
     <property name="cond20" value="not variable_set comeinside:done"/>
+    <property name="cond30" value="not variable_set backhome:no"/>
    </properties>
   </object>
   <object id="30" name="talkwithmom" type="event" x="144" y="80" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog firsts"/>
     <property name="behav10" value="talk npc_mom"/>
-    <property name="cond1" value="not variable_set comeinside:done"/>
-    <property name="cond2" value="not variable_set comeinside:donefr"/>
-    <property name="cond3" value="not variable_set comeinside:plsbedone"/>
-    <property name="cond4" value="not variable_set backhome:tv"/>
+    <property name="cond1" value="not variable_set can_exit_town:yes"/>
+    <property name="cond30" value="not variable_set scene:yes"/>
+   </properties>
+  </object>
+  <object id="31" name="create mom2" type="event" x="0" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc npc_mom,1,6,,stand"/>
+    <property name="act2" value="npc_face npc_mom,right"/>
+    <property name="act3" value="wait 1"/>
+    <property name="act4" value="translated_dialog ipausedit"/>
+    <property name="act5" value="npc_face npc_mom,up"/>
+    <property name="act6" value="set_variable aeble_talk:1"/>
+    <property name="act7" value="set_variable scene:yes"/>
+    <property name="act8" value="clear_variable comeinside"/>
+    <property name="cond1" value="is variable_set comeinside:done"/>
+    <property name="cond2" value="not npc_exists npc_mom"/>
+    <property name="cond3" value="not variable_set can_exit_town:yes"/>
    </properties>
   </object>
   <object id="32" name="announcement" type="event" x="32" y="96" width="16" height="16">
@@ -124,24 +132,11 @@
     <property name="act6" value="translated_dialog whythecheering"/>
     <property name="act7" value="npc_face npc_mom,up"/>
     <property name="act8" value="translated_dialog announcement5"/>
-    <property name="act9" value="set_variable comeinside:forreal"/>
-    <property name="cond1" value="is variable_set comeinside:donefr"/>
+    <property name="act9" value="set_variable aeble_talk:2"/>
+    <property name="cond1" value="is variable_set aeble_talk:1"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
     <property name="cond4" value="is player_facing up"/>
-    <property name="cond5" value="not variable_set backhome:no"/>
-   </properties>
-  </object>
-  <object id="34" name="create mom2" type="event" x="0" y="96" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc npc_mom,1,6,,stand"/>
-    <property name="act2" value="npc_face npc_mom,right"/>
-    <property name="act3" value="wait 1"/>
-    <property name="act4" value="translated_dialog ipausedit"/>
-    <property name="act5" value="npc_face npc_mom,up"/>
-    <property name="act6" value="set_variable comeinside:donefr"/>
-    <property name="cond1" value="is variable_set comeinside:done"/>
-    <property name="cond2" value="not npc_exists npc_mom"/>
    </properties>
   </object>
   <object id="35" name="postannouncement" type="event" x="32" y="96" width="16" height="16">
@@ -152,23 +147,20 @@
     <property name="act4" value="wait 0.7"/>
     <property name="act5" value="translated_dialog ohnoes2"/>
     <property name="act6" value="npc_face npc_mom,left"/>
-    <property name="act7" value="set_variable comeinside:plsbedone"/>
     <property name="act8" value="unlock_controls"/>
-    <property name="cond1" value="is variable_set comeinside:forreal"/>
-    <property name="cond2" value="not variable_set stahp:no"/>
-    <property name="cond3" value="not variable_set stahp:stop"/>
+    <property name="act9" value="set_variable can_exit_town:yes"/>
+    <property name="act10" value="clear_variable scene"/>
+    <property name="act11" value="clear_variable aeble_talk"/>
+    <property name="cond1" value="is variable_set aeble_talk:2"/>
    </properties>
   </object>
   <object id="36" name="ohnoes" type="event" x="32" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="wait 0.4"/>
     <property name="act2" value="translated_dialog depressedmom"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond3" value="is variable_set comeinside:plsbedone"/>
-    <property name="cond4" value="is button_pressed K_RETURN"/>
-    <property name="cond5" value="not variable_set comeinside:stahp"/>
-    <property name="cond6" value="not variable_set welptheturkeyisgone:yes"/>
+    <property name="cond1" value="is to_talk npc_mom"/>
+    <property name="cond2" value="is variable_set can_exit_town:yes"/>
+    <property name="cond3" value="not variable_set backhome:no"/>
    </properties>
   </object>
   <object id="37" name="water" type="event" x="112" y="48" width="16" height="16">
@@ -179,29 +171,36 @@
     <property name="cond3" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="39" name="create mom3" type="event" x="0" y="80" width="16" height="16">
+  <object id="38" name="create mom3" type="event" x="16" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="remove_npc npc_mom"/>
-    <property name="act2" value="create_npc npc_mom,1,6,,stand"/>
-    <property name="act3" value="npc_face npc_mom,right"/>
-    <property name="act4" value="wait 1"/>
-    <property name="act5" value="translated_dialog theanthemishere"/>
-    <property name="act6" value="npc_face npc_mom,up"/>
-    <property name="act7" value="set_variable cominside:done"/>
-    <property name="act99" value="set_variable backhome:tv"/>
+    <property name="act1" value="create_npc npc_mom,1,6,,stand"/>
+    <property name="act2" value="npc_face npc_mom,right"/>
+    <property name="act3" value="wait 1"/>
     <property name="cond1" value="is variable_set backhome:no"/>
+    <property name="cond2" value="not npc_exists npc_mom"/>
+   </properties>
+  </object>
+  <object id="39" name="Start the anthem" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog theanthemishere"/>
+    <property name="act3" value="npc_face npc_mom,up"/>
+    <property name="act4" value="set_variable scene:yes"/>
+    <property name="act5" value="set_variable announce_trials:1"/>
+    <property name="act6" value="set_variable anthem_started:yes"/>
+    <property name="cond1" value="is variable_set backhome:no"/>
+    <property name="cond2" value="not variable_set announce_trials:1"/>
+    <property name="cond3" value="not variable_set anthem_started:yes"/>
    </properties>
   </object>
   <object id="40" name="timetochat" type="event" x="32" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog moreannouncement"/>
     <property name="act2" value="translated_dialog moreannouncement2"/>
-    <property name="act3" value="set_variable dingdongthechickenishere:yes"/>
+    <property name="act3" value="set_variable announce_trials:2"/>
     <property name="cond1" value="is player_facing up"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is variable_set backhome:tv"/>
-    <property name="cond5" value="not variable_set dingdongthechickenishere:yes"/>
+    <property name="cond4" value="is variable_set announce_trials:1"/>
    </properties>
   </object>
   <object id="41" name="new possibilities" type="event" x="0" y="64" width="16" height="16">
@@ -217,9 +216,8 @@
     <property name="act70" value="translated_dialog youneedtodothis2"/>
     <property name="act80" value="npc_face player,right"/>
     <property name="act90" value="translated_dialog ihaveyourmoney"/>
-    <property name="act99" value="set_variable welpitsactuallyturkey:yes"/>
-    <property name="cond1" value="is variable_set dingdongthechickenishere:yes"/>
-    <property name="cond2" value="not variable_set welpitsactuallyturkey:yes"/>
+    <property name="act99" value="set_variable announce_trials:3"/>
+    <property name="cond1" value="is variable_set announce_trials:2"/>
    </properties>
   </object>
   <object id="42" name="new possibilities2" type="event" x="0" y="64" width="16" height="16">
@@ -231,22 +229,18 @@
     <property name="act5" value="npc_face professor,down"/>
     <property name="act6" value="wait 0.4"/>
     <property name="act7" value="remove_npc professor"/>
-    <property name="act8" value="set_variable stahp:no"/>
     <property name="act9" value="unlock_controls"/>
-    <property name="act99" value="set_variable welptheturkeyisgone:yes"/>
-    <property name="cond1" value="is variable_set welpitsactuallyturkey:yes"/>
-    <property name="cond2" value="not variable_set welptheturkeyisgone:yes"/>
+    <property name="act99" value="set_variable announce_trials:4"/>
+    <property name="cond1" value="is variable_set announce_trials:3"/>
    </properties>
   </object>
   <object id="44" name="new possibilities3" type="event" x="32" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog hebenice"/>
-    <property name="act98" value="set_variable backhome:hello"/>
-    <property name="act99" value="set_variable dancininthemoonlight:heckyeah"/>
-    <property name="cond1" value="is variable_set welptheturkeyisgone:yes"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is player_at"/>
+    <property name="act2" value="clear_variable scene"/>
+    <property name="act5" value="set_variable go_get_tuxemon:yes"/>
+    <property name="cond1" value="is variable_set announce_trials:4"/>
+    <property name="cond2" value="is to_talk npc_mom"/>
    </properties>
   </object>
  </objectgroup>

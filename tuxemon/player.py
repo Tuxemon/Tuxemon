@@ -83,7 +83,7 @@ class Player(NPC):
         """
         var = self.game_variables
         var["hour"] = dt.datetime.now().strftime("%H")
-        var["daynr"] = dt.datetime.now().strftime("%j")
+        var["day_of_year"] = dt.datetime.now().strftime("%j")
 
         # Day and night basic cycle (12h cycle)
         if int(var["hour"]) < 6:
@@ -95,14 +95,14 @@ class Player(NPC):
 
         # Day and night complex cycle (4h cycle)
         if int(var["hour"]) < 4:
-            var["stageofday"] = "night"
+            var["stage_of_day"] = "night"
         elif 4 <= int(var["hour"]) < 8:
-            var["stageofday"] = "dawn"
+            var["stage_of_day"] = "dawn"
         elif 8 <= int(var["hour"]) < 12:
-            var["stageofday"] = "morning"
+            var["stage_of_day"] = "morning"
         elif 12 <= int(var["hour"]) < 16:
-            var["stageofday"] = "afternoon"
+            var["stage_of_day"] = "afternoon"
         elif 16 <= int(var["hour"]) < 20:
-            var["stageofday"] = "dusk"
+            var["stage_of_day"] = "dusk"
         else:
-            var["stageofday"] = "night"
+            var["stage_of_day"] = "night"

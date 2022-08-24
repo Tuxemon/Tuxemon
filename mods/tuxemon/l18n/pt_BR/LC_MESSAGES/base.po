@@ -1290,3 +1290,6 @@ msgstr "Pedra Quente"
 
 msgid "fire"
 msgstr "Fogo"
+
+msgid "earth_fire"
+msgstr "Terra, Fogo"

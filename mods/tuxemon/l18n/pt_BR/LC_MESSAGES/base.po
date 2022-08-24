@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-08-13 02:17+0000\n"
-"Last-Translator: Éderson Ataídes de Matos <eddiemattosdesign@gmail.com>\n"
+"PO-Revision-Date: 2022-08-24 01:23+0000\n"
+"Last-Translator: Gabriela Liz <gabrielalizmoreira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "tuxemon/tuxemon/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1263,3 +1263,33 @@ msgstr "Xeon"
 
 msgid "taiga"
 msgstr "Taiga"
+
+msgid "lizard"
+msgstr "Lagarto"
+
+msgid "metal_water"
+msgstr "Metal, Água"
+
+msgid "joyful"
+msgstr "Alegre"
+
+msgid "vengeance"
+msgstr "Vingança"
+
+msgid "wood"
+msgstr "Madeira"
+
+msgid "climbing"
+msgstr "Escalando"
+
+msgid "lions_tooth"
+msgstr "Dente de leão"
+
+msgid "hot_rock"
+msgstr "Pedra Quente"
+
+msgid "fire"
+msgstr "Fogo"
+
+msgid "earth_fire"
+msgstr "Terra, Fogo"

@@ -41,3 +41,8 @@ run:
 test:
 	pip install pytest
 	PYTHONPATH=. pytest tests
+
+# Format code
+.PHONY: format
+format:
+	./scripts/fmt.sh

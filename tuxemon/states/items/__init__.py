@@ -34,6 +34,7 @@ from typing import Any, Generator, Iterable, Sequence, Tuple
 import pygame
 
 from tuxemon import tools
+from tuxemon.db import State
 from tuxemon.item.item import InventoryItem, Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -44,7 +45,6 @@ from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.ui.text import TextArea
-from tuxemon.db import State
 
 # The import is required for PushState to work.
 # But linters may say the import is unused.

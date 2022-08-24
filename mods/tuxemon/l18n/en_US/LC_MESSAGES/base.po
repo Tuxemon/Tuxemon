@@ -1118,6 +1118,12 @@ msgstr "Sumchon"
 msgid "swap"
 msgstr "Swap"
 
+msgid "teddisun_description"
+msgstr "Teddisun worships the sun - they're always seen carrying their sun toy."
+
+msgid "teddisun"
+msgstr "Teddisun"
+
 msgid "template_description"
 msgstr "Some description here"
 

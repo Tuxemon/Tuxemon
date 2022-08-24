@@ -60,7 +60,7 @@
   <object id="74" type="collision" x="128" y="112" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="59" name="Go outside" type="event" x="80" y="112" width="48.002" height="16">
+  <object id="59" name="Go outside" type="event" x="80" y="112" width="48" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_town.tmx,4,31,0.3"/>
     <property name="cond1" value="is player_at"/>

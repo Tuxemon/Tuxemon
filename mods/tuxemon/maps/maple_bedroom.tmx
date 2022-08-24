@@ -86,7 +86,7 @@
     <property name="cond40" value="is npc_exists maple_girl"/>
    </properties>
   </object>
-  <object id="28" name="Maple Pathfind to stairs" type="event" x="95.75" y="80" width="16" height="16">
+  <object id="28" name="Maple Pathfind to stairs" type="event" x="96" y="80" width="16" height="16">
    <properties>
     <property name="act10" value="pathfind maple_girl,8,3"/>
     <property name="act20" value="player_stop"/>

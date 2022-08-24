@@ -71,7 +71,7 @@
   <object id="194" type="collision" x="112" y="288" width="16" height="32"/>
   <object id="195" type="collision" x="496" y="352" width="16" height="32"/>
   <object id="196" type="collision" x="496" y="272" width="16" height="32"/>
-  <object id="197" type="collision" x="608" y="160" width="32" height="63.8182"/>
+  <object id="197" type="collision" x="608" y="160" width="32" height="64"/>
   <object id="198" type="collision" x="512" y="48" width="16" height="16"/>
   <object id="200" type="collision" x="32" y="224" width="32" height="32"/>
   <object id="201" type="collision" x="0" y="0" width="32" height="192"/>

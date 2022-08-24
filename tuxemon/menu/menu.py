@@ -27,6 +27,7 @@ from tuxemon.menu.interface import MenuCursor, MenuItem
 from tuxemon.menu.theme import get_sound_engine, get_theme
 from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
+from tuxemon.prepare import CONFIG
 from tuxemon.sprite import (
     MenuSpriteGroup,
     RelativeGroup,
@@ -292,7 +293,15 @@ class Menu(Generic[T], state.State):
 
         """
         text_area.text = text
-        self.start_text_animation(text_area, callback)
+        if CONFIG.dialog_speed == "max":
+            # exhaust the iterator to immediately blit every char to the dialog
+            # box
+            for _ in text_area:
+                pass
+            if callback:
+                callback()
+        else:
+            self.start_text_animation(text_area, callback)
 
     def alert(
         self,

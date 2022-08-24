@@ -273,7 +273,7 @@ class WorldState(state.State):
         self.remove_animations_of(self)
         self.remove_animations_of(cleanup)
 
-        self.stop_player()
+        self.stop_and_reset_player()
 
         self.in_transition = True
         self.trigger_fade_out(duration)

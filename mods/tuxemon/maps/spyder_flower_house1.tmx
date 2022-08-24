@@ -52,14 +52,14 @@
   <object id="65" type="collision" x="80" y="32" width="80" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="59" name="Go outside" type="event" x="79.998" y="112" width="48.002" height="16">
+  <object id="59" name="Go outside" type="event" x="80" y="112" width="48" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,15,22,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="60" name="TV" type="event" x="80" y="32" width="32.002" height="16">
+  <object id="60" name="TV" type="event" x="80" y="32" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flowerhouse1_tv"/>
     <property name="cond1" value="is player_facing_tile"/>

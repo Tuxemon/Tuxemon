@@ -303,14 +303,14 @@
   </object>
   <object id="80" name="Teleport to Route 1" type="event" x="128" y="176" width="16" height="16">
    <properties>
-    <property name="act10" value="teleport route1.tmx,50,11"/>
+    <property name="act10" value="teleport xero_route1.tmx,50,11"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="81" name="Teleport to Route 1" type="event" x="128" y="192" width="16" height="16">
    <properties>
-    <property name="act10" value="teleport route1.tmx,50,12"/>
+    <property name="act10" value="teleport xero_route1.tmx,50,12"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing left"/>
    </properties>

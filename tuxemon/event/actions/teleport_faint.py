@@ -52,7 +52,7 @@ class TeleportFaintAction(EventAction[TeleportFaintActionParameters]):
         player = self.session.player
 
         # Start with the default value, override if game variable exists
-        teleport = ["healing_center.tmx", 7, 10]
+        teleport = ["xero_healing_center.tmx", 7, 10]
         if "teleport_faint" in player.game_variables:
             teleport = player.game_variables["teleport_faint"].split(" ")
 

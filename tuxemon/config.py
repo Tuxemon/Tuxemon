@@ -270,7 +270,7 @@ def get_defaults() -> Mapping[str, Any]:
                 OrderedDict(
                     (
                         ("data", "tuxemon"),
-                        ("starting_map", "player_house_bedroom.tmx"),
+                        ("starting_map", "xero_player_house_bedroom.tmx"),
                         ("skip_titlescreen", False),
                         ("cli_enabled", False),
                         ("net_controller_enabled", False),

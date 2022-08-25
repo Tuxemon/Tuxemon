@@ -222,7 +222,7 @@
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="167" name="Sign for Mart" type="event" x="368" y="192">
    <properties>
-    <property name="act10" value="translated_dialog Buy things here"/>
+    <property name="act10" value="translated_dialog spyder_multi_martsign"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
@@ -246,28 +246,28 @@
   </object>
   <object id="173" name="Sign for Boat" type="event" x="560" y="240" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog Under repairs"/>
+    <property name="act10" value="translated_dialog spyder_multi_underrepairs"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="177" name="Sign for Route 1" type="event" x="432" y="16" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog ^ Route 1 --- Paper Town v"/>
+    <property name="act10" value="translated_dialog spyder_route1_routesign"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="178" name="Sign for Sunnyside Manor" type="event" x="432" y="192" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog Sunnyside Manor: If we are not home leave a message with our housekeeper"/>
+    <property name="act10" value="translated_dialog spyder_papertown_sunnyside"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="179" name="Sign for Daycare" type="event" x="368" y="64" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog Daycare Centre: Under construction"/>
+    <property name="act10" value="translated_dialog spyder_papertown_daycare1"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
@@ -311,7 +311,7 @@
   </object>
   <object id="199" name="Sign for Leather" type="event" x="592" y="128">
    <properties>
-    <property name="act10" value="translated_dialog Teleport to Leather Town below"/>
+    <property name="act10" value="translated_dialog paper_town_to_leather"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
@@ -335,7 +335,7 @@
   </object>
   <object id="202" name="Sign for Flower" type="event" x="592" y="160">
    <properties>
-    <property name="act10" value="translated_dialog Teleport to Flower City below"/>
+    <property name="act10" value="translated_dialog paper_town_to_flower"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
@@ -343,7 +343,7 @@
   </object>
   <object id="203" name="Sign for Candy" type="event" x="592" y="192">
    <properties>
-    <property name="act10" value="translated_dialog Teleport to Candy Town below"/>
+    <property name="act10" value="translated_dialog paper_town_to_candy"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>

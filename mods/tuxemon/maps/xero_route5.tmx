@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="20">
+ <properties>
+  <property name="edges" value="clamped"/>
+ </properties>
+ <tileset firstgid="1" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
+  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+ </tileset>
+ <tileset firstgid="361" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="680" columns="20">
+  <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="544"/>
+ </tileset>
+ <tileset firstgid="1041" name="Tileset" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
+  <image source="../gfx/tilesets/Tileset.png" width="448" height="640"/>
+ </tileset>
+ <tileset firstgid="2161" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="2265" name="crate opening" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="../gfx/tilesets/crate opening.gif" width="16" height="16"/>
+ </tileset>
+ <tileset firstgid="2266" name="YELLOW BRICK ROAD EXPANDED" tilewidth="16" tileheight="16" tilecount="48" columns="8">
+  <image source="../gfx/tilesets/YELLOW BRICK ROAD EXPANDED.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="2314" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ </tileset>
+ <tileset firstgid="3754" name="Terrain_by_George" tilewidth="16" tileheight="16" tilecount="360" columns="15">
+  <image source="../gfx/tilesets/Terrain_by_George.png" width="240" height="384"/>
+ </tileset>
+ <tileset firstgid="4114" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHtljEKgEAMBNP75/PHvsGzGIjdpshyRYQwgsntEK5wRcS9ax1YeMHTHPGC41e7R+wNzv5mf847wL2DzmwlCy+ozDh78ILObCULL5hnnisiV/7mescLunLVHLygOufqwwu6ctUcvPav1e9R57v78IPdedXz8YLV+e5+vGB3XvV8vGB1vrv/83oBGfqJ6w==
+  </data>
+ </layer>
+ <layer id="2" name="Long Grass" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHtktsKwzAMQ/vb29evGhwQnuM4dG1fauh8k2U5bNse++cLvHeyO7/ZLdLWMeFe++e3aM7zDhd4uMRRGZzMZV7z3foIO9pTaYMLn2kY8Y7qFVfWU60y38ObR53VfNaL8+TCEuOzea8JJwN/1Fdc30X2w24r/YRgOrpG7+uzWuC5x94jlq9M8zLnORJnXNzlPcUdu0If90oPMX6mEX0zXMbNu7Crw+XYVXzU4LnHcYfnFS7rqVZZxa05+h5Ty3yFy3qqVeY7hBvlsec4jytc1lNtxeKuldkOFn7+u7MZ8Hf5rj7uOVtn3DPT9/TXXuADa8S7vA==
+  </data>
+ </layer>
+ <layer id="3" name="Path" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHtlc1NRDEMhHMGDkANLC1AEYgWoAPoZikHqAZRA0J4xH7akWXnPQE3NlI2jmOPfzJ5O8Zh/GUHno/HeFkxX8PGB36uRzfDc3vHm8nbiP0YU+tTzIe019l7TB9vOxvXo5thub3jdTKYVydjnBXzOnTKN+PKL+vRVVjCqers8kIPZo7v5+rpXeD7vd3HPuvRVVhLcYiXV/kpToUpW3CrO1P/Mh9yT4lHHK9zDRflJ951+Z1Gn6p7r3SzO6zq7GJSE/35CS8cA5kcqrg6UxxxU3VsQvZeijufRyDt1xnm3mqdJKyOKx4HOXPmMvzzADPX4m8BeYkvxK2w/O10nLlt8hOncy3Vvro3r1f5ya/yFce7t+MYWaYWcUIYfLvgOnxZg03/wPA3BN5SjTk/9tSOP7G0l9zxCn+tMzvHc58sf8QbgU++ih/eI2KJS5y5fSVjt8S/nJPvL6IXHT+8R9Q7s13LW/9f5348J5dvIj/nRZbPo18a8DKf/3YP/neUw+9/68AXqDvJSw==
+  </data>
+ </layer>
+ <layer id="4" name="Gravestones" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHNlsGNAjEMRX1D7ABbAVw5UAYHaoUuoJrtAI74a3jIsoIiYLSJpcSJ47F/fpxoLmZ29nbpSDuUJ6ajj08yuAwzs0Xj9uv5wSQNd8K39bVP5Do3u3mTxPFoqfcRw84xMJcWd+AVvr+hHi97rH/MNt4kcTxa3uuFTwKmWHef8jdGnKYHHxyCU9F7wQcmaXD+Fz5yK19JavVX+mZKW+SjFJfzZR+91d/e78cy3GFwai891F/mNPLdA77hwR+85fcv46/NiZP9XtmzX55Tf/D2bf0RJ+d5Zc9+mse9CB9zacbya3W+cS/Cx1ya8crtB2+thfONvNUwveNbi1VbBx+8kVv86d+mJPiW1qa25fqLuVvVX9xjrr/4vujtbv1/yh3gXOP7gq21Fp+c6x0jkJMZ
+  </data>
+ </layer>
+ <layer id="5" name="Tile Layer 8" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAIAkH6N9GU2oACx8pPl1gTmA+2RX4CBAgQIECAAAECBKrAARWNAVQ=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="6" name="Collisions">
+  <object id="3" type="collision" x="0" y="0" width="32" height="240"/>
+  <object id="4" type="collision" x="32" y="0" width="608" height="32"/>
+  <object id="5" type="collision" x="576" y="32" width="64" height="112"/>
+  <object id="6" type="collision" x="576" y="160" width="64" height="160"/>
+  <object id="7" type="collision" x="0" y="288" width="576" height="32"/>
+  <object id="8" type="collision" x="0" y="256" width="64" height="32"/>
+  <object id="10" type="collision" x="320" y="32" width="32" height="32"/>
+  <object id="11" type="collision" x="272" y="32" width="32" height="32"/>
+  <object id="12" type="collision" x="448" y="96" width="32" height="32"/>
+  <object id="13" type="collision" x="352" y="176" width="32" height="32"/>
+  <object id="14" type="collision" x="256" y="176" width="32" height="32"/>
+  <object id="15" type="collision" x="528" y="16" width="32" height="32"/>
+  <object id="16" type="collision" x="528" y="192" width="32" height="32"/>
+  <object id="17" type="collision" x="144" y="240" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="7" name="Events">
+  <object id="1" name="Teleport to Flower City" type="event" x="0" y="240" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport xero_flower_city.tmx,39,15,0.3"/>
+    <property name="act20" value="player_face left"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="2" name="Teleport to Timber Town" type="event" x="624" y="144" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport xero_timber_town.tmx,0,29,0.3"/>
+    <property name="act20" value="player_face right"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="18" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="play_music music_the_wild_places"/>
+    <property name="cond10" value="not music_playing music_the_wild_places"/>
+   </properties>
+  </object>
+  <object id="19" name="Player Spawn" type="event" x="32" y="240" width="16" height="16"/>
+ </objectgroup>
+</map>

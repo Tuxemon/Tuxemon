@@ -46,7 +46,7 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="9" name="Go Downstairs" type="event" x="128" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport maple_house_downstairs.tmx,4,2,0.3"/>
+    <property name="act10" value="transition_teleport xero_maple_house_downstairs.tmx,4,2,0.3"/>
     <property name="act20" value="player_face down"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing left"/>

@@ -66,7 +66,7 @@
     <property name="act50" value="translated_dialog backstory9"/>
     <property name="act60" value="translated_dialog_choice yes,questioning"/>
     <property name="act70" value="translated_dialog sorryfurthis"/>
-    <property name="act80" value="transition_teleport route1.tmx,33,12,0.7"/>
+    <property name="act80" value="transition_teleport xero_route1.tmx,33,12,0.7"/>
     <property name="act90" value="set_variable flag:1"/>
     <property name="cond10" value="is variable_set flag:0"/>
    </properties>

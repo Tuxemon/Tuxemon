@@ -4083,9 +4083,9 @@ msgid "sphalian_town_sign"
 msgstr "Sphalian Town - a quiet, peaceful place"
 
 msgid "sphalian_town_watchingtv"
-msgstr "You watch some TV with your beloved Lv ${{monster_0_level}} ${{monster_0_name}}.,0"
+msgstr "A TV show where a couple of guys try to make contact with the spirits in order to explain \n the paranormal mysteries that have haunted Xero's most iconic landmarks for centuries."
 msgid "sphalian_town_home"
-msgstr "Home Sweet Home"
+msgstr "A Live Love Laugh sign"
 
 msgid "route2_welcome"
 msgstr "Welcome to Route 2: The Historic Path"
@@ -4121,7 +4121,7 @@ msgid "rubberduck_city_secretplace"
 msgstr "this is a secret place that can't be reached yet..."
 
 msgid "player_house_downstairs_watchtv"
-msgstr "You watch some TV with your beloved Lv ${{monster_0_level}} ${{monster_0_name}}.,0"
+msgstr "A TV show where the presenter takes to the skies to explore Xero's cities, coasts and countryside."
 msgid "player_house_downstairs_sign"
 msgstr "Home Sweet Home"
 

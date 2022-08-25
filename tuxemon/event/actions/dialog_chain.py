@@ -73,7 +73,7 @@ class DialogChainAction(EventAction[DialogChainActionParameters]):
     def start(self) -> None:
         warnings.warn(
             f"Found deprecated dialog_chain action, please use "
-            f"translated_dialog instead. "
+            f"translated_dialog_chain instead. "
             f"Action: {self.name}. "
             f"Parameters: {self.raw_parameters}.",
             DeprecationWarning,

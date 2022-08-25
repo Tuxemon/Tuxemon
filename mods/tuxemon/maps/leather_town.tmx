@@ -201,17 +201,15 @@
   </object>
   <object id="90" name="Sign: Route 3" type="event" x="544" y="16" width="16" height="16">
    <properties>
-    <property name="act10" value="dialog_chain Route 3: Rehabilitation will begin as soon as possible. Please stop nagging us."/>
-    <property name="act20" value="dialog_chain v Leather Town --- Route 3 ^"/>
-    <property name="act30" value="dialog_chain ${{end}}"/>
+    <property name="act10" value="translated_dialog leather_town_sign_route3"/>
+    <property name="act20" value="translated_dialog leather_town_sign_leather_route"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="91" name="Sign: Route 3" type="event" x="480" y="384" width="16" height="16">
    <properties>
-    <property name="act10" value="dialog_chain Open Air Cafe and Marketplace"/>
-    <property name="act20" value="dialog_chain ${{end}}"/>
+    <property name="act10" value="translated_dialog leather_town_open_air"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>

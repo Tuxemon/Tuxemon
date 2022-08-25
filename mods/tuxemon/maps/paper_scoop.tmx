@@ -62,7 +62,7 @@
     <property name="act30" value="add_item capture_device"/>
     <property name="act40" value="add_item capture_device"/>
     <property name="act50" value="add_item capture_device"/>
-    <property name="act60" value="dialog Received capture device (x5)!"/>
+    <property name="act60" value="translated_dialog paper_scoop_capturedevices"/>
     <property name="act70" value="set_variable donegot:yes"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing left"/>
@@ -93,9 +93,8 @@
    <properties>
     <property name="act10" value="add_monster hydrone,5"/>
     <property name="act20" value="set_variable tuxchoice:end"/>
-    <property name="act30" value="translated_dialog_chain professor_dialog6.1"/>
-    <property name="act40" value="translated_dialog_chain professor_dialog7"/>
-    <property name="act50" value="translated_dialog_chain ${{end}}"/>
+    <property name="act30" value="translated_dialog professor_dialog6.1"/>
+    <property name="act40" value="translated_dialog professor_dialog7"/>
     <property name="act60" value="screen_transition 3"/>
     <property name="act70" value="remove_npc professor"/>
     <property name="cond10" value="is variable_set tuxchoice:hydrone"/>
@@ -105,9 +104,8 @@
    <properties>
     <property name="act10" value="add_monster rockitten,5"/>
     <property name="act20" value="set_variable tuxchoice:end"/>
-    <property name="act30" value="translated_dialog_chain professor_dialog6.2"/>
-    <property name="act40" value="translated_dialog_chain professor_dialog7"/>
-    <property name="act50" value="translated_dialog_chain ${{end}}"/>
+    <property name="act30" value="translated_dialog professor_dialog6.2"/>
+    <property name="act40" value="translated_dialog professor_dialog7"/>
     <property name="act60" value="screen_transition 3"/>
     <property name="act70" value="remove_npc professor"/>
     <property name="cond10" value="is variable_set tuxchoice:rockitten"/>
@@ -117,9 +115,8 @@
    <properties>
     <property name="act10" value="add_monster fruitera,5"/>
     <property name="act20" value="set_variable tuxchoice:end"/>
-    <property name="act30" value="translated_dialog_chain professor_dialog6.3"/>
-    <property name="act40" value="translated_dialog_chain professor_dialog7"/>
-    <property name="act50" value="translated_dialog_chain ${{end}}"/>
+    <property name="act30" value="translated_dialog professor_dialog6.3"/>
+    <property name="act40" value="translated_dialog professor_dialog7"/>
     <property name="act60" value="screen_transition 3"/>
     <property name="act70" value="remove_npc professor"/>
     <property name="cond10" value="is variable_set tuxchoice:fruitera"/>

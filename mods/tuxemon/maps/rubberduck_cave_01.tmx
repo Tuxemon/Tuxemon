@@ -53,7 +53,7 @@
   </object>
   <object id="172" name="Item hint" type="event" x="432" y="848" width="16" height="32">
    <properties>
-    <property name="act10" value="dialog A good place to hide an item"/>
+    <property name="act10" value="translated_dialog rubberduck_cave_goodplace"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing right"/>
     <property name="cond30" value="is button_pressed K_RETURN"/>
@@ -61,7 +61,7 @@
   </object>
   <object id="174" name="Item hint" type="event" x="448" y="832" width="16" height="16">
    <properties>
-    <property name="act10" value="dialog A good place to hide an item"/>
+    <property name="act10" value="translated_dialog rubberduck_cave_goodplace"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing down"/>
     <property name="cond30" value="is button_pressed K_RETURN"/>
@@ -69,7 +69,7 @@
   </object>
   <object id="175" name="If I could Swim" type="event" x="592" y="880" width="64" height="16">
    <properties>
-    <property name="act10" value="dialog if i could swim..."/>
+    <property name="act10" value="translated_dialog rubberduck_cave_swim"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing down"/>
     <property name="cond30" value="is button_pressed K_RETURN"/>
@@ -77,7 +77,7 @@
   </object>
   <object id="176" name="If I could Swim" type="event" x="544" y="864" width="48" height="16">
    <properties>
-    <property name="act10" value="dialog if i could swim..."/>
+    <property name="act10" value="translated_dialog rubberduck_cave_swim"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing down"/>
     <property name="cond30" value="is button_pressed K_RETURN"/>
@@ -85,7 +85,7 @@
   </object>
   <object id="177" name="Ladder" type="event" x="160" y="752" width="16" height="16">
    <properties>
-    <property name="act10" value="dialog This ladder leads to nowhere"/>
+    <property name="act10" value="translated_dialog rubberduck_cave_ladder"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>

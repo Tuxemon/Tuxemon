@@ -61,7 +61,7 @@ class TranslatedDialogChainAction(
     Script usage:
         .. code-block::
 
-            translated_dialog_chain <text>,<avatar>
+            translated_dialog <text>,<avatar>
 
     Script parameters:
         text: Text of the dialog.
@@ -71,7 +71,7 @@ class TranslatedDialogChainAction(
 
     """
 
-    name = "translated_dialog_chain"
+    name = "translated_dialog"
     param_class = TranslatedDialogChainActionParameters
 
     def start(self) -> None:

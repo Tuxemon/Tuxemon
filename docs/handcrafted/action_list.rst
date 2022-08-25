@@ -56,7 +56,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.teleport_faint.TeleportFaintAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.transition_teleport.TransitionTeleportAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog.TranslatedDialogAction 
-.. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog_chain.TranslatedDialogChainAction 
+.. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog.TranslatedDialogChainAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog_choice.TranslatedDialogChoiceAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.update_inventory.UpdateInventoryAction 
 .. autoscriptinfoclass:: tuxemon.event.actions.variable_math.VariableMathAction 

@@ -95,12 +95,6 @@
   <object id="27" type="collision" x="16" y="64" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
-  <properties>
-   <property name="act1" value="transition_teleport cotton_town.tmx,9,35,0.3"/>
-   <property name="act2" value="player_face down"/>
-   <property name="cond1" value="is player_at"/>
-   <property name="cond2" value="is player_facing down"/>
-  </properties>
   <object id="13" name="Teleport to Candy City" type="event" x="80" y="160" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_town.tmx,3,13,0.3"/>

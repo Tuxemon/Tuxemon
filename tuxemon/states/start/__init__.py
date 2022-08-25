@@ -154,7 +154,7 @@ class ModChooserMenuState(PopUpMenu[StartGameObj]):
         menu_items_map = ()
 
         # If a different map has been passed as a parameter, show as an option:
-        if prepare.CONFIG.starting_map != "xero_player_house_bedroom.tmx":
+        if prepare.CONFIG.starting_map != "player_house_bedroom.tmx":
             menu_items_map = menu_items_map + (
                 (
                     str(prepare.CONFIG.starting_map),

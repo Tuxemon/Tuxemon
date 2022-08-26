@@ -20,7 +20,7 @@
  <objectgroup color="#ffff00" id="2" name="Events">
   <object id="2" type="event" x="112" y="192" width="32" height="16">
    <properties>
-    <property name="act10" value="transition_teleport xero_taba_town.tmx,40,11,0.3"/>
+    <property name="act10" value="transition_teleport taba_town.tmx,40,11,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing down"/>
    </properties>

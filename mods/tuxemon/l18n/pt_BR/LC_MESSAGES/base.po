@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-08-24 01:23+0000\n"
+"PO-Revision-Date: 2022-08-26 13:22+0000\n"
 "Last-Translator: Gabriela Liz <gabrielalizmoreira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "tuxemon/tuxemon/pt_BR/>\n"
@@ -1293,3 +1293,71 @@ msgstr "Fogo"
 
 msgid "earth_fire"
 msgstr "Terra, Fogo"
+
+msgid "devil"
+msgstr "Demônio"
+
+msgid "metal"
+msgstr "Metal"
+
+msgid "visitor"
+msgstr "Visitante"
+
+msgid "earth"
+msgstr "Terra"
+
+msgid "knight1"
+msgstr "Cavaleiro I"
+
+msgid "knight2"
+msgstr "Cavaleiro II"
+
+msgid "professor"
+msgstr "Professor"
+
+msgid "professor-tweesher"
+msgstr "Professor"
+
+msgid "haveagoodday"
+msgstr "Tenha um ótimo dia!"
+
+msgid "no"
+msgstr "Não"
+
+msgid "yes"
+msgstr "Sim"
+
+msgid "empty_pot"
+msgstr "É um pote vazio, talvez alguém irá plantar algo aqui."
+
+msgid "door_problems"
+msgstr "A porta está emperrada e não abre..."
+
+msgid "route_2"
+msgstr "Rota 2"
+
+msgid "sure_i_do"
+msgstr "Claro que sim."
+
+msgid "discovered_a_person"
+msgstr "Você me encontrou! Haha!"
+
+msgid "cotton_town_fountain"
+msgstr "É uma fonte. Muitas moedas estão no fundo."
+
+## DIALOG TRANSLATIONS ##
+# general dialogs
+msgid "healmytuxemon"
+msgstr "Você deseja curar seu Tuxemon?"
+
+msgid "hey"
+msgstr "Ei!"
+
+msgid "some_category_here"
+msgstr "Alguma categoria aqui"
+
+msgid "water"
+msgstr "Água"
+
+msgid "tree"
+msgstr "Essa árvore parece feliz e saudável!"

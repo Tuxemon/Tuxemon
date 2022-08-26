@@ -81,12 +81,6 @@
   <object id="34" type="collision" x="64" y="112" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
-  <properties>
-   <property name="act1" value="transition_teleport cotton_town.tmx,9,35,0.3"/>
-   <property name="act2" value="player_face down"/>
-   <property name="cond1" value="is player_at"/>
-   <property name="cond2" value="is player_facing down"/>
-  </properties>
   <object id="13" name="Teleport to Cotton Town" type="event" x="16" y="160" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_cotton_town.tmx,16,17,0.3"/>

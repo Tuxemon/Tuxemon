@@ -54,14 +54,14 @@
   </object>
   <object id="21" name="Buddha Mountain" type="event" x="352" y="208" width="16" height="48">
    <properties>
-    <property name="act10" value="teleport buddhamountain.tmx,3,89,1.5"/>
+    <property name="act10" value="teleport BuddhaMountain.tmx,3,89,1.5"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="22" name="sphalian care" type="event" x="272" y="112" width="16" height="16">
    <properties>
-    <property name="act10" value="teleport sphalian_healing_center.tmx,7,12,0.3"/>
+    <property name="act10" value="teleport healing_center_sphalian.tmx,7,12,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
    </properties>

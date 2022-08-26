@@ -34,14 +34,14 @@
  <objectgroup color="#ffff00" id="3" name="Events">
   <object id="9" name="Go to route 1a" type="event" x="192" y="384" width="16" height="16">
    <properties>
-    <property name="act10" value="teleport xero_route_1a.tmx,18,6,0.3"/>
+    <property name="act10" value="teleport route_1a.tmx,18,6,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="10" name="Go into the house" type="event" x="320" y="368" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport xero_sphalian_town_house.tmx,5,7,0.3"/>
+    <property name="act10" value="transition_teleport sphalian_town_house.tmx,5,7,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
    </properties>
@@ -54,14 +54,14 @@
   </object>
   <object id="21" name="Buddha Mountain" type="event" x="352" y="208" width="16" height="48">
    <properties>
-    <property name="act10" value="teleport xero_buddhamountain.tmx,3,89,1.5"/>
+    <property name="act10" value="teleport buddhamountain.tmx,3,89,1.5"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="22" name="sphalian care" type="event" x="272" y="112" width="16" height="16">
    <properties>
-    <property name="act10" value="teleport xero_sphalian_healing_center.tmx,7,12,0.3"/>
+    <property name="act10" value="teleport sphalian_healing_center.tmx,7,12,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
    </properties>
@@ -76,7 +76,7 @@
   </object>
   <object id="36" name="go to route1a right" type="event" x="208" y="384" width="16" height="16">
    <properties>
-    <property name="act10" value="teleport xero_route_1a.tmx,19,6,0.3"/>
+    <property name="act10" value="teleport route_1a.tmx,19,6,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing down"/>
    </properties>

@@ -59,7 +59,7 @@
   </object>
   <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport xero_sphalian_town.tmx,17,7,0.3"/>
+    <property name="act10" value="transition_teleport sphalian_town.tmx,17,7,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing down"/>
    </properties>

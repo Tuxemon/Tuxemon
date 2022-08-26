@@ -78,6 +78,12 @@ def upgrade_save(save_data: Dict[str, Any]) -> Dict[str, Any]:
     if "steps" not in save_data["game_variables"]:
         save_data["game_variables"]["steps"] = 0
 
+    first_steps = [('taba_town','xero_taba_town'),('player_house_bedroom','xero_player_house_bedroom'),
+    ('player_house_downstairs','xero_player_house_downstairs'),('route1_sanglorian','xero_route1_sanglorian'),
+    ('tuxe_mart_taba','xero_tuxe_mart_taba'),('healing_center','xero_healing_center'),('professor_lab','xero_professor_lab')]
+    for k, v in first_steps:
+        save_data["current_map"] = save_data["current_map"].replace(k, v)
+
     version = save_data.get("version", 0)
     for i in range(version, SAVE_VERSION):
         _update_current_map(i, save_data)

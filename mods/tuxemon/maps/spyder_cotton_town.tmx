@@ -266,8 +266,7 @@
   </object>
   <object id="540" name="Sign: Omnichannel HQ" type="event" x="352" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Omnichannel HQ: We Make Headlines"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="act1" value="translated_dialog omnichannel_sign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

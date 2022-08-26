@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import logging
 from abc import ABC, abstractmethod
+from collections import defaultdict
 from functools import partial
 from typing import (
     TYPE_CHECKING,
@@ -71,6 +72,10 @@ class CombatAnimations(ABC, Menu[None]):
         graphics: Optional[Mapping[str, str]] = None,
         **kwargs: Any,
     ) -> None:
+        # The defaults are a lie to stop mypy complaining about us violating
+        # the Liskov Substitution Principle
+        assert len(players) == 2
+        assert graphics is not None
 
         # Get background image if passed in
         background_filename_prefix = "gfx/ui/combat/"
@@ -88,6 +93,9 @@ class CombatAnimations(ABC, Menu[None]):
         assert graphics is not None
         self.graphics = graphics
 
+        self.monsters_in_play: MutableMapping[
+            NPC, List[Monster]
+        ] = defaultdict(list)
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self.hud: MutableMapping[Monster, Sprite] = {}
         self.is_trainer_battle = False

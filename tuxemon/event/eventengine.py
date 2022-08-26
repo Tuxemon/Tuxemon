@@ -162,7 +162,7 @@ class EventEngine:
         self.actions = plugin.load_plugins(
             paths.ACTIONS_PATH,
             "actions",
-            interface=EventAction,
+            interface=EventAction,  # type: ignore[misc]
         )
 
     def reset(self) -> None:
@@ -244,7 +244,7 @@ class EventEngine:
         else:
             return condition()
 
-    def get_conditions(self) -> List[EventCondition]:
+    def get_conditions(self) -> List[Type[EventCondition]]:
         """
         Return list of EventConditions.
 

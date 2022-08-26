@@ -180,8 +180,8 @@ class ItemMenuState(Menu[Item]):
             # TODO: allow items to be used on player or "in general"
 
             menu = self.client.push_state(MonsterMenuState)
-            menu.is_valid_entry = item.validate
-            menu.on_menu_selection = use_item
+            menu.is_valid_entry = item.validate  # type: ignore[assignment]
+            menu.on_menu_selection = use_item  # type: ignore[assignment]
 
         def cancel() -> None:
             self.client.pop_state()  # close the use/cancel menu

@@ -46,17 +46,17 @@ class MapCondition(NamedTuple):
     width: int
     height: int
     operator: str
-    name: str
+    name: Optional[str]
 
 
 class MapAction(NamedTuple):
     type: str
     parameters: Sequence[str]
-    name: str
+    name: Optional[str]
 
 
 class EventObject(NamedTuple):
-    id: int
+    id: Optional[int]
     name: str
     x: int
     y: int

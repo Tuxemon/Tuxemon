@@ -61,7 +61,7 @@ class RenameMonsterAction(EventAction[RenameMonsterActionParameters]):
 
         # pull up the monster menu so we know which one we are renaming
         menu = self.session.client.push_state(MonsterMenuState)
-        menu.on_menu_selection = self.prompt_for_name
+        menu.on_menu_selection = self.prompt_for_name  # type: ignore[assignment]
 
     def update(self) -> None:
 

@@ -37,7 +37,17 @@ import os
 import sys
 from enum import Enum
 from operator import itemgetter
-from typing import Any, Dict, Literal, Mapping, Optional, Sequence, overload
+from typing import (
+    Any,
+    Dict,
+    List,
+    Literal,
+    Mapping,
+    Optional,
+    Sequence,
+    Union,
+    overload,
+)
 
 from pydantic import BaseModel, Field, ValidationError, validator
 
@@ -52,7 +62,6 @@ T.load_translator()
 
 # Target is a mapping of who this targets
 Target = Mapping[str, int]
-
 
 # ItemSort defines the sort of item an item is.
 class ItemSort(str, Enum):
@@ -74,12 +83,14 @@ class ItemBattleMenu(str, Enum):
 
 
 # TODO: Automatically generate state enum through discovery
-states = {
-    "MainCombatMenuState": "MainCombatMenuState",
-    "WorldState": "WorldState",
-    "None": "",
-}
-State = Enum("State", states)
+State = Enum(
+    "State",
+    {
+        "MainCombatMenuState": "MainCombatMenuState",
+        "WorldState": "WorldState",
+        "None": "",
+    },
+)
 
 
 class ItemModel(BaseModel):
@@ -490,6 +501,33 @@ class SoundModel(BaseModel):
     file: str = Field(..., description="File for the sound")
 
 
+TableName = Literal[
+    "economy",
+    "encounter",
+    "environment",
+    "inventory",
+    "item",
+    "monster",
+    "music",
+    "npc",
+    "sounds",
+    "technique",
+]
+
+DataModel = Union[
+    EconomyModel,
+    EncounterModel,
+    EnvironmentModel,
+    InventoryModel,
+    ItemModel,
+    MonsterModel,
+    MusicModel,
+    NpcModel,
+    SoundModel,
+    TechniqueModel,
+]
+
+
 def process_targets(json_targets: Target) -> Sequence[str]:
     """Return values in order of preference for targeting things.
 
@@ -526,7 +564,7 @@ class JSONDatabase:
     """
 
     def __init__(self, dir: str = "all") -> None:
-        self._tables = [
+        self._tables: List[TableName] = [
             "item",
             "monster",
             "npc",
@@ -538,8 +576,8 @@ class JSONDatabase:
             "music",
             "economy",
         ]
-        self.preloaded: Dict[str, Dict[str, Any]] = {}
-        self.database: Dict[str, Dict[str, Any]] = {}
+        self.preloaded: Dict[TableName, Dict[str, Any]] = {}
+        self.database: Dict[TableName, Dict[str, Any]] = {}
         self.path = ""
         for table in self._tables:
             self.preloaded[table] = {}
@@ -547,7 +585,9 @@ class JSONDatabase:
 
         # self.load(dir)
 
-    def preload(self, directory: str = "all") -> None:
+    def preload(
+        self, directory: Union[TableName, Literal["all"]] = "all"
+    ) -> None:
         """
         Loads all data from JSON files located under our data path as an
         untyped preloaded dictionary.
@@ -564,7 +604,11 @@ class JSONDatabase:
         else:
             self.load_json(directory)
 
-    def load(self, directory: str = "all", validate: bool = False) -> None:
+    def load(
+        self,
+        directory: Union[TableName, Literal["all"]] = "all",
+        validate: bool = False,
+    ) -> None:
         """
         Loads all data from JSON files located under our data path.
 
@@ -581,7 +625,7 @@ class JSONDatabase:
                 self.load_model(item, table, validate)
         self.preloaded.clear()
 
-    def load_json(self, directory: str, validate: bool = False) -> None:
+    def load_json(self, directory: TableName, validate: bool = False) -> None:
         """
         Loads all JSON items under a specified path.
 
@@ -611,7 +655,7 @@ class JSONDatabase:
             else:
                 self.load_dict(item, directory)
 
-    def load_dict(self, item: Mapping[str, Any], table: str) -> None:
+    def load_dict(self, item: Mapping[str, Any], table: TableName) -> None:
         """
         Loads a single json object and adds it to the appropriate preload db
         table.
@@ -630,7 +674,7 @@ class JSONDatabase:
         self.preloaded[table][item["slug"]] = item
 
     def load_model(
-        self, item: Mapping[str, Any], table: str, validate: bool = False
+        self, item: Mapping[str, Any], table: TableName, validate: bool = False
     ):
         """
         Loads a single json object, casts it to the appropriate data model,
@@ -682,8 +726,8 @@ class JSONDatabase:
                 teq = TechniqueModel(**item)
                 self.database[table][teq.slug] = teq
             else:
-                self.database[table][item["slug"]] = item
-        except ValidationError as e:
+                raise ValueError(f"Unexpected {table =}")
+        except (ValidationError, ValueError) as e:
             logger.error(f"validation failed for '{item['slug']}': {e}")
             if validate:
                 raise e
@@ -724,22 +768,37 @@ class JSONDatabase:
     def lookup(
         self,
         slug: str,
+        table: Literal["music"],
+    ) -> MusicModel:
+        pass
+
+    @overload
+    def lookup(
+        self,
+        slug: str,
+        table: Literal["sounds"],
+    ) -> SoundModel:
+        pass
+
+    @overload
+    def lookup(
+        self,
+        slug: str,
         table: Literal["environment"],
     ) -> EnvironmentModel:
         pass
 
-    def lookup(self, slug: str, table: str = "monster") -> Mapping[str, Any]:
+    def lookup(self, slug: str, table: TableName = "monster") -> DataModel:
         """
-        Looks up a monster, technique, item, or npc based on slug.
+        Looks up a monster, technique, item, npc, etc based on slug.
 
         Parameters:
             slug: The slug of the monster, technique, item, or npc.  A short
                 English identifier.
-            table: Which index to do the search in. Can be: "monster",
-                "item", "npc", or "technique".
+            table: Which index to do the search in.
 
         Returns:
-            A dictionary from the resulting lookup.
+            A pydantic.BaseModel from the resulting lookup.
 
         """
         table_entry = self.database[table]
@@ -751,7 +810,7 @@ class JSONDatabase:
         else:
             return table_entry[slug]
 
-    def lookup_file(self, table: str, slug: str) -> str:
+    def lookup_file(self, table: TableName, slug: str) -> str:
         """
         Does a lookup with the given slug in the given table.
 
@@ -834,7 +893,7 @@ class Validator:
         except OSError:
             return False
 
-    def db_entry(self, table: str, slug: str) -> bool:
+    def db_entry(self, table: TableName, slug: str) -> bool:
         """
         Check to see if the given slug exists in the database for the given
         table.

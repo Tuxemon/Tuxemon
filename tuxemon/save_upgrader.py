@@ -29,9 +29,12 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, Mapping
+from typing import TYPE_CHECKING, Any, Dict, Mapping
 
 from tuxemon.prepare import CONFIG
+
+if TYPE_CHECKING:
+    from tuxemon.save import SaveData
 
 """
 This module is for handling breaking changes to the save file.
@@ -62,7 +65,7 @@ MAP_RENAMES: Mapping[int, Mapping[str, str]] = {
 }
 
 
-def upgrade_save(save_data: Dict[str, Any]) -> Dict[str, Any]:
+def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     """
     Updates savegame if necessary.
 
@@ -86,7 +89,7 @@ def upgrade_save(save_data: Dict[str, Any]) -> Dict[str, Any]:
         if i == 1:
             _transfer_storage_boxes(save_data)
 
-    return save_data
+    return save_data  # type: ignore[return-value]
 
 
 def _update_current_map(version: int, save_data: Dict[str, Any]) -> None:

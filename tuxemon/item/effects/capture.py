@@ -56,7 +56,7 @@ class CaptureEffect(ItemEffect[CaptureEffectParameters]):
 
     def apply(self, target: Monster) -> CaptureEffectResult:
         # Set up variables for capture equation
-        status_modifier = 0
+        status_modifier = 0.0
 
         # TODO: Item power is set to 1 in order to not effect the calculations
         # Research the proper item_powers of pokeballs to use it as a multiplier.

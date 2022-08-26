@@ -207,7 +207,7 @@ def get_custom_pygame_keyboard_controls_names(
         cfg: Config parser.
 
     """
-    custom_controls: Dict[Optional[int], int] = {None: events.UNICODE}
+    custom_controls: Dict[Optional[str], int] = {None: events.UNICODE}
     for key, values in cfg.items("controls"):
         key = key.upper()
         button_value: Optional[int] = getattr(buttons, key, None)

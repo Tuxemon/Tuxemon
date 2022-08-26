@@ -38,11 +38,11 @@ from typing import (
     TypeVar,
 )
 
-from tuxemon.monster import Monster
 from tuxemon.session import Session
 from tuxemon.tools import NamedTupleProtocol, cast_parameters_to_namedtuple
 
 if TYPE_CHECKING:
+    from tuxemon.monster import Monster
     from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)

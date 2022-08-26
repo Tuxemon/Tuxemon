@@ -169,6 +169,7 @@ class WorldMenuState(PygameMenuState):
                     [T.format("tuxemon_released", {"name": monster.name})],
                 )
                 monster_menu.refresh_menu_items()
+                monster_menu.on_menu_selection_change()
             else:
                 open_dialog(local_session, [T.translate("cant_release")])
 

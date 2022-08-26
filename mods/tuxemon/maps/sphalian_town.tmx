@@ -68,7 +68,7 @@
   </object>
   <object id="27" name="Sphalian Town sign" type="event" x="240" y="368" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog sphalian_town_sign"/>
+    <property name="act10" value="dialog Sphalian Town - a quiet\, peaceful place"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
     <property name="cond30" value="is button_pressed K_RETURN"/>

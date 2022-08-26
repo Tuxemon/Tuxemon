@@ -36,7 +36,7 @@
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="2" name="Welcome Sign" type="event" x="176" y="1440" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog welcome_buddha"/>
+    <property name="act10" value="dialog Welcome to Buddha Mountain!"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
     <property name="cond30" value="is button_pressed K_RETURN"/>

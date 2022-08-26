@@ -73,10 +73,11 @@
   </object>
   <object id="25" name="Maple talk to Player" type="event" x="96" y="80" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog maple_bedroom_dialogue_001"/>
-    <property name="act20" value="translated_dialog maple_bedroom_dialogue_002"/>
-    <property name="act30" value="translated_dialog maple_bedroom_dialogue_003"/>
-    <property name="act40" value="translated_dialog maple_bedroom_dialogue_004"/>
+    <property name="act10" value="dialog_chain Hey, {name}! Guess what?"/>
+    <property name="act20" value="dialog_chain I know you can't afford your own Tuxemon."/>
+    <property name="act30" value="dialog_chain I know where you can get one!!"/>
+    <property name="act40" value="dialog_chain Go to the junkyard behind the Tuxmart. I'll meet you there."/>
+    <property name="act50" value="dialog_chain ${{end}}"/>
     <property name="act60" value="set_variable maple_bedroom3:true"/>
     <property name="act70" value="npc_face maple_girl,right"/>
     <property name="cond10" value="is variable_set maple_bedroom2:true"/>

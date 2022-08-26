@@ -56,7 +56,7 @@
   </object>
   <object id="25" name="Read Sign" type="event" x="80" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog maple_house_downstairs_sign"/>
+    <property name="act10" value="dialog My Wonderful Home!"/>
     <property name="cond10" value="is player_at 5,3"/>
     <property name="cond20" value="is player_facing up"/>
     <property name="cond30" value="is button_pressed K_RETURN"/>

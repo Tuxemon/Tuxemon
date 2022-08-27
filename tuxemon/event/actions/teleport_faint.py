@@ -57,7 +57,7 @@ class TeleportFaintAction(EventAction[TeleportFaintActionParameters]):
         if "teleport_faint" in player.game_variables:
             teleport = player.game_variables["teleport_faint"].split(" ")
         else:
-            logger.error(f"Old savegame. Please heal your monsters in a center to fix it.")
+            logger.error(f"Teleport_faint action failed, because the teleport_faint variable has not been set.")
             return
 
         # Start the screen transition

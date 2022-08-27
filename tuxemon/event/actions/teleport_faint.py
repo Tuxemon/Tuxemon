@@ -58,7 +58,7 @@ class TeleportFaintAction(EventAction[TeleportFaintActionParameters]):
             teleport = player.game_variables["teleport_faint"].split(" ")
         else:
             logger.error(f"Old savegame. Please heal your monsters in a center to fix it.")
-            return None
+            return
 
         # Start the screen transition
         # self.game.event_engine.execute_action("screen_transition", [.3])

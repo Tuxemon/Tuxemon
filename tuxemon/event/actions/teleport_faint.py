@@ -21,10 +21,12 @@
 
 from __future__ import annotations
 
+import logging
 from typing import NamedTuple, final
 
 from tuxemon.event.eventaction import EventAction
 
+logger = logging.getLogger(__name__)
 
 class TeleportFaintActionParameters(NamedTuple):
     pass
@@ -54,6 +56,9 @@ class TeleportFaintAction(EventAction[TeleportFaintActionParameters]):
         # If game variable exists, then teleport:
         if "teleport_faint" in player.game_variables:
             teleport = player.game_variables["teleport_faint"].split(" ")
+        else:
+            logger.error(f"Old savegame. Please heal your monsters in a center to fix it.")
+            return None
 
         # Start the screen transition
         # self.game.event_engine.execute_action("screen_transition", [.3])

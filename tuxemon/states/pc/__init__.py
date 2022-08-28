@@ -45,6 +45,7 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu, PopUpMenu, PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
+from tuxemon.states.monster import MonsterMenuState
 from tuxemon.tools import open_dialog, transform_resource_filename
 
 logger = logging.getLogger(__name__)
@@ -88,13 +89,23 @@ class PCState(PopUpMenu[MenuGameObj]):
                 [T.translate("menu_storage_monsters_full")],
             )
         else:
-            storage_callback = change_state("MonsterBoxChooseState")
+            storage_callback = change_state("MonsterBoxChooseStorageState")
+
+        if len(local_session.player.monsters) == 0:
+            dropoff_callback = partial(
+                open_dialog,
+                local_session,
+                [T.translate("menu_dropoff_no_monsters")],
+            )
+        else:
+            dropoff_callback = change_state("MonsterBoxChooseDropoffState")
 
         add_menu_items(
             self,
             (
                 ("menu_monsters", change_state("MonsterMenuState")),
                 ("menu_storage", storage_callback),
+                ("menu_dropoff", dropoff_callback),
                 ("menu_items", change_state("ItemMenuState")),
                 (
                     "menu_multiplayer",
@@ -278,7 +289,7 @@ class MonsterTakeState(PygameMenuState):
 
 
 class MonsterBoxChooseState(PygameMenuState):
-    """Menu to choose a box, which you can then remove a tuxemon from."""
+    """Menu to choose a tuxemon box."""
 
     def add_menu_items(
         self,
@@ -301,6 +312,16 @@ class MonsterBoxChooseState(PygameMenuState):
             position=(width + b_width, b_height, False),
         )
 
+    def get_menu_items_map(self) -> Sequence[Tuple[str, MenuGameObj]]:
+        """
+        Return a list of menu options and callbacks, to be overridden by
+        class descendents.
+        """
+        return []
+
+    def change_state(self, state: str, **kwargs: Any) -> Callable[[], object]:
+        return partial(self.client.replace_state, state, **kwargs)
+
     def startup(self, **kwargs: Any) -> None:
         _, height = prepare.SCREEN_SIZE
 
@@ -308,23 +329,7 @@ class MonsterBoxChooseState(PygameMenuState):
 
         self.animation_offset = 0
 
-        def change_state(state: str, **kwargs: Any) -> Callable[[], object]:
-            return partial(self.client.replace_state, state, **kwargs)
-
-        player = local_session.player
-        menu_items_map = []
-        for box_name, monsters in player.monster_boxes.items():
-            if not monsters:
-                menu_callback = partial(
-                    open_dialog,
-                    local_session,
-                    [T.translate("menu_storage_empty_kennel")],
-                )
-            else:
-                menu_callback = change_state(
-                    "MonsterTakeState", box_name=box_name
-                )
-            menu_items_map.append((box_name, menu_callback))
+        menu_items_map = self.get_menu_items_map()
         self.add_menu_items(self.menu, menu_items_map)
 
     def update_animation_position(self) -> None:
@@ -359,3 +364,59 @@ class MonsterBoxChooseState(PygameMenuState):
         ani.update_callback = self.update_animation_position
 
         return ani
+
+
+class MonsterBoxChooseStorageState(MonsterBoxChooseState):
+    """Menu to choose a box, which you can then take a tuxemon from."""
+
+    def get_menu_items_map(self) -> Sequence[Tuple[str, MenuGameObj]]:
+        player = local_session.player
+        menu_items_map = []
+        for box_name, monsters in player.monster_boxes.items():
+            if not monsters:
+                menu_callback = partial(
+                    open_dialog,
+                    local_session,
+                    [T.translate("menu_storage_empty_kennel")],
+                )
+            else:
+                menu_callback = self.change_state(
+                    "MonsterTakeState", box_name=box_name
+                )
+            menu_items_map.append((box_name, menu_callback))
+        return menu_items_map
+
+
+class MonsterBoxChooseDropoffState(MonsterBoxChooseState):
+    """Menu to choose a box, which you can then drop off a tuxemon into."""
+
+    def get_menu_items_map(self) -> Sequence[Tuple[str, MenuGameObj]]:
+        player = local_session.player
+        menu_items_map = []
+        for box_name, monsters in player.monster_boxes.items():
+            menu_callback = self.change_state(
+                "MonsterDropOffState", box_name=box_name
+            )
+            menu_items_map.append((box_name, menu_callback))
+        return menu_items_map
+
+
+class MonsterDropOffState(MonsterMenuState):
+    """Shows all Tuxemon in player's party, puts it into box if selected."""
+
+    def startup(self, box_name: String, **kwargs: Any) -> None:
+        super().startup(**kwargs)
+
+        self.box_name = box_name
+
+    def on_menu_selection(
+        self,
+        menu_item: MenuItem[Optional[Monster]],
+    ) -> None:
+        player = local_session.player
+        monster = menu_item.game_object
+
+        player.monster_boxes[self.box_name].append(monster)
+        player.remove_monster(monster)
+
+        self.client.pop_state(self)

@@ -647,7 +647,10 @@ msgid "menu_monsters"
 msgstr "Monsters"
 
 msgid "menu_storage"
-msgstr "Storage"
+msgstr "Pick Up Monster"
+
+msgid "menu_dropoff"
+msgstr "Drop Off Monster"
 
 msgid "menu_multiplayer"
 msgstr "Multiplayer"
@@ -702,6 +705,9 @@ msgstr "Your party is full, you cannot take any more from storage."
 
 msgid "menu_storage_empty_kennel"
 msgstr "This kennel is empty, there are no monsters to take."
+
+msgid "menu_dropoff_no_monsters"
+msgstr "You don't have any monsters to drop off."
 
 # Default mod names on selection menu
 msgid "xero_campaign"

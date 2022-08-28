@@ -928,7 +928,7 @@ msgid "bumbulus"
 msgstr "Bumbulus"
 
 msgid "bursa_description"
-msgstr "It rejects fire as "basic", and produces only the fire of the mind."
+msgstr "It rejects fire as basic, and produces only the fire of the mind."
 
 msgid "bursa"
 msgstr "Bursa"
@@ -2153,8 +2153,6 @@ msgid "mk01_beta"
 msgstr "Mk01 Beta"
 msgid "mk01_alpha"
 msgstr "MK01 Alpha"
-
-
 
 # Monster categories
 msgid "anteater"

@@ -388,6 +388,7 @@ class ShopBuyMenuState(ShopMenuState):
             menu_item: Selected menu item.
 
         """
+        MAX_QTY = 999
         item = menu_item.game_object
 
         def buy_item(quantity: int) -> None:
@@ -411,19 +412,18 @@ class ShopBuyMenuState(ShopMenuState):
             or not self.economy.lookup_item_price(item.slug)
             else self.economy.lookup_item_price(item.slug)
         )
-        money = self.buyer.game_variables.get("money")
-        qty_buyer_can_afford = (
-            999
-            if int(price) == 0
-            else int(money / price)
-            if money
-            else 0
-        )
-        max_quantity = (
-            qty_buyer_can_afford
-            if item_dict.get("infinite")
-            else min(item_dict["quantity"], qty_buyer_can_afford)
-        )
+        money = self.buyer.game_variables.get("money", 0)
+        if int(price) == 0:
+            max_quantity = (
+                MAX_QTY
+                if item_dict.get("infinite")
+                else min(MAX_QTY, item_dict["quantity"])
+            )
+        else:
+            qty_can_afford = int(money / price)
+            max_quantity = (
+                min(MAX_QTY, qty_can_afford, item_dict["quantity"])
+            )
 
         self.client.push_state(
             QuantityAndPriceMenu,

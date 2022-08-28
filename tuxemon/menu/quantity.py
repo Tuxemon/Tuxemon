@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 from typing import Any, Callable, Generator, Optional
 
+from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.platform.const import buttons, intentions
@@ -114,6 +115,8 @@ class QuantityAndPriceMenu(QuantityMenu):
         price = (
             self.price if self.quantity == 0 else self.quantity * self.price
         )
+        if int(price) == 0:
+            price = T.translate("shop_buy_free")
 
         formatted_name = label_format(price, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))

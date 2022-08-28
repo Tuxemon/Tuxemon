@@ -607,6 +607,9 @@ msgstr "Move"
 msgid "monster_menu_release"
 msgstr "Release"
 
+msgid "shop_buy_free"
+msgstr "FREE!"
+
 #Release notifications
 msgid "cant_release"
 msgstr "Can't release only Tuxemon in party."

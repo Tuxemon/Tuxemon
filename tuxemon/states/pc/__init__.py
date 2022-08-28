@@ -276,6 +276,8 @@ class MonsterTakeState(PygameMenuState):
                     )
                 ],
             )
+            theme = get_theme()
+            theme.scrollarea_position = pygame_menu.locals.SCROLLAREA_POSITION_NONE
             self.client.pop_state(self)
 
         def take_monster_callback(monster: Monster) -> Callable[[], object]:

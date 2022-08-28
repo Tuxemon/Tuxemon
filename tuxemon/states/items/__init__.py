@@ -26,6 +26,7 @@
 #
 # states.ItemMenuState The item menu allows you to view and use items in your inventory.
 # states.ShopMenuState
+# states.ShopBuyMenuState Shop Buy menu allows you to buy items that cost money
 #
 from __future__ import annotations
 
@@ -405,13 +406,19 @@ class ShopBuyMenuState(ShopMenuState):
         item_dict = self.seller.inventory[item.slug]
 
         price = (
-            1
+            0
             if not self.economy
             or not self.economy.lookup_item_price(item.slug)
             else self.economy.lookup_item_price(item.slug)
         )
         money = self.buyer.game_variables.get("money")
-        qty_buyer_can_afford = int(money / price) if money else 0
+        qty_buyer_can_afford = (
+            999
+            if int(price) == 0
+            else int(money / price)
+            if money
+            else 0
+        )
         max_quantity = (
             qty_buyer_can_afford
             if item_dict.get("infinite")

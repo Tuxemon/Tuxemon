@@ -20,6 +20,8 @@
     "types": [
         "Metal"
     ],
+    "tmx_id": 0,
+    "height": 0,
     "weight": 25,
     "sounds": {
         "combat_call": "sound_av8r",

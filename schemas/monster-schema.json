@@ -17,6 +17,16 @@
       "description": "The AI to use for this monster",
       "type": "string"
     },
+    "txm_id": {
+      "title": "Tuxemon ID",
+      "description": "The id of the monster",
+      "type": "number"
+    },
+    "height": {
+      "title": "Height",
+      "description": "The height of the monster",
+      "type": "number"
+    },
     "weight": {
       "title": "Weight",
       "description": "The weight of the monster",

@@ -20,6 +20,8 @@
     "types": [
         "Earth"
     ],
+    "tmx_id": 0,
+    "height": 0,
     "weight": 25,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,

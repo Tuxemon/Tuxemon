@@ -20,9 +20,9 @@
     "types": [
         "Metal"
     ],
-    "txmn_id": 0,
+    "txmn_id": 125,
     "height": 0,
-    "weight": 25,
+    "weight": 0,
     "sounds": {
         "combat_call": "sound_av8r",
         "faint_call": "sound_av8r_faint"

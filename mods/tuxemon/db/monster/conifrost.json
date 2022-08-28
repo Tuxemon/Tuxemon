@@ -21,9 +21,9 @@
         "Water",
         "Wood"
     ],
-    "txmn_id": 0,
-    "height": 0,
-    "weight": 25,
+    "txmn_id": 105,
+    "height": 250,
+    "weight": 371,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

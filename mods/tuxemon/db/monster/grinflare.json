@@ -21,9 +21,9 @@
         "Earth",
         "Fire"
     ],
-    "txmn_id": 0,
-    "height": 0,
-    "weight": 25,
+    "txmn_id": 17,
+    "height": 160,
+    "weight": 3000,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

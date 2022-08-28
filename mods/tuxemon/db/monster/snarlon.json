@@ -20,9 +20,9 @@
     "types": [
         "Earth"
     ],
-    "txmn_id": 0,
-    "height": 0,
-    "weight": 25,
+    "txmn_id": 143,
+    "height": 160,
+    "weight": 130,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

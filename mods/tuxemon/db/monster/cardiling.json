@@ -20,9 +20,9 @@
     "types": [
         "Fire"
     ],
-    "txmn_id": 0,
+    "txmn_id": 61,
     "height": 0,
-    "weight": 25,
+    "weight": 0,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

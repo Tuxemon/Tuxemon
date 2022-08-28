@@ -91,14 +91,14 @@ class PCState(PopUpMenu[MenuGameObj]):
         else:
             storage_callback = change_state("MonsterBoxChooseStorageState")
 
-        if len(local_session.player.monsters) == 0:
+        if not len(local_session.player.monsters):
             dropoff_callback = partial(
                 open_dialog,
                 local_session,
                 [T.translate("menu_dropoff_no_monsters")],
             )
         else:
-            dropoff_callback = change_state("MonsterBoxChooseDropoffState")
+            dropoff_callback = change_state("MonsterBoxChooseDropOffState")
 
         add_menu_items(
             self,
@@ -389,7 +389,7 @@ class MonsterBoxChooseStorageState(MonsterBoxChooseState):
         return menu_items_map
 
 
-class MonsterBoxChooseDropoffState(MonsterBoxChooseState):
+class MonsterBoxChooseDropOffState(MonsterBoxChooseState):
     """Menu to choose a box, which you can then drop off a tuxemon into."""
 
     def get_menu_items_map(self) -> Sequence[Tuple[str, MenuGameObj]]:
@@ -417,6 +417,7 @@ class MonsterDropOffState(MonsterMenuState):
     ) -> None:
         player = local_session.player
         monster = menu_item.game_object
+        assert monster
 
         player.monster_boxes[self.box_name].append(monster)
         player.remove_monster(monster)

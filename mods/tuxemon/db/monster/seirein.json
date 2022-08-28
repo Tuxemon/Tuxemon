@@ -21,7 +21,7 @@
         "Fire",
         "Water"
     ],
-    "tmx_id": 0,
+    "txmn_id": 0,
     "height": 0,
     "weight": 25,
     "catch_rate": 45.0,

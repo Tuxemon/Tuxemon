@@ -20,7 +20,7 @@
     "types": [
         "wood"
     ],
-    "tmx_id": 0,
+    "txmn_id": 0,
     "height": 0,
     "weight": 4,
     "catch_rate": 120.0,

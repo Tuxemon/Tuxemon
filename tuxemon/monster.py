@@ -338,7 +338,7 @@ class Monster:
             if len(types) > 1:
                 self.type2 = results["types"][1].lower()
 
-        self.txm_id = results["txm_id"]
+        self.txmn_id = results["txmn_id"]
         self.height = results["height"]
         self.weight = results["weight"]
         self.catch_rate = results.get(

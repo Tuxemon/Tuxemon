@@ -17,7 +17,7 @@
       "description": "The AI to use for this monster",
       "type": "string"
     },
-    "txm_id": {
+    "txmn_id": {
       "title": "Tuxemon ID",
       "description": "The id of the monster",
       "type": "number"

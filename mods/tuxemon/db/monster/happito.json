@@ -21,7 +21,7 @@
         "Earth",
         "Metal"
     ],
-    "tmx_id": 0,
+    "txmn_id": 0,
     "height": 0,
     "weight": 25,
     "catch_rate": 120.0,

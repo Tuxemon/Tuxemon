@@ -20,7 +20,9 @@
     "types": [
         "Metal"
     ],
-    "weight": 25,
+    "txmn_id": 92,
+    "height": 45,
+    "weight": 3,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

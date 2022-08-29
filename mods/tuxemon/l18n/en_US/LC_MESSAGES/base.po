@@ -792,7 +792,7 @@ msgid "bigfin"
 msgstr "Bigfin"
 
 msgid "bolt_description"
-msgstr "The presence of a BOLT makes a NUT clamp down harder and spark more energy."
+msgstr ""
 
 msgid "bolt"
 msgstr "Bolt"
@@ -888,7 +888,7 @@ msgid "dragarbor"
 msgstr "Dragarbor"
 
 msgid "dune_pincher_description"
-msgstr "These hermits will wrap themselves in whatever is closest. In the desert, that is the burial shrouds of long-dead pharaohs."
+msgstr ""
 
 msgid "dune_pincher"
 msgstr "Dune Pincher"
@@ -936,7 +936,7 @@ msgid "fluttaflap"
 msgstr "Fluttaflap"
 
 msgid "fruitera_description"
-msgstr "FRUITERA is greedy for fruit, and carries as much as it can. When startled, it drops all its fruit, gathers it all up again, and only then runs away."
+msgstr ""
 
 msgid "fruitera"
 msgstr "Fruitera"
@@ -954,7 +954,7 @@ msgid "heronquak"
 msgstr "Heronquak"
 
 msgid "hydrone_description"
-msgstr "It utilises an experimental technology that creates power from water."
+msgstr ""
 
 msgid "hydrone"
 msgstr "Hydrone"
@@ -1017,7 +1017,7 @@ msgid "nudiflot_female_description"
 msgstr "It eats and stores the poison of the sea creatures that it feeds upon."
 
 msgid "nudiflot_male_description"
-msgstr "Its feathery antennas snap off if it is attacked, confusing the predator."
+msgstr "It eats and stores the poison of the sea creatures that it feeds upon."
 
 msgid "nudiflot_female"
 msgstr "Nudiflot (F)"
@@ -1026,13 +1026,13 @@ msgid "nudiflot_male"
 msgstr "Nudiflot (M)"
 
 msgid "nut_description"
-msgstr "In the great ships that cross the oceans, thousands of NUT and BOLT provide power and hold the steel plating together."
+msgstr ""
 
 msgid "nut"
 msgstr "Nut"
 
 msgid "pigabyte_description"
-msgstr "Scientists found that the best computers have organic implants."
+msgstr ""
 
 msgid "pigabyte"
 msgstr "Pigabyte"
@@ -1050,19 +1050,19 @@ msgid "possessun"
 msgstr "Possessun"
 
 msgid "propellercat_description"
-msgstr "Is it a new species, or just the pet of an inventor?"
+msgstr ""
 
 msgid "propellercat"
 msgstr "Propellercat"
 
 msgid "rockat_description"
-msgstr "Despite its considerable weight, its footfalls are silent."
+msgstr ""
 
 msgid "rockat"
 msgstr "Rockat"
 
 msgid "rockitten_description"
-msgstr "It uses its tiny rock ears for snuggling."
+msgstr ""
 
 msgid "rockitten"
 msgstr "Rockitten"
@@ -1074,13 +1074,13 @@ msgid "sapragon"
 msgstr "Sapragon"
 
 msgid "selket_description"
-msgstr "Lying in wait beneath the sand, they can feel their prey through the vibrations of their footsteps."
+msgstr ""
 
 msgid "selket"
 msgstr "Selket"
 
 msgid "selmatek_description"
-msgstr "Kept by the ancient kings of the deserts, SELMATEK served as watchdogs, hunting companions and - now - defenders against grave robbers."
+msgstr ""
 
 msgid "selmatek"
 msgstr "Selmatek"
@@ -1092,7 +1092,7 @@ msgid "sharpfin"
 msgstr "Sharpfin"
 
 msgid "sludgehog_description"
-msgstr "It lives in rubbish, and eats it too. Its spikes seem sharp, but it can soften them at will."
+msgstr ""
 
 msgid "sludgehog"
 msgstr "Sludgehog"
@@ -1104,7 +1104,7 @@ msgid "snowrilla"
 msgstr "Snowrilla"
 
 msgid "spycozeus_description"
-msgstr "The whispered communications of the forest are given physical form in SPYCOZEUS, which thinks like the trees."
+msgstr ""
 
 msgid "spycozeus"
 msgstr "Spycozeus"
@@ -1137,7 +1137,7 @@ msgid "tigrock"
 msgstr "Tigrock"
 
 msgid "tumbleworm_description"
-msgstr "When they have outgrown their honeycomb eggs, they drop to the ground face first."
+msgstr ""
 
 msgid "tumbleworm"
 msgstr "Tumbleworm"

@@ -244,7 +244,7 @@ class Monster:
         self.status_damage = 0
         self.status_turn = 0
 
-        self.txmn_id = 0.0
+        self.txmn_id = 0
         self.height = 0.0
         self.weight = 0.0
 

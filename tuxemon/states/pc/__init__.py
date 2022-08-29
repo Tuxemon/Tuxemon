@@ -33,7 +33,7 @@ from __future__ import annotations
 
 import logging
 from functools import partial
-from typing import TYPE_CHECKING, Any, Callable, Generator, Sequence, Tuple
+from typing import TYPE_CHECKING, Any, Callable, Generator, Sequence, Tuple, no_type_check
 
 import pygame_menu
 
@@ -116,6 +116,7 @@ class PCState(PopUpMenu[MenuGameObj]):
         )
 
 
+# unused
 class MultiplayerMenu(PopUpMenu[MenuGameObj]):
     """MP Menu
 
@@ -139,32 +140,32 @@ class MultiplayerMenu(PopUpMenu[MenuGameObj]):
     def host_game(self) -> None:
 
         # check if server is already hosting a game
-        if self.game.server.listening:
-            self.game.pop_state(self)
+        if self.client.server.listening:
+            self.client.pop_state(self)
             open_dialog(
                 local_session, [T.translate("multiplayer_already_hosting")]
             )
 
         # not hosting, so start the process
-        elif not self.game.isclient:
+        elif not self.client.isclient:
             # Configure this game to host
-            self.game.ishost = True
-            self.game.server.server.listen()
-            self.game.server.listening = True
+            self.client.ishost = True
+            self.client.server.server.listen()
+            self.client.server.listening = True
 
             # Enable the game, so we can connect to self
-            self.game.client.enable_join_multiplayer = True
-            self.game.client.client.listen()
-            self.game.client.listening = True
+            self.client.client.enable_join_multiplayer = True
+            self.client.client.client.listen()
+            self.client.client.listening = True
 
             # connect to self
-            while not self.game.client.client.registered:
-                self.game.client.client.autodiscover(autoregister=False)
-                for game in self.game.client.client.discovered_servers:
-                    self.game.client.client.register(game)
+            while not self.client.client.client.registered:
+                self.client.client.client.autodiscover(autoregister=False)
+                for game in self.client.client.client.discovered_servers:
+                    self.client.client.client.register(game)
 
             # close this menu
-            self.game.pop_state(self)
+            self.client.pop_state(self)
 
             # inform player that hosting is ready
             open_dialog(
@@ -173,26 +174,26 @@ class MultiplayerMenu(PopUpMenu[MenuGameObj]):
 
     def scan_for_games(self) -> None:
         # start the game scanner
-        if not self.game.ishost:
-            self.game.client.enable_join_multiplayer = True
-            self.game.client.listening = True
-            self.game.client.client.listen()
+        if not self.client.ishost:
+            self.client.client.enable_join_multiplayer = True
+            self.client.client.listening = True
+            self.client.client.client.listen()
 
         # open menu to select games
-        self.game.push_state(MultiplayerSelect)
+        self.client.push_state(MultiplayerSelect)
 
     def join_by_ip(self) -> None:
-        self.game.push_state(
+        self.client.push_state(
             InputMenu, prompt=T.translate("multiplayer_join_prompt")
         )
 
     def join(self) -> None:
-        if self.game.ishost:
+        if self.client.ishost:
             return
         else:
-            self.game.client.enable_join_multiplayer = True
-            self.game.client.listening = True
-            self.game.client.game.listen()
+            self.client.client.enable_join_multiplayer = True
+            self.client.client.listening = True
+            # self.client.client.game.listen()  # "LocalPygameClient" has no attribute "listen"
 
 
 class MultiplayerSelect(PopUpMenu[None]):
@@ -207,7 +208,7 @@ class MultiplayerSelect(PopUpMenu[None]):
         self.task(self.reload_items, 1, -1)
 
     def initialize_items(self) -> Generator[MenuItem[None], None, None]:
-        servers = self.game.client.server_list
+        servers = self.client.client.server_list
         if servers:
             for server in servers:
                 label = self.shadow_text(server)

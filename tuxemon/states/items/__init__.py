@@ -34,6 +34,7 @@ from typing import Any, Generator, Iterable, Sequence, Tuple
 import pygame
 
 from tuxemon import tools
+from tuxemon.db import State
 from tuxemon.item.item import InventoryItem, Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -149,7 +150,7 @@ class ItemMenuState(Menu[Item]):
         ):
             msg = T.format("item_no_available_target", {"name": item.name})
             tools.open_dialog(local_session, [msg])
-        elif state not in item.usable_in:
+        elif State[state] not in item.usable_in:
             msg = T.format("item_cannot_use_here", {"name": item.name})
             tools.open_dialog(local_session, [msg])
         else:
@@ -179,8 +180,8 @@ class ItemMenuState(Menu[Item]):
             # TODO: allow items to be used on player or "in general"
 
             menu = self.client.push_state(MonsterMenuState)
-            menu.is_valid_entry = item.validate
-            menu.on_menu_selection = use_item
+            menu.is_valid_entry = item.validate  # type: ignore[assignment]
+            menu.on_menu_selection = use_item  # type: ignore[assignment]
 
         def cancel() -> None:
             self.client.pop_state()  # close the use/cancel menu
@@ -372,6 +373,9 @@ class ShopMenuState(Menu[Item]):
             self.item_sprite.image = image
             self.item_sprite.rect = image.get_rect(center=self.image_center)
             self.alert(item.description)
+        else:
+            self.item_sprite.image = None
+            self.alert("")
 
 
 class ShopBuyMenuState(ShopMenuState):

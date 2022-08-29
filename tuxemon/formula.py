@@ -58,7 +58,7 @@ TYPES = {
 
 def simple_damage_multiplier(
     attack_types: Sequence[Optional[str]],
-    target_types: Sequence[str],
+    target_types: Sequence[Optional[str]],
 ) -> float:
     """
     Calculates damage multiplier based on strengths and weaknesses.
@@ -140,7 +140,6 @@ def simple_damage_calculate(
 
 def simple_poison(
     technique: Technique,
-    user: Monster,
     target: Monster,
 ) -> int:
     """
@@ -148,7 +147,6 @@ def simple_poison(
 
     Parameters:
         technique: The technique causing poison.
-        user: The user of the technique.
         target: The one the technique is being used on.
 
     Returns:

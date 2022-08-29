@@ -21,7 +21,7 @@
 
 from __future__ import annotations
 
-from typing import Generator, NamedTuple, Sequence, Tuple, final
+from typing import Generator, NamedTuple, Sequence, Tuple, cast, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -52,6 +52,7 @@ def parse_path_parameters(
 
         # Pending https://github.com/python/mypy/issues/9718
         assert direction in dirs2
+        direction = cast(Direction, direction)
         for point in simple_path(origin, direction, int(tiles)):
             yield point
         origin = point

@@ -266,9 +266,9 @@ class PygameTouchOverlayInput(PygameEventHandler):
     def __init__(self, transparency: int) -> None:
         super().__init__()
         self.transparency = transparency
-        self.dpad: DPadInfo = {}  # type: ignore
-        self.a_button: DPadButtonInfo = {}  # type: ignore
-        self.b_button: DPadButtonInfo = {}  # type: ignore
+        self.dpad: DPadInfo = {}  # type: ignore[typeddict-item]
+        self.a_button: DPadButtonInfo = {}  # type: ignore[typeddict-item]
+        self.b_button: DPadButtonInfo = {}  # type: ignore[typeddict-item]
         # TODO: try to simplify this
         self.buttons[buttons.UP] = PlayerInput(buttons.UP)
         self.buttons[buttons.DOWN] = PlayerInput(buttons.DOWN)
@@ -331,31 +331,36 @@ class PygameTouchOverlayInput(PygameEventHandler):
 
         # Create the collision rectangle objects for the dpad so we can see
         # if we're pressing a button
-        self.dpad["rect"] = {}  # type: ignore
-        self.dpad["rect"]["up"] = Rect(
+        up = Rect(
             self.dpad["position"][0] + (self.dpad["surface"].get_width() / 3),
             self.dpad["position"][1],  # Rectangle position_y
             self.dpad["surface"].get_width() / 3,  # Rectangle size_x
             self.dpad["surface"].get_height() / 2,
         )
-        self.dpad["rect"]["down"] = Rect(
+        down = Rect(
             self.dpad["position"][0] + (self.dpad["surface"].get_width() / 3),
             self.dpad["position"][1] + (self.dpad["surface"].get_height() / 2),
             self.dpad["surface"].get_width() / 3,
             self.dpad["surface"].get_height() / 2,
         )
-        self.dpad["rect"]["left"] = Rect(
+        left = Rect(
             self.dpad["position"][0],
             self.dpad["position"][1] + (self.dpad["surface"].get_height() / 3),
             self.dpad["surface"].get_width() / 2,
             self.dpad["surface"].get_height() / 3,
         )
-        self.dpad["rect"]["right"] = Rect(
+        right = Rect(
             self.dpad["position"][0] + (self.dpad["surface"].get_width() / 2),
             self.dpad["position"][1] + (self.dpad["surface"].get_height() / 3),
             self.dpad["surface"].get_width() / 2,
             self.dpad["surface"].get_height() / 3,
         )
+        self.dpad["rect"] = {
+            "up": up,
+            "down": down,
+            "left": left,
+            "right": right,
+        }
 
         # Create the buttons
         self.a_button["surface"] = graphics.load_and_scale("gfx/a-button.png")

@@ -12,7 +12,7 @@
 		{
             "name": "AV8R",
             "level": 20, 
-			"slug": "av84",
+			"slug": "av8r",
 			"exp_give_mod": 3,
             "exp_req_mod": 27			
         },
@@ -26,6 +26,3 @@
 ],
 	    "combat_front": "scientist.png",
     "combat_back": "red_back.png"}
-	
-	
-	

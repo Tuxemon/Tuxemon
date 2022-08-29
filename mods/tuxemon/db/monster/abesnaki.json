@@ -7,18 +7,13 @@
             "level_learned": 2,
             "technique": "flamethrower"
         },
-
         {
-            "level_learned": 6,
-            "technique": "constrict"
-        },
-	{
-            "level_learned": 12,
+            "level_learned": 2,
             "technique": "pseudopod"
         },
-	{
-            "level_learned": 17,
-            "technique": "unmask"
+        {
+            "level_learned": 2,
+            "technique": "sleep_bomb"
         }
     ],
     "shape": "Serpent",

@@ -625,6 +625,9 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 design and front sprite by [Tricoelacanth](https://twitter.com/@tricoelacanth),
 back and menu sprites by ultidonki based on the design by Tricoelacanth, all released under CC-BY-SA 4.0
 
+* ["Teddisun"](https://www.github.com/Tuxemon/Tuxemon/tree/development/mods/tuxemon/gfx/sprites/battle/teddisun-front.png)
+Character created by Leo (from Discord) and released under the CC-BY-SA 4.0+ license. Front, back, and menu sprites drawn by ultidonki, also released under the CC-BY-SA 4.0+ license based on the design by Leo (from Discord). 
+
 ### Items
 
 * ["Potions"](http://opengameart.org/content/potions-3)
@@ -949,7 +952,6 @@ by [Minorthreat0987](http://minorthreat0987.deviantart.com/) and
 [tilman](http://tilman.newgrounds.com/) is licensed under
 [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 
-* ["Purple - [8-bit]"](http://www.newgrounds.com/audio/listen/488524) by
 [Coffee-Break](http://coffee-break.newgrounds.com/) is licensed under
 [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

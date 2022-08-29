@@ -23,5 +23,6 @@
   "type": "Consumable",
   "usable_in": [
     "MainCombatMenuState"
-  ]
+  ],
+  "battle_menu": "combat"
 }

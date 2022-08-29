@@ -27,6 +27,7 @@ from tuxemon.menu.interface import MenuCursor, MenuItem
 from tuxemon.menu.theme import get_sound_engine, get_theme
 from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
+from tuxemon.prepare import CONFIG
 from tuxemon.sprite import (
     MenuSpriteGroup,
     RelativeGroup,
@@ -293,7 +294,15 @@ class Menu(Generic[T], state.State):
 
         """
         text_area.text = text
-        self.start_text_animation(text_area, callback)
+        if CONFIG.dialog_speed == "max":
+            # exhaust the iterator to immediately blit every char to the dialog
+            # box
+            for _ in text_area:
+                pass
+            if callback:
+                callback()
+        else:
+            self.start_text_animation(text_area, callback)
 
     def alert(
         self,
@@ -359,23 +368,32 @@ class Menu(Generic[T], state.State):
         self._needs_refresh = True
         items = self.initialize_items()
 
-        if items:
-            self.menu_items.empty()
+        if not items:
+            return
 
-            for item in items:
-                self.add(item)
-                if item.enabled:
-                    item.enabled = self.is_valid_entry(item.game_object)
+        self.menu_items.empty()
 
-            self.menu_items.arrange_menu_items()
-            for index, item in enumerate(self.menu_items):
-                # TODO: avoid introspection of the items to implement
-                # different behavior
-                if item.game_object.__class__.__name__ != "Monster":
-                    break
-                self.selected_index = index
-                if item.enabled:
-                    break
+        for item in items:
+            self.add(item)
+            if item.enabled:
+                item.enabled = self.is_valid_entry(item.game_object)
+
+        self.menu_items.arrange_menu_items()
+
+        selected_item = self.get_selected_item()
+        if selected_item and selected_item.enabled:
+            return
+
+        # Choose new cursor position. We can't use the prev position, so we
+        # will use the closest valid option.
+        score = None
+        prev_index = self.selected_index
+        for index, item in enumerate(self.menu_items):
+            if item.enabled:
+                new_score = abs(prev_index - index)
+                if score is None or new_score < score:
+                    self.selected_index = index
+                    score = new_score
 
     def build_item(
         self: Menu[Callable[[], object]],

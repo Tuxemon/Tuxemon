@@ -25,9 +25,9 @@ class WhereAmICommand(CLICommand):
             line: Input text after the command name.
 
         """
-        try:
-            fn = ctx.session.client.event_engine.current_map.data.filename
-        except AttributeError:
-            print("Cannot get filename from the game.", file=sys.stderr)
+        current_map = ctx.session.client.event_engine.current_map
+        if current_map:
+            name = current_map.data.filename
+            print(name)
         else:
-            print(fn)
+            print("Cannot get filename from the game.", file=sys.stderr)

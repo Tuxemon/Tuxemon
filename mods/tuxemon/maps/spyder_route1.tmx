@@ -185,7 +185,7 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="151" name="Encounters" type="event" x="320" y="176" width="128.091" height="63.8636">
+  <object id="151" name="Encounters" type="event" x="320" y="176" width="128" height="64">
    <properties>
     <property name="act1" value="random_encounter route1,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>

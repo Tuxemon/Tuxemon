@@ -30,7 +30,7 @@ from __future__ import annotations
 
 import logging
 from functools import partial
-from typing import Any, Callable, Sequence, Tuple
+from typing import Any, Callable, Dict, Sequence, Tuple
 
 import pygame_menu
 
@@ -159,7 +159,7 @@ class WorldMenuState(PygameMenuState):
             monster = monster_menu.get_selected_item().game_object
             success = player.release_monster(monster)
 
-            # Close the dialog and confirmation menu, and inform the user 
+            # Close the dialog and confirmation menu, and inform the user
             # their tuxemon has been released.
             if success:
                 self.client.pop_state()
@@ -169,6 +169,7 @@ class WorldMenuState(PygameMenuState):
                     [T.format("tuxemon_released", {"name": monster.name})],
                 )
                 monster_menu.refresh_menu_items()
+                monster_menu.on_menu_selection_change()
             else:
                 open_dialog(local_session, [T.translate("cant_release")])
 
@@ -217,12 +218,12 @@ class WorldMenuState(PygameMenuState):
             else:
                 open_monster_submenu(menu_item)
 
-        context = (
-            dict()
-        )  # dict passed around to hold info between menus/callbacks
-        monster_menu = self.client.replace_state("MonsterMenuState")
-        monster_menu.on_menu_selection = handle_selection
-        monster_menu.on_menu_selection_change = monster_menu_hook
+        context: Dict[
+            str, Any
+        ] = dict()  # dict passed around to hold info between menus/callbacks
+        monster_menu = self.client.replace_state(MonsterMenuState)
+        monster_menu.on_menu_selection = handle_selection  # type: ignore[assignment]
+        monster_menu.on_menu_selection_change = monster_menu_hook  # type: ignore[assignment]
 
     def update_animation_position(self) -> None:
         self.menu.translate(-self.animation_offset, 0)

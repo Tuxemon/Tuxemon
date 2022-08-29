@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2020-06-12 07:41+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2022-08-06 16:14+0000\n"
+"Last-Translator: Tobias Mohr <tobias_mohr_1991@gmx.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "de/>\n"
 "Language: de_DE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.1-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -135,7 +135,7 @@ msgid "combat_state_lifeleech_failure"
 msgstr "{link} kann keine Gesundheit mehr absorbieren."
 
 msgid "combat_state_recover_get"
-msgstr "{target} wird geheilt"
+msgstr "{target} wird geheilt."
 
 msgid "combat_state_recover_success"
 msgstr "{user} ist wieder gesund!"
@@ -558,7 +558,6 @@ msgid "run"
 msgstr "Flucht"
 
 ## MENU TRANSLATIONS ##
-
 msgid "menu_alphabet"
 msgstr "AÄBCDEFGHIJKLMNOÖPQRS\0TUÜVWXYZaäbcdefghijklmnoöpqrsßtuüvwxyz1234567890.-!\0\0"
 
@@ -683,7 +682,9 @@ msgid "aardorn"
 msgstr "Aardorn"
 
 msgid "aardorn_description"
-msgstr "Sobald es geboren wird, wird es in einem Ameisenhügel plaziert und dort zurückgelassen, um sich seinen Weg raus zu fressen.."
+msgstr ""
+"Ist es geboren, wird es in einem Ameisenhügel platziert und dort "
+"zurückgelassen, um sich seinen Weg raus zu fressen.."
 
 msgid "agnidon"
 msgstr "Agnidon"
@@ -896,7 +897,9 @@ msgid "hydrone_description"
 msgstr "<<MISSING>>"
 
 msgid "katacoon_description"
-msgstr "Es verbleibt in einer meditativen Pose für seine Verpuppung und bewegt sich nur, um Feine zu stechen"
+msgstr ""
+"Es verbleibt in einer meditativen Pose für seine Verpuppung und bewegt sich "
+"nur, um Feine zu stechen."
 
 msgid "katacoon"
 msgstr "Katacoon"
@@ -1333,7 +1336,7 @@ msgid "door_problems"
 msgstr "Die Tür klemmt und wird sich nicht öffnen..."
 
 msgid "empty_pot"
-msgstr "Ein leerer Blumentopf, vielleicht pflanzt jemand hier etwas"
+msgstr "Ein leerer Blumentopf, vielleicht pflanzt jemand hier etwas."
 
 msgid "purple_flowers"
 msgstr "Jemand hat hier süß-riechende lila Blumen gepflanzt!"
@@ -1357,10 +1360,10 @@ msgid "route_2"
 msgstr "Route 2"
 
 msgid "sure_i_do"
-msgstr "Sure I do"
+msgstr "Natürlich werde ich."
 
 msgid "not_really"
-msgstr "Nicht wirklich"
+msgstr "Nicht wirklich."
 
 # NPC dialogs
 msgid "professor_dialog\n"
@@ -1453,7 +1456,7 @@ msgid "backstory9"
 msgstr "Was wirst du tun? Wirst du uns helfen?"
 
 msgid "sorryfurthis"
-msgstr "Gute Entscheidung. Tut mir Leid, das wird ein bisschen stechen"
+msgstr "Gute Entscheidung. Tut mir Leid, das wird ein bisschen stechen."
 
 msgid "mwah\n"
 msgstr "???: Was willst du? ... ... ... Nun, zu schade. Du kommst hier nicht hinein, obwohl deine Kleidung geschmackvoll gemacht ist.\n"
@@ -1499,7 +1502,7 @@ msgid "liela_goes_to_battle"
 msgstr "Wenn du mich störst während ich Beeren pflücke, dann werde ich dich herausfordern müssen!"
 
 msgid "Cathedral_Center"
-msgstr "Kathedralencenter: We leben um zu dienen"
+msgstr "Kathedralencenter: We leben um zu dienen."
 
 msgid "Cotton_Mart"
 msgstr "Hol dir den Scoop beim Scoop-Geschäft!"
@@ -1585,3 +1588,49 @@ msgstr "Gut, ich denke deine Tuxemon sind wieder bei voller Energie! Hier hast d
 
 msgid "input_name"
 msgstr "Name?"
+
+#, fuzzy
+msgid "hey"
+msgstr "Hey!"
+
+msgid "spyder_route4_rosamund2"
+msgstr "Rache wird am besten kalt serviert. "
+
+msgid "spyder_greenwash_aissa2"
+msgstr "Wir werden alle sterben!"
+
+msgid "spyder_timber_dante1"
+msgstr "Hey Kumpel! Schön dich wieder zu sehen. "
+
+msgid "darnitjohn5"
+msgstr "Warum bist du noch immer hier?"
+
+# Revive
+msgid "revive"
+msgstr "Wiederbelebung"
+
+msgid "item_no_available_target"
+msgstr "{name} kann gerade nicht mit einem deiner Tuxemon benutzt werden."
+
+#, fuzzy
+msgid "spyder_scoop_lapinou2"
+msgstr "Mhm ah!"
+
+msgid "spyder_tunnelb_tommy1"
+msgstr "Hast du mein Sandwich gesehen?"
+
+msgid "revive_description"
+msgstr "Belebt ein Tuxemon wieder und heilt 20 KP."
+
+msgid "spyder_greenwash_moreau1"
+msgstr "Du solltest nicht hier sein! "
+
+msgid "thats_me"
+msgstr "Das bin ich!"
+
+msgid "spyder_nimrod_thatcher2"
+msgstr "Kein Kommentar. "
+
+#, fuzzy
+msgid "spyder_scoop_landrace2"
+msgstr "Ufff."

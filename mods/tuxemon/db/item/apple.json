@@ -25,5 +25,6 @@
   "usable_in": [
     "MainCombatMenuState",
     "WorldState"
-  ]
+  ],
+  "battle_menu": "monster"
 }

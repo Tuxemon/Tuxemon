@@ -25,6 +25,7 @@ import logging
 from typing import NamedTuple, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -50,6 +51,7 @@ class StopCinemaModeAction(EventAction[StopCinemaModeActionParameters]):
 
     def start(self) -> None:
         world = self.session.client.current_state
+        assert isinstance(world, WorldState)
         if world.cinema_state == "on":
             logger.info("Turning off cinema mode")
             world.cinema_state = "turning off"

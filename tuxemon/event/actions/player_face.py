@@ -30,7 +30,7 @@ from tuxemon.states.world.worldstate import WorldState
 
 
 class PlayerFaceActionParameters(NamedTuple):
-    direction: str
+    direction: str  # Using Direction as the typehint breaks the Action
 
 
 @final

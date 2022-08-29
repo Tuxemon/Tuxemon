@@ -34,7 +34,7 @@ from __future__ import annotations
 
 import logging
 from functools import partial
-from typing import Any, Callable, Union
+from typing import Any, Callable, Tuple, Union
 
 import pygame
 
@@ -151,7 +151,7 @@ class ModChooserMenuState(PopUpMenu[StartGameObj]):
             self.client.push_state(FadeInTransition)
 
         # Build a menu of the default mod choices:
-        menu_items_map = ()
+        menu_items_map: Tuple[Tuple[str, Callable], ...] = tuple()
 
         # If a different map has been passed as a parameter, show as an option:
         if prepare.CONFIG.starting_map != "player_house_bedroom.tmx":

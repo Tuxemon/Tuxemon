@@ -31,7 +31,7 @@ from tuxemon.npc import NPC
 
 class NpcFaceActionParameters(NamedTuple):
     npc_slug: str
-    direction: str
+    direction: str  # Using Direction as the typehint breaks the Action
 
 
 @final

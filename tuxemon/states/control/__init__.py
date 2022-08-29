@@ -132,7 +132,7 @@ class ControlState(PopUpMenu[ControlStateObj]):
 
     def initialize_items(
         self,
-    ) -> Generator[MenuItem[ControlStateObj], None, None]:
+    ) -> None:
         def change_state(
             state: Union[State, str], **change_state_kwargs: Any
         ) -> Callable[[], State]:
@@ -144,8 +144,8 @@ class ControlState(PopUpMenu[ControlStateObj]):
         key_names = config.get_custom_pygame_keyboard_controls_names(
             tuxe_config.cfg
         )
-        for k in key_names:
-            display_buttons[key_names[k]] = k
+        for k, v in key_names.items():
+            display_buttons[v] = k
 
         self.clear()
 

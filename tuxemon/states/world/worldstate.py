@@ -44,6 +44,7 @@ from typing import (
     Tuple,
     TypedDict,
     Union,
+    no_type_check,
 )
 
 import pygame
@@ -70,6 +71,7 @@ from tuxemon.states.world.world_menus import WorldMenuState
 from tuxemon.surfanim import SurfaceAnimation
 
 if TYPE_CHECKING:
+    from tuxemon.networking import EventData
     from tuxemon.npc import NPC
     from tuxemon.player import Player
 
@@ -187,42 +189,49 @@ class WorldState(state.State):
         # Pixels per second speed of the animation.
         self.cinema_speed = 15 * prepare.SCALE
 
-        self.cinema_top: CinemaSurfaceInfo = {}  # type: ignore
-        self.cinema_bottom: CinemaSurfaceInfo = {}  # type: ignore
-
         # Create a surface that we'll use as black bars for a cinematic
         # experience
-        self.cinema_top["surface"] = pygame.Surface(
+        top_surface = pygame.Surface(
             (self.resolution[0], self.resolution[1] / 6)
         )
-        self.cinema_bottom["surface"] = pygame.Surface(
+        bottom_surface = pygame.Surface(
             (self.resolution[0], self.resolution[1] / 6)
         )
 
         # Fill our empty surface with black
-        self.cinema_top["surface"].fill((0, 0, 0))
-        self.cinema_bottom["surface"].fill((0, 0, 0))
+        top_surface.fill((0, 0, 0))
+        bottom_surface.fill((0, 0, 0))
 
         # When cinema mode is off, this will be the position we'll draw the
         # black bar.
-        self.cinema_top["off_position"] = [
+        top_off_position = [
             0,
-            -self.cinema_top["surface"].get_height(),
+            -top_surface.get_height(),
         ]
-        self.cinema_bottom["off_position"] = [0, self.resolution[1]]
-        self.cinema_top["position"] = list(self.cinema_top["off_position"])
-        self.cinema_bottom["position"] = list(
-            self.cinema_bottom["off_position"]
-        )
+        bottom_off_position = [0, self.resolution[1]]
+        top_position = list(top_off_position)
+        bottom_position = list(bottom_off_position)
 
         # When cinema mode is ON, this will be the position we'll draw the
         # black bar.
-        self.cinema_top["on_position"] = [0, 0]
-        self.cinema_bottom["on_position"] = [
+        top_on_position = [0, 0]
+        bottom_on_position = [
             0,
-            self.resolution[1] - self.cinema_bottom["surface"].get_height(),
+            self.resolution[1] - bottom_surface.get_height(),
         ]
 
+        self.cinema_top: CinemaSurfaceInfo = {
+            "surface": top_surface,
+            "on_position": top_on_position,
+            "off_position": top_off_position,
+            "position": top_position,
+        }
+        self.cinema_bottom: CinemaSurfaceInfo = {
+            "surface": bottom_surface,
+            "on_position": bottom_on_position,
+            "off_position": bottom_off_position,
+            "position": bottom_position,
+        }
         self.map_animations: Dict[str, AnimationInfo] = {}
 
         if local_session.player is None:
@@ -264,7 +273,7 @@ class WorldState(state.State):
         self.remove_animations_of(self)
         self.remove_animations_of(cleanup)
 
-        self.stop_player()
+        self.stop_and_reset_player()
 
         self.in_transition = True
         self.trigger_fade_out(duration)
@@ -987,7 +996,7 @@ class WorldState(state.State):
         # Move any multiplayer characters that are off map so we know where
         # they should be when we change maps.
         for entity in self.npcs_off_map.values():
-            entity.update(time_delta, self)
+            entity.update(time_delta)
 
     def _collision_box_to_pgrect(self, box):
         """
@@ -1131,6 +1140,7 @@ class WorldState(state.State):
 
         """
         if self.in_transition:
+            assert self.transition_surface
             self.transition_surface.set_alpha(self.transition_alpha)
             surface.blit(self.transition_surface, (0, 0))
 
@@ -1189,6 +1199,7 @@ class WorldState(state.State):
             txmn_map.events = new_events
         return txmn_map
 
+    @no_type_check  # only used by multiplayer which is disabled
     def check_interactable_space(self) -> bool:
         """
         Checks to see if any Npc objects around the player are interactable.
@@ -1199,7 +1210,9 @@ class WorldState(state.State):
             ``True`` if there is an Npc to interact with. ``False`` otherwise.
 
         """
-        collision_dict = self.player.get_collision_map(self)
+        collision_dict = self.player.get_collision_map(
+            self
+        )  # FIXME: method doesn't exist
         player_tile_pos = self.player.tile_pos
         collisions = self.player.collision_check(
             player_tile_pos, collision_dict, self.collision_lines_map
@@ -1231,7 +1244,10 @@ class WorldState(state.State):
 
         return False
 
-    def handle_interaction(self, event_data, registry) -> None:
+    @no_type_check  # FIXME: dead code
+    def handle_interaction(
+        self, event_data: EventData, registry: Mapping[str, Any]
+    ) -> None:
         """
         Presents options window when another player has interacted with this player.
 

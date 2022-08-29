@@ -30,6 +30,7 @@
 from __future__ import annotations
 
 import logging
+import datetime as dt
 
 from tuxemon.map import proj
 from tuxemon.npc import NPC
@@ -76,3 +77,32 @@ class Player(NPC):
         diff_y = abs(after.y - before.y)
 
         self.game_variables["steps"] += diff_x + diff_y
+        """
+        %H - Hour 00-23
+        %j - Day number of year 001-366
+        """
+        var = self.game_variables
+        var["hour"] = dt.datetime.now().strftime("%H")
+        var["day_of_year"] = dt.datetime.now().strftime("%j")
+
+        # Day and night basic cycle (12h cycle)
+        if int(var["hour"]) < 6:
+            var["daytime"] = False
+        elif 6 <= int(var["hour"]) < 18:
+            var["daytime"] = True
+        else:
+            var["daytime"] = False
+
+        # Day and night complex cycle (4h cycle)
+        if int(var["hour"]) < 4:
+            var["stage_of_day"] = "night"
+        elif 4 <= int(var["hour"]) < 8:
+            var["stage_of_day"] = "dawn"
+        elif 8 <= int(var["hour"]) < 12:
+            var["stage_of_day"] = "morning"
+        elif 12 <= int(var["hour"]) < 16:
+            var["stage_of_day"] = "afternoon"
+        elif 16 <= int(var["hour"]) < 20:
+            var["stage_of_day"] = "dusk"
+        else:
+            var["stage_of_day"] = "night"

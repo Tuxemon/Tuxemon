@@ -89,7 +89,7 @@
     <property name="cond3" value="is player_facing down"/>
     <property name="cond4" value="is button_pressed K_RETURN"/>
     <property name="cond5" value="is variable_set gettuxemon:now"/>
-    <property name="cond6" value="not variable_set letmechoose:pls"/>
+    <property name="cond6" value="not variable_set havetuxemon:yes"/>
    </properties>
   </object>
   <object id="75" name="Choose Tweesher" type="event" x="224" y="112" width="16" height="16">
@@ -103,7 +103,7 @@
     <property name="cond3" value="is player_facing down"/>
     <property name="cond4" value="is button_pressed K_RETURN"/>
     <property name="cond5" value="is variable_set gettuxemon:now"/>
-    <property name="cond6" value="not variable_set letmechoose:pls"/>
+    <property name="cond6" value="not variable_set havetuxemon:yes"/>
    </properties>
   </object>
   <object id="93" name="Player Spawn" type="event" x="144" y="240" width="16" height="16"/>
@@ -111,7 +111,7 @@
    <properties>
     <property name="act1" value="create_npc professor,7,6,,stand"/>
     <property name="act2" value="npc_face professor,up"/>
-    <property name="cond1" value="is variable_set dancininthemoonlight:heckyeah"/>
+    <property name="cond1" value="is variable_set go_get_tuxemon:yes"/>
     <property name="cond2" value="not npc_exists professor"/>
     <property name="cond3" value="not variable_set havetuxemon:yes"/>
    </properties>
@@ -119,14 +119,15 @@
   <object id="97" name="whyhellothere" type="event" x="144" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
-    <property name="act2" value="translated_dialog tuxemontime"/>
-    <property name="act3" value="pathfind professor,9,12"/>
-    <property name="act4" value="npc_face professor,down"/>
-    <property name="act5" value="pathfind player,9,13"/>
-    <property name="act6" value="translated_dialog tuxemontime1.5"/>
-    <property name="act7" value="translated_dialog_choice yes:no,startchoice"/>
+    <property name="act2" value="lock_controls"/>
+    <property name="act3" value="translated_dialog tuxemontime"/>
+    <property name="act4" value="pathfind professor,9,12"/>
+    <property name="act5" value="npc_face professor,down"/>
+    <property name="act6" value="pathfind player,9,13"/>
+    <property name="act7" value="translated_dialog tuxemontime1.5"/>
+    <property name="act8" value="translated_dialog_choice yes:no,startchoice"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is variable_set dancininthemoonlight:heckyeah"/>
+    <property name="cond2" value="is variable_set go_get_tuxemon:yes"/>
     <property name="cond3" value="is player_facing up"/>
     <property name="cond4" value="not variable_set startchoice:yes"/>
     <property name="cond5" value="not variable_set startchoice:no"/>
@@ -137,6 +138,7 @@
    <properties>
     <property name="act1" value="translated_dialog tuxemontimechoiceno"/>
     <property name="act2" value="set_variable startchoice:maybe"/>
+    <property name="act3" value="unlock_controls"/>
     <property name="cond1" value="is variable_set startchoice:no"/>
    </properties>
   </object>
@@ -209,6 +211,7 @@
     <property name="act1" value="translated_dialog tuxemontime4"/>
     <property name="act2" value="translated_dialog chooseyerfate"/>
     <property name="act3" value="set_variable letmechoose:pls"/>
+    <property name="act4" value="unlock_controls"/>
     <property name="cond1" value="is variable_set gettuxemon:now"/>
     <property name="cond2" value="not variable_set letmechoose:pls"/>
    </properties>
@@ -217,6 +220,7 @@
    <properties>
     <property name="act10" value="translated_dialog choseRockitten"/>
     <property name="act11" value="play_sound sound_confirm"/>
+    <property name="act12" value="lock_controls"/>
     <property name="act20" value="translated_dialog rockitten!"/>
     <property name="act30" value="add_monster rockitten,5"/>
     <property name="act40" value="pathfind professor,13,9"/>
@@ -229,6 +233,7 @@
     <property name="act80" value="pathfind player,9,9"/>
     <property name="act81" value="npc_face player,up"/>
     <property name="act90" value="translated_dialog chosefight"/>
+    <property name="act91" value="unlock_controls"/>
     <property name="act97" value="set_variable havetuxemon:yes"/>
     <property name="act98" value="set_variable rockittenchoice:finished"/>
     <property name="act99" value="set_variable startfirstbattle:yes"/>
@@ -255,6 +260,7 @@
    <properties>
     <property name="act10" value="translated_dialog choseCardiling"/>
     <property name="act11" value="play_sound sound_confirm"/>
+    <property name="act12" value="lock_controls"/>
     <property name="act20" value="translated_dialog cardiling!"/>
     <property name="act30" value="add_monster cardiling,5"/>
     <property name="act40" value="pathfind professor,14,9"/>
@@ -267,6 +273,7 @@
     <property name="act80" value="pathfind player,9,9"/>
     <property name="act81" value="npc_face player,up"/>
     <property name="act90" value="translated_dialog chosefight"/>
+    <property name="act91" value="unlock_controls"/>
     <property name="act97" value="set_variable havetuxemon:yes"/>
     <property name="act98" value="set_variable cardilingchoice:finished"/>
     <property name="act99" value="set_variable startfirstbattle:yes"/>
@@ -277,6 +284,7 @@
    <properties>
     <property name="act10" value="translated_dialog choseTweesher"/>
     <property name="act11" value="play_sound sound_confirm"/>
+    <property name="act12" value="lock_controls"/>
     <property name="act20" value="translated_dialog tweesher!"/>
     <property name="act30" value="add_monster tweesher,5"/>
     <property name="act40" value="pathfind professor,12,9"/>
@@ -289,6 +297,7 @@
     <property name="act80" value="pathfind player,9,9"/>
     <property name="act81" value="npc_face player,up"/>
     <property name="act90" value="translated_dialog chosefight"/>
+    <property name="act91" value="unlock_controls"/>
     <property name="act97" value="set_variable havetuxemon:yes"/>
     <property name="act98" value="set_variable tweesherchoice:finished"/>
     <property name="act99" value="set_variable startfirstbattle:yes"/>

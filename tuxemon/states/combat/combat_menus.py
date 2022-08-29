@@ -3,7 +3,16 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from functools import partial
-from typing import TYPE_CHECKING, Any, Callable, Generator, Optional, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    DefaultDict,
+    Generator,
+    List,
+    Optional,
+    Union,
+)
 
 import pygame
 
@@ -15,6 +24,7 @@ from tuxemon.menu.menu import Menu, PopUpMenu
 from tuxemon.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import MenuSpriteGroup, SpriteGroup
+from tuxemon.state import State
 from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.items import ItemMenuState
 from tuxemon.states.monster import MonsterMenuState
@@ -124,7 +134,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             self.client.pop_state()  # close the monster action menu
 
         menu = self.client.push_state(MonsterMenuState)
-        menu.on_menu_selection = swap_it
+        menu.on_menu_selection = swap_it  # type: ignore[assignment]
         menu.anchor("bottom", self.rect.top)
         menu.anchor("right", self.client.screen.get_rect().right)
         menu.monster = self.monster
@@ -137,7 +147,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             menu = self.client.push_state(ItemMenuState)
 
             # set next menu after after selection is made
-            menu.on_menu_selection = choose_target
+            menu.on_menu_selection = choose_target  # type: ignore[assignment]
 
         def choose_target(menu_item: MenuItem[Item]) -> None:
             # open menu to choose target of item
@@ -145,13 +155,19 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             self.client.pop_state()  # close the item menu
             # TODO: don't hardcode to player0
             combat_state = self.client.get_state_by_name(CombatState)
-            state = self.client.push_state(
-                CombatTargetMenuState,
-                player=combat_state.players[0],
-                user=combat_state.players[0],
-                action=item,
-            )
-            state.on_menu_selection = partial(enqueue_item, item)
+
+            state: State
+            if item.battle_menu == "monster":
+                state = self.client.push_state(MonsterMenuState)
+                state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[assignment]
+            else:
+                state = self.client.push_state(
+                    CombatTargetMenuState,
+                    player=combat_state.players[0],
+                    user=combat_state.players[0],
+                    action=item,
+                )
+                state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[assignment]
 
         def enqueue_item(item: Item, menu_item: MenuItem[Monster]) -> None:
             target = menu_item.game_object
@@ -197,7 +213,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             menu.anchor("right", self.client.screen.get_rect().right)
 
             # set next menu after after selection is made
-            menu.on_menu_selection = choose_target
+            menu.on_menu_selection = choose_target  # type: ignore[assignment]
 
         def choose_target(menu_item: MenuItem[Technique]) -> None:
             # open menu to choose target of technique
@@ -217,7 +233,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 user=self.monster,
                 action=technique,
             )
-            state.on_menu_selection = partial(enqueue_technique, technique)
+            state.on_menu_selection = partial(enqueue_technique, technique)  # type: ignore[assignment]
 
         def enqueue_technique(
             technique: Technique,
@@ -294,7 +310,7 @@ class CombatTargetMenuState(Menu[Monster]):
         # this is used to determine who owns what monsters and what not
         # TODO: make less duplication of game data in memory, let combat
         # state have more registers, etc
-        self.targeting_map = defaultdict(list)
+        self.targeting_map: DefaultDict[str, List[Monster]] = defaultdict(list)
 
         for player, monsters in combat_state.monsters_in_play.items():
             for monster in monsters:

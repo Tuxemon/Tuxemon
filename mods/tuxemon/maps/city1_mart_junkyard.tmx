@@ -61,7 +61,7 @@
   <object id="24" type="collision" x="224" y="272" width="16" height="16"/>
   <object id="25" type="event" x="224" y="272" width="16" height="16">
    <properties>
-    <property name="act10" value="add_monster txmn_fruitera,10"/>
+    <property name="act10" value="add_monster fruitera,10"/>
     <property name="act20" value="set_variable got_Fruitera:true"/>
     <property name="act30" value="dialog ${{name}}: I got a Fruitera!"/>
     <property name="act40" value="set_variable got_first_tuxemon:true"/>
@@ -73,7 +73,7 @@
   </object>
   <object id="26" type="event" x="96" y="272" width="16" height="16">
    <properties>
-    <property name="act10" value="add_monster txmn_bamboon,10"/>
+    <property name="act10" value="add_monster bamboon,10"/>
     <property name="act20" value="set_variable got_Bamboon:true"/>
     <property name="act30" value="dialog ${{name}}: I got a Bamboon!"/>
     <property name="act40" value="set_variable got_first_tuxemon:true"/>

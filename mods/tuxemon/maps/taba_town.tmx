@@ -289,14 +289,14 @@
   </object>
   <object id="78" name="Player's House Sign" type="event" x="624" y="720" width="16" height="16">
    <properties>
-    <property name="act10" value="dialog ${{name}}'s &quot;house&quot;"/>
+    <property name="act10" value="translated_dialog taba_town_homeplace"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="79" name="Professor's House Sign" type="event" x="560" y="688" width="16" height="16">
    <properties>
-    <property name="act10" value="dialog Tuxemon Professor's House"/>
+    <property name="act10" value="translated_dialog taba_town_sign_profhouse"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
@@ -323,7 +323,7 @@
   </object>
   <object id="96" name="Professor's Lab Sign" type="event" x="624" y="832" width="16" height="16">
    <properties>
-    <property name="act10" value="dialog Tuxemon Professor's Lab"/>
+    <property name="act10" value="translated_dialog taba_town_sign_proflab"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
@@ -344,28 +344,28 @@
   </object>
   <object id="124" name="Tuxemart Sign" type="event" x="528" y="192" width="16" height="16">
    <properties>
-    <property name="act10" value="dialog Tuxemart - A place to buy and sell items"/>
+    <property name="act10" value="translated_dialog taba_town_sign_tuxemart"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="110" name="Tuxecenter Sign" type="event" x="688" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="dialog Tuxecenter - A place to heal your tuxemon"/>
+    <property name="act10" value="translated_dialog taba_town_sign_tuxecenter"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="112" name="Startup Town Sign" type="event" x="624" y="640" width="16" height="16">
    <properties>
-    <property name="act10" value="dialog Taba Town - A peaceful refuge"/>
+    <property name="act10" value="translated_dialog taba_town_sign"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="115" name="Route 0 Sign" type="event" x="576" y="544" width="16" height="16">
    <properties>
-    <property name="act10" value="dialog Route 20"/>
+    <property name="act10" value="translated_dialog taba_town_route20"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
@@ -644,31 +644,29 @@
   <object id="130" name="waitdontleave" type="event" x="592" y="624" width="32" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
-    <property name="act11" value="lock_controls"/>
-    <property name="act2" value="translated_dialog waitdontgo"/>
-    <property name="act3" value="create_npc npc_mom, 39,46"/>
-    <property name="act4" value="pathfind npc_mom,37,40"/>
-    <property name="act5" value="npc_face npc_mom,up"/>
-    <property name="act6" value="translated_dialog thetvbescreamin"/>
-    <property name="act7" value="set_variable comeinside:yes"/>
-    <property name="act8" value="pathfind npc_mom,43,46"/>
-    <property name="act9" value="npc_face npc_mom, up"/>
-    <property name="act99" value="remove_npc npc_mom"/>
+    <property name="act2" value="lock_controls"/>
+    <property name="act3" value="translated_dialog waitdontgo"/>
+    <property name="act4" value="create_npc npc_mom, 39,46"/>
+    <property name="act5" value="pathfind npc_mom,37,40"/>
+    <property name="act6" value="npc_face npc_mom,up"/>
+    <property name="act7" value="translated_dialog thetvbescreamin"/>
+    <property name="act8" value="set_variable comeinside:yes"/>
+    <property name="act9" value="pathfind npc_mom,43,46"/>
+    <property name="act91" value="npc_face npc_mom, up"/>
+    <property name="act92" value="remove_npc npc_mom"/>
     <property name="cond1" value="is variable_set goodbyeoldknight:finallydone"/>
     <property name="cond2" value="not variable_set comeinside:yes"/>
     <property name="cond3" value="is player_at"/>
-    <property name="cond4" value="not variable_set comeinside:plsbedone"/>
-    <property name="cond5" value="not variable_set comeinside:dope"/>
-    <property name="cond6" value="not variable_set comeinside:stahp"/>
+    <property name="cond6" value="not variable_set can_exit_town:yes"/>
    </properties>
   </object>
   <object id="131" name="timetogroove" type="event" x="528" y="592" width="16" height="16">
    <properties>
     <property name="act10" value="pathfind player,43,45"/>
-    <property name="act11" value="transition_teleport player_house_downstairs.tmx,5,7,0.5"/>
+    <property name="act12" value="unlock_controls"/>
     <property name="act15" value="set_variable comeinside:done"/>
-    <property name="act20" value="player_resume"/>
-    <property name="act21" value="unlock_controls"/>
+    <property name="act17" value="player_resume"/>
+    <property name="act18" value="transition_teleport player_house_downstairs.tmx,5,7,0.5"/>
     <property name="cond1" value="is variable_set comeinside:yes"/>
    </properties>
   </object>
@@ -820,18 +818,20 @@
     <property name="act1" value="create_npc postboy,37,38,,stand"/>
     <property name="act2" value="npc_face postboy,right"/>
     <property name="act3" value="create_npc rock,38,38,,stand"/>
-    <property name="cond1" value="is variable_set dancininthemoonlight:heckyeah"/>
+    <property name="cond1" value="is variable_set go_get_tuxemon:yes"/>
     <property name="cond2" value="not variable_set havetuxemon:yes"/>
    </properties>
   </object>
   <object id="148" name="myrock" type="event" x="592" y="624" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog moverocky"/>
-    <property name="act2" value="player_stop"/>
-    <property name="act3" value="wait 2"/>
-    <property name="act4" value="translated_dialog moverocky2"/>
-    <property name="act5" value="player_resume"/>
-    <property name="cond1" value="is variable_set dancininthemoonlight:heckyeah"/>
+    <property name="act2" value="lock_controls"/>
+    <property name="act3" value="player_stop"/>
+    <property name="act4" value="wait 2"/>
+    <property name="act5" value="translated_dialog moverocky2"/>
+    <property name="act6" value="player_resume"/>
+    <property name="act7" value="unlock_controls"/>
+    <property name="cond1" value="is variable_set go_get_tuxemon:yes"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
     <property name="cond4" value="is player_at"/>
@@ -874,7 +874,7 @@
     <property name="cond20" value="is variable_set greeter_greets:yes"/>
    </properties>
   </object>
-  <object id="135" name="secret_tuxeball" type="event" x="625" y="240.5" width="16" height="16">
+  <object id="135" name="secret_tuxeball" type="event" x="624" y="240" width="16" height="16">
    <properties>
     <property name="act10" value="set_variable secret_ball:found"/>
     <property name="act20" value="add_item capture_device,5"/>
@@ -905,8 +905,9 @@
     <property name="act10" value="wait 0.7"/>
     <property name="act20" value="pathfind player, 43,46"/>
     <property name="act30" value="npc_face player,up"/>
+    <property name="act35" value="unlock_controls"/>
+    <property name="act36" value="set_variable moveplayer:false"/>
     <property name="act40" value="transition_teleport player_house_downstairs.tmx,5,7,0.5"/>
-    <property name="act50" value="unlock_controls"/>
     <property name="cond1" value="is variable_set moveplayer:true"/>
    </properties>
   </object>

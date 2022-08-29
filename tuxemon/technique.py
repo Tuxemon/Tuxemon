@@ -329,10 +329,10 @@ class Technique:
         for stat, slugdata in zip(statsmaster, statslugs):
             if not stat:
                 continue
-            value = stat.value or 0
-            max_deviation = stat.max_deviation or 0
-            operation = stat.operation or "+"
-            override = stat.overridetofull or False
+            value = stat.value
+            max_deviation = stat.max_deviation
+            operation = stat.operation
+            override = stat.overridetofull
             basestatvalue = getattr(target, slugdata)
             if max_deviation:
                 value = random.randint(

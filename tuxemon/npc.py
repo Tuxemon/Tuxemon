@@ -824,7 +824,7 @@ class NPC(Entity[NPCState]):
 
         # Look up the NPC's details from our NPC database
         npc_details = db.lookup(self.slug, "npc")
-        npc_party = npc_details.monsters or []
+        npc_party = npc_details.monsters
         for npc_monster_details in npc_party:
             # This seems slightly wrong. The only useable element in
             # npc_monsters_details, which is a PartyMemberModel, is "slug"

@@ -266,15 +266,15 @@ class MonsterModel(BaseModel):
 
 
 class StatModel(BaseModel):
-    value: Optional[int] = Field(None, description="The value of the stat")
-    max_deviation: Optional[int] = Field(
-        None, description="The maximum deviation of the stat"
+    value: int = Field(0, description="The value of the stat")
+    max_deviation: int = Field(
+        0, description="The maximum deviation of the stat"
     )
     operation: str = Field(
-        ..., description="The operation to be done to the stat"
+        "+", description="The operation to be done to the stat"
     )
-    overridetofull: Optional[bool] = Field(
-        None, description="Whether or not to override to full"
+    overridetofull: bool = Field(
+        False, description="Whether or not to override to full"
     )
 
 

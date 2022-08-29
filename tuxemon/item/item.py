@@ -154,9 +154,9 @@ class Item:
         self.sprite = results.sprite
         self.usable_in = results.usable_in
         self.target = process_targets(results.target)
-        self.effects = self.parse_effects(results.effects or [])
-        self.battle_menu = results.battle_menu or ""
-        self.conditions = self.parse_conditions(results.conditions or [])
+        self.effects = self.parse_effects(results.effects)
+        self.battle_menu = results.battle_menu
+        self.conditions = self.parse_conditions(results.conditions)
         self.surface = graphics.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
 

@@ -218,6 +218,8 @@ class MonsterModel(BaseModel):
     slug: str = Field(..., description="The slug of the monster")
     category: str = Field(..., description="The category of monster")
     ai: str = Field(..., description="The AI to use for this monster")
+    txmn_id: float = Field(..., description="The id of the monster")
+    height: float = Field(..., description="The height of the monster")
     weight: float = Field(..., description="The weight of the monster")
 
     # Optional fields

@@ -244,6 +244,8 @@ class Monster:
         self.status_damage = 0
         self.status_turn = 0
 
+        self.txmn_id = 0
+        self.height = 0.0
         self.weight = 0.0
 
         # The multiplier for checks when a monster ball is thrown this should be a value betwen 0-255 meaning that
@@ -338,6 +340,8 @@ class Monster:
             if len(types) > 1:
                 self.type2 = results["types"][1].lower()
 
+        self.txmn_id = results["txmn_id"]
+        self.height = results["height"]
         self.weight = results["weight"]
         self.catch_rate = results.get(
             "catch_rate",

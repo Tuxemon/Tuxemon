@@ -21,7 +21,9 @@
         "Metal",
         "Wood"
     ],
-    "weight": 25,
+    "txmn_id": 57,
+    "height": 150,
+    "weight": 52,
     "catch_rate": 3.0,
     "lower_catch_resistance": 0.8,
     "upper_catch_resistance": 1.05

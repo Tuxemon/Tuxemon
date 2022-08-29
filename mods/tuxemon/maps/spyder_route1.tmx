@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="191">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="192">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -291,6 +291,12 @@
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="not variable_set environment:grass"/>
+   </properties>
+  </object>
+  <object id="191" name="Exhausted" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
  </objectgroup>

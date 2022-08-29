@@ -57,7 +57,7 @@ def process_gif(filename: str) -> None:
 # TODO: Is passing the Wiki URL needed?
 def download_technique_animations(wiki_url: str) -> None:
     """Download technique animation frames from the Tuxemon Wiki."""
-    print("getting page source...")
+    print(f"Getting page source for URL: {wiki_url}")
     source = requests.get(wiki_url)
     tree = html.fromstring(source.content)
     elements = tree.xpath("//li[@class='gallerybox']//img")

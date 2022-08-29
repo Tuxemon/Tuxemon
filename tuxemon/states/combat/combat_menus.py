@@ -17,6 +17,7 @@ from typing import (
 import pygame
 
 from tuxemon import graphics, tools
+from tuxemon.db import ItemBattleMenu
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -157,7 +158,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             combat_state = self.client.get_state_by_name(CombatState)
 
             state: State
-            if item.battle_menu == "monster":
+            if item.battle_menu == ItemBattleMenu.monster:
                 state = self.client.push_state(MonsterMenuState)
                 state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[assignment]
             else:

@@ -150,23 +150,18 @@ class NPC(Entity[NPCState]):
         super().__init__(slug=npc_slug, world=world)
 
         # load initial data from the npc database
-        npc_data = db.lookup(npc_slug, table="npc").dict()
+        npc_data = db.lookup(npc_slug, table="npc")
 
         # This is the NPC's name to be used in dialog
         self.name = T.translate(self.slug)
 
         if sprite_name is None:
             # Try to use the sprites defined in the JSON data
-            sprite_name = npc_data["sprite_name"]
+            sprite_name = npc_data.sprite_name
         if combat_front is None:
-            combat_front = npc_data["combat_front"]
+            combat_front = npc_data.combat_front
         if combat_back is None:
-            combat_back = npc_data["combat_back"]
-
-        # enforced by pydantic
-        assert sprite_name
-        assert combat_front
-        assert combat_back
+            combat_back = npc_data.combat_back
 
         # Hold on the the string so it can be sent over the network
         self.sprite_name = sprite_name
@@ -828,16 +823,16 @@ class NPC(Entity[NPCState]):
         self.monsters = []
 
         # Look up the NPC's details from our NPC database
-        npc_details = db.lookup(self.slug, "npc").dict()
-        npc_party = npc_details.get("monsters") or []
+        npc_details = db.lookup(self.slug, "npc")
+        npc_party = npc_details.monsters or []
         for npc_monster_details in npc_party:
-            monster = Monster(save_data=npc_monster_details)
-            monster.experience_give_modifier = npc_monster_details[
-                "exp_give_mod"
-            ]
-            monster.experience_required_modifier = npc_monster_details[
-                "exp_req_mod"
-            ]
+            # This seems slightly wrong. The only useable element in
+            # npc_monsters_details, which is a PartyMemberModel, is "slug"
+            monster = Monster(save_data=npc_monster_details.dict())
+            monster.experience_give_modifier = npc_monster_details.exp_give_mod
+            monster.experience_required_modifier = (
+                npc_monster_details.exp_req_mod
+            )
             monster.set_level(monster.level)
             monster.current_hp = monster.hp
 

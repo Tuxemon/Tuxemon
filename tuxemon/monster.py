@@ -321,76 +321,72 @@ class Monster:
         """
 
         # Look up the monster by name and set the attributes in this instance
-        results = db.lookup(slug, table="monster").dict()
+        results = db.lookup(slug, table="monster")
 
         if results is None:
             raise RuntimeError(f"monster {slug} is not found")
         self.level = random.randint(2, 5)
-        self.slug = results["slug"]
-        self.name = T.translate(results["slug"])
-        self.description = T.translate(
-            "{}_description".format(results["slug"])
-        )
-        self.category = T.translate(results["category"])
-        self.shape = results.get("shape", "landrace").lower()
-        types = results.get("types")
+        self.slug = results.slug
+        self.name = T.translate(results.slug)
+        self.description = T.translate(f"{results.slug}_description")
+        self.category = T.translate(results.category)
+        self.shape = results.shape.lower() or "landrace"
+        types = results.types
         if types:
-            self.type1 = results["types"][0].lower()
+            self.type1 = results.types[0].lower()
             if len(types) > 1:
-                self.type2 = results["types"][1].lower()
+                self.type2 = results.types[1].lower()
 
-        self.txmn_id = results["txmn_id"]
-        self.height = results["height"]
-        self.weight = results["weight"]
-        self.catch_rate = results.get(
-            "catch_rate",
-            TuxemonConfig().default_monster_catch_rate,
+        self.txmn_id = results.txmn_id
+        self.height = results.height
+        self.weight = results.weight
+        self.catch_rate = (
+            results.catch_rate
+            or TuxemonConfig().default_monster_catch_rate
         )
-        self.upper_catch_resistance = results.get(
-            "upper_catch_resistance",
-            TuxemonConfig().default_upper_monster_catch_resistance,
+        self.upper_catch_resistance = (
+            results.upper_catch_resistance
+            or TuxemonConfig().default_upper_monster_catch_resistance
         )
-        self.lower_catch_resistance = results.get(
-            "lower_catch_resistance",
-            TuxemonConfig().default_lower_monster_catch_resistance,
+        self.lower_catch_resistance = (
+            results.lower_catch_resistance
+            or TuxemonConfig().default_lower_monster_catch_resistance
         )
 
         # Look up the moves that this monster can learn AND LEARN THEM.
-        moveset = results.get("moveset")
+        moveset = results.moveset
         if moveset:
             for move in moveset:
                 self.moveset.append(move)
-                if move["level_learned"] <= self.level:
-                    technique = Technique(move["technique"])
+                if move.level_learned <= self.level:
+                    technique = Technique(move.technique)
                     self.learn(technique)
 
         # Look up the evolutions for this monster.
-        evolutions = results.get("evolutions")
+        evolutions = results.evolutions
         if evolutions:
             for evolution in evolutions:
                 self.evolutions.append(evolution)
 
         # Look up the monster's sprite image paths
         self.front_battle_sprite = self.get_sprite_path(
-            results["sprites"]["battle1"]
+            results.sprites.battle1
         )
-        self.back_battle_sprite = self.get_sprite_path(
-            results["sprites"]["battle2"]
-        )
-        self.menu_sprite_1 = self.get_sprite_path(results["sprites"]["menu1"])
-        self.menu_sprite_2 = self.get_sprite_path(results["sprites"]["menu2"])
+        self.back_battle_sprite = self.get_sprite_path(results.sprites.battle2)
+        self.menu_sprite_1 = self.get_sprite_path(results.sprites.menu1)
+        self.menu_sprite_2 = self.get_sprite_path(results.sprites.menu2)
 
         # get sound slugs for this monster, defaulting to a generic type-based sound
-        self.combat_call = results.get("sounds", {}).get(
-            "combat_call", f"sound_{self.type1}_call"
-        )
-        self.faint_call = results.get("sounds", {}).get(
-            "faint_call", f"sound_{self.type1}_faint"
-        )
+        if results.sounds:
+            self.combat_call = results.sounds.combat_call
+            self.faint_call = results.sounds.faint_call
+        else:
+            self.combat_call = f"sound_{self.type1}_call"
+            self.faint_call = f"sound_{self.type1}_faint"
 
         # Load the monster AI
         # TODO: clean up AI 'core' loading and what not
-        ai_result = results["ai"]
+        ai_result = results.ai
         if ai_result == "SimpleAI":
             self.ai = ai.SimpleAI()
         elif ai_result == "RandomAI":

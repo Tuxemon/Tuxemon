@@ -242,10 +242,8 @@ class MonsterModel(BaseModel):
     flairs: Sequence[MonsterFlairItemModel] = Field(
         [], description="The flairs this monster has"
     )
-    sounds: MonsterSoundsModel = Field(
-        MonsterSoundsModel(
-            combat_call="sound_cry1", faint_call="sound_faint1"
-        ),
+    sounds: Optional[MonsterSoundsModel] = Field(
+        None,
         description="The sounds this monster has",
     )
 
@@ -830,7 +828,7 @@ class JSONDatabase:
 
         """
 
-        filename = self.database[table][slug].dict()["file"] or slug
+        filename = self.database[table][slug].file or slug
         if filename == slug:
             logger.debug(
                 f"Could not find a file record for slug {slug}, did you remember to create a database record?"

@@ -1,5 +1,6 @@
 import unittest
 
+from tuxemon.db import EconomyItemModel
 from tuxemon.item.economy import Economy
 
 
@@ -12,9 +13,9 @@ class GetDefaultPriceAndCost(EconomyTestBase):
         self.economy = Economy()
         self.economy.slug = "test_economy"
         self.economy.items = [
-            {"item_name": "potion", "price": 20, "cost": 5},
-            {"item_name": "revive", "price": 100},
-            {"item_name": "capture_device", "cost": 10},
+            EconomyItemModel(item_name="potion", price=20, cost=5),
+            EconomyItemModel(item_name="revive", price=100),
+            EconomyItemModel(item_name="capture_device", cost=10),
         ]
 
     def test_potion_price(self):

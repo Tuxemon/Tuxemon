@@ -48,7 +48,7 @@ import pygame
 
 from tuxemon import graphics, plugin, prepare
 from tuxemon.constants import paths
-from tuxemon.db import db, process_targets
+from tuxemon.db import ItemBattleMenu, State, db, process_targets
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.locale import T
@@ -102,9 +102,9 @@ class Item:
         self.use_item = ""
         self.use_success = ""
         self.use_failure = ""
-        self.usable_in: Sequence[str] = []
+        self.usable_in: Sequence[State] = []
         self.target: Sequence[str] = []
-        self.battle_menu = ""
+        self.battle_menu: Optional[ItemBattleMenu] = None
 
         # load effect and condition plugins if it hasn't been done already
         if not Item.effects_classes:
@@ -133,30 +133,30 @@ class Item:
         """
 
         try:
-            results = db.lookup(slug, table="item").dict()
+            results = db.lookup(slug, table="item")
         except KeyError:
             logger.error(f"Failed to find item with slug {slug}")
             return
 
-        self.slug = results["slug"]
+        self.slug = results.slug
         self.name = T.translate(self.slug)
         self.description = T.translate(f"{self.slug}_description")
 
         # item use notifications (translated!)
-        self.use_item = T.translate(results["use_item"])
-        self.use_success = T.translate(results["use_success"])
-        self.use_failure = T.translate(results["use_failure"])
+        self.use_item = T.translate(results.use_item)
+        self.use_success = T.translate(results.use_success)
+        self.use_failure = T.translate(results.use_failure)
 
         # misc attributes (not translated!)
-        self.sort = results["sort"]
+        self.sort = results.sort
         assert self.sort
-        self.type = results["type"]
-        self.sprite = results["sprite"]
-        self.usable_in = results["usable_in"]
-        self.target = process_targets(results["target"])
-        self.effects = self.parse_effects(results.get("effects", []))
-        self.battle_menu = results.get("battle_menu", "")
-        self.conditions = self.parse_conditions(results.get("conditions", []))
+        self.type = results.type
+        self.sprite = results.sprite
+        self.usable_in = results.usable_in
+        self.target = process_targets(results.target)
+        self.effects = self.parse_effects(results.effects or [])
+        self.battle_menu = results.battle_menu or ""
+        self.conditions = self.parse_conditions(results.conditions or [])
         self.surface = graphics.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
 

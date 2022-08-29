@@ -14,7 +14,6 @@ from typing import (
     Any,
     List,
     Literal,
-    Mapping,
     MutableMapping,
     Optional,
     Sequence,
@@ -35,6 +34,7 @@ from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.tools import scale, scale_sequence
 
 if TYPE_CHECKING:
+    from tuxemon.db import BattleGraphicsModel
     from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
@@ -69,7 +69,7 @@ class CombatAnimations(ABC, Menu[None]):
         self,
         *,
         players: Sequence[NPC] = (),
-        graphics: Optional[Mapping[str, str]] = None,
+        graphics: Optional[BattleGraphicsModel] = None,
         **kwargs: Any,
     ) -> None:
         # The defaults are a lie to stop mypy complaining about us violating
@@ -561,7 +561,7 @@ class CombatAnimations(ABC, Menu[None]):
 
         # Get background image if passed in
         self.background = self.load_sprite(
-            "gfx/ui/combat/" + self.graphics["background"]
+            "gfx/ui/combat/" + self.graphics.background
         )
 
         # TODO: not hardcode this
@@ -572,7 +572,7 @@ class CombatAnimations(ABC, Menu[None]):
         duration = 3
 
         back_island = self.load_sprite(
-            "gfx/ui/combat/" + self.graphics["island_back"],
+            "gfx/ui/combat/" + self.graphics.island_back,
             bottom=opp_home.bottom + y_mod,
             right=0,
         )
@@ -612,7 +612,7 @@ class CombatAnimations(ABC, Menu[None]):
             )
 
         front_island = self.load_sprite(
-            "gfx/ui/combat/" + self.graphics["island_front"],
+            "gfx/ui/combat/" + self.graphics.island_front,
             bottom=player_home.bottom - y_mod,
             left=w,
         )

@@ -101,7 +101,7 @@ class Economy:
         """
         price = self.lookup_item_field(item_slug, "price")
 
-        if not price:
+        if price is None:
             raise RuntimeError(
                 f"Price for item '{item_slug}' not found in "
                 f"economy '{self.slug}'"
@@ -123,7 +123,7 @@ class Economy:
         """
         cost = self.lookup_item_field(item_slug, "cost")
 
-        if not cost:
+        if cost is None:
             raise RuntimeError(
                 f"Cost for item '{item_slug}' not found in "
                 f"economy '{self.slug}'"

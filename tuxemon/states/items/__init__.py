@@ -26,6 +26,7 @@
 #
 # states.ItemMenuState The item menu allows you to view and use items in your inventory.
 # states.ShopMenuState
+# states.ShopBuyMenuState Shop Buy menu allows you to buy items that cost money
 #
 from __future__ import annotations
 
@@ -391,42 +392,48 @@ class ShopBuyMenuState(ShopMenuState):
             menu_item: Selected menu item.
 
         """
+        MAX_QTY = 999
         item = menu_item.game_object
 
         def buy_item(quantity: int) -> None:
             if not quantity:
                 return
 
-            ## TODO: Allow money to transfer between buyer and seller.
-            if self.buyer:
-                self.seller.give_item(self.client, self.buyer, item, quantity)
-            else:
-                self.seller.alter_item_quantity(
-                    self.client,
-                    item.slug,
-                    -quantity,
-                )
+            self.buyer.buy_transaction(
+                self.client, self.seller, item.slug, quantity, price
+            )
+
             self.reload_items()
             if not self.seller.has_item(item.slug):
                 # We're pointing at a new item
                 self.on_menu_selection_change()
 
         item_dict = self.seller.inventory[item.slug]
-        max_quantity = (
-            None if item_dict.get("infinite") else item_dict["quantity"]
-        )
+
         price = (
-            1
+            0
             if not self.economy
             or not self.economy.lookup_item_price(item.slug)
             else self.economy.lookup_item_price(item.slug)
         )
+        money = self.buyer.game_variables.get("money", 0)
+        if int(price) == 0:
+            max_quantity = (
+                MAX_QTY
+                if item_dict.get("infinite")
+                else min(MAX_QTY, item_dict["quantity"])
+            )
+        else:
+            qty_can_afford = int(money / price)
+            max_quantity = (
+                min(MAX_QTY, qty_can_afford, item_dict["quantity"])
+            )
 
         self.client.push_state(
             QuantityAndPriceMenu,
             callback=buy_item,
             max_quantity=max_quantity,
-            quantity=1,
+            quantity=0 if max_quantity == 0 else 1,
             shrink_to_items=True,
             price=price,
         )

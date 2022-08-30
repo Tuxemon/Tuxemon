@@ -423,13 +423,14 @@
     <property name="act61" value="npc_face player,down"/>
     <property name="act70" value="translated_dialog spyder_papertown_firstfight"/>
     <property name="act80" value="start_battle spyder_billie"/>
-    <property name="act81" value="translated_dialog spyder_papertown_firstfight2"/>
+    <property name="act81" value="translated_dialog spyder_papertown_firstfight_win"/>
+    <property name="cond1" value="is player_defeated"/>
     <property name="act90" value="set_variable firstfightdue:no"/>
     <property name="act91" value="set_variable teleport_faint:spyder_bedroom.tmx 7 6"/>
     <property name="act94" value="pathfind spyder_billie,15,14"/>
     <property name="act95" value="remove_npc spyder_billie"/>
     <property name="act96" value="unlock_controls"/>
-    <property name="cond1" value="is variable_set firstfightdue:yes"/>
+    <property name="cond2" value="is variable_set firstfightdue:yes"/>
    </properties>
   </object>
   <object id="428" name="Play Music" type="event" x="0" y="0" width="16" height="16">

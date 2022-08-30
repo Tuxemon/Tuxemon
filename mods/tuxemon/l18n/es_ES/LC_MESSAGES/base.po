@@ -2080,7 +2080,7 @@ msgstr ""
 "Pero Omnichannel planea expandir sus oficinas a este lugar.\n"
 "No sé qué ocurrirá con las estatuas cuando lo hagan."
 
-msgid "spyder_papertown_firstfight2"
+msgid "spyder_papertown_firstfight_win"
 msgstr ""
 "Ugh, debe ser casualidad. ¡No hay forma de que el nuevo modelo sea peor que "
 "el viejo!"

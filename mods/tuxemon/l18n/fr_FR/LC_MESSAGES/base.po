@@ -4120,7 +4120,7 @@ msgstr ""
 msgid "spyder_papertown_agnitechosen"
 msgstr "Ce qui se fait de mieux ! Agnite est un Tuxemon de type Feu."
 
-msgid "spyder_papertown_firstfight2"
+msgid "spyder_papertown_firstfight_win"
 msgstr ""
 "Hum, c'est de la chance. Parce qu'il n'y a aucune raison que le nouveau "
 "modèle soit moins bien que l'ancien !"

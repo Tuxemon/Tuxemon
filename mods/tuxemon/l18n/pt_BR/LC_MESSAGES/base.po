@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-08-26 13:22+0000\n"
-"Last-Translator: Gabriela Liz <gabrielalizmoreira@gmail.com>\n"
+"PO-Revision-Date: 2022-08-30 17:15+0000\n"
+"Last-Translator: Keri Z Volans <keri.volans@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "tuxemon/tuxemon/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 
 msgid "combat_state_lifeleech_get"
 msgstr "{user} está sugando saúde de {target}."
@@ -1361,3 +1361,274 @@ msgstr "Água"
 
 msgid "tree"
 msgstr "Essa árvore parece feliz e saudável!"
+
+msgid "xerogrunt2"
+msgstr "Equipe Xero Grunt II"
+
+msgid "itslockedboi"
+msgstr "Allie trancou a porta atrás de si..."
+
+msgid "pupil"
+msgstr "Aluno"
+
+msgid "mistaken"
+msgstr "Você está enganado."
+
+msgid "gumnut"
+msgstr "Goma"
+
+msgid "stance"
+msgstr "Posição"
+
+msgid "flopped"
+msgstr "Fracassou"
+
+msgid "allie"
+msgstr "Aliado"
+
+msgid "misa"
+msgstr "Massa"
+
+msgid "npc_wife"
+msgstr "Esposa NPC"
+
+msgid "tuxemart_aide"
+msgstr "Funcionário do Tuxemart"
+
+msgid "npc_red"
+msgstr "Vermelho"
+
+msgid "tabanurse"
+msgstr "Enfermeira do Toque"
+
+msgid "tuxemart_keeper"
+msgstr "Lojista da Tuxemart"
+
+msgid "xerogrunt4"
+msgstr "Equipe Xero Grunt IV"
+
+msgid "xerogrunt5"
+msgstr "Equipe Xero Grunt V"
+
+msgid "xerogrunt6"
+msgstr "Equipe Xero Grunt VI"
+
+msgid "famous_statue2"
+msgstr "Diz: Para nossos amados amigos e heróis de todos, o wywen"
+
+msgid "orange_flowers"
+msgstr "Alguém plantou lindas flores de laranjeira!"
+
+msgid "famous_statue"
+msgstr "É uma estátua de um antigo mestre Tuxemon. O nome está desgastado..."
+
+msgid "purple_flowers"
+msgstr "Alguém plantou algumas flores roxas de cheiro doce!"
+
+msgid "cash_register"
+msgstr "É uma caixa registradora, parece relativamente nova."
+
+msgid "potions_in_shop"
+msgstr "A vitrine parece ter muitas poções, deve ser bem popular por aqui."
+
+# NPC dialogs
+msgid "karrianna_dialog1"
+msgstr ""
+"Karrianna: Eu tenho treinado no último mês! Ninguém me venceu até agora!"
+
+msgid "not_really"
+msgstr "Na verdade, não."
+
+msgid "thats_me"
+msgstr "Este sou eu!"
+
+msgid "cherry_found"
+msgstr "Você encontrou uma cereja."
+
+msgid "youcantleave"
+msgstr "As portas estão trancadas por fora... Há uma chave em algum lugar?"
+
+msgid "a_serious_discussion\n"
+msgstr ""
+"Eu tenho observado você por um tempo agora, estou feliz que meus seguidores "
+"conseguiram agarrá-lo sem danos.\n"
+"Oh, onde estão minhas maneiras!\n"
+"Eu sou Misa, Premier do Instituto Xero para Pesquisa e Avanço Tuxemon.\n"
+"Qual foi o seu nome novamente?\n"
+".... ..... ....\n"
+"${{name}}?\n"
+"Não é muito nome para alguém que possui um Tuxemon ilegalmente.\n"
+
+msgid "backstory9"
+msgstr "O que você disse? Você vai nos ajudar?"
+
+msgid "kmere"
+msgstr "Por que você não vem aqui e fala comigo?"
+
+msgid "mwah\n"
+msgstr ""
+"???: O que você quer? ... ... ... Bem, muito ruim. Você não vai entrar aqui "
+"mesmo se cumprir o código de vestimenta.\n"
+"A propósito, sou Allie.\n"
+"Allie: Sim, este é o Omnichannel, mas sou apenas uma guarda humilde. Quem é "
+"Você?\n"
+"${{name}}...\n"
+"Hum. Um nome forte. Minha casa não é muito longe, talvez... depois do "
+"trabalho... você poderia me mostrar sua força?\n"
+"... ... Não! como assim não? A menos que... ... Você seja o novo namorado de "
+"Jess, não é? Ela jogou comigo esse tempo todo!\n"
+
+msgid "hellothere"
+msgstr "???: Bom dia!"
+
+msgid "liela_goes_to_battle"
+msgstr ""
+"Se você vai me incomodar enquanto eu colho frutas, eu vou ter que desafiá-lo!"
+
+msgid "route2speech2\n"
+msgstr ""
+"Oh. É só você ${{name}}...\n"
+"Seja mais atencioso da próxima vez que empurrar alguém. O penhasco é mais "
+"alto do que parece...\n"
+
+msgid "cottonnurse"
+msgstr "Enfermeira Algodão"
+
+msgid "xerogrund2"
+msgstr "Equipe Xero Grunt II"
+
+msgid "xerogrunt7"
+msgstr "Equipe Xero Grunt VII"
+
+msgid "xerogrunt8"
+msgstr "Equipe Xero Grunt VIII"
+
+msgid "xerogrunt9"
+msgstr "Equipe Xero Grunt IX"
+
+msgid "xerogrunt10"
+msgstr "Equipe Xero Grunt X"
+
+msgid "karrianna_dialog2"
+msgstr "Bem... Você foi o primeiro treinador que enfrentei..."
+
+msgid "xero_hideout1"
+msgstr "Instituto Xero para Pesquisa e Avanço Tuxemon à frente."
+
+msgid "teddisun_description"
+msgstr ""
+"Teddisun adora o sol - eles sempre são vistos carregando seu brinquedo solar."
+
+msgid "teddisun"
+msgstr "Teddisun"
+
+msgid "rip"
+msgstr "Descanse em paz"
+
+msgid "professor-cardiling"
+msgstr "Professor"
+
+msgid "professor-rockitten"
+msgstr "Professor"
+
+msgid "xerogrund1"
+msgstr "Equipe Xero Grunt I"
+
+msgid "oops\n"
+msgstr ""
+"Oh. Acho que você não sabia disso...\n"
+"Você não deve ter medo, ter um Tuxemon ao seu lado é a melhor coisa que já "
+"aconteceu com você.\n"
+
+msgid "Cathedral_Center"
+msgstr "Centro da Catedral: Vivemos para Servir."
+
+msgid "Cotton_Mart"
+msgstr "Obtenha a colher na Loja Scoop!"
+
+msgid "Cotton_Town_Sign\n"
+msgstr ""
+"Bem-vindo a Cotton Town: uma força crescente\n"
+"↑ Cidade do Algodão --- Rota 1 ↓\n"
+
+msgid "column1"
+msgstr "Uma coluna rara e antiga. Isso costumava ser parte de um templo."
+
+msgid "column2"
+msgstr ""
+"Uma coluna rara e antiga. Outras ruínas da mesma cultura podem ser "
+"encontradas na Rota 3. "
+
+msgid "cityparksign\n"
+msgstr ""
+"Bem-vindo ao City Park: A Taste of the Wild\n"
+"↑ Parque da Cidade --- Rota 2 ↓\n"
+
+msgid "route2speech"
+msgstr "AEE!!!"
+
+msgid "xerogrunt3"
+msgstr "Equipe Xero Grunt III"
+
+msgid "backstory\n"
+msgstr ""
+"Cerca de trinta anos atrás, um grupo chamado Omnichannel começou a controlar "
+"a mídia.\n"
+"Logo depois, a liberdade de expressão tornou-se quase impossível.\n"
+"Então as pessoas decidiram usar Tuxemon como mensageiros e resolver disputas."
+"\n"
+"Cerca de dez anos atrás, a repressão ao Tuxemon foi iniciada.\n"
+"Agora, apenas pessoas aprovadas podem possuir e criar Tuxemon.\n"
+"Meu grupo usa o Tuxemon para pesquisa, é por isso que todos os temos.\n"
+"Você é incomum, você não é aprovado pelo Omnichannel.\n"
+"Você pode ser o treinador que estávamos esperando.\n"
+"Omnichannel, por mais implacáveis que sejam, não são a única ameaça que "
+"temos aqui.\n"
+"Existe outra organização chamada Spyder.\n"
+"Você não deveria se preocupar muito com eles, eles não são muito ativos por "
+"aqui.\n"
+"Agora, nós o enviaremos de volta em sua jornada.\n"
+"Mas somente se você concordar em nos ajudar contra o Omnichannel.\n"
+"Caso contrário, nós mesmos o denunciaremos ao Omnichannel.\n"
+"E você vai perder tudo.\n"
+"Estamos sempre observando.\n"
+
+msgid "sorryfurthis"
+msgstr "Boa escolha. Desculpe, isso só vai doer um pouco."
+
+msgid "theinfo\n"
+msgstr ""
+"Sinto muito por essa cena, Allie às vezes é difícil de lidar, ao contrário "
+"da minha filha Jess.\n"
+"Oh! Onde estão minhas maneiras. Meu nome é Ae... Quer saber? Vou apenas "
+"escrevê-lo.\n"
+"Aeble\n"
+"É pronunciado ahbluh, mas todo mundo me chama de Able. Você pode me chamar "
+"assim, eu acho...\n"
+"Aeble: Eu sou o CEO aqui no Omnichannel, todas as transmissões que você vê "
+"são aprovadas por mim.\n"
+"Agora, eu não sou o único que faz a sua parte. O Omnichannel possui uma "
+"diretoria que auxilia na administração dos diversos distritos.\n"
+"E o que você sabe... o conselho continua sendo reeleito todos os anos!\n"
+"O objetivo do Omnichannel é abrir o mundo para todos. A única maneira de "
+"fazer isso, porém, para tornar todos iguais,\n"
+"Era restringir Tuxemon.\n"
+"Começamos com o confisco, mas a maioria dos Tuxemon conseguiu escapar. Então "
+"fomos forçados a recorrer a medidas extremas.\n"
+"Nossa organização irmã Spyder desenvolveu uma droga que poderia mudar "
+"Tuxemon.\n"
+"Ele isolou uma parte do cérebro que todo Tuxemon misteriosamente possui e a "
+"sobrecarregou.\n"
+"Uma vez que o Gage Paludal Lamina foi sobrecarregado com eletricidade, sua "
+"vontade de resistir desapareceu e eles se tornaram dóceis.\n"
+"Por causa de alguns efeitos colaterais inesperados e trágicos, infelizmente, "
+"algumas espécies estão efetivamente extintas,\n"
+"Rockitten, Fruitera e Hydrone especificamente.\n"
+"Agora, com exceção de alguns retardatários na natureza, esta geração só "
+"interage com Tuxemon quando eles trabalham para nós.\n"
+"A taxa de natalidade está em alta e a aprovação do Omnichannel não caiu "
+"desde o ano anterior às restrições.\n"
+"Wild Tuxemon era uma maldição generalizada, ameaçando destruir a humanidade. "
+"O Omnichannel corrigiu isso e impôs a ordem.\n"
+"Sem controle, Tuxemon é uma força de destruição e quem disser o contrário "
+"está mentindo. Desculpe, preciso ir trabalhar.\n"

@@ -68,17 +68,15 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
         npc = world.get_entity(self.parameters.npc_slug)
         assert npc
         if len(npc.monsters) == 0:
-            logger.warning("npc has no monsters, won't start")
+            logger.warning(f"npc '{self.parameters.npc_slug}' has no monsters, won't start trainer battle.")
             return
 
         # Lookup the environment
-        env_slug = "grass"
-        if "environment" in player.game_variables:
-            env_slug = player.game_variables["environment"]
+        env_slug = player.game_variables.get("environment", "grass")
         env = db.lookup(env_slug, table="environment").dict()
 
         # Add our players and setup combat
-        logger.info("Starting battle!")
+        logger.info("Starting battle with '{self.parameters.npc_slug}'!")
         self.session.client.push_state(
             CombatState,
             players=(player, npc),

@@ -425,6 +425,7 @@
     <property name="act80" value="start_battle spyder_billie"/>
     <property name="act81" value="translated_dialog spyder_papertown_firstfight2"/>
     <property name="act90" value="set_variable firstfightdue:no"/>
+    <property name="act91" value="set_variable teleport_faint:spyder_bedroom.tmx 7 6"/>
     <property name="act94" value="pathfind spyder_billie,15,14"/>
     <property name="act95" value="remove_npc spyder_billie"/>
     <property name="act96" value="unlock_controls"/>

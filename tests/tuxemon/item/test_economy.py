@@ -30,10 +30,20 @@ class GetDefaultPriceAndCost(EconomyTestBase):
 
     def test_missing_price(self):
         economy = self.economy
-        with self.assertRaises(RuntimeError):
-            price = economy.lookup_item_price("capture_device")
+        price = economy.lookup_item_price("capture_device")
+        self.assertEqual(price, 0)
 
     def test_missing_cost(self):
         economy = self.economy
+        cost = economy.lookup_item_cost("revive")
+        self.assertEqual(cost,0)
+
+    def test_unknown_item_price(self):
+        economy = self.economy
         with self.assertRaises(RuntimeError):
-            cost = economy.lookup_item_cost("revive")
+            cost = economy.lookup_item_cost("unknown_item")
+
+    def test_unknown_item_price(self):
+        economy = self.economy
+        with self.assertRaises(RuntimeError):
+            price = economy.lookup_item_price("unknown_item")

@@ -411,7 +411,7 @@
     <property name="cond2" value="is party_size less_than,1"/>
    </properties>
   </object>
-  <object id="424" name="First Fight" type="event" x="384" y="144" width="16" height="16">
+  <object id="424" name="First Fight - Start" type="event" x="400" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act10" value="translated_dialog spyder_papertown_wrapup"/>
@@ -423,15 +423,38 @@
     <property name="act61" value="npc_face player,down"/>
     <property name="act70" value="translated_dialog spyder_papertown_firstfight"/>
     <property name="act80" value="start_battle spyder_billie"/>
-    <property name="act81" value="translated_dialog spyder_papertown_firstfight_win"/>
-    <property name="cond1" value="is player_defeated"/>
+    <property name="act81" value="remove_npc spyder_billie"/>
     <property name="act90" value="set_variable firstfightdue:no"/>
     <property name="act91" value="set_variable teleport_faint:spyder_bedroom.tmx 7 6"/>
-    <property name="act94" value="pathfind spyder_billie,15,14"/>
-    <property name="act95" value="remove_npc spyder_billie"/>
-    <property name="act96" value="unlock_controls"/>
-    <property name="cond2" value="is variable_set firstfightdue:yes"/>
+    <property name="act92" value="set_variable firstfightend:yes"/>
+    <property name="cond1" value="is variable_set firstfightdue:yes"/>
    </properties>
+  </object>
+  <object id="425" name="First Fight - Win" type="event" x="384" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_billie,26,12"/>
+    <property name="act10" value="npc_face spyder_billie,down"/>
+    <property name="act20" value="translated_dialog spyder_papertown_firstfight_win"/>
+    <property name="act30" value="pathfind spyder_billie,15,14"/>
+    <property name="act40" value="remove_npc spyder_billie"/>
+    <property name="act50" value="set_variable firstfightend:no"/>
+    <property name="act60" value="unlock_controls"/>
+    <property name="cond1" value="is variable_set battle_last_result:won"/>
+    <property name="cond2" value="is variable_set firstfightend:yes"/>
+   </properties>
+  </object>
+  <object id="426" name="First Fight - Lose" type="event" x="416" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_billie,26,12"/>
+    <property name="act10" value="npc_face spyder_billie,down"/>
+    <property name="act20" value="translated_dialog spyder_papertown_firstfight_lose"/>
+    <property name="act30" value="pathfind spyder_billie,15,14"/>
+    <property name="act40" value="remove_npc spyder_billie"/>
+    <property name="act50" value="set_variable firstfightend:no"/>
+    <property name="act60" value="unlock_controls"/>
+    <property name="cond1" value="is variable_set battle_last_result:lost"/>
+    <property name="cond2" value="is variable_set firstfightend:yes"/>
+    </properties>
   </object>
   <object id="428" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>

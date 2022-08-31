@@ -91,7 +91,7 @@ class PCState(PopUpMenu[MenuGameObj]):
         else:
             storage_callback = change_state("MonsterBoxChooseStorageState")
 
-        if not len(local_session.player.monsters):
+        if not local_session.player.monsters:
             dropoff_callback = partial(
                 open_dialog,
                 local_session,

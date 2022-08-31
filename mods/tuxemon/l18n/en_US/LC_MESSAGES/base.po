@@ -649,6 +649,12 @@ msgstr "Tuxemon"
 msgid "menu_monsters"
 msgstr "Monsters"
 
+msgid "menu_storage"
+msgstr "Pick Up Monster"
+
+msgid "menu_dropoff"
+msgstr "Drop Off Monster"
+
 msgid "menu_multiplayer"
 msgstr "Multiplayer"
 
@@ -693,6 +699,18 @@ msgstr "Press a key to set your new input key"
 
 msgid "options_new_input_key1"
 msgstr "Restart your game for changes to take effect!"
+
+msgid "menu_storage_take_monster"
+msgstr "You added {name} into your party!"
+
+msgid "menu_storage_monsters_full"
+msgstr "Your party is full, you cannot take any more from storage."
+
+msgid "menu_storage_empty_kennel"
+msgstr "This kennel is empty, there are no monsters to take."
+
+msgid "menu_dropoff_no_monsters"
+msgstr "You don't have any monsters to drop off."
 
 # Default mod names on selection menu
 msgid "xero_campaign"

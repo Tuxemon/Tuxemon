@@ -79,6 +79,7 @@ class PygameMenuState(state.State):
             theme=theme,
             center_content=True,
             onclose=self._on_close,
+            **kwargs,
         )
         self.menu.set_sound(get_sound_engine())
         # If we 'ignore nonphysical keyboard', pygame_menu will check the

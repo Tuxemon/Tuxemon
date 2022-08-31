@@ -30,7 +30,6 @@
 from __future__ import annotations
 
 import logging
-import datetime as dt
 from collections import defaultdict
 from functools import partial
 from itertools import chain
@@ -234,8 +233,6 @@ class CombatState(CombatAnimations):
                 self.transition_phase(new_phase)
             self.update_phase()
 
-        self.players[0].game_variables["date"] = dt.datetime.now().strftime("%x")
-
     def draw(self, surface: pygame.surface.Surface) -> None:
         """
         Draw combat state.
@@ -435,7 +432,7 @@ class CombatState(CombatAnimations):
                 var["battle_draw"] = +1
                 var["percent_draw"] = round((var["battle_draw"] / var["battle_total"])*100)
                 # track battles against NPC
-                self.players[0].battle_history[self.players[0].game_variables["date"]] = self.players[1].slug + str(" - draw")
+                self.players[0].battle_history[self.players[1].slug] = "draw"
 
             # it is a draw match; both players were defeated in same round
             self.alert(T.translate("combat_draw"))
@@ -458,7 +455,7 @@ class CombatState(CombatAnimations):
                     var["battle_won"] = +1
                     var["percent_win"] = round((var["battle_won"] / var["battle_total"])*100)
                     # track battles against NPC
-                    self.players[0].battle_history[self.players[0].game_variables["date"]] = self.players[1].slug + str(" - won")
+                    self.players[0].battle_history[self.players[1].slug] = "won"
 
             else:
                 var["battle_last_result"] = "lost"
@@ -469,7 +466,7 @@ class CombatState(CombatAnimations):
                     var["battle_lost"] = +1
                     var["percent_lose"] = round((var["battle_lost"] / var["battle_total"])*100)
                     # track battles against NPC
-                    self.players[0].battle_history[self.players[0].game_variables["date"]] = self.players[1].slug + str(" - lost")
+                    self.players[0].battle_history[self.players[1].slug] = "lost"
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close

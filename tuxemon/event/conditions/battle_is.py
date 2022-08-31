@@ -20,29 +20,23 @@
 #
 from __future__ import annotations
 
-import logging
-
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
-logger = logging.getLogger(__name__)
-
 
 class BattleIsCondition(EventCondition):
     """
-    Check an operation over a battle.
+    Check to see if the player has fought against NPC and won, lost or draw.
 
     Script usage:
         .. code-block::
 
-            is battle_is <character>,<result>,<operation>,<value>
+            is battle_is <character>,<result>
 
     Script parameters:
         character: Npc slug name (e.g. "npc_maple").
-        result: One of "won", "lost" or "draw"
-        operation: One of "==", "!=", ">", ">=", "<" or "<=".
-        value: A number.
+        result: One among "won", "lost" or "draw"
 
     """
 
@@ -50,46 +44,26 @@ class BattleIsCondition(EventCondition):
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         """
-        Check an operation over a variable.
+        Check to see if the player has fought against NPC and won, lost or draw.
 
         Parameters:
             session: The session object
             condition: The map condition object.
 
         Returns:
-            Result of the operation over the variable.
+            Whether the player has lost against character or not.
 
         """
         player = session.player
 
         # Read the parameters
-        npc = condition.parameters[0]
+        character = condition.parameters[0]
         result = condition.parameters[1]
-        operation = condition.parameters[2]
-        value = condition.parameters[3]
 
-        # Union
-        battle_mix = str(npc) + " - " + result
-
-        # Count
-        count = 0
-        for val in player.battle_history.values():
-            if val == battle_mix:
-                count += 1
-
-        # Check if the condition is true
-        if operation == "==":
-            return int(count) == int(value)
-        elif operation == "!=":
-            return int(count) != int(value)
-        elif operation == ">":
-            return int(count) > int(value)
-        elif operation == ">=":
-            return int(count) >= int(value)
-        elif operation == "<":
-            return int(count) < int(value)
-        elif operation == "<=":
-            return int(count) <= int(value)
+        if character in player.battle_history:
+            if player.battle_history[character] == result:
+                return True
+            else:
+                return False
         else:
-            logger.error(f"invalid operation type {operation}")
-            raise ValueError
+            return False

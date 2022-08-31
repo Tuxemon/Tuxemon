@@ -480,13 +480,13 @@ class Monster:
 
         # Learn New Moves
         for move in self.moveset:
-            if move["level_learned"] == self.level:
+            if move.level_learned == self.level:
                 logger.info(
                     "{} learned technique {}!".format(
-                        self.name, move["technique"]
+                        self.name, move.technique
                     )
                 )
-                technique = Technique(move["technique"])
+                technique = Technique(move.technique)
                 self.learn(technique)
 
     def set_level(self, level: int = 5) -> None:

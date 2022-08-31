@@ -433,7 +433,7 @@
   <object id="425" name="First Fight - Win" type="event" x="384" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_billie,26,12"/>
-    <property name="act10" value="npc_face spyder_billie,down"/>
+    <property name="act10" value="npc_face spyder_billie,up"/>
     <property name="act20" value="translated_dialog spyder_papertown_firstfight_win"/>
     <property name="act30" value="pathfind spyder_billie,15,14"/>
     <property name="act40" value="remove_npc spyder_billie"/>
@@ -446,7 +446,7 @@
   <object id="426" name="First Fight - Lose" type="event" x="416" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_billie,26,12"/>
-    <property name="act10" value="npc_face spyder_billie,down"/>
+    <property name="act10" value="npc_face spyder_billie,up"/>
     <property name="act20" value="translated_dialog spyder_papertown_firstfight_lose"/>
     <property name="act30" value="pathfind spyder_billie,15,14"/>
     <property name="act40" value="remove_npc spyder_billie"/>

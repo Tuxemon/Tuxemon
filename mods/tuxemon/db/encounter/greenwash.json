@@ -1,7 +1,45 @@
-{"slug": "greenwash","monsters": [
-{ "monster":"cochini","encounter_rate":5,"level_range": [15,25]},
-{ "monster":"cateye","encounter_rate":5,"level_range": [15,25]},
-{ "monster":"sclairus","encounter_rate":5,"level_range": [15,25]},
-{ "monster":"bursa","encounter_rate":5,"level_range": [15,25]},
-{ "monster":"nut","encounter_rate":5,"level_range": [15,25]}
-] }
+{
+  "slug": "greenwash",
+  "monsters": [
+    {
+      "monster": "cochini",
+      "encounter_rate": 5,
+      "level_range": [
+        15,
+        25
+      ]
+    },
+    {
+      "monster": "cateye",
+      "encounter_rate": 5,
+      "level_range": [
+        15,
+        25
+      ]
+    },
+    {
+      "monster": "sclairus",
+      "encounter_rate": 5,
+      "level_range": [
+        15,
+        25
+      ]
+    },
+    {
+      "monster": "bursa",
+      "encounter_rate": 5,
+      "level_range": [
+        15,
+        25
+      ]
+    },
+    {
+      "monster": "nut",
+      "encounter_rate": 5,
+      "level_range": [
+        15,
+        25
+      ]
+    }
+  ]
+}

@@ -21,6 +21,7 @@
 
 from __future__ import annotations
 
+import string
 from typing import NamedTuple, Optional, Union, final
 
 from tuxemon import monster
@@ -75,4 +76,4 @@ class AddMonsterAction(EventAction[AddMonsterActionParameters]):
         current_monster.set_level(monster_level)
         current_monster.current_hp = current_monster.hp
 
-        trainer.add_monster(current_monster)
+        string.capwords(trainer.add_monster(current_monster))

@@ -1,10 +1,69 @@
-{"slug": "citypark","monsters": [
-{ "monster": "cardiling","encounter_rate":3,"level_range": [5,8]},
-{ "monster": "cardiwing","encounter_rate":1,"level_range": [8,11]},
-{ "monster": "cataspike","encounter_rate":3,"level_range": [6,9]},
-{ "monster": "eyenemy","encounter_rate":3,"level_range": [5,8]},
-{ "monster": "axylightl","encounter_rate":3,"level_range": [5,8]},
-{ "monster": "tourbidi","encounter_rate":1,"level_range": [6,9]},
-{ "monster": "squabbit","encounter_rate":3,"level_range": [5,8]},
-{ "monster": "puparmor","encounter_rate":1,"level_range": [8,11]}
-] }
+{
+  "slug": "citypark",
+  "monsters": [
+    {
+      "monster": "cardiling",
+      "encounter_rate": 3,
+      "level_range": [
+        5,
+        8
+      ]
+    },
+    {
+      "monster": "cardiwing",
+      "encounter_rate": 1,
+      "level_range": [
+        8,
+        11
+      ]
+    },
+    {
+      "monster": "cataspike",
+      "encounter_rate": 3,
+      "level_range": [
+        6,
+        9
+      ]
+    },
+    {
+      "monster": "eyenemy",
+      "encounter_rate": 3,
+      "level_range": [
+        5,
+        8
+      ]
+    },
+    {
+      "monster": "axylightl",
+      "encounter_rate": 3,
+      "level_range": [
+        5,
+        8
+      ]
+    },
+    {
+      "monster": "tourbidi",
+      "encounter_rate": 1,
+      "level_range": [
+        6,
+        9
+      ]
+    },
+    {
+      "monster": "squabbit",
+      "encounter_rate": 3,
+      "level_range": [
+        5,
+        8
+      ]
+    },
+    {
+      "monster": "puparmor",
+      "encounter_rate": 1,
+      "level_range": [
+        8,
+        11
+      ]
+    }
+  ]
+}

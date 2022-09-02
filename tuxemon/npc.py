@@ -93,6 +93,7 @@ class NPCState(TypedDict):
     current_map: str
     facing: Direction
     game_variables: Dict[str, Any]
+    battle_history: Dict[str, Any]
     inventory: Mapping[str, Optional[int]]
     monsters: Sequence[Mapping[str, Any]]
     player_name: str
@@ -174,6 +175,7 @@ class NPC(Entity[NPCState]):
         # general
         self.behavior: Optional[str] = "wander"  # not used for now
         self.game_variables: Dict[str, Any] = {}  # Tracks the game state
+        self.battle_history: Dict[str, Any] = {}  # Tracks the battles
         self.interactions: Sequence[
             str
         ] = []  # List of ways player can interact with the Npc
@@ -265,6 +267,7 @@ class NPC(Entity[NPCState]):
             "current_map": session.client.get_map_name(),
             "facing": self.facing,
             "game_variables": self.game_variables,
+            "battle_history": self.battle_history,
             "inventory": encode_inventory(self.inventory),
             "monsters": encode_monsters(self.monsters),
             "player_name": self.name,
@@ -292,6 +295,7 @@ class NPC(Entity[NPCState]):
         """
         self.facing = save_data.get("facing", "down")
         self.game_variables = save_data["game_variables"]
+        self.battle_history = save_data["battle_history"]
         self.inventory = decode_inventory(
             session, self, save_data.get("inventory", {})
         )

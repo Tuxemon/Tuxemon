@@ -402,11 +402,15 @@ class CombatState(CombatAnimations):
                     self.enqueue_action(None, technique, monster)
 
         elif phase == "resolve match":
-            pass
+            # update battle_total only once after each battle
+            if self.is_trainer_battle:
+                var = self.players[0].game_variables
+                var["battle_total"] = +1
 
         elif phase == "ran away":
             self.players[0].set_party_status()
-            self.players[0].game_variables["battle_last_result"] = "ran"
+            var = self.players[0].game_variables
+            var["battle_last_result"] = "ran"
             self.alert(T.translate("combat_player_run"))
 
             # after 3 seconds, push a state that blocks until enter is pressed
@@ -417,7 +421,14 @@ class CombatState(CombatAnimations):
 
         elif phase == "draw match":
             self.players[0].set_party_status()
-            self.players[0].game_variables["battle_last_result"] = "draw"
+            var = self.players[0].game_variables
+            var["battle_last_result"] = "draw"
+            if self.is_trainer_battle:
+                var["battle_last_trainer"] = self.players[1].slug
+                var["battle_draw"] = +1
+                var["percent_draw"] = round((var["battle_draw"] / var["battle_total"])*100)
+                # track battles against NPC
+                self.players[0].battle_history[self.players[1].slug] = "draw"
 
             # it is a draw match; both players were defeated in same round
             self.alert(T.translate("combat_draw"))
@@ -431,13 +442,27 @@ class CombatState(CombatAnimations):
             # TODO: proper match check, etc
             # This assumes that player[0] is the human playing in single player
             self.players[0].set_party_status()
+            var = self.players[0].game_variables
             if self.remaining_players[0] == self.players[0]:
-                self.players[0].game_variables["battle_last_result"] = "won"
+                var["battle_last_result"] = "won"
                 self.alert(T.translate("combat_victory"))
+                if self.is_trainer_battle:
+                    var["battle_last_trainer"] = self.players[1].slug
+                    var["battle_won"] = +1
+                    var["percent_win"] = round((var["battle_won"] / var["battle_total"])*100)
+                    # track battles against NPC
+                    self.players[0].battle_history[self.players[1].slug] = "won"
+
             else:
-                self.players[0].game_variables["battle_last_result"] = "lost"
-                self.players[0].game_variables["battle_lost_faint"] = "true"
+                var["battle_last_result"] = "lost"
+                var["battle_lost_faint"] = "true"
                 self.alert(T.translate("combat_defeat"))
+                if self.is_trainer_battle:
+                    var["battle_last_trainer"] = self.players[1].slug
+                    var["battle_lost"] = +1
+                    var["percent_lose"] = round((var["battle_lost"] / var["battle_total"])*100)
+                    # track battles against NPC
+                    self.players[0].battle_history[self.players[1].slug] = "lost"
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close

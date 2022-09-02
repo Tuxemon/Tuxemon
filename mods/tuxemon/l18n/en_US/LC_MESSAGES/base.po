@@ -3633,8 +3633,11 @@ msgstr "I'll give the rest of these to other kids who missed out on their own tu
 msgid "spyder_papertown_firstfight"
 msgstr "Hey, what are you doing rummaging in bins? That's gross - and it's against the rules! \n ... \n What, they were throwing out perfectly good tuxemon? \n ... \n Well, if they were perfectly good, they wouldn't throw them out, would they? \n They must be inferior to the new models. Here, I'll show you! "
 
-msgid "spyder_papertown_firstfight2"
+msgid "spyder_papertown_firstfight_win"
 msgstr "Huh, must be a fluke. There's no way the new model would be worse than the old!"
+
+msgid "spyder_papertown_firstfight_lose"
+msgstr "As expected! Old models can't compare to new ones!"
 
 msgid "spyder_cottontown_monk"
 msgstr "I am assigned by the Dojo of the Five Elements to tend the statues here. \n But Omnichannel is planning to expand its offices into this space. \n I don't know what will happen to the statues when they do."

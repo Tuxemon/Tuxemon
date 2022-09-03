@@ -13,10 +13,24 @@ import os.path
 
 import requests
 from PIL import Image
-from lxml import html
+from lxml import etree, html
 
 FRAME_SIZE = 64
-WIKI_URL = "https://wiki.tuxemon.org/index.php?title=Category:Technique_Animation"
+WIKI_URL = "https://wiki.tuxemon.org"
+
+# TODO: Not needed anymore?
+# WIKI_ANIMATIONS_URL = "f{WIKI_URL}/index.php?title=Category:Technique_Animation"
+
+# animation CREDITS entry format
+# * ["Tentacles Water"](https://wiki.tuxemon.org/File:Tentacles_water.gif) By daneeklu, adapted by Sanglorian for 64x64pxThunderstrike | https://wiki.tuxemon.org/File:Thunderstrike.gif | Unknown
+# * ["Bite Zombie"](https://wiki.tuxemon.org/File:Bite_zombie.gif) is by https://opengameart.org/content/bite
+# * ["12 Hits For Sepearation"](https://wiki.tuxemon.org/File:12_hits_for_separation.gif) CC BY on OGA This work, made by Viktor Hahn (Viktor.Hahn@web.de), is licensed under the Creative Commons Attribution 4.0 International License. http://creativecommons.org/licenses/by/4.0/
+
+# Scraping JS-generated web content with selenium, beautiful soup and phantom js
+# https://stackoverflow.com/a/36289608
+
+
+
 
 # TODO: Is the return here needed or should be boolean to indicate success/fail?
 def download_bytes(url: str, filename: str) -> str:
@@ -37,7 +51,7 @@ def process_filename(filename: str) -> str:
     return cleaned_filename
 
 
-def process_gif(filename: str) -> None:
+def gif_to_frames(filename: str) -> None:
     """Extract individual animation frames as PNG from a GIF."""
     with Image.open(filename) as image:
         if not image.is_animated:
@@ -57,18 +71,28 @@ def process_gif(filename: str) -> None:
 # TODO: Is passing the Wiki URL needed?
 def download_technique_animations(wiki_url: str) -> None:
     """Download technique animation frames from the Tuxemon Wiki."""
-    print(f"Getting page source for URL: {wiki_url}")
-    source = requests.get(wiki_url)
-    tree = html.fromstring(source.content)
-    elements = tree.xpath("//li[@class='gallerybox']//img")
+    print(f"Getting animations and metadata from URL: {wiki_url}")
+    animations_url = f"{wiki_url}/index.php?title=Category:Technique_Animation"
 
+    # Animation GIF path
+    source = requests.get(animations_url)
+    tree = html.fromstring(source.content)
+
+    elements = tree.xpath("//li[@class='gallerybox']//a[@class='image']")
     for index, element in enumerate(elements, start=1):
-        url = urljoin(wiki_url, element.get("src"))
-        filename = url.split('/')[-1]
+        # Download animation GIF and convert to frame PNGs
+        # TODO: Store frames in correct location and gif only in temporary path?
+        gif_url = urljoin(animations_url, element[0].get("src"))
+        filename = gif_url.split('/')[-1]
         print(f"{index}/{len(elements)} downloading {filename}")
-        download_bytes(url, filename)
-        process_gif(filename)
+        download_bytes(gif_url, filename)
+        gif_to_frames(filename)
+
+        # Download credits
+        gif_sub_url = urljoin(wiki_url, element.get("href"))
 
 
 if __name__ == "__main__":
     download_technique_animations(WIKI_URL)
+
+    pass

@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/schemas/technique-schema.json",
   "accuracy": 1,
   "animation": "bolt",
   "category": "physical",

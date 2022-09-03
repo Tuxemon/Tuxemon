@@ -16,7 +16,7 @@
             "technique": "wall_of_steel"
         }
     ],
-    "shape": "",
+    "shape": "Blob",
     "types": [
         "Metal"
     ],

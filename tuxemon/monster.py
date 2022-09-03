@@ -488,7 +488,7 @@ class Monster:
             if move["level_learned"] == self.level:
                 logger.info(
                     "{} learned technique {}!".format(
-                        self.name, move.technique
+                        self.name, move["technique"]
                     )
                 )
                 technique = Technique(move["technique"])

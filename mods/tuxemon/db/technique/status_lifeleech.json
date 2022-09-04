@@ -1,4 +1,5 @@
 {
+  "tech_id": 94,
   "slug": "status_lifeleech",
   "name_trans": "status_lifeleech_name",
   "execute_trans": "combat_state_lifeleech_get",

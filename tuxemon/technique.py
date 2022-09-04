@@ -98,6 +98,7 @@ class Technique:
         # number of turns that this technique has been active
         self._combat_counter = 0
         self._life_counter = 0
+        self.tech_id = 0
         self.accuracy = 0.0
         self.animation = ""
         self.can_apply_status = False
@@ -179,6 +180,7 @@ class Technique:
         self.recharge_length = results.get("recharge", self.recharge_length)
         self.is_area = results.get("is_area", self.is_area)
         self.range = results.get("range", self.range)
+        self.tech_id = results.get("tech_id", self.tech_id)
         self.accuracy = results.get("accuracy", self.accuracy)
         self.potency = results.get("potency", self.potency)
         self.effect = results["effects"]

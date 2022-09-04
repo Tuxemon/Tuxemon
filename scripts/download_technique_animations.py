@@ -109,6 +109,8 @@ def download_technique_animations(wiki_url: str) -> None:
 
         elements = anim_tree.xpath("//li[@class='gallerybox']//a[@class='image']")
         with open(CREDITS_FILENAME, "w") as credits_file:
+            print("### Technique Animations", file=credits_file)
+            print("", file=credits_file)
             for index, element in enumerate(elements, start=1):
                 # Download animation GIF and convert to frame PNGs
                 gif_url: str = urljoin(animations_url, element[0].get("src"))
@@ -123,8 +125,9 @@ def download_technique_animations(wiki_url: str) -> None:
                 print(f"Downloading animation credits [{index}/{len(elements)}] - {filename}")
                 gif_page_url: str = urljoin(wiki_url, element.get("href"))
                 credits_record: str = download_animation_credits(gif_page_url)
-                credits_file.write(credits_record)
-
+                print(credits_record, file=credits_file)
+                print("", file=credits_file)
+ 
 
 if __name__ == "__main__":
     download_technique_animations(WIKI_URL)

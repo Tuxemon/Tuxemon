@@ -694,9 +694,33 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [daneeklu](http://opengameart.org/users/daneeklu) 
 is licensed under [CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
 
+* ["Beartrap"](https://wiki.tuxemon.org/File:Beartrap.gif)
+[https://opengameart.org/content/animated-traps CC0]
+
 * ["Bite Animation"](https://forum.tuxemon.org/viewtopic.php?id=70) by 
 [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Bomb Bright"](https://wiki.tuxemon.org/File:Bomb_bright.gif)
+Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Bomb"](https://wiki.tuxemon.org/File:Bomb.gif)
+From the Superpowers Asset Packs.
+
+* ["Buff Armour"](https://wiki.tuxemon.org/File:Buff_armour.gif)
+Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Buff Fast"](https://wiki.tuxemon.org/File:Buff_fast.gif)
+Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Buff Rage"](https://wiki.tuxemon.org/File:Buff_rage.gif)
+Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Buff Ranged"](https://wiki.tuxemon.org/File:Buff_ranged.gif)
+Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
+Adapted by Sanglorian from the Superpowers Asset Packs.
 
 * ["Drip Animations"](https://forum.tuxemon.org/viewtopic.php?id=70) by
 [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 

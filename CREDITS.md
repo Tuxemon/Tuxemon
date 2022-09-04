@@ -694,6 +694,20 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [daneeklu](http://opengameart.org/users/daneeklu) 
 is licensed under [CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
 
+* ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs) are licensed under CC0.
+
+* ["Catch Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack) animations are licensed under CC BY 3.0.
+
+* Animations based on [Henrique Lazarini's icons](https://opengameart.org/content/496-pixel-art-icons-for-medievalfantasy-rpg) are under CC0. 
+
+* ["Sparks Animations"](https://opengameart.org/content/sparks-fire-ice-blood) by Clint Bellanger are licensed under CC BY 3.0.
+
+* ["Electrical Disintegration Animation"](https://opengameart.org/content/electrical-disintegration-animation) by [superjoe](https://opengameart.org/users/superjoe) is licensed under CC0. 
+
+* Animations based on [ansimuz's "Gothicvania cemetary pack"](https://opengameart.org/content/gothicvania-cemetery-pack) are under CC0. 
+
+* ["Pixel Explosion"](https://opengameart.org/content/pixel-explosion-12-frames) by [J-Robot](https://opengameart.org/users/jrob774) is under CC BY 3.0.
+
 * ["Bite Animation"](https://forum.tuxemon.org/viewtopic.php?id=70) by 
 [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)

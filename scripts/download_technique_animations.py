@@ -105,7 +105,7 @@ def download_technique_animations(wiki_url: str) -> None:
     anim_source = requests.get(animations_url)
     anim_tree = html.fromstring(anim_source.content)
 
-    with tempfile.TemporaryDirectory() as tmpdirname:
+    with tempfile.TemporaryDirectory() as tmp_dirname:
 
         elements = anim_tree.xpath("//li[@class='gallerybox']//a[@class='image']")
         with open(CREDITS_FILENAME, "w") as credits_file:
@@ -117,7 +117,7 @@ def download_technique_animations(wiki_url: str) -> None:
                 filename = gif_url.split('/')[-1]
                 print(f"Downloading animation [{index}/{len(elements)}] - {filename}")
 
-                temppath = os.path.join(tmpdirname, filename)
+                temppath = os.path.join(tmp_dirname, filename)
                 download_bytes(gif_url, temppath)
                 gif_to_frames(temppath)
 

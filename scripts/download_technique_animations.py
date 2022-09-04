@@ -15,28 +15,18 @@ from urllib.parse import urljoin
 
 import requests
 from PIL import Image
-from lxml import etree, html
+from lxml import html
 
 FRAME_SIZE = 64
 WIKI_URL = "https://wiki.tuxemon.org"
 
-# TODO: Not needed anymore?
-# WIKI_ANIMATIONS_URL = "f{WIKI_URL}/index.php?title=Category:Technique_Animation"
-
 TUXEMON_ROOT_DIR = pathlib.Path(__file__).resolve().parent.parent
 ANIMATION_DIR = TUXEMON_ROOT_DIR.joinpath(pathlib.Path("mods/tuxemon/animations/technique"))
-CREDITS_TEMPLATE = "* [{animation_name}]({animation_url}) {credits_text}"
+CREDITS_TEMPLATE = '* ["{animation_name}"]({animation_url}) {credits_text}'
+CREDITS_FILENAME = "TECHNIQUE_ANIMATION_CREDITS.md"
 
 print("Tuxemon project root dir:", TUXEMON_ROOT_DIR)
 print("Technique animation dir:", ANIMATION_DIR)
-
-# animation CREDITS entry format
-# * ["12 Hits For Separation"](https://wiki.tuxemon.org/File:12_hits_for_separation.gif) CC BY on OGA This work, made by Viktor Hahn (Viktor.Hahn@web.de), is licensed under the Creative Commons Attribution 4.0 International License. http://creativecommons.org/licenses/by/4.0/
-# * ["Bite Zombie"](https://wiki.tuxemon.org/File:Bite_zombie.gif) is by https://opengameart.org/content/bite
-# * ["Tentacles Water"](https://wiki.tuxemon.org/File:Tentacles_water.gif) By daneeklu, adapted by Sanglorian for 64x64pxThunderstrike | https://wiki.tuxemon.org/File:Thunderstrike.gif | Unknown
-
-# Scraping JS-generated web content with selenium, beautiful soup and phantom js
-# https://stackoverflow.com/a/36289608
 
 
 def download_bytes(url: str, filepath: str) -> None:
@@ -63,7 +53,7 @@ def process_animation_name(filename: str) -> str:
 
 
 def download_animation_credits(gif_page_url: str) -> str:
-    """Extract credits text from a GIF animation subpage."""
+    """Extract credits text from a GIF animation subpage, from the 'Comments' section."""
     gif_filename: str = gif_page_url.split("File:")[-1]
     animation_name: str = process_animation_name(process_filename(gif_filename))
 
@@ -77,8 +67,10 @@ def download_animation_credits(gif_page_url: str) -> str:
         if len(comment_row) > 0:
             for comment_entry in comment_row:
                 # Assemble credits and skip the "Category:" blocks   
-                if not comment_entry.tail.startswith("Category:"):
+                comment_tail: str = comment_entry.tail
+                if comment_tail is not None and not comment_tail.startswith("Category:"):
                     credits_text += comment_entry.tail.strip()
+
     credits_text = credits_text or "Unknown animation source/author"
     credits_record: str = CREDITS_TEMPLATE.format(animation_name=animation_name, animation_url=gif_page_url, credits_text=credits_text)
     return credits_record
@@ -116,21 +108,22 @@ def download_technique_animations(wiki_url: str) -> None:
     with tempfile.TemporaryDirectory() as tmpdirname:
 
         elements = anim_tree.xpath("//li[@class='gallerybox']//a[@class='image']")
-        for index, element in enumerate(elements, start=1):
-            # Download animation GIF and convert to frame PNGs
-            gif_url: str = urljoin(animations_url, element[0].get("src"))
-            filename: str = gif_url.split('/')[-1]
-            print(f"Downloading animation [{index}/{len(elements)}] - {filename}")
+        with open(CREDITS_FILENAME, "w") as credits_file:
+            for index, element in enumerate(elements, start=1):
+                # Download animation GIF and convert to frame PNGs
+                gif_url: str = urljoin(animations_url, element[0].get("src"))
+                filename: str = gif_url.split('/')[-1]
+                print(f"Downloading animation [{index}/{len(elements)}] - {filename}")
 
-            temppath: str = os.path.join(tmpdirname, filename)
-            download_bytes(gif_url, temppath)
-            gif_to_frames(temppath)
+                temppath: str = os.path.join(tmpdirname, filename)
+                download_bytes(gif_url, temppath)
+                gif_to_frames(temppath)
 
-            # Download credits from the "Comments" column
-            print(f"Downloading animation credits")
-            gif_page_url: str = urljoin(wiki_url, element.get("href"))
-            credits_record: str = download_animation_credits(gif_page_url)
-            print(credits_record)
+                # Download credits from GIF subpage URL
+                print(f"Downloading animation credits [{index}/{len(elements)}] - {filename}")
+                gif_page_url: str = urljoin(wiki_url, element.get("href"))
+                credits_record: str = download_animation_credits(gif_page_url)
+                credits_file.write(credits_record)
 
 
 if __name__ == "__main__":

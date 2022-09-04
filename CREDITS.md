@@ -722,29 +722,213 @@ Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel
 * ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.
 
+* ["Crushing Ball"](https://forum.tuxemon.org/viewtopic.php?pid=506#p506) by
+[Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Crystal"](https://wiki.tuxemon.org/File:Crystal.gif)
+From the Superpowers Asset Packs.
+
+* ["Debuff Melee"](https://wiki.tuxemon.org/File:Debuff_melee.gif)
+Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Disintegrate"](https://wiki.tuxemon.org/File:Disintegrate_83.gif)
+[http://opengameart.org/content/electrical-disintegration-animation CC0], found by
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
+
 * ["Drip Animations"](https://forum.tuxemon.org/viewtopic.php?id=70) by
 [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) with recolor by [treetrnk](https://github.com/treetrnk)
 
-* ["Small Water Shot"](https://forum.tuxemon.org/viewtopic.php?id=74) by
-[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* ["Explosion Big"](https://wiki.tuxemon.org/File:Explosion_big_126.gif)
+From the Superpowers Asset Packs.
 
-* ["Power Slash"](https://forum.tuxemon.org/viewtopic.php?id=74) by
-[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48)
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* ["Explosion Burst"](https://wiki.tuxemon.org/File:Explosion_burst.gif)
+[https://opengameart.org/content/animated-explosions CC0 on OGA]
+
+* ["Explosion Small"](https://wiki.tuxemon.org/File:Explosion_small.gif)
+From the Superpowers Asset Packs.
 
 * ["Fire Attack"](https://forum.tuxemon.org/viewtopic.php?id=74) by 
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Firelion Back"](https://wiki.tuxemon.org/File:Firelion_back_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Firelion Back"](https://wiki.tuxemon.org/File:Firelion_back.gif)
+By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Firelion Front"](https://wiki.tuxemon.org/File:Firelion_front_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Firelion Front"](https://wiki.tuxemon.org/File:Firelion_front.gif)
+By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Firetwirl"](https://wiki.tuxemon.org/File:Firetwirl.gif)
+From the Superpowers Asset Packs.
+
+* ["Gloop Blue"](https://wiki.tuxemon.org/File:Gloop_blue.gif)
+Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan B...
+
+* ["Gloop Orange"](https://wiki.tuxemon.org/File:Gloop_orange_80.gif)
+A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Gloop Orange"](https://wiki.tuxemon.org/File:Gloop_orange.gif)
+Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan B...
+
+* ["Heal Swarm"](https://wiki.tuxemon.org/File:Heal_swarm_126.gif)
+From the Superpowers Asset Packs.
+
+* ["Heal Swarm"](https://wiki.tuxemon.org/File:Heal_swarm.gif)
+Adapted to 64px by Sanglorian.  From the Superpowers Asset Packs.
+
+* ["Hits For Separation"](https://wiki.tuxemon.org/File:12_hits_for_separation.gif)
+[https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA] This work, made by Viktor Hahn (Viktor.Hahn@web.de), is licensed under the Creative Commons...
+
+* ["Icetacle"](https://wiki.tuxemon.org/File:Icetacle_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Icetacle"](https://wiki.tuxemon.org/File:Icetacle.gif)
+By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Lance Ice"](https://wiki.tuxemon.org/File:Lance_ice_80.gif)
+From the Superpowers Asset Packs.
+
+* ["Lance Ice"](https://wiki.tuxemon.org/File:Lance_ice.gif)
+Resized by Sanglorian from the Superpowers Asset Packs.
+
+* ["Lightning Claw"](https://wiki.tuxemon.org/File:Lightning_claw_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Lightning Claw"](https://wiki.tuxemon.org/File:Lightning_claw.gif)
+By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Misc Hit Preview"](https://wiki.tuxemon.org/File:Misc_Hit_preview.gif)
+[https://opengameart.org/content/pixelated-hit-animations CC BY on OGA]  This work, made by Viktor Hahn (Viktor.Hahn@web.de), is licensed under the Creative Commons Attributio...
+
 * ["Pound Attack"](https://forum.tuxemon.org/viewtopic.php?id=74) by 
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Crushing Ball"](https://forum.tuxemon.org/viewtopic.php?pid=506#p506) by
-[Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
+* ["Pound Bright"](https://wiki.tuxemon.org/File:Pound_bright.gif)
+From the Superpowers Asset Packs.
+
+* ["Power Slash"](https://forum.tuxemon.org/viewtopic.php?id=74) by
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Pushtrap Front"](https://wiki.tuxemon.org/File:Pushtrap_front.gif)
+[https://opengameart.org/content/animated-traps CC0]
+
+* ["Pushtrap Right"](https://wiki.tuxemon.org/File:Pushtrap_right_32.gif)
+[https://opengameart.org/content/animated-traps CC0]
+
+* ["Pushtrap Right"](https://wiki.tuxemon.org/File:Pushtrap_right.gif)
+[https://opengameart.org/content/animated-traps CC0]
+
+* ["Screen"](https://wiki.tuxemon.org/File:Screen_80.gif)
+A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Screen"](https://wiki.tuxemon.org/File:Screen.gif)
+Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan B...
+
+* ["Shield Ice"](https://wiki.tuxemon.org/File:Shield_ice_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Shield Ice"](https://wiki.tuxemon.org/File:Shield_ice.gif)
+By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Shield Rock"](https://wiki.tuxemon.org/File:Shield_rock.gif)
+By daneeklu, adapted by Sanglorian.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Shield Turtle"](https://wiki.tuxemon.org/File:Shield_turtle_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Shield Turtle"](https://wiki.tuxemon.org/File:Shield_turtle.gif)
+By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Shield Turtle Left"](https://wiki.tuxemon.org/File:Shield_turtle_left_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Shield Turtle Left"](https://wiki.tuxemon.org/File:Shield_turtle_left.gif)
+By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Shield Turtle Right"](https://wiki.tuxemon.org/File:Shield_turtle_right_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Shield Turtle Right"](https://wiki.tuxemon.org/File:Shield_turtle_right.gif)
+By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Slash Fire"](https://wiki.tuxemon.org/File:Slash_fire.gif)
+From the Superpowers Asset Packs.
+
+* ["Small Water Shot"](https://forum.tuxemon.org/viewtopic.php?id=74) by
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Smokebomb"](https://wiki.tuxemon.org/File:Smokebomb.gif)
+From the Superpowers Asset Packs.
+
+* ["Smokebomb Plume"](https://wiki.tuxemon.org/File:Smokebomb_plume.gif)
+[https://opengameart.org/content/gotthicvania-swamp CC0 on OGA]
+
+* ["Snake Right"](https://wiki.tuxemon.org/File:Snake_right_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Snake Right"](https://wiki.tuxemon.org/File:Snake_right.gif)
+By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Sparks Gold Alt"](https://wiki.tuxemon.org/File:Sparks_gold_alt.gif)
+[http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
+
+* ["Sparks Gold"](https://wiki.tuxemon.org/File:Sparks_gold.gif)
+[http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
+
+* ["Sparks Red Alt"](https://wiki.tuxemon.org/File:Sparks_red_alt.gif)
+[http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
+
+* ["Sparks Red"](https://wiki.tuxemon.org/File:Sparks_red.gif)
+[http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
+
+* ["Sparks White Alt"](https://wiki.tuxemon.org/File:Sparks_white_alt.gif)
+[http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
+
+* ["Sparks White"](https://wiki.tuxemon.org/File:Sparks_white.gif)
+[http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
+
+ ["Spike Ice"](https://wiki.tuxemon.org/File:Spike_ice.gif)
+ By daneeklu [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Spike Rock"](https://wiki.tuxemon.org/File:Spike_rock.gif)
+By daneeklu [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Spikes Fire"](https://wiki.tuxemon.org/File:Spikes_fire.gif)
+[https://opengameart.org/content/animated-traps CC0]
+
+* ["Spikes Ice"](https://wiki.tuxemon.org/File:Spikes_ice.gif)
+By daneeklu [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Spikes Metal"](https://wiki.tuxemon.org/File:Spikes_metal.gif)
+[https://opengameart.org/content/animated-traps CC0]
+
+* ["Spikes Rock"](https://wiki.tuxemon.org/File:Spikes_rock.gif)
+By daneeklu [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Tentacle Metal"](https://wiki.tuxemon.org/File:Tentacle_metal.gif)
+[https://opengameart.org/content/custom-enemies OGA CC0]
+
+* ["Tentacles Water"](https://wiki.tuxemon.org/File:Tentacles_water_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Tentacles Water"](https://wiki.tuxemon.org/File:Tentacles_water.gif)
+By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Tornado Bulk"](https://wiki.tuxemon.org/File:Tornado_bulk_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Tornado Bulk"](https://wiki.tuxemon.org/File:Tornado_bulk.gif)
+By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
 * ["Whirlwind Attack"](https://forum.tuxemon.org/thread.php?pid=765#p765) by
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 

@@ -1,15 +1,15 @@
 {
-    "slug": "spyder_citypark_bobette",
-    "sprite_name": "catgirl",
-	"monsters": [
-        {
-            "name": "Aardorn",
-            "level": 10, 
-			"slug": "aardorn",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "catgirl.png",
-    "combat_back": "red_back.png"}
-
+  "slug": "spyder_citypark_bobette",
+  "sprite_name": "catgirl",
+  "monsters": [
+    {
+      "name": "Aardorn",
+      "level": 10,
+      "slug": "aardorn",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    }
+  ],
+  "combat_front": "catgirl.png",
+  "combat_back": "red_back.png"
+}

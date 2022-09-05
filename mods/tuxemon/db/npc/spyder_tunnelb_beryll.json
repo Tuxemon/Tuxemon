@@ -1,31 +1,29 @@
 {
-    "slug": "spyder_tunnelb_beryll",
-    "sprite_name": "scientist",
-	"monsters": [
-        		{
-            "name": "Rockat",
-            "level": 20, 
-			"slug": "rockat",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Ignibus",
-            "level": 20, 
-			"slug": "ignibus",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Grintot",
-            "level": 20, 
-			"slug": "grintot",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "scientist.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_tunnelb_beryll",
+  "sprite_name": "scientist",
+  "monsters": [
+    {
+      "name": "Rockat",
+      "level": 20,
+      "slug": "rockat",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    },
+    {
+      "name": "Ignibus",
+      "level": 20,
+      "slug": "ignibus",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    },
+    {
+      "name": "Grintot",
+      "level": 20,
+      "slug": "grintot",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    }
+  ],
+  "combat_front": "scientist.png",
+  "combat_back": "red_back.png"
+}

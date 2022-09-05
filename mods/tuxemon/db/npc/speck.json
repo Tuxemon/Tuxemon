@@ -1,6 +1,6 @@
 {
-    "slug": "speck",
-    "sprite_name": "beachcomber",
-    "combat_front": "femaletrainer_front.png",
-    "combat_back": "red_back.png"
+  "slug": "speck",
+  "sprite_name": "beachcomber",
+  "combat_front": "femaletrainer_front.png",
+  "combat_back": "red_back.png"
 }

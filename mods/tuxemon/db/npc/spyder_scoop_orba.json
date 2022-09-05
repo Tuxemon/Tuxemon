@@ -1,24 +1,22 @@
 {
-    "slug": "spyder_scoop_orba",
-    "sprite_name": "rookie",
-	"monsters": [
-        		{
-            "name": "Abesnaki",
-            "level": 30, 
-			"slug": "abesnaki",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Spighter",
-            "level": 30, 
-			"slug": "spighter",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "spyder_rookie.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_scoop_orba",
+  "sprite_name": "rookie",
+  "monsters": [
+    {
+      "name": "Abesnaki",
+      "level": 30,
+      "slug": "abesnaki",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    },
+    {
+      "name": "Spighter",
+      "level": 30,
+      "slug": "spighter",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    }
+  ],
+  "combat_front": "spyder_rookie.png",
+  "combat_back": "red_back.png"
+}

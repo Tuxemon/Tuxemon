@@ -1,14 +1,15 @@
 {
-    "slug": "spyder_route3_qqq",
-    "sprite_name": "rookie",
-	"monsters": [
-        {
-            "name": "Cardiling",
-            "level": 16, 
-			"slug": "cardiling",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "rookie.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_route3_qqq",
+  "sprite_name": "rookie",
+  "monsters": [
+    {
+      "name": "Cardiling",
+      "level": 16,
+      "slug": "cardiling",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    }
+  ],
+  "combat_front": "rookie.png",
+  "combat_back": "red_back.png"
+}

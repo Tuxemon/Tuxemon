@@ -1,6 +1,6 @@
 {
-    "slug": "spyder_firefighter",
-    "sprite_name": "firefighter",
-	    "combat_front": "firefighter.png",
-    "combat_back": "red_back.png" }
-
+  "slug": "spyder_firefighter",
+  "sprite_name": "firefighter",
+  "combat_front": "firefighter.png",
+  "combat_back": "red_back.png"
+}

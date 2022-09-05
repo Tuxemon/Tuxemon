@@ -1,24 +1,22 @@
 {
-    "slug": "spyder_scoop_berys",
-    "sprite_name": "professor1",
-	"monsters": [
-        		{
-            "name": "Propellercat",
-            "level": 40, 
-			"slug": "propellercat",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Embazook",
-            "level": 35, 
-			"slug": "embazook",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "professor.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_scoop_berys",
+  "sprite_name": "professor1",
+  "monsters": [
+    {
+      "name": "Propellercat",
+      "level": 40,
+      "slug": "propellercat",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    },
+    {
+      "name": "Embazook",
+      "level": 35,
+      "slug": "embazook",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    }
+  ],
+  "combat_front": "professor.png",
+  "combat_back": "red_back.png"
+}

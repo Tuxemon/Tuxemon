@@ -1,6 +1,6 @@
 {
-    "slug": "christie",
-    "sprite_name": "christie",
-    "combat_front": "femaletrainer_front.png",
-    "combat_back": "red_back.png"
+  "slug": "christie",
+  "sprite_name": "christie",
+  "combat_front": "femaletrainer_front.png",
+  "combat_back": "red_back.png"
 }

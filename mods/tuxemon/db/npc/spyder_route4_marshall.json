@@ -1,21 +1,22 @@
 {
-    "slug": "spyder_route4_marshall",
-    "sprite_name": "soldier",
-	"monsters": [
-        {
-            "name": "Puparmor",
-            "level": 16, 
-			"slug": "puparmor",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Puparmor",
-            "level": 16, 
-			"slug": "puparmor",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "soldier.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_route4_marshall",
+  "sprite_name": "soldier",
+  "monsters": [
+    {
+      "name": "Puparmor",
+      "level": 16,
+      "slug": "puparmor",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    },
+    {
+      "name": "Puparmor",
+      "level": 16,
+      "slug": "puparmor",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    }
+  ],
+  "combat_front": "soldier.png",
+  "combat_back": "red_back.png"
+}

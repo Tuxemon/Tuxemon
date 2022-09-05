@@ -1,9 +1,9 @@
 {
   "slug": "cave",
   "battle_graphics": {
-    "island_back":"cave_back_island.png",
-    "island_front":"cave_front_island.png",
-    "background":"cave_background.png"
+    "island_back": "cave_back_island.png",
+    "island_front": "cave_front_island.png",
+    "background": "cave_background.png"
   },
-  "battle_music":"music_battle_loop"
+  "battle_music": "music_battle_loop"
 }

@@ -1,14 +1,15 @@
 {
-    "slug": "spyder_route5_edith",
-    "sprite_name": "picnicker",
-	"monsters": [
-        {
-            "name": "Aardart",
-            "level": 20, 
-			"slug": "aardart",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "picnicker.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_route5_edith",
+  "sprite_name": "picnicker",
+  "monsters": [
+    {
+      "name": "Aardart",
+      "level": 20,
+      "slug": "aardart",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    }
+  ],
+  "combat_front": "picnicker.png",
+  "combat_back": "red_back.png"
+}

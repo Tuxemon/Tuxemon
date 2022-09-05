@@ -1,14 +1,15 @@
 {
-    "slug": "spyder_nimrod_chromerobo",
-    "sprite_name": "robot",
-	"monsters": [
-        {
-            "name": "Chrome Robo",
-            "level": 20, 
-			"slug": "chrome-robo",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "chrome_robo.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_nimrod_chromerobo",
+  "sprite_name": "robot",
+  "monsters": [
+    {
+      "name": "Chrome Robo",
+      "level": 20,
+      "slug": "chrome-robo",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    }
+  ],
+  "combat_front": "chrome_robo.png",
+  "combat_back": "red_back.png"
+}

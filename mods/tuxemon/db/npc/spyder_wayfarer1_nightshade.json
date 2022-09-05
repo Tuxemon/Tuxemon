@@ -1,21 +1,22 @@
 {
-    "slug": "spyder_wayfarer1_nightshade",
-    "sprite_name": "nurse",
-	"monsters": [
-        {
-            "name": "Lapinou",
-            "level": 12, 
-			"slug": "lapinou",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Elofly",
-            "level": 12, 
-			"slug": "elofly",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "nurse.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_wayfarer1_nightshade",
+  "sprite_name": "nurse",
+  "monsters": [
+    {
+      "name": "Lapinou",
+      "level": 12,
+      "slug": "lapinou",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    },
+    {
+      "name": "Elofly",
+      "level": 12,
+      "slug": "elofly",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27
+    }
+  ],
+  "combat_front": "nurse.png",
+  "combat_back": "red_back.png"
+}

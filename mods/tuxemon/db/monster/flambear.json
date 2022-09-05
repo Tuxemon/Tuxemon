@@ -17,7 +17,7 @@
         }
     ],
     "evolutions": [],
-    "shape": "Brute",
+    "shape": "brute",
     "types": [
         "Fire"
     ],

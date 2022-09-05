@@ -23,7 +23,7 @@
             "monster_slug": "dragarbor"
         }
     ],
-    "shape": "Dragon",
+    "shape": "dragon",
     "types": [
         "Wood"
     ],

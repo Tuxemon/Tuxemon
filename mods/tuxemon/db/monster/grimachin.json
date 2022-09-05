@@ -23,7 +23,7 @@
             "monster_slug": "tigrock"
         }
     ],
-    "shape": "Hunter",
+    "shape": "hunter",
     "types": [
         "Metal"
     ],

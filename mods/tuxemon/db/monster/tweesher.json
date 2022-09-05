@@ -23,7 +23,7 @@
             "monster_slug": "heronquak"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Water"
     ],

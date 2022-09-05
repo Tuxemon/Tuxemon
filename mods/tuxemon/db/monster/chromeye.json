@@ -38,7 +38,7 @@
             "monster_slug": "sadito"
         }
     ],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Metal"
     ],

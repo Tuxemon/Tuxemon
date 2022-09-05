@@ -23,7 +23,7 @@
             "monster_slug": "lightmare"
         }
     ],
-    "shape": "Aquatic",
+    "shape": "aquatic",
     "types": [
         "Water"
     ],

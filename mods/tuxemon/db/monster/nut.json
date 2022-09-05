@@ -23,7 +23,7 @@
             "monster_slug": "bolt"
         }
     ],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Metal"
     ],

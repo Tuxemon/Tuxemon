@@ -23,7 +23,7 @@
             "monster_slug": "katacoon"
         }
     ],
-    "shape": "Grub",
+    "shape": "grub",
     "types": [
         "Metal",
         "Wood"

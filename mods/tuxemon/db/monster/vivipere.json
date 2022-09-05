@@ -43,7 +43,7 @@
             "monster_slug": "vivitron"
         }
     ],
-    "shape": "Serpent",
+    "shape": "serpent",
     "types": [
         "Earth"
     ],

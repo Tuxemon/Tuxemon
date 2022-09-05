@@ -23,7 +23,7 @@
             "monster_slug": "possessun"
         }
     ],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Earth"
     ],

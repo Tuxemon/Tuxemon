@@ -23,7 +23,7 @@
             "monster_slug": "prophetoise"
         }
     ],
-    "shape": "Humanoid",
+    "shape": "humanoid",
     "types": [
         "Earth"
     ],

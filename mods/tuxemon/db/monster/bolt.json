@@ -23,7 +23,7 @@
             "monster_slug": "arthrobolt"
         }
     ],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Metal"
     ],

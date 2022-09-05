@@ -23,7 +23,7 @@
             "monster_slug": "agnidon"
         }
     ],
-    "shape": "Dragon",
+    "shape": "dragon",
     "types": [
         "Fire"
     ],

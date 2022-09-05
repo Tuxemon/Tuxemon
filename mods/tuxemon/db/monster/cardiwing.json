@@ -23,7 +23,7 @@
             "monster_slug": "cardinale"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Fire"
     ],

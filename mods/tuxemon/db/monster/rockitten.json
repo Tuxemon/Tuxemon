@@ -23,7 +23,7 @@
             "monster_slug": "rockat"
         }
     ],
-    "shape": "Hunter",
+    "shape": "hunter",
     "types": [
         "Earth"
     ],

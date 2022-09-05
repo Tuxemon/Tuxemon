@@ -82,6 +82,23 @@ class ItemBattleMenu(str, Enum):
     combat = "combat"
 
 
+class MonsterShape(str, Enum):
+    aquatic = "aquatic"
+    blob = "blob"
+    brute = "brute"
+    dragon = "dragon"
+    flier = "flier"
+    grub = "grub"
+    humanoid = "humanoid"
+    hunter = "hunter"
+    landrace = "landrace"
+    leviathan = "leviathan"
+    polliwog = "polliwog"
+    serpent = "serpent"
+    sprite = "sprite"
+    varmint = "varmint"
+
+
 # TODO: Automatically generate state enum through discovery
 State = Enum(
     "State",
@@ -224,7 +241,7 @@ class MonsterModel(BaseModel):
 
     # Optional fields
     sprites: Optional[MonsterSpritesModel]
-    shape: str = Field("", description="The shape of the monster")
+    shape: MonsterShape = Field(..., description="The shape of the monster")
     types: Sequence[str] = Field([], description="The type(s) of this monster")
     catch_rate: float = Field(0, description="The catch rate of the monster")
     lower_catch_resistance: float = Field(

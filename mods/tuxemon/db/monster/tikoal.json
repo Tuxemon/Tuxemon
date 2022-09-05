@@ -23,7 +23,7 @@
             "monster_slug": "tikorch"
         }
     ],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Fire",
         "Wood"

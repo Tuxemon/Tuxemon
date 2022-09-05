@@ -28,7 +28,7 @@
             "monster_slug": "sumchon"
         }
     ],
-    "shape": "Grub",
+    "shape": "grub",
     "types": [
         "Metal",
         "Wood"

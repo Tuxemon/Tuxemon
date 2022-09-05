@@ -23,7 +23,7 @@
             "monster_slug": "narcileaf"
         }
     ],
-    "shape": "Sprite",
+    "shape": "sprite",
     "types": [
         "Wood"
     ],

@@ -32,20 +32,16 @@ from __future__ import annotations
 import logging
 import random
 import uuid
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Dict,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    cast,
-)
+from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
 
 from tuxemon import ai, fusion, graphics
 from tuxemon.config import TuxemonConfig
-from tuxemon.db import MonsterEvolutionItemModel, MonsterMovesetItemModel, db
+from tuxemon.db import (
+    MonsterEvolutionItemModel,
+    MonsterMovesetItemModel,
+    MonsterShape,
+    db,
+)
 from tuxemon.locale import T
 from tuxemon.sprite import Sprite
 from tuxemon.technique import Technique
@@ -69,7 +65,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
 )
 
 SHAPES = {
-    "aquatic": {
+    MonsterShape.aquatic: {
         "armour": 8,
         "dodge": 4,
         "hp": 8,
@@ -77,7 +73,7 @@ SHAPES = {
         "ranged": 6,
         "speed": 4,
     },
-    "blob": {
+    MonsterShape.blob: {
         "armour": 8,
         "dodge": 4,
         "hp": 8,
@@ -85,7 +81,7 @@ SHAPES = {
         "ranged": 8,
         "speed": 4,
     },
-    "brute": {
+    MonsterShape.brute: {
         "armour": 7,
         "dodge": 5,
         "hp": 7,
@@ -93,7 +89,7 @@ SHAPES = {
         "ranged": 4,
         "speed": 5,
     },
-    "dragon": {
+    MonsterShape.dragon: {
         "armour": 7,
         "dodge": 5,
         "hp": 6,
@@ -101,7 +97,7 @@ SHAPES = {
         "ranged": 6,
         "speed": 6,
     },
-    "flier": {
+    MonsterShape.flier: {
         "armour": 5,
         "dodge": 7,
         "hp": 4,
@@ -109,7 +105,7 @@ SHAPES = {
         "ranged": 4,
         "speed": 8,
     },
-    "grub": {
+    MonsterShape.grub: {
         "armour": 7,
         "dodge": 5,
         "hp": 7,
@@ -117,7 +113,7 @@ SHAPES = {
         "ranged": 8,
         "speed": 5,
     },
-    "humanoid": {
+    MonsterShape.humanoid: {
         "armour": 5,
         "dodge": 7,
         "hp": 4,
@@ -125,7 +121,7 @@ SHAPES = {
         "ranged": 8,
         "speed": 8,
     },
-    "hunter": {
+    MonsterShape.hunter: {
         "armour": 4,
         "dodge": 8,
         "hp": 5,
@@ -133,7 +129,7 @@ SHAPES = {
         "ranged": 4,
         "speed": 7,
     },
-    "landrace": {
+    MonsterShape.landrace: {
         "armour": 8,
         "dodge": 4,
         "hp": 8,
@@ -141,7 +137,7 @@ SHAPES = {
         "ranged": 4,
         "speed": 4,
     },
-    "leviathan": {
+    MonsterShape.leviathan: {
         "armour": 8,
         "dodge": 4,
         "hp": 8,
@@ -149,7 +145,7 @@ SHAPES = {
         "ranged": 6,
         "speed": 4,
     },
-    "polliwog": {
+    MonsterShape.polliwog: {
         "armour": 4,
         "dodge": 8,
         "hp": 5,
@@ -157,7 +153,7 @@ SHAPES = {
         "ranged": 8,
         "speed": 7,
     },
-    "serpent": {
+    MonsterShape.serpent: {
         "armour": 6,
         "dodge": 6,
         "hp": 6,
@@ -165,7 +161,7 @@ SHAPES = {
         "ranged": 8,
         "speed": 6,
     },
-    "sprite": {
+    MonsterShape.sprite: {
         "armour": 6,
         "dodge": 6,
         "hp": 4,
@@ -173,7 +169,7 @@ SHAPES = {
         "ranged": 6,
         "speed": 8,
     },
-    "varmint": {
+    MonsterShape.varmint: {
         "armour": 6,
         "dodge": 6,
         "hp": 6,
@@ -238,7 +234,7 @@ class Monster:
 
         self.type1 = "aether"
         self.type2: Optional[str] = None
-        self.shape = "landrace"
+        self.shape = MonsterShape.landrace
 
         self.status: List[Technique] = list()
         self.status_damage = 0
@@ -330,7 +326,7 @@ class Monster:
         self.name = T.translate(results.slug)
         self.description = T.translate(f"{results.slug}_description")
         self.category = T.translate(results.category)
-        self.shape = results.shape.lower() or "landrace"
+        self.shape = results.shape or MonsterShape.landrace
         types = results.types
         if types:
             self.type1 = results.types[0].lower()

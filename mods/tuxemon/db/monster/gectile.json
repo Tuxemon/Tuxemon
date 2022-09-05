@@ -23,7 +23,7 @@
             "monster_slug": "velocitile"
         }
     ],
-    "shape": "Humanoid",
+    "shape": "humanoid",
     "types": [
         "Wood"
     ],

@@ -17,7 +17,7 @@
         }
     ],
     "evolutions": [],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Wood"
     ],

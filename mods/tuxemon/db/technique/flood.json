@@ -1,4 +1,5 @@
 {
+  "tech_id": 10,
   "accuracy": 0.5,
   "animation": "shot",
   "category": "physical",

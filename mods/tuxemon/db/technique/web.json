@@ -1,4 +1,5 @@
 {
+  "tech_id": 42,
   "accuracy": 0.75,
   "animation": "snake right 64px",
   "category": "physical",

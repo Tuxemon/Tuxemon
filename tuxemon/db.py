@@ -346,6 +346,10 @@ class TechniqueModel(BaseModel):
     range: Range = Field(
         "melee", description="The attack range of this technique"
     )
+    tech_id: int = Field(..., description="The id of this technique")
+    potency: Optional[float] = Field(
+        None, description="How potetent the technique is"
+    )
     accuracy: float = Field(0, description="The accuracy of the technique")
     potency: Optional[float] = Field(
         None, description="How potetent the technique is"

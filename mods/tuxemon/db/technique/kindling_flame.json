@@ -1,4 +1,5 @@
 {
+  "tech_id": 30,
   "accuracy": 0.8,
   "animation": "constantburn",
   "category": "physical",

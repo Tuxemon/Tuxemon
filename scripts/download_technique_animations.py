@@ -72,7 +72,7 @@ def download_animation_credits(gif_page_url: str) -> str:
                     credits_text += comment_entry.tail.strip()
 
     credits_text = credits_text or "Unknown animation source/author"
-    credits_record: str = CREDITS_TEMPLATE.format(animation_name=animation_name, animation_url=gif_page_url, credits_text=credits_text)
+    credits_record = CREDITS_TEMPLATE.format(animation_name=animation_name, animation_url=gif_page_url, credits_text=credits_text)
     return credits_record
 
 

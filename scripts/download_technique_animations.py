@@ -17,7 +17,6 @@ import requests
 from lxml import html
 from PIL import Image
 
-FRAME_SIZE = 64
 WIKI_URL = "https://wiki.tuxemon.org"
 
 TUXEMON_ROOT_DIR = pathlib.Path(__file__).resolve().parent.parent
@@ -94,9 +93,6 @@ def gif_to_frames(filepath: str) -> None:
     with Image.open(filepath) as image:
         if not image.is_animated:
             print(f"{filepath} is not animated, skipped")
-            return
-        if not image.width == image.height == FRAME_SIZE:
-            print(f"{filepath} is not {FRAME_SIZE}x{FRAME_SIZE}, skipped")
             return
 
         base_name = process_filename(filepath)

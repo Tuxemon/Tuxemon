@@ -16,6 +16,7 @@
             "technique": "strike"
         }
     ],
+    "evolutions": [],
     "shape": "Humanoid",
     "types": [
         "Metal"

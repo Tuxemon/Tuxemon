@@ -16,6 +16,13 @@
             "technique": "sting"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "narcileaf"
+        }
+    ],
     "shape": "Sprite",
     "types": [
         "Wood"

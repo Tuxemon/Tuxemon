@@ -16,6 +16,7 @@
             "technique": "refresh"
         }
     ],
+    "evolutions": [],
     "shape": "Varmint",
     "types": [
         "Earth"

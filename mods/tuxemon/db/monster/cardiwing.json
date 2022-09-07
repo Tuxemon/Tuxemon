@@ -16,6 +16,13 @@
             "technique": "peregrine"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 36,
+            "monster_slug": "cardinale"
+        }
+    ],
     "shape": "Flier",
     "types": [
         "Fire"

@@ -16,6 +16,13 @@
             "technique": "glower"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 18,
+            "monster_slug": "incandesfin"
+        }
+    ],
     "shape": "Aquatic",
     "types": [
         "Water"

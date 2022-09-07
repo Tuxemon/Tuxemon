@@ -16,6 +16,13 @@
             "technique": "take_cover"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "noctalo"
+        }
+    ],
     "shape": "Flier",
     "types": [
         "Water"

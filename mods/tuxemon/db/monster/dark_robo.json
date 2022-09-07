@@ -16,6 +16,7 @@
             "technique": "shrapnel"
         }
     ],
+    "evolutions": [],
     "shape": "Humanoid",
     "types": [
         "Metal"

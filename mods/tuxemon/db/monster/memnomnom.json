@@ -16,6 +16,18 @@
             "technique": "sand_spray"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "miaownolith"
+        },
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "pyraminx"
+        }
+    ],
     "shape": "Hunter",
     "types": [
         "Metal"

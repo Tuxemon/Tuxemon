@@ -16,6 +16,7 @@
             "technique": "one_two"
         }
     ],
+    "evolutions": [],
     "shape": "Brute",
     "types": [
         "Earth"

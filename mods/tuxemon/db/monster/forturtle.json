@@ -16,6 +16,13 @@
             "technique": "sleep_bomb"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "prophetoise"
+        }
+    ],
     "shape": "Humanoid",
     "types": [
         "Earth"

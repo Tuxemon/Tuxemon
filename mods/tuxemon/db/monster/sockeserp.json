@@ -16,6 +16,7 @@
             "technique": "constrict"
         }
     ],
+    "evolutions": [],
     "shape": "Serpent",
     "types": [
         "Metal"

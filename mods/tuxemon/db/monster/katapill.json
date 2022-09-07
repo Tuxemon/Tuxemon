@@ -16,6 +16,13 @@
             "technique": "splinter"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 9,
+            "monster_slug": "katacoon"
+        }
+    ],
     "shape": "Grub",
     "types": [
         "Metal",

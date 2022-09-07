@@ -16,6 +16,13 @@
             "technique": "starfall"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 36,
+            "monster_slug": "lightmare"
+        }
+    ],
     "shape": "Aquatic",
     "types": [
         "Water"

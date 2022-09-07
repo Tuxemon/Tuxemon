@@ -16,6 +16,18 @@
             "technique": "ram"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "bamboon"
+        },
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "frondly"
+        }
+    ],
     "shape": "Sprite",
     "types": [
         "Wood"

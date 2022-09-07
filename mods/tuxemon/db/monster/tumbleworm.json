@@ -16,6 +16,13 @@
             "technique": "constrict"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "tumblebee"
+        }
+    ],
     "shape": "Grub",
     "types": [
         "Metal"

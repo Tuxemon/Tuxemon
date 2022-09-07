@@ -16,6 +16,13 @@
             "technique": "kindling_flame"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 30,
+            "monster_slug": "ruption"
+        }
+    ],
     "shape": "Blob",
     "types": [
         "Fire"

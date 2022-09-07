@@ -16,6 +16,7 @@
             "technique": "snowstorm"
         }
     ],
+    "evolutions": [],
     "shape": "Brute",
     "types": [
         "Water",

@@ -16,6 +16,7 @@
             "technique": "static_field"
         }
     ],
+    "evolutions": [],
     "shape": "Polliwog",
     "types": [
         "Fire",

@@ -24,6 +24,13 @@
             "technique": "feint"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "aardart"
+        }
+    ],
     "shape": "Varmint",
     "types": [
         "Earth"

@@ -16,6 +16,18 @@
             "technique": "static_field"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "eruptibus"
+        },
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "embazook"
+        }
+    ],
     "shape": "Polliwog",
     "types": [
         "Fire"

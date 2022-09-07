@@ -16,6 +16,7 @@
             "technique": "splinter"
         }
     ],
+    "evolutions": [],
     "shape": "Flier",
     "types": [
         "Wood"

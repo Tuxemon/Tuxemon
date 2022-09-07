@@ -16,6 +16,7 @@
             "technique": "ram"
         }
     ],
+    "evolutions": [],
     "shape": "Sprite",
     "types": [
         "Wood"

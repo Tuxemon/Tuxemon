@@ -16,6 +16,18 @@
             "technique": "font"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 12,
+            "monster_slug": "bugnin"
+        },
+        {
+            "path": "",
+            "at_level": 12,
+            "monster_slug": "sumchon"
+        }
+    ],
     "shape": "Grub",
     "types": [
         "Metal",

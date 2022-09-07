@@ -16,6 +16,13 @@
             "technique": "hibernate"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 12,
+            "monster_slug": "fluttaflap"
+        }
+    ],
     "shape": "Blob",
     "types": [
         "Water"

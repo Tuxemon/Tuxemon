@@ -16,6 +16,13 @@
             "technique": "fume"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 18,
+            "monster_slug": "elowind"
+        }
+    ],
     "shape": "Flier",
     "types": [
         "Water"

@@ -16,6 +16,7 @@
             "technique": "give_all"
         }
     ],
+    "evolutions": [],
     "shape": "Brute",
     "types": [
         "Earth",

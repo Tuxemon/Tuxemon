@@ -16,6 +16,18 @@
             "technique": "constrict"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "ouroboutlet"
+        },
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "sockeserp"
+        }
+    ],
     "shape": "Serpent",
     "types": [
         "Metal"

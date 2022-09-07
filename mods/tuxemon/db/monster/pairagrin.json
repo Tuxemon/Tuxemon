@@ -16,6 +16,13 @@
             "technique": "wing_tip"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 26,
+            "monster_slug": "pairagrim"
+        }
+    ],
     "shape": "flier",
     "types": [
         "wood"

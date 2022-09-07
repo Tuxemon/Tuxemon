@@ -229,6 +229,17 @@ def scale_surface(
     )
 
 
+def center_image(surface: pygame.surface.Surface) -> None:
+    # Use a known 64x64 animation frame as reference   
+    ANIM_CENTER_REF = load_and_scale("animations/technique/capture00.png")
+    ref_rect = ANIM_CENTER_REF.get_rect()
+
+    rect = surface.get_rect()
+    print("Anim dimensions (width, height):", surface.get_size())
+    print("Anim center (x,y):", rect.center)
+    surface.scroll(rect.width - ref_rect.width, rect.height - ref_rect.height)
+
+
 def load_frames_files(
     directory: str,
     name: str,

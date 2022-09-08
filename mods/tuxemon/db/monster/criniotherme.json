@@ -23,6 +23,10 @@
     "txmn_id": 20,
     "height": 210,
     "weight": 170,
+    "sounds": {
+        "combat_call": "sound_criniotherme",
+        "faint_call": "sound_criniotherme"
+    },
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

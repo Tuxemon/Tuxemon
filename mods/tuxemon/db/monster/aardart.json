@@ -31,6 +31,10 @@
     "txmn_id": 42,
     "height": 185,
     "weight": 45,
+    "sounds": {
+        "combat_call": "sound_aardart",
+        "faint_call": "sound_aardart"
+    },
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

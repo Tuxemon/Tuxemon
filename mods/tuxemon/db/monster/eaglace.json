@@ -23,6 +23,10 @@
     "txmn_id": 9,
     "height": 150,
     "weight": 36,
+    "sounds": {
+        "combat_call": "sound_eaglace",
+        "faint_call": "sound_eaglace"
+    },
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

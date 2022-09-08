@@ -24,6 +24,10 @@
     "txmn_id": 79,
     "height": 0,
     "weight": 0,
+    "sounds": {
+        "combat_call": "sound_tikorch",
+        "faint_call": "sound_tikorch"
+    },
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

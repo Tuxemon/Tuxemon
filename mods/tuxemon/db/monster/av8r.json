@@ -25,7 +25,7 @@
     "weight": 0,
     "sounds": {
         "combat_call": "sound_av8r",
-        "faint_call": "sound_av8r_faint"
+        "faint_call": "sound_av8r"
     },
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,

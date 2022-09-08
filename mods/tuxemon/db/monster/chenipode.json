@@ -23,6 +23,10 @@
     "txmn_id": 59,
     "height": 15,
     "weight": 0.5,
+    "sounds": {
+        "combat_call": "sound_chenipode",
+        "faint_call": "sound_chenipode"
+    },
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

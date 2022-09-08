@@ -23,6 +23,10 @@
     "txmn_id": 71,
     "height": 0,
     "weight": 0,
+    "sounds": {
+        "combat_call": "sound_possessun",
+        "faint_call": "sound_possessun"
+    },
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

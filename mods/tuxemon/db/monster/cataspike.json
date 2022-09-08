@@ -23,6 +23,10 @@
     "txmn_id": 32,
     "height": 12,
     "weight": 1,
+    "sounds": {
+        "combat_call": "sound_cataspike",
+        "faint_call": "sound_cataspike"
+    },
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

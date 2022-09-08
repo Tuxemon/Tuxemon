@@ -24,6 +24,10 @@
     "txmn_id": 18,
     "height": 160,
     "weight": 3000,
+    "sounds": {
+        "combat_call": "sound_grintrock",
+        "faint_call": "sound_grintrock"
+    },
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

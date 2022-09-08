@@ -23,6 +23,10 @@
     "txmn_id": 31,
     "height": 600,
     "weight": 12000,
+    "sounds": {
+        "combat_call": "sound_eruptibus",
+        "faint_call": "sound_eruptibus"
+    },
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

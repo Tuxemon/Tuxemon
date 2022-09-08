@@ -34,7 +34,7 @@ from typing import Any, Callable, Dict, Sequence, Tuple
 
 import pygame_menu
 
-from tuxemon import prepare
+from tuxemon import audio, prepare
 from tuxemon.animation import Animation
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -170,6 +170,7 @@ class WorldMenuState(PygameMenuState):
                 )
                 monster_menu.refresh_menu_items()
                 monster_menu.on_menu_selection_change()
+                audio.load_sound(monster.combat_call).play
             else:
                 open_dialog(local_session, [T.translate("cant_release")])
 

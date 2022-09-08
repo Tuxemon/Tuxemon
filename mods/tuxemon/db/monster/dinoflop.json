@@ -23,6 +23,10 @@
     "txmn_id": 157,
     "height": 120,
     "weight": 120,
+    "sounds": {
+        "combat_call": "sound_dinoflop",
+        "faint_call": "sound_dinoflop"
+    },
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

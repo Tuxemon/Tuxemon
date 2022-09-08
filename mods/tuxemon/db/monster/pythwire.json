@@ -23,6 +23,10 @@
     "txmn_id": 88,
     "height": 200,
     "weight": 4,
+    "sounds": {
+        "combat_call": "sound_pythwire",
+        "faint_call": "sound_pythwire"
+    },
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

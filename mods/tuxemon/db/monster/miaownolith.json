@@ -24,6 +24,10 @@
     "txmn_id": 21,
     "height": 210,
     "weight": 255,
+    "sounds": {
+        "combat_call": "sound_miaownolith",
+        "faint_call": "sound_miaownolith"
+    },
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

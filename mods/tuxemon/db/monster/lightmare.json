@@ -23,6 +23,10 @@
     "txmn_id": 69,
     "height": 300,
     "weight": 200,
+    "sounds": {
+        "combat_call": "sound_lightmare",
+        "faint_call": "sound_lightmare"
+    },
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

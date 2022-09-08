@@ -23,6 +23,10 @@
     "txmn_id": 147,
     "height": 200,
     "weight": 500,
+    "sounds": {
+        "combat_call": "sound_pharfan",
+        "faint_call": "sound_pharfan"
+    },
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

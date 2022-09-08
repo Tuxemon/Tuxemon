@@ -23,6 +23,10 @@
     "txmn_id": 15,
     "height": 600,
     "weight": 2000,
+    "sounds": {
+        "combat_call": "sound_agnigon",
+        "faint_call": "sound_agnigon"
+    },
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

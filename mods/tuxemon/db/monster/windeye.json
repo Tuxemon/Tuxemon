@@ -23,6 +23,10 @@
     "txmn_id": 171,
     "height": 300,
     "weight": 600,
+    "sounds": {
+        "combat_call": "sound_windeye",
+        "faint_call": "sound_windeye"
+    },
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

@@ -40,10 +40,6 @@
         "file" : "monster/glitch.ogg"
     },
     {
-        "slug" : "sound_av8r",
-        "file" : "monster/robot2.ogg"
-    },
-    {
         "slug" : "sound_faint1",
         "file" : "monster/reverse_cry1.ogg"
     },
@@ -84,7 +80,939 @@
         "file" : "monster/reverse_glitch.ogg"
     },
     {
-        "slug" : "sound_av8r_faint",
-        "file" : "monster/reverse_robot2.ogg"
+        "slug" : "sound_aardart",
+        "file" : "monster/aardart.ogg"
+    },
+    {
+        "slug" : "sound_aardorn",
+        "file" : "monster/aardorn.ogg"
+    },
+    {
+        "slug" : "sound_abesnaki",
+        "file" : "monster/abesnaki.ogg"
+    },
+    {
+        "slug" : "sound_agnidon",
+        "file" : "monster/agnidon.ogg"
+    },
+    {
+        "slug" : "sound_agnigon",
+        "file" : "monster/agnigon.ogg"
+    },
+    {
+        "slug" : "sound_agnite",
+        "file" : "monster/agnite.ogg"
+    },
+    {
+        "slug" : "sound_allagon",
+        "file" : "monster/allagon.ogg"
+    },
+    {
+        "slug" : "sound_altie",
+        "file" : "monster/altie.ogg"
+    },
+    {
+        "slug" : "sound_angrito",
+        "file" : "monster/angrito.ogg"
+    },
+    {
+        "slug" : "sound_anoleaf",
+        "file" : "monster/anoleaf.ogg"
+    },
+    {
+        "slug" : "sound_anu",
+        "file" : "monster/anu.ogg"
+    },
+    {
+        "slug" : "sound_apeoro",
+        "file" : "monster/apeoro.ogg"
+    },
+    {
+        "slug" : "sound_araignee",
+        "file" : "monster/araignee.ogg"
+    },
+    {
+        "slug" : "sound_arthrobolt",
+        "file" : "monster/arthrobolt.ogg"
+    },
+    {
+        "slug" : "sound_av8r",
+        "file" : "monster/av8r.ogg"
+    },
+    {
+        "slug" : "sound_axylightl",
+        "file" : "monster/axylightl.ogg"
+    },
+    {
+        "slug" : "sound_b-ver1",
+        "file" : "monster/b-ver1.ogg"
+    },
+    {
+        "slug" : "sound_bamboon",
+        "file" : "monster/bamboon.ogg"
+    },
+    {
+        "slug" : "sound_banling",
+        "file" : "monster/banling.ogg"
+    },
+    {
+        "slug" : "sound_baobaraffe",
+        "file" : "monster/baobaraffe.ogg"
+    },
+    {
+        "slug" : "sound_baoby",
+        "file" : "monster/baoby.ogg"
+    },
+    {
+        "slug" : "sound_beenstalker",
+        "file" : "monster/beenstalker.ogg"
+    },
+    {
+        "slug" : "sound_bigfin",
+        "file" : "monster/bigfin.ogg"
+    },
+    {
+        "slug" : "sound_birdling",
+        "file" : "monster/birdling.ogg"
+    },
+    {
+        "slug" : "sound_bolt",
+        "file" : "monster/bolt.ogg"
+    },
+    {
+        "slug" : "sound_boltnu",
+        "file" : "monster/boltnu.ogg"
+    },
+    {
+        "slug" : "sound_botbot",
+        "file" : "monster/botbot.ogg"
+    },
+    {
+        "slug" : "sound_boxali",
+        "file" : "monster/boxali.ogg"
+    },
+    {
+        "slug" : "sound_brewdin",
+        "file" : "monster/brewdin.ogg"
+    },
+    {
+        "slug" : "sound_budaye",
+        "file" : "monster/budaye.ogg"
+    },
+    {
+        "slug" : "sound_bugnin",
+        "file" : "monster/bugnin.ogg"
+    },
+    {
+        "slug" : "sound_bumbulus",
+        "file" : "monster/bumbulus.ogg"
+    },
+    {
+        "slug" : "sound_bursa",
+        "file" : "monster/bursa.ogg"
+    },
+    {
+        "slug" : "sound_cairfrey",
+        "file" : "monster/cairfrey.ogg"
+    },
+    {
+        "slug" : "sound_capiti",
+        "file" : "monster/capiti.ogg"
+    },
+    {
+        "slug" : "sound_cardiling",
+        "file" : "monster/cardiling.ogg"
+    },
+    {
+        "slug" : "sound_cardinale",
+        "file" : "monster/cardinale.ogg"
+    },
+    {
+        "slug" : "sound_cardiwing",
+        "file" : "monster/cardiwing.ogg"
+    },
+    {
+        "slug" : "sound_cataspike",
+        "file" : "monster/cataspike.ogg"
+    },
+    {
+        "slug" : "sound_cateye",
+        "file" : "monster/cateye.ogg"
+    },
+    {
+        "slug" : "sound_chenipode",
+        "file" : "monster/chenipode.ogg"
+    },
+    {
+        "slug" : "sound_chibiro",
+        "file" : "monster/chibiro.ogg"
+    },
+    {
+        "slug" : "sound_chillimp",
+        "file" : "monster/chillimp.ogg"
+    },
+    {
+        "slug" : "sound_chloragon",
+        "file" : "monster/chloragon.ogg"
+    },
+    {
+        "slug" : "sound_chromeye",
+        "file" : "monster/chromeye.ogg"
+    },
+    {
+        "slug" : "sound_cochini",
+        "file" : "monster/cochini.ogg"
+    },
+    {
+        "slug" : "sound_coleorus",
+        "file" : "monster/coleorus.ogg"
+    },
+    {
+        "slug" : "sound_conifrost",
+        "file" : "monster/conifrost.ogg"
+    },
+    {
+        "slug" : "sound_conileaf",
+        "file" : "monster/conileaf.ogg"
+    },
+    {
+        "slug" : "sound_corvix",
+        "file" : "monster/corvix.ogg"
+    },
+    {
+        "slug" : "sound_cowpignon",
+        "file" : "monster/cowpignon.ogg"
+    },
+    {
+        "slug" : "sound_criniotherme",
+        "file" : "monster/criniotherme.ogg"
+    },
+    {
+        "slug" : "sound_dandicub",
+        "file" : "monster/dandicub.ogg"
+    },
+    {
+        "slug" : "sound_dandylion",
+        "file" : "monster/dandylion.ogg"
+    },
+    {
+        "slug" : "sound_dinoflop",
+        "file" : "monster/dinoflop.ogg"
+    },
+    {
+        "slug" : "sound_djinnbo",
+        "file" : "monster/djinnbo.ogg"
+    },
+    {
+        "slug" : "sound_dollfin",
+        "file" : "monster/dollfin.ogg"
+    },
+    {
+        "slug" : "sound_dracune",
+        "file" : "monster/dracune.ogg"
+    },
+    {
+        "slug" : "sound_dragarbor",
+        "file" : "monster/dragarbor.ogg"
+    },
+    {
+        "slug" : "sound_drashimi",
+        "file" : "monster/drashimi.ogg"
+    },
+    {
+        "slug" : "sound_drokoro",
+        "file" : "monster/drokoro.ogg"
+    },
+    {
+        "slug" : "sound_dune_pincher",
+        "file" : "monster/dune_pincher.ogg"
+    },
+    {
+        "slug" : "sound_eaglace",
+        "file" : "monster/eaglace.ogg"
+    },
+    {
+        "slug" : "sound_elofly",
+        "file" : "monster/elofly.ogg"
+    },
+    {
+        "slug" : "sound_elostorm",
+        "file" : "monster/elostorm.ogg"
+    },
+    {
+        "slug" : "sound_elowind",
+        "file" : "monster/elowind.ogg"
+    },
+    {
+        "slug" : "sound_embazook",
+        "file" : "monster/embazook.ogg"
+    },
+    {
+        "slug" : "sound_embra",
+        "file" : "monster/embra.ogg"
+    },
+    {
+        "slug" : "sound_enduros",
+        "file" : "monster/enduros.ogg"
+    },
+    {
+        "slug" : "sound_eruptibus",
+        "file" : "monster/eruptibus.ogg"
+    },
+    {
+        "slug" : "sound_exapode",
+        "file" : "monster/exapode.ogg"
+    },
+    {
+        "slug" : "sound_exclawvate",
+        "file" : "monster/exclawvate.ogg"
+    },
+    {
+        "slug" : "sound_eyenemy",
+        "file" : "monster/eyenemy.ogg"
+    },
+    {
+        "slug" : "sound_eyesore",
+        "file" : "monster/eyesore.ogg"
+    },
+    {
+        "slug" : "sound_fancair",
+        "file" : "monster/fancair.ogg"
+    },
+    {
+        "slug" : "sound_ferricran",
+        "file" : "monster/ferricran.ogg"
+    },
+    {
+        "slug" : "sound_flacono",
+        "file" : "monster/flacono.ogg"
+    },
+    {
+        "slug" : "sound_flambear",
+        "file" : "monster/flambear.ogg"
+    },
+    {
+        "slug" : "sound_fluoresfin",
+        "file" : "monster/fluoresfin.ogg"
+    },
+    {
+        "slug" : "sound_fluttaflap",
+        "file" : "monster/fluttaflap.ogg"
+    },
+    {
+        "slug" : "sound_foofle",
+        "file" : "monster/foofle.ogg"
+    },
+    {
+        "slug" : "sound_fordin",
+        "file" : "monster/fordin.ogg"
+    },
+    {
+        "slug" : "sound_forturtle",
+        "file" : "monster/forturtle.ogg"
+    },
+    {
+        "slug" : "sound_foxfire",
+        "file" : "monster/foxfire.ogg"
+    },
+    {
+        "slug" : "sound_frondly",
+        "file" : "monster/frondly.ogg"
+    },
+    {
+        "slug" : "sound_fruitera",
+        "file" : "monster/fruitera.ogg"
+    },
+    {
+        "slug" : "sound_furnursus",
+        "file" : "monster/furnursus.ogg"
+    },
+    {
+        "slug" : "sound_galnec",
+        "file" : "monster/galnec.ogg"
+    },
+    {
+        "slug" : "sound_gectile",
+        "file" : "monster/gectile.ogg"
+    },
+    {
+        "slug" : "sound_ghosteeth",
+        "file" : "monster/ghosteeth.ogg"
+    },
+    {
+        "slug" : "sound_graffiki",
+        "file" : "monster/graffiki.ogg"
+    },
+    {
+        "slug" : "sound_grimachin",
+        "file" : "monster/grimachin.ogg"
+    },
+    {
+        "slug" : "sound_grinflare",
+        "file" : "monster/grinflare.ogg"
+    },
+    {
+        "slug" : "sound_grintot",
+        "file" : "monster/grintot.ogg"
+    },
+    {
+        "slug" : "sound_grintrock",
+        "file" : "monster/grintrock.ogg"
+    },
+    {
+        "slug" : "sound_grumpi",
+        "file" : "monster/grumpi.ogg"
+    },
+    {
+        "slug" : "sound_gryfix",
+        "file" : "monster/gryfix.ogg"
+    },
+    {
+        "slug" : "sound_hampotamos",
+        "file" : "monster/hampotamos.ogg"
+    },
+    {
+        "slug" : "sound_happito",
+        "file" : "monster/happito.ogg"
+    },
+    {
+        "slug" : "sound_hatchling",
+        "file" : "monster/hatchling.ogg"
+    },
+    {
+        "slug" : "sound_heronquak",
+        "file" : "monster/heronquak.ogg"
+    },
+    {
+        "slug" : "sound_hydrone",
+        "file" : "monster/hydrone.ogg"
+    },
+    {
+        "slug" : "sound_ignibus",
+        "file" : "monster/ignibus.ogg"
+    },
+    {
+        "slug" : "sound_incandesfin",
+        "file" : "monster/incandesfin.ogg"
+    },
+    {
+        "slug" : "sound_jelillow",
+        "file" : "monster/jelillow.ogg"
+    },
+    {
+        "slug" : "sound_jemuar",
+        "file" : "monster/jemuar.ogg"
+    },
+    {
+        "slug" : "sound_k9",
+        "file" : "monster/k9.ogg"
+    },
+    {
+        "slug" : "sound_katacoon",
+        "file" : "monster/katacoon.ogg"
+    },
+    {
+        "slug" : "sound_katapill",
+        "file" : "monster/katapill.ogg"
+    },
+    {
+        "slug" : "sound_komodraw",
+        "file" : "monster/komodraw.ogg"
+    },
+    {
+        "slug" : "sound_lambert",
+        "file" : "monster/lambert.ogg"
+    },
+    {
+        "slug" : "sound_lapinou",
+        "file" : "monster/lapinou.ogg"
+    },
+    {
+        "slug" : "sound_legko",
+        "file" : "monster/legko.ogg"
+    },
+    {
+        "slug" : "sound_lightmare",
+        "file" : "monster/lightmare.ogg"
+    },
+    {
+        "slug" : "sound_loliferno",
+        "file" : "monster/loliferno.ogg"
+    },
+    {
+        "slug" : "sound_lunight",
+        "file" : "monster/lunight.ogg"
+    },
+    {
+        "slug" : "sound_manosting",
+        "file" : "monster/manosting.ogg"
+    },
+    {
+        "slug" : "sound_masknake",
+        "file" : "monster/masknake.ogg"
+    },
+    {
+        "slug" : "sound_medushock",
+        "file" : "monster/medushock.ogg"
+    },
+    {
+        "slug" : "sound_memnomnom",
+        "file" : "monster/memnomnom.ogg"
+    },
+    {
+        "slug" : "sound_merlicun",
+        "file" : "monster/merlicun.ogg"
+    },
+    {
+        "slug" : "sound_metesaur",
+        "file" : "monster/metesaur.ogg"
+    },
+    {
+        "slug" : "sound_miaownolith",
+        "file" : "monster/miaownolith.ogg"
+    },
+    {
+        "slug" : "sound_moloch",
+        "file" : "monster/moloch.ogg"
+    },
+    {
+        "slug" : "sound_mrmoswitch",
+        "file" : "monster/mrmoswitch.ogg"
+    },
+    {
+        "slug" : "sound_mystikapi",
+        "file" : "monster/mystikapi.ogg"
+    },
+    {
+        "slug" : "sound_narcileaf",
+        "file" : "monster/narcileaf.ogg"
+    },
+    {
+        "slug" : "sound_neutrito",
+        "file" : "monster/neutrito.ogg"
+    },
+    {
+        "slug" : "sound_noctalo",
+        "file" : "monster/noctalo.ogg"
+    },
+    {
+        "slug" : "sound_noctula",
+        "file" : "monster/noctula.ogg"
+    },
+    {
+        "slug" : "sound_nostray",
+        "file" : "monster/nostray.ogg"
+    },
+    {
+        "slug" : "sound_nudiflot_female",
+        "file" : "monster/nudiflot_female.ogg"
+    },
+    {
+        "slug" : "sound_nudiflot_male",
+        "file" : "monster/nudiflot_male.ogg"
+    },
+    {
+        "slug" : "sound_nudikill",
+        "file" : "monster/nudikill.ogg"
+    },
+    {
+        "slug" : "sound_nudimind",
+        "file" : "monster/nudimind.ogg"
+    },
+    {
+        "slug" : "sound_nuenflu",
+        "file" : "monster/nuenflu.ogg"
+    },
+    {
+        "slug" : "sound_nut",
+        "file" : "monster/nut.ogg"
+    },
+    {
+        "slug" : "sound_octabode",
+        "file" : "monster/octabode.ogg"
+    },
+    {
+        "slug" : "sound_ouroboutlet",
+        "file" : "monster/ouroboutlet.ogg"
+    },
+    {
+        "slug" : "sound_pairagrim",
+        "file" : "monster/pairagrim.ogg"
+    },
+    {
+        "slug" : "sound_pairagrin",
+        "file" : "monster/pairagrin.ogg"
+    },
+    {
+        "slug" : "sound_pantherafira",
+        "file" : "monster/pantherafira.ogg"
+    },
+    {
+        "slug" : "sound_pharfan",
+        "file" : "monster/pharfan.ogg"
+    },
+    {
+        "slug" : "sound_picc",
+        "file" : "monster/picc.ogg"
+    },
+    {
+        "slug" : "sound_pigabyte",
+        "file" : "monster/pigabyte.ogg"
+    },
+    {
+        "slug" : "sound_pipis",
+        "file" : "monster/pipis.ogg"
+    },
+    {
+        "slug" : "sound_poinchin",
+        "file" : "monster/poinchin.ogg"
+    },
+    {
+        "slug" : "sound_polyrock",
+        "file" : "monster/polyrock.ogg"
+    },
+    {
+        "slug" : "sound_possessun",
+        "file" : "monster/possessun.ogg"
+    },
+    {
+        "slug" : "sound_propellercat",
+        "file" : "monster/propellercat.ogg"
+    },
+    {
+        "slug" : "sound_prophetoise",
+        "file" : "monster/prophetoise.ogg"
+    },
+    {
+        "slug" : "sound_puparmor",
+        "file" : "monster/puparmor.ogg"
+    },
+    {
+        "slug" : "sound_pyraminx",
+        "file" : "monster/pyraminx.ogg"
+    },
+    {
+        "slug" : "sound_pythock",
+        "file" : "monster/pythock.ogg"
+    },
+    {
+        "slug" : "sound_pythwire",
+        "file" : "monster/pythwire.ogg"
+    },
+    {
+        "slug" : "sound_qetzlrokilus",
+        "file" : "monster/qetzlrokilus.ogg"
+    },
+    {
+        "slug" : "sound_rabbitosaur",
+        "file" : "monster/rabbitosaur.ogg"
+    },
+    {
+        "slug" : "sound_rhincus",
+        "file" : "monster/rhincus.ogg"
+    },
+    {
+        "slug" : "sound_rockat",
+        "file" : "monster/rockat.ogg"
+    },
+    {
+        "slug" : "sound_rockitten",
+        "file" : "monster/rockitten.ogg"
+    },
+    {
+        "slug" : "sound_rosarin",
+        "file" : "monster/rosarin.ogg"
+    },
+    {
+        "slug" : "sound_ruption",
+        "file" : "monster/ruption.ogg"
+    },
+    {
+        "slug" : "sound_sadito",
+        "file" : "monster/sadito.ogg"
+    },
+    {
+        "slug" : "sound_sampsack",
+        "file" : "monster/sampsack.ogg"
+    },
+    {
+        "slug" : "sound_sampsage",
+        "file" : "monster/sampsage.ogg"
+    },
+    {
+        "slug" : "sound_sapragon",
+        "file" : "monster/sapragon.ogg"
+    },
+    {
+        "slug" : "sound_sapsnap",
+        "file" : "monster/sapsnap.ogg"
+    },
+    {
+        "slug" : "sound_saurchin",
+        "file" : "monster/saurchin.ogg"
+    },
+    {
+        "slug" : "sound_sclairus",
+        "file" : "monster/sclairus.ogg"
+    },
+    {
+        "slug" : "sound_seirein",
+        "file" : "monster/seirein.ogg"
+    },
+    {
+        "slug" : "sound_selket",
+        "file" : "monster/selket.ogg"
+    },
+    {
+        "slug" : "sound_selmatek",
+        "file" : "monster/selmatek.ogg"
+    },
+    {
+        "slug" : "sound_shammer",
+        "file" : "monster/shammer.ogg"
+    },
+    {
+        "slug" : "sound_sharpfin",
+        "file" : "monster/sharpfin.ogg"
+    },
+    {
+        "slug" : "sound_shelagu",
+        "file" : "monster/shelagu.ogg"
+    },
+    {
+        "slug" : "sound_shnark",
+        "file" : "monster/shnark.ogg"
+    },
+    {
+        "slug" : "sound_shybulb",
+        "file" : "monster/shybulb.ogg"
+    },
+    {
+        "slug" : "sound_skwib",
+        "file" : "monster/skwib.ogg"
+    },
+    {
+        "slug" : "sound_sludgehog",
+        "file" : "monster/sludgehog.ogg"
+    },
+    {
+        "slug" : "sound_snaki",
+        "file" : "monster/snaki.ogg"
+    },
+    {
+        "slug" : "sound_snarlon",
+        "file" : "monster/snarlon.ogg"
+    },
+    {
+        "slug" : "sound_snock",
+        "file" : "monster/snock.ogg"
+    },
+    {
+        "slug" : "sound_snokari",
+        "file" : "monster/snokari.ogg"
+    },
+    {
+        "slug" : "sound_snowrilla",
+        "file" : "monster/snowrilla.ogg"
+    },
+    {
+        "slug" : "sound_sockeserp",
+        "file" : "monster/sockeserp.ogg"
+    },
+    {
+        "slug" : "sound_solight",
+        "file" : "monster/solight.ogg"
+    },
+    {
+        "slug" : "sound_spighter",
+        "file" : "monster/spighter.ogg"
+    },
+    {
+        "slug" : "sound_spoilurm",
+        "file" : "monster/spoilurm.ogg"
+    },
+    {
+        "slug" : "sound_spycozeus",
+        "file" : "monster/spycozeus.ogg"
+    },
+    {
+        "slug" : "sound_squabbit",
+        "file" : "monster/squabbit.ogg"
+    },
+    {
+        "slug" : "sound_statursus",
+        "file" : "monster/statursus.ogg"
+    },
+    {
+        "slug" : "sound_strella",
+        "file" : "monster/strella.ogg"
+    },
+    {
+        "slug" : "sound_sumchon",
+        "file" : "monster/sumchon.ogg"
+    },
+    {
+        "slug" : "sound_tarpeur",
+        "file" : "monster/tarpeur.ogg"
+    },
+    {
+        "slug" : "sound_taupypus",
+        "file" : "monster/taupypus.ogg"
+    },
+    {
+        "slug" : "sound_teddisun",
+        "file" : "monster/teddisun.ogg"
+    },
+    {
+        "slug" : "sound_tetrchimp",
+        "file" : "monster/tetrchimp.ogg"
+    },
+    {
+        "slug" : "sound_tigrock",
+        "file" : "monster/tigrock.ogg"
+    },
+    {
+        "slug" : "sound_tikoal",
+        "file" : "monster/tikoal.ogg"
+    },
+    {
+        "slug" : "sound_tikorch",
+        "file" : "monster/tikorch.ogg"
+    },
+    {
+        "slug" : "sound_tobishimi",
+        "file" : "monster/tobishimi.ogg"
+    },
+    {
+        "slug" : "sound_toufigel",
+        "file" : "monster/toufigel.ogg"
+    },
+    {
+        "slug" : "sound_tourbidi",
+        "file" : "monster/tourbidi.ogg"
+    },
+    {
+        "slug" : "sound_trapsnap",
+        "file" : "monster/trapsnap.ogg"
+    },
+    {
+        "slug" : "sound_tsushimi",
+        "file" : "monster/tsushimi.ogg"
+    },
+    {
+        "slug" : "sound_tumblebee",
+        "file" : "monster/tumblebee.ogg"
+    },
+    {
+        "slug" : "sound_tumblequill",
+        "file" : "monster/tumblequill.ogg"
+    },
+    {
+        "slug" : "sound_tumbleworm",
+        "file" : "monster/tumbleworm.ogg"
+    },
+    {
+        "slug" : "sound_turnipper",
+        "file" : "monster/turnipper.ogg"
+    },
+    {
+        "slug" : "sound_tweesher",
+        "file" : "monster/tweesher.ogg"
+    },
+    {
+        "slug" : "sound_urcine",
+        "file" : "monster/urcine.ogg"
+    },
+    {
+        "slug" : "sound_vamporm",
+        "file" : "monster/vamporm.ogg"
+    },
+    {
+        "slug" : "sound_velocitile",
+        "file" : "monster/velocitile.ogg"
+    },
+    {
+        "slug" : "sound_vigueur",
+        "file" : "monster/vigueur.ogg"
+    },
+    {
+        "slug" : "sound_vivicinder",
+        "file" : "monster/vivicinder.ogg"
+    },
+    {
+        "slug" : "sound_vividactil",
+        "file" : "monster/vividactil.ogg"
+    },
+    {
+        "slug" : "sound_vivipere",
+        "file" : "monster/vivipere.ogg"
+    },
+    {
+        "slug" : "sound_viviphyta",
+        "file" : "monster/viviphyta.ogg"
+    },
+    {
+        "slug" : "sound_vivisource",
+        "file" : "monster/vivisource.ogg"
+    },
+    {
+        "slug" : "sound_viviteel",
+        "file" : "monster/viviteel.ogg"
+    },
+    {
+        "slug" : "sound_vivitrans",
+        "file" : "monster/vivitrans.ogg"
+    },
+    {
+        "slug" : "sound_vivitron",
+        "file" : "monster/vivitron.ogg"
+    },
+    {
+        "slug" : "sound_volcoli",
+        "file" : "monster/volcoli.ogg"
+    },
+    {
+        "slug" : "sound_weavifly",
+        "file" : "monster/weavifly.ogg"
+    },
+    {
+        "slug" : "sound_windeye",
+        "file" : "monster/windeye.ogg"
+    },
+    {
+        "slug" : "sound_wrougon",
+        "file" : "monster/wrougon.ogg"
+    },
+    {
+        "slug" : "sound_yiinaang",
+        "file" : "monster/yiinaang.ogg"
+    },
+    {
+        "slug" : "sound_zunna",
+        "file" : "monster/zunna.ogg"
+    },
+    {
+        "slug" : "sound_birb_robo",
+        "file" : "monster/birb_robo.ogg"
+    },
+    {
+        "slug" : "sound_chrome_robo",
+        "file" : "monster/chrome_robo.ogg"
+    },
+    {
+        "slug" : "sound_dark_robo",
+        "file" : "monster/dark_robo.ogg"
+    },
+    {
+        "slug" : "sound_pilthropus",
+        "file" : "monster/pilthropus.ogg"
+    },
+    {
+        "slug" : "sound_coproblight",
+        "file" : "monster/coproblight.ogg"
+    },
+    {
+        "slug" : "sound_xeon",
+        "file" : "monster/xeon.ogg"
     }
 ]

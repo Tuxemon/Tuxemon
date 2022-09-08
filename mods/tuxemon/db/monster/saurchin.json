@@ -23,6 +23,10 @@
     "txmn_id": 156,
     "height": 800,
     "weight": 3000,
+    "sounds": {
+        "combat_call": "sound_saurchin",
+        "faint_call": "sound_saurchin"
+    },
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

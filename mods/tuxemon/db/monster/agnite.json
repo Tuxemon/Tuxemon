@@ -23,6 +23,10 @@
     "txmn_id": 13,
     "height": 80,
     "weight": 24,
+    "sounds": {
+        "combat_call": "sound_agnite",
+        "faint_call": "sound_agnite"
+    },
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

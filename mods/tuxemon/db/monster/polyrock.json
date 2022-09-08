@@ -23,6 +23,10 @@
     "txmn_id": 116,
     "height": 0,
     "weight": 0,
+    "sounds": {
+        "combat_call": "sound_polyrock",
+        "faint_call": "sound_polyrock"
+    },
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

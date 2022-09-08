@@ -23,6 +23,10 @@
     "txmn_id": 64,
     "height": 0,
     "weight": 0,
+    "sounds": {
+        "combat_call": "sound_anoleaf",
+        "faint_call": "sound_anoleaf"
+    },
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

@@ -24,6 +24,10 @@
     "txmn_id": 154,
     "height": 0,
     "weight": 0,
+    "sounds": {
+        "combat_call": "sound_seirein",
+        "faint_call": "sound_seirein"
+    },
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

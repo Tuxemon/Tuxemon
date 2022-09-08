@@ -23,6 +23,10 @@
     "txmn_id": 12,
     "height": 216,
     "weight": 90,
+    "sounds": {
+        "combat_call": "sound_moloch",
+        "faint_call": "sound_moloch"
+    },
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

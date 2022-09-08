@@ -23,6 +23,10 @@
     "txmn_id": 76,
     "height": 0,
     "weight": 0,
+    "sounds": {
+        "combat_call": "sound_shybulb",
+        "faint_call": "sound_shybulb"
+    },
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

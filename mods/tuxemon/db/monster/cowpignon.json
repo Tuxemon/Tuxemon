@@ -24,6 +24,10 @@
     "txmn_id": 106,
     "height": 30.48,
     "weight": 2,
+    "sounds": {
+        "combat_call": "sound_cowpignon",
+        "faint_call": "sound_cowpignon"
+    },
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

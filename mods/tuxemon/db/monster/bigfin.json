@@ -23,6 +23,10 @@
     "txmn_id": 24,
     "height": 1200,
     "weight": 50000,
+    "sounds": {
+        "combat_call": "sound_bigfin",
+        "faint_call": "sound_bigfin"
+    },
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

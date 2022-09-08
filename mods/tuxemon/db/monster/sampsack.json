@@ -23,6 +23,10 @@
     "txmn_id": 96,
     "height": 225,
     "weight": 235,
+    "sounds": {
+        "combat_call": "sound_sampsack",
+        "faint_call": "sound_sampsack"
+    },
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

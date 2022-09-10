@@ -1,7 +1,7 @@
 {
   "tech_id": 42,
   "accuracy": 0.75,
-  "animation": "snake right 64px",
+  "animation": "snake_right",
   "category": "physical",
   "effects": [
     "damage"

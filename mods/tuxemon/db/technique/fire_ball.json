@@ -1,7 +1,7 @@
 {
   "tech_id": 4,
   "accuracy": 0.7,
-  "animation": "darkfire",
+  "animation": "fireball",
   "category": "physical",
   "effects": [
     "damage"

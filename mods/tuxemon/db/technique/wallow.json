@@ -1,7 +1,7 @@
 {
   "tech_id": 46,
   "accuracy": 1,
-  "animation": "water_spurt",
+  "animation": "waterspurt",
   "category": "physical",
   "effects": [],
   "healing_power": 4.0,

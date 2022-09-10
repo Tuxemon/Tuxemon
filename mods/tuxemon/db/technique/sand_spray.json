@@ -1,7 +1,7 @@
 {
   "tech_id": 32,
   "accuracy": 0.8,
-  "animation": "dusty explosion",
+  "animation": "explosion_dusty",
   "category": "physical",
   "effects": [
     "damage"

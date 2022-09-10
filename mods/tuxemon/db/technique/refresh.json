@@ -1,7 +1,7 @@
 {
   "tech_id": 40,
   "accuracy": 1,
-  "animation": "heal (no cross)",
+  "animation": "heal_burst",
   "category": "physical",
   "effects": [],
   "healing_power": 4.0,

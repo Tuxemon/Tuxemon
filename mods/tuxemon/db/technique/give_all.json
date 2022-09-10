@@ -1,7 +1,7 @@
 {
   "tech_id": 34,
   "accuracy": 1,
-  "animation": "fire_lion_front",
+  "animation": "firelion_front",
   "category": "physical",
   "effects": [
     "damage"

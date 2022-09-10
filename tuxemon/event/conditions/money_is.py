@@ -81,7 +81,6 @@ class MoneyIsCondition(EventCondition):
             elif operator == "<=":
                 return player.money[wallet] <= int(amount)
             else:
-                logger.error(f"invalid operation type {operator}")
-                raise ValueError
+                raise ValueError(f"invalid operation type {operator}")
         else:
             return False

@@ -17,7 +17,6 @@ import requests
 from lxml import html
 from PIL import Image
 
-FRAME_SIZE = 64
 WIKI_URL = "https://wiki.tuxemon.org"
 
 TUXEMON_ROOT_DIR = pathlib.Path(__file__).resolve().parent.parent
@@ -45,6 +44,7 @@ def process_filename(filepath: str) -> str:
     """Extract base filename from an animation file path."""
     cleaned_filename = os.path.splitext(os.path.basename(filepath))[0]
     cleaned_filename = cleaned_filename.strip("0123456789_")
+    cleaned_filename = cleaned_filename.split("px-")[-1]
     cleaned_filename = cleaned_filename.lower()
     return cleaned_filename
 
@@ -94,9 +94,6 @@ def gif_to_frames(filepath: str) -> None:
     with Image.open(filepath) as image:
         if not image.is_animated:
             print(f"{filepath} is not animated, skipped")
-            return
-        if not image.width == image.height == FRAME_SIZE:
-            print(f"{filepath} is not {FRAME_SIZE}x{FRAME_SIZE}, skipped")
             return
 
         base_name = process_filename(filepath)

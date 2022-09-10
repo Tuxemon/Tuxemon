@@ -9,11 +9,11 @@
         },
         {
             "level_learned": 2,
-            "technique": "breathe_fire"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 2,
-            "technique": "battery_acid"
+            "technique": "fume"
         }
     ],
     "shape": "Dragon",

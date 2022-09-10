@@ -1,7 +1,7 @@
 {
   "tech_id": 51,
   "accuracy": 1,
-  "animation": "triple whammy",
+  "animation": "triple_whammy",
   "category": "physical",
   "effects": [
     "damage"

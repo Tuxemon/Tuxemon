@@ -163,7 +163,8 @@
   <object id="29" name="Pay Up" type="event" x="16" y="144" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cottonart_shopkeeper"/>
-    <property name="act2" value="translated_dialog_choice yes:no,paygallery"/>
+    <property name="act2" value="translated_dialog player_wallet"/>
+    <property name="act3" value="translated_dialog_choice yes:no,paygallery"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="not variable_set paygallery:yes"/>
@@ -174,6 +175,7 @@
    <properties>
     <property name="act1" value="pathfind player,2,8"/>
     <property name="act2" value="set_variable paygallery:null"/>
+    <property name="act3" value="transfer_money -,50,spyder_cotton_artshop"/>
     <property name="cond1" value="is variable_set paygallery:yes"/>
    </properties>
   </object>

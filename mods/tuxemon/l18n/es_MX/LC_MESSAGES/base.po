@@ -1523,6 +1523,11 @@ msgstr ""
 msgid "revive_description"
 msgstr "Revive a un Tuxemon noqueado y restaura 20 HP."
 
+# Money notification
+
+msgid "player_wallet"
+msgstr "La cartera de ${{name}}: ${{money}}"
+
 # TMs
 msgid "tm_avalanche"
 msgstr "MT: Avalancha"

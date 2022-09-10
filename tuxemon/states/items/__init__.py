@@ -416,7 +416,7 @@ class ShopBuyMenuState(ShopMenuState):
             or not self.economy.lookup_item_price(item.slug)
             else self.economy.lookup_item_price(item.slug)
         )
-        money = self.buyer.game_variables.get("money", 0)
+        money = self.buyer.money["player"]
         if int(price) == 0:
             max_quantity = (
                 MAX_QTY

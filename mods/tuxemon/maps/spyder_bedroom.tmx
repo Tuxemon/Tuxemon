@@ -76,7 +76,7 @@
   </object>
   <object id="28" name="Give Starting Money" type="event" x="32" y="16" width="16" height="16">
    <properties>
-    <property name="act30" value="variable_math money,+,1000000"/>
+    <property name="act30" value="transfer_money +,10000,mom"/>
     <property name="act40" value="set_variable spyder_starting_money:yes"/>
     <property name="cond1" value="not variable_set spyder_starting_money:yes"/>
    </properties>

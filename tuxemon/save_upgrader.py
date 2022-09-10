@@ -82,6 +82,13 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
         save_data["game_variables"]["steps"] = 0
 
     save_data["battle_history"] = save_data.get("battle_history", {})
+    save_data["money"] = save_data.get("money", {})
+
+    # set money old savegame and avoid getting the starter
+    if not save_data["money"]:
+        save_data["money"]["player"] = 10000
+        save_data["game_variables"]["xero_starting_money"] = "yes"
+        save_data["game_variables"]["spyder_starting_money"] = "yes"
 
     version = save_data.get("version", 0)
     for i in range(version, SAVE_VERSION):

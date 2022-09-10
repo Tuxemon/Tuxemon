@@ -1432,6 +1432,11 @@ msgstr ""
 "\n"
 "Il y a une marque de baiser à côté de l'adresse"
 
+# Money notification
+
+msgid "player_wallet"
+msgstr "Portefeuille de ${{name}}: ${{money}}"
+
 # Allie's Address
 msgid "allies_address"
 msgstr "Adresse d'Allie"
@@ -4602,15 +4607,6 @@ msgstr ""
 "00000 : jE n'@i j@Ma1s 3t3 nÉ\n"
 "${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} "
 "${{name}} ${{name}} ${{name}}"
-
-msgid "spyder_cottonart_intro"
-msgstr ""
-"Bienvenue à la Galerie d'Art de Cotonville. Ah - je voulais dire au Magasin "
-"d'Art.\n"
-" Depuis qu'ils nous ont retiré les aides, nous devons vendre les tableaux "
-"plutôt que de simplement les exposer.\n"
-" L'entrée est à 50$. Ça nous sert à payer le dividende annuel de "
-"l'entreprise."
 
 msgid "spyder_cottonart_shopkeeper"
 msgstr ""

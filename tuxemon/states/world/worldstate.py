@@ -386,6 +386,7 @@ class WorldState(state.State):
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player.game_variables))
         logger.debug("Battle History:" + str(self.player.battle_history))
+        logger.debug("Money:" + str(self.player.money))
 
     def draw(self, surface: pygame.surface.Surface) -> None:
         """

@@ -247,6 +247,7 @@ def replace_text(session: Session, text: str) -> str:
     text = text.replace("${{name}}", session.player.name)
     text = text.replace("${{currency}}", "$")
     text = text.replace(r"\n", "\n")
+    text = text.replace("${{money}}", str(session.player.money["player"]))
 
     for i in range(len(session.player.monsters)):
         monster = session.player.monsters[i]

@@ -1690,6 +1690,11 @@ msgstr "Oh, ciao!"
 msgid "hmmm"
 msgstr "Mi chiedo cosa stiano facendo là"
 
+# Money notification
+
+msgid "player_wallet"
+msgstr "Il portafoglio di ${{name}}: ${{money}}"
+
 # Default mod names on selection menu
 msgid "xero_campaign"
 msgstr "Tuxemon: Xero"

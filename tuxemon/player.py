@@ -52,7 +52,7 @@ class Player(NPC):
         self.isplayer = True
 
         # Game variables for use with events
-        self.game_variables = {"steps": 0, "money": 0}
+        self.game_variables = {"steps": 0}
 
     def update(self, time_delta: float) -> None:
         """

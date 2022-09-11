@@ -100,10 +100,9 @@ class TaskBase(pygame.sprite.Sprite):
             when = self._valid_schedules[0]
 
         if when not in self._valid_schedules:
-            raise ValueError(
-                "invalid time to schedule a callback"
-                f"valid: {self._valid_schedules}"
-            )
+            logger.critical("invalid time to schedule a callback")
+            logger.critical("valid:", self._valid_schedules)
+            raise ValueError
         self._callbacks[when].append(func)
 
     def _execute_callbacks(self, when: str) -> None:

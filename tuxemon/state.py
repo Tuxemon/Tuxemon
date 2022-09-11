@@ -358,7 +358,8 @@ class StateManager:
         try:
             state = self._state_dict[state_name]
         except KeyError:
-            raise RuntimeError(f"Cannot find state: {state_name}")
+            logger.critical(f"Cannot find state: {state_name}")
+            raise RuntimeError
         instance = state(self)
         return instance
 
@@ -493,7 +494,8 @@ class StateManager:
 
         # raise error if stack is empty
         if not self._state_stack:
-            raise RuntimeError("Attempted to pop state when stack was empty.")
+            logger.critical("Attempted to pop state when stack was empty.")
+            raise RuntimeError
 
         # pop the top state
         if state is None:
@@ -502,9 +504,10 @@ class StateManager:
         try:
             index = self._state_stack.index(state)
         except IndexError:
-            raise RuntimeError(
+            logger.critical(
                 "Attempted to pop state when state was not active.",
             )
+            raise RuntimeError
 
         if index == 0:
             logger.debug("pop state: %s", state.name)
@@ -629,7 +632,8 @@ class StateManager:
         logger.debug("replace state: %s", state_name)
         # raise error if stack is empty
         if not self._state_stack:
-            raise RuntimeError("Attempted to replace state when stack was empty.")
+            logger.critical("Attempted to replace state when stack was empty.")
+            raise RuntimeError
 
         previous = self._state_stack[0]
         instance = self.push_state(state_name, **kwargs)

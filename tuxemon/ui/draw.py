@@ -234,7 +234,8 @@ def constrain_width(
             token_width = font.size(test)[0]
             if token_width >= width:
                 if scrap is None:
-                    raise RuntimeError("message is too large for width", text)
+                    logger.error("message is too large for width", text)
+                    raise RuntimeError
                 yield scrap
                 scrap = word
             else:

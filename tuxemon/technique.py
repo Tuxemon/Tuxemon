@@ -283,15 +283,14 @@ class Technique:
             elif effect == "hardshell":
                 result = self.hardshell(user)
             elif effect == "status":
-                for category in self.category:
-                    if category == "poison":
-                        result = self.poison(target)
-                    elif category == "lifeleech":
-                        result = self.lifeleech(target)
-                    elif category == "recover":
-                        result = self.recover(target)
-                    else:
-                        result = getattr(self, self.category)(target)
+                if self.category == "poison":
+                    result = self.poison(target)
+                elif self.category == "lifeleech":
+                    result = self.lifeleech(target)
+                elif self.category == "recover":
+                    result = self.recover(target)
+                else:
+                    result = getattr(self, self.category)(target)
             else:
                 result = getattr(self, effect)(user, target)
             meta_result = merge_results(result, meta_result)

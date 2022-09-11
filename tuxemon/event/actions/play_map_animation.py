@@ -77,8 +77,7 @@ class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
         elif self.parameters.loop == "noloop":
             loop = False
         else:
-            logger.error('animation loop value must be "loop" or "noloop"')
-            raise ValueError
+            raise ValueError('animation loop value must be "loop" or "noloop"')
 
         # Check to see if this animation has already been loaded.
         # If it has, play the animation.

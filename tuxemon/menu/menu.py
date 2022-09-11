@@ -326,11 +326,10 @@ class Menu(Generic[T], state.State):
             for sprite in self.sprites:
                 if isinstance(sprite, TextArea):
                     return sprite
-            logger.error(
+            raise RuntimeError(
                 "attempted to use 'alert' on state without a TextArea",
                 message,
             )
-            raise RuntimeError
 
         self.animate_text(find_textarea(), message, callback)
 

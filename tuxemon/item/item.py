@@ -135,7 +135,7 @@ class Item:
         try:
             results = db.lookup(slug, table="item").dict()
         except KeyError:
-            logger.error(msg=f"Failed to find item with slug {slug}")
+            logger.error(f"Failed to find item with slug {slug}")
             return
 
         self.slug = results["slug"]
@@ -187,9 +187,8 @@ class Item:
                 params = None
             try:
                 effect = Item.effects_classes[name]
-            except KeyError:
-                error = f'Error: ItemEffect "{name}" not implemented'
-                logger.error(error)
+            except KeyError:                
+                logger.error(f'Error: ItemEffect "{name}" not implemented')
             else:
                 ret.append(effect(self.session, self.user, params))
 
@@ -223,8 +222,7 @@ class Item:
             try:
                 condition = Item.conditions_classes[name]
             except KeyError:
-                error = f'Error: ItemCondition "{name}" not implemented'
-                logger.error(error)
+                logger.error(f'Error: ItemCondition "{name}" not implemented')
             else:
                 ret.append(condition(context, self.session, self.user, params))
 

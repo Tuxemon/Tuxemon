@@ -125,7 +125,7 @@ class ItemCondition(Generic[ParameterClass]):
         except ValueError:
             logger.error(f"error while parsing for {self.name}")
             logger.error(f"cannot parse parameters: {parameters}")
-            logger.error(self.param_class)
+            logger.error(f"{self.param_class}")
             logger.error(
                 "please check the parameters and verify they are correct"
             )

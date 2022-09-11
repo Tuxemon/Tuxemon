@@ -23,7 +23,7 @@ events:
     type: "event"
   Give Money:
     actions:
-    - transfer_money +,10000,mom
+    - set_money player,10000
     - set_variable xero_starting_money:yes
     conditions:
     - not variable_set xero_starting_money:yes

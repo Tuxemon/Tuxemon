@@ -244,7 +244,8 @@ def number_or_variable(
         try:
             return float(player.game_variables[value])
         except (KeyError, ValueError, TypeError):
-            raise ValueError(f"invalid number or game variable {value}")
+            logger.error(f"invalid number or game variable {value}")
+            raise ValueError
 
 
 def cast_values(

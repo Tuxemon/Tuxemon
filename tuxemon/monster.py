@@ -324,7 +324,8 @@ class Monster:
         results = db.lookup(slug, table="monster").dict()
 
         if results is None:
-            raise RuntimeError(f"monster {slug} is not found")
+            logger.error(f"monster {slug} is not found")
+            raise RuntimeError
         self.level = random.randint(2, 5)
         self.slug = results["slug"]
         self.name = T.translate(results["slug"])

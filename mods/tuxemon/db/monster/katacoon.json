@@ -18,13 +18,13 @@
     ],
     "evolutions": [
         {
-            "path": "",
-            "at_level": 12,
+            "path": "melee_is_higher_than_armour",
+            "at_level": 10,
             "monster_slug": "bugnin"
         },
         {
-            "path": "",
-            "at_level": 12,
+            "path": "armour_is_higher_than_melee",
+            "at_level": 10,
             "monster_slug": "sumchon"
         }
     ],

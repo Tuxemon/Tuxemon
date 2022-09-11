@@ -18,13 +18,23 @@
     ],
     "evolutions": [
         {
-            "path": "",
-            "at_level": 20,
+            "path": "wood_booster",
+            "at_level": 0,
             "monster_slug": "bamboon"
         },
         {
-            "path": "",
-            "at_level": 20,
+            "path": "lucky_bamboo",
+            "at_level": 0,
+            "monster_slug": "bamboon"
+        },
+        {
+            "path": "water_booster",
+            "at_level": 0,
+            "monster_slug": "frondly"
+        },
+        {
+            "path": "peace_lily",
+            "at_level": 0,
             "monster_slug": "frondly"
         }
     ],

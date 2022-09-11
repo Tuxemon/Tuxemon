@@ -18,13 +18,23 @@
     ],
     "evolutions": [
         {
-            "path": "",
-            "at_level": 20,
+            "path": "earth_booster",
+            "at_level": 0,
             "monster_slug": "grinflare"
         },
         {
-            "path": "",
-            "at_level": 20,
+            "path": "flintstone",
+            "at_level": 0,
+            "monster_slug": "grinflare"
+        },
+        {
+            "path": "metal_booster",
+            "at_level": 0,
+            "monster_slug": "grintrock"
+        },
+        {
+            "path": "thunderstone",
+            "at_level": 0,
             "monster_slug": "grintrock"
         }
     ],

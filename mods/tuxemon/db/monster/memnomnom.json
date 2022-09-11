@@ -18,13 +18,23 @@
     ],
     "evolutions": [
         {
-            "path": "",
-            "at_level": 20,
+            "path": "earth_booster",
+            "at_level": 0,
             "monster_slug": "miaownolith"
         },
         {
-            "path": "",
-            "at_level": 20,
+            "path": "miaow_milk",
+            "at_level": 0,
+            "monster_slug": "miaownolith"
+        },
+        {
+            "path": "metal_booster",
+            "at_level": 0,
+            "monster_slug": "pyraminx"
+        },
+        {
+            "path": "pyramidion",
+            "at_level": 0,
             "monster_slug": "pyraminx"
         }
     ],

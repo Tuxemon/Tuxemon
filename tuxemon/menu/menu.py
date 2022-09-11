@@ -327,8 +327,8 @@ class Menu(Generic[T], state.State):
                 if isinstance(sprite, TextArea):
                     return sprite
             raise RuntimeError(
-                "attempted to use 'alert' on state without a TextArea",
-                message,
+                f"Attempted to use 'alert' on state without"
+                f"a TextArea: {message}"
             )
 
         self.animate_text(find_textarea(), message, callback)

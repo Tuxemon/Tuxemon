@@ -63,7 +63,9 @@ class SetMonsterHealthAction(EventAction[SetMonsterHealthActionParameters]):
             monster.current_hp = monster.hp
         else:
             if not 0 <= value <= 1:
-                raise ValueError("monster health must between 0 and 1")
+                raise ValueError(
+                    f"Value is not between 0 and 1: {value}"
+                    )
 
             monster.current_hp = int(monster.hp * value)
 

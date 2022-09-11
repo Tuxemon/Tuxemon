@@ -123,9 +123,8 @@ def simple_damage_calculate(
         target_resist = 1
     else:
         raise RuntimeError(
-            "unhandled damage category %s %s",
-            technique.category,
-            technique.range,
+            f"Unhandled damage category:"
+            f"{technique.category} and/or {technique.range}"
         )
 
     mult = simple_damage_multiplier(

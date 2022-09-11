@@ -163,7 +163,9 @@ class Scheduler:
         if next_ts == 0.0:
             self._next_tick_items.append(item)
             if len(self._next_tick_items) > 10:
-                raise RuntimeError
+                raise RuntimeError(
+                    f"Value is > 10: {len(self._next_tick_items)}"
+                    )
         else:
             heappush(self._scheduled_items, item)
         return item

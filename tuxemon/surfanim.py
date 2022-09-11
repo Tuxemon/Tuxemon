@@ -250,7 +250,9 @@ class SurfaceAnimation:
     def rate(self, rate: float) -> None:
         rate = float(rate)
         if rate < 0:
-            raise ValueError("rate must be greater than 0.")
+            raise ValueError(
+                f"Value must be greater than 0: {rate}"
+                )
         self._rate = rate
 
     @property
@@ -279,8 +281,8 @@ class SurfaceAnimation:
     def state(self, state: State) -> None:
         if state not in (PLAYING, PAUSED, STOPPED):
             raise ValueError(
-                "state must be one of surfanim.PLAYING, surfanim.PAUSED, or "
-                "surfanim.STOPPED",
+                f"{state} must be one of surfanim.PLAYING,"
+                "surfanim.PAUSED, or surfanim.STOPPED"
             )
         if state == PLAYING:
             self.play()

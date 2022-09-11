@@ -265,9 +265,9 @@ class Manager:
         # Get the path
         path = self.read_package_from_list(name)
         if os.path.isabs(path):
-            raise OSError("Path is absolute")
+            raise OSError(f"Path is absolute: {path}")
         if path != sanitize_paths(path):
-            raise ValueError("Detected incorrect characters in path")
+            raise ValueError(f"Detected incorrect characters in path: {path}")
         shutil.rmtree(path, ignore_errors=True)
         self.remove_package_from_list(name)
 

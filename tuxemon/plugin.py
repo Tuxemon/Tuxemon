@@ -118,8 +118,7 @@ class PluginManager:
             matches = pattern.findall(folder)
             if len(matches) == 0:
                 raise RuntimeError(
-                    f"Unable to determine plugin module path for: %s",
-                    folder,
+                    f"Unable to determine plugin module path for: {folder}"
                 )
             module_path = matches[0].replace("/", ".")
 

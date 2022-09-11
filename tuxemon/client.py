@@ -523,7 +523,9 @@ class LocalPygameClient:
         """
         map_path = self.get_map_filepath()
         if map_path is None:
-            raise ValueError("Name of the map requested when no map is active")
+            raise ValueError(
+                f"Map requested when no map is active: {map_path}"
+                )
 
         # extract map name from path
         return os.path.basename(map_path)

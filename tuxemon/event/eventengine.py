@@ -300,9 +300,9 @@ class EventEngine:
 
         action = self.get_action(action_name, parameters)
         if action is None:
-            error_msg = f'Map action "{action_name}" is not loaded'
-            logger.warning(error_msg)
-            raise ValueError(error_msg)
+            raise ValueError(
+                f'Map action "{action_name}" is not loaded'
+                )
 
         return action.execute()
 

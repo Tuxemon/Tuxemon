@@ -183,7 +183,9 @@ class Task(TaskBase):
             raise ValueError
 
         if times == 0:
-            raise ValueError
+            raise ValueError(
+                f"Times is equal to 0: {times}"
+                )
 
         super().__init__()
         self._interval = interval

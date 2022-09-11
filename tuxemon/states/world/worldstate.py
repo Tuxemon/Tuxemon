@@ -242,7 +242,9 @@ class WorldState(state.State):
         if map_name:
             self.change_map(map_name)
         else:
-            raise ValueError("You must pass the map name to load")
+            raise ValueError(
+                f"You must pass the map name to load: {map_name}"
+                )
 
     def resume(self) -> None:
         """Called after returning focus to this state"""

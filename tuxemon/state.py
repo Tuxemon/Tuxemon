@@ -531,10 +531,9 @@ class StateManager:
         try:
             index = self._state_stack.index(state)
         except IndexError:
-            logger.critical(
-                "Attempted to remove state which is not in the stack",
+            raise RuntimeError(
+                "Attempted to remove state which is not in the stack"
             )
-            raise RuntimeError
 
         if index == 0:
             logger.debug("remove-pop state: %s", state.name)
@@ -629,7 +628,9 @@ class StateManager:
         logger.debug("replace state: %s", state_name)
         # raise error if stack is empty
         if not self._state_stack:
-            raise RuntimeError("Attempted to replace state when stack was empty.")
+            raise RuntimeError(
+                "Attempted to replace state when stack was empty."
+                )
 
         previous = self._state_stack[0]
         instance = self.push_state(state_name, **kwargs)

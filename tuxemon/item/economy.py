@@ -62,7 +62,9 @@ class Economy:
         try:
             results = db.lookup(slug, table="economy").dict()
         except KeyError:
-            raise RuntimeError(f"Failed to find economy with slug {slug}")
+            raise RuntimeError(
+                f"Failed to find economy with slug: {slug}"
+                )
 
         self.slug = results["slug"]
         self.items = results["items"]
@@ -103,8 +105,8 @@ class Economy:
 
         if price is None:
             raise RuntimeError(
-                f"Price for item '{item_slug}' not found in "
-                f"economy '{self.slug}'"
+                f"Price for item '{item_slug}' not found"
+                f"in economy '{self.slug}'"
             )
 
         return price
@@ -125,8 +127,8 @@ class Economy:
 
         if cost is None:
             raise RuntimeError(
-                f"Cost for item '{item_slug}' not found in "
-                f"economy '{self.slug}'"
+                f"Cost for item '{item_slug}' not found"
+                f"in economy '{self.slug}'"
             )
 
         return cost

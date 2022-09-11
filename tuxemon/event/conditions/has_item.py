@@ -86,7 +86,9 @@ class HasItemCondition(EventCondition):
         try:
             q_test = int(condition.parameters[3])
             if q_test < 0:
-                raise ValueError
+                raise ValueError(
+                    f"Value is < 0: {q_test}"
+                    )
         except IndexError:
             q_test = 1
 

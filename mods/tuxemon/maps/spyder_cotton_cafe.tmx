@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
+<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="29">
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
@@ -210,6 +210,7 @@
     <property name="act50" value="npc_face spyder_cottontown_barmaid,down"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
+    <property name="act80" value="set_variable teleport_faint:spyder_cotton_cafe.tmx 1 10"/>
     <property name="cond1" value="is variable_set chooses:yes"/>
    </properties>
   </object>
@@ -224,6 +225,15 @@
     <property name="cond4" value="is player_at"/>
     <property name="cond5" value="is player_facing up"/>
     <property name="cond6" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="31" name="Auto Healing Teleported" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_monster_health ,"/>
+    <property name="act2" value="set_monster_status ,"/>
+    <property name="act3" value="wait 1"/>
+    <property name="act4" value="set_variable teleport_faint:spyder_cotton_cafe.tmx 1 10"/>
+    <property name="cond1" value="is variable_set battle_last_result:lost"/>
    </properties>
   </object>
  </objectgroup>

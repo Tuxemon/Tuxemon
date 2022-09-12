@@ -707,6 +707,12 @@ Adapted by Sanglorian from the Superpowers Asset Packs.
 * ["Bomb"](https://wiki.tuxemon.org/File:Bomb.gif)
 From the Superpowers Asset Packs.
 
+* ["Breath Blue"](https://wiki.tuxemon.org/File:Breath_blue.gif)
+[https://ansimuz.itch.io/gothicvania-patreon-collection CC BY]
+
+* ["Breath Fire"](https://wiki.tuxemon.org/File:Breath_fire.gif)
+[https://ansimuz.itch.io/gothicvania-patreon-collection CC BY]
+
 * ["Buff Armour"](https://wiki.tuxemon.org/File:Buff_armour.gif)
 Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
@@ -721,6 +727,9 @@ Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel
 
 * ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Claw Yellow"](https://wiki.tuxemon.org/File:Claw_yellow_169.gif)
+From the Superpowers Asset Packs.
 
 * ["Crushing Ball"](https://forum.tuxemon.org/viewtopic.php?pid=506#p506) by
 [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
@@ -746,12 +755,39 @@ From the Superpowers Asset Packs.
 * ["Explosion Burst"](https://wiki.tuxemon.org/File:Explosion_burst.gif)
 [https://opengameart.org/content/animated-explosions CC0 on OGA]
 
+* ["Explosion Cloud"](https://wiki.tuxemon.org/File:Explosion_cloud_48.gif)
+[https://opengameart.org/content/animated-explosions CC0 on OGA]
+
+* ["Explosion Ice"](https://wiki.tuxemon.org/File:Explosion_ice_112.gif)
+From the Superpowers Asset Packs.
+
+* ["Explosion Multi"](https://wiki.tuxemon.org/File:Explosion_multi_128.gif)
+[https://opengameart.org/content/animated-explosions CC0 on OGA]
+
+* ["Explosion Mushroom"](https://wiki.tuxemon.org/File:Explosion_mushroom_128.gif)
+[https://opengameart.org/content/animated-explosions CC0 on OGA]
+
 * ["Explosion Small"](https://wiki.tuxemon.org/File:Explosion_small.gif)
 From the Superpowers Asset Packs.
+
+* ["Explosion Sun"](https://wiki.tuxemon.org/File:Explosion_sun_32.gif)
+[https://opengameart.org/content/animated-explosions CC0 on OGA]
+
+* ["Explosion Total"](https://wiki.tuxemon.org/File:Explosion_total_192.gif)
+[https://opengameart.org/content/animated-explosions CC0 on OGA]
 
 * ["Fire Attack"](https://forum.tuxemon.org/viewtopic.php?id=74) by 
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Fire Big"](https://wiki.tuxemon.org/File:Fire_big_156.gif)
+From the Superpowers Asset Packs.
+
+* ["Fire Big Dark"](https://wiki.tuxemon.org/File:Fire_big_dark_96.gif)
+From the Superpowers Asset Packs.
+
+* ["Fireball"](https://wiki.tuxemon.org/File:Fireball_114.gif)
+From the Superpowers Asset Packs.
 
 * ["Firelion Back"](https://wiki.tuxemon.org/File:Firelion_back_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
@@ -765,8 +801,17 @@ By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content
 * ["Firelion Front"](https://wiki.tuxemon.org/File:Firelion_front.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
+* ["Firelion Right"](https://wiki.tuxemon.org/File:Firelion_right.gif)
+By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Firelion Right"](https://wiki.tuxemon.org/File:Firelion_right_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
 * ["Firetwirl"](https://wiki.tuxemon.org/File:Firetwirl.gif)
 From the Superpowers Asset Packs.
+
+* ["Flameball Blue"](https://wiki.tuxemon.org/File:Flameball_blue.gif)
+[https://opengameart.org/content/bosses-and-monsters-spritesheets-ars-notoria CC BY 3.0 on OGA]
 
 * ["Gloop Blue"](https://wiki.tuxemon.org/File:Gloop_blue.gif)
 Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan B...
@@ -776,6 +821,12 @@ A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Cha
 
 * ["Gloop Orange"](https://wiki.tuxemon.org/File:Gloop_orange.gif)
 Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan B...
+
+* ["Heal Burst"](https://wiki.tuxemon.org/File:Heal_burst_120.gif)
+Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Heal Cross"](https://wiki.tuxemon.org/File:Heal_cross_120.gif)
+From the Superpowers Asset Packs.
 
 * ["Heal Swarm"](https://wiki.tuxemon.org/File:Heal_swarm_126.gif)
 From the Superpowers Asset Packs.
@@ -792,11 +843,17 @@ Adapted to 64px by Sanglorian.  From the Superpowers Asset Packs.
 * ["Icetacle"](https://wiki.tuxemon.org/File:Icetacle.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
+* ["Join"](https://wiki.tuxemon.org/File:Join_80.gif)
+A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
 * ["Lance Ice"](https://wiki.tuxemon.org/File:Lance_ice_80.gif)
 From the Superpowers Asset Packs.
 
 * ["Lance Ice"](https://wiki.tuxemon.org/File:Lance_ice.gif)
 Resized by Sanglorian from the Superpowers Asset Packs.
+
+* ["Lightning Bolt"](https://wiki.tuxemon.org/File:Lightning_bolt_138.gif)
+From the Superpowers Asset Packs.
 
 * ["Lightning Claw"](https://wiki.tuxemon.org/File:Lightning_claw_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
@@ -814,6 +871,9 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Pound Bright"](https://wiki.tuxemon.org/File:Pound_bright.gif)
 From the Superpowers Asset Packs.
 
+* ["Power Arc"](https://wiki.tuxemon.org/File:Power_arc_154.gif)
+From the Superpowers Asset Packs.
+
 * ["Power Slash"](https://forum.tuxemon.org/viewtopic.php?id=74) by
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
@@ -826,6 +886,12 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Pushtrap Right"](https://wiki.tuxemon.org/File:Pushtrap_right.gif)
 [https://opengameart.org/content/animated-traps CC0]
+
+* ["Rockfall"](https://wiki.tuxemon.org/File:Rockfall_193.gif)
+From the Superpowers Asset Packs.
+
+* ["Rockfall"](https://wiki.tuxemon.org/File:Rockfall_264.gif)
+From the Superpowers Asset Packs.
 
 * ["Screen"](https://wiki.tuxemon.org/File:Screen_80.gif)
 A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
@@ -860,6 +926,18 @@ By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content
 * ["Shield Turtle Right"](https://wiki.tuxemon.org/File:Shield_turtle_right.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
+* ["Skull Fire"](https://wiki.tuxemon.org/File:Skull_fire.gif)
+[https://ansimuz.itch.io/gothicvania-patreon-collection CC BY]
+
+* ["Skull"](https://wiki.tuxemon.org/File:Skull.gif)
+[https://ansimuz.itch.io/gothicvania-patreon-collection CC BY]
+
+* ["Slash"](https://wiki.tuxemon.org/File:Slash_200.gif)
+From the Superpowers Asset Packs.
+
+* ["Slash Double"](https://wiki.tuxemon.org/File:Slash_double_188.gif)
+From the Superpowers Asset Packs.
+
 * ["Slash Fire"](https://wiki.tuxemon.org/File:Slash_fire.gif)
 From the Superpowers Asset Packs.
 
@@ -873,11 +951,23 @@ From the Superpowers Asset Packs.
 * ["Smokebomb Plume"](https://wiki.tuxemon.org/File:Smokebomb_plume.gif)
 [https://opengameart.org/content/gotthicvania-swamp CC0 on OGA]
 
+* ["Smokebomb Puff"](https://wiki.tuxemon.org/File:Smokebomb_puff_128.gif)
+From the Superpowers Asset Packs.
+
+* ["Snake Front"](https://wiki.tuxemon.org/File:Snake_front_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Snake Left"](https://wiki.tuxemon.org/File:Snake_left_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
 * ["Snake Right"](https://wiki.tuxemon.org/File:Snake_right_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
 * ["Snake Right"](https://wiki.tuxemon.org/File:Snake_right.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Snake Up"](https://wiki.tuxemon.org/File:Snake_up_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
 * ["Sparks Gold Alt"](https://wiki.tuxemon.org/File:Sparks_gold_alt.gif)
 [http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
@@ -929,6 +1019,15 @@ By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content
 
 * ["Tornado Bulk"](https://wiki.tuxemon.org/File:Tornado_bulk.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Triforce"](https://wiki.tuxemon.org/File:Triforce_163.gif)
+From the Superpowers Asset Packs.
+
+* ["Triple Whammy"](https://wiki.tuxemon.org/File:Triple_whammy_80.gif)
+A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Warp"](https://wiki.tuxemon.org/File:Warp.gif)
+[https://opengameart.org/content/warp-effect-0 CC BY]
 
 * ["Whirlwind Attack"](https://forum.tuxemon.org/thread.php?pid=765#p765) by
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 

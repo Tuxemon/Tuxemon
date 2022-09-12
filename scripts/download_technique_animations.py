@@ -64,21 +64,19 @@ def download_animation_credits(gif_page_url: str) -> str:
 
     gifpage_source = requests.get(gif_page_url)
     gifpage_tree = html.fromstring(gifpage_source.content)
-    comment_blocks = gifpage_tree.xpath(
-        "//table[@class='wikitable filehistory']//td[@dir='ltr']"
-    )
-
+    credits_blocks = gifpage_tree.xpath("//div[@class='mw-content-ltr']/div/p")
+    
     credits_text = ""
-    for comment_row in comment_blocks:
-        # Some comment entries are empty
-        if len(comment_row) > 0:
-            for comment_entry in comment_row:
-                # Assemble credits and skip the "Category:" blocks
-                comment_tail = comment_entry.tail
-                if comment_tail is not None and not comment_tail.startswith(
-                    "Category:"
-                ):
-                    credits_text += comment_entry.tail.strip()
+    for credits_row in credits_blocks:
+        credits_text += credits_row.text.strip() if credits_row.text else ""
+
+        # Sometimes the credits text has an extra license URL, a link to the original project
+        # or is placed after a <br> block
+        for credits_line in credits_row:
+            if credits_line.tag == "a":
+                credits_text += f" [source link]({credits_line.get('href')})"
+            elif credits_line.tag == "br" and not credits_row.text:
+                credits_text += credits_line.tail.strip()
 
     credits_text = credits_text or "Unknown animation source/author"
     credits_record = CREDITS_TEMPLATE.format(

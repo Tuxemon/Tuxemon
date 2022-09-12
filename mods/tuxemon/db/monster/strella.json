@@ -16,6 +16,7 @@
             "technique": "all_in"
         }
     ],
+    "evolutions": [],
     "shape": "Flier",
     "types": [
         "Wood"

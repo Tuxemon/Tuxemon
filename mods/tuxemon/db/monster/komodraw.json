@@ -16,6 +16,7 @@
             "technique": "sudden_glow"
         }
     ],
+    "evolutions": [],
     "shape": "Humanoid",
     "types": [
         "Fire"

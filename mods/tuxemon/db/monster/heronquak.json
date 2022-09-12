@@ -16,6 +16,13 @@
             "technique": "energy_field"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 36,
+            "monster_slug": "eaglace"
+        }
+    ],
     "shape": "Flier",
     "types": [
         "Water"

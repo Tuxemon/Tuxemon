@@ -16,6 +16,7 @@
             "technique": "snowstorm"
         }
     ],
+    "evolutions": [],
     "shape": "Varmint",
     "types": [
         "Earth",

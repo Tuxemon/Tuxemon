@@ -16,6 +16,13 @@
             "technique": "wallow"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 12,
+            "monster_slug": "weavifly"
+        }
+    ],
     "shape": "Blob",
     "types": [
         "Metal"

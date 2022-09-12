@@ -16,6 +16,13 @@
             "technique": "fume"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 24,
+            "monster_slug": "agnidon"
+        }
+    ],
     "shape": "Dragon",
     "types": [
         "Fire"

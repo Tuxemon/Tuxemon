@@ -16,6 +16,13 @@
             "technique": "font"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "saurchin"
+        }
+    ],
     "shape": "Grub",
     "types": [
         "Water"

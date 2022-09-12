@@ -16,6 +16,13 @@
             "technique": "biting_winds"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 38,
+            "monster_slug": "elostorm"
+        }
+    ],
     "shape": "Flier",
     "types": [
         "Water"

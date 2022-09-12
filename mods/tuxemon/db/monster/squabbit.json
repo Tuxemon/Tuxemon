@@ -16,6 +16,13 @@
             "technique": "one_two"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "rabbitosaur"
+        }
+    ],
     "shape": "Varmint",
     "types": [
         "Earth"

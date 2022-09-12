@@ -16,6 +16,7 @@
             "technique": "energy_field"
         }
     ],
+    "evolutions": [],
     "shape": "Landrace",
     "types": [
         "Fire"

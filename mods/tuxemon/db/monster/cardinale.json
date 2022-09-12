@@ -16,6 +16,7 @@
             "technique": "peregrine"
         }
     ],
+    "evolutions": [],
     "shape": "Flier",
     "types": [
         "Fire"

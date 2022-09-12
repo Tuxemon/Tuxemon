@@ -16,6 +16,13 @@
             "technique": "whirlwind"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 36,
+            "monster_slug": "velocitile"
+        }
+    ],
     "shape": "Humanoid",
     "types": [
         "Wood"

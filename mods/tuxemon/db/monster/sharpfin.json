@@ -16,6 +16,7 @@
             "technique": "web"
         }
     ],
+    "evolutions": [],
     "shape": "Aquatic",
     "types": [
         "Water",

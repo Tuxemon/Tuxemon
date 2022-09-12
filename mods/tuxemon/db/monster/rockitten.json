@@ -16,6 +16,13 @@
             "technique": "thunderball"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 24,
+            "monster_slug": "rockat"
+        }
+    ],
     "shape": "Hunter",
     "types": [
         "Earth"

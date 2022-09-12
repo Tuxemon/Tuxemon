@@ -16,6 +16,13 @@
             "technique": "wall_of_steel"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "windeye"
+        }
+    ],
     "shape": "Sprite",
     "types": [
         "Metal"

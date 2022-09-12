@@ -16,6 +16,7 @@
             "technique": "flow"
         }
     ],
+    "evolutions": [],
     "shape": "Hunter",
     "types": [
         "Metal"

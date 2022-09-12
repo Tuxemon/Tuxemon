@@ -16,6 +16,7 @@
             "technique": "electrical_storm"
         }
     ],
+    "evolutions": [],
     "shape": "Blob",
     "types": [
         "Fire",

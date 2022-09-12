@@ -16,6 +16,18 @@
             "technique": "constrict"
         }
     ],
+    "evolutions": [
+        {
+            "path": "fire_booster",
+            "at_level": 0,
+            "monster_slug": "ouroboutlet"
+        },
+        {
+            "path": "metal_booster",
+            "at_level": 0,
+            "monster_slug": "sockeserp"
+        }
+    ],
     "shape": "Serpent",
     "types": [
         "Metal"

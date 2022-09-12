@@ -16,6 +16,7 @@
             "technique": "battery_discharge"
         }
     ],
+    "evolutions": [],
     "shape": "Aquatic",
     "types": [
         "Metal"

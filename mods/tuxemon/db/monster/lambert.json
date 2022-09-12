@@ -16,6 +16,13 @@
             "technique": "boulder"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 24,
+            "monster_slug": "legko"
+        }
+    ],
     "shape": "Sprite",
     "types": [
         "Wood"

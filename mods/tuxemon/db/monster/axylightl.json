@@ -16,6 +16,7 @@
             "technique": "beam"
         }
     ],
+    "evolutions": [],
     "shape": "Polliwog",
     "types": [
         "Water"

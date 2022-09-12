@@ -16,6 +16,7 @@
             "technique": "sleep_bomb"
         }
     ],
+    "evolutions": [],
     "shape": "Serpent",
     "types": [
         "Fire"

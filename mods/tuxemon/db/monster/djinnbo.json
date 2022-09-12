@@ -16,6 +16,7 @@
             "technique": "flamethrower"
         }
     ],
+    "evolutions": [],
     "shape": "Humanoid",
     "types": [
         "Fire"

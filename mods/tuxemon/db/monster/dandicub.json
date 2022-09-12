@@ -16,6 +16,13 @@
             "technique": "sleeping_powder"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "dandylion"
+        }
+    ],
     "shape": "Blob",
     "types": [
         "Wood"

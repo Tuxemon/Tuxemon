@@ -16,6 +16,13 @@
             "technique": "fire_ball"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 30,
+            "monster_slug": "flambear"
+        }
+    ],
     "shape": "Humanoid",
     "types": [
         "Fire"

@@ -16,6 +16,7 @@
             "technique": "thunderclap"
         }
     ],
+    "evolutions": [],
     "shape": "Humanoid",
     "types": [
         "Metal"

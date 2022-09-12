@@ -16,6 +16,13 @@
             "technique": "boulder"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 36,
+            "monster_slug": "moloch"
+        }
+    ],
     "shape": "Serpent",
     "types": [
         "Wood"

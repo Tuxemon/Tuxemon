@@ -16,6 +16,18 @@
             "technique": "font"
         }
     ],
+    "evolutions": [
+        {
+            "path": "stat_melee",
+            "at_level": 12,
+            "monster_slug": "bugnin"
+        },
+        {
+            "path": "stat_armour",
+            "at_level": 12,
+            "monster_slug": "sumchon"
+        }
+    ],
     "shape": "Grub",
     "types": [
         "Metal",

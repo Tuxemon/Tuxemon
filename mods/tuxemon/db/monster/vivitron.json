@@ -16,6 +16,7 @@
             "technique": "battery_acid"
         }
     ],
+    "evolutions": [],
     "shape": "Serpent",
     "types": [
         "Metal"

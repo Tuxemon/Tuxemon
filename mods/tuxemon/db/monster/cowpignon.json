@@ -16,6 +16,7 @@
             "technique": "petrify"
         }
     ],
+    "evolutions": [],
     "shape": "Sprite",
     "types": [
         "Wood",

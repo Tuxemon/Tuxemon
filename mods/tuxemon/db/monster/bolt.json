@@ -16,6 +16,13 @@
             "technique": "clamp_on"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 12,
+            "monster_slug": "arthrobolt"
+        }
+    ],
     "shape": "Blob",
     "types": [
         "Metal"

@@ -16,6 +16,7 @@
             "technique": "fluff_up"
         }
     ],
+    "evolutions": [],
     "shape": "Sprite",
     "types": [
         "Wood",

@@ -16,6 +16,13 @@
             "technique": "thunderball"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 36,
+            "monster_slug": "jemuar"
+        }
+    ],
     "shape": "Hunter",
     "types": [
         "Earth"

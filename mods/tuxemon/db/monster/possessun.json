@@ -16,6 +16,7 @@
             "technique": "muddle"
         }
     ],
+    "evolutions": [],
     "shape": "Blob",
     "types": [
         "Metal"

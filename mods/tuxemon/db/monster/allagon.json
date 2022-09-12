@@ -16,6 +16,7 @@
             "technique": "rust_bomb"
         }
     ],
+    "evolutions": [],
     "shape": "Dragon",
     "types": [
         "Metal"

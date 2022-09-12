@@ -16,6 +16,28 @@
             "technique": "sand_spray"
         }
     ],
+    "evolutions": [
+        {
+            "path": "earth_booster",
+            "at_level": 0,
+            "monster_slug": "miaownolith"
+        },
+        {
+            "path": "miaow_milk",
+            "at_level": 0,
+            "monster_slug": "miaownolith"
+        },
+        {
+            "path": "metal_booster",
+            "at_level": 0,
+            "monster_slug": "pyraminx"
+        },
+        {
+            "path": "pyramidion",
+            "at_level": 0,
+            "monster_slug": "pyraminx"
+        }
+    ],
     "shape": "Hunter",
     "types": [
         "Metal"

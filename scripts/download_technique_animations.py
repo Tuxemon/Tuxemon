@@ -15,7 +15,9 @@ from urllib.parse import urljoin
 
 import requests
 from lxml import html
-from PIL import Image
+from PIL import Image, ImageChops
+
+FRAME_SIZE = 64
 
 WIKI_URL = "https://wiki.tuxemon.org"
 
@@ -65,7 +67,7 @@ def download_animation_credits(gif_page_url: str) -> str:
     gifpage_source = requests.get(gif_page_url)
     gifpage_tree = html.fromstring(gifpage_source.content)
     credits_blocks = gifpage_tree.xpath("//div[@class='mw-content-ltr']/div/p")
-    
+
     credits_text = ""
     for credits_row in credits_blocks:
         credits_text += credits_row.text.strip() if credits_row.text else ""
@@ -87,24 +89,47 @@ def download_animation_credits(gif_page_url: str) -> str:
     return credits_record
 
 
-def gif_to_frames(filepath: str) -> None:
-    """Extract individual animation frames as PNG from a GIF."""
-    with Image.open(filepath) as image:
-        if not image.is_animated:
+def gif_to_frames(filepath: str) -> bool:
+    """
+    Extract individual animation frames as PNG from a GIF.
+
+    Returns:
+        True on successful frames generation, False otherwise.
+    """
+    with Image.open(filepath) as gif_image:
+        if not gif_image.is_animated:
             print(f"{filepath} is not animated, skipped")
-            return
+            return False
 
         base_name = process_filename(filepath)
         animation_name = process_animation_name(base_name)
-        for frame in range(0, image.n_frames):
+
+        for frame in range(0, gif_image.n_frames):
             frame_filename = os.path.join(
                 ANIMATION_DIR, f"{base_name}{frame:02}.png"
             )
+
+            gif_image.seek(frame)
+            # Check if animation is not a duplicate or a non-64x64 variant on an existing one
+            if os.path.isfile(frame_filename):
+                with Image.open(frame_filename) as frame_image:
+                    if not ImageChops.difference(
+                        gif_image, frame_image
+                    ).getbbox():
+                        print(
+                            f"Identical animation '{animation_name}' already downloaded. Skipping frame generation."
+                        )
+                        return False
+                    elif frame_image.width == frame_image.height == FRAME_SIZE:
+                        print(
+                            f"64x64 version of animation '{animation_name}' already downloaded. Skipping frame generation."
+                        )
+                        return False
             print(
-                f"Generating animation frames for '{animation_name}': {frame_filename} - {frame}/{image.n_frames - 1}"
+                f"Generating animation frames for '{animation_name}': {frame_filename} - {frame}/{gif_image.n_frames - 1}"
             )
-            image.seek(frame)
-            image.save(frame_filename, optimize=True)
+            gif_image.save(frame_filename, optimize=True)
+    return True
 
 
 # TODO: Is passing the Wiki URL needed?
@@ -135,7 +160,8 @@ def download_technique_animations(wiki_url: str) -> None:
 
                 temppath = os.path.join(tmp_dirname, filename)
                 download_bytes(gif_url, temppath)
-                gif_to_frames(temppath)
+                if not gif_to_frames(temppath):
+                    continue
 
                 # Download credits from GIF subpage URL
                 print(

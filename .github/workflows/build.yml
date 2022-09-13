@@ -219,6 +219,5 @@ jobs:
           automatic_release_tag: ${{ steps.release_tag.outputs.value }}
           files: |
             **/artifacts/tuxemon_windows_installer/*.exe
-            **/artifacts/Tuxemon Flatpak/org.tuxemon.Tuxemon.yml
             **/Tuxemon-x86_64/Tuxemon.flatpak
 ...

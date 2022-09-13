@@ -57,8 +57,7 @@ events:
     actions:
     - set_monster_health ,
     - set_monster_status ,
-    - wait 1
-    - set_variable teleport_faint:player_house_bedroom.tmx 7 6
+    - set_variable battle_last_result:none
     conditions:
     - is variable_set battle_last_result:lost
     height: 1

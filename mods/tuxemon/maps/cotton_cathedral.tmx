@@ -96,8 +96,7 @@
    <properties>
     <property name="act1" value="set_monster_health ,"/>
     <property name="act2" value="set_monster_status ,"/>
-    <property name="act3" value="wait 1"/>
-    <property name="act90" value="set_variable teleport_faint:cotton_cathedral.tmx 7 10"/>
+    <property name="act3" value="set_variable battle_last_result:none"/>
     <property name="cond1" value="is variable_set battle_last_result:lost"/>
    </properties>
   </object>

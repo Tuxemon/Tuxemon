@@ -694,12 +694,21 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [daneeklu](http://opengameart.org/users/daneeklu) 
 is licensed under [CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
 
+* ["Appearance"](https://wiki.tuxemon.org/File:Appearance.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
+
 * ["Beartrap"](https://wiki.tuxemon.org/File:Beartrap.gif)
 [https://opengameart.org/content/animated-traps CC0]
 
 * ["Bite Animation"](https://forum.tuxemon.org/viewtopic.php?id=70) by 
 [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Bite Zombie"](https://wiki.tuxemon.org/File:Bite_zombie.gif)
+Sprite by Carnageddon, [source link](https://opengameart.org/content/bite)
+
+* ["Bite"](https://wiki.tuxemon.org/File:Bite.gif)
+By josepharaoh99
 
 * ["Bomb Bright"](https://wiki.tuxemon.org/File:Bomb_bright.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.
@@ -728,8 +737,17 @@ Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel
 * ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.
 
+* ["Capture"](https://wiki.tuxemon.org/File:Capture_1.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
+
+* ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
+Adapted by Sanglorian from the Superpowers Asset Packs.
+
 * ["Claw Yellow"](https://wiki.tuxemon.org/File:Claw_yellow_169.gif)
 From the Superpowers Asset Packs.
+
+* ["Constantburn"](https://wiki.tuxemon.org/File:Constantburn.gif)
+Animation by josepharaoh99 and created for the Tuxemon project.
 
 * ["Crushing Ball"](https://forum.tuxemon.org/viewtopic.php?pid=506#p506) by
 [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
@@ -789,6 +807,9 @@ From the Superpowers Asset Packs.
 * ["Fireball"](https://wiki.tuxemon.org/File:Fireball_114.gif)
 From the Superpowers Asset Packs.
 
+* ["Fire Fade"](https://wiki.tuxemon.org/File:Fire_fade.gif)
+By tamashihoshi
+
 * ["Firelion Back"](https://wiki.tuxemon.org/File:Firelion_back_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
@@ -809,6 +830,9 @@ By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content
 
 * ["Firetwirl"](https://wiki.tuxemon.org/File:Firetwirl.gif)
 From the Superpowers Asset Packs.
+
+* ["Fireworks"](https://wiki.tuxemon.org/File:Fireworks.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
 
 * ["Flameball Blue"](https://wiki.tuxemon.org/File:Flameball_blue.gif)
 [https://opengameart.org/content/bosses-and-monsters-spritesheets-ars-notoria CC BY 3.0 on OGA]
@@ -860,6 +884,9 @@ From the Superpowers Asset Packs.
 
 * ["Lightning Claw"](https://wiki.tuxemon.org/File:Lightning_claw.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Metal Delete"](https://wiki.tuxemon.org/File:Metal_Delete.gif)
+By josepharaoh99
 
 * ["Misc Hit Preview"](https://wiki.tuxemon.org/File:Misc_Hit_preview.gif)
 [https://opengameart.org/content/pixelated-hit-animations CC BY on OGA]  This work, made by Viktor Hahn (Viktor.Hahn@web.de), is licensed under the Creative Commons Attributio...
@@ -941,6 +968,9 @@ From the Superpowers Asset Packs.
 * ["Slash Fire"](https://wiki.tuxemon.org/File:Slash_fire.gif)
 From the Superpowers Asset Packs.
 
+* ["Slash Power"](https://wiki.tuxemon.org/File:Slash_power.gif)
+By tamashihoshi
+
 * ["Small Water Shot"](https://forum.tuxemon.org/viewtopic.php?id=74) by
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
@@ -1014,11 +1044,20 @@ By daneeklu [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0
 * ["Tentacles Water"](https://wiki.tuxemon.org/File:Tentacles_water.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
+* ["Thunderstrike"](https://wiki.tuxemon.org/File:Thunderstrike.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
+
+* ["Tornado Basic"](https://wiki.tuxemon.org/File:Tornado_basic.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
+
 * ["Tornado Bulk"](https://wiki.tuxemon.org/File:Tornado_bulk_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
 * ["Tornado Bulk"](https://wiki.tuxemon.org/File:Tornado_bulk.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Tornado Volume"](https://wiki.tuxemon.org/File:Tornado_volume.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
 
 * ["Triforce"](https://wiki.tuxemon.org/File:Triforce_163.gif)
 From the Superpowers Asset Packs.
@@ -1029,9 +1068,24 @@ A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Cha
 * ["Warp"](https://wiki.tuxemon.org/File:Warp.gif)
 [https://opengameart.org/content/warp-effect-0 CC BY]
 
+* ["Waterfall"](https://wiki.tuxemon.org/File:Waterfall.gif)
+By josepharaoh99
+
+* ["Watershot"](https://wiki.tuxemon.org/File:Watershot.gif)
+By tamashihoshi
+
+* ["Waterspurt"](https://wiki.tuxemon.org/File:Waterspurt.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
+
 * ["Whirlwind Attack"](https://forum.tuxemon.org/thread.php?pid=765#p765) by
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Whisp Fire"](https://wiki.tuxemon.org/File:Whisp_fire.gif)
+By ansimuz, [source link](https://opengameart.org/content/gothicvania-cemetery-pack)
+
+* ["X Attack"](https://wiki.tuxemon.org/File:X_attack.gif)
+Animation by josepharaoh99 and created for the Tuxemon project.
 
 ### Battle Backgrounds
 

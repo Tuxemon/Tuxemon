@@ -115,7 +115,7 @@ msgstr "Room 31, Block 2, Omnichannel Tower, Cotton Town\n"
 # Money notification
 
 msgid "player_wallet"
-msgstr "${{name}}'s wallet: ${{money}} ${{currency}}"
+msgstr "${{name}}'s wallet: ${{currency}}${{money}}"
 
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications

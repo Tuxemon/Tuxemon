@@ -127,7 +127,7 @@ msgstr "Habitación 31, Número 2, Torre Omnichannel, Pueblo Algodón\n"
 # Money notification
 
 msgid "player_wallet"
-msgstr "La cartera de ${{name}}: ${{money}} ${{currency}}"
+msgstr "La cartera de ${{name}}: ${{money}}${{currency}}"
 
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications

@@ -1435,7 +1435,7 @@ msgstr ""
 # Money notification
 
 msgid "player_wallet"
-msgstr "Portefeuille de ${{name}}: ${{money}} ${{currency}}"
+msgstr "Portefeuille de ${{name}}: ${{money}}${{currency}}"
 
 # Allie's Address
 msgid "allies_address"

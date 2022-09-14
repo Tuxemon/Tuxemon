@@ -3676,7 +3676,7 @@ msgid "spyder_cottonart_intro"
 msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is $50. It goes towards the company's annual dividend."
 
 msgid "spyder_cottonart_shopkeeper"
-msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is 50 ${{currency}}. It goes towards the company's annual dividend."
+msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is ${{currency}}50. It goes towards the company's annual dividend."
 
 msgid "spyder_cottonscoop_shopassistant"
 msgstr "Capture Devices allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. \n Select them during battle from your Item menu."
@@ -3760,7 +3760,7 @@ msgid "spyder_citypark_edith2"
 msgstr "Hmm, you may have a point."
 
 msgid "spyder_museum_entrance1"
-msgstr "Welcome to the museum of natural history! It's free, but depends on your generous donations. Would you consider a donation of 50 ${{currency}}?"
+msgstr "Welcome to the museum of natural history! It's free, but depends on your generous donations. Would you consider a donation of ${{currency}}50?"
 
 msgid "spyder_museum_entrance2"
 msgstr ""
@@ -3768,7 +3768,7 @@ msgstr ""
 "sponsors."
 
 msgid "spyder_museum_entrance3"
-msgstr "Unfortunately we now need to charge for tickets. 100 ${{currency}} please."
+msgstr "Unfortunately we now need to charge for tickets. ${{currency}}100 please."
 
 msgid "spyder_museum_shopkeeper_chat"
 msgstr "I volunteer to keep the museum as affordable as possible. "
@@ -4220,7 +4220,7 @@ msgstr "Simplistic and clumsy brushstrokes and a pedestrian theme. Bah! Another 
 msgid "spyder_flower_muse1"
 msgstr "He's so hard on himself, never happy with something he's painted. He's so forgetful, too. Perhaps I could buy a painting "
 msgid "spyder_flower_muse2"
-msgstr "What? You have a painting. Oooh - would you let me buy it? I have 2,000 ${{currency}}."
+msgstr "What? You have a painting. Oooh - would you let me buy it? I have ${{currency}}2,000."
 msgid "spyder_flower_artist_clipping"
 msgstr "A newspaper clipping is on the wall. It begins: \n \"The famous art critic has put away his poison pen and picked up the paint brush. \n After years of tearing down artists, can he do any better himself?\""
 msgid "spyder_flower_artist2"

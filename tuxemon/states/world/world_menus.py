@@ -188,11 +188,12 @@ class WorldMenuState(PygameMenuState):
                 [T.format("release_confirmation", {"name": monster.name})],
             )
             self.client.push_state(
-                ChoiceState,
-                menu=(
-                    ("no", T.translate("no"), negative_answer),
-                    ("yes", T.translate("yes"), positive_answer),
-                ),
+                ChoiceState(
+                    menu=(
+                        ("no", T.translate("no"), negative_answer),
+                        ("yes", T.translate("yes"), positive_answer),
+                    ),
+                )
             )
 
         def open_monster_submenu(
@@ -203,7 +204,7 @@ class WorldMenuState(PygameMenuState):
                 ("monster_menu_move", select_first_monster),
                 ("monster_menu_release", release_monster_from_party),
             )
-            menu = self.client.push_state(PygameMenuState)
+            menu = self.client.push_state(PygameMenuState())
 
             for key, callback in menu_items_map:
                 label = T.translate(key).upper()

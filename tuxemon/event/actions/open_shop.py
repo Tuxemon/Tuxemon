@@ -66,18 +66,20 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
 
         def push_buy_menu():
             self.session.client.push_state(
-                ShopBuyMenuState,
-                buyer=self.session.player,
-                seller=npc,
-                economy=economy,
+                ShopBuyMenuState(
+                    buyer=self.session.player,
+                    seller=npc,
+                    economy=economy,
+                )
             )
 
         def push_sell_menu():
             self.session.client.push_state(
-                ShopSellMenuState,
-                buyer=None,
-                seller=self.session.player,
-                economy=economy,
+                ShopSellMenuState(
+                    buyer=None,
+                    seller=self.session.player,
+                    economy=economy,
+                )
             )
 
         menu = self.parameters.menu or "both"
@@ -97,9 +99,10 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
             ]
 
             self.session.client.push_state(
-                ChoiceState,
-                menu=var_menu,
-                escape_key_exits=True,
+                ChoiceState(
+                    menu=var_menu,
+                    escape_key_exits=True,
+                )
             )
 
         elif menu == "buy":

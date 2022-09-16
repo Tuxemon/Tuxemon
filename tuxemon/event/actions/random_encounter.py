@@ -110,7 +110,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             self.world.stop_player()
 
             # flash the screen
-            self.session.client.push_state(FlashTransition)
+            self.session.client.push_state(FlashTransition())
 
             # Start some music!
             filename = env.battle_music

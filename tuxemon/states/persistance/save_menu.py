@@ -193,7 +193,7 @@ class SaveMenuState(PopUpMenu[None]):
 
         def ask_confirmation() -> None:
             # open menu to confirm the save
-            menu = self.client.push_state(Menu)
+            menu = self.client.push_state(Menu())
             menu.shrink_to_items = True
 
             # add choices

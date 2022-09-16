@@ -580,14 +580,14 @@ class LocalPygameClient:
     @overload
     def push_state(
         self,
-        state_name: Type[StateType],
+        state_name: StateType,
         **kwargs: Any,
     ) -> StateType:
         pass
 
     def push_state(
         self,
-        state_name: Union[str, Type[StateType]],
+        state_name: Union[str, StateType],
         **kwargs: Any,
     ) -> State:
         """Push new state, by name"""

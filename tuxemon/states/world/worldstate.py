@@ -457,7 +457,7 @@ class WorldState(state.State):
             if event.pressed:
                 logger.info("Opening main menu!")
                 self.client.release_controls()
-                self.client.push_state(WorldMenuState)
+                self.client.push_state(WorldMenuState())
                 return None
 
         # map may not have a player registered

@@ -134,7 +134,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             self.client.pop_state()  # close technique menu
             self.client.pop_state()  # close the monster action menu
 
-        menu = self.client.push_state(MonsterMenuState)
+        menu = self.client.push_state(MonsterMenuState())
         menu.on_menu_selection = swap_it  # type: ignore[assignment]
         menu.anchor("bottom", self.rect.top)
         menu.anchor("right", self.client.screen.get_rect().right)
@@ -145,7 +145,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_item() -> None:
             # open menu to choose item
-            menu = self.client.push_state(ItemMenuState)
+            menu = self.client.push_state(ItemMenuState())
 
             # set next menu after after selection is made
             menu.on_menu_selection = choose_target  # type: ignore[assignment]
@@ -159,14 +159,15 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             state: State
             if item.battle_menu == ItemBattleMenu.monster:
-                state = self.client.push_state(MonsterMenuState)
+                state = self.client.push_state(MonsterMenuState())
                 state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[assignment]
             else:
                 state = self.client.push_state(
-                    CombatTargetMenuState,
-                    player=combat_state.players[0],
-                    user=combat_state.players[0],
-                    action=item,
+                    CombatTargetMenuState(
+                        player=combat_state.players[0],
+                        user=combat_state.players[0],
+                        action=item,
+                    )
                 )
                 state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[assignment]
 
@@ -194,7 +195,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_technique() -> None:
             # open menu to choose technique
-            menu = self.client.push_state(Menu)
+            menu = self.client.push_state(Menu())
             menu.shrink_to_items = True
 
             # add techniques to the menu
@@ -229,10 +230,11 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             combat_state = self.client.get_state_by_name(CombatState)
             state = self.client.push_state(
-                CombatTargetMenuState,
-                player=combat_state.players[0],
-                user=self.monster,
-                action=technique,
+                CombatTargetMenuState(
+                    player=combat_state.players[0],
+                    user=self.monster,
+                    action=technique,
+                )
             )
             state.on_menu_selection = partial(enqueue_technique, technique)  # type: ignore[assignment]
 

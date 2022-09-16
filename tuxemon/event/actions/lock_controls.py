@@ -29,4 +29,4 @@ class LockControlsAction(
     param_class = LockControlsActionParameters
 
     def start(self) -> None:
-        self.session.client.push_state(SinkState)
+        self.session.client.push_state(SinkState())

@@ -29,6 +29,7 @@ import inspect
 import logging
 import os.path
 import sys
+import warnings
 from abc import ABCMeta
 from importlib import import_module
 from typing import (
@@ -84,12 +85,9 @@ class State:
     transparent = False  # ignore all background/borders
     force_draw = False  # draw even if completely under another state
 
-    def __init__(self, *, parent: StateManager) -> None:
+    def __init__(self, **_: Any) -> None:
         """
         Constructor
-
-        Parameters:
-            parent: The StateManager class that this state belongs to.
 
         Attributes:
             force_draw: If True, state will never be skipped in drawing phase.
@@ -98,7 +96,6 @@ class State:
         Important!  The state must be ready to be drawn after this is called.
 
         """
-        self.parent = parent
         self.start_time = 0.0
         self.current_time = 0.0
 
@@ -353,7 +350,7 @@ class StateManager:
             state = self._state_dict[state_name]
         except KeyError:
             raise RuntimeError(f"Cannot find state: {state_name}")
-        instance = state(parent=self, **kwargs)
+        instance = state(**kwargs)
         return instance
 
     @staticmethod
@@ -545,14 +542,14 @@ class StateManager:
     @overload
     def push_state(
         self,
-        state_name: Type[StateType],
+        state_name: StateType,
         **kwargs: Any,
     ) -> StateType:
         pass
 
     def push_state(
         self,
-        state_name: Union[str, Type[StateType]],
+        state_name: Union[str, StateType],
         **kwargs: Any,
     ) -> State:
         """
@@ -575,7 +572,10 @@ class StateManager:
 
         if isinstance(state_name, str):
             instance = self._instance(state_name, **kwargs)
+        elif isinstance(state_name, State):
+            instance = state_name
         else:
+            warnings.warn("Calling push_state with Type[State] is deprecated, use an instantiated State instead", DeprecationWarning)
             instance = state_name(parent=self, **kwargs)
 
         instance.startup(**kwargs)
@@ -594,14 +594,14 @@ class StateManager:
     @overload
     def replace_state(
         self,
-        state_name: Type[StateType],
+        state_name: StateType,
         **kwargs: Any,
     ) -> StateType:
         pass
 
     def replace_state(
         self,
-        state_name: Union[str, Type[State]],
+        state_name: Union[str, State],
         **kwargs: Any,
     ) -> State:
         """

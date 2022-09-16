@@ -80,10 +80,11 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
         # Add our players and setup combat
         logger.info("Starting battle with '{self.parameters.npc_slug}'!")
         self.session.client.push_state(
-            CombatState,
-            players=(player, npc),
-            combat_type="trainer",
-            graphics=env.battle_graphics,
+            CombatState(
+                players=(player, npc),
+                combat_type="trainer",
+                graphics=env.battle_graphics,
+            )
         )
 
         # Start some music!

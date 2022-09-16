@@ -183,7 +183,7 @@ class ItemMenuState(Menu[Item]):
             self.client.pop_state()  # close the confirm dialog
             # TODO: allow items to be used on player or "in general"
 
-            menu = self.client.push_state(MonsterMenuState)
+            menu = self.client.push_state(MonsterMenuState())
             menu.is_valid_entry = item.validate  # type: ignore[assignment]
             menu.on_menu_selection = use_item  # type: ignore[assignment]
 
@@ -192,7 +192,7 @@ class ItemMenuState(Menu[Item]):
 
         def open_choice_menu() -> None:
             # open the menu for use/cancel
-            menu = self.client.push_state(Menu)
+            menu = self.client.push_state(Menu())
             menu.shrink_to_items = True
 
             menu_items_map = (
@@ -392,12 +392,13 @@ class ShopBuyMenuState(ShopMenuState):
                 )
 
         self.client.push_state(
-            QuantityAndPriceMenu,
-            callback=buy_item,
-            max_quantity=max_quantity,
-            quantity=0 if max_quantity == 0 else 1,
-            shrink_to_items=True,
-            price=price,
+            QuantityAndPriceMenu(
+                callback=buy_item,
+                max_quantity=max_quantity,
+                quantity=0 if max_quantity == 0 else 1,
+                shrink_to_items=True,
+                price=price,
+            )
         )
 
 
@@ -442,10 +443,11 @@ class ShopSellMenuState(ShopMenuState):
         )
 
         self.client.push_state(
-            QuantityAndCostMenu,
-            callback=sell_item,
-            max_quantity=max_quantity,
-            quantity=1,
-            shrink_to_items=True,
-            cost=cost,
+            QuantityAndCostMenu(
+                callback=sell_item,
+                max_quantity=max_quantity,
+                quantity=1,
+                shrink_to_items=True,
+                cost=cost,
+            )
         )

@@ -94,4 +94,4 @@ class TranslatedDialogChoiceAction(
         menu: Sequence[Tuple[str, str, Callable[[], None]]],
     ) -> ChoiceState:
         logger.info("Opening choice window")
-        return session.client.push_state(ChoiceState, menu=menu)
+        return session.client.push_state(ChoiceState(menu=menu))

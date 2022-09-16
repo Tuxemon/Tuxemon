@@ -190,11 +190,11 @@ class MultiplayerMenu(PopUpMenu[MenuGameObj]):
             self.client.client.client.listen()
 
         # open menu to select games
-        self.client.push_state(MultiplayerSelect)
+        self.client.push_state(MultiplayerSelect())
 
     def join_by_ip(self) -> None:
         self.client.push_state(
-            InputMenu, prompt=T.translate("multiplayer_join_prompt")
+            InputMenu(prompt=T.translate("multiplayer_join_prompt"))
         )
 
     def join(self) -> None:

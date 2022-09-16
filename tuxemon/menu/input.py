@@ -156,7 +156,7 @@ class InputMenu(Menu[InputMenuObj]):
                         (c, c, partial(self.add_input_char_and_pop, c))
                         for c in all_variants
                     ]
-                    self.client.push_state(ChoiceState, menu=choices)
+                    self.client.push_state(ChoiceState(menu=choices))
             return None
 
         maybe_event = super().process_event(event)

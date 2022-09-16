@@ -134,7 +134,7 @@ class ModChooserMenuState(PopUpMenu[StartGameObj]):
         def set_player_name(text: str) -> None:
             map_path = prepare.fetch("maps", self.map_name)
             self.client.push_state("WorldState", map_name=map_path)
-            self.client.push_state(FadeInTransition)
+            self.client.push_state(FadeInTransition())
             local_session.player.name = text
             self.client.pop_state(self)
 
@@ -142,13 +142,14 @@ class ModChooserMenuState(PopUpMenu[StartGameObj]):
             self.map_name = map_name
             # load the starting map
             self.client.push_state(
-                state_name=InputMenu,
-                prompt=T.translate("input_name"),
-                callback=set_player_name,
-                escape_key_exits=True,
-                char_limit=prepare.PLAYER_NAME_LIMIT,
+                InputMenu(
+                    prompt=T.translate("input_name"),
+                    callback=set_player_name,
+                    escape_key_exits=True,
+                    char_limit=prepare.PLAYER_NAME_LIMIT,
+                )
             )
-            self.client.push_state(FadeInTransition)
+            self.client.push_state(FadeInTransition())
 
         # Build a menu of the default mod choices:
         menu_items_map: Tuple[Tuple[str, Callable], ...] = tuple()

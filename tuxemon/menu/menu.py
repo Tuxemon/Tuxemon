@@ -65,7 +65,7 @@ class PygameMenuState(state.State):
         theme: Optional[pygame_menu.themes.Theme] = None,
         **kwargs: Any,
     ) -> None:
-        super().__init__(parent=kwargs.pop("parent"))
+        super().__init__()
 
         if theme is None:
             theme = get_theme()
@@ -204,7 +204,7 @@ class Menu(Generic[T], state.State):
     touch_aware = True
 
     def __init__(self, *, selected_index: int = 0, **kwargs: Any) -> None:
-        super().__init__(parent=kwargs.pop("parent"))
+        super().__init__()
 
         self.rect = self.rect.copy()  # do not remove!
         self.selected_index = selected_index

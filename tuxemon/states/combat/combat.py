@@ -32,7 +32,7 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from functools import partial
-from itertools import chain
+from itertools import chain, product
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -472,6 +472,9 @@ class CombatState(CombatAnimations):
         elif phase == "end combat":
             self.players[0].set_party_status()
             self.end_combat()
+
+            for monster, player in product(self.active_monsters, self.active_players):
+                self.evolve(player, monster)
 
         else:
             assert_never(phase)
@@ -1148,6 +1151,21 @@ class CombatState(CombatAnimations):
         # TODO: non SP things
         del self.monsters_in_play[player]
         self.players.remove(player)
+
+    def evolve(self, player: NPC, monster: Monster) -> None:
+        for evolution in monster.evolutions:
+            # check the path field.
+            if not evolution["path"]:
+                # check the level field.
+                if evolution["at_level"] <= monster.level:
+                    logger.info(
+                        "{} evolved into {}!".format(
+                            monster.name, evolution["monster_slug"]
+                        )
+                    )
+                    monster_evolve = str(evolution["monster_slug"])
+                    if player is self.players[0]:
+                        player.evolve_monster(monster,monster_evolve)
 
     def end_combat(self) -> None:
         """End the combat."""

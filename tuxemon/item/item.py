@@ -297,6 +297,13 @@ class Item:
             else:
                 user.inventory[self.slug]["quantity"] -= 1
 
+        # If this is a booster item, remove it from the player's inventory only if success.
+        if meta_result["success"] and self.type == "Booster":
+            if user.inventory[self.slug]["quantity"] <= 1:
+                del user.inventory[self.slug]
+            else:
+                user.inventory[self.slug]["quantity"] -= 1
+
         return meta_result
 
 

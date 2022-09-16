@@ -112,6 +112,7 @@
       "title": "ItemType",
       "description": "An enumeration.",
       "enum": [
+        "Booster",
         "Consumable",
         "KeyItem"
       ],

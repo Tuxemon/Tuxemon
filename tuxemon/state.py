@@ -70,7 +70,6 @@ class State:
     class should be created. Update must be overloaded in the child class.
 
     Overview of Methods:
-     * startup       - Called when added to the state stack
      * resume        - Called each time state is updated for first time
      * update        - Called each frame while state is active
      * process_event - Called when there is a new input event
@@ -96,10 +95,7 @@ class State:
             force_draw: If True, state will never be skipped in drawing phase.
             rect: Area of the screen will be drawn on.
 
-        Do not override this unless there is a special need.
-
-        All init for the State, loading of config, images, etc should
-        be done in State.startup or State.resume, not here.
+        Important!  The state must be ready to be drawn after this is called.
 
         """
         self.parent = parent
@@ -227,8 +223,6 @@ class State:
         same for a given game time. Any game changes should be done during
         update.
 
-        The state can prepare to be drawn during State.startup
-
         Parameters:
             surface: Surface to be rendered onto.
 
@@ -236,13 +230,13 @@ class State:
 
     def startup(self, **kwargs: Any) -> None:
         """
+        DEPRECATED - Use __init__ instead.
+
         Called when scene is added to the state stack.
 
         This will be called:
         * after state is pushed and before next update
         * just once during the life of a state
-
-        Important!  The state must be ready to be drawn after this is called.
 
         Example uses: loading images, configuration, sounds, etc.
 
@@ -464,7 +458,7 @@ class StateManager:
 
         Parameters:
             state_name: Name of state to start.
-            kwargs: Arguments to pass to the ``startup`` method of the
+            kwargs: Arguments to pass to the ``__init__`` method of the
                 new state.
 
         """
@@ -566,7 +560,7 @@ class StateManager:
 
         Parameters:
             state_name: Name of state to start.
-            kwargs: Arguments to pass to the ``startup`` method of the
+            kwargs: Arguments to pass to the ``__init__`` method of the
                 new state.
 
         Returns:
@@ -619,7 +613,7 @@ class StateManager:
 
         Parameters:
             state_name: Name of state to start.
-            kwargs: Arguments to pass to the ``startup`` method of the
+            kwargs: Arguments to pass to the ``__init__`` method of the
                 new state.
 
         Returns:

@@ -86,8 +86,8 @@ class PCState(PopUpMenu[MenuGameObj]):
 
     shrink_to_items = True
 
-    def startup(self, **kwargs: Any) -> None:
-        super().startup(**kwargs)
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
 
         def change_state(state: str, **kwargs: Any) -> MenuGameObj:
             return partial(self.client.replace_state, state, **kwargs)
@@ -135,8 +135,8 @@ class MultiplayerMenu(PopUpMenu[MenuGameObj]):
 
     shrink_to_items = True
 
-    def startup(self, **kwargs: Any) -> None:
-        super().startup(**kwargs)
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
 
         add_menu_items(
             self,
@@ -211,8 +211,8 @@ class MultiplayerSelect(PopUpMenu[None]):
 
     shrink_to_items = True
 
-    def startup(self, **kwargs: Any) -> None:
-        super().startup(**kwargs)
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
 
         # make a timer to refresh the menu items every second
         self.task(self.reload_items, 1, -1)
@@ -253,7 +253,7 @@ class MonsterTakeState(PygameMenuState):
             new_image.scale(prepare.SCALE, prepare.SCALE)
             new_button = menu.add.button(label, callback)
 
-    def startup(self, box_name: str, **kwargs: Any) -> None:
+    def __init__(self, box_name: str, **kwargs: Any) -> None:
         width, height = prepare.SCREEN_SIZE
 
         theme = get_theme()
@@ -272,7 +272,7 @@ class MonsterTakeState(PygameMenuState):
         while rows % num_widgets_per_monster != 0:
             rows += 1
 
-        super().startup(
+        super().__init__(
             height=height, width=width, columns=columns, rows=rows, **kwargs
         )
 
@@ -337,10 +337,10 @@ class MonsterBoxChooseState(PygameMenuState):
     def change_state(self, state: str, **kwargs: Any) -> Callable[[], object]:
         return partial(self.client.replace_state, state, **kwargs)
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self, **kwargs: Any) -> None:
         _, height = prepare.SCREEN_SIZE
 
-        super().startup(height=height, **kwargs)
+        super().__init__(height=height, **kwargs)
 
         self.animation_offset = 0
 
@@ -419,8 +419,8 @@ class MonsterBoxChooseDropOffState(MonsterBoxChooseState):
 class MonsterDropOffState(MonsterMenuState):
     """Shows all Tuxemon in player's party, puts it into box if selected."""
 
-    def startup(self, box_name: str, **kwargs: Any) -> None:
-        super().startup(**kwargs)
+    def __init__(self, box_name: str, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
 
         self.box_name = box_name
 

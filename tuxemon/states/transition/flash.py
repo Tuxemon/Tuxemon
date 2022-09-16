@@ -45,7 +45,8 @@ class FlashTransition(State):
 
     force_draw = True
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
         logger.info("Initializing battle transition")
         self.flash_time = 0.2  # Time in seconds between flashes
         self.flash_state = "up"

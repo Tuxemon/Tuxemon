@@ -73,10 +73,10 @@ def add_menu_items(
 class WorldMenuState(PygameMenuState):
     """Menu for the world state."""
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self, **kwargs: Any) -> None:
         _, height = prepare.SCREEN_SIZE
 
-        super().startup(height=height, **kwargs)
+        super().__init__(height=height, **kwargs)
 
         self.animation_offset = 0
 

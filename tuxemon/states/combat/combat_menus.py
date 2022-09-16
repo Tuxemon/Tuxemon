@@ -51,13 +51,13 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
     escape_key_exits = False
 
-    def startup(
+    def __init__(
         self,
         *,
         monster: Optional[Monster] = None,
         **kwargs: Any,
     ) -> None:
-        super().startup(**kwargs)
+        super().__init__(**kwargs)
 
         assert monster
         self.monster = monster
@@ -275,7 +275,7 @@ class CombatTargetMenuState(Menu[Monster]):
         self.menu_items = MenuSpriteGroup()
         self.menu_sprites = SpriteGroup()
 
-    def startup(
+    def __init__(
         self,
         *,
         user: Union[Player, Monster, None] = None,
@@ -283,7 +283,7 @@ class CombatTargetMenuState(Menu[Monster]):
         player: Optional[Player] = None,
         **kwargs: Any,
     ) -> None:
-        super().startup(**kwargs)
+        super().__init__(**kwargs)
 
         if action is None:
             raise ValueError("action parameter is required")

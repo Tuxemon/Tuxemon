@@ -75,11 +75,11 @@ class StartState(PopUpMenu[StartGameObj]):
     escape_key_exits = False
     shrink_to_items = True
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self, **kwargs: Any) -> None:
         # If there is a save, then move the cursor to "Load game" first
         index = get_index_of_latest_save()
         kwargs["selected_index"] = 0 if index is None else 1
-        super().startup(**kwargs)
+        super().__init__(**kwargs)
 
         def change_state(
             state: Union[State, str],
@@ -120,9 +120,9 @@ class ModChooserMenuState(PopUpMenu[StartGameObj]):
     def close(self) -> None:
         self.client.replace_state("StartState")
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self, **kwargs: Any) -> None:
 
-        super().startup(**kwargs)
+        super().__init__(**kwargs)
 
         self.map_name = prepare.CONFIG.starting_map
 

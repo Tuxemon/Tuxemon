@@ -65,7 +65,7 @@ class CombatAnimations(ABC, Menu[None]):
     but never game objects.
     """
 
-    def startup(
+    def __init__(
         self,
         *,
         players: Sequence[NPC] = (),
@@ -77,7 +77,7 @@ class CombatAnimations(ABC, Menu[None]):
         assert len(players) == 2
         assert graphics is not None
 
-        super().startup(**kwargs)
+        super().__init__(**kwargs)
         self.players = list(players)
 
         assert graphics is not None

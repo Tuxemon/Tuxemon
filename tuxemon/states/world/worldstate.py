@@ -129,12 +129,14 @@ class WorldState(state.State):
         buttons.BACK: intentions.WORLD_MENU,
     }
 
-    def startup(
+    def __init__(
         self,
         *,
         map_name: Optional[str] = None,
         **kwargs: Any,
     ) -> None:
+        super().__init__(**kwargs)
+
         from tuxemon.player import Player
 
         # Provide access to the screen surface

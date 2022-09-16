@@ -34,7 +34,7 @@ class InputMenu(Menu[InputMenuObj]):
     background = None
     draw_borders = False
 
-    def startup(
+    def __init__(
         self,
         *items: Any,
         prompt: str = "",
@@ -54,7 +54,7 @@ class InputMenu(Menu[InputMenuObj]):
             initial: Optional string to pre-fill the input box with.
 
         """
-        super().startup(*items, **kwargs)
+        super().__init__(*items, **kwargs)
         self.input_string = initial
         self.chars = T.translate("menu_alphabet").replace(r"\0", "\0")
         self.n_columns = int(T.translate("menu_alphabet_n_columns"))

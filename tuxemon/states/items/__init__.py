@@ -93,8 +93,8 @@ class ItemMenuState(Menu[Item]):
     background_filename = "gfx/ui/item/item_menu_bg.png"
     draw_borders = False
 
-    def startup(self, **kwargs: Any) -> None:
-        self.state = "normal"
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
 
         # this sprite is used to display the item
         # its also animated to pop out of the backpack
@@ -102,8 +102,6 @@ class ItemMenuState(Menu[Item]):
         self.item_sprite = Sprite()
         self.sprites.add(self.item_sprite)
 
-        # do not move this line
-        super().startup(**kwargs)
         self.menu_items.line_spacing = tools.scale(7)
 
         # this is the area where the item description is displayed
@@ -258,16 +256,14 @@ class ShopMenuState(Menu[Item]):
     background_filename = "gfx/ui/item/item_menu_bg.png"
     draw_borders = False
 
-    def startup(self, **kwargs: Any) -> None:
-        self.state = "normal"
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
 
         # this sprite is used to display the item
         self.item_center = self.rect.width * 0.164, self.rect.height * 0.13
         self.item_sprite = Sprite()
         self.sprites.add(self.item_sprite)
 
-        # do not move this line
-        super().startup(**kwargs)
         self.menu_items.line_spacing = tools.scale(7)
 
         # this is the area where the item description is displayed

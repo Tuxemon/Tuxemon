@@ -51,7 +51,7 @@ class DialogState(PopUpMenu):
 
     default_character_delay = 0.05
 
-    def startup(
+    def __init__(
         self,
         *,
         text: Sequence[str] = (),
@@ -59,7 +59,7 @@ class DialogState(PopUpMenu):
         menu: Optional[Sequence[Tuple[str, str, Callable[[], None]]]] = None,
         **kwargs: Any,
     ) -> None:
-        super().startup(**kwargs)
+        super().__init__(**kwargs)
         self.text_queue = list(text)
         self.avatar = avatar
         self.menu = menu

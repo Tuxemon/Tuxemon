@@ -193,7 +193,7 @@ class CombatState(CombatAnimations):
     draw_borders = False
     escape_key_exits = False
 
-    def startup(
+    def __init__(
         self,
         combat_type: Optional[Literal["monster", "trainer"]] = None,
         **kwargs: Any,
@@ -214,7 +214,7 @@ class CombatState(CombatAnimations):
         self._round = 0
         self._prize = 0
 
-        super().startup(**kwargs)
+        super().__init__(**kwargs)
         self.is_trainer_battle = combat_type == "trainer"
         self.show_combat_dialog()
         self.transition_phase("begin")

@@ -54,10 +54,10 @@ class SaveMenuState(PopUpMenu[None]):
     number_of_slots = 3
     shrink_to_items = True
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self, **kwargs: Any) -> None:
         if "selected_index" not in kwargs:
             kwargs["selected_index"] = save.slot_number or 0
-        super().startup(**kwargs)
+        super().__init__(**kwargs)
 
     def initialize_items(self) -> None:
         empty_image = None

@@ -53,8 +53,8 @@ class MonsterMenuState(Menu[Optional[Monster]]):
     background_filename = "gfx/ui/monster/monster_menu_bg.png"
     draw_borders = False
 
-    def startup(self, **kwargs: Any) -> None:
-        super().startup(**kwargs)
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
 
         # make a text area to show messages
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 96))

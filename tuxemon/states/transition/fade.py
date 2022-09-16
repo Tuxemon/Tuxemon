@@ -51,7 +51,7 @@ class FadeTransitionBase(State):
     fade_duration = 1.5
     color: ColorLike = (0, 0, 0)
 
-    def startup(
+    def __init__(
         self,
         *,
         state_duration: Optional[float] = None,
@@ -59,6 +59,8 @@ class FadeTransitionBase(State):
         caller: Optional[State] = None,
         **kwargs: Any,
     ) -> None:
+        super().__init__(**kwargs)
+
         logger.debug("Initializing fade transition")
 
         if state_duration is not None:

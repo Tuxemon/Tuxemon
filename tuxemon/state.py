@@ -85,7 +85,7 @@ class State:
     transparent = False  # ignore all background/borders
     force_draw = False  # draw even if completely under another state
 
-    def __init__(self, parent: StateManager) -> None:
+    def __init__(self, *, parent: StateManager) -> None:
         """
         Constructor
 
@@ -347,7 +347,7 @@ class StateManager:
         logger.debug(f"loading state: {name}")
         self._state_dict[name] = state
 
-    def _instance(self, state_name: str) -> State:
+    def _instance(self, state_name: str, **kwargs: Any) -> State:
         """
         Create new instance of State. Builder patter, WIP.
 
@@ -359,7 +359,7 @@ class StateManager:
             state = self._state_dict[state_name]
         except KeyError:
             raise RuntimeError(f"Cannot find state: {state_name}")
-        instance = state(self)
+        instance = state(parent=self, **kwargs)
         return instance
 
     @staticmethod
@@ -580,9 +580,9 @@ class StateManager:
             previous.pause()
 
         if isinstance(state_name, str):
-            instance = self._instance(state_name)
+            instance = self._instance(state_name, **kwargs)
         else:
-            instance = state_name(self)
+            instance = state_name(parent=self, **kwargs)
 
         instance.startup(**kwargs)
         self._resume_set.add(instance)

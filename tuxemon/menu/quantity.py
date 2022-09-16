@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class QuantityMenu(Menu[None]):
     """Menu used to select quantities."""
 
-    def startup(
+    def __init__(
         self,
         *items: Any,
         quantity: int = 1,
@@ -37,7 +37,7 @@ class QuantityMenu(Menu[None]):
             shrink_to_items: Whether to fit the border to contents.
 
         """
-        super().startup()
+        super().__init__(**kwargs)
         self.quantity = quantity
         self.price = price
         self.cost = cost

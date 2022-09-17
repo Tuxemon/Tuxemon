@@ -112,6 +112,11 @@ msgstr "Room 31, Block 2, Omnichannel Tower, Cotton Town\n"
 "\n"
 "There's a kiss mark next to the address"
 
+# Money notification
+
+msgid "player_wallet"
+msgstr "${{name}}'s wallet: ${{currency}}${{money}}"
+
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
 msgid "combat_run"
@@ -3671,9 +3676,6 @@ msgstr "I used to enjoy coming here every weekend to look at the paintings. \n N
 
 msgid "spyder_cottonart_florist"
 msgstr "What do you think of the blue painting of a ship in the harbour? \n It's in the impressionist style - that means it tries to capture how light looks and behaves. \n See the small red sun reflected along the waves of the water?"
-
-msgid "spyder_cottonart_intro"
-msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is $50. It goes towards the company's annual dividend."
 
 msgid "spyder_cottonart_shopkeeper"
 msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is ${{currency}}50. It goes towards the company's annual dividend."

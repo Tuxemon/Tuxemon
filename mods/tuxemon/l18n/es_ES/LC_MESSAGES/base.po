@@ -124,6 +124,11 @@ msgstr "Habitación 31, Número 2, Torre Omnichannel, Pueblo Algodón\n"
 "\n"
 "Se observa la marca de un beso al lado de la dirección"
 
+# Money notification
+
+msgid "player_wallet"
+msgstr "La cartera de ${{name}}: ${{money}}${{currency}}"
+
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
 msgid "combat_run"
@@ -2494,14 +2499,6 @@ msgstr ""
 "Desde que nos cortaron el presupuesto hemos tenido que vender las obras de "
 "arte en lugar de solo mostrarlas.\n"
 "La entrada cuesta 50${{currency}}. Va a los dividendos anuales de la compañía."
-
-msgid "spyder_cottonart_intro"
-msgstr ""
-"Bienvenido a la Galería de Arte de Pueblo Algodón. Ah... ¡quiero decir, a la "
-"Tienda de Arte!\n"
-" Desde que nos cortaron el presupuesto hemos tenido que vender las obras de "
-"arte en lugar de solo mostrarlas.\n"
-" La entrada es 50${{currency}}. Va a los dividendos anuales de la compañía."
 
 msgid "spyder_cottoncafe_barmaid"
 msgstr "Bienvenido de nuevo. ¿Pongo a tus Tuxemon en la unidad de curación?"

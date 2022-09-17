@@ -149,7 +149,8 @@
   <object id="29" name="Pay Option" type="event" x="16" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_museum_entrance1"/>
-    <property name="act2" value="translated_dialog_choice yes:no,paymuseum"/>
+    <property name="act2" value="translated_dialog player_wallet"/>
+    <property name="act3" value="translated_dialog_choice yes:no,paymuseum"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="not variable_set paymuseum:yes"/>
@@ -163,6 +164,7 @@
     <property name="act41" value="pathfind player,1,8"/>
     <property name="act42" value="set_variable paymuseum:null"/>
     <property name="act43" value="translated_dialog spyder_museum_entrance2"/>
+    <property name="act44" value="transfer_money -,50,spyder_leather_museum"/>
     <property name="act90" value="unlock_controls"/>
     <property name="cond1" value="is variable_set paymuseum:yes"/>
    </properties>
@@ -172,6 +174,7 @@
     <property name="act10" value="lock_controls"/>
     <property name="act41" value="pathfind player,1,10"/>
     <property name="act42" value="set_variable paymuseum:null"/>
+    <property name="act43" value="transfer_money -,100,spyder_leather_museum"/>
     <property name="act90" value="unlock_controls"/>
     <property name="cond1" value="is variable_set paymuseum:no"/>
     <property name="cond2" value="is variable_set notpaidmuseum:yes"/>
@@ -183,6 +186,7 @@
     <property name="act11" value="lock_controls"/>
     <property name="act14" value="translated_dialog spyder_museum_entrance3"/>
     <property name="act15" value="npc_face spyder_maniac,up"/>
+    <property name="act16" value="translated_dialog player_wallet"/>
     <property name="act20" value="translated_dialog_choice yes:no,paymuseum"/>
     <property name="act90" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>

@@ -94,6 +94,7 @@ class NPCState(TypedDict):
     facing: Direction
     game_variables: Dict[str, Any]
     battle_history: Dict[str, Any]
+    money: Dict[str, int]
     inventory: Mapping[str, Optional[int]]
     monsters: Sequence[Mapping[str, Any]]
     player_name: str
@@ -176,6 +177,7 @@ class NPC(Entity[NPCState]):
         self.behavior: Optional[str] = "wander"  # not used for now
         self.game_variables: Dict[str, Any] = {}  # Tracks the game state
         self.battle_history: Dict[str, Any] = {}  # Tracks the battles
+        self.money: Dict[str, int] = {}  # Tracks money
         self.interactions: Sequence[
             str
         ] = []  # List of ways player can interact with the Npc
@@ -268,6 +270,7 @@ class NPC(Entity[NPCState]):
             "facing": self.facing,
             "game_variables": self.game_variables,
             "battle_history": self.battle_history,
+            "money": self.money,
             "inventory": encode_inventory(self.inventory),
             "monsters": encode_monsters(self.monsters),
             "player_name": self.name,
@@ -296,6 +299,7 @@ class NPC(Entity[NPCState]):
         self.facing = save_data.get("facing", "down")
         self.game_variables = save_data["game_variables"]
         self.battle_history = save_data["battle_history"]
+        self.money = save_data["money"]
         self.inventory = decode_inventory(
             session, self, save_data.get("inventory", {})
         )
@@ -862,7 +866,7 @@ class NPC(Entity[NPCState]):
         return success
 
     def can_buy_item(self, item_slug: str, qty: int, unit_price: int) -> bool:
-        current_money = self.game_variables.get("money")
+        current_money = self.money.get("player")
         if current_money is not None:
             return current_money >= qty * unit_price
         # If no 'money' variable, must be an NPC. Always allow buying:
@@ -889,17 +893,17 @@ class NPC(Entity[NPCState]):
 
         Raises an exception if there's not enough money to pay the price."""
 
-        # Only players will have money in game_variables, so only update money or raise
-        # exception if it exists:
-        if self.game_variables.get("money"):
+        # Update player's money.
+        if self.money.get("player"):
             if not self.can_buy_item(item_slug, qty, unit_price):
                 raise Exception(
-                    f"Tried to buy item with {self.game_variables['money']} coins "
+                    f"Tried to buy item with {self.money['player']} coins "
                     f"but not enough money:\n"
                     f"price {unit_price} times qty {qty} is {qty * unit_price}"
                 )
 
-            self.game_variables["money"] -= qty * unit_price
+            # Update player's and NPC money.
+            self.money["player"] = self.money.get("player") - (qty * unit_price)
 
     def sell_increase_money(
         self,
@@ -921,10 +925,9 @@ class NPC(Entity[NPCState]):
                 f"Tried to sell item of qty {qty}, but not enough available."
             )
 
-        # Only players will have money in game_variables, so only update money
-        # if it exists:
-        if self.game_variables.get("money") is not None:
-            self.game_variables["money"] += qty * unit_price
+        # Update player's and NPC money.
+        if self.money.get("player") is not None:
+            self.money["player"] = self.money.get("player") + (qty * unit_price)
 
     def buy_transaction(
         self,

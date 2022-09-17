@@ -113,7 +113,7 @@ def download_technique_animations(wiki_url: str) -> None:
     print(f"Getting animations and metadata from URL: {wiki_url}")
 
     # Animation GIF path
-    animations_url = f"{wiki_url}/index.php?title=Category:Technique_Animation"
+    animations_url = f"{wiki_url}/index.php?title=Category:Used_Technique_Animation"
     anim_source = requests.get(animations_url)
     anim_tree = html.fromstring(anim_source.content)
 

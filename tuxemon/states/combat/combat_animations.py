@@ -77,16 +77,6 @@ class CombatAnimations(ABC, Menu[None]):
         assert len(players) == 2
         assert graphics is not None
 
-        # Get background image if passed in
-        background_filename_prefix = "gfx/ui/combat/"
-        background = graphics.get("background")
-        if background:
-            self.background_filename = background_filename_prefix + background
-        else:
-            self.background_filename = (
-                background_filename_prefix + "battle_bg03.png"
-            )
-
         super().startup(**kwargs)
         self.players = list(players)
 
@@ -568,6 +558,11 @@ class CombatAnimations(ABC, Menu[None]):
         surface = pygame.display.get_surface()
         x, y, w, h = surface.get_rect()
 
+        # Get background image if passed in
+        self.background = self.load_sprite(
+            "gfx/ui/combat/" + self.graphics["background"]
+        )
+        
         # TODO: not hardcode this
         player, opponent = self.players
         player_home = self._layout[player]["home"][0]

@@ -98,7 +98,7 @@ def gif_to_frames(filepath: str) -> None:
         animation_name = process_animation_name(base_name)
         for frame in range(0, image.n_frames):
             frame_filename = os.path.join(
-                ANIMATION_DIR, f"{base_name}{frame:02}.png"
+                ANIMATION_DIR, f"{base_name}_{frame:02}.png"
             )
             print(
                 f"Generating animation frames for '{animation_name}': {frame_filename} - {frame}/{image.n_frames - 1}"

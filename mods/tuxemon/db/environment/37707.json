@@ -2,7 +2,8 @@
   "slug": "37707",
   "battle_graphics": {
     "island_back": "37707_back_island.png",
-    "island_front": "37707_front_island.png"
+    "island_front": "37707_front_island.png",
+    "background": "battle_bg03.png"
   },
   "battle_music": "music_battle_loop_slow"
 }

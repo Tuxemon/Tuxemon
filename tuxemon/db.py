@@ -435,9 +435,10 @@ class NpcModel(BaseModel):
 class BattleGraphicsModel(BaseModel):
     island_back: str = Field(..., description="Sprite used for back combat")
     island_front: str = Field(..., description="Sprite used for front combat")
+    background: str = Field(..., description="Sprite used for background")
 
     # Validate resources that should exist
-    @validator("island_back", "island_front")
+    @validator("island_back", "island_front", "background")
     def file_exists(cls, v):
         file: str = f"gfx/ui/combat/{v}"
         if has.file(file):

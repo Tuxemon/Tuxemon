@@ -1103,6 +1103,16 @@ is by [KnoblePersona](https://opengameart.org/content/ocean-background), license
 [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 Changes made: This was cropped from the original image, the original was 480x216, this version has been cropped down to 240x112 resolution.
 
+* ["sand_background.png"](https://wiki.tuxemon.org/File:Background_(240px).png)
+is by [Leo](https://forum.tuxemon.org/profile.php?id=50), licensed under
+[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+Changes made: This was cropped from the concept art, the original was 1567×885, this version has been cropped down to 280x112 resolution.
+
+* ["snow_background.png"](https://wiki.tuxemon.org/File:Region_concept_art.jpeg)
+is by [Leo](https://forum.tuxemon.org/profile.php?id=50), licensed under
+[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+Changes made: This was cropped from the concept art (bottom right), the original was 1024×576, this version has been cropped down to 280x112 resolution.
+
 ## Concept Art
 
 * ["Concept Art"](https://forum.tuxemon.org/viewtopic.php?id=76) by

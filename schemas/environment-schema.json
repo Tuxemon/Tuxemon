@@ -39,7 +39,8 @@
       },
       "required": [
         "island_back",
-        "island_front"
+        "island_front",
+        "background"
       ]
     }
   }

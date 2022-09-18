@@ -11,6 +11,7 @@ json files will need to be updated as well.
 import os.path
 import pathlib
 import tempfile
+import sys
 from urllib.parse import urljoin
 
 import requests
@@ -55,6 +56,7 @@ def process_filename(filepath: str) -> str:
     """Extract base filename from an animation file path."""
     cleaned_filename = os.path.splitext(os.path.basename(filepath))[0]
     cleaned_filename = cleaned_filename.lower()
+    cleaned_filename = cleaned_filename.replace(" ", "_")
     return cleaned_filename
 
 
@@ -96,18 +98,17 @@ def download_animation_credits(gif_page_url: str) -> str:
     return credits_record
 
 
-def gif_to_frames(filepath: str) -> None:
+def gif_to_frames(animation_slug: str, filepath: str) -> None:
     """Extract individual animation frames as PNG from a GIF."""
     with Image.open(filepath) as image:
         if not image.is_animated:
             print(f"{filepath} is not animated, skipped")
             return
 
-        base_name = process_filename(filepath)
-        animation_name = process_animation_name(base_name)
+        animation_name = process_animation_name(animation_slug)
         for frame in range(0, image.n_frames):
             frame_filename = os.path.join(
-                ANIMATION_DIR, f"{base_name}_{frame:02}.png"
+                ANIMATION_DIR, f"{animation_slug}_{frame:02}.png"
             )
             print(
                 f"Generating animation frames for '{animation_name}': {frame_filename} - {frame}/{image.n_frames - 1}"
@@ -136,7 +137,8 @@ def download_technique_animations(wiki_url: str) -> None:
             print("", file=credits_file)
             for index, element in enumerate(elements, start=1):
                 # Download animation GIF and convert to frame PNGs
-                gif_url = urljoin(animations_url, element[0].get("src"))
+                gif_url = urljoin(animations_url, element.get("src"))
+                gif_filename = element.get("href").split("/File:")[-1]
                 filename = gif_url.split("/")[-1]
                 print(
                     f"Downloading animation [{index}/{len(elements)}] - {filename}"
@@ -148,7 +150,7 @@ def download_technique_animations(wiki_url: str) -> None:
                 if not download_bytes(gif_url, temppath):
                     continue
 
-                gif_to_frames(temppath)
+                gif_to_frames(process_filename(gif_filename), temppath)
 
                 # Download credits from GIF subpage URL
                 print(

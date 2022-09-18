@@ -31,13 +31,24 @@ print("Tuxemon project root dir:", TUXEMON_ROOT_DIR)
 print("Technique animation dir:", ANIMATION_DIR)
 
 
-def download_bytes(url: str, filepath: str) -> None:
-    """Downloads a stream of bytes from a given URL to a file path."""
+def download_bytes(url: str, filepath: str) -> bool:
+    """
+    Downloads a stream of bytes from a given URL to a file path.
+    
+    Returns:
+        True on successful byte stream download, False otherwise
+    """
+    if os.path.isfile(filepath):
+        filename = os.path.basename(filepath)
+        print(f"Aborting download! Animation GIF file already exists: {filename}")
+        return False
+
     req = requests.get(url)
     with open(filepath, "wb") as fp:
         for chunk in req.iter_content(chunk_size=1024):
             if chunk:
                 fp.write(chunk)
+    return True
 
 
 def process_filename(filepath: str) -> str:
@@ -132,7 +143,11 @@ def download_technique_animations(wiki_url: str) -> None:
                 )
 
                 temppath = os.path.join(tmp_dirname, filename)
-                download_bytes(gif_url, temppath)
+
+                # Don't proceed if the animation gif couldn't be downloaded or already exists
+                if not download_bytes(gif_url, temppath):
+                    continue
+
                 gif_to_frames(temppath)
 
                 # Download credits from GIF subpage URL

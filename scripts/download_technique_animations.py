@@ -20,6 +20,9 @@ from PIL import Image
 
 WIKI_URL = "https://wiki.tuxemon.org"
 
+# Set to True if the download script is supposed to stop on first failed  animation download
+EXIT_ON_FAILED_DOWNLOAD = False
+
 TUXEMON_ROOT_DIR = pathlib.Path(__file__).resolve().parent.parent
 ANIMATION_DIR = TUXEMON_ROOT_DIR.joinpath(
     pathlib.Path("mods/tuxemon/animations/technique")
@@ -137,7 +140,7 @@ def download_technique_animations(wiki_url: str) -> None:
             print("", file=credits_file)
             for index, element in enumerate(elements, start=1):
                 # Download animation GIF and convert to frame PNGs
-                gif_url = urljoin(animations_url, element.get("src"))
+                gif_url = urljoin(animations_url, element[0].get("src"))
                 gif_filename = element.get("href").split("/File:")[-1]
                 filename = gif_url.split("/")[-1]
                 print(
@@ -148,6 +151,8 @@ def download_technique_animations(wiki_url: str) -> None:
 
                 # Don't proceed if the animation gif couldn't be downloaded or already exists
                 if not download_bytes(gif_url, temppath):
+                    if EXIT_ON_FAILED_DOWNLOAD:
+                        sys.exit(1)
                     continue
 
                 gif_to_frames(process_filename(gif_filename), temppath)

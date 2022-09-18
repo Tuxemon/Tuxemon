@@ -43,8 +43,6 @@ def download_bytes(url: str, filepath: str) -> None:
 def process_filename(filepath: str) -> str:
     """Extract base filename from an animation file path."""
     cleaned_filename = os.path.splitext(os.path.basename(filepath))[0]
-    cleaned_filename = cleaned_filename.lstrip("0123456789_")
-    cleaned_filename = cleaned_filename.split("px-")[-1]
     cleaned_filename = cleaned_filename.lower()
     return cleaned_filename
 

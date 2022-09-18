@@ -1,8 +1,8 @@
 {
   "tech_id": 95,
   "slug": "status_poison",
-  "use_tech": "combat_used_x",
-  "use_success": "generic_success",
+  "use_tech": "combat_state_poison_damage",
+  "use_success": "combat_state_poison_get",
   "use_failure": "generic_failure",
   "animation": "drip_green",
   "sfx": "sfx_pulse",

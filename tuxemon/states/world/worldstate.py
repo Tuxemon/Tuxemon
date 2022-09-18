@@ -131,11 +131,9 @@ class WorldState(state.State):
 
     def __init__(
         self,
-        *,
-        map_name: Optional[str] = None,
-        **kwargs: Any,
+        map_name: str,
     ) -> None:
-        super().__init__(**kwargs)
+        super().__init__()
 
         from tuxemon.player import Player
 

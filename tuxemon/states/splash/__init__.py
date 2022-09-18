@@ -45,8 +45,8 @@ class SplashState(state.State):
 
     default_duration = 3
 
-    def __init__(self, *, parent: state.StateManager, **kwargs: Any) -> None:
-        super().__init__(**kwargs)
+    def __init__(self, parent: state.StateManager) -> None:
+        super().__init__()
 
         self.parent = parent
 

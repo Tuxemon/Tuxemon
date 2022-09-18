@@ -30,7 +30,7 @@
 #
 from __future__ import annotations
 
-from typing import Any, Generator, Iterable, Sequence, Tuple
+from typing import TYPE_CHECKING, Generator, Iterable, Sequence, Tuple
 
 import pygame
 
@@ -43,7 +43,6 @@ from tuxemon.menu.menu import Menu
 from tuxemon.menu.quantity import (
     QuantityAndCostMenu,
     QuantityAndPriceMenu,
-    QuantityMenu,
 )
 from tuxemon.monster import Monster
 from tuxemon.session import local_session
@@ -51,11 +50,9 @@ from tuxemon.sprite import Sprite
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.ui.text import TextArea
 
-# The import is required for PushState to work.
-# But linters may say the import is unused.
-assert QuantityMenu
-assert QuantityAndCostMenu
-assert QuantityAndPriceMenu
+if TYPE_CHECKING:
+    from tuxemon.item.economy import Economy
+    from tuxemon.npc import NPC
 
 
 def sort_inventory(
@@ -93,8 +90,8 @@ class ItemMenuState(Menu[Item]):
     background_filename = "gfx/ui/item/item_menu_bg.png"
     draw_borders = False
 
-    def __init__(self, **kwargs: Any) -> None:
-        super().__init__(**kwargs)
+    def __init__(self) -> None:
+        super().__init__()
 
         # this sprite is used to display the item
         # its also animated to pop out of the backpack
@@ -256,8 +253,14 @@ class ShopMenuState(Menu[Item]):
     background_filename = "gfx/ui/item/item_menu_bg.png"
     draw_borders = False
 
-    def __init__(self, **kwargs: Any) -> None:
-        super().__init__(**kwargs)
+    def __init__(
+        self,
+        buyer: NPC,
+        seller: NPC,
+        economy: Economy,
+        buyer_purge: bool = False,
+    ) -> None:
+        super().__init__()
 
         # this sprite is used to display the item
         self.item_center = self.rect.width * 0.164, self.rect.height * 0.13
@@ -277,10 +280,10 @@ class ShopMenuState(Menu[Item]):
         self.sprites.add(self.text_area, layer=100)
 
         self.image_center = self.rect.width * 0.16, self.rect.height * 0.45
-        self.buyer = kwargs["buyer"]
-        self.seller = kwargs["seller"]
-        self.buyer_purge = kwargs.get("buyer_purge", False)
-        self.economy = kwargs["economy"]
+        self.buyer = buyer
+        self.seller = seller
+        self.buyer_purge = buyer_purge
+        self.economy = economy
 
     def calc_internal_rect(self) -> pygame.rect.Rect:
         # area in the screen where the item list is

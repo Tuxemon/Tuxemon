@@ -11,12 +11,10 @@ from collections import defaultdict
 from functools import partial
 from typing import (
     TYPE_CHECKING,
-    Any,
     List,
     Literal,
     MutableMapping,
     Optional,
-    Sequence,
     Tuple,
 )
 
@@ -67,20 +65,11 @@ class CombatAnimations(ABC, Menu[None]):
 
     def __init__(
         self,
-        *,
-        players: Sequence[NPC] = (),
-        graphics: Optional[BattleGraphicsModel] = None,
-        **kwargs: Any,
+        players: Tuple[NPC, NPC],
+        graphics: BattleGraphicsModel,
     ) -> None:
-        # The defaults are a lie to stop mypy complaining about us violating
-        # the Liskov Substitution Principle
-        assert len(players) == 2
-        assert graphics is not None
-
-        super().__init__(**kwargs)
+        super().__init__()
         self.players = list(players)
-
-        assert graphics is not None
         self.graphics = graphics
 
         self.monsters_in_play: MutableMapping[
@@ -159,12 +148,6 @@ class CombatAnimations(ABC, Menu[None]):
         npc: NPC,
         monster: Monster,
     ) -> None:
-        """
-        Parameters:
-            npc:
-            monster:
-
-        """
         feet_list = list(self._layout[npc]["home"][0].center)
         feet = (feet_list[0], feet_list[1] + tools.scale(11))
 
@@ -252,11 +235,6 @@ class CombatAnimations(ABC, Menu[None]):
         )
 
     def animate_sprite_tackle(self, sprite: Sprite) -> None:
-        """
-        Parameters:
-            sprite:
-
-        """
         duration = 0.3
         original_x = sprite.rect.x
 

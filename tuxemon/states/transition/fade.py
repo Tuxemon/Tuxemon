@@ -32,7 +32,7 @@ from __future__ import annotations
 
 import logging
 from abc import abstractmethod
-from typing import Any, Optional
+from typing import Optional
 
 import pygame
 
@@ -53,13 +53,11 @@ class FadeTransitionBase(State):
 
     def __init__(
         self,
-        *,
         state_duration: Optional[float] = None,
         fade_duration: Optional[float] = None,
         caller: Optional[State] = None,
-        **kwargs: Any,
     ) -> None:
-        super().__init__(**kwargs)
+        super().__init__()
 
         logger.debug("Initializing fade transition")
 

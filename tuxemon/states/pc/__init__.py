@@ -86,8 +86,8 @@ class PCState(PopUpMenu[MenuGameObj]):
 
     shrink_to_items = True
 
-    def __init__(self, **kwargs: Any) -> None:
-        super().__init__(**kwargs)
+    def __init__(self) -> None:
+        super().__init__()
 
         def change_state(state: str, **kwargs: Any) -> MenuGameObj:
             return partial(self.client.replace_state, state, **kwargs)
@@ -135,8 +135,8 @@ class MultiplayerMenu(PopUpMenu[MenuGameObj]):
 
     shrink_to_items = True
 
-    def __init__(self, **kwargs: Any) -> None:
-        super().__init__(**kwargs)
+    def __init__(self) -> None:
+        super().__init__()
 
         add_menu_items(
             self,
@@ -211,8 +211,8 @@ class MultiplayerSelect(PopUpMenu[None]):
 
     shrink_to_items = True
 
-    def __init__(self, **kwargs: Any) -> None:
-        super().__init__(**kwargs)
+    def __init__(self) -> None:
+        super().__init__()
 
         # make a timer to refresh the menu items every second
         self.task(self.reload_items, 1, -1)
@@ -253,7 +253,7 @@ class MonsterTakeState(PygameMenuState):
             new_image.scale(prepare.SCALE, prepare.SCALE)
             new_button = menu.add.button(label, callback)
 
-    def __init__(self, box_name: str, **kwargs: Any) -> None:
+    def __init__(self, box_name: str) -> None:
         width, height = prepare.SCREEN_SIZE
 
         theme = get_theme()
@@ -273,7 +273,7 @@ class MonsterTakeState(PygameMenuState):
             rows += 1
 
         super().__init__(
-            height=height, width=width, columns=columns, rows=rows, **kwargs
+            height=height, width=width, columns=columns, rows=rows
         )
 
         def take_monster(monster: Monster) -> None:
@@ -306,6 +306,16 @@ class MonsterTakeState(PygameMenuState):
 class MonsterBoxChooseState(PygameMenuState):
     """Menu to choose a tuxemon box."""
 
+    def __init__(self) -> None:
+        _, height = prepare.SCREEN_SIZE
+
+        super().__init__(height=height)
+
+        self.animation_offset = 0
+
+        menu_items_map = self.get_menu_items_map()
+        self.add_menu_items(self.menu, menu_items_map)
+
     def add_menu_items(
         self,
         menu: pygame_menu.Menu,
@@ -336,16 +346,6 @@ class MonsterBoxChooseState(PygameMenuState):
 
     def change_state(self, state: str, **kwargs: Any) -> Callable[[], object]:
         return partial(self.client.replace_state, state, **kwargs)
-
-    def __init__(self, **kwargs: Any) -> None:
-        _, height = prepare.SCREEN_SIZE
-
-        super().__init__(height=height, **kwargs)
-
-        self.animation_offset = 0
-
-        menu_items_map = self.get_menu_items_map()
-        self.add_menu_items(self.menu, menu_items_map)
 
     def update_animation_position(self) -> None:
         self.menu.translate(-self.animation_offset, 0)
@@ -419,8 +419,8 @@ class MonsterBoxChooseDropOffState(MonsterBoxChooseState):
 class MonsterDropOffState(MonsterMenuState):
     """Shows all Tuxemon in player's party, puts it into box if selected."""
 
-    def __init__(self, box_name: str, **kwargs: Any) -> None:
-        super().__init__(**kwargs)
+    def __init__(self, box_name: str) -> None:
+        super().__init__()
 
         self.box_name = box_name
 

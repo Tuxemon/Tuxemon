@@ -35,7 +35,6 @@ from functools import partial
 from itertools import chain
 from typing import (
     TYPE_CHECKING,
-    Any,
     Dict,
     Iterable,
     List,
@@ -56,7 +55,7 @@ from pygame.rect import Rect
 from tuxemon import audio, graphics, state, tools
 from tuxemon.animation import Task
 from tuxemon.combat import check_status, defeated, fainted, get_awake_monsters
-from tuxemon.db import SeenStatus
+from tuxemon.db import BattleGraphicsModel, SeenStatus
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -195,8 +194,9 @@ class CombatState(CombatAnimations):
 
     def __init__(
         self,
-        combat_type: Optional[Literal["monster", "trainer"]] = None,
-        **kwargs: Any,
+        players: Tuple[NPC, NPC],
+        graphics: BattleGraphicsModel,
+        combat_type: Literal["monster", "trainer"],
     ) -> None:
         self.max_positions = 1  # TODO: make dependant on match type
         self.phase: Optional[CombatPhase] = None
@@ -214,7 +214,7 @@ class CombatState(CombatAnimations):
         self._round = 0
         self._prize = 0
 
-        super().__init__(**kwargs)
+        super().__init__(players, graphics)
         self.is_trainer_battle = combat_type == "trainer"
         self.show_combat_dialog()
         self.transition_phase("begin")
@@ -779,7 +779,6 @@ class CombatState(CombatAnimations):
         state = self.client.push_state(
             MainCombatMenuState(
                 monster=monster,
-                columns=2,
             )
         )
         state.rect = rect

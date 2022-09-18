@@ -53,7 +53,6 @@ class DialogState(PopUpMenu):
 
     def __init__(
         self,
-        *,
         text: Sequence[str] = (),
         avatar: Optional[Sprite] = None,
         menu: Optional[Sequence[Tuple[str, str, Callable[[], None]]]] = None,

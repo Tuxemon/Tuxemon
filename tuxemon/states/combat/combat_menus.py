@@ -3,16 +3,7 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from functools import partial
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Callable,
-    DefaultDict,
-    Generator,
-    List,
-    Optional,
-    Union,
-)
+from typing import TYPE_CHECKING, Callable, DefaultDict, Generator, List, Union
 
 import pygame
 
@@ -33,7 +24,7 @@ from tuxemon.technique.technique import Technique
 from tuxemon.ui.draw import GraphicBox
 
 if TYPE_CHECKING:
-    from tuxemon.player import Player
+    from tuxemon.player import NPC, Player
 
 logger = logging.getLogger(__name__)
 
@@ -50,16 +41,11 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
     """
 
     escape_key_exits = False
+    columns = 2
 
-    def __init__(
-        self,
-        *,
-        monster: Optional[Monster] = None,
-        **kwargs: Any,
-    ) -> None:
-        super().__init__(**kwargs)
+    def __init__(self, monster: Monster) -> None:
+        super().__init__()
 
-        assert monster
         self.monster = monster
 
     def initialize_items(self) -> Generator[MenuItem[MenuGameObj], None, None]:
@@ -279,16 +265,11 @@ class CombatTargetMenuState(Menu[Monster]):
 
     def __init__(
         self,
-        *,
-        user: Union[Player, Monster, None] = None,
-        action: Union[Item, Technique, None] = None,
-        player: Optional[Player] = None,
-        **kwargs: Any,
+        player: Player,
+        user: Union[NPC, Monster],
+        action: Union[Item, Technique],
     ) -> None:
-        super().__init__(**kwargs)
-
-        if action is None:
-            raise ValueError("action parameter is required")
+        super().__init__()
 
         # used to determine how player can target techniques
         self.user = user

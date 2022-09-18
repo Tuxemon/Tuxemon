@@ -31,7 +31,7 @@ from __future__ import annotations
 import logging
 import os
 from base64 import b64decode
-from typing import Any
+from typing import Optional
 
 import pygame
 from pygame import Rect
@@ -54,10 +54,10 @@ class SaveMenuState(PopUpMenu[None]):
     number_of_slots = 3
     shrink_to_items = True
 
-    def __init__(self, **kwargs: Any) -> None:
-        if "selected_index" not in kwargs:
-            kwargs["selected_index"] = save.slot_number or 0
-        super().__init__(**kwargs)
+    def __init__(self, selected_index: Optional[int] = None) -> None:
+        if selected_index is None:
+            selected_index = save.slot_number or 0
+        super().__init__(selected_index=selected_index)
 
     def initialize_items(self) -> None:
         empty_image = None

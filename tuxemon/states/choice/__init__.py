@@ -27,7 +27,6 @@ class ChoiceState(PygameMenuState):
 
     def __init__(
         self,
-        *,
         menu: Sequence[Tuple[str, str, Callable[[], None]]] = (),
         escape_key_exits: bool = False,
         **kwargs: Any,

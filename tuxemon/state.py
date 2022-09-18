@@ -85,7 +85,7 @@ class State:
     transparent = False  # ignore all background/borders
     force_draw = False  # draw even if completely under another state
 
-    def __init__(self, **_: Any) -> None:
+    def __init__(self) -> None:
         """
         Constructor
 
@@ -350,8 +350,7 @@ class StateManager:
             state = self._state_dict[state_name]
         except KeyError:
             raise RuntimeError(f"Cannot find state: {state_name}")
-        instance = state(**kwargs)
-        return instance
+        return state(**kwargs) if kwargs else state()
 
     @staticmethod
     def collect_states_from_module(
@@ -570,13 +569,16 @@ class StateManager:
             self._check_resume(previous)
             previous.pause()
 
-        if isinstance(state_name, str):
-            instance = self._instance(state_name, **kwargs)
-        elif isinstance(state_name, State):
+        if isinstance(state_name, State):
             instance = state_name
+        elif isinstance(state_name, str):
+            instance = self._instance(state_name, **kwargs)
         else:
-            warnings.warn("Calling push_state with Type[State] is deprecated, use an instantiated State instead", DeprecationWarning)
-            instance = state_name(parent=self, **kwargs)
+            warnings.warn(
+                "Calling push_state with Type[State] is deprecated, use an instantiated State instead",
+                DeprecationWarning,
+            )
+            instance = state_name(**kwargs) if kwargs else state_name()
 
         instance.startup(**kwargs)
         self._resume_set.add(instance)

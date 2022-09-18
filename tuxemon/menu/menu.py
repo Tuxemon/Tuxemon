@@ -203,7 +203,7 @@ class Menu(Generic[T], state.State):
     # if true, then menu items can be selected with the mouse/touch
     touch_aware = True
 
-    def __init__(self, *, selected_index: int = 0, **kwargs: Any) -> None:
+    def __init__(self, selected_index: int = 0, **kwargs: Any) -> None:
         super().__init__()
 
         self.rect = self.rect.copy()  # do not remove!

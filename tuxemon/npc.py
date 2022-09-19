@@ -775,7 +775,7 @@ class NPC(Entity[NPCState]):
 
                 # TODO: implement an evolution animation
 
-              # Set new monster data
+                # Set new monster data
                 new_monster = Monster()
                 new_monster.load_from_db(evolution)
                 new_monster.set_level(old_level)

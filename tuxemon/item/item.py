@@ -187,7 +187,7 @@ class Item:
                 params = None
             try:
                 effect = Item.effects_classes[name]
-            except KeyError:                
+            except KeyError:
                 logger.error(f'Error: ItemEffect "{name}" not implemented')
             else:
                 ret.append(effect(self.session, self.user, params))

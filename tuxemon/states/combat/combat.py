@@ -426,7 +426,9 @@ class CombatState(CombatAnimations):
             if self.is_trainer_battle:
                 var["battle_last_trainer"] = self.players[1].slug
                 var["battle_draw"] = +1
-                var["percent_draw"] = round((var["battle_draw"] / var["battle_total"])*100)
+                var["percent_draw"] = round(
+                    (var["battle_draw"] / var["battle_total"]) * 100
+                )
                 # track battles against NPC
                 self.players[0].battle_history[self.players[1].slug] = "draw"
 
@@ -449,9 +451,13 @@ class CombatState(CombatAnimations):
                 if self.is_trainer_battle:
                     var["battle_last_trainer"] = self.players[1].slug
                     var["battle_won"] = +1
-                    var["percent_win"] = round((var["battle_won"] / var["battle_total"])*100)
+                    var["percent_win"] = round(
+                        (var["battle_won"] / var["battle_total"]) * 100
+                    )
                     # track battles against NPC
-                    self.players[0].battle_history[self.players[1].slug] = "won"
+                    self.players[0].battle_history[
+                        self.players[1].slug
+                    ] = "won"
 
             else:
                 var["battle_last_result"] = "lost"
@@ -460,9 +466,13 @@ class CombatState(CombatAnimations):
                 if self.is_trainer_battle:
                     var["battle_last_trainer"] = self.players[1].slug
                     var["battle_lost"] = +1
-                    var["percent_lose"] = round((var["battle_lost"] / var["battle_total"])*100)
+                    var["percent_lose"] = round(
+                        (var["battle_lost"] / var["battle_total"]) * 100
+                    )
                     # track battles against NPC
-                    self.players[0].battle_history[self.players[1].slug] = "lost"
+                    self.players[0].battle_history[
+                        self.players[1].slug
+                    ] = "lost"
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close

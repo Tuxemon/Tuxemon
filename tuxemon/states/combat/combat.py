@@ -1163,9 +1163,7 @@ class CombatState(CombatAnimations):
                             monster.name, evolution["monster_slug"]
                         )
                     )
-                    monster_evolve = str(evolution["monster_slug"])
-                    if player is self.players[0]:
-                        player.evolve_monster(monster,monster_evolve)
+                    player.evolve_monster(monster,evolution["monster_slug"])
 
     def end_combat(self) -> None:
         """End the combat."""

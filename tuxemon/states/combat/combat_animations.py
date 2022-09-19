@@ -224,7 +224,8 @@ class CombatAnimations(ABC, Menu[None]):
 
         # capdev opening animation
         images = list()
-        for fn in ["capture%02d.png" % i for i in range(1, 10)]:
+        # TODO: Use a technique JSON for 'capture' instead of hardcoding it here
+        for fn in ["capture_1_%02d.png" % i for i in range(1, 7)]:
             fn = "animations/technique/" + fn
             image = graphics.load_and_scale(fn)
             images.append((image, 0.07))

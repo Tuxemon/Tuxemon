@@ -737,7 +737,7 @@ Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel
 * ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.
 
-* ["Capture"](https://wiki.tuxemon.org/File:Capture_1.gif)
+* ["Capture 1"](https://wiki.tuxemon.org/File:Capture_1.gif)
 Animation by Tamashihoshi and created for the Tuxemon project.
 
 * ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
@@ -858,7 +858,7 @@ From the Superpowers Asset Packs.
 * ["Heal Swarm"](https://wiki.tuxemon.org/File:Heal_swarm.gif)
 Adapted to 64px by Sanglorian.  From the Superpowers Asset Packs.
 
-* ["Hits For Separation"](https://wiki.tuxemon.org/File:12_hits_for_separation.gif)
+* ["12 Hits For Separation"](https://wiki.tuxemon.org/File:12_hits_for_separation.gif)
 [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA] This work, made by Viktor Hahn (Viktor.Hahn@web.de), is licensed under the Creative Commons...
 
 * ["Icetacle"](https://wiki.tuxemon.org/File:Icetacle_128.gif)

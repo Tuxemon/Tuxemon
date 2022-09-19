@@ -11,6 +11,7 @@ json files will need to be updated as well.
 import os.path
 import pathlib
 import tempfile
+import sys
 from urllib.parse import urljoin
 
 import requests
@@ -18,6 +19,9 @@ from lxml import html
 from PIL import Image
 
 WIKI_URL = "https://wiki.tuxemon.org"
+
+# Set to True if the download script is supposed to stop on first failed  animation download
+EXIT_ON_FAILED_DOWNLOAD = False
 
 TUXEMON_ROOT_DIR = pathlib.Path(__file__).resolve().parent.parent
 ANIMATION_DIR = TUXEMON_ROOT_DIR.joinpath(
@@ -31,21 +35,31 @@ print("Tuxemon project root dir:", TUXEMON_ROOT_DIR)
 print("Technique animation dir:", ANIMATION_DIR)
 
 
-def download_bytes(url: str, filepath: str) -> None:
-    """Downloads a stream of bytes from a given URL to a file path."""
+def download_bytes(url: str, filepath: str) -> bool:
+    """
+    Downloads a stream of bytes from a given URL to a file path.
+    
+    Returns:
+        True on successful byte stream download, False otherwise
+    """
+    if os.path.isfile(filepath):
+        filename = os.path.basename(filepath)
+        print(f"Aborting download! Animation GIF file already exists: {filename}")
+        return False
+
     req = requests.get(url)
     with open(filepath, "wb") as fp:
         for chunk in req.iter_content(chunk_size=1024):
             if chunk:
                 fp.write(chunk)
+    return True
 
 
 def process_filename(filepath: str) -> str:
     """Extract base filename from an animation file path."""
     cleaned_filename = os.path.splitext(os.path.basename(filepath))[0]
-    cleaned_filename = cleaned_filename.strip("0123456789_")
-    cleaned_filename = cleaned_filename.split("px-")[-1]
     cleaned_filename = cleaned_filename.lower()
+    cleaned_filename = cleaned_filename.replace(" ", "_")
     return cleaned_filename
 
 
@@ -87,18 +101,17 @@ def download_animation_credits(gif_page_url: str) -> str:
     return credits_record
 
 
-def gif_to_frames(filepath: str) -> None:
+def gif_to_frames(animation_slug: str, filepath: str) -> None:
     """Extract individual animation frames as PNG from a GIF."""
     with Image.open(filepath) as image:
         if not image.is_animated:
             print(f"{filepath} is not animated, skipped")
             return
 
-        base_name = process_filename(filepath)
-        animation_name = process_animation_name(base_name)
+        animation_name = process_animation_name(animation_slug)
         for frame in range(0, image.n_frames):
             frame_filename = os.path.join(
-                ANIMATION_DIR, f"{base_name}{frame:02}.png"
+                ANIMATION_DIR, f"{animation_slug}_{frame:02}.png"
             )
             print(
                 f"Generating animation frames for '{animation_name}': {frame_filename} - {frame}/{image.n_frames - 1}"
@@ -128,14 +141,21 @@ def download_technique_animations(wiki_url: str) -> None:
             for index, element in enumerate(elements, start=1):
                 # Download animation GIF and convert to frame PNGs
                 gif_url = urljoin(animations_url, element[0].get("src"))
+                gif_filename = element.get("href").split("/File:")[-1]
                 filename = gif_url.split("/")[-1]
                 print(
                     f"Downloading animation [{index}/{len(elements)}] - {filename}"
                 )
 
                 temppath = os.path.join(tmp_dirname, filename)
-                download_bytes(gif_url, temppath)
-                gif_to_frames(temppath)
+
+                # Don't proceed if the animation gif couldn't be downloaded or already exists
+                if not download_bytes(gif_url, temppath):
+                    if EXIT_ON_FAILED_DOWNLOAD:
+                        sys.exit(1)
+                    continue
+
+                gif_to_frames(process_filename(gif_filename), temppath)
 
                 # Download credits from GIF subpage URL
                 print(

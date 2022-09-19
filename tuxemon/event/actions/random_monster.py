@@ -71,6 +71,7 @@ class RandomMonsterAction(EventAction[RandomMonsterActionParameters]):
             trainer_slug or "player"
         )
         
+        # list is required as choice expects a sequence
         monster_slug = rd.choice(list(db.database["monster"]))
       
         current_monster = monster.Monster()

@@ -68,7 +68,9 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
         npc = world.get_entity(self.parameters.npc_slug)
         assert npc
         if len(npc.monsters) == 0:
-            logger.warning(f"npc '{self.parameters.npc_slug}' has no monsters, won't start trainer battle.")
+            logger.warning(
+                f"npc '{self.parameters.npc_slug}' has no monsters, won't start trainer battle."
+            )
             return
 
         # Lookup the environment

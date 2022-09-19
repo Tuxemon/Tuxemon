@@ -29,8 +29,8 @@
 
 from __future__ import annotations
 
-import logging
 import datetime as dt
+import logging
 
 from tuxemon.map import proj
 from tuxemon.npc import NPC

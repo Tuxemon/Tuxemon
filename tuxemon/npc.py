@@ -903,7 +903,9 @@ class NPC(Entity[NPCState]):
                 )
 
             # Update player's and NPC money.
-            self.money["player"] = self.money.get("player") - (qty * unit_price)
+            self.money["player"] = self.money.get("player") - (
+                qty * unit_price
+            )
 
     def sell_increase_money(
         self,
@@ -927,7 +929,9 @@ class NPC(Entity[NPCState]):
 
         # Update player's and NPC money.
         if self.money.get("player") is not None:
-            self.money["player"] = self.money.get("player") + (qty * unit_price)
+            self.money["player"] = self.money.get("player") + (
+                qty * unit_price
+            )
 
     def buy_transaction(
         self,

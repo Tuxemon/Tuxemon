@@ -562,7 +562,7 @@ class CombatAnimations(ABC, Menu[None]):
         self.background = self.load_sprite(
             "gfx/ui/combat/" + self.graphics["background"]
         )
-        
+
         # TODO: not hardcode this
         player, opponent = self.players
         player_home = self._layout[player]["home"][0]

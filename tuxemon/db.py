@@ -72,7 +72,6 @@ class ItemSort(str, Enum):
 
 
 class ItemType(str, Enum):
-    booster = "Booster"
     consumable = "Consumable"
     key_item = "KeyItem"
 

@@ -763,28 +763,41 @@ class NPC(Entity[NPCState]):
             evolution: Monster to add to the npc's party.
 
         """
-        if monster in self.monsters:
-            # Store old monster data
-            old_level = monster.level
-            old_current_hp = monster.current_hp
-            old_flairs = monster.flairs
-            self.monsters.remove(monster)
+        if monster not in self.monsters:
+            return
+        else:
+            for slot, monster in enumerate(self.monsters):
+                # Store old monster data
+                old_level = monster.level
+                old_current_hp = monster.current_hp
+                old_flairs = monster.flairs
+                self.monsters.remove(monster)
 
-            # TODO: implement an evolution animation
+                # TODO: implement an evolution animation
 
-            # Set new monster data
-            new_monster = Monster()
-            new_monster.load_from_db(evolution)
-            new_monster.set_level(old_level)
-            new_monster.current_hp = min(old_current_hp, new_monster.hp)
-            new_monster.slug = new_monster.slug
-            self.monsters.append(new_monster)
+              # Set new monster data
+                new_monster = Monster()
+                new_monster.load_from_db(evolution)
+                new_monster.set_level(old_level)
+                new_monster.current_hp = min(old_current_hp, new_monster.hp)
+                new_monster.slug = new_monster.slug
+                self.monsters.append(new_monster)
 
-            # If evolution has a flair matching, copy it
-            for new_flair in new_monster.flairs.values():
-                for old_flair in old_flairs.values():
-                    if new_flair.category == old_flair.category:
-                        new_monster.flairs[new_flair.category] = old_flair
+                # If evolution has a flair matching, copy it
+                for new_flair in new_monster.flairs.values():
+                    for old_flair in old_flairs.values():
+                        if new_flair.category == old_flair.category:
+                            new_monster.flairs[new_flair.category] = old_flair
+
+                # Removing the old monster caused all monsters in front to move
+                # a slot back
+                # Bring our new monster from the end of the list to its
+                # previous position
+                for i in range(len(self.monsters) - 1, slot, -1):
+                    self.switch_monsters(i, i - 1)
+
+                # Only do one evolution per call
+                return
 
     def remove_monster_from_storage(self, monster: Monster) -> None:
         """

@@ -32,7 +32,7 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from functools import partial
-from itertools import chain, product
+from itertools import chain
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -473,7 +473,7 @@ class CombatState(CombatAnimations):
             self.players[0].set_party_status()
             self.end_combat()
 
-            for monster, player in product(self.active_monsters, self.active_players):
+            for monster, player in zip(self.active_monsters, self.active_players):
                 self.evolve(player, monster)
 
         else:

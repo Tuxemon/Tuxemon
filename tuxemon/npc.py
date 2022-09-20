@@ -758,6 +758,34 @@ class NPC(Entity[NPCState]):
             self.monsters.remove(monster)
             self.set_party_status()
 
+    def evolve_monster(self, old_monster: Monster, evolution: str) -> None:
+        """
+        Evolve a monster from this npc's party.
+
+        Parameters:
+            old_monster: Monster to remove from the npc's party.
+            evolution: Monster to add to the npc's party.
+
+        """
+        if old_monster not in self.monsters:
+            return
+
+        # TODO: implement an evolution animation
+        slot = self.monsters.index(old_monster)
+        new_monster = Monster()
+        new_monster.load_from_db(evolution)
+        new_monster.set_level(old_monster.level)
+        new_monster.current_hp = min(old_monster.current_hp, new_monster.hp)
+        new_monster.moves = old_monster.moves
+        new_monster.instance_id = old_monster.instance_id
+        self.monsters[slot] = new_monster
+
+        # If evolution has a flair matching, copy it
+        for new_flair in new_monster.flairs.values():
+            for old_flair in old_monster.flairs.values():
+                if new_flair.category == old_flair.category:
+                    new_monster.flairs[new_flair.category] = old_flair
+
     def remove_monster_from_storage(self, monster: Monster) -> None:
         """
         Removes the monster from the npc's storage.

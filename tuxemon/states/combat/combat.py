@@ -472,6 +472,7 @@ class CombatState(CombatAnimations):
         elif phase == "end combat":
             self.players[0].set_party_status()
             self.end_combat()
+            self.evolve()
 
         else:
             assert_never(phase)
@@ -1148,6 +1149,21 @@ class CombatState(CombatAnimations):
         # TODO: non SP things
         del self.monsters_in_play[player]
         self.players.remove(player)
+
+    def evolve(self) -> None:
+        for monster in self.players[0].monsters:
+            for evolution in monster.evolutions:
+                # check the path field, path field signals evolution item based
+                if not evolution["path"]:
+                    if evolution["at_level"] <= monster.level:
+                        logger.info(
+                            "{} evolved into {}!".format(
+                                monster.name, evolution["monster_slug"]
+                            )
+                        )
+                        self.players[0].evolve_monster(
+                            monster, evolution["monster_slug"]
+                        )
 
     def end_combat(self) -> None:
         """End the combat."""

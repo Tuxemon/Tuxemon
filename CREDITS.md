@@ -1192,7 +1192,7 @@ is by [Leo](https://forum.tuxemon.org/profile.php?id=50), licensed under
 [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 Changes made: Applied blue filter, night mode.
 
-* ["night_snowplain_background.png"]
+* ["night_snowplain_background.png"](https://wiki.tuxemon.org/File:4-night_(240).png)
 Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
 which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
 

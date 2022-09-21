@@ -1118,7 +1118,7 @@ Changes made: This was cropped from the concept art (upper right), the original 
 Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
 which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
 
-* ["clouds_background.png"]
+* ["clouds_background.png"](https://wiki.tuxemon.org/File:Cloud_battle_3,_compiled_by_Bill.png)
 Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
 which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
 
@@ -1174,7 +1174,7 @@ is by [KnoblePersona](https://opengameart.org/content/ocean-background), license
 [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 Changes made: Applied blue filter, night mode.
 
-* ["night_plain_background.png"]
+* ["night_plain_background.png"](https://wiki.tuxemon.org/File:7-night_(240).png)
 Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
 which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
 

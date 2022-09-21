@@ -323,7 +323,7 @@ class Technique:
             self.statranged,
             self.statdodge,
         ]
-        statslugs = ["speed", "hp", "armour", "melee", "ranged", "dodge"]
+        statslugs = ["speed", "current_hp", "armour", "melee", "ranged", "dodge"]
         newstatvalue = 0
         for stat, slugdata in zip(statsmaster, statslugs):
             if not stat:
@@ -347,15 +347,12 @@ class Technique:
                     "/": operator.floordiv,
                 }
                 newstatvalue = ops_dict[operation](basestatvalue, value)
-                setattr(target, slugdata, newstatvalue)
-            if slugdata == "hp":
+            if slugdata == "current_hp":
                 if override:
                     target.current_hp = target.hp
-                newstatvalue = 1
-                setattr(target, slugdata, newstatvalue)
             if newstatvalue <= 0:
                 newstatvalue = 1
-                setattr(target, slugdata, newstatvalue)
+            setattr(target, slugdata, newstatvalue)
         return {"success": bool(newstatvalue)}
 
     def calculate_damage(

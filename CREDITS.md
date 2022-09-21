@@ -1089,13 +1089,115 @@ Animation by josepharaoh99 and created for the Tuxemon project.
 
 ### Battle Backgrounds
 
+* ["arid_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["beach_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["bridge_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["canyon_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["cave_background.png"](https://wiki.tuxemon.org/File:5_(240px).png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["cavern_background.png"](https://wiki.tuxemon.org/File:Region_concept_art.jpeg)
+is by [Leo](https://forum.tuxemon.org/profile.php?id=50), licensed under
+[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+Changes made: This was cropped from the concept art (upper right), the original was 1024×576, this version has been cropped down to 280x112 resolution.
+
+* ["cliff_background.png"](https://wiki.tuxemon.org/File:Cliff_battle,_compiled.png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["clouds_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["desert_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
 * ["forest_background.png"](https://wiki.tuxemon.org/File:Background_(240px).png)
 Adapted by Sanglorian from a sprite by ["Catch
 Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack),
 is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
-* ["cave_background.png"](https://wiki.tuxemon.org/File:5_(240px).png)
-Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+* ["grass_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_arid_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_beach_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_bridge_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_canyon_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_cliff_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_desert_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_forest_background.png"]
+Adapted by Sanglorian from a sprite by ["Catch
+Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack),
+is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+Changes made: Applied blue filter, night mode.
+
+* ["night_grass_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_ocean_background.png"]
+is by [KnoblePersona](https://opengameart.org/content/ocean-background), licensed under
+[CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+Changes made: Applied blue filter, night mode.
+
+* ["night_plain_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_sand_background.png"]
+is by [Leo](https://forum.tuxemon.org/profile.php?id=50), licensed under
+[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+Changes made: Applied blue filter, night mode.
+
+* ["night_sea_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_snow_background.png"]
+is by [Leo](https://forum.tuxemon.org/profile.php?id=50), licensed under
+[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+Changes made: Applied blue filter, night mode.
+
+* ["night_snowplain_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_valley_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
 which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
 
 * ["ocean_background.png"](https://wiki.tuxemon.org/File:Ocean_cropped.png)
@@ -1103,15 +1205,44 @@ is by [KnoblePersona](https://opengameart.org/content/ocean-background), license
 [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 Changes made: This was cropped from the original image, the original was 480x216, this version has been cropped down to 240x112 resolution.
 
+* ["plain_background.png"](https://wiki.tuxemon.org/File:7_(240px).png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
 * ["sand_background.png"](https://wiki.tuxemon.org/File:Background_(240px).png)
 is by [Leo](https://forum.tuxemon.org/profile.php?id=50), licensed under
 [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 Changes made: This was cropped from the concept art, the original was 1567×885, this version has been cropped down to 280x112 resolution.
 
+* ["sea_background.png"](https://wiki.tuxemon.org/File:Sea_battle,_compiled_by_Bill.png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
 * ["snow_background.png"](https://wiki.tuxemon.org/File:Region_concept_art.jpeg)
 is by [Leo](https://forum.tuxemon.org/profile.php?id=50), licensed under
 [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 Changes made: This was cropped from the concept art (bottom right), the original was 1024×576, this version has been cropped down to 280x112 resolution.
+
+* ["snowplain_background.png"](https://wiki.tuxemon.org/File:4_(240).png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["stadium_background.png"]
+is by [user: 22171](https://www.peakpx.com/22171/football-stadium), adapted by JaskRendix licensed under
+[CC-0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+Changes made: This was cropped from the original image, the original was 1280x720, this version has been cropped down to 280x112 resolution.
+
+* ["sunset_background.png"](https://wiki.tuxemon.org/File:Cloud_battle_2,_compiled_by_Bill.png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["underwater_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["valley_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
 
 ## Concept Art
 

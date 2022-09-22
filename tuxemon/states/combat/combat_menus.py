@@ -101,7 +101,31 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 open_menu,
             )
         else:
-            combat_state.trigger_player_run(combat_state.players[0])
+            # Wild monster level is higher than party_level_average.
+            level = combat_state.players[0].game_variables[
+                "party_level_average"
+            ]
+            monster_record = combat_state.players[0].game_variables[
+                "battle_last_monster_level"
+            ]
+            if level < monster_record:
+
+                def open_menu() -> None:
+                    combat_state.task(
+                        partial(
+                            combat_state.show_monster_action_menu,
+                            self.monster,
+                        ),
+                        1,
+                    )
+
+                combat_state.alert(
+                    T.translate("combat_cannot_escape"),
+                    open_menu,
+                )
+            # Wild monster level is equal or lower than party_level_average.
+            else:
+                combat_state.trigger_player_run(combat_state.players[0])
 
     def open_swap_menu(self) -> None:
         """Open menus to swap monsters in party."""

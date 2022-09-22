@@ -123,6 +123,9 @@ msgstr "It missed..."
 msgid "combat_can't_run_from_trainer"
 msgstr "Can't run from trainer battles!"
 
+msgid "combat_cannot_escape"
+msgstr "Can't escape! You're weak!"
+
 msgid "combat_player_run"
 msgstr "You have run away!"
 

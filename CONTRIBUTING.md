@@ -208,7 +208,6 @@ For example:
 - Adding English: Just add content to the en_US base.po file. No others.
 - Adding English and Spanish: Only add content to their respective files.
 
-NOTE: The json locale files are for historical reference and will be removed.
 
 ### Translations Guidelines
 - Right-to-left languages are not supported

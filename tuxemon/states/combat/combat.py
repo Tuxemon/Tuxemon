@@ -980,9 +980,14 @@ class CombatState(CombatAnimations):
                     msg_type = (
                         "use_success" if result["success"] else "use_failure"
                     )
+                    context = {
+                        "user": getattr(user, "name", ""),
+                        "name": technique.name,
+                        "target": target.name,
+                    }
                     template = getattr(technique, msg_type)
                     if template:
-                        message += "\n" + T.translate(template)
+                        message += "\n" + T.format(template, context)
 
             self.alert(message)
             self.suppress_phase_change(action_time)

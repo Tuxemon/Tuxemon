@@ -303,7 +303,9 @@ class NPC(Entity[NPCState]):
         self.inventory = decode_inventory(
             session, self, save_data.get("inventory", {})
         )
-        self.monsters = decode_monsters(save_data.get("monsters"))
+        self.monsters = []
+        for monster in decode_monsters(save_data.get("monsters")):
+            self.add_monster(monster)
         self.name = save_data["player_name"]
         for monsterkey, monstervalue in save_data["monster_boxes"].items():
             self.monster_boxes[monsterkey] = decode_monsters(monstervalue)
@@ -653,7 +655,7 @@ class NPC(Entity[NPCState]):
     ####################################################
     #                   Monsters                       #
     ####################################################
-    def add_monster(self, monster: Monster) -> None:
+    def add_monster(self, monster: Monster, slot: int = None) -> None:
         """
         Adds a monster to the npc's list of monsters.
 
@@ -670,7 +672,10 @@ class NPC(Entity[NPCState]):
                 monster
             )
         else:
-            self.monsters.append(monster)
+            if slot is None:
+                self.monsters.append(monster)
+            else:
+                self.monsters.insert(slot, monster)
             self.set_party_status()
 
     def find_monster(self, monster_slug: str) -> Optional[Monster]:
@@ -778,7 +783,8 @@ class NPC(Entity[NPCState]):
         new_monster.current_hp = min(old_monster.current_hp, new_monster.hp)
         new_monster.moves = old_monster.moves
         new_monster.instance_id = old_monster.instance_id
-        self.monsters[slot] = new_monster
+        self.remove_monster(old_monster)
+        self.add_monster(new_monster, slot)
 
         # If evolution has a flair matching, copy it
         for new_flair in new_monster.flairs.values():

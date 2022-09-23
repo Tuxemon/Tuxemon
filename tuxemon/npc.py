@@ -303,7 +303,9 @@ class NPC(Entity[NPCState]):
         self.inventory = decode_inventory(
             session, self, save_data.get("inventory", {})
         )
-        self.monsters = decode_monsters(save_data.get("monsters"))
+        self.monsters = []
+        for monster in decode_monsters(save_data.get("monsters")):
+            self.add_monster(monster)
         self.name = save_data["player_name"]
         for monsterkey, monstervalue in save_data["monster_boxes"].items():
             self.monster_boxes[monsterkey] = decode_monsters(monstervalue)

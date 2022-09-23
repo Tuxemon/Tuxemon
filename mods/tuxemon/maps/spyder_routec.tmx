@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="228">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="229">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -275,10 +275,16 @@
     <property name="cond2" value="not variable_set hospitalcure:yes"/>
    </properties>
   </object>
-  <object id="221" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="221" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:ocean"/>
-    <property name="cond1" value="not variable_set environment:ocean"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="228" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_ocean"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
   <object id="222" name="Talk Rutherford" type="event" x="544" y="144" width="16" height="48">

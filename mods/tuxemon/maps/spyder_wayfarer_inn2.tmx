@@ -204,16 +204,10 @@
     <property name="cond4" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="47" name="Environment" type="event" x="-304" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable environment:snow"/>
-    <property name="cond1" value="not variable_set environment:snow"/>
-   </properties>
-  </object>
   <object id="48" name="Environment" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable environment:snow"/>
-    <property name="cond1" value="not variable_set environment:snow"/>
+    <property name="act1" value="set_variable environment:interior"/>
+    <property name="cond1" value="not variable_set environment:interior"/>
    </properties>
   </object>
   <object id="49" name="Talk Bravo" type="event" x="208" y="48" width="16" height="16">

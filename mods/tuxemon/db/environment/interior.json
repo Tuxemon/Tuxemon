@@ -1,0 +1,9 @@
+{
+  "slug": "interior",
+  "battle_graphics": {
+    "island_back": "paper_back_island.png",
+    "island_front": "paper_front_island.png",
+    "background": "battle_bg03.png"
+  },
+  "battle_music": "music_battle_loop"
+}

@@ -129,8 +129,8 @@
   </object>
   <object id="38" name="Environment" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable environment:snow"/>
-    <property name="cond1" value="not variable_set environment:snow"/>
+    <property name="act1" value="set_variable environment:interior"/>
+    <property name="cond1" value="not variable_set environment:interior"/>
    </properties>
   </object>
   <object id="40" name="Talk Justice" type="event" x="240" y="256" width="48" height="16">

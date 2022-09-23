@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="451">
+<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="452">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -530,10 +530,16 @@
     <property name="cond1" value="is variable_set rivergoto:candy"/>
    </properties>
   </object>
-  <object id="446" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="446" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="not variable_set environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="451" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
   <object id="450" name="Destination - Timber" type="event" x="112" y="272" width="16" height="16">

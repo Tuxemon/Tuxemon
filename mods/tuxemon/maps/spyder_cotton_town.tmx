@@ -438,10 +438,16 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="580" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="580" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="not variable_set environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="582" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
  </objectgroup>

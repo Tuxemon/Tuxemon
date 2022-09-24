@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/schemas/npc-schema.json",
   "slug": "karrianna",
   "gender": "female",
   "sprite_name": "maple",

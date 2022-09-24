@@ -126,7 +126,7 @@
     <property name="cond1" value="not variable_set environment:cave"/>
    </properties>
   </object>
-  <object id="64" name="Exhausted" type="event" x="0" y="0" width="16" height="16">
+  <object id="64" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>

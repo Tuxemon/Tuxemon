@@ -56,6 +56,34 @@
    eJxjYBgFo2AUjALsYPlAO2AUjAISAQDKTwCo
   </data>
  </layer>
+ <objectgroup color="#ff0000" id="5" name="Collision">
+  <object id="1" type="collision" x="0" y="0" width="16" height="304"/>
+  <object id="2" type="collision" x="352" y="0" width="16" height="304"/>
+  <object id="3" type="collision" x="16" y="176" width="160" height="32"/>
+  <object id="4" type="collision" x="96" y="240" width="128" height="32"/>
+  <object id="5" type="collision" x="192" y="176" width="32" height="16"/>
+  <object id="6" type="collision" x="192" y="192" width="32" height="32"/>
+  <object id="7" type="collision" x="208" y="224" width="16" height="16"/>
+  <object id="8" type="collision" x="48" y="240" width="16" height="64"/>
+  <object id="9" type="collision" x="16" y="0" width="336" height="32"/>
+  <object id="10" type="collision" x="48" y="32" width="48" height="32"/>
+  <object id="11" type="collision" x="160" y="32" width="48" height="32"/>
+  <object id="12" type="collision" x="256" y="32" width="16" height="64"/>
+  <object id="13" type="collision" x="240" y="32" width="16" height="16"/>
+  <object id="14" type="collision" x="272" y="32" width="48" height="32"/>
+  <object id="15" type="collision" x="288" y="208" width="64" height="32"/>
+  <object id="16" type="collision" x="16" y="112" width="256" height="32"/>
+  <object id="17" type="collision" x="256" y="144" width="64" height="32"/>
+  <object id="18" type="collision" x="32" y="144" width="16" height="16"/>
+  <object id="19" type="collision" x="304" y="176" width="16" height="16"/>
+  <object id="20" type="collision" x="256" y="208" width="16" height="96"/>
+  <object id="21" type="collision" x="272" y="288" width="16" height="16"/>
+  <object id="22" type="collision" x="320" y="240" width="32" height="16"/>
+  <object id="23" type="collision" x="336" y="256" width="16" height="16"/>
+  <object id="24" type="collision-line" x="64" y="304">
+   <polyline points="0,0 288,0"/>
+  </object>
+ </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="25" name="Teleport to Middle" type="event" x="16" y="272" width="16" height="16">
    <properties>
@@ -85,34 +113,6 @@
     <property name="act1" value="set_variable environment:interior"/>
     <property name="cond1" value="not variable_set environment:interior"/>
    </properties>
-  </object>
- </objectgroup>
- <objectgroup color="#ff0000" id="5" name="Collision">
-  <object id="1" type="collision" x="0" y="0" width="16" height="304"/>
-  <object id="2" type="collision" x="352" y="0" width="16" height="304"/>
-  <object id="3" type="collision" x="16" y="176" width="160" height="32"/>
-  <object id="4" type="collision" x="96" y="240" width="128" height="32"/>
-  <object id="5" type="collision" x="192" y="176" width="32" height="16"/>
-  <object id="6" type="collision" x="192" y="192" width="32" height="32"/>
-  <object id="7" type="collision" x="208" y="224" width="16" height="16"/>
-  <object id="8" type="collision" x="48" y="240" width="16" height="64"/>
-  <object id="9" type="collision" x="16" y="0" width="336" height="32"/>
-  <object id="10" type="collision" x="48" y="32" width="48" height="32"/>
-  <object id="11" type="collision" x="160" y="32" width="48" height="32"/>
-  <object id="12" type="collision" x="256" y="32" width="16" height="64"/>
-  <object id="13" type="collision" x="240" y="32" width="16" height="16"/>
-  <object id="14" type="collision" x="272" y="32" width="48" height="32"/>
-  <object id="15" type="collision" x="288" y="208" width="64" height="32"/>
-  <object id="16" type="collision" x="16" y="112" width="256" height="32"/>
-  <object id="17" type="collision" x="256" y="144" width="64" height="32"/>
-  <object id="18" type="collision" x="32" y="144" width="16" height="16"/>
-  <object id="19" type="collision" x="304" y="176" width="16" height="16"/>
-  <object id="20" type="collision" x="256" y="208" width="16" height="96"/>
-  <object id="21" type="collision" x="272" y="288" width="16" height="16"/>
-  <object id="22" type="collision" x="320" y="240" width="32" height="16"/>
-  <object id="23" type="collision" x="336" y="256" width="16" height="16"/>
-  <object id="24" type="collision-line" x="64" y="304">
-   <polyline points="0,0 288,0"/>
   </object>
  </objectgroup>
 </map>

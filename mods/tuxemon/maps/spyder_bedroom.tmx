@@ -81,7 +81,7 @@
     <property name="cond1" value="not variable_set spyder_starting_money:yes"/>
    </properties>
   </object>
-  <object id="29" name="Auto Healing Teleported" type="event" x="0" y="0" width="16" height="16">
+  <object id="29" name="Auto Healing Teleported" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="set_monster_health ,"/>
     <property name="act2" value="set_monster_status ,"/>

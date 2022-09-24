@@ -287,7 +287,7 @@
     <property name="behav1" value="talk spyder_beachcomber"/>
    </properties>
   </object>
-  <object id="190" name="Environment Day" type="event" x="32" y="0" width="16" height="16">
+  <object id="190" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="is variable_set daytime:true"/>
@@ -299,7 +299,7 @@
     <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
-  <object id="192" name="Exhausted" type="event" x="0" y="0" width="16" height="16">
+  <object id="192" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>

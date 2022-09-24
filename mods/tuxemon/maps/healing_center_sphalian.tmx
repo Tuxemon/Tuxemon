@@ -72,7 +72,7 @@
     <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
-  <object id="23" name="Auto Healing Teleported" type="event" x="0" y="0" width="16" height="16">
+  <object id="23" name="Auto Healing Teleported" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="set_monster_health ,"/>
     <property name="act2" value="set_monster_status ,"/>

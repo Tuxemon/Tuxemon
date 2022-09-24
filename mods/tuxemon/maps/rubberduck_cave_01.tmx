@@ -37,60 +37,6 @@
    eAHt2eEJwjAQhuH80hXUbXQcp3EcHcC9zKEHR7mWJFcK9t5ASY1JxccvTaSlUBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQKOVyRAGB7QUeNXd3src9PJ+IAAIIIIAAAgggsJrAte5n5aCMCagfhviNCcRGkT/8YgKx0eRvHb/YVfKO1vzlFYh9c/F7H75H7Eo5R2MX+93FTzKo5VzP7cGzHpXxa83fXP38eeLo++n64dXW9GYy6l8pZ6vnNm0Tx2kOT2aeZ87m1Mp7bXOojq/qp+2Zs+l5zbWpl62zP9Ods2ppF8fM2ZM7fouT10fssmcv6pc9e/iJQKx4c7OlTeavrsXsX/rvg3YNzuzYkrWlPp6j/n/OkMslm573rKOeZ1hfeox6+ophhnndY9LTVzNoHWVe721O95iM9LWOcr63OT1iMjoGv/59jrXeo19s981oBBBA4D8EPmTUjlI=
   </data>
  </layer>
- <objectgroup color="#ffff00" id="6" name="Events" visible="0">
-  <object id="64" name="teleport to map1" type="event" x="1088" y="432" width="16" height="16">
-   <properties>
-    <property name="act10" value="teleport map1.tmx,49,12"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
-   </properties>
-  </object>
-  <object id="65" name="Play Music" type="init" x="160" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_music Come and Find Me.ogg"/>
-    <property name="cond1" value="not music_playing Come and Find Me.ogg"/>
-   </properties>
-  </object>
-  <object id="172" name="Item hint" type="event" x="432" y="848" width="16" height="32">
-   <properties>
-    <property name="act10" value="dialog A good place to hide an item"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing right"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="174" name="Item hint" type="event" x="448" y="832" width="16" height="16">
-   <properties>
-    <property name="act10" value="dialog A good place to hide an item"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing down"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="175" name="If I could Swim" type="event" x="592" y="880" width="64" height="16">
-   <properties>
-    <property name="act10" value="dialog if i could swim..."/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing down"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="176" name="If I could Swim" type="event" x="544" y="864" width="48" height="16">
-   <properties>
-    <property name="act10" value="dialog if i could swim..."/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing down"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="177" name="Ladder" type="event" x="160" y="752" width="16" height="16">
-   <properties>
-    <property name="act10" value="dialog This ladder leads to nowhere"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
- </objectgroup>
  <objectgroup color="#ff0000" id="7" name="Collision" visible="0">
   <object id="14" type="collision" x="928" y="112" width="208" height="64"/>
   <object id="15" type="collision" x="976" y="176" width="48" height="16"/>
@@ -255,5 +201,59 @@
   <object id="199" type="collision" x="400" y="896" width="16" height="16"/>
   <object id="200" type="collision" x="624" y="1008" width="16" height="16"/>
   <object id="201" type="collision" x="288" y="832" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events" visible="0">
+  <object id="64" name="teleport to map1" type="event" x="1088" y="432" width="16" height="16">
+   <properties>
+    <property name="act10" value="teleport map1.tmx,49,12"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="65" name="Play Music" type="init" x="160" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music Come and Find Me.ogg"/>
+    <property name="cond1" value="not music_playing Come and Find Me.ogg"/>
+   </properties>
+  </object>
+  <object id="172" name="Item hint" type="event" x="432" y="848" width="16" height="32">
+   <properties>
+    <property name="act10" value="dialog A good place to hide an item"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="174" name="Item hint" type="event" x="448" y="832" width="16" height="16">
+   <properties>
+    <property name="act10" value="dialog A good place to hide an item"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="175" name="If I could Swim" type="event" x="592" y="880" width="64" height="16">
+   <properties>
+    <property name="act10" value="dialog if i could swim..."/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="176" name="If I could Swim" type="event" x="544" y="864" width="48" height="16">
+   <properties>
+    <property name="act10" value="dialog if i could swim..."/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="177" name="Ladder" type="event" x="160" y="752" width="16" height="16">
+   <properties>
+    <property name="act10" value="dialog This ladder leads to nowhere"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

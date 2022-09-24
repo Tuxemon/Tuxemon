@@ -203,29 +203,26 @@
   <object id="449" type="collision" x="464" y="0" width="16" height="80"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
-  <object id="335" name="Mart Sign" type="event" x="256" y="192">
+  <object id="335" name="Mart Sign" type="event" x="256" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_multi_martsign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
-   <polygon points="0,0 16,0 16,16 0,16"/>
   </object>
-  <object id="336" name="Teleport to Protagonist House" type="event" x="128" y="96">
+  <object id="336" name="Teleport to Protagonist House" type="event" x="128" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_downstairs.tmx,4,6,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
-  <object id="337" name="Sign for Protagonist House" type="event" x="192" y="96">
+  <object id="337" name="Sign for Protagonist House" type="event" x="192" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_home"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
   <object id="338" name="Under Repairs" type="event" x="64" y="240" width="16" height="16">
    <properties>
@@ -274,13 +271,12 @@
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>
-  <object id="352" name="Teleport to Mart" type="event" x="304" y="192">
+  <object id="352" name="Teleport to Mart" type="event" x="304" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_paper_scoop.tmx,6,10,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
   <object id="355" name="Stop!" type="event" x="208" y="16" width="32" height="16">
    <properties>
@@ -338,14 +334,13 @@
     <property name="act1" value="npc_move spyder_homemakerpapertown, down 1, right 1, up 1, left 1"/>
    </properties>
   </object>
-  <object id="417" name="Teleport to Sea Route" type="event" x="0" y="240">
+  <object id="417" name="Teleport to Sea Route" type="event" x="0" y="224" width="16" height="64">
    <properties>
     <property name="act1" value="transition_teleport spyder_routec.tmx,39,35,0.3"/>
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
    </properties>
-   <polygon points="0,-16 0,47.5 16,47.5 16,-16"/>
   </object>
   <object id="418" name="My First Mon" type="event" x="368" y="160" width="144" height="32">
    <properties>
@@ -457,13 +452,12 @@
     <property name="cond1" value="not music_playing music_town_theme"/>
    </properties>
   </object>
-  <object id="430" name="Sign for Sunnyside Manor" type="event" x="192" y="192">
+  <object id="430" name="Sign for Sunnyside Manor" type="event" x="192" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_sunnyside"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
   <object id="432" name="Create Captain" type="event" x="128" y="240" width="16" height="16">
    <properties>

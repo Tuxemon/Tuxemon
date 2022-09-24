@@ -83,31 +83,6 @@
    eAFjYBgFoyEwGgKkhoCyHEMDqXpG1WOGAAD6KgDC
   </data>
  </layer>
- <objectgroup color="#ffff00" id="5" name="Events">
-  <object id="10" name="Teleport to Lower Floor" type="event" x="144" y="144" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_dojo1.tmx,11,5,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-   </properties>
-  </object>
-  <object id="11" name="Teleport to Upper Floor" type="event" x="224" y="144" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_dojo3.tmx,10,9,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
-   </properties>
-  </object>
-  <object id="19" name="Player Spawn" type="event" x="192" y="160" width="16" height="16"/>
-  <object id="20" name="Environment" type="event" x="16" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable environment:interior"/>
-    <property name="cond1" value="not variable_set environment:interior"/>
-   </properties>
-  </object>
- </objectgroup>
  <objectgroup color="#ff0000" id="6" name="Collision" visible="0">
   <object id="1" type="collision" x="32" y="80" width="16" height="112"/>
   <object id="2" type="collision" x="32" y="80" width="48" height="32"/>
@@ -134,6 +109,31 @@
   </object>
   <object id="18" type="collision-line" x="144" y="160">
    <polyline points="0,0 16,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="5" name="Events">
+  <object id="10" name="Teleport to Lower Floor" type="event" x="144" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_dojo1.tmx,11,5,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="11" name="Teleport to Upper Floor" type="event" x="224" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_dojo3.tmx,10,9,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="19" name="Player Spawn" type="event" x="192" y="160" width="16" height="16"/>
+  <object id="20" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:interior"/>
+    <property name="cond1" value="not variable_set environment:interior"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

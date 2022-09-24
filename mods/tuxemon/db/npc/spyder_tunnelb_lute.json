@@ -7,28 +7,32 @@
       "level": 16,
       "slug": "noctula",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Noctalo",
       "level": 18,
       "slug": "noctalo",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Pipis",
       "level": 16,
       "slug": "pipis",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Strella",
       "level": 20,
       "slug": "strella",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     }
   ],
   "combat_front": "scientist.png",

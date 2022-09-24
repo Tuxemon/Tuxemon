@@ -7,14 +7,16 @@
       "level": 30,
       "slug": "hydrone",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Pigabyte",
       "level": 30,
       "slug": "pigabyte",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     }
   ],
   "combat_front": "hacker.png",

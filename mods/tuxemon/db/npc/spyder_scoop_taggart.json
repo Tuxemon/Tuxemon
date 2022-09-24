@@ -7,21 +7,24 @@
       "level": 30,
       "slug": "elofly",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Elowind",
       "level": 35,
       "slug": "elowind",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Lapinou",
       "level": 30,
       "slug": "lapinou",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     }
   ],
   "combat_front": "nurse.png",

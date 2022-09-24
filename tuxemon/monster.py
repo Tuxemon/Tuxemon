@@ -247,6 +247,7 @@ class Monster:
         self.txmn_id = 0
         self.height = 0.0
         self.weight = 0.0
+        self.gender = ""
 
         # The multiplier for checks when a monster ball is thrown this should be a value betwen 0-255 meaning that
         # 0 is 0% capture rate and 255 has a very good chance of capture. This numbers are based on the capture system

@@ -7,14 +7,16 @@
       "level": 36,
       "slug": "rockat",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Jemuar",
       "level": 40,
       "slug": "jemuar",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     }
   ],
   "combat_front": "professor.png",

@@ -7,14 +7,16 @@
       "level": 55,
       "slug": "mk01_alpha",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Mk01 Beta",
       "level": 55,
       "slug": "mk01_beta",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     }
   ],
   "combat_front": "ceo.png",

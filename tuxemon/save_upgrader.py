@@ -29,6 +29,7 @@
 
 from __future__ import annotations
 
+import random as rd
 from typing import TYPE_CHECKING, Any, Dict, Mapping
 
 from tuxemon.prepare import CONFIG
@@ -89,6 +90,12 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
         save_data["money"]["player"] = 10000
         save_data["game_variables"]["xero_starting_money"] = "yes"
         save_data["game_variables"]["spyder_starting_money"] = "yes"
+    
+    # set random gender monsters
+    genders = ["female", "neutral", "male"]
+    random = rd.choice(genders)
+    if not save_data.get("monsters", ["gender"]):
+        save_data.update(save_data.get("monsters", ["gender"]), random)
 
     version = save_data.get("version", 0)
     for i in range(version, SAVE_VERSION):

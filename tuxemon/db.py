@@ -400,6 +400,7 @@ class PartyMemberModel(BaseModel):
         ..., description="Modifier for experience this monster gives"
     )
     exp_req_mod: float = Field(..., description="Experience required modifier")
+    gender: str = Field(..., description="Gender of the monster")
 
     @validator("slug")
     def monster_exists(cls, v):

@@ -7,14 +7,16 @@
       "level": 8,
       "slug": "shybulb",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Shybulb",
       "level": 8,
       "slug": "shybulb",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     }
   ],
   "combat_front": "florist.png",

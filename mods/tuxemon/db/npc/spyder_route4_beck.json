@@ -7,21 +7,24 @@
       "level": 14,
       "slug": "katapill",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Tumbleworm",
       "level": 12,
       "slug": "tumbleworm",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Spighter",
       "level": 12,
       "slug": "spighter",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     }
   ],
   "combat_front": "yellowbelt.png",

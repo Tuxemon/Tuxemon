@@ -17,7 +17,8 @@
       "speed": 11,
       "special_defense": 12,
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     }
   ]
 }

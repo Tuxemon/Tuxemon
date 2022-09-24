@@ -7,21 +7,24 @@
       "level": 35,
       "slug": "birdling",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Pigabyte",
       "level": 35,
       "slug": "pigabyte",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Zunna",
       "level": 35,
       "slug": "zunna",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     }
   ],
   "combat_front": "cooldude.png",

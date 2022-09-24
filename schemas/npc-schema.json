@@ -62,13 +62,19 @@
           "title": "Exp Req Mod",
           "description": "Experience required modifier",
           "type": "number"
+        },
+        "gender": {
+          "title": "Gender",
+          "description": "Gender of the monster",
+          "type": "string"
         }
       },
       "required": [
         "slug",
         "level",
         "exp_give_mod",
-        "exp_req_mod"
+        "exp_req_mod",
+        "gender"
       ]
     }
   }

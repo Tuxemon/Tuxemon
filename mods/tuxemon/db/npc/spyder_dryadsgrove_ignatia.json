@@ -7,21 +7,24 @@
       "level": 50,
       "slug": "vivicinder",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Masknake",
       "level": 50,
       "slug": "masknake",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Criniotherme",
       "level": 50,
       "slug": "criniotherme",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     }
   ],
   "combat_front": "firenymph.png",

@@ -7,21 +7,24 @@
       "level": 40,
       "slug": "viviphyta",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Eyesore",
       "level": 40,
       "slug": "eyesore",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Cardinale",
       "level": 40,
       "slug": "cardinale",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     }
   ],
   "combat_front": "fashionista.png",

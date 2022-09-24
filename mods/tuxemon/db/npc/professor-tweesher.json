@@ -15,7 +15,8 @@
       "level": 3,
       "slug": "tweesher",
       "exp_give_mod": 6,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     }
   ]
 }

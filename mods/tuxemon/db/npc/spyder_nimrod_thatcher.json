@@ -7,14 +7,16 @@
       "level": 20,
       "slug": "squabbit",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Viviteel",
       "level": 25,
       "slug": "viviteel",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     }
   ],
   "combat_front": "enforcer_agent.png",

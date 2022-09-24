@@ -141,53 +141,54 @@ class Technique:
             The slug of the technique to look up in the database.
         """
 
-        results = db.lookup(slug, table="technique").dict()
-        self.name = T.translate(slug)
+        results = db.lookup(slug, table="technique")
+        self.slug = results.slug  # a short English identifier
+        self.name = T.translate(self.slug)
 
-        self.sort = results["sort"]
+        self.sort = results.sort
 
         # technique use notifications (translated!)
         # NOTE: should be `self.use_tech`, but Technique and Item have
         # overlapping checks
-        self.use_item = T.maybe_translate(results.get("use_tech"))
-        self.use_success = T.maybe_translate(results.get("use_success"))
-        self.use_failure = T.maybe_translate(results.get("use_failure"))
+        self.use_item = T.maybe_translate(results.use_tech)
+        self.use_success = T.maybe_translate(results.use_success)
+        self.use_failure = T.maybe_translate(results.use_failure)
 
-        self.category = results["category"]
-        self.icon = results["icon"]
+        self.category = results.category
+        self.icon = results.icon
         self._combat_counter = 0
         self._life_counter = 0
 
-        if results.get("types"):
-            self.type1 = results["types"][0]
-            if len(results["types"]) > 1:
-                self.type2 = results["types"][1]
+        if results.types:
+            self.type1 = results.types[0]
+            if len(results.types) > 1:
+                self.type2 = results.types[1]
             else:
                 self.type2 = None
         else:
             self.type1 = self.type2 = None
 
-        self.power = results.get("power", self.power)
+        self.power = results.power or self.power
 
-        self.statspeed = results.get("statspeed")
-        self.stathp = results.get("stathp")
-        self.statarmour = results.get("statarmour")
-        self.statmelee = results.get("statmelee")
-        self.statranged = results.get("statranged")
-        self.statdodge = results.get("statdodge")
+        self.statspeed = results.statspeed
+        self.stathp = results.stathp
+        self.statarmour = results.statarmour
+        self.statmelee = results.statmelee
+        self.statranged = results.statranged
+        self.statdodge = results.statdodge
 
-        self.is_fast = results.get("is_fast", self.is_fast)
-        self.recharge_length = results.get("recharge", self.recharge_length)
-        self.is_area = results.get("is_area", self.is_area)
-        self.range = results.get("range", self.range)
-        self.tech_id = results.get("tech_id", self.tech_id)
-        self.accuracy = results.get("accuracy", self.accuracy)
-        self.potency = results.get("potency", self.potency)
-        self.effect = results["effects"]
-        self.target = process_targets(results["target"])
+        self.is_fast = results.is_fast or self.is_fast
+        self.recharge_length = results.recharge or self.recharge_length
+        self.is_area = results.is_area or self.is_area
+        self.range = results.range or self.range
+        self.tech_id = results.tech_id or self.tech_id
+        self.accuracy = results.accuracy or self.accuracy
+        self.potency = results.potency or self.potency
+        self.effect = results.effects
+        self.target = process_targets(results.target)
 
         # Load the animation sprites that will be used for this technique
-        self.animation = results["animation"]
+        self.animation = results.animation
         if self.animation:
             directory = prepare.fetch("animations", "technique")
             self.images = animation_frame_files(directory, self.animation)
@@ -197,7 +198,7 @@ class Technique:
                 )
 
         # Load the sound effect for this technique
-        self.sfx = results["sfx"]
+        self.sfx = results.sfx
 
     def advance_round(self, number: int = 1) -> None:
         """
@@ -327,10 +328,10 @@ class Technique:
         for stat, slugdata in zip(statsmaster, statslugs):
             if not stat:
                 continue
-            value = stat.get("value", 0)
-            max_deviation = stat.get("max_deviation", 0)
-            operation = stat.get("operation", "+")
-            override = stat.get("overridetofull", False)
+            value = stat.value
+            max_deviation = stat.max_deviation
+            operation = stat.operation
+            override = stat.overridetofull
             basestatvalue = getattr(target, slugdata)
             if max_deviation:
                 value = random.randint(

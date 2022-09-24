@@ -23,7 +23,7 @@
             "monster_slug": "gectile"
         }
     ],
-    "shape": "Varmint",
+    "shape": "varmint",
     "types": [
         "Wood"
     ],

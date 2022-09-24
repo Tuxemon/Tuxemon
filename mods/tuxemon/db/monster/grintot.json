@@ -38,7 +38,7 @@
             "monster_slug": "grintrock"
         }
     ],
-    "shape": "Brute",
+    "shape": "brute",
     "types": [
         "Earth"
     ],

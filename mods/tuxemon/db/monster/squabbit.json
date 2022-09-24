@@ -23,7 +23,7 @@
             "monster_slug": "rabbitosaur"
         }
     ],
-    "shape": "Varmint",
+    "shape": "varmint",
     "types": [
         "Earth"
     ],

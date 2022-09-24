@@ -23,7 +23,7 @@
             "monster_slug": "dandylion"
         }
     ],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Wood"
     ],

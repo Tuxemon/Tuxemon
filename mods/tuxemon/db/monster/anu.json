@@ -17,7 +17,7 @@
         }
     ],
     "evolutions": [],
-    "shape": "Varmint",
+    "shape": "varmint",
     "types": [
         "Metal"
     ],

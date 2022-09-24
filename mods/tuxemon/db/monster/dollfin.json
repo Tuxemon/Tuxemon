@@ -38,7 +38,7 @@
             "monster_slug": "sharpfin"
         }
     ],
-    "shape": "Aquatic",
+    "shape": "aquatic",
     "types": [
         "Water"
     ],

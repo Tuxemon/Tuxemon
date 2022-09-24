@@ -1169,15 +1169,15 @@ class CombatState(CombatAnimations):
         for monster in self.players[0].monsters:
             for evolution in monster.evolutions:
                 # check the path field, path field signals evolution item based
-                if not evolution["path"]:
-                    if evolution["at_level"] <= monster.level:
+                if not evolution.path:
+                    if evolution.at_level <= monster.level:
                         logger.info(
                             "{} evolved into {}!".format(
-                                monster.name, evolution["monster_slug"]
+                                monster.name, evolution.monster_slug
                             )
                         )
                         self.players[0].evolve_monster(
-                            monster, evolution["monster_slug"]
+                            monster, evolution.monster_slug
                         )
 
     def end_combat(self) -> None:

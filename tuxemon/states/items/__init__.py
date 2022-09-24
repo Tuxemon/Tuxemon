@@ -425,7 +425,10 @@ class ShopBuyMenuState(ShopMenuState):
             )
         else:
             qty_can_afford = int(money / price)
-            max_quantity = min(MAX_QTY, qty_can_afford, item_dict["quantity"])
+            if item_dict.get("infinite"):
+                max_quantity = min(MAX_QTY, qty_can_afford)
+            else:
+                max_quantity = min(MAX_QTY, qty_can_afford, item_dict["quantity"])
 
         self.client.push_state(
             QuantityAndPriceMenu,

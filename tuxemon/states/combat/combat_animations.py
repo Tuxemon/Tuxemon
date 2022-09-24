@@ -695,7 +695,7 @@ class CombatAnimations(ABC, Menu[None]):
         # TODO: cache this sprite from the first time it's used.
         # also, should loading animated sprites be more convenient?
         images = list()
-        for fn in ["capture%02d.png" % i for i in range(1, 10)]:
+        for fn in ["capture_1_%02d.png" % i for i in range(1, 8)]:
             fn = "animations/technique/" + fn
             image = graphics.load_and_scale(fn)
             images.append((image, 0.07))

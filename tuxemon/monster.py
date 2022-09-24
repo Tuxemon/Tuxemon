@@ -532,25 +532,6 @@ class Monster:
             self.experience_required_modifier * (self.level + level_ofs) ** 3
         )
 
-    def get_evolution(self, path: str) -> Optional[str]:
-        """
-        Checks if an evolution is valid and gets the resulting monster.
-
-        Returns:
-            New monster slug if valid, None otherwise.
-
-        """
-        for evolution in self.evolutions:
-            if evolution.path == path:
-                level_over = 0 < evolution.at_level <= self.level
-                level_under = (
-                    evolution.at_level < 0
-                    and self.level <= -evolution.at_level
-                )
-                if level_over or level_under:
-                    return evolution.monster_slug
-        return None
-
     def get_sprite(self, sprite: str, **kwargs: Any) -> Sprite:
         """
         Gets a specific type of sprite for the monster.

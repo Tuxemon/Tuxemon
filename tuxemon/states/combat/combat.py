@@ -56,6 +56,7 @@ from pygame.rect import Rect
 from tuxemon import audio, graphics, state, tools
 from tuxemon.animation import Task
 from tuxemon.combat import check_status, defeated, fainted, get_awake_monsters
+from tuxemon.db import SeenStatus
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -379,6 +380,9 @@ class CombatState(CombatAnimations):
                 var["battle_last_monster_type"] = monster_record.slug
                 var["battle_last_monster_category"] = monster_record.category
                 var["battle_last_monster_shape"] = monster_record.shape
+                # Avoid reset string to seen if monster has already been caught
+                if monster_record.slug not in self.players[0].tuxepedia.keys():
+                    self.players[0].tuxepedia[monster_record.slug] = SeenStatus.seen.value
 
         elif phase == "decision phase":
             self.reset_status_icons()
@@ -977,6 +981,10 @@ class CombatState(CombatAnimations):
                     # TODO: Don't end combat right away; only works with SP,
                     # and 1 member parties end combat right here
                     if result["success"]:
+                        # Tuxepedia: set monster as caught (2)
+                        self.players[0].tuxepedia[
+                            self.monsters_in_play[self.players[1]][0].slug
+                        ] = SeenStatus.caught.value
                         # Display 'Gotcha!' first.
                         self.task(self.end_combat, action_time + 0.5)
                         self.task(

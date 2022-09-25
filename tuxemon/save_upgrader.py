@@ -31,6 +31,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Dict, Mapping
 
+from tuxemon.db import SeenStatus
 from tuxemon.prepare import CONFIG
 
 if TYPE_CHECKING:
@@ -83,6 +84,12 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
 
     save_data["battle_history"] = save_data.get("battle_history", {})
     save_data["money"] = save_data.get("money", {})
+    save_data["tuxepedia"] = save_data.get("tuxepedia", {})
+
+    # set as captured the party monsters
+    if not save_data["tuxepedia"]:
+        for mons in save_data.get("monsters", []):
+            save_data["tuxepedia"][mons["slug"]] = SeenStatus.caught.value
 
     # set money old savegame and avoid getting the starter
     if not save_data["money"]:

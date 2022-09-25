@@ -99,6 +99,12 @@ class MonsterShape(str, Enum):
     varmint = "varmint"
 
 
+class SeenStatus(str, Enum):
+    unseen = "unseen"
+    seen = "seen"
+    caught = "caught"
+
+
 # TODO: Automatically generate state enum through discovery
 State = Enum(
     "State",

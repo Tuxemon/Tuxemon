@@ -23,7 +23,7 @@
             "monster_slug": "ruption"
         }
     ],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Fire"
     ],

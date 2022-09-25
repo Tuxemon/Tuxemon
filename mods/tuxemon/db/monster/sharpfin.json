@@ -17,7 +17,7 @@
         }
     ],
     "evolutions": [],
-    "shape": "Aquatic",
+    "shape": "aquatic",
     "types": [
         "Water",
         "Wood"

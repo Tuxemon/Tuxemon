@@ -23,7 +23,7 @@
             "monster_slug": "incandesfin"
         }
     ],
-    "shape": "Aquatic",
+    "shape": "aquatic",
     "types": [
         "Water"
     ],

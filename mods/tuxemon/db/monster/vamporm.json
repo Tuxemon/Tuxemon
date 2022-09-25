@@ -23,7 +23,7 @@
             "monster_slug": "dracune"
         }
     ],
-    "shape": "Grub",
+    "shape": "grub",
     "types": [
         "Water"
     ],

@@ -31,7 +31,7 @@
             "monster_slug": "aardart"
         }
     ],
-    "shape": "Varmint",
+    "shape": "varmint",
     "types": [
         "Earth"
     ],

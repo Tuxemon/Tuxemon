@@ -17,7 +17,7 @@
         }
     ],
     "evolutions": [],
-    "shape": "Humanoid",
+    "shape": "humanoid",
     "types": [
         "Metal",
         "Water"

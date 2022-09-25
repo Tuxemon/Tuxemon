@@ -23,7 +23,7 @@
             "monster_slug": "elostorm"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Water"
     ],

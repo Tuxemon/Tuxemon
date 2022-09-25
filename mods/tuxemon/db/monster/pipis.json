@@ -23,7 +23,7 @@
             "monster_slug": "strella"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Wood"
     ],

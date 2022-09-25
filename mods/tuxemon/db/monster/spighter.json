@@ -17,7 +17,7 @@
         }
     ],
     "evolutions": [],
-    "shape": "Grub",
+    "shape": "grub",
     "types": [
         "Wood"
     ],

@@ -23,7 +23,7 @@
             "monster_slug": "corvix"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Metal"
     ],

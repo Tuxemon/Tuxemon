@@ -23,7 +23,7 @@
             "monster_slug": "birdling"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Wood"
     ],

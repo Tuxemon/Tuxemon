@@ -23,7 +23,7 @@
             "monster_slug": "elowind"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Water"
     ],

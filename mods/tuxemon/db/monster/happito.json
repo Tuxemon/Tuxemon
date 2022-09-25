@@ -17,7 +17,7 @@
         }
     ],
     "evolutions": [],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Earth",
         "Metal"

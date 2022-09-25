@@ -23,7 +23,7 @@
             "monster_slug": "fluttaflap"
         }
     ],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Water"
     ],

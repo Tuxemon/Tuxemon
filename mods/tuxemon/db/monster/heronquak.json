@@ -23,7 +23,7 @@
             "monster_slug": "eaglace"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Water"
     ],

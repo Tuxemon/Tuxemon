@@ -23,7 +23,7 @@
             "monster_slug": "flambear"
         }
     ],
-    "shape": "Humanoid",
+    "shape": "humanoid",
     "types": [
         "Fire"
     ],

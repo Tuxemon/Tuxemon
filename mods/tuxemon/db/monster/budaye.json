@@ -38,7 +38,7 @@
             "monster_slug": "frondly"
         }
     ],
-    "shape": "Sprite",
+    "shape": "sprite",
     "types": [
         "Wood"
     ],

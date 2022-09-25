@@ -23,7 +23,7 @@
             "monster_slug": "sapsnap"
         }
     ],
-    "shape": "Brute",
+    "shape": "brute",
     "types": [
         "Wood"
     ],

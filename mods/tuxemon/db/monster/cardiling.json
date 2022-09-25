@@ -23,7 +23,7 @@
             "monster_slug": "cardiwing"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Fire"
     ],

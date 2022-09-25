@@ -23,7 +23,7 @@
             "monster_slug": "windeye"
         }
     ],
-    "shape": "Sprite",
+    "shape": "sprite",
     "types": [
         "Metal"
     ],

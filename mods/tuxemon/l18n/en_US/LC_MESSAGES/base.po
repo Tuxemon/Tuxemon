@@ -2336,6 +2336,12 @@ msgstr "Knight I"
 msgid "knight2"
 msgstr "Knight II"
 
+msgid "knight3"
+msgstr "Knight III"
+
+msgid "knight4"
+msgstr "Knight IV"
+
 msgid "liela"
 msgstr "Liela"
 
@@ -2378,6 +2384,9 @@ msgstr "Team Xero Grunt I"
 msgid "xerogrund2"
 msgstr "Team Xero Grunt II"
 
+msgid "xerogrunt1"
+msgstr "Team Xero Grunt I"
+
 msgid "xerogrunt2"
 msgstr "Team Xero Grunt II"
 
@@ -2404,6 +2413,189 @@ msgstr "Team Xero Grunt IX"
 
 msgid "xerogrunt10"
 msgstr "Team Xero Grunt X"
+
+msgid "37707_female"
+msgstr "Ashley"
+
+msgid "37707_female_missing"
+msgstr "Ashley"
+
+msgid "37707_male"
+msgstr "Brad"
+
+msgid "37707_male_missing"
+msgstr "Brad"
+
+msgid "bob"
+msgstr "Bob"
+
+msgid "christie"
+msgstr "Christie"
+
+msgid "conworker1"
+msgstr "Ed"
+
+msgid "conworker2"
+msgstr "Edd"
+
+msgid "conworker3"
+msgstr "Eddy"
+
+msgid "cotton_breeder"
+msgstr "Chad"
+
+msgid "grace"
+msgstr "Grace"
+
+msgid "happy_guy"
+msgstr "Mr Smile"
+
+msgid "kyle"
+msgstr "Kyle"
+
+msgid "marissa"
+msgstr "Marissa"
+
+msgid "npc_mom"
+msgstr "Mom"
+
+msgid "nurse1"
+msgstr "Chelsea"
+
+msgid "nurse2"
+msgstr "Guadalupe"
+
+msgid "omnigrunt"
+msgstr "Romeo"
+
+msgid "omnigrunt2"
+msgstr "Shamar"
+
+msgid "omnigrunt3"
+msgstr "Terrance"
+
+msgid "omnigrunt4"
+msgstr "Gage"
+
+msgid "penguin"
+msgstr "Freeze"
+
+msgid "postboy"
+msgstr "Gabe"
+
+msgid "random_encounter_dummy"
+msgstr "Mr Random"
+
+msgid "shady_guy"
+msgstr "Logan"
+
+msgid "speck"
+msgstr "Johnny"
+
+msgid "spyder_barmaid"
+msgstr "Jennifer"
+
+msgid "spyder_beachcomber"
+msgstr "Moses"
+
+msgid "spyder_captain"
+msgstr "Cpt. Findus"
+
+msgid "spyder_catgirl"
+msgstr "Trilly"
+
+msgid "spyder_conileaffrolicking"
+msgstr "Conileaf"
+
+msgid "spyder_dante"
+msgstr "Virgilio"
+
+msgid "spyder_dragonscave_daeny"
+msgstr "Daeny"
+
+msgid "spyder_enforcer_rookie"
+msgstr "Rookie"
+
+msgid "spyder_firefighter"
+msgstr "Joe"
+
+msgid "spyder_flower_fez"
+msgstr "Fez"
+
+msgid "spyder_grannypiper"
+msgstr "Joy"
+
+msgid "spyder_homemaker"
+msgstr "Karen"
+
+msgid "spyder_homemakerpapertown"
+msgstr "Lia"
+
+msgid "spyder_magician"
+msgstr "Copperfield"
+
+msgid "spyder_mompapertown"
+msgstr "Haleigh"
+
+msgid "spyder_nurse"
+msgstr "Mercedes"
+
+msgid "spyder_omnichannel_dukeofdeadair"
+msgstr "Mr Ripley"
+
+msgid "spyder_picnicker"
+msgstr "Abbigail"
+
+msgid "spyder_professor"
+msgstr "Prof. Pepper"
+
+msgid "spyder_rivalbillie"
+msgstr "Billie"
+
+msgid "spyder_riverboatcaptainpapertown"
+msgstr "Cpt. Harlock"
+
+msgid "spyder_rockittenfrolicking"
+msgstr "Rockitten"
+
+msgid "spyder_route3_boulder"
+msgstr "Boulder"
+
+msgid "spyder_route6_log"
+msgstr "Log"
+
+msgid "spyder_scientist"
+msgstr "Dr. Gardner"
+
+msgid "spyder_scoop_lapinoua"
+msgstr "LapinouA"
+
+msgid "spyder_scoop_lapinoub"
+msgstr "LapinouB"
+
+msgid "spyder_scoop_lapinouc"
+msgstr "LapinouC"
+
+msgid "spyder_snugglepot"
+msgstr "Snuggle"
+
+msgid "spyder_soldier"
+msgstr "Sgt Weiss"
+
+msgid "spyder_statue"
+msgstr "Statue"
+
+msgid "spyder_tennisplayer"
+msgstr "Roger"
+
+msgid "taba_greeter"
+msgstr "Radio"
+
+msgid "tallon"
+msgstr "Tallon"
+
+msgid "tuxemart"
+msgstr "Tuxemart"
 
 ## DIALOG TRANSLATIONS ##
 # general dialogs

@@ -1,6 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/schemas/npc-schema.json",
   "slug": "karrianna",
+  "gender": "female",
   "sprite_name": "maple",
   "combat_front": "femaletrainer_front.png",
   "combat_back": "maple_back.png",
@@ -17,7 +18,8 @@
       "speed": 11,
       "special_defense": 12,
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     }
   ]
 }

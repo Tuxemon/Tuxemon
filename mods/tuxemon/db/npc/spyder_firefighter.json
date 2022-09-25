@@ -1,5 +1,6 @@
 {
   "slug": "spyder_firefighter",
+  "gender": "male",
   "sprite_name": "firefighter",
   "combat_front": "firefighter.png",
   "combat_back": "red_back.png"

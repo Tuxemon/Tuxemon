@@ -45,7 +45,7 @@ from typing import (
 
 from tuxemon import ai, fusion, graphics
 from tuxemon.config import TuxemonConfig
-from tuxemon.db import MonsterEvolutionItemModel, MonsterMovesetItemModel, db
+from tuxemon.db import GenderType, MonsterEvolutionItemModel, MonsterMovesetItemModel, db
 from tuxemon.locale import T
 from tuxemon.sprite import Sprite
 from tuxemon.technique import Technique
@@ -231,6 +231,7 @@ class Monster:
         self.faint_cry = ""
         self.ai: Optional[ai.AI] = None
         self.owner: Optional[NPC] = None
+        self.possible_gender = GenderType.neutral
 
         self.experience_give_modifier = 1
         self.experience_required_modifier = 1
@@ -340,6 +341,7 @@ class Monster:
         self.txmn_id = results.txmn_id
         self.height = results.height
         self.weight = results.weight
+        self.possible_gender = GenderType.neutral
         self.catch_rate = (
             results.catch_rate
             or TuxemonConfig().default_monster_catch_rate

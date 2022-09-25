@@ -1,5 +1,6 @@
 {
   "slug": "misa",
+  "gender": "female",
   "sprite_name": "misa",
   "combat_front": "femaletrainer_front.png",
   "combat_back": "maple_back.png"

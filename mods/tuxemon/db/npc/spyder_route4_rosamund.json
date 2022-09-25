@@ -1,5 +1,6 @@
 {
   "slug": "spyder_route4_rosamund",
+  "gender": "female",
   "sprite_name": "picnicker",
   "monsters": [
     {
@@ -7,7 +8,8 @@
       "level": 18,
       "slug": "foofle",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     }
   ],
   "combat_front": "picnicker.png",

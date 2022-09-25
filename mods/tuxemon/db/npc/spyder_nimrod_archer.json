@@ -1,5 +1,6 @@
 {
   "slug": "spyder_nimrod_archer",
+  "gender": "male",
   "sprite_name": "soldier",
   "monsters": [
     {
@@ -7,21 +8,24 @@
       "level": 20,
       "slug": "sharpfin",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     },
     {
       "name": "AV8R",
       "level": 20,
       "slug": "av8r",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neutral"
     },
     {
       "name": "Grimachin",
       "level": 20,
       "slug": "grimachin",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     }
   ],
   "combat_front": "soldier.png",

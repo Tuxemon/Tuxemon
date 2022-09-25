@@ -1,5 +1,6 @@
 {
   "slug": "spyder_dragonscave_benden",
+  "gender": "male",
   "sprite_name": "dragonrider",
   "monsters": [
     {
@@ -7,14 +8,16 @@
       "level": 36,
       "slug": "dragarbor",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     },
     {
       "name": "Sapragon",
       "level": 38,
       "slug": "sapragon",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     }
   ],
   "combat_front": "dragonrider.png",

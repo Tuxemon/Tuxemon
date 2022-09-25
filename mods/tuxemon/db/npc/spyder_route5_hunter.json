@@ -1,5 +1,6 @@
 {
   "slug": "spyder_route5_hunter",
+  "gender": "male",
   "sprite_name": "soldier",
   "monsters": [
     {
@@ -7,21 +8,24 @@
       "level": 18,
       "slug": "elowind",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     },
     {
       "name": "Elofly",
       "level": 16,
       "slug": "elofly",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     },
     {
       "name": "Elofly",
       "level": 16,
       "slug": "elofly",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     }
   ],
   "combat_front": "soldier.png",

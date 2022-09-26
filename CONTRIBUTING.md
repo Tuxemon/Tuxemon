@@ -55,6 +55,33 @@ content creators get a "lock" and agree with others that they will be making
 changes to binary game content.  Ask in the discord or open an issue if you
 plan on making changes to existing content.
 
+Additionally, for combat animation contributions please ensure that techniques
+that move along the x-axis by default do so from left to right. There is code that
+will determine the correct orientation that the animation should be displayed.
+
+Example:
+
+![alt text][water0]![alt text][water1]![alt text][water2]![alt text][water3]![alt text][water4]![alt text][water5]![alt text][water6]
+
+*If a Tuxemon on the left uses the water shot technique above, the animation will*
+*be displayed in its default orientation from left to right. However, if a Tuxemon*
+*on the right uses that technique, the animation will be flipped horizontally to*
+*display movement from right to left.*
+
+[water0]: https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/mods/tuxemon/animations/technique/watershot_00.png "watershot_00"
+
+[water1]: https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/mods/tuxemon/animations/technique/watershot_01.png "watershot_01"
+
+[water2]: https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/mods/tuxemon/animations/technique/watershot_02.png "watershot_02"
+
+[water3]: https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/mods/tuxemon/animations/technique/watershot_03.png "watershot_03"
+
+[water4]: https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/mods/tuxemon/animations/technique/watershot_04.png "watershot_04"
+
+[water5]: https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/mods/tuxemon/animations/technique/watershot_05.png "watershot_05"
+
+[water6]: https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/mods/tuxemon/animations/technique/watershot_06.png "watershot_06"
+
 ### Content File Types
 - Images should be PNG format
 - Animations must be one image per frame -- no animated GIFs

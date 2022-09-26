@@ -115,12 +115,12 @@ class TechniqueAnimationCache:
     def __init__(self) -> None:
         self._sprites: Dict[Technique, Optional[Sprite]] = {}
 
-    def get(self, direction: str, technique: Technique) -> Optional[Sprite]:
+    def get(self, fix_direction: bool, technique: Technique) -> Optional[Sprite]:
         """
         Return a sprite usable as a technique animation.
 
         Parameters:
-            direction: Animation direction (left or right).
+            fix_direction: True if animation direction should be adjusted.
             technique: Technique whose sprite is requested.
 
         Returns:
@@ -130,17 +130,17 @@ class TechniqueAnimationCache:
         try:
             return self._sprites[technique]
         except KeyError:
-            sprite = self.load_technique_animation(direction, technique)
+            sprite = self.load_technique_animation(fix_direction, technique)
             self._sprites[technique] = sprite
             return sprite
 
     @staticmethod
-    def load_technique_animation(direction: str, technique: Technique) -> Optional[Sprite]:
+    def load_technique_animation(fix_direction: bool, technique: Technique) -> Optional[Sprite]:
         """
         Return animated sprite from a technique.
 
         Parameters:
-            direction: Animation direction (left or right).
+            fix_direction: True if animation direction should be adjusted.
             technique: Technique whose sprite is requested.
 
         Returns:
@@ -155,7 +155,7 @@ class TechniqueAnimationCache:
             image = graphics.load_and_scale(fn)
             images.append((image, frame_time))
         tech = SurfaceAnimation(images, False)
-        if direction:
+        if fix_direction:
             tech.flip(True)
         return Sprite(animation=tech)
 
@@ -1027,12 +1027,12 @@ class CombatState(CombatAnimations):
                     )
                 )
 
-        direction = False
+        fix_direction = False
         for trainer in self.ai_players:
             if user in self.monsters_in_play[trainer]:
-                direction = True
+                fix_direction = True
                 break
-        tech_sprite = self._technique_cache.get(direction, technique)
+        tech_sprite = self._technique_cache.get(fix_direction, technique)
 
         if result["success"] and target_sprite and tech_sprite:
             tech_sprite.rect.center = target_sprite.rect.center

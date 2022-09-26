@@ -153,7 +153,6 @@ class TechniqueAnimationCache:
         images = list()
         for fn in technique.images:
             image = graphics.load_and_scale(fn)
-
             images.append((image, frame_time))
         tech = SurfaceAnimation(images, False)
         if direction:

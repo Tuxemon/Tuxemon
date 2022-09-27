@@ -1027,7 +1027,8 @@ class CombatState(CombatAnimations):
                     )
                 )
 
-        # TODO: Flipping in X-axis and Y-axis should be allowed
+        # TODO: Flipping in X-axis and Y-axis should be allowed,
+        #       and supported in the technique or animation JSON
         flip_direction = ""
         for trainer in self.ai_players:
             if user in self.monsters_in_play[trainer]:

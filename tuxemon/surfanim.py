@@ -207,6 +207,7 @@ class SurfaceAnimation:
 
     def flip(self, flip_direction: str) -> None:
         """Flip all frames of an animation along the X-axis and/or Y-axis."""
+        # Empty string - animation won't be flipped
         flip_x = flip_direction == "x"    
         flip_y = flip_direction == "y"
 

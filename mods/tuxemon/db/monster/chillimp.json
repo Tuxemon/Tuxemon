@@ -22,6 +22,7 @@
         "Water",
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 149,
     "height": 0,
     "weight": 0,

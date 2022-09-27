@@ -1,5 +1,6 @@
 {
   "slug": "spyder_searoutec_gil",
+  "gender": "male",
   "sprite_name": "swimmer",
   "monsters": [
     {
@@ -7,21 +8,24 @@
       "level": 22,
       "slug": "nudiflot_female",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     },
     {
       "name": "Nudiflot F",
       "level": 22,
       "slug": "nudiflot_female",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     },
     {
       "name": "Nudimind",
       "level": 24,
       "slug": "nudimind",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     }
   ],
   "combat_front": "swimmer.png",

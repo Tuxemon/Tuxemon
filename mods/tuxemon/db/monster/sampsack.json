@@ -21,6 +21,7 @@
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 96,
     "height": 225,
     "weight": 235,

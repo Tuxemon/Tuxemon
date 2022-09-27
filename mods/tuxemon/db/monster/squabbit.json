@@ -27,6 +27,7 @@
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 43,
     "height": 60,
     "weight": 10,

@@ -27,6 +27,7 @@
     "types": [
         "Water"
     ],
+    "possible_genders": ["male"],
     "txmn_id": 51,
     "height": 36,
     "weight": 3,

@@ -1,5 +1,6 @@
 {
   "slug": "spyder_flower_fez",
+  "gender": "female",
   "sprite_name": "beachcomber",
   "combat_front": "yellowbelt.png",
   "combat_back": "red_back.png"

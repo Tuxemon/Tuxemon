@@ -71,6 +71,12 @@ class ItemSort(str, Enum):
     quest = "quest"
 
 
+class GenderType(str, Enum):
+    neuter = "neuter"
+    male = "male"
+    female = "female"
+
+
 class ItemType(str, Enum):
     consumable = "Consumable"
     key_item = "KeyItem"
@@ -244,6 +250,7 @@ class MonsterModel(BaseModel):
     shape: MonsterShape = Field(..., description="The shape of the monster")
     types: Sequence[str] = Field([], description="The type(s) of this monster")
     catch_rate: float = Field(0, description="The catch rate of the monster")
+    possible_genders: Sequence[GenderType] = Field([], description="Valid genders for the monster")
     lower_catch_resistance: float = Field(
         0, description="The lower catch resistance of the monster"
     )
@@ -415,6 +422,7 @@ class PartyMemberModel(BaseModel):
         ..., description="Modifier for experience this monster gives"
     )
     exp_req_mod: float = Field(..., description="Experience required modifier")
+    gender: GenderType = Field(..., description="Gender of the monster")
 
     @validator("slug")
     def monster_exists(cls, v):
@@ -425,6 +433,7 @@ class PartyMemberModel(BaseModel):
 
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
+    gender: GenderType = Field(..., description="Gender of the NPC")
     sprite_name: str = Field(
         ..., description="Name of the overworld sprite filename"
     )

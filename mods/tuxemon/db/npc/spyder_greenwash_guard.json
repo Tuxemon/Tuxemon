@@ -1,5 +1,6 @@
 {
   "slug": "spyder_greenwash_guard",
+  "gender": "male",
   "sprite_name": "soldier",
   "combat_front": "soldier.png",
   "combat_back": "red_back.png"

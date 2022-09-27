@@ -1,5 +1,6 @@
 {
   "slug": "spyder_scientist",
+  "gender": "male",
   "sprite_name": "scientist",
   "combat_front": "scientist.png",
   "combat_back": "red_back.png"

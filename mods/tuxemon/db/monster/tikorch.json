@@ -22,6 +22,7 @@
         "Fire",
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 79,
     "height": 0,
     "weight": 0,

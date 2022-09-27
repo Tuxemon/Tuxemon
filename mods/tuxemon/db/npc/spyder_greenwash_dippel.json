@@ -1,5 +1,6 @@
 {
   "slug": "spyder_greenwash_dippel",
+  "gender": "male",
   "sprite_name": "scientist",
   "monsters": [
     {
@@ -7,14 +8,16 @@
       "level": 22,
       "slug": "criniotherme",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     },
     {
       "name": "tikorch",
       "level": 22,
       "slug": "tikorch",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     }
   ],
   "combat_front": "scientist.png",

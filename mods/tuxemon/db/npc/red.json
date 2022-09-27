@@ -1,5 +1,6 @@
 {
   "slug": "npc_red",
+  "gender": "male",
   "sprite_name": "red",
   "combat_front": "red_front.png",
   "combat_back": "red_back.png"

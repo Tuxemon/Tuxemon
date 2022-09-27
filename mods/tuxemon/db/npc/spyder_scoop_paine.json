@@ -1,5 +1,6 @@
 {
   "slug": "spyder_scoop_paine",
+  "gender": "female",
   "sprite_name": "nurse",
   "monsters": [
     {
@@ -7,14 +8,16 @@
       "level": 35,
       "slug": "possessun",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     },
     {
       "name": "Cairfrey",
       "level": 30,
       "slug": "cairfrey",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     }
   ],
   "combat_front": "nurse.png",

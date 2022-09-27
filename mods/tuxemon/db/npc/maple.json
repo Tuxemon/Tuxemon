@@ -1,5 +1,6 @@
 {
   "slug": "maple_girl",
+  "gender": "female",
   "sprite_name": "girl1",
   "combat_front": "femaletrainer_front.png",
   "combat_back": "maple_back.png",
@@ -15,7 +16,8 @@
       "speed": 7,
       "special_defense": 7,
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     }
   ]
 }

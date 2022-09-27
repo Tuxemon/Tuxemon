@@ -1,5 +1,6 @@
 {
   "slug": "spyder_rookie",
+  "gender": "male",
   "sprite_name": "rookie",
   "combat_front": "rookie.png",
   "combat_back": "red_back.png"

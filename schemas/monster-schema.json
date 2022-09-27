@@ -41,6 +41,12 @@
       "default": "",
       "type": "string"
     },
+    "possible_genders": {
+      "title": "Gender",
+      "description": "The gender of the monster",
+      "default": "",
+      "type": "string"
+    },
     "types": {
       "title": "Types",
       "description": "The type(s) of this monster",

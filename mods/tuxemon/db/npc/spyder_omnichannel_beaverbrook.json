@@ -9,7 +9,7 @@
       "slug": "mk01_alpha",
       "exp_give_mod": 3,
       "exp_req_mod": 27,
-      "gender": "neutral"
+      "gender": "neuter"
     },
     {
       "name": "Mk01 Beta",
@@ -17,7 +17,7 @@
       "slug": "mk01_beta",
       "exp_give_mod": 3,
       "exp_req_mod": 27,
-      "gender": "neutral"
+      "gender": "neuter"
     }
   ],
   "combat_front": "ceo.png",

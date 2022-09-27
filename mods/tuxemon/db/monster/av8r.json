@@ -21,6 +21,7 @@
     "types": [
         "Metal"
     ],
+    "possible_genders": ["neuter"],
     "txmn_id": 125,
     "height": 0,
     "weight": 0,

@@ -9,7 +9,7 @@
       "slug": "botbot",
       "exp_give_mod": 3,
       "exp_req_mod": 27,
-      "gender": "neutral"
+      "gender": "neuter"
     },
     {
       "name": "PiCC",
@@ -17,7 +17,7 @@
       "slug": "picc",
       "exp_give_mod": 3,
       "exp_req_mod": 27,
-      "gender": "neutral"
+      "gender": "neuter"
     }
   ],
   "combat_front": "scientist.png",

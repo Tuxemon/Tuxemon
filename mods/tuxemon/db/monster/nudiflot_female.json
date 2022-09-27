@@ -27,6 +27,7 @@
     "types": [
         "Water"
     ],
+    "possible_genders": ["female"],
     "txmn_id": 53,
     "height": 0,
     "weight": 0,

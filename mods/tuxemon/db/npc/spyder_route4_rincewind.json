@@ -9,7 +9,7 @@
       "slug": "k9",
       "exp_give_mod": 3,
       "exp_req_mod": 27,
-      "gender": "neutral"
+      "gender": "neuter"
     },
     {
       "name": "K9",
@@ -17,7 +17,7 @@
       "slug": "k9",
       "exp_give_mod": 3,
       "exp_req_mod": 27,
-      "gender": "neutral"
+      "gender": "neuter"
     }
   ],
   "combat_front": "yellowbelt.png",

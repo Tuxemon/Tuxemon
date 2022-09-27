@@ -27,6 +27,7 @@
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 84,
     "height": 120,
     "weight": 60,

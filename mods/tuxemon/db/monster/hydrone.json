@@ -22,6 +22,7 @@
         "Metal",
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 111,
     "height": 155,
     "weight": 200,

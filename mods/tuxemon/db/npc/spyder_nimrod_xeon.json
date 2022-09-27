@@ -1,6 +1,6 @@
 {
   "slug": "spyder_nimrod_xeon",
-  "gender": "neutral",
+  "gender": "neuter",
   "sprite_name": "robot",
   "monsters": [
     {
@@ -9,7 +9,7 @@
       "slug": "xeon",
       "exp_give_mod": 3,
       "exp_req_mod": 27,
-      "gender": "neutral"
+      "gender": "neuter"
     }
   ],
   "combat_front": "xeon.png",

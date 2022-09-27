@@ -228,7 +228,7 @@ class Monster:
         self.faint_cry = ""
         self.ai: Optional[ai.AI] = None
         self.owner: Optional[NPC] = None
-        self.possible_gender = GenderType.neutral
+        self.possible_genders: List[GenderType] = []
 
         self.experience_give_modifier = 1
         self.experience_required_modifier = 1
@@ -338,7 +338,7 @@ class Monster:
         self.txmn_id = results.txmn_id
         self.height = results.height
         self.weight = results.weight
-        self.possible_gender = GenderType.neutral
+        self.possible_genders = results.possible_genders
         self.catch_rate = (
             results.catch_rate
             or TuxemonConfig().default_monster_catch_rate

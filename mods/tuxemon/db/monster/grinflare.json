@@ -22,6 +22,7 @@
         "Earth",
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 17,
     "height": 160,
     "weight": 3000,

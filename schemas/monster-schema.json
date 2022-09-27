@@ -41,7 +41,7 @@
       "default": "",
       "type": "string"
     },
-    "possible_gender": {
+    "possible_genders": {
       "title": "Gender",
       "description": "The gender of the monster",
       "default": "",

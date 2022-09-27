@@ -27,6 +27,7 @@
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 82,
     "height": 180,
     "weight": 110,

@@ -21,7 +21,6 @@
 
 from __future__ import annotations
 
-import os
 import random as rd
 from typing import NamedTuple, Optional, Union, final
 
@@ -70,10 +69,10 @@ class RandomMonsterAction(EventAction[RandomMonsterActionParameters]):
         assert trainer, "No Trainer found with slug '{}'".format(
             trainer_slug or "player"
         )
-        
+
         # list is required as choice expects a sequence
         monster_slug = rd.choice(list(db.database["monster"]))
-      
+
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_slug)
         current_monster.set_level(monster_level)

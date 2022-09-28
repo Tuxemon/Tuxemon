@@ -26,16 +26,7 @@
 
 import logging
 from math import cos, pi, sin
-from typing import (
-    Any,
-    Dict,
-    Generator,
-    Iterator,
-    Mapping,
-    Optional,
-    Sequence,
-    Tuple,
-)
+from typing import Any, Dict, Generator, Iterator, Mapping, Optional, Tuple
 
 import pytmx
 import yaml

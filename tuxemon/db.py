@@ -250,7 +250,9 @@ class MonsterModel(BaseModel):
     shape: MonsterShape = Field(..., description="The shape of the monster")
     types: Sequence[str] = Field([], description="The type(s) of this monster")
     catch_rate: float = Field(0, description="The catch rate of the monster")
-    possible_genders: Sequence[GenderType] = Field([], description="Valid genders for the monster")
+    possible_genders: Sequence[GenderType] = Field(
+        [], description="Valid genders for the monster"
+    )
     lower_catch_resistance: float = Field(
         0, description="The lower catch resistance of the monster"
     )

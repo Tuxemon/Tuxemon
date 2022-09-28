@@ -115,12 +115,12 @@ class TechniqueAnimationCache:
     def __init__(self) -> None:
         self._sprites: Dict[Technique, Optional[Sprite]] = {}
 
-    def get(self, flip_axis: str, technique: Technique) -> Optional[Sprite]:
+    def get(self, flip_axes: str, technique: Technique) -> Optional[Sprite]:
         """
         Return a sprite usable as a technique animation.
 
         Parameters:
-            flip_axis: Axis in which the animation should be flipped.
+            flip_axes: Axes in which the animation should be flipped.
             technique: Technique whose sprite is requested.
 
         Returns:
@@ -130,17 +130,17 @@ class TechniqueAnimationCache:
         try:
             return self._sprites[technique]
         except KeyError:
-            sprite = self.load_technique_animation(flip_axis, technique)
+            sprite = self.load_technique_animation(flip_axes, technique)
             self._sprites[technique] = sprite
             return sprite
 
     @staticmethod
-    def load_technique_animation(flip_axis: str, technique: Technique) -> Optional[Sprite]:
+    def load_technique_animation(flip_axes: str, technique: Technique) -> Optional[Sprite]:
         """
         Return animated sprite from a technique.
 
         Parameters:
-            flip_axis: Axis in which the animation should be flipped.
+            flip_axis: Axes in which the animation should be flipped.
             technique: Technique whose sprite is requested.
 
         Returns:
@@ -155,8 +155,8 @@ class TechniqueAnimationCache:
             image = graphics.load_and_scale(fn)
             images.append((image, frame_time))
         tech = SurfaceAnimation(images, False)
-        if flip_axis:
-            tech.flip(flip_axis)
+        if flip_axes:
+            tech.flip(flip_axes)
         return Sprite(animation=tech)
 
 
@@ -1029,12 +1029,12 @@ class CombatState(CombatAnimations):
 
         # TODO: Flipping in X-axis and Y-axis should be allowed,
         #       and supported in the technique or animation JSON
-        flip_direction = ""
+        flip_axes = ""
         for trainer in self.ai_players:
             if user in self.monsters_in_play[trainer]:
-                flip_direction = "x"
+                flip_axes = "x"
                 break
-        tech_sprite = self._technique_cache.get(flip_direction, technique)
+        tech_sprite = self._technique_cache.get(flip_axes, technique)
 
         if result["success"] and target_sprite and tech_sprite:
             tech_sprite.rect.center = target_sprite.rect.center

@@ -205,11 +205,11 @@ class SurfaceAnimation:
         """
         self._internal_clock += time_delta
 
-    def flip(self, flip_direction: str) -> None:
+    def flip(self, flip_axes: str) -> None:
         """Flip all frames of an animation along the X-axis and/or Y-axis."""
         # Empty string - animation won't be flipped
-        flip_x = flip_direction == "x"    
-        flip_y = flip_direction == "y"
+        flip_x = "x" in flip_axes
+        flip_y = "y" in flip_axes
 
         self._images = [
             pygame.transform.flip(image, flip_x, flip_y)

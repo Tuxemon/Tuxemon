@@ -340,8 +340,7 @@ class Monster:
         self.weight = results.weight
         self.possible_genders = results.possible_genders
         self.catch_rate = (
-            results.catch_rate
-            or TuxemonConfig().default_monster_catch_rate
+            results.catch_rate or TuxemonConfig().default_monster_catch_rate
         )
         self.upper_catch_resistance = (
             results.upper_catch_resistance

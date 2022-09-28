@@ -323,7 +323,14 @@ class Technique:
             self.statranged,
             self.statdodge,
         ]
-        statslugs = ["speed", "current_hp", "armour", "melee", "ranged", "dodge"]
+        statslugs = [
+            "speed",
+            "current_hp",
+            "armour",
+            "melee",
+            "ranged",
+            "dodge",
+        ]
         newstatvalue = 0
         for stat, slugdata in zip(statsmaster, statslugs):
             if not stat:

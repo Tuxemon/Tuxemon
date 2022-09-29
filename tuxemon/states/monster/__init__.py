@@ -221,9 +221,15 @@ class MonsterMenuState(Menu[Optional[Monster]]):
         self.hp_bar.value = monster.current_hp / monster.hp
         self.hp_bar.draw(surface, hp_rect)
 
-        # draw the name
+        # draw the name + gender
+        if monster.gender == "male":
+            icon = "(M)"
+        elif monster.gender == "female":
+            icon = "(F)"
+        else:
+            icon = "(N)"
         text_rect = rect.inflate(-tools.scale(6), -tools.scale(6))
-        draw_text(surface, monster.name, text_rect, font=self.font)
+        draw_text(surface, monster.name + icon, text_rect, font=self.font)
 
         # draw the level info
         text_rect.top = rect.bottom - tools.scale(7)

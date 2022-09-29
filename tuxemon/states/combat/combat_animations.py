@@ -377,7 +377,15 @@ class CombatAnimations(ABC, Menu[None]):
             Surface with the name and level of the monster written.
 
         """
-        return self.shadow_text(f"{monster.name: <12}Lv.{monster.level: >2}")
+        if monster.gender == "male":
+            icon = "(M)"
+        elif monster.gender == "female":
+            icon = "(F)"
+        else:
+            icon = "(N)"
+        return self.shadow_text(
+            f"{monster.name+icon: <12}Lv.{monster.level: >2}"
+        )
 
     def get_side(self, rect: Rect) -> Literal["left", "right"]:
         """

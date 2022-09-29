@@ -836,7 +836,7 @@ class NPC(Entity[NPCState]):
             )
             monster.set_level(monster.level)
             monster.current_hp = monster.hp
-            monster.possible_genders = npc_monster_details.gender
+            monster.gender = npc_monster_details.gender
 
             # Add our monster to the NPC's party
             self.add_monster(monster)

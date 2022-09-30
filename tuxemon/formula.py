@@ -33,7 +33,7 @@ from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
-    from tuxemon.technique import Technique
+    from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
 

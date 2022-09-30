@@ -29,7 +29,7 @@ from tuxemon.state import State
 from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.items import ItemMenuState
 from tuxemon.states.monster import MonsterMenuState
-from tuxemon.technique import Technique
+from tuxemon.technique.technique import Technique
 from tuxemon.ui.draw import GraphicBox
 
 if TYPE_CHECKING:

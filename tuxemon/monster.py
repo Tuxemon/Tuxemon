@@ -45,7 +45,7 @@ from tuxemon.db import (
 )
 from tuxemon.locale import T
 from tuxemon.sprite import Sprite
-from tuxemon.technique import Technique
+from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     import pygame

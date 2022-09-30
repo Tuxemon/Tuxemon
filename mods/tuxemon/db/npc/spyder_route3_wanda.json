@@ -4,7 +4,7 @@
   "sprite_name": "fisher",
   "monsters": [
     {
-      "name": "Nudiflot M",
+      "name": "Nudiflot",
       "level": 8,
       "slug": "nudiflot_male",
       "exp_give_mod": 3,
@@ -12,7 +12,7 @@
       "gender": "male"
     },
     {
-      "name": "Nudiflot F",
+      "name": "Nudiflot",
       "level": 8,
       "slug": "nudiflot_female",
       "exp_give_mod": 3,
@@ -20,7 +20,7 @@
       "gender": "female"
     },
     {
-      "name": "Nudiflot M",
+      "name": "Nudiflot",
       "level": 8,
       "slug": "nudiflot_male",
       "exp_give_mod": 3,
@@ -28,7 +28,7 @@
       "gender": "male"
     },
     {
-      "name": "Nudiflot F",
+      "name": "Nudiflot",
       "level": 8,
       "slug": "nudiflot_female",
       "exp_give_mod": 3,
@@ -36,7 +36,7 @@
       "gender": "female"
     },
     {
-      "name": "Nudiflot M",
+      "name": "Nudiflot",
       "level": 8,
       "slug": "nudiflot_male",
       "exp_give_mod": 3,
@@ -44,7 +44,7 @@
       "gender": "male"
     },
     {
-      "name": "Nudiflot F",
+      "name": "Nudiflot",
       "level": 8,
       "slug": "nudiflot_female",
       "exp_give_mod": 3,

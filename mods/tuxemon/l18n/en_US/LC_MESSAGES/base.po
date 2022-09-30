@@ -1569,13 +1569,13 @@ msgid "nudiflot_female_description"
 msgstr "It eats and stores the poison of the sea creatures that it feeds upon."
 
 msgid "nudiflot_female"
-msgstr "Nudiflot (F)"
+msgstr "Nudiflot"
 
 msgid "nudiflot_male_description"
 msgstr "Its feathery antennas snap off if it is attacked, confusing the predator."
 
 msgid "nudiflot_male"
-msgstr "Nudiflot (M)"
+msgstr "Nudiflot"
 
 msgid "nudikill_description"
 msgstr "They are called Dark Bishops because their heads are reminiscent of a bishop's hat."

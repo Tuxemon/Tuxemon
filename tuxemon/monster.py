@@ -63,6 +63,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "status",
     "total_experience",
     "flairs",
+    "gender",
 )
 
 SHAPES = {
@@ -338,7 +339,7 @@ class Monster:
         self.txmn_id = results.txmn_id
         self.height = results.height
         self.weight = results.weight
-        self.possible_genders = results.possible_genders
+        self.gender = random.choice(list(results.possible_genders))
         self.catch_rate = (
             results.catch_rate or TuxemonConfig().default_monster_catch_rate
         )

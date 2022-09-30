@@ -72,7 +72,7 @@ from tuxemon.monster import (
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
 from tuxemon.states.combat.combat import EnqueuedAction
-from tuxemon.technique import Technique
+from tuxemon.technique.technique import Technique
 from tuxemon.tools import vector2_to_tile_pos
 
 if TYPE_CHECKING:

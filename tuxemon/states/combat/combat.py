@@ -67,7 +67,7 @@ from tuxemon.sprite import Sprite
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.states.transition.fade import FadeOutTransition
 from tuxemon.surfanim import SurfaceAnimation
-from tuxemon.technique import Technique
+from tuxemon.technique.technique import Technique
 from tuxemon.tools import assert_never
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea

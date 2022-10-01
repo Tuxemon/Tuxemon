@@ -4,6 +4,7 @@
   "animation": "heal_burst_120",
   "category": "physical",
   "effects": [],
+  "flip_axes": "",
   "healing_power": 2.0,
   "icon": "",
   "is_area": false,

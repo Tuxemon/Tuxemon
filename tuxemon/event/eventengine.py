@@ -148,8 +148,6 @@ class EventEngine:
 
         # debug
         self.partial_events: List[Sequence[Tuple[bool, MapCondition]]] = list()
-        # TODO: What type are the list elements?
-        self.parameters: List = list()
 
         self.conditions = plugin.load_plugins(
             paths.CONDITIONS_PATH,
@@ -196,9 +194,8 @@ class EventEngine:
             that action is loaded. ``None`` otherwise.
 
         """
-        # TODO: make generic
-        if parameters is not None:
-            self.parameters = parameters
+        if parameters is None:
+            parameters = list()
 
         try:
             action = self.actions[name]

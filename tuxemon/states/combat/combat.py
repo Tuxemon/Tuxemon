@@ -1031,7 +1031,7 @@ class CombatState(CombatAnimations):
         is_flipped = False
         for trainer in self.ai_players:
             if user in self.monsters_in_play[trainer]:
-                is_flipped
+                is_flipped = True
                 break
         tech_sprite = self._technique_cache.get(is_flipped, technique)
 

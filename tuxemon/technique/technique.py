@@ -86,6 +86,7 @@ class Technique:
         self.category = "attack"
         self.combat_state: Optional[CombatState] = None
         self.effects: Sequence[TechEffect[Any]] = []
+        self.flip_axes = ""
         self.icon = ""
         self.images: Sequence[str] = []
         self.is_area = False
@@ -185,6 +186,7 @@ class Technique:
                 logger.error(
                     f"Cannot find animation frames for: {self.animation}",
                 )
+        self.flip_axes = results.flip_axes
 
         # Load the sound effect for this technique
         self.sfx = results.sfx

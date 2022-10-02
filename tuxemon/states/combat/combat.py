@@ -115,13 +115,13 @@ class TechniqueAnimationCache:
     def __init__(self) -> None:
         self._sprites: Dict[Technique, Optional[Sprite]] = {}
 
-    def get(self, is_flipped: bool, technique: Technique) -> Optional[Sprite]:
+    def get(self, technique: Technique, is_flipped: bool) -> Optional[Sprite]:
         """
         Return a sprite usable as a technique animation.
 
         Parameters:
-            is_flipped: Flag to determine whether animation frames should be flipped.
             technique: Technique whose sprite is requested.
+            is_flipped: Flag to determine whether animation frames should be flipped.
 
         Returns:
             Sprite associated with the technique animation.
@@ -130,18 +130,18 @@ class TechniqueAnimationCache:
         try:
             return self._sprites[technique]
         except KeyError:
-            sprite = self.load_technique_animation(is_flipped, technique)
+            sprite = self.load_technique_animation(technique, is_flipped)
             self._sprites[technique] = sprite
             return sprite
 
     @staticmethod
-    def load_technique_animation(is_flipped: bool, technique: Technique) -> Optional[Sprite]:
+    def load_technique_animation(technique: Technique, is_flipped: bool) -> Optional[Sprite]:
         """
         Return animated sprite from a technique.
 
         Parameters:
-            is_flipped: Flag to determine whether animation frames should be flipped.
             technique: Technique whose sprite is requested.
+            is_flipped: Flag to determine whether animation frames should be flipped.
 
         Returns:
             Sprite associated with the technique animation.
@@ -1032,7 +1032,7 @@ class CombatState(CombatAnimations):
             if user in self.monsters_in_play[trainer]:
                 is_flipped = True
                 break
-        tech_sprite = self._technique_cache.get(is_flipped, technique)
+        tech_sprite = self._technique_cache.get(technique, is_flipped)
 
         if result["success"] and target_sprite and tech_sprite:
             tech_sprite.rect.center = target_sprite.rect.center

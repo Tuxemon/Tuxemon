@@ -1268,7 +1268,7 @@ Fonts
 
 * ["Press Start 2P"](https://www.google.com/fonts/specimen/Press+Start+2P) by 
 [codeman38](mailto:cody@zone38.net) is licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
-adapted by JaskRendix, added symbols from DotGothic16 font (https://fonts.google.com/specimen/DotGothic16/)
+adapted by JaskRendix, added symbols from Noto Emoji font (https://fonts.google.com/noto/specimen/Noto+Emoji)
 licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
 
 * ["Big Bottom Catroon Normal"](http://openfontlibrary.org/en/font/big-bottom-cartoon-normal) by

@@ -381,7 +381,7 @@ class CombatState(CombatAnimations):
                 var["battle_last_monster_category"] = monster_record.category
                 var["battle_last_monster_shape"] = monster_record.shape
                 # Avoid reset string to seen if monster has already been caught
-                if monster_record.slug not in self.players[0].tuxepedia.keys():
+                if monster_record.slug not in self.players[0].tuxepedia:
                     self.players[0].tuxepedia[monster_record.slug] = SeenStatus.seen.value
 
         elif phase == "decision phase":

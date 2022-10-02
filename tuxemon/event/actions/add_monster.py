@@ -77,4 +77,4 @@ class AddMonsterAction(EventAction[AddMonsterActionParameters]):
         current_monster.current_hp = current_monster.hp
 
         trainer.add_monster(current_monster)
-        trainer.tuxepedia[monster_slug] = SeenStatus.caught.value
+        trainer.tuxepedia[monster_slug] = SeenStatus.caught

@@ -513,7 +513,6 @@ class Monster:
         self.set_stats()
 
         # Update moves
-        self.moves = []
         for move in self.moveset:
             if move not in self.moves and move.level_learned <= level:                
                 self.learn(Technique(move.technique))

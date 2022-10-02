@@ -313,27 +313,22 @@ class Range(str, Enum):
     reliable = "reliable"
 
 
-# TODO: We may change this if we refactor technique effects to be more item-like
-class TechniqueEffect(str, Enum):
+# TechSort defines the sort of technique a technique is.
+class TechSort(str, Enum):
     damage = "damage"
-    hardshell = "hardshell"
-    lifeleech = "lifeleech"
     meta = "meta"
-    overfeed = "overfeed"
-    poison = "poison"
-    recover = "recover"
-    statchange = "statchange"
-    status = "status"
-    swap = "swap"
 
 
 class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
-    sort: str = Field(..., description="The sort of technique this is")
+    sort: TechSort = Field(..., description="The sort of technique this is")
     category: str = Field(..., description="The category of technique this is")
     icon: str = Field(..., description="The icon to use for the technique")
-    effects: Sequence[TechniqueEffect] = Field(
-        ..., description="Effects this technique uses"
+    conditions: Sequence[str] = Field(
+        [], description="Conditions that must be met"
+    )
+    effects: Sequence[str] = Field(
+        [], description="Effects this technique uses"
     )
     target: Target = Field(
         ..., description="Target mapping of who this technique is used on"

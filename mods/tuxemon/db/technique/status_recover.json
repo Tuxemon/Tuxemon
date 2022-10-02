@@ -10,7 +10,7 @@
   "category": "recover",
   "sort": "meta",
   "effects": [
-    "status"
+    "recover"
   ],
   "target": {
     "enemy monster": 0,

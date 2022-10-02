@@ -243,7 +243,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             # enqueue the technique
             target = menu_item.game_object
 
-            if "damage" in technique.effect and target == self.monster:
+            if "damage" in technique.effects and target == self.monster:
                 params = {"name": self.monster.name}
                 msg = T.format("combat_target_itself", params)
                 tools.open_dialog(local_session, [msg])

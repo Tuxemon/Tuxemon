@@ -9,9 +9,7 @@
   "icon": "",
   "category": "",
   "sort": "meta",
-  "effects": [
-    "meta"
-  ],
+  "effects": [],
   "target": {
     "enemy monster": 0,
     "enemy team": 0,
@@ -21,6 +19,5 @@
     "own trainer": 0,
     "item": 0
   },
-  "power": 50,
-  "types": []
+  "power": 50
 }

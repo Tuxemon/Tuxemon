@@ -121,7 +121,6 @@ class TechniqueAnimationCache:
 
         Parameters:
             is_flipped: Flag to determine whether animation frames should be flipped.
-            flip_axes: Axes in which the animation should be flipped.
             technique: Technique whose sprite is requested.
 
         Returns:

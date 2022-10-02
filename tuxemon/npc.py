@@ -972,12 +972,27 @@ class NPC(Entity[NPCState]):
         qty: int,
         unit_price: int,
     ) -> None:
-        """Handles the entire buy/sell transaction, for both this NPC (the
+        """Handles the entire buy transaction, for both this NPC (the
         buyer) and the seller.
 
         Raises an exception if the transaction can't be completed."""
 
         self.buy_decrease_money(session, seller, item_slug, qty, unit_price)
+        seller.give_item(session, self, db.lookup(item_slug, "item"), qty)
+
+    def sell_transaction(
+        self,
+        session: Session,
+        seller: NPC,
+        item_slug: str,
+        qty: int,
+        unit_price: int,
+    ) -> None:
+        """Handles the entire sell transaction, for both this NPC (the
+        buyer) and the seller.
+
+        Raises an exception if the transaction can't be completed."""
+
         seller.sell_increase_money(session, self, item_slug, qty, unit_price)
         seller.give_item(session, self, db.lookup(item_slug, "item"), qty)
 

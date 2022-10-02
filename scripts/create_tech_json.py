@@ -37,8 +37,8 @@ axes_flip_mapping = {
         "hits_for_separation", "breath_blue", "breath_fire", "claw_blue",
         "claw_yellow_169", "fireball_114", "firelion_right", "lightning_bolt_138",
         "metal_delete", "power_arc_154": "pushtrap_right", "shield_turtle_right",
-        "slash_200", "slash_fire", "snake_right", "tornado_basic", "tornado_volume",
-        "watershot",
+        "slash_200", "slash_fire", "screen", "snake_right", "tornado_basic", 
+        "tornado_volume", "watershot",
     ): "x",
     ("lance_ice", "triforce_163"): "xy"
 }

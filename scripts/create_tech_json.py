@@ -32,6 +32,25 @@ DataRow = namedtuple("DataRow", [
     "is_area"
 ])
 
+axes_flip_mapping = {
+    (
+        "hits_for_separation", "breath_blue", "breath_fire", "claw_blue",
+        "claw_yellow_169", "fireball_114", "firelion_right", "lightning_bolt_138",
+        "metal_delete", "power_arc_154": "pushtrap_right", "shield_turtle_right",
+        "slash_200", "slash_fire", "snake_right", "tornado_basic", "tornado_volume",
+        "watershot",
+    ): "x",
+    ("lance_ice", "triforce_163"): "xy"
+}
+
+
+def get_animation_flip_axes(animation_name: str) -> str:
+    """Defines in which axes should the animation be flipped."""
+    for names, axes in axes_flip_mapping.items():
+        if animation_name in names:
+            return axes
+    return ""
+
 
 def create_json(data_row):
     name = data_row.name.lower().replace(" ", "_").replace("-", "_")
@@ -52,6 +71,7 @@ def create_json(data_row):
         "accuracy": data_row.accuracy,
         "category": "physical",
         "effects": effects,
+        "flip_axes": get_animation_flip_axes(data_row.animation),
         "healing_power": float(data_row.healing_power) if data_row.healing_power else 0,
         "is_area": bool(data_row.is_area),
         "is_fast": bool(data_row.is_fast),

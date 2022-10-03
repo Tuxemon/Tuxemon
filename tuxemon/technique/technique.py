@@ -46,7 +46,6 @@ from tuxemon.constants import paths
 from tuxemon.db import db, process_targets
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
-from tuxemon.technique.techcondition import TechCondition
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -69,7 +68,6 @@ class Technique:
     """
 
     effects_classes: ClassVar[Mapping[str, Type[TechEffect[Any]]]] = {}
-    conditions_classes: ClassVar[Mapping[str, Type[TechCondition[Any]]]] = {}
 
     def __init__(
         self,
@@ -87,7 +85,6 @@ class Technique:
         self.carrier = carrier
         self.category = "attack"
         self.combat_state: Optional[CombatState] = None
-        # self.conditions: Sequence[TechCondition[Any]] = []
         self.effects: Sequence[TechEffect[Any]] = []
         self.icon = ""
         self.images: Sequence[str] = []
@@ -111,18 +108,13 @@ class Technique:
         self.use_failure = ""
         self.use_tech = ""
 
-        # load effect and condition plugins if it hasn't been done already
+        # load plugins if it hasn't been done already
         if not Technique.effects_classes:
             Technique.effects_classes = plugin.load_plugins(
                 paths.TECH_EFFECT_PATH,
                 "effects",
                 interface=TechEffect,
             )
-        #    Technique.conditions_classes = plugin.load_plugins(
-        #        paths.TECH_CONDITION_PATH,
-        #        "conditions",
-        #        interface=TechCondition,
-        #    )
 
         # If a slug of the technique was provided, autoload it.
         if slug:
@@ -181,7 +173,6 @@ class Technique:
         self.tech_id = results.tech_id or self.tech_id
         self.accuracy = results.accuracy or self.accuracy
         self.potency = results.potency or self.potency
-        # self.conditions = self.parse_conditions(results.conditions)
         self.effects = self.parse_effects(results.effects)
         self.target = process_targets(results.target)
 
@@ -232,40 +223,6 @@ class Technique:
 
         return ret
 
-    def parse_conditions(
-        self,
-        raw: Sequence[str],
-    ) -> Sequence[TechCondition[Any]]:
-        """
-        Convert condition strings to condition objects.
-
-        Takes raw condition list from the technique's json and parses it into a
-        form more suitable for the engine.
-
-        Parameters:
-            raw: The raw conditions list pulled from the technique's db entry.
-
-        Returns:
-            Conditions turned into a list of TechCondition objects.
-
-        """
-        ret = list()
-
-        for line in raw:
-            words = line.split()
-            args = "".join(words[1:]).split(",")
-            name = words[0]
-            context = args[0]
-            params = args[1:]
-            try:
-                condition = Technique.conditions_classes[name]
-            except KeyError:
-                logger.error(f'Error: TechCondition "{name}" not implemented')
-            else:
-                ret.append(condition(context, self, self.name, params))
-
-        return ret
-
     def advance_round(self, number: int = 1) -> None:
         """
         Advance the turn counters for this technique.
@@ -291,29 +248,6 @@ class Technique:
     def reset_combat_counter(self) -> None:
         """Reset the combat counter."""
         self._combat_counter = 0
-
-    def validate(self, target: Optional[Monster]) -> bool:
-        """
-        Check if the target meets all conditions that the technique has on it's use.
-
-        Parameters:
-            target: The monster or object that we are using this technique on.
-
-        Returns:
-            Whether the technique may be used by the user on the target.
-
-        """
-        if not self.conditions:
-            return True
-        if not target:
-            return False
-
-        result = True
-
-        for condition in self.conditions:
-            result = result and condition.test(target)
-
-        return result
 
     def use(self, user: Monster, target: Monster) -> TechEffectResult:
         """

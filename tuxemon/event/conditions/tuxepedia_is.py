@@ -20,6 +20,7 @@
 #
 from __future__ import annotations
 
+from tuxemon.db import SeenStatus
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -61,9 +62,11 @@ class TuxepediaIsCondition(EventCondition):
         monster_str = condition.parameters[1]
 
         if monster_key in player.tuxepedia:
-            if player.tuxepedia[monster_key] == monster_str:
-                return True
+            if monster_str == "caught":
+                if player.tuxepedia[monster_key] == SeenStatus.caught:
+                    return True
+            elif monster_str == "seen":
+                if player.tuxepedia[monster_key] == SeenStatus.seen:
+                    return True
             else:
                 return False
-        else:
-            return False

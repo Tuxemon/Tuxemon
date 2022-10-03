@@ -89,7 +89,10 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     # set as captured the party monsters
     if not save_data["tuxepedia"]:
         for mons in save_data.get("monsters", []):
-            save_data["tuxepedia"][mons["slug"]] = SeenStatus.caught.value
+            save_data["tuxepedia"][mons["slug"]] = SeenStatus.caught
+        for monsters in save_data.get("monster_boxes", {}).values():
+            for monster in monsters:
+                save_data["tuxepedia"][monster["slug"]] = SeenStatus.caught
 
     # set money old savegame and avoid getting the starter
     if not save_data["money"]:

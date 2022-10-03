@@ -23,6 +23,7 @@ from __future__ import annotations
 
 from typing import NamedTuple, final
 
+from tuxemon.db import SeenStatus
 from tuxemon.event.eventaction import EventAction
 
 
@@ -58,4 +59,7 @@ class SetTuxepediaAction(EventAction[SetTuxepediaActionParameters]):
         monster_str = self.parameters[1]
 
         # Append the tuxepedia with a key
-        player[str(monster_key)] = monster_str
+        if monster_str == "caught":
+            player[str(monster_key)] = SeenStatus.caught
+        elif monster_str == "seen":
+            player[str(monster_key)] = SeenStatus.seen

@@ -51,7 +51,7 @@ from typing import (
 from tuxemon import surfanim
 from tuxemon.ai import AI
 from tuxemon.compat import Rect
-from tuxemon.db import db, SeenStatus
+from tuxemon.db import SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import (
@@ -785,9 +785,9 @@ class NPC(Entity[NPCState]):
         new_monster.instance_id = old_monster.instance_id
         self.remove_monster(old_monster)
         self.add_monster(new_monster, slot)
-        
+
         # set evolution as caught
-        self.tuxepedia[evolution] = SeenStatus.caught.value
+        self.tuxepedia[evolution] = SeenStatus.caught
 
         # If evolution has a flair matching, copy it
         for new_flair in new_monster.flairs.values():

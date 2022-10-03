@@ -382,7 +382,9 @@ class CombatState(CombatAnimations):
                 var["battle_last_monster_shape"] = monster_record.shape
                 # Avoid reset string to seen if monster has already been caught
                 if monster_record.slug not in self.players[0].tuxepedia:
-                    self.players[0].tuxepedia[monster_record.slug] = SeenStatus.seen.value
+                    self.players[0].tuxepedia[
+                        monster_record.slug
+                    ] = SeenStatus.seen
 
         elif phase == "decision phase":
             self.reset_status_icons()
@@ -983,8 +985,8 @@ class CombatState(CombatAnimations):
                     if result["success"]:
                         # Tuxepedia: set monster as caught (2)
                         self.players[0].tuxepedia[
-                            self.monsters_in_play[self.players[1]][0].slug
-                        ] = SeenStatus.caught.value
+                            target.slug
+                        ] = SeenStatus.caught
                         # Display 'Gotcha!' first.
                         self.task(self.end_combat, action_time + 0.5)
                         self.task(

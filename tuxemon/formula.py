@@ -192,7 +192,7 @@ def simple_lifeleech(
         Inflicted damage.
 
     """
-    damage = min(target.hp // 2, target.current_hp, user.hp - user.current_hp)
+    damage = min(target.hp // 16, target.current_hp, user.hp - user.current_hp)
     return damage
 
 

@@ -912,11 +912,9 @@ class NPC(Entity[NPCState]):
         qty: int,
         unit_price: int,
     ) -> None:
-        """Decreases current money during a buy transaction, but doesn't change
-        an item's quantity.
-
-        Raises an exception if there's not enough money to pay the price."""
-
+        """
+        Decreases player money during a buy transaction.
+        """
         # Update player's money.
         if self.money.get("player"):
             if not self.can_buy_item(item_slug, qty, unit_price):
@@ -939,10 +937,9 @@ class NPC(Entity[NPCState]):
         qty: int,
         unit_price: int,
     ) -> None:
-        """Increases current money during a sell transaction, but doesn't change
-        an item's quantity.
-
-        Raises an exception if there's not enough items in the inventory."""
+        """
+        Increases player money during a sell transaction.
+        """
         current_item = self.inventory.get(item_slug)
         if not current_item or not self.can_sell_item(
             item_slug, qty, unit_price
@@ -965,11 +962,9 @@ class NPC(Entity[NPCState]):
         qty: int,
         unit_price: int,
     ) -> None:
-        """Handles the entire buy transaction, for both this NPC (the
-        buyer) and the seller.
-
-        Raises an exception if the transaction can't be completed."""
-
+        """
+        Handles the entire buy transaction, NPC (seller) and buyer.
+        """
         self.buy_decrease_money(session, seller, item_slug, qty, unit_price)
         self.alter_item_quantity(session, item_slug, qty)
         seller.alter_item_quantity(session, item_slug, -qty)
@@ -982,11 +977,9 @@ class NPC(Entity[NPCState]):
         qty: int,
         unit_price: int,
     ) -> None:
-        """Handles the entire sell transaction, for both this NPC (the
-        buyer) and the seller.
-
-        Raises an exception if the transaction can't be completed."""
-
+        """
+        Handles the entire sell transaction, NPC (buyer) and seller.
+        """
         seller.sell_increase_money(session, self, item_slug, qty, unit_price)
         seller.alter_item_quantity(session, item_slug, -qty)
 

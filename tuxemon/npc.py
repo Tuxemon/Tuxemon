@@ -860,13 +860,6 @@ class NPC(Entity[NPCState]):
         self.game_variables["party_level_highest"] = level_highest
         self.game_variables["party_level_average"] = level_average
 
-    def give_item(
-        self, session: Session, target: NPC, item: Item, quantity: int
-    ) -> bool:
-        subtract = self.alter_item_quantity(session, item.slug, -quantity)
-        give = target.alter_item_quantity(session, item.slug, quantity)
-        return subtract and give
-
     def has_item(self, item_slug: str) -> bool:
         return self.inventory.get(item_slug) is not None
 
@@ -920,7 +913,7 @@ class NPC(Entity[NPCState]):
         unit_price: int,
     ) -> None:
         """Decreases current money during a buy transaction, but doesn't change
-        an item's quantity (use NPC.give_item too after this)
+        an item's quantity.
 
         Raises an exception if there's not enough money to pay the price."""
 
@@ -947,7 +940,7 @@ class NPC(Entity[NPCState]):
         unit_price: int,
     ) -> None:
         """Increases current money during a sell transaction, but doesn't change
-        an item's quantity (use NPC.give_item too after this)
+        an item's quantity.
 
         Raises an exception if there's not enough items in the inventory."""
         current_item = self.inventory.get(item_slug)
@@ -978,7 +971,8 @@ class NPC(Entity[NPCState]):
         Raises an exception if the transaction can't be completed."""
 
         self.buy_decrease_money(session, seller, item_slug, qty, unit_price)
-        seller.give_item(session, self, db.lookup(item_slug, "item"), qty)
+        self.alter_item_quantity(session, item_slug, qty)
+        seller.alter_item_quantity(session, item_slug, -qty)
 
     def sell_transaction(
         self,
@@ -994,7 +988,7 @@ class NPC(Entity[NPCState]):
         Raises an exception if the transaction can't be completed."""
 
         seller.sell_increase_money(session, self, item_slug, qty, unit_price)
-        seller.give_item(session, self, db.lookup(item_slug, "item"), qty)
+        seller.alter_item_quantity(session, item_slug, -qty)
 
     def speed_test(self, action: EnqueuedAction) -> int:
         return self.speed

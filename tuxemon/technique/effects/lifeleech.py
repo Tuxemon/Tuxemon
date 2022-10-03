@@ -61,6 +61,8 @@ class LifeLeechEffect(TechEffect[LifeLeechEffectParameters]):
     param_class = LifeLeechEffectParameters
 
     def apply(self, user: Monster, target: Monster) -> LifeLeechEffectResult:
+        user = self.move.link
+        assert user
         damage = formula.simple_lifeleech(self.move, user, target)
         target.current_hp -= damage
         user.current_hp += damage

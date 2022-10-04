@@ -25,7 +25,7 @@ import random as rd
 from typing import NamedTuple, Optional, Union, final
 
 from tuxemon import monster
-from tuxemon.db import db
+from tuxemon.db import SeenStatus, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
@@ -79,3 +79,4 @@ class RandomMonsterAction(EventAction[RandomMonsterActionParameters]):
         current_monster.current_hp = current_monster.hp
 
         trainer.add_monster(current_monster)
+        trainer.tuxepedia[monster_slug] = SeenStatus.caught

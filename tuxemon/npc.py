@@ -51,7 +51,7 @@ from typing import (
 from tuxemon import surfanim
 from tuxemon.ai import AI
 from tuxemon.compat import Rect
-from tuxemon.db import db
+from tuxemon.db import SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import (
@@ -94,6 +94,7 @@ class NPCState(TypedDict):
     facing: Direction
     game_variables: Dict[str, Any]
     battle_history: Dict[str, Any]
+    tuxepedia: Dict[str, SeenStatus]
     money: Dict[str, int]
     inventory: Mapping[str, Optional[int]]
     monsters: Sequence[Mapping[str, Any]]
@@ -172,6 +173,8 @@ class NPC(Entity[NPCState]):
         self.behavior: Optional[str] = "wander"  # not used for now
         self.game_variables: Dict[str, Any] = {}  # Tracks the game state
         self.battle_history: Dict[str, Any] = {}  # Tracks the battles
+        # Tracks Tuxepedia (monster seen or caught)
+        self.tuxepedia: Dict[str, SeenStatus] = {}
         self.money: Dict[str, int] = {}  # Tracks money
         self.interactions: Sequence[
             str
@@ -265,6 +268,7 @@ class NPC(Entity[NPCState]):
             "facing": self.facing,
             "game_variables": self.game_variables,
             "battle_history": self.battle_history,
+            "tuxepedia": self.tuxepedia,
             "money": self.money,
             "inventory": encode_inventory(self.inventory),
             "monsters": encode_monsters(self.monsters),
@@ -294,6 +298,7 @@ class NPC(Entity[NPCState]):
         self.facing = save_data.get("facing", "down")
         self.game_variables = save_data["game_variables"]
         self.battle_history = save_data["battle_history"]
+        self.tuxepedia = save_data["tuxepedia"]
         self.money = save_data["money"]
         self.inventory = decode_inventory(
             session, self, save_data.get("inventory", {})
@@ -781,6 +786,9 @@ class NPC(Entity[NPCState]):
         new_monster.gender = old_monster.gender
         self.remove_monster(old_monster)
         self.add_monster(new_monster, slot)
+
+        # set evolution as caught
+        self.tuxepedia[evolution] = SeenStatus.caught
 
         # If evolution has a flair matching, copy it
         for new_flair in new_monster.flairs.values():

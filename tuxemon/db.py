@@ -521,6 +521,11 @@ class EconomyModel(BaseModel):
     items: Sequence[EconomyItemModel]
 
 
+class MapsModel(BaseModel):
+    slug: str = Field(..., description="Unique slug for the map")
+    file: str = Field(..., description="File for the map")
+
+
 class MusicModel(BaseModel):
     slug: str = Field(..., description="Unique slug for the music")
     file: str = Field(..., description="File for the music")
@@ -537,6 +542,7 @@ TableName = Literal[
     "environment",
     "inventory",
     "item",
+    "maps",
     "monster",
     "music",
     "npc",
@@ -550,6 +556,7 @@ DataModel = Union[
     EnvironmentModel,
     InventoryModel,
     ItemModel,
+    MapsModel,
     MonsterModel,
     MusicModel,
     NpcModel,
@@ -603,6 +610,7 @@ class JSONDatabase:
             "inventory",
             "environment",
             "sounds",
+            "maps",
             "music",
             "economy",
         ]
@@ -740,6 +748,9 @@ class JSONDatabase:
             elif table == "item":
                 itm = ItemModel(**item)
                 self.database[table][itm.slug] = itm
+            elif table == "maps":
+                maps = MapsModel(**item)
+                self.database[table][maps.slug] = maps
             elif table == "monster":
                 mon = MonsterModel(**item)
                 self.database[table][mon.slug] = mon
@@ -808,6 +819,14 @@ class JSONDatabase:
         slug: str,
         table: Literal["sounds"],
     ) -> SoundModel:
+        pass
+
+    @overload
+    def lookup(
+        self,
+        slug: str,
+        table: Literal["maps"],
+    ) -> MapsModel:
         pass
 
     @overload

@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="220">
+ <properties>
+  <property name="edges" value="clamped"/>
+ </properties>
+ <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
+  <image source="../../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
+ </tileset>
+ <tileset firstgid="449" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
+  <image source="../../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
+ </tileset>
+ <tileset firstgid="695" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ </tileset>
+ <tileset firstgid="2135" name="Car,_Black_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="36" columns="6">
+  <image source="../../gfx/tilesets/Car,_Black_by_Isaiah658.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="2171" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+  <image source="../../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ </tileset>
+ <tileset firstgid="2327" name="Vegetation_and_Outdoor_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="60" columns="15">
+  <image source="../../gfx/tilesets/Vegetation_and_Outdoor_Fittings_by_George.png" width="240" height="64"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHtlU0OgjAQhXHt3yUxHsSfi8gWXLnnAuJBDHAF30tsMk6GtBQhmLh4ybRMp19fJzRPkvIKFVA+w3iOTNIvzbddJOVmIq2xj+/eNF+LO24mUo19YvlWOFuF9WNoidr0YAgf18o++Gbs7ugX+HhuefbcM37gO+/0rvJkjaFxi9rufmUtzcZvWaQuWGfVKwLmu/gkq4uPqBejQwBHF6vk68px8zFsXLOHskDRa7cffenDlyI/VGfkkq2v6LXke2BcQexxOW/Fuofc+8F/O88q15ww7svG/FCvrZ7Wb9kT9RqohjTfDnNpoGK8tnr6hv3Io2XxSS99cYzXFl8FNkvsDe2fj0nmh3otfbb4dP/JPcaKZY9Ln+fC1777iT305/v8B4X0aB//XjgkWVc=
+  </data>
+ </layer>
+ <layer id="2" name="Obstacles" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHNlUtOAzEQRB1YRHAQzunzIILEXYA7JAfIKqB0LZ7UKvkzXk1Gssr9qZ6aGk9yLqVcYp0fFF8OpbzGelR038LGXS7XQey+7SIubuo6iNEJ7qWP+6IDRCdIXwvjO6rBqzNscY9PpbbynkMHiE7Q+3Mc31ENXp1h5qzu0QGiE/x8LvUU6yMWs+nFN+Xfw0fq7KmD1FcQHeCXkX9D10+s76SPXnyTHjSJTkwdtNGbQrwAndTS5z2K0ZTx0jmfLX4vhxeg923VJ17WphjfHFUbXW/x7eBXD+Gv6IOziq0zjl895B7/ce7+Yt3S+aO2BXnHo96RB+7faA61a/ymsJ8h73bUN9Ln/vXm+HN4nHn5HOIf/bmP/UgfPBCOoz+Hx7lf+ojxj37yGUf64IHo5LlBz3uc76e91z1mrnpHZxweiE6eG/S8x7pPvrzuMXMzp7WHB6JzFZmtd6tFjE+zeeqnB27OUUPnKmoW2kDl8Gk2T730aK9L/7XkwDtDvSfi
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="4" name="Collision">
+  <object id="145" type="collision" x="0" y="0" width="64" height="128"/>
+  <object id="146" type="collision" x="64" y="0" width="576" height="32"/>
+  <object id="147" type="collision" x="544" y="32" width="32" height="32"/>
+  <object id="148" type="collision" x="544" y="160" width="32" height="32"/>
+  <object id="149" type="collision" x="576" y="32" width="64" height="288"/>
+  <object id="150" type="collision" x="560" y="304" width="16" height="16"/>
+  <object id="152" type="collision" x="528" y="208" width="32" height="64"/>
+  <object id="153" type="collision" x="496" y="208" width="32" height="32"/>
+  <object id="154" type="collision" x="368" y="208" width="112" height="32"/>
+  <object id="155" type="collision" x="192" y="176" width="208" height="32"/>
+  <object id="156" type="collision" x="96" y="144" width="128" height="32"/>
+  <object id="157" type="collision" x="0" y="144" width="80" height="32"/>
+  <object id="158" type="collision" x="0" y="128" width="16" height="16"/>
+  <object id="159" type="collision" x="144" y="112" width="64" height="32"/>
+  <object id="160" type="collision" x="176" y="80" width="160" height="32"/>
+  <object id="161" type="collision" x="304" y="112" width="64" height="64"/>
+  <object id="162" type="collision" x="368" y="144" width="32" height="32"/>
+  <object id="163" type="collision" x="416" y="80" width="16" height="16"/>
+  <object id="164" type="collision" x="0" y="256" width="224" height="64"/>
+  <object id="165" type="collision" x="96" y="224" width="128" height="32"/>
+  <object id="166" type="collision" x="144" y="208" width="16" height="16"/>
+  <object id="168" type="collision" x="320" y="208" width="32" height="112"/>
+  <object id="169" type="collision" x="352" y="224" width="32" height="96"/>
+  <object id="170" type="collision" x="384" y="256" width="64" height="64"/>
+  <object id="171" type="collision" x="448" y="288" width="32" height="32"/>
+  <object id="172" type="collision" x="288" y="256" width="32" height="32"/>
+  <object id="173" type="collision" x="0" y="176" width="32" height="32"/>
+  <object id="174" type="collision" x="528" y="160" width="16" height="16"/>
+  <object id="209" type="collision" x="496" y="288" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="3" name="Events">
+  <object id="72" name="Teleport to Tunnel" type="event" x="0" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_tunnel.tmx,19,35,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="73" name="Teleport to Tunnel" type="event" x="0" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_tunnel.tmx,19,34,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="74" name="Teleport to Tunnel" type="event" x="0" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_tunnel.tmx,19,33,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="79" name="Teleport to Candy Town" type="event" x="480" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,30,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="139" name="Teleport to Candy Town" type="event" x="224" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,14,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="140" name="Teleport to Candy Town" type="event" x="240" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,15,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="141" name="Teleport to Candy Town" type="event" x="256" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,16,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="142" name="Teleport to Candy Town" type="event" x="272" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,17,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="143" name="Teleport to Candy Town" type="event" x="288" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,18,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="144" name="Teleport to Candy Town" type="event" x="304" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,19,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="175" name="Create Log" type="event" x="208" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route6_log,13,13"/>
+    <property name="cond1" value="not npc_exists spyder_route6_log"/>
+    <property name="cond2" value="not variable_set route6log:yes"/>
+   </properties>
+  </object>
+  <object id="176" name="Cut Log" type="event" x="208" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_successful_log"/>
+    <property name="act2" value="set_variable route6log:yes"/>
+    <property name="act3" value="remove_npc spyder_route6_log"/>
+    <property name="behav1" value="talk spyder_route6_log"/>
+    <property name="cond1" value="is has_item player,fishing_rod"/>
+    <property name="cond2" value="not variable_set route6log:yes"/>
+   </properties>
+  </object>
+  <object id="179" name="encounter 3" type="event" x="224" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter route6,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="180" name="encounter 3" type="event" x="272" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter route6,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="181" name="encounter 3" type="event" x="272" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter route6,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="182" name="encounter 3" type="event" x="272" y="224" width="48" height="16">
+   <properties>
+    <property name="act1" value="random_encounter route6,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="183" name="encounter 3" type="event" x="240" y="160" width="48" height="16">
+   <properties>
+    <property name="act1" value="random_encounter route6,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="184" name="encounter 3" type="event" x="208" y="128" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter route6,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="185" name="encounter 3" type="event" x="272" y="128" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter route6,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="186" name="encounter 3" type="event" x="256" y="288" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter route6,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="188" name="encounter 3" type="event" x="240" y="304" width="64" height="16">
+   <properties>
+    <property name="act1" value="random_encounter route6,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="189" name="encounter 3" type="event" x="224" y="144" width="80" height="16">
+   <properties>
+    <property name="act1" value="random_encounter route6,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="191" name="Create Frances" type="event" x="512" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route6_frances,32,8"/>
+    <property name="act2" value="npc_wander spyder_route6_frances"/>
+    <property name="cond1" value="not npc_exists spyder_route6_frances"/>
+   </properties>
+  </object>
+  <object id="192" name="Talk Frances" type="event" x="512" y="112" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route6_frances1"/>
+    <property name="act3" value="start_battle spyder_route6_frances"/>
+    <property name="act4" value="translated_dialog spyder_route6_frances2"/>
+    <property name="act6" value="set_variable route6frances:yes"/>
+    <property name="behav1" value="talk spyder_route6_frances"/>
+    <property name="cond1" value="not variable_set route6frances:yes"/>
+   </properties>
+  </object>
+  <object id="193" name="Create Ping" type="event" x="400" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route6_ping,25,6"/>
+    <property name="act2" value="npc_wander spyder_route6_ping"/>
+    <property name="cond1" value="not npc_exists spyder_route6_ping"/>
+   </properties>
+  </object>
+  <object id="194" name="Talk Ping" type="event" x="400" y="80" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route6_ping1"/>
+    <property name="act3" value="start_battle spyder_route6_ping"/>
+    <property name="act4" value="translated_dialog spyder_route6_ping2"/>
+    <property name="act6" value="set_variable route6ping:yes"/>
+    <property name="behav1" value="talk spyder_route6_ping"/>
+    <property name="cond1" value="not variable_set route6ping:yes"/>
+   </properties>
+  </object>
+  <object id="195" name="Create Richard" type="event" x="416" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route6_richard,26,11"/>
+    <property name="act2" value="npc_face spyder_route6_richard,right"/>
+    <property name="cond1" value="not npc_exists spyder_route6_richard"/>
+   </properties>
+  </object>
+  <object id="196" name="Talk Richard" type="event" x="416" y="160" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route6_richard1"/>
+    <property name="act3" value="start_battle spyder_route6_richard"/>
+    <property name="act4" value="translated_dialog spyder_route6_richard2"/>
+    <property name="act6" value="set_variable route6richard:yes"/>
+    <property name="behav1" value="talk spyder_route6_richard"/>
+    <property name="cond1" value="not variable_set route6richard:yes"/>
+   </properties>
+  </object>
+  <object id="197" name="Create Blair" type="event" x="560" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route6_blair,35,9"/>
+    <property name="act2" value="npc_face spyder_route6_blair,left"/>
+    <property name="cond1" value="not npc_exists spyder_route6_blair"/>
+   </properties>
+  </object>
+  <object id="198" name="Talk Blair" type="event" x="560" y="128" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route6_blair1"/>
+    <property name="act3" value="start_battle spyder_route6_blair"/>
+    <property name="act4" value="translated_dialog spyder_route6_blair2"/>
+    <property name="act6" value="set_variable route6blair:yes"/>
+    <property name="behav1" value="talk spyder_route6_blair"/>
+    <property name="cond1" value="not variable_set route6blair:yes"/>
+   </properties>
+  </object>
+  <object id="199" name="Create Maxwell" type="event" x="160" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route6_maxwell,10,5"/>
+    <property name="act2" value="npc_face spyder_route6_maxwell,left"/>
+    <property name="cond1" value="not npc_exists spyder_route6_maxwell"/>
+   </properties>
+  </object>
+  <object id="200" name="Talk Maxwell" type="event" x="160" y="96" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route6_maxwell1"/>
+    <property name="act3" value="start_battle spyder_route6_maxwell"/>
+    <property name="act4" value="translated_dialog spyder_route6_maxwell2"/>
+    <property name="act6" value="set_variable route6maxwell:yes"/>
+    <property name="behav1" value="talk spyder_route6_maxwell"/>
+    <property name="cond1" value="not variable_set route6maxwell:yes"/>
+   </properties>
+  </object>
+  <object id="201" name="Create Orion" type="event" x="336" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route6_orion,21,6"/>
+    <property name="act2" value="npc_face spyder_route6_orion,up"/>
+    <property name="cond1" value="not npc_exists spyder_route6_orion"/>
+   </properties>
+  </object>
+  <object id="202" name="Talk Orion" type="event" x="352" y="96" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route6_orion1"/>
+    <property name="act3" value="start_battle spyder_route6_orion"/>
+    <property name="act4" value="translated_dialog spyder_route6_orion2"/>
+    <property name="act6" value="set_variable route6orion:yes"/>
+    <property name="behav1" value="talk spyder_route6_orion"/>
+    <property name="cond1" value="not variable_set route6orion:yes"/>
+   </properties>
+  </object>
+  <object id="203" name="Create Mungo" type="event" x="512" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route6_mungo,32,3"/>
+    <property name="act2" value="npc_face spyder_route6_mungo,left"/>
+    <property name="cond1" value="not npc_exists spyder_route6_mungo"/>
+   </properties>
+  </object>
+  <object id="204" name="Talk Mungo" type="event" x="528" y="64" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route6_mungo1"/>
+    <property name="act3" value="start_battle spyder_route6_mungo"/>
+    <property name="act4" value="translated_dialog spyder_route6_mungo2"/>
+    <property name="act6" value="set_variable route6mungo:yes"/>
+    <property name="behav1" value="talk spyder_route6_mungo"/>
+    <property name="cond1" value="not variable_set route6mungo:yes"/>
+   </properties>
+  </object>
+  <object id="205" name="Create Rigel" type="event" x="448" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route6_rigel,28,16"/>
+    <property name="cond1" value="not npc_exists spyder_route6_rigel"/>
+    <property name="cond2" value="not variable_set route6rigel:yes"/>
+   </properties>
+  </object>
+  <object id="206" name="Talk Rigel" type="event" x="448" y="240" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route6_rigel1"/>
+    <property name="act3" value="start_battle spyder_route6_rigel"/>
+    <property name="act4" value="translated_dialog spyder_route6_rigel2"/>
+    <property name="act6" value="set_variable route6rigel:yes"/>
+    <property name="behav1" value="talk spyder_route6_rigel"/>
+    <property name="cond1" value="not variable_set route6rigel:yes"/>
+   </properties>
+  </object>
+  <object id="207" name="Create Gunner" type="event" x="480" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route6_gunner,30,17"/>
+    <property name="act2" value="npc_face spyder_route6_gunner,up"/>
+    <property name="cond1" value="not npc_exists spyder_route6_gunner"/>
+   </properties>
+  </object>
+  <object id="208" name="Talk Gunner" type="event" x="464" y="272" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route6_gunner1"/>
+    <property name="act3" value="start_battle spyder_route6_gunner"/>
+    <property name="act4" value="translated_dialog spyder_route6_gunner2"/>
+    <property name="act6" value="set_variable route6gunner:yes"/>
+    <property name="act90" value="pathfind spyder_route6_gunner,28,17"/>
+    <property name="behav1" value="talk spyder_route6_gunner"/>
+    <property name="cond1" value="not variable_set route6gunner:yes"/>
+   </properties>
+  </object>
+  <object id="210" name="Teleport to Candy Town" type="event" x="528" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,33,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="211" name="Teleport to Candy Town" type="event" x="544" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,34,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="212" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="219" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
+   </properties>
+  </object>
+  <object id="213" name="Talk Maxwell" type="event" x="96" y="80" width="64" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route6_maxwell1"/>
+    <property name="act3" value="start_battle spyder_route6_maxwell"/>
+    <property name="act4" value="translated_dialog spyder_route6_maxwell2"/>
+    <property name="act6" value="set_variable route6maxwell:yes"/>
+    <property name="cond1" value="not variable_set route6maxwell:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="214" name="Talk Orion" type="event" x="336" y="48" width="16" height="48">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route6_orion1"/>
+    <property name="act3" value="start_battle spyder_route6_orion"/>
+    <property name="act4" value="translated_dialog spyder_route6_orion2"/>
+    <property name="act6" value="set_variable route6orion:yes"/>
+    <property name="cond1" value="not variable_set route6orion:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="215" name="Talk Richard" type="event" x="432" y="176" width="64" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route6_richard1"/>
+    <property name="act3" value="start_battle spyder_route6_richard"/>
+    <property name="act4" value="translated_dialog spyder_route6_richard2"/>
+    <property name="act6" value="set_variable route6richard:yes"/>
+    <property name="cond1" value="not variable_set route6richard:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="216" name="Talk Blair" type="event" x="496" y="144" width="64" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route6_blair1"/>
+    <property name="act3" value="start_battle spyder_route6_blair"/>
+    <property name="act4" value="translated_dialog spyder_route6_blair2"/>
+    <property name="act6" value="set_variable route6blair:yes"/>
+    <property name="cond1" value="not variable_set route6blair:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="217" name="Talk Mungo" type="event" x="464" y="48" width="48" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route6_mungo1"/>
+    <property name="act3" value="start_battle spyder_route6_mungo"/>
+    <property name="act4" value="translated_dialog spyder_route6_mungo2"/>
+    <property name="act6" value="set_variable route6mungo:yes"/>
+    <property name="cond1" value="not variable_set route6mungo:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="218" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

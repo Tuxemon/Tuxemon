@@ -1,0 +1,490 @@
+[
+    {
+      "slug": "spyder_bedroom.tmx",
+      "file": "spyder/spyder_bedroom.tmx"
+    },
+    {
+      "slug": "spyder_candy_center.tmx",
+      "file": "spyder/spyder_candy_center.tmx"
+    },
+    {
+      "slug": "spyder_candy_house1.tmx",
+      "file": "spyder/spyder_candy_house1.tmx"
+    },
+    {
+      "slug": "spyder_candy_scoop.tmx",
+      "file": "spyder/spyder_candy_scoop.tmx"
+    },
+    {
+      "slug": "spyder_candy_town.tmx",
+      "file": "spyder/spyder_candy_town.tmx"
+    },
+    {
+      "slug": "spyder_citypark.tmx",
+      "file": "spyder/spyder_citypark.tmx"
+    },
+    {
+      "slug": "spyder_cotton_artshop.tmx",
+      "file": "spyder/spyder_cotton_artshop.tmx"
+    },
+    {
+      "slug": "spyder_cotton_cafe.tmx",
+      "file": "spyder/spyder_cotton_cafe.tmx"
+    },
+    {
+      "slug": "spyder_cotton_house1.tmx",
+      "file": "spyder/spyder_cotton_house1.tmx"
+    },
+    {
+      "slug": "spyder_cotton_house2.tmx",
+      "file": "spyder/spyder_cotton_house2.tmx"
+    },
+    {
+      "slug": "spyder_cotton_scoop.tmx",
+      "file": "spyder/spyder_cotton_scoop.tmx"
+    },
+    {
+      "slug": "spyder_cotton_town.tmx",
+      "file": "spyder/spyder_cotton_town.tmx"
+    },
+    {
+      "slug": "spyder_cotton_tunnel.tmx",
+      "file": "spyder/spyder_cotton_tunnel.tmx"
+    },
+    {
+      "slug": "spyder_daycare.tmx",
+      "file": "spyder/spyder_daycare.tmx"
+    },
+    {
+      "slug": "spyder_dojo1.tmx",
+      "file": "spyder/spyder_dojo1.tmx"
+    },
+    {
+      "slug": "spyder_dojo2.tmx",
+      "file": "spyder/spyder_dojo2.tmx"
+    },
+    {
+      "slug": "spyder_dojo3.tmx",
+      "file": "spyder/spyder_dojo3.tmx"
+    },
+    {
+      "slug": "spyder_downstairs.tmx",
+      "file": "spyder/spyder_downstairs.tmx"
+    },
+    {
+      "slug": "spyder_dragonscave.tmx",
+      "file": "spyder/spyder_dragonscave.tmx"
+    },
+    {
+      "slug": "spyder_dryadsgrove.tmx",
+      "file": "spyder/spyder_dryadsgrove.tmx"
+    },
+    {
+      "slug": "spyder_flower_center.tmx",
+      "file": "spyder/spyder_flower_center.tmx"
+    },
+    {
+      "slug": "spyder_flower_city.tmx",
+      "file": "spyder/spyder_flower_city.tmx"
+    },
+    {
+      "slug": "spyder_flower_house1.tmx",
+      "file": "spyder/spyder_flower_house1.tmx"
+    },
+    {
+      "slug": "spyder_flower_house2.tmx",
+      "file": "spyder/spyder_flower_house2.tmx"
+    },
+    {
+      "slug": "spyder_flower_petshop.tmx",
+      "file": "spyder/spyder_flower_petshop.tmx"
+    },
+    {
+      "slug": "spyder_flower_scoop.tmx",
+      "file": "spyder/spyder_flower_scoop.tmx"
+    },
+    {
+      "slug": "spyder_greenwash.tmx",
+      "file": "spyder/spyder_greenwash.tmx"
+    },
+    {
+      "slug": "spyder_greenwash_greenhouse.tmx",
+      "file": "spyder/spyder_greenwash_greenhouse.tmx"
+    },
+    {
+      "slug": "spyder_greenwash_level2.tmx",
+      "file": "spyder/spyder_greenwash_level2.tmx"
+    },
+    {
+      "slug": "spyder_healing_center.tmx",
+      "file": "spyder/spyder_healing_center.tmx"
+    },
+    {
+      "slug": "spyder_hospital.tmx",
+      "file": "spyder/spyder_hospital.tmx"
+    },
+    {
+      "slug": "spyder_hospital_alt.tmx",
+      "file": "spyder/spyder_hospital_alt.tmx"
+    },
+    {
+      "slug": "spyder_house5.tmx",
+      "file": "spyder/spyder_house5.tmx"
+    },
+    {
+      "slug": "spyder_house6.tmx",
+      "file": "spyder/spyder_house6.tmx"
+    },
+    {
+      "slug": "spyder_leather_center.tmx",
+      "file": "spyder/spyder_leather_center.tmx"
+    },
+    {
+      "slug": "spyder_leather_house1.tmx",
+      "file": "spyder/spyder_leather_house1.tmx"
+    },
+    {
+      "slug": "spyder_leather_house2.tmx",
+      "file": "spyder/spyder_leather_house2.tmx"
+    },
+    {
+      "slug": "spyder_leather_museum.tmx",
+      "file": "spyder/spyder_leather_museum.tmx"
+    },
+    {
+      "slug": "spyder_leather_scoop.tmx",
+      "file": "spyder/spyder_leather_scoop.tmx"
+    },
+    {
+      "slug": "spyder_leather_town.tmx",
+      "file": "spyder/spyder_leather_town.tmx"
+    },
+    {
+      "slug": "spyder_mansion.tmx",
+      "file": "spyder/spyder_mansion.tmx"
+    },
+    {
+      "slug": "spyder_mansion_basement.tmx",
+      "file": "spyder/spyder_mansion_basement.tmx"
+    },
+    {
+      "slug": "spyder_mansion_top.tmx",
+      "file": "spyder/spyder_mansion_top.tmx"
+    },
+    {
+      "slug": "spyder_nimrod_bottom.tmx",
+      "file": "spyder/spyder_nimrod_bottom.tmx"
+    },
+    {
+      "slug": "spyder_nimrod_middle.tmx",
+      "file": "spyder/spyder_nimrod_middle.tmx"
+    },
+    {
+      "slug": "spyder_nimrod_top.tmx",
+      "file": "spyder/spyder_nimrod_top.tmx"
+    },
+    {
+      "slug": "spyder_omnichannel1.tmx",
+      "file": "spyder/spyder_omnichannel1.tmx"
+    },
+    {
+      "slug": "spyder_omnichannel2.tmx",
+      "file": "spyder/spyder_omnichannel2.tmx"
+    },
+    {
+      "slug": "spyder_omnichannel3.tmx",
+      "file": "spyder/spyder_omnichannel3.tmx"
+    },
+    {
+      "slug": "spyder_omnichannel4.tmx",
+      "file": "spyder/spyder_omnichannel4.tmx"
+    },
+    {
+      "slug": "spyder_paper_mart.tmx",
+      "file": "spyder/spyder_paper_mart.tmx"
+    },
+    {
+      "slug": "spyder_paper_scoop.tmx",
+      "file": "spyder/spyder_paper_scoop.tmx"
+    },
+    {
+      "slug": "spyder_paper_town.tmx",
+      "file": "spyder/spyder_paper_town.tmx"
+    },
+    {
+      "slug": "spyder_radiotower.tmx",
+      "file": "spyder/spyder_radiotower.tmx"
+    },
+    {
+      "slug": "spyder_route1.tmx",
+      "file": "spyder/spyder_route1.tmx"
+    },
+    {
+      "slug": "spyder_route2.tmx",
+      "file": "spyder/spyder_route2.tmx"
+    },
+    {
+      "slug": "spyder_route3.tmx",
+      "file": "spyder/spyder_route3.tmx"
+    },
+    {
+      "slug": "spyder_route4.tmx",
+      "file": "spyder/spyder_route4.tmx"
+    },
+    {
+      "slug": "spyder_route5.tmx",
+      "file": "spyder/spyder_route5.tmx"
+    },
+    {
+      "slug": "spyder_route6.tmx",
+      "file": "spyder/spyder_route6.tmx"
+    },
+    {
+      "slug": "spyder_routea.tmx",
+      "file": "spyder/spyder_routea.tmx"
+    },
+    {
+      "slug": "spyder_routec.tmx",
+      "file": "spyder/spyder_routec.tmx"
+    },
+    {
+      "slug": "spyder_routed.tmx",
+      "file": "spyder/spyder_routed.tmx"
+    },
+    {
+      "slug": "spyder_routee.tmx",
+      "file": "spyder/spyder_routee.tmx"
+    },
+    {
+      "slug": "spyder_scoop1.tmx",
+      "file": "spyder/spyder_scoop1.tmx"
+    },
+    {
+      "slug": "spyder_scoop2.tmx",
+      "file": "spyder/spyder_scoop2.tmx"
+    },
+    {
+      "slug": "spyder_scoop3.tmx",
+      "file": "spyder/spyder_scoop3.tmx"
+    },
+    {
+      "slug": "spyder_scoop4.tmx",
+      "file": "spyder/spyder_scoop4.tmx"
+    },
+    {
+      "slug": "spyder_timber_center.tmx",
+      "file": "spyder/spyder_timber_center.tmx"
+    },
+    {
+      "slug": "spyder_timber_scoop.tmx",
+      "file": "spyder/spyder_timber_scoop.tmx"
+    },
+    {
+      "slug": "spyder_timber_town.tmx",
+      "file": "spyder/spyder_timber_town.tmx"
+    },
+    {
+      "slug": "spyder_tunnel.tmx",
+      "file": "spyder/spyder_tunnel.tmx"
+    },
+    {
+      "slug": "spyder_tunnel_below.tmx",
+      "file": "spyder/spyder_tunnel_below.tmx"
+    },
+    {
+      "slug": "spyder_wayfarer_inn1.tmx",
+      "file": "spyder/spyder_wayfarer_inn1.tmx"
+    },
+    {
+      "slug": "spyder_wayfarer_inn2.tmx",
+      "file": "spyder/spyder_wayfarer_inn2.tmx"
+    },
+    {
+      "slug": "candy_town.tmx",
+      "file": "xero/candy_town.tmx"
+    },
+    {
+      "slug": "citypark.tmx",
+      "file": "xero/citypark.tmx"
+    },
+    {
+      "slug": "cotton_cafe.tmx",
+      "file": "xero/cotton_cafe.tmx"
+    },
+    {
+      "slug": "cotton_cathedral.tmx",
+      "file": "xero/cotton_cathedral.tmx"
+    },
+    {
+      "slug": "cotton_scoop.tmx",
+      "file": "xero/cotton_scoop.tmx"
+    },
+    {
+      "slug": "cotton_town.tmx",
+      "file": "xero/cotton_town.tmx"
+    },
+    {
+      "slug": "daycare.tmx",
+      "file": "xero/daycare.tmx"
+    },
+    {
+      "slug": "dojo1.tmx",
+      "file": "xero/dojo1.tmx"
+    },
+    {
+      "slug": "dojo2.tmx",
+      "file": "xero/dojo2.tmx"
+    },
+    {
+      "slug": "dojo3.tmx",
+      "file": "xero/dojo3.tmx"
+    },
+    {
+      "slug": "dragonscave.tmx",
+      "file": "xero/dragonscave.tmx"
+    },
+    {
+      "slug": "dryadsgrove.tmx",
+      "file": "xero/dryadsgrove.tmx"
+    },
+    {
+      "slug": "flower_city.tmx",
+      "file": "xero/flower_city.tmx"
+    },
+    {
+      "slug": "healing_center.tmx",
+      "file": "xero/healing_center.tmx"
+    },
+    {
+      "slug": "leather_scoop.tmx",
+      "file": "xero/leather_scoop.tmx"
+    },
+    {
+      "slug": "leather_town.tmx",
+      "file": "xero/leather_town.tmx"
+    },
+    {
+      "slug": "mansion.tmx",
+      "file": "xero/mansion.tmx"
+    },
+    {
+      "slug": "mansion_basement.tmx",
+      "file": "xero/mansion_basement.tmx"
+    },
+    {
+      "slug": "mansion_top.tmx",
+      "file": "xero/mansion_top.tmx"
+    },
+    {
+      "slug": "maple_house.tmx",
+      "file": "xero/maple_house.tmx"
+    },
+    {
+      "slug": "omnichannel1.tmx",
+      "file": "xero/omnichannel1.tmx"
+    },
+    {
+      "slug": "omnichannel2.tmx",
+      "file": "xero/omnichannel2.tmx"
+    },
+    {
+      "slug": "omnichannel3.tmx",
+      "file": "xero/omnichannel3.tmx"
+    },
+    {
+      "slug": "omnichannel4.tmx",
+      "file": "xero/omnichannel4.tmx"
+    },
+    {
+      "slug": "player_house_bedroom.tmx",
+      "file": "xero/player_house_bedroom.tmx"
+    },
+    {
+      "slug": "player_house_downstairs.tmx",
+      "file": "xero/player_house_downstairs.tmx"
+    },
+    {
+      "slug": "professor_lab.tmx",
+      "file": "xero/professor_lab.tmx"
+    },
+    {
+      "slug": "route1.tmx",
+      "file": "xero/route1.tmx"
+    },
+    {
+      "slug": "route1_sanglorian.tmx",
+      "file": "xero/route1_sanglorian.tmx"
+    },
+    {
+      "slug": "route2.tmx",
+      "file": "xero/route2.tmx"
+    },
+    {
+      "slug": "route3.tmx",
+      "file": "xero/route3.tmx"
+    },
+    {
+      "slug": "route4.tmx",
+      "file": "xero/route4.tmx"
+    },
+    {
+      "slug": "route5.tmx",
+      "file": "xero/route5.tmx"
+    },
+    {
+      "slug": "route6.tmx",
+      "file": "xero/route6.tmx"
+    },
+    {
+      "slug": "routea.tmx",
+      "file": "xero/routea.tmx"
+    },
+    {
+      "slug": "routec.tmx",
+      "file": "xero/routec.tmx"
+    },
+    {
+      "slug": "scoop1.tmx",
+      "file": "xero/scoop1.tmx"
+    },
+    {
+      "slug": "scoop2.tmx",
+      "file": "xero/scoop2.tmx"
+    },
+    {
+      "slug": "scoop3.tmx",
+      "file": "xero/scoop3.tmx"
+    },
+    {
+      "slug": "scoop4.tmx",
+      "file": "xero/scoop4.tmx"
+    },
+    {
+      "slug": "taba_town.tmx",
+      "file": "xero/taba_town.tmx"
+    },
+    {
+      "slug": "timber_town.tmx",
+      "file": "xero/timber_town.tmx"
+    },
+    {
+      "slug": "tunnel.tmx",
+      "file": "xero/tunnel.tmx"
+    },
+    {
+      "slug": "tunnel_below.tmx",
+      "file": "xero/tunnel_below.tmx"
+    },
+    {
+      "slug": "tuxe_mart_taba.tmx",
+      "file": "xero/tuxe_mart_taba.tmx"
+    },
+    {
+      "slug": "wayfarer_inn1.tmx",
+      "file": "xero/wayfarer_inn1.tmx"
+    },
+    {
+      "slug": "wayfarer_inn2.tmx",
+      "file": "xero/wayfarer_inn2.tmx"
+    }
+  ]

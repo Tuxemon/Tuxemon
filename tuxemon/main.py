@@ -31,6 +31,7 @@ import logging
 from typing import Optional, no_type_check
 
 from tuxemon import log, prepare
+from tuxemon.db import db
 from tuxemon.session import local_session
 from tuxemon.states.persistance.load_menu import LoadMenuState
 from tuxemon.states.splash import SplashState
@@ -89,7 +90,9 @@ def main(
 
     # TODO: rename this to "debug map" or something
     if config.skip_titlescreen:
-        map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
+        map_name = prepare.fetch(
+            "maps", db.lookup_file("maps", prepare.CONFIG.starting_map)
+        )
         client.push_state(WorldState, map_name=map_name)
 
     # block of code useful for testing

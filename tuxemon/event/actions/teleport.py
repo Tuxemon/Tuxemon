@@ -24,6 +24,7 @@ from __future__ import annotations
 from typing import NamedTuple, final
 
 from tuxemon import prepare
+from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
 
@@ -76,7 +77,7 @@ class TeleportAction(EventAction[TeleportActionParameters]):
 
         else:
             # If we're not doing a transition, then just do the teleport
-            map_path = prepare.fetch("maps", map_name)
+            map_path = prepare.fetch("maps", db.lookup_file("maps", map_name))
 
             if world.current_map is None:
                 world.change_map(map_path)

@@ -51,6 +51,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import networking, prepare, state
+from tuxemon.db import db
 from tuxemon.entity import Entity
 from tuxemon.graphics import ColorLike
 from tuxemon.map import (
@@ -334,7 +335,9 @@ class WorldState(state.State):
             self.lock_controls()
 
             # check if map has changed, and if so, change it
-            map_name = prepare.fetch("maps", self.delayed_mapname)
+            map_name = prepare.fetch(
+                "maps", db.lookup_file("maps", self.delayed_mapname)
+            )
 
             if map_name != self.current_map.filename:
                 self.change_map(map_name)

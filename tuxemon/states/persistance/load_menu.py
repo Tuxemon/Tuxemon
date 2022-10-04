@@ -32,6 +32,7 @@ import logging
 from typing import Any, Optional
 
 from tuxemon import prepare, save
+from tuxemon.db import db
 from tuxemon.menu.interface import MenuItem
 from tuxemon.session import local_session
 from tuxemon.states.world.worldstate import WorldState
@@ -65,7 +66,8 @@ class LoadMenuState(SaveMenuState):
                 self.client.pop_state()
                 self.client.pop_state()
 
-            map_path = prepare.fetch("maps", save_data["current_map"])
+            filename = save_data["current_map"]
+            map_path = prepare.fetch("maps", db.lookup_file("maps", filename))
             self.client.push_state(
                 WorldState,
                 map_name=map_path,

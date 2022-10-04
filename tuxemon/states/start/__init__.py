@@ -39,6 +39,7 @@ from typing import Any, Callable, Tuple, Union
 import pygame
 
 from tuxemon import prepare
+from tuxemon.db import db
 from tuxemon.locale import T
 from tuxemon.menu.input import InputMenu
 from tuxemon.menu.interface import MenuItem
@@ -132,7 +133,9 @@ class ModChooserMenuState(PopUpMenu[StartGameObj]):
             return partial(new_game, map_name)
 
         def set_player_name(text: str) -> None:
-            map_path = prepare.fetch("maps", self.map_name)
+            map_path = prepare.fetch(
+                "maps", db.lookup_file("maps", self.map_name)
+            )
             self.client.push_state("WorldState", map_name=map_path)
             self.client.push_state(FadeInTransition)
             local_session.player.name = text

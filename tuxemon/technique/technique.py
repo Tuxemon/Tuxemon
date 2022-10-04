@@ -31,50 +31,28 @@
 from __future__ import annotations
 
 import logging
-import operator
-import random
-from typing import TYPE_CHECKING, List, Optional, Sequence, Tuple, TypedDict
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    ClassVar,
+    Mapping,
+    Optional,
+    Sequence,
+    Type,
+)
 
-from tuxemon import formula, prepare
+from tuxemon import plugin, prepare
+from tuxemon.constants import paths
 from tuxemon.db import db, process_targets
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
+from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
-    from tuxemon.player import Player
     from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
-
-
-class EffectResult(TypedDict, total=False):
-    damage: int
-    element_multiplier: float
-    success: bool
-    should_tackle: bool
-    status: Optional[Technique]
-
-
-class TechniqueResult(EffectResult):
-    name: str
-    # Related Mypy bug: https://github.com/python/mypy/issues/8714
-    success: bool
-    should_tackle: bool
-    capture: bool
-    statuses: List[Optional[Technique]]
-
-
-def merge_results(
-    result: EffectResult,
-    meta_result: TechniqueResult,
-) -> TechniqueResult:
-    status = result.pop("status", None)
-    if status:
-        meta_result["statuses"].append(status)
-    # Known Mypy bug: https://github.com/python/mypy/issues/6462
-    meta_result.update(result)
-    return meta_result
 
 
 class Technique:
@@ -88,6 +66,8 @@ class Technique:
             For example, monster that obtains life with lifeleech.
 
     """
+
+    effects_classes: ClassVar[Mapping[str, Type[TechEffect[Any]]]] = {}
 
     def __init__(
         self,
@@ -105,7 +85,7 @@ class Technique:
         self.carrier = carrier
         self.category = "attack"
         self.combat_state: Optional[CombatState] = None
-        self.effect: Sequence[str] = []
+        self.effects: Sequence[TechEffect[Any]] = []
         self.icon = ""
         self.images: Sequence[str] = []
         self.is_area = False
@@ -128,6 +108,14 @@ class Technique:
         self.use_failure = ""
         self.use_tech = ""
 
+        # load plugins if it hasn't been done already
+        if not Technique.effects_classes:
+            Technique.effects_classes = plugin.load_plugins(
+                paths.TECH_EFFECT_PATH,
+                "effects",
+                interface=TechEffect,
+            )
+
         # If a slug of the technique was provided, autoload it.
         if slug:
             self.load(slug)
@@ -146,6 +134,7 @@ class Technique:
         self.name = T.translate(self.slug)
 
         self.sort = results.sort
+        assert self.sort
 
         # technique use notifications (translated!)
         # NOTE: should be `self.use_tech`, but Technique and Item have
@@ -184,7 +173,7 @@ class Technique:
         self.tech_id = results.tech_id or self.tech_id
         self.accuracy = results.accuracy or self.accuracy
         self.potency = results.potency or self.potency
-        self.effect = results.effects
+        self.effects = self.parse_effects(results.effects)
         self.target = process_targets(results.target)
 
         # Load the animation sprites that will be used for this technique
@@ -199,6 +188,40 @@ class Technique:
 
         # Load the sound effect for this technique
         self.sfx = results.sfx
+
+    def parse_effects(
+        self,
+        raw: Sequence[str],
+    ) -> Sequence[TechEffect[Any]]:
+        """
+        Convert effect strings to effect objects.
+
+        Takes raw effects list from the technique's json and parses it into a
+        form more suitable for the engine.
+
+        Parameters:
+            raw: The raw effects list pulled from the technique's db entry.
+
+        Returns:
+            Effects turned into a list of TechEffect objects.
+
+        """
+        ret = list()
+
+        for line in raw:
+            name = line.split()[0]
+            if len(line.split()) > 1:
+                params = line.split()[1].split(",")
+            else:
+                params = None
+            try:
+                effect = Technique.effects_classes[name]
+            except KeyError:
+                logger.error(f'Error: TechEffect "{name}" not implemented')
+            else:
+                ret.append(effect(self, self.name, params))
+
+        return ret
 
     def advance_round(self, number: int = 1) -> None:
         """
@@ -226,7 +249,7 @@ class Technique:
         """Reset the combat counter."""
         self._combat_counter = 0
 
-    def use(self, user: Monster, target: Monster) -> TechniqueResult:
+    def use(self, user: Monster, target: Monster) -> TechEffectResult:
         """
         Apply the technique.
 
@@ -259,321 +282,22 @@ class Technique:
 
         # Defaults for the return. items can override these values in their
         # return.
-        meta_result: TechniqueResult = {
+        meta_result: TechEffectResult = {
             "name": self.name,
             "success": False,
             "should_tackle": False,
             "capture": False,
             "statuses": [],
         }
-        # TODO: handle conflicting values from multiple technique actions
-        # TODO: for example, how to handle one saying success, and another not?
-        for effect in self.effect:
-            if effect == "damage":
-                result = self.damage(user, target)
-            elif effect == "poison":
-                result = self.apply_status("status_poison", target)
-            elif effect == "statchange":
-                result = self.changestats(user, target)
-            elif effect == "lifeleech":
-                result = self.apply_lifeleech(user, target)
-            elif effect == "recover":
-                result = self.apply_status("status_recover", user)
-            elif effect == "overfeed":
-                result = self.apply_status("status_overfeed", target)
-            elif effect == "hardshell":
-                result = self.hardshell(user)
-            elif effect == "status":
-                if self.category == "poison":
-                    result = self.poison(target)
-                elif self.category == "lifeleech":
-                    result = self.lifeleech(target)
-                elif self.category == "recover":
-                    result = self.recover(target)
-                else:
-                    result = getattr(self, self.category)(target)
-            else:
-                result = getattr(self, effect)(user, target)
-            meta_result = merge_results(result, meta_result)
+
+        # Loop through all the effects of this technique and execute the effect's function.
+        for effect in self.effects:
+            result = effect.apply(user, target)
+            meta_result.update(result)
 
         self.next_use = self.recharge_length
 
         return meta_result
-
-    def changestats(self, user: Monster, target: Monster) -> EffectResult:
-        """
-        Change combat stats.
-
-        JSON SYNTAX:
-            value: The number to change the stat by, default is add, use
-                negative to subtract.
-            dividing: Set this to True to divide instead of adding or
-                subtracting the value.
-            overridetofull: In most cases you wont need this. If ``True`` it
-                will set the stat to its original value rather than the
-                specified value, but due to the way the
-                game is coded, it currently only works on hp.
-
-        """
-        statsmaster = [
-            self.statspeed,
-            self.stathp,
-            self.statarmour,
-            self.statmelee,
-            self.statranged,
-            self.statdodge,
-        ]
-        statslugs = [
-            "speed",
-            "current_hp",
-            "armour",
-            "melee",
-            "ranged",
-            "dodge",
-        ]
-        newstatvalue = 0
-        for stat, slugdata in zip(statsmaster, statslugs):
-            if not stat:
-                continue
-            value = stat.value
-            max_deviation = stat.max_deviation
-            operation = stat.operation
-            override = stat.overridetofull
-            basestatvalue = getattr(target, slugdata)
-            if max_deviation:
-                value = random.randint(
-                    value - max_deviation,
-                    value + max_deviation,
-                )
-
-            if value > 0 and override is not True:
-                ops_dict = {
-                    "+": operator.add,
-                    "-": operator.sub,
-                    "*": operator.mul,
-                    "/": operator.floordiv,
-                }
-                newstatvalue = ops_dict[operation](basestatvalue, value)
-            if slugdata == "current_hp":
-                if override:
-                    target.current_hp = target.hp
-            if newstatvalue <= 0:
-                newstatvalue = 1
-            setattr(target, slugdata, newstatvalue)
-        return {"success": bool(newstatvalue)}
-
-    def calculate_damage(
-        self,
-        user: Monster,
-        target: Monster,
-    ) -> Tuple[int, float]:
-        """
-        Calculate damage for the damage technique.
-
-        Parameters:
-            user: The Monster object that used this technique.
-            target: The Monster object that we are using this technique on.
-
-        Returns:
-            A tuple (damage, multiplier).
-
-        """
-        return formula.simple_damage_calculate(self, user, target)
-
-    def damage(self, user: Monster, target: Monster) -> EffectResult:
-        """
-        Apply damage.
-
-        This effect applies damage to a target monster. This effect will only
-        be applied if "damage" is defined in the relevant technique's effect
-        list.
-
-        Parameters:
-            user: The Monster object that used this technique.
-            target: The Monster object that we are using this technique on.
-
-        Returns:
-            Dict summarizing the result.
-
-        """
-        hit = self.accuracy >= random.random()
-        if hit or self.is_area:
-            self.can_apply_status = True
-            damage, mult = self.calculate_damage(user, target)
-            if not hit:
-                damage //= 2
-            target.current_hp -= damage
-        else:
-            damage = 0
-            mult = 1
-
-        return {
-            "damage": damage,
-            "element_multiplier": mult,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
-        }
-
-    def apply_status(self, slug: str, target: Monster) -> EffectResult:
-        """
-        This effect has a chance to apply a status effect to a target monster.
-
-        Parameters:
-            slug: Name of the status effect.
-            target: The Monster object that we are using this technique on.
-
-        Returns:
-            Dict summarizing the result.
-
-        """
-        already_applied = any(t for t in target.status if t.slug == slug)
-        success = (
-            not already_applied
-            and self.can_apply_status
-            and self.potency >= random.random(),
-        )
-        tech = None
-        if success:
-            tech = Technique(slug, carrier=target)
-            target.apply_status(tech)
-
-        return {
-            "status": tech,
-        }
-
-    def apply_lifeleech(self, user: Monster, target: Monster) -> EffectResult:
-        """
-        This effect has a chance to apply the lifeleech status effect.
-
-        Parameters:
-            user: The Monster object that used this technique.
-            target: The Monster object that we are using this technique on.
-
-        Returns:
-            Dict summarizing the result.
-
-        """
-        already_applied = any(
-            t for t in target.status if t.slug == "status_lifeleech"
-        )
-        success = not already_applied and self.potency >= random.random()
-        tech = None
-        if success:
-            tech = Technique("status_lifeleech", carrier=target, link=user)
-            target.apply_status(tech)
-        return {
-            "status": tech,
-        }
-
-    # TODO: Add implementation of hardshell to raise defense.
-    def hardshell(self, target: Monster) -> EffectResult:
-        logger.warning("Hardshell effect is not yet implemented!")
-        return {
-            "damage": 0,
-            "should_tackle": False,
-            "success": False,
-        }
-
-    def poison(self, target: Monster) -> EffectResult:
-        damage = formula.simple_poison(self, target)
-        target.current_hp -= damage
-        return {
-            "damage": damage,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
-        }
-
-    def recover(self, target: Monster) -> EffectResult:
-        heal = formula.simple_recover(self, target)
-        target.current_hp += heal
-        return {
-            "damage": heal,
-            "should_tackle": False,
-            "success": bool(heal),
-        }
-
-    def lifeleech(self, target: Monster) -> EffectResult:
-        user = self.link
-        assert user
-        damage = formula.simple_lifeleech(self, user, target)
-        target.current_hp -= damage
-        user.current_hp += damage
-        return {
-            "damage": damage,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
-        }
-
-    def faint(self, user: Monster, target: Monster) -> EffectResult:
-        """
-        Faint this monster.
-
-        Typically, called by combat to faint self, not others.
-
-        Parameters:
-            user: The Monster object that used this technique.
-            target: The Monster object that we are using this technique on.
-
-        Returns:
-            Dict summarizing the result.
-
-        """
-        # TODO: implement into the combat state, currently not used
-
-        already_fainted = any(
-            t for t in target.status if t.name == "status_faint"
-        )
-
-        if already_fainted:
-            raise RuntimeError
-
-        target.apply_status(Technique("status_faint"))
-
-        return {
-            "should_tackle": False,
-            "success": True,
-        }
-
-    def swap(self, user: Player, target: Monster) -> EffectResult:
-        """
-        Used just for combat: change order of monsters.
-
-        Position of monster in party will be changed.
-
-        Returns:
-            Dict summarizing the result.
-
-        """
-        # TODO: implement actions as events, so that combat state can find them
-        # TODO: relies on setting "combat_state" attribute.  maybe clear it up
-        # later
-        # TODO: these values are set in combat_menus.py
-
-        assert self.combat_state
-        # TODO: find a way to pass values. this will only work for SP games with one monster party
-        combat_state = self.combat_state
-
-        def swap_add() -> None:
-            # TODO: make accommodations for battlefield positions
-            combat_state.add_monster_into_play(user, target)
-
-        # get the original monster to be swapped out
-        original_monster = combat_state.monsters_in_play[user][0]
-
-        # rewrite actions to target the new monster.  must be done before original is removed
-        combat_state.rewrite_action_queue_target(original_monster, target)
-
-        # remove the old monster and all their actions
-        combat_state.remove_monster_from_play(user, original_monster)
-
-        # give a slight delay
-        combat_state.task(swap_add, 0.75)
-        combat_state.suppress_phase_change(0.75)
-
-        return {
-            "success": True,
-            "should_tackle": False,
-        }
 
     def get_state(self) -> Optional[str]:
         return self.slug

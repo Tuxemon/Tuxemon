@@ -10,7 +10,7 @@
   "category": "poison",
   "sort": "meta",
   "effects": [
-    "status"
+    "poison"
   ],
   "target": {
     "enemy monster": 0,

@@ -68,5 +68,7 @@ class TuxepediaIsCondition(EventCondition):
             elif monster_str == "seen":
                 if player.tuxepedia[monster_key] == SeenStatus.seen:
                     return True
+                elif player.tuxepedia[monster_key] == SeenStatus.caught:
+                    return True
             else:
                 return False

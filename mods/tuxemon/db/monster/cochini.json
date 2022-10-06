@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Varmint",
+    "shape": "varmint",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 103,
     "height": 80,
     "weight": 15,

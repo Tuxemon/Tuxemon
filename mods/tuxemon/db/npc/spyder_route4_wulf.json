@@ -1,5 +1,6 @@
 {
   "slug": "spyder_route4_wulf",
+  "gender": "male",
   "sprite_name": "maniac",
   "monsters": [
     {
@@ -7,21 +8,24 @@
       "level": 14,
       "slug": "cowpignon",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     },
     {
       "name": "Cowpignon",
       "level": 14,
       "slug": "cowpignon",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     },
     {
       "name": "Shybulb",
       "level": 14,
       "slug": "shybulb",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     }
   ],
   "combat_front": "alchemist.png",

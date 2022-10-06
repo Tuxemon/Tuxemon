@@ -36,6 +36,14 @@
   <object id="3" type="collision" x="0" y="48" width="16" height="144"/>
   <object id="4" type="collision" x="0" y="0" width="240" height="48"/>
  </objectgroup>
+ <objectgroup color="#ff0000" id="6" name="Collision">
+  <object id="10" type="collision" x="32" y="118" width="48" height="26"/>
+  <object id="13" x="16" y="48" height="16"/>
+  <object id="16" type="collision" x="16" y="48" width="80" height="32"/>
+  <object id="34" type="collision" x="176" y="128" width="48" height="16"/>
+  <object id="35" type="collision" x="176" y="160" width="48" height="16"/>
+  <object id="37" type="collision" x="144" y="48" width="32" height="16"/>
+ </objectgroup>
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="9" name="Go Outside" type="event" x="112" y="176" width="16" height="16">
    <properties>
@@ -92,13 +100,5 @@
     <property name="cond30" value="not variable_set goodbyeoldknight:finallydone"/>
    </properties>
   </object>
- </objectgroup>
- <objectgroup color="#ff0000" id="6" name="Collision">
-  <object id="10" type="collision" x="32" y="118" width="48" height="26"/>
-  <object id="13" x="16" y="48" height="16"/>
-  <object id="16" type="collision" x="16" y="48" width="80" height="32"/>
-  <object id="34" type="collision" x="176" y="128" width="48" height="16"/>
-  <object id="35" type="collision" x="176" y="160" width="48" height="16"/>
-  <object id="37" type="collision" x="144" y="48" width="32" height="16"/>
  </objectgroup>
 </map>

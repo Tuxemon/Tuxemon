@@ -23,10 +23,11 @@
             "monster_slug": "gectile"
         }
     ],
-    "shape": "Varmint",
+    "shape": "varmint",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 64,
     "height": 0,
     "weight": 0,

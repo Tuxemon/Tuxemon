@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Dragon",
+    "shape": "dragon",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["neuter"],
     "txmn_id": 0,
     "height": 0,
     "weight": 100,

@@ -17,11 +17,12 @@
         }
     ],
     "evolutions": [],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Glitch",
         "Wood"
     ],
+    "possible_genders": ["neuter"],
     "txmn_id": 0,
     "height": 0,
     "weight": 25,

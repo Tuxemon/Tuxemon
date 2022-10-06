@@ -43,10 +43,11 @@
             "monster_slug": "vivitron"
         }
     ],
-    "shape": "Serpent",
+    "shape": "serpent",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 130,
     "height": 0,
     "weight": 0,

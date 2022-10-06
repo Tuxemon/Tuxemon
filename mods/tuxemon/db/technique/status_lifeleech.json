@@ -10,7 +10,7 @@
   "category": "lifeleech",
   "sort": "meta",
   "effects": [
-    "status"
+    "lifeleech"
   ],
   "target": {
     "enemy monster": 0,

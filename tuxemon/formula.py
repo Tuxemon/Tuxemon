@@ -33,7 +33,7 @@ from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
-    from tuxemon.technique import Technique
+    from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
 
@@ -192,7 +192,7 @@ def simple_lifeleech(
         Inflicted damage.
 
     """
-    damage = min(target.hp // 2, target.current_hp, user.hp - user.current_hp)
+    damage = min(target.hp // 16, target.current_hp, user.hp - user.current_hp)
     return damage
 
 

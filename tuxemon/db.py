@@ -71,6 +71,12 @@ class ItemSort(str, Enum):
     quest = "quest"
 
 
+class GenderType(str, Enum):
+    neuter = "neuter"
+    male = "male"
+    female = "female"
+
+
 class ItemType(str, Enum):
     consumable = "Consumable"
     key_item = "KeyItem"
@@ -80,6 +86,29 @@ class ItemType(str, Enum):
 class ItemBattleMenu(str, Enum):
     monster = "monster"
     combat = "combat"
+
+
+class MonsterShape(str, Enum):
+    aquatic = "aquatic"
+    blob = "blob"
+    brute = "brute"
+    dragon = "dragon"
+    flier = "flier"
+    grub = "grub"
+    humanoid = "humanoid"
+    hunter = "hunter"
+    landrace = "landrace"
+    leviathan = "leviathan"
+    polliwog = "polliwog"
+    serpent = "serpent"
+    sprite = "sprite"
+    varmint = "varmint"
+
+
+class SeenStatus(str, Enum):
+    unseen = "unseen"
+    seen = "seen"
+    caught = "caught"
 
 
 # TODO: Automatically generate state enum through discovery
@@ -224,9 +253,12 @@ class MonsterModel(BaseModel):
 
     # Optional fields
     sprites: Optional[MonsterSpritesModel]
-    shape: str = Field("", description="The shape of the monster")
+    shape: MonsterShape = Field(..., description="The shape of the monster")
     types: Sequence[str] = Field([], description="The type(s) of this monster")
     catch_rate: float = Field(0, description="The catch rate of the monster")
+    possible_genders: Sequence[GenderType] = Field(
+        [], description="Valid genders for the monster"
+    )
     lower_catch_resistance: float = Field(
         0, description="The lower catch resistance of the monster"
     )
@@ -242,10 +274,8 @@ class MonsterModel(BaseModel):
     flairs: Sequence[MonsterFlairItemModel] = Field(
         [], description="The flairs this monster has"
     )
-    sounds: MonsterSoundsModel = Field(
-        MonsterSoundsModel(
-            combat_call="sound_cry1", faint_call="sound_faint1"
-        ),
+    sounds: Optional[MonsterSoundsModel] = Field(
+        None,
         description="The sounds this monster has",
     )
 
@@ -268,15 +298,15 @@ class MonsterModel(BaseModel):
 
 
 class StatModel(BaseModel):
-    value: Optional[int] = Field(None, description="The value of the stat")
-    max_deviation: Optional[int] = Field(
-        None, description="The maximum deviation of the stat"
+    value: int = Field(0, description="The value of the stat")
+    max_deviation: int = Field(
+        0, description="The maximum deviation of the stat"
     )
     operation: str = Field(
-        ..., description="The operation to be done to the stat"
+        "+", description="The operation to be done to the stat"
     )
-    overridetofull: Optional[bool] = Field(
-        None, description="Whether or not to override to full"
+    overridetofull: bool = Field(
+        False, description="Whether or not to override to full"
     )
 
 
@@ -289,27 +319,19 @@ class Range(str, Enum):
     reliable = "reliable"
 
 
-# TODO: We may change this if we refactor technique effects to be more item-like
-class TechniqueEffect(str, Enum):
+# TechSort defines the sort of technique a technique is.
+class TechSort(str, Enum):
     damage = "damage"
-    hardshell = "hardshell"
-    lifeleech = "lifeleech"
     meta = "meta"
-    overfeed = "overfeed"
-    poison = "poison"
-    recover = "recover"
-    statchange = "statchange"
-    status = "status"
-    swap = "swap"
 
 
 class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
-    sort: str = Field(..., description="The sort of technique this is")
+    sort: TechSort = Field(..., description="The sort of technique this is")
     category: str = Field(..., description="The category of technique this is")
     icon: str = Field(..., description="The icon to use for the technique")
-    effects: Sequence[TechniqueEffect] = Field(
-        ..., description="Effects this technique uses"
+    effects: Sequence[str] = Field(
+        [], description="Effects this technique uses"
     )
     target: Target = Field(
         ..., description="Target mapping of who this technique is used on"
@@ -400,6 +422,7 @@ class PartyMemberModel(BaseModel):
         ..., description="Modifier for experience this monster gives"
     )
     exp_req_mod: float = Field(..., description="Experience required modifier")
+    gender: GenderType = Field(..., description="Gender of the monster")
 
     @validator("slug")
     def monster_exists(cls, v):
@@ -410,6 +433,7 @@ class PartyMemberModel(BaseModel):
 
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
+    gender: GenderType = Field(..., description="Gender of the NPC")
     sprite_name: str = Field(
         ..., description="Name of the overworld sprite filename"
     )
@@ -830,7 +854,7 @@ class JSONDatabase:
 
         """
 
-        filename = self.database[table][slug].dict()["file"] or slug
+        filename = self.database[table][slug].file or slug
         if filename == slug:
             logger.debug(
                 f"Could not find a file record for slug {slug}, did you remember to create a database record?"

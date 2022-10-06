@@ -93,7 +93,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             env_slug = "grass"
             if "environment" in player.game_variables:
                 env_slug = player.game_variables["environment"]
-            env = db.lookup(env_slug, table="environment").dict()
+            env = db.lookup(env_slug, table="environment")
 
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack
@@ -102,7 +102,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
                 "CombatState",
                 players=(player, npc),
                 combat_type="monster",
-                graphics=env["battle_graphics"],
+                graphics=env.battle_graphics,
             )
 
             # stop the player
@@ -113,7 +113,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             self.session.client.push_state(FlashTransition)
 
             # Start some music!
-            filename = env["battle_music"]
+            filename = env.battle_music
             self.session.client.event_engine.execute_action(
                 "play_music",
                 [filename],

@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Polliwog",
+    "shape": "polliwog",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 100,
     "height": 80,
     "weight": 15,

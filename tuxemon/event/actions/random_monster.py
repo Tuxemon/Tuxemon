@@ -21,12 +21,11 @@
 
 from __future__ import annotations
 
-import os
 import random as rd
 from typing import NamedTuple, Optional, Union, final
 
 from tuxemon import monster
-from tuxemon.db import db
+from tuxemon.db import SeenStatus, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
@@ -70,13 +69,14 @@ class RandomMonsterAction(EventAction[RandomMonsterActionParameters]):
         assert trainer, "No Trainer found with slug '{}'".format(
             trainer_slug or "player"
         )
-        
+
         # list is required as choice expects a sequence
         monster_slug = rd.choice(list(db.database["monster"]))
-      
+
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_slug)
         current_monster.set_level(monster_level)
         current_monster.current_hp = current_monster.hp
 
         trainer.add_monster(current_monster)
+        trainer.tuxepedia[monster_slug] = SeenStatus.caught

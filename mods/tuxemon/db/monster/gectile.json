@@ -23,10 +23,11 @@
             "monster_slug": "velocitile"
         }
     ],
-    "shape": "Humanoid",
+    "shape": "humanoid",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 65,
     "height": 0,
     "weight": 0,

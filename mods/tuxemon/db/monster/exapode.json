@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Grub",
+    "shape": "grub",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 60,
     "height": 0,
     "weight": 0,

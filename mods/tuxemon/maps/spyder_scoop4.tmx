@@ -347,8 +347,8 @@
   </object>
   <object id="54" name="Environment" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable environment:snow"/>
-    <property name="cond1" value="not variable_set environment:snow"/>
+    <property name="act1" value="set_variable environment:interior"/>
+    <property name="cond1" value="not variable_set environment:interior"/>
    </properties>
   </object>
   <object id="55" name="Talk Orba" type="event" x="0" y="192" width="32" height="16">
@@ -381,7 +381,7 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="58" name="Exhausted" type="event" x="0" y="0" width="16" height="16">
+  <object id="58" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_scoop2.tmx,9,6,0.3"/>
     <property name="cond1" value="is player_defeated"/>

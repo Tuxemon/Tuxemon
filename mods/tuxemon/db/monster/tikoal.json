@@ -23,11 +23,12 @@
             "monster_slug": "tikorch"
         }
     ],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Fire",
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 78,
     "height": 0,
     "weight": 0,

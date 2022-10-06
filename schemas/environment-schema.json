@@ -35,6 +35,11 @@
           "title": "Island Front",
           "description": "Sprite used for front combat",
           "type": "string"
+        },
+        "background": {
+          "title": "Background",
+          "description": "Sprite used for combat background",
+          "type": "string"
         }
       },
       "required": [

@@ -16,19 +16,16 @@
             "technique": "stampede"
         },
 	    {
-            "level_learned": 11,
-            "technique": "overfeed"
-        },
-	    {
             "level_learned": 17,
             "technique": "feint"
         }
     ],
     "evolutions": [],
-    "shape": "Varmint",
+    "shape": "varmint",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 42,
     "height": 185,
     "weight": 45,

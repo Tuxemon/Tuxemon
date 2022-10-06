@@ -23,10 +23,11 @@
             "monster_slug": "eaglace"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 8,
     "height": 150,
     "weight": 12,

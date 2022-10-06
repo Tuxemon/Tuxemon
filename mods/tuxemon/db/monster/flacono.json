@@ -23,10 +23,11 @@
             "monster_slug": "corvix"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 150,
     "height": 70,
     "weight": 6,

@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Brute",
+    "shape": "brute",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 85,
     "height": 210,
     "weight": 125,

@@ -23,10 +23,11 @@
             "monster_slug": "moloch"
         }
     ],
-    "shape": "Serpent",
+    "shape": "serpent",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 11,
     "height": 0,
     "weight": 0,

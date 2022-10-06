@@ -1,5 +1,6 @@
 {
   "slug": "spyder_scoop_lanth",
+  "gender": "male",
   "sprite_name": "professor1",
   "monsters": [
     {
@@ -7,14 +8,16 @@
       "level": 35,
       "slug": "mrmoswitch",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neuter"
     },
     {
       "name": "PiCC",
       "level": 35,
       "slug": "picc",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "neuter"
     }
   ],
   "combat_front": "professor.png",

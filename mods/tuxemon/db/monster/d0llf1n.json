@@ -17,11 +17,12 @@
         }
     ],
     "evolutions": [],
-    "shape": "Aquatic",
+    "shape": "aquatic",
     "types": [
         "Glitch",
         "Water"
     ],
+    "possible_genders": ["neuter"],
     "txmn_id": 0,
     "height": 0,
     "weight": 25,

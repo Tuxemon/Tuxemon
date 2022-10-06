@@ -23,10 +23,11 @@
             "monster_slug": "fluttaflap"
         }
     ],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 36,
     "height": 0,
     "weight": 0,

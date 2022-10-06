@@ -51,7 +51,7 @@ from typing import (
 from tuxemon import surfanim
 from tuxemon.ai import AI
 from tuxemon.compat import Rect
-from tuxemon.db import db
+from tuxemon.db import SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import (
@@ -72,7 +72,7 @@ from tuxemon.monster import (
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
 from tuxemon.states.combat.combat import EnqueuedAction
-from tuxemon.technique import Technique
+from tuxemon.technique.technique import Technique
 from tuxemon.tools import vector2_to_tile_pos
 
 if TYPE_CHECKING:
@@ -94,6 +94,7 @@ class NPCState(TypedDict):
     facing: Direction
     game_variables: Dict[str, Any]
     battle_history: Dict[str, Any]
+    tuxepedia: Dict[str, SeenStatus]
     money: Dict[str, int]
     inventory: Mapping[str, Optional[int]]
     monsters: Sequence[Mapping[str, Any]]
@@ -150,23 +151,18 @@ class NPC(Entity[NPCState]):
         super().__init__(slug=npc_slug, world=world)
 
         # load initial data from the npc database
-        npc_data = db.lookup(npc_slug, table="npc").dict()
+        npc_data = db.lookup(npc_slug, table="npc")
 
         # This is the NPC's name to be used in dialog
         self.name = T.translate(self.slug)
 
         if sprite_name is None:
             # Try to use the sprites defined in the JSON data
-            sprite_name = npc_data["sprite_name"]
+            sprite_name = npc_data.sprite_name
         if combat_front is None:
-            combat_front = npc_data["combat_front"]
+            combat_front = npc_data.combat_front
         if combat_back is None:
-            combat_back = npc_data["combat_back"]
-
-        # enforced by pydantic
-        assert sprite_name
-        assert combat_front
-        assert combat_back
+            combat_back = npc_data.combat_back
 
         # Hold on the the string so it can be sent over the network
         self.sprite_name = sprite_name
@@ -177,6 +173,8 @@ class NPC(Entity[NPCState]):
         self.behavior: Optional[str] = "wander"  # not used for now
         self.game_variables: Dict[str, Any] = {}  # Tracks the game state
         self.battle_history: Dict[str, Any] = {}  # Tracks the battles
+        # Tracks Tuxepedia (monster seen or caught)
+        self.tuxepedia: Dict[str, SeenStatus] = {}
         self.money: Dict[str, int] = {}  # Tracks money
         self.interactions: Sequence[
             str
@@ -270,6 +268,7 @@ class NPC(Entity[NPCState]):
             "facing": self.facing,
             "game_variables": self.game_variables,
             "battle_history": self.battle_history,
+            "tuxepedia": self.tuxepedia,
             "money": self.money,
             "inventory": encode_inventory(self.inventory),
             "monsters": encode_monsters(self.monsters),
@@ -299,11 +298,14 @@ class NPC(Entity[NPCState]):
         self.facing = save_data.get("facing", "down")
         self.game_variables = save_data["game_variables"]
         self.battle_history = save_data["battle_history"]
+        self.tuxepedia = save_data["tuxepedia"]
         self.money = save_data["money"]
         self.inventory = decode_inventory(
             session, self, save_data.get("inventory", {})
         )
-        self.monsters = decode_monsters(save_data.get("monsters"))
+        self.monsters = []
+        for monster in decode_monsters(save_data.get("monsters")):
+            self.add_monster(monster)
         self.name = save_data["player_name"]
         for monsterkey, monstervalue in save_data["monster_boxes"].items():
             self.monster_boxes[monsterkey] = decode_monsters(monstervalue)
@@ -653,7 +655,7 @@ class NPC(Entity[NPCState]):
     ####################################################
     #                   Monsters                       #
     ####################################################
-    def add_monster(self, monster: Monster) -> None:
+    def add_monster(self, monster: Monster, slot: int = None) -> None:
         """
         Adds a monster to the npc's list of monsters.
 
@@ -670,7 +672,10 @@ class NPC(Entity[NPCState]):
                 monster
             )
         else:
-            self.monsters.append(monster)
+            if slot is None:
+                self.monsters.append(monster)
+            else:
+                self.monsters.insert(slot, monster)
             self.set_party_status()
 
     def find_monster(self, monster_slug: str) -> Optional[Monster]:
@@ -778,7 +783,12 @@ class NPC(Entity[NPCState]):
         new_monster.current_hp = min(old_monster.current_hp, new_monster.hp)
         new_monster.moves = old_monster.moves
         new_monster.instance_id = old_monster.instance_id
-        self.monsters[slot] = new_monster
+        new_monster.gender = old_monster.gender
+        self.remove_monster(old_monster)
+        self.add_monster(new_monster, slot)
+
+        # set evolution as caught
+        self.tuxepedia[evolution] = SeenStatus.caught
 
         # If evolution has a flair matching, copy it
         for new_flair in new_monster.flairs.values():
@@ -822,18 +832,19 @@ class NPC(Entity[NPCState]):
         self.monsters = []
 
         # Look up the NPC's details from our NPC database
-        npc_details = db.lookup(self.slug, "npc").dict()
-        npc_party = npc_details.get("monsters") or []
+        npc_details = db.lookup(self.slug, "npc")
+        npc_party = npc_details.monsters
         for npc_monster_details in npc_party:
-            monster = Monster(save_data=npc_monster_details)
-            monster.experience_give_modifier = npc_monster_details[
-                "exp_give_mod"
-            ]
-            monster.experience_required_modifier = npc_monster_details[
-                "exp_req_mod"
-            ]
+            # This seems slightly wrong. The only useable element in
+            # npc_monsters_details, which is a PartyMemberModel, is "slug"
+            monster = Monster(save_data=npc_monster_details.dict())
+            monster.experience_give_modifier = npc_monster_details.exp_give_mod
+            monster.experience_required_modifier = (
+                npc_monster_details.exp_req_mod
+            )
             monster.set_level(monster.level)
             monster.current_hp = monster.hp
+            monster.gender = npc_monster_details.gender
 
             # Add our monster to the NPC's party
             self.add_monster(monster)
@@ -856,13 +867,6 @@ class NPC(Entity[NPCState]):
         self.game_variables["party_level_lowest"] = level_lowest
         self.game_variables["party_level_highest"] = level_highest
         self.game_variables["party_level_average"] = level_average
-
-    def give_item(
-        self, session: Session, target: NPC, item: Item, quantity: int
-    ) -> bool:
-        subtract = self.alter_item_quantity(session, item.slug, -quantity)
-        give = target.alter_item_quantity(session, item.slug, quantity)
-        return subtract and give
 
     def has_item(self, item_slug: str) -> bool:
         return self.inventory.get(item_slug) is not None
@@ -916,11 +920,9 @@ class NPC(Entity[NPCState]):
         qty: int,
         unit_price: int,
     ) -> None:
-        """Decreases current money during a buy transaction, but doesn't change
-        an item's quantity (use NPC.give_item too after this)
-
-        Raises an exception if there's not enough money to pay the price."""
-
+        """
+        Decreases player money during a buy transaction.
+        """
         # Update player's money.
         if self.money.get("player"):
             if not self.can_buy_item(item_slug, qty, unit_price):
@@ -943,10 +945,9 @@ class NPC(Entity[NPCState]):
         qty: int,
         unit_price: int,
     ) -> None:
-        """Increases current money during a sell transaction, but doesn't change
-        an item's quantity (use NPC.give_item too after this)
-
-        Raises an exception if there's not enough items in the inventory."""
+        """
+        Increases player money during a sell transaction.
+        """
         current_item = self.inventory.get(item_slug)
         if not current_item or not self.can_sell_item(
             item_slug, qty, unit_price
@@ -969,14 +970,26 @@ class NPC(Entity[NPCState]):
         qty: int,
         unit_price: int,
     ) -> None:
-        """Handles the entire buy/sell transaction, for both this NPC (the
-        buyer) and the seller.
-
-        Raises an exception if the transaction can't be completed."""
-
+        """
+        Handles the entire buy transaction, NPC (seller) and buyer.
+        """
         self.buy_decrease_money(session, seller, item_slug, qty, unit_price)
+        self.alter_item_quantity(session, item_slug, qty)
+        seller.alter_item_quantity(session, item_slug, -qty)
+
+    def sell_transaction(
+        self,
+        session: Session,
+        seller: NPC,
+        item_slug: str,
+        qty: int,
+        unit_price: int,
+    ) -> None:
+        """
+        Handles the entire sell transaction, NPC (buyer) and seller.
+        """
         seller.sell_increase_money(session, self, item_slug, qty, unit_price)
-        seller.give_item(session, self, db.lookup(item_slug, "item"), qty)
+        seller.alter_item_quantity(session, item_slug, -qty)
 
     def speed_test(self, action: EnqueuedAction) -> int:
         return self.speed

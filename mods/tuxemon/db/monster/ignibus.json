@@ -38,10 +38,11 @@
             "monster_slug": "embazook"
         }
     ],
-    "shape": "Polliwog",
+    "shape": "polliwog",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 29,
     "height": 0,
     "weight": 0,

@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Dragon",
+    "shape": "dragon",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 157,
     "height": 120,
     "weight": 120,

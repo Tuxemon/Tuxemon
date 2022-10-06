@@ -17,11 +17,12 @@
         }
     ],
     "evolutions": [],
-    "shape": "Aquatic",
+    "shape": "aquatic",
     "types": [
         "Water",
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 25,
     "height": 300,
     "weight": 200,

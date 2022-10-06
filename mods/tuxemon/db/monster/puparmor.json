@@ -23,10 +23,11 @@
             "monster_slug": "weavifly"
         }
     ],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 33,
     "height": 0,
     "weight": 0,

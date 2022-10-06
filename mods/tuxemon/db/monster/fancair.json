@@ -23,10 +23,11 @@
             "monster_slug": "windeye"
         }
     ],
-    "shape": "Sprite",
+    "shape": "sprite",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 170,
     "height": 45,
     "weight": 18,

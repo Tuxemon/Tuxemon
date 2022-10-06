@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 113,
     "height": 180,
     "weight": 0,

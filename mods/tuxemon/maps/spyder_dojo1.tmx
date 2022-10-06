@@ -80,37 +80,6 @@
    eAFjYBgFgykE5sliugZZbKMsQwO6CmR5mBw2MZDcUizmYxODmUOMHmx2YRNDNhObPDYxYuxHNhfGxuYnbGIw9aP0wIQAAIWFDTc=
   </data>
  </layer>
- <objectgroup color="#ffff00" id="5" name="Events">
-  <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_music taking_poison.ogg"/>
-    <property name="cond1" value="not music_playing taking_poison.ogg"/>
-   </properties>
-  </object>
-  <object id="2" name="Teleport to Flower City" type="event" x="176" y="176" width="32" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_flower_city.tmx,34,18,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="28" name="Teleport to Dojo 2" type="event" x="192" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_dojo2.tmx,10,9,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
-   </properties>
-  </object>
-  <object id="29" name="Player Spawn" type="event" x="80" y="160" width="16" height="16"/>
-  <object id="30" name="Environment" type="event" x="16" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable environment:snow"/>
-    <property name="cond1" value="not variable_set environment:snow"/>
-   </properties>
-  </object>
- </objectgroup>
  <objectgroup color="#ff0000" id="6" name="Collisions" visible="0">
   <object id="3" type="collision" x="0" y="0" width="16" height="192"/>
   <object id="4" type="collision" x="0" y="0" width="384" height="32"/>
@@ -138,6 +107,37 @@
   <object id="26" type="collision" x="16" y="112" width="16" height="16"/>
   <object id="27" type="collision-line" x="192" y="96">
    <polyline points="0,0 16,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="5" name="Events">
+  <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music taking_poison.ogg"/>
+    <property name="cond1" value="not music_playing taking_poison.ogg"/>
+   </properties>
+  </object>
+  <object id="2" name="Teleport to Flower City" type="event" x="176" y="176" width="32" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_flower_city.tmx,34,18,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="28" name="Teleport to Dojo 2" type="event" x="192" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_dojo2.tmx,10,9,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="29" name="Player Spawn" type="event" x="80" y="160" width="16" height="16"/>
+  <object id="30" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:interior"/>
+    <property name="cond1" value="not variable_set environment:interior"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

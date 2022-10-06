@@ -23,10 +23,11 @@
             "monster_slug": "cardiwing"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 61,
     "height": 0,
     "weight": 0,

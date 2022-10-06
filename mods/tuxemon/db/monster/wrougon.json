@@ -23,10 +23,11 @@
             "monster_slug": "allagon"
         }
     ],
-    "shape": "Dragon",
+    "shape": "dragon",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 152,
     "height": 0,
     "weight": 0,

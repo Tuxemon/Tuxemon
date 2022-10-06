@@ -23,10 +23,11 @@
             "monster_slug": "legko"
         }
     ],
-    "shape": "Sprite",
+    "shape": "sprite",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 10,
     "height": 0,
     "weight": 0,

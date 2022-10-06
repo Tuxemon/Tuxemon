@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Grub",
+    "shape": "grub",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 108,
     "height": 0,
     "weight": 0,

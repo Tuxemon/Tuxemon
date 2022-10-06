@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Hunter",
+    "shape": "hunter",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 20,
     "height": 210,
     "weight": 170,

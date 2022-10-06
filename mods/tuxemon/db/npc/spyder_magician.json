@@ -1,5 +1,6 @@
 {
   "slug": "spyder_magician",
+  "gender": "male",
   "sprite_name": "hacker",
   "combat_front": "hacker.png",
   "combat_back": "red_back.png"

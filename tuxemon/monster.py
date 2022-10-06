@@ -32,23 +32,20 @@ from __future__ import annotations
 import logging
 import random
 import uuid
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Dict,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    cast,
-)
+from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
 
 from tuxemon import ai, fusion, graphics
 from tuxemon.config import TuxemonConfig
-from tuxemon.db import MonsterEvolutionItemModel, MonsterMovesetItemModel, db
+from tuxemon.db import (
+    GenderType,
+    MonsterEvolutionItemModel,
+    MonsterMovesetItemModel,
+    MonsterShape,
+    db,
+)
 from tuxemon.locale import T
 from tuxemon.sprite import Sprite
-from tuxemon.technique import Technique
+from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     import pygame
@@ -66,10 +63,11 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "status",
     "total_experience",
     "flairs",
+    "gender",
 )
 
 SHAPES = {
-    "aquatic": {
+    MonsterShape.aquatic: {
         "armour": 8,
         "dodge": 4,
         "hp": 8,
@@ -77,7 +75,7 @@ SHAPES = {
         "ranged": 6,
         "speed": 4,
     },
-    "blob": {
+    MonsterShape.blob: {
         "armour": 8,
         "dodge": 4,
         "hp": 8,
@@ -85,7 +83,7 @@ SHAPES = {
         "ranged": 8,
         "speed": 4,
     },
-    "brute": {
+    MonsterShape.brute: {
         "armour": 7,
         "dodge": 5,
         "hp": 7,
@@ -93,7 +91,7 @@ SHAPES = {
         "ranged": 4,
         "speed": 5,
     },
-    "dragon": {
+    MonsterShape.dragon: {
         "armour": 7,
         "dodge": 5,
         "hp": 6,
@@ -101,7 +99,7 @@ SHAPES = {
         "ranged": 6,
         "speed": 6,
     },
-    "flier": {
+    MonsterShape.flier: {
         "armour": 5,
         "dodge": 7,
         "hp": 4,
@@ -109,7 +107,7 @@ SHAPES = {
         "ranged": 4,
         "speed": 8,
     },
-    "grub": {
+    MonsterShape.grub: {
         "armour": 7,
         "dodge": 5,
         "hp": 7,
@@ -117,7 +115,7 @@ SHAPES = {
         "ranged": 8,
         "speed": 5,
     },
-    "humanoid": {
+    MonsterShape.humanoid: {
         "armour": 5,
         "dodge": 7,
         "hp": 4,
@@ -125,7 +123,7 @@ SHAPES = {
         "ranged": 8,
         "speed": 8,
     },
-    "hunter": {
+    MonsterShape.hunter: {
         "armour": 4,
         "dodge": 8,
         "hp": 5,
@@ -133,7 +131,7 @@ SHAPES = {
         "ranged": 4,
         "speed": 7,
     },
-    "landrace": {
+    MonsterShape.landrace: {
         "armour": 8,
         "dodge": 4,
         "hp": 8,
@@ -141,7 +139,7 @@ SHAPES = {
         "ranged": 4,
         "speed": 4,
     },
-    "leviathan": {
+    MonsterShape.leviathan: {
         "armour": 8,
         "dodge": 4,
         "hp": 8,
@@ -149,7 +147,7 @@ SHAPES = {
         "ranged": 6,
         "speed": 4,
     },
-    "polliwog": {
+    MonsterShape.polliwog: {
         "armour": 4,
         "dodge": 8,
         "hp": 5,
@@ -157,7 +155,7 @@ SHAPES = {
         "ranged": 8,
         "speed": 7,
     },
-    "serpent": {
+    MonsterShape.serpent: {
         "armour": 6,
         "dodge": 6,
         "hp": 6,
@@ -165,7 +163,7 @@ SHAPES = {
         "ranged": 8,
         "speed": 6,
     },
-    "sprite": {
+    MonsterShape.sprite: {
         "armour": 6,
         "dodge": 6,
         "hp": 4,
@@ -173,7 +171,7 @@ SHAPES = {
         "ranged": 6,
         "speed": 8,
     },
-    "varmint": {
+    MonsterShape.varmint: {
         "armour": 6,
         "dodge": 6,
         "hp": 6,
@@ -231,6 +229,7 @@ class Monster:
         self.faint_cry = ""
         self.ai: Optional[ai.AI] = None
         self.owner: Optional[NPC] = None
+        self.possible_genders: List[GenderType] = []
 
         self.experience_give_modifier = 1
         self.experience_required_modifier = 1
@@ -238,7 +237,7 @@ class Monster:
 
         self.type1 = "aether"
         self.type2: Optional[str] = None
-        self.shape = "landrace"
+        self.shape = MonsterShape.landrace
 
         self.status: List[Technique] = list()
         self.status_damage = 0
@@ -321,76 +320,72 @@ class Monster:
         """
 
         # Look up the monster by name and set the attributes in this instance
-        results = db.lookup(slug, table="monster").dict()
+        results = db.lookup(slug, table="monster")
 
         if results is None:
             raise RuntimeError(f"monster {slug} is not found")
         self.level = random.randint(2, 5)
-        self.slug = results["slug"]
-        self.name = T.translate(results["slug"])
-        self.description = T.translate(
-            "{}_description".format(results["slug"])
-        )
-        self.category = T.translate(results["category"])
-        self.shape = results.get("shape", "landrace").lower()
-        types = results.get("types")
+        self.slug = results.slug
+        self.name = T.translate(results.slug)
+        self.description = T.translate(f"{results.slug}_description")
+        self.category = T.translate(results.category)
+        self.shape = results.shape or MonsterShape.landrace
+        types = results.types
         if types:
-            self.type1 = results["types"][0].lower()
+            self.type1 = results.types[0].lower()
             if len(types) > 1:
-                self.type2 = results["types"][1].lower()
+                self.type2 = results.types[1].lower()
 
-        self.txmn_id = results["txmn_id"]
-        self.height = results["height"]
-        self.weight = results["weight"]
-        self.catch_rate = results.get(
-            "catch_rate",
-            TuxemonConfig().default_monster_catch_rate,
+        self.txmn_id = results.txmn_id
+        self.height = results.height
+        self.weight = results.weight
+        self.gender = random.choice(list(results.possible_genders))
+        self.catch_rate = (
+            results.catch_rate or TuxemonConfig().default_monster_catch_rate
         )
-        self.upper_catch_resistance = results.get(
-            "upper_catch_resistance",
-            TuxemonConfig().default_upper_monster_catch_resistance,
+        self.upper_catch_resistance = (
+            results.upper_catch_resistance
+            or TuxemonConfig().default_upper_monster_catch_resistance
         )
-        self.lower_catch_resistance = results.get(
-            "lower_catch_resistance",
-            TuxemonConfig().default_lower_monster_catch_resistance,
+        self.lower_catch_resistance = (
+            results.lower_catch_resistance
+            or TuxemonConfig().default_lower_monster_catch_resistance
         )
 
         # Look up the moves that this monster can learn AND LEARN THEM.
-        moveset = results.get("moveset")
+        moveset = results.moveset
         if moveset:
             for move in moveset:
                 self.moveset.append(move)
-                if move["level_learned"] <= self.level:
-                    technique = Technique(move["technique"])
+                if move.level_learned <= self.level:
+                    technique = Technique(move.technique)
                     self.learn(technique)
 
         # Look up the evolutions for this monster.
-        evolutions = results.get("evolutions")
+        evolutions = results.evolutions
         if evolutions:
             for evolution in evolutions:
                 self.evolutions.append(evolution)
 
         # Look up the monster's sprite image paths
         self.front_battle_sprite = self.get_sprite_path(
-            results["sprites"]["battle1"]
+            results.sprites.battle1
         )
-        self.back_battle_sprite = self.get_sprite_path(
-            results["sprites"]["battle2"]
-        )
-        self.menu_sprite_1 = self.get_sprite_path(results["sprites"]["menu1"])
-        self.menu_sprite_2 = self.get_sprite_path(results["sprites"]["menu2"])
+        self.back_battle_sprite = self.get_sprite_path(results.sprites.battle2)
+        self.menu_sprite_1 = self.get_sprite_path(results.sprites.menu1)
+        self.menu_sprite_2 = self.get_sprite_path(results.sprites.menu2)
 
         # get sound slugs for this monster, defaulting to a generic type-based sound
-        self.combat_call = results.get("sounds", {}).get(
-            "combat_call", f"sound_{self.type1}_call"
-        )
-        self.faint_call = results.get("sounds", {}).get(
-            "faint_call", f"sound_{self.type1}_faint"
-        )
+        if results.sounds:
+            self.combat_call = results.sounds.combat_call
+            self.faint_call = results.sounds.faint_call
+        else:
+            self.combat_call = f"sound_{self.type1}_call"
+            self.faint_call = f"sound_{self.type1}_faint"
 
         # Load the monster AI
         # TODO: clean up AI 'core' loading and what not
-        ai_result = results["ai"]
+        ai_result = results.ai
         if ai_result == "SimpleAI":
             self.ai = ai.SimpleAI()
         elif ai_result == "RandomAI":
@@ -484,13 +479,13 @@ class Monster:
 
         # Learn New Moves
         for move in self.moveset:
-            if move["level_learned"] == self.level:
+            if move.level_learned == self.level:
                 logger.info(
                     "{} learned technique {}!".format(
-                        self.name, move["technique"]
+                        self.name, move.technique
                     )
                 )
-                technique = Technique(move["technique"])
+                technique = Technique(move.technique)
                 self.learn(technique)
 
     def set_level(self, level: int = 5) -> None:
@@ -517,6 +512,11 @@ class Monster:
         self.total_experience = self.experience_required()
         self.set_stats()
 
+        # Update moves
+        for move in self.moveset:
+            if move not in self.moves and move.level_learned <= level:                
+                self.learn(Technique(move.technique))
+
     def experience_required(self, level_ofs: int = 0) -> int:
         """
         Gets the experience requirement for the given level.
@@ -531,25 +531,6 @@ class Monster:
         return (
             self.experience_required_modifier * (self.level + level_ofs) ** 3
         )
-
-    def get_evolution(self, path: str) -> Optional[str]:
-        """
-        Checks if an evolution is valid and gets the resulting monster.
-
-        Returns:
-            New monster slug if valid, None otherwise.
-
-        """
-        for evolution in self.evolutions:
-            if evolution.path == path:
-                level_over = 0 < evolution.at_level <= self.level
-                level_under = (
-                    evolution.at_level < 0
-                    and self.level <= -evolution.at_level
-                )
-                if level_over or level_under:
-                    return evolution.monster_slug
-        return None
 
     def get_sprite(self, sprite: str, **kwargs: Any) -> Sprite:
         """

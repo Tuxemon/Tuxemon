@@ -82,16 +82,16 @@ class Player(NPC):
         %j - Day number of year 001-366
         """
         var = self.game_variables
-        var["hour"] = dt.datetime.now().strftime("%H")
-        var["day_of_year"] = dt.datetime.now().strftime("%j")
+        var["hour"] = int(dt.datetime.now().strftime("%H"))
+        var["day_of_year"] = int(dt.datetime.now().strftime("%j"))
 
         # Day and night basic cycle (12h cycle)
         if int(var["hour"]) < 6:
-            var["daytime"] = False
+            var["daytime"] = "false"
         elif 6 <= int(var["hour"]) < 18:
-            var["daytime"] = True
+            var["daytime"] = "true"
         else:
-            var["daytime"] = False
+            var["daytime"] = "false"
 
         # Day and night complex cycle (4h cycle)
         if int(var["hour"]) < 4:

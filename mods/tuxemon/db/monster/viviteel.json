@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Serpent",
+    "shape": "serpent",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 133,
     "height": 0,
     "weight": 0,

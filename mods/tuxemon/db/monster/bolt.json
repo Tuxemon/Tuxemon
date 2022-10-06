@@ -23,10 +23,11 @@
             "monster_slug": "arthrobolt"
         }
     ],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 5,
     "height": 0,
     "weight": 0,

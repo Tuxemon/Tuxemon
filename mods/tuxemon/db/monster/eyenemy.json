@@ -23,10 +23,11 @@
             "monster_slug": "eyesore"
         }
     ],
-    "shape": "Serpent",
+    "shape": "serpent",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 45,
     "height": 0,
     "weight": 0,

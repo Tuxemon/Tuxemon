@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Dragon",
+    "shape": "dragon",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 15,
     "height": 600,
     "weight": 2000,

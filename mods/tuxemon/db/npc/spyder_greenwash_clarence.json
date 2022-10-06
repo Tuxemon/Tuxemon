@@ -1,5 +1,6 @@
 {
   "slug": "spyder_greenwash_clarence",
+  "gender": "male",
   "sprite_name": "scientist",
   "monsters": [
     {
@@ -7,14 +8,16 @@
       "level": 25,
       "slug": "pigabyte",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     },
     {
       "name": "Cochini",
       "level": 23,
       "slug": "cochini",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     }
   ],
   "combat_front": "scientist.png",

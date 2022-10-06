@@ -17,11 +17,12 @@
         }
     ],
     "evolutions": [],
-    "shape": "Brute",
+    "shape": "brute",
     "types": [
         "Metal",
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 57,
     "height": 150,
     "weight": 52,

@@ -23,10 +23,11 @@
             "monster_slug": "rabbitosaur"
         }
     ],
-    "shape": "Varmint",
+    "shape": "varmint",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 43,
     "height": 60,
     "weight": 10,

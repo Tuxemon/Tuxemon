@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Humanoid",
+    "shape": "humanoid",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 123,
     "height": 0,
     "weight": 0,

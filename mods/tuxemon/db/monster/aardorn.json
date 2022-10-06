@@ -16,10 +16,6 @@
             "technique": "stampede"
         },
 	    {
-            "level_learned": 11,
-            "technique": "overfeed"
-        },
-	    {
             "level_learned": 17,
             "technique": "feint"
         }
@@ -31,10 +27,11 @@
             "monster_slug": "aardart"
         }
     ],
-    "shape": "Varmint",
+    "shape": "varmint",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 41,
     "height": 40,
     "weight": 18,

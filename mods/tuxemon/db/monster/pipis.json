@@ -23,10 +23,11 @@
             "monster_slug": "strella"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 47,
     "height": 0,
     "weight": 0,

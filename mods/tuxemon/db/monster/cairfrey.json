@@ -23,10 +23,11 @@
             "monster_slug": "possessun"
         }
     ],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 70,
     "height": 0,
     "weight": 0,

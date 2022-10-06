@@ -23,10 +23,11 @@
             "monster_slug": "tumblebee"
         }
     ],
-    "shape": "Grub",
+    "shape": "grub",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 94,
     "height": 0,
     "weight": 0,

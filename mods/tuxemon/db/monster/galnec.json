@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Hunter",
+    "shape": "hunter",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 159,
     "height": 40,
     "weight": 6,

@@ -1,0 +1,9 @@
+{
+  "slug": "underwater",
+  "battle_graphics": {
+    "island_back": "big_blue_back_island.png",
+    "island_front": "big_blue_front_island.png",
+    "background": "underwater_background.png"
+  },
+  "battle_music": "music_battle_loop"
+}

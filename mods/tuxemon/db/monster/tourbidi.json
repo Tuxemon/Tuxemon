@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Humanoid",
+    "shape": "humanoid",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 122,
     "height": 0,
     "weight": 0,

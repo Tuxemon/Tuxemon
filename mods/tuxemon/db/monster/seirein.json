@@ -17,11 +17,12 @@
         }
     ],
     "evolutions": [],
-    "shape": "Blob",
+    "shape": "blob",
     "types": [
         "Fire",
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 154,
     "height": 0,
     "weight": 0,

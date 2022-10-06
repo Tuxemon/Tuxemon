@@ -17,11 +17,12 @@
         }
     ],
     "evolutions": [],
-    "shape": "Polliwog",
+    "shape": "polliwog",
     "types": [
         "Fire",
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 30,
     "height": 0,
     "weight": 0,

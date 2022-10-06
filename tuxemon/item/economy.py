@@ -60,12 +60,12 @@ class Economy:
         """
 
         try:
-            results = db.lookup(slug, table="economy").dict()
+            results = db.lookup(slug, table="economy")
         except KeyError:
             raise RuntimeError(f"Failed to find economy with slug {slug}")
 
-        self.slug = results["slug"]
-        self.items = results["items"]
+        self.slug = results.slug
+        self.items = results.items
 
     def lookup_item_field(self, item_slug: str, field: str) -> Optional[int]:
         """Looks up the item's field from this economy.
@@ -81,9 +81,8 @@ class Economy:
             Field of item for this economy.
         """
         for item in self.items:
-            if item["item_name"] == item_slug and field in item:
-                value = item[field]
-                return value
+            if item.item_name == item_slug and hasattr(item, field):
+                return getattr(item, field)
 
         return None
 

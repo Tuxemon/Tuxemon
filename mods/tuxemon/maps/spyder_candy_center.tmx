@@ -62,7 +62,7 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="25" name="create npcs" type="event" x="0" y="0" width="16" height="16">
+  <object id="25" name="create npcs" type="event" x="16" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc tabanurse,5,4,nurse,stand"/>
     <property name="cond1" value="not npc_exists tabanurse"/>
@@ -100,7 +100,7 @@
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
-  <object id="31" name="Auto Healing Teleported" type="event" x="0" y="0" width="16" height="16">
+  <object id="31" name="Auto Healing Teleported" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="set_monster_health ,"/>
     <property name="act2" value="set_monster_status ,"/>

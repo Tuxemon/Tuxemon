@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Sprite",
+    "shape": "sprite",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 101,
     "height": 100,
     "weight": 20,

@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Landrace",
+    "shape": "landrace",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 119,
     "height": 125,
     "weight": 95,

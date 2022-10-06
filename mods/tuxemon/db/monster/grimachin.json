@@ -23,10 +23,11 @@
             "monster_slug": "tigrock"
         }
     ],
-    "shape": "Hunter",
+    "shape": "hunter",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 92,
     "height": 45,
     "weight": 3,

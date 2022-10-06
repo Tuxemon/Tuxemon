@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Landrace",
+    "shape": "landrace",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 147,
     "height": 200,
     "weight": 500,

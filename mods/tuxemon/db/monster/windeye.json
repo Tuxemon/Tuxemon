@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Humanoid",
+    "shape": "humanoid",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 171,
     "height": 300,
     "weight": 600,

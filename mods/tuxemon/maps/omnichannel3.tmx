@@ -41,6 +41,14 @@
    eAFjYGBgqMKD87DIAYXAoBNI4sI1WOQguvCTtfilccr24JRBldiMyiWaF0u0StTwnImkzwfIxhbWMCXIYYlsXxZQAbIcjA3TV8zNwFACxCDwAUKByWgkNjYmsj7k8COkD5tZIDFy9c0C6gWFy2yQIUAwA4hBfEIAZB8oLLqgCjugfCiXQYyTgUEciEEAOd4JudMOqMceqg85HgjpQ45b5HgnpK8T6D4YJsU+sMegBHK8VwLFiA1P5HiHhR+u8ES2j9ZsAJn2L8E=
   </data>
  </layer>
+ <objectgroup color="#ff0000" id="4" name="Collision">
+  <object id="1" type="collision" x="0" y="336">
+   <polygon points="0,0 0,-336 224,-336 224,0 208,0 208,-32 176,-32 176,-64 208,-64 208,-128 176,-128 176,-160 208,-160 208,-208 128,-208 128,-160 160,-160 160,-128 128,-128 128,-64 160,-64 160,-32 112,-32 112,-240 208,-240 208,-304 144,-304 144,-272 128,-272 128,-304 16,-304 16,-240 64,-240 64,-272 80,-272 80,-176 64,-176 64,-208 48,-208 16,-208 16,-96 64,-96 64,-128 80,-128 80,-32 64,-32 64,-64 16,-64 16,0 0,0"/>
+  </object>
+  <object id="2" type="collision-line" x="0" y="336">
+   <polyline points="0,0 224,0"/>
+  </object>
+ </objectgroup>
  <objectgroup color="#ffff00" id="3" name="Events">
   <object id="3" name="Teleport to Omnichannel 2" type="event" x="16" y="208" width="16" height="16">
    <properties>
@@ -77,13 +85,5 @@
    </properties>
   </object>
   <object id="8" name="Player Spawn" type="event" x="32" y="176" width="16" height="16"/>
- </objectgroup>
- <objectgroup color="#ff0000" id="4" name="Collision">
-  <object id="1" type="collision" x="0" y="336">
-   <polygon points="0,0 0,-336 224,-336 224,0 208,0 208,-32 176,-32 176,-64 208,-64 208,-128 176,-128 176,-160 208,-160 208,-208 128,-208 128,-160 160,-160 160,-128 128,-128 128,-64 160,-64 160,-32 112,-32 112,-240 208,-240 208,-304 144,-304 144,-272 128,-272 128,-304 16,-304 16,-240 64,-240 64,-272 80,-272 80,-176 64,-176 64,-208 48,-208 16,-208 16,-96 64,-96 64,-128 80,-128 80,-32 64,-32 64,-64 16,-64 16,0 0,0"/>
-  </object>
-  <object id="2" type="collision-line" x="0" y="336">
-   <polyline points="0,0 224,0"/>
-  </object>
  </objectgroup>
 </map>

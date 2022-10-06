@@ -338,7 +338,7 @@ class TuxepediaWebExtractor:
 
         """
 
-        return monster_row[4].text_content()
+        return monster_row[4].text_content().lower()
 
     def get_monster_blurp(self, monster_row):
         """

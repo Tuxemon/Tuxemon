@@ -23,10 +23,11 @@
             "monster_slug": "agnidon"
         }
     ],
-    "shape": "Dragon",
+    "shape": "dragon",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 13,
     "height": 80,
     "weight": 24,

@@ -23,10 +23,11 @@
             "monster_slug": "heronquak"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 7,
     "height": 45,
     "weight": 1,

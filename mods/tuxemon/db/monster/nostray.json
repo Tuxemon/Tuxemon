@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Aquatic",
+    "shape": "aquatic",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 148,
     "height": 120,
     "weight": 30,

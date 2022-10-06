@@ -17,6 +17,7 @@ from typing import (
 import pygame
 
 from tuxemon import graphics, tools
+from tuxemon.db import ItemBattleMenu
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -28,7 +29,7 @@ from tuxemon.state import State
 from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.items import ItemMenuState
 from tuxemon.states.monster import MonsterMenuState
-from tuxemon.technique import Technique
+from tuxemon.technique.technique import Technique
 from tuxemon.ui.draw import GraphicBox
 
 if TYPE_CHECKING:
@@ -157,7 +158,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             combat_state = self.client.get_state_by_name(CombatState)
 
             state: State
-            if item.battle_menu == "monster":
+            if item.battle_menu == ItemBattleMenu.monster:
                 state = self.client.push_state(MonsterMenuState)
                 state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[assignment]
             else:
@@ -242,7 +243,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             # enqueue the technique
             target = menu_item.game_object
 
-            if "damage" in technique.effect and target == self.monster:
+            if "damage" in technique.effects and target == self.monster:
                 params = {"name": self.monster.name}
                 msg = T.format("combat_target_itself", params)
                 tools.open_dialog(local_session, [msg])

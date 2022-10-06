@@ -28,7 +28,7 @@ from typing import NamedTuple
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.monster import Monster
-from tuxemon.technique import Technique
+from tuxemon.technique.technique import Technique
 
 
 class LearnEffectResult(ItemEffectResult):

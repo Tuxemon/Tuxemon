@@ -23,10 +23,11 @@
             "monster_slug": "flambear"
         }
     ],
-    "shape": "Humanoid",
+    "shape": "humanoid",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 82,
     "height": 180,
     "weight": 110,

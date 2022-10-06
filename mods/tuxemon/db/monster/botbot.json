@@ -38,10 +38,11 @@
             "monster_slug": "k9"
         }
     ],
-    "shape": "Grub",
+    "shape": "grub",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["neuter"],
     "txmn_id": 124,
     "height": 0,
     "weight": 0,

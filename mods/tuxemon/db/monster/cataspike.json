@@ -23,10 +23,11 @@
             "monster_slug": "puparmor"
         }
     ],
-    "shape": "Grub",
+    "shape": "grub",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 32,
     "height": 12,
     "weight": 1,

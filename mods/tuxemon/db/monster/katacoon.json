@@ -28,11 +28,12 @@
             "monster_slug": "sumchon"
         }
     ],
-    "shape": "Grub",
+    "shape": "grub",
     "types": [
         "Metal",
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 56,
     "height": 0,
     "weight": 0,

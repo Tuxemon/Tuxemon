@@ -38,10 +38,11 @@
             "monster_slug": "sharpfin"
         }
     ],
-    "shape": "Aquatic",
+    "shape": "aquatic",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 23,	
     "height": 250,
     "weight": 190,

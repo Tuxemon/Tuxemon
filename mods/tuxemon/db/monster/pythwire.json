@@ -28,10 +28,11 @@
             "monster_slug": "sockeserp"
         }
     ],
-    "shape": "Serpent",
+    "shape": "serpent",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["neuter"],
     "txmn_id": 88,
     "height": 200,
     "weight": 4,

@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Hunter",
+    "shape": "hunter",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 22,
     "height": 210,
     "weight": 190,

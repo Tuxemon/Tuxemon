@@ -38,10 +38,11 @@
             "monster_slug": "grintrock"
         }
     ],
-    "shape": "Brute",
+    "shape": "brute",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 16,
     "height": 70,
     "weight": 375,

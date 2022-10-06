@@ -17,10 +17,11 @@
         }
     ],
     "evolutions": [],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 9,
     "height": 150,
     "weight": 36,

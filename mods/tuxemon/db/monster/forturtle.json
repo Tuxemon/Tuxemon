@@ -23,10 +23,11 @@
             "monster_slug": "prophetoise"
         }
     ],
-    "shape": "Humanoid",
+    "shape": "humanoid",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 86,
     "height": 0,
     "weight": 0,

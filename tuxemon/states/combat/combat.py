@@ -56,6 +56,7 @@ from pygame.rect import Rect
 from tuxemon import audio, graphics, state, tools
 from tuxemon.animation import Task
 from tuxemon.combat import check_status, defeated, fainted, get_awake_monsters
+from tuxemon.db import SeenStatus
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -67,7 +68,7 @@ from tuxemon.sprite import Sprite
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.states.transition.fade import FadeOutTransition
 from tuxemon.surfanim import SurfaceAnimation
-from tuxemon.technique import Technique
+from tuxemon.technique.technique import Technique
 from tuxemon.tools import assert_never
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
@@ -379,6 +380,11 @@ class CombatState(CombatAnimations):
                 var["battle_last_monster_type"] = monster_record.slug
                 var["battle_last_monster_category"] = monster_record.category
                 var["battle_last_monster_shape"] = monster_record.shape
+                # Avoid reset string to seen if monster has already been caught
+                if monster_record.slug not in self.players[0].tuxepedia:
+                    self.players[0].tuxepedia[
+                        monster_record.slug
+                    ] = SeenStatus.seen
 
         elif phase == "decision phase":
             self.reset_status_icons()
@@ -977,6 +983,10 @@ class CombatState(CombatAnimations):
                     # TODO: Don't end combat right away; only works with SP,
                     # and 1 member parties end combat right here
                     if result["success"]:
+                        # Tuxepedia: set monster as caught (2)
+                        self.players[0].tuxepedia[
+                            target.slug
+                        ] = SeenStatus.caught
                         # Display 'Gotcha!' first.
                         self.task(self.end_combat, action_time + 0.5)
                         self.task(
@@ -991,9 +1001,14 @@ class CombatState(CombatAnimations):
                     msg_type = (
                         "use_success" if result["success"] else "use_failure"
                     )
+                    context = {
+                        "user": getattr(user, "name", ""),
+                        "name": technique.name,
+                        "target": target.name,
+                    }
                     template = getattr(technique, msg_type)
                     if template:
-                        message += "\n" + T.translate(template)
+                        message += "\n" + T.format(template, context)
 
             self.alert(message)
             self.suppress_phase_change(action_time)
@@ -1164,15 +1179,15 @@ class CombatState(CombatAnimations):
         for monster in self.players[0].monsters:
             for evolution in monster.evolutions:
                 # check the path field, path field signals evolution item based
-                if not evolution["path"]:
-                    if evolution["at_level"] <= monster.level:
+                if not evolution.path:
+                    if evolution.at_level <= monster.level:
                         logger.info(
                             "{} evolved into {}!".format(
-                                monster.name, evolution["monster_slug"]
+                                monster.name, evolution.monster_slug
                             )
                         )
                         self.players[0].evolve_monster(
-                            monster, evolution["monster_slug"]
+                            monster, evolution.monster_slug
                         )
 
     def end_combat(self) -> None:

@@ -23,10 +23,11 @@
             "monster_slug": "noctalo"
         }
     ],
-    "shape": "Flier",
+    "shape": "flier",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 49,
     "height": 0,
     "weight": 0,

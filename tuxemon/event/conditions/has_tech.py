@@ -55,9 +55,7 @@ class HasTechCondition(EventCondition):
         """
         player = session.player
         tech = condition.parameters[0]
-        for monster in player.monsters:
-            for moves in monster.moves:
-                if moves.name == tech:
-                    return True
-                else:
-                    return False
+        if player.find_tech(tech) is None:
+            return False
+        else:
+            return True

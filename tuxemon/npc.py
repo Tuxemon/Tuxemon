@@ -868,6 +868,24 @@ class NPC(Entity[NPCState]):
         self.game_variables["party_level_highest"] = level_highest
         self.game_variables["party_level_average"] = level_average
 
+    def find_tech(self, tech: str) -> Optional[Technique]:
+        """
+        Finds a technique in the npc's list of monsters.
+
+        Parameters:
+            tech: The slug name of the technique.
+
+        Returns:
+            Technique found.
+
+        """
+        for technique in self.monsters:
+            for moves in technique.moves:
+                if moves.slug == tech:
+                    return moves.slug
+
+        return None
+
     def has_item(self, item_slug: str) -> bool:
         return self.inventory.get(item_slug) is not None
 

@@ -16,10 +16,12 @@
             "technique": "energy_field"
         }
     ],
-    "shape": "Hunter",
+    "evolutions": [],
+    "shape": "hunter",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 93,
     "height": 0,
     "weight": 0,

@@ -1,17 +1,16 @@
 {
   "tech_id": 94,
   "slug": "status_lifeleech",
-  "name_trans": "status_lifeleech_name",
-  "execute_trans": "combat_state_lifeleech_get",
-  "success_trans": "combat_state_lifeleech_success",
-  "failure_trans": "combat_state_lifeleech_failure",
+  "use_tech": "combat_state_lifeleech_get",
+  "use_success": "combat_state_lifeleech_success",
+  "use_failure": "combat_state_lifeleech_failure",
   "animation": "drip_green",
   "sfx": "sfx_bite",
   "icon": "gfx/ui/icons/status/lifeleech-icon.png",
   "category": "lifeleech",
   "sort": "meta",
   "effects": [
-    "status"
+    "lifeleech"
   ],
   "target": {
     "enemy monster": 0,

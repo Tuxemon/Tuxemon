@@ -16,10 +16,12 @@
             "technique": "battery_acid"
         }
     ],
-    "shape": "Serpent",
+    "evolutions": [],
+    "shape": "serpent",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 135,
     "height": 0,
     "weight": 0,

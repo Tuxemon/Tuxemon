@@ -16,10 +16,12 @@
             "technique": "fluff_up"
         }
     ],
-    "shape": "Varmint",
+    "evolutions": [],
+    "shape": "varmint",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 145,
     "height": 0,
     "weight": 0,

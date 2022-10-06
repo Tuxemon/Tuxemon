@@ -16,10 +16,18 @@
             "technique": "biting_winds"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 38,
+            "monster_slug": "elostorm"
+        }
+    ],
+    "shape": "flier",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 39,
     "height": 0,
     "weight": 0,

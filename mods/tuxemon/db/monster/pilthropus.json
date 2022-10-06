@@ -16,10 +16,12 @@
             "technique": "blade"
         }
     ],
-    "shape": "Humanoid",
+    "evolutions": [],
+    "shape": "humanoid",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 163,
     "height": 0,
     "weight": 50,

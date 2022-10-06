@@ -33,7 +33,7 @@ from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
-    from tuxemon.technique import Technique
+    from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
 
@@ -122,12 +122,11 @@ def simple_damage_calculate(
         user_strength = 7 + user.level
         target_resist = 1
     else:
-        logger.error(
+        raise RuntimeError(
             "unhandled damage category %s %s",
             technique.category,
             technique.range,
         )
-        raise RuntimeError
 
     mult = simple_damage_multiplier(
         (technique.type1, technique.type2),
@@ -193,7 +192,7 @@ def simple_lifeleech(
         Inflicted damage.
 
     """
-    damage = min(target.hp // 2, target.current_hp, user.hp - user.current_hp)
+    damage = min(target.hp // 16, target.current_hp, user.hp - user.current_hp)
     return damage
 
 

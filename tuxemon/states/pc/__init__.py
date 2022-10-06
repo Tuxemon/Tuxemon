@@ -33,7 +33,15 @@ from __future__ import annotations
 
 import logging
 from functools import partial
-from typing import TYPE_CHECKING, Any, Callable, Generator, Sequence, Tuple, no_type_check
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Generator,
+    Sequence,
+    Tuple,
+    no_type_check,
+)
 
 import pygame_menu
 
@@ -278,7 +286,9 @@ class MonsterTakeState(PygameMenuState):
                 ],
             )
             theme = get_theme()
-            theme.scrollarea_position = pygame_menu.locals.SCROLLAREA_POSITION_NONE
+            theme.scrollarea_position = (
+                pygame_menu.locals.SCROLLAREA_POSITION_NONE
+            )
             self.client.pop_state(self)
 
         def take_monster_callback(monster: Monster) -> Callable[[], object]:

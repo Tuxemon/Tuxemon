@@ -14,7 +14,6 @@ from typing import (
     Any,
     List,
     Literal,
-    Mapping,
     MutableMapping,
     Optional,
     Sequence,
@@ -35,6 +34,7 @@ from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.tools import scale, scale_sequence
 
 if TYPE_CHECKING:
+    from tuxemon.db import BattleGraphicsModel
     from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
@@ -69,23 +69,13 @@ class CombatAnimations(ABC, Menu[None]):
         self,
         *,
         players: Sequence[NPC] = (),
-        graphics: Optional[Mapping[str, str]] = None,
+        graphics: Optional[BattleGraphicsModel] = None,
         **kwargs: Any,
     ) -> None:
         # The defaults are a lie to stop mypy complaining about us violating
         # the Liskov Substitution Principle
         assert len(players) == 2
         assert graphics is not None
-
-        # Get background image if passed in
-        background_filename_prefix = "gfx/ui/combat/"
-        background = graphics.get("background")
-        if background:
-            self.background_filename = background_filename_prefix + background
-        else:
-            self.background_filename = (
-                background_filename_prefix + "battle_bg03.png"
-            )
 
         super().startup(**kwargs)
         self.players = list(players)
@@ -234,7 +224,8 @@ class CombatAnimations(ABC, Menu[None]):
 
         # capdev opening animation
         images = list()
-        for fn in ["capture%02d.png" % i for i in range(1, 10)]:
+        # TODO: Use a technique JSON for 'capture' instead of hardcoding it here
+        for fn in ["capture_1_%02d.png" % i for i in range(1, 7)]:
             fn = "animations/technique/" + fn
             image = graphics.load_and_scale(fn)
             images.append((image, 0.07))
@@ -386,7 +377,15 @@ class CombatAnimations(ABC, Menu[None]):
             Surface with the name and level of the monster written.
 
         """
-        return self.shadow_text(f"{monster.name: <12}Lv.{monster.level: >2}")
+        if monster.gender == "male":
+            icon = "♂"
+        elif monster.gender == "female":
+            icon = "♀"
+        else:
+            icon = ""
+        return self.shadow_text(
+            f"{monster.name+icon: <11}Lv.{monster.level: >2}"
+        )
 
     def get_side(self, rect: Rect) -> Literal["left", "right"]:
         """
@@ -568,6 +567,11 @@ class CombatAnimations(ABC, Menu[None]):
         surface = pygame.display.get_surface()
         x, y, w, h = surface.get_rect()
 
+        # Get background image if passed in
+        self.background = self.load_sprite(
+            "gfx/ui/combat/" + self.graphics.background
+        )
+
         # TODO: not hardcode this
         player, opponent = self.players
         player_home = self._layout[player]["home"][0]
@@ -576,7 +580,7 @@ class CombatAnimations(ABC, Menu[None]):
         duration = 3
 
         back_island = self.load_sprite(
-            "gfx/ui/combat/" + self.graphics["island_back"],
+            "gfx/ui/combat/" + self.graphics.island_back,
             bottom=opp_home.bottom + y_mod,
             right=0,
         )
@@ -616,7 +620,7 @@ class CombatAnimations(ABC, Menu[None]):
             )
 
         front_island = self.load_sprite(
-            "gfx/ui/combat/" + self.graphics["island_front"],
+            "gfx/ui/combat/" + self.graphics.island_front,
             bottom=player_home.bottom - y_mod,
             left=w,
         )
@@ -699,7 +703,7 @@ class CombatAnimations(ABC, Menu[None]):
         # TODO: cache this sprite from the first time it's used.
         # also, should loading animated sprites be more convenient?
         images = list()
-        for fn in ["capture%02d.png" % i for i in range(1, 10)]:
+        for fn in ["capture_1_%02d.png" % i for i in range(1, 8)]:
             fn = "animations/technique/" + fn
             image = graphics.load_and_scale(fn)
             images.append((image, 0.07))

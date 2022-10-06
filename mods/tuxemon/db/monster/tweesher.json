@@ -16,10 +16,18 @@
             "technique": "energy_field"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 24,
+            "monster_slug": "heronquak"
+        }
+    ],
+    "shape": "flier",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 7,
     "height": 45,
     "weight": 1,

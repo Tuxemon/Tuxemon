@@ -16,10 +16,12 @@
             "technique": "rock"
         }
     ],
-    "shape": "Brute",
+    "evolutions": [],
+    "shape": "brute",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 158,
     "height": 170,
     "weight": 65,

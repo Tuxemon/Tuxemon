@@ -16,11 +16,13 @@
             "technique": "fluff_up"
         }
     ],
-    "shape": "Sprite",
+    "evolutions": [],
+    "shape": "sprite",
     "types": [
         "Wood",
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 104,
     "height": 0,
     "weight": 0,

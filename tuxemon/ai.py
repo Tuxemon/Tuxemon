@@ -34,7 +34,7 @@ from abc import ABC, abstractmethod
 from random import choice
 from typing import TYPE_CHECKING, Sequence, Tuple
 
-from tuxemon.technique import Technique
+from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster

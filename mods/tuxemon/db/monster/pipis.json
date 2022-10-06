@@ -16,10 +16,18 @@
             "technique": "take_cover"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "strella"
+        }
+    ],
+    "shape": "flier",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 47,
     "height": 0,
     "weight": 0,

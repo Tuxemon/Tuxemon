@@ -68,12 +68,14 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
         npc = world.get_entity(self.parameters.npc_slug)
         assert npc
         if len(npc.monsters) == 0:
-            logger.warning(f"npc '{self.parameters.npc_slug}' has no monsters, won't start trainer battle.")
+            logger.warning(
+                f"npc '{self.parameters.npc_slug}' has no monsters, won't start trainer battle."
+            )
             return
 
         # Lookup the environment
         env_slug = player.game_variables.get("environment", "grass")
-        env = db.lookup(env_slug, table="environment").dict()
+        env = db.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
         logger.info("Starting battle with '{self.parameters.npc_slug}'!")
@@ -81,11 +83,11 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
             CombatState,
             players=(player, npc),
             combat_type="trainer",
-            graphics=env["battle_graphics"],
+            graphics=env.battle_graphics,
         )
 
         # Start some music!
-        filename = env["battle_music"]
+        filename = env.battle_music
         self.session.client.event_engine.execute_action(
             "play_music",
             [filename],

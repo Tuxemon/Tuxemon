@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="87">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="88">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -361,10 +361,16 @@
     <property name="cond1" value="not variable_set route4beck:yes"/>
    </properties>
   </object>
-  <object id="81" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="81" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="not variable_set environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="87" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
   <object id="82" name="Talk Marshall" type="event" x="48" y="464" width="48" height="16">
@@ -407,7 +413,7 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="86" name="Exhausted" type="event" x="0" y="0" width="16" height="16">
+  <object id="86" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>

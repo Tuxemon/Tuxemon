@@ -16,11 +16,13 @@
             "technique": "wall_of_steel"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [],
+    "shape": "blob",
     "types": [
         "Metal",
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 169,
     "height": 90,
     "weight": 55,

@@ -205,10 +205,9 @@ Do not add text in a PO file that is not the language of the file.  Do not
 add English text to a Spanish base.po file.
 
 For example:
-- Adding English: Just add content to the English base.po file.  No others.
+- Adding English: Just add content to the en_US base.po file. No others.
 - Adding English and Spanish: Only add content to their respective files.
 
-NOTE: The json locale files are for historical reference and will be removed.
 
 ### Translations Guidelines
 - Right-to-left languages are not supported
@@ -220,6 +219,7 @@ NOTE: The json locale files are for historical reference and will be removed.
   long or short... that is a limitation of our game right now and we will fix
   it sometime.  If possible, please leave the dialogs "long" or overflowing and 
   eventually a fix will be made so they fit correctly.
+- Translation files can be found in `mods/tuxemon/l18n` together with a README
 
 Content Restrictions
 ====================

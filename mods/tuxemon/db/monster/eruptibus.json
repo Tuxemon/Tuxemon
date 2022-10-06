@@ -16,10 +16,12 @@
             "technique": "energy_field"
         }
     ],
-    "shape": "Landrace",
+    "evolutions": [],
+    "shape": "landrace",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 31,
     "height": 600,
     "weight": 12000,

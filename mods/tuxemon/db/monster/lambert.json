@@ -16,10 +16,18 @@
             "technique": "boulder"
         }
     ],
-    "shape": "Sprite",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 24,
+            "monster_slug": "legko"
+        }
+    ],
+    "shape": "sprite",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 10,
     "height": 0,
     "weight": 0,

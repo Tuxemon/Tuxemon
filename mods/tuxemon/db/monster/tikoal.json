@@ -16,11 +16,19 @@
             "technique": "petrify"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 30,
+            "monster_slug": "tikorch"
+        }
+    ],
+    "shape": "blob",
     "types": [
         "Fire",
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 78,
     "height": 0,
     "weight": 0,

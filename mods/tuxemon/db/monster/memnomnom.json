@@ -16,10 +16,33 @@
             "technique": "sand_spray"
         }
     ],
-    "shape": "Hunter",
+    "evolutions": [
+        {
+            "path": "earth_booster",
+            "at_level": 0,
+            "monster_slug": "miaownolith"
+        },
+        {
+            "path": "miaow_milk",
+            "at_level": 0,
+            "monster_slug": "miaownolith"
+        },
+        {
+            "path": "metal_booster",
+            "at_level": 0,
+            "monster_slug": "pyraminx"
+        },
+        {
+            "path": "pyramidion",
+            "at_level": 0,
+            "monster_slug": "pyraminx"
+        }
+    ],
+    "shape": "hunter",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 19,
     "height": 70,
     "weight": 7,

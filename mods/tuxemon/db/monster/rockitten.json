@@ -16,10 +16,18 @@
             "technique": "thunderball"
         }
     ],
-    "shape": "Hunter",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 24,
+            "monster_slug": "rockat"
+        }
+    ],
+    "shape": "hunter",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 1,
     "height": 55,
     "weight": 9,

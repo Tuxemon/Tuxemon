@@ -16,10 +16,12 @@
             "technique": "fire_claw"
         }
     ],
-    "shape": "Hunter",
+    "evolutions": [],
+    "shape": "hunter",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 20,
     "height": 210,
     "weight": 170,

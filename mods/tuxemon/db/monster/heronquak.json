@@ -16,10 +16,18 @@
             "technique": "energy_field"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 36,
+            "monster_slug": "eaglace"
+        }
+    ],
+    "shape": "flier",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 8,
     "height": 150,
     "weight": 12,

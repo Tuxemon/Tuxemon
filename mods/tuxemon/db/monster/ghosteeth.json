@@ -16,10 +16,12 @@
             "technique": "chill_mist"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [],
+    "shape": "blob",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 110,
     "height": 70,
     "weight": 0,

@@ -16,11 +16,13 @@
             "technique": "whirlwind"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [],
+    "shape": "blob",
     "types": [
         "Water",
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 105,
     "height": 250,
     "weight": 371,

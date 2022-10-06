@@ -16,10 +16,12 @@
             "technique": "shrapnel"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [],
+    "shape": "blob",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 115,
     "height": 155,
     "weight": 180,

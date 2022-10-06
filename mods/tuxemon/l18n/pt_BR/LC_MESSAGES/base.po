@@ -78,6 +78,11 @@ msgstr ""
 "Manual de Técnica que ensina a um Tuxemon de Água ou Terra a técnica "
 "Avalanche."
 
+# Money notification
+
+msgid "player_wallet"
+msgstr "Carteira ${{name}}: ${{money}}${{currency}}"
+
 # TMs
 msgid "tm_avalanche"
 msgstr "TM: Avalanche"

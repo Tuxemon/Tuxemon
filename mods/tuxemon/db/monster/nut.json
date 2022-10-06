@@ -16,10 +16,18 @@
             "technique": "shuriken"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 9,
+            "monster_slug": "bolt"
+        }
+    ],
+    "shape": "blob",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 4,
     "height": 45,
     "weight": 4,

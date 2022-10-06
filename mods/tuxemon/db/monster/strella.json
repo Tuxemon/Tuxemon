@@ -16,10 +16,12 @@
             "technique": "all_in"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [],
+    "shape": "flier",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 48,
     "height": 0,
     "weight": 0,

@@ -16,11 +16,13 @@
             "technique": "blade"
         }
     ],
-    "shape": "Brute",
+    "evolutions": [],
+    "shape": "brute",
     "types": [
         "Metal",
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 58,
     "height": 150,
     "weight": 125,

@@ -323,6 +323,11 @@ msgstr "Diese Attacke war nicht sehr effektiv!"
 msgid "attack_weak"
 msgstr "Diese Attacke war überhaupt nicht effektiv!"
 
+# Money notification
+
+msgid "player_wallet"
+msgstr "${{name}} Geldbörse: ${{money}}${{currency}}"
+
 ## TECHNIQUE TRANSLATIONS ##
 msgid "bite"
 msgstr "Biss"

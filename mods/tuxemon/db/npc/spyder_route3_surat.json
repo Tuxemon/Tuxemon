@@ -1,5 +1,6 @@
 {
   "slug": "spyder_route3_surat",
+  "gender": "male",
   "sprite_name": "miner",
   "monsters": [
     {
@@ -7,14 +8,16 @@
       "level": 12,
       "slug": "rockat",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     },
     {
       "name": "Foofle",
       "level": 12,
       "slug": "foofle",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     }
   ],
   "combat_front": "miner.png",

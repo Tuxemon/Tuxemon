@@ -16,10 +16,18 @@
             "technique": "constrict"
         }
     ],
-    "shape": "Grub",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "tumblebee"
+        }
+    ],
+    "shape": "grub",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 94,
     "height": 0,
     "weight": 0,

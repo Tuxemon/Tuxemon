@@ -16,10 +16,18 @@
             "technique": "glower"
         }
     ],
-    "shape": "Aquatic",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 18,
+            "monster_slug": "incandesfin"
+        }
+    ],
+    "shape": "aquatic",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 67,
     "height": 80,
     "weight": 11,

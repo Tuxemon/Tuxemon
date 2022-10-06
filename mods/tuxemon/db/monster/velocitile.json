@@ -16,10 +16,12 @@
             "technique": "whirlwind"
         }
     ],
-    "shape": "Humanoid",
+    "evolutions": [],
+    "shape": "humanoid",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 66,
     "height": 0,
     "weight": 0,

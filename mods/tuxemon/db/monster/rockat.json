@@ -16,10 +16,18 @@
             "technique": "thunderball"
         }
     ],
-    "shape": "Hunter",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 36,
+            "monster_slug": "jemuar"
+        }
+    ],
+    "shape": "hunter",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 2,
     "height": 0,
     "weight": 0,

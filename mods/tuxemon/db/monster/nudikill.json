@@ -16,10 +16,12 @@
             "technique": "bubble_trap"
         }
     ],
-    "shape": "Polliwog",
+    "evolutions": [],
+    "shape": "polliwog",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male"],
     "txmn_id": 52,
     "height": 0,
     "weight": 0,

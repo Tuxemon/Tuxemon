@@ -16,10 +16,18 @@
             "technique": "flood"
         }
     ],
-    "shape": "Polliwog",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 18,
+            "monster_slug": "nudikill"
+        }
+    ],
+    "shape": "polliwog",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male"],
     "txmn_id": 51,
     "height": 36,
     "weight": 3,

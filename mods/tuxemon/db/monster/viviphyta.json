@@ -16,10 +16,12 @@
             "technique": "web"
         }
     ],
-    "shape": "Serpent",
+    "evolutions": [],
+    "shape": "serpent",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 132,
     "height": 0,
     "weight": 0,

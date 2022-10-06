@@ -16,10 +16,12 @@
             "technique": "suck_poison"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [],
+    "shape": "blob",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 164,
     "height": 0,
     "weight": 1,

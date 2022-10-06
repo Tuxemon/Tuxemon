@@ -1,5 +1,6 @@
 {
   "slug": "spyder_dryadsgrove_ferris",
+  "gender": "female",
   "sprite_name": "woodnymph",
   "monsters": [
     {
@@ -7,21 +8,24 @@
       "level": 50,
       "slug": "viviteel",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     },
     {
       "name": "Allagon",
       "level": 50,
       "slug": "allagon",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     },
     {
       "name": "Araignee",
       "level": 50,
       "slug": "araignee",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     }
   ],
   "combat_front": "metalnymph.png",

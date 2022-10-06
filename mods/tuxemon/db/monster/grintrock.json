@@ -16,11 +16,13 @@
             "technique": "stampede"
         }
     ],
-    "shape": "Brute",
+    "evolutions": [],
+    "shape": "brute",
     "types": [
         "Earth",
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 18,
     "height": 160,
     "weight": 3000,

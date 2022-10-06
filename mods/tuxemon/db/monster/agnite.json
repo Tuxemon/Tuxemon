@@ -16,10 +16,18 @@
             "technique": "fume"
         }
     ],
-    "shape": "Dragon",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 24,
+            "monster_slug": "agnidon"
+        }
+    ],
+    "shape": "dragon",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 13,
     "height": 80,
     "weight": 24,

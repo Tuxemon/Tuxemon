@@ -694,6 +694,9 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [daneeklu](http://opengameart.org/users/daneeklu) 
 is licensed under [CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
 
+* ["Appearance"](https://wiki.tuxemon.org/File:Appearance.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
+
 * ["Beartrap"](https://wiki.tuxemon.org/File:Beartrap.gif)
 [https://opengameart.org/content/animated-traps CC0]
 
@@ -701,11 +704,23 @@ is licensed under [CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
 [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Bite Zombie"](https://wiki.tuxemon.org/File:Bite_zombie.gif)
+Sprite by Carnageddon, [source link](https://opengameart.org/content/bite)
+
+* ["Bite"](https://wiki.tuxemon.org/File:Bite.gif)
+By josepharaoh99
+
 * ["Bomb Bright"](https://wiki.tuxemon.org/File:Bomb_bright.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.
 
 * ["Bomb"](https://wiki.tuxemon.org/File:Bomb.gif)
 From the Superpowers Asset Packs.
+
+* ["Breath Blue"](https://wiki.tuxemon.org/File:Breath_blue.gif)
+[https://ansimuz.itch.io/gothicvania-patreon-collection CC BY]
+
+* ["Breath Fire"](https://wiki.tuxemon.org/File:Breath_fire.gif)
+[https://ansimuz.itch.io/gothicvania-patreon-collection CC BY]
 
 * ["Buff Armour"](https://wiki.tuxemon.org/File:Buff_armour.gif)
 Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
@@ -721,6 +736,18 @@ Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel
 
 * ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Capture 1"](https://wiki.tuxemon.org/File:Capture_1.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
+
+* ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
+Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Claw Yellow"](https://wiki.tuxemon.org/File:Claw_yellow_169.gif)
+From the Superpowers Asset Packs.
+
+* ["Constantburn"](https://wiki.tuxemon.org/File:Constantburn.gif)
+Animation by josepharaoh99 and created for the Tuxemon project.
 
 * ["Crushing Ball"](https://forum.tuxemon.org/viewtopic.php?pid=506#p506) by
 [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
@@ -746,12 +773,42 @@ From the Superpowers Asset Packs.
 * ["Explosion Burst"](https://wiki.tuxemon.org/File:Explosion_burst.gif)
 [https://opengameart.org/content/animated-explosions CC0 on OGA]
 
+* ["Explosion Cloud"](https://wiki.tuxemon.org/File:Explosion_cloud_48.gif)
+[https://opengameart.org/content/animated-explosions CC0 on OGA]
+
+* ["Explosion Ice"](https://wiki.tuxemon.org/File:Explosion_ice_112.gif)
+From the Superpowers Asset Packs.
+
+* ["Explosion Multi"](https://wiki.tuxemon.org/File:Explosion_multi_128.gif)
+[https://opengameart.org/content/animated-explosions CC0 on OGA]
+
+* ["Explosion Mushroom"](https://wiki.tuxemon.org/File:Explosion_mushroom_128.gif)
+[https://opengameart.org/content/animated-explosions CC0 on OGA]
+
 * ["Explosion Small"](https://wiki.tuxemon.org/File:Explosion_small.gif)
 From the Superpowers Asset Packs.
+
+* ["Explosion Sun"](https://wiki.tuxemon.org/File:Explosion_sun_32.gif)
+[https://opengameart.org/content/animated-explosions CC0 on OGA]
+
+* ["Explosion Total"](https://wiki.tuxemon.org/File:Explosion_total_192.gif)
+[https://opengameart.org/content/animated-explosions CC0 on OGA]
 
 * ["Fire Attack"](https://forum.tuxemon.org/viewtopic.php?id=74) by 
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Fire Big"](https://wiki.tuxemon.org/File:Fire_big_156.gif)
+From the Superpowers Asset Packs.
+
+* ["Fire Big Dark"](https://wiki.tuxemon.org/File:Fire_big_dark_96.gif)
+From the Superpowers Asset Packs.
+
+* ["Fireball"](https://wiki.tuxemon.org/File:Fireball_114.gif)
+From the Superpowers Asset Packs.
+
+* ["Fire Fade"](https://wiki.tuxemon.org/File:Fire_fade.gif)
+By tamashihoshi
 
 * ["Firelion Back"](https://wiki.tuxemon.org/File:Firelion_back_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
@@ -765,8 +822,20 @@ By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content
 * ["Firelion Front"](https://wiki.tuxemon.org/File:Firelion_front.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
+* ["Firelion Right"](https://wiki.tuxemon.org/File:Firelion_right.gif)
+By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Firelion Right"](https://wiki.tuxemon.org/File:Firelion_right_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
 * ["Firetwirl"](https://wiki.tuxemon.org/File:Firetwirl.gif)
 From the Superpowers Asset Packs.
+
+* ["Fireworks"](https://wiki.tuxemon.org/File:Fireworks.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
+
+* ["Flameball Blue"](https://wiki.tuxemon.org/File:Flameball_blue.gif)
+[https://opengameart.org/content/bosses-and-monsters-spritesheets-ars-notoria CC BY 3.0 on OGA]
 
 * ["Gloop Blue"](https://wiki.tuxemon.org/File:Gloop_blue.gif)
 Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan B...
@@ -777,13 +846,19 @@ A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Cha
 * ["Gloop Orange"](https://wiki.tuxemon.org/File:Gloop_orange.gif)
 Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan B...
 
+* ["Heal Burst"](https://wiki.tuxemon.org/File:Heal_burst_120.gif)
+Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Heal Cross"](https://wiki.tuxemon.org/File:Heal_cross_120.gif)
+From the Superpowers Asset Packs.
+
 * ["Heal Swarm"](https://wiki.tuxemon.org/File:Heal_swarm_126.gif)
 From the Superpowers Asset Packs.
 
 * ["Heal Swarm"](https://wiki.tuxemon.org/File:Heal_swarm.gif)
 Adapted to 64px by Sanglorian.  From the Superpowers Asset Packs.
 
-* ["Hits For Separation"](https://wiki.tuxemon.org/File:12_hits_for_separation.gif)
+* ["12 Hits For Separation"](https://wiki.tuxemon.org/File:12_hits_for_separation.gif)
 [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA] This work, made by Viktor Hahn (Viktor.Hahn@web.de), is licensed under the Creative Commons...
 
 * ["Icetacle"](https://wiki.tuxemon.org/File:Icetacle_128.gif)
@@ -792,17 +867,26 @@ Adapted to 64px by Sanglorian.  From the Superpowers Asset Packs.
 * ["Icetacle"](https://wiki.tuxemon.org/File:Icetacle.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
+* ["Join"](https://wiki.tuxemon.org/File:Join_80.gif)
+A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
 * ["Lance Ice"](https://wiki.tuxemon.org/File:Lance_ice_80.gif)
 From the Superpowers Asset Packs.
 
 * ["Lance Ice"](https://wiki.tuxemon.org/File:Lance_ice.gif)
 Resized by Sanglorian from the Superpowers Asset Packs.
 
+* ["Lightning Bolt"](https://wiki.tuxemon.org/File:Lightning_bolt_138.gif)
+From the Superpowers Asset Packs.
+
 * ["Lightning Claw"](https://wiki.tuxemon.org/File:Lightning_claw_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
 * ["Lightning Claw"](https://wiki.tuxemon.org/File:Lightning_claw.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Metal Delete"](https://wiki.tuxemon.org/File:Metal_Delete.gif)
+By josepharaoh99
 
 * ["Misc Hit Preview"](https://wiki.tuxemon.org/File:Misc_Hit_preview.gif)
 [https://opengameart.org/content/pixelated-hit-animations CC BY on OGA]  This work, made by Viktor Hahn (Viktor.Hahn@web.de), is licensed under the Creative Commons Attributio...
@@ -812,6 +896,9 @@ By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Pound Bright"](https://wiki.tuxemon.org/File:Pound_bright.gif)
+From the Superpowers Asset Packs.
+
+* ["Power Arc"](https://wiki.tuxemon.org/File:Power_arc_154.gif)
 From the Superpowers Asset Packs.
 
 * ["Power Slash"](https://forum.tuxemon.org/viewtopic.php?id=74) by
@@ -826,6 +913,12 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Pushtrap Right"](https://wiki.tuxemon.org/File:Pushtrap_right.gif)
 [https://opengameart.org/content/animated-traps CC0]
+
+* ["Rockfall"](https://wiki.tuxemon.org/File:Rockfall_193.gif)
+From the Superpowers Asset Packs.
+
+* ["Rockfall"](https://wiki.tuxemon.org/File:Rockfall_264.gif)
+From the Superpowers Asset Packs.
 
 * ["Screen"](https://wiki.tuxemon.org/File:Screen_80.gif)
 A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
@@ -860,8 +953,23 @@ By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content
 * ["Shield Turtle Right"](https://wiki.tuxemon.org/File:Shield_turtle_right.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
+* ["Skull Fire"](https://wiki.tuxemon.org/File:Skull_fire.gif)
+[https://ansimuz.itch.io/gothicvania-patreon-collection CC BY]
+
+* ["Skull"](https://wiki.tuxemon.org/File:Skull.gif)
+[https://ansimuz.itch.io/gothicvania-patreon-collection CC BY]
+
+* ["Slash"](https://wiki.tuxemon.org/File:Slash_200.gif)
+From the Superpowers Asset Packs.
+
+* ["Slash Double"](https://wiki.tuxemon.org/File:Slash_double_188.gif)
+From the Superpowers Asset Packs.
+
 * ["Slash Fire"](https://wiki.tuxemon.org/File:Slash_fire.gif)
 From the Superpowers Asset Packs.
+
+* ["Slash Power"](https://wiki.tuxemon.org/File:Slash_power.gif)
+By tamashihoshi
 
 * ["Small Water Shot"](https://forum.tuxemon.org/viewtopic.php?id=74) by
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
@@ -873,11 +981,23 @@ From the Superpowers Asset Packs.
 * ["Smokebomb Plume"](https://wiki.tuxemon.org/File:Smokebomb_plume.gif)
 [https://opengameart.org/content/gotthicvania-swamp CC0 on OGA]
 
+* ["Smokebomb Puff"](https://wiki.tuxemon.org/File:Smokebomb_puff_128.gif)
+From the Superpowers Asset Packs.
+
+* ["Snake Front"](https://wiki.tuxemon.org/File:Snake_front_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Snake Left"](https://wiki.tuxemon.org/File:Snake_left_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
 * ["Snake Right"](https://wiki.tuxemon.org/File:Snake_right_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
 * ["Snake Right"](https://wiki.tuxemon.org/File:Snake_right.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+
+* ["Snake Up"](https://wiki.tuxemon.org/File:Snake_up_128.gif)
+[http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
 * ["Sparks Gold Alt"](https://wiki.tuxemon.org/File:Sparks_gold_alt.gif)
 [http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
@@ -924,31 +1044,205 @@ By daneeklu [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0
 * ["Tentacles Water"](https://wiki.tuxemon.org/File:Tentacles_water.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
+* ["Thunderstrike"](https://wiki.tuxemon.org/File:Thunderstrike.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
+
+* ["Tornado Basic"](https://wiki.tuxemon.org/File:Tornado_basic.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
+
 * ["Tornado Bulk"](https://wiki.tuxemon.org/File:Tornado_bulk_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
 * ["Tornado Bulk"](https://wiki.tuxemon.org/File:Tornado_bulk.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
+* ["Tornado Volume"](https://wiki.tuxemon.org/File:Tornado_volume.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
+
+* ["Triforce"](https://wiki.tuxemon.org/File:Triforce_163.gif)
+From the Superpowers Asset Packs.
+
+* ["Triple Whammy"](https://wiki.tuxemon.org/File:Triple_whammy_80.gif)
+A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Warp"](https://wiki.tuxemon.org/File:Warp.gif)
+[https://opengameart.org/content/warp-effect-0 CC BY]
+
+* ["Waterfall"](https://wiki.tuxemon.org/File:Waterfall.gif)
+By josepharaoh99
+
+* ["Watershot"](https://wiki.tuxemon.org/File:Watershot.gif)
+By tamashihoshi
+
+* ["Waterspurt"](https://wiki.tuxemon.org/File:Waterspurt.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
+
 * ["Whirlwind Attack"](https://forum.tuxemon.org/thread.php?pid=765#p765) by
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Whisp Fire"](https://wiki.tuxemon.org/File:Whisp_fire.gif)
+By ansimuz, [source link](https://opengameart.org/content/gothicvania-cemetery-pack)
+
+* ["X Attack"](https://wiki.tuxemon.org/File:X_attack.gif)
+Animation by josepharaoh99 and created for the Tuxemon project.
+
 ### Battle Backgrounds
+
+* ["arid_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["beach_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["bridge_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["canyon_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["cave_background.png"](https://wiki.tuxemon.org/File:5_(240px).png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["cavern_background.png"](https://wiki.tuxemon.org/File:Region_concept_art.jpeg)
+is by [Leo](https://forum.tuxemon.org/profile.php?id=50), licensed under
+[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+Changes made: This was cropped from the concept art (upper right), the original was 1024×576, this version has been cropped down to 280x112 resolution.
+
+* ["cliff_background.png"](https://wiki.tuxemon.org/File:Cliff_battle,_compiled.png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["clouds_background.png"](https://wiki.tuxemon.org/File:Cloud_battle_3,_compiled_by_Bill.png)
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["desert_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
 
 * ["forest_background.png"](https://wiki.tuxemon.org/File:Background_(240px).png)
 Adapted by Sanglorian from a sprite by ["Catch
 Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack),
 is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
-* ["cave_background.png"](https://wiki.tuxemon.org/File:5_(240px).png)
-Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+* ["grass_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_arid_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_beach_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_bridge_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_canyon_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_cliff_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_desert_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_forest_background.png"]
+Adapted by Sanglorian from a sprite by ["Catch
+Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack),
+is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+Changes made: Applied blue filter, night mode.
+
+* ["night_grass_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_ocean_background.png"]
+is by [KnoblePersona](https://opengameart.org/content/ocean-background), licensed under
+[CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+Changes made: Applied blue filter, night mode.
+
+* ["night_plain_background.png"](https://wiki.tuxemon.org/File:7-night_(240).png)
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_sand_background.png"]
+is by [Leo](https://forum.tuxemon.org/profile.php?id=50), licensed under
+[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+Changes made: Applied blue filter, night mode.
+
+* ["night_sea_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_snow_background.png"]
+is by [Leo](https://forum.tuxemon.org/profile.php?id=50), licensed under
+[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+Changes made: Applied blue filter, night mode.
+
+* ["night_snowplain_background.png"](https://wiki.tuxemon.org/File:4-night_(240).png)
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["night_valley_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
 which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
 
 * ["ocean_background.png"](https://wiki.tuxemon.org/File:Ocean_cropped.png)
 is by [KnoblePersona](https://opengameart.org/content/ocean-background), licensed under
 [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 Changes made: This was cropped from the original image, the original was 480x216, this version has been cropped down to 240x112 resolution.
+
+* ["plain_background.png"](https://wiki.tuxemon.org/File:7_(240px).png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["sand_background.png"](https://wiki.tuxemon.org/File:Background_(240px).png)
+is by [Leo](https://forum.tuxemon.org/profile.php?id=50), licensed under
+[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+Changes made: This was cropped from the concept art, the original was 1567×885, this version has been cropped down to 280x112 resolution.
+
+* ["sea_background.png"](https://wiki.tuxemon.org/File:Sea_battle,_compiled_by_Bill.png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["snow_background.png"](https://wiki.tuxemon.org/File:Region_concept_art.jpeg)
+is by [Leo](https://forum.tuxemon.org/profile.php?id=50), licensed under
+[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+Changes made: This was cropped from the concept art (bottom right), the original was 1024×576, this version has been cropped down to 280x112 resolution.
+
+* ["snowplain_background.png"](https://wiki.tuxemon.org/File:4_(240).png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["stadium_background.png"]
+is by [user: 22171](https://www.peakpx.com/22171/football-stadium), adapted by JaskRendix licensed under
+[CC-0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+Changes made: This was cropped from the original image, the original was 1280x720, this version has been cropped down to 280x112 resolution.
+
+* ["sunset_background.png"](https://wiki.tuxemon.org/File:Cloud_battle_2,_compiled_by_Bill.png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["underwater_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["valley_background.png"]
+Adapted by JaskRendix from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
 
 ## Concept Art
 
@@ -974,6 +1268,8 @@ Fonts
 
 * ["Press Start 2P"](https://www.google.com/fonts/specimen/Press+Start+2P) by 
 [codeman38](mailto:cody@zone38.net) is licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
+adapted by JaskRendix, added symbols from Noto Emoji font (https://fonts.google.com/noto/specimen/Noto+Emoji)
+licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
 
 * ["Big Bottom Catroon Normal"](http://openfontlibrary.org/en/font/big-bottom-cartoon-normal) by
 [KarenBJones](http://openfontlibrary.org/en/member/KarenBJones) is licensed under

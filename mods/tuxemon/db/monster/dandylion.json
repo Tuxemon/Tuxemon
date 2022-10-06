@@ -16,10 +16,12 @@
             "technique": "sleeping_powder"
         }
     ],
-    "shape": "Hunter",
+    "evolutions": [],
+    "shape": "hunter",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 73,
     "height": 0,
     "weight": 0,

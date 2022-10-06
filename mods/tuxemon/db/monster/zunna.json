@@ -16,10 +16,12 @@
             "technique": "strike"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [],
+    "shape": "blob",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 129,
     "height": 90,
     "weight": 2,

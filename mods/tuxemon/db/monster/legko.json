@@ -16,10 +16,18 @@
             "technique": "boulder"
         }
     ],
-    "shape": "Serpent",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 36,
+            "monster_slug": "moloch"
+        }
+    ],
+    "shape": "serpent",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 11,
     "height": 0,
     "weight": 0,

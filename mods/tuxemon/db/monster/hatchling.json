@@ -16,10 +16,18 @@
             "technique": "fluff_up"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "birdling"
+        }
+    ],
+    "shape": "flier",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 80,
     "height": 0,
     "weight": 0,

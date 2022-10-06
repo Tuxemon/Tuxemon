@@ -16,11 +16,13 @@
             "technique": "constrict"
         }
     ],
-    "shape": "Serpent",
+    "evolutions": [],
+    "shape": "serpent",
     "types": [
         "Metal",
         "Fire"
     ],
+    "possible_genders": ["neuter"],
     "txmn_id": 89,
     "height": 62,
     "weight": 4,

@@ -16,10 +16,18 @@
             "technique": "fume"
         }
     ],
-    "shape": "Hunter",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 30,
+            "monster_slug": "tigrock"
+        }
+    ],
+    "shape": "hunter",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 92,
     "height": 45,
     "weight": 3,

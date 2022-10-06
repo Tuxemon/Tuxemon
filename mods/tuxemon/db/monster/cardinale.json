@@ -16,10 +16,12 @@
             "technique": "peregrine"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [],
+    "shape": "flier",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 63,
     "height": 0,
     "weight": 0,

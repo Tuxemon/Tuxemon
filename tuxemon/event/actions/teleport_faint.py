@@ -28,6 +28,7 @@ from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
 
+
 class TeleportFaintActionParameters(NamedTuple):
     pass
 
@@ -57,7 +58,9 @@ class TeleportFaintAction(EventAction[TeleportFaintActionParameters]):
         if "teleport_faint" in player.game_variables:
             teleport = player.game_variables["teleport_faint"].split(" ")
         else:
-            logger.error(f"Teleport_faint action failed, because the teleport_faint variable has not been set.")
+            logger.error(
+                f"Teleport_faint action failed, because the teleport_faint variable has not been set."
+            )
             return
 
         # Start the screen transition

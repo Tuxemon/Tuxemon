@@ -1,5 +1,6 @@
 {
   "slug": "spyder_route4_beck",
+  "gender": "male",
   "sprite_name": "tennisplayer",
   "monsters": [
     {
@@ -7,21 +8,24 @@
       "level": 14,
       "slug": "katapill",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     },
     {
       "name": "Tumbleworm",
       "level": 12,
       "slug": "tumbleworm",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     },
     {
       "name": "Spighter",
       "level": 12,
       "slug": "spighter",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     }
   ],
   "combat_front": "yellowbelt.png",

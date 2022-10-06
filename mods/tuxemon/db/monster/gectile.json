@@ -16,10 +16,18 @@
             "technique": "whirlwind"
         }
     ],
-    "shape": "Humanoid",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 36,
+            "monster_slug": "velocitile"
+        }
+    ],
+    "shape": "humanoid",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 65,
     "height": 0,
     "weight": 0,

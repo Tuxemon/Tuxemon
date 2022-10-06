@@ -16,11 +16,13 @@
             "technique": "snowstorm"
         }
     ],
-    "shape": "Varmint",
+    "evolutions": [],
+    "shape": "varmint",
     "types": [
         "Earth",
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 121,
     "height": 40,
     "weight": 3,

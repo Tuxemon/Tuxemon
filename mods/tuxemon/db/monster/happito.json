@@ -16,11 +16,13 @@
             "technique": "rock"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [],
+    "shape": "blob",
     "types": [
         "Earth",
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 167,
     "height": 90,
     "weight": 55,

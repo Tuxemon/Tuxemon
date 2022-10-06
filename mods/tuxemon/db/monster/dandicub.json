@@ -16,10 +16,18 @@
             "technique": "sleeping_powder"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "dandylion"
+        }
+    ],
+    "shape": "blob",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 72,
     "height": 0,
     "weight": 0,

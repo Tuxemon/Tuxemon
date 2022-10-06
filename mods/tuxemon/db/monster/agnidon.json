@@ -16,10 +16,18 @@
             "technique": "energy_claws"
         }
     ],
-    "shape": "Dragon",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 36,
+            "monster_slug": "agnigon"
+        }
+    ],
+    "shape": "dragon",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 14,
     "height": 320,
     "weight": 230,

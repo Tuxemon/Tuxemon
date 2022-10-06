@@ -16,10 +16,12 @@
             "technique": "one_two"
         }
     ],
-    "shape": "Brute",
+    "evolutions": [],
+    "shape": "brute",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 116,
     "height": 0,
     "weight": 0,

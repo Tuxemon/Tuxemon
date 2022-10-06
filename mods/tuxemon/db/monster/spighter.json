@@ -16,10 +16,12 @@
             "technique": "splinter"
         }
     ],
-    "shape": "Grub",
+    "evolutions": [],
+    "shape": "grub",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 120,
     "height": 30,
     "weight": 2,

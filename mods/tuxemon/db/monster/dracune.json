@@ -16,10 +16,18 @@
             "technique": "hibernate"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 12,
+            "monster_slug": "fluttaflap"
+        }
+    ],
+    "shape": "blob",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 36,
     "height": 0,
     "weight": 0,

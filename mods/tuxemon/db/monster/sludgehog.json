@@ -16,10 +16,12 @@
             "technique": "energy_claws"
         }
     ],
-    "shape": "Landrace",
+    "evolutions": [],
+    "shape": "landrace",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 119,
     "height": 125,
     "weight": 95,

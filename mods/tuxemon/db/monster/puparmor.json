@@ -16,10 +16,18 @@
             "technique": "wallow"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 12,
+            "monster_slug": "weavifly"
+        }
+    ],
+    "shape": "blob",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 33,
     "height": 0,
     "weight": 0,

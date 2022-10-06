@@ -16,10 +16,12 @@
             "technique": "flamethrower"
         }
     ],
-    "shape": "Humanoid",
+    "evolutions": [],
+    "shape": "humanoid",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 107,
     "height": 160,
     "weight": 0,

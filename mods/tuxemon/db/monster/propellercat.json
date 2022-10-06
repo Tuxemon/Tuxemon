@@ -16,10 +16,12 @@
             "technique": "fluff_up"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [],
+    "shape": "flier",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 117,
     "height": 55,
     "weight": 6,

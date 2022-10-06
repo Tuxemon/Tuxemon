@@ -16,10 +16,12 @@
             "technique": "battery_discharge"
         }
     ],
-    "shape": "Aquatic",
+    "evolutions": [],
+    "shape": "aquatic",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["neuter"],
     "txmn_id": 126,
     "height": 55,
     "weight": 4,

@@ -16,10 +16,12 @@
             "technique": "strike"
         }
     ],
-    "shape": "Humanoid",
+    "evolutions": [],
+    "shape": "humanoid",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 97,
     "height": 0,
     "weight": 0,

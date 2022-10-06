@@ -16,10 +16,18 @@
             "technique": "fluff_up"
         }
     ],
-    "shape": "Brute",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 30,
+            "monster_slug": "sapsnap"
+        }
+    ],
+    "shape": "brute",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 84,
     "height": 120,
     "weight": 60,

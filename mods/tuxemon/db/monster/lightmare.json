@@ -16,10 +16,12 @@
             "technique": "starfall"
         }
     ],
-    "shape": "Leviathan",
+    "evolutions": [],
+    "shape": "leviathan",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 69,
     "height": 300,
     "weight": 200,

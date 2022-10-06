@@ -16,10 +16,18 @@
             "technique": "wall_of_steel"
         }
     ],
-    "shape": "Sprite",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "windeye"
+        }
+    ],
+    "shape": "sprite",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 170,
     "height": 45,
     "weight": 18,

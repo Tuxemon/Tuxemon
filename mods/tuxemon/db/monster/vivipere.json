@@ -16,10 +16,38 @@
             "technique": "wallow"
         }
     ],
-    "shape": "Serpent",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 25,
+            "monster_slug": "vivicinder"
+        },
+        {
+            "path": "",
+            "at_level": 25,
+            "monster_slug": "viviphyta"
+        },
+        {
+            "path": "",
+            "at_level": 24,
+            "monster_slug": "viviteel"
+        },
+        {
+            "path": "",
+            "at_level": 25,
+            "monster_slug": "vivitrans"
+        },
+        {
+            "path": "",
+            "at_level": 25,
+            "monster_slug": "vivitron"
+        }
+    ],
+    "shape": "serpent",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 130,
     "height": 0,
     "weight": 0,

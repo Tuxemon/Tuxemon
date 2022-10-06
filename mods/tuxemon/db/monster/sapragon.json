@@ -16,10 +16,18 @@
             "technique": "sting"
         }
     ],
-    "shape": "Dragon",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 55,
+            "monster_slug": "dragarbor"
+        }
+    ],
+    "shape": "dragon",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 137,
     "height": 0,
     "weight": 0,

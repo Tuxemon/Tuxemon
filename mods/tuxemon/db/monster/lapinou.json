@@ -16,10 +16,12 @@
             "technique": "perfect_cut"
         }
     ],
-    "shape": "Varmint",
+    "evolutions": [],
+    "shape": "varmint",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 112,
     "height": 60,
     "weight": 8,

@@ -16,10 +16,12 @@
             "technique": "thunderclap"
         }
     ],
-    "shape": "Humanoid",
+    "evolutions": [],
+    "shape": "humanoid",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 6,
     "height": 110,
     "weight": 125,

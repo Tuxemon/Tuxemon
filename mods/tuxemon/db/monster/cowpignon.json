@@ -16,11 +16,13 @@
             "technique": "petrify"
         }
     ],
-    "shape": "Sprite",
+    "evolutions": [],
+    "shape": "sprite",
     "types": [
         "Wood",
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 106,
     "height": 30.48,
     "weight": 2,

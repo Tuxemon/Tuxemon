@@ -112,6 +112,11 @@ msgstr "Room 31, Block 2, Omnichannel Tower, Cotton Town\n"
 "\n"
 "There's a kiss mark next to the address"
 
+# Money notification
+
+msgid "player_wallet"
+msgstr "${{name}}'s wallet: ${{currency}}${{money}}"
+
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
 msgid "combat_run"
@@ -1564,13 +1569,13 @@ msgid "nudiflot_female_description"
 msgstr "It eats and stores the poison of the sea creatures that it feeds upon."
 
 msgid "nudiflot_female"
-msgstr "Nudiflot (F)"
+msgstr "Nudiflot"
 
 msgid "nudiflot_male_description"
 msgstr "Its feathery antennas snap off if it is attacked, confusing the predator."
 
 msgid "nudiflot_male"
-msgstr "Nudiflot (M)"
+msgstr "Nudiflot"
 
 msgid "nudikill_description"
 msgstr "They are called Dark Bishops because their heads are reminiscent of a bishop's hat."
@@ -3672,11 +3677,8 @@ msgstr "I used to enjoy coming here every weekend to look at the paintings. \n N
 msgid "spyder_cottonart_florist"
 msgstr "What do you think of the blue painting of a ship in the harbour? \n It's in the impressionist style - that means it tries to capture how light looks and behaves. \n See the small red sun reflected along the waves of the water?"
 
-msgid "spyder_cottonart_intro"
-msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is $50. It goes towards the company's annual dividend."
-
 msgid "spyder_cottonart_shopkeeper"
-msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is $50. It goes towards the company's annual dividend."
+msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is ${{currency}}50. It goes towards the company's annual dividend."
 
 msgid "spyder_cottonscoop_shopassistant"
 msgstr "Capture Devices allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. \n Select them during battle from your Item menu."
@@ -3760,7 +3762,7 @@ msgid "spyder_citypark_edith2"
 msgstr "Hmm, you may have a point."
 
 msgid "spyder_museum_entrance1"
-msgstr "Welcome to the museum of natural history! It's free, but depends on your generous donations. Would you consider a donation of $50?"
+msgstr "Welcome to the museum of natural history! It's free, but depends on your generous donations. Would you consider a donation of ${{currency}}50?"
 
 msgid "spyder_museum_entrance2"
 msgstr ""
@@ -3768,7 +3770,7 @@ msgstr ""
 "sponsors."
 
 msgid "spyder_museum_entrance3"
-msgstr "Unfortunately we now need to charge for tickets. $100 please."
+msgstr "Unfortunately we now need to charge for tickets. ${{currency}}100 please."
 
 msgid "spyder_museum_shopkeeper_chat"
 msgstr "I volunteer to keep the museum as affordable as possible. "
@@ -4220,7 +4222,7 @@ msgstr "Simplistic and clumsy brushstrokes and a pedestrian theme. Bah! Another 
 msgid "spyder_flower_muse1"
 msgstr "He's so hard on himself, never happy with something he's painted. He's so forgetful, too. Perhaps I could buy a painting "
 msgid "spyder_flower_muse2"
-msgstr "What? You have a painting. Oooh - would you let me buy it? I have $2,000."
+msgstr "What? You have a painting. Oooh - would you let me buy it? I have ${{currency}}2,000."
 msgid "spyder_flower_artist_clipping"
 msgstr "A newspaper clipping is on the wall. It begins: \n \"The famous art critic has put away his poison pen and picked up the paint brush. \n After years of tearing down artists, can he do any better himself?\""
 msgid "spyder_flower_artist2"

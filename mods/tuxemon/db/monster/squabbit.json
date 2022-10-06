@@ -16,10 +16,18 @@
             "technique": "one_two"
         }
     ],
-    "shape": "Varmint",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "rabbitosaur"
+        }
+    ],
+    "shape": "varmint",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 43,
     "height": 60,
     "weight": 10,

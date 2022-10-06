@@ -16,11 +16,19 @@
             "technique": "splinter"
         }
     ],
-    "shape": "Grub",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 9,
+            "monster_slug": "katacoon"
+        }
+    ],
+    "shape": "grub",
     "types": [
         "Metal",
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 55,
     "height": 0,
     "weight": 0,

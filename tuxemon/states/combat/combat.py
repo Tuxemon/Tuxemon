@@ -56,6 +56,7 @@ from pygame.rect import Rect
 from tuxemon import audio, graphics, state, tools
 from tuxemon.animation import Task
 from tuxemon.combat import check_status, defeated, fainted, get_awake_monsters
+from tuxemon.db import SeenStatus
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -67,7 +68,7 @@ from tuxemon.sprite import Sprite
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.states.transition.fade import FadeOutTransition
 from tuxemon.surfanim import SurfaceAnimation
-from tuxemon.technique import Technique
+from tuxemon.technique.technique import Technique
 from tuxemon.tools import assert_never
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
@@ -379,6 +380,11 @@ class CombatState(CombatAnimations):
                 var["battle_last_monster_type"] = monster_record.slug
                 var["battle_last_monster_category"] = monster_record.category
                 var["battle_last_monster_shape"] = monster_record.shape
+                # Avoid reset string to seen if monster has already been caught
+                if monster_record.slug not in self.players[0].tuxepedia:
+                    self.players[0].tuxepedia[
+                        monster_record.slug
+                    ] = SeenStatus.seen
 
         elif phase == "decision phase":
             self.reset_status_icons()
@@ -426,7 +432,9 @@ class CombatState(CombatAnimations):
             if self.is_trainer_battle:
                 var["battle_last_trainer"] = self.players[1].slug
                 var["battle_draw"] = +1
-                var["percent_draw"] = round((var["battle_draw"] / var["battle_total"])*100)
+                var["percent_draw"] = round(
+                    (var["battle_draw"] / var["battle_total"]) * 100
+                )
                 # track battles against NPC
                 self.players[0].battle_history[self.players[1].slug] = "draw"
 
@@ -449,9 +457,13 @@ class CombatState(CombatAnimations):
                 if self.is_trainer_battle:
                     var["battle_last_trainer"] = self.players[1].slug
                     var["battle_won"] = +1
-                    var["percent_win"] = round((var["battle_won"] / var["battle_total"])*100)
+                    var["percent_win"] = round(
+                        (var["battle_won"] / var["battle_total"]) * 100
+                    )
                     # track battles against NPC
-                    self.players[0].battle_history[self.players[1].slug] = "won"
+                    self.players[0].battle_history[
+                        self.players[1].slug
+                    ] = "won"
 
             else:
                 var["battle_last_result"] = "lost"
@@ -460,9 +472,13 @@ class CombatState(CombatAnimations):
                 if self.is_trainer_battle:
                     var["battle_last_trainer"] = self.players[1].slug
                     var["battle_lost"] = +1
-                    var["percent_lose"] = round((var["battle_lost"] / var["battle_total"])*100)
+                    var["percent_lose"] = round(
+                        (var["battle_lost"] / var["battle_total"]) * 100
+                    )
                     # track battles against NPC
-                    self.players[0].battle_history[self.players[1].slug] = "lost"
+                    self.players[0].battle_history[
+                        self.players[1].slug
+                    ] = "lost"
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
@@ -472,6 +488,7 @@ class CombatState(CombatAnimations):
         elif phase == "end combat":
             self.players[0].set_party_status()
             self.end_combat()
+            self.evolve()
 
         else:
             assert_never(phase)
@@ -966,6 +983,10 @@ class CombatState(CombatAnimations):
                     # TODO: Don't end combat right away; only works with SP,
                     # and 1 member parties end combat right here
                     if result["success"]:
+                        # Tuxepedia: set monster as caught (2)
+                        self.players[0].tuxepedia[
+                            target.slug
+                        ] = SeenStatus.caught
                         # Display 'Gotcha!' first.
                         self.task(self.end_combat, action_time + 0.5)
                         self.task(
@@ -980,9 +1001,14 @@ class CombatState(CombatAnimations):
                     msg_type = (
                         "use_success" if result["success"] else "use_failure"
                     )
+                    context = {
+                        "user": getattr(user, "name", ""),
+                        "name": technique.name,
+                        "target": target.name,
+                    }
                     template = getattr(technique, msg_type)
                     if template:
-                        message += "\n" + T.translate(template)
+                        message += "\n" + T.format(template, context)
 
             self.alert(message)
             self.suppress_phase_change(action_time)
@@ -1148,6 +1174,21 @@ class CombatState(CombatAnimations):
         # TODO: non SP things
         del self.monsters_in_play[player]
         self.players.remove(player)
+
+    def evolve(self) -> None:
+        for monster in self.players[0].monsters:
+            for evolution in monster.evolutions:
+                # check the path field, path field signals evolution item based
+                if not evolution.path:
+                    if evolution.at_level <= monster.level:
+                        logger.info(
+                            "{} evolved into {}!".format(
+                                monster.name, evolution.monster_slug
+                            )
+                        )
+                        self.players[0].evolve_monster(
+                            monster, evolution.monster_slug
+                        )
 
     def end_combat(self) -> None:
         """End the combat."""

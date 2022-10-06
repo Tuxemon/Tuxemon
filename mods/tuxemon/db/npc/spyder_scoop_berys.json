@@ -1,5 +1,6 @@
 {
   "slug": "spyder_scoop_berys",
+  "gender": "male",
   "sprite_name": "professor1",
   "monsters": [
     {
@@ -7,14 +8,16 @@
       "level": 40,
       "slug": "propellercat",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     },
     {
       "name": "Embazook",
       "level": 35,
       "slug": "embazook",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     }
   ],
   "combat_front": "professor.png",

@@ -1,5 +1,6 @@
 {
   "slug": "spyder_scoop_taggart",
+  "gender": "female",
   "sprite_name": "nurse",
   "monsters": [
     {
@@ -7,21 +8,24 @@
       "level": 30,
       "slug": "elofly",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     },
     {
       "name": "Elowind",
       "level": 35,
       "slug": "elowind",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "female"
     },
     {
       "name": "Lapinou",
       "level": 30,
       "slug": "lapinou",
       "exp_give_mod": 3,
-      "exp_req_mod": 27
+      "exp_req_mod": 27,
+      "gender": "male"
     }
   ],
   "combat_front": "nurse.png",

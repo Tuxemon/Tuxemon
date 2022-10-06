@@ -1432,6 +1432,11 @@ msgstr ""
 "\n"
 "Il y a une marque de baiser à côté de l'adresse"
 
+# Money notification
+
+msgid "player_wallet"
+msgstr "Portefeuille de ${{name}}: ${{money}}${{currency}}"
+
 # Allie's Address
 msgid "allies_address"
 msgstr "Adresse d'Allie"
@@ -2962,7 +2967,7 @@ msgstr ""
 msgid "spyder_museum_entrance3"
 msgstr ""
 "Malheureusement, nous faisons payer les billets maintenant. Ça vous fera "
-"100$."
+"100${{currency}}."
 
 msgid "spyder_museum_entrance2"
 msgstr ""
@@ -3351,7 +3356,7 @@ msgstr ""
 
 msgid "spyder_flower_muse2"
 msgstr ""
-"Quoi ? Vous avez un tableau. Ouah ! - vous voulez me le vendre ? J'ai 2 000$."
+"Quoi ? Vous avez un tableau. Ouah ! - vous voulez me le vendre ? J'ai 2 000${{currency}}."
 
 msgid "spyder_route6_rigel2"
 msgstr "Là, il n'y a rien à faire."
@@ -4370,7 +4375,7 @@ msgstr "Hé, vous ne sembliez pas du tout apeuré !"
 msgid "spyder_museum_entrance1"
 msgstr ""
 "Bienvenue au musée d'histoire naturelle ! C'est gratuit, mais ça dépend des "
-"généreux dons. Voulez-vous nous faire un don de 50$ ?"
+"généreux dons. Voulez-vous nous faire un don de 50${{currency}} ?"
 
 msgid "spyder_route4_roger"
 msgstr "Roger"
@@ -4603,22 +4608,13 @@ msgstr ""
 "${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} "
 "${{name}} ${{name}} ${{name}}"
 
-msgid "spyder_cottonart_intro"
-msgstr ""
-"Bienvenue à la Galerie d'Art de Cotonville. Ah - je voulais dire au Magasin "
-"d'Art.\n"
-" Depuis qu'ils nous ont retiré les aides, nous devons vendre les tableaux "
-"plutôt que de simplement les exposer.\n"
-" L'entrée est à 50$. Ça nous sert à payer le dividende annuel de "
-"l'entreprise."
-
 msgid "spyder_cottonart_shopkeeper"
 msgstr ""
 "Bienvenue à la Galerie d'Art de Cotonville. Ah - je voulais dire au Magasin "
 "d'Art.\n"
 " Depuis qu'ils nous ont retiré les aides, nous devons vendre les tableaux "
 "plutôt que de simplement les exposer.\n"
-" L'entrée est à 50$. Ça nous sert à payer le dividende annuel de "
+" L'entrée est à 50${{currency}}. Ça nous sert à payer le dividende annuel de "
 "l'entreprise."
 
 msgid "spyder_cotton_tuxepediaintro"

@@ -16,10 +16,12 @@
             "technique": "sleeping_powder"
         }
     ],
-    "shape": "Grub",
+    "evolutions": [],
+    "shape": "grub",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 37,
     "height": 0,
     "weight": 0,

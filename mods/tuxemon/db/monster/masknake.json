@@ -16,10 +16,12 @@
             "technique": "supernova"
         }
     ],
-    "shape": "Serpent",
+    "evolutions": [],
+    "shape": "serpent",
     "types": [
         "Fire"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 114,
     "height": 0,
     "weight": 0,

@@ -16,10 +16,12 @@
             "technique": "peck"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [],
+    "shape": "flier",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 139,
     "height": 0,
     "weight": 0,

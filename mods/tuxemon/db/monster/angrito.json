@@ -16,11 +16,13 @@
             "technique": "flamethrower"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [],
+    "shape": "blob",
     "types": [
         "Fire",
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 166,
     "height": 90,
     "weight": 55,

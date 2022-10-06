@@ -16,10 +16,18 @@
             "technique": "wing_tip"
         }
     ],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 26,
+            "monster_slug": "pairagrim"
+        }
+    ],
     "shape": "flier",
     "types": [
         "wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 172,
     "height": 70,
     "weight": 4,

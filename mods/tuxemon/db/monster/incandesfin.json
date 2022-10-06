@@ -16,10 +16,18 @@
             "technique": "starfall"
         }
     ],
-    "shape": "Aquatic",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 36,
+            "monster_slug": "lightmare"
+        }
+    ],
+    "shape": "aquatic",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 68,
     "height": 250,
     "weight": 150,

@@ -16,10 +16,12 @@
             "technique": "eyebite"
         }
     ],
-    "shape": "Grub",
+    "evolutions": [],
+    "shape": "grub",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 34,
     "height": 0,
     "weight": 0,

@@ -16,10 +16,12 @@
             "technique": "wall_of_steel"
         }
     ],
-    "shape": "Varmint",
+    "evolutions": [],
+    "shape": "varmint",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 162,
     "height": 100,
     "weight": 10,

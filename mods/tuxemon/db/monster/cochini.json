@@ -16,10 +16,12 @@
             "technique": "headbutt"
         }
     ],
-    "shape": "Varmint",
+    "evolutions": [],
+    "shape": "varmint",
     "types": [
         "Earth"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 103,
     "height": 80,
     "weight": 15,

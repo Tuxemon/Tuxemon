@@ -16,10 +16,18 @@
             "technique": "one_two"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 18,
+            "monster_slug": "corvix"
+        }
+    ],
+    "shape": "flier",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 150,
     "height": 70,
     "weight": 6,

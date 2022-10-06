@@ -16,11 +16,13 @@
             "technique": "electrical_storm"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [],
+    "shape": "blob",
     "types": [
         "Fire",
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 142,
     "height": 200,
     "weight": 0,

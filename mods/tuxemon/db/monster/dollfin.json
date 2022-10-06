@@ -16,10 +16,33 @@
             "technique": "flow"
         }
     ],
-    "shape": "Aquatic",
+    "evolutions": [
+        {
+            "path": "water_booster",
+            "at_level": 0,
+            "monster_slug": "bigfin"
+        },
+        {
+            "path": "sweet_sand",
+            "at_level": 0,
+            "monster_slug": "bigfin"
+        },
+        {
+            "path": "metal_booster",
+            "at_level": 0,
+            "monster_slug": "sharpfin"
+        },
+        {
+            "path": "sea_girdle",
+            "at_level": 0,
+            "monster_slug": "sharpfin"
+        }
+    ],
+    "shape": "aquatic",
     "types": [
         "Water"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 23,	
     "height": 250,
     "weight": 190,

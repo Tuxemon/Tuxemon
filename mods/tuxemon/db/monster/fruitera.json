@@ -16,10 +16,12 @@
             "technique": "splinter"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [],
+    "shape": "flier",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 160,
     "height": 30,
     "weight": 2,

@@ -20,10 +20,12 @@
             "technique": "peregrine"
         }
     ],
+    "evolutions": [],
     "shape": "flier",
     "types": [
         "wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 173,
     "height": 0,
     "weight": 10,

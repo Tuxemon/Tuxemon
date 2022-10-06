@@ -23,7 +23,7 @@ events:
     type: "event"
   Give Money:
     actions:
-    - variable_math money,+,1000000
+    - set_money player,1000000
     - set_variable xero_starting_money:yes
     conditions:
     - not variable_set xero_starting_money:yes
@@ -37,3 +37,31 @@ events:
     width: 1
     x: 4
     y: 5
+  Resting in Bed:
+    actions:
+    - screen_transition 1
+    - wait 0.5
+    - translated_dialog spyder_papertown_restinbed
+    - set_monster_health ,
+    - set_monster_status ,
+    - set_variable teleport_faint:player_house_bedroom.tmx 7 6
+    conditions:
+    - is button_pressed K_RETURN
+    - is player_facing_tile
+    height: 2
+    width: 1
+    x: 1
+    y: 3
+    type: "event"
+  Auto Healing Teleported:
+    actions:
+    - set_monster_health ,
+    - set_monster_status ,
+    - set_variable battle_last_result:none
+    conditions:
+    - is variable_set battle_last_result:lost
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"

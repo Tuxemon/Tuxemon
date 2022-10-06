@@ -16,10 +16,12 @@
             "technique": "sleeping_powder"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [],
+    "shape": "blob",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 77,
     "height": 0,
     "weight": 0,

@@ -16,10 +16,18 @@
             "technique": "glower"
         }
     ],
-    "shape": "Serpent",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "eyesore"
+        }
+    ],
+    "shape": "serpent",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 45,
     "height": 0,
     "weight": 0,

@@ -16,10 +16,12 @@
             "technique": "ram"
         }
     ],
-    "shape": "Sprite",
+    "evolutions": [],
+    "shape": "sprite",
     "types": [
         "Wood"
     ],
+    "possible_genders": ["male", "female"],
     "txmn_id": 28,
     "height": 0,
     "weight": 0,

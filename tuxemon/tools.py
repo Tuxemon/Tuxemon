@@ -40,6 +40,7 @@ from __future__ import annotations
 
 import logging
 import typing
+from dataclasses import fields
 from itertools import zip_longest
 from typing import (
     TYPE_CHECKING,
@@ -247,6 +248,46 @@ def number_or_variable(
             raise ValueError(f"invalid number or game variable {value}")
 
 
+# TODO: stability/testing
+def cast_value(
+    i: Tuple[Tuple[ValidParameterTypes, str], Any],
+) -> Any:
+
+    (type_constructors, param_name), value = i
+
+    if not isinstance(type_constructors, Sequence):
+        type_constructors = [type_constructors]
+
+    if (value is None or value == "") and (
+        None in type_constructors or type(None) in type_constructors
+    ):
+        return None
+
+    for constructor in type_constructors:
+
+        if not constructor:
+            continue
+
+        if isinstance(value, constructor):
+            return value
+
+        elif typing.get_origin(constructor) is typing.Literal:
+            allowed_values = typing.get_args(constructor)
+            if value in allowed_values:
+                return value
+
+        else:
+            try:
+                return constructor(value)
+            except (ValueError, TypeError):
+                pass
+
+    raise ValueError(
+        f"Error parsing parameter {param_name} with value {value} and "
+        f"constructor list {type_constructors}",
+    )
+
+
 def cast_values(
     parameters: Sequence[Any],
     valid_parameters: Sequence[Tuple[ValidParameterTypes, str]],
@@ -265,36 +306,8 @@ def cast_values(
 
     """
 
-    # TODO: stability/testing
-    def cast(
-        i: Tuple[Tuple[ValidParameterTypes, str], Any],
-    ) -> Any:
-
-        (type_constructors, param_name), value = i
-
-        if not isinstance(type_constructors, Sequence):
-            type_constructors = [type_constructors]
-
-        if (value is None or value == "") and (
-            None in type_constructors or type(None) in type_constructors
-        ):
-            return None
-
-        for constructor in type_constructors:
-
-            if constructor:
-                try:
-                    return constructor(value)
-                except (ValueError, TypeError):
-                    pass
-
-        raise ValueError(
-            f"Error parsing parameter {param_name} with value {value} and "
-            f"constructor list {type_constructors}",
-        )
-
     try:
-        return list(map(cast, zip_longest(valid_parameters, parameters)))
+        return list(map(cast_value, zip_longest(valid_parameters, parameters)))
     except ValueError:
         logger.warning("Invalid parameters passed:")
         logger.warning(f"expected: {valid_parameters}")
@@ -309,6 +322,23 @@ def get_types_tuple(
         return typing.get_args(param_type)
     else:
         return (param_type,)
+
+
+def cast_dataclass_parameters(self):
+    """
+    Takes a dataclass object and casts its __init__ values to the correct type
+    """
+    type_hints = typing.get_type_hints(self.__class__)
+    for field in fields(self):
+        if field.init:
+            field_name = field.name  # e.g "map_name"
+            type_hint = type_hints[field_name]  # e.g. Optional[str]
+            constructors = get_types_tuple(
+                type_hint
+            )  # e.g. (<class 'str'>, <class 'NoneType'>)
+            old_value = getattr(self, field_name)
+            new_value = cast_value(((constructors, field_name), old_value))
+            setattr(self, field_name, new_value)
 
 
 def cast_parameters_to_namedtuple(

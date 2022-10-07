@@ -21,19 +21,16 @@
 from __future__ import annotations
 
 import uuid
-from typing import NamedTuple, Union, final
+from dataclasses import dataclass
+from typing import Union, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
 
-class RemoveMonsterActionParameters(NamedTuple):
-    instance_id: str
-    trainer_slug: Union[str, None]
-
-
 @final
-class RemoveMonsterAction(EventAction[RemoveMonsterActionParameters]):
+@dataclass
+class RemoveMonsterAction(EventAction):
     """
     Remove a monster from the given trainer's party if the monster is there.
 
@@ -53,12 +50,13 @@ class RemoveMonsterAction(EventAction[RemoveMonsterActionParameters]):
     """
 
     name = "remove_monster"
-    param_class = RemoveMonsterActionParameters
+    instance_id: str
+    trainer_slug: Union[str, None] = None
 
     def start(self) -> None:
-        iid = self.session.player.game_variables[self.parameters.instance_id]
+        iid = self.session.player.game_variables[self.instance_id]
         instance_id = uuid.UUID(iid)
-        trainer_slug = self.parameters.trainer_slug
+        trainer_slug = self.trainer_slug
 
         trainer = (
             self.session.player

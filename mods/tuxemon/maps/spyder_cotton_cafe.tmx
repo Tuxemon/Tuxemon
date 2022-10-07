@@ -105,7 +105,7 @@
   <object id="16" name="Talk Barmaid Intro" type="event" x="160" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cottoncafe_barmaidintro"/>
-    <property name="act2" value="act1 set_variable introdcottoncafe:yes"/>
+    <property name="act2" value="set_variable introdcottoncafe:yes"/>
     <property name="behav1" value="talk spyder_cottontown_barmaid"/>
     <property name="cond1" value="not variable_set introdcottoncafe:yes"/>
    </properties>

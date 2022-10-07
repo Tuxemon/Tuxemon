@@ -22,7 +22,8 @@
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, Union, final
+from dataclasses import dataclass
+from typing import Union, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import number_or_variable
@@ -30,15 +31,9 @@ from tuxemon.tools import number_or_variable
 logger = logging.getLogger(__name__)
 
 
-class VariableMathActionParameters(NamedTuple):
-    var1: str
-    operation: str
-    var2: str
-    result: Union[str, None]
-
-
 @final
-class VariableMathAction(EventAction[VariableMathActionParameters]):
+@dataclass
+class VariableMathAction(EventAction):
     """
     Perform a mathematical operation on the player.game_variables dictionary.
 
@@ -61,19 +56,22 @@ class VariableMathAction(EventAction[VariableMathActionParameters]):
     """
 
     name = "variable_math"
-    param_class = VariableMathActionParameters
+    var1: str
+    operation: str
+    var2: str
+    result: Union[str, None] = None
 
     def start(self) -> None:
         player = self.session.player
 
         # Read the parameters
-        var = self.parameters.var1
-        result = self.parameters.result
+        var = self.var1
+        result = self.result
         if result is None:
             result = var
         operand1 = number_or_variable(self.session, var)
-        operation = self.parameters.operation
-        operand2 = number_or_variable(self.session, self.parameters.var2)
+        operation = self.operation
+        operand2 = number_or_variable(self.session, self.var2)
 
         # Perform the operation on the variable
         if operation == "+":

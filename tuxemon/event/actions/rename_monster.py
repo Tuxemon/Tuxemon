@@ -25,7 +25,8 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
@@ -36,12 +37,9 @@ from tuxemon.states.monster import MonsterMenuState
 from tuxemon.states.world.worldstate import WorldState
 
 
-class RenameMonsterActionParameters(NamedTuple):
-    pass
-
-
 @final
-class RenameMonsterAction(EventAction[RenameMonsterActionParameters]):
+@dataclass
+class RenameMonsterAction(EventAction):
     """
     Open the monster menu and text input screens to rename a selected monster.
 
@@ -53,7 +51,6 @@ class RenameMonsterAction(EventAction[RenameMonsterActionParameters]):
     """
 
     name = "rename_monster"
-    param_class = RenameMonsterActionParameters
 
     def start(self) -> None:
         # Get a copy of the world state.

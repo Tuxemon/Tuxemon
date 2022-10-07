@@ -25,7 +25,8 @@ from __future__ import annotations
 
 import logging
 import uuid
-from typing import NamedTuple, Optional, Sequence, final
+from dataclasses import dataclass
+from typing import Optional, Sequence, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar
@@ -38,15 +39,10 @@ from tuxemon.tools import open_dialog
 logger = logging.getLogger(__name__)
 
 
-class SpawnMonsterActionParameters(NamedTuple):
-    npc_slug: str
-    breeding_mother: str
-    breeding_father: str
-
-
 # noinspection PyAttributeOutsideInit
 @final
-class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
+@dataclass
+class SpawnMonsterAction(EventAction):
     """
     Breed a new monster.
 
@@ -70,13 +66,14 @@ class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
     """
 
     name = "spawn_monster"
-    param_class = SpawnMonsterActionParameters
+    npc_slug: str
+    breeding_mother: str
+    breeding_father: str
 
     def start(self) -> None:
-        npc_slug, breeding_mother, breeding_father = self.parameters
         world = self.session.client.get_state_by_name(WorldState)
 
-        npc_slug = npc_slug.replace("player", "npc_red")
+        npc_slug = self.npc_slug.replace("player", "npc_red")
         trainer = world.get_entity(npc_slug)
         if trainer is None:
             logger.error(
@@ -84,8 +81,8 @@ class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
             )
             return
 
-        mother_id = uuid.UUID(trainer.game_variables[breeding_mother])
-        father_id = uuid.UUID(trainer.game_variables[breeding_father])
+        mother_id = uuid.UUID(trainer.game_variables[self.breeding_mother])
+        father_id = uuid.UUID(trainer.game_variables[self.breeding_father])
 
         mother = trainer.find_monster_by_id(mother_id)
         if mother is None:

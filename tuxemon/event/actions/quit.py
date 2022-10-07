@@ -21,17 +21,15 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 
 
-class QuitActionParameters(NamedTuple):
-    pass
-
-
 @final
-class QuitAction(EventAction[QuitActionParameters]):
+@dataclass
+class QuitAction(EventAction):
     """
     Completely quit the game.
 
@@ -43,7 +41,6 @@ class QuitAction(EventAction[QuitActionParameters]):
     """
 
     name = "quit"
-    param_class = QuitActionParameters
 
     def start(self) -> None:
         # TODO: API

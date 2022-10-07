@@ -22,7 +22,8 @@
 from __future__ import annotations
 
 import random as rd
-from typing import NamedTuple, Optional, Union, final
+from dataclasses import dataclass
+from typing import Optional, Union, final
 
 from tuxemon import monster
 from tuxemon.db import SeenStatus, db
@@ -31,13 +32,9 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
 
 
-class RandomMonsterActionParameters(NamedTuple):
-    monster_level: int
-    trainer_slug: Union[str, None]
-
-
 @final
-class RandomMonsterAction(EventAction[RandomMonsterActionParameters]):
+@dataclass
+class RandomMonsterAction(EventAction):
     """
     Add a monster to the specified trainer's party if there is room.
 
@@ -54,20 +51,19 @@ class RandomMonsterAction(EventAction[RandomMonsterActionParameters]):
     """
 
     name = "random_monster"
-    param_class = RandomMonsterActionParameters
+    monster_level: int
+    trainer_slug: Union[str, None] = None
 
     def start(self) -> None:
 
-        monster_level, trainer_slug = self.parameters
-
         trainer: Optional[NPC]
-        if trainer_slug is None:
+        if self.trainer_slug is None:
             trainer = self.session.player
         else:
-            trainer = get_npc(self.session, trainer_slug)
+            trainer = get_npc(self.session, self.trainer_slug)
 
         assert trainer, "No Trainer found with slug '{}'".format(
-            trainer_slug or "player"
+            self.trainer_slug or "player"
         )
 
         # list is required as choice expects a sequence
@@ -75,7 +71,7 @@ class RandomMonsterAction(EventAction[RandomMonsterActionParameters]):
 
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_slug)
-        current_monster.set_level(monster_level)
+        current_monster.set_level(self.monster_level)
         current_monster.current_hp = current_monster.hp
 
         trainer.add_monster(current_monster)

@@ -22,19 +22,17 @@
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, Optional, final
+from dataclasses import dataclass
+from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
 
 
-class BattlesPrintActionParameters(NamedTuple):
-    variable: Optional[str]
-
-
 @final
-class BattlesAction(EventAction[BattlesPrintActionParameters]):
+@dataclass
+class BattlesAction(EventAction):
     """
     Print the current value of battle history to the console.
 
@@ -52,12 +50,12 @@ class BattlesAction(EventAction[BattlesPrintActionParameters]):
     """
 
     name = "battles_print"
-    param_class = BattlesPrintActionParameters
+    variable: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
 
-        variable = self.parameters.variable
+        variable = self.variable
         if variable:
             if variable in player.battle_history:
                 print(f"{variable}: {player.battle_history[variable]}")

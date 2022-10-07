@@ -21,7 +21,8 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -29,13 +30,9 @@ from tuxemon.map import dirs2, get_direction
 from tuxemon.npc import NPC
 
 
-class NpcFaceActionParameters(NamedTuple):
-    npc_slug: str
-    direction: str  # Using Direction as the typehint breaks the Action
-
-
 @final
-class NpcFaceAction(EventAction[NpcFaceActionParameters]):
+@dataclass
+class NpcFaceAction(EventAction):
     """
     Make the NPC face a certain direction.
 
@@ -52,12 +49,13 @@ class NpcFaceAction(EventAction[NpcFaceActionParameters]):
     """
 
     name = "npc_face"
-    param_class = NpcFaceActionParameters
+    npc_slug: str
+    direction: str  # Using Direction as the typehint breaks the Action
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.npc_slug)
         assert npc
-        direction = self.parameters.direction
+        direction = self.direction
 
         target: NPC
         if direction not in dirs2:

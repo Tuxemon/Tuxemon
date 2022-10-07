@@ -23,8 +23,10 @@ from __future__ import annotations
 
 import logging
 import warnings
-from typing import NamedTuple, Optional, final
+from dataclasses import dataclass, field
+from typing import Optional, Sequence, final
 
+from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar
 from tuxemon.locale import replace_text
@@ -35,13 +37,9 @@ from tuxemon.tools import open_dialog
 logger = logging.getLogger(__name__)
 
 
-class DialogChainActionParameters(NamedTuple):
-    text: str
-    avatar: str
-
-
 @final
-class DialogChainAction(EventAction[DialogChainActionParameters]):
+@dataclass
+class DialogChainAction(EventAction):
     """
     Open a dialog and waits.
 
@@ -68,7 +66,27 @@ class DialogChainAction(EventAction[DialogChainActionParameters]):
     """
 
     name = "dialog_chain"
-    param_class = DialogChainActionParameters
+    text: str = field(init=False)
+    avatar: Optional[str] = field(init=False)
+    raw_parameters: Sequence[str] = field(init=False)
+
+    def __init__(self, *args):
+        super().__init__()
+        self.raw_parameters = args
+
+        self.avatar = None
+        if len(self.raw_parameters) > 1:
+            avatar_str = self.raw_parameters[-1]
+            if avatar_str.isdigit() or db.has_entry(avatar_str, "monster"):
+                self.avatar = avatar_str
+
+        if self.avatar:
+            # hack to allow unescaped commas in the dialog string
+            self.text = ", ".join(self.raw_parameters[:-1])
+        else:
+            # If we were unable to load an avatar then this was
+            # probably normal text
+            self.text = ", ".join(self.raw_parameters)
 
     def start(self) -> None:
         warnings.warn(
@@ -79,10 +97,7 @@ class DialogChainAction(EventAction[DialogChainActionParameters]):
             DeprecationWarning,
         )
 
-        # hack to allow unescaped commas in the dialog string
-        text = ", ".join(self.raw_parameters)
-        text = replace_text(self.session, text)
-
+        text = replace_text(self.session, self.text)
         # If text is "${{end}}, then close the current dialog
         if not text == "${{end}}":
             self.stop()
@@ -94,13 +109,10 @@ class DialogChainAction(EventAction[DialogChainActionParameters]):
                 dialog.text_queue.append(text)
             except ValueError:
                 # no, so create new dialog with this line
-                avatar = get_avatar(self.session, self.parameters.avatar)
-                self.open_dialog(text, avatar)
+                self.open_dialog(text, get_avatar(self.session, self.avatar))
 
     def update(self) -> None:
-        # hack to allow unescaped commas in the dialog string
-        text = ", ".join(self.raw_parameters)
-        if text == "${{end}}":
+        if self.text == "${{end}}":
             try:
                 self.session.client.get_state_by_name(DialogState)
             except ValueError:

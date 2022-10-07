@@ -21,18 +21,15 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, Union, final
+from dataclasses import dataclass
+from typing import Union, final
 
 from tuxemon.event.eventaction import EventAction
 
 
-class AddItemActionParameters(NamedTuple):
-    item_slug: str
-    quantity: Union[int, None]
-
-
 @final
-class AddItemAction(EventAction[AddItemActionParameters]):
+@dataclass
+class AddItemAction(EventAction):
     """
     Add an item to the current player's inventory.
 
@@ -48,16 +45,17 @@ class AddItemAction(EventAction[AddItemActionParameters]):
     """
 
     name = "add_item"
-    param_class = AddItemActionParameters
+    item_slug: str
+    quantity: Union[int, None] = None
 
     def start(self) -> None:
         player = self.session.player
-        if self.parameters.quantity is None:
+        if self.quantity is None:
             quantity = 1
         else:
-            quantity = self.parameters.quantity
+            quantity = self.quantity
         player.alter_item_quantity(
             self.session,
-            self.parameters.item_slug,
+            self.item_slug,
             quantity,
         )

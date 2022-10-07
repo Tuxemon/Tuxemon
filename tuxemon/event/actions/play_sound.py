@@ -21,18 +21,16 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon import audio
 from tuxemon.event.eventaction import EventAction
 
 
-class PlaySoundActionParameters(NamedTuple):
-    filename: str
-
-
 @final
-class PlaySoundAction(EventAction[PlaySoundActionParameters]):
+@dataclass
+class PlaySoundAction(EventAction):
     """
     Play a sound from "resources/sounds/".
 
@@ -47,9 +45,8 @@ class PlaySoundAction(EventAction[PlaySoundActionParameters]):
     """
 
     name = "play_sound"
-    param_class = PlaySoundActionParameters
+    filename: str
 
     def start(self) -> None:
-        filename = self.parameters.filename
-        sound = audio.load_sound(filename)
+        sound = audio.load_sound(self.filename)
         sound.play()

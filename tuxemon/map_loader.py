@@ -164,6 +164,10 @@ class TMXMapLoader:
 
     """
 
+    def __init__(self):
+        # Makes mocking easier during tests
+        self.image_loader = scaled_image_loader
+
     def load(self, filename: str) -> TuxemonMap:
         """Load map data from a tmx map file.
 
@@ -196,7 +200,7 @@ class TMXMapLoader:
         """
         data = pytmx.TiledMap(
             filename=filename,
-            image_loader=scaled_image_loader,
+            image_loader=self.image_loader,
             pixelalpha=True,
         )
         tile_size = (data.tilewidth, data.tileheight)

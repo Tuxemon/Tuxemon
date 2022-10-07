@@ -205,8 +205,13 @@ class EventEngine:
             logger.warning(error)
             return None
 
-        else:
-            return action(self.session, parameters)
+        try:
+            return action(*parameters)
+        except Exception as e:
+            logger.warning(
+                f"Error running {name}. Could not instantiate {action} with parameters {parameters}: {e}"
+            )
+            return None
 
     def get_actions(self) -> List[Type[EventAction]]:
         """

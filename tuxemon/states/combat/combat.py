@@ -135,7 +135,9 @@ class TechniqueAnimationCache:
             return sprite
 
     @staticmethod
-    def load_technique_animation(technique: Technique, is_flipped: bool) -> Optional[Sprite]:
+    def load_technique_animation(
+        technique: Technique, is_flipped: bool
+    ) -> Optional[Sprite]:
         """
         Return animated sprite from a technique.
 

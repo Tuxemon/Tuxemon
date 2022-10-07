@@ -333,7 +333,7 @@ class TechniqueModel(BaseModel):
     effects: Sequence[str] = Field(
         [], description="Effects this technique uses"
     )
-    flip_axes: Literal["x", "y", "xy"] = Field(
+    flip_axes: Literal["", "x", "y", "xy"] = Field(
         ...,
         description="Axes along which technique animation should be flipped"
     )

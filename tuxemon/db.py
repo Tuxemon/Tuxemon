@@ -335,7 +335,7 @@ class TechniqueModel(BaseModel):
     )
     flip_axes: Literal["x", "y", "xy"] = Field(
         ...,
-        description="Axes along which technique animation should be flipped"
+        description="Axes along which technique animation should be flipped",
     )
     target: Target = Field(
         ..., description="Target mapping of who this technique is used on"

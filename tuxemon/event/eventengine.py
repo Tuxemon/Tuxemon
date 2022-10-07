@@ -194,7 +194,6 @@ class EventEngine:
             that action is loaded. ``None`` otherwise.
 
         """
-        # TODO: make generic
         if parameters is None:
             parameters = list()
 

@@ -4,6 +4,7 @@
   "animation": "waterspurt",
   "category": "physical",
   "effects": [],
+  "flip_axes": "",
   "healing_power": 4.0,
   "icon": "",
   "is_area": false,

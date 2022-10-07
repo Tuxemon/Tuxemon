@@ -378,13 +378,13 @@ class CombatAnimations(ABC, Menu[None]):
 
         """
         if monster.gender == "male":
-            icon = "(M)"
+            icon = "♂"
         elif monster.gender == "female":
-            icon = "(F)"
+            icon = "♀"
         else:
-            icon = "(N)"
+            icon = ""
         return self.shadow_text(
-            f"{monster.name+icon: <12}Lv.{monster.level: >2}"
+            f"{monster.name+icon: <11}Lv.{monster.level: >2}"
         )
 
     def get_side(self, rect: Rect) -> Literal["left", "right"]:

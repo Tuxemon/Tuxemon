@@ -115,12 +115,13 @@ class TechniqueAnimationCache:
     def __init__(self) -> None:
         self._sprites: Dict[Technique, Optional[Sprite]] = {}
 
-    def get(self, technique: Technique) -> Optional[Sprite]:
+    def get(self, technique: Technique, is_flipped: bool) -> Optional[Sprite]:
         """
         Return a sprite usable as a technique animation.
 
         Parameters:
             technique: Technique whose sprite is requested.
+            is_flipped: Flag to determine whether animation frames should be flipped.
 
         Returns:
             Sprite associated with the technique animation.
@@ -129,17 +130,18 @@ class TechniqueAnimationCache:
         try:
             return self._sprites[technique]
         except KeyError:
-            sprite = self.load_technique_animation(technique)
+            sprite = self.load_technique_animation(technique, is_flipped)
             self._sprites[technique] = sprite
             return sprite
 
     @staticmethod
-    def load_technique_animation(technique: Technique) -> Optional[Sprite]:
+    def load_technique_animation(technique: Technique, is_flipped: bool) -> Optional[Sprite]:
         """
         Return animated sprite from a technique.
 
         Parameters:
             technique: Technique whose sprite is requested.
+            is_flipped: Flag to determine whether animation frames should be flipped.
 
         Returns:
             Sprite associated with the technique animation.
@@ -153,6 +155,8 @@ class TechniqueAnimationCache:
             image = graphics.load_and_scale(fn)
             images.append((image, frame_time))
         tech = SurfaceAnimation(images, False)
+        if is_flipped:
+            tech.flip(technique.flip_axes)
         return Sprite(animation=tech)
 
 
@@ -1023,7 +1027,13 @@ class CombatState(CombatAnimations):
                     )
                 )
 
-        tech_sprite = self._technique_cache.get(technique)
+        is_flipped = False
+        for trainer in self.ai_players:
+            if user in self.monsters_in_play[trainer]:
+                is_flipped = True
+                break
+        tech_sprite = self._technique_cache.get(technique, is_flipped)
+
         if result["success"] and target_sprite and tech_sprite:
             tech_sprite.rect.center = target_sprite.rect.center
             self.task(tech_sprite.animation.play, hit_delay)

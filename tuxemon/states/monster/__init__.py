@@ -223,11 +223,11 @@ class MonsterMenuState(Menu[Optional[Monster]]):
 
         # draw the name + gender
         if monster.gender == "male":
-            icon = "(M)"
+            icon = "♂"
         elif monster.gender == "female":
-            icon = "(F)"
+            icon = "♀"
         else:
-            icon = "(N)"
+            icon = ""
         text_rect = rect.inflate(-tools.scale(6), -tools.scale(6))
         draw_text(surface, monster.name + icon, text_rect, font=self.font)
 

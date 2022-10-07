@@ -10,6 +10,7 @@
   "category": "",
   "sort": "meta",
   "effects": [],
+  "flip_axes": "",
   "target": {
     "enemy monster": 0,
     "enemy team": 0,

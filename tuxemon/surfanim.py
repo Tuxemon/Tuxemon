@@ -205,6 +205,17 @@ class SurfaceAnimation:
         """
         self._internal_clock += time_delta
 
+    def flip(self, flip_axes: str) -> None:
+        """Flip all frames of an animation along the X-axis and/or Y-axis."""
+        # Empty string - animation won't be flipped
+        flip_x = "x" in flip_axes
+        flip_y = "y" in flip_axes
+
+        self._images = [
+            pygame.transform.flip(image, flip_x, flip_y)
+            for image in self._images
+        ]
+
     def _get_max_size(self) -> Tuple[int, int]:
         """
         Get the maximum size of the animation.

@@ -4,6 +4,7 @@
   "animation": "explosion_dusty_96",
   "category": "physical",
   "effects": [],
+  "flip_axes": "",
   "healing_power": 0,
   "icon": "",
   "is_area": false,

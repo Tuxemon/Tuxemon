@@ -7,6 +7,7 @@
   "effects": [
     "statchange"
   ],
+  "flip_axes": "",
   "healing_power": 0,
   "icon": "",
   "is_area": false,

@@ -4,8 +4,8 @@
   "animation": "torrentacle",
   "category": "physical",
   "effects": [
-    "poison",
-    "damage"
+    "damage",
+    "poison"
   ],
   "flip_axes": "",
   "healing_power": 0,

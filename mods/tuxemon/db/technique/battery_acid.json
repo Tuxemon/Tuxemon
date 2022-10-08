@@ -4,7 +4,8 @@
   "animation": "disintegrate",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "poison"
   ],
   "flip_axes": "",
   "healing_power": 0,

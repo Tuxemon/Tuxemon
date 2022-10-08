@@ -4,7 +4,8 @@
   "animation": "sparks_red",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "lifeleech"
   ],
   "flip_axes": "",
   "healing_power": 0,

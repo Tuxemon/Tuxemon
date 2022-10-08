@@ -1,0 +1,31 @@
+{
+  "tech_id": 104,
+  "slug": "status_softened",
+  "use_failure": "generic_failure",
+  "use_success": "generic_success",
+  "use_tech": "combat_used_x",
+  "animation": "drip_green",
+  "sfx": "sfx_pulse",
+  "icon": "",
+  "category": "softened",
+  "sort": "meta",
+  "effects": [
+    "statchange"
+  ],
+  "statspeed": {
+    "value": 0.5, "operation":"-"
+  },
+  "statarmour": {
+    "value": 0.5, "operation":"-"
+  },
+  "flip_axes": "",
+  "target": {
+    "enemy monster": 0,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0,
+    "item": 0
+  }
+}

@@ -4,7 +4,8 @@
   "animation": "fire enemy death 1",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "poison"
   ],
   "flip_axes": "",
   "healing_power": 0,

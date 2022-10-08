@@ -4,7 +4,8 @@
   "animation": "crystal",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "status status_blinded"
   ],
   "flip_axes": "",
   "healing_power": 0,

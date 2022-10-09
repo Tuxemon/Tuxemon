@@ -4,7 +4,8 @@
   "animation": "thud",
   "category": "physical",
   "effects": [
-    "damage"
+    "damage",
+    "status status_exhausted"
   ],
   "flip_axes": "",
   "healing_power": 0,

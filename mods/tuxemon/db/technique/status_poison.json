@@ -6,7 +6,7 @@
   "use_failure": "generic_failure",
   "animation": "drip_green",
   "sfx": "sfx_pulse",
-  "icon": "gfx/ui/icons/status/poison-icon.png",
+  "icon": "gfx/ui/icons/status/icon_poison.png",
   "category": "poison",
   "sort": "meta",
   "effects": [

@@ -6,7 +6,7 @@
   "use_failure": "combat_state_recover_failure",
   "animation": "greendrip",
   "sfx": "sfx_bite",
-  "icon": "gfx/ui/icons/status/recover-icon.png",
+  "icon": "gfx/ui/icons/status/icon_recover.png",
   "category": "recover",
   "sort": "meta",
   "effects": [

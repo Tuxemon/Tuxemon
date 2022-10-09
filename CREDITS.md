@@ -1087,6 +1087,77 @@ By ansimuz, [source link](https://opengameart.org/content/gothicvania-cemetery-p
 * ["X Attack"](https://wiki.tuxemon.org/File:X_attack.gif)
 Animation by josepharaoh99 and created for the Tuxemon project.
 
+### Technique Icons
+
+* ["icon_blinded.png"](https://wiki.tuxemon.org/File:Blind.png)
+[https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
+
+* ["icon_chargedup.png"](https://wiki.tuxemon.org/File:Glowing-large.png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["icon_charging.png"](https://wiki.tuxemon.org/File:7.png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["icon_confused.png"](https://wiki.tuxemon.org/File:Confused.png)
+[https://opengameart.org/content/pixel-icons-0 CC0 on OGA]
+
+* ["icon_diehard.png"](https://wiki.tuxemon.org/File:Diehard_2.png)
+[https://opengameart.org/content/2d-static-spritesicons CC BY on OGA]
+
+* ["icon_dozing.png"](https://wiki.tuxemon.org/File:Sleep.png)
+[https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
+
+* ["icon_eliminated.png"](https://wiki.tuxemon.org/File:Alert.png)
+[https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
+
+* ["icon_enraged.png"](https://wiki.tuxemon.org/File:Berserk2.png)
+[https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
+
+* ["icon_exhausted.png"](https://wiki.tuxemon.org/File:Exhausted.png)
+[https://opengameart.org/content/smoke-fire-animated-particle-16x16 CC BY in OGA]
+
+* ["icon_festering.png"](https://wiki.tuxemon.org/File:Festering.png)
+[https://opengameart.org/content/various-icons CC0 on OGA]
+
+* ["icon_focused.png"](https://wiki.tuxemon.org/File:Eagle_eye.png)
+[https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
+
+* ["icon_grabbed.png"](https://wiki.tuxemon.org/File:Grabbed.png)
+[https://opengameart.org/content/roguelikerpg-icons CC BY-SA on OGA]
+
+* ["icon_hardshell.png"](https://wiki.tuxemon.org/File:Shield_.png)
+[https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
+
+* ["icon_lifeleech.png"](https://wiki.tuxemon.org/File:Dark-type.png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["icon_noddingoff.png"](https://wiki.tuxemon.org/File:Sleep1.png)
+[https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
+
+* ["icon_poison.png"](https://wiki.tuxemon.org/File:Poison_.png)
+[https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
+
+* ["icon_recover.png"](https://wiki.tuxemon.org/File:Various15all7.png)
+[https://opengameart.org/content/various-icons CC0 on OGA]
+
+* ["icon_sniping.png"](https://wiki.tuxemon.org/File:Aim.png)
+[https://opengameart.org/content/pixel-icons-0 CC0 on OGA]
+
+* ["icon_softened.png"](https://wiki.tuxemon.org/File:Nausea.png)
+[https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
+
+* ["icon_spyderbite.png"](https://wiki.tuxemon.org/File:Spyder_bite.png)
+ [https://opengameart.org/content/2d-spider-animated CC0 on OGA]
+
+* ["icon_stuck.png"](https://wiki.tuxemon.org/File:Slow.png)
+[https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
+
+* ["icon_tired.png"](https://wiki.tuxemon.org/File:Tired.png)
+[https://opengameart.org/content/smoke-fire-animated-particle-16x16 CC BY in OGA]
+
 ### Battle Backgrounds
 
 * ["arid_background.png"]

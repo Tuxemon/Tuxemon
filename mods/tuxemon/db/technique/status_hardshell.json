@@ -1,20 +1,16 @@
 {
   "animation": "drip_green",
-  "category": "softened",
+  "category": "hardshell",
   "effects": [
     "statchange"
   ],
   "flip_axes": "",
-  "icon": "gfx/ui/icons/status/icon_softened.png",
-  "sfx": "sfx_pulse",
-  "slug": "status_softened",
+  "icon": "gfx/ui/icons/status/icon_hardshell.png",
+  "sfx": "sfx_bite",
+  "slug": "status_hardshell",
   "sort": "meta",
   "statarmour": {
-    "value": 0.5,
-    "operation": "-"
-  },
-  "statspeed": {
-    "value": 0.5,
+    "value": 1.5,
     "operation": "-"
   },
   "target": {
@@ -26,8 +22,8 @@
     "own trainer": 0,
     "item": 0
   },
-  "tech_id": 113,
+  "tech_id": 110,
   "use_failure": "generic_failure",
-  "use_success": "combat_state_softened_get",
+  "use_success": "combat_state_hardshell_get",
   "use_tech": "combat_used_x"
 }

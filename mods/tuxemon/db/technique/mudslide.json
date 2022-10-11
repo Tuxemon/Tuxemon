@@ -4,8 +4,7 @@
   "animation": "spikes_rock",
   "category": "physical",
   "effects": [
-    "damage",
-    "status status_softened"
+    "damage"
   ],
   "flip_axes": "",
   "healing_power": 0,

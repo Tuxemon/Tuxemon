@@ -4,8 +4,7 @@
   "animation": "fireball_114",
   "category": "physical",
   "effects": [
-    "damage",
-    "status status_chargedup"
+    "damage"
   ],
   "flip_axes": "x",
   "healing_power": 0,

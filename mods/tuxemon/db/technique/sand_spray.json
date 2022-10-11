@@ -4,8 +4,7 @@
   "animation": "explosion_dusty_96",
   "category": "physical",
   "effects": [
-    "damage",
-    "status status_blinded"
+    "damage"
   ],
   "flip_axes": "",
   "healing_power": 0,

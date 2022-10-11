@@ -4,8 +4,7 @@
   "animation": "sparks_white",
   "category": "physical",
   "effects": [
-    "damage",
-    "status status_focused"
+    "damage"
   ],
   "flip_axes": "",
   "healing_power": 0,

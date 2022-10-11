@@ -4,8 +4,7 @@
   "animation": "thunderstrike",
   "category": "physical",
   "effects": [
-    "damage",
-    "status status_exhausted"
+    "damage"
   ],
   "flip_axes": "",
   "healing_power": 0,

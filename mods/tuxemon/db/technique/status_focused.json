@@ -1,21 +1,18 @@
 {
-  "tech_id": 102,
-  "slug": "status_focused",
-  "use_failure": "generic_failure",
-  "use_success": "generic_success",
-  "use_tech": "combat_used_x",
   "animation": "drip_green",
-  "sfx": "sfx_pulse",
-  "icon": "gfx/ui/icons/status/icon_focused.png",
   "category": "focused",
-  "sort": "meta",
   "effects": [
     "statchange"
   ],
-  "statdodge": {
-    "value": 1.5, "operation":"-"
-  },
   "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_focused.png",
+  "sfx": "sfx_pulse",
+  "slug": "status_focused",
+  "sort": "meta",
+  "statdodge": {
+    "value": 1.5,
+    "operation": "-"
+  },
   "target": {
     "enemy monster": 0,
     "enemy team": 0,
@@ -24,5 +21,9 @@
     "own team": 0,
     "own trainer": 0,
     "item": 0
-  }
+  },
+  "tech_id": 108,
+  "use_failure": "generic_failure",
+  "use_success": "combat_state_focused_get",
+  "use_tech": "combat_used_x"
 }

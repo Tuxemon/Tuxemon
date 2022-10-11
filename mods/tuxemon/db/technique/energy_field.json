@@ -3,9 +3,7 @@
   "accuracy": 1,
   "animation": "screen",
   "category": "physical",
-  "effects": [
-    "status status_exhausted"
-  ],
+  "effects": [],
   "flip_axes": "x",
   "healing_power": 0,
   "icon": "",

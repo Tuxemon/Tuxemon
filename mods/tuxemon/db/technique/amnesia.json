@@ -4,7 +4,7 @@
   "animation": "sparks_gold_alt",
   "category": "physical",
   "effects": [
-    "status status_exhausted"
+    "statchange"
   ],
   "flip_axes": "",
   "healing_power": 0,
@@ -13,6 +13,12 @@
   "is_fast": false,
   "potency": 1,
   "power": 2.25,
+  "statmelee": {
+    "value": 0.5, "operation":"-"
+  },
+  "statranged": {
+    "value": 0.5, "operation":"-"
+  },
   "range": "reach",
   "recharge": 2,
   "sfx": "sfx_shine",

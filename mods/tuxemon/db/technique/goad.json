@@ -4,8 +4,7 @@
   "animation": "buff_rage",
   "category": "physical",
   "effects": [
-    "damage",
-    "status status_enraged"
+    "damage"
   ],
   "flip_axes": "",
   "healing_power": 0,

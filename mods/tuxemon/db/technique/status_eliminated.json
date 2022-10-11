@@ -1,13 +1,11 @@
 {
   "animation": "drip_green",
-  "category": "poison",
-  "effects": [
-    "poison"
-  ],
+  "category": "eliminated",
+  "effects": [],
   "flip_axes": "",
-  "icon": "gfx/ui/icons/status/icon_poison.png",
+  "icon": "gfx/ui/icons/status/icon_eliminated.png",
   "sfx": "sfx_pulse",
-  "slug": "status_poison",
+  "slug": "status_eliminated",
   "sort": "meta",
   "target": {
     "enemy monster": 0,
@@ -18,8 +16,8 @@
     "own trainer": 0,
     "item": 0
   },
-  "tech_id": 95,
+  "tech_id": 104,
   "use_failure": "generic_failure",
-  "use_success": "combat_state_poison_get",
-  "use_tech": "combat_state_poison_damage"
+  "use_success": "generic_success",
+  "use_tech": "combat_used_x"
 }

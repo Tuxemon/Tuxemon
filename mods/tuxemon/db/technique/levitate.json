@@ -4,7 +4,7 @@
   "animation": null,
   "category": "physical",
   "effects": [
-    "status status_sniping"
+    "statchange"
   ],
   "flip_axes": "",
   "healing_power": 0,
@@ -13,6 +13,12 @@
   "is_fast": false,
   "potency": 1,
   "power": 0,
+  "statmelee": {
+    "value": 0.5, "operation":"-"
+  },
+  "statranged": {
+    "value": 2, "operation":"-"
+  },
   "range": "special",
   "recharge": 2,
   "sfx": "sfx_blaster",

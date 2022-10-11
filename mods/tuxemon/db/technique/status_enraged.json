@@ -1,24 +1,22 @@
 {
-  "tech_id": 100,
-  "slug": "status_enraged",
-  "use_failure": "generic_failure",
-  "use_success": "generic_success",
-  "use_tech": "combat_used_x",
   "animation": "drip_green",
-  "sfx": "sfx_pulse",
-  "icon": "gfx/ui/icons/status/icon_enraged.png",
   "category": "enraged",
-  "sort": "meta",
   "effects": [
     "statchange"
   ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_enraged.png",
+  "sfx": "sfx_pulse",
+  "slug": "status_enraged",
+  "sort": "meta",
   "statmelee": {
-    "value": 2, "operation":"-"
+    "value": 2,
+    "operation": "-"
   },
   "statranged": {
-    "value": 0.5, "operation":"-"
+    "value": 0.5,
+    "operation": "-"
   },
-  "flip_axes": "",
   "target": {
     "enemy monster": 0,
     "enemy team": 0,
@@ -27,5 +25,9 @@
     "own team": 0,
     "own trainer": 0,
     "item": 0
-  }
+  },
+  "tech_id": 105,
+  "use_failure": "generic_failure",
+  "use_success": "combat_state_enraged_get",
+  "use_tech": "combat_used_x"
 }

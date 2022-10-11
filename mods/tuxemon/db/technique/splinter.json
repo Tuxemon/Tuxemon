@@ -4,8 +4,7 @@
   "animation": "snake_right",
   "category": "physical",
   "effects": [
-    "damage",
-    "status status_blinded"
+    "damage"
   ],
   "flip_axes": "x",
   "healing_power": 0,

@@ -1,24 +1,22 @@
 {
-  "tech_id": 98,
-  "slug": "status_blinded",
-  "use_failure": "generic_failure",
-  "use_success": "generic_success",
-  "use_tech": "combat_used_x",
   "animation": "drip_green",
-  "sfx": "sfx_pulse",
-  "icon": "gfx/ui/icons/status/icon_blinded.png",
   "category": "blinded",
-  "sort": "meta",
   "effects": [
     "statchange"
   ],
-  "statspeed": {
-    "value": 0.5, "operation":"-"
-  },
-  "statdodge": {
-    "value": 0.5, "operation":"-"
-  },
   "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_blinded.png",
+  "sfx": "sfx_pulse",
+  "slug": "status_blinded",
+  "sort": "meta",
+  "statdodge": {
+    "value": 0.5,
+    "operation": "-"
+  },
+  "statspeed": {
+    "value": 0.5,
+    "operation": "-"
+  },
   "target": {
     "enemy monster": 0,
     "enemy team": 0,
@@ -27,5 +25,9 @@
     "own team": 0,
     "own trainer": 0,
     "item": 0
-  }
+  },
+  "tech_id": 98,
+  "use_failure": "generic_failure",
+  "use_success": "combat_state_blinded_get",
+  "use_tech": "combat_used_x"
 }

@@ -514,7 +514,10 @@ class Monster:
 
         # Update moves
         for move in self.moveset:
-            if move not in self.moves and move.level_learned <= level:
+            if (
+                move.technique not in (m.slug for m in self.moves)
+                and move.level_learned <= level
+            ):
                 self.learn(Technique(move.technique))
 
     def experience_required(self, level_ofs: int = 0) -> int:

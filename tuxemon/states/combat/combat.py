@@ -689,10 +689,10 @@ class CombatState(CombatAnimations):
         elif self.is_trainer_battle:
             self.alert(
                 T.format(
-                    "combat_opponent_call_tuxemon",
+                    "combat_swap",
                     {
-                        "name": monster.name.upper(),
-                        "user": player.name.upper(),
+                        "user": monster.name.upper(),
+                        "target": player.name.upper(),
                     },
                 )
             )

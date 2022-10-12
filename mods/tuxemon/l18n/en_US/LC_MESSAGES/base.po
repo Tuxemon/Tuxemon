@@ -143,10 +143,6 @@ msgstr "{user} sent out {target}!"
 msgid "combat_call_tuxemon"
 msgstr "Go {name}!"
 
-# TODO: similar to combat_swap - refactor!
-msgid "combat_opponent_call_tuxemon"
-msgstr "{user} sent out {name}!"
-
 msgid "combat_state_poison_get"
 msgstr "{target} is poisoned."
 
@@ -264,13 +260,6 @@ msgstr "Use"
 
 msgid "item_confirm_cancel"
 msgstr "Cancel"
-
-# TODO same as generic_success and generic_failure - refactor!
-msgid "item_success"
-msgstr "It worked!"
-
-msgid "item_failure"
-msgstr "It failed!"
 
 msgid "generic_success"
 msgstr "It worked!"
@@ -650,15 +639,11 @@ msgstr "Load"
 msgid "menu_monster"
 msgstr "Tuxemon"
 
-# TODO: duplicate of menu_monster?
-msgid "menu_monsters"
-msgstr "Monsters"
-
 msgid "menu_storage"
-msgstr "Pick Up Monster"
+msgstr "Pick Up Tuxemon"
 
 msgid "menu_dropoff"
-msgstr "Drop Off Monster"
+msgstr "Drop Off Tuxemon"
 
 msgid "menu_multiplayer"
 msgstr "Multiplayer"

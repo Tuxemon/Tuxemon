@@ -111,7 +111,7 @@ class PCState(PopUpMenu[MenuGameObj]):
         add_menu_items(
             self,
             (
-                ("menu_monsters", change_state("MonsterMenuState")),
+                ("menu_monster", change_state("MonsterMenuState")),
                 ("menu_storage", storage_callback),
                 ("menu_dropoff", dropoff_callback),
                 ("menu_items", change_state("ItemMenuState")),

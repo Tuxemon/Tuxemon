@@ -2,7 +2,6 @@
   "tech_id": 80,
   "accuracy": 0.8,
   "animation": "torrentacle",
-  "category": "physical",
   "effects": [
     "poison",
     "damage"

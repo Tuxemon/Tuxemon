@@ -69,7 +69,6 @@ def create_json(data_row):
         "sfx": "blaster1.ogg",
         "icon": "",
         "accuracy": data_row.accuracy,
-        "category": "physical",
         "effects": effects,
         "flip_axes": get_animation_flip_axes(data_row.animation),
         "healing_power": float(data_row.healing_power) if data_row.healing_power else 0,

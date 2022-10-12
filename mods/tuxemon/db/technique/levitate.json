@@ -2,7 +2,6 @@
   "tech_id": 82,
   "accuracy": 1,
   "animation": null,
-  "category": "physical",
   "effects": [
     "statchange"
   ],

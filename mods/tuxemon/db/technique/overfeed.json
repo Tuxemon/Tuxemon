@@ -3,7 +3,6 @@
   "accuracy": 1,
   "animation": "drip_green",
   "can_apply_status": true,
-  "category": "physical",
   "effects": [
     "statchange"
   ],

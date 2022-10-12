@@ -2,7 +2,6 @@
   "tech_id": 1,
   "accuracy": 0.8,
   "animation": "pound",
-  "category": "physical",
   "effects": [
     "damage"
   ],

@@ -2,7 +2,6 @@
   "tech_id": 18,
   "accuracy": 0.8,
   "animation": "crystal",
-  "category": "physical",
   "effects": [
     "damage"
   ],

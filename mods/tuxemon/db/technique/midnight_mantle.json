@@ -2,7 +2,6 @@
   "tech_id": 55,
   "accuracy": 0.7,
   "animation": "claw_blue",
-  "category": "physical",
   "effects": [
     "damage"
   ],

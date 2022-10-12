@@ -2,7 +2,6 @@
   "tech_id": 26,
   "accuracy": 0.75,
   "animation": "gloop_orange",
-  "category": "physical",
   "effects": [
     "damage"
   ],

@@ -2,7 +2,6 @@
   "tech_id": 76,
   "accuracy": 0.75,
   "animation": "lightning_claw",
-  "category": "physical",
   "effects": [
     "damage"
   ],

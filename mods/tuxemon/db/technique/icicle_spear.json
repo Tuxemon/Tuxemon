@@ -2,7 +2,6 @@
   "tech_id": 23,
   "accuracy": 0.75,
   "animation": "lance_ice",
-  "category": "physical",
   "effects": [
     "damage"
   ],

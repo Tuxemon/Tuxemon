@@ -83,7 +83,6 @@ class Technique:
         self.animation = ""
         self.can_apply_status = False
         self.carrier = carrier
-        self.category = "attack"
         self.combat_state: Optional[CombatState] = None
         self.effects: Sequence[TechEffect[Any]] = []
         self.flip_axes = ""
@@ -144,7 +143,6 @@ class Technique:
         self.use_success = T.maybe_translate(results.use_success)
         self.use_failure = T.maybe_translate(results.use_failure)
 
-        self.category = results.category
         self.icon = results.icon
         self._combat_counter = 0
         self._life_counter = 0

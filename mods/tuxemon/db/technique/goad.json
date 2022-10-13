@@ -2,7 +2,6 @@
   "tech_id": 39,
   "accuracy": 0.8,
   "animation": "buff_rage",
-  "category": "physical",
   "effects": [
     "damage"
   ],

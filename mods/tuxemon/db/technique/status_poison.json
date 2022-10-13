@@ -1,6 +1,5 @@
 {
   "animation": "drip_green",
-  "category": "poison",
   "effects": [
     "poison"
   ],

@@ -2,7 +2,6 @@
   "tech_id": 31,
   "accuracy": 0.8,
   "animation": "slash_power",
-  "category": "physical",
   "effects": [
     "damage"
   ],

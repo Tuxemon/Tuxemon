@@ -2,7 +2,6 @@
   "tech_id": 60,
   "accuracy": 0.5,
   "animation": "explosion_small",
-  "category": "physical",
   "effects": [
     "damage"
   ],

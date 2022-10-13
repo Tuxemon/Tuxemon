@@ -2,7 +2,6 @@
   "tech_id": 33,
   "accuracy": 0.8,
   "animation": "thud",
-  "category": "physical",
   "effects": [
     "damage"
   ],

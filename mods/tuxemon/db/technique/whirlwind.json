@@ -2,7 +2,6 @@
   "tech_id": 66,
   "accuracy": 1,
   "animation": "whirlwind",
-  "category": "physical",
   "effects": [
     "damage"
   ],

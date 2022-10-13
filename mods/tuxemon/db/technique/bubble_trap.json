@@ -2,7 +2,6 @@
   "tech_id": 57,
   "accuracy": 0.75,
   "animation": "bomb_bright",
-  "category": "physical",
   "effects": [
     "damage"
   ],

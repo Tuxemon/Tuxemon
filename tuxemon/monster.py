@@ -239,9 +239,7 @@ class Monster:
         self.type2: Optional[str] = None
         self.shape = MonsterShape.landrace
 
-        self.status: List[Technique] = list()
-        self.status_damage = 0
-        self.status_turn = 0
+        self.status: List[Technique] = []
 
         self.txmn_id = 0
         self.height = 0.0

@@ -7,7 +7,6 @@
   "animation": null,
   "sfx": "sfx_blaster",
   "icon": "",
-  "category": "meta",
   "sort": "meta",
   "effects": [
     "swap"

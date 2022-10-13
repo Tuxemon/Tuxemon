@@ -2,7 +2,6 @@
   "tech_id": 44,
   "accuracy": 0.8,
   "animation": "constantburn",
-  "category": "physical",
   "effects": [
     "damage"
   ],

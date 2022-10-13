@@ -2,7 +2,6 @@
   "tech_id": 53,
   "accuracy": 0.75,
   "animation": "sparks_gold_alt",
-  "category": "physical",
   "effects": [
     "statchange"
   ],
@@ -13,17 +12,11 @@
   "is_fast": false,
   "potency": 1,
   "power": 2.25,
-  "statdodge": {
-    "value": 0, "max_deviation": 3, "operation":"-"
-  },
   "statmelee": {
-    "value": 2, "operation":"+"
+    "value": 0.5, "operation":"-"
   },
   "statranged": {
-    "value": 2,  "operation":"+"
-  },
-  "stathp": {
-    "value": 4, "operation":"-"
+    "value": 0.5, "operation":"-"
   },
   "range": "reach",
   "recharge": 2,

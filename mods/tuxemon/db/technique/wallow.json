@@ -2,7 +2,6 @@
   "tech_id": 46,
   "accuracy": 1,
   "animation": "waterspurt",
-  "category": "physical",
   "effects": [],
   "flip_axes": "",
   "healing_power": 4.0,

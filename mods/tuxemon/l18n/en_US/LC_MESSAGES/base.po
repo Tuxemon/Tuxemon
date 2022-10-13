@@ -143,15 +143,6 @@ msgstr "{user} sent out {target}!"
 msgid "combat_call_tuxemon"
 msgstr "Go {name}!"
 
-msgid "combat_state_poison_get"
-msgstr "{target} is poisoned."
-
-msgid "combat_state_poison_damage"
-msgstr "{name} took poison damage!"
-
-msgid "combat_state_lifeleech_get"
-msgstr "{user} is leeching health from {target}."
-
 msgid "dodge_increased"
 msgstr "{user}'s {stat} increased."
 
@@ -160,9 +151,6 @@ msgstr "{user}'s speed was halved."
 
 msgid "hp_restored"
 msgstr "{user}'s hp was restored."
-
-msgid "combat_state_overfeed_get"
-msgstr "{user} Overfed {target}."
 
 msgid "dodge_fell"
 msgstr "{user}'s dodge fell."
@@ -175,21 +163,6 @@ msgstr "{user} rose higher into the air."
 
 msgid "combat_amnesia_get"
 msgstr "{user} has gotten amnesia."
-
-msgid "combat_state_lifeleech_success"
-msgstr "{user} lost health to lifeleech!"
-
-msgid "combat_state_lifeleech_failure"
-msgstr "{link} can't heal any further."
-
-msgid "combat_state_recover_get"
-msgstr "{target} started to recover health."
-
-msgid "combat_state_recover_success"
-msgstr "{user} recovered health!"
-
-msgid "combat_state_recover_failure"
-msgstr "{user} can't heal any further."
 
 msgid "combat_status_damage"
 msgstr "{name} took {status} damage!"
@@ -248,6 +221,88 @@ msgstr "The attack was resisted!"
 msgid "attack_weak"
 msgstr "The attack was strongly resisted!"
 
+## COMBAT STATE STATUSES
+msgid "combat_state_blinded_get"
+msgstr "{target} is blinded."
+
+msgid "combat_state_chargedup_get"
+msgstr "{target} is fully charged."
+
+msgid "combat_state_charging_get"
+msgstr "{target} is charging power."
+
+msgid "combat_state_confused_get"
+msgstr "{target} is confused."
+
+msgid "combat_state_diehard_get"
+msgstr "{target} will keep fighting."
+
+msgid "combat_state_dozing_get"
+msgstr "{target} is asleep."
+
+msgid "combat_state_enraged_get"
+msgstr "{target} is enraged."
+
+msgid "combat_state_exhausted_get"
+msgstr "{target} is exhausted."
+
+msgid "combat_state_festering_get"
+msgstr "{target}'s wounds fester."
+
+msgid "combat_state_focused_get"
+msgstr "{target} becomes focused."
+
+msgid "combat_state_grabbed_get"
+msgstr "{target} is held tight."
+
+msgid "combat_state_hardshell_get"
+msgstr "{target} is covered in hard shell."
+
+msgid "combat_state_lifeleech_failure"
+msgstr "{link} can't heal any further."
+
+msgid "combat_state_lifeleech_get"
+msgstr "{user} is leeching health from {target}."
+
+msgid "combat_state_lifeleech_success"
+msgstr "{user} lost health to lifeleech!"
+
+msgid "combat_state_noddingoff_get"
+msgstr "{target} is nodding off to sleep."
+
+msgid "combat_state_overfeed_get"
+msgstr "{user} Overfed {target}."
+
+msgid "combat_state_poison_damage"
+msgstr "{name} took poison damage!"
+
+msgid "combat_state_poison_get"
+msgstr "{target} is poisoned."
+
+msgid "combat_state_recover_failure"
+msgstr "{user} can't heal any further."
+
+msgid "combat_state_recover_get"
+msgstr "{target} started to recover health."
+
+msgid "combat_state_recover_success"
+msgstr "{user} recovered health!"
+
+msgid "combat_state_sniping_get"
+msgstr "{target} takes aim."
+
+msgid "combat_state_softened_get"
+msgstr "{target}'s armour softens."
+
+msgid "combat_state_spyderbite_get"
+msgstr "{target} begins to sniffle."
+
+msgid "combat_state_stuck_get"
+msgstr "{target} is stuck in place."
+
+msgid "combat_state_tired_get"
+msgstr "{target} is worn out."
+
 # Generic notifications
 msgid "empty_slot"
 msgstr "Empty Slot"
@@ -297,20 +352,78 @@ msgstr "No, keep this save."
 msgid "slot"
 msgstr "Slot"
 
+## STATUSES
+msgid "status_blinded"
+msgstr "Blinded"
+
+msgid "status_chargedup"
+msgstr "Charged Up"
+
+msgid "status_charging"
+msgstr "Charging"
+
+msgid "status_confused"
+msgstr "Confused"
+
+msgid "status_diehard"
+msgstr "Die Hard"
+
+msgid "status_dozing"
+msgstr "Dozing"
+
+msgid "status_eliminated"
+msgstr "Eliminated"
+
+msgid "status_enraged"
+msgstr "Berserk"
+
+msgid "status_exhausted"
+msgstr "Exhausted"
+
 msgid "status_faint"
 msgstr "Faint"
 
-msgid "status_poison"
-msgstr "Poison"
+msgid "status_festering"
+msgstr "Festering"
+
+msgid "status_focused"
+msgstr "Focused"
+
+msgid "status_grabbed"
+msgstr "Grabbed"
+
+msgid "status_hardshell"
+msgstr "Hard Shell"
 
 msgid "status_lifeleech"
 msgstr "Lifeleech"
 
+msgid "status_noddingoff"
+msgstr "Nodding Off"
+
 msgid "status_overfeed"
 msgstr "Overfeed"
 
+msgid "status_poison"
+msgstr "Poison"
+
 msgid "status_recover"
 msgstr "Recover"
+
+msgid "status_sniping"
+msgstr "Sniping"
+
+msgid "status_softened"
+msgstr "Softened"
+
+msgid "status_spyderbite"
+msgstr "Spyder Bite"
+
+msgid "status_stuck"
+msgstr "Stuck"
+
+msgid "status_tired"
+msgstr "Tired"
 
 ## TECHNIQUE TRANSLATIONS ##
 msgid "all_in"

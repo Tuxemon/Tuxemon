@@ -29,6 +29,7 @@
 from __future__ import annotations
 
 import logging
+import random
 from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 
 if TYPE_CHECKING:
@@ -203,3 +204,12 @@ def simple_overfeed(
 ) -> int:
     speed = target.speed // 2
     return speed
+
+
+def escape(speed_user: int, speed_target: int) -> int:
+    attempts = +1
+    escape = (((speed_user * 128) / speed_target) + 30) * attempts
+    if escape >= random.randint(0, 255):
+        return True
+    else:
+        return False

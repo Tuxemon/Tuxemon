@@ -386,6 +386,8 @@ class CombatState(CombatAnimations):
                 var["battle_last_monster_type"] = monster_record.slug
                 var["battle_last_monster_category"] = monster_record.category
                 var["battle_last_monster_shape"] = monster_record.shape
+                # Reset run for the next turn
+                var["run"] = "on"
                 # Avoid reset string to seen if monster has already been caught
                 if monster_record.slug not in self.players[0].tuxepedia:
                     self.players[0].tuxepedia[
@@ -422,8 +424,12 @@ class CombatState(CombatAnimations):
         elif phase == "ran away":
             self.players[0].set_party_status()
             var = self.players[0].game_variables
-            var["battle_last_result"] = "ran"
-            self.alert(T.translate("combat_player_run"))
+            if self.is_trainer_battle:
+                var["battle_last_result"] = "forfeit"
+                self.alert(T.translate("combat_forfeit"))
+            else:
+                var["battle_last_result"] = "ran"
+                self.alert(T.translate("combat_player_run"))
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close

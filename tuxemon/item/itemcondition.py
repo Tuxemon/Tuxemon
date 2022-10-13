@@ -25,17 +25,34 @@
 # Adam Chevalier <chevalieradam2@gmail.com>
 #
 
+from __future__ import annotations
 
 import logging
-from collections import namedtuple
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    ClassVar,
+    Generic,
+    Sequence,
+    Type,
+    TypeVar,
+)
 
-from tuxemon.tools import cast_values
+from tuxemon.session import Session
+from tuxemon.tools import NamedTupleProtocol, cast_parameters_to_namedtuple
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
+    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
+ParameterClass = TypeVar("ParameterClass", bound=NamedTupleProtocol)
 
-class ItemCondition:
-    """ItemConditions are evaluated by items.
+
+class ItemCondition(Generic[ParameterClass]):
+    """
+    ItemConditions are evaluated by items.
 
     ItemCondition subclasses implement "conditions" defined in Tuxemon items.
     All subclasses, at minimum, must implement the following:
@@ -75,54 +92,53 @@ class ItemCondition:
     (Monster, "monster_slug")   => a Monster instance will be created
     """
 
-    name = "GenericCondition"
-    valid_parameters = list()
-    _param_factory = None
+    name: ClassVar[str] = "GenericCondition"
+    param_class: ClassVar[Type[ParameterClass]]
 
-    def __init__(self, context, session, user, parameters):
-        """
-
-        :type context: str
-        :type user: tuxemon.NPC
-        :type parameters: list
-        """
+    def __init__(
+        self,
+        context: str,
+        session: Session,
+        user: NPC,
+        parameters: Sequence[Any],
+    ) -> None:
 
         self.session = session
         self.user = user
         self.context = context
-
-        # TODO: METACLASS
-        # make a namedtuple class that will generate the parameters
-        # the patching of the class attribute should only happen once
-        if self.__class__._param_factory is None:
-            self.__class__._param_factory = namedtuple("parameters", [i[1] for i in self.valid_parameters])
 
         # if you need the parameters before they are processed, use this
         self.raw_parameters = parameters
 
         # parse parameters
         try:
-            if self.valid_parameters:
+            if self.param_class._fields:
 
                 # cast the parameters to the correct type, as defined in cls.valid_parameters
-                values = cast_values(parameters, self.valid_parameters)
-                self.parameters = self._param_factory(*values)
+                self.parameters = cast_parameters_to_namedtuple(
+                    parameters,
+                    self.param_class,
+                )
             else:
                 self.parameters = parameters
 
-        except:
+        except ValueError:
             logger.error(f"error while parsing for {self.name}")
             logger.error(f"cannot parse parameters: {parameters}")
-            logger.error(self.valid_parameters)
-            logger.error("please check the parameters and verify they are correct")
+            logger.error(f"{self.param_class}")
+            logger.error(
+                "please check the parameters and verify they are correct"
+            )
             self.parameters = None
 
         self._done = False
 
-    def test(self, target):
-        """Return True if satisfied, or False if not
+    def test(self, target: Monster) -> bool:
+        """
+        Return True if satisfied, or False if not.
 
-        :param target: the target of the item's use.
-        :rtype: bool
+        Parameters:
+            target: The target of the item's use.
+
         """
         return True

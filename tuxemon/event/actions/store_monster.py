@@ -22,32 +22,60 @@
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
-from tuxemon.event.eventaction import EventAction
+from __future__ import annotations
+
 import logging
 import uuid
+from typing import NamedTuple, final
+
+from tuxemon.event.eventaction import EventAction
+from tuxemon.prepare import CONFIG
 
 logger = logging.getLogger(__name__)
 
 
+class StoreMonsterActionParameters(NamedTuple):
+    monster_id: str
+    box: str
+
+
 # noinspection PyAttributeOutsideInit
-class StoreMonsterAction(EventAction):
-    """Save the player's monster with the given instance_id to
+@final
+class StoreMonsterAction(EventAction[StoreMonsterActionParameters]):
+    """
+    Store a monster in a box.
+
+    Save the player's monster with the given instance_id to
     the named storage box, removing it from the player party.
 
-    Valid Parameters: string monster_id, string box
+    Script usage:
+        .. code-block::
+
+            store_monster <monster_id>,<box>
+
+    Script parameters:
+        monster_id: Id of the monster to store.
+        box: Box where the monster will be stored.
+
     """
 
     name = "store_monster"
-    valid_parameters = [(str, "monster_id"), (str, "box")]
+    param_class = StoreMonsterActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
-        instance_id = uuid.UUID(player.game_variables[self.parameters.monster_id])
+        instance_id = uuid.UUID(
+            player.game_variables[self.parameters.monster_id],
+        )
         box = self.parameters.box
         monster = player.find_monster_by_id(instance_id)
         if monster is None:
-            raise ValueError(f"No monster found with instance_id {instance_id}")
+            raise ValueError(
+                f"No monster found with instance_id {instance_id}",
+            )
 
+        if not box:
+            box = CONFIG.default_monster_storage_box
         if box not in player.monster_boxes.keys():
             player.monster_boxes[box] = list()
 

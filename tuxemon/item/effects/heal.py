@@ -26,13 +26,28 @@
 # Adam Chevalier <chevalieradam2@gmail.com>
 #
 
+from __future__ import annotations
 
-from tuxemon.item.itemeffect import ItemEffect
+from typing import NamedTuple, Union
+
+from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+from tuxemon.monster import Monster
 
 
-class HealEffect(ItemEffect):
-    """Heals the target by 'amount' hp.
-    This is a constant if amount is an integer, a percentage of total hp if a float
+class HealEffectResult(ItemEffectResult):
+    pass
+
+
+class HealEffectParameters(NamedTuple):
+    amount: Union[int, float]
+
+
+class HealEffect(ItemEffect[HealEffectParameters]):
+    """
+    Heals the target by 'amount' hp.
+
+    This is a constant if amount is an integer, a percentage of total hp
+    if a float
 
     Examples:
     >>> potion = Item('potion')
@@ -42,17 +57,17 @@ class HealEffect(ItemEffect):
     """
 
     name = "heal"
-    valid_parameters = [((int, float), "amount")]
+    param_class = HealEffectParameters
 
-    def apply(self, target):
+    def apply(self, target: Monster) -> HealEffectResult:
         healing_amount = self.parameters.amount
         if type(healing_amount) is float:
             healing_amount *= target.hp
 
         # Heal the target monster by "self.power" number of hitpoints.
-        target.current_hp += healing_amount
+        target.current_hp += int(healing_amount)
 
-        # If we've exceeded the monster's maximum HP, set their health to 100% of their HP.
+        # If we've exceeded the monster's maximum HP, set their health to 100%.
         if target.current_hp > target.hp:
             target.current_hp = target.hp
 

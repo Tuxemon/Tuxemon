@@ -1,49 +1,57 @@
 {
-    "slug": "spyder_route3_connor",
-    "sprite_name": "tennisplayer",
-	"monsters": [
-        {
-            "name": "Weavifly",
-            "level": 12, 
-			"slug": "weavifly",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Cataspike",
-            "level": 8, 
-			"slug": "cataspike",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Cataspike",
-            "level": 8, 
-			"slug": "cataspike",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Cataspike",
-            "level": 8, 
-			"slug": "cataspike",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Cataspike",
-            "level": 8, 
-			"slug": "cataspike",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Cataspike",
-            "level": 8, 
-			"slug": "cataspike",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "tennisplayer.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_route3_connor",
+  "gender": "male",
+  "sprite_name": "tennisplayer",
+  "monsters": [
+    {
+      "name": "Weavifly",
+      "level": 12,
+      "slug": "weavifly",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Cataspike",
+      "level": 8,
+      "slug": "cataspike",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Cataspike",
+      "level": 8,
+      "slug": "cataspike",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Cataspike",
+      "level": 8,
+      "slug": "cataspike",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Cataspike",
+      "level": 8,
+      "slug": "cataspike",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Cataspike",
+      "level": 8,
+      "slug": "cataspike",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "male"
+    }
+  ],
+  "combat_front": "tennisplayer.png",
+  "combat_back": "red_back.png"
+}

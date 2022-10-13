@@ -1,0 +1,9 @@
+{
+  "slug": "night_valley",
+  "battle_graphics": {
+    "island_back": "grass_back_island.png",
+    "island_front": "grass_front_island.png",
+    "background": "night_valley_background.png"
+  },
+  "battle_music": "music_battle_loop"
+}

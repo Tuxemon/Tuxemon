@@ -56,37 +56,6 @@
    eJxjYBgFo2AUjALsYPlAO2AUjAISAQDKTwCo
   </data>
  </layer>
- <objectgroup color="#ffff00" id="4" name="Events">
-  <object id="25" name="Teleport to Middle" type="event" x="16" y="272" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_mansion.tmx,1,2,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="26" name="Teleport to Middle" type="event" x="32" y="272" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_mansion.tmx,2,2,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="27" name="Play Music" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_music melody_eternal.ogg"/>
-    <property name="cond1" value="not music_playing melody_eternal.ogg"/>
-   </properties>
-  </object>
-  <object id="28" name="Player Spawn" type="event" x="32" y="224" width="16" height="16"/>
-  <object id="29" name="Environment" type="event" x="16" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable environment:snow"/>
-    <property name="cond1" value="not variable_set environment:snow"/>
-   </properties>
-  </object>
- </objectgroup>
  <objectgroup color="#ff0000" id="5" name="Collision">
   <object id="1" type="collision" x="0" y="0" width="16" height="304"/>
   <object id="2" type="collision" x="352" y="0" width="16" height="304"/>
@@ -113,6 +82,37 @@
   <object id="23" type="collision" x="336" y="256" width="16" height="16"/>
   <object id="24" type="collision-line" x="64" y="304">
    <polyline points="0,0 288,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="4" name="Events">
+  <object id="25" name="Teleport to Middle" type="event" x="16" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_mansion.tmx,1,2,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="26" name="Teleport to Middle" type="event" x="32" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_mansion.tmx,2,2,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="27" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music melody_eternal.ogg"/>
+    <property name="cond1" value="not music_playing melody_eternal.ogg"/>
+   </properties>
+  </object>
+  <object id="28" name="Player Spawn" type="event" x="32" y="224" width="16" height="16"/>
+  <object id="29" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:interior"/>
+    <property name="cond1" value="not variable_set environment:interior"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

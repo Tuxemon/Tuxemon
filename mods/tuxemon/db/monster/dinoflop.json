@@ -16,11 +16,15 @@
             "technique": "rock"
         }
     ],
-    "shape": "",
+    "evolutions": [],
+    "shape": "dragon",
     "types": [
         "Earth"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 157,
+    "height": 120,
+    "weight": 120,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

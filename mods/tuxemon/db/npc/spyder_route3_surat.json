@@ -1,21 +1,25 @@
 {
-    "slug": "spyder_route3_surat",
-    "sprite_name": "miner",
-	"monsters": [
-        {
-            "name": "Rockat",
-            "level": 12, 
-			"slug": "rockat",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Foofle",
-            "level": 12, 
-			"slug": "foofle",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "miner.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_route3_surat",
+  "gender": "male",
+  "sprite_name": "miner",
+  "monsters": [
+    {
+      "name": "Rockat",
+      "level": 12,
+      "slug": "rockat",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Foofle",
+      "level": 12,
+      "slug": "foofle",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "miner.png",
+  "combat_back": "red_back.png"
+}

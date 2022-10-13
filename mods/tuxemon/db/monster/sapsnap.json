@@ -16,11 +16,15 @@
             "technique": "fluff_up"
         }
     ],
-    "shape": "Brute",
+    "evolutions": [],
+    "shape": "brute",
     "types": [
         "Wood"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 85,
+    "height": 210,
+    "weight": 125,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

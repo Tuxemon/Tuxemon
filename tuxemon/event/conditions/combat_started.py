@@ -18,28 +18,38 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import annotations
 
+from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
 
 
 class CombatStartedCondition(EventCondition):
-    """Checks to see if combat has been started or not."""
+    """
+    Check to see if combat has been started or not.
+
+    Script usage:
+        .. code-block::
+
+            is combat_started
+
+    """
 
     name = "combat_started"
 
-    def test(self, session, condition):
-        """Checks to see if combat has been started or not.
-
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
-
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
-
-        :rtype: Boolean
-        :returns: True or False
-
-        Valid Parameters: None
+    def test(self, session: Session, condition: MapCondition) -> bool:
         """
-        return session.client.current_state.name == "CombatState"
+        Check to see if combat has been started or not.
+
+        Parameters:
+            session: The session object
+            condition: The map condition object.
+
+        Returns:
+            Whether a combat has started or not.
+
+        """
+        current_state = session.client.current_state
+        assert current_state
+        return current_state.name == "CombatState"

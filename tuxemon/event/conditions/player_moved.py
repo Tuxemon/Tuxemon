@@ -18,16 +18,28 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import annotations
 
+from typing import Tuple
+
+from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.npc import NPC
+from tuxemon.session import Session
 
 
 # TODO: move to some other place?
-def collide(condition, tile_position):
+def collide(condition: MapCondition, tile_position: Tuple[int, int]) -> bool:
     """
-    :type condition: tuxemon.event.MapCondition
-    :param tile_position: tuple
-    :rtype: bool
+    Check collision of a tile position with the map condition position.
+
+    Parameters:
+        condition: The map condition object.
+        tile_position: A particular tile position.
+
+    Returns:
+        Whether the tile position is contained in the map condition area.
+
     """
     return (
         condition.x < tile_position[0] + 1
@@ -38,8 +50,11 @@ def collide(condition, tile_position):
 
 
 class PlayerMovedCondition(EventCondition):
-    """Checks to see the player has just moved into this tile. Using this condition will
-    prevent a condition like "player_at" from constantly being true every single frame.
+    """
+    Check to see the player has just moved into this tile.
+
+    Using this condition will prevent a condition like "player_at" from
+    constantly being true every single frame.
 
     * Check if player destination collides with event
     * If it collides, wait until destination changes
@@ -48,31 +63,47 @@ class PlayerMovedCondition(EventCondition):
     These rules ensure that the event is true once player in in the tile
     and is only true once.  Could possibly be better, IDK.
 
+    Script usage:
+        .. code-block::
+
+            is player_moved
+
     """
 
     name = "player_moved"
 
-    def test(self, session, condition):
-        """Checks to see the player has just moved into this tile. Using this condition will
-        prevent a condition like "player_at" from constantly being true every single frame.
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check to see the player has just moved into this tile.
 
-        :type session: tuxemon.session.Session
-        :type condition: tuxemon.event.MapCondition
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :rtype: bool
+        Returns:
+            Whether the player has just moved to the position.
 
-        Valid Parameters: None
         """
         # TODO: Eventually generalize command for checking players and npcs
         return self.generic_test(session, condition, session.player)
 
-    def generic_test(self, session, condition, npc):
-        """Eventually, this can be made into own condition or something
+    def generic_test(
+        self,
+        session: Session,
+        condition: MapCondition,
+        npc: NPC,
+    ) -> bool:
+        """
+        Check to see if a character has just moved into this tile.
 
-        :type session: tuxemon.session.Session
-        :type condition: tuxemon.event.MapCondition
+        Parameters:
+            session: The session object
+            condition: The map condition object.
+            npc: The character to test for.
 
-        :rtype: bool
+        Returns:
+            Whether the character has just moved to the position.
+
         """
         # check where the npc is going, not where it is
         move_destination = npc.move_destination
@@ -81,7 +112,9 @@ class PlayerMovedCondition(EventCondition):
         condition_str = str(condition)
 
         stopped = move_destination is None
-        collide_next = False if stopped else collide(condition, move_destination)
+        collide_next = False
+        if move_destination is not None:
+            collide_next = collide(condition, move_destination)
 
         # persist is data shared for all player_moved EventConditions
         persist = self.get_persist(session)
@@ -93,15 +126,16 @@ class PlayerMovedCondition(EventCondition):
             persist[condition_str] = move_destination
 
         # has the npc moved onto or away from the event?
-        # Check to see if the npc's "move destination" has changed since the last
-        # frame. If it has, WE'RE MOVING!!!
+        # Check to see if the npc's "move destination" has changed since the
+        # last frame. If it has, WE'RE MOVING!!!
         moved = move_destination != last_destination
 
         # is the npc colliding with the condition boundaries?
         collided = collide(condition, npc.tile_pos)
 
         # Update the current npc's last move destination
-        # TODO: some sort of global tracking of player instead of recording it in conditions
+        # TODO: some sort of global tracking of player instead of recording it
+        # in conditions
         persist[condition_str] = move_destination
 
         # determine if the tile has truly changed

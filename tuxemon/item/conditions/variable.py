@@ -23,22 +23,33 @@
 # Adam Chevalier <chevalieradam2@gmail.com>
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, Union
 
 from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.monster import Monster
+from tuxemon.npc import NPC
 
 
-class VariableCondition(ItemCondition):
+class VariableConditionParameters(NamedTuple):
+    var_name: str
+    expected: Union[str, int, None]
+
+
+class VariableCondition(ItemCondition[VariableConditionParameters]):
     """Checks against the variables of the context.
     Accepts two parameters; variable name and expected value.
     """
 
     name = "variable"
-    valid_parameters = [(str, "var_name"), ((str, int, None), "expected")]
+    param_class = VariableConditionParameters
 
-    def test(self, target):
+    def test(self, target: Monster) -> bool:
         var_name = self.parameters.var_name
         expect = self.parameters.expected
 
+        context: Union[NPC, Monster]
         if self.context == "target":
             context = target
         else:
@@ -48,5 +59,5 @@ class VariableCondition(ItemCondition):
             return context.game_variables[var_name] == expect
         elif type(expect) is int:
             return context.game_variables[var_name] >= expect
-        elif not expect:
+        else:
             return not context.game_variables[var_name]

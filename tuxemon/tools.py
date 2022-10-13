@@ -25,6 +25,7 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 #
+
 """
 
 Do not import platform-specific libraries such as pygame.
@@ -35,147 +36,206 @@ if more appropriate.  Ideally this should be kept small.
 
 """
 
-import logging
-import re
-from itertools import zip_longest
+from __future__ import annotations
 
-from tuxemon.compat.rect import Rect
+import logging
+import typing
+from itertools import zip_longest
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Iterable,
+    Mapping,
+    NoReturn,
+    Optional,
+    Protocol,
+    Sequence,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
+)
+
 from tuxemon import prepare
+from tuxemon.compat import ReadOnlyRect
 from tuxemon.locale import T
+from tuxemon.math import Vector2
+
+if TYPE_CHECKING:
+    import pygame
+
+    from tuxemon.item.item import Item
+    from tuxemon.session import Session
+    from tuxemon.sprite import Sprite
+    from tuxemon.state import State
+
 
 logger = logging.getLogger(__name__)
 
+# Used to indicate that a function should never be called
+# https://typing.readthedocs.io/en/latest/source/unreachable.html
+Never = NoReturn
 
-def get_cell_coordinates(rect, point, size):
+TVar = TypeVar("TVar")
+TVarSequence = TypeVar("TVarSequence", bound=Tuple[int, ...])
+
+ValidParameterSingleType = Optional[Type[Any]]
+ValidParameterTypes = Union[
+    ValidParameterSingleType,
+    Sequence[ValidParameterSingleType],
+]
+
+
+class NamedTupleProtocol(Protocol):
+    """Protocol for arbitrary NamedTuple objects."""
+
+    @property
+    def _fields(self) -> Tuple[str, ...]:
+        pass
+
+
+NamedTupleTypeVar = TypeVar("NamedTupleTypeVar", bound=NamedTupleProtocol)
+
+
+def get_cell_coordinates(
+    rect: ReadOnlyRect,
+    point: Tuple[int, int],
+    size: Tuple[int, int],
+) -> Tuple[int, int]:
     """Find the cell of size, within rect, that point occupies."""
-    cell = [None, None]
     point = (point[0] - rect.x, point[1] - rect.y)
-    cell[0] = (point[0] // size[0]) * size[0]
-    cell[1] = (point[1] // size[1]) * size[1]
-    return tuple(cell)
+    cell_x = (point[0] // size[0]) * size[0]
+    cell_y = (point[1] // size[1]) * size[1]
+    return (cell_x, cell_y)
 
 
-def transform_resource_filename(*filename):
-    """Appends the resource folder name to a filename
+def transform_resource_filename(*filename: str) -> str:
+    """
+    Appends the resource folder name to a filename.
 
-    :param filename: String
-    :rtype: basestring
+    Parameters:
+        filename: Relative path of a resource.
+
+    Returns:
+        The absolute path of the resource.
+
     """
     return prepare.fetch(*filename)
 
 
-def new_scaled_rect(*args, **kwargs):
-    """Create a new rect and scale it
-
-    :param args: Normal args for a Rect
-    :param kwargs: Normal kwargs for a Rect
-    :rtype: tuxemon.compat.rect.Rect
+def scale_sequence(sequence: TVarSequence) -> TVarSequence:
     """
-    rect = Rect(*args, **kwargs)
-    return scale_rect(rect)
+    Scale a sequence of integers by the configured scale factor.
 
+    Parameters:
+        sequence: Sequence to scale.
 
-def scale_rect(rect, factor=prepare.SCALE):
-    """Scale a rect.  Returns a new object.
+    Returns:
+        Scaled sequence.
 
-    :param rect: Rect
-    :param factor: int
-    :rtype: tuxemon.compat.rect.Rect
     """
-    return Rect([i * factor for i in list(rect)])
+    return type(sequence)(i * prepare.SCALE for i in sequence)
 
 
-def scale_sequence(sequence):
-    """Scale the thing
-
-    :param sequence:
-    :rtype: list
+def scale(number: int) -> int:
     """
-    return [i * prepare.SCALE for i in sequence]
+    Scale an integer by the configured scale factor.
 
+    Parameter:
+        number: Integer to scale.
 
-def scale(number):
-    """Scale the thing
+    Returns:
+        Scaled integer.
 
-    :param number: int
-    :rtype: int
     """
     return prepare.SCALE * number
 
 
-def check_parameters(parameters, required=0, exit=True):
+def calc_dialog_rect(screen_rect: pygame.rect.Rect) -> pygame.rect.Rect:
     """
-    Checks to see if a given list has the required number of items
-    """
-    if len(parameters) < required:
-        import inspect
+    Return a rect that is the area for a dialog box on the screen.
 
-        calling_function = inspect.stack()[1][3]
-        logger.error("'" + calling_function + "' requires at least " + str(required) + "parameters.")
-        if exit:
-            import sys
+    Note:
+        This only works with Pygame rects, as it modifies the attributes.
 
-            sys.exit(1)
-        return False
+    Parameters:
+        screen_rect: Rectangle of the screen.
 
-    else:
-        return True
+    Returns:
+        Rectangle for a dialog.
 
-
-def calc_dialog_rect(screen_rect):
-    """Return a rect that is the area for a dialog box on the screen
-
-    :param screen_rect:
-    :return:
     """
     rect = screen_rect.copy()
     if prepare.CONFIG.large_gui:
-        rect.height *= 0.4
+        rect.height *= 4
+        rect.height //= 10
         rect.bottomleft = screen_rect.bottomleft
     else:
-        rect.height *= 0.25
-        rect.width *= 0.8
+        rect.height //= 4
+        rect.width *= 8
+        rect.width //= 10
         rect.center = screen_rect.centerx, screen_rect.bottom - rect.height
     return rect
 
 
-def open_dialog(session, text, avatar=None, menu=None):
-    """Open a dialog with the standard window size
-
-    :param tuxemon.session.Session session: Game session
-    :param text: list of strings
-    :param avatar: optional avatar sprite
-    :param menu: optional menu object
-
-    :rtype: tuxemon.states.dialog.DialogState
+def open_dialog(
+    session: Session,
+    text: Sequence[str],
+    avatar: Optional[Sprite] = None,
+    menu: Optional[Tuple[str, str, Callable[[], None]]] = None,
+) -> State:
     """
+    Open a dialog with the standard window size.
+
+    Parameters:
+        session: Game session.
+        text: List of strings.
+        avatar: Optional avatar sprite.
+        menu: Optional menu object.
+
+    Returns:
+        The pushed dialog state.
+
+    """
+    from tuxemon.states.dialog import DialogState
+
     rect = calc_dialog_rect(session.client.screen.get_rect())
-    return session.client.push_state("DialogState", text=text, avatar=avatar, rect=rect, menu=menu)
+    return session.client.push_state(
+        DialogState,
+        text=text,
+        avatar=avatar,
+        rect=rect,
+        menu=menu,
+    )
 
 
-def nearest(l):
-    """Use rounding to find nearest tile
+def vector2_to_tile_pos(vector: Vector2) -> Tuple[int, int]:
+    return (int(vector[0]), int(vector[1]))
 
-    :param l:
-    :return:
+
+def number_or_variable(
+    session: Session,
+    value: str,
+) -> float:
     """
-    return tuple(int(round(i)) for i in l)
+    Returns a numeric game variable by its name.
 
+    If ``value`` is already a number, convert from string to float and
+    return that.
 
-def trunc(l):
-    return tuple(int(i) for i in l)
+    Parameters:
+        session: Session object, that contains the requested variable.
+        value: Name of the requested variable or string with numerical value.
 
+    Returns:
+        Numerical value contained in the string or in the variable referenced
+        by that name.
 
-def number_or_variable(session, value):
-    """Returns a numeric game variable by its name
-    If value is already a number, convert from string to float and return that
+    Raises:
+        ValueError: If ``value`` is not a number but no numeric variable with
+        that name can be retrieved.
 
-    :param session:
-    :param value: Union[str, float, int]
-
-    :rtype: float
-
-    :raises: ValueError
     """
     player = session.player
     if value.isdigit():
@@ -184,65 +244,99 @@ def number_or_variable(session, value):
         try:
             return float(player.game_variables[value])
         except (KeyError, ValueError, TypeError):
-            logger.error(f"invalid number or game variable {value}")
-            raise ValueError
+            raise ValueError(f"invalid number or game variable {value}")
 
 
-def cast_values(parameters, valid_parameters):
-    """Change all the string values to the expected type
+def cast_values(
+    parameters: Sequence[Any],
+    valid_parameters: Sequence[Tuple[ValidParameterTypes, str]],
+) -> Sequence[Any]:
+    """
+    Change all the string values to the expected type.
 
-    This will also check and enforce the correct parameters for actions
+    This will also check and enforce the correct parameters for actions.
 
-    :param parameters:
-    :param valid_parameters:
-    :return:
+    Parameters:
+        parameters: Parameters passed to the scripted object.
+        valid_parameters: Allowed parameters and their types.
+
+    Returns:
+        Parameters converted to their correct type.
+
     """
 
     # TODO: stability/testing
-    def cast(i):
-        ve = False
-        t, v = i
-        try:
-            for tt in t[0]:
-                if tt is None:
-                    return None
+    def cast(
+        i: Tuple[Tuple[ValidParameterTypes, str], Any],
+    ) -> Any:
 
-                if v is None:
-                    return None
+        (type_constructors, param_name), value = i
 
+        if not isinstance(type_constructors, Sequence):
+            type_constructors = [type_constructors]
+
+        if (value is None or value == "") and (
+            None in type_constructors or type(None) in type_constructors
+        ):
+            return None
+
+        for constructor in type_constructors:
+
+            if constructor:
                 try:
-                    return tt(v)
-                except ValueError:
-                    ve = True
+                    return constructor(value)
+                except (ValueError, TypeError):
+                    pass
 
-        except TypeError:
-            if v is None:
-                return None
-
-            if v == "":
-                return None
-
-            return t[0](v)
-
-        if ve:
-            raise ValueError
+        raise ValueError(
+            f"Error parsing parameter {param_name} with value {value} and "
+            f"constructor list {type_constructors}",
+        )
 
     try:
         return list(map(cast, zip_longest(valid_parameters, parameters)))
     except ValueError:
-        logger.error("Invalid parameters passed:")
-        logger.error(f"expected: {valid_parameters}")
-        logger.error(f"got: {parameters}")
+        logger.warning("Invalid parameters passed:")
+        logger.warning(f"expected: {valid_parameters}")
+        logger.warning(f"got: {parameters}")
         raise
 
 
-def show_item_result_as_dialog(session, item, result):
-    """Show generic dialog if item was used or not
+def get_types_tuple(
+    param_type: ValidParameterSingleType,
+) -> Sequence[ValidParameterSingleType]:
+    if typing.get_origin(param_type) is Union:
+        return typing.get_args(param_type)
+    else:
+        return (param_type,)
 
-    :param tuxemon.session.Session session: Session
-    :param tuxemon.item.item.Item item: Item
-    :param dict result:
-    :return: None
+
+def cast_parameters_to_namedtuple(
+    parameters: Sequence[Any],
+    namedtuple_class: Type[NamedTupleTypeVar],
+) -> NamedTupleTypeVar:
+    valid_parameters = [
+        (get_types_tuple(typing.get_type_hints(namedtuple_class)[f]), f)
+        for f in namedtuple_class._fields
+    ]
+
+    values = cast_values(parameters, valid_parameters)
+    return namedtuple_class(*values)
+
+
+def show_item_result_as_dialog(
+    session: Session,
+    item: Item,
+    result: Mapping[str, Any],
+) -> None:
+    """
+    Show generic dialog if item was used or not.
+
+    Parameters:
+        session: Game session.
+        item: Item object.
+        result: A dict with a ``success`` key indicating sucess or failure.
+
     """
     msg_type = "use_success" if result["success"] else "use_failure"
     template = getattr(item, msg_type)
@@ -251,56 +345,52 @@ def show_item_result_as_dialog(session, item, result):
         open_dialog(session, [message])
 
 
-def split_escaped(string_to_split, delim=","):
-    """Splits a string by the specified deliminator excluding escaped
-    deliminators.
-
-    :param string_to_split: The string to split.
-    :param delim: The deliminator to split the string by.
-
-    :type string_to_split: Str
-    :type delim: Str
-
-    :rtype: List
-    :returns: A list of the splitted string.
-
+def round_to_divisible(x: float, base: int = 16) -> int:
     """
-    # Split by "," unless it is escaped by a "\"
-    split_list = re.split(r"(?<!\\)" + delim, string_to_split)
-
-    # Remove the escape character from the split list
-    split_list = [w.replace(r"\,", ",") for w in split_list]
-
-    # strip whitespace around each
-    split_list = [i.strip() for i in split_list]
-
-    return split_list
-
-
-def round_to_divisible(x, base=16):
-    """Rounds a number to a divisible base.
+    Rounds a number to a divisible base.
 
     This is used to round collision areas that aren't defined well. This
     function assists in making sure collisions work if the map creator didn't
     set the collision areas to round numbers.
 
-    :param x: The number we want to round.
-    :param base: The base that we want our number to be divisible by. (Default: 16)
-    :type x: Float
-    :type base: Integer
-    :rtype: Integer
-    :returns: Rounded number that is divisible by "base".
+    Parameters:
+        x: The number we want to round.
+        base: The base that we want our number to be divisible by. By default
+            this is 16.
+
+    Returns:
+        Rounded number that is divisible by ``base``.
+
     """
     return int(base * round(float(x) / base))
 
 
-def copy_dict_with_keys(source, keys):
-    """Return new dict using only the keys/value from `keys`
+def copy_dict_with_keys(
+    source: Mapping[str, TVar],
+    keys: Iterable[str],
+) -> Mapping[str, TVar]:
+    """
+    Return new dict using only the keys/value from ``keys``.
 
-    If key from keys is not present no error is raised
+    If key from keys is not present no error is raised.
 
-    :param Dict source:
-    :param List[str] keys:
-    :rtype: Dict
+    Parameters:
+        source: Original mapping.
+        keys: Allowed keys in the output mapping.
+
+    Returns:
+        New mapping with the keys restricted to those in ``keys``.
+
     """
     return {k: source[k] for k in keys if k in source}
+
+
+def assert_never(value: Never) -> NoReturn:
+    """
+    Assertion for exhaustive checking of a variable.
+
+    Parameters:
+        value: The value that will be checked for exhaustiveness.
+
+    """
+    assert False, f"Unhandled value: {value} ({type(value).__name__})"

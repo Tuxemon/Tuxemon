@@ -16,11 +16,36 @@
             "technique": "ram"
         }
     ],
-    "shape": "Sprite",
+    "evolutions": [
+        {
+            "path": "wood_booster",
+            "at_level": 0,
+            "monster_slug": "bamboon"
+        },
+        {
+            "path": "lucky_bamboo",
+            "at_level": 0,
+            "monster_slug": "bamboon"
+        },
+        {
+            "path": "water_booster",
+            "at_level": 0,
+            "monster_slug": "frondly"
+        },
+        {
+            "path": "peace_lily",
+            "at_level": 0,
+            "monster_slug": "frondly"
+        }
+    ],
+    "shape": "sprite",
     "types": [
         "Wood"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 26,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

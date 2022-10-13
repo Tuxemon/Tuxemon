@@ -34,15 +34,22 @@ import gettext
 import logging
 import os
 import os.path
+from typing import (
+    Any,
+    Callable,
+    Generator,
+    Iterable,
+    Mapping,
+    Optional,
+    Sequence,
+)
 
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
 
-from tuxemon.constants import paths
 from tuxemon import prepare
+from tuxemon.constants import paths
 from tuxemon.session import Session
-from typing import Generator, Optional, Mapping, Any, Iterable, Sequence,\
-    Callable
 
 logger = logging.getLogger(__name__)
 
@@ -52,6 +59,7 @@ FALLBACK_LOCALE = "en_US"
 @dataclasses.dataclass(frozen=True, order=True)
 class LocaleInfo:
     """Information about a locale."""
+
     locale: str
     category: str
     domain: str
@@ -79,6 +87,7 @@ class TranslatorPo:
             The information of each locale.
 
         """
+        logger.debug("searching locales...")
         root = prepare.fetch("l18n")
         for locale in os.listdir(root):
             locale_path = os.path.join(root, locale)
@@ -90,12 +99,14 @@ class TranslatorPo:
                             path = os.path.join(category_path, name)
                             if os.path.isfile(path) and name.endswith(".po"):
                                 domain = name[:-3]
-                                yield LocaleInfo(
+                                info = LocaleInfo(
                                     locale,
                                     category,
                                     domain,
                                     path,
                                 )
+                                logger.debug("found: %s", info)
+                                yield info
 
     def collect_languages(self, recompile_translations: bool = False) -> None:
         """
@@ -163,7 +174,10 @@ class TranslatorPo:
             domain: Name of the domain.
 
         """
+        logger.debug("loading translator for: %s", locale_name)
         localedir = os.path.join(paths.CACHE_DIR, "l18n")
+        fallback = gettext.translation("base", localedir, [FALLBACK_LOCALE])
+
         for info in self.search_locales():
             if info.locale == locale_name and info.domain == domain:
                 trans = gettext.translation(
@@ -171,10 +185,11 @@ class TranslatorPo:
                     localedir,
                     [locale_name],
                 )
+                trans.add_fallback(fallback)
                 break
         else:
-            logger.warning(f"Locale {locale_name} not found. Using fallback.")
-            trans = gettext.translation("base", localedir, [FALLBACK_LOCALE])
+            logger.warning("Locale %s not found. Using fallback.", locale_name)
+            trans = fallback
         trans.install()
         self.translate = trans.gettext
 
@@ -232,17 +247,33 @@ def replace_text(session: Session, text: str) -> str:
     text = text.replace("${{name}}", session.player.name)
     text = text.replace("${{currency}}", "$")
     text = text.replace(r"\n", "\n")
+    text = text.replace("${{money}}", str(session.player.money["player"]))
 
     for i in range(len(session.player.monsters)):
         monster = session.player.monsters[i]
         text = text.replace("${{monster_" + str(i) + "_name}}", monster.name)
-        text = text.replace("${{monster_" + str(i) + "_desc}}", monster.description)
+        text = text.replace(
+            "${{monster_" + str(i) + "_desc}}",
+            monster.description,
+        )
         text = text.replace("${{monster_" + str(i) + "_type}}", monster.slug)
-        text = text.replace("${{monster_" + str(i) + "_category}}", monster.category)
+        text = text.replace(
+            "${{monster_" + str(i) + "_category}}",
+            monster.category,
+        )
         text = text.replace("${{monster_" + str(i) + "_shape}}", monster.shape)
-        text = text.replace("${{monster_" + str(i) + "_hp}}", str(monster.current_hp))
-        text = text.replace("${{monster_" + str(i) + "_hp_max}}", str(monster.hp))
-        text = text.replace("${{monster_" + str(i) + "_level}}", str(monster.level))
+        text = text.replace(
+            "${{monster_" + str(i) + "_hp}}",
+            str(monster.current_hp),
+        )
+        text = text.replace(
+            "${{monster_" + str(i) + "_hp_max}}",
+            str(monster.hp),
+        )
+        text = text.replace(
+            "${{monster_" + str(i) + "_level}}",
+            str(monster.level),
+        )
 
     return text
 

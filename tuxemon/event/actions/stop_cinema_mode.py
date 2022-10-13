@@ -19,21 +19,39 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
 import logging
+from typing import NamedTuple, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
 
-class StopCinemaModeAction(EventAction):
-    """Stops cinema mode by animating moving black bars to back to the normal aspect ratio."""
+class StopCinemaModeActionParameters(NamedTuple):
+    pass
+
+
+@final
+class StopCinemaModeAction(EventAction[StopCinemaModeActionParameters]):
+    """
+    Stop cinema mode by animating black bars back to the normal aspect ratio.
+
+    Script usage:
+        .. code-block::
+
+            stop_cinema_mode
+
+    """
 
     name = "stop_cinema_mode"
-    valid_parameters = []
+    param_class = StopCinemaModeActionParameters
 
-    def start(self):
+    def start(self) -> None:
         world = self.session.client.current_state
+        assert isinstance(world, WorldState)
         if world.cinema_state == "on":
             logger.info("Turning off cinema mode")
             world.cinema_state = "turning off"

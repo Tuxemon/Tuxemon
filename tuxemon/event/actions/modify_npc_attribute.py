@@ -19,26 +19,49 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event import get_npc
 from tuxemon.event.actions.common import CommonAction
 from tuxemon.event.eventaction import EventAction
 
 
-class ModifyNpcAttributeAction(EventAction):
-    """Modifies the given attribute of the npc by modifier. By default
-    this is achieved via addition, but prepending a '%' will cause it to be
-    multiplied by the attribute.
+class ModifyNpcAttributeActionParameters(NamedTuple):
+    npc_slug: str
+    name: str
+    value: str
 
-    Valid Parameters: slug, attribute, modifier
 
-    EventAction parameter 'modifier' must be a number (positive or negative)
+@final
+class ModifyNpcAttributeAction(
+    EventAction[ModifyNpcAttributeActionParameters],
+):
+    """
+    Modify the given attribute of the npc by modifier.
+
+    By default this is achieved via addition, but prepending a '%' will cause
+    it to be multiplied by the attribute.
+
+    Script usage:
+        .. code-block::
+
+            modify_npc_attribute <npc_slug>,<name>,<value>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        name: Name of the attribute to modify.
+        value: Value of the attribute modifier.
+
     """
 
     name = "modify_npc_attribute"
-    valid_parameters = [(str, "npc_slug"), (str, "name"), (float, "value")]
+    param_class = ModifyNpcAttributeActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc = get_npc(self.session, self.parameters[0])
+        assert npc
         attribute = self.parameters[1]
         modifier = self.parameters[2]
         CommonAction.modify_character_attribute(npc, attribute, modifier)

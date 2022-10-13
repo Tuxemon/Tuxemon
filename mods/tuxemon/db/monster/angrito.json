@@ -16,12 +16,16 @@
             "technique": "flamethrower"
         }
     ],
-    "shape": "",
+    "evolutions": [],
+    "shape": "blob",
     "types": [
         "Fire",
         "Metal"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 166,
+    "height": 90,
+    "weight": 55,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

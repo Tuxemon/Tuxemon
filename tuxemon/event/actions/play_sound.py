@@ -19,22 +19,37 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon import audio
 from tuxemon.event.eventaction import EventAction
 
 
-class PlaySoundAction(EventAction):
-    """Plays a sound from "resources/sounds/"
+class PlaySoundActionParameters(NamedTuple):
+    filename: str
 
-    Valid Parameters: filename
+
+@final
+class PlaySoundAction(EventAction[PlaySoundActionParameters]):
+    """
+    Play a sound from "resources/sounds/".
+
+    Script usage:
+        .. code-block::
+
+            play_sound <filename>
+
+    Script parameters:
+        filename: Sound file to load.
+
     """
 
     name = "play_sound"
-    valid_parameters = [
-        (str, "filename"),
-    ]
+    param_class = PlaySoundActionParameters
 
-    def start(self):
+    def start(self) -> None:
         filename = self.parameters.filename
         sound = audio.load_sound(filename)
         sound.play()

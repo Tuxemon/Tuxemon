@@ -18,36 +18,39 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import annotations
 
-from tuxemon.event import get_npc
+from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
 
 
 class NPCExistsCondition(EventCondition):
-    """Checks to see if a particular NPC object exists in the current list of NPCs."""
+    """
+    Check to see if a character object exists in the current list of NPCs.
+
+    Script usage:
+        .. code-block::
+
+            is npc_exists <character>
+
+    Script parameters:
+        character: Either "player" or npc slug name (e.g. "npc_maple").
+
+    """
 
     name = "npc_exists"
 
-    def test(self, session, condition):
-        """Checks to see if a particular NPC object exists in the current list of NPCs.
-
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
-
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
-
-        :rtype: Boolean
-        :returns: True or False
-
-        Valid Parameters: npc_slug
+    def test(self, session: Session, condition: MapCondition) -> bool:
         """
-        world = session.client.get_state_by_name("WorldState")
-        if not world:
-            return
+        Check to see if a particular character exists.
 
-        if get_npc(session, condition.parameters[0]):
-            return True
-        else:
-            return False
+        Parameters:
+            session: The session object
+            condition: The map condition object.
+
+        Returns:
+            Whether the chosen character exists.
+
+        """
+        return get_npc(session, condition.parameters[0]) is not None

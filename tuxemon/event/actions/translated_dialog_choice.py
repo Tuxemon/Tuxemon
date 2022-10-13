@@ -19,34 +19,58 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
 import logging
 from functools import partial
+from typing import Callable, NamedTuple, Sequence, Tuple, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T, replace_text
+from tuxemon.session import Session
+from tuxemon.states.choice import ChoiceState
 
 logger = logging.getLogger(__name__)
 
 
-class TranslatedDialogChoiceAction(EventAction):
-    """Asks the player to make a choice.
+class TranslatedDialogChoiceActionParameters(NamedTuple):
+    choices: str
+    variable: str
 
-    Valid Parameters: choice1:choice2,var_key
+
+@final
+class TranslatedDialogChoiceAction(
+    EventAction[TranslatedDialogChoiceActionParameters],
+):
+    """
+    Ask the player to make a choice.
+
+    Script usage:
+        .. code-block::
+
+            translated_dialog_choice <choices>,<variable>
+
+    Script parameters:
+        choices: List of possible choices, separated by a colon ":".
+        variable: Variable to store the result of the choice.
+
     """
 
     name = "translated_dialog_choice"
 
-    valid_parameters = [(str, "choices"), (str, "variable")]
+    param_class = TranslatedDialogChoiceActionParameters
 
-    def start(self):
-        def set_variable(var_value):
+    def start(self) -> None:
+        def set_variable(var_value: str) -> None:
             player.game_variables[self.parameters.variable] = var_value
             self.session.client.pop_state()
 
         # perform text substitutions
         choices = replace_text(self.session, self.parameters.choices)
-        player = get_npc(self.session, "player")
+        maybe_player = get_npc(self.session, "player")
+        assert maybe_player
+        player = maybe_player
 
         # make menu options for each string between the colons
         var_list = choices.split(":")
@@ -58,10 +82,16 @@ class TranslatedDialogChoiceAction(EventAction):
 
         self.open_choice_dialog(self.session, var_menu)
 
-    def update(self):
-        if self.session.client.get_state_by_name("ChoiceState") is None:
+    def update(self) -> None:
+        try:
+            self.session.client.get_state_by_name(ChoiceState)
+        except ValueError:
             self.stop()
 
-    def open_choice_dialog(self, session, menu):
+    def open_choice_dialog(
+        self,
+        session: Session,
+        menu: Sequence[Tuple[str, str, Callable[[], None]]],
+    ) -> ChoiceState:
         logger.info("Opening choice window")
-        return session.client.push_state("ChoiceState", menu=menu)
+        return session.client.push_state(ChoiceState, menu=menu)

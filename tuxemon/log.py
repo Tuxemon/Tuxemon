@@ -30,6 +30,7 @@
 
 import logging
 import sys
+import warnings
 
 from tuxemon import prepare
 
@@ -55,6 +56,9 @@ def configure():
     # Set up logging if the configuration has it enabled
     if config.debug_logging:
 
+        # Enable suppressed warnings
+        warnings.filterwarnings("default")
+
         for logger_name in config.loggers:
 
             # Enable logging for all modules if specified.
@@ -69,7 +73,11 @@ def configure():
             logger.setLevel(log_level)
             log_hdlr = logging.StreamHandler(sys.stdout)
             log_hdlr.setLevel(log_level)
-            log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"))
+            log_hdlr.setFormatter(
+                logging.Formatter(
+                    "%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"
+                )
+            )
             logger.addHandler(log_hdlr)
 
             loggers[logger_name] = logger

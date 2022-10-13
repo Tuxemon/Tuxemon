@@ -25,19 +25,30 @@
 #
 
 from __future__ import annotations
+
 import logging
 from contextlib import contextmanager
 from textwrap import dedent
+from typing import (
+    Any,
+    Dict,
+    Generator,
+    Iterable,
+    List,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+)
 
+from tuxemon import plugin, prepare
 from tuxemon.constants import paths
 from tuxemon.event import EventObject, MapAction, MapCondition
-from tuxemon import plugin
-from tuxemon import prepare
-from tuxemon.platform.const import buttons
-from typing import Optional, Mapping, Type, Sequence, Iterable, Any, Union,\
-    Generator, Dict, List, Tuple
-from tuxemon.event.eventcondition import EventCondition
 from tuxemon.event.eventaction import EventAction
+from tuxemon.event.eventcondition import EventCondition
+from tuxemon.map import TuxemonMap
+from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import Session
 
@@ -78,7 +89,7 @@ class RunningEvent:
         self.map_event = map_event
         self.context: Dict[str, Any] = dict()
         self.action_index = 0
-        self.current_action: Optional[EventAction] = None
+        self.current_action: Optional[EventAction[Any]] = None
         self.current_map_action = None
 
     def get_next_action(self) -> Optional[MapAction]:
@@ -104,6 +115,9 @@ class RunningEvent:
 
         return action
 
+    def advance(self):
+        self.action_index += 1
+
 
 class EventEngine:
     """
@@ -125,11 +139,9 @@ class EventEngine:
     def __init__(self, session: Session) -> None:
         self.session = session
 
-        self.conditions: Mapping[str, Type[EventCondition]] = dict()
-        self.actions: Mapping[str, Type[EventAction]] = dict()
         self.running_events: Dict[int, RunningEvent] = dict()
         self.name = "Event"
-        self.current_map = None
+        self.current_map: Optional[TuxemonMap] = None
         self.timer = 0.0
         self.wait = 0.0
         self.button = None
@@ -137,8 +149,21 @@ class EventEngine:
         # debug
         self.partial_events: List[Sequence[Tuple[bool, MapCondition]]] = list()
 
-        self.conditions = plugin.load_plugins(paths.CONDITIONS_PATH, "conditions")
-        self.actions = plugin.load_plugins(paths.ACTIONS_PATH, "actions")
+        self.conditions = plugin.load_plugins(
+            paths.CONDITIONS_PATH,
+            "conditions",
+            interface=EventCondition,
+        )
+
+        # Mypy fails to typecheck here because
+        # https://github.com/python/mypy/issues/4717
+        # The workarounds are ugly, so we will wait
+        # for that to be fixed.
+        self.actions = plugin.load_plugins(
+            paths.ACTIONS_PATH,
+            "actions",
+            interface=EventAction,  # type: ignore[misc]
+        )
 
     def reset(self) -> None:
         """Clear out running events.  Use when changing maps."""
@@ -152,7 +177,7 @@ class EventEngine:
         self,
         name: str,
         parameters: Optional[Sequence[Any]] = None,
-    ) -> Optional[EventAction]:
+    ) -> Optional[EventAction[Any]]:
         """
         Get an action that is loaded into the engine.
 
@@ -169,7 +194,6 @@ class EventEngine:
             that action is loaded. ``None`` otherwise.
 
         """
-        # TODO: make generic
         if parameters is None:
             parameters = list()
 
@@ -178,11 +202,18 @@ class EventEngine:
 
         except KeyError:
             error = f'Error: EventAction "{name}" not implemented'
-            logger.error(error)
+            logger.warning(error)
             return None
 
         else:
             return action(self.session, parameters)
+
+    def get_actions(self) -> List[Type[EventAction]]:
+        """
+        Return list of EventActions.
+
+        """
+        return list(self.actions.values())
 
     def get_condition(self, name: str) -> Optional[EventCondition]:
         """
@@ -206,16 +237,22 @@ class EventEngine:
 
         except KeyError:
             error = f'Error: EventCondition "{name}" not implemented'
-            logger.error(error)
+            logger.warning(error)
             return None
 
         else:
             return condition()
 
+    def get_conditions(self) -> List[Type[EventCondition]]:
+        """
+        Return list of EventConditions.
+
+        """
+        return list(self.conditions.values())
+
     def check_condition(
         self,
         cond_data: MapCondition,
-        map_event: EventObject,
     ) -> bool:
         """
         Check if condition is true of false.
@@ -224,21 +261,23 @@ class EventEngine:
 
         Parameters:
             cond_data: The condition to check.
-            map_event: Event that includes the condition.
 
         Returns:
             The value of the condition.
 
         """
-        with add_error_context(map_event, cond_data, self.session):
-            map_condition = self.get_condition(cond_data.type)
-            if map_condition is None:
-                logger.debug(f'map condition "{cond_data.type}" is not loaded')
-                return False
+        map_condition = self.get_condition(cond_data.type)
+        if map_condition is None:
+            logger.debug(f'map condition "{cond_data.type}" is not loaded')
+            return False
 
-            result = map_condition.test(self.session, cond_data) == (cond_data.operator == "is")
-            logger.debug(f'map condition "{map_condition.name}": {result} ({cond_data})')
-            return result
+        result = map_condition.test(self.session, cond_data) == (
+            cond_data.operator == "is"
+        )
+        logger.debug(
+            f'map condition "{map_condition.name}": {result} ({cond_data})'
+        )
+        return result
 
     def execute_action(
         self,
@@ -261,7 +300,7 @@ class EventEngine:
         action = self.get_action(action_name, parameters)
         if action is None:
             error_msg = f'Map action "{action_name}" is not loaded'
-            logger.debug(error_msg)
+            logger.warning(error_msg)
             raise ValueError(error_msg)
 
         return action.execute()
@@ -300,7 +339,8 @@ class EventEngine:
             started = 0
             conds = list()
             for cond in map_event.conds:
-                if self.check_condition(cond, map_event):
+                # TODO: wrap with add_error_context
+                if self.check_condition(cond):
                     conds.append((True, cond))
                     started += 1
                 else:
@@ -313,10 +353,7 @@ class EventEngine:
 
         else:
             # optimal, less debug
-            if all(
-                self.check_condition(cond, map_event)
-                for cond in map_event.conds
-            ):
+            if all(self.check_condition(cond) for cond in map_event.conds):
                 self.start_event(map_event)
 
     def process_map_events(self, events: Iterable[EventObject]) -> None:
@@ -372,9 +409,21 @@ class EventEngine:
 
         """
         to_remove = set()
+        current_map = self.current_map
 
         # Loop through the list of actions and update them
         for i, e in self.running_events.items():
+            # If the current map has changed, then `reset` has also been
+            # called, which replaced self.running_events with an empty dict.
+            # We need to stop processing the running_events, as they may not
+            # make sense on the new map. We need to explicitly guard for this
+            # because actions within this loop can change the map.
+            if current_map != self.current_map:
+                # The map has just changed, so running_events should have been
+                # emptied.
+                assert not self.running_events
+                return
+
             while 1:
                 """
                 * if RunningEvent is currently running an action, then continue
@@ -439,7 +488,7 @@ class EventEngine:
                     # action finished, so continue and do the next one,
                     # if available
                     action.cleanup()
-                    e.action_index += 1
+                    e.advance()
                     e.current_action = None
                     logger.debug(f"action finished: {action}")
 
@@ -519,12 +568,17 @@ def add_error_context(
                     Line {line_number}
                 """.format(
                     file_name=file_name,
-                    event=etree.tostring(event_node).decode().split("\n")[0].strip(),
+                    event=etree.tostring(event_node)
+                    .decode()
+                    .split("\n")[0]
+                    .strip(),
                     line_number=event_node.sourceline,
                 )
             else:
                 # This is either a condition or an action
-                child_node = event_node.find(".//property[@name='%s']" % (item.name))
+                child_node = event_node.find(
+                    ".//property[@name='%s']" % (item.name)
+                )
                 if child_node:
                     msg = """
                         Error in {file_name}
@@ -534,7 +588,10 @@ def add_error_context(
                         Line {line_number}
                     """.format(
                         file_name=file_name,
-                        event=etree.tostring(event_node).decode().split("\n")[0].strip(),
+                        event=etree.tostring(event_node)
+                        .decode()
+                        .split("\n")[0]
+                        .strip(),
                         line=etree.tostring(child_node).decode().strip(),
                         line_number=child_node.sourceline,
                     )

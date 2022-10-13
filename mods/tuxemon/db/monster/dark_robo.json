@@ -16,10 +16,14 @@
             "technique": "shrapnel"
         }
     ],
-    "shape": "Humanoid",
+    "evolutions": [],
+    "shape": "humanoid",
     "types": [
         "Metal"
     ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 0,
+    "height": 0,
     "weight": 100,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,

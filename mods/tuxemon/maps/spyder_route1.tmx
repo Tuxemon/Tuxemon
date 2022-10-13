@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="191">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="193">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -185,7 +185,7 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="151" name="Encounters" type="event" x="320" y="176" width="128.091" height="63.8636">
+  <object id="151" name="Encounters" type="event" x="320" y="176" width="128" height="64">
    <properties>
     <property name="act1" value="random_encounter route1,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -287,10 +287,22 @@
     <property name="behav1" value="talk spyder_beachcomber"/>
    </properties>
   </object>
-  <object id="190" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="190" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="not variable_set environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="191" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
+   </properties>
+  </object>
+  <object id="192" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
  </objectgroup>

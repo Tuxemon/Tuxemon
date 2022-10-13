@@ -1,21 +1,25 @@
 {
-    "slug": "spyder_wayfarer1_morningstar",
-    "sprite_name": "nurse",
-	"monsters": [
-        {
-            "name": "Cairfrey",
-            "level": 12, 
-			"slug": "cairfrey",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Cairfrey",
-            "level": 12, 
-			"slug": "cairfrey",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "nurse.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_wayfarer1_morningstar",
+  "gender": "female",
+  "sprite_name": "nurse",
+  "monsters": [
+    {
+      "name": "Cairfrey",
+      "level": 12,
+      "slug": "cairfrey",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Cairfrey",
+      "level": 12,
+      "slug": "cairfrey",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "male"
+    }
+  ],
+  "combat_front": "nurse.png",
+  "combat_back": "red_back.png"
+}

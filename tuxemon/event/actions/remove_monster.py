@@ -18,32 +18,54 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import annotations
+
 import uuid
+from typing import NamedTuple, Union, final
 
-from tuxemon.event.eventaction import EventAction
 from tuxemon.event import get_npc
+from tuxemon.event.eventaction import EventAction
 
 
-class RemoveMonsterAction(EventAction):
-    """Removes a monster from the given trainer's party if the monster is there.
-    Monster is determined by instance_id, which must be passed in a game variable.
-    If no trainer slug is passed it defaults to the current player.
+class RemoveMonsterActionParameters(NamedTuple):
+    instance_id: str
+    trainer_slug: Union[str, None]
 
-    Valid Parameters: instance_id
+
+@final
+class RemoveMonsterAction(EventAction[RemoveMonsterActionParameters]):
+    """
+    Remove a monster from the given trainer's party if the monster is there.
+
+    Monster is determined by instance_id, which must be passed in a game
+    variable.
+
+    Script usage:
+        .. code-block::
+
+            remove_monster <instance_id>[,trainer_slug]
+
+    Script parameters:
+        instance_id: Id of the monster.
+        trainer_slug: Slug of the trainer. If no trainer slug is passed
+            it defaults to the current player.
+
     """
 
     name = "remove_monster"
-    valid_parameters = [(str, "instance_id"), ((str, None), "trainer_slug")]
+    param_class = RemoveMonsterActionParameters
 
-    def start(self):
+    def start(self) -> None:
         iid = self.session.player.game_variables[self.parameters.instance_id]
         instance_id = uuid.UUID(iid)
-        trainer_slug = self.parameters.trainer
+        trainer_slug = self.parameters.trainer_slug
 
-        if trainer_slug is None:
-            trainer = self.session.player
-        else:
-            trainer = get_npc(trainer_slug)
+        trainer = (
+            self.session.player
+            if trainer_slug is None
+            else get_npc(self.session, trainer_slug)
+        )
+        assert trainer
 
         monster = trainer.find_monster_by_id(instance_id)
         if monster is not None:

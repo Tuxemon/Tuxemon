@@ -26,13 +26,17 @@
 # main Sets up the states and main game loop.
 #
 from __future__ import annotations
-from typing import Optional
-import logging
 
-from tuxemon import log
-from tuxemon import prepare
-from tuxemon.player import Player
+import logging
+from typing import Optional, no_type_check
+
+from tuxemon import log, prepare
 from tuxemon.session import local_session
+from tuxemon.states.persistance.load_menu import LoadMenuState
+from tuxemon.states.splash import SplashState
+from tuxemon.states.start import BackgroundState, StartState
+from tuxemon.states.transition.fade import FadeInTransition
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -55,20 +59,16 @@ def main(
     config = prepare.CONFIG
 
     import pygame
-    from tuxemon.client import Client
 
-    client = Client(config.window_caption)
-    client.auto_state_discovery()
+    from tuxemon.client import LocalPygameClient
+
+    client = LocalPygameClient(config)
 
     # global/singleton hack for now
     setattr(prepare, "GLOBAL_CONTROL", client)
 
-    # load the player npc
-    new_player = Player(config.player_npc)
-
     # WIP.  Will be more complete with game-view
     local_session.client = client
-    local_session.player = new_player
 
     # background state is used to prevent other states from
     # being required to track dirty screen areas.  for example,
@@ -76,21 +76,21 @@ def main(
     # since menus do not clean up dirty areas, the blank,
     # "Background state" will do that.  The alternative is creating
     # a system for states to clean up their dirty screen areas.
+    client.push_state(BackgroundState)
     if not config.skip_titlescreen:
-        client.push_state("BackgroundState")
-        client.push_state("StartState")
+        client.push_state(StartState)
 
     if load_slot:
-        client.push_state("LoadMenuState", load_slot=load_slot)
+        client.push_state(LoadMenuState, load_slot=load_slot)
+        client.pop_state()
     elif config.splash:
-        client.push_state("SplashState")
-        client.push_state("FadeInTransition")
+        client.push_state(SplashState)
+        client.push_state(FadeInTransition)
 
     # TODO: rename this to "debug map" or something
     if config.skip_titlescreen:
-        state = client.push_state("WorldState")
         map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
-        state.change_map(map_name)
+        client.push_state(WorldState, map_name=map_name)
 
     # block of code useful for testing
     if config.collision_map:
@@ -107,16 +107,17 @@ def main(
         action("add_item", ("cherry",))
         action("add_item", ("capture_device",))
 
-        for i in range(10):
+        for _ in range(10):
             action("add_item", ("super_potion",))
 
-        for i in range(100):
+        for _ in range(100):
             action("add_item", ("apple",))
 
     client.main()
     pygame.quit()
 
 
+@no_type_check  # FIXME: dead code
 def headless() -> None:
     """Sets up out headless server and start the game."""
     from tuxemon.client import HeadlessClient

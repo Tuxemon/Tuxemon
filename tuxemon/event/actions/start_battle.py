@@ -19,57 +19,82 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
 import logging
+from typing import NamedTuple, final
 
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
+from tuxemon.states.combat.combat import CombatState
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
 
-class StartBattleAction(EventAction):
-    """Start a battle and switch to the combat module. The parameters must
-    contain an NPC slug in the NPC database.
+class StartBattleActionParameters(NamedTuple):
+    npc_slug: str
 
-    Valid Parameters: npc_slug
+
+@final
+class StartBattleAction(EventAction[StartBattleActionParameters]):
+    """
+    Start a battle with the given npc and switch to the combat module.
+
+    Script usage:
+        .. code-block::
+
+            start_battle <npc_slug>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+
     """
 
     name = "start_battle"
-    valid_parameters = [(str, "npc_slug")]
+    param_class = StartBattleActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
-            logger.debug("battle is not legal, won't start")
-            return False
+            logger.warning("battle is not legal, won't start")
+            return
 
-        world = self.session.client.get_state_by_name("WorldState")
-        if not world:
-            return False
+        world = self.session.client.get_state_by_name(WorldState)
 
         npc = world.get_entity(self.parameters.npc_slug)
+        assert npc
         if len(npc.monsters) == 0:
-            return False
+            logger.warning(
+                f"npc '{self.parameters.npc_slug}' has no monsters, won't start trainer battle."
+            )
+            return
 
         # Lookup the environment
-        env_slug = "grass"
-        if "environment" in player.game_variables:
-            env_slug = player.game_variables["environment"]
+        env_slug = player.game_variables.get("environment", "grass")
         env = db.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
-        logger.debug("Starting battle!")
+        logger.info("Starting battle with '{self.parameters.npc_slug}'!")
         self.session.client.push_state(
-            "CombatState", players=(player, npc), combat_type="trainer", graphics=env["battle_graphics"]
+            CombatState,
+            players=(player, npc),
+            combat_type="trainer",
+            graphics=env.battle_graphics,
         )
 
         # Start some music!
-        filename = env["battle_music"]
-        self.session.client.event_engine.execute_action("play_music", [filename])
+        filename = env.battle_music
+        self.session.client.event_engine.execute_action(
+            "play_music",
+            [filename],
+        )
 
-    def update(self):
-        if self.session.client.get_state_by_name("CombatState") is None:
+    def update(self) -> None:
+        try:
+            self.session.client.get_state_by_name(CombatState)
+        except ValueError:
             self.stop()

@@ -24,33 +24,52 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 from __future__ import annotations
+
 import logging
 import os.path
 import time
+from threading import Thread
+from typing import (
+    Any,
+    Dict,
+    Generator,
+    Iterable,
+    Mapping,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
+    overload,
+)
 
 import pygame as pg
 
+from tuxemon import networking, rumble
+from tuxemon.cli.processor import CommandProcessor
+from tuxemon.config import TuxemonConfig
+from tuxemon.event import EventObject
+from tuxemon.event.eventengine import EventEngine
+from tuxemon.map import TuxemonMap
+from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.platform_pygame.events import (
     PygameEventQueueHandler,
-    PygameKeyboardInput,
     PygameGamepadInput,
+    PygameKeyboardInput,
     PygameMouseInput,
     PygameTouchOverlayInput,
 )
-from tuxemon import cli, networking, prepare
-from tuxemon import rumble
-from tuxemon.event.eventengine import EventEngine
 from tuxemon.session import local_session
-from tuxemon.state import StateManager, State
-from tuxemon.map import TuxemonMap
-from tuxemon.platform.events import PlayerInput
-from typing import Iterable, Generator, Optional, Tuple, Mapping, Any, Dict
+from tuxemon.state import State, StateManager
+from tuxemon.states.world.worldstate import WorldState
 
+StateType = TypeVar("StateType", bound=State)
 
 logger = logging.getLogger(__name__)
 
 
-class Client(StateManager):
+class LocalPygameClient:
     """
     Client class for entire project.
 
@@ -58,45 +77,44 @@ class Client(StateManager):
     the event_loop which passes events to States as needed.
 
     Parameters:
-        caption: The window caption to use for the game itself.
+        config: The config for the game.
 
     """
 
-    def __init__(self, caption: str) -> None:
+    def __init__(self, config: TuxemonConfig) -> None:
+        self.config = config
 
-        # Set up our game's configuration from the prepare module.
-        self.config = config = prepare.CONFIG
-
-        # INFO: no need to call superclass for now
+        self.state_manager = StateManager(
+            "tuxemon.states",
+            on_state_change=self.on_state_change,
+        )
+        self.state_manager.auto_state_discovery()
         self.screen = pg.display.get_surface()
-        self.caption = caption
+        self.caption = config.window_caption
         self.done = False
         self.fps = config.fps
         self.show_fps = config.show_fps
         self.current_time = 0.0
-        self.ishost = False
-        self.isclient = False
 
         # somehow this value is being patched somewhere
-        self.events = list()
-        self.inits = list()
-        self.interacts = list()
+        self.events: Sequence[EventObject] = []
+        self.inits: Sequence[EventObject] = []
+        self.interacts: Sequence[EventObject] = []
 
-        # TODO: move out to state manager
-        self.package = "tuxemon.states"
-        self._state_queue = list()
-        self._state_dict = dict()
-        self._state_stack = list()
-        self._state_resume_set = set()
-
+        # setup controls
         keyboard = PygameKeyboardInput(config.keyboard_button_map)
-        gamepad = PygameGamepadInput(config.gamepad_button_map, config.gamepad_deadzone)
+        gamepad = PygameGamepadInput(
+            config.gamepad_button_map,
+            config.gamepad_deadzone,
+        )
         self.input_manager = PygameEventQueueHandler()
         self.input_manager.add_input(0, keyboard)
         self.input_manager.add_input(0, gamepad)
         self.controller_overlay = None
         if config.controller_overlay:
-            self.controller_overlay = PygameTouchOverlayInput(config.controller_transparency)
+            self.controller_overlay = PygameTouchOverlayInput(
+                config.controller_transparency,
+            )
             self.controller_overlay.load()
             self.input_manager.add_input(0, self.controller_overlay)
         if not config.hide_mouse:
@@ -109,7 +127,8 @@ class Client(StateManager):
         # Set up our networking for multiplayer.
         self.server = networking.TuxemonServer(self)
         self.client = networking.TuxemonClient(self)
-        self.controller_server = None
+        self.ishost = False
+        self.isclient = False
 
         # Set up our combat engine and router.
         # self.combat_engine = CombatEngine(self)
@@ -118,27 +137,38 @@ class Client(StateManager):
         # Set up our game's event engine which executes actions based on
         # conditions defined in map files.
         self.event_engine = EventEngine(local_session)
-        self.event_conditions = {}
-        self.event_actions = {}
-        self.event_persist: Dict[str, Mapping[str, Any]] = {}
+        self.event_persist: Dict[str, Dict[str, Any]] = {}
 
         # Set up a variable that will keep track of currently playing music.
-        self.current_music = {"status": "stopped", "song": None, "previoussong": None}
+        self.current_music = {
+            "status": "stopped",
+            "song": None,
+            "previoussong": None,
+        }
 
-        # Set up the command line. This provides a full python shell for
-        # troubleshooting. You can view and manipulate any variables in
-        # the game.
-        self.exit = False  # Allow exit from the CLI
         if self.config.cli:
-            self.cli = cli.CommandLine(self)
-
-        # Set up our networked controller if enabled.
-        if self.config.net_controller_enabled:
-            self.controller_server = networking.ControllerServer(self)
+            # TODO: There is no protection for the main thread from the cli
+            # actions that execute in this thread may have undefined
+            # behavior for the game.  at some point, a lock should be
+            # implemented so that actions executed here have exclusive
+            # control of the game loop and state.
+            self.cli = CommandProcessor(local_session)
+            thread = Thread(target=self.cli.run)
+            thread.daemon = True
+            thread.start()
 
         # Set up rumble support for gamepads
         self.rumble_manager = rumble.RumbleManager()
         self.rumble = self.rumble_manager.rumbler
+
+        # TODO: phase these out
+        self.key_events: Sequence[PlayerInput] = []
+        self.event_data = dict()
+        self.exit = False
+
+    def on_state_change(self) -> None:
+        logger.debug("resetting controls due to state change")
+        self.release_controls()
 
     def load_map(self, map_data: TuxemonMap) -> None:
         """
@@ -175,7 +205,7 @@ class Client(StateManager):
                     color = (0, 255, 0)
                 else:
                     color = (255, 0, 0)
-                image = font.render(text, 1, color)
+                image = font.render(text, True, color)
                 self.screen.blit(image, (xx, yy))
                 ww, hh = image.get_size()
                 yy += hh
@@ -192,7 +222,7 @@ class Client(StateManager):
     def process_events(
         self,
         events: Iterable[PlayerInput],
-    ) -> Generator[pg.event.Event, None, None]:
+    ) -> Generator[PlayerInput, None, None]:
         """
         Process all events for this frame.
 
@@ -206,8 +236,8 @@ class Client(StateManager):
         event engine.
         The event engine also can keep or return the event.
         All unused events will be added to Client.key_events each frame.
-        Conditions in the the event system can then check that list.
 
+        Conditions in the the event system can then check that list.
         States can "keep" events by simply returning None from
         State.process_event
 
@@ -216,7 +246,6 @@ class Client(StateManager):
 
         Yields:
             Unprocessed event.
-
         """
         game_event: Optional[PlayerInput]
 
@@ -293,7 +322,7 @@ class Client(StateManager):
                 frames += 1
 
             fps_timer, frames = self.handle_fps(clock_tick, fps_timer, frames)
-            time.sleep(0.001)
+            time.sleep(0.01)
 
     def update(self, time_delta: float) -> None:
         """
@@ -308,18 +337,10 @@ class Client(StateManager):
             time_delta: Elapsed time since last frame.
 
         """
-        # Android-specific check for pause
-        # if android and android.check_pause():
-        #     android.wait_for_resume()
-
         # Update our networking
-        if self.controller_server:
-            self.controller_server.update()
-
         if self.client.listening:
             self.client.update(time_delta)
             self.add_clients_to_map(self.client.client.registry)
-
         if self.server.listening:
             self.server.update()
 
@@ -327,14 +348,15 @@ class Client(StateManager):
         events = self.input_manager.process_events()
 
         # process the events and collect the unused ones
-        events = list(self.process_events(events))
+        key_events = list(self.process_events(events))
 
         # TODO: phase this out in favor of event-dispatch
-        self.key_events = events
+        self.key_events = key_events
 
         # Run our event engine which will check to see if game conditions
         # are met and run an action associated with that condition.
         self.event_data = {}
+
         self.event_engine.update(time_delta)
 
         if self.event_data:
@@ -356,26 +378,17 @@ class Client(StateManager):
         events = self.input_manager.release_controls()
         self.key_events = list(self.process_events(events))
 
-    def update_states(self, dt: float) -> None:
+    def update_states(self, time_delta: float) -> None:
         """
         Checks if a state is done or has called for a game quit.
 
         Parameters:
-            dt: Time delta - Amount of time passed since last frame.
+            time_delta: Amount of time passed since last frame.
 
         """
-        for state in self.active_states:
-            state.update(dt)
-
-        current_state = self.current_state
-
-        # handle case where the top state has been dismissed
-        if current_state is None:
+        self.state_manager.update(time_delta)
+        if self.state_manager.current_state is None:
             self.exit = True
-
-        if current_state in self._state_resume_set:
-            current_state.resume()
-            self._state_resume_set.remove(current_state)
 
     def draw(self, surface: pg.surface.Surface) -> None:
         """
@@ -392,12 +405,16 @@ class Client(StateManager):
         # force_draw is used for transitions, mostly
         to_draw = list()
         full_screen = surface.get_rect()
-        for state in self.active_states:
+        for state in self.state_manager.active_states:
             to_draw.append(state)
 
             # if this state covers the screen
             # break here so lower screens are not drawn
-            if not state.transparent and state.rect == full_screen and not state.force_draw:
+            if (
+                not state.transparent
+                and state.rect == full_screen
+                and not state.force_draw
+            ):
                 break
 
         # draw from bottom up for proper layering
@@ -462,10 +479,7 @@ class Client(StateManager):
             registry: Locally hosted Neteria client/server registry.
 
         """
-        world = self.get_state_by_name("WorldState")
-        if not world:
-            return
-
+        world = self.get_state_by_name(WorldState)
         world.npcs = {}
         world.npcs_off_map = {}
         for client in registry:
@@ -496,40 +510,115 @@ class Client(StateManager):
             File path of the current map, if there is one.
 
         """
-        world = self.get_state_by_name("WorldState")
-        if not world:
-            return None
-
+        world = self.get_state_by_name(WorldState)
         return world.current_map.filename
 
-    def get_map_name(self) -> Optional[str]:
+    def get_map_name(self) -> str:
         """
         Gets the name of the current map.
 
         Returns:
-            Name of the current map, if there is one.
+            Name of the current map.
 
         """
         map_path = self.get_map_filepath()
         if map_path is None:
-            return None
+            raise ValueError("Name of the map requested when no map is active")
 
         # extract map name from path
         return os.path.basename(map_path)
 
-    def get_state_by_name(self, name: str) -> Optional[State]:
+    """
+    The following methods provide an interface to the state stack
+    """
+
+    @overload
+    def get_state_by_name(self, state_name: str) -> State:
+        pass
+
+    @overload
+    def get_state_by_name(
+        self,
+        state_name: Type[StateType],
+    ) -> StateType:
+        pass
+
+    def get_state_by_name(
+        self,
+        state_name: Union[str, Type[State]],
+    ) -> State:
         """
         Query the state stack for a state by the name supplied.
-
-        Parameters:
-            name: Name of a state.
-
-        Returns:
-            State with that name, if one exist. ``None`` otherwise.
-
         """
-        for state in self.active_states:
-            if state.__class__.__name__ == name:
-                return state
+        return self.state_manager.get_state_by_name(state_name)
 
-        return None
+    def get_queued_state_by_name(
+        self,
+        state_name: str,
+    ) -> Tuple[str, Mapping[str, Any]]:
+        """
+        Query the state stack for a state by the name supplied.
+        """
+        return self.state_manager.get_queued_state_by_name(state_name)
+
+    def queue_state(self, state_name: str, **kwargs: Any) -> None:
+        """Queue a state"""
+        self.state_manager.queue_state(state_name, **kwargs)
+
+    def pop_state(self, state: Optional[State] = None) -> None:
+        """Pop current state, or another"""
+        self.state_manager.pop_state(state)
+
+    def remove_state(self, state: State) -> None:
+        """Remove a state"""
+        self.state_manager.remove_state(state)
+
+    @overload
+    def push_state(self, state_name: str, **kwargs: Any) -> State:
+        pass
+
+    @overload
+    def push_state(
+        self,
+        state_name: Type[StateType],
+        **kwargs: Any,
+    ) -> StateType:
+        pass
+
+    def push_state(
+        self,
+        state_name: Union[str, Type[StateType]],
+        **kwargs: Any,
+    ) -> State:
+        """Push new state, by name"""
+        return self.state_manager.push_state(state_name, **kwargs)
+
+    @overload
+    def replace_state(self, state_name: str, **kwargs: Any) -> State:
+        pass
+
+    @overload
+    def replace_state(
+        self,
+        state_name: Type[StateType],
+        **kwargs: Any,
+    ) -> StateType:
+        pass
+
+    def replace_state(
+        self,
+        state_name: Union[str, Type[State]],
+        **kwargs: Any,
+    ) -> State:
+        """Replace current state with new one"""
+        return self.state_manager.replace_state(state_name, **kwargs)
+
+    @property
+    def active_states(self) -> Sequence[State]:
+        """List of active states"""
+        return self.state_manager.active_states
+
+    @property
+    def current_state(self) -> Optional[State]:
+        """Current State object, or None"""
+        return self.state_manager.current_state

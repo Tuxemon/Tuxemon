@@ -1,4 +1,5 @@
 {
+  "tech_id": 92,
   "slug": "menu_run",
   "use_tech": "combat_used_x",
   "use_success": "generic_success",
@@ -6,11 +7,9 @@
   "animation": null,
   "sfx": "sfx_blaster",
   "icon": "",
-  "category": "",
   "sort": "meta",
-  "effects": [
-    "meta"
-  ],
+  "effects": [],
+  "flip_axes": "",
   "target": {
     "enemy monster": 0,
     "enemy team": 0,
@@ -20,6 +19,5 @@
     "own trainer": 0,
     "item": 0
   },
-  "power": 50,
-  "types": []
+  "power": 50
 }

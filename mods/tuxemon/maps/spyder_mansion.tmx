@@ -204,10 +204,10 @@
     <property name="cond3" value="not variable_set captainreturns:yes"/>
    </properties>
   </object>
-  <object id="42" name="Environment" type="event" x="0" y="32" width="16" height="16">
+  <object id="42" name="Environment" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable environment:snow"/>
-    <property name="cond1" value="not variable_set environment:snow"/>
+    <property name="act1" value="set_variable environment:interior"/>
+    <property name="cond1" value="not variable_set environment:interior"/>
    </properties>
   </object>
  </objectgroup>

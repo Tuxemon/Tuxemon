@@ -23,29 +23,46 @@
 # Adam Chevalier <chevalieradam2@gmail.com>
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, Union
 
 from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.monster import Monster
 
 
-class TypeCondition(ItemCondition):
-    """Compares the target Monster's type1 and type2 against the given types.
+class TypeConditionParameters(NamedTuple):
+    type1: str
+    type2: Union[str, None]
+    type3: Union[str, None]
+    type4: Union[str, None]
+    type5: Union[str, None]
+
+
+class TypeCondition(ItemCondition[TypeConditionParameters]):
+    """
+    Compares the target Monster's type1 and type2 against the given types.
+
     Returns true if either is equal to any of the listed types.
+
     """
 
     name = "type"
-    valid_parameters = [
-        (str, "type1"),
-        ((str, None), "type2"),
-        ((str, None), "type3"),
-        ((str, None), "type4"),
-        ((str, None), "type5"),
-    ]
+    param_class = TypeConditionParameters
 
-    def test(self, target):
+    def test(self, target: Monster) -> bool:
         ret = False
         if target.type1 is not None:
-            ret = any(target.type1.lower() == p.lower() for p in self.parameters)
+            ret = any(
+                target.type1.lower() == p.lower()
+                for p in self.parameters
+                if p is not None
+            )
         if target.type2 is not None:
-            ret = ret or any(target.type2.lower() == p.lower() for p in self.parameters)
+            ret = ret or any(
+                target.type2.lower() == p.lower()
+                for p in self.parameters
+                if p is not None
+            )
 
         return ret

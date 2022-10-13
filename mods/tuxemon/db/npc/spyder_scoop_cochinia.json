@@ -1,17 +1,17 @@
 {
-    "slug": "spyder_scoop_cochinia",
-    "sprite_name": "varmint",
-	"monsters": [
-        		{
-            "name": "Cochini",
-            "level": 30, 
-			"slug": "cochini",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "cochini.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_scoop_cochinia",
+  "gender": "female",
+  "sprite_name": "varmint",
+  "monsters": [
+    {
+      "name": "Cochini",
+      "level": 30,
+      "slug": "cochini",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "cochini.png",
+  "combat_back": "red_back.png"
+}

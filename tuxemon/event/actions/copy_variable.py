@@ -22,24 +22,42 @@
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
-from tuxemon.event.eventaction import EventAction
+from __future__ import annotations
+
 import logging
+from typing import NamedTuple, final
+
+from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
 
 
-# noinspection PyAttributeOutsideInit
-class CopyVariableAction(EventAction):
-    """Copies the value of var2 into var1,
-    (e.g. var1 = var 2)
+class CopyVariableActionParameters(NamedTuple):
+    var1: str
+    var2: str
 
-    Valid Parameters: string variable_name
+
+# noinspection PyAttributeOutsideInit
+@final
+class CopyVariableAction(EventAction[CopyVariableActionParameters]):
+    """
+    Copy the value of var2 into var1 (e.g. var1 = var 2).
+
+    Script usage:
+        .. code-block::
+
+            copy_variable <var1>,<var2>
+
+    Script parameters:
+        var1: The variable to copy to.
+        var2: The variable to copy from.
+
     """
 
     name = "copy_variable"
-    valid_parameters = [(str, "var1"), (str, "var2")]
+    param_class = CopyVariableActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
         first = self.parameters.var1
         second = self.parameters.var2

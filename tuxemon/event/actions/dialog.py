@@ -19,38 +19,71 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-import logging
+from __future__ import annotations
 
-from tuxemon.locale import replace_text
+import logging
+import warnings
+from typing import NamedTuple, Optional, final
+
 from tuxemon.event.eventaction import EventAction
-from tuxemon.tools import open_dialog
 from tuxemon.graphics import get_avatar
+from tuxemon.locale import replace_text
+from tuxemon.sprite import Sprite
+from tuxemon.states.dialog import DialogState
+from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
 
 
-class DialogAction(EventAction):
-    """Opens a single dialog and waits until it is closed.
+class DialogActionParameters(NamedTuple):
+    text: str
+    avatar: str
 
-    Valid Parameters: text_to_display
 
-    You may also use special variables in dialog events. Here is a list of available variables:
+@final
+class DialogAction(EventAction[DialogActionParameters]):
+    """
+    Open a single dialog and waits until it is closed.
+
+    You may also use special variables in dialog events.
+    Here is a list of available variables:
 
     * ${{name}} - The current player's name.
+
+    Script usage:
+        .. code-block::
+
+            dialog <text>,<avatar>
+
+    Script parameters:
+        text: Text of the dialog.
+        avatar: Monster avatar. If it is a number, the monster is the
+            corresponding monster slot in the player's party.
+            If it is a string, we're referring to a monster by name.
+
     """
 
     name = "dialog"
-    valid_parameters = [(str, "text"), (str, "avatar")]
+    param_class = DialogActionParameters
 
-    def start(self):
+    def start(self) -> None:
+        warnings.warn(
+            f"Found deprecated dialog action, please use "
+            f"translated_dialog instead. "
+            f"Action: {self.name}. "
+            f"Parameters: {self.raw_parameters}.",
+            DeprecationWarning,
+        )
         text = replace_text(self.session, self.parameters.text)
         avatar = get_avatar(self.session, self.parameters.avatar)
         self.open_dialog(text, avatar)
 
-    def update(self):
-        if self.session.client.get_state_by_name("DialogState") is None:
+    def update(self) -> None:
+        try:
+            self.session.client.get_state_by_name(DialogState)
+        except ValueError:
             self.stop()
 
-    def open_dialog(self, initial_text, avatar):
+    def open_dialog(self, initial_text: str, avatar: Optional[Sprite]) -> None:
         logger.info("Opening dialog window")
         open_dialog(self.session, [initial_text], avatar)

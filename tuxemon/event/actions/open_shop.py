@@ -19,38 +19,92 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, Optional, final
+
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.item.economy import Economy
+from tuxemon.states.choice import ChoiceState
+from tuxemon.states.items import ShopBuyMenuState, ShopSellMenuState
+from tuxemon.tools import assert_never
 
 
-class OpenShopAction(EventAction):
+class OpenShopActionParameters(NamedTuple):
+    npc_slug: str
+    menu: Optional[str]
+
+
+@final
+class OpenShopAction(EventAction[OpenShopActionParameters]):
+    """
+    Open the shop menu for a NPC.
+
+    Script usage:
+        .. code-block::
+
+            open_shop <npc_slug>,[menu]
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        menu: Either "buy", "sell" or "both". Default is "both".
+
+    """
+
     name = "open_shop"
-    valid_parameters = [
-        (str, "npc_slug"),
-    ]
+    param_class = OpenShopActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
 
-        def buy_menu():
-            self.session.client.pop_state()
+        assert npc
+        if npc.economy:
+            economy = npc.economy
+        else:
+            economy = Economy("default")
+
+        def push_buy_menu():
             self.session.client.push_state(
-                "ShopMenuState",
+                ShopBuyMenuState,
                 buyer=self.session.player,
                 seller=npc,
+                economy=economy,
             )
 
-        def sell_menu():
-            self.session.client.pop_state()
+        def push_sell_menu():
             self.session.client.push_state(
-                "ShopMenuState",
+                ShopSellMenuState,
                 buyer=None,
                 seller=self.session.player,
+                economy=economy,
             )
 
-        var_menu = [
-            ("Buy", "Buy", buy_menu),
-            ("Sell", "Sell", sell_menu),
-        ]
+        menu = self.parameters.menu or "both"
+        if menu == "both":
 
-        return self.session.client.push_state("ChoiceState", menu=var_menu, escape_key_exits=True)
+            def buy_menu() -> None:
+                self.session.client.pop_state()
+                push_buy_menu()
+
+            def sell_menu() -> None:
+                self.session.client.pop_state()
+                push_sell_menu()
+
+            var_menu = [
+                ("Buy", "Buy", buy_menu),
+                ("Sell", "Sell", sell_menu),
+            ]
+
+            self.session.client.push_state(
+                ChoiceState,
+                menu=var_menu,
+                escape_key_exits=True,
+            )
+
+        elif menu == "buy":
+            push_buy_menu()
+        elif menu == "sell":
+            push_sell_menu()
+        else:
+            assert_never(menu)

@@ -19,22 +19,34 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event.eventaction import EventAction
+from tuxemon.states.world.worldstate import WorldState
 
 
-class PlayerStopAction(EventAction):
-    """Makes the player stop moving.
+class PlayerStopActionParameters(NamedTuple):
+    pass
 
-    Valid Parameters: None
+
+@final
+class PlayerStopAction(EventAction[PlayerStopActionParameters]):
+    """
+    Make the player stop moving.
+
+    Script usage:
+        .. code-block::
+
+            player_stop
+
     """
 
     name = "player_stop"
-    valid_parameters = []
+    param_class = PlayerStopActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # Get a copy of the world state.
-        world = self.session.client.get_state_by_name("WorldState")
-        if not world:
-            return
-
+        world = self.session.client.get_state_by_name(WorldState)
         world.stop_player()

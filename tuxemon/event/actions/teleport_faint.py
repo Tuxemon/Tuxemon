@@ -19,19 +19,49 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+import logging
+from typing import NamedTuple, final
+
 from tuxemon.event.eventaction import EventAction
 
+logger = logging.getLogger(__name__)
 
-class TeleportFaintAction(EventAction):
+
+class TeleportFaintActionParameters(NamedTuple):
+    pass
+
+
+@final
+class TeleportFaintAction(EventAction[TeleportFaintActionParameters]):
+    """
+    Teleport the player to the point in the teleport_faint variable.
+
+    Usually used to teleport to the last visited Tuxcenter, as when
+    all monsters in the party faint.
+
+    Script usage:
+        .. code-block::
+
+            teleport_faint
+
+    """
+
     name = "teleport_faint"
+    param_class = TeleportFaintActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
 
-        # Start with the default value, override if game variable exists
-        teleport = ["healing_center.tmx", 7, 10]
+        # If game variable exists, then teleport:
         if "teleport_faint" in player.game_variables:
             teleport = player.game_variables["teleport_faint"].split(" ")
+        else:
+            logger.error(
+                f"Teleport_faint action failed, because the teleport_faint variable has not been set."
+            )
+            return
 
         # Start the screen transition
         # self.game.event_engine.execute_action("screen_transition", [.3])

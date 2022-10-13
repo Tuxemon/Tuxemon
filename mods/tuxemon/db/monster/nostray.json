@@ -16,11 +16,15 @@
             "technique": "snowstorm"
         }
     ],
-    "shape": "Aquatic",
+    "evolutions": [],
+    "shape": "aquatic",
     "types": [
         "Water"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 148,
+    "height": 120,
+    "weight": 30,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

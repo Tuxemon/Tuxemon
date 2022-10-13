@@ -25,13 +25,15 @@
 #
 
 from __future__ import annotations
-from tuxemon.session import Session
+
+from typing import Any, ClassVar, Dict
+
 from tuxemon.event import MapCondition
-from typing import Mapping, Any
+from tuxemon.session import Session
 
 
 class EventCondition:
-    name = "GenericCondition"
+    name: ClassVar[str] = "GenericCondition"
 
     def __init__(self) -> None:
         pass
@@ -48,9 +50,8 @@ class EventCondition:
             Value of the condition.
 
         """
-        pass
 
-    def get_persist(self, session: Session) -> Mapping[str, Any]:
+    def get_persist(self, session: Session) -> Dict[str, Any]:
         """
         Return dictionary for this event class's data.
 
@@ -66,7 +67,7 @@ class EventCondition:
         try:
             return session.client.event_persist[self.name]
         except KeyError:
-            persist: Mapping[str, Any] = dict()
+            persist: Dict[str, Any] = {}
             session.client.event_persist[self.name] = persist
             return persist
 

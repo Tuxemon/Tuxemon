@@ -19,21 +19,37 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
 
-class NpcWalk(EventAction):
-    """Sets the NPC movement speed to the global walk speed
+class NpcWalkActionParameters(NamedTuple):
+    npc_slug: str
 
-    Valid Parameters: npc_slug
+
+@final
+class NpcWalk(EventAction[NpcWalkActionParameters]):
+    """
+    Set the NPC movement speed to the global walk speed.
+
+    Script usage:
+        .. code-block::
+
+            npc_walk <npc_slug>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+
     """
 
     name = "npc_walk"
-    valid_parameters = [
-        (str, "npc_slug"),
-    ]
+    param_class = NpcWalkActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
+        assert npc
         npc.moverate = self.session.client.config.player_walkrate

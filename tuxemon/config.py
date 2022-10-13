@@ -27,6 +27,10 @@
 # config Configuration parser.
 #
 #
+from __future__ import annotations
+
+from typing import Any, Dict, Mapping, Optional
+
 """
 NOTE: REWRITE WHEN py2.7 SUPPORT IS DROPPED!
 """
@@ -40,12 +44,13 @@ Animation.default_transition = "out_quint"
 
 
 class TuxemonConfig:
-    """Handles loading of the configuration file for the primary game and map editor.
+    """
+    Handles loading of the config file for the primary game and map editor.
 
     Do not forget to edit the default configuration specified below!
     """
 
-    def __init__(self, config_path=None):
+    def __init__(self, config_path: Optional[str] = None) -> None:
         # load default config
         cfg = generate_default_config()
         self.cfg = cfg
@@ -67,8 +72,14 @@ class TuxemonConfig:
         self.scaling = cfg.getboolean("display", "scaling")
         self.collision_map = cfg.getboolean("display", "collision_map")
         self.large_gui = cfg.getboolean("display", "large_gui")
-        self.controller_overlay = cfg.getboolean("display", "controller_overlay")
-        self.controller_transparency = cfg.getint("display", "controller_transparency")
+        self.controller_overlay = cfg.getboolean(
+            "display",
+            "controller_overlay",
+        )
+        self.controller_transparency = cfg.getint(
+            "display",
+            "controller_transparency",
+        )
         self.hide_mouse = cfg.getboolean("display", "hide_mouse")
         self.window_caption = cfg.get("display", "window_caption")
 
@@ -80,26 +91,61 @@ class TuxemonConfig:
         self.data = cfg.get("game", "data")
         self.starting_map = cfg.get("game", "starting_map")
         self.cli = cfg.getboolean("game", "cli_enabled")
-        self.net_controller_enabled = cfg.getboolean("game", "net_controller_enabled")
+        self.net_controller_enabled = cfg.getboolean(
+            "game",
+            "net_controller_enabled",
+        )
         self.locale = cfg.get("game", "locale")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
-        self.recompile_translations = cfg.getboolean("game", "recompile_translations")
+        self.recompile_translations = cfg.getboolean(
+            "game",
+            "recompile_translations",
+        )
         self.skip_titlescreen = cfg.getboolean("game", "skip_titlescreen")
+        self.compress_save: Optional[str] = cfg.get("game", "compress_save")
+        if self.compress_save == "None":
+            self.compress_save = None
 
         # [gameplay]
-        self.items_consumed_on_failure = cfg.getboolean("gameplay", "items_consumed_on_failure")
-        self.encounter_rate_modifier = cfg.getfloat("gameplay", "encounter_rate_modifier")
-        self.default_monster_storage_box = cfg.get("gameplay", "default_monster_storage_box")
-        self.default_item_storage_box = cfg.get("gameplay", "default_item_storage_box")
-        self.default_monster_catch_rate = cfg.get("gameplay", "default_monster_catch_rate")
-        self.default_upper_monster_catch_resistance = cfg.get("gameplay", "default_upper_monster_catch_resistance")
-        self.default_lower_monster_catch_resistance = cfg.get("gameplay", "default_lower_monster_catch_resistance")
+        self.items_consumed_on_failure = cfg.getboolean(
+            "gameplay",
+            "items_consumed_on_failure",
+        )
+        self.encounter_rate_modifier = cfg.getfloat(
+            "gameplay",
+            "encounter_rate_modifier",
+        )
+        self.default_monster_storage_box = cfg.get(
+            "gameplay",
+            "default_monster_storage_box",
+        )
+        self.default_item_storage_box = cfg.get(
+            "gameplay",
+            "default_item_storage_box",
+        )
+        self.default_monster_catch_rate = cfg.getfloat(
+            "gameplay",
+            "default_monster_catch_rate",
+        )
+        self.default_upper_monster_catch_resistance = cfg.getfloat(
+            "gameplay",
+            "default_upper_monster_catch_resistance",
+        )
+        self.default_lower_monster_catch_resistance = cfg.getfloat(
+            "gameplay",
+            "default_lower_monster_catch_resistance",
+        )
+        self.dialog_speed = cfg.get(
+            "gameplay",
+            "dialog_speed",
+        )
+        assert self.dialog_speed in ("slow", "max")
 
         # [player]
         self.player_animation_speed = cfg.getfloat("player", "animation_speed")
         self.player_npc = cfg.get("player", "player_npc")
-        self.player_walkrate = cfg.getfloat("player", "player_walkrate")  # tiles/second
-        self.player_runrate = cfg.getfloat("player", "player_runrate")  # tiles/second
+        self.player_walkrate = cfg.getfloat("player", "player_walkrate")
+        self.player_runrate = cfg.getfloat("player", "player_runrate")
 
         # [logging]
         # Log levels can be: debug, info, warning, error, or critical
@@ -108,8 +154,8 @@ class TuxemonConfig:
         #     states.combat, states.world, event,
         #     neteria.server, neteria.client, neteria.core
         # Comma-seperated list of which modules to enable logging on
-        self.loggers = cfg.get("logging", "loggers")
-        self.loggers = self.loggers.replace(" ", "").split(",")
+        loggers_str = cfg.get("logging", "loggers")
+        self.loggers = loggers_str.replace(" ", "").split(",")
         self.debug_logging = cfg.getboolean("logging", "debug_logging")
         self.debug_level = cfg.get("logging", "debug_level")
 
@@ -122,18 +168,26 @@ class TuxemonConfig:
         self.mods = ["tuxemon"]
 
 
-def get_custom_pygame_keyboard_controls(cfg):
+def get_custom_pygame_keyboard_controls(
+    cfg: configparser.ConfigParser,
+) -> Mapping[Optional[int], int]:
+    """
+    Parameters:
+        cfg: Config parser.
+
+    """
     import pygame.locals
 
-    custom_controls = {None: events.UNICODE}
+    custom_controls: Dict[Optional[int], int] = {None: events.UNICODE}
     for key, values in cfg.items("controls"):
         key = key.upper()
-        button_value = getattr(buttons, key, None)
-        event_value = getattr(events, key, None)
+        button_value: Optional[int] = getattr(buttons, key, None)
+        event_value: Optional[int] = getattr(events, key, None)
         for each in values.split(", "):
+            # used incase of multiple keys assigned to 1 method
             # pygame.locals uses all caps for constants except for letters
             each = each.lower() if len(each) == 1 else each.upper()
-            pygame_value = getattr(pygame.locals, "K_" + each, None)
+            pygame_value: int = getattr(pygame.locals, "K_" + each, None)
             if pygame_value is not None and button_value is not None:
                 custom_controls[pygame_value] = button_value
             elif pygame_value is not None and event_value is not None:
@@ -142,12 +196,43 @@ def get_custom_pygame_keyboard_controls(cfg):
     return custom_controls
 
 
-def get_defaults():
-    """Generate a config from defaults
+def get_custom_pygame_keyboard_controls_names(
+    cfg: configparser.ConfigParser,
+) -> Mapping[Optional[str], int]:
+    """
+    Basically the same thing as `get_custom_pygame_keyboard_controls()`, but
+    returns with the key's string value instead of int
+
+    Parameters:
+        cfg: Config parser.
+
+    """
+    custom_controls: Dict[Optional[str], int] = {None: events.UNICODE}
+    for key, values in cfg.items("controls"):
+        key = key.upper()
+        button_value: Optional[int] = getattr(buttons, key, None)
+        event_value: Optional[int] = getattr(events, key, None)
+        # used incase of multiple keys assigned to 1 method
+        # pygame.locals uses all caps for constants except for letters
+        for each in values.split(", "):
+            each = each.lower() if len(each) == 1 else each.upper()
+            if each is not None and button_value is not None:
+                custom_controls[each] = button_value
+            elif each is not None and event_value is not None:
+                custom_controls[each] = event_value
+
+    return custom_controls
+
+
+def get_defaults() -> Mapping[str, Any]:
+    """
+    Generate a config from defaults.
 
     When making game changes, do not forget to edit this config!
 
-    :rtype: OrderedDict
+    Returns:
+        Mapping of default values.
+
     """
     return OrderedDict(
         (
@@ -175,7 +260,7 @@ def get_defaults():
                 "sound",
                 OrderedDict(
                     (
-                        ("sound_volume", 1.0),
+                        ("sound_volume", 0.3),
                         ("music_volume", 1.0),
                     )
                 ),
@@ -191,7 +276,8 @@ def get_defaults():
                         ("net_controller_enabled", False),
                         ("locale", "en_US"),
                         ("dev_tools", False),
-                        ("recompile_translations", False),
+                        ("recompile_translations", True),
+                        ("compress_save", None),
                     )
                 ),
             ),
@@ -206,6 +292,7 @@ def get_defaults():
                         ("default_monster_catch_rate", 125),
                         ("default_upper_monster_catch_resistance", 1),
                         ("default_lower_monster_catch_resistance", 1),
+                        ("dialog_speed", "slow"),
                     )
                 ),
             ),
@@ -220,7 +307,16 @@ def get_defaults():
                     )
                 ),
             ),
-            ("logging", OrderedDict((("loggers", "all"), ("debug_logging", True), ("debug_level", "error")))),
+            (
+                "logging",
+                OrderedDict(
+                    (
+                        ("loggers", "all"),
+                        ("debug_logging", True),
+                        ("debug_level", "error"),
+                    )
+                ),
+            ),
             (
                 "controls",
                 OrderedDict(
@@ -240,28 +336,34 @@ def get_defaults():
     )
 
 
-def generate_default_config():
-    """Get new config file from defaults
-
-    :rtype: configparser.ConfigParser
-    """
+def generate_default_config() -> configparser.ConfigParser:
+    """Get new config file from defaults."""
     cfg = configparser.ConfigParser()
     populate_config(cfg, get_defaults())
     return cfg
 
 
-def populate_config(config, data):
-    """Workaround awful configparser defaults.
-
-    :type data: dict
-    :return:
+def populate_config(
+    config: configparser.ConfigParser,
+    data: Mapping[str, Any],
+) -> None:
     """
-    # ConfigParser py2.7 'defaults' is absolutely braindead, half-baked, dumb.  WTF's all over.
-    # so we fill in values manually, because they won't be read or written otherwise.
+    Workaround awful configparser defaults.
+
+    Parameters:
+        config: The configuration object.
+        data: New defaults.
+
+    """
+    # ConfigParser py2.7 'defaults' is absolutely braindead, half-baked,
+    # dumb. WTF's all over.
+    # So we fill in values manually, because they won't be read or written
+    # otherwise.
     for k, v in data.items():
         try:
             config.add_section(k)
         except configparser.DuplicateSectionError:
             pass
         for option, value in v.items():
-            config.set(k, option, str(value))  # yes.  all values must be stored as a string
+            # Yes. All values must be stored as a string.
+            config.set(k, option, str(value))

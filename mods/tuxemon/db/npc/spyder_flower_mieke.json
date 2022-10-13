@@ -1,5 +1,7 @@
 {
-    "slug": "spyder_flower_mieke",
-    "sprite_name": "catgirl",
-	"combat_front": "yellowbelt.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_flower_mieke",
+  "gender": "female",
+  "sprite_name": "catgirl",
+  "combat_front": "yellowbelt.png",
+  "combat_back": "red_back.png"
+}

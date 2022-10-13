@@ -81,12 +81,6 @@
   <object id="34" type="collision" x="64" y="112" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
-  <properties>
-   <property name="act1" value="transition_teleport cotton_town.tmx,9,35,0.3"/>
-   <property name="act2" value="player_face down"/>
-   <property name="cond1" value="is player_at"/>
-   <property name="cond2" value="is player_facing down"/>
-  </properties>
   <object id="13" name="Teleport to Cotton Town" type="event" x="16" y="160" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_cotton_town.tmx,16,17,0.3"/>
@@ -169,7 +163,8 @@
   <object id="29" name="Pay Up" type="event" x="16" y="144" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cottonart_shopkeeper"/>
-    <property name="act2" value="translated_dialog_choice yes:no,paygallery"/>
+    <property name="act2" value="translated_dialog player_wallet"/>
+    <property name="act3" value="translated_dialog_choice yes:no,paygallery"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="not variable_set paygallery:yes"/>
@@ -180,6 +175,7 @@
    <properties>
     <property name="act1" value="pathfind player,2,8"/>
     <property name="act2" value="set_variable paygallery:null"/>
+    <property name="act3" value="transfer_money -,50,spyder_cotton_artshop"/>
     <property name="cond1" value="is variable_set paygallery:yes"/>
    </properties>
   </object>

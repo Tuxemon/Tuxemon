@@ -16,11 +16,15 @@
             "technique": "ram"
         }
     ],
-    "shape": "Sprite",
+    "evolutions": [],
+    "shape": "sprite",
     "types": [
         "Wood"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 28,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 3.0,
     "lower_catch_resistance": 0.8,
     "upper_catch_resistance": 1.05

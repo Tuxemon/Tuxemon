@@ -18,30 +18,50 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import annotations
 
+from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
 
 
 class MonsterPropertyCondition(EventCondition):
-    """Checks to see if a monster property or condition is as asked"""
+    """
+    Check to see if a monster property or condition is as asked.
+
+    Script usage:
+        .. code-block::
+
+            is monster_property <slot>,<property>,<value>
+
+    Script parameters:
+        slot: Position of the monster in the player monster list.
+        property: Property of the monster to check (e.g. "level"). Valid values
+            are:
+                - name
+                - level
+                - level_reached
+                - type
+                - category
+                - shape
+        value: Value to compare the property with.
+
+    """
 
     name = "monster_property"
 
-    def test(self, session, condition):
-        """Checks to see if a monster property or condition is as asked
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """Check to see if a monster property or condition is as asked
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
-
-        :rtype: Boolean
-        :returns: True or False
+        Returns:
+            Whether the monster property is verified.
 
         """
-        slot = condition.parameters[0]
+        slot = int(condition.parameters[0])
         prop = condition.parameters[1]
         val = condition.parameters[2]
 

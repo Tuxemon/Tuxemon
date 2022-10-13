@@ -16,11 +16,21 @@
             "technique": "shuriken"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 9,
+            "monster_slug": "bolt"
+        }
+    ],
+    "shape": "blob",
     "types": [
         "Metal"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 4,
+    "height": 45,
+    "weight": 4,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

@@ -88,7 +88,16 @@
     <property name="act60" value="npc_face cottonnurse,down"/>
     <property name="act70" value="translated_dialog okaythen2"/>
     <property name="act80" value="set_variable healme:none"/>
+    <property name="act90" value="set_variable teleport_faint:cotton_cathedral.tmx 7 10"/>
     <property name="cond10" value="is variable_set healme:yes"/>
+   </properties>
+  </object>
+  <object id="29" name="Auto Healing Teleported" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_monster_health ,"/>
+    <property name="act2" value="set_monster_status ,"/>
+    <property name="act3" value="set_variable battle_last_result:none"/>
+    <property name="cond1" value="is variable_set battle_last_result:lost"/>
    </properties>
   </object>
  </objectgroup>

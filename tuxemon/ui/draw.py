@@ -1,11 +1,23 @@
+from __future__ import annotations
+
 import logging
 import math
 from itertools import product
+from typing import (
+    Callable,
+    Generator,
+    Iterable,
+    List,
+    Optional,
+    Sequence,
+    Tuple,
+)
 
 import pygame
+from pygame.rect import Rect
 
-from tuxemon.compat import Rect
 from tuxemon import prepare
+from tuxemon.graphics import ColorLike
 from tuxemon.sprite import Sprite
 
 logger = logging.getLogger(__name__)
@@ -13,18 +25,21 @@ logger = logging.getLogger(__name__)
 __all__ = ("GraphicBox", "draw_text")
 
 
-def layout(scale):
-    def func(area):
+def create_layout(
+    scale: float,
+) -> Callable[[Sequence[float]], Sequence[float]]:
+    def func(area: Sequence[float]) -> Sequence[float]:
         return [scale * i for i in area]
 
     return func
 
 
-layout = layout(prepare.SCALE)
+layout = create_layout(prepare.SCALE)
 
 
 class GraphicBox(Sprite):
-    """Generic class for drawing graphical boxes
+    """
+    Generic class for drawing graphical boxes.
 
     Draws a border and can fill in the box with a _color from the border file,
     an external file, or a solid _color.
@@ -35,53 +50,58 @@ class GraphicBox(Sprite):
     The border graphic must contain 9 tiles laid out in a box.
     """
 
-    def __init__(self, border=None, background=None, color=None, fill_tiles=False):
+    def __init__(
+        self,
+        border: Optional[pygame.surface.Surface] = None,
+        background: Optional[pygame.surface.Surface] = None,
+        color: Optional[ColorLike] = None,
+        fill_tiles: bool = False,
+    ) -> None:
         super().__init__()
         self._background = background
         self._color = color
         self._fill_tiles = fill_tiles
-        self._tiles = list()
+        self._tiles: List[pygame.surface.Surface] = []
         self._tile_size = 0, 0
-        self._rect = None
+
         if border:
             self._set_border(border)
 
-    @property
-    def rect(self):
-        return self._rect
-
-    @rect.setter
-    def rect(self, rect):
-        if not rect == self._rect:
-            self._rect = rect
-            self._needs_update = True
-
-    def calc_inner_rect(self, rect):
+    def calc_inner_rect(self, rect: Rect) -> Rect:
         if self._tiles:
             tw, th = self._tile_size
             return rect.inflate(-tw * 2, -th * 2)
         else:
             return rect
 
-    def _set_border(self, image):
+    def _set_border(self, image: pygame.surface.Surface) -> None:
         iw, ih = image.get_size()
         tw, th = iw // 3, ih // 3
         self._tile_size = tw, th
-        self._tiles = [image.subsurface((x, y, tw, th)) for x, y in product(range(0, iw, tw), range(0, ih, th))]
+        self._tiles = [
+            image.subsurface((x, y, tw, th))
+            for x, y in product(range(0, iw, tw), range(0, ih, th))
+        ]
 
-    def update_image(self):
+    def update_image(self) -> None:
         rect = Rect((0, 0), self._rect.size)
         surface = pygame.Surface(rect.size, pygame.SRCALPHA)
-        self._original_image = surface
-        self._image = surface
         self._draw(surface, rect)
+        self.image = surface
 
-    def _draw(self, surface, rect):
+    def _draw(
+        self,
+        surface: pygame.surface.Surface,
+        rect: Rect,
+    ) -> Rect:
         inner = self.calc_inner_rect(rect)
 
         # fill center with a _background surface
         if self._background:
-            surface.blit(pygame.transform.scale(self._background, inner.size), inner)
+            surface.blit(
+                pygame.transform.scale(self._background, inner.size),
+                inner,
+            )
 
         # fill center with solid _color
         elif self._color:
@@ -90,17 +110,32 @@ class GraphicBox(Sprite):
         # fill center with tiles from the border file
         elif self._fill_tiles:
             tw, th = self._tile_size
-            p = product(range(inner.left, inner.right, tw), range(inner.top, inner.bottom, th))
+            p = product(
+                range(inner.left, inner.right, tw),
+                range(inner.top, inner.bottom, th),
+            )
             [surface.blit(self._tiles[4], pos) for pos in p]
 
         # draw the border
         if self._tiles:
             surface_blit = surface.blit
-            tile_nw, tile_w, tile_sw, tile_n, tile_c, tile_s, tile_ne, tile_e, tile_se = self._tiles
+            (
+                tile_nw,
+                tile_w,
+                tile_sw,
+                tile_n,
+                tile_c,
+                tile_s,
+                tile_ne,
+                tile_e,
+                tile_se,
+            ) = self._tiles
             left, top = rect.topleft
             tw, th = self._tile_size
 
             # draw top and bottom tiles
+            area: Optional[Tuple[int, int, int, int]]
+
             for x in range(inner.left, inner.right, tw):
                 if x + tw >= inner.right:
                     area = 0, 0, tw - (x + tw - inner.right), th
@@ -124,18 +159,28 @@ class GraphicBox(Sprite):
             surface_blit(tile_ne, (inner.right, top))
             surface_blit(tile_se, (inner.right, inner.bottom))
 
+        return rect
 
-def guest_font_height(font):
+
+def guest_font_height(font: pygame.font.Font) -> int:
     return guess_rendered_text_size("Tg", font)[1]
 
 
-def guess_rendered_text_size(text, font):
+def guess_rendered_text_size(
+    text: str,
+    font: pygame.font.Font,
+) -> Tuple[int, int]:
     return font.size(text)
 
 
-def shadow_text(font, fg, bg, text):
-    top = font.render(text, 1, fg)
-    shadow = font.render(text, 1, bg)
+def shadow_text(
+    font: pygame.font.Font,
+    fg: ColorLike,
+    bg: ColorLike,
+    text: str,
+) -> pygame.surface.Surface:
+    top = font.render(text, True, fg)
+    shadow = font.render(text, True, bg)
 
     offset = layout((0.5, 0.5))
     size = [int(math.ceil(a + b)) for a, b in zip(offset, top.get_size())]
@@ -146,7 +191,13 @@ def shadow_text(font, fg, bg, text):
     return image
 
 
-def iter_render_text(text, font, fg, bg, rect):
+def iter_render_text(
+    text: str,
+    font: pygame.font.Font,
+    fg: ColorLike,
+    bg: ColorLike,
+    rect: Rect,
+) -> Generator[Tuple[Rect, pygame.surface.Surface], None, None]:
     line_height = guest_font_height(font)
     for line_index, line in enumerate(constrain_width(text, font, rect.width)):
         top = rect.top + line_index * line_height
@@ -156,16 +207,23 @@ def iter_render_text(text, font, fg, bg, rect):
                 continue
             dirty_length = font.size(scrap[:-1])[0]
             surface = shadow_text(font, fg, bg, scrap[-1])
-            update_rect = surface.get_rect(top=top, left=rect.left + dirty_length)
+            update_rect = surface.get_rect(
+                top=top,
+                left=rect.left + dirty_length,
+            )
             yield update_rect, surface
 
 
-def build_line(text):
+def build_line(text: str) -> Generator[str, None, None]:
     for index in range(1, len(text) + 1):
         yield text[:index]
 
 
-def constrain_width(text, font, width):
+def constrain_width(
+    text: str,
+    font: pygame.font.Font,
+    width: int,
+) -> Generator[str, None, None]:
     for line in iterate_word_lines(text):
         scrap = None
         for word in line:
@@ -176,34 +234,40 @@ def constrain_width(text, font, width):
             token_width = font.size(test)[0]
             if token_width >= width:
                 if scrap is None:
-                    logger.error("message is too large for width", text)
-                    raise RuntimeError
+                    raise RuntimeError("message is too large for width", text)
                 yield scrap
                 scrap = word
             else:
                 scrap = test
         else:  # executed when line is too large
-            yield scrap
+            yield scrap if scrap else ""
 
 
-def iterate_words(text):
+def iterate_words(text: str) -> Generator[str, None, None]:
     yield from text.split(" ")
 
 
-def iterate_lines(text):
+def iterate_lines(text: str) -> Generator[str, None, None]:
     yield from text.strip().split("\n")
 
 
-def iterate_word_lines(text):
+def iterate_word_lines(text: str) -> Generator[Iterable[str], None, None]:
     for line in iterate_lines(text):
         yield iterate_words(line)
 
 
-def blit_alpha(target, source, location, opacity):
-    """Blits a surface with alpha that can also have it's overall transparency modified
+def blit_alpha(
+    target: pygame.surface.Surface,
+    source: pygame.surface.Surface,
+    location: Tuple[int, int],
+    opacity: int,
+) -> None:
+    """
+    Blits a surface with alpha that can also have it's overall transparency
+    modified.
     Taken from http://nerdparadise.com/tech/python/pygame/blitopacity/
 
-    NOTE: This should be removed because of the performance implications
+    NOTE: This should be removed because of the performance implications.
     """
 
     x = location[0]

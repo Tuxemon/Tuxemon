@@ -16,11 +16,21 @@
             "technique": "fire_ball"
         }
     ],
-    "shape": "Humanoid",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 30,
+            "monster_slug": "flambear"
+        }
+    ],
+    "shape": "humanoid",
     "types": [
         "Fire"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 82,
+    "height": 180,
+    "weight": 110,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

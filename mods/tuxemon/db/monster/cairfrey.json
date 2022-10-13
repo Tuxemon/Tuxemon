@@ -16,11 +16,21 @@
             "technique": "muddle"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 30,
+            "monster_slug": "possessun"
+        }
+    ],
+    "shape": "blob",
     "types": [
         "Earth"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 70,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

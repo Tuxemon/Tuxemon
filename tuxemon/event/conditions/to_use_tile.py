@@ -18,33 +18,46 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import annotations
 
 from tuxemon.event import MapCondition
 from tuxemon.event.conditions.button_pressed import ButtonPressedCondition
-from tuxemon.event.conditions.player_facing_tile import PlayerFacingTileCondition
+from tuxemon.event.conditions.player_facing_tile import (
+    PlayerFacingTileCondition,
+)
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
 
 
 class ToUseTileCondition(EventCondition):
-    """Checks if we are attempting to talk to an npc"""
+    """
+    Check if we are attempting interact with a map condition tile.
+
+    Script usage:
+        .. code-block::
+
+            is to_use_tile
+
+    """
 
     name = "to_use_tile"
 
-    def test(self, session, condition):
-        """Checks to see the player is next to and facing a particular tile and that the Return button is pressed.
-
-        :param session: The session object
-        :param condition: The condition details.
-
-        :type session: tuxemon.session.Session
-        :type condition: NamedTuple
-
-        :rtype: Boolean
-        :returns: True or False
-
-        Valid Parameters: None
+    def test(self, session: Session, condition: MapCondition) -> bool:
         """
-        player_next_to_and_facing_tile = PlayerFacingTileCondition().test(session, condition)
+        Check if we are attempting interact with a map condition tile.
+
+        Parameters:
+            session: The session object
+            condition: The map condition object.
+
+        Returns:
+            Whether the player attempts to interact with a map condition tile.
+
+        """
+        player_next_to_and_facing_tile = PlayerFacingTileCondition().test(
+            session,
+            condition,
+        )
         button_pressed = ButtonPressedCondition().test(
             session,
             MapCondition(

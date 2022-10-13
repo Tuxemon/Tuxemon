@@ -19,23 +19,39 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event.eventaction import EventAction
+from tuxemon.states.world.worldstate import WorldState
 
 
-class RemoveNpcAction(EventAction):
-    """Removes an NPC object from the list of NPCs.
+class RemoveNpcActionParameters(NamedTuple):
+    npc_slug: str
 
-    Valid Parameters: slug
+
+@final
+class RemoveNpcAction(EventAction[RemoveNpcActionParameters]):
+    """
+    Remove an NPC object from the list of NPCs.
+
+    Script usage:
+        .. code-block::
+
+            remove_npc <npc_slug>
+
+    Script parameters:
+        npc_slug: Npc slug name (e.g. "npc_maple").
+
     """
 
     name = "remove_npc"
-    valid_parameters = [(str, "npc_slug")]
+    param_class = RemoveNpcActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # Get a copy of the world state.
-        world = self.session.client.get_state_by_name("WorldState")
-        if not world:
-            return
+        world = self.session.client.get_state_by_name(WorldState)
 
         # Get the npc's parameters from the action
         world.remove_entity(self.parameters.npc_slug)

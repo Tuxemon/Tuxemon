@@ -19,22 +19,35 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event.eventaction import EventAction
+from tuxemon.states.world.worldstate import WorldState
 
 
-class PlayerResumeAction(EventAction):
-    """Makes the player resume movement.
+class PlayerResumeActionParameters(NamedTuple):
+    pass
 
-    Valid Parameters: None
+
+@final
+class PlayerResumeAction(EventAction[PlayerResumeActionParameters]):
+    """
+    Make the player resume movement.
+
+    Script usage:
+        .. code-block::
+
+            player_resume
+
     """
 
     name = "player_resume"
-    valid_parameters = []
+    param_class = PlayerResumeActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # Get a copy of the world state.
-        world = self.session.client.get_state_by_name("WorldState")
-        if not world:
-            return
+        world = self.session.client.get_state_by_name(WorldState)
 
         world.menu_blocking = False

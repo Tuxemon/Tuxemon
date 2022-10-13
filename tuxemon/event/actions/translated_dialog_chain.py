@@ -19,35 +19,62 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
 import logging
+from typing import NamedTuple, Optional, Sequence, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar
 from tuxemon.locale import process_translate_text
+from tuxemon.sprite import Sprite
+from tuxemon.states.dialog import DialogState
 from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
 
 
-class TranslatedDialogChainAction(EventAction):
-    """Opens a chain of dialogs in order. Dialog chain must be ended with the ${{end}} keyword.
+class TranslatedDialogChainActionParameters(NamedTuple):
+    pass
 
-    Valid Parameters: text_to_display
 
-    You may also use special variables in dialog events. Here is a list of available variables:
+@final
+class TranslatedDialogChainAction(
+    EventAction[TranslatedDialogChainActionParameters],
+):
+    """
+    Open a chain of dialogs in order.
+
+    Dialog chain must be ended with the ${{end}} keyword. You may also use
+    special variables in dialog events. Here is a list of available variables:
 
     * ${{name}} - The current player's name.
     * ${{end}} - Ends the dialog chain.
 
     Parameters following the translation name may represent one of two things:
     If a parameter is var1=value1, it represents a value replacement.
-    If it's a single value (an integer or a string), it will be used as an avatar image.
-    TODO: This is a hack and should be fixed later on, ideally without overloading the parameters.
+    If it's a single value (an integer or a string), it will be used as an
+    avatar image.
+    TODO: This is a hack and should be fixed later on, ideally without
+    overloading the parameters.
+
+    Script usage:
+        .. code-block::
+
+            translated_dialog_chain <text>,<avatar>
+
+    Script parameters:
+        text: Text of the dialog.
+        avatar: Monster avatar. If it is a number, the monster is the
+            corresponding monster slot in the player's party.
+            If it is a string, we're referring to a monster by name.
+
     """
 
     name = "translated_dialog_chain"
+    param_class = TranslatedDialogChainActionParameters
 
-    def start(self):
+    def start(self) -> None:
         key = self.raw_parameters[0]
         replace = []
         avatar = None
@@ -69,18 +96,24 @@ class TranslatedDialogChainAction(EventAction):
             replace,
         )
 
-        dialog = self.session.client.get_state_by_name("DialogState")
-        if dialog:
+        try:
+            dialog = self.session.client.get_state_by_name(DialogState)
             dialog.text_queue += pages
-        else:
+        except ValueError:
             self.open_dialog(pages, avatar)
 
-    def update(self):
+    def update(self) -> None:
         key = self.raw_parameters[0]
         if key == "${{end}}":
-            if self.session.client.get_state_by_name("DialogState") is None:
+            try:
+                self.session.client.get_state_by_name(DialogState)
+            except ValueError:
                 self.stop()
 
-    def open_dialog(self, pages, avatar):
+    def open_dialog(
+        self,
+        pages: Sequence[str],
+        avatar: Optional[Sprite],
+    ) -> None:
         logger.info("Opening chain dialog window")
         open_dialog(self.session, pages, avatar)

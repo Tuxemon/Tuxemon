@@ -21,43 +21,68 @@
 # Contributor(s):
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
-import uuid
+from __future__ import annotations
 
-from tuxemon.locale import process_translate_text
-from tuxemon.event.eventaction import EventAction
-from tuxemon.tools import open_dialog
-from tuxemon.graphics import get_avatar
 import logging
+import uuid
+from typing import NamedTuple, Optional, Sequence, final
+
+from tuxemon.event.eventaction import EventAction
+from tuxemon.graphics import get_avatar
+from tuxemon.locale import process_translate_text
+from tuxemon.sprite import Sprite
+from tuxemon.states.dialog import DialogState
+from tuxemon.states.world.worldstate import WorldState
+from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
 
 
+class SpawnMonsterActionParameters(NamedTuple):
+    npc_slug: str
+    breeding_mother: str
+    breeding_father: str
+
+
 # noinspection PyAttributeOutsideInit
-class SpawnMonsterAction(EventAction):
-    """Adds a new monster, created by breeding the two
+@final
+class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
+    """
+    Breed a new monster.
+
+    Add a new monster, created by breeding the two
     given mons (identified by instance_id, stored in a
     variable) and adds it to the given character's party
     (identified by slug). The parents must be in either
     the trainer's party, or a storage box owned by the
     trainer.
 
-    Valid Parameters: trainer, breeding_mother, breeding_father
+    Script usage:
+        .. code-block::
+
+            spawn_monster <npc_slug>,<breeding_mother>,<breeding_father>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        breeding_mother: Id of the mother monster.
+        breeding_father: Id of the father monster.
+
     """
 
     name = "spawn_monster"
-    valid_parameters = [(str, "npc_slug"), (str, "breeding_mother"), (str, "breeding_father")]
+    param_class = SpawnMonsterActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc_slug, breeding_mother, breeding_father = self.parameters
-        world = self.session.client.get_state_by_name("WorldState")
-        if not world:
-            return False
+        world = self.session.client.get_state_by_name(WorldState)
 
         npc_slug = npc_slug.replace("player", "npc_red")
         trainer = world.get_entity(npc_slug)
         if trainer is None:
-            logger.error(f"Could not find NPC corresponding to slug {npc_slug}")
-            return False
+            logger.error(
+                f"Could not find NPC corresponding to slug {npc_slug}"
+            )
+            return
 
         mother_id = uuid.UUID(trainer.game_variables[breeding_mother])
         father_id = uuid.UUID(trainer.game_variables[breeding_father])
@@ -73,11 +98,15 @@ class SpawnMonsterAction(EventAction):
             father = trainer.find_monster_in_storage(father_id)
 
         if mother is None:
-            logger.error(f"Could not find (mother) monster with instance id {mother_id}")
-            return False
+            logger.error(
+                f"Could not find (mother) monster with instance id {mother_id}"
+            )
+            return
         if father is None:
-            logger.error(f"Could not find (father) monster with instance id {father_id}")
-            return False
+            logger.error(
+                f"Could not find (father) monster with instance id {father_id}"
+            )
+            return
 
         new_mon = mother.spawn(father)
         trainer.add_monster(new_mon)
@@ -94,10 +123,16 @@ class SpawnMonsterAction(EventAction):
             avatar,
         )
 
-    def update(self):
-        if self.session.client.get_state_by_name("DialogState") is None:
+    def update(self) -> None:
+        try:
+            self.session.client.get_state_by_name(DialogState)
+        except ValueError:
             self.stop()
 
-    def open_dialog(self, pages, avatar):
+    def open_dialog(
+        self,
+        pages: Sequence[str],
+        avatar: Optional[Sprite],
+    ) -> None:
         logger.info("Opening dialog window")
         open_dialog(self.session, pages, avatar)

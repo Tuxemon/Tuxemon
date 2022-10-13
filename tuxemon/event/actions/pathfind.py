@@ -19,25 +19,48 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
 
-class PathfindAction(EventAction):
-    """Pathfind the player / npc to the given location
+class PathfindActionParameters(NamedTuple):
+    npc_slug: str
+    tile_pos_x: int
+    tile_pos_y: int
+
+
+@final
+class PathfindAction(EventAction[PathfindActionParameters]):
+    """
+    Pathfind the player / npc to the given location.
 
     This action blocks until the destination is reached.
 
-    Valid Parameters: npc_slug, tile_pos_x, tile_pos_y
+    Script usage:
+        .. code-block::
+
+            pathfind <npc_slug>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+
     """
 
     name = "pathfind"
-    valid_parameters = [(str, "npc_slug"), (int, "tile_pos_x"), (int, "tile_pos_y")]
+    param_class = PathfindActionParameters
 
-    def start(self):
+    def start(self) -> None:
         self.npc = get_npc(self.session, self.parameters.npc_slug)
-        self.npc.pathfind((self.parameters.tile_pos_x, self.parameters.tile_pos_y))
+        assert self.npc
+        self.npc.pathfind(
+            (self.parameters.tile_pos_x, self.parameters.tile_pos_y)
+        )
 
-    def update(self):
+    def update(self) -> None:
+        assert self.npc
         if not self.npc.moving and not self.npc.path:
             self.stop()

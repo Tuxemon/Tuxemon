@@ -19,20 +19,45 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event.actions.common import CommonAction
 from tuxemon.event.eventaction import EventAction
 
 
-class SetPlayerAttributeAction(EventAction):
-    """Sets the given attribute of the player character to the given value.
+class SetPlayerAttributeActionParameters(NamedTuple):
+    name: str
+    value: str
 
-    Valid Parameters: attribute, value
+
+@final
+class SetPlayerAttributeAction(
+    EventAction[SetPlayerAttributeActionParameters]
+):
+    """
+    Set the given attribute of the player character to the given value.
+
+    Script usage:
+        .. code-block::
+
+            set_player_attribute <name>,<value>
+
+    Script parameters:
+        name: Name of the attribute.
+        value: Value of the attribute.
+
     """
 
     name = "set_player_attribute"
-    valid_parameters = [(str, "npc_slug"), (str, "name"), (str, "value")]
+    param_class = SetPlayerAttributeActionParameters
 
-    def start(self):
+    def start(self) -> None:
         attribute = self.parameters[0]
         value = self.parameters[1]
-        CommonAction.set_character_attribute(self.session.player, attribute, value)
+        CommonAction.set_character_attribute(
+            self.session.player,
+            attribute,
+            value,
+        )

@@ -18,27 +18,39 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import annotations
 
+from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
 
 
 class HasMonsterCondition(EventCondition):
-    """Checks to see if an NPC is facing a tile position"""
+    """
+    Check to see the player is has a monster in his party.
+
+    Script usage:
+        .. code-block::
+
+            is has_monster <monster>
+
+    Script parameters:
+        monster: Monster slug name (e.g. "rockitten").
+
+    """
 
     name = "has_monster"
 
-    def test(self, session, condition):
-        """Checks to see the player is has a monster in his party
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check to see the player is has a monster in his party.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
-
-        :rtype: Boolean
-        :returns: True or False
+        Returns:
+            Whether the player has the monster in his party.
 
         """
         player = session.player

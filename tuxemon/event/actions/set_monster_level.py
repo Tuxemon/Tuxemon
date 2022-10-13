@@ -19,22 +19,40 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, Union, final
+
 from tuxemon.event.eventaction import EventAction
 
 
-class SetMonsterLevelAction(EventAction):
-    """Changes the level of a monster in the current player's party. The action parameters
-    may contain a monster slot and the amount by which to level. If no slot is specified,
-    all monsters are leveled. If no level is specified, the level is reverted to 1.
+class SetMonsterLevelActionParameters(NamedTuple):
+    slot: Union[int, None]
+    level: int
 
-    Valid Parameters: slot, level
+
+@final
+class SetMonsterLevelAction(EventAction[SetMonsterLevelActionParameters]):
+    """
+    Change the level of a monster in the current player's party.
+
+    Script usage:
+        .. code-block::
+
+            set_monster_level [slot][,level]
+
+    Script parameters:
+        slot: Slot of the monster in the party. If no slot is specified, all
+            monsters are leveled.
+        level: Number of levels to add. Negative numbers are allowed.
+
     """
 
     name = "set_monster_level"
-    valid_parameters = [(int, "slot"), (int, "level")]
+    param_class = SetMonsterLevelActionParameters
 
-    def start(self):
-        if not self.session.player.monsters > 0:
+    def start(self) -> None:
+        if not self.session.player.monsters:
             return
 
         monster_slot = self.parameters[0]
@@ -45,13 +63,7 @@ class SetMonsterLevelAction(EventAction):
                 return
 
             monster = self.session.player.monsters[int(monster_slot)]
-            if monster_level:
-                monster.level = max(1, monster.level + int(monster_level))
-            else:
-                monster.level = 1
+            monster.set_level(monster.level + int(monster_level))
         else:
             for monster in self.session.player.monsters:
-                if monster_level:
-                    monster.level = max(1, monster.level + int(monster_level))
-                else:
-                    monster.level = 1
+                monster.set_level(monster.level + int(monster_level))

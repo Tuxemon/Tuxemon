@@ -23,15 +23,23 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple
 
 from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.monster import Monster
 
 
-class IsWildMonsterCondition(ItemCondition):
-    """True if not owned by a trainer"""
+class IsWildMonsterConditionParameters(NamedTuple):
+    pass
+
+
+class IsWildMonsterCondition(ItemCondition[IsWildMonsterConditionParameters]):
+    """True if not owned by a trainer."""
 
     name = "is_wild_monster"
-    valid_parameters = []
+    param_class = IsWildMonsterConditionParameters
 
-    def test(self, target):
+    def test(self, target: Monster) -> bool:
         return target.owner is None

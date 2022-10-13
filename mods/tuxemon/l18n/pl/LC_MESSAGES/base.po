@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-06-23 09:52+0000\n"
-"Last-Translator: vXtreniusX <michal2008vxv@gmail.com>\n"
+"PO-Revision-Date: 2022-03-17 23:54+0000\n"
+"Last-Translator: Fancy.Dot <pankotel1o1@protonmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "pl/>\n"
 "Language: pl\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.7.1-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 msgid "clamp_on"
 msgstr "Zacisk"
@@ -465,7 +465,6 @@ msgstr "Powódź"
 msgid "flamethrower"
 msgstr "Miotacz ognia"
 
-#, fuzzy
 msgid "fire_claw"
 msgstr "Ognisty Pazur"
 
@@ -1511,3 +1510,48 @@ msgstr "Może robią park wodny!"
 
 msgid "hmmm3"
 msgstr "Jaki to ma sens? Trasa i tak jest prawie cała w trawie."
+
+msgid "menu_alphabet_n_columns"
+msgstr "13"
+
+## MENU TRANSLATIONS ##
+msgid "menu_alphabet"
+msgstr ""
+"aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźżAĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŹŻ1234567"
+"890.-!"
+
+msgid "supernova"
+msgstr "Supernova"
+
+msgid "combat_state_overfeed_get"
+msgstr "{user} przekarmił {target}."
+
+msgid "hp_restored"
+msgstr "hp {user} zostało przywrócone"
+
+msgid "combat_amnesia_get"
+msgstr "{user} dostał amnezji."
+
+msgid "status_overfeed"
+msgstr "Przekarmiony"
+
+msgid "take_cover"
+msgstr "Osłoń się"
+
+#, fuzzy
+msgid "strike"
+msgstr "Strike"
+
+#, fuzzy
+msgid "suck_poison"
+msgstr "Wyssij Truciznę"
+
+#, fuzzy
+msgid "dodge_increased"
+msgstr "{stat} gracza wzrósł"
+
+msgid "sudden_glow"
+msgstr "Nagły Blask"
+
+msgid "wall_of_steel"
+msgstr "Ściana Stali"

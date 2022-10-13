@@ -1,28 +1,33 @@
 {
-    "slug": "spyder_hospital_billie",
-    "sprite_name": "misa", 
-	"monsters": [
-        {
-            "name": "Viviphyta",
-            "level": 40, 
-			"slug": "viviphyta",
-						"exp_give_mod": 3,
-            "exp_req_mod": 27
-        },
-        {
-            "name": "Eyesore",
-            "level": 40,
-			"slug": "eyesore",
-						"exp_give_mod": 3,
-            "exp_req_mod": 27
-        },
-        {
-            "name": "Cardinale",
-            "level": 40,
-			"slug": "cardinale",
-						"exp_give_mod": 3,
-            "exp_req_mod": 27
-        }],
-	    "combat_front": "fashionista.png",
-    "combat_back": "red_back.png"}
-
+  "slug": "spyder_hospital_billie",
+  "gender": "female",
+  "sprite_name": "misa",
+  "monsters": [
+    {
+      "name": "Viviphyta",
+      "level": 40,
+      "slug": "viviphyta",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Eyesore",
+      "level": 40,
+      "slug": "eyesore",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Cardinale",
+      "level": 40,
+      "slug": "cardinale",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "fashionista.png",
+  "combat_back": "red_back.png"
+}

@@ -14,8 +14,8 @@ sudo apt -y remove wine wine32 wine64 wine-staging
 sudo apt -y install --install-recommends winehq-stable
 sudo apt -y install xvfb winetricks
 sudo apt -y autoremove
-[ -e python-3.9.2-amd64.exe ] || wget -q https://www.python.org/ftp/python/3.9.2/python-3.9.2-amd64.exe
+[ -e python-3.9.7-amd64.exe ] || wget -q https://www.python.org/ftp/python/3.9.7/python-3.9.7-amd64.exe
 rm -rf ~/.wine
 wineboot -u
 xvfb-run winetricks win10
-xvfb-run wine python-3.9.2-amd64.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0 SimpleInstall=1
+xvfb-run wine python-3.9.7-amd64.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0 SimpleInstall=1

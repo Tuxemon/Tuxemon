@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="67">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="69">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -38,6 +38,56 @@
    eAHtlE0KwjAUhGfh/1LvoHfQc/i71HMI2rsItrj3ILoXvIUu1HmL0lCSZwJFKGZg6OOl+ZjOosD/KWkBT7oqZRWyJFOZd28USc252OpTmddrAssusKJlDlWZJ/f3ZCW0ptTRk42XkpV94Z0CeFqu/MyXN2WuGT2nF0pGH965A2wNxo6z7Gzy4d1492DwjpxlZ5PGe7Hbt6NfYdnONd6wDYzoEGm8EE7+7i95Y3Y3UfrLM5lPLV+frEENeA9mvHj66vge+R+s6Y3j3OwszrGB2EBsIDZQzwY+xsEz9g==
   </data>
  </layer>
+ <objectgroup color="#ff0000" id="6" name="Collisions" visible="0">
+  <object id="2" type="collision" x="128" y="208" width="32" height="80"/>
+  <object id="3" type="collision" x="64" y="208" width="32" height="80"/>
+  <object id="5" type="collision" x="128" y="448" width="32" height="96"/>
+  <object id="6" type="collision" x="160" y="448" width="64" height="32"/>
+  <object id="7" type="collision" x="160" y="512" width="112" height="32"/>
+  <object id="8" type="collision" x="240" y="352" width="32" height="160"/>
+  <object id="9" type="collision" x="48" y="384" width="32" height="64"/>
+  <object id="10" type="collision" x="112" y="368" width="64" height="32"/>
+  <object id="11" type="collision" x="64" y="320" width="192" height="16"/>
+  <object id="12" type="collision" x="240" y="112" width="16" height="208"/>
+  <object id="13" type="collision" x="192" y="16" width="32" height="272"/>
+  <object id="14" type="collision" x="224" y="16" width="80" height="16"/>
+  <object id="16" type="collision" x="288" y="32" width="16" height="592"/>
+  <object id="17" type="collision" x="16" y="48" width="16" height="576"/>
+  <object id="18" type="collision" x="32" y="608" width="80" height="16"/>
+  <object id="19" type="collision" x="224" y="608" width="64" height="16"/>
+  <object id="21" type="collision" x="224" y="624" width="16" height="16"/>
+  <object id="22" type="collision" x="32" y="48" width="160" height="16"/>
+  <object id="23" type="collision" x="48" y="64" width="128" height="112"/>
+  <object id="24" type="collision" x="64" y="16" width="96" height="32"/>
+  <object id="25" type="collision" x="32" y="272" width="32" height="80"/>
+  <object id="26" type="collision" x="112" y="416" width="80" height="16"/>
+  <object id="27" type="collision" x="32" y="464" width="64" height="16"/>
+  <object id="28" type="collision" x="128" y="576" width="96" height="16"/>
+  <object id="30" type="collision" x="64" y="496" width="32" height="32"/>
+  <object id="31" type="collision" x="80" y="368" width="32" height="32"/>
+  <object id="32" type="collision" x="160" y="208" width="32" height="64"/>
+  <object id="34" type="collision" x="192" y="368" width="32" height="32"/>
+  <object id="35" type="collision" x="96" y="560" width="32" height="32"/>
+  <object id="36" type="collision" x="48" y="528" width="32" height="32"/>
+  <object id="37" type="collision" x="80" y="480" width="16" height="16"/>
+  <object id="38" type="collision" x="96" y="544" width="16" height="16"/>
+  <object id="39" type="collision" x="192" y="400" width="16" height="16"/>
+  <object id="40" type="collision" x="176" y="352" width="16" height="16"/>
+  <object id="41" type="collision" x="224" y="368" width="16" height="16"/>
+  <object id="42" type="collision" x="64" y="368" width="16" height="16"/>
+  <object id="49" type="collision" x="32" y="208" width="32" height="64"/>
+  <object id="50" type="collision" x="48" y="176" width="48" height="32"/>
+  <object id="51" type="collision" x="128" y="176" width="48" height="32"/>
+  <object id="57" type="collision" x="144" y="608" width="80" height="32"/>
+  <object id="58" type="collision" x="96" y="624" width="16" height="16"/>
+  <object id="59" type="collision" x="224" y="576" width="64" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="44" name="Teleport to Flower City" type="event" x="112" y="624" width="16" height="16">
    <properties>
@@ -127,60 +177,22 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="66" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="66" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="not variable_set environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
    </properties>
   </object>
- </objectgroup>
- <objectgroup color="#ff0000" id="6" name="Collisions" visible="0">
-  <object id="2" type="collision" x="128" y="208" width="32" height="80"/>
-  <object id="3" type="collision" x="64" y="208" width="32" height="80"/>
-  <object id="5" type="collision" x="128" y="448" width="32" height="96"/>
-  <object id="6" type="collision" x="160" y="448" width="64" height="32"/>
-  <object id="7" type="collision" x="160" y="512" width="112" height="32"/>
-  <object id="8" type="collision" x="240" y="352" width="32" height="160"/>
-  <object id="9" type="collision" x="48" y="384" width="32" height="64"/>
-  <object id="10" type="collision" x="112" y="368" width="64" height="32"/>
-  <object id="11" type="collision" x="64" y="320" width="192" height="16"/>
-  <object id="12" type="collision" x="240" y="112" width="16" height="208"/>
-  <object id="13" type="collision" x="192" y="16" width="32" height="272"/>
-  <object id="14" type="collision" x="224" y="16" width="80" height="16"/>
-  <object id="16" type="collision" x="288" y="32" width="16" height="592"/>
-  <object id="17" type="collision" x="16" y="48" width="16" height="576"/>
-  <object id="18" type="collision" x="32" y="608" width="80" height="16"/>
-  <object id="19" type="collision" x="224" y="608" width="64" height="16"/>
-  <object id="21" type="collision" x="224" y="624" width="16" height="16"/>
-  <object id="22" type="collision" x="32" y="48" width="160" height="16"/>
-  <object id="23" type="collision" x="48" y="64" width="128" height="112"/>
-  <object id="24" type="collision" x="64" y="16" width="96" height="32"/>
-  <object id="25" type="collision" x="32" y="272" width="32" height="80"/>
-  <object id="26" type="collision" x="112" y="416" width="80" height="16"/>
-  <object id="27" type="collision" x="32" y="464" width="64" height="16"/>
-  <object id="28" type="collision" x="128" y="576" width="96" height="16"/>
-  <object id="30" type="collision" x="64" y="496" width="32" height="32"/>
-  <object id="31" type="collision" x="80" y="368" width="32" height="32"/>
-  <object id="32" type="collision" x="160" y="208" width="32" height="64"/>
-  <object id="34" type="collision" x="192" y="368" width="32" height="32"/>
-  <object id="35" type="collision" x="96" y="560" width="32" height="32"/>
-  <object id="36" type="collision" x="48" y="528" width="32" height="32"/>
-  <object id="37" type="collision" x="80" y="480" width="16" height="16"/>
-  <object id="38" type="collision" x="96" y="544" width="16" height="16"/>
-  <object id="39" type="collision" x="192" y="400" width="16" height="16"/>
-  <object id="40" type="collision" x="176" y="352" width="16" height="16"/>
-  <object id="41" type="collision" x="224" y="368" width="16" height="16"/>
-  <object id="42" type="collision" x="64" y="368" width="16" height="16"/>
-  <object id="49" type="collision" x="32" y="208" width="32" height="64"/>
-  <object id="50" type="collision" x="48" y="176" width="48" height="32"/>
-  <object id="51" type="collision" x="128" y="176" width="48" height="32"/>
-  <object id="57" type="collision" x="144" y="608" width="80" height="32"/>
-  <object id="58" type="collision" x="96" y="624" width="16" height="16"/>
-  <object id="59" type="collision" x="224" y="576" width="64" height="16">
+  <object id="68" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
-    <property name="continue" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
+   </properties>
+  </object>
+  <object id="67" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
  </objectgroup>

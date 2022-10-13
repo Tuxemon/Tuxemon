@@ -16,11 +16,15 @@
             "technique": "sleeping_powder"
         }
     ],
-    "shape": "Blob",
+    "evolutions": [],
+    "shape": "blob",
     "types": [
         "Wood"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 77,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

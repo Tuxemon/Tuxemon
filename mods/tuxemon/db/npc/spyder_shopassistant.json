@@ -1,6 +1,7 @@
 {
-    "slug": "spyder_shopassistant",
-    "sprite_name": "shopassist",
-	    "combat_front": "red_front.png",
-    "combat_back": "red_back.png" }
-
+  "slug": "spyder_shopassistant",
+  "gender": "male",
+  "sprite_name": "shopassist",
+  "combat_front": "red_front.png",
+  "combat_back": "red_back.png"
+}

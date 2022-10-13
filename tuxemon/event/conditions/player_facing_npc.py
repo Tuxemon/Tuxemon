@@ -18,34 +18,44 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import annotations
 
 import logging
 
-from tuxemon.event import get_npc
+from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
 
 class PlayerFacingNPCCondition(EventCondition):
-    """Checks to see the player is next to and facing a particular NPC"""
+    """
+    Check to see the player is next to and facing a particular NPC.
+
+    Script usage:
+        .. code-block::
+
+            is player_facing_npc <character>
+
+    Script parameters:
+        character: Npc slug name (e.g. "npc_maple").
+
+    """
 
     name = "player_facing_npc"
 
-    def test(self, session, condition):
-        """Checks to see the player is next to and facing a particular NPC
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check to see the player is next to and facing a particular NPC.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
+        Returns:
+            Whether the player is facing the chosen character.
 
-        :rtype: Boolean
-        :returns: True or False
-
-        Valid Parameters: slug
         """
         npc_location = None
 
@@ -53,7 +63,8 @@ class PlayerFacingNPCCondition(EventCondition):
         if not npc:
             return False
 
-        # Next, we check the player position and see if we're one tile away from the NPC.
+        # Next, we check the player position and see if we're one tile away
+        # from the NPC.
         if npc.tile_pos[1] == session.player.tile_pos[1]:
             # Check to see if the NPC is to the left of the player
             if npc.tile_pos[0] == session.player.tile_pos[0] - 1:
@@ -74,7 +85,4 @@ class PlayerFacingNPCCondition(EventCondition):
                 npc_location = "down"
 
         # Then we check to see if we're facing the NPC
-        if session.player.facing == npc_location:
-            return True
-        else:
-            return False
+        return session.player.facing == npc_location

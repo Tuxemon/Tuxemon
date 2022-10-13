@@ -24,8 +24,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
+from __future__ import annotations
 
-def bresenham(x0, y0, x1, y1, include_end=True):
+from typing import Generator, Tuple
+
+
+def bresenham(
+    x0: int,
+    y0: int,
+    x1: int,
+    y1: int,
+    include_end: bool = True,
+) -> Generator[Tuple[int, int], None, None]:
     """Yield integer coordinates on the line from (x0, y0) to (x1, y1).
     Input coordinates should be integers.
     The result will contain both the start and the end point.

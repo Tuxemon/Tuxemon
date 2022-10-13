@@ -16,11 +16,15 @@
             "technique": "sting"
         }
     ],
-    "shape": "Sprite",
+    "evolutions": [],
+    "shape": "sprite",
     "types": [
         "Wood"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 101,
+    "height": 100,
+    "weight": 20,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

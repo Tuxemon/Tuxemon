@@ -27,23 +27,55 @@
 #
 #
 
+from __future__ import annotations
+
 import importlib
 import inspect
 import logging
 import os
 import re
 import sys
+from types import ModuleType
+from typing import (
+    ClassVar,
+    Generic,
+    Iterable,
+    List,
+    Mapping,
+    Protocol,
+    Sequence,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
+    overload,
+    runtime_checkable,
+)
 
 logger = logging.getLogger(__name__)
 log_hdlr = logging.StreamHandler(sys.stdout)
 log_hdlr.setLevel(logging.DEBUG)
-log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"))
+log_hdlr.setFormatter(
+    logging.Formatter(
+        "%(asctime)s - %(name)s - " "%(levelname)s - %(message)s",
+    ),
+)
 
 
-class Plugin:
+@runtime_checkable
+class PluginObject(Protocol):
+    name: ClassVar[str]
+
+
+T = TypeVar("T")
+InterfaceValue = TypeVar("InterfaceValue", bound=PluginObject)
+Interface = Type[InterfaceValue]
+
+
+class Plugin(Generic[T]):
     __slots__ = ("name", "plugin_object")
 
-    def __init__(self, name, module):
+    def __init__(self, name: str, module: T) -> None:
         self.name = name
         self.plugin_object = module
 
@@ -51,12 +83,12 @@ class Plugin:
 class PluginManager:
     """Yapsy semi-compatible plugin manager."""
 
-    def __init__(self, base_folders=None):
-        if base_folders is None:
-            base_folders = ["/data/data/org.tuxemon.game/files", "exe.win32-2.7", "Tuxemon", "/mnt/Tuxemon"]
-        self.folders = []
-        self.base_folders = base_folders
-        self.modules = []
+    def __init__(
+        self,
+    ) -> None:
+
+        self.folders: Sequence[str] = []
+        self.modules: List[str] = []
         self.file_extension = (".py", ".pyc")
         self.exclude_classes = ["IPlugin"]
         self.include_patterns = [
@@ -64,12 +96,21 @@ class PluginManager:
             "event.conditions",
             "item.effects",
             "item.conditions",
+            "technique.effects",
         ]
 
-    def setPluginPlaces(self, plugin_folders):
+    def setPluginPlaces(self, plugin_folders: Sequence[str]) -> None:
+        """
+        Set the locations where to look for plugins.
+
+        Parameters:
+            plugin_folders: Sequence of folders that might contain plugins.
+
+        """
         self.folders = plugin_folders
 
-    def collectPlugins(self):
+    def collectPlugins(self) -> None:
+        """Collect the plugins from the folders."""
         for folder in self.folders:
             logger.debug("searching for plugins: %s", folder)
             folder = folder.replace("\\", "/")
@@ -77,12 +118,14 @@ class PluginManager:
             pattern = re.compile("tuxemon/.*$")
             matches = pattern.findall(folder)
             if len(matches) == 0:
-                logger.exception("Unable to determine plugin module path for: %s", folder)
-                raise RuntimeError
+                raise RuntimeError(
+                    f"Unable to determine plugin module path for: %s",
+                    folder,
+                )
             module_path = matches[0].replace("/", ".")
 
-            # Look for a ".plugin" in the plugin folder to create a list of modules
-            # to import.
+            # Look for a ".plugin" in the plugin folder to create a list
+            # of modules to import.
             modules = []
             for f in os.listdir(folder):
                 if f.endswith(self.file_extension):
@@ -90,12 +133,26 @@ class PluginManager:
             self.modules += modules
         logger.debug("Modules to load: " + str(self.modules))
 
-    def getAllPlugins(self):
+    def getAllPlugins(
+        self,
+        *,
+        interface: Type[InterfaceValue],
+    ) -> Sequence[Plugin[Type[InterfaceValue]]]:
+        """
+        Get a sequence of loaded plugins.
+
+        Parameters:
+            interface: Superclass or protocol of the returned classes.
+
+        Returns:
+            Sequence of plugins loaded.
+
+        """
         imported_modules = []
         for module in self.modules:
             logger.debug("Searching module: " + str(module))
             m = importlib.import_module(module)
-            for c in self._getClassesFromModule(m):
+            for c in self._getClassesFromModule(m, interface=interface):
                 class_name = c[0]
                 class_obj = c[1]
                 for pattern in self.include_patterns:
@@ -106,23 +163,42 @@ class PluginManager:
                     # Only import modules from the list of parent modules
                     if pattern in str(class_obj):
                         logger.debug("Importing: " + str(class_name))
-                        imported_modules.append(Plugin(module + "." + class_name, class_obj))
+                        imported_modules.append(
+                            Plugin(module + "." + class_name, class_obj),
+                        )
 
         return imported_modules
 
-    def _getClassesFromModule(self, module):
-        members = inspect.getmembers(module, predicate=inspect.isclass)
+    def _getClassesFromModule(
+        self,
+        module: ModuleType,
+        interface: Type[InterfaceValue],
+    ) -> Iterable[Tuple[str, Type[InterfaceValue]]]:
+
+        # This is required because of
+        # https://github.com/python/typing/issues/822
+        #
+        # The typing error in issubclass will be solved
+        # in https://github.com/python/typeshed/pull/5658
+        predicate = (
+            inspect.isclass
+            if interface is PluginObject
+            else lambda c: inspect.isclass(c) and issubclass(c, interface)
+        )
+
+        members = inspect.getmembers(module, predicate=predicate)
         return members
 
 
-def load_directory(plugin_folder):
-    """Loads and imports a directory of plugins.
+def load_directory(plugin_folder: str) -> PluginManager:
+    """
+    Loads and imports a directory of plugins.
 
-    :param plugin_folder: The folder to look for plugin files.
-    :type plugin_folder: String
+    Parameters:
+        plugin_folder: The folder where to look for plugin files.
 
-    :rtype: Dictionary
-    :returns: A dictionary of imported plugins.
+    Returns:
+        A plugin manager, with the modules already loaded.
 
     """
     manager = PluginManager()
@@ -132,51 +208,71 @@ def load_directory(plugin_folder):
     return manager
 
 
-def get_available_methods(plugin_manager):
-    """Gets the available methods in a dictionary of plugins.
-
-    :param plugin_manager: A dictionary of modules.
-    :type plugin_manager: yapsy.PluginManager
-
-    :rtype: Dictionary
-    :returns: A dictionary containing the methods from loaded plugins.
+def get_available_classes(
+    plugin_manager: PluginManager,
+    *,
+    interface: Type[InterfaceValue],
+) -> Sequence[Type[InterfaceValue]]:
     """
-    methods = {}
-    for plugin in plugin_manager.getAllPlugins():
-        items = inspect.getmembers(plugin.plugin_object, predicate=inspect.ismethod)
-        for method in items:
-            methods[method[0]] = {"method": method[1], "module": plugin.name}
+    Gets the available classes in a plugin manager.
 
-    return methods
+    Parameter:
+        plugin_manager: Plugin manager with modules already loaded.
+        interface: Superclass or protocol of the returned classes.
 
+    Returns:
+        Sequence of loaded classes.
 
-def get_available_classes(plugin_manager):
-    """Gets the available methods in a dictionary of plugins.
-
-    :param plugin_manager: A dictionary of modules.
-    :type plugin_manager: yapsy.PluginManager
-
-    :rtype: list
-    :returns: A list containing the classes from loaded plugins.
     """
     classes = []
-    for plugin in plugin_manager.getAllPlugins():
+    for plugin in plugin_manager.getAllPlugins(interface=interface):
         classes.append(plugin.plugin_object)
 
     return classes
 
 
-def load_plugins(path, category="plugins"):
-    """Load classes using plugin system
+# Overloads until https://github.com/python/mypy/issues/3737 is fixed
 
-    :param str path: where plugins are stored
-    :param str category: optional string for debugging info
-    :rtype: dict
+
+@overload
+def load_plugins(
+    path: str,
+    category: str = "plugins",
+) -> Mapping[str, Type[PluginObject]]:
+    pass
+
+
+@overload
+def load_plugins(
+    path: str, category: str = "plugins", *, interface: Type[InterfaceValue]
+) -> Mapping[str, Type[InterfaceValue]]:
+    pass
+
+
+def load_plugins(
+    path: str,
+    category: str = "plugins",
+    *,
+    interface: Union[Type[InterfaceValue], Type[PluginObject]] = PluginObject,
+) -> Mapping[str, Union[Type[InterfaceValue], Type[PluginObject]]]:
+    """
+    Load classes using plugin system.
+
+    Parameters:
+        path: Location of the modules to load.
+        category: Optional string for debugging info.
+        interface: Superclass or protocol of the returned classes. If no
+            class is given, they are only required to have a `name` attribute.
+
+    Returns:
+        A dictionary mapping the `name` attribute of each class to the class
+        itself.
+
     """
     classes = dict()
     plugins = load_directory(path)
 
-    for cls in get_available_classes(plugins):
+    for cls in get_available_classes(plugins, interface=interface):
         name = getattr(cls, "name", None)
         if name is None:
             logger.error(f"found incomplete {category}: {cls.__name__}")

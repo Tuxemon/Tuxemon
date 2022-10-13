@@ -1,16 +1,23 @@
 {
+  "tech_id": 53,
   "accuracy": 0.75,
   "animation": "sparks_gold_alt",
-  "category": "physical",
   "effects": [
-    "damage"
+    "statchange"
   ],
+  "flip_axes": "",
   "healing_power": 0,
   "icon": "",
   "is_area": false,
   "is_fast": false,
   "potency": 1,
   "power": 2.25,
+  "statmelee": {
+    "value": 0.5, "operation":"-"
+  },
+  "statranged": {
+    "value": 0.5, "operation":"-"
+  },
   "range": "reach",
   "recharge": 2,
   "sfx": "sfx_shine",
@@ -30,6 +37,6 @@
     "metal"
   ],
   "use_failure": "combat_miss",
-  "use_success": null,
+  "use_success": "combat_amnesia_get",
   "use_tech": "combat_used_x"
 }

@@ -1,28 +1,33 @@
 {
-    "slug": "spyder_route2_billie",
-    "sprite_name": "misa", 
-	"monsters": [
-        {
-            "name": "Dollfin",
-            "level": 6, 
-			"slug": "dollfin",
-						"exp_give_mod": 3,
-            "exp_req_mod": 27
-        },
-        {
-            "name": "Eyenemy",
-            "level": 6,
-			"slug": "eyenemy",
-						"exp_give_mod": 3,
-            "exp_req_mod": 27
-        },
-        {
-            "name": "Cardiling",
-            "level": 3,
-			"slug": "cardiling",
-						"exp_give_mod": 3,
-            "exp_req_mod": 27
-        }],
-	    "combat_front": "fashionista.png",
-    "combat_back": "red_back.png"}
-
+  "slug": "spyder_route2_billie",
+  "gender": "female",
+  "sprite_name": "misa",
+  "monsters": [
+    {
+      "name": "Dollfin",
+      "level": 6,
+      "slug": "dollfin",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Eyenemy",
+      "level": 6,
+      "slug": "eyenemy",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Cardiling",
+      "level": 3,
+      "slug": "cardiling",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "fashionista.png",
+  "combat_back": "red_back.png"
+}

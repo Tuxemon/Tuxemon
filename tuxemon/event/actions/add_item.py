@@ -19,22 +19,45 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, Union, final
+
 from tuxemon.event.eventaction import EventAction
 
 
-class AddItemAction(EventAction):
-    """Adds an item to the current player's inventory.
+class AddItemActionParameters(NamedTuple):
+    item_slug: str
+    quantity: Union[int, None]
 
-    The action parameter must contain an item name to look up in the item database.
+
+@final
+class AddItemAction(EventAction[AddItemActionParameters]):
+    """
+    Add an item to the current player's inventory.
+
+    Script usage:
+        .. code-block::
+
+            add_item <item_slug>[,quantity]
+
+    Script parameters:
+        item_slug: Item name to look up in the item database.
+        quantity: Quantity of the item to add. By default it is 1.
+
     """
 
     name = "add_item"
-    valid_parameters = [(str, "item_slug"), ((int, None), "quantity")]
+    param_class = AddItemActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
         if self.parameters.quantity is None:
             quantity = 1
         else:
             quantity = self.parameters.quantity
-        player.alter_item_quantity(self.session, self.parameters.item_slug, quantity)
+        player.alter_item_quantity(
+            self.session,
+            self.parameters.item_slug,
+            quantity,
+        )

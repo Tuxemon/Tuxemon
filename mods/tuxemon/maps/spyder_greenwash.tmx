@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="50">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="80">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -25,49 +25,76 @@
   <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
  </tileset>
  <tileset firstgid="3145" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="0" columns="15"/>
- <tileset firstgid="3145" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="640" height="400"/>
+ <tileset firstgid="3145" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
+  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
  </tileset>
- <tileset firstgid="4145" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+ <tileset firstgid="3305" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
- <tileset firstgid="4301" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+ <tileset firstgid="3461" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
  </tileset>
- <tileset firstgid="4829" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+ <tileset firstgid="3989" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
  </tileset>
- <tileset firstgid="7421" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+ <tileset firstgid="6581" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
- <layer id="7" name="Tile Layer 1" width="12" height="8">
+ <layer id="7" name="Tile Layer 1" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAFzlmVgcCESuwHVZQNxDhDnAvEsAnQeUH4yEPsqMTD4EYGnQdWXAtWWEYGHg3oAmZY2FA==
+   eAH7LcnA8AeKtaQQbJgYOv0XqhZE/wNiZaAeFSBWBeIgEmk1oHpvIGaVZ2BgIwP7QfXrAvXqkYFH9UPCfzT8qJt+GICAmPQ4mv4GNv2B4ghU/pCb/inVDyo/KbEfVn6S636YflBZjg8vAoYRtvQM0w8q+/Hhzzj0w9K/D1DeFw/GpR9mfwlQbykerA2Uw+Z+mP2E9AdTqB/kN3z243M7SI4Y94P8gMsf+NwPALpAvEk=
   </data>
  </layer>
- <layer id="8" name="Tile Layer 2" width="12" height="8">
+ <layer id="8" name="Tile Layer 2" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFtAqBWcIMDLOBeA4Q4wIAQn8CCw==
+   eAFjYBj8wFSAgcEMiM2B2AKISQWuQD1uQOwOxB5k6A8F6gkD4nAgjiBDPynuxeZXUuynhV9JsZ8Uv46qHTwh4MfPwPCVj3z3pAD1cwMxseA7ml1VQL2KJOjnJUEtNjcpU6gf3f3Y7MAnNtDux+c2dLmbkgwMt6DYUAFdljCfUYqBgQmKmYE0qYBS/ZpAO7WgWJsM+wOBeoKgOJgM/cKkehhN/R9g2P+FYhYi7A8C1lHBQBwCratUkNyvg6YfAEFhHV0=
   </data>
  </layer>
- <layer id="9" name="Tile Layer 3" width="12" height="8">
+ <layer id="9" name="Tile Layer 3" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFAxkCAAGAAAE=
+   eAFjYKAeWC7AwLACiGE0qSZvB+rdAcQwmlT95Kr/yYVfpynQTWZAbA7EFkCMAbgxRFAEXIF63IDYHYg9sOlHUY3JIWg/phYUEVLsx2ZXKNDNYUAcDsQRBNxPil0ojoRySLELpr+Mn4GhHIgroLgSSH8F4m9Q/B1I4wM9QPleIO6D4n4gzQr0JxsUsxPwMzazQfphYLjrTxWH+RRBk+L/Uhz6JQUh5pETfqLA8NcAYjEgFkeKC4QLR1noISAlwcAgDcTkAi2gXm2o/lnAMJ9NQbivAupdDcTZFJhBrj9Gkj4A3t4iyg==
+  </data>
+ </layer>
+ <layer id="10" width="16" height="32">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwsCGQwM/AkAjESVCcDKSfAvEzKH4OpEfBaAiMhsBoCIyGAHVDAACidQYI
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
-  <object id="47" type="collision" x="0" y="0" width="192" height="32"/>
-  <object id="48" type="collision" x="0" y="32" width="16" height="96"/>
-  <object id="49" type="collision" x="176" y="32" width="16" height="96"/>
+  <object id="47" type="collision" x="0" y="0" width="240" height="32"/>
+  <object id="48" type="collision" x="0" y="32" width="16" height="480"/>
+  <object id="49" type="collision" x="240" y="-64" width="16" height="368"/>
+  <object id="50" type="collision" x="240" y="336" width="16" height="176"/>
+  <object id="53" type="collision" x="96" y="176" width="64" height="144"/>
+  <object id="54" type="collision" x="80" y="96" width="32" height="80"/>
+  <object id="55" type="collision" x="160" y="32" width="32" height="96"/>
+  <object id="56" type="collision" x="48" y="32" width="64" height="16"/>
+  <object id="57" type="collision" x="16" y="384" width="192" height="32"/>
+  <object id="58" type="collision" x="144" y="480" width="64" height="32"/>
+  <object id="59" type="collision" x="144" y="416" width="64" height="48"/>
+  <object id="60" type="collision" x="96" y="416" width="48" height="16"/>
+  <object id="61" type="collision" x="16" y="176" width="80" height="16"/>
+  <object id="62" type="collision" x="224" y="336" width="16" height="16"/>
+  <object id="63" type="collision" x="224" y="288" width="16" height="16"/>
+  <object id="64" type="collision" x="32" y="272" width="32" height="16"/>
+  <object id="65" type="collision-line" x="16" y="288">
+   <polyline points="0,0 16,0"/>
+  </object>
+  <object id="66" type="collision-line" x="16" y="96">
+   <polyline points="0,0 16,0"/>
+  </object>
+  <object id="67" type="collision-line" x="16" y="80">
+   <polyline points="0,0 16,0"/>
+  </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
-  <object id="44" name="Create Looten" type="event" x="128" y="80" width="16" height="16">
+  <object id="44" name="Create Looten" type="event" x="112" y="480" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_greenwash_looten,8,5"/>
+    <property name="act1" value="create_npc spyder_greenwash_looten,7,30"/>
     <property name="cond1" value="not npc_exists spyder_greenwash_looten"/>
    </properties>
   </object>
-  <object id="45" name="Talk Looten" type="event" x="128" y="64" width="16" height="16">
+  <object id="45" name="Talk Looten" type="event" x="80" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_looten1"/>
     <property name="act2" value="set_variable gotaardant:yes"/>
@@ -76,12 +103,133 @@
     <property name="cond1" value="not variable_set gotaardant:yes"/>
    </properties>
   </object>
-  <object id="46" name="Teleport to Candy Town" type="event" x="48" y="112" width="48" height="16">
+  <object id="46" name="Teleport to Greenhouse" type="event" x="240" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_candy_town.tmx,31,20,0.3"/>
+    <property name="act1" value="transition_teleport spyder_greenwash_greenhouse.tmx,1,7,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="51" name="Teleport to Greenhouse" type="event" x="240" y="320" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_greenwash_greenhouse.tmx,1,8,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="52" name="Teleport to Candy Town" type="event" x="80" y="496" width="48" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,25,24,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is variable_set gotaardant:yes"/>
+   </properties>
+  </object>
+  <object id="68" name="Teleport to Level 2" type="event" x="16" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_greenwash_level2.tmx,13,5,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="69" name="Create Chip" type="event" x="80" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_greenwash_chip,5,13"/>
+    <property name="act2" value="npc_face spyder_greenwash_chip,down"/>
+    <property name="cond1" value="not npc_exists spyder_greenwash_chip"/>
+    <property name="cond2" value="not variable_set greenwash_chip:yes"/>
+   </properties>
+  </object>
+  <object id="70" name="Talk Chip" type="event" x="64" y="208" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_greenwash_chip1"/>
+    <property name="act3" value="start_battle spyder_greenwash_chip"/>
+    <property name="act4" value="translated_dialog spyder_greenwash_chip2"/>
+    <property name="act6" value="set_variable greenwashchip:yes"/>
+    <property name="behav1" value="talk spyder_greenwash_chip"/>
+    <property name="cond1" value="not variable_set greenwashchip:yes"/>
+   </properties>
+  </object>
+  <object id="71" name="Create Clarence" type="event" x="208" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_greenwash_clarence,13,2"/>
+    <property name="act2" value="npc_face spyder_greenwash_clarence,down"/>
+    <property name="cond1" value="not npc_exists spyder_greenwash_clarence"/>
+    <property name="cond2" value="not variable_set greenwash_clarence:yes"/>
+   </properties>
+  </object>
+  <object id="72" name="Talk Clarence" type="event" x="192" y="32" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_greenwash_clarence1"/>
+    <property name="act3" value="start_battle spyder_greenwash_clarence"/>
+    <property name="act4" value="translated_dialog spyder_greenwash_clarence2"/>
+    <property name="act6" value="set_variable greenwashclarence:yes"/>
+    <property name="behav1" value="talk spyder_greenwash_clarence"/>
+    <property name="cond1" value="not variable_set greenwashclarence:yes"/>
+   </properties>
+  </object>
+  <object id="73" name="Create Louis" type="event" x="96" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_greenwash_louis,6,3"/>
+    <property name="act2" value="npc_face spyder_greenwash_louis,down"/>
+    <property name="cond1" value="not npc_exists spyder_greenwash_louis"/>
+    <property name="cond2" value="not variable_set greenwash_louis:yes"/>
+   </properties>
+  </object>
+  <object id="74" name="Talk Louis" type="event" x="80" y="48" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_greenwash_louis1"/>
+    <property name="act3" value="start_battle spyder_greenwash_louis"/>
+    <property name="act4" value="translated_dialog spyder_greenwash_louis2"/>
+    <property name="act6" value="set_variable greenwashlouis:yes"/>
+    <property name="behav1" value="talk spyder_greenwash_louis"/>
+    <property name="cond1" value="not variable_set greenwashlouis:yes"/>
+   </properties>
+  </object>
+  <object id="75" name="Talk Chip" type="event" x="80" y="224" width="16" height="48">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_greenwash_chip1"/>
+    <property name="act3" value="start_battle spyder_greenwash_chip"/>
+    <property name="act4" value="translated_dialog spyder_greenwash_chip2"/>
+    <property name="act6" value="set_variable greenwashchip:yes"/>
+    <property name="cond1" value="not variable_set greenwashchip:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="76" name="Talk Louis" type="event" x="96" y="64" width="16" height="32">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_greenwash_louis1"/>
+    <property name="act3" value="start_battle spyder_greenwash_louis"/>
+    <property name="act4" value="translated_dialog spyder_greenwash_louis2"/>
+    <property name="act6" value="set_variable greenwashlouis:yes"/>
+    <property name="cond1" value="not variable_set greenwashlouis:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="77" name="Talk Clarence" type="event" x="208" y="48" width="16" height="48">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_greenwash_clarence1"/>
+    <property name="act3" value="start_battle spyder_greenwash_clarence"/>
+    <property name="act4" value="translated_dialog spyder_greenwash_clarence2"/>
+    <property name="act6" value="set_variable greenwashclarence:yes"/>
+    <property name="cond1" value="not variable_set greenwashclarence:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="78" name="Move Right" type="event" x="144" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_move player,right"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="79" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
  </objectgroup>

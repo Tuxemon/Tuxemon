@@ -19,30 +19,54 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map import get_direction, dirs2
+from tuxemon.map import dirs2, get_direction
+from tuxemon.npc import NPC
 
 
-class NpcFaceAction(EventAction):
-    """Makes the NPC face a certain direction.
+class NpcFaceActionParameters(NamedTuple):
+    npc_slug: str
+    direction: str  # Using Direction as the typehint breaks the Action
 
-    Valid Parameters: npc_slug, direction
 
-    Direction parameter can be: "left", "right", "up", "down", or "player"
+@final
+class NpcFaceAction(EventAction[NpcFaceActionParameters]):
+    """
+    Make the NPC face a certain direction.
+
+    Script usage:
+        .. code-block::
+
+            npc_face <npc_slug>,<direction>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        direction: Direction to face. It can be: "left", "right", "up", "down",
+             "player" or a npc slug.
+
     """
 
     name = "npc_face"
-    valid_parameters = [(str, "npc_slug"), (str, "direction")]
+    param_class = NpcFaceActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
+        assert npc
         direction = self.parameters.direction
+
+        target: NPC
         if direction not in dirs2:
             if direction == "player":
                 target = self.session.player
             else:
-                target = get_npc(self.session, direction)
+                maybe_target = get_npc(self.session, direction)
+                assert maybe_target
+                target = maybe_target
             direction = get_direction(npc.tile_pos, target.tile_pos)
 
         npc.facing = direction

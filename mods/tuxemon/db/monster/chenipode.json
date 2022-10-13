@@ -16,11 +16,21 @@
             "technique": "take_cover"
         }
     ],
-    "shape": "Grub",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "exapode"
+        }
+    ],
+    "shape": "grub",
     "types": [
         "Earth"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 59,
+    "height": 15,
+    "weight": 0.5,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

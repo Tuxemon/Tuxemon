@@ -1,43 +1,77 @@
+from __future__ import annotations
+
 import logging
 import os.path
+from typing import Optional, Protocol
 
 import pygame
 from pygame import mixer
 
+from tuxemon import prepare
 from tuxemon.db import db
 from tuxemon.tools import transform_resource_filename
 
 logger = logging.getLogger(__name__)
 
 
-def load_sound(slug):
-    """Load a sound from disk, identified by it's slug in the db
+class SoundProtocol(Protocol):
+    def play(self) -> object:
+        pass
 
-    :param slug: slug for the file record to load
-    :type slug: String
-    :rtype: tuxemon.platform.mixer.Sound
+
+class DummySound:
+    def play(self) -> None:
+        pass
+
+
+def get_sound_filename(slug: Optional[str]) -> Optional[str]:
     """
+    Get the filename of a sound slug.
 
-    class DummySound:
-        def play(self):
-            pass
+    Parameters:
+        slug: Slug of the file record.
 
-    if slug is None:
-        return DummySound()
+    Returns:
+        Filename if the sound is found.
 
-    # get the filename from the db
+    """
+    if slug is None or slug == "":
+        return None
+
+    # Get the filename from the db
     filename = db.lookup_file("sounds", slug)
     filename = transform_resource_filename("sounds", filename)
 
-    # on some platforms, pygame will silently fail loading
+    # On some platforms, pygame will silently fail loading
     # a sound if the filename is incorrect so we check here
     if not os.path.exists(filename):
-        msg = f"audio file does not exist: {filename}"
-        logger.error(msg)
+        logger.error(f"audio file does not exist: {filename}")
+        return None
+
+    return filename
+
+
+def load_sound(slug: Optional[str]) -> SoundProtocol:
+    """
+    Load a sound from disk, identified by it's slug in the db.
+
+    Parameters:
+        slug: Slug for the file record to load.
+
+    Returns:
+        Loaded sound, or a placeholder silent sound if it is
+        not found.
+
+    """
+
+    filename = get_sound_filename(slug)
+    if filename is None:
         return DummySound()
 
     try:
-        return mixer.Sound(filename)
+        sound = mixer.Sound(filename)
+        mixer.Sound.set_volume(sound, prepare.CONFIG.sound_volume)
+        return sound
     except MemoryError:
         # raised on some systems if there is no mixer
         logger.error("memoryerror, unable to load sound")

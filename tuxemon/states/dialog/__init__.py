@@ -1,24 +1,68 @@
+#
+# Tuxemon
+# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
+#                     Benjamin Bean <superman2k5@gmail.com>
+#
+# This file is part of Tuxemon.
+#
+# Tuxemon is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Tuxemon is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Contributor(s):
+#
+# Leif Theden <leif.theden@gmail.com>
+# Carlos Ramos <vnmabus@gmail.com>
+#
+#
+# states.DialogState Handles the dialogue
+#
+from __future__ import annotations
+
+from typing import Any, Callable, Optional, Sequence, Tuple
+
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.platform.const import buttons
+from tuxemon.platform.events import PlayerInput
+from tuxemon.sprite import Sprite
+from tuxemon.states.choice import ChoiceState
 from tuxemon.ui.text import TextArea
 
 
 class DialogState(PopUpMenu):
-    """Game state with a graphic box and some text in it
+    """
+    Game state with a graphic box and some text in it.
 
     Pressing the action button:
     * if text is being displayed, will cause text speed to go max
     * when text is displayed completely, then will show the next message
     * if there are no more messages, then the dialog will close
+
     """
 
     default_character_delay = 0.05
 
-    def startup(self, **kwargs):
+    def startup(
+        self,
+        *,
+        text: Sequence[str] = (),
+        avatar: Optional[Sprite] = None,
+        menu: Optional[Sequence[Tuple[str, str, Callable[[], None]]]] = None,
+        **kwargs: Any,
+    ) -> None:
         super().startup(**kwargs)
-        self.text_queue = kwargs.get("text", list())
-        self.avatar = kwargs.get("avatar", None)
-        self.menu = kwargs.get("menu", None)
+        self.text_queue = list(text)
+        self.avatar = avatar
+        self.menu = menu
         self.text_area = TextArea(self.font, self.font_color)
         self.text_area.rect = self.calc_internal_rect()
         self.sprites.add(self.text_area)
@@ -28,34 +72,28 @@ class DialogState(PopUpMenu):
             self.avatar.rect.bottomleft = avatar_rect.left, avatar_rect.top
             self.sprites.add(self.avatar)
 
-    def on_open(self):
+    def on_open(self) -> None:
         self.next_text()
 
-    def process_event(self, event):
-        """Handles player input events. This function is only called when the
-        player provides input such as pressing a key or clicking the mouse.
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
 
-        Since this is part of a chain of event handlers, the return value
-        from this method becomes input for the next one.  Returning None
-        signifies that this method has dealt with an event and wants it
-        exclusively.  Return the event and others can use it as well.
-
-        You should return None if you have handled input here.
-
-        :type event: tuxemon.input.PlayerInput
-        :rtype: Optional[input.PlayerInput]
-        """
         if event.pressed and event.button == buttons.A:
             if self.text_area.drawing_text:
                 self.character_delay = 0.001
 
             elif self.next_text() is None:
                 if self.menu:
-                    self.client.push_state("ChoiceState", menu=self.menu, rect=self.text_area.rect)
+                    self.client.push_state(
+                        ChoiceState,
+                        menu=self.menu,
+                        rect=self.text_area.rect,
+                    )
                 else:
                     self.client.pop_state(self)
 
-    def next_text(self):
+        return None
+
+    def next_text(self) -> Optional[str]:
         try:
             text = self.text_queue.pop(0)
             self.alert(text)

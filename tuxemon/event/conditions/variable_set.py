@@ -18,40 +18,52 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import annotations
 
+from typing import Optional
+
+from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
 
 
 class VariableSetCondition(EventCondition):
-    """Checks to see if a player game variable has been set. This will look for a particular
-    key in the player.game_variables dictionary and see if it exists. If it exists, it will
-    return true.
+    """
+    Check to see if a player game variable exists and has a particular value.
+
+    If the variable does not exist it will return ``False``.
+
+    Script usage:
+        .. code-block::
+
+            is variable_set <variable>[:value]
+
+    Script parameters:
+        variable: The variable to check.
+        value: Optional value to check for.
+
     """
 
     name = "variable_set"
 
-    def test(self, session, condition):
-        """Checks to see if a player game variable has been set to the given value.
-        If the variable doesn't exist this will return false.
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check to see if a player game variable has a particular value.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
+        Returns:
+            Whether the variable exists and has that value.
 
-        :rtype: Boolean
-        :returns: True or False
-
-        Valid Parameters: variable_name:value
         """
         player = session.player
 
         parts = condition.parameters[0].split(":")
         key = parts[0]
         if len(parts) > 1:
-            value = parts[1]
+            value: Optional[str] = parts[1]
         else:
             value = None
 

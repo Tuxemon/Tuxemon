@@ -16,11 +16,21 @@
             "technique": "flood"
         }
     ],
-    "shape": "Polliwog",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 18,
+            "monster_slug": "nudimind"
+        }
+    ],
+    "shape": "polliwog",
     "types": [
         "Water"
     ],
-    "weight": 25,
+    "possible_genders": ["female"],
+    "txmn_id": 53,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

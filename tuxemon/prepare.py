@@ -26,6 +26,10 @@
 #
 # prepare Prepares the game environment.
 #
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, List
+
 """This module initializes the display and creates dictionaries of resources.
 It contains all the static and dynamic variables used throughout the game such
 as display resolution, scale, etc.
@@ -35,8 +39,15 @@ import logging
 import os.path
 import re
 
-from tuxemon.constants import paths
 from tuxemon import config
+from tuxemon.constants import paths
+
+if TYPE_CHECKING:
+    import pygame as pg
+
+    SCREEN: pg.surface.Surface
+    SCREEN_RECT: pg.rect.Rect
+    JOYSTICKS: List[pg.joystick.Joystick]
 
 logger = logging.getLogger(__name__)
 
@@ -75,7 +86,8 @@ with open(paths.USER_CONFIG_PATH, "w") as fp:
 SCREEN_SIZE = CONFIG.resolution
 
 # Set the native tile size so we know how much to scale our maps
-TILE_SIZE = [16, 16]  # 1 tile = 16 pixels
+# 1 tile = 16 pixels
+TILE_SIZE = (16, 16)
 
 # Set the status icon size so we know how much to scale our menu icons
 ICON_SIZE = [7, 7]
@@ -90,15 +102,16 @@ XP_COLOR = (248, 245, 71)
 # used for scaling.
 NATIVE_RESOLUTION = [240, 160]
 
+# Set the character limit for setting a player name.
+PLAYER_NAME_LIMIT = 30
+
 # If scaling is enabled, scale the tiles based on the resolution
 if CONFIG.large_gui:
     SCALE = 2
-    TILE_SIZE[0] *= SCALE
-    TILE_SIZE[1] *= SCALE
+    TILE_SIZE = (TILE_SIZE[0] * SCALE, TILE_SIZE[1] * SCALE)
 elif CONFIG.scaling:
     SCALE = int(SCREEN_SIZE[0] / NATIVE_RESOLUTION[0])
-    TILE_SIZE[0] *= SCALE
-    TILE_SIZE[1] *= SCALE
+    TILE_SIZE = (TILE_SIZE[0] * SCALE, TILE_SIZE[1] * SCALE)
 else:
     SCALE = 1
 
@@ -110,8 +123,8 @@ SAVE_METHOD = "JSON"
 DEV_TOOLS = CONFIG.dev_tools
 
 
-def pygame_init():
-    """Eventually refactor out of prepare"""
+def pygame_init() -> None:
+    """Eventually refactor out of prepare."""
     global JOYSTICKS
     global FONTS
     global MUSIC
@@ -171,7 +184,7 @@ def pygame_init():
 
 
 # Initialize the game framework
-def init():
+def init() -> None:
     from tuxemon import platform
 
     platform.init()
@@ -183,7 +196,7 @@ def init():
 # note: this has the potential of being a bottle neck doing to all the checking of paths
 # eventually, this should be configured at game launch, or in a config file instead
 # of looking all over creation for the required files.
-def fetch(*args):
+def fetch(*args: str) -> str:
     relative_path = os.path.join(*args)
 
     for mod_name in CONFIG.mods:

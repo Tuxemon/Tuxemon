@@ -1,0 +1,55 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2022-05-13 11:18+0000\n"
+"Last-Translator: weblateusr <tispm@dismail.de>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
+"ja/>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.13-dev\n"
+
+## ITEM TRANSLATIONS ##
+# Apple
+msgid "apple"
+msgstr "リンゴ"
+
+msgid "apple_description"
+msgstr "モンスター1体のHPを10回復する。"
+
+# Berry
+msgid "berry"
+msgstr "ベリー"
+
+msgid "berry_description"
+msgstr "モンスター1体のHPを10回復する。"
+
+# Cherry
+msgid "cherry"
+msgstr "チェリー"
+
+msgid "cherry_description"
+msgstr "モンスター1体のHPを10回復する。"
+
+# Orange
+msgid "orange"
+msgstr "オレンジ"
+
+msgid "orange_description"
+msgstr "モンスター1体のHPを20回復する。"
+
+# Potion
+msgid "potion"
+msgstr "ポーション"
+
+msgid "potion_description"
+msgstr "モンスター1体のHPを50回復する。"
+
+# Super Potion
+msgid "super_potion"
+msgstr "スーパーポーション"
+
+msgid "super_potion_description"
+msgstr "モンスター1体のHPを150回復する。"

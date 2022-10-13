@@ -16,12 +16,16 @@
             "technique": "sand_spray"
         }
     ],
-    "shape": "Hunter",
+    "evolutions": [],
+    "shape": "hunter",
     "types": [
         "Metal",
         "Earth"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 21,
+    "height": 210,
+    "weight": 255,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

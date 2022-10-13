@@ -1,6 +1,7 @@
 {
-    "slug": "spyder_mansion_drinkingbuddya",
-    "sprite_name": "rogue",
-	    "combat_front": "enforcer_rookie.png",
-    "combat_back": "red_back.png" }
-
+  "slug": "spyder_mansion_drinkingbuddya",
+  "gender": "male",
+  "sprite_name": "rogue",
+  "combat_front": "enforcer_rookie.png",
+  "combat_back": "red_back.png"
+}

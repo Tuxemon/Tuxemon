@@ -1,6 +1,7 @@
 import collections
 import time
-from heapq import heappush, heapify, heappop, heappushpop
+from heapq import heapify, heappop, heappush, heappushpop
+from typing import Optional
 
 __all__ = ("ScheduledItem", "Scheduler", "Clock")
 
@@ -92,9 +93,15 @@ class Scheduler:
             if divs > 16:
                 return next_ts
 
-    def schedule(self, func, delay=0.0, repeat=False, soft=False):
+    def schedule(
+        self,
+        func,
+        delay=0.0,
+        repeat=False,
+        soft=False,
+    ) -> ScheduledItem:
         """
-        Schedule a function to be run sometime in the future
+        Schedule a function to be run sometime in the future.
 
         The function should have a prototype that includes ``dt`` as the
         first argument, which gives the elapsed time, in time units, since the
@@ -133,13 +140,15 @@ class Scheduler:
         CPU is excessive for those intervals but idle outside.  Using
         the soft interval scheduling, the load is more evenly distributed.
 
+        Parameters:
+            func: Function to be called
+            delay: Delay in time unit until it is called
+            repeat: Function will be repeated every 'delay' units
+            soft: See notes about Soft Scheduling
 
-        :param func: Function to be called
-        :param delay: Delay in time unit until it is called
-        :param repeat: Function will be repeated every 'delay' units
-        :param soft: See notes about Soft Scheduling
-        :rtype: ScheduledItem
-        :return: Reference to scheduled item
+        Returns:
+            Reference to scheduled item
+
         """
         last_ts = self._get_nearest_ts()
         if soft:
@@ -159,17 +168,19 @@ class Scheduler:
             heappush(self._scheduled_items, item)
         return item
 
-    def tick(self):
-        """Cause clock to update and call scheduled functions.
+    def tick(self) -> float:
+        """
+        Cause clock to update and call scheduled functions.
 
         This updates the clock's internal measure of time and returns
         the difference since the last update (or since the clock was created).
 
         Will call any scheduled functions that have elapsed.
 
-        :rtype: float
-        :return: The number of time units since the last "tick", or 0 if this
-                 was the first tick.
+        Returns:
+            The number of time units since the last "tick", or 0 if this
+            was the first tick.
+
         """
         delta_t = self.set_time(self._time())
         self._times.append(delta_t)
@@ -192,18 +203,18 @@ class Scheduler:
         except ZeroDivisionError:
             return 0.0
 
-    def set_time(self, time_stamp):
-        """Set the clock manually and do not call scheduled functions.  Return
+    def set_time(self, time_stamp: float) -> float:
+        """
+        Set the clock manually and do not call scheduled functions.  Return
         the difference in time from the last time clock was updated.
 
-        :Parameters:
-            `time_stamp` : float
-                This will become the new value of the clock.  Setting the clock
-                to negative values will have undefined results.
+        Parameters:
+            time_stamp: This will become the new value of the clock.  Setting the clock
+            to negative values will have undefined results.
 
-        :rtype: float
-        :return: The number of time units since the last update, or 0.0 if this
-                 was the first update.
+        Returns:
+            The number of time units since the last update, or 0.0 if this
+            was the first update.
 
         """
         # self._last_ts will be -1 before first time set
@@ -216,16 +227,16 @@ class Scheduler:
         self._last_ts = time_stamp
         return delta_t
 
-    def call_scheduled_functions(self, dt):
-        """Call scheduled functions that elapsed on the last `update_time`.
+    def call_scheduled_functions(self, dt: float) -> bool:
+        """
+        Call scheduled functions that elapsed on the last `update_time`.
 
-        :Parameters:
-            dt : float
-                The elapsed time since the last update to pass to each
-                scheduled function.
+        Parameters:
+            dt: The elapsed time since the last update to pass to each
+            scheduled function.
 
-        :rtype: bool
-        :return: True if any functions were called, otherwise False.
+        Returns:
+            Returns True if any functions were called, otherwise False.
         """
         scheduled_items = self._scheduled_items
         now = self._last_ts
@@ -312,12 +323,13 @@ class Scheduler:
 
         return result
 
-    def get_idle_time(self):
-        """Get the time until the next item is scheduled.
+    def get_idle_time(self) -> Optional[float]:
+        """
+        Get the time until the next item is scheduled.
 
-        :rtype: float
-        :return: Time until the next scheduled event in time units, or ``None``
-                 if there is no event scheduled.
+        Returns:
+            Time until the next scheduled event in time units, or ``None``
+            if there is no event scheduled.
         """
         if self._next_tick_items:
             return 0.0
@@ -328,17 +340,16 @@ class Scheduler:
         except IndexError:
             return None
 
-    def unschedule(self, func):
-        """Remove a function from the schedule.
+    def unschedule(self, func) -> None:
+        """
+        Remove a function from the schedule.
 
         If the function appears in the schedule more than once, all occurrences
         are removed.  If the function was not scheduled, no error is raised.
 
-        :Parameters:
-            `func` : function
-                The function to remove from the schedule.
+        Parameters:
+            func: The function to remove from the schedule.
 
-        :return: None
         """
 
         def remove(list_):
@@ -362,12 +373,17 @@ class Clock(Scheduler):
     """
 
     @staticmethod
-    def _least_squares(gradient=1, offset=0):
-        """source: pyglet.app.App
+    def _least_squares(
+        gradient: int = 1,
+        offset: int = 0,
+    ):
+        """
+        source: pyglet.app.App
 
-        :param gradient:
-        :param offset:
-        :return:
+        Parameters:
+            gradient:
+            offset:
+
         """
         X = 0
         Y = 0

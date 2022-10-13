@@ -4,23 +4,37 @@
     "ai": "RandomAI",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "tonguespear"
         },
         {
-            "level_learned": 2,
-            "technique": "ram"
+            "level_learned": 4,
+            "technique": "hibernate"
         },
         {
-            "level_learned": 2,
-            "technique": "hibernate"
+            "level_learned": 8,
+            "technique": "stampede"
+        },
+	    {
+            "level_learned": 17,
+            "technique": "feint"
         }
     ],
-    "shape": "Varmint",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "aardart"
+        }
+    ],
+    "shape": "varmint",
     "types": [
         "Earth"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 41,
+    "height": 40,
+    "weight": 18,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

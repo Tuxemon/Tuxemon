@@ -1,16 +1,12 @@
 {
-  "slug": "status_faint",
-  "use_tech": "combat_used_x",
-  "use_success": "generic_success",
-  "use_failure": "generic_failure",
   "animation": null,
-  "sfx": "sfx_faint",
+  "effects": [],
+  "flip_axes": "",
   "icon": "",
-  "category": "faint",
+  "power": 10,
+  "sfx": "sfx_faint",
+  "slug": "status_faint",
   "sort": "meta",
-  "effects": [
-    "meta"
-  ],
   "target": {
     "enemy monster": 0,
     "enemy team": 0,
@@ -20,8 +16,8 @@
     "own trainer": 0,
     "item": 0
   },
-  "power": 10,
-  "types": [
-    "Faint"
-  ]
+  "tech_id": 93,
+  "use_failure": "generic_failure",
+  "use_success": "generic_success",
+  "use_tech": "combat_used_x"
 }

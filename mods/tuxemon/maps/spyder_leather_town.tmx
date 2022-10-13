@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="303">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="305">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -154,12 +154,6 @@
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="178" name="Play Music" type="event" x="640" y="32" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="play_music JRPG_town_loop.ogg"/>
-    <property name="cond1" value="not music_playing JRPG_town_loop.ogg"/>
-   </properties>
-  </object>
   <object id="179" name="Teleport to Route 3" type="event" x="160" y="16" width="16" height="16" rotation="180">
    <properties>
     <property name="act1" value="transition_teleport spyder_route3.tmx,9,39,0.3"/>
@@ -251,13 +245,13 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="272" name="Make Scout" type="event" x="292.667" y="234" width="16" height="16">
+  <object id="272" name="Make Scout" type="event" x="304" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_maniac,18,15"/>
     <property name="cond1" value="not npc_exists spyder_maniac"/>
    </properties>
   </object>
-  <object id="273" name="Scout Talk" type="event" x="308.667" y="218" width="16" height="16">
+  <object id="273" name="Scout Talk" type="event" x="304" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leather_maniac"/>
     <property name="behav1" value="talk spyder_maniac"/>
@@ -279,6 +273,7 @@
     <property name="act50" value="npc_face spyder_barmaid,down"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
+    <property name="act80" value="set_variable teleport_faint:spyder_leather_town.tmx 4 14"/>
     <property name="cond1" value="is variable_set chooses:yes"/>
    </properties>
   </object>
@@ -401,10 +396,24 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="301" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="301" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="not variable_set environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="304" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
+   </properties>
+  </object>
+  <object id="303" name="Auto Healing Teleported" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_monster_health ,"/>
+    <property name="act2" value="set_monster_status ,"/>
+    <property name="act3" value="set_variable battle_last_result:none"/>
+    <property name="cond1" value="is variable_set battle_last_result:lost"/>
    </properties>
   </object>
  </objectgroup>

@@ -19,26 +19,50 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, Union, final
+
 from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.item import decode_inventory
 
 
-class SetInventoryAction(EventAction):
-    """Overwrites the inventory of the npc or player."""
+class SetInventoryActionParameters(NamedTuple):
+    npc_slug: str
+    inventory_slug: Union[str, None]
+
+
+@final
+class SetInventoryAction(EventAction[SetInventoryActionParameters]):
+    """
+    Overwrite the inventory of the npc or player.
+
+    Script usage:
+        .. code-block::
+
+            set_inventory <npc_slug>,<inventory_slug>
+
+    Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        inventory_slug: Slug of an inventory.
+
+    """
 
     name = "set_inventory"
-    valid_parameters = [
-        (str, "npc_slug"),
-        ((str, None), "inventory_slug"),
-    ]
+    param_class = SetInventoryActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
-        if self.parameters.inventory_slug == "None":
+        assert npc
+        if self.parameters.inventory_slug is None:
             npc.inventory = {}
             return
 
-        entry = db.database["inventory"][self.parameters.inventory_slug].get("inventory", {})
+        entry = db.lookup(
+            self.parameters.inventory_slug,
+            table="inventory",
+        ).inventory
+
         npc.inventory = decode_inventory(self.session, npc, entry)

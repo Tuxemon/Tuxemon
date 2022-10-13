@@ -19,28 +19,47 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
 import logging
+from typing import NamedTuple, Optional, Union, final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.technique import Technique
+from tuxemon.monster import Monster
+from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
 
 
-class SetMonsterStatusAction(EventAction):
-    """Changes the status of a monster in the current player's party. The action parameters
-    may contain a monster slot and the new status to be appended. If no slot is specified,
-    all monsters are modified. If no status is specified, the status is cleared.
+class SetMonsterStatusActionParameters(NamedTuple):
+    slot: Union[int, None]
+    status: Union[str, None]
 
-    Valid Parameters: slot, status
+
+@final
+class SetMonsterStatusAction(EventAction[SetMonsterStatusActionParameters]):
+    """
+    Change the status of a monster in the current player's party.
+
+    Script usage:
+        .. code-block::
+
+            set_monster_status [slot][,status]
+
+    Script parameters:
+        slot: Slot of the monster in the party. If no slot is specified, all
+            monsters are modified.
+        status: Status to set. If no status is specified, the status is
+            cleared.
+
     """
 
     name = "set_monster_status"
-    valid_parameters = [(int, "slot"), (str, "status")]
+    param_class = SetMonsterStatusActionParameters
 
     @staticmethod
-    def set_status(monster, value):
-        if value is None:
+    def set_status(monster: Monster, value: Optional[str]) -> None:
+        if not value:
             monster.status = list()
         else:
             # TODO: own class for status effect
@@ -48,7 +67,7 @@ class SetMonsterStatusAction(EventAction):
             status = Technique(value)
             monster.apply_status(status)
 
-    def start(self):
+    def start(self) -> None:
         if not self.session.player.monsters:
             return
 

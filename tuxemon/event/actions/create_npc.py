@@ -18,37 +18,53 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import annotations
 
 import logging
+from typing import NamedTuple, Union, final
 
 import tuxemon.npc
 from tuxemon import ai
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
 
-class CreateNpcAction(EventAction):
-    """Creates an NPC object and adds it to the game's current list of NPC's.
+class CreateNpcActionParameters(NamedTuple):
+    npc_slug: str
+    tile_pos_x: int
+    tile_pos_y: int
+    animations: Union[str, None]
+    behavior: Union[str, None]
 
-    Valid Parameters: slug, tile_pos_x, tile_pos_y, animations, behavior
+
+@final
+class CreateNpcAction(EventAction[CreateNpcActionParameters]):
+    """
+    Create an NPC object and adds it to the game's current list of NPC's.
+
+    Script usage:
+        .. code-block::
+
+            create_npc <npc_slug>,<tile_pos_x>,<tile_pos_y>[,<animations>][,<behavior>]
+
+    Script parameters:
+        npc_slug: NPC slug to look up in the NPC database.
+        tile_pos_x: X position to place the NPC on.
+        tile_pos_y: Y position to place the NPC on.
+        animations: Sprite of the NPC. Deprecated in favor of the JSON.
+        behavior: Behavior of the NPC (e.g. "wander"). Unused for now.
+
     """
 
     name = "create_npc"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (int, "tile_pos_x"),
-        (int, "tile_pos_y"),
-        (str, "animations"),
-        (str, "behavior"),
-    ]
+    param_class = CreateNpcActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # Get a copy of the world state.
-        world = self.session.client.get_state_by_name("WorldState")
-        if not world:
-            return
+        world = self.session.client.get_state_by_name(WorldState)
 
         # Get the npc's parameters from the action
         slug = self.parameters.npc_slug
@@ -70,16 +86,13 @@ class CreateNpcAction(EventAction):
                 slug,
             )
         else:
-            sprite = db.database["npc"][slug].get("sprite_name")
+            sprite = db.lookup(slug, "npc").sprite_name
 
         # Create a new NPC object
-        npc = tuxemon.npc.NPC(slug, sprite_name=sprite)
+        npc = tuxemon.npc.NPC(slug, sprite_name=sprite, world=world)
         npc.set_position((pos_x, pos_y))
 
         # Set the NPC object's variables
         npc.behavior = behavior
-        npc.ai = ai.AI()
+        npc.ai = ai.RandomAI()
         npc.load_party()
-
-        # Add the NPC to the game's NPC list
-        world.add_entity(npc)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="63">
+<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="63">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -9,8 +9,8 @@
  <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
- <tileset firstgid="1473" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
-  <image source="../gfx/tilesets/items.png" width="160" height="160"/>
+ <tileset firstgid="1473" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
+  <image source="../gfx/tilesets/items.png" width="48" height="32"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="13" height="11">
   <data encoding="base64" compression="zlib">
@@ -34,7 +34,7 @@
  </layer>
  <layer id="5" name="Above player" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYBhZ4BArAwMIHwRiYsEZoFoQPk2CHmLNRld3GGgHCJMCzgLVgzC9AQBsOwf7
+   eAFjYBhZ4BArAwMIHwRiYsFRoFoQPkKCHmLNRld3GGgHCJMCjgHVgzC9AQBPIwfY
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision" visible="0">

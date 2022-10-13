@@ -1,24 +1,25 @@
 {
-    "slug": "spyder_nimrod_justice",
-    "sprite_name": "soldier",
-	"monsters": [
-        {
-            "name": "Ghosteeth",
-            "level": 16, 
-			"slug": "ghosteeth",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Ghosteeth",
-            "level": 16, 
-			"slug": "ghosteeth",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "soldier.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_nimrod_justice",
+  "gender": "female",
+  "sprite_name": "soldier",
+  "monsters": [
+    {
+      "name": "Ghosteeth",
+      "level": 16,
+      "slug": "ghosteeth",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Ghosteeth",
+      "level": 16,
+      "slug": "ghosteeth",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "male"
+    }
+  ],
+  "combat_front": "soldier.png",
+  "combat_back": "red_back.png"
+}

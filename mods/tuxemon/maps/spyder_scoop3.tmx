@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="26">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="30">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -24,62 +24,53 @@
  <tileset firstgid="4947" name="Stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
   <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
  </tileset>
- <tileset firstgid="4971" name="Plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
+ <tileset firstgid="4971" name="Plants" tilewidth="16" tileheight="16" tilecount="2" columns="1">
+  <image source="../gfx/tilesets/plants.png" width="16" height="32"/>
  </tileset>
- <tileset firstgid="4987" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+ <tileset firstgid="4973" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
   <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
  </tileset>
- <tileset firstgid="5487" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
+ <tileset firstgid="5473" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
   <image source="../gfx/tilesets/Objects_by_ArMM1998.png" width="528" height="320"/>
  </tileset>
- <tileset firstgid="6147" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+ <tileset firstgid="6133" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="6163" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+ <tileset firstgid="6149" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="6251" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+ <tileset firstgid="6237" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
   <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
  </tileset>
- <tileset firstgid="7251" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
+ <tileset firstgid="7237" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
   <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
  </tileset>
- <tileset firstgid="7461" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+ <tileset firstgid="7447" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
   <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
  </tileset>
- <tileset firstgid="7515" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
+ <tileset firstgid="7501" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="7587" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+ <tileset firstgid="7573" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="7603" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
+ <tileset firstgid="7589" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
   <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
  </tileset>
- <tileset firstgid="7687" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+ <tileset firstgid="7673" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
- <tileset firstgid="7843" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
+ <tileset firstgid="7829" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
   <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
- <tileset firstgid="8291" name="Brute" tilewidth="16" tileheight="16" tilecount="1" columns="1">
-  <image source="../gfx/tilesets/Brute.gif" width="16" height="16"/>
- </tileset>
- <tileset firstgid="8292" name="Landrace" tilewidth="16" tileheight="16" tilecount="1" columns="1">
-  <image source="../gfx/tilesets/Landrace.gif" width="16" height="16"/>
- </tileset>
- <tileset firstgid="8293" name="Land_bird" tilewidth="16" tileheight="16" tilecount="1" columns="1">
-  <image source="../gfx/tilesets/Land_bird.gif" width="16" height="16"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFLlGRgSCQBdwLVkoI3AtWTgs0lGBhGAuZhIM2fMPVOwPAhBoPUE6OOUjUApJw41Q==
+   eAELlmRgCCYBVwPVkoIXA9WTgjUlGBhGAuZhIM2fMPUmwPAhBoPUE6OOUjUA0UUxHw==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 4" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYGBgsOABEkg0hAchscl1QNXD6GRJBoYUII4GYpgYjEY2C8QGqekG4h4ghgGQGCnAkJ+BwQiIjYEYBM6IMDCcBWJcIBKoLgqIo6HqHwDVPkRTj8sMW2bspmIzA7tK/KJh3AwMxGCQKSB1xIBAItXBzEJXLy4BkyFMAwDhzRWj
+   eAFjYGBgsOABEkg0hAchscl1QNXD6FBJBoYwIPYFYpgYjEY2C8QGqakF4joghgGQGCnAkJ+BwQiIjYEYBPaJMDDsB2JcIBKoLgqIo6HqLwHVXkZTj8sMW2bspmIzA7tK/KJh3MCwIwKDTAGpIwYEEqkOZha6ek4JmAxhGgCc5hTD
   </data>
  </layer>
  <layer id="3" name="Tile Layer 2" width="12" height="12">
@@ -170,7 +161,7 @@
     <property name="cond1" value="not variable_set scooptaggart:yes"/>
    </properties>
   </object>
-  <object id="22" name="Create Donald" type="event" x="176" y="160" width="16" height="16">
+  <object id="22" name="Create Donald" type="event" x="176" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_donald,11,9"/>
     <property name="cond1" value="not npc_exists spyder_scoop_donald"/>
@@ -188,8 +179,44 @@
   </object>
   <object id="25" name="Environment" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable environment:snow"/>
-    <property name="cond1" value="not variable_set environment:snow"/>
+    <property name="act1" value="set_variable environment:interior"/>
+    <property name="cond1" value="not variable_set environment:interior"/>
+   </properties>
+  </object>
+  <object id="26" name="Talk Alyssa" type="event" x="64" y="160" width="16" height="32">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_alyssa1"/>
+    <property name="act3" value="start_battle spyder_scoop_alyssa"/>
+    <property name="act4" value="translated_dialog spyder_scoop_alyssa2"/>
+    <property name="act6" value="set_variable scoopalyssa:yes"/>
+    <property name="cond1" value="not variable_set scoopalyssa:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="27" name="Talk Taggart" type="event" x="96" y="144" width="16" height="32">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_taggart1"/>
+    <property name="act3" value="start_battle spyder_scoop_taggart"/>
+    <property name="act4" value="translated_dialog spyder_scoop_taggart2"/>
+    <property name="act6" value="set_variable scooptaggart:yes"/>
+    <property name="cond1" value="not variable_set scooptaggart:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="28" name="Talk Donald" type="event" x="176" y="160" width="16" height="32">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_donald1"/>
+    <property name="act3" value="start_battle spyder_scoop_donald"/>
+    <property name="act4" value="translated_dialog spyder_scoop_donald2"/>
+    <property name="act6" value="set_variable scoopdonald:yes"/>
+    <property name="cond1" value="not variable_set scoopdonald:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="29" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_scoop2.tmx,9,6,0.3"/>
+    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
  </objectgroup>

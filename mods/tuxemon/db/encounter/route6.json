@@ -1,0 +1,29 @@
+{
+  "slug": "route6",
+  "monsters": [
+    {
+      "monster": "dandicub",
+      "encounter_rate": 10,
+      "level_range": [
+        19,
+        20
+      ]
+    },
+    {
+      "monster": "dandylion",
+      "encounter_rate": 5,
+      "level_range": [
+        21,
+        23
+      ]
+    },
+    {
+      "monster": "capiti",
+      "encounter_rate": 10,
+      "level_range": [
+        19,
+        22
+      ]
+    }
+  ]
+}

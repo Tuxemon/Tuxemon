@@ -16,12 +16,16 @@
             "technique": "web"
         }
     ],
-    "shape": "Aquatic",
+    "evolutions": [],
+    "shape": "aquatic",
     "types": [
         "Water",
         "Wood"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 25,
+    "height": 300,
+    "weight": 200,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

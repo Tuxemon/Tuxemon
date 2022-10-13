@@ -23,32 +23,50 @@
 # Adam Chevalier <chevalierAdam2@gmail.com>
 #
 
+from __future__ import annotations
 
+from typing import NamedTuple, final
+
+from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
+from tuxemon.menu.input import InputMenu
 
 
-class RenamePlayerAction(EventAction):
-    """Opens the text input screen to rename the player.
+class RenamePlayerActionParameters(NamedTuple):
+    pass
 
-    Valid Parameters: None
+
+@final
+class RenamePlayerAction(EventAction[RenamePlayerActionParameters]):
+    """
+    Open the text input screen to rename the player.
+
+    Script usage:
+        .. code-block::
+
+            rename_player
+
     """
 
     name = "rename_player"
-    valid_parameters = []
+    param_class = RenamePlayerActionParameters
 
-    def set_player_name(self, name):
+    def set_player_name(self, name: str) -> None:
         self.session.player.name = name
 
-    def start(self):
+    def start(self) -> None:
         self.session.client.push_state(
-            state_name="InputMenu",
+            state_name=InputMenu,
             prompt=T.translate("input_name"),
             callback=self.set_player_name,
             escape_key_exits=False,
             initial=self.session.player.name,
+            char_limit=prepare.PLAYER_NAME_LIMIT,
         )
 
-    def update(self):
-        if self.session.client.get_state_by_name("InputMenu") is None:
+    def update(self) -> None:
+        try:
+            self.session.client.get_state_by_name(InputMenu)
+        except ValueError:
             self.stop()

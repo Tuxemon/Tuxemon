@@ -19,19 +19,36 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event.eventaction import EventAction
 
 
-class CallEventAction(EventAction):
-    """Executes the specified event's actions by id.
+class CallEventActionParameters(NamedTuple):
+    event_id: int
 
-    Valid Parameters: event_id
+
+@final
+class CallEventAction(EventAction[CallEventActionParameters]):
+    """
+    Execute the specified event's actions by id.
+
+    Script usage:
+        .. code-block::
+
+            call_event <event_id>
+
+    Script parameters:
+        event_id: The id of the event whose actions will be executed.
+
     """
 
     name = "call_event"
-    valid_parameters = [(int, "event_id")]
+    param_class = CallEventActionParameters
 
-    def start(self):
+    def start(self) -> None:
         event_engine = self.session.client.event_engine
         events = self.session.client.events
 

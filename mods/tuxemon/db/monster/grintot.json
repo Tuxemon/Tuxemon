@@ -16,11 +16,36 @@
             "technique": "avalanche"
         }
     ],
-    "shape": "Brute",
+    "evolutions": [
+        {
+            "path": "earth_booster",
+            "at_level": 0,
+            "monster_slug": "grinflare"
+        },
+        {
+            "path": "flintstone",
+            "at_level": 0,
+            "monster_slug": "grinflare"
+        },
+        {
+            "path": "metal_booster",
+            "at_level": 0,
+            "monster_slug": "grintrock"
+        },
+        {
+            "path": "thunderstone",
+            "at_level": 0,
+            "monster_slug": "grintrock"
+        }
+    ],
+    "shape": "brute",
     "types": [
         "Earth"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 16,
+    "height": 70,
+    "weight": 375,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

@@ -8,7 +8,7 @@
             "technique": "breathe_fire"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "give_all"
         },
         {
@@ -16,11 +16,21 @@
             "technique": "fire_claw"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 18,
+            "monster_slug": "cardiwing"
+        }
+    ],
+    "shape": "flier",
     "types": [
         "Fire"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 61,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

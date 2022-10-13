@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="222">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="229">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -84,6 +84,49 @@
    eAHt0kEOgCAMBEAOePCB6nd8uj6BZEmocUi4sS2ZtjWHwDqBY1/Xe6TzVfx/1f3O4n4jO+ANAQIECBAgMEdg6+3u751T7X9V+GUz58cvE8jS9o9fJpCl7V/mJ02AwPcFHnNLCPM=
   </data>
  </layer>
+ <objectgroup color="#ff0000" id="3" name="Collisions">
+  <object id="157" type="collision" x="448" y="0" width="80" height="48"/>
+  <object id="158" type="collision" x="528" y="0" width="80" height="32"/>
+  <object id="159" type="collision" x="544" y="32" width="64" height="16"/>
+  <object id="160" type="collision" x="608" y="48" width="32" height="48"/>
+  <object id="162" type="collision" x="608" y="240" width="16" height="48"/>
+  <object id="163" type="collision" x="608" y="176" width="16" height="48"/>
+  <object id="164" type="collision" x="608" y="112" width="16" height="48"/>
+  <object id="165" type="collision" x="0" y="0" width="448" height="16"/>
+  <object id="166" type="collision" x="384" y="16" width="48" height="16"/>
+  <object id="167" type="collision" x="320" y="16" width="48" height="16"/>
+  <object id="168" type="collision" x="256" y="16" width="48" height="16"/>
+  <object id="169" type="collision" x="192" y="16" width="48" height="16"/>
+  <object id="170" type="collision" x="128" y="16" width="48" height="16"/>
+  <object id="171" type="collision" x="64" y="16" width="48" height="16"/>
+  <object id="172" type="collision" x="0" y="16" width="48" height="16"/>
+  <object id="173" type="collision" x="16" y="304" width="432" height="16"/>
+  <object id="174" type="collision" x="16" y="288" width="32" height="16"/>
+  <object id="175" type="collision" x="0" y="256" width="16" height="32"/>
+  <object id="176" type="collision" x="64" y="288" width="48" height="16"/>
+  <object id="177" type="collision" x="128" y="288" width="48" height="16"/>
+  <object id="178" type="collision" x="192" y="288" width="48" height="16"/>
+  <object id="179" type="collision" x="256" y="288" width="48" height="16"/>
+  <object id="180" type="collision" x="320" y="288" width="48" height="16"/>
+  <object id="181" type="collision" x="384" y="288" width="48" height="16"/>
+  <object id="182" type="collision" x="624" y="304" width="16" height="16"/>
+  <object id="185" type="collision" x="576" y="608" width="64" height="32"/>
+  <object id="186" type="collision" x="512" y="592" width="64" height="32"/>
+  <object id="187" type="collision" x="512" y="496" width="32" height="96"/>
+  <object id="188" type="collision" x="496" y="496" width="16" height="48"/>
+  <object id="189" type="collision" x="480" y="480" width="48" height="16"/>
+  <object id="190" type="collision" x="464" y="464" width="48" height="16"/>
+  <object id="191" type="collision" x="448" y="432" width="48" height="32"/>
+  <object id="192" type="collision" x="432" y="400" width="48" height="32"/>
+  <object id="193" type="collision" x="432" y="368" width="32" height="32"/>
+  <object id="194" type="collision" x="432" y="352" width="16" height="16"/>
+  <object id="195" type="collision" x="448" y="320" width="16" height="32"/>
+  <object id="196" type="collision" x="544" y="544" width="16" height="48"/>
+  <object id="197" type="collision" x="624" y="96" width="16" height="208"/>
+  <object id="198" type="collision" x="608" y="320" width="32" height="224"/>
+  <object id="219" type="collision" x="0" y="32" width="32" height="32"/>
+  <object id="220" type="collision" x="0" y="64" width="16" height="64"/>
+ </objectgroup>
  <objectgroup id="4" name="Events">
   <object id="149" name="Teleport to Dragon's Cave" type="event" x="528" y="32" width="16" height="16">
    <properties>
@@ -217,7 +260,7 @@
     <property name="cond1" value="not npc_exists spyder_searoutec_rutherford"/>
    </properties>
   </object>
-  <object id="212" name="Talk Rutherford" type="event" x="544" y="176" width="16" height="16">
+  <object id="212" name="Talk Rutherford" type="event" x="528" y="192" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_searoutec_rutherford1"/>
     <property name="act3" value="start_battle spyder_searoutec_rutherford"/>
@@ -275,54 +318,73 @@
     <property name="cond2" value="not variable_set hospitalcure:yes"/>
    </properties>
   </object>
-  <object id="221" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="221" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable environment:water"/>
-    <property name="cond1" value="not variable_set environment:water"/>
+    <property name="act1" value="set_variable environment:ocean"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
    </properties>
   </object>
- </objectgroup>
- <objectgroup color="#ff0000" id="3" name="Collisions">
-  <object id="157" type="collision" x="448" y="0" width="80" height="48"/>
-  <object id="158" type="collision" x="528" y="0" width="80" height="32"/>
-  <object id="159" type="collision" x="544" y="32" width="64" height="16"/>
-  <object id="160" type="collision" x="608" y="48" width="32" height="48"/>
-  <object id="162" type="collision" x="608" y="240" width="16" height="48"/>
-  <object id="163" type="collision" x="608" y="176" width="16" height="48"/>
-  <object id="164" type="collision" x="608" y="112" width="16" height="48"/>
-  <object id="165" type="collision" x="0" y="0" width="448" height="16"/>
-  <object id="166" type="collision" x="384" y="16" width="48" height="16"/>
-  <object id="167" type="collision" x="320" y="16" width="48" height="16"/>
-  <object id="168" type="collision" x="256" y="16" width="48" height="16"/>
-  <object id="169" type="collision" x="192" y="16" width="48" height="16"/>
-  <object id="170" type="collision" x="128" y="16" width="48" height="16"/>
-  <object id="171" type="collision" x="64" y="16" width="48" height="16"/>
-  <object id="172" type="collision" x="0" y="16" width="48" height="16"/>
-  <object id="173" type="collision" x="16" y="304" width="432" height="16"/>
-  <object id="174" type="collision" x="16" y="288" width="32" height="16"/>
-  <object id="175" type="collision" x="0" y="256" width="16" height="32"/>
-  <object id="176" type="collision" x="64" y="288" width="48" height="16"/>
-  <object id="177" type="collision" x="128" y="288" width="48" height="16"/>
-  <object id="178" type="collision" x="192" y="288" width="48" height="16"/>
-  <object id="179" type="collision" x="256" y="288" width="48" height="16"/>
-  <object id="180" type="collision" x="320" y="288" width="48" height="16"/>
-  <object id="181" type="collision" x="384" y="288" width="48" height="16"/>
-  <object id="182" type="collision" x="624" y="304" width="16" height="16"/>
-  <object id="185" type="collision" x="576" y="608" width="64" height="32"/>
-  <object id="186" type="collision" x="512" y="592" width="64" height="32"/>
-  <object id="187" type="collision" x="512" y="496" width="32" height="96"/>
-  <object id="188" type="collision" x="496" y="496" width="16" height="48"/>
-  <object id="189" type="collision" x="480" y="480" width="48" height="16"/>
-  <object id="190" type="collision" x="464" y="464" width="48" height="16"/>
-  <object id="191" type="collision" x="448" y="432" width="48" height="32"/>
-  <object id="192" type="collision" x="432" y="400" width="48" height="32"/>
-  <object id="193" type="collision" x="432" y="368" width="32" height="32"/>
-  <object id="194" type="collision" x="432" y="352" width="16" height="16"/>
-  <object id="195" type="collision" x="448" y="320" width="16" height="32"/>
-  <object id="196" type="collision" x="544" y="544" width="16" height="48"/>
-  <object id="197" type="collision" x="624" y="96" width="16" height="208"/>
-  <object id="198" type="collision" x="608" y="320" width="32" height="224"/>
-  <object id="219" type="collision" x="0" y="32" width="32" height="32"/>
-  <object id="220" type="collision" x="0" y="64" width="16" height="64"/>
+  <object id="228" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_ocean"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
+   </properties>
+  </object>
+  <object id="222" name="Talk Rutherford" type="event" x="544" y="144" width="16" height="48">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_rutherford1"/>
+    <property name="act3" value="start_battle spyder_searoutec_rutherford"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_rutherford2"/>
+    <property name="act6" value="set_variable searoutecrutherford:yes"/>
+    <property name="cond1" value="not variable_set searoutecrutherford:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="223" name="Talk Gil" type="event" x="384" y="256" width="16" height="32">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_gil1"/>
+    <property name="act3" value="start_battle spyder_searoutec_gil"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_gil2"/>
+    <property name="act6" value="set_variable searoutecgil:yes"/>
+    <property name="cond1" value="not variable_set searoutecgil:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="224" name="Talk Carstair" type="event" x="384" y="96" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_carstair1"/>
+    <property name="act3" value="start_battle spyder_searoutec_carstair"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_carstair2"/>
+    <property name="act6" value="set_variable searouteccarstair:yes"/>
+    <property name="cond1" value="not variable_set searouteccarstair:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="225" name="Talk Wade" type="event" x="224" y="192" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_wade1"/>
+    <property name="act3" value="start_battle spyder_searoutec_wade"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_wade2"/>
+    <property name="act6" value="set_variable searoutecwade:yes"/>
+    <property name="cond1" value="not variable_set searoutecwade:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="226" name="Talk Sandy" type="event" x="80" y="240" width="16" height="48">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_sandy1"/>
+    <property name="act3" value="start_battle spyder_searoutec_sandy"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_sandy2"/>
+    <property name="act6" value="set_variable searoutecsandy:yes"/>
+    <property name="cond1" value="not variable_set searoutecsandy:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="227" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

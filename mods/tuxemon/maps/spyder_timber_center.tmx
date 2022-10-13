@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="29">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="30">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -51,6 +51,7 @@
     <property name="act50" value="npc_face tabanurse,down"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
+    <property name="act80" value="set_variable teleport_faint:spyder_timber_center.tmx 7 10"/>
     <property name="cond1" value="is variable_set chooses:yes"/>
    </properties>
   </object>
@@ -89,6 +90,14 @@
     <property name="cond1" value="is player_at 11,6"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="29" name="Auto Healing Teleported" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_monster_health ,"/>
+    <property name="act2" value="set_monster_status ,"/>
+    <property name="act3" value="set_variable battle_last_result:none"/>
+    <property name="cond1" value="is variable_set battle_last_result:lost"/>
    </properties>
   </object>
  </objectgroup>

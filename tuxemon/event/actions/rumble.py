@@ -19,22 +19,38 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event.eventaction import EventAction
 
 
-class RumbleAction(EventAction):
-    """Rumbles available controllers with rumble support
+class RumbleActionParameters(NamedTuple):
+    duration: float
+    power: int
 
-    Valid Parameters: duration,power
 
-    * duration (float): time in seconds to rumble for
-    * power (int): percentage of power to rumble. (1-100)
+@final
+class RumbleAction(EventAction[RumbleActionParameters]):
+    """
+    Rumble available controllers with rumble support.
+
+    Script usage:
+        .. code-block::
+
+            rumble <duration>,<power>
+
+    Script parameters:
+        duration: Time in seconds to rumble for.
+        power: Percentage of power to rumble.
+
     """
 
     name = "rumble"
-    valid_parameters = [(float, "duration"), (int, "power")]
+    param_class = RumbleActionParameters
 
-    def start(self):
+    def start(self) -> None:
         duration = float(self.parameters[0])
         power = int(self.parameters[1])
 
@@ -47,4 +63,8 @@ class RumbleAction(EventAction):
             power = 100
 
         magnitude = int((power * 0.01) * max_power)
-        self.session.client.rumble.rumble(-1, length=duration, magnitude=magnitude)
+        self.session.client.rumble.rumble(
+            -1,
+            length=duration,
+            magnitude=magnitude,
+        )

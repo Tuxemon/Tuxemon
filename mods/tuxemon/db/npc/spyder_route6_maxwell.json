@@ -1,24 +1,25 @@
 {
-    "slug": "spyder_route6_maxwell",
-    "sprite_name": "professor1",
-	"monsters": [
-        		{
-            "name": "Propellercat",
-            "level": 30, 
-			"slug": "propellercat",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Birdling",
-            "level": 30, 
-			"slug": "birdling",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "professor.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_route6_maxwell",
+  "gender": "male",
+  "sprite_name": "professor1",
+  "monsters": [
+    {
+      "name": "Propellercat",
+      "level": 30,
+      "slug": "propellercat",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Birdling",
+      "level": 30,
+      "slug": "birdling",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "male"
+    }
+  ],
+  "combat_front": "professor.png",
+  "combat_back": "red_back.png"
+}

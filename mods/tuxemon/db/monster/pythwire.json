@@ -16,11 +16,26 @@
             "technique": "constrict"
         }
     ],
-    "shape": "Serpent",
+    "evolutions": [
+        {
+            "path": "fire_booster",
+            "at_level": 0,
+            "monster_slug": "ouroboutlet"
+        },
+        {
+            "path": "metal_booster",
+            "at_level": 0,
+            "monster_slug": "sockeserp"
+        }
+    ],
+    "shape": "serpent",
     "types": [
         "Metal"
     ],
-    "weight": 25,
+    "possible_genders": ["neuter"],
+    "txmn_id": 88,
+    "height": 200,
+    "weight": 4,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

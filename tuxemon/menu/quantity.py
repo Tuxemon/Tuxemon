@@ -1,46 +1,68 @@
-import logging
+from __future__ import annotations
 
+import logging
+from typing import Any, Callable, Generator, Optional
+
+from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
-from tuxemon.platform.const import intentions
-from tuxemon.platform.const import buttons
+from tuxemon.platform.const import buttons, intentions
+from tuxemon.platform.events import PlayerInput
 
 logger = logging.getLogger(__name__)
 
 
-class QuantityMenu(Menu):
-    def startup(self, *items, **kwargs):
-        super().startup()
-        self.quantity = kwargs.get("quantity", 1)
-        self.max_quantity = kwargs.get("max_quantity")
-        self.callback = kwargs.get("callback")
-        self.shrink_to_items = kwargs.get("shrink_to_items", False)
+class QuantityMenu(Menu[None]):
+    """Menu used to select quantities."""
 
-    def process_event(self, event):
-        """Handles player input events. This function is only called when the
-        player provides input such as pressing a key or clicking the mouse.
-
-        Since this is part of a chain of event handlers, the return value
-        from this method becomes input for the next one.  Returning None
-        signifies that this method has dealt with an event and wants it
-        exclusively.  Return the event and others can use it as well.
-
-        You should return None if you have handled input here.
-
-        :type event: tuxemon.input.PlayerInput
-        :rtype: Optional[input.PlayerInput]
+    def startup(
+        self,
+        *items: Any,
+        quantity: int = 1,
+        max_quantity: Optional[int] = None,
+        callback: Optional[Callable[[int], None]] = None,
+        shrink_to_items: bool = False,
+        price: int = 0,
+        cost: int = 0,
+        **kwargs: Any,
+    ) -> None:
         """
+        Initialize the quantity menu.
+
+        Parameters:
+            quantity: Default selected quantity.
+            max_quantity: Maximum selectable quantity.
+            callback: Function to be called when dialog is confirmed. The
+                quantity will be sent as only argument.
+            shrink_to_items: Whether to fit the border to contents.
+
+        """
+        super().startup()
+        self.quantity = quantity
+        self.price = price
+        self.cost = cost
+        self.max_quantity = max_quantity
+        assert callback
+        self.callback = callback
+        self.shrink_to_items = shrink_to_items
+
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+
         if event.pressed:
-            if event.button in (buttons.B, buttons.BACK, intentions.MENU_CANCEL):
+            if event.button in (
+                buttons.B,
+                buttons.BACK,
+                intentions.MENU_CANCEL,
+            ):
                 self.close()
                 self.callback(0)
-                return
+                return None
 
             elif event.button == buttons.A:
                 self.menu_select_sound.play()
                 self.close()
                 self.callback(self.quantity)
-                return
+                return None
 
             elif event.button == buttons.UP:
                 self.quantity += 1
@@ -56,16 +78,73 @@ class QuantityMenu(Menu):
 
             if self.quantity < 0:
                 self.quantity = 0
-            elif self.max_quantity is not None and self.quantity > self.max_quantity:
+            elif (
+                self.max_quantity is not None
+                and self.quantity > self.max_quantity
+            ):
                 self.quantity = self.max_quantity
 
             self.reload_items()
 
-    def initialize_items(self):
+        return None
+
+    def initialize_items(self) -> Generator[MenuItem[None], None, None]:
         # TODO: move this and other format strings to a locale or config file
         label_format = "x {:>{count_len}}".format
         count_len = 3
 
         formatted_name = label_format(self.quantity, count_len=count_len)
+        image = self.shadow_text(formatted_name, bg=(128, 128, 128))
+        yield MenuItem(image, formatted_name, None, None)
+
+
+class QuantityAndPriceMenu(QuantityMenu):
+    """Menu used to select quantities, and also shows the price of items."""
+
+    def on_open(self) -> None:
+        # Do this to force the menu to resize when first opened, as currently
+        # it's way too big initially and then resizes after you change quantity.
+        self.menu_items.arrange_menu_items()
+
+    def initialize_items(self) -> Generator[MenuItem[None], None, None]:
+        # Show the quantity by using the method from the parent class:
+        yield from super().initialize_items()
+
+        # Now, show the price:
+        label_format = "$ {:>{count_len}}".format
+        count_len = 3
+
+        price = (
+            self.price if self.quantity == 0 else self.quantity * self.price
+        )
+        if int(price) == 0:
+            price = T.translate("shop_buy_free")
+
+        formatted_name = label_format(price, count_len=count_len)
+        image = self.shadow_text(formatted_name, bg=(128, 128, 128))
+        yield MenuItem(image, formatted_name, None, None)
+
+
+class QuantityAndCostMenu(QuantityMenu):
+    """Menu used to select quantities, and also shows the cost of items."""
+
+    def on_open(self) -> None:
+        # Do this to force the menu to resize when first opened, as currently
+        # it's way too big initially and then resizes after you change quantity.
+        self.menu_items.arrange_menu_items()
+
+    def initialize_items(self) -> Generator[MenuItem[None], None, None]:
+        # Show the quantity by using the method from the parent class:
+        yield from super().initialize_items()
+
+        # Now, show the cost:
+        label_format = "$ {:>{count_len}}".format
+        count_len = 3
+
+        cost = self.cost if self.quantity == 0 else self.quantity * self.cost
+        if int(cost) == 0:
+            cost = T.translate("shop_buy_free")
+
+        formatted_name = label_format(cost, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)

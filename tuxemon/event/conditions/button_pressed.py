@@ -18,42 +18,56 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import annotations
 
+from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.platform.const import intentions
+from tuxemon.session import Session
 
 
 class ButtonPressedCondition(EventCondition):
-    """Checks to see if a particular key was pressed"""
+    """
+    Check to see if a particular key was pressed.
+
+    Currently only "K_RETURN" is supported.
+
+    Script usage:
+        .. code-block::
+
+            is button_pressed <button>
+
+    Script parameters:
+        button: A button/intention key (E.g. "K_RETURN").
+
+    """
 
     name = "button_pressed"
 
-    def test(self, session, condition):
-        """Checks to see if a particular key was pressed
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check to see if a particular key was pressed.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
+        Returns:
+            Whether the key was pressed or not.
 
-        :rtype: Boolean
-        :returns: True or False
-
-        Valid Parameters: A button/intention key (E.g. "INTERACT")
         """
         button = str(condition.parameters[0])
 
-        # TODO: workaround for old maps.  eventually need to decide on a scheme and fix existing scripts
+        # TODO: workaround for old maps.  eventually need to decide on a scheme
+        # and fix existing scripts
         if button == "K_RETURN":
-            button = intentions.INTERACT
+            button_id = intentions.INTERACT
         else:
             raise ValueError(f"Cannot support key type: {button}")
 
         # Loop through each event
         for event in session.client.key_events:
-            if event.pressed and event.button == button:
+            if event.pressed and event.button == button_id:
                 return True
 
         return False

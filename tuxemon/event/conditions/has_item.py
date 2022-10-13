@@ -19,42 +19,60 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-from operator import eq, gt, lt, ge, le
+from operator import eq, ge, gt, le, lt
+from typing import Callable, Mapping, Optional
 
-from tuxemon.event import get_npc
+from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
 
-cmp_dict = {None: ge, "less_than": lt, "less_or_equal": le, "greater_than": gt, "greater_or_equal": ge, "equals": eq}
+cmp_dict: Mapping[Optional[str], Callable[[object, object], bool]] = {
+    None: ge,
+    "less_than": lt,
+    "less_or_equal": le,
+    "greater_than": gt,
+    "greater_or_equal": ge,
+    "equals": eq,
+}
 
 
 class HasItemCondition(EventCondition):
-    """Checks to see if a NPC inventory contains something
+    """
+    Check to see if a NPC inventory contains something.
 
-    inventory_contains [npc_slug or player] [item slug] [operator] [quantity]
+    Script usage:
+        .. code-block::
 
-    npc or player: "player" or npc slug name; "npc_maple"
-    item slug: the item slug name; item_cherry, etc
-    operator: numeric comparison operators: less_than, greater_than, equals, less_or_equal, greater_or_equal
-    quantity: integer value, non-negative
+            is has_item <character>,<item>[,operator][,quantity]
 
-    operator can be optional; it will default to greater_or_equal
-    quantity can be optional; it will default to 1
+    Script parameters:
+        character: Either "player" or npc slug name (e.g. "npc_maple").
+        item: The item slug name (e.g. "item_cherry").
+        operator: Numeric comparison operator. Accepted values are "less_than",
+            "greater_than", "equals", "less_or_equal" and "greater_or_equal".
+            The default value is "greater_or_equal".
+        quantity: Quantity to compare with. Must be a non-negative integer. The
+            default value is 1.
 
-    if quantity is None, then any number of items over 0 will return True ( quantity >= 1 )
     """
 
     name = "has_item"
 
-    def test(self, session, condition):
-        """Checks to see the player is has a monster in his party
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check to see a character has a particular number of items.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :rtype: Boolean
+        Returns:
+            Whether the target character has the desired quantity of a
+            the specified item.
+
         """
         try:
-            raw_op = condition.parameters[2].lower()
+            raw_op: Optional[str] = condition.parameters[2].lower()
             if raw_op == "":
                 raw_op = None
         except (IndexError, AttributeError):
@@ -75,6 +93,7 @@ class HasItemCondition(EventCondition):
         # TODO: handle missing npc, etc
         owner_slug, item_slug = condition.parameters[:2]
         npc = get_npc(session, owner_slug)
+        assert npc
         item_info = npc.inventory.get(item_slug)
         if item_info is None:  # not found in inventory
             item_quantity = 0

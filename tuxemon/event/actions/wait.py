@@ -19,26 +19,40 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
 import time
+from typing import NamedTuple, final
 
 from tuxemon.event.eventaction import EventAction
 
 
-class WaitAction(EventAction):
-    """Blocks event chain for some time
+class WaitActionParameters(NamedTuple):
+    seconds: float
 
-    Valid Parameters: duration
 
-    * duration (float): time in seconds to wait for
+@final
+class WaitAction(EventAction[WaitActionParameters]):
+    """
+    Block event chain for some time.
+
+    Script usage:
+        .. code-block::
+
+            wait <seconds>
+
+    Script parameters:
+        seconds: Time in seconds for the event engine to wait for.
+
     """
 
     name = "wait"
-    valid_parameters = [(float, "seconds")]
+    param_class = WaitActionParameters
 
     # TODO: use event loop time, not wall clock
-    def start(self):
+    def start(self) -> None:
         self.finish_time = time.time() + self.parameters.seconds
 
-    def update(self):
+    def update(self) -> None:
         if time.time() >= self.finish_time:
             self.stop()

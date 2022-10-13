@@ -19,7 +19,10 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
 import logging
+from typing import NamedTuple, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.platform import mixer
@@ -27,16 +30,26 @@ from tuxemon.platform import mixer
 logger = logging.getLogger(__name__)
 
 
-class PauseMusicAction(EventAction):
-    """Pauses the current music playback
+class PauseMusicActionParameters(NamedTuple):
+    pass
 
-    Valid Parameters: None
+
+@final
+class PauseMusicAction(EventAction[PauseMusicActionParameters]):
+    """
+    Pause the current music playback.
+
+    Script usage:
+        .. code-block::
+
+            pause_music
+
     """
 
     name = "pause_music"
-    valid_parameters = []
+    param_class = PauseMusicActionParameters
 
-    def start(self):
+    def start(self) -> None:
         mixer.music.pause()
         if self.session.client.current_music["song"]:
             self.session.client.current_music["status"] = "paused"

@@ -18,29 +18,36 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import annotations
 
+from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.session import Session
 
 
 class DialogOpenCondition(EventCondition):
-    """Checks to see if a dialog window is open."""
+    """
+    Check to see if a dialog window is open.
+
+    Script usage:
+        .. code-block::
+
+            is dialog_open
+
+    """
 
     name = "dialog_open"
 
-    def test(self, session, condition):
-        """Checks to see if a dialog window is open.
+    def test(self, session: Session, condition: MapCondition) -> bool:
+        """
+        Check to see if a dialog window is open.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
+        Parameters:
+            session: The session object
+            condition: The map condition object.
 
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
-
-        :rtype: Boolean
-        :returns: True or False
-
-        Valid Parameters: None
+        Returns:
+            Whether a dialog window is open or not.
         """
         for state in session.client.active_states:
             if state.name == "DialogState":

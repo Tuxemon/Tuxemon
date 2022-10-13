@@ -1,11 +1,21 @@
 from __future__ import annotations
+
 import logging
 from collections import defaultdict
-from math import sqrt, cos, sin, pi
+from math import cos, pi, sin, sqrt
+from typing import (
+    Any,
+    Callable,
+    DefaultDict,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Tuple,
+    Union,
+)
 
 import pygame
-from typing import Any, Optional, Callable, Sequence, DefaultDict, List, Tuple,\
-    Mapping, Union
 
 __all__ = ("Task", "Animation", "remove_animations_of")
 
@@ -48,7 +58,9 @@ def remove_animations_of(target: object, group: pygame.sprite.Group) -> None:
 
     """
     animations = [ani for ani in group.sprites() if isinstance(ani, Animation)]
-    to_remove = [ani for ani in animations if target in [i[0] for i in ani.targets]]
+    to_remove = [
+        ani for ani in animations if target in [i[0] for i in ani.targets]
+    ]
     group.remove(*to_remove)
 
 
@@ -88,9 +100,10 @@ class TaskBase(pygame.sprite.Sprite):
             when = self._valid_schedules[0]
 
         if when not in self._valid_schedules:
-            logger.critical("invalid time to schedule a callback")
-            logger.critical("valid:", self._valid_schedules)
-            raise ValueError
+            raise ValueError(
+                "invalid time to schedule a callback"
+                f"valid: {self._valid_schedules}"
+            )
         self._callbacks[when].append(func)
 
     def _execute_callbacks(self, when: str) -> None:
@@ -156,6 +169,7 @@ class Task(TaskBase):
         When chaining tasks, do not add the chained tasks to a group.
 
     """
+
     _valid_schedules = ("on interval", "on finish", "on abort")
 
     def __init__(
@@ -383,6 +397,9 @@ class Animation(pygame.sprite.Sprite):
     ) -> None:
 
         super().__init__()
+        self.callback: Callable[[], Any]
+        self.update_callback: Callable[[], Any]
+
         self.targets: List[
             Tuple[object, Mapping[str, Tuple[float, float]]]
         ] = list()
@@ -813,4 +830,6 @@ class AnimationTransition:
         p = progress * 2.0
         if p < 1.0:
             return AnimationTransition._in_bounce_internal(p, 1.0) * 0.5
-        return AnimationTransition._out_bounce_internal(p - 1.0, 1.0) * 0.5 + 0.5
+        return (
+            AnimationTransition._out_bounce_internal(p - 1.0, 1.0) * 0.5 + 0.5
+        )

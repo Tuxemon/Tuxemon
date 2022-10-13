@@ -16,11 +16,15 @@
             "technique": "font"
         }
     ],
-    "shape": "",
+    "evolutions": [],
+    "shape": "polliwog",
     "types": [
         "Water"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 174,
+    "height": 30,
+    "weight": 9,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

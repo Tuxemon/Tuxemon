@@ -1,24 +1,25 @@
 {
-    "slug": "spyder_omnichannel_beaverbrook",
-    "sprite_name": "ceo",
-	"monsters": [
-        		{
-            "name": "Mk01 Alpha",
-            "level": 55, 
-			"slug": "mk01_alpha",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Mk01 Beta",
-            "level": 55, 
-			"slug": "mk01_beta",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	"combat_front": "ceo.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_omnichannel_beaverbrook",
+  "gender": "male",
+  "sprite_name": "ceo",
+  "monsters": [
+    {
+      "name": "Mk01 Alpha",
+      "level": 55,
+      "slug": "mk01_alpha",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "neuter"
+    },
+    {
+      "name": "Mk01 Beta",
+      "level": 55,
+      "slug": "mk01_beta",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "neuter"
+    }
+  ],
+  "combat_front": "ceo.png",
+  "combat_back": "red_back.png"
+}

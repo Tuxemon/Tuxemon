@@ -16,12 +16,16 @@
             "technique": "snowstorm"
         }
     ],
-    "shape": "Varmint",
+    "evolutions": [],
+    "shape": "varmint",
     "types": [
         "Earth",
         "Water"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 121,
+    "height": 40,
+    "weight": 3,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

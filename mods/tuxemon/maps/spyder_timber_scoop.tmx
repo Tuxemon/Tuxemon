@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="29">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="33">
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
@@ -21,57 +21,57 @@
  <tileset firstgid="4926" name="Stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
   <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
  </tileset>
- <tileset firstgid="4950" name="Plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
+ <tileset firstgid="4950" name="Plants" tilewidth="16" tileheight="16" tilecount="2" columns="1">
+  <image source="../gfx/tilesets/plants.png" width="16" height="32"/>
  </tileset>
- <tileset firstgid="4966" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+ <tileset firstgid="4952" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
   <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
  </tileset>
- <tileset firstgid="5466" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
+ <tileset firstgid="5452" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
   <image source="../gfx/tilesets/Objects_by_ArMM1998.png" width="528" height="320"/>
  </tileset>
- <tileset firstgid="6126" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+ <tileset firstgid="6112" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="6142" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+ <tileset firstgid="6128" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="6230" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+ <tileset firstgid="6216" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
   <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
  </tileset>
- <tileset firstgid="7230" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
+ <tileset firstgid="7216" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
   <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
  </tileset>
- <tileset firstgid="7440" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+ <tileset firstgid="7426" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
   <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
  </tileset>
- <tileset firstgid="7494" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
+ <tileset firstgid="7480" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="7566" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+ <tileset firstgid="7552" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="7582" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
-  <image source="../gfx/tilesets/items.png" width="160" height="160"/>
+ <tileset firstgid="7568" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
+  <image source="../gfx/tilesets/items.png" width="48" height="32"/>
  </tileset>
  <layer id="1" name="Layer 1" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eJwzk2BgMCMRO5KBfcjA2qN4UGMAVowoyA==
+   eJzTkGBg0CARG5OB7cjAsqN4UGMAicUg9g==
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYICA/xJAQpIBK8Alpw4U08ChB13uPzeErhOG0IuA9GIgXiKMm63Ow8DABMSToHq2AentQLxDGDcbBLSQ9JACKNFzTxCC70NpEICxYXwQ6Aeqn0iGPfiAPhcDwy4g3s0FYWvyoMrryQLFodhAFqHnORC/gOoJRNNjDlRnAcWWstjtBQCU5STA
+   eJxjYICAjxIMDJ8kGLACXHKSkgwMUpLY9aDL/eeG0AXCEHoKkJ4KxNOEcbPVeRgYmIC4BapnBZBeCcSrhHGzQUALSQ8pgBI99wQh+D6UBgEYG8YHgUag+mYy7MEH9LkYGHYB8W4uCFuTB1VeQZaBQRGKlWQRep4D8QuonkA0PZpAdVpQrC2L3V4AzMokgA==
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYKAv4OcmXU+d8PDSM1wAABxyAl8=
+   eJxjYKAv4OcmXU+B8PDSM1wAANQzAic=
   </data>
  </layer>
  <layer id="5" name="Above Player" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYKAvmC9Lup6VZOihBFwRhOCrUBoEYGwYHwSqhRkY6rjo6zZcQFwKwdbkoY+dALimCUQ=
+   eJxjYKAvmChLup4pZOihBFwRhOCrUBoEYGwYHwRyhRkY6rjo6zZcgFMKwdbkoY+dAGmuCQU=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
@@ -95,12 +95,6 @@
   <object id="27" type="collision" x="16" y="64" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
-  <properties>
-   <property name="act1" value="transition_teleport cotton_town.tmx,9,35,0.3"/>
-   <property name="act2" value="player_face down"/>
-   <property name="cond1" value="is player_at"/>
-   <property name="cond2" value="is player_facing down"/>
-  </properties>
   <object id="13" name="Teleport to Timber City" type="event" x="80" y="160" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_town.tmx,14,12,0.3"/>
@@ -113,6 +107,7 @@
    <properties>
     <property name="act1" value="create_npc spyder_shopkeeper,1,6"/>
     <property name="act2" value="npc_face spyder_shopkeeper,right"/>
+    <property name="act20" value="set_inventory spyder_shopkeeper,inv_basic_store"/>
     <property name="cond1" value="not npc_exists spyder_shopkeeper"/>
    </properties>
   </object>
@@ -120,6 +115,33 @@
    <properties>
     <property name="act1" value="play_music music_cathedral_theme"/>
     <property name="cond1" value="not music_playing music_cathedral_theme"/>
+   </properties>
+  </object>
+  <object id="29" name="Open Shop" type="event" x="48" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face spyder_shopkeeper,right"/>
+    <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
+    <property name="act3" value="open_shop spyder_shopkeeper"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="30" name="Open Shop" type="event" x="16" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face spyder_shopkeeper,down"/>
+    <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
+    <property name="act3" value="open_shop spyder_shopkeeper"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="32" name="Talk/Open Shop" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
+    <property name="act3" value="open_shop spyder_shopkeeper"/>
+    <property name="behav1" value="talk spyder_shopkeeper"/>
    </properties>
   </object>
  </objectgroup>

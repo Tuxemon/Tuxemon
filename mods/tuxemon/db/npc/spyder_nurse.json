@@ -1,6 +1,7 @@
 {
-    "slug": "spyder_nurse",
-    "sprite_name": "nurse",
-	    "combat_front": "nurse.png",
-    "combat_back": "red_back.png" }
-
+  "slug": "spyder_nurse",
+  "gender": "female",
+  "sprite_name": "nurse",
+  "combat_front": "nurse.png",
+  "combat_back": "red_back.png"
+}

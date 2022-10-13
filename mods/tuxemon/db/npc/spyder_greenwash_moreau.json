@@ -1,0 +1,17 @@
+{
+  "slug": "spyder_greenwash_moreau",
+  "gender": "male",
+  "sprite_name": "scientist",
+  "monsters": [
+    {
+      "name": "Sclairus",
+      "level": 26,
+      "slug": "sclairus",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "male"
+    }
+  ],
+  "combat_front": "scientist.png",
+  "combat_back": "red_back.png"
+}

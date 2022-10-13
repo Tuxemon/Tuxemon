@@ -8,7 +8,7 @@ file, or for making new ones.
 Currently, reads and uses all, eventually, may be useful to accept
 command line arguments to customize
 
--Leif
+ - Leif
 """
 import json
 from glob import glob

@@ -1,6 +1,11 @@
-import pygame
+from __future__ import annotations
 
-from tuxemon.compat import Rect
+from typing import List, Literal, Optional, Tuple, Union
+
+import pygame
+from pygame.rect import Rect
+
+from tuxemon.graphics import ColorLike
 from tuxemon.sprite import Sprite
 from tuxemon.ui import draw
 
@@ -8,11 +13,16 @@ min_font_size = 7
 
 
 class TextArea(Sprite):
-    """Area of the screen that can draw text"""
+    """Area of the screen that can draw text."""
 
     animated = True
 
-    def __init__(self, font, font_color, bg=(192, 192, 192)):
+    def __init__(
+        self,
+        font: pygame.font.Font,
+        font_color: ColorLike,
+        bg: ColorLike = (192, 192, 192),
+    ) -> None:
         super().__init__()
         self.rect = Rect(0, 0, 0, 0)
         self.drawing_text = False
@@ -21,34 +31,38 @@ class TextArea(Sprite):
         self.font_bg = bg
         self._rendered_text = None
         self._text_rect = None
-        self._image = None
-        self._text = None
+        self._text = ""
 
-    def __iter__(self):
+    def __iter__(self) -> TextArea:
         return self
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self._text)
 
     @property
-    def text(self):
+    def text(self) -> str:
         return self._text
 
     @text.setter
-    def text(self, value):
+    def text(self, value: str) -> None:
         if value != self._text:
             self._text = value
 
         if self.animated:
             self._start_text_animation()
         else:
-            self.image = draw.shadow_text(self.font, self.font_color, self.font_bg, self._text)
+            self.image = draw.shadow_text(
+                self.font,
+                self.font_color,
+                self.font_bg,
+                self._text,
+            )
 
-    def __next__(self):
+    def __next__(self) -> None:
         if self.animated:
             try:
                 dest, scrap = next(self._iter)
-                self._image.blit(scrap, dest)
+                self.image.blit(scrap, dest)
             except StopIteration:
                 self.drawing_text = False
                 raise
@@ -57,39 +71,43 @@ class TextArea(Sprite):
 
     next = __next__
 
-    def _start_text_animation(self):
+    def _start_text_animation(self) -> None:
         self.drawing_text = True
         self.image = pygame.Surface(self.rect.size, pygame.SRCALPHA)
-        self._iter = draw.iter_render_text(self._text, self.font, self.font_color, self.font_bg, self.image.get_rect())
+        self._iter = draw.iter_render_text(
+            self._text,
+            self.font,
+            self.font_color,
+            self.font_bg,
+            self.image.get_rect(),
+        )
 
 
-def draw_text(surface, text=None, rect=None, justify="left", align=None, font=None, font_size=None, font_color=None):
-    """Draws text to a surface. If the text exceeds the rect size, it will
-    autowrap. To place text on a new line, put TWO newline characters (\\n)  in your text.
+def draw_text(
+    surface: pygame.surface.Surface,
+    text: str,
+    rect: Union[Rect, Tuple[int, int, int, int]],
+    *,
+    justify: Literal["left", "center", "right"] = "left",
+    align: Literal["top", "middle", "bottom"] = "top",
+    font: pygame.font.Font,
+    font_size: Optional[int] = None,
+    font_color: Optional[ColorLike] = None,
+) -> None:
+    """
+    Draws text to a surface.
 
-    :param text: The text that you want to draw to the current menu item.
-        *Default: tuxemon.menu.Menu.text*
-    :param left: The horizontal pixel position of the text relative to the menu's position.
-        *Default: 0*
-    :param top: The vertical pixel position of the text relative to the menu's position.
-        *Default: 0*
-    :param justify: Left, center, or right justify the text. Valid options: "left", "center",
-        "right". *Default: "left"*
-    :param align: Align the text to the top, middle, or bottom of the menu. Valid options:
-        "top", "middle", "bottom". *Default: "top"*
-    :param font_size: Size of the font in pixels BEFORE scaling is done. *Default: 4*
-    :param font_color: Tuple of RGB values of the font _color to use. *Default: (10, 10, 10)*
+    If the text exceeds the rect size, it will autowrap. To place text on a
+    new line, put TWO newline characters (\\n)  in your text.
 
-    :type text: String
-    :type left: Integer
-    :type top: Integer
-    :type justify: String
-    :type align: String
-    :type font_size: Integer
-    :type font_color: Tuple
-
-    :rtype: None
-    :returns: None
+    Parameters:
+        text: The text that you want to draw to the current menu item.
+        rect: Area where the text will be placed.
+        justify: Left, center, or right justify the text.
+        align: Align the text to the top, middle, or bottom of the menu.
+        font: Font to use to draw the text.
+        font_size: Size of the font in pixels BEFORE scaling is done. *Default: 4*
+        font_color: Tuple of RGB values of the font _color to use.
 
     .. image:: images/menu/justify_center.png
 
@@ -99,22 +117,21 @@ def draw_text(surface, text=None, rect=None, justify="left", align=None, font=No
     if not font_color:
         font_color = (0, 0, 0)
 
-    # Create a text surface so we can determine how many pixels
-    # wide each character is
-    text_surface = font.render(text, 1, font_color)
-
-    # Calculate the number of pixels per letter based on the size
-    # of the text and the number of characters in the text
-
     if not text:
         return
 
+    # Create a text surface so we can determine how many pixels
+    # wide each character is
+    text_surface = font.render(text, True, font_color)
+
+    # Calculate the number of pixels per letter based on the size
+    # of the text and the number of characters in the text
     pixels_per_letter = text_surface.get_width() / len(text)
 
     # Create a list of the lines of text as well as a list of the
     # individual words so we can check each line's length in pixels
-    lines = []
-    wordlist = []
+    lines: List[str] = []
+    wordlist: List[str] = []
 
     # Loop through each word in the text and add it to the word list
     for word in text.split():
@@ -161,7 +178,9 @@ def draw_text(surface, text=None, rect=None, justify="left", align=None, font=No
     # If the justification was set, handle the position of the text automatically
     if justify == "center":
         if lines:
-            left = (left + (width / 2)) - ((len(lines[0]) * pixels_per_letter) / 2)
+            left = (left + (width / 2)) - (
+                (len(lines[0]) * pixels_per_letter) / 2
+            )
         else:
             left = 0
 
@@ -170,7 +189,9 @@ def draw_text(surface, text=None, rect=None, justify="left", align=None, font=No
 
     # If text alignment was set, handle the position of the text automatically
     if align == "middle":
-        top = (top + (height / 2)) - ((text_surface.get_height() * len(lines)) / 2)
+        top = (top + (height / 2)) - (
+            (text_surface.get_height() * len(lines)) / 2
+        )
 
     elif align == "bottom":
         raise NotImplementedError("Needs to be implemented")
@@ -178,7 +199,7 @@ def draw_text(surface, text=None, rect=None, justify="left", align=None, font=No
     # Set a spacing variable that we will add to to space each line.
     spacing = 0
     for item in lines:
-        line = font.render(item, 1, font_color)
+        line = font.render(item, True, font_color)
 
         surface.blit(line, (left, top + spacing))
         spacing += line.get_height()  # + self.line_spacing

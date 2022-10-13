@@ -26,76 +26,66 @@
 # states.start Handles the splash screen and start menu.
 #
 #
+from __future__ import annotations
 
 import logging
+from typing import Any, Optional
 
-from tuxemon import audio
-from tuxemon import prepare
-from tuxemon import state
+import pygame
+
+from tuxemon import audio, prepare, state
+from tuxemon.platform.events import PlayerInput
+from tuxemon.states.transition.fade import FadeOutTransition
 
 logger = logging.getLogger(__name__)
 
 
 class SplashState(state.State):
-    """The state responsible for the splash screen"""
+    """The state responsible for the splash screen."""
 
     default_duration = 3
 
-    def fade_out(self):
-        self.fading_out = True
-        self.client.push_state("FadeOutTransition", caller=self)
-
-    def startup(self, **kwargs):
+    def startup(self, **kwargs: Any) -> None:
         # this task will skip the splash screen after some time
         self.task(self.fade_out, self.default_duration)
-
-        # used to ignore keypresses after fadeout has started
-        self.fading_out = False
+        self.triggered = False
 
         width, height = prepare.SCREEN_SIZE
-        splash_border = prepare.SCREEN_SIZE[0] / 20  # The space between the edge of the screen
+
+        # The space between the edge of the screen
+        splash_border = prepare.SCREEN_SIZE[0] / 20
 
         # Set up the splash screen logos
         logo = self.load_sprite("gfx/ui/intro/pygame_logo.png")
-        logo.rect.topleft = splash_border, height - splash_border - logo.rect.height
+        logo.rect.topleft = (
+            splash_border,
+            height - splash_border - logo.rect.height,
+        )
 
         # Set up the splash screen logos
         cc = self.load_sprite("gfx/ui/intro/creative_commons.png")
-        cc.rect.topleft = width - splash_border - cc.rect.width, height - splash_border - cc.rect.height
+        cc.rect.topleft = (
+            width - splash_border - cc.rect.width,
+            height - splash_border - cc.rect.height,
+        )
 
-        self.ding = audio.load_sound("sound_ding")
-        self.ding.play()
+        audio.load_sound("sound_ding").play()
 
-    def process_event(self, event):
-        """Handles player input events. This function is only called when the
-        player provides input such as pressing a key or clicking the mouse.
+    def resume(self) -> None:
+        if self.triggered:
+            self.parent.pop_state()
 
-        Since this is part of a chain of event handlers, the return value
-        from this method becomes input for the next one.  Returning None
-        signifies that this method has dealt with an event and wants it
-        exclusively.  Return the event and others can use it as well.
-
-        You should return None if you have handled input here.
-
-        :type event: tuxemon.input.PlayerInput
-        :rtype: Optional[input.PlayerInput]
-        """
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         # Skip the splash screen if a key is pressed.
-        if event.pressed and not self.fading_out:
-            self.animations.empty()
+        if event.pressed and not self.triggered:
             self.fade_out()
+        return None
 
-    def draw(self, surface):
-        """Draws the start screen to the screen.
+    def draw(self, surface: pygame.surface.Surface) -> None:
+        if not self.triggered:
+            surface.fill((15, 15, 15))
+            self.sprites.draw(surface)
 
-        :param surface:
-        :param Surface: Surface to draw to
-
-        :type Surface: pygame.Surface
-
-        :rtype: None
-        :returns: None
-
-        """
-        surface.fill((15, 15, 15))
-        self.sprites.draw(surface)
+    def fade_out(self) -> None:
+        self.triggered = True
+        self.parent.push_state(FadeOutTransition)

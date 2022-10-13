@@ -19,33 +19,57 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, Optional, Union, final
+
 from tuxemon import monster
-from tuxemon.event.eventaction import EventAction
+from tuxemon.db import SeenStatus
 from tuxemon.event import get_npc
+from tuxemon.event.eventaction import EventAction
+from tuxemon.npc import NPC
 
 
-class AddMonsterAction(EventAction):
-    """Adds a monster to the specified trainer's party if there is room.
-    If no is trainer specified it defaults to the current player.
+class AddMonsterActionParameters(NamedTuple):
+    monster_slug: str
+    monster_level: int
+    trainer_slug: Union[str, None]
 
-    The action parameter must contain a monster slug to look up in the monster database.
 
-    Valid Parameters: monster_slug, level(, trainer_slug)
+@final
+class AddMonsterAction(EventAction[AddMonsterActionParameters]):
+    """
+    Add a monster to the specified trainer's party if there is room.
+
+    Script usage:
+        .. code-block::
+
+            add_monster <monster_slug>,<monster_level>[,trainer_slug]
+
+    Script parameters:
+        monster_slug: Monster slug to look up in the monster database.
+        monster_level: Level of the added monster.
+        trainer_slug: Slug of the trainer that will receive the monster. It
+            defaults to the current player.
+
     """
 
     name = "add_monster"
-    valid_parameters = [(str, "monster_slug"), (int, "monster_level"), ((str, None), "trainer_slug")]
+    param_class = AddMonsterActionParameters
 
-    def start(self):
+    def start(self) -> None:
 
         monster_slug, monster_level, trainer_slug = self.parameters
 
+        trainer: Optional[NPC]
         if trainer_slug is None:
             trainer = self.session.player
         else:
             trainer = get_npc(self.session, trainer_slug)
 
-        assert trainer, "No Trainer found with slug '{}'".format(trainer_slug or "player")
+        assert trainer, "No Trainer found with slug '{}'".format(
+            trainer_slug or "player"
+        )
 
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_slug)
@@ -53,3 +77,4 @@ class AddMonsterAction(EventAction):
         current_monster.current_hp = current_monster.hp
 
         trainer.add_monster(current_monster)
+        trainer.tuxepedia[monster_slug] = SeenStatus.caught

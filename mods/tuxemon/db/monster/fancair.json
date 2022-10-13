@@ -16,11 +16,21 @@
             "technique": "wall_of_steel"
         }
     ],
-    "shape": "",
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "windeye"
+        }
+    ],
+    "shape": "sprite",
     "types": [
         "Metal"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 170,
+    "height": 45,
+    "weight": 18,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

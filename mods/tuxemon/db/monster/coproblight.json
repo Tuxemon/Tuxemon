@@ -1,0 +1,31 @@
+{
+    "slug": "coproblight",
+    "category": "skull_poo",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 1,
+            "technique": "fume"
+        },
+        {
+            "level_learned": 1,
+            "technique": "suck_poison"
+        }
+    ],
+    "evolutions": [],
+    "shape": "blob",
+    "types": [
+        "Earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 164,
+    "height": 0,
+    "weight": 1,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}

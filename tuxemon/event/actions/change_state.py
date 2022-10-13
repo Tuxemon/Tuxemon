@@ -19,21 +19,40 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
+
+from typing import NamedTuple, final
+
 from tuxemon.event.eventaction import EventAction
 
 
-class ChangeStateAction(EventAction):
-    """Changes to the specified state.
+class ChangeStateActionParameters(NamedTuple):
+    state_name: str
 
-    Valid Parameters: state_name
 
-    * state_name (str): The state name to switch to.
+@final
+class ChangeStateAction(EventAction[ChangeStateActionParameters]):
+    """
+    Change to the specified state.
+
+    Script usage:
+        .. code-block::
+
+            change_state <state_name>
+
+    Script parameters:
+        state_name: The state name to switch to (e.g. PCState).
+
     """
 
     name = "change_state"
-    valid_parameters = [(str, "state_name")]
+    param_class = ChangeStateActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # Don't override previous state if we are still in the state.
-        if self.session.client.state_name != self.parameters.state_name:
+        current_state = self.session.client.current_state
+        if current_state is None:
+            # obligatory "should not happen"
+            raise RuntimeError
+        if current_state.name != self.parameters.state_name:
             self.session.client.push_state(self.parameters.state_name)

@@ -1,6 +1,7 @@
 {
-    "slug": "spyder_barmaid",
-    "sprite_name": "barmaid",
-	    "combat_front": "barmaid.png",
-    "combat_back": "red_back.png" }
-
+  "slug": "spyder_barmaid",
+  "gender": "female",
+  "sprite_name": "barmaid",
+  "combat_front": "barmaid.png",
+  "combat_back": "red_back.png"
+}

@@ -1,31 +1,33 @@
 {
-    "slug": "spyder_scoop_arachne",
-    "sprite_name": "spyderboss",
-	"monsters": [
-        		{
-            "name": "Cardiwing",
-            "level": 35, 
-			"slug": "cardiwing",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Spighter",
-            "level": 35, 
-			"slug": "spighter",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Abesnaki",
-            "level": 35, 
-			"slug": "abesnaki",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "spyder_boss.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_scoop_arachne",
+  "gender": "female",
+  "sprite_name": "spyderboss",
+  "monsters": [
+    {
+      "name": "Cardiwing",
+      "level": 35,
+      "slug": "cardiwing",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Spighter",
+      "level": 35,
+      "slug": "spighter",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Abesnaki",
+      "level": 35,
+      "slug": "abesnaki",
+      "exp_give_mod": 3,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "spyder_boss.png",
+  "combat_back": "red_back.png"
+}

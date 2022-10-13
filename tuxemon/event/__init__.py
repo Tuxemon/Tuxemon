@@ -25,11 +25,15 @@
 #
 
 from __future__ import annotations
+
 import logging
 from collections import namedtuple
-from typing import NamedTuple, Sequence, Optional
-from tuxemon.player import Player
+from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence
+
 from tuxemon.session import Session
+
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
@@ -42,17 +46,17 @@ class MapCondition(NamedTuple):
     width: int
     height: int
     operator: str
-    name: str
+    name: Optional[str]
 
 
 class MapAction(NamedTuple):
     type: str
     parameters: Sequence[str]
-    name: str
+    name: Optional[str]
 
 
 class EventObject(NamedTuple):
-    id: int
+    id: Optional[int]
     name: str
     x: int
     y: int
@@ -65,26 +69,25 @@ class EventObject(NamedTuple):
 __all__ = ["EventObject", "MapAction", "MapCondition", "get_npc"]
 
 
-def get_npc(session: Session, slug: str) -> Optional[Player]:
-    """Gets an NPC object by slug.
-
-    :param session: The session object
-    :param slug: The slug of the NPC that exists on the current map.
-
-    :type session: tuxemon.session.Session
-    :type slug: str
-
-    :rtype: tuxemon.player.Player
-    :returns: The NPC object or None if the NPC is not found.
+def get_npc(session: Session, slug: str) -> Optional[NPC]:
     """
+    Gets an NPC object by slug.
+
+    Parameters:
+        session: The session object.
+        slug: The slug of the NPC that exists on the current map.
+
+    Returns:
+        The NPC object or None if the NPC is not found.
+
+    """
+    from tuxemon.states.world.worldstate import WorldState
+
     if slug == "player":
         return session.player
 
     # Loop through the NPC list and see if the slug matches any in the list
-    world = session.client.get_state_by_name("WorldState")
-    if world is None:
-        logger.error("Cannot search for NPC if world doesn't exist: " + slug)
-        return None
+    world = session.client.get_state_by_name(WorldState)
 
     # logger.error("Unable to find NPC: " + slug)
     return world.get_entity(slug)

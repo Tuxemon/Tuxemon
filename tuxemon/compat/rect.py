@@ -1,10 +1,222 @@
-def intersect(r1, r2):
-    return ((r2.left <= r1.left < r2.right) or (r1.left <= r2.left < r1.right)) and (
-        (r2.top <= r1.top < r2.bottom) or (r1.top <= r2.top < r1.bottom)
-    )
+from __future__ import annotations
+
+from abc import abstractmethod
+from typing import (
+    Protocol,
+    Sequence,
+    Tuple,
+    TypeVar,
+    Union,
+    cast,
+    runtime_checkable,
+)
+
+SelfRectType = TypeVar("SelfRectType", bound="ReadOnlyRect")
+RectType = TypeVar("RectType", bound="ReadOnlyRect", covariant=True)
 
 
-class Rect:
+@runtime_checkable
+class HasRectAttribute(Protocol[RectType]):
+    @property
+    def rect(self) -> RectType:
+        pass
+
+
+RectLike = Union[
+    SelfRectType,
+    Tuple[int, int, int, int],
+    Tuple[Tuple[int, int], Tuple[int, int]],
+]
+
+
+class ReadOnlyRect(Protocol):
+    """Interface of a PyGame compatible rect."""
+
+    def __init__(
+        self: SelfRectType,
+        __arg: Union[HasRectAttribute[SelfRectType], RectLike[SelfRectType]],
+    ) -> None:
+        pass
+
+    def copy(self: SelfRectType) -> SelfRectType:
+        return type(self)((self.x, self.y, self.w, self.h))
+
+    def move(self: SelfRectType, x: int, y: int) -> SelfRectType:
+        return type(self)((self.x + x, self.y + y, self.w, self.h))
+
+    def inflate(self: SelfRectType, x: int, y: int) -> SelfRectType:
+        return type(self)(
+            (
+                self.x - type(self.x)(x / 2),
+                self.y - type(self.y)(y / 2),
+                self.w + x,
+                self.h + y,
+            )
+        )
+
+    def union(
+        self: SelfRectType,
+        __other: RectLike[SelfRectType],
+    ) -> SelfRectType:
+        return self.unionall((__other,))
+
+    def unionall(
+        self: SelfRectType,
+        __rects: Sequence[RectLike[SelfRectType]],
+    ) -> SelfRectType:
+        rects_list = [type(self)(r) for r in __rects] + [self]
+        left = min(r.left for r in rects_list)
+        top = min(r.top for r in rects_list)
+        right = max(r.right for r in rects_list)
+        bottom = max(r.bottom for r in rects_list)
+        return type(self)((left, top, right - left, bottom - top))
+
+    def contains(
+        self: SelfRectType,
+        __other: RectLike[SelfRectType],
+    ) -> bool:
+        other = type(self)(__other)
+        return (
+            (self.left <= other.left)
+            and (self.top <= other.top)
+            and (self.right >= other.right)
+            and (self.bottom >= other.bottom)
+            and (self.right > other.left)
+            and (self.bottom > other.top)
+        )
+
+    def collidepoint(
+        self,
+        __point: Tuple[int, int],
+    ) -> bool:
+        x, y = __point
+        return self.left <= x < self.right and self.top <= y < self.bottom
+
+    def colliderect(
+        self: SelfRectType,
+        __other: RectLike[SelfRectType],
+    ) -> bool:
+        return intersect(self, type(self)(__other))
+
+    def collidelist(
+        self: SelfRectType,
+        __rects: Sequence[RectLike[SelfRectType]],
+    ) -> int:
+        for i, rect in enumerate(__rects):
+            if intersect(self, type(self)(rect)):
+                return i
+        return -1
+
+    def collidelistall(
+        self: SelfRectType,
+        __l: Sequence[RectLike[SelfRectType]],
+    ) -> Sequence[int]:
+        return [
+            i
+            for i, rect in enumerate(__l)
+            if intersect(self, type(self)(rect))
+        ]
+
+    @property
+    def top(self) -> int:
+        return self.y
+
+    @property
+    def left(self) -> int:
+        return self.x
+
+    @property
+    def bottom(self) -> int:
+        return self.y + self.h
+
+    @property
+    def right(self) -> int:
+        return self.x + self.w
+
+    @property
+    def topleft(self) -> Tuple[int, int]:
+        return self.x, self.y
+
+    @property
+    def bottomleft(self) -> Tuple[int, int]:
+        return self.x, self.y + self.h
+
+    @property
+    def topright(self) -> Tuple[int, int]:
+        return self.x + self.w, self.y
+
+    @property
+    def bottomright(self) -> Tuple[int, int]:
+        return self.x + self.w, self.y + self.h
+
+    @property
+    def midtop(self) -> Tuple[int, int]:
+        return self.centerx, self.y
+
+    @property
+    def midleft(self) -> Tuple[int, int]:
+        return self.x, self.centery
+
+    @property
+    def midbottom(self) -> Tuple[int, int]:
+        return self.centerx, self.y + self.h
+
+    @property
+    def midright(self) -> Tuple[int, int]:
+        return self.x + self.w, self.centery
+
+    @property
+    def center(self) -> Tuple[int, int]:
+        return self.centerx, self.centery
+
+    @property
+    def centerx(self) -> int:
+        return self.x + self.w // 2
+
+    @property
+    def centery(self) -> int:
+        return self.y + self.h // 2
+
+    @property
+    def size(self) -> Tuple[int, int]:
+        return self.w, self.h
+
+    @property
+    def width(self) -> int:
+        return self.w
+
+    @property
+    def height(self) -> int:
+        return self.h
+
+    @property
+    @abstractmethod
+    def w(self) -> int:
+        pass
+
+    @property
+    @abstractmethod
+    def h(self) -> int:
+        pass
+
+    @property
+    @abstractmethod
+    def x(self) -> int:
+        pass
+
+    @property
+    @abstractmethod
+    def y(self) -> int:
+        pass
+
+
+def intersect(r1: ReadOnlyRect, r2: ReadOnlyRect) -> bool:
+    return (
+        (r2.left <= r1.left < r2.right) or (r1.left <= r2.left < r1.right)
+    ) and ((r2.top <= r1.top < r2.bottom) or (r1.top <= r2.top < r1.bottom))
+
+
+class Rect(ReadOnlyRect):
     """
     Pure Python Rect class that follows the PyGame API
 
@@ -17,195 +229,45 @@ class Rect:
 
     __slots__ = ["_x", "_y", "_w", "_h"]
 
-    def __init__(self, arg):
+    def __init__(
+        self,
+        arg: Union[HasRectAttribute[Rect], RectLike[Rect]],
+    ) -> None:
         """
         should accept rect like object or tuple of two tuples or one tuple
         of four numbers, store :x,y,h,w
         """
+        if isinstance(arg, HasRectAttribute):
+            arg = arg.rect
 
         if isinstance(arg, Rect):
-            self._x, self._y, self._w, self._h = arg
-        elif isinstance(arg, list) or isinstance(arg, tuple):
+            self._x = arg.x
+            self._y = arg.y
+            self._w = arg.w
+            self._h = arg.h
+        elif isinstance(arg, (list, tuple)):
             if len(arg) == 2:
+                arg = cast(Tuple[Tuple[int, int], Tuple[int, int]], arg)
                 self._x, self._y = arg[0]
                 self._w, self._h = arg[1]
             elif len(arg) == 4:
+                arg = cast(Tuple[int, int, int, int], arg)
                 self._x, self._y, self._w, self._h = arg
-        elif hasattr(arg, "rect"):
-            self._x, self._y, self._w, self._h = arg.rect
         else:
             self._x, self._y, self._w, self._h = arg
 
-    def __len__(self):
-        return 4
-
-    def __getitem__(self, key):
-        if key == 0:
-            return self._x
-        elif key == 1:
-            return self._y
-        elif key == 2:
-            return self._w
-        elif key == 3:
-            return self._h
-        raise IndexError
-
-    def copy(self):
-        return Rect(self)
-
-    def move(self, x, y):
-        return Rect((self._x + x, self._y + y, self._w, self._h))
-
-    def inflate(self, x, y):
-        return Rect((self._x - x / 2, self._y - y / 2, self._w + x, self._h + y))
-
-    def clamp(self):
-        pass
-
-    def clip(self, other):
-        raise NotImplementedError
-
-    def union(self, other):
-        return Rect(
-            (min(self._x, other.left), min(self._y, other.top), max(self._w, other.right), max(self._h, other.height))
-        )
-
-    def unionall(self, *rects):
-        rects.append(self)
-        left = min(r.left for r in rects)
-        top = min(r.top for r in rects)
-        right = max(r.right for r in rects)
-        bottom = max(r.bottom for r in rects)
-        return Rect(left, top, right, bottom)
-
-    def fit(self):
-        raise NotImplementedError
-
-    def normalize(self):
-        if self._w < 0:
-            self._x += self._w
-            self._w = -self._x
-        if self._h < 0:
-            self._y += self._h
-            self._h = -self._y
-
-    def contains(self, other):
-        other = Rect(other)
-        return (
-            (self._x <= other.left)
-            and (self._y <= other.top)
-            and (self._x + self._w >= other.right)
-            and (self._y + self._h >= other.bottom)
-            and (self._x + self._w > other.left)
-            and (self._y + self._h > other.top)
-        )
-
-    def collidepoint(self, point):
-        x, y = point
-        return self._x <= x < self._x + self._w and self._y <= y < self._y + self._h
-
-    def colliderect(self, other):
-        return intersect(self, Rect(other))
-
-    def collidelist(self, rects):
-        for i, rect in enumerate(rects):
-            if intersect(self, rect):
-                return i
-        return -1
-
-    def collidelistall(self, l):
-        return [i for i, rect in enumerate(l) if intersect(self, Rect(rect))]
-
-    def collidedict(self):
-        raise NotImplementedError
-
-    def collidedictall(self):
-        raise NotImplementedError
-
     @property
-    def top(self):
-        return self._y
-
-    @property
-    def left(self):
-        return self._x
-
-    @property
-    def bottom(self):
-        return self._y + self._h
-
-    @property
-    def right(self):
-        return self._x + self._w
-
-    @property
-    def topleft(self):
-        return self._x, self._y
-
-    @property
-    def bottomleft(self):
-        return self._x, self._y + self._h
-
-    @property
-    def topright(self):
-        return self._x + self._w, self._y
-
-    @property
-    def bottomright(self):
-        return self._x + self._w, self._y + self._h
-
-    @property
-    def midtop(self):
-        return self._x + self._w / 2, self._y
-
-    @property
-    def midleft(self):
-        return self._x, self._y + self._h / 2
-
-    @property
-    def midbottom(self):
-        return self._x + self._w / 2, self._y + self._h
-
-    @property
-    def midright(self):
-        return self._x + self._w, self._y + self._h / 2
-
-    @property
-    def center(self):
-        return self._x + self._w / 2, self.y + self._h / 2
-
-    @property
-    def centerx(self):
-        return self._x + self._w / 2
-
-    @property
-    def centery(self):
-        return self._y + self._h / 2
-
-    @property
-    def size(self):
-        return self._w, self._h
-
-    @property
-    def width(self):
+    def w(self) -> int:
         return self._w
 
     @property
-    def height(self):
+    def h(self) -> int:
         return self._h
 
     @property
-    def w(self):
-        return self._w
-
-    @property
-    def h(self):
-        return self._h
-
-    @property
-    def x(self):
+    def x(self) -> int:
         return self._x
 
     @property
-    def y(self):
+    def y(self) -> int:
         return self._y

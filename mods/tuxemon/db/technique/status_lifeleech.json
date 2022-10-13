@@ -7,7 +7,6 @@
   "animation": "drip_green",
   "sfx": "sfx_bite",
   "icon": "gfx/ui/icons/status/icon_lifeleech.png",
-  "category": "lifeleech",
   "sort": "meta",
   "effects": [
     "lifeleech"

@@ -2,7 +2,6 @@
   "tech_id": 48,
   "accuracy": 0.75,
   "animation": "waterspurt",
-  "category": "physical",
   "effects": [
     "damage"
   ],

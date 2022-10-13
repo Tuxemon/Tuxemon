@@ -2,7 +2,6 @@
   "tech_id": 54,
   "accuracy": 0.75,
   "animation": "sparks_gold_alt",
-  "category": "physical",
   "effects": [
     "damage"
   ],

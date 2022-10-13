@@ -2,7 +2,6 @@
   "tech_id": 62,
   "accuracy": 0.75,
   "animation": "screen",
-  "category": "physical",
   "effects": [
     "damage"
   ],

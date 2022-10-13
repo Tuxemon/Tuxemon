@@ -2,7 +2,6 @@
   "tech_id": 81,
   "accuracy": 0.75,
   "animation": "fireball_114",
-  "category": "physical",
   "effects": [
     "damage"
   ],

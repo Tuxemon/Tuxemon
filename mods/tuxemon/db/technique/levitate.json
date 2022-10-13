@@ -12,8 +12,11 @@
   "is_fast": false,
   "potency": 1,
   "power": 0,
-  "statdodge": {
-    "value": 4, "max_deviation": 2, "operation":"+", "overridetofull":false
+  "statmelee": {
+    "value": 0.5, "operation":"-"
+  },
+  "statranged": {
+    "value": 2, "operation":"-"
   },
   "range": "special",
   "recharge": 2,

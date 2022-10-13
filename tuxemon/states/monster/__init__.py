@@ -248,7 +248,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
                 image = graphics.load_and_scale(status.icon)
                 pos = (
                     (rect.width * 0.45) + (index * tools.scale(6.5)),
-                    rect.y + tools.scale(6.5),
+                    rect.y + tools.scale(0),
                 )
                 surface.blit(image, pos)
 

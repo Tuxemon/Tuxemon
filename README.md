@@ -131,9 +131,9 @@ sudo pip install -U -r requirements.txt
 git clone https://github.com/Tuxemon/Tuxemon.git
 ulimit -n 10000; python run_tuxemon.py
 ```
-**FlatPack**
+**FlatPak**
 
-Require Flatpack setup, choose yours [here](https://flatpack.org/setup/)
+Require Flatpak setup, choose yours [here](https://flatpak.org/setup/)
 
 
 Run:

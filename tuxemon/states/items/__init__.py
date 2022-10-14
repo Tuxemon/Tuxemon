@@ -301,6 +301,7 @@ class ShopMenuState(Menu[Item]):
             item
             for item in self.seller.inventory.values()
             if not (self.seller.isplayer and item["item"].sort == "quest")
+            if not (self.seller.isplayer and item["item"].type == "KeyItem")
         ]
 
         # required because the max() below will fail if inv empty

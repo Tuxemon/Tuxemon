@@ -2,7 +2,6 @@
   "tech_id": 63,
   "accuracy": 0.75,
   "animation": "triforce",
-  "category": "physical",
   "effects": [
     "damage"
   ],

@@ -2,7 +2,6 @@
   "tech_id": 36,
   "accuracy": 1,
   "animation": "bolt",
-  "category": "physical",
   "effects": [
     "damage"
   ],

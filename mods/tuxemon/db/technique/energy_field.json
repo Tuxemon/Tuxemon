@@ -2,7 +2,6 @@
   "tech_id": 22,
   "accuracy": 1,
   "animation": "screen",
-  "category": "physical",
   "effects": [],
   "flip_axes": "x",
   "healing_power": 0,

@@ -2,7 +2,6 @@
   "tech_id": 6,
   "accuracy": 1,
   "animation": "crushingball",
-  "category": "physical",
   "effects": [
     "damage"
   ],

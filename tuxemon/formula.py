@@ -123,8 +123,7 @@ def simple_damage_calculate(
         target_resist = 1
     else:
         raise RuntimeError(
-            "unhandled damage category %s %s",
-            technique.category,
+            "unhandled damage category %s",
             technique.range,
         )
 

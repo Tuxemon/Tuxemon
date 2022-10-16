@@ -2,10 +2,10 @@
   "tech_id": 55,
   "accuracy": 0.7,
   "animation": "claw_blue",
-  "category": "physical",
   "effects": [
     "damage"
   ],
+  "flip_axes": "x",
   "healing_power": 0,
   "icon": "",
   "is_area": true,

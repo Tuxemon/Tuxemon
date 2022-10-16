@@ -2,10 +2,10 @@
   "tech_id": 26,
   "accuracy": 0.75,
   "animation": "gloop_orange",
-  "category": "physical",
   "effects": [
     "damage"
   ],
+  "flip_axes": "",
   "healing_power": 0,
   "icon": "",
   "is_area": false,

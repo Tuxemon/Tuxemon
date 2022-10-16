@@ -7,11 +7,11 @@
   "animation": null,
   "sfx": "sfx_blaster",
   "icon": "",
-  "category": "meta",
   "sort": "meta",
   "effects": [
     "swap"
   ],
+  "flip_axes": "",
   "target": {
     "enemy monster": 0,
     "enemy team": 0,

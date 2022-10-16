@@ -2,10 +2,10 @@
   "tech_id": 34,
   "accuracy": 1,
   "animation": "firelion_front",
-  "category": "physical",
   "effects": [
     "damage"
   ],
+  "flip_axes": "",
   "healing_power": 0,
   "icon": "",
   "is_area": false,

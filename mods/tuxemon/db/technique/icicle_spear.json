@@ -2,10 +2,10 @@
   "tech_id": 23,
   "accuracy": 0.75,
   "animation": "lance_ice",
-  "category": "physical",
   "effects": [
     "damage"
   ],
+  "flip_axes": "xy",
   "healing_power": 0,
   "icon": "",
   "is_area": true,

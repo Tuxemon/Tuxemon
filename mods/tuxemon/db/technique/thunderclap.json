@@ -2,10 +2,10 @@
   "tech_id": 20,
   "accuracy": 0.75,
   "animation": "thunderstrike",
-  "category": "physical",
   "effects": [
     "damage"
   ],
+  "flip_axes": "",
   "healing_power": 0,
   "icon": "",
   "is_area": false,

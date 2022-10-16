@@ -239,9 +239,7 @@ class Monster:
         self.type2: Optional[str] = None
         self.shape = MonsterShape.landrace
 
-        self.status: List[Technique] = list()
-        self.status_damage = 0
-        self.status_turn = 0
+        self.status: List[Technique] = []
 
         self.txmn_id = 0
         self.height = 0.0
@@ -514,7 +512,10 @@ class Monster:
 
         # Update moves
         for move in self.moveset:
-            if move not in self.moves and move.level_learned <= level:                
+            if (
+                move.technique not in (m.slug for m in self.moves)
+                and move.level_learned <= level
+            ):
                 self.learn(Technique(move.technique))
 
     def experience_required(self, level_ofs: int = 0) -> int:

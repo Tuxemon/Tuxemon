@@ -2,10 +2,10 @@
   "tech_id": 41,
   "accuracy": 0.8,
   "animation": "snake_right",
-  "category": "physical",
   "effects": [
     "damage"
   ],
+  "flip_axes": "x",
   "healing_power": 0,
   "icon": "",
   "is_area": false,

@@ -2,10 +2,10 @@
   "tech_id": 21,
   "accuracy": 0.8,
   "animation": "icetacle",
-  "category": "physical",
   "effects": [
     "damage"
   ],
+  "flip_axes": "",
   "healing_power": 0,
   "icon": "",
   "is_area": false,

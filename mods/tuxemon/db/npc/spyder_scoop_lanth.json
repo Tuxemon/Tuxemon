@@ -1,7 +1,7 @@
 {
   "slug": "spyder_scoop_lanth",
   "gender": "male",
-  "sprite_name": "professor1",
+  "sprite_name": "professor",
   "monsters": [
     {
       "name": "mRmOswitch",

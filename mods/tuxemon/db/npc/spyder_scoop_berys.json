@@ -1,7 +1,7 @@
 {
   "slug": "spyder_scoop_berys",
   "gender": "male",
-  "sprite_name": "professor1",
+  "sprite_name": "professor",
   "monsters": [
     {
       "name": "Propellercat",

@@ -2,6 +2,6 @@
   "slug": "professor",
   "gender": "male",
   "sprite_name": "professor",
-  "combat_front": "professor_front.png",
+  "combat_front": "professor.png",
   "combat_back": "red_back.png"
 }

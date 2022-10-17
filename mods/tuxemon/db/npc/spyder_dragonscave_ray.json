@@ -1,7 +1,7 @@
 {
   "slug": "spyder_dragonscave_ray",
   "gender": "male",
-  "sprite_name": "rookie",
+  "sprite_name": "spyderrookie",
   "monsters": [
     {
       "name": "Ghosteeth",

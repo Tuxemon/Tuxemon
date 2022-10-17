@@ -61,7 +61,7 @@ for binaries.
 
 **Flatpak**
 
-Check the [web page](https://flathub.org/apps/details/org.tuxemon.Tuxemon) for complet explication
+Check the [web page](https://flathub.org/apps/details/org.tuxemon.Tuxemon) for a complete explanation
 
 Before install check the flatpak [requires](https://www.flatpak.org/setup/)
 

@@ -86,115 +86,167 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Fisher"](https://wiki.tuxemon.org/index.php?title=Fisher). Main sprite by Sanglorian. Overland sprite by Sanglorian, hat based on a Catch Challenger sprite.
+### Character Front Sprites
 
-* ["Scientist"](https://wiki.tuxemon.org/index.php?title=Scientist). Overland sprites by Catch Challenger. Front sprite by Catch Challenger, adapted by Sanglorian.
+* ["Alchemist"](https://wiki.tuxemon.org/index.php?title=Alchemist). Front sprite by Svetlana Kushnariova.
 
-* ["Rookie"](https://wiki.tuxemon.org/index.php?title=Spyder_Rookie). Overland sprites from Catch Challenger. Front sprite by Sanglorian.
+* ["Alien"](https://wiki.tuxemon.org/File:Alien_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY. 
+ 
+* ["Aviator"](https://wiki.tuxemon.org/index.php?title=Aviator). Front sprite by Sanglorian from the AV8R design by Leo. Overland sprites by Catch Challenger.
 
-* ["Overseer"](https://wiki.tuxemon.org/index.php?title=Mine_Overseer). Front sprite by tamashihoshi, hat adapted from a sprite by Catch Challenger. Overland sprites adapted by Sanglorian from sprites by Catch Challenger.
+* ["Baller"](https://wiki.tuxemon.org/File:Baller1.png). Created by Sanglorian from [https://wiki.tuxemon.org/index.php?title=File:Handball-characters.png CC BY art by David Revoy.
 
-* ["Postboy"](https://wiki.tuxemon.org/index.php?title=Postboy). Overland sprites by Catch Challenger, palette changed by Sanglorian. 
+* ["Barmaid"](https://wiki.tuxemon.org/index.php?title=Barmaid). Original design by Superpowers Asset Packs. Front sprite by tamashihoshi. Overland sprite by Catch Challenger, tweaked by Sanglorian.
 
-* ["Miner"](https://wiki.tuxemon.org/index.php?title=Miner). Main sprite adapted by Sanglorian from a sprite by Catch Challenger. Overland sprites adapted by Sanglorian from sprites by Catch Challenger.
+* ["Beachcomber"](https://wiki.tuxemon.org/index.php?title=Beachcomber). Overland sprites from Catch Challenger.
+
+* ["Beachgoer"](https://wiki.tuxemon.org/index.php?title=Beachgoer). Front sprites by tamashihoshi. Overland sprites by Catch Challenger. Face sprite by Superpowers Asset Packs. 
+ 
+* ["Birb Robo"](https://wiki.tuxemon.org/index.php?title=Birb_Robo). Front sprite by FiveAsOne. Overland sprites by Catch Challenger. 
+  
+* ["Brute"](https://wiki.tuxemon.org/index.php?title=Brute). Overland sprites from the Superpowers Asset Packs.
 
 * ["Cat Girl"](https://wiki.tuxemon.org/index.php?title=Cat_Girl). Overland sprites by Pboop. Front sprites by Sanglorian and Tamashihoshi. 
+ 
+* ["CEO"](https://wiki.tuxemon.org/index.php?title=Riverboat_Captain). Overland sprites by Catch Challenger. Front sprite by Sanglorian.
 
-* ["Maniac"](https://wiki.tuxemon.org/index.php?title=Maniac). Overland sprites by Catch Challenger.
+* ["Child Actor"](https://wiki.tuxemon.org/index.php?title=Wood_Nymph). Overland sprites by pboop. 
+ 
+* ["Chrome Robo"](https://wiki.tuxemon.org/index.php?title=Chrome_Robo). Front sprite by Redshrike. Overland sprites by Catch Challenger. 
+ 
+* ["Cool Dude"](https://wiki.tuxemon.org/index.php?title=Cool_Dude). Front sprite by Sanglorian. Overland sprite by Catch Challenger. 
+ 
+* ["Dancer"](https://wiki.tuxemon.org/index.php?title=File:Dancer_-_from_ansimuz.png). Adapted by Sanglorian from a CC0 sprite by ansimuz [https://opengameart.org/content/dancing-girl-sprites on OGA]
+ 
+* ["Desert Female"](https://wiki.tuxemon.org/File:Female-trainer-alt-egypt.png). Original design by Leo. 
+ 
+* ["Desert Male"](https://wiki.tuxemon.org/File:Male-trainer-alt-egypt.png). Original design by Leo. 
+ 
+* ["Disciple"](https://wiki.tuxemon.org/File:Wizard.png) [https://opengameart.org/content/rpg-wizard-battle-frames CC0 on OGA]
 
-* ["Picnicker"](https://wiki.tuxemon.org/index.php?title=Picnicker). Main sprite by Catch Challenger, adapted by Sanglorian. Overland sprites by Catch Challenger.
+* ["Dragonfly"](https://wiki.tuxemon.org/File:Dragonfly_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY. 
+ 
+* ["Dragonrider"](https://wiki.tuxemon.org/index.php?title=Dragonrider). Front sprite by Catch Challenger, tweaked by Sanglorian. Overland sprite by Catch Challenger.
 
-* ["Tennis Player"](https://wiki.tuxemon.org/index.php?title=Tennis_Player). Overland sprites by Pboop. Front sprite by Sanglorian. Face sprite by Superpowers Asset Packs. 
+* ["Earth Nymph"](https://wiki.tuxemon.org/index.php?title=Earth_Nymph). Front sprite by Svetlana Kushnariova. Alternative front sprite by JosephSeraph.
 
-* ["Waiter"](https://wiki.tuxemon.org/index.php?title=Shopkeeper). Overland sprites by Catch Challenger.
+* ["Enforcer Agent"](https://wiki.tuxemon.org/index.php?title=Enforcer_Agent). Design and front sprite by Leo. Overland sprite by Superpowers Asset Packs, tweaked by Sanglorian. Face sprites from Superpowers Asset Pack.
+
+* ["Enforcer Boss"](https://wiki.tuxemon.org/index.php?title=Enforcer_Boss). Front sprite by Leo. Overland sprite by Superpowers Asset Packs, tweaked by Sanglorian. 
+ 
+* ["Faun"](https://wiki.tuxemon.org/File:Faun_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY. 
+ 
+* ["Fire Nymph"](https://wiki.tuxemon.org/index.php?title=Fire_Nymph). Front sprite by Svetlana Kushnariova, resized by Sanglorian. Overland sprite by Superpowers Asset Packs. Alternative front sprite by JosephSeraph.
+
+* ["Firefighter"](https://wiki.tuxemon.org/index.php?title=Firefighter). Main sprite by Chickenshowman. Overland sprites by Sanglorian, hat adapted from a Catch Challenger sprite. 
+ 
+* ["Fisher"](https://wiki.tuxemon.org/index.php?title=Fisher). Main sprite by Sanglorian. Overland sprite by Sanglorian, hat based on a Catch Challenger sprite.
 
 * ["Florist"](https://wiki.tuxemon.org/index.php?title=Florist). Main sprite by Sanglorian. Overland sprites by Catch Challenger.
 
 * ["Goth"](https://wiki.tuxemon.org/index.php?title=Goth). Front sprite by Catch Challenger, tweaked by Sanglorian. Overland sprite by Catch Challenger.
 
-* ["Barmaid"](https://wiki.tuxemon.org/index.php?title=Barmaid). Original design by Superpowers Asset Packs. Front sprite by tamashihoshi. Overland sprite by Catch Challenger, tweaked by Sanglorian.
-
+* ["Granny"](https://wiki.tuxemon.org/index.php?title=Granny). Overland sprites by Pixel Scuba. Face sprite by Superpowers Asset Packs. 
+ 
 * ["Hacker"](https://wiki.tuxemon.org/index.php?title=Magician). Front sprite by Catch Challenger, tweaked by Sanglorian. Overland sprite by Catch Challenger, adapted by Sanglorian.
 
-* ["Monk"](https://wiki.tuxemon.org/index.php?title=Monk). Front sprite by Catch Challenger. Overland sprites by Catch Challenger, adapted by Sanglorian.
-
-* ["Granny"](https://wiki.tuxemon.org/index.php?title=Granny). Overland sprites by Pixel Scuba. Face sprite by Superpowers Asset Packs. 
-
-* ["Shop Assistant"](https://wiki.tuxemon.org/index.php?title=Shop_Assistant). Main sprite by Catch Challenger, adapted by Sanglorian. Overland sprites by Catch Challenger.
-
-* ["Riverboat Captain"](https://wiki.tuxemon.org/index.php?title=Riverboat_Captain). Overland sprites by pixelartm, adapted by Sanglorian.
+* ["Harpy"](https://wiki.tuxemon.org/File:Harpy_dark_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY. 
+ 
+* ["Healer"](https://wiki.tuxemon.org/File:Claris_64px.png). Front sprite by Svetlana Kushnariova. Resized by Sanglorian. 
+ 
+* ["Hell Knight"](https://wiki.tuxemon.org/File:Dread_Knight.png) [https://opengameart.org/content/rpg-dread-knight-sheet CC0 on OGA]
 
 * ["Homemaker"](https://wiki.tuxemon.org/index.php?title=Homemaker). Overland sprites from Catch Challenger.
 
-* ["Yellow Belt"](https://wiki.tuxemon.org/index.php?title=Yellow_Belt). Created by Sanglorian from the [https://telles0808.itch.io/isometric-template Isometric Template] template by KinGabe.
-
-* ["Snugglepot"](https://wiki.tuxemon.org/index.php?title=Snugglepot). Front sprite by Sanglorian. Overland sprites adapted by Sanglorian from CC BY-SA sprites by pboop.
-
-* ["Beachcomber"](https://wiki.tuxemon.org/index.php?title=Beachcomber). Overland sprites from Catch Challenger.
-
-* ["Alchemist"](https://wiki.tuxemon.org/index.php?title=Alchemist). Front sprite by Svetlana Kushnariova.
-
-* ["Soldier"](https://wiki.tuxemon.org/index.php?title=Soldier). Front sprite by Sanglorian. Overland sprites adapted by Sanglorian from sprites by Catch Challenger.
-
-* ["Firefighter"](https://wiki.tuxemon.org/index.php?title=Firefighter). Main sprite by Chickenshowman. Overland sprites by Sanglorian, hat adapted from a Catch Challenger sprite. 
-
-* ["Enforcer Agent"](https://wiki.tuxemon.org/index.php?title=Enforcer_Agent). Design and front sprite by Leo. Overland sprite by Superpowers Asset Packs, tweaked by Sanglorian. Face sprites from Superpowers Asset Pack.
-
-* ["Riverboat Captain"](https://wiki.tuxemon.org/index.php?title=Riverboat_Captain). Overland sprites by pixelartm, adapted by Sanglorian. 
-
-* ["Warrior"](https://wiki.tuxemon.org/index.php?title=Warrior). Front sprite by Antifarea. Overland sprite by isaiah658, reworked by AntumDeluge.
-
-* ["CEO"](https://wiki.tuxemon.org/index.php?title=Riverboat_Captain). Overland sprites by Catch Challenger. Front sprite by Sanglorian.
-
-* ["Rogue"](https://wiki.tuxemon.org/index.php?title=Rogue). Front sprite by tamashihoshi. Overland sprite by Catch Challenger, adapted by Sanglorian. 
-
-* ["Fire Nymph"](https://wiki.tuxemon.org/index.php?title=Fire_Nymph). Front sprite by Svetlana Kushnariova, resized by Sanglorian. Overland sprite by Superpowers Asset Packs. Alternative front sprite by JosephSeraph.
-
-* ["Wood Nymph"](https://wiki.tuxemon.org/index.php?title=Wood_Nymph). Front sprites by JosephSeraph. Overland sprites by Catch Challenger. 
-
-* ["Child Actor"](https://wiki.tuxemon.org/index.php?title=Wood_Nymph). Overland sprites by pboop. 
-
-* ["Swimmer"](https://wiki.tuxemon.org/index.php?title=Swimmer). Front sprite by Catch Challenger, resized by Sanglorian. Overland sprites by Catch Challenger.
-
-* ["Dragonrider"](https://wiki.tuxemon.org/index.php?title=Dragonrider). Front sprite by Catch Challenger, tweaked by Sanglorian. Overland sprite by Catch Challenger.
-
-* ["Brute"](https://wiki.tuxemon.org/index.php?title=Brute). Overland sprites from the Superpowers Asset Packs.
-
-* ["Varmint"](https://wiki.tuxemon.org/index.php?title=Varmint). Overland sprites from the Superpowers Asset Packs.
-
+* ["Knight Lord"](https://wiki.tuxemon.org/index.php?title=Knight_Lord). Front sprite by Antifarea. Overland sprite by Catch Challenger. 
+ 
+* ["Knight"](https://wiki.tuxemon.org/File:Molly_helm_64px.png). Front sprite by Svetlana Kushnariova. Resized by Sanglorian. 
+ 
 * ["Land Bird"](https://wiki.tuxemon.org/index.php?title=File:Land_bird.gif). Overland sprites from the Superpowers Asset Packs.
 
 * ["Landrace"](https://wiki.tuxemon.org/index.php?title=Landrace). Overland sprites from the Superpowers Asset Packs.
 
-* ["Spyder Boss"](https://wiki.tuxemon.org/index.php?title=Spyder_Boss). Overland sprites by Catch Challenger. Front sprite by Sanglorian.
+* ["Mage"](https://wiki.tuxemon.org/File:Angela_64px.png). Front sprite by Svetlana Kushnariova. Resized by Sanglorian. 
+ 
+* ["Man Moon"](https://wiki.tuxemon.org/File:Moon_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY. 
+ 
+* ["Maniac"](https://wiki.tuxemon.org/index.php?title=Maniac). Overland sprites by Catch Challenger.
 
-* ["Knight Lord"](https://wiki.tuxemon.org/index.php?title=Knight_Lord). Front sprite by Antifarea. Overland sprite by Catch Challenger. 
+* ["Mermaid"](https://wiki.tuxemon.org/File:Mermaid_64px.png). Front sprite by Svetlana Kushnariova. Resized by Sanglorian. 
+ 
+* ["Metal Nymph"](https://wiki.tuxemon.org/index.php?title=Metal_Nymph). Front sprite by JosephSeraph.
 
-* ["Cool Dude"](https://wiki.tuxemon.org/index.php?title=Cool_Dude). Front sprite by Sanglorian. Overland sprite by Catch Challenger. 
+* ["Miner"](https://wiki.tuxemon.org/index.php?title=Miner). Main sprite adapted by Sanglorian from a sprite by Catch Challenger. Overland sprites adapted by Sanglorian from sprites by Catch Challenger.
 
+* ["Monk"](https://wiki.tuxemon.org/index.php?title=Monk). Front sprite by Catch Challenger. Overland sprites by Catch Challenger, adapted by Sanglorian.
+
+* ["Ninja"](https://wiki.tuxemon.org/File:Ninja.gif). Front sprite by Sanglorian. Overland sprite by Superpower Asset Packs, adapted by Sanglorian.
+
+* ["Oracle"](https://wiki.tuxemon.org/File:Oracle.gif) [http://opengameart.org/content/js-monster-set-elementals OGA CC BY]
+
+* ["Orc"](https://wiki.tuxemon.org/File:Orc_front.png). A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Overseer"](https://wiki.tuxemon.org/index.php?title=Mine_Overseer). Front sprite by tamashihoshi, hat adapted from a sprite by Catch Challenger. Overland sprites adapted by Sanglorian from sprites by Catch Challenger.
+
+* ["Penguin"](https://github.com/Tuxemon/Tuxemon/tree/development/mods/tuxemon/sprites)Overland sprites are by ultidonki, made for Tuxemon. Licensed under[CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Picnicker"](https://wiki.tuxemon.org/index.php?title=Picnicker). Main sprite by Catch Challenger, adapted by Sanglorian. Overland sprites by Catch Challenger.
+
+* ["Pirate"](https://wiki.tuxemon.org/File:Pirate1.png) [https://opengameart.org/content/10-more-fantasy-rpg-enemies-plus-a-boss CC BY on OGA]
+
+* ["Postboy"](https://wiki.tuxemon.org/index.php?title=Postboy). Overland sprites by Catch Challenger, palette changed by Sanglorian. 
+ 
+* ["Riddler"](https://wiki.tuxemon.org/File:Snarlon_gijinka.gif). 
+ 
+* ["Riverboat Captain"](https://wiki.tuxemon.org/index.php?title=Riverboat_Captain). Overland sprites by pixelartm, adapted by Sanglorian.
+ 
 * ["Robot"](https://wiki.tuxemon.org/index.php?title=Robot). Overland sprites by Catch Challenger.
 
-* ["Metal Nymph"](https://wiki.tuxemon.org/index.php?title=Metal_Nymph). Front sprite by JosephSeraph.
+* ["Rogue"](https://wiki.tuxemon.org/index.php?title=Rogue). Front sprite by tamashihoshi. Overland sprite by Catch Challenger, adapted by Sanglorian. 
+ 
+* ["Rookie"](https://wiki.tuxemon.org/index.php?title=Spyder_Rookie). Overland sprites from Catch Challenger. Front sprite by Sanglorian.
+
+* ["Scientist"](https://wiki.tuxemon.org/index.php?title=Scientist). Overland sprites by Catch Challenger. Front sprite by Catch Challenger, adapted by Sanglorian.
+
+* ["Setting Sun"](https://wiki.tuxemon.org/File:Sun_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY. 
+ 
+* ["Shining Moon"](https://wiki.tuxemon.org/File:Moon_shining_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY. 
+ 
+* ["Shop Assistant"](https://wiki.tuxemon.org/index.php?title=Shop_Assistant). Main sprite by Catch Challenger, adapted by Sanglorian. Overland sprites by Catch Challenger.
+
+* ["Snugglepot"](https://wiki.tuxemon.org/index.php?title=Snugglepot). Front sprite by Sanglorian. Overland sprites adapted by Sanglorian from CC BY-SA sprites by pboop.
+
+* ["Soldier"](https://wiki.tuxemon.org/index.php?title=Soldier). Front sprite by Sanglorian. Overland sprites adapted by Sanglorian from sprites by Catch Challenger.
+
+* ["Spinner"](https://wiki.tuxemon.org/File:Spinning_woman_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY. 
+ 
+* ["Spyder Boss"](https://wiki.tuxemon.org/index.php?title=Spyder_Boss). Overland sprites by Catch Challenger. Front sprite by Sanglorian.
+
+* ["Swimmer"](https://wiki.tuxemon.org/index.php?title=Swimmer). Front sprite by Catch Challenger, resized by Sanglorian. Overland sprites by Catch Challenger.
+
+* ["Tennis Player"](https://wiki.tuxemon.org/index.php?title=Tennis_Player). Overland sprites by Pboop. Front sprite by Sanglorian. Face sprite by Superpowers Asset Packs. 
+ 
+* ["Terranite"](https://wiki.tuxemon.org/File:Terranite_front.png). A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule. 
+ 
+* ["Varmint"](https://wiki.tuxemon.org/index.php?title=Varmint). Overland sprites from the Superpowers Asset Packs.
+
+* ["Waiter"](https://wiki.tuxemon.org/index.php?title=Shopkeeper). Overland sprites by Catch Challenger.
+
+* ["Warrior"](https://wiki.tuxemon.org/index.php?title=Warrior). Front sprite by Antifarea. Overland sprite by isaiah658, reworked by AntumDeluge.
 
 * ["Water Nymph"](https://wiki.tuxemon.org/index.php?title=Water_Nymph). Front sprite by Svetlana Kushnariova. Alternative front sprite by JosephSeraph.
 
-* ["Earth Nymph"](https://wiki.tuxemon.org/index.php?title=Earth_Nymph). Front sprite by Svetlana Kushnariova. Alternative front sprite by JosephSeraph.
+* ["Willowhisp"](https://wiki.tuxemon.org/File:Ghost-halo-64.png) [https://opengameart.org/content/gothicvania-cemetery-pack CC BY on OGA]
 
-* ["Beachgoer"](https://wiki.tuxemon.org/index.php?title=Beachgoer). Front sprites by tamashihoshi. Overland sprites by Catch Challenger. Face sprite by Superpowers Asset Packs. 
+* ["Wind Nymph"](https://wiki.tuxemon.org/File:Wind_M_(Feng)_64px.png) Front sprite by Svetlana Kushnariova. Resized by Sanglorian. 
+ 
+* ["Witch"](https://wiki.tuxemon.org/File:World01_006_Witch_-_64px.png) [https://opengameart.org/content/js-monster-pack-4-ascent CC BY-SA 3.0] Minor changes by Sanglorian.
 
-* ["Chrome Robo"](https://wiki.tuxemon.org/index.php?title=Chrome_Robo). Front sprite by Redshrike. Overland sprites by Catch Challenger. 
+* ["Wood Nymph"](https://wiki.tuxemon.org/index.php?title=Wood_Nymph). Front sprites by JosephSeraph. Overland sprites by Catch Challenger. 
+ 
+* ["Yaangyiin"](https://wiki.tuxemon.org/File:Yaanyiin.gif) [http://opengameart.org/content/js-monster-set-elementals OGA CC BY]
 
-* ["Birb Robo"](https://wiki.tuxemon.org/index.php?title=Birb_Robo). Front sprite by FiveAsOne. Overland sprites by Catch Challenger. 
-
-* ["Birb Robo"](https://wiki.tuxemon.org/index.php?title=Birb_Robo). Front sprite by FiveAsOne. Overland sprites by Catch Challenger. 
-
-* ["Aviator"](https://wiki.tuxemon.org/index.php?title=Aviator). Front sprite by Sanglorian from the AV8R design by Leo. Overland sprites by Catch Challenger.
-
-* ["Enforcer Boss"](https://wiki.tuxemon.org/index.php?title=Enforcer_Boss). Front sprite by Leo. Overland sprite by Superpowers Asset Packs, tweaked by Sanglorian. 
-
-* ["Penguin"](https://github.com/Tuxemon/Tuxemon/tree/development/mods/tuxemon/sprites)
-Overland sprites are by ultidonki, made for Tuxemon. Licensed under
-[CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
+* ["Yellow Belt"](https://wiki.tuxemon.org/index.php?title=Yellow_Belt). Created by Sanglorian from the [https://telles0808.itch.io/isometric-template Isometric Template] template by KinGabe.
 
 ### Tilesets
 

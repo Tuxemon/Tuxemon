@@ -3,7 +3,7 @@
 import fnmatch
 import os
 
-from setuptools import setup
+from setuptools import setup, find_packages
 from setuptools.command.install import install
 
 
@@ -18,7 +18,7 @@ class InstallAndBuildTranslations(install):
         super().__init__(*args, **kwargs)
         # build_translations()
 
-
+"""
 # Find all the python modules
 modules = []
 matches = []
@@ -30,7 +30,7 @@ for match in matches:
     match = match.replace(os.sep + "__init__.py", "")
     match = match.replace(os.sep, ".")
     modules.append(match)
-
+"""
 # Get the version from the README file.
 with open("README.md", "r") as f:
     VERSION = f.readline().split(" ")[-1].replace("\n", "")
@@ -39,6 +39,17 @@ with open("README.md", "r") as f:
 with open("requirements.txt", "r") as f:
     REQUIREMENTS = f.read().splitlines()
 
+    
+setup(
+    name='tuxemon',
+    version='1.0',
+    author='Meir Woda',
+    author_email='meir.woda@gmail.com',
+    packages=find_packages(),
+
+)
+
+"""
 # Configure the setuptools
 setup(
     name="tuxemon",
@@ -68,3 +79,4 @@ setup(
     ],
     cmdclass={"install": InstallAndBuildTranslations},
 )
+"""

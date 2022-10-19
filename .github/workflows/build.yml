@@ -126,7 +126,7 @@ jobs:
 
       - name: Install nsis
         run: |
-          Invoke-WebRequest -Uri "https://netcologne.dl.sourceforge.net/project/nsis/NSIS%203/3.06.1/nsis-3.06.1-setup.exe" -OutFile "nsis.exe"
+          Invoke-WebRequest -Uri "https://netcologne.dl.sourceforge.net/project/nsis/NSIS%203/3.08/nsis-3.08-setup.exe" -OutFile "nsis.exe"
 
       - name: Build Installer
         run: |
@@ -136,7 +136,7 @@ jobs:
           mv tuxemon-installer.exe ../dist/.
 
       - name: Upload installer
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v3
         with:
             name: tuxemon_windows_installer
             path: dist
@@ -181,7 +181,7 @@ jobs:
     if: ${{ github.ref == 'refs/heads/development' || (github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v'))  }}
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           path: artifacts
 

@@ -59,6 +59,17 @@ Check the [release page](https://github.com/Tuxemon/Tuxemon/releases)
 for binaries.
 
 
+**Flatpak**
+
+Check the [web page](https://flathub.org/apps/details/org.tuxemon.Tuxemon) for a complete explanation
+
+Before install check the flatpak [requires](https://www.flatpak.org/setup/)
+
+```shell
+flatpak install flathub org.tuxemon.Tuxemon
+flatpak run org.tuxemon.Tuxemon
+```
+
 **Debian/Ubuntu with virtual environment**
 
 This is the recommended way to run because it will not modify the

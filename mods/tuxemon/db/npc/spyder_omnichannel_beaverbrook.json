@@ -7,7 +7,7 @@
       "name": "Mk01 Alpha",
       "level": 55,
       "slug": "mk01_alpha",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "neuter"
     },
@@ -15,7 +15,7 @@
       "name": "Mk01 Beta",
       "level": 55,
       "slug": "mk01_beta",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "neuter"
     }

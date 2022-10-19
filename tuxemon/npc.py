@@ -838,7 +838,7 @@ class NPC(Entity[NPCState]):
             # This seems slightly wrong. The only useable element in
             # npc_monsters_details, which is a PartyMemberModel, is "slug"
             monster = Monster(save_data=npc_monster_details.dict())
-            monster.experience_give_modifier = npc_monster_details.exp_give_mod
+            monster.money_modifier = npc_monster_details.money_mod
             monster.experience_required_modifier = (
                 npc_monster_details.exp_req_mod
             )
@@ -885,6 +885,9 @@ class NPC(Entity[NPCState]):
                     return moves.slug
 
         return None
+
+    def give_money(self, amount: int) -> None:
+        self.money["player"] = self.money.get("player") + amount
 
     def has_item(self, item_slug: str) -> bool:
         return self.inventory.get(item_slug) is not None

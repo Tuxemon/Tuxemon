@@ -7,7 +7,7 @@
       "name": "AV8R",
       "level": 22,
       "slug": "av8r",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "neuter"
     },
@@ -15,7 +15,7 @@
       "name": "Criniotherme",
       "level": 22,
       "slug": "criniotherme",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     },
@@ -23,7 +23,7 @@
       "name": "tikorch",
       "level": 22,
       "slug": "tikorch",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     }

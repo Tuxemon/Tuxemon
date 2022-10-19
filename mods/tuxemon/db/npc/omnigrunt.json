@@ -8,7 +8,7 @@
     {
       "level": 2,
       "slug": "aardorn",
-      "exp_give_mod": 30,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     }

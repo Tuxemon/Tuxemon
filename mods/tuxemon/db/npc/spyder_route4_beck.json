@@ -7,7 +7,7 @@
       "name": "Katapill",
       "level": 14,
       "slug": "katapill",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     },
@@ -15,7 +15,7 @@
       "name": "Tumbleworm",
       "level": 12,
       "slug": "tumbleworm",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     },
@@ -23,7 +23,7 @@
       "name": "Spighter",
       "level": 12,
       "slug": "spighter",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     }

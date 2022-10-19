@@ -231,7 +231,7 @@ class Monster:
         self.owner: Optional[NPC] = None
         self.possible_genders: List[GenderType] = []
 
-        self.experience_give_modifier = 1
+        self.money_modifier = 0
         self.experience_required_modifier = 1
         self.total_experience = 0
 

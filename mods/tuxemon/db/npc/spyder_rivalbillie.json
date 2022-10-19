@@ -6,7 +6,7 @@
     {
       "slug": "dollfin",
       "level": 5,
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     }

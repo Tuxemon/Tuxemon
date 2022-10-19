@@ -7,7 +7,7 @@
       "name": "MRmOswitch",
       "level": 14,
       "slug": "mrmoswitch",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "neuter"
     }

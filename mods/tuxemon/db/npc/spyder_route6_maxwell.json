@@ -7,7 +7,7 @@
       "name": "Propellercat",
       "level": 30,
       "slug": "propellercat",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     },
@@ -15,7 +15,7 @@
       "name": "Birdling",
       "level": 30,
       "slug": "birdling",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     }

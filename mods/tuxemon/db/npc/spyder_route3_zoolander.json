@@ -7,7 +7,7 @@
       "name": "Eruptibus",
       "level": 14,
       "slug": "eruptibus",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     },
@@ -15,7 +15,7 @@
       "name": "Rockat",
       "level": 14,
       "slug": "rockat",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     },
@@ -23,7 +23,7 @@
       "name": "Forturtle",
       "level": 16,
       "slug": "forturtle",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     },
@@ -31,7 +31,7 @@
       "name": "Grinflare",
       "level": 16,
       "slug": "grinflare",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     }

@@ -7,7 +7,7 @@
       "name": "Dragarbor",
       "level": 36,
       "slug": "dragarbor",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     },
@@ -15,7 +15,7 @@
       "name": "Sapragon",
       "level": 38,
       "slug": "sapragon",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     }

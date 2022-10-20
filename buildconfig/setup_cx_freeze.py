@@ -23,10 +23,10 @@ os.environ["SDL_VIDEODRIVER"] = "dummy"
 os.environ["SDL_AUDIODRIVER"] = "disk"
 
 build_exe_options = {
-        "packages": ["pytmx", "pyscroll", "pygame", "neteria", "natsort", "tuxemon"],
-        "excludes": ["tkinter", "pyglet"],
-        "includes": ["pkg_resources"],
-        "include_files": ["mods", "LICENSE"],
+    "packages": ["pytmx", "pyscroll", "pygame", "neteria", "natsort", "tuxemon"],
+    "excludes": ["tkinter", "pyglet"],
+    "includes": ["pkg_resources"],
+    "include_files": ["mods", "LICENSE"],
 }
 
 if __name__ == "__main__":

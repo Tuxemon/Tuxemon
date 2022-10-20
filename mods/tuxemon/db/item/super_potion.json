@@ -1,15 +1,13 @@
 {
-  "slug": "super_potion",
-  "use_item": "combat_used_x",
-  "use_success": "generic_success",
-  "use_failure": "generic_failure",
-  "effects": [
-    "heal 150"
-  ],
+  "battle_menu": "monster",
   "conditions": [
     "current_hp target,<,1.0",
     "current_hp target,>,0"
   ],
+  "effects": [
+    "heal 150"
+  ],
+  "slug": "super_potion",
   "sort": "potion",
   "sprite": "gfx/items/super_potion.png",
   "target": {
@@ -26,5 +24,7 @@
     "MainCombatMenuState",
     "WorldState"
   ],
-  "battle_menu": "monster"
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
 }

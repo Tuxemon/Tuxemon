@@ -39,8 +39,7 @@ run:
 # Run tests
 .PHONY: test
 test:
-	pip install pytest
-	PYTHONPATH=. pytest tests
+	tox -e py3
 
 # Format code
 .PHONY: format

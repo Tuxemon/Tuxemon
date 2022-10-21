@@ -303,6 +303,7 @@ class NPC(Entity[NPCState]):
         self.inventory = decode_inventory(
             session, self, save_data.get("inventory", {})
         )
+
         self.monsters = []
         for monster in decode_monsters(save_data.get("monsters")):
             self.add_monster(monster)
@@ -917,6 +918,7 @@ class NPC(Entity[NPCState]):
 
     def can_buy_item(self, item_slug: str, qty: int, unit_price: int) -> bool:
         current_money = self.money.get("player")
+        
         if current_money is not None:
             return current_money >= qty * unit_price
         # If no 'money' variable, must be an NPC. Always allow buying:
@@ -979,7 +981,7 @@ class NPC(Entity[NPCState]):
             self.money["player"] = self.money.get("player") + (
                 qty * unit_price
             )
-
+        
     def buy_transaction(
         self,
         session: Session,

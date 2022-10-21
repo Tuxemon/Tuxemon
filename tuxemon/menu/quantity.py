@@ -8,6 +8,7 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
+from tuxemon.session import local_session
 
 logger = logging.getLogger(__name__)
 
@@ -96,6 +97,16 @@ class QuantityMenu(Menu[None]):
         formatted_name = label_format(self.quantity, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)
+    
+    def show_money(self) -> str:
+        # Show the money in the buying/selling menu
+        count_len = 3
+        label_format_money = "Money {:>{count_len}}".format
+        money = str(local_session.player.money["player"])
+
+        formatted_name_money = label_format_money(money, count_len=count_len)
+        image_money = self.shadow_text(formatted_name_money, bg=(128, 128, 128))
+        yield MenuItem(image_money, formatted_name_money, None, None)
 
 
 class QuantityAndPriceMenu(QuantityMenu):
@@ -107,12 +118,15 @@ class QuantityAndPriceMenu(QuantityMenu):
         self.menu_items.arrange_menu_items()
 
     def initialize_items(self) -> Generator[MenuItem[None], None, None]:
+        # Show the money in buying menu by using the method from the parent class:
+        yield from self.show_money()
+
         # Show the quantity by using the method from the parent class:
         yield from super().initialize_items()
 
         # Now, show the price:
         label_format = "$ {:>{count_len}}".format
-        count_len = 3
+        count_len = 3 
 
         price = (
             self.price if self.quantity == 0 else self.quantity * self.price
@@ -134,6 +148,9 @@ class QuantityAndCostMenu(QuantityMenu):
         self.menu_items.arrange_menu_items()
 
     def initialize_items(self) -> Generator[MenuItem[None], None, None]:
+        # Show the money in selling menu by using the method from the parent class:
+        yield from self.show_money()
+
         # Show the quantity by using the method from the parent class:
         yield from super().initialize_items()
 

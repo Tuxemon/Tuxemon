@@ -86,16 +86,29 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
     def forfeit(self) -> None:
         """
-        Cause player to forfeit from the battle.
+        Cause player to forfeit from the trainer battles.
 
         """
         self.client.pop_state(self)
         combat_state = self.client.get_state_by_name(CombatState)
-        combat_state.trigger_player_run(combat_state.players[0])
+
+        def open_menu() -> None:
+            combat_state.task(
+                partial(
+                    combat_state.show_monster_action_menu,
+                    self.monster,
+                ),
+                1,
+            )
+
+        combat_state.alert(
+            T.translate("combat_can't_run_from_trainer"),
+            open_menu,
+        )
 
     def run(self) -> None:
         """
-        Cause player to run from the battle.
+        Cause player to run from the wild encounters.
 
         TODO: only works for player0.
 
@@ -103,12 +116,14 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         # TODO: only works for player0
         self.client.pop_state(self)
         combat_state = self.client.get_state_by_name(CombatState)
+        player = combat_state.monsters_in_play[combat_state.players[0]][0]
+        target = combat_state.monsters_in_play[combat_state.players[1]][0]
+        var = combat_state.players[0].game_variables
+        var["run_attempts"] = 0
         if (
-            formula.escape(
-                combat_state.players[0].speed, combat_state.players[1].speed
-            )
+            formula.escape(player.level, target.level, var["run_attempts"])
             is True
-            and combat_state.players[0].game_variables["run"] == "on"
+            and combat_state._run == "on"
         ):
             combat_state.trigger_player_run(combat_state.players[0])
         else:
@@ -126,7 +141,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 T.translate("combat_can't_run_from_trainer"),
                 open_menu,
             )
-            combat_state.players[0].game_variables["run"] = "off"
+            combat_state._run = "off"
 
     def open_swap_menu(self) -> None:
         """Open menus to swap monsters in party."""

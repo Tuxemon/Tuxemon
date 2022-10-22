@@ -119,6 +119,9 @@ msgstr "${{name}}'s wallet: ${{currency}}${{money}}"
 
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
+msgid "combat_run"
+msgstr "{user} ran away!"
+
 msgid "combat_miss"
 msgstr "It missed..."
 

@@ -28,16 +28,19 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple
+import random
+from typing import NamedTuple, Optional
 
 from tuxemon import formula
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
+from tuxemon.technique.technique import Technique
 
 
 class RecoverEffectResult(TechEffectResult):
     damage: int
     should_tackle: bool
+    status: Optional[Technique]
 
 
 class RecoverEffectParameters(NamedTuple):
@@ -53,6 +56,26 @@ class RecoverEffect(TechEffect[RecoverEffectParameters]):
     param_class = RecoverEffectParameters
 
     def apply(self, user: Monster, target: Monster) -> RecoverEffectResult:
-        heal = formula.simple_recover(self.move, target)
-        target.current_hp += heal
-        return {"damage": heal, "should_tackle": False, "success": bool(heal)}
+        if self.user is None:
+            already_applied = any(
+                t for t in user.status if t.slug == "status_recover"
+            )
+        else:
+            already_applied = any(
+                t for t in self.user.status if t.slug == "status_recover"
+            )
+        success = not already_applied and self.move.potency >= random.random()
+        if success:
+            tech = Technique("status_recover", link=user)
+            user.apply_status(tech)
+            return {"status": tech}
+
+        if already_applied:
+            heal = formula.simple_recover(self.move, self.user)
+            self.user.current_hp += heal
+
+            return {
+                "damage": heal,
+                "should_tackle": False,
+                "success": bool(heal),
+            }

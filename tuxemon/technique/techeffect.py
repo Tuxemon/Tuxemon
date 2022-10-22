@@ -143,4 +143,4 @@ class TechEffect(Generic[ParameterClass]):
         self._done = False
 
     def apply(self, user: Monster, target: Monster) -> TechEffectResult:
-        ...
+        pass

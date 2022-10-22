@@ -221,7 +221,7 @@ class Technique:
             except KeyError:
                 logger.error(f'Error: TechEffect "{name}" not implemented')
             else:
-                ret.append(effect(self, self.name, params))
+                ret.append(effect(self, self.link or self.carrier, params))
 
         return ret
 

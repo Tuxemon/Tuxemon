@@ -28,16 +28,19 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple
+import random
+from typing import NamedTuple, Optional
 
 from tuxemon import formula
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
+from tuxemon.technique.technique import Technique
 
 
 class PoisonEffectResult(TechEffectResult):
     damage: int
     should_tackle: bool
+    status: Optional[Technique]
 
 
 class PoisonEffectParameters(NamedTuple):
@@ -53,10 +56,24 @@ class PoisonEffect(TechEffect[PoisonEffectParameters]):
     param_class = PoisonEffectParameters
 
     def apply(self, user: Monster, target: Monster) -> PoisonEffectResult:
-        damage = formula.simple_poison(self.move, target)
-        target.current_hp -= damage
-        return {
-            "damage": damage,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
-        }
+        already_applied = any(
+            t for t in target.status if t.slug == "status_poison"
+        )
+        success = not already_applied and self.move.potency >= random.random()
+        if success:
+            tech = Technique("status_poison", carrier=target)
+            target.apply_status(tech)
+            # exception: applies status to the user
+            if self.move.slug == "fester":
+                user.apply_status(tech)
+            return {"status": tech}
+
+        if already_applied:
+            damage = formula.simple_poison(self.move, target)
+            target.current_hp -= damage
+
+            return {
+                "damage": damage,
+                "should_tackle": bool(damage),
+                "success": bool(damage),
+            }

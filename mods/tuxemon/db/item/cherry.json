@@ -1,15 +1,13 @@
 {
-  "slug": "cherry",
-  "use_item": "combat_used_x",
-  "use_success": "generic_success",
-  "use_failure": "generic_failure",
-  "effects": [
-    "heal 10"
-  ],
+  "battle_menu": "monster",
   "conditions": [
     "current_hp target,<,1.0",
     "current_hp target,>,0"
   ],
+  "effects": [
+    "heal 10"
+  ],
+  "slug": "cherry",
   "sort": "food",
   "sprite": "gfx/items/cherry.png",
   "target": {
@@ -26,5 +24,7 @@
     "MainCombatMenuState",
     "WorldState"
   ],
-  "battle_menu": "monster"
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
 }

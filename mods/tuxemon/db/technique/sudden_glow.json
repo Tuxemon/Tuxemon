@@ -2,7 +2,9 @@
   "tech_id": 67,
   "accuracy": 1,
   "animation": "heal_burst_120",
-  "effects": [],
+  "effects": [
+    "recover"
+  ],
   "flip_axes": "",
   "healing_power": 2.0,
   "icon": "",

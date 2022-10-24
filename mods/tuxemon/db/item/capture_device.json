@@ -1,14 +1,12 @@
 {
-  "slug": "capture_device",
-  "use_item": "combat_used_x",
-  "use_success": "generic_success",
-  "use_failure": "generic_failure",
-  "effects": [
-    "capture 100"
-  ],
+  "battle_menu": "combat",
   "conditions": [
     "is_wild_monster target"
   ],
+  "effects": [
+    "capture 100"
+  ],
+  "slug": "capture_device",
   "sort": "utility",
   "sprite": "gfx/items/capture_device.png",
   "target": {
@@ -24,5 +22,7 @@
   "usable_in": [
     "MainCombatMenuState"
   ],
-  "battle_menu": "combat"
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
 }

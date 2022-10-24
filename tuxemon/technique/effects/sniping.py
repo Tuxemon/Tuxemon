@@ -28,51 +28,49 @@
 
 from __future__ import annotations
 
-import random
+import logging
 from typing import NamedTuple, Optional
 
-from tuxemon import formula
 from tuxemon.combat import check_status
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
+logger = logging.getLogger(__name__)
 
-class PoisonEffectResult(TechEffectResult):
+
+class SnipingEffectResult(TechEffectResult):
     damage: int
     should_tackle: bool
     status: Optional[Technique]
 
 
-class PoisonEffectParameters(NamedTuple):
-    pass
+class SnipingEffectParameters(NamedTuple):
+    objective: str
 
 
-class PoisonEffect(TechEffect[PoisonEffectParameters]):
+class SnipingEffect(TechEffect[SnipingEffectParameters]):
     """
-    This effect has a chance to apply the poison status effect.
+    This effect has a chance to apply the sniping status effect.
     """
 
-    name = "poison"
-    param_class = PoisonEffectParameters
+    name = "sniping"
+    param_class = SnipingEffectParameters
 
-    def apply(self, user: Monster, target: Monster) -> PoisonEffectResult:
-        already_applied = check_status(target, "status_poison")
-        success = not already_applied and self.move.potency >= random.random()
-        if success:
-            tech = Technique("status_poison", carrier=target)
-            target.apply_status(tech)
-            # exception: applies status to the user
-            if self.move.slug == "fester":
+    def apply(self, user: Monster, target: Monster) -> SnipingEffectResult:
+        if self.parameters.objective == "user" and self.user is None:
+            already_applied = check_status(user, "status_sniping")
+        elif self.parameters.objective == "target":
+            already_applied = check_status(target, "status_sniping")
+        else:
+            already_applied = check_status(self.user, "status_sniping")
+        if not already_applied:
+            tech = Technique("status_sniping", link=user)
+            if self.parameters.objective == "user":
                 user.apply_status(tech)
+            elif self.parameters.objective == "target":
+                target.apply_status(tech)
             return {"status": tech}
 
         if already_applied:
-            damage = formula.simple_poison(self.move, target)
-            target.current_hp -= damage
-
-            return {
-                "damage": damage,
-                "should_tackle": bool(damage),
-                "success": bool(damage),
-            }
+            return {"damage": 0, "should_tackle": False, "success": False}

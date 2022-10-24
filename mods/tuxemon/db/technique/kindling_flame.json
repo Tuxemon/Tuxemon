@@ -3,7 +3,8 @@
   "accuracy": 0.8,
   "animation": "constantburn",
   "effects": [
-    "damage"
+    "damage",
+    "enraged user"
   ],
   "flip_axes": "",
   "healing_power": 0,

@@ -31,6 +31,7 @@ from __future__ import annotations
 import random
 from typing import NamedTuple, Optional
 
+from tuxemon.combat import check_status
 from tuxemon import formula
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -49,7 +50,7 @@ class RecoverEffectParameters(NamedTuple):
 
 class RecoverEffect(TechEffect[RecoverEffectParameters]):
     """
-    Recover HP
+    This effect has a chance to apply the recovering status effect.
     """
 
     name = "recover"
@@ -57,13 +58,9 @@ class RecoverEffect(TechEffect[RecoverEffectParameters]):
 
     def apply(self, user: Monster, target: Monster) -> RecoverEffectResult:
         if self.user is None:
-            already_applied = any(
-                t for t in user.status if t.slug == "status_recover"
-            )
+            already_applied = check_status(user, "status_recover")
         else:
-            already_applied = any(
-                t for t in self.user.status if t.slug == "status_recover"
-            )
+            already_applied = check_status(self.user, "status_recover")
         success = not already_applied and self.move.potency >= random.random()
         if success:
             tech = Technique("status_recover", link=user)

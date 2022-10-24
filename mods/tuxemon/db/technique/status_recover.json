@@ -1,10 +1,13 @@
 {
   "animation": "greendrip",
+  "category": "positive",
   "effects": [
     "recover"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_recover.png",
+  "repl_pos": "replace",
+  "repl_neg": "replace",
   "sfx": "sfx_bite",
   "slug": "status_recover",
   "sort": "meta",
@@ -18,7 +21,7 @@
     "item": 0
   },
   "tech_id": 96,
-  "use_failure": "combat_state_recover_failure",
-  "use_success": "combat_state_recover_success",
-  "use_tech": "combat_state_recover_get"
+  "use_failure": "generic_failure",
+  "use_success": "combat_state_recover_get",
+  "use_tech": "combat_used_x"
 }

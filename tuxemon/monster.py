@@ -431,13 +431,38 @@ class Monster:
 
     def apply_status(self, status: Technique) -> None:
         """
-        Apply a status to the monster.
+        Apply a status to the monster by replacing or removing
+        the previous status.
 
         Parameters:
             status: The status technique.
 
         """
-        self.status.append(status)
+        count_status = len(self.status)
+        if count_status == 0:
+            self.status.insert(0, status)
+        else:
+            if self.status[0].category == "positive":
+                if status.repl_pos == "replace":
+                    self.status.insert(0, status)
+                    self.status.pop(1)
+                elif status.repl_pos == "remove":
+                    self.status.pop(0)
+                else:
+                    # noddingoff, exhausted, festering, dozing
+                    self.status.append(status)
+            elif self.status[0].category == "negative":
+                if status.repl_neg == "replace":
+                    self.status.insert(0, status)
+                    self.status.pop(1)
+                elif status.repl_pos == "remove":
+                    self.status.pop(0)
+                else:
+                    # chargedup, charging and dozing
+                    self.status.append(status)
+            else:
+                # spyderbite and eliminated
+                self.status.append(status)
 
     def set_stats(self) -> None:
         """
@@ -690,9 +715,9 @@ class Monster:
         assert isinstance(action.technique, Technique)
         technique = action.technique
         if technique.is_fast:
-            return int(random.randrange(0, self.speed) * 1.5)
+            return int(random.randrange(0, int(self.speed)) * 1.5)
         else:
-            return random.randrange(0, self.speed)
+            return random.randrange(0, int(self.speed))
 
 
 def decode_monsters(

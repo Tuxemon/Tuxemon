@@ -3,6 +3,7 @@
   "accuracy": 0.8,
   "animation": "fire enemy death 1",
   "effects": [
+    "poison",
     "damage"
   ],
   "flip_axes": "",

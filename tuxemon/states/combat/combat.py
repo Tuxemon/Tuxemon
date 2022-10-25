@@ -723,8 +723,7 @@ class CombatState(CombatAnimations):
                     # load the sprite and add it to the display
                     self.load_sprite(
                         status.icon,
-                        layer=200,
-                        center=rect.topleft,
+                        center=rect.bottomleft,
                     )
 
     def show_combat_dialog(self) -> None:

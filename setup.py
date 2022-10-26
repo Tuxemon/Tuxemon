@@ -3,7 +3,7 @@
 import fnmatch
 import os
 
-from setuptools import setup
+from setuptools import setup, find_packages
 from setuptools.command.install import install
 
 
@@ -17,19 +17,6 @@ class InstallAndBuildTranslations(install):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # build_translations()
-
-
-# Find all the python modules
-modules = []
-matches = []
-for root, dirnames, filenames in os.walk("tuxemon"):
-    for filename in fnmatch.filter(filenames, "__init__.py"):
-        matches.append(os.path.join(root, filename))
-
-for match in matches:
-    match = match.replace(os.sep + "__init__.py", "")
-    match = match.replace(os.sep, ".")
-    modules.append(match)
 
 # Get the version from the README file.
 with open("README.md", "r") as f:
@@ -50,7 +37,7 @@ setup(
     maintainer_email="info@tuxemon.org",
     url="https://www.tuxemon.org",
     include_package_data=True,
-    packages=modules,
+    packages=find_packages(),
     license="GPLv3",
     long_description="https://github.com/Tuxemon/Tuxemon",
     install_requires=REQUIREMENTS,

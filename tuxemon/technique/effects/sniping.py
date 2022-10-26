@@ -58,19 +58,20 @@ class SnipingEffect(TechEffect[SnipingEffectParameters]):
     param_class = SnipingEffectParameters
 
     def apply(self, user: Monster, target: Monster) -> SnipingEffectResult:
-        if self.parameters.objective == "user" and self.user is None:
+        obj = self.parameters.objective
+        if obj == "user":
             already_applied = check_status(user, "status_sniping")
-        elif self.parameters.objective == "target":
+        elif obj == "target":
             already_applied = check_status(target, "status_sniping")
-        else:
-            already_applied = check_status(self.user, "status_sniping")
         if not already_applied:
-            tech = Technique("status_sniping", link=user)
-            if self.parameters.objective == "user":
+            if obj == "user":
+                tech = Technique("status_sniping", link=user)
                 user.apply_status(tech)
-            elif self.parameters.objective == "target":
+                return {"status": tech}
+            elif obj == "target":
+                tech = Technique("status_sniping", carrier=target)
                 target.apply_status(tech)
-            return {"status": tech}
+                return {"status": tech}
 
         if already_applied:
             return {"damage": 0, "should_tackle": False, "success": False}

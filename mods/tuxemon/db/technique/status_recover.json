@@ -1,5 +1,5 @@
 {
-  "animation": "greendrip",
+  "animation": "drip_green",
   "category": "positive",
   "effects": [
     "recover"

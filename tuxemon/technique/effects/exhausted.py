@@ -58,19 +58,20 @@ class ExhaustedEffect(TechEffect[ExhaustedEffectParameters]):
     param_class = ExhaustedEffectParameters
 
     def apply(self, user: Monster, target: Monster) -> ExhaustedEffectResult:
-        if self.parameters.objective == "user" and self.user is None:
+        obj = self.parameters.objective
+        if obj == "user":
             already_applied = check_status(user, "status_exhausted")
-        elif self.parameters.objective == "target":
+        elif obj == "target":
             already_applied = check_status(target, "status_exhausted")
-        else:
-            already_applied = check_status(self.user, "status_exhausted")
         if not already_applied:
-            tech = Technique("status_exhausted", link=user)
-            if self.parameters.objective == "user":
+            if obj == "user":
+                tech = Technique("status_exhausted", link=user)
                 user.apply_status(tech)
-            elif self.parameters.objective == "target":
+                return {"status": tech}
+            elif obj == "target":
+                tech = Technique("status_exhausted", carrier=target)
                 target.apply_status(tech)
-            return {"status": tech}
+                return {"status": tech}
 
         if already_applied:
             return {"damage": 0, "should_tackle": False, "success": False}

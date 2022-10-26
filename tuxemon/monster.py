@@ -440,13 +440,14 @@ class Monster:
         """
         count_status = len(self.status)
         if count_status == 0:
-            self.status.insert(0, status)
+            self.status.append(status)
         else:
             if self.status[0].category == "positive":
                 if status.repl_pos == "replace":
                     self.status.insert(0, status)
                     self.status.pop(1)
                 elif status.repl_pos == "remove":
+                    self.status.append(status)
                     self.status.pop(0)
                 else:
                     # noddingoff, exhausted, festering, dozing
@@ -456,6 +457,7 @@ class Monster:
                     self.status.insert(0, status)
                     self.status.pop(1)
                 elif status.repl_pos == "remove":
+                    self.status.append(status)
                     self.status.pop(0)
                 else:
                     # chargedup, charging and dozing

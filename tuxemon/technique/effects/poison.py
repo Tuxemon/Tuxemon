@@ -76,3 +76,5 @@ class PoisonEffect(TechEffect[PoisonEffectParameters]):
                 "should_tackle": bool(damage),
                 "success": bool(damage),
             }
+
+        return {"success": False}

@@ -58,19 +58,20 @@ class HardShellEffect(TechEffect[HardShellEffectParameters]):
     param_class = HardShellEffectParameters
 
     def apply(self, user: Monster, target: Monster) -> HardShellEffectResult:
-        if self.parameters.objective == "user" and self.user is None:
+        obj = self.parameters.objective
+        if obj == "user":
             already_applied = check_status(user, "status_hardshell")
-        elif self.parameters.objective == "target":
+        elif obj == "target":
             already_applied = check_status(target, "status_hardshell")
-        else:
-            already_applied = check_status(self.user, "status_hardshell")
         if not already_applied:
-            tech = Technique("status_hardshell", link=user)
-            if self.parameters.objective == "user":
+            if obj == "user":
+                tech = Technique("status_hardshell", link=user)
                 user.apply_status(tech)
-            elif self.parameters.objective == "target":
+                return {"status": tech}
+            elif obj == "target":
+                tech = Technique("status_hardshell", carrier=target)
                 target.apply_status(tech)
-            return {"status": tech}
+                return {"status": tech}
 
         if already_applied:
             return {"damage": 0, "should_tackle": False, "success": False}

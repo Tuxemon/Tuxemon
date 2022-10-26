@@ -58,19 +58,20 @@ class EnragedEffect(TechEffect[EnragedEffectParameters]):
     param_class = EnragedEffectParameters
 
     def apply(self, user: Monster, target: Monster) -> EnragedEffectResult:
-        if self.parameters.objective == "user" and self.user is None:
+        obj = self.parameters.objective
+        if obj == "user":
             already_applied = check_status(user, "status_enraged")
-        elif self.parameters.objective == "target":
+        elif obj == "target":
             already_applied = check_status(target, "status_enraged")
-        else:
-            already_applied = check_status(self.user, "status_enraged")
         if not already_applied:
-            tech = Technique("status_enraged", link=user)
-            if self.parameters.objective == "user":
+            if obj == "user":
+                tech = Technique("status_enraged", link=user)
                 user.apply_status(tech)
-            elif self.parameters.objective == "target":
+                return {"status": tech}
+            elif obj == "target":
+                tech = Technique("status_enraged", carrier=target)
                 target.apply_status(tech)
-            return {"status": tech}
+                return {"status": tech}
 
         if already_applied:
             return {"damage": 0, "should_tackle": False, "success": False}

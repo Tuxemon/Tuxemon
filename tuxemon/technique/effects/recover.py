@@ -31,8 +31,8 @@ from __future__ import annotations
 import random
 from typing import NamedTuple, Optional
 
-from tuxemon.combat import check_status
 from tuxemon import formula
+from tuxemon.combat import check_status
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
@@ -68,11 +68,18 @@ class RecoverEffect(TechEffect[RecoverEffectParameters]):
             return {"status": tech}
 
         if already_applied:
-            heal = formula.simple_recover(self.move, self.user)
-            self.user.current_hp += heal
+            # avoids Nonetype situation and reset the user
+            if self.user is None:
+                heal = formula.simple_recover(self.move, user)
+                user.current_hp += heal
+            else:
+                heal = formula.simple_recover(self.move, self.user)
+                self.user.current_hp += heal
 
             return {
                 "damage": heal,
                 "should_tackle": False,
                 "success": bool(heal),
             }
+
+        return {"success": False}

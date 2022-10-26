@@ -92,3 +92,5 @@ class LifeLeechEffect(TechEffect[LifeLeechEffectParameters]):
                 "should_tackle": bool(damage),
                 "success": bool(damage),
             }
+
+        return {"success": False}

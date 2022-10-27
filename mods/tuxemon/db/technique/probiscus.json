@@ -3,7 +3,8 @@
   "accuracy": 0.8,
   "animation": "lance_ice",
   "effects": [
-    "damage"
+    "damage",
+    "lifeleech"
   ],
   "flip_axes": "xy",
   "healing_power": 0,

@@ -3,6 +3,7 @@
   "accuracy": 0.8,
   "animation": "pound",
   "effects": [
+    "poison",
     "damage"
   ],
   "flip_axes": "",

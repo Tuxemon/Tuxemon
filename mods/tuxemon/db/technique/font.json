@@ -3,7 +3,8 @@
   "accuracy": 0.75,
   "animation": "waterspurt",
   "effects": [
-    "damage"
+    "damage",
+    "recover"
   ],
   "flip_axes": "",
   "healing_power": 0,

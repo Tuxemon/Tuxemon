@@ -3,7 +3,8 @@
   "accuracy": 0.8,
   "animation": "sparks_red",
   "effects": [
-    "damage"
+    "damage",
+    "lifeleech"
   ],
   "flip_axes": "",
   "healing_power": 0,

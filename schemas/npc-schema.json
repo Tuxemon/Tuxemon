@@ -59,7 +59,7 @@
           "description": "Level of the monster",
           "type": "integer"
         },
-        "money_mod": {
+        "exp_give_mod": {
           "title": "Exp Give Mod",
           "description": "Modifier for experience this monster gives",
           "type": "number"
@@ -78,7 +78,7 @@
       "required": [
         "slug",
         "level",
-        "money_mod",
+        "exp_give_mod",
         "exp_req_mod",
         "gender"
       ]

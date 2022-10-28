@@ -887,7 +887,7 @@ class NPC(Entity[NPCState]):
         return None
 
     def give_money(self, amount: int) -> None:
-        self.money["player"] = self.money.get("player") + amount
+        self.money["player"] += amount
 
     def has_item(self, item_slug: str) -> bool:
         return self.inventory.get(item_slug) is not None

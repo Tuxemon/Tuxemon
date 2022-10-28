@@ -467,6 +467,7 @@ class CombatState(CombatAnimations):
                             {
                                 "npc": self.players[1].name,
                                 "prize": self._prize,
+                                "currency": "$",
                             },
                         )
                     )

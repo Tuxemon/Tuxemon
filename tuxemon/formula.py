@@ -205,11 +205,7 @@ def simple_overfeed(
     return speed
 
 
-def escape(level_user: int, level_target: int, run: int) -> int:
-    if run == 0:
-        attempts = 0
-    else:
-        attempts = run
+def escape(level_user: int, level_target: int, attempts: int) -> bool:
     escape = 0.4 + (0.15 * (attempts + level_user - level_target))
     if random.random() <= escape:
         return True

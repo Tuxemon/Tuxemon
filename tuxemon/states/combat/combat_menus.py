@@ -122,7 +122,6 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         var["run_attempts"] = 0
         if (
             formula.escape(player.level, target.level, var["run_attempts"])
-            is True
             and combat_state._run == "on"
         ):
             combat_state.trigger_player_run(combat_state.players[0])

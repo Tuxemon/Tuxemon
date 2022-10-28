@@ -1,9 +1,11 @@
 {
   "animation": "drip_green",
-  "category": "confused",
+  "category": "negative",
   "effects": [],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_confused.png",
+  "repl_pos": "replace",
+  "repl_neg": "replace",
   "sfx": "sfx_pulse",
   "slug": "status_confused",
   "sort": "meta",

@@ -1,17 +1,19 @@
 {
   "animation": "drip_green",
-  "category": "focused",
+  "category": "positive",
   "effects": [
     "statchange"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_focused.png",
+  "repl_pos": "replace",
+  "repl_neg": "remove",
   "sfx": "sfx_pulse",
   "slug": "status_focused",
   "sort": "meta",
   "statdodge": {
     "value": 1.5,
-    "operation": "-"
+    "operation": "*"
   },
   "target": {
     "enemy monster": 0,

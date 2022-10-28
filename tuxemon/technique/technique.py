@@ -83,6 +83,7 @@ class Technique:
         self.animation = ""
         self.can_apply_status = False
         self.carrier = carrier
+        self.category = ""
         self.combat_state: Optional[CombatState] = None
         self.effects: Sequence[TechEffect[Any]] = []
         self.flip_axes = ""
@@ -97,6 +98,8 @@ class Technique:
         self.power = 1.0
         self.range: Optional[str] = None
         self.recharge_length = 0
+        self.repl_pos = ""
+        self.repl_neg = ""
         self.sfx = ""
         self.sort = ""
         self.slug = slug

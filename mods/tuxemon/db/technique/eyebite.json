@@ -2,7 +2,9 @@
   "tech_id": 35,
   "accuracy": 1,
   "animation": "bite",
-  "effects": [],
+  "effects": [
+    "exhausted target"
+  ],
   "flip_axes": "",
   "healing_power": 0,
   "icon": "",

@@ -1,10 +1,13 @@
 {
   "animation": "drip_green",
+  "category": "negative",
   "effects": [
     "poison"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_poison.png",
+  "repl_pos": "replace",
+  "repl_neg": "replace",
   "sfx": "sfx_pulse",
   "slug": "status_poison",
   "sort": "meta",
@@ -20,5 +23,5 @@
   "tech_id": 95,
   "use_failure": "generic_failure",
   "use_success": "combat_state_poison_get",
-  "use_tech": "combat_state_poison_damage"
+  "use_tech": "combat_used_x"
 }

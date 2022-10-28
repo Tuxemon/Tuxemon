@@ -3,7 +3,8 @@
   "accuracy": 0.75,
   "animation": "triforce",
   "effects": [
-    "damage"
+    "damage",
+    "enraged user"
   ],
   "flip_axes": "xy",
   "healing_power": 0,

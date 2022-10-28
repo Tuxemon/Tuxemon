@@ -3,7 +3,9 @@
   "accuracy": 0.75,
   "animation": "sparks_white",
   "effects": [
-    "damage"
+    "damage",
+    "focused target",
+    "focused user"
   ],
   "flip_axes": "",
   "healing_power": 0,

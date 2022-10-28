@@ -1,21 +1,23 @@
 {
   "animation": "drip_green",
-  "category": "enraged",
+  "category": "positive",
   "effects": [
     "statchange"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_enraged.png",
+  "repl_pos": "replace",
+  "repl_neg": "replace",
   "sfx": "sfx_pulse",
   "slug": "status_enraged",
   "sort": "meta",
   "statmelee": {
     "value": 2,
-    "operation": "-"
+    "operation": "*"
   },
   "statranged": {
     "value": 0.5,
-    "operation": "-"
+    "operation": "*"
   },
   "target": {
     "enemy monster": 0,

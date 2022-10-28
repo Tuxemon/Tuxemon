@@ -266,7 +266,7 @@ msgid "combat_state_lifeleech_failure"
 msgstr "{link} can't heal any further."
 
 msgid "combat_state_lifeleech_get"
-msgstr "{user} is leeching health from {target}."
+msgstr "{target}'s lifeforce is being leeched."
 
 msgid "combat_state_lifeleech_success"
 msgstr "{user} lost health to lifeleech!"

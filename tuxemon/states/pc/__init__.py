@@ -38,6 +38,7 @@ from typing import (
     Any,
     Callable,
     Generator,
+    Optional,
     Sequence,
     Tuple,
     no_type_check,
@@ -59,6 +60,7 @@ from tuxemon.tools import open_dialog, transform_resource_filename
 logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
+    from tuxemon.animation import Animation
     from tuxemon.monster import Monster
 
 
@@ -251,7 +253,7 @@ class MonsterTakeState(PygameMenuState):
             new_image.scale(prepare.SCALE, prepare.SCALE)
             new_button = menu.add.button(label, callback)
 
-    def startup(self, box_name: String, **kwargs: Any) -> None:
+    def startup(self, box_name: str, **kwargs: Any) -> None:
         width, height = prepare.SCREEN_SIZE
 
         theme = get_theme()
@@ -417,7 +419,7 @@ class MonsterBoxChooseDropOffState(MonsterBoxChooseState):
 class MonsterDropOffState(MonsterMenuState):
     """Shows all Tuxemon in player's party, puts it into box if selected."""
 
-    def startup(self, box_name: String, **kwargs: Any) -> None:
+    def startup(self, box_name: str, **kwargs: Any) -> None:
         super().startup(**kwargs)
 
         self.box_name = box_name

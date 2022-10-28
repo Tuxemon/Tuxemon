@@ -35,6 +35,7 @@ from typing import (
     TYPE_CHECKING,
     Any,
     ClassVar,
+    List,
     Mapping,
     Optional,
     Sequence,
@@ -43,7 +44,7 @@ from typing import (
 
 from tuxemon import plugin, prepare
 from tuxemon.constants import paths
-from tuxemon.db import db, process_targets
+from tuxemon.db import Range, db, process_targets
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -53,6 +54,45 @@ if TYPE_CHECKING:
     from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
+
+
+RANGES = {
+    Range.melee: {
+        "accuracy": 1,
+        "potency": 1,
+        "power": 1,
+    },
+    Range.ranged: {
+        "accuracy": 2,
+        "potency": 2,
+        "power": 2,
+    },
+    Range.reach: {
+        "accuracy": 3,
+        "potency": 3,
+        "power": 3,
+    },
+    Range.reliable: {
+        "accuracy": 4,
+        "potency": 4,
+        "power": 4,
+    },
+    Range.special: {
+        "accuracy": 5,
+        "potency": 5,
+        "power": 5,
+    },
+    Range.status: {
+        "accuracy": 6,
+        "potency": 6,
+        "power": 6,
+    },
+    Range.touch: {
+        "accuracy": 7,
+        "potency": 7,
+        "power": 7,
+    },
+}
 
 
 class Technique:
@@ -95,7 +135,7 @@ class Technique:
         self.next_use = 0.0
         self.potency = 0.0
         self.power = 1.0
-        self.range: Optional[str] = None
+        self.range = Range.melee
         self.recharge_length = 0
         self.sfx = ""
         self.sort = ""
@@ -119,6 +159,7 @@ class Technique:
         # If a slug of the technique was provided, autoload it.
         if slug:
             self.load(slug)
+            self.set_stats()
 
     def load(self, slug: str) -> None:
         """
@@ -156,8 +197,6 @@ class Technique:
         else:
             self.type1 = self.type2 = None
 
-        self.power = results.power or self.power
-
         self.statspeed = results.statspeed
         self.stathp = results.stathp
         self.statarmour = results.statarmour
@@ -168,10 +207,8 @@ class Technique:
         self.is_fast = results.is_fast or self.is_fast
         self.recharge_length = results.recharge or self.recharge_length
         self.is_area = results.is_area or self.is_area
-        self.range = results.range or self.range
+        self.range = results.range or Range.melee
         self.tech_id = results.tech_id or self.tech_id
-        self.accuracy = results.accuracy or self.accuracy
-        self.potency = results.potency or self.potency
         self.effects = self.parse_effects(results.effects)
         self.target = process_targets(results.target)
 
@@ -301,3 +338,12 @@ class Technique:
 
     def get_state(self) -> Optional[str]:
         return self.slug
+
+    def set_stats(self) -> None:
+        """
+        Set or improve stats.
+        """
+        ranges = RANGES[self.range]
+        self.accuracy = ranges["accuracy"]
+        self.potency = ranges["potency"]
+        self.power = ranges["power"]

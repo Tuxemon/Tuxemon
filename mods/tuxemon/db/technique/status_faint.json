@@ -3,6 +3,7 @@
   "effects": [],
   "flip_axes": "",
   "icon": "",
+  "range": "status",
   "power": 10,
   "sfx": "sfx_faint",
   "slug": "status_faint",

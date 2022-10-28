@@ -4,6 +4,7 @@
   "effects": [],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_dozing.png",
+  "range": "status",
   "sfx": "sfx_pulse",
   "slug": "status_dozing",
   "sort": "meta",

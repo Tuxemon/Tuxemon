@@ -5,6 +5,7 @@
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_poison.png",
+  "range": "status",
   "sfx": "sfx_pulse",
   "slug": "status_poison",
   "sort": "meta",

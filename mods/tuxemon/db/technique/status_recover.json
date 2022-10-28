@@ -5,6 +5,7 @@
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_recover.png",
+  "range": "status",
   "sfx": "sfx_bite",
   "slug": "status_recover",
   "sort": "meta",

@@ -7,7 +7,7 @@
       "name": "Masknake",
       "level": 22,
       "slug": "masknake",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     }

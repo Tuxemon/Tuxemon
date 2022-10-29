@@ -1,9 +1,11 @@
 {
   "animation": "drip_green",
-  "category": "tired",
+  "category": "negative",
   "effects": [],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_tired.png",
+  "repl_pos": "remove",
+  "repl_neg": "replace",
   "sfx": "sfx_pulse",
   "slug": "status_tired",
   "sort": "meta",

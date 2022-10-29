@@ -212,6 +212,7 @@ class CombatState(CombatAnimations):
         self._layout = dict()  # player => home areas on screen
         self._animation_in_progress = False  # if true, delay phase change
         self._round = 0
+        self._prize = 0
 
         super().startup(**kwargs)
         self.is_trainer_battle = combat_type == "trainer"
@@ -412,6 +413,8 @@ class CombatState(CombatAnimations):
             for monster in self.active_monsters:
                 for technique in monster.status:
                     self.enqueue_action(None, technique, monster)
+                    # avoid multiple effect status
+                    monster.set_stats()
 
         elif phase == "resolve match":
             # update battle_total only once after each battle
@@ -459,8 +462,18 @@ class CombatState(CombatAnimations):
             var = self.players[0].game_variables
             if self.remaining_players[0] == self.players[0]:
                 var["battle_last_result"] = "won"
-                self.alert(T.translate("combat_victory"))
                 if self.is_trainer_battle:
+                    self.alert(
+                        T.format(
+                            "combat_victory_trainer",
+                            {
+                                "npc": self.players[1].name,
+                                "prize": self._prize,
+                                "currency": "$",
+                            },
+                        )
+                    )
+                    self.players[0].give_money(self._prize)
                     var["battle_last_trainer"] = self.players[1].slug
                     var["battle_won"] = +1
                     var["percent_win"] = round(
@@ -470,6 +483,8 @@ class CombatState(CombatAnimations):
                     self.players[0].battle_history[
                         self.players[1].slug
                     ] = "won"
+                else:
+                    self.alert(T.translate("combat_victory"))
 
             else:
                 var["battle_last_result"] = "lost"
@@ -689,10 +704,10 @@ class CombatState(CombatAnimations):
         elif self.is_trainer_battle:
             self.alert(
                 T.format(
-                    "combat_opponent_call_tuxemon",
+                    "combat_swap",
                     {
-                        "name": monster.name.upper(),
-                        "user": player.name.upper(),
+                        "user": monster.name.upper(),
+                        "target": player.name.upper(),
                     },
                 )
             )
@@ -963,17 +978,6 @@ class CombatState(CombatAnimations):
                     m = T.translate(element_damage_key)
                     message += "\n" + m
 
-                for status in result.get("statuses", []):
-                    m = T.format(
-                        status.use_item,
-                        {
-                            "name": technique.name,
-                            "user": status.link.name if status.link else "",
-                            "target": status.carrier.name,
-                        },
-                    )
-                    message += "\n" + m
-
             else:  # assume this was an item used
 
                 # handle the capture device
@@ -1022,12 +1026,15 @@ class CombatState(CombatAnimations):
         else:
             if result["success"]:
                 self.suppress_phase_change()
-                self.alert(
-                    T.format(
-                        "combat_status_damage",
-                        {"name": target.name, "status": technique.name},
-                    )
+                msg_type = (
+                    "use_success" if result["success"] else "use_failure"
                 )
+                context = {
+                    "name": technique.name,
+                    "target": target.name,
+                }
+                template = getattr(technique, msg_type)
+                self.alert(T.format(template, context))
 
         is_flipped = False
         for trainer in self.ai_players:
@@ -1067,8 +1074,10 @@ class CombatState(CombatAnimations):
             awarded_exp = monster.total_experience // (
                 monster.level * len(self._damage_map[monster])
             )
+            awarded_mon = monster.level * monster.money_modifier
             for winners in self._damage_map[monster]:
                 winners.give_experience(awarded_exp)
+                self._prize += awarded_mon
 
             # Remove monster from damage map
             del self._damage_map[monster]
@@ -1207,6 +1216,8 @@ class CombatState(CombatAnimations):
         # TODO: End combat differently depending on winning or losing
         for player in self.active_players:
             for mon in player.monsters:
+                # reset status stats
+                mon.set_stats()
                 mon.end_combat()
 
         # clear action queue

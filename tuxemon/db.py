@@ -298,7 +298,7 @@ class MonsterModel(BaseModel):
 
 
 class StatModel(BaseModel):
-    value: int = Field(0, description="The value of the stat")
+    value: float = Field(0.0, description="The value of the stat")
     max_deviation: int = Field(
         0, description="The maximum deviation of the stat"
     )
@@ -421,8 +421,8 @@ class TechniqueModel(BaseModel):
 class PartyMemberModel(BaseModel):
     slug: str = Field(..., description="Slug of the monster")
     level: int = Field(..., description="Level of the monster")
-    exp_give_mod: float = Field(
-        ..., description="Modifier for experience this monster gives"
+    money_mod: int = Field(
+        ..., description="Modifier for money this monster gives"
     )
     exp_req_mod: float = Field(..., description="Experience required modifier")
     gender: GenderType = Field(..., description="Gender of the monster")

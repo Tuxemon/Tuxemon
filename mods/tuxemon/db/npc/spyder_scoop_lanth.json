@@ -7,7 +7,7 @@
       "name": "mRmOswitch",
       "level": 35,
       "slug": "mrmoswitch",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "neuter"
     },
@@ -15,7 +15,7 @@
       "name": "PiCC",
       "level": 35,
       "slug": "picc",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "neuter"
     }

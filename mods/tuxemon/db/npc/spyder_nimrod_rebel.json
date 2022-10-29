@@ -7,7 +7,7 @@
       "name": "Grimachin",
       "level": 30,
       "slug": "grimachin",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     }

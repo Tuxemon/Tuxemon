@@ -7,7 +7,7 @@
       "name": "Rockat",
       "level": 12,
       "slug": "rockat",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     },
@@ -15,7 +15,7 @@
       "name": "Foofle",
       "level": 12,
       "slug": "foofle",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     }

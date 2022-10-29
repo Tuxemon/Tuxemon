@@ -1,9 +1,11 @@
 {
   "animation": "drip_green",
-  "category": "stuck",
+  "category": "negative",
   "effects": [],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_stuck.png",
+  "repl_pos": "replace",
+  "repl_neg": "replace",
   "sfx": "sfx_pulse",
   "slug": "status_stuck",
   "sort": "meta",

@@ -1,17 +1,19 @@
 {
   "animation": "drip_green",
-  "category": "hardshell",
+  "category": "positive",
   "effects": [
     "statchange"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_hardshell.png",
+  "repl_pos": "replace",
+  "repl_neg": "remove",
   "sfx": "sfx_bite",
   "slug": "status_hardshell",
   "sort": "meta",
   "statarmour": {
     "value": 1.5,
-    "operation": "-"
+    "operation": "*"
   },
   "target": {
     "enemy monster": 0,

@@ -3,6 +3,7 @@
   "accuracy": 0.5,
   "animation": "puff",
   "effects": [
+    "poison",
     "damage"
   ],
   "flip_axes": "",

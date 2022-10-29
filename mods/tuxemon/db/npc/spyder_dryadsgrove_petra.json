@@ -7,7 +7,7 @@
       "name": "Vivitron",
       "level": 50,
       "slug": "vivitron",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     },
@@ -15,7 +15,7 @@
       "name": "Sumchon",
       "level": 50,
       "slug": "sumchon",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     },
@@ -23,7 +23,7 @@
       "name": "Exapode",
       "level": 50,
       "slug": "exapode",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     }

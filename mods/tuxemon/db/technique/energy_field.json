@@ -2,7 +2,9 @@
   "tech_id": 22,
   "accuracy": 1,
   "animation": "screen",
-  "effects": [],
+  "effects": [
+    "exhausted target"
+  ],
   "flip_axes": "x",
   "healing_power": 0,
   "icon": "",

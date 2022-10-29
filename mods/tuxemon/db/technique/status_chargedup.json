@@ -1,33 +1,34 @@
 {
   "animation": "drip_green",
-  "category": "chargedup",
+  "category": "positive",
   "effects": [
     "statchange"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_chargedup.png",
+  "repl_pos": "replace",
   "sfx": "sfx_pulse",
   "slug": "status_chargedup",
   "sort": "meta",
   "statarmour": {
     "value": 2,
-    "operation": "-"
+    "operation": "*"
   },
   "statdodge": {
     "value": 2,
-    "operation": "-"
+    "operation": "*"
   },
   "statmelee": {
     "value": 2,
-    "operation": "-"
+    "operation": "*"
   },
   "statranged": {
     "value": 2,
-    "operation": "-"
+    "operation": "*"
   },
   "statspeed": {
     "value": 2,
-    "operation": "-"
+    "operation": "*"
   },
   "target": {
     "enemy monster": 0,

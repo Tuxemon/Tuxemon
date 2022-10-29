@@ -89,6 +89,34 @@ msgstr "Einfanggerät"
 msgid "capture_device_description"
 msgstr "Fängt ein Monster ein."
 
+# TMs
+msgid "tm_avalanche"
+msgstr "TM: Lawine"
+
+msgid "tm_avalanche_description"
+msgstr "Technik-Manual, dass einem Wasser- oder Erde-Tuxemon die Lawinen-Technik beibringt."
+
+msgid "tm_blossom"
+msgstr "TM: Erblühen"
+
+msgid "tm_blossom_description"
+msgstr "Technik-Manual, dass einem Holz-Tuxemon die Erblühen-Technik beibringt."
+
+msgid "reg_papers"
+msgstr "Registrierungspapiere"
+
+msgid "reg_papers_description"
+msgstr "Ein Paket mit Registrierungspapieren für die Prüfung."
+
+# Allie's Address
+msgid "allies_address"
+msgstr "Allie's Adresse"
+
+msgid "allies_address_description"
+msgstr "Raum 31, Block 2, Omnichannel-Turm, Cotton Town\n"
+"\n"
+"Da ist ein Lippenabdruck neben der Adresse"
+
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
 msgid "combat_used_x"
@@ -127,6 +155,27 @@ msgstr "Das Gift schadet {name}!"
 
 msgid "combat_state_lifeleech_get"
 msgstr "{user}} absorbiert Gesundheit von {target}."
+
+msgid "dodge_increased"
+msgstr "{user}'s {stat} wurde erhöht."
+
+msgid "speed_halved"
+msgstr "{user}'s Geschwindigkeit wurde halbiert."
+
+msgid "hp_restored"
+msgstr "{user}'s HP wurde wieder hergestellt."
+
+msgid "combat_state_overfeed_get"
+msgstr "{user} hat {target} überfüttert."
+
+msgid "dodge_fell"
+msgstr "{user}'s Ausweichgeschick ist gesunken."
+
+msgid "combat_levitate_get"
+msgstr "{user} stieg höher in die Luft."
+
+msgid "combat_amnesia_get"
+msgstr "{user} hat eine Amnesie bekommen."
 
 msgid "combat_state_lifeleech_success"
 msgstr "{user} wurde Gesundheit absorbiert!"
@@ -217,10 +266,10 @@ msgstr "Es hat funktioniert!"
 msgid "item_failure"
 msgstr "Es hat nicht funktioniert!"
 
-msgid "generic_thing_success"
+msgid "generic_success"
 msgstr "Es hat geklappt!"
 
-msgid "generic_thing_failure"
+msgid "generic_failure"
 msgstr "Es ist fehlgeschlagen!"
 
 msgid "attempting_capture"
@@ -233,7 +282,7 @@ msgid "item_cannot_use_here"
 msgstr "{name} kann hier nicht benutzt werden!"
 
 msgid "receive_happiness"
-msgstr "Received 5 Capture Devices!"
+msgstr "5 Einfangeräte erhalten!"
 
 msgid "received_x"
 msgstr "{name} erhalten!"
@@ -253,6 +302,15 @@ msgstr "K.O."
 msgid "status_poison"
 msgstr "Gift"
 
+msgid "status_lifeleech"
+msgstr "Energieabsorbtion"
+
+msgid "status_overfeed"
+msgstr "Übersättigt"
+
+msgid "status_recover"
+msgstr "Erholt"
+
 msgid "attack_very_effective"
 msgstr "Diese Attacke war sehr effektiv!"
 
@@ -264,11 +322,6 @@ msgstr "Diese Attacke war nicht sehr effektiv!"
 
 msgid "attack_weak"
 msgstr "Diese Attacke war überhaupt nicht effektiv!"
-
-# Money notification
-
-msgid "player_wallet"
-msgstr "${{name}} Geldbörse: ${{money}}${{currency}}"
 
 ## TECHNIQUE TRANSLATIONS ##
 msgid "bite"
@@ -328,7 +381,7 @@ msgstr "Blühen"
 msgid "boulder"
 msgstr "Felsblock"
 
-msgid "breathe_fire_name"
+msgid "breathe_fire"
 msgstr "Feueratem"
 
 msgid "bubble_trap"
@@ -344,7 +397,7 @@ msgid "clamp_on"
 msgstr "Festklammern"
 
 msgid "constrict"
-msgstr "Verengen"
+msgstr "Einengen"
 
 msgid "electrical_storm"
 msgstr "Elektrischer Sturm"
@@ -576,6 +629,19 @@ msgstr "Info"
 msgid "monster_menu_move"
 msgstr "Fähigk."
 
+msgid "monster_menu_release"
+msgstr "Freilassen"
+
+#Release notifications
+msgid "cant_release"
+msgstr "Nur Tuxemon, die du dabei hast, können freigelassen werden."
+
+msgid "release_confirmation"
+msgstr "Bist du dir sicher, dass du {name} freilassen möchtest?"
+
+msgid "tuxemon_released"
+msgstr "{name} wurde freigelassen."
+
 # Menu notifications
 msgid "log_off"
 msgstr "Ausloggen"
@@ -604,6 +670,12 @@ msgstr "Tuxemon"
 # TODO: duplicate of menu_monster?
 msgid "menu_monsters"
 msgstr "Monster"
+
+msgid "menu_storage"
+msgstr "Monster aufnehmen"
+
+msgid "menu_dropoff"
+msgstr "Monster ablegen"
 
 msgid "menu_multiplayer"
 msgstr "Mehrspieler"
@@ -643,6 +715,31 @@ msgstr "Abbruchtaste"
 
 msgid "menu_back_key"
 msgstr "Zurücktaste"
+
+msgid "options_new_input_key0"
+msgstr "Drücke eine Taste, um sie als neue Eingabetaste festzulegen"
+
+msgid "options_new_input_key1"
+msgstr "Starte das Spiel neu, damit die Änderungen wirksam werden!"
+
+msgid "menu_storage_take_monster"
+msgstr "Du hast {name} deinem Team hinzugefügt!"
+
+msgid "menu_storage_monsters_full"
+msgstr "Dein Team ist vollzählig, du kannst kein weiteres Monster hinzufügen."
+
+msgid "menu_storage_empty_kennel"
+msgstr "Dieser Zwinger ist leer, es gibt dort keine Monster zu holen."
+
+msgid "menu_dropoff_no_monsters"
+msgstr "Du hast keine Monster zum ablegen."
+
+# Default mod names on selection menu
+msgid "xero_campaign"
+msgstr "Tuxemon: Xero"
+
+msgid "spyder_campaign"
+msgstr "Tuxemon: Spyder und die Kathedrale"
 
 # Multiplayer notifications
 msgid "multiplayer_accept"
@@ -691,6 +788,12 @@ msgstr ""
 "Ist es geboren, wird es in einem Ameisenhügel platziert und dort "
 "zurückgelassen, um sich seinen Weg raus zu fressen.."
 
+msgid "abesnaki_description"
+msgstr "Jedes Gesicht ist ein unterschiedliches Muster, und manche sagen, dass die Symbole Wörter einer toten Sprache buchstabieren."
+
+msgid "abesnaki"
+msgstr "Abesnaki"
+
 msgid "agnidon"
 msgstr "Agnidon"
 
@@ -715,11 +818,53 @@ msgstr "Allagon"
 msgid "allagon_description"
 msgstr "Allagon werden von den Relikten angezogen, die aus dem zurückgelassenen Metall ihrer Vorfahren gemacht wurden, und sie werden nicht vor Gewalt zurückschrecken, um sie zurückzubekommen."
 
+msgid "altie_description"
+msgstr "ALTIE schwebte in einer Blase hinunter zur Erde. Jetzt ist seine Blase geplatzt, es kann nicht mehr als einige Meter in der Luft schweben."
+
+msgid "altie"
+msgstr "Altie"
+
+msgid "angrito_description"
+msgstr "Es versteht nicht, warum Menschen Wut und Hass fühlen, aber ANGRITO fühlt diese Emotionen ebenfalls."
+
+msgid "angrito"
+msgstr "Angrito"
+
 msgid "anoleaf"
 msgstr "Anoleaf"
 
 msgid "anoleaf_description"
 msgstr "Es betrachtet Pflanzen, die in seiner Nähe wachsen, als Büder und Schwestern."
+
+msgid "anu_description"
+msgstr "Es wird gesagt, dass es die Träume anderer betritt auf der Suche nach seiner verlorenen Liebe."
+
+msgid "anu"
+msgstr "Anu"
+
+msgid "apeoro_description"
+msgstr "Die Könige der Alten benutzten psychische Kräfte um ihre Seelen in diese goldenen verarbeitenden Maschinen zu transferieren. Nun leben sie weiter, unfähig zu kommunizieren, aber immernoch von Imperien träumend."
+
+msgid "apeoro"
+msgstr "Apeoro"
+
+msgid "araignee_description"
+msgstr "Pedanten, die sagen, dass Spinnen immer acht Beine haben, sind seltsam still wenn es um ARAIGNEE geht."
+
+msgid "araignee"
+msgstr "Araignee"
+
+msgid "arthrobolt_description"
+msgstr "Es fühlt sich unwohl dabei seinen Gefährten NUT and BOLT Befehle zu erteilen, und läuft üblicherweise davon. Aber dann haben NUT and BOLT niemanden, der ihnen Anweisungen gibt."
+
+msgid "arthrobolt"
+msgstr "Arthrobolt"
+
+msgid "av8r_description"
+msgstr "Wenn die Sonne scheint kann es so hoch oder weit fliegen, wie es möchte."
+
+msgid "av8r"
+msgstr "Av8r"
 
 msgid "axylightl"
 msgstr "Axylightl"
@@ -727,11 +872,41 @@ msgstr "Axylightl"
 msgid "axylightl_description"
 msgstr "Mit seinem leuchtenden Schweif markiert es sichere Unterkünfte für Fische in tiefen Gewässern."
 
+msgid "b_ver_1_description"
+msgstr "Es ist dafür für all die Zeiten gemacht, wenn du etwas von einem Roboter gebissen haben möchtest."
+
+msgid "b_ver_1"
+msgstr "B-Ver.1"
+
 msgid "bamboon"
 msgstr "Bamboon"
 
 msgid "bamboon_description"
 msgstr "Es kämpft mit seinem Bambusstab, den er zusätzlich für seine Balance nutzt."
+
+msgid "banling_description"
+msgstr "Jedes BANLING wartet auf einen heimatlosen Geist, der sich an seine Zweige schmiegt."
+
+msgid "banling"
+msgstr "Banling"
+
+msgid "baobaraffe_description"
+msgstr "Es speichert gewaltige Wassermassen in seinem riesigen Körper, sodass es weite Strecken durch heiße, trockene Wüsten zurücklegen kann. Es teilt sein Wasser auch mit durstigen Kreaturen. Wenn es kein Wasser speichert, ist es dünn."
+
+msgid "baobaraffe"
+msgstr "Baobaraffe"
+
+msgid "baoby_description"
+msgstr "Sie wandern von Fluss zu Fluss auf der Suche nach Wasser zum trinken und speichern. Die belaubte Ossikone auf seinem Kopf verbergen bewegliche Punkte, die ähnlich wie eine Wünschelrute wirken. Viele Kreaturen folgen Baoby in Dürren."
+
+msgid "baoby"
+msgstr "Baoby"
+
+msgid "beenstalker_description"
+msgstr "Was BEENSTALKER an Sinnen und Anmut mangelt, gleichen sie mit schierem Enthusiasmus und Wohlwollen aus. Es erfreut sich daran Ungezieher zu verscheuchen, ohne sie aber jemals zu verletzen."
+
+msgid "beenstalker"
+msgstr "Beenstalker"
 
 msgid "bigfin"
 msgstr "Bigfin"
@@ -744,6 +919,54 @@ msgstr "Bolt"
 
 msgid "bolt_description"
 msgstr "<<MISSING>>"
+
+msgid "boltnu_description"
+msgstr "Es verbringt die meiste Zeit damit einen Bau in den Boden zu graben. Die ständige Vibration und Bewegung, die sie dabei bewirken, sorgt dafür, dass ihnen dauerhaft schwindelig ist."
+
+msgid "boltnu"
+msgstr "Boltnu"
+
+msgid "botbot_description"
+msgstr "Es ist ein universeller Roboter, der für jeden Zweck angepasst werden kann."
+
+msgid "botbot"
+msgstr "Botbot"
+
+msgid "boxali_description"
+msgstr "Mit seinem langen blauen Umhang kann BOXALI über den Boden gleiten - was es ihm ermöglicht Stunts und Luftattacken durchführen."
+
+msgid "boxali"
+msgstr "Boxali"
+
+msgid "brewdin_description"
+msgstr "Geboren in vernachlässigten, einst geschätzten Töpferwaren und ähnlichen Schätzen. Es heißt, dass es jenen Wünsche erfüllt, die es schaffen es zum lächeln zu bringen."
+
+msgid "brewdin"
+msgstr "Brewdin"
+
+msgid "budaye_description"
+msgstr "Es kann jede Gruppe mit etwas ermutigendem Maunzen und Winken davon überzeugen für das Allgemeinwohl zu kooperieren."
+
+msgid "budaye"
+msgstr "Budaye"
+
+msgid "bugnin_description"
+msgstr "Sein Schwert ist eigentlich eine Antenne, die dafür gewachsen und abgebrochen wurde."
+
+msgid "bugnin"
+msgstr "Bugnin"
+
+msgid "bumbulus_description"
+msgstr "Bumbulus ist ein fliegendes Wesen, das eine Wolke aus Rauch produziert, um sich als Wolke zu tarnen. Niemand hat je seinen wahren Körper gesehen."
+
+msgid "bumbulus"
+msgstr "Bumbulus"
+
+msgid "bursa_description"
+msgstr "Es lehnt Feuer als solches ab und produziert nur das Feuer des Verstandes."
+
+msgid "bursa"
+msgstr "Bursa"
 
 msgid "cairfrey"
 msgstr "Cairfrey"
@@ -775,6 +998,30 @@ msgstr "Cardiwing"
 msgid "cardiwing_description"
 msgstr "Sein Gesang ist bemerkenswert, aber nur wenige wagen es, sich einen explosiven Singvogel zu halten."
 
+msgid "cataspike_description"
+msgstr "Es lernt durch Beobachtung wie man kämpft. Sich selbst überlassen benutzt es seinen seinen Stachel, um Abfall aufzuheben."
+
+msgid "cataspike"
+msgstr "Cataspike"
+
+msgid "cateye_description"
+msgstr "Sie sagen, es blinzelt einmal im Jahr, um das Ende des Sommers zu ehren."
+
+msgid "cateye"
+msgstr "Cateye"
+
+msgid "chenipode_description"
+msgstr "Es knabbert an Schnürsenkeln und Hosenbeinen wenn es reisen will."
+
+msgid "chenipode"
+msgstr "Chenipode"
+
+msgid "chibiro_description"
+msgstr "Es wird in Wäldern und auf Feldern gefunden, wo es häufig mit einer Rübe verwechselt wird."
+
+msgid "chibiro"
+msgstr "Chibiro"
+
 msgid "chillimp"
 msgstr "Chillimp"
 
@@ -787,11 +1034,41 @@ msgstr "Chloragon"
 msgid "chloragon_description"
 msgstr "Es schlüpft, wenn es in fruchtbarer Erde gepflanzt wurde. Wenn die Eier ausgehen, wird es keine CHLORAGON mehr geben."
 
+msgid "chromeye_description"
+msgstr "CHROMEYE wurde erschaffen, um zu beobachten und zu lernen, wie Menschen denken und fühlen."
+
+msgid "chromeye"
+msgstr "Chromeye"
+
+msgid "cochini_description"
+msgstr "Es ist so intelligent und bewusst wie ein drei Jahre altes Kind. Es schmeckt köstlich."
+
+msgid "cochini"
+msgstr "Cochini"
+
+msgid "coleorus_description"
+msgstr "Es hat, unverändert, für Millionen von Jahren existiert."
+
+msgid "coleorus"
+msgstr "Coleorus"
+
 msgid "conifrost"
 msgstr "Conifrost"
 
 msgid "conifrost_description"
 msgstr "Wenn es niest löst es eine Lawine aus. Es hat ständig Schnupfen."
+
+msgid "conileaf_description"
+msgstr "Essen, das in seinem Krug plaziert wird, wird gemischt und in Essig eingelegt. Sie werden dazu verwendet, um Essen zu lagern, ohne das dieses verdirbt."
+
+msgid "conileaf"
+msgstr "Conileaf"
+
+msgid "coproblight_description"
+msgstr "Geboren in den Fäkalien prehistorischer Tuxemon, es benutzte die Knochensplitter in sich zur Verteidigung."
+
+msgid "coproblight"
+msgstr "Coproblight"
 
 msgid "corvix"
 msgstr "Corvix"
@@ -799,11 +1076,35 @@ msgstr "Corvix"
 msgid "corvix_description"
 msgstr "Es bewaffnet seine Schwingen mit den Knochensplittern seiner Opfer."
 
+msgid "cowpignon_description"
+msgstr "Einige Leute lassen es austrocknen und essen es als eine medizinische Verbesserung."
+
+msgid "cowpignon"
+msgstr "Cowpignon"
+
+msgid "criniotherme_description"
+msgstr "Seine Mähne leuchtet am Tag, wird groß und rot während des Sonnenuntergangs und verweht als Asche bei Nacht."
+
+msgid "criniotherme"
+msgstr "Criniotherme"
+
+msgid "dandicub_description"
+msgstr "Nachdem ein Wurf zur Welt gekommen ist, schweben sie über die ganze Welt und sehen ihre Familie nie wieder."
+
+msgid "dandicub"
+msgstr "Dandicub"
+
 msgid "dandylion"
 msgstr "Dandylion"
 
 msgid "dandylion_description"
 msgstr "Es hat einen Wurf in seinem Leben. Dann wandert es durch die Welt, um sie wieder zu finden."
+
+msgid "dinoflop_description"
+msgstr "DINOFLOP ergötzt sich daran sich schnell von seinen Angreifern abzuwenden, sodass deren Schläge auf seinem abgeschirmten und stacheligen Rücken landen."
+
+msgid "dinoflop"
+msgstr "Dinoflop"
 
 msgid "djinnbo"
 msgstr "Djinnbo"
@@ -829,17 +1130,59 @@ msgstr "Dragarbor"
 msgid "dragarbor_description"
 msgstr "Wenn es spürt, dass das Ende seines Lebens naht, reist es zu einem Friedhof, wo es sich selbst einpflanzt. Seine Schwanzblume wächst ewig."
 
+msgid "drokoro_description"
+msgstr "Es hatte einmal eine Familie, aber es hat seine Eltern gefressen, seine Kinder und seinen Partner, und alle seiner Art."
+
+msgid "drokoro"
+msgstr "Drokoro"
+
 msgid "dune_pincher"
 msgstr "Dune Pincher"
 
 msgid "dune_pincher_description"
-msgstr "<<MISSING>>"
+msgstr "Diese Einsiedler werden sich einwickeln in was auch immer in greifbarer Nähe ist. In der Wüste sind das die Leichentücher längst verstorbener Pharaohnen."
 
 msgid "eaglace"
 msgstr "Eaglace"
 
 msgid "eaglace_description"
-msgstr "When it takes flight, clouds form. When it claps its wings, hail falls."
+msgstr "Wenn es abfliegt, formen sich Wolken. Wenn es mit seinen Flügeln schlägt, fällt Hagel."
+
+msgid "elofly_description"
+msgstr "Ein ELOFLY auf sich allein gestellt ist geduldig und weise, aber wenn sie große Schwärme bilden werden sie gewalttätig und impulsiv."
+
+msgid "elofly"
+msgstr "Elofly"
+
+msgid "elostorm_description"
+msgstr "Könige und Königinnen, die ELOSTORM herrschen über Ihresgleichen und haben große Ambitionen."
+
+msgid "elostorm"
+msgstr "Elostorm"
+
+msgid "elowind_description"
+msgstr "Als die Leutnants der ELOFLY Familie führen die ELOWIND die Herde und halten sie konzentriert."
+
+msgid "elowind"
+msgstr "Elowind"
+
+msgid "embazook_description"
+msgstr "Es wurde für den Krieg trainiert und kennt kein anderes Leben."
+
+msgid "embazook"
+msgstr "Embazook"
+
+msgid "embra_description"
+msgstr "Es frisst alles, was es kann, um groß genug zu werden, damit es zu einem RUPTION wird."
+
+msgid "embra"
+msgstr "Embra"
+
+msgid "enduros_description"
+msgstr "ENDUROS ist ein agressiver Raufer, der sich nicht mit seinen Schlägen zurückhält. Außerhalb des Rings ist es ganz gesellig."
+
+msgid "enduros"
+msgstr "Enduros"
 
 msgid "eruptibus_description"
 msgstr "Schmiede arbeiten mit ihm, indem sie Metall in seiner Caldera erhitzen."
@@ -847,11 +1190,35 @@ msgstr "Schmiede arbeiten mit ihm, indem sie Metall in seiner Caldera erhitzen."
 msgid "eruptibus"
 msgstr "Eruptibus"
 
+msgid "exapode_description"
+msgstr "Es winkt mit seinen Beinen, um auf sich aufmerksam zu machen, aber meisten laufen die Leute einfach weg."
+
+msgid "exapode"
+msgstr "Exapode"
+
+msgid "exclawvate_description"
+msgstr "Sie werden oft auf Baustellen gesehen, wo sie mit ihren riesigen Händen und ihrem Schwanz Dreck und Schutt aufschaufeln. Unterhalb sind diese Tuxemon Raupenreifen, was ihnen eine bessere Balance gibt sowie eine bessere Griffigkeit während sie Schutthaufen emporklettern."
+
+msgid "exclawvate"
+msgstr "Exclawvate"
+
 msgid "eyenemy"
 msgstr "Eyenemy"
 
 msgid "eyenemy_description"
 msgstr "Es nährt sich von schöner Aussicht und anderen spektakulären Besichtigungen."
+
+msgid "eyesore_description"
+msgstr "Es kann sich an alles erinnern, was es jemals gesehen hat, nur nicht, in welcher Reihenfolge."
+
+msgid "eyesore"
+msgstr "Eyesore"
+
+msgid "fancair_description"
+msgstr "Wenn jemand seinen Lüfter laufen lässt, obwohl er nicht gebraucht wird, dann erwacht er zum Leben und fliegt aus dem Fenster, um jemanden zu finden, der tatsächlich gekühlt werden muss."
+
+msgid "fancair"
+msgstr "Fancair"
 
 msgid "falcono"
 msgstr "Falcono"

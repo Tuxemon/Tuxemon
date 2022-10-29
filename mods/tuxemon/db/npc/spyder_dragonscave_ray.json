@@ -7,7 +7,7 @@
       "name": "Ghosteeth",
       "level": 40,
       "slug": "ghosteeth",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     }

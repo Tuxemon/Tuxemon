@@ -7,7 +7,7 @@
       "name": "Lapinou",
       "level": 12,
       "slug": "lapinou",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     },
@@ -15,7 +15,7 @@
       "name": "Cairfrey",
       "level": 12,
       "slug": "cairfrey",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     }

@@ -7,7 +7,7 @@
       "name": "Nudiflot",
       "level": 22,
       "slug": "nudiflot_female",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     },
@@ -15,7 +15,7 @@
       "name": "Nudiflot",
       "level": 22,
       "slug": "nudiflot_female",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     },
@@ -23,7 +23,7 @@
       "name": "Nudimind",
       "level": 24,
       "slug": "nudimind",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     }

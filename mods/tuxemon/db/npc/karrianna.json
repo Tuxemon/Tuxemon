@@ -17,7 +17,7 @@
       "hp": 36,
       "speed": 11,
       "special_defense": 12,
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     }

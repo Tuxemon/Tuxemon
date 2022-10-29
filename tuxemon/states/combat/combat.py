@@ -212,6 +212,7 @@ class CombatState(CombatAnimations):
         self._layout = dict()  # player => home areas on screen
         self._animation_in_progress = False  # if true, delay phase change
         self._round = 0
+        self._prize = 0
 
         super().startup(**kwargs)
         self.is_trainer_battle = combat_type == "trainer"
@@ -461,8 +462,18 @@ class CombatState(CombatAnimations):
             var = self.players[0].game_variables
             if self.remaining_players[0] == self.players[0]:
                 var["battle_last_result"] = "won"
-                self.alert(T.translate("combat_victory"))
                 if self.is_trainer_battle:
+                    self.alert(
+                        T.format(
+                            "combat_victory_trainer",
+                            {
+                                "npc": self.players[1].name,
+                                "prize": self._prize,
+                                "currency": "$",
+                            },
+                        )
+                    )
+                    self.players[0].give_money(self._prize)
                     var["battle_last_trainer"] = self.players[1].slug
                     var["battle_won"] = +1
                     var["percent_win"] = round(
@@ -472,6 +483,8 @@ class CombatState(CombatAnimations):
                     self.players[0].battle_history[
                         self.players[1].slug
                     ] = "won"
+                else:
+                    self.alert(T.translate("combat_victory"))
 
             else:
                 var["battle_last_result"] = "lost"
@@ -1061,8 +1074,10 @@ class CombatState(CombatAnimations):
             awarded_exp = monster.total_experience // (
                 monster.level * len(self._damage_map[monster])
             )
+            awarded_mon = monster.level * monster.money_modifier
             for winners in self._damage_map[monster]:
                 winners.give_experience(awarded_exp)
+                self._prize += awarded_mon
 
             # Remove monster from damage map
             del self._damage_map[monster]

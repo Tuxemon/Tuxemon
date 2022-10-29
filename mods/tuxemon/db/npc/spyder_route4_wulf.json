@@ -7,7 +7,7 @@
       "name": "Cowpignon",
       "level": 14,
       "slug": "cowpignon",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     },
@@ -15,7 +15,7 @@
       "name": "Cowpignon",
       "level": 14,
       "slug": "cowpignon",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     },
@@ -23,7 +23,7 @@
       "name": "Shybulb",
       "level": 14,
       "slug": "shybulb",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     }

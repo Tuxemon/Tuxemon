@@ -7,7 +7,7 @@
       "name": "K9",
       "level": 16,
       "slug": "k9",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "neuter"
     },
@@ -15,7 +15,7 @@
       "name": "K9",
       "level": 16,
       "slug": "k9",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "neuter"
     }

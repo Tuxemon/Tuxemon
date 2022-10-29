@@ -7,7 +7,7 @@
       "name": "Viviphyta",
       "level": 50,
       "slug": "viviphyta",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     },
@@ -15,7 +15,7 @@
       "name": "Dandylion",
       "level": 50,
       "slug": "dandylion",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     },
@@ -23,7 +23,7 @@
       "name": "Narcileaf",
       "level": 50,
       "slug": "narcileaf",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     }

@@ -7,7 +7,7 @@
       "name": "Embazook",
       "level": 40,
       "slug": "embazook",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     },
@@ -15,7 +15,7 @@
       "name": "Arthrobolt",
       "level": 40,
       "slug": "arthrobolt",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "male"
     },
@@ -23,7 +23,7 @@
       "name": "Hydrone",
       "level": 40,
       "slug": "hydrone",
-      "exp_give_mod": 3,
+      "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "female"
     }

@@ -412,6 +412,8 @@ class CombatState(CombatAnimations):
             for monster in self.active_monsters:
                 for technique in monster.status:
                     self.enqueue_action(None, technique, monster)
+                    # avoid multiple effect status
+                    monster.set_stats()
 
         elif phase == "resolve match":
             # update battle_total only once after each battle
@@ -689,10 +691,10 @@ class CombatState(CombatAnimations):
         elif self.is_trainer_battle:
             self.alert(
                 T.format(
-                    "combat_opponent_call_tuxemon",
+                    "combat_swap",
                     {
-                        "name": monster.name.upper(),
-                        "user": player.name.upper(),
+                        "user": monster.name.upper(),
+                        "target": player.name.upper(),
                     },
                 )
             )
@@ -963,17 +965,6 @@ class CombatState(CombatAnimations):
                     m = T.translate(element_damage_key)
                     message += "\n" + m
 
-                for status in result.get("statuses", []):
-                    m = T.format(
-                        status.use_item,
-                        {
-                            "name": technique.name,
-                            "user": status.link.name if status.link else "",
-                            "target": status.carrier.name,
-                        },
-                    )
-                    message += "\n" + m
-
             else:  # assume this was an item used
 
                 # handle the capture device
@@ -1022,12 +1013,15 @@ class CombatState(CombatAnimations):
         else:
             if result["success"]:
                 self.suppress_phase_change()
-                self.alert(
-                    T.format(
-                        "combat_status_damage",
-                        {"name": target.name, "status": technique.name},
-                    )
+                msg_type = (
+                    "use_success" if result["success"] else "use_failure"
                 )
+                context = {
+                    "name": technique.name,
+                    "target": target.name,
+                }
+                template = getattr(technique, msg_type)
+                self.alert(T.format(template, context))
 
         is_flipped = False
         for trainer in self.ai_players:
@@ -1207,6 +1201,8 @@ class CombatState(CombatAnimations):
         # TODO: End combat differently depending on winning or losing
         for player in self.active_players:
             for mon in player.monsters:
+                # reset status stats
+                mon.set_stats()
                 mon.end_combat()
 
         # clear action queue

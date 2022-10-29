@@ -1,21 +1,23 @@
 {
   "animation": "drip_green",
-  "category": "sniping",
+  "category": "positive",
   "effects": [
     "statchange"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_sniping.png",
+  "repl_pos": "replace",
+  "repl_neg": "replace",
   "sfx": "sfx_pulse",
   "slug": "status_sniping",
   "sort": "meta",
   "statmelee": {
     "value": 0.5,
-    "operation": "-"
+    "operation": "*"
   },
   "statranged": {
     "value": 2,
-    "operation": "-"
+    "operation": "*"
   },
   "target": {
     "enemy monster": 0,

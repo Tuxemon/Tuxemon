@@ -3,7 +3,8 @@
   "accuracy": 1,
   "animation": "bolt",
   "effects": [
-    "damage"
+    "damage",
+    "focused user"
   ],
   "flip_axes": "",
   "healing_power": 0,

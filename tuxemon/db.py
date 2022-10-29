@@ -298,7 +298,7 @@ class MonsterModel(BaseModel):
 
 
 class StatModel(BaseModel):
-    value: int = Field(0, description="The value of the stat")
+    value: float = Field(0.0, description="The value of the stat")
     max_deviation: int = Field(
         0, description="The maximum deviation of the stat"
     )

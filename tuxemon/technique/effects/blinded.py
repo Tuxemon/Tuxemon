@@ -39,37 +39,37 @@ from tuxemon.technique.technique import Technique
 logger = logging.getLogger(__name__)
 
 
-class HardShellEffectResult(TechEffectResult):
+class BlindedEffectResult(TechEffectResult):
     damage: int
     should_tackle: bool
     status: Optional[Technique]
 
 
-class HardShellEffectParameters(NamedTuple):
+class BlindedEffectParameters(NamedTuple):
     objective: str
 
 
-class HardShellEffect(TechEffect[HardShellEffectParameters]):
+class BlindedEffect(TechEffect[BlindedEffectParameters]):
     """
-    This effect has a chance to apply the hard shell status effect.
+    This effect has a chance to apply the blinded status effect.
     """
 
-    name = "hardshell"
-    param_class = HardShellEffectParameters
+    name = "blinded"
+    param_class = BlindedEffectParameters
 
-    def apply(self, user: Monster, target: Monster) -> HardShellEffectResult:
+    def apply(self, user: Monster, target: Monster) -> BlindedEffectResult:
         obj = self.parameters.objective
         if obj == "user":
-            already_applied = check_status(user, "status_hardshell")
+            already_applied = check_status(user, "status_blinded")
         elif obj == "target":
-            already_applied = check_status(target, "status_hardshell")
+            already_applied = check_status(target, "status_blinded")
         if not already_applied:
             if obj == "user":
-                tech = Technique("status_hardshell", link=user)
+                tech = Technique("status_blinded", link=user)
                 user.apply_status(tech)
                 return {"status": tech}
             elif obj == "target":
-                tech = Technique("status_hardshell", carrier=target)
+                tech = Technique("status_blinded", carrier=target)
                 target.apply_status(tech)
                 return {"status": tech}
 

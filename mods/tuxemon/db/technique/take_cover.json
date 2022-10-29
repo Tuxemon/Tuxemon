@@ -2,7 +2,9 @@
   "tech_id": 29,
   "accuracy": 1,
   "animation": "smokebomb",
-  "effects": [],
+  "effects": [
+    "sniping user"
+  ],
   "flip_axes": "",
   "healing_power": 0,
   "icon": "",

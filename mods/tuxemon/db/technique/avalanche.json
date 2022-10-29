@@ -3,7 +3,8 @@
   "accuracy": 0.8,
   "animation": "thud",
   "effects": [
-    "damage"
+    "damage",
+    "exhausted target"
   ],
   "flip_axes": "",
   "healing_power": 0,

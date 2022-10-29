@@ -2,7 +2,10 @@
   "tech_id": 15,
   "accuracy": 1,
   "animation": "disintegrate",
-  "effects": [],
+  "effects": [
+    "exhausted target",
+    "hardshell user"
+  ],
   "flip_axes": "",
   "healing_power": 0,
   "icon": "",

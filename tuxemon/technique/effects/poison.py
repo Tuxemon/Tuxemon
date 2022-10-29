@@ -32,6 +32,7 @@ import random
 from typing import NamedTuple, Optional
 
 from tuxemon import formula
+from tuxemon.combat import check_status
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
@@ -49,16 +50,14 @@ class PoisonEffectParameters(NamedTuple):
 
 class PoisonEffect(TechEffect[PoisonEffectParameters]):
     """
-    Poison
+    This effect has a chance to apply the poison status effect.
     """
 
     name = "poison"
     param_class = PoisonEffectParameters
 
     def apply(self, user: Monster, target: Monster) -> PoisonEffectResult:
-        already_applied = any(
-            t for t in target.status if t.slug == "status_poison"
-        )
+        already_applied = check_status(target, "status_poison")
         success = not already_applied and self.move.potency >= random.random()
         if success:
             tech = Technique("status_poison", carrier=target)
@@ -77,3 +76,5 @@ class PoisonEffect(TechEffect[PoisonEffectParameters]):
                 "should_tackle": bool(damage),
                 "success": bool(damage),
             }
+
+        return {"success": False}

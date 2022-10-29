@@ -4,7 +4,8 @@
   "animation": "drip_green",
   "effects": [
     "poison",
-    "damage"
+    "damage",
+    "focused user"
   ],
   "flip_axes": "",
   "healing_power": 0,

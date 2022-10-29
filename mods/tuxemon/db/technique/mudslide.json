@@ -3,7 +3,8 @@
   "accuracy": 0.8,
   "animation": "spikes_rock",
   "effects": [
-    "damage"
+    "damage",
+    "softened target"
   ],
   "flip_axes": "",
   "healing_power": 0,

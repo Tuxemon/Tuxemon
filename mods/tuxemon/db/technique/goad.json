@@ -3,7 +3,8 @@
   "accuracy": 0.8,
   "animation": "buff_rage",
   "effects": [
-    "damage"
+    "damage",
+    "enraged target"
   ],
   "flip_axes": "",
   "healing_power": 0,

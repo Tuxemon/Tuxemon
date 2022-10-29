@@ -1,21 +1,23 @@
 {
   "animation": "drip_green",
-  "category": "blinded",
+  "category": "negative",
   "effects": [
     "statchange"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_blinded.png",
+  "repl_pos": "replace",
+  "repl_neg": "replace",
   "sfx": "sfx_pulse",
   "slug": "status_blinded",
   "sort": "meta",
   "statdodge": {
     "value": 0.5,
-    "operation": "-"
+    "operation": "*"
   },
   "statspeed": {
     "value": 0.5,
-    "operation": "-"
+    "operation": "*"
   },
   "target": {
     "enemy monster": 0,

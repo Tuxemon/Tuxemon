@@ -1,7 +1,7 @@
 {
   "slug": "spyder_cottontown_hacker",
   "gender": "male",
-  "sprite_name": "hacker",
-  "combat_front": "red_front.png",
-  "combat_back": "red_back.png"
+  "sprite_name": "magician",
+  "combat_front": "magician.png",
+  "combat_back": "adventurer_back.png"
 }

@@ -2,6 +2,6 @@
   "slug": "speck",
   "gender": "female",
   "sprite_name": "beachcomber",
-  "combat_front": "femaletrainer_front.png",
-  "combat_back": "red_back.png"
+  "combat_front": "beachgoer.png",
+  "combat_back": "adventurer_back.png"
 }

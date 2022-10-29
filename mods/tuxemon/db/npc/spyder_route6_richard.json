@@ -1,7 +1,7 @@
 {
   "slug": "spyder_route6_richard",
   "gender": "male",
-  "sprite_name": "hacker",
+  "sprite_name": "magician",
   "monsters": [
     {
       "name": "Hydrone",
@@ -20,6 +20,6 @@
       "gender": "male"
     }
   ],
-  "combat_front": "hacker.png",
-  "combat_back": "red_back.png"
+  "combat_front": "magician.png",
+  "combat_back": "adventurer_back.png"
 }

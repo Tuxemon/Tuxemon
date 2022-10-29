@@ -1,7 +1,7 @@
 {
   "slug": "spyder_route2_billie",
   "gender": "female",
-  "sprite_name": "misa",
+  "sprite_name": "fashionista",
   "monsters": [
     {
       "name": "Dollfin",
@@ -29,5 +29,5 @@
     }
   ],
   "combat_front": "fashionista.png",
-  "combat_back": "red_back.png"
+  "combat_back": "adventurer_back.png"
 }

@@ -1,7 +1,7 @@
 {
   "slug": "spyder_route3_qqq",
   "gender": "male",
-  "sprite_name": "rookie",
+  "sprite_name": "spyderrookie",
   "monsters": [
     {
       "name": "Cardiling",
@@ -12,6 +12,6 @@
       "gender": "female"
     }
   ],
-  "combat_front": "rookie.png",
+  "combat_front": "spyder_rookie.png",
   "combat_back": "red_back.png"
 }

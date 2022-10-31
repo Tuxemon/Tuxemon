@@ -77,6 +77,17 @@ class GenderType(str, Enum):
     female = "female"
 
 
+class ElementType(str, Enum):
+    aether = "aether"
+    wood = "wood"
+    fire = "fire"
+    earth = "earth"
+    metal = "metal"
+    water = "water"
+    normal = "normal"
+    glitch = "glitch"
+
+
 class ItemType(str, Enum):
     consumable = "Consumable"
     key_item = "KeyItem"
@@ -254,7 +265,9 @@ class MonsterModel(BaseModel):
     # Optional fields
     sprites: Optional[MonsterSpritesModel]
     shape: MonsterShape = Field(..., description="The shape of the monster")
-    types: Sequence[str] = Field([], description="The type(s) of this monster")
+    types: Sequence[ElementType] = Field(
+        [], description="The type(s) of this monster"
+    )
     catch_rate: float = Field(0, description="The catch rate of the monster")
     possible_genders: Sequence[GenderType] = Field(
         [], description="Valid genders for the monster"
@@ -359,7 +372,9 @@ class TechniqueModel(BaseModel):
         None,
         description="Slug of what string to display when technique fails",
     )
-    types: Sequence[str] = Field([], description="Type(s) of the technique")
+    types: Sequence[ElementType] = Field(
+        [], description="Type(s) of the technique"
+    )
     power: float = Field(0, description="Power of the technique")
     is_fast: bool = Field(
         False, description="Whether or not this is a fast technique"

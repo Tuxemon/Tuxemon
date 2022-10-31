@@ -19,8 +19,8 @@
     "evolutions": [],
     "shape": "brute",
     "types": [
-        "Metal",
-        "Wood"
+        "metal",
+        "wood"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 58,

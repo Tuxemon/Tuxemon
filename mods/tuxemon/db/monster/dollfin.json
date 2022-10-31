@@ -40,7 +40,7 @@
     ],
     "shape": "aquatic",
     "types": [
-        "Water"
+        "water"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 23,	

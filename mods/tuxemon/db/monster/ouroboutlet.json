@@ -19,8 +19,8 @@
     "evolutions": [],
     "shape": "serpent",
     "types": [
-        "Metal",
-        "Fire"
+        "metal",
+        "fire"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 89,

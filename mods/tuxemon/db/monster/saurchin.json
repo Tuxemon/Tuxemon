@@ -19,7 +19,7 @@
     "evolutions": [],
     "shape": "dragon",
     "types": [
-        "Water"
+        "water"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 156,

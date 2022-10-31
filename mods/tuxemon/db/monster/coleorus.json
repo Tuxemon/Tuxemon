@@ -19,8 +19,8 @@
     "evolutions": [],
     "shape": "sprite",
     "types": [
-        "Wood",
-        "Earth"
+        "wood",
+        "earth"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 104,

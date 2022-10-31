@@ -19,7 +19,7 @@
     "evolutions": [],
     "shape": "polliwog",
     "types": [
-        "Water"
+        "water"
     ],
     "possible_genders": ["female"],
     "txmn_id": 54,

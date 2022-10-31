@@ -19,8 +19,8 @@
     "evolutions": [],
     "shape": "aquatic",
     "types": [
-        "Water",
-        "Wood"
+        "water",
+        "wood"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 25,

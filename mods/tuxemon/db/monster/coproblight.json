@@ -19,7 +19,7 @@
     "evolutions": [],
     "shape": "blob",
     "types": [
-        "Earth"
+        "earth"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 164,

@@ -19,8 +19,8 @@
     "evolutions": [],
     "shape": "polliwog",
     "types": [
-        "Fire",
-        "Metal"
+        "fire",
+        "metal"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 30,

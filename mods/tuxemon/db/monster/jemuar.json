@@ -19,7 +19,7 @@
     "evolutions": [],
     "shape": "hunter",
     "types": [
-        "Earth"
+        "earth"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 3,

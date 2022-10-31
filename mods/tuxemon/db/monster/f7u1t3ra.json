@@ -19,8 +19,8 @@
     "evolutions": [],
     "shape": "flier",
     "types": [
-        "Glitch",
-        "Wood"
+        "glitch",
+        "wood"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 0,

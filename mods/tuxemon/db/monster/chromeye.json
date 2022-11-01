@@ -40,7 +40,7 @@
     ],
     "shape": "blob",
     "types": [
-        "Metal"
+        "metal"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 165,

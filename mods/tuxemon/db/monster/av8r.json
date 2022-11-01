@@ -19,7 +19,7 @@
     "evolutions": [],
     "shape": "flier",
     "types": [
-        "Metal"
+        "metal"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 125,

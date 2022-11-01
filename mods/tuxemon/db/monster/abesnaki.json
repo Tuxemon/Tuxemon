@@ -19,7 +19,7 @@
     "evolutions": [],
     "shape": "serpent",
     "types": [
-        "Fire"
+        "fire"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 98,

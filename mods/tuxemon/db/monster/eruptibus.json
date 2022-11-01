@@ -19,7 +19,7 @@
     "evolutions": [],
     "shape": "landrace",
     "types": [
-        "Fire"
+        "fire"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 31,

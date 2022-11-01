@@ -25,7 +25,7 @@
     ],
     "shape": "humanoid",
     "types": [
-        "Fire"
+        "fire"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 82,

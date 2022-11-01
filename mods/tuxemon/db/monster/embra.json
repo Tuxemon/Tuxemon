@@ -25,7 +25,7 @@
     ],
     "shape": "blob",
     "types": [
-        "Fire"
+        "fire"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 74,

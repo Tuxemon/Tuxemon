@@ -1,6 +1,6 @@
 {
   "conditions": [
-    "type target,Wood"
+    "type target,wood"
   ],
   "effects": [
     "learn blossom"

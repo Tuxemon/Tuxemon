@@ -19,7 +19,7 @@
     "evolutions": [],
     "shape": "flier",
     "types": [
-        "Wood"
+        "wood"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 81,

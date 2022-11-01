@@ -19,7 +19,7 @@
     "evolutions": [],
     "shape": "dragon",
     "types": [
-        "Fire"
+        "fire"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 15,

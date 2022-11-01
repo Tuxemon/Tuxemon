@@ -1,6 +1,6 @@
 {
   "conditions": [
-    "type target,Earth,Water"
+    "type target,earth,water"
   ],
   "effects": [
     "learn avalanche"

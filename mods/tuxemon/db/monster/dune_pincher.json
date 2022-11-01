@@ -19,7 +19,7 @@
     "evolutions": [],
     "shape": "grub",
     "types": [
-        "Water"
+        "water"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 108,

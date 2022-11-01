@@ -360,6 +360,15 @@ class TechniqueModel(BaseModel):
     )
 
     # Optional fields
+    category: Optional[str] = Field(
+        None, description="Category status: positive or negative"
+    )
+    repl_pos: Optional[str] = Field(
+        None, description="How to reply to a positive status"
+    )
+    repl_neg: Optional[str] = Field(
+        None, description="How to reply to a negative status"
+    )
     use_tech: Optional[str] = Field(
         None,
         description="Slug of what string to display when technique is used",

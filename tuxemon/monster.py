@@ -443,29 +443,32 @@ class Monster:
         if count_status == 0:
             self.status.append(status)
         else:
-            if self.status[0].category == "positive":
-                if status.repl_pos == "replace":
-                    self.status.insert(0, status)
-                    self.status.pop(1)
-                elif status.repl_pos == "remove":
-                    self.status.append(status)
-                    self.status.pop(0)
-                else:
-                    # noddingoff, exhausted, festering, dozing
-                    self.status.append(status)
-            elif self.status[0].category == "negative":
-                if status.repl_neg == "replace":
-                    self.status.insert(0, status)
-                    self.status.pop(1)
-                elif status.repl_pos == "remove":
-                    self.status.append(status)
-                    self.status.pop(0)
-                else:
-                    # chargedup, charging and dozing
-                    self.status.append(status)
+            # if the status exists
+            if any(t for t in self.status if t.slug == status):
+                return
+            # if the status doesn't exist.
             else:
-                # spyderbite and eliminated
-                self.status.append(status)
+                if self.status[0].category == "positive":
+                    if status.repl_pos == "replace":
+                        self.status.clear()
+                        self.status.append(status)
+                    elif status.repl_pos == "remove":
+                        self.status.clear()
+                    else:
+                        # noddingoff, exhausted, festering, dozing
+                        return
+                elif self.status[0].category == "negative":
+                    if status.repl_neg == "replace":
+                        self.status.clear()
+                        self.status.append(status)
+                    elif status.repl_pos == "remove":
+                        self.status.clear()
+                    else:
+                        # chargedup, charging and dozing
+                        return
+                else:
+                    # spyderbite and eliminated
+                    self.status.append(status)
 
     def set_stats(self) -> None:
         """

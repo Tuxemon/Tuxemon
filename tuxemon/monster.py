@@ -450,7 +450,7 @@ class Monster:
                 if self.status[0].category == "positive":
                     if status.repl_pos == "replace":
                         self.status.clear()
-                        self.status.insert(0, status)
+                        self.status.append(status)
                     elif status.repl_pos == "remove":
                         self.status.clear()
                     else:
@@ -459,7 +459,7 @@ class Monster:
                 elif self.status[0].category == "negative":
                     if status.repl_neg == "replace":
                         self.status.clear()
-                        self.status.insert(0, status)
+                        self.status.append(status)
                     elif status.repl_pos == "remove":
                         self.status.clear()
                     else:

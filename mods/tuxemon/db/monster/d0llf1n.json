@@ -19,8 +19,8 @@
     "evolutions": [],
     "shape": "aquatic",
     "types": [
-        "Glitch",
-        "Water"
+        "glitch",
+        "water"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 0,

@@ -19,8 +19,8 @@
     "evolutions": [],
     "shape": "blob",
     "types": [
-        "Fire",
-        "Wood"
+        "fire",
+        "wood"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 79,

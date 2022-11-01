@@ -19,8 +19,8 @@
     "evolutions": [],
     "shape": "blob",
     "types": [
-        "Water",
-        "Wood"
+        "water",
+        "wood"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 105,

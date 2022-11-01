@@ -19,8 +19,8 @@
     "evolutions": [],
     "shape": "blob",
     "types": [
-        "Metal",
-        "Water"
+        "metal",
+        "water"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 169,

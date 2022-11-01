@@ -25,7 +25,7 @@
     ],
     "shape": "flier",
     "types": [
-        "Water"
+        "water"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 39,

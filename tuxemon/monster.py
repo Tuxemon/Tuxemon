@@ -37,6 +37,7 @@ from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
 from tuxemon import ai, fusion, graphics
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import (
+    ElementType,
     GenderType,
     MonsterEvolutionItemModel,
     MonsterMovesetItemModel,
@@ -235,8 +236,8 @@ class Monster:
         self.experience_required_modifier = 1
         self.total_experience = 0
 
-        self.type1 = "aether"
-        self.type2: Optional[str] = None
+        self.type1 = ElementType.aether
+        self.type2: Optional[ElementType] = None
         self.shape = MonsterShape.landrace
 
         self.status: List[Technique] = []
@@ -330,9 +331,9 @@ class Monster:
         self.shape = results.shape or MonsterShape.landrace
         types = results.types
         if types:
-            self.type1 = results.types[0].lower()
+            self.type1 = results.types[0]
             if len(types) > 1:
-                self.type2 = results.types[1].lower()
+                self.type2 = results.types[1]
 
         self.txmn_id = results.txmn_id
         self.height = results.height

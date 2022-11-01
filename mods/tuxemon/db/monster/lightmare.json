@@ -19,7 +19,7 @@
     "evolutions": [],
     "shape": "leviathan",
     "types": [
-        "Water"
+        "water"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 69,

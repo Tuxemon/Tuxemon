@@ -25,7 +25,7 @@
     ],
     "shape": "polliwog",
     "types": [
-        "Water"
+        "water"
     ],
     "possible_genders": ["male"],
     "txmn_id": 51,

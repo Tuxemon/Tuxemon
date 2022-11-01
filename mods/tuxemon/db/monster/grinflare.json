@@ -19,8 +19,8 @@
     "evolutions": [],
     "shape": "brute",
     "types": [
-        "Earth",
-        "Fire"
+        "earth",
+        "fire"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 17,

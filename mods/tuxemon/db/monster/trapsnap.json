@@ -25,7 +25,7 @@
     ],
     "shape": "brute",
     "types": [
-        "Wood"
+        "wood"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 84,

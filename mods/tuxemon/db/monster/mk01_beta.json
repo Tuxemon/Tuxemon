@@ -19,7 +19,7 @@
     "evolutions": [],
     "shape": "dragon",
     "types": [
-        "Metal"
+        "metal"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 0,

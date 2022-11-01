@@ -19,8 +19,8 @@
     "evolutions": [],
     "shape": "humanoid",
     "types": [
-        "Metal",
-        "Water"
+        "metal",
+        "water"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 111,

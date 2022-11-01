@@ -40,7 +40,7 @@
     ],
     "shape": "brute",
     "types": [
-        "Earth"
+        "earth"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 16,

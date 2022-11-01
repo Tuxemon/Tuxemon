@@ -19,8 +19,8 @@
     "evolutions": [],
     "shape": "brute",
     "types": [
-        "Water",
-        "Earth"
+        "water",
+        "earth"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 149,

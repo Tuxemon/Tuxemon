@@ -19,8 +19,8 @@
     "evolutions": [],
     "shape": "hunter",
     "types": [
-        "Glitch",
-        "Earth"
+        "glitch",
+        "earth"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 0,

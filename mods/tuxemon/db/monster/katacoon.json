@@ -30,8 +30,8 @@
     ],
     "shape": "grub",
     "types": [
-        "Metal",
-        "Wood"
+        "metal",
+        "wood"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 56,

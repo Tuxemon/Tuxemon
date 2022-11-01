@@ -43,7 +43,7 @@ from typing import (
 
 from tuxemon import plugin, prepare
 from tuxemon.constants import paths
-from tuxemon.db import db, process_targets
+from tuxemon.db import ElementType, db, process_targets
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -104,8 +104,8 @@ class Technique:
         self.sort = ""
         self.slug = slug
         self.target: Sequence[str] = []
-        self.type1: Optional[str] = "aether"
-        self.type2: Optional[str] = None
+        self.type1 = ElementType.aether
+        self.type2: Optional[ElementType] = None
         self.use_item = ""
         self.use_success = ""
         self.use_failure = ""

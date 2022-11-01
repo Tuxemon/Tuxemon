@@ -190,7 +190,7 @@ class Item:
             except KeyError:
                 logger.error(f'Error: ItemEffect "{name}" not implemented')
             else:
-                ret.append(effect(self.session, self.user, params))
+                ret.append(effect(*params))
 
         return ret
 
@@ -224,7 +224,7 @@ class Item:
             except KeyError:
                 logger.error(f'Error: ItemCondition "{name}" not implemented')
             else:
-                ret.append(condition(context, self.session, self.user, params))
+                ret.append(condition(*params))
 
         return ret
 

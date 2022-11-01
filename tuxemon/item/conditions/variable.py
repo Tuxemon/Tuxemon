@@ -25,31 +25,29 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, Union
+from dataclasses import dataclass
+from typing import Union
 
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
 
 
-class VariableConditionParameters(NamedTuple):
-    var_name: str
-    expected: Union[str, int, None]
-
-
-class VariableCondition(ItemCondition[VariableConditionParameters]):
+@dataclass
+class VariableCondition(ItemCondition):
     """Checks against the variables of the context.
     Accepts two parameters; variable name and expected value.
     """
 
     name = "variable"
-    param_class = VariableConditionParameters
+    var_name: str
+    context: Union[NPC, Monster]
+    expected: Union[str, int, None] = None
 
     def test(self, target: Monster) -> bool:
-        var_name = self.parameters.var_name
-        expect = self.parameters.expected
+        var_name = self.var_name
+        expect = self.expected
 
-        context: Union[NPC, Monster]
         if self.context == "target":
             context = target
         else:

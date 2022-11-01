@@ -30,8 +30,8 @@ from __future__ import annotations
 
 import logging
 import random
+from dataclasses import dataclass
 from math import sqrt
-from typing import NamedTuple
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.monster import Monster
@@ -44,15 +44,12 @@ class CaptureEffectResult(ItemEffectResult):
     num_shakes: int
 
 
-class CaptureEffectParameters(NamedTuple):
-    power: int
-
-
-class CaptureEffect(ItemEffect[CaptureEffectParameters]):
+@dataclass
+class CaptureEffect(ItemEffect):
     """Attempts to capture the target with 'power' capture strength."""
 
     name = "capture"
-    param_class = CaptureEffectParameters
+    power: int
 
     def apply(self, target: Monster) -> CaptureEffectResult:
         # Set up variables for capture equation

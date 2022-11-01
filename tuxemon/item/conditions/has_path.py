@@ -25,17 +25,14 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple
+from dataclasses import dataclass
 
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.monster import Monster
 
 
-class HasPathConditionParameters(NamedTuple):
-    expected: str
-
-
-class HasPathCondition(ItemCondition[HasPathConditionParameters]):
+@dataclass
+class HasPathCondition(ItemCondition):
     """
     Checks against the creature's evolution paths.
 
@@ -44,9 +41,9 @@ class HasPathCondition(ItemCondition[HasPathConditionParameters]):
     """
 
     name = "has_path"
-    param_class = HasPathConditionParameters
+    expected: str
 
     def test(self, target: Monster) -> bool:
-        expect = self.parameters.expected
+        expect = self.expected
 
         return any(d["path"] == expect for d in target.evolutions)

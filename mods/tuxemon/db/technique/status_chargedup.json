@@ -6,6 +6,7 @@
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_chargedup.png",
+  "range": "special",
   "repl_pos": "replace",
   "sfx": "sfx_pulse",
   "slug": "status_chargedup",

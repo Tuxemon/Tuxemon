@@ -13,7 +13,7 @@ from typing import (
 
 from tuxemon import plugin, prepare
 from tuxemon.constants import paths
-from tuxemon.db import ElementType, db, process_targets
+from tuxemon.db import ElementType, Range, db, process_targets
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -66,7 +66,7 @@ class Technique:
         self.next_use = 0.0
         self.potency = 0.0
         self.power = 1.0
-        self.range: Optional[str] = None
+        self.range = Range.melee
         self.recharge_length = 0
         self.repl_pos = ""
         self.repl_neg = ""
@@ -144,7 +144,7 @@ class Technique:
         self.is_fast = results.is_fast or self.is_fast
         self.recharge_length = results.recharge or self.recharge_length
         self.is_area = results.is_area or self.is_area
-        self.range = results.range or self.range
+        self.range = results.range or Range.melee
         self.tech_id = results.tech_id or self.tech_id
         self.accuracy = results.accuracy or self.accuracy
         self.potency = results.potency or self.potency

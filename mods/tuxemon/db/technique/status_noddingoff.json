@@ -4,6 +4,7 @@
   "effects": [],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_noddingoff.png",
+  "range": "special",
   "repl_neg": "replace",
   "sfx": "sfx_pulse",
   "slug": "status_noddingoff",

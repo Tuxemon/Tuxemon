@@ -392,9 +392,7 @@ class TechniqueModel(BaseModel):
         False, description="Whether or not this is an area of effect technique"
     )
     recharge: int = Field(0, description="Recharge of this technique")
-    range: Range = Field(
-        "melee", description="The attack range of this technique"
-    )
+    range: Range = Field(..., description="The attack range of this technique")
     tech_id: int = Field(..., description="The id of this technique")
     accuracy: float = Field(0, description="The accuracy of the technique")
     potency: Optional[float] = Field(

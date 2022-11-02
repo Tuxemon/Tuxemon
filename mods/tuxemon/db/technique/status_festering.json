@@ -4,6 +4,7 @@
   "effects": [],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_festering.png",
+  "range": "special",
   "repl_neg": "replace",
   "sfx": "sfx_pulse",
   "slug": "status_festering",

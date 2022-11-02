@@ -6,6 +6,7 @@
   "power": 10,
   "sfx": "sfx_faint",
   "slug": "status_faint",
+  "range": "special",
   "sort": "meta",
   "target": {
     "enemy monster": 0,

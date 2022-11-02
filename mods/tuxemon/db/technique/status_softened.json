@@ -6,6 +6,7 @@
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_softened.png",
+  "range": "special",
   "repl_pos": "replace",
   "repl_neg": "replace",
   "sfx": "sfx_pulse",

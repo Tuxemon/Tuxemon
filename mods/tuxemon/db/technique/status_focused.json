@@ -6,6 +6,7 @@
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_focused.png",
+  "range": "special",
   "repl_pos": "replace",
   "repl_neg": "remove",
   "sfx": "sfx_pulse",

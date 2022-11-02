@@ -4,6 +4,7 @@
   "effects": [],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_confused.png",
+  "range": "special",
   "repl_pos": "replace",
   "repl_neg": "replace",
   "sfx": "sfx_pulse",

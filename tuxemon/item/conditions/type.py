@@ -52,7 +52,7 @@ class TypeCondition(ItemCondition):
         ret = False
         if target.type1 is not None:
             ret = any(
-                target.type1.lower() == p.lower()
+                target.type1 == p
                 for p in (
                     self.type1,
                     self.type2,
@@ -64,7 +64,7 @@ class TypeCondition(ItemCondition):
             )
         if target.type2 is not None:
             ret = ret or any(
-                target.type2.lower() == p.lower()
+                target.type2 == p
                 for p in (
                     self.type1,
                     self.type2,

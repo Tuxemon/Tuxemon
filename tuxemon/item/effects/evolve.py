@@ -24,7 +24,7 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple
+from dataclasses import dataclass
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.monster import Monster
@@ -34,18 +34,15 @@ class EvolveEffectResult(ItemEffectResult):
     pass
 
 
-class EvolveEffectParameters(NamedTuple):
-    monster_evolve: str
-
-
-class EvolveEffect(ItemEffect[EvolveEffectParameters]):
+@dataclass
+class EvolveEffect(ItemEffect):
     """This effect evolves the target into the monster in the parameters."""
 
     name = "evolve"
-    param_class = EvolveEffectParameters
+    monster_evolve: str
 
     def apply(self, target: Monster) -> EvolveEffectResult:
-        monster_evolve = self.parameters.monster_evolve
+        monster_evolve = self.monster_evolve
 
         if any(d["monster_slug"] == monster_evolve for d in target.evolutions):
             self.user.evolve_monster(target, monster_evolve)

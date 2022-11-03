@@ -25,20 +25,14 @@
 
 from __future__ import annotations
 
-import logging
-from typing import NamedTuple
+from dataclasses import dataclass
 
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.monster import Monster
 
-logger = logging.getLogger(__name__)
 
-
-class StatusConditionParameters(NamedTuple):
-    expected: str
-
-
-class StatusCondition(ItemCondition[StatusConditionParameters]):
+@dataclass
+class StatusCondition(ItemCondition):
     """
     Checks against the creature's current statuses.
 
@@ -47,9 +41,9 @@ class StatusCondition(ItemCondition[StatusConditionParameters]):
     """
 
     name = "status"
-    param_class = StatusConditionParameters
+    expected: str
 
     def test(self, target: Monster) -> bool:
-        return self.parameters.expected in [
+        return self.expected in [
             x.slug for x in target.status if hasattr(x, "slug")
         ]

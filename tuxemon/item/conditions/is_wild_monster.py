@@ -25,21 +25,17 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple
+from dataclasses import dataclass
 
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.monster import Monster
 
 
-class IsWildMonsterConditionParameters(NamedTuple):
-    pass
-
-
-class IsWildMonsterCondition(ItemCondition[IsWildMonsterConditionParameters]):
+@dataclass
+class IsWildMonsterCondition(ItemCondition):
     """True if not owned by a trainer."""
 
     name = "is_wild_monster"
-    param_class = IsWildMonsterConditionParameters
 
     def test(self, target: Monster) -> bool:
         return target.owner is None

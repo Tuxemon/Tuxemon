@@ -28,7 +28,9 @@
 
 from __future__ import annotations
 
+import datetime as dt
 import logging
+import random
 from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 
 if TYPE_CHECKING:
@@ -202,3 +204,69 @@ def simple_overfeed(
 ) -> int:
     speed = target.speed // 2
     return speed
+
+
+def set_capture() -> int:
+    """
+    Calculates the day of capture, it generates the value
+    through a proleptic Gregorian ordinal.
+    Dynamic range: today minus 1000 days.
+    """
+    today = dt.date.today().toordinal()
+    start = today - 1000
+    result = random.randint(start, today)
+    return result
+
+
+def doc(value: int) -> int:
+    """
+    Calculates the date of capture.
+    """
+    result = dt.date.fromordinal(value)
+    return result
+
+
+def set_weight(kg: float) -> float:
+    """
+    It generates a personalized weight,
+    random number: between +/- 10%.
+    Eg 100 kg +/- 10 kg
+    """
+    if kg == 0:
+        weight = kg
+    else:
+        minor = kg - (kg * 0.1)
+        major = (kg * 0.1) + kg
+        weight = round(random.uniform(minor, major), 2)
+    return weight
+
+
+def set_height(cm: float) -> float:
+    """
+    It generates a personalized height,
+    random number: between +/- 10%.
+    Eg 100 cm +/- 10 cm
+    """
+    if cm == 0:
+        height = cm
+    else:
+        minor = cm - (cm * 0.1)
+        major = (cm * 0.1) + cm
+        height = round(random.uniform(minor, major), 2)
+    return height
+
+
+def convert_lbs(kg: float) -> float:
+    """
+    It converts kilograms into pounds.
+    """
+    pounds = round(kg * 2.2046, 2)
+    return pounds
+
+
+def convert_ft(cm: float) -> float:
+    """
+    It converts centimeters into feet.
+    """
+    foot = round(cm * 0.032808399, 2)
+    return foot

@@ -727,6 +727,14 @@ msgstr "Are you sure you would like to release {name}?"
 msgid "tuxemon_released"
 msgstr "{name} has been released."
 
+msgid "tuxemon_stat1"
+msgstr "ID {txmn}, {type}, catched {doc}\n"
+"{exp}xp, {exp_lv}xp to Lv {lv}\n"
+"Body: {kg}kg {cm}cm"
+
+msgid "tuxemon_stat2"
+msgstr "{desc}"
+
 # Menu notifications
 msgid "log_off"
 msgstr "Log Off"

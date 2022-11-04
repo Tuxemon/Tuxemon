@@ -195,7 +195,7 @@ class Technique:
             except KeyError:
                 logger.error(f'Error: TechEffect "{name}" not implemented')
             else:
-                ret.append(effect(self, self.link or self.carrier, params))
+                ret.append(effect(*params))
 
         return ret
 
@@ -268,7 +268,7 @@ class Technique:
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
-            result = effect.apply(user, target)
+            result = effect.apply(self, user, target)
             meta_result.update(result)
 
         self.next_use = self.recharge_length

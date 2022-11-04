@@ -1,20 +1,18 @@
 from __future__ import annotations
 
-from typing import NamedTuple
+from dataclasses import dataclass
 
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
+from tuxemon.technique.technique import Technique
 
 
 class SwapEffectResult(TechEffectResult):
     should_tackle: bool
 
 
-class SwapEffectParameters(NamedTuple):
-    pass
-
-
-class SwapEffect(TechEffect[SwapEffectParameters]):
+@dataclass
+class SwapEffect(TechEffect):
     """
     Used just for combat: change order of monsters.
 
@@ -26,17 +24,19 @@ class SwapEffect(TechEffect[SwapEffectParameters]):
     """
 
     name = "swap"
-    param_class = SwapEffectParameters
+    objective: str
 
-    def apply(self, user: Monster, target: Monster) -> SwapEffectResult:
+    def apply(
+        self, tech: Technique, user: Monster, target: Monster
+    ) -> SwapEffectResult:
         # TODO: implement actions as events, so that combat state can find them
         # TODO: relies on setting "combat_state" attribute.  maybe clear it up
         # later
         # TODO: these values are set in combat_menus.py
 
-        assert self.move.combat_state
+        assert tech.combat_state
         # TODO: find a way to pass values. this will only work for SP games with one monster party
-        combat_state = self.move.combat_state
+        combat_state = tech.combat_state
 
         def swap_add() -> None:
             # TODO: make accommodations for battlefield positions

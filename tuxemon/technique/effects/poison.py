@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import random
-from typing import NamedTuple, Optional
+from dataclasses import dataclass
+from typing import Optional
 
 from tuxemon import formula
 from tuxemon.monster import Monster
@@ -15,29 +16,28 @@ class PoisonEffectResult(TechEffectResult):
     status: Optional[Technique]
 
 
-class PoisonEffectParameters(NamedTuple):
-    pass
-
-
-class PoisonEffect(TechEffect[PoisonEffectParameters]):
+@dataclass
+class PoisonEffect(TechEffect):
     """
     This effect has a chance to apply the poison status effect.
     """
 
     name = "poison"
-    param_class = PoisonEffectParameters
+    objective: str
 
-    def apply(self, user: Monster, target: Monster) -> PoisonEffectResult:
-        success = self.move.potency >= random.random()
+    def apply(
+        self, tech: Technique, user: Monster, target: Monster
+    ) -> PoisonEffectResult:
+        success = tech.potency >= random.random()
         if success:
             tech = Technique("status_poison")
-            target.apply_status(tech)
-            # exception: applies status to the user
-            if self.move.slug == "fester":
+            if self.objective == "user":
                 user.apply_status(tech)
+            elif self.objective == "target":
+                target.apply_status(tech)
             return {"status": tech}
 
-        damage = formula.simple_poison(self.move, target)
+        damage = formula.simple_poison(tech, target)
         target.current_hp -= damage
 
         return {

@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import random
-from typing import NamedTuple, Optional
+from dataclasses import dataclass
+from typing import Optional
 
 from tuxemon import formula
 from tuxemon.monster import Monster
@@ -15,32 +16,33 @@ class RecoverEffectResult(TechEffectResult):
     status: Optional[Technique]
 
 
-class RecoverEffectParameters(NamedTuple):
-    pass
-
-
-class RecoverEffect(TechEffect[RecoverEffectParameters]):
+@dataclass
+class RecoverEffect(TechEffect):
     """
     This effect has a chance to apply the recovering status effect.
     """
 
     name = "recover"
-    param_class = RecoverEffectParameters
+    objective: str
 
-    def apply(self, user: Monster, target: Monster) -> RecoverEffectResult:
-        success = self.move.potency >= random.random()
+    def apply(
+        self, tech: Technique, user: Monster, target: Monster
+    ) -> RecoverEffectResult:
+        success = tech.potency >= random.random()
         if success:
             tech = Technique("status_recover", link=user)
             user.apply_status(tech)
             return {"status": tech}
 
         # avoids Nonetype situation and reset the user
-        if self.user is None:
-            heal = formula.simple_recover(self.move, user)
+        if user is None:
+            user = tech.link
+            assert user
+            heal = formula.simple_recover(tech, user)
             user.current_hp += heal
         else:
-            heal = formula.simple_recover(self.move, self.user)
-            self.user.current_hp += heal
+            heal = formula.simple_recover(tech, user)
+            user.current_hp += heal
 
         return {
             "damage": heal,

@@ -162,7 +162,7 @@ class WorldMenuState(PygameMenuState):
                         "tuxemon_stat1",
                         {
                             "txmn": monster.txmn_id,
-                            "doc": formula.doc(monster.capture),
+                            "doc": formula.today_ordinal() - monster.capture,
                             "kg": monster.weight,
                             "cm": monster.height,
                             "lv": monster.level + 1,

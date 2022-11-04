@@ -206,6 +206,14 @@ def simple_overfeed(
     return speed
 
 
+def today_ordinal() -> int:
+    """
+    It gives today's proleptic Gregorian ordinal.
+    """
+    today = dt.date.today().toordinal()
+    return today
+
+
 def set_capture() -> int:
     """
     Calculates the day of capture, it generates the value

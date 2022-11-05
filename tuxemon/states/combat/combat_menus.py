@@ -16,7 +16,7 @@ from typing import (
 
 import pygame
 
-from tuxemon import graphics, tools
+from tuxemon import formula, graphics, tools
 from tuxemon.db import ItemBattleMenu
 from tuxemon.item.item import Item
 from tuxemon.locale import T
@@ -63,21 +63,52 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         self.monster = monster
 
     def initialize_items(self) -> Generator[MenuItem[MenuGameObj], None, None]:
-        menu_items_map = (
-            ("menu_fight", self.open_technique_menu),
-            ("menu_monster", self.open_swap_menu),
-            ("menu_item", self.open_item_menu),
-            ("menu_run", self.run),
-        )
+        combat_state = self.client.get_state_by_name(CombatState)
+        if combat_state.is_trainer_battle:
+            menu_items_map = (
+                ("menu_fight", self.open_technique_menu),
+                ("menu_monster", self.open_swap_menu),
+                ("menu_item", self.open_item_menu),
+                ("menu_forfeit", self.forfeit),
+            )
+        else:
+            menu_items_map = (
+                ("menu_fight", self.open_technique_menu),
+                ("menu_monster", self.open_swap_menu),
+                ("menu_item", self.open_item_menu),
+                ("menu_run", self.run),
+            )
 
         for key, callback in menu_items_map:
             label = T.translate(key).upper()
             image = self.shadow_text(label)
             yield MenuItem(image, label, None, callback)
 
+    def forfeit(self) -> None:
+        """
+        Cause player to forfeit from the trainer battles.
+
+        """
+        self.client.pop_state(self)
+        combat_state = self.client.get_state_by_name(CombatState)
+
+        def open_menu() -> None:
+            combat_state.task(
+                partial(
+                    combat_state.show_monster_action_menu,
+                    self.monster,
+                ),
+                1,
+            )
+
+        combat_state.alert(
+            T.translate("combat_can't_run_from_trainer"),
+            open_menu,
+        )
+
     def run(self) -> None:
         """
-        Cause player to run from the battle.
+        Cause player to run from the wild encounters.
 
         TODO: only works for player0.
 
@@ -85,8 +116,16 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         # TODO: only works for player0
         self.client.pop_state(self)
         combat_state = self.client.get_state_by_name(CombatState)
-
-        if combat_state.is_trainer_battle:
+        player = combat_state.monsters_in_play[combat_state.players[0]][0]
+        target = combat_state.monsters_in_play[combat_state.players[1]][0]
+        var = combat_state.players[0].game_variables
+        var["run_attempts"] = 0
+        if (
+            formula.escape(player.level, target.level, var["run_attempts"])
+            and combat_state._run == "on"
+        ):
+            combat_state.trigger_player_run(combat_state.players[0])
+        else:
 
             def open_menu() -> None:
                 combat_state.task(
@@ -101,8 +140,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 T.translate("combat_can't_run_from_trainer"),
                 open_menu,
             )
-        else:
-            combat_state.trigger_player_run(combat_state.players[0])
+            combat_state._run = "off"
 
     def open_swap_menu(self) -> None:
         """Open menus to swap monsters in party."""

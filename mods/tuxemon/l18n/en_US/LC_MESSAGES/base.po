@@ -122,8 +122,11 @@ msgstr "${{name}}'s wallet: ${{currency}}${{money}}"
 msgid "combat_miss"
 msgstr "It missed..."
 
+msgid "combat_forfeit"
+msgstr "You have forfeited!"
+
 msgid "combat_can't_run_from_trainer"
-msgstr "Can't run from trainer battles!"
+msgstr "Can't run!"
 
 msgid "combat_player_run"
 msgstr "You have run away!"
@@ -772,6 +775,9 @@ msgstr "Player"
 
 msgid "menu_run"
 msgstr "Run"
+
+msgid "menu_forfeit"
+msgstr "Forfeit"
 
 msgid "menu_save"
 msgstr "Save"

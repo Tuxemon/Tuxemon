@@ -5,7 +5,7 @@
     "status target,status_faint"
   ],
   "effects": [
-    "revive",
+    "revive 1",
     "heal 20"
   ],
   "slug": "revive",

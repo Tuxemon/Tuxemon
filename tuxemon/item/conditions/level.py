@@ -25,8 +25,9 @@
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from operator import eq, ge, gt, le, lt
-from typing import Callable, Mapping, NamedTuple, Optional
+from typing import Callable, Mapping, Optional
 
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.monster import Monster
@@ -42,12 +43,8 @@ cmp_dict: Mapping[Optional[str], Callable[[float, float], bool]] = {
 }
 
 
-class LevelConditionParameters(NamedTuple):
-    comparison: str
-    value: int
-
-
-class LevelCondition(ItemCondition[LevelConditionParameters]):
+@dataclass
+class LevelCondition(ItemCondition):
     """
     Compares the target Monster's level against the given value.
 
@@ -57,11 +54,12 @@ class LevelCondition(ItemCondition[LevelConditionParameters]):
     """
 
     name = "level"
-    param_class = LevelConditionParameters
+    comparison: str
+    value: int
 
     def test(self, target: Monster) -> bool:
         level = target.level
-        operator = cmp_dict[self.parameters.comparison]
-        level_reached = self.parameters.value
+        operator = cmp_dict[self.comparison]
+        level_reached = self.value
 
         return operator(level, level_reached)

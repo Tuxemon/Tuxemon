@@ -28,7 +28,8 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, Union
+from dataclasses import dataclass
+from typing import Union
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.monster import Monster
@@ -38,11 +39,8 @@ class HealEffectResult(ItemEffectResult):
     pass
 
 
-class HealEffectParameters(NamedTuple):
-    amount: Union[int, float]
-
-
-class HealEffect(ItemEffect[HealEffectParameters]):
+@dataclass
+class HealEffect(ItemEffect):
     """
     Heals the target by 'amount' hp.
 
@@ -51,16 +49,16 @@ class HealEffect(ItemEffect[HealEffectParameters]):
 
     Examples:
     >>> potion = Item('potion')
-    >>> potion.parameters.amount = 0.5
+    >>> potion.amount = 0.5
     >>> potion.apply(bulbatux)
     >>> # bulbatux is healed by 50% of it's total hp
     """
 
     name = "heal"
-    param_class = HealEffectParameters
+    amount: Union[int, float]
 
     def apply(self, target: Monster) -> HealEffectResult:
-        healing_amount = self.parameters.amount
+        healing_amount = self.amount
         if type(healing_amount) is float:
             healing_amount *= target.hp
 

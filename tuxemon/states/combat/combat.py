@@ -375,6 +375,8 @@ class CombatState(CombatAnimations):
 
         elif phase == "housekeeping phase":
             self._round += 1
+            # reset run for the next turn
+            self._run = "on"
             # fill all battlefield positions, but on round 1, don't ask
             self.fill_battlefield_positions(ask=self._round > 1)
 
@@ -426,6 +428,7 @@ class CombatState(CombatAnimations):
             self.players[0].set_party_status()
             var = self.players[0].game_variables
             var["battle_last_result"] = "ran"
+            var["run_attempts"] += 1
             self.alert(T.translate("combat_player_run"))
 
             # after 3 seconds, push a state that blocks until enter is pressed

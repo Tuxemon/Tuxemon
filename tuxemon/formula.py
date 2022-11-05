@@ -206,6 +206,14 @@ def simple_overfeed(
     return speed
 
 
+def escape(level_user: int, level_target: int, attempts: int) -> bool:
+    escape = 0.4 + (0.15 * (attempts + level_user - level_target))
+    if random.random() <= escape:
+        return True
+    else:
+        return False
+
+
 def today_ordinal() -> int:
     """
     It gives today's proleptic Gregorian ordinal.

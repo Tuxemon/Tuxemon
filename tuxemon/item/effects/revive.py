@@ -28,7 +28,7 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple
+from dataclasses import dataclass
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.monster import Monster
@@ -38,20 +38,17 @@ class ReviveEffectResult(ItemEffectResult):
     pass
 
 
-class ReviveEffectParameters(NamedTuple):
-    pass
-
-
-class ReviveEffect(ItemEffect[ReviveEffectParameters]):
+@dataclass
+class ReviveEffect(ItemEffect):
     """
     Revives the target tuxemon, and sets HP to 1.
     """
 
     name = "revive"
-    param_class = ReviveEffectParameters
+    hp: int
 
     def apply(self, target: Monster) -> ReviveEffectResult:
         target.status = []
-        target.current_hp = 1
+        target.current_hp = self.hp
 
         return {"success": True}

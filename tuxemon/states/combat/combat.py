@@ -429,7 +429,7 @@ class CombatState(CombatAnimations):
             self.players[0].set_party_status()
             var = self.players[0].game_variables
             var["battle_last_result"] = OutputBattle.ran
-            var["run_attempts"] += 1
+            var["battle_last_result"] = "ran"
             self.alert(T.translate("combat_player_run"))
 
             # after 3 seconds, push a state that blocks until enter is pressed

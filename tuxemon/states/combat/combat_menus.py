@@ -119,12 +119,15 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         player = combat_state.monsters_in_play[combat_state.players[0]][0]
         target = combat_state.monsters_in_play[combat_state.players[1]][0]
         var = combat_state.players[0].game_variables
-        var["run_attempts"] = 0
+        # if the variable doesn't exist
+        if "run_attempts" not in var:
+            var["run_attempts"] = 0
         if (
             formula.escape(player.level, target.level, var["run_attempts"])
             and combat_state._run == "on"
         ):
             combat_state.trigger_player_run(combat_state.players[0])
+            var["run_attempts"] += 1
         else:
 
             def open_menu() -> None:

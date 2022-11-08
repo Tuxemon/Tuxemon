@@ -60,10 +60,9 @@ class BattleIsCondition(EventCondition):
         character = condition.parameters[0]
         result = condition.parameters[1]
 
-        if character in player.battle_history:
-            if player.battle_history[character] == result:
-                return True
-            else:
-                return False
+        key_value = (character, result)
+
+        if key_value in player.battle_history:
+            return True
         else:
             return False

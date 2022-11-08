@@ -21,6 +21,7 @@
 
 from __future__ import annotations
 
+import datetime as dt
 from typing import NamedTuple, final
 
 from tuxemon.event.eventaction import EventAction
@@ -57,5 +58,7 @@ class SetBattleAction(EventAction[SetBattleActionParameters]):
         battle_key = str(battle_list[0])
         battle_value = str(battle_list[1])
 
-        # Append the battle_history dictionary with the key: value pair
-        player.battle_history[battle_key] = battle_value
+        # Append the battle_history dict tuple with the key: value pair
+        player.battle_history[
+            battle_key, battle_value
+        ] = dt.date.today().toordinal()

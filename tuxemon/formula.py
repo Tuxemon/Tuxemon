@@ -216,6 +216,12 @@ def escape(level_user: int, level_target: int, attempts: int) -> bool:
 
 def battle_math(player: NPC, output: str) -> None:
     player = player.game_variables
+    if "battle_total" not in player:
+        player["battle_total"] = 0
+        player["battle_won"] = 0
+        player["battle_lost"] = 0
+        player["battle_draw"] = 0
+    player["battle_total"] += 1
     if output == "won":
         player["battle_won"] += 1
         player["percent_win"] = round(

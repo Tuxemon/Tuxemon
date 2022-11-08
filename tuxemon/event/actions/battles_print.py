@@ -59,16 +59,16 @@ class BattlesAction(EventAction[BattlesPrintActionParameters]):
 
     def start(self) -> None:
         player = self.session.player
+        character = self.parameters.character
+        result = self.parameters.result
         today = dt.date.today().toordinal()
 
-        value = (self.parameters.character, self.parameters.result)
-        if self.parameters.result:
-            if value[0] in player.battle_history:
-                battle_date = player.battle_history.get(value)
-                print(
-                    f"{value[1]} against {value[0]} {today - battle_date} days ago"
-                )
+        if character in player.battle_history:
+            output, battle_date = player.battle_history[character]
+            diff_date = today - battle_date
+            if result == output:
+                print(f"{result} against {character} {diff_date} days ago")
             else:
-                print(f"Never {value[1]} against {value[0]}")
+                print(f"Never {result} against {character}")
         else:
             print(player.battle_history)

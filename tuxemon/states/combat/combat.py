@@ -420,16 +420,12 @@ class CombatState(CombatAnimations):
                     monster.set_stats()
 
         elif phase == "resolve match":
-            # update battle_total only once after each battle
-            if self.is_trainer_battle:
-                var = self.players[0].game_variables
-                var["battle_total"] += 1
+            pass
 
         elif phase == "ran away":
             self.players[0].set_party_status()
             var = self.players[0].game_variables
             var["battle_last_result"] = OutputBattle.ran
-            var["battle_last_result"] = "ran"
             self.alert(T.translate("combat_player_run"))
 
             # after 3 seconds, push a state that blocks until enter is pressed
@@ -446,9 +442,10 @@ class CombatState(CombatAnimations):
                 formula.battle_math(self.players[0], OutputBattle.draw)
                 var["battle_last_trainer"] = self.players[1].slug
                 # track battles against NPC
-                self.players[0].battle_history[
-                    self.players[1].slug, OutputBattle.draw
-                ] = dt.date.today().toordinal()
+                self.players[0].battle_history[self.players[1].slug] = (
+                    OutputBattle.draw,
+                    dt.date.today().toordinal(),
+                )
 
             # it is a draw match; both players were defeated in same round
             self.alert(T.translate("combat_draw"))
@@ -480,9 +477,10 @@ class CombatState(CombatAnimations):
                     var["battle_last_trainer"] = self.players[1].slug
                     # track battles against NPC
                     formula.battle_math(self.players[0], OutputBattle.won)
-                    self.players[0].battle_history[
-                        self.players[1].slug, OutputBattle.won
-                    ] = dt.date.today().toordinal()
+                    self.players[0].battle_history[self.players[1].slug] = (
+                        OutputBattle.won,
+                        dt.date.today().toordinal(),
+                    )
                 else:
                     self.alert(T.translate("combat_victory"))
 
@@ -494,9 +492,10 @@ class CombatState(CombatAnimations):
                     formula.battle_math(self.players[0], OutputBattle.lost)
                     var["battle_last_trainer"] = self.players[1].slug
                     # track battles against NPC
-                    self.players[0].battle_history[
-                        self.players[1].slug, OutputBattle.lost
-                    ] = dt.date.today().toordinal()
+                    self.players[0].battle_history[self.players[1].slug] = (
+                        OutputBattle.won,
+                        dt.date.today().toordinal(),
+                    )
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close

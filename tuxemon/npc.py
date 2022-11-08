@@ -93,7 +93,7 @@ class NPCState(TypedDict):
     current_map: str
     facing: Direction
     game_variables: Dict[str, Any]
-    battle_history: Dict[Tuple[str, OutputBattle], int]
+    battle_history: Dict[str, Tuple[OutputBattle, int]]
     tuxepedia: Dict[str, SeenStatus]
     money: Dict[str, int]
     inventory: Mapping[str, Optional[int]]
@@ -173,7 +173,7 @@ class NPC(Entity[NPCState]):
         self.behavior: Optional[str] = "wander"  # not used for now
         self.game_variables: Dict[str, Any] = {}  # Tracks the game state
         self.battle_history: Dict[
-            Tuple[str, OutputBattle], int
+            str, Tuple[OutputBattle, int]
         ] = {}  # Tracks the battles
         # Tracks Tuxepedia (monster seen or caught)
         self.tuxepedia: Dict[str, SeenStatus] = {}

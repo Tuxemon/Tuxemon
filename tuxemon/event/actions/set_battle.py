@@ -58,7 +58,8 @@ class SetBattleAction(EventAction[SetBattleActionParameters]):
         battle_key = str(battle_list[0])
         battle_value = str(battle_list[1])
 
-        # Append the battle_history dict tuple with the key: value pair
-        player.battle_history[
-            battle_key, battle_value
-        ] = dt.date.today().toordinal()
+        # set the value in battle history
+        player.battle_history[battle_key] = (
+            battle_value,
+            dt.date.today().toordinal(),
+        )

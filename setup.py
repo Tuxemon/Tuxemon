@@ -51,7 +51,6 @@ setup(
     url="https://www.tuxemon.org",
     include_package_data=True,
     packages=modules,
-    license="GPLv3",
     long_description="https://github.com/Tuxemon/Tuxemon",
     install_requires=REQUIREMENTS,
     python_requires=">=3.8",

@@ -3,43 +3,23 @@
   "monsters": [
     {
       "monster": "cardiling",
-      "encounter_rate": 2.5,
-      "level_range": [
-        3,
-        6
-      ]
+      "encounter_rate": 2.5
     },
     {
       "monster": "aardorn",
-      "encounter_rate": 2.5,
-      "level_range": [
-        3,
-        6
-      ]
+      "encounter_rate": 2.5
     },
     {
       "monster": "eyenemy",
-      "encounter_rate": 2.5,
-      "level_range": [
-        3,
-        6
-      ]
+      "encounter_rate": 2.5
     },
     {
       "monster": "axylightl",
-      "encounter_rate": 1,
-      "level_range": [
-        4,
-        7
-      ]
+      "encounter_rate": 1
     },
     {
       "monster": "cataspike",
-      "encounter_rate": 2.5,
-      "level_range": [
-        3,
-        6
-      ]
+      "encounter_rate": 2.5
     }
   ]
 }

@@ -3,35 +3,19 @@
   "monsters": [
     {
       "monster": "cairfrey",
-      "encounter_rate": 3,
-      "level_range": [
-        13,
-        16
-      ]
+      "encounter_rate": 3
     },
     {
       "monster": "polyrock",
-      "encounter_rate": 3,
-      "level_range": [
-        13,
-        16
-      ]
+      "encounter_rate": 3
     },
     {
       "monster": "djinnbo",
-      "encounter_rate": 1,
-      "level_range": [
-        14,
-        17
-      ]
+      "encounter_rate": 1
     },
     {
       "monster": "pigabyte",
-      "encounter_rate": 3,
-      "level_range": [
-        13,
-        16
-      ]
+      "encounter_rate": 3
     }
   ]
 }

@@ -3,67 +3,35 @@
   "monsters": [
     {
       "monster": "cardiling",
-      "encounter_rate": 3,
-      "level_range": [
-        5,
-        8
-      ]
+      "encounter_rate": 3
     },
     {
       "monster": "cardiwing",
-      "encounter_rate": 1,
-      "level_range": [
-        8,
-        11
-      ]
+      "encounter_rate": 1
     },
     {
       "monster": "cataspike",
-      "encounter_rate": 3,
-      "level_range": [
-        6,
-        9
-      ]
+      "encounter_rate": 3
     },
     {
       "monster": "eyenemy",
-      "encounter_rate": 3,
-      "level_range": [
-        5,
-        8
-      ]
+      "encounter_rate": 3
     },
     {
       "monster": "axylightl",
-      "encounter_rate": 3,
-      "level_range": [
-        5,
-        8
-      ]
+      "encounter_rate": 3
     },
     {
       "monster": "tourbidi",
-      "encounter_rate": 1,
-      "level_range": [
-        6,
-        9
-      ]
+      "encounter_rate": 1
     },
     {
       "monster": "squabbit",
-      "encounter_rate": 3,
-      "level_range": [
-        5,
-        8
-      ]
+      "encounter_rate": 3
     },
     {
       "monster": "puparmor",
-      "encounter_rate": 1,
-      "level_range": [
-        8,
-        11
-      ]
+      "encounter_rate": 1
     }
   ]
 }

@@ -87,7 +87,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             logger.info("Starting random encounter!")
 
             self.world = self.session.client.get_state_by_name(WorldState)
-            npc = _create_monster_npc(encounter, world=self.world)
+            npc = _create_monster_npc(player, encounter, world=self.world)
 
             # Lookup the environment
             env_slug = "grass"
@@ -160,19 +160,17 @@ def _choose_encounter(
 
 
 def _create_monster_npc(
+    player: NPC,
     encounter: EncounterItemModel,
     world: WorldState,
 ) -> NPC:
     current_monster = monster.Monster()
     current_monster.load_from_db(encounter.monster)
-    # Set the monster's level based on the specified level range
-    if len(encounter.level_range) > 1:
-        level = random.randrange(
-            encounter.level_range[0],
-            encounter.level_range[1],
-        )
-    else:
-        level = encounter.level_range[0]
+    # Set the monster's level based on the party level
+    level = random.randint(
+        player.game_variables["party_level_lowest"],
+        player.game_variables["party_level_highest"],
+    )
     # Set the monster's level
     current_monster.level = 1
     current_monster.set_level(level)

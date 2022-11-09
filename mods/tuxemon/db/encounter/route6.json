@@ -3,27 +3,15 @@
   "monsters": [
     {
       "monster": "dandicub",
-      "encounter_rate": 10,
-      "level_range": [
-        19,
-        20
-      ]
+      "encounter_rate": 10
     },
     {
       "monster": "dandylion",
-      "encounter_rate": 5,
-      "level_range": [
-        21,
-        23
-      ]
+      "encounter_rate": 5
     },
     {
       "monster": "capiti",
-      "encounter_rate": 10,
-      "level_range": [
-        19,
-        22
-      ]
+      "encounter_rate": 10
     }
   ]
 }

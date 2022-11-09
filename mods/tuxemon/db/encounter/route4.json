@@ -3,35 +3,19 @@
   "monsters": [
     {
       "monster": "elofly",
-      "encounter_rate": 3,
-      "level_range": [
-        11,
-        14
-      ]
+      "encounter_rate": 3
     },
     {
       "monster": "sapsnap",
-      "encounter_rate": 1,
-      "level_range": [
-        12,
-        15
-      ]
+      "encounter_rate": 1
     },
     {
       "monster": "aardorn",
-      "encounter_rate": 3,
-      "level_range": [
-        11,
-        14
-      ]
+      "encounter_rate": 3
     },
     {
       "monster": "katapill",
-      "encounter_rate": 3,
-      "level_range": [
-        11,
-        14
-      ]
+      "encounter_rate": 3
     }
   ]
 }

@@ -506,9 +506,6 @@ class EnvironmentModel(BaseModel):
 class EncounterItemModel(BaseModel):
     monster: str = Field(..., description="Monster slug for this encounter")
     encounter_rate: float = Field(..., description="Rate of this encounter")
-    level_range: Sequence[int] = Field(
-        ..., description="Level range to encounter"
-    )
 
     @validator("monster")
     def monster_exists(cls, v):

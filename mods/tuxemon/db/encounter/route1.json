@@ -3,27 +3,15 @@
   "monsters": [
     {
       "monster": "pairagrin",
-      "encounter_rate": 3.5,
-      "level_range": [
-        1,
-        4
-      ]
+      "encounter_rate": 3.5
     },
     {
       "monster": "aardorn",
-      "encounter_rate": 3.5,
-      "level_range": [
-        1,
-        4
-      ]
+      "encounter_rate": 3.5
     },
     {
       "monster": "cataspike",
-      "encounter_rate": 3.5,
-      "level_range": [
-        1,
-        4
-      ]
+      "encounter_rate": 3.5
     }
   ]
 }

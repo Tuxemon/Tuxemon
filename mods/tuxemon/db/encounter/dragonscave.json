@@ -3,35 +3,19 @@
   "monsters": [
     {
       "monster": "agnite",
-      "encounter_rate": 3,
-      "level_range": [
-        25,
-        28
-      ]
+      "encounter_rate": 3
     },
     {
       "monster": "agnidon",
-      "encounter_rate": 1,
-      "level_range": [
-        20,
-        25
-      ]
+      "encounter_rate": 1
     },
     {
       "monster": "embra",
-      "encounter_rate": 3,
-      "level_range": [
-        25,
-        28
-      ]
+      "encounter_rate": 3
     },
     {
       "monster": "ruption",
-      "encounter_rate": 1,
-      "level_range": [
-        20,
-        25
-      ]
+      "encounter_rate": 1
     }
   ]
 }

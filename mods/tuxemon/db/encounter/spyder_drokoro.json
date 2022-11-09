@@ -3,11 +3,7 @@
   "monsters": [
     {
       "monster": "drokoro",
-      "encounter_rate": 100,
-      "level_range": [
-        50,
-        51
-      ]
+      "encounter_rate": 100
     }
   ]
 }

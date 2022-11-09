@@ -3,43 +3,23 @@
   "monsters": [
     {
       "monster": "cochini",
-      "encounter_rate": 5,
-      "level_range": [
-        15,
-        25
-      ]
+      "encounter_rate": 5
     },
     {
       "monster": "cateye",
-      "encounter_rate": 5,
-      "level_range": [
-        15,
-        25
-      ]
+      "encounter_rate": 5
     },
     {
       "monster": "sclairus",
-      "encounter_rate": 5,
-      "level_range": [
-        15,
-        25
-      ]
+      "encounter_rate": 5
     },
     {
       "monster": "bursa",
-      "encounter_rate": 5,
-      "level_range": [
-        15,
-        25
-      ]
+      "encounter_rate": 5
     },
     {
       "monster": "nut",
-      "encounter_rate": 5,
-      "level_range": [
-        15,
-        25
-      ]
+      "encounter_rate": 5
     }
   ]
 }

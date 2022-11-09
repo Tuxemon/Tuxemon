@@ -3,42 +3,22 @@
     "monsters":[
         {
             "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
             "monster":"chloragon"
         },
         {
             "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
             "monster":"chillimp"
         },
         {
             "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
             "monster":"coproblight"
         },
         {
             "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
             "monster":"pilthropus"
         },
         {
             "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
             "monster":"teddisun"
         }
     ]

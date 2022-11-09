@@ -3,11 +3,7 @@
    "monsters": [
       {
          "monster": "propellercat",
-         "encounter_rate": 1,
-         "level_range": [
-            2,
-            64
-         ]
+         "encounter_rate": 1
       }
    ]
 }

@@ -3,43 +3,23 @@
   "monsters": [
     {
       "monster": "foofle",
-      "encounter_rate": 3,
-      "level_range": [
-        19,
-        23
-      ]
+      "encounter_rate": 3
     },
     {
       "monster": "vamporm",
-      "encounter_rate": 3,
-      "level_range": [
-        16,
-        20
-      ]
+      "encounter_rate": 3
     },
     {
       "monster": "dracune",
-      "encounter_rate": 1,
-      "level_range": [
-        18,
-        22
-      ]
+      "encounter_rate": 1
     },
     {
       "monster": "anoleaf",
-      "encounter_rate": 3,
-      "level_range": [
-        16,
-        20
-      ]
+      "encounter_rate": 3
     },
     {
       "monster": "gectile",
-      "encounter_rate": 1,
-      "level_range": [
-        20,
-        24
-      ]
+      "encounter_rate": 1
     }
   ]
 }

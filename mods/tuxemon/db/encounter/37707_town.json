@@ -3,34 +3,18 @@
     "monsters":[
         {
             "encounter_rate": 0.5,
-            "level_range": [
-                1,
-                10
-            ],
             "monster": "fruitera"
         },
         {
             "encounter_rate": 0.5,
-            "level_range": [
-                1,
-                10
-            ],
             "monster": "dollfin"
         },
         {
             "encounter_rate": 0.5,
-            "level_range": [
-                1,
-                10
-            ],
             "monster": "legko"
         },
         {
             "encounter_rate": 0.5,
-            "level_range": [
-                1,
-                10
-            ],
             "monster": "rockitten"
         }
     ]

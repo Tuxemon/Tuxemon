@@ -206,7 +206,7 @@ class TMXMapLoader:
         interacts = list()
         collision_map: Dict[Tuple[int, int], Optional[RegionProperties]] = {}
         collision_lines_map = set()
-        edges = data.properties.get("edges")
+        maps = data.properties
 
         # get all tiles which have properties and/or collisions
         gids_with_props = dict()
@@ -266,7 +266,7 @@ class TMXMapLoader:
             collision_map,
             collision_lines_map,
             data,
-            edges,
+            maps,
             filename,
         )
 

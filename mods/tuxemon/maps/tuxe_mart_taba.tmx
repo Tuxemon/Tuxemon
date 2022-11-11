@@ -2,6 +2,8 @@
 <map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="69">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="xero"/>
  </properties>
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>

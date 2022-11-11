@@ -183,6 +183,7 @@ class LocalPygameClient:
         self.interacts = map_data.interacts
         self.event_engine.reset()
         self.event_engine.current_map = map_data
+        self.maps = map_data.maps
 
     def draw_event_debug(self) -> None:
         """

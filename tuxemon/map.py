@@ -405,7 +405,7 @@ class TuxemonMap:
         collision_map: Mapping[Tuple[int, int], Optional[RegionProperties]],
         collisions_lines_map: Set[Tuple[Tuple[int, int], Direction]],
         tiled_map: TiledMap,
-        edges: str,
+        maps: dict,
         filename: str,
     ) -> None:
         """Constructor
@@ -429,7 +429,7 @@ class TuxemonMap:
             collision_map: Collision map.
             collisions_lines_map: Collision map of lines.
             tiled_map: Original tiled map.
-            edges: Behaviour at the edges.
+            maps: Dictionary of map properties.
             filename: Path of the map.
 
         """
@@ -440,10 +440,19 @@ class TuxemonMap:
         self.inits = inits
         self.events = events
         self.renderer: Optional[pyscroll.BufferedRenderer] = None
-        self.edges = edges
+        self.edges = maps.get("edges")
         self.data = tiled_map
         self.sprite_layer = 2
         self.filename = filename
+        self.maps = maps
+
+        # optional fields
+        # inside (true), outside (none)
+        self.inside = bool(maps.get("inside"))
+        # scenario: spyder, xero or none
+        self.scenario = maps.get("scenario")
+        # town (true), not town (none)
+        self.town = bool(maps.get("town"))
 
     def initialize_renderer(self) -> None:
         """
@@ -454,6 +463,7 @@ class TuxemonMap:
 
         """
         visual_data = pyscroll.data.TiledMapData(self.data)
+        # Behaviour at the edges.
         clamp = self.edges == "clamped"
         self.renderer = pyscroll.BufferedRenderer(
             visual_data,

@@ -16,7 +16,13 @@
             "technique": "rust_bomb"
         }
     ],
-    "evolutions": [],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 55,
+            "monster_slug": "ferricran"
+        }
+    ],
     "shape": "dragon",
     "types": [
         "metal"

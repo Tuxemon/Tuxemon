@@ -16,7 +16,13 @@
             "technique": "midnight_mantle"
         }
     ],
-    "evolutions": [],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "loliferno"
+        }
+    ],
     "shape": "blob",
     "types": [
         "fire",

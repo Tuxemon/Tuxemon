@@ -16,7 +16,13 @@
             "technique": "snowstorm"
         }
     ],
-    "evolutions": [],
+    "evolutions": [
+        {
+            "path": "",
+            "at_level": 20,
+            "monster_slug": "snowrilla"
+        }
+    ],
     "shape": "brute",
     "types": [
         "water",

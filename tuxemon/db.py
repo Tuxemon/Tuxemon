@@ -218,6 +218,8 @@ class MonsterEvolutionItemModel(BaseModel):
     monster_slug: str = Field(
         ..., description="The monster slug that this evolution item applies to"
     )
+    # Optional parameters:
+    gender: Optional[GenderType] = Field("", description="Gender parameter")
 
     @validator("monster_slug")
     def monster_exists(cls, v):

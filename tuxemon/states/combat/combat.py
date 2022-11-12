@@ -1204,14 +1204,18 @@ class CombatState(CombatAnimations):
                 # check the path field, path field signals evolution item based
                 if not evolution.path:
                     if evolution.at_level <= monster.level:
-                        logger.info(
-                            "{} evolved into {}!".format(
-                                monster.name, evolution.monster_slug
-                            )
-                        )
                         self.players[0].evolve_monster(
                             monster, evolution.monster_slug
                         )
+                elif evolution.path == "gender":
+                    if evolution.at_level <= monster.level:
+                        if evolution.gender == monster.gender:
+                            self.players[0].evolve_monster(
+                                monster, evolution.monster_slug
+                            )
+                elif evolution.path == "exception":
+                    if evolution.at_level <= monster.level:
+                        self.players[0].evolve_exceptions(monster)
 
     def end_combat(self) -> None:
         """End the combat."""

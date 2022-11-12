@@ -18,22 +18,22 @@
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "exception",
             "at_level": 20,
             "monster_slug": "angrito"
         },
         {
-            "path": "",
+            "path": "exception",
             "at_level": 20,
             "monster_slug": "happito"
         },
         {
-            "path": "",
+            "path": "exception",
             "at_level": 20,
             "monster_slug": "neutrito"
         },
         {
-            "path": "",
+            "path": "exception",
             "at_level": 20,
             "monster_slug": "sadito"
         }

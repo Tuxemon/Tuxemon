@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import logging
 import os
+import random
 import uuid
 from math import hypot
 from typing import (
@@ -795,6 +796,23 @@ class NPC(Entity[NPCState]):
             for old_flair in old_monster.flairs.values():
                 if new_flair.category == old_flair.category:
                     new_monster.flairs[new_flair.category] = old_flair
+
+    def evolve_exceptions(self, old_monster: Monster) -> Monster:
+        """
+        Deals with tricky cases of evolution.
+        """
+        if old_monster.slug == "katacoon":
+            if old_monster.melee > old_monster.armour:
+                evolution = "sumchon"
+            elif old_monster.melee < old_monster.armour:
+                evolution = "bugnin"
+            else:
+                options = ["sumchon", "bugnin"]
+                evolution = random.choice(options)
+        if old_monster.slug == "chromeye":
+            options = ["angrito", "happito", "neutrito", "sadito"]
+            evolution = random.choice(options)
+        self.evolve_monster(old_monster, evolution)
 
     def remove_monster_from_storage(self, monster: Monster) -> None:
         """

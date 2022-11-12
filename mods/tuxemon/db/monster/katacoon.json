@@ -18,12 +18,12 @@
     ],
     "evolutions": [
         {
-            "path": "stat_melee",
+            "path": "exception",
             "at_level": 12,
             "monster_slug": "bugnin"
         },
         {
-            "path": "stat_armour",
+            "path": "exception",
             "at_level": 12,
             "monster_slug": "sumchon"
         }

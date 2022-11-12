@@ -36,6 +36,11 @@
             "path": "booster_tech",
             "at_level": 0,
             "monster_slug": "k9"
+        },
+        {
+            "path": "booster_tech",
+            "at_level": 0,
+            "monster_slug": "b_ver_1"
         }
     ],
     "shape": "grub",

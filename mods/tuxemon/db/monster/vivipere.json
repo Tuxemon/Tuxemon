@@ -41,6 +41,16 @@
             "path": "",
             "at_level": 25,
             "monster_slug": "vivitron"
+        },
+        {
+            "path": "",
+            "at_level": 24,
+            "monster_slug": "vividactil"
+        },
+        {
+            "path": "",
+            "at_level": 24,
+            "monster_slug": "vivisource"
         }
     ],
     "shape": "serpent",

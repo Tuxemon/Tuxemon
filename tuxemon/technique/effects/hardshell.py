@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import random
-from typing import NamedTuple, Optional
+from dataclasses import dataclass
+from typing import Optional
 
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -14,21 +15,20 @@ class HardShellEffectResult(TechEffectResult):
     status: Optional[Technique]
 
 
-class HardShellEffectParameters(NamedTuple):
-    objective: str
-
-
-class HardShellEffect(TechEffect[HardShellEffectParameters]):
+@dataclass
+class HardShellEffect(TechEffect):
     """
     This effect has a chance to apply the hard shell status effect.
     """
 
     name = "hardshell"
-    param_class = HardShellEffectParameters
+    objective: str
 
-    def apply(self, user: Monster, target: Monster) -> HardShellEffectResult:
-        obj = self.parameters.objective
-        success = self.move.potency >= random.random()
+    def apply(
+        self, tech: Technique, user: Monster, target: Monster
+    ) -> HardShellEffectResult:
+        obj = self.objective
+        success = tech.potency >= random.random()
         if success:
             tech = Technique("status_hardshell")
             if obj == "user":

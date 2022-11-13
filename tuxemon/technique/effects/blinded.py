@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import random
-from typing import NamedTuple, Optional
+from dataclasses import dataclass
+from typing import Optional
 
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -14,21 +15,20 @@ class BlindedEffectResult(TechEffectResult):
     status: Optional[Technique]
 
 
-class BlindedEffectParameters(NamedTuple):
-    objective: str
-
-
-class BlindedEffect(TechEffect[BlindedEffectParameters]):
+@dataclass
+class BlindedEffect(TechEffect):
     """
     This effect has a chance to apply the blinded status effect.
     """
 
     name = "blinded"
-    param_class = BlindedEffectParameters
+    objective: str
 
-    def apply(self, user: Monster, target: Monster) -> BlindedEffectResult:
-        obj = self.parameters.objective
-        success = self.move.potency >= random.random()
+    def apply(
+        self, tech: Technique, user: Monster, target: Monster
+    ) -> BlindedEffectResult:
+        obj = self.objective
+        success = tech.potency >= random.random()
         if success:
             tech = Technique("status_blinded")
             if obj == "user":

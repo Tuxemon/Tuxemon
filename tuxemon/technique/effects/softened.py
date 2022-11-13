@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import random
-from typing import NamedTuple, Optional
+from dataclasses import dataclass
+from typing import Optional
 
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -14,21 +15,20 @@ class SoftenedEffectResult(TechEffectResult):
     status: Optional[Technique]
 
 
-class SoftenedEffectParameters(NamedTuple):
-    objective: str
-
-
-class SoftenedEffect(TechEffect[SoftenedEffectParameters]):
+@dataclass
+class SoftenedEffect(TechEffect):
     """
     This effect has a chance to apply the softened status effect.
     """
 
     name = "softened"
-    param_class = SoftenedEffectParameters
+    objective: str
 
-    def apply(self, user: Monster, target: Monster) -> SoftenedEffectResult:
-        obj = self.parameters.objective
-        success = self.move.potency >= random.random()
+    def apply(
+        self, tech: Technique, user: Monster, target: Monster
+    ) -> SoftenedEffectResult:
+        obj = self.objective
+        success = tech.potency >= random.random()
         if success:
             tech = Technique("status_softened")
             if obj == "user":

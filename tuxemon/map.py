@@ -55,6 +55,7 @@ from tuxemon import prepare
 from tuxemon.compat import ReadOnlyRect
 from tuxemon.event import EventObject
 from tuxemon.graphics import scaled_image_loader
+from tuxemon.locale import T
 from tuxemon.math import Vector2, Vector3
 from tuxemon.tools import round_to_divisible
 
@@ -447,6 +448,19 @@ class TuxemonMap:
         self.maps = maps
 
         # optional fields
+        self.slug = maps.get("slug")
+        self.name = T.translate(self.slug)
+        self.description = T.translate(f"{self.slug}_description")
+        # cardinal directions (towns + roads)
+        self.north = maps.get("north")
+        self.south = maps.get("south")
+        self.east = maps.get("east")
+        self.west = maps.get("west")
+        # translated cardinal directions (signs)
+        self.north_trans = T.translate(self.north)
+        self.south_trans = T.translate(self.south)
+        self.east_trans = T.translate(self.east)
+        self.west_trans = T.translate(self.west)
         # inside (true), outside (none)
         self.inside = bool(maps.get("inside"))
         # scenario: spyder, xero or none

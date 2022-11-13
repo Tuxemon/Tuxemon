@@ -3,7 +3,9 @@
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
+  <property name="slug" value="candy_town"/>
   <property name="town" type="bool" value="true"/>
+  <property name="south" value="route6"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>

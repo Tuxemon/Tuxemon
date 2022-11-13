@@ -3,6 +3,7 @@
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
+  <property name="slug" value="omnichannel1"/>
  </properties>
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>

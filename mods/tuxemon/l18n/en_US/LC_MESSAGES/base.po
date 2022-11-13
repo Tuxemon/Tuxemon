@@ -702,6 +702,108 @@ msgstr "Whirlwind"
 msgid "wing_tip"
 msgstr "Wing Tip"
 
+## MAP ##
+
+msgid "candy_town"
+msgstr "Candy"
+
+msgid "citypark"
+msgstr "Citypark"
+
+msgid "cotton_town"
+msgstr "Cotton"
+
+msgid "dryadsgrove"
+msgstr "Dryadsgrove"
+
+msgid "flower_city"
+msgstr "Flower"
+
+msgid "leather_town"
+msgstr "Leather"
+
+msgid "paper_town"
+msgstr "Paper"
+
+msgid "route1"
+msgstr "Route 1"
+
+msgid "route1_sanglorian"
+msgstr "Sanglorian Avenue"
+
+msgid "route2"
+msgstr "Route 2"
+
+msgid "route3"
+msgstr "Route 3"
+
+msgid "route4"
+msgstr "Route 4"
+
+msgid "route5"
+msgstr "Route 5"
+
+msgid "route6"
+msgstr "Route 6"
+
+msgid "routea"
+msgstr "Route A"
+
+msgid "routec"
+msgstr "Route C"
+
+msgid "routed"
+msgstr "Route D"
+
+msgid "routee"
+msgstr "route E"
+
+msgid "taba_town"
+msgstr "Taba"
+
+msgid "timber_town"
+msgstr "Timber"
+
+msgid "tunnel"
+msgstr "Tunnel"
+
+## MAP DESCRIPTIONS TOWN / CITY ##
+
+msgid "candy_town_description"
+msgstr "Candy Town Slogan"
+
+msgid "cotton_town_description"
+msgstr "A growing force!"
+
+msgid "flower_city_description"
+msgstr "Uniforms that guard you while you sleep!"
+
+msgid "leather_town_description"
+msgstr "Proof that beauty and mining can co-exist!"
+
+msgid "paper_town_description"
+msgstr "The gateway to Fondent!"
+
+msgid "taba_town_description"
+msgstr "A peaceful refuge!"
+
+msgid "timber_town_description"
+msgstr "Breadbasket of Fondant!"
+
+## MAP SIGNS ##
+
+msgid "welcome_location_city"
+msgstr "Welcome to ${{map_name}} City: ${{map_desc}}\n"
+"North: ${{north}} / South: ${{south}} / West: ${{west}} / East: ${{east}}"
+
+msgid "welcome_location_route"
+msgstr "Welcome to ${{map_name}}: ${{map_desc}}\n"
+"North: ${{north}} / South: ${{south}} / West: ${{west}} / East: ${{east}}"
+
+msgid "welcome_location_town"
+msgstr "Welcome to ${{map_name}} Town: ${{map_desc}}\n"
+"North: ${{north}} / South: ${{south}} / West: ${{west}} / East: ${{east}}"
+
 ## MENU TRANSLATIONS ##
 
 msgid "menu_alphabet"
@@ -2683,10 +2785,6 @@ msgstr "Cathedral Center: We Live to Serve."
 
 msgid "Cotton_Mart"
 msgstr "Get the scoop at the Scoop Store!"
-
-msgid "Cotton_Town_Sign\n"
-msgstr "Welcome to Cotton Town: A Growing Force\n" 
-"↑ Cotton Town --- Route 1 ↓\n"
 
 msgid "column1"
 msgstr "A rare and ancient column. This used to be part of a temple."
@@ -4901,14 +4999,10 @@ msgid "_mk01alpha"
 msgstr "Mk01 Alpha"
 
 
-
 ## MESSAGE TRANSLATIONS ##
 # spyder messages
 msgid "spyder_multi_underrepairs"
 msgstr "The sign reads, 'Under repairs'"
-
-msgid "spyder_papertown_townsign"
-msgstr "Paper Town: The gateway to Fondent!"
 
 msgid "spyder_multi_martsign"
 msgstr "Buy things here"
@@ -4937,8 +5031,6 @@ msgstr "What's on TV? A prom queen is breaking her tiara into pieces and handing
 msgid "spyder_citypark_achievement"
 msgstr "Achievement Maniac's House: Closed."
 
-msgid "spyder_cottontown_townsign" 
-msgstr "Welcome to Cotton Town: A growing force." 
 msgid "spyder_route2_routesign" 
 msgstr "Welcome to Route 2: The historic path." 
 msgid "spyder_citypark_routesign" 
@@ -4973,8 +5065,6 @@ msgid "spyder_nimrod4_plaque"
 msgstr "But soon, tuxemon and humans may be rendered obsolete. \n Our corporate sponsors Nimrod are developing robot technology that could make war a bloodless affair. \n In the meantime, sign up for the Nimrod Enforcers for good pay, free education and a life of adventure."
 msgid "spyder_route3_sign"
 msgstr "Route 3: Rehabilitation will begin as soon as possible. \n Please stop nagging us."
-msgid "spyder_leathertown_sign"
-msgstr "Leather Town: Proof that beauty and mining can co-exist."
 msgid "spyder_shaft1_sign"
 msgstr "Shaft Headquarters: Mining Division"
 msgid "spyder_shaft2_sign"
@@ -4984,8 +5074,6 @@ msgstr "Open Air Cafe and Marketplace"
 msgid "spyder_leathercbd_sign"
 msgstr "Leather Town Business District"
 
-msgid "spyder_flower_sign"
-msgstr "Flower City: Uniforms that guard you while you sleep"
 msgid "spyder_route5_sign"
 msgstr "The memorial passage to Timber Town"
 msgid "spyder_leatherhouse1_radio"
@@ -5001,8 +5089,6 @@ msgstr "Haha, suckers - you'll never find me. \n It's on the Omnichannel CEO's l
 
 msgid "spyder_cottonhouse1_tvwatch"
 msgstr "It's the latest reality show: people and their tuxemon complete challenges on a remote island."
-msgid "spyder_timber_sign"
-msgstr "Timber Town: Breadbasket of Fondant."
 
 
 ## Item descriptions ##
@@ -5020,18 +5106,6 @@ msgid "sledgehammer_description"
 msgstr "Smash apart grey boulders."
 msgid "sledgehammer"
 msgstr "Sledgehammer"
-msgid "timber"
-msgstr "Timber Town"
-msgid "flower"
-msgstr "Flower City"
-msgid "paper"
-msgstr "Paper Town"
-msgid "candy"
-msgstr "Candy Town"
-msgid "cotton"
-msgstr "Cotton Town"
-msgid "leather"
-msgstr "Leather Town"
 
 msgid "cannot_use_item_monster"
 msgstr "This item cannot be used on this monster."
@@ -5166,8 +5240,6 @@ msgid "taba_town_sign_tuxemart"
 msgstr "Tuxemart - A place to buy and sell items"
 msgid "taba_town_sign_tuxecenter"
 msgstr "Tuxecenter - A place to heal your tuxemon"
-msgid "taba_town_sign"
-msgstr "Taba Town - A peaceful refuge"
 msgid "taba_town_route20"
 msgstr "Route 20"
 

@@ -3,6 +3,9 @@
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
+  <property name="slug" value="citypark"/>
+  <property name="south" value="route2"/>
+  <property name="east" value="leather_town"/>
  </properties>
  <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
@@ -251,7 +254,7 @@
   </object>
   <object id="102" name="Sign: Leather Town" type="event" x="16" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_leathertown_sign"/>
+    <property name="act1" value="translated_dialog spyder_citypark_routesign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

@@ -3,6 +3,9 @@
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
+  <property name="slug" value="route4"/>
+  <property name="south" value="route3"/>
+  <property name="east" value="flower_city"/>
  </properties>
  <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>

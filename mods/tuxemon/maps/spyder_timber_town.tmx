@@ -4,6 +4,9 @@
   <property name="edges" value="clamped"/>
   <property name="town" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
+  <property name="slug" value="timber_town"/>
+  <property name="north" value="route5"/>
+  <property name="south" value="tunnel"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
@@ -332,7 +335,7 @@
   </object>
   <object id="351" name="Sign: Timber Town" type="event" x="96" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_timber_sign"/>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

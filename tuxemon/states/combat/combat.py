@@ -493,7 +493,7 @@ class CombatState(CombatAnimations):
                     var["battle_last_trainer"] = self.players[1].slug
                     # track battles against NPC
                     self.players[0].battle_history[self.players[1].slug] = (
-                        OutputBattle.won,
+                        OutputBattle.lost,
                         dt.date.today().toordinal(),
                     )
 

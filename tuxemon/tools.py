@@ -211,6 +211,29 @@ def open_dialog(
     )
 
 
+def open_choice_dialog(
+    session: Session,
+    menu: Sequence[Tuple[str, str, Callable[[], None]]],
+) -> State:
+    """
+    Open a dialog choice with the standard window size.
+
+    Parameters:
+        session: Game session.
+        menu: Optional menu object.
+
+    Returns:
+        The pushed dialog choice state.
+
+    """
+    from tuxemon.states.choice import ChoiceState
+
+    return session.client.push_state(
+        ChoiceState,
+        menu=menu,
+    )
+
+
 def vector2_to_tile_pos(vector: Vector2) -> Tuple[int, int]:
     return (int(vector[0]), int(vector[1]))
 

@@ -1201,6 +1201,28 @@ class CombatState(CombatAnimations):
     def evolve(self) -> None:
         for monster in self.players[0].monsters:
             for evolution in monster.evolutions:
+                if evolution.at_level <= monster.level:
+                    self.client.pop_state()
+                    tools.open_dialog(
+                        local_session,
+                        [
+                            T.format(
+                                "evolution_confirmation",
+                                {"name": monster.name},
+                            )
+                        ],
+                    )
+                    tools.open_choice_dialog(
+                        local_session,
+                        menu=(
+                            ("yes", T.translate("yes"), self.positive_answer),
+                            ("no", T.translate("no"), self.negative_answer),
+                        ),
+                    )
+
+    def positive_answer(self) -> None:
+        for monster in self.players[0].monsters:
+            for evolution in monster.evolutions:
                 # check the path field, path field signals evolution item based
                 if not evolution.path:
                     if evolution.at_level <= monster.level:
@@ -1212,6 +1234,12 @@ class CombatState(CombatAnimations):
                         self.players[0].evolve_monster(
                             monster, evolution.monster_slug
                         )
+        self.client.pop_state()
+        self.client.pop_state()
+
+    def negative_answer(self) -> None:
+        self.client.pop_state()
+        self.client.pop_state()
 
     def end_combat(self) -> None:
         """End the combat."""

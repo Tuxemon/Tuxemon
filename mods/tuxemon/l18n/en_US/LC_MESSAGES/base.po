@@ -733,6 +733,9 @@ msgstr "Are you sure you would like to release {name}?"
 msgid "tuxemon_released"
 msgstr "{name} has been released."
 
+msgid "evolution_confirmation"
+msgstr "Are you sure you would like to evolve {name}?"
+
 # Menu notifications
 msgid "log_off"
 msgstr "Log Off"

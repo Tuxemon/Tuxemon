@@ -51,7 +51,7 @@ from typing import (
 from tuxemon import surfanim
 from tuxemon.ai import AI
 from tuxemon.compat import Rect
-from tuxemon.db import SeenStatus, db
+from tuxemon.db import OutputBattle, SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import (
@@ -93,7 +93,7 @@ class NPCState(TypedDict):
     current_map: str
     facing: Direction
     game_variables: Dict[str, Any]
-    battle_history: Dict[str, Any]
+    battle_history: Dict[str, Tuple[OutputBattle, int]]
     tuxepedia: Dict[str, SeenStatus]
     money: Dict[str, int]
     inventory: Mapping[str, Optional[int]]
@@ -172,7 +172,9 @@ class NPC(Entity[NPCState]):
         # general
         self.behavior: Optional[str] = "wander"  # not used for now
         self.game_variables: Dict[str, Any] = {}  # Tracks the game state
-        self.battle_history: Dict[str, Any] = {}  # Tracks the battles
+        self.battle_history: Dict[
+            str, Tuple[OutputBattle, int]
+        ] = {}  # Tracks the battles
         # Tracks Tuxepedia (monster seen or caught)
         self.tuxepedia: Dict[str, SeenStatus] = {}
         self.money: Dict[str, int] = {}  # Tracks money

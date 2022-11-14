@@ -29,6 +29,7 @@
 #
 from __future__ import annotations
 
+import datetime as dt
 import logging
 from collections import defaultdict
 from functools import partial
@@ -53,10 +54,10 @@ from typing import (
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import audio, graphics, state, tools
+from tuxemon import audio, formula, graphics, state, tools
 from tuxemon.animation import Task
 from tuxemon.combat import check_status, defeated, fainted, get_awake_monsters
-from tuxemon.db import SeenStatus
+from tuxemon.db import OutputBattle, SeenStatus
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -419,16 +420,12 @@ class CombatState(CombatAnimations):
                     monster.set_stats()
 
         elif phase == "resolve match":
-            # update battle_total only once after each battle
-            if self.is_trainer_battle:
-                var = self.players[0].game_variables
-                var["battle_total"] = +1
+            pass
 
         elif phase == "ran away":
             self.players[0].set_party_status()
             var = self.players[0].game_variables
-            var["battle_last_result"] = "ran"
-            var["run_attempts"] += 1
+            var["battle_last_result"] = OutputBattle.ran
             self.alert(T.translate("combat_player_run"))
 
             # after 3 seconds, push a state that blocks until enter is pressed
@@ -440,15 +437,15 @@ class CombatState(CombatAnimations):
         elif phase == "draw match":
             self.players[0].set_party_status()
             var = self.players[0].game_variables
-            var["battle_last_result"] = "draw"
+            var["battle_last_result"] = OutputBattle.draw
             if self.is_trainer_battle:
+                formula.battle_math(self.players[0], OutputBattle.draw)
                 var["battle_last_trainer"] = self.players[1].slug
-                var["battle_draw"] = +1
-                var["percent_draw"] = round(
-                    (var["battle_draw"] / var["battle_total"]) * 100
-                )
                 # track battles against NPC
-                self.players[0].battle_history[self.players[1].slug] = "draw"
+                self.players[0].battle_history[self.players[1].slug] = (
+                    OutputBattle.draw,
+                    dt.date.today().toordinal(),
+                )
 
             # it is a draw match; both players were defeated in same round
             self.alert(T.translate("combat_draw"))
@@ -464,7 +461,7 @@ class CombatState(CombatAnimations):
             self.players[0].set_party_status()
             var = self.players[0].game_variables
             if self.remaining_players[0] == self.players[0]:
-                var["battle_last_result"] = "won"
+                var["battle_last_result"] = OutputBattle.won
                 if self.is_trainer_battle:
                     self.alert(
                         T.format(
@@ -478,31 +475,27 @@ class CombatState(CombatAnimations):
                     )
                     self.players[0].give_money(self._prize)
                     var["battle_last_trainer"] = self.players[1].slug
-                    var["battle_won"] = +1
-                    var["percent_win"] = round(
-                        (var["battle_won"] / var["battle_total"]) * 100
-                    )
                     # track battles against NPC
-                    self.players[0].battle_history[
-                        self.players[1].slug
-                    ] = "won"
+                    formula.battle_math(self.players[0], OutputBattle.won)
+                    self.players[0].battle_history[self.players[1].slug] = (
+                        OutputBattle.won,
+                        dt.date.today().toordinal(),
+                    )
                 else:
                     self.alert(T.translate("combat_victory"))
 
             else:
-                var["battle_last_result"] = "lost"
+                var["battle_last_result"] = OutputBattle.lost
                 var["battle_lost_faint"] = "true"
                 self.alert(T.translate("combat_defeat"))
                 if self.is_trainer_battle:
+                    formula.battle_math(self.players[0], OutputBattle.lost)
                     var["battle_last_trainer"] = self.players[1].slug
-                    var["battle_lost"] = +1
-                    var["percent_lose"] = round(
-                        (var["battle_lost"] / var["battle_total"]) * 100
-                    )
                     # track battles against NPC
-                    self.players[0].battle_history[
-                        self.players[1].slug
-                    ] = "lost"
+                    self.players[0].battle_history[self.players[1].slug] = (
+                        OutputBattle.lost,
+                        dt.date.today().toordinal(),
+                    )
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close

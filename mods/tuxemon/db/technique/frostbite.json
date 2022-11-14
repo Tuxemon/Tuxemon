@@ -3,8 +3,8 @@
   "accuracy": 0.8,
   "animation": "lance_ice",
   "effects": [
-    "poison",
-    "damage"
+    "poison target",
+    "damage 100"
   ],
   "flip_axes": "xy",
   "healing_power": 0,

@@ -2,6 +2,10 @@
 <map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="68">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="route5"/>
+  <property name="south" value="timber_town"/>
+  <property name="west" value="flower_city"/>
  </properties>
  <tileset firstgid="1" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
   <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>

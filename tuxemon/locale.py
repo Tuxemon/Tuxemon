@@ -248,6 +248,13 @@ def replace_text(session: Session, text: str) -> str:
     text = text.replace("${{currency}}", "$")
     text = text.replace(r"\n", "\n")
     text = text.replace("${{money}}", str(session.player.money["player"]))
+    # maps
+    text = text.replace("${{map_name}}", session.client.map_name)
+    text = text.replace("${{map_desc}}", session.client.map_desc)
+    text = text.replace("${{north}}", session.client.map_north)
+    text = text.replace("${{south}}", session.client.map_south)
+    text = text.replace("${{east}}", session.client.map_east)
+    text = text.replace("${{west}}", session.client.map_west)
 
     for i in range(len(session.player.monsters)):
         monster = session.player.monsters[i]

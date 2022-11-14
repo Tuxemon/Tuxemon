@@ -183,6 +183,27 @@ class LocalPygameClient:
         self.interacts = map_data.interacts
         self.event_engine.reset()
         self.event_engine.current_map = map_data
+        self.maps = map_data.maps
+        self.map_name = map_data.name
+        self.map_desc = map_data.description
+
+        # Cardinal points
+        if map_data.north_trans is None:
+            self.map_north = str("-")
+        else:
+            self.map_north = map_data.north_trans
+        if map_data.south_trans is None:
+            self.map_south = str("-")
+        else:
+            self.map_south = map_data.south_trans
+        if map_data.east_trans is None:
+            self.map_east = str("-")
+        else:
+            self.map_east = map_data.east_trans
+        if map_data.west_trans is None:
+            self.map_west = str("-")
+        else:
+            self.map_west = map_data.west_trans
 
     def draw_event_debug(self) -> None:
         """

@@ -93,6 +93,14 @@ class ItemType(str, Enum):
     key_item = "KeyItem"
 
 
+class OutputBattle(str, Enum):
+    won = "won"
+    lost = "lost"
+    draw = "draw"
+    ran = "ran"
+    forfeit = "forfeit"
+
+
 # ItemBattleMenu is which menu you want to use to choose the target.
 class ItemBattleMenu(str, Enum):
     monster = "monster"

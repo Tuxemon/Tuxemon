@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="47">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="wayfarer_inn1"/>
+ </properties>
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>

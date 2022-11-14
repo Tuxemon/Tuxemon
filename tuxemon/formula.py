@@ -35,6 +35,7 @@ from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
+    from tuxemon.npc import NPC
     from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
@@ -286,3 +287,28 @@ def convert_ft(cm: float) -> float:
     """
     foot = round(cm * 0.032808399, 2)
     return foot
+
+
+def battle_math(player: NPC, output: str) -> None:
+    player = player.game_variables
+    if "battle_total" not in player:
+        player["battle_total"] = 0
+        player["battle_won"] = 0
+        player["battle_lost"] = 0
+        player["battle_draw"] = 0
+    player["battle_total"] += 1
+    if output == "won":
+        player["battle_won"] += 1
+        player["percent_win"] = round(
+            (player["battle_won"] / player["battle_total"]) * 100
+        )
+    elif output == "lost":
+        player["battle_lost"] += 1
+        player["percent_lose"] = round(
+            (player["battle_lost"] / player["battle_total"]) * 100
+        )
+    elif output == "draw":
+        player["battle_draw"] += 1
+        player["percent_draw"] = round(
+            (player["battle_draw"] / player["battle_total"]) * 100
+        )

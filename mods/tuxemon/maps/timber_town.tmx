@@ -2,6 +2,11 @@
 <map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="182">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="timber_town"/>
+  <property name="town" type="bool" value="true"/>
+  <property name="north" value="tunnel"/>
+  <property name="west" value="route5"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>

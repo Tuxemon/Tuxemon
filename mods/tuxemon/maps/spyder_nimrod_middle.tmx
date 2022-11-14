@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="nimrod_middle"/>
+ </properties>
  <tileset firstgid="1" name="factory" tilewidth="16" tileheight="16" tilecount="32" columns="8">
   <image source="../gfx/tilesets/factory.png" width="128" height="64"/>
  </tileset>

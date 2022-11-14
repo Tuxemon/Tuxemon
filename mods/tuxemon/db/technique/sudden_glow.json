@@ -4,7 +4,7 @@
   "animation": "heal_burst_120",
   "effects": [
     "focused target",
-    "recover"
+    "recover all"
   ],
   "flip_axes": "",
   "healing_power": 2.0,

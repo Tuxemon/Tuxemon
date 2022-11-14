@@ -194,7 +194,7 @@ class InputMenu(Menu[InputMenuObj]):
             self.input_string += char
             self.update_text_area()
         else:
-            self.text_area.text = "Please choose a shorter name!"
+            self.text_area.text = T.translate("alert_text")
 
     def update_text_area(self) -> None:
         self.text_area.text = self.input_string

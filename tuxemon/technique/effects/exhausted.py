@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import random
-from typing import NamedTuple, Optional
+from dataclasses import dataclass
+from typing import Optional
 
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -14,21 +15,20 @@ class ExhaustedEffectResult(TechEffectResult):
     status: Optional[Technique]
 
 
-class ExhaustedEffectParameters(NamedTuple):
-    objective: str
-
-
-class ExhaustedEffect(TechEffect[ExhaustedEffectParameters]):
+@dataclass
+class ExhaustedEffect(TechEffect):
     """
     This effect has a chance to apply the exhausted status effect.
     """
 
     name = "exhausted"
-    param_class = ExhaustedEffectParameters
+    objective: str
 
-    def apply(self, user: Monster, target: Monster) -> ExhaustedEffectResult:
-        obj = self.parameters.objective
-        success = self.move.potency >= random.random()
+    def apply(
+        self, tech: Technique, user: Monster, target: Monster
+    ) -> ExhaustedEffectResult:
+        obj = self.objective
+        success = tech.potency >= random.random()
         if success:
             tech = Technique("status_exhausted")
             if obj == "user":

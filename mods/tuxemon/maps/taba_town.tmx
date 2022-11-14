@@ -2,6 +2,10 @@
 <map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="161">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="taba_town"/>
+  <property name="town" type="bool" value="true"/>
+  <property name="east" value="route1"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
@@ -358,7 +362,7 @@
   </object>
   <object id="112" name="Startup Town Sign" type="event" x="624" y="640" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog taba_town_sign"/>
+    <property name="act10" value="translated_dialog welcome_location_town"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>

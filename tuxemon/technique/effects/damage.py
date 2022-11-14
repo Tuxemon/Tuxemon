@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 import random
-from typing import NamedTuple
+from dataclasses import dataclass
 
 from tuxemon import formula
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
+from tuxemon.technique.technique import Technique
 
 
 class DamageEffectResult(TechEffectResult):
@@ -14,11 +15,8 @@ class DamageEffectResult(TechEffectResult):
     should_tackle: bool
 
 
-class DamageEffectParameters(NamedTuple):
-    pass
-
-
-class DamageEffect(TechEffect[DamageEffectParameters]):
+@dataclass
+class DamageEffect(TechEffect):
     """
     Apply damage.
 
@@ -36,15 +34,15 @@ class DamageEffect(TechEffect[DamageEffectParameters]):
     """
 
     name = "damage"
-    param_class = DamageEffectParameters
+    objective: int
 
-    def apply(self, user: Monster, target: Monster) -> DamageEffectResult:
-        hit = self.move.accuracy >= random.random()
-        if hit or self.move.is_area:
-            self.move.can_apply_status = True
-            damage, mult = formula.simple_damage_calculate(
-                self.move, user, target
-            )
+    def apply(
+        self, tech: Technique, user: Monster, target: Monster
+    ) -> DamageEffectResult:
+        hit = tech.accuracy >= random.random()
+        if hit or tech.is_area:
+            tech.can_apply_status = True
+            damage, mult = formula.simple_damage_calculate(tech, user, target)
             if not hit:
                 damage //= 2
             target.current_hp -= damage

@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "disintegrate",
   "effects": [
-    "damage"
+    "damage 100"
   ],
   "flip_axes": "",
   "healing_power": 4.0,

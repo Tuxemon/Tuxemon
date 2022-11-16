@@ -164,4 +164,3 @@ class QuantityAndCostMenu(QuantityMenu):
 
         formatted_name = label_format(cost, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
-        yield MenuItem(image, formatted_name, None, None)

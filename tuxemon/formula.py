@@ -289,6 +289,25 @@ def convert_ft(cm: float) -> float:
     return foot
 
 
+def convert_km(steps: float) -> float:
+    """
+    It converts steps into kilometers.
+    One tile: 1 meter
+    """
+    m = steps * 1
+    km = round(m / 1000, 2)
+    return km
+
+
+def convert_mi(steps: float) -> float:
+    """
+    It converts steps into miles.
+    """
+    km = convert_km(steps)
+    mi = round(km * 0.6213711922, 2)
+    return mi
+
+
 def battle_math(player: NPC, output: str) -> None:
     player = player.game_variables
     if "battle_total" not in player:

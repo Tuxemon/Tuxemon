@@ -126,7 +126,7 @@ class QuantityAndPriceMenu(QuantityMenu):
 
         # Now, show the price:
         label_format = "$ {:>{count_len}}".format
-        count_len = 3 
+
 
         price = (
             self.price if self.quantity == 0 else self.quantity * self.price

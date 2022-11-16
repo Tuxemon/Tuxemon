@@ -917,7 +917,6 @@ class NPC(Entity[NPCState]):
 
     def can_buy_item(self, item_slug: str, qty: int, unit_price: int) -> bool:
         current_money = self.money.get("player")
-        
         if current_money is not None:
             return current_money >= qty * unit_price
         # If no 'money' variable, must be an NPC. Always allow buying:

@@ -981,7 +981,7 @@ class NPC(Entity[NPCState]):
             self.money["player"] = self.money.get("player") + (
                 qty * unit_price
             )
-        
+
     def buy_transaction(
         self,
         session: Session,

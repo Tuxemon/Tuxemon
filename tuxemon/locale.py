@@ -65,6 +65,7 @@ class LocaleInfo:
     domain: str
     path: str
 
+
 class TranslatorPo:
     """
     gettext-based translator class.

@@ -174,7 +174,7 @@ msgid "combat_victory"
 msgstr "You have won!"
 
 msgid "combat_victory_trainer"
-msgstr "You have won against {npc} and you get {currency}{prize}!"
+msgstr "You have won against {npc}!\n You get {currency}{prize}!"
 
 msgid "combat_defeat"
 msgstr "You've been defeated!"

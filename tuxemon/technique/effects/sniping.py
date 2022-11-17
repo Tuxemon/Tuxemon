@@ -25,7 +25,7 @@ class SnipingEffect(TechEffect):
     objective: str
 
     def apply(
-        sself, tech: Technique, user: Monster, target: Monster
+        self, tech: Technique, user: Monster, target: Monster
     ) -> SnipingEffectResult:
         obj = self.objective
         success = tech.potency >= random.random()

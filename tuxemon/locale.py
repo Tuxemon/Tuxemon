@@ -250,15 +250,23 @@ def replace_text(session: Session, text: str) -> str:
     text = text.replace("${{currency}}", "$")
     text = text.replace(r"\n", "\n")
     text = text.replace("${{money}}", str(player.money["player"]))
-    # distance
-    text = text.replace(
-        "${{steps_km}}",
-        str(formula.convert_km(player.game_variables["steps"])),
-    )
-    text = text.replace(
-        "${{steps_mi}}",
-        str(formula.convert_mi(player.game_variables["steps"])),
-    )
+    # distance (metric / imperial)
+    if prepare.CONFIG.unit == "metric":
+        text = text.replace("${{length}}", "km")
+        text = text.replace("${{weight}}", "kg")
+        text = text.replace("${{height}}", "cm")
+        text = text.replace(
+            "${{steps}}",
+            str(formula.convert_km(player.game_variables["steps"])),
+        )
+    else:
+        text = text.replace("${{length}}", "mi")
+        text = text.replace("${{weight}}", "lb")
+        text = text.replace("${{height}}", "ft")
+        text = text.replace(
+            "${{steps}}",
+            str(formula.convert_mi(player.game_variables["steps"])),
+        )
     # maps
     text = text.replace("${{map_name}}", client.map_name)
     text = text.replace("${{map_desc}}", client.map_desc)

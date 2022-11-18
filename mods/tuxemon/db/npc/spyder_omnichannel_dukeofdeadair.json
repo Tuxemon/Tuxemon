@@ -3,5 +3,5 @@
   "gender": "male",
   "sprite_name": "rogue",
   "combat_front": "rogue.png",
-  "combat_back": "red_back.png"
+  "combat_back": "adventurer_back.png"
 }

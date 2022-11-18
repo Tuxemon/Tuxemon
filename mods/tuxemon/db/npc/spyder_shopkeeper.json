@@ -1,7 +1,7 @@
 {
   "slug": "spyder_shopkeeper",
   "gender": "male",
-  "sprite_name": "waiter",
-  "combat_front": "red_front.png",
-  "combat_back": "red_back.png"
+  "sprite_name": "shopkeeper",
+  "combat_front": "adventurer.png",
+  "combat_back": "adventurer_back.png"
 }

@@ -97,7 +97,7 @@ class QuantityMenu(Menu[None]):
         formatted_name = label_format(self.quantity, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)
-    
+
     def show_money(self) -> str:
         # Show the money in the buying/selling menu
         count_len = 3
@@ -105,7 +105,9 @@ class QuantityMenu(Menu[None]):
         money = str(local_session.player.money["player"])
 
         formatted_name_money = label_format_money(money, count_len=count_len)
-        image_money = self.shadow_text(formatted_name_money, bg=(128, 128, 128))
+        image_money = self.shadow_text(
+            formatted_name_money, bg=(128, 128, 128)
+        )
         yield MenuItem(image_money, formatted_name_money, None, None)
 
 

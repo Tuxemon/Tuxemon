@@ -210,6 +210,7 @@
   <object id="185" name="Sign: Route 3" type="event" x="80" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_route3_sign"/>
+    <property name="act2" value="translated_dialog here_to_north"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

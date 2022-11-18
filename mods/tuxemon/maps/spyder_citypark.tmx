@@ -252,9 +252,9 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="102" name="Sign: Leather Town" type="event" x="16" y="192" width="16" height="16">
+  <object id="102" name="Sign: Citypark Town" type="event" x="16" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_citypark_routesign"/>
+    <property name="act1" value="translated_dialog welcome_location_route"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

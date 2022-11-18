@@ -224,26 +224,6 @@ def today_ordinal() -> int:
     return today
 
 
-def set_capture() -> int:
-    """
-    Calculates the day of capture, it generates the value
-    through a proleptic Gregorian ordinal.
-    Dynamic range: today minus 1000 days.
-    """
-    today = dt.date.today().toordinal()
-    start = today - 1000
-    result = random.randint(start, today)
-    return result
-
-
-def doc(value: int) -> int:
-    """
-    Calculates the date of capture.
-    """
-    result = dt.date.fromordinal(value)
-    return result
-
-
 def set_weight(kg: float) -> float:
     """
     It generates a personalized weight,

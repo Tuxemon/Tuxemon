@@ -502,7 +502,7 @@ class Monster:
         It returns the capture date.
         """
         if amount == 0:
-            result = formula.set_capture()
+            result = formula.today_ordinal()
             self.capture = result
             return self.capture
         else:

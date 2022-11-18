@@ -449,7 +449,7 @@
     <property name="act50" value="unlock_controls"/>
     <property name="cond1" value="is variable_set battle_last_result:lost"/>
     <property name="cond2" value="is variable_set firstfightend:yes"/>
-    </properties>
+   </properties>
   </object>
   <object id="428" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>

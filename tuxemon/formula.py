@@ -33,6 +33,7 @@ import random
 from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 
 if TYPE_CHECKING:
+    from tuxemon.db import OutputBattle
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
     from tuxemon.technique.technique import Technique
@@ -214,7 +215,7 @@ def escape(level_user: int, level_target: int, attempts: int) -> bool:
         return False
 
 
-def battle_math(player: NPC, output: str) -> None:
+def battle_math(player: NPC, output: OutputBattle) -> None:
     player = player.game_variables
     if "battle_total" not in player:
         player["battle_total"] = 0
@@ -222,17 +223,17 @@ def battle_math(player: NPC, output: str) -> None:
         player["battle_lost"] = 0
         player["battle_draw"] = 0
     player["battle_total"] += 1
-    if output == "won":
+    if output.won:
         player["battle_won"] += 1
         player["percent_win"] = round(
             (player["battle_won"] / player["battle_total"]) * 100
         )
-    elif output == "lost":
+    elif output.lost:
         player["battle_lost"] += 1
         player["percent_lose"] = round(
             (player["battle_lost"] / player["battle_total"]) * 100
         )
-    elif output == "draw":
+    elif output.draw:
         player["battle_draw"] += 1
         player["percent_draw"] = round(
             (player["battle_draw"] / player["battle_total"]) * 100

@@ -296,7 +296,7 @@
   </object>
   <object id="412" name="Sign: Route 5" type="event" x="32" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_route5_sign"/>
+    <property name="act1" value="translated_dialog here_to_east"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

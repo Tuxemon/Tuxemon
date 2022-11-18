@@ -1193,19 +1193,50 @@ class CombatState(CombatAnimations):
         self.players.remove(player)
 
     def evolve(self) -> None:
+        self.client.pop_state()
         for monster in self.players[0].monsters:
             for evolution in monster.evolutions:
-                # check the path field, path field signals evolution item based
-                if evolution.path.standard:
-                    if evolution.at_level <= monster.level:
-                        logger.info(
-                            "{} evolved into {}!".format(
-                                monster.name, evolution.monster_slug
+                if evolution.at_level <= monster.level:
+                    tools.open_dialog(
+                        local_session,
+                        [
+                            T.format(
+                                "evolution_confirmation",
+                                {"name": monster.name},
                             )
+                        ],
+                    )
+                    tools.open_choice_dialog(
+                        local_session,
+                        menu=(
+                            (
+                                "yes",
+                                T.translate("yes"),
+                                partial(self.positive_answer, monster),
+                            ),
+                            ("no", T.translate("no"), self.negative_answer),
+                        ),
+                    )
+
+    def positive_answer(self, monster: Monster) -> None:
+        self.client.pop_state()
+        self.client.pop_state()
+        for evolution in monster.evolutions:
+            # check the path field, path field signals evolution item based
+            if evolution.path.standard:
+                if evolution.at_level <= monster.level:
+                    logger.info(
+                        "{} evolved into {}!".format(
+                            monster.name, evolution.monster_slug
                         )
-                        self.players[0].evolve_monster(
-                            monster, evolution.monster_slug
-                        )
+                    )
+                    self.players[0].evolve_monster(
+                        monster, evolution.monster_slug
+                    )
+
+    def negative_answer(self) -> None:
+        self.client.pop_state()
+        self.client.pop_state()
 
     def end_combat(self) -> None:
         """End the combat."""

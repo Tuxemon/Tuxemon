@@ -18,24 +18,28 @@
     ],
     "evolutions": [
         {
-            "path": "water_booster",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "bigfin"
+            "monster_slug": "bigfin",
+            "item": "water_booster"
         },
         {
-            "path": "sweet_sand",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "bigfin"
+            "monster_slug": "bigfin",
+            "item": "sweet_sand"
         },
         {
-            "path": "metal_booster",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "sharpfin"
+            "monster_slug": "sharpfin",
+            "item": "metal_booster"
         },
         {
-            "path": "sea_girdle",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "sharpfin"
+            "monster_slug": "sharpfin",
+            "item": "sea_girdle"
         }
     ],
     "shape": "aquatic",

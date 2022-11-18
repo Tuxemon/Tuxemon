@@ -18,24 +18,28 @@
     ],
     "evolutions": [
         {
-            "path": "wood_booster",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "bamboon"
+            "monster_slug": "bamboon",
+            "item": "wood_booster"
         },
         {
-            "path": "lucky_bamboo",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "bamboon"
+            "monster_slug": "bamboon",
+            "item": "lucky_bamboo"
         },
         {
-            "path": "water_booster",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "frondly"
+            "monster_slug": "frondly",
+            "item": "water_booster"
         },
         {
-            "path": "peace_lily",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "frondly"
+            "monster_slug": "frondly",
+            "item": "peace_lily"
         }
     ],
     "shape": "sprite",

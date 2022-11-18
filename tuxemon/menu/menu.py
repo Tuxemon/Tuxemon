@@ -192,11 +192,11 @@ class Menu(Generic[T], state.State):
     background_filename: Optional[str] = None
     menu_select_sound_filename = "sound_menu_select"
     if prepare.CONFIG.locale == "zh_CN":
-        font_filename = "NotoSansTC.ttf"
+        font_filename = prepare.FONT_CHINESE
     elif prepare.CONFIG.locale == "ja":
-        font_filename = "NotoSansJP.ttf"
+        font_filename = prepare.FONT_JAPANESE
     else:
-        font_filename = "PressStart2P.ttf"
+        font_filename = prepare.FONT_BASIC
     borders_filename = "gfx/dialog-borders01.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = 0.20

@@ -69,11 +69,11 @@ def get_theme() -> pygame_menu.themes.Theme:
         return _theme
 
     if prepare.CONFIG.locale == "zh_CN":
-        font_filename = prepare.fetch("font", "NotoSansTC.ttf")
+        font_filename = prepare.fetch("font", prepare.FONT_CHINESE)
     elif prepare.CONFIG.locale == "ja":
-        font_filename = prepare.fetch("font", "NotoSansJP.ttf")
+        font_filename = prepare.fetch("font", prepare.FONT_JAPANESE)
     else:
-        font_filename = prepare.fetch("font", "PressStart2P.ttf")
+        font_filename = prepare.fetch("font", prepare.FONT_BASIC)
     tuxemon_border = pygame_menu.baseimage.BaseImage(
         image_path=transform_resource_filename("gfx/dialog-borders01.png"),
     ).scale(5, 5, smooth=False)

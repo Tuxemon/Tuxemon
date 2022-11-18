@@ -786,6 +786,7 @@ class NPC(Entity[NPCState]):
         new_monster.moves = old_monster.moves
         new_monster.instance_id = old_monster.instance_id
         new_monster.gender = old_monster.gender
+        new_monster.capture = old_monster.capture
         self.remove_monster(old_monster)
         self.add_monster(new_monster, slot)
 

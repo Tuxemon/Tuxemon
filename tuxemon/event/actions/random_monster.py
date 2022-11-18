@@ -24,7 +24,7 @@ from __future__ import annotations
 import random as rd
 from typing import NamedTuple, Optional, Union, final
 
-from tuxemon import monster
+from tuxemon import formula, monster
 from tuxemon.db import SeenStatus, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -76,6 +76,7 @@ class RandomMonsterAction(EventAction[RandomMonsterActionParameters]):
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_slug)
         current_monster.set_level(monster_level)
+        current_monster.set_capture(formula.today_ordinal())
         current_monster.current_hp = current_monster.hp
 
         trainer.add_monster(current_monster)

@@ -34,7 +34,7 @@ from typing import Any, Callable, Dict, Sequence, Tuple
 
 import pygame_menu
 
-from tuxemon import prepare
+from tuxemon import formula, prepare
 from tuxemon.animation import Animation
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -151,7 +151,49 @@ class WorldMenuState(PygameMenuState):
             self.client.pop_state()  # close the info/move menu
 
         def open_monster_stats() -> None:
-            open_dialog(local_session, [T.translate("not_implemented")])
+            monster = monster_menu.get_selected_item().game_object
+            type2 = ""
+            if prepare.CONFIG.unit == "metric":
+                weight = monster.weight
+                height = monster.height
+                unit_weight = "kg"
+                unit_height = "cm"
+            else:
+                weight = formula.convert_lbs(monster.weight)
+                height = formula.convert_ft(monster.height)
+                unit_weight = "lb"
+                unit_height = "ft"
+            if monster.type2 is not None:
+                type2 = monster.type2
+            open_dialog(
+                local_session,
+                [
+                    T.format(
+                        "tuxemon_stat1",
+                        {
+                            "txmn": monster.txmn_id,
+                            "doc": formula.today_ordinal() - monster.capture,
+                            "weight": weight,
+                            "height": height,
+                            "unit_weight": unit_weight,
+                            "unit_height": unit_height,
+                            "lv": monster.level + 1,
+                            "type": monster.type1.title() + type2.title(),
+                            "exp": monster.total_experience,
+                            "exp_lv": (
+                                monster.experience_required(1)
+                                - monster.total_experience
+                            ),
+                        },
+                    ),
+                    T.format(
+                        "tuxemon_stat2",
+                        {
+                            "desc": monster.description,
+                        },
+                    ),
+                ],
+            )
 
         def positive_answer() -> None:
             success = False

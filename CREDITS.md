@@ -1394,6 +1394,12 @@ Fonts
 adapted by JaskRendix, added symbols from Noto Emoji font (https://fonts.google.com/noto/specimen/Noto+Emoji)
 licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
 
+* ["Noto Sans Traditional Chinese"](https://fonts.google.com/noto/specimen/Noto+Sans+TC)
+licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
+
+* ["Noto Sans Japanese"](https://fonts.google.com/noto/specimen/Noto+Sans+JP)
+licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
+
 * ["Big Bottom Catroon Normal"](http://openfontlibrary.org/en/font/big-bottom-cartoon-normal) by
 [KarenBJones](http://openfontlibrary.org/en/member/KarenBJones) is licensed under
 [Bitstream Vera License](http://dejavu-fonts.org/wiki/License)

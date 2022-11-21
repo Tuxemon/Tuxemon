@@ -796,6 +796,9 @@ msgstr "The historic path!"
 msgid "route5_description"
 msgstr "The memorial passage to Timber Town!"
 
+msgid "routed_description"
+msgstr "Waterfalls path!"
+
 msgid "taba_town_description"
 msgstr "A peaceful refuge!"
 

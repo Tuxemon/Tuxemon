@@ -15,10 +15,18 @@
  </tileset>
  <tileset firstgid="16385" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
   <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
+  <tile id="1268">
+   <animation>
+    <frame tileid="1269" duration="200"/>
+    <frame tileid="1270" duration="200"/>
+    <frame tileid="1271" duration="200"/>
+   </animation>
+  </tile>
  </tileset>
+ <tileset firstgid="18679" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtWEFuAjEMNOIXPdGHIKrSnxTeguALcOsR+EpV9S8sVzwSFlG0KLGTDQj5YO1Gm4nHk4mD6L6IugfF7pOoNz6Ifq7xKG7Iu2UOfbF7En7jMdH75BYjHoteU9YWIePUczEnWnKk5oXfU5j/aH//FHziPGfGavFrrufIuHt14fuBv0tslPULR9S557DggT1x3OMoOUqeqNPCDTlFIyu+hHeMTfktnt96nPJbHx/U1A28/2FerRekJu3ZC3MO/d7iDJXUIH2wtoY1vIM10Fs1/SvnHMq6uN+tdcsa6M+a/pPjcczBurgfrPxy8pT4BtgWOUo55uKxny17XS4vzBOvwa9D38caXuFceAF+1ZzVEN/i/VX8+sZar1jrFppZcnwzt1/nZ94f16/M266f62fpW7Uw7j/3Xy0vWdaZ8e8Dzf9rlhyOKfO46+f6pTxwAUgdcXI=
+   eAHtWEGOwjAMNOIXnOAhCARnXsHylhV8gd44Al9Bq/0G54XreiQsoqoosdOmCPlgtVEz8XgycRDXFdG1p6gWRI0xJzo8oi9uyLtnDk1RvQm/4ZBoMn7GgMei15S1Rcg49vxaEm04YvPC7zHMb21/fxR86nnujNXit1zPmXGv6sL3E3+X2CnrF46o88hhwQP7x/GKo+TIeaJOCzfkFI2s+BzedWzMb/X5pccxvzXxQU23jvc/zKv1gtSkPXthzq7fS5yhnBqkD7atYRvewRrorZr+lXIOZV3c79a6ZQ30Z03/SfE45mBd3A9Wfil5cnwDbIkcuRxT8djPkr0ulRfmidfg167vYw2vcC68AL9qzmqIL/H+KX4dsdbfrHUJzSw51szt4vzM++P65Xnb9XP9LH2rLYz7z/3Xlpcs68z494Hm/zVLDsfkedz1c/1iHvgHMUZmEg==
   </data>
  </layer>
  <layer id="5" name="Tile Layer 2" width="40" height="40">

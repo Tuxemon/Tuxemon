@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="125">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="125">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -24,13 +24,7 @@
  <tileset firstgid="1401" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="1489" name="stairs_down" tilewidth="16" tileheight="16" tilecount="12" columns="4">
-  <image source="../gfx/tilesets/stairs_down.png" width="64" height="48"/>
- </tileset>
- <tileset firstgid="1501" name="plants" tilewidth="16" tileheight="16" tilecount="2" columns="1">
-  <image source="../gfx/tilesets/plants.png" width="16" height="32"/>
- </tileset>
- <tileset firstgid="1506" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
+ <tileset firstgid="1489" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
   <image source="../gfx/tilesets/items.png" width="48" height="32"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="20" height="20">
@@ -45,7 +39,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBg6wBPoVC8qOleNimaNGoU9BFiAwqxAzIZdmmTR50DDYJhkzaMaRkNgNASoGgIACvsDjQ==
+   eAFjYBg6wBPoVC8qOleNimaNGoU9BFiAwqxAzIZdmmTRa0DDYJhkzaMaRkNgNASoGgIAVggDWg==
   </data>
  </layer>
  <layer id="4" name="Above player" width="20" height="20">
@@ -55,7 +49,7 @@
  </layer>
  <layer id="7" name="Above Player 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyFAuxB4wsrAAMO0s2XU5NEQGA2BgQgBAJB7Arw=
+   eAFjYBgFoyFAuxC4zMrAAMO0s2XU5NEQGA2BgQgBAMuYAok=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">

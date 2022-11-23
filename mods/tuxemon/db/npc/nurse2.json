@@ -2,6 +2,6 @@
   "slug": "nurse2",
   "gender": "female",
   "sprite_name": "nurse",
-  "combat_front": "femaletrainer_front.png",
-  "combat_back": "maple_back.png"
+  "combat_front": "nurse.png",
+  "combat_back": "heroine_back.png"
 }

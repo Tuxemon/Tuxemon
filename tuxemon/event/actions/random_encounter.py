@@ -25,7 +25,7 @@ import logging
 import random
 from typing import NamedTuple, Optional, Sequence, Union, final
 
-from tuxemon import ai, monster, prepare
+from tuxemon import ai, formula, monster, prepare
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import EncounterItemModel, db
 from tuxemon.event.eventaction import EventAction
@@ -176,6 +176,7 @@ def _create_monster_npc(
     # Set the monster's level
     current_monster.level = 1
     current_monster.set_level(level)
+    current_monster.set_capture(formula.today_ordinal())
     current_monster.current_hp = current_monster.hp
 
     # Create an NPC object which will be this monster's "trainer"

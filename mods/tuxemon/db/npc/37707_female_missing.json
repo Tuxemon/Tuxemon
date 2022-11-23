@@ -2,6 +2,6 @@
   "slug": "37707_female_missing",
   "gender": "female",
   "sprite_name": "37707_female_missing",
-  "combat_front": "femaletrainer_front.png",
-  "combat_back": "maple_back.png"
+  "combat_front": "heroine.png",
+  "combat_back": "heroine_back.png"
 }

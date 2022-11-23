@@ -28,6 +28,7 @@
 
 from __future__ import annotations
 
+import datetime as dt
 import logging
 import random
 from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
@@ -213,6 +214,79 @@ def escape(level_user: int, level_target: int, attempts: int) -> bool:
         return True
     else:
         return False
+
+
+def today_ordinal() -> int:
+    """
+    It gives today's proleptic Gregorian ordinal.
+    """
+    today = dt.date.today().toordinal()
+    return today
+
+
+def set_weight(kg: float) -> float:
+    """
+    It generates a personalized weight,
+    random number: between +/- 10%.
+    Eg 100 kg +/- 10 kg
+    """
+    if kg == 0:
+        weight = kg
+    else:
+        minor = kg - (kg * 0.1)
+        major = (kg * 0.1) + kg
+        weight = round(random.uniform(minor, major), 2)
+    return weight
+
+
+def set_height(cm: float) -> float:
+    """
+    It generates a personalized height,
+    random number: between +/- 10%.
+    Eg 100 cm +/- 10 cm
+    """
+    if cm == 0:
+        height = cm
+    else:
+        minor = cm - (cm * 0.1)
+        major = (cm * 0.1) + cm
+        height = round(random.uniform(minor, major), 2)
+    return height
+
+
+def convert_lbs(kg: float) -> float:
+    """
+    It converts kilograms into pounds.
+    """
+    pounds = round(kg * 2.2046, 2)
+    return pounds
+
+
+def convert_ft(cm: float) -> float:
+    """
+    It converts centimeters into feet.
+    """
+    foot = round(cm * 0.032808399, 2)
+    return foot
+
+
+def convert_km(steps: float) -> float:
+    """
+    It converts steps into kilometers.
+    One tile: 1 meter
+    """
+    m = steps * 1
+    km = round(m / 1000, 2)
+    return km
+
+
+def convert_mi(steps: float) -> float:
+    """
+    It converts steps into miles.
+    """
+    km = convert_km(steps)
+    mi = round(km * 0.6213711922, 2)
+    return mi
 
 
 def battle_math(player: NPC, output: OutputBattle) -> None:

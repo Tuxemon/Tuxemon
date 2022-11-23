@@ -97,6 +97,7 @@ class TuxemonConfig:
         )
         self.locale = cfg.get("game", "locale")
         self.hemisphere = cfg.get("game", "hemisphere")
+        self.unit = cfg.get("game", "unit")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean(
             "game",
@@ -277,6 +278,7 @@ def get_defaults() -> Mapping[str, Any]:
                         ("net_controller_enabled", False),
                         ("locale", "en_US"),
                         ("hemisphere", "north"),
+                        ("unit", "metric"),
                         ("dev_tools", False),
                         ("recompile_translations", True),
                         ("compress_save", None),

@@ -3,5 +3,5 @@
   "gender": "female",
   "sprite_name": "catgirl",
   "combat_front": "catgirl.png",
-  "combat_back": "red_back.png"
+  "combat_back": "adventurer_back.png"
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="193">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="193">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="north" value="cotton_town"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route1"/>
-  <property name="north" value="cotton_town"/>
   <property name="south" value="paper_town"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
@@ -26,62 +26,36 @@
    </animation>
   </tile>
  </tileset>
- <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ <tileset firstgid="1313" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
  </tileset>
- <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ <tileset firstgid="3607" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
- <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
-  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
- </tileset>
- <tileset firstgid="1531" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
- </tileset>
- <tileset firstgid="1619" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
-  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
-  <tile id="255">
-   <animation>
-    <frame tileid="248" duration="150"/>
-    <frame tileid="249" duration="150"/>
-    <frame tileid="250" duration="150"/>
-    <frame tileid="251" duration="150"/>
-    <frame tileid="252" duration="150"/>
-    <frame tileid="253" duration="150"/>
-    <frame tileid="254" duration="150"/>
-    <frame tileid="255" duration="150"/>
-   </animation>
-  </tile>
- </tileset>
- <tileset firstgid="1979" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
- </tileset>
- <tileset firstgid="2135" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
+ <tileset firstgid="11799" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG7wsrAcAWIrwKx3yDEILcNZvfdI8J9rlQMV3cSzToNVH8XiEHuHIzxC3PTs1H3URQ/+MJvINPfaPxSJ9/hi19YGBNLUzM9wOzE5z5q2kdq+UeM+2BqBoI+DCz33gLxu0Fa/uGL14EIL3Q7qek+fxrEATXdh+53avBH3UdZ+TwafpSFHwAPdRQz
+   eAGbwMrAMGEUkx0GceyEw+8WFcP3DolmxXMwMMQC3UiMOwciHXAbMzCAcDMR4TjqPsy0Rkz4DWT6I8Z9AxGvMDtHovuomR6ICT9q2kdq+UeM+2BpYSBoK2D5vBxY9q0YpOXfYC2XYXE16j7MOgEWNsTQo+E3Gn7EpBNaqQEAqObMyA==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAGtlLFuAjEQRFdRUMTHhJofIJAmHVCTKt9AmSj/zbp4UjK6OS9nTrKG3RvPzBrrIv4/r88Rm1yKn6uIa2FdkjP3qG6vVq1TZjvnUlTe0lp1e7X6uHmUN1W/5dmx9nKO9J2+66uPm0d5rj7m2bc19Wwzs9N3fdWpzqH7qOfyNY7Td310weoc8BV7+Zy+66u+m+Mj/5t2pxrucrX7NPWQj/um6PRdXz2qc+i+Vr9nZvJ9mfxO3/XVpzqH7qMmH7Wi03d93V+dQ/dRz+U75Jk6fddHF6zOAV+RfHrvqJ2+66t+dQ7dV62dvuuj6/LThzeK6FURP5efPrxRRK+K+PXmgTeKPR99j19vHnij2PPR9/hp7kfV+p2+V5d8mvtRNfoNn16Wf/+qc/31W/K76gMPj+p5wW/4s474vWN9J7fqA+8GQOuKHw==
+   eAHVVrkNAjEQdAKChJogh16ghiMjoQsKMXVQBQKRsSsxkhl5zgtOwJI13vF69sF3XErvY1iktLfJuJqndJ2159L8xgbrtmzWypbb2SYj+31rs27L5jiD6B/71ezLNKVylj7glb7iSw1fq3rYT9kHq89nbWwnWj8aN1pHLb5zY/n5vtJXvJ8pR7SO8ky5buWn9BVfavta1XG038bvENDXtYH8cN8Ylb7iOUa0Dj7n9ul19zzHndVTG0pf8awRrYPPwUb/YDMqfcXz+WgdfA72WH6bH3p++d7BVn1SPOoG9vYPOgqVvuKho/IHD79ehF4UES/bM1f73wUPv16EXhQRb7D8at8t4OHXi9CLIuLlP+9ftF724/c077fsaP9yo79qH/qO6473X6sO7JfxvllDJ4qIkYP9gb/j3b73Hx/Mm/lG48DvCflpUZI=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHVVNsNAjEM60dPLMMfH0zAQ0zBKCzLHjTiLEVWfQn0EFAppHFSx+lVlPJfq9ZSpmbsr9M6czBvFGe7Hpu+np1m3YfZb9tsZn4h57F392qeS+sfmfXs6fNaFL/C762vWbQibZa3Fel7VuV/WZ+aYy19il/hrE9NZm/Pr95bNCy6P+jwXEt71ofz7D3H0l1m9TG/ilmf16H2I/oUp8JZn5rj7L7viD7Fr3DWp+ZQ781w/AeqsyM49Cn9wNWdcW9VBxx8Wc/8KgY/e67nPMdcn42jebgPYuYHrnzUh/PMr2LVj+tVHXCuz8asm+MsT1THvFEc8f1KPpoD+Vf17mu5+TPgyXp/1vY4x/i3Yuhhr/TsNirzGfwBI/FAcw==
+   eAHVlUsOwjAMRLNokdhwHQ4AO+BOHIIFp+MsNEKWrCGvdj8SJVJIPJ6Mx1FES/mvcTqUch6mrtd+nT5UN4qzVV+7UmhWjZqr4zL0VqcflvPY3D318xxqRrPWbPnzXkifcH92bB95q/k6In8f1vxf6mMtf6RPeLYTfUP0Fn91f76PsbuM/NE9Ee7rZvdL/GVrEI/6uLn/vyX+SJ9w8qk4vTfDlb92TP4NpztTH8Qz3PRaa999f7dUn2LT11X5mtdY+dm41Y//Dmsdi1XfcFpbdVr3ZjzVp5jqKZ94his/G5tfWrM6EY/0CY/0tpIn/4pP9Xvsyt2fUb0o9me3uCf/5PWxp8w0nOoq/gYsX5uk
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt0jEKADAIA8AM9t8+vf6gdHI5QTIqRxJDgAABAgQIECCwIVCVnNnf3PjVTQIvgelyT5f7lRfHqwXN
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgIDEQLOfAwMLkBMKj0Qbh21czQECIUAKwtDAwsQE6IBOhcJyw==
   </data>
  </layer>
  <layer id="5" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt0DERAAAIxLAfmNGMdEwwcamADklEgAABAgQIECBA4E6gK3N3c/omsEFLAJM=
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgIDEQLOfAwMLkBMKj0QbiXFTj4WhgZS1I+qHVkhAAAIsgUI
   </data>
  </layer>
  <objectgroup color="#ff0000" id="7" name="Collisions">

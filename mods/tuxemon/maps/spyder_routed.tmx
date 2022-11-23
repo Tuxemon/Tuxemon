@@ -17,18 +17,37 @@
  </tileset>
  <tileset firstgid="10487" name="core_outdoor_water" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
   <image source="../gfx/tilesets/core_outdoor_water.png" width="1024" height="2048"/>
+  <tile id="308">
+   <animation>
+    <frame tileid="116" duration="200"/>
+    <frame tileid="180" duration="200"/>
+   </animation>
+  </tile>
+  <tile id="309">
+   <animation>
+    <frame tileid="117" duration="200"/>
+    <frame tileid="181" duration="200"/>
+   </animation>
+  </tile>
+  <tile id="310">
+   <animation>
+    <frame tileid="118" duration="200"/>
+    <frame tileid="182" duration="200"/>
+   </animation>
+  </tile>
  </tileset>
  <tileset firstgid="18679" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="744" columns="31">
   <image source="../gfx/tilesets/core_set pieces.png" width="496" height="384"/>
  </tileset>
+ <tileset firstgid="19423" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="60" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtmU1OxDAMhcvPKWCPkLgCf3vgEIgLzCmAE7MmT8wDz1PstlOHdkZdREk9ieMvcRy3s+m6btOwvJ523df5X3krzy3nm1v3yrvu7xQfvC3n425EmTLXkLGt/Vn121hRaw+xeUoftefhzN+P+z1imeqvMVrZFJYhY8fYs0/sVv0XZT0/yrp5ZYjNU/qoPXattZ3BCx0n5X4t1U4py/Av92AWrxeXHguIXTfwXhU2ywzW65l54XeXFVs9Xxq6buQlM1nn5oVdygBZJi+Ywcni6c6UKxN9r8YbxW71W+rR2u7v0nnV9ujZi8Of2/ML1mPixT7amFQef+PxzZb12HjB08fMs7uEePVeNsXLC/rk1m89Zhubl8ALOz1brX96beu3qkdZl8DLmKK2enw1uWVmToI83Pox25n3jqcruo/IG53DGqPKyMy5EMvIaGvPxkw5bdC7Re/JDGbOdSi8YKZPjnmHZ1/mJIfEyz1SfxjzvPL+nOfMc+rp8vardn7hz17/dX9333vtehySP9ucyzIw34pk7IPcy95DbHs+mCn3/LPmz0/Fn58TCzlZZ3J5uobwZnNyzV7K2pEVtWdjpryPtxVrjTmTy9MV8bZmVWbPxkz5EnjBDd/O5PJ0RbzeGMh1HOJbnwx9+vLRaM6M39RG3iewLdKv44bw4nsfc2jOo3U0Z8Zvajfnb8FL3VGdwRTp8Hijb69439F9qu1dbc8ta+0bZmRrxm8er7Vr33Yfb58PZfCpjta8Nv9EPmn/o5mDV+1hjptRI0+O1ncOXrWn9bP1p5W3674BuomiOg==
+   eAHtmU1OxDAMhQvcAvYIiSvwtwckroC4wJwCuB8XIk/MA89T7LZTh3ZGXURJPYnjL3Ect7Ppum7TsLyedt3Xy195K88t55tb98q77u8UH7wp5+N2RJky15Cxrf1Z9dtYUWsPsXlKH7Xn/szfj7s9YpnqrzFa2RSWIWPH2LNP7Fb952U9P8q6eWWIzVP6qD12rbWdwQsdJ+V+LdVOKcvwL/dgFq8Xlx4KiF038F4WNssM1quZeeF3FxVbPV8aum7kJTNZ5+aFXcoAWSYvmMHJ4unOlCsTfa/GG8Vu9Vvq0dru79J51fbo2YvDn9vzC9Zj4sU+2phUHn/j8fWW9dh4wdPHzLO7hHj1XjbFywv65NZvPWYbm5fACzs9W61/em3rt6pHWZfAy5iitnp8NbllZk6CPNz6MduZ946nK7qPyBudwxqjysjMuRDLyGhrz8ZMOW3Qu0XvyQxmznUovGCmT455h2df5iSHxMs9Un8Y87zy/pznzHPq6fL2q3Z+4c9e/3V/d9977Xockj/bnMsyMN+KZOyD3MveQ2x7Ppgp9/yz5s+PxZ+fEgs5WWdyebqG8GZzcs2ey9qRFbVnY6a8j7cVa405k8vTFfG2ZlVmz8ZM+RJ4wQ3fzuTydEW83hjIdRziW58Mffry0WjOjN/URt4nsC3Sr+OG8OJ7H3NozqN1NGfGb2o352/BS91RncEU6fB4o2+veN/RfartXW3PLWvtG2Zka8ZvHq+1a992H2+fD2XwqY7WvDb/RD5p/6OZg1ftYY6bUSNPjtZ3Dl61p/Wz9aeVt+u+AZLa7dI=
   </data>
  </layer>
  <layer id="5" name="Tile Layer 2" width="60" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtWUtOAzEMHZZcg+kGFc7CIcKuLWy5z7ADTka5A8+qLFnp+JMhUQdIJMupYzt+kzeRNR2vh2EDGSvrI/JFRu19vXwJdT1CausIVvKpva+XbwLWV0htHcVbe18v3wisLfgcxZv7vaCeEqH4G8RER4LvJfmc11mClXxLh3f+S9dl3SU1ybjIvCQ3+Wp8juwV9SmpKZqT/fY444OQZ+fMNT5zvhq6Jd48t/cua3ytgZNz5DVZvzkm11ZMyVqUz5qfZpf1ltQj4+S8JIflm8D3uftZ7kVzzU+zy3hr/3xNxsl57rf09wQsc/2G3Ivmmp9ml/FLa2sRNwLLXL8h66W55qfZZXyLupfmTMCyJj4vxRGNm4C38/m8h9V4q9k7n6OMa+vX+Xy6ryUf+/3s9x/yebVlaFn2zufOZ+JmUvoSzd75XPaetfIecW69fz7vrzTeavYafN7eDsMd5B7Cw7Kxj6UnnO9a++cdcO4hB4HXsjHOhyuenes18/kNON8hHwKvZWN0Ft4IHy91P1vY5p5BBO+a+dwCb+fz6XuHvF8vxedPvLdHyJd4fy0b89nSa+azVTev7a9P/y88QXv/LVDMmvnMmGrqhOfyH77XbYGT5LfzOXr2O2AlYT57cewX1fK+83L/dP0IHFLm8nHdCb7EZ2+wX1RLvK3mXs1yneuegJX6Z2+wX1S3wijzztWs3ddc9wisG8hf0fkzyHF9A/zDR2o=
+   eAHtWUFOAzEMXI58g3CB0rfwiO2NAlf+s/yO8gcmQpasJI7tVaKmUiJZSb1jx7OZppYa7pflERYazxfks4zW+2r5VtR1grWeLVwjpvW+Wr4NXL9hrWcr39b7avkCuPbQs5VvivtCPR6L8Q+IsY4V2GvqOa3TwzVivUM7/73Ped2emnicZe3JHbGSni17WTGemqw5CXfGGb8z+1TOXNIz5Wsx9+Sb5ta+y5JeW/CkHGlNtc8Uk861GM8zq54lnOTn9Xrq4XF87clRw67Qe+l+5nvFtYST/Dy+tn/6jMfxdYrb+3kDl1K/wfeKawkn+Xn83tp6xAVwKfUbvN64lnCSn8f3qHtvzhVcRtLzXh7WuA18p57zHlbSreSferYqri9u6vn/vuZ6nPez3n/w99VXob7sU89Tz1Gbq9CXSP6pZ9/3rBc64Nxm/5z3V5JuJX8LPR+eluUFdoTRqPkIU5s3nO+o/fPhGXxhRxiNki/FvN4ROp9H1nOJW8nn4WvR47Xu5xK3ks/Dd+p5nH6jdJYln+d8R9bzD+7lC+yX3c81X3475Z6R9ZxXm3vo/4UP/M5o/y3E6ADc7DfG6Dfy09zvOeBco926nq1v4A1co5GetTjCWecW/aRWEz2/gAc38vOZ6l6BPcG0QTjrzPn2Wms18+dU9wausX/WBuGscy+OPG+pZum+proDuJbu51v1p+8g5fEHsu81nA==
   </data>
  </layer>
  <layer id="6" name="Tile Layer 3" width="60" height="40">

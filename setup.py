@@ -4,7 +4,7 @@ import fnmatch
 import os
 
 from setuptools import setup
-from setuptools.command.install import install
+
 
 
 def build_translations():
@@ -59,5 +59,4 @@ setup(
         "Topic :: Games/Entertainment",
         "Topic :: Games/Entertainment :: Role-Playing",
     ],
-    cmdclass={"install": InstallAndBuildTranslations},
 )

@@ -727,6 +727,9 @@ msgstr "Leather"
 msgid "paper_town"
 msgstr "Paper"
 
+msgid "peetluumo_town"
+msgstr "Peetlu'umo"
+
 msgid "route1"
 msgstr "Route 1"
 
@@ -750,6 +753,9 @@ msgstr "Route 6"
 
 msgid "route7"
 msgstr "Route 7"
+
+msgid "route8"
+msgstr "Route 8"
 
 msgid "routea"
 msgstr "Route A"
@@ -797,6 +803,9 @@ msgstr "Proof that beauty and mining can co-exist!"
 msgid "paper_town_description"
 msgstr "The gateway to Fondent!"
 
+msgid "peetluumo_description"
+msgstr "The engine of the Archipelago!"
+
 msgid "route1_description"
 msgstr "Take care!"
 
@@ -808,6 +817,9 @@ msgstr "The memorial passage to Timber Town!"
 
 msgid "route7_description"
 msgstr "The Ascension Trail on the slopes of Buddha Mountain!"
+
+msgid "route8_description"
+msgstr "The oldest surviving rainforest!"
 
 msgid "sphalian_town_description"
 msgstr "The highest settlement in the Fondent Region!"
@@ -5117,6 +5129,46 @@ msgstr "Haha, suckers - you'll never find me. \n It's on the Omnichannel CEO's l
 
 msgid "spyder_cottonhouse1_tvwatch"
 msgstr "It's the latest reality show: people and their tuxemon complete challenges on a remote island."
+
+## Peetluumo Town ##
+
+msgid "peetluumo_monk"
+msgstr "Did you notice all the wood around the town?\n"
+"Sadly what is happening today is the result of years and years of exploitation.\n"
+"These are not isolated crimes with a single culprit. It's an organization with command and control.\n"
+"The only place in the archipelago where they still have timber of this size and quality is...\n"
+"Inside indigenous land.\n"
+"Now that they know I'm coming, they'll put everyone out, so I'll find the crime, but I won't find the criminals."
+
+msgid "peetluumo_ceo"
+msgstr "This scheme is very well assembled. The ship operates twice a week. The cargo serves Fondent's cities."
+
+msgid "peetluumo_granny"
+msgstr "This town was full of trees, beautiful flowers... Was..."
+
+msgid "peetluumo_maniac"
+msgstr "It looks like the island has maintained it's wonderful hospitality, but a lot changed."
+
+msgid "peetluumo_beck"
+msgstr "Peetluumo's income from wood export has increased twice. A lot of jobs, a lot of money!"
+
+msgid "peetluumo_bins"
+msgstr "It's full of papers."
+
+msgid "peetluumo_pc1"
+msgstr "Ugh... Someone is coding in Python."
+
+msgid "peetluumo_pc2"
+msgstr "An accounting software is running. Graphs are skyrocketing."
+
+msgid "peetluumo_emptybox1"
+msgstr "The label says Tuxemon."
+
+msgid "peetluumo_emptybox2"
+msgstr "The label says bsoosters."
+
+msgid "peetluumo_worker"
+msgstr "Illegal logging? Too many ships? I don't know. We work. We get money. Unemployment is better?"
 
 ## Sphalian Town ##
 

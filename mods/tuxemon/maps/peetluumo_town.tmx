@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="30" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="39">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="peetluumo"/>
+  <property name="town" type="bool" value="true"/>
+  <property name="east" value="route8"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2295" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
+ </tileset>
+ <tileset firstgid="10487" name="core_buildings" tilewidth="16" tileheight="16" tilecount="1316" columns="47">
+  <image source="../gfx/tilesets/core_buildings.png" width="760" height="448"/>
+ </tileset>
+ <tileset firstgid="11803" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="744" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="384"/>
+ </tileset>
+ <tileset firstgid="12547" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="16411" name="core_outdoor_water" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_water.png" width="1024" height="2048"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eAH7xsLA8G0UD+owSGEGxhETdpwKkqNS/KHb8x1o5xwc+ALIPVSy9xIOO7DZPdLs/QoKZyimNK5JCWfksKc0zGltL3q6hYUXvvSL7D90NnKYw8xCT+sgO8k1H90+fHxke+llJ8g9cH8D2fTwJ74wGJXDXQ6Phs1o2IymgdE0MJoGRtMANdIAAMo7ht0=
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eAG9lbtyEzEUhjUDDdCQCyWXAA2EGJuCFsdJz+0NaCGxF3puNe/ApSfY3F6ARwBqiElooMhymWGo+P5JzqA52Wi9a4JmvjmWjqRPK2nXIYxeHu4L4RFYWWqHsAxNGKXM0a8LPahSPuD8GHmfVhwv1zPG9CuOe4zzSeTVPP+jrOIcOu9XVy9ah52Hco12UY/ytmvO84W6x8+i81gBc1r0/VL1eK/lu75/O6nxdXO21zs5tY7dKilnmbfOe2TPUbS3cVt83jZGd0ulznu0OXL7ecZO/9vG1IlvGpuj7C77uVP1Or4H50IQwy2v7V/K43M2xsfUesxrffyc49RT35sy72zBuzvqWt7tCcHznjaVlFfO8wdCUPSY27erbrkW3xzRjOLvEq/Gyymenw7hBbyEV/AabO5ULsMnelFMeWOnvKt4hvAJ1mAdzJvKDfCJfhR38sp5g35LsAxdODgbwgRMwhRMg/qJVC5nrNiIovfaORfFC3jaMA8dWACtTWsqyuket0Dn+pbzPLL3L0f5Hd+rIt84bRlOnesvvMNTnBGswTp8Bq0rJ36D7/ADfoLax/EOGN8HeSe4D5MwBdNwCJQ/RpyB43ACTkIWebVX/j0sq+eM39jytplvHjqwAIsg70XiJbgMV+AqqN2eV2s+Q30OGnAW/N3z+RZ9hMZ2ma8HGdyEW5CTu028A3fhHtwHtcfeMo/PZ4wX8to8VWOd5x3gFON4O9x9/zx+X30+xykOR+9Q/D7Zb32vbR9m6Ju6N/rPTOUt18Rbtj59R8z7r2IPr98Hv47d8Oo98h6/jsWSvbW9qxL/APnkejA=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="Collision">
+  <properties>
+   <property name="Collision" value=""/>
+  </properties>
+  <object id="4" type="collision" x="176" y="16" width="288" height="272"/>
+  <object id="5" type="collision" x="320" y="288" width="96" height="16"/>
+  <object id="6" type="collision" x="16" y="464" width="464" height="16"/>
+  <object id="7" type="collision" x="256" y="288" width="48" height="16"/>
+  <object id="8" type="collision" x="16" y="224" width="80" height="96"/>
+  <object id="9" type="collision" x="0" y="0" width="480" height="16"/>
+  <object id="10" type="collision" x="432" y="288" width="32" height="16"/>
+  <object id="11" type="collision" x="0" y="16" width="16" height="464"/>
+  <object id="12" type="collision" x="464" y="16" width="16" height="416"/>
+  <object id="13" type="collision" x="144" y="176" width="16" height="16"/>
+  <object id="14" type="collision" x="192" y="416" width="64" height="16"/>
+  <object id="15" type="collision" x="80" y="368" width="80" height="16"/>
+  <object id="16" type="collision" x="16" y="320" width="208" height="48"/>
+  <object id="17" type="collision" x="16" y="368" width="48" height="16"/>
+  <object id="18" type="collision" x="176" y="368" width="48" height="16"/>
+  <object id="19" type="collision" x="16" y="416" width="144" height="48"/>
+  <object id="20" type="collision" x="256" y="336" width="208" height="96"/>
+  <object id="21" type="collision" x="16" y="384" width="16" height="32"/>
+  <object id="22" type="collision" x="16" y="16" width="160" height="144"/>
+  <object id="23" type="collision" x="16" y="160" width="48" height="32"/>
+  <object id="24" type="collision" x="16" y="192" width="32" height="16"/>
+  <object id="25" type="collision" x="64" y="160" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="7" name="Events">
+  <object id="26" name="Teleport Office" type="event" x="64" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport peetluumo_town_office.tmx,4,14,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="27" name="Teleport Inn" type="event" x="416" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport peetluumo_town_inn.tmx,8,11,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="28" name="Island Sign" type="event" x="144" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="29" name="Teleport House" type="event" x="304" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport peetluumo_town_house.tmx,4,6,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="30" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_town_theme"/>
+    <property name="cond1" value="not music_playing music_town_theme"/>
+   </properties>
+  </object>
+  <object id="31" name="Teleport Center" type="event" x="160" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport peetluumo_town_center.tmx,6,10,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="32" name="Create Captain" type="event" x="464" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_captain,7,11"/>
+    <property name="cond1" value="not npc_exists spyder_captain"/>
+   </properties>
+  </object>
+  <object id="38" name="Talk Captain" type="event" x="464" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_river_captain2"/>
+    <property name="act2" value="translated_dialog_choice paper:leather:flower,rivergoto"/>
+    <property name="behav1" value="talk spyder_captain"/>
+    <property name="cond1" value="not variable_set seentimber:yes"/>
+   </properties>
+  </object>
+  <object id="39" name="Destination" type="event" x="160" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable rivergoto:nothing"/>
+    <property name="act4" value="player_face up"/>
+    <property name="act5" value="transition_teleport spyder_flower_city.tmx,17,30,0.3"/>
+    <property name="cond1" value="is variable_set rivergoto:flower"/>
+   </properties>
+  </object>
+  <object id="40" name="Create Worker" type="event" x="112" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_miner,6,17"/>
+    <property name="act2" value="npc_face spyder_miner,right"/>
+    <property name="cond1" value="not npc_exists spyder_miner"/>
+   </properties>
+  </object>
+  <object id="41" name="Talk Worker" type="event" x="80" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog peetluumo_worker"/>
+    <property name="behav1" value="talk spyder_miner"/>
+   </properties>
+  </object>
+  <object id="33" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:beach"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="34" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_beach"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
+   </properties>
+  </object>
+  <object id="35" name="Route Sign" type="event" x="320" y="416" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="36" name="Teleport Forest" type="event" x="464" y="432" width="16" height="32">
+   <properties>
+    <property name="act1" value="transition_teleport route8.tmx,0,4,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="37" name="Player Spawn" type="event" x="48" y="0" width="16" height="16"/>
+ </objectgroup>
+</map>

@@ -3,7 +3,7 @@
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="tobedecided"/>
-  <property name="slug" value="sphalian_town_center"/>
+  <property name="slug" value="peetluumo_town_center"/>
  </properties>
  <tileset firstgid="1" name="core_buildings" tilewidth="16" tileheight="16" tilecount="1316" columns="47">
   <image source="../gfx/tilesets/core_buildings.png" width="760" height="448"/>
@@ -19,7 +19,7 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAGbLs7AMJ1EfBSonlT8GaiHVBzHysAwigdvGAAA/RNJvQ==
+   eAGbLs7AMJ1EfBSonlT8GaiHVBzDysAwigdvGAAAUnNI7Q==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="13" height="11">
@@ -56,13 +56,13 @@
     <property name="act50" value="npc_face tabanurse,down"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
-    <property name="act80" value="set_variable teleport_faint:sphalian_town_center.tmx 6 10"/>
+    <property name="act80" value="set_variable teleport_faint:peetluumo_town_center.tmx 6 10"/>
     <property name="cond1" value="is variable_set chooses:yes"/>
    </properties>
   </object>
   <object id="17" name="Go outside" type="event" x="96" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport sphalian_town.tmx,17,7,0.3"/>
+    <property name="act1" value="transition_teleport peetluumo_town.tmx,10,24,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="41">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="scenario" value="tobedecided"/>
+  <property name="slug" value="route8"/>
+  <property name="south" value="???"/>
+  <property name="west" value="peetluumo_town"/>
+ </properties>
+ <tileset firstgid="1" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
+ </tileset>
+ <tileset firstgid="8193" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
+ </tileset>
+ <tileset firstgid="10487" name="core_buildings" tilewidth="16" tileheight="16" tilecount="1316" columns="47">
+  <image source="../gfx/tilesets/core_buildings.png" width="760" height="448"/>
+ </tileset>
+ <tileset firstgid="11803" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="744" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="384"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0jENAAAMw7D2G3/E5TH5CIHIvaTygAEGGGCAAQYYYIABBhhggAEGGGCAAQYYYIABBh4ZGKCxOEE=
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHtl81SE1EQha9rEJ5AXegK1gRNlLdC+dnxPiosFKp4DHXnDy8hUrjxNDVf7LTVmTupOAkFt+rUmTvdd/pLz51JclpKOZNOF+RvN0p51+i9/Fg6keD5Ja4raVH+VSzfGn2X/5AuJHjgXJSvbJay2uihfE1al+CBc1E+FMuo0Uv5K2lHgke3dmIcadaXJgqHCf0Lp3tjsx7Y+PS0lM/SF8kP+hc5++odfFfi+imw68AHF5wj5UzTR8VNl438nPNdnPXGt/vgXz644DxU3WnytTm+dMycq3XWZnxwwXmuWtPUVpd6bW7X8cr44ILzt9ZNE9fM6ls8i8XzlosyPqXcDDiZ/+/ngzp4Gx/9I3/Z+G5L/+ibvS8fP8tl71FyzV9Lb6Q9ab9i7tfasb+/PsZ9pX/ELH9L6zLZe5Rc84G0LT2XXkiRN8b9WjvO+OCCk3WW/0HrMkW+Np4Ypw6e8cEFp8/P2Ox85Iv9iTwxTh0844MLTp/fhW8o5pFU69TBMz644PT5XfgOxHYo1Tp18IwPLjh9fhe+a7HZ906tUwfP+OCC0+d34Yv7a9n2XxtPjNMH/K73b6i9d//8/v3Osv3Q5fmofW7JY9/hd33/xedzoP24LWW/F+gbfhv6t9X8f4PZnPcy72liNftPy8eDdbP6o+a35hO5vwZccBLrm2/8QXUAgzlccBK72Q+K7yaK//NZN6urzHj4a8AFJzH6nf3Gt/vgB+tm9exacMFJHvNlcTjhY74sTp/ga3Py+3L61MZFnPy+vLYP8NXmzyuvtg/w1ebPK+8PqZ/blg==
+  </data>
+ </layer>
+ <layer id="7" name="Tile Layer 3" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt17EJACAMBMBM5P69mziJA0g6wQfPUoS8F1KkyvlFYI6Mn3Y5Vki+lBwZ3ZKCwCnQzfD58s2NGX7jrioBAgQIECBAgAABAgQI5AvY6fN7JOFdgQ1yqAgF
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collision">
+  <object id="1" type="collision" x="0" y="96" width="32" height="544"/>
+  <object id="2" type="collision" x="32" y="0" width="544" height="64"/>
+  <object id="3" type="collision" x="576" y="0" width="32" height="48"/>
+  <object id="4" type="collision" x="512" y="80" width="48" height="416"/>
+  <object id="5" type="collision" x="64" y="224" width="144" height="352"/>
+  <object id="6" type="collision" x="192" y="544" width="448" height="96"/>
+  <object id="7" type="collision" x="608" y="224" width="32" height="320"/>
+  <object id="8" type="collision" x="32" y="608" width="128" height="32"/>
+  <object id="10" type="collision" x="0" y="0" width="32" height="64"/>
+  <object id="11" type="collision" x="256" y="224" width="192" height="256"/>
+  <object id="12" type="collision" x="32" y="112" width="480" height="64"/>
+  <object id="13" type="collision" x="592" y="48" width="16" height="16"/>
+  <object id="15" type="collision" x="608" y="0" width="32" height="160"/>
+  <object id="37" type="collision" x="48" y="64" width="16" height="16"/>
+  <object id="38" type="collision" x="592" y="64" width="16" height="16"/>
+  <object id="39" type="collision" x="608" y="160" width="16" height="16"/>
+  <object id="40" type="collision" x="176" y="576" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="16" name="encounter6" type="event" x="64" y="176" width="384" height="48">
+   <properties>
+    <property name="act1" value="random_encounter route2"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="17" name="encounter8" type="event" x="32" y="224" width="32" height="318">
+   <properties>
+    <property name="act1" value="random_encounter route2"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="18" name="encounter7" type="event" x="208" y="224" width="48" height="256">
+   <properties>
+    <property name="act1" value="random_encounter route2"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="19" name="encounter4" type="event" x="256" y="480" width="256" height="64">
+   <properties>
+    <property name="act1" value="random_encounter route2"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="20" name="encounter1" type="event" x="64" y="64" width="432" height="48">
+   <properties>
+    <property name="act1" value="random_encounter route2"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="21" name="encounter2" type="event" x="560" y="224" width="48" height="320">
+   <properties>
+    <property name="act1" value="random_encounter route2"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="23" name="Teleport South" type="event" x="160" y="624" width="32" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport peetluumo_town.tmx,8,11,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="24" name="Teleport" type="event" x="624" y="160" width="16" height="64">
+   <properties>
+    <property name="act1" value="transition_teleport peetluumo_town.tmx,28,28,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="25" name="Teleport Town" type="event" x="0" y="64" width="16" height="32">
+   <properties>
+    <property name="act1" value="transition_teleport peetluumo_town.tmx,8,11,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="26" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="play_music music_city_park"/>
+    <property name="cond10" value="not music_playing music_city_park"/>
+   </properties>
+  </object>
+  <object id="27" name="Player Spawn" type="event" x="0" y="16" width="16" height="16"/>
+  <object id="28" name="encounter5" type="event" x="448" y="224" width="64" height="256">
+   <properties>
+    <property name="act1" value="random_encounter route2"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="31" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="32" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:desert"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="33" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_desert"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
+   </properties>
+  </object>
+  <object id="31" name="Teleport House" type="event" x="576" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport peetluumo_town.tmx,8,11,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="34" name="Create Maniac" type="event" x="48" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_maniac,1,9"/>
+    <property name="cond1" value="not npc_exists spyder_maniac"/>
+   </properties>
+  </object>
+  <object id="35" name="Talk Maniac" type="event" x="48" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog peetluumo_maniac"/>
+    <property name="behav1" value="talk spyder_maniac"/>
+   </properties>
+  </object>
+  <object id="32" name="Sign1" type="event" x="48" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="33" name="Sign2" type="event" x="592" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="34" name="Sign3" type="event" x="608" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="35" name="Sign4" type="event" x="176" y="576" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

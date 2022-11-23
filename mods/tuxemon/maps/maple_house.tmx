@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="41">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="41">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
@@ -14,10 +14,7 @@
  <tileset firstgid="105" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="177" name="girl1_front" tilewidth="16" tileheight="16" tilecount="2" columns="1">
-  <image source="../sprites/girl1_front.png" width="16" height="32"/>
- </tileset>
- <tileset firstgid="179" name="Tilesetother" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
+ <tileset firstgid="177" name="Tilesetother" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
   <image source="../gfx/tilesets/Tileset.png" width="448" height="640"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="13">
@@ -27,12 +24,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="15" height="13">
   <data encoding="base64" compression="zlib">
-   eAFjYBiaIBLo7CggjgbiGCgNpODgKQsDwzMghoHvSOxYoGAcEMcDcQKUBlKDHiwHuhCGSXVsKVBDGRCX49FYCJQrAuJiNDWNQH4TEDejiVOLC7TvANDeA0D7DxAyk5WQAgrkAbZGEDs=
+   eAFjYBiaIBLo7CggjgbiGCgNpODgMQsDwxMghoGvSOxYoGAcEMcDcQKUBlKDHiwHuhCGSXVsKVBDGRCX49FYCJQrAuJiNDWNQH4TEDejiVOLC7TvANDeA0D7DxAyk5WQAgrkAak2EDU=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="15" height="13">
   <data encoding="base64" compression="zlib">
-   eAFjYBhcIB/onAKok06yMDCcAmJiQTVQYQ2xioegukygm7OAOJvObl8OtA+G8VkNUjOUAQAoGAdM
+   eAFjYBhcIB/onAKok46zMDCcAGJiQTVQYQ2xioegukygm7OAOJvObl8OtA+G8VkNUjOUAQAeYAdI
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">

@@ -24,6 +24,7 @@ from __future__ import annotations
 import logging
 from typing import NamedTuple, final
 
+from tuxemon import formula
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
@@ -72,6 +73,12 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
                 f"npc '{self.parameters.npc_slug}' has no monsters, won't start trainer battle."
             )
             return
+
+        # Rematch
+        if self.parameters.npc_slug in player.battle_history:
+            rematch = player.battle_history[self.parameters.npc_slug]
+            for mon in npc.monsters:
+                formula.rematch(player, npc, mon, rematch[1])
 
         # Lookup the environment
         env_slug = player.game_variables.get("environment", "grass")

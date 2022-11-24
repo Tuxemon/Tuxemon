@@ -53,5 +53,4 @@ class EvolveEffect(ItemEffect):
                 if evolution.monster_slug == self.monster_evolve:
                     self.user.evolve_monster(target, self.monster_evolve)
                     return {"success": True}
-                else:
-                    return {"success": False}
+        return {"success": False}

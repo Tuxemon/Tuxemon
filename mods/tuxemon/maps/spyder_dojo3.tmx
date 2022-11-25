@@ -8,20 +8,20 @@
  <tileset firstgid="1" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
   <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
  </tileset>
- <tileset firstgid="211" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
+ <tileset firstgid="211" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="265" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
-  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
+ <tileset firstgid="4075" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="24" height="12">
-  <data encoding="base64" compression="zlib">
-   eAG9kN0NgCAMhHEDN3EDXcH9nzqGj95hLoGGH2PAJkfTcv0gDeHfWPDclmj06yuAe6IZ/AvQL3rzF/6fbIbyU7XPnld7Px3XULeE6xg9vvZ+wO29hl5NuIrhZ9RX1l7oK3kN/VQos9BcaZZG8bOhSmHoS94yku/ZrEfwS1z1ZvLJ9vwbMic6tg==
-  </data>
- </layer>
  <layer id="2" name="Tile Layer 2" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBhYwAS0Xh8HRpdjJsOpgkA9djgwupwQkeZfA6q7TiK+AVSvSKT594HqHpCIHwLVk2s+UCtW8AAoCsMg832BGBRXhOIB3f1ALVjBA6AoDIPMtwViUFzhigdYuMP0kEqD4gxfPKC7G5/5QKPgbkdWhy8ecJlvwYhpFjXNR3YfITY57idkJrI8uvkA7Op4Ow==
+   eAFjYBhYwAS0Xh8HRpdjJsOpgkA9djgwupwQkeavY2FgWE8i3gBUr0ik+XeAau+SiO9RYD4uZyG7AWS+L1AhKK4IxQO6+4k13xaoEBRXuOIBFu7I7iKFDYozfPGA7m58ZoP8hE0eXzzgMt9ZANMsapqPzZ24xMhxPy6zsImjmw8AXDl2Pg==
+  </data>
+ </layer>
+ <layer id="1" name="Tile Layer 1" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eAFjYKAvYARap4+EqW27ANBAOyRMC/NTWBkYyMHEuAXkfpDZd1kgqkE0MRikBx+AhXsAUBHMfGLMhakhZD4s3O1paD7IDTAMcxexNEwfLn8ghzuxZmJTR475oHjDZhY2MXLMx2YOLjFamg8yG918ANvYcP4=
   </data>
  </layer>
  <layer id="3" name="Above Player" width="24" height="12">
@@ -29,7 +29,7 @@
    eAFjYBgFoyEwGgKjITAwIQAABIAAAQ==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision" visible="0">
+ <objectgroup color="#ff0000" id="5" name="Collision">
   <object id="1" type="collision" x="32" y="80" width="16" height="112"/>
   <object id="2" type="collision" x="32" y="80" width="48" height="32"/>
   <object id="3" type="collision" x="64" y="16" width="16" height="96"/>

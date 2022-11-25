@@ -5,28 +5,28 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="hospital_alt"/>
  </properties>
- <tileset firstgid="1" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="55" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
-  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
+ <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="2647" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
-  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
  <layer id="7" name="Tile Layer 1" width="12" height="20">
   <data encoding="base64" compression="zlib">
-   eAHbx8vAsI8E/AyolhTMx8fAwA/EN4ikzYDqzIH4P5H0NaC6W0B8G4ivA/FNAvx/QHkmfgYGZiCG2YGPzwBUBzITZjYhetT9+ONjNPzxpydS0w8AUPmlkA==
+   eAG7J8rAcI8EzCPGwEAKVhRnYFAGYmJpf6DaTKAdxNIgs1WAWBXJDnx8kNlBQLXBQAyzAx+fWHfD1MHMJJYedT/++ICFK7E0seEOUzfUwx8As/BUuw==
   </data>
  </layer>
  <layer id="8" name="Tile Layer 2" width="12" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFpIbAIiYGhsVAPApIDwEuNgYGbiDmAWIYQOcjq5ECqpMGYhkk9eh8bGpgZg8mWh7oGAUgViTSURpAdZpArIVHPQAvjwO3
+   eAFjYBgFpIbAZUUGhitAPApID4HdwHDbA8R7kcIPnY+s5hZQ3W0gvoOkHp2PTQ3pLqO9jjQWBoZ0IM4AYmLAFKC6qUA8DY96ACNIE8A=
   </data>
  </layer>
  <layer id="9" name="Tile Layer 3" width="12" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYGBgUGRmYFACYlwAXd4QqNYIj3p0eUegWic86gnJ43LXqPjQDQFzLoTbrYBsdD5CFsJyB6rxAGJPIPYCYnQ+uvqRwgcAbcgGFQ==
+   eAFjYGBg+CrPwPANiHEBdHkRBQYGUSDGBQjJ49I3Kj5yQmCfIsKvB4FsdD5CFsK6C1RzD4jvA/EDIEbno6sfKXwASokQow==
   </data>
  </layer>
  <layer id="10" name="Tile Layer 4" width="12" height="20">
@@ -36,7 +36,7 @@
  </layer>
  <layer id="11" name="Tile Layer 5" width="12" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFk5gYGCYD8SigbwhYcDEwWAIxDKDzYeKjNO4QAABz2AI0
+   eAFjYBgFWxQZGLYC8SigbwjsB4b5AaRwR+fT1zVD0zYA3R4FLg==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">

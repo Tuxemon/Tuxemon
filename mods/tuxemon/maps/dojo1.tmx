@@ -5,36 +5,36 @@
   <property name="scenario" value="xero"/>
   <property name="slug" value="dojo1"/>
  </properties>
- <tileset firstgid="1" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
- </tileset>
- <tileset firstgid="1441" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="2441" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
+ <tileset firstgid="1" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
   <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
  </tileset>
- <tileset firstgid="2651" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
-  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
+ <tileset firstgid="211" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="4075" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
+ </tileset>
+ <tileset firstgid="7045" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAGdkDsKAkEQRCdRWAPvoKGn8iim4gXE0F/iAURTQVh/p9ALqIlGVuG0NMUM7BoUs1O1/ajpYRHCWrSSO3N6uyL0qVyunBFmxtBetJE7c3q91le5XDkTzJA/bYQwi5rj5HzK8/xUrp7xD2AuoCV0inz12uhu78f3QHN2Us/zz+BehK+evd9YmpPvPc8/IqN8f/WuzRBukPE1J997dfkdsLt/8v3+t4ld0nuh3xvK5VX3X0a+3yU965/Lc/u/o9Mj6omzhFKe9c/lOmP75/9V9Otf8f+6fN+/Sh/yP4H82ro=
+   eAGdkMkJQkEQRNslADEFAxC9CoKZmIO7XjyZh9/taChqRlbBNDTFDIweivlT1f2mf7fMbCgayJ05vYnZnCrlyumgpwdNRSO5M6fXJJVy5fRRT/6ia7ZMWuFkf86L/FyunvPPYK6hDXRJfPVOeNP/H99HzTmTepF/BfcmfPX8/52lOfnRi/wGGRXnV2+P/AA5X3Pyo/cr/47+x5/8uP9xZpf0tmDvoFJeu/9Z4sdd0vP5S3lp/y/M9E764Hy2zXKez1/Ktcf3z/oa+fw1taz5lR/nr3mD/C8eFIvA
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYKA9mM/FwLAAiJEBNjFC8oT0IOsfZY+GwGgIDP4QAAAAawVN
+   eAFjYKA9YJNjYGAHYmSATYyQPCE9yPpH2aMhMBoCgz8EAIhcASU=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgyUEMlkZGLKAGBlgEyMkj0vPNKDZ09HMRxdr5mJoQDYfXR4khy6GzT5sYsjmYpPHJobNPlxiyOaju5EYPcj6R9n0CQEAlm8Rrg==
+   eAFjYBgFgyUEWOQYGFiBGBlgEyMkj0uPMtBsFTTz0cWcBBgakM1HlwfJoYthsw+bGLK52OSxiWGzD5cYsvnobiRGD7L+UTZ9QgAAv1EHEw==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgykEMrkwXYMsVsPF0ICuAlkeJodNDCRXgMV8bGIwc4jRg80ubGLIZmKTxyZGjP3I5sLY2PyETQymfpQemBAAAJKjCG8=
+   eAFjYBgFgykEnGUxXYMsJirA0ICuAlkeJodNDCSXhMV8bGIwc4jRg80ubGLIZmKTxyZGjP3I5sLY2PyETQymfpQemBAAAF+fB54=
   </data>
  </layer>
  <objectgroup color="#ffff00" id="5" name="Events">

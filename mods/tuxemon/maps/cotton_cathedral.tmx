@@ -5,33 +5,33 @@
   <property name="scenario" value="xero"/>
   <property name="slug" value="cotton_cathedral"/>
  </properties>
- <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="89" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ <tileset firstgid="3865" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="1401" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBg4wAS0mlQMcy0vkEEqhumVADJIxTC9BkAGqXhUL/FhNtBhBbOfnjQAr9gVfA==
+   eAFjYBg4oAW0mlQMc20EkEEqhultAzJIxTC9VYIMDKTiUb3Eh9lAhxXMfnrSAAHZReE=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBjZYDcLA8NRID4GxMgAJH6ImYHhMBDjAlOBat4B8XskvaZANkj8NVDfGzx6cZkJEn9PhD5TVgaGyUB7YNgcyKcVALknD2hXPhAT4zZkd4DUTwfqm0GGXmRzSGF3smNXjSuIcKnHbgr1RQF7TRQA
+   eAFjYBjZIFKegUEZiFWAGBmAxK3lGBhsgBgXsASqcQJiZyS9G4HqQeJRQDoaj15cZoLE64nQVwq0owwJlyO5AZ/Z5MiB3PMAiB8CMTFuQ7YDpP4/EDMA3UeqXmRzSGFvA9mHBRzDEUa41GMxgiZCAE9CERw=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBgF5IYAPyt2nbjEkVU/YUHmIdi4xBEqRlnDLQQA/P8B+Q==
+   eAFjYBgF5IZApDx2nbjEkVVX4NCLSxxZ7yh7eIUAAHeEAh8=
   </data>
  </layer>
  <layer id="4" name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBgcQImNgUEZiJEBNjFkeRjbC6jPG00vNjGY+sFCZ7IwMGQh4WwgexRAQiCRnbSQIFU9aabTVjUAPjgE2w==
+   eAFjYBgcYJs8A8N2IEYG2MSQ5WHsq0B919D0YhODqR8s9G05BoY7SPgukD0KICEwncSwIFX9YApnABODDXU=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">

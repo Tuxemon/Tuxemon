@@ -5,42 +5,36 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="greenwash"/>
  </properties>
- <tileset firstgid="1" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
-  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
- </tileset>
- <tileset firstgid="85" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
-  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
- </tileset>
- <tileset firstgid="613" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
-  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
- </tileset>
- <tileset firstgid="3205" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
-  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
- </tileset>
- <tileset firstgid="4965" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="8829" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+ <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1240" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+ </tileset>
+ <tileset firstgid="8969" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
  <layer id="7" name="Tile Layer 1" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAGbrs3AMJNMPAuo7ygQf+FhYPgKxEq8pNEnoPrL1BkYyMGj+iHhT07YgfSMht9o+IHy70hNPyB/U+J/SvXDyk9yw/8bheUnTP8MoDn4cD6ONALTfxwojw9v1sGexmD6lYDy+DCl+h9SaD+/LmXuB/kNWxwT639auh8AltdHyw==
+   eAEzlmBgMAFiUzJoM6CeRCBOAuJkMugUqH4hEQYGcvCofkj4kxN2ID2j4TcafqD8O1LTD8jflPifUv2w8nOgwx9U9uPDn3CkEVj5ASr78WF/SexpDKZ/H1A/Pkyp/loK7V9NoX6Q37DFMbH+p6X7AUdRj7k=
   </data>
  </layer>
  <layer id="8" name="Tile Layer 2" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAFjYBj8gJWZgYENiNmBmAOISQWiQD1iQCwOxBJk6FcF6lEDYnUg1iBDPynuxeZXUuynhV9JsZ8Uv46qHTwhIMfEwHCUkXz3mAD13yZB/3E0tV5A/R/RxPC55i4JarGZ85lC/ejux2YHPrGBdj8+t6HL5WszMBRAcSGQJhXMBeqZB8XzB0D/aaCdZ6D4LBn2/wTq+QXFv8nQXytKaoihqoe5HUajymLylIB1lDIQq0DrKpjbYTSyDgAaWSaz
+   eAFjYBj84J8iA8N/IGZQYmBgBGJSgSxQjxwQywOxAhb9xsr4TbQB6rEFYjsgtseiP4GAfvymo8pi8ysh+5FNIORXZLXY2NjswiaGTe+o2NANgRdyDAzPgJgcoAXMm+zyDAysQEwseI5klycob5MI2Eiwi0SjiVKO7H6iNKApGmj3ozkHL5dbgoGBB4p5gTSpwBKoxwqKrQdAfzrQzgwoziTD/qlAPdOgeDoZ+iWZSA0xVPUwt8NoVFnCPJjbYTSyDgApZh/m
   </data>
  </layer>
  <layer id="9" name="Tile Layer 3" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAFjYKAeKGdmYKgAYhhNqsntQL0dQAyjSdVPrnolAhpZgW5iA2J2IOYAYnSgiS6AxhcF6hEDYnEglsCiH005BpeQ/Rga0ARIsR+bXapAN6sBsToQaxBwPyl2oTkTzCXFLph+NyYGBncg9oBiTyB9FIiPQfFxII0PxADlY4E4DorjgfRVIL4GxdeBNKkApB8Ghrt+Uy6YTxE0Kf53xaH/JTStkRN+T4Hh/wOInwHxc6S4QLhwlIUeAq+A8fAaS1ygq8PF/wXU+xuqPwsYd9kEygpc5oDEq4B6q4HYmgIz8Jk/KgcJAQAU/yZw
+   eAHtlFsOwVAURbcYAF8khJYBKJ/EaxAeA/GYDSYiJoIvgyA+sCS30Q9pc6/HV3eycpr07nNOd5tK31OpLpUhrLad23g7EFZb/6/O32rSHcRuGbBVBU8VPPAd/P+c/25Wl5170IdBwv6fPqvNrPA9jNhpDBPDlLrypbVhQ43TjPNzWBiW1G3Es4tcx/WJ3kv9rzRc8xua3F38e7wnTzpQj6aPUsUmkOO7z4OrGngD4z+T/QVcVfClIlyf/91UVgkEWakJLUjSA34ZLew=
   </data>
  </layer>
  <layer id="10" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwsCFgwMTAYAjERlBsDKS3AvE2KN4OpEfBaAiMhsBoCIyGAHVDAAABqQPj
+   eAFjYBgFoyEwsCFgqsTAYAbE5lBsAaTrFBgY6qG4AUiPgtEQGA2B0RAYDQHqhgAA1ywEOA==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">

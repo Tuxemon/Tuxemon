@@ -5,44 +5,44 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="scoop4"/>
  </properties>
- <tileset firstgid="1" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="1441" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
+ <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="1529" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="744" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
- <tileset firstgid="2529" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
+ <tileset firstgid="8473" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
  </tileset>
- <tileset firstgid="2583" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
-  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
+ <tileset firstgid="10767" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="12" height="22">
   <data encoding="base64" compression="zlib">
-   eAF7z8bA8J4ELM7OwEAKtgeqJwW/42RgGMWjYTCaBgZHGgAAegPsKQ==
+   eAFz4WdgcCEBFwHVkoIXANWTgrlZGBhG8WgYjKaBwZEGAPoYH4E=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="12" height="22">
   <data encoding="base64" compression="zlib">
-   eAGtkd0NwjAQg81PuwZB7AAjIDEEvDEOQ4BYBlYAZsEGWZxCQ/LASY5zuS9WqgLAsQdOlKvWX8heA1/rnfsPTwyRWmtNUGqpzQ9IGZo7L2YuJ8CKcsWZz6Jvye4CH2ct+/0IuFF36kGpVy3e9rUeOJ+OgY7qKfUq8fF7au/O8+evlPKS8yZn3AzJvN18/kb35uzmS+7/a8+51hzfa+H9VnnOJ55JpYrv1D5RytFePlTxTokZuhfPzt2newIhJhr/
+   eAGtk9ENwjAMRG8DYALCT7frJvyDxB7wU4k/NihzABPgQzrJspI4H1i6Xt28XF21BYDrHriZVFm/Gvt0fNYr9x9+ngBqtBZjqZG6dzhmcF15vcze2sgcGTMX4GV6mz4m9qxLY/5jATYHYGvamdizyPvnyeaO+VP5xTQPkRd4svvWJF4uPs6oXpxcfMv1fuWRG83RvhFes9Ijn33Lfk6ek2cOz+m18ntaTG2fv/Zw//YXLYs+BQ==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="12" height="22">
   <data encoding="base64" compression="zlib">
-   eAFjYBhYIA+0HoRBwIKLoQHMIJKwJ1E9kcaOKhuCIeA1BN08FJwMAKTGAhQ=
+   eAFjYBhYMF2NgQGEQcBSi6EBzCCSSCNRPZHGjiobgiGwH5qGhqDTB7WTAVKdBFM=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="12" height="22">
   <data encoding="base64" compression="zlib">
-   eAHVUEEKgDAMqy8R/P9RfZ/tIRBCKBM2wUJZuzRptoh/xZ52K0fiaIZKo3DodZod1qx4BZ1bxJV5ZyI6/5jRk9/zhW/d73p9h3pEz1zlMDZaz9DQXfDq/haYclzP3qp2esXjOaez+u4BJKgGHg==
+   eAFjYBhaYLoaAwMIEwNm4VEHMgMkDzMPn5n45IhxBzFqLiowMFwC4stADAP43A9Tg04j+4ce7ka3Hxsf3R/oboTxkfWi60GWI5ZNDTPQ7YK5FVvYwuTQ9WDjI7sNxMZmHkgfsjps5tBaDADm5BqS
   </data>
  </layer>
  <layer id="5" name="Above Player" width="12" height="22">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFwykEFIeTZwahX0Za+AIAb2AAQw==
+   eAFjYBgFwykE1BSGk28Gn19GWvgCAOdgAI0=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="7" name="Collision">

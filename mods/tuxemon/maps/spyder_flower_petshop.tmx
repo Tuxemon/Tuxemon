@@ -5,20 +5,23 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="flower_petshop"/>
  </properties>
- <tileset firstgid="1" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
-  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
+ <tileset firstgid="1" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
- <tileset firstgid="2593" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
-  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
+ <tileset firstgid="962" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="4826" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="14" height="9">
   <data encoding="base64" compression="zlib">
-   eAFr52VgyCIBZwPVdgHxeiCeRAKeDFS7CYivA/EuIN5NAr4FVPsfiB8B8WMSMEjfzmGsbw+Z/gPpAwAIM2ht
+   eAELE2BgCCcRRwLVtwBxK4l4K1TfZiC9hQQM0/cQqOcRCXhUH/bwAoULALS/ZKE=
   </data>
  </layer>
  <layer id="6" name="Tile Layer 2" width="14" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYMAEm9gxxbCJLGZkYFgCxKeB+AwQH0LTBxOHqYOZsRmodgsQ3wbiO0CMDmDiMHXo8jC+NJAhA8WyMEEiaG2gGh0o1iVCPUyJNZBhA8W2MEEiaG+gGh8o9iVCPS4lLcwMDK1ATCqYAtQzFU0fACM2Ewk=
+   eAFjYMAEbMyYYthEnjAxMDwF4jag+nYgVkXTBxOHqYOZwQxUxwLES4F4GZoekBqYOEwdTB86nQTUmwzFKVjMQVcP4zcC1TZBcTMJ+hYA1S6E4kUk6NsPVHsAig+SoA/mXhidJ8LAkA/EpII5QD1z0fQBAMedFFw=
   </data>
  </layer>
  <layer id="7" name="Tile Layer 3" width="14" height="9">
@@ -28,7 +31,7 @@
  </layer>
  <layer id="8" name="Tile Layer 4" width="14" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYBh4wA10Ag8U8w68c0aECwBGjAAx
+   eAFjYBh44MzMwOACxa5AehTQPgQAl/cBHQ==
   </data>
  </layer>
  <layer id="9" name="Tile Layer 5" width="14" height="9">

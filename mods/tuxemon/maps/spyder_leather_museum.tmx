@@ -5,44 +5,41 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="leather_museum"/>
  </properties>
- <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
-  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
- </tileset>
- <tileset firstgid="1601" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
-  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
- </tileset>
- <tileset firstgid="1711" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
- </tileset>
- <tileset firstgid="1799" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
- </tileset>
- <tileset firstgid="1853" name="Warmachine_black_and_yellow" tilewidth="16" tileheight="16" tilecount="70" columns="14">
+ <tileset firstgid="1" name="Warmachine_black_and_yellow" tilewidth="16" tileheight="16" tilecount="70" columns="14">
   <image source="../gfx/tilesets/Warmachine_black_and_yellow.png" width="224" height="80"/>
+ </tileset>
+ <tileset firstgid="71" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="3935" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="7799" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="744" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
  <layer id="1" name="Layer 1" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJx7xsbA8AwLJgZg00cs/ogDEwNw6aUE09rePzjweiIwLr3E4LtAfAkLvYsIfBcNYzMHF41L7igR+BIaJsVuXHK3gfgCAZoW/iVk54VR/w4J/wIAGHILOA==
+   eJxr5WdgaMWCiQHY9BGLN+PAxABceinBtLb3IQ7cTgTGpZcYvJyJgaGSCUHD8FZ+wng5EyquJIHGJfeYnzCuRHMrKXbjklsKxOUEaFr4l5Cd5Uyj/h0K/gUATf/BqQ==
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjALSgCo7A4MaFKuz089ePaBd+lBsQEd7AQmfAY0=
+   eJxjYBgFo2AUjALSwBoWBoa1ULyOhX723gLadRuK79DRXgAZjAZB
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFpICNbKSxqQX2sJHGJgbQwp3EAFLdOdRABdB/rVA/CjIxMASzQNjqQNoPyq4C0vxMqPoi2RkYooA4GohjgDgWiOOAOJ6dOHubyAzXdKD5GUCcCcRZQJwNxDlAnEtje0uB5pcBcTkQVwBxJRBXAXE1je0lBwAAenYUug==
+   eJxjYBgFpIA38qSxBzMYKu4caoBTkYFBXRHC1gXS/FC2D5D2hbK9gLS2Iqo+WSCWA2JQtCgAMUhaCYiVibRXQ5GwGmxAG4h1QG4FYj0g1gdiAyA2pLG9lkBsBcTWQGwDxLZAbAfE9jS2lxwAAHpSDFs=
   </data>
  </layer>
  <layer id="5" name="Above Player" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDAfgyTbQLhi+AABwhgBQ
+   eJxjYBgFo2AUDAeQqzDQLhi+AADEtACO
   </data>
  </layer>
  <layer id="7" name="Above Player" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJztzbcNADAMA0F1msq5dN5/Gf8SBlTogWtJEc+zWVCRiISMgoqmf387+wMTCxsH9/OvZ7cHl4UERQ==
+   eJztzbkNADAIwEDyUubff9V4CSQKLF1tkSjyWUJGQUVDhxp/ByYWNg4unvE38tsHSkcAmw==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">

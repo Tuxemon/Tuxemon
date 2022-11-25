@@ -17,7 +17,7 @@
   <image source="../gfx/tilesets/MK_buildings.png" width="512" height="448"/>
  </tileset>
  <tileset firstgid="3177" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="744" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="384"/>
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
  <tileset firstgid="3921" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
   <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>

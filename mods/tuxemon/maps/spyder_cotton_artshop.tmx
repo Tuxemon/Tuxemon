@@ -5,36 +5,33 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="cotton_artshop"/>
  </properties>
- <tileset firstgid="1" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
-  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="111" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
+ <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="199" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="1199" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="744" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
  <layer id="1" name="Layer 1" width="20" height="11">
   <data encoding="base64" compression="zlib">
-   eJxbxsDAsIxEjA9sJAPT07w9ZOB8PHguEE8ika7Cg0k1C0S34sHkuG82EE/AQZPjPlxmTRiB7gMAdlp4TQ==
+   eJyz52dgsCcR4wO5/KRjepo3m5907IgHJzIxMBgzkUbn8+PGpJoFoufy48bkuC8eiA1x0OS4D5dZhmSYNdTdBwDYBkjX
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="20" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2D4gLMsDAznoPg8C+XmXQOacR2Kb1DBPAD53ga1
+   eJxjYBgFo2D4gDQWBoZ0KM5gody8KUAzpkLxNCqYBwC1pwQR
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="20" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo4A8YAHErlQ0z4mKZg1W8wALRwFE
+   eJxjYBgFo4A8cFiBgeGhAvXMe0RFswareQAE0ATr
   </data>
  </layer>
  <layer id="5" name="Above Player" width="20" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYKAdiGKirnlNaOZdBuIrQHwViK8B8XUgvkFdK0cBHQHnQDuADgAA6PUF6w==
+   eJxjYBg64J8CKn+SPAPDZCCeAsRTgXgaEE+XHxCnjQIqAHWFgXYB7QEAjmgFmw==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">

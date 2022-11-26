@@ -18,7 +18,7 @@
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 9,
             "monster_slug": "katacoon"
         }

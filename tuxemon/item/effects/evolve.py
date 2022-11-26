@@ -24,6 +24,7 @@
 
 from __future__ import annotations
 
+import random
 from dataclasses import dataclass
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
@@ -42,10 +43,14 @@ class EvolveEffect(ItemEffect):
     monster_evolve: str
 
     def apply(self, target: Monster) -> EvolveEffectResult:
-        monster_evolve = self.monster_evolve
-
-        if any(d["monster_slug"] == monster_evolve for d in target.evolutions):
-            self.user.evolve_monster(target, monster_evolve)
+        if self.monster_evolve == "random":
+            choices = [d for d in target.evolutions if d.path == "item"]
+            evolution = random.choice(choices).monster_slug
+            self.user.evolve_monster(target, evolution)
             return {"success": True}
         else:
-            return {"success": False}
+            for evolution in target.evolutions:
+                if evolution.monster_slug == self.monster_evolve:
+                    self.user.evolve_monster(target, self.monster_evolve)
+                    return {"success": True}
+        return {"success": False}

@@ -18,14 +18,16 @@
     ],
     "evolutions": [
         {
-            "path": "fire_booster",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "ouroboutlet"
+            "monster_slug": "ouroboutlet",
+            "item": "fire_booster"
         },
         {
-            "path": "metal_booster",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "sockeserp"
+            "monster_slug": "sockeserp",
+            "item": "metal_booster"
         }
     ],
     "shape": "serpent",

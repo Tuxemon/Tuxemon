@@ -44,6 +44,7 @@ class HasPathCondition(ItemCondition):
     expected: str
 
     def test(self, target: Monster) -> bool:
-        expect = self.expected
-
-        return any(d["path"] == expect for d in target.evolutions)
+        if any(t for t in target.evolutions if t.item == self.expected):
+            return True
+        else:
+            return False

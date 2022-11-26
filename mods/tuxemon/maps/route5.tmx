@@ -10,15 +10,15 @@
  <tileset firstgid="1" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
   <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
  </tileset>
- <tileset firstgid="361" name="Tileset" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
-  <image source="../gfx/tilesets/Tileset.png" width="448" height="640"/>
- </tileset>
- <tileset firstgid="1481" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+ <tileset firstgid="361" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
   <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ </tileset>
+ <tileset firstgid="1801" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtljEKgEAMBFP66vNF/tGzGIjdpshyRYQwgsntEK5wRcS9ax1YeMHTHPGC41e7R+wNzv5mf847wL2DzmwlCy+ozDh78ILObCULL5hnnisiV/7mescLunLVHLygOufqwwu6ctUcvPav1e9R57v78IPdedXz8YLV+e5+vGB3XvV8vGB1vrv/83oBP4yI2w==
+   eAHtljEKgEAMBFP4Pb90ft2zGIjdpshyRYQwgsntEK5wRcSzax1YeMHTHPGC41e7R+wNzv5mf847wL2DzmwlCy+ozDh78ILObCULL5hn7isiV/7mescLunLVHLygOufqwwu6ctUcvPav1e9R57v78IPdedXz8YLV+e5+vGB3XvV8vGB1vrv/83oBo/WHSw==
   </data>
  </layer>
  <layer id="2" name="Long Grass" width="40" height="20">
@@ -28,12 +28,12 @@
  </layer>
  <layer id="3" name="Path" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtlF0uRUEQhM8bIrbADtgNy8FqxBrEGg5rwBbcV/2FSkrrnjkSb+4k40z/VU331LUs+/WXE7g+XJabDfs2cnypzv3yjfA83/FG58vgvojN9yr2ebKJ3cf2dfeV4375Rlie73jdWZjvwfdU7F34uG/GpS775auwwKn67O4lvzAzv8eZ6enRdx2chZ398lVYMx7x5S918FSY5Aq3ejPmR63rIc9UfOLxPrdokTp0191vjVj17pVvF7ndG1Z9dpzqSfPpMD1vy1l3qHiJwYM26eP14KdmHsOX1wgz585ssDqtOI/O3Je3k0bemvsRd110/79mehFvheW/nTX4Kn2chD8vYeZeKrt6N8cDi7qqljl1vx3HyOc16ugFTYCBPmTDg01sC7Z6FYbPCAzwZj3m+8lW76oXFzZnNKCYavJ3lOd4uc7th9BgpS/04TMSF1pSrKpzn/Jm+vP75PNL3K/Th89I/Y5y6ee38dkbHAem6yKfnyPOWid5uW6rLfxPlv3f/zaBD/xuvDY=
+   eAHtVdFNQzEQiwR7lE6DOkPFDKUzlK5QhkCsABu025TfnoUsWdZdErX80Sc93uWS2HeOU1q7P3+pwOKxtaeJdxlr9OE+zTPXw9P1iteLzw+tneLF9yfeo40xt7L6nmPseeZ6WI7TqwtzxDwE32vyvkcO9Tou9nmeuQwLON7PqDbW5zy6D5zQ9Cu+em7fSZ4572WGRzk1Jn+GqbjZmaEv90PVK3m0zxkvYh98V9W3ifns3LNc7wzBg9q1z4rT9bvGF4rBmDVkvJgDD7yJPt4iVi3hnZfI+dPD9LWjMbBw3lV9PHtyqpaY2xf1Zf7Xu8B45Bfyui7Yr3en8sxnUZ/7ohpnuqimqA+auC4cUz/dM4rZCzyBe8LfLnqdfpnBpn7E0DtEvFGPVb3snfvJhTHiyleK11uneLrH43VoRD/pF/5QjcgFL3FO12cx14385zXpeNfxh2rEfukdzFW+rP5vZ+t5PlqTxh/Bo77weBt64aEvff7WMfF/We5//5sCFxTGvcY=
   </data>
  </layer>
  <layer id="4" name="Gravestones" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNls0NwjAMhXNAiD3LzxgcGIMDRwQDwBnmgF3wE3zIslIFSkViKXXsuPbLixv1mlK62Lg2pA3KG9PB5kc5TLpJSvPKY2X1wSQNd8K3trUhcpqmdLYh8fOnp/z0GDaGAVta3IFX+Pazcr4YcTNs9xc+P49xn9jCJwGT77uh/D0zjvMEHxyCU9lbwQcmaXD+Cx+1VS8npf7LvTOmz/ORy8v5so/W+m9r38fCfcPg1F5a6L/Iqee7BXzdiz94i/dfxF+yyRPj+vwxLtr0H7z92n/kiXX6/DFOtt+L8GFLM1dcrfP1exE+bGnmS/PvbNQWztfzVsL0TWwpV2kdfPBGbfGnf5ucEJtbG9sX+8/XrtV/fo+x//z9oru79v8p3wDn6u8XfLW1+ORcH9Orto8=
+   eAHNlksOwjAMRLNgzbW4H/8rwAVYAAs4BwuOgkf0UcsKSoGKxFLqfBx7PHHTXlNKF2vXhrRBeWHaWX+vCZP5NKVF5ba2+GCShjvhO9jaN7Kxfdtur+8P9eUxHM0PY2lxB17hm02Geu3tTrbv3OHz/d5ieE/4JGDydfctf0+P4zzBB4fglPdW8IFJGpz/wkdsxctJqf5ye8ac83zk/HK+5NFa/d3s/VhaIw9wKpcW6i9yCs5W8OkbIf7gLd5/EX9pjJ9o924+2sUx9Qdvv9YffmKcd/PRTmOfi/AxlqYvu1r153OJ9wtrK8N9t1ZbOF/PWwnTJ7YlX6V18MEbscWf/m1ygm1ubey5WH8+dq368znG+vP3i+7u2v+nvAOcq79fmKutxSfn+gBDGs1X
   </data>
  </layer>
  <layer id="5" name="Tile Layer 8" width="40" height="20">

@@ -5,36 +5,33 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="daycare"/>
  </properties>
- <tileset firstgid="1" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
-  <image source="../gfx/tilesets/Objects_by_ArMM1998.png" width="528" height="320"/>
+ <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="661" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
+ <tileset firstgid="3865" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="749" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="1749" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
  <layer id="1" name="Layer 1" width="12" height="9">
   <data encoding="base64" compression="zlib">
-   eAGbxsTAMI0EvBColhS8BqieFCzKzMAwinGHAQAUZB2t
+   eAHTYmBg0CIBRwDVkoLbgOpJwV8FGBhGMe4wAACOplXJ
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="12" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYBhc4CobA8M1IvF1oLp7QHyfSPxgEKp/DnTTCyLxS6A6AFckQGk=
+   eAFjYBhc4KMQA8MnIvFnoDp5YQYGBSKxIlDdYFPvC3STH5HYH6gOAJCiGk0=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="12" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYCAMpjEzMEwHYmRwloWB4TwQYwP7gGr3o6m/AFR7CU39HKAaEMYGfgDV/kJTfwSoFoSJAUpAdcpQrEJAz1GgvBcQe0OxD5A+DsS4wFugXBEQF0NxCZB+D8Qw8JmNgeELFH8F0oTAH6Cav1D8j4B6AG8tGds=
+   eAFjYCAPyCgyMMgBMbFAEqhWGk39aQUGBhDGBiyAaq3Q1L8CqgVhYkCsPANDHBTHA2l84LUCA0MNUE0tFNcB6bdAMVyAC+iu2UA1c6B4LpDmQXJrnTADQz0UNwBpQmANUM1aKF5HQD0AebcUmQ==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="12" height="9" opacity="0.97">
   <data encoding="base64" compression="zlib">
-   eAFjYBh+YC4zwk8voOz5SGIIWVTWa6AaAVQhmvM6WDCt2IBFDKYKAJkiBGw=
+   eAFjYBh+4IwCwk8lchD2OSQxhCwqqxyoNh+qHlWGdrwyLPZNxSIGcwEA40AE1g==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">

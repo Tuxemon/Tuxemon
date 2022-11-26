@@ -18,7 +18,7 @@
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 18,
             "monster_slug": "elowind"
         }

@@ -5,51 +5,36 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="wayfarer_inn1"/>
  </properties>
- <tileset firstgid="1" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
- </tileset>
- <tileset firstgid="501" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
-  <image source="../gfx/tilesets/Objects_by_ArMM1998.png" width="528" height="320"/>
- </tileset>
- <tileset firstgid="1161" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="1177" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
- </tileset>
- <tileset firstgid="1265" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="2265" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
+ <tileset firstgid="1" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
   <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
  </tileset>
- <tileset firstgid="2475" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
+ <tileset firstgid="211" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="2529" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ <tileset firstgid="4075" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
- <tileset firstgid="2601" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
-  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
+ <tileset firstgid="5036" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAHFkr0KAkEMhFMIerbi3wPo8/hIPpaPYGkrFrZiYStq4wzsB+FYzu0MDJPsZi6ZuztPIq4FoRh3ER/VZhDK6YEv6rkJjwJrF+qbCmYwU04PfC/ag+4y1qpPCdbm2jna4ygio983pPXMjYA/GN+ryt1WZ/Zr7VzAH9xVzrhj5+zV74vaWvI+Z+27zLfW4d5W7U69+IR1tu/Po85za36XjTvzvFb23GfxWftG/u+GAm1tZz97KNDWdv2X9vVj5y+Fdnmc
+   eAHFUjsKAlEQm0XFxkK2sBW1sRNtF38H0FN4CEsv6l1MYKJRHo/tfBAybyZ5M8NuExHjBCg2wCqZMbEGpBEPkJsCswQoDsAumTHRAdKIW+TofQ6/cUbuNvqAXr8zlnfSRDh+dTUv+17wtvYTa+9ToXZFTjPvEWs/8baQU00z+76Qv/en12seu3eZOnp5qOvrvUOvPcXIPbyXx963tO8x+7tHsXuV68v0zvPt0jfif1c78pZm5tu1I29p1n95F7WBUXsB0X5Ycg==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 4" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAGVULsOAUEUvQU2tqPYxi9IfIBKK1FI/IBCotAiVGqFH6H0LFCjQ4cP4B+Ic+3cuJndjXWSs3PnzjlzzywRkZP+EttI3JNED1DDg1dYdmnAZ8OEr8j5y+ebSRFlwShUjXcEbxGighHizlAsMVdzhb0N3PkTFScoCesFVURteF3MyKt/wr06ek+84wU2rAwLk5OzezirGe8Y+wnYRI9XZsvycoYSevJuyTSFdgZ2cNYFe2AftKHfJbV42S+co7bB7xJIHdcrPr2uMWNjcRsylz2SVfvj1pI1rp51O+TYKx4icoXdeYT2pHj+w3uB9qp4i+F9AyUJNxA=
+   eAGVj00OAUEQhQszwQ5j6wy2iFhLkDiFERZuwBwCO2wsJNzCwsJe4u8uXsVUVDo96fGSr7v+XqeaiKiuQJioRUAUAa0OEuEWUMS9bolPol58c7yFb2d4uS7KVb/eEJ4pmMRevGnV2yMyMQfxplNzy/u2mu2hDbxD7Fkr/7pc2yPvgwE4qB5PvbA3i3efwduO+0fkJ3BGzjdzMbzsu6Im/+acdcfsA2QqRFngAR+Y0v+SWLzsF56ITfG/RBKn9YpP33mfqGBQRG6T7GrruWqyq2tO9xvYo6loJeylPRKPMBsqxn94l5hdKdYpvB+zoTL/
   </data>
  </layer>
  <layer id="3" name="Tile Layer 5" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYKAcPGSl3IyRbgIzEyQE0tiID4maYRDumlwMDFpArA3E1ARhQPPCoWbqAsNJj4SwigXqi4PqDQXqCyNBL7IfaoH66kjQu4WEuIfZAwBnRAbe
+   eAFjYKAczBam3IyRboKxACQEdKE0MeERLUiMqsGtxo2ZgcEdiD2AmJpgPTBsNkDDRw5Iy5MQVueAas9D1dsCaTsS9CL7IQaoL5YEvf4kxD3MHgAC8Afv
   </data>
  </layer>
  <layer id="4" name="Above Player" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBgF9A4BKy562zhq33ANAQCf5gBF
+   eAFjYBgF9A6BNYL0tnHUvuEaAgC12gC+
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">

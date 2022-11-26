@@ -1223,7 +1223,7 @@ class CombatState(CombatAnimations):
         self.client.pop_state()
         for evolution in monster.evolutions:
             # check the path field, path field signals evolution item based
-            if not evolution.path:
+            if evolution.path.standard:
                 if evolution.at_level <= monster.level:
                     logger.info(
                         "{} evolved into {}!".format(

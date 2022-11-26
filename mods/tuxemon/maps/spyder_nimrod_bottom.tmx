@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="57">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="57">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -11,43 +11,40 @@
  <tileset firstgid="33" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
   <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
  </tileset>
- <tileset firstgid="243" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
- </tileset>
- <tileset firstgid="331" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+ <tileset firstgid="243" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
   <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
  </tileset>
- <tileset firstgid="1331" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
- </tileset>
- <tileset firstgid="1385" name="kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+ <tileset firstgid="1243" name="kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="1401" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
+ <tileset firstgid="1259" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
   <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
  </tileset>
- <tileset firstgid="2841" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285" columns="19">
+ <tileset firstgid="2699" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285" columns="19">
   <image source="../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
  </tileset>
- <tileset firstgid="3126" name="Office_interiors_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+ <tileset firstgid="2984" name="Office_interiors_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_16x16.png" width="352" height="384"/>
  </tileset>
- <tileset firstgid="3654" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+ <tileset firstgid="3512" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
+ </tileset>
+ <tileset firstgid="4040" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBhcoJhxFI/iUTyKRzEIAwDeSJLR
+   eJxjYBhcYIngKB7Fo3gUj2IQBgC27+UV
   </data>
  </layer>
  <layer id="2" name="Tile Layer 3" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJzVk0sKwjAQhofWrnsGEdSl6NYHXsBnV76KtF0K3sN6Gu0NvIUexgkkOI6TULQbAx8tmT8fSZhEABBVQFIR/zbmAcACWQbuXB2ZWjgiK1y/RjbIQcg0tKeD7CzEzLMVMl3iUSPxAFJG5r17eEbVueeEc3fkQb5n5lGZnNUlj+8D1PzX1+ah9W/3Y2r5j/sxNZvngnNXRsE8PFMQz8TSO6YvqEfqtZnOST1B+4J6pF6LwT3GgmfkyJu30wwB2kgrLO+h5zSZPq4fIgPt6cHn++KeG/lPsZ4Jb1ndG39f3LN3nJOPsvfzBB/2XOs=
+   eJwLYWBgCKECTqYSHmpAV4SBQQ+I9UXwq1MEYn8cuACIo4H6Y4A4FohzsahRhppjAMRxOHA8mjmxWNQYIZkDAtxMDAw8aJiXCdUcdDUgeXRzjIFizUDcgkSbopkDUmOCJo/NnNVAvAaJxmUOsjy57oHJmVDoHpgcLnOigWIxaDgWzRx0NbFI5vjhSDuwdIFsDra0FgBVhy1NIKcLZHOwpbV4BvzAEYs59njUw/LODD4GhllAPJOPeHOQ/QlTsw6ofwMQr4eaY8yAmb/QzTmCxO4CyndjycugcEPPX+jmJOLxJzogNnwA0KNXxg==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 4" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYIAADwbiQAgUO+OQDyTSnGQoxqU+nEhzCKlPQ2I7EWEOTD0+tfj8iK4Pn9oEEuSWo/GNmTH1oIth46O7JxooxoekzoQZIoau5hkThM0HlSc2ngmBUXPoY84VKpkzFMAcfgaGufyk6UngZmBI5EYV2wQ0YzMVzKEEAADfShIJ
+   eJxjYIAADwbiQAgUO+OQDyTSnGQoxqU+nEhzCKlPQ2I7EWEOTD0+tfj8iK4Pn9oEEuSWo/FvM2HqQRfDxkd3DzMzA8M2JHV3mCBi6Gr6oGq2QeWJjWdCYNQc+phzhUrmDAXAx8/AwM9Pmp5LXAwMl7lQxVSAZqhSwRxKAAAHghRu
   </data>
  </layer>
  <objectgroup id="4" name="Events">

@@ -7,53 +7,38 @@
   <property name="south" value="timber_town"/>
   <property name="west" value="flower_city"/>
  </properties>
- <tileset firstgid="1" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
-  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
- </tileset>
- <tileset firstgid="361" name="Tileset" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
-  <image source="../gfx/tilesets/Tileset.png" width="448" height="640"/>
- </tileset>
- <tileset firstgid="1481" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
- </tileset>
- <tileset firstgid="1585" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
- <tileset firstgid="3025" name="Terrain_by_George" tilewidth="16" tileheight="16" tilecount="360" columns="15">
-  <image source="../gfx/tilesets/Terrain_by_George.png" width="240" height="384"/>
- </tileset>
- <tileset firstgid="3385" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+ <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
   <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
  </tileset>
- <tileset firstgid="5679" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+ <tileset firstgid="2295" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
   <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
- <tileset firstgid="13871" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+ <tileset firstgid="10487" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFbwcvAsGIUj4bBaBoYTQOjaWA0DYymgdE0MJoGRtPAIEoD9QyDu4066j7y4wcAfqw1HQ==
+   eAHt0qERAAAIAkBGZv+kM5gMH+gcfJNUbMAAAwwwwAADDDDwyMBWef2Hfvd/BioDXMA=
   </data>
  </layer>
  <layer id="2" name="Long Grass" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtklEKAkEMQ/cUns1b6hEl4INQ0o6yK7sfFiSdJM10FrftX0d9gedt287+TW9ht8mDJu+jvEcaGSD+DvGR1fnE4/UezrHTE584spImrqtpDk2o8jN94hO38msmVZ3jm8ODaXbimKuomcR1WXjTHNq3OGXVPZQ9FXfLQz9h9319ZspyjV7YFbnS6fdiyuJdrqlfFbvIR78Xp6ykieuKXTq98vhBvgtn4arcu/Inr3O6i7P3cAknX9LEdVXz5XPOz967p/aTL2niulplaw6P93AJJ1/SxHWl/Fp+Z9WOOJPPf3fKxHsmfrof7/n1rvWeab+ra/f3/w+8wr4vYpM9/w==
+   eAHtklEKAkEMQ/fXW3hLPb4EfBBK2lF2ZffDgqSTpJnO4rb966gv8Lxt29m/6S3sNnnQ5H2U90gjA8TfIT6yOp94vN7DOXZ64hNHVtLEdTXNoQlVfqZPfOJWfs2kqnN8c3gwzU4ccxU1k7guC2+aQ/sWp6y6h7Kn4m556Cfsvq/PTFmu0Qu7Ilc6/V5MWbzLNfWrYhf56PfilJU0cV2xS6dXHj/Id+EsXJV7V/7kdU53cfYeLuHkS5q4rmq+fM752Xv31H7yJU1cV6tszeHxHi7h5EuauK6UX8vvrNoRZ/L5706ZeM/ET/fjPb/etd4z7Xd17f7+/4FX2PcFI4TO5A==
   </data>
  </layer>
  <layer id="3" name="Path" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtldFNBDEMRPcTvoAiqAHoAVqAKmjh6AC6gXKALvAIPWnO6zgLOp34YKVcEjuesZ3Z22X5fw7ZgfeTZfnYMD7jjD/EuR1bh+fnHa9bvwb3SwzNbzGe016+i9N9hLPYZzu2Divj7KOud2DeB991MR7CpnwzruKyHVuFJZxczzqbtQXMzM9J+dXTXcx+b0+FHVuFNeOBL8/wV5g6C251Z+pf1kPuKXzweJ1btKg46W6U31X4q3uvbN0dVnWOOKmJ/vxGF47BmhwqXvnEI22qjttCM5dhy0+Hmc/O9sLSfY/y4+7hzJq5G+RX6d/fBdYzvcDrGiPW352RZh4H+amuXEu1r/riPVV+iqtipXH65zGzNbVIE8Lgvwuto5ct2PQPDH+HwJvVOMqX2omHS3utR7pyvO6c43lMt/bvpfThPYJLWsJX6Qp9ae7Ouf66nNxHTa6X3D/3bdXp6Dvu9Xseo7XyO4/hermJvR506Ro6xBr8b5b+l/zoWX/6+F569JOajp/l32L8AnOKs0Q=
+   eAHtlW1qAzEMRPdX73+VNkdpKU1PktJPPciDwcjuBhLojxrMWrI0Hsljdtv+xzU7cH+3bQ875qFicpiXfn0rvIxPvNn6uc59rPlU863maWK/lD8HecSnH9+lOInZrcGE07HmRzNfy8eZyQMcuaQfH7V2WOCM9XR8Rh+Yqzz3vyou7+27bLikHx+1JmfPA2e2Z0z3Ja/rj7Hi7tGAdzvjN9ZzqLN/G5xPXodJ7nvtdffe+bjDWY84h3uiBs6bxY187c+M3xi/sle1yg9tqsXUBtrp+mnetfjNtJJ9YJ19tK8dB2PHWvItuO7qy35aa4fle4LDTDOftTcOMNWDdaR9Ou/P+pJ4YBEPTuZp78FIPNbWoraPhY3201Yv1L4a1ipGvqG9GDN8seWATd3Y9sW9FcasR3sxEjv/l+gjscHDRktqp9OV2uRLHDV1cWL8VmPys0fwUHPms6ePM4nhezr7VzYx5owY4ieP2dqeHwtPrfiG1KX+a33Fn3FKvz26pKbMv/XaHl1S0605/XX8H91aOWU=
   </data>
  </layer>
  <layer id="4" name="Gravestones" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNlk0OgjAQhbswMa5cutOFV9GTVOMxNHoM/67qfGlf2hDAgAJ9yZv+WGY+BzD6lXO+YG+NDfuZc4cCfDIGMTmTene2/b5az53bmFE+Dzvfoxg4eTOOfA0rEt9yEdZd4s7Y9pEvn3fJobPwIbgwrEh8YTVdFB9cGEZcEp+Y6BKMeCy+vHbdXfr2/NVd88899aMpp+6vvgfn0Vj9C9Wa493ej2P2DouzFL4qufpdCp+P/VPfGFFfPuUJWVJs2k8n6md6/nx8bxlRXz7lCVlSbNpPJ9JsawwYwZevNe/LF7L+Fn3slfjyteZT8uXfTvdXfdNnbXzVs7pmiFF86ptqt/Hp7BA81ZzV50+14buY0TWOYTVuhE9MVKZ/iN/th/lpfpmn+q/6ttoILgzrUFKNriM8cOEPFrpmEQ==
+   eAHNlltugzAQRf1XtVthp2mUZCd9Zidpkz10B00/cq/gCMvCqEAAjzTYjM3M8bUhqZ5CqAr2n8cQ7JuHEJ4L8J0YYAoytHtRfKzt9eyheT7u/zcfDJ7/oTzxvVltU/g+lfPY8MX9OvOwq/lsaGhW2xS+OsN9rvChIZwl8cHkFcO5FF9cu0vxOc5fV51cDD1y4+wv6yjt/J30fmzlrAPOpfY3p1suDmcpfP6dsH7o5tY2lo88dZb2mou3M7p7nD90m3r+yJNWy8XTeb6P12K++J7+WP266g2NxWtJvy+MrckXr4f9RTfG+vjSuTwzRwsfulG7j4+5c/CkOdPzR23zvcrf5O/ytSw9f9bP5u/2l/xbfpav9V/1oto29tX6Yb8au8r/mjnEx7bUGNq6Hvt6A4TDkgQ=
   </data>
  </layer>
  <layer id="5" name="Tile Layer 8" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFhEJAWZyBAYRHwWgIjIbAaAiMhsBoCIyGwGgIjIYA/UOgkYX+do7aSLsQAAAigAD6
+   eAHt0DENAAAIBLFf8S8TEwQFDKy95Aw00SXQlewiQIAAAQIECBAgQOAnMLE5Aek=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">

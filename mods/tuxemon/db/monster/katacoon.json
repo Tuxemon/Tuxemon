@@ -18,14 +18,16 @@
     ],
     "evolutions": [
         {
-            "path": "stat_melee",
+            "path": "mixed",
             "at_level": 12,
-            "monster_slug": "bugnin"
+            "monster_slug": "bugnin",
+            "mixed": "stat_melee"
         },
         {
-            "path": "stat_armour",
+            "path": "mixed",
             "at_level": 12,
-            "monster_slug": "sumchon"
+            "monster_slug": "sumchon",
+            "mixed": "stat_armour"
         }
     ],
     "shape": "grub",

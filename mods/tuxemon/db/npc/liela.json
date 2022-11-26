@@ -1,9 +1,9 @@
 {
   "slug": "liela",
   "gender": "female",
-  "sprite_name": "femaletrainer",
-  "combat_front": "femaletrainer_front.png",
-  "combat_back": "maple_back.png",
+  "sprite_name": "heroine",
+  "combat_front": "heroine.png",
+  "combat_back": "heroine_back.png",
   "monsters": [
     {
       "level": 6,

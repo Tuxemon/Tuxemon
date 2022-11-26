@@ -4,7 +4,7 @@
   "animation": "explosion_dusty_96",
   "effects": [
     "blinded target",
-    "damage"
+    "damage 100"
   ],
   "flip_axes": "",
   "healing_power": 0,

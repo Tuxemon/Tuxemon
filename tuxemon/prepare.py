@@ -105,6 +105,11 @@ NATIVE_RESOLUTION = [240, 160]
 # Set the character limit for setting a player name.
 PLAYER_NAME_LIMIT = 30
 
+# Fonts
+FONT_BASIC = "PressStart2P.ttf"
+FONT_CHINESE = "NotoSansTC.ttf"
+FONT_JAPANESE = "NotoSansJP.ttf"
+
 # If scaling is enabled, scale the tiles based on the resolution
 if CONFIG.large_gui:
     SCALE = 2

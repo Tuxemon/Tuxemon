@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="161">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="161">
  <properties>
+  <property name="east" value="route1"/>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
+  <property name="slug" value="taba_town"/>
   <property name="town" type="bool" value="true"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
@@ -30,13 +32,7 @@
  <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
-  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
- </tileset>
- <tileset firstgid="1531" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
- </tileset>
- <tileset firstgid="1619" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
+ <tileset firstgid="1521" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
   <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
   <tile id="255">
    <animation>
@@ -53,12 +49,12 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   eAHtmk1LAzEQhnsRf5l6UxCsB78OWv3HPal4EH+HGdrQNOwm82ymO6W7hWFN887Hk0kaC12fLRY3wK6D9piNsIh2DdhFf8zsUtvMz9Zg6v3v2y+yLl1rQ/b/MsToMxKHaPt46PsW/KRuKy3l7NNPnV/WRdYgXx9tn1bB971g2jhUl9fbMm7hp3Vb6Vt4c9+Zf3MG4meBPK36dKg4eQ+tx4eq2yquNW8er6XOuxH2T16vxXje/7t7sKX/Y/ha9LsUYwyGlhyl2i3mWmobw9eCsRRjDIaWHKXaLeY0tV0Yfs5fwVgWjKUYGn5PTal2izlPNk1uC8ZSDE0NnppS7RZzGrZ4/uPZlfElPMcxT4wRx7UnZVzAVy2/9zzEwXJvvlp+DAQdavm95yEOlmv44vnXaEVT0tPzj4Ggg5bJSwdxsNyLS5sXA0EHbR1eOoiD5V5c2rwYCDpo69Do5H8VjY5oIA6Wk1o8tBgIOngwkZwQB8tJLR5aDAQdPJhIToiD5aQWDy0Ggg4eTCQnxMFyUouHFgNBBw8mkhPiYDmpxUOLgaCDBxPJCXGwnNTiocVA0MGDieSEOFhOahmild8ILLd2P+D7EQaCDkOYtD7C/hbseWsvE+N/SthlDV6Dxb0gT81+gO3Ecm0vh+hWgfExWOx//tTsBwwEHYZwEZ90DzyEtUh/Q/kRxrVYEAfLa/lb51N+Tb/zfBgIOuT5rMcz/+78z/2vn/d8/8HtjOV5Putxuv/l/tPceWkNGAg6pLkO8Xd+B8oZ+Az2ldl3GHflhzhY3pXT8j0pSNYg3nty5/0Guz3ft78T5O/qs/T9ZyL8XX3O+x7Hp9j/mX//jMdedz2t+v8Pdijcbg==
+   eAHtmrtOAzEQRdPAnwEdVISCVwGBP04FiAJR8wl4lFhxrF17znqyE2U30mhxfOdxPHZMpKzPFosbYNdBe8xGWES7BuyiP2Z2qW3mZ2sw9f737RdZl661Ift/GWL0GYlDtH089H0LflK3lZZy9umnzi/rImuQr4+2T6vg+1YwbRyqy+ttGbfw07qt9C28ue/MvzkD8bNAnlZ9OlScvIfW40PVbRXXmjeP11Ln7Qj7J6/XYjzv/9092NL/MXwt+l2KMQZDS45S7RZzLbWN4WvBWIoxBkNLjlLtFnOa2i4MP+evYCwLxlIMDb+nplS7xZwnmya3BWMphqYGT02pdos5DVs8//HsyvgSnuOYJ8aI49qTMi7gq5bfex7iYLk3Xy0/BoIOtfze8xAHyzV88fxrtKIp6en5x0DQQcvkpYM4WO7Fpc2LgaCDtg4vHcTBci8ubV4MBB20dWh08r+KRkc0EAfLSS0eWgwEHTyYSE6Ig+WkFg8tBoIOHkwkJ8TBclKLhxYDQQcPJpIT4mA5qcVDi4GggwcTyQlxsJzU4qHFQNDBg4nkhDhYTmrx0GIg6ODBRHJCHCwntQzRym8Ellu7G/D9CANBhyFMWh9hfw32tLXnifE/JuyyBi/B4l6Qp2Y/wHZiubaXQ3SrwPgQLPY/f2r2AwaCDkO4iE+6B+7DWqS/oXwP41osiIPltfyt8ym/pt95PgwEHfJ81uOZf3f+5/7Xz3u+/+B2xvI8n/U43f9y/2nuvLQGDAQd0lyH+Du/A+UMfAT7zOwrjLvyQxws78pp+Z4UJGsQ7z25836C/Z3v2+8J8nf1Wfr+PRH+rj7nfY/jU+z/zL9/xmOvu55W/f8HXqbzvA==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="64" height="60">
@@ -360,14 +356,14 @@
   </object>
   <object id="112" name="Startup Town Sign" type="event" x="624" y="640" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog taba_town_sign"/>
+    <property name="act10" value="translated_dialog welcome_location_town"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="115" name="Route 0 Sign" type="event" x="576" y="544" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog taba_town_route20"/>
+    <property name="act10" value="translated_dialog here_to_east"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>

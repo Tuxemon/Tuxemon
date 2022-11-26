@@ -3,8 +3,9 @@
   "accuracy": 1,
   "animation": "drip_green",
   "effects": [
-    "poison",
-    "damage"
+    "poison user",
+    "poison target",
+    "damage 100"
   ],
   "flip_axes": "",
   "healing_power": 0,

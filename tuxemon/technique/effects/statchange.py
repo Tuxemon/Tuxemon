@@ -2,21 +2,19 @@ from __future__ import annotations
 
 import operator
 import random
-from typing import NamedTuple
+from dataclasses import dataclass
 
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
+from tuxemon.technique.technique import Technique
 
 
 class StatChangeEffectResult(TechEffectResult):
     pass
 
 
-class StatChangeEffectParameters(NamedTuple):
-    pass
-
-
-class StatChangeEffect(TechEffect[StatChangeEffectParameters]):
+@dataclass
+class StatChangeEffect(TechEffect):
     """
     Change combat stats.
 
@@ -33,16 +31,18 @@ class StatChangeEffect(TechEffect[StatChangeEffectParameters]):
     """
 
     name = "statchange"
-    param_class = StatChangeEffectParameters
+    objective: str
 
-    def apply(self, user: Monster, target: Monster) -> StatChangeEffectResult:
+    def apply(
+        self, tech: Technique, user: Monster, target: Monster
+    ) -> StatChangeEffectResult:
         statsmaster = [
-            self.move.statspeed,
-            self.move.stathp,
-            self.move.statarmour,
-            self.move.statmelee,
-            self.move.statranged,
-            self.move.statdodge,
+            tech.statspeed,
+            tech.stathp,
+            tech.statarmour,
+            tech.statmelee,
+            tech.statranged,
+            tech.statdodge,
         ]
         statslugs = [
             "speed",

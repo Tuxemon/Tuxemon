@@ -4,7 +4,7 @@
   "animation": "drip_green",
   "can_apply_status": true,
   "effects": [
-    "statchange"
+    "statchange all"
   ],
   "flip_axes": "",
   "healing_power": 0,

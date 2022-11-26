@@ -93,6 +93,14 @@ class ItemType(str, Enum):
     key_item = "KeyItem"
 
 
+class OutputBattle(str, Enum):
+    won = "won"
+    lost = "lost"
+    draw = "draw"
+    ran = "ran"
+    forfeit = "forfeit"
+
+
 # ItemBattleMenu is which menu you want to use to choose the target.
 class ItemBattleMenu(str, Enum):
     monster = "monster"
@@ -120,6 +128,13 @@ class SeenStatus(str, Enum):
     unseen = "unseen"
     seen = "seen"
     caught = "caught"
+
+
+class EvolutionType(str, Enum):
+    standard = "standard"
+    item = "item"
+    gender = "gender"
+    mixed = "mixed"
 
 
 # TODO: Automatically generate state enum through discovery
@@ -210,7 +225,7 @@ class MonsterMovesetItemModel(BaseModel):
 
 
 class MonsterEvolutionItemModel(BaseModel):
-    path: str = Field(..., description="Path to evolution item")
+    path: EvolutionType = Field(..., description="Paths to evolution")
     at_level: int = Field(
         ...,
         description="The level at which this item can be used for evolution",
@@ -218,6 +233,10 @@ class MonsterEvolutionItemModel(BaseModel):
     monster_slug: str = Field(
         ..., description="The monster slug that this evolution item applies to"
     )
+    # optional fields
+    item: Optional[str] = Field(None, description="Item parameter.")
+    gender: Optional[GenderType] = Field(None, description="Gender parameter")
+    mixed: Optional[str] = Field(None, description="Mixed parameter.")
 
     @validator("monster_slug")
     def monster_exists(cls, v):

@@ -3,7 +3,7 @@
   "accuracy": 0.5,
   "animation": "explosion_small",
   "effects": [
-    "damage"
+    "damage 100"
   ],
   "flip_axes": "",
   "healing_power": 0,

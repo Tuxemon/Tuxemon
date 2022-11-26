@@ -2,6 +2,6 @@
   "slug": "spyder_soldier",
   "gender": "male",
   "sprite_name": "soldier",
-  "combat_front": "red_front.png",
-  "combat_back": "red_back.png"
+  "combat_front": "adventurer.png",
+  "combat_back": "adventurer_back.png"
 }

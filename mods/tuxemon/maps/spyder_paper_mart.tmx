@@ -1,47 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="64">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="64">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
+  <property name="slug" value="paper_mart"/>
  </properties>
- <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ <tileset firstgid="1" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
- <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ <tileset firstgid="962" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
- </tileset>
- <tileset firstgid="1473" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
-  <image source="../gfx/tilesets/items.png" width="160" height="160"/>
+ <tileset firstgid="4826" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBg4YAm0mlQMc60LkEEqhun1BzJIxTC9ekAGqXiw6AW5g1i3DxY3E+tekDoYIEUPTC1M70DQAOfXHN8=
+   eAFjYBg4wCjMwEAqhrlWH6iXVAzTGwvUSyqG6VVkY2AgFY/qJT7MBjqsYPbTkwYAffcZ5w==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBi5gJmVdL93sDAwtAPxXSAmF9BCby3QL7eBbqrH46ebZLiZGHPJDQdamo3NTXiCBptyuokBADwwClQ=
+   eAFjYBi54CUZXu8B6ukG4rNk6IVpoYVeV0YGBjcgdgdiXOAkLgk84sSYi0c7Xilamo3N4ml4wgabenqJAQDTGAhH
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBgF5IRAOCs5uiB6KNG7gYV8ezdToJd8W0d1EgoBAAF2AiQ=
+   eAFjYBgF5ISAJiM5uiB6KNG7inxrGV5SoHdUK+1CAABk5wHo
   </data>
  </layer>
  <layer id="4" name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgyUENrIwMGwC4s1ATE0AM5eaZsLMgplNbTfDzB8JNAAjywWw
+   eAFjYBgFgyUEVgMdsgaI11LZQTBzqWws2DiY2dR2My3cOljNBACjbAVg
   </data>
  </layer>
  <layer id="5" name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgyUEDrEyMIDwQSAmFZwB6gHh02ToJdUudPWHgXaCMDngLFAfCI9kAABcNgf7
+   eAFjYBgFgyUEnJgZGEDYEYhJBYlAPSCcQIZeUu1CV+8AtBOEyQHxQH0gPJIBAAP1A0Q=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision" visible="0">
+ <objectgroup color="#ff0000" id="6" name="Collision">
   <object id="4" type="collision" x="16" y="208" width="208" height="32"/>
   <object id="11" type="collision" x="16" y="48" width="208" height="32"/>
   <object id="12" type="collision" x="-16" y="64" width="32" height="160"/>

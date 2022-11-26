@@ -32,6 +32,7 @@ from __future__ import annotations
 import datetime as dt
 import logging
 
+from tuxemon import prepare
 from tuxemon.map import proj
 from tuxemon.npc import NPC
 from tuxemon.states.world.worldstate import WorldState
@@ -106,3 +107,27 @@ class Player(NPC):
             var["stage_of_day"] = "dusk"
         else:
             var["stage_of_day"] = "night"
+
+        # Seasons
+        if prepare.CONFIG.hemisphere == "north":
+            if int(var["day_of_year"]) < 81:
+                var["season"] = "winter"
+            elif 81 <= int(var["day_of_year"]) < 173:
+                var["season"] = "spring"
+            elif 173 <= int(var["day_of_year"]) < 265:
+                var["season"] = "summer"
+            elif 265 <= int(var["day_of_year"]) < 356:
+                var["season"] = "autumn"
+            else:
+                var["season"] = "winter"
+        else:
+            if int(var["day_of_year"]) < 81:
+                var["season"] = "summer"
+            elif 81 <= int(var["day_of_year"]) < 173:
+                var["season"] = "autumn"
+            elif 173 <= int(var["day_of_year"]) < 265:
+                var["season"] = "winter"
+            elif 265 <= int(var["day_of_year"]) < 356:
+                var["season"] = "spring"
+            else:
+                var["season"] = "summer"

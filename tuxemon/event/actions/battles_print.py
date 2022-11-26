@@ -21,6 +21,7 @@
 
 from __future__ import annotations
 
+import datetime as dt
 import logging
 from typing import NamedTuple, Optional, final
 
@@ -30,7 +31,8 @@ logger = logging.getLogger(__name__)
 
 
 class BattlesPrintActionParameters(NamedTuple):
-    variable: Optional[str]
+    character: Optional[str]
+    result: Optional[str]
 
 
 @final
@@ -44,10 +46,11 @@ class BattlesAction(EventAction[BattlesPrintActionParameters]):
         .. code-block::
 
             battles_print
-            battles_print <variable>
+            battles_print [<character>,<result>]
 
         Script parameters:
-            variable: Optional, prints out the value of this variable.
+            character: Npc slug name (e.g. "npc_maple").
+            result: One among "won", "lost" or "draw"
 
     """
 
@@ -56,12 +59,16 @@ class BattlesAction(EventAction[BattlesPrintActionParameters]):
 
     def start(self) -> None:
         player = self.session.player
+        character = self.parameters.character
+        result = self.parameters.result
+        today = dt.date.today().toordinal()
 
-        variable = self.parameters.variable
-        if variable:
-            if variable in player.battle_history:
-                print(f"{variable}: {player.battle_history[variable]}")
+        if character in player.battle_history:
+            output, battle_date = player.battle_history[character]
+            diff_date = today - battle_date
+            if result == output:
+                print(f"{result} against {character} {diff_date} days ago")
             else:
-                print(f"'{variable}' has not been set yet.")
+                print(f"Never {result} against {character}")
         else:
             print(player.battle_history)

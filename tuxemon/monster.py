@@ -34,7 +34,7 @@ import random
 import uuid
 from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
 
-from tuxemon import ai, fusion, graphics
+from tuxemon import ai, formula, fusion, graphics
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import (
     ElementType,
@@ -65,6 +65,9 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "total_experience",
     "flairs",
     "gender",
+    "capture",
+    "height",
+    "weight",
 )
 
 SHAPES = {
@@ -243,6 +246,7 @@ class Monster:
         self.status: List[Technique] = []
 
         self.txmn_id = 0
+        self.capture = 0
         self.height = 0.0
         self.weight = 0.0
 
@@ -336,8 +340,9 @@ class Monster:
                 self.type2 = results.types[1]
 
         self.txmn_id = results.txmn_id
-        self.height = results.height
-        self.weight = results.weight
+        self.capture = self.set_capture(self.capture)
+        self.height = self.set_char_height(results.height)
+        self.weight = self.set_char_weight(results.weight)
         self.gender = random.choice(list(results.possible_genders))
         self.catch_rate = (
             results.catch_rate or TuxemonConfig().default_monster_catch_rate
@@ -491,6 +496,42 @@ class Monster:
         self.melee = shape["melee"] * multiplier
         self.ranged = shape["ranged"] * multiplier
         self.speed = shape["speed"] * multiplier
+
+    def set_capture(self, amount: int) -> int:
+        """
+        It returns the capture date.
+        """
+        if amount == 0:
+            result = formula.today_ordinal()
+            self.capture = result
+            return self.capture
+        else:
+            self.capture = amount
+            return self.capture
+
+    def set_char_weight(self, value: float) -> float:
+        """
+        Set weight for each monster.
+
+        """
+        if self.weight == value:
+            result = value
+            return result
+        else:
+            result = formula.set_weight(value)
+            return result
+
+    def set_char_height(self, value: float) -> float:
+        """
+        Set height for each monster.
+
+        """
+        if self.weight == value:
+            result = value
+            return result
+        else:
+            result = formula.set_height(value)
+            return result
 
     def level_up(self) -> None:
         """

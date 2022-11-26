@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import random
-from typing import NamedTuple, Optional
+from dataclasses import dataclass
+from typing import Optional
 
 from tuxemon import formula
 from tuxemon.monster import Monster
@@ -15,11 +16,8 @@ class LifeLeechEffectResult(TechEffectResult):
     status: Optional[Technique]
 
 
-class LifeLeechEffectParameters(NamedTuple):
-    pass
-
-
-class LifeLeechEffect(TechEffect[LifeLeechEffectParameters]):
+@dataclass
+class LifeLeechEffect(TechEffect):
     """
     This effect has a chance to apply the lifeleech status effect.
 
@@ -33,28 +31,32 @@ class LifeLeechEffect(TechEffect[LifeLeechEffectParameters]):
     """
 
     name = "lifeleech"
-    param_class = LifeLeechEffectParameters
+    objective: str
 
-    def apply(self, user: Monster, target: Monster) -> LifeLeechEffectResult:
-        success = self.move.potency >= random.random()
+    def apply(
+        self, tech: Technique, user: Monster, target: Monster
+    ) -> LifeLeechEffectResult:
+        success = tech.potency >= random.random()
         if success:
             tech = Technique("status_lifeleech", carrier=target, link=user)
             target.apply_status(tech)
             # exception: applies status to the user
-            if self.move.slug == "blood_bond":
+            if tech.slug == "blood_bond":
                 tech = Technique("status_lifeleech", carrier=user, link=target)
                 user.apply_status(tech)
             return {"status": tech}
 
         # avoids Nonetype situation and reset the user
-        if self.user is None:
-            damage = formula.simple_lifeleech(self.move, user, target)
+        if user is None:
+            user = tech.link
+            assert user
+            damage = formula.simple_lifeleech(tech, user, target)
             target.current_hp -= damage
             user.current_hp += damage
         else:
-            damage = formula.simple_lifeleech(self.move, self.user, target)
+            damage = formula.simple_lifeleech(tech, user, target)
             target.current_hp -= damage
-            self.user.current_hp += damage
+            user.current_hp += damage
 
         return {
             "damage": damage,

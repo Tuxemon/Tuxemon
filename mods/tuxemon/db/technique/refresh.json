@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "heal_burst_120",
   "effects": [
-    "recover"
+    "recover all"
   ],
   "flip_axes": "",
   "healing_power": 4.0,

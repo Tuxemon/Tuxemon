@@ -5,28 +5,31 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="mansion_top"/>
  </properties>
- <tileset firstgid="1" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
-  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
- </tileset>
- <tileset firstgid="211" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="1211" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1240" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="720"/>
+ </tileset>
+ <tileset firstgid="8969" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="23" height="19">
   <data encoding="base64" compression="zlib">
-   eJw7ysHAcHQUj+JRPGKwJgPxeLCZTcswGTV7eJgNAPnlTBE=
+   eJzjZmFg4B7Fo3gUjxh8Wpp4PNjMpmWYjJo9PMwGAFYSMSA=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 4" width="23" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjZGBg0KcAK+MQZwZiASC2owAb4hAXAmJNBsqAIQ5xdLMvMTIwcDJCaHSAS45YsyOA+iKBOAqL2bjkjIg0mxzgSEOzcQGQ2f4MlKVBVjxmU5oGBfCYTWmY6CH5IYDKZtsyIPxgj2Y2seEdDdUTywDJz4QAKeENc5MtVB8xZpMDkPUpQWlfBlR/+lHBbFieRw53OwZMdyshsdHdgYwNsJiNz350dejuwBb2xJitDYx4HWbc6vABQmYHA80NocDsPCbsZgMAcJAoxw==
+   eJxjYGBg0JAhH/+Vxi4+Hyh+GojDZMjHWjjEz0LNpgSAzMYG0M3mVGRgiJOH0OgAlxyxZs8G6p0DxHPlMdXiktMm0mxyQCQNzcYFQGa3UZD+QHghDredpUIaxOVvaoSJOpIf2pHCnhpmhyL5IRzNbBAgJlw3AvEmIN4Mzc+EAMxsYsIV5qZQGYQ+YswmFSDr+wNlt6D5sxVHuifFbC0k/6CXVcjgDxIf3R3IWFMG02x89qOrQ3cHtrAnxmwRFQYGURXc6vABQmY7As11osDsMjnsZgMAz7pcdA==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="23" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYKAPaGJEpYmV28zEwLAFiLcy4TZ7FSMqTUhuGtSsbUD6DhDvwGM2B1AfJxBzYTGbAyqGTe4e0EwWZgaGB3jMHgX0A7tpGA+PB3kcj1S/Tx3EbqMEgPzFh6XMoRYwo6HZcTQ0GwYA1fkQ1Q==
+   eJxjYKAPOK2AShMrJ6PIwCALxHKKuM1+pYBKE5KbKgehJYFmSgGxNB6zY+UZGOKAOF4euxwIYJOzAJppCcRWeMweBfQD4ljiiFrAjIZmUwOMVL9Xyg20C2gDQP5KpmG4N9HQ7IV0SC8AE24RmQ==
   </data>
  </layer>
  <layer id="6" name="Tile Layer 4" width="23" height="19">
@@ -36,7 +39,7 @@
  </layer>
  <layer id="7" name="Tile Layer 5" width="23" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjALsIGagHTAKRgGJAAD/hABd
+   eJxjYBgFo2AUjALsYJPMQLtgFIwC0gAAM64Azw==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">

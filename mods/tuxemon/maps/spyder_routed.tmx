@@ -5,39 +5,13 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="routed"/>
  </properties>
- <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
-  <tile id="839">
-   <animation>
-    <frame tileid="839" duration="200"/>
-    <frame tileid="842" duration="200"/>
-    <frame tileid="845" duration="200"/>
-    <frame tileid="848" duration="200"/>
-   </animation>
-  </tile>
-  <tile id="880">
-   <animation>
-    <frame tileid="880" duration="200"/>
-    <frame tileid="883" duration="200"/>
-    <frame tileid="886" duration="200"/>
-    <frame tileid="889" duration="200"/>
-   </animation>
-  </tile>
- </tileset>
- <tileset firstgid="1313" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtl1tOxDAMReeHlbfAQngtZMrnwJaIpR5xuXKbFLXDCOUjsus49sltMqNe7k6njzIu83gq9lnGyxzXnPA/JX6kH1zRj563yocGa3zksBf2dmTce2R88MChayJGnDydd38o+eOG4etrfPC49TpLrF5fz3rme11f/7qy1/tZuy36ef2MSWM1Ps11P+42OrmexGv1H0qNaWXU1juTPitf1NFarXz6+5W9B2pit+jvfMo0FN4xGW8l5nukd40v8s5lTAvjMakdTFqfHq373Kof9bUnvvdEP+ZjLes9VzVTP2qwBv2xUZfa6ns+Od5z7W77e1Qm9dlj9IQLmzHBglVW59M+NX/pnr7P+sGknNfkC52yPQePMqn/F3z0VFYYw2qcXLTNnmOO+XPxp1+OeI9rvWFcy6nxwYkl32syn+nBHGt5xnqt7FnrLq2LOHOav7ffyqcswbA3B/UzHp2Lee2tc/hYr3VE3Hs4n2ql3NfyO9/3PXItWs6Dr+nv9+f9q53jrl8/f5wRbMu92yunn7//cf6G8r8/JuNW3u/St03nazt/qp9+692ifvpN3Pm2v9+uX5tm+h+o90P1+wIqDPNX
+   eAHtWNsNwjAMjIApYBVeqyAW6BTAwvyTfFhYln1pHg1U8kcU16H2+XKOSKcQwsTGbRPCe/cd9/jM139tO762/Viav2PUy6lgSD0tjU/G51rX7By+y9au91zRO73xaTWRr6a3Jb59rP8Z67RGjj/Cos098JXGkPVpuMiHYlt9cI180ftpRjEkd+n5Abg+FMSeW2cpPg0z+WROFFv+lnPGbRSD8s6dZU7U23IfOSZuL4mP58nZVp++Ks4oi0/JXw4TX+/J01rxod62zlfy99xHiz/3t/33cv6cP9eAa8A14BpwDbgGRmnAuoum7zSjMKA86N6A3hu1thZ82h1vFEcoD/E34o6HcFhrjq/tHPhn/tLZR99qNP19AOA6EcQ=
   </data>
  </layer>
- <layer id="2" width="40" height="40">
-  <data encoding="base64" compression="zlib">
-   eAHt0AENAAAAwqD3T20PBxEoDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQNfAwMZAAAB
-  </data>
- </layer>
- <objectgroup color="#ff0000" id="3" name="Collisions" visible="0">
+ <objectgroup color="#ff0000" id="3" name="Collisions">
   <object id="118" type="collision" x="0" y="304" width="640" height="16"/>
   <object id="119" type="collision" x="0" y="0" width="640" height="16"/>
   <object id="120" type="collision" x="0" y="16" width="16" height="288"/>
@@ -69,7 +43,7 @@
   <object id="146" type="collision" x="144" y="288" width="16" height="16"/>
   <object id="147" type="collision" x="176" y="288" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="4" name="Events" visible="0">
+ <objectgroup id="4" name="Events">
   <object id="148" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music lunar_joyride.mp3"/>
@@ -86,9 +60,4 @@
   </object>
   <object id="150" name="Player Spawn" type="event" x="96" y="48" width="16" height="16"/>
  </objectgroup>
- <layer id="5" name="Tile Layer 2" width="40" height="40">
-  <data encoding="base64" compression="zlib">
-   eAHt0LENAEAIA7EU/N6MDs0PgeRIp/ROjAABAgQIECBAgAABAgQIECBAgAABAgQIECBwW+BVurb/AyhIAiM=
-  </data>
- </layer>
 </map>

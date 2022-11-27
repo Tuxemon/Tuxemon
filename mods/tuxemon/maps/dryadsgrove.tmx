@@ -7,49 +7,30 @@
   <property name="slug" value="dryadsgrove"/>
   <property name="west" value="cotton_town"/>
  </properties>
- <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
+ <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
  </tileset>
- <tileset firstgid="449" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
- <tileset firstgid="1889" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
-  <tile id="839">
-   <animation>
-    <frame tileid="839" duration="200"/>
-    <frame tileid="842" duration="200"/>
-    <frame tileid="845" duration="200"/>
-    <frame tileid="848" duration="200"/>
-   </animation>
-  </tile>
-  <tile id="880">
-   <animation>
-    <frame tileid="880" duration="200"/>
-    <frame tileid="883" duration="200"/>
-    <frame tileid="886" duration="200"/>
-    <frame tileid="889" duration="200"/>
-   </animation>
-  </tile>
+ <tileset firstgid="2295" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNld1twkAQhJ0CkhSJSQpJQgrBPAKVYCqxaSEzEiONRmdjE6zkYXSL2Z9vd8+wr6rqAB2h/YI2c0ulWh/4/vOqrysHuZZkcg6x8fTntFfQNzSV7wTfFjpDmeuefpyttCufHRlvza+DTw9dgo991jO0hq+zDfWWfBvEMXZov85HHynzaB9DJ+dwD5/PsNTT81NVvUCvkNh4/gVfi7op3jvnku18b/BpCnrHM83zEfPrkS/Fe8e5rqDaVHrHTvi+hdST91DiY94j5Lk9r3rTHeQeU9wr83gtxelU7Q5+7I89HSJGPnxOJuYU31jurOHxsrOWYnSq9hgfZ1APKGfG++J3g3VUQ0zsTXby5X3bwZf+Y3zq5dbJ3MyXM53DR1/tSD38lk89ky3nMXd+U/m2qNWMyHfInOSSlp7fCbVa0xk2Z+xyhuQjZ/Izls+1uxXs+iq/w0Pz89/yDnG96QLb2Wg73waf1xDrU6ydNZPP4/1eD/F5b2LV71X+/9A385OxNA/WZs1H8jmrbJ6u5PMZuK13eoxP71eDGjtId0C1M3bK8y3yMJ/k9018YmO+rOH9TdnpFKYxH69HPmf7D3w5T+6JXNIPU9Dm4Q==
+   eAHNlMlNBEEMRUtAFJAKWyqIBOYCZADEAOTCkBRnbMGTvr7K1dUCWnOw3KMp28/rrrW2OwC5OWrt8+RbbuP7EJhgOA+e6+N5vruo533Iw0Z11dplDZfq9xJcryFvxpd5XqyQy8k+Od9V1HJkW/G5H+al0kt1oL89vyPb96jbPuTD6tfzU7HN9GmGL+fMpZo75TuNHjxF/1zOVsz5DF/OmQtz5/PW2zHfJc1h1CP1rX7pBzO4Dz4X+qqxsEMT22dVbXhDnVTrO3y6Htmnr5EPbEd8WYNq371mOS86G8lKDM1Lv5XP5+3553aM+Lwe1e/0nf403lq+Kpff8JEzuW7B99jZad1x7aHn/N987DL3qnenlMH5MrcRf85etffuiznVW06vuVfcKd6mVj5uCP9nbN2bXky113nuvcUvGlbuFXeK/1O7f91xZav2w+1hnOFTjuq78k8cNDvtftSe/cr5Zsf8/drfvj86b0tsGUv5/qpmoxw0XvJVdcOHvt+Cz+vpffoCYbC64g==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFlttJBFEQRAf99JWNJiP6YzoKYhQawJqQ5mGXeODQTM8u/syFu/2qrq5tZwcPF8vyWTfnuexL3b3s9fmy3NT1fPzoO/xp3cvelra7up6Pb50fpdU32nOci+9DLTnXnKdGDmsefPRg0Wlu+Gzx4Z7wHZeYs9UDBj1Y8rH0Y13Df6i/wyknHNOlf5qT3bE/Y82X/NRPz5Y1l3nwqa9xZHfsD3xw9JDDpnZ/4t6CzTEXPOSo/wLbR9+by/TD51r3wfY8MXW4HNsHj2VvxFh6iLcsM8EQf50ty3ddH/PigzfOvp+/ju2x+475l/UMXK08B+a0P/H5+QsmPdypZ+I91tf5jv3+85xP+5tmkbf13ORPOf039l5Nuf30/aXO7I4ltobJn3iMh8+67Kfe92dta1zkJpzrzMfSA4a8NdlPfW1/9K3ZaQb53tO1TLjo6trCxTvwqd7TnavPIvaM7oOJdc3xqXPSwzsQncltHbg9e8s3Fzg4XFvzrQmdxuX/sH7MzbxgnO89/43RhE7s6997/7H0vZVPfi+LTmy+r9+d5PeyP8oo/x4=
+   eAHFlItNA0EMRFdC/Gq50q4BOqABqIIKSDEIOmFHuSc9rN1LAhKxZNk7tsdzm9wtj60t3WOJ1/TP+9a+ulvDW9cUj609XtNvH1q76x4N0WRf+jkee+rRfkR/Yqnb6A/mmnFqYETzkKMtmpKvm5sbPkfmz4nsn3HucURPdOHuhY/oGvlH/5+cY9ZY81PzaEvERhx7OpmbxRFfeuEkjuaja93cfeY0V/L3M++NfeZiB1jlZoboewNjBi7jo9y79urwneo3x0jfJfPshJNz7vimfyds5qXP9VEefcvmdaaeR/Mz7LXre7nwfzDiij48dZ7xN9qYHe0ZYafe//wGaEu0ptkucEfvNofxmtd37Lnvj1ezPmrs5lyjNczyOrN3ti7nmbE+dLGTaG4welMDc26Mec+AJVqT89TQtw7uNvVq7Kj7wUf9xuocteiq2lJDX/LZbGo2a6n5rC+4e923l0df7m7ZfK83NZ7Bu/Zy87nP+CyPpuiLJZIfkdZG7z/60uN9xpn/a1w3TcsWoy/5Yfuu5vua72ywa3k0rcXz3L67Wv/v8zf8TKY6
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFL4WZgSAXiwQ5SBpk7Ye6B0YM9/Aaj+0BhNxp+gzFmRoabQGlvFJAfAqP5l/ywA+kcDT/Kw28otF0o8yVtdA+VeheXO0HiAwlwuWsg3TQU7QYA1JsLwQ==
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgJDLQRSuBkYUoF4FFAWAqPhSFn4jeoeDYHREMAfAqNlDP7wIUYWVxjCxOlNE+PmUTWEQwAAbSQQjg==
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">

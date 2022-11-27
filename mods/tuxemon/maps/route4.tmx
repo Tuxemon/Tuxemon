@@ -7,31 +7,25 @@
   <property name="slug" value="route4"/>
   <property name="south" value="route3"/>
  </properties>
- <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
  </tileset>
- <tileset firstgid="105" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
-  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
- </tileset>
- <tileset firstgid="465" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
- <tileset firstgid="913" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ <tileset firstgid="2295" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtklEOwjAMQycOBDfkuOMaYGlPMiaZttEPJvFRmbbxqxM2T9N0e6150evyW3utR6ify6d6VzjoHp48o3nKTz6yH+1XfufdL+8z8ndybuzJwL7j+Rx4t9I1Hn3qjYqne88By99x3xae6t0Pk3dG83x+W/N538rn+47nPamGxTl9VTyd+b28+NC9PNV7v3DQ5Omcemn+TyN4cF3Jk7oln3O+nR/+1MzFPvPh032Vy+/lhYP+eZ/fXzVH5pV6tvkpv/pD+T5Ss0/22S8cNDns8aPVt6g7OCj+VDhrdbrDt1bHPJSJ+kqP8OTJxTtHecwOLvtOt37Pyet83Xm+P4JX/Q/8X12O7lz5zsBjblJlzn7VA32opuqXmk7l6Vbl6WrXzslY8ejtV/UJz3rMEg==
+   eAHt0iERAAAMxLBKfv9oLoYCaqCXVZMHDDDAAAMMMMAAAwww8GDgAMjSXhA=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAGl1k1u2zAQxXG1QLuPb9GserTcp5seo+4d2qyTXbPKMcJn+AcMpqIkwwSIecPh/Pn0Adnnz8vye8zznXG5jpfBeR3z3tj94ItvQ5hZe1KYxO5nbRte4tHBZ9//8GlZTmNi9vos57PXvw3W4w08vsTO2/P33hr4Elt54e/fKOzdv+qp6src81f38hQWXevR/B15HjyFRf8ZjL/X+Txi9/fwdVl+fPl/nsY6T2HRA3EZOPf6w8PBPXK9PK3569wjvHDyTQmXxhGrP2trMeeFk29KWHTf67p/9ULJw8rkKSy6bLtI/vp6zfF4Couu+6L56+s1x+MpLHr2/m29d3g8hUXXc6P527puPJ7CojsPB7fXk+PxFBatX1/lpG9t4PEUFl3704u/970Kk6ew6H4+Pg+9XnOewqJnzxdv6znzFBZdz4ve8/d9/LZk5DyewqJT+zmm+ybyl3ofajyFRdvLl5ie2cDjKSx61rO1jsdTWHR/HjhbzyF7wuQpLPdJ/yzyIua9NHgK131SS9RjTe7dlidmrPnjM3tqX/bPrjm/d/33jT+xnu38MPf+r2VPrjv/oXgTMeW3xPyH4k3MWWHKb4mzszF57XHWNzs7PAMrOT3rW7t/s7Ot48prXLt/s7Ot8y2v8QOEaRuf
+   eAG9lk1OxDAMRrviR4iTZM+lsh+4AYeZGwxcC9b4U/skj2WnpR2w9I2b2H52m4rSHqep3VBnY0n9oODgp2BvxkcKnZ5CQlgyT8VTOjz5rVbxmjEkmEd59NnKoz91sT/7Fe/0fF1BPv46Op+5Yu/LPce4XzfLgYP3cV2zX83n88n13sdvwbsY5GPRp3l6Md/93TS9JnqwPXK910yyZs9CIgZvjua/5HpPZjeWROwoD+5f8uiRec1Pb+9jLrEvy6+MZ0Gu97GGWNz36//kVe/f6L3bM1+z5ydltofXjSVlNuLFOc7GkGSqy2zE0wwSBm/t75WY5HoPB0+MGdjPPLneV+cLb3TOnsN17Ms+vBh/Wb6fo/v9tpxmz0Na44lPL3K9p383lpdqKtvCq2qz/REvngf1o3NQjpj+PrmmvvLMgtd7icHwnpg8Neyx5t1mLS/zHK6bxSTl+DrlV/es752+b91qpHMi35v+Yq79v6acjNesB0xd/0YZT3syMftAVW223xyTWaPP6kZ785TzLyzmZvZRfYw1m7ES3Fijdd8hZs9qfwDSrh2h
   </data>
  </layer>
  <layer id="3" name="Tile Layer 1" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwMCEgyMjAIATE1AKaQLO0qGgetdw1as5oCIyGACIEANUzAHs=
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwMCGgzcnAAMLUAtlAs0B4FIyGwGgIDN4QAAD2+AFR
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collision">

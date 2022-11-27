@@ -5,39 +5,39 @@
   <property name="scenario" value="xero"/>
   <property name="slug" value="mansion_basement"/>
  </properties>
- <tileset firstgid="1" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
-  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
- </tileset>
- <tileset firstgid="211" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
- <tileset firstgid="1651" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
-  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
- </tileset>
- <tileset firstgid="1936" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
- </tileset>
- <tileset firstgid="2096" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1240" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="720"/>
+ </tileset>
+ <tileset firstgid="8969" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
+ </tileset>
+ <tileset firstgid="11263" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="24" height="22">
   <data encoding="base64" compression="zlib">
-   eAFjYICAgzwMDLTAUONpYjbIvSBAC3fDzKS1+TB7RmnaxuNo+I6GLy3SALgAQiKobQeS0WDmqPmo6Xg0fFDDAz190Dp8AJNdiHI=
+   eAFjYICASSwMDLTAUONpYjbIvSBAC3fDzKS1+TB7RmnaxuNo+I6GLy3SALgAQiKobQeS0WDmqPmo6Xg0fFDDAz190Dp8ADjEHyw=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="24" height="22">
   <data encoding="base64" compression="zlib">
-   eAG9lEFOAlEQRD9rQPaEK7DH6F7RAxi4CFtX3kA9kHog4QJ0DVTsvHxnCBP4SdPT1dU1M/X/MCyl3CLmqN0nzto850noTCMeEXeo3SfO2jxnaSu4NFdbwt9HpXxEfEb8x/PsOfpfofsd8XOi/ipuJr/Wvmnk/Fwvx744b6W8/obuNmJ3or7eQX4tI7yy/kOA9jPj4rIWNhvo97DO8cezyjX9bSJcQj/JN2dH9/Cy108B+Ayv3Yx8n651uYkwzznz+fzZa3ue9+UZ+l186mO8d3kN/QU8bPtPGeONbjDrPXDW90IPdebsPTPPYxtXs+Tr8WqYcC32WB9Yf7+1fg3zBHuszXOu9Y15X7Ln7rXNu6dMfsa8L7M0QD7rRG0ua31iWZ/fL+u++vx+WffV53xXTS/EJ5b96dJjX1p7VWQ3rw==
+   eAHFlE0OgkAMhWdh4iHQvVsTPY9RE/Um7vxJ1CugK++gXsGf49hGXvLyBASiOEkZ2mk/ypuBOAphL9Zsvcc8R+PqK+dgNVezm1jP+BpzX+Pqa8094QcZXpc2PD5phDA1m5ll5aG2Cn9j3K3ZriB/lWi9pp65r0Wy7tpG7RBOxj2bXQryof8wgz+wOHTl57oG6nvs2PHra1TRB7U+p/HnP+bz87V/aD0izXlf+qShcx62J3rmOV/5rDU0530ZC/9TvvL53b5xXwe/S1qn/WNYX/+f8IhT9Of8pbFVQz9z0F5nPY95uV7r+uhQBq/rmvqc6/f/5ONbYM21X/XL9I994XdUnvpl+Mhlvn6/6qMGM9cipj1xjn6/6oOBmWsRy+Mjp+hcB/8J5J6VXw==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="24" height="22">
   <data encoding="base64" compression="zlib">
-   eAFjYCANiDKSph6m+h2MgYVGlkvFYj6yPEg7Oh/ZyKfsyLyRw/4I9CoIf6GBl48Cw1QSGC8gDLLDDkscoVvrgKYGZAYx4BMORceA+qkRt7jMx+Y+WFoH2U0LgC2tw+y5RiM7YeYPNH11gP2HrwzJQEu76GrR+cSEJa74/AzUDMOgvAVLhyAxagKQebjSPjZ7wrEJEhADlQ+DBexiY2DYDcS0ArjMx5euaVE2I/vvKzKHBmwZYPyip2MAgJklTw==
+   eAFjYCAN/FUkTT1MdaQSjIVJI8tZY1GHLA/Sjc5HNvGZFjJv5LDbNRgYQLgLiKkN5gDDdA3QXBAG2ZGtTdiGXDQ1IDOIAR043D8XqJ8acYvLfGzug6V1kN20ANjSOsyeQzSyE2b+QNMHB9h/+MqQSWhpF10tOp+YsMQVn53A9A7DoLwFS4cgMWoCkHm40j617AGVD4MF2OgzMNgCMa1AJtDsLCzm40vXtCibkf3XTePwXw80Hz0dAwB1UCNS
   </data>
  </layer>
  <layer id="4" name="Above Player" width="24" height="22">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFwyEEPgI9AcJfhoNnRv0wGgKjITAaAsMsBIZj2QwAIFkDyw==
+   eAFjYBgFwyEE2jUYGEC4C4hHwWgIjIbAaAiMhsDgCoHhWDYDAOr/AsM=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">

@@ -6,36 +6,34 @@
   <property name="slug" value="routea"/>
   <property name="south" value="flower_city"/>
  </properties>
- <tileset firstgid="1" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
-  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2295" name="core_buildings" tilewidth="16" tileheight="16" tilecount="1316" columns="47">
+  <image source="../gfx/tilesets/core_buildings.png" width="760" height="656"/>
  </tileset>
- <tileset firstgid="361" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
- </tileset>
- <tileset firstgid="465" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ <tileset firstgid="3611" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
  <layer id="1" name="Layer 1" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAGrY2BgqAfiulF6NBxG08GA5QMBNgYGQSCmJB/uYWRg2AvFFkCzLIEYxt8HFCc1nx8B6jkKxceANDp/1Dz88YUeXuh8UsPvDDAOzkLxOSCNzifVvFH1+ONvNHxGw4eS8ng0/Yymn9H0g7/dAQCnOJk1
+   eAErYGBgKBjFo2EwmgYGNA2ocjMwqAExJXnRhomBwRaKQ4BmhQIxjG8HFCfV7ESgnq8sEJwMZKPzR83DH6bo4YXOJzX82oBx0A7FHUAanU+qeaPq8cffaPiMhs9oGhhNA6NpgHZpAADlJWbW
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHFlrlOAzEQhg1EiI7kDWg5epL34CiBgusVKICOo4KOglNIQMfxDkg0UEOgB96C/9/4V0Yjm+wiBJb+rD0ef2vPzG42hP9rM7UQZqH2QAivTm8YV22XYF1B/ZBvtYTtvS+Ej4w+YV/Hmo0KvOH+EOoZNWBfgVYh7m8NG7RK7a8Xbw+sfWj0l3iMmXJi98b+T/ZHnnJCBpu4f8GbRGyaGbVgZ9P+OqPur9/fCfznoPmMFiryeKctrNmOqg+G0IA03oF9F1INdnfW6fn90XoN/5uoJlgtSONb2O8g1WAZHn2esSalF9jbkGowx2v6CTe+x3NG6ZyqP+dW1N+QMeb8xNN82fzq/uYWRVc8zZfleU5uLK6fT+XX+1QZV+FtlgBX4ZXAJd8vZdZ5n9T7JfV/4NdxfIp6tk015N9/lneONXqm6H8Rxf81rhODfrZ2bPzEk6+eKdbGUxT/h8iz9dKLp3nFJHU9M2cW+wD3Se3P8w6x9sjo2LAYR8WF/RRP9+N8maa40NfzdDbPsTmxuaGf4s2+59mz2XMxBo8mL8wPc8Om+LDvebSp2TrTGu5f7SF2NMdhjqcz6PxaY3niau47nnJiedM4H2PHmlZOed8piN9bOZ58xeKVfFvTyqnsqvPUeeVLDutW3GIDmR/5pHhconkbxwyqMMs/x9NaxdHWkZ4V1tMiHJeilnHtxRPXX0e8IY4tbwwxH3ey39f8/vbzfjwR85y5XfENqjl+j5ZtXzy7o2w=
+   eAHllktOlUEQhXsCCQEksAZghG7CyBC4AlvB50hZgM7dBM8BOhanMlUSWIQ45Zzc/kKl0s3lEiMDKjl/d1VXnb+6uv5HKQ8nFxOlXAork6U8TXgmfVw5UsxvYdCI3WzYvs+UctrBD9knFDM5Bt8fxVx18Ff2n09KOROc3xeNEa38RvHNz5WyIEz9Iz7XmzOJuXl+n/zM5zM5rvlZh/d/8C3OlrLUwbLsFvIbajfXnN9z10AxWx1sj8nnO31QzMeKpelSlgX03cpHD95kNpzl/GzdU8x+xZa4tgX0g8pHD96FD5834nkrvBPeC1HowWjznPw28kJHZ5/0X3Yz31ow9vxwYZ13AnZG8kPn/uh5ZP2ufDm+p8Ob13N+eX1c/bHwtd4vre9Bq36resaj0EP5/Rf5dhXDM2X/Q/Wp4e+a4+Cw3y/Z/S60xPOAD1+eKffGeYW/Q+aL/TKKj16lJq1xmM3wGrlb+WW+DeUzEF5WbGqMQl1sa/HF+8W43py6tPjYW46NZ8LZ4EO9W3xxb3Ff1IBz8Yh47bbzxS/2GTHOHxnUCWtWW/WznT2wf2Iin/0srHne4+NMIt9n7Yue5kx9308j9osvXB7NT+3c05wpdvq8lR++5nkhwOv99ASfFp9jWI917HFF/x4fsdQx9lF8Tk7k+LXim8ZRfPDmcT0bqh75dlTnVwnx/9r/33k966/lc5v4HxSJc2y98Rrjr9iU
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtkbsRwjAQRNcEdmipCGM6sFQNdjX+NGNDM3wawHTBKr3wBAEztzMvuGA3eAf8Nq8C2AVv3trUB8AJPG9tOnaDIGbsndntBUPG3sjuJJh5L8rNlb1NcOF9Ve7d2LsLHryfyj3tH/+950rAk28lcCtm7qXfpjQVcCQtORGLGTADZsAMmAEzYAZyDHwANL4aZA==
+   eAHtkrEVQEAQRCdHF05D7hpCQ+gBZWgCqRHa8JZs5r0fbDAT/LfAv1lKYDVsvHNzsHsaLsdeXQHB0PDOTctuNCTHXsdubxgceyO7k2F27OV6Uu9tIBRAQ75K5FZy7u38iwdFBmRABmRABmRABr40cAPjoBlF
   </data>
  </layer>
  <layer id="4" name="Above Player" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlE0KwkAMhdNadNmD6F7wFrrQfZd6B72DnsPfpZ5D0N5F8GUhHYZMOoGCiPMgEDKTj+S1DNH/qe4RzYru9s47ZPFUPm+SN7O6eVPVM59XgXfuE10QnFvl87j/CVaN0JQFfJJ42QA+IDQVBp7G+ZzF8vbY84A4Ik7KzjG8Ev13h/FAzjVJMbwxel9uPzzkmiSNN4e3i4C/zJLONd4arI3Cs84n3W+rafO19UrnGm+LN2aHsEjjLcFa/QBvim88jIxR4H/g9+CKXW/GfS1ep7vJgeRAciA58F0H3hD8Fr4=
+   eAHtk00KAjEMhbNpFRU9gKAewK030AOIh9HL+QvqNRRcCurGtS8LmVLS0ErRhX3wIKSTjzTpEP2fhpaoDufSNCOLe/J5tlV16sZVVo983gi8bYNoB3OcKp/H9XewHrCmi5FPJV6/STSANc0Cc5d4Gud9Fstb4p4reA1vlDvH8I6ovzqMG2LOSYrhPVHbdebWQ8w5SRrvhF2dA/tilnSu8Qx2ZQP7knrjnMYL1Wj5b/ImbaIxnCKtvz1Yh4w808E+4BTF9FfDjueRXgTeA/+/n/SXcpfybZlAmUCZQJnAbyfwAuX2Jlw=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collisions" visible="0">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="2" type="collision" x="128" y="208" width="32" height="80"/>
   <object id="3" type="collision" x="64" y="208" width="32" height="80"/>
   <object id="5" type="collision" x="128" y="448" width="32" height="96"/>

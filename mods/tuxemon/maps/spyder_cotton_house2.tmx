@@ -11,8 +11,8 @@
  <tileset firstgid="3865" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1240" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="720"/>
  </tileset>
  <layer id="2" name="Tile Layer 2" width="10" height="8">
   <data encoding="base64" compression="zlib">
@@ -39,10 +39,10 @@
   <object id="61" type="collision" x="112" y="48" width="32" height="32"/>
   <object id="62" type="collision" x="16" y="48" width="16" height="48"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events" visible="0">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="64" name="Create Picnicker" type="event" x="64" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_picnicker,3,2"/>
+    <property name="act1" value="create_npc spyder_picnicker,2,3"/>
     <property name="act2" value="npc_face spyder_picnicker,up"/>
     <property name="cond1" value="not npc_exists spyder_picnicker"/>
    </properties>

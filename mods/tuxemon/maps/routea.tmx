@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="57">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="69">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="routea"/>
   <property name="south" value="flower_city"/>
  </properties>
- <tileset firstgid="1" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
-  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2295" name="core_buildings" tilewidth="16" tileheight="16" tilecount="1316" columns="47">
+  <image source="../gfx/tilesets/core_buildings.png" width="760" height="656"/>
  </tileset>
- <tileset firstgid="361" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
- </tileset>
- <tileset firstgid="465" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ <tileset firstgid="3611" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
  <layer id="1" name="Layer 1" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAGrY2BgqAfiulF6NBxG08GA5QMBNgYGQSCmJB/uYWRg2AvFFkCzLIEYxt8HFCc1nx8B6jkKxceANDp/1Dz88YUeXuh8UsPvDDAOzkLxOSCNzifVvFH1+ONvNHxGw4eS8ng0/Yymn9H0g7/dAQCnOJk1
+   eAErYGBgKBjFo2EwmgYGNA2ocjMwqAExJXnRhomBwRaKQ4BmhQIxjG8HFCfV7ESgnq8sEJwMZKPzR83DH6bo4YXOJzX82oBx0A7FHUAanU+qeaPq8cffaPiMhs9oGhhNA6NpgHZpAADlJWbW
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHFljlOA0EQRRtjITLsG5Cy5Nj3YAmBgO0KBEDGEkFGwCokIGO5AxIJxGDIgVvw/3i+XCq6mRmEoKXv6a6uftNdVTOeEP6vTddDmIE6/SG8OL1iXLVdgHUJ1SDf6hHbW18I7wl9wL6GNesVeEO1EBoJNWFfhlYg7m8VG7SK7a+ItwvWHjTySzzGTDmxe2P/J/sjTzkhg03cv+BNIDathNqws2l/3VHv1+/vGP6z0FxC8xV5vNMm1mzlagyE0IQ03oZ9B1IN9nbW7fn90XoF/+tcLbDakMY3sN9CqsEyPPo8YU1Mz7B3INVgitfyE258h+eM0jlVf84tq79BY0z5iaf5svnV/c0tsq54mi/L85zUWFw/H8uv96kyrsLbKAGuwiuBi75fyqzzPrH3S+z/wK/j+AT1bJtqyL//LO8Ma/RM0f88F//XuE4M+tnasfETT756plgbj7n4P0SerZcinuYVk9j11JxZ7H3cJ7Y/zzvA2kOjI8NiHBUX9mM83Y/zZZriQl/P09k8x+bE5oZ+ijf7nmfPZs/FGDyYvDA/zA2b4sO+59GmZutMa7h/tfu8ozkOUzydQefXGssTV3Pf8ZQTy5vC+Rg71rRyyvtOQvzeSvHkKxav5NuaVk5lV53Hzitfcli34mYbSPzIJ8bjEs3bOCZQmVn+KZ7WKo62jvSssJ4W4LiYawnXIp64/jrsDfnY8kYR87EC2e9tfY/bNeN5nhO3+2LmN6ma7cum6yduNKQb
+   eAHllktOlUEQhXsCCQEksAZghG7CyBC4AlvB50hZgM7dBM8BOhanMlUSWIQ45Zzc/kKl0s3lEiMDKjl/d1VXnb+6uv5HKQ8nFxOlXAork6U8TXgmfVw5UsxvYdCI3WzYvs+UctrBD9knFDM5Bt8fxVx18Ff2n09KOROc3xeNEa38RvHNz5WyIEz9Iz7XmzOJuXl+n/zM5zM5rvlZh/d/8C3OlrLUwbLsFvIbajfXnN9z10AxWx1sj8nnO31QzMeKpelSlgX03cpHD95kNpzl/GzdU8x+xZa4tgX0g8pHD96FD5834nkrvBPeC1HowWjznPw28kJHZ5/0X3Yz31ow9vxwYZ13AnZG8kPn/uh5ZP2ufDm+p8Ob13N+eX1c/bHwtd4vre9Bq36resaj0EP5/Rf5dhXDM2X/Q/Wp4e+a4+Cw3y/Z/S60xPOAD1+eKffGeYW/Q+aL/TKKj16lJq1xmM3wGrlb+WW+DeUzEF5WbGqMQl1sa/HF+8W43py6tPjYW46NZ8LZ4EO9W3xxb3Ff1IBz8Yh47bbzxS/2GTHOHxnUCWtWW/WznT2wf2Iin/0srHne4+NMIt9n7Yue5kx9308j9osvXB7NT+3c05wpdvq8lR++5nkhwOv99ASfFp9jWI917HFF/x4fsdQx9lF8Tk7k+LXim8ZRfPDmcT0bqh75dlTnVwnx/9r/33k966/lc5v4HxSJc2y98Rrjr9iU
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtkbsRwjAQRNcEdmipCGM6sFQNdjX+NGNDM3wawHTBKr3wBAEztzMvuGA3eAf8Nq8C2AVv3trUB8AJPG9tOnaDIGbsndntBUPG3sjuJJh5L8rNlb1NcOF9Ve7d2LsLHryfyj3tH/+950rAk28lcCtm7qXfpjQVcCQtORGLGTADZsAMmAEzYAZyDHwANL4aZA==
+   eAHtkrEVQEAQRCdHF05D7hpCQ+gBZWgCqRHa8JZs5r0fbDAT/LfAv1lKYDVsvHNzsHsaLsdeXQHB0PDOTctuNCTHXsdubxgceyO7k2F27OV6Uu9tIBRAQ75K5FZy7u38iwdFBmRABmRABmRABr40cAPjoBlF
   </data>
  </layer>
  <layer id="4" name="Above Player" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlE0KwkAMhdNadNmD6F7wFrrQfZd6B72DnsPfpZ5D0N5F8GUhHYZMOoGCiPMgEDKTj+S1DNH/qe4RzYru9s47ZPFUPm+SN7O6eVPVM59XgXfuE10QnFvl87j/CVaN0JQFfJJ42QA+IDQVBp7G+ZzF8vbY84A4Ik7KzjG8Ev13h/FAzjVJMbwxel9uPzzkmiSNN4e3i4C/zJLONd4arI3Cs84n3W+rafO19UrnGm+LN2aHsEjjLcFa/QBvim88jIxR4H/g9+CKXW/GfS1ep7vJgeRAciA58F0H3hD8Fr4=
+   eAHtk00KAjEMhbNpFRU9gKAewK030AOIh9HL+QvqNRRcCurGtS8LmVLS0ErRhX3wIKSTjzTpEP2fhpaoDufSNCOLe/J5tlV16sZVVo983gi8bYNoB3OcKp/H9XewHrCmi5FPJV6/STSANc0Cc5d4Gud9Fstb4p4reA1vlDvH8I6ovzqMG2LOSYrhPVHbdebWQ8w5SRrvhF2dA/tilnSu8Qx2ZQP7knrjnMYL1Wj5b/ImbaIxnCKtvz1Yh4w808E+4BTF9FfDjueRXgTeA/+/n/SXcpfybZlAmUCZQJnAbyfwAuX2Jlw=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">
@@ -50,10 +48,9 @@
   <object id="14" type="collision" x="224" y="16" width="80" height="16"/>
   <object id="16" type="collision" x="288" y="32" width="16" height="592"/>
   <object id="17" type="collision" x="16" y="48" width="16" height="576"/>
-  <object id="18" type="collision" x="32" y="608" width="144" height="16"/>
-  <object id="19" type="collision" x="208" y="608" width="80" height="16"/>
-  <object id="20" type="collision" x="160" y="624" width="16" height="16"/>
-  <object id="21" type="collision" x="208" y="624" width="16" height="16"/>
+  <object id="18" type="collision" x="32" y="608" width="80" height="16"/>
+  <object id="19" type="collision" x="224" y="608" width="64" height="16"/>
+  <object id="21" type="collision" x="224" y="624" width="16" height="16"/>
   <object id="22" type="collision" x="32" y="48" width="160" height="16"/>
   <object id="23" type="collision" x="48" y="64" width="128" height="112"/>
   <object id="24" type="collision" x="64" y="16" width="96" height="32"/>
@@ -73,7 +70,6 @@
   <object id="40" type="collision" x="176" y="352" width="16" height="16"/>
   <object id="41" type="collision" x="224" y="368" width="16" height="16"/>
   <object id="42" type="collision" x="64" y="368" width="16" height="16"/>
-  <object id="48" type="collision" x="224" y="576" width="64" height="16"/>
   <object id="49" type="collision" x="32" y="208" width="32" height="64"/>
   <object id="50" type="collision" x="48" y="176" width="48" height="32"/>
   <object id="51" type="collision" x="128" y="176" width="48" height="32"/>

@@ -7,27 +7,24 @@
   <property name="slug" value="route6"/>
   <property name="south" value="candy_town"/>
  </properties>
- <tileset firstgid="1" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
- <tileset firstgid="1441" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+ <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
   <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
  </tileset>
- <tileset firstgid="3735" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+ <tileset firstgid="2295" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
   <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
- <tileset firstgid="11927" name="core_outdoor_water" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+ <tileset firstgid="10487" name="core_outdoor_water" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
   <image source="../gfx/tilesets/core_outdoor_water.png" width="1024" height="2048"/>
  </tileset>
- <tileset firstgid="20119" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="18679" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAETYGNgEBjFVAsDUWBYitEJi5MRb1ZAPdYc9ME2FLivFag3gUa4DRoGlLiPHL3E5jNYHJFjByV66eG+eGicJgJpYu0jVR0pYXCXnYGBHHwPqI9Ud8HUk+K+7mAGBnIwMzCPw+wjlaaH++4D3UdsuKOHNSnuUwfaQyzeDVRLjbCmJI3D6g9sZTsjme4jNqzRwxmUbtDrstV4yk41Goc1tjSNqy4jp+xEzifkhDU29+Gqwygt/4gNa+Q0jc19yH6mFxs5jSOH82BxH3L5Muo+0usRUsIPALmsxrk=
+   eAErYGBgKBjFVAuDUmBYltEJl5MRb7OAemYz0QfPocB9T4F6D9AIPwOaCwoDStxHjl5i8xksjsixgxK99HDffmicHgTSxNpHqjpSwsAWmA7IwXZAfaS6C6aeFPe99mVgIAcnD3L32TMTH+7oYU1K+LUDw4FYLA10EzXCmpI0Dqs/sJXtiUC/kOM+YsMaPZxB6RW9LuNmxF12ttE4rLGlaVx1GTllJyx/gmhywhqb+w4AzcKGKS3/iA1r5DSNzX3IfqYXGzmNI4fzYHEfcvky6j7S6zlSwg8Ap+G2Mg==
   </data>
  </layer>
  <layer id="2" name="Obstacles" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFlU1uQjEMhNMtkegKqSvKadpKXIqrse59aJe1pX6VO/jlBz3pRYomdjz2xBg4P5dyXnF/7ktZc6u2alq32Koj2v5e7LLRon4PN5L395ll+pgXv9t6Zfqir6WPd/Qwy3G1GRpZUUt2buUgvi58h7hv5ejdkQPUWt+lXL5s32yTi37Bcf9LmAXO3BMPfwbJAR52/9mnp3J5tX20zU2VfrkeNHkMNjlB+DMIF1Rupk9j3EZTRHKCj/QRLqi1R/WpRrer9Blba9zZxuMt6ALxw5nRB2cWsxnnLegC8VPjw+bu3fZbmD/uRlDfm3FaPUAXmPHvfNb/0TWSdw199GEJo97sOwIvxnFeQx99WEJqObo+lsbjjzijj3cqah21Yz0/w9c4/KDHtmZc+Y/aXieu+vvb0ssXOdlZ+f4u9Y3Y5Gb2sHvc2Md4HuX38nPv+dAGuo/7HsZYP/vy/1rl/QAGbrZ+
+   eAHFlUFOxDAMRbOABcdgnUuxzxqJEwB3KdwFOBH+og/9sdJMOqpUS9a3HX/n1xNplodSlgO9xqwjPWtrMf8Mzzo8r7a/cpK5nlF8krz/36ynTfuT6+xs6+nz2kifvmHGezMeJ7/dtfTi3mxq9Le4q+ec038LMgPM97zel/IW/h6O1XVvcFR/sX0Qc04//D3IDPD57pK9hK6P8E/T19K+pAdNYpMzE7ycPJfBBTOrpy/3KEeTIzPBuu69x9+qwQVz36w+8Vyb8pb2TK6zkT2t31ED0QWqJsf26IOzF3tvvIUG+ZKcOnd8xbv7Dv+x98fZDNaYLx/ZaAdZ32gOZ9r/rDF/1H+EPvawhX6/v0P0wfM+4iP0cc8WcpdQ+rDcT91xjz6+M2O+J+d+n2L4uY86qN7RG8/8W3Pd49Zih/Jr85zTizO/TszMHOUYb4+81+u1Gly5zOO/yvXv81mjWPPQBqo24viZ9yqW6b/WexT/Av2n9Fs=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collision">

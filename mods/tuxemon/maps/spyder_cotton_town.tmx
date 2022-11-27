@@ -29,13 +29,13 @@
   </tile>
  </tileset>
  <tileset firstgid="1313" name="core_buildings" tilewidth="16" tileheight="16" tilecount="1316" columns="47">
-  <image source="../gfx/tilesets/core_buildings.png" width="760" height="448"/>
+  <image source="../gfx/tilesets/core_buildings.png" width="760" height="656"/>
  </tileset>
  <tileset firstgid="2629" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
   <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
  </tileset>
  <tileset firstgid="4923" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1240" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="720"/>
  </tileset>
  <tileset firstgid="6163" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
   <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>

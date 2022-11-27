@@ -5,28 +5,28 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="dojo2"/>
  </properties>
- <tileset firstgid="1" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
-  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
- </tileset>
- <tileset firstgid="211" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="4075" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+ <tileset firstgid="3865" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
   <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
+ </tileset>
+ <tileset firstgid="6835" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
  <layer id="1" name="Layer 1" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAG9kNEJgDAMRE+o/27iBnUFh3Btd7GHHIRgW5HUwDW0JO/SAP/GVOxWo2j3pQCz0Qj+MQNf9GYWzk82Q/m+tc9erfa+O+6ZgJbk2uNr75vjsz+KzxkkzaXsPfSurL7aP+ze1VPL1svXRPI9m/cI/hNXbyP5ZHv+BXPPJrI=
+   eAG9kN0NgCAMhPvgm4M4gokLuY9upAvpBnKBS5omUCUgyXH8flcQ+bctk8ih1Dp9DexLqQd/G0Rq9KYW1A82Gj3Oyr13dk5/fio+iGPIKompHn9Pf34bvpfxhY8aKN6j2zdwnc57uXeg/tweGXSdxTV6jlHDJ1N7C77m2XFPPtiW/wDWkydI
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBhYwAS0Xh8HRpdjJsOpgkA9djgwupwQkeavY2FgWE8i3gBUr0ik+XeAau+SiO9RYD4uZyG7AWS+L1AhKK4IxQO6+4k13xaoEBRXuOIBFu7I7iKFDYozfPGA7m58ZoP8hE0eXzzgMt9ZANMsJwGGBmqZj80cXGLkuB+XWdjE0c0HABkIdxA=
+   eAFjYBhYYKHOwHAIB0aXswSqIxWkAfV8wIHR5dKJNP8OMwPDXRLxPaB6Ys3nYmFg4CYR8wDVk2s+rjBFdgPI/Axg+IDiilA8oLufWPPfQ+MJlz9g4Y7sLlLYoDjDFw/o7sZnNshP2OTxxQMu8wv5Mc0q4GdooJb52MzBJUaO+3GZhU0c3XwAU2Y1Gg==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKkhoCoAEMDqXpG1WOGAADWWACm
+   eAFjYBgFoyEwGgKkhoAzP0MDqXpG1WOGAAAQEADT
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">

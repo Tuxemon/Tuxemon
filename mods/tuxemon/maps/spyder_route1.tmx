@@ -7,55 +7,39 @@
   <property name="slug" value="route1"/>
   <property name="south" value="paper_town"/>
  </properties>
- <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
-  <tile id="839">
-   <animation>
-    <frame tileid="839" duration="200"/>
-    <frame tileid="842" duration="200"/>
-    <frame tileid="845" duration="200"/>
-    <frame tileid="848" duration="200"/>
-   </animation>
-  </tile>
-  <tile id="880">
-   <animation>
-    <frame tileid="880" duration="200"/>
-    <frame tileid="883" duration="200"/>
-    <frame tileid="886" duration="200"/>
-    <frame tileid="889" duration="200"/>
-   </animation>
-  </tile>
- </tileset>
- <tileset firstgid="1313" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+ <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
   <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
  </tileset>
- <tileset firstgid="3607" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+ <tileset firstgid="2295" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
   <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
- <tileset firstgid="11799" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="10487" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="12781" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1240" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="720"/>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAGbwMrAMGEUkx0GceyEw+8WFcP3DolmxXMwMMQC3UiMOwciHXAbMzCAcDMR4TjqPsy0Rkz4DWT6I8Z9AxGvMDtHovuomR6ICT9q2kdq+UeM+2BpYSBoK2D5vBxY9q0YpOXfYC2XYXE16j7MOgEWNsTQo+E3Gn7EpBNaqQEAqObMyA==
+   eAErYGBgKBjFZIeBHRPh8NtFxfDdQ6JZ9swMDLZANxLjzoFIB691GRhAOJmIcBx1H2ZaIyb8BjL9EeO+gYhXmJ0j0X3UTA/EhB817SO1/CPGfbC0MBC0FLB8bgeWfR2DtPwbrOUyLK5G3YdZJ8DChhh6NPxGw4+YdEIrNQBpXWkY
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHVVrkNAjEQdAKChJogh16ghiMjoQsKMXVQBQKRsSsxkhl5zgtOwJI13vF69sF3XErvY1iktLfJuJqndJ2159L8xgbrtmzWypbb2SYj+31rs27L5jiD6B/71ezLNKVylj7glb7iSw1fq3rYT9kHq89nbWwnWj8aN1pHLb5zY/n5vtJXvJ8pR7SO8ky5buWn9BVfavta1XG038bvENDXtYH8cN8Ylb7iOUa0Dj7n9ul19zzHndVTG0pf8awRrYPPwUb/YDMqfcXz+WgdfA72WH6bH3p++d7BVn1SPOoG9vYPOgqVvuKho/IHD79ehF4UES/bM1f73wUPv16EXhQRb7D8at8t4OHXi9CLIuLlP+9ftF724/c077fsaP9yo79qH/qO6473X6sO7JfxvllDJ4qIkYP9gb/j3b73Hx/Mm/lG48DvCflpUZI=
+   eAHVlt1NBDEMhHOCF7qAd+gFaljeeKGLKyTUQRWI03VztsQnLaPMxtw+Ecma9ex4Yke5n9Z+r+WutdcIxYfb1r5u5nEfuq2lvrNcvXr09hGhqLprc/Wd5brPYs5PdaP889DaOtYaeOfv+LVHPrt5VOfyt5gvY7Seg3T+jlef6hxaR77VX2qcv+PxBatzoFec9ef8Ha/+bo73EOYdAvN5tOiP+6bo/B2ve1Tn0LrMjz93L3t8GQmCc/6OV5vqHFpHzvmRKzp/x2t9dQ6tI9/q7ylEzt/x+ILVOdAr0p/eO3Ln73j1r86hddXc+TseX9c/PLq9iF8V2a/HZ270uwuPbi/iV0X2W6K/0f8WeHR7Eb8qsl//5+dXnVd1+j2t72d59fz65Hzde/wTHyOczvHUL5P7x3v01yI+VWSfXjwf9Imn+L9//kN8h7a6D7oLt9YMoQ==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHVlUsOwjAMRLNokdhwHQ4AO+BOHIIFp+MsNEKWrCGvdj8SJVJIPJ6Mx1FES/mvcTqUch6mrtd+nT5UN4qzVV+7UmhWjZqr4zL0VqcflvPY3D318xxqRrPWbPnzXkifcH92bB95q/k6In8f1vxf6mMtf6RPeLYTfUP0Fn91f76PsbuM/NE9Ee7rZvdL/GVrEI/6uLn/vyX+SJ9w8qk4vTfDlb92TP4NpztTH8Qz3PRaa999f7dUn2LT11X5mtdY+dm41Y//Dmsdi1XfcFpbdVr3ZjzVp5jqKZ94his/G5tfWrM6EY/0CY/0tpIn/4pP9Xvsyt2fUb0o9me3uCf/5PWxp8w0nOoq/gYsX5uk
+   eAHVkksOwjAMRIPEhnPADthwNhYcjDVnoxay5I54sfuRKJFSx2NnZhy1tf9ax0Nrp2FrvKw0hvJmeVX2tWuNtnFYzdZ5mM12XF6L2NwzzfMYNLNtmt/8RS/ET3i82ztn3qxuK/P36Zr/pTnW8kf8hFcn0X+I/sVfvV+co/eWmT96J8KjbvW8xF9Vg/pojmu4sMQf8RMeZLtH+t8c715eoUj+Hac3U2nqc9z5qlH5KXd+jdqvdc21v5pn86iO58rvOMVMR+vKTznpaT/1Oa791Vx9a17lyfqUN8szvq3Uszm8PtXv8za+4TzVOL69vYzmIKf3PVWm4aSr+Bvn1Gv2
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgIDEQLOfAwMLkBMKj0Qbh21czQECIUAKwtDAwsQE6IBOhcJyw==
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgIDEQLKnAwMKkBMKj0Qbh21czQECIUAsekYACx5BC0=
   </data>
  </layer>
  <layer id="5" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgIDEQLOfAwMLkBMKj0QbiXFTj4WhgZS1I+qHVkhAAAIsgUI
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgIDEQLKnAwMKkBMKj0QbiXFzqlGpKgeVTvSQgAArVwDNw==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="7" name="Collisions">

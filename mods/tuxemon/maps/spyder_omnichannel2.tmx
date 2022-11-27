@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="16">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="22">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="omnichannel2"/>
  </properties>
- <tileset firstgid="1" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
-  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="211" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
+ <tileset firstgid="3865" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
- <tileset firstgid="1211" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
-  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
+ <tileset firstgid="6835" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAFjZGBgYCQRMwPVC5CBhaB6LgNpUvBQ0udPot9A4eA3AsIFlF5IiXOQWnrHOyXxQE6809t/Q8k+AJ5RwFs=
+   eAEzV2dgMCcRWwLVp5KB06F61jMyMJCCh5I+VQ3S/AYKBxWgHlB4khImILVDKVyGgv8oiQdy4n00/rCneVC4AAA9sr19
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAFjYGBg0CcRA5WDgR2QJAVDtVGdyiDTRCEa6YOFpzLQfBgbRPsh2eeLJAcThoWlIVAAxgbRyO60RZKD6WNiZWBgBmKQPmSArA9ZHMaG6TOCCUDppWh8XFxHNAl0Ppo03bnazAwMOkDMCLQZOR4CkFyCLR6CgXpCgFgAqA45HuyR9GGLB5gdIkjqiGHC7EA2H12fOroADj66X7fgUIcujM+v6GqR+SB95ABC+gBRCROw
+   eAFjYGBgOKROGgZqAYMPQH2kYJg+atPTgO4gBxyhkT5YeE5HC9etGghXygHZMHUwUVhYgtwFY4NoZHe+R5KD6QsTYmAIB2JkdSA5dD5MPYxuBuppAeKjQDORATofWQ6Z/RlNHzofWe1AsH8IMjD8BGJzoDthYQ2iFQnEgyowTNSAOBWoFjkePiL5F1s8wOyw1yTNtzA7kM1HN4HYNG6P5ldi3ZKOx6/obkHmg/SRAwjpAwBcZVU1
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collision">
@@ -35,6 +35,12 @@
   <object id="5" type="collision" x="96" y="336">
    <polygon points="0,0 0,-64 64,-64 64,-80 80,-80 80,-32 16,-32 16,0"/>
   </object>
+  <object id="16" x="0" y="32" width="16" height="304"/>
+  <object id="17" x="112" y="48" width="16" height="128"/>
+  <object id="18" x="48" y="208" width="80" height="32"/>
+  <object id="19" x="16" y="240" width="48" height="32"/>
+  <object id="20" x="16" y="96" width="96" height="32"/>
+  <object id="21" x="48" y="128" width="16" height="48"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="6" name="Teleport to Omnichannel 3" type="event" x="16" y="144" width="16" height="16">

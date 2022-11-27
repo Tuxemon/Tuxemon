@@ -7,23 +7,20 @@
   <property name="scenario" value="xero"/>
   <property name="slug" value="route6"/>
  </properties>
- <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
+ <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
  </tileset>
- <tileset firstgid="449" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
- </tileset>
- <tileset firstgid="780" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ <tileset firstgid="2295" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtVltuwkAMXL4L7SWpOAiUi5Rf6BfHCBwEJbkCM1ItWaMN3qzYio9+jOJN/BiPncAxpXQCfoAjsAV2v/jCtQcGYATMx/u3tsnJ1/jnN28OkX6rRUrvwAfwavPdY/brAnzCR/v0OxPZHeIvE9C8fv/sPYmufI80T8TJ+/eIHzI4Z/LW8CvVmbOg1ronxu+GZ9wlD98H7W/gUIANfCJdc8+ptfLzO6589Kxz6ZCPu3GVvDU6k+8crdfwj/j18OFujIDvu1TnA+JqtWY/tfw818iu1Zr8dJ5aa0o/9XvU5xytqbdHro6v9Qx+kQYdONmO+9q0H53JvQdy+5frK+Khtczf11AfPVuM3fexz+Rk+VUDf5+2nqf4veG7eYF/CyyRe0DuMcOnlB/jW6OGn33b/W9OK5v/kVQvPZ+gU6s9q6lVE/OXPdwBpekBOQ==
+   eAHtlssNwjAMhsPjBCMwCzALYoFegA1gB2AXyjCswJnfQpaMlchOQqsicbDqNG7y+3MebUIIjbDNOITn9G1b+Gf0XWBXESPj+/b/+j7rlctf87uhri3sPsD6richLLEGLVshJpeDjN8h933CZBz5kh/vE+tJ+0iPk9PmPUj7UJsep0SflzPVIcaa9T2gr1Wm9R0xxslhC9Te4hrrj7GuWeO8Ng7IS+ZSwpn05rAm3nLOmM/s9fns5Uy1KGVN+cQ0yXcpfTLG8ktZ96Uvh7Ve+1bu3+BnzZFa49Z31N+Hvpo5ar715F/LgPXNRuk7KHU3ed/PMXbpPxzr0/dOF219hnn489mu750u2kP5R/Jw+ZWYF3AUocc=
   </data>
  </layer>
  <layer id="2" name="Obstacles" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG9lNFtQjEMRQ30BzoJdIfuAAzBbh2AgeALpqj9cSTLSuzktRApcuz43pw8BUREtiuRnc6Hrp86b2uRu85s0EsPefSazfGJ0c7Ba7cR+dTZGujo/e8c3xg5p8Xka+io9fIfbbDZ22/pYfCRdfRBv/oQWevc6KwGXrARqVd6GHxk3dPuleug82uAD6/IRb13RlZ/6mZ2v1E+PGCz6LnYz1hae/a79T6xZ5Qv8zDPuP9d/D/AUd1rlA+/JTF74/Fe0f+o7+6k8zzw/qJ2NK++QesbXv/4/f07rDgrvuobZv5eyz09G+vMI+PDM9NXe3jAChN1cvOh5j1bfPThSe51o2s8rB8fY6Jua+rUrJfReuOxL+ZoZyM+8BCpz/iZFv2Mznovxe8HHuKsv/WbFv1SziXnZhruDQ8Rzkz7zj14iHC+k6E6y5jg6nGyHyPe1F+RG1Pk6uXUiXC9Ov8FYMyaIw==
+   eAHNk9FNgzEMhPOCELNktC7ABMAAMAUwQLcABmAWfKKfZFlO4kArNZJ1seO73O+mrbV2uPuNbqh4vm3taDFb9NJDfghauzk6EXUPWt/m7WXgDx69587Rjcg9zGOE8Dgf5fc2R8XoPOPjIcOoA//hprVHiyeL1UIXbyD1FR8PGY64r+brzeK94A/d6Iv66I5ZvdtvQGR9VX9o4E3ofXGe3TGroSHMVtUfOpmGavFc/8HK6qf5jXqr/kb8Sn32xuN3Rb0Pe3efFl+F9xe51Xw1g2yG/52/f4crnyt/qxnO9D2X7/Te2M80Zv7QnPFXZ2jgFU/UyaVDzWtm/uhDk9zzqns01I+OPFHXnjo1r5298dgXc8/f2aPTnSftqe9oeY0dnnpX/x/8gLv66ocr7Kf4i845OXw3fkB5VFzLwg/Yr2R+fj54Eo58+h6/R4faJXI8CbmHWsypg/H8UvkPg4KAPg==
   </data>
  </layer>
  <objectgroup color="#ffff00" id="3" name="Events">

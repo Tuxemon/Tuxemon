@@ -7,28 +7,25 @@
   <property name="south" value="timber_town"/>
   <property name="west" value="route6"/>
  </properties>
- <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
- <tileset firstgid="449" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
- </tileset>
- <tileset firstgid="820" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+ <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
   <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
+ </tileset>
+ <tileset firstgid="2295" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
  <layer id="1" name="Lowest Level" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHlls1twkAQhSdCSDmgpA7qQk6OpAmgAUQDJEcnp4Cgh4ROSAu8d3jSaOWNvLM+WOLwNDbe/fbNjy1aM/uEvqA2c/0+MeurHMP/3pfFdfQ2pL8c7wfn/EIXqMQf93Rp9mB2xbO/Qt431h+gI8T9qUp5T/Dxn57xvCTfode+Tc1SNcg7es780SzVDmeMhXeGF+oVOcpnjT/ltQVTvDXYrGlTUUfP89wos4tHLr1GmHvs8zWUR8ZIPRfgbSDP0XWEp3xfOnyW8pbopbytwDvh3udeyvPePsBLc4/yNHfyGq2f/Gl/GqP+Ug7v2R/WQO9Rn5ibvQhL56XMGpaYvo6lNRODkfPB74nvaw3P+1JPxspjH/i9Lp0RXz+fb02eYt4Tb8i5Y/00b4q1/RBHsZan/weKNXOneRlzvAEf0tIY
+   eAHtll0OAQEMhOvnzQ24ir+riAvsC26AQzgMl/KsI5lomiXa7sNGSKpi7bfTme5GIyLNv2SnHuy1DkEvcE5bTQZ6QF8XrYi/z5M+vEV5V2V9qpsej+jr+reLoYivpX6Xvc59LOJr2yPeSbWgZqOXzoo++rRRJudeKRueVny0PMvNMtt44EJrhnl0HlIjesbPufLWJpMqj/NOlWmzzuiz2jCbnz06r9V2Vp7lZ/SRx73zPmb12Qzs5y55yAce8D76pnv/qS3D4vU8s8Iik7lkMiUDHfuB54nNNZqB5Vld9K6vPOSA53V0R97NW5mTTOvfr/O63Dv4x31jr/pHDnuVx/8H7JW94770uT8AQsWI8w==
   </data>
  </layer>
  <layer id="2" name="Obstacles" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAG1lutNBDEMhAP/eCxXCCA6oINjy6Ad6AZKOqrAI2WkT8HxBSQiRcna48nE8Wb31Fr7in4axnj8U7u6aO06+jhuwXa30A/FqtYoyDH6S++3Mkza08QuszUWkB+u+7BoH5XOMehxNCTPlc4R/p98b5etvUcfW6XP5+KR+j6C6/OXfD4Xjzrr2RnfdKGVPkGsrcMbNdrG8RyfsKpzt1W+UYfjNdJ3bs97D3SOyOP56Jtp5F55F5hnNs40ko93wYyH9kwj+Zgjxs3m0qh7gvVDvjFHM57RTp3k+03+yEk+2lfzt0UQ79cHkFDfav4yPXrXlMsd3Kv5y/ioy5TK30pb5eM7WvGu8q3kb4uFmH+v628Hvx/n8jfjMqdH57Kqv1UucZqvqr8sZ4p1nWTvXJW/GZ+10G9blT/ipcvNsfTbVtUf8ebSXvf+QL/5svrbAq8ayGrEcaLM+LL8Eac4NvNpTa5ne5a/jO+1f8MdN2JU24foWf5GbKaPGP+DaK0sf8SSS/NMn/9B7GOM9rXCd4wg1jPXIp/mK3zCiVP3qXkzfRlONjfGPPcz8vr0Gc/RONqyGOMyH2O9H+3JfSegz42T7xskukXr
+   eAGdltFNxDAQRM3HHVAKl14QffAJVEMlUA10gkfKk0arseOwkrWJd3Y8XttxtsfWttDaP+21c6X2dNfabaFtHTMydCr+1nHvexvh1f8y4UPnLD/FNI+ZTnI+94fniQaw6FTOrAl/hg/+mXe+n/vWfnurhr7ar3fWBe98l4fWrr1Vm/GxLnit9bUS7O+X3c/4BEHbDj+s4REf2s7yVR3ky3vsaM4f+56qOpyvxnxdHOdzRYP8kY00Oh8a5FcsaXQ+9K1wCcN3wveP86FvlQ+c63Q+9MmfsREf+uRnVr+vm4GTPgvHR9cDQGdN31z2nvrRB2bkE5/rIm+1bqt8R3Vj3FU+6TvSqLXw+jOGPHcg94f0zTTOuJyXWqIvaVzlEi986EsaU82Uyz5JZw59wlUb8aHF4/Shr3Lp3fEeJ9fj9EnfyBwPRnPlPHgcvlQ3zmraI+SJP/Gl+jkOXXj4NKYb/al+ie9r/ycgr2JunVx7OtWvYpMOx/APorFS/RzrXHpO+vgHIeY5331eK3zprkt84l7hE67eTSO+ilMu5jmsEeN7DLx7cN6XcsClmOeik//yeleABadz8wdgYlAE
   </data>
  </layer>
  <layer id="3" name="Obstacles 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHNltkNwjAMhjnEC1AYBBDXO0xQugVswwSsALwxFFNgS/2LFTlx0lZqI0UJPj47TusyGMSNjMwWYi7j3LxWG9I8ab5ovmluaWrjqwlL2WPyVzJPDh9vOpRW+p5ZFu8+0n19Uovn8/PJc1LMhXJFe9xP3btxcwTeV0vo3RW1aYsHvstDnAIGiSvX8EKT6zgr9xZrPyZDYzDX4jBiF8EyQiWpP4nPbBK8x8ayT/Q4zSq1W8f3dO04flUIY5ORvmnPkyFkf0nteZJzLuvXFg9s5sX2KfhoK+q2JmWTczKbWczBAK/uOydrxmeVffRU47mUPOSGXOusIV7se4vvFscP8VLzy8hBu4tUDuxlbiyT9ZNngL21hniWr6Zvwjso396cguD/AMeT59Xiu7KjwmQb5JnKc/n4jTwLCFpc0btaRAZRPzuqGMA=
+   eAHFlnsOwiAMxlHj6yJG5WTGP9WbeBk9jGeRRr6s6XiUIYxkKbDu14/ymjG6cloYs3SueKxr15SD+Pgo2mjaPWpjeyExvmh51wSPs3K81Q7eOpvj6SiD183lfzM0zdnVa+dGagQ+Njd4L+1z++v5Fw98yXv5OI+Ja5FyePd5XLsgVM+xNPNO3ByHxvTx+jG+1lajvbWGOfj8nJgjfmnMd+d1IfX1XpcyvrbN76Ta+4hi8vOl9MwLaW7B055TIT3oQ96s66gdJ7GIgwLe1D3Hc0Zj1ZyjiB2ynAdtIT9tX4qn3Td8f6d4Wk3wi80F3pdaro2+5fnDHV/CTPFKOPCt4YXuQv4/QDH4eBEzZXM5KeXFYkFn7d6I8Xv2fwE4JRf/
   </data>
  </layer>
  <objectgroup color="#ffff00" id="4" name="Events">

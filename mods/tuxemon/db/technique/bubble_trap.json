@@ -3,7 +3,9 @@
   "accuracy": 0.75,
   "animation": "bomb_bright",
   "effects": [
-    "damage 100"
+    "damage 100",
+    "grabbed target",
+    "grabbed user"
   ],
   "flip_axes": "",
   "healing_power": 0,

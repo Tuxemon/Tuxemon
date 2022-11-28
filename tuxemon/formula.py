@@ -206,6 +206,26 @@ def simple_overfeed(
     return speed
 
 
+def simple_grabbed(monster: Monster) -> None:
+    for move in monster.moves:
+        if move.range.ranged:
+            move.potency = move.default_potency * 0.5
+            move.power = move.default_power * 0.5
+        elif move.range.reach:
+            move.potency = move.default_potency * 0.5
+            move.power = move.default_power * 0.5
+
+
+def simple_stuck(monster: Monster) -> None:
+    for move in monster.moves:
+        if move.range.melee:
+            move.potency = move.default_potency * 0.5
+            move.power = move.default_power * 0.5
+        elif move.range.touch:
+            move.potency = move.default_potency * 0.5
+            move.power = move.default_power * 0.5
+
+
 def escape(level_user: int, level_target: int, attempts: int) -> bool:
     escape = 0.4 + (0.15 * (attempts + level_user - level_target))
     if random.random() <= escape:

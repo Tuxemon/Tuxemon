@@ -131,6 +131,18 @@ msgstr "Can't run!"
 msgid "combat_player_run"
 msgstr "You have run away!"
 
+msgid "combat_player_run_status"
+msgstr "Can't escape.\n{monster} is {status}!"
+
+msgid "combat_player_forfeit_status"
+msgstr "Can't forfeit the match.\n{monster} is {status}!"
+
+msgid "combat_player_swap_status"
+msgstr "Can't switch monsters.\n{monster} is {status}!"
+
+msgid "cannot_use_tech_monster"
+msgstr "{name} can't be used."
+
 msgid "combat_used_x"
 msgstr "{user} used {name}!"
 

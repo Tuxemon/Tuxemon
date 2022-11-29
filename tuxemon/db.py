@@ -361,6 +361,9 @@ class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
     sort: TechSort = Field(..., description="The sort of technique this is")
     icon: str = Field(..., description="The icon to use for the technique")
+    conditions: Sequence[str] = Field(
+        [], description="Conditions that must be met"
+    )
     effects: Sequence[str] = Field(
         [], description="Effects this technique uses"
     )

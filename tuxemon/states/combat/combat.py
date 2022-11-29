@@ -1246,6 +1246,9 @@ class CombatState(CombatAnimations):
                 # reset status stats
                 mon.set_stats()
                 mon.end_combat()
+                # reset technique stats
+                for tech in mon.moves:
+                    tech.set_stats()
 
         # clear action queue
         self._action_queue = list()

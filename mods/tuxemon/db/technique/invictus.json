@@ -4,7 +4,8 @@
   "animation": "triforce",
   "effects": [
     "damage 100",
-    "enraged user"
+    "enraged user",
+    "grabbed target"
   ],
   "flip_axes": "xy",
   "healing_power": 0,

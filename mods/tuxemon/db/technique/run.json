@@ -1,5 +1,9 @@
 {
 	"animation": null,
+	"conditions": [
+	  	"status target,status_grabbed",
+	  	"status target,status_stuck"
+	],
 	"effects": [],
 	"flip_axes": "",
 	"icon": "",

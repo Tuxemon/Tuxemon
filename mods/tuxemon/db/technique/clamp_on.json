@@ -2,7 +2,9 @@
   "tech_id": 17,
   "accuracy": 1,
   "animation": "bite",
-  "effects": [],
+  "effects": [
+    "grabbed target"
+  ],
   "flip_axes": "",
   "healing_power": 0,
   "icon": "",

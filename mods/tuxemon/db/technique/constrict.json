@@ -3,7 +3,8 @@
   "accuracy": 0.75,
   "animation": "tentacle_metal",
   "effects": [
-    "damage 100"
+    "damage 100",
+    "grabbed target"
   ],
   "flip_axes": "",
   "healing_power": 0,

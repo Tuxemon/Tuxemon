@@ -44,4 +44,4 @@ test:
 # Format code
 .PHONY: format
 format:
-	./scripts/fmt.sh
+	tox -e fmt

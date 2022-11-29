@@ -1,7 +1,9 @@
 {
   "animation": "drip_green",
   "category": "negative",
-  "effects": [],
+  "effects": [
+    "stuck all"
+  ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_stuck.png",
   "range": "special",

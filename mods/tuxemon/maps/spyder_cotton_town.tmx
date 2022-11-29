@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="583">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="583">
  <properties>
+  <property name="east" value="dryadsgrove"/>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
+  <property name="slug" value="cotton_town"/>
+  <property name="south" value="route1"/>
   <property name="town" type="bool" value="true"/>
+  <property name="west" value="route2"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
@@ -24,77 +28,41 @@
    </animation>
   </tile>
  </tileset>
- <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
- </tileset>
- <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
- </tileset>
- <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
-  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
- </tileset>
- <tileset firstgid="1531" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
-  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
-  <tile id="255">
-   <animation>
-    <frame tileid="248" duration="150"/>
-    <frame tileid="249" duration="150"/>
-    <frame tileid="250" duration="150"/>
-    <frame tileid="251" duration="150"/>
-    <frame tileid="252" duration="150"/>
-    <frame tileid="253" duration="150"/>
-    <frame tileid="254" duration="150"/>
-    <frame tileid="255" duration="150"/>
-   </animation>
-  </tile>
- </tileset>
- <tileset firstgid="1891" name="city tiles" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
- <tileset firstgid="3331" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
- <tileset firstgid="4771" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
-  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
- </tileset>
- <tileset firstgid="4881" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
- </tileset>
- <tileset firstgid="5037" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
-  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
- </tileset>
- <tileset firstgid="5147" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
- <tileset firstgid="5595" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
- </tileset>
- <tileset firstgid="7035" name="core_buildings" tilewidth="16" tileheight="16" tilecount="1316" columns="47">
+ <tileset firstgid="1313" name="core_buildings" tilewidth="16" tileheight="16" tilecount="1316" columns="47">
   <image source="../gfx/tilesets/core_buildings.png" width="760" height="448"/>
+ </tileset>
+ <tileset firstgid="2629" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
+ </tileset>
+ <tileset firstgid="4923" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1240" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+ </tileset>
+ <tileset firstgid="6163" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtmE1OxDAMhWcDx2NWwAIQC/6uACvKCYBDIOAWcLPxk3jSU2Qn/UmbCnVhuRMnzhfbSdrZH+26E5P9pv91HJDjc5MzkdO/nK8h/2C7MemOd92zyYvJrf0mY8v6xNzXJmBSPjyTsRUf84nYeXyI5ZXZWvFFTNreku/eYgO5WGn8kLdc/V2aPdq/75b7t8ryav68+aL9gdx6/bGmb/P1VVk+A74Hm4+5Vn03kU/ruM9aIr4x+/PX1vpTQT4kBzX5orwPbUdtMbZr5eO9ENU71jxGSnVBn7l+iF+OD2PHSJ881uBL31t45y2l9b3Ey2909vE9hrHXs2KOZ971aV6UbymWaH1615NT+VCHej4v/Yz74NHOQ91PKR9rOqd1PPw9maimHT60nf1ohy7Zc3zqh/FOdc7/HHxgUsEckZT4o3F92+E/jZ+ycf6+/mr32/ji2ugT65bxy91PZJ/KN9cdU4MP+2ppPnyPI6YqXIunyefZ2Bb1yd1N+l2h5wt9Db2HyeJp+vRspba0/uhrTXzRtxviD/7SGkt2rrnUz7NrnUXP3rghbVP4ME/ExfYhLF7fEh//w/PGkk911G9sO/mimi75RZyUj3GjLo2f277xjT8DDnRjhZw=
+   eAHtmFEOwiAMhknUFz2JHkYvuxf1LupRhMQmf8j+ClsRiDyQsg3Yx9/SZpv2zk2j/YUGV+/nG7R7Q34PbJeDc09vpZ39dSuMD+ASvmBrM4o/Y+2Q8eU5a51x5GD9mnxbH2OhnaLYQ9aafOI3Fn9Hzy1jYhufd4mVNZadR8anacfmoPa5ffa+zcfP4m+xO0W/X/LFvku5ZnuSvaVajH2mXwpPqTHoh8HHzzvTv3f9SuSxnByItXUu/lDf3HxlPb53vhDDqXmrxLi5eoD+ZWes5v3Bl58T0V9Dv6EfxoNVX6sx+I418WddP2Q9Cz7cl6xrZRlf+B7HZ9/6wqONY2O0+oN1xEKHJXzaHHzWOp/2nYP7WNpn/l26nvW83vnYPwNrndh6oh+zbN64n5dLe9TrDU6NpEA=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtl0uPTEEUgE/TjWFnZSORESGCzExbiEdiy0IsjDEeiXc84geISCoMK4+dx+ytLLEUxFYmmIg1Nh5jZcEMwVdRJ6lcquY++7akb/LlVN+qe+q75/at6hb5cww3xbhmV4Y1Xe7Xq1+xr83/VL9vre57V6qq3/o5YtowBIMwAPqkx0XMbbgFN+EGaF+a+KWEOh5wPvuIe2HUfb47X8xT5/OE+BgeRfyKrC93GuG7vex8xogX4QLcXyxmEr8p5/OR+AHeR/z0+c64mk1nqN1ExC9snq2nSP2yzZRvtNYv39XVX1Vm/Z4tKd83T/1YK4Q1Q1g75LXH8NLy/fJktGvbK9C1bSt1s1i/LQ0xm2ETbASbf5KxL+EFPHdMEG1fFUdjrpj91O0Xc/yEM7hZxvA7jtMxOApHnN8PxozAtGMX8StU4WZzrsbvEn6riCthHDfLPfyu43QNrsIVeMCat4IxBp9+ouU87WXEqvx6ebu7Au0Ffz/7ky2RUyk4zZg6js/zxHxn756B2PyfGBfrr6rP+i2nrv3/qK0/Z51+vsc7PN/Cm4Sv9RvlGSv+NWnbeq2NaQ9bP3/soj4xC6EP/PNav4HI77AW/1mbsCEw5iDn19G/FvzcsXbSr43XEAwG/GK5dO7QPezBbwS33QX8QvNr/UL99nzWuWO5tC9ZPz2fjGn8kteU8dn3e8ie6ef0P9fld9atzYcC79Rh138u0O/fT6/d2QpsC6xDnbWoZ7a67n2Hq7nGeu5eZHtif1CPMr2mOvhb/kSK7/LOFGO0Dn6cLXeL/bAJeaM/VxVt3dc1VjFHkZy6r2vMmiv2Luv+M9t/CN2ffgNiZr0e
+   eAHtVrdOBDEQnYojZ3SEEon0CXAiS1AjkUpSAYgkoGahoacilHwHHNAgKKmgoCT8ASAanjmPZCxvOHtPpLP0NE4z83bWMzbR72hD9T+b52Wen9MP+k3xe6hw+tScKO/m6Py9FBC9SrxBvgPcKhLklSaIyjLSK4HktSjyLIY4dsBnOzi0QbYCLZJDcyVRN/pdWEtlpNcp10zcXOrLfaHJYmZuEj4nwGEccgwYlRyGwW9J9hchF4B5OTZZ4/x4kjF7zCJ2pUUmi/HOMb94rcZnLc/PLZa7FvVFrR1cQ4RUa4gbKzftIH6mulaH/KxGLtdkpFcFWRmQs27siLTaRs/IYwFR40x1bRDzA0A/0Af0Aj2AKw8/fa22UbKYPiFqHOoZ6XVtHfOiFq5BrgIrwDLgZz8//7cjkDLUlGQ5UX0ENGDPd7QU/F6B97WBu8qn24LfXcA7QrUd1Bf8ihqIioGgZsOvMIZ3hOCntnW8gzaATUBtgt+0xKymo+4L6s9Z6Ov89sHrADg08BO+bxr9GfTgjPQC1U3mPSPQ3cb6TshZUrV1fifgdQqkffipunp/C349wO8bbnCGzrF+IfndRjifOj/dJ4/9zp+4H7il4fdM+hZz6hrvUWUiwvl05af6y0Vf5XdU+9WDOvaL31eN+EdTITnFOTdjmbPxM85b5AgcK7nEc/9F8rdHqWHfGZMoNcyGXzLkPWBjU9e5rtFncjcWd2dY27P85jDbfK/byjDerut8r7N0tRe3flre6yyztc+5nK2eaf8HloKAVw==
   </data>
  </layer>
  <layer id="6" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlWsOgjAQhKuB4+hx9Do9hR7C1/FU/OP4Y0OzCRCofSwZkkm7sNudfiXQNs43kAuuVt3TcZCadSo+9vC3g4binKbEw6+n+DrC2wEainP6C3uJL7mn43AvkpN6LNEz1Z7WtJdUjMbWLcGvRM8xBtaezeE3J9cah6V+yWQpub5OGE6NfQVnVgjImVrxW5tP8os7EfKrj9956/wJinNmo5rvX9w5kR/5xRGop/qBb94dukFX6AJpd5+N8x30hl7QE9I5jEmABEigBAH5H+vxX170ulPxFy4xQ6Y=
+   eAHtlUEOgyAQRVn1CNa6rfegN9Ob1aXWHqq/i0nIJMaYKTCpf5IfHALM50EwtiE8oDSi6tN5Orbkt/gY4G+EtvIanr41xdcT3iZoKy/pL60lvqRP5xGe9V2QsbnaGjW5l1wEbOvWuAs1atoo+Zp9hN+Rsb52mc8NmdjZCsO91l6JK5QmIGdauu6/1CM/20mSnz9+90sIPXSG4P2znTL5kZ+NgJ/ZM968BXpBK/SGdDTou0ItdIM6iEECJEACHgjI/1i3v/Km193LPzO6Kj0=
   </data>
  </layer>
  <layer id="7" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlksKwjAQQFPb+l1ZdelSr6LeRj1B7uTN/H82PhcDtVjqYsQQJvBI29CZzCMMcc6GGTAD/zIwaDnfhx50oQOyl0ni/BhGUMAQZM1mM2AG4jSQZ85nUJ2lWvle7h3SQ2ZT5+YQ+vjU19r0vhwySKEFCWjXIv6041o8MxCbgXKPqd5PXrU23VGa/o/Nl9XzGwNn7r4nOMIB9lDOVHfOpNfXrZdjaD9Lbu24Fk/HwK54P0PVd50sFsUM6Bj4poc96It3uMEVLqCTPe4oq9T5JSwgxEq37GsD60D3F6Iz25MZaDLwBPL2PKs=
+   eAHtlksKwjAURQOCKxCtjvztQ2fqbtSxA5fnb+Rv7ncdHgeBtFgiGNtS7oNDk7Z5SQ7lNcYoZEAG8jKwqhqzhg1sYQc29rQPcIQTnEEhAzJQbgODyJghJK921/a+WzvSaogdU7Trp7p2ob5d4QZ3eMATQof1Fzqv8slA2Qy4NSZ5Pnnv1XdG8Y0vmy/t5z8G2vwHOtCFHvTBjbTvzNb6tOdujtBtO3fovMoXxsCiFs+T7MefqicD+Rr4pobVqYsNiKAJLVD4DUwqZjmGEfjfzv6NOeuawbSg68veiGaUgd8NvACgmjv7
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
@@ -390,7 +358,7 @@
   </object>
   <object id="561" name="Sign: Cotton Town" type="event" x="384" y="592" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_cottontown_townsign"/>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

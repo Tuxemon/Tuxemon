@@ -3,8 +3,9 @@
   "accuracy": 0.75,
   "animation": "triforce",
   "effects": [
-    "damage",
-    "enraged user"
+    "damage 100",
+    "enraged user",
+    "grabbed target"
   ],
   "flip_axes": "xy",
   "healing_power": 0,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.7.2" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+<tileset version="1.8" tiledversion="1.8.0" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
  <editorsettings>
   <export target="rubberduck_outdoor.tsx" format="tsx"/>
  </editorsettings>
@@ -3298,6 +3298,13 @@
    <property name="enter_from" value="left"/>
    <property name="exit_to" value="right"/>
   </properties>
+ </tile>
+ <tile id="1268">
+  <animation>
+   <frame tileid="1269" duration="200"/>
+   <frame tileid="1270" duration="200"/>
+   <frame tileid="1271" duration="200"/>
+  </animation>
  </tile>
  <tile id="1269">
   <properties>

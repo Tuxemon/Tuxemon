@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "firelion_front",
   "effects": [
-    "damage",
+    "damage 100",
     "exhausted user"
   ],
   "flip_axes": "",

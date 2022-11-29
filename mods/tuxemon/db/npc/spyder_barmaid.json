@@ -3,5 +3,5 @@
   "gender": "female",
   "sprite_name": "barmaid",
   "combat_front": "barmaid.png",
-  "combat_back": "red_back.png"
+  "combat_back": "adventurer_back.png"
 }

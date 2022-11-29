@@ -2,6 +2,6 @@
   "slug": "christie",
   "gender": "female",
   "sprite_name": "christie",
-  "combat_front": "femaletrainer_front.png",
-  "combat_back": "red_back.png"
+  "combat_front": "heroine.png",
+  "combat_back": "adventurer_back.png"
 }

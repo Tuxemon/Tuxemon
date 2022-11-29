@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "triple_whammy_80",
   "effects": [
-    "damage"
+    "damage 100"
   ],
   "flip_axes": "",
   "healing_power": 0,

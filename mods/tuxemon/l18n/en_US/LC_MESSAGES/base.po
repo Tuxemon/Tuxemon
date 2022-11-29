@@ -131,6 +131,18 @@ msgstr "Can't run!"
 msgid "combat_player_run"
 msgstr "You have run away!"
 
+msgid "combat_player_run_status"
+msgstr "Can't escape.\n{monster} is {status}!"
+
+msgid "combat_player_forfeit_status"
+msgstr "Can't forfeit the match.\n{monster} is {status}!"
+
+msgid "combat_player_swap_status"
+msgstr "Can't switch monsters.\n{monster} is {status}!"
+
+msgid "cannot_use_tech_monster"
+msgstr "{name} can't be used."
+
 msgid "combat_used_x"
 msgstr "{user} used {name}!"
 
@@ -174,7 +186,7 @@ msgid "combat_victory"
 msgstr "You have won!"
 
 msgid "combat_victory_trainer"
-msgstr "You have won against {npc} and you get {currency}{prize}!"
+msgstr "You have won against {npc}!\n You get {currency}{prize}!"
 
 msgid "combat_defeat"
 msgstr "You've been defeated!"
@@ -702,6 +714,132 @@ msgstr "Whirlwind"
 msgid "wing_tip"
 msgstr "Wing Tip"
 
+## MAP ##
+
+msgid "candy_town"
+msgstr "Candy"
+
+msgid "citypark"
+msgstr "Citypark"
+
+msgid "cotton_town"
+msgstr "Cotton"
+
+msgid "dryadsgrove"
+msgstr "Dryad's Grove"
+
+msgid "flower_city"
+msgstr "Flower"
+
+msgid "leather_town"
+msgstr "Leather"
+
+msgid "paper_town"
+msgstr "Paper"
+
+msgid "route1"
+msgstr "Route 1"
+
+msgid "route1_sanglorian"
+msgstr "Sanglorian Avenue"
+
+msgid "route2"
+msgstr "Route 2"
+
+msgid "route3"
+msgstr "Route 3"
+
+msgid "route4"
+msgstr "Route 4"
+
+msgid "route5"
+msgstr "Route 5"
+
+msgid "route6"
+msgstr "Route 6"
+
+msgid "routea"
+msgstr "Route A"
+
+msgid "routec"
+msgstr "Route C"
+
+msgid "routed"
+msgstr "Route D"
+
+msgid "routee"
+msgstr "Route E"
+
+msgid "taba_town"
+msgstr "Taba"
+
+msgid "timber_town"
+msgstr "Timber"
+
+msgid "tunnel"
+msgstr "Tunnel"
+
+## MAP DESCRIPTIONS TOWN / CITY ##
+
+msgid "candy_town_description"
+msgstr "Candy Town Slogan"
+
+msgid "citypark_description"
+msgstr "A Taste of the Wild!"
+
+msgid "cotton_town_description"
+msgstr "A growing force!"
+
+msgid "flower_city_description"
+msgstr "Uniforms that guard you while you sleep!"
+
+msgid "leather_town_description"
+msgstr "Proof that beauty and mining can co-exist!"
+
+msgid "paper_town_description"
+msgstr "The gateway to Fondent!"
+
+msgid "route1_description"
+msgstr "Take care!"
+
+msgid "route2_description"
+msgstr "The historic path!"
+
+msgid "route5_description"
+msgstr "The memorial passage to Timber Town!"
+
+msgid "taba_town_description"
+msgstr "A peaceful refuge!"
+
+msgid "timber_town_description"
+msgstr "Breadbasket of Fondant!"
+
+## MAP SIGNS ##
+
+msgid "welcome_location_city"
+msgstr "Welcome to ${{map_name}} City: ${{map_desc}}\n"
+"North: ${{north}} / South: ${{south}} / West: ${{west}} / East: ${{east}}"
+
+msgid "welcome_location_route"
+msgstr "Welcome to ${{map_name}}: ${{map_desc}}\n"
+"North: ${{north}} / South: ${{south}} / West: ${{west}} / East: ${{east}}"
+
+msgid "welcome_location_town"
+msgstr "Welcome to ${{map_name}} Town: ${{map_desc}}\n"
+"North: ${{north}} / South: ${{south}} / West: ${{west}} / East: ${{east}}"
+
+msgid "here_to_north"
+msgstr "From ${{map_name}} to ${{north}}"
+
+msgid "here_to_south"
+msgstr "From ${{map_name}} to ${{south}}"
+
+msgid "here_to_west"
+msgstr "From ${{map_name}} to ${{west}}"
+
+msgid "here_to_east"
+msgstr "From ${{map_name}} to ${{east}}"
+
 ## MENU TRANSLATIONS ##
 
 msgid "menu_alphabet"
@@ -732,6 +870,17 @@ msgstr "Are you sure you would like to release {name}?"
 
 msgid "tuxemon_released"
 msgstr "{name} has been released."
+
+msgid "evolution_confirmation"
+msgstr "{name} is trying to evolve. Allow evolution?"
+
+msgid "tuxemon_stat1"
+msgstr "ID {txmn}, {type}, {doc} days ago\n"
+"{exp}xp, {exp_lv}xp to Lv {lv}\n"
+"Body: {weight} {unit_weight} {height} {unit_height}"
+
+msgid "tuxemon_stat2"
+msgstr "{desc}"
 
 # Menu notifications
 msgid "log_off"
@@ -2514,9 +2663,6 @@ msgstr "Team Xero Grunt X"
 
 ## DIALOG TRANSLATIONS ##
 # general dialogs
-msgid "healmytuxemon"
-msgstr "Do you want to heal your Tuxemon?"
-
 msgid "haveagoodday"
 msgstr "Have a good day!"
 
@@ -2552,9 +2698,6 @@ msgstr "It's a fountain. A lot of coins are at the bottom."
 
 msgid "tree"
 msgstr "This tree looks happy and healthy!"
-
-msgid "route_2"
-msgstr "Route 2"
 
 msgid "sure_i_do"
 msgstr "Sure I do."
@@ -2684,19 +2827,11 @@ msgstr "Cathedral Center: We Live to Serve."
 msgid "Cotton_Mart"
 msgstr "Get the scoop at the Scoop Store!"
 
-msgid "Cotton_Town_Sign\n"
-msgstr "Welcome to Cotton Town: A Growing Force\n" 
-"↑ Cotton Town --- Route 1 ↓\n"
-
 msgid "column1"
 msgstr "A rare and ancient column. This used to be part of a temple."
 
 msgid "column2"
 msgstr "A rare and ancient column. Other ruins from the same culture can be found on Route 3. "
-
-msgid "cityparksign\n"
-msgstr "Welcome to City Park: A Taste of the Wild\n"
-"↑ City Park --- Route 2 ↓\n"
 
 msgid "route2speech"
 msgstr "EEK!!!"
@@ -2714,7 +2849,7 @@ msgid "yestalk"
 msgstr "Really? Thanks..."
 
 msgid "notalk"
-msgstr "How insensitive of you! Too bad, you’ll have to listen to me anyway!"
+msgstr "How insensitive of you! Too bad, you'll have to listen to me anyway!"
 
 msgid "spillit\n"
 msgstr "You know that I am the leader of the Xero institute and that I recruited you to fight them. But you don't know something else.\n"
@@ -2969,7 +3104,7 @@ msgid "ohnoes"
 msgstr "Well... I don't know how to feel about this..."
 
 msgid "ohnoes2"
-msgstr "Now that that’s over...we still need potions from the Tuxemart.\n"
+msgstr "Now that that's over...we still need potions from the Tuxemart.\n"
 "Make sure you're back before curfew though!"
 
 msgid "depressedmom"
@@ -3539,11 +3674,8 @@ msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"
 "The rest is weathered away."
 
-msgid "cottonnurse_dialog"
-msgstr "Welcome to the Cotton Town Tuxecenter!"
-
 msgid "tabanurse_dialog\n"
-msgstr "Welcome to the Taba Town Tuxecenter!\n"
+msgstr "Welcome to the ${{map_name}} Tuxecenter!\n"
 "Do you want to heal your Tuxemon?\n"
 
 msgid "okaythen"
@@ -3890,6 +4022,8 @@ msgstr "Did you know that the first spectacles were made of beryl, not glass? \n
 
 msgid "spyder_leather_maniac" 
 msgstr "How is your adventure so far? \n ... \n Wow, so talkative! You are really coming out of your shell." 
+msgid "spyder_route3_sign"
+msgstr "Rehabilitation will begin as soon as possible. \n Please stop nagging us."
 msgid "spyder_route3_drag1" 
 msgstr "AGENT: What happened to the excavation? \n SHAFT BOSS: We got ... interrupted. By ... a kid. \n AGENT: A kid?! \n SHAFT BOSS: But we did manage to recover one ... \n AGENT: Hush! You know that's top secret. Alright, hand it over and scram! \n SHAFT BOSS: Okay, here ... uh!" 
 msgid "spyder_route3_drag2" 
@@ -4901,23 +5035,16 @@ msgid "_mk01alpha"
 msgstr "Mk01 Alpha"
 
 
-
 ## MESSAGE TRANSLATIONS ##
 # spyder messages
 msgid "spyder_multi_underrepairs"
 msgstr "The sign reads, 'Under repairs'"
-
-msgid "spyder_papertown_townsign"
-msgstr "Paper Town: The gateway to Fondent!"
 
 msgid "spyder_multi_martsign"
 msgstr "Buy things here"
 
 msgid "spyder_papertown_daycare1"
 msgstr "Daycare Centre: Under construction."
-
-msgid "spyder_route1_routesign"
-msgstr "Route 1: Take care!"
 
 msgid "spyder_papertown_daycare2"
 msgstr "Daycare Centre: Open now!"
@@ -4937,12 +5064,6 @@ msgstr "What's on TV? A prom queen is breaking her tiara into pieces and handing
 msgid "spyder_citypark_achievement"
 msgstr "Achievement Maniac's House: Closed."
 
-msgid "spyder_cottontown_townsign" 
-msgstr "Welcome to Cotton Town: A growing force." 
-msgid "spyder_route2_routesign" 
-msgstr "Welcome to Route 2: The historic path." 
-msgid "spyder_citypark_routesign" 
-msgstr "City Park: A taste of the wild." 
 msgid "spyder_column1_sign" 
 msgstr "A rare ancient column. This was once part of a temple building." 
 msgid "spyder_column2_sign" 
@@ -4971,10 +5092,6 @@ msgid "spyder_nimrod3_plaque"
 msgstr "The symbol of an ancient empire was the Eaglace, because when the empire invaded from the icy north their generals and scouts rode on Eaglace. \n Today, medic teams in our mighty republic are training with Agnidon for protection and transport. "
 msgid "spyder_nimrod4_plaque"
 msgstr "But soon, tuxemon and humans may be rendered obsolete. \n Our corporate sponsors Nimrod are developing robot technology that could make war a bloodless affair. \n In the meantime, sign up for the Nimrod Enforcers for good pay, free education and a life of adventure."
-msgid "spyder_route3_sign"
-msgstr "Route 3: Rehabilitation will begin as soon as possible. \n Please stop nagging us."
-msgid "spyder_leathertown_sign"
-msgstr "Leather Town: Proof that beauty and mining can co-exist."
 msgid "spyder_shaft1_sign"
 msgstr "Shaft Headquarters: Mining Division"
 msgid "spyder_shaft2_sign"
@@ -4984,10 +5101,6 @@ msgstr "Open Air Cafe and Marketplace"
 msgid "spyder_leathercbd_sign"
 msgstr "Leather Town Business District"
 
-msgid "spyder_flower_sign"
-msgstr "Flower City: Uniforms that guard you while you sleep"
-msgid "spyder_route5_sign"
-msgstr "The memorial passage to Timber Town"
 msgid "spyder_leatherhouse1_radio"
 msgstr "An R&B song is playing. It's called \"Possessuns, Part II\"."
 msgid "spyder_flower_dojo_sign"
@@ -5001,8 +5114,6 @@ msgstr "Haha, suckers - you'll never find me. \n It's on the Omnichannel CEO's l
 
 msgid "spyder_cottonhouse1_tvwatch"
 msgstr "It's the latest reality show: people and their tuxemon complete challenges on a remote island."
-msgid "spyder_timber_sign"
-msgstr "Timber Town: Breadbasket of Fondant."
 
 
 ## Item descriptions ##
@@ -5020,18 +5131,6 @@ msgid "sledgehammer_description"
 msgstr "Smash apart grey boulders."
 msgid "sledgehammer"
 msgstr "Sledgehammer"
-msgid "timber"
-msgstr "Timber Town"
-msgid "flower"
-msgstr "Flower City"
-msgid "paper"
-msgstr "Paper Town"
-msgid "candy"
-msgstr "Candy Town"
-msgid "cotton"
-msgstr "Cotton Town"
-msgid "leather"
-msgstr "Leather Town"
 
 msgid "cannot_use_item_monster"
 msgstr "This item cannot be used on this monster."
@@ -5166,18 +5265,6 @@ msgid "taba_town_sign_tuxemart"
 msgstr "Tuxemart - A place to buy and sell items"
 msgid "taba_town_sign_tuxecenter"
 msgstr "Tuxecenter - A place to heal your tuxemon"
-msgid "taba_town_sign"
-msgstr "Taba Town - A peaceful refuge"
-msgid "taba_town_route20"
-msgstr "Route 20"
 
-msgid "route2_to_cotton"
-msgstr "^ Route 2 --- Cotton Town v"
-
-msgid "leather_town_sign_leather_route"
-msgstr "v Leather Town --- Route 3 ^"
 msgid "leather_town_open_air"
 msgstr "Open Air Cafe and Marketplace"
-
-msgid "citypark_route_sign"
-msgstr "v City Park --- Leather Town ^"

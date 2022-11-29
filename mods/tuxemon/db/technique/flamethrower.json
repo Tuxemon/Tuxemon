@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "firelion_right",
   "effects": [
-    "damage"
+    "damage 100"
   ],
   "flip_axes": "x",
   "healing_power": 0,

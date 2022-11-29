@@ -1,85 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="468">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="468">
  <properties>
+  <property name="east" value="route5"/>
   <property name="edges" value="clamped"/>
+  <property name="north" value="routea"/>
   <property name="scenario" value="spyder"/>
+  <property name="slug" value="flower_city"/>
   <property name="town" type="bool" value="true"/>
+  <property name="west" value="route4"/>
  </properties>
- <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
-  <tile id="839">
-   <animation>
-    <frame tileid="839" duration="200"/>
-    <frame tileid="842" duration="200"/>
-    <frame tileid="845" duration="200"/>
-    <frame tileid="848" duration="200"/>
-   </animation>
-  </tile>
-  <tile id="880">
-   <animation>
-    <frame tileid="880" duration="200"/>
-    <frame tileid="883" duration="200"/>
-    <frame tileid="886" duration="200"/>
-    <frame tileid="889" duration="200"/>
-   </animation>
-  </tile>
+ <tileset firstgid="1" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
- <tileset firstgid="1313" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
-  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
-  <tile id="255">
-   <animation>
-    <frame tileid="248" duration="150"/>
-    <frame tileid="249" duration="150"/>
-    <frame tileid="250" duration="150"/>
-    <frame tileid="251" duration="150"/>
-    <frame tileid="252" duration="150"/>
-    <frame tileid="253" duration="150"/>
-    <frame tileid="254" duration="150"/>
-    <frame tileid="255" duration="150"/>
-   </animation>
-  </tile>
+ <tileset firstgid="8193" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
- <tileset firstgid="1673" name="city tiles" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/city tiles.png" width="64" height="64"/>
+ <tileset firstgid="16385" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
  </tileset>
- <tileset firstgid="1689" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ <tileset firstgid="18679" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
- <tileset firstgid="3129" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
+ <tileset firstgid="19640" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="21934" name="core_buildings" tilewidth="16" tileheight="16" tilecount="1316" columns="47">
+  <image source="../gfx/tilesets/core_buildings.png" width="760" height="448"/>
  </tileset>
- <tileset firstgid="3577" name="Terrain_by_George" tilewidth="16" tileheight="16" tilecount="360" columns="15">
-  <image source="../gfx/tilesets/Terrain_by_George.png" width="240" height="384"/>
- </tileset>
- <tileset firstgid="3937" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
-  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
- </tileset>
- <tileset firstgid="5537" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
+ <tileset firstgid="23250" name="core_outdoor_water" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_water.png" width="1024" height="2048"/>
  </tileset>
  <layer id="1" name="Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtl01OAzEMhaNKbTdwCqAcBNq5Vu8BtAfh7yDAsnAHVjwjLFlWMrLjTmYkurCaTp28b17szPRwlrZfiE/EYYLjKTJJv058sfpp4d/yPG0X/kiYl1rwXYNt5Y+EeU35LsG4sUfqGvNdgU32pmXccn/H5EMt//ZA7pzn+huTjxluwTlX+8i/jcnXgekCQX2qz5Kbv+tj8lEds0+ls2QqfKUzZA0fLT0rc47Zv+xfjU+SSY6PwUf7SetE6kwyyXGEj/3S9cb+fc/i75QRPurZXK3V1Jn0TI4jfC3mttCQfnjHET6qL6+eNz/C12JurQb3LvVq7p3A61Mp/7/zSZ9rvKiZQ3vBuvQ+tRAxx1iuyXlUB/K6dWzN0/XBuvrZoXnlM69GyzJnKfxhr1hX85W+D+lfyascS+k/2nrA/e2w9sYYtRy6fvjMsuzvA/rh3hB3yOF1S3re61o3p/EM3SdDPA7Ap3VfoaGZXwxstE5url4rd/99e6j5hv7u9biGZw+v3hE7o69Sw8tHOhxWPdaw1mWET+79h2Bl5tznG/KoTy35+p753qRu37jvN+9ZkMvXHp/4fO/0Uf9+ACKTV6o=
+   eAHtV+0RATEQzW86oBXfKlCC0cD9QQeoASXoAcVQh11jbzJrwyYnuYw5Mzt3icR7+7IfUYyMKRprNPjjGFiCb6sAWyfSZA84x4mfHXB9Yn43wLt42DUxv1R6+NbL8nwT6SHxoxyQYjoHfsjhANYaG8M55sDvDNzuYJinyNGuJ20YP/MXvpe0TzVX6uSqJZnwc9WRVPXCPg87L0r9ataJ+CE3ii2MOXrPpc6VevF4e+ln4EO+1PHEnJX6lW+coZ/Yb+vwQYNJ/HKJC845Fr9fxVcsflyH0HEMfvibv+pZDT93bdDoHFM/flcJuVvF5Mf/93C+mp5XlR/dAcQ7He9trjHkkyu/q/LD/Vwn1zjkbkV90rcvkr+0X+q1fC4Ug7BCnj04s77CBrAm5Pc/7eG4EsYccE+z77aIwI/jDqfvWo1gjq+TxtJejf+f9JNwYs75ahzCpQN6buEsu0pdbQxffohDpsUjDG1cVuFnn/3G4kqcpefulQea9dxn8s3GrfOda9zw86vBVfV7AOh3izw=
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHNll1Kw0AUhccn9UHaJxXfFNquQ0Hdg4hupW8iiroJwQVoW5fhBvzXdXiCfDAMc5NJ0k4TOJ527p07n6dpqHPduvY23HhXwrtF59yB2PYlvGt88JCfsnR63bmL/JRlkWnydb7jxmcVOlE9eeCcG6919lWFLhbAt95z4zVDq1rn3yzyO61QSn7cX5ZzHr4thi1Dmx5fkd9lhVLy4/6yHC48le9ZbLOIplqbSE/So8Rcy8mN72fo1Nmfyvers38i+tbal/QpfUjMtZzc+H6GTp39qXz0t/UwH+aRY1jPzRfmAx85Uoc3N1+YD3zwUIc3Nx/5wIXDQx3e3HzkAxcOD3V4R3rGDQ0NvOcfc9o6+YRz4LHqYX+b9w8r9m7ysTqq6ta+OusvJXx+PiP93htKvb5zfam4qPN5/6/m++vnA99AjBBQ5/NmPZeTT3FejM+vN2Uqu7/qzIzxkV+dOWFv2f0V9pa9j/GR3zw4y85OqcX44IIzZc6iemJ8cMG5qLNT5sb44IIzZc6iemJ8cMFpnX3vPZOsnibr/nM3xgcXnE3OaLPHf+7G+OCCs81ZTfb6+R3rMzqSDiXW4YKzyRlt9vj5+XNYhwtOv6fO67tVN76VbqQ6+8jJcrjgrDPb752JaypNavKRk+VtuWB8F9eb9FqTj/1hfuSG07csD/MjN3xZXJxLTpbTtywnJ8tzc1Xdb9TJMzdf1f1GnTxz85FPqufmI59U/wO46DH9
+   eAHVWEtuFDEQ9TnCxhfwkBUs2QASBBQJCXKKHliwgIAQK8hdEg8cJQnHgA0LPjt4pZ43sqrttts4Viip9Mb1qlxvXN0eaZw1ZgV3CTQwzUms1Fgb5sdi5MkRB2vMGp5CqdOcxEqNtWF+LEaeHNFbYzbwFEqd5iRWaqwN82Mx8uSIzo7zJT+HP+7NsVfDDXacb8nue/eN+frUmG8Z/w6+lfEcS/a7A317z4y5kXELvpVxvmdP8JwlfIM4rff5cb4X0HCZ8C+Bvlbnx3PJobfj+1uq7wFm9zDiB4g9gj+GH8JzxnPJIfcp1fcKvV9H/BixN/C38HfwnPFccsh9SvUx/1/R2fi9xrjG3voG6JPfLW2Ma+ytz0Ob/G5pY1xjb30O2lZwbYxr7K1vgLYl8/2JO+5Xwn8H95/+vrVrD31L5lvbZ67u/Mi8T/Gcn+Zf3h0j5Ik6r8X6z1F6l8FO53sL9+bt7d1Jnpje6WoYD32x+bIbeSLjvdBBX+z9ZX/yRMaX4NzzldtnsNP5hjXkiSFX+nnu+crt4e31nm9Ov4N+mT8xl9+b51yJvfvn+nk7zp+Yy2/NO/Rv8f7a7X3eWl9ubuSJrfvn9vM4v//xfnbQHb63XOe+b2s+NTfGNdb2/4D/PD7CTxb+9+FxTrH5Mq6xVt8pdJ3B/UJ9Dvpic9TxWl2sO4euC/jlQn0D9K3hOWSf3uihTeabQ9HlkFdy1rV50oO2dA+pG2zZWdfmUVtNL6nxtuysa/OkB23pHlLnbGK+4FbCK7yJ/H04UfO7NXLkuQkt2Qt5sWdMagdwa/gEwa2FV/gcuS/gRM3v1siRfUOb9AAf7b2NS63H5w18guA2wiv8hNzPcKLmd2vkyL6hTXqAj/bexv8C/cymsg==
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlrluU0EUQCeJICBlE02M2WwnCH6ATRQhgYJsnxBCggDXbBLdQxRAAgLxB0DDDwASJUsBBUv4glBBxVawiIIzsq90Gd74zThPUbD8pKNZ3sydM/fNWDam9rxcZ5IXUG8a3a70mqQMUsqYlZYDHSbphz7ohR5wY4rHe9yWwW1Xu00yhtso2NKdv5L2AXz2wz7YC3vAjSde0u+2pb+Z8nHGfubxmYPjMAvHYFOxmZVqczb2/7u/RtEuZvgt4rMA1+AqXIGRSL/dao0CfrNF9gkzHrRvlp8e66vLefO91/278LuO1yIseNDj8/CT83YwMK82f9qhUT0Pv5j8WRebv0ZO+l0efpI/HddXv70+3M3GyMPP5+L2x7rd5V7dUXfLjSftKmf6NJyCkyD9UsZ831hHWaNReQunm3VupPiFft8YtyMBeRPn5wMmeQZP4QlIfzNljGNo/Lz8XLdPg8Z8hi/wFb6BPMNrIH9bC8Zsg+2wA0rQzBOaP8lPVikO4/hMwCRMwTTo512nSZbgLbyB1/AK9Bhbz/LT9zfUzV0jrf277vKL8if8gO/1Pj3e9fvY8/ce9P2tOu90nNj6zq7aOkOUFShDqd6nYy3xm/IIHsKDlN8XPbaV6qHnS/a8IeJOyxxdnmD+fAZzao3Q86XX8NW7+F3uhA647zljl9XavjiX1JiQ8zXMfRiCCpShBL7YWf3ab9mzB+2XFc++n8ZnCiZhAsYhZF7aGO2X9t72xfpdwOc8nIOzcAbSYuvvm/be9oX4+eauRr/1++D5rquxftYa9/Cz/yldBruNKcBmKMIWyPsJ+b6+NUfwOQSjMAaHoVUf329bq+336Bq+J62W6/Z+2hloZ6Cdgf81A38AKOkEhQ==
-  </data>
- </layer>
- <layer id="4" name="Above Player" width="40" height="40">
-  <data encoding="base64" compression="zlib">
-   eAHt0AENAAAAwqD3T20PBxEoDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQNfAwMZAAAB
+   eAHtlstSE0EUQJuQgJYKXyD8giZxo+LGsHDpwgR1pUbhM2aFj5UxCCsI8BEurZQGVwqlebjx9QugUBag5RnMVPWEeXTPTEYrNV11aiY9t/uevpl0Woh/1+ZKwpiFB3AfyqBrs6c7QCN+CZ9FeA4LUAWN4aFDpwveU7zBZwMa8BpeQe2a95gon+5f9Z5tF58f8B12YBte6vqlvHN4PfXz8xobx7Mo/V7o1lVhgVH6KaTTDonbr3FdTzFOP123CfaWSZ/9xVztxxvC6EAbWqBXAXu0rqN9tPOnkaIwMpCGYXCO8u/th5uZ9QJOechBNoSfOVc/HMs43YO7cCeEX6/bp6IQn+ELfIVvEKT1q36nSkKchjMwBuMQpKnWz6qP39VyuIjPJbgMU3AF5LbOf+karEINVmAZ5BjzXqd+qm69OZw+v++6bHHdhHfwttsnx6vWzxxTD3EWkHMe3c/8rdVvnH7BIRw4+FX5TTyDCjwN8fs4lv8/71B9v6xl1Iesu2DXJmfJlg9t6byp+n6p2IyyN52Ak+Ye5bKOn1Jutzlt//cK79cH8jWhBW3oQNAm+1VcJrH5ucTI3UPsOSkYhjRkIGiT/dzm0PU7h895yEIO8uDUbN+vUwB9Kn4uQ2PpNv2MdCypAiU5WxDCPFP2UuKdnoGbcAtuQ9RN5ft1yzmPz0N4BI/hCQxsc9nbBm29RpTnhEErTrKepAJJBZIKJBU4qsAf9XvTow==
   </data>
  </layer>
  <layer id="5" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtmEtKxEAQhmsyM9GNzOxEd7oXRUTXehqPkUO4cOfrJr4fS1FRD6GjC18bv0YKQggT0umOLXbBR6UrpOvPn07oGZF6MepIdjcj2S3cgB5rNrVrmJuSbB7yWTtpXccuc39Wsh50Ickd52tCfR1tG5DPqkPrOnaZi/qMzjxGs9Fn23Nz4udaW4+X6b00hkXOLTTQp/fl02PtEfPvOWC7/tpSHNdfW07HPj4cOJwWOYJjOIFTiOHOgTSRrA896EICHXDXIc701xwYDEWG4CL+0/p6HEj2APdQ9M7nPuGL3yqf8AHv8AbF/lXjuE+ockhk3POtunonFdmFPdiHAwgpztBzDhdwCVcQUjyh5xlG8AKv4DqaPF/XWkKabyut/z1pU/924Pra9CL2KndgZTLsNWxUrwWscdVCm889T9lT1v8Ey86V1drc86gXvnLZ/dWpqRe+stGia8j2XfTlnc5rNDZ5B315p/MafbbxDbiGs8I=
+   eAHtlrkOAVEUhu+DoLbVvIcEoddaH8BLeANbZXsB1LYatVChtiW+RqUYk7kZJ5w/+Zq5M3P+/OecyRjjTuO0MRMHppx/S0dqnxw4/5C/Qs5u0oGMMUEHQpx/qoZlf5/W1fs0AU1AE/jVBHp8g/swgCGMQGUvgWLWmBKUoQJVqIHqfxNIsGNJS3v2T/O15n97A1uf/7ub9KoFbehAF1T2E/DS3xkzMYcFLGEFknTBzxVucIcHSFKYmY5AFGIQB9vy0l/bXiS9r56S5ObdS0u4v3fHesXvBHZ5vyu6r3cQ7HEv2Jv7pPWJbyTwmiHJuyh5B7307AlGMGE5
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">
@@ -120,19 +86,16 @@
   <object id="366" type="collision" x="320" y="0" width="64" height="160"/>
   <object id="367" type="collision" x="192" y="0" width="128" height="128"/>
   <object id="368" type="collision" x="192" y="128" width="112" height="32"/>
-  <object id="369" type="collision" x="384" y="0" width="48" height="32"/>
-  <object id="370" type="collision" x="464" y="0" width="32" height="32"/>
+  <object id="369" type="collision" x="384" y="0" width="32" height="48"/>
+  <object id="370" type="collision" x="464" y="0" width="32" height="48"/>
   <object id="372" type="collision" x="496" y="0" width="80" height="64"/>
   <object id="373" type="collision" x="576" y="32" width="16" height="16"/>
-  <object id="374" type="collision" x="592" y="0" width="32" height="32"/>
-  <object id="375" type="collision" x="608" y="32" width="32" height="32"/>
-  <object id="378" type="collision" x="32" y="0" width="32" height="32"/>
-  <object id="379" type="collision" x="64" y="16" width="32" height="32"/>
-  <object id="380" type="collision" x="96" y="0" width="32" height="32"/>
+  <object id="374" type="collision" x="592" y="0" width="48" height="48"/>
+  <object id="378" type="collision" x="32" y="0" width="96" height="48"/>
   <object id="381" type="collision" x="128" y="16" width="16" height="16"/>
-  <object id="382" type="collision" x="144" y="0" width="48" height="32"/>
-  <object id="386" type="collision" x="480" y="96" width="32" height="224"/>
-  <object id="387" type="collision" x="512" y="96" width="128" height="64"/>
+  <object id="382" type="collision" x="144" y="0" width="48" height="48"/>
+  <object id="386" type="collision" x="480" y="112" width="32" height="240"/>
+  <object id="387" type="collision" x="512" y="112" width="128" height="48"/>
   <object id="388" type="collision" x="576" y="160" width="64" height="96"/>
   <object id="389" x="576" y="256" width="16" height="16"/>
   <object id="390" type="collision" x="560" y="272" width="32" height="16"/>
@@ -140,13 +103,13 @@
   <object id="392" type="collision" x="544" y="256" width="16" height="16"/>
   <object id="393" type="collision" x="608" y="256" width="32" height="288"/>
   <object id="394" type="collision" x="576" y="448" width="32" height="96"/>
-  <object id="395" type="collision" x="480" y="480" width="96" height="32"/>
-  <object id="396" type="collision" x="480" y="416" width="32" height="64"/>
-  <object id="397" type="collision" x="512" y="512" width="80" height="96"/>
-  <object id="398" type="collision" x="448" y="576" width="64" height="32"/>
+  <object id="395" type="collision" x="480" y="480" width="32" height="64"/>
+  <object id="396" type="collision" x="480" y="400" width="32" height="80"/>
+  <object id="397" type="collision" x="512" y="496" width="80" height="112"/>
+  <object id="398" type="collision" x="448" y="544" width="64" height="64"/>
   <object id="399" type="collision" x="368" y="448" width="16" height="16"/>
   <object id="400" type="collision" x="0" y="16" width="32" height="128"/>
-  <object id="401" type="collision" x="0" y="160" width="32" height="128"/>
+  <object id="401" type="collision" x="0" y="176" width="32" height="112"/>
   <object id="402" type="collision" x="0" y="288" width="32" height="32"/>
   <object id="409" type="collision" x="576" y="48" width="16" height="16"/>
   <object id="415" type="collision" x="0" y="416" width="32" height="96"/>
@@ -285,14 +248,14 @@
   </object>
   <object id="410" name="Sign: Flower City" type="event" x="576" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_flower_sign"/>
+    <property name="act1" value="translated_dialog welcome_location_city"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="412" name="Sign: Route 5" type="event" x="32" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_route5_sign"/>
+    <property name="act1" value="translated_dialog here_to_east"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

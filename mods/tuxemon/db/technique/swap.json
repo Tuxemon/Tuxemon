@@ -1,7 +1,11 @@
 {
 	"animation": null,
+	"conditions": [
+	  	"status target,status_grabbed",
+	  	"status target,status_stuck"
+	],
 	"effects": [
-		"swap"
+		"swap all"
 	],
 	"flip_axes": "",
 	"icon": "",

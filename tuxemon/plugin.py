@@ -97,6 +97,7 @@ class PluginManager:
             "item.effects",
             "item.conditions",
             "technique.effects",
+            "technique.conditions",
         ]
 
     def setPluginPlaces(self, plugin_folders: Sequence[str]) -> None:

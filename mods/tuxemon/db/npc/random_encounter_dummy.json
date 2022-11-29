@@ -2,6 +2,6 @@
   "slug": "random_encounter_dummy",
   "gender": "female",
   "sprite_name": "girl1",
-  "combat_front": "femaletrainer_front.png",
-  "combat_back": "maple_back.png"
+  "combat_front": "heroine.png",
+  "combat_back": "heroine_back.png"
 }

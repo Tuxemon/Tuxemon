@@ -295,6 +295,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             menu.shrink_to_items = True
 
             # add techniques to the menu
+            filter_moves = []
             for tech in self.monster.moves:
                 if tech.next_use <= 0:
                     image = self.shadow_text(tech.name)
@@ -303,6 +304,11 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                         "%s %d" % (tech.name, abs(tech.next_use)),
                         fg=self.unavailable_color,
                     )
+                    filter_moves.append(tech)
+                # add skip move if both grey
+                if len(filter_moves) == len(self.monster.moves):
+                    skip = Technique("skip")
+                    self.monster.moves.append(skip)
                 item = MenuItem(image, None, None, tech)
                 menu.add(item)
 
@@ -356,6 +362,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             else:
                 combat_state = self.client.get_state_by_name(CombatState)
                 combat_state.enqueue_action(self.monster, technique, target)
+                # remove skip after using it
+                if technique.slug == "skip":
+                    self.monster.moves.pop()
 
                 # close all the open menus
                 self.client.pop_state()  # close target chooser

@@ -152,6 +152,9 @@ msgstr "{user} used {name} on {target}!"
 msgid "combat_swap"
 msgstr "{user} sent out {target}!"
 
+msgid "combat_skip"
+msgstr "{user} skips the turn!"
+
 msgid "combat_call_tuxemon"
 msgstr "Go {name}!"
 
@@ -1013,6 +1016,9 @@ msgstr "Hostname or IP?"
 
 msgid "swap"
 msgstr "Swap"
+
+msgid "skip"
+msgstr "Skip"
 
 ## MONSTER TRANSLATIONS ##
 # Monster details

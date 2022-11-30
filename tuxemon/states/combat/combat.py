@@ -407,6 +407,9 @@ class CombatState(CombatAnimations):
                     for monster in self.monsters_in_play[trainer]:
                         action = self.get_combat_decision_from_ai(monster)
                         self._action_queue.append(action)
+                        # recharge opponent moves
+                        for tech in monster.moves:
+                            tech.recharge()
 
         elif phase == "action phase":
             self.sort_action_queue()

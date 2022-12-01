@@ -7,29 +7,31 @@
   <property name="slug" value="tunnel"/>
   <property name="west" value="route6"/>
  </properties>
- <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
-  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
+ <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
+  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
  </tileset>
- <tileset firstgid="2295" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
-  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
+ <tileset firstgid="449" name="Waterfall_by_George" tilewidth="16" tileheight="16" tilecount="90" columns="9">
+  <image source="../gfx/tilesets/Waterfall_by_George.png" width="144" height="160"/>
  </tileset>
- <tileset firstgid="10487" name="core_outdoor_water" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
-  <image source="../gfx/tilesets/core_outdoor_water.png" width="1024" height="2048"/>
+ <tileset firstgid="539" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
+  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
  </tileset>
- <tileset firstgid="18679" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="699" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
+  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
+ </tileset>
  <layer id="1" name="Lowest Level" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHdlssNwkAMRA0c6QBa4dcARSAayAVKAGoAeiHUQxN4BCOZVRLweg8RB8tR2DzG41GgEpHqT2s2FJknFZl1o6zH+rP6ypuMRI6qt5S+bZAFHda/f+YxdyvdAfMSmdf61ncec3cK5MXOG/ENmcMu7B6WupNFpraUxV3kMNtYZHrntp6RYXuUx71O35mO8MBCPqwHER79pwfke959fJaegcnceLWl7zoy0XO0dfE4u2dWnD2o/9yl1YfrnHm7mLk8MvE7ZrVGePTJ7hse8n8CP/d2y7N+ejk8X5qHfcPHtPh9fet7zSiqlK6LslCleLWyUE28nd6n/m99PHjpurawwD9rUf+vvYt3U17trLueb5o1eu8JQ66pzA==
+   eAHNlktuwkAQRBuFZZRLJJyEcBJjOEggOYidJWSVrH2CnClVkktqmZng+Sy8KPUwM37urm4QV7PhAn1B1wrrGgyfSwnvE/X0E5XwzmCdJloq7wN57qFa+b2NrCXzOMc188vlae4OyEfzQv9yeaG5WypPc9dUqpd1lvwesBe+D0d87iDNiaJ/R2w9Zam3Yqb0N8YSM7W/oRkRi7GUp76+g1XKI6uBnAdWkh/9b81MHpCvvirGeqp9PSvPyNTcMDdxFPUcex5aT3niqnZxFEMMz47xmGeXkR/ea+qlclPMqXec/SAzl0dPWmgP+VxLePLb+0kP+1E6v9cP3xuuPU8+Mi6FJx/ppVdufjF/Uni4azE9rWygavF+UPd3Yj9iuXH/FywK65v/zw84X8/U48rsBXc3EFkh3jPOeCdF//G2YL0maof743f8pt7YLMzZ/wMgvQ4u
   </data>
  </layer>
  <layer id="2" name="Obstacles" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHVlk1OxDAMhYsESBwDwYbpXRBHQIJdlzAH4mc3p4KT4KfMNzxlnKbDICQiuXb982rHSZph+B63J0WGY7nb6rP38WIYnPARBweObQ5vCjwnYhzPdchnITxHnqJ1lS8+69Mi3YR9FTRiSHidY+KyU9X17Qwm/DUePVEKWX4vMc+vQYxefpvwFWlkeB9h+6zwyAFeosuzh+e+6q16OgW+k/scgketY+A5HYvnuUn2sYl3kcZT1HJexL0nte4ZKoXjyZT1RHpqlTw3luAtye0qarze1kq9+m6W35LcHgLrsYPH3m/te6/7LbDeO3hL8nJMyXPz99t4q/iezi9oDLk36vy0BnVWZutwSb41Ht//aZ//Ex7/j9Y/RP3p9cTrzeaM+YT3MA/FE+4cZguPvZatG2G21k4LD//WHGAXto8p9rBIw2Pxd13xKk/srkPmfuCx+LfObOxgZDzDk5/riWNvz60fj/Meuh48eJ3nGHMn0lqu70H4gne5nWewxPFBRz8U07pbgEeMOOupdXYrJrtbKDbDq/OSn486xv9pnIncI+u7ZDYP4PXq8BwymX6ARx33ydxn8bVuE3GiGo/vHMrBY47o1xTfOIa+AF6naRA=
+   eAG1lt1NAzEQhA1vQEIKAUQlSWiBFqCBE1BPHugKqmAH7hMjax07CViyds+7O579Se5K+V13s4rEco8yS3/+LGX6iI10V3CQ2DxeZ/58eVami9hIYma/yZ9dXwSHzbzXId2G/j4rq7Bfx75p+OE/KoP/1PONGuz1iRqWqOH3+gu8qGGJGjbxns/L9BT7x6OUU/m9BtZLhcdMILlLMuN31aiRequeMhNIxzukfuQKL6TjZfzc7jp48EK6j9+xjVx6uXpsptd3tGYGbhmGzqib89N5hkcfZG8t6jbCr8dNd4zw47e/bsyPcx3hJ167ASzH3Ve/kTwdS/q++t0GN/1/sZcDXGt+msFN7GwOe3zfIq7mB/9sbnp4iq35nYr3n/xWkT+1z94h6k+vJ84vqxn5I3uYXr8RPOHuw6z57SInxSxCtuZG9lavW/zwb3HGLmxfNT9s+B+Kp3i+DzwWvG3kXf9WVBPs3J/JDE9+fk6ceqLZWsbmrJYe5z308zqm5kk/VnFPPcP4gvdo73Vw8eGZfigm+7ZQrcAjRpJ5WjfyVUz2baHYDA9eSPn5qmN0P3dvQ9ds+8YmjKwO4PXycA6ZznsOPPg/JLXP4usz3nM1Hn0/VlIj6kLfj5VfYUrYFw==
   </data>
  </layer>
  <layer id="3" name="Obstacles 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlW8KwjAMxaegsFvoF3HbXcQj6A0EnYfR83kKv5gHCzxC2/XPFAYWStMm/SV9rraq5td2puQ9zd81TTzmxsSEeB5EcHkK3kIyLIfeUbaV2D2cic3WpNtZO12LGcd4VuMx5lXOtJags/ltcutDPjBvAxcc2DnagcUN3BhOqgacw2fXjc/jXj8ZPd1R81+Nufe/POV25rp/49vN1b+R+9YOvZOxtB2IcSQ7l+vildw7/t+aoj49F+psZQItS3TUu8bnBjeHyTrpG6D15jJ1P0auEfNUPe09LuWhBm4+nn0HeU/IVh7OmfvecW7mhfLG+vTb9r2fvYDusbBA3EV86A/pz0Bciot5r5SN/1ivAh+i1RzU
+   eAHtVdsNwjAMDI8/Hh0C/gB1EihsABswAhPxAeuwAUtgS7V0tZo0cRBqJSpZcVr7cr40jnPDe0rnbsh6B/PXqPkN48S/jpsxbXiIKXmxYxtebK7EFVTTsrYN1Dcnfw9zie8aNSeJt9bZhac1lvV8Y1XXpPOs/HgdxjyQzchYN/Yt2mnOjBuD81T/mcaxzB+JmLfEeAunPuTEnPtf8rwMXPdzj/gXdN6kFy7Iz93HEjBy+ovwaMM7ZejH/UX61jf4Ic9trWWOjnLWsG7GtWAeQSeum3u18LViSj6PyJHnqXrqc5yLxxzw8eHpexBzQr7g5dx3uLbgperm41jR/obu4QklTn3JCe/vFMu2Ilsn5IVCEe8dCvx/i1bgA32xQAk=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">

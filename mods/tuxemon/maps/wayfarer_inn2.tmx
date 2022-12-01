@@ -8,44 +8,47 @@
  <tileset firstgid="1" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
   <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
  </tileset>
- <tileset firstgid="1441" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+ <tileset firstgid="1441" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
+  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
+ </tileset>
+ <tileset firstgid="1551" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
   <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
  </tileset>
- <tileset firstgid="1941" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
+ <tileset firstgid="2051" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
+ </tileset>
+ <tileset firstgid="3051" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
   <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
  </tileset>
- <tileset firstgid="2151" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ <tileset firstgid="3261" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
  </tileset>
- <tileset firstgid="6015" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
- </tileset>
- <tileset firstgid="6976" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
+ <tileset firstgid="3315" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
+  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAHNUckNAkEMm9/y2Arokg5oAtEAogEkKIDjsT+uApAogic2xMLKLgv8GClKxrFzzEyqUtZhK4uFNR0Yc1PYDHYI21osjFrF7ufAqb3VT6N2hNiNWuXd/6JlvXfaa1XGJ/TQntyH/OHghTEH3gNXX3KO0OZ9iOc3AK+lJc+NdaV1XLH3XQbXc4x3Cfc835n3Ou21Cfz8hXYPju+rvdQne5855z7dqV3ETBd4/Y88/6nvSJtn5vys3Xek7ZrxX7V3Oa+JvQ==
+   eAG9kcsNwkAMRPeKWArgc+DGr4BIlEMFlJD6KIMrogHEgZngkUYmCuFCJGvWn7e2s7dpKfP6tlmofOq6J8b4HdwDtsWZtgyVTyXrvs7PYK+1tDSyl2RkkfuwX1je6Xc4e0TfPfLalfuw/mwx5lDXxcWipt3BtAuVObL5H6Aus53PWpmzirla31KNY43YVYqLd/aEGu1KXQRzGMFuUOP7ai/1yep9c+6bT3YSMzVQn5lnvtPQJzbPrHcaw/bNyLmGPvX9N/sCxtqDpw==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 3" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYKAMNIozMDQBMTlgAVDfQhL0/uQhxxaIHkr0qvEi7EVmI0QRLGdJBgYXIMYHrnMxMNwA4ptAjAySgPqSCehl5WZgYANidiBGBvuA+vYT0IusHpl9F6jvHpl6kc2JB5oRRwVzkM0kl/0EmK7WSzAwbABiV6Cb3EhwFzNQzzkgPg/EKUB9qSToBbn3LVDfOyCmFDwmIm8AAO30F1Q=
+   eAFjYKAMbGVmYNgGxOSAR0B9j0nQ+5iHHFsgeijR+xrJXmQ2Ntco8DIwKAIxPvANaN53IP6BZC5IvTpQnwYBvX+Bev4B8X80vZpAfVoE9OJykwFQnyGZepHN5AaawUUFc5DNJJetwMbAYMPBwGALxMTECbI9JkC9KUB9qUBMTJwg6wWxe4D6eoGYUnCMk7AJAN45E4k=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 2" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBgcYIY0+e44KY5dL9DMhloJ7HLUEt2Iw/xuoJt6cLgLZvcFHHpXAfWtJqD3PQ69MLMHgr4tycBwB4hHAf1CAAAxAArF
+   eAFjYBgcQImXfHdsYcWuF2hmAxcOOew6SBe148CuJ5qNgSEGiPGBNBx684H6Cgjo7cOhF599tJbjAcYhLwXxSGv3DUfzAdmvBNI=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyGACIE9kgwMe4F4FAyNEAAA0OQBrA==
+   eAFjYBgFoyGACAFWXgYGNiAeBUMjBABBygAm
   </data>
  </layer>
  <layer id="5" name="Above Player" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBj8IE5i8LtxuLjQQZKBwR6IR8HQCAEAm8wBKA==
+   eAFjYBj8gI998LtxuLiQhZeBgRmIR8HQCAEAfFsANw==
   </data>
  </layer>
  <objectgroup color="#ffff00" id="6" name="Events">

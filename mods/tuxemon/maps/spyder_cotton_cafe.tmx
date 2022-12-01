@@ -5,33 +5,48 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="cotton_cafe"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ <tileset firstgid="1" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
+  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
  </tileset>
- <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ <tileset firstgid="1441" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
  </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+ <tileset firstgid="2881" name="Outdoor_odds_and_ends_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="50" columns="10">
+  <image source="../gfx/tilesets/Outdoor_odds_and_ends_by_Isaiah658.png" width="160" height="80"/>
+ </tileset>
+ <tileset firstgid="2931" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
+  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
+ </tileset>
+ <tileset firstgid="3041" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="3541" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="3629" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
+  <image source="../gfx/tilesets/items.png" width="48" height="32"/>
+ </tileset>
+ <tileset firstgid="3635" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
+  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFz4mdgcCIBFwDVkoLnAdWTguOZGBhG8dAJAwBaJzrJ
+   eAG7xsvAcI0E/BColhT8BqieFMzIx8AwiodOGAAAV+UnzQ==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 5" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYCAd7JND6CHEVpZnYFABYm4g5gHid0AMAq+gNIgNE1sNFHMCYmcg1gJibSDmVQCpYGBwV2Bg8ARiLyD2BmIQOAWURwcw9ejiML6HAsIcZLNg8vxAeRCGgXqoX2E0TBxECyowMDwAyj8EYgEgGxtANg+k/j/IPKC7saknxjxkOwiZh6yWGuxCJgaGIiAuBmIQ2Ab0CwDslxqi
+   eAFjYCAdHOZG6CHEvsnCwHALiOV4GBjkgTifD6I3G0qDeDAxJ6C5bKwMDOxAbARUawzEZVB1DUC6EYibgLgFKuaD5A6Yi2qhcjA+Ot0MlIeZA2LDzIKp8wSKgTAMvGeGsGA0TBxEewPVVQH9Vg3EXkh6kNUgmwdSvxyodgUO9cSYh2w2IfOQ1VKDbQZ0vzkQW0D9KsjGwAAAg24Zpw==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 4" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYKAvOCNPW/v+ydHWfHqbzqfAwADC1ALUNg8AmLACwA==
+   eAFjYKAv0OUjzT5zItTrIamxYyFsvgWSesKqB1aFB9CtIEwtQG3zAI5CAp0=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBje4IM8AwMIEwM+Ian7iMRG1otsHiH12OTfA80FYWwAm3ps6pDF8JmHrI4Y9nQ5YlShqgEA7Z8Rrg==
+   eAFjYBjewImPgQGEiQEuSOqckdjIepHNI6Qem7wj0FwQxgawqcemDlkMn3nI6ohhv2QlRhWqGgDglwX3
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">

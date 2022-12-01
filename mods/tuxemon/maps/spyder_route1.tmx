@@ -26,36 +26,53 @@
    </animation>
   </tile>
  </tileset>
- <tileset firstgid="1313" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
-  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
+ <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="3607" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
-  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
+ <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="11799" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="1521" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
+  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+  <tile id="255">
+   <animation>
+    <frame tileid="248" duration="150"/>
+    <frame tileid="249" duration="150"/>
+    <frame tileid="250" duration="150"/>
+    <frame tileid="251" duration="150"/>
+    <frame tileid="252" duration="150"/>
+    <frame tileid="253" duration="150"/>
+    <frame tileid="254" duration="150"/>
+    <frame tileid="255" duration="150"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="1881" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
+  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAGbwMrAMGEUkx0GceyEw+8WFcP3DolmxXMwMMQC3UiMOwciHXAbMzCAcDMR4TjqPsy0Rkz4DWT6I8Z9AxGvMDtHovuomR6ICT9q2kdq+UeM+2BpYSBoK2D5vBxY9q0YpOXfYC2XYXE16j7MOgEWNsTQo+E3Gn7EpBNaqQEAqObMyA==
+   eAG7wsrAcAWIrwKx3yDEILcNZvfdI8J9rlQMV3cSzToNVH8XiEHuHIzxC3PTs1H3URQ/+MJvINPfaPxSJ9/hi19YGBNLUzM9wOzE5z5q2kdq+UeM+2BqBoI+DCz33gLxu0Fa/uGL14EIL3Q7qek+fxrEATXdh+53avBH3UdZ+TwafpSFHwAPdRQz
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHVVrkNAjEQdAKChJogh16ghiMjoQsKMXVQBQKRsSsxkhl5zgtOwJI13vF69sF3XErvY1iktLfJuJqndJ2159L8xgbrtmzWypbb2SYj+31rs27L5jiD6B/71ezLNKVylj7glb7iSw1fq3rYT9kHq89nbWwnWj8aN1pHLb5zY/n5vtJXvJ8pR7SO8ky5buWn9BVfavta1XG038bvENDXtYH8cN8Ylb7iOUa0Dj7n9ul19zzHndVTG0pf8awRrYPPwUb/YDMqfcXz+WgdfA72WH6bH3p++d7BVn1SPOoG9vYPOgqVvuKho/IHD79ehF4UES/bM1f73wUPv16EXhQRb7D8at8t4OHXi9CLIuLlP+9ftF724/c077fsaP9yo79qH/qO6473X6sO7JfxvllDJ4qIkYP9gb/j3b73Hx/Mm/lG48DvCflpUZI=
+   eAGtlLFuAjEQRLdIUH6G1PwABJp0gRqqfENqovxGPpV18aRkdHNezpxkDbs3npk11kX8f9ZPEa+5FC/PEV+FdU7O3KO6vVq1jpntlEtReUtr1e3V6uPmUd5UvcuzY73JOdJ3+q6vPm4e5bn6I8++ralnk5mdvuurTnUO3Uc9l69xnL7rowtW54Cv2Mvn9F1f9d0c7/nftDvVcJur3aeph3zcN0Wn7/rqUZ1D97X6kJnJ92nyO33XV5/qHLqPmnzUik7f9XV/dQ7dRz2Xb59n6vRdH12wOgd8RfLpvaN2+q6v+tU5dF+1dvquj67LTx/eKKJXRfxcfvrwRhG9KuLXmwfeKPZ89D1+vXngjWLPR9/jp7kfVet3+l5d8mnuR9XoN/xdLf/+Vef667fkd9UHHh7V84Lf8Psl4ueOdU1u1QfeDSkIisk=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHVlUsOwjAMRLNokdhwHQ4AO+BOHIIFp+MsNEKWrCGvdj8SJVJIPJ6Mx1FES/mvcTqUch6mrtd+nT5UN4qzVV+7UmhWjZqr4zL0VqcflvPY3D318xxqRrPWbPnzXkifcH92bB95q/k6In8f1vxf6mMtf6RPeLYTfUP0Fn91f76PsbuM/NE9Ee7rZvdL/GVrEI/6uLn/vyX+SJ9w8qk4vTfDlb92TP4NpztTH8Qz3PRaa999f7dUn2LT11X5mtdY+dm41Y//Dmsdi1XfcFpbdVr3ZjzVp5jqKZ94his/G5tfWrM6EY/0CY/0tpIn/4pP9Xvsyt2fUb0o9me3uCf/5PWxp8w0nOoq/gYsX5uk
+   eAHVVNsNAjEM60ePafhnAh5iCkZhRYZgDxpxliKrvgR6CKgU0jip4/QqSvmvVWspUzP2l2mdOZg3irNdD01fz46z7v3st202M7+Q89i7ezXPufWPzHr29Hktil/h99bXLFqRNsvbivQ9q/K/rE/NsZY+xa9w1qcms7fnV+8tGhbdH3R4rqU968N59p5j6S6z+phfxazP61D7EX2KU+GsT81xct93RJ/iVzjrU3Oo92Y4/gPV2REc+pR+4OrOuLeqAw6+rGd+FYOfPddznmOuz8bRPNwHMfMDVz7qw3nmV7Hqx/WqDjjXZ2PWzXGWJ6pj3iiO+H4lH82B/Kt6d7Vc/RnwZL0/a3ucY/xbMfSwV3puG5X5DP4AaKJBEA==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgIDEQLOfAwMLkBMKj0Qbh21czQECIUAKwtDAwsQE6IBOhcJyw==
+   eAHt0jEKADAIA8AM9t8+vf6gdHI5QTIqRxJDgAABAgQIECCwIVCVnNnf3PjVTQIvgelyT5f7lRfHqwXN
   </data>
  </layer>
  <layer id="5" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgIDEQLOfAwMLkBMKj0QbiXFTj4WhgZS1I+qHVkhAAAIsgUI
+   eAHt0DERAAAIxLAfmNGMdEwwcamADklEgAABAgQIECBA4E6gK3N3c/omsEFLAJM=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="7" name="Collisions">
@@ -198,7 +215,7 @@
   <object id="159" name="Player Spawn" type="event" x="208" y="288" width="16" height="16"/>
   <object id="161" name="Route 1 Sign" type="event" x="384" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog welcome_location_route"/>
+    <property name="act1" value="translated_dialog spyder_route1_routesign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

@@ -10,25 +10,25 @@
  <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
   <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
  </tileset>
- <tileset firstgid="449" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
+ <tileset firstgid="449" name="Waterfall_by_George" tilewidth="16" tileheight="16" tilecount="90" columns="9">
+  <image source="../gfx/tilesets/Waterfall_by_George.png" width="144" height="160"/>
  </tileset>
- <tileset firstgid="820" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
-  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
+ <tileset firstgid="539" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
+  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
  </tileset>
  <layer id="1" name="Lowest Level" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHlls1twkAQhSdCSDmgpA7qQk6OpAmgAUQDJEcnp4Cgh4ROSAu8d3jSaOWNvLM+WOLwNDbe/fbNjy1aM/uEvqA2c/0+MeurHMP/3pfFdfQ2pL8c7wfn/EIXqMQf93Rp9mB2xbO/Qt431h+gI8T9qUp5T/Dxn57xvCTfode+Tc1SNcg7es780SzVDmeMhXeGF+oVOcpnjT/ltQVTvDXYrGlTUUfP89wos4tHLr1GmHvs8zWUR8ZIPRfgbSDP0XWEp3xfOnyW8pbopbytwDvh3udeyvPePsBLc4/yNHfyGq2f/Gl/GqP+Ug7v2R/WQO9Rn5ibvQhL56XMGpaYvo6lNRODkfPB74nvaw3P+1JPxspjH/i9Lp0RXz+fb02eYt4Tb8i5Y/00b4q1/RBHsZan/weKNXOneRlzvAEf0tIY
+   eAHNlEFOwzAURM2+gkM2LQcB2oMkXbasgFMAN4ErdGYx0ugrrvodL7IY2bX9X8bzrZ5LKRfoHTp3mPdguBd66+mvxvvGd36gXyhzB9bMafNQyh/2/pO8D5z/hL4g1kdleY/wcUtP2M/cN3PW+1ibD7hj1A5rrd95RW3U24p4E7xQz+ZziT/l9GK8A+YDxBxrudfW53jKk9xsb27xyBXzcqdX8Uac9wzlkSPzzPK2qDlCztG8had+7MGMPlt48qZaZ2qt1lNfZ370xjV6O0Hx7i08ZsVeDpC8tuan7FQfx1Z/kcPfyiDzXkbUef7iiqU36rnX5jobmWLV6mrr4nHfc8xk5mzyttAAeV+X8NyXslsrj32YoBN07xuJ+fl9eU/fz87Zj5483mnNvLl3l83Mz+u9aVzaD3E0LuVN6IeL7879Z+f+f9Bj3oPhd7gC93T8cw==
   </data>
  </layer>
  <layer id="2" name="Obstacles" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAG1lutNBDEMhAP/eCxXCCA6oINjy6Ad6AZKOqrAI2WkT8HxBSQiRcna48nE8Wb31Fr7in4axnj8U7u6aO06+jhuwXa30A/FqtYoyDH6S++3Mkza08QuszUWkB+u+7BoH5XOMehxNCTPlc4R/p98b5etvUcfW6XP5+KR+j6C6/OXfD4Xjzrr2RnfdKGVPkGsrcMbNdrG8RyfsKpzt1W+UYfjNdJ3bs97D3SOyOP56Jtp5F55F5hnNs40ko93wYyH9kwj+Zgjxs3m0qh7gvVDvjFHM57RTp3k+03+yEk+2lfzt0UQ79cHkFDfav4yPXrXlMsd3Kv5y/ioy5TK30pb5eM7WvGu8q3kb4uFmH+v628Hvx/n8jfjMqdH57Kqv1UucZqvqr8sZ4p1nWTvXJW/GZ+10G9blT/ipcvNsfTbVtUf8ebSXvf+QL/5svrbAq8ayGrEcaLM+LL8Eac4NvNpTa5ne5a/jO+1f8MdN2JU24foWf5GbKaPGP+DaK0sf8SSS/NMn/9B7GOM9rXCd4wg1jPXIp/mK3zCiVP3qXkzfRlONjfGPPcz8vr0Gc/RONqyGOMyH2O9H+3JfSegz42T7xskukXr
+   eAG1VltOAzEQC/zxWPYggDhJu1yBK8ANgPP0XuUUjKVYsqbONEUiUpTdGY/XcWa3PbbWfmIe0xq3fxo3V63dxszrEmwPE3MtnkqNgOxi7vu8R2AwXgZxhKmxgJykHiOCfVQ6c9FzDpj7SmeG/yff+3VrHzHzqPTxXLiqvs/g+rqQj+fCFWc9OuO7LrTSBwi1dXhTjYzpeo6P2lgzy5d1sB6r5s7teeuFWYfy5dxIo+5VvwXK5a5HGpVPvwWOI8ecRuVTj3Ktu4dGfCe0f5Qve+Q4cuwQAdWpfJf4p7wjvln/liDDd4nzSchVH/37lry7VD3M412DlxsDsc765/hUFynh38yY5YN/M2OWj/5VnEsk1X9i+duBM1p78Jx/Iy5ycqWXVf/NcoGTfFX/Oc9Qyz7hO3cQvsq/ER+1aJ6xyj/FQxcHazXPWNV/wGMvOrDXrQccn+u/JfDoAdcj1AFKx+f8UxzqdJAPz9TnMe78c3xv/TecdRmD3l5jOv8yNuuDp4rhfxA8y/mnWOXCtdPH/yDMaQ32NcO3iyL2M+sdH3IzfMCBcx+TvCO+jEMth9a89jPi8zVHvK7EaczVEOdyWkud2BPnpoB+TRxyv58lSBY=
   </data>
  </layer>
  <layer id="3" name="Obstacles 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHNltkNwjAMhjnEC1AYBBDXO0xQugVswwSsALwxFFNgS/2LFTlx0lZqI0UJPj47TusyGMSNjMwWYi7j3LxWG9I8ab5ovmluaWrjqwlL2WPyVzJPDh9vOpRW+p5ZFu8+0n19Uovn8/PJc1LMhXJFe9xP3btxcwTeV0vo3RW1aYsHvstDnAIGiSvX8EKT6zgr9xZrPyZDYzDX4jBiF8EyQiWpP4nPbBK8x8ayT/Q4zSq1W8f3dO04flUIY5ORvmnPkyFkf0nteZJzLuvXFg9s5sX2KfhoK+q2JmWTczKbWczBAK/uOydrxmeVffRU47mUPOSGXOusIV7se4vvFscP8VLzy8hBu4tUDuxlbiyT9ZNngL21hniWr6Zvwjso396cguD/AMeT59Xiu7KjwmQb5JnKc/n4jTwLCFpc0btaRAZRPzuqGMA=
+   eAHFltsNwjAMRQufQGEQQExSChvABozAQoDEYxsmYApsqVdcojSPJmojWUkd+9hxWkNRhI1SzOYkizC3Vqu17FxEriI3kY2IbXxsykb3Hv02lcejjTchH7bntbJ8vNOYPfxrH89P+Leo5HFGqqWscT9d78bMEfi2WmLfnFGbXDzwTR7i1DCInLWGWxGt47RZ+1iPgHtXro8jJsU9gKV2uca553i58k7lcJ9IZfXhfxz4ng4Dxw+tcSmGqT2PY3F/ie15zNk39cvFA1t5oX0KPrYZdVvJZso5la0s5WCA1/Wb45rpWbmP7jq8l8xDbsi1y+zihX63+N3S+C5ebH6lONjuIpYDe85NdVw/PgPsfbOL5/O17afwnpZ3qZIg+D+g8fi8tvim7mVhqg3yjOWZfDwjzxqKjDN6V0akE/UFjDga0A==
   </data>
  </layer>
  <objectgroup color="#ffff00" id="4" name="Events">

@@ -6,38 +6,50 @@
   <property name="scenario" value="xero"/>
   <property name="slug" value="professor_lab"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ <tileset firstgid="1" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ <tileset firstgid="73" name="electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+ <tileset firstgid="89" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+  <tile id="1042">
+   <properties>
+    <property name="act1" value="transition_teleport taba_town.tmx,43,46,0.3"/>
+    <property name="act2" value="player_face down"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="1401" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="1489" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
+  <image source="../gfx/tilesets/items.png" width="48" height="32"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYEAAe34GBlIxQjcmKxdoHqkY0xSEyGygeaRihG5MVhITAwOpGNMUhAipZoHU4wOj5hGOn9HwQ4TAaHoZ3ukFEdODhwUAdVJfEQ==
+   eAFjYECADawMDKRihG5M1m6geaRiTFMQIseA5pGKEboxWSuA5pGKMU1BiJBqFkg9PjBqHuH4GQ0/RAiMppfhnV4QMT14WACeIKEI
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBg6IEqegSEGiG/LMTDcBWJlIFsFiNGBNVDOBogJgRlAvbOAuBSIy4HYCYidgRgZ7AKaEwXE0USYh6wPH7ueimbhswddTh/Nb+jyA823IMJ9lUA1VUBcTYRaYvwDSgMzgRiUDugNQOmuDAmD0iAyICSPrJYebCNGBgZjJGwCZFMCEoD6E5FwEoXm9QH19yPhCRSaR4nfQHq3AfO5PTBOHdDi9RgaH6YGpH6oAQCJLh4T
+   eAFjYBg6gAXoVDYgzgQysoH4KBAfAwmigUPMDAyHgZgQkAEqkANiU1YGBnMgfgc06z2aeU5A+ddAs94QYR4h+2Dy6jAGnelPaH6js/UErbMAxgEhIABUIAjEQoQUEikPSgOyQAxKB/QGoHQ3GRgnMAxKg8iAkDyyWnqwFwHdtxgJL0FzL6luWAvUvw4Jr6fQvB1A/TuR8C4KzSPVP+jq1wLjlhMoyAXE3EiStUjuQpYHqR9qAACOwBuw
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBg6IEeRgSEXiKkF6uWoZdKoObhCIEqegSEaiGOAmBqgHxj/MEwN80bNGA2B0RAgPwQAPsIFNw==
+   eAFjYBg6wBPoVC8qOleNimaNGoU9BFiAwqxAzIZdmmTRa0DDYJhkzaMaRkNgNASoGgIAVggDWg==
   </data>
  </layer>
  <layer id="4" name="Above player" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgzUEBOQHq8sg7ookwn1RQDXRQBxDhNrB7VsGhttyDAx3kPBdIBsZEJJHVjvKHnwhMB0tPgm5kFT1hMwbivIA/VsNRA==
+   eAFjYBgFgzUETrIMVpdB3LWbCPeBlLACMdvg9gpRrssEeiYLCWej+Z+QPFGWjCoasBBoQYtPQg4hVT0h84aiPAD30Ab4
   </data>
  </layer>
  <layer id="7" name="Above Player 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyFAuxAoUGRggGHa2TJq8mgIjIbAQIQAAJULAbQ=
+   eAFjYBgFoyFAuxC4zMrAAMO0s2XU5NEQGA2BgQgBAMuYAok=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">
@@ -52,8 +64,8 @@
   <object id="88" type="collision" x="48" y="128" width="16" height="16"/>
   <object id="89" type="collision" x="48" y="176" width="80" height="16"/>
   <object id="90" type="collision" x="176" y="176" width="80" height="16"/>
-  <object id="91" type="collision" x="48" y="272" width="48" height="16"/>
-  <object id="92" type="collision" x="208" y="272" width="48" height="16"/>
+  <object id="91" type="collision" x="48" y="272" width="64" height="16"/>
+  <object id="92" type="collision" x="192" y="272" width="64" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="11" name="Teleport to map1" type="event" x="144" y="272" width="16" height="16">

@@ -5,33 +5,36 @@
   <property name="scenario" value="xero"/>
   <property name="slug" value="daycare"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ <tileset firstgid="1" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
+  <image source="../gfx/tilesets/Objects_by_ArMM1998.png" width="528" height="320"/>
  </tileset>
- <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ <tileset firstgid="661" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1240" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+ <tileset firstgid="749" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
+ </tileset>
+ <tileset firstgid="1749" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
  </tileset>
  <layer id="1" name="Layer 1" width="12" height="9">
   <data encoding="base64" compression="zlib">
-   eAFz4mdgcCIBFwDVkoLnAdWTgu8yMjCMYtxhAAAQyFBN
+   eAGbxsTAMI0EvBColhS8BqieFCzKzMAwinGHAQAUZB2t
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="12" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYBhc4CYzA8MtIvFtoDp2FgYGDiIxJ1DdYFNvCnSTGZHYHKgOAFMQD1U=
+   eAFjYBhc4CobA8M1IvF1oLp7QHyfSPxgEKp/DnTTCyLxS6A6AFckQGk=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="12" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYCAMtskzMGwHYmQgo8jAIAfE2MBVoNpraOolgWql0dSfVmBgAGFswAKo1gpN/SugWhAmBsQC7Y+D4ng0t6Drf63AwFADVFMLxXVA+i1QDBfgArprNlDNHCieC6R5kNyaxsLAkA7FGUCaEJgCVDMViqcRUA8AVIIW9Q==
+   eAFjYCAMpjEzMEwHYmRwloWB4TwQYwP7gGr3o6m/AFR7CU39HKAaEMYGfgDV/kJTfwSoFoSJAUpAdcpQrEJAz1GgvBcQe0OxD5A+DsS4wFugXBEQF0NxCZB+D8Qw8JmNgeELFH8F0oTAH6Cav1D8j4B6AG8tGds=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="12" height="9" opacity="0.97">
   <data encoding="base64" compression="zlib">
-   eAFjYBh+4IwCwk8lchD2OSQxhCwqqxyoNh+qHlWGdrwyLPZNxSIGcwEA40AE1g==
+   eAFjYBh+YC4zwk8voOz5SGIIWVTWa6AaAVQhmvM6WDCt2IBFDKYKAJkiBGw=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">

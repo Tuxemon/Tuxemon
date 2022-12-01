@@ -5,36 +5,45 @@
   <property name="scenario" value="xero"/>
   <property name="slug" value="scoop1"/>
  </properties>
- <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
+ <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
+  <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
+ </tileset>
+ <tileset firstgid="22" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="1601" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+ <tileset firstgid="1622" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
+  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
+ </tileset>
+ <tileset firstgid="3062" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="3562" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="3650" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
   <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
  </tileset>
- <tileset firstgid="2601" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="6465" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="744" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+ <tileset firstgid="4650" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="21" height="15">
   <data encoding="base64" compression="zlib">
-   eAEzZ2dgMKcyjgeaR23cDjST2ngXHwPDKB4Ng9E0MDLSAABxed37
+   eAGz4GdgsKAyTgCaR23cATST2thfiIFhFI+GwWgaGBlpAADMyHrO
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="21" height="15">
   <data encoding="base64" compression="zlib">
-   eAGtkjkOAjEMRV0gKjqouAxbw00oOMwUSBwJTgLnIE/kS1/WRBM0WLKceOznZRIR8dhGPItK5t7hvArvbcy5d/X2D3tffimHVQTakmP55qp4t5uR/HOZW5rZu0XEvuqp2HXNlx/fr3KxnKsx5ceXJdelJ9Xmm3LJc+ZQ4oi9VabmxIqZc2G0mL7LfGa3Yqqu124x8Wuf2rXmcyZ9ZRljKsbncp8zOec5YI71D6OXqXo9toeZe9RdfObQ28fXw1Ruy8JE2AfiO9F/4l1pn6o/ZWHBnIr7AOamPUE=
+   eAGtkksKAjEMhv+FO1+LmaMpeBgX3sILuHDjyfQQ9oP+EELLVMZAyDRNvjymkvQ+SJ+ilrVnONNRmota1p7N+Ye911mnAkN7MpeLqI6Pdt9Ifm0la74+baRz1UuxuxpgP75f5RpyboFpP74suS49uTZ3ziUvMh8ljthnZXpOrJk5F0aPGXeZv9mtma4ba/eY+L1P79rzRSZ9ZWkxHRPnir7I5DvPAbPVP4xRJrGjMsLMPfrsGszht49vhOncnoWJsA8k7sT/iXflfbr+koUFcynuCxMYLtg=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 5" width="21" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBi54KsU9f1OCzOp78pRE0dDYOSFAAACZAIf
+   eAFjYBi54Ccv9f1OCzOp78pRE0dDYOSFAAC+gwIN
   </data>
  </layer>
  <layer id="4" name="Above Player" width="21" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBjZQFOKgQGGh3tIwPwJokfBaAiMtBAAAG2fAZM=
+   eAFjYBjZgJuHgQGGh3tIwPwJokfBaAiMtBAAAOAnAIs=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">

@@ -20,6 +20,9 @@
  <tileset firstgid="2024" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
  </tileset>
+ <tileset firstgid="4616" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="14" height="21">
   <data encoding="base64" compression="zlib">
    eAFjZGBgYCQRMwPVC5CBhaB6LgNpZAyyH5mPzsalD+QGdLXIfFz6aGmfPxY30dI+5DBYCrWbEvtg8QoLR18k//gB2cj2wdRgo22Bau2genHFAzZ9yGJDSR+2eEf2Czb2UPIfsfGO7E9K/AcA2Ye2Zg==

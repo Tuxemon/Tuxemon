@@ -5,39 +5,39 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="mansion"/>
  </properties>
- <tileset firstgid="1" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
+ <tileset firstgid="1" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
+ </tileset>
+ <tileset firstgid="55" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
   <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
  </tileset>
- <tileset firstgid="211" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+ <tileset firstgid="265" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
   <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
  </tileset>
- <tileset firstgid="1211" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
+ <tileset firstgid="1265" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
   <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
  </tileset>
- <tileset firstgid="1496" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
+ <tileset firstgid="1550" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
   <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
- </tileset>
- <tileset firstgid="1657" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eAHj4mZg4KIy1mRANVMajU+sfejmEKsPXR21zEE3d5SPGs+j4TEaHkM9DQAAnkwa1w==
+   eAFTY2BgUKMyjkczLxCNT6x96OYQqw9dHbXMQTd3lE/9tDMapqNhOpBpAADrszDv
   </data>
  </layer>
- <layer id="2" name="Tile Layer 2" width="18" height="18">
+ <layer id="2" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eAHFkkEKwkAMRaeVnkE9igt161J7T+8iiPcxbzGQfv9UVKSBQP/kz0smtJTlox9KWUX+GutgbCN3AlIt5YnEuw/G8Y+c06TjvMA7Nw/zalainrc49HBZOVprcdj/5oM8NPZ8jvOLSfw1tT5GjffmuIXQHaCZP/d2nsyhrjtwHOdRTtZ8O47z5DPuuMjvcnW9h753r85vOEp5965r9HXzKIed5nnQOR6Gox78nNX/in+l5XkCWW4lmQ==
+   eAHFklEKwkAMRLeCgnghPYR6FD/UXz/Ve3qR5lFD02m2oiIGQjeZySSbbin/t/W8lI35t7Y1jb35QYQ0FngQwj2axvmHOpdBx+kA7tQ8zKvuipqv6dAjc9dRrKbD/ndv+Kmy56vlb4nDd1f8bhj3jbZoxruBw/yxt+5JdYh1B5lOxonzqC5YphNrnBNzmQ54vFfk+1nriJczR/vvJzp9dXd6da/H89/EOp0PjJ3GeYijrWx+rVMOfHL+rngrNU4LMJ5Bng==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eAG9k8FKQmEQhSelNrqKdlGuJV20E2tbEtIqIeglculKhLB1O3uHaJVWEPoMSbTVoGeotn1Dd2AYrlkhDRzuOXP/+Rzxty0imWWRLMrh8z9U2Z0b49vIOEX8TUakjwboAa3TM70tibyjD7Tt+uqVs8oua0g5t8zeoXv0inxtkDdRAemslXEqMKoJZ8KZKXpBsfbo7aMa0tnWypfSOHF2Vp63z6y52P+OU4mHySeud+x81/n4vWrundkDMzz9e9+PHDfyK/ufnHHY7JF8yu/eRFbnIh29h3Z/duyFe+46r1ZzD8ZlwtE7r3ORc8ad91X3Aa95yOwo4eidT+NcBU7ApMZFcLp8rnHq/LcOkeansM9F2CBmz9nKipSQcmLFXszXbp8jGI0/cp4TzifG0znt
+   eAG9k71KQ0EQhUfFiNiq4DMYey21EgtB1FqiRbqgtho0WCkIvoR5gjSS1Hb6DmLlL4g+QL4JO3BYEq9KcOCwZ2Z3vt3l7m2Z2eK42RJaxq/8UHuybmLErCWcHfzTqNkzekEfaINaaJ68jBZQVerunbPKWdaQc15Z84be0dwYBYlNaltoG3lvRHBqMPYTZ5reGTSbMbzniP5jVE+c9ZKZqx8n9igai85T1B/z33FqsUjGK/GX4tvi83vVZS7sSRhGndd6zpGWX9n/5Phb1SiRX/PdmyiiY3bq7zDez0FMyHgo3q3ndzDuE8ffvPflnJts/4Y3S3j+Se9X4vib78d5yDiCGGiHwWmzb3Aa/FtnyPPJdN7Y/DZMGvNcORXuuJvumbX12FrzvTQe5TznMC7+yJlK36sLmMFPPg==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgL0CoFmRurYRC1zqOMa0k1ppVI4kG4zfh0A3IwBjw==
+   eAFjYBgFoyEwGgL0CoGdjNSxiVrmUMc1pJuym0rhQLrN+HUAAJz7AjE=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">

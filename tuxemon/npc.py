@@ -895,6 +895,16 @@ class NPC(Entity[NPCState]):
     def has_item(self, item_slug: str) -> bool:
         return self.inventory.get(item_slug) is not None
 
+    def is_item_sort(self, item_slug: str, sort_slug: str) -> bool:
+        """
+        Is the item sort "sort" (eg. potion, etc.)
+        """
+        result = db.lookup(item_slug, table="item")
+        if result.sort == sort_slug:
+            return True
+        else:
+            return False
+
     def alter_item_quantity(
         self, session: Session, item_slug: str, amount: int
     ) -> bool:

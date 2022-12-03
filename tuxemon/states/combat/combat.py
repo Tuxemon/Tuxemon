@@ -526,8 +526,16 @@ class CombatState(CombatAnimations):
         """
         # TODO: parties/teams/etc to choose opponents
         opponents = self.monsters_in_play[self.players[0]]
-        technique, target = monster.ai.make_decision(monster, opponents)
-        return EnqueuedAction(monster, technique, target)
+        trainer = self.players[1]
+        if self.is_trainer_battle:
+            user, technique, target = monster.ai.make_decision_trainer(
+                trainer, monster, opponents
+            )
+        else:
+            user, technique, target = monster.ai.make_decision_wild(
+                trainer, monster, opponents
+            )
+        return EnqueuedAction(user, technique, target)
 
     def sort_action_queue(self) -> None:
         """Sort actions in the queue according to game rules.
@@ -546,7 +554,8 @@ class CombatState(CombatAnimations):
                 # all meta items sorted together
                 # use of 0 leads to undefined sort/probably random
                 return primary_order, 0
-
+            elif sort == "potion":
+                return primary_order, 0
             else:
                 # TODO: determine the secondary sort element,
                 # monster speed, trainer speed, etc

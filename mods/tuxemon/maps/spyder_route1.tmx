@@ -6,6 +6,7 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route1"/>
   <property name="south" value="paper_town"/>
+  <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>

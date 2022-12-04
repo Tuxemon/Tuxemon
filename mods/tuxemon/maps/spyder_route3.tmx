@@ -6,6 +6,7 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route3"/>
   <property name="south" value="leather_town"/>
+  <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
   <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>

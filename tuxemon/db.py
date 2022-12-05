@@ -130,6 +130,15 @@ class SeenStatus(str, Enum):
     caught = "caught"
 
 
+class MapType(str, Enum):
+    notype = "notype"
+    town = "town"
+    route = "route"
+    center = "center"
+    shop = "shop"
+    dungeon = "dungeon"
+
+
 class EvolutionType(str, Enum):
     standard = "standard"
     item = "item"

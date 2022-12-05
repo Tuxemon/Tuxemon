@@ -5,7 +5,7 @@
   <property name="scenario" value="xero"/>
   <property name="slug" value="candy_town"/>
   <property name="south" value="route6"/>
-  <property name="town" type="bool" value="true"/>
+  <property name="types" value="town"/>
  </properties>
  <tileset firstgid="1" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
   <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>

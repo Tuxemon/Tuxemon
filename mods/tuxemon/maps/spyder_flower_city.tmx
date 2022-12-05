@@ -6,7 +6,7 @@
   <property name="north" value="routea"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="flower_city"/>
-  <property name="town" type="bool" value="true"/>
+  <property name="types" value="town"/>
   <property name="west" value="route4"/>
  </properties>
  <tileset firstgid="1" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">

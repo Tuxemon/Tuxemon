@@ -4,6 +4,7 @@
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="omnichannel4"/>
+  <property name="types" value="dungeon"/>
  </properties>
  <tileset firstgid="1" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
   <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>

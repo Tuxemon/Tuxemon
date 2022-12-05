@@ -49,6 +49,7 @@ import pygame as pg
 from tuxemon import networking, rumble
 from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
+from tuxemon.db import MapType
 from tuxemon.event import EventObject
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.map import TuxemonMap
@@ -184,8 +185,19 @@ class LocalPygameClient:
         self.event_engine.reset()
         self.event_engine.current_map = map_data
         self.maps = map_data.maps
+
+        # Map properties
+        self.map_slug = map_data.slug
         self.map_name = map_data.name
         self.map_desc = map_data.description
+        self.map_inside = map_data.inside
+
+        # Check if the map type exists
+        types = [maps.value for maps in MapType]
+        if map_data.types in types:
+            self.map_type = map_data.types
+        else:
+            logger.error(f"The type '{map_data.types}' doesn't exist.")
 
         # Cardinal points
         if map_data.north_trans is None:

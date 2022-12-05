@@ -6,6 +6,7 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route4"/>
   <property name="west" value="route3"/>
+  <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
   <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>

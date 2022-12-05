@@ -4,6 +4,7 @@
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="leather_museum"/>
+  <property name="types" value="notype"/>
  </properties>
  <tileset firstgid="1" name="Warmachine_black_and_yellow" tilewidth="16" tileheight="16" tilecount="70" columns="14">
   <image source="../gfx/tilesets/Warmachine_black_and_yellow.png" width="224" height="80"/>

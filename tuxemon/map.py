@@ -465,8 +465,8 @@ class TuxemonMap:
         self.inside = bool(maps.get("inside"))
         # scenario: spyder, xero or none
         self.scenario = maps.get("scenario")
-        # town (true), not town (none)
-        self.town = bool(maps.get("town"))
+        # check type of location
+        self.types = maps.get("types")
 
     def initialize_renderer(self) -> None:
         """

@@ -6,6 +6,7 @@
   <property name="slug" value="route5"/>
   <property name="south" value="timber_town"/>
   <property name="west" value="flower_city"/>
+  <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
   <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>

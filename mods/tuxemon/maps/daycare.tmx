@@ -94,15 +94,16 @@
     <property name="cond10" value="is variable_set breeder_state:1"/>
     <property name="cond20" value="is to_talk cotton_breeder"/>
     <property name="cond30" value="not variable_set wannabreed"/>
+    <property name="cond40" value="is has_party_breeder"/>
    </properties>
   </object>
   <object id="23" name="breeder state 2a" type="event" x="144" y="48" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder2a_1"/>
-    <property name="act15" value="get_player_monster breeding_mother"/>
+    <property name="act15" value="breeding female"/>
     <property name="act17" value="store_monster breeding_mother,cotton_breeder"/>
     <property name="act20" value="translated_dialog cotton_breeder2a_2"/>
-    <property name="act30" value="get_player_monster breeding_father"/>
+    <property name="act30" value="breeding male"/>
     <property name="act35" value="store_monster breeding_father,cotton_breeder"/>
     <property name="act40" value="set_variable breeder_state:3"/>
     <property name="act50" value="clear_variable wannabreed"/>

@@ -123,7 +123,7 @@ msgid "combat_miss"
 msgstr "It missed..."
 
 msgid "combat_forfeit"
-msgstr "You have forfeited!"
+msgstr "You have forfeited!\n{npc} is disappointed."
 
 msgid "combat_can't_run_from_trainer"
 msgstr "Can't run!"

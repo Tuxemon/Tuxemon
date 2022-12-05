@@ -1,0 +1,28 @@
+{
+	"animation": null,
+	"conditions": [
+	  	"status target,status_grabbed",
+	  	"status target,status_stuck"
+	],
+	"effects": [],
+	"flip_axes": "",
+	"icon": "",
+	"power": 50,
+	"range": "special",
+	"sfx": "sfx_blaster",
+	"slug": "menu_forfeit",
+	"sort": "meta",
+	"target": {
+		"enemy monster": 0,
+		"enemy team": 0,
+		"enemy trainer": 0,
+		"own monster": 0,
+		"own team": 0,
+		"own trainer": 0,
+		"item": 0
+	},
+	"tech_id": 117,
+	"use_failure": "generic_failure",
+	"use_success": "generic_success",
+	"use_tech": "combat_used_x"
+}

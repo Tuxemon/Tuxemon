@@ -90,8 +90,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         Cause player to forfeit from the trainer battles.
 
         """
-        run = Technique("menu_run")
-        if not run.validate(self.monster):
+        forfeit = Technique("menu_forfeit")
+        if not forfeit.validate(self.monster):
             if check_status(self.monster, "status_grabbed") or check_status(
                 self.monster, "status_stuck"
             ):
@@ -110,20 +110,11 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 return
         self.client.pop_state(self)
         combat_state = self.client.get_state_by_name(CombatState)
-
-        def open_menu() -> None:
-            combat_state.task(
-                partial(
-                    combat_state.show_monster_action_menu,
-                    self.monster,
-                ),
-                1,
-            )
-
-        combat_state.alert(
-            T.translate("combat_can't_run_from_trainer"),
-            open_menu,
-        )
+        # trigger forfeit
+        for mon in combat_state.players[0].monsters:
+            faint = Technique("status_faint")
+            mon.current_hp = 0
+            mon.status = [faint]
 
     def run(self) -> None:
         """
@@ -163,8 +154,10 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             formula.escape(player.level, target.level, var["run_attempts"])
             and combat_state._run == "on"
         ):
-            combat_state.trigger_player_run(combat_state.players[0])
             var["run_attempts"] += 1
+            # trigger run
+            del combat_state.monsters_in_play[combat_state.players[0]]
+            combat_state.players.remove(combat_state.players[0])
         else:
 
             def open_menu() -> None:

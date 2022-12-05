@@ -5204,7 +5204,7 @@ msgid "gotfivetuxeballs"
 msgstr "You got 5 Tuxeballs!"
 
 msgid "got_new_tuxemon"
-msgstr "You got a ${{monster_name}}!"
+msgstr "A new Tuxemon is born! Welcome {monster_name}!"
 
 msgid "spyder_greenwash_guard"
 msgstr "Alright, alright, nothing to see here."

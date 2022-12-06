@@ -4,19 +4,13 @@ import fnmatch
 import os
 
 from setuptools import setup
-from setuptools.command.install import install
+
 
 
 def build_translations():
     from tuxemon.core.locale import T
 
     T.collect_languages()
-
-
-class InstallAndBuildTranslations(install):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # build_translations()
 
 
 # Find all the python modules
@@ -65,5 +59,4 @@ setup(
         "Topic :: Games/Entertainment",
         "Topic :: Games/Entertainment :: Role-Playing",
     ],
-    cmdclass={"install": InstallAndBuildTranslations},
 )

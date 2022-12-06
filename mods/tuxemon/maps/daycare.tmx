@@ -179,7 +179,7 @@
   <object id="32" name="breeder state 6c" type="event" x="168" y="112" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder6c"/>
-    <property name="act30" value="spawn_monster player,breeding_mother,breeding_father"/>
+    <property name="act30" value="spawn_monster"/>
     <property name="act40" value="translated_dialog cotton_breeder_continue"/>
     <property name="act50" value="translated_dialog_choice yes:no,continue"/>
     <property name="act60" value="set_variable breeder_state:7"/>

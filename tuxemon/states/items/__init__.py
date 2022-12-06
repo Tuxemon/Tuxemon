@@ -161,7 +161,9 @@ class ItemMenuState(Menu[Item]):
                         "item_used_wrong_location_inside",
                         {
                             "name": item.name,
-                            "here": T.translate(i.__getattribute__("location_inside")),
+                            "here": T.translate(
+                                i.__getattribute__("location_inside")
+                            ),
                         },
                     )
                 elif i.name == "location_type":
@@ -169,7 +171,9 @@ class ItemMenuState(Menu[Item]):
                         "item_used_wrong_location_type",
                         {
                             "name": item.name,
-                            "here": T.translate(i.__getattribute__("location_type")),
+                            "here": T.translate(
+                                i.__getattribute__("location_type")
+                            ),
                         },
                     )
             tools.open_dialog(local_session, [msg])

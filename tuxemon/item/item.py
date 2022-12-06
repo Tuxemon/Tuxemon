@@ -217,7 +217,6 @@ class Item:
             words = line.split()
             args = "".join(words[1:]).split(",")
             name = words[0]
-            context = args[0]
             params = args[1:]
             try:
                 condition = Item.conditions_classes[name]

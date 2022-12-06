@@ -102,15 +102,15 @@ class RandomAI(AI):
         opponents: Sequence[Monster],
     ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
         """
-        Trainers battles.
+        Trainer battles.
         """
         if self.check_strongest(user, monster):
             if len(user.inventory) > 0:
                 inventory = list(user.inventory)
-                for i in inventory:
-                    if user.is_item_sort(i, "potion"):
-                        if self.check_hp_potion(monster):
-                            item = self.item_healing(user, i)
+                for item_slug in inventory:
+                    if user.is_item_sort(item_slug, "potion"):
+                        if self.need_potion(monster):
+                            item = self.item_healing(user, item_slug)
                             return user, item, monster
         technique, target = self.track_next_use(monster, opponents)
         # send data
@@ -178,7 +178,7 @@ class RandomAI(AI):
         else:
             return False
 
-    def check_hp_potion(self, monster: Monster) -> bool:
+    def need_potion(self, monster: Monster) -> bool:
         """
         It checks if the current_hp are less than the 15%.
         """

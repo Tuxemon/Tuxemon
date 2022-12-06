@@ -714,8 +714,8 @@ class CombatState(CombatAnimations):
                 T.format(
                     "combat_swap",
                     {
-                        "user": monster.name.upper(),
-                        "target": player.name.upper(),
+                        "target": monster.name.upper(),
+                        "user": player.name.upper(),
                     },
                 )
             )

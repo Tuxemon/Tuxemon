@@ -6,6 +6,7 @@
   <property name="scenario" value="xero"/>
   <property name="slug" value="route5"/>
   <property name="west" value="flower_city"/>
+  <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
   <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>

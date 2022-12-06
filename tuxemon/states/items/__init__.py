@@ -155,6 +155,23 @@ class ItemMenuState(Menu[Item]):
             for m in local_session.player.monsters
         ):
             msg = T.format("item_no_available_target", {"name": item.name})
+            for i in menu_item.game_object.conditions:
+                if i.name == "location_inside":
+                    msg = T.format(
+                        "item_used_wrong_location_inside",
+                        {
+                            "name": item.name,
+                            "here": T.translate(i.__getattribute__("location_inside")),
+                        },
+                    )
+                elif i.name == "location_type":
+                    msg = T.format(
+                        "item_used_wrong_location_type",
+                        {
+                            "name": item.name,
+                            "here": T.translate(i.__getattribute__("location_type")),
+                        },
+                    )
             tools.open_dialog(local_session, [msg])
         elif State[state] not in item.usable_in:
             msg = T.format("item_cannot_use_here", {"name": item.name})

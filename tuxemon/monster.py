@@ -285,32 +285,6 @@ class Monster:
         self.set_stats()
         self.set_flairs()
 
-    def spawn(self, father: Monster) -> Monster:
-        """
-        Spawn a child monster.
-
-        Creates a new Monster, with this monster as the mother and the passed
-        in monster as father.
-
-        Parameters:
-            The monster.Monster to be father of this monsterous child.
-
-        Returns:
-            Child monster.
-
-        """
-        child = Monster()
-        child.load_from_db(self.slug)
-        child.set_level(5)
-
-        father_tech_count = len(father.moves)
-        tech_to_replace = random.randrange(0, 2)
-        child.moves[tech_to_replace] = father.moves[
-            random.randrange(0, father_tech_count - 1)
-        ]
-
-        return child
-
     def load_from_db(self, slug: str) -> None:
         """
         Loads and sets this monster's attributes from the monster.db database.

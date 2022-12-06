@@ -87,4 +87,12 @@ class RandomAI(AI):
         opponents: Sequence[Monster],
     ) -> Tuple[Technique, Monster]:
         # TODO: healing and whatnot
-        return choice(monster.moves), choice(opponents)
+        filter_moves = []
+        for mov in monster.moves:
+            if mov.next_use <= 0:
+                filter_moves.append(mov)
+        if not filter_moves:
+            skip = Technique("skip")
+            return skip, choice(opponents)
+        else:
+            return choice(filter_moves), choice(opponents)

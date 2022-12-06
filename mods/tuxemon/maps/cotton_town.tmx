@@ -6,7 +6,7 @@
   <property name="scenario" value="xero"/>
   <property name="slug" value="cotton_town"/>
   <property name="south" value="route1_sanglorian"/>
-  <property name="town" type="bool" value="true"/>
+  <property name="types" value="town"/>
   <property name="west" value="route2"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">

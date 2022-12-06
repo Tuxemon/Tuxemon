@@ -78,6 +78,32 @@ msgstr "Capture Device"
 msgid "capture_device_description"
 msgstr "Captures a monster."
 
+# Map Types:
+
+msgid "no_type"
+msgstr "no type"
+
+msgid "town"
+msgstr "town"
+
+msgid "route"
+msgstr "route"
+
+msgid "dungeon"
+msgstr "dungeon"
+
+msgid "center"
+msgstr "center"
+
+msgid "shop"
+msgstr "shop"
+
+msgid "inside"
+msgstr "inside"
+
+msgid "outside"
+msgstr "outside"
+
 # TMs
 msgid "tm_avalanche"
 msgstr "TM: Avalanche"
@@ -93,6 +119,12 @@ msgstr "Technique Manual that teaches a Wood Tuxemon the Blossom technique."
 
 msgid "item_cannot_use_here"
 msgstr "{name} cannot be used here!"
+
+msgid "item_used_wrong_location_inside"
+msgstr "{name} can only be used {here}!"
+
+msgid "item_used_wrong_location_type"
+msgstr "{name} can only be used in a {here}!"
 
 msgid "item_no_available_target"
 msgstr "{name} cannot be used on any of your Tuxemon right now."
@@ -151,6 +183,9 @@ msgstr "{user} used {name} on {target}!"
 
 msgid "combat_swap"
 msgstr "{user} sent out {target}!"
+
+msgid "combat_skip"
+msgstr "{user} skips the turn!"
 
 msgid "combat_call_tuxemon"
 msgstr "Go {name}!"
@@ -1013,6 +1048,9 @@ msgstr "Hostname or IP?"
 
 msgid "swap"
 msgstr "Swap"
+
+msgid "skip"
+msgstr "Skip"
 
 ## MONSTER TRANSLATIONS ##
 # Monster details
@@ -5198,7 +5236,7 @@ msgid "gotfivetuxeballs"
 msgstr "You got 5 Tuxeballs!"
 
 msgid "got_new_tuxemon"
-msgstr "You got a ${{monster_name}}!"
+msgstr "A new Tuxemon is born! Welcome {monster_name}!"
 
 msgid "spyder_greenwash_guard"
 msgstr "Alright, alright, nothing to see here."

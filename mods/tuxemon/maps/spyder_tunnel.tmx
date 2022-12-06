@@ -6,6 +6,7 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="tunnel"/>
   <property name="west" value="route6"/>
+  <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
   <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>

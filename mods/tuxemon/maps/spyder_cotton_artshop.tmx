@@ -4,6 +4,7 @@
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="cotton_artshop"/>
+  <property name="types" value="notype"/>
  </properties>
  <tileset firstgid="1" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
   <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>

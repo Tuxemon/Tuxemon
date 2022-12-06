@@ -5,7 +5,7 @@
   <property name="north" value="route3"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="leather_town"/>
-  <property name="town" type="bool" value="true"/>
+  <property name="types" value="town"/>
   <property name="west" value="citypark"/>
  </properties>
  <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">

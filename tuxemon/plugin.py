@@ -116,15 +116,13 @@ class PluginManager:
             logger.debug("searching for plugins: %s", folder)
             folder = folder.replace("\\", "/")
             # Take the plugin folder and create a base module path based on it.
-            pattern = re.compile("tuxemon/.*$")
-            matches = pattern.findall(folder)
-            if len(matches) == 0:
+            match = folder[folder.rfind("tuxemon"):]
+            if len(match) == 0:
                 raise RuntimeError(
                     f"Unable to determine plugin module path for: %s",
-                    folder,
+                    folder
                 )
-            module_path = matches[0].replace("/", ".")
-
+            module_path = match.replace("/", ".")
             # Look for a ".plugin" in the plugin folder to create a list
             # of modules to import.
             modules = []

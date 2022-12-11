@@ -3831,7 +3831,7 @@ msgid "explainthyselfchristie4"
 msgstr "... .... ..."
 
 msgid "explainthyselfchristie5"
-msgstr "Come on, Christie. Give us something! We're all stuck in this situation together anyway!"
+msgstr "Come on, Christie. Give us something! We're all stuck here together anyways!"
 
 msgid "explainthyselfchristie6"
 msgstr "... Just like you... I have a past I'm running from..."
@@ -3933,7 +3933,10 @@ msgid "notyettababa"
 msgstr "Only one person can challenge an Acolyte at a time. Please challenge another one."
 
 msgid "notyettababafourth"
-msgstr "This is the most powerful Acolyte before the master, please finish challenging the others first."
+msgstr "This is the most powerful Acolyte before the Master, please finish challenging the others first."
+
+msgid "itslocked"
+msgstr "The doors are locked, maybe you should try defeating all 4 Acolytes first?"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

@@ -3517,7 +3517,7 @@ msgid "ohaimisa3"
 msgstr "Hi Kyle, why are you here?"
 
 msgid "ohaimisa4"
-msgstr "Why am I here? Why, I'm the head of this project! Building the model battle area for the entire region is an honor!\n"
+msgstr "Why am I here? Why, I'm the head of this project! Building the model Battle Area for the entire region is an honor!\n"
 "Although, I can see why you wouldn't have heard the news, frolicking about with your new plaything and all"
 
 msgid "ohaimisa5"
@@ -3690,7 +3690,7 @@ msgid "nobody2"
 msgstr "Fine! Keep your secrets!"
 
 msgid "somebody2"
-msgstr "Oooh. Are they special to you then? Is there a love triangle going around? C'mon! We need to know"
+msgstr "Oooh. Are they special to you then? Is there a love triangle going around? C'mon! We need to know!"
 
 msgid "stahp"
 msgstr "Hey Christie, don't interrogate them. We just met after all. \nMaybe we should head in anyways. We don't want to make Kyle angry."

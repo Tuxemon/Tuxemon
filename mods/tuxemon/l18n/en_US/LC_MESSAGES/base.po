@@ -2489,7 +2489,7 @@ msgstr "And finally, the one you've all been hearing about. The one you've been 
 "${{name}}!"
 
 msgid "abouttababa"
-msgstr "Now, you are probably all wondering what this Battle Area will entail. I know our Trial contestants want to know!\n"
+msgstr "Now, you are probably all wondering what this Battle Area will entail. I know our Trial contestants definitely do!\n"
 "The Taba Battle Area is the first of seven Battle Areas, culminating in the Championship battle in Cotton Town.\n"
 "Each Battle Area will have a different requirement. Some will be mind challenges, others more physical.\n"
 "This is all so that we can find the best of the best. The future of the Fondent Region and Omnichannel itself."
@@ -2511,7 +2511,7 @@ msgstr "Tuxemon Battles!"
 
 msgid "abouttababa7"
 msgstr "Now, you will have to defeat all 4 Trial acolytes before being able to face the Battle Area Master.\n"
-"Once you've defeated the Battle Area master, you will receive your Trial medal for the Battle Area.\n"
+"Once you've defeated the Battle Area Master, you will receive your Trial medal for the Battle Area.\n"
 "Good luck to all three of you, and remember...\n"
 "WE ARE SAFETY, WE ARE ORDER, WE ARE OMNICHANNEL!"
 
@@ -2527,6 +2527,136 @@ msgstr "Just cut out the last section and it will be perfect!"
 
 msgid "buh-bye"
 msgstr "I'm heading out, but great work everyone! See you all later!"
+
+msgid "weneedhelp"
+msgstr "Uhh... are we meant to just battle each other then?"
+
+msgid "weneedhelp2"
+msgstr "I guess we'll just battle here?"
+
+msgid "weneedhelp3"
+msgstr "I guess that works, this room doesn't seem like a battle room though."
+
+msgid "weneedhelp4"
+msgstr "No, you're right, but it's not like we were given any instructions..."
+
+msgid "explainthyselfchristie"
+msgstr "By the way, why did Aeble call you the \"Flower Demon\"?\n"
+"His nicknames for ${{name}} and I at least make sense"
+
+msgid "explainthyselfchristie2"
+msgstr "Although yours, ${{name}}, sounds more interesting than mine."
+
+msgid "explainthyselfchristie3"
+msgstr "\"Flower Demon\" on the other hand sounds like more than a nickname."
+
+msgid "explainthyselfchristie4"
+msgstr "... .... ..."
+
+msgid "explainthyselfchristie5"
+msgstr "Come on, Christie. Give us something! We're all stuck in this situation together anyway!"
+
+msgid "explainthyselfchristie6"
+msgstr "... Just like you... I have a past I'm running from..."
+
+msgid "explainthyselfchristie7"
+msgstr "Christie..."
+
+msgid "maybeabattle"
+msgstr "ENOUGH!"
+
+msgid "maybeabattle2"
+msgstr "Speck! I CHALLENGE YOU TO A BATTLE! PREPARE YOURSELF!"
+
+msgid "maybeabattle3"
+msgstr "Christie, are you sure..."
+
+msgid "maybeabattle4"
+msgstr "Oh, I see, you're just afraid to fight me huh? Maybe ${{name}} will have the guts, unlike you."
+
+msgid "maybeabattle5"
+msgstr "ARGH!"
+
+msgid "maybeabattle6"
+msgstr "If it's a battle you want, THEN FINE!"
+
+msgid "maybeabattle7"
+msgstr "Ha! That's more like it!"
+
+msgid "maybeabattle8"
+msgstr "READY YOURSELF CHRISTIE! AND... FI.."
+
+msgid "haltyourbickering"
+msgstr "HALT!"
+
+msgid "haltyourbickering2"
+msgstr "While I admire your enthusiasm, this isn't the place for battling each other.\n"
+"It's also not the point of this Battle Area."
+
+msgid "haltyourbickering3"
+msgstr "Now, gather together again like the good children you are."
+
+msgid "haltyourbickering4"
+msgstr "If we're not supposed to fight each other, then who will we fight?"
+
+msgid "haltyourbickering5"
+msgstr "Were you not listening? The acolytes of course. All 4 and then you can face the Battle Area Master.\n"
+"Honestly, I expected more from you two. I'm sure this is par for the course for the third wheel over there though."
+
+msgid "dontbemean"
+msgstr "Hey! Why are you so mean to ${{name}}? What did they do to you?"
+
+msgid "dontbemean2"
+msgstr "I don't need a reason to do my job. But in this case..."
+
+msgid "dontbemean3"
+msgstr "... I actually do have reasons."
+
+msgid "seeyalater"
+msgstr "Regardless, the 4 hallways lead to the 4 acolytes. Go and fight them or whatever."
+
+msgid "seeyalater2"
+msgstr "HEY! Aren't you going to give us that reason?"
+
+msgid "seeyalater3"
+msgstr "Ha!"
+
+msgid "seeyalater4"
+msgstr "I don't have to explain ANYTHING to you. That's what makes my job so GREAT!\n"
+"Hopefully you lot don't die. It would be bad for ratings."
+
+msgid "sorryabouthim"
+msgstr "I'm sorry he's so mean to you ${{name}}"
+
+msgid "sorryabouthim2"
+msgstr "Yeah! Just ignore him! After all, you have your girlfriends Misa and Allie watching from home! He probably has nobody!"
+
+msgid "sorryabouthim3"
+msgstr "So? When you going to introduce us to 'em? We're practically family at this point!"
+
+msgid "sorryabouthim4"
+msgstr "Christie, this is most definitely NOT the time."
+
+msgid "sorryabouthim5"
+msgstr "Oh, you're no fun!"
+
+msgid "doorchosen"
+msgstr "But I guess we better focus on the Battle Area, since we're here and all."
+
+msgid "doorchosen2"
+msgstr "I'll start with door 3! Lucky number 3 after all!"
+
+msgid "doorchosen3"
+msgstr "That girl will be the death of us."
+
+msgid "doorchosen4"
+msgstr "I'll start with door 2. Good Luck."
+
+msgid "notyettababa"
+msgstr "Only one person can challenge an Acolyte at a time. Please challenge another one."
+
+msgid "notyettababafourth"
+msgstr "This is the most powerful Acolyte before the master, please finish challenging the others first."
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

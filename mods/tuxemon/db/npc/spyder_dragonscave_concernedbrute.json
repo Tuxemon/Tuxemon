@@ -1,6 +1,7 @@
 {
-    "slug": "spyder_dragonscave_concernedbrute",
-    "sprite_name": "knight",
-	    "combat_front": "enforcer_rookie.png",
-    "combat_back": "red_back.png" }
-
+  "slug": "spyder_dragonscave_concernedbrute",
+  "gender": "male",
+  "sprite_name": "knight",
+  "combat_front": "enforcer_rookie.png",
+  "combat_back": "adventurer_back.png"
+}

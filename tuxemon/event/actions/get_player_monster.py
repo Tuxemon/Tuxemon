@@ -70,7 +70,7 @@ class GetPlayerMonsterAction(EventAction[GetPlayerMonsterActionParameters]):
 
         # pull up the monster menu so we know which one we are saving
         menu = self.session.client.push_state(MonsterMenuState)
-        menu.on_menu_selection = self.set_var
+        menu.on_menu_selection = self.set_var  # type: ignore[assignment]
 
     def update(self) -> None:
         try:

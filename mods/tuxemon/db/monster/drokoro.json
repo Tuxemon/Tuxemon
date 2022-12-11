@@ -16,11 +16,15 @@
             "technique": "breathe_fire"
         }
     ],
-    "shape": "Dragon",
+    "evolutions": [],
+    "shape": "dragon",
     "types": [
-        "Fire"
+        "fire"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 141,
+    "height": 1200,
+    "weight": 10000,
     "catch_rate": 3.0,
     "lower_catch_resistance": 0.8,
     "upper_catch_resistance": 1.05

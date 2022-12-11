@@ -80,5 +80,4 @@ class VariableIsCondition(EventCondition):
         elif operation == "<=":
             return operand1 <= operand2
         else:
-            logger.error(f"invalid operation type {operation}")
-            raise ValueError
+            raise ValueError(f"invalid operation type {operation}")

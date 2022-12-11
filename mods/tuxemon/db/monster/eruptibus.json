@@ -16,11 +16,15 @@
             "technique": "energy_field"
         }
     ],
-    "shape": "Landrace",
+    "evolutions": [],
+    "shape": "landrace",
     "types": [
-        "Fire"
+        "fire"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 31,
+    "height": 600,
+    "weight": 12000,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

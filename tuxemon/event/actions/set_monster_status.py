@@ -26,7 +26,7 @@ from typing import NamedTuple, Optional, Union, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
-from tuxemon.technique import Technique
+from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
 

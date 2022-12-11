@@ -1,0 +1,9 @@
+{
+  "slug": "night_arid",
+  "battle_graphics": {
+    "island_back": "dried_mud_back_island.png",
+    "island_front": "dried_mud_front_island.png",
+    "background": "night_arid_background.png"
+  },
+  "battle_music": "music_battle_loop"
+}

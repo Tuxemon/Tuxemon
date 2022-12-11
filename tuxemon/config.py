@@ -96,6 +96,8 @@ class TuxemonConfig:
             "net_controller_enabled",
         )
         self.locale = cfg.get("game", "locale")
+        self.hemisphere = cfg.get("game", "hemisphere")
+        self.unit = cfg.get("game", "unit")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean(
             "game",
@@ -135,6 +137,11 @@ class TuxemonConfig:
             "gameplay",
             "default_lower_monster_catch_resistance",
         )
+        self.dialog_speed = cfg.get(
+            "gameplay",
+            "dialog_speed",
+        )
+        assert self.dialog_speed in ("slow", "max")
 
         # [player]
         self.player_animation_speed = cfg.getfloat("player", "animation_speed")
@@ -202,7 +209,7 @@ def get_custom_pygame_keyboard_controls_names(
         cfg: Config parser.
 
     """
-    custom_controls: Dict[Optional[int], int] = {None: events.UNICODE}
+    custom_controls: Dict[Optional[str], int] = {None: events.UNICODE}
     for key, values in cfg.items("controls"):
         key = key.upper()
         button_value: Optional[int] = getattr(buttons, key, None)
@@ -270,6 +277,8 @@ def get_defaults() -> Mapping[str, Any]:
                         ("cli_enabled", False),
                         ("net_controller_enabled", False),
                         ("locale", "en_US"),
+                        ("hemisphere", "north"),
+                        ("unit", "metric"),
                         ("dev_tools", False),
                         ("recompile_translations", True),
                         ("compress_save", None),
@@ -287,6 +296,7 @@ def get_defaults() -> Mapping[str, Any]:
                         ("default_monster_catch_rate", 125),
                         ("default_upper_monster_catch_resistance", 1),
                         ("default_lower_monster_catch_resistance", 1),
+                        ("dialog_speed", "slow"),
                     )
                 ),
             ),

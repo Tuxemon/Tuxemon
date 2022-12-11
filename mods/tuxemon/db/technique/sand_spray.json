@@ -1,10 +1,12 @@
 {
+  "tech_id": 32,
   "accuracy": 0.8,
-  "animation": "dusty explosion",
-  "category": "physical",
+  "animation": "explosion_dusty_96",
   "effects": [
-    "damage"
+    "blinded target",
+    "damage 100"
   ],
+  "flip_axes": "",
   "healing_power": 0,
   "icon": "",
   "is_area": false,

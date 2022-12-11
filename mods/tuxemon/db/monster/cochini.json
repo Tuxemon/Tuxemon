@@ -16,11 +16,15 @@
             "technique": "headbutt"
         }
     ],
-    "shape": "Varmint",
+    "evolutions": [],
+    "shape": "varmint",
     "types": [
-        "Earth"
+        "earth"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 103,
+    "height": 80,
+    "weight": 15,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

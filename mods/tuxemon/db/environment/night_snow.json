@@ -1,0 +1,9 @@
+{
+  "slug": "night_snow",
+  "battle_graphics": {
+    "island_back": "snow_back_island.png",
+    "island_front": "snow_front_island.png",
+    "background": "night_snow_background.png"
+  },
+  "battle_music": "music_battle_loop"
+}

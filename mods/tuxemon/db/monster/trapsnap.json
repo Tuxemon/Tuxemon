@@ -16,11 +16,21 @@
             "technique": "fluff_up"
         }
     ],
-    "shape": "Brute",
-    "types": [
-        "Wood"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "sapsnap"
+        }
     ],
-    "weight": 25,
+    "shape": "brute",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 84,
+    "height": 120,
+    "weight": 60,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

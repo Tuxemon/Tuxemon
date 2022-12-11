@@ -29,9 +29,13 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, Mapping
+from typing import TYPE_CHECKING, Any, Dict, Mapping
 
+from tuxemon.db import SeenStatus
 from tuxemon.prepare import CONFIG
+
+if TYPE_CHECKING:
+    from tuxemon.save import SaveData
 
 """
 This module is for handling breaking changes to the save file.
@@ -62,7 +66,7 @@ MAP_RENAMES: Mapping[int, Mapping[str, str]] = {
 }
 
 
-def upgrade_save(save_data: Dict[str, Any]) -> Dict[str, Any]:
+def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     """
     Updates savegame if necessary.
 
@@ -78,6 +82,24 @@ def upgrade_save(save_data: Dict[str, Any]) -> Dict[str, Any]:
     if "steps" not in save_data["game_variables"]:
         save_data["game_variables"]["steps"] = 0
 
+    save_data["battle_history"] = save_data.get("battle_history", {})
+    save_data["money"] = save_data.get("money", {})
+    save_data["tuxepedia"] = save_data.get("tuxepedia", {})
+
+    # set as captured the party monsters
+    if not save_data["tuxepedia"]:
+        for mons in save_data.get("monsters", []):
+            save_data["tuxepedia"][mons["slug"]] = SeenStatus.caught
+        for monsters in save_data.get("monster_boxes", {}).values():
+            for monster in monsters:
+                save_data["tuxepedia"][monster["slug"]] = SeenStatus.caught
+
+    # set money old savegame and avoid getting the starter
+    if not save_data["money"]:
+        save_data["money"]["player"] = 10000
+        save_data["game_variables"]["xero_starting_money"] = "yes"
+        save_data["game_variables"]["spyder_starting_money"] = "yes"
+
     version = save_data.get("version", 0)
     for i in range(version, SAVE_VERSION):
         _update_current_map(i, save_data)
@@ -86,7 +108,7 @@ def upgrade_save(save_data: Dict[str, Any]) -> Dict[str, Any]:
         if i == 1:
             _transfer_storage_boxes(save_data)
 
-    return save_data
+    return save_data  # type: ignore[return-value]
 
 
 def _update_current_map(version: int, save_data: Dict[str, Any]) -> None:

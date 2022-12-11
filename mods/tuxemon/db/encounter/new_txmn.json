@@ -7,71 +7,7 @@
                 2,
                 4
             ],
-            "monster":"wrougon"
-        },
-        {
-            "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
-            "monster":"anoleaf"
-        },
-        {
-            "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
             "monster":"chloragon"
-        },
-        {
-            "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
-            "monster":"tweesher"
-        },
-        {
-            "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
-            "monster":"aardorn"
-        },
-        {
-            "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
-            "monster":"agnite"
-        },
-        {
-            "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
-            "monster":"cairfrey"
-        },
-        {
-            "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
-            "monster":"capiti"
-        },
-        {
-            "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
-            "monster":"cardiling"
         },
         {
             "encounter_rate":0.5,
@@ -87,7 +23,7 @@
                 2,
                 4
             ],
-            "monster":"flacono"
+            "monster":"coproblight"
         },
         {
             "encounter_rate":0.5,
@@ -95,7 +31,7 @@
                 2,
                 4
             ],
-            "monster":"noctula"
+            "monster":"pilthropus"
         },
         {
             "encounter_rate":0.5,
@@ -103,31 +39,7 @@
                 2,
                 4
             ],
-            "monster":"nostray"
-        },
-        {
-            "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
-            "monster":"conifrost"
-        },
-        {
-            "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
-            "monster":"vamporm"
-        },
-        {
-            "encounter_rate":0.5,
-            "level_range":[
-                2,
-                4
-            ],
-            "monster":"zunna"
+            "monster":"teddisun"
         }
     ]
 }

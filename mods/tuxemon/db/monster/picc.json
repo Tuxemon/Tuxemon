@@ -16,11 +16,15 @@
             "technique": "battery_discharge"
         }
     ],
-    "shape": "Aquatic",
+    "evolutions": [],
+    "shape": "aquatic",
     "types": [
-        "Metal"
+        "metal"
     ],
-    "weight": 25,
+    "possible_genders": ["neuter"],
+    "txmn_id": 126,
+    "height": 55,
+    "weight": 4,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

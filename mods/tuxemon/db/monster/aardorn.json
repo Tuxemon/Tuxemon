@@ -16,19 +16,25 @@
             "technique": "stampede"
         },
 	    {
-            "level_learned": 11,
-            "technique": "overfeed"
-        },
-	    {
             "level_learned": 17,
             "technique": "feint"
         }
     ],
-    "shape": "Varmint",
-    "types": [
-        "Earth"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 20,
+            "monster_slug": "aardart"
+        }
     ],
-    "weight": 25,
+    "shape": "varmint",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 41,
+    "height": 40,
+    "weight": 18,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

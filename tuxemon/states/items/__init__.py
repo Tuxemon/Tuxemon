@@ -26,6 +26,7 @@
 #
 # states.ItemMenuState The item menu allows you to view and use items in your inventory.
 # states.ShopMenuState
+# states.ShopBuyMenuState Shop Buy menu allows you to buy items that cost money
 #
 from __future__ import annotations
 
@@ -34,11 +35,16 @@ from typing import Any, Generator, Iterable, Sequence, Tuple
 import pygame
 
 from tuxemon import tools
+from tuxemon.db import State
 from tuxemon.item.item import InventoryItem, Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
-from tuxemon.menu.quantity import QuantityAndPriceMenu, QuantityMenu
+from tuxemon.menu.quantity import (
+    QuantityAndCostMenu,
+    QuantityAndPriceMenu,
+    QuantityMenu,
+)
 from tuxemon.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
@@ -48,6 +54,7 @@ from tuxemon.ui.text import TextArea
 # The import is required for PushState to work.
 # But linters may say the import is unused.
 assert QuantityMenu
+assert QuantityAndCostMenu
 assert QuantityAndPriceMenu
 
 
@@ -148,8 +155,29 @@ class ItemMenuState(Menu[Item]):
             for m in local_session.player.monsters
         ):
             msg = T.format("item_no_available_target", {"name": item.name})
+            for i in menu_item.game_object.conditions:
+                if i.name == "location_inside":
+                    msg = T.format(
+                        "item_used_wrong_location_inside",
+                        {
+                            "name": item.name,
+                            "here": T.translate(
+                                i.__getattribute__("location_inside")
+                            ),
+                        },
+                    )
+                elif i.name == "location_type":
+                    msg = T.format(
+                        "item_used_wrong_location_type",
+                        {
+                            "name": item.name,
+                            "here": T.translate(
+                                i.__getattribute__("location_type")
+                            ),
+                        },
+                    )
             tools.open_dialog(local_session, [msg])
-        elif state not in item.usable_in:
+        elif State[state] not in item.usable_in:
             msg = T.format("item_cannot_use_here", {"name": item.name})
             tools.open_dialog(local_session, [msg])
         else:
@@ -179,8 +207,8 @@ class ItemMenuState(Menu[Item]):
             # TODO: allow items to be used on player or "in general"
 
             menu = self.client.push_state(MonsterMenuState)
-            menu.is_valid_entry = item.validate
-            menu.on_menu_selection = use_item
+            menu.is_valid_entry = item.validate  # type: ignore[assignment]
+            menu.on_menu_selection = use_item  # type: ignore[assignment]
 
         def cancel() -> None:
             self.client.pop_state()  # close the use/cancel menu
@@ -288,48 +316,6 @@ class ShopMenuState(Menu[Item]):
         rect.height = int(self.rect.height * 0.60)
         return rect
 
-    def on_menu_selection(self, menu_item: MenuItem[Item]) -> None:
-        """
-        Called when player has selected something from the inventory.
-
-        Currently, opens a new menu depending on the state context.
-
-        Parameters:
-            menu_item: Selected menu item.
-
-        """
-        item = menu_item.game_object
-
-        def use_item(quantity: int) -> None:
-            if not quantity:
-                return
-
-            if self.buyer:
-                self.seller.give_item(self.client, self.buyer, item, quantity)
-            else:
-                self.seller.alter_item_quantity(
-                    self.client,
-                    item.slug,
-                    -quantity,
-                )
-            self.reload_items()
-            if not self.seller.has_item(item.slug):
-                # We're pointing at a new item
-                self.on_menu_selection_change()
-
-        item_dict = self.seller.inventory[item.slug]
-        max_quantity = (
-            None if item_dict.get("infinite") else item_dict["quantity"]
-        )
-
-        self.client.push_state(
-            QuantityMenu,
-            callback=use_item,
-            max_quantity=max_quantity,
-            quantity=1,
-            shrink_to_items=True,
-        )
-
     def initialize_items(self) -> Generator[MenuItem[Item], None, None]:
         """Get all player inventory items and add them to menu."""
         inventory = [
@@ -372,6 +358,9 @@ class ShopMenuState(Menu[Item]):
             self.item_sprite.image = image
             self.item_sprite.rect = image.get_rect(center=self.image_center)
             self.alert(item.description)
+        else:
+            self.item_sprite.image = None
+            self.alert("")
 
 
 class ShopBuyMenuState(ShopMenuState):
@@ -387,42 +376,101 @@ class ShopBuyMenuState(ShopMenuState):
             menu_item: Selected menu item.
 
         """
+        MAX_QTY = 999
         item = menu_item.game_object
 
         def buy_item(quantity: int) -> None:
             if not quantity:
                 return
 
-            ## TODO: Allow money to transfer between buyer and seller.
-            if self.buyer:
-                self.seller.give_item(self.client, self.buyer, item, quantity)
-            else:
-                self.seller.alter_item_quantity(
-                    self.client,
-                    item.slug,
-                    -quantity,
-                )
+            self.buyer.buy_transaction(
+                self.client, self.seller, item.slug, quantity, price
+            )
+
             self.reload_items()
             if not self.seller.has_item(item.slug):
                 # We're pointing at a new item
                 self.on_menu_selection_change()
 
         item_dict = self.seller.inventory[item.slug]
-        max_quantity = (
-            None if item_dict.get("infinite") else item_dict["quantity"]
-        )
+
         price = (
-            1
+            0
             if not self.economy
             or not self.economy.lookup_item_price(item.slug)
             else self.economy.lookup_item_price(item.slug)
         )
+        money = self.buyer.money["player"]
+        if int(price) == 0:
+            max_quantity = (
+                MAX_QTY
+                if item_dict.get("infinite")
+                else min(MAX_QTY, item_dict["quantity"])
+            )
+        else:
+            qty_can_afford = int(money / price)
+            if item_dict.get("infinite"):
+                max_quantity = min(MAX_QTY, qty_can_afford)
+            else:
+                max_quantity = min(
+                    MAX_QTY, qty_can_afford, item_dict["quantity"]
+                )
 
         self.client.push_state(
             QuantityAndPriceMenu,
             callback=buy_item,
             max_quantity=max_quantity,
-            quantity=1,
+            quantity=0 if max_quantity == 0 else 1,
             shrink_to_items=True,
             price=price,
+        )
+
+
+class ShopSellMenuState(ShopMenuState):
+    """This is the state for when a player wants to buy something."""
+
+    def on_menu_selection(self, menu_item: MenuItem[Item]) -> None:
+        """
+        Called when player has selected something from the inventory.
+
+        Currently, opens a new menu depending on the state context.
+
+        Parameters:
+            menu_item: Selected menu item.
+
+        """
+        item = menu_item.game_object
+
+        def sell_item(quantity: int) -> None:
+            if not quantity:
+                return
+
+            self.seller.sell_transaction(
+                self.client, self.seller, item.slug, quantity, cost
+            )
+
+            self.reload_items()
+            if not self.seller.has_item(item.slug):
+                # We're pointing at a new item
+                self.on_menu_selection_change()
+
+        item_dict = self.seller.inventory[item.slug]
+
+        cost = (
+            0
+            if not self.economy or not self.economy.lookup_item_cost(item.slug)
+            else self.economy.lookup_item_cost(item.slug)
+        )
+
+        max_quantity = (
+            None if item_dict.get("infinite") else item_dict["quantity"]
+        )
+
+        self.client.push_state(
+            QuantityAndCostMenu,
+            callback=sell_item,
+            max_quantity=max_quantity,
+            quantity=1,
+            shrink_to_items=True,
+            cost=cost,
         )

@@ -1,38 +1,41 @@
 {
-    "slug": "spyder_tunnelb_lute",
-    "sprite_name": "scientist",
-	"monsters": [
-        		{
-            "name": "Noctula",
-            "level": 16, 
-			"slug": "noctula",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Noctalo",
-            "level": 18, 
-			"slug": "noctalo",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Pipis",
-            "level": 16, 
-			"slug": "pipis",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Strella",
-            "level": 20, 
-			"slug": "strella",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "scientist.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_tunnelb_lute",
+  "gender": "male",
+  "sprite_name": "scientist",
+  "monsters": [
+    {
+      "name": "Noctula",
+      "level": 16,
+      "slug": "noctula",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Noctalo",
+      "level": 18,
+      "slug": "noctalo",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Pipis",
+      "level": 16,
+      "slug": "pipis",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Strella",
+      "level": 20,
+      "slug": "strella",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "scientist.png",
+  "combat_back": "adventurer_back.png"
+}

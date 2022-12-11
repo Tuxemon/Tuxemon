@@ -1,31 +1,33 @@
 {
-    "slug": "spyder_dryadsgrove_ferris",
-    "sprite_name": "woodnymph",
-	"monsters": [
-        		{
-            "name": "Viviteel",
-            "level": 50, 
-			"slug": "viviteel",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Allagon",
-            "level": 50, 
-			"slug": "allagon",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Araignee",
-            "level": 50, 
-			"slug": "araignee",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	"combat_front": "metalnymph.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_dryadsgrove_ferris",
+  "gender": "female",
+  "sprite_name": "woodnymph",
+  "monsters": [
+    {
+      "name": "Viviteel",
+      "level": 50,
+      "slug": "viviteel",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Allagon",
+      "level": 50,
+      "slug": "allagon",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Araignee",
+      "level": 50,
+      "slug": "araignee",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "metalnymph.png",
+  "combat_back": "adventurer_back.png"
+}

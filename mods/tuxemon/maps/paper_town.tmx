@@ -220,31 +220,28 @@
   <object id="211" type="collision" x="320" y="160" width="16" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
-  <object id="167" name="Sign for Mart" type="event" x="368" y="192">
+  <object id="167" name="Sign for Mart" type="event" x="368" y="192" width="16" height="16">
    <properties>
     <property name="act10" value="dialog_chain Buy things here"/>
     <property name="act20" value="dialog_chain ${{end}}"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
-   <polygon points="0,0 16,0 16,16 0,16"/>
   </object>
-  <object id="170" name="Teleport to Protagonist House" type="event" x="496" y="96">
+  <object id="170" name="Teleport to Protagonist House" type="event" x="496" y="96" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport player_house_downstairs.tmx,5,7,0.3"/>
     <property name="act20" value="player_face up"/>
     <property name="cond10" value="is player_at"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
-  <object id="171" name="Sign for Protagonist House" type="event" x="432" y="96">
+  <object id="171" name="Sign for Protagonist House" type="event" x="432" y="96" width="16" height="16">
    <properties>
     <property name="act10" value="dialog_chain Home sweet home"/>
     <property name="act20" value="dialog_chain ${{end}}"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
   <object id="173" name="Sign for Boat" type="event" x="560" y="240" width="16" height="16">
    <properties>
@@ -307,64 +304,57 @@
     <property name="cond10" value="is player_at"/>
    </properties>
   </object>
-  <object id="198" name="Teleport to Leather Town" type="event" x="592" y="144">
+  <object id="198" name="Teleport to Leather Town" type="event" x="592" y="144" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport leather_town.tmx,20,21,0.3"/>
     <property name="act20" value="player_face up"/>
     <property name="cond10" value="is player_at"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
-  <object id="199" name="Sign for Leather" type="event" x="592" y="128">
+  <object id="199" name="Sign for Leather" type="event" x="592" y="128" width="16" height="16">
    <properties>
     <property name="act10" value="dialog_chain Teleport to Leather Town below"/>
     <property name="act20" value="dialog_chain ${{end}}"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
-  <object id="200" name="Teleport to Flower City" type="event" x="592" y="176">
+  <object id="200" name="Teleport to Flower City" type="event" x="592" y="176" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport flower_city.tmx,20,24,0.3"/>
     <property name="act20" value="player_face up"/>
     <property name="cond10" value="is player_at"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
-  <object id="201" name="Teleport to Candy Town" type="event" x="592" y="208">
+  <object id="201" name="Teleport to Candy Town" type="event" x="592" y="208" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport candy_town.tmx,9,36,0.3"/>
     <property name="act20" value="player_face up"/>
     <property name="cond10" value="is player_at"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
-  <object id="202" name="Sign for Flower" type="event" x="592" y="160">
+  <object id="202" name="Sign for Flower" type="event" x="592" y="160" width="16" height="16">
    <properties>
     <property name="act10" value="dialog_chain Teleport to Flower City below"/>
     <property name="act20" value="dialog_chain ${{end}}"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
-  <object id="203" name="Sign for Candy" type="event" x="592" y="192">
+  <object id="203" name="Sign for Candy" type="event" x="592" y="192" width="16" height="16">
    <properties>
     <property name="act10" value="dialog_chain Teleport to Candy Town below"/>
     <property name="act20" value="dialog_chain ${{end}}"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
-  <object id="212" name="Teleport to Mart" type="event" x="320" y="192">
+  <object id="212" name="Teleport to Mart" type="event" x="320" y="192" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport paper_scoop.tmx,7,12,0.3"/>
     <property name="act20" value="player_face up"/>
     <property name="cond10" value="is player_at"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
   <object id="213" name="Player Spawn" type="event" x="416" y="128" width="16" height="16"/>
  </objectgroup>

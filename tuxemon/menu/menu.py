@@ -27,6 +27,7 @@ from tuxemon.menu.interface import MenuCursor, MenuItem
 from tuxemon.menu.theme import get_sound_engine, get_theme
 from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
+from tuxemon.prepare import CONFIG
 from tuxemon.sprite import (
     MenuSpriteGroup,
     RelativeGroup,
@@ -78,6 +79,7 @@ class PygameMenuState(state.State):
             theme=theme,
             center_content=True,
             onclose=self._on_close,
+            **kwargs,
         )
         self.menu.set_sound(get_sound_engine())
         # If we 'ignore nonphysical keyboard', pygame_menu will check the
@@ -189,7 +191,12 @@ class Menu(Generic[T], state.State):
     # File to load for image background
     background_filename: Optional[str] = None
     menu_select_sound_filename = "sound_menu_select"
-    font_filename = "PressStart2P.ttf"
+    if prepare.CONFIG.locale == "zh_CN":
+        font_filename = prepare.FONT_CHINESE
+    elif prepare.CONFIG.locale == "ja":
+        font_filename = prepare.FONT_JAPANESE
+    else:
+        font_filename = prepare.FONT_BASIC
     borders_filename = "gfx/dialog-borders01.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = 0.20
@@ -292,7 +299,15 @@ class Menu(Generic[T], state.State):
 
         """
         text_area.text = text
-        self.start_text_animation(text_area, callback)
+        if CONFIG.dialog_speed == "max":
+            # exhaust the iterator to immediately blit every char to the dialog
+            # box
+            for _ in text_area:
+                pass
+            if callback:
+                callback()
+        else:
+            self.start_text_animation(text_area, callback)
 
     def alert(
         self,
@@ -316,11 +331,10 @@ class Menu(Generic[T], state.State):
             for sprite in self.sprites:
                 if isinstance(sprite, TextArea):
                     return sprite
-            logger.error(
+            raise RuntimeError(
                 "attempted to use 'alert' on state without a TextArea",
                 message,
             )
-            raise RuntimeError
 
         self.animate_text(find_textarea(), message, callback)
 
@@ -358,23 +372,32 @@ class Menu(Generic[T], state.State):
         self._needs_refresh = True
         items = self.initialize_items()
 
-        if items:
-            self.menu_items.empty()
+        if not items:
+            return
 
-            for item in items:
-                self.add(item)
-                if item.enabled:
-                    item.enabled = self.is_valid_entry(item.game_object)
+        self.menu_items.empty()
 
-            self.menu_items.arrange_menu_items()
-            for index, item in enumerate(self.menu_items):
-                # TODO: avoid introspection of the items to implement
-                # different behavior
-                if item.game_object.__class__.__name__ != "Monster":
-                    break
-                self.selected_index = index
-                if item.enabled:
-                    break
+        for item in items:
+            self.add(item)
+            if item.enabled:
+                item.enabled = self.is_valid_entry(item.game_object)
+
+        self.menu_items.arrange_menu_items()
+
+        selected_item = self.get_selected_item()
+        if selected_item and selected_item.enabled:
+            return
+
+        # Choose new cursor position. We can't use the prev position, so we
+        # will use the closest valid option.
+        score = None
+        prev_index = self.selected_index
+        for index, item in enumerate(self.menu_items):
+            if item.enabled:
+                new_score = abs(prev_index - index)
+                if score is None or new_score < score:
+                    self.selected_index = index
+                    score = new_score
 
     def build_item(
         self: Menu[Callable[[], object]],

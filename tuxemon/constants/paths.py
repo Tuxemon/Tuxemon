@@ -81,3 +81,7 @@ ACTIONS_PATH = os.path.join(LIBDIR, "event/actions")
 # item effects/conditions
 ITEM_EFFECT_PATH = os.path.join(LIBDIR, "item/effects")
 ITEM_CONDITION_PATH = os.path.join(LIBDIR, "item/conditions")
+
+# technique effects/conditions
+TECH_EFFECT_PATH = os.path.join(LIBDIR, "technique/effects")
+TECH_CONDITION_PATH = os.path.join(LIBDIR, "technique/conditions")

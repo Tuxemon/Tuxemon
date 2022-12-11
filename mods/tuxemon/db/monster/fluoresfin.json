@@ -16,11 +16,21 @@
             "technique": "glower"
         }
     ],
-    "shape": "Aquatic",
-    "types": [
-        "Water"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "incandesfin"
+        }
     ],
-    "weight": 25,
+    "shape": "aquatic",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 67,
+    "height": 80,
+    "weight": 11,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

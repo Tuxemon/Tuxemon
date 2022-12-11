@@ -16,11 +16,15 @@
             "technique": "constrict"
         }
     ],
-    "shape": "Serpent",
+    "evolutions": [],
+    "shape": "serpent",
     "types": [
-        "Metal"
+        "metal"
     ],
-    "weight": 25,
+    "possible_genders": ["neuter"],
+    "txmn_id": 90,
+    "height": 100,
+    "weight": 1,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

@@ -1,20 +1,23 @@
 {
-    "slug": "liela",
-    "sprite_name": "femaletrainer",
-    "combat_front": "femaletrainer_front.png",
-    "combat_back": "maple_back.png",
-    "monsters": [
-        {
-            "level": 6,
-            "slug": "capiti",
-            "exp_give_mod": 3,
-            "exp_req_mod": 27
-        },
-        {
-            "level": 6,
-            "slug": "aardart",
-            "exp_give_mod": 3,
-            "exp_req_mod": 27
-        }
-    ]
+  "slug": "liela",
+  "gender": "female",
+  "sprite_name": "heroine",
+  "combat_front": "heroine.png",
+  "combat_back": "heroine_back.png",
+  "monsters": [
+    {
+      "level": 6,
+      "slug": "capiti",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "level": 6,
+      "slug": "aardart",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    }
+  ]
 }

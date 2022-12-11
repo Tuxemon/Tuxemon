@@ -104,6 +104,11 @@
         }
       ]
     },
+    "tech_id": {
+      "title": "Technique ID",
+      "description": "The id of this technique",
+      "type": "number"
+    },
     "accuracy": {
       "title": "Accuracy",
       "description": "The accuracy of the technique",

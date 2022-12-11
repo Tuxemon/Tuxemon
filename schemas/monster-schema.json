@@ -17,6 +17,16 @@
       "description": "The AI to use for this monster",
       "type": "string"
     },
+    "txmn_id": {
+      "title": "Tuxemon ID",
+      "description": "The id of the monster",
+      "type": "number"
+    },
+    "height": {
+      "title": "Height",
+      "description": "The height of the monster",
+      "type": "number"
+    },
     "weight": {
       "title": "Weight",
       "description": "The weight of the monster",
@@ -28,6 +38,12 @@
     "shape": {
       "title": "Shape",
       "description": "The shape of the monster",
+      "default": "",
+      "type": "string"
+    },
+    "possible_genders": {
+      "title": "Gender",
+      "description": "The gender of the monster",
       "default": "",
       "type": "string"
     },

@@ -16,11 +16,21 @@
             "technique": "whirlwind"
         }
     ],
-    "shape": "Varmint",
-    "types": [
-        "Wood"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "gectile"
+        }
     ],
-    "weight": 25,
+    "shape": "varmint",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 64,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

@@ -64,12 +64,9 @@ class CommandProcessor:
     def __init__(self, session: Session, prompt: str = "> ") -> None:
         self.prompt = prompt
         self.session = session
-        commands = list()
-        folders = list()
-        folders.append(os.path.join(os.path.dirname(__file__), "commands"))
+        folder = os.path.join(os.path.dirname(__file__), "commands")
         # TODO: add folder(s) from mods
-        for folder in folders:
-            commands.extend(self.collect_commands(folder))
+        commands = list(self.collect_commands(folder))
         self.root_command = MetaCommand(commands)
 
     def run(self) -> None:

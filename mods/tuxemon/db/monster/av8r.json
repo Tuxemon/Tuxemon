@@ -16,11 +16,15 @@
             "technique": "battery_discharge"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [],
+    "shape": "flier",
     "types": [
-        "Metal"
+        "metal"
     ],
-    "weight": 25,
+    "possible_genders": ["neuter"],
+    "txmn_id": 125,
+    "height": 0,
+    "weight": 0,
     "sounds": {
         "combat_call": "sound_av8r",
         "faint_call": "sound_av8r_faint"

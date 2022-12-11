@@ -16,11 +16,21 @@
             "technique": "energy_claws"
         }
     ],
-    "shape": "Dragon",
-    "types": [
-        "Fire"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 36,
+            "monster_slug": "agnigon"
+        }
     ],
-    "weight": 25,
+    "shape": "dragon",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 14,
+    "height": 320,
+    "weight": 230,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

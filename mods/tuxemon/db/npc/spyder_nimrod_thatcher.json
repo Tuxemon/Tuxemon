@@ -1,24 +1,25 @@
 {
-    "slug": "spyder_nimrod_thatcher",
-    "sprite_name": "knight",
-	"monsters": [
-        {
-            "name": "Squabbit",
-            "level": 20, 
-			"slug": "squabbit",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Viviteel",
-            "level": 25, 
-			"slug": "viviteel",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "enforcer_agent.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_nimrod_thatcher",
+  "gender": "female",
+  "sprite_name": "knight",
+  "monsters": [
+    {
+      "name": "Squabbit",
+      "level": 20,
+      "slug": "squabbit",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Viviteel",
+      "level": 25,
+      "slug": "viviteel",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "enforcer_agent.png",
+  "combat_back": "adventurer_back.png"
+}

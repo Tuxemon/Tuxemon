@@ -1,0 +1,31 @@
+{
+    "slug": "teddisun",
+    "category": "cute_teddy",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "headbutt"
+        },
+        {
+            "level_learned": 2,
+            "technique": "supernova"
+        }
+    ],
+    "evolutions": [],
+    "shape": "humanoid",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 161,
+    "height": 0,
+    "weight": 60,
+    "catch_rate": 170.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.25
+}

@@ -16,11 +16,36 @@
             "technique": "wall_of_steel"
         }
     ],
-    "shape": "",
-    "types": [
-        "Metal"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 20,
+            "monster_slug": "angrito"
+        },
+        {
+            "path": "standard",
+            "at_level": 20,
+            "monster_slug": "happito"
+        },
+        {
+            "path": "standard",
+            "at_level": 20,
+            "monster_slug": "neutrito"
+        },
+        {
+            "path": "standard",
+            "at_level": 20,
+            "monster_slug": "sadito"
+        }
     ],
-    "weight": 25,
+    "shape": "blob",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 165,
+    "height": 38,
+    "weight": 3.5,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

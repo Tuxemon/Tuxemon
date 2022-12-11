@@ -1,17 +1,17 @@
 {
-  "slug": "status_lifeleech",
-  "name_trans": "status_lifeleech_name",
-  "execute_trans": "combat_state_lifeleech_get",
-  "success_trans": "combat_state_lifeleech_success",
-  "failure_trans": "combat_state_lifeleech_failure",
   "animation": "drip_green",
-  "sfx": "sfx_bite",
-  "icon": "gfx/ui/icons/status/lifeleech-icon.png",
-  "category": "lifeleech",
-  "sort": "meta",
+  "category": "negative",
   "effects": [
-    "status"
+    "lifeleech all"
   ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_lifeleech.png",
+  "range": "special",
+  "repl_pos": "replace",
+  "repl_neg": "replace",
+  "sfx": "sfx_bite",
+  "slug": "status_lifeleech",
+  "sort": "meta",
   "target": {
     "enemy monster": 0,
     "enemy team": 0,
@@ -20,5 +20,9 @@
     "own team": 0,
     "own trainer": 0,
     "item": 0
-  }
+  },
+  "tech_id": 94,
+  "use_failure": "generic_failure",
+  "use_success": "combat_state_lifeleech_get",
+  "use_tech": "combat_used_x"
 }

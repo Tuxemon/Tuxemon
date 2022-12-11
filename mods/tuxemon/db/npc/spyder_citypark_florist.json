@@ -1,6 +1,7 @@
 {
-    "slug": "spyder_citypark_florist",
-    "sprite_name": "florist",
-	    "combat_front": "florist.png",
-    "combat_back": "red_back.png" }
-
+  "slug": "spyder_citypark_florist",
+  "gender": "female",
+  "sprite_name": "florist",
+  "combat_front": "florist.png",
+  "combat_back": "adventurer_back.png"
+}

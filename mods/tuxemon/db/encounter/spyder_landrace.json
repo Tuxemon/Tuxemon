@@ -1,11 +1,13 @@
-{"slug": "spyder_landrace","monsters": [
-
-
-
-
-{ "monster": "sludgehog","encounter_rate":100,"level_range": [40,41]}
-
-
-
-
-] }
+{
+  "slug": "spyder_landrace",
+  "monsters": [
+    {
+      "monster": "sludgehog",
+      "encounter_rate": 100,
+      "level_range": [
+        40,
+        41
+      ]
+    }
+  ]
+}

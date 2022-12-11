@@ -32,6 +32,7 @@
 from __future__ import annotations
 
 import logging
+from typing import Optional
 
 from tuxemon.db import db
 
@@ -59,14 +60,14 @@ class Economy:
         """
 
         try:
-            results = db.lookup(slug, table="economy").dict()
+            results = db.lookup(slug, table="economy")
         except KeyError:
             raise RuntimeError(f"Failed to find economy with slug {slug}")
 
-        self.slug = results["slug"]
-        self.items = results["items"]
+        self.slug = results.slug
+        self.items = results.items
 
-    def lookup_item_field(self, item_slug: str, field: str) -> int:
+    def lookup_item_field(self, item_slug: str, field: str) -> Optional[int]:
         """Looks up the item's field from this economy.
 
         The item and field is looked up by its slug.
@@ -80,9 +81,8 @@ class Economy:
             Field of item for this economy.
         """
         for item in self.items:
-            if item["item_name"] == item_slug and field in item:
-                value = item[field]
-                return value
+            if item.item_name == item_slug and hasattr(item, field):
+                return getattr(item, field)
 
         return None
 
@@ -100,7 +100,7 @@ class Economy:
         """
         price = self.lookup_item_field(item_slug, "price")
 
-        if not price:
+        if price is None:
             raise RuntimeError(
                 f"Price for item '{item_slug}' not found in "
                 f"economy '{self.slug}'"
@@ -122,7 +122,7 @@ class Economy:
         """
         cost = self.lookup_item_field(item_slug, "cost")
 
-        if not cost:
+        if cost is None:
             raise RuntimeError(
                 f"Cost for item '{item_slug}' not found in "
                 f"economy '{self.slug}'"

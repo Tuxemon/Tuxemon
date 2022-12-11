@@ -16,11 +16,15 @@
             "technique": "snowstorm"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [],
+    "shape": "flier",
     "types": [
-        "Water"
+        "water"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 9,
+    "height": 150,
+    "weight": 36,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

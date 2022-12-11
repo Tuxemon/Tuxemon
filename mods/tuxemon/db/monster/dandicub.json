@@ -16,11 +16,21 @@
             "technique": "sleeping_powder"
         }
     ],
-    "shape": "Blob",
-    "types": [
-        "Wood"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 20,
+            "monster_slug": "dandylion"
+        }
     ],
-    "weight": 25,
+    "shape": "blob",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 72,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

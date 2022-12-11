@@ -16,11 +16,15 @@
             "technique": "font"
         }
     ],
-    "shape": "",
+    "evolutions": [],
+    "shape": "dragon",
     "types": [
-        "Water"
+        "water"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 156,
+    "height": 800,
+    "weight": 3000,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

@@ -16,11 +16,40 @@
             "technique": "battery_discharge"
         }
     ],
-    "shape": "Grub",
-    "types": [
-        "Metal"
+    "evolutions": [
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "av8r",
+            "item": "booster_tech"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "picc",
+            "item": "booster_tech"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "mrmoswitch",
+            "item": "booster_tech"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "k9",
+            "item": "booster_tech"
+        }
     ],
-    "weight": 25,
+    "shape": "grub",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 124,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

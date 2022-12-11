@@ -16,11 +16,21 @@
             "technique": "flood"
         }
     ],
-    "shape": "Polliwog",
-    "types": [
-        "Water"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "nudikill"
+        }
     ],
-    "weight": 25,
+    "shape": "polliwog",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male"],
+    "txmn_id": 51,
+    "height": 36,
+    "weight": 3,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

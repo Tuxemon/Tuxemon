@@ -16,11 +16,21 @@
             "technique": "energy_field"
         }
     ],
-    "shape": "Flier",
-    "types": [
-        "Water"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 24,
+            "monster_slug": "heronquak"
+        }
     ],
-    "weight": 25,
+    "shape": "flier",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 7,
+    "height": 45,
+    "weight": 1,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

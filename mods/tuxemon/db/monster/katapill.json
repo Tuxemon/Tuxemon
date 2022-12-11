@@ -16,12 +16,22 @@
             "technique": "splinter"
         }
     ],
-    "shape": "Grub",
-    "types": [
-        "Metal",
-        "Wood"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 9,
+            "monster_slug": "katacoon"
+        }
     ],
-    "weight": 25,
+    "shape": "grub",
+    "types": [
+        "metal",
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 55,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

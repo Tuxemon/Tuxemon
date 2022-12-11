@@ -1,10 +1,12 @@
 {
+  "tech_id": 89,
   "accuracy": 0.8,
   "animation": "spikes_rock",
-  "category": "physical",
   "effects": [
-    "damage"
+    "damage 100",
+    "softened target"
   ],
+  "flip_axes": "",
   "healing_power": 0,
   "icon": "",
   "is_area": false,

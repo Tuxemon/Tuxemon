@@ -85,7 +85,7 @@
     <property name="cond70" value="not variable_set serenademe:no"/>
    </properties>
   </object>
-  <object id="46" name="choiceHydrone" type="event" x="112.333" y="128.667" width="16" height="16">
+  <object id="46" name="choiceHydrone" type="event" x="112" y="128" width="16" height="16">
    <properties>
     <property name="act10" value="add_monster hydrone,5"/>
     <property name="act20" value="set_variable tuxchoice:end"/>
@@ -97,7 +97,7 @@
     <property name="cond10" value="is variable_set tuxchoice:hydrone"/>
    </properties>
   </object>
-  <object id="47" name="choiceRockitten" type="event" x="112.333" y="128.333" width="16" height="16">
+  <object id="47" name="choiceRockitten" type="event" x="112" y="128" width="16" height="16">
    <properties>
     <property name="act10" value="add_monster rockitten,5"/>
     <property name="act20" value="set_variable tuxchoice:end"/>
@@ -109,7 +109,7 @@
     <property name="cond10" value="is variable_set tuxchoice:rockitten"/>
    </properties>
   </object>
-  <object id="51" name="choiceFruitera" type="event" x="112.333" y="128" width="16" height="16">
+  <object id="51" name="choiceFruitera" type="event" x="112" y="128" width="16" height="16">
    <properties>
     <property name="act10" value="add_monster fruitera,5"/>
     <property name="act20" value="set_variable tuxchoice:end"/>

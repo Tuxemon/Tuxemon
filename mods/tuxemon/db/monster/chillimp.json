@@ -16,12 +16,16 @@
             "technique": "snowstorm"
         }
     ],
-    "shape": "Brute",
+    "evolutions": [],
+    "shape": "brute",
     "types": [
-        "Water",
-        "Earth"
+        "water",
+        "earth"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 149,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

@@ -27,15 +27,19 @@
 #
 """This module contains the Tuxemon server and client.
 """
+from __future__ import annotations
 
 import logging
 import pprint
 from datetime import datetime
+from typing import TYPE_CHECKING, Dict, List, Literal, Tuple, TypedDict
 
 import pygame as pg
 
 from tuxemon import prepare
 from tuxemon.middleware import Controller, Multiplayer
+from tuxemon.session import local_session
+from tuxemon.states import world
 
 logger = logging.getLogger(__name__)
 pp = pprint.PrettyPrinter(indent=4)
@@ -49,6 +53,26 @@ except ImportError:
     logger.info("Neteria networking unavailable")
     networking = False
 
+if TYPE_CHECKING:
+    from tuxemon.client import LocalPygameClient
+
+
+class CharDict(TypedDict):
+    tile_pos: Tuple[int, int]
+    name: str
+    facing: Literal["front", "back", "left", "right"]
+
+
+class EventData(TypedDict, total=False):
+    type: str
+    cuuid: str
+    event_number: int
+    sprite_name: str
+    map_name: str
+    char_dict: CharDict
+    kb_key: str
+    target: str
+
 
 class TuxemonServer:
     """Server class for multiplayer games. Creates a netaria server and
@@ -60,17 +84,17 @@ class TuxemonServer:
 
     """
 
-    def __init__(self, game, server_name=None):
+    def __init__(self, game: LocalPygameClient, server_name=None):
 
         self.game = game
         if not server_name:
             self.server_name = "Default Tuxemon Server"
         else:
             self.server_name = server_name
-        self.network_events = []
+        self.network_events: List[str] = []
         self.listening = False
         self.interfaces = {}
-        self.ips = []
+        self.ips: List[str] = []
 
         # Handle users without networking support.
         if not networking:
@@ -102,14 +126,11 @@ class TuxemonServer:
             except KeyError:
                 self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
 
-    def server_event_handler(self, cuuid, event_data) -> None:
+    def server_event_handler(self, cuuid: str, event_data: EventData) -> None:
         """Handles events sent from the middleware that are legal.
 
         :param cuuid: Clients unique user identification number.
         :param event_data: Event information sent by client.
-
-        :type cuuid: String
-        :type event_data: Dictionary
 
         """
         # Only respond to the latest message of a given type
@@ -124,7 +145,7 @@ class TuxemonServer:
             event_data["event_number"]
             <= self.server.registry[cuuid]["event_list"][event_data["type"]]
         ):
-            return False
+            return
         else:
             self.server.registry[cuuid]["event_list"][
                 event_data["type"]
@@ -180,7 +201,7 @@ class TuxemonServer:
                 ]
             self.notify_client(cuuid, event_data)
 
-    def update_char_dict(self, cuuid, char_dict) -> None:
+    def update_char_dict(self, cuuid: str, char_dict: CharDict) -> None:
         """Updates registry with player updates.
 
         :param cuuid: Clients unique user identification number.
@@ -189,10 +210,9 @@ class TuxemonServer:
         :type cuuid: String
         :type event_data: String
         """
-        for param in char_dict:
-            self.server.registry[cuuid]["char_dict"][param] = char_dict[param]
+        self.server.registry[cuuid]["char_dict"].update(char_dict)
 
-    def notify_client(self, cuuid: str, event_data: str) -> None:
+    def notify_client(self, cuuid: str, event_data: EventData) -> None:
         """
         Updates all clients with player updates.
 
@@ -213,7 +233,9 @@ class TuxemonServer:
             elif client_id != cuuid:
                 self.server.notify(client_id, event_data)
 
-    def notify_populate_client(self, cuuid, event_data) -> None:
+    def notify_populate_client(
+        self, cuuid: str, event_data: EventData
+    ) -> None:
         """Updates all clients with the details of the new client.
 
         :param cuuid: Clients unique user identification number.
@@ -248,7 +270,9 @@ class TuxemonServer:
                 }
                 self.server.notify(cuuid, event_data_2)
 
-    def notify_client_interaction(self, cuuid, event_data) -> None:
+    def notify_client_interaction(
+        self, cuuid: str, event_data: EventData
+    ) -> None:
         """Notify a client that another client has interacted with them.
 
         :param cuuid: Clients unique user identification number.
@@ -275,9 +299,9 @@ class ControllerServer:
 
     """
 
-    def __init__(self, game):
+    def __init__(self, game: LocalPygameClient):
         self.game = game
-        self.network_events = []
+        self.network_events: List[str] = []
         self.listening = False
         self.interfaces = {}
 
@@ -362,22 +386,23 @@ class TuxemonClient:
 
     """
 
-    def __init__(self, game):
+    def __init__(self, game: LocalPygameClient):
 
         self.game = game
-        self.available_games = []
-        self.server_list = []
+        # tuple = (ip, port)
+        self.available_games: List[Tuple[str, int]] = []
+        self.server_list: List[str] = []
         self.selected_game = None
         self.enable_join_multiplayer = False
-        self.wait_broadcast = 0  # Used to delay autodiscover broadcast.
+        self.wait_broadcast = 0.0  # Used to delay autodiscover broadcast.
         self.wait_delay = 0.25  # Delay used in autodiscover broadcast.
         self.join_self = (
             False  # Default False. Set True for testing on one device.
         )
         self.populated = False
         self.listening = False
-        self.event_list = {}
-        self.ping_time = 2
+        self.event_list: Dict[str, int] = {}
+        self.ping_time = 2.0
 
         # Handle users without networking support.
         if not networking:
@@ -483,7 +508,7 @@ class TuxemonClient:
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_CLIENT_INTERACTION":
-                world = self.game.get_state_by_name("WorldState")
+                world = self.game.get_state_by_name(world.WorldState)
                 world.handle_interaction(event_data, self.client.registry)
                 del self.client.event_notifies[euuid]
 
@@ -521,7 +546,7 @@ class TuxemonClient:
         # Once per second send a server discovery packet.
         if self.wait_broadcast >= self.wait_delay:
             self.update_multiplayer_list()
-            self.wait_broadcast = 0
+            self.wait_broadcast = 0.0
         else:
             self.wait_broadcast += time_delta
 
@@ -556,7 +581,7 @@ class TuxemonClient:
         """Sends client character to the server."""
         if not event_type in self.event_list:
             self.event_list[event_type] = 0
-        pd = prepare.player1.__dict__
+        pd = local_session.player.__dict__
         map_name = self.game.get_map_name()
         event_data = {
             "type": event_type,
@@ -590,7 +615,7 @@ class TuxemonClient:
         """
         if not event_type in self.event_list:
             self.event_list[event_type] = 0
-        pd = prepare.player1.__dict__
+        pd = local_session.player.__dict__
         map_name = self.game.get_map_name()
         event_data = {
             "type": event_type,
@@ -612,9 +637,9 @@ class TuxemonClient:
 
         """
         if self.game.current_state != self.game.get_state_by_name(
-            "WorldState"
+            world.WorldState
         ):
-            return False
+            return
 
         event_type = None
         kb_key = None
@@ -728,7 +753,7 @@ class TuxemonClient:
             if self.client.registry[client_id]["sprite"] == sprite:
                 cuuid = client_id
 
-        pd = prepare.player1.__dict__
+        pd = local_session.player.__dict__
         event_data = {
             "type": event_type,
             "event_number": self.event_list[event_type],
@@ -771,7 +796,9 @@ class DummyNetworking:
         """The dummy networking object is used when networking is not supported."""
         self.registry = {}
         self.registered = False
-        self.discovered_servers = []
+        # {(ip, port): (client_version_number, server_name)
+        self.discovered_servers: Dict[Tuple[str, int], Tuple[int, str]] = {}
+        self.event_notifies = {}
 
     def event(self, *args, **kwargs):
         pass
@@ -780,6 +807,12 @@ class DummyNetworking:
         pass
 
     def autodiscover(self, *args, **kwargs):
+        pass
+
+    def register(self, *args, **kwargs):
+        pass
+
+    def notify(self, *args, **kwargs):
         pass
 
 
@@ -853,7 +886,7 @@ def update_client(sprite, char_dict, game) -> None:
     # broken, b/c no global x/y
     return
 
-    world = game.get_state_by_name("WorldState")
+    world = game.get_state_by_name(world.WorldState)
 
     for item in char_dict:
         sprite.__dict__[item] = char_dict[item]

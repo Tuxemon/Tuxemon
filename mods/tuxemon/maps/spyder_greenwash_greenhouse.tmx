@@ -1,74 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="32" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="90">
- <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
-  <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="32" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="91">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="greenwash_greenhouse"/>
+  <property name="types" value="dungeon"/>
+ </properties>
+ <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
  </tileset>
- <tileset firstgid="22" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
+ <tileset firstgid="2295" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
- <tileset firstgid="76" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
-  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
+ <tileset firstgid="10487" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
- <tileset firstgid="286" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ <tileset firstgid="11448" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="1726" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="2726" name="Outdoor_odds_and_ends_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="50" columns="10">
-  <image source="../gfx/tilesets/Outdoor_odds_and_ends_by_Isaiah658.png" width="160" height="80"/>
- </tileset>
- <tileset firstgid="2776" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
-  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
- </tileset>
- <tileset firstgid="2860" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
-  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
- </tileset>
- <tileset firstgid="3145" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="0" columns="15"/>
- <tileset firstgid="3145" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
- </tileset>
- <tileset firstgid="3305" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
- </tileset>
- <tileset firstgid="3461" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
-  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
- </tileset>
- <tileset firstgid="3989" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
-  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
- </tileset>
- <tileset firstgid="6581" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
-  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
- </tileset>
- <tileset firstgid="8341" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
- <tileset firstgid="8789" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
+ <tileset firstgid="15312" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
  <layer id="7" name="Tile Layer 1" width="32" height="16">
   <data encoding="base64" compression="zlib">
-   eAFzVGRgcAJiZyB2JMAGyRNSQ4w5hNTA7MFFE+teQvaAzEE2C2QfIT3U9j+6H0ftx5/GRsMfNc0ip19y2NQOT0LpF92No/ZTNz5Hwx9/+TGa/lDrOACIWMXT
+   eAErZGBgKBzFo2EwmgZG08BoGhhNA6NpYESlAQABFuIB
   </data>
  </layer>
  <layer id="8" name="Tile Layer 2" width="32" height="16">
   <data encoding="base64" compression="zlib">
-   eAHFkzsKAkEQRPsGhn4yMdBUDQQVM3MTjyKoJ1Av6jXsEgqKZj67oLsDRc1M9/Sbz+57bLaY96fBxOzs/L60cf4v2mFqBpVazMGZu+BHLsf/5M/8bDVFPvdFL90lYyfnMB/Ohvmavt+cvL/W0VqoGWMcl/jcS87BX0uQNekSKvI1j33sq9bAP0oSuXSEriOzm+vuSrUcR+8ltQ6M+P6pvIdzn65XSz7PQNfanGvCb3L+2nce4234Tc6Pu24j3AX2wPNfhmYQ3znl3LO63mmuX8onn2v5zinXOtrn2pRrHvuaF/kai32ujx7z4njpEyuX/ufM6YK/ddjOtSdUHPwPb8lsWg==
+   eAHFk0sOwjAMRCPxkVhxAXbAAsSGHqA77tRjAhdgwzkKnsWoIyufRoLW0shO4uQ5TtvcQnif5lNj/MV5PoH/C+s2IUA58zm49xR8z+X4n/yXfVMleT7ros/1kmu9cZgPT8N8STV8ZWic47OWlAd/dx1W9Vy9CzL8Gsfgxyw1r7ngdwX+8hLCyrQ2xSzF0b7E9qF+3/9Y3t64B9Oxks/+0OvZnBvDH3P/0nfu12v4pfu39obodY3QC9TA+2+ttxDfOeZZs3rtaSrO5ZPPvXznmNdzNObemNc8xprn+brmY+733uf58d3+r4fpKf8Zc6bg98b9gN2QOnjwvzxNohA=
   </data>
  </layer>
  <layer id="9" name="Tile Layer 3" width="32" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBg84KsEA8M3ICZEg1zsDFTnAsS4QKo4Lhnc4qySDAxsQEyIBpkQDLQ7BIhPizEwnAFidFBKhv3oZuDjJwPtTgHi20C772CxH59easopq2M3DZc4dtXki+KyB5c4+TZh14nLHlzi2E3BLZoBjONMIM4CYmwAlz24xLGZgU+sAmhvJRBXkWD/PiqmR3L8fw6P/XvxyGELB3z+dwSGCanhfBaH/cj+hMU3iEYWR3dfIFA+CEe8oKsll4/P/4lAu5NobD+57h7VR1wIAABDByhQ
+   eAHtUrsKwkAQ3MIXmGih36Boon6J/n9npXZqEXvnioMQZjZwR8DChWG52cfsJmv2O9ZUZh+gz4eJn8h7AcreTkzVrGqzNdDnQ32JvAUwBWZA15aE6+bkvGv0PwAbYDuwljfndcejiufZ6azSUXy6Eq9UOornXTR7wx3fgYe4Z6WjeK3EIyPc1hiYiBtjOieRyxV8NmX/i6N/dGJskpT9WZ/InYV+e8/4v4Nv87FH9HP0KkS/mJPrvf330K4G1s+d/1/vf4EvfiszRQ==
   </data>
  </layer>
  <layer id="10" name="Tile Layer 4" width="32" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBjaYLcYA8MeIB4FIzMEzohi9/dboDghjF0naaK47MclTprpDAwZEgwMmUCcBcTYAC57cIljM4MSMVz24BKnxC5seullDza7QWLUsD9VnIEBhGHxjE7jshsm/gaY1knBMH2j9GgIAABabCQv
+   eAFjYBja4IU2A8NLIB4FIzMEOHWw+9sdKE4IY9dJmigu+3GJk2Y6A8NTYNp+BsTPcaRxXPbgEifVfkLqcdmDS5yQeaTK08seXO6ihv0fgHELwrB4Rqdx2Q0TJ5TO0eVh+kbp0RAAADuTGUY=
   </data>
  </layer>
  <layer id="11" name="Tile Layer 5" width="32" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyFAfgjsEcWu9y5QnBDGrpM0UVz24xInzXTCqnHZg0ucsImkqcBlDy5x0kwnrJpe9uByyUDa7yjBwOAExHeAaZ0UjM0vGUBzQACdhojSnqyA2o9O097mURsGMgQA21cfCw==
+   eAFjYBgFoyFAfgi80sauV1OHgYEQxq6TNFFc9uMSJ810wqpx2YNLnLCJpKnAZQ8ucdJMJ6yaXvbgcslA2v8GmPbfArEGMK2TgrH55Sk0H6HT2NTSQowF6AcQQKchoqPkcA0BAGFcFpo=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
@@ -263,6 +238,12 @@
     <property name="act6" value="set_variable greenwashgregor:yes"/>
     <property name="cond1" value="not variable_set greenwashgregor:yes"/>
     <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="90" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
  </objectgroup>

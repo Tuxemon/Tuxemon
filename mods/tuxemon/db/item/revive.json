@@ -1,16 +1,14 @@
 {
-  "slug": "revive",
-  "use_item": "combat_used_x",
-  "use_success": "generic_success",
-  "use_failure": "generic_failure",
-  "effects": [
-    "revive",
-    "heal 20"
-  ],
+  "battle_menu": "monster",
   "conditions": [
     "current_hp target,==,0",
     "status target,status_faint"
   ],
+  "effects": [
+    "revive 1",
+    "heal 20"
+  ],
+  "slug": "revive",
   "sort": "food",
   "sprite": "gfx/items/revive.png",
   "target": {
@@ -26,5 +24,8 @@
   "usable_in": [
     "MainCombatMenuState",
     "WorldState"
-  ]
+  ],
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
 }

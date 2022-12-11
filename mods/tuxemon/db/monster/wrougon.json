@@ -16,11 +16,21 @@
             "technique": "strike"
         }
     ],
-    "shape": "Dragon",
-    "types": [
-        "Metal"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "allagon"
+        }
     ],
-    "weight": 25,
+    "shape": "dragon",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 152,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

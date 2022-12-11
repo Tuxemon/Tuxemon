@@ -1,6 +1,7 @@
 {
-    "slug": "xerogrunt8",
-    "sprite_name": "teamxerogrunt1",
-    "combat_front": "red_front.png",
-    "combat_back": "red_back.png"
+  "slug": "xerogrunt8",
+  "gender": "male",
+  "sprite_name": "xerogrunt",
+  "combat_front": "adventurer.png",
+  "combat_back": "adventurer_back.png"
 }

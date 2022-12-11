@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="23">
+<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="24">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="taba_ba_passageway_1"/>
+ </properties>
  <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
@@ -45,6 +50,7 @@
   <object id="10" type="collision" x="80" y="64" width="16" height="160"/>
   <object id="14" type="collision" x="32" y="176" width="48" height="48"/>
   <object id="15" type="collision" x="0" y="208" width="32" height="48"/>
+  <object id="23" type="collision" x="64" y="272" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="16" name="back to main" type="event" x="256" y="0" width="16" height="16">

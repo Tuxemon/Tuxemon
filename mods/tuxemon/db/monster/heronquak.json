@@ -16,11 +16,21 @@
             "technique": "energy_field"
         }
     ],
-    "shape": "Flier",
-    "types": [
-        "Water"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 36,
+            "monster_slug": "eaglace"
+        }
     ],
-    "weight": 25,
+    "shape": "flier",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 8,
+    "height": 150,
+    "weight": 12,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

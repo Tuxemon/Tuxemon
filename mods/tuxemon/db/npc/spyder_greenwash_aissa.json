@@ -1,17 +1,17 @@
 {
-    "slug": "spyder_greenwash_aissa",
-    "sprite_name": "nurse",
-	"monsters": [
-        		{
-            "name": "Cateye",
-            "level": 22, 
-			"slug": "cateye",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	"combat_front": "nurse.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_greenwash_aissa",
+  "gender": "female",
+  "sprite_name": "nurse",
+  "monsters": [
+    {
+      "name": "Cateye",
+      "level": 22,
+      "slug": "cateye",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "nurse.png",
+  "combat_back": "adventurer_back.png"
+}

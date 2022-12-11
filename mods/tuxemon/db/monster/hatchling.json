@@ -16,11 +16,21 @@
             "technique": "fluff_up"
         }
     ],
-    "shape": "Flier",
-    "types": [
-        "Wood"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 20,
+            "monster_slug": "birdling"
+        }
     ],
-    "weight": 25,
+    "shape": "flier",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 80,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

@@ -28,7 +28,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Optional
+from typing import Optional, no_type_check
 
 from tuxemon import log, prepare
 from tuxemon.session import local_session
@@ -117,6 +117,7 @@ def main(
     pygame.quit()
 
 
+@no_type_check  # FIXME: dead code
 def headless() -> None:
     """Sets up out headless server and start the game."""
     from tuxemon.client import HeadlessClient

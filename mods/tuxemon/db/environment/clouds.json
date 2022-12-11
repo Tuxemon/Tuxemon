@@ -1,0 +1,9 @@
+{
+  "slug": "clouds",
+  "battle_graphics": {
+    "island_back": "sky_back_island.png",
+    "island_front": "sky_front_island.png",
+    "background": "clouds_background.png"
+  },
+  "battle_music": "music_battle_loop"
+}

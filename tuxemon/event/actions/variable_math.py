@@ -87,5 +87,4 @@ class VariableMathAction(EventAction[VariableMathActionParameters]):
         elif operation == "=":
             player.game_variables[result] = operand2
         else:
-            logger.error(f"invalid operation type {operation}")
-            raise ValueError
+            raise ValueError(f"invalid operation type {operation}")

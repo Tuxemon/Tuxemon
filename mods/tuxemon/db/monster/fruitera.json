@@ -16,11 +16,15 @@
             "technique": "splinter"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [],
+    "shape": "flier",
     "types": [
-        "Wood"
+        "wood"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 160,
+    "height": 30,
+    "weight": 2,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

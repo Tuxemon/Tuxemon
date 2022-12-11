@@ -30,11 +30,11 @@ from __future__ import annotations
 
 import logging
 from functools import partial
-from typing import Any, Callable, Sequence, Tuple
+from typing import Any, Callable, Dict, Sequence, Tuple
 
 import pygame_menu
 
-from tuxemon import prepare
+from tuxemon import formula, prepare
 from tuxemon.animation import Animation
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -151,7 +151,49 @@ class WorldMenuState(PygameMenuState):
             self.client.pop_state()  # close the info/move menu
 
         def open_monster_stats() -> None:
-            open_dialog(local_session, [T.translate("not_implemented")])
+            monster = monster_menu.get_selected_item().game_object
+            type2 = ""
+            if prepare.CONFIG.unit == "metric":
+                weight = monster.weight
+                height = monster.height
+                unit_weight = "kg"
+                unit_height = "cm"
+            else:
+                weight = formula.convert_lbs(monster.weight)
+                height = formula.convert_ft(monster.height)
+                unit_weight = "lb"
+                unit_height = "ft"
+            if monster.type2 is not None:
+                type2 = monster.type2
+            open_dialog(
+                local_session,
+                [
+                    T.format(
+                        "tuxemon_stat1",
+                        {
+                            "txmn": monster.txmn_id,
+                            "doc": formula.today_ordinal() - monster.capture,
+                            "weight": weight,
+                            "height": height,
+                            "unit_weight": unit_weight,
+                            "unit_height": unit_height,
+                            "lv": monster.level + 1,
+                            "type": monster.type1.title() + type2.title(),
+                            "exp": monster.total_experience,
+                            "exp_lv": (
+                                monster.experience_required(1)
+                                - monster.total_experience
+                            ),
+                        },
+                    ),
+                    T.format(
+                        "tuxemon_stat2",
+                        {
+                            "desc": monster.description,
+                        },
+                    ),
+                ],
+            )
 
         def positive_answer() -> None:
             success = False
@@ -159,7 +201,7 @@ class WorldMenuState(PygameMenuState):
             monster = monster_menu.get_selected_item().game_object
             success = player.release_monster(monster)
 
-            # Close the dialog and confirmation menu, and inform the user 
+            # Close the dialog and confirmation menu, and inform the user
             # their tuxemon has been released.
             if success:
                 self.client.pop_state()
@@ -169,6 +211,7 @@ class WorldMenuState(PygameMenuState):
                     [T.format("tuxemon_released", {"name": monster.name})],
                 )
                 monster_menu.refresh_menu_items()
+                monster_menu.on_menu_selection_change()
             else:
                 open_dialog(local_session, [T.translate("cant_release")])
 
@@ -217,12 +260,12 @@ class WorldMenuState(PygameMenuState):
             else:
                 open_monster_submenu(menu_item)
 
-        context = (
-            dict()
-        )  # dict passed around to hold info between menus/callbacks
-        monster_menu = self.client.replace_state("MonsterMenuState")
-        monster_menu.on_menu_selection = handle_selection
-        monster_menu.on_menu_selection_change = monster_menu_hook
+        context: Dict[
+            str, Any
+        ] = dict()  # dict passed around to hold info between menus/callbacks
+        monster_menu = self.client.replace_state(MonsterMenuState)
+        monster_menu.on_menu_selection = handle_selection  # type: ignore[assignment]
+        monster_menu.on_menu_selection_change = monster_menu_hook  # type: ignore[assignment]
 
     def update_animation_position(self) -> None:
         self.menu.translate(-self.animation_offset, 0)

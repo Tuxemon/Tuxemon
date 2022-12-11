@@ -30,18 +30,22 @@
 
 from __future__ import annotations
 
+import difflib
 import json
 import logging
 import os
+import sys
 from enum import Enum
 from operator import itemgetter
 from typing import (
     Any,
     Dict,
+    List,
     Literal,
     Mapping,
     Optional,
     Sequence,
+    Union,
     overload,
 )
 
@@ -59,7 +63,6 @@ T.load_translator()
 # Target is a mapping of who this targets
 Target = Mapping[str, int]
 
-
 # ItemSort defines the sort of item an item is.
 class ItemSort(str, Enum):
     food = "food"
@@ -68,18 +71,90 @@ class ItemSort(str, Enum):
     quest = "quest"
 
 
+class GenderType(str, Enum):
+    neuter = "neuter"
+    male = "male"
+    female = "female"
+
+
+class ElementType(str, Enum):
+    aether = "aether"
+    wood = "wood"
+    fire = "fire"
+    earth = "earth"
+    metal = "metal"
+    water = "water"
+    normal = "normal"
+    glitch = "glitch"
+
+
 class ItemType(str, Enum):
     consumable = "Consumable"
     key_item = "KeyItem"
 
 
+class OutputBattle(str, Enum):
+    won = "won"
+    lost = "lost"
+    draw = "draw"
+    ran = "ran"
+    forfeit = "forfeit"
+
+
+# ItemBattleMenu is which menu you want to use to choose the target.
+class ItemBattleMenu(str, Enum):
+    monster = "monster"
+    combat = "combat"
+
+
+class MonsterShape(str, Enum):
+    aquatic = "aquatic"
+    blob = "blob"
+    brute = "brute"
+    dragon = "dragon"
+    flier = "flier"
+    grub = "grub"
+    humanoid = "humanoid"
+    hunter = "hunter"
+    landrace = "landrace"
+    leviathan = "leviathan"
+    polliwog = "polliwog"
+    serpent = "serpent"
+    sprite = "sprite"
+    varmint = "varmint"
+
+
+class SeenStatus(str, Enum):
+    unseen = "unseen"
+    seen = "seen"
+    caught = "caught"
+
+
+class MapType(str, Enum):
+    notype = "notype"
+    town = "town"
+    route = "route"
+    center = "center"
+    shop = "shop"
+    dungeon = "dungeon"
+
+
+class EvolutionType(str, Enum):
+    standard = "standard"
+    item = "item"
+    gender = "gender"
+    mixed = "mixed"
+
+
 # TODO: Automatically generate state enum through discovery
-states = {
-    "MainCombatMenuState": "MainCombatMenuState",
-    "WorldState": "WorldState",
-    "None": "",
-}
-State = Enum("State", states)
+State = Enum(
+    "State",
+    {
+        "MainCombatMenuState": "MainCombatMenuState",
+        "WorldState": "WorldState",
+        "None": "",
+    },
+)
 
 
 class ItemModel(BaseModel):
@@ -112,6 +187,11 @@ class ItemModel(BaseModel):
     )
     effects: Sequence[str] = Field(
         [], description="Effects this item will have"
+    )
+    ## Optional fields:
+    battle_menu: Optional[ItemBattleMenu] = Field(
+        "",
+        description="Which menu should be used to choose the target of the item.",
     )
 
     class Config:
@@ -154,7 +234,7 @@ class MonsterMovesetItemModel(BaseModel):
 
 
 class MonsterEvolutionItemModel(BaseModel):
-    path: str = Field(..., description="Path to evolution item")
+    path: EvolutionType = Field(..., description="Paths to evolution")
     at_level: int = Field(
         ...,
         description="The level at which this item can be used for evolution",
@@ -162,6 +242,10 @@ class MonsterEvolutionItemModel(BaseModel):
     monster_slug: str = Field(
         ..., description="The monster slug that this evolution item applies to"
     )
+    # optional fields
+    item: Optional[str] = Field(None, description="Item parameter.")
+    gender: Optional[GenderType] = Field(None, description="Gender parameter")
+    mixed: Optional[str] = Field(None, description="Mixed parameter.")
 
     @validator("monster_slug")
     def monster_exists(cls, v):
@@ -202,13 +286,20 @@ class MonsterModel(BaseModel):
     slug: str = Field(..., description="The slug of the monster")
     category: str = Field(..., description="The category of monster")
     ai: str = Field(..., description="The AI to use for this monster")
+    txmn_id: int = Field(..., description="The id of the monster")
+    height: float = Field(..., description="The height of the monster")
     weight: float = Field(..., description="The weight of the monster")
 
     # Optional fields
     sprites: Optional[MonsterSpritesModel]
-    shape: str = Field("", description="The shape of the monster")
-    types: Sequence[str] = Field([], description="The type(s) of this monster")
+    shape: MonsterShape = Field(..., description="The shape of the monster")
+    types: Sequence[ElementType] = Field(
+        [], description="The type(s) of this monster"
+    )
     catch_rate: float = Field(0, description="The catch rate of the monster")
+    possible_genders: Sequence[GenderType] = Field(
+        [], description="Valid genders for the monster"
+    )
     lower_catch_resistance: float = Field(
         0, description="The lower catch resistance of the monster"
     )
@@ -224,10 +315,8 @@ class MonsterModel(BaseModel):
     flairs: Sequence[MonsterFlairItemModel] = Field(
         [], description="The flairs this monster has"
     )
-    sounds: MonsterSoundsModel = Field(
-        MonsterSoundsModel(
-            combat_call="sound_cry1", faint_call="sound_faint1"
-        ),
+    sounds: Optional[MonsterSoundsModel] = Field(
+        None,
         description="The sounds this monster has",
     )
 
@@ -250,15 +339,15 @@ class MonsterModel(BaseModel):
 
 
 class StatModel(BaseModel):
-    value: Optional[int] = Field(None, description="The value of the stat")
-    max_deviation: Optional[int] = Field(
-        None, description="The maximum deviation of the stat"
+    value: float = Field(0.0, description="The value of the stat")
+    max_deviation: int = Field(
+        0, description="The maximum deviation of the stat"
     )
     operation: str = Field(
-        ..., description="The operation to be done to the stat"
+        "+", description="The operation to be done to the stat"
     )
-    overridetofull: Optional[bool] = Field(
-        None, description="Whether or not to override to full"
+    overridetofull: bool = Field(
+        False, description="Whether or not to override to full"
     )
 
 
@@ -271,27 +360,25 @@ class Range(str, Enum):
     reliable = "reliable"
 
 
-# TODO: We may change this if we refactor technique effects to be more item-like
-class TechniqueEffect(str, Enum):
+# TechSort defines the sort of technique a technique is.
+class TechSort(str, Enum):
     damage = "damage"
-    hardshell = "hardshell"
-    lifeleech = "lifeleech"
     meta = "meta"
-    overfeed = "overfeed"
-    poison = "poison"
-    recover = "recover"
-    statchange = "statchange"
-    status = "status"
-    swap = "swap"
 
 
 class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
-    sort: str = Field(..., description="The sort of technique this is")
-    category: str = Field(..., description="The category of technique this is")
+    sort: TechSort = Field(..., description="The sort of technique this is")
     icon: str = Field(..., description="The icon to use for the technique")
-    effects: Sequence[TechniqueEffect] = Field(
-        ..., description="Effects this technique uses"
+    conditions: Sequence[str] = Field(
+        [], description="Conditions that must be met"
+    )
+    effects: Sequence[str] = Field(
+        [], description="Effects this technique uses"
+    )
+    flip_axes: Literal["", "x", "y", "xy"] = Field(
+        ...,
+        description="Axes along which technique animation should be flipped",
     )
     target: Target = Field(
         ..., description="Target mapping of who this technique is used on"
@@ -304,6 +391,15 @@ class TechniqueModel(BaseModel):
     )
 
     # Optional fields
+    category: Optional[str] = Field(
+        None, description="Category status: positive or negative"
+    )
+    repl_pos: Optional[str] = Field(
+        None, description="How to reply to a positive status"
+    )
+    repl_neg: Optional[str] = Field(
+        None, description="How to reply to a negative status"
+    )
     use_tech: Optional[str] = Field(
         None,
         description="Slug of what string to display when technique is used",
@@ -316,7 +412,9 @@ class TechniqueModel(BaseModel):
         None,
         description="Slug of what string to display when technique fails",
     )
-    types: Sequence[str] = Field([], description="Type(s) of the technique")
+    types: Sequence[ElementType] = Field(
+        [], description="Type(s) of the technique"
+    )
     power: float = Field(0, description="Power of the technique")
     is_fast: bool = Field(
         False, description="Whether or not this is a fast technique"
@@ -325,9 +423,8 @@ class TechniqueModel(BaseModel):
         False, description="Whether or not this is an area of effect technique"
     )
     recharge: int = Field(0, description="Recharge of this technique")
-    range: Range = Field(
-        "melee", description="The attack range of this technique"
-    )
+    range: Range = Field(..., description="The attack range of this technique")
+    tech_id: int = Field(..., description="The id of this technique")
     accuracy: float = Field(0, description="The accuracy of the technique")
     potency: Optional[float] = Field(
         None, description="How potetent the technique is"
@@ -377,10 +474,11 @@ class TechniqueModel(BaseModel):
 class PartyMemberModel(BaseModel):
     slug: str = Field(..., description="Slug of the monster")
     level: int = Field(..., description="Level of the monster")
-    exp_give_mod: float = Field(
-        ..., description="Modifier for experience this monster gives"
+    money_mod: int = Field(
+        ..., description="Modifier for money this monster gives"
     )
     exp_req_mod: float = Field(..., description="Experience required modifier")
+    gender: GenderType = Field(..., description="Gender of the monster")
 
     @validator("slug")
     def monster_exists(cls, v):
@@ -391,6 +489,7 @@ class PartyMemberModel(BaseModel):
 
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
+    gender: GenderType = Field(..., description="Gender of the NPC")
     sprite_name: str = Field(
         ..., description="Name of the overworld sprite filename"
     )
@@ -416,9 +515,10 @@ class NpcModel(BaseModel):
 class BattleGraphicsModel(BaseModel):
     island_back: str = Field(..., description="Sprite used for back combat")
     island_front: str = Field(..., description="Sprite used for front combat")
+    background: str = Field(..., description="Sprite used for background")
 
     # Validate resources that should exist
-    @validator("island_back", "island_front")
+    @validator("island_back", "island_front", "background")
     def file_exists(cls, v):
         file: str = f"gfx/ui/combat/{v}"
         if has.file(file):
@@ -485,6 +585,33 @@ class SoundModel(BaseModel):
     file: str = Field(..., description="File for the sound")
 
 
+TableName = Literal[
+    "economy",
+    "encounter",
+    "environment",
+    "inventory",
+    "item",
+    "monster",
+    "music",
+    "npc",
+    "sounds",
+    "technique",
+]
+
+DataModel = Union[
+    EconomyModel,
+    EncounterModel,
+    EnvironmentModel,
+    InventoryModel,
+    ItemModel,
+    MonsterModel,
+    MusicModel,
+    NpcModel,
+    SoundModel,
+    TechniqueModel,
+]
+
+
 def process_targets(json_targets: Target) -> Sequence[str]:
     """Return values in order of preference for targeting things.
 
@@ -521,7 +648,7 @@ class JSONDatabase:
     """
 
     def __init__(self, dir: str = "all") -> None:
-        self._tables = [
+        self._tables: List[TableName] = [
             "item",
             "monster",
             "npc",
@@ -533,8 +660,8 @@ class JSONDatabase:
             "music",
             "economy",
         ]
-        self.preloaded: Dict[str, Dict[str, Any]] = {}
-        self.database: Dict[str, Dict[str, Any]] = {}
+        self.preloaded: Dict[TableName, Dict[str, Any]] = {}
+        self.database: Dict[TableName, Dict[str, Any]] = {}
         self.path = ""
         for table in self._tables:
             self.preloaded[table] = {}
@@ -542,7 +669,9 @@ class JSONDatabase:
 
         # self.load(dir)
 
-    def preload(self, directory: str = "all") -> None:
+    def preload(
+        self, directory: Union[TableName, Literal["all"]] = "all"
+    ) -> None:
         """
         Loads all data from JSON files located under our data path as an
         untyped preloaded dictionary.
@@ -559,7 +688,11 @@ class JSONDatabase:
         else:
             self.load_json(directory)
 
-    def load(self, directory: str = "all", validate: bool = False) -> None:
+    def load(
+        self,
+        directory: Union[TableName, Literal["all"]] = "all",
+        validate: bool = False,
+    ) -> None:
         """
         Loads all data from JSON files located under our data path.
 
@@ -576,7 +709,7 @@ class JSONDatabase:
                 self.load_model(item, table, validate)
         self.preloaded.clear()
 
-    def load_json(self, directory: str, validate: bool = False) -> None:
+    def load_json(self, directory: TableName, validate: bool = False) -> None:
         """
         Loads all JSON items under a specified path.
 
@@ -606,7 +739,7 @@ class JSONDatabase:
             else:
                 self.load_dict(item, directory)
 
-    def load_dict(self, item: Mapping[str, Any], table: str) -> None:
+    def load_dict(self, item: Mapping[str, Any], table: TableName) -> None:
         """
         Loads a single json object and adds it to the appropriate preload db
         table.
@@ -625,7 +758,7 @@ class JSONDatabase:
         self.preloaded[table][item["slug"]] = item
 
     def load_model(
-        self, item: Mapping[str, Any], table: str, validate: bool = False
+        self, item: Mapping[str, Any], table: TableName, validate: bool = False
     ):
         """
         Loads a single json object, casts it to the appropriate data model,
@@ -677,8 +810,8 @@ class JSONDatabase:
                 teq = TechniqueModel(**item)
                 self.database[table][teq.slug] = teq
             else:
-                self.database[table][item["slug"]] = item
-        except ValidationError as e:
+                raise ValueError(f"Unexpected {table =}")
+        except (ValidationError, ValueError) as e:
             logger.error(f"validation failed for '{item['slug']}': {e}")
             if validate:
                 raise e
@@ -719,27 +852,49 @@ class JSONDatabase:
     def lookup(
         self,
         slug: str,
+        table: Literal["music"],
+    ) -> MusicModel:
+        pass
+
+    @overload
+    def lookup(
+        self,
+        slug: str,
+        table: Literal["sounds"],
+    ) -> SoundModel:
+        pass
+
+    @overload
+    def lookup(
+        self,
+        slug: str,
         table: Literal["environment"],
     ) -> EnvironmentModel:
         pass
 
-    def lookup(self, slug: str, table: str = "monster") -> Mapping[str, Any]:
+    def lookup(self, slug: str, table: TableName = "monster") -> DataModel:
         """
-        Looks up a monster, technique, item, or npc based on slug.
+        Looks up a monster, technique, item, npc, etc based on slug.
 
         Parameters:
             slug: The slug of the monster, technique, item, or npc.  A short
                 English identifier.
-            table: Which index to do the search in. Can be: "monster",
-                "item", "npc", or "technique".
+            table: Which index to do the search in.
 
         Returns:
-            A dictionary from the resulting lookup.
+            A pydantic.BaseModel from the resulting lookup.
 
         """
-        return self.database[table][slug]
+        table_entry = self.database[table]
+        if not table_entry:
+            logger.exception(f"{table} table wasn't loaded")
+            sys.exit()
+        if slug not in table_entry:
+            self.log_missing_entry_and_exit(table, slug)
+        else:
+            return table_entry[slug]
 
-    def lookup_file(self, table: str, slug: str) -> str:
+    def lookup_file(self, table: TableName, slug: str) -> str:
         """
         Does a lookup with the given slug in the given table.
 
@@ -755,13 +910,29 @@ class JSONDatabase:
 
         """
 
-        filename = self.database[table][slug].dict()["file"] or slug
+        filename = self.database[table][slug].file or slug
         if filename == slug:
             logger.debug(
                 f"Could not find a file record for slug {slug}, did you remember to create a database record?"
             )
 
         return filename
+
+    def log_missing_entry_and_exit(self, table: str, slug: str):
+        options = difflib.get_close_matches(slug, self.database[table].keys())
+        options = [repr(s) for s in options]
+        if len(options) >= 2:
+            options_string = ", ".join(
+                (*options[:-2], options[-2] + " or " + options[-1])
+            )
+            hint = f"Did you mean {options_string}?"
+        elif len(options) == 1:
+            options_string = options[0]
+            hint = f"Did you mean {options_string}?"
+        else:
+            hint = "No similar slugs. Are you sure it's in the DB?"
+        logger.exception(f"Lookup failed for unknown {table} '{slug}'. {hint}")
+        sys.exit()
 
 
 class Validator:
@@ -806,7 +977,7 @@ class Validator:
         except OSError:
             return False
 
-    def db_entry(self, table: str, slug: str) -> bool:
+    def db_entry(self, table: TableName, slug: str) -> bool:
         """
         Check to see if the given slug exists in the database for the given
         table.

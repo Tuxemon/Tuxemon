@@ -16,11 +16,15 @@
             "technique": "thunderball"
         }
     ],
-    "shape": "Hunter",
+    "evolutions": [],
+    "shape": "hunter",
     "types": [
-        "Glitch",
-        "Earth"
+        "glitch",
+        "earth"
     ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 0,
+    "height": 0,
     "weight": 25,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,

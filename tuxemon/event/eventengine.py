@@ -162,7 +162,7 @@ class EventEngine:
         self.actions = plugin.load_plugins(
             paths.ACTIONS_PATH,
             "actions",
-            interface=EventAction,
+            interface=EventAction,  # type: ignore[misc]
         )
 
     def reset(self) -> None:
@@ -194,7 +194,6 @@ class EventEngine:
             that action is loaded. ``None`` otherwise.
 
         """
-        # TODO: make generic
         if parameters is None:
             parameters = list()
 
@@ -244,7 +243,7 @@ class EventEngine:
         else:
             return condition()
 
-    def get_conditions(self) -> List[EventCondition]:
+    def get_conditions(self) -> List[Type[EventCondition]]:
         """
         Return list of EventConditions.
 
@@ -410,9 +409,21 @@ class EventEngine:
 
         """
         to_remove = set()
+        current_map = self.current_map
 
         # Loop through the list of actions and update them
         for i, e in self.running_events.items():
+            # If the current map has changed, then `reset` has also been
+            # called, which replaced self.running_events with an empty dict.
+            # We need to stop processing the running_events, as they may not
+            # make sense on the new map. We need to explicitly guard for this
+            # because actions within this loop can change the map.
+            if current_map != self.current_map:
+                # The map has just changed, so running_events should have been
+                # emptied.
+                assert not self.running_events
+                return
+
             while 1:
                 """
                 * if RunningEvent is currently running an action, then continue

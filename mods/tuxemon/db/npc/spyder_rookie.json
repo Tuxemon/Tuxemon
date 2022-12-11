@@ -1,6 +1,7 @@
 {
-    "slug": "spyder_rookie",
-    "sprite_name": "rookie",
-	    "combat_front": "rookie.png",
-    "combat_back": "red_back.png" }
-
+  "slug": "spyder_rookie",
+  "gender": "male",
+  "sprite_name": "spyderrookie",
+  "combat_front": "spyder_rookie.png",
+  "combat_back": "adventurer_back.png"
+}

@@ -1,8 +1,11 @@
 {
+  "tech_id": 46,
   "accuracy": 1,
-  "animation": "water_spurt",
-  "category": "physical",
-  "effects": [],
+  "animation": "waterspurt",
+  "effects": [
+    "focused user"
+  ],
+  "flip_axes": "",
   "healing_power": 4.0,
   "icon": "",
   "is_area": false,

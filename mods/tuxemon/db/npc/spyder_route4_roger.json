@@ -1,14 +1,17 @@
 {
-    "slug": "spyder_route4_roger",
-    "sprite_name": "soldier",
-	"monsters": [
-        {
-            "name": "Rabbitosaur",
-            "level": 16, 
-			"slug": "rabbitosaur",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "soldier.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_route4_roger",
+  "gender": "male",
+  "sprite_name": "soldier",
+  "monsters": [
+    {
+      "name": "Rabbitosaur",
+      "level": 16,
+      "slug": "rabbitosaur",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "soldier.png",
+  "combat_back": "adventurer_back.png"
+}

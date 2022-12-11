@@ -96,6 +96,8 @@ class PluginManager:
             "event.conditions",
             "item.effects",
             "item.conditions",
+            "technique.effects",
+            "technique.conditions",
         ]
 
     def setPluginPlaces(self, plugin_folders: Sequence[str]) -> None:
@@ -117,11 +119,10 @@ class PluginManager:
             pattern = re.compile("tuxemon/.*$")
             matches = pattern.findall(folder)
             if len(matches) == 0:
-                logger.exception(
+                raise RuntimeError(
                     f"Unable to determine plugin module path for: %s",
                     folder,
                 )
-                raise RuntimeError
             module_path = matches[0].replace("/", ".")
 
             # Look for a ".plugin" in the plugin folder to create a list

@@ -16,12 +16,16 @@
             "technique": "wall_of_steel"
         }
     ],
-    "shape": "",
+    "evolutions": [],
+    "shape": "blob",
     "types": [
-        "Metal",
-        "Wood"
+        "metal",
+        "wood"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 168,
+    "height": 90,
+    "weight": 55,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

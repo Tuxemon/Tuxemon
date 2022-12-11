@@ -16,11 +16,21 @@
             "technique": "clamp_on"
         }
     ],
-    "shape": "Blob",
-    "types": [
-        "Metal"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 12,
+            "monster_slug": "arthrobolt"
+        }
     ],
-    "weight": 25,
+    "shape": "blob",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 5,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

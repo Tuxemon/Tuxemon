@@ -25,8 +25,9 @@
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from operator import eq, ge, gt, le, lt
-from typing import Callable, Mapping, NamedTuple, Optional, Union
+from typing import Callable, Mapping, Optional, Union
 
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.monster import Monster
@@ -42,14 +43,8 @@ cmp_dict: Mapping[Optional[str], Callable[[float, float], bool]] = {
 }
 
 
-class CurrentHitPointsConditionParameters(NamedTuple):
-    comparison: str
-    value: Union[int, float]
-
-
-class CurrentHitPointsCondition(
-    ItemCondition[CurrentHitPointsConditionParameters]
-):
+@dataclass
+class CurrentHitPointsCondition(ItemCondition):
     """
     Compares the target Monster's current hitpoints against the given value.
 
@@ -63,14 +58,15 @@ class CurrentHitPointsCondition(
     """
 
     name = "current_hp"
-    param_class = CurrentHitPointsConditionParameters
+    comparison: str
+    value: Union[int, float]
 
     def test(self, target: Monster) -> bool:
         lhs = target.current_hp
-        op = cmp_dict[self.parameters.comparison]
-        if type(self.parameters.value) is float:
-            rhs = target.hp * self.parameters.value
+        op = cmp_dict[self.comparison]
+        if type(self.value) is float:
+            rhs = target.hp * self.value
         else:
-            rhs = self.parameters.value
+            rhs = self.value
 
         return op(lhs, rhs)

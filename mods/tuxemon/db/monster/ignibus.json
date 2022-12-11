@@ -16,11 +16,40 @@
             "technique": "static_field"
         }
     ],
-    "shape": "Polliwog",
-    "types": [
-        "Fire"
+    "evolutions": [
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "eruptibus",
+            "item": "earth_booster"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "eruptibus",
+            "item": "tectonic_drill"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "embazook",
+            "item": "metal_booster"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "embazook",
+            "item": "stovepipe"
+        }
     ],
-    "weight": 25,
+    "shape": "polliwog",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 29,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

@@ -24,6 +24,7 @@ from __future__ import annotations
 from typing import NamedTuple, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.states.world.worldstate import WorldState
 
 
 class TransitionTeleportActionParameters(NamedTuple):
@@ -60,15 +61,26 @@ class TransitionTeleportAction(
     param_class = TransitionTeleportActionParameters
 
     def start(self) -> None:
+        world = self.session.client.get_state_by_name(WorldState)
+        if world.delayed_teleport:
+            self.stop()
+            return
+
         # Start the screen transition
         params = [self.parameters.transition_time]
         self.transition = self.session.client.event_engine.get_action(
             "screen_transition",
             params,
         )
+        assert self.transition
         self.transition.start()
 
     def update(self) -> None:
+        if self.done:
+            return
+
+        assert self.transition
+
         if not self.transition.done:
             self.transition.update()
         if self.transition.done:

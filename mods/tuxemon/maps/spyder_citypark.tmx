@@ -1,53 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="275">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="277">
  <properties>
+  <property name="east" value="leather_town"/>
   <property name="edges" value="clamped"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="citypark"/>
+  <property name="south" value="route2"/>
+  <property name="types" value="route"/>
  </properties>
- <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
- </tileset>
- <tileset firstgid="105" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
-  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
- </tileset>
- <tileset firstgid="465" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
- </tileset>
- <tileset firstgid="569" name="Tileset" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
+ <tileset firstgid="1" name="Tileset" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="2169" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="680" columns="20">
+ <tileset firstgid="1601" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="680" columns="20">
   <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="544"/>
  </tileset>
- <tileset firstgid="2849" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
- </tileset>
- <tileset firstgid="3005" name="MK_buildings" tilewidth="16" tileheight="16" tilecount="896" columns="32">
+ <tileset firstgid="2281" name="MK_buildings" tilewidth="16" tileheight="16" tilecount="896" columns="32">
   <image source="../gfx/tilesets/MK_buildings.png" width="512" height="448"/>
  </tileset>
- <tileset firstgid="3901" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ <tileset firstgid="3177" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="744" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
- <tileset firstgid="5213" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ <tileset firstgid="3921" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
+ </tileset>
+ <tileset firstgid="6215" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt2LENgDAMRNGIWSihgx0zaVgDM0OEdIhXWGmt89135NFau6qGlw4/9cHjff5/jwPrkq3vVv3tVakc1N+cf46a7Rk831Tf6WvOd/Sjn39F7l6VT/mUT/nEARzAARzAgVwOdPfp2PvUl3NzA2jMmhw=
+   eAHt1cEJwCAQBEA7kIA1pTqbSQdXhbYTG/Alwj3m4X/ZHc6opYSnAwYYuGSgP7lvzLfyvS1vRvnOthlr35ncoD/4bGP96Y8BBhhggAEGGGCAAQYYYIABBnYGfmEODIU=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlFsKglAURU99FX3ZHCySCnrYDHoNodcQeg20nFJbcIMIer/uPUhHWJwrHtyLLRh1RIYgUpyLvsgSrMAapIA+E3glQHNu4bMDe3AAR0AfeoridYLPGVzAFdwAveippZf1RO7weYAneIE3oBc9tfzqculFT+59cPgGYszQYsZFboZJL3pWVlVukyI1n/SiZ9wVcTHCTqiLXsybInvmYO7Zj/3RqTyb/AbwSsHGs1/Zp3pu8vPdW9WlfM/vnPdTh0Zv9Cq72tka8N1A0z/Gd7br/XTjdO1rPG+DWxscNb6dK5O9cbr2NZ6HcstzQmVp9GiZ1oA1YA1YA9aANWANWAP/2cAPwu02Jg==
+   eAHtlEsKwkAQRHuloEYTceHW396Nvwt4GK+QM+hdxKUX8AZ6FX9gzaJgCCSzmjTBHnjMJGlSjwqaj0VyZZ4tkRd4gw/4Ajpd4aZN0hbpgwFIQQboRE9RXBP4TMEMzMEC0IueWnrLRGQFnzXYgC3YAXrRU8uvLJde9ORcJxXp1kQPOf5itrtPL3r6c1rnG36rbrmdXvQ8ZiIhTpipa9GLeWdk70fVXCL7sT86+XuV32EocofbI7Kf71M8V/nF7q3o4l/zO7t+ytDojV6+q52tgdgNVP3HxM4OvZ9u3EPzGs+b4NYER41vF8pkb9xD8xrP63JzOXVlafRomdaANWANWAPWgDVgDVgD/9nADz85d7U=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt1MEJwDAIAEDpq4sldM9miywXlwiScIJflRONECcLzPfk6c1OgACBvQJ+5F5f1QkQIEDgHoH/iRiZggCBGoGW99czP3dYswBdCRAgQOBagQX0qwOr
+   eAHt17EJACAMBEAXUHRO3b82DiEYOSGt/F8RSCleZoFRM6eXnQABAncF7Mi7vn4nQIAAgX8EZlRZ/9TRhEA6gXPat5ieLrnABAgQIEDgbYENVssBPw==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -71,7 +67,7 @@
   <object id="194" type="collision" x="112" y="288" width="16" height="32"/>
   <object id="195" type="collision" x="496" y="352" width="16" height="32"/>
   <object id="196" type="collision" x="496" y="272" width="16" height="32"/>
-  <object id="197" type="collision" x="608" y="160" width="32" height="63.8182"/>
+  <object id="197" type="collision" x="608" y="160" width="32" height="64"/>
   <object id="198" type="collision" x="512" y="48" width="16" height="16"/>
   <object id="200" type="collision" x="32" y="224" width="32" height="32"/>
   <object id="201" type="collision" x="0" y="0" width="32" height="192"/>
@@ -248,9 +244,9 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="102" name="Sign: Leather Town" type="event" x="16" y="192" width="16" height="16">
+  <object id="102" name="Sign: Citypark Town" type="event" x="16" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_leathertown_sign"/>
+    <property name="act1" value="translated_dialog welcome_location_route"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -537,10 +533,16 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="273" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="273" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="not variable_set environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="276" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
   <object id="274" name="Talk Bobette" type="event" x="208" y="272" width="48" height="16">
@@ -551,6 +553,12 @@
     <property name="act4" value="set_variable citypark_bobette:yes"/>
     <property name="cond1" value="not variable_set citypark_bobette:yes"/>
     <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="275" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
  </objectgroup>

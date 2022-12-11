@@ -16,11 +16,21 @@
             "technique": "peregrine"
         }
     ],
-    "shape": "Flier",
-    "types": [
-        "Fire"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 36,
+            "monster_slug": "cardinale"
+        }
     ],
-    "weight": 25,
+    "shape": "flier",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 62,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

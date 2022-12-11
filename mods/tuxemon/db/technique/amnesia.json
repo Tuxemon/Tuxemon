@@ -1,28 +1,18 @@
 {
+  "tech_id": 53,
   "accuracy": 0.75,
   "animation": "sparks_gold_alt",
-  "category": "physical",
   "effects": [
-    "statchange"
+    "exhausted target",
+    "exhausted user"
   ],
+  "flip_axes": "",
   "healing_power": 0,
   "icon": "",
   "is_area": false,
   "is_fast": false,
   "potency": 1,
   "power": 2.25,
-  "statdodge": {
-    "minvalue": 0, "max_deviation": 3, "operation":"-"
-  },
-  "statmelee": {
-    "value": 2, "operation":"+"
-  },
-  "statranged": {
-    "value": 2,  "operation":"+"
-  },
-  "stathp": {
-    "value": 4, "operation":"-"
-  },
   "range": "reach",
   "recharge": 2,
   "sfx": "sfx_shine",

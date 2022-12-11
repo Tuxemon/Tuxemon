@@ -16,11 +16,15 @@
             "technique": "battery_discharge"
         }
     ],
-    "shape": "Sprite",
+    "evolutions": [],
+    "shape": "sprite",
     "types": [
-        "Metal"
+        "metal"
     ],
-    "weight": 25,
+    "possible_genders": ["neuter"],
+    "txmn_id": 127,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

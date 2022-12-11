@@ -24,30 +24,27 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple
+from dataclasses import dataclass
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.monster import Monster
-from tuxemon.technique import Technique
+from tuxemon.technique.technique import Technique
 
 
 class LearnEffectResult(ItemEffectResult):
     pass
 
 
-class LearnEffectParameters(NamedTuple):
-    technique: str
-
-
-class LearnEffect(ItemEffect[LearnEffectParameters]):
+@dataclass
+class LearnEffect(ItemEffect):
     """This effect teaches the target the technique in the parameters."""
 
     name = "learn"
-    param_class = LearnEffectParameters
+    technique: str
 
     def apply(self, target: Monster) -> LearnEffectResult:
         tech = Technique()
-        tech.load(self.parameters.technique)
+        tech.load(self.technique)
         target.learn(tech)
 
         return {"success": True}

@@ -1,10 +1,12 @@
 {
+  "tech_id": 33,
   "accuracy": 0.8,
   "animation": "thud",
-  "category": "physical",
   "effects": [
-    "damage"
+    "damage 100",
+    "exhausted target"
   ],
+  "flip_axes": "",
   "healing_power": 0,
   "icon": "",
   "is_area": true,

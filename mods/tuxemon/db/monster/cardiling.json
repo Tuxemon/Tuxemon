@@ -16,11 +16,21 @@
             "technique": "fire_claw"
         }
     ],
-    "shape": "Flier",
-    "types": [
-        "Fire"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "cardiwing"
+        }
     ],
-    "weight": 25,
+    "shape": "flier",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 61,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

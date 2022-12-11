@@ -16,11 +16,21 @@
             "technique": "fume"
         }
     ],
-    "shape": "Dragon",
-    "types": [
-        "Fire"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 24,
+            "monster_slug": "agnidon"
+        }
     ],
-    "weight": 25,
+    "shape": "dragon",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 13,
+    "height": 80,
+    "weight": 24,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

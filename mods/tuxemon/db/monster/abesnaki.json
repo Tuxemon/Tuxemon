@@ -7,25 +7,24 @@
             "level_learned": 2,
             "technique": "flamethrower"
         },
-
         {
-            "level_learned": 6,
-            "technique": "constrict"
-        },
-	{
-            "level_learned": 12,
+            "level_learned": 2,
             "technique": "pseudopod"
         },
-	{
-            "level_learned": 17,
-            "technique": "unmask"
+        {
+            "level_learned": 2,
+            "technique": "sleep_bomb"
         }
     ],
-    "shape": "Serpent",
+    "evolutions": [],
+    "shape": "serpent",
     "types": [
-        "Fire"
+        "fire"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 98,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

@@ -1,106 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="357">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="359">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="north" value="route5"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="timber_town"/>
+  <property name="south" value="tunnel"/>
+  <property name="types" value="town"/>
  </properties>
- <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
-  <tile id="839">
-   <animation>
-    <frame tileid="839" duration="200"/>
-    <frame tileid="842" duration="200"/>
-    <frame tileid="845" duration="200"/>
-    <frame tileid="848" duration="200"/>
-   </animation>
-  </tile>
-  <tile id="880">
-   <animation>
-    <frame tileid="880" duration="200"/>
-    <frame tileid="883" duration="200"/>
-    <frame tileid="886" duration="200"/>
-    <frame tileid="889" duration="200"/>
-   </animation>
-  </tile>
+ <tileset firstgid="1" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
  </tileset>
- <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ <tileset firstgid="8193" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
  </tileset>
- <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ <tileset firstgid="10487" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="12781" name="core_buildings" tilewidth="16" tileheight="16" tilecount="1316" columns="47">
+  <image source="../gfx/tilesets/core_buildings.png" width="760" height="448"/>
  </tileset>
- <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
-  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
- </tileset>
- <tileset firstgid="1531" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
- </tileset>
- <tileset firstgid="1619" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
-  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
-  <tile id="255">
-   <animation>
-    <frame tileid="248" duration="150"/>
-    <frame tileid="249" duration="150"/>
-    <frame tileid="250" duration="150"/>
-    <frame tileid="251" duration="150"/>
-    <frame tileid="252" duration="150"/>
-    <frame tileid="253" duration="150"/>
-    <frame tileid="254" duration="150"/>
-    <frame tileid="255" duration="150"/>
-   </animation>
-  </tile>
- </tileset>
- <tileset firstgid="1979" name="Tiles_packed" tilewidth="16" tileheight="16" tilecount="184" columns="23">
-  <image source="../gfx/tilesets/Tiles_packed.png" width="368" height="128"/>
- </tileset>
- <tileset firstgid="2163" name="city tiles" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/city tiles.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="2179" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
- <tileset firstgid="3619" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
-  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
- </tileset>
- <tileset firstgid="3729" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
- </tileset>
- <tileset firstgid="3885" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
- <tileset firstgid="4333" name="Terrain_by_George" tilewidth="16" tileheight="16" tilecount="360" columns="15">
-  <image source="../gfx/tilesets/Terrain_by_George.png" width="240" height="384"/>
- </tileset>
- <tileset firstgid="4693" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
-  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
- </tileset>
- <tileset firstgid="6293" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
+ <tileset firstgid="14097" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1240" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlklSwzAQRQ0LWLJiPBqn8ZpNAtyACzBdhCwDB2C4A8NvkZ/6tCVbnhKqkkWXO0pLfuruL3l+UJQvsGfY+15RvsFeYXMZ7+pjXoF1C6wfrMs6OmdnvygL2PcG8PncWQ41F7m+xg2ZP+VjjfVdub7GteH7aOiBdfOZnnRv3h+T7wgaMR3TTM/UuOdIjY/JZxpWMz2nOFLjY/CdgutE7BNcPG9SHKnxMfh87VQvKY7U+JavKDV/lltvvAf9+OK3nceV+y0RG9aeIH7qzOJZI96/1O3hQidezxznPVjzzj+MNXGB7xZsd86Uj/lS7db5ffnOoT9lbuKjfqnbL8xXPXv/GPnV9SN+q/o28TGXzKPlh/dE5N3lhdu/j7lH76BewR7xRG/VWYGYZX2v4D/ByEQO68UYH3s0Fq9z1Vc+cjY8l3yYG9j8++ze/898mj+vW54nubmcoRaoUa2hjsseYE2trpgbzZ/yee1Sr7l8WuuUrz0AfQS96fq+vvYfdZzSq87v67fluwTftIVNEJvKTc54Wz6Nb9Ba6BuriXL4O4h3kX/ym1Lfl1Nfje/CR+373vW/rZetN/R9q+BL9W6sl9fBp7XO8fvk7xr5x1lUMT2zMu6tWr09YH32UU59sedwp8uzcibpnrn2EM8+fFYr2rr4zvC9JHljHkP+yGbn+SxS81gf5IyhhyrfBHrm+/sjh0/n9/VR05Xw3SzOM8uz33PdHlbF14ZJ9zAE3+5vXwZ9dOVQJvWH4DMmW1PXHcrf8vXL6zZ/m52/H/an3wE=
+   eAHtV8tVAzEM3Bs86AAufK7QAb8KeFACjwZyAToAaiD0AikGLjSBDBkYhG1pN87GgT3oyfY61niksV5GW00zmtqV+GuxG1rDtxr8g+Aaiz0O+L5y1iYvf4m/lQXUwLLwt7b9qeOg5Zr0DP6Chtlq0fOT4Home53irAWf1jr4HPB99zDNUW5u8Ve6Dx7sNM2hMsaH/gvdrouOg060nrFeOu8Xgu1t/6cxPvDF2s2NZ8V3Knfn+BY+6Be6fSEts64xnqjzOVaXsYUPZ4JHi58zAx/HO979XVu61k5kD/K7IeM7yTcwsffi49/ExowPcb3+MoEt9P2a8QUegE/rtu17cischBzlbDOS07D/PsEf49PateoxlmNrjWsglVN9BnQMncJPDD3oczzztvhib7jWGc+PMnmYBz6+j0drOie6B6EXaY9a5nj6rNj9eH8XfB/aEk7HhqGWOV4f+FK1ixqGRy33jS+Wk9zaLPhS7xa/WZ6+xXrSY+5pnvzm7opvfGdPjXr3LDu+c+f76+lbqdrQ61wrpfhDnkt4rpV54lt1cq/v1Bc+Hdc7L4FvryM3Howl8HnidN0z4Iv/h/HyOfD3v/l7BygU7WU=
   </data>
  </layer>
- <layer id="2" width="40" height="40">
+ <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAFjYKAdMBVgYDADYhhNO5uoa/IhDoYGdBOxiaGroRf/FRb3YROjl3tG7RkNgdEQIC0EkrkZGpKgOBFIk6ab9qpp7T5xacr80A0Msy4o7qRB+LlQ6D7KfDeqezQERkNgMIeAKLBdO5gBqM09CkZDYDQEhlcIrOdnYNgAxIMVnAe67QISHqzuhLnLGth2tELCljRoS8LsIocGtcPncSHwYOsrgNwH8hfIjSB6MLrvJdBtL6BhOBjdhxy/N5HSInK6JJdNaXqGpT/kMBQEulEAmi5xiSOrAfkPWR2ID5OnND6Q+4Gw/iA1aVr0LUH5ZBSMhsBoCAx8CAAA32l0WQ==
+   eAFjYKAdMGVkYEDGtLOJuiZfM8E07zoWMUxV9BHhMMW0hxOLGKaqUZEcPOGET45eIQdzA4jGhunlDkL2DGa3zQeGHS5MyF/0kj+jz8BwForPAenBBga7+z4Cw+wTFH8ehOE32OJz1D2jITAaAqMhMBoCoyEwGgJDNwQSlRgYvqkMXve3Ad3XjoQHr0shLlsObDuuQMIrB1lbErkdDuovDLa+wqj7KEvh6OH3Tw01PSKnTXLYlKZndPfB+qzUoilNz8j9QFh/kJr0aN+SsvQ9qns0BAZzCAAAG3+AUw==
   </data>
  </layer>
- <layer id="3" width="40" height="40">
+ <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="7" name="Tile Layer 5" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0EENAEAIBDG+6EHO+fdxIvgsSUfBpFUiQIAAAQIECBAgcE9gOvv5hf9l67kjQIAAAQIECBAgQIDAXuADveYAoQ==
+   eAHtlkEKgDAMBPsCET35EPv/h4joyW94LXMWutTpqUsC2QwJpBSfBCQgAQlIYHwC557d41yz/elOAokEnvC93tzrxLHp4unArFJ3MdUUnTCr1E2qXwlIQAISkIAEBiNw4065oNku8xn/Wq+4UxZo1mM+4+r/EXgBlboJig==
   </data>
  </layer>
  <layer id="4" name="Tile Layer 4" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtk7kNwkAQRYcAybRABwT0xVWEU64ikGiAgBvMmVEBAb3wUo8gsAPbWv+VXjC73t0/b2UzjToaOLQt3sMOtrCBOnpQzzKQxcCF/ySBM5zgCFn25/32yT0PuMMNrpD3LO2TgboYGEdmE5jCDOZQpbFyedauLjvr2+X5uLrsfI1WOkHT1enV4quOy9N1dfGJdKMMyIAMyIAMyIAMhGVgZBYPYQB96MEysvjX/OvPfFhGwulmwXuF0406qYKBLyvkLBM=
+   eAHtmLlOw0AQhkd0XEWA54jEkZ7jmZB4HKRgjpiOo+MZkBA0lHFCFQJ9uL7CK0XDrmURHFv2jPRpvePZ3X9/eyXLIhbagYVtnRHx5X5XzSez6dHny2WpGW2JvMIY3uAdmhB3Hu/cvrPuuZqi21Gq74r2Gm7gNs25e0VryDN/H00JDGCY6sszbl41rR2RNViHDfiv6HNOEhjAEF7gL7GLpj3Yh4Mc+ias8wGf8AXfYGEOmAPZDixyTpZgGVZgFSzq50Dcqfaeniuur9ru1UvdsXoXdL/s3d4rfbpftj5b3xwwB8wBc8Ac0A50+RdxAhGcwhkctUXOaS+gBzFcwhN5X72es6n9rvoOcD5EgXyo3o2btT3keU3HQ0DHYyAfqp+e066b5cAPXLo8sg==
   </data>
  </layer>
+ <objectgroup color="#ff0000" id="6" name="Collision">
+  <object id="245" type="collision" x="288" y="16" width="144" height="224"/>
+  <object id="246" type="collision" x="96" y="0" width="192" height="32"/>
+  <object id="247" type="collision" x="80" y="0" width="16" height="16"/>
+  <object id="248" type="collision" x="0" y="0" width="64" height="32"/>
+  <object id="249" type="collision" x="0" y="32" width="48" height="32"/>
+  <object id="250" type="collision" x="0" y="64" width="32" height="32"/>
+  <object id="251" type="collision" x="0" y="96" width="48" height="32"/>
+  <object id="252" type="collision" x="0" y="128" width="32" height="32"/>
+  <object id="253" type="collision" x="0" y="160" width="16" height="32"/>
+  <object id="254" type="collision" x="32" y="160" width="80" height="48"/>
+  <object id="255" type="collision" x="192" y="144" width="32" height="48"/>
+  <object id="256" type="collision" x="96" y="64" width="32" height="48"/>
+  <object id="257" type="collision" x="128" y="64" width="48" height="32"/>
+  <object id="258" type="collision" x="144" y="96" width="32" height="16"/>
+  <object id="259" type="collision" x="128" y="240" width="32" height="64"/>
+  <object id="260" type="collision" x="176" y="240" width="32" height="64"/>
+  <object id="261" type="collision" x="160" y="240" width="16" height="48"/>
+  <object id="262" type="collision" x="80" y="352" width="48" height="64"/>
+  <object id="263" type="collision" x="144" y="352" width="112" height="64"/>
+  <object id="264" type="collision" x="128" y="384" width="16" height="32"/>
+  <object id="266" type="collision" x="224" y="416" width="32" height="48"/>
+  <object id="267" type="collision" x="256" y="432" width="192" height="32"/>
+  <object id="268" type="collision" x="0" y="192" width="32" height="32"/>
+  <object id="269" type="collision" x="0" y="224" width="48" height="32"/>
+  <object id="270" type="collision" x="0" y="256" width="32" height="32"/>
+  <object id="271" type="collision" x="0" y="288" width="48" height="32"/>
+  <object id="272" type="collision" x="0" y="320" width="32" height="32"/>
+  <object id="273" type="collision" x="0" y="352" width="48" height="32"/>
+  <object id="274" type="collision" x="0" y="384" width="32" height="32"/>
+  <object id="275" type="collision" x="0" y="416" width="48" height="32"/>
+  <object id="276" type="collision" x="0" y="448" width="32" height="96"/>
+  <object id="277" type="collision" x="0" y="544" width="48" height="32"/>
+  <object id="278" type="collision" x="0" y="576" width="32" height="32"/>
+  <object id="280" type="collision" x="256" y="608" width="256" height="32"/>
+  <object id="281" type="collision" x="176" y="592" width="16" height="16"/>
+  <object id="282" type="collision" x="272" y="544" width="16" height="16"/>
+  <object id="283" type="collision" x="192" y="544" width="80" height="48"/>
+  <object id="284" type="collision" x="288" y="544" width="80" height="48"/>
+  <object id="285" type="collision" x="384" y="544" width="80" height="48"/>
+  <object id="286" type="collision" x="464" y="544" width="16" height="16"/>
+  <object id="287" type="collision" x="368" y="544" width="16" height="16"/>
+  <object id="288" type="collision" x="144" y="448" width="48" height="32"/>
+  <object id="289" type="collision" x="496" y="432" width="32" height="32"/>
+  <object id="290" type="collision" x="528" y="256" width="32" height="384"/>
+  <object id="291" type="collision" x="512" y="624" width="16" height="16"/>
+  <object id="292" type="collision" x="560" y="624" width="16" height="16"/>
+  <object id="293" type="collision" x="576" y="608" width="64" height="32"/>
+  <object id="294" type="collision" x="592" y="576" width="48" height="32"/>
+  <object id="295" type="collision" x="608" y="544" width="32" height="32"/>
+  <object id="296" type="collision" x="592" y="512" width="48" height="32"/>
+  <object id="297" type="collision" x="608" y="480" width="32" height="32"/>
+  <object id="298" type="collision" x="608" y="464" width="32" height="16"/>
+  <object id="299" type="collision" x="592" y="448" width="16" height="16"/>
+  <object id="301" type="collision" x="608" y="432" width="32" height="32"/>
+  <object id="302" type="collision" x="592" y="400" width="48" height="32"/>
+  <object id="303" type="collision" x="608" y="368" width="32" height="32"/>
+  <object id="304" type="collision" x="592" y="336" width="48" height="32"/>
+  <object id="305" type="collision" x="608" y="240" width="32" height="96"/>
+  <object id="306" type="collision" x="560" y="256" width="48" height="32"/>
+  <object id="307" type="collision" x="576" y="192" width="64" height="48"/>
+  <object id="308" type="collision" x="576" y="240" width="32" height="16"/>
+  <object id="309" type="collision" x="544" y="224" width="32" height="32"/>
+  <object id="310" type="collision" x="448" y="128" width="32" height="96"/>
+  <object id="311" type="collision" x="544" y="128" width="32" height="96"/>
+  <object id="312" type="collision" x="592" y="144" width="32" height="32"/>
+  <object id="313" type="collision" x="608" y="112" width="32" height="32"/>
+  <object id="315" type="collision" x="592" y="80" width="32" height="32"/>
+  <object id="316" type="collision" x="608" y="48" width="32" height="32"/>
+  <object id="317" type="collision" x="592" y="16" width="32" height="32"/>
+  <object id="318" type="collision" x="368" y="0" width="64" height="16"/>
+  <object id="319" type="collision" x="432" y="48" width="64" height="80"/>
+  <object id="320" type="collision" x="496" y="48" width="96" height="48"/>
+  <object id="321" type="collision" x="528" y="96" width="64" height="32"/>
+  <object id="322" type="collision" x="288" y="240" width="176" height="128"/>
+  <object id="323" type="collision" x="464" y="240" width="64" height="112"/>
+  <object id="324" type="collision" x="480" y="352" width="48" height="16"/>
+  <object id="325" type="collision" x="480" y="368" width="16" height="16"/>
+  <object id="326" type="collision" x="0" y="608" width="48" height="32"/>
+  <object id="327" type="collision" x="48" y="624" width="176" height="16"/>
+  <object id="328" type="collision" x="80" y="608" width="80" height="16"/>
+  <object id="343" type="collision" x="240" y="144" width="32" height="48"/>
+  <object id="344" type="collision" x="224" y="144" width="16" height="32"/>
+  <object id="353" type="collision" x="160" y="288" width="16" height="16"/>
+ </objectgroup>
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="182" name="Teleport to Route 5" type="event" x="64" y="0" width="16" height="16">
    <properties>
@@ -245,7 +275,7 @@
   </object>
   <object id="351" name="Sign: Timber Town" type="event" x="96" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_timber_sign"/>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -257,10 +287,16 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="355" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="357" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="not variable_set environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="358" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
   <object id="356" name="Destination - Timber" type="event" x="80" y="288" width="16" height="16">
@@ -271,90 +307,5 @@
     <property name="cond1" value="is variable_set rivergoto:timber"/>
    </properties>
   </object>
- </objectgroup>
- <objectgroup color="#ff0000" id="6" name="Collision">
-  <object id="245" type="collision" x="288" y="16" width="144" height="224"/>
-  <object id="246" type="collision" x="96" y="0" width="192" height="32"/>
-  <object id="247" type="collision" x="80" y="0" width="16" height="16"/>
-  <object id="248" type="collision" x="0" y="0" width="64" height="32"/>
-  <object id="249" type="collision" x="0" y="32" width="48" height="32"/>
-  <object id="250" type="collision" x="0" y="64" width="32" height="32"/>
-  <object id="251" type="collision" x="0" y="96" width="48" height="32"/>
-  <object id="252" type="collision" x="0" y="128" width="32" height="32"/>
-  <object id="253" type="collision" x="0" y="160" width="16" height="32"/>
-  <object id="254" type="collision" x="32" y="160" width="80" height="48"/>
-  <object id="255" type="collision" x="192" y="144" width="32" height="48"/>
-  <object id="256" type="collision" x="96" y="64" width="32" height="48"/>
-  <object id="257" type="collision" x="128" y="64" width="48" height="32"/>
-  <object id="258" type="collision" x="144" y="96" width="32" height="16"/>
-  <object id="259" type="collision" x="128" y="240" width="32" height="64"/>
-  <object id="260" type="collision" x="176" y="240" width="32" height="64"/>
-  <object id="261" type="collision" x="160" y="240" width="16" height="48"/>
-  <object id="262" type="collision" x="80" y="352" width="48" height="64"/>
-  <object id="263" type="collision" x="144" y="352" width="112" height="64"/>
-  <object id="264" type="collision" x="128" y="384" width="16" height="32"/>
-  <object id="266" type="collision" x="224" y="416" width="32" height="48"/>
-  <object id="267" type="collision" x="256" y="432" width="192" height="32"/>
-  <object id="268" type="collision" x="0" y="192" width="32" height="32"/>
-  <object id="269" type="collision" x="0" y="224" width="48" height="32"/>
-  <object id="270" type="collision" x="0" y="256" width="32" height="32"/>
-  <object id="271" type="collision" x="0" y="288" width="48" height="32"/>
-  <object id="272" type="collision" x="0" y="320" width="32" height="32"/>
-  <object id="273" type="collision" x="0" y="352" width="48" height="32"/>
-  <object id="274" type="collision" x="0" y="384" width="32" height="32"/>
-  <object id="275" type="collision" x="0" y="416" width="48" height="32"/>
-  <object id="276" type="collision" x="0" y="448" width="32" height="96"/>
-  <object id="277" type="collision" x="0" y="544" width="48" height="32"/>
-  <object id="278" type="collision" x="0" y="576" width="32" height="32"/>
-  <object id="280" type="collision" x="256" y="608" width="256" height="32"/>
-  <object id="281" type="collision" x="176" y="592" width="16" height="16"/>
-  <object id="282" type="collision" x="272" y="544" width="16" height="16"/>
-  <object id="283" type="collision" x="192" y="544" width="80" height="48"/>
-  <object id="284" type="collision" x="288" y="544" width="80" height="48"/>
-  <object id="285" type="collision" x="384" y="544" width="80" height="48"/>
-  <object id="286" type="collision" x="464" y="544" width="16" height="16"/>
-  <object id="287" type="collision" x="368" y="544" width="16" height="16"/>
-  <object id="288" type="collision" x="144" y="448" width="48" height="32"/>
-  <object id="289" type="collision" x="496" y="432" width="32" height="32"/>
-  <object id="290" type="collision" x="528" y="256" width="32" height="384"/>
-  <object id="291" type="collision" x="512" y="624" width="16" height="16"/>
-  <object id="292" type="collision" x="560" y="624" width="16" height="16"/>
-  <object id="293" type="collision" x="576" y="608" width="64" height="32"/>
-  <object id="294" type="collision" x="592" y="576" width="48" height="32"/>
-  <object id="295" type="collision" x="608" y="544" width="32" height="32"/>
-  <object id="296" type="collision" x="592" y="512" width="48" height="32"/>
-  <object id="297" type="collision" x="608" y="480" width="32" height="32"/>
-  <object id="298" type="collision" x="624" y="464" width="16" height="16"/>
-  <object id="299" type="collision" x="592" y="448" width="16" height="16"/>
-  <object id="301" type="collision" x="608" y="432" width="32" height="32"/>
-  <object id="302" type="collision" x="592" y="400" width="48" height="32"/>
-  <object id="303" type="collision" x="608" y="368" width="32" height="32"/>
-  <object id="304" type="collision" x="592" y="336" width="48" height="32"/>
-  <object id="305" type="collision" x="608" y="240" width="32" height="96"/>
-  <object id="306" type="collision" x="560" y="256" width="48" height="32"/>
-  <object id="307" type="collision" x="576" y="192" width="64" height="48"/>
-  <object id="308" type="collision" x="576" y="240" width="32" height="16"/>
-  <object id="309" type="collision" x="544" y="224" width="32" height="32"/>
-  <object id="310" type="collision" x="448" y="128" width="32" height="96"/>
-  <object id="311" type="collision" x="544" y="128" width="32" height="96"/>
-  <object id="312" type="collision" x="592" y="144" width="32" height="32"/>
-  <object id="313" type="collision" x="608" y="112" width="32" height="32"/>
-  <object id="315" type="collision" x="592" y="80" width="32" height="32"/>
-  <object id="316" type="collision" x="608" y="48" width="32" height="32"/>
-  <object id="317" type="collision" x="592" y="16" width="32" height="32"/>
-  <object id="318" type="collision" x="368" y="0" width="64" height="16"/>
-  <object id="319" type="collision" x="432" y="48" width="64" height="80"/>
-  <object id="320" type="collision" x="496" y="48" width="96" height="48"/>
-  <object id="321" type="collision" x="528" y="96" width="64" height="32"/>
-  <object id="322" type="collision" x="288" y="240" width="176" height="128"/>
-  <object id="323" type="collision" x="464" y="240" width="64" height="112"/>
-  <object id="324" type="collision" x="480" y="352" width="48" height="16"/>
-  <object id="325" type="collision" x="480" y="368" width="16" height="16"/>
-  <object id="326" type="collision" x="0" y="608" width="48" height="32"/>
-  <object id="327" type="collision" x="48" y="624" width="176" height="16"/>
-  <object id="328" type="collision" x="80" y="608" width="80" height="16"/>
-  <object id="343" type="collision" x="240" y="144" width="32" height="48"/>
-  <object id="344" type="collision" x="224" y="144" width="16" height="32"/>
-  <object id="353" type="collision" x="160" y="288" width="16" height="16"/>
  </objectgroup>
 </map>

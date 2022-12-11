@@ -1,49 +1,57 @@
 {
-    "slug": "spyder_route3_wanda",
-    "sprite_name": "fisher",
-	"monsters": [
-        {
-            "name": "Nudiflot M",
-            "level": 8, 
-			"slug": "nudiflot_male",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Nudiflot F",
-            "level": 8, 
-			"slug": "nudiflot_female",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		        {
-            "name": "Nudiflot M",
-            "level": 8, 
-			"slug": "nudiflot_male",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Nudiflot F",
-            "level": 8, 
-			"slug": "nudiflot_female",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		        {
-            "name": "Nudiflot M",
-            "level": 8, 
-			"slug": "nudiflot_male",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Nudiflot F",
-            "level": 8, 
-			"slug": "nudiflot_female",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "fisher.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_route3_wanda",
+  "gender": "female",
+  "sprite_name": "fisher",
+  "monsters": [
+    {
+      "name": "Nudiflot",
+      "level": 8,
+      "slug": "nudiflot_male",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Nudiflot",
+      "level": 8,
+      "slug": "nudiflot_female",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Nudiflot",
+      "level": 8,
+      "slug": "nudiflot_male",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Nudiflot",
+      "level": 8,
+      "slug": "nudiflot_female",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Nudiflot",
+      "level": 8,
+      "slug": "nudiflot_male",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Nudiflot",
+      "level": 8,
+      "slug": "nudiflot_female",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "fisher.png",
+  "combat_back": "adventurer_back.png"
+}

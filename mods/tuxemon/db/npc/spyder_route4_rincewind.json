@@ -1,21 +1,25 @@
 {
-    "slug": "spyder_route4_rincewind",
-    "sprite_name": "beachcomber",
-	"monsters": [
-        {
-            "name": "K9",
-            "level": 16, 
-			"slug": "k9",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "K9",
-            "level": 16, 
-			"slug": "k9",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "yellowbelt.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_route4_rincewind",
+  "gender": "male",
+  "sprite_name": "beachcomber",
+  "monsters": [
+    {
+      "name": "K9",
+      "level": 16,
+      "slug": "k9",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "neuter"
+    },
+    {
+      "name": "K9",
+      "level": 16,
+      "slug": "k9",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "neuter"
+    }
+  ],
+  "combat_front": "yellowbelt.png",
+  "combat_back": "adventurer_back.png"
+}

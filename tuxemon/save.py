@@ -36,12 +36,23 @@ import json
 import logging
 import os
 from operator import itemgetter
-from typing import Any, Callable, Literal, Mapping, Optional, TextIO, TypeVar
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Literal,
+    Mapping,
+    NewType,
+    Optional,
+    TextIO,
+    TypeVar,
+)
 
 import pygame
 
 from tuxemon import prepare
 from tuxemon.client import LocalPygameClient
+from tuxemon.npc import NPCState
 from tuxemon.save_upgrader import SAVE_VERSION, upgrade_save
 from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
@@ -61,6 +72,16 @@ slot_number: Optional[int] = None
 TIME_FORMAT = "%Y-%m-%d %H:%M"
 config = prepare.CONFIG
 
+EncodedScreenshot = NewType("EncodedScreenshot", str)
+
+
+class SaveData(NPCState):
+    screenshot: EncodedScreenshot
+    screenshot_width: int
+    screenshot_height: int
+    time: str
+    version: int
+
 
 def capture_screenshot(client: LocalPygameClient) -> pygame.surface.Surface:
     """
@@ -79,7 +100,7 @@ def capture_screenshot(client: LocalPygameClient) -> pygame.surface.Surface:
     return screenshot
 
 
-def get_save_data(session: Session) -> Mapping[str, Any]:
+def get_save_data(session: Session) -> SaveData:
     """
     Gets a dictionary which represents the state of the session.
 
@@ -90,15 +111,18 @@ def get_save_data(session: Session) -> Mapping[str, Any]:
         Game data to save, must be JSON encodable.
 
     """
-    save_data = session.player.get_state(session)
     screenshot = capture_screenshot(session.client)
-    save_data["screenshot"] = base64.b64encode(
-        pygame.image.tostring(screenshot, "RGB")
-    ).decode("utf-8")
-    save_data["screenshot_width"] = screenshot.get_width()
-    save_data["screenshot_height"] = screenshot.get_height()
-    save_data["time"] = datetime.datetime.now().strftime(TIME_FORMAT)
-    save_data["version"] = SAVE_VERSION
+    npc_state = session.player.get_state(session)
+    save_data: SaveData = {
+        "screenshot": base64.b64encode(
+            pygame.image.tostring(screenshot, "RGB")
+        ).decode("utf-8"),
+        "screenshot_width": screenshot.get_width(),
+        "screenshot_height": screenshot.get_height(),
+        "time": datetime.datetime.now().strftime(TIME_FORMAT),
+        "version": SAVE_VERSION,
+        **npc_state,  # type: ignore[misc]
+    }
     return save_data
 
 
@@ -182,8 +206,7 @@ def json_load(
     )
 
 
-def open_save_file(save_path: str) -> Any:
-
+def open_save_file(save_path: str) -> Optional[Dict[str, Any]]:
     try:
         try:
             if config.compress_save is None and prepare.SAVE_METHOD == "CBOR":
@@ -192,13 +215,14 @@ def open_save_file(save_path: str) -> Any:
                 return json_load(save_path)
         except ValueError as e:
             logger.error("Cannot decode save: %s", save_path)
+            return None
     except OSError as e:
         logger.info(e)
         return None
 
 
 def save(
-    save_data: Mapping[str, Any],
+    save_data: SaveData,
     slot: int,
 ) -> None:
     """
@@ -230,7 +254,7 @@ def save(
     os.replace(save_path_tmp, save_path)
 
 
-def load(slot: int) -> Optional[Mapping[str, Any]]:
+def load(slot: int) -> Optional[SaveData]:
     """
     Loads game state data from a save file.
 

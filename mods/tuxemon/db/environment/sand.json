@@ -1,8 +1,9 @@
 {
   "slug": "sand",
   "battle_graphics": {
-    "island_back":"sand_back_island.png",
-    "island_front":"sand_front_island.png"
+    "island_back": "sand_back_island.png",
+    "island_front": "sand_front_island.png",
+    "background": "sand_background.png"
   },
-  "battle_music":"music_battle_loop"
+  "battle_music": "music_battle_loop"
 }

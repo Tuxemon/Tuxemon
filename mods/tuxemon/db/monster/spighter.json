@@ -16,11 +16,15 @@
             "technique": "splinter"
         }
     ],
-    "shape": "Grub",
+    "evolutions": [],
+    "shape": "grub",
     "types": [
-        "Wood"
+        "wood"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 120,
+    "height": 30,
+    "weight": 2,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

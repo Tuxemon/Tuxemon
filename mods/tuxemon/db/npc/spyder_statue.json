@@ -1,6 +1,7 @@
 {
-    "slug": "spyder_statue",
-    "sprite_name": "statue",
-	    "combat_front": "enforcer_rookie.png",
-    "combat_back": "red_back.png" }
-
+  "slug": "spyder_statue",
+  "gender": "male",
+  "sprite_name": "statue",
+  "combat_front": "enforcer_rookie.png",
+  "combat_back": "adventurer_back.png"
+}

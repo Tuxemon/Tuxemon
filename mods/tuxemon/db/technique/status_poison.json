@@ -1,16 +1,17 @@
 {
-  "slug": "status_poison",
-  "use_tech": "combat_used_x",
-  "use_success": "generic_success",
-  "use_failure": "generic_failure",
   "animation": "drip_green",
-  "sfx": "sfx_pulse",
-  "icon": "gfx/ui/icons/status/poison-icon.png",
-  "category": "poison",
-  "sort": "meta",
+  "category": "negative",
   "effects": [
-    "status"
+    "poison target"
   ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_poison.png",
+  "range": "special",
+  "repl_pos": "replace",
+  "repl_neg": "replace",
+  "sfx": "sfx_pulse",
+  "slug": "status_poison",
+  "sort": "meta",
   "target": {
     "enemy monster": 0,
     "enemy team": 0,
@@ -19,5 +20,9 @@
     "own team": 0,
     "own trainer": 0,
     "item": 0
-  }
+  },
+  "tech_id": 95,
+  "use_failure": "generic_failure",
+  "use_success": "combat_state_poison_get",
+  "use_tech": "combat_used_x"
 }

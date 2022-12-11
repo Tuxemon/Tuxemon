@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="29">
- <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="30">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="healing_center"/>
+  <property name="types" value="center"/>
+ </properties>
+ <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ <tileset firstgid="3865" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBg4wAS0mlQMcy0vkEEqhumVADJIxTC9BkAGqXhUL/FhNtBhBbOfnjQAr9gVfA==
+   eAFjYBg4oAW0mlQMc20EkEEqhultAzJIxTC9VYIMDKTiUb3Eh9lAhxXMfnrSAAHZReE=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBi6gJkCp/NB9TKzMjDwAjEfECMDkDgXCwMDNxDjAneBcmZAdeZIemuBYiBxYyA2AWJygDkR+mqBdt4GqoPheiQ3kGPnQOgB+XMbEG8HYmL8jOxGkPr7QPyABL2DNYgAiu4LmA==
+   eAFjYBi6YJk85W6XBJqhDMQqaGaBxK3lGBhsgBgX+AuUcwKqc0bSuwsoBhKPAuJoICYH1BOhrxRoZxkSLkdyAzl2DoQekD8fAPFDICbGz8huBKn/D8QMQH8Tq/fYIA0jAMNcEUg=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBgF5IZAOCt2nbjEkVXr4NCLSxxZ7yh7eIUAAGKuARs=
+   eAFjYBgF5IaAlDx2nbjEkVVb4NCLSxxZ7yh7eIUAAF3eASE=
   </data>
  </layer>
  <layer id="4" name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFAxUCG1kYGDYh4c1A9igYeSEAAB/JA48=
+   eAFjYBgFAxUCt+UYGO4g4btA9igYeSEAAMdlBOM=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -51,6 +57,7 @@
     <property name="act50" value="npc_face tabanurse,down"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
+    <property name="act80" value="set_variable teleport_faint:spyder_healing_center.tmx 7 10"/>
     <property name="cond1" value="is variable_set chooses:yes"/>
    </properties>
   </object>
@@ -90,6 +97,14 @@
     <property name="cond1" value="is player_at 11,6"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="29" name="Auto Healing Teleported" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_monster_health ,"/>
+    <property name="act2" value="set_monster_status ,"/>
+    <property name="act3" value="set_variable battle_last_result:none"/>
+    <property name="cond1" value="is variable_set battle_last_result:lost"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,11 +1,13 @@
 {
+  "tech_id": 58,
   "accuracy": 0.8,
   "animation": "drip_green",
-  "category": "physical",
   "effects": [
-    "poison",
-    "damage"
+    "poison target",
+    "damage 100",
+    "focused user"
   ],
+  "flip_axes": "",
   "healing_power": 0,
   "icon": "",
   "is_area": false,

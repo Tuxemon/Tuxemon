@@ -1,17 +1,17 @@
 {
-  "slug": "status_recover",
-  "name_trans": "status_recover_name",
-  "execute_trans": "combat_state_recover_get",
-  "success_trans": "combat_state_recover_success",
-  "failure_trans": "combat_state_recover_failure",
-  "animation": "greendrip",
-  "sfx": "sfx_bite",
-  "icon": "gfx/ui/icons/status/recover-icon.png",
-  "category": "recover",
-  "sort": "meta",
+  "animation": "drip_green",
+  "category": "positive",
   "effects": [
-    "status"
+    "recover all"
   ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_recover.png",
+  "range": "special",
+  "repl_pos": "replace",
+  "repl_neg": "replace",
+  "sfx": "sfx_bite",
+  "slug": "status_recover",
+  "sort": "meta",
   "target": {
     "enemy monster": 0,
     "enemy team": 0,
@@ -20,5 +20,9 @@
     "own team": 0,
     "own trainer": 0,
     "item": 0
-  }
+  },
+  "tech_id": 96,
+  "use_failure": "generic_failure",
+  "use_success": "combat_state_recover_get",
+  "use_tech": "combat_used_x"
 }

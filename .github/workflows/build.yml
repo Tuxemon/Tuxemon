@@ -1,0 +1,224 @@
+# https://docs.github.com/en/actions/learn-github-actions/contexts
+
+---
+name: Tuxemon
+on:
+  push:
+    branches:
+    - development # only pushes on development. So the release variable will be set correctly
+  pull_request:
+  page_build:
+  workflow_dispatch:
+
+env:
+  IS_RELEASE: ${{ github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v') }}
+
+
+jobs:
+  appdata_validation:
+    name: "Appdata Validation"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Command copied from flathub build process
+    - name: Validate appdata file
+      run: |
+        sudo apt install flatpak
+        sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        sudo flatpak install -y org.freedesktop.appstream-glib
+        flatpak run --env=G_DEBUG=fatal-criticals org.freedesktop.appstream-glib validate ./buildconfig/flatpak/org.tuxemon.Tuxemon.appdata.xml
+
+
+  flatpak:
+    name: "Flatpak"
+    runs-on: ubuntu-latest
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:kde-6.3
+      options: --privileged
+    steps:
+    - name: Show environment variables
+      run: >
+        echo IS_RELEASE: ${{ env.IS_RELEASE }}
+
+    # https://stackoverflow.com/questions/60916931/github-action-does-the-if-have-an-else
+    - name: Determine flatpak release branch
+      uses: haya14busa/action-cond@v1
+      id: flatpak_release_branch
+      with:
+        cond: ${{ env.IS_RELEASE }}
+        if_true: 'stable'
+        if_false: 'development'
+
+    - name: Clone flatpak manifest from Flathub
+      uses: GuillaumeFalourd/clone-github-repo-action@v1
+      with:
+        owner: 'flathub'
+        repository: 'org.tuxemon.Tuxemon'
+
+    # Turn this on once the requirements (requirements.txt) changed and the build is not working anymore
+    # Create development branch at https://github.com/flathub/org.tuxemon.Tuxemon and
+    # update the requirements as described in the Readme. Turn it off again when the requirements in the
+    # master branch on flathub are aligned again with the Tuxemon requirements
+    # - name: Checkout development branch
+      # run: |
+        # cd org.tuxemon.Tuxemon
+        # git checkout development
+
+    - name: Replace git tag by the commit id on which it runs
+      if: github.ref_type != 'tag'
+      run: >
+        sed -i 's@tag: v[0-9]*.[0-9]*.[0-9]*@commit: "${{ github.sha }}"@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+
+    - name: Use correct git tag
+      if: github.ref_type == 'tag'
+      run: >
+        sed -i 's@tag: .*$@tag: "${{ github.ref_name }}"@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+
+    - name: Replace source url
+      run: >
+        sed -i "s@url: .*Tuxemon/Tuxemon.git@url: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY@" org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+
+    - name: Add dev build marker to cmake options
+      if: github.ref_type != 'tag'
+      run: >
+        sed -i 's@config-opts: \["\(.*\)"\]@config-opts: ["\1", "-DDEV_BUILD=${{ github.ref_name }}"]@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+
+    - name: Replace desktop file name suffix
+      if: github.ref_type != 'tag'
+      run: >
+        sed -i 's@desktop-file-name-suffix: ""@desktop-file-name-suffix: " (Development)"@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+
+    - name: Show Flatpak manifest
+      run: cat org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+
+    - name: Build package
+      uses: flatpak/flatpak-github-actions/flatpak-builder@v4
+      with:
+        bundle: Tuxemon.flatpak
+        manifest-path: org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+        cache: false
+        branch: ${{ steps.flatpak_release_branch.outputs.value }}
+
+  build_installer_windows:
+    runs-on: windows-latest
+    steps:
+      # Checkout the repo
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+            # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+            python-version: 3.9 # optional, default is 3.x
+            # The target architecture (x86, x64) of the Python interpreter.
+            architecture: x64 # optional
+
+      - name: Install dependencies
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Install cx-freeze
+        run: python3 -m pip install cx-freeze
+
+      - name: Build
+        run: |
+          copy buildconfig/setup_cx_freeze.py setup_cx_freeze.py
+          python setup_cx_freeze.py build
+
+      - name: Install nsis
+        run: |
+          Invoke-WebRequest -Uri "https://netcologne.dl.sourceforge.net/project/nsis/NSIS%203/3.08/nsis-3.08-setup.exe" -OutFile "nsis.exe"
+
+      - name: Build Installer
+        run: |
+          cd buildconfig
+          cmd.exe /c "build_installer.bat"
+          mkdir ../dist/
+          mv tuxemon-installer.exe ../dist/.
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v3
+        with:
+            name: tuxemon_windows_installer
+            path: dist
+              
+  python-app:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        # flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        # flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: install as lib
+      run: |
+        pip install -e .
+    - name: Test with pytest
+      run: |
+        pytest tests
+        
+  publish:
+    # https://github.com/marvinpinto/actions/issues/177
+    needs: [flatpak, build_installer_windows]
+    runs-on: ubuntu-latest # does not matter which
+    # a prerelase is created when pushing to master
+    # a release is created when a tag will be set
+    # last condition is the same as IS_RELEASE,
+    # but environment variables cannot be used outside of steps
+    # so it was copied to here too
+    if: ${{ github.ref == 'refs/heads/development' || (github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v'))  }}
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: artifacts
+
+      - name: list artifacts folder
+        run: |
+          echo "Show artifacts folder:"
+          ls artifacts
+          echo "Show artifacts/tuxemon_windows_installer folder:"
+          ls "artifacts/tuxemon_windows_installer"
+          echo "Show artifacts/Tuxemon-x86_64:"
+          ls "artifacts/Tuxemon-x86_64"
+
+      - name: Determine release title
+        uses: haya14busa/action-cond@v1
+        id: release_title
+        with:
+          cond: ${{ env.IS_RELEASE }}
+          if_true: 'Tuxemon Release ${{ github.ref_name }}'
+          if_false: 'Latest Build (Development)'
+
+      - name: Determine release tag
+        uses: haya14busa/action-cond@v1
+        id: release_tag
+        with:
+          cond: ${{ env.IS_RELEASE }}
+          if_true: 'stable'
+          if_false: 'latest'
+
+      - name: Update GitHub release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: ${{ env.IS_RELEASE == 'false' }}
+          title: ${{ steps.release_title.outputs.value }}
+          automatic_release_tag: ${{ steps.release_tag.outputs.value }}
+          # TODO: Add windows artifact again when #1229 is fixed
+          # **/artifacts/tuxemon_windows_installer/*.exe
+          files: |
+            **/Tuxemon-x86_64/Tuxemon.flatpak
+...

@@ -16,12 +16,29 @@
             "technique": "font"
         }
     ],
-    "shape": "Grub",
-    "types": [
-        "Metal",
-        "Wood"
+    "evolutions": [
+        {
+            "path": "mixed",
+            "at_level": 12,
+            "monster_slug": "bugnin",
+            "mixed": "stat_melee"
+        },
+        {
+            "path": "mixed",
+            "at_level": 12,
+            "monster_slug": "sumchon",
+            "mixed": "stat_armour"
+        }
     ],
-    "weight": 25,
+    "shape": "grub",
+    "types": [
+        "metal",
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 56,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

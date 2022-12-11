@@ -1,6 +1,7 @@
 import collections
 import time
 from heapq import heapify, heappop, heappush, heappushpop
+from typing import Optional
 
 __all__ = ("ScheduledItem", "Scheduler", "Clock")
 
@@ -322,7 +323,7 @@ class Scheduler:
 
         return result
 
-    def get_idle_time(self) -> float:
+    def get_idle_time(self) -> Optional[float]:
         """
         Get the time until the next item is scheduled.
 

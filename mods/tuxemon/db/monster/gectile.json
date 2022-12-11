@@ -16,11 +16,21 @@
             "technique": "whirlwind"
         }
     ],
-    "shape": "Humanoid",
-    "types": [
-        "Wood"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 36,
+            "monster_slug": "velocitile"
+        }
     ],
-    "weight": 25,
+    "shape": "humanoid",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 65,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

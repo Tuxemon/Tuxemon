@@ -16,12 +16,16 @@
             "technique": "shrapnel"
         }
     ],
-    "shape": "Humanoid",
+    "evolutions": [],
+    "shape": "humanoid",
     "types": [
-        "Metal",
-        "Water"
+        "metal",
+        "water"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 111,
+    "height": 155,
+    "weight": 200,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

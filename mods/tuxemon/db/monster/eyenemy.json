@@ -16,11 +16,21 @@
             "technique": "glower"
         }
     ],
-    "shape": "Serpent",
-    "types": [
-        "Metal"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 20,
+            "monster_slug": "eyesore"
+        }
     ],
-    "weight": 25,
+    "shape": "serpent",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 45,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

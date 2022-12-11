@@ -77,6 +77,14 @@
       "items": {
         "type": "string"
       }
+    },
+    "battle_menu": {
+      "description": "Which menu should be used to choose the target of the item",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ItemBattleMenu"
+        }
+      ]
     }
   },
   "required": [

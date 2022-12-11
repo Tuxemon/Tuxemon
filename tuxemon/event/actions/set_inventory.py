@@ -60,13 +60,9 @@ class SetInventoryAction(EventAction[SetInventoryActionParameters]):
             npc.inventory = {}
             return
 
-        entry = (
-            db.lookup(
-                self.parameters.inventory_slug,
-                table="inventory",
-            )
-            .dict()
-            .get("inventory", {})
-        )
+        entry = db.lookup(
+            self.parameters.inventory_slug,
+            table="inventory",
+        ).inventory
 
         npc.inventory = decode_inventory(self.session, npc, entry)

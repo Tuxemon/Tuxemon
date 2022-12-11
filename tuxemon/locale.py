@@ -47,7 +47,7 @@ from typing import (
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
 
-from tuxemon import prepare
+from tuxemon import formula, prepare
 from tuxemon.constants import paths
 from tuxemon.session import Session
 
@@ -244,12 +244,39 @@ def replace_text(session: Session, text: str) -> str:
         'Red is running away!'
 
     """
-    text = text.replace("${{name}}", session.player.name)
+    player = session.player
+    client = session.client
+    text = text.replace("${{name}}", player.name)
     text = text.replace("${{currency}}", "$")
     text = text.replace(r"\n", "\n")
+    text = text.replace("${{money}}", str(player.money["player"]))
+    # distance (metric / imperial)
+    if prepare.CONFIG.unit == "metric":
+        text = text.replace("${{length}}", "km")
+        text = text.replace("${{weight}}", "kg")
+        text = text.replace("${{height}}", "cm")
+        text = text.replace(
+            "${{steps}}",
+            str(formula.convert_km(player.game_variables["steps"])),
+        )
+    else:
+        text = text.replace("${{length}}", "mi")
+        text = text.replace("${{weight}}", "lb")
+        text = text.replace("${{height}}", "ft")
+        text = text.replace(
+            "${{steps}}",
+            str(formula.convert_mi(player.game_variables["steps"])),
+        )
+    # maps
+    text = text.replace("${{map_name}}", client.map_name)
+    text = text.replace("${{map_desc}}", client.map_desc)
+    text = text.replace("${{north}}", client.map_north)
+    text = text.replace("${{south}}", client.map_south)
+    text = text.replace("${{east}}", client.map_east)
+    text = text.replace("${{west}}", client.map_west)
 
-    for i in range(len(session.player.monsters)):
-        monster = session.player.monsters[i]
+    for i in range(len(player.monsters)):
+        monster = player.monsters[i]
         text = text.replace("${{monster_" + str(i) + "_name}}", monster.name)
         text = text.replace(
             "${{monster_" + str(i) + "_desc}}",

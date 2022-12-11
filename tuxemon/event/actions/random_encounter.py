@@ -25,7 +25,7 @@ import logging
 import random
 from typing import NamedTuple, Optional, Sequence, Union, final
 
-from tuxemon import ai, monster, prepare
+from tuxemon import ai, formula, monster, prepare
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import EncounterItemModel, db
 from tuxemon.event.eventaction import EventAction
@@ -78,7 +78,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             return
 
         slug = self.parameters.encounter_slug
-        encounters = db.lookup(slug, table="encounter").dict()["monsters"]
+        encounters = db.lookup(slug, table="encounter").monsters
         encounter = _choose_encounter(encounters, self.parameters.total_prob)
 
         # If a random encounter was successfully rolled, look up the monster
@@ -93,7 +93,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             env_slug = "grass"
             if "environment" in player.game_variables:
                 env_slug = player.game_variables["environment"]
-            env = db.lookup(env_slug, table="environment").dict()
+            env = db.lookup(env_slug, table="environment")
 
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack
@@ -102,7 +102,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
                 "CombatState",
                 players=(player, npc),
                 combat_type="monster",
-                graphics=env["battle_graphics"],
+                graphics=env.battle_graphics,
             )
 
             # stop the player
@@ -113,7 +113,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             self.session.client.push_state(FlashTransition)
 
             # Start some music!
-            filename = env["battle_music"]
+            filename = env.battle_music
             self.session.client.event_engine.execute_action(
                 "play_music",
                 [filename],
@@ -143,7 +143,7 @@ def _choose_encounter(
     roll = random.random() * 100
     if total_prob is not None:
         current_total = sum(
-            encounter["encounter_rate"] for encounter in encounters
+            encounter.encounter_rate for encounter in encounters
         )
         scale = float(total_prob) / current_total
     else:
@@ -152,7 +152,7 @@ def _choose_encounter(
     scale *= prepare.CONFIG.encounter_rate_modifier
 
     for encounter in encounters:
-        total += encounter["encounter_rate"] * scale
+        total += encounter.encounter_rate * scale
         if total >= roll:
             return encounter
 
@@ -164,18 +164,19 @@ def _create_monster_npc(
     world: WorldState,
 ) -> NPC:
     current_monster = monster.Monster()
-    current_monster.load_from_db(encounter["monster"])
+    current_monster.load_from_db(encounter.monster)
     # Set the monster's level based on the specified level range
-    if len(encounter["level_range"]) > 1:
+    if len(encounter.level_range) > 1:
         level = random.randrange(
-            encounter["level_range"][0],
-            encounter["level_range"][1],
+            encounter.level_range[0],
+            encounter.level_range[1],
         )
     else:
-        level = encounter["level_range"][0]
+        level = encounter.level_range[0]
     # Set the monster's level
     current_monster.level = 1
     current_monster.set_level(level)
+    current_monster.set_capture(formula.today_ordinal())
     current_monster.current_hp = current_monster.hp
 
     # Create an NPC object which will be this monster's "trainer"

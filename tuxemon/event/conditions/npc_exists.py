@@ -23,7 +23,6 @@ from __future__ import annotations
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
-from tuxemon.states.world.worldstate import WorldState
 
 
 class NPCExistsCondition(EventCondition):
@@ -54,6 +53,4 @@ class NPCExistsCondition(EventCondition):
             Whether the chosen character exists.
 
         """
-        world = session.client.get_state_by_name(WorldState)
-
         return get_npc(session, condition.parameters[0]) is not None

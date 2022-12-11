@@ -16,11 +16,15 @@
             "technique": "strike"
         }
     ],
-    "shape": "Brute",
+    "evolutions": [],
+    "shape": "brute",
     "types": [
-        "Metal"
+        "metal"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 96,
+    "height": 225,
+    "weight": 235,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

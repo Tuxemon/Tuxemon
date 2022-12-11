@@ -16,11 +16,15 @@
             "technique": "wall_of_steel"
         }
     ],
-    "shape": "",
+    "evolutions": [],
+    "shape": "varmint",
     "types": [
-        "Metal"
+        "metal"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 162,
+    "height": 100,
+    "weight": 10,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

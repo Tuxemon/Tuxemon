@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from tuxemon.client import LocalPygameClient
     from tuxemon.player import Player
+    from tuxemon.states.world.worldstate import WorldState
 
 
 class Session:
@@ -17,7 +18,7 @@ class Session:
     def __init__(
         self,
         client: LocalPygameClient,
-        world,
+        world: WorldState,
         player: Player,
     ) -> None:
         """
@@ -33,4 +34,4 @@ class Session:
 
 
 # WIP will be filled in later when game starts
-local_session = Session(None, None, None)
+local_session = Session(None, None, None)  # ignore[arg-type]

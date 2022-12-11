@@ -4,19 +4,13 @@ import fnmatch
 import os
 
 from setuptools import setup
-from setuptools.command.install import install
+
 
 
 def build_translations():
     from tuxemon.core.locale import T
 
     T.collect_languages()
-
-
-class InstallAndBuildTranslations(install):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # build_translations()
 
 
 # Find all the python modules
@@ -51,7 +45,6 @@ setup(
     url="https://www.tuxemon.org",
     include_package_data=True,
     packages=modules,
-    license="GPLv3",
     long_description="https://github.com/Tuxemon/Tuxemon",
     install_requires=REQUIREMENTS,
     python_requires=">=3.8",
@@ -66,5 +59,4 @@ setup(
         "Topic :: Games/Entertainment",
         "Topic :: Games/Entertainment :: Role-Playing",
     ],
-    cmdclass={"install": InstallAndBuildTranslations},
 )

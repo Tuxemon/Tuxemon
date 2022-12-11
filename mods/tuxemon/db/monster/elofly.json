@@ -16,11 +16,21 @@
             "technique": "fume"
         }
     ],
-    "shape": "Flier",
-    "types": [
-        "Water"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "elowind"
+        }
     ],
-    "weight": 25,
+    "shape": "flier",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 38,
+    "height": 0,
+    "weight": 0,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

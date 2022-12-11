@@ -16,11 +16,21 @@
             "technique": "one_two"
         }
     ],
-    "shape": "Flier",
-    "types": [
-        "Metal"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "corvix"
+        }
     ],
-    "weight": 25,
+    "shape": "flier",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 150,
+    "height": 70,
+    "weight": 6,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

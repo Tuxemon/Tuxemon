@@ -1,14 +1,17 @@
 {
-    "slug": "spyder_nimrod_birbrobo",
-    "sprite_name": "robot",
-	"monsters": [
-        {
-            "name": "Birb Robo",
-            "level": 20, 
-			"slug": "birb-robo",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "birb_robo.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_nimrod_birbrobo",
+  "gender": "neuter",
+  "sprite_name": "robot",
+  "monsters": [
+    {
+      "name": "Birb Robo",
+      "level": 20,
+      "slug": "birb-robo",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "neuter"
+    }
+  ],
+  "combat_front": "birb_robo.png",
+  "combat_back": "adventurer_back.png"
+}

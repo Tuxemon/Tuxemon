@@ -16,11 +16,21 @@
             "technique": "wallow"
         }
     ],
-    "shape": "Grub",
-    "types": [
-        "Metal"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 9,
+            "monster_slug": "puparmor"
+        }
     ],
-    "weight": 25,
+    "shape": "grub",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 32,
+    "height": 12,
+    "weight": 1,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

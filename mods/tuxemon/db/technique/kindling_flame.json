@@ -1,10 +1,12 @@
 {
+  "tech_id": 30,
   "accuracy": 0.8,
   "animation": "constantburn",
-  "category": "physical",
   "effects": [
-    "damage"
+    "damage 100",
+    "enraged user"
   ],
+  "flip_axes": "",
   "healing_power": 0,
   "icon": "",
   "is_area": false,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="19" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="39">
+<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="19" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="41">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -462,6 +462,20 @@
     <property name="cond1" value="not npc_exists omnigrunt2"/>
     <property name="cond2" value="not npc_exists omnigrunt3"/>
     <property name="cond3" value="not npc_exists omnigrunt4"/>
+   </properties>
+  </object>
+  <object id="39" name="to passageway 1" type="event" x="16" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_passageway_1.tmx,16,1,0.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="40" name="to passageway1-2" type="event" x="32" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_passageway_1.tmx,17,1,0.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
  </objectgroup>

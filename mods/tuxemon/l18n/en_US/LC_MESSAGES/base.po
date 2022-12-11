@@ -808,6 +808,12 @@ msgstr "Route E"
 msgid "taba_town"
 msgstr "Taba"
 
+msgid "taba_ba_foyer"
+msgstr "Taba Battle Area - Foyer"
+
+msgid "taba_ba_main"
+msgstr "Taba Battle Area - Main Hall"
+
 msgid "timber_town"
 msgstr "Timber"
 

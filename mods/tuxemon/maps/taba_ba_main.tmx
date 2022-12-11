@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="19" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="30">
+<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="19" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="39">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="taba_ba_main"/>
  </properties>
  <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
@@ -91,7 +93,7 @@
     <property name="act22" value="wait 0.7"/>
     <property name="act23" value="translated_dialog itsforthefans4"/>
     <property name="act24" value="translated_dialog itsforthefans5"/>
-    <property name="act25" value="pathfind omnigrunt2,15,4"/>
+    <property name="act25" value="npc_move omnigrunt2,left 2,down 2"/>
     <property name="act26" value="npc_face omnigrunt2,left"/>
     <property name="act27" value="wait 0.3"/>
     <property name="act28" value="npc_face aeble,right"/>
@@ -105,7 +107,7 @@
     <property name="act36" value="wait 1.5"/>
     <property name="act37" value="translated_dialog itsforthefans10"/>
     <property name="act38" value="translated_dialog yessir"/>
-    <property name="act39" value="pathfind omnigrunt2,17,2"/>
+    <property name="act39" value="npc_move omnigrunt2,up 2,right 2"/>
     <property name="act40" value="npc_move aeble,up 1"/>
     <property name="act41" value="translated_dialog itsforthefans3"/>
     <property name="act42" value="npc_move speck,up 1"/>
@@ -223,7 +225,7 @@
   <object id="24" name="or don't confront it" type="event" x="208" y="16" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog maybeabattle"/>
-    <property name="act11" value="npc_speed christie,3"/>
+    <property name="act11" value="npc_speed christie,9"/>
     <property name="act12" value="npc_move christie,right 1,up 1,left 1"/>
     <property name="act13" value="wait 0.2"/>
     <property name="act14" value="npc_face player,up"/>
@@ -239,7 +241,7 @@
     <property name="act25" value="npc_face speck,right"/>
     <property name="act26" value="wait 0.2"/>
     <property name="act27" value="translated_dialog maybeabattle6"/>
-    <property name="act30" value="npc_speed speck,3"/>
+    <property name="act30" value="npc_speed speck,9"/>
     <property name="act31" value="pathfind speck,7,5"/>
     <property name="act32" value="npc_face speck,right"/>
     <property name="act33" value="translated_dialog maybeabattle7"/>
@@ -247,9 +249,9 @@
     <property name="act35" value="npc_face christie,left"/>
     <property name="act40" value="wait 0.3"/>
     <property name="act41" value="translated_dialog maybeabattle8"/>
-    <property name="act42" value="npc_speed christie,1"/>
-    <property name="act43" value="npc_speed speck,1"/>
-    <property name="act99" value="set)variable fifthdialog:end"/>
+    <property name="act42" value="npc_speed christie,3.75"/>
+    <property name="act43" value="npc_speed speck,3.75"/>
+    <property name="act99" value="set_variable fifthdialog:end"/>
     <property name="cond1" value="is variable_set fourthdialog:end"/>
     <property name="cond2" value="not variable_set fifthdialog:end"/>
    </properties>
@@ -344,28 +346,37 @@
     <property name="act12" value="wait 0.3"/>
     <property name="act13" value="npc_face player,up"/>
     <property name="act14" value="translated_dialog sorryabouthim"/>
-    <property name="act15" value="npc_face christie,left"/>
-    <property name="act16" value="npc_face player,right"/>
-    <property name="act17" value="translated_dialog sorryabouthim2"/>
-    <property name="act20" value="translated_dialog sorryabouthim3"/>
+    <property name="act15" value="npc_move christie,down 1"/>
+    <property name="act16" value="npc_face christie,left"/>
+    <property name="act17" value="npc_face player,right"/>
+    <property name="act18" value="wait 0.2"/>
+    <property name="act19" value="translated_dialog sorryabouthim2"/>
+    <property name="act20" value="wait 0.7"/>
     <property name="act21" value="npc_face player,up"/>
-    <property name="act22" value="translated_dialog sorryabouthim4"/>
-    <property name="act23" value="wait 0.7"/>
-    <property name="act24" value="npc_face christie,up"/>
-    <property name="act25" value="wait 0.3"/>
+    <property name="act22" value="wait 0.5"/>
+    <property name="act23" value="npc_face player,right"/>
+    <property name="act24" value="translated_dialog sorryabouthim3"/>
+    <property name="act25" value="npc_face speck,right"/>
+    <property name="act26" value="translated_dialog sorryabouthim4"/>
+    <property name="act27" value="wait 0.7"/>
+    <property name="act28" value="npc_face christie,up"/>
+    <property name="act29" value="wait 0.3"/>
     <property name="act30" value="translated_dialog sorryabouthim5"/>
     <property name="act31" value="npc_face christie,left"/>
     <property name="act32" value="wait 0.5"/>
     <property name="act33" value="translated_dialog doorchosen"/>
     <property name="act34" value="npc_face christie,down"/>
     <property name="act35" value="npc_face player,down"/>
+    <property name="act36" value="npc_face speck,down"/>
     <property name="act37" value="wait 2"/>
     <property name="act38" value="npc_face christie,left"/>
     <property name="act39" value="wait 0.3"/>
     <property name="act40" value="translated_dialog doorchosen2"/>
-    <property name="act41" value="npc_speed christie,3"/>
+    <property name="act41" value="npc_speed christie,9"/>
     <property name="act42" value="pathfind christie,13,14"/>
-    <property name="act43" value="remove_npc christie"/>
+    <property name="act43" value="npc_speed christie,3.75"/>
+    <property name="act44" value="remove_npc christie"/>
+    <property name="act45" value="set_variable moveit3:now"/>
     <property name="act50" value="npc_face player,up"/>
     <property name="act51" value="translated_dialog doorchosen3"/>
     <property name="act52" value="npc_move speck,left 1,down 1"/>
@@ -375,10 +386,82 @@
     <property name="act56" value="translated_dialog doorchosen4"/>
     <property name="act60" value="pathfind speck,5,14"/>
     <property name="act61" value="remove_npc speck"/>
-    <property name="act70" value="npc_speed christie,1"/>
+    <property name="act62" value="set_variable moveit2:now"/>
+    <property name="act80" value="unlock_controls"/>
     <property name="act99" value="set_variable eighthdialog:end"/>
     <property name="cond1" value="is variable_set seventhdialog:end"/>
     <property name="cond2" value="not variable_set eighthdialog:end"/>
+   </properties>
+  </object>
+  <object id="30" name="block3" type="event" x="176" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc omnigrunt5,14,14,,stand"/>
+    <property name="act2" value="pathfind omnigrunt5,14,12"/>
+    <property name="act3" value="create_npc omnigrunt6,13,14,,stand"/>
+    <property name="act4" value="pathfind omnigrunt6,13,12"/>
+    <property name="cond1" value="is variable_set moveit3:now"/>
+    <property name="cond2" value="not npc_exists omnigrunt5"/>
+    <property name="cond3" value="not npc_exists omnigrunt6"/>
+   </properties>
+  </object>
+  <object id="32" name="block2" type="event" x="112" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc omnigrunt7,5,14,,stand"/>
+    <property name="act2" value="pathfind omnigrunt7,5,12"/>
+    <property name="act3" value="create_npc omnigrunt8,4,14,,stand"/>
+    <property name="act4" value="pathfind omnigrunt8,4,12"/>
+    <property name="cond1" value="is variable_set moveit2:now"/>
+    <property name="cond2" value="not npc_exists omnigrunt7"/>
+    <property name="cond3" value="not npc_exists omnigrunt8"/>
+   </properties>
+  </object>
+  <object id="33" name="go elsewhere" type="event" x="64" y="176" width="32" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog notyettababa"/>
+    <property name="cond1" value="is variable_set moveit2:now"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is player_facing down"/>
+    <property name="cond4" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="34" name="go elsewhere" type="event" x="208" y="176" width="32" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog notyettababa"/>
+    <property name="cond1" value="is variable_set moveit3:now"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is player_facing down"/>
+    <property name="cond4" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="35" name="go elsewhere" type="event" x="256" y="176" width="32" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog notyettababafourth"/>
+    <property name="cond1" value="not variable_set allthree:done"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is player_facing down"/>
+    <property name="cond4" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="37" name="locked" type="event" x="272" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog itslocked"/>
+    <property name="act2" value="npc_move player,left 1"/>
+    <property name="cond1" value="not variable_set fourthacolyte:finished"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="38" name="block4" type="event" x="0" y="64" width="16" height="16">
+   <properties>
+    <property name="act20" value="create_npc omnigrunt2,17,2,,stand"/>
+    <property name="act21" value="npc_face omnigrunt2,right"/>
+    <property name="act22" value="create_npc omnigrunt3,16,12,,stand"/>
+    <property name="act23" value="npc_face omnigrunt3,up"/>
+    <property name="act24" value="create_npc omnigrunt4,17,12,,stand"/>
+    <property name="act25" value="npc_face omnigrunt4,up"/>
+    <property name="cond1" value="not npc_exists omnigrunt2"/>
+    <property name="cond2" value="not npc_exists omnigrunt3"/>
+    <property name="cond3" value="not npc_exists omnigrunt4"/>
    </properties>
   </object>
  </objectgroup>

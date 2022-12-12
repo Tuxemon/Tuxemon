@@ -56,7 +56,7 @@ from pygame.rect import Rect
 
 from tuxemon import audio, formula, graphics, state, tools
 from tuxemon.animation import Task
-from tuxemon.combat import check_status, defeated, fainted, get_awake_monsters
+from tuxemon.combat import check_status, defeated, fainted, get_awake_monsters, check_status_connected
 from tuxemon.db import OutputBattle, SeenStatus
 from tuxemon.item.item import Item
 from tuxemon.locale import T
@@ -691,6 +691,11 @@ class CombatState(CombatAnimations):
         self.animate_monster_release(player, monster)
         self.build_hud(self._layout[player]["hud"][0], monster)
         self.monsters_in_play[player].append(monster)
+
+        # remove "connected" status (eg. lifeleech, etc.)
+        for mon in self.monsters_in_play[self.players[0]]:
+            if check_status_connected(mon):
+                mon.status.clear()
 
         # TODO: not hardcode
         if player is self.players[0]:

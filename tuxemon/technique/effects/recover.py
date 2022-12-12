@@ -38,10 +38,10 @@ class RecoverEffect(TechEffect):
         if user is None:
             user = tech.link
             assert user
-            heal = formula.simple_recover(tech, user)
+            heal = formula.simple_recover(user)
             user.current_hp += heal
         else:
-            heal = formula.simple_recover(tech, user)
+            heal = formula.simple_recover(user)
             user.current_hp += heal
 
         return {

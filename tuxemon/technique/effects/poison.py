@@ -37,7 +37,7 @@ class PoisonEffect(TechEffect):
                 target.apply_status(tech)
             return {"status": tech}
 
-        damage = formula.simple_poison(tech, target)
+        damage = formula.simple_poison(target)
         target.current_hp -= damage
 
         return {

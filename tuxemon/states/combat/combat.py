@@ -56,7 +56,13 @@ from pygame.rect import Rect
 
 from tuxemon import audio, formula, graphics, state, tools
 from tuxemon.animation import Task
-from tuxemon.combat import check_status, defeated, fainted, get_awake_monsters, check_status_connected
+from tuxemon.combat import (
+    check_status,
+    check_status_connected,
+    defeated,
+    fainted,
+    get_awake_monsters,
+)
 from tuxemon.db import OutputBattle, SeenStatus
 from tuxemon.item.item import Item
 from tuxemon.locale import T

@@ -141,7 +141,6 @@ def simple_damage_calculate(
 
 
 def simple_poison(
-    technique: Technique,
     target: Monster,
 ) -> int:
     """
@@ -160,7 +159,6 @@ def simple_poison(
 
 
 def simple_recover(
-    technique: Technique,
     target: Monster,
 ) -> int:
     """
@@ -179,7 +177,6 @@ def simple_recover(
 
 
 def simple_lifeleech(
-    technique: Technique,
     user: Monster,
     target: Monster,
 ) -> int:

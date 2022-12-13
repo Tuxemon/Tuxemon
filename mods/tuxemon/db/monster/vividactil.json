@@ -5,15 +5,15 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "headbutt"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "wing_tip"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "peck"
         }
     ],
     "evolutions": [],

@@ -30,7 +30,8 @@
         {
             "path": "standard",
             "at_level": 24,
-            "monster_slug": "viviteel"
+            "monster_slug": "viviteel",
+            "gender": "female"
         },
         {
             "path": "standard",
@@ -43,14 +44,16 @@
             "monster_slug": "vivitron"
         },
         {
-            "path": "",
+            "path": "standard",
             "at_level": 24,
-            "monster_slug": "vividactil"
+            "monster_slug": "vividactil",
+            "item": "fossil"
         },
         {
-            "path": "",
+            "path": "standard",
             "at_level": 24,
-            "monster_slug": "vivisource"
+            "monster_slug": "vivisource",
+            "gender": "male"
         }
     ],
     "shape": "serpent",

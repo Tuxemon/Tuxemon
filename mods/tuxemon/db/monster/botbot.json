@@ -38,13 +38,13 @@
         {
             "path": "item",
             "at_level": 0,
-            "monster_slug": "k9"
+            "monster_slug": "k9",
             "item": "booster_tech"
         },
         {
             "path": "item",
             "at_level": 0,
-            "monster_slug": "b_ver_1"
+            "monster_slug": "b_ver_1",
             "item": "booster_tech"
         }
     ],

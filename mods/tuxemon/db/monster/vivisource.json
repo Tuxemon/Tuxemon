@@ -5,15 +5,15 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "flood"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "chill_mist"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "wallow"
         }
     ],
     "evolutions": [],
@@ -21,7 +21,7 @@
     "types": [
         "water"
     ],
-    "possible_genders": ["male", "female"],
+    "possible_genders": ["male"],
     "txmn_id": 0,
     "height": 0,
     "weight": 0,

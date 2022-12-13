@@ -50,11 +50,11 @@ class LifeLeechEffect(TechEffect):
         if user is None:
             user = tech.link
             assert user
-            damage = formula.simple_lifeleech(tech, user, target)
+            damage = formula.simple_lifeleech(user, target)
             target.current_hp -= damage
             user.current_hp += damage
         else:
-            damage = formula.simple_lifeleech(tech, user, target)
+            damage = formula.simple_lifeleech(user, target)
             target.current_hp -= damage
             user.current_hp += damage
 

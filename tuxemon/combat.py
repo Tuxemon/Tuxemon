@@ -49,6 +49,19 @@ def check_status(monster: Monster, status_name: str) -> bool:
     return any(t for t in monster.status if t.slug == status_name)
 
 
+def check_status_connected(monster: Monster) -> bool:
+    """
+    Statuses connected are the ones where an effect is present only
+    if both monsters are alive (lifeleech, grabbed).
+    """
+    if check_status(monster, "status_grabbed"):
+        return True
+    elif check_status(monster, "status_lifeleech"):
+        return True
+    else:
+        return False
+
+
 def fainted(monster: Monster) -> bool:
     return check_status(monster, "status_faint") or monster.current_hp <= 0
 

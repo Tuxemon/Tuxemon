@@ -58,6 +58,8 @@ def check_status_connected(monster: Monster) -> bool:
         return True
     elif check_status(monster, "status_lifeleech"):
         return True
+    else:
+        return False
 
 
 def fainted(monster: Monster) -> bool:

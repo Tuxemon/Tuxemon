@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="11">
+<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="16">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -13,7 +13,7 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="16" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYICAQlEGhnNE4mJRBgwwHyj2h0g8H4d+LTHiMC79+5iIw5Tqv4gUFuTo/48UFuTo10UKC3L0O7EyMDiyQmhy9BcA9eWzQmhy9BdSGH7zKQw/5LRGrfSDnCYI4UtY9COnCUKYQQxTvy6ReQeE9ZD0AwA2p5YK
+   eJxjYICAQlEGhnNE4mJRBgwwHyj2h0g8H4d+LTHiMC79+5iIw8j6YX66RIL+i0hhAfMTgxjx+v8j6YP5SY8E/bpIYeHCysDgzAqhidXvBFTryAqhi4C4EEoTq78AqDafFUKTY38hlvAjNf7Qw49U/TB9lKYfGEBOE4TwJSz6kdMEIcwghqlfl8i8A0trMAAAPRWdNQ==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="16" height="16">
@@ -28,7 +28,7 @@
  </layer>
  <layer id="4" name="Above Player" width="16" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjFQAAAQAAAE=
+   eJxjYBgFo4B8cE4UgotFB9olo4AcAAAEsQJP
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -53,6 +53,46 @@
     <property name="act1" value="transition_teleport taba_ba_passageway_1.tmx,1,17,0.5"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="12" name="create guards" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc omnigrunt7,13,7,,stand"/>
+    <property name="act2" value="create_npc omnigrunt8,13,8,,stand"/>
+    <property name="act3" value="npc_face omnigrunt7,right"/>
+    <property name="act4" value="npc_face omnigrunt8,right"/>
+    <property name="cond1" value="not variable_set battlewon:yes"/>
+    <property name="cond2" value="not npc_exists omnigrunt7"/>
+    <property name="cond3" value="not npc_exists omnigrunt8"/>
+   </properties>
+  </object>
+  <object id="13" name="start battle?" type="event" x="224" y="112" width="16" height="32">
+   <properties>
+    <property name="act1" value="translated_dialog areyoureadytorumble"/>
+    <property name="act2" value="translated_dialog_choice yes:no,choicechosen"/>
+    <property name="act3" value="set_variable choose:chose"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not variable_set choose:chose"/>
+    <property name="cond5" value="not variable_set movealong:now"/>
+   </properties>
+  </object>
+  <object id="14" name="choice-no" type="event" x="208" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog areyoureadytorumbleno"/>
+    <property name="act2" value="set_variable choose:no"/>
+    <property name="cond1" value="is variable_set choicechosen:no"/>
+    <property name="cond2" value="not variable_set choose:no"/>
+   </properties>
+  </object>
+  <object id="15" name="choice-yes" type="event" x="208" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog areyoureadytorumbleyes"/>
+    <property name="act2" value="set_variable choose:yes"/>
+    <property name="act3" value="set_variable movealong:now"/>
+    <property name="cond1" value="is variable_set choicechosen:yes"/>
+    <property name="cond2" value="not variable_set movealong:now"/>
    </properties>
   </object>
  </objectgroup>

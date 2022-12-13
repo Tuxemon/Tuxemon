@@ -3944,6 +3944,15 @@ msgstr "This is the most powerful Acolyte before the Master, please finish chall
 msgid "itslocked"
 msgstr "The doors are locked, maybe you should try defeating all 4 Acolytes first?"
 
+msgid "areyoureadytorumble"
+msgstr "Are you ready to battle the Acolyte?"
+
+msgid "areyoureadytorumbleno"
+msgstr "Very well, come back once you're prepared."
+
+msgid "areyoureadytorumbleyes"
+msgstr "Very well, we will fetch the Acolyte."
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

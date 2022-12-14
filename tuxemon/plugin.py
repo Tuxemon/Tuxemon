@@ -33,7 +33,6 @@ import importlib
 import inspect
 import logging
 import os
-import re
 import sys
 from types import ModuleType
 from typing import (
@@ -116,11 +115,10 @@ class PluginManager:
             logger.debug("searching for plugins: %s", folder)
             folder = folder.replace("\\", "/")
             # Take the plugin folder and create a base module path based on it.
-            match = folder[folder.rfind("tuxemon"):]
+            match = folder[folder.rfind("tuxemon") :]
             if len(match) == 0:
                 raise RuntimeError(
-                    f"Unable to determine plugin module path for: %s",
-                    folder
+                    f"Unable to determine plugin module path for: %s", folder
                 )
             module_path = match.replace("/", ".")
             # Look for a ".plugin" in the plugin folder to create a list

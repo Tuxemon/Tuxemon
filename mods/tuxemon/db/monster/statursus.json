@@ -1,0 +1,32 @@
+{
+    "slug": "statursus",
+    "category": "inner_fire",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "flamethrower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "give_all"
+        },
+        {
+            "level_learned": 2,
+            "technique": "supernova"
+        }
+    ],
+    "evolutions": [],
+    "shape": "humanoid",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 0,
+    "height": 190,
+    "weight": 160,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

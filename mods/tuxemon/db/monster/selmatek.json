@@ -1,0 +1,32 @@
+{
+    "slug": "selmatek",
+    "category": "sand_steed",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "avalanche"
+        },
+        {
+            "level_learned": 2,
+            "technique": "take_cover"
+        }
+    ],
+    "evolutions": [],
+    "shape": "grub",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 0,
+    "height": 0,
+    "weight": 0,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

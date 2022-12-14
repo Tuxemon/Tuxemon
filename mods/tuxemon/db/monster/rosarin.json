@@ -1,0 +1,32 @@
+{
+    "slug": "rosarin",
+    "category": "every_thorn",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 2,
+            "technique": "splinter"
+        }
+    ],
+    "evolutions": [],
+    "shape": "humanoid",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 0,
+    "height": 0,
+    "weight": 0,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

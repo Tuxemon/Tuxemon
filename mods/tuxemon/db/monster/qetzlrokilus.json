@@ -1,0 +1,33 @@
+{
+    "slug": "qetzlrokilus",
+    "category": "long_winged",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 2,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 2,
+            "technique": "breathe_fire"
+        }
+    ],
+    "evolutions": [],
+    "shape": "flier",
+    "types": [
+        "earth",
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 0,
+    "height": 0,
+    "weight": 0,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

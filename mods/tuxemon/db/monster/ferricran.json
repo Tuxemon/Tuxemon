@@ -1,0 +1,32 @@
+{
+    "slug": "ferricran",
+    "category": "dragon",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 2,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wall_of_steel"
+        }
+    ],
+    "evolutions": [],
+    "shape": "dragon",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 0,
+    "height": 0,
+    "weight": 0,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

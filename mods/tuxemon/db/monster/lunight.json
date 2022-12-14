@@ -1,0 +1,33 @@
+{
+    "slug": "lunight",
+    "category": "quasar",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "beam"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        }
+    ],
+    "evolutions": [],
+    "shape": "sprite",
+    "types": [
+        "metal",
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 0,
+    "height": 0,
+    "weight": 0,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

@@ -16,7 +16,13 @@
             "technique": "snowstorm"
         }
     ],
-    "evolutions": [],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 20,
+            "monster_slug": "shnark"
+        }
+    ],
     "shape": "aquatic",
     "types": [
         "water"

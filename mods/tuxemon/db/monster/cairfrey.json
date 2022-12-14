@@ -27,7 +27,7 @@
     "types": [
         "earth"
     ],
-    "possible_genders": ["male", "female"],
+    "possible_genders": ["neuter"],
     "txmn_id": 70,
     "height": 0,
     "weight": 0,

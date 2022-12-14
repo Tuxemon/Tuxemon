@@ -5,20 +5,20 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "strike"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "surge"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "frostbite"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 23,
             "monster_slug": "pythock"
         }

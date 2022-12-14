@@ -5,15 +5,15 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "thunderball"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "boulder"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "shadow_boxing"
         }
     ],
     "evolutions": [],

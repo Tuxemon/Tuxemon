@@ -5,20 +5,20 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "icicle_spear"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "font"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "starfall"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 36,
             "monster_slug": "tobishimi"
         }

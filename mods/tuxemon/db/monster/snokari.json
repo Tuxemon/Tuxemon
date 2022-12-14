@@ -5,15 +5,15 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "midnight_mantle"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "tonguespear"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "icicle_spear"
         }
     ],
     "evolutions": [],

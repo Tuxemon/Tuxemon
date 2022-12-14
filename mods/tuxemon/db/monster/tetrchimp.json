@@ -5,20 +5,20 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "sleep_bomb"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "bubble_trap"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 20,
             "monster_slug": "apeoro"
         }

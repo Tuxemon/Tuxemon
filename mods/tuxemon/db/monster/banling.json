@@ -5,15 +5,15 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "one_two"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "overgrowth"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "shadow_boxing"
         }
     ],
     "evolutions": [],
@@ -21,7 +21,7 @@
     "types": [
         "wood"
     ],
-    "possible_genders": ["male", "female"],
+    "possible_genders": ["neuter"],
     "txmn_id": 0,
     "height": 120,
     "weight": 180,

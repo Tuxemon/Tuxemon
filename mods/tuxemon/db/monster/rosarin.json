@@ -5,15 +5,15 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "peregrine"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "fester"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "splinter"
         }
     ],
     "evolutions": [],

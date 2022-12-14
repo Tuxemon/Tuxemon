@@ -5,20 +5,20 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "venomous_tentacle"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "biting_winds"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "midnight_mantle"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 20,
             "monster_slug": "snokari"
         }

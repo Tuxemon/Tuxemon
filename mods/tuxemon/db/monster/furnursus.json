@@ -5,20 +5,20 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "rock"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 20,
             "monster_slug": "statursus"
         }

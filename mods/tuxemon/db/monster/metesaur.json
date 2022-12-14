@@ -5,20 +5,20 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "berserk"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "kindling_flame"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "breathe_fire"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 40,
             "monster_slug": "qetzlrokilus"
         }

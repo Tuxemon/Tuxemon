@@ -5,15 +5,15 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "kindling_flame"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "muddle"
         }
     ],
     "evolutions": [],

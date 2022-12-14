@@ -5,20 +5,20 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "goad"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "strike"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "shrapnel"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 20,
             "monster_slug": "exclawvate"
         }

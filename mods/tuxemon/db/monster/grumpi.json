@@ -5,15 +5,15 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "ice_claw"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "one_two"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "all_in"
         }
     ],
     "evolutions": [],

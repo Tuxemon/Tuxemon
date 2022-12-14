@@ -5,15 +5,15 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "shadow_boxing"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "ice_claw"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "icicle_spear"
         }
     ],
     "evolutions": [],

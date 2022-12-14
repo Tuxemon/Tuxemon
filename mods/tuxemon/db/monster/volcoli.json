@@ -21,7 +21,7 @@
     "types": [
         "fire"
     ],
-    "possible_genders": ["male", "female"],
+    "possible_genders": ["neuter"],
     "txmn_id": 123,
     "height": 0,
     "weight": 0,

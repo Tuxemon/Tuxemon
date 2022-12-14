@@ -1,19 +1,19 @@
 {
     "slug": "shelagu",
-    "category": "",
+    "category": "unknown",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "font"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "midnight_mantle"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "flow"
         }
     ],
     "evolutions": [],

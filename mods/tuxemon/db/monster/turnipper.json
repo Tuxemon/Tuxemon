@@ -5,20 +5,20 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "peregrine"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "fester"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "one_two"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 20,
             "monster_slug": "beenstalker"
         }

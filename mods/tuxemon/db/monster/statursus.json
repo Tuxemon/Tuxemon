@@ -5,15 +5,15 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "flamethrower"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "give_all"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "supernova"
         }
     ],
     "evolutions": [],

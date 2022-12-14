@@ -5,15 +5,15 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "battery_acid"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "frostbite"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "sudden_glow"
         }
     ],
     "evolutions": [],

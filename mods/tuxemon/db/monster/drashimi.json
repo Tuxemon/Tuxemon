@@ -5,20 +5,20 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "suck_poison"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "flow"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "flood"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 18,
             "monster_slug": "tsushimi"
         }

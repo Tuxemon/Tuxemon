@@ -5,20 +5,20 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "clamp_on"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "rock"
         },
         {
             "level_learned": 2,
-            "technique": "???"
+            "technique": "take_cover"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 20,
             "monster_slug": "selmatek"
         }

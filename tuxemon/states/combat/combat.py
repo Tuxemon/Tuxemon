@@ -434,8 +434,19 @@ class CombatState(CombatAnimations):
         elif phase == "ran away":
             self.players[0].set_party_status()
             var = self.players[0].game_variables
-            var["battle_last_result"] = OutputBattle.ran
-            self.alert(T.translate("combat_player_run"))
+            if self.is_trainer_battle:
+                var["battle_last_result"] = OutputBattle.lost
+                self.alert(
+                    T.format(
+                        "combat_forfeit",
+                        {
+                            "npc": self.players[1].name,
+                        },
+                    )
+                )
+            else:
+                var["battle_last_result"] = OutputBattle.ran
+                self.alert(T.translate("combat_player_run"))
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
@@ -1199,21 +1210,6 @@ class CombatState(CombatAnimations):
         # TODO: perhaps change this to remaining "parties", or "teams",
         # instead of player/trainer
         return [p for p in self.players if not defeated(p)]
-
-    def trigger_player_run(self, player: NPC) -> None:
-        """
-        WIP.  make player run from battle.
-
-        This is a temporary fix for now. Expected to be called by the
-        command menu.
-
-        Parameters:
-            player: The player leaving combat.
-
-        """
-        # TODO: non SP things
-        del self.monsters_in_play[player]
-        self.players.remove(player)
 
     def evolve(self) -> None:
         self.client.pop_state()

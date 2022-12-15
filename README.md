@@ -79,6 +79,7 @@ sudo apt install git python3-venv
 git clone https://github.com/Tuxemon/Tuxemon.git
 python3 -m venv venv
 source venv/bin/activate
+cd Tuxemon
 python3 -m pip install -U -r requirements.txt
 python3 run_tuxemon.py
 ```

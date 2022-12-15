@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "grub",
+    "stage": "standalone",
     "types": [
         "wood"
     ],

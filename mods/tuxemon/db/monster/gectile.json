@@ -24,6 +24,7 @@
         }
     ],
     "shape": "humanoid",
+    "stage": "stage1",
     "types": [
         "wood"
     ],

@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "dragon",
+    "stage": "standalone",
     "types": [
         "fire"
     ],

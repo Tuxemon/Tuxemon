@@ -43,6 +43,7 @@
         }
     ],
     "shape": "polliwog",
+    "stage": "basic",
     "types": [
         "fire"
     ],

@@ -18,24 +18,26 @@
     ],
     "evolutions": [
         {
-            "path": "standard",
-            "at_level": 25,
-            "monster_slug": "vivicinder"
+            "path": "mixed",
+            "at_level": 0,
+            "monster_slug": "vivicinder",
+            "mixed": "inside"
         },
         {
-            "path": "standard",
-            "at_level": 25,
-            "monster_slug": "viviphyta"
+            "path": "mixed",
+            "at_level": 0,
+            "monster_slug": "viviphyta",
+            "mixed": "wood"
         },
         {
-            "path": "standard",
+            "path": "gender",
             "at_level": 24,
             "monster_slug": "viviteel",
             "gender": "female"
         },
         {
             "path": "standard",
-            "at_level": 25,
+            "at_level": 0,
             "monster_slug": "vivitrans"
         },
         {
@@ -44,19 +46,20 @@
             "monster_slug": "vivitron"
         },
         {
-            "path": "standard",
-            "at_level": 24,
+            "path": "item",
+            "at_level": 0,
             "monster_slug": "vividactil",
             "item": "fossil"
         },
         {
-            "path": "standard",
+            "path": "gender",
             "at_level": 24,
             "monster_slug": "vivisource",
             "gender": "male"
         }
     ],
     "shape": "serpent",
+    "stage": "basic",
     "types": [
         "earth"
     ],

@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "leviathan",
+    "stage": "stage1",
     "types": [
         "water"
     ],

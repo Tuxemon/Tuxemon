@@ -43,6 +43,7 @@
         }
     ],
     "shape": "aquatic",
+    "stage": "basic",
     "types": [
         "water"
     ],

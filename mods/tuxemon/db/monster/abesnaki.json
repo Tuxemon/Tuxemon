@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "serpent",
+    "stage": "standalone",
     "types": [
         "fire"
     ],

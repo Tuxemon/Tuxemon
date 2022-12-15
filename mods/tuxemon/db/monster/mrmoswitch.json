@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "sprite",
+    "stage": "stage1",
     "types": [
         "metal"
     ],

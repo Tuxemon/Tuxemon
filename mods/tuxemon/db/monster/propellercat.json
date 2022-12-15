@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "flier",
+    "stage": "standalone",
     "types": [
         "metal"
     ],

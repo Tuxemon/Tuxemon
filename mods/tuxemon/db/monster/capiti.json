@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "sprite",
+    "stage": "standalone",
     "types": [
         "wood"
     ],

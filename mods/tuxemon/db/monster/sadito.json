@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "blob",
+    "stage": "stage1",
     "types": [
         "metal",
         "water"

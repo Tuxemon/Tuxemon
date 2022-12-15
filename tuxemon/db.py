@@ -146,6 +146,13 @@ class EvolutionType(str, Enum):
     mixed = "mixed"
 
 
+class EvolutionStage(str, Enum):
+    standalone = "standalone"
+    basic = "basic"
+    stage1 = "stage1"
+    stage2 = "stage2"
+
+
 # TODO: Automatically generate state enum through discovery
 State = Enum(
     "State",
@@ -289,6 +296,9 @@ class MonsterModel(BaseModel):
     txmn_id: int = Field(..., description="The id of the monster")
     height: float = Field(..., description="The height of the monster")
     weight: float = Field(..., description="The weight of the monster")
+    stage: EvolutionStage = Field(
+        ..., description="The evolution stage of the monster"
+    )
 
     # Optional fields
     sprites: Optional[MonsterSpritesModel]

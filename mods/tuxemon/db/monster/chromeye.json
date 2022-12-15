@@ -18,27 +18,32 @@
     ],
     "evolutions": [
         {
-            "path": "standard",
+            "path": "mixed",
             "at_level": 20,
-            "monster_slug": "angrito"
+            "monster_slug": "angrito",
+            "mixed": "tobedefined"
         },
         {
-            "path": "standard",
+            "path": "mixed",
             "at_level": 20,
-            "monster_slug": "happito"
+            "monster_slug": "happito",
+            "mixed": "tobedefined"
         },
         {
-            "path": "standard",
+            "path": "mixed",
             "at_level": 20,
-            "monster_slug": "neutrito"
+            "monster_slug": "neutrito",
+            "mixed": "tobedefined"
         },
         {
-            "path": "standard",
+            "path": "mixed",
             "at_level": 20,
-            "monster_slug": "sadito"
+            "monster_slug": "sadito",
+            "mixed": "tobedefined"
         }
     ],
     "shape": "blob",
+    "stage": "basic",
     "types": [
         "metal"
     ],

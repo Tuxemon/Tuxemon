@@ -49,6 +49,7 @@
         }
     ],
     "shape": "grub",
+    "stage": "basic",
     "types": [
         "metal"
     ],

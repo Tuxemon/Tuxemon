@@ -24,6 +24,7 @@
         }
     ],
     "shape": "aquatic",
+    "stage": "stage1",
     "types": [
         "water"
     ],

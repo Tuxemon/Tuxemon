@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "aquatic",
+    "stage": "standalone",
     "types": [
         "glitch",
         "water"

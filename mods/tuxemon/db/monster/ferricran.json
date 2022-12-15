@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "dragon",
+    "stage": "stage2",
     "types": [
         "metal"
     ],

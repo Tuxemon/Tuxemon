@@ -24,6 +24,7 @@
         }
     ],
     "shape": "brute",
+    "stage": "basic",
     "types": [
         "wood"
     ],

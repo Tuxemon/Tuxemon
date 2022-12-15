@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "brute",
+    "stage": "standalone",
     "types": [
         "wood"
     ],

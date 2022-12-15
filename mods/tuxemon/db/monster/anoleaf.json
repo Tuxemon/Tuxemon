@@ -24,6 +24,7 @@
         }
     ],
     "shape": "varmint",
+    "stage": "basic",
     "types": [
         "wood"
     ],

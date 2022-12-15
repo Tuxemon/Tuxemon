@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "blob",
+    "stage": "standalone",
     "types": [
         "water",
         "wood"

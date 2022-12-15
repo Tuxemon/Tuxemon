@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "flier",
+    "stage": "stage1",
     "types": [
         "earth",
         "fire"

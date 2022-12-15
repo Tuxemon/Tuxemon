@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "humanoid",
+    "stage": "standalone",
     "types": [
         "wood"
     ],

@@ -24,6 +24,7 @@
         }
     ],
     "shape": "polliwog",
+    "stage": "basic",
     "types": [
         "water"
     ],

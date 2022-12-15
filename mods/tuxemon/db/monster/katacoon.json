@@ -31,6 +31,7 @@
         }
     ],
     "shape": "grub",
+    "stage": "stage1",
     "types": [
         "metal",
         "wood"

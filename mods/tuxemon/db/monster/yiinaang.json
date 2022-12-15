@@ -18,11 +18,12 @@
     ],
     "evolutions": [],
     "shape": "blob",
+    "stage": "standalone",
     "types": [
         "fire",
         "water"
     ],
-    "possible_genders": ["male", "female"],
+    "possible_genders": ["neuter"],
     "txmn_id": 142,
     "height": 200,
     "weight": 0,

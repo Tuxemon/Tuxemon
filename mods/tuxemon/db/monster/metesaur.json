@@ -24,6 +24,7 @@
         }
     ],
     "shape": "flier",
+    "stage": "basic",
     "types": [
         "earth",
         "fire"

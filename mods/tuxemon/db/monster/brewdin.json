@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "varmint",
+    "stage": "standalone",
     "types": [
         "metal"
     ],

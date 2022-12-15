@@ -28,6 +28,7 @@
         }
     ],
     "shape": "varmint",
+    "stage": "basic",
     "types": [
         "earth"
     ],

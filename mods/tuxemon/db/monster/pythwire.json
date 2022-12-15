@@ -31,6 +31,7 @@
         }
     ],
     "shape": "serpent",
+    "stage": "basic",
     "types": [
         "metal"
     ],

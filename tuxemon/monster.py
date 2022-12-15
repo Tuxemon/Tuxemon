@@ -38,6 +38,7 @@ from tuxemon import ai, formula, fusion, graphics
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import (
     ElementType,
+    EvolutionStage,
     GenderType,
     MonsterEvolutionItemModel,
     MonsterMovesetItemModel,
@@ -228,6 +229,7 @@ class Monster:
         self.moves: List[Technique] = []
         self.moveset: List[MonsterMovesetItemModel] = []
         self.evolutions: List[MonsterEvolutionItemModel] = []
+        self.stage = EvolutionStage.standalone
         self.flairs: Dict[str, Flair] = {}
         self.battle_cry = ""
         self.faint_cry = ""
@@ -307,6 +309,7 @@ class Monster:
         self.description = T.translate(f"{results.slug}_description")
         self.category = T.translate(results.category)
         self.shape = results.shape or MonsterShape.landrace
+        self.stage = results.stage or EvolutionStage.standalone
         types = results.types
         if types:
             self.type1 = results.types[0]

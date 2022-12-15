@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "grub",
+    "stage": "stage2",
     "types": [
         "water"
     ],

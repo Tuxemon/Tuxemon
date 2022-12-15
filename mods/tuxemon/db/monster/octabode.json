@@ -18,6 +18,7 @@
     ],
     "evolutions": [],
     "shape": "polliwog",
+    "stage": "stage1",
     "types": [
         "water"
     ],

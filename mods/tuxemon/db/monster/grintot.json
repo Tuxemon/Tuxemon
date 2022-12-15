@@ -43,6 +43,7 @@
         }
     ],
     "shape": "brute",
+    "stage": "basic",
     "types": [
         "earth"
     ],

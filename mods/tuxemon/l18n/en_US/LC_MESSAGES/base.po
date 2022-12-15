@@ -3953,6 +3953,12 @@ msgstr "Very well, come back once you're prepared."
 msgid "areyoureadytorumbleyes"
 msgstr "Very well, we will fetch the Acolyte."
 
+msgid "uhhjason"
+msgstr "Uhh... Jason?"
+
+msgid "uhhjason2"
+msgstr "Shoot! He always does this..."
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

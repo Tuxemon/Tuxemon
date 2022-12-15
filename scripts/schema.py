@@ -16,16 +16,51 @@ from tuxemon.db import (
     TechniqueModel,
 )
 
+
+def write_json_schema(output_dir):
+    print(f"Writing JSON schemas to '{output_dir}'...")
+    with open(os.path.join(output_dir, "economy-schema.json"), "w") as f:
+        f.write(EconomyModel.schema_json(indent=2))
+    with open(
+        os.path.join(output_dir, "encounter-schema.json"), "w"
+    ) as f:
+        f.write(EncounterModel.schema_json(indent=2))
+    with open(
+        os.path.join(output_dir, "environment-schema.json"), "w"
+    ) as f:
+        f.write(EnvironmentModel.schema_json(indent=2))
+    with open(
+        os.path.join(output_dir, "inventory-schema.json"), "w"
+    ) as f:
+        f.write(InventoryModel.schema_json(indent=2))
+    with open(os.path.join(output_dir, "item-schema.json"), "w") as f:
+        f.write(ItemModel.schema_json(indent=2))
+    with open(os.path.join(output_dir, "monster-schema.json"), "w") as f:
+        f.write(MonsterModel.schema_json(indent=2))
+    with open(os.path.join(output_dir, "music-schema.json"), "w") as f:
+        f.write(MusicModel.schema_json(indent=2))
+    with open(os.path.join(output_dir, "npc-schema.json"), "w") as f:
+        f.write(NpcModel.schema_json(indent=2))
+    with open(os.path.join(output_dir, "sound-schema.json"), "w") as f:
+        f.write(SoundModel.schema_json(indent=2))
+    with open(
+        os.path.join(output_dir, "technique-schema.json"), "w"
+    ) as f:
+        f.write(TechniqueModel.schema_json(indent=2))
+
+
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument(
-        "-g",
-        "--generate",
-        dest="generate",
-        action="store_true",
-        default=False,
-        help="Generate JSON schemas",
-    )
+    # JSON schema is not fit for purpose, as it doesn't support nullable values
+    # https://github.com/pydantic/pydantic/issues/1270
+    # parser.add_argument(
+    #     "-g",
+    #     "--generate",
+    #     dest="generate",
+    #     action="store_true",
+    #     default=False,
+    #     help="Generate JSON schemas",
+    # )
     parser.add_argument(
         "-o",
         "--output-dir",
@@ -42,36 +77,8 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    if args.generate:
-        print(f"Writing JSON schemas to '{args.output}'...")
-        with open(os.path.join(args.output, "economy-schema.json"), "w") as f:
-            f.write(EconomyModel.schema_json(indent=2))
-        with open(
-            os.path.join(args.output, "encounter-schema.json"), "w"
-        ) as f:
-            f.write(EncounterModel.schema_json(indent=2))
-        with open(
-            os.path.join(args.output, "environment-schema.json"), "w"
-        ) as f:
-            f.write(EnvironmentModel.schema_json(indent=2))
-        with open(
-            os.path.join(args.output, "inventory-schema.json"), "w"
-        ) as f:
-            f.write(InventoryModel.schema_json(indent=2))
-        with open(os.path.join(args.output, "item-schema.json"), "w") as f:
-            f.write(ItemModel.schema_json(indent=2))
-        with open(os.path.join(args.output, "monster-schema.json"), "w") as f:
-            f.write(MonsterModel.schema_json(indent=2))
-        with open(os.path.join(args.output, "music-schema.json"), "w") as f:
-            f.write(MusicModel.schema_json(indent=2))
-        with open(os.path.join(args.output, "npc-schema.json"), "w") as f:
-            f.write(NpcModel.schema_json(indent=2))
-        with open(os.path.join(args.output, "sound-schema.json"), "w") as f:
-            f.write(SoundModel.schema_json(indent=2))
-        with open(
-            os.path.join(args.output, "technique-schema.json"), "w"
-        ) as f:
-            f.write(TechniqueModel.schema_json(indent=2))
+    # if args.generate:
+    #     write_json_schema(args.output)
 
     if args.validate:
         db.load(validate=True)

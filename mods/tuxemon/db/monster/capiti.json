@@ -23,7 +23,7 @@
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 101,
+    "txmn_id": 102,
     "height": 100,
     "weight": 20,
     "catch_rate": 170.0,

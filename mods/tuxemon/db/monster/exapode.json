@@ -23,7 +23,7 @@
         "earth"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 60,
+    "txmn_id": 61,
     "height": 0,
     "weight": 0,
     "catch_rate": 85.0,

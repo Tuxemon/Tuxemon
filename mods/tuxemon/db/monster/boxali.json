@@ -23,7 +23,7 @@
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 0,
+    "txmn_id": 213,
     "height": 180,
     "weight": 90,
     "catch_rate": 85.0,

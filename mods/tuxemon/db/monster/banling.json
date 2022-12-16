@@ -23,7 +23,7 @@
         "wood"
     ],
     "possible_genders": ["neuter"],
-    "txmn_id": 0,
+    "txmn_id": 200,
     "height": 120,
     "weight": 180,
     "catch_rate": 85.0,

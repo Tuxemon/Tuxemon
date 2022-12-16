@@ -23,7 +23,7 @@
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 100,
+    "txmn_id": 101,
     "height": 80,
     "weight": 15,
     "catch_rate": 120.0,

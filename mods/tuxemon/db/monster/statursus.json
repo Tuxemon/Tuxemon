@@ -23,7 +23,7 @@
         "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 0,
+    "txmn_id": 191,
     "height": 190,
     "weight": 160,
     "catch_rate": 85.0,

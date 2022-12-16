@@ -6,37 +6,48 @@
   <property name="slug" value="flower_house2"/>
   <property name="types" value="notype"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ <tileset firstgid="89" name="kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+ <tileset firstgid="105" name="plants" tilewidth="16" tileheight="16" tilecount="2" columns="1">
+  <image source="../gfx/tilesets/plants.png" width="16" height="32"/>
+ </tileset>
+ <tileset firstgid="110" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
+  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
+ </tileset>
+ <tileset firstgid="1550" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
  </tileset>
  <layer id="2" name="Tile Layer 2" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAFz5GdgcCQC5wPVEIPnAtURgxOYGBiGAwYALZQh6Q==
+   eAFjZGBgYCQCiwPVEIP1gOpGEgYAHBoLuQ==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAFjYKAMLJdH1S8D5J+TY2A4D8QXgPgsEKMDkBprIH4LlHsHxO+B+A2SumSomSA1+EATmnw90IwHQPwQySyQ/oVI6kB2g8B/kBokcbAglIC5D1kMxq5hYmCoA2IQALkPALq/EbI=
+   eAFjYMAOWNCEM4H8KCCOBuIYII4EYhDgh1BgEqQmC4jjgDgeiBOAOBaI0QFIDangOdBBL9AcVciGakoMUF6ElYFBFIiRwUwkdSA3EgIwf2BTp8bOwKABxCAA8gcAizYKIA==
+  </data>
+ </layer>
+ <layer id="7" name="Tile Layer 4" width="10" height="8">
+  <data encoding="base64" compression="zlib">
+   eAFjYBga4DkLA8MLICYERFgZGESBmF4AACsdAgs=
   </data>
  </layer>
  <layer id="4" name="Above player" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAFjYBh8IFl+8LkJl4sAWHkAgw==
+   eAFjYBh8wJNt8LkJl4sANk4AUA==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
-  <object id="60" type="collision" x="0" y="0" width="160" height="48"/>
-  <object id="61" type="collision" x="0" y="48" width="16" height="16"/>
-  <object id="62" type="collision" x="144" y="48" width="16" height="16"/>
+  <object id="60" type="collision" x="0" y="0" width="160" height="32"/>
+  <object id="61" type="collision" x="0" y="32" width="16" height="16"/>
+  <object id="62" type="collision" x="144" y="32" width="16" height="16"/>
   <object id="63" type="collision" x="144" y="96" width="16" height="32"/>
   <object id="64" type="collision" x="0" y="96" width="16" height="32"/>
-  <object id="65" type="collision" x="32" y="80" width="32" height="32"/>
+  <object id="65" type="collision" x="32" y="64" width="32" height="32"/>
   <object id="66" type="collision" x="112" y="64" width="16" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">

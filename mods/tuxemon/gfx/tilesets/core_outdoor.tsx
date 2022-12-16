@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.8" tiledversion="1.8.0" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
+<tileset version="1.8" tiledversion="1.8.0" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
  <editorsettings>
   <export target="rubberduck_outdoor.tsx" format="tsx"/>
  </editorsettings>
- <image source="core_outdoor.png" width="592" height="1000"/>
+ <image source="core_outdoor.png" width="592" height="1200"/>
  <tile id="0">
   <objectgroup draworder="index" id="2">
    <object id="1" type="collision-line" x="0" y="16">

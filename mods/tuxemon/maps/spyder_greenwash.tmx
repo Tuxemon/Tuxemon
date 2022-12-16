@@ -6,36 +6,39 @@
   <property name="slug" value="greenwash"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
+  <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
- <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ <tileset firstgid="22" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
+  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
  </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1240" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+ <tileset firstgid="106" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
  </tileset>
- <tileset firstgid="8969" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
+ <tileset firstgid="634" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
+ </tileset>
+ <tileset firstgid="3226" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
  <layer id="7" name="Tile Layer 1" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAEzlmBgMAFiUzJoM6CeRCBOAuJkMugUqH4hEQYGcvCofkj4kxN2ID2j4TcafqD8O1LTD8jflPifUv2w8nOgwx9U9uPDn3CkEVj5ASr78WF/SexpDKZ/H1A/Pkyp/loK7V9NoX6Q37DFMbH+p6X7AUdRj7k=
+   eAF7wMPA8BCK+XkRbJgYOv0IqhZEPwZiDqAeTiDmAmJzEmluoHoDIH4lyMDwmgxsDNUvJMTAIEwGHtUPCf/R8KNu+mEAAmLS42j6G9j0B4ojUPlDbvqnVD+o/KTEflj5Sa77YfpBZTk+3A4MI2zpGaYfVPbjwzdw6Ielf0OgvBEejEs/zP5IoN4oPFgAKIfN/TD7Cem3oFA/yG/47MfndpAcMe4H+QGXP/C5HwDXDnpj
   </data>
  </layer>
  <layer id="8" name="Tile Layer 2" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAFjYBj84J8iA8N/IGZQYmBgBGJSgSxQjxwQywOxAhb9xsr4TbQB6rEFYjsgtseiP4GAfvymo8pi8ysh+5FNIORXZLXY2NjswiaGTe+o2NANgRdyDAzPgJgcoAXMm+zyDAysQEwseI5klycob5MI2Eiwi0SjiVKO7H6iNKApGmj3ozkHL5dbgoGBB4p5gTSpwBKoxwqKrQdAfzrQzgwoziTD/qlAPdOgeDoZ+iWZSA0xVPUwt8NoVFnCPJjbYTSyDgApZh/m
+   eAFjYBj8QIqZgUEaiGWAWBaISQVaQD3aQKwDxLpk6LcC6rEGYhsgtiVDPynuxeZXUuynhV9JsZ8Uv46qHTwhYMzEwHCLkXz3eAL1fyBB/x00tfFA/WxATCz4hKafWH0wdRwk2AXTg0yjux9Zjhj2QLufGDfC1OzjYWDYD8ViwjBR4ulnQL3PofgFkCYVUKqfj5eBgR+KBYA0qcAMqMccii3I0E9GkKE48SEwzB5B8Usiws8cWEdZALEltK7iRHK/IJr7AYfOHZk=
   </data>
  </layer>
  <layer id="9" name="Tile Layer 3" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAHtlFsOwVAURbcYAF8khJYBKJ/EaxAeA/GYDSYiJoIvgyA+sCS30Q9pc6/HV3eycpr07nNOd5tK31OpLpUhrLad23g7EFZb/6/O32rSHcRuGbBVBU8VPPAd/P+c/25Wl5170IdBwv6fPqvNrPA9jNhpDBPDlLrypbVhQ43TjPNzWBiW1G3Es4tcx/WJ3kv9rzRc8xua3F38e7wnTzpQj6aPUsUmkOO7z4OrGngD4z+T/QVcVfClIlyf/91UVgkEWakJLUjSA34ZLew=
+   eAFjYKAe6GFmYOgFYhhNqslzgHrnAjGMJlU/uerNCWiUArpJGohlgFgWiNGBHboAGl8LqEcbiHWAWBeLfjTlGFxC9mNoQBMgxX5sdlkB3WwNxDZAbEvA/aTYheZMMJcUu2D6o5kYGGKAOBaK44D0LSC+DcV3gDQ+UAiULwLiYiguAdKvgPg1FL8B0qQCkH4YGO76vbhgPkXQpPg/Cof+f9C0Rk74/QKGPy9Q/28g/QcpLhAuHGWhh8B/UDxwo4sSz+cH6hWA6q8Hhn0DgbICn8n9QL0TgDiAAjPwmT8qBwkBADYzKaw=
   </data>
  </layer>
  <layer id="10" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwsCFgqsTAYAbE5lBsAaTrFBgY6qG4AUiPgtEQGA2B0RAYDQHqhgAA1ywEOA==
+   eAFjYBgFoyEwsCHgysTA4AbE7lDsAaRPAfFpKD4DpEfBaAiMhsBoCIyGAHVDAAACoQSg
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">

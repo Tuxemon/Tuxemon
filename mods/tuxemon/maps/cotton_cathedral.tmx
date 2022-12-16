@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="cotton_cathedral"/>
   <property name="types" value="center"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="3865" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+ <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
+ <tileset firstgid="1473" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBg4oAW0mlQMc20EkEEqhultAzJIxTC9VYIMDKTiUb3Eh9lAhxXMfnrSAAHZReE=
+   eAFjYBg4wAS0mlQMcy0vkEEqhumVADJIxTC9BkAGqXhUL/FhNtBhBbOfnjQAr9gVfA==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBjZIFKegUEZiFWAGBmAxK3lGBhsgBgXsASqcQJiZyS9G4HqQeJRQDoaj15cZoLE64nQVwq0owwJlyO5AZ/Z5MiB3PMAiB8CMTFuQ7YDpP4/EDMA3UeqXmRzSGFvA9mHBRzDEUa41GMxgiZCAE9CERw=
+   eAFjYBjZgJmVgYEXiPmAGBmAxLlYGBi4gRgXuAuUMwOqM0fSWwsUA4kbA7EJEJMDzInQVwu08zZQHQzXI7mBHDvx6QG5ZxsQbwdiYtyGbBZI/X0gfkCGXmRzSGFfZMeuGlcQ4VKP3RTqiwIAzT4NNw==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBgF5IZApDx2nbjEkVVX4NCLSxxZ7yh7eIUAAHeEAh8=
+   eAFjYBgF5IZAOCt2nbjEkVXr4NCLSxxZ7yh7eIUAAGKuARs=
   </data>
  </layer>
  <layer id="4" name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBgcYJs8A8N2IEYG2MSQ5WHsq0B919D0YhODqR8s9G05BoY7SPgukD0KICEwncSwIFX9YApnABODDXU=
+   eAFjYBgcIIuNgSEbiJEBNjFkeRh7ElDfZDS92MRg6gcLvZGFgWETEt4MZI8CSAisZCctJEhVT5rptFUNAN5/CRM=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -72,8 +75,9 @@
   </object>
   <object id="27" name="get those tuxemon healed" type="event" x="96" y="128" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog tabanurse_dialog\n"/>
-    <property name="act20" value="translated_dialog_choice yes:no,healme"/>
+    <property name="act10" value="translated_dialog cottonnurse_dialog"/>
+    <property name="act20" value="translated_dialog healmytuxemon"/>
+    <property name="act30" value="translated_dialog_choice yes:no,healme"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
     <property name="cond30" value="is button_pressed K_RETURN"/>

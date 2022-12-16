@@ -6,33 +6,33 @@
   <property name="slug" value="candy_house1"/>
   <property name="types" value="notype"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="3865" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="961" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+ <tileset firstgid="89" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
- <tileset firstgid="4826" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ <tileset firstgid="1849" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
  </tileset>
  <layer id="2" name="Tile Layer 2" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAE7xcXAcIoI/AOohhisxs3AoE4EDgGqCSUCD3Z1ADvPJws=
+   eAETYmJgECICWwHVEIOTgOqSicBdQDXdRODBrg4AtS8ilw==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAFjYGBg6BMAEjjAQ6DcIzzyc4QYGOYCMYMgAwMjEOMCu4Fq9oDU0QHUAu2po4FdHGIMDJxAzAXEMAAAL0oHGQ==
+   eAFjYGBgYAZiXOAYJwPDcSAGAT4IhUJOAcpNBeJrQHwdqg5FAZSzBCi3FIifAfFzPOqw6SVV7CoP0D1ATG3wjZ2B4TsQ/wBiGAAAV4EMog==
   </data>
  </layer>
  <layer id="7" name="Tile Layer 4" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAFjYECABCHsbIQohFWPpA6Zja5uKPP3Av24D8mf6H6ByQMAfeIFRQ==
+   eAFjYECAy5zY2QhRCOsxkjpkNrq6ocwXBvpRBMmf6H6ByQMA9Q0EAw==
   </data>
  </layer>
  <layer id="4" name="Above player" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAFjYBh4YC/EwOAAxIRAHFBNPBHq8JkzD6h/Ph4zCMmjmw0AonMERw==
+   eAFjYBh4sJWHgWEbEBMCR4FqjhGhDp85zJwMDCxAjAsQkkfXBwAVQgNZ
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">

@@ -25,8 +25,8 @@
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 222,
-    "height": 0,
-    "weight": 0,
+    "height": 60,
+    "weight": 18,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

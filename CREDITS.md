@@ -740,6 +740,50 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Aardant"](https://wiki.tuxemon.org/index.php?title=Aardant) from the Aardorn sprite by Magic-Purple-Hermit. Tweaked by Sanglorian. 
 
+* ["Badge: Greenwash"](https://wiki.tuxemon.org/File:Bug_gym_badge.png) Sprited by Sanglorian from a design by icycatelf.
+
+* ["Badge: Nimrod"](https://wiki.tuxemon.org/File:Nimrod_badge.png) Sprited by Sanglorian from a design by icycatelf.
+
+* ["Badge: Omnichannel"](https://wiki.tuxemon.org/File:Omnichannel_badge.png) Sprited by Sanglorian from a design by icycatelf.
+
+* ["Badge: Scoop"](https://wiki.tuxemon.org/File:Scoop.png) Sprited by Sanglorian from a design by icycatelf.
+
+* ["Badge: Shaft"](https://wiki.tuxemon.org/File:Shaft_with_shading.png) Sprited by Sanglorian from a design by icycatelf.
+
+* ["Booster Tech"](https://wiki.tuxemon.org/File:Biofuel.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Earth Booster"](https://wiki.tuxemon.org/File:Earth_b.png) Colours tweaked by Sanglorian. [https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Fire Booster"](https://wiki.tuxemon.org/File:2nd_the_king_7.png) [https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Flintstone"](https://wiki.tuxemon.org/File:Iron-ore.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Lucky Bamboo"](https://wiki.tuxemon.org/File:Bamboo_staff.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set. 
+
+* ["Metal Booster"](https://wiki.tuxemon.org/File:Metal_b.png) Colours tweaked by Sanglorian. [https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Miaow Milk"](https://wiki.tuxemon.org/File:The_king_6.png) [https://opengameart.org/content/icons-food CC0 in OGA]
+
+* ["Peace Lily"](https://wiki.tuxemon.org/File:Peace_lily.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set. 
+
+* ["Petrified Dung"](https://wiki.tuxemon.org/File:Coprolite.png)
+
+* ["Pyramidion"](https://wiki.tuxemon.org/File:Pyramidion.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set. 
+
+* ["Sea Girdle"](https://wiki.tuxemon.org/File:Ac_Necklace06_24x24.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set. 
+
+* ["Stovepipe"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream7.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]
+
+* ["Sweet Sand"](https://wiki.tuxemon.org/File:Sugar.png) A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Tectonic Drill"](https://wiki.tuxemon.org/File:Worksite_8.png) [https://opengameart.org/content/minery-icons CC0 in OGA]
+
+* ["Thunderstone"](https://wiki.tuxemon.org/File:Silver-ore.png) A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Water Booster"](https://wiki.tuxemon.org/File:Water_b.png) Colours tweaked by Sanglorian. [https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Wood Booster"](https://wiki.tuxemon.org/File:2nd_the_king_8.png) [https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
 ### Technique Animations
 
 * ["Extended LPC Magic Pack"](http://opengameart.org/content/extended-lpc-magic-pack) by 

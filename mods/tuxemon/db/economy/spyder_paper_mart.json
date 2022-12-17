@@ -1,5 +1,5 @@
 {
-  "slug": "default",
+  "slug": "spyder_paper_mart",
   "items": [
     {
       "item_name": "potion",
@@ -12,20 +12,9 @@
       "cost": 20
     },
     {
-      "item_name": "tm_avalanche",
-      "price": 2000,
-      "cost": 400
-    },
-    {
-      "item_name": "tm_blossom",
-      "price": 1000,
-      "cost": 200
-    },
-    {
       "item_name": "capture_device",
       "price": 50,
       "cost": 10
     }
   ]
 }
-

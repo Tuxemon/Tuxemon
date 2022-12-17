@@ -62,7 +62,7 @@
     <property name="act2" value="create_npc omnigrunt8,13,8,,stand"/>
     <property name="act3" value="npc_face omnigrunt7,right"/>
     <property name="act4" value="npc_face omnigrunt8,right"/>
-    <property name="cond1" value="not variable_set battlewon:yes"/>
+    <property name="cond1" value="not variable_set jason:gone"/>
     <property name="cond2" value="not npc_exists omnigrunt7"/>
     <property name="cond3" value="not npc_exists omnigrunt8"/>
    </properties>
@@ -112,6 +112,7 @@
     <property name="act93" value="wait 0.3"/>
     <property name="act94" value="npc_move omnigrunt7,left 13"/>
     <property name="act95" value="remove_npc omnigrunt7"/>
+    <property name="act96" value="unlock_controls"/>
     <property name="act99" value="set_variable jason:gone"/>
     <property name="cond1" value="is variable_set movealong:now"/>
     <property name="cond2" value="not variable_set jason:gone"/>

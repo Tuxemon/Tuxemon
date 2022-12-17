@@ -24,7 +24,7 @@
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 163,
-    "height": 0,
+    "height": 60,
     "weight": 0,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,

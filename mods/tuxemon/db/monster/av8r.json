@@ -24,8 +24,8 @@
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 126,
-    "height": 0,
-    "weight": 0,
+    "height": 45,
+    "weight": 6,
     "sounds": {
         "combat_call": "sound_av8r",
         "faint_call": "sound_av8r_faint"

@@ -214,6 +214,7 @@ def open_dialog(
 def open_choice_dialog(
     session: Session,
     menu: Sequence[Tuple[str, str, Callable[[], None]]],
+    escape_key_exits: bool = False,
 ) -> State:
     """
     Open a dialog choice with the standard window size.
@@ -231,6 +232,7 @@ def open_choice_dialog(
     return session.client.push_state(
         ChoiceState,
         menu=menu,
+        escape_key_exits=escape_key_exits,
     )
 
 

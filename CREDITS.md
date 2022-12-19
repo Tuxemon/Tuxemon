@@ -750,6 +750,10 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Badge: Shaft"](https://wiki.tuxemon.org/File:Shaft_with_shading.png) Sprited by Sanglorian from a design by icycatelf.
 
+* ["Shammer Fossil"](https://wiki.tuxemon.org/File:Shammer_skull.png) Adapted by Sanglorian from a (https://opengameart.org/content/fossil-undead-rpg-enemy-sprites).
+
+* ["Rhincus Fossil"](https://wiki.tuxemon.org/File:Rhincus_skull.png) Adapted by Sanglorian from a (https://opengameart.org/content/fossil-undead-rpg-enemy-sprites).
+
 * ["Booster Tech"](https://wiki.tuxemon.org/File:Biofuel.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
 * ["Earth Booster"](https://wiki.tuxemon.org/File:Earth_b.png) Colours tweaked by Sanglorian. [https://opengameart.org/content/icons-items-1 CC0 on OGA]

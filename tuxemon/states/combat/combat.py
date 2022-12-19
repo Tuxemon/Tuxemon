@@ -1215,34 +1215,39 @@ class CombatState(CombatAnimations):
         self.client.pop_state()
         for monster in self.players[0].monsters:
             for evolution in monster.evolutions:
-                if evolution.at_level <= monster.level:
-                    tools.open_dialog(
-                        local_session,
-                        [
-                            T.format(
-                                "evolution_confirmation",
-                                {"name": monster.name},
-                            )
-                        ],
-                    )
-                    tools.open_choice_dialog(
-                        local_session,
-                        menu=(
-                            (
-                                "yes",
-                                T.translate("yes"),
-                                partial(self.positive_answer, monster),
+                if evolution.path == "standard":
+                    if evolution.at_level <= monster.level:
+                        tools.open_dialog(
+                            local_session,
+                            [
+                                T.format(
+                                    "evolution_confirmation",
+                                    {"name": monster.name},
+                                )
+                            ],
+                        )
+                        tools.open_choice_dialog(
+                            local_session,
+                            menu=(
+                                (
+                                    "yes",
+                                    T.translate("yes"),
+                                    partial(self.positive_answer, monster),
+                                ),
+                                (
+                                    "no",
+                                    T.translate("no"),
+                                    self.negative_answer,
+                                ),
                             ),
-                            ("no", T.translate("no"), self.negative_answer),
-                        ),
-                    )
+                        )
 
     def positive_answer(self, monster: Monster) -> None:
         self.client.pop_state()
         self.client.pop_state()
         for evolution in monster.evolutions:
             # check the path field, path field signals evolution item based
-            if evolution.path.standard:
+            if evolution.path == "standard":
                 if evolution.at_level <= monster.level:
                     logger.info(
                         "{} evolved into {}!".format(

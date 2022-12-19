@@ -87,6 +87,18 @@ msgstr "Sledgehammer"
 msgid "sledgehammer_description"
 msgstr "Smash apart grey boulders."
 
+msgid "shammer_fossil"
+msgstr "Shammer Fossil"
+
+msgid "shammer_fossil_description"
+msgstr ""
+
+msgid "rhincus_fossil"
+msgstr "Rhincus Fossil"
+
+msgid "rhincus_fossil_description"
+msgstr ""
+
 # Boosters (items)
 msgid "greenwash_badge"
 msgstr "Badge: Greenwash"

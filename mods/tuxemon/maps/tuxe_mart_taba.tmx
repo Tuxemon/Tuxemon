@@ -70,7 +70,8 @@
    <properties>
     <property name="act10" value="create_npc tuxemart_keeper,2,7,,stand"/>
     <property name="act20" value="npc_face tuxemart_keeper,right"/>
-    <property name="act30" value="set_inventory tuxemart_keeper,inv_basic_store"/>
+    <property name="act30" value="set_inventory tuxemart_keeper,tuxe_mart_taba"/>
+    <property name="act40" value="set_economy tuxemart_keeper,tuxe_mart_taba"/>
     <property name="cond10" value="not npc_exists tuxemart_keeper"/>
    </properties>
   </object>

@@ -40,8 +40,7 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
-from tuxemon.states.choice import ChoiceState
-from tuxemon.tools import open_dialog
+from tuxemon.tools import open_choice_dialog, open_dialog
 
 logger = logging.getLogger(__name__)
 
@@ -229,8 +228,8 @@ class WorldMenuState(PygameMenuState):
                 local_session,
                 [T.format("release_confirmation", {"name": monster.name})],
             )
-            self.client.push_state(
-                ChoiceState,
+            open_choice_dialog(
+                local_session,
                 menu=(
                     ("no", T.translate("no"), negative_answer),
                     ("yes", T.translate("yes"), positive_answer),

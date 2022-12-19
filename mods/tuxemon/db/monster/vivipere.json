@@ -21,7 +21,7 @@
             "path": "mixed",
             "at_level": 0,
             "monster_slug": "vivicinder",
-            "mixed": "inside"
+            "mixed": "flamethrower"
         },
         {
             "path": "mixed",
@@ -36,9 +36,10 @@
             "gender": "female"
         },
         {
-            "path": "standard",
+            "path": "mixed",
             "at_level": 0,
-            "monster_slug": "vivitrans"
+            "monster_slug": "vivitrans",
+            "mixed": "inside"
         },
         {
             "path": "standard",
@@ -49,7 +50,19 @@
             "path": "item",
             "at_level": 0,
             "monster_slug": "vividactil",
-            "item": "fossil"
+            "item": "petrified_dung"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "vividactil",
+            "item": "shammer_fossil"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "vividactil",
+            "item": "rhincus_fossil"
         },
         {
             "path": "gender",

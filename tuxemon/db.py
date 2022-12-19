@@ -260,6 +260,12 @@ class MonsterEvolutionItemModel(BaseModel):
             return v
         raise ValueError(f"no resource exists in db: {v}")
 
+    @validator("item")
+    def item_exists(cls, v):
+        if has.db_entry("item", v):
+            return v
+        raise ValueError(f"no resource exists in db: {v}")
+
 
 class MonsterFlairItemModel(BaseModel):
     category: str = Field(..., description="The category of this flair item")
@@ -578,6 +584,12 @@ class EconomyItemModel(BaseModel):
     item_name: str = Field(..., description="Name of the item")
     price: int = Field(0, description="Price of the item")
     cost: int = Field(0, description="Cost of the item")
+
+    @validator("item_name")
+    def item_exists(cls, v):
+        if has.db_entry("item", v):
+            return v
+        raise ValueError(f"no resource exists in db: {v}")
 
 
 class EconomyModel(BaseModel):

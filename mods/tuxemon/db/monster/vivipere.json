@@ -18,16 +18,16 @@
     ],
     "evolutions": [
         {
-            "path": "mixed",
+            "path": "tech",
             "at_level": 0,
             "monster_slug": "vivicinder",
-            "mixed": "flamethrower"
+            "tech": "flamethrower"
         },
         {
-            "path": "mixed",
+            "path": "element",
             "at_level": 0,
             "monster_slug": "viviphyta",
-            "mixed": "wood"
+            "element": "wood"
         },
         {
             "path": "gender",
@@ -36,10 +36,10 @@
             "gender": "female"
         },
         {
-            "path": "mixed",
+            "path": "location",
             "at_level": 0,
             "monster_slug": "vivitrans",
-            "mixed": "inside"
+            "location": true
         },
         {
             "path": "standard",

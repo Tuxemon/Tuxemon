@@ -140,10 +140,23 @@ class MapType(str, Enum):
 
 
 class EvolutionType(str, Enum):
-    standard = "standard"
-    item = "item"
+    element = "element"
     gender = "gender"
-    mixed = "mixed"
+    item = "item"
+    location = "location"
+    season = "season"
+    standard = "standard"
+    stat = "stat"
+    tech = "tech"
+
+
+class StatType(str, Enum):
+    armour = "armour"
+    dodge = "dodge"
+    hp = "hp"
+    melee = "melee"
+    ranged = "ranged"
+    speed = "speed"
 
 
 class EvolutionStage(str, Enum):
@@ -250,9 +263,28 @@ class MonsterEvolutionItemModel(BaseModel):
         ..., description="The monster slug that this evolution item applies to"
     )
     # optional fields
-    item: Optional[str] = Field(None, description="Item parameter.")
+    element: Optional[ElementType] = Field(
+        None, description="Element parameter"
+    )
     gender: Optional[GenderType] = Field(None, description="Gender parameter")
-    mixed: Optional[str] = Field(None, description="Mixed parameter.")
+    item: Optional[str] = Field(None, description="Item parameter.")
+    location: bool = Field(
+        None, description="Location parameter (true inside, false outside)."
+    )
+    season: Optional[str] = Field(None, description="Season parameter.")
+    stat1: Optional[StatType] = Field(
+        None, description="Stat parameter stat1 >= stat2."
+    )
+    stat2: Optional[StatType] = Field(
+        None, description="Stat parameter stat2 < stat1."
+    )
+    tech: Optional[str] = Field(None, description="Technique parameter.")
+
+    @validator("tech")
+    def technique_exists(cls, v):
+        if has.db_entry("technique", v):
+            return v
+        raise ValueError(f"no resource exists in db: {v}")
 
     @validator("monster_slug")
     def monster_exists(cls, v):

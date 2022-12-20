@@ -1061,7 +1061,7 @@ msgid "tuxemon_released"
 msgstr "{name} has been released."
 
 msgid "evolution_confirmation"
-msgstr "{name} is trying to evolve. Allow evolution?"
+msgstr "{name} is trying to evolve into {evolve}. Allow evolution?"
 
 msgid "tuxemon_stat1"
 msgstr "ID {txmn}, {type}, {doc} days ago\n"

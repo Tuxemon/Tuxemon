@@ -99,6 +99,79 @@ msgstr "Rhincus Fossil"
 msgid "rhincus_fossil_description"
 msgstr ""
 
+# TMs
+msgid "tm_avalanche"
+msgstr "TM: Avalanche"
+
+msgid "tm_avalanche_description"
+msgstr "Technique Manual that teaches a Water or Earth Tuxemon the Avalanche technique."
+
+msgid "tm_blossom"
+msgstr "TM: Blossom"
+
+msgid "tm_blossom_description"
+msgstr "Technique Manual that teaches a Wood Tuxemon the Blossom technique."
+
+msgid "tm_earth"
+msgstr "Technical Manual (Earth)"
+
+msgid "tm_earth_description"
+msgstr "Learn the particular Earth type technique in this TM."
+
+msgid "tm_fire"
+msgstr "Technical Manual (Fire)"
+
+msgid "tm_fire_description"
+msgstr "Learn the particular Fire type technique in this TM."
+
+msgid "tm_metal"
+msgstr "Technical Manual (Metal)"
+
+msgid "tm_metal_description"
+msgstr "Learn the particular Metal type technique in this TM."
+
+msgid "tm_water"
+msgstr "Technical Manual (Water)"
+
+msgid "tm_water_description"
+msgstr "Learn the particular Water type technique in this TM."
+
+msgid "tm_wood"
+msgstr "Technical Manual (Wood)"
+
+msgid "tm_wood_description"
+msgstr "Learn the particular Wood type technique in this TM."
+
+msgid "mm_earth"
+msgstr "Move Module (Earth)"
+
+msgid "mm_earth_description"
+msgstr "Learn the particular Earth type technique in this MM. Then it is consumed."
+
+msgid "mm_fire"
+msgstr "Move Module (Fire)"
+
+msgid "mm_fire_description"
+msgstr "Learn the particular Fire type technique in this MM. Then it is consumed."
+
+msgid "mm_metal"
+msgstr "Move Module (Metal)"
+
+msgid "mm_metal_description"
+msgstr "Learn the particular Metal type technique in this MM. Then it is consumed."
+
+msgid "mm_water"
+msgstr "Move Module (Water)"
+
+msgid "mm_water_description"
+msgstr "Learn the particular Water type technique in this MM. Then it is consumed."
+
+msgid "mm_wood"
+msgstr "Move Module (Wood)"
+
+msgid "mm_wood_description"
+msgstr "Learn the particular Wood type technique in this MM. Then it is consumed."
+
 # Boosters (items)
 msgid "greenwash_badge"
 msgstr "Badge: Greenwash"
@@ -257,19 +330,6 @@ msgstr "inside"
 
 msgid "outside"
 msgstr "outside"
-
-# TMs
-msgid "tm_avalanche"
-msgstr "TM: Avalanche"
-
-msgid "tm_avalanche_description"
-msgstr "Technique Manual that teaches a Water or Earth Tuxemon the Avalanche technique."
-
-msgid "tm_blossom"
-msgstr "TM: Blossom"
-
-msgid "tm_blossom_description"
-msgstr "Technique Manual that teaches a Wood Tuxemon the Blossom technique."
 
 msgid "item_cannot_use_here"
 msgstr "{name} cannot be used here!"

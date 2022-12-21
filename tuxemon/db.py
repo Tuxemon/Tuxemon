@@ -93,6 +93,18 @@ class ItemType(str, Enum):
     key_item = "KeyItem"
 
 
+class ItemCategory(str, Enum):
+    none = "none"
+    edible = "edible"
+    badge = "badge"
+    booster = "booster"
+    fossil = "fossil"
+    morph = "morph"
+    revive = "revive"
+    potion = "potion"
+    technique = "technique"
+
+
 class OutputBattle(str, Enum):
     won = "won"
     lost = "lost"
@@ -184,6 +196,9 @@ class ItemModel(BaseModel):
         ..., description="Target mapping of who to use the item on"
     )
     type: ItemType = Field(..., description="The type of item this is")
+    category: ItemCategory = Field(
+        ..., description="The category of item this is"
+    )
     usable_in: Sequence[State] = Field(
         ..., description="State(s) where this item can be used."
     )

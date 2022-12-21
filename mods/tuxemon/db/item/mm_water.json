@@ -1,17 +1,15 @@
 {
-  "battle_menu": "monster",
   "conditions": [
-    "current_hp target,<,1.0",
-    "current_hp target,>,0"
+    "type target,water"
   ],
   "effects": [
-    "heal 350"
+    "learn_mm water"
   ],
-  "slug": "imperial_potion",
-  "sort": "potion",
-  "sprite": "gfx/items/imperial_potion.png",
+  "slug": "mm_water",
+  "sort": "utility",
+  "sprite": "gfx/items/mm_water.png",
   "target": {
-    "enemy monster": 1,
+    "enemy monster": 0,
     "enemy team": 0,
     "enemy trainer": 0,
     "own monster": 2,
@@ -19,10 +17,9 @@
     "own trainer": 0,
     "item": 0
   },
-  "category": "potion",
+  "category": "technique",
   "type": "Consumable",
   "usable_in": [
-    "MainCombatMenuState",
     "WorldState"
   ],
   "use_failure": "generic_failure",

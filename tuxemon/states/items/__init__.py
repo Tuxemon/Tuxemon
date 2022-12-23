@@ -200,7 +200,20 @@ class ItemMenuState(Menu[Item]):
             result = item.use(player, monster)
             self.client.pop_state()  # pop the monster screen
             self.client.pop_state()  # pop the item screen
-            tools.show_item_result_as_dialog(local_session, item, result)
+            # check effects, some don't need the show_item_result_as_dialog
+            # (eg learn_mm, etc)
+            for t in item.effects:
+                if t.name == "learn_mm" or t.name == "learn_tm":
+                    if result["success"]:
+                        player.check_max_moves(local_session, monster)
+                    else:
+                        tools.show_item_result_as_dialog(
+                            local_session, item, result
+                        )
+                else:
+                    tools.show_item_result_as_dialog(
+                        local_session, item, result
+                    )
 
         def confirm() -> None:
             self.client.pop_state()  # close the confirm dialog

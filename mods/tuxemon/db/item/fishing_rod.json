@@ -1,6 +1,5 @@
 {
   "effects": [],
-  "power": 0,
   "slug": "fishing_rod",
   "sort": "utility",
   "sprite": "gfx/items/fishing_rod.png",
@@ -13,9 +12,10 @@
     "own trainer": 0,
     "item": 0
   },
+  "category": "fish",
   "type": "KeyItem",
   "usable_in": [
-    "MainCombatMenuState"
+    "WorldState"
   ],
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

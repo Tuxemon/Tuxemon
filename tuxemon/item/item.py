@@ -48,7 +48,14 @@ import pygame
 
 from tuxemon import graphics, plugin, prepare
 from tuxemon.constants import paths
-from tuxemon.db import ItemBattleMenu, State, db, process_targets
+from tuxemon.db import (
+    ItemBattleMenu,
+    ItemCategory,
+    ItemType,
+    State,
+    db,
+    process_targets,
+)
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.locale import T
@@ -88,10 +95,11 @@ class Item:
         self.name = "None"
         self.description = "None"
         self.images: Sequence[str] = []
-        self.type: Optional[str] = None
+        self.type = ItemType.consumable
         self.sfx = None
         # The path to the sprite to load.
         self.sprite = ""
+        self.category = ItemCategory.none
         self.surface: Optional[pygame.surface.Surface] = None
         self.surface_size_original = (0, 0)
 
@@ -150,7 +158,8 @@ class Item:
         # misc attributes (not translated!)
         self.sort = results.sort
         assert self.sort
-        self.type = results.type
+        self.category = results.category or ItemCategory.none
+        self.type = results.type or ItemType.consumable
         self.sprite = results.sprite
         self.usable_in = results.usable_in
         self.target = process_targets(results.target)

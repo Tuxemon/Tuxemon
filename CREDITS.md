@@ -710,10 +710,6 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
 [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
 
-* ["Purple & Red Book Items"](https://forum.tuxemon.org/thread.php?pid=866#p866) by 
-[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
 * ["Imperial Potion Item"](https://forum.tuxemon.org/thread.php?pid=866#p866) by 
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
@@ -726,19 +722,39 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Green Phone Item"](https://forum.tuxemon.org/thread.php?pid=866#p866) by 
-[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* ["Nu Phone"](https://wiki.tuxemon.org/File:Item6.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Earthmover Key"](https://wiki.tuxemon.org/index.php?title=Earthmover_Key) by Catch Challenger is licensed under CC-BY 4.0.
 
 * ["Fishing Rod"](https://wiki.tuxemon.org/index.php?title=Fishing_Rod) by Catch Challenger is licensed under CC-BY 4.0.
 
+* ["Lethe Pill"]() File:I_Eye.png - Adapted by JaskRendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
 * ["Additional Potions"](https://imgur.com/a/MQjhCBR) by 
 [ryanhanli](https://github.com/ryanhanli) with influence from [REXARD Potion Icons](https://assetstore.unity.com/packages/2d/gui/icons/potion-icons-54945)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Aardant"](https://wiki.tuxemon.org/index.php?title=Aardant) from the Aardorn sprite by Magic-Purple-Hermit. Tweaked by Sanglorian. 
+* ["Aardant"](https://wiki.tuxemon.org/index.php?title=Aardant) from the Aardorn sprite by Magic-Purple-Hermit. Tweaked by Sanglorian.
+
+* ["Move Module (Earth)"](https://wiki.tuxemon.org/File:Easteregg-yellow.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Move Module (Fire)"](https://wiki.tuxemon.org/File:Easteregg-red.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Move Module (Metal)"](https://wiki.tuxemon.org/File:Easteregg-pink.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Move Module (Water)"](https://wiki.tuxemon.org/File:Easteregg-blue.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Move Module (Wood)"](https://wiki.tuxemon.org/File:Easteregg-green.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Technical Manual (Earth)"](https://wiki.tuxemon.org/File:Book_-_leather.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Technical Manual (Fire)"](https://wiki.tuxemon.org/File:Item1.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Technical Manual (Metal)"](https://wiki.tuxemon.org/File:Book_-_yellow.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Technical Manual (Water)"](https://wiki.tuxemon.org/File:Item2.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Technical Manual (Wood)"](https://wiki.tuxemon.org/File:Book_-_green.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Badge: Greenwash"](https://wiki.tuxemon.org/File:Bug_gym_badge.png) Sprited by Sanglorian from a design by icycatelf.
 

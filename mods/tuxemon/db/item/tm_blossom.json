@@ -3,11 +3,11 @@
     "type target,wood"
   ],
   "effects": [
-    "learn blossom"
+    "learn_tm blossom"
   ],
   "slug": "tm_blossom",
   "sort": "utility",
-  "sprite": "gfx/items/red-book.png",
+  "sprite": "gfx/items/tm_wood.png",
   "target": {
     "enemy monster": 0,
     "enemy team": 0,
@@ -17,6 +17,7 @@
     "own trainer": 0,
     "item": 0
   },
+  "category": "technique",
   "type": "Consumable",
   "usable_in": [
     "WorldState"

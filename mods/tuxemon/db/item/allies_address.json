@@ -11,6 +11,7 @@
     "own trainer": 0,
     "item": 0
   },
+  "category": "none",
   "type": "KeyItem",
   "usable_in": [
     ""

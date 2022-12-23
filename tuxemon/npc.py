@@ -33,6 +33,7 @@ from __future__ import annotations
 import logging
 import os
 import uuid
+from functools import partial
 from math import hypot
 from typing import (
     TYPE_CHECKING,
@@ -65,6 +66,7 @@ from tuxemon.map import Direction, dirs2, dirs3, facing, get_direction, proj
 from tuxemon.math import Vector2
 from tuxemon.monster import (
     MAX_LEVEL,
+    MAX_MOVES,
     Monster,
     decode_monsters,
     encode_monsters,
@@ -73,7 +75,7 @@ from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
 from tuxemon.states.combat.combat import EnqueuedAction
 from tuxemon.technique.technique import Technique
-from tuxemon.tools import vector2_to_tile_pos
+from tuxemon.tools import open_choice_dialog, open_dialog, vector2_to_tile_pos
 
 if TYPE_CHECKING:
     import pygame
@@ -888,6 +890,52 @@ class NPC(Entity[NPCState]):
                     return moves.slug
 
         return None
+
+    def check_max_moves(self, session: Session, monster: Monster) -> None:
+        """
+        Activated if there are more than 4 moves (MAX_MOVES), it'll
+        open a dialog choice with the 5 moves and one of these will be
+        deleted.
+
+        """
+        overwrite_technique = session.player.game_variables[
+            "overwrite_technique"
+        ]
+
+        if len(monster.moves) >= MAX_MOVES:
+
+            def set_variable(var_value: str) -> None:
+                monster.moves.remove(var_value)
+                monster.learn(Technique(overwrite_technique))
+                session.client.pop_state()
+
+            var_list = monster.moves
+            var_menu = list()
+
+            for val in var_list:
+                text = T.translate(val.slug)
+                var_menu.append((text, text, partial(set_variable, val)))
+
+            open_choice_dialog(
+                session,
+                menu=var_menu,
+            )
+            open_dialog(
+                session,
+                [
+                    T.format(
+                        "max_moves_alert",
+                        {
+                            "name": monster.name,
+                            "tech": Technique(overwrite_technique).name,
+                        },
+                    )
+                ],
+            )
+        else:
+            monster.learn(Technique(overwrite_technique))
+            msg = T.translate("generic_success")
+            open_dialog(session, [msg])
 
     def give_money(self, amount: int) -> None:
         self.money["player"] += amount

@@ -187,6 +187,7 @@ SHAPES = {
 }
 
 MAX_LEVEL = 999
+MAX_MOVES = 4
 MISSING_IMAGE = "gfx/sprites/battle/missing.png"
 
 

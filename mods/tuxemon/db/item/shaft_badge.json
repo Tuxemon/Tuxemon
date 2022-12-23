@@ -16,6 +16,7 @@
     "own trainer": 0,
     "item": 0
   },
+  "category": "badge",
   "type": "Consumable",
   "usable_in": [
     "WorldState"

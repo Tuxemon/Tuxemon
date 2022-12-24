@@ -1,0 +1,35 @@
+{
+  "tech_id": 180,
+  "accuracy": 0.1,
+  "animation": null,
+  "effects": [
+    "damage 100"
+  ],
+  "flip_axes": "",
+  "healing_power": 0,
+  "icon": "",
+  "is_area": false,
+  "is_fast": false,
+  "potency": 0.9,
+  "power": 2.4,
+  "range": "reliable",
+  "recharge": 1,
+  "sfx": "sfx_blaster",
+  "slug": "fiery",
+  "sort": "damage",
+  "target": {
+    "enemy monster": 2,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "item": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0
+  },
+  "types": [
+    "water"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

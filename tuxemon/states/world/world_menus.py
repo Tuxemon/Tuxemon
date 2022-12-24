@@ -164,7 +164,7 @@ class WorldMenuState(PygameMenuState):
                 unit_weight = "lb"
                 unit_height = "ft"
             if monster.type2 is not None:
-                type2 = monster.type2
+                type2 = T.translate(monster.type2)
             open_dialog(
                 local_session,
                 [
@@ -178,7 +178,7 @@ class WorldMenuState(PygameMenuState):
                             "unit_weight": unit_weight,
                             "unit_height": unit_height,
                             "lv": monster.level + 1,
-                            "type": monster.type1.title() + type2.title(),
+                            "type": T.translate(monster.type1) + type2,
                             "exp": monster.total_experience,
                             "exp_lv": (
                                 monster.experience_required(1)

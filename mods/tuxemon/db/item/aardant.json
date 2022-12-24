@@ -13,7 +13,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "type": "Consumable",
+  "type": "KeyItem",
   "usable_in": [
     "MainCombatMenuState"
   ],

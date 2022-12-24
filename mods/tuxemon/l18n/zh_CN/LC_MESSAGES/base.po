@@ -1,0 +1,729 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Tuxemon\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-12-20 17:03+0000\n"
+"Last-Translator: David Liang <2188741623@qq.com>\n"
+"Language-Team: Simplified Chinese <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
+" zh_CN/>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+## ITEM TRANSLATIONS ##
+# Apple
+msgid "apple"
+msgstr "苹果"
+
+msgid "apple_description"
+msgstr "回复一只怪兽10点生命。"
+
+# Berry
+msgid "berry"
+msgstr "浆果"
+
+msgid "berry_description"
+msgstr "回复一只怪兽10点生命。"
+
+# Cherry
+msgid "cherry"
+msgstr "樱桃"
+
+msgid "cherry_description"
+msgstr "回复一只怪兽10点生命。"
+
+# Orange
+msgid "orange"
+msgstr "橙子"
+
+msgid "orange_description"
+msgstr "回复一只怪兽20点生命。"
+
+# Potion
+msgid "potion"
+msgstr "伤药"
+
+msgid "potion_description"
+msgstr "回复一只怪兽50点生命。"
+
+# Super Potion
+msgid "super_potion"
+msgstr "超级伤药"
+
+msgid "super_potion_description"
+msgstr "回复一只怪兽150点生命。"
+
+# Imperial Potion
+msgid "imperial_potion"
+msgstr "皇室伤药"
+
+msgid "imperial_potion_description"
+msgstr "回复一只怪兽350点生命。"
+
+# Revive
+msgid "revive"
+msgstr "恢复"
+
+msgid "revive_description"
+msgstr "复活被击倒的怪兽，恢复20点生命。"
+
+# Capture Device
+msgid "capture_device"
+msgstr "捕捉设备"
+
+msgid "capture_device_description"
+msgstr "用来捕捉怪兽。"
+
+# TMs
+msgid "tm_avalanche"
+msgstr "招式学习器:雪崩"
+
+msgid "tm_avalanche_description"
+msgstr "教水或土系怪兽雪崩招式的招式学习器。"
+
+msgid "tm_blossom"
+msgstr "招式学习器:开花"
+
+msgid "tm_blossom_description"
+msgstr "教木系精灵开花招式的招式学习器。"
+
+msgid "item_cannot_use_here"
+msgstr "{name} 不能在这里使用！"
+
+msgid "item_no_available_target"
+msgstr "{name} 现在不能用在你的任何怪兽上。"
+
+msgid "reg_papers"
+msgstr "注册文件"
+
+msgid "reg_papers_description"
+msgstr "一袋庭审的注册文件。"
+
+# Allie's Address
+msgid "allies_address"
+msgstr "艾莉的地址"
+
+msgid "allies_address_description"
+msgstr "棉花镇全渠道塔2栋31室\n"
+"\n"
+"地址旁边有个吻痕。"
+
+## NOTIFICATION TRANSLATIONS ##
+# Combat notifications
+msgid "combat_run"
+msgstr "{user} 逃跑了！"
+
+msgid "combat_miss"
+msgstr "但是没打中..."
+
+msgid "combat_can't_run_from_trainer"
+msgstr "不能在与训练师的战斗中逃跑！"
+
+msgid "combat_player_run"
+msgstr "你成功的逃跑了！"
+
+msgid "combat_used_x"
+msgstr "{user} 使用了 {name}!"
+
+msgid "combat_used_x_on_y"
+msgstr "{user} 使用了 {name} 在 {target}!"
+
+msgid "combat_swap"
+msgstr "{user} 发送了 {target}!"
+
+msgid "combat_call_tuxemon"
+msgstr "去吧 {name}!"
+
+# TODO: similar to combat_swap - refactor!
+msgid "combat_opponent_call_tuxemon"
+msgstr "{user} 发送了 {name}!"
+
+msgid "combat_state_poison_get"
+msgstr "{target} 中毒了！"
+
+msgid "combat_state_poison_damage"
+msgstr "{name} 中了毒！"
+
+msgid "combat_state_lifeleech_get"
+msgstr "{user} 从哪里吸取生命值 {target}."
+
+msgid "dodge_increased"
+msgstr "{user}的 {stat} 增强了。"
+
+msgid "speed_halved"
+msgstr "{user}的速度减半。"
+
+msgid "hp_restored"
+msgstr "{user}的生命值恢复了。"
+
+msgid "combat_state_overfeed_get"
+msgstr "{user} 过量 {target}."
+
+msgid "dodge_fell"
+msgstr "{user}闪避掉了。"
+
+msgid "attacks_rose"
+msgstr "{user}的攻击伤害类型上升。"
+
+msgid "combat_levitate_get"
+msgstr "{user} 飞到更高的空中。"
+
+msgid "combat_amnesia_get"
+msgstr "{user} 得了失忆。"
+
+msgid "combat_state_lifeleech_success"
+msgstr "{user} 失去健康的生命"
+
+msgid "combat_state_lifeleech_failure"
+msgstr "{link} 不能再愈合了。"
+
+msgid "combat_state_recover_get"
+msgstr "{target} 开始恢复健康。"
+
+msgid "combat_state_recover_success"
+msgstr "{user} 恢复健康了！"
+
+msgid "combat_state_recover_failure"
+msgstr "{user} 不能再愈合了。"
+
+msgid "combat_status_damage"
+msgstr "{name} 花了 {status} 伤害！"
+
+msgid "combat_trainer_appeared"
+msgstr "{name} 想要战斗!"
+
+msgid "combat_victory"
+msgstr "你赢了！"
+
+msgid "combat_defeat"
+msgstr "你被打败了!"
+
+msgid "combat_draw"
+msgstr "大家都昏过去了!"
+
+msgid "combat_capturing_success"
+msgstr "你捉住了 {name}！"
+
+msgid "combat_capturing_fail"
+msgstr "{name} 冲出了捕捉设备！"
+
+msgid "combat_recharging"
+msgstr "{name} 使用前需要休息一下{move} 再一次..."
+
+msgid "combat_replacement"
+msgstr "选择一个替代品!"
+
+msgid "combat_replacement_is_fainted"
+msgstr "那个怪兽已经昏过去了!"
+
+msgid "combat_wild_appeared"
+msgstr "野生的 {name} 出现了！"
+
+msgid "combat_monster_choice"
+msgstr "要 {name} 做什么呢？"
+
+msgid "combat_fainted"
+msgstr "{name} 昏过去了！"
+
+msgid "combat_isactive"
+msgstr "{name} 已经开始了。"
+
+msgid "combat_target_itself"
+msgstr "{name} 不应该攻击自己。"
+
+msgid "attack_very_effective"
+msgstr "这次攻击造成了很多额外的破坏!"
+
+msgid "attack_effective"
+msgstr "这次攻击造成了额外的破坏!"
+
+msgid "attack_resisted"
+msgstr "攻击被抵抗了!"
+
+msgid "attack_weak"
+msgstr "这次攻击遭到了顽强的抵抗!"
+
+# Generic notifications
+msgid "empty_slot"
+msgstr "空槽"
+
+msgid "exit"
+msgstr "退出"
+
+msgid "item_confirm_use"
+msgstr "使用"
+
+msgid "item_confirm_cancel"
+msgstr "取消"
+
+# TODO same as generic_success and generic_failure - refactor!
+msgid "item_success"
+msgstr "它工作了！"
+
+msgid "item_failure"
+msgstr "它失败了！"
+
+msgid "generic_success"
+msgstr "它工作了！"
+
+msgid "generic_failure"
+msgstr "它失败了！"
+
+msgid "attempting_capture"
+msgstr "试图捕捉……"
+
+msgid "gotcha"
+msgstr "明白了！"
+
+msgid "not_implemented"
+msgstr "该特性尚未实现。"
+
+msgid "receive_happiness"
+msgstr "收到5个捕捉设备！"
+
+msgid "received_x"
+msgstr "获得了 {name}!"
+
+msgid "save_success"
+msgstr "已保存！"
+
+msgid "save_failure"
+msgstr "存档有问题！"
+
+msgid "save_overwrite"
+msgstr "是的，覆盖此存档。"
+
+msgid "save_keep"
+msgstr "不，不要覆盖。"
+
+msgid "slot"
+msgstr "槽"
+
+msgid "status_faint"
+msgstr "昏倒"
+
+msgid "status_poison"
+msgstr "中毒"
+
+msgid "status_lifeleech"
+msgstr "死气沉沉"
+
+msgid "status_overfeed"
+msgstr "胡吃海塞"
+
+msgid "status_recover"
+msgstr "恢复"
+
+## TECHNIQUE TRANSLATIONS ##
+msgid "all_in"
+msgstr "全部的"
+
+msgid "amnesia"
+msgstr "失忆"
+
+msgid "avalanche"
+msgstr "雪崩"
+
+msgid "battery_acid"
+msgstr "电解液"
+
+msgid "battery_discharge"
+msgstr "放电"
+
+msgid "beam"
+msgstr "激光束"
+
+msgid "berserk"
+msgstr "狂怒"
+
+msgid "biting_winds"
+msgstr "寒风"
+
+msgid "blade"
+msgstr "叶之刃"
+
+msgid "blood_bond"
+msgstr "血统联系"
+
+msgid "blossom"
+msgstr "绽放"
+
+msgid "boulder"
+msgstr "朽石攻击"
+
+msgid "breathe_fire"
+msgstr "暴怒"
+
+msgid "bubble_trap"
+msgstr "气泡捕捉器"
+
+msgid "bullet"
+msgstr "高速球"
+
+msgid "chill_mist"
+msgstr "冷雾"
+
+msgid "clamp_on"
+msgstr "夹合"
+
+msgid "constrict"
+msgstr "缠绕"
+
+msgid "electrical_storm"
+msgstr "雷暴"
+
+msgid "energy_claws"
+msgstr "能源之爪"
+
+msgid "energy_field"
+msgstr "能量场"
+
+msgid "eyebite"
+msgstr "摄心目光"
+
+msgid "feint"
+msgstr "假动作"
+
+msgid "fester"
+msgstr "脓液质之力"
+
+msgid "fire_ball"
+msgstr "火球"
+
+msgid "fire_claw"
+msgstr "火爪"
+
+msgid "flamethrower"
+msgstr "火焰喷射"
+
+msgid "flood"
+msgstr "洪水之力"
+
+msgid "flow"
+msgstr "水枪"
+
+msgid "fluff_up"
+msgstr "拍松"
+
+msgid "font"
+msgstr "洗礼"
+
+msgid "frostbite"
+msgstr "冻疮"
+
+msgid "fume"
+msgstr "发怒"
+
+msgid "give_all"
+msgstr "全场爆发"
+
+msgid "glower"
+msgstr "热切注视"
+
+msgid "goad"
+msgstr "刺棒"
+
+msgid "headbutt"
+msgstr "头锤"
+
+msgid "hibernate"
+msgstr "冬眠"
+
+msgid "ice_claw"
+msgstr "冰爪"
+
+msgid "icicle_spear"
+msgstr "冰矛"
+
+msgid "invictus"
+msgstr "不可征服"
+
+msgid "kindling_flame"
+msgstr "烈火燃烧"
+
+msgid "levitate"
+msgstr "吹起"
+
+msgid "midnight_mantle"
+msgstr "午夜地幔"
+
+msgid "muddle"
+msgstr "捣蛋"
+
+msgid "mudslide"
+msgstr "泥石流"
+
+msgid "one_two"
+msgstr "二连击"
+
+msgid "overgrowth"
+msgstr "过度生长"
+
+msgid "peck"
+msgstr "啄"
+
+msgid "peregrine"
+msgstr "游隼"
+
+msgid "perfect_cut"
+msgstr "完美切割"
+
+msgid "petrify"
+msgstr "美杜莎之眼"
+
+msgid "probiscus"
+msgstr "普罗比斯库斯"
+
+msgid "pseudopod"
+msgstr "伪足"
+
+msgid "quicksand"
+msgstr "危险流沙"
+
+msgid "ram"
+msgstr "猛撞"
+
+msgid "refresh"
+msgstr "小憩"
+
+msgid "rock"
+msgstr "岩石"
+
+msgid "rot"
+msgstr "腐烂"
+
+msgid "rust_bomb"
+msgstr "铁锈炸弹"
+
+msgid "salamander"
+msgstr "火蜥蜴"
+
+msgid "sand_spray"
+msgstr "喷砂"
+
+msgid "shadow_boxing"
+msgstr "太极拳"
+
+msgid "shrapnel"
+msgstr "榴霰弹"
+
+msgid "shuriken"
+msgstr "手里剑"
+
+msgid "sleep_bomb"
+msgstr "催眠炸弹"
+
+msgid "sleeping_powder"
+msgstr "催眠粉"
+
+msgid "snowstorm"
+msgstr "暴风雪"
+
+msgid "splinter"
+msgstr "分裂"
+
+msgid "spray"
+msgstr "喷雾"
+
+msgid "stampede"
+msgstr "奔逃"
+
+msgid "starfall"
+msgstr "星落"
+
+msgid "static_field"
+msgstr "静态场"
+
+msgid "sting"
+msgstr "叮咬"
+
+msgid "stone_rot"
+msgstr "石头腐烂"
+
+msgid "strike"
+msgstr "罢工"
+
+msgid "suck_poison"
+msgstr "吸入毒液"
+
+msgid "sudden_glow"
+msgstr "突然发光"
+
+msgid "supernova"
+msgstr "超新星"
+
+msgid "surge"
+msgstr "飙升"
+
+msgid "take_cover"
+msgstr "隐蔽"
+
+msgid "thunderball"
+msgstr "霹雳弹"
+
+msgid "thunderclap"
+msgstr "打雷"
+
+msgid "tonguespear"
+msgstr "Tonguespear"
+
+msgid "venomous_tentacle"
+msgstr "毒触须"
+
+msgid "wall_of_steel"
+msgstr "钢铁之墙"
+
+msgid "wallow"
+msgstr "打滚"
+
+msgid "web"
+msgstr "网络"
+
+msgid "whirlwind"
+msgstr "旋风"
+
+msgid "wing_tip"
+msgstr "飞机翼尖"
+
+## MENU TRANSLATIONS ##
+
+msgid "menu_alphabet"
+msgstr "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
+
+msgid "menu_alphabet_n_columns"
+msgstr "13"
+
+# Monster Menu notifications
+msgid "monster_menu_info"
+msgstr "信息"
+
+msgid "monster_menu_move"
+msgstr "移动"
+
+msgid "monster_menu_release"
+msgstr "释放"
+
+#Release notifications
+msgid "cant_release"
+msgstr "不能在派对中只释放怪兽。"
+
+msgid "release_confirmation"
+msgstr "你确定要释放 {name}吗？"
+
+msgid "tuxemon_released"
+msgstr "{name} 已经被释放了。"
+
+# Menu notifications
+msgid "log_off"
+msgstr "注销"
+
+msgid "menu_bag"
+msgstr "背包"
+
+msgid "menu_fight"
+msgstr "战斗"
+
+msgid "menu_item"
+msgstr "道具"
+
+msgid "menu_items"
+msgstr "道具"
+
+msgid "menu_journal"
+msgstr "期刊"
+
+msgid "menu_load"
+msgstr "加载"
+
+msgid "menu_monster"
+msgstr "小精灵"
+
+# TODO: duplicate of menu_monster?
+msgid "menu_monsters"
+msgstr "怪兽"
+
+msgid "menu_multiplayer"
+msgstr "多人游戏"
+
+msgid "menu_new_game"
+msgstr "新游戏"
+
+msgid "menu_options"
+msgstr "设置"
+
+msgid "menu_player"
+msgstr "玩家"
+
+msgid "menu_run"
+msgstr "逃跑"
+
+msgid "menu_save"
+msgstr "保存"
+
+msgid "menu_up_key"
+msgstr "上键"
+
+msgid "menu_left_key"
+msgstr "左键"
+
+msgid "menu_right_key"
+msgstr "右键"
+
+msgid "menu_down_key"
+msgstr "下键"
+
+msgid "menu_primary_select_key"
+msgstr "行动键"
+
+msgid "menu_secondary_select_key"
+msgstr "取消键"
+
+msgid "menu_back_key"
+msgstr "返回键"
+
+msgid "options_new_input_key0"
+msgstr "按下一个键来设置新的输入键"
+
+msgid "options_new_input_key1"
+msgstr "重新启动游戏使更改生效!"
+
+# Default mod names on selection menu
+msgid "xero_campaign"
+msgstr "开源小精灵: Xero"
+
+msgid "spyder_campaign"
+msgstr "开源小精灵: 斯派德和大教堂"
+
+# Multiplayer notifications
+msgid "multiplayer_accept"
+msgstr "接受"
+
+msgid "multiplayer_decline"
+msgstr "拒绝"
+
+msgid "multiplayer_duel"
+msgstr "{name} 愿决斗!"
+
+msgid "multiplayer_host_game"
+msgstr "主机游戏"
+
+msgid "multiplayer_scan_games"
+msgstr "扫描游戏"
+
+msgid "multiplayer_join_game"
+msgstr "加入游戏"
+
+msgid "multiplayer_hosting_ready"
+msgstr "准备接受客户!"
+
+msgid "multiplayer_already_hosting"
+msgstr "已经举办了!"
+
+msgid "multiplayer_no_servers"
+msgstr "未找到服务器..."
+
+msgid "multiplayer_join_prompt"
+msgstr "主机名或IP？"

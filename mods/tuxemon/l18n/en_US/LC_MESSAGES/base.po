@@ -15,68 +15,222 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 ## ITEM TRANSLATIONS ##
-# Apple
 msgid "apple"
 msgstr "Apple"
 
 msgid "apple_description"
 msgstr "Heals a monster by 10 HP."
 
-# Berry
 msgid "berry"
 msgstr "Berry"
 
 msgid "berry_description"
 msgstr "Heals a monster by 10 HP."
 
-# Cherry
 msgid "cherry"
 msgstr "Cherry"
 
 msgid "cherry_description"
 msgstr "Heals a monster by 10 HP."
 
-# Orange
 msgid "orange"
 msgstr "Orange"
 
 msgid "orange_description"
 msgstr "Heals a monster by 20 HP."
 
-# Potion
 msgid "potion"
 msgstr "Potion"
 
 msgid "potion_description"
 msgstr "Heals a monster by 50 HP."
 
-# Super Potion
 msgid "super_potion"
 msgstr "Super Potion"
 
 msgid "super_potion_description"
 msgstr "Heals a monster by 150 HP."
 
-# Imperial Potion
 msgid "imperial_potion"
 msgstr "Imperial Potion"
 
 msgid "imperial_potion_description"
 msgstr "Heals a monster by 350 HP."
 
-# Revive
 msgid "revive"
 msgstr "Revive"
 
 msgid "revive_description"
 msgstr "Revives knocked out Tuxemon and restores 20 HP."
 
-# Capture Device
 msgid "capture_device"
 msgstr "Capture Device"
 
 msgid "capture_device_description"
 msgstr "Captures a monster."
+
+msgid "fishing_rod"
+msgstr "Fishing Rod"
+
+msgid "fishing_rod_description"
+msgstr "Catch fish."
+
+msgid "earthmover_key"
+msgstr "Earthmover Key"
+
+msgid "earthmover_key_description"
+msgstr "Could come in handy if there's a giant earthmover blocking the path."
+
+msgid "sledgehammer"
+msgstr "Sledgehammer"
+
+msgid "sledgehammer_description"
+msgstr "Smash apart grey boulders."
+
+msgid "shammer_fossil"
+msgstr "Shammer Fossil"
+
+msgid "shammer_fossil_description"
+msgstr ""
+
+msgid "rhincus_fossil"
+msgstr "Rhincus Fossil"
+
+msgid "rhincus_fossil_description"
+msgstr ""
+
+# Boosters (items)
+msgid "greenwash_badge"
+msgstr "Badge: Greenwash"
+
+msgid "greenwash_badge_description"
+msgstr "Tuxemon purchased from Greenwash require this badge to morph."
+
+msgid "nimrod_badge"
+msgstr "Badge: Nimrod"
+
+msgid "nimrod_badge_description"
+msgstr "Tuxemon purchased from Nimrod require this badge to morph."
+
+msgid "omnichannel_badge"
+msgstr "Badge: Omnichannel"
+
+msgid "omnichannel_badge_description"
+msgstr "Tuxemon purchased from Omnichannel require this badge to morph."
+
+msgid "scoop_badge"
+msgstr "Badge: Scoop"
+
+msgid "scoop_badge_description"
+msgstr "Tuxemon purchased from Scoop require this badge to morph."
+
+msgid "shaft_badge"
+msgstr "Badge: Shaft"
+
+msgid "shaft_badge_description"
+msgstr "Tuxemon purchased from Shaft require this badge to morph."
+
+msgid "booster_tech"
+msgstr "Tech Booster"
+
+msgid "booster_tech_description"
+msgstr "An open source technology that allows to morph tuxemon into a different form."
+
+msgid "earth_booster"
+msgstr "Earth Booster"
+
+msgid "earth_booster_description"
+msgstr "It allows to morph an Earth type tuxemon into a different form."
+
+msgid "fire_booster"
+msgstr "Fire Booster"
+
+msgid "fire_booster_description"
+msgstr "It allows to morph a Fire type tuxemon into a different form."
+
+msgid "flintstone"
+msgstr "Flintstone"
+
+msgid "flintstone_description"
+msgstr ""
+
+msgid "lucky_bamboo"
+msgstr "Lucky Bamboo"
+
+msgid "lucky_bamboo_description"
+msgstr ""
+
+msgid "metal_booster"
+msgstr "Metal Booster"
+
+msgid "metal_booster_description"
+msgstr "It allows to morph a Metal type tuxemon into a different form."
+
+msgid "miaow_milk"
+msgstr "Miaow Milk"
+
+msgid "miaow_milk_description"
+msgstr "Cats love the taste of Miaow Milk™!"
+
+msgid "peace_lily"
+msgstr "Peace Lily"
+
+msgid "peace_lily_description"
+msgstr ""
+
+msgid "petrified_dung"
+msgstr "Petrified Dung"
+
+msgid "petrified_dung_description"
+msgstr ""
+
+msgid "pyramidion"
+msgstr "Pyramidion"
+
+msgid "pyramidion_description"
+msgstr ""
+
+msgid "sea_girdle"
+msgstr "Sea Girdle"
+
+msgid "sea_girdle_description"
+msgstr ""
+
+msgid "stovepipe"
+msgstr "Stovepipe"
+
+msgid "stovepipe_description"
+msgstr ""
+
+msgid "sweet_sand"
+msgstr "Sweet Sand"
+
+msgid "sweet_sand_description"
+msgstr ""
+
+msgid "tectonic_drill"
+msgstr "Tectonic Drill"
+
+msgid "tectonic_drill_description"
+msgstr ""
+
+msgid "thunderstone"
+msgstr "Thunderstone"
+
+msgid "thunderstone_description"
+msgstr ""
+
+msgid "water_booster"
+msgstr "Water Booster"
+
+msgid "water_booster_description"
+msgstr "It allows to morph a Water type tuxemon into a different form."
+
+msgid "wood_booster"
+msgstr "Wood Booster"
+
+msgid "wood_booster_description"
+msgstr "It allows to morph a Wood type tuxemon into a different form."
 
 # Map Types:
 
@@ -5164,26 +5318,8 @@ msgstr "Welcome to the Wayfarer Inn! "
 msgid "spyder_omnichannel_note"
 msgstr "Haha, suckers - you'll never find me. \n It's on the Omnichannel CEO's letterhead."
 
-
 msgid "spyder_cottonhouse1_tvwatch"
 msgstr "It's the latest reality show: people and their tuxemon complete challenges on a remote island."
-
-
-## Item descriptions ##
-
-msgid "fishing_rod"
-msgstr "Fishing Rod"
-msgid "fishing_rod_description"
-msgstr "Catch fish."
-msgid "earthmover_key"
-msgstr "Earthmover Key"
-msgid "earthmover_key_description"
-msgstr "Could come in handy if there's a giant earthmover blocking the path."
-
-msgid "sledgehammer_description"
-msgstr "Smash apart grey boulders."
-msgid "sledgehammer"
-msgstr "Sledgehammer"
 
 msgid "cannot_use_item_monster"
 msgstr "This item cannot be used on this monster."

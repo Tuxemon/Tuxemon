@@ -26,9 +26,8 @@ from typing import NamedTuple, Optional, final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.economy import Economy
-from tuxemon.states.choice import ChoiceState
 from tuxemon.states.items import ShopBuyMenuState, ShopSellMenuState
-from tuxemon.tools import assert_never
+from tuxemon.tools import assert_never, open_choice_dialog
 
 
 class OpenShopActionParameters(NamedTuple):
@@ -96,8 +95,8 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
                 ("Sell", "Sell", sell_menu),
             ]
 
-            self.session.client.push_state(
-                ChoiceState,
+            open_choice_dialog(
+                self.session,
                 menu=var_menu,
                 escape_key_exits=True,
             )

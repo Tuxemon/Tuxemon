@@ -83,7 +83,8 @@
    <properties>
     <property name="act1" value="create_npc spyder_shopkeeper,1,6"/>
     <property name="act2" value="npc_face spyder_shopkeeper,right"/>
-    <property name="act20" value="set_inventory spyder_shopkeeper,inv_basic_store"/>
+    <property name="act20" value="set_inventory spyder_shopkeeper,spyder_candy_scoop"/>
+    <property name="act30" value="set_economy spyder_shopkeeper,spyder_candy_scoop"/>
     <property name="cond1" value="not npc_exists spyder_shopkeeper"/>
    </properties>
   </object>

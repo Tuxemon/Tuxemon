@@ -70,6 +70,7 @@ if TYPE_CHECKING:
     from tuxemon.session import Session
     from tuxemon.sprite import Sprite
     from tuxemon.state import State
+    from tuxemon.technique.technique import Technique
 
 
 logger = logging.getLogger(__name__)
@@ -393,6 +394,27 @@ def show_item_result_as_dialog(
     """
     msg_type = "use_success" if result["success"] else "use_failure"
     template = getattr(item, msg_type)
+    if template:
+        message = T.translate(template)
+        open_dialog(session, [message])
+
+
+def show_technique_result_as_dialog(
+    session: Session,
+    technique: Technique,
+    result: Mapping[str, Any],
+) -> None:
+    """
+    Show generic dialog if item was used or not.
+
+    Parameters:
+        session: Game session.
+        technique: Technique object.
+        result: A dict with a ``success`` key indicating sucess or failure.
+
+    """
+    msg_type = "use_success" if result["success"] else "use_failure"
+    template = getattr(technique, msg_type)
     if template:
         message = T.translate(template)
         open_dialog(session, [message])

@@ -79,6 +79,7 @@ class Technique:
         self.target: Sequence[str] = []
         self.type1 = ElementType.aether
         self.type2: Optional[ElementType] = None
+        self.usable_in = False
         self.use_item = ""
         self.use_success = ""
         self.use_failure = ""
@@ -164,6 +165,7 @@ class Technique:
         self.conditions = self.parse_conditions(results.conditions)
         self.effects = self.parse_effects(results.effects)
         self.target = process_targets(results.target)
+        self.usable_in = results.usable_in or self.usable_in
 
         # Load the animation sprites that will be used for this technique
         self.animation = results.animation

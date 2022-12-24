@@ -41,6 +41,7 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
 from tuxemon.states.choice import ChoiceState
+from tuxemon.states.techniques import TechniqueMenuState
 from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
@@ -186,6 +187,15 @@ class WorldMenuState(PygameMenuState):
                             ),
                         },
                     ),
+                ],
+            )
+
+        def open_monster_descr() -> None:
+            """Show description."""
+            monster = monster_menu.get_selected_item().game_object
+            open_dialog(
+                local_session,
+                [
                     T.format(
                         "tuxemon_stat2",
                         {
@@ -237,11 +247,23 @@ class WorldMenuState(PygameMenuState):
                 ),
             )
 
+        def open_monster_techs() -> None:
+            """Show techniques."""
+            # Remove the submenu and replace with a confirmation dialog
+            self.client.pop_state()
+            monster = monster_menu.get_selected_item().game_object
+            self.client.push_state(TechniqueMenuState)
+            local_session.player.game_variables[
+                "open_monster_techs"
+            ] = monster.instance_id.hex
+
         def open_monster_submenu(
             menu_item: MenuItem[WorldMenuGameObj],
         ) -> None:
             menu_items_map = (
                 ("monster_menu_info", open_monster_stats),
+                ("monster_menu_desc", open_monster_descr),
+                ("monster_menu_tech", open_monster_techs),
                 ("monster_menu_move", select_first_monster),
                 ("monster_menu_release", release_monster_from_party),
             )

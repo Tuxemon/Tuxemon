@@ -890,6 +890,12 @@ msgstr "Info"
 msgid "monster_menu_move"
 msgstr "Move"
 
+msgid "monster_menu_tech"
+msgstr "Techniques"
+
+msgid "monster_menu_desc"
+msgstr "Description"
+
 msgid "monster_menu_release"
 msgstr "Release"
 
@@ -2546,6 +2552,15 @@ msgstr "Sanguine"
 
 msgid "wood"
 msgstr "Wood"
+
+msgid "aether"
+msgstr "Aether"
+
+msgid "glitch"
+msgstr "Glitch"
+
+msgid "normal"
+msgstr "Normal"
 
 msgid "climbing"
 msgstr "Climbing"

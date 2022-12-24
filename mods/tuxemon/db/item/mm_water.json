@@ -1,6 +1,7 @@
 {
   "conditions": [
-    "type target,water"
+    "type target,water",
+    "max_moves target,max"
   ],
   "effects": [
     "learn_mm water"

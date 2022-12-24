@@ -1,6 +1,7 @@
 {
   "conditions": [
-    "type target,fire"
+    "type target,fire",
+    "max_moves target,max"
   ],
   "effects": [
     "learn_mm fire"

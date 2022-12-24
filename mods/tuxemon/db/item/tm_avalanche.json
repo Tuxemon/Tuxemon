@@ -1,6 +1,7 @@
 {
   "conditions": [
-    "type target,earth,water"
+    "type target,earth,water",
+    "max_moves target,max"
   ],
   "effects": [
     "learn_tm avalanche"

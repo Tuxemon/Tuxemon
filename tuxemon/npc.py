@@ -926,7 +926,7 @@ class NPC(Entity[NPCState]):
                     T.format(
                         "max_moves_alert",
                         {
-                            "name": monster.name,
+                            "name": monster.name.upper(),
                             "tech": Technique(overwrite_technique).name,
                         },
                     )

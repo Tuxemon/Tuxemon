@@ -2772,9 +2772,6 @@ msgstr "Aeble"
 msgid "allie"
 msgstr "Allie"
 
-msgid "cottonnurse"
-msgstr "Cotton Nurse"
-
 msgid "karrianna"
 msgstr "Karrianna"
 

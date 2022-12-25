@@ -2,6 +2,9 @@
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="23" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="38">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="scenario" value="tobedefined"/>
+  <property name="slug" value="sphalian_town"/>
+  <property name="types" value="town"/>
  </properties>
  <tileset firstgid="1" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
@@ -51,14 +54,14 @@
   </object>
   <object id="21" name="Buddha Mountain" type="event" x="352" y="208" width="16" height="48">
    <properties>
-    <property name="act10" value="teleport BuddhaMountain.tmx,3,89,1.5"/>
+    <property name="act10" value="teleport buddha_mountain.tmx,3,89,1.5"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="22" name="sphalian care" type="event" x="272" y="112" width="16" height="16">
    <properties>
-    <property name="act10" value="teleport healing_center_sphalian.tmx,7,12,0.3"/>
+    <property name="act10" value="teleport sphalian_center.tmx,6,10,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
    </properties>

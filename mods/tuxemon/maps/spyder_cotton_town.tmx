@@ -215,7 +215,7 @@
   </object>
   <object id="532" name="Teleport to Cotton Cathedral" type="event" x="320" y="416" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_healing_center.tmx,7,12,0.3"/>
+    <property name="act1" value="transition_teleport spyder_healing_center.tmx,6,10,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>

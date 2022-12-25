@@ -50,7 +50,7 @@
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="9" name="Go Outside" type="event" x="112" y="176" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport taba_town.tmx,33,44,0.5"/>
+    <property name="act10" value="transition_teleport taba_town.tmx,33,44,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing down"/>
    </properties>

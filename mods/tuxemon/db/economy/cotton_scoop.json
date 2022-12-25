@@ -1,0 +1,20 @@
+{
+  "slug": "cotton_scoop",
+  "items": [
+    {
+      "item_name": "potion",
+      "price": 20,
+      "cost": 5
+    },
+    {
+      "item_name": "revive",
+      "price": 100,
+      "cost": 20
+    },
+    {
+      "item_name": "capture_device",
+      "price": 50,
+      "cost": 10
+    }
+  ]
+}

@@ -45,7 +45,11 @@ class SplashState(state.State):
 
     default_duration = 3
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self, parent: state.StateManager) -> None:
+        super().__init__()
+
+        self.parent = parent
+
         # this task will skip the splash screen after some time
         self.task(self.fade_out, self.default_duration)
         self.triggered = False
@@ -88,4 +92,4 @@ class SplashState(state.State):
 
     def fade_out(self) -> None:
         self.triggered = True
-        self.parent.push_state(FadeOutTransition)
+        self.parent.push_state(FadeOutTransition())

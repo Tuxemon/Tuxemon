@@ -28,7 +28,7 @@
 #
 from __future__ import annotations
 
-from typing import Any, Generator, Optional
+from typing import Generator, Optional
 
 import pygame
 from pygame.rect import Rect
@@ -53,8 +53,8 @@ class MonsterMenuState(Menu[Optional[Monster]]):
     background_filename = "gfx/ui/monster/monster_menu_bg.png"
     draw_borders = False
 
-    def startup(self, **kwargs: Any) -> None:
-        super().startup(**kwargs)
+    def __init__(self) -> None:
+        super().__init__()
 
         # make a text area to show messages
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 96))

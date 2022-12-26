@@ -23,11 +23,12 @@ from __future__ import annotations
 
 import logging
 from functools import partial
-from typing import NamedTuple, final
+from typing import NamedTuple, final, Sequence, Tuple, Callable
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T, replace_text
+from tuxemon.session import Session
 from tuxemon.states.choice import ChoiceState
 from tuxemon.tools import open_choice_dialog
 
@@ -90,3 +91,11 @@ class TranslatedDialogChoiceAction(
             self.session.client.get_state_by_name(ChoiceState)
         except ValueError:
             self.stop()
+
+    def open_choice_dialog(
+        self,
+        session: Session,
+        menu: Sequence[Tuple[str, str, Callable[[], None]]],
+    ) -> ChoiceState:
+        logger.info("Opening choice window")
+        return session.client.push_state(ChoiceState(menu=menu))

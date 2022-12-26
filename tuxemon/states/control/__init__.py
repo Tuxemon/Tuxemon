@@ -59,12 +59,12 @@ class SetKeyState(PopUpMenu):
 
     shrink_to_items = True
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self, button: Optional[str]) -> None:
         """
         Used when initializing the state
         """
-        self.button = kwargs["button"]
-        super().startup(**kwargs)
+        self.button = button
+        super().__init__()
 
         label = T.translate(T.translate("options_new_input_key0")).upper()
         image = self.shadow_text(label)
@@ -123,11 +123,11 @@ class ControlState(PopUpMenu[ControlStateObj]):
     columns = 2
     rows = 7  # TODO: Compute it
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self) -> None:
         """
         Used when initializing the state.
         """
-        super().startup(**kwargs)
+        super().__init__()
         self.reload_controls()
 
     def initialize_items(

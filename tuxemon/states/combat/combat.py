@@ -36,7 +36,6 @@ from functools import partial
 from itertools import chain
 from typing import (
     TYPE_CHECKING,
-    Any,
     Dict,
     Iterable,
     List,
@@ -63,7 +62,7 @@ from tuxemon.combat import (
     fainted,
     get_awake_monsters,
 )
-from tuxemon.db import OutputBattle, SeenStatus
+from tuxemon.db import BattleGraphicsModel, OutputBattle, SeenStatus
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -200,10 +199,11 @@ class CombatState(CombatAnimations):
     draw_borders = False
     escape_key_exits = False
 
-    def startup(
+    def __init__(
         self,
-        combat_type: Optional[Literal["monster", "trainer"]] = None,
-        **kwargs: Any,
+        players: Tuple[NPC, NPC],
+        graphics: BattleGraphicsModel,
+        combat_type: Literal["monster", "trainer"],
     ) -> None:
         self.max_positions = 1  # TODO: make dependant on match type
         self.phase: Optional[CombatPhase] = None
@@ -221,7 +221,7 @@ class CombatState(CombatAnimations):
         self._round = 0
         self._prize = 0
 
-        super().startup(**kwargs)
+        super().__init__(players, graphics)
         self.is_trainer_battle = combat_type == "trainer"
         self.show_combat_dialog()
         self.transition_phase("begin")
@@ -451,7 +451,7 @@ class CombatState(CombatAnimations):
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
             # if you run in PvP, you need "defeated message"
-            self.task(partial(self.client.push_state, WaitForInputState), 2)
+            self.task(partial(self.client.push_state, WaitForInputState()), 2)
             self.suppress_phase_change(3)
 
         elif phase == "draw match":
@@ -472,7 +472,7 @@ class CombatState(CombatAnimations):
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
-            self.task(partial(self.client.push_state, WaitForInputState), 2)
+            self.task(partial(self.client.push_state, WaitForInputState()), 2)
             self.suppress_phase_change(3)
 
         elif phase == "has winner":
@@ -519,7 +519,7 @@ class CombatState(CombatAnimations):
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
-            self.task(partial(self.client.push_state, WaitForInputState), 2)
+            self.task(partial(self.client.push_state, WaitForInputState()), 2)
             self.suppress_phase_change(3)
 
         elif phase == "end combat":
@@ -664,7 +664,7 @@ class CombatState(CombatAnimations):
                 self.add_monster_into_play(player, monster)
                 self.client.pop_state()
 
-        state = self.client.push_state(MonsterMenuState)
+        state = self.client.push_state(MonsterMenuState())
         # must use a partial because alert relies on a text box that may not
         # exist until after the state hs been startup
         state.task(partial(state.alert, T.translate("combat_replacement")), 0)
@@ -807,9 +807,9 @@ class CombatState(CombatAnimations):
         rect.bottomright = rect_screen.w, rect_screen.h
 
         state = self.client.push_state(
-            MainCombatMenuState,
-            monster=monster,
-            columns=2,
+            MainCombatMenuState(
+                monster=monster,
+            )
         )
         state.rect = rect
 
@@ -1284,4 +1284,4 @@ class CombatState(CombatAnimations):
         while self.client.current_state is not self:
             self.client.pop_state()
 
-        self.client.push_state(FadeOutTransition, caller=self)
+        self.client.push_state(FadeOutTransition(caller=self))

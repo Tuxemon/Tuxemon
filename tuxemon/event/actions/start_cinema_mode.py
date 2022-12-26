@@ -21,18 +21,16 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
 
 
-class StartCinemaModeActionParameters(NamedTuple):
-    pass
-
-
 @final
-class StartCinemaModeAction(EventAction[StartCinemaModeActionParameters]):
+@dataclass
+class StartCinemaModeAction(EventAction):
     """
     Start cinema mode by animating black bars to narrow the aspect ratio.
 
@@ -44,7 +42,6 @@ class StartCinemaModeAction(EventAction[StartCinemaModeActionParameters]):
     """
 
     name = "start_cinema_mode"
-    param_class = StartCinemaModeActionParameters
 
     def start(self) -> None:
         world = self.session.client.current_state

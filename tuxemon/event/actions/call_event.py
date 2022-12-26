@@ -21,17 +21,15 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 
 
-class CallEventActionParameters(NamedTuple):
-    event_id: int
-
-
 @final
-class CallEventAction(EventAction[CallEventActionParameters]):
+@dataclass
+class CallEventAction(EventAction):
     """
     Execute the specified event's actions by id.
 
@@ -46,12 +44,12 @@ class CallEventAction(EventAction[CallEventActionParameters]):
     """
 
     name = "call_event"
-    param_class = CallEventActionParameters
+    event_id: int
 
     def start(self) -> None:
         event_engine = self.session.client.event_engine
         events = self.session.client.events
 
         for e in events:
-            if e.id == self.parameters.event_id:
+            if e.id == self.event_id:
                 event_engine.start_event(e)

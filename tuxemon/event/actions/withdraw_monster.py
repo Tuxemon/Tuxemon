@@ -26,7 +26,8 @@ from __future__ import annotations
 
 import logging
 import uuid
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
@@ -34,13 +35,9 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
-class WithdrawMonsterActionParameters(NamedTuple):
-    trainer: str
-    monster_id: str
-
-
 @final
-class WithdrawMonsterAction(EventAction[WithdrawMonsterActionParameters]):
+@dataclass
+class WithdrawMonsterAction(EventAction):
     """
     Pull a monster from the given trainer's storage and puts it in their party.
 
@@ -60,16 +57,16 @@ class WithdrawMonsterAction(EventAction[WithdrawMonsterActionParameters]):
     """
 
     name = "withdraw_monster"
-    param_class = WithdrawMonsterActionParameters
+    trainer: str
+    monster_id: str
 
     def start(self) -> None:
-        trainer, monster_id = self.parameters
         world = self.session.client.get_state_by_name(WorldState)
 
-        trainer = trainer.replace("player", "npc_red")
+        trainer = self.trainer.replace("player", "npc_red")
         npc = world.get_entity(trainer)
         assert npc
-        instance_id = uuid.UUID(npc.game_variables[monster_id])
+        instance_id = uuid.UUID(npc.game_variables[self.monster_id])
         mon = npc.find_monster_in_storage(instance_id)
         assert mon
 

@@ -6,6 +6,7 @@ default: run
 .PHONY: validate
 validate:
 	PYTHONPATH=. python scripts/schema.py --validate
+	PYTHONPATH=. python scripts/test_actions.py
 
 # Install dependencies
 .PHONY: setup

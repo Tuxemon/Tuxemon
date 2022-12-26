@@ -21,7 +21,8 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -29,12 +30,9 @@ from tuxemon.map import dirs2, get_direction
 from tuxemon.states.world.worldstate import WorldState
 
 
-class PlayerFaceActionParameters(NamedTuple):
-    direction: str  # Using Direction as the typehint breaks the Action
-
-
 @final
-class PlayerFaceAction(EventAction[PlayerFaceActionParameters]):
+@dataclass
+class PlayerFaceAction(EventAction):
     """
     Make the player face a certain direction.
 
@@ -50,11 +48,11 @@ class PlayerFaceAction(EventAction[PlayerFaceActionParameters]):
     """
 
     name = "player_face"
-    param_class = PlayerFaceActionParameters
+    direction: str  # Using Direction as the typehint breaks the Action
 
     def start(self) -> None:
         # Get the parameters to determine what direction the player will face.
-        direction = self.parameters.direction
+        direction = self.direction
         if direction not in dirs2:
             target = get_npc(self.session, direction)
             assert target

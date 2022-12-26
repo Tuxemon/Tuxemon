@@ -21,7 +21,8 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, Optional, final
+from dataclasses import dataclass
+from typing import Optional, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -31,13 +32,9 @@ from tuxemon.states.items import ShopBuyMenuState, ShopSellMenuState
 from tuxemon.tools import assert_never, open_choice_dialog
 
 
-class OpenShopActionParameters(NamedTuple):
-    npc_slug: str
-    menu: Optional[str]
-
-
 @final
-class OpenShopAction(EventAction[OpenShopActionParameters]):
+@dataclass
+class OpenShopAction(EventAction):
     """
     Open the shop menu for a NPC.
 
@@ -53,10 +50,11 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
     """
 
     name = "open_shop"
-    param_class = OpenShopActionParameters
+    npc_slug: str
+    menu: Optional[str] = None
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.npc_slug)
 
         assert npc
         if npc.economy:
@@ -82,7 +80,7 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
                 )
             )
 
-        menu = self.parameters.menu or "both"
+        menu = self.menu or "both"
         if menu == "both":
 
             def buy_menu() -> None:

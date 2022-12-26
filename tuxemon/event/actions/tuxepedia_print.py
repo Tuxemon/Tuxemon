@@ -21,17 +21,15 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, Optional, final
+from dataclasses import dataclass
+from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
 
 
-class TuxepediaPrintActionParameters(NamedTuple):
-    monster_slug: Optional[str]
-
-
 @final
-class TuxepediaPrintAction(EventAction[TuxepediaPrintActionParameters]):
+@dataclass
+class TuxepediaPrintAction(EventAction):
     """
     Print the current value of Tuxepedia to the console.
 
@@ -49,12 +47,12 @@ class TuxepediaPrintAction(EventAction[TuxepediaPrintActionParameters]):
     """
 
     name = "tuxepedia_print"
-    param_class = TuxepediaPrintActionParameters
+    monster_slug: Optional[str] = None
 
     def start(self) -> None:
         var = self.session.player.tuxepedia
 
-        monster_slug = self.parameters.monster_slug
+        monster_slug = self.monster_slug
         if monster_slug:
             if monster_slug in var:
                 print(f"{monster_slug}: {var[monster_slug]}")

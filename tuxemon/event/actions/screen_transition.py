@@ -21,18 +21,16 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
 
 
-class ScreenTransitionActionParameters(NamedTuple):
-    transition_time: float
-
-
 @final
-class ScreenTransitionAction(EventAction[ScreenTransitionActionParameters]):
+@dataclass
+class ScreenTransitionAction(EventAction):
     """
     Initiate a screen transition.
 
@@ -47,7 +45,7 @@ class ScreenTransitionAction(EventAction[ScreenTransitionActionParameters]):
     """
 
     name = "screen_transition"
-    param_class = ScreenTransitionActionParameters
+    transition_time: float
 
     def start(self) -> None:
         pass
@@ -56,5 +54,5 @@ class ScreenTransitionAction(EventAction[ScreenTransitionActionParameters]):
         world = self.session.client.get_state_by_name(WorldState)
 
         if not world.in_transition:
-            world.fade_and_teleport(self.parameters.transition_time)
+            world.fade_and_teleport(self.transition_time)
             self.stop()

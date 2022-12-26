@@ -21,20 +21,17 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.actions.common import CommonAction
 from tuxemon.event.eventaction import EventAction
 
 
-class ModifyPlayerAttributeActionParameters(NamedTuple):
-    name: str
-    value: str
-
-
 @final
+@dataclass
 class ModifyPlayerAttributeAction(
-    EventAction[ModifyPlayerAttributeActionParameters],
+    EventAction,
 ):
     """
     Modify the given attribute of the player character by modifier.
@@ -45,22 +42,21 @@ class ModifyPlayerAttributeAction(
     Script usage:
         .. code-block::
 
-            modify_player_attribute <name>,<value>
+            modify_player_attribute <attribute>,<value>
 
     Script parameters:
-        name: Name of the attribute to modify.
+        attribute: Name of the attribute to modify.
         value: Value of the attribute modifier.
 
     """
 
     name = "modify_player_attribute"
-    param_class = ModifyPlayerAttributeActionParameters
+    attribute: str
+    value: str
 
     def start(self) -> None:
-        attribute = self.parameters[0]
-        modifier = self.parameters[1]
         CommonAction.modify_character_attribute(
             self.session.player,
-            attribute,
-            modifier,
+            self.attribute,
+            self.value,
         )

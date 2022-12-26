@@ -21,20 +21,16 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
 
-class PathfindActionParameters(NamedTuple):
-    npc_slug: str
-    tile_pos_x: int
-    tile_pos_y: int
-
-
 @final
-class PathfindAction(EventAction[PathfindActionParameters]):
+@dataclass
+class PathfindAction(EventAction):
     """
     Pathfind the player / npc to the given location.
 
@@ -51,14 +47,14 @@ class PathfindAction(EventAction[PathfindActionParameters]):
     """
 
     name = "pathfind"
-    param_class = PathfindActionParameters
+    npc_slug: str
+    tile_pos_x: int
+    tile_pos_y: int
 
     def start(self) -> None:
-        self.npc = get_npc(self.session, self.parameters.npc_slug)
+        self.npc = get_npc(self.session, self.npc_slug)
         assert self.npc
-        self.npc.pathfind(
-            (self.parameters.tile_pos_x, self.parameters.tile_pos_y)
-        )
+        self.npc.pathfind((self.tile_pos_x, self.tile_pos_y))
 
     def update(self) -> None:
         assert self.npc

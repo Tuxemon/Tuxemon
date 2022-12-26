@@ -58,6 +58,7 @@ class Technique:
         self.category = ""
         self.combat_state: Optional[CombatState] = None
         self.conditions: Sequence[TechCondition[Any]] = []
+        self.description = "None"
         self.effects: Sequence[TechEffect[Any]] = []
         self.flip_axes = ""
         self.icon = ""
@@ -114,6 +115,7 @@ class Technique:
         results = db.lookup(slug, table="technique")
         self.slug = results.slug  # a short English identifier
         self.name = T.translate(self.slug)
+        self.description = T.translate(f"{self.slug}_description")
 
         self.sort = results.sort
         assert self.sort

@@ -44,14 +44,6 @@ class TechniqueMenuState(Menu[Technique]):
         self.text_area.rect = rect
         self.sprites.add(self.text_area, layer=100)
 
-        # load the backpack icon
-        self.backpack_center = self.rect.width * 0.16, self.rect.height * 0.45
-        self.load_sprite(
-            "gfx/ui/item/backpack.png",
-            center=self.backpack_center,
-            layer=100,
-        )
-
     def calc_internal_rect(self) -> pygame.rect.Rect:
         # area in the screen where the technique list is
         rect = self.rect.copy()
@@ -143,6 +135,14 @@ class TechniqueMenuState(Menu[Technique]):
         trainer = local_session.player
         mon_id = uuid.UUID(trainer.game_variables["open_monster_techs"])
         monster = trainer.find_monster_by_id(mon_id)
+
+        # load the backpack icon
+        self.backpack_center = self.rect.width * 0.16, self.rect.height * 0.45
+        self.load_sprite(
+            "gfx/sprites/battle/" + monster.slug + "-front.png",
+            center=self.backpack_center,
+            layer=100,
+        )
 
         moveset = []
         for moves in monster.moves:

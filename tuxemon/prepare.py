@@ -141,6 +141,8 @@ def pygame_init() -> None:
     import pygame as pg
 
     # Configure databases and locale
+    from tuxemon.locale import T
+    T.collect_languages(CONFIG.recompile_translations)
     from tuxemon.db import db
 
     db.load()

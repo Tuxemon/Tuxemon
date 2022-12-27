@@ -57,7 +57,6 @@ from tuxemon.locale import T
 logger = logging.getLogger(__name__)
 
 # Load the default translator for data validation
-T.collect_languages(prepare.CONFIG.recompile_translations)
 T.load_translator()
 
 # Target is a mapping of who this targets

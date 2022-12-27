@@ -22,17 +22,15 @@
 from __future__ import annotations
 
 import datetime as dt
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 
 
-class SetBattleActionParameters(NamedTuple):
-    battle_list: str
-
-
 @final
-class SetBattleAction(EventAction[SetBattleActionParameters]):
+@dataclass
+class SetBattleAction(EventAction):
     """
     Set the key in the player.battle_history dictionary.
 
@@ -48,18 +46,15 @@ class SetBattleAction(EventAction[SetBattleActionParameters]):
     """
 
     name = "set_battle"
-    param_class = SetBattleActionParameters
+    battle_list: str
 
     def start(self) -> None:
         player = self.session.player
 
         # Split the variable into a key: value pair
-        battle_list = self.parameters[0].split(":")
+        battle_list = self.battle_list.split(":")
         battle_key = str(battle_list[0])
-        battle_value = str(battle_list[1])
+        battle_value = str(battle_list[1]), dt.date.today().toordinal()
 
         # set the value in battle history
-        player.battle_history[battle_key] = (
-            battle_value,
-            dt.date.today().toordinal(),
-        )
+        player.battle_history[battle_key] = battle_value

@@ -25,21 +25,18 @@
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
 
 
-class CopyVariableActionParameters(NamedTuple):
-    var1: str
-    var2: str
-
-
 # noinspection PyAttributeOutsideInit
 @final
-class CopyVariableAction(EventAction[CopyVariableActionParameters]):
+@dataclass
+class CopyVariableAction(EventAction):
     """
     Copy the value of var2 into var1 (e.g. var1 = var 2).
 
@@ -55,10 +52,11 @@ class CopyVariableAction(EventAction[CopyVariableActionParameters]):
     """
 
     name = "copy_variable"
-    param_class = CopyVariableActionParameters
+    var1: str
+    var2: str
 
     def start(self) -> None:
         player = self.session.player
-        first = self.parameters.var1
-        second = self.parameters.var2
+        first = self.var1
+        second = self.var2
         player.game_variables[first] = player.game_variables[second]

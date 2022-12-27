@@ -21,17 +21,15 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 
 
-class ChangeStateActionParameters(NamedTuple):
-    state_name: str
-
-
 @final
-class ChangeStateAction(EventAction[ChangeStateActionParameters]):
+@dataclass
+class ChangeStateAction(EventAction):
     """
     Change to the specified state.
 
@@ -46,7 +44,7 @@ class ChangeStateAction(EventAction[ChangeStateActionParameters]):
     """
 
     name = "change_state"
-    param_class = ChangeStateActionParameters
+    state_name: str
 
     def start(self) -> None:
         # Don't override previous state if we are still in the state.
@@ -54,5 +52,5 @@ class ChangeStateAction(EventAction[ChangeStateActionParameters]):
         if current_state is None:
             # obligatory "should not happen"
             raise RuntimeError
-        if current_state.name != self.parameters.state_name:
-            self.session.client.push_state(self.parameters.state_name)
+        if current_state.name != self.state_name:
+            self.session.client.push_state(self.state_name)

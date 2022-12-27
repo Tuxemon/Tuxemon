@@ -21,18 +21,16 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
 
 
-class PlayerResumeActionParameters(NamedTuple):
-    pass
-
-
 @final
-class PlayerResumeAction(EventAction[PlayerResumeActionParameters]):
+@dataclass
+class PlayerResumeAction(EventAction):
     """
     Make the player resume movement.
 
@@ -44,7 +42,6 @@ class PlayerResumeAction(EventAction[PlayerResumeActionParameters]):
     """
 
     name = "player_resume"
-    param_class = PlayerResumeActionParameters
 
     def start(self) -> None:
         # Get a copy of the world state.

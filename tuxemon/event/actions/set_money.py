@@ -21,18 +21,15 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 
 
-class SetMoneyActionParameters(NamedTuple):
-    wallet: str
-    amount: int
-
-
 @final
-class SetMoneyAction(EventAction[SetMoneyActionParameters]):
+@dataclass
+class SetMoneyAction(EventAction):
     """
     Set the key and value in the money dictionary.
 
@@ -48,14 +45,9 @@ class SetMoneyAction(EventAction[SetMoneyActionParameters]):
     """
 
     name = "set_money"
-    param_class = SetMoneyActionParameters
+    wallet: str
+    amount: int
 
     def start(self) -> None:
-        player = self.session.player.money
-
-        # Read the parameters
-        wallet = self.parameters[0]
-        amount = self.parameters[1]
-
         # Append the money with a key
-        player[str(wallet)] = amount
+        self.session.player.money[str(self.wallet)] = self.amount

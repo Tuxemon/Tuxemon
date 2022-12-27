@@ -21,43 +21,37 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.actions.common import CommonAction
 from tuxemon.event.eventaction import EventAction
 
 
-class SetPlayerAttributeActionParameters(NamedTuple):
-    name: str
-    value: str
-
-
 @final
-class SetPlayerAttributeAction(
-    EventAction[SetPlayerAttributeActionParameters]
-):
+@dataclass
+class SetPlayerAttributeAction(EventAction):
     """
     Set the given attribute of the player character to the given value.
 
     Script usage:
         .. code-block::
 
-            set_player_attribute <name>,<value>
+            set_player_attribute <attribute>,<value>
 
     Script parameters:
-        name: Name of the attribute.
+        attribute: Name of the attribute.
         value: Value of the attribute.
 
     """
 
     name = "set_player_attribute"
-    param_class = SetPlayerAttributeActionParameters
+    attribute: str
+    value: str
 
     def start(self) -> None:
-        attribute = self.parameters[0]
-        value = self.parameters[1]
         CommonAction.set_character_attribute(
             self.session.player,
-            attribute,
-            value,
+            self.attribute,
+            self.value,
         )

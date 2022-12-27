@@ -21,19 +21,16 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
 
-class NpcSpeedActionParameters(NamedTuple):
-    npc_slug: str
-    speed: float
-
-
 @final
-class NpcSpeed(EventAction[NpcSpeedActionParameters]):
+@dataclass
+class NpcSpeed(EventAction):
     """
     Set the NPC movement speed to a custom value.
 
@@ -49,11 +46,12 @@ class NpcSpeed(EventAction[NpcSpeedActionParameters]):
     """
 
     name = "npc_speed"
-    param_class = NpcSpeedActionParameters
+    npc_slug: str
+    speed: float
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.npc_slug)
         assert npc
-        npc.moverate = self.parameters.speed
+        npc.moverate = self.speed
         # Just set some sane limit to avoid losing sprites
         assert 0 < npc.moverate < 20

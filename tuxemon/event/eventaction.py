@@ -27,19 +27,18 @@ from __future__ import annotations
 
 import logging
 from abc import ABC, abstractmethod
+from dataclasses import dataclass, field
 from types import TracebackType
-from typing import Any, ClassVar, Generic, Optional, Sequence, Type, TypeVar
+from typing import ClassVar, Optional, Type
 
-from tuxemon.session import Session
-from tuxemon.tools import NamedTupleProtocol, cast_parameters_to_namedtuple
+from tuxemon.session import Session, local_session
+from tuxemon.tools import cast_dataclass_parameters
 
 logger = logging.getLogger(__name__)
 
 
-ParameterClass = TypeVar("ParameterClass", bound=NamedTupleProtocol)
-
-
-class EventAction(ABC, Generic[ParameterClass]):
+@dataclass
+class EventAction(ABC):
     """EventActions are executed during gameplay.
 
     EventAction subclasses implement "actions" defined in Tuxemon maps.
@@ -104,42 +103,13 @@ class EventAction(ABC, Generic[ParameterClass]):
 
     """
 
-    name: ClassVar[str] = "GenericAction"
-    param_class: ClassVar[Type[ParameterClass]]
+    name: ClassVar[str]
+    session: Session = field(init=False, repr=False)
+    _done: bool = field(default=False, init=False)
 
-    def __init__(
-        self,
-        session: Session,
-        parameters: Sequence[Any],
-    ) -> None:
-
-        self.session = session
-
-        # if you need the parameters before they are processed, use this
-        self.raw_parameters = parameters
-
-        # parse parameters
-        try:
-            if self.param_class._fields:
-
-                # cast the parameters to the correct type, as defined in cls.valid_parameters
-                self.parameters = cast_parameters_to_namedtuple(
-                    parameters,
-                    self.param_class,
-                )
-            else:
-                self.parameters = parameters
-
-        except ValueError:
-            logger.warning(f"error while parsing for {self.name}")
-            logger.warning(f"cannot parse parameters: {parameters}")
-            logger.warning(self.param_class)
-            logger.warning(
-                "please check the parameters and verify they are correct"
-            )
-            self.parameters = None
-
-        self._done = False
+    def __post_init__(self):
+        self.session = local_session
+        cast_dataclass_parameters(self)
 
     def __enter__(self) -> None:
         """

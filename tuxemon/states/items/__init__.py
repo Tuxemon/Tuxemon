@@ -40,10 +40,7 @@ from tuxemon.item.item import InventoryItem, Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
-from tuxemon.menu.quantity import (
-    QuantityAndCostMenu,
-    QuantityAndPriceMenu,
-)
+from tuxemon.menu.quantity import QuantityAndCostMenu, QuantityAndPriceMenu
 from tuxemon.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
@@ -317,11 +314,18 @@ class ShopMenuState(Menu[Item]):
 
     def initialize_items(self) -> Generator[MenuItem[Item], None, None]:
         """Get all player inventory items and add them to menu."""
-        inventory = [
-            item
-            for item in self.seller.inventory.values()
-            if not (self.seller.isplayer and item["item"].sort == "quest")
-        ]
+        inventory = []
+        # when the player buys
+        if self.buyer.isplayer:
+            inventory = [item for item in self.seller.inventory.values()]
+        # when the player sells
+        if self.seller.isplayer:
+            inventory = [
+                item
+                for item in self.seller.inventory.values()
+                for t in self.economy.items
+                if item["item"].slug == t.item_name
+            ]
 
         # required because the max() below will fail if inv empty
         if not inventory:

@@ -22,21 +22,17 @@
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
 
 
-class MoneyMathActionParameters(NamedTuple):
-    transaction: str
-    amount: int
-    slug: str
-
-
 @final
-class MoneyMathAction(EventAction[MoneyMathActionParameters]):
+@dataclass
+class MoneyMathAction(EventAction):
     """
     Perform a mathematical transaction on the player's money.
 
@@ -55,15 +51,17 @@ class MoneyMathAction(EventAction[MoneyMathActionParameters]):
     """
 
     name = "transfer_money"
-    param_class = MoneyMathActionParameters
+    transaction: str
+    amount: int
+    slug: str
 
     def start(self) -> None:
         player = self.session.player
 
         # Read the parameters
-        transaction = self.parameters.transaction
-        amount = self.parameters.amount
-        destination = self.parameters.slug
+        transaction = self.transaction
+        amount = self.amount
+        destination = self.slug
 
         # Data
         wallet_player = player.money.get("player")

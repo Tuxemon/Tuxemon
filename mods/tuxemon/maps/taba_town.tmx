@@ -214,7 +214,7 @@
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport player_house_downstairs.tmx,5,7,0.5"/>
+    <property name="act10" value="transition_teleport player_house_downstairs.tmx,4,6,0.3"/>
     <property name="cond10" value="is player_at"/>
    </properties>
   </object>
@@ -335,7 +335,7 @@
   </object>
   <object id="108" name="Enter mart" type="event" x="480" y="176" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport tuxe_mart_taba.tmx,7,12,0.3"/>
+    <property name="act10" value="transition_teleport tuxe_mart_taba.tmx,6,10,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
    </properties>
@@ -664,7 +664,7 @@
     <property name="act12" value="unlock_controls"/>
     <property name="act15" value="set_variable comeinside:done"/>
     <property name="act17" value="player_resume"/>
-    <property name="act18" value="transition_teleport player_house_downstairs.tmx,5,7,0.5"/>
+    <property name="act18" value="transition_teleport player_house_downstairs.tmx,4,6,0.3"/>
     <property name="cond1" value="is variable_set comeinside:yes"/>
    </properties>
   </object>
@@ -905,7 +905,7 @@
     <property name="act30" value="npc_face player,up"/>
     <property name="act35" value="unlock_controls"/>
     <property name="act36" value="set_variable moveplayer:false"/>
-    <property name="act40" value="transition_teleport player_house_downstairs.tmx,5,7,0.5"/>
+    <property name="act40" value="transition_teleport player_house_downstairs.tmx,4,6,0.3"/>
     <property name="cond1" value="is variable_set moveplayer:true"/>
    </properties>
   </object>

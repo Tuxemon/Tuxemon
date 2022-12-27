@@ -22,27 +22,23 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 from functools import partial
-from typing import NamedTuple, final
+from typing import Callable, Sequence, Tuple, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T, replace_text
+from tuxemon.session import Session
 from tuxemon.states.choice import ChoiceState
 from tuxemon.tools import open_choice_dialog
 
 logger = logging.getLogger(__name__)
 
 
-class TranslatedDialogChoiceActionParameters(NamedTuple):
-    choices: str
-    variable: str
-
-
 @final
-class TranslatedDialogChoiceAction(
-    EventAction[TranslatedDialogChoiceActionParameters],
-):
+@dataclass
+class TranslatedDialogChoiceAction(EventAction):
     """
     Ask the player to make a choice.
 
@@ -59,15 +55,16 @@ class TranslatedDialogChoiceAction(
 
     name = "translated_dialog_choice"
 
-    param_class = TranslatedDialogChoiceActionParameters
+    choices: str
+    variable: str
 
     def start(self) -> None:
         def set_variable(var_value: str) -> None:
-            player.game_variables[self.parameters.variable] = var_value
+            player.game_variables[self.variable] = var_value
             self.session.client.pop_state()
 
         # perform text substitutions
-        choices = replace_text(self.session, self.parameters.choices)
+        choices = replace_text(self.session, self.choices)
         maybe_player = get_npc(self.session, "player")
         assert maybe_player
         player = maybe_player
@@ -90,3 +87,11 @@ class TranslatedDialogChoiceAction(
             self.session.client.get_state_by_name(ChoiceState)
         except ValueError:
             self.stop()
+
+    def open_choice_dialog(
+        self,
+        session: Session,
+        menu: Sequence[Tuple[str, str, Callable[[], None]]],
+    ) -> ChoiceState:
+        logger.info("Opening choice window")
+        return session.client.push_state(ChoiceState(menu=menu))

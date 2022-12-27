@@ -25,14 +25,13 @@ class ChoiceState(PygameMenuState):
     * if there are no more messages, then the dialog will close
     """
 
-    def startup(
+    def __init__(
         self,
-        *,
         menu: Sequence[Tuple[str, str, Callable[[], None]]] = (),
         escape_key_exits: bool = False,
         **kwargs: Any,
     ) -> None:
-        super().startup(**kwargs)
+        super().__init__(**kwargs)
 
         for _key, label, callback in menu:
             self.menu.add.button(label, callback)

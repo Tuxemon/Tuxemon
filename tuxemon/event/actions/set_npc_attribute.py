@@ -21,42 +21,38 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.actions.common import CommonAction
 from tuxemon.event.eventaction import EventAction
 
 
-class SetNpcAttributeActionParameters(NamedTuple):
-    npc_slug: str
-    name: str
-    value: str
-
-
 @final
-class SetNpcAttributeAction(EventAction[SetNpcAttributeActionParameters]):
+@dataclass
+class SetNpcAttributeAction(EventAction):
     """
     Set the given attribute of the npc to the given value.
 
     Script usage:
         .. code-block::
 
-            set_npc_attribute <npc_slug>,<name>,<value>
+            set_npc_attribute <npc_slug>,<attribute>,<value>
 
     Script parameters:
         npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
-        name: Name of the attribute.
+        attribute: Name of the attribute.
         value: Value of the attribute.
 
     """
 
     name = "set_npc_attribute"
-    param_class = SetNpcAttributeActionParameters
+    npc_slug: str
+    attribute: str
+    value: str
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.parameters[0])
+        npc = get_npc(self.session, self.npc_slug)
         assert npc
-        attribute = self.parameters[1]
-        value = self.parameters[2]
-        CommonAction.set_character_attribute(npc, attribute, value)
+        CommonAction.set_character_attribute(npc, self.attribute, self.value)

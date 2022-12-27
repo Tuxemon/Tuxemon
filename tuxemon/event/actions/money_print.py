@@ -22,19 +22,17 @@
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, Optional, final
+from dataclasses import dataclass
+from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
 
 
-class MoneyPrintActionParameters(NamedTuple):
-    slug: Optional[str]
-
-
 @final
-class MoneyPrintAction(EventAction[MoneyPrintActionParameters]):
+@dataclass
+class MoneyPrintAction(EventAction):
     """
     Print the current value of money dictionary to the console.
 
@@ -52,12 +50,12 @@ class MoneyPrintAction(EventAction[MoneyPrintActionParameters]):
     """
 
     name = "money_print"
-    param_class = MoneyPrintActionParameters
+    slug: Optional[str] = None
 
     def start(self) -> None:
         var = self.session.player.money
 
-        slug = self.parameters.slug
+        slug = self.slug
         if slug:
             if slug in var:
                 print(f"{slug}: {var[slug]}")

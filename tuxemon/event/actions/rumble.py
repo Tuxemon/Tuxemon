@@ -21,18 +21,15 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 
 
-class RumbleActionParameters(NamedTuple):
-    duration: float
-    power: int
-
-
 @final
-class RumbleAction(EventAction[RumbleActionParameters]):
+@dataclass
+class RumbleAction(EventAction):
     """
     Rumble available controllers with rumble support.
 
@@ -48,11 +45,12 @@ class RumbleAction(EventAction[RumbleActionParameters]):
     """
 
     name = "rumble"
-    param_class = RumbleActionParameters
+    duration: float
+    power: int
 
     def start(self) -> None:
-        duration = float(self.parameters[0])
-        power = int(self.parameters[1])
+        duration = float(self.duration)
+        power = int(self.power)
 
         min_power = 0
         max_power = 24576

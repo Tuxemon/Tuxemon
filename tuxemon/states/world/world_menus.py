@@ -40,6 +40,7 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
+from tuxemon.states.choice import ChoiceState
 from tuxemon.states.techniques import TechniqueMenuState
 from tuxemon.tools import open_choice_dialog, open_dialog
 
@@ -73,10 +74,10 @@ def add_menu_items(
 class WorldMenuState(PygameMenuState):
     """Menu for the world state."""
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self) -> None:
         _, height = prepare.SCREEN_SIZE
 
-        super().startup(height=height, **kwargs)
+        super().__init__(height=height)
 
         self.animation_offset = 0
 
@@ -238,12 +239,13 @@ class WorldMenuState(PygameMenuState):
                 local_session,
                 [T.format("release_confirmation", {"name": monster.name})],
             )
-            open_choice_dialog(
-                local_session,
-                menu=(
-                    ("no", T.translate("no"), negative_answer),
-                    ("yes", T.translate("yes"), positive_answer),
-                ),
+            self.client.push_state(
+                ChoiceState(
+                    menu=(
+                        ("no", T.translate("no"), negative_answer),
+                        ("yes", T.translate("yes"), positive_answer),
+                    ),
+                )
             )
 
         def open_monster_techs() -> None:
@@ -266,7 +268,7 @@ class WorldMenuState(PygameMenuState):
                 ("monster_menu_move", select_first_monster),
                 ("monster_menu_release", release_monster_from_party),
             )
-            menu = self.client.push_state(PygameMenuState)
+            menu = self.client.push_state(PygameMenuState())
 
             for key, callback in menu_items_map:
                 label = T.translate(key).upper()

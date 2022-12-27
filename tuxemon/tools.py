@@ -204,11 +204,12 @@ def open_dialog(
 
     rect = calc_dialog_rect(session.client.screen.get_rect())
     return session.client.push_state(
-        DialogState,
-        text=text,
-        avatar=avatar,
-        rect=rect,
-        menu=menu,
+        DialogState(
+            text=text,
+            avatar=avatar,
+            rect=rect,
+            menu=menu,
+        )
     )
 
 

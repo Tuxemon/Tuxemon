@@ -22,17 +22,15 @@
 from __future__ import annotations
 
 import time
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 
 
-class WaitActionParameters(NamedTuple):
-    seconds: float
-
-
 @final
-class WaitAction(EventAction[WaitActionParameters]):
+@dataclass
+class WaitAction(EventAction):
     """
     Block event chain for some time.
 
@@ -47,11 +45,11 @@ class WaitAction(EventAction[WaitActionParameters]):
     """
 
     name = "wait"
-    param_class = WaitActionParameters
+    seconds: float
 
     # TODO: use event loop time, not wall clock
     def start(self) -> None:
-        self.finish_time = time.time() + self.parameters.seconds
+        self.finish_time = time.time() + self.seconds
 
     def update(self) -> None:
         if time.time() >= self.finish_time:

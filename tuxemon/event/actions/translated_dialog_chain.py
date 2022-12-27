@@ -22,7 +22,8 @@
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, Optional, Sequence, final
+from dataclasses import dataclass, field
+from typing import Optional, Sequence, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar
@@ -34,13 +35,10 @@ from tuxemon.tools import open_dialog
 logger = logging.getLogger(__name__)
 
 
-class TranslatedDialogChainActionParameters(NamedTuple):
-    pass
-
-
 @final
+@dataclass
 class TranslatedDialogChainAction(
-    EventAction[TranslatedDialogChainActionParameters],
+    EventAction,
 ):
     """
     Open a chain of dialogs in order.
@@ -51,7 +49,6 @@ class TranslatedDialogChainAction(
     * ${{name}} - The current player's name.
     * ${{end}} - Ends the dialog chain.
 
-    Parameters following the translation name may represent one of two things:
     If a parameter is var1=value1, it represents a value replacement.
     If it's a single value (an integer or a string), it will be used as an
     avatar image.
@@ -72,7 +69,11 @@ class TranslatedDialogChainAction(
     """
 
     name = "translated_dialog_chain"
-    param_class = TranslatedDialogChainActionParameters
+    raw_parameters: Sequence[str] = field(init=False)
+
+    def __init__(self, *args):
+        super().__init__()
+        self.raw_parameters = args
 
     def start(self) -> None:
         key = self.raw_parameters[0]

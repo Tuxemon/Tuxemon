@@ -29,7 +29,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Any, Optional
+from typing import Optional
 
 import pygame
 
@@ -45,7 +45,8 @@ class FlashTransition(State):
 
     force_draw = True
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self) -> None:
+        super().__init__()
         logger.info("Initializing battle transition")
         self.flash_time = 0.2  # Time in seconds between flashes
         self.flash_state = "up"

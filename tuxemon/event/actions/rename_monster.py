@@ -25,7 +25,8 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
@@ -36,12 +37,9 @@ from tuxemon.states.monster import MonsterMenuState
 from tuxemon.states.world.worldstate import WorldState
 
 
-class RenameMonsterActionParameters(NamedTuple):
-    pass
-
-
 @final
-class RenameMonsterAction(EventAction[RenameMonsterActionParameters]):
+@dataclass
+class RenameMonsterAction(EventAction):
     """
     Open the monster menu and text input screens to rename a selected monster.
 
@@ -53,14 +51,13 @@ class RenameMonsterAction(EventAction[RenameMonsterActionParameters]):
     """
 
     name = "rename_monster"
-    param_class = RenameMonsterActionParameters
 
     def start(self) -> None:
         # Get a copy of the world state.
         self.session.client.get_state_by_name(WorldState)
 
         # pull up the monster menu so we know which one we are renaming
-        menu = self.session.client.push_state(MonsterMenuState)
+        menu = self.session.client.push_state(MonsterMenuState())
         menu.on_menu_selection = self.prompt_for_name  # type: ignore[assignment]
 
     def update(self) -> None:
@@ -89,9 +86,10 @@ class RenameMonsterAction(EventAction[RenameMonsterActionParameters]):
         self.monster = menu_item.game_object
 
         self.session.client.push_state(
-            state_name=InputMenu,
-            prompt=T.translate("input_monster_name"),
-            callback=self.set_monster_name,
-            escape_key_exits=False,
-            initial=T.translate(self.monster.slug),
+            InputMenu(
+                prompt=T.translate("input_monster_name"),
+                callback=self.set_monster_name,
+                escape_key_exits=False,
+                initial=T.translate(self.monster.slug),
+            )
         )

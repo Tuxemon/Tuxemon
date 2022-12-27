@@ -21,6 +21,7 @@
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from typing import NamedTuple, Optional, Union, final
 
 from tuxemon.event import get_npc
@@ -28,14 +29,9 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
 
 
-class AddItemActionParameters(NamedTuple):
-    item_slug: str
-    quantity: Union[int, None]
-    trainer_slug: Union[str, None]
-
-
 @final
-class AddItemAction(EventAction[AddItemActionParameters]):
+@dataclass
+class AddItemAction(EventAction):
     """
     Add an item to the specified trainer's inventory.
 
@@ -53,27 +49,28 @@ class AddItemAction(EventAction[AddItemActionParameters]):
     """
 
     name = "add_item"
-    param_class = AddItemActionParameters
+    item_slug: str
+    quantity: Union[int, None] = None
+    trainer_slug: str = None
 
     def start(self) -> None:
-        trainer_slug = self.parameters.trainer_slug
         trainer: Optional[NPC]
-        if trainer_slug is None:
+
+        if self.trainer_slug is None:
             trainer = self.session.player
         else:
-            trainer = get_npc(self.session, trainer_slug)
+            trainer = get_npc(self.session, self.trainer_slug)
 
         assert trainer, "No Trainer found with slug '{}'".format(
-            trainer_slug or "player"
+            self.trainer_slug or "player"
         )
-        if self.parameters.quantity is None:
+        if self.quantity is None:
             quantity = 1
         else:
-            quantity = self.parameters.quantity
+            quantity = self.quantity
 
-        # assign item
         trainer.alter_item_quantity(
             self.session,
-            self.parameters.item_slug,
+            self.item_slug,
             quantity,
         )

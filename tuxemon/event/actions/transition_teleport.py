@@ -21,23 +21,17 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass, field
+from typing import Optional, final
 
+from tuxemon.event.actions.screen_transition import ScreenTransitionAction
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
 
 
-class TransitionTeleportActionParameters(NamedTuple):
-    map_name: str
-    x: int
-    y: int
-    transition_time: float
-
-
 @final
-class TransitionTeleportAction(
-    EventAction[TransitionTeleportActionParameters],
-):
+@dataclass
+class TransitionTeleportAction(EventAction):
     """
     Combines the "teleport" and "screen_transition" actions.
 
@@ -58,7 +52,13 @@ class TransitionTeleportAction(
     """
 
     name = "transition_teleport"
-    param_class = TransitionTeleportActionParameters
+    map_name: str
+    x: int
+    y: int
+    transition_time: Optional[float] = None
+    transition: Optional[ScreenTransitionAction] = field(
+        default=None, init=False
+    )
 
     def start(self) -> None:
         world = self.session.client.get_state_by_name(WorldState)
@@ -67,10 +67,9 @@ class TransitionTeleportAction(
             return
 
         # Start the screen transition
-        params = [self.parameters.transition_time]
         self.transition = self.session.client.event_engine.get_action(
             "screen_transition",
-            params,
+            [self.transition_time],
         )
         assert self.transition
         self.transition.start()
@@ -88,6 +87,6 @@ class TransitionTeleportAction(
             # set the delayed teleport
             self.session.client.event_engine.execute_action(
                 "delayed_teleport",
-                self.raw_parameters[:-1],
+                (self.map_name, self.x, self.y),
             )
             self.stop()

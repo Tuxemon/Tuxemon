@@ -129,12 +129,12 @@ class WorldState(state.State):
         buttons.BACK: intentions.WORLD_MENU,
     }
 
-    def startup(
+    def __init__(
         self,
-        *,
-        map_name: Optional[str] = None,
-        **kwargs: Any,
+        map_name: str,
     ) -> None:
+        super().__init__()
+
         from tuxemon.player import Player
 
         # Provide access to the screen surface
@@ -455,7 +455,7 @@ class WorldState(state.State):
             if event.pressed:
                 logger.info("Opening main menu!")
                 self.client.release_controls()
-                self.client.push_state(WorldMenuState)
+                self.client.push_state(WorldMenuState())
                 return None
 
         # map may not have a player registered

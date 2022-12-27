@@ -21,18 +21,16 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
 
-class NpcWalkActionParameters(NamedTuple):
-    npc_slug: str
-
-
 @final
-class NpcWalk(EventAction[NpcWalkActionParameters]):
+@dataclass
+class NpcWalk(EventAction):
     """
     Set the NPC movement speed to the global walk speed.
 
@@ -47,9 +45,9 @@ class NpcWalk(EventAction[NpcWalkActionParameters]):
     """
 
     name = "npc_walk"
-    param_class = NpcWalkActionParameters
+    npc_slug: str
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.npc_slug)
         assert npc
         npc.moverate = self.session.client.config.player_walkrate

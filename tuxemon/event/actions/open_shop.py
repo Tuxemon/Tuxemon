@@ -74,7 +74,7 @@ class OpenShopAction(EventAction):
         def push_sell_menu():
             self.session.client.push_state(
                 ShopSellMenuState(
-                    buyer=None,
+                    buyer=npc,
                     seller=self.session.player,
                     economy=economy,
                 )

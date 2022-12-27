@@ -70,7 +70,7 @@ flatpak install flathub org.tuxemon.Tuxemon
 flatpak run org.tuxemon.Tuxemon
 ```
 
-###Debian/Ubuntu with virtual environment
+### Debian/Ubuntu with virtual environment
 
 This is the recommended way to run because it will not modify the
 system.

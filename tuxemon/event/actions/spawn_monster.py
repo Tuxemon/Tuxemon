@@ -27,13 +27,11 @@ import logging
 import random
 import uuid
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import final
 
 from tuxemon import formula, monster
-from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
-from tuxemon.npc import NPC
 from tuxemon.states.dialog import DialogState
 from tuxemon.states.world import WorldState
 from tuxemon.tools import open_dialog

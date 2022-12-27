@@ -22,7 +22,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import NamedTuple, Optional, Union, final
+from typing import Optional, Union, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction

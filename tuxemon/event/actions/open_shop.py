@@ -29,7 +29,7 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.item.economy import Economy
 from tuxemon.states.choice import ChoiceState
 from tuxemon.states.items import ShopBuyMenuState, ShopSellMenuState
-from tuxemon.tools import assert_never, open_choice_dialog
+from tuxemon.tools import assert_never
 
 
 @final

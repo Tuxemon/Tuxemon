@@ -63,7 +63,9 @@ class BattlesAction(EventAction):
             output, battle_date = player.battle_history[self.character]
             diff_date = today - battle_date
             if self.result == output:
-                print(f"{self.result} against {self.character} {diff_date} days ago")
+                print(
+                    f"{self.result} against {self.character} {diff_date} days ago"
+                )
             else:
                 print(f"Never {self.result} against {self.character}")
         else:

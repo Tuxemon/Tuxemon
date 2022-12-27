@@ -323,7 +323,7 @@
   </object>
   <object id="95" name="Go to Professor's Lab" type="event" x="704" y="832" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport professor_lab.tmx,9,17,0.5"/>
+    <property name="act10" value="transition_teleport professor_lab.tmx,9,17,0.3"/>
     <property name="cond10" value="is player_at"/>
    </properties>
   </object>
@@ -336,7 +336,7 @@
   </object>
   <object id="98" name="Teleport to healing center" type="event" x="640" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport healing_center.tmx,7,12,0.3"/>
+    <property name="act10" value="transition_teleport healing_center.tmx,6,10,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
    </properties>
@@ -919,7 +919,7 @@
   </object>
   <object id="160" name="Default" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable teleport_faint:healing_center.tmx 7 10"/>
+    <property name="act1" value="set_variable teleport_faint:healing_center.tmx 6 10"/>
     <property name="cond1" value="not variable_set teleport_faint"/>
    </properties>
   </object>

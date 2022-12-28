@@ -9,11 +9,23 @@
         },
         {
             "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 12,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 16,
             "technique": "splinter"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "web"
+        },
+        {
+            "level_learned": 32,
+            "technique": "chill_mist"
         }
     ],
     "evolutions": [],

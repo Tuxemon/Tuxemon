@@ -9,11 +9,23 @@
         },
         {
             "level_learned": 2,
-            "technique": "blossom"
+            "technique": "clamp_on"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "ram"
+        },
+        {
+            "level_learned": 20,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 24,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 28,
+            "technique": "blossom"
         }
     ],
     "evolutions": [],

@@ -4,15 +4,15 @@
     "ai": "RandomAI",
     "moveset": [
         {
-            "level_learned": 1,
+            "level_learned": 2,
             "technique": "strike"
         },
         {
-            "level_learned": 1,
+            "level_learned": 2,
             "technique": "eyebite"
         },
         {
-            "level_learned": 1,
+            "level_learned": 12,
             "technique": "blade"
         }
     ],

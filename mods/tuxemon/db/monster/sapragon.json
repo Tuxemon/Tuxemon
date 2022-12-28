@@ -12,14 +12,26 @@
             "technique": "web"
         },
         {
-            "level_learned": 2,
+            "level_learned": 16,
+            "technique": "hibernate"
+        },
+        {
+            "level_learned": 32,
             "technique": "sting"
+        },
+        {
+            "level_learned": 36,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 40,
+            "technique": "fluff_up"
         }
     ],
     "evolutions": [
         {
             "path": "standard",
-            "at_level": 55,
+            "at_level": 54,
             "monster_slug": "dragarbor"
         }
     ],

@@ -9,11 +9,23 @@
         },
         {
             "level_learned": 2,
+            "technique": "feint"
+        },
+        {
+            "level_learned": 12,
+            "technique": "sand_spray"
+        },
+        {
+            "level_learned": 20,
             "technique": "petrify"
         },
         {
-            "level_learned": 2,
-            "technique": "sand_spray"
+            "level_learned": 24,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 28,
+            "technique": "overgrowth"
         }
     ],
     "evolutions": [],

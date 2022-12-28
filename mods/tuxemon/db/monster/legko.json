@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "overgrowth"
+            "technique": "sting"
         },
         {
             "level_learned": 2,
             "technique": "blossom"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "boulder"
+        },
+        {
+            "level_learned": 28,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 32,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 34,
+            "technique": "spray"
         }
     ],
     "evolutions": [

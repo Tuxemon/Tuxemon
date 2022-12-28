@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "rot"
+            "technique": "suck_poison"
         },
         {
             "level_learned": 2,
             "technique": "feint"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 20,
+            "technique": "rot"
+        },
+        {
+            "level_learned": 24,
             "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 28,
+            "technique": "biting_winds"
         }
     ],
     "evolutions": [],

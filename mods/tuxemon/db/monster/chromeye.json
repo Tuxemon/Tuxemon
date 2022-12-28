@@ -12,32 +12,32 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "wall_of_steel"
         }
     ],
     "evolutions": [
         {
             "path": "mixed",
-            "at_level": 20,
+            "at_level": 18,
             "monster_slug": "angrito",
             "mixed": "tobedefined"
         },
         {
             "path": "mixed",
-            "at_level": 20,
+            "at_level": 18,
             "monster_slug": "happito",
             "mixed": "tobedefined"
         },
         {
             "path": "mixed",
-            "at_level": 20,
+            "at_level": 18,
             "monster_slug": "neutrito",
             "mixed": "tobedefined"
         },
         {
             "path": "mixed",
-            "at_level": 20,
+            "at_level": 18,
             "monster_slug": "sadito",
             "mixed": "tobedefined"
         }

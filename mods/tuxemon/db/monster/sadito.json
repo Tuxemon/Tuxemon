@@ -12,8 +12,20 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 20,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 24,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 28,
+            "technique": "flood"
         }
     ],
     "evolutions": [],

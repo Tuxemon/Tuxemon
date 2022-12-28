@@ -9,11 +9,23 @@
         },
         {
             "level_learned": 2,
+            "technique": "kindling_flame"
+        },
+        {
+            "level_learned": 20,
+            "technique": "breathe_fire"
+        },
+        {
+            "level_learned": 44,
             "technique": "peregrine"
         },
         {
-            "level_learned": 2,
-            "technique": "breathe_fire"
+            "level_learned": 48,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 52,
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [],

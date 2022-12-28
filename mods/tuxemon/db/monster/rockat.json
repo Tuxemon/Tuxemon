@@ -9,11 +9,23 @@
         },
         {
             "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 12,
+            "technique": "thunderball"
+        },
+        {
+            "level_learned": 28,
             "technique": "glower"
         },
         {
-            "level_learned": 2,
-            "technique": "thunderball"
+            "level_learned": 32,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 34,
+            "technique": "surge"
         }
     ],
     "evolutions": [

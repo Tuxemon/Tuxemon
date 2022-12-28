@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "eyebite"
-        },
-        {
-            "level_learned": 2,
-            "technique": "glower"
+            "technique": "one_two"
         },
         {
             "level_learned": 2,
             "technique": "fire_claw"
+        },
+        {
+            "level_learned": 12,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 24,
+            "technique": "eyebite"
+        },
+        {
+            "level_learned": 28,
+            "technique": "glower"
+        },
+        {
+            "level_learned": 32,
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [],

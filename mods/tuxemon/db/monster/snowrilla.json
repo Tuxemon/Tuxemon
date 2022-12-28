@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 2,
             "technique": "icicle_spear"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 24,
             "technique": "flood"
         },
         {
-            "level_learned": 2,
+            "level_learned": 28,
             "technique": "chill_mist"
+        },
+        {
+            "level_learned": 32,
+            "technique": "frostbite"
         }
     ],
     "evolutions": [],

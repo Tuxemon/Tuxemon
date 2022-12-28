@@ -12,14 +12,14 @@
             "technique": "fire_claw"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "all_in"
         }
     ],
     "evolutions": [
         {
             "path": "standard",
-            "at_level": 20,
+            "at_level": 18,
             "monster_slug": "criniotherme"
         }
     ],

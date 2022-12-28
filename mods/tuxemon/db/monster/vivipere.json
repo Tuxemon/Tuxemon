@@ -39,7 +39,7 @@
             "path": "location",
             "at_level": 0,
             "monster_slug": "vivitrans",
-            "location": true
+            "inside": true
         },
         {
             "path": "standard",

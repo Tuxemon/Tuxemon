@@ -268,8 +268,9 @@ class MonsterEvolutionItemModel(BaseModel):
     )
     gender: Optional[GenderType] = Field(None, description="Gender parameter")
     item: Optional[str] = Field(None, description="Item parameter.")
-    location: bool = Field(
-        None, description="Location parameter (true inside, false outside)."
+    inside: bool = Field(
+        None,
+        description="Location parameter: inside true or inside false (outside).",
     )
     season: Optional[str] = Field(None, description="Season parameter.")
     stat1: Optional[StatType] = Field(

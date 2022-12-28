@@ -1234,7 +1234,7 @@ class CombatState(CombatAnimations):
                             self.question_evolution(monster, evolved)
                 elif evolution.path == "location":
                     if evolution.at_level <= monster.level:
-                        if evolution.location == self.client.map_inside:
+                        if evolution.inside == self.client.map_inside:
                             self.question_evolution(monster, evolved)
                 elif evolution.path == "stat":
                     if evolution.at_level <= monster.level:

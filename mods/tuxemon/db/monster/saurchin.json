@@ -12,8 +12,20 @@
             "technique": "flow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "font"
+        },
+        {
+            "level_learned": 20,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 24,
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 28,
+            "technique": "chill_mist"
         }
     ],
     "evolutions": [],

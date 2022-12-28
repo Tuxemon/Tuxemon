@@ -1,18 +1,16 @@
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.sink import SinkState
 
 
-class LockControlsActionParameters(NamedTuple):
-    pass
-
-
 @final
+@dataclass
 class LockControlsAction(
-    EventAction[LockControlsActionParameters],
+    EventAction,
 ):
     """
     Lock player controls
@@ -26,7 +24,5 @@ class LockControlsAction(
 
     name = "lock_controls"
 
-    param_class = LockControlsActionParameters
-
     def start(self) -> None:
-        self.session.client.push_state(SinkState)
+        self.session.client.push_state(SinkState())

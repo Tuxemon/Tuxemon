@@ -25,7 +25,8 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
@@ -33,12 +34,9 @@ from tuxemon.locale import T
 from tuxemon.menu.input import InputMenu
 
 
-class RenamePlayerActionParameters(NamedTuple):
-    pass
-
-
 @final
-class RenamePlayerAction(EventAction[RenamePlayerActionParameters]):
+@dataclass
+class RenamePlayerAction(EventAction):
     """
     Open the text input screen to rename the player.
 
@@ -50,19 +48,19 @@ class RenamePlayerAction(EventAction[RenamePlayerActionParameters]):
     """
 
     name = "rename_player"
-    param_class = RenamePlayerActionParameters
 
     def set_player_name(self, name: str) -> None:
         self.session.player.name = name
 
     def start(self) -> None:
         self.session.client.push_state(
-            state_name=InputMenu,
-            prompt=T.translate("input_name"),
-            callback=self.set_player_name,
-            escape_key_exits=False,
-            initial=self.session.player.name,
-            char_limit=prepare.PLAYER_NAME_LIMIT,
+            InputMenu(
+                prompt=T.translate("input_name"),
+                callback=self.set_player_name,
+                escape_key_exits=False,
+                initial=self.session.player.name,
+                char_limit=prepare.PLAYER_NAME_LIMIT,
+            )
         )
 
     def update(self) -> None:

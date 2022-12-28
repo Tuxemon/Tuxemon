@@ -21,18 +21,16 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
 
 
-class RemoveNpcActionParameters(NamedTuple):
-    npc_slug: str
-
-
 @final
-class RemoveNpcAction(EventAction[RemoveNpcActionParameters]):
+@dataclass
+class RemoveNpcAction(EventAction):
     """
     Remove an NPC object from the list of NPCs.
 
@@ -47,11 +45,11 @@ class RemoveNpcAction(EventAction[RemoveNpcActionParameters]):
     """
 
     name = "remove_npc"
-    param_class = RemoveNpcActionParameters
+    npc_slug: str
 
     def start(self) -> None:
         # Get a copy of the world state.
         world = self.session.client.get_state_by_name(WorldState)
 
         # Get the npc's parameters from the action
-        world.remove_entity(self.parameters.npc_slug)
+        world.remove_entity(self.npc_slug)

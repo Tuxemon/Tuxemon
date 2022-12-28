@@ -5,14 +5,26 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "stone_rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "headbutt"
+        },
+        {
+            "level_learned": 12,
+            "technique": "wallow"
+        },
+        {
+            "level_learned": 16,
             "technique": "salamander"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "flamethrower"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
             "technique": "refresh"
         }
     ],

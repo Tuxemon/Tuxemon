@@ -51,15 +51,14 @@ class DialogState(PopUpMenu):
 
     default_character_delay = 0.05
 
-    def startup(
+    def __init__(
         self,
-        *,
         text: Sequence[str] = (),
         avatar: Optional[Sprite] = None,
         menu: Optional[Sequence[Tuple[str, str, Callable[[], None]]]] = None,
         **kwargs: Any,
     ) -> None:
-        super().startup(**kwargs)
+        super().__init__(**kwargs)
         self.text_queue = list(text)
         self.avatar = avatar
         self.menu = menu
@@ -84,9 +83,10 @@ class DialogState(PopUpMenu):
             elif self.next_text() is None:
                 if self.menu:
                     self.client.push_state(
-                        ChoiceState,
-                        menu=self.menu,
-                        rect=self.text_area.rect,
+                        ChoiceState(
+                            menu=self.menu,
+                            rect=self.text_area.rect,
+                        )
                     )
                 else:
                     self.client.pop_state(self)

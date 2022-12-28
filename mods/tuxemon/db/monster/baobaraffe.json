@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 16,
             "technique": "invictus"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "fluff_up"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
             "technique": "blossom"
+        },
+        {
+            "level_learned": 28,
+            "technique": "pseudopod"
         }
     ],
     "evolutions": [],

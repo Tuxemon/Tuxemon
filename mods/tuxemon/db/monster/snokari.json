@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "biting_winds"
+        },
+        {
+            "level_learned": 12,
             "technique": "midnight_mantle"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
             "technique": "tonguespear"
         },
         {
-            "level_learned": 2,
+            "level_learned": 28,
             "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 32,
+            "technique": "chill_mist"
         }
     ],
     "evolutions": [],

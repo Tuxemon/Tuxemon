@@ -23,7 +23,8 @@ from __future__ import annotations
 
 import logging
 import random
-from typing import NamedTuple, Optional, Sequence, Union, final
+from dataclasses import dataclass
+from typing import Optional, Sequence, Union, final
 
 from tuxemon import ai, formula, monster, prepare
 from tuxemon.combat import check_battle_legal
@@ -37,13 +38,9 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
-class RandomEncounterActionParameters(NamedTuple):
-    encounter_slug: str
-    total_prob: Union[float, None]
-
-
 @final
-class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
+@dataclass
+class RandomEncounterAction(EventAction):
     """
     Randomly start a encounter.
 
@@ -67,7 +64,8 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
     """
 
     name = "random_encounter"
-    param_class = RandomEncounterActionParameters
+    encounter_slug: str
+    total_prob: Union[float, None] = None
 
     def start(self) -> None:
         player = self.session.player
@@ -77,9 +75,9 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
         if not check_battle_legal(player):
             return
 
-        slug = self.parameters.encounter_slug
+        slug = self.encounter_slug
         encounters = db.lookup(slug, table="encounter").monsters
-        encounter = _choose_encounter(encounters, self.parameters.total_prob)
+        encounter = _choose_encounter(encounters, self.total_prob)
 
         # If a random encounter was successfully rolled, look up the monster
         # and start the battle.
@@ -110,7 +108,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             self.world.stop_player()
 
             # flash the screen
-            self.session.client.push_state(FlashTransition)
+            self.session.client.push_state(FlashTransition())
 
             # Start some music!
             filename = env.battle_music

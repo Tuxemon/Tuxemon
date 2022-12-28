@@ -21,22 +21,20 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, Optional, final
+from dataclasses import dataclass
+from typing import Optional, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.economy import Economy
+from tuxemon.states.choice import ChoiceState
 from tuxemon.states.items import ShopBuyMenuState, ShopSellMenuState
-from tuxemon.tools import assert_never, open_choice_dialog
-
-
-class OpenShopActionParameters(NamedTuple):
-    npc_slug: str
-    menu: Optional[str]
+from tuxemon.tools import assert_never
 
 
 @final
-class OpenShopAction(EventAction[OpenShopActionParameters]):
+@dataclass
+class OpenShopAction(EventAction):
     """
     Open the shop menu for a NPC.
 
@@ -52,10 +50,11 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
     """
 
     name = "open_shop"
-    param_class = OpenShopActionParameters
+    npc_slug: str
+    menu: Optional[str] = None
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.npc_slug)
 
         assert npc
         if npc.economy:
@@ -65,21 +64,23 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
 
         def push_buy_menu():
             self.session.client.push_state(
-                ShopBuyMenuState,
-                buyer=self.session.player,
-                seller=npc,
-                economy=economy,
+                ShopBuyMenuState(
+                    buyer=self.session.player,
+                    seller=npc,
+                    economy=economy,
+                )
             )
 
         def push_sell_menu():
             self.session.client.push_state(
-                ShopSellMenuState,
-                buyer=None,
-                seller=self.session.player,
-                economy=economy,
+                ShopSellMenuState(
+                    buyer=npc,
+                    seller=self.session.player,
+                    economy=economy,
+                )
             )
 
-        menu = self.parameters.menu or "both"
+        menu = self.menu or "both"
         if menu == "both":
 
             def buy_menu() -> None:
@@ -95,10 +96,11 @@ class OpenShopAction(EventAction[OpenShopActionParameters]):
                 ("Sell", "Sell", sell_menu),
             ]
 
-            open_choice_dialog(
-                self.session,
-                menu=var_menu,
-                escape_key_exits=True,
+            self.session.client.push_state(
+                ChoiceState(
+                    menu=var_menu,
+                    escape_key_exits=True,
+                )
             )
 
         elif menu == "buy":

@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "refresh"
+            "technique": "goad"
         },
         {
             "level_learned": 2,
             "technique": "flood"
         },
         {
-            "level_learned": 2,
-            "technique": "goad"
+            "level_learned": 12,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 16,
+            "technique": "refresh"
+        },
+        {
+            "level_learned": 20,
+            "technique": "font"
+        },
+        {
+            "level_learned": 24,
+            "technique": "starfall"
         }
     ],
     "evolutions": [],

@@ -76,21 +76,21 @@ def main(
     # since menus do not clean up dirty areas, the blank,
     # "Background state" will do that.  The alternative is creating
     # a system for states to clean up their dirty screen areas.
-    client.push_state(BackgroundState)
+    client.push_state(BackgroundState())
     if not config.skip_titlescreen:
-        client.push_state(StartState)
+        client.push_state(StartState())
 
     if load_slot:
-        client.push_state(LoadMenuState, load_slot=load_slot)
+        client.push_state(LoadMenuState(load_slot=load_slot))
         client.pop_state()
     elif config.splash:
-        client.push_state(SplashState)
-        client.push_state(FadeInTransition)
+        client.push_state(SplashState(parent=client.state_manager))
+        client.push_state(FadeInTransition())
 
     # TODO: rename this to "debug map" or something
     if config.skip_titlescreen:
         map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
-        client.push_state(WorldState, map_name=map_name)
+        client.push_state(WorldState(map_name=map_name))
 
     # block of code useful for testing
     if config.collision_map:

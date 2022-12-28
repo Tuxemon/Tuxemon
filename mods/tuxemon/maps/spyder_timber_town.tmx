@@ -266,7 +266,7 @@
   </object>
   <object id="342" name="Teleport to Timber Centre" type="event" x="128" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_timber_center.tmx,7,12,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_center.tmx,6,10,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>

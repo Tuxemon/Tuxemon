@@ -4,7 +4,7 @@
     "ai": "RandomAI",
     "moveset": [
         {
-            "level_learned": 1,
+            "level_learned": 2,
             "technique": "tonguespear"
         },
         {
@@ -16,8 +16,16 @@
             "technique": "stampede"
         },
 	    {
-            "level_learned": 17,
+            "level_learned": 24,
             "technique": "feint"
+        },
+	    {
+            "level_learned": 28,
+            "technique": "sand_spray"
+        },
+	    {
+            "level_learned": 32,
+            "technique": "mudslide"
         }
     ],
     "evolutions": [],

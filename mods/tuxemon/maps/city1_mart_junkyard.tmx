@@ -169,7 +169,7 @@
   </object>
   <object id="37" type="event" x="64" y="352" width="16" height="16">
    <properties>
-    <property name="act10" value="cfanatic2 pathfind,8,21"/>
+    <property name="act10" value="pathfind cfanatic2,8,21"/>
     <property name="act20" value="set_variable fanatics_in_junkyard2:true"/>
     <property name="cond10" value="is variable_set fanatics_in_junkyard:true"/>
     <property name="cond20" value="not variable_set fanatics_in_junkyard2:true"/>
@@ -177,7 +177,7 @@
   </object>
   <object id="38" type="event" x="256" y="352" width="16" height="16">
    <properties>
-    <property name="act10" value="cfanatic1 pathfind,11,21"/>
+    <property name="act10" value="pathfind cfanatic1,11,21"/>
     <property name="act20" value="set_variable fanatics_in_junkyard2:true"/>
     <property name="cond10" value="is variable_set fanatics_in_junkyard:true"/>
     <property name="cond20" value="not variable_set fanatics_in_junkyard2:true"/>
@@ -214,7 +214,7 @@
   </object>
   <object id="42" type="event" x="304" y="224" width="16" height="16">
    <properties>
-    <property name="act10" value="cfanatic1 pathfind,11,32"/>
+    <property name="act10" value="pathfind cfanatic1,11,32"/>
     <property name="act20" value="set_variable fanatics_in_junkyard5:true"/>
     <property name="cond10" value="is variable_set fanatics_in_junkyard4:true"/>
     <property name="cond20" value="not variable_set fanatics_in_junkyard5:true"/>
@@ -222,7 +222,7 @@
   </object>
   <object id="44" type="event" x="272" y="224" width="16" height="16">
    <properties>
-    <property name="act10" value="cfanatic2 pathfind,8,33"/>
+    <property name="act10" value="pathfind cfanatic2,8,33"/>
     <property name="act20" value="set_variable fanatics_in_junkyard5:true"/>
     <property name="cond10" value="is variable_set fought_fanatics_in_junkyard:true"/>
     <property name="cond20" value="not variable_set fanatics_in_junkyard4:true"/>

@@ -21,20 +21,16 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
 
 
-class DelayedTeleportActionParameters(NamedTuple):
-    map_name: str
-    position_x: int
-    position_y: int
-
-
 @final
-class DelayedTeleportAction(EventAction[DelayedTeleportActionParameters]):
+@dataclass
+class DelayedTeleportAction(EventAction):
     """
     Set teleport information.
 
@@ -55,7 +51,9 @@ class DelayedTeleportAction(EventAction[DelayedTeleportActionParameters]):
     """
 
     name = "delayed_teleport"
-    param_class = DelayedTeleportActionParameters
+    map_name: str
+    position_x: int
+    position_y: int
 
     def start(self) -> None:
         # Get the world object from the session
@@ -66,6 +64,6 @@ class DelayedTeleportAction(EventAction[DelayedTeleportActionParameters]):
             return
 
         world.delayed_teleport = True
-        world.delayed_mapname = self.parameters.map_name
-        world.delayed_x = self.parameters.position_x
-        world.delayed_y = self.parameters.position_y
+        world.delayed_mapname = self.map_name
+        world.delayed_x = self.position_x
+        world.delayed_y = self.position_y

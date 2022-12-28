@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "electrical_storm"
-        },
-        {
-            "level_learned": 2,
-            "technique": "wall_of_steel"
+            "technique": "goad"
         },
         {
             "level_learned": 2,
             "technique": "strike"
+        },
+        {
+            "level_learned": 12,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 24,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 28,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 32,
+            "technique": "wall_of_steel"
         }
     ],
     "evolutions": [],

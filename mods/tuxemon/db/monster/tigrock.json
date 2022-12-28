@@ -9,11 +9,23 @@
         },
         {
             "level_learned": 2,
+            "technique": "blade"
+        },
+        {
+            "level_learned": 16,
+            "technique": "fume"
+        },
+        {
+            "level_learned": 32,
             "technique": "strike"
         },
         {
-            "level_learned": 2,
+            "level_learned": 36,
             "technique": "energy_field"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shuriken"
         }
     ],
     "evolutions": [],

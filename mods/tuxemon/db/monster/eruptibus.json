@@ -5,14 +5,26 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 12,
+            "technique": "static_field"
+        },
+        {
+            "level_learned": 16,
             "technique": "berserk"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "hibernate"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
             "technique": "energy_field"
         }
     ],

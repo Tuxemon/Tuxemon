@@ -5,14 +5,26 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "suck_poison"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 12,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 24,
             "technique": "icicle_spear"
         },
         {
-            "level_learned": 2,
+            "level_learned": 28,
             "technique": "font"
         },
         {
-            "level_learned": 2,
+            "level_learned": 32,
             "technique": "starfall"
         }
     ],

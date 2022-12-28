@@ -9,11 +9,23 @@
         },
         {
             "level_learned": 2,
+            "technique": "give_all"
+        },
+        {
+            "level_learned": 12,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 24,
             "technique": "kindling_flame"
         },
         {
-            "level_learned": 2,
+            "level_learned": 28,
             "technique": "peregrine"
+        },
+        {
+            "level_learned": 28,
+            "technique": "salamander"
         }
     ],
     "evolutions": [

@@ -9,11 +9,23 @@
         },
         {
             "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 12,
+            "technique": "static_field"
+        },
+        {
+            "level_learned": 16,
             "technique": "shuriken"
         },
         {
-            "level_learned": 2,
-            "technique": "static_field"
+            "level_learned": 20,
+            "technique": "kindling_flame"
+        },
+        {
+            "level_learned": 24,
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [],

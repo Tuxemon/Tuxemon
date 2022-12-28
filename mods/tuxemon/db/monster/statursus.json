@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "rock"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 12,
             "technique": "flamethrower"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
             "technique": "give_all"
         },
         {
-            "level_learned": 2,
+            "level_learned": 28,
             "technique": "supernova"
+        },
+        {
+            "level_learned": 32,
+            "technique": "electrical_storm"
         }
     ],
     "evolutions": [],

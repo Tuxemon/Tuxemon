@@ -9,11 +9,35 @@
         },
         {
             "level_learned": 2,
+            "technique": "biting_winds"
+        },
+        {
+            "level_learned": 12,
+            "technique": "fume"
+        },
+        {
+            "level_learned": 24,
+            "technique": "probiscus"
+        },
+        {
+            "level_learned": 28,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 32,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 44,
             "technique": "thunderclap"
         },
         {
-            "level_learned": 2,
-            "technique": "snowstorm"
+            "level_learned": 48,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 52,
+            "technique": "chill_mist"
         }
     ],
     "evolutions": [],

@@ -12,8 +12,20 @@
             "technique": "peck"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 24,
             "technique": "peregrine"
+        },
+        {
+            "level_learned": 28,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 32,
+            "technique": "one_two"
         }
     ],
     "evolutions": [],

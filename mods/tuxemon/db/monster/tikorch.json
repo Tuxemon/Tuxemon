@@ -12,8 +12,20 @@
             "technique": "blossom"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "petrify"
+        },
+        {
+            "level_learned": 32,
             "technique": "rock"
+        },
+        {
+            "level_learned": 36,
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 40,
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [],

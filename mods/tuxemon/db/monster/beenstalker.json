@@ -5,14 +5,26 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 12,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 24,
             "technique": "sting"
         },
         {
-            "level_learned": 2,
+            "level_learned": 28,
             "technique": "invictus"
         },
         {
-            "level_learned": 2,
+            "level_learned": 32,
             "technique": "fluff_up"
         }
     ],

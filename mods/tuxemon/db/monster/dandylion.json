@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "energy_claws"
+            "technique": "pseudopod"
         },
         {
             "level_learned": 2,
             "technique": "overgrowth"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "sleeping_powder"
+        },
+        {
+            "level_learned": 24,
+            "technique": "energy_claws"
+        },
+        {
+            "level_learned": 28,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 32,
+            "technique": "all_in"
         }
     ],
     "evolutions": [],

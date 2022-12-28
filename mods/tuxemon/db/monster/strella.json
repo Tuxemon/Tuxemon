@@ -12,8 +12,20 @@
             "technique": "splinter"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "take_cover"
+        },
+        {
+            "level_learned": 24,
             "technique": "all_in"
+        },
+        {
+            "level_learned": 28,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 32,
+            "technique": "peck"
         }
     ],
     "evolutions": [],

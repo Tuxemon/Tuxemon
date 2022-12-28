@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "flamethrower"
-        },
-        {
-            "level_learned": 2,
             "technique": "rock"
         },
         {
             "level_learned": 2,
+            "technique": "energy_field"
+        },
+        {
+            "level_learned": 12,
             "technique": "sleep_bomb"
+        },
+        {
+            "level_learned": 20,
+            "technique": "thunderclap"
+        },
+        {
+            "level_learned": 24,
+            "technique": "shadow_boxing"
+        },
+        {
+            "level_learned": 28,
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [],

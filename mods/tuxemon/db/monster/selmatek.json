@@ -9,11 +9,23 @@
         },
         {
             "level_learned": 2,
-            "technique": "avalanche"
+            "technique": "rock"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "take_cover"
+        },
+        {
+            "level_learned": 24,
+            "technique": "quicksand"
+        },
+        {
+            "level_learned": 28,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 32,
+            "technique": "avalanche"
         }
     ],
     "evolutions": [],

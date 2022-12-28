@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "flamethrower"
+            "technique": "supernova"
         },
         {
             "level_learned": 2,
             "technique": "chill_mist"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 24,
+            "technique": "flamethrower"
+        },
+        {
+            "level_learned": 28,
             "technique": "rock"
+        },
+        {
+            "level_learned": 32,
+            "technique": "fire_ball"
         }
     ],
     "evolutions": [],

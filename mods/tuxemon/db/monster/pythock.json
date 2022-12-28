@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "battery_acid"
+            "technique": "strike"
         },
         {
             "level_learned": 2,
+            "technique": "surge"
+        },
+        {
+            "level_learned": 16,
             "technique": "frostbite"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
+            "technique": "battery_acid"
+        },
+        {
+            "level_learned": 28,
             "technique": "sudden_glow"
+        },
+        {
+            "level_learned": 32,
+            "technique": "shrapnel"
         }
     ],
     "evolutions": [],

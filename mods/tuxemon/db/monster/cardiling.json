@@ -8,11 +8,11 @@
             "technique": "breathe_fire"
         },
         {
-            "level_learned": 1,
+            "level_learned": 2,
             "technique": "give_all"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "fire_claw"
         }
     ],

@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "stampede"
+            "technique": "thunderball"
         },
         {
             "level_learned": 2,
             "technique": "shadow_boxing"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "one_two"
+        },
+        {
+            "level_learned": 24,
+            "technique": "stampede"
+        },
+        {
+            "level_learned": 28,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 32,
+            "technique": "snowstorm"
         }
     ],
     "evolutions": [],

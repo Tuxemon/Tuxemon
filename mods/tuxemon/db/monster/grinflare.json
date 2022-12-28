@@ -9,11 +9,23 @@
         },
         {
             "level_learned": 2,
+            "technique": "sand_spray"
+        },
+        {
+            "level_learned": 12,
+            "technique": "avalanche"
+        },
+        {
+            "level_learned": 16,
             "technique": "fire_claw"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "give_all"
+        },
+        {
+            "level_learned": 24,
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [],

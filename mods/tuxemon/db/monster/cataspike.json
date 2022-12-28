@@ -4,7 +4,7 @@
     "ai": "RandomAI",
     "moveset": [
         {
-            "level_learned": 1,
+            "level_learned": 2,
             "technique": "bullet"
         },
         {
@@ -12,7 +12,7 @@
             "technique": "shuriken"
         },
         {
-            "level_learned": 5,
+            "level_learned": 4,
             "technique": "wallow"
         }
     ],

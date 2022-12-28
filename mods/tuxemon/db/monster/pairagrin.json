@@ -12,14 +12,14 @@
             "technique": "whirlwind"
         },
         {
-            "level_learned": 2,
+            "level_learned": 16,
             "technique": "wing_tip"
         }
     ],
     "evolutions": [
         {
             "path": "standard",
-            "at_level": 26,
+            "at_level": 30,
             "monster_slug": "pairagrim"
         }
     ],

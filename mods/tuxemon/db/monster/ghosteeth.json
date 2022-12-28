@@ -12,8 +12,44 @@
             "technique": "blood_bond"
         },
         {
+            "level_learned": 6,
+            "technique": "technique"
+        },
+        {
+            "level_learned": 8,
+            "technique": "technique"
+        },
+        {
             "level_learned": 12,
             "technique": "chill_mist"
+        },
+        {
+            "level_learned": 16,
+            "technique": "technique"
+        },
+        {
+            "level_learned": 20,
+            "technique": "technique"
+        },
+        {
+            "level_learned": 24,
+            "technique": "technique"
+        },
+        {
+            "level_learned": 28,
+            "technique": "technique"
+        },
+        {
+            "level_learned": 32,
+            "technique": "technique"
+        },
+        {
+            "level_learned": 36,
+            "technique": "technique"
+        },
+        {
+            "level_learned": 40,
+            "technique": "technique"
         }
     ],
     "evolutions": [],

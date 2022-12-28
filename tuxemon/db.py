@@ -229,7 +229,7 @@ class ItemModel(BaseModel):
     def file_exists(cls, v):
         if has.file(v):
             return v
-        raise ValueError(f"no resource exists with path: {v}")
+        raise ValueError(f"the sprite {v} doesn't exist in the db")
 
 
 class MonsterMovesetItemModel(BaseModel):
@@ -250,7 +250,7 @@ class MonsterMovesetItemModel(BaseModel):
     def technique_exists(cls, v):
         if has.db_entry("technique", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the technique {v} doesn't exist in the db")
 
 
 class MonsterEvolutionItemModel(BaseModel):
@@ -285,19 +285,19 @@ class MonsterEvolutionItemModel(BaseModel):
     def technique_exists(cls, v):
         if has.db_entry("technique", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the technique {v} doesn't exist in the db")
 
     @validator("monster_slug")
     def monster_exists(cls, v):
         if has.db_entry("monster", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the monster {v} doesn't exist in the db")
 
     @validator("item")
     def item_exists(cls, v):
         if has.db_entry("item", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the item {v} doesn't exist in the db")
 
 
 class MonsterFlairItemModel(BaseModel):
@@ -496,7 +496,7 @@ class TechniqueModel(BaseModel):
     def file_exists(cls, v):
         if has.file(v):
             return v
-        raise ValueError(f"no resource exists with path: {v}")
+        raise ValueError(f"the icon {v} doesn't exist in the db")
 
     # Validate fields that refer to translated text
     @validator("use_tech", "use_success", "use_failure")
@@ -533,7 +533,7 @@ class PartyMemberModel(BaseModel):
     def monster_exists(cls, v):
         if has.db_entry("monster", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the monster {v} doesn't exist in the db")
 
 
 class NpcModel(BaseModel):
@@ -594,7 +594,7 @@ class EncounterItemModel(BaseModel):
     def monster_exists(cls, v):
         if has.db_entry("monster", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the monster {v} doesn't exist in the db")
 
 
 class EncounterModel(BaseModel):
@@ -622,7 +622,7 @@ class EconomyItemModel(BaseModel):
     def item_exists(cls, v):
         if has.db_entry("item", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the item {v} doesn't exist in the db")
 
 
 class EconomyModel(BaseModel):

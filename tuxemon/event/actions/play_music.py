@@ -22,7 +22,8 @@
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon import prepare
 from tuxemon.db import db
@@ -32,12 +33,9 @@ from tuxemon.platform import mixer
 logger = logging.getLogger(__name__)
 
 
-class PlayMusicActionParameters(NamedTuple):
-    filename: str
-
-
 @final
-class PlayMusicAction(EventAction[PlayMusicActionParameters]):
+@dataclass
+class PlayMusicAction(EventAction):
     """
     Play a music file from "resources/music/".
 
@@ -52,13 +50,13 @@ class PlayMusicAction(EventAction[PlayMusicActionParameters]):
     """
 
     name = "play_music"
-    param_class = PlayMusicActionParameters
+    filename: str
 
     def start(self) -> None:
-        filename = self.parameters.filename
-
         try:
-            path = prepare.fetch("music", db.lookup_file("music", filename))
+            path = prepare.fetch(
+                "music", db.lookup_file("music", self.filename)
+            )
             mixer.music.load(path)
             mixer.music.set_volume(prepare.CONFIG.music_volume)
             mixer.music.play(-1)
@@ -72,4 +70,4 @@ class PlayMusicAction(EventAction[PlayMusicActionParameters]):
                 "previoussong"
             ] = self.session.client.current_music["song"]
         self.session.client.current_music["status"] = "playing"
-        self.session.client.current_music["song"] = filename
+        self.session.client.current_music["song"] = self.filename

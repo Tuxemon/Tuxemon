@@ -940,6 +940,13 @@ class JSONDatabase:
 
         return filename
 
+    def has_entry(self, slug: str, table: TableName) -> bool:
+        table_entry = self.database[table]
+        if not table_entry:
+            logger.exception(f"{table} table wasn't loaded")
+            sys.exit()
+        return slug in table_entry
+
     def log_missing_entry_and_exit(self, table: str, slug: str):
         options = difflib.get_close_matches(slug, self.database[table].keys())
         options = [repr(s) for s in options]

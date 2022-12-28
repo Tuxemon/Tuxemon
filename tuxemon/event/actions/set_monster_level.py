@@ -21,42 +21,40 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, Union, final
+from dataclasses import dataclass
+from typing import Union, final
 
 from tuxemon.event.eventaction import EventAction
 
 
-class SetMonsterLevelActionParameters(NamedTuple):
-    slot: Union[int, None]
-    level: int
-
-
 @final
-class SetMonsterLevelAction(EventAction[SetMonsterLevelActionParameters]):
+@dataclass
+class SetMonsterLevelAction(EventAction):
     """
     Change the level of a monster in the current player's party.
 
     Script usage:
         .. code-block::
 
-            set_monster_level [slot][,level]
+            set_monster_level [level][,slot]
 
     Script parameters:
+        level: Number of levels to add. Negative numbers are allowed.
         slot: Slot of the monster in the party. If no slot is specified, all
             monsters are leveled.
-        level: Number of levels to add. Negative numbers are allowed.
 
     """
 
     name = "set_monster_level"
-    param_class = SetMonsterLevelActionParameters
+    level: int
+    slot: Union[int, None] = None
 
     def start(self) -> None:
         if not self.session.player.monsters:
             return
 
-        monster_slot = self.parameters[0]
-        monster_level = self.parameters[1]
+        monster_slot = self.slot
+        monster_level = self.level
 
         if monster_slot:
             if len(self.session.player.monsters) < int(monster_slot):

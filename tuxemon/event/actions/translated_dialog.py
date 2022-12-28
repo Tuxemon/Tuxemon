@@ -22,7 +22,8 @@
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, Optional, Sequence, final
+from dataclasses import dataclass, field
+from typing import Optional, Sequence, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar
@@ -34,12 +35,9 @@ from tuxemon.tools import open_dialog
 logger = logging.getLogger(__name__)
 
 
-class TranslatedDialogActionParameters(NamedTuple):
-    pass
-
-
 @final
-class TranslatedDialogAction(EventAction[TranslatedDialogActionParameters]):
+@dataclass
+class TranslatedDialogAction(EventAction):
     """
     Open a dialog window with translated text according to the passed
     translation key. Parameters passed to the translation string will also
@@ -72,7 +70,11 @@ class TranslatedDialogAction(EventAction[TranslatedDialogActionParameters]):
     """
 
     name = "translated_dialog"
-    param_class = TranslatedDialogActionParameters
+    raw_parameters: Sequence[str] = field(init=False)
+
+    def __init__(self, *args):
+        super().__init__()
+        self.raw_parameters = args
 
     def start(self) -> None:
         key = self.raw_parameters[0]

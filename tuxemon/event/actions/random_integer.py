@@ -22,22 +22,18 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 from random import randint
-from typing import NamedTuple, final
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
 
 
-class RandomIntegerActionParameters(NamedTuple):
-    var: str
-    lower_bound: int
-    upper_bound: int
-
-
 @final
-class RandomIntegerAction(EventAction[RandomIntegerActionParameters]):
+@dataclass
+class RandomIntegerAction(EventAction):
     """
     Randomly choose an integer between 2 numbers (inclusive), and set the key in the
     player.game_variables dictionary to be this value.
@@ -58,13 +54,15 @@ class RandomIntegerAction(EventAction[RandomIntegerActionParameters]):
     """
 
     name = "random_integer"
-    param_class = RandomIntegerActionParameters
+    var: str
+    lower_bound: int
+    upper_bound: int
 
     def start(self) -> None:
         player = self.session.player
 
-        var, lower_bound, upper_bound = self.parameters
-
         # Append the game_variables dictionary with a random number between
         # upper and lower bound, inclusive:
-        player.game_variables[var] = randint(lower_bound, upper_bound)
+        player.game_variables[self.var] = randint(
+            self.lower_bound, self.upper_bound
+        )

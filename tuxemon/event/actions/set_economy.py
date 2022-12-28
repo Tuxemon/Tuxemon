@@ -21,20 +21,17 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, Union, final
+from dataclasses import dataclass
+from typing import Union, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.economy import Economy
 
 
-class SetEconomyActionParameters(NamedTuple):
-    npc_slug: str
-    economy_slug: Union[str, None]
-
-
 @final
-class SetEconomyAction(EventAction[SetEconomyActionParameters]):
+@dataclass
+class SetEconomyAction(EventAction):
     """
     Set the economy (prices of items) of the npc or player.
 
@@ -50,14 +47,15 @@ class SetEconomyAction(EventAction[SetEconomyActionParameters]):
     """
 
     name = "set_economy"
-    param_class = SetEconomyActionParameters
+    npc_slug: str
+    economy_slug: Union[str, None] = None
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.npc_slug)
         assert npc
-        if self.parameters.economy_slug is None:
+        if self.economy_slug is None:
             npc.economy = Economy("default")
 
             return
 
-        npc.economy = Economy(self.parameters.economy_slug)
+        npc.economy = Economy(self.economy_slug)

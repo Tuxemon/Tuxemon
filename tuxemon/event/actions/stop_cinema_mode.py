@@ -22,7 +22,8 @@
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
@@ -30,12 +31,9 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
-class StopCinemaModeActionParameters(NamedTuple):
-    pass
-
-
 @final
-class StopCinemaModeAction(EventAction[StopCinemaModeActionParameters]):
+@dataclass
+class StopCinemaModeAction(EventAction):
     """
     Stop cinema mode by animating black bars back to the normal aspect ratio.
 
@@ -47,7 +45,6 @@ class StopCinemaModeAction(EventAction[StopCinemaModeActionParameters]):
     """
 
     name = "stop_cinema_mode"
-    param_class = StopCinemaModeActionParameters
 
     def start(self) -> None:
         world = self.session.client.current_state

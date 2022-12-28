@@ -21,19 +21,16 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.db import SeenStatus
 from tuxemon.event.eventaction import EventAction
 
 
-class SetTuxepediaActionParameters(NamedTuple):
-    monster_key: str
-    monster_str: str
-
-
 @final
-class SetTuxepediaAction(EventAction[SetTuxepediaActionParameters]):
+@dataclass
+class SetTuxepediaAction(EventAction):
     """
     Set the key and value in the Tuxepedia dictionary.
 
@@ -49,17 +46,14 @@ class SetTuxepediaAction(EventAction[SetTuxepediaActionParameters]):
     """
 
     name = "set_tuxepedia"
-    param_class = SetTuxepediaActionParameters
+    monster_key: str
+    monster_str: str
 
     def start(self) -> None:
         player = self.session.player.tuxepedia
 
-        # Read the parameters
-        monster_key = self.parameters[0]
-        monster_str = self.parameters[1]
-
         # Append the tuxepedia with a key
-        if monster_str == "caught":
-            player[str(monster_key)] = SeenStatus.caught
-        elif monster_str == "seen":
-            player[str(monster_key)] = SeenStatus.seen
+        if self.monster_str == "caught":
+            player[str(self.monster_key)] = SeenStatus.caught
+        elif self.monster_str == "seen":
+            player[str(self.monster_key)] = SeenStatus.seen

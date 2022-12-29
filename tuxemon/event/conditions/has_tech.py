@@ -55,7 +55,7 @@ class HasTechCondition(EventCondition):
         """
         player = session.player
         tech = condition.parameters[0]
-        if player.find_tech(tech) is None:
-            return False
-        else:
+        if player.has_tech(tech):
             return True
+        else:
+            return False

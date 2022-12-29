@@ -51,7 +51,7 @@ from typing import (
 from tuxemon import surfanim
 from tuxemon.ai import AI
 from tuxemon.compat import Rect
-from tuxemon.db import OutputBattle, SeenStatus, db
+from tuxemon.db import ElementType, OutputBattle, SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import (
@@ -871,23 +871,32 @@ class NPC(Entity[NPCState]):
         self.game_variables["party_level_highest"] = level_highest
         self.game_variables["party_level_average"] = level_average
 
-    def find_tech(self, tech: str) -> Optional[Technique]:
+    def has_tech(self, tech: str) -> bool:
         """
-        Finds a technique in the npc's list of monsters.
+        Returns TRUE if there is the technique in the party.
 
         Parameters:
             tech: The slug name of the technique.
-
-        Returns:
-            Technique found.
-
         """
         for technique in self.monsters:
-            for moves in technique.moves:
-                if moves.slug == tech:
-                    return moves.slug
+            for move in technique.moves:
+                if move.slug == tech:
+                    return True
+        return False
 
-        return None
+    def has_type(self, element: ElementType) -> bool:
+        """
+        Returns TRUE if there is the type in the party.
+
+        Parameters:
+            type: The slug name of the type.
+        """
+        for mon in self.monsters:
+            if mon.type1 == element:
+                return True
+            elif mon.type2 == element:
+                return True
+        return False
 
     def give_money(self, amount: int) -> None:
         self.money["player"] += amount

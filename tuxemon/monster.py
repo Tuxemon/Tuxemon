@@ -43,6 +43,7 @@ from tuxemon.db import (
     MonsterEvolutionItemModel,
     MonsterMovesetItemModel,
     MonsterShape,
+    StatType,
     db,
 )
 from tuxemon.locale import T
@@ -390,6 +391,29 @@ class Monster:
         """
 
         self.moves.append(technique)
+
+    def return_stat(
+        self,
+        stat: StatType,
+    ) -> int:
+        """
+        Returns a monster stat (eg. melee, armour, etc.).
+
+        Parameters:
+            stat: The stat for the monster to return.
+        """
+        if stat == StatType.armour:
+            return self.armour
+        elif stat == StatType.dodge:
+            return self.dodge
+        elif stat == StatType.hp:
+            return self.hp
+        elif stat == StatType.melee:
+            return self.melee
+        elif stat == StatType.ranged:
+            return self.ranged
+        elif stat == StatType.speed:
+            return self.speed
 
     def give_experience(self, amount: int = 1) -> None:
         """

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="43">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="59">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
@@ -27,7 +27,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="12" height="7">
   <data encoding="base64" compression="zlib">
-   eAFjYBhY8E+OoWFgXUBd2wFOgQGd
+   eAFjYBhY8E+OoYFSFxQqMjQAMRiAaBibUnPJ0Q8Av6wEZQ==
   </data>
  </layer>
  <layer id="4" name="Above player" width="12" height="7">
@@ -57,6 +57,109 @@
     <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="36" name="Player Spawn" type="event" x="112" y="64" width="16" height="16"/>
+  <object id="36" name="Player Spawn" type="event" x="0" y="0" width="16" height="16"/>
+  <object id="43" name="Create Owner" type="event" x="144" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc taba_house2_owner,9,2"/>
+    <property name="act2" value="npc_face taba_house2_owner,down"/>
+    <property name="cond1" value="not npc_exists taba_house2_owner"/>
+   </properties>
+  </object>
+  <object id="45" name="Talk2" type="event" x="144" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face taba_house2_owner,down"/>
+    <property name="act2" value="translated_dialog taba_house2_owner1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="46" name="Reading1" type="event" x="16" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house2_reading1"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="47" name="Reading2" type="event" x="32" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house2_reading2"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="48" name="Reading3" type="event" x="64" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house2_reading3"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="49" name="Reading4" type="event" x="80" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house2_reading4"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="50" name="Books" type="event" x="0" y="32" width="128" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house2_books"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="51" name="Create Reader1" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc nurse1,1,3"/>
+    <property name="act2" value="npc_face nurse1,down"/>
+    <property name="cond1" value="not npc_exists nurse1"/>
+   </properties>
+  </object>
+  <object id="52" name="Reader1 Talk" type="event" x="16" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house2_reader1a"/>
+    <property name="behav1" value="talk nurse1"/>
+   </properties>
+  </object>
+  <object id="53" name="Create Reader2" type="event" x="32" y="8.88178e-16" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc knight4,2,3"/>
+    <property name="act2" value="npc_face knight4,down"/>
+    <property name="cond1" value="not npc_exists knight4"/>
+   </properties>
+  </object>
+  <object id="54" name="Reader2 Talk" type="event" x="32" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house2_reader2a"/>
+    <property name="behav1" value="talk knight4"/>
+   </properties>
+  </object>
+  <object id="55" name="Create Reader3" type="event" x="48" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc taba_house2_reader2,5,3"/>
+    <property name="act2" value="npc_face taba_house2_reader2,down"/>
+    <property name="cond1" value="not npc_exists taba_house2_reader2"/>
+   </properties>
+  </object>
+  <object id="56" name="Reader3 Talk" type="event" x="48" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house2_reader3a"/>
+    <property name="behav1" value="talk taba_house2_reader2"/>
+   </properties>
+  </object>
+  <object id="57" name="Create Reader4" type="event" x="64" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc taba_house2_reader1,4,3"/>
+    <property name="act2" value="npc_face taba_house2_reader1,down"/>
+    <property name="cond1" value="not npc_exists taba_house2_reader1"/>
+   </properties>
+  </object>
+  <object id="58" name="Reader4 Talk" type="event" x="64" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house2_reader4a"/>
+    <property name="behav1" value="talk taba_house2_reader1"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

@@ -4247,6 +4247,96 @@ msgstr "@*!^: 0H... @ n3wc0m3r! H0vv p1d y0v g3t he7e? <NONE> h3llen\"T $33N %^&
 "@*!^: WElcoME! W3lcome t0... 0H N/A: We never g0t ar0und to gi^ing 0ur town {<1} We never g00000000 {<2} W3 neVer Bu1lt 0uR t0wN\n"
 "TH S D ES N T EX ST Y U AR  C NNE  ED TO TH  V ID YO  M ST LEA E N W"
 
+# Taba Town
+msgid "maple_bedroom_sign"
+msgstr "It's a calendar and the 27 April is circled in pink."
+
+msgid "taba_house1_sign"
+msgstr "Mr and Ms Clawbrew House"
+
+msgid "taba_house2_sign"
+msgstr "Legacy Library"
+
+msgid "taba_house3_sign"
+msgstr "The Thoughtful Leaf Inn"
+
+msgid "taba_house4_sign"
+msgstr "The Honorable Seagulls Pub"
+
+msgid "taba_house1_calendar"
+msgstr "It's a calendar and the 30 September and the 12 February are circled in red."
+
+msgid "taba_house1_husband1"
+msgstr "Tuxemon! I was among the most skilled trainer!"
+
+msgid "taba_house1_wife1"
+msgstr "Trainer? My husband is delusional."
+
+msgid "taba_house1_reading"
+msgstr "The book is Philosophy of Illusionary Studies by Jaiden Gemrevenza."
+
+msgid "taba_house1_watching"
+msgstr "It's a documentary about the strangest and most wonderful Tuxemon in the region,\n as well as the strange behaviors they have adopted."
+
+msgid "taba_house2_owner1"
+msgstr "Welcome to the Legacy Library! Feel free to look around, but quiet please."
+
+msgid "taba_house2_reading1"
+msgstr "The book is Visiting The King by Manolo Qai."
+
+msgid "taba_house2_reading2"
+msgstr "The book is Raised By Dreams by Louis Etrergo."
+
+msgid "taba_house2_reading3"
+msgstr "The book is Children Without Honor by Leslie Greninza."
+
+msgid "taba_house2_reading4"
+msgstr "The book is Sailing Into Eternitys by Laurine Doprachuld."
+
+msgid "taba_house2_reader1a"
+msgstr "I feel better at the sight of a book or a bookstore."
+
+msgid "taba_house2_reader2a"
+msgstr "It ignites my imagination."
+
+msgid "taba_house2_reader3a"
+msgstr "So I can live a thousand different lives."
+
+msgid "taba_house2_reader4a"
+msgstr "Reading stimulates my mind in a way that TV and movies will never be able to do."
+
+msgid "taba_house2_books"
+msgstr "000 - Computer science, information and general works, 100 - Philosophy and psychology\n"
+"200 - Religion, 300 - Social sciences, 400 - Language, 500 - Pure Science, 600 - Technology\n"
+"700 - Arts and recreation, 800 - Literature, 900 - History and geography"
+
+msgid "taba_house3_owner1"
+msgstr "Welcome to The Thoughtful Leaf Inn!"
+
+msgid "taba_house3_client1a"
+msgstr "I'm resting while my sister is probably reading some books."
+
+msgid "taba_house3_client2a"
+msgstr "Thinking too much can harm us."
+
+msgid "taba_house3_client3a"
+msgstr "It makes me think about my mom's house."
+
+msgid "taba_house4_owner1"
+msgstr "Welcome to The Honorable Seagulls Pub!"
+
+msgid "taba_house4_client1a"
+msgstr "My grandma used to do a similar dish!"
+
+msgid "taba_house4_client2a"
+msgstr "Eh? Just filling up an empty stomach."
+
+msgid "taba_house4_client3a"
+msgstr "Luckily I didn't pay for this. How can you pay for this?"
+
+msgid "taba_house4_dish1"
+msgstr "It's brown, dense, but it doesn't look like pudding..."
+
 ## DIALOG TRANSLATIONS ##
 # spyder dialogs
 msgid "spyder_papertown_stopthere"

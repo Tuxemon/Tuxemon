@@ -1,0 +1,7 @@
+{
+  "slug": "taba_house4_client1",
+  "gender": "male",
+  "sprite_name": "shopassist_grey",
+  "combat_front": "adventurer.png",
+  "combat_back": "adventurer_back.png"
+}

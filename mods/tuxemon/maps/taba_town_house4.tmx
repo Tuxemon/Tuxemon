@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="44">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="57">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
@@ -27,7 +27,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="12" height="7">
   <data encoding="base64" compression="zlib">
-   eAFjYKA9UFZiYABhGEDnw8TNkNTAxNDpf3IMDTAxcyLUw9SCaAuoemS3IMtTgw0AprAEAQ==
+   eAFjYKAPUFZC2IPMRogyMJghqUEWR2b/k2NogPHNiVAPUwuiLaDqcdmPrJZcNgAtIAN3
   </data>
  </layer>
  <layer id="4" name="Above player" width="12" height="7">
@@ -59,6 +59,91 @@
     <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="36" name="Player Spawn" type="event" x="112" y="64" width="16" height="16"/>
+  <object id="36" name="Player Spawn" type="event" x="96" y="16" width="16" height="16"/>
+  <object id="45" name="Create Owner" type="event" x="144" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc taba_house4_owner,9,4"/>
+    <property name="act2" value="npc_face taba_house4_owner,left"/>
+    <property name="cond1" value="not npc_exists taba_house4_owner"/>
+   </properties>
+  </object>
+  <object id="46" name="Talk1" type="event" x="112" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face taba_house4_owner,left"/>
+    <property name="act2" value="translated_dialog taba_house4_owner1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="47" name="Talk2" type="event" x="144" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face taba_house4_owner,down"/>
+    <property name="act2" value="translated_dialog taba_house4_owner1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="48" name="Dish" type="event" x="16" y="32" width="32" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house4_dish1"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="49" name="Dish" type="event" x="16" y="80" width="32" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house4_dish1"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="50" name="Dish" type="event" x="80" y="32" width="32" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house4_dish1"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="51" name="Create Client1" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc taba_house4_client1,3,2"/>
+    <property name="act2" value="npc_face taba_house4_client1,left"/>
+    <property name="cond1" value="not npc_exists taba_house4_client1"/>
+   </properties>
+  </object>
+  <object id="52" name="Talk Client1" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house4_client1a"/>
+    <property name="behav1" value="talk taba_house4_client1"/>
+   </properties>
+  </object>
+  <object id="53" name="Create Client2" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc taba_house4_client2,4,2"/>
+    <property name="act2" value="npc_face taba_house4_client2,right"/>
+    <property name="cond1" value="not npc_exists taba_house4_client2"/>
+   </properties>
+  </object>
+  <object id="54" name="Talk Client2" type="event" x="32" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house4_client2a"/>
+    <property name="behav1" value="talk taba_house4_client2"/>
+   </properties>
+  </object>
+  <object id="55" name="Create Client3" type="event" x="64" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc knight2,0,5"/>
+    <property name="act2" value="npc_face knight2,right"/>
+    <property name="cond1" value="not npc_exists knight2"/>
+   </properties>
+  </object>
+  <object id="56" name="Talk Client3" type="event" x="64" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house4_client3a"/>
+    <property name="behav1" value="talk knight2"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

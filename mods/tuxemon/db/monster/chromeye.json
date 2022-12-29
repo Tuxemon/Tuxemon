@@ -18,28 +18,28 @@
     ],
     "evolutions": [
         {
-            "path": "mixed",
+            "path": "season",
             "at_level": 18,
             "monster_slug": "angrito",
-            "mixed": "tobedefined"
+            "season": "winter"
         },
         {
-            "path": "mixed",
+            "path": "season",
             "at_level": 18,
             "monster_slug": "happito",
-            "mixed": "tobedefined"
+            "season": "summer"
         },
         {
-            "path": "mixed",
+            "path": "season",
             "at_level": 18,
             "monster_slug": "neutrito",
-            "mixed": "tobedefined"
+            "season": "spring"
         },
         {
-            "path": "mixed",
+            "path": "season",
             "at_level": 18,
             "monster_slug": "sadito",
-            "mixed": "tobedefined"
+            "season": "autumn"
         }
     ],
     "shape": "blob",

@@ -12,8 +12,44 @@
             "technique": "fester"
         },
         {
-            "level_learned": 12,
+            "level_learned": 6,
             "technique": "splinter"
+        },
+        {
+            "level_learned": 8,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 12,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 16,
+            "technique": "stabilo"
+        },
+        {
+            "level_learned": 20,
+            "technique": "clairaudience"
+        },
+        {
+            "level_learned": 24,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 28,
+            "technique": "radiance"
+        },
+        {
+            "level_learned": 32,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 36,
+            "technique": "hawk"
+        },
+        {
+            "level_learned": 40,
+            "technique": "ants"
         }
     ],
     "evolutions": [],

@@ -12,8 +12,44 @@
             "technique": "flood"
         },
         {
-            "level_learned": 12,
+            "level_learned": 6,
             "technique": "flow"
+        },
+        {
+            "level_learned": 8,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 12,
+            "technique": "suck_poison"
+        },
+        {
+            "level_learned": 16,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 20,
+            "technique": "orbs"
+        },
+        {
+            "level_learned": 24,
+            "technique": "shapechange"
+        },
+        {
+            "level_learned": 28,
+            "technique": "ice_storm"
+        },
+        {
+            "level_learned": 32,
+            "technique": "kraken"
+        },
+        {
+            "level_learned": 36,
+            "technique": "wall_ice"
+        },
+        {
+            "level_learned": 40,
+            "technique": "probiscus"
         }
     ],
     "evolutions": [],

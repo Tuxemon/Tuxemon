@@ -12,8 +12,44 @@
             "technique": "fume"
         },
         {
-            "level_learned": 12,
+            "level_learned": 6,
             "technique": "fluff_up"
+        },
+        {
+            "level_learned": 8,
+            "technique": "breathe_fire"
+        },
+        {
+            "level_learned": 12,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 16,
+            "technique": "adamantine"
+        },
+        {
+            "level_learned": 20,
+            "technique": "lava"
+        },
+        {
+            "level_learned": 24,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 28,
+            "technique": "invictus"
+        },
+        {
+            "level_learned": 32,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 36,
+            "technique": "supernova"
+        },
+        {
+            "level_learned": 40,
+            "technique": "gust"
         }
     ],
     "evolutions": [],

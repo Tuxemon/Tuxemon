@@ -12,8 +12,44 @@
             "technique": "petrify"
         },
         {
-            "level_learned": 12,
+            "level_learned": 6,
             "technique": "shrapnel"
+        },
+        {
+            "level_learned": 8,
+            "technique": "beam"
+        },
+        {
+            "level_learned": 12,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 16,
+            "technique": "platinum"
+        },
+        {
+            "level_learned": 20,
+            "technique": "lineage"
+        },
+        {
+            "level_learned": 24,
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 28,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 32,
+            "technique": "meltdown"
+        },
+        {
+            "level_learned": 36,
+            "technique": "insanity"
+        },
+        {
+            "level_learned": 40,
+            "technique": "radiance"
         }
     ],
     "evolutions": [],

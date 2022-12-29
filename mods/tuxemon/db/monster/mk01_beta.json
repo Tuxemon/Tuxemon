@@ -12,8 +12,44 @@
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 12,
+            "level_learned": 6,
             "technique": "shrapnel"
+        },
+        {
+            "level_learned": 8,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 12,
+            "technique": "battery_discharge"
+        },
+        {
+            "level_learned": 16,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 20,
+            "technique": "crystal"
+        },
+        {
+            "level_learned": 24,
+            "technique": "undertaker"
+        },
+        {
+            "level_learned": 28,
+            "technique": "lineage"
+        },
+        {
+            "level_learned": 32,
+            "technique": "sword"
+        },
+        {
+            "level_learned": 36,
+            "technique": "viper"
+        },
+        {
+            "level_learned": 40,
+            "technique": "acid"
         }
     ],
     "evolutions": [],

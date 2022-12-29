@@ -12,8 +12,44 @@
             "technique": "perfect_cut"
         },
         {
-            "level_learned": 12,
+            "level_learned": 6,
             "technique": "shrapnel"
+        },
+        {
+            "level_learned": 8,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 12,
+            "technique": "radiance"
+        },
+        {
+            "level_learned": 16,
+            "technique": "lightning_spheres"
+        },
+        {
+            "level_learned": 20,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 24,
+            "technique": "time_crisis"
+        },
+        {
+            "level_learned": 28,
+            "technique": "viper"
+        },
+        {
+            "level_learned": 32,
+            "technique": "crystal"
+        },
+        {
+            "level_learned": 36,
+            "technique": "sword"
+        },
+        {
+            "level_learned": 40,
+            "technique": "lineage"
         }
     ],
     "evolutions": [],

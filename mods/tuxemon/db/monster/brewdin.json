@@ -12,8 +12,44 @@
             "technique": "perfect_cut"
         },
         {
-            "level_learned": 12,
+            "level_learned": 6,
             "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 8,
+            "technique": "constrict"
+        },
+        {
+            "level_learned": 12,
+            "technique": "sunburst"
+        },
+        {
+            "level_learned": 16,
+            "technique": "platinum"
+        },
+        {
+            "level_learned": 20,
+            "technique": "ruby"
+        },
+        {
+            "level_learned": 24,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 28,
+            "technique": "undertaker"
+        },
+        {
+            "level_learned": 32,
+            "technique": "insanity"
+        },
+        {
+            "level_learned": 36,
+            "technique": "battery_discharge"
+        },
+        {
+            "level_learned": 40,
+            "technique": "muddle"
         }
     ],
     "evolutions": [],

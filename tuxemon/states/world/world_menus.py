@@ -34,7 +34,7 @@ from typing import Any, Callable, Dict, Sequence, Tuple
 
 import pygame_menu
 
-from tuxemon import prepare
+from tuxemon import formula, prepare
 from tuxemon.animation import Animation
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -73,10 +73,10 @@ def add_menu_items(
 class WorldMenuState(PygameMenuState):
     """Menu for the world state."""
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self) -> None:
         _, height = prepare.SCREEN_SIZE
 
-        super().startup(height=height, **kwargs)
+        super().__init__(height=height)
 
         self.animation_offset = 0
 
@@ -151,7 +151,49 @@ class WorldMenuState(PygameMenuState):
             self.client.pop_state()  # close the info/move menu
 
         def open_monster_stats() -> None:
-            open_dialog(local_session, [T.translate("not_implemented")])
+            monster = monster_menu.get_selected_item().game_object
+            type2 = ""
+            if prepare.CONFIG.unit == "metric":
+                weight = monster.weight
+                height = monster.height
+                unit_weight = "kg"
+                unit_height = "cm"
+            else:
+                weight = formula.convert_lbs(monster.weight)
+                height = formula.convert_ft(monster.height)
+                unit_weight = "lb"
+                unit_height = "ft"
+            if monster.type2 is not None:
+                type2 = monster.type2
+            open_dialog(
+                local_session,
+                [
+                    T.format(
+                        "tuxemon_stat1",
+                        {
+                            "txmn": monster.txmn_id,
+                            "doc": formula.today_ordinal() - monster.capture,
+                            "weight": weight,
+                            "height": height,
+                            "unit_weight": unit_weight,
+                            "unit_height": unit_height,
+                            "lv": monster.level + 1,
+                            "type": monster.type1.title() + type2.title(),
+                            "exp": monster.total_experience,
+                            "exp_lv": (
+                                monster.experience_required(1)
+                                - monster.total_experience
+                            ),
+                        },
+                    ),
+                    T.format(
+                        "tuxemon_stat2",
+                        {
+                            "desc": monster.description,
+                        },
+                    ),
+                ],
+            )
 
         def positive_answer() -> None:
             success = False
@@ -188,11 +230,12 @@ class WorldMenuState(PygameMenuState):
                 [T.format("release_confirmation", {"name": monster.name})],
             )
             self.client.push_state(
-                ChoiceState,
-                menu=(
-                    ("no", T.translate("no"), negative_answer),
-                    ("yes", T.translate("yes"), positive_answer),
-                ),
+                ChoiceState(
+                    menu=(
+                        ("no", T.translate("no"), negative_answer),
+                        ("yes", T.translate("yes"), positive_answer),
+                    ),
+                )
             )
 
         def open_monster_submenu(
@@ -203,7 +246,7 @@ class WorldMenuState(PygameMenuState):
                 ("monster_menu_move", select_first_monster),
                 ("monster_menu_release", release_monster_from_party),
             )
-            menu = self.client.push_state(PygameMenuState)
+            menu = self.client.push_state(PygameMenuState())
 
             for key, callback in menu_items_map:
                 label = T.translate(key).upper()

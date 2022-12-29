@@ -1,0 +1,57 @@
+{
+    "slug": "ferricran",
+    "category": "dragon",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 16,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 40,
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 44,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 48,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 60,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 64,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 68,
+            "technique": "bullet"
+        }
+    ],
+    "evolutions": [],
+    "shape": "dragon",
+    "stage": "stage2",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 161,
+    "height": 230,
+    "weight": 214,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

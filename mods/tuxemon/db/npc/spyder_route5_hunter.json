@@ -1,28 +1,33 @@
 {
-    "slug": "spyder_route5_hunter",
-    "sprite_name": "soldier",
-	"monsters": [
-        {
-            "name": "Elowind",
-            "level": 18, 
-			"slug": "elowind",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Elofly",
-            "level": 16, 
-			"slug": "elofly",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Elofly",
-            "level": 16, 
-			"slug": "elofly",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "soldier.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_route5_hunter",
+  "gender": "male",
+  "sprite_name": "soldier",
+  "monsters": [
+    {
+      "name": "Elowind",
+      "level": 18,
+      "slug": "elowind",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Elofly",
+      "level": 16,
+      "slug": "elofly",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Elofly",
+      "level": 16,
+      "slug": "elofly",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "soldier.png",
+  "combat_back": "adventurer_back.png"
+}

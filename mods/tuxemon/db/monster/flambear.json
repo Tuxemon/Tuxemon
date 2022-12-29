@@ -9,18 +9,35 @@
         },
         {
             "level_learned": 2,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 16,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 32,
             "technique": "all_in"
         },
         {
-            "level_learned": 2,
+            "level_learned": 36,
             "technique": "give_all"
+        },
+        {
+            "level_learned": 40,
+            "technique": "breathe_fire"
         }
     ],
-    "shape": "Brute",
+    "evolutions": [],
+    "shape": "brute",
+    "stage": "stage1",
     "types": [
-        "Fire"
+        "fire"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 84,
+    "height": 250,
+    "weight": 500,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

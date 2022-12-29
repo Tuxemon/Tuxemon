@@ -129,12 +129,12 @@ class WorldState(state.State):
         buttons.BACK: intentions.WORLD_MENU,
     }
 
-    def startup(
+    def __init__(
         self,
-        *,
-        map_name: Optional[str] = None,
-        **kwargs: Any,
+        map_name: str,
     ) -> None:
+        super().__init__()
+
         from tuxemon.player import Player
 
         # Provide access to the screen surface
@@ -385,6 +385,9 @@ class WorldState(state.State):
 
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player.game_variables))
+        logger.debug("Battle History:" + str(self.player.battle_history))
+        logger.debug("Money:" + str(self.player.money))
+        logger.debug("Tuxepedia:" + str(self.player.tuxepedia))
 
     def draw(self, surface: pygame.surface.Surface) -> None:
         """
@@ -452,7 +455,7 @@ class WorldState(state.State):
             if event.pressed:
                 logger.info("Opening main menu!")
                 self.client.release_controls()
-                self.client.push_state(WorldMenuState)
+                self.client.push_state(WorldMenuState())
                 return None
 
         # map may not have a player registered

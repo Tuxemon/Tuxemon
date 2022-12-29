@@ -1,0 +1,33 @@
+{
+    "slug": "nuenflu",
+    "category": "snowball",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 12,
+            "technique": "blood_bond"
+        }
+    ],
+    "evolutions": [],
+    "shape": "varmint",
+    "stage": "standalone",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 224,
+    "height": 75,
+    "weight": 21,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

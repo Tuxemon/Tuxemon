@@ -1,5 +1,7 @@
 {
-    "slug": "spyder_flower_sandy",
-    "sprite_name": "childactor",
-	"combat_front": "yellowbelt.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_flower_sandy",
+  "gender": "female",
+  "sprite_name": "childactor",
+  "combat_front": "yellowbelt.png",
+  "combat_back": "adventurer_back.png"
+}

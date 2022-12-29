@@ -1,8 +1,11 @@
 {
+  "tech_id": 40,
   "accuracy": 1,
-  "animation": "heal (no cross)",
-  "category": "physical",
-  "effects": [],
+  "animation": "heal_burst_120",
+  "effects": [
+    "recover all"
+  ],
+  "flip_axes": "",
   "healing_power": 4.0,
   "icon": "",
   "is_area": false,

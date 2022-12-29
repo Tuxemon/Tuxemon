@@ -5,22 +5,39 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "beam"
+        },
+        {
+            "level_learned": 2,
+            "technique": "levitate"
+        },
+        {
+            "level_learned": 12,
+            "technique": "battery_discharge"
+        },
+        {
+            "level_learned": 16,
             "technique": "wing_tip"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "glower"
         },
         {
-            "level_learned": 2,
-            "technique": "battery_discharge"
+            "level_learned": 24,
+            "technique": "shrapnel"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [],
+    "shape": "flier",
+    "stage": "stage1",
     "types": [
-        "Metal"
+        "metal"
     ],
-    "weight": 25,
+    "possible_genders": ["neuter"],
+    "txmn_id": 126,
+    "height": 45,
+    "weight": 6,
     "sounds": {
         "combat_call": "sound_av8r",
         "faint_call": "sound_av8r_faint"

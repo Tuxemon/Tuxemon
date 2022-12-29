@@ -12,15 +12,26 @@
             "technique": "rot"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "take_cover"
         }
     ],
-    "shape": "Flier",
-    "types": [
-        "Water"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "noctalo"
+        }
     ],
-    "weight": 25,
+    "shape": "flier",
+    "stage": "basic",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 50,
+    "height": 50,
+    "weight": 3,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

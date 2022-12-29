@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="103">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="103">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="tunnel"/>
+  <property name="south" value="timber_town"/>
+  <property name="west" value="route6"/>
+  <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
   <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
@@ -9,20 +14,8 @@
  <tileset firstgid="449" name="Waterfall_by_George" tilewidth="16" tileheight="16" tilecount="90" columns="9">
   <image source="../gfx/tilesets/Waterfall_by_George.png" width="144" height="160"/>
  </tileset>
- <tileset firstgid="539" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="1539" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
- <tileset firstgid="2979" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="3979" name="Cave_Tiles_by_George_" tilewidth="16" tileheight="16" tilecount="154" columns="14">
-  <image source="../gfx/tilesets/Cave_Tiles_by_George_.png" width="224" height="181"/>
- </tileset>
- <tileset firstgid="4133" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ <tileset firstgid="539" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
+  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
  </tileset>
  <layer id="1" name="Lowest Level" width="20" height="40">
   <data encoding="base64" compression="zlib">
@@ -31,12 +24,12 @@
  </layer>
  <layer id="2" name="Obstacles" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAG1lutNAzEQhA384nFEgjIgopLkmqIIqkgPlJPQBDuSRxot4z2DhKWV7/bx3XjtXO7cWruEndMct38at1et3YXleQna44TtiqdSI1IOYcduD3AMxtvADzc1Fik/Qi/hwToqnblonx3mvtKZ0/+Td7lu7Sssj0of94Wz6nu6ae05LI+Kx33hjL0e7fF9B1c8pFBbT2+qkT6dt3jUxppZXtbBeswa21rz2guzDuXl2EijrlXfBcpy1yONytN3gWNkn9OoPO1RrnX30Ij3hJ4f5eUeOUb2ncKhOpX3m/4pd8Sb7d8SMLyXaK8CV33s37vE3aXqYRy/NfRypSPm2f45nuoiEv2bGbM89G9mzPLYv4q5RFD7z1z+d2CPdt251b8Ri0zO7GV1/mZZYJJXnT/XM9TynPA3dxJe1b8Rj1o0Tl/VP82HLg7Wapy+6vwhH2vRgbWu3eF47vwtkY8z4M4IdQDpeK5/moc6HeThmfo8+l3/HO+zfxOwLufgbO/CXP9ybtaHnmoOv0HwLNc/zVUWrp0+foMwpjVY1wzvEEU8z6x3PMRmeMgD8xhG7oiX81DLoTUffY/4fI0xX2fmqc/VMM/FtJY6sSbaqgn9mnmIfQOr3klC
+   eAG1VltOAzEQC/zxWPYggDhJu1yBK8ANgPP0XuUUjKVYsqbONEUiUpTdGY/XcWa3PbbWfmIe0xq3fxo3V63dxszrEmwPE3MtnkqNgOxi7vu8R2AwXgZxhKmxgJykHiOCfVQ6c9FzDpj7SmeG/yff+3VrHzHzqPTxXLiqvs/g+rqQj+fCFWc9OuO7LrTSBwi1dXhTjYzpeo6P2lgzy5d1sB6r5s7teeuFWYfy5dxIo+5VvwXK5a5HGpVPvwWOI8ecRuVTj3Ktu4dGfCe0f5Qve+Q4cuwQAdWpfJf4p7wjvln/liDDd4nzSchVH/37lry7VD3M412DlxsDsc765/hUFynh38yY5YN/M2OWj/5VnEsk1X9i+duBM1p78Jx/Iy5ycqWXVf/NcoGTfFX/Oc9Qyz7hO3cQvsq/ER+1aJ6xyj/FQxcHazXPWNV/wGMvOrDXrQccn+u/JfDoAdcj1AFKx+f8UxzqdJAPz9TnMe78c3xv/TecdRmD3l5jOv8yNuuDp4rhfxA8y/mnWOXCtdPH/yDMaQ32NcO3iyL2M+sdH3IzfMCBcx+TvCO+jEMth9a89jPi8zVHvK7EaczVEOdyWkud2BPnpoB+TRxyv58lSBY=
   </data>
  </layer>
  <layer id="3" name="Obstacles 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHFltsNwjAMRXn8AQX2AMQkpXvx+IchgBVgDwZATIEt9YpLlNZJm0IkK6ljHzsOden1wkYmZlOSWZhbpdVKds4iF5GryFrEN14+Zal79D+byuNRxRuRD9vzWlkW7zlgD3tt8WzCt0UujxNSLWSN+2l6N26OwFfVEvvujNqk4oHv8hCngEHkrDXciGgdx+XaYu2GYmgM5VocRWwDWEaoqO35j+NFJdehMfeJDsMkQ98je0uywCXo9uf4oefJxLBtz+NY3F9iex5zTmX9UvHAVl5on4KPb0bdlrLZ5pzKVpZyMMBr+s5xzfSs3EePDX6XzENuyLXJXMcLfW/x3dL4dbzY/DJx8N1FLAf2nJvquH58Bthbcx3P8vXtt+HtPd/CXILg/4DG4/P64ru6g4epNsgzlufy8Yw8CygSzuhdCZG1qDedVB4V
+   eAHFltsNwjAMRQufQGEQQExSChvABozAQoDEYxsmYApsqVdcojSPJmojWUkd+9hxWkNRhI1SzOYkizC3Vqu17FxEriI3kY2IbXxsykb3Hv02lcejjTchH7bntbJ8vNOYPfxrH89P+Leo5HFGqqWscT9d78bMEfi2WmLfnFGbXDzwTR7i1DCInLWGWxGt47RZ+1iPgHtXro8jJsU9gKV2uca553i58k7lcJ9IZfXhfxz4ng4Dxw+tcSmGqT2PY3F/ie15zNk39cvFA1t5oX0KPrYZdVvJZso5la0s5WCA1/Wb45rpWbmP7jq8l8xDbsi1y+zihX63+N3S+C5ebH6lONjuIpYDe85NdVw/PgPsfbOL5/O17afwnpZ3qZIg+D+g8fi8tvim7mVhqg3yjOWZfDwjzxqKjDN6V0akE/UFjDga0A==
   </data>
  </layer>
  <objectgroup color="#ffff00" id="4" name="Events">

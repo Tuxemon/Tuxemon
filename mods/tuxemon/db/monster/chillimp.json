@@ -12,16 +12,27 @@
             "technique": "icicle_spear"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "snowstorm"
         }
     ],
-    "shape": "Brute",
-    "types": [
-        "Water",
-        "Earth"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "snowrilla"
+        }
     ],
-    "weight": 25,
+    "shape": "brute",
+    "stage": "basic",
+    "types": [
+        "water",
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 154,
+    "height": 115,
+    "weight": 54,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

@@ -21,7 +21,8 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, Union, final
+from dataclasses import dataclass
+from typing import Union, final
 
 from tuxemon.db import db
 from tuxemon.event import get_npc
@@ -29,13 +30,9 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.item.item import decode_inventory
 
 
-class SetInventoryActionParameters(NamedTuple):
-    npc_slug: str
-    inventory_slug: Union[str, None]
-
-
 @final
-class SetInventoryAction(EventAction[SetInventoryActionParameters]):
+@dataclass
+class SetInventoryAction(EventAction):
     """
     Overwrite the inventory of the npc or player.
 
@@ -51,22 +48,19 @@ class SetInventoryAction(EventAction[SetInventoryActionParameters]):
     """
 
     name = "set_inventory"
-    param_class = SetInventoryActionParameters
+    npc_slug: str
+    inventory_slug: Union[str, None] = None
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.npc_slug)
         assert npc
-        if self.parameters.inventory_slug is None:
+        if self.inventory_slug is None:
             npc.inventory = {}
             return
 
-        entry = (
-            db.lookup(
-                self.parameters.inventory_slug,
-                table="inventory",
-            )
-            .dict()
-            .get("inventory", {})
-        )
+        entry = db.lookup(
+            self.inventory_slug,
+            table="inventory",
+        ).inventory
 
         npc.inventory = decode_inventory(self.session, npc, entry)

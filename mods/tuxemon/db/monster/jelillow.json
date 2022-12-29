@@ -1,0 +1,33 @@
+{
+    "slug": "jelillow",
+    "category": "jelly_pillow",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 2,
+            "technique": "hibernate"
+        },
+        {
+            "level_learned": 12,
+            "technique": "flood"
+        }
+    ],
+    "evolutions": [],
+    "shape": "blob",
+    "stage": "standalone",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 207,
+    "height": 66,
+    "weight": 10,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

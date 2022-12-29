@@ -5,22 +5,45 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 12,
+            "technique": "energy_field"
+        },
+        {
+            "level_learned": 28,
             "technique": "icicle_spear"
         },
         {
-            "level_learned": 2,
+            "level_learned": 32,
             "technique": "biting_winds"
         },
         {
-            "level_learned": 2,
-            "technique": "energy_field"
+            "level_learned": 34,
+            "technique": "flood"
         }
     ],
-    "shape": "Flier",
-    "types": [
-        "Water"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 36,
+            "monster_slug": "eaglace"
+        }
     ],
-    "weight": 25,
+    "shape": "flier",
+    "stage": "stage1",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 8,
+    "height": 150,
+    "weight": 12,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

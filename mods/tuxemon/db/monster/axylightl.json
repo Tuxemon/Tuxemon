@@ -12,15 +12,20 @@
             "technique": "midnight_mantle"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "beam"
         }
     ],
-    "shape": "Polliwog",
+    "evolutions": [],
+    "shape": "polliwog",
+    "stage": "standalone",
     "types": [
-        "Water"
+        "water"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 101,
+    "height": 80,
+    "weight": 15,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

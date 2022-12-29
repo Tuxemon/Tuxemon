@@ -5,22 +5,39 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "stampede"
+            "technique": "thunderball"
         },
         {
             "level_learned": 2,
             "technique": "shadow_boxing"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "one_two"
+        },
+        {
+            "level_learned": 24,
+            "technique": "stampede"
+        },
+        {
+            "level_learned": 28,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 32,
+            "technique": "snowstorm"
         }
     ],
-    "shape": "Varmint",
+    "evolutions": [],
+    "shape": "varmint",
+    "stage": "stage1",
     "types": [
-        "Earth"
+        "earth"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 45,
+    "height": 120,
+    "weight": 80,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

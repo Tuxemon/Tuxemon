@@ -1,25 +1,25 @@
 {
-    "slug": "spyder_greenwash_dippel",
-    "sprite_name": "scientist",
-	"monsters": [
-        		
-		{
-            "name": "Criniotherme",
-            "level": 22, 
-			"slug": "criniotherme",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "tikorch",
-            "level": 22, 
-			"slug": "tikorch",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	"combat_front": "scientist.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_greenwash_dippel",
+  "gender": "male",
+  "sprite_name": "scientist",
+  "monsters": [
+    {
+      "name": "Criniotherme",
+      "level": 22,
+      "slug": "criniotherme",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "tikorch",
+      "level": 22,
+      "slug": "tikorch",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "scientist.png",
+  "combat_back": "adventurer_back.png"
+}

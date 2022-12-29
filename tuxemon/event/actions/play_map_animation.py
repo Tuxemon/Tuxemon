@@ -22,7 +22,8 @@
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, Union, final
+from dataclasses import dataclass
+from typing import Union, final
 
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
@@ -32,16 +33,9 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
-class PlayMapAnimationActionParameters(NamedTuple):
-    animation_name: str
-    duration: float
-    loop: str
-    tile_pos_x: Union[int, str]
-    tile_pos_y: Union[int, None]
-
-
 @final
-class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
+@dataclass
+class PlayMapAnimationAction(EventAction):
     """
     Play a map animation at a given position in the world map.
 
@@ -63,22 +57,24 @@ class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
     """
 
     name = "play_map_animation"
-    param_class = PlayMapAnimationActionParameters
+    animation_name: str
+    duration: float
+    loop: str
+    tile_pos_x: Union[int, str]
+    tile_pos_y: Union[int, None] = None
 
     def start(self) -> None:
         # ('play_animation', 'grass,1.5,noloop,player', '1', 6)
         # "position" can be either a (x, y) tile coordinate or "player"
-        animation_name = self.parameters.animation_name
-        duration = self.parameters.duration
+        animation_name = self.animation_name
         directory = prepare.fetch("animations", "tileset")
 
-        if self.parameters.loop == "loop":
+        if self.loop == "loop":
             loop = True
-        elif self.parameters.loop == "noloop":
+        elif self.loop == "noloop":
             loop = False
         else:
-            logger.error('animation loop value must be "loop" or "noloop"')
-            raise ValueError
+            raise ValueError('animation loop value must be "loop" or "noloop"')
 
         # Check to see if this animation has already been loaded.
         # If it has, play the animation.
@@ -86,13 +82,13 @@ class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
 
         # Determine the tile position where to draw the animation.
         # TODO: unify npc/player sprites and map animations
-        if self.parameters[3] == "player":
+        if self.tile_pos_x == "player":
             position = self.session.player.tile_pos
         else:
-            assert self.parameters.tile_pos_y
+            assert self.tile_pos_y
             position = (
-                int(self.parameters.tile_pos_x),
-                int(self.parameters.tile_pos_y),
+                int(self.tile_pos_x),
+                int(self.tile_pos_y),
             )
 
         animations = world_state.map_animations
@@ -105,7 +101,7 @@ class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
             animation = load_animation_from_frames(
                 directory,
                 animation_name,
-                duration,
+                self.duration,
                 loop,
             )
 

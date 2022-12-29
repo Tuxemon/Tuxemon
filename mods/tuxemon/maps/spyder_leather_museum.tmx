@@ -1,85 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" width="30" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="55">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="30" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="55">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="leather_museum"/>
+  <property name="types" value="notype"/>
+ </properties>
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="1601" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
- </tileset>
- <tileset firstgid="3041" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
- <tileset firstgid="4481" name="Outdoor_odds_and_ends_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="50" columns="10">
-  <image source="../gfx/tilesets/Outdoor_odds_and_ends_by_Isaiah658.png" width="160" height="80"/>
- </tileset>
- <tileset firstgid="4531" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
-  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
- </tileset>
- <tileset firstgid="4641" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
-  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
- </tileset>
- <tileset firstgid="4926" name="Stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
-  <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
- </tileset>
- <tileset firstgid="4950" name="Plants" tilewidth="16" tileheight="16" tilecount="2" columns="1">
-  <image source="../gfx/tilesets/plants.png" width="16" height="32"/>
- </tileset>
- <tileset firstgid="4952" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
- </tileset>
- <tileset firstgid="5452" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
-  <image source="../gfx/tilesets/Objects_by_ArMM1998.png" width="528" height="320"/>
- </tileset>
- <tileset firstgid="6112" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="6128" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+ <tileset firstgid="1601" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="6216" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="7216" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
-  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
- </tileset>
- <tileset firstgid="7426" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+ <tileset firstgid="1689" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
   <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
  </tileset>
- <tileset firstgid="7480" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ <tileset firstgid="1743" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
- <tileset firstgid="7552" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="7568" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
-  <image source="../gfx/tilesets/items.png" width="48" height="32"/>
- </tileset>
- <tileset firstgid="7574" name="Warmachine_black_and_yellow" tilewidth="16" tileheight="16" tilecount="70" columns="14">
-  <image source="../gfx/tilesets/Warmachine_black_and_yellow.png" width="224" height="80"/>
+ <tileset firstgid="3293" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
  </tileset>
  <layer id="1" name="Layer 1" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJxTl2BgUMeCiQHY9BGLjXBgYgAuvZRgWttriwN/ECeMceklBssBsTAW+rc4YSwngYqxmYOLxiXHRgQWRsOk2I1LTgaIBQnQtPAvITsFR/07JPwLACOcUFQ=
+   eJyrYGNgqMCCiQHY9BGLm3FgYgAuvZRgWtvbhwM7EoFx6SUG5wNxChbahwicj4axmYOLxiUXTgROQcOk2I1LLheIkwjQtPAvITuTRv07JPwLAOpFiPc=
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjALSgIIsA4MiFCvJ0s9eTaBdWlCsTUd7AWVfAhU=
+   eJxjYBgFo2AUjALSwHY2BoYdULyTjX72HgDadRCKD9HRXgAeRAYV
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFpIBP4qSxqQX+ipPGJgbQwp3EAFLdOdTAK0EGhu+CELYgEwNDMAuErQ6k/aDsKiDNz4Sqb5MsA8NmIN4CxFuBeBsQbwfiHbLE2ftFkDz3HgCafxCIDwHxYSA+AsRHgfgYje09BzT/PBBfAOKLQHwJiC8D8RUa20sOAADJJyN6
+   eJxjYBgFpIBcDtLY1AI9HKSxiQG0cCcxgFR3DjWQx83AMIEbwhZkYmAIZoGw1YG0H5RdBaT5mVD1BYswMIQAcSgQhwFxOBBHAHGkCHH29nKT594KoPmVQFwFxNVAXAPEtUBcR2N75wLNnwfE84F4ARAvBOJFQLyYxvaSAwAHuRU7
   </data>
  </layer>
  <layer id="5" name="Above Player" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDAewW3CgXTB8AQAadgDN
+   eJxjYBgFo2AUDAdwjWugXTB8AQA1rQDh
   </data>
  </layer>
  <layer id="7" name="Above Player" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJztzbcNADAMA0EtorWdS+cp/UsYUKEHriVFPM9mQUUiEjIKKpr+/e3sD0wsbBzcz7+e3R5X6wpX
+   eJztzbkNACAMwMC0vFXm4N9/NrwEKEUsXW0Rz7NZUJGIhIyCqu+/jUfHwMTCxvnw9mx2AbLLAqE=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
@@ -149,7 +113,8 @@
   <object id="29" name="Pay Option" type="event" x="16" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_museum_entrance1"/>
-    <property name="act2" value="translated_dialog_choice yes:no,paymuseum"/>
+    <property name="act2" value="translated_dialog player_wallet"/>
+    <property name="act3" value="translated_dialog_choice yes:no,paymuseum"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="not variable_set paymuseum:yes"/>
@@ -163,6 +128,7 @@
     <property name="act41" value="pathfind player,1,8"/>
     <property name="act42" value="set_variable paymuseum:null"/>
     <property name="act43" value="translated_dialog spyder_museum_entrance2"/>
+    <property name="act44" value="transfer_money -,50,spyder_leather_museum"/>
     <property name="act90" value="unlock_controls"/>
     <property name="cond1" value="is variable_set paymuseum:yes"/>
    </properties>
@@ -172,6 +138,7 @@
     <property name="act10" value="lock_controls"/>
     <property name="act41" value="pathfind player,1,10"/>
     <property name="act42" value="set_variable paymuseum:null"/>
+    <property name="act43" value="transfer_money -,100,spyder_leather_museum"/>
     <property name="act90" value="unlock_controls"/>
     <property name="cond1" value="is variable_set paymuseum:no"/>
     <property name="cond2" value="is variable_set notpaidmuseum:yes"/>
@@ -183,6 +150,7 @@
     <property name="act11" value="lock_controls"/>
     <property name="act14" value="translated_dialog spyder_museum_entrance3"/>
     <property name="act15" value="npc_face spyder_maniac,up"/>
+    <property name="act16" value="translated_dialog player_wallet"/>
     <property name="act20" value="translated_dialog_choice yes:no,paymuseum"/>
     <property name="act90" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>

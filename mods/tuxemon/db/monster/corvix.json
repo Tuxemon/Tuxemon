@@ -12,15 +12,38 @@
             "technique": "berserk"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 24,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 28,
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 32,
             "technique": "all_in"
         }
     ],
-    "shape": "Flier",
-    "types": [
-        "Metal"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 36,
+            "monster_slug": "gryfix"
+        }
     ],
-    "weight": 25,
+    "shape": "flier",
+    "stage": "stage1",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 157,
+    "height": 55,
+    "weight": 4,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

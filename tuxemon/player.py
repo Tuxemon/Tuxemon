@@ -29,9 +29,10 @@
 
 from __future__ import annotations
 
-import logging
 import datetime as dt
+import logging
 
+from tuxemon import prepare
 from tuxemon.map import proj
 from tuxemon.npc import NPC
 from tuxemon.states.world.worldstate import WorldState
@@ -52,7 +53,7 @@ class Player(NPC):
         self.isplayer = True
 
         # Game variables for use with events
-        self.game_variables = {"steps": 0, "money": 0}
+        self.game_variables = {"steps": 0}
 
     def update(self, time_delta: float) -> None:
         """
@@ -82,16 +83,16 @@ class Player(NPC):
         %j - Day number of year 001-366
         """
         var = self.game_variables
-        var["hour"] = dt.datetime.now().strftime("%H")
-        var["day_of_year"] = dt.datetime.now().strftime("%j")
+        var["hour"] = int(dt.datetime.now().strftime("%H"))
+        var["day_of_year"] = int(dt.datetime.now().strftime("%j"))
 
         # Day and night basic cycle (12h cycle)
         if int(var["hour"]) < 6:
-            var["daytime"] = False
+            var["daytime"] = "false"
         elif 6 <= int(var["hour"]) < 18:
-            var["daytime"] = True
+            var["daytime"] = "true"
         else:
-            var["daytime"] = False
+            var["daytime"] = "false"
 
         # Day and night complex cycle (4h cycle)
         if int(var["hour"]) < 4:
@@ -106,3 +107,27 @@ class Player(NPC):
             var["stage_of_day"] = "dusk"
         else:
             var["stage_of_day"] = "night"
+
+        # Seasons
+        if prepare.CONFIG.hemisphere == "north":
+            if int(var["day_of_year"]) < 81:
+                var["season"] = "winter"
+            elif 81 <= int(var["day_of_year"]) < 173:
+                var["season"] = "spring"
+            elif 173 <= int(var["day_of_year"]) < 265:
+                var["season"] = "summer"
+            elif 265 <= int(var["day_of_year"]) < 356:
+                var["season"] = "autumn"
+            else:
+                var["season"] = "winter"
+        else:
+            if int(var["day_of_year"]) < 81:
+                var["season"] = "summer"
+            elif 81 <= int(var["day_of_year"]) < 173:
+                var["season"] = "autumn"
+            elif 173 <= int(var["day_of_year"]) < 265:
+                var["season"] = "winter"
+            elif 265 <= int(var["day_of_year"]) < 356:
+                var["season"] = "spring"
+            else:
+                var["season"] = "summer"

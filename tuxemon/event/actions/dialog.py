@@ -23,8 +23,10 @@ from __future__ import annotations
 
 import logging
 import warnings
-from typing import NamedTuple, Optional, final
+from dataclasses import dataclass, field
+from typing import Optional, Sequence, final
 
+from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar
 from tuxemon.locale import replace_text
@@ -35,13 +37,9 @@ from tuxemon.tools import open_dialog
 logger = logging.getLogger(__name__)
 
 
-class DialogActionParameters(NamedTuple):
-    text: str
-    avatar: str
-
-
 @final
-class DialogAction(EventAction[DialogActionParameters]):
+@dataclass
+class DialogAction(EventAction):
     """
     Open a single dialog and waits until it is closed.
 
@@ -64,7 +62,27 @@ class DialogAction(EventAction[DialogActionParameters]):
     """
 
     name = "dialog"
-    param_class = DialogActionParameters
+    text: str = field(init=False)
+    avatar: Optional[str] = field(init=False)
+    raw_parameters: Sequence[str] = field(init=False)
+
+    def __init__(self, *args):
+        super().__init__()
+        self.raw_parameters = args
+
+        self.avatar = None
+        if len(self.raw_parameters) > 1:
+            avatar_str = self.raw_parameters[-1]
+            if avatar_str.isdigit() or db.has_entry(avatar_str, "monster"):
+                self.avatar = avatar_str
+
+        if self.avatar:
+            # hack to allow unescaped commas in the dialog string
+            self.text = ", ".join(self.raw_parameters[:-1])
+        else:
+            # If we were unable to load an avatar then this was
+            # probably normal text
+            self.text = ", ".join(self.raw_parameters)
 
     def start(self) -> None:
         warnings.warn(
@@ -74,9 +92,8 @@ class DialogAction(EventAction[DialogActionParameters]):
             f"Parameters: {self.raw_parameters}.",
             DeprecationWarning,
         )
-        text = replace_text(self.session, self.parameters.text)
-        avatar = get_avatar(self.session, self.parameters.avatar)
-        self.open_dialog(text, avatar)
+        text = replace_text(self.session, self.text)
+        self.open_dialog(text, get_avatar(self.session, self.avatar))
 
     def update(self) -> None:
         try:

@@ -12,15 +12,26 @@
             "technique": "splinter"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "take_cover"
         }
     ],
-    "shape": "Flier",
-    "types": [
-        "Wood"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "strella"
+        }
     ],
-    "weight": 25,
+    "shape": "flier",
+    "stage": "basic",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 48,
+    "height": 40,
+    "weight": 2,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

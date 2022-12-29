@@ -12,15 +12,26 @@
             "technique": "clamp_on"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "take_cover"
         }
     ],
-    "shape": "Grub",
-    "types": [
-        "Earth"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "exapode"
+        }
     ],
-    "weight": 25,
+    "shape": "grub",
+    "stage": "basic",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 60,
+    "height": 15,
+    "weight": 0.5,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

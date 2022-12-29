@@ -12,16 +12,48 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 4,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 6,
             "technique": "font"
+        },
+        {
+            "level_learned": 8,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 10,
+            "technique": "sting"
         }
     ],
-    "shape": "Grub",
-    "types": [
-        "Metal",
-        "Wood"
+    "evolutions": [
+        {
+            "path": "stat",
+            "at_level": 12,
+            "monster_slug": "bugnin",
+            "stat1": "melee",
+            "stat2": "armour"
+        },
+        {
+            "path": "stat",
+            "at_level": 12,
+            "monster_slug": "sumchon",
+            "stat1": "armour",
+            "stat2": "melee"
+        }
     ],
-    "weight": 25,
+    "shape": "grub",
+    "stage": "stage1",
+    "types": [
+        "metal",
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 57,
+    "height": 58,
+    "weight": 12,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

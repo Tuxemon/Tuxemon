@@ -5,22 +5,39 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "beam"
+        },
+        {
+            "level_learned": 2,
+            "technique": "levitate"
+        },
+        {
+            "level_learned": 12,
+            "technique": "battery_discharge"
+        },
+        {
+            "level_learned": 16,
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
-            "technique": "battery_discharge"
+            "level_learned": 24,
+            "technique": "constrict"
         }
     ],
-    "shape": "Aquatic",
+    "evolutions": [],
+    "shape": "aquatic",
+    "stage": "stage1",
     "types": [
-        "Metal"
+        "metal"
     ],
-    "weight": 25,
+    "possible_genders": ["neuter"],
+    "txmn_id": 127,
+    "height": 55,
+    "weight": 4,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

@@ -9,17 +9,46 @@
         },
         {
             "level_learned": 2,
+            "technique": "biting_winds"
+        },
+        {
+            "level_learned": 12,
+            "technique": "fume"
+        },
+        {
+            "level_learned": 24,
+            "technique": "probiscus"
+        },
+        {
+            "level_learned": 28,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 32,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 44,
             "technique": "thunderclap"
         },
         {
-            "level_learned": 2,
-            "technique": "snowstorm"
+            "level_learned": 48,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 52,
+            "technique": "chill_mist"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [],
+    "shape": "flier",
+    "stage": "stage2",
     "types": [
-        "Water"
+        "water"
     ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 41,
+    "height": 144,
     "weight": 25,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,

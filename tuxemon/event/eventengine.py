@@ -194,7 +194,6 @@ class EventEngine:
             that action is loaded. ``None`` otherwise.
 
         """
-        # TODO: make generic
         if parameters is None:
             parameters = list()
 
@@ -206,8 +205,13 @@ class EventEngine:
             logger.warning(error)
             return None
 
-        else:
-            return action(self.session, parameters)
+        try:
+            return action(*parameters)
+        except Exception as e:
+            logger.warning(
+                f"Error running {name}. Could not instantiate {action} with parameters {parameters}: {e}"
+            )
+            return None
 
     def get_actions(self) -> List[Type[EventAction]]:
         """
@@ -410,9 +414,21 @@ class EventEngine:
 
         """
         to_remove = set()
+        current_map = self.current_map
 
         # Loop through the list of actions and update them
         for i, e in self.running_events.items():
+            # If the current map has changed, then `reset` has also been
+            # called, which replaced self.running_events with an empty dict.
+            # We need to stop processing the running_events, as they may not
+            # make sense on the new map. We need to explicitly guard for this
+            # because actions within this loop can change the map.
+            if current_map != self.current_map:
+                # The map has just changed, so running_events should have been
+                # emptied.
+                assert not self.running_events
+                return
+
             while 1:
                 """
                 * if RunningEvent is currently running an action, then continue

@@ -12,15 +12,26 @@
             "technique": "energy_field"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "sleep_bomb"
         }
     ],
-    "shape": "Humanoid",
-    "types": [
-        "Earth"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "prophetoise"
+        }
     ],
-    "weight": 25,
+    "shape": "humanoid",
+    "stage": "basic",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 87,
+    "height": 85,
+    "weight": 55,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

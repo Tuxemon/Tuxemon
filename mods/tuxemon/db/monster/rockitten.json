@@ -12,15 +12,26 @@
             "technique": "boulder"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "thunderball"
         }
     ],
-    "shape": "Hunter",
-    "types": [
-        "Earth"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 24,
+            "monster_slug": "rockat"
+        }
     ],
-    "weight": 25,
+    "shape": "hunter",
+    "stage": "basic",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 1,
+    "height": 55,
+    "weight": 9,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

@@ -12,15 +12,20 @@
             "technique": "mudslide"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "quicksand"
         }
     ],
-    "shape": "Hunter",
+    "evolutions": [],
+    "shape": "hunter",
+    "stage": "standalone",
     "types": [
-        "Earth"
+        "earth"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 144,
+    "height": 80,
+    "weight": 40,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

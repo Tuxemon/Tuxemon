@@ -58,13 +58,14 @@ class PygameMenuState(state.State):
 
     transparent = True
 
-    def startup(
+    def __init__(
         self,
         width: int = 1,
         height: int = 1,
         theme: Optional[pygame_menu.themes.Theme] = None,
         **kwargs: Any,
     ) -> None:
+        super().__init__()
 
         if theme is None:
             theme = get_theme()
@@ -79,6 +80,7 @@ class PygameMenuState(state.State):
             theme=theme,
             center_content=True,
             onclose=self._on_close,
+            **kwargs,
         )
         self.menu.set_sound(get_sound_engine())
         # If we 'ignore nonphysical keyboard', pygame_menu will check the
@@ -190,7 +192,12 @@ class Menu(Generic[T], state.State):
     # File to load for image background
     background_filename: Optional[str] = None
     menu_select_sound_filename = "sound_menu_select"
-    font_filename = "PressStart2P.ttf"
+    if prepare.CONFIG.locale == "zh_CN":
+        font_filename = prepare.FONT_CHINESE
+    elif prepare.CONFIG.locale == "ja":
+        font_filename = prepare.FONT_JAPANESE
+    else:
+        font_filename = prepare.FONT_BASIC
     borders_filename = "gfx/dialog-borders01.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = 0.20
@@ -201,7 +208,9 @@ class Menu(Generic[T], state.State):
     # if true, then menu items can be selected with the mouse/touch
     touch_aware = True
 
-    def startup(self, *, selected_index: int = 0, **kwargs: Any) -> None:
+    def __init__(self, selected_index: int = 0, **kwargs: Any) -> None:
+        super().__init__()
+
         self.rect = self.rect.copy()  # do not remove!
         self.selected_index = selected_index
         # state: closed, opening, normal, disabled, closing
@@ -325,11 +334,10 @@ class Menu(Generic[T], state.State):
             for sprite in self.sprites:
                 if isinstance(sprite, TextArea):
                     return sprite
-            logger.error(
+            raise RuntimeError(
                 "attempted to use 'alert' on state without a TextArea",
                 message,
             )
-            raise RuntimeError
 
         self.animate_text(find_textarea(), message, callback)
 

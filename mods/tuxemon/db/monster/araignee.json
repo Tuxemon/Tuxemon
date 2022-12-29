@@ -12,15 +12,20 @@
             "technique": "petrify"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "shrapnel"
         }
     ],
-    "shape": "Grub",
+    "evolutions": [],
+    "shape": "grub",
+    "stage": "standalone",
     "types": [
-        "Metal"
+        "metal"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 100,
+    "height": 68,
+    "weight": 7,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

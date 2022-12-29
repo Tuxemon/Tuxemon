@@ -12,15 +12,26 @@
             "technique": "spray"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
             "technique": "refresh"
         }
     ],
-    "shape": "Grub",
-    "types": [
-        "Water"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 9,
+            "monster_slug": "dracune"
+        }
     ],
-    "weight": 25,
+    "shape": "grub",
+    "stage": "basic",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 36,
+    "height": 17,
+    "weight": 1,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

@@ -12,15 +12,26 @@
             "technique": "shadow_boxing"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "one_two"
         }
     ],
-    "shape": "Varmint",
-    "types": [
-        "Earth"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "rabbitosaur"
+        }
     ],
-    "weight": 25,
+    "shape": "varmint",
+    "stage": "basic",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 44,
+    "height": 60,
+    "weight": 10,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

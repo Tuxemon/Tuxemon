@@ -5,23 +5,40 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 12,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 24,
             "technique": "mudslide"
         },
         {
-            "level_learned": 2,
+            "level_learned": 28,
             "technique": "ram"
         },
         {
-            "level_learned": 2,
+            "level_learned": 32,
             "technique": "rock"
         }
     ],
-    "shape": "",
+    "evolutions": [],
+    "shape": "blob",
+    "stage": "stage1",
     "types": [
-        "Earth",
-        "Metal"
+        "earth",
+        "metal"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 176,
+    "height": 90,
+    "weight": 55,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

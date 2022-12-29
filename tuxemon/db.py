@@ -57,7 +57,7 @@ from tuxemon.locale import T
 logger = logging.getLogger(__name__)
 
 # Load the default translator for data validation
-T.collect_languages(prepare.CONFIG.recompile_translations)
+T.collect_languages(False)
 T.load_translator()
 
 # Target is a mapping of who this targets
@@ -71,15 +71,99 @@ class ItemSort(str, Enum):
     quest = "quest"
 
 
+class GenderType(str, Enum):
+    neuter = "neuter"
+    male = "male"
+    female = "female"
+
+
+class ElementType(str, Enum):
+    aether = "aether"
+    wood = "wood"
+    fire = "fire"
+    earth = "earth"
+    metal = "metal"
+    water = "water"
+    normal = "normal"
+    glitch = "glitch"
+
+
 class ItemType(str, Enum):
     consumable = "Consumable"
     key_item = "KeyItem"
+
+
+class OutputBattle(str, Enum):
+    won = "won"
+    lost = "lost"
+    draw = "draw"
+    ran = "ran"
+    forfeit = "forfeit"
 
 
 # ItemBattleMenu is which menu you want to use to choose the target.
 class ItemBattleMenu(str, Enum):
     monster = "monster"
     combat = "combat"
+
+
+class MonsterShape(str, Enum):
+    aquatic = "aquatic"
+    blob = "blob"
+    brute = "brute"
+    dragon = "dragon"
+    flier = "flier"
+    grub = "grub"
+    humanoid = "humanoid"
+    hunter = "hunter"
+    landrace = "landrace"
+    leviathan = "leviathan"
+    polliwog = "polliwog"
+    serpent = "serpent"
+    sprite = "sprite"
+    varmint = "varmint"
+
+
+class SeenStatus(str, Enum):
+    unseen = "unseen"
+    seen = "seen"
+    caught = "caught"
+
+
+class MapType(str, Enum):
+    notype = "notype"
+    town = "town"
+    route = "route"
+    center = "center"
+    shop = "shop"
+    dungeon = "dungeon"
+
+
+class EvolutionType(str, Enum):
+    element = "element"
+    gender = "gender"
+    item = "item"
+    location = "location"
+    season = "season"
+    standard = "standard"
+    stat = "stat"
+    tech = "tech"
+
+
+class StatType(str, Enum):
+    armour = "armour"
+    dodge = "dodge"
+    hp = "hp"
+    melee = "melee"
+    ranged = "ranged"
+    speed = "speed"
+
+
+class EvolutionStage(str, Enum):
+    standalone = "standalone"
+    basic = "basic"
+    stage1 = "stage1"
+    stage2 = "stage2"
 
 
 # TODO: Automatically generate state enum through discovery
@@ -145,7 +229,7 @@ class ItemModel(BaseModel):
     def file_exists(cls, v):
         if has.file(v):
             return v
-        raise ValueError(f"no resource exists with path: {v}")
+        raise ValueError(f"the sprite {v} doesn't exist in the db")
 
 
 class MonsterMovesetItemModel(BaseModel):
@@ -166,11 +250,11 @@ class MonsterMovesetItemModel(BaseModel):
     def technique_exists(cls, v):
         if has.db_entry("technique", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the technique {v} doesn't exist in the db")
 
 
 class MonsterEvolutionItemModel(BaseModel):
-    path: str = Field(..., description="Path to evolution item")
+    path: EvolutionType = Field(..., description="Paths to evolution")
     at_level: int = Field(
         ...,
         description="The level at which this item can be used for evolution",
@@ -178,12 +262,42 @@ class MonsterEvolutionItemModel(BaseModel):
     monster_slug: str = Field(
         ..., description="The monster slug that this evolution item applies to"
     )
+    # optional fields
+    element: Optional[ElementType] = Field(
+        None, description="Element parameter"
+    )
+    gender: Optional[GenderType] = Field(None, description="Gender parameter")
+    item: Optional[str] = Field(None, description="Item parameter.")
+    inside: bool = Field(
+        None,
+        description="Location parameter: inside true or inside false (outside).",
+    )
+    season: Optional[str] = Field(None, description="Season parameter.")
+    stat1: Optional[StatType] = Field(
+        None, description="Stat parameter stat1 >= stat2."
+    )
+    stat2: Optional[StatType] = Field(
+        None, description="Stat parameter stat2 < stat1."
+    )
+    tech: Optional[str] = Field(None, description="Technique parameter.")
+
+    @validator("tech")
+    def technique_exists(cls, v):
+        if has.db_entry("technique", v):
+            return v
+        raise ValueError(f"the technique {v} doesn't exist in the db")
 
     @validator("monster_slug")
     def monster_exists(cls, v):
         if has.db_entry("monster", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the monster {v} doesn't exist in the db")
+
+    @validator("item")
+    def item_exists(cls, v):
+        if has.db_entry("item", v):
+            return v
+        raise ValueError(f"the item {v} doesn't exist in the db")
 
 
 class MonsterFlairItemModel(BaseModel):
@@ -218,13 +332,23 @@ class MonsterModel(BaseModel):
     slug: str = Field(..., description="The slug of the monster")
     category: str = Field(..., description="The category of monster")
     ai: str = Field(..., description="The AI to use for this monster")
+    txmn_id: int = Field(..., description="The id of the monster")
+    height: float = Field(..., description="The height of the monster")
     weight: float = Field(..., description="The weight of the monster")
+    stage: EvolutionStage = Field(
+        ..., description="The evolution stage of the monster"
+    )
 
     # Optional fields
     sprites: Optional[MonsterSpritesModel]
-    shape: str = Field("", description="The shape of the monster")
-    types: Sequence[str] = Field([], description="The type(s) of this monster")
+    shape: MonsterShape = Field(..., description="The shape of the monster")
+    types: Sequence[ElementType] = Field(
+        [], description="The type(s) of this monster"
+    )
     catch_rate: float = Field(0, description="The catch rate of the monster")
+    possible_genders: Sequence[GenderType] = Field(
+        [], description="Valid genders for the monster"
+    )
     lower_catch_resistance: float = Field(
         0, description="The lower catch resistance of the monster"
     )
@@ -240,10 +364,8 @@ class MonsterModel(BaseModel):
     flairs: Sequence[MonsterFlairItemModel] = Field(
         [], description="The flairs this monster has"
     )
-    sounds: MonsterSoundsModel = Field(
-        MonsterSoundsModel(
-            combat_call="sound_cry1", faint_call="sound_faint1"
-        ),
+    sounds: Optional[MonsterSoundsModel] = Field(
+        None,
         description="The sounds this monster has",
     )
 
@@ -266,15 +388,15 @@ class MonsterModel(BaseModel):
 
 
 class StatModel(BaseModel):
-    value: Optional[int] = Field(None, description="The value of the stat")
-    max_deviation: Optional[int] = Field(
-        None, description="The maximum deviation of the stat"
+    value: float = Field(0.0, description="The value of the stat")
+    max_deviation: int = Field(
+        0, description="The maximum deviation of the stat"
     )
     operation: str = Field(
-        ..., description="The operation to be done to the stat"
+        "+", description="The operation to be done to the stat"
     )
-    overridetofull: Optional[bool] = Field(
-        None, description="Whether or not to override to full"
+    overridetofull: bool = Field(
+        False, description="Whether or not to override to full"
     )
 
 
@@ -287,27 +409,25 @@ class Range(str, Enum):
     reliable = "reliable"
 
 
-# TODO: We may change this if we refactor technique effects to be more item-like
-class TechniqueEffect(str, Enum):
+# TechSort defines the sort of technique a technique is.
+class TechSort(str, Enum):
     damage = "damage"
-    hardshell = "hardshell"
-    lifeleech = "lifeleech"
     meta = "meta"
-    overfeed = "overfeed"
-    poison = "poison"
-    recover = "recover"
-    statchange = "statchange"
-    status = "status"
-    swap = "swap"
 
 
 class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
-    sort: str = Field(..., description="The sort of technique this is")
-    category: str = Field(..., description="The category of technique this is")
+    sort: TechSort = Field(..., description="The sort of technique this is")
     icon: str = Field(..., description="The icon to use for the technique")
-    effects: Sequence[TechniqueEffect] = Field(
-        ..., description="Effects this technique uses"
+    conditions: Sequence[str] = Field(
+        [], description="Conditions that must be met"
+    )
+    effects: Sequence[str] = Field(
+        [], description="Effects this technique uses"
+    )
+    flip_axes: Literal["", "x", "y", "xy"] = Field(
+        ...,
+        description="Axes along which technique animation should be flipped",
     )
     target: Target = Field(
         ..., description="Target mapping of who this technique is used on"
@@ -320,6 +440,15 @@ class TechniqueModel(BaseModel):
     )
 
     # Optional fields
+    category: Optional[str] = Field(
+        None, description="Category status: positive or negative"
+    )
+    repl_pos: Optional[str] = Field(
+        None, description="How to reply to a positive status"
+    )
+    repl_neg: Optional[str] = Field(
+        None, description="How to reply to a negative status"
+    )
     use_tech: Optional[str] = Field(
         None,
         description="Slug of what string to display when technique is used",
@@ -332,7 +461,9 @@ class TechniqueModel(BaseModel):
         None,
         description="Slug of what string to display when technique fails",
     )
-    types: Sequence[str] = Field([], description="Type(s) of the technique")
+    types: Sequence[ElementType] = Field(
+        [], description="Type(s) of the technique"
+    )
     power: float = Field(0, description="Power of the technique")
     is_fast: bool = Field(
         False, description="Whether or not this is a fast technique"
@@ -341,9 +472,8 @@ class TechniqueModel(BaseModel):
         False, description="Whether or not this is an area of effect technique"
     )
     recharge: int = Field(0, description="Recharge of this technique")
-    range: Range = Field(
-        "melee", description="The attack range of this technique"
-    )
+    range: Range = Field(..., description="The attack range of this technique")
+    tech_id: int = Field(..., description="The id of this technique")
     accuracy: float = Field(0, description="The accuracy of the technique")
     potency: Optional[float] = Field(
         None, description="How potetent the technique is"
@@ -366,7 +496,7 @@ class TechniqueModel(BaseModel):
     def file_exists(cls, v):
         if has.file(v):
             return v
-        raise ValueError(f"no resource exists with path: {v}")
+        raise ValueError(f"the icon {v} doesn't exist in the db")
 
     # Validate fields that refer to translated text
     @validator("use_tech", "use_success", "use_failure")
@@ -393,20 +523,22 @@ class TechniqueModel(BaseModel):
 class PartyMemberModel(BaseModel):
     slug: str = Field(..., description="Slug of the monster")
     level: int = Field(..., description="Level of the monster")
-    exp_give_mod: float = Field(
-        ..., description="Modifier for experience this monster gives"
+    money_mod: int = Field(
+        ..., description="Modifier for money this monster gives"
     )
     exp_req_mod: float = Field(..., description="Experience required modifier")
+    gender: GenderType = Field(..., description="Gender of the monster")
 
     @validator("slug")
     def monster_exists(cls, v):
         if has.db_entry("monster", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the monster {v} doesn't exist in the db")
 
 
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
+    gender: GenderType = Field(..., description="Gender of the NPC")
     sprite_name: str = Field(
         ..., description="Name of the overworld sprite filename"
     )
@@ -432,9 +564,10 @@ class NpcModel(BaseModel):
 class BattleGraphicsModel(BaseModel):
     island_back: str = Field(..., description="Sprite used for back combat")
     island_front: str = Field(..., description="Sprite used for front combat")
+    background: str = Field(..., description="Sprite used for background")
 
     # Validate resources that should exist
-    @validator("island_back", "island_front")
+    @validator("island_back", "island_front", "background")
     def file_exists(cls, v):
         file: str = f"gfx/ui/combat/{v}"
         if has.file(file):
@@ -461,7 +594,7 @@ class EncounterItemModel(BaseModel):
     def monster_exists(cls, v):
         if has.db_entry("monster", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the monster {v} doesn't exist in the db")
 
 
 class EncounterModel(BaseModel):
@@ -484,6 +617,12 @@ class EconomyItemModel(BaseModel):
     item_name: str = Field(..., description="Name of the item")
     price: int = Field(0, description="Price of the item")
     cost: int = Field(0, description="Cost of the item")
+
+    @validator("item_name")
+    def item_exists(cls, v):
+        if has.db_entry("item", v):
+            return v
+        raise ValueError(f"the item {v} doesn't exist in the db")
 
 
 class EconomyModel(BaseModel):
@@ -826,13 +965,20 @@ class JSONDatabase:
 
         """
 
-        filename = self.database[table][slug].dict()["file"] or slug
+        filename = self.database[table][slug].file or slug
         if filename == slug:
             logger.debug(
                 f"Could not find a file record for slug {slug}, did you remember to create a database record?"
             )
 
         return filename
+
+    def has_entry(self, slug: str, table: TableName) -> bool:
+        table_entry = self.database[table]
+        if not table_entry:
+            logger.exception(f"{table} table wasn't loaded")
+            sys.exit()
+        return slug in table_entry
 
     def log_missing_entry_and_exit(self, table: str, slug: str):
         options = difflib.get_close_matches(slug, self.database[table].keys())

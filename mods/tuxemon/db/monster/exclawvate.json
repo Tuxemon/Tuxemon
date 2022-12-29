@@ -1,0 +1,45 @@
+{
+    "slug": "exclawvate",
+    "category": "digger",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 2,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 12,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 24,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 28,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 32,
+            "technique": "wall_of_steel"
+        }
+    ],
+    "evolutions": [],
+    "shape": "dragon",
+    "stage": "stage1",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 195,
+    "height": 213,
+    "weight": 1000,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

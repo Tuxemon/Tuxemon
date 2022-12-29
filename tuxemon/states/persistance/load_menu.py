@@ -29,7 +29,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Any, Optional
+from typing import Optional
 
 from tuxemon import prepare, save
 from tuxemon.menu.interface import MenuItem
@@ -42,13 +42,10 @@ logger = logging.getLogger(__name__)
 
 
 class LoadMenuState(SaveMenuState):
-    def startup(self, **kwargs: Any) -> None:
-        if "selected_index" not in kwargs:
-            kwargs["selected_index"] = save.slot_number or 0
-        super().startup(**kwargs)
-        slot = kwargs.get("load_slot")
-        if slot:
-            self.selected_index = slot - 1
+    def __init__(self, load_slot: Optional[int] = None) -> None:
+        super().__init__()
+        if load_slot:
+            self.selected_index = load_slot - 1
             self.on_menu_selection(None)
 
     def on_menu_selection(self, menuitem: Optional[MenuItem[None]]) -> None:
@@ -67,8 +64,9 @@ class LoadMenuState(SaveMenuState):
 
             map_path = prepare.fetch("maps", save_data["current_map"])
             self.client.push_state(
-                WorldState,
-                map_name=map_path,
+                WorldState(
+                    map_name=map_path,
+                )
             )
 
             # TODO: Get player from whatever place and use self.client in

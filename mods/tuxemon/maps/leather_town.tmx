@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="94">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="94">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="north" value="route3"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="leather_town"/>
+  <property name="types" value="town"/>
+  <property name="west" value="citypark"/>
  </properties>
  <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
   <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
@@ -15,17 +20,11 @@
  <tileset firstgid="3329" name="Terrain_by_George" tilewidth="16" tileheight="16" tilecount="360" columns="15">
   <image source="../gfx/tilesets/Terrain_by_George.png" width="240" height="384"/>
  </tileset>
- <tileset firstgid="3689" name="Car,_Black_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="36" columns="6">
-  <image source="../gfx/tilesets/Car,_Black_by_Isaiah658.png" width="96" height="96"/>
- </tileset>
- <tileset firstgid="3725" name="Truck-red-all" tilewidth="16" tileheight="16" tilecount="36" columns="6">
-  <image source="../gfx/tilesets/Truck-red-all.png" width="96" height="96"/>
- </tileset>
- <tileset firstgid="3761" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
+ <tileset firstgid="3689" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="5361" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ <tileset firstgid="5289" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
  </tileset>
  <layer id="1" name="Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
@@ -39,7 +38,7 @@
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAG110lwVEUcx/FmSSCAiSRAUCBBcIHSJMjmRcnOFlBcwCVanCzFzGQDJUElkEB50pMHUSjlQAJZ9IRnD+5VcnDfTkISshEWd63S79+Zf9n16r2ZfsnMv+ozPf2m8/o3/bZJTrYx14dUOtWYMpSjApUomRKT6LNVjFmWZcxyeGt1pjFDbByGtjKmgGzjucZcdnSNcRHyRFGPBjRCK9FnO8i3lWw1Pvl2ky+Lz2dBW9mn5MvPM6aQtn1GrJX32q/jfQRR1GMRY4+R53W8geM4Aa1En0k+19I1tPN1e/JJv4lMzdiLffF8H5LnI3yMT/Apavn+TzF/os+eDpFP11DzvT/TmA+ga6ftfjK1oBUH4vmW0qarjpDhKLQ03yjbxnzyeY+5HN905uslQ59PPl2vjNnGZEL73mOu+X6aZsx5XEA/BmDXIP2LGMIwRhCm9PyT67Yyfn1IpiKyFcfz+V3XMlbWL2c69yXMRS7yYNc8+vOxAPlYCG+dn8X3Qz8GMAgtPf90nd5kzrdwErpNrutc+sUeJfTvZr57sAGlKINd5fQrUIkqVMNbs1mHObgO2ciBlr1+ck87xZyd6ILka+PalXxB59oe5nsGdYggCrvq6TegEU1ohrfWkGct1mE97oKWrl8eWSRHD20v+iD5upLk0/1Mpq0lz+N4Aq9xbHdb+XT99PqVTN57sb1+Vzi/r+IafsYv+BV+JfdCl+ogzxEcxXvke8nKp+tn5/O7F+vxLeD4FGIpbsIyLMdkqoc8vejD23gHWn7rl+heXEOWbdiOe3EfdiBd5bd+et1qq/c6ydBCllYcwPN4AS8iHbWY+7N3/eQ5oc8KfdbZ+VKZYwnzF6DQek7Y+69iu3f95Dmhzwp91qUrXzXzb8SmgHwRttvrV8r9xe/3nz4r7O82xG+VYYxgFGNIdb1KPl2/Iu4rci/WZ0SH9V62ybPCrgXcU/KxEDfgRvjVo8zxWFwtbdjS9ZO/k3uxlOSUY5yoKslThWpsxCb41WEytcd1JMm3Mv678Bw7epL3t0PXT3PKtaE5ZT7p+1UjeZrQjL3YB786Q6buuJ4k+baQ5xI7UTX0NZfm9K6bt++XIVXb/PJpLs052bnku0+0/PJpLs050X3L341C8o1Lx7Hk/0ktv3yaS3PqWGlP8VzoRBdO4wy6EVRjfBA2n/w/qbWH8y2CbERRB82lOXWstJ+T5Qt8ia/wNb6B1Le03+F7/IAfMZF8sb0Fv2ouzWmP/Ic5TYYxUzAV0zAdUhm0mZiBmchCmHy7uJYfxiNJrmnNpTljs8de72DOIhSjBKtwJ6RW067BWqzDeoTJd5BcbTiUJJ/m0pyx2f9//Yy35xzN4XxxPf9c82kuzSnJ7GtK+lIyryuX67eTdevCacf1+y9E/MW+pnT7CG/kunKRw7hUla6fy/4u8BulHwMYxEXY9RvPuN/xB/7EX5C6xLhxXMYVXIVr2cc12d/MZb5c5GEe5sOum7neb8GtuA0rILWIcYuxBAUohEv9neTYe/exgf2WogzlqIBd95PnATyIh7ATUpsZtwVbUYNtcK0V3L9XwuU417HfCKKoRwPsOkieNhzCYbRD6lnGPYf9aEErXGsn2XYhzHF23XcqxrWTrcNx/VIxX9h9eNfP5TiHncM7Xs8p3R7Ul+26fjp2MsdZv1tQ+zK/xV+BronmCurrds0WtF/X7frdgtqzZHsXuiY6f1Bft0u+fwG0n3RK
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">

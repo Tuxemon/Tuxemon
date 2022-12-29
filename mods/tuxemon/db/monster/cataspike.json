@@ -4,7 +4,7 @@
     "ai": "RandomAI",
     "moveset": [
         {
-            "level_learned": 1,
+            "level_learned": 2,
             "technique": "bullet"
         },
         {
@@ -12,15 +12,26 @@
             "technique": "shuriken"
         },
         {
-            "level_learned": 5,
+            "level_learned": 4,
             "technique": "wallow"
         }
     ],
-    "shape": "Grub",
-    "types": [
-        "Metal"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 9,
+            "monster_slug": "puparmor"
+        }
     ],
-    "weight": 25,
+    "shape": "grub",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 33,
+    "height": 12,
+    "weight": 1,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

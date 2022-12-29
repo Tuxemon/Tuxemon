@@ -12,15 +12,20 @@
             "technique": "perfect_cut"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "fluff_up"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [],
+    "shape": "flier",
+    "stage": "standalone",
     "types": [
-        "Metal"
+        "metal"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 118,
+    "height": 55,
+    "weight": 6,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

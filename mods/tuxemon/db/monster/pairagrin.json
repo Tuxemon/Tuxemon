@@ -12,14 +12,25 @@
             "technique": "whirlwind"
         },
         {
-            "level_learned": 2,
+            "level_learned": 16,
             "technique": "wing_tip"
         }
     ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "pairagrim"
+        }
+    ],
     "shape": "flier",
+    "stage": "basic",
     "types": [
         "wood"
     ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 181,
+    "height": 70,
     "weight": 4,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,

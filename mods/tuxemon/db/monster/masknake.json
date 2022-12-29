@@ -12,15 +12,20 @@
             "technique": "beam"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "supernova"
         }
     ],
-    "shape": "Serpent",
+    "evolutions": [],
+    "shape": "serpent",
+    "stage": "standalone",
     "types": [
-        "Fire"
+        "fire"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 115,
+    "height": 112,
+    "weight": 8,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

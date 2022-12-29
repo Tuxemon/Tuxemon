@@ -1,0 +1,35 @@
+{
+  "animation": "drip_green",
+  "category": "negative",
+  "effects": [
+    "statchange all"
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_exhausted.png",
+  "range": "special",
+  "repl_neg": "replace",
+  "sfx": "sfx_pulse",
+  "slug": "status_exhausted",
+  "sort": "meta",
+  "statmelee": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "statranged": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "target": {
+    "enemy monster": 0,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0,
+    "item": 0
+  },
+  "tech_id": 106,
+  "use_failure": "generic_failure",
+  "use_success": "combat_state_exhausted_get",
+  "use_tech": "combat_used_x"
+}

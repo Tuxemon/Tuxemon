@@ -12,15 +12,44 @@
             "technique": "web"
         },
         {
-            "level_learned": 2,
+            "level_learned": 16,
+            "technique": "hibernate"
+        },
+        {
+            "level_learned": 32,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 36,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 40,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 56,
             "technique": "whirlwind"
+        },
+        {
+            "level_learned": 60,
+            "technique": "wing_tip"
+        },
+        {
+            "level_learned": 64,
+            "technique": "shadow_boxing"
         }
     ],
-    "shape": "Dragon",
+    "evolutions": [],
+    "shape": "dragon",
+    "stage": "stage2",
     "types": [
-        "Wood"
+        "wood"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 142,
+    "height": 397,
+    "weight": 336,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

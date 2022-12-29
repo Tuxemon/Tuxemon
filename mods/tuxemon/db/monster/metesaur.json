@@ -1,0 +1,40 @@
+{
+    "slug": "metesaur",
+    "category": "meteor",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 2,
+            "technique": "kindling_flame"
+        },
+        {
+            "level_learned": 20,
+            "technique": "breathe_fire"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 42,
+            "monster_slug": "qetzlrokilus"
+        }
+    ],
+    "shape": "flier",
+    "stage": "basic",
+    "types": [
+        "earth",
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 202,
+    "height": 95,
+    "weight": 10,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

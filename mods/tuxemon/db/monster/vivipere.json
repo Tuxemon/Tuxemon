@@ -12,15 +12,74 @@
             "technique": "headbutt"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "wallow"
         }
     ],
-    "shape": "Serpent",
-    "types": [
-        "Earth"
+    "evolutions": [
+        {
+            "path": "tech",
+            "at_level": 0,
+            "monster_slug": "vivicinder",
+            "tech": "flamethrower"
+        },
+        {
+            "path": "element",
+            "at_level": 0,
+            "monster_slug": "viviphyta",
+            "element": "wood"
+        },
+        {
+            "path": "gender",
+            "at_level": 24,
+            "monster_slug": "viviteel",
+            "gender": "female"
+        },
+        {
+            "path": "location",
+            "at_level": 0,
+            "monster_slug": "vivitrans",
+            "inside": true
+        },
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "vivitron"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "vividactil",
+            "item": "petrified_dung"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "vividactil",
+            "item": "shammer_fossil"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "vividactil",
+            "item": "rhincus_fossil"
+        },
+        {
+            "path": "gender",
+            "at_level": 24,
+            "monster_slug": "vivisource",
+            "gender": "male"
+        }
     ],
-    "weight": 25,
+    "shape": "serpent",
+    "stage": "basic",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 132,
+    "height": 85,
+    "weight": 8,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

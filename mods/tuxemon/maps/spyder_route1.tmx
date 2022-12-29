@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="192">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="193">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="north" value="cotton_town"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="route1"/>
+  <property name="south" value="paper_town"/>
+  <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
@@ -28,13 +33,7 @@
  <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
-  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
- </tileset>
- <tileset firstgid="1531" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
- </tileset>
- <tileset firstgid="1619" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
+ <tileset firstgid="1521" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
   <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
   <tile id="255">
    <animation>
@@ -49,10 +48,7 @@
    </animation>
   </tile>
  </tileset>
- <tileset firstgid="1979" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
- </tileset>
- <tileset firstgid="2135" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
+ <tileset firstgid="1881" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
   <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
@@ -62,12 +58,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAGtlLFuAjEQRFdRUMTHhJofIJAmHVCTKt9AmSj/zbp4UjK6OS9nTrKG3RvPzBrrIv4/r88Rm1yKn6uIa2FdkjP3qG6vVq1TZjvnUlTe0lp1e7X6uHmUN1W/5dmx9nKO9J2+66uPm0d5rj7m2bc19Wwzs9N3fdWpzqH7qOfyNY7Td310weoc8BV7+Zy+66u+m+Mj/5t2pxrucrX7NPWQj/um6PRdXz2qc+i+Vr9nZvJ9mfxO3/XVpzqH7qMmH7Wi03d93V+dQ/dRz+U75Jk6fddHF6zOAV+RfHrvqJ2+66t+dQ7dV62dvuuj6/LThzeK6FURP5efPrxRRK+K+PXmgTeKPR99j19vHnij2PPR9/hp7kfV+p2+V5d8mvtRNfoNn16Wf/+qc/31W/K76gMPj+p5wW/4s474vWN9J7fqA+8GQOuKHw==
+   eAGtlLFuAjEQRLdIUH6G1PwABJp0gRqqfENqovxGPpV18aRkdHNezpxkDbs3npk11kX8f9ZPEa+5FC/PEV+FdU7O3KO6vVq1jpntlEtReUtr1e3V6uPmUd5UvcuzY73JOdJ3+q6vPm4e5bn6I8++ralnk5mdvuurTnUO3Uc9l69xnL7rowtW54Cv2Mvn9F1f9d0c7/nftDvVcJur3aeph3zcN0Wn7/rqUZ1D97X6kJnJ92nyO33XV5/qHLqPmnzUik7f9XV/dQ7dRz2Xb59n6vRdH12wOgd8RfLpvaN2+q6v+tU5dF+1dvquj67LTx/eKKJXRfxcfvrwRhG9KuLXmwfeKPZ89D1+vXngjWLPR9/jp7kfVet3+l5d8mnuR9XoN/xdLf/+Vef667fkd9UHHh7V84Lf8Psl4ueOdU1u1QfeDSkIisk=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHVVNsNAjEM60dPLMMfH0zAQ0zBKCzLHjTiLEVWfQn0EFAppHFSx+lVlPJfq9ZSpmbsr9M6czBvFGe7Hpu+np1m3YfZb9tsZn4h57F392qeS+sfmfXs6fNaFL/C762vWbQibZa3Fel7VuV/WZ+aYy19il/hrE9NZm/Pr95bNCy6P+jwXEt71ofz7D3H0l1m9TG/ilmf16H2I/oUp8JZn5rj7L7viD7Fr3DWp+ZQ781w/AeqsyM49Cn9wNWdcW9VBxx8Wc/8KgY/e67nPMdcn42jebgPYuYHrnzUh/PMr2LVj+tVHXCuz8asm+MsT1THvFEc8f1KPpoD+Vf17mu5+TPgyXp/1vY4x/i3Yuhhr/TsNirzGfwBI/FAcw==
+   eAHVVNsNAjEM60ePafhnAh5iCkZhRYZgDxpxliKrvgR6CKgU0jip4/QqSvmvVWspUzP2l2mdOZg3irNdD01fz46z7v3st202M7+Q89i7ezXPufWPzHr29Hktil/h99bXLFqRNsvbivQ9q/K/rE/NsZY+xa9w1qcms7fnV+8tGhbdH3R4rqU968N59p5j6S6z+phfxazP61D7EX2KU+GsT81xct93RJ/iVzjrU3Oo92Y4/gPV2REc+pR+4OrOuLeqAw6+rGd+FYOfPddznmOuz8bRPNwHMfMDVz7qw3nmV7Hqx/WqDjjXZ2PWzXGWJ6pj3iiO+H4lH82B/Kt6d7Vc/RnwZL0/a3ucY/xbMfSwV3puG5X5DP4AaKJBEA==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
@@ -287,13 +283,19 @@
     <property name="behav1" value="talk spyder_beachcomber"/>
    </properties>
   </object>
-  <object id="190" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="190" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="not variable_set environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
    </properties>
   </object>
-  <object id="191" name="Exhausted" type="event" x="0" y="0" width="16" height="16">
+  <object id="191" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
+   </properties>
+  </object>
+  <object id="192" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>

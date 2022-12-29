@@ -1,0 +1,34 @@
+{
+    "slug": "solight",
+    "category": "pulsar",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "beam"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 12,
+            "technique": "shrapnel"
+        }
+    ],
+    "evolutions": [],
+    "shape": "sprite",
+    "stage": "standalone",
+    "types": [
+        "fire",
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 230,
+    "height": 55,
+    "weight": 17,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

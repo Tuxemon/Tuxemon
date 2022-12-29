@@ -12,15 +12,26 @@
             "technique": "sudden_glow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "glower"
         }
     ],
-    "shape": "Aquatic",
-    "types": [
-        "Water"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "incandesfin"
+        }
     ],
-    "weight": 25,
+    "shape": "aquatic",
+    "stage": "basic",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 68,
+    "height": 80,
+    "weight": 11,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

@@ -1,0 +1,33 @@
+{
+    "slug": "fordin",
+    "category": "petrified",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 2,
+            "technique": "invictus"
+        },
+        {
+            "level_learned": 12,
+            "technique": "peregrine"
+        }
+    ],
+    "evolutions": [],
+    "shape": "leviathan",
+    "stage": "standalone",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 211,
+    "height": 56,
+    "weight": 19,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

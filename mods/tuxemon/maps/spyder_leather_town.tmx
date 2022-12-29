@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="303">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="305">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="north" value="route3"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="leather_town"/>
+  <property name="types" value="town"/>
+  <property name="west" value="citypark"/>
  </properties>
  <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
   <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
@@ -15,17 +20,11 @@
  <tileset firstgid="3329" name="Terrain_by_George" tilewidth="16" tileheight="16" tilecount="360" columns="15">
   <image source="../gfx/tilesets/Terrain_by_George.png" width="240" height="384"/>
  </tileset>
- <tileset firstgid="3689" name="Car,_Black_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="36" columns="6">
-  <image source="../gfx/tilesets/Car,_Black_by_Isaiah658.png" width="96" height="96"/>
- </tileset>
- <tileset firstgid="3725" name="Truck-red-all" tilewidth="16" tileheight="16" tilecount="36" columns="6">
-  <image source="../gfx/tilesets/Truck-red-all.png" width="96" height="96"/>
- </tileset>
- <tileset firstgid="3761" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
+ <tileset firstgid="3689" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="5361" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ <tileset firstgid="5289" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
  </tileset>
  <layer id="1" name="Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
@@ -39,7 +38,7 @@
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -226,7 +225,7 @@
   </object>
   <object id="269" name="Sign: Leather Town" type="event" x="576" y="480" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_leathertown_sign"/>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -245,13 +244,13 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="272" name="Make Scout" type="event" x="292.667" y="234" width="16" height="16">
+  <object id="272" name="Make Scout" type="event" x="304" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_maniac,18,15"/>
     <property name="cond1" value="not npc_exists spyder_maniac"/>
    </properties>
   </object>
-  <object id="273" name="Scout Talk" type="event" x="308.667" y="218" width="16" height="16">
+  <object id="273" name="Scout Talk" type="event" x="304" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leather_maniac"/>
     <property name="behav1" value="talk spyder_maniac"/>
@@ -273,6 +272,7 @@
     <property name="act50" value="npc_face spyder_barmaid,down"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
+    <property name="act80" value="set_variable teleport_faint:spyder_leather_town.tmx 4 14"/>
     <property name="cond1" value="is variable_set chooses:yes"/>
    </properties>
   </object>
@@ -389,16 +389,30 @@
   </object>
   <object id="298" name="Teleport to Leather Centre" type="event" x="368" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_leather_center.tmx,7,12,0.3"/>
+    <property name="act1" value="transition_teleport spyder_leather_center.tmx,6,10,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="301" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="301" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="not variable_set environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="304" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
+   </properties>
+  </object>
+  <object id="303" name="Auto Healing Teleported" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_monster_health ,"/>
+    <property name="act2" value="set_monster_status ,"/>
+    <property name="act3" value="set_variable battle_last_result:none"/>
+    <property name="cond1" value="is variable_set battle_last_result:lost"/>
    </properties>
   </object>
  </objectgroup>

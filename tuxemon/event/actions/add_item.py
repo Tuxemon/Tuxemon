@@ -21,43 +21,56 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, Union, final
+from dataclasses import dataclass
+from typing import Optional, Union, final
 
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-
-
-class AddItemActionParameters(NamedTuple):
-    item_slug: str
-    quantity: Union[int, None]
+from tuxemon.npc import NPC
 
 
 @final
-class AddItemAction(EventAction[AddItemActionParameters]):
+@dataclass
+class AddItemAction(EventAction):
     """
-    Add an item to the current player's inventory.
+    Add an item to the specified trainer's inventory.
 
     Script usage:
         .. code-block::
 
-            add_item <item_slug>[,quantity]
+            add_item <item_slug>[,quantity][,trainer_slug]
 
     Script parameters:
         item_slug: Item name to look up in the item database.
         quantity: Quantity of the item to add. By default it is 1.
+        trainer_slug: Slug of the trainer that will receive the item. It
+            defaults to the current player.
 
     """
 
     name = "add_item"
-    param_class = AddItemActionParameters
+    item_slug: str
+    quantity: Union[int, None] = None
+    trainer_slug: str = None
 
     def start(self) -> None:
-        player = self.session.player
-        if self.parameters.quantity is None:
+        trainer: Optional[NPC]
+
+        if self.trainer_slug is None:
+            trainer = self.session.player
+        else:
+            trainer = get_npc(self.session, self.trainer_slug)
+
+        assert trainer, "No Trainer found with slug '{}'".format(
+            self.trainer_slug or "player"
+        )
+        if self.quantity is None:
             quantity = 1
         else:
-            quantity = self.parameters.quantity
-        player.alter_item_quantity(
+            quantity = self.quantity
+
+        trainer.alter_item_quantity(
             self.session,
-            self.parameters.item_slug,
+            self.item_slug,
             quantity,
         )

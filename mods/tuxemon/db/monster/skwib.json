@@ -12,15 +12,26 @@
             "technique": "flow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 16,
             "technique": "font"
         }
     ],
-    "shape": "",
-    "types": [
-        "Water"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "octabode"
+        }
     ],
-    "weight": 25,
+    "shape": "polliwog",
+    "stage": "basic",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 183,
+    "height": 30,
+    "weight": 9,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

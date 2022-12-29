@@ -1,31 +1,33 @@
 {
-    "slug": "spyder_dryadsgrove_ignatia",
-    "sprite_name": "fire",
-	"monsters": [
-        		{
-            "name": "Vivicinder",
-            "level": 50, 
-			"slug": "vivicinder",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Masknake",
-            "level": 50, 
-			"slug": "masknake",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Criniotherme",
-            "level": 50, 
-			"slug": "criniotherme",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	"combat_front": "firenymph.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_dryadsgrove_ignatia",
+  "gender": "female",
+  "sprite_name": "firenymph",
+  "monsters": [
+    {
+      "name": "Vivicinder",
+      "level": 50,
+      "slug": "vivicinder",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Masknake",
+      "level": 50,
+      "slug": "masknake",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Criniotherme",
+      "level": 50,
+      "slug": "criniotherme",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    }
+  ],
+  "combat_front": "firenymph.png",
+  "combat_back": "adventurer_back.png"
+}

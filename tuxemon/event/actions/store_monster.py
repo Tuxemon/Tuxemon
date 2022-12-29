@@ -26,7 +26,8 @@ from __future__ import annotations
 
 import logging
 import uuid
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.prepare import CONFIG
@@ -34,14 +35,10 @@ from tuxemon.prepare import CONFIG
 logger = logging.getLogger(__name__)
 
 
-class StoreMonsterActionParameters(NamedTuple):
-    monster_id: str
-    box: str
-
-
 # noinspection PyAttributeOutsideInit
 @final
-class StoreMonsterAction(EventAction[StoreMonsterActionParameters]):
+@dataclass
+class StoreMonsterAction(EventAction):
     """
     Store a monster in a box.
 
@@ -60,14 +57,15 @@ class StoreMonsterAction(EventAction[StoreMonsterActionParameters]):
     """
 
     name = "store_monster"
-    param_class = StoreMonsterActionParameters
+    monster_id: str
+    box: str
 
     def start(self) -> None:
         player = self.session.player
         instance_id = uuid.UUID(
-            player.game_variables[self.parameters.monster_id],
+            player.game_variables[self.monster_id],
         )
-        box = self.parameters.box
+        box = self.box
         monster = player.find_monster_by_id(instance_id)
         if monster is None:
             raise ValueError(

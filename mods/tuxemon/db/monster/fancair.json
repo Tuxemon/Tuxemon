@@ -12,15 +12,26 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "wall_of_steel"
         }
     ],
-    "shape": "",
-    "types": [
-        "Metal"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "windeye"
+        }
     ],
-    "weight": 25,
+    "shape": "sprite",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 179,
+    "height": 45,
+    "weight": 18,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

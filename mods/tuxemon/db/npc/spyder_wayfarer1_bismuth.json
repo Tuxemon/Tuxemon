@@ -1,14 +1,17 @@
 {
-    "slug": "spyder_wayfarer1_bismuth",
-    "sprite_name": "scientist",
-	"monsters": [
-        {
-            "name": "Hydrone",
-            "level": 14, 
-			"slug": "hydrone",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "scientist.png",
-    "combat_back": "red_back.png"}
+  "slug": "spyder_wayfarer1_bismuth",
+  "gender": "male",
+  "sprite_name": "scientist",
+  "monsters": [
+    {
+      "name": "Hydrone",
+      "level": 14,
+      "slug": "hydrone",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    }
+  ],
+  "combat_front": "scientist.png",
+  "combat_back": "adventurer_back.png"
+}

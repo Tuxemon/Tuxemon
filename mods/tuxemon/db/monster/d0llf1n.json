@@ -12,15 +12,20 @@
             "technique": "flood"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "flow"
         }
     ],
-    "shape": "Aquatic",
+    "evolutions": [],
+    "shape": "aquatic",
+    "stage": "standalone",
     "types": [
-        "Glitch",
-        "Water"
+        "glitch",
+        "water"
     ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 0,
+    "height": 0,
     "weight": 25,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,

@@ -1,10 +1,12 @@
 {
+  "tech_id": 48,
   "accuracy": 0.75,
-  "animation": "water_spurt",
-  "category": "physical",
+  "animation": "waterspurt",
   "effects": [
-    "damage"
+    "damage 100",
+    "recover all"
   ],
+  "flip_axes": "",
   "healing_power": 0,
   "icon": "",
   "is_area": false,

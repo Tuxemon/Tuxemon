@@ -1,0 +1,33 @@
+{
+    "slug": "shelagu",
+    "category": "unknown",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "font"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 12,
+            "technique": "flow"
+        }
+    ],
+    "evolutions": [],
+    "shape": "polliwog",
+    "stage": "standalone",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 221,
+    "height": 60,
+    "weight": 4,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

@@ -26,16 +26,7 @@
 
 import logging
 from math import cos, pi, sin
-from typing import (
-    Any,
-    Dict,
-    Generator,
-    Iterator,
-    Mapping,
-    Optional,
-    Sequence,
-    Tuple,
-)
+from typing import Any, Dict, Generator, Iterator, Mapping, Optional, Tuple
 
 import pytmx
 import yaml
@@ -173,6 +164,10 @@ class TMXMapLoader:
 
     """
 
+    def __init__(self):
+        # Makes mocking easier during tests
+        self.image_loader = scaled_image_loader
+
     def load(self, filename: str) -> TuxemonMap:
         """Load map data from a tmx map file.
 
@@ -205,7 +200,7 @@ class TMXMapLoader:
         """
         data = pytmx.TiledMap(
             filename=filename,
-            image_loader=scaled_image_loader,
+            image_loader=self.image_loader,
             pixelalpha=True,
         )
         tile_size = (data.tilewidth, data.tileheight)
@@ -215,7 +210,7 @@ class TMXMapLoader:
         interacts = list()
         collision_map: Dict[Tuple[int, int], Optional[RegionProperties]] = {}
         collision_lines_map = set()
-        edges = data.properties.get("edges")
+        maps = data.properties
 
         # get all tiles which have properties and/or collisions
         gids_with_props = dict()
@@ -275,7 +270,7 @@ class TMXMapLoader:
             collision_map,
             collision_lines_map,
             data,
-            edges,
+            maps,
             filename,
         )
 

@@ -9,19 +9,36 @@
         },
         {
             "level_learned": 2,
+            "technique": "sand_spray"
+        },
+        {
+            "level_learned": 12,
+            "technique": "avalanche"
+        },
+        {
+            "level_learned": 16,
             "technique": "fire_claw"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "give_all"
+        },
+        {
+            "level_learned": 24,
+            "technique": "flamethrower"
         }
     ],
-    "shape": "Brute",
+    "evolutions": [],
+    "shape": "brute",
+    "stage": "stage1",
     "types": [
-        "Earth",
-        "Fire"
+        "earth",
+        "fire"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 17,
+    "height": 160,
+    "weight": 3000,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

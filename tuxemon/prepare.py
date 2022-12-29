@@ -105,6 +105,11 @@ NATIVE_RESOLUTION = [240, 160]
 # Set the character limit for setting a player name.
 PLAYER_NAME_LIMIT = 30
 
+# Fonts
+FONT_BASIC = "PressStart2P.ttf"
+FONT_CHINESE = "NotoSansTC.ttf"
+FONT_JAPANESE = "NotoSansJP.ttf"
+
 # If scaling is enabled, scale the tiles based on the resolution
 if CONFIG.large_gui:
     SCALE = 2
@@ -135,12 +140,10 @@ def pygame_init() -> None:
 
     import pygame as pg
 
-    # Configure locale
+    # Configure databases and locale
     from tuxemon.locale import T
 
     T.collect_languages(CONFIG.recompile_translations)
-
-    # Configure databases
     from tuxemon.db import db
 
     db.load()

@@ -12,15 +12,38 @@
             "technique": "web"
         },
         {
-            "level_learned": 2,
+            "level_learned": 16,
+            "technique": "hibernate"
+        },
+        {
+            "level_learned": 32,
             "technique": "sting"
+        },
+        {
+            "level_learned": 36,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 40,
+            "technique": "fluff_up"
         }
     ],
-    "shape": "Dragon",
-    "types": [
-        "Wood"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 54,
+            "monster_slug": "dragarbor"
+        }
     ],
-    "weight": 25,
+    "shape": "dragon",
+    "stage": "stage1",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 141,
+    "height": 122,
+    "weight": 115,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="9" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="59">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="downstairs"/>
+  <property name="types" value="notype"/>
+ </properties>
  <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -45,7 +51,7 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="37" name="Go Upstairs" type="event" x="0" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_bedroom.tmx,9,3,0.3"/>
+    <property name="act1" value="transition_teleport spyder_bedroom.tmx,8,2,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at 1,2"/>
    </properties>

@@ -22,8 +22,10 @@
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
+from tuxemon import formula
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
@@ -33,12 +35,9 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
-class StartBattleActionParameters(NamedTuple):
-    npc_slug: str
-
-
 @final
-class StartBattleAction(EventAction[StartBattleActionParameters]):
+@dataclass
+class StartBattleAction(EventAction):
     """
     Start a battle with the given npc and switch to the combat module.
 
@@ -53,7 +52,7 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
     """
 
     name = "start_battle"
-    param_class = StartBattleActionParameters
+    npc_slug: str
 
     def start(self) -> None:
         player = self.session.player
@@ -65,29 +64,36 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
 
         world = self.session.client.get_state_by_name(WorldState)
 
-        npc = world.get_entity(self.parameters.npc_slug)
+        npc = world.get_entity(self.npc_slug)
         assert npc
         if len(npc.monsters) == 0:
-            logger.warning("npc has no monsters, won't start")
+            logger.warning(
+                f"npc '{self.npc_slug}' has no monsters, won't start trainer battle."
+            )
             return
 
+        # Rematch
+        if self.npc_slug in player.battle_history:
+            rematch = player.battle_history[self.npc_slug]
+            for mon in npc.monsters:
+                formula.rematch(player, npc, mon, rematch[1])
+
         # Lookup the environment
-        env_slug = "grass"
-        if "environment" in player.game_variables:
-            env_slug = player.game_variables["environment"]
-        env = db.lookup(env_slug, table="environment").dict()
+        env_slug = player.game_variables.get("environment", "grass")
+        env = db.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
-        logger.info("Starting battle!")
+        logger.info("Starting battle with '{self.npc_slug}'!")
         self.session.client.push_state(
-            CombatState,
-            players=(player, npc),
-            combat_type="trainer",
-            graphics=env["battle_graphics"],
+            CombatState(
+                players=(player, npc),
+                combat_type="trainer",
+                graphics=env.battle_graphics,
+            )
         )
 
         # Start some music!
-        filename = env["battle_music"]
+        filename = env.battle_music
         self.session.client.event_engine.execute_action(
             "play_music",
             [filename],

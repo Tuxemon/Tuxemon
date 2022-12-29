@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="276">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="277">
  <properties>
+  <property name="east" value="leather_town"/>
   <property name="edges" value="clamped"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="citypark"/>
+  <property name="south" value="route2"/>
+  <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
@@ -18,17 +23,8 @@
  <tileset firstgid="2169" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="680" columns="20">
   <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="544"/>
  </tileset>
- <tileset firstgid="2849" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
- </tileset>
- <tileset firstgid="3005" name="MK_buildings" tilewidth="16" tileheight="16" tilecount="896" columns="32">
+ <tileset firstgid="2849" name="MK_buildings" tilewidth="16" tileheight="16" tilecount="896" columns="32">
   <image source="../gfx/tilesets/MK_buildings.png" width="512" height="448"/>
- </tileset>
- <tileset firstgid="3901" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
- </tileset>
- <tileset firstgid="5213" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
@@ -42,7 +38,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -250,7 +246,7 @@
   </object>
   <object id="102" name="Sign: Leather Town" type="event" x="16" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_leathertown_sign"/>
+    <property name="act1" value="translated_dialog spyder_citypark_routesign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -537,10 +533,16 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="273" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="273" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="not variable_set environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="276" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
   <object id="274" name="Talk Bobette" type="event" x="208" y="272" width="48" height="16">
@@ -553,7 +555,7 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="275" name="Exhausted" type="event" x="0" y="0" width="16" height="16">
+  <object id="275" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>

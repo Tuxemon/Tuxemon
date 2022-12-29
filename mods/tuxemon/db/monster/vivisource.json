@@ -1,0 +1,45 @@
+{
+    "slug": "vivisource",
+    "category": "purified",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "stone_rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "headbutt"
+        },
+        {
+            "level_learned": 12,
+            "technique": "wallow"
+        },
+        {
+            "level_learned": 16,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 20,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 24,
+            "technique": "goad"
+        }
+    ],
+    "evolutions": [],
+    "shape": "serpent",
+    "stage": "stage1",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male"],
+    "txmn_id": 139,
+    "height": 107,
+    "weight": 9,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

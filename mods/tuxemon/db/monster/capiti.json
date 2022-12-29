@@ -12,15 +12,20 @@
             "technique": "fluff_up"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "sting"
         }
     ],
-    "shape": "Sprite",
+    "evolutions": [],
+    "shape": "sprite",
+    "stage": "standalone",
     "types": [
-        "Wood"
+        "wood"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 102,
+    "height": 100,
+    "weight": 20,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

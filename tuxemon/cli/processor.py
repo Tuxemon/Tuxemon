@@ -66,7 +66,7 @@ class CommandProcessor:
         self.session = session
         folder = os.path.join(os.path.dirname(__file__), "commands")
         # TODO: add folder(s) from mods
-        commands = [self.collect_commands(folder)]
+        commands = list(self.collect_commands(folder))
         self.root_command = MetaCommand(commands)
 
     def run(self) -> None:

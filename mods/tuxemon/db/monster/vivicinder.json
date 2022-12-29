@@ -5,22 +5,39 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "stone_rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "headbutt"
+        },
+        {
+            "level_learned": 12,
+            "technique": "wallow"
+        },
+        {
+            "level_learned": 16,
             "technique": "salamander"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "flamethrower"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
             "technique": "refresh"
         }
     ],
-    "shape": "Serpent",
+    "evolutions": [],
+    "shape": "serpent",
+    "stage": "stage1",
     "types": [
-        "Fire"
+        "fire"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 133,
+    "height": 95,
+    "weight": 6,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

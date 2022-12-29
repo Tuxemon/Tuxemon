@@ -12,15 +12,26 @@
             "technique": "refresh"
         },
         {
-            "level_learned": 2,
+            "level_learned": 16,
             "technique": "kindling_flame"
         }
     ],
-    "shape": "Blob",
-    "types": [
-        "Fire"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "ruption"
+        }
     ],
-    "weight": 25,
+    "shape": "blob",
+    "stage": "basic",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 75,
+    "height": 48,
+    "weight": 2,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

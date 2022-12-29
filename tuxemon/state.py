@@ -29,6 +29,7 @@ import inspect
 import logging
 import os.path
 import sys
+import warnings
 from abc import ABCMeta
 from importlib import import_module
 from typing import (
@@ -70,7 +71,6 @@ class State:
     class should be created. Update must be overloaded in the child class.
 
     Overview of Methods:
-     * startup       - Called when added to the state stack
      * resume        - Called each time state is updated for first time
      * update        - Called each frame while state is active
      * process_event - Called when there is a new input event
@@ -85,24 +85,17 @@ class State:
     transparent = False  # ignore all background/borders
     force_draw = False  # draw even if completely under another state
 
-    def __init__(self, parent: StateManager) -> None:
+    def __init__(self) -> None:
         """
         Constructor
-
-        Parameters:
-            parent: The StateManager class that this state belongs to.
 
         Attributes:
             force_draw: If True, state will never be skipped in drawing phase.
             rect: Area of the screen will be drawn on.
 
-        Do not override this unless there is a special need.
-
-        All init for the State, loading of config, images, etc should
-        be done in State.startup or State.resume, not here.
+        Important!  The state must be ready to be drawn after this is called.
 
         """
-        self.parent = parent
         self.start_time = 0.0
         self.current_time = 0.0
 
@@ -227,8 +220,6 @@ class State:
         same for a given game time. Any game changes should be done during
         update.
 
-        The state can prepare to be drawn during State.startup
-
         Parameters:
             surface: Surface to be rendered onto.
 
@@ -236,13 +227,13 @@ class State:
 
     def startup(self, **kwargs: Any) -> None:
         """
+        DEPRECATED - Use __init__ instead.
+
         Called when scene is added to the state stack.
 
         This will be called:
         * after state is pushed and before next update
         * just once during the life of a state
-
-        Important!  The state must be ready to be drawn after this is called.
 
         Example uses: loading images, configuration, sounds, etc.
 
@@ -347,7 +338,7 @@ class StateManager:
         logger.debug(f"loading state: {name}")
         self._state_dict[name] = state
 
-    def _instance(self, state_name: str) -> State:
+    def _instance(self, state_name: str, **kwargs: Any) -> State:
         """
         Create new instance of State. Builder patter, WIP.
 
@@ -358,10 +349,8 @@ class StateManager:
         try:
             state = self._state_dict[state_name]
         except KeyError:
-            logger.critical(f"Cannot find state: {state_name}")
-            raise RuntimeError
-        instance = state(self)
-        return instance
+            raise RuntimeError(f"Cannot find state: {state_name}")
+        return state(**kwargs) if kwargs else state()
 
     @staticmethod
     def collect_states_from_module(
@@ -465,7 +454,7 @@ class StateManager:
 
         Parameters:
             state_name: Name of state to start.
-            kwargs: Arguments to pass to the ``startup`` method of the
+            kwargs: Arguments to pass to the ``__init__`` method of the
                 new state.
 
         """
@@ -494,8 +483,7 @@ class StateManager:
 
         # raise error if stack is empty
         if not self._state_stack:
-            logger.critical("Attempted to pop state when stack was empty.")
-            raise RuntimeError
+            raise RuntimeError("Attempted to pop state when stack was empty.")
 
         # pop the top state
         if state is None:
@@ -504,10 +492,9 @@ class StateManager:
         try:
             index = self._state_stack.index(state)
         except IndexError:
-            logger.critical(
+            raise RuntimeError(
                 "Attempted to pop state when state was not active.",
             )
-            raise RuntimeError
 
         if index == 0:
             logger.debug("pop state: %s", state.name)
@@ -554,14 +541,14 @@ class StateManager:
     @overload
     def push_state(
         self,
-        state_name: Type[StateType],
+        state_name: StateType,
         **kwargs: Any,
     ) -> StateType:
         pass
 
     def push_state(
         self,
-        state_name: Union[str, Type[StateType]],
+        state_name: Union[str, StateType],
         **kwargs: Any,
     ) -> State:
         """
@@ -569,7 +556,7 @@ class StateManager:
 
         Parameters:
             state_name: Name of state to start.
-            kwargs: Arguments to pass to the ``startup`` method of the
+            kwargs: Arguments to pass to the ``__init__`` method of the
                 new state.
 
         Returns:
@@ -582,10 +569,16 @@ class StateManager:
             self._check_resume(previous)
             previous.pause()
 
-        if isinstance(state_name, str):
-            instance = self._instance(state_name)
+        if isinstance(state_name, State):
+            instance = state_name
+        elif isinstance(state_name, str):
+            instance = self._instance(state_name, **kwargs)
         else:
-            instance = state_name(self)
+            warnings.warn(
+                "Calling push_state with Type[State] is deprecated, use an instantiated State instead",
+                DeprecationWarning,
+            )
+            instance = state_name(**kwargs) if kwargs else state_name()
 
         instance.startup(**kwargs)
         self._resume_set.add(instance)
@@ -603,14 +596,14 @@ class StateManager:
     @overload
     def replace_state(
         self,
-        state_name: Type[StateType],
+        state_name: StateType,
         **kwargs: Any,
     ) -> StateType:
         pass
 
     def replace_state(
         self,
-        state_name: Union[str, Type[State]],
+        state_name: Union[str, State],
         **kwargs: Any,
     ) -> State:
         """
@@ -622,7 +615,7 @@ class StateManager:
 
         Parameters:
             state_name: Name of state to start.
-            kwargs: Arguments to pass to the ``startup`` method of the
+            kwargs: Arguments to pass to the ``__init__`` method of the
                 new state.
 
         Returns:
@@ -632,8 +625,9 @@ class StateManager:
         logger.debug("replace state: %s", state_name)
         # raise error if stack is empty
         if not self._state_stack:
-            logger.critical("Attempted to replace state when stack was empty.")
-            raise RuntimeError
+            raise RuntimeError(
+                "Attempted to replace state when stack was empty."
+            )
 
         previous = self._state_stack[0]
         instance = self.push_state(state_name, **kwargs)

@@ -12,16 +12,27 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
             "technique": "splinter"
         }
     ],
-    "shape": "Grub",
-    "types": [
-        "Metal",
-        "Wood"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 9,
+            "monster_slug": "katacoon"
+        }
     ],
-    "weight": 25,
+    "shape": "grub",
+    "stage": "basic",
+    "types": [
+        "metal",
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 56,
+    "height": 32,
+    "weight": 3,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

@@ -5,22 +5,39 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "stone_rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "headbutt"
+        },
+        {
+            "level_learned": 12,
+            "technique": "wallow"
+        },
+        {
+            "level_learned": 16,
             "technique": "electrical_storm"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "sudden_glow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
             "technique": "battery_acid"
         }
     ],
-    "shape": "Serpent",
+    "evolutions": [],
+    "shape": "serpent",
+    "stage": "stage1",
     "types": [
-        "Metal"
+        "metal"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 137,
+    "height": 92,
+    "weight": 12,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

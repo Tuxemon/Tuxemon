@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="451">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="452">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="north" value="route1"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="paper_town"/>
+  <property name="types" value="town"/>
+  <property name="west" value="routec"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
@@ -55,67 +60,7 @@
  <tileset firstgid="2131" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
   <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
  </tileset>
- <tileset firstgid="3571" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
- </tileset>
- <tileset firstgid="3727" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
-  <tile id="839">
-   <animation>
-    <frame tileid="839" duration="200"/>
-    <frame tileid="842" duration="200"/>
-    <frame tileid="845" duration="200"/>
-    <frame tileid="848" duration="200"/>
-   </animation>
-  </tile>
-  <tile id="880">
-   <animation>
-    <frame tileid="880" duration="200"/>
-    <frame tileid="883" duration="200"/>
-    <frame tileid="886" duration="200"/>
-    <frame tileid="889" duration="200"/>
-   </animation>
-  </tile>
- </tileset>
- <tileset firstgid="5039" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
-  <tile id="839">
-   <animation>
-    <frame tileid="839" duration="200"/>
-    <frame tileid="842" duration="200"/>
-    <frame tileid="845" duration="200"/>
-    <frame tileid="848" duration="200"/>
-   </animation>
-  </tile>
-  <tile id="880">
-   <animation>
-    <frame tileid="880" duration="200"/>
-    <frame tileid="883" duration="200"/>
-    <frame tileid="886" duration="200"/>
-    <frame tileid="889" duration="200"/>
-   </animation>
-  </tile>
- </tileset>
- <tileset firstgid="6351" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
-  <tile id="839">
-   <animation>
-    <frame tileid="839" duration="200"/>
-    <frame tileid="842" duration="200"/>
-    <frame tileid="845" duration="200"/>
-    <frame tileid="848" duration="200"/>
-   </animation>
-  </tile>
-  <tile id="880">
-   <animation>
-    <frame tileid="880" duration="200"/>
-    <frame tileid="883" duration="200"/>
-    <frame tileid="886" duration="200"/>
-    <frame tileid="889" duration="200"/>
-   </animation>
-  </tile>
- </tileset>
- <tileset firstgid="7663" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
+ <tileset firstgid="3571" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
   <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
   <tile id="255">
    <animation>
@@ -130,23 +75,20 @@
    </animation>
   </tile>
  </tileset>
- <tileset firstgid="8023" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
- </tileset>
- <tileset firstgid="8127" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="3931" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtljEOwjAMRbOUk3AATgITMABigMIJ2LtwS5AYYOUM2GosWcZxatQIhFrJcmNb9etPXPVZhTCtQvMvtoR3WUSbG+81GYXmlLCSWmyBifpuDD6q0fzA12r4Tf3OY31uuu5vyT20ns359nFOdvFM0tqaG+vZuRyfTZpR6YlFO/cUs/Y9x5DLU48ufg26HRSrIZbr82keubSeFFvFvcS6kjql+LFvKodxfv4Gvnetfk2/h/P/gO8vfU/4jPf9bUG+rowzcf5Qa2l9n0nik/4KLNwusEa+IxjNsuZryFvz5c1JrtT6HvmQEQ37BLi8/bz1KR4ZvwEP15PuUVdvT0+95PCuUVdPP2+tl0fWl+Z7AVRVsSk=
+   eAHtlkEKwkAMRWdTT+AFvIEn0ZW6UHGh1RO470EVXOjWM5jQCYSYyTTSQZEWQjpJaF7/TEqfVQizKjT/Yit4l2W0hfFe01FozgkrqcUOmKjv1uCjGs0PfK2G39RvMtbnpuv+ltxD69mc7xDnZB/PJK2tubGencvx2aQZlZ5YtHNPMWvfcwy5PPXo4jeg21GxGmK5Pp/mkUvrSbF13EusK6lTih/7pnIY5+dv4HvX6tf0ezj/D/j+0veEz3jf3xbk68o4F+cPtZbW95kkPumvwMLtAmvkO4HRLGu+hrw1X96c5Eqt75EPGdGwT4DL289bn+KR8RvwcD3pHnX19vTUSw7vGnX19PPWenlkfWm+Fx+JsLU=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG9VjlOA0EQnABzvIAHgJ1hHBLzCPgEICITIW0CyI8AwweQCIAvQE4IEhEi4vgB1ZLLXhXbM7PsGkulnj62q7bdHrm/EIoNoC82OJ/DTiic1DR8thiK0whOkFM+z9+Frh1A7ZSsdNjulRwcb8Rndgz+AUBf7Tlyyuf5nm7tWcc3fbF60+fxatzTHeufyuXo83g1rnrppzTE8jn6yJOyqpf+dTemIJ67x/d3F8EtcuRJWdUfZ26eVb6Ur/qbK4h3UL6UT/3xrvWyB7gj9zOwhxrye5b66ymYVY9kT7fAOQR6y7/vmHXE1gDat4w9pG7lmSn422lQoU87mT7ye7bp/JSTftX8mDPbhf6c+T11QjD89/w2J/q8uTH+gl0xPAPl92vjzD3zeuXMj8++TnS2oTf3u8jZP+pTa3o1Zr7dHccT2B1SVePF9M6xOu6/Z71eXvwdvznm7P8W92Relly5dnVpps+e8d67rfjXSiiOgCGQ0niFmkupm9fc2PcbfGPgArDzB/AJmG6z5lvc/EfgASi/R1tz8vr8AFMSVkA=
+   eAG9VjtOQzEQdEH4HAA4AISOkJIzINHCJQBRhQrpNYFTQOAQwBWgpwREhaj43IBZ6U14DFnbJA6RRuvZ9duZ52ysdGZCtQ50JAbnc9gKlVMapk9nQ3USQR811fP4LnztABqHYo3F02KDYLm99JOTDaDfBcg1nqGmeh73fGvPv3DzF9tv/jxdzXu+Y/1TtRx/nq7m1S95ykOsnuOPOqmofsm3ZNZifrR2g+/vOoIr1KiTiupftUpz1Utx9V/aj/ZTvRSnf+0zCT/AHbmfgT3sob4X6X9cP22Z001o9oC1+d93zCpyKwDjS8Yc0rfqjOuXz3VH+GON0fxR34uTnh+1NI46v+aeNvznnN99KwTDf5/fRu3POzfmHzErhgeg+X4l1pwzr1fO+fHZ59pnCb+530XO/NGfRvOrOeN2dxzXsDtk1B4vp3eO7eP8e9Hr5eVf8Ztjzf5vcU6mFamVG5fnvv3ZM957l8p/LITqCOgBKY+X2HMh+6Z1buz7Cb0BcA7Y+g14B8y3ReOWN34H3ALN9yh1Tl6fL85oVJ4=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFlrlOAzEQhi3Igmh4Bs6GI3TwDFwVhFCAqAgVQuKqAiwlHQlQcb0HV8VZ8BCIq+EsQRR8RhlhWTbKimWJ9GXs3zOef727SpRyf6YCFU46qE2pUCp8OZdVKvyAdwcXaFJfTgzolwI7+mq7DH86p7EmWr+rkj+7n2/u82HqWTwNWb7M9Q2lwnVYgyIUwFw3x+LP1H4a+3xnfvBj73eEn0M4gH3YAztH5uLP19fWpc4Vd+mzA9uwBZtg5+n7fY9+B7dwA9fge/7efvn8Sf9cs1Ln9DmDUziBY5B1M2YD7j9kQPRuYyxaA89qwPWkoNwota74ip8XeIYneAT7/XDVxanJdcS5Z5S9pL8vmnuNBd/3x9STGIs/6SVziVoXfyMJ+pT+vih+TX+j+OuoUGEa2qENWqEFzHwZN6E3QgPUQx3IWpxRzk/7G6ZHFoYgA4MwAK5+/eh90As90A2uPJfmOzfR07zr7aBrTX/L9FhBWyIuwgLkobOUq/P156FShfPoczALMzANX4sxfJm/XROcWw7GIYaty9pCzskX7U1Wq5PzZvcuZ16I4E///1qIgN0/T63v3ES3a6L4s2uTmBcjnJ/2I9f5VzGJa/7PHn91brLvJyzh3sY=
+   eAHFljkzBEEUx7vWDiWRybEix8r4DK6ItQJKhEipckWLEcpYRK7v4YqcgQ+hXIkzpAR+rfaVrq5utVPG2Krfvu5/v9fvPz0ztauU+zMZqHDCQU1ahVLhy7msVOEHvDu4QJP6cmJAvzTY0VfbYfjTOZnqaP2uSv7sfr65z4ep5/E0YPky1zeUCtdhDYqwCua6ORZ/pvbT2Oc794Mfe78j/BzCAezDHtg5Mhd/vr62LnWuuEufHdiGLdgEO0/f73v0O7iFG7gG3/P39svnT/qnapU6p88ZnMIJHIOsmzEfcP8hB6J3GmPRGnhWA64nDeVGqXXFV/y8wDM8wSPY74erLk5NriPOPaPsJf190dxrJPi+P6aexFj8SS+ZS9S6+BtK0Kf090Xxa/obxl9bSoVZaIUWaIYmMPNl3IiegQaohzqQtTijnJ/2N0iPPAxADvqhD1z9etF7oBu6oBNceS7Nd26iZ3nXW0HXmv6W6LGMtkhcgHkoQHspV+frz0OFCufQZ2EGpmEKvhZj+DJ/u8Y5tzEYhRi2LmsLOSdftDdZqUrOm927nPlqBH/6/9d8BOz+BWp95ya6XRPFn12bxLwY4fy0H7nOv4pJXPN/9virc5N9PwH4Bt5S
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
@@ -203,29 +145,26 @@
   <object id="449" type="collision" x="464" y="0" width="16" height="80"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
-  <object id="335" name="Mart Sign" type="event" x="256" y="192">
+  <object id="335" name="Mart Sign" type="event" x="256" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_multi_martsign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
-   <polygon points="0,0 16,0 16,16 0,16"/>
   </object>
-  <object id="336" name="Teleport to Protagonist House" type="event" x="128" y="96">
+  <object id="336" name="Teleport to Protagonist House" type="event" x="128" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_downstairs.tmx,4,6,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
-  <object id="337" name="Sign for Protagonist House" type="event" x="192" y="96">
+  <object id="337" name="Sign for Protagonist House" type="event" x="192" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_home"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
   <object id="338" name="Under Repairs" type="event" x="64" y="240" width="16" height="16">
    <properties>
@@ -236,7 +175,7 @@
   </object>
   <object id="339" name="Paper Town Sign" type="event" x="192" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_papertown_townsign"/>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -274,13 +213,12 @@
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>
-  <object id="352" name="Teleport to Mart" type="event" x="304" y="192">
+  <object id="352" name="Teleport to Mart" type="event" x="304" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_paper_scoop.tmx,6,10,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
   <object id="355" name="Stop!" type="event" x="208" y="16" width="32" height="16">
    <properties>
@@ -338,14 +276,13 @@
     <property name="act1" value="npc_move spyder_homemakerpapertown, down 1, right 1, up 1, left 1"/>
    </properties>
   </object>
-  <object id="417" name="Teleport to Sea Route" type="event" x="0" y="240">
+  <object id="417" name="Teleport to Sea Route" type="event" x="0" y="224" width="16" height="64">
    <properties>
     <property name="act1" value="transition_teleport spyder_routec.tmx,39,35,0.3"/>
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
    </properties>
-   <polygon points="0,-16 0,47.5 16,47.5 16,-16"/>
   </object>
   <object id="418" name="My First Mon" type="event" x="368" y="160" width="144" height="32">
    <properties>
@@ -411,7 +348,7 @@
     <property name="cond2" value="is party_size less_than,1"/>
    </properties>
   </object>
-  <object id="424" name="First Fight" type="event" x="384" y="144" width="16" height="16">
+  <object id="424" name="First Fight - Start" type="event" x="400" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act10" value="translated_dialog spyder_papertown_wrapup"/>
@@ -423,13 +360,32 @@
     <property name="act61" value="npc_face player,down"/>
     <property name="act70" value="translated_dialog spyder_papertown_firstfight"/>
     <property name="act80" value="start_battle spyder_billie"/>
-    <property name="act81" value="translated_dialog spyder_papertown_firstfight2"/>
     <property name="act90" value="set_variable firstfightdue:no"/>
     <property name="act91" value="set_variable teleport_faint:spyder_bedroom.tmx 7 6"/>
-    <property name="act94" value="pathfind spyder_billie,15,14"/>
-    <property name="act95" value="remove_npc spyder_billie"/>
-    <property name="act96" value="unlock_controls"/>
+    <property name="act92" value="set_variable firstfightend:yes"/>
     <property name="cond1" value="is variable_set firstfightdue:yes"/>
+   </properties>
+  </object>
+  <object id="425" name="First Fight - Win" type="event" x="384" y="144" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog spyder_papertown_firstfight_win"/>
+    <property name="act20" value="pathfind spyder_billie,15,14"/>
+    <property name="act30" value="remove_npc spyder_billie"/>
+    <property name="act40" value="set_variable firstfightend:no"/>
+    <property name="act50" value="unlock_controls"/>
+    <property name="cond1" value="is variable_set battle_last_result:won"/>
+    <property name="cond2" value="is variable_set firstfightend:yes"/>
+   </properties>
+  </object>
+  <object id="426" name="First Fight - Lose" type="event" x="416" y="144" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog spyder_papertown_firstfight_lose"/>
+    <property name="act20" value="pathfind spyder_billie,15,14"/>
+    <property name="act30" value="remove_npc spyder_billie"/>
+    <property name="act40" value="set_variable firstfightend:no"/>
+    <property name="act50" value="unlock_controls"/>
+    <property name="cond1" value="is variable_set battle_last_result:lost"/>
+    <property name="cond2" value="is variable_set firstfightend:yes"/>
    </properties>
   </object>
   <object id="428" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -438,13 +394,12 @@
     <property name="cond1" value="not music_playing music_town_theme"/>
    </properties>
   </object>
-  <object id="430" name="Sign for Sunnyside Manor" type="event" x="192" y="192">
+  <object id="430" name="Sign for Sunnyside Manor" type="event" x="192" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_sunnyside"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
-   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
   <object id="432" name="Create Captain" type="event" x="128" y="240" width="16" height="16">
    <properties>
@@ -511,10 +466,16 @@
     <property name="cond1" value="is variable_set rivergoto:candy"/>
    </properties>
   </object>
-  <object id="446" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="446" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="not variable_set environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="451" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
   <object id="450" name="Destination - Timber" type="event" x="112" y="272" width="16" height="16">

@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="124">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="124">
  <properties>
+  <property name="east" value="leather_town"/>
   <property name="edges" value="clamped"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="citypark"/>
+  <property name="south" value="route2"/>
+  <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
@@ -17,9 +22,6 @@
  </tileset>
  <tileset firstgid="2169" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="680" columns="20">
   <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="544"/>
- </tileset>
- <tileset firstgid="2849" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
@@ -132,13 +134,12 @@
     <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
-  <object id="48" name="encounter 5" type="event" x="304" y="304">
+  <object id="48" name="encounter 5" type="event" x="304" y="304" width="128" height="128">
    <properties>
     <property name="act10" value="random_encounter default_encounter"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_moved"/>
    </properties>
-   <polygon points="0,0 0,128 128,128 128,0"/>
   </object>
   <object id="60" name="encounter" type="event" x="480" y="496" width="96" height="16">
    <properties>
@@ -377,8 +378,7 @@
   </object>
   <object id="102" name="Sign: Leather Town" type="event" x="608" y="160" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog spyder_leathertown_sign"/>
-    <property name="act20" value="translated_dialog citypark_route_sign"/>
+    <property name="act10" value="translated_dialog citypark_route_sign"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>

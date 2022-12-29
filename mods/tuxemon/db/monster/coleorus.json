@@ -12,16 +12,21 @@
             "technique": "peck"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "fluff_up"
         }
     ],
-    "shape": "Sprite",
+    "evolutions": [],
+    "shape": "sprite",
+    "stage": "standalone",
     "types": [
-        "Wood",
-        "Earth"
+        "wood",
+        "earth"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 105,
+    "height": 39,
+    "weight": 6,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

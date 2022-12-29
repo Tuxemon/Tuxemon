@@ -1,0 +1,33 @@
+{
+    "slug": "banling",
+    "category": "sepulchre",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 2,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 12,
+            "technique": "shadow_boxing"
+        }
+    ],
+    "evolutions": [],
+    "shape": "brute",
+    "stage": "standalone",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 200,
+    "height": 120,
+    "weight": 180,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

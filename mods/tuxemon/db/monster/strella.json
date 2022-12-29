@@ -12,15 +12,32 @@
             "technique": "splinter"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "take_cover"
+        },
+        {
+            "level_learned": 24,
             "technique": "all_in"
+        },
+        {
+            "level_learned": 28,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 32,
+            "technique": "peck"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [],
+    "shape": "flier",
+    "stage": "stage1",
     "types": [
-        "Wood"
+        "wood"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 49,
+    "height": 80,
+    "weight": 8,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

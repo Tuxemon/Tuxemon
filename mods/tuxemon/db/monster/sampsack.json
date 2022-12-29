@@ -12,15 +12,20 @@
             "technique": "all_in"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "strike"
         }
     ],
-    "shape": "Brute",
+    "evolutions": [],
+    "shape": "brute",
+    "stage": "standalone",
     "types": [
-        "Metal"
+        "metal"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 97,
+    "height": 225,
+    "weight": 235,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

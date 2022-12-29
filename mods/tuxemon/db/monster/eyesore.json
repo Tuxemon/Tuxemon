@@ -12,15 +12,32 @@
             "technique": "spray"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "glower"
+        },
+        {
+            "level_learned": 24,
             "technique": "eyebite"
+        },
+        {
+            "level_learned": 28,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 32,
+            "technique": "strike"
         }
     ],
-    "shape": "Serpent",
+    "evolutions": [],
+    "shape": "serpent",
+    "stage": "stage1",
     "types": [
-        "Metal"
+        "metal"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 47,
+    "height": 135,
+    "weight": 4,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

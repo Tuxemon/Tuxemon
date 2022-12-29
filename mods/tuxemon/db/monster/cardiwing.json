@@ -9,18 +9,41 @@
         },
         {
             "level_learned": 2,
+            "technique": "give_all"
+        },
+        {
+            "level_learned": 12,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 24,
             "technique": "kindling_flame"
         },
         {
-            "level_learned": 2,
+            "level_learned": 28,
             "technique": "peregrine"
+        },
+        {
+            "level_learned": 28,
+            "technique": "salamander"
         }
     ],
-    "shape": "Flier",
-    "types": [
-        "Fire"
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 36,
+            "monster_slug": "cardinale"
+        }
     ],
-    "weight": 25,
+    "shape": "flier",
+    "stage": "stage1",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 63,
+    "height": 45,
+    "weight": 5,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

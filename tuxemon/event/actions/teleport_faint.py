@@ -22,18 +22,17 @@
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
 
-class TeleportFaintActionParameters(NamedTuple):
-    pass
-
 
 @final
-class TeleportFaintAction(EventAction[TeleportFaintActionParameters]):
+@dataclass
+class TeleportFaintAction(EventAction):
     """
     Teleport the player to the point in the teleport_faint variable.
 
@@ -48,7 +47,6 @@ class TeleportFaintAction(EventAction[TeleportFaintActionParameters]):
     """
 
     name = "teleport_faint"
-    param_class = TeleportFaintActionParameters
 
     def start(self) -> None:
         player = self.session.player
@@ -57,7 +55,9 @@ class TeleportFaintAction(EventAction[TeleportFaintActionParameters]):
         if "teleport_faint" in player.game_variables:
             teleport = player.game_variables["teleport_faint"].split(" ")
         else:
-            logger.error(f"Teleport_faint action failed, because the teleport_faint variable has not been set.")
+            logger.error(
+                f"Teleport_faint action failed, because the teleport_faint variable has not been set."
+            )
             return
 
         # Start the screen transition

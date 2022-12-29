@@ -28,29 +28,20 @@
 from __future__ import annotations
 
 import logging
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    ClassVar,
-    Generic,
-    Sequence,
-    Type,
-    TypeVar,
-)
+from dataclasses import dataclass, field
+from typing import TYPE_CHECKING, ClassVar
 
-from tuxemon.session import Session
-from tuxemon.tools import NamedTupleProtocol, cast_parameters_to_namedtuple
+from tuxemon.session import Session, local_session
+from tuxemon.tools import cast_dataclass_parameters
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
-    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
-ParameterClass = TypeVar("ParameterClass", bound=NamedTupleProtocol)
 
-
-class ItemCondition(Generic[ParameterClass]):
+@dataclass
+class ItemCondition:
     """
     ItemConditions are evaluated by items.
 
@@ -92,46 +83,14 @@ class ItemCondition(Generic[ParameterClass]):
     (Monster, "monster_slug")   => a Monster instance will be created
     """
 
-    name: ClassVar[str] = "GenericCondition"
-    param_class: ClassVar[Type[ParameterClass]]
+    name: ClassVar[str]
+    session: Session = field(init=False, repr=False)
+    _done: bool = field(default=False, init=False)
 
-    def __init__(
-        self,
-        context: str,
-        session: Session,
-        user: NPC,
-        parameters: Sequence[Any],
-    ) -> None:
-
-        self.session = session
-        self.user = user
-        self.context = context
-
-        # if you need the parameters before they are processed, use this
-        self.raw_parameters = parameters
-
-        # parse parameters
-        try:
-            if self.param_class._fields:
-
-                # cast the parameters to the correct type, as defined in cls.valid_parameters
-                self.parameters = cast_parameters_to_namedtuple(
-                    parameters,
-                    self.param_class,
-                )
-            else:
-                self.parameters = parameters
-
-        except ValueError:
-            logger.error(f"error while parsing for {self.name}")
-            logger.error(f"cannot parse parameters: {parameters}")
-            logger.error(self.param_class)
-            logger.error(
-                "please check the parameters and verify they are correct"
-            )
-            self.parameters = None
-
-        self._done = False
+    def __post_init__(self):
+        self.session = local_session
+        self.user = local_session.player
+        cast_dataclass_parameters(self)
 
     def test(self, target: Monster) -> bool:
         """

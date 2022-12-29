@@ -1,0 +1,39 @@
+{
+    "slug": "turnipper",
+    "category": "scarytale",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 12,
+            "technique": "one_two"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "beenstalker"
+        }
+    ],
+    "shape": "hunter",
+    "stage": "basic",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 198,
+    "height": 65,
+    "weight": 25,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

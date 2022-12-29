@@ -12,15 +12,33 @@
             "technique": "surge"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "constrict"
         }
     ],
-    "shape": "Serpent",
-    "types": [
-        "Metal"
+    "evolutions": [
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "ouroboutlet",
+            "item": "fire_booster"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "sockeserp",
+            "item": "metal_booster"
+        }
     ],
-    "weight": 25,
+    "shape": "serpent",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 89,
+    "height": 200,
+    "weight": 4,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

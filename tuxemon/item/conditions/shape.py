@@ -25,21 +25,15 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, Union
+from dataclasses import dataclass
+from typing import Union
 
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.monster import Monster
 
 
-class ShapeConditionParameters(NamedTuple):
-    shape1: str
-    shape2: Union[str, None]
-    shape3: Union[str, None]
-    shape4: Union[str, None]
-    shape5: Union[str, None]
-
-
-class ShapeCondition(ItemCondition[ShapeConditionParameters]):
+@dataclass
+class ShapeCondition(ItemCondition):
     """
     Compares the target Monster's shape against the given types.
 
@@ -48,14 +42,18 @@ class ShapeCondition(ItemCondition[ShapeConditionParameters]):
     """
 
     name = "shape"
-    param_class = ShapeConditionParameters
+    shape1: str
+    shape2: Union[str, None] = None
+    shape3: Union[str, None] = None
+    shape4: Union[str, None] = None
+    shape5: Union[str, None] = None
 
     def test(self, target: Monster) -> bool:
         ret = False
         if target.shape is not None:
             ret = any(
                 target.shape.lower() == p.lower()
-                for p in self.parameters
+                for p in self.shape1
                 if p is not None
             )
 

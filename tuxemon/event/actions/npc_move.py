@@ -21,7 +21,8 @@
 
 from __future__ import annotations
 
-from typing import Generator, NamedTuple, Sequence, Tuple, cast, final
+from dataclasses import dataclass, field
+from typing import Generator, Sequence, Tuple, cast, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -58,12 +59,9 @@ def parse_path_parameters(
         origin = point
 
 
-class NpcMoveActionParameters(NamedTuple):
-    pass
-
-
 @final
-class NpcMoveAction(EventAction[NpcMoveActionParameters]):
+@dataclass
+class NpcMoveAction(EventAction):
     """
     Relative tile movement for NPC.
 
@@ -87,7 +85,11 @@ class NpcMoveAction(EventAction[NpcMoveActionParameters]):
     """
 
     name = "npc_move"
-    param_class = NpcMoveActionParameters
+    raw_parameters: Sequence[str] = field(init=False)
+
+    def __init__(self, *args):
+        super().__init__()
+        self.raw_parameters = args
 
     # parameter checking not supported due to undefined number of parameters
 

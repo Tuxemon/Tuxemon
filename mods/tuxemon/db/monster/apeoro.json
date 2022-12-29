@@ -1,0 +1,45 @@
+{
+    "slug": "apeoro",
+    "category": "old_block",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "sleep_bomb"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 12,
+            "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 20,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 24,
+            "technique": "constrict"
+        },
+        {
+            "level_learned": 28,
+            "technique": "wall_of_steel"
+        }
+    ],
+    "evolutions": [],
+    "shape": "humanoid",
+    "stage": "stage1",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 197,
+    "height": 197,
+    "weight": 145,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

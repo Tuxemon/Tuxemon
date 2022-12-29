@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="1" nextobjectid="137">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="1" nextobjectid="137">
  <properties>
+  <property name="east" value="cotton_town"/>
   <property name="edges" value="clamped"/>
+  <property name="north" value="citypark"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="route2"/>
+  <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
   <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
  </tileset>
- <tileset firstgid="449" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="640" height="400"/>
+ <tileset firstgid="449" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
+  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
  </tileset>
- <tileset firstgid="1449" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
+ <tileset firstgid="698" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
   <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
  </tileset>
- <tileset firstgid="2889" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
+ <tileset firstgid="2138" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="4489" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
- <tileset firstgid="5929" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
- </tileset>
- <tileset firstgid="6085" name="Interiors 2 by Redshrike" tilewidth="16" tileheight="16" tilecount="28" columns="7">
+ <tileset firstgid="3738" name="Interiors 2 by Redshrike" tilewidth="16" tileheight="16" tilecount="28" columns="7">
   <image source="../gfx/tilesets/Interiors 2 by Redshrike.PNG" width="112" height="64"/>
  </tileset>
  <layer id="1" name="Layer 1" width="40" height="20">
@@ -36,12 +35,12 @@
  </layer>
  <layer id="3" name="Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFlV1Ow0AMhBfeyk9zEEDcAE5Aewu4DhyjPPAMEhcqp6inzSdNrU02lYJqyXhtj+2Js6TbUspf6LZhI72XFm7u/OKilKvQloVfCzd3/v2ylI/Q/5LbaLxM2vXDlPs0Bac87+E7uP3MyI8Z2Puei5u7cJQnJ44uj+HwHjx+jvN1DF31etMTED/214dmNV/RTTOY6xYOGihu61De8YOCIVP397s44DcH0/xLf/jVCsAoJx7ipv6y5BTP++MZIrUXfCzxMUt/5/ec7jYY9YEfM14ipp2sw/r9I89zqFZC/OAN/11GSsp9F1KzazLGj3lYryeG9VzrnGt8f7l2Cr+8J+/BLNkpUsOLH98Q7bWzRo53jHCo8Pn+WYujI/2OguEQ51nxZbOIBxy1P8f6mTrdDb9/xLP12tpc4cF4bQ2rmRL9D6wqqu8OvYRt7Y88NdgorQp5bAbBL8fxvW5sf/Biv/iqH5K8D3bheL9rnSVe++8P/LDMNej+mHllP+Nrvt6h/07UMDkmXptQ+DE34/BzPvvCPaVvL7Wyp3CEE1b1Q/tTLr8v95WfKuI4VZybamr7UDz/Hil2qryN7FW9/HlrZ2HG9qf8uYX97QCPz579
+   eAHFlk1Ow0AMhQcWRfy1W7gBCBAnoT1nWXATDlIOANv6tfmkV2uSSaRUWHI9tp/HL54hYVdK+QndNWykD9LCzZ2/vijlJrRl4dfCzZ1/uCzlMfRcch8bL5OuumbKfZqCU55zeApuzzPyowf2tePi5iUc5cmJo8t7OJyDx/9jfRtN153edQTEj/l1oVnNV+ymHvR1Cwc1FLdNKGf8pmDI2Pl9L4747dE0f9kffrUCMMqJh7hpf1lyiuf58QyROgg+lviQZX/n9xfvBhcwisGPHh8R00w2Yf3+kec5VCshfvT6f5eRknLfhVTvmgzxox/W64lhPdda5xqfX64dwy/Pyfegl+wYqeHFj3eI5rqyjRzvGOFQ4fP9sy1Olux3EgyHOM+KL5tFPOCo+TnW19Tpbvj9I56t19b6Cg/Ga2tY9ZTob2BdUb132EvY1vzIU4ON0qqQx2YQ/HIc3+uG5gcv5ouv+j7J82AWjve7trLEovu2wg9LX4MelplX9jO+5usM/TtRw+SYeG1D4UffjMPP+ewL95vevdTKTuEIJ6zq++anXD4v95UfK+I4VpybamrzUDx/jxSbKleN/9f8eWtr9Rua31Q+58Azvz1nm55u
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBj6QIprcPvBnUru6xkAbx4VJ97SNcQrpZrKMyS47wzVbMVtEHJ43eFnYLgMdd8eTtx66CmDL7x6gQ7pg+J+ejoKahdyeNHS+pFSXtAyDGlhdjoTLUyljpkTgG6bOIjdtwPotp1A3DcI3Zg2CN1EnVQxaspoCIyGACUhAACpBxEP
+   eAFjYBj6QJt9cPshgkru6xkAb87iI97SNcQrpZrKhSS47wzVbMVtEHJ4veVhYFgBdd9ZNtx66CmDL7x6gQ7pg+J+ejoKahdyeNHS+pFSXtAyDGlhNjsTLUyljpkSQLdJDmL3aQDdpgnEYoPQjWyD0E3USRWjpoyGwGgIUBICALJKDPE=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">

@@ -12,15 +12,45 @@
             "technique": "clamp_on"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "ram"
         }
     ],
-    "shape": "Sprite",
-    "types": [
-        "Wood"
+    "evolutions": [
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "bamboon",
+            "item": "wood_booster"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "bamboon",
+            "item": "lucky_bamboo"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "frondly",
+            "item": "water_booster"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "frondly",
+            "item": "peace_lily"
+        }
     ],
-    "weight": 25,
+    "shape": "sprite",
+    "stage": "basic",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 27,
+    "height": 80,
+    "weight": 20,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

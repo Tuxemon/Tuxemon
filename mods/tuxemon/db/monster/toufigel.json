@@ -12,16 +12,21 @@
             "technique": "icicle_spear"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "snowstorm"
         }
     ],
-    "shape": "Varmint",
+    "evolutions": [],
+    "shape": "varmint",
+    "stage": "standalone",
     "types": [
-        "Earth",
-        "Water"
+        "earth",
+        "water"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 122,
+    "height": 40,
+    "weight": 3,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

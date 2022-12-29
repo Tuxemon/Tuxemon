@@ -1,31 +1,33 @@
 {
-    "slug": "spyder_scoop_taggart",
-    "sprite_name": "nurse",
-	"monsters": [
-        {
-            "name": "Elofly",
-            "level": 30, 
-			"slug": "elofly",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Elowind",
-            "level": 35, 
-			"slug": "elowind",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Lapinou",
-            "level": 30, 
-			"slug": "lapinou",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "nurse.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_scoop_taggart",
+  "gender": "female",
+  "sprite_name": "nurse",
+  "monsters": [
+    {
+      "name": "Elofly",
+      "level": 30,
+      "slug": "elofly",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Elowind",
+      "level": 35,
+      "slug": "elowind",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Lapinou",
+      "level": 30,
+      "slug": "lapinou",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    }
+  ],
+  "combat_front": "nurse.png",
+  "combat_back": "adventurer_back.png"
+}

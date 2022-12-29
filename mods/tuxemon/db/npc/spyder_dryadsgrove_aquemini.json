@@ -1,31 +1,33 @@
 {
-    "slug": "spyder_dryadsgrove_aquemini",
-    "sprite_name": "woodnymph",
-	"monsters": [
-        		{
-            "name": "Vivitrans",
-            "level": 50, 
-			"slug": "vivitrans",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Nudimind",
-            "level": 50, 
-			"slug": "nudimind",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Noctalo",
-            "level": 50, 
-			"slug": "noctalo",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	"combat_front": "waternymph.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_dryadsgrove_aquemini",
+  "gender": "female",
+  "sprite_name": "woodnymph",
+  "monsters": [
+    {
+      "name": "Vivitrans",
+      "level": 50,
+      "slug": "vivitrans",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Nudimind",
+      "level": 50,
+      "slug": "nudimind",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Noctalo",
+      "level": 50,
+      "slug": "noctalo",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    }
+  ],
+  "combat_front": "waternymph.png",
+  "combat_back": "adventurer_back.png"
+}

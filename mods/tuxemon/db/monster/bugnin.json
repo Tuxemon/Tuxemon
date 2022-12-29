@@ -9,19 +9,48 @@
         },
         {
             "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 4,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 6,
+            "technique": "font"
+        },
+        {
+            "level_learned": 8,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 10,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 20,
             "technique": "perfect_cut"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
             "technique": "blade"
+        },
+        {
+            "level_learned": 28,
+            "technique": "sleep_bomb"
         }
     ],
-    "shape": "Brute",
+    "evolutions": [],
+    "shape": "brute",
+    "stage": "stage2",
     "types": [
-        "Metal",
-        "Wood"
+        "metal",
+        "wood"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 58,
+    "height": 150,
+    "weight": 52,
     "catch_rate": 3.0,
     "lower_catch_resistance": 0.8,
     "upper_catch_resistance": 1.05

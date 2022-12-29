@@ -1,0 +1,58 @@
+{
+    "slug": "tobishimi",
+    "category": "dragon_roll",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "suck_poison"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 12,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 24,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 28,
+            "technique": "font"
+        },
+        {
+            "level_learned": 32,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 40,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 44,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 48,
+            "technique": "frostbite"
+        }
+    ],
+    "evolutions": [],
+    "shape": "dragon",
+    "stage": "stage2",
+    "types": [
+        "water",
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 187,
+    "height": 180,
+    "weight": 169,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

@@ -12,15 +12,45 @@
             "technique": "feint"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "sand_spray"
         }
     ],
-    "shape": "Hunter",
-    "types": [
-        "Metal"
+    "evolutions": [
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "miaownolith",
+            "item": "earth_booster"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "miaownolith",
+            "item": "miaow_milk"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "pyraminx",
+            "item": "metal_booster"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "pyraminx",
+            "item": "pyramidion"
+        }
     ],
-    "weight": 25,
+    "shape": "hunter",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 19,
+    "height": 70,
+    "weight": 7,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

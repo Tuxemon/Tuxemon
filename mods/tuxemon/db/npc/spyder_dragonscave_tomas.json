@@ -1,17 +1,17 @@
 {
-    "slug": "spyder_dragonscave_tomas",
-    "sprite_name": "dragonrider",
-	"monsters": [
-        		{
-            "name": "Allagon",
-            "level": 35, 
-			"slug": "allagon",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "dragonrider.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_dragonscave_tomas",
+  "gender": "male",
+  "sprite_name": "dragonrider",
+  "monsters": [
+    {
+      "name": "Allagon",
+      "level": 35,
+      "slug": "allagon",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    }
+  ],
+  "combat_front": "dragonrider.png",
+  "combat_back": "adventurer_back.png"
+}

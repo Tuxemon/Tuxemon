@@ -12,16 +12,33 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 20,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 24,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 28,
+            "technique": "flood"
         }
     ],
-    "shape": "",
+    "evolutions": [],
+    "shape": "blob",
+    "stage": "stage1",
     "types": [
-        "Metal",
-        "Water"
+        "metal",
+        "water"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 178,
+    "height": 90,
+    "weight": 55,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

@@ -1,0 +1,33 @@
+{
+    "slug": "boxali",
+    "category": "macropod",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 2,
+            "technique": "blade"
+        },
+        {
+            "level_learned": 12,
+            "technique": "wall_of_steel"
+        }
+    ],
+    "evolutions": [],
+    "shape": "brute",
+    "stage": "standalone",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 213,
+    "height": 180,
+    "weight": 90,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

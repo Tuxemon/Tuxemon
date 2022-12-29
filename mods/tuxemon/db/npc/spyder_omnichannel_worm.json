@@ -1,8 +1,7 @@
 {
-    "slug": "spyder_omnichannel_worm",
-    "sprite_name": "37707_female",
-	"combat_front": "ceo.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_omnichannel_worm",
+  "gender": "male",
+  "sprite_name": "37707_female",
+  "combat_front": "ceo.png",
+  "combat_back": "adventurer_back.png"
+}

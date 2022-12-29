@@ -42,7 +42,7 @@ msgstr "{user} usou {name}!"
 msgid "combat_player_run"
 msgstr "Você fugiu!"
 
-## NOTIFICATION TRANSLATIONS ##
+# # NOTIFICATION TRANSLATIONS ##
 # Combat notifications
 msgid "combat_run"
 msgstr "{user} fugiu!"
@@ -159,7 +159,7 @@ msgstr "Cura um monstro em 10 HP."
 msgid "apple_description"
 msgstr "Cura um monstro em 10 HP."
 
-## ITEM TRANSLATIONS ##
+# # ITEM TRANSLATIONS ##
 # Apple
 msgid "apple"
 msgstr "Maçã"
@@ -236,7 +236,7 @@ msgstr "Sanguessuga"
 msgid "status_recover"
 msgstr "Recuperação"
 
-## TECHNIQUE TRANSLATIONS ##
+# # TECHNIQUE TRANSLATIONS ##
 msgid "all_in"
 msgstr "Com tudo"
 
@@ -391,7 +391,7 @@ msgstr "Servidores não encontrados…"
 msgid "multiplayer_join_prompt"
 msgstr "Nome de Host ou IP?"
 
-## MONSTER TRANSLATIONS ##
+# # MONSTER TRANSLATIONS ##
 # Monster details
 msgid "aardart_description"
 msgstr ""
@@ -532,8 +532,8 @@ msgstr ""
 
 msgid "dandylion_description"
 msgstr ""
-"Dá à luz uma ninhada em sua vida. Então vagueia pelo mundo tentando "
-"encontrá-los."
+"Dá à luz uma ninhada em sua vida. Então vagueia pelo mundo tentando encontrá-"
+"los."
 
 msgid "dandylion"
 msgstr "Dandylion"
@@ -548,7 +548,8 @@ msgid "dracune"
 msgstr "Dracune"
 
 msgid "eaglace_description"
-msgstr "Quando levanta voo, formam-se nuvens. Quando bate as asas, cai granizo."
+msgstr ""
+"Quando levanta voo, formam-se nuvens. Quando bate as asas, cai granizo."
 
 msgid "eaglace"
 msgstr "Eaglace"
@@ -594,7 +595,8 @@ msgid "magmaturtle"
 msgstr "Magmaturtle"
 
 msgid "moloch_description"
-msgstr "Pode endurecer ou suavizar sua pele para responder a amigos e inimigos."
+msgstr ""
+"Pode endurecer ou suavizar sua pele para responder a amigos e inimigos."
 
 msgid "merlicun"
 msgstr "Merlicun"
@@ -854,11 +856,9 @@ msgstr "Redemoinho"
 msgid "wing_tip"
 msgstr "Ponta da Asa"
 
-## MENU TRANSLATIONS ##
+# # MENU TRANSLATIONS ##
 msgid "menu_alphabet"
-msgstr ""
-"AÁÀÂÃBCÇDEÉÈÊFGHIÍÌJKLMNOÓÒÔÕPQRSTUÚÙVWXYZaáàâãbcçdeéèêẽfghiíìjklmnoóòôõpqrst"
-"uúùvwxyz1234567890.-!"
+msgstr "AÁÀÂÃBCÇDEÉÈÊFGHIÍÌJKLMNOÓÒÔÕPQRSTUÚÙVWXYZaáàâãbcçdeéèêẽfghiíìjklmnoóòôõpqrstuúùvwxyz1234567890.-!"
 
 msgid "menu_alphabet_n_columns"
 msgstr "14"
@@ -1084,7 +1084,7 @@ msgstr "{name} não deveria atacar a si mesmo."
 msgid "monster_menu_release"
 msgstr "Libertar"
 
-#Release notifications
+# Release notifications
 msgid "cant_release"
 msgstr "Não se pode libertar o único Tuxemon no grupo."
 
@@ -1167,7 +1167,8 @@ msgid "noctula"
 msgstr "Noctula"
 
 msgid "nostray_description"
-msgstr "Nostray pode cheirar qualquer coisa no oceano, não importa a distância."
+msgstr ""
+"Nostray pode cheirar qualquer coisa no oceano, não importa a distância."
 
 msgid "nostray"
 msgstr "Nostray"
@@ -1345,7 +1346,7 @@ msgstr "Você me encontrou! Haha!"
 msgid "cotton_town_fountain"
 msgstr "É uma fonte. Muitas moedas estão no fundo."
 
-## DIALOG TRANSLATIONS ##
+# # DIALOG TRANSLATIONS ##
 # general dialogs
 msgid "healmytuxemon"
 msgstr "Você deseja curar seu Tuxemon?"
@@ -1575,8 +1576,8 @@ msgstr ""
 "Cerca de trinta anos atrás, um grupo chamado Omnichannel começou a controlar "
 "a mídia.\n"
 "Logo depois, a liberdade de expressão tornou-se quase impossível.\n"
-"Então as pessoas decidiram usar Tuxemon como mensageiros e resolver disputas."
-"\n"
+"Então as pessoas decidiram usar Tuxemon como mensageiros e resolver "
+"disputas.\n"
 "Cerca de dez anos atrás, a repressão ao Tuxemon foi iniciada.\n"
 "Agora, apenas pessoas aprovadas podem possuir e criar Tuxemon.\n"
 "Meu grupo usa o Tuxemon para pesquisa, é por isso que todos os temos.\n"
@@ -1635,3 +1636,7 @@ msgstr ""
 
 msgid "shop_buy_free"
 msgstr "GRATUITAMENTE!"
+
+# Money notification
+msgid "player_wallet"
+msgstr "Carteira ${{name}}: ${{money}}${{currency}}"

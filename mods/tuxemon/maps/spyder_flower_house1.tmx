@@ -1,42 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="72">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="72">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="flower_house1"/>
+  <property name="types" value="notype"/>
+ </properties>
  <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
- </tileset>
- <tileset firstgid="161" name="stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
-  <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
- </tileset>
- <tileset firstgid="185" name="electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="201" name="kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="217" name="plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="233" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
+ <tileset firstgid="89" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
   <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
  </tileset>
- <tileset firstgid="1673" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+ <tileset firstgid="1529" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
   <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
  </tileset>
  <layer id="2" name="Tile Layer 2" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAFjZGBgYCQCiwPVEIN72RgY+oCYEL0VqGYbEBOiCZkDkydkDkwepp4QDVNPiAYAT50oMw==
+   eAFjZGBgYCQCiwPVEIP/sjIw/ANiQrQqGwODGhATogmZA5MnZA5MHqaeEA1TT4gGAM2XJFU=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAEzYmdgMAZiIwJ0FFA+GogJ0QwjDAAAjSYGDw==
+   eAFbxMbAsBiIFxGgTwHlTwMxIZphhAEAG0gOuw==
   </data>
  </layer>
  <layer id="7" name="Tile Layer 4" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAFjYCAOFHIwMKSwMjCkAjGIDQZANiMQg8BXFgaGb0A8Eyg3ESg2CYhBbBDQBbL1gNgbyFcC0spATClIApqRDMTXgXbCAIgNE4eJ9QPVTMCiDiYOU0cMvZCdgWEREC8GYhgAAOR8EJE=
+   eAFjYCAOPGRnYLjCwsBwFYhBbBAoALILgRgEUoF0GhBzcjAwMLIyMDABMYgNAnOB4vOAeDdQ3yQgPRmIKQWXgGZcBmJ3JLNAbJg4zPz/IHmgW9DVwcRh6oihBYHuFwJiYaj/QXoACesPgA==
   </data>
  </layer>
  <layer id="4" name="Above player" width="10" height="8">

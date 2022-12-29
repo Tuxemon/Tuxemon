@@ -1,37 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="65">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="65">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="cotton_tunnel"/>
+  <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
- <tileset firstgid="449" name="Waterfall_by_George" tilewidth="16" tileheight="16" tilecount="90" columns="9">
-  <image source="../gfx/tilesets/Waterfall_by_George.png" width="144" height="160"/>
- </tileset>
- <tileset firstgid="539" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
+ <tileset firstgid="1" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
   <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
  </tileset>
- <tileset firstgid="699" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+ <tileset firstgid="161" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
   <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
  </tileset>
- <tileset firstgid="2139" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
+ <tileset firstgid="1601" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
   <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
- </tileset>
- <tileset firstgid="2299" name="Cave_Tiles_by_George_" tilewidth="16" tileheight="16" tilecount="154" columns="14">
-  <image source="../gfx/tilesets/Cave_Tiles_by_George_.png" width="224" height="181"/>
- </tileset>
- <tileset firstgid="2453" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
  <layer id="1" name="Lowest Level" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAGTZmJgkB7Fo2EwmgZG08BoGhhNA6NpYDQNjKaBEZkGtEfjfUTG+0C2/wFr+Vqx
+   eAFjZGBgYBzFo2EwmgZG08BoGhhNA6NpYDQNjKaBEZkGBEfjfUTG+0C2/wHDHQMx
   </data>
  </layer>
  <layer id="2" name="Pit" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAGbzsrAMH0UUxQGDFBgzcbAMNAY5BT0+IS5b7DQg9l91Ryj4UdpOhnM8Qvy26j7KIvh0fAbDT/KQoAy3aPpb+SEnzCwTUUtjJ5uqMGnlttA5lDDPehmDHb3AQD8kooq
+   eAGrZWZgqB3FFIUBAxQosjAwDDQGOQU9PmHuGyz0YHZfItto+FGaTgZz/IL8Nuo+ymJ4NPxGw4+yEKBM92j6Gznh9xPYNqUWRk831OBTy20gc6jhHnQzBrv7AM9Tosk=
   </data>
  </layer>
  <layer id="4" name="Wall" width="40" height="20">
@@ -41,7 +33,7 @@
  </layer>
  <layer id="8" name="Tile Layer 4" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFlIZAEhsDgzUQDwaQjMUdM1gHg8sgbhAa5O7DFlKj4YctVLCLERO/r4Dp8fUA4W4i0t80oNumA7EwUC21MMg8YjF6yKKnP5j7iDWP2upG3Ud8XGIL+9HwGw0/bOmCXmLo6Y8PWM6BymMQANH8QD693ILNHohLRsmREAIAvFzOIA==
+   eAFjYBgFlIaABwsDgyIQDwbgicUddcyDwWUQN/zA4pbB5D5sITWY3DfYw48Y910ApoGLA4QLicgfNUC31QLxTypikHnEYvQ0iJ7+YO4j1jxqqxt1H/FxiS3sR8NvNPywpQt6iaGnvy/AsglUHoMAiP5KQllFCzdDXDJKjoQQAADsn8Cg
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -126,7 +118,7 @@
     <property name="cond1" value="not variable_set environment:cave"/>
    </properties>
   </object>
-  <object id="64" name="Exhausted" type="event" x="0" y="0" width="16" height="16">
+  <object id="64" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>

@@ -1,75 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="69">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="69">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="tuxe_mart_taba"/>
+  <property name="types" value="shop"/>
  </properties>
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
- </tileset>
- <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+ <tileset firstgid="89" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
- <tileset firstgid="1473" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
+ <tileset firstgid="1401" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
   <image source="../gfx/tilesets/items.png" width="48" height="32"/>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="15" height="15">
+ <layer id="1" name="Tile Layer 1" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYBg4YAm0mlQMc60LkEEqhun1BzJIxTC9ekAGqXiw6AW5g1i3DxY3E+tekDoYIEUPTC1M70DQAOfXHN8=
+   eAGzZGBgsCQRuwDVk4r9gXpIxXpAPYMdA5046N1IqzAEAAOJHN8=
   </data>
  </layer>
- <layer id="2" name="Tile Layer 2" width="15" height="15">
+ <layer id="2" name="Tile Layer 2" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYBi5gJmVdL93sDAwtAPxXSAmF9BCby3QL7eBbqrH46ebZLiZGHPJDQdamo3NTXiCBptyuokBADwwClQ=
+   eAFjYKAv2M1CvH0OQLX2QDyVBD0w06mpx5SVgWEy0A3mQBodTCTBbfjMQTeXWD4tzES2G4uX4dIAu8sG0w==
   </data>
  </layer>
- <layer id="3" name="Tile Layer 3" width="15" height="15">
+ <layer id="3" name="Tile Layer 3" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYBgF5IRAOCs5uiB6KNG7gYV8ezdToJd8W0d1EgoBAAF2AiQ=
+   eAFjYBj8gJ+VdDeSoyeDhXR7ssnQQ7otg1MHACttAQQ=
   </data>
  </layer>
- <layer id="4" name="Above player" width="15" height="15">
+ <layer id="4" name="Above player" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgyUENrIwMGwC4s1ATE0AM5eaZsLMgplNbTfDzB8JNAAjywWw
+   eAFjYBhZIJOFgSELiLOBmBIAM4cSM9D1wsyk1G3o5tKKDwBjdQNw
   </data>
  </layer>
- <layer id="5" name="Above player" width="15" height="15">
+ <layer id="5" name="Above player" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgyUEDrEyMIDwQSAmFRwF6gHhI2ToJdUudPWHgXaCMDngGFAfCI9kAAAqAgfY
+   eAFjYBhZoIqVgQGEK4GYWFALVAvCNSToIdZsdHXVQDtAmBRQB1QPwvQGAK9WBQg=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">
-  <object id="4" type="collision" x="16" y="208" width="208" height="32"/>
-  <object id="11" type="collision" x="16" y="48" width="208" height="32"/>
-  <object id="12" type="collision" x="-16" y="64" width="32" height="160"/>
-  <object id="14" type="collision" x="224" y="64" width="32" height="160"/>
-  <object id="21" type="collision" x="48" y="80" width="16" height="64"/>
-  <object id="22" type="collision" x="16" y="144" width="48" height="16"/>
-  <object id="24" type="collision" x="144" y="112" width="48" height="16"/>
-  <object id="25" type="collision" x="144" y="160" width="48" height="16"/>
+  <object id="11" type="collision" x="0" y="16" width="208" height="32"/>
+  <object id="21" type="collision" x="32" y="48" width="16" height="64"/>
+  <object id="22" type="collision" x="0" y="112" width="48" height="16"/>
+  <object id="24" type="collision" x="128" y="80" width="48" height="16"/>
+  <object id="25" type="collision" x="128" y="128" width="48" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
-  <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
+  <object id="17" name="Go outside" type="event" x="96" y="160" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport taba_town.tmx,30,12,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="27" name="open shop" type="event" x="48" y="112" width="16" height="16">
+  <object id="27" name="open shop" type="event" x="32" y="80" width="16" height="16">
    <properties>
     <property name="act10" value="open_shop tuxemart_keeper"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="56" name="employee" type="event" x="32" y="112" width="16" height="16">
+  <object id="56" name="employee" type="event" x="16" y="80" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc tuxemart_keeper,2,7,,stand"/>
+    <property name="act10" value="create_npc tuxemart_keeper,1,5,,stand"/>
     <property name="act20" value="npc_face tuxemart_keeper,right"/>
-    <property name="act30" value="set_inventory tuxemart_keeper,inv_basic_store"/>
+    <property name="act30" value="set_inventory tuxemart_keeper,tuxe_mart_taba"/>
+    <property name="act40" value="set_economy tuxemart_keeper,tuxe_mart_taba"/>
     <property name="cond10" value="not npc_exists tuxemart_keeper"/>
    </properties>
   </object>
@@ -79,39 +78,39 @@
     <property name="cond10" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
-  <object id="62" name="potions" type="event" x="144" y="112" width="48" height="16">
+  <object id="62" name="potions" type="event" x="128" y="80" width="48" height="16">
    <properties>
     <property name="act10" value="translated_dialog potions_in_shop"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="64" name="capture devices" type="event" x="160" y="160" width="32" height="16">
+  <object id="64" name="capture devices" type="event" x="144" y="128" width="32" height="16">
    <properties>
     <property name="act10" value="translated_dialog capture_devices_in_shop"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="65" name="capture devices" type="event" x="48" y="128" width="16" height="16">
+  <object id="65" name="capture devices" type="event" x="32" y="96" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cash_register"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="66" name="professor pls" type="event" x="160" y="192" width="16" height="16">
+  <object id="66" name="professor pls" type="event" x="144" y="160" width="16" height="16">
    <properties>
     <property name="act10" value="lock_controls"/>
     <property name="act11" value="wait 0.7"/>
-    <property name="act20" value="create_npc professor,4,7,,stand"/>
+    <property name="act20" value="create_npc professor,3,5,,stand"/>
     <property name="act30" value="npc_face professor,left"/>
     <property name="act40" value="translated_dialog professorexists"/>
     <property name="act50" value="wait 1"/>
     <property name="act60" value="translated_dialog professorexists1"/>
     <property name="act70" value="npc_face professor,down"/>
     <property name="act80" value="translated_dialog professorexists1.5"/>
-    <property name="act90" value="pathfind professor,7,8"/>
+    <property name="act90" value="pathfind professor,6,6"/>
     <property name="act91" value="npc_face professor,down"/>
     <property name="act92" value="set_variable proftalk1:true"/>
     <property name="cond1" value="not npc_exists professor"/>
@@ -119,9 +118,9 @@
     <property name="cond3" value="not variable_set proftalk2:yes"/>
    </properties>
   </object>
-  <object id="68" name="professor pls2" type="event" x="176" y="192" width="16" height="16">
+  <object id="68" name="professor pls2" type="event" x="160" y="160" width="16" height="16">
    <properties>
-    <property name="act10" value="pathfind player, 7,9"/>
+    <property name="act10" value="pathfind player, 6,7"/>
     <property name="act20" value="translated_dialog professorexists2"/>
     <property name="act21" value="add_item potion"/>
     <property name="act22" value="add_item potion"/>
@@ -132,7 +131,7 @@
     <property name="act60" value="translated_dialog professorexists3"/>
     <property name="act70" value="translated_dialog professorexists4"/>
     <property name="act80" value="npc_speed professor,7"/>
-    <property name="act90" value="pathfind professor,7,12"/>
+    <property name="act90" value="pathfind professor,6,10"/>
     <property name="act91" value="remove_npc professor"/>
     <property name="act92" value="set_variable proftalk2:yes"/>
     <property name="act93" value="npc_face player,left"/>

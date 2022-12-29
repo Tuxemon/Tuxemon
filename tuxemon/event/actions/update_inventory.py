@@ -21,7 +21,8 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.db import db
 from tuxemon.event import get_npc
@@ -29,13 +30,9 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.item.item import decode_inventory
 
 
-class UpdateInventoryActionParameters(NamedTuple):
-    npc_slug: str
-    inventory_slug: str
-
-
 @final
-class UpdateInventoryAction(EventAction[UpdateInventoryActionParameters]):
+@dataclass
+class UpdateInventoryAction(EventAction):
     """
     Update the inventory of the npc or player.
 
@@ -54,12 +51,13 @@ class UpdateInventoryAction(EventAction[UpdateInventoryActionParameters]):
     """
 
     name = "update_inventory"
-    param_class = UpdateInventoryActionParameters
+    npc_slug: str
+    inventory_slug: str
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.npc_slug)
         assert npc
-        if self.parameters.inventory_slug is None:
+        if self.inventory_slug is None:
             return
 
         npc.inventory.update(
@@ -67,10 +65,8 @@ class UpdateInventoryAction(EventAction[UpdateInventoryActionParameters]):
                 self.session,
                 npc,
                 db.lookup(
-                    self.parameters.inventory_slug,
+                    self.inventory_slug,
                     table="inventory",
-                )
-                .dict()
-                .get("inventory", {}),
+                ).inventory,
             )
         )

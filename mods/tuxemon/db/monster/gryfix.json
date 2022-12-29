@@ -1,0 +1,57 @@
+{
+    "slug": "gryfix",
+    "category": "horned_raptor",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "wing_tip"
+        },
+        {
+            "level_learned": 2,
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 12,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 24,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 28,
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 32,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 40,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 44,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 48,
+            "technique": "blade"
+        }
+    ],
+    "evolutions": [],
+    "shape": "flier",
+    "stage": "stage2",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 158,
+    "height": 180,
+    "weight": 31,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

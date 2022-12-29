@@ -1,12 +1,7 @@
 {
-  "slug": "fishing_rod",
-  "use_item": "combat_used_x",
-  "use_success": "generic_success",
-  "use_failure": "generic_failure",
-  "effects": [
-
-  ],
+  "effects": [],
   "power": 0,
+  "slug": "fishing_rod",
   "sort": "utility",
   "sprite": "gfx/items/fishing_rod.png",
   "target": {
@@ -18,8 +13,11 @@
     "own trainer": 0,
     "item": 0
   },
-  "type": "Consumable",
+  "type": "KeyItem",
   "usable_in": [
     "MainCombatMenuState"
-  ]
+  ],
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
 }

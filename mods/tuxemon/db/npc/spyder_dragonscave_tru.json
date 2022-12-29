@@ -1,31 +1,33 @@
 {
-    "slug": "spyder_dragonscave_tru",
-    "sprite_name": "knight",
-	"monsters": [
-        		{
-            "name": "Embazook",
-            "level": 40, 
-			"slug": "embazook",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Arthrobolt",
-            "level": 40, 
-			"slug": "arthrobolt",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Hydrone",
-            "level": 40, 
-			"slug": "hydrone",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "knightlord.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_dragonscave_tru",
+  "gender": "male",
+  "sprite_name": "knight",
+  "monsters": [
+    {
+      "name": "Embazook",
+      "level": 40,
+      "slug": "embazook",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Arthrobolt",
+      "level": 40,
+      "slug": "arthrobolt",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Hydrone",
+      "level": 40,
+      "slug": "hydrone",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "knightlord.png",
+  "combat_back": "adventurer_back.png"
+}

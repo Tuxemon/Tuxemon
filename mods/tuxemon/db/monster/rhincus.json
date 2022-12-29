@@ -12,15 +12,20 @@
             "technique": "wing_tip"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "peck"
         }
     ],
-    "shape": "Flier",
+    "evolutions": [],
+    "shape": "flier",
+    "stage": "standalone",
     "types": [
-        "Earth"
+        "earth"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 143,
+    "height": 92,
+    "weight": 17,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

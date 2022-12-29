@@ -22,7 +22,8 @@
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, Optional, Union, final
+from dataclasses import dataclass
+from typing import Optional, Union, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
@@ -30,13 +31,9 @@ from tuxemon.monster import Monster
 logger = logging.getLogger(__name__)
 
 
-class SetMonsterHealthActionParameters(NamedTuple):
-    slot: Union[int, None]
-    health: Union[float, None]
-
-
 @final
-class SetMonsterHealthAction(EventAction[SetMonsterHealthActionParameters]):
+@dataclass
+class SetMonsterHealthAction(EventAction):
     """
     Change the hp of a monster in the current player's party.
 
@@ -55,7 +52,8 @@ class SetMonsterHealthAction(EventAction[SetMonsterHealthActionParameters]):
     """
 
     name = "set_monster_health"
-    param_class = SetMonsterHealthActionParameters
+    slot: Union[int, None] = None
+    health: Union[float, None] = None
 
     @staticmethod
     def set_health(monster: Monster, value: Optional[float]) -> None:
@@ -63,8 +61,7 @@ class SetMonsterHealthAction(EventAction[SetMonsterHealthActionParameters]):
             monster.current_hp = monster.hp
         else:
             if not 0 <= value <= 1:
-                logger.error("monster health must between 0 and 1")
-                raise ValueError
+                raise ValueError("monster health must between 0 and 1")
 
             monster.current_hp = int(monster.hp * value)
 
@@ -72,8 +69,8 @@ class SetMonsterHealthAction(EventAction[SetMonsterHealthActionParameters]):
         if not self.session.player.monsters:
             return
 
-        monster_slot = self.parameters[0]
-        monster_health = self.parameters[1]
+        monster_slot = self.slot
+        monster_health = self.health
 
         if monster_slot is None:
             for monster in self.session.player.monsters:

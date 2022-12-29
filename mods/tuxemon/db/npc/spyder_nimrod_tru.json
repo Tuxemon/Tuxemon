@@ -1,45 +1,49 @@
 {
-    "slug": "spyder_nimrod_tru",
-    "sprite_name": "knight",
-	"monsters": [
-        {
-            "name": "Grimachin",
-            "level": 20, 
-			"slug": "grimachin",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Tigrock",
-            "level": 25, 
-			"slug": "tigrock",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Komodraw",
-            "level": 25, 
-			"slug": "komodraw",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Sharpfin",
-            "level": 25, 
-			"slug": "sharpfin",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        },
-		{
-            "name": "Embazook",
-            "level": 25, 
-			"slug": "embazook",
-			"exp_give_mod": 3,
-            "exp_req_mod": 27			
-        }
-],
-	    "combat_front": "knightlord.png",
-    "combat_back": "red_back.png"}
-	
-	
-	
+  "slug": "spyder_nimrod_tru",
+  "gender": "male",
+  "sprite_name": "knight",
+  "monsters": [
+    {
+      "name": "Grimachin",
+      "level": 20,
+      "slug": "grimachin",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Tigrock",
+      "level": 25,
+      "slug": "tigrock",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    },
+    {
+      "name": "Komodraw",
+      "level": 25,
+      "slug": "komodraw",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Sharpfin",
+      "level": 25,
+      "slug": "sharpfin",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    },
+    {
+      "name": "Embazook",
+      "level": 25,
+      "slug": "embazook",
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "female"
+    }
+  ],
+  "combat_front": "knightlord.png",
+  "combat_back": "adventurer_back.png"
+}

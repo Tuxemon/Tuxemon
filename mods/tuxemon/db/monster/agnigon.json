@@ -12,15 +12,44 @@
             "technique": "fire_ball"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "fume"
+        },
+        {
+            "level_learned": 28,
+            "technique": "kindling_flame"
+        },
+        {
+            "level_learned": 32,
+            "technique": "energy_claws"
+        },
+        {
+            "level_learned": 34,
+            "technique": "breathe_fire"
+        },
+        {
+            "level_learned": 44,
             "technique": "take_cover"
+        },
+        {
+            "level_learned": 48,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 52,
+            "technique": "supernova"
         }
     ],
-    "shape": "Dragon",
+    "evolutions": [],
+    "shape": "dragon",
+    "stage": "stage2",
     "types": [
-        "Fire"
+        "fire"
     ],
-    "weight": 25,
+    "possible_genders": ["male", "female"],
+    "txmn_id": 15,
+    "height": 600,
+    "weight": 2000,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

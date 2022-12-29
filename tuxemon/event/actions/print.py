@@ -22,19 +22,17 @@
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, Optional, final
+from dataclasses import dataclass
+from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
 
 
-class PrintActionParameters(NamedTuple):
-    variable: Optional[str]
-
-
 @final
-class PrintAction(EventAction[PrintActionParameters]):
+@dataclass
+class PrintAction(EventAction):
     """
     Print the current value of a game variable to the console.
 
@@ -52,12 +50,12 @@ class PrintAction(EventAction[PrintActionParameters]):
     """
 
     name = "print"
-    param_class = PrintActionParameters
+    variable: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
 
-        variable = self.parameters.variable
+        variable = self.variable
         if variable:
             if variable in player.game_variables:
                 print(f"{variable}: {player.game_variables[variable]}")

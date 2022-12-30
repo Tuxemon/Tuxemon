@@ -207,20 +207,22 @@ class ItemMenuState(Menu[Item]):
 
         def open_choice_menu() -> None:
             # open the menu for use/cancel
-            menu = self.client.push_state(Menu())
-            menu.shrink_to_items = True
-
-            menu_items_map = (
-                ("item_confirm_use", confirm),
-                ("item_confirm_cancel", cancel),
+            tools.open_choice_dialog(
+                local_session,
+                menu=(
+                    (
+                        "use",
+                        T.translate("item_confirm_use").upper(),
+                        confirm,
+                    ),
+                    (
+                        "cancel",
+                        T.translate("item_confirm_cancel").upper(),
+                        cancel,
+                    ),
+                ),
+                escape_key_exits=True,
             )
-
-            # add our options to the menu
-            for key, callback in menu_items_map:
-                label = T.translate(key).upper()
-                image = self.shadow_text(label)
-                item = MenuItem(image, label, None, callback)
-                menu.add(item)
 
         open_choice_menu()
 

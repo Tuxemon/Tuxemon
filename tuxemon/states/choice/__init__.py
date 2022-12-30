@@ -1,16 +1,9 @@
 from __future__ import annotations
 
-from typing import Any, Callable, Generator, Optional, Sequence, Tuple
-
-import pygame
-import pygame_menu
+from typing import Any, Callable, Sequence, Tuple
 
 from tuxemon.animation import Animation
-from tuxemon.menu.events import playerinput_to_event
-from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import PopUpMenu, PygameMenuState
-from tuxemon.menu.theme import get_theme
-from tuxemon.platform.events import PlayerInput
+from tuxemon.menu.menu import PygameMenuState
 
 ChoiceMenuGameObj = Callable[[], None]
 

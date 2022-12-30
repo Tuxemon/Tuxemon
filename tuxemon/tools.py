@@ -231,9 +231,10 @@ def open_choice_dialog(
     from tuxemon.states.choice import ChoiceState
 
     return session.client.push_state(
-        ChoiceState,
-        menu=menu,
-        escape_key_exits=escape_key_exits,
+        ChoiceState(
+            menu=menu,
+            escape_key_exits=escape_key_exits,
+        )
     )
 
 

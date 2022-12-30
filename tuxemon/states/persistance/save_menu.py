@@ -36,10 +36,10 @@ from typing import Optional
 import pygame
 from pygame import Rect
 
-from tuxemon import prepare, save
+from tuxemon import prepare, save, tools
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import Menu, PopUpMenu
+from tuxemon.menu.menu import PopUpMenu
 from tuxemon.save import get_save_path
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
@@ -193,25 +193,22 @@ class SaveMenuState(PopUpMenu[None]):
 
         def ask_confirmation() -> None:
             # open menu to confirm the save
-            menu = self.client.push_state(Menu())
-            menu.shrink_to_items = True
-
-            # add choices
-            yes = MenuItem(
-                self.shadow_text(T.translate("save_overwrite")),
-                None,
-                None,
-                positive_answer,
+            tools.open_choice_dialog(
+                local_session,
+                menu=(
+                    (
+                        "overwrite",
+                        T.translate("save_overwrite"),
+                        positive_answer,
+                    ),
+                    (
+                        "keep",
+                        T.translate("save_keep"),
+                        negative_answer,
+                    ),
+                ),
+                escape_key_exits=True,
             )
-            no = MenuItem(
-                self.shadow_text(T.translate("save_keep")),
-                None,
-                None,
-                negative_answer,
-            )
-
-            menu.add(yes)
-            menu.add(no)
 
         save_data = save.load(self.selected_index + 1)
         if save_data:

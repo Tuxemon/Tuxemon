@@ -27,7 +27,7 @@ import logging
 import random
 import uuid
 from dataclasses import dataclass
-from typing import final
+from typing import Union, final
 
 from tuxemon import formula, monster
 from tuxemon.event.eventaction import EventAction
@@ -64,7 +64,7 @@ class SpawnMonsterAction(EventAction):
     """
 
     name = "spawn_monster"
-    npc_slug: str
+    npc_slug: Union[str, None] = None
 
     def start(self) -> None:
         world = self.session.client.get_state_by_name(WorldState)

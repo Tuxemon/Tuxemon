@@ -51,7 +51,7 @@ class AddItemAction(EventAction):
     name = "add_item"
     item_slug: str
     quantity: Union[int, None] = None
-    trainer_slug: str = None
+    trainer_slug: Union[str, None] = None
 
     def start(self) -> None:
         trainer: Optional[NPC]

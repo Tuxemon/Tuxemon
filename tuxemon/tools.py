@@ -60,7 +60,7 @@ from typing import (
 
 from tuxemon import prepare
 from tuxemon.compat import ReadOnlyRect
-from tuxemon.locale import T
+from tuxemon.locale import T, replace_text
 from tuxemon.math import Vector2
 
 if TYPE_CHECKING:
@@ -398,7 +398,7 @@ def show_item_result_as_dialog(
     msg_type = "use_success" if result["success"] else "use_failure"
     template = getattr(item, msg_type)
     if template:
-        message = T.translate(template)
+        message = T.translate(replace_text(session, template))
         open_dialog(session, [message])
 
 

@@ -1,7 +1,7 @@
 {
   "tech_id": 24,
   "accuracy": 0.8,
-  "animation": "ice blast",
+  "animation": "explosion_ice_112",
   "effects": [
     "damage 100",
     "softened target"

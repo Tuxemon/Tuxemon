@@ -519,6 +519,15 @@ class TechniqueModel(BaseModel):
 
         return v
 
+    @validator("animation")
+    def animation_exists(cls, v):
+        file: str = f"animations/technique/{v}_00.png"
+        if not v:
+            return v
+        if has.file(file):
+            return v
+        raise ValueError(f"the animation {v} doesn't exist in the db")
+
 
 class PartyMemberModel(BaseModel):
     slug: str = Field(..., description="Slug of the monster")

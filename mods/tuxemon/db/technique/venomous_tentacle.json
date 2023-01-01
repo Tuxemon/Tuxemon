@@ -1,7 +1,7 @@
 {
   "tech_id": 80,
   "accuracy": 0.8,
-  "animation": "torrentacle",
+  "animation": "tentacles_water",
   "effects": [
     "poison target",
     "damage 100"

@@ -1,7 +1,7 @@
 {
   "tech_id": 33,
   "accuracy": 0.8,
-  "animation": "thud",
+  "animation": "rockfall_193",
   "effects": [
     "damage 100",
     "exhausted target"

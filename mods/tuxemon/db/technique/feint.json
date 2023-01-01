@@ -1,7 +1,7 @@
 {
   "tech_id": 36,
   "accuracy": 1,
-  "animation": "bolt",
+  "animation": "lightning_bolt_138",
   "effects": [
     "damage 100",
     "focused user"

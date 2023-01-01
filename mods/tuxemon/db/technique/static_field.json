@@ -1,7 +1,7 @@
 {
   "tech_id": 15,
   "accuracy": 1,
-  "animation": "disintegrate",
+  "animation": "disintegrate_83",
   "effects": [
     "exhausted target",
     "hardshell user"

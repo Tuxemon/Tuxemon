@@ -107,8 +107,8 @@ PLAYER_NAME_LIMIT = 30
 
 # Fonts
 FONT_BASIC = "PressStart2P.ttf"
-FONT_CHINESE = "NotoSansTC.ttf"
-FONT_JAPANESE = "NotoSansJP.ttf"
+FONT_CHINESE = "SourceHanSerifCN-Bold.otf"
+FONT_JAPANESE = "SourceHanSerifJP-Bold.otf"
 
 # If scaling is enabled, scale the tiles based on the resolution
 if CONFIG.large_gui:

@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tuxemon\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-20 17:03+0000\n"
+"PO-Revision-Date: 2023-01-02 10:48+0000\n"
 "Last-Translator: David Liang <2188741623@qq.com>\n"
-"Language-Team: Simplified Chinese <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
-" zh_CN/>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"tuxemon/tuxemon/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 ## ITEM TRANSLATIONS ##
 # Apple
@@ -589,7 +589,6 @@ msgid "wing_tip"
 msgstr "飞机翼尖"
 
 ## MENU TRANSLATIONS ##
-
 msgid "menu_alphabet"
 msgstr "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
 
@@ -727,3 +726,420 @@ msgstr "未找到服务器..."
 
 msgid "multiplayer_join_prompt"
 msgstr "主机名或IP？"
+
+msgid "water_booster_description"
+msgstr "它允许将水系精灵变形为不同的形式。"
+
+# Money notification
+msgid "player_wallet"
+msgstr "${{name}}的钱包：${{currency}}${{money}}"
+
+msgid "combat_skip"
+msgstr "{user} 跳过了本回合！"
+
+## COMBAT STATE STATUSES
+msgid "combat_state_blinded_get"
+msgstr "{target} 是盲的。"
+
+msgid "combat_state_confused_get"
+msgstr "{target} 是混淆的。"
+
+msgid "combat_state_grabbed_get"
+msgstr "{target} 被紧紧抓住。"
+
+msgid "acid"
+msgstr "酸"
+
+msgid "combat_state_spyderbite_get"
+msgstr "{target} 开始嗅探。"
+
+msgid "status_dozing"
+msgstr "打瞌睡"
+
+msgid "status_focused"
+msgstr "集中"
+
+msgid "arcane_eye"
+msgstr "奥术之眼"
+
+msgid "blood_nets"
+msgstr "血网"
+
+msgid "clairaudience"
+msgstr "千里眼观众"
+
+msgid "feline"
+msgstr "猫的"
+
+msgid "gyser"
+msgstr "吉瑟"
+
+msgid "fishing_rod_description"
+msgstr "可以用来捕鱼。"
+
+msgid "earthmover_key_description"
+msgstr "如果有一个巨大的推土机挡住了道路，可能会派上用场。"
+
+msgid "nimrod_badge_description"
+msgstr "从宁录购买的精灵需要这个徽章才能变形。"
+
+msgid "booster_tech_description"
+msgstr "一种开源技术，允许将精灵变形为不同的形式。"
+
+msgid "earth_booster"
+msgstr "土系助推器"
+
+msgid "earth_booster_description"
+msgstr "它允许将土系精灵变形为不同的形式。"
+
+msgid "miaow_milk_description"
+msgstr "猫咪喜欢妙乳™的味道！"
+
+msgid "fishing_rod"
+msgstr "鱼竿"
+
+msgid "earthmover_key"
+msgstr "推土机钥匙"
+
+msgid "sledgehammer"
+msgstr "大锤"
+
+msgid "sledgehammer_description"
+msgstr "粉碎灰色巨石。"
+
+msgid "shammer_fossil"
+msgstr "沙默化石"
+
+msgid "rhincus_fossil"
+msgstr "沙默化石"
+
+# Boosters (items)
+msgid "greenwash_badge"
+msgstr "徽章：漂绿"
+
+msgid "greenwash_badge_description"
+msgstr "从漂绿购买的精灵需要此徽章才能进化。"
+
+msgid "nimrod_badge"
+msgstr "徽章：宁录"
+
+msgid "omnichannel_badge"
+msgstr "徽章：全渠道"
+
+msgid "omnichannel_badge_description"
+msgstr "从全渠道购买的精灵需要此徽章才能变形。"
+
+msgid "scoop_badge_description"
+msgstr "从斯考普购买的精灵需要这个徽章才能变形。"
+
+msgid "scoop_badge"
+msgstr "徽章：斯考普"
+
+msgid "shaft_badge"
+msgstr "徽章：沙弗特"
+
+msgid "shaft_badge_description"
+msgstr "从沙弗特购买的燕尾服需要这个徽章才能变形。"
+
+msgid "booster_tech"
+msgstr "技术助推器"
+
+msgid "fire_booster"
+msgstr "火系助推器"
+
+msgid "fire_booster_description"
+msgstr "它允许将火系精灵变形为不同的形式。"
+
+msgid "flintstone"
+msgstr "打火石"
+
+msgid "lucky_bamboo"
+msgstr "幸运竹"
+
+msgid "metal_booster"
+msgstr "金系助推器"
+
+msgid "metal_booster_description"
+msgstr "它允许将金系精灵变形为不同的形式。"
+
+msgid "miaow_milk"
+msgstr "妙乳"
+
+msgid "peace_lily"
+msgstr "和平百合"
+
+msgid "petrified_dung"
+msgstr "石化粪便"
+
+msgid "pyramidion"
+msgstr "金字塔"
+
+msgid "sea_girdle"
+msgstr "金字塔"
+
+msgid "stovepipe"
+msgstr "烟囱管"
+
+msgid "sweet_sand"
+msgstr "甜沙"
+
+msgid "tectonic_drill"
+msgstr "构造钻探"
+
+msgid "thunderstone"
+msgstr "雷石"
+
+msgid "water_booster"
+msgstr "水系助推器"
+
+msgid "wood_booster"
+msgstr "木系助推器"
+
+msgid "wood_booster_description"
+msgstr "它允许将木系精灵变形为不同的形式。"
+
+# Map Types:
+msgid "no_type"
+msgstr "无类型"
+
+msgid "town"
+msgstr "镇"
+
+msgid "route"
+msgstr "路线"
+
+msgid "dungeon"
+msgstr "地牢"
+
+msgid "center"
+msgstr "中心"
+
+msgid "shop"
+msgstr "商店"
+
+msgid "inside"
+msgstr "内部"
+
+msgid "outside"
+msgstr "外部"
+
+msgid "item_used_wrong_location_inside"
+msgstr "{name} 只能在 {here} 使用！"
+
+msgid "item_used_wrong_location_type"
+msgstr "{name} 只能在 {here} 中使用！"
+
+msgid "combat_forfeit"
+msgstr ""
+"你已经放弃了！\n"
+"{npc} 很失望。"
+
+msgid "combat_player_run_status"
+msgstr ""
+"不能逃跑。\n"
+"{monster} 是 {status}!"
+
+msgid "combat_player_forfeit_status"
+msgstr ""
+"不能放弃比赛。\n"
+"{monster} 是 {status}!"
+
+msgid "combat_player_swap_status"
+msgstr ""
+"不能更换精灵。.\n"
+"{monster} 是 {status}!"
+
+msgid "cannot_use_tech_monster"
+msgstr "{name} 现在不能使用。"
+
+msgid "combat_victory_trainer"
+msgstr ""
+"你战胜了 {npc}!\n"
+" 你获得了 {currency}{prize}!"
+
+msgid "combat_state_chargedup_get"
+msgstr "{target} 已充满电。"
+
+msgid "combat_state_charging_get"
+msgstr "{target} 正在充电。"
+
+msgid "combat_state_diehard_get"
+msgstr "{target} 将继续战斗。"
+
+msgid "combat_state_dozing_get"
+msgstr "{target} 睡着了。"
+
+msgid "combat_state_enraged_get"
+msgstr "{target} 被激怒了。"
+
+msgid "combat_state_exhausted_get"
+msgstr "{target} 已耗尽。"
+
+msgid "combat_state_festering_get"
+msgstr "{target} 的伤口溃烂了。"
+
+msgid "combat_state_focused_get"
+msgstr "{target} 成为焦点。"
+
+msgid "combat_state_hardshell_get"
+msgstr "{target} 被硬壳包裹。"
+
+msgid "combat_state_noddingoff_get"
+msgstr "{target} 正在打瞌睡。"
+
+msgid "combat_state_sniping_get"
+msgstr "{target} 需要瞄准。"
+
+msgid "combat_state_softened_get"
+msgstr "{target} 的装甲软化。"
+
+msgid "combat_state_stuck_get"
+msgstr "{target} 卡在原地。"
+
+msgid "combat_state_tired_get"
+msgstr "{target} 已磨损。"
+
+msgid "alert_text"
+msgstr "文字太长！"
+
+## STATUSES
+msgid "status_blinded"
+msgstr "蒙蔽"
+
+msgid "status_chargedup"
+msgstr "充电"
+
+msgid "status_charging"
+msgstr "充电"
+
+msgid "status_confused"
+msgstr "困惑"
+
+msgid "status_diehard"
+msgstr "虎胆龙威"
+
+msgid "status_eliminated"
+msgstr "消除"
+
+msgid "status_enraged"
+msgstr "狂暴"
+
+msgid "status_exhausted"
+msgstr "用尽"
+
+msgid "status_festering"
+msgstr "溃烂"
+
+msgid "status_grabbed"
+msgstr "抓住"
+
+msgid "status_hardshell"
+msgstr "硬壳"
+
+msgid "status_noddingoff"
+msgstr "点头离开"
+
+msgid "status_sniping"
+msgstr "狙击"
+
+msgid "status_softened"
+msgstr "软化"
+
+msgid "status_spyderbite"
+msgstr "斯皮德咬合"
+
+msgid "status_stuck"
+msgstr "卡住"
+
+msgid "status_tired"
+msgstr "疲劳"
+
+msgid "adamantine"
+msgstr "金刚合金"
+
+msgid "air_chain"
+msgstr "空气链"
+
+msgid "ants"
+msgstr "蚂蚁"
+
+msgid "assault"
+msgstr "突击"
+
+msgid "barking"
+msgstr "叫声"
+
+msgid "breath"
+msgstr "呼吸"
+
+msgid "canine"
+msgstr "犬"
+
+msgid "cat_calling"
+msgstr "猫叫"
+
+msgid "cavity"
+msgstr "腔"
+
+msgid "chameleon"
+msgstr "变色龙"
+
+msgid "clock"
+msgstr "时钟"
+
+msgid "cloud_aether"
+msgstr "云以太"
+
+msgid "conjurer"
+msgstr "魔术师"
+
+msgid "crystal"
+msgstr "晶体"
+
+msgid "demiurge"
+msgstr "德米乌尔"
+
+msgid "earthquake"
+msgstr "地震"
+
+msgid "evasion"
+msgstr "规避"
+
+msgid "fiery"
+msgstr "火热"
+
+msgid "fire_shield"
+msgstr "防火盾"
+
+msgid "firestorm"
+msgstr "风暴"
+
+msgid "fledgling"
+msgstr "雏鸟"
+
+msgid "gold_digger"
+msgstr "淘金者"
+
+msgid "grinding"
+msgstr "研磨"
+
+msgid "gust"
+msgstr "阵风"
+
+msgid "hawk"
+msgstr "鹰"
+
+msgid "ice_storm"
+msgstr "冰风暴"
+
+msgid "insanity"
+msgstr "精神错乱"
+
+msgid "kraken"
+msgstr "海妖"
+
+msgid "lantern"
+msgstr "灯笼"
+
+msgid "lava"
+msgstr "熔岩"

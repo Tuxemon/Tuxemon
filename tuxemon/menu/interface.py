@@ -141,48 +141,6 @@ class MenuItem(Generic[T], Sprite):
         self._in_focus = bool(value)
 
 
-class MenuTechnique(Generic[T], Sprite):
-    """
-    Technique from a menu.
-
-    Parameters:
-        image: Image of the menu technique.
-        label: Name of the menu technique.
-        description: Description of the menu technique.
-        game_object: Callable used when the menu technique is selected.
-
-    """
-
-    def __init__(
-        self,
-        image: pygame.surface.Surface,
-        label: Optional[str],
-        description: Optional[str],
-        game_object: T,
-    ):
-        super().__init__()
-        self.image = image
-        self.rect = image.get_rect() if image else pygame.rect.Rect(0, 0, 0, 0)
-        self.label = label
-        self.description = description
-        self.game_object = game_object
-
-        self.enabled = True
-        self._in_focus = False
-
-    def toggle_focus(self) -> None:
-        """Toggles the focus of the menu technique."""
-        self._in_focus = not self._in_focus
-
-    @property
-    def in_focus(self) -> bool:
-        return self._in_focus
-
-    @in_focus.setter
-    def in_focus(self, value: bool) -> None:
-        self._in_focus = bool(value)
-
-
 class MenuCursor(Sprite):
     """
     Menu cursor.

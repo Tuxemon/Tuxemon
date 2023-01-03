@@ -1,13 +1,15 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import uuid
-from typing import Any, Generator
+from typing import Generator
 
 import pygame
 
 from tuxemon import tools
 from tuxemon.locale import T
-from tuxemon.menu.interface import MenuTechnique
+from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.monster import Monster
 from tuxemon.session import local_session
@@ -23,15 +25,12 @@ class TechniqueMenuState(Menu[Technique]):
     background_filename = "gfx/ui/item/item_menu_bg.png"
     draw_borders = False
 
-    def startup(self, **kwargs: Any) -> None:
-        self.state = "normal"
+    def __init__(self) -> None:
+        super().__init__()
 
         self.item_center = self.rect.width * 0.164, self.rect.height * 0.13
         self.technique_sprite = Sprite()
         self.sprites.add(self.technique_sprite)
-
-        # do not move this line
-        super().startup(**kwargs)
         self.menu_items.line_spacing = tools.scale(7)
 
         # this is the area where the technique description is displayed
@@ -53,9 +52,7 @@ class TechniqueMenuState(Menu[Technique]):
         rect.height = int(self.rect.height * 0.60)
         return rect
 
-    def on_menu_selection(
-        self, menu_technique: MenuTechnique[Technique]
-    ) -> None:
+    def on_menu_selection(self, menu_technique: MenuItem[Technique]) -> None:
         """
         Called when player has selected something.
 
@@ -73,7 +70,7 @@ class TechniqueMenuState(Menu[Technique]):
         ):
             msg = T.format("item_no_available_target", {"name": tech.name})
             tools.open_dialog(local_session, [msg])
-        elif tech.usable_in is False:
+        elif tech.usable_on is False:
             msg = T.format("item_cannot_use_here", {"name": tech.name})
             tools.open_dialog(local_session, [msg])
         else:
@@ -88,20 +85,17 @@ class TechniqueMenuState(Menu[Technique]):
 
         """
 
-        def use_technique(menu_technique: MenuTechnique[Monster]) -> None:
+        def use_technique(menu_technique: MenuItem[Monster]) -> None:
             monster = menu_technique.game_object
 
             result = technique.use(monster, monster)
             self.client.pop_state()  # pop the monster screen
             self.client.pop_state()  # pop the technique screen
-            tools.show_technique_result_as_dialog(
-                local_session, technique, result
-            )
 
         def confirm() -> None:
             self.client.pop_state()  # close the confirm dialog
 
-            menu = self.client.push_state(MonsterMenuState)
+            menu = self.client.push_state(MonsterMenuState())
             menu.is_valid_entry = technique.validate  # type: ignore[assignment]
             menu.on_menu_selection = use_technique  # type: ignore[assignment]
 
@@ -110,26 +104,28 @@ class TechniqueMenuState(Menu[Technique]):
 
         def open_choice_menu() -> None:
             # open the menu for use/cancel
-            menu = self.client.push_state(Menu)
-            menu.shrink_to_items = True
-
-            menu_techniques_map = (
-                ("item_confirm_use", confirm),
-                ("item_confirm_cancel", cancel),
+            tools.open_choice_dialog(
+                local_session,
+                menu=(
+                    (
+                        "use",
+                        T.translate("item_confirm_use").upper(),
+                        confirm,
+                    ),
+                    (
+                        "cancel",
+                        T.translate("item_confirm_cancel").upper(),
+                        cancel,
+                    ),
+                ),
+                escape_key_exits=True,
             )
-
-            # add our options to the menu
-            for key, callback in menu_techniques_map:
-                label = T.translate(key).upper()
-                image = self.shadow_text(label)
-                technique = MenuTechnique(image, label, None, callback)
-                menu.add(technique)
 
         open_choice_menu()
 
     def initialize_items(
         self,
-    ) -> Generator[MenuTechnique[Technique], None, None]:
+    ) -> Generator[MenuItem[Technique], None, None]:
         """Get all player techniques, remove duplicates, sort
         and add them to menu."""
         trainer = local_session.player
@@ -165,10 +161,10 @@ class TechniqueMenuState(Menu[Technique]):
                 + type2
                 + ")"
             )
-            yield MenuTechnique(image, obj.name, label, obj)
+            yield MenuItem(image, obj.name, label, obj)
 
     def on_menu_selection_change(self) -> None:
         """Called when menu selection changes."""
-        technique = self.get_selected_technique()
+        technique = self.get_selected_item()
         # show technique description
         self.alert(technique.description)

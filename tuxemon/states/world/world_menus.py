@@ -40,9 +40,8 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
-from tuxemon.states.choice import ChoiceState
 from tuxemon.states.techniques import TechniqueMenuState
-from tuxemon.tools import open_dialog
+from tuxemon.tools import open_choice_dialog, open_dialog
 
 logger = logging.getLogger(__name__)
 
@@ -152,6 +151,8 @@ class WorldMenuState(PygameMenuState):
             self.client.pop_state()  # close the info/move menu
 
         def open_monster_stats() -> None:
+            """Show monster statistics."""
+            self.client.pop_state()
             monster = monster_menu.get_selected_item().game_object
             type2 = ""
             if prepare.CONFIG.unit == "metric":
@@ -192,6 +193,7 @@ class WorldMenuState(PygameMenuState):
 
         def open_monster_descr() -> None:
             """Show description."""
+            self.client.pop_state()
             monster = monster_menu.get_selected_item().game_object
             open_dialog(
                 local_session,
@@ -239,21 +241,20 @@ class WorldMenuState(PygameMenuState):
                 local_session,
                 [T.format("release_confirmation", {"name": monster.name})],
             )
-            self.client.push_state(
-                ChoiceState(
-                    menu=(
-                        ("no", T.translate("no"), negative_answer),
-                        ("yes", T.translate("yes"), positive_answer),
-                    ),
-                )
+            open_choice_dialog(
+                local_session,
+                menu=(
+                    ("no", T.translate("no"), negative_answer),
+                    ("yes", T.translate("yes"), positive_answer),
+                ),
+                escape_key_exits=True,
             )
 
         def open_monster_techs() -> None:
             """Show techniques."""
-            # Remove the submenu and replace with a confirmation dialog
             self.client.pop_state()
             monster = monster_menu.get_selected_item().game_object
-            self.client.push_state(TechniqueMenuState)
+            self.client.push_state(TechniqueMenuState())
             local_session.player.game_variables[
                 "open_monster_techs"
             ] = monster.instance_id.hex
@@ -261,21 +262,37 @@ class WorldMenuState(PygameMenuState):
         def open_monster_submenu(
             menu_item: MenuItem[WorldMenuGameObj],
         ) -> None:
-            menu_items_map = (
-                ("monster_menu_info", open_monster_stats),
-                ("monster_menu_desc", open_monster_descr),
-                ("monster_menu_tech", open_monster_techs),
-                ("monster_menu_move", select_first_monster),
-                ("monster_menu_release", release_monster_from_party),
+            open_choice_dialog(
+                local_session,
+                menu=(
+                    (
+                        "info",
+                        T.translate("monster_menu_info").upper(),
+                        open_monster_stats,
+                    ),
+                    (
+                        "desc",
+                        T.translate("monster_menu_desc").upper(),
+                        open_monster_descr,
+                    ),
+                    (
+                        "tech",
+                        T.translate("monster_menu_tech").upper(),
+                        open_monster_techs,
+                    ),
+                    (
+                        "move",
+                        T.translate("monster_menu_move").upper(),
+                        select_first_monster,
+                    ),
+                    (
+                        "release",
+                        T.translate("monster_menu_release").upper(),
+                        release_monster_from_party,
+                    ),
+                ),
+                escape_key_exits=True,
             )
-            menu = self.client.push_state(PygameMenuState())
-
-            for key, callback in menu_items_map:
-                label = T.translate(key).upper()
-                menu.menu.add.button(label, callback)
-
-            size = menu.menu.get_size(widget=True)
-            menu.menu.resize(*size)
 
         def handle_selection(menu_item: MenuItem[WorldMenuGameObj]) -> None:
             if "monster" in context:
@@ -286,7 +303,7 @@ class WorldMenuState(PygameMenuState):
         context: Dict[
             str, Any
         ] = dict()  # dict passed around to hold info between menus/callbacks
-        monster_menu = self.client.replace_state(MonsterMenuState)
+        monster_menu = self.client.push_state(MonsterMenuState())
         monster_menu.on_menu_selection = handle_selection  # type: ignore[assignment]
         monster_menu.on_menu_selection_change = monster_menu_hook  # type: ignore[assignment]
 

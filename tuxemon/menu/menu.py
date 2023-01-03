@@ -23,7 +23,7 @@ from tuxemon import audio, graphics, prepare, state, tools
 from tuxemon.animation import Animation
 from tuxemon.graphics import ColorLike
 from tuxemon.menu.events import playerinput_to_event
-from tuxemon.menu.interface import MenuCursor, MenuItem, MenuTechnique
+from tuxemon.menu.interface import MenuCursor, MenuItem
 from tuxemon.menu.theme import get_sound_engine, get_theme
 from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
@@ -801,19 +801,6 @@ class Menu(Generic[T], state.State):
 
         Returns:
             Selected menu item. if any.
-
-        """
-        try:
-            return self.menu_items[self.selected_index]
-        except IndexError:
-            return None
-
-    def get_selected_technique(self) -> Optional[MenuTechnique[T]]:
-        """
-        Get the Menu Technique that is currently selected.
-
-        Returns:
-            Selected menu technique. if any.
 
         """
         try:

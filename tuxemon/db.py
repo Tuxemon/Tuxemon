@@ -431,8 +431,9 @@ class TechniqueModel(BaseModel):
     types: Sequence[ElementType] = Field(
         [], description="Type(s) of the technique"
     )
-    usable_in: bool = Field(
-        False, description="Can it be used outside the battle?"
+    usable_on: bool = Field(
+        False,
+        description="Whether or not the technique can be used outside of combat",
     )
     power: float = Field(0, description="Power of the technique")
     is_fast: bool = Field(

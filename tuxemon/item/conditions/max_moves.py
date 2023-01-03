@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -16,10 +18,9 @@ class MaxMovesCondition(ItemCondition):
     """
 
     name = "max_moves"
-    max_moves: str
 
     def test(self, target: Monster) -> bool:
-        if len(target.moves) > MAX_MOVES:
-            return False
-        else:
+        if len(target.moves) < MAX_MOVES:
             return True
+        else:
+            return False

@@ -105,12 +105,6 @@ msgstr "Nu Phone"
 msgid "nu_phone_description"
 msgstr "You can do a lot with this, e.g. phone home."
 
-msgid "lethe_pill"
-msgstr "Lethe Pill"
-
-msgid "lethe_pill_description"
-msgstr "It resembles an eye and it makes forget about a random technique."
-
 # TMs
 msgid "tm_avalanche"
 msgstr "TM: Avalanche"

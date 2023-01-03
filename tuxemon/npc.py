@@ -893,49 +893,56 @@ class NPC(Entity[NPCState]):
 
     def check_max_moves(self, session: Session, monster: Monster) -> None:
         """
-        Activated if there are more than 4 moves (MAX_MOVES), it'll
-        open a dialog choice with the 5 moves and one of these will be
-        deleted.
-
+        Checks the number of moves:
+        if monster has >= 4 moves (MAX_MOVES) -> overwrite technique
+        if monster has < 4 moves (MAX_MOVES) -> learn technique
         """
         overwrite_technique = session.player.game_variables[
             "overwrite_technique"
         ]
 
         if len(monster.moves) >= MAX_MOVES:
-
-            def set_variable(var_value: str) -> None:
-                monster.moves.remove(var_value)
-                monster.learn(Technique(overwrite_technique))
-                session.client.pop_state()
-
-            var_list = monster.moves
-            var_menu = list()
-
-            for val in var_list:
-                text = T.translate(val.slug)
-                var_menu.append((text, text, partial(set_variable, val)))
-
-            open_choice_dialog(
-                session,
-                menu=var_menu,
-            )
-            open_dialog(
-                session,
-                [
-                    T.format(
-                        "max_moves_alert",
-                        {
-                            "name": monster.name.upper(),
-                            "tech": Technique(overwrite_technique).name,
-                        },
-                    )
-                ],
-            )
+            self.overwrite_technique(session, monster, overwrite_technique)
         else:
             monster.learn(Technique(overwrite_technique))
             msg = T.translate("generic_success")
             open_dialog(session, [msg])
+
+    def overwrite_technique(
+        self, session: Session, monster: Monster, technique: str
+    ) -> None:
+        """
+        Opens the choice dialog and overwrites the technique.
+        """
+
+        def set_variable(var_value: str) -> None:
+            monster.moves.remove(var_value)
+            monster.learn(Technique(technique))
+            session.client.pop_state()
+
+        var_list = monster.moves
+        var_menu = list()
+
+        for val in var_list:
+            text = T.translate(val.slug)
+            var_menu.append((text, text, partial(set_variable, val)))
+
+        open_choice_dialog(
+            session,
+            menu=var_menu,
+        )
+        open_dialog(
+            session,
+            [
+                T.format(
+                    "max_moves_alert",
+                    {
+                        "name": monster.name.upper(),
+                        "tech": Technique(technique).name,
+                    },
+                )
+            ],
+        )
 
     def give_money(self, amount: int) -> None:
         self.money["player"] += amount

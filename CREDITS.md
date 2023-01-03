@@ -728,8 +728,6 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Fishing Rod"](https://wiki.tuxemon.org/index.php?title=Fishing_Rod) by Catch Challenger is licensed under CC-BY 4.0.
 
-* ["Lethe Pill"]() File:I_Eye.png - Adapted by JaskRendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
-
 * ["Additional Potions"](https://imgur.com/a/MQjhCBR) by 
 [ryanhanli](https://github.com/ryanhanli) with influence from [REXARD Potion Icons](https://assetstore.unity.com/packages/2d/gui/icons/potion-icons-54945)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)

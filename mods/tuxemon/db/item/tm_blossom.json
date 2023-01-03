@@ -1,7 +1,7 @@
 {
   "conditions": [
     "type target,wood",
-    "max_moves target,max"
+    "max_moves"
   ],
   "effects": [
     "learn_tm blossom"

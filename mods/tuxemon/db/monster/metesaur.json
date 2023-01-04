@@ -12,14 +12,14 @@
             "technique": "kindling_flame"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "breathe_fire"
         }
     ],
     "evolutions": [
         {
             "path": "standard",
-            "at_level": 40,
+            "at_level": 42,
             "monster_slug": "qetzlrokilus"
         }
     ],

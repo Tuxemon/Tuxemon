@@ -1,27 +1,10 @@
-#
-# Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, Union, final
+from dataclasses import dataclass
+from typing import Union, final
 
 import tuxemon.npc
 from tuxemon import ai
@@ -32,16 +15,9 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
-class CreateNpcActionParameters(NamedTuple):
-    npc_slug: str
-    tile_pos_x: int
-    tile_pos_y: int
-    animations: Union[str, None]
-    behavior: Union[str, None]
-
-
 @final
-class CreateNpcAction(EventAction[CreateNpcActionParameters]):
+@dataclass
+class CreateNpcAction(EventAction):
     """
     Create an NPC object and adds it to the game's current list of NPC's.
 
@@ -60,25 +36,24 @@ class CreateNpcAction(EventAction[CreateNpcActionParameters]):
     """
 
     name = "create_npc"
-    param_class = CreateNpcActionParameters
+    npc_slug: str
+    tile_pos_x: int
+    tile_pos_y: int
+    animations: Union[str, None] = None
+    behavior: Union[str, None] = None
 
     def start(self) -> None:
         # Get a copy of the world state.
         world = self.session.client.get_state_by_name(WorldState)
 
         # Get the npc's parameters from the action
-        slug = self.parameters.npc_slug
+        slug = self.npc_slug
 
         # Ensure that the NPC doesn't already exist on the map.
         if slug in world.npcs:
             return
 
-        # Get the npc's parameters from the action
-        pos_x = self.parameters.tile_pos_x
-        pos_y = self.parameters.tile_pos_y
-        behavior = self.parameters.behavior
-
-        sprite = self.parameters.animations
+        sprite = self.animations
         if sprite:
             logger.warning(
                 "%s: setting npc sprites within a map is deprecated, and may be removed in the future. "
@@ -90,9 +65,9 @@ class CreateNpcAction(EventAction[CreateNpcActionParameters]):
 
         # Create a new NPC object
         npc = tuxemon.npc.NPC(slug, sprite_name=sprite, world=world)
-        npc.set_position((pos_x, pos_y))
+        npc.set_position((self.tile_pos_x, self.tile_pos_y))
 
         # Set the NPC object's variables
-        npc.behavior = behavior
+        npc.behavior = self.behavior
         npc.ai = ai.RandomAI()
         npc.load_party()

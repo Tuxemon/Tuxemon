@@ -1,41 +1,18 @@
-#
-# Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import Optional, final
 
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
 
 
-class TeleportActionParameters(NamedTuple):
-    map_name: str
-    x: int
-    y: int
-
-
 @final
-class TeleportAction(EventAction[TeleportActionParameters]):
+@dataclass
+class TeleportAction(EventAction):
     """
     Teleport the player to a particular map and tile coordinates.
 
@@ -52,31 +29,33 @@ class TeleportAction(EventAction[TeleportActionParameters]):
     """
 
     name = "teleport"
-    param_class = TeleportActionParameters
+    map_name: str
+    x: int
+    y: int
+    # This value is unused, but in too many places to remove right now
+    _: Optional[float] = None
 
     def start(self) -> None:
         player = self.session.player
         world = self.session.client.get_state_by_name(WorldState)
 
-        map_name = self.parameters.map_name
-
         # If we're doing a screen transition with this teleport, set the map
         # name that we'll load during the apex of the transition.
         # TODO: This only needs to happen once.
         if world.in_transition:
-            world.delayed_mapname = map_name
+            world.delayed_mapname = self.map_name
 
         # Check to see if we're also performing a transition. If we are, wait
         # to perform the teleport at the apex of the transition
         if world.in_transition:
             # the world state will handle the teleport/transition, hopefully
             world.delayed_teleport = True
-            world.delayed_x = self.parameters.x
-            world.delayed_y = self.parameters.y
+            world.delayed_x = self.x
+            world.delayed_y = self.y
 
         else:
             # If we're not doing a transition, then just do the teleport
-            map_path = prepare.fetch("maps", map_name)
+            map_path = prepare.fetch("maps", self.map_name)
 
             if world.current_map is None:
                 world.change_map(map_path)
@@ -89,7 +68,7 @@ class TeleportAction(EventAction[TeleportActionParameters]):
             player.cancel_path()
 
             # must change position after the map is loaded
-            player.set_position((self.parameters.x, self.parameters.y))
+            player.set_position((self.x, self.y))
 
             # unlock_controls will reset controls, but start moving if keys
             # are pressed

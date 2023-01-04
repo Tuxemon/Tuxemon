@@ -1,28 +1,10 @@
-#
-# Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon import formula
 from tuxemon.combat import check_battle_legal
@@ -34,12 +16,9 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
-class StartBattleActionParameters(NamedTuple):
-    npc_slug: str
-
-
 @final
-class StartBattleAction(EventAction[StartBattleActionParameters]):
+@dataclass
+class StartBattleAction(EventAction):
     """
     Start a battle with the given npc and switch to the combat module.
 
@@ -54,7 +33,7 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
     """
 
     name = "start_battle"
-    param_class = StartBattleActionParameters
+    npc_slug: str
 
     def start(self) -> None:
         player = self.session.player
@@ -66,17 +45,17 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
 
         world = self.session.client.get_state_by_name(WorldState)
 
-        npc = world.get_entity(self.parameters.npc_slug)
+        npc = world.get_entity(self.npc_slug)
         assert npc
         if len(npc.monsters) == 0:
             logger.warning(
-                f"npc '{self.parameters.npc_slug}' has no monsters, won't start trainer battle."
+                f"npc '{self.npc_slug}' has no monsters, won't start trainer battle."
             )
             return
 
         # Rematch
-        if self.parameters.npc_slug in player.battle_history:
-            rematch = player.battle_history[self.parameters.npc_slug]
+        if self.npc_slug in player.battle_history:
+            rematch = player.battle_history[self.npc_slug]
             for mon in npc.monsters:
                 formula.rematch(player, npc, mon, rematch[1])
 
@@ -85,12 +64,13 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
         env = db.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
-        logger.info("Starting battle with '{self.parameters.npc_slug}'!")
+        logger.info("Starting battle with '{self.npc_slug}'!")
         self.session.client.push_state(
-            CombatState,
-            players=(player, npc),
-            combat_type="trainer",
-            graphics=env.battle_graphics,
+            CombatState(
+                players=(player, npc),
+                combat_type="trainer",
+                graphics=env.battle_graphics,
+            )
         )
 
         # Start some music!

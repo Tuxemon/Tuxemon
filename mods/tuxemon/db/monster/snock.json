@@ -12,14 +12,14 @@
             "technique": "surge"
         },
         {
-            "level_learned": 2,
+            "level_learned": 16,
             "technique": "frostbite"
         }
     ],
     "evolutions": [
         {
             "path": "standard",
-            "at_level": 23,
+            "at_level": 24,
             "monster_slug": "pythock"
         }
     ],

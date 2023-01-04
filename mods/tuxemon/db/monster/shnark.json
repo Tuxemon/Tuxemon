@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "flow"
-        },
-        {
-            "level_learned": 2,
             "technique": "probiscus"
         },
         {
             "level_learned": 2,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 12,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 24,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 28,
             "technique": "goad"
+        },
+        {
+            "level_learned": 32,
+            "technique": "flood"
         }
     ],
     "evolutions": [],

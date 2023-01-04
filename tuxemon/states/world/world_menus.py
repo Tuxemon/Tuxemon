@@ -1,31 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Leif Theden <leif.theden@gmail.com>
-# Carlos Ramos <vnmabus@gmail.com>
-#
-#
-# states.WorldMenuState
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -40,7 +14,8 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
-from tuxemon.tools import open_choice_dialog, open_dialog
+from tuxemon.states.choice import ChoiceState
+from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
 
@@ -72,10 +47,10 @@ def add_menu_items(
 class WorldMenuState(PygameMenuState):
     """Menu for the world state."""
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self) -> None:
         _, height = prepare.SCREEN_SIZE
 
-        super().startup(height=height, **kwargs)
+        super().__init__(height=height)
 
         self.animation_offset = 0
 
@@ -228,12 +203,13 @@ class WorldMenuState(PygameMenuState):
                 local_session,
                 [T.format("release_confirmation", {"name": monster.name})],
             )
-            open_choice_dialog(
-                local_session,
-                menu=(
-                    ("no", T.translate("no"), negative_answer),
-                    ("yes", T.translate("yes"), positive_answer),
-                ),
+            self.client.push_state(
+                ChoiceState(
+                    menu=(
+                        ("no", T.translate("no"), negative_answer),
+                        ("yes", T.translate("yes"), positive_answer),
+                    ),
+                )
             )
 
         def open_monster_submenu(
@@ -244,7 +220,7 @@ class WorldMenuState(PygameMenuState):
                 ("monster_menu_move", select_first_monster),
                 ("monster_menu_release", release_monster_from_party),
             )
-            menu = self.client.push_state(PygameMenuState)
+            menu = self.client.push_state(PygameMenuState())
 
             for key, callback in menu_items_map:
                 label = T.translate(key).upper()

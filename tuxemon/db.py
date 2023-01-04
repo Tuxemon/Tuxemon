@@ -1,33 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-#
-#
-# db Database handling module.
-#
-#
-
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import difflib
@@ -57,7 +29,7 @@ from tuxemon.locale import T
 logger = logging.getLogger(__name__)
 
 # Load the default translator for data validation
-T.collect_languages(prepare.CONFIG.recompile_translations)
+T.collect_languages(False)
 T.load_translator()
 
 # Target is a mapping of who this targets
@@ -155,10 +127,23 @@ class MapType(str, Enum):
 
 
 class EvolutionType(str, Enum):
-    standard = "standard"
-    item = "item"
+    element = "element"
     gender = "gender"
-    mixed = "mixed"
+    item = "item"
+    location = "location"
+    season = "season"
+    standard = "standard"
+    stat = "stat"
+    tech = "tech"
+
+
+class StatType(str, Enum):
+    armour = "armour"
+    dodge = "dodge"
+    hp = "hp"
+    melee = "melee"
+    ranged = "ranged"
+    speed = "speed"
 
 
 class EvolutionStage(str, Enum):
@@ -234,7 +219,7 @@ class ItemModel(BaseModel):
     def file_exists(cls, v):
         if has.file(v):
             return v
-        raise ValueError(f"no resource exists with path: {v}")
+        raise ValueError(f"the sprite {v} doesn't exist in the db")
 
 
 class MonsterMovesetItemModel(BaseModel):
@@ -255,7 +240,7 @@ class MonsterMovesetItemModel(BaseModel):
     def technique_exists(cls, v):
         if has.db_entry("technique", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the technique {v} doesn't exist in the db")
 
 
 class MonsterEvolutionItemModel(BaseModel):
@@ -268,21 +253,41 @@ class MonsterEvolutionItemModel(BaseModel):
         ..., description="The monster slug that this evolution item applies to"
     )
     # optional fields
-    item: Optional[str] = Field(None, description="Item parameter.")
+    element: Optional[ElementType] = Field(
+        None, description="Element parameter"
+    )
     gender: Optional[GenderType] = Field(None, description="Gender parameter")
-    mixed: Optional[str] = Field(None, description="Mixed parameter.")
+    item: Optional[str] = Field(None, description="Item parameter.")
+    inside: bool = Field(
+        None,
+        description="Location parameter: inside true or inside false (outside).",
+    )
+    season: Optional[str] = Field(None, description="Season parameter.")
+    stat1: Optional[StatType] = Field(
+        None, description="Stat parameter stat1 >= stat2."
+    )
+    stat2: Optional[StatType] = Field(
+        None, description="Stat parameter stat2 < stat1."
+    )
+    tech: Optional[str] = Field(None, description="Technique parameter.")
+
+    @validator("tech")
+    def technique_exists(cls, v):
+        if has.db_entry("technique", v):
+            return v
+        raise ValueError(f"the technique {v} doesn't exist in the db")
 
     @validator("monster_slug")
     def monster_exists(cls, v):
         if has.db_entry("monster", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the monster {v} doesn't exist in the db")
 
     @validator("item")
     def item_exists(cls, v):
         if has.db_entry("item", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the item {v} doesn't exist in the db")
 
 
 class MonsterFlairItemModel(BaseModel):
@@ -481,7 +486,7 @@ class TechniqueModel(BaseModel):
     def file_exists(cls, v):
         if has.file(v):
             return v
-        raise ValueError(f"no resource exists with path: {v}")
+        raise ValueError(f"the icon {v} doesn't exist in the db")
 
     # Validate fields that refer to translated text
     @validator("use_tech", "use_success", "use_failure")
@@ -518,7 +523,7 @@ class PartyMemberModel(BaseModel):
     def monster_exists(cls, v):
         if has.db_entry("monster", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the monster {v} doesn't exist in the db")
 
 
 class NpcModel(BaseModel):
@@ -579,7 +584,7 @@ class EncounterItemModel(BaseModel):
     def monster_exists(cls, v):
         if has.db_entry("monster", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the monster {v} doesn't exist in the db")
 
 
 class EncounterModel(BaseModel):
@@ -607,7 +612,7 @@ class EconomyItemModel(BaseModel):
     def item_exists(cls, v):
         if has.db_entry("item", v):
             return v
-        raise ValueError(f"no resource exists in db: {v}")
+        raise ValueError(f"the item {v} doesn't exist in the db")
 
 
 class EconomyModel(BaseModel):
@@ -957,6 +962,13 @@ class JSONDatabase:
             )
 
         return filename
+
+    def has_entry(self, slug: str, table: TableName) -> bool:
+        table_entry = self.database[table]
+        if not table_entry:
+            logger.exception(f"{table} table wasn't loaded")
+            sys.exit()
+        return slug in table_entry
 
     def log_missing_entry_and_exit(self, table: str, slug: str):
         options = difflib.get_close_matches(slug, self.database[table].keys())

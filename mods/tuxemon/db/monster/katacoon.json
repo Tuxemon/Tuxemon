@@ -12,22 +12,36 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 4,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 6,
             "technique": "font"
+        },
+        {
+            "level_learned": 8,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 10,
+            "technique": "sting"
         }
     ],
     "evolutions": [
         {
-            "path": "mixed",
+            "path": "stat",
             "at_level": 12,
             "monster_slug": "bugnin",
-            "mixed": "stat_melee"
+            "stat1": "melee",
+            "stat2": "armour"
         },
         {
-            "path": "mixed",
+            "path": "stat",
             "at_level": 12,
             "monster_slug": "sumchon",
-            "mixed": "stat_armour"
+            "stat1": "armour",
+            "stat2": "melee"
         }
     ],
     "shape": "grub",

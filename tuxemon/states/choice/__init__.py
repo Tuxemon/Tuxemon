@@ -1,16 +1,11 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Any, Callable, Generator, Optional, Sequence, Tuple
-
-import pygame
-import pygame_menu
+from typing import Any, Callable, Sequence, Tuple
 
 from tuxemon.animation import Animation
-from tuxemon.menu.events import playerinput_to_event
-from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import PopUpMenu, PygameMenuState
-from tuxemon.menu.theme import get_theme
-from tuxemon.platform.events import PlayerInput
+from tuxemon.menu.menu import PygameMenuState
 
 ChoiceMenuGameObj = Callable[[], None]
 
@@ -25,14 +20,13 @@ class ChoiceState(PygameMenuState):
     * if there are no more messages, then the dialog will close
     """
 
-    def startup(
+    def __init__(
         self,
-        *,
         menu: Sequence[Tuple[str, str, Callable[[], None]]] = (),
         escape_key_exits: bool = False,
         **kwargs: Any,
     ) -> None:
-        super().startup(**kwargs)
+        super().__init__(**kwargs)
 
         for _key, label, callback in menu:
             self.menu.add.button(label, callback)

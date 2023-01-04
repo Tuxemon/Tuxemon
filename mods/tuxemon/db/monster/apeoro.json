@@ -5,14 +5,26 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "strike"
-        },
-        {
-            "level_learned": 2,
             "technique": "sleep_bomb"
         },
         {
             "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 12,
+            "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 20,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 24,
+            "technique": "constrict"
+        },
+        {
+            "level_learned": 28,
             "technique": "wall_of_steel"
         }
     ],

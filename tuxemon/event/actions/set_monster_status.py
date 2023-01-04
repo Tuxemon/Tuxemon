@@ -1,28 +1,10 @@
-#
-# Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, Optional, Union, final
+from dataclasses import dataclass
+from typing import Optional, Union, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
@@ -31,13 +13,9 @@ from tuxemon.technique.technique import Technique
 logger = logging.getLogger(__name__)
 
 
-class SetMonsterStatusActionParameters(NamedTuple):
-    slot: Union[int, None]
-    status: Union[str, None]
-
-
 @final
-class SetMonsterStatusAction(EventAction[SetMonsterStatusActionParameters]):
+@dataclass
+class SetMonsterStatusAction(EventAction):
     """
     Change the status of a monster in the current player's party.
 
@@ -55,7 +33,8 @@ class SetMonsterStatusAction(EventAction[SetMonsterStatusActionParameters]):
     """
 
     name = "set_monster_status"
-    param_class = SetMonsterStatusActionParameters
+    slot: Union[int, None] = None
+    status: Union[str, None] = None
 
     @staticmethod
     def set_status(monster: Monster, value: Optional[str]) -> None:
@@ -71,16 +50,13 @@ class SetMonsterStatusAction(EventAction[SetMonsterStatusActionParameters]):
         if not self.session.player.monsters:
             return
 
-        monster_slot = self.parameters[0]
-        monster_status = self.parameters[1]
-
-        if monster_slot is None:
+        if self.slot is None:
             for monster in self.session.player.monsters:
-                self.set_status(monster, monster_status)
+                self.set_status(monster, self.status)
         else:
             try:
-                monster = self.session.player.monsters[monster_slot]
+                monster = self.session.player.monsters[self.slot]
             except IndexError:
                 logger.error("invalid monster slot")
             else:
-                self.set_status(monster, monster_status)
+                self.set_status(monster, self.status)

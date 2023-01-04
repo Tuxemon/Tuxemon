@@ -1,34 +1,8 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Leif Theden <leif.theden@gmail.com>
-# Carlos Ramos <vnmabus@gmail.com>
-#
-#
-# states.MonsterMenuState Handles creating monster menu objects
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Any, Generator, Optional
+from typing import Generator, Optional
 
 import pygame
 from pygame.rect import Rect
@@ -53,8 +27,8 @@ class MonsterMenuState(Menu[Optional[Monster]]):
     background_filename = "gfx/ui/monster/monster_menu_bg.png"
     draw_borders = False
 
-    def startup(self, **kwargs: Any) -> None:
-        super().startup(**kwargs)
+    def __init__(self) -> None:
+        super().__init__()
 
         # make a text area to show messages
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 96))

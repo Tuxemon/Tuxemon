@@ -969,6 +969,252 @@ msgstr "Whirlwind"
 msgid "wing_tip"
 msgstr "Wing Tip"
 
+msgid "acid"
+msgstr "Acid"
+
+msgid "adamantine"
+msgstr "Adamantine"
+
+msgid "air_chain"
+msgstr "Air Chain"
+
+msgid "ants"
+msgstr "Ants"
+
+msgid "arcane_eye"
+msgstr "Arcane Eye"
+
+msgid "assault"
+msgstr "Assault"
+
+msgid "barking"
+msgstr "Barking"
+
+msgid "blood_nets"
+msgstr "Blood Nets"
+
+msgid "breath"
+msgstr "Breath"
+
+msgid "canine"
+msgstr "Canine"
+
+msgid "cat_calling"
+msgstr "Cat Calling"
+
+msgid "cavity"
+msgstr "Cavity"
+
+msgid "chameleon"
+msgstr "Chameleon"
+
+msgid "clairaudience"
+msgstr "Clairaudience"
+
+msgid "clock"
+msgstr "Clock"
+
+msgid "cloud_aether"
+msgstr "Cloud Aether"
+
+msgid "conjurer"
+msgstr "Conjurer"
+
+msgid "crystal"
+msgstr "Crystal"
+
+msgid "demiurge"
+msgstr "Demiurge"
+
+msgid "earthquake"
+msgstr "Earthquake"
+
+msgid "evasion"
+msgstr "Evasion"
+
+msgid "feline"
+msgstr "Feline"
+
+msgid "fiery"
+msgstr "Fiery"
+
+msgid "fire_shield"
+msgstr "Fire Shield"
+
+msgid "firestorm"
+msgstr "Firestorm"
+
+msgid "fledgling"
+msgstr "Fledgling"
+
+msgid "gold_digger"
+msgstr "Gold Digger"
+
+msgid "grinding"
+msgstr "Grinding"
+
+msgid "gust"
+msgstr "Gust"
+
+msgid "gyser"
+msgstr "Gyser"
+
+msgid "hawk"
+msgstr "Hawk"
+
+msgid "ice_storm"
+msgstr "Ice Storm"
+
+msgid "insanity"
+msgstr "Insanity"
+
+msgid "kraken"
+msgstr "Kraken"
+
+msgid "lantern"
+msgstr "Lantern"
+
+msgid "lava"
+msgstr "Lava"
+
+msgid "lightning_spheres"
+msgstr "Lightning Spheres"
+
+msgid "lineage"
+msgstr "Lineage"
+
+msgid "lust"
+msgstr "Lust"
+
+msgid "magma"
+msgstr "Magma"
+
+msgid "maori"
+msgstr "Maori"
+
+msgid "meltdown"
+msgstr "Meltdown"
+
+msgid "mending"
+msgstr "Mending"
+
+msgid "mobbing"
+msgstr "Mobbing"
+
+msgid "muck"
+msgstr "Muck"
+
+msgid "mystic_blending"
+msgstr "Mystic Blending"
+
+msgid "negation"
+msgstr "Negation"
+
+msgid "nest"
+msgstr "Nest"
+
+msgid "oedipus"
+msgstr "Oedipus"
+
+msgid "orbs"
+msgstr "Orbs"
+
+msgid "phantasmal_force"
+msgstr "Phantasmal Force"
+
+msgid "pit"
+msgstr "Pit"
+
+msgid "platinum"
+msgstr "Platinum"
+
+msgid "poison_courtship"
+msgstr "Poison Courtship"
+
+msgid "radiance"
+msgstr "Radiance"
+
+msgid "ring"
+msgstr "Ring"
+
+msgid "ruby"
+msgstr "Ruby"
+
+msgid "saber"
+msgstr "Saber"
+
+msgid "shapechange"
+msgstr "Shapechange"
+
+msgid "slime"
+msgstr "Slime"
+
+msgid "stabilo"
+msgstr "Stabilo"
+
+msgid "stonehenge"
+msgstr "Stonehenge"
+
+msgid "strangulation"
+msgstr "Strangulation"
+
+msgid "sunburst"
+msgstr "Sunburst"
+
+msgid "sword"
+msgstr "Sword"
+
+msgid "sylvan"
+msgstr "Sylvan"
+
+msgid "terror"
+msgstr "Terror"
+
+msgid "time_crisis"
+msgstr "Time Crisis"
+
+msgid "tip"
+msgstr "Tip"
+
+msgid "torch"
+msgstr "Torch"
+
+msgid "touch"
+msgstr "Touch"
+
+msgid "tsunami"
+msgstr "Tsunami"
+
+msgid "tux"
+msgstr "Tux"
+
+msgid "ubuntu"
+msgstr "Ubuntu"
+
+msgid "undertaker"
+msgstr "Undertaker"
+
+msgid "venom"
+msgstr "Venom"
+
+msgid "viper"
+msgstr "Viper"
+
+msgid "vorpal"
+msgstr "Vorpal"
+
+msgid "wall_fire"
+msgstr "Wall Fire"
+
+msgid "wall_ice"
+msgstr "Wall Ice"
+
+msgid "walls"
+msgstr "Walls"
+
+msgid "webs_wind"
+msgstr "Webs Wind"
+
 ## MAP ##
 
 msgid "candy_town"
@@ -1127,7 +1373,7 @@ msgid "tuxemon_released"
 msgstr "{name} has been released."
 
 msgid "evolution_confirmation"
-msgstr "{name} is trying to evolve. Allow evolution?"
+msgstr "{name} is trying to evolve into {evolve}. Allow evolution?"
 
 msgid "max_moves_alert"
 msgstr "{name} has too many techniques.\n"
@@ -2841,9 +3087,6 @@ msgstr "Aeble"
 
 msgid "allie"
 msgstr "Allie"
-
-msgid "cottonnurse"
-msgstr "Cotton Nurse"
 
 msgid "karrianna"
 msgstr "Karrianna"

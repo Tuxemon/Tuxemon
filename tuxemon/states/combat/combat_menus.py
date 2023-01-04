@@ -1,18 +1,11 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 from collections import defaultdict
 from functools import partial
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Callable,
-    DefaultDict,
-    Generator,
-    List,
-    Optional,
-    Union,
-)
+from typing import TYPE_CHECKING, Callable, DefaultDict, Generator, List, Union
 
 import pygame
 
@@ -34,7 +27,7 @@ from tuxemon.technique.technique import Technique
 from tuxemon.ui.draw import GraphicBox
 
 if TYPE_CHECKING:
-    from tuxemon.player import Player
+    from tuxemon.player import NPC, Player
 
 logger = logging.getLogger(__name__)
 
@@ -51,16 +44,11 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
     """
 
     escape_key_exits = False
+    columns = 2
 
-    def startup(
-        self,
-        *,
-        monster: Optional[Monster] = None,
-        **kwargs: Any,
-    ) -> None:
-        super().startup(**kwargs)
+    def __init__(self, monster: Monster) -> None:
+        super().__init__()
 
-        assert monster
         self.monster = monster
 
     def initialize_items(self) -> Generator[MenuItem[MenuGameObj], None, None]:
@@ -224,7 +212,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             self.client.pop_state()  # close technique menu
             self.client.pop_state()  # close the monster action menu
 
-        menu = self.client.push_state(MonsterMenuState)
+        menu = self.client.push_state(MonsterMenuState())
         menu.on_menu_selection = swap_it  # type: ignore[assignment]
         menu.anchor("bottom", self.rect.top)
         menu.anchor("right", self.client.screen.get_rect().right)
@@ -235,7 +223,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_item() -> None:
             # open menu to choose item
-            menu = self.client.push_state(ItemMenuState)
+            menu = self.client.push_state(ItemMenuState())
 
             # set next menu after after selection is made
             menu.on_menu_selection = choose_target  # type: ignore[assignment]
@@ -249,14 +237,15 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             state: State
             if item.battle_menu == ItemBattleMenu.monster:
-                state = self.client.push_state(MonsterMenuState)
+                state = self.client.push_state(MonsterMenuState())
                 state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[assignment]
             else:
                 state = self.client.push_state(
-                    CombatTargetMenuState,
-                    player=combat_state.players[0],
-                    user=combat_state.players[0],
-                    action=item,
+                    CombatTargetMenuState(
+                        player=combat_state.players[0],
+                        user=combat_state.players[0],
+                        action=item,
+                    )
                 )
                 state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[assignment]
 
@@ -284,7 +273,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_technique() -> None:
             # open menu to choose technique
-            menu = self.client.push_state(Menu)
+            menu = self.client.push_state(Menu())
             menu.shrink_to_items = True
 
             # add techniques to the menu
@@ -325,10 +314,11 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             combat_state = self.client.get_state_by_name(CombatState)
             state = self.client.push_state(
-                CombatTargetMenuState,
-                player=combat_state.players[0],
-                user=self.monster,
-                action=technique,
+                CombatTargetMenuState(
+                    player=combat_state.players[0],
+                    user=self.monster,
+                    action=technique,
+                )
             )
             state.on_menu_selection = partial(enqueue_technique, technique)  # type: ignore[assignment]
 
@@ -382,18 +372,13 @@ class CombatTargetMenuState(Menu[Monster]):
         self.menu_items = MenuSpriteGroup()
         self.menu_sprites = SpriteGroup()
 
-    def startup(
+    def __init__(
         self,
-        *,
-        user: Union[Player, Monster, None] = None,
-        action: Union[Item, Technique, None] = None,
-        player: Optional[Player] = None,
-        **kwargs: Any,
+        player: Player,
+        user: Union[NPC, Monster],
+        action: Union[Item, Technique],
     ) -> None:
-        super().startup(**kwargs)
-
-        if action is None:
-            raise ValueError("action parameter is required")
+        super().__init__()
 
         # used to determine how player can target techniques
         self.user = user

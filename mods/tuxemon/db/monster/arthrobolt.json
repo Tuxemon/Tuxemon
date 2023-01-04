@@ -5,14 +5,38 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 2,
+            "technique": "static_field"
+        },
+        {
+            "level_learned": 4,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 6,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 8,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 10,
+            "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 16,
             "technique": "beam"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "surge"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
             "technique": "thunderclap"
         }
     ],

@@ -1,30 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-#
-# main Sets up the states and main game loop.
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -76,21 +51,21 @@ def main(
     # since menus do not clean up dirty areas, the blank,
     # "Background state" will do that.  The alternative is creating
     # a system for states to clean up their dirty screen areas.
-    client.push_state(BackgroundState)
+    client.push_state(BackgroundState())
     if not config.skip_titlescreen:
-        client.push_state(StartState)
+        client.push_state(StartState())
 
     if load_slot:
-        client.push_state(LoadMenuState, load_slot=load_slot)
+        client.push_state(LoadMenuState(load_slot=load_slot))
         client.pop_state()
     elif config.splash:
-        client.push_state(SplashState)
-        client.push_state(FadeInTransition)
+        client.push_state(SplashState(parent=client.state_manager))
+        client.push_state(FadeInTransition())
 
     # TODO: rename this to "debug map" or something
     if config.skip_titlescreen:
         map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
-        client.push_state(WorldState, map_name=map_name)
+        client.push_state(WorldState(map_name=map_name))
 
     # block of code useful for testing
     if config.collision_map:

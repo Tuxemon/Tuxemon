@@ -12,8 +12,20 @@
             "technique": "take_cover"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 24,
             "technique": "sleeping_powder"
+        },
+        {
+            "level_learned": 28,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 32,
+            "technique": "whirlwind"
         }
     ],
     "evolutions": [],

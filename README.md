@@ -1,4 +1,4 @@
-Tuxemon 0.4.34
+Tuxemon 0.4.35
 ==============
 
 Tuxemon is a free, open source monster-fighting RPG.  It's in constant
@@ -39,11 +39,13 @@ development branch first. The master branch should be stable, but is
 often out of date.
 
 
-**Windows Source**
+### Windows Source
 
 Requires Python 3.8+ and git.
+
 Install the latest version of Python 3 from
 [here](https://www.python.org/downloads/)
+and the latest version of Git from [here](https://https://git-scm.com/downloads)
 
 Run:
 ```shell
@@ -53,13 +55,13 @@ python -m pip install -U -r requirements.txt
 python run_tuxemon.py
 ```
 
-**Windows Binary**
+### Windows Binary
 
-Check the [release page](https://github.com/Tuxemon/Tuxemon/releases) 
+Check the [release page](https://github.com/Tuxemon/Tuxemon/releases)
 for binaries.
 
 
-**Flatpak**
+### Flatpak
 
 Check the [web page](https://flathub.org/apps/details/org.tuxemon.Tuxemon) for a complete explanation
 
@@ -70,7 +72,7 @@ flatpak install flathub org.tuxemon.Tuxemon
 flatpak run org.tuxemon.Tuxemon
 ```
 
-**Debian/Ubuntu with virtual environment**
+### Debian/Ubuntu with virtual environment
 
 This is the recommended way to run because it will not modify the
 system.
@@ -84,7 +86,7 @@ python3 -m pip install -U -r requirements.txt
 python3 run_tuxemon.py
 ```
 
-**Debian/Ubuntu**
+### Debian/Ubuntu
 
 *Not recommended* because it will change system-installed packages
 ```shell
@@ -104,7 +106,7 @@ cd libShake/
 make BACKEND=LINUX; sudo make install BACKEND=LINUX
 ```
 
-**Fedora Linux**
+### Fedora Linux
 
 ```shell
 sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel python3-devel virtualenv venv
@@ -116,22 +118,32 @@ python3 -m pip install -U -r requirements.txt
 python3 run_tuxemon.py
 ```
 
-**Arch Linux**
+### Arch Linux
 
-Tuxemon is available in the
-[AUR](https://aur.archlinux.org/packages/tuxemon-git/).
+An [AUR package](https://aur.archlinux.org/packages/tuxemon-git/) is availible however manual installation is reccomended.
 
-**Smartphones**
+```shell
+sudo pacman -S python python-pip python-pillow python-pygame python-pydantic git
+git clone https://github.com/Tuxemon/Tuxemon.git
+cd Tuxemon
+python -m pip install -U -r requirements.txt
+python run_tuxemon.py
+```
 
-Android builds are highly experimental.  Download and install the apk
-from the [releases page](https://github.com/Tuxemon/Tuxemon/releases)
-and install to your device.  You will need to manually install the mods
-folder.  Connect your device to your computer and make a folder called
+
+### Smartphones
+
+Android builds are highly experimental. You will have to build Tuxemon yourself
+using the script located in the buildconfig folder.
+After this you will need to manually install the mods folder via the following instructions.
+Connect your device to your computer and make a folder called
 "Tuxemon" in "Internal Storage", then copy the mods folder.  Tuxemon
 will also need file system permissions, which you can set in your phones
 settings.
 
-**Mac OS X (Yosemite)**
+Caveat Emptor
+
+### Mac OS X (Yosemite)
 
 ```shell
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -141,7 +153,7 @@ brew install python
 brew install sdl sdl_image sdl_ttf portmidi git
 brew install sdl_mixer --with-libvorbis
 sudo pip install git+https://github.com/pygame/pygame.git
-sudo pip install -U -r requirements.txt 
+sudo pip install -U -r requirements.txt
 git clone https://github.com/Tuxemon/Tuxemon.git
 ulimit -n 10000; python run_tuxemon.py
 ```
@@ -185,7 +197,7 @@ battle, or add a monster directly to your party.  It's also possible to
 change game variables directly.  In fact, any action or condition that
 is usable in the map can be used with the CLI interface.
 
-**Setting up**
+### Setting up
 
 You can enable cli by changing `cli_enabled` to `True` in the
 `tuxemon.cfg` file:
@@ -195,7 +207,7 @@ You can enable cli by changing `cli_enabled` to `True` in the
 cli_enabled = True
 ```
 
-**Commands**
+### Commands
 
 - `help [command_name]` — Lists all commands, or specific information on a command.
 - `action <action_name> [params]` — Execute EventAction.  Uses same syntax as the map script.
@@ -206,7 +218,7 @@ cli_enabled = True
 - `whereami` — Prints out the map filename
 - `shell` — Starts the Python shell, that you can use to modify the game directly. For advanced users.
 
-**CLI Examples**
+### CLI Examples
 
 Get Commands
 
@@ -251,7 +263,7 @@ helpful. In general, you should be using the commands when the game is
 playing, and you are on the world map.
 
 
-Check out the 
+Check out the
 [scripting reference](https://tuxemon.readthedocs.io/en/latest/handcrafted/scripting.html) 
 for all the available actions and conditions for use with `action` and `test`!
 
@@ -283,7 +295,7 @@ code in this project is licenced under the GPLv3.
 
 GPL v3+
 
-Copyright (C) 2017 William Edwards <shadowapex@gmail.com>,     
+Copyright (C) 2014-2023 William Edwards <shadowapex@gmail.com>,
 Benjamin Bean <superman2k5@gmail.com>
 
 This software is distributed under the GNU General Public Licence as

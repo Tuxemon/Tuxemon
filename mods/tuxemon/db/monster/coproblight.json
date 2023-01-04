@@ -4,15 +4,15 @@
     "ai": "RandomAI",
     "moveset": [
         {
-            "level_learned": 1,
+            "level_learned": 2,
             "technique": "fester"
         },
         {
-            "level_learned": 1,
+            "level_learned": 2,
             "technique": "fume"
         },
         {
-            "level_learned": 1,
+            "level_learned": 12,
             "technique": "suck_poison"
         }
     ],

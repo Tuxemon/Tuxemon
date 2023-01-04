@@ -1,36 +1,8 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Leif Theden <leif.theden@gmail.com>
-# Carlos Ramos <vnmabus@gmail.com>
-#
-#
-# states.ItemMenuState The item menu allows you to view and use items in your inventory.
-# states.ShopMenuState
-# states.ShopBuyMenuState Shop Buy menu allows you to buy items that cost money
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Any, Generator, Iterable, Sequence, Tuple
+from typing import TYPE_CHECKING, Generator, Iterable, Sequence, Tuple
 
 import pygame
 
@@ -40,22 +12,16 @@ from tuxemon.item.item import InventoryItem, Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
-from tuxemon.menu.quantity import (
-    QuantityAndCostMenu,
-    QuantityAndPriceMenu,
-    QuantityMenu,
-)
+from tuxemon.menu.quantity import QuantityAndCostMenu, QuantityAndPriceMenu
 from tuxemon.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.ui.text import TextArea
 
-# The import is required for PushState to work.
-# But linters may say the import is unused.
-assert QuantityMenu
-assert QuantityAndCostMenu
-assert QuantityAndPriceMenu
+if TYPE_CHECKING:
+    from tuxemon.item.economy import Economy
+    from tuxemon.npc import NPC
 
 
 def sort_inventory(
@@ -93,8 +59,8 @@ class ItemMenuState(Menu[Item]):
     background_filename = "gfx/ui/item/item_menu_bg.png"
     draw_borders = False
 
-    def startup(self, **kwargs: Any) -> None:
-        self.state = "normal"
+    def __init__(self) -> None:
+        super().__init__()
 
         # this sprite is used to display the item
         # its also animated to pop out of the backpack
@@ -102,8 +68,6 @@ class ItemMenuState(Menu[Item]):
         self.item_sprite = Sprite()
         self.sprites.add(self.item_sprite)
 
-        # do not move this line
-        super().startup(**kwargs)
         self.menu_items.line_spacing = tools.scale(7)
 
         # this is the area where the item description is displayed
@@ -219,7 +183,7 @@ class ItemMenuState(Menu[Item]):
             self.client.pop_state()  # close the confirm dialog
             # TODO: allow items to be used on player or "in general"
 
-            menu = self.client.push_state(MonsterMenuState)
+            menu = self.client.push_state(MonsterMenuState())
             menu.is_valid_entry = item.validate  # type: ignore[assignment]
             menu.on_menu_selection = use_item  # type: ignore[assignment]
 
@@ -228,20 +192,22 @@ class ItemMenuState(Menu[Item]):
 
         def open_choice_menu() -> None:
             # open the menu for use/cancel
-            menu = self.client.push_state(Menu)
-            menu.shrink_to_items = True
-
-            menu_items_map = (
-                ("item_confirm_use", confirm),
-                ("item_confirm_cancel", cancel),
+            tools.open_choice_dialog(
+                local_session,
+                menu=(
+                    (
+                        "use",
+                        T.translate("item_confirm_use").upper(),
+                        confirm,
+                    ),
+                    (
+                        "cancel",
+                        T.translate("item_confirm_cancel").upper(),
+                        cancel,
+                    ),
+                ),
+                escape_key_exits=True,
             )
-
-            # add our options to the menu
-            for key, callback in menu_items_map:
-                label = T.translate(key).upper()
-                image = self.shadow_text(label)
-                item = MenuItem(image, label, None, callback)
-                menu.add(item)
 
         open_choice_menu()
 
@@ -292,16 +258,20 @@ class ShopMenuState(Menu[Item]):
     background_filename = "gfx/ui/item/item_menu_bg.png"
     draw_borders = False
 
-    def startup(self, **kwargs: Any) -> None:
-        self.state = "normal"
+    def __init__(
+        self,
+        buyer: NPC,
+        seller: NPC,
+        economy: Economy,
+        buyer_purge: bool = False,
+    ) -> None:
+        super().__init__()
 
         # this sprite is used to display the item
         self.item_center = self.rect.width * 0.164, self.rect.height * 0.13
         self.item_sprite = Sprite()
         self.sprites.add(self.item_sprite)
 
-        # do not move this line
-        super().startup(**kwargs)
         self.menu_items.line_spacing = tools.scale(7)
 
         # this is the area where the item description is displayed
@@ -315,10 +285,10 @@ class ShopMenuState(Menu[Item]):
         self.sprites.add(self.text_area, layer=100)
 
         self.image_center = self.rect.width * 0.16, self.rect.height * 0.45
-        self.buyer = kwargs["buyer"]
-        self.seller = kwargs["seller"]
-        self.buyer_purge = kwargs.get("buyer_purge", False)
-        self.economy = kwargs["economy"]
+        self.buyer = buyer
+        self.seller = seller
+        self.buyer_purge = buyer_purge
+        self.economy = economy
 
     def calc_internal_rect(self) -> pygame.rect.Rect:
         # area in the screen where the item list is
@@ -331,11 +301,18 @@ class ShopMenuState(Menu[Item]):
 
     def initialize_items(self) -> Generator[MenuItem[Item], None, None]:
         """Get all player inventory items and add them to menu."""
-        inventory = [
-            item
-            for item in self.seller.inventory.values()
-            if not (self.seller.isplayer and item["item"].sort == "quest")
-        ]
+        inventory = []
+        # when the player buys
+        if self.buyer.isplayer:
+            inventory = [item for item in self.seller.inventory.values()]
+        # when the player sells
+        if self.seller.isplayer:
+            inventory = [
+                item
+                for item in self.seller.inventory.values()
+                for t in self.economy.items
+                if item["item"].slug == t.item_name
+            ]
 
         # required because the max() below will fail if inv empty
         if not inventory:
@@ -430,12 +407,13 @@ class ShopBuyMenuState(ShopMenuState):
                 )
 
         self.client.push_state(
-            QuantityAndPriceMenu,
-            callback=buy_item,
-            max_quantity=max_quantity,
-            quantity=0 if max_quantity == 0 else 1,
-            shrink_to_items=True,
-            price=price,
+            QuantityAndPriceMenu(
+                callback=buy_item,
+                max_quantity=max_quantity,
+                quantity=0 if max_quantity == 0 else 1,
+                shrink_to_items=True,
+                price=price,
+            )
         )
 
 
@@ -480,10 +458,11 @@ class ShopSellMenuState(ShopMenuState):
         )
 
         self.client.push_state(
-            QuantityAndCostMenu,
-            callback=sell_item,
-            max_quantity=max_quantity,
-            quantity=1,
-            shrink_to_items=True,
-            cost=cost,
+            QuantityAndCostMenu(
+                callback=sell_item,
+                max_quantity=max_quantity,
+                quantity=1,
+                shrink_to_items=True,
+                cost=cost,
+            )
         )

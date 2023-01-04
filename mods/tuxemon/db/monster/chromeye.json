@@ -12,34 +12,34 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "wall_of_steel"
         }
     ],
     "evolutions": [
         {
-            "path": "mixed",
-            "at_level": 20,
+            "path": "season",
+            "at_level": 18,
             "monster_slug": "angrito",
-            "mixed": "tobedefined"
+            "season": "winter"
         },
         {
-            "path": "mixed",
-            "at_level": 20,
+            "path": "season",
+            "at_level": 18,
             "monster_slug": "happito",
-            "mixed": "tobedefined"
+            "season": "summer"
         },
         {
-            "path": "mixed",
-            "at_level": 20,
+            "path": "season",
+            "at_level": 18,
             "monster_slug": "neutrito",
-            "mixed": "tobedefined"
+            "season": "spring"
         },
         {
-            "path": "mixed",
-            "at_level": 20,
+            "path": "season",
+            "at_level": 18,
             "monster_slug": "sadito",
-            "mixed": "tobedefined"
+            "season": "autumn"
         }
     ],
     "shape": "blob",

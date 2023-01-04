@@ -1,7 +1,9 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
-from typing import Any, Callable, Generator, Optional
+from typing import Callable, Generator, Optional
 
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -16,16 +18,14 @@ logger = logging.getLogger(__name__)
 class QuantityMenu(Menu[None]):
     """Menu used to select quantities."""
 
-    def startup(
+    def __init__(
         self,
-        *items: Any,
+        callback: Callable[[int], None],
         quantity: int = 1,
         max_quantity: Optional[int] = None,
-        callback: Optional[Callable[[int], None]] = None,
         shrink_to_items: bool = False,
         price: int = 0,
         cost: int = 0,
-        **kwargs: Any,
     ) -> None:
         """
         Initialize the quantity menu.
@@ -38,12 +38,11 @@ class QuantityMenu(Menu[None]):
             shrink_to_items: Whether to fit the border to contents.
 
         """
-        super().startup()
+        super().__init__()
         self.quantity = quantity
         self.price = price
         self.cost = cost
         self.max_quantity = max_quantity
-        assert callback
         self.callback = callback
         self.shrink_to_items = shrink_to_items
 

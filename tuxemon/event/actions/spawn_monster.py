@@ -1,51 +1,27 @@
-#
-# Tuxemon
-# Copyright (c) 2020      William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Adam Chevalier <chevalierAdam2@gmail.com>
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 import random
 import uuid
-from typing import NamedTuple, Optional, Union, final
+from dataclasses import dataclass
+from typing import Union, final
 
 from tuxemon import formula, monster
-from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
-from tuxemon.npc import NPC
 from tuxemon.states.dialog import DialogState
+from tuxemon.states.world import WorldState
 from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
 
 
-class SpawnMonsterActionParameters(NamedTuple):
-    npc_slug: Union[str, None]
-
-
 # noinspection PyAttributeOutsideInit
 @final
-class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
+@dataclass
+class SpawnMonsterAction(EventAction):
     """
     Breed a new monster.
 
@@ -67,19 +43,19 @@ class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
     """
 
     name = "spawn_monster"
-    param_class = SpawnMonsterActionParameters
+    npc_slug: Union[str, None] = None
 
     def start(self) -> None:
-        npc_slug = self.parameters.npc_slug
+        world = self.session.client.get_state_by_name(WorldState)
 
-        trainer: Optional[NPC]
-        if npc_slug is None:
+        if self.npc_slug is None:
             trainer = self.session.player
         else:
-            trainer = get_npc(self.session, npc_slug)
+            npc_slug = self.npc_slug.replace("player", "npc_red")
+            trainer = world.get_entity(npc_slug)
 
         assert trainer, "No Trainer found with slug '{}'".format(
-            npc_slug or "player"
+            self.npc_slug or "player"
         )
 
         mother_id = uuid.UUID(trainer.game_variables["breeding_mother"])

@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "feint"
+            "technique": "flood"
         },
         {
             "level_learned": 2,
             "technique": "flow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 16,
             "technique": "font"
+        },
+        {
+            "level_learned": 20,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 24,
+            "technique": "feint"
+        },
+        {
+            "level_learned": 28,
+            "technique": "venomous_tentacle"
         }
     ],
     "evolutions": [],

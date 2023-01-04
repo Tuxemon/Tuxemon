@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 2,
+            "technique": "feint"
+        },
+        {
+            "level_learned": 12,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 24,
             "technique": "splinter"
         },
         {
-            "level_learned": 2,
+            "level_learned": 28,
             "technique": "peregrine"
         },
         {
-            "level_learned": 2,
-            "technique": "whirlwind"
+            "level_learned": 32,
+            "technique": "pseudopod"
         }
     ],
     "evolutions": [

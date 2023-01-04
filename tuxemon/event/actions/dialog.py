@@ -1,30 +1,13 @@
-#
-# Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 import warnings
-from typing import NamedTuple, Optional, final
+from dataclasses import dataclass, field
+from typing import Optional, Sequence, final
 
+from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar
 from tuxemon.locale import replace_text
@@ -35,13 +18,9 @@ from tuxemon.tools import open_dialog
 logger = logging.getLogger(__name__)
 
 
-class DialogActionParameters(NamedTuple):
-    text: str
-    avatar: str
-
-
 @final
-class DialogAction(EventAction[DialogActionParameters]):
+@dataclass
+class DialogAction(EventAction):
     """
     Open a single dialog and waits until it is closed.
 
@@ -64,7 +43,27 @@ class DialogAction(EventAction[DialogActionParameters]):
     """
 
     name = "dialog"
-    param_class = DialogActionParameters
+    text: str = field(init=False)
+    avatar: Optional[str] = field(init=False)
+    raw_parameters: Sequence[str] = field(init=False)
+
+    def __init__(self, *args):
+        super().__init__()
+        self.raw_parameters = args
+
+        self.avatar = None
+        if len(self.raw_parameters) > 1:
+            avatar_str = self.raw_parameters[-1]
+            if avatar_str.isdigit() or db.has_entry(avatar_str, "monster"):
+                self.avatar = avatar_str
+
+        if self.avatar:
+            # hack to allow unescaped commas in the dialog string
+            self.text = ", ".join(self.raw_parameters[:-1])
+        else:
+            # If we were unable to load an avatar then this was
+            # probably normal text
+            self.text = ", ".join(self.raw_parameters)
 
     def start(self) -> None:
         warnings.warn(
@@ -74,9 +73,8 @@ class DialogAction(EventAction[DialogActionParameters]):
             f"Parameters: {self.raw_parameters}.",
             DeprecationWarning,
         )
-        text = replace_text(self.session, self.parameters.text)
-        avatar = get_avatar(self.session, self.parameters.avatar)
-        self.open_dialog(text, avatar)
+        text = replace_text(self.session, self.text)
+        self.open_dialog(text, get_avatar(self.session, self.avatar))
 
     def update(self) -> None:
         try:

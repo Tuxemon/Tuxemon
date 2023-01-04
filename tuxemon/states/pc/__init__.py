@@ -14,7 +14,6 @@ from typing import (
     Optional,
     Sequence,
     Tuple,
-    no_type_check,
 )
 
 import pygame_menu
@@ -28,7 +27,7 @@ from tuxemon.menu.menu import Menu, PopUpMenu, PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.states.monster import MonsterMenuState
-from tuxemon.tools import open_dialog, transform_resource_filename
+from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
 
@@ -74,7 +73,7 @@ class PCState(PopUpMenu[MenuGameObj]):
         else:
             storage_callback = change_state("MonsterBoxChooseStorageState")
 
-        if not local_session.player.monsters:
+        if len(local_session.player.monsters) <= 1:
             dropoff_callback = partial(
                 open_dialog,
                 local_session,

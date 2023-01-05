@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Weblate 4.15.1-dev\n"
 
-## ITEM TRANSLATIONS ##
+# # ITEM TRANSLATIONS ##
 # Apple
 msgid "apple"
 msgstr "苹果"
@@ -107,11 +107,12 @@ msgid "allies_address"
 msgstr "艾莉的地址"
 
 msgid "allies_address_description"
-msgstr "棉花镇全渠道塔2栋31室\n"
+msgstr ""
+"棉花镇全渠道塔2栋31室\n"
 "\n"
 "地址旁边有个吻痕。"
 
-## NOTIFICATION TRANSLATIONS ##
+# # NOTIFICATION TRANSLATIONS ##
 # Combat notifications
 msgid "combat_run"
 msgstr "{user} 逃跑了！"
@@ -317,7 +318,7 @@ msgstr "胡吃海塞"
 msgid "status_recover"
 msgstr "恢复"
 
-## TECHNIQUE TRANSLATIONS ##
+# # TECHNIQUE TRANSLATIONS ##
 msgid "all_in"
 msgstr "全部的"
 
@@ -588,7 +589,7 @@ msgstr "旋风"
 msgid "wing_tip"
 msgstr "飞机翼尖"
 
-## MENU TRANSLATIONS ##
+# # MENU TRANSLATIONS ##
 msgid "menu_alphabet"
 msgstr "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
 
@@ -605,7 +606,7 @@ msgstr "移动"
 msgid "monster_menu_release"
 msgstr "释放"
 
-#Release notifications
+# Release notifications
 msgid "cant_release"
 msgstr "不能在派对中只释放精灵。"
 
@@ -737,7 +738,7 @@ msgstr "${{name}}的钱包：${{currency}}${{money}}"
 msgid "combat_skip"
 msgstr "{user} 跳过了本回合！"
 
-## COMBAT STATE STATUSES
+# # COMBAT STATE STATUSES
 msgid "combat_state_blinded_get"
 msgstr "{target} 是盲的。"
 
@@ -1002,7 +1003,7 @@ msgstr "{target} 已磨损。"
 msgid "alert_text"
 msgstr "文字太长！"
 
-## STATUSES
+# # STATUSES
 msgid "status_blinded"
 msgstr "蒙蔽"
 
@@ -1190,7 +1191,8 @@ msgid "noctula"
 msgstr "夜图拉"
 
 msgid "jemuar_description"
-msgstr "它背上的宝石是它出生时发现的类型。在钻石矿脉上方有大量的小岩猫育种设施。"
+msgstr ""
+"它背上的宝石是它出生时发现的类型。在钻石矿脉上方有大量的小岩猫育种设施。"
 
 msgid "jemuar"
 msgstr "宝石虎"
@@ -1429,7 +1431,7 @@ msgstr "塔巴"
 msgid "tunnel"
 msgstr "隧道"
 
-## MAP DESCRIPTIONS TOWN / CITY ##
+# # MAP DESCRIPTIONS TOWN / CITY ##
 msgid "candy_town_description"
 msgstr "糖果镇口号"
 
@@ -1482,7 +1484,7 @@ msgstr "从 ${{map_name}} 到 ${{west}}"
 msgid "here_to_east"
 msgstr "从 ${{map_name}} 到 ${{east}}"
 
-## MAP ##
+# # MAP ##
 msgid "candy_town"
 msgstr "糖果"
 
@@ -1525,7 +1527,7 @@ msgstr "交换"
 msgid "skip"
 msgstr "跳过"
 
-## MONSTER TRANSLATIONS ##
+# # MONSTER TRANSLATIONS ##
 # Monster details
 msgid "aardart_description"
 msgstr "它对自己吃过的每一只蚂蚁都进行计数，并庆祝重要的数字。"
@@ -1549,8 +1551,9 @@ msgid "agnidon"
 msgstr "炎鬣蜥"
 
 msgid "agnigon_description"
-msgstr "它被称为 \"假龙\""
-"，因为它看起来是一条龙，但实际上是从不同的古代爬行动物系列中进化而来的。"
+msgstr ""
+"它被称为 \"假龙\"，因为它看起来是一条龙，但实际上是从不同的古代爬行动物系列中"
+"进化而来的。"
 
 msgid "agnigon"
 msgstr "焱龙鬣蜥"
@@ -1565,8 +1568,9 @@ msgid "allagon"
 msgstr "阿拉贡"
 
 msgid "altie_description"
-msgstr "ALTIE在一个气泡中飘落到地球上。现在它的泡泡已经破灭，它不能在空中漂浮超过几米"
-"。"
+msgstr ""
+"ALTIE在一个气泡中飘落到地球上。现在它的泡泡已经破灭，它不能在空中漂浮超过几"
+"米。"
 
 msgid "altie"
 msgstr "阿尔蒂"
@@ -1593,7 +1597,8 @@ msgid "araignee"
 msgstr "阿莱尼"
 
 msgid "arthrobolt_description"
-msgstr "它在指挥它的同伴螺母兽和螺栓兽时感到不舒服，通常会逃跑。但是除了螺孔兽，没有"
+msgstr ""
+"它在指挥它的同伴螺母兽和螺栓兽时感到不舒服，通常会逃跑。但是除了螺孔兽，没有"
 "精灵去指导螺母兽和螺栓兽。"
 
 msgid "arthrobolt"
@@ -1624,7 +1629,8 @@ msgid "baoby"
 msgstr "小粽树鹿"
 
 msgid "beenstalker_description"
-msgstr "跟踪豆茎在理智和优雅方面有所欠缺，但它在纯粹的热情和善意方面得到了弥补。它以"
+msgstr ""
+"跟踪豆茎在理智和优雅方面有所欠缺，但它在纯粹的热情和善意方面得到了弥补。它以"
 "吓跑害虫为乐，但从不伤害它们。"
 
 msgid "beenstalker"
@@ -1649,7 +1655,8 @@ msgid "bolt"
 msgstr "螺栓兽"
 
 msgid "boltnu_description"
-msgstr "它的大部分时间都是在草地上挖洞，由于它们在土壤中挖洞所引起的不断震动和运动，"
+msgstr ""
+"它的大部分时间都是在草地上挖洞，由于它们在土壤中挖洞所引起的不断震动和运动，"
 "它仍然感到晕眩。"
 
 msgid "boltnu"
@@ -1665,7 +1672,8 @@ msgid "boxali"
 msgstr "博萨里"
 
 msgid "brewdin_description"
-msgstr "诞生于被忽视的、曾经珍贵的陶器和类似的宝物。传闻它能为那些能让它微笑的人实现"
+msgstr ""
+"诞生于被忽视的、曾经珍贵的陶器和类似的宝物。传闻它能为那些能让它微笑的人实现"
 "愿望。"
 
 msgid "brewdin"
@@ -1681,7 +1689,8 @@ msgid "bugnin"
 msgstr "武士虫"
 
 msgid "bumbulus_description"
-msgstr "Bumbulus是一种会飞的生物，会产生一团烟雾来伪装成云。没有人见过它的真身。"
+msgstr ""
+"Bumbulus是一种会飞的生物，会产生一团烟雾来伪装成云。没有人见过它的真身。"
 
 msgid "bumbulus"
 msgstr "邦布勒斯"
@@ -1720,7 +1729,8 @@ msgid "chillimp"
 msgstr "冰幽灵"
 
 msgid "chloragon_description"
-msgstr "当一个古老的蛋被种在肥沃的土壤中时，它就会孵化。当蛋用完时，将不再有氯边形。"
+msgstr ""
+"当一个古老的蛋被种在肥沃的土壤中时，它就会孵化。当蛋用完时，将不再有氯边形。"
 
 msgid "chloragon"
 msgstr "氯龙"
@@ -1750,7 +1760,8 @@ msgid "conifrost"
 msgstr "圆锥花"
 
 msgid "conileaf_description"
-msgstr "放在其罐子里的食物被混合和腌制。它们被用来储存食物，而不至于让食物变质。"
+msgstr ""
+"放在其罐子里的食物被混合和腌制。它们被用来储存食物，而不至于让食物变质。"
 
 msgid "conileaf"
 msgstr "圆锥叶"
@@ -1774,7 +1785,8 @@ msgid "cowpignon"
 msgstr "人参兽"
 
 msgid "criniotherme_description"
-msgstr "它的鬃毛在白天闪闪发光，在日落时长得又大又红，到了晚上就像灰烬一样被吹走。"
+msgstr ""
+"它的鬃毛在白天闪闪发光，在日落时长得又大又红，到了晚上就像灰烬一样被吹走。"
 
 msgid "criniotherme"
 msgstr "克里尼奥姆"
@@ -1792,7 +1804,8 @@ msgid "dandylion"
 msgstr "狮面花"
 
 msgid "dinoflop_description"
-msgstr "它喜欢迅速转身离开它的攻击者，这样他们的打击就会落在它有盾牌和刺的背部。"
+msgstr ""
+"它喜欢迅速转身离开它的攻击者，这样他们的打击就会落在它有盾牌和刺的背部。"
 
 msgid "dinoflop"
 msgstr "迪诺浮普"
@@ -1816,7 +1829,8 @@ msgid "dracune"
 msgstr "德古拉茧"
 
 msgid "dragarbor_description"
-msgstr "当它觉得自己的生命即将结束时，它就会前往一个墓地，在那里种植自己。它的尾巴花"
+msgstr ""
+"当它觉得自己的生命即将结束时，它就会前往一个墓地，在那里种植自己。它的尾巴花"
 "永远生长着。"
 
 msgid "dragarbor"
@@ -1826,14 +1840,16 @@ msgid "drashimi"
 msgstr "德拉希米"
 
 msgid "drokoro_description"
-msgstr "曾经它有一个家庭，但它吃了它的父母，吃了它的孩子，吃了它的配偶，吃了它所有的"
+msgstr ""
+"曾经它有一个家庭，但它吃了它的父母，吃了它的孩子，吃了它的配偶，吃了它所有的"
 "同类。"
 
 msgid "drokoro"
 msgstr "德罗科罗"
 
 msgid "dune_pincher_description"
-msgstr "这些隐士会用最接近的东西来包裹自己。在沙漠中，那就是死去已久的法老的裹尸布。"
+msgstr ""
+"这些隐士会用最接近的东西来包裹自己。在沙漠中，那就是死去已久的法老的裹尸布。"
 
 msgid "dune_pincher"
 msgstr "沙丘夹子"
@@ -1875,8 +1891,9 @@ msgid "flambear"
 msgstr "火焰熊"
 
 msgid "fluoresfin_description"
-msgstr "当受到威胁时，它与其他荧光鱼蜷缩在一起，形成一个巨大的刺眼的光，以迷惑捕食者"
-"。"
+msgstr ""
+"当受到威胁时，它与其他荧光鱼蜷缩在一起，形成一个巨大的刺眼的光，以迷惑捕食"
+"者。"
 
 msgid "fluoresfin"
 msgstr "荧光鱼"
@@ -1909,7 +1926,8 @@ msgid "foxfire_description"
 msgstr "火狐的幼崽在一夜之间烧毁的大火中被发现。没有人知道它们来自哪里。"
 
 msgid "fruitera_description"
-msgstr "它喜欢吃水果，能带多少就带多少。当受到惊吓时，它就把所有的果实扔掉，再把它们"
+msgstr ""
+"它喜欢吃水果，能带多少就带多少。当受到惊吓时，它就把所有的果实扔掉，再把它们"
 "收集起来，然后才跑开。"
 
 msgid "fruitera"
@@ -1922,7 +1940,8 @@ msgid "furnursus_description"
 msgstr "炉子熊很友好，而且经常忘记自己的身体太热，别人无法触摸。"
 
 msgid "galnec_description"
-msgstr "加内克将自己深埋在沙漠的热沙中，只有它的石质尾巴在地上。成群结队时，它们看起"
+msgstr ""
+"加内克将自己深埋在沙漠的热沙中，只有它的石质尾巴在地上。成群结队时，它们看起"
 "来像石头的花园。"
 
 msgid "galnec"
@@ -2028,13 +2047,15 @@ msgid "nuenflu"
 msgstr "纽恩菲"
 
 msgid "nut_description"
-msgstr "在漂洋过海的大船上，数以千计的螺母兽和螺栓兽提供动力，将钢板固定在一起。"
+msgstr ""
+"在漂洋过海的大船上，数以千计的螺母兽和螺栓兽提供动力，将钢板固定在一起。"
 
 msgid "nut"
 msgstr "螺母兽"
 
 msgid "octabode_description"
-msgstr "怀旧章鱼以古代的器皿和文物为家，梦想着那些在他们之前使用这些文物的人的生活。"
+msgstr ""
+"怀旧章鱼以古代的器皿和文物为家，梦想着那些在他们之前使用这些文物的人的生活。"
 
 msgid "octabode"
 msgstr "怀旧章鱼"
@@ -2052,24 +2073,27 @@ msgid "pairagrim"
 msgstr "双头鸟"
 
 msgid "pairagrin_description"
-msgstr "它是双头鸟的年轻形态，一般来说是一种快乐的生物。在两个头学会一起工作之前，它"
+msgstr ""
+"它是双头鸟的年轻形态，一般来说是一种快乐的生物。在两个头学会一起工作之前，它"
 "一直在努力飞行。"
 
 msgid "pairagrin"
 msgstr "灰白鸟"
 
 msgid "pantherafira_description"
-msgstr "他们的每个成员都从一个共同的篝火中点燃他们的鬃毛。只要那堆火在燃烧，他们的力"
+msgstr ""
+"他们的每个成员都从一个共同的篝火中点燃他们的鬃毛。只要那堆火在燃烧，他们的力"
 "量就会被分享。"
 
 msgid "route5_description"
 msgstr "通往木材镇的纪念通道！"
 
 msgid "baobaraffe_description"
-msgstr "它在巨大的身体里储存了大量的水，这样它就可以在炎热、干燥的沙漠中长途跋涉。它"
+msgstr ""
+"它在巨大的身体里储存了大量的水，这样它就可以在炎热、干燥的沙漠中长途跋涉。它"
 "也会与口渴的生物分享水。当它没有水储存时，它就会变得很瘦。"
 
-## MAP SIGNS ##
+# # MAP SIGNS ##
 msgid "welcome_location_city"
 msgstr ""
 "欢迎来到 ${{map_name}} 市: ${{map_desc}}\n"
@@ -2082,7 +2106,8 @@ msgid "angrito_description"
 msgstr "它无法理解为什么人类会感到愤怒和仇恨，但安格里托也感受到了这些冲动。"
 
 msgid "apeoro_description"
-msgstr "古代的国王们用通灵的力量将他们的灵魂转移到这些金色的计算机器中。现在他们继续"
+msgstr ""
+"古代的国王们用通灵的力量将他们的灵魂转移到这些金色的计算机器中。现在他们继续"
 "活着，无法交流，但仍然梦想着帝国。"
 
 msgid "araignee_description"
@@ -2092,11 +2117,13 @@ msgid "b_ver_1_description"
 msgstr "它是为所有那些你需要被机器人咬的东西的时候而设计的。"
 
 msgid "baoby_description"
-msgstr "它们从一条河到另一条河，寻找可以饮用和储存的水。它头上的叶状骨隐藏着可移动的"
+msgstr ""
+"它们从一条河到另一条河，寻找可以饮用和储存的水。它头上的叶状骨隐藏着可移动的"
 "点，其作用类似于探水棒。许多生物在干旱时跟随它。"
 
 msgid "boxali_description"
-msgstr "凭借其长长的蓝色披风，博萨里可以在地面上滑行--使其能够执行特技和空中攻击。"
+msgstr ""
+"凭借其长长的蓝色披风，博萨里可以在地面上滑行--使其能够执行特技和空中攻击。"
 
 msgid "bugnin_description"
 msgstr "它的剑实际上是一根天线，是为了这个目的而生长和折断的。"
@@ -2138,7 +2165,8 @@ msgid "eruptibus"
 msgstr "火山兽"
 
 msgid "exclawvate_description"
-msgstr "经常在建筑工地上看到，它们可以用自己巨大的手和尾巴来舀起泥土和瓦砾。虎皮猫的"
+msgstr ""
+"经常在建筑工地上看到，它们可以用自己巨大的手和尾巴来舀起泥土和瓦砾。虎皮猫的"
 "下面是毛毛虫的轮胎，使它们在爬上成堆的瓦砾时有更好的平衡和抓地力。"
 
 msgid "exapode_description"
@@ -2157,7 +2185,8 @@ msgid "eyesore"
 msgstr "疲之眼"
 
 msgid "fancair_description"
-msgstr "如果有人在不需要的时候让他们的风扇运转，它就会活跃起来，飞出窗外，找到真正需"
+msgstr ""
+"如果有人在不需要的时候让他们的风扇运转，它就会活跃起来，飞出窗外，找到真正需"
 "要冷却的人。"
 
 msgid "fancair"
@@ -2206,13 +2235,15 @@ msgid "grumpi"
 msgstr "格鲁姆比"
 
 msgid "happito_description"
-msgstr "为什么人们不能永远幸福？快乐兽会给他们想要的东西，即使这不是他们所需要的。"
+msgstr ""
+"为什么人们不能永远幸福？快乐兽会给他们想要的东西，即使这不是他们所需要的。"
 
 msgid "happito"
 msgstr "快乐兽"
 
 msgid "heronquak_description"
-msgstr "它胸前的水晶被偷猎者误认为是钻石。当它从冰鹭的身体中取出时，它就会融化。"
+msgstr ""
+"它胸前的水晶被偷猎者误认为是钻石。当它从冰鹭的身体中取出时，它就会融化。"
 
 msgid "ignibus"
 msgstr "岩浆龟"
@@ -2221,11 +2252,13 @@ msgid "incandesfin_description"
 msgstr "它的整个身体的大小已经大量增长。然而，它的光线仍然是完全一样的。"
 
 msgid "ignibus_description"
-msgstr "当受到威胁时，它退回到它的壳中，并通过排放蒸汽急剧降温。它可能会被误认为是一"
+msgstr ""
+"当受到威胁时，它退回到它的壳中，并通过排放蒸汽急剧降温。它可能会被误认为是一"
 "块石头。"
 
 msgid "jelillow_description"
-msgstr "当一个人把头靠在果冻兽上时，其果冻般的皮肤会使他们陷入深度睡眠。如果有人有睡"
+msgstr ""
+"当一个人把头靠在果冻兽上时，其果冻般的皮肤会使他们陷入深度睡眠。如果有人有睡"
 "眠问题，那么这个精灵将被用来帮助他们。"
 
 msgid "jelillow"
@@ -2286,7 +2319,8 @@ msgid "loliferno"
 msgstr "罗利弗诺"
 
 msgid "metesaur_description"
-msgstr "这种精灵会喜欢潜入地下并留下痕迹。有时，这只精灵会错误地判断撞击，落在树上，"
+msgstr ""
+"这种精灵会喜欢潜入地下并留下痕迹。有时，这只精灵会错误地判断撞击，落在树上，"
 "引发巨大而危险的森林火灾"
 
 msgid "noctula_description"

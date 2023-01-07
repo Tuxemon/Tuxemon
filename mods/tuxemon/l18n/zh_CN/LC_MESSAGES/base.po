@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tuxemon\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-02 10:48+0000\n"
+"PO-Revision-Date: 2023-01-07 02:52+0000\n"
 "Last-Translator: David Liang <2188741623@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "tuxemon/tuxemon/zh_Hans/>\n"
@@ -19,70 +19,70 @@ msgid "apple"
 msgstr "苹果"
 
 msgid "apple_description"
-msgstr "回复一只怪兽10点生命。"
+msgstr "回复一只精灵10点生命。"
 
 # Berry
 msgid "berry"
 msgstr "浆果"
 
 msgid "berry_description"
-msgstr "回复一只怪兽10点生命。"
+msgstr "回复一只精灵10点生命。"
 
 # Cherry
 msgid "cherry"
 msgstr "樱桃"
 
 msgid "cherry_description"
-msgstr "回复一只怪兽10点生命。"
+msgstr "回复一只精灵10点生命。"
 
 # Orange
 msgid "orange"
 msgstr "橙子"
 
 msgid "orange_description"
-msgstr "回复一只怪兽20点生命。"
+msgstr "回复一只精灵20点生命。"
 
 # Potion
 msgid "potion"
 msgstr "伤药"
 
 msgid "potion_description"
-msgstr "回复一只怪兽50点生命。"
+msgstr "回复一只精灵50点生命。"
 
 # Super Potion
 msgid "super_potion"
 msgstr "超级伤药"
 
 msgid "super_potion_description"
-msgstr "回复一只怪兽150点生命。"
+msgstr "回复一只精灵150点生命。"
 
 # Imperial Potion
 msgid "imperial_potion"
 msgstr "皇室伤药"
 
 msgid "imperial_potion_description"
-msgstr "回复一只怪兽350点生命。"
+msgstr "回复一只精灵350点生命。"
 
 # Revive
 msgid "revive"
 msgstr "恢复"
 
 msgid "revive_description"
-msgstr "复活被击倒的怪兽，恢复20点生命。"
+msgstr "复活被击倒的精灵，恢复20点生命。"
 
 # Capture Device
 msgid "capture_device"
 msgstr "捕捉设备"
 
 msgid "capture_device_description"
-msgstr "用来捕捉怪兽。"
+msgstr "用来捕捉精灵。"
 
 # TMs
 msgid "tm_avalanche"
 msgstr "招式学习器:雪崩"
 
 msgid "tm_avalanche_description"
-msgstr "教水或土系怪兽雪崩招式的招式学习器。"
+msgstr "教水或土系精灵雪崩招式的招式学习器。"
 
 msgid "tm_blossom"
 msgstr "招式学习器:开花"
@@ -94,7 +94,7 @@ msgid "item_cannot_use_here"
 msgstr "{name} 不能在这里使用！"
 
 msgid "item_no_available_target"
-msgstr "{name} 现在不能用在你的任何怪兽上。"
+msgstr "{name} 现在不能用在你的任何精灵上。"
 
 msgid "reg_papers"
 msgstr "注册文件"
@@ -211,13 +211,13 @@ msgid "combat_capturing_fail"
 msgstr "{name} 冲出了捕捉设备！"
 
 msgid "combat_recharging"
-msgstr "{name} 使用前需要休息一下{move} 再一次..."
+msgstr "{name} 使用前需要休息一下才能再一次使用{move}..."
 
 msgid "combat_replacement"
 msgstr "选择一个替代品!"
 
 msgid "combat_replacement_is_fainted"
-msgstr "那个怪兽已经昏过去了!"
+msgstr "那个精灵已经昏过去了!"
 
 msgid "combat_wild_appeared"
 msgstr "野生的 {name} 出现了！"
@@ -607,7 +607,7 @@ msgstr "释放"
 
 #Release notifications
 msgid "cant_release"
-msgstr "不能在派对中只释放怪兽。"
+msgstr "不能在派对中只释放精灵。"
 
 msgid "release_confirmation"
 msgstr "你确定要释放 {name}吗？"
@@ -691,10 +691,10 @@ msgstr "重新启动游戏使更改生效!"
 
 # Default mod names on selection menu
 msgid "xero_campaign"
-msgstr "开源小精灵: Xero"
+msgstr "自由梦: Xero"
 
 msgid "spyder_campaign"
-msgstr "开源小精灵: 斯派德和大教堂"
+msgstr "自由梦: 斯派德和大教堂"
 
 # Multiplayer notifications
 msgid "multiplayer_accept"
@@ -1143,3 +1143,1166 @@ msgstr "灯笼"
 
 msgid "lava"
 msgstr "熔岩"
+
+msgid "elofly"
+msgstr "埃洛飞"
+
+msgid "elostorm"
+msgstr "埃洛斯托姆"
+
+msgid "elowind"
+msgstr "埃洛温德"
+
+msgid "enduros"
+msgstr "负重运动"
+
+msgid "exapode"
+msgstr "伊那波德"
+
+msgid "exclawvate"
+msgstr "掘地兽"
+
+msgid "ferricran"
+msgstr "费里科兰"
+
+msgid "graffiki"
+msgstr "格拉非基"
+
+msgid "grimachin"
+msgstr "玩具猫"
+
+msgid "grintot"
+msgstr "格林托特"
+
+msgid "grintrock_description"
+msgstr "它通过在雷暴中坐等被闪电击中来获取食物。"
+
+msgid "grintrock"
+msgstr "格林特洛克"
+
+msgid "hatchling"
+msgstr "雏鸟"
+
+msgid "incandesfin"
+msgstr "灯笼鱼"
+
+msgid "noctula"
+msgstr "夜图拉"
+
+msgid "jemuar_description"
+msgstr "它背上的宝石是它出生时发现的类型。在钻石矿脉上方有大量的小岩猫育种设施。"
+
+msgid "jemuar"
+msgstr "宝石虎"
+
+msgid "legko"
+msgstr "叶壁虎"
+
+msgid "nudimind"
+msgstr "思蛞蝓"
+
+msgid "cardinale"
+msgstr "赤焰鹰"
+
+msgid "cardiwing_description"
+msgstr "它的歌声是非凡的，但很少有人敢饲养这种爆炸性的鸣禽。"
+
+msgid "cardiwing"
+msgstr "爆炎鸟"
+
+msgid "nudimind_description"
+msgstr "它梦想着其他天空下的海洋。"
+
+msgid "nuenflu_description"
+msgstr "它在冬季依偎在家中，传播疾病。"
+
+msgid "cateye_description"
+msgstr "他们说它每年眨一次眼，以纪念夏天的结束。"
+
+msgid "cateye"
+msgstr "眼猫"
+
+msgid "torch"
+msgstr "火炬攻击"
+
+msgid "wall_fire"
+msgstr "火墙"
+
+msgid "route1_sanglorian"
+msgstr "桑格洛里安大道"
+
+msgid "route6"
+msgstr "路线 6"
+
+msgid "timber_town"
+msgstr "木材"
+
+msgid "allagon_description"
+msgstr "阿拉贡被祖先留下的金属制成的遗物所吸引，并会暴力取回它们。"
+
+msgid "banling"
+msgstr "榕树灵"
+
+msgid "bursa"
+msgstr "火袋熊"
+
+msgid "lightning_spheres"
+msgstr "闪电球"
+
+msgid "lineage"
+msgstr "血统"
+
+msgid "lust"
+msgstr "欲望"
+
+msgid "magma"
+msgstr "岩浆攻击"
+
+msgid "maori"
+msgstr "毛利语"
+
+msgid "meltdown"
+msgstr "崩溃"
+
+msgid "mending"
+msgstr "修补"
+
+msgid "mobbing"
+msgstr "围攻"
+
+msgid "muck"
+msgstr "垃圾攻击"
+
+msgid "mystic_blending"
+msgstr "神秘混合"
+
+msgid "negation"
+msgstr "否定"
+
+msgid "nest"
+msgstr "筑巢"
+
+msgid "oedipus"
+msgstr "俄狄浦斯"
+
+msgid "orbs"
+msgstr "丢球"
+
+msgid "phantasmal_force"
+msgstr "幻觉力量"
+
+msgid "pit"
+msgstr "挖坑"
+
+msgid "platinum"
+msgstr "白金"
+
+msgid "poison_courtship"
+msgstr "毒物求爱"
+
+msgid "radiance"
+msgstr "光芒力量"
+
+msgid "ring"
+msgstr "戒指"
+
+msgid "ruby"
+msgstr "红宝石"
+
+msgid "shapechange"
+msgstr "变形"
+
+msgid "slime"
+msgstr "泥浆攻击"
+
+msgid "stabilo"
+msgstr "斯泰必罗"
+
+msgid "stonehenge"
+msgstr "巨石阵"
+
+msgid "strangulation"
+msgstr "缠绕"
+
+msgid "sunburst"
+msgstr "旭日子"
+
+msgid "sword"
+msgstr "剑击"
+
+msgid "sylvan"
+msgstr "塞尔万"
+
+msgid "terror"
+msgstr "惊吓"
+
+msgid "time_crisis"
+msgstr "时间危机"
+
+msgid "tip"
+msgstr "提示"
+
+msgid "saber"
+msgstr "剑客"
+
+msgid "vorpal"
+msgstr "Vorpal"
+
+msgid "touch"
+msgstr "触摸"
+
+msgid "tsunami"
+msgstr "海啸"
+
+msgid "tux"
+msgstr "小企鹅"
+
+msgid "ubuntu"
+msgstr "乌班图"
+
+msgid "undertaker"
+msgstr "承办"
+
+msgid "venom"
+msgstr "毒液"
+
+msgid "viper"
+msgstr "毒蛇攻击"
+
+msgid "wall_ice"
+msgstr "冰墙"
+
+msgid "walls"
+msgstr "墙体"
+
+msgid "webs_wind"
+msgstr "网风"
+
+msgid "citypark"
+msgstr "城市公园"
+
+msgid "cotton_town"
+msgstr "棉花"
+
+msgid "dryadsgrove"
+msgstr "树妖之林"
+
+msgid "flower_city"
+msgstr "花"
+
+msgid "leather_town"
+msgstr "皮革"
+
+msgid "paper_town"
+msgstr "纸"
+
+msgid "route1"
+msgstr "路线 1"
+
+msgid "route2"
+msgstr "路线 2"
+
+msgid "route3"
+msgstr "路线 3"
+
+msgid "route4"
+msgstr "路线 4"
+
+msgid "route5"
+msgstr "路线 5"
+
+msgid "routea"
+msgstr "路线 A"
+
+msgid "routec"
+msgstr "路线C"
+
+msgid "routed"
+msgstr "路线 D"
+
+msgid "routee"
+msgstr "路线E"
+
+msgid "taba_town"
+msgstr "塔巴"
+
+msgid "tunnel"
+msgstr "隧道"
+
+## MAP DESCRIPTIONS TOWN / CITY ##
+msgid "candy_town_description"
+msgstr "糖果镇口号"
+
+msgid "citypark_description"
+msgstr "野性的味道！"
+
+msgid "cotton_town_description"
+msgstr "一股不断壮大的力量！"
+
+msgid "flower_city_description"
+msgstr "警卫在你睡觉时保护你！"
+
+msgid "leather_town_description"
+msgstr "证明美丽与采矿可以共存！"
+
+msgid "paper_town_description"
+msgstr "通往丰登特的门户！"
+
+msgid "route1_description"
+msgstr "当心！"
+
+msgid "route2_description"
+msgstr "历史性的道路！"
+
+msgid "taba_town_description"
+msgstr "一个宁静的避难所！"
+
+msgid "timber_town_description"
+msgstr "软糖的粮仓！"
+
+msgid "welcome_location_route"
+msgstr ""
+"』欢迎来到 ${{map_name}} : ${{map_desc}}\n"
+"北: ${{north}} / 南: ${{south}} / 西: ${{west}} / 东: ${{east}}"
+
+msgid "welcome_location_town"
+msgstr ""
+"欢迎来到 ${{map_name}} 镇: ${{map_desc}}\n"
+"北: ${{north}} / 南: ${{south}} / 西: ${{west}} / 东: ${{east}}"
+
+msgid "here_to_north"
+msgstr "从 ${{map_name}} 到 ${{north}}"
+
+msgid "here_to_south"
+msgstr "从 ${{map_name}} 到 ${{south}}"
+
+msgid "here_to_west"
+msgstr "从 ${{map_name}} 到 ${{west}}"
+
+msgid "here_to_east"
+msgstr "从 ${{map_name}} 到 ${{east}}"
+
+## MAP ##
+msgid "candy_town"
+msgstr "糖果"
+
+msgid "shop_buy_free"
+msgstr "免费！"
+
+msgid "evolution_confirmation"
+msgstr "{name} 正试图进化成 {evolve}. 允许进化？"
+
+msgid "tuxemon_stat1"
+msgstr ""
+"编号 {txmn}, {type}, {doc} 天前\n"
+"{exp}经验, {exp_lv}还需经验到等级 {lv}\n"
+"体型: {weight} {unit_weight} {height} {unit_height}"
+
+msgid "menu_storage"
+msgstr "拾取精灵"
+
+msgid "menu_dropoff"
+msgstr "放下精灵"
+
+msgid "menu_forfeit"
+msgstr "弃权"
+
+msgid "menu_storage_take_monster"
+msgstr "你把 {name} 加入到了你的队伍！"
+
+msgid "menu_storage_monsters_full"
+msgstr "你的队伍已经满了，你不能再从仓库里拿任何东西了。"
+
+msgid "menu_storage_empty_kennel"
+msgstr "这个仓库是空的，没有精灵可拿。"
+
+msgid "menu_dropoff_no_monsters"
+msgstr "你没有任何精灵可以放下。"
+
+msgid "swap"
+msgstr "交换"
+
+msgid "skip"
+msgstr "跳过"
+
+## MONSTER TRANSLATIONS ##
+# Monster details
+msgid "aardart_description"
+msgstr "它对自己吃过的每一只蚂蚁都进行计数，并庆祝重要的数字。"
+
+msgid "aardart"
+msgstr "阿尔达特"
+
+msgid "aardorn_description"
+msgstr "出生后，它被放在蚁穴中，任由它自己吃下去。"
+
+msgid "aardorn"
+msgstr "阿尔多恩"
+
+msgid "abesnaki_description"
+msgstr "每张脸都是不同的图案，有人说这些符号拼出的是一种死亡语言的文字。"
+
+msgid "abesnaki"
+msgstr "阿贝斯纳基"
+
+msgid "agnidon"
+msgstr "炎鬣蜥"
+
+msgid "agnigon_description"
+msgstr "它被称为 \"假龙\""
+"，因为它看起来是一条龙，但实际上是从不同的古代爬行动物系列中进化而来的。"
+
+msgid "agnigon"
+msgstr "焱龙鬣蜥"
+
+msgid "agnite_description"
+msgstr "它很贪玩，但必须在早期就教它控制好火候。"
+
+msgid "agnite"
+msgstr "火鬣蜥"
+
+msgid "allagon"
+msgstr "阿拉贡"
+
+msgid "altie_description"
+msgstr "ALTIE在一个气泡中飘落到地球上。现在它的泡泡已经破灭，它不能在空中漂浮超过几米"
+"。"
+
+msgid "altie"
+msgstr "阿尔蒂"
+
+msgid "angrito"
+msgstr "安格里托"
+
+msgid "anoleaf_description"
+msgstr "它认为生长在它附近的植物都是它的兄弟姐妹。"
+
+msgid "anoleaf"
+msgstr "阿诺雷弗"
+
+msgid "anu_description"
+msgstr "据说它进入别人的梦境，寻找自己失去的爱情。"
+
+msgid "anu"
+msgstr "安努"
+
+msgid "apeoro"
+msgstr "黄金猿"
+
+msgid "araignee"
+msgstr "阿莱尼"
+
+msgid "arthrobolt_description"
+msgstr "它在指挥它的同伴螺母兽和螺栓兽时感到不舒服，通常会逃跑。但是除了螺孔兽，没有"
+"精灵去指导螺母兽和螺栓兽。"
+
+msgid "arthrobolt"
+msgstr "螺孔兽"
+
+msgid "av8r_description"
+msgstr "如果太阳出来了，它可以飞得很远或很高。"
+
+msgid "axylightl_description"
+msgstr "它用尾巴照亮深海，为鱼儿标出一个安全的庇护所。"
+
+msgid "axylightl"
+msgstr "阿克西莱特尔"
+
+msgid "bamboon_description"
+msgstr "它用竹杖作战，也用竹杖来保持平衡。"
+
+msgid "bamboon"
+msgstr "竹猴"
+
+msgid "banling_description"
+msgstr "每个榕树灵都在等待一个无家可归的灵魂依偎在它的枝头。"
+
+msgid "baobaraffe"
+msgstr "粽树鹿"
+
+msgid "baoby"
+msgstr "小粽树鹿"
+
+msgid "beenstalker_description"
+msgstr "跟踪豆茎在理智和优雅方面有所欠缺，但它在纯粹的热情和善意方面得到了弥补。它以"
+"吓跑害虫为乐，但从不伤害它们。"
+
+msgid "beenstalker"
+msgstr "跟踪豆茎"
+
+msgid "bigfin_description"
+msgstr "整个生态系统都存在于它的背上，所以它尽量不往水下走。"
+
+msgid "bigfin"
+msgstr "大鳍豚"
+
+msgid "birdling_description"
+msgstr "无知的人认为，它的背上背着自己的蛋。它是一个比它重要得多的蛋的护卫。"
+
+msgid "birdling"
+msgstr "守卫鸟"
+
+msgid "bolt_description"
+msgstr "螺栓兽的存在使螺母更难夹紧，并激发更多的能量。"
+
+msgid "bolt"
+msgstr "螺栓兽"
+
+msgid "boltnu_description"
+msgstr "它的大部分时间都是在草地上挖洞，由于它们在土壤中挖洞所引起的不断震动和运动，"
+"它仍然感到晕眩。"
+
+msgid "boltnu"
+msgstr "双螺兽"
+
+msgid "botbot_description"
+msgstr "它是一个通用的机器人，可以适用于任何目的。"
+
+msgid "botbot"
+msgstr "布布"
+
+msgid "boxali"
+msgstr "博萨里"
+
+msgid "brewdin_description"
+msgstr "诞生于被忽视的、曾经珍贵的陶器和类似的宝物。传闻它能为那些能让它微笑的人实现"
+"愿望。"
+
+msgid "brewdin"
+msgstr "布鲁丁"
+
+msgid "budaye_description"
+msgstr "它可以说服任何团体为共同利益而合作，只要有一些鼓励性的喵喵叫声和浪花。"
+
+msgid "budaye"
+msgstr "友友猫"
+
+msgid "bugnin"
+msgstr "武士虫"
+
+msgid "bumbulus_description"
+msgstr "Bumbulus是一种会飞的生物，会产生一团烟雾来伪装成云。没有人见过它的真身。"
+
+msgid "bumbulus"
+msgstr "邦布勒斯"
+
+msgid "bursa_description"
+msgstr "它基本上拒绝火，只产生心灵的火。"
+
+msgid "cairfrey_description"
+msgstr "一件快乐的家具，一天早上醒来，决定去探索。"
+
+msgid "cairfrey"
+msgstr "凯尔弗雷"
+
+msgid "capiti"
+msgstr "卡皮蒂"
+
+msgid "cardiling_description"
+msgstr "人们不会想到它能喷火，直到它喷火了。"
+
+msgid "cardiling"
+msgstr "红火鸟"
+
+msgid "chenipode"
+msgstr "切尼波德"
+
+msgid "chibiro_description"
+msgstr "它被发现在森林和田野中，在那里它经常被误认为是萝卜。"
+
+msgid "chibiro"
+msgstr "赤壁龙猫"
+
+msgid "chillimp_description"
+msgstr "据传，它生活在雪山之上，但从来没有拍摄过它的清晰照片。"
+
+msgid "chillimp"
+msgstr "冰幽灵"
+
+msgid "chloragon_description"
+msgstr "当一个古老的蛋被种在肥沃的土壤中时，它就会孵化。当蛋用完时，将不再有氯边形。"
+
+msgid "chloragon"
+msgstr "氯龙"
+
+msgid "chromeye_description"
+msgstr "创建Chrome之眼是为了观察和学习人类的思维和感觉。"
+
+msgid "chromeye"
+msgstr "Chrome之眼"
+
+msgid "cochini_description"
+msgstr "它就像一个三岁的孩子一样聪明和有意识。它尝起来很美味。"
+
+msgid "cochini"
+msgstr "胭脂虫"
+
+msgid "coleorus_description"
+msgstr "它已经存在了数百万年，没有改变。"
+
+msgid "coleorus"
+msgstr "疣螨"
+
+msgid "conifrost_description"
+msgstr "如果它打喷嚏，就会发生雪崩。它会一直流鼻涕。"
+
+msgid "conifrost"
+msgstr "圆锥花"
+
+msgid "conileaf_description"
+msgstr "放在其罐子里的食物被混合和腌制。它们被用来储存食物，而不至于让食物变质。"
+
+msgid "conileaf"
+msgstr "圆锥叶"
+
+msgid "coproblight_description"
+msgstr "诞生于史前精灵的粪便，它利用自己体内的骨骼碎片进行防御。"
+
+msgid "coproblight"
+msgstr "科普罗布赖特"
+
+msgid "corvix_description"
+msgstr "它用受害者的骨头碎片武装翅膀。"
+
+msgid "corvix"
+msgstr "科维克斯"
+
+msgid "cowpignon_description"
+msgstr "有些人把它晒干，作为药用增强剂来吃。"
+
+msgid "cowpignon"
+msgstr "人参兽"
+
+msgid "criniotherme_description"
+msgstr "它的鬃毛在白天闪闪发光，在日落时长得又大又红，到了晚上就像灰烬一样被吹走。"
+
+msgid "criniotherme"
+msgstr "克里尼奥姆"
+
+msgid "dandicub_description"
+msgstr "出生后，它们漂流到世界各地，再也见不到它们的家人了。"
+
+msgid "dandicub"
+msgstr "蒲种子"
+
+msgid "dandylion_description"
+msgstr "它一生中只生一窝孩子。然后它在世界范围内徘徊，试图找到它们。"
+
+msgid "dandylion"
+msgstr "狮面花"
+
+msgid "dinoflop_description"
+msgstr "它喜欢迅速转身离开它的攻击者，这样他们的打击就会落在它有盾牌和刺的背部。"
+
+msgid "dinoflop"
+msgstr "迪诺浮普"
+
+msgid "djinnbo_description"
+msgstr "人们错误地认为它是死于火灾的人类。实际上，它的亲属确实如此。"
+
+msgid "djinnbo"
+msgstr "炎之魂"
+
+msgid "dollfin"
+msgstr "鳍豚"
+
+msgid "dollfin_description"
+msgstr "每个鳍豚都跟随一艘船从一个地方到另一个地方，探索世界。"
+
+msgid "dracune_description"
+msgstr "它在白天是不动的，但在晚上可以扭动和咬人。"
+
+msgid "dracune"
+msgstr "德古拉茧"
+
+msgid "dragarbor_description"
+msgstr "当它觉得自己的生命即将结束时，它就会前往一个墓地，在那里种植自己。它的尾巴花"
+"永远生长着。"
+
+msgid "dragarbor"
+msgstr "龙乔木"
+
+msgid "drashimi"
+msgstr "德拉希米"
+
+msgid "drokoro_description"
+msgstr "曾经它有一个家庭，但它吃了它的父母，吃了它的孩子，吃了它的配偶，吃了它所有的"
+"同类。"
+
+msgid "drokoro"
+msgstr "德罗科罗"
+
+msgid "dune_pincher_description"
+msgstr "这些隐士会用最接近的东西来包裹自己。在沙漠中，那就是死去已久的法老的裹尸布。"
+
+msgid "dune_pincher"
+msgstr "沙丘夹子"
+
+msgid "eaglace_description"
+msgstr "当它飞翔时，云层形成。当它拍打翅膀的时候，冰雹就会落下。"
+
+msgid "eaglace"
+msgstr "冰川鹰"
+
+msgid "embazook_description"
+msgstr "它被训练为用于战争，不知道如何生活。"
+
+msgid "embazook"
+msgstr "炮灰犬"
+
+msgid "embra_description"
+msgstr "它吃一切可以吃的东西，以便长到足够大，成为一个火焰兽。"
+
+msgid "embra"
+msgstr "火球兽"
+
+msgid "enduros_description"
+msgstr "它是一个咄咄逼人的斗士，不拉扯其打击。在赛场外，它是相当善于交际的。"
+
+msgid "firomenis"
+msgstr "菲罗梅尼斯"
+
+msgid "flacono_description"
+msgstr "它完全不惧怕对手，会毫不犹豫地攻击任何规模的敌人。"
+
+msgid "flacono"
+msgstr "弗拉科诺"
+
+msgid "flambear_description"
+msgstr "从它留下的煮熟的浆果丛和烤鳟鱼的痕迹可以追踪到它。"
+
+msgid "flambear"
+msgstr "火焰熊"
+
+msgid "fluoresfin_description"
+msgstr "当受到威胁时，它与其他荧光鱼蜷缩在一起，形成一个巨大的刺眼的光，以迷惑捕食者"
+"。"
+
+msgid "fluoresfin"
+msgstr "荧光鱼"
+
+msgid "fluttaflap_description"
+msgstr "它以杂质为食，所以它把净化的血液还给它吸食的人。"
+
+msgid "fluttaflap"
+msgstr "吸血蝶"
+
+msgid "foofle_description"
+msgstr "当一个人处于危险之中时，所有的福夫勒都会听到它的哭声，无论他们在哪里。"
+
+msgid "foofle"
+msgstr "福夫勒"
+
+msgid "fordin_description"
+msgstr "当受到威胁时，它就会蜷缩成一个球，然后弹开。"
+
+msgid "fordin"
+msgstr "森林恐龙"
+
+msgid "forturtle_description"
+msgstr "它加热自己的外壳，从出现的裂缝中读取未来。"
+
+msgid "forturtle"
+msgstr "预言龟"
+
+msgid "foxfire_description"
+msgstr "火狐的幼崽在一夜之间烧毁的大火中被发现。没有人知道它们来自哪里。"
+
+msgid "fruitera_description"
+msgstr "它喜欢吃水果，能带多少就带多少。当受到惊吓时，它就把所有的果实扔掉，再把它们"
+"收集起来，然后才跑开。"
+
+msgid "fruitera"
+msgstr "弗朗索拉"
+
+msgid "furnursus"
+msgstr "炉子熊"
+
+msgid "furnursus_description"
+msgstr "炉子熊很友好，而且经常忘记自己的身体太热，别人无法触摸。"
+
+msgid "galnec_description"
+msgstr "加内克将自己深埋在沙漠的热沙中，只有它的石质尾巴在地上。成群结队时，它们看起"
+"来像石头的花园。"
+
+msgid "galnec"
+msgstr "加内克"
+
+msgid "gectile_description"
+msgstr "它是如此快速和轻盈，以至于它可以在树叶上行走。"
+
+msgid "gectile"
+msgstr "格勒"
+
+msgid "ghosteeth_description"
+msgstr "它笑了，因为它知道它遇到的每个人都会死。"
+
+msgid "ghosteeth"
+msgstr "幽灵齿"
+
+msgid "hydrone_description"
+msgstr "它利用一种实验性的技术，从水中产生动力。"
+
+msgid "hydrone"
+msgstr "水龙"
+
+msgid "lunight"
+msgstr "月光兽"
+
+msgid "magmaturtle"
+msgstr "镁光龟"
+
+msgid "mrmoswitch_description"
+msgstr "这些厚脸皮的机器人被用于精细的运动技能，但他们喜欢恶作剧。"
+
+msgid "manosting"
+msgstr "粉紫水母"
+
+msgid "manosting_description"
+msgstr "它漂浮在城市的顶部，注视着鲨鱼。"
+
+msgid "masknake"
+msgstr "面具蛇"
+
+msgid "masknake_description"
+msgstr "当受到惊吓或具有攻击性时，它的尾巴会闪现出美丽的图案。"
+
+msgid "medushock"
+msgstr "美杜休克"
+
+msgid "medushock_description"
+msgstr "倾向于远离岸边，已知对人有攻击性。用刺来击晕其猎物。"
+
+msgid "memnomnom"
+msgstr "门诺姆"
+
+msgid "memnomnom_description"
+msgstr "据说每个门诺姆的面具都是一个不同的死去的国王的脸。"
+
+msgid "merlicun"
+msgstr "梅利昆"
+
+msgid "metesaur"
+msgstr "流星恐龙"
+
+msgid "miaownolith"
+msgstr "巨石猫"
+
+msgid "miaownolith_description"
+msgstr "它能说人类的语言，但只是说一些隐秘的谜语。"
+
+msgid "moloch"
+msgstr "荆棘兽"
+
+msgid "mystikapi_description"
+msgstr "星星马的唾液可以增强精神力量。它舔自己的眼睛和耳朵以提高其感官。"
+
+msgid "mystikapi"
+msgstr "星星马"
+
+msgid "narcileaf_description"
+msgstr "当小叶灯将一个花园恢复到荣耀时，它就会变形，并骄傲地为自己的工作邀功。"
+
+msgid "narcileaf"
+msgstr "守叶人"
+
+msgid "neutrito_description"
+msgstr "平和兽没有感觉。完美的机器？"
+
+msgid "neutrito"
+msgstr "平和兽"
+
+msgid "noctalo"
+msgstr "诺克塔洛"
+
+msgid "nostray"
+msgstr "灵鼻兽"
+
+msgid "nudiflot_female_description"
+msgstr "它吃并储存它所捕食的海洋生物的毒素。"
+
+msgid "nudiflot_male_description"
+msgstr "如果它受到攻击，它的羽毛状天线就会折断，迷惑捕食者。"
+
+msgid "nuenflu"
+msgstr "纽恩菲"
+
+msgid "nut_description"
+msgstr "在漂洋过海的大船上，数以千计的螺母兽和螺栓兽提供动力，将钢板固定在一起。"
+
+msgid "nut"
+msgstr "螺母兽"
+
+msgid "octabode_description"
+msgstr "怀旧章鱼以古代的器皿和文物为家，梦想着那些在他们之前使用这些文物的人的生活。"
+
+msgid "octabode"
+msgstr "怀旧章鱼"
+
+msgid "ouroboutlet_description"
+msgstr "该电路集中了能量，创造了一种新的电力类型，称为 \"悲鸣闪电\"。"
+
+msgid "ouroboutlet"
+msgstr "插座兽"
+
+msgid "pairagrim_description"
+msgstr "双头鸟的一个脑袋总是在寻找猎物，而另一个则专注于高速飞行。"
+
+msgid "pairagrim"
+msgstr "双头鸟"
+
+msgid "pairagrin_description"
+msgstr "它是双头鸟的年轻形态，一般来说是一种快乐的生物。在两个头学会一起工作之前，它"
+"一直在努力飞行。"
+
+msgid "pairagrin"
+msgstr "灰白鸟"
+
+msgid "pantherafira_description"
+msgstr "他们的每个成员都从一个共同的篝火中点燃他们的鬃毛。只要那堆火在燃烧，他们的力"
+"量就会被分享。"
+
+msgid "route5_description"
+msgstr "通往木材镇的纪念通道！"
+
+msgid "baobaraffe_description"
+msgstr "它在巨大的身体里储存了大量的水，这样它就可以在炎热、干燥的沙漠中长途跋涉。它"
+"也会与口渴的生物分享水。当它没有水储存时，它就会变得很瘦。"
+
+## MAP SIGNS ##
+msgid "welcome_location_city"
+msgstr ""
+"欢迎来到 ${{map_name}} 市: ${{map_desc}}\n"
+"北: ${{north}} / 南: ${{south}} / 西: ${{west}} / 东: ${{east}}"
+
+msgid "agnidon_description"
+msgstr "它喜欢用四条腿，但也可以用两条腿站立来开门、推倒树木或拿东西。"
+
+msgid "angrito_description"
+msgstr "它无法理解为什么人类会感到愤怒和仇恨，但安格里托也感受到了这些冲动。"
+
+msgid "apeoro_description"
+msgstr "古代的国王们用通灵的力量将他们的灵魂转移到这些金色的计算机器中。现在他们继续"
+"活着，无法交流，但仍然梦想着帝国。"
+
+msgid "araignee_description"
+msgstr "那些说所有的蜘蛛都有八条腿的学者，对阿莱尼的情况却奇怪地保持沉默。"
+
+msgid "b_ver_1_description"
+msgstr "它是为所有那些你需要被机器人咬的东西的时候而设计的。"
+
+msgid "baoby_description"
+msgstr "它们从一条河到另一条河，寻找可以饮用和储存的水。它头上的叶状骨隐藏着可移动的"
+"点，其作用类似于探水棒。许多生物在干旱时跟随它。"
+
+msgid "boxali_description"
+msgstr "凭借其长长的蓝色披风，博萨里可以在地面上滑行--使其能够执行特技和空中攻击。"
+
+msgid "bugnin_description"
+msgstr "它的剑实际上是一根天线，是为了这个目的而生长和折断的。"
+
+msgid "capiti_description"
+msgstr "它看起来像一个婴儿，但有些标本已被发现有几百年的历史。"
+
+msgid "cardinale_description"
+msgstr "它对所有的捕食者都恨之入骨，一有机会就与它们和它们的孩子开战。"
+
+msgid "cataspike_description"
+msgstr "它通过观察学会了战斗。如果任其自生自灭，它就用它的尖刺来捡拾垃圾。"
+
+msgid "cataspike"
+msgstr "尖刺虫"
+
+msgid "chenipode_description"
+msgstr "当它想旅行时，它会咬鞋带和裤腿。"
+
+msgid "hatchling_description"
+msgstr "当一个蛋不想孵化并开始其下一个生命阶段时，它就成为了一个雏鸟。"
+
+msgid "heronquak"
+msgstr "冰鹭"
+
+msgid "elofly_description"
+msgstr "埃洛飞自己是有耐心和智慧的，但当它大量成群结队时，就会变得暴躁和冲动。"
+
+msgid "elostorm_description"
+msgstr "埃洛斯托姆是国王和王后，他们统治着他们的部族，有着巨大的野心。"
+
+msgid "elowind_description"
+msgstr "埃洛飞家族的副官，埃洛温德负责羊群的放牧和集中注意力。"
+
+msgid "eruptibus_description"
+msgstr "史密斯与它一起工作，在它的火山口加热金属。"
+
+msgid "eruptibus"
+msgstr "火山兽"
+
+msgid "exclawvate_description"
+msgstr "经常在建筑工地上看到，它们可以用自己巨大的手和尾巴来舀起泥土和瓦砾。虎皮猫的"
+"下面是毛毛虫的轮胎，使它们在爬上成堆的瓦砾时有更好的平衡和抓地力。"
+
+msgid "exapode_description"
+msgstr "它挥舞着腿以吸引人们的注意，但大多数时候人们只是跑开。"
+
+msgid "eyenemy_description"
+msgstr "它以美丽的景色和其他壮观的景象为食。"
+
+msgid "eyenemy"
+msgstr "敌之眼"
+
+msgid "eyesore_description"
+msgstr "它记得它所见过的一切，但不记得见到它们的顺序。"
+
+msgid "eyesore"
+msgstr "疲之眼"
+
+msgid "fancair_description"
+msgstr "如果有人在不需要的时候让他们的风扇运转，它就会活跃起来，飞出窗外，找到真正需"
+"要冷却的人。"
+
+msgid "fancair"
+msgstr "风扇兽"
+
+msgid "ferricran_description"
+msgstr "曾经，费里科兰全身覆盖着金刚砂的鳞片，拥有密铁矿的翅膀。"
+
+msgid "foxfire"
+msgstr "火狐"
+
+msgid "frondly_description"
+msgstr "它可以用它的无柄尾巴做任何事情，甚至握手和摘水果。"
+
+msgid "frondly"
+msgstr "叶狐猴"
+
+msgid "grinflare"
+msgstr "格林弗拉尔"
+
+msgid "graffiki_description"
+msgstr "格拉非基在城市中和在丛林中一样自在，用精致的画作标记他们的领土。"
+
+msgid "hampotamos_description"
+msgstr "它啃食裂缝，清除死皮、苔藓和杂草。"
+
+msgid "grimachin_description"
+msgstr "它是由一家玩具公司制作的宠物，但太危险了。"
+
+msgid "gryfix"
+msgstr "格里菲克斯"
+
+msgid "hampotamos"
+msgstr "罕博塔摩斯"
+
+msgid "grinflare_description"
+msgstr "据说每个都是火山行走的心脏。"
+
+msgid "grintot_description"
+msgstr "这是一个经历过侵蚀的石板或石膏板。"
+
+msgid "grumpi_description"
+msgstr "一旦被抓住，它那粘稠的粘性身体是不可能逃脱的。"
+
+msgid "grumpi"
+msgstr "格鲁姆比"
+
+msgid "happito_description"
+msgstr "为什么人们不能永远幸福？快乐兽会给他们想要的东西，即使这不是他们所需要的。"
+
+msgid "happito"
+msgstr "快乐兽"
+
+msgid "heronquak_description"
+msgstr "它胸前的水晶被偷猎者误认为是钻石。当它从冰鹭的身体中取出时，它就会融化。"
+
+msgid "ignibus"
+msgstr "岩浆龟"
+
+msgid "incandesfin_description"
+msgstr "它的整个身体的大小已经大量增长。然而，它的光线仍然是完全一样的。"
+
+msgid "ignibus_description"
+msgstr "当受到威胁时，它退回到它的壳中，并通过排放蒸汽急剧降温。它可能会被误认为是一"
+"块石头。"
+
+msgid "jelillow_description"
+msgstr "当一个人把头靠在果冻兽上时，其果冻般的皮肤会使他们陷入深度睡眠。如果有人有睡"
+"眠问题，那么这个精灵将被用来帮助他们。"
+
+msgid "jelillow"
+msgstr "果冻兽"
+
+msgid "k9_description"
+msgstr "它是一个有用的伙伴，可以拉动一吨的重量。"
+
+msgid "katacoon"
+msgstr "墓穴茧"
+
+msgid "komodraw"
+msgstr "科莫多龙"
+
+msgid "lambert"
+msgstr "兰伯特"
+
+msgid "lapinou_description"
+msgstr "当松兔被当作时尚的宠物时，它们适应了家庭生活，失去了暴力的天性。"
+
+msgid "legko_description"
+msgstr "长期以来，人们认为它没有腿，它的叶子实际上是退化的肢体。"
+
+msgid "moloch_description"
+msgstr "它可以使自己的皮肤变硬或变软，以应对朋友和敌人。"
+
+msgid "noctalo_description"
+msgstr "它只居住在被人类遗弃的地方--城堡、墓地和下水道。"
+
+msgid "nudiflot_male"
+msgstr "浮蛞蝓♀"
+
+msgid "katacoon_description"
+msgstr "它的蛹保持着冥想的姿势，只在刺杀敌人时才移动。"
+
+msgid "katapill"
+msgstr "墓碑毛虫"
+
+msgid "katapill_description"
+msgstr "它生来就会战斗。它必须冲出墓壳，否则就会被困住。"
+
+msgid "komodraw_description"
+msgstr "它用爪子在木头上雕刻自己的火器，并利用它进行强大的远程攻击。"
+
+msgid "lambert_description"
+msgstr "它被它的父母放在它的坚果里，然后父母把它送入世界。"
+
+msgid "lapinou"
+msgstr "宠物兔"
+
+msgid "lightmare_description"
+msgstr "它潜伏在海洋深处，利用它的光线引诱任何毫无戒心的猎物进入它那张大嘴。"
+
+msgid "lightmare"
+msgstr "噩梦鱼"
+
+msgid "loliferno"
+msgstr "罗利弗诺"
+
+msgid "metesaur_description"
+msgstr "这种精灵会喜欢潜入地下并留下痕迹。有时，这只精灵会错误地判断撞击，落在树上，"
+"引发巨大而危险的森林火灾"
+
+msgid "noctula_description"
+msgstr "它吃虫子，皮斯蝠吃水果，所以尽管生活在很近的地方，但它们并不竞争。"
+
+msgid "nostray_description"
+msgstr "它能闻到海里的任何东西，无论多远。"
+
+msgid "nudiflot_female"
+msgstr "浮蛞蝓♂"
+
+msgid "nudikill_description"
+msgstr "他们被称为黑暗主教，因为他们的头让人联想到主教的帽子。"
+
+msgid "nudikill"
+msgstr "努迪基尔"
+
+msgid "pantherafira"
+msgstr "潘特拉菲拉"

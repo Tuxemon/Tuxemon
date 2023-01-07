@@ -327,7 +327,7 @@ def rematch(
     monster.level = random.randint(low, high)
     # check if evolves
     for evo in monster.evolutions:
-        if evo.path == "":
+        if evo.path == "standard":
             if evo.at_level <= monster.level:
                 opponent.evolve_monster(monster, evo.monster_slug)
     # restore hp evolved monsters

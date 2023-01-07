@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tuxemon\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-07 01:52+0000\n"
+"PO-Revision-Date: 2023-01-07 02:52+0000\n"
 "Last-Translator: David Liang <2188741623@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "tuxemon/tuxemon/zh_Hans/>\n"
@@ -2303,3 +2303,6 @@ msgstr "他们被称为黑暗主教，因为他们的头让人联想到主教的
 
 msgid "nudikill"
 msgstr "努迪基尔"
+
+msgid "pantherafira"
+msgstr "潘特拉菲拉"

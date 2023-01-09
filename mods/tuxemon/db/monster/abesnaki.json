@@ -12,19 +12,20 @@
             "technique": "pseudopod"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "sleep_bomb"
         }
     ],
     "evolutions": [],
     "shape": "serpent",
+    "stage": "standalone",
     "types": [
         "fire"
     ],
-    "possible_genders": ["male", "female"],
-    "txmn_id": 98,
-    "height": 0,
-    "weight": 0,
+    "possible_genders": ["neuter"],
+    "txmn_id": 99,
+    "height": 104,
+    "weight": 14,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

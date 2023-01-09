@@ -12,19 +12,20 @@
             "technique": "avalanche"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "refresh"
         }
     ],
     "evolutions": [],
     "shape": "grub",
+    "stage": "standalone",
     "types": [
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 108,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 109,
+    "height": 37,
+    "weight": 7,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

@@ -12,19 +12,32 @@
             "technique": "take_cover"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 24,
             "technique": "sleeping_powder"
+        },
+        {
+            "level_learned": 28,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 32,
+            "technique": "whirlwind"
         }
     ],
     "evolutions": [],
     "shape": "blob",
+    "stage": "stage1",
     "types": [
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 77,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 78,
+    "height": 42,
+    "weight": 4,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

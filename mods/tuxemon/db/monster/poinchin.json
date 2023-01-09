@@ -12,23 +12,24 @@
             "technique": "flow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "font"
         }
     ],
     "evolutions": [
         {
             "path": "standard",
-            "at_level": 20,
+            "at_level": 18,
             "monster_slug": "saurchin"
         }
     ],
     "shape": "grub",
+    "stage": "basic",
     "types": [
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 155,
+    "txmn_id": 164,
     "height": 30,
     "weight": 6,
     "catch_rate": 120.0,

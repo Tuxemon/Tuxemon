@@ -12,19 +12,20 @@
             "technique": "fume"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "fluff_up"
         }
     ],
     "evolutions": [],
     "shape": "varmint",
+    "stage": "standalone",
     "types": [
         "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 145,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 149,
+    "height": 41,
+    "weight": 2,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

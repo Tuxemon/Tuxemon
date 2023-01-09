@@ -12,17 +12,18 @@
             "technique": "sting"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "splinter"
         }
     ],
     "evolutions": [],
     "shape": "flier",
+    "stage": "standalone",
     "types": [
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 160,
+    "txmn_id": 169,
     "height": 30,
     "weight": 2,
     "catch_rate": 170.0,

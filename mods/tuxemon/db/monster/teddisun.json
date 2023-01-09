@@ -12,18 +12,19 @@
             "technique": "headbutt"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "supernova"
         }
     ],
     "evolutions": [],
     "shape": "humanoid",
+    "stage": "standalone",
     "types": [
         "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 161,
-    "height": 0,
+    "txmn_id": 170,
+    "height": 110,
     "weight": 60,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,

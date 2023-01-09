@@ -1,0 +1,45 @@
+{
+    "slug": "vigueur",
+    "category": "energised",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 12,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 24,
+            "technique": "headbutt"
+        },
+        {
+            "level_learned": 28,
+            "technique": "shadow_boxing"
+        },
+        {
+            "level_learned": 32,
+            "technique": "peregrine"
+        }
+    ],
+    "evolutions": [],
+    "shape": "brute",
+    "stage": "stage1",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 218,
+    "height": 38,
+    "weight": 4,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

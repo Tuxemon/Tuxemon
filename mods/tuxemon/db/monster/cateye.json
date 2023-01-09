@@ -12,19 +12,20 @@
             "technique": "eyebite"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "flow"
         }
     ],
     "evolutions": [],
     "shape": "hunter",
+    "stage": "standalone",
     "types": [
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 102,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 103,
+    "height": 45,
+    "weight": 19,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

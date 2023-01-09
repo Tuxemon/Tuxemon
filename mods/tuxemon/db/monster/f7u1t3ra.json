@@ -12,12 +12,13 @@
             "technique": "sting"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "splinter"
         }
     ],
     "evolutions": [],
     "shape": "flier",
+    "stage": "standalone",
     "types": [
         "glitch",
         "wood"

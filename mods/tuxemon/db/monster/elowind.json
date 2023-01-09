@@ -9,28 +9,41 @@
         },
         {
             "level_learned": 2,
-            "technique": "thunderclap"
+            "technique": "biting_winds"
         },
         {
-            "level_learned": 2,
-            "technique": "biting_winds"
+            "level_learned": 12,
+            "technique": "fume"
+        },
+        {
+            "level_learned": 24,
+            "technique": "probiscus"
+        },
+        {
+            "level_learned": 28,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 32,
+            "technique": "flow"
         }
     ],
     "evolutions": [
         {
             "path": "standard",
-            "at_level": 38,
+            "at_level": 42,
             "monster_slug": "elostorm"
         }
     ],
     "shape": "flier",
+    "stage": "stage1",
     "types": [
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 39,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 40,
+    "height": 115,
+    "weight": 15,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

@@ -12,17 +12,18 @@
             "technique": "goad"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "strike"
         }
     ],
     "evolutions": [],
     "shape": "blob",
+    "stage": "standalone",
     "types": [
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 129,
+    "txmn_id": 131,
     "height": 90,
     "weight": 2,
     "catch_rate": 120.0,

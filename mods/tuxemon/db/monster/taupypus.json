@@ -1,0 +1,33 @@
+{
+    "slug": "taupypus",
+    "category": "flatfoot",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "biting_winds"
+        },
+        {
+            "level_learned": 2,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 12,
+            "technique": "flood"
+        }
+    ],
+    "evolutions": [],
+    "shape": "varmint",
+    "stage": "standalone",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 219,
+    "height": 60,
+    "weight": 3,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

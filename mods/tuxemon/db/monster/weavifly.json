@@ -12,19 +12,44 @@
             "technique": "shuriken"
         },
         {
-            "level_learned": 2,
+            "level_learned": 4,
+            "technique": "wallow"
+        },
+        {
+            "level_learned": 6,
+            "technique": "hibernate"
+        },
+        {
+            "level_learned": 8,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 10,
+            "technique": "blade"
+        },
+        {
+            "level_learned": 20,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 24,
             "technique": "eyebite"
+        },
+        {
+            "level_learned": 28,
+            "technique": "constrict"
         }
     ],
     "evolutions": [],
     "shape": "grub",
+    "stage": "stage2",
     "types": [
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 34,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 35,
+    "height": 52,
+    "weight": 17,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

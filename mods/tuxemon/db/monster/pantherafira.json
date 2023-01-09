@@ -1,0 +1,39 @@
+{
+    "slug": "pantherafira",
+    "category": "mercury",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 12,
+            "technique": "all_in"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "criniotherme"
+        }
+    ],
+    "shape": "hunter",
+    "stage": "basic",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 22,
+    "height": 90,
+    "weight": 25,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

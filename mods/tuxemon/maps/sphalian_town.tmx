@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="23" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="38">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="23" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="38">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="scenario" value="tobedefined"/>
+  <property name="slug" value="sphalian_town"/>
+  <property name="types" value="town"/>
  </properties>
  <tileset firstgid="1" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
@@ -18,9 +21,6 @@
  <tileset firstgid="2382" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
   <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
  </tileset>
- <tileset firstgid="2392" name="Route_1a" tilewidth="16" tileheight="16" tilecount="0" columns="40">
-  <image source="../gfx/tilesets/Route_1a.png" width="640" height="320"/>
- </tileset>
  <layer id="1" name="Tile Layer 1" width="23" height="25">
   <data encoding="base64" compression="zlib">
    eAHt1bsNgDAQBNEN3BgBHwduBQzNYMvNeoo4RLLBSzc4jXRFUjHfwA24ATfgBtzA5w2sSdqw40BG1A8+2bpQceNB1PbLVkPHgoGo7T92Jj9EruQ=
@@ -28,7 +28,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="23" height="25">
   <data encoding="base64" compression="zlib">
-   eAHVlTlSwzAUhkVIGMgJKNh6tlOwVVAkTgqgAkq2nu0UbB0lcAMI3IAAB0jBERgOwPfAmnlmnogMuEAzX6R4pE+/5Ze445zrFMQr3qLQmYfKzg3DCIzCGLz0sLnR9DprfFHNZp7BNQtzMA8L8BZwy72WKs71Qhkq0Af6DHSkTVxbsA07sAsht6wbxzUBkzAF06DvQbuPcZ3AKZzBOVRLekZ2XMNVhwQa0ASdu8b0egRJVvvxbQ/XPhzAIRyBzr3MrJUIVplz2e/cVco1vdV07jzuFr67lPuAW/bz2fO4JXOM22fP447N7bMX5ZbsRbmTAdu9yJ5LoOtH6kTO5AZu03P3NWP1UkdW7gaeZsD9wJp26vbP1eqljiy3zuvHPrf2PLE+xPMv3N/VN7fsQufts+r+a+5ubvn9/PRMurn/qgatd8p/yC3PzrdB/vOl5c39qGpOaqz1qTE/5bzXYD2CDdMQvii58zR5d/umx/6a7iX3O3uN8WE=
+   eAHVlUsyQ0EUhlskCisw8Jp7rcJrxCC5yQAjDL3mXqvw2gF2QNgBYQEZWIKyAN/hdtWJOi190QNd9aVvUn2+/m/fk6TtnGsn4hVvKnTm4bJzIzAKYzAOLz1sbgxdZ11Lic48i2sO5mEBFuEt4Ja6UsW5XihDBfpA+3SkLVzbsAO7sAcht9RN4JqEKZiGGdD3oN0nuE7hDM7hAgZLekXndRVXDTKoQwN07irLaxFkndqPd/u4DuAQjuAYdO4VVq1GsMaay37nrnKuma2hcxdxN/Hd5dwH3LKfz17ELZlj3D57EXdsbp89lVuyp3JnA7Z7iT2XQfeP9ImcyQ3c5ufue8aapY+s3HU8jYD7gZrH3O2fqzVLH1lunddf+9za80R9iOdfuL/rb27Zhc7bZ9Xz19zd3PL9+emZdHP/VQ9a/yn/Ibc8Oz+G+M2XUTR3S/Wc9FjzU2O+ynmvw0YEm6Yh/KHkTjUk9zvwUe9d
   </data>
  </layer>
  <objectgroup color="#ffff00" id="3" name="Events">
@@ -54,14 +54,14 @@
   </object>
   <object id="21" name="Buddha Mountain" type="event" x="352" y="208" width="16" height="48">
    <properties>
-    <property name="act10" value="teleport BuddhaMountain.tmx,3,89,1.5"/>
+    <property name="act10" value="teleport buddha_mountain.tmx,3,89,1.5"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="22" name="sphalian care" type="event" x="272" y="112" width="16" height="16">
    <properties>
-    <property name="act10" value="teleport healing_center_sphalian.tmx,7,12,0.3"/>
+    <property name="act10" value="teleport sphalian_center.tmx,6,10,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
    </properties>

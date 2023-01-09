@@ -12,22 +12,31 @@
             "technique": "whirlwind"
         },
         {
-            "level_learned": 2,
+            "level_learned": 16,
             "technique": "wing_tip"
         },
         {
-            "level_learned": 2,
+            "level_learned": 32,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 36,
             "technique": "peregrine"
+        },
+        {
+            "level_learned": 40,
+            "technique": "one_two"
         }
     ],
     "evolutions": [],
     "shape": "flier",
+    "stage": "stage1",
     "types": [
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 173,
-    "height": 0,
+    "txmn_id": 182,
+    "height": 110,
     "weight": 10,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,

@@ -12,18 +12,19 @@
             "technique": "chill_mist"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "whirlwind"
         }
     ],
     "evolutions": [],
     "shape": "blob",
+    "stage": "standalone",
     "types": [
         "water",
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 105,
+    "txmn_id": 106,
     "height": 250,
     "weight": 371,
     "catch_rate": 120.0,

@@ -5,26 +5,51 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 2,
+            "technique": "feint"
+        },
+        {
+            "level_learned": 12,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 24,
             "technique": "splinter"
         },
         {
-            "level_learned": 2,
+            "level_learned": 28,
             "technique": "peregrine"
         },
         {
-            "level_learned": 2,
-            "technique": "whirlwind"
+            "level_learned": 32,
+            "technique": "pseudopod"
+        },
+        {
+            "level_learned": 40,
+            "technique": "wing_tip"
+        },
+        {
+            "level_learned": 44,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 48,
+            "technique": "invictus"
         }
     ],
     "evolutions": [],
     "shape": "humanoid",
+    "stage": "stage2",
     "types": [
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 66,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 67,
+    "height": 150,
+    "weight": 75,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

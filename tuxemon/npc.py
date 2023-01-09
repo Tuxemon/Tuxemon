@@ -1,33 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Derek Clark <derekjohn.clark@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-# Andy Mender <andymenderunix@gmail.com>
-#
-# npc
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -51,7 +23,7 @@ from typing import (
 from tuxemon import surfanim
 from tuxemon.ai import AI
 from tuxemon.compat import Rect
-from tuxemon.db import OutputBattle, SeenStatus, db
+from tuxemon.db import ElementType, OutputBattle, SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import (
@@ -871,23 +843,32 @@ class NPC(Entity[NPCState]):
         self.game_variables["party_level_highest"] = level_highest
         self.game_variables["party_level_average"] = level_average
 
-    def find_tech(self, tech: str) -> Optional[Technique]:
+    def has_tech(self, tech: str) -> bool:
         """
-        Finds a technique in the npc's list of monsters.
+        Returns TRUE if there is the technique in the party.
 
         Parameters:
             tech: The slug name of the technique.
-
-        Returns:
-            Technique found.
-
         """
         for technique in self.monsters:
-            for moves in technique.moves:
-                if moves.slug == tech:
-                    return moves.slug
+            for move in technique.moves:
+                if move.slug == tech:
+                    return True
+        return False
 
-        return None
+    def has_type(self, element: ElementType) -> bool:
+        """
+        Returns TRUE if there is the type in the party.
+
+        Parameters:
+            type: The slug name of the type.
+        """
+        for mon in self.monsters:
+            if mon.type1 == element:
+                return True
+            elif mon.type2 == element:
+                return True
+        return False
 
     def give_money(self, amount: int) -> None:
         self.money["player"] += amount

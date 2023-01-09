@@ -12,7 +12,7 @@
             "technique": "fire_ball"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "fume"
         }
     ],
@@ -24,6 +24,7 @@
         }
     ],
     "shape": "dragon",
+    "stage": "basic",
     "types": [
         "fire"
     ],

@@ -1,31 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Derek Clark <derekjohn.clark@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-#
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 
 Do not import platform-specific libraries such as pygame.
@@ -60,7 +34,7 @@ from typing import (
 
 from tuxemon import prepare
 from tuxemon.compat import ReadOnlyRect
-from tuxemon.locale import T
+from tuxemon.locale import T, replace_text
 from tuxemon.math import Vector2
 
 if TYPE_CHECKING:
@@ -203,17 +177,19 @@ def open_dialog(
 
     rect = calc_dialog_rect(session.client.screen.get_rect())
     return session.client.push_state(
-        DialogState,
-        text=text,
-        avatar=avatar,
-        rect=rect,
-        menu=menu,
+        DialogState(
+            text=text,
+            avatar=avatar,
+            rect=rect,
+            menu=menu,
+        )
     )
 
 
 def open_choice_dialog(
     session: Session,
     menu: Sequence[Tuple[str, str, Callable[[], None]]],
+    escape_key_exits: bool = False,
 ) -> State:
     """
     Open a dialog choice with the standard window size.
@@ -229,8 +205,10 @@ def open_choice_dialog(
     from tuxemon.states.choice import ChoiceState
 
     return session.client.push_state(
-        ChoiceState,
-        menu=menu,
+        ChoiceState(
+            menu=menu,
+            escape_key_exits=escape_key_exits,
+        )
     )
 
 
@@ -394,7 +372,7 @@ def show_item_result_as_dialog(
     msg_type = "use_success" if result["success"] else "use_failure"
     template = getattr(item, msg_type)
     if template:
-        message = T.translate(template)
+        message = T.translate(replace_text(session, template))
         open_dialog(session, [message])
 
 

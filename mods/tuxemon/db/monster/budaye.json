@@ -12,7 +12,7 @@
             "technique": "clamp_on"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "ram"
         }
     ],
@@ -43,13 +43,14 @@
         }
     ],
     "shape": "sprite",
+    "stage": "basic",
     "types": [
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 26,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 27,
+    "height": 80,
+    "weight": 20,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

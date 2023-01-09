@@ -12,17 +12,18 @@
             "technique": "rock"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "sudden_glow"
         }
     ],
     "evolutions": [],
     "shape": "humanoid",
+    "stage": "standalone",
     "types": [
         "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 91,
+    "txmn_id": 92,
     "height": 155,
     "weight": 55,
     "catch_rate": 120.0,

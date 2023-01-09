@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="161">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="173">
  <properties>
   <property name="east" value="route1"/>
   <property name="edges" value="clamped"/>
@@ -54,7 +54,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="64" height="60">
@@ -96,11 +96,11 @@
   <object id="18" type="collision" x="432" y="0" width="32" height="48"/>
   <object id="19" type="collision" x="336" y="0" width="496" height="16"/>
   <object id="22" type="collision" x="512" y="288" width="32" height="144"/>
-  <object id="23" type="collision" x="592" y="144" width="80" height="48"/>
+  <object id="23" type="collision" x="592" y="144" width="48" height="48"/>
   <object id="24" type="collision" x="608" y="0" width="32" height="64"/>
   <object id="25" type="collision" x="656" y="0" width="32" height="64"/>
   <object id="26" type="collision" x="640" y="16" width="16" height="32"/>
-  <object id="27" type="collision" x="480" y="0" width="80" height="64"/>
+  <object id="27" type="collision" x="480" y="0" width="48" height="64"/>
   <object id="28" type="collision" x="480" y="144" width="16" height="32"/>
   <object id="29" type="collision" x="448" y="144" width="32" height="48"/>
   <object id="30" type="collision" x="496" y="144" width="32" height="48"/>
@@ -117,9 +117,9 @@
   <object id="41" type="collision" x="464" y="768" width="16" height="16"/>
   <object id="42" type="collision" x="544" y="832" width="32" height="16"/>
   <object id="43" type="collision" x="496" y="768" width="80" height="48"/>
-  <object id="44" type="collision" x="336" y="16" width="96" height="48"/>
+  <object id="44" type="collision" x="336" y="16" width="64" height="48"/>
   <object id="45" type="collision" x="320" y="64" width="32" height="16"/>
-  <object id="46" type="collision" x="736" y="64" width="80" height="48"/>
+  <object id="46" type="collision" x="736" y="64" width="48" height="48"/>
   <object id="47" type="collision" x="656" y="656" width="32" height="16"/>
   <object id="48" type="collision" x="624" y="720" width="16" height="16"/>
   <object id="49" type="collision" x="624" y="832" width="16" height="16"/>
@@ -210,11 +210,19 @@
     <property name="exit_to" value="down"/>
    </properties>
   </object>
+  <object id="161" type="collision" x="800" y="64" width="16" height="48"/>
+  <object id="162" type="collision" x="784" y="64" width="16" height="32"/>
+  <object id="164" type="collision" x="640" y="144" width="16" height="32"/>
+  <object id="165" type="collision" x="400" y="16" width="16" height="32"/>
+  <object id="166" type="collision" x="528" y="16" width="16" height="32"/>
+  <object id="167" type="collision" x="656" y="144" width="16" height="48"/>
+  <object id="168" type="collision" x="416" y="16" width="16" height="48"/>
+  <object id="169" type="collision" x="544" y="16" width="16" height="48"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport player_house_downstairs.tmx,5,7,0.5"/>
+    <property name="act10" value="transition_teleport player_house_downstairs.tmx,4,6,0.3"/>
     <property name="cond10" value="is player_at"/>
    </properties>
   </object>
@@ -226,7 +234,7 @@
   </object>
   <object id="69" name="Go to Test house" type="event" x="528" y="688" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport maple_house.tmx,7,10,0.5"/>
+    <property name="act10" value="transition_teleport maple_house.tmx,6,10,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
    </properties>
@@ -315,7 +323,7 @@
   </object>
   <object id="95" name="Go to Professor's Lab" type="event" x="704" y="832" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport professor_lab.tmx,9,17,0.5"/>
+    <property name="act10" value="transition_teleport professor_lab.tmx,9,17,0.3"/>
     <property name="cond10" value="is player_at"/>
    </properties>
   </object>
@@ -328,14 +336,14 @@
   </object>
   <object id="98" name="Teleport to healing center" type="event" x="640" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport healing_center.tmx,7,12,0.3"/>
+    <property name="act10" value="transition_teleport healing_center.tmx,6,10,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
   <object id="108" name="Enter mart" type="event" x="480" y="176" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport tuxe_mart_taba.tmx,7,12,0.3"/>
+    <property name="act10" value="transition_teleport tuxe_mart_taba.tmx,6,10,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
    </properties>
@@ -363,7 +371,7 @@
   </object>
   <object id="115" name="Route 0 Sign" type="event" x="576" y="544" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog here_to_east"/>
+    <property name="act10" value="translated_dialog taba_town_route20"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
@@ -664,7 +672,7 @@
     <property name="act12" value="unlock_controls"/>
     <property name="act15" value="set_variable comeinside:done"/>
     <property name="act17" value="player_resume"/>
-    <property name="act18" value="transition_teleport player_house_downstairs.tmx,5,7,0.5"/>
+    <property name="act18" value="transition_teleport player_house_downstairs.tmx,4,6,0.3"/>
     <property name="cond1" value="is variable_set comeinside:yes"/>
    </properties>
   </object>
@@ -905,14 +913,42 @@
     <property name="act30" value="npc_face player,up"/>
     <property name="act35" value="unlock_controls"/>
     <property name="act36" value="set_variable moveplayer:false"/>
-    <property name="act40" value="transition_teleport player_house_downstairs.tmx,5,7,0.5"/>
+    <property name="act40" value="transition_teleport player_house_downstairs.tmx,4,6,0.3"/>
     <property name="cond1" value="is variable_set moveplayer:true"/>
    </properties>
   </object>
   <object id="160" name="Default" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable teleport_faint:healing_center.tmx 7 10"/>
+    <property name="act1" value="set_variable teleport_faint:healing_center.tmx 6 10"/>
     <property name="cond1" value="not variable_set teleport_faint"/>
+   </properties>
+  </object>
+  <object id="163" name="Teleport to house1" type="event" x="784" y="96" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport taba_town_house1.tmx,7,6,0.3"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="170" name="Teleport to house2" type="event" x="640" y="176" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport taba_town_house2.tmx,7,6,0.3"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="171" name="Teleport to house3" type="event" x="528" y="48" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport taba_town_house3.tmx,7,6,0.3"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="172" name="Teleport to house4" type="event" x="400" y="48" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport taba_town_house4.tmx,7,6,0.3"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

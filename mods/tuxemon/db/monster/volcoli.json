@@ -12,19 +12,20 @@
             "technique": "flamethrower"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "sudden_glow"
         }
     ],
     "evolutions": [],
     "shape": "humanoid",
+    "stage": "standalone",
     "types": [
         "fire"
     ],
-    "possible_genders": ["male", "female"],
-    "txmn_id": 123,
-    "height": 0,
-    "weight": 0,
+    "possible_genders": ["neuter"],
+    "txmn_id": 124,
+    "height": 53,
+    "weight": 18,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

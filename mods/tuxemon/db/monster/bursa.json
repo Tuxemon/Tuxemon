@@ -12,7 +12,7 @@
             "technique": "amnesia"
         },
         {
-            "level_learned": 2,
+            "level_learned": 16,
             "technique": "fire_ball"
         }
     ],
@@ -24,11 +24,12 @@
         }
     ],
     "shape": "humanoid",
+    "stage": "basic",
     "types": [
         "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 82,
+    "txmn_id": 83,
     "height": 180,
     "weight": 110,
     "catch_rate": 170.0,

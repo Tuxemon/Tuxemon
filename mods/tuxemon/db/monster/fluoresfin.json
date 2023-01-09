@@ -12,7 +12,7 @@
             "technique": "sudden_glow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "glower"
         }
     ],
@@ -24,11 +24,12 @@
         }
     ],
     "shape": "aquatic",
+    "stage": "basic",
     "types": [
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 67,
+    "txmn_id": 68,
     "height": 80,
     "weight": 11,
     "catch_rate": 170.0,

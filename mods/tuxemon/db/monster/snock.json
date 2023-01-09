@@ -1,0 +1,39 @@
+{
+    "slug": "snock",
+    "category": "sock",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 2,
+            "technique": "surge"
+        },
+        {
+            "level_learned": 16,
+            "technique": "frostbite"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 24,
+            "monster_slug": "pythock"
+        }
+    ],
+    "shape": "serpent",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 225,
+    "height": 30,
+    "weight": 1,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

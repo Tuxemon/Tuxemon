@@ -12,12 +12,13 @@
             "technique": "boulder"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "thunderball"
         }
     ],
     "evolutions": [],
     "shape": "hunter",
+    "stage": "standalone",
     "types": [
         "glitch",
         "earth"

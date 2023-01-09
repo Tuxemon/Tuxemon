@@ -12,17 +12,24 @@
             "technique": "chill_mist"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "snowstorm"
         }
     ],
-    "evolutions": [],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "shnark"
+        }
+    ],
     "shape": "aquatic",
+    "stage": "basic",
     "types": [
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 148,
+    "txmn_id": 152,
     "height": 120,
     "weight": 30,
     "catch_rate": 85.0,

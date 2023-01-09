@@ -12,17 +12,18 @@
             "technique": "berserk"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "breathe_fire"
         }
     ],
     "evolutions": [],
     "shape": "dragon",
+    "stage": "standalone",
     "types": [
         "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 141,
+    "txmn_id": 145,
     "height": 1200,
     "weight": 10000,
     "catch_rate": 3.0,

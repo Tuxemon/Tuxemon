@@ -6,31 +6,34 @@
   <property name="slug" value="greenwash_level2"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ <tileset firstgid="1" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
+  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
  </tileset>
- <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ <tileset firstgid="85" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
+  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
  </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1085" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+ <tileset firstgid="245" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
  </tileset>
- <tileset firstgid="8814" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
+ <tileset firstgid="773" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
+ </tileset>
+ <tileset firstgid="3365" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
  <layer id="7" name="Tile Layer 1" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAEzlmBgMAFiUzJoM6CeRCBOAuJkMugUqP7HwgwMT8jAMP2CIgwMQmTggdR/TImBYSDtB4XXqP2Q9DsU089o/I2m39H8C8m/KczAtICGiakPYOGHrhfEHyn6AZsaee8=
+   eAHL5mVgyIHiWUhsmBg6nQtVA6LzgHgyEE8B4qlAfIhEehpQ/W4gLhViYCgjA++D6p8L1DuPDDyQ+g0YGBgG0n5QeI3aD0l/Qyn9LBRGpPXR+Bt68YdcTlEaf7Dyk9z0O9D6qeX/dGBZio6RwxkXG2Y/ul4QH5ceZHGYfnLDfzDoBwAZyFy1
   </data>
  </layer>
  <layer id="11" name="Tile Layer 2" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAHllTEOwjAMRQ0tLJSpCyvHQBymI3Cgwp3gJHAKvgdLVuo4ScsQCUtfjaL8JH61FSI7dgeiPTQ3TvCe/9h/Qe436HkkekGlMcL7gN7wfmb4S89bsr7DPXNF/fSkK/y5YqZh3DGXK2Zaa6zAJsXR4if5cM812MNjafHTfu5Zj6XHr4aeXyuGHivJWX+5Z4Vdi30GqCS4Z5kdM2IWpX591i/8moXUVS6TWC159RPe36olr34sv56LjTf4T9tANdTikvdP3o9Yzql5eT9S676xsjmz
+   eAHllc0NwjAMhS3unJgKGIRzxTTAib9BChIMAUvABDwfnmSF2CTlQCQsPTWJ+pL4a9yI5GM6FplDQ6ODd/nH/hVy30C3kcgdqo0e3jP0gPc5wF+73jfvz7DPUm0n7yut4S+VMk3jhLFSKdNWYwc2nzjm+DEfrbkD5ohY5vhZv9ZsxDLi10LN7w3DiBVztk+tWbI7Yp7a/5fWLNm1xoLnqpSJd5ai82NZMn/y4DM6Pzm/HfPaF3yrayKu73ns+AKdVL/28/6w+/Ta6d61z/vD83D8BcTCX1Q=
   </data>
  </layer>
  <layer id="12" name="Tile Layer 3" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAHt0jcKAkEYxfFXKmhlqNVGQUvTCbTSxnQJtzHdw3QdQ69HMBzC0PqvF2HZD2Fh8MGvGJi3zHyzklTNSTXU0UATYdJjfx8DDDFCmEzYP8UMcywQJkv2r7DGBlu4klNeOsPl7LjfHgccEbT2z+JC54ob7gha+/uurmMFKQ5rinRL6KBr+E6LThtjeIa+9dzfei/+izesyXD+bMR3sJ496l6CuSXxYP5PwxuU6VaQQhr//G4CH0a/LJc=
+   eAHl00sOwVAYxfGjSSliQOIxZU/sgCErYAdsQ4u5eizAawFee2AH/E07aHOvWXuS3+BLvpOmN/dKkl+SAiywxAomCdnfYIsd9jDJgf0jTjjjApNc2b/hjgeeSEuGjjRCmuNWpDwK8JA0R8+iTqeBJlpImqP9tM453oHzx1uo0q1hXJYmME2bbgdTujOLvun34vZfnvSGbT6/btG2ne1e15V6mHMHfIt70Kc7wJpuaNHP9unH//0X0QIdwA==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">

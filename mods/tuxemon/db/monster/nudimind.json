@@ -12,19 +12,32 @@
             "technique": "feint"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 20,
             "technique": "sleep_bomb"
+        },
+        {
+            "level_learned": 24,
+            "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 28,
+            "technique": "biting_winds"
         }
     ],
     "evolutions": [],
     "shape": "polliwog",
+    "stage": "stage1",
     "types": [
         "water"
     ],
     "possible_genders": ["female"],
-    "txmn_id": 54,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 55,
+    "height": 98,
+    "weight": 34,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

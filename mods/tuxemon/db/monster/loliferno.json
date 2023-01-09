@@ -1,0 +1,45 @@
+{
+    "slug": "loliferno",
+    "category": "spirit_fire",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "supernova"
+        },
+        {
+            "level_learned": 2,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 12,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 24,
+            "technique": "flamethrower"
+        },
+        {
+            "level_learned": 28,
+            "technique": "rock"
+        },
+        {
+            "level_learned": 32,
+            "technique": "fire_ball"
+        }
+    ],
+    "evolutions": [],
+    "shape": "blob",
+    "stage": "stage1",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 163,
+    "height": 60,
+    "weight": 0,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

@@ -12,25 +12,26 @@
             "technique": "take_cover"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "sting"
         }
     ],
     "evolutions": [
         {
             "path": "standard",
-            "at_level": 20,
+            "at_level": 18,
             "monster_slug": "narcileaf"
         }
     ],
     "shape": "sprite",
+    "stage": "basic",
     "types": [
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 76,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 77,
+    "height": 29,
+    "weight": 2,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

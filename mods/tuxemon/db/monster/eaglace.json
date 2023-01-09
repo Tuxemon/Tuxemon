@@ -5,19 +5,44 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 12,
+            "technique": "energy_field"
+        },
+        {
+            "level_learned": 28,
             "technique": "icicle_spear"
         },
         {
-            "level_learned": 2,
+            "level_learned": 32,
             "technique": "biting_winds"
         },
         {
-            "level_learned": 2,
+            "level_learned": 34,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 44,
+            "technique": "font"
+        },
+        {
+            "level_learned": 48,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 52,
             "technique": "snowstorm"
         }
     ],
     "evolutions": [],
     "shape": "flier",
+    "stage": "stage2",
     "types": [
         "water"
     ],

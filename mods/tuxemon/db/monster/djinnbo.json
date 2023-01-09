@@ -12,17 +12,18 @@
             "technique": "give_all"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "flamethrower"
         }
     ],
     "evolutions": [],
     "shape": "humanoid",
+    "stage": "standalone",
     "types": [
         "fire"
     ],
-    "possible_genders": ["male", "female"],
-    "txmn_id": 107,
+    "possible_genders": ["neuter"],
+    "txmn_id": 108,
     "height": 160,
     "weight": 0,
     "catch_rate": 85.0,

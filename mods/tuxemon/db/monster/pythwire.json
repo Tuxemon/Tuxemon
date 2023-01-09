@@ -12,7 +12,7 @@
             "technique": "surge"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "constrict"
         }
     ],
@@ -31,11 +31,12 @@
         }
     ],
     "shape": "serpent",
+    "stage": "basic",
     "types": [
         "metal"
     ],
     "possible_genders": ["neuter"],
-    "txmn_id": 88,
+    "txmn_id": 89,
     "height": 200,
     "weight": 4,
     "catch_rate": 170.0,

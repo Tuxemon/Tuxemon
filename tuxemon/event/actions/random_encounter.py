@@ -1,29 +1,11 @@
-#
-# Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 import random
-from typing import NamedTuple, Optional, Sequence, Union, final
+from dataclasses import dataclass
+from typing import Optional, Sequence, Union, final
 
 from tuxemon import ai, formula, monster, prepare
 from tuxemon.combat import check_battle_legal
@@ -37,13 +19,9 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
-class RandomEncounterActionParameters(NamedTuple):
-    encounter_slug: str
-    total_prob: Union[float, None]
-
-
 @final
-class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
+@dataclass
+class RandomEncounterAction(EventAction):
     """
     Randomly start a encounter.
 
@@ -67,7 +45,8 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
     """
 
     name = "random_encounter"
-    param_class = RandomEncounterActionParameters
+    encounter_slug: str
+    total_prob: Union[float, None] = None
 
     def start(self) -> None:
         player = self.session.player
@@ -77,9 +56,9 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
         if not check_battle_legal(player):
             return
 
-        slug = self.parameters.encounter_slug
+        slug = self.encounter_slug
         encounters = db.lookup(slug, table="encounter").monsters
-        encounter = _choose_encounter(encounters, self.parameters.total_prob)
+        encounter = _choose_encounter(encounters, self.total_prob)
 
         # If a random encounter was successfully rolled, look up the monster
         # and start the battle.
@@ -110,7 +89,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
             self.world.stop_player()
 
             # flash the screen
-            self.session.client.push_state(FlashTransition)
+            self.session.client.push_state(FlashTransition())
 
             # Start some music!
             filename = env.battle_music

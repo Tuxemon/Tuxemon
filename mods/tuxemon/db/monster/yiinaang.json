@@ -12,18 +12,19 @@
             "technique": "midnight_mantle"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "electrical_storm"
         }
     ],
     "evolutions": [],
     "shape": "blob",
+    "stage": "standalone",
     "types": [
         "fire",
         "water"
     ],
-    "possible_genders": ["male", "female"],
-    "txmn_id": 142,
+    "possible_genders": ["neuter"],
+    "txmn_id": 146,
     "height": 200,
     "weight": 0,
     "catch_rate": 120.0,

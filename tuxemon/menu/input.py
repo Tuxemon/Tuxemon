@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from functools import partial
@@ -34,9 +36,8 @@ class InputMenu(Menu[InputMenuObj]):
     background = None
     draw_borders = False
 
-    def startup(
+    def __init__(
         self,
-        *items: Any,
         prompt: str = "",
         callback: Optional[Callable[[str], None]] = None,
         initial: str = "",
@@ -54,7 +55,7 @@ class InputMenu(Menu[InputMenuObj]):
             initial: Optional string to pre-fill the input box with.
 
         """
-        super().startup(*items, **kwargs)
+        super().__init__(**kwargs)
         self.input_string = initial
         self.chars = T.translate("menu_alphabet").replace(r"\0", "\0")
         self.n_columns = int(T.translate("menu_alphabet_n_columns"))
@@ -156,7 +157,7 @@ class InputMenu(Menu[InputMenuObj]):
                         (c, c, partial(self.add_input_char_and_pop, c))
                         for c in all_variants
                     ]
-                    self.client.push_state(ChoiceState, menu=choices)
+                    self.client.push_state(ChoiceState(menu=choices))
             return None
 
         maybe_event = super().process_event(event)

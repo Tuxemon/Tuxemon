@@ -12,19 +12,20 @@
             "technique": "all_in"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "one_two"
         }
     ],
     "evolutions": [],
     "shape": "brute",
+    "stage": "standalone",
     "types": [
         "earth"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 116,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 117,
+    "height": 133,
+    "weight": 66,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

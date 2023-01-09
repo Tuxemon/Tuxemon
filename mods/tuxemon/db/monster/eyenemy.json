@@ -12,25 +12,26 @@
             "technique": "spray"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "glower"
         }
     ],
     "evolutions": [
         {
             "path": "standard",
-            "at_level": 20,
+            "at_level": 18,
             "monster_slug": "eyesore"
         }
     ],
     "shape": "serpent",
+    "stage": "basic",
     "types": [
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 45,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 46,
+    "height": 104,
+    "weight": 2,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

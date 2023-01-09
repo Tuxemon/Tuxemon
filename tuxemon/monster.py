@@ -1,32 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-#
-#
-# monster Tuxemon monster module
-#
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -38,10 +11,12 @@ from tuxemon import ai, formula, fusion, graphics
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import (
     ElementType,
+    EvolutionStage,
     GenderType,
     MonsterEvolutionItemModel,
     MonsterMovesetItemModel,
     MonsterShape,
+    StatType,
     db,
 )
 from tuxemon.locale import T
@@ -228,6 +203,7 @@ class Monster:
         self.moves: List[Technique] = []
         self.moveset: List[MonsterMovesetItemModel] = []
         self.evolutions: List[MonsterEvolutionItemModel] = []
+        self.stage = EvolutionStage.standalone
         self.flairs: Dict[str, Flair] = {}
         self.battle_cry = ""
         self.faint_cry = ""
@@ -307,6 +283,7 @@ class Monster:
         self.description = T.translate(f"{results.slug}_description")
         self.category = T.translate(results.category)
         self.shape = results.shape or MonsterShape.landrace
+        self.stage = results.stage or EvolutionStage.standalone
         types = results.types
         if types:
             self.type1 = results.types[0]
@@ -387,6 +364,29 @@ class Monster:
         """
 
         self.moves.append(technique)
+
+    def return_stat(
+        self,
+        stat: StatType,
+    ) -> int:
+        """
+        Returns a monster stat (eg. melee, armour, etc.).
+
+        Parameters:
+            stat: The stat for the monster to return.
+        """
+        if stat == StatType.armour:
+            return self.armour
+        elif stat == StatType.dodge:
+            return self.dodge
+        elif stat == StatType.hp:
+            return self.hp
+        elif stat == StatType.melee:
+            return self.melee
+        elif stat == StatType.ranged:
+            return self.ranged
+        elif stat == StatType.speed:
+            return self.speed
 
     def give_experience(self, amount: int = 1) -> None:
         """

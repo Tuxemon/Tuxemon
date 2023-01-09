@@ -1,0 +1,34 @@
+{
+    "slug": "grumpi",
+    "category": "gummy",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 12,
+            "technique": "all_in"
+        }
+    ],
+    "evolutions": [],
+    "shape": "brute",
+    "stage": "standalone",
+    "types": [
+        "earth",
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 206,
+    "height": 150,
+    "weight": 160,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

@@ -5,26 +5,39 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "flamethrower"
-        },
-        {
-            "level_learned": 2,
             "technique": "rock"
         },
         {
             "level_learned": 2,
+            "technique": "energy_field"
+        },
+        {
+            "level_learned": 12,
             "technique": "sleep_bomb"
+        },
+        {
+            "level_learned": 20,
+            "technique": "thunderclap"
+        },
+        {
+            "level_learned": 24,
+            "technique": "shadow_boxing"
+        },
+        {
+            "level_learned": 28,
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [],
     "shape": "humanoid",
+    "stage": "stage1",
     "types": [
         "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 87,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 88,
+    "height": 108,
+    "weight": 88,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

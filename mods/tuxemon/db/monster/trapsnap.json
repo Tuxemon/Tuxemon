@@ -12,7 +12,7 @@
             "technique": "headbutt"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "fluff_up"
         }
     ],
@@ -24,11 +24,12 @@
         }
     ],
     "shape": "brute",
+    "stage": "basic",
     "types": [
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 84,
+    "txmn_id": 85,
     "height": 120,
     "weight": 60,
     "catch_rate": 170.0,

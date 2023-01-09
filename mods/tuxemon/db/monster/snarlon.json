@@ -12,17 +12,18 @@
             "technique": "energy_field"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "sand_spray"
         }
     ],
     "evolutions": [],
     "shape": "hunter",
+    "stage": "standalone",
     "types": [
         "earth"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 143,
+    "txmn_id": 147,
     "height": 160,
     "weight": 130,
     "catch_rate": 120.0,

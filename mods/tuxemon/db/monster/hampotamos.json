@@ -12,17 +12,18 @@
             "technique": "mudslide"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "ram"
         }
     ],
     "evolutions": [],
     "shape": "landrace",
+    "stage": "standalone",
     "types": [
         "earth"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 146,
+    "txmn_id": 150,
     "height": 150,
     "weight": 180,
     "catch_rate": 120.0,

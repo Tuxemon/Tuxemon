@@ -9,20 +9,33 @@
         },
         {
             "level_learned": 2,
+            "technique": "feint"
+        },
+        {
+            "level_learned": 12,
+            "technique": "sand_spray"
+        },
+        {
+            "level_learned": 20,
             "technique": "rot"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
             "technique": "blade"
+        },
+        {
+            "level_learned": 28,
+            "technique": "bullet"
         }
     ],
     "evolutions": [],
     "shape": "hunter",
+    "stage": "stage1",
     "types": [
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 22,
+    "txmn_id": 21,
     "height": 210,
     "weight": 190,
     "catch_rate": 45.0,

@@ -12,7 +12,7 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
             "technique": "splinter"
         }
     ],
@@ -24,14 +24,15 @@
         }
     ],
     "shape": "grub",
+    "stage": "basic",
     "types": [
         "metal",
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 55,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 56,
+    "height": 32,
+    "weight": 3,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

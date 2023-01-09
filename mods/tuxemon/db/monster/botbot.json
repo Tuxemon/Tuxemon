@@ -12,7 +12,7 @@
             "technique": "levitate"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "battery_discharge"
         }
     ],
@@ -40,16 +40,23 @@
             "at_level": 0,
             "monster_slug": "k9",
             "item": "booster_tech"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "b_ver_1",
+            "item": "booster_tech"
         }
     ],
     "shape": "grub",
+    "stage": "basic",
     "types": [
         "metal"
     ],
     "possible_genders": ["neuter"],
-    "txmn_id": 124,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 125,
+    "height": 40,
+    "weight": 4,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

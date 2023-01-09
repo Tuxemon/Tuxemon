@@ -12,12 +12,13 @@
             "technique": "flood"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "flow"
         }
     ],
     "evolutions": [],
     "shape": "aquatic",
+    "stage": "standalone",
     "types": [
         "glitch",
         "water"

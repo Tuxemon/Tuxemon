@@ -5,24 +5,37 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 12,
+            "technique": "static_field"
+        },
+        {
+            "level_learned": 16,
             "technique": "berserk"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "hibernate"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
             "technique": "energy_field"
         }
     ],
     "evolutions": [],
     "shape": "landrace",
+    "stage": "stage1",
     "types": [
         "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 31,
+    "txmn_id": 32,
     "height": 600,
     "weight": 12000,
     "catch_rate": 45.0,

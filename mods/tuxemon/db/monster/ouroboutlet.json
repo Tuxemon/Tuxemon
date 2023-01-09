@@ -5,25 +5,38 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "electrical_storm"
+            "technique": "strike"
         },
         {
             "level_learned": 2,
             "technique": "surge"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "constrict"
+        },
+        {
+            "level_learned": 20,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 24,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 28,
+            "technique": "electrical_storm"
         }
     ],
     "evolutions": [],
     "shape": "serpent",
+    "stage": "stage1",
     "types": [
         "metal",
         "fire"
     ],
     "possible_genders": ["neuter"],
-    "txmn_id": 89,
+    "txmn_id": 90,
     "height": 62,
     "weight": 4,
     "catch_rate": 85.0,

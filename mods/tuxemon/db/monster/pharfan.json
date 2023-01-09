@@ -12,17 +12,18 @@
             "technique": "flow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "stampede"
         }
     ],
     "evolutions": [],
     "shape": "landrace",
+    "stage": "standalone",
     "types": [
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 147,
+    "txmn_id": 151,
     "height": 200,
     "weight": 500,
     "catch_rate": 120.0,

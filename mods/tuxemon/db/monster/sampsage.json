@@ -12,19 +12,20 @@
             "technique": "bubble_trap"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "strike"
         }
     ],
     "evolutions": [],
     "shape": "humanoid",
+    "stage": "standalone",
     "types": [
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 97,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 98,
+    "height": 180,
+    "weight": 122,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

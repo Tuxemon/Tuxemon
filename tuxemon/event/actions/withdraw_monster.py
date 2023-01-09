@@ -1,32 +1,11 @@
-#
-# Tuxemon
-# Copyright (c) 2020      William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Adam Chevalier <chevalierAdam2@gmail.com>
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 import uuid
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
@@ -34,13 +13,9 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
-class WithdrawMonsterActionParameters(NamedTuple):
-    trainer: str
-    monster_id: str
-
-
 @final
-class WithdrawMonsterAction(EventAction[WithdrawMonsterActionParameters]):
+@dataclass
+class WithdrawMonsterAction(EventAction):
     """
     Pull a monster from the given trainer's storage and puts it in their party.
 
@@ -60,16 +35,16 @@ class WithdrawMonsterAction(EventAction[WithdrawMonsterActionParameters]):
     """
 
     name = "withdraw_monster"
-    param_class = WithdrawMonsterActionParameters
+    trainer: str
+    monster_id: str
 
     def start(self) -> None:
-        trainer, monster_id = self.parameters
         world = self.session.client.get_state_by_name(WorldState)
 
-        trainer = trainer.replace("player", "npc_red")
+        trainer = self.trainer.replace("player", "npc_red")
         npc = world.get_entity(trainer)
         assert npc
-        instance_id = uuid.UUID(npc.game_variables[monster_id])
+        instance_id = uuid.UUID(npc.game_variables[self.monster_id])
         mon = npc.find_monster_in_storage(instance_id)
         assert mon
 

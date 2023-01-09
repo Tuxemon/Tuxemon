@@ -12,8 +12,20 @@
             "technique": "sudden_glow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "glower"
+        },
+        {
+            "level_learned": 24,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 28,
             "technique": "starfall"
+        },
+        {
+            "level_learned": 32,
+            "technique": "flood"
         }
     ],
     "evolutions": [
@@ -24,11 +36,12 @@
         }
     ],
     "shape": "aquatic",
+    "stage": "stage1",
     "types": [
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 68,
+    "txmn_id": 69,
     "height": 250,
     "weight": 150,
     "catch_rate": 85.0,

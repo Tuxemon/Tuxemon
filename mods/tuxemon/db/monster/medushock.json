@@ -1,0 +1,34 @@
+{
+    "slug": "medushock",
+    "category": "jellyfish",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "rock"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 12,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [],
+    "shape": "blob",
+    "stage": "standalone",
+    "types": [
+        "fire",
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 208,
+    "height": 133,
+    "weight": 3,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

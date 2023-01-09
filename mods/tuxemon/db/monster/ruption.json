@@ -5,26 +5,39 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "refresh"
+        },
+        {
+            "level_learned": 16,
+            "technique": "kindling_flame"
+        },
+        {
+            "level_learned": 32,
             "technique": "berserk"
         },
         {
-            "level_learned": 2,
+            "level_learned": 36,
             "technique": "fume"
         },
         {
-            "level_learned": 2,
-            "technique": "kindling_flame"
+            "level_learned": 40,
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [],
     "shape": "brute",
+    "stage": "stage1",
     "types": [
         "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 75,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 76,
+    "height": 169,
+    "weight": 16,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

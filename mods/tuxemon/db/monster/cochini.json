@@ -12,17 +12,18 @@
             "technique": "thunderball"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "headbutt"
         }
     ],
     "evolutions": [],
     "shape": "varmint",
+    "stage": "standalone",
     "types": [
         "earth"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 103,
+    "txmn_id": 104,
     "height": 80,
     "weight": 15,
     "catch_rate": 120.0,

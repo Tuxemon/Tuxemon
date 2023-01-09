@@ -9,15 +9,40 @@
         },
         {
             "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 12,
+            "technique": "thunderball"
+        },
+        {
+            "level_learned": 28,
             "technique": "glower"
         },
         {
-            "level_learned": 2,
+            "level_learned": 32,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 34,
+            "technique": "surge"
+        },
+        {
+            "level_learned": 44,
             "technique": "stampede"
+        },
+        {
+            "level_learned": 48,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 52,
+            "technique": "biting_winds"
         }
     ],
     "evolutions": [],
     "shape": "hunter",
+    "stage": "stage2",
     "types": [
         "earth"
     ],

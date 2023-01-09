@@ -1,35 +1,9 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Leif Theden <leif.theden@gmail.com>
-# Carlos Ramos <vnmabus@gmail.com>
-#
-#
-# states.LoadMenuState
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
-from typing import Any, Optional
+from typing import Optional
 
 from tuxemon import prepare, save
 from tuxemon.menu.interface import MenuItem
@@ -42,13 +16,10 @@ logger = logging.getLogger(__name__)
 
 
 class LoadMenuState(SaveMenuState):
-    def startup(self, **kwargs: Any) -> None:
-        if "selected_index" not in kwargs:
-            kwargs["selected_index"] = save.slot_number or 0
-        super().startup(**kwargs)
-        slot = kwargs.get("load_slot")
-        if slot:
-            self.selected_index = slot - 1
+    def __init__(self, load_slot: Optional[int] = None) -> None:
+        super().__init__()
+        if load_slot:
+            self.selected_index = load_slot - 1
             self.on_menu_selection(None)
 
     def on_menu_selection(self, menuitem: Optional[MenuItem[None]]) -> None:
@@ -67,8 +38,9 @@ class LoadMenuState(SaveMenuState):
 
             map_path = prepare.fetch("maps", save_data["current_map"])
             self.client.push_state(
-                WorldState,
-                map_name=map_path,
+                WorldState(
+                    map_name=map_path,
+                )
             )
 
             # TODO: Get player from whatever place and use self.client in

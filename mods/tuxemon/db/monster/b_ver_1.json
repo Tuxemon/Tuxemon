@@ -1,0 +1,45 @@
+{
+    "slug": "b_ver_1",
+    "category": "gnawer",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "beam"
+        },
+        {
+            "level_learned": 2,
+            "technique": "levitate"
+        },
+        {
+            "level_learned": 12,
+            "technique": "battery_discharge"
+        },
+        {
+            "level_learned": 16,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 20,
+            "technique": "glower"
+        },
+        {
+            "level_learned": 24,
+            "technique": "shrapnel"
+        }
+    ],
+    "evolutions": [],
+    "shape": "varmint",
+    "stage": "stage1",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 130,
+    "height": 100,
+    "weight": 50,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

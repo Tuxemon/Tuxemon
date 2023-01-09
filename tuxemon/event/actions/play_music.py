@@ -1,28 +1,10 @@
-#
-# Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon import prepare
 from tuxemon.db import db
@@ -32,12 +14,9 @@ from tuxemon.platform import mixer
 logger = logging.getLogger(__name__)
 
 
-class PlayMusicActionParameters(NamedTuple):
-    filename: str
-
-
 @final
-class PlayMusicAction(EventAction[PlayMusicActionParameters]):
+@dataclass
+class PlayMusicAction(EventAction):
     """
     Play a music file from "resources/music/".
 
@@ -52,13 +31,13 @@ class PlayMusicAction(EventAction[PlayMusicActionParameters]):
     """
 
     name = "play_music"
-    param_class = PlayMusicActionParameters
+    filename: str
 
     def start(self) -> None:
-        filename = self.parameters.filename
-
         try:
-            path = prepare.fetch("music", db.lookup_file("music", filename))
+            path = prepare.fetch(
+                "music", db.lookup_file("music", self.filename)
+            )
             mixer.music.load(path)
             mixer.music.set_volume(prepare.CONFIG.music_volume)
             mixer.music.play(-1)
@@ -72,4 +51,4 @@ class PlayMusicAction(EventAction[PlayMusicActionParameters]):
                 "previoussong"
             ] = self.session.client.current_music["song"]
         self.session.client.current_music["status"] = "playing"
-        self.session.client.current_music["song"] = filename
+        self.session.client.current_music["song"] = self.filename

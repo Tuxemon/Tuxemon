@@ -12,18 +12,19 @@
             "technique": "perfect_cut"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "shrapnel"
         }
     ],
     "evolutions": [],
     "shape": "humanoid",
+    "stage": "standalone",
     "types": [
         "metal",
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 111,
+    "txmn_id": 112,
     "height": 155,
     "weight": 200,
     "catch_rate": 120.0,

@@ -5,24 +5,49 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "static_field"
+            "technique": "flow"
         },
         {
             "level_learned": 2,
             "technique": "sudden_glow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "glower"
+        },
+        {
+            "level_learned": 24,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 28,
             "technique": "starfall"
+        },
+        {
+            "level_learned": 32,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 40,
+            "technique": "static_field"
+        },
+        {
+            "level_learned": 44,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 48,
+            "technique": "probiscus"
         }
     ],
     "evolutions": [],
     "shape": "leviathan",
+    "stage": "stage2",
     "types": [
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 69,
+    "txmn_id": 70,
     "height": 300,
     "weight": 200,
     "catch_rate": 45.0,

@@ -12,17 +12,18 @@
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "perfect_cut"
         }
     ],
     "evolutions": [],
     "shape": "varmint",
+    "stage": "standalone",
     "types": [
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 112,
+    "txmn_id": 113,
     "height": 60,
     "weight": 8,
     "catch_rate": 120.0,

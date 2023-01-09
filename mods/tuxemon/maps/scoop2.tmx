@@ -6,26 +6,21 @@
   <property name="slug" value="scoop2"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ <tileset firstgid="1" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ <tileset firstgid="89" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
  </tileset>
- <tileset firstgid="7729" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
+ <tileset firstgid="1089" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
  </tileset>
- <tileset firstgid="10699" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="744" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+ <tileset firstgid="1143" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
+  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="8" height="5">
   <data encoding="base64" compression="zlib">
-   eAFjYIAAZ34GBhcgdgViZAATKwSKFwFxMRAjq4WJzQeKLwDihUCMrBYmNomFgQGGkdXCxHDRAMTEEo4=
-  </data>
- </layer>
- <layer id="4" name="Tile Layer 2" width="8" height="5">
-  <data encoding="base64" compression="zlib">
-   eAFjYCAeOGgTVhstx9AAUoVLbQdUHqRmlRADQwIBMwH8JQQ9
+   eAFjYIAAP0YGBn8gDgBiZAATKwOKlwNxBRDD1ILkYGLzgOz5QLwAiGFqQXIwsTQWBgYYhqkFycHEcNEATmgPzw==
   </data>
  </layer>
  <objectgroup color="#ffff00" id="2" name="Events">
@@ -79,4 +74,9 @@
    <polyline points="0,0 16,0"/>
   </object>
  </objectgroup>
+ <layer id="4" name="Tile Layer 2" width="8" height="5">
+  <data encoding="base64" compression="zlib">
+   eAFjYCAeMBNQygeUn8HC0ABShkvtfKg8SO06IGYFKcYDAK78AxU=
+  </data>
+ </layer>
 </map>

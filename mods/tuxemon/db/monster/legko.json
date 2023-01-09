@@ -5,15 +5,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "overgrowth"
+            "technique": "sting"
         },
         {
             "level_learned": 2,
             "technique": "blossom"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "boulder"
+        },
+        {
+            "level_learned": 28,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 32,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 34,
+            "technique": "spray"
         }
     ],
     "evolutions": [
@@ -24,13 +36,14 @@
         }
     ],
     "shape": "serpent",
+    "stage": "stage1",
     "types": [
         "wood"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 11,
-    "height": 0,
-    "weight": 0,
+    "height": 123,
+    "weight": 52,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

@@ -12,7 +12,7 @@
             "technique": "feint"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "flood"
         }
     ],
@@ -24,13 +24,14 @@
         }
     ],
     "shape": "polliwog",
+    "stage": "basic",
     "types": [
         "water"
     ],
     "possible_genders": ["female"],
-    "txmn_id": 53,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 54,
+    "height": 29,
+    "weight": 3,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

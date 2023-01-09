@@ -5,26 +5,39 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "wall_of_steel"
-        },
-        {
-            "level_learned": 2,
             "technique": "beam"
         },
         {
             "level_learned": 2,
+            "technique": "levitate"
+        },
+        {
+            "level_learned": 12,
             "technique": "battery_discharge"
+        },
+        {
+            "level_learned": 16,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 20,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 24,
+            "technique": "glower"
         }
     ],
     "evolutions": [],
     "shape": "sprite",
+    "stage": "stage1",
     "types": [
         "metal"
     ],
     "possible_genders": ["neuter"],
-    "txmn_id": 127,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 128,
+    "height": 56,
+    "weight": 4,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

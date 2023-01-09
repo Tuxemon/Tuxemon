@@ -5,24 +5,37 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "blade"
+            "technique": "muddle"
         },
         {
             "level_learned": 2,
             "technique": "clamp_on"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "ram"
+        },
+        {
+            "level_learned": 20,
+            "technique": "blade"
+        },
+        {
+            "level_learned": 24,
+            "technique": "peck"
+        },
+        {
+            "level_learned": 28,
+            "technique": "splinter"
         }
     ],
     "evolutions": [],
     "shape": "sprite",
+    "stage": "stage1",
     "types": [
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 27,
+    "txmn_id": 28,
     "height": 120,
     "weight": 40,
     "catch_rate": 120.0,

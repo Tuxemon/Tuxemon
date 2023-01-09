@@ -1,38 +1,10 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Leif Theden <leif.theden@gmail.com>
-# Carlos Ramos <vnmabus@gmail.com>
-#
-#
-# states.FadeTransitionBase
-# states.FadeOutTransition
-# states.FadeInTransition
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 from abc import abstractmethod
-from typing import Any, Optional
+from typing import Optional
 
 import pygame
 
@@ -51,14 +23,14 @@ class FadeTransitionBase(State):
     fade_duration = 1.5
     color: ColorLike = (0, 0, 0)
 
-    def startup(
+    def __init__(
         self,
-        *,
         state_duration: Optional[float] = None,
         fade_duration: Optional[float] = None,
         caller: Optional[State] = None,
-        **kwargs: Any,
     ) -> None:
+        super().__init__()
+
         logger.debug("Initializing fade transition")
 
         if state_duration is not None:

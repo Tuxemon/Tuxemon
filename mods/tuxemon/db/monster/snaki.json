@@ -1,0 +1,39 @@
+{
+    "slug": "snaki",
+    "category": "false_serpent",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "biting_winds"
+        },
+        {
+            "level_learned": 12,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "snokari"
+        }
+    ],
+    "shape": "serpent",
+    "stage": "basic",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 227,
+    "height": 70,
+    "weight": 15,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

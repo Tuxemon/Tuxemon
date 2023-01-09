@@ -1,0 +1,30 @@
+{
+  "slug": "spyder_cotton_scoop",
+  "items": [
+    {
+      "item_name": "potion",
+      "price": 20,
+      "cost": 5
+    },
+    {
+      "item_name": "revive",
+      "price": 100,
+      "cost": 20
+    },
+    {
+      "item_name": "tm_avalanche",
+      "price": 2000,
+      "cost": 400
+    },
+    {
+      "item_name": "tm_blossom",
+      "price": 1000,
+      "cost": 200
+    },
+    {
+      "item_name": "capture_device",
+      "price": 50,
+      "cost": 10
+    }
+  ]
+}

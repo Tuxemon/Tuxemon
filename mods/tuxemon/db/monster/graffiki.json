@@ -1,0 +1,33 @@
+{
+    "slug": "graffiki",
+    "category": "gamut",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 12,
+            "technique": "wall_of_steel"
+        }
+    ],
+    "evolutions": [],
+    "shape": "humanoid",
+    "stage": "standalone",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 205,
+    "height": 65,
+    "weight": 13,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

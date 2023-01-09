@@ -5,25 +5,38 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 12,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 24,
             "technique": "fire_ball"
         },
         {
-            "level_learned": 2,
+            "level_learned": 28,
             "technique": "fire_claw"
         },
         {
-            "level_learned": 2,
+            "level_learned": 32,
             "technique": "flamethrower"
         }
     ],
     "evolutions": [],
     "shape": "blob",
+    "stage": "stage1",
     "types": [
         "fire",
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 166,
+    "txmn_id": 175,
     "height": 90,
     "weight": 55,
     "catch_rate": 120.0,

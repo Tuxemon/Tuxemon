@@ -9,11 +9,23 @@
         },
         {
             "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 12,
+            "technique": "thunderball"
+        },
+        {
+            "level_learned": 28,
             "technique": "glower"
         },
         {
-            "level_learned": 2,
-            "technique": "thunderball"
+            "level_learned": 32,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 34,
+            "technique": "surge"
         }
     ],
     "evolutions": [
@@ -24,13 +36,14 @@
         }
     ],
     "shape": "hunter",
+    "stage": "stage1",
     "types": [
         "earth"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 2,
-    "height": 0,
-    "weight": 0,
+    "height": 120,
+    "weight": 60,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

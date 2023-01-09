@@ -12,17 +12,18 @@
             "technique": "ram"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "rock"
         }
     ],
     "evolutions": [],
     "shape": "brute",
+    "stage": "standalone",
     "types": [
         "earth"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 158,
+    "txmn_id": 167,
     "height": 170,
     "weight": 65,
     "catch_rate": 120.0,

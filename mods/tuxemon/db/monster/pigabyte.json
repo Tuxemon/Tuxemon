@@ -12,17 +12,18 @@
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "shrapnel"
         }
     ],
     "evolutions": [],
     "shape": "blob",
+    "stage": "standalone",
     "types": [
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 115,
+    "txmn_id": 116,
     "height": 155,
     "weight": 180,
     "catch_rate": 120.0,

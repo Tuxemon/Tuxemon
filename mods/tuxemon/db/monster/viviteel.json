@@ -5,26 +5,39 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "stone_rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "headbutt"
+        },
+        {
+            "level_learned": 12,
+            "technique": "wallow"
+        },
+        {
+            "level_learned": 16,
             "technique": "rust_bomb"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "constrict"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
             "technique": "perfect_cut"
         }
     ],
     "evolutions": [],
     "shape": "serpent",
+    "stage": "stage1",
     "types": [
         "metal"
     ],
-    "possible_genders": ["male", "female"],
-    "txmn_id": 133,
-    "height": 0,
-    "weight": 0,
+    "possible_genders": ["female"],
+    "txmn_id": 135,
+    "height": 102,
+    "weight": 18,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

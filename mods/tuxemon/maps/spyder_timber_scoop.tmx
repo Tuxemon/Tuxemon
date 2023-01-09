@@ -6,36 +6,48 @@
   <property name="slug" value="timber_scoop"/>
   <property name="types" value="shop"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ <tileset firstgid="1" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
+  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
  </tileset>
- <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ <tileset firstgid="1441" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
  </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="744" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="640"/>
+ <tileset firstgid="2881" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
+  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
  </tileset>
- <tileset firstgid="8473" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
-  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
+ <tileset firstgid="2991" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="3491" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="3579" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
+ </tileset>
+ <tileset firstgid="4579" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
+ </tileset>
+ <tileset firstgid="4633" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
+  <image source="../gfx/tilesets/items.png" width="48" height="32"/>
  </tileset>
  <layer id="1" name="Layer 1" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eJxz4GdgcCAR55GB55CBE5hG8WDGAJ4fOtw=
+   eJy7zcvAcJtE/IwM/JEMfGEUD2oMACkgfs4=
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYICAbfIMDNvlGbACXHJXgWLXcOhBl5uuBqEjoWJcQJobiHnkcbP3APXMAuK/chA9mkAxLSDWlsfNBoH9SHpIAZTouSwPwVegNAjA2JeRwqEUyC7HEWbkgnqgGx4A8UM5CBsdpLEwMKRDcQYLQs9/kFp5CFtGHVXPFKC6qVA8jQW7vQB43iUm
+   eJxjYICAJXwMDEv5GLACXHJngGJncehBl9vPCqGPc0Po10D6DRC/5cbNfg7UcwiIb0P1/AfRPAwMjDy42SDwCkkPKYASPTncEJwLpUEAxs5BMvcGkH2LDHvwgffMDAxVLAwM1SwQ9ktWVHlGIQYGJihmFkLoWQ5UvwKqR5ANVQ8XUB03FPMIYbcXABD8Jw0=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYKAviJQf1TNcAABELgJZ
+   eJxjYKAvOM9Cup7j3MNLz3ABALhLBBw=
   </data>
  </layer>
  <layer id="5" name="Above Player" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBj84Iw8fe3bIg/BW6E0CMDYW5DcIgVk/5Ojr9twARskd31Xo4+dAMRBCYA=
+   eJxjYKAvkBIiXY8sGXooAUncEJwMpUEAxobxQeAIkG3HQl+34QJ7+BHsl6z0sRMAtBsGIw==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
@@ -71,7 +83,8 @@
    <properties>
     <property name="act1" value="create_npc spyder_shopkeeper,1,6"/>
     <property name="act2" value="npc_face spyder_shopkeeper,right"/>
-    <property name="act20" value="set_inventory spyder_shopkeeper,inv_basic_store"/>
+    <property name="act20" value="set_inventory spyder_shopkeeper,spyder_timber_scoop"/>
+    <property name="act30" value="set_economy spyder_shopkeeper,spyder_timber_scoop"/>
     <property name="cond1" value="not npc_exists spyder_shopkeeper"/>
    </properties>
   </object>

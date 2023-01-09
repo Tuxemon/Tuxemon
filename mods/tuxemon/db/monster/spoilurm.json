@@ -1,0 +1,33 @@
+{
+    "slug": "spoilurm",
+    "category": "detritus",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 12,
+            "technique": "web"
+        }
+    ],
+    "evolutions": [],
+    "shape": "serpent",
+    "stage": "standalone",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 214,
+    "height": 41,
+    "weight": 4,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

@@ -1,0 +1,33 @@
+{
+    "slug": "bumbulus",
+    "category": "veiled",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 2,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 12,
+            "technique": "venomous_tentacle"
+        }
+    ],
+    "evolutions": [],
+    "shape": "blob",
+    "stage": "standalone",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 210,
+    "height": 78,
+    "weight": 1,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

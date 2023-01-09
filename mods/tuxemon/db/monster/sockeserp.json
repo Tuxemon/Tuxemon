@@ -5,24 +5,37 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "perfect_cut"
+            "technique": "strike"
         },
         {
             "level_learned": 2,
             "technique": "surge"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "constrict"
+        },
+        {
+            "level_learned": 20,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 24,
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 28,
+            "technique": "blade"
         }
     ],
     "evolutions": [],
     "shape": "serpent",
+    "stage": "stage1",
     "types": [
         "metal"
     ],
     "possible_genders": ["neuter"],
-    "txmn_id": 90,
+    "txmn_id": 91,
     "height": 100,
     "weight": 1,
     "catch_rate": 45.0,

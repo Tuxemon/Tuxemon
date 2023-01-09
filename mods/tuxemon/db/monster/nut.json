@@ -12,7 +12,7 @@
             "technique": "static_field"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
             "technique": "shuriken"
         }
     ],
@@ -24,6 +24,7 @@
         }
     ],
     "shape": "blob",
+    "stage": "basic",
     "types": [
         "metal"
     ],

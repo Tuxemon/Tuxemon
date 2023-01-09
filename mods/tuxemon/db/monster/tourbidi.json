@@ -12,19 +12,20 @@
             "technique": "midnight_mantle"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "sleeping_powder"
         }
     ],
     "evolutions": [],
     "shape": "humanoid",
+    "stage": "standalone",
     "types": [
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 122,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 123,
+    "height": 42,
+    "weight": 14,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

@@ -12,7 +12,7 @@
             "technique": "refresh"
         },
         {
-            "level_learned": 2,
+            "level_learned": 16,
             "technique": "muddle"
         }
     ],
@@ -24,13 +24,14 @@
         }
     ],
     "shape": "blob",
+    "stage": "basic",
     "types": [
         "earth"
     ],
-    "possible_genders": ["male", "female"],
-    "txmn_id": 70,
-    "height": 0,
-    "weight": 0,
+    "possible_genders": ["neuter"],
+    "txmn_id": 71,
+    "height": 54,
+    "weight": 10,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

@@ -1,27 +1,9 @@
-#
-# Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -29,13 +11,9 @@ from tuxemon.map import dirs2, get_direction
 from tuxemon.npc import NPC
 
 
-class NpcFaceActionParameters(NamedTuple):
-    npc_slug: str
-    direction: str  # Using Direction as the typehint breaks the Action
-
-
 @final
-class NpcFaceAction(EventAction[NpcFaceActionParameters]):
+@dataclass
+class NpcFaceAction(EventAction):
     """
     Make the NPC face a certain direction.
 
@@ -52,12 +30,13 @@ class NpcFaceAction(EventAction[NpcFaceActionParameters]):
     """
 
     name = "npc_face"
-    param_class = NpcFaceActionParameters
+    npc_slug: str
+    direction: str  # Using Direction as the typehint breaks the Action
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.npc_slug)
         assert npc
-        direction = self.parameters.direction
+        direction = self.direction
 
         target: NPC
         if direction not in dirs2:

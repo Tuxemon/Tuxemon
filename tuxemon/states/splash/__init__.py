@@ -1,31 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-#
-#
-# states.start Handles the splash screen and start menu.
-#
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -45,7 +19,11 @@ class SplashState(state.State):
 
     default_duration = 3
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self, parent: state.StateManager) -> None:
+        super().__init__()
+
+        self.parent = parent
+
         # this task will skip the splash screen after some time
         self.task(self.fade_out, self.default_duration)
         self.triggered = False
@@ -88,4 +66,4 @@ class SplashState(state.State):
 
     def fade_out(self) -> None:
         self.triggered = True
-        self.parent.push_state(FadeOutTransition)
+        self.parent.push_state(FadeOutTransition())

@@ -1,0 +1,51 @@
+{
+    "slug": "tsushimi",
+    "category": "dragon_roll",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "suck_poison"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 12,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 24,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 28,
+            "technique": "font"
+        },
+        {
+            "level_learned": 32,
+            "technique": "starfall"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 36,
+            "monster_slug": "tobishimi"
+        }
+    ],
+    "shape": "dragon",
+    "stage": "stage1",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 186,
+    "height": 136,
+    "weight": 85,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

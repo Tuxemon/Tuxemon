@@ -9,22 +9,35 @@
         },
         {
             "level_learned": 2,
+            "technique": "rot"
+        },
+        {
+            "level_learned": 12,
+            "technique": "take_cover"
+        },
+        {
+            "level_learned": 24,
             "technique": "starfall"
         },
         {
-            "level_learned": 2,
-            "technique": "take_cover"
+            "level_learned": 28,
+            "technique": "font"
+        },
+        {
+            "level_learned": 32,
+            "technique": "chill_mist"
         }
     ],
     "evolutions": [],
     "shape": "flier",
+    "stage": "stage1",
     "types": [
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 50,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 51,
+    "height": 100,
+    "weight": 12,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

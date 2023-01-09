@@ -12,7 +12,7 @@
             "technique": "blossom"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "petrify"
         }
     ],
@@ -24,14 +24,15 @@
         }
     ],
     "shape": "blob",
+    "stage": "basic",
     "types": [
         "fire",
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 78,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 79,
+    "height": 68,
+    "weight": 11,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

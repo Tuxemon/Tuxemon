@@ -1,32 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Benjamin Bean <superman2k5@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-#
-#
-# states.combat Combat Start module
-#
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import datetime as dt
@@ -36,7 +9,6 @@ from functools import partial
 from itertools import chain
 from typing import (
     TYPE_CHECKING,
-    Any,
     Dict,
     Iterable,
     List,
@@ -63,7 +35,7 @@ from tuxemon.combat import (
     fainted,
     get_awake_monsters,
 )
-from tuxemon.db import OutputBattle, SeenStatus
+from tuxemon.db import BattleGraphicsModel, OutputBattle, SeenStatus
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -200,10 +172,11 @@ class CombatState(CombatAnimations):
     draw_borders = False
     escape_key_exits = False
 
-    def startup(
+    def __init__(
         self,
-        combat_type: Optional[Literal["monster", "trainer"]] = None,
-        **kwargs: Any,
+        players: Tuple[NPC, NPC],
+        graphics: BattleGraphicsModel,
+        combat_type: Literal["monster", "trainer"],
     ) -> None:
         self.max_positions = 1  # TODO: make dependant on match type
         self.phase: Optional[CombatPhase] = None
@@ -221,7 +194,7 @@ class CombatState(CombatAnimations):
         self._round = 0
         self._prize = 0
 
-        super().startup(**kwargs)
+        super().__init__(players, graphics)
         self.is_trainer_battle = combat_type == "trainer"
         self.show_combat_dialog()
         self.transition_phase("begin")
@@ -434,13 +407,24 @@ class CombatState(CombatAnimations):
         elif phase == "ran away":
             self.players[0].set_party_status()
             var = self.players[0].game_variables
-            var["battle_last_result"] = OutputBattle.ran
-            self.alert(T.translate("combat_player_run"))
+            if self.is_trainer_battle:
+                var["battle_last_result"] = OutputBattle.lost
+                self.alert(
+                    T.format(
+                        "combat_forfeit",
+                        {
+                            "npc": self.players[1].name,
+                        },
+                    )
+                )
+            else:
+                var["battle_last_result"] = OutputBattle.ran
+                self.alert(T.translate("combat_player_run"))
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
             # if you run in PvP, you need "defeated message"
-            self.task(partial(self.client.push_state, WaitForInputState), 2)
+            self.task(partial(self.client.push_state, WaitForInputState()), 2)
             self.suppress_phase_change(3)
 
         elif phase == "draw match":
@@ -461,7 +445,7 @@ class CombatState(CombatAnimations):
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
-            self.task(partial(self.client.push_state, WaitForInputState), 2)
+            self.task(partial(self.client.push_state, WaitForInputState()), 2)
             self.suppress_phase_change(3)
 
         elif phase == "has winner":
@@ -508,7 +492,7 @@ class CombatState(CombatAnimations):
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
-            self.task(partial(self.client.push_state, WaitForInputState), 2)
+            self.task(partial(self.client.push_state, WaitForInputState()), 2)
             self.suppress_phase_change(3)
 
         elif phase == "end combat":
@@ -653,7 +637,7 @@ class CombatState(CombatAnimations):
                 self.add_monster_into_play(player, monster)
                 self.client.pop_state()
 
-        state = self.client.push_state(MonsterMenuState)
+        state = self.client.push_state(MonsterMenuState())
         # must use a partial because alert relies on a text box that may not
         # exist until after the state hs been startup
         state.task(partial(state.alert, T.translate("combat_replacement")), 0)
@@ -796,9 +780,9 @@ class CombatState(CombatAnimations):
         rect.bottomright = rect_screen.w, rect_screen.h
 
         state = self.client.push_state(
-            MainCombatMenuState,
-            monster=monster,
-            columns=2,
+            MainCombatMenuState(
+                monster=monster,
+            )
         )
         state.rect = rect
 
@@ -1200,62 +1184,82 @@ class CombatState(CombatAnimations):
         # instead of player/trainer
         return [p for p in self.players if not defeated(p)]
 
-    def trigger_player_run(self, player: NPC) -> None:
-        """
-        WIP.  make player run from battle.
-
-        This is a temporary fix for now. Expected to be called by the
-        command menu.
-
-        Parameters:
-            player: The player leaving combat.
-
-        """
-        # TODO: non SP things
-        del self.monsters_in_play[player]
-        self.players.remove(player)
-
     def evolve(self) -> None:
         self.client.pop_state()
         for monster in self.players[0].monsters:
             for evolution in monster.evolutions:
-                if evolution.at_level <= monster.level:
-                    tools.open_dialog(
-                        local_session,
-                        [
-                            T.format(
-                                "evolution_confirmation",
-                                {"name": monster.name},
-                            )
-                        ],
-                    )
-                    tools.open_choice_dialog(
-                        local_session,
-                        menu=(
-                            (
-                                "yes",
-                                T.translate("yes"),
-                                partial(self.positive_answer, monster),
-                            ),
-                            ("no", T.translate("no"), self.negative_answer),
-                        ),
-                    )
+                evolved = Monster()
+                evolved.load_from_db(evolution.monster_slug)
+                if evolution.path == "standard":
+                    if evolution.at_level <= monster.level:
+                        self.question_evolution(monster, evolved)
+                elif evolution.path == "gender":
+                    if evolution.at_level <= monster.level:
+                        if evolution.gender == monster.gender:
+                            self.question_evolution(monster, evolved)
+                elif evolution.path == "element":
+                    if evolution.at_level <= monster.level:
+                        if self.players[0].has_type(evolution.element):
+                            self.question_evolution(monster, evolved)
+                elif evolution.path == "tech":
+                    if evolution.at_level <= monster.level:
+                        if self.players[0].has_tech(evolution.tech):
+                            self.question_evolution(monster, evolved)
+                elif evolution.path == "location":
+                    if evolution.at_level <= monster.level:
+                        if evolution.inside == self.client.map_inside:
+                            self.question_evolution(monster, evolved)
+                elif evolution.path == "stat":
+                    if evolution.at_level <= monster.level:
+                        if monster.return_stat(
+                            evolution.stat1
+                        ) >= monster.return_stat(evolution.stat2):
+                            self.question_evolution(monster, evolved)
+                elif evolution.path == "season":
+                    if evolution.at_level <= monster.level:
+                        if (
+                            evolution.season
+                            == self.players[0].game_variables["season"]
+                        ):
+                            self.question_evolution(monster, evolved)
 
-    def positive_answer(self, monster: Monster) -> None:
+    def question_evolution(self, monster: Monster, evolved: Monster) -> None:
+        tools.open_dialog(
+            local_session,
+            [
+                T.format(
+                    "evolution_confirmation",
+                    {
+                        "name": monster.name.upper(),
+                        "evolve": evolved.name.upper(),
+                    },
+                )
+            ],
+        )
+        tools.open_choice_dialog(
+            local_session,
+            menu=(
+                (
+                    "yes",
+                    T.translate("yes"),
+                    partial(
+                        self.positive_answer,
+                        monster,
+                        evolved,
+                    ),
+                ),
+                (
+                    "no",
+                    T.translate("no"),
+                    self.negative_answer,
+                ),
+            ),
+        )
+
+    def positive_answer(self, monster: Monster, evolved: Monster) -> None:
         self.client.pop_state()
         self.client.pop_state()
-        for evolution in monster.evolutions:
-            # check the path field, path field signals evolution item based
-            if evolution.path.standard:
-                if evolution.at_level <= monster.level:
-                    logger.info(
-                        "{} evolved into {}!".format(
-                            monster.name, evolution.monster_slug
-                        )
-                    )
-                    self.players[0].evolve_monster(
-                        monster, evolution.monster_slug
-                    )
+        self.players[0].evolve_monster(monster, evolved.slug)
 
     def negative_answer(self) -> None:
         self.client.pop_state()
@@ -1283,4 +1287,4 @@ class CombatState(CombatAnimations):
         while self.client.current_state is not self:
             self.client.pop_state()
 
-        self.client.push_state(FadeOutTransition, caller=self)
+        self.client.push_state(FadeOutTransition(caller=self))

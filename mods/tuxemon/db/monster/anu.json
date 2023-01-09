@@ -12,17 +12,18 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "wall_of_steel"
         }
     ],
     "evolutions": [],
     "shape": "varmint",
+    "stage": "standalone",
     "types": [
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 162,
+    "txmn_id": 171,
     "height": 100,
     "weight": 10,
     "catch_rate": 120.0,

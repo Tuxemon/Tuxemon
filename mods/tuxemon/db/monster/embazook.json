@@ -9,23 +9,36 @@
         },
         {
             "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 12,
+            "technique": "static_field"
+        },
+        {
+            "level_learned": 16,
             "technique": "shuriken"
         },
         {
-            "level_learned": 2,
-            "technique": "static_field"
+            "level_learned": 20,
+            "technique": "kindling_flame"
+        },
+        {
+            "level_learned": 24,
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [],
     "shape": "polliwog",
+    "stage": "stage1",
     "types": [
         "fire",
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 30,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 31,
+    "height": 137,
+    "weight": 502,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

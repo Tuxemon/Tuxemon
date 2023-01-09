@@ -12,19 +12,26 @@
             "technique": "chill_mist"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "midnight_mantle"
         }
     ],
-    "evolutions": [],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "loliferno"
+        }
+    ],
     "shape": "blob",
+    "stage": "basic",
     "types": [
         "fire",
         "water"
     ],
-    "possible_genders": ["male", "female"],
-    "txmn_id": 154,
-    "height": 0,
+    "possible_genders": ["neuter"],
+    "txmn_id": 162,
+    "height": 30,
     "weight": 0,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,

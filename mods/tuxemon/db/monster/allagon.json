@@ -12,19 +12,38 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 16,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 40,
             "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 44,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 48,
+            "technique": "wall_of_steel"
         }
     ],
-    "evolutions": [],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 54,
+            "monster_slug": "ferricran"
+        }
+    ],
     "shape": "dragon",
+    "stage": "stage1",
     "types": [
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 153,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 160,
+    "height": 162,
+    "weight": 145,
     "catch_rate": 3.0,
     "lower_catch_resistance": 0.8,
     "upper_catch_resistance": 1.05

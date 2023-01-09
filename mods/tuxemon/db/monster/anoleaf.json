@@ -12,7 +12,7 @@
             "technique": "feint"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "whirlwind"
         }
     ],
@@ -24,13 +24,14 @@
         }
     ],
     "shape": "varmint",
+    "stage": "basic",
     "types": [
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 64,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 65,
+    "height": 33,
+    "weight": 2,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

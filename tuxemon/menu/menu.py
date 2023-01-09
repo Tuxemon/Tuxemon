@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -58,13 +60,14 @@ class PygameMenuState(state.State):
 
     transparent = True
 
-    def startup(
+    def __init__(
         self,
         width: int = 1,
         height: int = 1,
         theme: Optional[pygame_menu.themes.Theme] = None,
         **kwargs: Any,
     ) -> None:
+        super().__init__()
 
         if theme is None:
             theme = get_theme()
@@ -207,7 +210,9 @@ class Menu(Generic[T], state.State):
     # if true, then menu items can be selected with the mouse/touch
     touch_aware = True
 
-    def startup(self, *, selected_index: int = 0, **kwargs: Any) -> None:
+    def __init__(self, selected_index: int = 0, **kwargs: Any) -> None:
+        super().__init__()
+
         self.rect = self.rect.copy()  # do not remove!
         self.selected_index = selected_index
         # state: closed, opening, normal, disabled, closing

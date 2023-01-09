@@ -12,19 +12,32 @@
             "technique": "web"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
+            "technique": "constrict"
+        },
+        {
+            "level_learned": 24,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 28,
             "technique": "overgrowth"
+        },
+        {
+            "level_learned": 32,
+            "technique": "whirlwind"
         }
     ],
     "evolutions": [],
     "shape": "flier",
+    "stage": "stage1",
     "types": [
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 95,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 96,
+    "height": 66,
+    "weight": 23,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

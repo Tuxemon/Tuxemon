@@ -12,7 +12,7 @@
             "technique": "web"
         },
         {
-            "level_learned": 2,
+            "level_learned": 16,
             "technique": "hibernate"
         }
     ],
@@ -24,13 +24,14 @@
         }
     ],
     "shape": "dragon",
+    "stage": "basic",
     "types": [
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 136,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 140,
+    "height": 102,
+    "weight": 85,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

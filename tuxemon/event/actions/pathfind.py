@@ -1,40 +1,17 @@
-#
-# Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
 
-class PathfindActionParameters(NamedTuple):
-    npc_slug: str
-    tile_pos_x: int
-    tile_pos_y: int
-
-
 @final
-class PathfindAction(EventAction[PathfindActionParameters]):
+@dataclass
+class PathfindAction(EventAction):
     """
     Pathfind the player / npc to the given location.
 
@@ -51,14 +28,14 @@ class PathfindAction(EventAction[PathfindActionParameters]):
     """
 
     name = "pathfind"
-    param_class = PathfindActionParameters
+    npc_slug: str
+    tile_pos_x: int
+    tile_pos_y: int
 
     def start(self) -> None:
-        self.npc = get_npc(self.session, self.parameters.npc_slug)
+        self.npc = get_npc(self.session, self.npc_slug)
         assert self.npc
-        self.npc.pathfind(
-            (self.parameters.tile_pos_x, self.parameters.tile_pos_y)
-        )
+        self.npc.pathfind((self.tile_pos_x, self.tile_pos_y))
 
     def update(self) -> None:
         assert self.npc

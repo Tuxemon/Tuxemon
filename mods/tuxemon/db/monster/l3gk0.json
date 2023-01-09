@@ -12,12 +12,13 @@
             "technique": "blossom"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "boulder"
         }
     ],
     "evolutions": [],
     "shape": "serpent",
+    "stage": "standalone",
     "types": [
         "glitch",
         "wood"

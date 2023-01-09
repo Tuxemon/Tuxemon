@@ -1,0 +1,45 @@
+{
+    "slug": "shnark",
+    "category": "disguised",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "probiscus"
+        },
+        {
+            "level_learned": 2,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 12,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 24,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 28,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 32,
+            "technique": "flood"
+        }
+    ],
+    "evolutions": [],
+    "shape": "aquatic",
+    "stage": "stage1",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 153,
+    "height": 205,
+    "weight": 120,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

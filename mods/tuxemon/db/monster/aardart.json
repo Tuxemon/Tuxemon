@@ -4,7 +4,7 @@
     "ai": "RandomAI",
     "moveset": [
         {
-            "level_learned": 1,
+            "level_learned": 2,
             "technique": "tonguespear"
         },
         {
@@ -16,17 +16,26 @@
             "technique": "stampede"
         },
 	    {
-            "level_learned": 17,
+            "level_learned": 24,
             "technique": "feint"
+        },
+	    {
+            "level_learned": 28,
+            "technique": "sand_spray"
+        },
+	    {
+            "level_learned": 32,
+            "technique": "mudslide"
         }
     ],
     "evolutions": [],
     "shape": "varmint",
+    "stage": "stage1",
     "types": [
         "earth"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 42,
+    "txmn_id": 43,
     "height": 185,
     "weight": 45,
     "catch_rate": 85.0,

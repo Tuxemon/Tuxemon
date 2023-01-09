@@ -9,21 +9,34 @@
         },
         {
             "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 12,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 16,
             "technique": "splinter"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "web"
+        },
+        {
+            "level_learned": 32,
+            "technique": "chill_mist"
         }
     ],
     "evolutions": [],
     "shape": "aquatic",
+    "stage": "stage1",
     "types": [
         "water",
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 25,
+    "txmn_id": 26,
     "height": 300,
     "weight": 200,
     "catch_rate": 45.0,

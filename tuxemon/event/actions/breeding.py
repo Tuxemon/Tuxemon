@@ -1,6 +1,9 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.interface import MenuItem
@@ -8,12 +11,9 @@ from tuxemon.monster import Monster
 from tuxemon.states.monster import MonsterMenuState
 
 
-class BreedingActionParameters(NamedTuple):
-    gender: str
-
-
 @final
-class BreedingAction(EventAction[BreedingActionParameters]):
+@dataclass
+class BreedingAction(EventAction):
     """
     Select a monster in the player party filtered by gender and store its
     id in a variables (breeding_father or breeding_mother)
@@ -29,7 +29,7 @@ class BreedingAction(EventAction[BreedingActionParameters]):
     """
 
     name = "breeding"
-    param_class = BreedingActionParameters
+    gender: str
 
     def set_var(self, menu_item: MenuItem[Monster]) -> None:
         if self.gender == "male":
@@ -47,10 +47,9 @@ class BreedingAction(EventAction[BreedingActionParameters]):
 
     def start(self) -> None:
         self.player = self.session.player
-        self.gender = self.parameters.gender
 
         # pull up the monster menu
-        menu = self.session.client.push_state(MonsterMenuState)
+        menu = self.session.client.push_state(MonsterMenuState())
         for t in self.player.monsters:
             if t.gender == self.gender:
                 menu.on_menu_selection = self.set_var

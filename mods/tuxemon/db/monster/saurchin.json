@@ -12,17 +12,30 @@
             "technique": "flow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "font"
+        },
+        {
+            "level_learned": 20,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 24,
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 28,
+            "technique": "chill_mist"
         }
     ],
     "evolutions": [],
     "shape": "dragon",
+    "stage": "stage1",
     "types": [
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 156,
+    "txmn_id": 165,
     "height": 800,
     "weight": 3000,
     "catch_rate": 120.0,

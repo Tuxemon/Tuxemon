@@ -9,21 +9,34 @@
         },
         {
             "level_learned": 2,
+            "technique": "feint"
+        },
+        {
+            "level_learned": 12,
+            "technique": "sand_spray"
+        },
+        {
+            "level_learned": 20,
             "technique": "petrify"
         },
         {
-            "level_learned": 2,
-            "technique": "sand_spray"
+            "level_learned": 24,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 28,
+            "technique": "overgrowth"
         }
     ],
     "evolutions": [],
     "shape": "hunter",
+    "stage": "stage1",
     "types": [
         "metal",
         "earth"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 21,
+    "txmn_id": 20,
     "height": 210,
     "weight": 255,
     "catch_rate": 170.0,

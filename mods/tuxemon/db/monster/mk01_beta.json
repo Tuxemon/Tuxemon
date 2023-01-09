@@ -12,12 +12,13 @@
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "shrapnel"
         }
     ],
     "evolutions": [],
     "shape": "dragon",
+    "stage": "standalone",
     "types": [
         "metal"
     ],

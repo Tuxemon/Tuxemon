@@ -12,7 +12,7 @@
             "technique": "flood"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "flow"
         }
     ],
@@ -43,11 +43,12 @@
         }
     ],
     "shape": "aquatic",
+    "stage": "basic",
     "types": [
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 23,	
+    "txmn_id": 24,	
     "height": 250,
     "weight": 190,
     "catch_rate": 170.0,

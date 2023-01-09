@@ -1,31 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Yisroel Newmark <ymnewmark@gmail.com>
-#
-#
-#
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import datetime as dt
@@ -329,3 +303,33 @@ def battle_math(player: NPC, output: OutputBattle) -> None:
         player["percent_draw"] = round(
             (player["battle_draw"] / player["battle_total"]) * 100
         )
+
+
+def rematch(
+    player: NPC,
+    opponent: NPC,
+    monster: Monster,
+    date: int,
+) -> None:
+    today = dt.date.today().toordinal()
+    diff_date = today - date
+    low = player.game_variables["party_level_highest"]
+    high = 0
+    # nr days between match and rematch
+    if diff_date == 0:
+        high = low + 1
+    elif diff_date < 10:
+        high = low + 2
+    elif diff_date < 50:
+        high = low + 3
+    else:
+        high = low + 5
+    monster.level = random.randint(low, high)
+    # check if evolves
+    for evo in monster.evolutions:
+        if evo.path == "standard":
+            if evo.at_level <= monster.level:
+                opponent.evolve_monster(monster, evo.monster_slug)
+    # restore hp evolved monsters
+    for mon in opponent.monsters:
+        mon.current_hp = mon.hp

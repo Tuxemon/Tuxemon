@@ -5,26 +5,39 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "energy_claws"
+            "technique": "pseudopod"
         },
         {
             "level_learned": 2,
             "technique": "overgrowth"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "sleeping_powder"
+        },
+        {
+            "level_learned": 24,
+            "technique": "energy_claws"
+        },
+        {
+            "level_learned": 28,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 32,
+            "technique": "all_in"
         }
     ],
     "evolutions": [],
     "shape": "hunter",
+    "stage": "stage1",
     "types": [
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 73,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 74,
+    "height": 138,
+    "weight": 45,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

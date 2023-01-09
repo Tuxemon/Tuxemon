@@ -12,25 +12,26 @@
             "technique": "web"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "constrict"
         }
     ],
     "evolutions": [
         {
             "path": "standard",
-            "at_level": 20,
+            "at_level": 18,
             "monster_slug": "tumblebee"
         }
     ],
     "shape": "grub",
+    "stage": "basic",
     "types": [
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 94,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 95,
+    "height": 21,
+    "weight": 5,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

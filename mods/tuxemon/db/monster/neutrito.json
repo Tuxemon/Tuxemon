@@ -12,18 +12,31 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 20,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 24,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 28,
+            "technique": "whirlwind"
         }
     ],
     "evolutions": [],
     "shape": "blob",
+    "stage": "stage1",
     "types": [
         "metal",
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 168,
+    "txmn_id": 177,
     "height": 90,
     "weight": 55,
     "catch_rate": 120.0,

@@ -12,18 +12,19 @@
             "technique": "invictus"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "petrify"
         }
     ],
     "evolutions": [],
     "shape": "sprite",
+    "stage": "standalone",
     "types": [
         "wood",
         "earth"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 106,
+    "txmn_id": 107,
     "height": 30.48,
     "weight": 2,
     "catch_rate": 120.0,

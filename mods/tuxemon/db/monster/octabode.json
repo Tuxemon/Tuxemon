@@ -1,0 +1,45 @@
+{
+    "slug": "octabode",
+    "category": "hermit",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 16,
+            "technique": "font"
+        },
+        {
+            "level_learned": 20,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 24,
+            "technique": "feint"
+        },
+        {
+            "level_learned": 28,
+            "technique": "venomous_tentacle"
+        }
+    ],
+    "evolutions": [],
+    "shape": "polliwog",
+    "stage": "stage1",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 184,
+    "height": 44,
+    "weight": 19,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

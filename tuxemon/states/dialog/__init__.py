@@ -1,31 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Leif Theden <leif.theden@gmail.com>
-# Carlos Ramos <vnmabus@gmail.com>
-#
-#
-# states.DialogState Handles the dialogue
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from typing import Any, Callable, Optional, Sequence, Tuple
@@ -51,15 +25,14 @@ class DialogState(PopUpMenu):
 
     default_character_delay = 0.05
 
-    def startup(
+    def __init__(
         self,
-        *,
         text: Sequence[str] = (),
         avatar: Optional[Sprite] = None,
         menu: Optional[Sequence[Tuple[str, str, Callable[[], None]]]] = None,
         **kwargs: Any,
     ) -> None:
-        super().startup(**kwargs)
+        super().__init__(**kwargs)
         self.text_queue = list(text)
         self.avatar = avatar
         self.menu = menu
@@ -84,9 +57,10 @@ class DialogState(PopUpMenu):
             elif self.next_text() is None:
                 if self.menu:
                     self.client.push_state(
-                        ChoiceState,
-                        menu=self.menu,
-                        rect=self.text_area.rect,
+                        ChoiceState(
+                            menu=self.menu,
+                            rect=self.text_area.rect,
+                        )
                     )
                 else:
                     self.client.pop_state(self)

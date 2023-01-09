@@ -12,7 +12,7 @@
             "technique": "biting_winds"
         },
         {
-            "level_learned": 2,
+            "level_learned": 12,
             "technique": "fume"
         }
     ],
@@ -24,13 +24,14 @@
         }
     ],
     "shape": "flier",
+    "stage": "basic",
     "types": [
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 38,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 39,
+    "height": 75,
+    "weight": 3,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

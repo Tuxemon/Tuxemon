@@ -1,0 +1,45 @@
+{
+    "slug": "beenstalker",
+    "category": "scarytale",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 12,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 24,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 28,
+            "technique": "invictus"
+        },
+        {
+            "level_learned": 32,
+            "technique": "fluff_up"
+        }
+    ],
+    "evolutions": [],
+    "shape": "hunter",
+    "stage": "stage1",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 199,
+    "height": 98,
+    "weight": 41,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

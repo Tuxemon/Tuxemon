@@ -5,25 +5,50 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 4,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 6,
+            "technique": "font"
+        },
+        {
+            "level_learned": 8,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 10,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 20,
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
             "technique": "invictus"
         },
         {
-            "level_learned": 2,
+            "level_learned": 28,
             "technique": "blade"
         }
     ],
     "evolutions": [],
     "shape": "brute",
+    "stage": "stage2",
     "types": [
         "metal",
         "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 58,
+    "txmn_id": 59,
     "height": 150,
     "weight": 125,
     "catch_rate": 85.0,

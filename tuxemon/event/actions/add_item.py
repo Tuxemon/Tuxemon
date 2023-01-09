@@ -1,41 +1,18 @@
-#
-# Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import NamedTuple, Optional, Union, final
+from dataclasses import dataclass
+from typing import Optional, Union, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
 
 
-class AddItemActionParameters(NamedTuple):
-    item_slug: str
-    quantity: Union[int, None]
-    trainer_slug: Union[str, None]
-
-
 @final
-class AddItemAction(EventAction[AddItemActionParameters]):
+@dataclass
+class AddItemAction(EventAction):
     """
     Add an item to the specified trainer's inventory.
 
@@ -53,27 +30,28 @@ class AddItemAction(EventAction[AddItemActionParameters]):
     """
 
     name = "add_item"
-    param_class = AddItemActionParameters
+    item_slug: str
+    quantity: Union[int, None] = None
+    trainer_slug: Union[str, None] = None
 
     def start(self) -> None:
-        trainer_slug = self.parameters.trainer_slug
         trainer: Optional[NPC]
-        if trainer_slug is None:
+
+        if self.trainer_slug is None:
             trainer = self.session.player
         else:
-            trainer = get_npc(self.session, trainer_slug)
+            trainer = get_npc(self.session, self.trainer_slug)
 
         assert trainer, "No Trainer found with slug '{}'".format(
-            trainer_slug or "player"
+            self.trainer_slug or "player"
         )
-        if self.parameters.quantity is None:
+        if self.quantity is None:
             quantity = 1
         else:
-            quantity = self.parameters.quantity
+            quantity = self.quantity
 
-        # assign item
         trainer.alter_item_quantity(
             self.session,
-            self.parameters.item_slug,
+            self.item_slug,
             quantity,
         )

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tuxemon\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-07 02:52+0000\n"
+"PO-Revision-Date: 2023-01-10 05:43+0000\n"
 "Last-Translator: David Liang <2188741623@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "tuxemon/tuxemon/zh_Hans/>\n"
@@ -1357,7 +1357,7 @@ msgid "tsunami"
 msgstr "海啸"
 
 msgid "tux"
-msgstr "小企鹅"
+msgstr "Tux"
 
 msgid "ubuntu"
 msgstr "乌班图"
@@ -3544,7 +3544,6 @@ msgstr "如果你被粉紫水母刺伤，浮蛞蝓可以把毒吸出来。"
 msgid "spyder_searoutec_gil2"
 msgstr "当然，吸出毒物会使浮蛞蝓本身变得有毒!"
 
-#, fuzzy
 msgid "spyder_searoutec_leek1"
 msgstr "让我赢吧--不要做_贝壳鱼_！"
 
@@ -5677,3 +5676,992 @@ msgstr ""
 "墙上贴着一张剪报。它开始了。 \n"
 " \"著名的艺术评论家已经收起了他的毒笔，拿起了画笔。 \n"
 " 经过多年对艺术家的诋毁，他自己还能做得更好吗？\""
+
+msgid "spyder_dragonscave_mallory3"
+msgstr ""
+"德罗科罗是我们的! \n"
+" 我们让沙夫特把它从3号公路下面挖出来，如果不是那个令人生气的孩子打断了我们的"
+"计划，我们会保留它。 \n"
+" 现在是柱子们联合起来彻底统治这个地区的时候了! \n"
+" 我们让大教堂和公众来告诉我们什么能做什么不能做，对精灵来说已经太久了。 \n"
+" 当我们使用格林沃什的融合技术，将这个德罗科罗与尼姆罗德制造的杀手机器人结合起"
+"来，我们将是不可阻挡的! \n"
+" 而最重要的是，全能公司将告诉公众，这一切都是为了他们的最大利益--"
+"而公众也会相信他们的！"
+
+msgid "spyder_wayfarerinn_tv1"
+msgstr ""
+"新闻正在播放。 \n"
+" 主持人说，关于感染的传言是毫无根据的。"
+
+msgid "spyder_omnichannel_donald1"
+msgstr "又回来了？我应该在勺子总部把你送进绞肉机。"
+
+msgid "spyder_hospital_nurse1"
+msgstr ""
+"该屏幕被设置为检测和拒绝人类和精灵。 \n"
+" 它已被编码为所有已知的精灵的DNA! "
+
+msgid "spyder_dryadsgrove_petra1"
+msgstr "破解自然界的霉菌!"
+
+msgid "spyder_searoutec_nigel3"
+msgstr "对不起，在斯皮德咬伤感染仍在传播的情况下，我不能允许任何人进入神圣的洞穴。"
+
+msgid "spyder_hospital_billie2"
+msgstr ""
+"等等......你的精灵没有生病! \n"
+" ... \n"
+" 就这么简单？ \n"
+" 那为什么执法者要带走我们的小精灵，而不是直接把它们治好？..."
+
+msgid "spyder_leatherhouse2_snugglepot"
+msgstr "哇！我的天啊！有一天我也会像你一样成为一名训练师!"
+
+msgid "spyder_scoop_sign"
+msgstr "勺子总部。几乎好到可以吃！"
+
+msgid "spyder_route3_wanda"
+msgstr "万达"
+
+msgid "spyder_granny"
+msgstr "婆婆"
+
+msgid "spyder_route2_marion"
+msgstr "玛丽安"
+
+msgid "spyder_route3_twig"
+msgstr "小树枝"
+
+msgid "spyder_route2_graf"
+msgstr "格拉夫"
+
+msgid "spyder_route3_curie"
+msgstr "居里"
+
+msgid "spyder_route3_connor"
+msgstr "康纳"
+
+msgid "spyder_tunnelb_beryll"
+msgstr "贝里尔"
+
+msgid "spyder_route6_frances"
+msgstr "弗朗西斯"
+
+msgid "spyder_dragonscave_lessa"
+msgstr "丽莎"
+
+msgid "spyder_nimrod_guard"
+msgstr "警卫"
+
+msgid "spyder_searoutec_river"
+msgstr "河流"
+
+msgid "spyder_ruby_plaque"
+msgstr ""
+"红宝石只是任何红色刚玉的术语! \n"
+" 当刚玉有其他颜色如蓝色、粉色和透明时，它就被称为蓝宝石。 \n"
+" 当精灵吃了红宝石后，它们会变得热情而有活力，使它们更善于进行物理攻击，如拍打"
+"、抓挠和撕咬。"
+
+msgid "spyder_nimrod_berke"
+msgstr "伯克"
+
+msgid "spyder_route5_goliath"
+msgstr "歌利亚"
+
+msgid "spyder_emerald_plaque"
+msgstr ""
+"绿宝石是绿柱石的一个品种。而蓝色的绿柱石则被称为海蓝宝石。 \n"
+" 一克拉的祖母绿比一克拉的钻石大，但密度小。 \n"
+" 吃了绿宝石的精灵，他们的视力和直觉都会增强，使他们的远程攻击，如射击、喷洒和"
+"爆炸更加有力。"
+
+msgid "spyder_papertown_tvwatch"
+msgstr "电视上有什么？一个舞会皇后正在把她的头饰摔成碎片，然后把它分发出去。"
+
+msgid "spyder_column1_sign"
+msgstr "一根罕见的古代圆柱。这曾经是一个寺庙建筑的一部分。"
+
+msgid "spyder_diamond_plaque"
+msgstr ""
+"众所周知，钻石是世界上最坚硬的宝石，在项链、订婚戒指和耳环上都有很好的表现! "
+"\n"
+" 如果你的未婚夫不为你买一枚沙夫特钻石戒指，那他就不爱你了! \n"
+" 把钻石喂给你的小精灵，使它们的皮肤变硬，使它们能够更好地抵御物理打击。"
+
+msgid "spyder_nimrod3_plaque"
+msgstr ""
+"古代帝国的象征是艾格尼斯，因为当帝国从冰冷的北方入侵时，他们的将军和侦察兵都"
+"骑着艾格尼斯。 \n"
+" 今天，我们强大的国家的医疗队正在用阿格尼顿进行保护和运输的训练。 "
+
+msgid "spyder_omnichannel_note"
+msgstr ""
+"哈哈，傻瓜们--你们永远找不到我。 \n"
+" 这是在全能公司首席执行官的信纸上。"
+
+msgid "cotton_breeder0"
+msgstr ""
+"大家好，欢迎来到日托所，我在这里饲养了精灵。\n"
+"我经营这个地方是因为我非常喜欢精灵！\n"
+"如果你愿意，我可以为你繁殖两只小狐狸。请告诉我，好吗？"
+
+msgid "spyder_greenwash_guard"
+msgstr "好吧，这里没什么可看的。"
+
+msgid "spyder_greenwash_gregor2"
+msgstr "唉，它晕倒的时候连眼睛都没眨一下!"
+
+msgid "spyder_greenwash_looten1"
+msgstr "好吧，我想核聚变技术还没有完全实现。我们已经在这上面工作了多年!"
+
+msgid "spyder_greenwash_looten2"
+msgstr ""
+"这是我们最接近的一次 -- 它是一只蚂蚁和一只阿尔多恩的可爱融合。这并不完全是欧"
+"米茄希望我们创造的终极杀人机器。我的意思是......呃!你没有从我这里听到这个。"
+
+msgid "spyder_dragonscave_benden3"
+msgstr "这是什么情况？这些坏蛋想偷走德罗科罗!但为什么呢？"
+
+msgid "spyder_dragonscave_benden4"
+msgstr "求你了，${{name}}。如果你不能阻止这些恶棍，那么一切都完了。"
+
+msgid "spyder_dragonscave_tomas1"
+msgstr "有一次，我们各自骑着一条龙。那是很久以前的事了。但就在最近，一条新生的龙出现"
+"在这个岛上方，并爬进了这个山洞。"
+
+msgid "spyder_dragonscave_tomas2"
+msgstr "正如你所看到的，龙的时代已经过去。孵化的龙是我们最后的希望。"
+
+msgid "spyder_dragonscave_lessa1"
+msgstr "我们守护着这只最后的龙。我们不知道它从哪里来，也不知道它为什么孵化。我们以为"
+"所有的龙在很久以前就已经孵化了。"
+
+msgid "spyder_dragonscave_lessa2"
+msgstr "也许有人会来，他有能力打败它。"
+
+msgid "spyder_dragonscave_cailin1"
+msgstr "这是我们最后的职责。龙乔木非常累。"
+
+msgid "spyder_dragonscave_cailin2"
+msgstr "谢谢你。"
+
+msgid "spyder_dragonscave_griffin1"
+msgstr "我想知道被龙吞掉会是什么样子......。"
+
+msgid "spyder_dragonscave_griffin2"
+msgstr "哦，好吧--没有人是完美的！"
+
+msgid "spyder_dragonscave_daenny1"
+msgstr "准备好被打败吧!"
+
+msgid "spyder_dragonscave_daenny2"
+msgstr "你可能胜过我，但你永远也胜不过本顿。"
+
+msgid "spyder_dragonscave_benden1"
+msgstr "我是龙骑士中最后也是最强大的一个。"
+
+msgid "spyder_dragonscave_benden2"
+msgstr ""
+"你已经证明自己是德罗科罗值得尊敬的对手。 \n"
+" 我将带你到神圣的内室--在我治愈你之后。"
+
+msgid "spyder_dragonscave_mal1"
+msgstr "你已经挡了我们太多次的路了!"
+
+msgid "spyder_dragonscave_mal2"
+msgstr "啊哈，你正好落入了我的圈套！"
+
+msgid "spyder_dragonscave_ray1"
+msgstr "我们所要做的就是建立一个接管政府的巨型公司。这有什么错吗？"
+
+msgid "spyder_dragonscave_ray2"
+msgstr "你在夺走我的自由。"
+
+msgid "spyder_dragonscave_lucille1"
+msgstr "支柱是我们在这里完成任何事情的唯一途径。"
+
+msgid "spyder_dragonscave_lucille2"
+msgstr "你会后悔的。"
+
+msgid "spyder_dragonscave_tru1"
+msgstr "这是为你自己好，好吗？"
+
+msgid "spyder_dragonscave_tru2"
+msgstr ""
+"随便吧。我们已经提取了DNA样本。 \n"
+" 我们只是想抓住德罗科罗作为备份。 \n"
+" 你永远无法阻止他们回到全能总部。"
+
+msgid "spyder_dragonscave_drokoro1"
+msgstr "哼!"
+
+msgid "spyder_omnichannel_zoolander1"
+msgstr "你真的是一块璞玉，不是吗？"
+
+msgid "spyder_hospital_warning1"
+msgstr ""
+"嗞嗞。检测到生命体。 \n"
+" 门仍然关闭。"
+
+msgid "spyder_hospital_warning2"
+msgstr ""
+"\"Aardant \"不是一个公认的生命体。 \n"
+" 门关闭了。"
+
+msgid "spyder_hospital_cure1"
+msgstr ""
+"这是治疗Spyder Bite感染的方法! \n"
+" 有了这个，你就可以治愈你自己和别人的小精灵。"
+
+msgid "spyder_hospital_billie1"
+msgstr "${{name}}，你的插手已经变得太多!就让当局做他们的工作吧!"
+
+msgid "spyder_mansion_drinkingbuddya1"
+msgstr "我想知道我们的酒友到哪里去了？ "
+
+msgid "spyder_mansion_drinkingbuddyb1"
+msgstr "我们开始唱一首古老的海誓山盟，当我们唱完的时候，船长已经不见了！"
+
+msgid "spyder_mansion_drinkingbuddya2"
+msgstr "老朋友，你在这里啊！让我们把你带回河边。"
+
+msgid "spyder_mansion_captain1"
+msgstr ""
+"你好啊!谢谢你找到我! \n"
+" 我在昨晚喝酒的时候走神了，掉到了这里。 \n"
+" 嘿，你能找到出口吗？找到了就大声喊出来。"
+
+msgid "spyder_river_captain2"
+msgstr "喂，你在吗？你想去哪里？"
+
+msgid "spyder_dryadsgrove_volcoli1"
+msgstr "布里！布里！"
+
+msgid "spyder_dryadsgrove_aquemini1"
+msgstr "欢迎来到我们的小树林，凡人。"
+
+msgid "spyder_dryadsgrove_aquemini2"
+msgstr "祈祷你在访问中幸存下来。"
+
+msgid "spyder_dryadsgrove_ignatia1"
+msgstr "我们比我们的外表更重要。"
+
+msgid "spyder_dryadsgrove_ignatia2"
+msgstr "你比你的外表更重要。"
+
+msgid "spyder_dryadsgrove_petra2"
+msgstr "忘恩负义的人。"
+
+msgid "spyder_dryadsgrove_ferris1"
+msgstr "你是否意识到你打扰了几个世纪的沉睡？"
+
+msgid "spyder_dryadsgrove_ferris2"
+msgstr "也许现在是我们走向世界的时候了。"
+
+msgid "spyder_dryadsgrove_sylvia1"
+msgstr "季节随着沃尔科利的舞蹈转动。"
+
+msgid "spyder_dryadsgrove_sylvia2"
+msgstr "我们仙女的力量随着季节的变化而消长。"
+
+msgid "spyder_leatherhouse1_tennisplayer1"
+msgstr "冻伤是土元素的技能还是水元素的技能？ "
+
+msgid "spyder_leatherhouse1_tennisplayer2"
+msgstr "棘手的问题--这两者都是!"
+
+msgid "spyder_scoop_welcome"
+msgstr "欢迎！"
+
+msgid "spyder_successful_boulder"
+msgstr "大锤子将巨石砸开。"
+
+msgid "spyder_stop_dante"
+msgstr "但丁"
+
+msgid "spyder_frolicking_rockitten"
+msgstr "小岩猫"
+
+msgid "spyder_frolicking_conileaf"
+msgstr "圆锥叶"
+
+msgid "spyder_papertown_riverboatcaptain"
+msgstr "河船船长"
+
+msgid "spyder_papertown_homemaker"
+msgstr "家庭主妇"
+
+msgid "spyder_papertown_mom"
+msgstr "妈妈"
+
+msgid "spyder_papertown_grannypiper"
+msgstr "派珀奶奶"
+
+msgid "spyder_papertown_shopkeeper"
+msgstr "店主"
+
+msgid "spyder_instore_dante"
+msgstr "但丁"
+
+msgid "spyder_billie"
+msgstr "比莉"
+
+# msgid "spyder_cottontown_monk"
+# msgstr "Monk"
+msgid "spyder_cottontown_hacker"
+msgstr "黑客"
+
+msgid "spyder_omnichannel_enforcer"
+msgstr "执法者"
+
+msgid "spyder_cottontown_barmaid"
+msgstr "服务员"
+
+msgid "spyder_goth"
+msgstr "哥特"
+
+msgid "spyder_florist"
+msgstr "花商"
+
+msgid "spyder_shopkeeper"
+msgstr "店主"
+
+msgid "spyder_shopassistant"
+msgstr "店员"
+
+msgid "spyder_route2_billie"
+msgstr "比莉"
+
+msgid "spyder_route2_roddick"
+msgstr "罗迪克"
+
+msgid "spyder_maniac"
+msgstr "狂人"
+
+# msgid "spyder_citypark_florist"
+# msgstr "Florist"
+msgid "spyder_citypark_frances"
+msgstr "弗朗西斯"
+
+msgid "spyder_citypark_bobette"
+msgstr "波贝特"
+
+msgid "spyder_citypark_edith"
+msgstr "伊迪丝"
+
+msgid "spyder_miner"
+msgstr "矿工"
+
+msgid "spyder_postboy"
+msgstr "邮递员"
+
+msgid "spyder_route3_zoolander"
+msgstr "祖兰德"
+
+msgid "spyder_rookie"
+msgstr "新手"
+
+msgid "spyder_route3_weaver"
+msgstr "织工"
+
+msgid "spyder_route3_qqq"
+msgstr "？？？"
+
+msgid "spyder_route3_novak"
+msgstr "诺 瓦 克"
+
+msgid "spyder_route3_surat"
+msgstr "苏拉特"
+
+msgid "spyder_route3_roxby"
+msgstr "罗克斯比"
+
+msgid "spyder_wayfarer1_morton"
+msgstr "莫顿"
+
+msgid "spyder_wayfarer1_jessie"
+msgstr "杰西"
+
+msgid "spyder_wayfarer1_nightshade"
+msgstr "夜来香"
+
+msgid "spyder_wayfarer1_victor"
+msgstr "胜利者"
+
+msgid "spyder_wayfarer1_morningstar"
+msgstr "晨星"
+
+msgid "spyder_wayfarer1_bravo"
+msgstr "布拉沃"
+
+msgid "spyder_wayfarer1_james"
+msgstr "詹姆斯"
+
+msgid "spyder_wayfarer1_bismuth"
+msgstr "铋"
+
+msgid "spyder_wayfarer1_ratcher"
+msgstr "雷切尔"
+
+msgid "spyder_route4_marshall"
+msgstr "马歇尔"
+
+msgid "spyder_route4_roger"
+msgstr "罗杰"
+
+msgid "spyder_route4_wulf"
+msgstr "沃尔夫"
+
+msgid "spyder_route4_rincewind"
+msgstr "林斯风"
+
+msgid "spyder_route4_rosamund"
+msgstr "罗萨蒙德"
+
+msgid "spyder_route4_beck"
+msgstr "贝克"
+
+msgid "spyder_nimrod_birbrobo"
+msgstr "比尔布机器人"
+
+msgid "spyder_nimrod_chromerobo"
+msgstr "铬合金机器人"
+
+msgid "spyder_nimrod_xeon"
+msgstr "至强"
+
+msgid "spyder_nimrod_justice"
+msgstr "正义"
+
+msgid "spyder_nimrod_thatcher"
+msgstr "撒切尔"
+
+msgid "spyder_nimrod_mace"
+msgstr "麦斯"
+
+msgid "spyder_nimrod_honour"
+msgstr "荣誉"
+
+msgid "spyder_nimrod_argon"
+msgstr "氩气"
+
+msgid "spyder_nimrod_zircon"
+msgstr "锆石"
+
+msgid "spyder_nimrod_maverick"
+msgstr "马弗里克"
+
+msgid "spyder_nimrod_rebel"
+msgstr "叛逆者"
+
+msgid "spyder_nimrod_antimony"
+msgstr "锑"
+
+msgid "spyder_nimrod_bowie"
+msgstr "鲍伊"
+
+msgid "spyder_nimrod_archer"
+msgstr "射手"
+
+msgid "spyder_nimrod_tru"
+msgstr "特鲁"
+
+msgid "spyder_nimrod_dirk"
+msgstr "德克"
+
+msgid "spyder_route5_cleo"
+msgstr "克莱奥"
+
+msgid "spyder_route5_tryphaena"
+msgstr "特里芬纳"
+
+msgid "spyder_route5_edith"
+msgstr "伊迪丝"
+
+msgid "spyder_route5_sara"
+msgstr "萨拉"
+
+msgid "spyder_route5_hunter"
+msgstr "亨特"
+
+msgid "spyder_scoop_donald"
+msgstr "唐纳德"
+
+msgid "spyder_scoop_turner"
+msgstr "特纳"
+
+msgid "spyder_scoop_paine"
+msgstr "潘恩"
+
+msgid "spyder_scoop_taggart"
+msgstr "塔加特"
+
+msgid "spyder_scoop_alyssa"
+msgstr "艾丽莎"
+
+msgid "spyder_scoop_lanth"
+msgstr "兰特"
+
+msgid "spyder_scoop_berys"
+msgstr "贝里斯"
+
+msgid "spyder_scoop_rubid"
+msgstr "鲁比德"
+
+msgid "spyder_scoop_asta"
+msgstr "阿斯塔"
+
+msgid "spyder_scoop_haf"
+msgstr "哈夫"
+
+msgid "spyder_scoop_arachne"
+msgstr "蛛形纲"
+
+msgid "spyder_scoop_weaver"
+msgstr "织工"
+
+msgid "spyder_scoop_orba"
+msgstr "奥巴"
+
+msgid "spyder_scoop_landrace"
+msgstr "陆生"
+
+msgid "spyder_scoop_cochinia"
+msgstr "胭脂虫"
+
+msgid "spyder_scoop_cochinib"
+msgstr "胭脂虫B"
+
+msgid "spyder_scoop_cochinic"
+msgstr "胭脂虫C"
+
+msgid "spyder_tunnelb_lute"
+msgstr "鲁特"
+
+msgid "spyder_tunnelb_meitner"
+msgstr "迈特纳"
+
+msgid "spyder_tunnelb_iris"
+msgstr "鸢尾花"
+
+msgid "spyder_tunnelb_greta"
+msgstr "格雷塔"
+
+msgid "spyder_tunnelb_tommy"
+msgstr "汤米"
+
+msgid "spyder_route6_ping"
+msgstr "乒"
+
+msgid "spyder_route6_richard"
+msgstr "理查德"
+
+msgid "spyder_route6_blair"
+msgstr "布莱尔"
+
+msgid "spyder_route6_maxwell"
+msgstr "麦克斯韦"
+
+msgid "spyder_route6_orion"
+msgstr "猎户座"
+
+msgid "spyder_route6_mungo"
+msgstr "蒙戈"
+
+msgid "spyder_route6_rigel"
+msgstr "里格尔"
+
+msgid "spyder_route6_gunner"
+msgstr "炮手"
+
+msgid "spyder_searoutec_nigel"
+msgstr "奈杰尔"
+
+msgid "spyder_searoutec_wade"
+msgstr "韦德"
+
+msgid "spyder_searoutec_gil"
+msgstr "吉尔"
+
+msgid "spyder_searoutec_leek"
+msgstr "韭菜"
+
+msgid "spyder_searoutec_beech"
+msgstr "榉树"
+
+msgid "spyder_searoutec_rutherford"
+msgstr "卢瑟福"
+
+msgid "spyder_searoutec_carstair"
+msgstr "卡斯特尔"
+
+msgid "spyder_searoutec_sandy"
+msgstr "珊迪"
+
+msgid "spyder_dragonscave_tomas"
+msgstr "托马斯"
+
+msgid "spyder_dragonscave_cailin"
+msgstr "凯林"
+
+msgid "spyder_dragonscave_griffin"
+msgstr "格里芬"
+
+msgid "spyder_dragonscave_daenny"
+msgstr "戴恩尼"
+
+msgid "spyder_dragonscave_benden"
+msgstr "本登"
+
+msgid "spyder_dragonscave_mal"
+msgstr "马尔"
+
+msgid "spyder_dragonscave_ray"
+msgstr "雷"
+
+msgid "spyder_dragonscave_lucille"
+msgstr "卢 克"
+
+msgid "spyder_dragonscave_tru"
+msgstr "特鲁"
+
+msgid "spyder_flower_cady"
+msgstr "卡迪"
+
+msgid "spyder_flower_mieke"
+msgstr "迈克尔"
+
+msgid "spyder_flower_sandy"
+msgstr "桑 迪"
+
+msgid "spyder_flower_teach"
+msgstr "教导"
+
+msgid "spyder_omnichannel_william"
+msgstr "威廉"
+
+msgid "spyder_omnichannel_carnegie"
+msgstr "卡内基"
+
+msgid "spyder_omnichannel_byrne"
+msgstr "伯恩"
+
+msgid "spyder_omnichannel_strauss"
+msgstr "斯特劳斯"
+
+msgid "spyder_omnichannel_beaverbrook"
+msgstr "比弗布鲁克"
+
+msgid "spyder_omnichannel_worm"
+msgstr "虫子"
+
+msgid "spyder_omnichannel_thedukeofdeadair"
+msgstr "死气沉沉的公爵"
+
+msgid "spyder_dragonscave_angrybrute"
+msgstr "愤怒的布鲁特"
+
+msgid "spyder_dragonscave_lazybrute"
+msgstr "懒惰的布鲁特"
+
+msgid "spyder_dragonscave_concernedbrute"
+msgstr "关心的布鲁特"
+
+msgid "spyder_hospital_billie"
+msgstr "比利"
+
+msgid "spyder_greenwash_looten"
+msgstr "罗顿"
+
+msgid "spyder_riverboatcaptain"
+msgstr "河船船长"
+
+msgid "spyder_mansion_drinkingbuddya"
+msgstr "酒友A"
+
+msgid "spyder_mansion_drinkingbuddyb"
+msgstr "饮友B"
+
+msgid "spyder_dryadsgrove_aquemini"
+msgstr "阿克米尼"
+
+msgid "spyder_dryadsgrove_ignatia"
+msgstr "伊格纳蒂亚"
+
+msgid "spyder_dryadsgrove_petra"
+msgstr "彼得拉"
+
+msgid "spyder_dryadsgrove_ferris"
+msgstr "费里斯"
+
+msgid "spyder_dryadsgrove_sylvia"
+msgstr "西尔维娅"
+
+msgid "spyder_dryadsgrove_volcoli"
+msgstr "沃尔科利"
+
+## MESSAGE TRANSLATIONS ##
+# spyder messages
+msgid "spyder_multi_underrepairs"
+msgstr "牌子上写着：“正在维修”"
+
+msgid "_chromerobo"
+msgstr "铬合金机器人"
+
+msgid "_darkrobo"
+msgstr "黑暗机器人"
+
+msgid "_birbrobo"
+msgstr "比尔布机器人"
+
+msgid "_xeon"
+msgstr "至强"
+
+msgid "_xeon-2"
+msgstr "至强-2"
+
+msgid "_mk01beta"
+msgstr "Mk01 测试版"
+
+msgid "_mk01alpha"
+msgstr "Mk01 阿尔法"
+
+msgid "spyder_multi_martsign"
+msgstr "在这里买东西"
+
+msgid "spyder_papertown_daycare1"
+msgstr "日间护理中心。正在建设中。"
+
+msgid "spyder_papertown_daycare2"
+msgstr "日托中心：现已开放！"
+
+msgid "spyder_papertown_sunnyside"
+msgstr "阳光城庄园。如果我们不在家，请给我们的管家留言。"
+
+msgid "spyder_papertown_home"
+msgstr "甜蜜的家!"
+
+msgid "spyder_papertown_restinbed"
+msgstr "你醒来时已经完全休息好了!"
+
+msgid "spyder_citypark_achievement"
+msgstr "成就狂人之家。关闭。"
+
+msgid "spyder_column2_sign"
+msgstr "一根罕见的古柱。在3号公路上可以找到同一文化的其他遗迹。 "
+
+msgid "spyder_opal_plaque"
+msgstr ""
+"蛋白石显示出闪烁的彩色光线。 \n"
+" 它们形成于岩石的裂缝和凹陷处，当水蒸发后留下硅石。 \n"
+" 吃了蛋白石的精灵能从它的魔法防护中受益，能更好地躲避魔法的远距离攻击，如爆炸"
+"、喷雾和射线。"
+
+msgid "spyder_agate_plaque"
+msgstr ""
+"玛瑙是一种岩石，通常由火山形成，并常有平行线带。 \n"
+" 它的特点是颜色繁多：棕色、灰色、奶油色、红色、橙色，甚至是蓝色。 \n"
+" 给精灵喂食玛瑙可以提高它的速度和敏捷性，使它在战斗中反应更快。"
+
+msgid "spyder_quartz_plaque"
+msgstr ""
+"石英是地球上最丰富的矿物之一。 \n"
+" 一些石英品种--如玛瑙、紫水晶和红玉髓--更罕见、更珍贵。 \n"
+" 石英被用于钟表，以保持非常精确的时间。 \n"
+" 吃了石英的精灵会增加他们的毅力和活力，使他们在被击倒之前能够承受更多的攻击。"
+" "
+
+msgid "spyder_shaft_plaque"
+msgstr "由沙夫特赞助。\"我们挖掘它！\""
+
+msgid "spyder_nimrod_plaque"
+msgstr "由尼姆罗德赞助。\"如果我们不卖，别人就会卖！\""
+
+msgid "spyder_nimrod2_plaque"
+msgstr ""
+"精灵是强大的武器，自从有战争以来就与人类并肩作战。 \n"
+" 在山洞里发现的岩画显示，史前人类训练鸡脚猫与野生沃尔夫斯基作战。"
+
+msgid "spyder_nimrod4_plaque"
+msgstr ""
+"但很快，精灵和人类可能都会被淘汰。 \n"
+" 我们的赞助商Nimrod公司正在开发机器人技术，可以使战争变得不流血。 \n"
+" 同时，报名参加尼姆罗德执法者，获得高薪、免费教育和冒险的生活。"
+
+msgid "spyder_shaft1_sign"
+msgstr "竖井总部。采矿部"
+
+msgid "spyder_shaft2_sign"
+msgstr "沙夫特总部。公共关系部"
+
+msgid "spyder_leathercafe_sign"
+msgstr "露天咖啡馆和市场"
+
+msgid "spyder_leathercbd_sign"
+msgstr "皮革城商业区"
+
+msgid "spyder_leatherhouse1_radio"
+msgstr "正在播放一首R&B歌曲。它被称为 \"Possessuns, Part II\"。"
+
+msgid "spyder_flower_dojo_sign"
+msgstr "五行道场。主人和精灵的战斗"
+
+msgid "spyder_wayfarerinn_sign"
+msgstr "欢迎来到Wayfarer Inn! "
+
+msgid "spyder_cottonhouse1_tvwatch"
+msgstr "这是最新的真人秀节目：人们和他们的精灵在一个偏远的岛屿上完成挑战。"
+
+msgid "cannot_use_item_monster"
+msgstr "这个道具不能用在这个精灵身上。"
+
+msgid "cotton_breeder1"
+msgstr "你想把你的两只精灵留给我，让它们繁殖吗？"
+
+msgid "cotton_breeder2a_1"
+msgstr "好吧，哪位精灵将成为母亲？"
+
+msgid "cotton_breeder2a_2"
+msgstr "很好，那父亲呢？"
+
+msgid "cotton_breeder3"
+msgstr "好吧，你确定这是你要的那两个？"
+
+msgid "cotton_breeder4a"
+msgstr "很好!以后再来报到，我会让你知道情况如何。"
+
+msgid "cotton_breeder_rejected"
+msgstr "哦，好吧。你再想一想，再来找我。"
+
+msgid "cotton_breeder5"
+msgstr "嘿，${{name}}，来看看你的精灵？"
+
+msgid "cotton_breeder6a"
+msgstr "他们还在逐渐熟悉，就像这样。你为什么不晚点再来？"
+
+msgid "cotton_breeder6b"
+msgstr ""
+"进展非常顺利！它们几乎是不可分割的！\n"
+"现在应该用不了多久，他们就要生孩子了。"
+
+msgid "cotton_breeder6c"
+msgstr "祝贺你!他们已经有了一个孩子!给你，好好养育它。"
+
+msgid "cotton_breeder_continue"
+msgstr "在他们准备好接受另一个精灵之前，还需要一段时间，但如果你愿意，我可以保留这两"
+"只，并再次为他们配种。"
+
+msgid "cotton_breeder7a"
+msgstr "很好！你花点时间照顾孩子，我来照顾父母。以后再来看看他们吧。"
+
+msgid "taba_greeting1"
+msgstr "招待员Jaime: 嗨，${{name}}!听说你得到了一只精灵，恭喜你!如果你想壮大你的队伍"
+"，你就需要精灵球。"
+
+msgid "cotton_breeder7b"
+msgstr ""
+"好主意，在宝宝成长的这个重要阶段，新家庭应该保持在一起。\n"
+"你们现在回来吧，听到了吗？"
+
+msgid "taba_greeting2a"
+msgstr "该店正在做促销活动，这里有一些让你开始。你用它们来捕获精灵。如果他们先被削弱"
+"了，那就更容易了!"
+
+msgid "taba_greeting2b"
+msgstr "啊！我看到你已经有了一些。你有一个很好的开头， "
+"${{name}}，我相信你很快就会成为冠军。"
+
+msgid "taba_greeting3"
+msgstr ""
+"祝你在冒险过程中好运，记得在商店购物，满足你所有的冒险需求!\n"
+"...\n"
+"对不起，我在推销，这是我的工作。"
+
+msgid "gotfivetuxeballs"
+msgstr "你有5个精灵球！"
+
+msgid "got_new_tuxemon"
+msgstr "一个新的精灵诞生了!欢迎{monster_name}！"
+
+msgid "spyder_greenwash_gregor1"
+msgstr "我整天都在观察我的C眼猫--我要抓住它眨眼的机会！"
+
+msgid "spyder_greenwash_chip1"
+msgstr "我已经开发出无与伦比的计算机！"
+
+msgid "spyder_greenwash_clarence1"
+msgstr "我的精灵在阳光下是不可阻挡的!"
+
+msgid "spyder_greenwash_chip2"
+msgstr "需要更多的动力!"
+
+msgid "spyder_greenwash_clarence2"
+msgstr "有云！"
+
+msgid "spyder_greenwash_louis1"
+msgstr "这场战斗的规则是简单的自然选择法则：只有强者才能生存！"
+
+msgid "spyder_greenwash_louis2"
+msgstr "我可以向你介绍一下盖亚假说吗？"
+
+msgid "spyder_greenwash_louis"
+msgstr "路易斯"
+
+msgid "spyder_greenwash_clarence"
+msgstr "克莱伦斯"
+
+msgid "spyder_greenwash_chip"
+msgstr "芯片"
+
+msgid "spyder_greenwash_gregor"
+msgstr "格雷戈尔"
+
+msgid "spyder_greenwash_moreau1"
+msgstr "你不应该在这里！ "
+
+msgid "spyder_greenwash_moreau2"
+msgstr "核聚变实验爆炸了!"
+
+msgid "spyder_greenwash_dippel1"
+msgstr "也许我们走得太远了...…"
+
+msgid "spyder_greenwash_dippel2"
+msgstr "或不够远! "
+
+msgid "spyder_greenwash_aissa1"
+msgstr "留在外面--格林沃什把这一切都控制住了。"
+
+msgid "spyder_greenwash_aissa2"
+msgstr "我们都会死!"
+
+msgid "spyder_greenwash_aissa"
+msgstr "艾萨"
+
+msgid "spyder_greenwash_dippel"
+msgstr "迪佩尔"
+
+msgid "spyder_greenwash_moreau"
+msgstr "莫罗"
+
+msgid "omnichannel_sign"
+msgstr "全能公司总部。我们制造头条新闻"
+
+msgid "taba_town_homeplace"
+msgstr "${{name}}的家"
+
+msgid "taba_town_sign_profhouse"
+msgstr "精灵教授的家"
+
+msgid "taba_town_sign_proflab"
+msgstr "精灵教授的实验室"
+
+msgid "taba_town_sign_tuxemart"
+msgstr "精灵商店 - 买卖物品的地方"
+
+msgid "taba_town_sign_tuxecenter"
+msgstr "精灵中心 - 一个治疗你的精灵的地方"
+
+msgid "leather_town_open_air"
+msgstr "露天咖啡馆和市场"

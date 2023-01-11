@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"PO-Revision-Date: 2023-01-16 12:48+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -737,7 +737,7 @@ msgid "bigfin"
 msgstr "Bigfin"
 
 msgid "bolt_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "bolt"
 msgstr "Bolt"
@@ -827,7 +827,7 @@ msgid "dragarbor"
 msgstr "Dragarbor"
 
 msgid "dune_pincher_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "dune_pincher"
 msgstr "Dune Pincher"
@@ -875,7 +875,9 @@ msgid "fluttaflap"
 msgstr "Fluttaflap"
 
 msgid "fruitera_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"FRUITERA tiene hambre de fruta y lleva todo lo que puede. Cuando se "
+"sorprende, deja caer todas sus frutas, las recoge de nuevo y luego huye."
 
 msgid "fruitera"
 msgstr "Fruitera"
@@ -893,7 +895,7 @@ msgid "heronquak"
 msgstr "Heronquak"
 
 msgid "hydrone_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "hydrone"
 msgstr "Hydrone"
@@ -965,13 +967,13 @@ msgid "nudiflot_male"
 msgstr "Nudiflot"
 
 msgid "nut_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "nut"
 msgstr "Nut"
 
 msgid "pigabyte_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "pigabyte"
 msgstr "Pigabyte"
@@ -983,19 +985,19 @@ msgid "possessun"
 msgstr "Possessun"
 
 msgid "propellercat_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "propellercat"
 msgstr "Propellercat"
 
 msgid "rockat_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "rockat"
 msgstr "Rockat"
 
 msgid "rockitten_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "rockitten"
 msgstr "Rockitten"
@@ -1007,13 +1009,13 @@ msgid "sapragon"
 msgstr "Sapragon"
 
 msgid "selket_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "selket"
 msgstr "Selket"
 
 msgid "selmatek_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "selmatek"
 msgstr "Selmatek"
@@ -1025,7 +1027,7 @@ msgid "sharpfin"
 msgstr "Sharpfin"
 
 msgid "sludgehog_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "sludgehog"
 msgstr "Sludgehog"
@@ -1037,7 +1039,7 @@ msgid "snowrilla"
 msgstr "Snowrilla"
 
 msgid "spycozeus_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "spycozeus"
 msgstr "Spycozeus"
@@ -1064,7 +1066,7 @@ msgid "tigrock"
 msgstr "Tigrock"
 
 msgid "tumbleworm_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "tumbleworm"
 msgstr "Tumbleworm"
@@ -4172,3 +4174,223 @@ msgstr ""
 
 msgid "spyder_greenwash_louis2"
 msgstr "¿Puedo presentarles la hipótesis de Gaia?"
+
+msgid "vivicinder"
+msgstr "Vivicinder"
+
+msgid "vivisource"
+msgstr "Vivisource"
+
+msgid "vivitron"
+msgstr "Vivitron"
+
+msgid "weavifly"
+msgstr "Weavifly"
+
+msgid "vividactil"
+msgstr "Vividactil"
+
+msgid "vivipere"
+msgstr "Vivipere"
+
+msgid "xeon_2"
+msgstr "Xeón-2"
+
+msgid "mk01_beta"
+msgstr "Mk01 Beta"
+
+msgid "urcine"
+msgstr "Urcine"
+
+msgid "vigueur"
+msgstr "Vigueur"
+
+msgid "viviphyta"
+msgstr "Viviphyta"
+
+msgid "viviteel"
+msgstr "Viviteel"
+
+msgid "vivitrans"
+msgstr "Vivitrans"
+
+msgid "volcoli"
+msgstr "Volcoli"
+
+msgid "yiinaang"
+msgstr "Yiinaang"
+
+msgid "windeye"
+msgstr "Windeye"
+
+msgid "chrome_robo"
+msgstr "Chrome Robo"
+
+msgid "birb_robo"
+msgstr "Birb Robo"
+
+msgid "mk01_alpha"
+msgstr "MK01 Alpha"
+
+msgid "toufigel"
+msgstr "Toufigel"
+
+msgid "shammer"
+msgstr "Shammer"
+
+msgid "sockeserp"
+msgstr "Sockeserp"
+
+msgid "seirein"
+msgstr "Seirein"
+
+msgid "snaki"
+msgstr "Snaki"
+
+msgid "tobishimi"
+msgstr "Tobishimi"
+
+msgid "tourbidi"
+msgstr "Tourbidi"
+
+msgid "shybulb"
+msgstr "Shybulb"
+
+msgid "snokari"
+msgstr "Snokari"
+
+msgid "snarlon"
+msgstr "Snarlon"
+
+msgid "snock"
+msgstr "Snock"
+
+msgid "solight"
+msgstr "Solight"
+
+msgid "statursus"
+msgstr "Statursus"
+
+msgid "strella"
+msgstr "Strella"
+
+msgid "tikoal"
+msgstr "Tikoal"
+
+msgid "taupypus"
+msgstr "Taupypus"
+
+msgid "tsushimi"
+msgstr "Tsushimi"
+
+msgid "turnipper"
+msgstr "Turnipper"
+
+msgid "trapsnap"
+msgstr "Trapsnap"
+
+msgid "tumblebee"
+msgstr "Tumblebee"
+
+msgid "shelagu"
+msgstr "Shelagu"
+
+msgid "shnark"
+msgstr "Shnark"
+
+msgid "skwib"
+msgstr "Skwib"
+
+msgid "tarpeur"
+msgstr "Tarpeur"
+
+msgid "tetrchimp"
+msgstr "Tetrchimp"
+
+msgid "tikorch"
+msgstr "Tikorch"
+
+msgid "tumblequill"
+msgstr "Tumblequill"
+
+msgid "teddisun"
+msgstr "Teddisun"
+
+msgid "taba_town_sign_proflab"
+msgstr "Laboratorio del Profesor Tuxemon"
+
+msgid "shammer_fossil"
+msgstr "Shammer Fósil"
+
+msgid "rhincus_fossil"
+msgstr "Rhincus Fósil"
+
+msgid "botbot"
+msgstr "Botbot"
+
+msgid "exapode_description"
+msgstr ""
+"Agita sus piernas para llamar la atención, pero la mayoría de la gente "
+"simplemente huye."
+
+msgid "grintot_description"
+msgstr "Es un GRINTROCK o GRINFLARE que ha experimentado erosión."
+
+msgid "furnursus_description"
+msgstr ""
+"Los FURNURSUS son amigables y a menudo olvidan que sus cuerpos están "
+"demasiado calientes para que otros los toquen."
+
+msgid "ghosteeth_description"
+msgstr "Sonríe porque sabe cómo van a morir todos los que conoce."
+
+msgid "pythock"
+msgstr "Pythock"
+
+msgid "rosarin"
+msgstr "Rosarin"
+
+msgid "ruption"
+msgstr "Ruption"
+
+msgid "sadito"
+msgstr "Sadito"
+
+msgid "sampsack"
+msgstr "Sampsack"
+
+msgid "sampsage"
+msgstr "Sampsage"
+
+msgid "sapsnap"
+msgstr "Sapsnap"
+
+msgid "saurchin"
+msgstr "Saurchin"
+
+msgid "sclairus"
+msgstr "Sclairus"
+
+msgid "spighter"
+msgstr "Spighter"
+
+msgid "spoilurm"
+msgstr "Spoilurm"
+
+msgid "squabbit"
+msgstr "Squabbit"
+
+msgid "taba_town_homeplace"
+msgstr "Casa de ${{name}}"
+
+msgid "taba_town_sign_profhouse"
+msgstr "Casa del Profesor Tuxemon"
+
+msgid "taba_town_sign_tuxemart"
+msgstr "Tuxemart - Un lugar para comprar y vender artículos"
+
+msgid "taba_town_sign_tuxecenter"
+msgstr "Tuxecenter - Un lugar para curar tu tuxemon"
+
+msgid "leather_town_open_air"
+msgstr "Café y mercado"

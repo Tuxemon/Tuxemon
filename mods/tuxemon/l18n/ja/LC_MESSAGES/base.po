@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-05-13 11:18+0000\n"
-"Last-Translator: weblateusr <tispm@dismail.de>\n"
+"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "ja/>\n"
 "Language: ja\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 ## ITEM TRANSLATIONS ##
 # Apple
@@ -53,3 +53,18 @@ msgstr "スーパーポーション"
 
 msgid "super_potion_description"
 msgstr "モンスター1体のHPを150回復する。"
+
+msgid "here_to_west"
+msgstr "${{map_name}} から ${{west}}"
+
+msgid "tuxemon_stat2"
+msgstr "{desc}"
+
+msgid "here_to_north"
+msgstr "${{map_name}} から ${{north}}"
+
+msgid "here_to_south"
+msgstr "${{map_name}} から ${{south}}"
+
+msgid "here_to_east"
+msgstr "${{map_name}} から ${{east}}"

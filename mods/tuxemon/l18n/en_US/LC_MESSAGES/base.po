@@ -99,6 +99,12 @@ msgstr "Rhincus Fossil"
 msgid "rhincus_fossil_description"
 msgstr ""
 
+msgid "aardant"
+msgstr "Aardant"
+
+msgid "aardant_description"
+msgstr ""
+
 # Boosters (items)
 msgid "greenwash_badge"
 msgstr "Badge: Greenwash"
@@ -773,6 +779,9 @@ msgstr "Mudslide"
 
 msgid "one_two"
 msgstr "One-Two"
+
+msgid "overfeed"
+msgstr "Overfeed"
 
 msgid "overgrowth"
 msgstr "Overgrowth"

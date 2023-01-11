@@ -1492,10 +1492,10 @@ msgid "agnite"
 msgstr "Agnite"
 
 msgid "allagon_description"
-msgstr "Allagon are drawn to relics made from the metals left behind by their ancestors, and will be violent to retrieve them."
+msgstr "ALLAGON are drawn to relics made from the metals left behind by their ancestors, and will be violent to retrieve them."
 
 msgid "allagon"
-msgstr "Allagaon"
+msgstr "Allagon"
 
 msgid "altie_description"
 msgstr "ALTIE floated down to earth in a bubble. Now its bubble has popped, it cannot float more than a few metres in the air."
@@ -1576,7 +1576,7 @@ msgid "baobaraffe"
 msgstr "Baobaraffe"
 
 msgid "baoby_description"
-msgstr "They travel from river to river in search of water to drink and store. The leafy ossicones on its head conceal movable points that act similar to a dowsing rod. Many creatures follow Baoby in droughts."
+msgstr "They travel from river to river in search of water to drink and store. The leafy ossicones on its head conceal movable points that act similar to a dowsing rod. Many creatures follow BAOBY in droughts."
 
 msgid "baoby"
 msgstr "Baoby"
@@ -1606,7 +1606,7 @@ msgid "bolt"
 msgstr "Bolt"
 
 msgid "boltnu_description"
-msgstr "It spends most of its time digging burrows into the grounnd, it remains dizzy from the constant vibrations and movement caused by them digging into the soil."
+msgstr "It spends most of its time digging burrows into the ground, it remains dizzy from the constant vibrations and movement caused by them digging into the soil."
 
 msgid "boltnu"
 msgstr "Boltnu"
@@ -1642,7 +1642,7 @@ msgid "bugnin"
 msgstr "Bugnin"
 
 msgid "bumbulus_description"
-msgstr "Bumbulus is a flying being that produces a cloud of smoke to disguise itself as a cloud. No one has ever seen its true body."
+msgstr "BUMBULUS is a flying being that produces a cloud of smoke to disguise itself as a cloud. No one has ever seen its true body."
 
 msgid "bumbulus"
 msgstr "Bumbulus"
@@ -1888,7 +1888,7 @@ msgid "exapode"
 msgstr "Exapode"
 
 msgid "exclawvate_description"
-msgstr "Often seen on construction sites, they can use their huge hands and tail to scoop up dirt and rubble. Underneath the tuxemon are caterpillar tyres, giving them a beter balance and grip while climbing heaps of rubble."
+msgstr "Often seen on construction sites, they can use their huge hands and tail to scoop up dirt and rubble. Underneath the Tuxemon are caterpillar tires, giving them a better balance and grip while climbing heaps of rubble."
 
 msgid "exclawvate"
 msgstr "Exclawvate"
@@ -1912,7 +1912,7 @@ msgid "fancair"
 msgstr "Fancair"
 
 msgid "ferricran_description"
-msgstr "Once, the Ferricran were covered all over with adamantine scales, and had wings of mithril."
+msgstr "Once, the FERRICRAN were covered all over with adamantine scales, and had wings of mithril."
 
 msgid "ferricran"
 msgstr "Ferricran"
@@ -1936,7 +1936,7 @@ msgid "flambear"
 msgstr "Flambear"
 
 msgid "fluoresfin_description"
-msgstr "When threatened, it huddles together with other Fluoresfin to create a large blinding light to disorientate predators."
+msgstr "When threatened, it huddles together with other FLUORESFIN to create a large blinding light to disorientate predators."
 
 msgid "fluoresfin"
 msgstr "Fluoresfin"
@@ -2092,7 +2092,7 @@ msgid "incandesfin"
 msgstr "Incandesfin"
 
 msgid "jelillow_description"
-msgstr "When a person rests their head on Jelillow, its jelly-like skin causes them to fall into a deep sleep. If someone is having sleeping problems, then this monster will be used to help them."
+msgstr "When a person rests their head on JELILLOW, its jelly-like skin causes them to fall into a deep sleep. If someone is having sleeping problems, then this monster will be used to help them."
 
 msgid "jelillow"
 msgstr "Jelillow"
@@ -2206,7 +2206,7 @@ msgid "metesaur"
 msgstr "Metesaur"
 
 msgid "metesaur_description"
-msgstr "This tuxemon would enjoy diving into the ground and leaving marks. Sometimes, the tuxemon would misjudge the hit and land in trees, starting huge and dangerous forest fires"
+msgstr "This Tuxemon would enjoy diving into the ground and leaving marks. Sometimes, the Tuxemon would misjudge the hit and land in trees, starting huge and dangerous forest fires"
 
 msgid "miaownolith"
 msgstr "Miaownolith"
@@ -2308,7 +2308,7 @@ msgid "ouroboutlet"
 msgstr "Ouroboutlet"
 
 msgid "pairagrim_description"
-msgstr "One of Pairagrim's heads is always searching for prey, while the other focuses on flying at great speed."
+msgstr "One of PAIRAGRIM's heads is always searching for prey, while the other focuses on flying at great speed."
 
 msgid "pairagrim"
 msgstr "Pairagrim"
@@ -2344,7 +2344,7 @@ msgid "pigabyte"
 msgstr "Pigabyte"
 
 msgid "pilthropus_description"
-msgstr "Found alongside Tuxemon such as Rhincus, Pilthropus was one of the oldest Tuxemon able to create its own tools."
+msgstr "Found alongside Tuxemon such as RHINCUS, PILTHROPUS was one of the oldest Tuxemon able to create its own tools."
 
 msgid "pilthropus"
 msgstr "Pilthropus"
@@ -2410,7 +2410,7 @@ msgid "pythwire"
 msgstr "Pythwire"
 
 msgid "qetzlrokilus_description"
-msgstr "This tuxemon would dive into groups of other dinosaur tuxemon and burn them. They also enjoy setting forests alight and dropping their ashes into water to spoil its purity."
+msgstr "This Tuxemon would dive into groups of other dinosaur Tuxemon and burn them. They also enjoy setting forests alight and dropping their ashes into water to spoil its purity."
 
 msgid "qetzlrokilus"
 msgstr "Qetzlrokilus"
@@ -2440,13 +2440,13 @@ msgid "rockitten"
 msgstr "Rockitten"
 
 msgid "rosarin_description"
-msgstr "Rosarin's love is incredible, he's only asking some affection."
+msgstr "ROSARIN's love is incredible, he's only asking some affection."
 
 msgid "rosarin"
 msgstr "Rosarin"
 
 msgid "ruption_description"
-msgstr "Once Embra's flame becomes hot enough, it engulfs its entire body, essentially replacing it in the process."
+msgstr "Once EMBRA's flame becomes hot enough, it engulfs its entire body, essentially replacing it in the process."
 
 msgid "ruption"
 msgstr "Ruption"
@@ -2584,7 +2584,7 @@ msgid "snowrilla"
 msgstr "Snowrilla"
 
 msgid "sockeserp_description"
-msgstr "An otherwise formiddable enemy, SOCKESERP is easily dispatched if it gets tangled up."
+msgstr "An otherwise formidable enemy, SOCKESERP is easily dispatched if it gets tangled up."
 
 msgid "sockeserp"
 msgstr "Sockeserp"
@@ -2650,16 +2650,10 @@ msgid "taupypus"
 msgstr "Taupypus"
 
 msgid "teddisun_description"
-msgstr "Teddisun worships the sun - they're always seen carrying their sun toy."
+msgstr "TEDDISUN worships the sun - they're always seen carrying their sun toy."
 
 msgid "teddisun"
 msgstr "Teddisun"
-
-msgid "template_description"
-msgstr "Some description here"
-
-msgid "template"
-msgstr "Template Name"
 
 msgid "tetrchimp_description"
 msgstr "They absorb any information they come across. Their constant chatter communicates everything they have learned in order."
@@ -3294,7 +3288,7 @@ msgid "spillit3"
 msgstr "Whatever... Allie is my sister and means the world to me, so it destroyed me when I found out he had taken her to HQ."
 
 msgid "spillit4"
-msgstr "It may not seem like a bad thing, but it is. Do you know what they do to their recuits? DO YOU!?"
+msgstr "It may not seem like a bad thing, but it is. Do you know what they do to their recruits? DO YOU!?"
 
 msgid "spillit5"
 msgstr "Because neither do I... All I know is that no one has ever left Omnichannel after being recruited."

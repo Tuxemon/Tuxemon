@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2022-02-02 00:54+0000\n"
-"Last-Translator: Pedro Avarao <espatux@vixej.com>\n"
+"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Spanish (Mexico) <https://hosted.weblate.org/projects/tuxemon/"
 "tuxemon/es_MX/>\n"
 "Language: es_MX\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -1338,7 +1338,7 @@ msgstr "¡Bienvenido al Centro Tuxemon de Pueblo Algodón!"
 
 msgid "tabanurse_dialog\n"
 msgstr ""
-"¡Bienvenido al Centro Tuxemon de Pueblo Taba!\n"
+"¡Bienvenido al Centro Tuxemon de ${{map_name}}!\n"
 "¿Deseas sanar a tus Tuxemon?\n"
 
 msgid "okaythen"
@@ -1466,7 +1466,7 @@ msgid "options_new_input_key1"
 msgstr "¡Reinicie su juego para que los cambios surtan efecto!"
 
 msgid "nudiflot_male"
-msgstr "Nudiflot (M)"
+msgstr "Nudiflot"
 
 msgid "sumchon_description"
 msgstr ""
@@ -1503,7 +1503,7 @@ msgid "allies_address"
 msgstr "Dir. de Allie"
 
 msgid "combat_can't_run_from_trainer"
-msgstr "¡No se puede huir de las batallas con los entrenadores!"
+msgstr "¡No se puede huir!"
 
 msgid "combat_state_lifeleech_get"
 msgstr "{user} está absorbiendo salud de {target}."
@@ -1524,7 +1524,6 @@ msgid "revive_description"
 msgstr "Revive a un Tuxemon noqueado y restaura 20 HP."
 
 # Money notification
-
 msgid "player_wallet"
 msgstr "La cartera de ${{name}}: ${{money}}${{currency}}"
 
@@ -1825,7 +1824,7 @@ msgid "katacoon"
 msgstr "Katacoon"
 
 msgid "nudiflot_female"
-msgstr "Nudiflot (F)"
+msgstr "Nudiflot"
 
 msgid "chrome_robo"
 msgstr "Robot Cromado"
@@ -2638,7 +2637,7 @@ msgstr ""
 "00100000 01101101 01100101 00101110"
 
 msgid "got_new_tuxemon"
-msgstr "¡Obtuviste un ${{monster_name}}!"
+msgstr "¡Nace un nuevo Tuxemon! ¡Bienvenido {monster_name}!"
 
 msgid "37707_house_missing"
 msgstr "@qUí N0 hAy N@D4. NuN<a 1O Hu80."
@@ -2655,3 +2654,206 @@ msgid "37707_flower_missing"
 msgstr ""
 "E330R: Event @ction set_monster_health contains inv@l1d p@r@meter$. He@l1ng "
 "aLL Tu+em0n.,."
+
+msgid "routed"
+msgstr "Ruta D"
+
+msgid "routee"
+msgstr "Ruta E"
+
+msgid "here_to_west"
+msgstr "De ${{map_name}} a ${{west}}"
+
+## MAP SIGNS ##
+msgid "welcome_location_city"
+msgstr ""
+"Bienvenido a ${{map_name}} Ciudad: ${{map_desc}}\n"
+"Norte: ${{north}} / Sur: ${{south}} / Oeste: ${{west}} / Este: ${{east}}"
+
+msgid "welcome_location_route"
+msgstr ""
+"Bienvenido a ${{map_name}}: ${{map_desc}}\n"
+"Norte: ${{north}} / Sur: ${{south}} / Oeste: ${{west}} / Este: ${{east}}"
+
+msgid "welcome_location_town"
+msgstr ""
+"Bienvenido a ${{map_name}} Ciudad: ${{map_desc}}\n"
+"Norte: ${{north}} / Sur: ${{south}} / Oeste: ${{west}} / Este: ${{east}}"
+
+msgid "spyder_greenwash_louis1"
+msgstr ""
+"Las reglas de esta batalla son las simples leyes de la selección natural: ¡"
+"sólo los fuertes sobreviven!"
+
+msgid "abesnaki"
+msgstr "Abesnaki"
+
+msgid "baobaraffe"
+msgstr "Baobaraffe"
+
+#, fuzzy
+msgid "apeoro"
+msgstr "Apeoro"
+
+#, fuzzy
+msgid "b_ver_1"
+msgstr "B-Ver.1"
+
+msgid "vivipere"
+msgstr "Vivipere"
+
+msgid "viviteel"
+msgstr "Viviteel"
+
+msgid "vivitron"
+msgstr "Vivitron"
+
+msgid "volcoli"
+msgstr "Volcoli"
+
+msgid "viviphyta"
+msgstr "Viviphyta"
+
+msgid "vivitrans"
+msgstr "Vivitrans"
+
+msgid "vigueur"
+msgstr "Vigueur"
+
+msgid "vivisource"
+msgstr "Vivisource"
+
+msgid "urcine"
+msgstr "Urcine"
+
+msgid "vivicinder"
+msgstr "Vivicinder"
+
+#, fuzzy
+msgid "altie"
+msgstr "Altie"
+
+msgid "baoby"
+msgstr "Baoby"
+
+msgid "route1"
+msgstr "Ruta 1"
+
+msgid "route1_sanglorian"
+msgstr "Sanglorian Avenida"
+
+msgid "route2"
+msgstr "Ruta 2"
+
+msgid "route3"
+msgstr "Ruta 3"
+
+msgid "route4"
+msgstr "Ruta 4"
+
+msgid "route5"
+msgstr "Ruta 5"
+
+msgid "route6"
+msgstr "Ruta 6"
+
+msgid "routea"
+msgstr "Ruta A"
+
+msgid "routec"
+msgstr "Ruta C"
+
+msgid "taba_town"
+msgstr "Taba"
+
+msgid "here_to_north"
+msgstr "De ${{map_name}} a ${{north}}"
+
+msgid "here_to_south"
+msgstr "De ${{map_name}} a ${{south}}"
+
+msgid "here_to_east"
+msgstr "De ${{map_name}} a ${{east}}"
+
+msgid "evolution_confirmation"
+msgstr ""
+"{name} está tratando de evolucionar en {evolve}. ¿Permitir la evolución?"
+
+msgid "tuxemon_stat1"
+msgstr ""
+"ID {txmn}, {type}, hace {doc} días\n"
+"{exp}xp, {exp_lv}xp a Lv {lv}\n"
+"Cuerpo: {weight} {unit_weight} {height} {unit_height}"
+
+msgid "tuxemon_stat2"
+msgstr "{desc}"
+
+#, fuzzy
+msgid "angrito"
+msgstr "Angrito"
+
+#, fuzzy
+msgid "anu"
+msgstr "Anu"
+
+#, fuzzy
+msgid "araignee"
+msgstr "Araignee"
+
+#, fuzzy
+msgid "arthrobolt"
+msgstr "Arthrobolt"
+
+#, fuzzy
+msgid "av8r"
+msgstr "Av8r"
+
+msgid "banling"
+msgstr "Banling"
+
+msgid "beenstalker"
+msgstr "Beenstalker"
+
+msgid "vividactil"
+msgstr "Vividactil"
+
+msgid "weavifly"
+msgstr "Weavifly"
+
+msgid "windeye"
+msgstr "Windeye"
+
+msgid "yiinaang"
+msgstr "Yiinaang"
+
+msgid "spyder_museum_entrance3"
+msgstr ""
+"Desafortunadamente ahora necesitamos cobrar por las entradas. Serán "
+"100${{currency}}, por favor."
+
+msgid "spyder_museum_shopkeeper_chat"
+msgstr "Soy voluntario, para mantener el museo tan asequible como sea posible. "
+
+msgid "spyder_greenwash_guard"
+msgstr "Muy bien, muy bien, nada que ver aquí."
+
+msgid "spyder_greenwash_gregor1"
+msgstr "Paso todo el día mirando mi CATEYE - ¡voy a atraparlo parpadeando!"
+
+msgid "spyder_greenwash_chip1"
+msgstr "¡He desarrollado una potencia informática inigualable!"
+
+msgid "spyder_greenwash_clarence1"
+msgstr "¡Mis tuxemon son imparables a la luz del sol!"
+
+msgid "spyder_greenwash_gregor2"
+msgstr "¡Uf, ni siquiera parpadeó cuando se desmayó!"
+
+msgid "spyder_greenwash_chip2"
+msgstr "¡Necesita más potencia!"
+
+msgid "spyder_greenwash_clarence2"
+msgstr "¡Había una nube!"
+
+msgid "spyder_greenwash_louis2"
+msgstr "¿Puedo presentarles la hipótesis de Gaia?"

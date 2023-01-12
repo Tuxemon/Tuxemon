@@ -81,10 +81,40 @@
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
-  <object id="26" name="wild tuxemon 3" type="event" x="144" y="64" width="32" height="48"/>
-  <object id="27" name="wild tuxemon 2" type="event" x="192" y="112" width="32" height="48"/>
-  <object id="28" name="wild tuxemon 4" type="event" x="96" y="176" width="32" height="32"/>
-  <object id="29" name="wild tuxemon 5" type="event" x="48" y="224" width="32" height="32"/>
-  <object id="30" name="wild tuxemon 1" type="event" x="272" y="128" width="16" height="32"/>
+  <object id="26" name="wild tuxemon 3" type="event" x="144" y="64" width="32" height="48">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="27" name="wild tuxemon 2" type="event" x="192" y="112" width="32" height="48">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="28" name="wild tuxemon 4" type="event" x="96" y="176" width="32" height="32">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="29" name="wild tuxemon 5" type="event" x="48" y="224" width="32" height="32">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="30" name="wild tuxemon 1" type="event" x="272" y="128" width="16" height="32">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

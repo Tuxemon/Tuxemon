@@ -2,14 +2,14 @@
   "slug": "omnigrunt",
   "gender": "male",
   "sprite_name": "knight",
-  "combat_front": "knight.png",
+  "combat_front": "enforcer_rookie.png",
   "combat_back": "adventurer_back.png",
   "monsters": [
     {
       "level": 2,
       "slug": "aardorn",
       "money_mod": 10,
-      "exp_req_mod": 27,
+      "exp_req_mod": 270,
       "gender": "male"
     }
   ]

@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2022-04-03 02:08+0000\n"
-"Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
+"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
 "Language: es_ES\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -125,7 +125,6 @@ msgstr "Habitación 31, Número 2, Torre Omnichannel, Pueblo Algodón\n"
 "Se observa la marca de un beso al lado de la dirección"
 
 # Money notification
-
 msgid "player_wallet"
 msgstr "La cartera de ${{name}}: ${{money}}${{currency}}"
 
@@ -138,7 +137,7 @@ msgid "combat_miss"
 msgstr "Falló..."
 
 msgid "combat_can't_run_from_trainer"
-msgstr "¡No puedes huir de combates contra entrenadores!"
+msgstr "¡No puedes huir!"
 
 msgid "combat_player_run"
 msgstr "¡Escapaste sin problemas!"
@@ -711,7 +710,7 @@ msgid "allagon_description"
 msgstr "Los Allagon se ven atraídos hacia las reliquias hechas con los metales que dejaron atrás sus antepasados, y reaccionarán con violencia para recuperarlas."
 
 msgid "allagon"
-msgstr "Allagaon"
+msgstr "Allagon"
 
 msgid "anoleaf_description"
 msgstr "Considera a las plantas que crecen cerca de él sus hermanos y hermanas."
@@ -960,10 +959,10 @@ msgid "nudiflot_male_description"
 msgstr "Come y almacena el veneno de las criaturas marinas de las que se alimenta."
 
 msgid "nudiflot_female"
-msgstr "Nudiflot (♀)"
+msgstr "Nudiflot"
 
 msgid "nudiflot_male"
-msgstr "Nudiflot (♂)"
+msgstr "Nudiflot"
 
 msgid "nut_description"
 msgstr "<<MISSING>>"
@@ -1879,7 +1878,8 @@ msgid "cottonnurse_dialog"
 msgstr "¡Bienvenido al Centro Tuxemon de Pueblo Algodón!"
 
 msgid "tabanurse_dialog\n"
-msgstr "¡Bienvenido al Centro Tuxemon de Pueblo Taba!\n"
+msgstr ""
+"¡Bienvenido al Centro Tuxemon de ${{map_name}}!\n"
 "¿Deseas curar tus Tuxemon?\n"
 
 msgid "okaythen"
@@ -2388,8 +2388,8 @@ msgstr "Soy voluntario, para mantener el museo tan asequible como sea posible. "
 
 msgid "spyder_museum_entrance3"
 msgstr ""
-"Desafortunadamente ahora necesitamos cobrar por las entradas. Serán 100${{currency}}, "
-"por favor."
+"Desafortunadamente ahora necesitamos cobrar por las entradas. Serán "
+"100${{currency}}, por favor."
 
 #, fuzzy
 msgid "spyder_museum_entrance2"
@@ -3175,7 +3175,7 @@ msgid "spyder_papertown_townsign"
 msgstr "Pueblo Papel: ¡La puerta a Fondent!"
 
 msgid "got_new_tuxemon"
-msgstr "¡Obtuviste un ${{monster_name}}!"
+msgstr "¡Nace un nuevo Tuxemon! ¡Bienvenido {monster_name}!"
 
 msgid "spyder_searoutec_leek2"
 msgstr "Solo ganaste porque te di _alga_ de ventaja."
@@ -3737,3 +3737,438 @@ msgid "spyder_flower_muse1"
 msgstr ""
 "Es muy duro consigo mismo, nunca contento con algo que haya pintado. Y muy "
 "olvidadizo, también. Quizás yo pueda comprar una pintura. "
+
+msgid "routea"
+msgstr "Ruta A"
+
+msgid "route6"
+msgstr "Ruta 6"
+
+msgid "route4"
+msgstr "Ruta 4"
+
+msgid "route1"
+msgstr "Ruta 1"
+
+msgid "route3"
+msgstr "Ruta 3"
+
+msgid "route5"
+msgstr "Ruta 5"
+
+## MAP SIGNS ##
+msgid "welcome_location_city"
+msgstr ""
+"Bienvenido a ${{map_name}} Ciudad: ${{map_desc}}\n"
+"Norte: ${{north}} / Sur: ${{south}} / Oeste: ${{west}} / Este: ${{east}}"
+
+msgid "spyder_greenwash_gregor1"
+msgstr "Paso todo el día mirando mi CATEYE - ¡voy a atraparlo parpadeando!"
+
+msgid "spyder_greenwash_gregor2"
+msgstr "¡Uf, ni siquiera parpadeó cuando se desmayó!"
+
+msgid "tuxemon_stat1"
+msgstr ""
+"ID {txmn}, {type}, hace {doc} días\n"
+"{exp}xp, {exp_lv}xp a Lv {lv}\n"
+"Cuerpo: {weight} {unit_weight} {height} {unit_height}"
+
+msgid "abesnaki"
+msgstr "Abesnaki"
+
+msgid "puparmor"
+msgstr "Puparmor"
+
+msgid "angrito"
+msgstr "Angrito"
+
+msgid "boltnu"
+msgstr "Boltnu"
+
+msgid "beenstalker"
+msgstr "Beenstalker"
+
+msgid "birdling"
+msgstr "Birdling"
+
+msgid "exapode"
+msgstr "Exapode"
+
+msgid "drokoro"
+msgstr "Drokoro"
+
+msgid "elofly"
+msgstr "Elofly"
+
+msgid "elowind"
+msgstr "Elowind"
+
+msgid "embazook"
+msgstr "Embazook"
+
+msgid "enduros"
+msgstr "Enduros"
+
+msgid "pythwire"
+msgstr "Pythwire"
+
+msgid "pharfan"
+msgstr "Pharfan"
+
+msgid "pipis"
+msgstr "Pipis"
+
+msgid "pyraminx"
+msgstr "Pyraminx"
+
+msgid "spyder_greenwash_guard"
+msgstr "Muy bien, muy bien, nada que ver aquí."
+
+msgid "b_ver_1"
+msgstr "B-Ver.1"
+
+msgid "mystikapi"
+msgstr "Mystikapi"
+
+msgid "poinchin"
+msgstr "Poinchin"
+
+msgid "inside"
+msgstr "dentro"
+
+msgid "outside"
+msgstr "fuera"
+
+msgid "route1_sanglorian"
+msgstr "Sanglorian Avenida"
+
+msgid "route2"
+msgstr "Ruta 2"
+
+msgid "routec"
+msgstr "Ruta C"
+
+msgid "routed"
+msgstr "Ruta D"
+
+msgid "routee"
+msgstr "Ruta E"
+
+msgid "taba_town"
+msgstr "Taba"
+
+msgid "here_to_north"
+msgstr "De ${{map_name}} a ${{north}}"
+
+msgid "here_to_south"
+msgstr "De ${{map_name}} a ${{south}}"
+
+msgid "here_to_west"
+msgstr "De ${{map_name}} a ${{west}}"
+
+msgid "here_to_east"
+msgstr "De ${{map_name}} a ${{east}}"
+
+msgid "welcome_location_route"
+msgstr ""
+"Bienvenido a ${{map_name}}: ${{map_desc}}\n"
+"Norte: ${{north}} / Sur: ${{south}} / Oeste: ${{west}} / Este: ${{east}}"
+
+msgid "welcome_location_town"
+msgstr ""
+"Bienvenido a ${{map_name}} Ciudad: ${{map_desc}}\n"
+"Norte: ${{north}} / Sur: ${{south}} / Oeste: ${{west}} / Este: ${{east}}"
+
+msgid "evolution_confirmation"
+msgstr ""
+"{name} está tratando de evolucionar en {evolve}. ¿Permitir la evolución?"
+
+msgid "tuxemon_stat2"
+msgstr "{desc}"
+
+msgid "altie"
+msgstr "Altie"
+
+#, fuzzy
+msgid "baobaraffe"
+msgstr "Baobaraffe"
+
+#, fuzzy
+msgid "banling"
+msgstr "Banling"
+
+msgid "anu"
+msgstr "Anu"
+
+msgid "apeoro"
+msgstr "Apeoro"
+
+msgid "araignee"
+msgstr "Araignee"
+
+msgid "arthrobolt"
+msgstr "Arthrobolt"
+
+msgid "av8r"
+msgstr "Av8r"
+
+msgid "baoby"
+msgstr "Baoby"
+
+msgid "boxali"
+msgstr "Boxali"
+
+msgid "brewdin"
+msgstr "Brewdin"
+
+msgid "budaye"
+msgstr "Budaye"
+
+msgid "bugnin"
+msgstr "Bugnin"
+
+msgid "bumbulus"
+msgstr "Bumbulus"
+
+msgid "bursa"
+msgstr "Bursa"
+
+msgid "cataspike"
+msgstr "Cataspike"
+
+msgid "cateye"
+msgstr "Cateye"
+
+msgid "chenipode"
+msgstr "Chenipode"
+
+msgid "chibiro"
+msgstr "Chibiro"
+
+msgid "chromeye"
+msgstr "Chromeye"
+
+msgid "cochini"
+msgstr "Cochini"
+
+msgid "coleorus"
+msgstr "Coleorus"
+
+msgid "conileaf"
+msgstr "Conileaf"
+
+msgid "cowpignon"
+msgstr "Cowpignon"
+
+msgid "criniotherme"
+msgstr "Criniotherme"
+
+msgid "dandicub"
+msgstr "Dandicub"
+
+msgid "dinoflop"
+msgstr "Dinoflop"
+
+msgid "drashimi"
+msgstr "Drashimi"
+
+msgid "elostorm"
+msgstr "Elostorm"
+
+msgid "embra"
+msgstr "Embra"
+
+msgid "exclawvate"
+msgstr "Exclawvate"
+
+msgid "eyesore"
+msgstr "Eyesore"
+
+msgid "fancair"
+msgstr "Fancair"
+
+msgid "flacono"
+msgstr "Flacono"
+
+msgid "flambear"
+msgstr "Flambear"
+
+msgid "fluoresfin"
+msgstr "Fluoresfin"
+
+msgid "foofle"
+msgstr "Foofle"
+
+msgid "fordin"
+msgstr "Fordin"
+
+msgid "forturtle"
+msgstr "Forturtle"
+
+msgid "foxfire"
+msgstr "Foxfire"
+
+msgid "frondly"
+msgstr "Frondly"
+
+msgid "furnursus"
+msgstr "Furnursus"
+
+msgid "galnec"
+msgstr "Galnec"
+
+msgid "ghosteeth"
+msgstr "Ghosteeth"
+
+msgid "graffiki"
+msgstr "Graffiki"
+
+msgid "grimachin"
+msgstr "Grimachin"
+
+msgid "grinflare"
+msgstr "Grinflare"
+
+msgid "grintot"
+msgstr "Grintot"
+
+msgid "grintrock"
+msgstr "Grintrock"
+
+msgid "grumpi"
+msgstr "Grumpi"
+
+msgid "gryfix"
+msgstr "Gryfix"
+
+msgid "hampotamos"
+msgstr "Hampotamos"
+
+msgid "happito"
+msgstr "Happito"
+
+msgid "hatchling"
+msgstr "Hatchling"
+
+msgid "ignibus"
+msgstr "Ignibus"
+
+msgid "incandesfin"
+msgstr "Incandesfin"
+
+msgid "jelillow"
+msgstr "Jelillow"
+
+msgid "jemuar"
+msgstr "Jemuar"
+
+msgid "k9"
+msgstr "K9"
+
+msgid "katapill"
+msgstr "Katapill"
+
+msgid "komodraw"
+msgstr "Komodraw"
+
+msgid "lapinou"
+msgstr "Lapinou"
+
+msgid "lightmare"
+msgstr "Lightmare"
+
+msgid "loliferno"
+msgstr "Loliferno"
+
+msgid "lunight"
+msgstr "Lunight"
+
+msgid "manosting"
+msgstr "Manosting"
+
+msgid "masknake"
+msgstr "Masknake"
+
+msgid "medushock"
+msgstr "Medushock"
+
+msgid "memnomnom"
+msgstr "Memnomnom"
+
+msgid "metesaur"
+msgstr "Metesaur"
+
+msgid "miaownolith"
+msgstr "Miaownolith"
+
+msgid "mrmoswitch"
+msgstr "Mrmoswitch"
+
+msgid "narcileaf"
+msgstr "Narcileaf"
+
+msgid "neutrito"
+msgstr "Neutrito"
+
+msgid "nudikill"
+msgstr "Nudikill"
+
+msgid "nudimind"
+msgstr "Nudimind"
+
+msgid "nuenflu"
+msgstr "Nuenflu"
+
+msgid "octabode"
+msgstr "Octabode"
+
+msgid "ouroboutlet"
+msgstr "Ouroboutlet"
+
+msgid "pairagrim"
+msgstr "Pairagrim"
+
+msgid "pairagrin"
+msgstr "Pairagrin"
+
+msgid "pantherafira"
+msgstr "Pantherafira"
+
+msgid "picc"
+msgstr "Picc"
+
+msgid "polyrock"
+msgstr "Polyrock"
+
+msgid "prophetoise"
+msgstr "Prophetoise"
+
+msgid "qetzlrokilus"
+msgstr "Qetzlrokilus"
+
+msgid "rabbitosaur"
+msgstr "Rabbitosaur"
+
+msgid "rhincus"
+msgstr "Rhincus"
+
+msgid "spyder_greenwash_chip1"
+msgstr "¡He desarrollado una potencia informática inigualable!"
+
+msgid "spyder_greenwash_clarence1"
+msgstr "¡Mis tuxemon son imparables a la luz del sol!"
+
+msgid "spyder_greenwash_chip2"
+msgstr "¡Necesita más potencia!"
+
+msgid "spyder_greenwash_clarence2"
+msgstr "¡Había una nube!"
+
+msgid "spyder_greenwash_louis1"
+msgstr ""
+"Las reglas de esta batalla son las simples leyes de la selección natural: ¡"
+"sólo los fuertes sobreviven!"
+
+msgid "spyder_greenwash_louis2"
+msgstr "¿Puedo presentarles la hipótesis de Gaia?"

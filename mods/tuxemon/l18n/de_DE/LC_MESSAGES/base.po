@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2022-08-06 16:14+0000\n"
-"Last-Translator: Tobias Mohr <tobias_mohr_1991@gmx.de>\n"
+"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "de/>\n"
 "Language: de_DE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -106,11 +106,11 @@ msgid "reg_papers"
 msgstr "Registrierungspapiere"
 
 msgid "reg_papers_description"
-msgstr "Ein Paket mit Registrierungspapieren für die Prüfung."
+msgstr "Ein Paket mit Registrierungspapieren für die Prüfung"
 
 # Allie's Address
 msgid "allies_address"
-msgstr "Allie's Adresse"
+msgstr "Allies Adresse"
 
 msgid "allies_address_description"
 msgstr "Raum 31, Block 2, Omnichannel-Turm, Cotton Town\n"
@@ -129,7 +129,7 @@ msgid "combat_miss"
 msgstr "Es schlug fehl..."
 
 msgid "combat_can't_run_from_trainer"
-msgstr "Du kannst nicht aus Trainerkämpfen fliehen!"
+msgstr "Du kannst nicht fliehen!"
 
 msgid "combat_player_run"
 msgstr "Du bist geflohen!"
@@ -1949,7 +1949,8 @@ msgid "cottonnurse_dialog"
 msgstr "Willkommen im Cotton Town Tuxecenter!"
 
 msgid "tabanurse_dialog\n"
-msgstr "Willkommen im Taba Town Tuxecenter!\n"
+msgstr ""
+"Willkommen im ${{map_name}} Tuxecenter!\n"
 "Möchtest du deine Tuxemon heilen?\n"
 
 msgid "okaythen"
@@ -2006,3 +2007,76 @@ msgstr "Kein Kommentar. "
 #, fuzzy
 msgid "spyder_scoop_landrace2"
 msgstr "Ufff."
+
+msgid "item_used_wrong_location_inside"
+msgstr "{name} kann nur {here} verwendet werden!"
+
+msgid "outside"
+msgstr "außen"
+
+msgid "route1_sanglorian"
+msgstr "Sanglorian Allee"
+
+msgid "here_to_west"
+msgstr "Von ${{map_name}} nach ${{west}}"
+
+msgid "here_to_north"
+msgstr "Von ${{map_name}} nach ${{north}}"
+
+msgid "here_to_east"
+msgstr "Von ${{map_name}} nach ${{east}}"
+
+msgid "got_new_tuxemon"
+msgstr "Ein neuer Tuxemon ist geboren! Willkommen {monster_name}!"
+
+msgid "spyder_greenwash_chip2"
+msgstr "Braucht mehr Leistung!"
+
+msgid "spyder_greenwash_louis2"
+msgstr "Darf ich euch die Gaia-Hypothese vorstellen?"
+
+msgid "spyder_greenwash_louis1"
+msgstr ""
+"Die Regeln dieser Schlacht sind die einfachen Gesetze der natürlichen "
+"Selektion: Nur die Starken überleben!"
+
+msgid "spyder_greenwash_gregor1"
+msgstr ""
+"Ich verbringe den ganzen Tag damit, mein CATEYE zu beobachten - ich werde es "
+"blinken sehen!"
+
+msgid "inside"
+msgstr "innen"
+
+msgid "item_used_wrong_location_type"
+msgstr "{name} kann nur in einem {here} verwendet werden!"
+
+msgid "here_to_south"
+msgstr "Von ${{map_name}} nach ${{south}}"
+
+msgid "evolution_confirmation"
+msgstr "{name} versucht, sich zu {evolve} zu entwickeln. Evolution zulassen?"
+
+msgid "tuxemon_stat1"
+msgstr ""
+"ID {txmn}, {type}, vor {doc} Tagen\n"
+"{exp}xp, {exp_lv}xp nach Lv {lv}\n"
+"Körper: {weight} {unit_weight} {height} {unit_height}"
+
+msgid "tuxemon_stat2"
+msgstr "{desc}"
+
+msgid "spyder_greenwash_guard"
+msgstr "Okay, okay, hier gibt es nichts zu sehen."
+
+msgid "spyder_greenwash_chip1"
+msgstr "Ich habe eine unübertroffene Rechenleistung entwickelt!"
+
+msgid "spyder_greenwash_clarence1"
+msgstr "Meine tuxemon sind im Sonnenlicht nicht aufzuhalten!"
+
+msgid "spyder_greenwash_gregor2"
+msgstr "Ugh, es blinzelte nicht einmal, als es ohnmächtig wurde!"
+
+msgid "spyder_greenwash_clarence2"
+msgstr "Da war eine Wolke!"

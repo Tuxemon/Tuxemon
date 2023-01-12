@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2020-11-06 08:26+0000\n"
-"Last-Translator: Michael Moroni <michaelmoroni@disroot.org>\n"
+"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/tuxemon/"
 "tuxemon/eo/>\n"
 "Language: eo\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -240,7 +240,6 @@ msgid "run"
 msgstr "Run"
 
 ## MENU TRANSLATIONS ##
-
 msgid "menu_alphabet"
 msgstr "ABCĈDEFGĜHĤIJĴKLMNOPRSŜTUŬVZabcĉdefgĝhĥijĵklmnoprsŝtuŭvz1234567890.-!\0"
 
@@ -1210,8 +1209,10 @@ msgstr "You will? Splendid! Now, to find you a suitable Tuxemon...\n"
 msgid "cottonnurse_dialog"
 msgstr "Welcome to the Cotton Town Tuxecenter!"
 
+#, fuzzy
 msgid "tabanurse_dialog\n"
-msgstr "Welcome to the Taba Town Tuxecenter!\n"
+msgstr ""
+"Welcome to the ${{map_name}} Tuxecenter!\n"
 "Do you want to heal your Tuxemon?\n"
 
 msgid "okaythen"
@@ -1222,3 +1223,93 @@ msgstr "Well, it looks like your Tuxemon are full of energy! Here they are!"
 
 msgid "input_name"
 msgstr "Kiel vi nomiĝas?"
+
+msgid "birdling"
+msgstr "Birdling"
+
+msgid "budaye"
+msgstr "Budaye"
+
+msgid "viviphyta"
+msgstr "Viviphyta"
+
+msgid "botbot"
+msgstr "Botbot"
+
+msgid "vivisource"
+msgstr "Vivisource"
+
+msgid "viviteel"
+msgstr "Viviteel"
+
+msgid "tuxemon_stat2"
+msgstr "{desc}"
+
+msgid "abesnaki"
+msgstr "Abesnaki"
+
+#, fuzzy
+msgid "altie"
+msgstr "Altie"
+
+#, fuzzy
+msgid "angrito"
+msgstr "Angrito"
+
+#, fuzzy
+msgid "anu"
+msgstr "Anu"
+
+msgid "apeoro"
+msgstr "Apeoro"
+
+msgid "araignee"
+msgstr "Araignee"
+
+msgid "arthrobolt"
+msgstr "Arthrobolt"
+
+msgid "av8r"
+msgstr "Av8r"
+
+msgid "b_ver_1"
+msgstr "B-Ver.1"
+
+msgid "banling"
+msgstr "Banling"
+
+msgid "baobaraffe"
+msgstr "Baobaraffe"
+
+msgid "baoby"
+msgstr "Baoby"
+
+msgid "beenstalker"
+msgstr "Beenstalker"
+
+msgid "boltnu"
+msgstr "Boltnu"
+
+msgid "boxali"
+msgstr "Boxali"
+
+msgid "brewdin"
+msgstr "Brewdin"
+
+msgid "bugnin"
+msgstr "Bugnin"
+
+msgid "urcine"
+msgstr "Urcine"
+
+msgid "vigueur"
+msgstr "Vigueur"
+
+msgid "vivicinder"
+msgstr "Vivicinder"
+
+msgid "vividactil"
+msgstr "Vividactil"
+
+msgid "vivipere"
+msgstr "Vivipere"

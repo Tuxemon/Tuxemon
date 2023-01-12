@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2022-07-19 05:18+0000\n"
-"Last-Translator: Maxime Leroy <lisacintosh@gmail.com>\n"
+"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fr/>\n"
 "Language: fr_FR\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -263,9 +263,8 @@ msgstr "Déconnexion"
 msgid "menu_bag"
 msgstr "Sac"
 
-#, fuzzy
 msgid "menu_fight"
-msgstr "Combat"
+msgstr "Combattre"
 
 msgid "menu_item"
 msgstr "Objet"
@@ -298,9 +297,8 @@ msgstr "Options"
 msgid "menu_player"
 msgstr "Joueur"
 
-#, fuzzy
 msgid "menu_run"
-msgstr "Courir"
+msgstr "Fuire"
 
 msgid "menu_save"
 msgstr "Sauvegarder"
@@ -378,7 +376,7 @@ msgstr ""
 "Il est joueur, mais il faut lui apprendre très jeune à maîtriser son ardeur."
 
 msgid "allagon"
-msgstr "Allagaon"
+msgstr "Allagon"
 
 msgid "allagon_description"
 msgstr ""
@@ -425,11 +423,8 @@ msgstr "<<MISSING>>"
 msgid "cairfrey"
 msgstr "Cairfrey"
 
-#, fuzzy
 msgid "cairfrey_description"
-msgstr ""
-"Un joli meuble qui s'est réveillé un beau matin et a décidé d'explorer le "
-"monde."
+msgstr "Un meuble joyeux qui s'est réveillé un matin et a décidé d'explorer."
 
 msgid "capiti"
 msgstr "Capiti"
@@ -489,9 +484,8 @@ msgstr ""
 msgid "corvix"
 msgstr "Corvix"
 
-#, fuzzy
 msgid "corvix_description"
-msgstr "Il arme ses ailes avec les éclats d'os de ses victimes."
+msgstr "Il arme ses ailes des éclats d'os de ses victimes."
 
 msgid "dandylion"
 msgstr "Dandylion"
@@ -530,7 +524,6 @@ msgstr ""
 "planter. Alors sa queue se transforme en fleur qui n'arrêtera jamais de "
 "pousser."
 
-#, fuzzy
 msgid "dune_pincher"
 msgstr "Dune Pincher"
 
@@ -612,11 +605,9 @@ msgstr "<<MISSING>>"
 msgid "lambert"
 msgstr "Lambert"
 
-#, fuzzy
 msgid "lambert_description"
 msgstr ""
-"Il est placé dans sa coquille de noix par ses parents pour le sevrer, puis "
-"il doit affronter le monde."
+"Il est placé dans sa noix par son parent, qui l'envoie ensuite dans le monde."
 
 msgid "legko"
 msgstr "Legko"
@@ -869,9 +860,8 @@ msgstr "Île"
 msgid "host"
 msgstr "Hôte"
 
-#, fuzzy
 msgid "woodwose"
-msgstr "Sauvage"
+msgstr "Woodwose"
 
 msgid "firebird"
 msgstr "Oiseau de flamme"
@@ -1380,7 +1370,7 @@ msgstr "Bienvenue au Tuxecentre de Contonville !"
 
 msgid "tabanurse_dialog\n"
 msgstr ""
-"Bienvenue au Tuxecenter de Taba !\n"
+"Bienvenue au Tuxecenter de ${{map_name}} !\n"
 "Voulez-vous soigner votre Tuxemon ?\n"
 
 msgid "okaythen"
@@ -1433,9 +1423,8 @@ msgstr ""
 "Il y a une marque de baiser à côté de l'adresse"
 
 # Money notification
-
 msgid "player_wallet"
-msgstr "Portefeuille de ${{name}}: ${{money}}${{currency}}"
+msgstr "Portefeuille de ${{name}} : ${{money}}${{currency}}"
 
 # Allie's Address
 msgid "allies_address"
@@ -1465,7 +1454,7 @@ msgid "combat_state_poison_get"
 msgstr "{target} est empoisonné."
 
 msgid "combat_can't_run_from_trainer"
-msgstr "On ne peut pas s'enfuir d'une bataille d'entraîneurs !"
+msgstr "On ne peut pas s'enfuir !"
 
 msgid "hellolovelypeople"
 msgstr "BOOONJOOOUUUR CITOYENS DE TABA !"
@@ -2023,10 +2012,10 @@ msgid "nudiflot_male_description"
 msgstr "Il avale et stocke le poison des créatures marines dont il se nourrit."
 
 msgid "nudiflot_female"
-msgstr "Nudiflot (F)"
+msgstr "Nudiflot"
 
 msgid "nudiflot_male"
-msgstr "Nudiflot (H)"
+msgstr "Nudiflot"
 
 msgid "xeon_2"
 msgstr "Xénon-2"
@@ -2577,11 +2566,10 @@ msgstr ""
 msgid "itsmyduhduhduh"
 msgstr "Vous recevez l'adresse de Allie !"
 
-#, fuzzy
 msgid "maamnothing2"
 msgstr ""
-"Bon sang John ! On était peinards !\n"
-"Que voulez-vous ?"
+"Bon sang John! On était peinards!\n"
+"Que voulez-vous?"
 
 msgid "itsmyaurababe"
 msgstr "Donc, qui êtes vous ?"
@@ -2727,9 +2715,8 @@ msgstr ""
 msgid "moverocky"
 msgstr "Allez Rocky ! Tu peux bouger ! J'y crois !"
 
-#, fuzzy
 msgid "tuxemontime3"
-msgstr "On arrive !"
+msgstr "On arrive!"
 
 msgid "moverocky2"
 msgstr "Bon, tu bougeras quand tu te sentiras prêt, j'attendrai."
@@ -5530,3 +5517,1757 @@ msgstr "chip"
 
 msgid "spyder_greenwash_gregor2"
 msgstr "Mmm, je n'ai même pas cligné des yeux quand je me suis évanoui !"
+
+msgid "altie"
+msgstr "Altie"
+
+msgid "birdling"
+msgstr "Birdling"
+
+msgid "abesnaki"
+msgstr "Abesnaki"
+
+msgid "boltnu"
+msgstr "Boltnu"
+
+msgid "cateye"
+msgstr "Cateye"
+
+msgid "chromeye"
+msgstr "Chromeye"
+
+msgid "dinoflop"
+msgstr "Dinoflop"
+
+msgid "drokoro"
+msgstr "Drokoro"
+
+msgid "elofly"
+msgstr "Elofly"
+
+msgid "embazook_description"
+msgstr ""
+"Il est formé pour être utilisé en temps de guerre et ne connaît pas d'autre "
+"vie."
+
+msgid "beenstalker_description"
+msgstr ""
+"Ce qui manque à BEENSTALKER en sens et en grâce, il le compense par son "
+"enthousiasme et sa bonne volonté. Il se délecte de vermine effrayante, mais "
+"ne les blesse jamais."
+
+msgid "elowind_description"
+msgstr ""
+"Les lieutenants de la famille ELOFLY, ELOWIND guident le troupeau et le "
+"gardent concentré."
+
+msgid "embazook"
+msgstr "Embazook"
+
+msgid "eyesore_description"
+msgstr ""
+"Il se souvient de tout ce qu'il a jamais vu, mais pas de l'ordre dans lequel "
+"il l'a vu."
+
+msgid "eyesore"
+msgstr "Eyesore"
+
+msgid "fancair_description"
+msgstr ""
+"Si quelqu'un laisse son ventilateur en marche alors qu'il n'en a pas besoin, "
+"il s'anime et s'envole par la fenêtre pour trouver quelqu'un qui a "
+"réellement besoin d'être refroidi."
+
+msgid "baobaraffe_description"
+msgstr ""
+"Il stocke d'énormes quantités d'eau dans son immense corps afin qu'il puisse "
+"parcourir de longues distances à travers des déserts chauds et secs. Il "
+"partagera également de l'eau avec des créatures assoiffées. Quand il n'a pas "
+"d'eau stockée, il est maigre."
+
+msgid "flambear_description"
+msgstr ""
+"Il peut être suivi à partir de la piste des arbustes à baies bouillies et de "
+"la truite rôtie qu'il laisse dans son sillage."
+
+msgid "foxfire"
+msgstr "Foxfire"
+
+msgid "frondly_description"
+msgstr ""
+"Il peut tout faire avec sa queue préhensile, même serrer la main et cueillir "
+"des fruits."
+
+msgid "conileaf_description"
+msgstr ""
+"La nourriture placée dans son pichet est mélangée et marinée. Ils sont "
+"utilisés pour stocker de la nourriture sans qu'elle sorte."
+
+msgid "galnec_description"
+msgstr ""
+"GALNEC s'enfonce profondément dans les sables chauds du désert, seulement sa "
+"queue pierreuse au-dessus du sol. En meute, ils ressemblent à des jardins de "
+"pierre."
+
+msgid "graffiki"
+msgstr "Graffiki"
+
+msgid "grimachin_description"
+msgstr ""
+"Il a été fabriqué par une entreprise de jouets pour être un animal de "
+"compagnie, mais était trop dangereux."
+
+msgid "grintrock"
+msgstr "Grintrock"
+
+msgid "grumpi_description"
+msgstr ""
+"Une fois attrapé par un GRUMPI, son corps collant, on est impossible à "
+"échapper."
+
+msgid "abesnaki_description"
+msgstr ""
+"Chaque visage est un motif différent, et certains disent que les symboles "
+"épelent des mots dans une langue morte."
+
+msgid "angrito_description"
+msgstr ""
+"Il ne peut pas comprendre pourquoi les humains ressentent de la rage et de "
+"la haine, mais ANGRITO ressent également ces pulsions."
+
+msgid "boltnu_description"
+msgstr ""
+"Il passe la plupart de son temps à creuser des terriers dans le sol, il "
+"reste étourdi par les vibrations et les mouvements constants causés par leur "
+"creusement dans le sol."
+
+msgid "cataspike_description"
+msgstr ""
+"Il apprend à se battre par l'observation. Livré à lui-même, il utilise sa "
+"pointe pour ramasser les déchets."
+
+msgid "apeoro_description"
+msgstr ""
+"Les rois d'autrefois utilisaient des pouvoirs psychiques pour transférer "
+"leurs âmes dans ces machines informatiques dorées. Maintenant, ils vivent, "
+"incapables de communiquer mais rêvant toujours d'empires."
+
+msgid "av8r_description"
+msgstr ""
+"Si le soleil est dehors, il peut voler aussi loin ou aussi haut qu'il le "
+"souhaite."
+
+msgid "brewdin_description"
+msgstr ""
+"Né dans des poteries négligées, autrefois prisées, et des trésors "
+"similaires. Rumeur d'exaucer des vœux à ceux qui peuvent le faire sourire."
+
+msgid "budaye_description"
+msgstr ""
+"Il peut convaincre n'importe quel groupe de coopérer pour le bien commun "
+"avec des miaulements et des vagues encourageantes."
+
+msgid "criniotherme_description"
+msgstr ""
+"Sa crinière brille pendant la journée, devient grosse et rouge au coucher du "
+"soleil et s'envole comme de la cendre la nuit."
+
+msgid "dandicub_description"
+msgstr ""
+"Après la naissance d'une portée, ils flottent à travers le monde et ne "
+"reverront plus jamais leurs familles."
+
+msgid "elofly_description"
+msgstr ""
+"Un ELOFLY est patient et sage, mais quand il afflue en grand nombre, il "
+"devient violent et impulsif."
+
+msgid "hampotamos_description"
+msgstr ""
+"Il grignote RINOCEREED, éliminant les peaux mortes, la mousse et les "
+"mauvaises herbes."
+
+msgid "happito"
+msgstr "Happito"
+
+msgid "jemuar"
+msgstr "Jemuar"
+
+msgid "memnomnom"
+msgstr "Memnomnom"
+
+msgid "ignibus_description"
+msgstr ""
+"Lorsqu'il est menacé, il se retire dans sa coquille et se refroidit "
+"considérablement en évacuant la vapeur. Il pourrait être confondu avec un "
+"rocher."
+
+msgid "k9_description"
+msgstr "C'est un compagnon utile qui peut tirer une tonne de poids."
+
+msgid "jelillow"
+msgstr "Jelillow"
+
+msgid "lapinou"
+msgstr "Lapinou"
+
+msgid "narcileaf"
+msgstr "Narcileaf"
+
+msgid "ruption_description"
+msgstr ""
+"Une fois que la flamme de Embra devient suffisamment chaude, elle engloutit "
+"tout son corps, le remplaçant essentiellement dans le processus."
+
+msgid "skwib"
+msgstr "Skwib"
+
+msgid "snokari_description"
+msgstr ""
+"Les deux dirigeants de SNOKARI détiennent chacun une grande sagesse, mais "
+"ils ne sont jamais d'accord."
+
+msgid "lightmare_description"
+msgstr ""
+"Il se cache dans les profondeurs de l'océan, attirant toute proie sans "
+"méfiance en utilisant sa lumière directement dans sa grande bouche béante."
+
+msgid "masknake"
+msgstr "Masknake"
+
+msgid "masknake_description"
+msgstr ""
+"Lorsqu'il est effrayé ou agressif, il affiche un beau motif avec sa queue."
+
+msgid "metesaur_description"
+msgstr ""
+"Ce tuxemon aimerait plonger dans le sol et laisser des traces. Parfois, le "
+"tuxemon jugeait mal le tir et atterrissait dans les arbres, déclenchant "
+"d'énormes et dangereux incendies de forêt."
+
+msgid "octabode_description"
+msgstr ""
+"OCTABODE fait des anciens vaisseaux et artefacts leurs maisons, rêvant de la "
+"vie de ceux qui ont utilisé les reliques avant eux."
+
+msgid "taupypus_description"
+msgstr ""
+"Dès leur naissance, les yeux d'un TAUPYPUS sont brisés par sa mère. De cette "
+"façon, leurs yeux ne piqueront jamais lorsqu'ils plongeront dans l'eau."
+
+msgid "manosting_description"
+msgstr "Il flotte au-dessus des villes, regardant les requins."
+
+msgid "nudimind"
+msgstr "Nudimind"
+
+msgid "pairagrim_description"
+msgstr ""
+"L'une des têtes de Pairagrim est toujours à la recherche d'une proie, tandis "
+"que l'autre se concentre sur le vol à grande vitesse."
+
+msgid "pairagrin_description"
+msgstr ""
+"La jeune forme de Pairagrim est une créature généralement heureuse. Il a du "
+"mal à voler jusqu'à ce que les deux têtes apprennent à travailler ensemble."
+
+msgid "pilthropus_description"
+msgstr ""
+"Trouvé aux côtés de Tuxemon en tant que Rhincus, Pilthropus était l'un des "
+"plus anciens Tuxemon capables de créer leurs propres outils."
+
+msgid "polyrock_description"
+msgstr ""
+"Il se déguise en enfant humain pour se faufiler dans les dojos et apprendre "
+"des maîtres d'arts martiaux."
+
+msgid "puparmor"
+msgstr "Puparmor"
+
+msgid "pythock_description"
+msgstr ""
+"En utilisant ses marionnettes d'ombre, il peut les utiliser pour combattre "
+"son adversaire avec beaucoup de précision et de vitesse. Ils sont beaucoup "
+"plus confiants et utilisent parfois même leurs marionnettes d'ombre pour "
+"divertir les petits enfants lors de spectacles de marionnettes."
+
+msgid "pyraminx_description"
+msgstr ""
+"Il a une tombe cachée quelque part dans le pays. S'il le trouve, il peut "
+"dormir."
+
+msgid "sampsack"
+msgstr "Sampsack"
+
+msgid "sampsage_description"
+msgstr ""
+"Un scientifique a pris un médicament qui le rendait intelligent pendant la "
+"journée et violent la nuit."
+
+msgid "sclairus_description"
+msgstr ""
+"Lorsqu'une récolte n'est pas récoltée - que ce soit par paresse ou par "
+"catastrophe - son épouvantail devient une créature sombre et vivante."
+
+msgid "strella_description"
+msgstr ""
+"Ses queues sont des leurres pour convaincre les insectes de les mordre et "
+"d'être piégés."
+
+msgid "sadito_description"
+msgstr ""
+"Lorsqu'une personne se sent trop triste, SADITO portera le fardeau pour elle."
+
+msgid "saurchin_description"
+msgstr ""
+"La nuit, SAURCHIN émerge des récifs coralliens pour chasser des proies plus "
+"grosses sur terre."
+
+msgid "snarlon"
+msgstr "Snarlon"
+
+msgid "sadito"
+msgstr "Sadito"
+
+msgid "shybulb"
+msgstr "Shybulb"
+
+msgid "snock_description"
+msgstr ""
+"La créature ressemblant à un serpent se cache sous la sécurité de sa housse "
+"de chaussette. S'il est surpris, il s'agite et reste immobile au sol pour "
+"éviter l'attention."
+
+msgid "solight"
+msgstr "Solight"
+
+msgid "spighter"
+msgstr "Spighter"
+
+msgid "spoilurm_description"
+msgstr ""
+"SPOILURM se déguisent en pommes, et attendent dans les arbres pour manger ce "
+"qui n'est pas inattendu."
+
+msgid "tetrchimp_description"
+msgstr ""
+"Ils absorbent toutes les informations qu'ils rencontrent. Leur bavardage "
+"constant communique tout ce qu'ils ont appris dans l'ordre."
+
+msgid "urcine_description"
+msgstr ""
+"Quand un FURNURSUS naît sans le feu à l'intérieur, il est abandonné dans les "
+"forêts comme un URCINE."
+
+msgid "vigueur_description"
+msgstr ""
+"VIGUEUR concourir pour voir qui peut soulever les roches les plus lourdes. "
+"Quand ils en soulèvent un qui est trop lourd, il les écrase et disperse les "
+"graines TARPEUR."
+
+msgid "vividactil_description"
+msgstr ""
+"Dans les temps anciens, l'Année VIVIDACTIL a marqué une période de renouveau "
+"et de restauration de l'autorité."
+
+msgid "spighter_description"
+msgstr ""
+"Il n'est pas juste que quelque chose d'aussi bon pour se faufiler sur les "
+"gens ne puisse pas se faufiler sur lui-même."
+
+msgid "tourbidi_description"
+msgstr ""
+"Si vous trouvez un cercle de champignons ou de trèfles, c'est un endroit où "
+"TOURBIDI danse."
+
+msgid "urcine"
+msgstr "Urcine"
+
+msgid "turnipper_description"
+msgstr ""
+"Lorsqu'un champ est abandonné aux corbeaux, aux criquets et aux souris, un "
+"TURNIPPER va parfois creuser hors du sol pour défendre les cultures."
+
+msgid "viviteel_description"
+msgstr "Il prend l'armure d'un guerrier tombé et la réutilise pour un obus."
+
+msgid "vivitron"
+msgstr "Vivitron"
+
+msgid "vivisource"
+msgstr "Vivisource"
+
+msgid "vivitrans_description"
+msgstr "Le froid concentre l'esprit de VIVITRANS sur un bord tranchant."
+
+msgid "soiwashearing5"
+msgstr ""
+"Madame, dois-je l'arrêter pour s'être adressé à vous avec tant d'insolence?"
+
+msgid "viviteel"
+msgstr "Viviteel"
+
+msgid "vivitrans"
+msgstr "Vivitrans"
+
+msgid "vivitron_description"
+msgstr ""
+"Les premiers philosophes ont utilisé VIVITRON comme preuve que les forces "
+"naturelles peuvent être apprivoisées et contrôlées."
+
+msgid "taketheleft2"
+msgstr "Prend celui de gauche! Ne t'inquiètes pas, j'ai ces trois-là!"
+
+msgid "rockywhy"
+msgstr ""
+"Attendez, Rocky, ne vous arrêtez pas là! Nous l'avons déjà fait jusqu'à "
+"présent!\n"
+"Je sais que vous aimez l'herbe, mais nous devons arriver à Cotton Town!"
+
+msgid "nobodygetsthrough"
+msgstr "Peu importe qui tu emmènes avec toi, je ne laisserai personne passer!"
+
+msgid "heystop2"
+msgstr ""
+"Madame, nous vous l'avons déjà dit. En vertu de la section 2 de l'article 3, "
+"Omnichannel se réserve le droit de fermer et d'entretenir des zones si "
+"nécessaire."
+
+msgid "waityouhaveone"
+msgstr ""
+"Avez-vous un Tuxemon?\n"
+"Pourquoi donc?\n"
+"... .... ... ...\n"
+"... ... .... ...\n"
+"Trial hein? Eh bien, j'espère que vous êtes bon dans un combat! Je guérirai "
+"votre Tuxemon très rapidement et ensuite nous verrons à quel point vous êtes "
+"vraiment bon."
+
+msgid "ohaimisa2"
+msgstr ""
+"J'ai entendu dire qu'un voyou de Xero battait mes hommes, mais je ne pensais "
+"pas que ce serait toi Misa!"
+
+msgid "higrunts"
+msgstr ""
+"Ces scélérats ne reçoivent même pas une formation adéquate, ils n'étaient "
+"donc pas à la hauteur de moi. Vous ne vous êtes pas trop mal débrouillé non "
+"plus, semble-t-il."
+
+msgid "ohaimisa4"
+msgstr ""
+"Pourquoi suis-je ici? Pourquoi, je suis à la tête de ce projet ! Construire "
+"la zone de combat modèle pour toute la région est un honneur!\n"
+"Bien que, je peux comprendre pourquoi vous n'auriez pas entendu la nouvelle, "
+"gambadant avec votre nouveau jouet et tout"
+
+msgid "evolution_confirmation"
+msgstr "{name} essaie d'évoluer en {evolve}. Permettre l'évolution ?"
+
+msgid "tuxemon_stat1"
+msgstr ""
+"ID {txmn}, {type}, il y a {doc} jours\n"
+"{exp}xp, {exp_lv}xp à Lv {lv}\n"
+"Corps : {weight} {unit_weight} {height} {unit_height}"
+
+msgid "menu_dropoff_no_monsters"
+msgstr "Vous n'avez pas de monstres à déposer."
+
+msgid "rhincus_fossil"
+msgstr "Rhincus Fossile"
+
+msgid "shammer_fossil"
+msgstr "Shammer Fossile"
+
+msgid "nimrod_badge_description"
+msgstr "Tuxemon acheté auprès de Nimrod nécessite que ce badge soit transformé."
+
+msgid "shaft_badge_description"
+msgstr "Tuxemon acheté auprès de Shaft nécessite que ce badge soit transformé."
+
+msgid "earth_booster"
+msgstr "Booster de Terre"
+
+msgid "combat_state_hardshell_get"
+msgstr "{target} est recouvert d'une coque."
+
+msgid "combat_state_sniping_get"
+msgstr "{target} vise."
+
+msgid "combat_state_stuck_get"
+msgstr "{target} est bloqué en place."
+
+msgid "combat_state_tired_get"
+msgstr "{target} est usé."
+
+msgid "combat_state_softened_get"
+msgstr "L'armure de {target} s'adoucit."
+
+msgid "metal_booster_description"
+msgstr ""
+"Il permet de transformer un type de tuxemon de Métal en une forme différente."
+
+msgid "combat_state_spyderbite_get"
+msgstr "{target} commence à renifler."
+
+msgid "water_booster_description"
+msgstr ""
+"Il permet de transformer un type de tuxemon de Eau en une forme différente."
+
+msgid "routea"
+msgstr "Route A"
+
+msgid "routec"
+msgstr "Route C"
+
+msgid "heystop3"
+msgstr "JE LE SAIS, MAIS POURQUOI? VOUS VENEZ DE NOUS COMMENCER!"
+
+msgid "heystop5"
+msgstr ""
+"Mais... Mais... ils ont déterré nos fleurs. Sans arrière-pensée, sans "
+"demander."
+
+msgid "heystop6"
+msgstr ""
+"Je sais, mais on peut planter de nouvelles fleurs ailleurs. Ils seront "
+"toujours spéciaux, car nous les planterons ensemble."
+
+msgid "heystop7"
+msgstr ""
+"S'ils n'étaient pas si déterminés à ramener Tuxemon, nous aurions toujours "
+"notre plate-bande spéciale..."
+
+msgid "soiwashearing"
+msgstr "On dirait qu'on a enfin trouvé un fleuriste, tout le monde."
+
+msgid "soiwashearing8"
+msgstr "Sans compter que les prisons débordent déjà du... Flower City incident."
+
+msgid "ohaimisa6"
+msgstr ""
+"Ah, ce n'est pas grave. J'ai des choses plus importantes à régler de toute "
+"façon. Amusez-vous ensemble, ET ARRÊTEZ DE BLESSER MES HOMMES!\n"
+"Griffonnages!\n"
+
+msgid "kylekindasucks4"
+msgstr ""
+"Je ne veux pas voir une autre personne disparaître. Surtout un aussi "
+"prometteur que vous."
+
+msgid "frondly"
+msgstr "Frondly"
+
+# Boosters (items)
+msgid "greenwash_badge"
+msgstr "Badge : Greenwash"
+
+msgid "greenwash_badge_description"
+msgstr ""
+"Tuxemon acheté auprès de Greenwash nécessite que ce badge soit transformé."
+
+msgid "nimrod_badge"
+msgstr "Badge : Nimrod"
+
+msgid "omnichannel_badge"
+msgstr "Badge : Omnichannel"
+
+msgid "omnichannel_badge_description"
+msgstr ""
+"Tuxemon acheté auprès de Omnichannel nécessite que ce badge soit transformé."
+
+msgid "scoop_badge"
+msgstr "Badge : Scoop"
+
+msgid "scoop_badge_description"
+msgstr "Tuxemon acheté auprès de Scoop nécessite que ce badge soit transformé."
+
+msgid "shaft_badge"
+msgstr "Badge : Shaft"
+
+msgid "booster_tech"
+msgstr "Booster technologique"
+
+msgid "booster_tech_description"
+msgstr ""
+"Une technologie open source qui transforme tuxemon en une forme différente."
+
+msgid "earth_booster_description"
+msgstr ""
+"Il permet de transformer un type de tuxemon de Terre en une forme différente."
+
+msgid "fire_booster_description"
+msgstr ""
+"Il permet de transformer un type de tuxemon de Feu en une forme différente."
+
+#, fuzzy
+msgid "flintstone"
+msgstr "Flintstone"
+
+msgid "lucky_bamboo"
+msgstr "Bambou Chanceux"
+
+msgid "fire_booster"
+msgstr "Booster de Feu"
+
+msgid "metal_booster"
+msgstr "Booster de Métal"
+
+msgid "miaow_milk"
+msgstr "Lait Miaow"
+
+msgid "miaow_milk_description"
+msgstr "Les chats adorent le goût du lait Miaow™ !"
+
+msgid "peace_lily"
+msgstr "Lys de la Paix"
+
+msgid "petrified_dung"
+msgstr "Fumier Pétrifié"
+
+msgid "pyramidion"
+msgstr "Pyramidion"
+
+msgid "sea_girdle"
+msgstr "Gaine de Mer"
+
+msgid "stovepipe"
+msgstr "Tuyau de Poêle"
+
+msgid "sweet_sand"
+msgstr "Sable Doux"
+
+msgid "tectonic_drill"
+msgstr "Foret Tectonique"
+
+msgid "thunderstone"
+msgstr "Pierre de Tonnerre"
+
+msgid "water_booster"
+msgstr "Booster d'Eau"
+
+msgid "wood_booster"
+msgstr "Booster de Bois"
+
+msgid "wood_booster_description"
+msgstr ""
+"Il permet de transformer un type de tuxemon de Bois en une forme différente."
+
+msgid "center"
+msgstr "foyer"
+
+# Map Types:
+msgid "no_type"
+msgstr "pas de type"
+
+msgid "town"
+msgstr "village"
+
+msgid "route"
+msgstr "route"
+
+msgid "dungeon"
+msgstr "donjon"
+
+msgid "shop"
+msgstr "boutique"
+
+msgid "outside"
+msgstr "extérieur"
+
+msgid "inside"
+msgstr "intérieur"
+
+msgid "item_used_wrong_location_inside"
+msgstr "{name} ne peut être utilisé que {here} !"
+
+msgid "item_used_wrong_location_type"
+msgstr "{name} ne peut être utilisé que dans un {here} !"
+
+msgid "combat_forfeit"
+msgstr ""
+"Vous avez déclaré forfait !\n"
+"{npc} est déçu."
+
+msgid "cannot_use_tech_monster"
+msgstr "{name} ne peut pas être utilisé."
+
+msgid "combat_player_run_status"
+msgstr ""
+"Vous ne pouvez pas fuir.\n"
+"{monster} est {status} !"
+
+msgid "combat_player_forfeit_status"
+msgstr ""
+"Vous ne pouvez pas abandonner le match.\n"
+"{monster} est {status} !"
+
+msgid "combat_player_swap_status"
+msgstr ""
+"Vous ne pouvez pas changer de monstre.\n"
+"{monster} est {status} !"
+
+msgid "combat_skip"
+msgstr "{user} saute le tour !"
+
+msgid "combat_victory_trainer"
+msgstr ""
+"Vous avez gagné contre {npc} !\n"
+"Vous obtenez {currency}{prize} !"
+
+## COMBAT STATE STATUSES
+msgid "combat_state_blinded_get"
+msgstr "{target} est aveuglé."
+
+msgid "combat_state_chargedup_get"
+msgstr "{target} est complètement chargé."
+
+msgid "combat_state_charging_get"
+msgstr "{target} augmente la puissance."
+
+msgid "combat_state_confused_get"
+msgstr "{target} est confus."
+
+msgid "combat_state_diehard_get"
+msgstr "{target} continuera à se battre."
+
+msgid "combat_state_dozing_get"
+msgstr "{target} est endormi."
+
+msgid "combat_state_enraged_get"
+msgstr "{target} est furieux."
+
+msgid "combat_state_exhausted_get"
+msgstr "{target} est épuisé."
+
+msgid "combat_state_festering_get"
+msgstr "Les blessures de {target} s'enveniment."
+
+msgid "combat_state_focused_get"
+msgstr "{target} devient ciblé."
+
+msgid "combat_state_grabbed_get"
+msgstr "{target} est serré."
+
+msgid "combat_state_noddingoff_get"
+msgstr "{target} s'endort."
+
+msgid "alert_text"
+msgstr "Texte trop long !"
+
+## STATUSES
+msgid "status_blinded"
+msgstr "Aveuglé"
+
+msgid "status_chargedup"
+msgstr "Chargé"
+
+msgid "status_charging"
+msgstr "En Charge"
+
+msgid "status_confused"
+msgstr "Confus"
+
+msgid "status_diehard"
+msgstr "Die Hard"
+
+msgid "status_dozing"
+msgstr "Somnolé"
+
+msgid "status_eliminated"
+msgstr "Éliminé"
+
+msgid "status_enraged"
+msgstr "Furieux"
+
+msgid "status_exhausted"
+msgstr "Épuisé"
+
+msgid "status_festering"
+msgstr "Purulente"
+
+msgid "status_focused"
+msgstr "Concentré"
+
+msgid "status_grabbed"
+msgstr "Empoigné"
+
+msgid "status_hardshell"
+msgstr "Coquille"
+
+msgid "status_noddingoff"
+msgstr "Hochant"
+
+msgid "status_sniping"
+msgstr "Sniping"
+
+msgid "status_softened"
+msgstr "Ramolli"
+
+msgid "status_spyderbite"
+msgstr "Morsure Spyder"
+
+msgid "status_stuck"
+msgstr "Coincé"
+
+msgid "status_tired"
+msgstr "Fatigué"
+
+msgid "acid"
+msgstr "Acide"
+
+msgid "adamantine"
+msgstr "Adamantin"
+
+msgid "taba_town"
+msgstr "Taba"
+
+msgid "route1_description"
+msgstr "Prends soin de toi !"
+
+msgid "route2_description"
+msgstr "Le chemin historique !"
+
+msgid "route5_description"
+msgstr "Le passage commémoratif à Timber Town !"
+
+msgid "taba_town_description"
+msgstr "Un refuge paisible !"
+
+msgid "timber_town_description"
+msgstr "Le grenier de Fondant !"
+
+## MAP SIGNS ##
+msgid "welcome_location_city"
+msgstr ""
+"Bienvenue à ${{map_name}} Ville : ${{map_desc}}\n"
+"Nord : ${{north}} / Sud : ${{south}} / Ouest : ${{west}} / Est : ${{east}}"
+
+msgid "route1"
+msgstr "Route 1"
+
+msgid "route1_sanglorian"
+msgstr "Sanglorian Avenue"
+
+msgid "route2"
+msgstr "Route 2"
+
+msgid "route3"
+msgstr "Route 3"
+
+msgid "route4"
+msgstr "Route 4"
+
+msgid "route5"
+msgstr "Route 5"
+
+msgid "route6"
+msgstr "Route 6"
+
+msgid "routed"
+msgstr "Route D"
+
+msgid "routee"
+msgstr "Route E"
+
+msgid "shop_buy_free"
+msgstr "GRATUIT!"
+
+#Release notifications
+msgid "cant_release"
+msgstr "Impossible de libérer le dernier Tuxemon de l'équipe."
+
+msgid "welcome_location_route"
+msgstr ""
+"Bienvenue à ${{map_name}} : ${{map_desc}}\n"
+"Nord : ${{north}} / Sud : ${{south}} / Ouest : ${{west}} / Est : ${{east}}"
+
+msgid "welcome_location_town"
+msgstr ""
+"Bienvenue à ${{map_name}} Village : ${{map_desc}}\n"
+"Nord : ${{north}} / Sud : ${{south}} / Ouest : ${{west}} / Est : ${{east}}"
+
+msgid "here_to_north"
+msgstr "De ${{map_name}} à ${{north}}"
+
+msgid "here_to_south"
+msgstr "De ${{map_name}} à ${{south}}"
+
+msgid "here_to_west"
+msgstr "De ${{map_name}} à ${{west}}"
+
+msgid "here_to_east"
+msgstr "De ${{map_name}} à ${{east}}"
+
+msgid "tuxemon_stat2"
+msgstr "{desc}"
+
+msgid "menu_dropoff"
+msgstr "Déposer Tuxemon"
+
+msgid "menu_storage"
+msgstr "Enlever Tuxemon"
+
+msgid "menu_forfeit"
+msgstr "Quitter"
+
+msgid "menu_storage_take_monster"
+msgstr "Vous avez ajouté {name} dans votre groupe !"
+
+msgid "menu_storage_monsters_full"
+msgstr "Votre groupe est plein, vous ne pouvez plus en prendre du stockage."
+
+msgid "menu_storage_empty_kennel"
+msgstr "Ce stockage est vide, il n'y a pas de monstres à prendre."
+
+msgid "angrito"
+msgstr "Angrito"
+
+msgid "anu"
+msgstr "Anu"
+
+msgid "apeoro"
+msgstr "Apeoro"
+
+msgid "araignee"
+msgstr "Araignee"
+
+msgid "arthrobolt"
+msgstr "Arthrobolt"
+
+msgid "av8r"
+msgstr "Av8r"
+
+msgid "b_ver_1"
+msgstr "B-Ver.1"
+
+msgid "banling"
+msgstr "Banling"
+
+msgid "baobaraffe"
+msgstr "Baobaraffe"
+
+msgid "baoby"
+msgstr "Baoby"
+
+msgid "beenstalker"
+msgstr "Beenstalker"
+
+msgid "altie_description"
+msgstr ""
+"ALTIE flottait sur terre dans une bulle. Maintenant que sa bulle a éclaté, "
+"il ne peut plus flotter à plus de quelques mètres dans les airs."
+
+msgid "anu_description"
+msgstr ""
+"On dit qu'il entre dans les rêves des autres pour rechercher son amour perdu."
+
+msgid "araignee_description"
+msgstr ""
+"Les pédants qui disent que toutes les araignées ont huit pattes sont "
+"étrangement muets sur le cas d'ARAIGNEE."
+
+msgid "arthrobolt_description"
+msgstr ""
+"Il se sent mal à l'aise de commander ses camarades NUT et BOLT, et s'enfuit "
+"généralement. Mais alors les NUT et BOLT n'ont personne pour les instruire."
+
+msgid "b_ver_1_description"
+msgstr ""
+"Il est conçu pour tous les moments où vous avez besoin de quelque chose pour "
+"être mordu par un robot."
+
+msgid "banling_description"
+msgstr ""
+"Chaque BANLING attend qu'un esprit sans-abri se niche dans ses branches."
+
+msgid "baoby_description"
+msgstr ""
+"Ils voyagent de rivière en rivière à la recherche d'eau à boire et à "
+"stocker. Le ossicones feuillu sur sa tête cache des points en mouvement qui "
+"agissent comme une tige de radiesthésie. De nombreuses créatures suivent "
+"Baoby dans les sécheresses."
+
+msgid "birdling_description"
+msgstr ""
+"L'ignorant croit qu'il porte son propre œuf sur son dos. C'est la garde d'un "
+"œuf beaucoup plus importante que cela."
+
+msgid "botbot"
+msgstr "Botbot"
+
+msgid "boxali"
+msgstr "Boxali"
+
+msgid "brewdin"
+msgstr "Brewdin"
+
+msgid "budaye"
+msgstr "Budaye"
+
+msgid "bugnin"
+msgstr "Bugnin"
+
+msgid "bumbulus"
+msgstr "Bumbulus"
+
+msgid "bursa"
+msgstr "Bursa"
+
+msgid "cataspike"
+msgstr "Cataspike"
+
+msgid "chenipode"
+msgstr "Chenipode"
+
+msgid "chibiro"
+msgstr "Chibiro"
+
+msgid "cochini"
+msgstr "Cochini"
+
+msgid "coleorus"
+msgstr "Coleorus"
+
+msgid "conileaf"
+msgstr "Conileaf"
+
+msgid "botbot_description"
+msgstr ""
+"C'est un robot universel qui peut être adapté à n'importe quelle utilisation."
+
+msgid "boxali_description"
+msgstr ""
+"Avec sa longue cape bleue, BOXALI peut glisser au-dessus du sol - ce qui lui "
+"permet d'effectuer des cascades et des attaques aériennes."
+
+msgid "bugnin_description"
+msgstr "Son épée est en fait une antenne cultivée et arrachée à cet effet."
+
+msgid "bumbulus_description"
+msgstr ""
+"Bumbulus est un être volant qui produit un nuage de fumée pour se déguiser "
+"en nuage. Personne n'a jamais vu son vrai corps."
+
+msgid "bursa_description"
+msgstr ""
+"Il rejette le feu comme fondamental, et ne produit que le feu de l'esprit."
+
+msgid "cateye_description"
+msgstr "On dit qu'il clignote une fois par an, en l'honneur de la fin de l'été."
+
+msgid "chenipode_description"
+msgstr ""
+"Il mord dans les lacets et les jambes de pantalon quand il veut voyager."
+
+msgid "chibiro_description"
+msgstr ""
+"On le trouve dans les forêts et les champs, où il est souvent confondu avec "
+"un navet."
+
+msgid "chromeye_description"
+msgstr ""
+"CHROMEYE a été créé pour observer et apprendre comment les humains pensent "
+"et ressentent."
+
+msgid "cochini_description"
+msgstr ""
+"Il est aussi intelligent et conscient qu'un enfant de trois ans. C'est "
+"délicieux."
+
+msgid "coleorus_description"
+msgstr "Il existe, inchangé, depuis des millions d'années."
+
+msgid "coproblight_description"
+msgstr ""
+"Né des excréments de Tuxemon préhistoriques, il a utilisé les fragments d'os "
+"en lui-même pour se défendre."
+
+msgid "cowpignon"
+msgstr "Cowpignon"
+
+msgid "criniotherme"
+msgstr "Criniotherme"
+
+msgid "dandicub"
+msgstr "Dandicub"
+
+msgid "drashimi"
+msgstr "Drashimi"
+
+msgid "elostorm_description"
+msgstr ""
+"Rois et reines, les ELOSTORM gouvernent leur peuple et ont une grande "
+"ambition."
+
+msgid "elostorm"
+msgstr "Elostorm"
+
+msgid "elowind"
+msgstr "Elowind"
+
+msgid "embra_description"
+msgstr ""
+"Il mange tout ce qu'il peut pour devenir assez grand pour devenir un RUPTION."
+
+msgid "embra"
+msgstr "Embra"
+
+msgid "enduros_description"
+msgstr ""
+"ENDUROS est un bagarreur agressif qui ne tire pas ses coups. Hors du ring, "
+"c'est assez sociable."
+
+msgid "enduros"
+msgstr "Enduros"
+
+msgid "exapode_description"
+msgstr ""
+"Il agite ses jambes pour attirer l'attention, mais la plupart des gens "
+"s'enfuient."
+
+msgid "exapode"
+msgstr "Exapode"
+
+msgid "exclawvate_description"
+msgstr ""
+"Souvent vus sur les chantiers de construction, ils peuvent utiliser leurs "
+"énormes mains et leur queue pour ramasser la saleté et les gravats. Sous le "
+"tuxemon se trouvent des pneus à chenilles, ce qui leur donne un meilleur "
+"équilibre et une meilleure adhérence lors de l'escalade de tas de gravats."
+
+msgid "exclawvate"
+msgstr "Exclawvate"
+
+msgid "cowpignon_description"
+msgstr ""
+"Certaines personnes le dessèchent et le mangent comme amélioration "
+"médicinale."
+
+msgid "dinoflop_description"
+msgstr ""
+"DINOFLOP prend plaisir à se détourner rapidement de ses agresseurs pour que "
+"leurs coups atterrissent sur son dos blindé et épineux."
+
+msgid "drokoro_description"
+msgstr ""
+"Une fois, il avait une famille, mais il mangeait ses parents, et il mangeait "
+"ses enfants, et il mangeait son compagnon, et il mangeait tout ce qu'il "
+"fallait."
+
+msgid "fancair"
+msgstr "Fancair"
+
+msgid "flacono_description"
+msgstr ""
+"Il n'a absolument pas peur des adversaires et attaquera un ennemi de toute "
+"taille sans hésitation."
+
+msgid "flacono"
+msgstr "Flacono"
+
+msgid "flambear"
+msgstr "Flambear"
+
+msgid "fluoresfin_description"
+msgstr ""
+"Lorsqu'il est menacé, il se blottit avec d'autres Fluoresfin pour créer une "
+"grande lumière aveuglante aux prédateurs désorientants."
+
+msgid "fluoresfin"
+msgstr "Fluoresfin"
+
+msgid "foofle_description"
+msgstr ""
+"Quand vous êtes en danger, tous les FOOFLE entendent ses cris, où qu'ils "
+"soient."
+
+msgid "foofle"
+msgstr "Foofle"
+
+msgid "fordin_description"
+msgstr "Lorsqu'il est menacé, il se recroqueville en boule et rebondit."
+
+msgid "fordin"
+msgstr "Fordin"
+
+msgid "forturtle_description"
+msgstr ""
+"Il chauffe sa coquille pour lire l'avenir à partir des fissures qui émergent."
+
+msgid "forturtle"
+msgstr "Forturtle"
+
+msgid "foxfire_description"
+msgstr ""
+"Les oursons FOXFIRE sont dans des feux qui brûlaient pendant la nuit. "
+"Personne ne sait d'où ils viennent."
+
+msgid "furnursus_description"
+msgstr ""
+"FURNURSUS sont amicaux et oublient souvent que leur corps est trop chaud "
+"pour que les autres puissent les toucher."
+
+msgid "furnursus"
+msgstr "Furnursus"
+
+msgid "galnec"
+msgstr "Galnec"
+
+msgid "ghosteeth_description"
+msgstr ""
+"Il sourit parce qu'il sait comment tous ceux qu'il rencontre vont mourir."
+
+msgid "ghosteeth"
+msgstr "Ghosteeth"
+
+msgid "graffiki_description"
+msgstr ""
+"GRAFFIKI sont aussi à l'aise dans les villes que dans la jungle, marquant "
+"leur territoire avec des peintures élaborées."
+
+msgid "grimachin"
+msgstr "Grimachin"
+
+msgid "grinflare_description"
+msgstr "On dit que tout le monde est le cœur ambulant d'un volcan."
+
+msgid "grinflare"
+msgstr "Grinflare"
+
+msgid "grintot_description"
+msgstr "C'est un GRINTROCK ou GRINFLARE qui a connu l'érosion."
+
+msgid "grintot"
+msgstr "Grintot"
+
+msgid "grintrock_description"
+msgstr ""
+"Il se nourrit en s'asseyant dans les orages, attendant d'être frappé par la "
+"foudre."
+
+msgid "grumpi"
+msgstr "Grumpi"
+
+msgid "gryfix"
+msgstr "Gryfix"
+
+msgid "hampotamos"
+msgstr "Hampotamos"
+
+msgid "happito_description"
+msgstr ""
+"Pourquoi les gens ne peuvent-ils pas toujours être heureux? HAPPITO leur "
+"donnera exactement ce qu'ils veulent, même si ce n'est pas ce dont ils ont "
+"besoin."
+
+msgid "hatchling_description"
+msgstr ""
+"Lorsqu'un œuf ne veut pas éclore et commencer sa prochaine étape de vie, il "
+"devient un HATCHLING."
+
+msgid "hatchling"
+msgstr "Hatchling"
+
+msgid "ignibus"
+msgstr "Ignibus"
+
+msgid "incandesfin_description"
+msgstr ""
+"Tout son corps a considérablement grandi en taille. Cependant, sa lumière "
+"est toujours exactement la même."
+
+msgid "incandesfin"
+msgstr "Incandesfin"
+
+msgid "jelillow_description"
+msgstr ""
+"Lorsqu'une personne pose sa tête sur Jelillow, sa peau gélatineuse la fait "
+"tomber dans un sommeil profond. Si quelqu'un a des problèmes de sommeil, ce "
+"monstre sera utilisé pour l'aider."
+
+msgid "jemuar_description"
+msgstr ""
+"Les pierres précieuses sur son dos sont du même type que lorsqu'il est né. "
+"Il existe de vastes installations agricoles ROCKITTEN sur les veines de "
+"diamant."
+
+msgid "k9"
+msgstr "K9"
+
+msgid "katapill_description"
+msgstr ""
+"Il est né combattant. Il doit sortir de sa coquille d'œuf ou être piégé."
+
+msgid "katapill"
+msgstr "Katapill"
+
+msgid "komodraw_description"
+msgstr ""
+"Il utilise ses griffes pour tailler son arme à feu dans du bois et l'utilise "
+"pour de puissantes attaques à distance."
+
+msgid "komodraw"
+msgstr "Komodraw"
+
+msgid "lapinou_description"
+msgstr ""
+"Lorsque SQUABBITS ont été pris comme animaux de compagnie à la mode, ils se "
+"sont adaptés à la vie domestique et ont perdu leur nature violente."
+
+msgid "lightmare"
+msgstr "Lightmare"
+
+msgid "loliferno"
+msgstr "Loliferno"
+
+msgid "lunight"
+msgstr "Lunight"
+
+msgid "mrmoswitch_description"
+msgstr ""
+"Ces robots effrontés sont utilisés pour leur motricité fine, mais ils "
+"adorent les farces."
+
+msgid "manosting"
+msgstr "Manosting"
+
+msgid "medushock"
+msgstr "Medushock"
+
+msgid "medushock_description"
+msgstr ""
+"Tendance à rester loin du rivage et connu pour être agressif envers les "
+"gens. Les dards servent à étourdir sa proie. Nagez en toute sécurité."
+
+msgid "memnomnom_description"
+msgstr "On dit que le masque de chacun est le visage d'un roi mort différent."
+
+msgid "metesaur"
+msgstr "Metesaur"
+
+msgid "miaownolith"
+msgstr "Miaownolith"
+
+msgid "miaownolith_description"
+msgstr ""
+"Il peut parler le langage humain, mais seulement pour dire des énigmes "
+"énigmatiques."
+
+msgid "mrmoswitch"
+msgstr "Mrmoswitch"
+
+msgid "mystikapi_description"
+msgstr ""
+"La salive de MYSTIKAPI augmente les pouvoirs psychiques. Il se lèche les "
+"yeux et les oreilles pour éveiller ses sens."
+
+msgid "mystikapi"
+msgstr "Mystikapi"
+
+msgid "narcileaf_description"
+msgstr ""
+"Quand un SHYBULB a redonné gloire à un jardin, il se transforme et "
+"s'attribue fièrement le mérite de son travail."
+
+msgid "neutrito_description"
+msgstr "NEUTRITO ne ressent rien. L'appareil parfait?"
+
+msgid "neutrito"
+msgstr "Neutrito"
+
+msgid "nudikill_description"
+msgstr ""
+"Ils sont appelés Dark Bishops parce que leurs têtes rappellent un chapeau "
+"d'évêque."
+
+msgid "nudikill"
+msgstr "Nudikill"
+
+msgid "nudimind_description"
+msgstr "Il rêve d'océans sous d'autres cieux."
+
+msgid "nuenflu_description"
+msgstr ""
+"Il se blottit dans les maisons pendant les mois d'hiver, propageant des "
+"maladies."
+
+msgid "nuenflu"
+msgstr "Nuenflu"
+
+msgid "octabode"
+msgstr "Octabode"
+
+msgid "ouroboutlet_description"
+msgstr ""
+"Le circuit concentre l'énergie, créant un nouveau type d'électricité appelé "
+"foudre chagrinée."
+
+msgid "ouroboutlet"
+msgstr "Ouroboutlet"
+
+msgid "pairagrim"
+msgstr "Pairagrim"
+
+msgid "pairagrin"
+msgstr "Pairagrin"
+
+msgid "pantherafira_description"
+msgstr ""
+"Chaque membre de Pride allume sa crinière à partir d'un feu de joie partagé. "
+"Tant que ce feu brûle, leur force est partagée."
+
+msgid "pantherafira"
+msgstr "Pantherafira"
+
+msgid "pharfan_description"
+msgstr "A l'abreuvoir, il arrose bien ses amis RINOCEREED et HAMPOTAMOS."
+
+msgid "pharfan"
+msgstr "Pharfan"
+
+msgid "picc_description"
+msgstr ""
+"Il accompagne les plongeurs, leur apporte l'oxygène dont ils ont tant besoin."
+
+msgid "picc"
+msgstr "Picc"
+
+msgid "pipis_description"
+msgstr ""
+"Ses cris sont considérés comme un mauvais présage, mais c'est une créature "
+"douce."
+
+msgid "pipis"
+msgstr "Pipis"
+
+msgid "poinchin_description"
+msgstr ""
+"POINCHIN fait des nids dans le corail et peut être tenté par du pain et du "
+"lait."
+
+msgid "poinchin"
+msgstr "Poinchin"
+
+msgid "polyrock"
+msgstr "Polyrock"
+
+msgid "prophetoise_description"
+msgstr ""
+"Son feu céleste est quelque chose que les ennemis voient rarement venir."
+
+msgid "prophetoise"
+msgstr "Prophetoise"
+
+msgid "puparmor_description"
+msgstr ""
+"Son cocon est si dur que les gens sont assommés si un PUPARMOR leur tombe "
+"dessus. Ils étaient autrefois chargés dans des canons et des catapultes."
+
+msgid "pyraminx"
+msgstr "Pyraminx"
+
+msgid "pythock"
+msgstr "Pythock"
+
+msgid "pythwire_description"
+msgstr ""
+"Les observations de wild PYTHWIRE ont inspiré l'inventeur de la première "
+"prise électrique."
+
+msgid "pythwire"
+msgstr "Pythwire"
+
+msgid "qetzlrokilus_description"
+msgstr ""
+"Ce tuxemon plongerait dans des groupes d'autres dinosaures tuxemon et les "
+"brûlerait. Ils aiment aussi mettre le feu aux forêts et laisser tomber leurs "
+"cendres dans l'eau pour gâcher sa pureté."
+
+msgid "qetzlrokilus"
+msgstr "Qetzlrokilus"
+
+msgid "rabbitosaur_description"
+msgstr ""
+"Ses tunnels sont vastes et larges, le site d'énormes guerres entre les "
+"terriers."
+
+msgid "rabbitosaur"
+msgstr "Rabbitosaur"
+
+msgid "rhincus_description"
+msgstr "Il a certaines propriétés d'un reptile et d'une partie d'un oiseau."
+
+msgid "rhincus"
+msgstr "Rhincus"
+
+msgid "rosarin_description"
+msgstr "L'amour de Rosarin est incroyable, il ne demande que de l'affection."
+
+msgid "rosarin"
+msgstr "Rosarin"
+
+msgid "ruption"
+msgstr "Ruption"
+
+msgid "sampsack_description"
+msgstr ""
+"Un scientifique voulait diviser ses personnalités, mais il a divisé son "
+"corps."
+
+msgid "sampsage"
+msgstr "Sampsage"
+
+msgid "sapsnap_description"
+msgstr "Sa terrible colère est rebutante, mais elle passe vite."
+
+msgid "sapsnap"
+msgstr "Sapsnap"
+
+msgid "saurchin"
+msgstr "Saurchin"
+
+msgid "sclairus"
+msgstr "Sclairus"
+
+msgid "seirein_description"
+msgstr ""
+"Il pousse seul dans les marécages, il brûle donc vivement pour attirer les "
+"voyageurs à proximité - mais il est douloureusement timide et s'envole à "
+"leur approche."
+
+msgid "seirein"
+msgstr "Seirein"
+
+msgid "shammer_description"
+msgstr "Dans les temps anciens, il chassait RHINCUS sous un ciel de cendre."
+
+msgid "shammer"
+msgstr "Shammer"
+
+msgid "shelagu"
+msgstr "Shelagu"
+
+msgid "shnark_description"
+msgstr ""
+"SHNARK porte la chair de son dernier repas comme déguisement afin qu'il "
+"puisse se rapprocher de sa proie de confiance."
+
+msgid "shnark"
+msgstr "Shnark"
+
+msgid "shybulb_description"
+msgstr ""
+"Lorsqu'un jardin est négligé, un SHYBULB s'installe et s'occupe "
+"tranquillement des plantes tombantes."
+
+msgid "skwib_description"
+msgstr ""
+"Le SKWIB flotte avec contentement à travers l'océan, examinant les "
+"coquillages potentiels. Il doit craindre pour sa vie avant de finalement "
+"faire un choix."
+
+msgid "snaki_description"
+msgstr ""
+"SNAKI est un serpent qui a appris à se faire pousser des jambes en examinant "
+"le mouvement des lézards et des crocodiles."
+
+msgid "snaki"
+msgstr "Snaki"
+
+msgid "snarlon_description"
+msgstr ""
+"Il ne vole pas, mais ses pattes ne touchent jamais le sol. Le roi du "
+"paradoxe."
+
+msgid "snock"
+msgstr "Snock"
+
+msgid "snokari"
+msgstr "Snokari"
+
+msgid "sockeserp_description"
+msgstr ""
+"Ennemi par ailleurs redoutable, SOCKESERP est facilement expédié s'il "
+"s'emmêle."
+
+msgid "sockeserp"
+msgstr "Sockeserp"
+
+msgid "solight_description"
+msgstr ""
+"Une équipe méchante complote pour utiliser SOLIGHT pour créer un soleil "
+"miniature afin de créer une nouvelle planète."
+
+msgid "spoilurm"
+msgstr "Spoilurm"
+
+msgid "squabbit_description"
+msgstr ""
+"Pour faire leurs preuves, ils se battront bec et ongles pour la moindre "
+"chose."
+
+msgid "squabbit"
+msgstr "Squabbit"
+
+msgid "statursus_description"
+msgstr ""
+"STATURSUS a appris à canaliser ses émotions en une seule flamme pure. La "
+"simple vue de celui-ci envoie les autres en transe."
+
+msgid "statursus"
+msgstr "Statursus"
+
+msgid "strella"
+msgstr "Strella"
+
+msgid "tarpeur_description"
+msgstr ""
+"Ils se reposent et grandissent. Ils grandissent et se reposent aussi. "
+"Rarement, ils se reposent sans grandir ou grandissent sans se reposer."
+
+msgid "tarpeur"
+msgstr "Tarpeur"
+
+msgid "taupypus"
+msgstr "Taupypus"
+
+msgid "teddisun_description"
+msgstr ""
+"Teddisun vénère le soleil - on les voit toujours porter leur jouet solaire."
+
+msgid "teddisun"
+msgstr "Teddisun"
+
+msgid "tetrchimp"
+msgstr "Tetrchimp"
+
+msgid "tikoal_description"
+msgstr "Gardien d'un peuple forestier, il garde et résout les différends."
+
+msgid "tikoal"
+msgstr "Tikoal"
+
+msgid "tikorch_description"
+msgstr "C'est l'intermédiaire entre forêt et volcan, entre soleil et terre."
+
+msgid "tikorch"
+msgstr "Tikorch"
+
+msgid "tobishimi"
+msgstr "Tobishimi"
+
+msgid "toufigel_description"
+msgstr ""
+"Il semble être un insecte moelleux, mais c'est en fait un reptile recouvert "
+"de neige molle."
+
+msgid "toufigel"
+msgstr "Toufigel"
+
+msgid "tourbidi"
+msgstr "Tourbidi"
+
+msgid "trapsnap_description"
+msgstr ""
+"Sa tête est la seule partie de son corps qui ne grandit pas en vieillissant."
+
+msgid "trapsnap"
+msgstr "Trapsnap"
+
+msgid "tsushimi"
+msgstr "Tsushimi"
+
+msgid "tumblebee_description"
+msgstr ""
+"Il construit des ruches qui sont des sphères parfaites, avec le TUMBLEBEE à "
+"l'intérieur roulant et bourdonnant de rires."
+
+msgid "tumblebee"
+msgstr "Tumblebee"
+
+msgid "tumblequill"
+msgstr "Tumblequill"
+
+msgid "turnipper"
+msgstr "Turnipper"
+
+msgid "vigueur"
+msgstr "Vigueur"
+
+msgid "vivicinder_description"
+msgstr ""
+"Il niche dans des incendies de longue durée, soit de sa propre création, "
+"soit dans des mémoriaux, des forges et des verreries."
+
+msgid "vivicinder"
+msgstr "Vivicinder"
+
+msgid "vividactil"
+msgstr "Vividactil"
+
+msgid "vivipere_description"
+msgstr ""
+"Il éclot en grand nombre en été, mais le reste de sa durée de vie est un "
+"mystère."
+
+msgid "vivipere"
+msgstr "Vivipere"
+
+msgid "viviphyta_description"
+msgstr "Il est le roi des serpents - ou du moins se croit tel."
+
+msgid "viviphyta"
+msgstr "Viviphyta"
+
+msgid "vivisource_description"
+msgstr ""
+"Le printemps qu'il choisit pour sa maison a toujours un goût particulier "
+"d'oignon."
+
+msgid "volcoli_description"
+msgstr "C'est l'esprit d'une forêt. Ses cheveux changent avec les saisons."
+
+msgid "volcoli"
+msgstr "Volcoli"
+
+msgid "weavifly_description"
+msgstr "Quand il est lourd d'œuf, il devient incapable de voler."
+
+msgid "weavifly"
+msgstr "Weavifly"
+
+msgid "windeye_description"
+msgstr ""
+"Comme un arbre puissant, WINDEYE se plante au sommet des collines pour se "
+"baigner dans le soleil et le vent. Rechargé, il part alors à la recherche "
+"d'un autre endroit sous le ciel."
+
+msgid "windeye"
+msgstr "Windeye"
+
+msgid "yiinaang_description"
+msgstr "Il est né la première fois qu'une étoile est tombée dans un trou noir."
+
+msgid "yiinaang"
+msgstr "Yiinaang"
+
+msgid "soiwashearing3"
+msgstr ""
+"Je m'appelle Marissa, et ces... ces... voyous ! Détruit mon parterre de "
+"fleurs."
+
+msgid "soiwashearing4"
+msgstr ""
+"Comment oses-tu...\n"
+"C'est du président dont vous parlez aussi ! Ayez un peu de respect !"
+
+msgid "soiwashearing7.5"
+msgstr "Mais quiconque déteste Omnichannel est un de mes amis."
+
+msgid "soiwashearing11"
+msgstr ""
+"OK, bougez maintenant pour que je puisse parler à ces soi-disant chevaliers."
+
+msgid "taketheleft"
+msgstr "Tu prends celui de gauche et je prends les trois autres."

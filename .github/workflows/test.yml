@@ -5,11 +5,11 @@ on:
   - pull_request
 
 jobs:
-  build:
+  tox_unite:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.x']
+        python-version: ['3.9']
 
     steps:
     - uses: actions/checkout@v3
@@ -22,4 +22,23 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install tox 
     - name: Test with tox
-      run: tox 
+      run: tox -epy3
+    
+  style:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9']
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install tox 
+    - name: Test style with tox
+      run: tox -estyle

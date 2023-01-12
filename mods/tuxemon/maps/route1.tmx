@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="154">
+<map version="1.8" tiledversion="1.8.6" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="154">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="north" value="route1_sanglorian"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="route1"/>
-  <property name="north" value="route1_sanglorian"/>
-  <property name="west" value="taba_town"/>
   <property name="types" value="route"/>
+  <property name="west" value="taba_town"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
@@ -124,6 +124,7 @@
     <property name="act10" value="random_encounter route1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_moved"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="57" name="Establish hideout" type="event" x="240" y="352" width="16" height="16">
@@ -156,6 +157,7 @@
     <property name="act10" value="random_encounter route1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_moved"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="96" name="taba battle area sign" type="event" x="880" y="560" width="16" height="16">
@@ -177,6 +179,7 @@
     <property name="act10" value="random_encounter route1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_moved"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="106" name="random battle" type="event" x="688" y="128" width="32" height="48">
@@ -184,6 +187,7 @@
     <property name="act10" value="random_encounter route1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_moved"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="109" name="hi rocky" type="event" x="464" y="208" width="16" height="16">

@@ -9,7 +9,7 @@
       "level": 2,
       "slug": "aardorn",
       "money_mod": 10,
-      "exp_req_mod": 270,
+      "exp_req_mod": 80,
       "gender": "male"
     }
   ]

@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.states.pc import KENNEL
 from tuxemon.states.pc_kennel import HIDDEN_LIST
 
 
@@ -41,7 +42,7 @@ class SetKennelVisibleAction(EventAction):
         kennel = self.kennel
         visible = self.visible
 
-        if kennel == "Kennel":
+        if kennel == KENNEL:
             raise ValueError(
                 f"{kennel} cannot be made invisible.",
             )

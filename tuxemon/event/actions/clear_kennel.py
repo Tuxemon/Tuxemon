@@ -3,23 +3,24 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import final, Optional
+from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.pc import KENNEL
 
 
-# noinspection PyAttributeOutsideInit
 @final
 @dataclass
 class ClearKennelAction(EventAction):
     """
     Clear a kennel.
 
-    Option transfer: clear kennel, transfer monsters
-
     It advisable to save the game and check twice.
-    Remember the root kennel is "Kennel"
+
+    Remember the main kennel is "Kennel"
+
+    Without destination (transfer) the monster will
+    be deleted as well as the kennel.
 
     Script usage:
         .. code-block::
@@ -28,9 +29,8 @@ class ClearKennelAction(EventAction):
 
     Script parameters:
         kennel: The kennel to clear.
-        transfer: The kennel to transfer
-                new, it'll be create + monsters
-                old, monsters will be merged
+        transfer: The kennel to transfer the monsters.
+
     """
 
     name = "clear_kennel"
@@ -42,17 +42,22 @@ class ClearKennelAction(EventAction):
         kennel = self.kennel
         transfer = self.transfer
 
-        if kennel in player.monster_boxes:
-            monsters_kennel = player.monster_boxes[kennel]
-            if transfer is None:
-                player.monster_boxes.pop(kennel)
-            else:
-                if transfer in player.monster_boxes:
-                    for mon in monsters_kennel:
-                        player.monster_boxes[transfer].append(mon)
-                        player.monster_boxes.pop(kennel)
-                else:
-                    player.monster_boxes[transfer] = monsters_kennel
-                    player.monster_boxes.pop(kennel)
+        if kennel == KENNEL:
+            raise ValueError(
+                f"{kennel} cannot be cleared.",
+            )
         else:
-            return
+            if kennel in player.monster_boxes:
+                monsters_kennel = player.monster_boxes[kennel]
+                if transfer is None:
+                    player.monster_boxes.pop(kennel)
+                else:
+                    if transfer in player.monster_boxes:
+                        for mon in monsters_kennel:
+                            player.monster_boxes[transfer].append(mon)
+                            player.monster_boxes.pop(kennel)
+                    else:
+                        player.monster_boxes[transfer] = monsters_kennel
+                        player.monster_boxes.pop(kennel)
+            else:
+                return

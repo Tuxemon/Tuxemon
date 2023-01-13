@@ -12,8 +12,44 @@
             "technique": "peck"
         },
         {
-            "level_learned": 12,
+            "level_learned": 6,
             "technique": "fluff_up"
+        },
+        {
+            "level_learned": 8,
+            "technique": "peck"
+        },
+        {
+            "level_learned": 12,
+            "technique": "web"
+        },
+        {
+            "level_learned": 16,
+            "technique": "venom"
+        },
+        {
+            "level_learned": 20,
+            "technique": "cat_calling"
+        },
+        {
+            "level_learned": 24,
+            "technique": "clairaudience"
+        },
+        {
+            "level_learned": 28,
+            "technique": "air_chain"
+        },
+        {
+            "level_learned": 32,
+            "technique": "chameleon"
+        },
+        {
+            "level_learned": 36,
+            "technique": "barking"
+        },
+        {
+            "level_learned": 40,
+            "technique": "fester"
         }
     ],
     "evolutions": [],

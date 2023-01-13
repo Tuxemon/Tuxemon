@@ -1412,7 +1412,19 @@ msgid "menu_storage_empty_kennel"
 msgstr "This kennel is empty, there are no monsters to take."
 
 msgid "menu_dropoff_no_monsters"
-msgstr "You don't have any monsters to drop off."
+msgstr "Can't drop off the last Tuxemon in your party."
+
+msgid "pick_up"
+msgstr "pick up"
+
+msgid "move_to_kennel"
+msgstr "move to {box}"
+
+msgid "Kennel"
+msgstr "shelter"
+
+msgid "kennel_label"
+msgstr "{box} ({qty})"
 
 # Default mod names on selection menu
 msgid "xero_campaign"

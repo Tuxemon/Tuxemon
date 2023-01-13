@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Dict, Mapping
 
 from tuxemon.db import SeenStatus
-from tuxemon.prepare import CONFIG
 
 if TYPE_CHECKING:
     from tuxemon.save import SaveData
@@ -144,5 +143,5 @@ def _transfer_storage_boxes(save_data: Dict[str, Any]) -> None:
     save_data["monster_boxes"] = dict()
     save_data["item_boxes"] = dict()
 
-    save_data["monster_boxes"][CONFIG.default_monster_storage_box] = kennel
-    save_data["item_boxes"][CONFIG.default_item_storage_box] = locker
+    save_data["monster_boxes"]["Kennel"] = kennel
+    save_data["item_boxes"]["Locker"] = locker

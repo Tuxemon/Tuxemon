@@ -59,12 +59,13 @@ T = TypeVar("T", covariant=True)
 class PygameMenuState(state.State):
 
     transparent = True
+    background_color: ColorLike = (248, 248, 248)
 
     def __init__(
         self,
         width: int = 1,
         height: int = 1,
-        theme: Optional[pygame_menu.themes.Theme] = None,
+        theme: Optional[pygame_menu.Theme] = None,
         **kwargs: Any,
     ) -> None:
         super().__init__()

@@ -457,10 +457,7 @@ class Monster:
         when called during a level up.
 
         """
-        if self.level < 10:
-            level = 10
-        else:
-            level = self.level
+        level = self.level
 
         multiplier = level + 7
         shape = SHAPES[self.shape]

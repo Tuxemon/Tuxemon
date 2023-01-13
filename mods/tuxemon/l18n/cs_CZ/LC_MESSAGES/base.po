@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2020-06-12 07:41+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/tuxemon/tuxemon/cs/"
 ">\n"
 "Language: cs_CZ\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.1-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -397,43 +397,43 @@ msgid "cairfrey"
 msgstr "Cairfrey"
 
 msgid "cairfrey_description"
-msgstr "A jolly piece of furniture who awoke one morning and decided to explore."
+msgstr ""
 
 msgid "capiti"
 msgstr "Capiti"
 
 msgid "capiti_description"
-msgstr "It looks like a baby, but some specimens have been found that are hundreds of years old."
+msgstr ""
 
 msgid "cardiling"
 msgstr "Cardiling"
 
 msgid "cardiling_description"
-msgstr "One wouldn't expect it to breathe fire, until it does."
+msgstr ""
 
 msgid "cardinale"
 msgstr "Cardinale"
 
 msgid "cardinale_description"
-msgstr "It hates all predators with a passion, and makes war with them and their young when it can."
+msgstr ""
 
 msgid "cardiwing"
 msgstr "Cardiwing"
 
 msgid "cardiwing_description"
-msgstr "Its song is remarkable, but few dare keep an explosive songbird."
+msgstr ""
 
 msgid "chillimp"
 msgstr "Chillimp"
 
 msgid "chillimp_description"
-msgstr "It is rumoured to live atop snowy mountains, but no clear photo of it has ever been taken."
+msgstr ""
 
 msgid "chloragon"
 msgstr "Chloragon"
 
 msgid "chloragon_description"
-msgstr "It hatches when an ancient egg is planted in fertile soil. When the eggs run out, there will be no more Chloragon."
+msgstr ""
 
 msgid "conifrost"
 msgstr "Conifrost"
@@ -1204,8 +1204,10 @@ msgstr "You will? Splendid! Now, to find you a suitable Tuxemon...\n"
 msgid "cottonnurse_dialog"
 msgstr "Welcome to the Cotton Town Tuxecenter!"
 
+#, fuzzy
 msgid "tabanurse_dialog\n"
-msgstr "Welcome to the Taba Town Tuxecenter!\n"
+msgstr ""
+"Welcome to the ${{map_name}} Tuxecenter!\n"
 "Do you want to heal your Tuxemon?\n"
 
 msgid "okaythen"
@@ -1216,3 +1218,169 @@ msgstr "Well, it looks like your Tuxemon are full of energy! Here they are!"
 
 msgid "input_name"
 msgstr "Jméno?"
+
+msgid "tuxemon_stat2"
+msgstr "{desc}"
+
+msgid "urcine"
+msgstr "Urcine"
+
+msgid "vivisource"
+msgstr "Vivisource"
+
+msgid "viviteel"
+msgstr "Viviteel"
+
+msgid "vivicinder"
+msgstr "Vivicinder"
+
+msgid "vivitron"
+msgstr "Vivitron"
+
+msgid "volcoli"
+msgstr "Volcoli"
+
+msgid "vividactil"
+msgstr "Vividactil"
+
+msgid "vivipere"
+msgstr "Vivipere"
+
+msgid "vivitrans"
+msgstr "Vivitrans"
+
+msgid "viviphyta"
+msgstr "Viviphyta"
+
+msgid "chrome_robo"
+msgstr "Chrome Robo"
+
+msgid "dark_robo"
+msgstr "Dark Robo"
+
+msgid "birb_robo"
+msgstr "Birb Robo"
+
+msgid "xeon"
+msgstr "Xeon"
+
+msgid "xeon_2"
+msgstr "Xeon-2"
+
+msgid "mk01_beta"
+msgstr "Mk01 Beta"
+
+msgid "mk01_alpha"
+msgstr "MK01 Alpha"
+
+#, fuzzy
+msgid "altie"
+msgstr "Altie"
+
+msgid "abesnaki"
+msgstr "Abesnaki"
+
+#, fuzzy
+msgid "angrito"
+msgstr "Angrito"
+
+#, fuzzy
+msgid "anu"
+msgstr "Anu"
+
+#, fuzzy
+msgid "apeoro"
+msgstr "Apeoro"
+
+#, fuzzy
+msgid "araignee"
+msgstr "Araignee"
+
+#, fuzzy
+msgid "arthrobolt"
+msgstr "Arthrobolt"
+
+#, fuzzy
+msgid "av8r"
+msgstr "Av8r"
+
+#, fuzzy
+msgid "b_ver_1"
+msgstr "B-Ver.1"
+
+#, fuzzy
+msgid "banling"
+msgstr "Banling"
+
+#, fuzzy
+msgid "baobaraffe"
+msgstr "Baobaraffe"
+
+#, fuzzy
+msgid "baoby"
+msgstr "Baoby"
+
+#, fuzzy
+msgid "beenstalker"
+msgstr "Beenstalker"
+
+#, fuzzy
+msgid "birdling"
+msgstr "Birdling"
+
+msgid "boltnu"
+msgstr "Boltnu"
+
+msgid "botbot"
+msgstr "Botbot"
+
+msgid "boxali"
+msgstr "Boxali"
+
+msgid "brewdin"
+msgstr "Brewdin"
+
+msgid "budaye"
+msgstr "Budaye"
+
+msgid "bugnin"
+msgstr "Bugnin"
+
+msgid "bumbulus"
+msgstr "Bumbulus"
+
+msgid "bursa"
+msgstr "Bursa"
+
+msgid "cataspike"
+msgstr "Cataspike"
+
+msgid "cateye"
+msgstr "Cateye"
+
+msgid "chenipode"
+msgstr "Chenipode"
+
+msgid "chibiro"
+msgstr "Chibiro"
+
+msgid "chromeye"
+msgstr "Chromeye"
+
+msgid "cochini"
+msgstr "Cochini"
+
+msgid "turnipper"
+msgstr "Turnipper"
+
+msgid "vigueur"
+msgstr "Vigueur"
+
+msgid "weavifly"
+msgstr "Weavifly"
+
+msgid "windeye"
+msgstr "Windeye"
+
+msgid "yiinaang"
+msgstr "Yiinaang"

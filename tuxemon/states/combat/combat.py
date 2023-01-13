@@ -418,6 +418,9 @@ class CombatState(CombatAnimations):
                     )
                 )
             else:
+                # remove monsters still around
+                for mon in self.ai_players:
+                    mon.monsters.pop()
                 var["battle_last_result"] = OutputBattle.ran
                 self.alert(T.translate("combat_player_run"))
 

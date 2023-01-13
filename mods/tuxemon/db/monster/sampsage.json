@@ -12,8 +12,44 @@
             "technique": "bubble_trap"
         },
         {
-            "level_learned": 12,
+            "level_learned": 6,
             "technique": "strike"
+        },
+        {
+            "level_learned": 8,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 12,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 16,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 20,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 24,
+            "technique": "terror"
+        },
+        {
+            "level_learned": 28,
+            "technique": "undertaker"
+        },
+        {
+            "level_learned": 32,
+            "technique": "lineage"
+        },
+        {
+            "level_learned": 36,
+            "technique": "time_crisis"
+        },
+        {
+            "level_learned": 40,
+            "technique": "sword"
         }
     ],
     "evolutions": [],

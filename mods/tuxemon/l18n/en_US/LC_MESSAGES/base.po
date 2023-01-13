@@ -1290,6 +1290,12 @@ msgstr "Info"
 msgid "monster_menu_move"
 msgstr "Move"
 
+msgid "monster_menu_tech"
+msgstr "Techniques"
+
+msgid "monster_menu_desc"
+msgstr "Description"
+
 msgid "monster_menu_release"
 msgstr "Release"
 
@@ -1406,7 +1412,19 @@ msgid "menu_storage_empty_kennel"
 msgstr "This kennel is empty, there are no monsters to take."
 
 msgid "menu_dropoff_no_monsters"
-msgstr "You don't have any monsters to drop off."
+msgstr "Can't drop off the last Tuxemon in your party."
+
+msgid "pick_up"
+msgstr "pick up"
+
+msgid "move_to_kennel"
+msgstr "move to {box}"
+
+msgid "Kennel"
+msgstr "shelter"
+
+msgid "kennel_label"
+msgstr "{box} ({qty})"
 
 # Default mod names on selection menu
 msgid "xero_campaign"
@@ -1492,10 +1510,10 @@ msgid "agnite"
 msgstr "Agnite"
 
 msgid "allagon_description"
-msgstr "Allagon are drawn to relics made from the metals left behind by their ancestors, and will be violent to retrieve them."
+msgstr "ALLAGON are drawn to relics made from the metals left behind by their ancestors, and will be violent to retrieve them."
 
 msgid "allagon"
-msgstr "Allagaon"
+msgstr "Allagon"
 
 msgid "altie_description"
 msgstr "ALTIE floated down to earth in a bubble. Now its bubble has popped, it cannot float more than a few metres in the air."
@@ -1576,7 +1594,7 @@ msgid "baobaraffe"
 msgstr "Baobaraffe"
 
 msgid "baoby_description"
-msgstr "They travel from river to river in search of water to drink and store. The leafy ossicones on its head conceal movable points that act similar to a dowsing rod. Many creatures follow Baoby in droughts."
+msgstr "They travel from river to river in search of water to drink and store. The leafy ossicones on its head conceal movable points that act similar to a dowsing rod. Many creatures follow BAOBY in droughts."
 
 msgid "baoby"
 msgstr "Baoby"
@@ -1606,7 +1624,7 @@ msgid "bolt"
 msgstr "Bolt"
 
 msgid "boltnu_description"
-msgstr "It spends most of its time digging burrows into the grounnd, it remains dizzy from the constant vibrations and movement caused by them digging into the soil."
+msgstr "It spends most of its time digging burrows into the ground, it remains dizzy from the constant vibrations and movement caused by them digging into the soil."
 
 msgid "boltnu"
 msgstr "Boltnu"
@@ -1642,7 +1660,7 @@ msgid "bugnin"
 msgstr "Bugnin"
 
 msgid "bumbulus_description"
-msgstr "Bumbulus is a flying being that produces a cloud of smoke to disguise itself as a cloud. No one has ever seen its true body."
+msgstr "BUMBULUS is a flying being that produces a cloud of smoke to disguise itself as a cloud. No one has ever seen its true body."
 
 msgid "bumbulus"
 msgstr "Bumbulus"
@@ -1888,7 +1906,7 @@ msgid "exapode"
 msgstr "Exapode"
 
 msgid "exclawvate_description"
-msgstr "Often seen on construction sites, they can use their huge hands and tail to scoop up dirt and rubble. Underneath the tuxemon are caterpillar tyres, giving them a beter balance and grip while climbing heaps of rubble."
+msgstr "Often seen on construction sites, they can use their huge hands and tail to scoop up dirt and rubble. Underneath the Tuxemon are caterpillar tires, giving them a better balance and grip while climbing heaps of rubble."
 
 msgid "exclawvate"
 msgstr "Exclawvate"
@@ -1912,7 +1930,7 @@ msgid "fancair"
 msgstr "Fancair"
 
 msgid "ferricran_description"
-msgstr "Once, the Ferricran were covered all over with adamantine scales, and had wings of mithril."
+msgstr "Once, the FERRICRAN were covered all over with adamantine scales, and had wings of mithril."
 
 msgid "ferricran"
 msgstr "Ferricran"
@@ -1936,7 +1954,7 @@ msgid "flambear"
 msgstr "Flambear"
 
 msgid "fluoresfin_description"
-msgstr "When threatened, it huddles together with other Fluoresfin to create a large blinding light to disorientate predators."
+msgstr "When threatened, it huddles together with other FLUORESFIN to create a large blinding light to disorientate predators."
 
 msgid "fluoresfin"
 msgstr "Fluoresfin"
@@ -2092,7 +2110,7 @@ msgid "incandesfin"
 msgstr "Incandesfin"
 
 msgid "jelillow_description"
-msgstr "When a person rests their head on Jelillow, its jelly-like skin causes them to fall into a deep sleep. If someone is having sleeping problems, then this monster will be used to help them."
+msgstr "When a person rests their head on JELILLOW, its jelly-like skin causes them to fall into a deep sleep. If someone is having sleeping problems, then this monster will be used to help them."
 
 msgid "jelillow"
 msgstr "Jelillow"
@@ -2206,7 +2224,7 @@ msgid "metesaur"
 msgstr "Metesaur"
 
 msgid "metesaur_description"
-msgstr "This tuxemon would enjoy diving into the ground and leaving marks. Sometimes, the tuxemon would misjudge the hit and land in trees, starting huge and dangerous forest fires"
+msgstr "This Tuxemon would enjoy diving into the ground and leaving marks. Sometimes, the Tuxemon would misjudge the hit and land in trees, starting huge and dangerous forest fires"
 
 msgid "miaownolith"
 msgstr "Miaownolith"
@@ -2308,7 +2326,7 @@ msgid "ouroboutlet"
 msgstr "Ouroboutlet"
 
 msgid "pairagrim_description"
-msgstr "One of Pairagrim's heads is always searching for prey, while the other focuses on flying at great speed."
+msgstr "One of PAIRAGRIM's heads is always searching for prey, while the other focuses on flying at great speed."
 
 msgid "pairagrim"
 msgstr "Pairagrim"
@@ -2344,7 +2362,7 @@ msgid "pigabyte"
 msgstr "Pigabyte"
 
 msgid "pilthropus_description"
-msgstr "Found alongside Tuxemon such as Rhincus, Pilthropus was one of the oldest Tuxemon able to create its own tools."
+msgstr "Found alongside Tuxemon such as RHINCUS, PILTHROPUS was one of the oldest Tuxemon able to create its own tools."
 
 msgid "pilthropus"
 msgstr "Pilthropus"
@@ -2410,7 +2428,7 @@ msgid "pythwire"
 msgstr "Pythwire"
 
 msgid "qetzlrokilus_description"
-msgstr "This tuxemon would dive into groups of other dinosaur tuxemon and burn them. They also enjoy setting forests alight and dropping their ashes into water to spoil its purity."
+msgstr "This Tuxemon would dive into groups of other dinosaur Tuxemon and burn them. They also enjoy setting forests alight and dropping their ashes into water to spoil its purity."
 
 msgid "qetzlrokilus"
 msgstr "Qetzlrokilus"
@@ -2440,13 +2458,13 @@ msgid "rockitten"
 msgstr "Rockitten"
 
 msgid "rosarin_description"
-msgstr "Rosarin's love is incredible, he's only asking some affection."
+msgstr "ROSARIN's love is incredible, he's only asking some affection."
 
 msgid "rosarin"
 msgstr "Rosarin"
 
 msgid "ruption_description"
-msgstr "Once Embra's flame becomes hot enough, it engulfs its entire body, essentially replacing it in the process."
+msgstr "Once EMBRA's flame becomes hot enough, it engulfs its entire body, essentially replacing it in the process."
 
 msgid "ruption"
 msgstr "Ruption"
@@ -2584,7 +2602,7 @@ msgid "snowrilla"
 msgstr "Snowrilla"
 
 msgid "sockeserp_description"
-msgstr "An otherwise formiddable enemy, SOCKESERP is easily dispatched if it gets tangled up."
+msgstr "An otherwise formidable enemy, SOCKESERP is easily dispatched if it gets tangled up."
 
 msgid "sockeserp"
 msgstr "Sockeserp"
@@ -2650,16 +2668,10 @@ msgid "taupypus"
 msgstr "Taupypus"
 
 msgid "teddisun_description"
-msgstr "Teddisun worships the sun - they're always seen carrying their sun toy."
+msgstr "TEDDISUN worships the sun - they're always seen carrying their sun toy."
 
 msgid "teddisun"
 msgstr "Teddisun"
-
-msgid "template_description"
-msgstr "Some description here"
-
-msgid "template"
-msgstr "Template Name"
 
 msgid "tetrchimp_description"
 msgstr "They absorb any information they come across. Their constant chatter communicates everything they have learned in order."
@@ -2946,6 +2958,15 @@ msgstr "Sanguine"
 
 msgid "wood"
 msgstr "Wood"
+
+msgid "aether"
+msgstr "Aether"
+
+msgid "glitch"
+msgstr "Glitch"
+
+msgid "normal"
+msgstr "Normal"
 
 msgid "climbing"
 msgstr "Climbing"
@@ -3294,7 +3315,7 @@ msgid "spillit3"
 msgstr "Whatever... Allie is my sister and means the world to me, so it destroyed me when I found out he had taken her to HQ."
 
 msgid "spillit4"
-msgstr "It may not seem like a bad thing, but it is. Do you know what they do to their recuits? DO YOU!?"
+msgstr "It may not seem like a bad thing, but it is. Do you know what they do to their recruits? DO YOU!?"
 
 msgid "spillit5"
 msgstr "Because neither do I... All I know is that no one has ever left Omnichannel after being recruited."
@@ -4246,6 +4267,96 @@ msgid "37707_villager_female_missing"
 msgstr "@*!^: 0H... @ n3wc0m3r! H0vv p1d y0v g3t he7e? <NONE> h3llen\"T $33N %^&one new 1n... ()h, never n3ver m3V3t N3W37 MIIIIIIIIND\n"
 "@*!^: WElcoME! W3lcome t0... 0H N/A: We never g0t ar0und to gi^ing 0ur town {<1} We never g00000000 {<2} W3 neVer Bu1lt 0uR t0wN\n"
 "TH S D ES N T EX ST Y U AR  C NNE  ED TO TH  V ID YO  M ST LEA E N W"
+
+# Taba Town
+msgid "maple_bedroom_sign"
+msgstr "It's a calendar and the 27 April is circled in pink."
+
+msgid "taba_house1_sign"
+msgstr "Mr and Ms Clawbrew House"
+
+msgid "taba_house2_sign"
+msgstr "Legacy Library"
+
+msgid "taba_house3_sign"
+msgstr "The Thoughtful Leaf Inn"
+
+msgid "taba_house4_sign"
+msgstr "The Honorable Seagulls Pub"
+
+msgid "taba_house1_calendar"
+msgstr "It's a calendar and the 30 September and the 12 February are circled in red."
+
+msgid "taba_house1_husband1"
+msgstr "Tuxemon! I was among the most skilled trainer!"
+
+msgid "taba_house1_wife1"
+msgstr "Trainer? My husband is delusional."
+
+msgid "taba_house1_reading"
+msgstr "The book is Philosophy of Illusionary Studies by Jaiden Gemrevenza."
+
+msgid "taba_house1_watching"
+msgstr "It's a documentary about the strangest and most wonderful Tuxemon in the region,\n as well as the strange behaviors they have adopted."
+
+msgid "taba_house2_owner1"
+msgstr "Welcome to the Legacy Library! Feel free to look around, but quiet please."
+
+msgid "taba_house2_reading1"
+msgstr "The book is Visiting The King by Manolo Qai."
+
+msgid "taba_house2_reading2"
+msgstr "The book is Raised By Dreams by Louis Etrergo."
+
+msgid "taba_house2_reading3"
+msgstr "The book is Children Without Honor by Leslie Greninza."
+
+msgid "taba_house2_reading4"
+msgstr "The book is Sailing Into Eternitys by Laurine Doprachuld."
+
+msgid "taba_house2_reader1a"
+msgstr "I feel better at the sight of a book or a bookstore."
+
+msgid "taba_house2_reader2a"
+msgstr "It ignites my imagination."
+
+msgid "taba_house2_reader3a"
+msgstr "So I can live a thousand different lives."
+
+msgid "taba_house2_reader4a"
+msgstr "Reading stimulates my mind in a way that TV and movies will never be able to do."
+
+msgid "taba_house2_books"
+msgstr "000 - Computer science, information and general works, 100 - Philosophy and psychology\n"
+"200 - Religion, 300 - Social sciences, 400 - Language, 500 - Pure Science, 600 - Technology\n"
+"700 - Arts and recreation, 800 - Literature, 900 - History and geography"
+
+msgid "taba_house3_owner1"
+msgstr "Welcome to The Thoughtful Leaf Inn!"
+
+msgid "taba_house3_client1a"
+msgstr "I'm resting while my sister is probably reading some books."
+
+msgid "taba_house3_client2a"
+msgstr "Thinking too much can harm us."
+
+msgid "taba_house3_client3a"
+msgstr "It makes me think about my mom's house."
+
+msgid "taba_house4_owner1"
+msgstr "Welcome to The Honorable Seagulls Pub!"
+
+msgid "taba_house4_client1a"
+msgstr "My grandma used to do a similar dish!"
+
+msgid "taba_house4_client2a"
+msgstr "Eh? Just filling up an empty stomach."
+
+msgid "taba_house4_client3a"
+msgstr "Luckily I didn't pay for this. How can you pay for this?"
+
+msgid "taba_house4_dish1"
+msgstr "It's brown, dense, but it doesn't look like pudding..."
 
 ## DIALOG TRANSLATIONS ##
 # spyder dialogs

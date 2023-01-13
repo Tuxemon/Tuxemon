@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-11 00:00+0000\n"
-"PO-Revision-Date: 2022-08-13 02:17+0000\n"
-"Last-Translator: Keri Z Volans <keri.volans@gmail.com>\n"
+"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fi/>\n"
 "Language: fi\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 ## ITEM TRANSLATIONS ##
 # Apple
@@ -691,3 +691,369 @@ msgstr "Paina näppäintä jonka haluat uudeksi toimintonäppäimeksi"
 
 msgid "options_new_input_key1"
 msgstr "Uudelleenkäynnistä peli saattaaksesi muutokset voimaan!"
+
+msgid "abesnaki"
+msgstr "Abesnaki"
+
+msgid "aardorn"
+msgstr "Aardorn"
+
+msgid "baoby"
+msgstr "Baoby"
+
+msgid "angrito"
+msgstr "Angrito"
+
+msgid "conileaf"
+msgstr "Conileaf"
+
+msgid "araignee"
+msgstr "Araignee"
+
+msgid "arthrobolt"
+msgstr "Arthrobolt"
+
+msgid "boltnu"
+msgstr "Boltnu"
+
+msgid "conifrost"
+msgstr "Conifrost"
+
+msgid "coleorus"
+msgstr "Coleorus"
+
+msgid "dandylion"
+msgstr "Dandylion"
+
+msgid "coproblight"
+msgstr "Coproblight"
+
+msgid "galnec"
+msgstr "Galnec"
+
+msgid "grimachin"
+msgstr "Grimachin"
+
+msgid "vamporm"
+msgstr "Vamporm"
+
+msgid "tweesher"
+msgstr "Tweesher"
+
+msgid "vigueur"
+msgstr "Vigueur"
+
+msgid "urcine"
+msgstr "Urcine"
+
+msgid "velocitile"
+msgstr "Velocitile"
+
+msgid "vivicinder"
+msgstr "Vivicinder"
+
+msgid "wrougon"
+msgstr "Wrougon"
+
+msgid "route1_sanglorian"
+msgstr "Sanglorian-katu"
+
+msgid "tuxemon_stat2"
+msgstr "{desc}"
+
+msgid "agnidon"
+msgstr "Agnidon"
+
+msgid "agnigon"
+msgstr "Agnigon"
+
+msgid "agnite"
+msgstr "Agnite"
+
+msgid "allagon"
+msgstr "Allagon"
+
+msgid "altie"
+msgstr "Altie"
+
+msgid "anoleaf"
+msgstr "Anoleaf"
+
+msgid "anu"
+msgstr "Anu"
+
+msgid "apeoro"
+msgstr "Apeoro"
+
+msgid "bamboon"
+msgstr "Bamboon"
+
+msgid "baobaraffe"
+msgstr "Baobaraffe"
+
+msgid "av8r"
+msgstr "Av8r"
+
+msgid "axylightl"
+msgstr "Axylightl"
+
+msgid "b_ver_1"
+msgstr "B-Ver.1"
+
+msgid "banling"
+msgstr "Banling"
+
+msgid "beenstalker"
+msgstr "Beenstalker"
+
+msgid "bigfin"
+msgstr "Bigfin"
+
+msgid "birdling"
+msgstr "Birdling"
+
+msgid "bolt"
+msgstr "Bolt"
+
+msgid "botbot"
+msgstr "Botbot"
+
+msgid "boxali"
+msgstr "Boxali"
+
+msgid "brewdin"
+msgstr "Brewdin"
+
+msgid "budaye"
+msgstr "Budaye"
+
+msgid "bugnin"
+msgstr "Bugnin"
+
+msgid "bumbulus"
+msgstr "Bumbulus"
+
+msgid "cardiling"
+msgstr "Cardiling"
+
+msgid "bursa"
+msgstr "Bursa"
+
+msgid "cairfrey"
+msgstr "Cairfrey"
+
+msgid "capiti"
+msgstr "Capiti"
+
+msgid "cardinale"
+msgstr "Cardinale"
+
+msgid "cardiwing"
+msgstr "Cardiwing"
+
+msgid "cataspike"
+msgstr "Cataspike"
+
+msgid "cateye"
+msgstr "Cateye"
+
+msgid "chenipode"
+msgstr "Chenipode"
+
+msgid "chibiro"
+msgstr "Chibiro"
+
+msgid "chillimp"
+msgstr "Chillimp"
+
+msgid "chloragon"
+msgstr "Chloragon"
+
+msgid "chromeye"
+msgstr "Chromeye"
+
+msgid "cochini"
+msgstr "Cochini"
+
+msgid "corvix"
+msgstr "Corvix"
+
+msgid "cowpignon"
+msgstr "Cowpignon"
+
+msgid "criniotherme"
+msgstr "Criniotherme"
+
+msgid "dandicub"
+msgstr "Dandicub"
+
+msgid "dinoflop"
+msgstr "Dinoflop"
+
+msgid "djinnbo"
+msgstr "Djinnbo"
+
+msgid "dollfin"
+msgstr "Dollfin"
+
+msgid "dracune"
+msgstr "Dracune"
+
+msgid "dragarbor"
+msgstr "Dragarbor"
+
+msgid "drashimi"
+msgstr "Drashimi"
+
+msgid "drokoro"
+msgstr "Drokoro"
+
+msgid "dune_pincher"
+msgstr "Dune Pincher"
+
+msgid "eaglace"
+msgstr "Eaglace"
+
+msgid "elofly"
+msgstr "Elofly"
+
+msgid "elostorm"
+msgstr "Elostorm"
+
+msgid "elowind"
+msgstr "Elowind"
+
+msgid "embazook"
+msgstr "Embazook"
+
+msgid "embra"
+msgstr "Embra"
+
+msgid "enduros"
+msgstr "Enduros"
+
+msgid "eruptibus"
+msgstr "Eruptibus"
+
+msgid "exapode"
+msgstr "Exapode"
+
+msgid "exclawvate"
+msgstr "Exclawvate"
+
+msgid "eyenemy"
+msgstr "Eyenemy"
+
+msgid "eyesore"
+msgstr "Eyesore"
+
+msgid "fancair"
+msgstr "Fancair"
+
+msgid "ferricran"
+msgstr "Ferricran"
+
+msgid "firomenis"
+msgstr "Firomenis"
+
+msgid "flacono"
+msgstr "Flacono"
+
+msgid "flambear"
+msgstr "Flambear"
+
+msgid "fluoresfin"
+msgstr "Fluoresfin"
+
+msgid "fluttaflap"
+msgstr "Fluttaflap"
+
+msgid "foofle"
+msgstr "Foofle"
+
+msgid "fordin"
+msgstr "Fordin"
+
+msgid "forturtle"
+msgstr "Forturtle"
+
+msgid "foxfire"
+msgstr "Foxfire"
+
+msgid "frondly"
+msgstr "Frondly"
+
+msgid "fruitera"
+msgstr "Fruitera"
+
+msgid "furnursus"
+msgstr "Furnursus"
+
+msgid "gectile"
+msgstr "Gectile"
+
+msgid "ghosteeth"
+msgstr "Ghosteeth"
+
+msgid "graffiki"
+msgstr "Graffiki"
+
+msgid "grinflare"
+msgstr "Grinflare"
+
+msgid "vividactil"
+msgstr "Vividactil"
+
+msgid "vivipere"
+msgstr "Vivipere"
+
+msgid "viviphyta"
+msgstr "Viviphyta"
+
+msgid "vivisource"
+msgstr "Vivisource"
+
+msgid "viviteel"
+msgstr "Viviteel"
+
+msgid "vivitrans"
+msgstr "Vivitrans"
+
+msgid "windeye"
+msgstr "Windeye"
+
+msgid "vivitron"
+msgstr "Vivitron"
+
+msgid "volcoli"
+msgstr "Volcoli"
+
+msgid "weavifly"
+msgstr "Weavifly"
+
+msgid "yiinaang"
+msgstr "Yiinaang"
+
+msgid "zunna"
+msgstr "Zunna"
+
+msgid "chrome_robo"
+msgstr "Chrome Robo"
+
+msgid "dark_robo"
+msgstr "Dark Robo"
+
+msgid "birb_robo"
+msgstr "Birb Robo"
+
+msgid "xeon"
+msgstr "Xeon"
+
+msgid "xeon_2"
+msgstr "Xeon-2"
+
+msgid "mk01_beta"
+msgstr "Mk01 Beta"
+
+msgid "mk01_alpha"
+msgstr "MK01 Alpha"

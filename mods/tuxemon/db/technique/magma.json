@@ -1,7 +1,7 @@
 {
   "tech_id": 137,
   "accuracy": 0.7,
-  "animation": null,
+  "animation": "flameball_red",
   "effects": [
     "damage 100"
   ],

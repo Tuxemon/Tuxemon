@@ -4,6 +4,7 @@ from typing import Optional
 
 import pygame
 import pygame_menu
+from pygame_menu import locals, sound
 from pygame_menu.widgets.core.selection import Selection
 from pygame_menu.widgets.core.widget import Widget
 
@@ -11,7 +12,7 @@ from tuxemon import prepare
 from tuxemon.audio import get_sound_filename
 from tuxemon.tools import transform_resource_filename
 
-_theme: Optional[pygame_menu.themes.Theme] = None
+_theme: Optional[pygame_menu.Theme] = None
 
 
 class TuxemonArrowSelection(Selection):
@@ -27,7 +28,7 @@ class TuxemonArrowSelection(Selection):
         #  --------------------------
         #
 
-        arrow = pygame_menu.baseimage.BaseImage(
+        arrow = pygame_menu.BaseImage(
             image_path=transform_resource_filename("gfx/arrow.png"),
         ).scale(5, 5, smooth=False)
 
@@ -63,7 +64,7 @@ class TuxemonArrowSelection(Selection):
         return self
 
 
-def get_theme() -> pygame_menu.themes.Theme:
+def get_theme() -> pygame_menu.Theme:
     """Get Tuxemon default theme."""
     global _theme
 
@@ -76,7 +77,7 @@ def get_theme() -> pygame_menu.themes.Theme:
         font_filename = prepare.fetch("font", prepare.FONT_JAPANESE)
     else:
         font_filename = prepare.fetch("font", prepare.FONT_BASIC)
-    tuxemon_border = pygame_menu.baseimage.BaseImage(
+    tuxemon_border = pygame_menu.BaseImage(
         image_path=transform_resource_filename("gfx/dialog-borders01.png"),
     ).scale(5, 5, smooth=False)
 
@@ -94,7 +95,7 @@ def get_theme() -> pygame_menu.themes.Theme:
         background_color=tuxemon_background,
         title_font=font_filename,
         widget_font=font_filename,
-        widget_alignment=pygame_menu.locals.ALIGN_LEFT,
+        widget_alignment=locals.ALIGN_LEFT,
         title_font_size=20,
         widget_font_size=26,
         title=False,
@@ -102,7 +103,7 @@ def get_theme() -> pygame_menu.themes.Theme:
         widget_font_color=(0, 0, 0),
         selection_color=(0, 0, 0),
         border_color=tuxemon_border,
-        scrollarea_position=pygame_menu.locals.SCROLLAREA_POSITION_NONE,
+        scrollarea_position=locals.SCROLLAREA_POSITION_NONE,
         widget_padding=(10, 20),
     )
 
@@ -110,19 +111,19 @@ def get_theme() -> pygame_menu.themes.Theme:
     return _theme
 
 
-_sound_engine: Optional[pygame_menu.sound.Sound] = None
+_sound_engine: Optional[pygame_menu.Sound] = None
 
 
-def get_sound_engine() -> pygame_menu.sound.Sound:
+def get_sound_engine() -> pygame_menu.Sound:
     """Get Tuxemon default sound engine."""
     global _sound_engine
 
     if _sound_engine is not None:
         return _sound_engine
 
-    sound_engine = pygame_menu.sound.Sound()
+    sound_engine = pygame_menu.Sound()
     sound_engine.set_sound(
-        pygame_menu.sound.SOUND_TYPE_WIDGET_SELECTION,
+        sound.SOUND_TYPE_WIDGET_SELECTION,
         get_sound_filename("sound_menu_select"),
     )
 

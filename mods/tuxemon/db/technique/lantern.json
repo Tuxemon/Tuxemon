@@ -1,7 +1,7 @@
 {
   "tech_id": 133,
   "accuracy": 0.4,
-  "animation": null,
+  "animation": "gloop_orange",
   "effects": [
     "damage 100"
   ],

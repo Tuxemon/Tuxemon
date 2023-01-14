@@ -1,7 +1,7 @@
 {
   "tech_id": 171,
   "accuracy": 0.4,
-  "animation": null,
+  "animation": "ice_storm",
   "effects": [
     "damage 100"
   ],

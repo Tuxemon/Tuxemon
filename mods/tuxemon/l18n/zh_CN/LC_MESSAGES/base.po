@@ -1357,7 +1357,7 @@ msgid "tsunami"
 msgstr "海啸"
 
 msgid "tux"
-msgstr "Tux"
+msgstr "小企鹅"
 
 msgid "ubuntu"
 msgstr "乌班图"

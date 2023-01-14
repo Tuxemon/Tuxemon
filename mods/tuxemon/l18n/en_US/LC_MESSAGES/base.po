@@ -4242,6 +4242,29 @@ msgstr "@*!^: 0H... @ n3wc0m3r! H0vv p1d y0v g3t he7e? <NONE> h3llen\"T $33N %^&
 "TH S D ES N T EX ST Y U AR  C NNE  ED TO TH  V ID YO  M ST LEA E N W"
 
 ## DIALOG TRANSLATIONS ##
+# spyder intros
+
+msgid "spyder_intro00"
+msgstr "Hello, I am the CEO of Omnichannel. We run the newspapers, TV channels and radio stations for this region.\n"
+"It is my duty to inform you."
+
+msgid "spyder_intro01"
+msgstr "Tuxemon are the animals that inhabit this world.\n"
+"They love to be captured so their masters can battle them for fun and profit.\n"
+"The strongest win, just like in the world of business.\n"
+"Most monsters are found in the wild. They morph into more advanced forms when they gain experience.\n"
+"But the five Pillars that make up the Cathedral, that is, the five allied companies that operate in this region,\n"
+"have improved on nature. This season, we offer five deluxe Tuxemon!"
+
+msgid "spyder_intro02"
+msgstr "These tuxemon morph immediately when exposed to a token - that's instant gratification!\n"
+"What's more, they let you choose which form they morph into."
+
+msgid "spyder_intro03"
+msgstr "Tokens are available for a modest fee from all Pillars!\n"
+"Ahem, what was I talking about?\n"
+"Oh yes, each Pillar offers one of these exclusive Tuxemon."
+
 # spyder dialogs
 msgid "spyder_papertown_stopthere"
 msgstr "Hey! What do you think you're doing?\n It's not safe to go into the wilds unless you have a tuxemon.\n Come buy one from our shop."

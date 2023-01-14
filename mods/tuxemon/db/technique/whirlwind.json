@@ -1,7 +1,7 @@
 {
   "tech_id": 66,
   "accuracy": 1,
-  "animation": "whirlwind",
+  "animation": "tornado_volume",
   "effects": [
     "damage 100"
   ],

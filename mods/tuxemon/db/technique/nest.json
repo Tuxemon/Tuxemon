@@ -1,7 +1,7 @@
 {
   "tech_id": 196,
   "accuracy": 0.8,
-  "animation": null,
+  "animation": "ruby_absorb",
   "effects": [
     "damage 100"
   ],

@@ -1,7 +1,7 @@
 {
   "tech_id": 180,
   "accuracy": 0.1,
-  "animation": null,
+  "animation": "pound_bright",
   "effects": [
     "damage 100"
   ],

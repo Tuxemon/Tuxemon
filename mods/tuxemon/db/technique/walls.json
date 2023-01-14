@@ -1,7 +1,7 @@
 {
   "tech_id": 156,
   "accuracy": 0.1,
-  "animation": null,
+  "animation": "wall_wood",
   "effects": [
     "damage 100"
   ],

@@ -1,7 +1,7 @@
 {
   "tech_id": 174,
   "accuracy": 0.3,
-  "animation": null,
+  "animation": "tux",
   "effects": [
     "damage 100"
   ],

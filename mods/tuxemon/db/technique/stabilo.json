@@ -1,7 +1,7 @@
 {
   "tech_id": 190,
   "accuracy": 0.6,
-  "animation": null,
+  "animation": "amethyst_absorb",
   "effects": [
     "damage 100"
   ],

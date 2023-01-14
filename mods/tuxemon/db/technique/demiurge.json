@@ -1,7 +1,7 @@
 {
   "tech_id": 147,
   "accuracy": 0.8,
-  "animation": null,
+  "animation": "demiurge",
   "effects": [
     "damage 100"
   ],

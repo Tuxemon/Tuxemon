@@ -1,7 +1,7 @@
 {
   "tech_id": 122,
   "accuracy": 0.8,
-  "animation": null,
+  "animation": "crystal_radiate",
   "effects": [
     "damage 100"
   ],

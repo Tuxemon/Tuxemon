@@ -1,7 +1,7 @@
 {
   "tech_id": 165,
   "accuracy": 0.3,
-  "animation": null,
+  "animation": "wall_fire",
   "effects": [
     "damage 100"
   ],

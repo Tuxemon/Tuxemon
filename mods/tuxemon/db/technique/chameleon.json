@@ -1,7 +1,7 @@
 {
   "tech_id": 179,
   "accuracy": 0.8,
-  "animation": null,
+  "animation": "red_circle",
   "effects": [
     "damage 100"
   ],

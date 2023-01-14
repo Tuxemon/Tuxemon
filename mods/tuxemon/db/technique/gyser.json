@@ -1,7 +1,7 @@
 {
   "tech_id": 173,
   "accuracy": 0.1,
-  "animation": null,
+  "animation": "smokebomb_plume",
   "effects": [
     "damage 100"
   ],

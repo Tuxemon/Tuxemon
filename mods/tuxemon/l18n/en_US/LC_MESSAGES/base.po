@@ -91,13 +91,13 @@ msgid "shammer_fossil"
 msgstr "Shammer Fossil"
 
 msgid "shammer_fossil_description"
-msgstr ""
+msgstr "It looks like the skull of an ancient dog, but it's hard as stone."
 
 msgid "rhincus_fossil"
 msgstr "Rhincus Fossil"
 
 msgid "rhincus_fossil_description"
-msgstr ""
+msgstr "It looks like the skull of a toothed bird, but it's hard as stone."
 
 # Boosters (items)
 msgid "greenwash_badge"
@@ -152,13 +152,13 @@ msgid "flintstone"
 msgstr "Flintstone"
 
 msgid "flintstone_description"
-msgstr ""
+msgstr "A flaky stone used to make stone tools and start fires. Not at the same time."
 
 msgid "lucky_bamboo"
 msgstr "Lucky Bamboo"
 
 msgid "lucky_bamboo_description"
-msgstr ""
+msgstr "Technically, it's not bamboo at all. Nor is it particularly lucky. But it makes a nice indoor plant."
 
 msgid "metal_booster"
 msgstr "Metal Booster"
@@ -176,49 +176,49 @@ msgid "peace_lily"
 msgstr "Peace Lily"
 
 msgid "peace_lily_description"
-msgstr ""
+msgstr "A hardy indoor plant for someone special."
 
 msgid "petrified_dung"
 msgstr "Petrified Dung"
 
 msgid "petrified_dung_description"
-msgstr ""
+msgstr "It looks like, well, poo ... but it's hard as stone."
 
 msgid "pyramidion"
 msgstr "Pyramidion"
 
 msgid "pyramidion_description"
-msgstr ""
+msgstr "A golden triangle that hums with celestial power."
 
 msgid "sea_girdle"
 msgstr "Sea Girdle"
 
 msgid "sea_girdle_description"
-msgstr ""
+msgstr "A string of baubles, soft and slimy like kelp."
 
 msgid "stovepipe"
 msgstr "Stovepipe"
 
 msgid "stovepipe_description"
-msgstr ""
+msgstr "A long iron pipe. Handling it leaves your hands sooty and ashen."
 
 msgid "sweet_sand"
 msgstr "Sweet Sand"
 
 msgid "sweet_sand_description"
-msgstr ""
+msgstr "In parts of the world, people clean themselves with this fragrant, sudsy sand."
 
 msgid "tectonic_drill"
 msgstr "Tectonic Drill"
 
 msgid "tectonic_drill_description"
-msgstr ""
+msgstr "A big click-clack machine used to drill into the earth."
 
 msgid "thunderstone"
 msgstr "Thunderstone"
 
 msgid "thunderstone_description"
-msgstr ""
+msgstr "An old stone relic, now carried about for good luck."
 
 msgid "water_booster"
 msgstr "Water Booster"
@@ -2187,32 +2187,29 @@ msgstr ""
 msgid "magmaturtle"
 msgstr "Magmaturtle"
 
-msgid "mrmoswitch_description"
-msgstr "These cheeky robots are used for their fine motor skills, but they love pranks."
+msgid "manosting_description"
+msgstr "It floats across the tops of cities, contemplating sharks."
 
 msgid "manosting"
 msgstr "Manosting"
 
-msgid "manosting_description"
-msgstr "It floats across the tops of cities, contemplating sharks."
+msgid "masknake_description"
+msgstr "When frightened or aggressive, it flashes a beautiful pattern with its tail."
 
 msgid "masknake"
 msgstr "Masknake"
 
-msgid "masknake_description"
-msgstr "When frightened or aggressive, it flashes a beautiful pattern with its tail."
+msgid "medushock_description"
+msgstr "Tend to stay away from shore and known to be aggressive to people. Stingers are used to stun its prey. Swim safely."
 
 msgid "medushock"
 msgstr "Medushock"
 
-msgid "medushock_description"
-msgstr "Tend to stay away from shore and known to be aggressive to people. Stingers are used to stun its prey. Swim safely."
+msgid "memnomnom_description"
+msgstr "It is said that each one's mask is the face of a different dead king."
 
 msgid "memnomnom"
 msgstr "Memnomnom"
-
-msgid "memnomnom_description"
-msgstr "It is said that each one's mask is the face of a different dead king."
 
 msgid "merlicun_description"
 msgstr ""
@@ -2220,23 +2217,26 @@ msgstr ""
 msgid "merlicun"
 msgstr "Merlicun"
 
-msgid "metesaur"
-msgstr "Metesaur"
-
 msgid "metesaur_description"
 msgstr "This Tuxemon would enjoy diving into the ground and leaving marks. Sometimes, the Tuxemon would misjudge the hit and land in trees, starting huge and dangerous forest fires"
 
-msgid "miaownolith"
-msgstr "Miaownolith"
+msgid "metesaur"
+msgstr "Metesaur"
 
 msgid "miaownolith_description"
 msgstr "It can speak the human tongue, but only to say cryptic riddles."
+
+msgid "miaownolith"
+msgstr "Miaownolith"
 
 msgid "moloch_description"
 msgstr "It can stiffen or soften its skin to respond to friends and foes."
 
 msgid "moloch"
 msgstr "Moloch"
+
+msgid "mrmoswitch_description"
+msgstr "These cheeky robots are used for their fine motor skills, but they love pranks."
 
 msgid "mrmoswitch"
 msgstr "Mrmoswitch"
@@ -2871,20 +2871,73 @@ msgstr "Cheerful ZUNNA sucks up all the food it can find into its stomach."
 msgid "zunna"
 msgstr "Zunna"
 
+# Tuxemon Threats
+
+msgid "chrome_robo_description"
+msgstr "A hostile robot."
+
 msgid "chrome_robo"
 msgstr "Chrome Robo"
+
+msgid "dark_robo_description"
+msgstr "A hostile robot."
+
 msgid "dark_robo"
 msgstr "Dark Robo"
+
+msgid "birb_robo_description"
+msgstr "A hostile robot."
+
 msgid "birb_robo"
 msgstr "Birb Robo"
-msgid "xeon"
-msgstr "Xeon"
-msgid "xeon_2"
-msgstr "Xeon-2"
-msgid "mk01_beta"
-msgstr "Mk01 Beta"
+
+msgid "mk01_alpha_description"
+msgstr "A killer robot fused with a dragon. Don't ask us how."
+
 msgid "mk01_alpha"
 msgstr "MK01 Alpha"
+
+msgid "mk01_beta_description"
+msgstr "A killer robot fused with a dragon. Don't ask us how."
+
+msgid "mk01_beta"
+msgstr "Mk01 Beta"
+
+msgid "mk01_delta_description"
+msgstr "A killer robot fused with a dragon. Don't ask us how."
+
+msgid "mk01_delta"
+msgstr "Mk01 Delta"
+
+msgid "mk01_gamma_description"
+msgstr "A killer robot fused with a dragon. Don't ask us how."
+
+msgid "mk01_gamma"
+msgstr "Mk01 Gamma"
+
+msgid "mk01_omega_description"
+msgstr "A killer robot fused with a dragon. Don't ask us how."
+
+msgid "mk01_omega"
+msgstr "Mk01 Omega"
+
+msgid "mk01_proto_description"
+msgstr "A killer robot fused with a dragon. Don't ask us how."
+
+msgid "mk01_proto"
+msgstr "Mk01 Proto"
+
+msgid "xeon_description"
+msgstr "A hostile robot."
+
+msgid "xeon"
+msgstr "Xeon"
+
+msgid "xeon_2_description"
+msgstr "A hostile robot."
+
+msgid "xeon_2"
+msgstr "Xeon-2"
 
 # Monster categories
 msgid "anteater"

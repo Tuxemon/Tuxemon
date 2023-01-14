@@ -38,23 +38,22 @@
         {
             "level_learned": 28,
             "technique": "lineage"
-        },
-        {
-            "level_learned": 32,
-            "technique": "terror"
-        },
-        {
-            "level_learned": 36,
-            "technique": "sunburst"
-        },
-        {
-            "level_learned": 40,
-            "technique": "gold_digger"
         }
     ],
-    "evolutions": [],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "mk01_delta"
+        },
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "mk01_gamma"
+        }
+    ],
     "shape": "dragon",
-    "stage": "standalone",
+    "stage": "stage1",
     "types": [
         "metal"
     ],

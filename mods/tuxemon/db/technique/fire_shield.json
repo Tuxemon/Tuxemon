@@ -1,7 +1,7 @@
 {
   "tech_id": 167,
   "accuracy": 0.1,
-  "animation": null,
+  "animation": "shield_fire",
   "effects": [
     "damage 100"
   ],

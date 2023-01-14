@@ -1,7 +1,7 @@
 {
   "tech_id": 159,
   "accuracy": 0.4,
-  "animation": null,
+  "animation": "explosion_sun_32",
   "effects": [
     "damage 100"
   ],

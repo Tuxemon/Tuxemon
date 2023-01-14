@@ -1,7 +1,7 @@
 {
   "tech_id": 140,
   "accuracy": 0.8,
-  "animation": null,
+  "animation": "skull_fire",
   "effects": [
     "damage 100"
   ],

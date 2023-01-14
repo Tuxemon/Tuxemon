@@ -1,7 +1,7 @@
 {
   "tech_id": 154,
   "accuracy": 0.6,
-  "animation": null,
+  "animation": "emerald_radiate",
   "effects": [
     "damage 100"
   ],

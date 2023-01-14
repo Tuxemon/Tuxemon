@@ -1,7 +1,7 @@
 {
   "tech_id": 125,
   "accuracy": 0.3,
-  "animation": null,
+  "animation": "metallic_radiate",
   "effects": [
     "damage 100"
   ],

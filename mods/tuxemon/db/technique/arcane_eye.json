@@ -1,7 +1,7 @@
 {
   "tech_id": 158,
   "accuracy": 0.8,
-  "animation": null,
+  "animation": "crystal_absorb",
   "effects": [
     "damage 100"
   ],

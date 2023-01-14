@@ -1,7 +1,7 @@
 {
   "tech_id": 132,
   "accuracy": 0.8,
-  "animation": null,
+  "animation": "icetacle",
   "effects": [
     "damage 100"
   ],

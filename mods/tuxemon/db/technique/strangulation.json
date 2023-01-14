@@ -1,7 +1,7 @@
 {
-  "tech_id": 175,
+  "tech_id": 93,
   "accuracy": 0.1,
-  "animation": null,
+  "animation": "x_attack",
   "effects": [
     "damage 100"
   ],

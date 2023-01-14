@@ -1,7 +1,7 @@
 {
-  "tech_id": 199,
+  "tech_id": 117,
   "accuracy": 0.2,
-  "animation": null,
+  "animation": "turquoise_circle",
   "effects": [
     "damage 100"
   ],

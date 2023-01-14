@@ -1119,8 +1119,8 @@ msgstr "Touch"
 msgid "tsunami"
 msgstr "Tsunami"
 
-msgid "tux"
-msgstr "Tux"
+msgid "tux_attack"
+msgstr "Tux Attack"
 
 msgid "ubuntu"
 msgstr "Ubuntu"
@@ -3065,9 +3065,6 @@ msgstr "Rip"
 
 msgid "yeti"
 msgstr "Yeti"
-
-msgid "some_category_here"
-msgstr "Some category here"
 
 msgid "ex_machina"
 msgstr "Ex Machina"

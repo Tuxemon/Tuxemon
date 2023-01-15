@@ -1255,7 +1255,7 @@ A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Cha
 
 * ["Turquoise Circle"]() adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
 
-* ["Tux"](https://commons.wikimedia.org/wiki/File:Other-linux-logo.svg) adapted by JaskRendix licensed under [Free Art License 1.3](https://artlibre.org/licence/lal/en/)
+* ["Tux Attack"](https://commons.wikimedia.org/wiki/File:Other-linux-logo.svg) adapted by JaskRendix licensed under [Free Art License 1.3](https://artlibre.org/licence/lal/en/)
 
 * ["Ubuntu"](https://commons.wikimedia.org/wiki/File:Ubuntu-Logo_ohne_Schriftzug.svg) adapted by JaskRendix licensed under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.en)
 

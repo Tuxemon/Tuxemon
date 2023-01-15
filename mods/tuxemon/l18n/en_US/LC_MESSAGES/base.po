@@ -4414,6 +4414,9 @@ msgstr "It's brown, dense, but it doesn't look like pudding..."
 ## DIALOG TRANSLATIONS ##
 # spyder intros
 
+msgid "spyder_intro_question"
+msgstr "Do you want to skip the intro?"
+
 msgid "spyder_intro00"
 msgstr "Hello, I am the CEO of Omnichannel. We run the newspapers, TV channels and radio stations for this region.\n"
 "It is my duty to inform you."
@@ -4434,6 +4437,21 @@ msgid "spyder_intro03"
 msgstr "Tokens are available for a modest fee from all Pillars!\n"
 "Ahem, what was I talking about?\n"
 "Oh yes, each Pillar offers one of these exclusive Tuxemon."
+
+msgid "spyder_intro_shopkeeper1"
+msgstr "What a great presentation from our CEO! All Gold members are being offered a free tuxemon."
+
+msgid "spyder_intro_shopkeeper2"
+msgstr "Just fill in this form."
+
+msgid "spyder_intro_question_name"
+msgstr "What is your name?"
+
+msgid "spyder_intro_shopkeeper3"
+msgstr "Please, now return the form to the Shop Assistant, so we can give you the tuxemon."
+
+msgid "spyder_intro_shopkeeper4"
+msgstr "I'm sorry, you are not a Gold member. This offer is for Gold members only."
 
 # spyder dialogs
 msgid "spyder_papertown_stopthere"

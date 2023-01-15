@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="9" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="30">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="9" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="33">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -90,6 +90,49 @@
     <property name="act2" value="set_monster_status ,"/>
     <property name="act3" value="set_variable battle_last_result:none"/>
     <property name="cond1" value="is variable_set battle_last_result:lost"/>
+   </properties>
+  </object>
+  <object id="30" name="intro question" type="event" x="60" y="0" width="16" height="16">
+   <properties>
+    <property name="act02" value="change_bg spyder_empty"/>
+    <property name="act03" value="translated_dialog spyder_intro_question"/>
+    <property name="act04" value="translated_dialog_choice no:yes,question_intro"/>
+    <property name="act05" value="change_bg end"/>
+    <property name="cond1" value="not variable_set question_intro:yes"/>
+    <property name="cond2" value="not variable_set question_intro:no"/>
+   </properties>
+  </object>  
+  <object id="31" name="Spyder Intro" type="event" x="76" y="0" width="16" height="16">
+   <properties>
+    <property name="act05" value="change_bg spyder_intro01"/>
+    <property name="act06" value="translated_dialog spyder_intro00"/>
+    <property name="act07" value="change_bg spyder_tumble"/>
+    <property name="act08" value="translated_dialog spyder_intro01"/>
+    <property name="act09" value="change_bg spyder_dol"/>
+    <property name="act10" value="translated_dialog dollfin"/>
+    <property name="act11" value="change_bg spyder_ign"/>
+    <property name="act12" value="translated_dialog ignibus"/>
+    <property name="act13" value="change_bg spyder_mem"/>
+    <property name="act14" value="translated_dialog memnomnom"/>
+    <property name="act15" value="change_bg spyder_bud"/>
+    <property name="act16" value="translated_dialog budaye"/>
+    <property name="act17" value="change_bg spyder_gri"/>
+    <property name="act18" value="translated_dialog grintot"/>
+    <property name="act19" value="change_bg spyder_monsters"/>
+    <property name="act20" value="translated_dialog spyder_intro02"/>
+    <property name="act21" value="change_bg spyder_morph"/>
+    <property name="act22" value="translated_dialog spyder_intro03"/>
+    <property name="act23" value="change_bg end"/>
+    <property name="act25" value="set_variable spyder_intro:yes"/>
+    <property name="act26" value="transition_teleport spyder_paper_mart.tmx,4,8,0.3"/>
+    <property name="cond1" value="is variable_set question_intro:no"/>
+    <property name="cond2" value="not variable_set spyder_intro:yes"/>
+   </properties>
+  </object>
+  <object id="32" name="No Intro" type="event" x="92" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable spyder_intro:yes"/>
+    <property name="cond1" value="is variable_set question_intro:yes"/>
    </properties>
   </object>
  </objectgroup>

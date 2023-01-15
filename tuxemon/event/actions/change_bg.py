@@ -5,7 +5,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import final
 
+from pygame_menu import locals
+
 from tuxemon.event.eventaction import EventAction
+from tuxemon.menu.menu import PygameMenuState
+from tuxemon.menu.theme import get_theme
 from tuxemon.states.bg import BgState
 
 
@@ -15,6 +19,12 @@ class ChangeBgAction(EventAction):
     """
     Change the background.
 
+    It's advisable end the bg sequence with "end"
+
+    Eg:
+    act1 change_bg filename
+    act2 change_bg end
+
     Script usage:
         .. code-block::
 
@@ -22,8 +32,9 @@ class ChangeBgAction(EventAction):
 
     Script parameters:
         background: The name of the file without .PNG
-        the file must be inside the folder (gfx/ui/background/)
-        ideal dimension 240x160
+
+        the files must be inside the folder (gfx/ui/background/)
+        Size: 240x160
 
     """
 
@@ -31,12 +42,25 @@ class ChangeBgAction(EventAction):
     background: str
 
     def start(self) -> None:
-        # Don't override previous state if we are still in the state.
+        # don't override previous state if we are still in the state.
         current_state = self.session.client.current_state
         if current_state is None:
             # obligatory "should not happen"
             raise RuntimeError
+
+        # this function cleans up the previous state without crashing
+        if len(self.session.client.state_manager.active_states) > 2:
+            self.session.client.pop_state()
+
         if current_state.name != BgState:
-            self.session.client.push_state(
-                BgState(kwargs={"background": self.background})
-            )
+            if self.background == "end":
+                return
+            else:
+                self.session.client.push_state(
+                    BgState(kwargs={"background": self.background})
+                )
+
+    def cleanup(self) -> None:
+        theme = get_theme()
+        theme.background_color = PygameMenuState.background_color
+        theme.widget_alignment = locals.ALIGN_LEFT

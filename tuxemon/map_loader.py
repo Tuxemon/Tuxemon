@@ -208,7 +208,11 @@ class TMXMapLoader:
                 colliders = gids_with_colliders.get(gid)
                 if colliders is not None:
                     for obj in colliders:
-                        if obj.type and obj.type.lower().startswith(
+                        if obj.type is None:
+                            obj_type = getattr(obj, "class")  # obj.class is invalid syntax
+                        else:
+                            obj_type = obj.type
+                        if obj_type and obj_type.lower().startswith(
                             "collision"
                         ):
                             if getattr(obj, "closed", True):
@@ -225,18 +229,22 @@ class TMXMapLoader:
                             collision_lines_map.add(line)
 
         for obj in data.objects:
-            if obj.type and obj.type.lower().startswith("collision"):
+            if obj.type is None:
+                obj_type = getattr(obj, "class")  # obj.class is invalid syntax
+            else:
+                obj_type = obj.type
+            if obj_type and obj_type.lower().startswith("collision"):
                 for tile_position, props in self.extract_tile_collisions(
                     obj, tile_size
                 ):
                     collision_map[tile_position] = props
                 for line in self.collision_lines_from_object(obj, tile_size):
                     collision_lines_map.add(line)
-            elif obj.type == "event":
+            elif obj_type == "event":
                 events.append(self.load_event(obj, tile_size))
-            elif obj.type == "init":
+            elif obj_type == "init":
                 inits.append(self.load_event(obj, tile_size))
-            elif obj.type == "interact":
+            elif obj_type == "interact":
                 interacts.append(self.load_event(obj, tile_size))
 
         return TuxemonMap(
@@ -389,7 +397,11 @@ class TMXMapLoader:
                     raise Exception
 
         # add a player_facing_tile condition automatically
-        if obj.type == "interact":
+        if obj.type is None:
+            obj_type = getattr(obj, "class")  # obj.class is invalid syntax
+        else:
+            obj_type = obj.type
+        if obj_type == "interact":
             cond_data = MapCondition(
                 "player_facing_tile", list(), x, y, w, h, "is", None
             )

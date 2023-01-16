@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-16 12:48+0000\n"
+"PO-Revision-Date: 2023-01-18 01:47+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "tuxemon/tuxemon/pt_BR/>\n"
@@ -2324,3 +2324,9 @@ msgstr "Tuxecenter - Um lugar para curar o seu tuxemon"
 
 msgid "leather_town_open_air"
 msgstr "Café e Mercado"
+
+msgid "shammer_fossil_description"
+msgstr "Parece o crânio de um cão antigo, mas é duro como pedra."
+
+msgid "rhincus_fossil_description"
+msgstr "Parece o crânio de um pássaro dentado, mas é duro como pedra."

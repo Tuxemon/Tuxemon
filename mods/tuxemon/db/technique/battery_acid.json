@@ -1,7 +1,7 @@
 {
   "tech_id": 88,
   "accuracy": 0.8,
-  "animation": "disintegrate",
+  "animation": "disintegrate_83",
   "effects": [
     "poison target",
     "damage 100"

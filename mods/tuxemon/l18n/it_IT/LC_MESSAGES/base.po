@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"PO-Revision-Date: 2023-01-16 12:48+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "it/>\n"
@@ -125,7 +125,7 @@ msgid "combat_state_poison_damage"
 msgstr "{name} ha subito danno da avvelenamento!"
 
 msgid "combat_state_lifeleech_get"
-msgstr "{user} sta succhiando la vita da {target}."
+msgstr "{target} sta venendo succhiata la vita."
 
 msgid "combat_state_lifeleech_success"
 msgstr "{user} ha perso vita per succhiavita!"
@@ -776,7 +776,9 @@ msgid "dragarbor"
 msgstr "Dragarbor"
 
 msgid "dune_pincher_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"Questi eremiti si avvolgeranno in tutto ciò che è più vicino. Nel deserto, "
+"sono i sudari funerari dei faraoni morti da tempo."
 
 msgid "dune_pincher"
 msgstr "Dune Pincher"
@@ -824,7 +826,10 @@ msgid "fluttaflap"
 msgstr "Fluttaflap"
 
 msgid "fruitera_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"FRUITERA è avido di frutta e ne trasporta il più possibile. Quando è "
+"spaventato, lascia cadere tutti i suoi frutti, li raccoglie di nuovo e solo "
+"allora scappa."
 
 msgid "fruitera"
 msgstr "Fruitera"
@@ -842,7 +847,7 @@ msgid "heronquak"
 msgstr "Heronquak"
 
 msgid "hydrone_description"
-msgstr "<<MISSING>>"
+msgstr "Utilizza una tecnologia sperimentale che crea energia dall'acqua."
 
 msgid "hydrone"
 msgstr "Hydrone"
@@ -917,13 +922,13 @@ msgid "nudiflot_male"
 msgstr "Nudiflot"
 
 msgid "nut_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "nut"
 msgstr "Nut"
 
 msgid "pigabyte_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "pigabyte"
 msgstr "Pigabyte"
@@ -935,19 +940,19 @@ msgid "possessun"
 msgstr "Possessun"
 
 msgid "propellercat_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "propellercat"
 msgstr "Propellercat"
 
 msgid "rockat_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "rockat"
 msgstr "Rockat"
 
 msgid "rockitten_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "rockitten"
 msgstr "Rockitten"
@@ -961,13 +966,13 @@ msgid "sapragon"
 msgstr "Sapragon"
 
 msgid "selket_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "selket"
 msgstr "Selket"
 
 msgid "selmatek_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "selmatek"
 msgstr "Selmatek"
@@ -979,7 +984,7 @@ msgid "sharpfin"
 msgstr "Sharpfin"
 
 msgid "sludgehog_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "sludgehog"
 msgstr "Sludgehog"
@@ -991,7 +996,7 @@ msgid "snowrilla"
 msgstr "Snowrilla"
 
 msgid "spycozeus_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "spycozeus"
 msgstr "Spycozeus"
@@ -1018,7 +1023,7 @@ msgid "tigrock"
 msgstr "Tigrock"
 
 msgid "tumbleworm_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "tumbleworm"
 msgstr "Tumbleworm"
@@ -3636,7 +3641,6 @@ msgid "embra_description"
 msgstr ""
 "Mangia tutto ciò che può, così può ingrossarsi fino a diventare un RUPTION."
 
-#, fuzzy
 msgid "furnursus"
 msgstr "Furnursus"
 
@@ -4204,3 +4208,518 @@ msgstr "Tuxecenter - Il posto in cui guarire i tuoi tuxemon"
 
 msgid "taba_town_sign_tuxemart"
 msgstr "Tuxemart - Il posto in cui comprare e vendere oggetti"
+
+msgid "cannot_use_item_monster"
+msgstr "Questo oggetto non può essere usato su questo mostro."
+
+msgid "spoilurm"
+msgstr "Spoilurm"
+
+msgid "frondly"
+msgstr "Frondly"
+
+msgid "jelillow"
+msgstr "Jelillow"
+
+msgid "gryfix"
+msgstr "Gryfix"
+
+msgid "lunight"
+msgstr "Lunight"
+
+msgid "pantherafira"
+msgstr "Pantherafira"
+
+msgid "polyrock"
+msgstr "Polyrock"
+
+msgid "pythock"
+msgstr "Pythock"
+
+msgid "statursus"
+msgstr "Statursus"
+
+msgid "strella"
+msgstr "Strella"
+
+msgid "pythwire"
+msgstr "Pythwire"
+
+msgid "skwib"
+msgstr "Skwib"
+
+msgid "snokari"
+msgstr "Snokari"
+
+msgid "sockeserp"
+msgstr "Sockeserp"
+
+msgid "solight"
+msgstr "Solight"
+
+msgid "spighter"
+msgstr "Spighter"
+
+msgid "tarpeur"
+msgstr "Tarpeur"
+
+msgid "taupypus"
+msgstr "Taupypus"
+
+msgid "miaownolith"
+msgstr "Miaownolith"
+
+msgid "foxfire"
+msgstr "Foxfire"
+
+msgid "mrmoswitch"
+msgstr "Mrmoswitch"
+
+msgid "mystikapi"
+msgstr "Mystikapi"
+
+msgid "37707_sign_welcome"
+msgstr "Benvenuti nella città 37707! Noi siamo..."
+
+msgid "37707_sign_tower"
+msgstr "Città 37707 torre. Questa struttura è instabile: non entrare!"
+
+msgid "flacono_description"
+msgstr ""
+"Non ha assolutamente paura degli avversari e attaccherà un nemico di "
+"qualsiasi dimensione senza esitazione."
+
+msgid "foxfire_description"
+msgstr ""
+"I cuccioli di FOXFIRE si trovano negli incendi che si sono spenti durante la "
+"notte. Nessuno sa da dove vengano."
+
+msgid "galnec_description"
+msgstr ""
+"GALNEC si seppellisce in profondità nelle calde sabbie del deserto, solo la "
+"sua coda pietrosa è fuori. In branco, sembrano giardini di pietra."
+
+msgid "grimachin_description"
+msgstr ""
+"È stato fatto da un'azienda di giocattoli per essere un animale domestico, "
+"ma era troppo pericoloso."
+
+msgid "incandesfin_description"
+msgstr ""
+"Tutto il suo corpo è cresciuto enormemente in grandezza. Tuttavia, la sua "
+"luce è sempre la stessa."
+
+msgid "komodraw_description"
+msgstr ""
+"Usa i suoi artigli per lavorare la sua arma da fuoco in legno, che usa per "
+"potenti attacchi a distanza."
+
+msgid "eyesore"
+msgstr "Eyesore"
+
+msgid "hampotamos"
+msgstr "Hampotamos"
+
+msgid "status_diehard"
+msgstr "Duro a Morire"
+
+msgid "status_eliminated"
+msgstr "Eliminato"
+
+msgid "acid"
+msgstr "Acido"
+
+msgid "adamantine"
+msgstr "Adamantina"
+
+msgid "air_chain"
+msgstr "Catena d'Aria"
+
+msgid "arcane_eye"
+msgstr "Occhio Arcano"
+
+msgid "assault"
+msgstr "Assalto"
+
+msgid "enduros"
+msgstr "Enduros"
+
+msgid "exapode"
+msgstr "Exapode"
+
+msgid "exclawvate"
+msgstr "Exclawvate"
+
+msgid "enduros_description"
+msgstr ""
+"ENDUROS è un attaccabrighe che non spara i suoi colpi. Fuori dal ring, è "
+"abbastanza socievole."
+
+msgid "exapode_description"
+msgstr ""
+"Agita le gambe per attirare l'attenzione, ma per lo più le persone scappano."
+
+msgid "exclawvate_description"
+msgstr ""
+"Spesso visti nei cantieri, possono usare le loro enormi mani e la coda per "
+"raccogliere sporcizia e macerie. Sotto il Tuxemon ci sono pneumatici "
+"caterpillar, che danno loro un migliore equilibrio e aderenza mentre si "
+"arrampicano su cumuli di macerie."
+
+msgid "eyesore_description"
+msgstr "Ricorda tutto ciò che ha visto, ma non l'ordine in cui l'ha visto."
+
+msgid "ghosteeth"
+msgstr "Ghosteeth"
+
+msgid "fancair"
+msgstr "Fancair"
+
+msgid "flacono"
+msgstr "Flacono"
+
+msgid "flambear"
+msgstr "Flambear"
+
+msgid "fluoresfin"
+msgstr "Fluoresfin"
+
+msgid "foofle"
+msgstr "Foofle"
+
+msgid "fordin"
+msgstr "Fordin"
+
+msgid "forturtle"
+msgstr "Forturtle"
+
+msgid "galnec"
+msgstr "Galnec"
+
+msgid "graffiki"
+msgstr "Graffiki"
+
+msgid "grimachin"
+msgstr "Grimachin"
+
+msgid "grinflare"
+msgstr "Grinflare"
+
+msgid "grintot"
+msgstr "Grintot"
+
+msgid "grintrock"
+msgstr "Grintrock"
+
+msgid "grumpi"
+msgstr "Grumpi"
+
+msgid "fancair_description"
+msgstr ""
+"Se qualcuno lascia il ventilatore acceso quando non ne ha bisogno, si anima "
+"e vola fuori dalla finestra per trovare qualcuno che ha effettivamente "
+"bisogno di essere raffreddato."
+
+msgid "flambear_description"
+msgstr ""
+"Può essere rintracciato dalla scia di cespugli di bacche bollite e trote "
+"arrosto che si lascia alle spalle."
+
+msgid "fluoresfin_description"
+msgstr ""
+"Quando è minacciato si stringe insieme ad altri FLUORESFIN, per creare una "
+"grande luce accecante così da disorientare i predatori."
+
+msgid "foofle_description"
+msgstr ""
+"Quando uno è in pericolo, tutti i FOOFLE sentono le sue grida, ovunque si "
+"trovino."
+
+msgid "fordin_description"
+msgstr "Quando è minacciato, si raggomitola in una palla e rimbalza via."
+
+msgid "forturtle_description"
+msgstr "Riscalda il suo guscio per leggere il futuro dalle crepe che emergono."
+
+msgid "frondly_description"
+msgstr ""
+"Può fare qualsiasi cosa con la sua coda prensile, anche stringere la mano e "
+"raccogliere frutta."
+
+msgid "furnursus_description"
+msgstr ""
+"I FURNURSUS sono amichevoli e spesso dimenticano che i loro corpi sono "
+"troppo caldi perché gli altri possano toccarli."
+
+msgid "ghosteeth_description"
+msgstr "Sorride perché sa come moriranno tutti quelli che incontra."
+
+msgid "graffiki_description"
+msgstr ""
+"I GRAFFIKI sono di casa nelle città come nella giungla, marcando il loro "
+"territorio con dipinti elaborati."
+
+msgid "grinflare_description"
+msgstr "Si dice che ognuno sia il cuore ambulante di un vulcano."
+
+msgid "grintot_description"
+msgstr "È un GRINTROCK o GRINFLARE che ha subito erosione."
+
+msgid "grintrock_description"
+msgstr ""
+"Si nutre sedendosi fuori durante temporali, in attesa di essere colpito da "
+"un fulmine."
+
+msgid "grumpi_description"
+msgstr ""
+"Una volta afferrato da un GRUMPI, il suo corpo appiccicoso impedisce di "
+"fuggire."
+
+msgid "happito"
+msgstr "Happito"
+
+msgid "hatchling"
+msgstr "Hatchling"
+
+msgid "ignibus"
+msgstr "Ignibus"
+
+msgid "incandesfin"
+msgstr "Incandesfin"
+
+msgid "jemuar"
+msgstr "Jemuar"
+
+msgid "k9"
+msgstr "K9"
+
+msgid "katapill"
+msgstr "Katapill"
+
+msgid "komodraw"
+msgstr "Komodraw"
+
+msgid "lapinou"
+msgstr "Lapinou"
+
+msgid "lightmare"
+msgstr "Lightmare"
+
+msgid "loliferno"
+msgstr "Loliferno"
+
+msgid "masknake"
+msgstr "Masknake"
+
+msgid "manosting"
+msgstr "Manosting"
+
+msgid "medushock"
+msgstr "Medushock"
+
+msgid "happito_description"
+msgstr ""
+"Perché le persone non possono essere sempre felici? HAPPITO darà loro "
+"esattamente ciò che vogliono, anche se non è ciò di cui hanno bisogno."
+
+msgid "hatchling_description"
+msgstr ""
+"Quando un uovo non vuole schiudersi e iniziare la sua prossima fase di vita, "
+"diventa un HATCHLING."
+
+msgid "ignibus_description"
+msgstr ""
+"Quando è minacciato si ritira nel suo guscio e si raffredda velocemente "
+"liberando vapore. Potrebbe essere scambiato per una roccia."
+
+msgid "jelillow_description"
+msgstr ""
+"Quando una persona appoggia la testa su Jelillow, la sua pelle gelatinosa li "
+"fa cadere in un sonno profondo. Se una persona ha problemi di sonno, allora "
+"questo sarà usato per aiutarla."
+
+msgid "katapill_description"
+msgstr ""
+"Nasce combattendo. Deve uscire dal suo guscio d'uovo o essere intrappolato."
+
+msgid "lapinou_description"
+msgstr ""
+"Quando gli SQUABBITS sono stati presi come animali domestici alla moda, si "
+"sono adattati alla vita domestica e hanno perso la loro natura violenta."
+
+msgid "memnomnom"
+msgstr "Memnomnom"
+
+msgid "metesaur"
+msgstr "Metesaur"
+
+msgid "narcileaf"
+msgstr "Narcileaf"
+
+msgid "neutrito"
+msgstr "Neutrito"
+
+msgid "nudikill"
+msgstr "Nudikill"
+
+msgid "nudimind"
+msgstr "Nudimind"
+
+msgid "nuenflu"
+msgstr "Nuenflu"
+
+msgid "octabode"
+msgstr "Octabode"
+
+msgid "ouroboutlet"
+msgstr "Ouroboutlet"
+
+msgid "pairagrim"
+msgstr "Pairagrim"
+
+msgid "pairagrin"
+msgstr "Pairagrin"
+
+msgid "pharfan"
+msgstr "Pharfan"
+
+msgid "picc"
+msgstr "Picc"
+
+msgid "pipis"
+msgstr "Pipis"
+
+msgid "poinchin"
+msgstr "Poinchin"
+
+msgid "prophetoise"
+msgstr "Prophetoise"
+
+msgid "puparmor"
+msgstr "Puparmor"
+
+msgid "pyraminx"
+msgstr "Pyraminx"
+
+msgid "qetzlrokilus"
+msgstr "Qetzlrokilus"
+
+msgid "rabbitosaur"
+msgstr "Rabbitosaur"
+
+msgid "rhincus"
+msgstr "Rhincus"
+
+msgid "rosarin"
+msgstr "Rosarin"
+
+msgid "ruption"
+msgstr "Ruption"
+
+msgid "sadito"
+msgstr "Sadito"
+
+msgid "sampsack"
+msgstr "Sampsack"
+
+msgid "sampsage"
+msgstr "Sampsage"
+
+msgid "sapsnap"
+msgstr "Sapsnap"
+
+msgid "saurchin"
+msgstr "Saurchin"
+
+msgid "sclairus"
+msgstr "Sclairus"
+
+msgid "seirein"
+msgstr "Seirein"
+
+msgid "shammer"
+msgstr "Shammer"
+
+msgid "shelagu"
+msgstr "Shelagu"
+
+msgid "shnark"
+msgstr "Shnark"
+
+msgid "shybulb"
+msgstr "Shybulb"
+
+msgid "snaki"
+msgstr "Snaki"
+
+msgid "snarlon"
+msgstr "Snarlon"
+
+msgid "snock"
+msgstr "Snock"
+
+msgid "squabbit"
+msgstr "Squabbit"
+
+msgid "tetrchimp"
+msgstr "Tetrchimp"
+
+msgid "tikoal"
+msgstr "Tikoal"
+
+msgid "tikorch"
+msgstr "Tikorch"
+
+msgid "tobishimi"
+msgstr "Tobishimi"
+
+msgid "toufigel"
+msgstr "Toufigel"
+
+msgid "tourbidi"
+msgstr "Tourbidi"
+
+msgid "trapsnap"
+msgstr "Trapsnap"
+
+msgid "tsushimi"
+msgstr "Tsushimi"
+
+msgid "tumblebee"
+msgstr "Tumblebee"
+
+msgid "tumblequill"
+msgstr "Tumblequill"
+
+msgid "turnipper"
+msgstr "Turnipper"
+
+msgid "welcometotaba7"
+msgstr "Non mentirò, mi aspettavo più entusiasmo dai primi membri del Trial."
+
+msgid "welcometotaba13"
+msgstr ""
+"No, lei ha imprigionato la mia famiglia, e ha forzato me e mio fratello ad "
+"unirci al Trial.\n"
+"Mi perdoni quindi se \"manco di entusiasmo\" quando lei parla del Trial."
+
+msgid "dowehavetogoin5"
+msgstr "Comunque, come ti chiami? Kyle non ti ha presentato."
+
+msgid "spyder_greenwash_gregor2"
+msgstr "Ugh, neppure quando è svenuto ha battuto le ciglia!"
+
+msgid "spyder_greenwash_louis"
+msgstr "Luigi"
+
+msgid "spyder_greenwash_clarence"
+msgstr "Clarence"
+
+msgid "spyder_greenwash_chip"
+msgstr "Chip"
+
+msgid "spyder_greenwash_gregor"
+msgstr "Gregorio"
+
+msgid "leather_town_open_air"
+msgstr "Caffé Open Air e Piazza del Mercato"

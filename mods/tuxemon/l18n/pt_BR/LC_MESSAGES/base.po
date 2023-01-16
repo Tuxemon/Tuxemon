@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"PO-Revision-Date: 2023-01-16 12:48+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "tuxemon/tuxemon/pt_BR/>\n"
@@ -2266,3 +2266,61 @@ msgstr "Havia uma nuvem!"
 
 msgid "spyder_greenwash_louis2"
 msgstr "Posso apresentá-los à Hipótese Gaia?"
+
+msgid "fishing_rod"
+msgstr "Vara de Pesca"
+
+msgid "sledgehammer"
+msgstr "Marreta"
+
+msgid "shammer_fossil"
+msgstr "Shammer Fóssil"
+
+msgid "rhincus_fossil"
+msgstr "Rhincus Fóssil"
+
+msgid "sledgehammer_description"
+msgstr "Esmague pedregulhos cinzentos."
+
+msgid "taba_town_sign_profhouse"
+msgstr "Casa do Professor Tuxemon"
+
+msgid "taba_town_sign_proflab"
+msgstr "Laboratório do Professor Tuxemon"
+
+msgid "taba_town_homeplace"
+msgstr "Casa de ${{name}}"
+
+msgid "taba_town_sign_tuxemart"
+msgstr "Tuxemart - Um lugar para comprar e vender itens"
+
+msgid "exapode_description"
+msgstr ""
+"Ele agita as pernas para atrair a atenção, mas a maioria das pessoas "
+"simplesmente foge."
+
+msgid "fruitera_description"
+msgstr ""
+"FRUITERA está faminto por frutas e carrega o máximo que pode. Quando "
+"surpreendido, ele deixa cair todos os seus frutos, recolhe-os novamente e "
+"depois foge."
+
+msgid "furnursus_description"
+msgstr ""
+"FURNURSUS são amigáveis e muitas vezes esquecem que seus corpos são muito "
+"quentes para os outros tocarem."
+
+msgid "ghosteeth_description"
+msgstr "Ele sorri porque sabe como todos que ele encontra vão morrer."
+
+msgid "grintot_description"
+msgstr "É um GRINTROCK ou GRINFLARE que sofreu erosão."
+
+msgid "spoilurm"
+msgstr "Spoilurm"
+
+msgid "taba_town_sign_tuxecenter"
+msgstr "Tuxecenter - Um lugar para curar o seu tuxemon"
+
+msgid "leather_town_open_air"
+msgstr "Café e Mercado"

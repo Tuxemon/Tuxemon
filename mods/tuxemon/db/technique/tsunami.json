@@ -1,7 +1,7 @@
 {
   "tech_id": 170,
   "accuracy": 0.4,
-  "animation": null,
+  "animation": "waterfall",
   "effects": [
     "damage 100"
   ],

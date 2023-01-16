@@ -436,6 +436,10 @@ class TechniqueModel(BaseModel):
     types: Sequence[ElementType] = Field(
         [], description="Type(s) of the technique"
     )
+    usable_on: bool = Field(
+        False,
+        description="Whether or not the technique can be used outside of combat",
+    )
     power: float = Field(0, description="Power of the technique")
     is_fast: bool = Field(
         False, description="Whether or not this is a fast technique"
@@ -490,6 +494,15 @@ class TechniqueModel(BaseModel):
             )
 
         return v
+
+    @validator("animation")
+    def animation_exists(cls, v):
+        file: str = f"animations/technique/{v}_00.png"
+        if not v:
+            return v
+        if has.file(file):
+            return v
+        raise ValueError(f"the animation {v} doesn't exist in the db")
 
 
 class PartyMemberModel(BaseModel):

@@ -60,6 +60,7 @@ class Technique:
         self.category = ""
         self.combat_state: Optional[CombatState] = None
         self.conditions: Sequence[TechCondition[Any]] = []
+        self.description = "None"
         self.effects: Sequence[TechEffect[Any]] = []
         self.flip_axes = ""
         self.icon = ""
@@ -81,6 +82,7 @@ class Technique:
         self.target: Sequence[str] = []
         self.type1 = ElementType.aether
         self.type2: Optional[ElementType] = None
+        self.usable_on = False
         self.use_item = ""
         self.use_success = ""
         self.use_failure = ""
@@ -115,6 +117,7 @@ class Technique:
         results = db.lookup(slug, table="technique")
         self.slug = results.slug  # a short English identifier
         self.name = T.translate(self.slug)
+        self.description = T.translate(f"{self.slug}_description")
 
         self.sort = results.sort
         assert self.sort
@@ -166,6 +169,7 @@ class Technique:
         self.conditions = self.parse_conditions(results.conditions)
         self.effects = self.parse_effects(results.effects)
         self.target = process_targets(results.target)
+        self.usable_on = results.usable_on or self.usable_on
 
         # Load the animation sprites that will be used for this technique
         self.animation = results.animation

@@ -209,7 +209,9 @@ class TMXMapLoader:
                 if colliders is not None:
                     for obj in colliders:
                         if obj.type is None:
-                            obj_type = getattr(obj, "class")  # obj.class is invalid syntax
+                            obj_type = getattr(
+                                obj, "class"
+                            )  # obj.class is invalid syntax
                         else:
                             obj_type = obj.type
                         if obj_type and obj_type.lower().startswith(

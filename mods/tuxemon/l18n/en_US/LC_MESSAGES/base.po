@@ -4412,6 +4412,12 @@ msgstr "This is the most powerful Acolyte before the Master, please finish chall
 msgid "itslocked"
 msgstr "The doors are locked, maybe you should try defeating all 4 Acolytes first?"
 
+msgid "healspls"
+msgstr "Give me your Tuxemon."
+
+msgid "healsdone"
+msgstr "Your Tuxemon have been healed."
+
 msgid "areyoureadytorumble"
 msgstr "Are you ready to battle the Acolyte?"
 

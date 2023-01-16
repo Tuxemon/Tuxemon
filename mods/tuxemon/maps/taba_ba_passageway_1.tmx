@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.6" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="31">
+<map version="1.8" tiledversion="1.8.6" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="35">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -114,6 +114,58 @@
     <property name="act1" value="random_encounter taba_ba_passageway_1"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="31" name="create npc" type="event" x="224" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc omnigrunt2,16,5,,stand"/>
+    <property name="act2" value="npc_face omnigrunt2,left"/>
+    <property name="cond1" value="not npc_exists omnigrunt2"/>
+   </properties>
+  </object>
+  <object id="32" name="heal me right" type="event" x="272" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face omnigrunt2,right"/>
+    <property name="act2" value="translated_dialog healspls"/>
+    <property name="act3" value="set_monster_health"/>
+    <property name="act4" value="set_monster_status"/>
+    <property name="act5" value="play_sound sound_confirm"/>
+    <property name="act6" value="wait 0.5"/>
+    <property name="act7" value="translated_dialog healsdone"/>
+    <property name="act8" value="npc_face omnigrunt2,left"/>
+    <property name="cond1" value="is player_facing left"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="33" name="heal me top" type="event" x="256" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face omnigrunt2,up"/>
+    <property name="act2" value="translated_dialog healspls"/>
+    <property name="act3" value="set_monster_health"/>
+    <property name="act4" value="set_monster_status"/>
+    <property name="act5" value="play_sound sound_confirm"/>
+    <property name="act6" value="wait 0.5"/>
+    <property name="act7" value="translated_dialog healsdone"/>
+    <property name="act8" value="npc_face omnigrunt2,left"/>
+    <property name="cond1" value="is player_facing down"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="34" name="heal me down" type="event" x="256" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face omnigrunt2,down"/>
+    <property name="act2" value="translated_dialog healspls"/>
+    <property name="act3" value="set_monster_health"/>
+    <property name="act4" value="set_monster_status"/>
+    <property name="act5" value="play_sound sound_confirm"/>
+    <property name="act6" value="wait 0.5"/>
+    <property name="act7" value="translated_dialog healsdone"/>
+    <property name="act8" value="npc_face omnigrunt2,left"/>
+    <property name="cond1" value="is player_facing up"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

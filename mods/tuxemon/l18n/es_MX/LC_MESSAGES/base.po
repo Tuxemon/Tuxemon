@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2023-01-16 12:48+0000\n"
+"PO-Revision-Date: 2023-01-18 01:47+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Spanish (Mexico) <https://hosted.weblate.org/projects/tuxemon/"
 "tuxemon/es_MX/>\n"
@@ -3307,3 +3307,9 @@ msgstr "Tuxecenter - Un lugar para curar tu tuxemon"
 
 msgid "leather_town_open_air"
 msgstr "Café y mercado"
+
+msgid "rhincus_fossil_description"
+msgstr "Parece el cráneo de un pájaro dentado, pero es duro como la piedra."
+
+msgid "shammer_fossil_description"
+msgstr "Parece el cráneo de un perro antiguo, pero es duro como la piedra."

@@ -1,7 +1,7 @@
 {
   "tech_id": 85,
   "accuracy": 0.8,
-  "animation": "fire enemy death 1",
+  "animation": "whisp_fire",
   "effects": [
     "poison target",
     "damage 100"

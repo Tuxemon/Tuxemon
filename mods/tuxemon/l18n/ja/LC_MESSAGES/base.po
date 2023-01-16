@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"PO-Revision-Date: 2023-01-16 12:48+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "ja/>\n"
@@ -68,3 +68,729 @@ msgstr "${{map_name}} から ${{south}}"
 
 msgid "here_to_east"
 msgstr "${{map_name}} から ${{east}}"
+
+msgid "allagon"
+msgstr "アッラゴン"
+
+msgid "agnite"
+msgstr "アグニテ"
+
+msgid "bigfin"
+msgstr "ビグフィン"
+
+msgid "bamboon"
+msgstr "バンボオン"
+
+msgid "axylightl"
+msgstr "アクシィリグトル"
+
+msgid "anoleaf"
+msgstr "アノルアフ"
+
+msgid "cairfrey"
+msgstr "カイルフレィ"
+
+msgid "capiti"
+msgstr "カピチ"
+
+msgid "cardiling"
+msgstr "カルディリング"
+
+msgid "cardinale"
+msgstr "カルディナル"
+
+msgid "cardiwing"
+msgstr "カルディウィング"
+
+msgid "chillimp"
+msgstr "チッリンプ"
+
+msgid "coproblight"
+msgstr "コプロブリグト"
+
+msgid "corvix"
+msgstr "コルヴィクス"
+
+msgid "eaglace"
+msgstr "エアグラス"
+
+msgid "eruptibus"
+msgstr "エルプチブス"
+
+msgid "eyenemy"
+msgstr "エイェネンィ"
+
+msgid "lambert"
+msgstr "ランバート"
+
+msgid "magmaturtle"
+msgstr "マグマトウルトル"
+
+msgid "legko"
+msgstr "ルグコ"
+
+msgid "merlicun"
+msgstr "メルリクウン"
+
+msgid "nut"
+msgstr "ヌト"
+
+msgid "pigabyte"
+msgstr "ピガブィテ"
+
+msgid "pilthropus"
+msgstr "ピルトロプス"
+
+msgid "possessun"
+msgstr "ポッセッスン"
+
+msgid "propellercat"
+msgstr "プロペッルルカト"
+
+msgid "rockat"
+msgstr "ロクカト"
+
+msgid "rockitten"
+msgstr "ロクキッテン"
+
+msgid "sludgehog"
+msgstr "スルドゲホグ"
+
+msgid "spycozeus"
+msgstr "スプィコゼウス"
+
+msgid "snowrilla"
+msgstr "スノゥリッラ"
+
+msgid "tumbleworm"
+msgstr "トウンブルヲルン"
+
+msgid "vamporm"
+msgstr "ヴァンポルン"
+
+msgid "velocitile"
+msgstr "ヴロシチル"
+
+msgid "xeon"
+msgstr "クスエオン"
+
+msgid "xeon_2"
+msgstr "クスエオン-2"
+
+msgid "baoby"
+msgstr "バオブィ"
+
+msgid "agnigon"
+msgstr "アグニゴン"
+
+msgid "angrito"
+msgstr "アングリト"
+
+msgid "brewdin"
+msgstr "ブレゥディン"
+
+msgid "boltnu"
+msgstr "ボルトヌ"
+
+msgid "arthrobolt"
+msgstr "アルトロボルト"
+
+msgid "agnidon"
+msgstr "アグニドン"
+
+msgid "drokoro"
+msgstr "ドロコロ"
+
+msgid "dinoflop"
+msgstr "ディノフロプ"
+
+msgid "djinnbo"
+msgstr "ドジッンボ"
+
+msgid "dollfin"
+msgstr "ドッルフィン"
+
+msgid "dracune"
+msgstr "ドラクウネ"
+
+msgid "dragarbor"
+msgstr "ドラガルボル"
+
+msgid "drashimi"
+msgstr "ドラシミ"
+
+msgid "fruitera"
+msgstr "フルイテラ"
+
+msgid "mystikapi"
+msgstr "ンィスチカピ"
+
+msgid "grinflare"
+msgstr "グリンフラレ"
+
+msgid "memnomnom"
+msgstr "メンノンノン"
+
+msgid "neutrito"
+msgstr "ネウトリト"
+
+msgid "nudiflot_female"
+msgstr "ヌディフロト"
+
+msgid "noctalo"
+msgstr "ノクタロ"
+
+msgid "nostray"
+msgstr "ノストラィ"
+
+msgid "octabode"
+msgstr "オクタボデ"
+
+msgid "noctula"
+msgstr "ノクトウラ"
+
+msgid "nudiflot_male"
+msgstr "ヌディフロト"
+
+msgid "nudikill"
+msgstr "ヌディキッル"
+
+msgid "nudimind"
+msgstr "ヌディミンド"
+
+msgid "nuenflu"
+msgstr "ヌエンフル"
+
+msgid "rabbitosaur"
+msgstr "ラッビトサウル"
+
+msgid "sapragon"
+msgstr "サプラゴン"
+
+msgid "shammer"
+msgstr "シャッメル"
+
+msgid "skwib"
+msgstr "スクィブ"
+
+msgid "toufigel"
+msgstr "トウフィゲル"
+
+msgid "vivitron"
+msgstr "ヴィヴィトロン"
+
+msgid "zunna"
+msgstr "ズッナ"
+
+msgid "weavifly"
+msgstr "ウェアヴィフリィ"
+
+msgid "tweesher"
+msgstr "トウェエシェル"
+
+msgid "urcine"
+msgstr "ウルシネ"
+
+msgid "volcoli"
+msgstr "ヴォルコリ"
+
+msgid "yiinaang"
+msgstr "イイナアング"
+
+msgid "chrome_robo"
+msgstr "クロメ ロボ"
+
+msgid "shammer_fossil"
+msgstr "シャッメル化石"
+
+msgid "rhincus_fossil"
+msgstr "ルヒンクウス化石"
+
+msgid "abesnaki"
+msgstr "アベスナキ"
+
+msgid "aardorn"
+msgstr "アアルドルン"
+
+msgid "aardart"
+msgstr "アアルダルト"
+
+msgid "bugnin"
+msgstr "ブグニン"
+
+msgid "budaye"
+msgstr "ブダイェ"
+
+msgid "boxali"
+msgstr "ボクスアリ"
+
+msgid "botbot"
+msgstr "ボトボト"
+
+msgid "bolt"
+msgstr "ボルト"
+
+msgid "birdling"
+msgstr "ビルドリング"
+
+msgid "beenstalker"
+msgstr "ベエンスタルケル"
+
+msgid "baobaraffe"
+msgstr "バオバラッフェ"
+
+msgid "banling"
+msgstr "バンリング"
+
+msgid "b_ver_1"
+msgstr "ビー ヴル.1"
+
+msgid "av8r"
+msgstr "アヴ8ル"
+
+msgid "araignee"
+msgstr "アライグネエ"
+
+msgid "apeoro"
+msgstr "アペオロ"
+
+msgid "anu"
+msgstr "アヌ"
+
+msgid "altie"
+msgstr "アルチエ"
+
+msgid "bumbulus"
+msgstr "ブンブルス"
+
+msgid "bursa"
+msgstr "ブルサ"
+
+msgid "cataspike"
+msgstr "カタスピケ"
+
+msgid "cateye"
+msgstr "カテイェ"
+
+msgid "chenipode"
+msgstr "チェニポデ"
+
+msgid "chibiro"
+msgstr "チビロ"
+
+msgid "chloragon"
+msgstr "クロラゴン"
+
+msgid "chromeye"
+msgstr "クロメイェ"
+
+msgid "cochini"
+msgstr "コチニ"
+
+msgid "coleorus"
+msgstr "コルオルス"
+
+msgid "conifrost"
+msgstr "コニフロスト"
+
+msgid "conileaf"
+msgstr "コニルアフ"
+
+msgid "cowpignon"
+msgstr "コゥピグノン"
+
+msgid "criniotherme"
+msgstr "クリニオテェルメ"
+
+msgid "dandicub"
+msgstr "ダンディクウブ"
+
+msgid "dandylion"
+msgstr "ダンドィリオン"
+
+msgid "dune_pincher"
+msgstr "デュネ ピンチェル"
+
+msgid "elofly"
+msgstr "エロフリィ"
+
+msgid "elostorm"
+msgstr "エロストルン"
+
+msgid "elowind"
+msgstr "エロウィンド"
+
+msgid "embazook"
+msgstr "エンバゾオク"
+
+msgid "embra"
+msgstr "エンブラ"
+
+msgid "enduros"
+msgstr "エンデュロス"
+
+msgid "exapode"
+msgstr "エクスアポデ"
+
+msgid "exclawvate"
+msgstr "エクスクロゥヴァテ"
+
+msgid "eyesore"
+msgstr "エイェソレ"
+
+msgid "fancair"
+msgstr "ファンカイル"
+
+msgid "ferricran"
+msgstr "フェッリクラン"
+
+msgid "firomenis"
+msgstr "フィロメニス"
+
+msgid "flacono"
+msgstr "フラコノ"
+
+msgid "flambear"
+msgstr "フランベアル"
+
+msgid "fluoresfin"
+msgstr "フルオレスフィン"
+
+msgid "fluttaflap"
+msgstr "フルッタフラプ"
+
+msgid "foofle"
+msgstr "フォオフル"
+
+msgid "fordin"
+msgstr "フォルディン"
+
+msgid "forturtle"
+msgstr "フォルトウルトル"
+
+msgid "foxfire"
+msgstr "フォクスフィレ"
+
+msgid "frondly"
+msgstr "フロンドリィ"
+
+msgid "furnursus"
+msgstr "フルヌルスス"
+
+msgid "galnec"
+msgstr "ガルネク"
+
+msgid "gectile"
+msgstr "ゲクチル"
+
+msgid "ghosteeth"
+msgstr "グホステエト"
+
+msgid "graffiki"
+msgstr "グラッフィキ"
+
+msgid "grimachin"
+msgstr "グリマチン"
+
+msgid "grintot"
+msgstr "グリントト"
+
+msgid "grintrock"
+msgstr "グリントロクク"
+
+msgid "grumpi"
+msgstr "グルンピ"
+
+msgid "gryfix"
+msgstr "グルィフィクス"
+
+msgid "hampotamos"
+msgstr "ハンポタモス"
+
+msgid "happito"
+msgstr "ハッピト"
+
+msgid "hatchling"
+msgstr "ハトクリング"
+
+msgid "heronquak"
+msgstr "ヘロンクアク"
+
+msgid "hydrone"
+msgstr "ィドロネ"
+
+msgid "ignibus"
+msgstr "イグニブス"
+
+msgid "incandesfin"
+msgstr "インカンデスフィン"
+
+msgid "jelillow"
+msgstr "ジェリッロゥ"
+
+msgid "jemuar"
+msgstr "ジェムアル"
+
+msgid "k9"
+msgstr "ク9"
+
+msgid "katacoon"
+msgstr "カタコオン"
+
+msgid "katapill"
+msgstr "カタピッル"
+
+msgid "komodraw"
+msgstr "コモドラゥ"
+
+msgid "lapinou"
+msgstr "ラピノウ"
+
+msgid "lightmare"
+msgstr "リグトマレ"
+
+msgid "loliferno"
+msgstr "ロリフェルノ"
+
+msgid "lunight"
+msgstr "ルニグト"
+
+msgid "manosting"
+msgstr "マノスチング"
+
+msgid "masknake"
+msgstr "マスクナケ"
+
+msgid "medushock"
+msgstr "メデュショクク"
+
+msgid "metesaur"
+msgstr "メテサウル"
+
+msgid "miaownolith"
+msgstr "ミアオゥノリト"
+
+msgid "moloch"
+msgstr "モロク"
+
+msgid "mrmoswitch"
+msgstr "ンルモスウィトク"
+
+msgid "narcileaf"
+msgstr "ナルシルアフ"
+
+msgid "ouroboutlet"
+msgstr "オウロボウトルト"
+
+msgid "pairagrin"
+msgstr "パイラグリン"
+
+msgid "pairagrim"
+msgstr "パイラグリム"
+
+msgid "pantherafira"
+msgstr "パンテェラフィラ"
+
+msgid "pharfan"
+msgstr "プハルファン"
+
+msgid "picc"
+msgstr "ピクク"
+
+msgid "pipis"
+msgstr "ピピス"
+
+msgid "poinchin"
+msgstr "ポインチン"
+
+msgid "polyrock"
+msgstr "ポリィロクク"
+
+msgid "prophetoise"
+msgstr "プロプヘトイセ"
+
+msgid "puparmor"
+msgstr "プパルモル"
+
+msgid "pyraminx"
+msgstr "プィラミンクス"
+
+msgid "pythock"
+msgstr "プィテョクク"
+
+msgid "pythwire"
+msgstr "プィトウィレ"
+
+msgid "qetzlrokilus"
+msgstr "クェトズルロキルス"
+
+msgid "rhincus"
+msgstr "ルヒンクウス"
+
+msgid "rosarin"
+msgstr "ロサリン"
+
+msgid "ruption"
+msgstr "ルプション"
+
+msgid "sadito"
+msgstr "サディト"
+
+msgid "sampsack"
+msgstr "サンプサクク"
+
+msgid "sampsage"
+msgstr "サンプサゲ"
+
+msgid "sapsnap"
+msgstr "サプスナプ"
+
+msgid "saurchin"
+msgstr "サウルチン"
+
+msgid "sclairus"
+msgstr "スクライルス"
+
+msgid "seirein"
+msgstr "セイレイン"
+
+msgid "selket"
+msgstr "セルケト"
+
+msgid "selmatek"
+msgstr "セルマテク"
+
+msgid "sharpfin"
+msgstr "シャルプフィン"
+
+msgid "shelagu"
+msgstr "シェラグ"
+
+msgid "shnark"
+msgstr "スナルク"
+
+msgid "shybulb"
+msgstr "スィブルブ"
+
+msgid "snaki"
+msgstr "スナキ"
+
+msgid "snarlon"
+msgstr "スナルロン"
+
+msgid "snock"
+msgstr "スノクク"
+
+msgid "snokari"
+msgstr "スノカリ"
+
+msgid "sockeserp"
+msgstr "ソクケセルプ"
+
+msgid "solight"
+msgstr "ソリグト"
+
+msgid "spighter"
+msgstr "スピグテル"
+
+msgid "spoilurm"
+msgstr "スポイルルン"
+
+msgid "squabbit"
+msgstr "スクアッビト"
+
+msgid "statursus"
+msgstr "スタトウルスス"
+
+msgid "strella"
+msgstr "ストレッラ"
+
+msgid "sumchon"
+msgstr "スンチョン"
+
+msgid "tarpeur"
+msgstr "タルペウル"
+
+msgid "taupypus"
+msgstr "タウプィプス"
+
+msgid "teddisun"
+msgstr "テッディスン"
+
+msgid "tetrchimp"
+msgstr "テトルチンプ"
+
+msgid "tigrock"
+msgstr "チグロクク"
+
+msgid "tikoal"
+msgstr "チコアル"
+
+msgid "tikorch"
+msgstr "チコルク"
+
+msgid "tobishimi"
+msgstr "トビシミ"
+
+msgid "tourbidi"
+msgstr "トウルビディ"
+
+msgid "trapsnap"
+msgstr "トラプスナプ"
+
+msgid "tsushimi"
+msgstr "ツシミ"
+
+msgid "tumblebee"
+msgstr "トウンブルベエ"
+
+msgid "tumblequill"
+msgstr "トウンブルクイッル"
+
+msgid "turnipper"
+msgstr "トウルニッペル"
+
+msgid "vigueur"
+msgstr "ヴィグエウル"
+
+msgid "vivicinder"
+msgstr "ヴィヴィシンデル"
+
+msgid "vividactil"
+msgstr "ヴィヴィダクチル"
+
+msgid "vivipere"
+msgstr "ヴィヴィペレ"
+
+msgid "viviphyta"
+msgstr "ヴィヴィプィタ"
+
+msgid "vivisource"
+msgstr "ヴィヴィソウルス"
+
+msgid "viviteel"
+msgstr "ヴィヴィテエル"
+
+msgid "vivitrans"
+msgstr "ヴィヴィトランス"
+
+msgid "windeye"
+msgstr "ウィンデイェ"
+
+msgid "wrougon"
+msgstr "ゥロウゴン"
+
+msgid "dark_robo"
+msgstr "ダルク ロボ"
+
+msgid "birb_robo"
+msgstr "ビルブ ロボ"
+
+msgid "mk01_beta"
+msgstr "ンク01 ベタ"
+
+msgid "mk01_alpha"
+msgstr "ンク01 アルファ"
+
+msgid "taba_town_homeplace"
+msgstr "${{name}} の家"

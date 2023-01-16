@@ -12,8 +12,44 @@
             "technique": "invictus"
         },
         {
-            "level_learned": 12,
+            "level_learned": 6,
             "technique": "petrify"
+        },
+        {
+            "level_learned": 8,
+            "technique": "pseudopod"
+        },
+        {
+            "level_learned": 12,
+            "technique": "webs_wind"
+        },
+        {
+            "level_learned": 16,
+            "technique": "negation"
+        },
+        {
+            "level_learned": 20,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 24,
+            "technique": "stabilo"
+        },
+        {
+            "level_learned": 28,
+            "technique": "radiance"
+        },
+        {
+            "level_learned": 32,
+            "technique": "phantasmal_force"
+        },
+        {
+            "level_learned": 36,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 40,
+            "technique": "chameleon"
         }
     ],
     "evolutions": [],

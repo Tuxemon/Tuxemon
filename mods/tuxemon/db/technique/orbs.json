@@ -1,7 +1,7 @@
 {
   "tech_id": 141,
   "accuracy": 0.7,
-  "animation": null,
+  "animation": "metallic_absorb",
   "effects": [
     "damage 100"
   ],

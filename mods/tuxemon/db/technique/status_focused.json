@@ -25,7 +25,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "tech_id": 108,
+  "tech_id": 0,
   "use_failure": "generic_failure",
   "use_success": "combat_state_focused_get",
   "use_tech": "combat_used_x"

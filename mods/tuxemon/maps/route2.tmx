@@ -203,7 +203,7 @@
     <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="82" name="Sign: Route 2" x="592" y="128" width="16" height="16">
+  <object id="82" name="Sign: Route 2" type="event" x="592" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_route2_routesign"/>
     <property name="act2" value="translated_dialog route2_to_cotton"/>

@@ -2,18 +2,14 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import logging
 import uuid
 from dataclasses import dataclass
-from typing import final
+from typing import Union, final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.prepare import CONFIG
-
-logger = logging.getLogger(__name__)
+from tuxemon.states.pc_kennel import HIDDEN
 
 
-# noinspection PyAttributeOutsideInit
 @final
 @dataclass
 class StoreMonsterAction(EventAction):
@@ -26,17 +22,17 @@ class StoreMonsterAction(EventAction):
     Script usage:
         .. code-block::
 
-            store_monster <monster_id>,<box>
+            store_monster <monster_id>[,box]
 
     Script parameters:
         monster_id: Id of the monster to store.
-        box: Box where the monster will be stored.
+        box: An existing box where the monster will be stored.
 
     """
 
     name = "store_monster"
     monster_id: str
-    box: str
+    box: Union[str, None] = None
 
     def start(self) -> None:
         player = self.session.player
@@ -50,10 +46,17 @@ class StoreMonsterAction(EventAction):
                 f"No monster found with instance_id {instance_id}",
             )
 
-        if not box:
-            box = CONFIG.default_monster_storage_box
-        if box not in player.monster_boxes.keys():
-            player.monster_boxes[box] = list()
+        if box is None:
+            if HIDDEN not in player.monster_boxes.keys():
+                player.monster_boxes[HIDDEN] = list()
+            store = HIDDEN
+        else:
+            if box not in player.monster_boxes.keys():
+                raise ValueError(
+                    f"No box found with name {box}",
+                )
+            else:
+                store = box
 
-        player.monster_boxes[box].append(monster)
+        player.monster_boxes[store].append(monster)
         player.remove_monster(monster)

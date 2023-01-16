@@ -16,7 +16,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "tech_id": 114,
+  "tech_id": 0,
   "use_failure": "generic_failure",
   "use_success": "combat_state_spyderbite_get",
   "use_tech": "combat_used_x"

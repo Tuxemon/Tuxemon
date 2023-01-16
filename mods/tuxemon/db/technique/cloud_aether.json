@@ -1,7 +1,7 @@
 {
   "tech_id": 126,
   "accuracy": 0.2,
-  "animation": null,
+  "animation": "sparks_blue_alt",
   "effects": [
     "damage 100"
   ],

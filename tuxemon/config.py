@@ -90,14 +90,6 @@ class TuxemonConfig:
             "gameplay",
             "encounter_rate_modifier",
         )
-        self.default_monster_storage_box = cfg.get(
-            "gameplay",
-            "default_monster_storage_box",
-        )
-        self.default_item_storage_box = cfg.get(
-            "gameplay",
-            "default_item_storage_box",
-        )
         self.default_monster_catch_rate = cfg.getfloat(
             "gameplay",
             "default_monster_catch_rate",
@@ -264,8 +256,6 @@ def get_defaults() -> Mapping[str, Any]:
                     (
                         ("items_consumed_on_failure", True),
                         ("encounter_rate_modifier", 1.0),
-                        ("default_monster_storage_box", "Kennel"),
-                        ("default_item_storage_box", "Locker"),
                         ("default_monster_catch_rate", 125),
                         ("default_upper_monster_catch_resistance", 1),
                         ("default_lower_monster_catch_resistance", 1),

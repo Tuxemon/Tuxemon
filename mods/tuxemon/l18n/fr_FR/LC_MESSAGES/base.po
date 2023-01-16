@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"PO-Revision-Date: 2023-01-16 12:48+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fr/>\n"
@@ -418,7 +418,7 @@ msgid "bolt"
 msgstr "Bolt"
 
 msgid "bolt_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "cairfrey"
 msgstr "Cairfrey"
@@ -528,7 +528,7 @@ msgid "dune_pincher"
 msgstr "Dune Pincher"
 
 msgid "dune_pincher_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "eaglace"
 msgstr "Eaglace"
@@ -578,7 +578,10 @@ msgid "fruitera"
 msgstr "Fruitera"
 
 msgid "fruitera_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"FRUITERA a faim de fruits et en transporte autant qu'il le peut. Lorsqu'il "
+"est surpris, il laisse tomber tous ses fruits, les ramasse à nouveau puis "
+"s'enfuit."
 
 msgid "gectile"
 msgstr "Gectile"
@@ -600,7 +603,7 @@ msgid "hydrone"
 msgstr "Hydrone"
 
 msgid "hydrone_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "lambert"
 msgstr "Lambert"
@@ -670,7 +673,7 @@ msgid "nut"
 msgstr "Nut"
 
 msgid "nut_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "onaclov"
 msgstr "Onaclov"
@@ -682,7 +685,9 @@ msgid "pigabyte"
 msgstr "Pigabyte"
 
 msgid "pigabyte_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"Les scientifiques ont découvert que les meilleurs ordinateurs ont des "
+"implants organiques."
 
 msgid "possessun"
 msgstr "Possessun"
@@ -694,19 +699,20 @@ msgid "propellercat"
 msgstr "Propellercat"
 
 msgid "propellercat_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"Est-ce une nouvelle espèce, ou juste l'animal de compagnie d'un inventeur?"
 
 msgid "rockat"
 msgstr "Rockat"
 
 msgid "rockat_description"
-msgstr "<<MISSING>>"
+msgstr "Malgré son poids considérable, ses pas sont silencieux."
 
 msgid "rockitten"
 msgstr "Rockitten"
 
 msgid "rockitten_description"
-msgstr "<<MISSING>>"
+msgstr "Il utilise ses minuscules oreilles rocheuses pour se blottir."
 
 msgid "sapragon"
 msgstr "Sapragon"
@@ -720,13 +726,18 @@ msgid "selket"
 msgstr "Selket"
 
 msgid "selket_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"Allongés à l'affût sous le sable, ils peuvent sentir leur proie à travers "
+"les vibrations de leurs pas."
 
 msgid "selmatek"
 msgstr "Selmatek"
 
 msgid "selmatek_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"Gardé par les anciens rois des déserts, SELMATEK servait de chien de garde, "
+"de compagnon de chasse et - maintenant - de défenseur contre les pilleurs de "
+"tombes."
 
 msgid "simba"
 msgstr "Simba"
@@ -738,7 +749,9 @@ msgid "sludgehog"
 msgstr "Sludgehog"
 
 msgid "sludgehog_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"Il vit dans les ordures et les mange aussi. Ses pointes semblent pointues, "
+"mais il peut les adoucir à volonté."
 
 msgid "sharpfin"
 msgstr "Sharpfin"
@@ -761,7 +774,9 @@ msgid "spycozeus"
 msgstr "Spycozeus"
 
 msgid "spycozeus_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"Les communications chuchotées de la forêt prennent une forme physique dans "
+"SPYCOZEUS, qui pense comme les arbres."
 
 msgid "sumobug"
 msgstr "Sumobug"
@@ -787,7 +802,9 @@ msgid "tumbleworm"
 msgstr "Tumbleworm"
 
 msgid "tumbleworm_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"Lorsqu'ils ont dépassé leurs œufs en nid d'abeille, ils tombent au sol face "
+"en premier."
 
 msgid "tux"
 msgstr "Tux"
@@ -7271,3 +7288,69 @@ msgstr ""
 
 msgid "taketheleft"
 msgstr "Tu prends celui de gauche et je prends les trois autres."
+
+msgid "kylekindasucks2"
+msgstr ""
+"Sur une note différente, il semble que Kyle était là pour montrer la voie. "
+"Il semble que l'Arène de Combat soit ouverte maintenant."
+
+msgid "leather_town_open_air"
+msgstr "Café en plein air et marché"
+
+msgid "spyder_greenwash_gregor1"
+msgstr ""
+"Je passe toute la journée à regarder mon CATEYE - je vais le surprendre en "
+"train de cligner des yeux !"
+
+msgid "spyder_greenwash_looten2"
+msgstr ""
+"Voici la chose la plus proche - c'est une fusion d'une fourmi et d'un "
+"AARDORN. Pas exactement la machine à tuer ultime qu'Omnichannel voulait que "
+"nous créions. Je veux dire... euh ! Vous n'avez pas entendu cela de ma part."
+
+msgid "somebody2"
+msgstr ""
+"Oooh. Sont-ils spéciaux pour vous alors ? Y a-t-il un triangle amoureux ? "
+"Allez ! Nous avons besoin de savoir"
+
+msgid "stahp"
+msgstr ""
+"Hey Christie, ne les questionne pas. Nous venons de nous rencontrer après "
+"tout.\n"
+"Peut-être devrions-nous y aller de toute façon. Nous ne voulons pas mettre "
+"Kyle en colère."
+
+msgid "stahp3"
+msgstr ""
+"Mais ne pensez pas que vous évitez cette conversation ! J'aurai les détails "
+"de votre part assez tôt !"
+
+msgid "kylekindasucks7"
+msgstr ""
+"Je vais garder un œil sur vous. En fait, je peux même vous encourager.\n"
+"Ne me laissez pas, d'accord ?"
+
+msgid "spyder_papertown_firstfight_lose"
+msgstr ""
+"Comme prévu ! Les anciens modèles ne peuvent pas se comparer aux nouveaux !"
+
+msgid "spyder_greenwash_aissa1"
+msgstr "Restez à l'extérieur - Greenwash a tout sous contrôle."
+
+msgid "omnichannel_sign"
+msgstr "Omnichannel QG : nous faisons les gros titres"
+
+msgid "taba_town_homeplace"
+msgstr "Maison de ${{name}}"
+
+msgid "taba_town_sign_tuxemart"
+msgstr "Tuxemart - Un endroit pour acheter et vendre des articles"
+
+msgid "taba_town_sign_profhouse"
+msgstr "Maison du Professeur Tuxemon"
+
+msgid "taba_town_sign_proflab"
+msgstr "Laboratoire du Professeur Tuxemon"
+
+msgid "taba_town_sign_tuxecenter"
+msgstr "Tuxecenter - Un endroit pour guérir votre tuxemon"

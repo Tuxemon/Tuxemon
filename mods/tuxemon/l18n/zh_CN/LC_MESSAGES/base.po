@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tuxemon\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-10 05:43+0000\n"
+"PO-Revision-Date: 2023-01-18 01:47+0000\n"
 "Last-Translator: David Liang <2188741623@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "tuxemon/tuxemon/zh_Hans/>\n"
@@ -1519,7 +1519,7 @@ msgid "menu_storage_empty_kennel"
 msgstr "这个仓库是空的，没有精灵可拿。"
 
 msgid "menu_dropoff_no_monsters"
-msgstr "你没有任何精灵可以放下。"
+msgstr "不能让你的队伍中的最后一个精灵离开。"
 
 msgid "swap"
 msgstr "交换"
@@ -1655,8 +1655,7 @@ msgid "bolt"
 msgstr "螺栓兽"
 
 msgid "boltnu_description"
-msgstr ""
-"它的大部分时间都是在草地上挖洞，由于它们在土壤中挖洞所引起的不断震动和运动，"
+msgstr "它的大部分时间都是在草地上挖洞，由于它们在土壤中挖洞所引起的不断震动和运动，"
 "它仍然感到晕眩。"
 
 msgid "boltnu"
@@ -1689,8 +1688,7 @@ msgid "bugnin"
 msgstr "武士虫"
 
 msgid "bumbulus_description"
-msgstr ""
-"Bumbulus是一种会飞的生物，会产生一团烟雾来伪装成云。没有人见过它的真身。"
+msgstr "它是一种会飞的生物，会产生一团烟雾来伪装成云。没有人见过它的真身。"
 
 msgid "bumbulus"
 msgstr "邦布勒斯"
@@ -1891,9 +1889,8 @@ msgid "flambear"
 msgstr "火焰熊"
 
 msgid "fluoresfin_description"
-msgstr ""
-"当受到威胁时，它与其他荧光鱼蜷缩在一起，形成一个巨大的刺眼的光，以迷惑捕食"
-"者。"
+msgstr "当受到威胁时，它与其他荧光鱼蜷缩在一起，形成一个巨大的刺眼的光，以迷惑捕食者"
+"。"
 
 msgid "fluoresfin"
 msgstr "荧光鱼"
@@ -2117,8 +2114,7 @@ msgid "b_ver_1_description"
 msgstr "它是为所有那些你需要被机器人咬的东西的时候而设计的。"
 
 msgid "baoby_description"
-msgstr ""
-"它们从一条河到另一条河，寻找可以饮用和储存的水。它头上的叶状骨隐藏着可移动的"
+msgstr "它们从一条河到另一条河，寻找可以饮用和储存的水。它头上的叶状骨隐藏着可移动的"
 "点，其作用类似于探水棒。许多生物在干旱时跟随它。"
 
 msgid "boxali_description"
@@ -2165,9 +2161,8 @@ msgid "eruptibus"
 msgstr "火山兽"
 
 msgid "exclawvate_description"
-msgstr ""
-"经常在建筑工地上看到，它们可以用自己巨大的手和尾巴来舀起泥土和瓦砾。虎皮猫的"
-"下面是毛毛虫的轮胎，使它们在爬上成堆的瓦砾时有更好的平衡和抓地力。"
+msgstr "经常在建筑工地上看到，它们可以用自己巨大的手和尾巴来舀起泥土和瓦砾。精灵的下"
+"面是毛毛虫的轮胎，使它们在爬上成堆的瓦砾时有更好的平衡和抓地力。"
 
 msgid "exapode_description"
 msgstr "它挥舞着腿以吸引人们的注意，但大多数时候人们只是跑开。"
@@ -2257,8 +2252,7 @@ msgstr ""
 "块石头。"
 
 msgid "jelillow_description"
-msgstr ""
-"当一个人把头靠在果冻兽上时，其果冻般的皮肤会使他们陷入深度睡眠。如果有人有睡"
+msgstr "当一个人把头靠在果冻兽上时，其果冻般的皮肤会使他们陷入深度睡眠。如果有人有睡"
 "眠问题，那么这个精灵将被用来帮助他们。"
 
 msgid "jelillow"
@@ -2319,8 +2313,7 @@ msgid "loliferno"
 msgstr "罗利弗诺"
 
 msgid "metesaur_description"
-msgstr ""
-"这种精灵会喜欢潜入地下并留下痕迹。有时，这只精灵会错误地判断撞击，落在树上，"
+msgstr "这种精灵会喜欢潜入地下并留下痕迹。有时，这只精灵会错误地判断撞击，落在树上，"
 "引发巨大而危险的森林火灾"
 
 msgid "noctula_description"
@@ -2342,9 +2335,8 @@ msgid "pantherafira"
 msgstr "潘特拉菲拉"
 
 msgid "pilthropus_description"
-msgstr ""
-"与飞犀牛等精灵一起被发现，皮尔思罗普斯是最古老的精灵之一，能够创造自己的工"
-"具。"
+msgstr "与飞犀牛等精灵一起被发现，皮尔思罗普斯是最古老的精灵之一，能够创造自己的工具"
+"。"
 
 msgid "pipis"
 msgstr "皮斯蝠"
@@ -2772,8 +2764,7 @@ msgstr ""
 "时，我被摧毁了。"
 
 msgid "spillit4"
-msgstr ""
-"这似乎不是一件坏事，但它是。你知道他们对自己的饼干做了什么吗？你知道吗？"
+msgstr "这似乎不是一件坏事，但它是。你知道他们对自己的饼干做了什么吗？你知道吗？"
 
 msgid "spillit5"
 msgstr "因为我也不知道...我所知道的是，从来没有人在被招募后离开全能公司。"
@@ -3734,8 +3725,7 @@ msgid "pythwire"
 msgstr "电线兽"
 
 msgid "qetzlrokilus_description"
-msgstr ""
-"这种胥吏会潜入其他恐龙胥吏的群体中，烧死他们。它们还喜欢将森林点燃，并将其灰"
+msgstr "这种胥吏会潜入其他恐龙胥吏的群体中，烧死他们。它们还喜欢将森林点燃，并将其灰"
 "烬丢入水中，以破坏水的纯净度。"
 
 msgid "qetzlrokilus"
@@ -3769,8 +3759,7 @@ msgid "rosarin"
 msgstr "罗萨林"
 
 msgid "ruption_description"
-msgstr ""
-"一旦火球兽的火焰变得足够热，它就会吞噬它的整个身体，在这个过程中基本上取代了"
+msgstr "一旦火球兽的火焰变得足够热，它就会吞噬它的整个身体，在这个过程中基本上取代了"
 "它。"
 
 msgid "ruption"
@@ -6672,3 +6661,208 @@ msgstr "精灵中心 - 一个治疗你的精灵的地方"
 
 msgid "leather_town_open_air"
 msgstr "露天咖啡馆和市场"
+
+msgid "pick_up"
+msgstr "捡起"
+
+msgid "taba_house4_sign"
+msgstr "尊贵的海鸥酒吧"
+
+msgid "taba_house1_calendar"
+msgstr "这是一个日历，9月30日和2月12日是用红色圈出来的。"
+
+msgid "taba_house1_husband1"
+msgstr "我是最熟练的训练师之一!"
+
+msgid "shammer_fossil_description"
+msgstr "它看起来像一只古代狗的头骨，但它像石头一样坚硬。"
+
+msgid "rhincus_fossil_description"
+msgstr "它看起来像一只有齿鸟的头骨，但它像石头一样硬。"
+
+msgid "flintstone_description"
+msgstr "一种片状的石头，用于制造石制工具和生火。不是在同一时间。"
+
+msgid "lucky_bamboo_description"
+msgstr "严格来说，这根本不是竹子。它也不是特别幸运。但它是一种不错的室内植物。"
+
+msgid "peace_lily_description"
+msgstr "为某个特别的人准备的坚韧的室内植物。"
+
+msgid "petrified_dung_description"
+msgstr "它看起来像，嗯，便便......但它像石头一样硬。"
+
+msgid "pyramidion_description"
+msgstr "嗡嗡作响的金色三角，充满天人合一的力量。"
+
+msgid "sea_girdle_description"
+msgstr "一串串的小玩意，像海带一样柔软而粘稠。"
+
+msgid "stovepipe_description"
+msgstr "一根长长的铁管。处理它时，你的手会变得灰头土脸。"
+
+msgid "aether"
+msgstr "以太"
+
+msgid "sweet_sand_description"
+msgstr "在世界部分地区，人们用这种芬芳的、带泥土的沙子清洁自己。"
+
+msgid "tectonic_drill_description"
+msgstr "用来钻探地球的大型咔哒咔哒机器。"
+
+msgid "thunderstone_description"
+msgstr "一个古老的石头遗物，现在被人带着走，以图好运。"
+
+msgid "tux_attack"
+msgstr "Tux攻击"
+
+msgid "monster_menu_tech"
+msgstr "技能"
+
+msgid "monster_menu_desc"
+msgstr "描述"
+
+msgid "Kennel"
+msgstr "庇护所"
+
+msgid "kennel_label"
+msgstr "{box} ({qty})"
+
+msgid "move_to_kennel"
+msgstr "移动到了{box}"
+
+msgid "mk01_beta_description"
+msgstr "一个与龙融合的杀手机器人。不要问我们怎么做。"
+
+msgid "taba_house2_sign"
+msgstr "遗留图书馆"
+
+# Tuxemon Threats
+msgid "chrome_robo_description"
+msgstr "一个有敌意的机器人。"
+
+msgid "dark_robo_description"
+msgstr "一个充满敌意的机器人。"
+
+msgid "taba_house4_client1a"
+msgstr "我奶奶以前也做过类似的菜!"
+
+msgid "birb_robo_description"
+msgstr "一个敌对的机器人。"
+
+msgid "mk01_alpha_description"
+msgstr "一个与龙融合的杀手机器人。不要问我们怎么做。"
+
+msgid "mk01_delta_description"
+msgstr "一个与龙融合的杀手机器人。不要问我们如何。"
+
+msgid "mk01_gamma"
+msgstr "Mk01伽玛"
+
+msgid "xeon_description"
+msgstr "一个有敌意的机器人。"
+
+msgid "glitch"
+msgstr "毛刺"
+
+msgid "taba_house1_sign"
+msgstr "克劳布鲁先生和女士的房子"
+
+msgid "taba_house1_wife1"
+msgstr "训练师？我丈夫有妄想症。"
+
+msgid "taba_house1_reading"
+msgstr "这本书是《幻觉研究的哲学》，作者是杰登-盖姆雷文萨。"
+
+msgid "taba_house1_watching"
+msgstr ""
+"这是一部关于该地区最奇怪和最奇妙的精灵的记录片。\n"
+" 以及它们所采取的奇怪行为。"
+
+msgid "mk01_delta"
+msgstr "Mk01三角洲"
+
+msgid "mk01_gamma_description"
+msgstr "一个与龙融合的杀手机器人。不要问我们怎么做。"
+
+msgid "mk01_omega"
+msgstr "Mk01 欧米茄"
+
+msgid "xeon_2_description"
+msgstr "一个有敌意的机器人。"
+
+msgid "taba_house3_sign"
+msgstr "周到的叶子旅馆"
+
+msgid "taba_house2_owner1"
+msgstr "欢迎来到遗留图书馆!请随意参观，但请保持安静。"
+
+msgid "taba_house4_client3a"
+msgstr "幸运的是我没有为这个付钱。你怎么能为这个付钱呢？"
+
+msgid "mk01_omega_description"
+msgstr "一个与龙融合的杀手机器人。不要问我们怎么做。"
+
+msgid "mk01_proto_description"
+msgstr "一个与龙融合的杀手机器人。不要问我们怎么做。"
+
+msgid "mk01_proto"
+msgstr "Mk01 原型"
+
+msgid "taba_house2_reading3"
+msgstr "这本书是《没有荣誉的孩子》，作者Leslie Greninza。"
+
+msgid "taba_house2_reader1a"
+msgstr "我一看到书或书店就感觉好了。"
+
+msgid "taba_house2_reader3a"
+msgstr "所以我可以活出一千个不同的人生。"
+
+msgid "taba_house2_reader4a"
+msgstr "阅读能刺激我的思维，这是电视和电影永远做不到的。"
+
+msgid "taba_house2_books"
+msgstr ""
+"000 - 计算机科学、信息和一般工程, 100 - 哲学和心理学\n"
+"200 - 宗教, 300 - 社会科学, 400 - 语言, 500 - 纯科学, 600 - 技术\n"
+"700 - 艺术和娱乐，800 - 文学，900 - 历史和地理"
+
+msgid "taba_house3_owner1"
+msgstr "欢迎来到Thoughtful Leaf Inn!"
+
+msgid "taba_house3_client1a"
+msgstr "我在休息，而我妹妹可能在看一些书。"
+
+msgid "taba_house4_client2a"
+msgstr "嗯？只是填饱了空虚的肚子。"
+
+msgid "taba_house4_dish1"
+msgstr "它是棕色的，浓密的，但它看起来不像布丁......"
+
+msgid "normal"
+msgstr "正常"
+
+# Taba Town
+msgid "maple_bedroom_sign"
+msgstr "这是一个日历，4月27日是用粉红色圈出来的。"
+
+msgid "taba_house2_reading1"
+msgstr "这本书是《拜访国王》，作者是马诺罗-盖。"
+
+msgid "taba_house2_reader2a"
+msgstr "它点燃了我的想象力。"
+
+msgid "taba_house2_reading2"
+msgstr "这本书是路易斯-埃特雷戈（Louis Etrergo）写的《被梦想养大》。"
+
+msgid "taba_house2_reading4"
+msgstr "这本书是《驶向永恒》，作者是劳瑞娜-多普拉丘尔德。"
+
+msgid "taba_house3_client2a"
+msgstr "想得太多会伤害我们。"
+
+msgid "taba_house3_client3a"
+msgstr "这让我想到了我妈妈的房子。"
+
+msgid "taba_house4_owner1"
+msgstr "欢迎来到尊贵的海鸥酒吧!"

@@ -4433,6 +4433,43 @@ msgstr "Uhh... Jason?"
 msgid "uhhjason2"
 msgstr "Shoot! He always does this..."
 
+msgid "challenger"
+msgstr "Challenger!\n"
+"Step to the center and face me!"
+
+msgid "challenger2"
+msgstr "You have done well to make it this far!"
+
+msgid "challenger3"
+msgstr "... .... ..."
+
+msgid "challenger4"
+msgstr "Wait, this is your first battle?\n"
+"I was told I would be the third battle..."
+
+msgid "challenger5"
+msgstr "No matter!"
+
+msgid "challenger6"
+msgstr "This just means it will be easier to crush you!"
+
+msgid "challenger7"
+msgstr "Ready yourself Challenger! It's time... TO FIGHT!"
+
+msgid "tabacongratsfirst"
+msgstr "... ... Congrats on the win..."
+
+msgid "tabacongratsfirst2"
+msgstr "I definitely wasn't expecting a performance like that. Kyle told us all that you would be an easy win.\n"
+"I guess he meant for you and not us!"
+
+msgid "tabacongratsfirst3"
+msgstr "The other three acolytes are more powerful than me, so you may want to try and fight the wild Tuxemon in the passageways a bit.\n"
+"Other than that, Good Luck!"
+
+msgid "tabalostfirst"
+msgstr "Ha! Some Challenger you are. You'll have to do better than that to beat me!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

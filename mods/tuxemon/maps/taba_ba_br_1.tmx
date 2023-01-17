@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="19">
+<map version="1.8" tiledversion="1.8.6" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="22">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -116,6 +116,60 @@
     <property name="act99" value="set_variable jason:gone"/>
     <property name="cond1" value="is variable_set movealong:now"/>
     <property name="cond2" value="not variable_set jason:gone"/>
+   </properties>
+  </object>
+  <object id="19" name="move to middle" type="event" x="176" y="48" width="16" height="160">
+   <properties>
+    <property name="act10" value="lock_controls"/>
+    <property name="act11" value="wait 0.3"/>
+    <property name="act12" value="translated_dialog challenger"/>
+    <property name="act20" value="pathfind player,9,7"/>
+    <property name="act21" value="npc_face player,left"/>
+    <property name="act30" value="set_variable battledone:start"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="not variable_set battledone:yes"/>
+   </properties>
+  </object>
+  <object id="20" name="start fight" type="event" x="144" y="16" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc acolyte,0,7,,stand"/>
+    <property name="act11" value="npc_face acolyte,right"/>
+    <property name="act12" value="wait 1"/>
+    <property name="act20" value="pathfind acolyte,7,7"/>
+    <property name="act21" value="translated_dialog challenger2"/>
+    <property name="act22" value="wait 0.5"/>
+    <property name="act23" value="translated_dialog challenger3"/>
+    <property name="act30" value="wait 0.3"/>
+    <property name="act31" value="npc_face acolyte,up"/>
+    <property name="act32" value="wait 0.5"/>
+    <property name="act33" value="npc_face acolyte,down"/>
+    <property name="act34" value="wait 0.5"/>
+    <property name="act35" value="npc_face acolyte,right"/>
+    <property name="act36" value="translated_dialog challenger4"/>
+    <property name="act37" value="npc_face acolyte,left"/>
+    <property name="act38" value="wait 1"/>
+    <property name="act40" value="translated_dialog challenger5"/>
+    <property name="act41" value="npc_face acolyte,right"/>
+    <property name="act42" value="wait 0.4"/>
+    <property name="act43" value="translated_dialog challenger6"/>
+    <property name="act50" value="translated_dialog challenger7"/>
+    <property name="act60" value="start_battle acolyte"/>
+    <property name="act99" value="set_variable battledone:yes"/>
+    <property name="cond1" value="is variable_set battledone:start"/>
+   </properties>
+  </object>
+  <object id="21" name="won battle" type="event" x="176" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="wait 0.2"/>
+    <property name="act11" value="npc_face acolyte,left"/>
+    <property name="act12" value="wait 0.6"/>
+    <property name="act13" value="translated_dialog tabacongratsfirst"/>
+    <property name="act14" value="wait 1"/>
+    <property name="act20" value="npc_face acolyte,right"/>
+    <property name="act21" value="wait 0.2"/>
+    <property name="act22" value="translated_dialog tabacongratsfirst2"/>
+    <property name="act23" value="translated_dialog tabacongratsfirst3"/>
+    <property name="cond1" value="is battle_last_result won"/>
    </properties>
   </object>
  </objectgroup>

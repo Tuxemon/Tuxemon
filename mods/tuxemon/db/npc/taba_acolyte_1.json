@@ -1,0 +1,17 @@
+{
+    "slug": "acolyte",
+    "gender": "male",
+    "sprite_name": "disciple",
+    "combat_front": "disciple.png",
+    "combat_back": "adventurer_back.png",
+    "monsters": [
+      {
+        "level": 4,
+        "slug": "chloragon",
+        "money_mod": 100,
+        "exp_req_mod": 80,
+        "gender": "female"
+      }
+    ]
+  }
+  

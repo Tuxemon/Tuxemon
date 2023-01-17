@@ -1348,6 +1348,9 @@ msgstr "Load"
 msgid "menu_monster"
 msgstr "Tuxemon"
 
+msgid "menu_professor_pc"
+msgstr "Professor PC"
+
 msgid "menu_storage"
 msgstr "Pick Up Tuxemon"
 
@@ -1425,6 +1428,12 @@ msgstr "shelter"
 
 msgid "kennel_label"
 msgstr "{box} ({qty})"
+
+msgid "synchronize_pc1"
+msgstr "Do you want to synchronize your Tuxepedia with the Professor's PC?"
+
+msgid "synchronize_pc2"
+msgstr "Tuxemon: seen {seen} - caught {caught} - Total: {all} Tuxemon. Progress:{value}%!\n Professor: Keep me posted!"
 
 # Default mod names on selection menu
 msgid "xero_campaign"

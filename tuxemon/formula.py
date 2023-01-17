@@ -199,6 +199,12 @@ def simple_stuck(monster: Monster) -> None:
             move.power = move.default_power * 0.5
 
 
+def synch(player: NPC, value: int, total: int) -> float:
+    percent = round((value / total) * 100, 1)
+    player.game_variables["tuxepedia_progress"] = str(round(percent))
+    return percent
+
+
 def escape(level_user: int, level_target: int, attempts: int) -> bool:
     escape = 0.4 + (0.15 * (attempts + level_user - level_target))
     if random.random() <= escape:

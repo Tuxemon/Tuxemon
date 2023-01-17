@@ -8,12 +8,14 @@ import logging
 from functools import partial
 from typing import Any, Callable, Generator, Sequence, Tuple
 
+from tuxemon import formula
+from tuxemon.db import SeenStatus, db
 from tuxemon.locale import T
 from tuxemon.menu.input import InputMenu
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu, PopUpMenu
 from tuxemon.session import local_session
-from tuxemon.tools import open_dialog
+from tuxemon.tools import open_choice_dialog, open_dialog
 
 logger = logging.getLogger(__name__)
 
@@ -70,12 +72,58 @@ class PCState(PopUpMenu[MenuGameObj]):
         else:
             dropoff_callback = change_state("MonsterBoxChooseDropOffState")
 
+        def professor_pc() -> None:
+            self.client.pop_state()
+            player = local_session.player
+
+            def confirm() -> None:
+                self.client.pop_state()
+                monsters = list(db.database["monster"])
+                filters = []
+                for mon in monsters:
+                    results = db.lookup(mon, table="monster")
+                    if results.txmn_id > 0:
+                        filters.append(results)
+                tuxepedia = list(player.tuxepedia.values())
+                caught = tuxepedia.count(SeenStatus.caught)
+                seen = tuxepedia.count(SeenStatus.seen) + caught
+                percentage = formula.synch(player, seen, len(filters))
+
+                open_dialog(
+                    local_session,
+                    [
+                        T.format(
+                            "synchronize_pc2",
+                            {
+                                "seen": str(seen),
+                                "caught": str(caught),
+                                "all": str(len(filters)),
+                                "value": str(percentage),
+                            },
+                        )
+                    ],
+                )
+
+            def abort() -> None:
+                self.client.pop_state()
+
+            var_menu = []
+            var_menu.append(("no", T.translate("no").upper(), abort))
+            var_menu.append(("yes", T.translate("yes").upper(), confirm))
+            open_choice_dialog(
+                local_session,
+                menu=(var_menu),
+                escape_key_exits=True,
+            )
+
+            open_dialog(local_session, [T.translate("synchronize_pc1")])
+
         add_menu_items(
             self,
             (
                 ("menu_storage", storage_callback),
                 ("menu_dropoff", dropoff_callback),
-                ("menu_items", change_state("ItemMenuState")),
+                ("menu_professor_pc", professor_pc),
                 (
                     "menu_multiplayer",
                     not_implemented_dialog,

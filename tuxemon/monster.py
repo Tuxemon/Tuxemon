@@ -161,6 +161,7 @@ SHAPES = {
 }
 
 MAX_LEVEL = 999
+MAX_MOVES = 4
 MISSING_IMAGE = "gfx/sprites/battle/missing.png"
 
 
@@ -221,6 +222,7 @@ class Monster:
 
         self.status: List[Technique] = []
 
+        self.max_moves = MAX_MOVES
         self.txmn_id = 0
         self.capture = 0
         self.height = 0.0

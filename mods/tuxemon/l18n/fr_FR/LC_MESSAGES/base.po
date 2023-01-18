@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2023-01-16 12:48+0000\n"
+"PO-Revision-Date: 2023-01-18 01:47+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fr/>\n"
@@ -7354,3 +7354,50 @@ msgstr "Laboratoire du Professeur Tuxemon"
 
 msgid "taba_town_sign_tuxecenter"
 msgstr "Tuxecenter - Un endroit pour guérir votre tuxemon"
+
+msgid "flintstone_description"
+msgstr ""
+"Une pierre stratifiée utilisée pour fabriquer des outils en pierre et des "
+"feux allumés. Pas en même temps."
+
+msgid "lucky_bamboo_description"
+msgstr ""
+"Techniquement, ce n'est pas du tout du bambou. Il n'est pas particulièrement "
+"chanceux non plus. Mais cela fait une belle plante d'intérieur."
+
+msgid "peace_lily_description"
+msgstr "Une plante d'intérieur rustique pour quelqu'un de spécial."
+
+msgid "petrified_dung_description"
+msgstr "On dirait bien, merde... Mais c'est dur comme la pierre."
+
+msgid "pyramidion_description"
+msgstr "Un triangle d'or qui bourdonne de puissance céleste."
+
+msgid "sea_girdle_description"
+msgstr "Une chaîne de boules molles et visqueuses comme le varech."
+
+msgid "stovepipe_description"
+msgstr ""
+"Un long tuyau en fer. Le manipuler laisse vos mains suintées et cendrées."
+
+msgid "sweet_sand_description"
+msgstr ""
+"Dans certaines parties du monde, les gens se nettoient avec ce sable parfumé "
+"et mousseux."
+
+msgid "tectonic_drill_description"
+msgstr "Une grosse machine click-clack utilisée pour percer dans la terre."
+
+msgid "thunderstone_description"
+msgstr ""
+"Une vieille relique de pierre, maintenant transportée pour porter chance."
+
+msgid "shammer_fossil_description"
+msgstr ""
+"Il ressemble au crâne d'un chien ancien, mais il est dur comme de la pierre."
+
+msgid "rhincus_fossil_description"
+msgstr ""
+"Il ressemble au crâne d'un oiseau à dents, mais il est dur comme de la "
+"pierre."

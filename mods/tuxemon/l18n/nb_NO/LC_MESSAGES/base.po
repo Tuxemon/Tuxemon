@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-16 12:48+0000\n"
+"PO-Revision-Date: 2023-01-19 21:49+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/tuxemon/"
 "tuxemon/nb_NO/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.15.1\n"
 
 msgid "save_success"
 msgstr "Lagret!"
@@ -1345,3 +1345,6 @@ msgstr "Aardart"
 
 msgid "taba_town_homeplace"
 msgstr "${{name}}s hus"
+
+msgid "oedipus"
+msgstr "Oidipus"

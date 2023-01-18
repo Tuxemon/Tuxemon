@@ -1,7 +1,7 @@
 {
   "tech_id": 163,
   "accuracy": 0.8,
-  "animation": null,
+  "animation": "lightning_spheres",
   "effects": [
     "damage 100"
   ],

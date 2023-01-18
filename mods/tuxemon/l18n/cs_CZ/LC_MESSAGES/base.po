@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2020-06-12 07:41+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2023-01-16 12:48+0000\n"
+"Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/tuxemon/tuxemon/cs/"
 ">\n"
 "Language: cs_CZ\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.1-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -355,7 +355,7 @@ msgid "agnite"
 msgstr "Agnite"
 
 msgid "agnite_description"
-msgstr "It is playful, but must be taught early on to keep its fire in check."
+msgstr ""
 
 msgid "allagon"
 msgstr "Allagon"
@@ -391,61 +391,61 @@ msgid "bolt"
 msgstr "Bolt"
 
 msgid "bolt_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "cairfrey"
 msgstr "Cairfrey"
 
 msgid "cairfrey_description"
-msgstr "A jolly piece of furniture who awoke one morning and decided to explore."
+msgstr ""
 
 msgid "capiti"
 msgstr "Capiti"
 
 msgid "capiti_description"
-msgstr "It looks like a baby, but some specimens have been found that are hundreds of years old."
+msgstr ""
 
 msgid "cardiling"
 msgstr "Cardiling"
 
 msgid "cardiling_description"
-msgstr "One wouldn't expect it to breathe fire, until it does."
+msgstr ""
 
 msgid "cardinale"
 msgstr "Cardinale"
 
 msgid "cardinale_description"
-msgstr "It hates all predators with a passion, and makes war with them and their young when it can."
+msgstr ""
 
 msgid "cardiwing"
 msgstr "Cardiwing"
 
 msgid "cardiwing_description"
-msgstr "Its song is remarkable, but few dare keep an explosive songbird."
+msgstr ""
 
 msgid "chillimp"
 msgstr "Chillimp"
 
 msgid "chillimp_description"
-msgstr "It is rumoured to live atop snowy mountains, but no clear photo of it has ever been taken."
+msgstr ""
 
 msgid "chloragon"
 msgstr "Chloragon"
 
 msgid "chloragon_description"
-msgstr "It hatches when an ancient egg is planted in fertile soil. When the eggs run out, there will be no more Chloragon."
+msgstr ""
 
 msgid "conifrost"
 msgstr "Conifrost"
 
 msgid "conifrost_description"
-msgstr "If it sneezes, an avalanche occurs. It has a permanent sniffle."
+msgstr ""
 
 msgid "corvix"
 msgstr "Corvix"
 
 msgid "corvix_description"
-msgstr "It arms its wings with bone shards from its victims."
+msgstr ""
 
 msgid "dandylion"
 msgstr "Dandylion"
@@ -469,25 +469,25 @@ msgid "dracune"
 msgstr "Dracune"
 
 msgid "dracune_description"
-msgstr "It is immobile during the day, but can wriggle and bite at night."
+msgstr ""
 
 msgid "dragarbor"
 msgstr "Dragarbor"
 
 msgid "dragarbor_description"
-msgstr "When it feels it is coming to the end of its life, it travels to a graveyard where it plants itself. Its tail flower grows forever."
+msgstr ""
 
 msgid "dune_pincher"
 msgstr "Dune Pincher"
 
 msgid "dune_pincher_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "eaglace"
 msgstr "Eaglace"
 
 msgid "eaglace_description"
-msgstr "When it takes flight, clouds form. When it claps its wings, hail falls."
+msgstr ""
 
 msgid "eyenemy"
 msgstr "Eyenemy"
@@ -505,7 +505,7 @@ msgid "ferricran"
 msgstr "Ferricran"
 
 msgid "ferricran_description"
-msgstr "Once, the Ferricran were covered all over with adamantine scales, and had wings of mithril."
+msgstr ""
 
 msgid "firomenis"
 msgstr "Firomenis"
@@ -517,31 +517,31 @@ msgid "fluttaflap"
 msgstr "Fluttaflap"
 
 msgid "fluttaflap_description"
-msgstr "It feeds on impurities, so it returns purified blood to those it sucks on."
+msgstr ""
 
 msgid "fruitera"
 msgstr "Fruitera"
 
 msgid "fruitera_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "gectile"
 msgstr "Gectile"
 
 msgid "gectile_description"
-msgstr "It is so quick and light that it can walk on leaves."
+msgstr ""
 
 msgid "heronquak"
 msgstr "Heronquak"
 
 msgid "heronquak_description"
-msgstr "The crystal on its chest is mistaken for a diamond by poachers. It melts when it is removed from HERONQUAK's body."
+msgstr ""
 
 msgid "hydrone"
 msgstr "Hydrone"
 
 msgid "hydrone_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "lambert"
 msgstr "Lambert"
@@ -553,7 +553,7 @@ msgid "legko"
 msgstr "Legko"
 
 msgid "legko_description"
-msgstr "Long thought to be legless, its leaves are actually vestigial limbs."
+msgstr ""
 
 msgid "magmaturtle"
 msgstr "Magmaturtle"
@@ -571,25 +571,25 @@ msgid "moloch"
 msgstr "Moloch"
 
 msgid "moloch_description"
-msgstr "It can stiffen or soften its skin to respond to friends and foes."
+msgstr ""
 
 msgid "noctalo"
 msgstr "Noctalo"
 
 msgid "noctalo_description"
-msgstr "It inhabits only places abandoned by humans - castles, graveyards and sewers."
+msgstr ""
 
 msgid "noctula"
 msgstr "Noctula"
 
 msgid "noctula_description"
-msgstr "It eats bugs and PIPIS eat fruit, so despite living in close proximity they do not compete."
+msgstr ""
 
 msgid "nostray"
 msgstr "Nostray"
 
 msgid "nostray_description"
-msgstr "It can smell anything in the ocean, no matter how far away."
+msgstr ""
 
 msgid "nudiflot"
 msgstr "Nudiflot"
@@ -601,7 +601,7 @@ msgid "nut"
 msgstr "Nut"
 
 msgid "nut_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "onaclov"
 msgstr "Onaclov"
@@ -613,49 +613,49 @@ msgid "pigabyte"
 msgstr "Pigabyte"
 
 msgid "pigabyte_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "possessun"
 msgstr "Possessun"
 
 msgid "possessun_description"
-msgstr "It is a ghost that inhabits a dead cairfrey."
+msgstr ""
 
 msgid "propellercat"
 msgstr "Propellercat"
 
 msgid "propellercat_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "rockat"
 msgstr "Rockat"
 
 msgid "rockat_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "rockitten"
 msgstr "Rockitten"
 
 msgid "rockitten_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "sapragon"
 msgstr "Sapragon"
 
 msgid "sapragon_description"
-msgstr "In olden times, each element had a mighty dragon - but those creatures have diminished and are rare in these days."
+msgstr ""
 
 msgid "selket"
 msgstr "Selket"
 
 msgid "selket_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "selmatek"
 msgstr "Selmatek"
 
 msgid "selmatek_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "simba"
 msgstr "Simba"
@@ -667,25 +667,25 @@ msgid "sludgehog"
 msgstr "Sludgehog"
 
 msgid "sludgehog_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "sharpfin"
 msgstr "Sharpfin"
 
 msgid "sharpfin_description"
-msgstr "It is invisible in the water, being visible only when it leaps out of the water to drag animals on the shore back into the deep."
+msgstr ""
 
 msgid "snowrilla"
 msgstr "Snowrilla"
 
 msgid "snowrilla_description"
-msgstr "It delights in playing tag with skiers on desolate slopes."
+msgstr ""
 
 msgid "spycozeus"
 msgstr "Spycozeus"
 
 msgid "spycozeus_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "sumobug"
 msgstr "Sumobug"
@@ -709,7 +709,7 @@ msgid "tumbleworm"
 msgstr "Tumbleworm"
 
 msgid "tumbleworm_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "tux"
 msgstr "Tux"
@@ -721,7 +721,7 @@ msgid "tweesher"
 msgstr "Tweesher"
 
 msgid "tweesher_description"
-msgstr "The colder the weather, the harder its beak. At below 0 degrees, it is harder than diamond."
+msgstr ""
 
 msgid "vamporm"
 msgstr "Vamporm"
@@ -1204,8 +1204,10 @@ msgstr "You will? Splendid! Now, to find you a suitable Tuxemon...\n"
 msgid "cottonnurse_dialog"
 msgstr "Welcome to the Cotton Town Tuxecenter!"
 
+#, fuzzy
 msgid "tabanurse_dialog\n"
-msgstr "Welcome to the Taba Town Tuxecenter!\n"
+msgstr ""
+"Welcome to the ${{map_name}} Tuxecenter!\n"
 "Do you want to heal your Tuxemon?\n"
 
 msgid "okaythen"
@@ -1216,3 +1218,553 @@ msgstr "Well, it looks like your Tuxemon are full of energy! Here they are!"
 
 msgid "input_name"
 msgstr "Jméno?"
+
+msgid "tuxemon_stat2"
+msgstr "{desc}"
+
+msgid "urcine"
+msgstr "Urcine"
+
+msgid "vivisource"
+msgstr "Vivisource"
+
+msgid "viviteel"
+msgstr "Viviteel"
+
+msgid "vivicinder"
+msgstr "Vivicinder"
+
+msgid "vivitron"
+msgstr "Vivitron"
+
+msgid "volcoli"
+msgstr "Volcoli"
+
+msgid "vividactil"
+msgstr "Vividactil"
+
+msgid "vivipere"
+msgstr "Vivipere"
+
+msgid "vivitrans"
+msgstr "Vivitrans"
+
+msgid "viviphyta"
+msgstr "Viviphyta"
+
+msgid "chrome_robo"
+msgstr "Chrome Robo"
+
+msgid "dark_robo"
+msgstr "Dark Robo"
+
+msgid "birb_robo"
+msgstr "Birb Robo"
+
+msgid "xeon"
+msgstr "Xeon"
+
+msgid "xeon_2"
+msgstr "Xeon-2"
+
+msgid "mk01_beta"
+msgstr "Mk01 Beta"
+
+msgid "mk01_alpha"
+msgstr "MK01 Alpha"
+
+#, fuzzy
+msgid "altie"
+msgstr "Altie"
+
+msgid "abesnaki"
+msgstr "Abesnaki"
+
+#, fuzzy
+msgid "angrito"
+msgstr "Angrito"
+
+#, fuzzy
+msgid "anu"
+msgstr "Anu"
+
+#, fuzzy
+msgid "apeoro"
+msgstr "Apeoro"
+
+#, fuzzy
+msgid "araignee"
+msgstr "Araignee"
+
+#, fuzzy
+msgid "arthrobolt"
+msgstr "Arthrobolt"
+
+#, fuzzy
+msgid "av8r"
+msgstr "Av8r"
+
+#, fuzzy
+msgid "b_ver_1"
+msgstr "B-Ver.1"
+
+#, fuzzy
+msgid "banling"
+msgstr "Banling"
+
+#, fuzzy
+msgid "baobaraffe"
+msgstr "Baobaraffe"
+
+#, fuzzy
+msgid "baoby"
+msgstr "Baoby"
+
+#, fuzzy
+msgid "beenstalker"
+msgstr "Beenstalker"
+
+#, fuzzy
+msgid "birdling"
+msgstr "Birdling"
+
+msgid "boltnu"
+msgstr "Boltnu"
+
+msgid "botbot"
+msgstr "Botbot"
+
+msgid "boxali"
+msgstr "Boxali"
+
+msgid "brewdin"
+msgstr "Brewdin"
+
+msgid "budaye"
+msgstr "Budaye"
+
+msgid "bugnin"
+msgstr "Bugnin"
+
+msgid "bumbulus"
+msgstr "Bumbulus"
+
+msgid "bursa"
+msgstr "Bursa"
+
+msgid "cataspike"
+msgstr "Cataspike"
+
+msgid "cateye"
+msgstr "Cateye"
+
+msgid "chenipode"
+msgstr "Chenipode"
+
+msgid "chibiro"
+msgstr "Chibiro"
+
+msgid "chromeye"
+msgstr "Chromeye"
+
+msgid "cochini"
+msgstr "Cochini"
+
+msgid "turnipper"
+msgstr "Turnipper"
+
+msgid "vigueur"
+msgstr "Vigueur"
+
+msgid "weavifly"
+msgstr "Weavifly"
+
+msgid "windeye"
+msgstr "Windeye"
+
+msgid "yiinaang"
+msgstr "Yiinaang"
+
+msgid "embazook"
+msgstr "Embazook"
+
+msgid "conileaf"
+msgstr "Conileaf"
+
+msgid "criniotherme"
+msgstr "Cowpignon"
+
+msgid "neutrito"
+msgstr "Neutrito"
+
+msgid "masknake"
+msgstr "Masknake"
+
+msgid "mrmoswitch"
+msgstr "Mrmoswitch"
+
+msgid "medushock"
+msgstr "Medushock"
+
+msgid "shelagu"
+msgstr "Shelagu"
+
+msgid "snock"
+msgstr "Snock"
+
+msgid "eruptibus"
+msgstr "Eruptibus"
+
+msgid "katacoon"
+msgstr "Katacoon"
+
+msgid "nudiflot_female"
+msgstr "Nudiflot"
+
+msgid "nudiflot_male"
+msgstr "Nudiflot"
+
+msgid "pilthropus"
+msgstr "Pilthropus"
+
+msgid "sumchon"
+msgstr "Sumchon"
+
+msgid "coproblight"
+msgstr "Coproblight"
+
+msgid "katapill"
+msgstr "Katapill"
+
+msgid "shammer_fossil"
+msgstr "Zkamenělina Shammer"
+
+msgid "rhincus_fossil"
+msgstr "Zkamenělina Rhincus"
+
+msgid "coleorus"
+msgstr "Coleorus"
+
+msgid "cowpignon"
+msgstr "Cowpignon"
+
+msgid "dandicub"
+msgstr "Dandicub"
+
+msgid "dinoflop"
+msgstr "Dandicub"
+
+msgid "drashimi"
+msgstr "Drashimi"
+
+msgid "drokoro"
+msgstr "Drokoro"
+
+msgid "elofly"
+msgstr "Elofly"
+
+msgid "elostorm"
+msgstr "Elostorm"
+
+msgid "elowind"
+msgstr "Elowind"
+
+msgid "embra"
+msgstr "Embra"
+
+msgid "enduros"
+msgstr "Enduros"
+
+msgid "exapode"
+msgstr "Exapode"
+
+msgid "exclawvate"
+msgstr "Exclawvate"
+
+msgid "eyesore"
+msgstr "Eyesore"
+
+msgid "fancair"
+msgstr "Fancair"
+
+msgid "flacono"
+msgstr "Fancair"
+
+msgid "fordin"
+msgstr "Fordin"
+
+msgid "forturtle"
+msgstr "Forturtle"
+
+msgid "flambear"
+msgstr "Flambear"
+
+msgid "fluoresfin"
+msgstr "Fluoresfin"
+
+msgid "foofle"
+msgstr "Foofle"
+
+msgid "foxfire"
+msgstr "Foxfire"
+
+msgid "frondly"
+msgstr "Frondly"
+
+msgid "furnursus"
+msgstr "Furnursus"
+
+msgid "galnec"
+msgstr "Galnec"
+
+msgid "ghosteeth"
+msgstr "Ghosteeth"
+
+msgid "graffiki"
+msgstr "Graffiki"
+
+msgid "grimachin"
+msgstr "Grimachin"
+
+msgid "grinflare"
+msgstr "Grinflare"
+
+msgid "grintot"
+msgstr "Grintot"
+
+msgid "grintrock"
+msgstr "Grintrock"
+
+msgid "grumpi"
+msgstr "Grumpi"
+
+msgid "gryfix"
+msgstr "Gryfix"
+
+msgid "ignibus"
+msgstr "Ignibus"
+
+msgid "hampotamos"
+msgstr "Hampotamos"
+
+msgid "happito"
+msgstr "Happito"
+
+msgid "hatchling"
+msgstr "Hatchling"
+
+msgid "incandesfin"
+msgstr "Incandesfin"
+
+msgid "jelillow"
+msgstr "Jelillow"
+
+msgid "jemuar"
+msgstr "Jemuar"
+
+msgid "k9"
+msgstr "K9"
+
+msgid "komodraw"
+msgstr "Komodraw"
+
+msgid "lapinou"
+msgstr "Lapinou"
+
+msgid "lightmare"
+msgstr "Lightmare"
+
+msgid "loliferno"
+msgstr "Loliferno"
+
+msgid "lunight"
+msgstr "Lunight"
+
+msgid "manosting"
+msgstr "Manosting"
+
+msgid "memnomnom"
+msgstr "Memnomnom"
+
+msgid "metesaur"
+msgstr "Metesaur"
+
+msgid "miaownolith"
+msgstr "Miaownolith"
+
+msgid "mystikapi"
+msgstr "Mystikapi"
+
+msgid "narcileaf"
+msgstr "Narcileaf"
+
+msgid "nudikill"
+msgstr "Nudikill"
+
+msgid "nudimind"
+msgstr "Nudimind"
+
+msgid "nuenflu"
+msgstr "Nuenflu"
+
+msgid "octabode"
+msgstr "Octabode"
+
+msgid "ouroboutlet"
+msgstr "Ouroboutlet"
+
+msgid "pairagrim"
+msgstr "Pairagrim"
+
+msgid "pairagrin"
+msgstr "Pairagrin"
+
+msgid "pantherafira"
+msgstr "Pantherafira"
+
+msgid "pharfan"
+msgstr "Pharfan"
+
+msgid "picc"
+msgstr "Picc"
+
+msgid "pipis"
+msgstr "Pipis"
+
+msgid "poinchin"
+msgstr "Poinchin"
+
+msgid "polyrock"
+msgstr "Polyrock"
+
+msgid "prophetoise"
+msgstr "Prophetoise"
+
+msgid "puparmor"
+msgstr "Puparmor"
+
+msgid "pyraminx"
+msgstr "Pyraminx"
+
+msgid "pythock"
+msgstr "Pythock"
+
+msgid "pythwire"
+msgstr "Pythwire"
+
+msgid "qetzlrokilus"
+msgstr "Qetzlrokilus"
+
+msgid "rabbitosaur"
+msgstr "Rabbitosaur"
+
+msgid "rhincus"
+msgstr "Rhincus"
+
+msgid "rosarin"
+msgstr "Rosarin"
+
+msgid "ruption"
+msgstr "Ruption"
+
+msgid "sadito"
+msgstr "Sadito"
+
+msgid "sampsack"
+msgstr "Sampsack"
+
+msgid "sampsage"
+msgstr "Sampsage"
+
+msgid "sapsnap"
+msgstr "Sapsnap"
+
+msgid "saurchin"
+msgstr "Saurchin"
+
+msgid "sclairus"
+msgstr "Sclairus"
+
+msgid "seirein"
+msgstr "Seirein"
+
+msgid "shammer"
+msgstr "Shammer"
+
+msgid "shnark"
+msgstr "Shnark"
+
+msgid "shybulb"
+msgstr "Shybulb"
+
+msgid "skwib"
+msgstr "Skwib"
+
+msgid "snaki"
+msgstr "Snaki"
+
+msgid "snarlon"
+msgstr "Snarlon"
+
+msgid "snokari"
+msgstr "Snokari"
+
+msgid "sockeserp"
+msgstr "Sockeserp"
+
+msgid "solight"
+msgstr "Solight"
+
+msgid "spighter"
+msgstr "Spighter"
+
+msgid "spoilurm"
+msgstr "Spoilurm"
+
+msgid "squabbit"
+msgstr "Squabbit"
+
+msgid "statursus"
+msgstr "Statursus"
+
+msgid "strella"
+msgstr "Strella"
+
+msgid "tarpeur"
+msgstr "Tarpeur"
+
+msgid "taupypus"
+msgstr "Taupypus"
+
+msgid "teddisun"
+msgstr "Teddisun"
+
+msgid "tetrchimp"
+msgstr "Tetrchimp"
+
+msgid "tikoal"
+msgstr "Tikoal"
+
+msgid "tikorch"
+msgstr "Tikorch"
+
+msgid "tobishimi"
+msgstr "Tobishimi"
+
+msgid "toufigel"
+msgstr "Toufigel"
+
+msgid "tourbidi"
+msgstr "Tourbidi"
+
+msgid "trapsnap"
+msgstr "Trapsnap"
+
+msgid "tsushimi"
+msgstr "Tsushimi"
+
+msgid "tumblebee"
+msgstr "Tumblebee"
+
+msgid "tumblequill"
+msgstr "Tumblequill"

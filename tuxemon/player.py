@@ -56,8 +56,17 @@ class Player(NPC):
         %j - Day number of year 001-366
         """
         var = self.game_variables
-        var["hour"] = int(dt.datetime.now().strftime("%H"))
-        var["day_of_year"] = int(dt.datetime.now().strftime("%j"))
+        var["hour"] = dt.datetime.now().strftime("%H")
+        var["day_of_year"] = dt.datetime.now().strftime("%-j")
+        var["year"] = dt.datetime.now().strftime("%Y")
+
+        # Leap year
+        if (int(var["year"]) % 400 == 0) and (int(var["year"]) % 100 == 0):
+            var["leap_year"] = "true"
+        elif (int(var["year"]) % 4 == 0) and (int(var["year"]) % 100 != 0):
+            var["leap_year"] = "true"
+        else:
+            var["leap_year"] = "false"
 
         # Day and night basic cycle (12h cycle)
         if int(var["hour"]) < 6:

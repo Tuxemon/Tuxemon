@@ -222,6 +222,7 @@ class Monster:
 
         self.status: List[Technique] = []
 
+        self.max_moves = MAX_MOVES
         self.txmn_id = 0
         self.capture = 0
         self.height = 0.0
@@ -458,10 +459,7 @@ class Monster:
         when called during a level up.
 
         """
-        if self.level < 10:
-            level = 10
-        else:
-            level = self.level
+        level = self.level
 
         multiplier = level + 7
         shape = SHAPES[self.shape]

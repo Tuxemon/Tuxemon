@@ -1,7 +1,7 @@
 {
-  "tech_id": 191,
+  "tech_id": 109,
   "accuracy": 0.3,
-  "animation": null,
+  "animation": "bite_zombie",
   "effects": [
     "damage 100"
   ],

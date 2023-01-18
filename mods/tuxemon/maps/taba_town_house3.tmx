@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="47">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="58">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
@@ -22,7 +22,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="12" height="7">
   <data encoding="base64" compression="zlib">
-   eAFjYMAEEfyYYsgi0+QgPBiNT/0MoNqtQIxMo6t/r4QwfTvUbGS6Dc09yOoROhGsR3jUT4eaj1CNyeJTZmDgB+JPQHdtw6JeC2j+BSYGhotAfAmIkQEAwtMTUA==
+   eAFjYMAEEfwQMXZFTDmQyDQ5iDiMhqnHpnoGUO1WIEam0dW/V0Lo3A41G5lug7oHpgpZPUwMmX6ER/10qPnI6tHZfMoMDPxA/Anorm1Y1GsBzb/AxMBwEYgvATEyAADy0hN4
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="12" height="7">
@@ -62,6 +62,70 @@
     <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="36" name="Player Spawn" type="event" x="112" y="64" width="16" height="16"/>
+  <object id="36" name="Player Spawn" type="event" x="80" y="64" width="16" height="16"/>
+  <object id="48" name="Create Owner" type="event" x="160" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc taba_house3_owner,10,4"/>
+    <property name="act2" value="npc_face taba_house3_owner,left"/>
+    <property name="cond1" value="not npc_exists taba_house3_owner"/>
+   </properties>
+  </object>
+  <object id="50" name="Talk1" type="event" x="128" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face taba_house3_owner,left"/>
+    <property name="act2" value="translated_dialog taba_house3_owner1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="51" name="Talk2" type="event" x="160" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face taba_house3_owner,down"/>
+    <property name="act2" value="translated_dialog taba_house3_owner1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="52" name="Create Client1" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc nurse2,1,3"/>
+    <property name="act2" value="npc_face nurse2,down"/>
+    <property name="cond1" value="not npc_exists nurse2"/>
+   </properties>
+  </object>
+  <object id="53" name="Talk Client1" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house3_client1a"/>
+    <property name="behav1" value="talk nurse2"/>
+   </properties>
+  </object>
+  <object id="54" name="Create Client2" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc knight4,2,5"/>
+    <property name="act2" value="npc_face knight4,down"/>
+    <property name="cond1" value="not npc_exists knight4"/>
+   </properties>
+  </object>
+  <object id="55" name="Talk Client2" type="event" x="32" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house3_client2a"/>
+    <property name="behav1" value="talk knight4"/>
+   </properties>
+  </object>
+  <object id="56" name="Create Client3" type="event" x="64" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc knight3,7,2"/>
+    <property name="act2" value="npc_face knight3,up"/>
+    <property name="cond1" value="not npc_exists knight3"/>
+   </properties>
+  </object>
+  <object id="57" name="Talk Client3" type="event" x="64" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog taba_house3_client3a"/>
+    <property name="behav1" value="talk knight3"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

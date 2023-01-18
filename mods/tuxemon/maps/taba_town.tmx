@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="173">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="179">
  <properties>
   <property name="east" value="route1"/>
   <property name="edges" value="clamped"/>
@@ -59,7 +59,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="64" height="60">
@@ -93,7 +93,7 @@
   <object id="15" type="collision" x="592" y="224" width="240" height="16"/>
   <object id="16" type="collision" x="352" y="224" width="96" height="16"/>
   <object id="17" type="collision" x="352" y="128" width="16" height="96"/>
-  <object id="18" type="collision" x="432" y="0" width="32" height="48"/>
+  <object id="18" type="collision" x="448" y="0" width="32" height="48"/>
   <object id="19" type="collision" x="336" y="0" width="496" height="16"/>
   <object id="22" type="collision" x="512" y="288" width="32" height="144"/>
   <object id="23" type="collision" x="592" y="144" width="48" height="48"/>
@@ -216,8 +216,22 @@
   <object id="165" type="collision" x="400" y="16" width="16" height="32"/>
   <object id="166" type="collision" x="528" y="16" width="16" height="32"/>
   <object id="167" type="collision" x="656" y="144" width="16" height="48"/>
-  <object id="168" type="collision" x="416" y="16" width="16" height="48"/>
-  <object id="169" type="collision" x="544" y="16" width="16" height="48"/>
+  <object id="168" type="collision" x="416" y="16" width="32" height="48"/>
+  <object id="169" type="collision" x="544" y="16" width="32" height="48"/>
+  <object id="173" type="collision" x="672" y="176" width="16" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="174" type="collision" x="720" y="96" width="16" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
@@ -949,6 +963,34 @@
     <property name="act10" value="transition_teleport taba_town_house4.tmx,7,6,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="175" name="sign house2" type="event" x="672" y="176" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog taba_house2_sign"/>
+    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="176" name="sign house1" type="event" x="720" y="96" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog taba_house1_sign"/>
+    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="177" name="sign house3" type="event" x="560" y="48" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog taba_house3_sign"/>
+    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="178" name="sign house4" type="event" x="432" y="48" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog taba_house4_sign"/>
+    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

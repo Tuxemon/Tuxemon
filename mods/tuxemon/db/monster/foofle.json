@@ -12,8 +12,44 @@
             "technique": "headbutt"
         },
         {
-            "level_learned": 12,
+            "level_learned": 6,
             "technique": "refresh"
+        },
+        {
+            "level_learned": 8,
+            "technique": "lust"
+        },
+        {
+            "level_learned": 12,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 16,
+            "technique": "crystal"
+        },
+        {
+            "level_learned": 20,
+            "technique": "assault"
+        },
+        {
+            "level_learned": 24,
+            "technique": "meltdown"
+        },
+        {
+            "level_learned": 28,
+            "technique": "avalanche"
+        },
+        {
+            "level_learned": 32,
+            "technique": "mystic_blending"
+        },
+        {
+            "level_learned": 36,
+            "technique": "platinum"
+        },
+        {
+            "level_learned": 40,
+            "technique": "cavity"
         }
     ],
     "evolutions": [],

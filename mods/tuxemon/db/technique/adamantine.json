@@ -1,7 +1,7 @@
 {
   "tech_id": 120,
   "accuracy": 1,
-  "animation": null,
+  "animation": "amethyst",
   "effects": [
     "damage 100"
   ],

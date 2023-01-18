@@ -1,7 +1,7 @@
 {
-  "tech_id": 195,
+  "tech_id": 113,
   "accuracy": 0.9,
-  "animation": null,
+  "animation": "drip_red_alt",
   "effects": [
     "damage 100"
   ],

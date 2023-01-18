@@ -1,7 +1,7 @@
 {
   "tech_id": 157,
   "accuracy": 0.3,
-  "animation": null,
+  "animation": "tornado_bulk",
   "effects": [
     "damage 100"
   ],

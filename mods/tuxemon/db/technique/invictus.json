@@ -1,7 +1,7 @@
 {
   "tech_id": 63,
   "accuracy": 0.75,
-  "animation": "triforce",
+  "animation": "triforce_163",
   "effects": [
     "damage 100",
     "enraged user",

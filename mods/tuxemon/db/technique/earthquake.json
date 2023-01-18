@@ -1,7 +1,7 @@
 {
   "tech_id": 168,
   "accuracy": 0.9,
-  "animation": null,
+  "animation": "rockfall_264",
   "effects": [
     "damage 100"
   ],

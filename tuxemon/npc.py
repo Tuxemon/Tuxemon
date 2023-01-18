@@ -46,6 +46,7 @@ from tuxemon.monster import (
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
 from tuxemon.states.combat.combat import EnqueuedAction
+from tuxemon.states.pc import KENNEL
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import open_choice_dialog, open_dialog, vector2_to_tile_pos
 
@@ -166,9 +167,7 @@ class NPC(Entity[NPCState]):
         # Variables for long-term item and monster storage
         # Keeping these seperate so other code can safely
         # assume that all values are lists
-        self.monster_boxes: Dict[str, List[Monster]] = {
-            CONFIG.default_monster_storage_box: []
-        }
+        self.monster_boxes: Dict[str, List[Monster]] = {}
         self.item_boxes: Dict[str, Mapping[str, InventoryItem]] = {}
 
         # combat related
@@ -644,9 +643,7 @@ class NPC(Entity[NPCState]):
         """
         monster.owner = self
         if len(self.monsters) >= self.party_limit:
-            self.monster_boxes[CONFIG.default_monster_storage_box].append(
-                monster
-            )
+            self.monster_boxes[KENNEL].append(monster)
         else:
             if slot is None:
                 self.monsters.append(monster)

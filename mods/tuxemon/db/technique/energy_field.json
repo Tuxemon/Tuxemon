@@ -3,6 +3,7 @@
   "accuracy": 1,
   "animation": "screen",
   "effects": [
+    "enhance 100",
     "exhausted target"
   ],
   "flip_axes": "x",

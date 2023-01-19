@@ -11,7 +11,7 @@
   "is_area": false,
   "is_fast": false,
   "potency": null,
-  "power": 3.0,
+  "power": 3,
   "range": "touch",
   "recharge": 2,
   "sfx": "sfx_blaster",

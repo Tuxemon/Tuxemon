@@ -84,8 +84,19 @@ class RandomAI(AI):
                     if user.is_item_sort(item_slug, "potion"):
                         if self.need_potion(monster):
                             item = self.item_healing(user, item_slug)
+                            # avoid lifeleech when using an item
+                            local_session.player.game_variables[
+                                "tech_accuracy"
+                            ] = 0
                             return user, item, monster
         technique, target = self.track_next_use(monster, opponents)
+        # saves accuracy lifeleech and excludes skip
+        if technique.tech_id > 0:
+            local_session.player.game_variables[
+                "tech_accuracy"
+            ] = technique.accuracy
+        if technique.slug == "skip":
+            local_session.player.game_variables["tech_accuracy"] = 0
         # send data
         return monster, technique, target
 
@@ -99,6 +110,13 @@ class RandomAI(AI):
         Wild encounters.
         """
         technique, target = self.track_next_use(monster, opponents)
+        # saves accuracy lifeleech and excludes skip
+        if technique.tech_id > 0:
+            local_session.player.game_variables[
+                "tech_accuracy"
+            ] = technique.accuracy
+        if technique.slug == "skip":
+            local_session.player.game_variables["tech_accuracy"] = 0
         # send data
         return monster, technique, target
 

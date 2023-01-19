@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import random
 from dataclasses import dataclass
 from typing import Optional
 
@@ -38,7 +37,10 @@ class LifeLeechEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> LifeLeechEffectResult:
-        success = tech.potency >= random.random()
+        player = self.session.player
+        value = float(player.game_variables["random_tech_hit"])
+        potency = formula.random.random()
+        success = tech.potency >= potency and tech.accuracy >= value
         if success:
             tech = Technique("status_lifeleech", carrier=target, link=user)
             target.apply_status(tech)
@@ -48,20 +50,25 @@ class LifeLeechEffect(TechEffect):
                 user.apply_status(tech)
             return {"status": tech}
 
-        # avoids Nonetype situation and reset the user
-        if user is None:
-            user = tech.link
-            assert user
-            damage = formula.simple_lifeleech(user, target)
-            target.current_hp -= damage
-            user.current_hp += damage
-        else:
-            damage = formula.simple_lifeleech(user, target)
-            target.current_hp -= damage
-            user.current_hp += damage
+        accuracy = float(player.game_variables["tech_accuracy"])
 
-        return {
-            "damage": damage,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
-        }
+        if accuracy >= value:
+            # avoids Nonetype situation and reset the user
+            if user is None:
+                user = tech.link
+                assert user
+                damage = formula.simple_lifeleech(user, target)
+                target.current_hp -= damage
+                user.current_hp += damage
+            else:
+                damage = formula.simple_lifeleech(user, target)
+                target.current_hp -= damage
+                user.current_hp += damage
+
+            return {
+                "damage": damage,
+                "should_tackle": bool(damage),
+                "success": bool(damage),
+            }
+        else:
+            return {"damage": 0, "should_tackle": False, "success": False}

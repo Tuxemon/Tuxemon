@@ -3,6 +3,7 @@
   "accuracy": 0.75,
   "animation": "sparks_gold_alt",
   "effects": [
+    "damage 100",
     "exhausted target",
     "exhausted user"
   ],

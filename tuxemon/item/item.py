@@ -155,7 +155,7 @@ class Item:
             if len(line.split()) > 1:
                 params = line.split()[1].split(",")
             else:
-                params = None
+                params = []
             try:
                 effect = Item.effects_classes[name]
             except KeyError:

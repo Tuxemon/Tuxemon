@@ -23,7 +23,6 @@ class CaptureEffect(ItemEffect):
     """Attempts to capture the target with 'power' capture strength."""
 
     name = "capture"
-    power: int
 
     def apply(self, target: Monster) -> CaptureEffectResult:
         # Set up variables for capture equation

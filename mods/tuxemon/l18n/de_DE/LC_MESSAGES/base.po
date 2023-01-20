@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2023-01-16 12:48+0000\n"
+"PO-Revision-Date: 2023-01-19 21:49+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "de/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.15.1\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -2511,3 +2511,66 @@ msgstr "Mk01 Beta"
 
 msgid "mk01_alpha"
 msgstr "MK01 Alpha"
+
+msgid "earthquake"
+msgstr "Erdbeben"
+
+msgid "evasion"
+msgstr "Umgehung"
+
+msgid "feline"
+msgstr "Katzenartig"
+
+msgid "fire_shield"
+msgstr "Feuerschild"
+
+msgid "firestorm"
+msgstr "Feuersbrunst"
+
+msgid "fledgling"
+msgstr "Küken"
+
+msgid "gold_digger"
+msgstr "Goldgräber"
+
+msgid "grinding"
+msgstr "Reibend"
+
+msgid "gust"
+msgstr "Gust"
+
+msgid "gyser"
+msgstr "Gyser"
+
+msgid "hawk"
+msgstr "Habicht"
+
+msgid "ice_storm"
+msgstr "Eissturm"
+
+msgid "insanity"
+msgstr "Wahnsinn"
+
+msgid "kraken"
+msgstr "Krake"
+
+msgid "lantern"
+msgstr "Laterne"
+
+msgid "oedipus"
+msgstr "Ödipus"
+
+msgid "glitch"
+msgstr "Glitch"
+
+msgid "aether"
+msgstr "Äther"
+
+msgid "normal"
+msgstr "Normal"
+
+msgid "demiurge"
+msgstr "Demiurg"
+
+msgid "fiery"
+msgstr "Feurig"

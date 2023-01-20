@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2023-01-18 01:47+0000\n"
+"PO-Revision-Date: 2023-01-19 21:49+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fr/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.15.1\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -149,7 +149,6 @@ msgstr "Un {name} sauvage apparait !"
 msgid "combat_monster_choice"
 msgstr "Que doit faire {name} ?"
 
-#, fuzzy
 msgid "combat_fainted"
 msgstr "{name} est K.O. !"
 
@@ -215,7 +214,6 @@ msgstr "Non, conserver cette sauvegarde."
 msgid "slot"
 msgstr "Emplacement"
 
-#, fuzzy
 msgid "status_faint"
 msgstr "K.O."
 
@@ -1853,7 +1851,6 @@ msgstr "Oh non ! J'en veux encore plus !"
 msgid "combat_state_overfeed_get"
 msgstr "{user} a sur-alimenté {target}."
 
-#, fuzzy
 msgid "combat_levitate_get"
 msgstr "{user} lévite haut dans les airs."
 
@@ -1903,7 +1900,6 @@ msgid "ice_claw"
 msgstr "Griffe Glaciale"
 
 ## TECHNIQUE TRANSLATIONS ##
-#, fuzzy
 msgid "all_in"
 msgstr "Tous dans"
 
@@ -2021,7 +2017,6 @@ msgstr "Langue de Bois"
 msgid "wallow"
 msgstr "Se vautrer"
 
-#, fuzzy
 msgid "wing_tip"
 msgstr "Bout de l'Aile"
 
@@ -4262,7 +4257,6 @@ msgstr "Constriction"
 msgid "invictus"
 msgstr "Invictus"
 
-#, fuzzy
 msgid "pseudopod"
 msgstr "Pseudo-gousse"
 
@@ -7401,3 +7395,243 @@ msgid "rhincus_fossil_description"
 msgstr ""
 "Il ressemble au crâne d'un oiseau à dents, mais il est dur comme de la "
 "pierre."
+
+msgid "air_chain"
+msgstr "Chaîne d'Air"
+
+msgid "ants"
+msgstr "Fourmis"
+
+msgid "arcane_eye"
+msgstr "Œil Arcane"
+
+msgid "assault"
+msgstr "Assaut"
+
+msgid "barking"
+msgstr "Aboiement"
+
+msgid "blood_nets"
+msgstr "Filets de Sang"
+
+msgid "breath"
+msgstr "Haleine"
+
+msgid "canine"
+msgstr "Canine"
+
+msgid "cat_calling"
+msgstr "Appel de Chat"
+
+msgid "chameleon"
+msgstr "Caméléon"
+
+msgid "clock"
+msgstr "Horloge"
+
+msgid "cloud_aether"
+msgstr "Éther Nuageux"
+
+msgid "conjurer"
+msgstr "Conjurer"
+
+msgid "crystal"
+msgstr "Cristal"
+
+msgid "earthquake"
+msgstr "Tremblement de Terre"
+
+msgid "feline"
+msgstr "Félin"
+
+msgid "fiery"
+msgstr "Ardent"
+
+msgid "firestorm"
+msgstr "Tempête de Feu"
+
+msgid "fire_shield"
+msgstr "Bouclier de Feu"
+
+msgid "fledgling"
+msgstr "Novice"
+
+msgid "gold_digger"
+msgstr "Chercheur d'Or"
+
+msgid "grinding"
+msgstr "Broyage"
+
+msgid "gust"
+msgstr "Rafale"
+
+msgid "gyser"
+msgstr "Gyser"
+
+msgid "insanity"
+msgstr "Folie"
+
+msgid "kraken"
+msgstr "Kraken"
+
+msgid "meltdown"
+msgstr "Effondrement"
+
+msgid "mending"
+msgstr "Raccommodage"
+
+msgid "mobbing"
+msgstr "Mobbing"
+
+msgid "muck"
+msgstr "Boue"
+
+msgid "mystic_blending"
+msgstr "Mélange Mystique"
+
+msgid "negation"
+msgstr "Négation"
+
+msgid "nest"
+msgstr "Nid"
+
+msgid "oedipus"
+msgstr "Œdipe"
+
+msgid "orbs"
+msgstr "Orbes"
+
+msgid "phantasmal_force"
+msgstr "Force Fantasmatique"
+
+msgid "pit"
+msgstr "Fosse"
+
+msgid "platinum"
+msgstr "Platine"
+
+msgid "poison_courtship"
+msgstr "Parade Empoisonnée"
+
+msgid "radiance"
+msgstr "Éclat"
+
+msgid "ring"
+msgstr "Bague"
+
+msgid "ruby"
+msgstr "Rubis"
+
+msgid "saber"
+msgstr "Sabre"
+
+msgid "shapechange"
+msgstr "Changement"
+
+msgid "slime"
+msgstr "Vase"
+
+msgid "stabilo"
+msgstr "Stabilo"
+
+msgid "stonehenge"
+msgstr "Stonehenge"
+
+msgid "strangulation"
+msgstr "Strangulation"
+
+msgid "sunburst"
+msgstr "Éclat de Soleil"
+
+msgid "sword"
+msgstr "Épée"
+
+msgid "sylvan"
+msgstr "Sylvestre"
+
+msgid "terror"
+msgstr "Terreur"
+
+msgid "time_crisis"
+msgstr "Crise Temporelle"
+
+msgid "tip"
+msgstr "Pourboire"
+
+msgid "torch"
+msgstr "Torche"
+
+msgid "touch"
+msgstr "Toucher"
+
+msgid "tsunami"
+msgstr "Tsunami"
+
+msgid "ubuntu"
+msgstr "Ubuntu"
+
+msgid "undertaker"
+msgstr "Funèbres"
+
+msgid "venom"
+msgstr "Venin"
+
+msgid "viper"
+msgstr "Vipère"
+
+msgid "vorpal"
+msgstr "Vorpal"
+
+msgid "wall_fire"
+msgstr "Mur de Feu"
+
+msgid "wall_ice"
+msgstr "Mur de Glace"
+
+msgid "walls"
+msgstr "Murs"
+
+msgid "webs_wind"
+msgstr "Vent de Toiles"
+
+msgid "cavity"
+msgstr "Cavité"
+
+msgid "clairaudience"
+msgstr "Clairaudience"
+
+msgid "demiurge"
+msgstr "Démiurge"
+
+msgid "lineage"
+msgstr "Lignage"
+
+msgid "tux_attack"
+msgstr "Attaque Tux"
+
+msgid "evasion"
+msgstr "Évasion"
+
+msgid "hawk"
+msgstr "Rapace"
+
+msgid "ice_storm"
+msgstr "Verglas"
+
+msgid "lightning_spheres"
+msgstr "Sphères de Foudre"
+
+msgid "lantern"
+msgstr "Lanterne"
+
+msgid "lava"
+msgstr "Lave"
+
+msgid "magma"
+msgstr "Magma"
+
+msgid "lust"
+msgstr "Luxure"
+
+msgid "maori"
+msgstr "Maori"

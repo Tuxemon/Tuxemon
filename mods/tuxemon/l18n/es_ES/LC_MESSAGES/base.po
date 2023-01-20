@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2023-01-18 01:47+0000\n"
+"PO-Revision-Date: 2023-01-19 21:49+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.15.1\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -4400,3 +4400,195 @@ msgstr "Parece el cráneo de un perro antiguo, pero es duro como la piedra."
 
 msgid "rhincus_fossil_description"
 msgstr "Parece el cráneo de un pájaro dentado, pero es duro como la piedra."
+
+msgid "tux_attack"
+msgstr "Tux Ataque"
+
+msgid "aether"
+msgstr "Éter"
+
+msgid "normal"
+msgstr "Normal"
+
+msgid "glitch"
+msgstr "Glitch"
+
+msgid "demiurge"
+msgstr "Demiurgo"
+
+msgid "earthquake"
+msgstr "Terremoto"
+
+msgid "evasion"
+msgstr "Evasión"
+
+msgid "feline"
+msgstr "Felino"
+
+msgid "fiery"
+msgstr "Ardiente"
+
+msgid "fire_shield"
+msgstr "Escudo de Fuego"
+
+msgid "firestorm"
+msgstr "Tormenta de Fuego"
+
+msgid "fledgling"
+msgstr "Volantón"
+
+msgid "gold_digger"
+msgstr "Buscador de Oro"
+
+msgid "grinding"
+msgstr "Molienda"
+
+msgid "gust"
+msgstr "Ráfaga"
+
+msgid "hawk"
+msgstr "Halcón"
+
+msgid "oedipus"
+msgstr "Edipo"
+
+msgid "ice_storm"
+msgstr "Tormenta de Nieve"
+
+msgid "insanity"
+msgstr "Locura"
+
+msgid "kraken"
+msgstr "Kraken"
+
+msgid "lantern"
+msgstr "Linterna"
+
+msgid "lava"
+msgstr "Lava"
+
+msgid "lightning_spheres"
+msgstr "Esferas de Relámpagos"
+
+msgid "lineage"
+msgstr "Linaje"
+
+msgid "lust"
+msgstr "Lujuria"
+
+msgid "magma"
+msgstr "Magma"
+
+msgid "maori"
+msgstr "Maorí"
+
+msgid "meltdown"
+msgstr "Fusión"
+
+msgid "mending"
+msgstr "Zurcidura"
+
+msgid "muck"
+msgstr "Estiércol"
+
+msgid "mystic_blending"
+msgstr "Mezcla Mística"
+
+msgid "negation"
+msgstr "Negación"
+
+msgid "orbs"
+msgstr "Orbes"
+
+msgid "phantasmal_force"
+msgstr "Fuerza Fantasmal"
+
+msgid "pit"
+msgstr "Foso"
+
+msgid "platinum"
+msgstr "Platino"
+
+msgid "poison_courtship"
+msgstr "Cortejo de Veneno"
+
+msgid "radiance"
+msgstr "Resplandor"
+
+msgid "ring"
+msgstr "Anillo"
+
+msgid "ruby"
+msgstr "Rubí"
+
+msgid "saber"
+msgstr "Sable"
+
+msgid "stabilo"
+msgstr "Stabilo"
+
+msgid "stonehenge"
+msgstr "Stonehenge"
+
+msgid "strangulation"
+msgstr "Estrangulación"
+
+msgid "sunburst"
+msgstr "Rayos de Sol"
+
+msgid "sword"
+msgstr "Espada"
+
+msgid "sylvan"
+msgstr "Silvestre"
+
+msgid "terror"
+msgstr "Terror"
+
+msgid "time_crisis"
+msgstr "Crisis del Tiempo"
+
+msgid "tip"
+msgstr "Consejo"
+
+msgid "torch"
+msgstr "Antorcha"
+
+msgid "touch"
+msgstr "Toque"
+
+msgid "tsunami"
+msgstr "Tsunami"
+
+msgid "ubuntu"
+msgstr "Ubuntu"
+
+msgid "undertaker"
+msgstr "Enterrador"
+
+msgid "venom"
+msgstr "Veneno"
+
+msgid "viper"
+msgstr "Víbora"
+
+msgid "vorpal"
+msgstr "Vorpal"
+
+msgid "wall_fire"
+msgstr "Pared de Fuego"
+
+msgid "wall_ice"
+msgstr "Pared de Hielo"
+
+msgid "walls"
+msgstr "Paredes"
+
+msgid "nest"
+msgstr "Nido"
+
+msgid "shapechange"
+msgstr "Cambio de Forma"
+
+msgid "slime"
+msgstr "Limo"

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-18 01:47+0000\n"
+"PO-Revision-Date: 2023-01-19 21:49+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "tuxemon/tuxemon/pt_BR/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.15.1\n"
 
 msgid "combat_state_lifeleech_get"
 msgstr "{user} está sugando saúde de {target}."
@@ -2330,3 +2330,45 @@ msgstr "Parece o crânio de um cão antigo, mas é duro como pedra."
 
 msgid "rhincus_fossil_description"
 msgstr "Parece o crânio de um pássaro dentado, mas é duro como pedra."
+
+msgid "aether"
+msgstr "Éter"
+
+msgid "normal"
+msgstr "Normal"
+
+msgid "glitch"
+msgstr "Glitch"
+
+msgid "earthquake"
+msgstr "Terremoto"
+
+msgid "evasion"
+msgstr "Evasão"
+
+msgid "feline"
+msgstr "Felino"
+
+msgid "fiery"
+msgstr "Ardente"
+
+msgid "firestorm"
+msgstr "Tempestade de Fogo"
+
+msgid "fire_shield"
+msgstr "Escudo de Fogo"
+
+msgid "fledgling"
+msgstr "Inexperiente"
+
+msgid "grinding"
+msgstr "Esmerilhação"
+
+msgid "oedipus"
+msgstr "Édipo"
+
+msgid "demiurge"
+msgstr "Demiurgo"
+
+msgid "gold_digger"
+msgstr "Interesseira"

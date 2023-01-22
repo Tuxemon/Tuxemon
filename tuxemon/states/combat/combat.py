@@ -1082,8 +1082,14 @@ class CombatState(CombatAnimations):
             )
             awarded_mon = monster.level * monster.money_modifier
             for winners in self._damage_map[monster]:
-                winners.give_experience(awarded_exp)
-                self._prize += awarded_mon
+                if self.is_trainer_battle:
+                    winners.give_experience(awarded_exp)
+                    self._prize += awarded_mon
+                else:
+                    awarded = (
+                        awarded_exp * monster.experience_required_modifier
+                    )
+                    winners.give_experience(awarded)
 
             # Remove monster from damage map
             del self._damage_map[monster]

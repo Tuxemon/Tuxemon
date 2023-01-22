@@ -117,6 +117,7 @@ class SpawnMonsterAction(EventAction):
         child = monster.Monster()
         child.load_from_db(seed)
         child.set_level(5)
+        child.set_moves(5)
         child.set_capture(formula.today_ordinal())
         child.current_hp = child.hp
         # child gets random father's moves

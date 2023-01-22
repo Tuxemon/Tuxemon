@@ -261,8 +261,6 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             combat_state = self.client.get_state_by_name(CombatState)
             # TODO: don't hardcode to player0
             combat_state.enqueue_action(combat_state.players[0], item, target)
-            # avoid lifeleech when using an item
-            local_session.player.game_variables["tech_accuracy"] = 0
 
             # close all the open menus
             self.client.pop_state()  # close target chooser
@@ -347,14 +345,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             else:
                 combat_state = self.client.get_state_by_name(CombatState)
                 combat_state.enqueue_action(self.monster, technique, target)
-                player = local_session.player
                 # remove skip after using it
                 if technique.slug == "skip":
-                    player.game_variables["tech_accuracy"] = 0
                     self.monster.moves.pop()
-                # save accuracy lifeleech
-                if technique.tech_id > 0:
-                    player.game_variables["tech_accuracy"] = technique.accuracy
 
                 # close all the open menus
                 self.client.pop_state()  # close target chooser

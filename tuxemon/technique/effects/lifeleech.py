@@ -50,25 +50,20 @@ class LifeLeechEffect(TechEffect):
                 user.apply_status(tech)
             return {"status": tech}
 
-        accuracy = float(player.game_variables["tech_accuracy"])
-
-        if accuracy >= value:
-            # avoids Nonetype situation and reset the user
-            if user is None:
-                user = tech.link
-                assert user
-                damage = formula.simple_lifeleech(user, target)
-                target.current_hp -= damage
-                user.current_hp += damage
-            else:
-                damage = formula.simple_lifeleech(user, target)
-                target.current_hp -= damage
-                user.current_hp += damage
-
-            return {
-                "damage": damage,
-                "should_tackle": bool(damage),
-                "success": bool(damage),
-            }
+        # avoids Nonetype situation and reset the user
+        if user is None:
+            user = tech.link
+            assert user
+            damage = formula.simple_lifeleech(user, target)
+            target.current_hp -= damage
+            user.current_hp += damage
         else:
-            return {"damage": 0, "should_tackle": False, "success": False}
+            damage = formula.simple_lifeleech(user, target)
+            target.current_hp -= damage
+            user.current_hp += damage
+
+        return {
+            "damage": damage,
+            "should_tackle": bool(damage),
+            "success": bool(damage),
+        }

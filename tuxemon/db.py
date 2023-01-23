@@ -574,6 +574,10 @@ class EncounterItemModel(BaseModel):
     level_range: Sequence[int] = Field(
         ..., description="Level range to encounter"
     )
+    daytime: bool = Field(
+        True, description="Options: day (true), night (false)"
+    )
+    exp_req_mod: int = Field(1, description="Exp modifier wild monster")
 
     @validator("monster")
     def monster_exists(cls, v):

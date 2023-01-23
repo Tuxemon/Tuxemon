@@ -18,6 +18,7 @@
     "own trainer": 0,
     "item": 0
   },
+  "category": "capture",
   "type": "Consumable",
   "usable_in": [
     "MainCombatMenuState"

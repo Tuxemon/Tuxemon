@@ -922,6 +922,42 @@ class NPC(Entity[NPCState]):
             ],
         )
 
+    def remove_technique(
+        self,
+        session: Session,
+        monster: Monster,
+    ) -> None:
+        """
+        Opens the choice dialog and removes the technique.
+        """
+
+        def set_variable(var_value: str) -> None:
+            monster.moves.remove(var_value)
+            session.client.pop_state()
+
+        var_list = monster.moves
+        var_menu = list()
+
+        for val in var_list:
+            text = T.translate(val.slug)
+            var_menu.append((text, text, partial(set_variable, val)))
+
+        open_choice_dialog(
+            session,
+            menu=var_menu,
+        )
+        open_dialog(
+            session,
+            [
+                T.format(
+                    "new_tech_delete",
+                    {
+                        "name": monster.name.upper(),
+                    },
+                )
+            ],
+        )
+
     def give_money(self, amount: int) -> None:
         self.money["player"] += amount
 

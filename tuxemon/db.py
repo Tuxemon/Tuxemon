@@ -214,6 +214,12 @@ class ItemModel(BaseModel):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
+    @validator("slug")
+    def translation_exists_item(cls, v):
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
     # Validate resources that should exist
     @validator("sprite")
     def file_exists(cls, v):
@@ -498,6 +504,12 @@ class TechniqueModel(BaseModel):
         # None is ok here
         if not v:
             return v
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @validator("slug")
+    def translation_exists_tech(cls, v):
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")

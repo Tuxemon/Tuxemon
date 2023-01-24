@@ -178,6 +178,12 @@ msgstr "Move Module (Wood)"
 msgid "mm_wood_description"
 msgstr "Learn the particular Wood type technique in this MM. Then it is consumed."
 
+msgid "aardant"
+msgstr "Aardant"
+
+msgid "aardant_description"
+msgstr ""
+
 # Boosters (items)
 msgid "greenwash_badge"
 msgstr "Badge: Greenwash"
@@ -839,6 +845,9 @@ msgstr "Mudslide"
 
 msgid "one_two"
 msgstr "One-Two"
+
+msgid "overfeed"
+msgstr "Overfeed"
 
 msgid "overgrowth"
 msgstr "Overgrowth"

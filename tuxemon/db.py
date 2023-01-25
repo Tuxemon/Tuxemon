@@ -65,6 +65,21 @@ class ItemType(str, Enum):
     key_item = "KeyItem"
 
 
+class ItemCategory(str, Enum):
+    none = "none"
+    edible = "edible"
+    badge = "badge"
+    booster = "booster"
+    fossil = "fossil"
+    morph = "morph"
+    revive = "revive"
+    potion = "potion"
+    technique = "technique"
+    phone = "phone"
+    fish = "fish"
+    capture = "capture"
+
+
 class OutputBattle(str, Enum):
     won = "won"
     lost = "lost"
@@ -169,6 +184,9 @@ class ItemModel(BaseModel):
         ..., description="Target mapping of who to use the item on"
     )
     type: ItemType = Field(..., description="The type of item this is")
+    category: ItemCategory = Field(
+        ..., description="The category of item this is"
+    )
     usable_in: Sequence[State] = Field(
         ..., description="State(s) where this item can be used."
     )
@@ -192,6 +210,12 @@ class ItemModel(BaseModel):
     # Validate fields that refer to translated text
     @validator("use_item", "use_success", "use_failure")
     def translation_exists(cls, v):
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @validator("slug")
+    def translation_exists_item(cls, v):
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
@@ -484,6 +508,12 @@ class TechniqueModel(BaseModel):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
+    @validator("slug")
+    def translation_exists_tech(cls, v):
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
     # Custom validation for range
     @validator("range")
     def range_validation(cls, v, values, **kwargs):
@@ -574,6 +604,10 @@ class EncounterItemModel(BaseModel):
     level_range: Sequence[int] = Field(
         ..., description="Level range to encounter"
     )
+    daytime: bool = Field(
+        True, description="Options: day (true), night (false)"
+    )
+    exp_req_mod: int = Field(1, description="Exp modifier wild monster")
 
     @validator("monster")
     def monster_exists(cls, v):

@@ -78,7 +78,7 @@
   </object>
   <object id="42" name="hello Professor" type="event" x="128" y="160" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc professor,6,5,professor,stand"/>
+    <property name="act10" value="create_npc professor,6,5"/>
     <property name="act30" value="set_variable tuxchoice:welcome"/>
     <property name="cond1" value="not variable_set tuxchoice:end"/>
     <property name="cond2" value="not npc_exists professor"/>
@@ -127,7 +127,7 @@
   </object>
   <object id="56" name="employee" type="event" x="16" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc tuxemart_keeper,1,5,tuxemartemployee,stand"/>
+    <property name="act1" value="create_npc tuxemart_keeper,1,5"/>
     <property name="act2" value="npc_face tuxemart_keeper,right"/>
     <property name="act3" value="set_inventory tuxemart_keeper,spyder_paper_mart"/>
     <property name="act4" value="set_economy tuxemart_keeper,spyder_paper_mart"/>
@@ -170,13 +170,13 @@
   </object>
   <object id="62" name="Create Shopkeeper" type="event" x="16" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc shopkeeperpapertown,3,6,shopkeeper,stand"/>
+    <property name="act1" value="create_npc shopkeeperpapertown,3,6"/>
     <property name="cond2" value="not npc_exists shopkeeperpapertown"/>
    </properties>
   </object>
   <object id="63" name="Create Dante" type="event" x="176" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc danteinstore,11,5,shop_assistant,stand"/>
+    <property name="act1" value="create_npc danteinstore,11,5"/>
     <property name="cond1" value="is party_size less_than,1"/>
     <property name="cond2" value="not npc_exists danteinstore"/>
    </properties>

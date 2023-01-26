@@ -808,11 +808,14 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [daneeklu](http://opengameart.org/users/daneeklu) 
 is licensed under [CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
 
-* ["Amethyst"]() adapted by JaskRendix, from the Superpowers Asset Packs (Crystal)
+* ["Amethyst"](https://wiki.tuxemon.org/File:Amethyst_64.gif)
+Adapted by JaskRendix, from the Superpowers Asset Packs (Crystal)
 
-* ["Amethyst Absorb"]()	by JaskRendix
+* ["Amethyst Absorb"](https://wiki.tuxemon.org/File:Amethyst_absorb.gif)
+By JaskRendix
 
-* ["Amethyst Radiate"]() by JaskRendix
+* ["Amethyst Radiate"](https://wiki.tuxemon.org/File:Amethyst_radiate.gif)
+By JaskRendix
 
 * ["Appearance"](https://wiki.tuxemon.org/File:Appearance.gif)
 Animation by Tamashihoshi and created for the Tuxemon project.
@@ -830,7 +833,8 @@ Sprite by Carnageddon, [source link](https://opengameart.org/content/bite)
 * ["Bite"](https://wiki.tuxemon.org/File:Bite.gif)
 By josepharaoh99
 
-* ["Blue Circle"]() adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
+* ["Blue Circle"](https://wiki.tuxemon.org/File:Blue_circle.gif)
+Adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
 
 * ["Bomb Bright"](https://wiki.tuxemon.org/File:Bomb_bright.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.
@@ -856,7 +860,8 @@ Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel
 * ["Buff Ranged"](https://wiki.tuxemon.org/File:Buff_ranged.gif)
 Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
-* ["Calling"]()	by JaskRendix
+* ["Calling"](https://wiki.tuxemon.org/File:Calling.gif)
+By JaskRendix
 
 * ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.
@@ -867,14 +872,17 @@ Animation by Tamashihoshi and created for the Tuxemon project.
 * ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.
 
-* ["Claws Twice Blue"]() adapted by JaskRendix, from the Superpowers Asset Packs (Claw Blue)
+* ["Claws Twice Blue"](https://wiki.tuxemon.org/File:Claws_twice_blue.gif)
+Adapted by JaskRendix, from the Superpowers Asset Packs (Claw Blue)
 
-* ["Claws Twice Red"]() adapted by JaskRendix, from the Superpowers Asset Packs (Claw Blue)
+* ["Claws Twice Red"](https://wiki.tuxemon.org/File:Claws_twice_red.gif)
+Adapted by JaskRendix, from the Superpowers Asset Packs (Claw Blue)
 
 * ["Claw Yellow"](https://wiki.tuxemon.org/File:Claw_yellow_169.gif)
 From the Superpowers Asset Packs.
 
-* ["Clock"](https://commons.wikimedia.org/wiki/File:Alarm_clock.png) adapted by JaskRendix licensed under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.en)
+* ["Clock"](https://wiki.tuxemon.org/File:Clock.gif)
+Adapted by JaskRendix licensed under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.en)
 
 * ["Constantburn"](https://wiki.tuxemon.org/File:Constantburn.gif)
 Animation by josepharaoh99 and created for the Tuxemon project.
@@ -886,18 +894,23 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Crystal"](https://wiki.tuxemon.org/File:Crystal.gif)
 From the Superpowers Asset Packs.
 
-* ["Crystal Absorb"]() by JaskRendix
+* ["Crystal Absorb"](https://wiki.tuxemon.org/File:Crystal_absorb.gif)
+By JaskRendix
 
-* ["Crystal Radiate"]() by JaskRendix
+* ["Crystal Radiate"](https://wiki.tuxemon.org/File:Crystal_radiate.gif)
+By JaskRendix
 
-* ["Debian_64"](https://commons.wikimedia.org/wiki/File:Diversity-2019.svg) adapted and resized by JaskRendix licensed under [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
+* ["Debian_64"](https://wiki.tuxemon.org/File:Debian_64.gif)
+Adapted and resized by JaskRendix licensed under [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
-* ["Debian_240"](https://commons.wikimedia.org/wiki/File:Diversity-2019.svg) adapted by JaskRendix licensed under [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
+* ["Debian_240"](https://wiki.tuxemon.org/File:Debian_240.gif)
+Adapted by JaskRendix licensed under [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 * ["Debuff Melee"](https://wiki.tuxemon.org/File:Debuff_melee.gif)
 Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
-* ["Demiurge"]() adapted by JaskRendix (12 Hits For Separation - 11) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
+* ["Demiurge"](https://wiki.tuxemon.org/File:Demiurge.gif)
+Adapted by JaskRendix (12 Hits For Separation - 11) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
 
 * ["Disintegrate"](https://wiki.tuxemon.org/File:Disintegrate_83.gif)
 [http://opengameart.org/content/electrical-disintegration-animation CC0], found by
@@ -907,17 +920,23 @@ Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel
 [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) with recolor by [treetrnk](https://github.com/treetrnk)
 
-* ["Drip Orange"]() adapted by JaskRendix (Drip Animations) is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* ["Drip Orange"](https://wiki.tuxemon.org/File:Drip_orange.gif)
+Adapted by JaskRendix (Drip Animations) is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Drip Red Alt"]() adapted by JaskRendix (Drip Animations) is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* ["Drip Red Alt"](https://wiki.tuxemon.org/File:Drip_red_alt.gif)
+Adapted by JaskRendix (Drip Animations) is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Drip Red"]() adapted by JaskRendix (Drip Animations) is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* ["Drip Red"](https://wiki.tuxemon.org/File:Drip_red.gif)
+Adapted by JaskRendix (Drip Animations) is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Emerald"]() adapted by JaskRendix, from the Superpowers Asset Packs (Crystal)
+* ["Emerald"](https://wiki.tuxemon.org/File:Emerald_64.gif)
+Adapted by JaskRendix, from the Superpowers Asset Packs (Crystal)
 
-* ["Emerald Absorb"]() by JaskRendix
+* ["Emerald Absorb"](https://wiki.tuxemon.org/File:Emerald_absorb.gif)
+By JaskRendix
 
-* ["Emerald Radiate"]() by JaskRendix
+* ["Emerald Radiate"](https://wiki.tuxemon.org/File:Emerald_radiate.gif)
+By JaskRendix
 
 * ["Explosion Big"](https://wiki.tuxemon.org/File:Explosion_big_126.gif)
 From the Superpowers Asset Packs.
@@ -962,7 +981,8 @@ From the Superpowers Asset Packs.
 * ["Fire Fade"](https://wiki.tuxemon.org/File:Fire_fade.gif)
 By tamashihoshi
 
-* ["Fire Storm"]() adapted by JaskRendix (12 Hits For Separation - 5) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
+* ["Fire Storm"](https://wiki.tuxemon.org/File:Fire_storm.gif)
+Adapted by JaskRendix (12 Hits For Separation - 5) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
 
 * ["Firelion Back"](https://wiki.tuxemon.org/File:Firelion_back_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
@@ -991,20 +1011,23 @@ Animation by Tamashihoshi and created for the Tuxemon project.
 * ["Flameball Blue"](https://wiki.tuxemon.org/File:Flameball_blue.gif)
 [https://opengameart.org/content/bosses-and-monsters-spritesheets-ars-notoria CC BY 3.0 on OGA]
 
-* ["Flameball Red"]() adapted and resized by JaskRendix (Flameball Blue) [https://opengameart.org/content/bosses-and-monsters-spritesheets-ars-notoria CC BY 3.0 on OGA]
+* ["Flameball Red"](https://wiki.tuxemon.org/File:Flameball_red.gif)
+Adapted and resized by JaskRendix (Flameball Blue) [https://opengameart.org/content/bosses-and-monsters-spritesheets-ars-notoria CC BY 3.0 on OGA]
 
 * ["Gloop Blue"](https://wiki.tuxemon.org/File:Gloop_blue.gif)
-Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan B...
+Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
 * ["Gloop Orange"](https://wiki.tuxemon.org/File:Gloop_orange_80.gif)
 A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
 * ["Gloop Orange"](https://wiki.tuxemon.org/File:Gloop_orange.gif)
-Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan B...
+Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
-* ["Gloop Violet"]() adapted by JaskRendix (Gloop Blue) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+* ["Gloop Violet"](https://wiki.tuxemon.org/File:Gloop_violet.gif)
+Adapted by JaskRendix (Gloop Blue) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
-* ["Green Circle"]() adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
+* ["Green Circle"](https://wiki.tuxemon.org/File:Green_circle.gif)
+Adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
 
 * ["Heal Burst"](https://wiki.tuxemon.org/File:Heal_burst_120.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.
@@ -1027,7 +1050,8 @@ Adapted to 64px by Sanglorian.  From the Superpowers Asset Packs.
 * ["Icetacle"](https://wiki.tuxemon.org/File:Icetacle.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
-* ["Ice Storm"]() adapted by JaskRendix (12 Hits For Separation - 5) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
+* ["Ice Storm"](https://wiki.tuxemon.org/File:Ice_storm.gif)
+Adapted by JaskRendix (12 Hits For Separation - 5) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
 
 * ["Join"](https://wiki.tuxemon.org/File:Join_80.gif)
 A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
@@ -1047,16 +1071,20 @@ From the Superpowers Asset Packs.
 * ["Lightning Claw"](https://wiki.tuxemon.org/File:Lightning_claw.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
-* ["Lightning Spheres"]() by JaskRendix
+* ["Lightning Spheres"](https://wiki.tuxemon.org/File:Lightning_spheres.gif)
+By JaskRendix
 
-* ["Meltdown"]() by JaskRendix
+* ["Meltdown"](https://wiki.tuxemon.org/File:Meltdown.gif)
+By JaskRendix
 
 * ["Metal Delete"](https://wiki.tuxemon.org/File:Metal_Delete.gif)
 By josepharaoh99
 
-* ["Metallic Absorb"]() by JaskRendix
+* ["Metallic Absorb"](https://wiki.tuxemon.org/File:Metallic_absorb.gif)
+By JaskRendix
 
-* ["Metallic Radiate"]() by JaskRendix
+* ["Metallic Radiate"](https://wiki.tuxemon.org/File:Metallic_radiate.gif)
+By JaskRendix
 
 * ["Misc Hit Preview"](https://wiki.tuxemon.org/File:Misc_Hit_preview.gif)
 [https://opengameart.org/content/pixelated-hit-animations CC BY on OGA]  This work, made by Viktor Hahn (Viktor.Hahn@web.de), is licensed under the Creative Commons Attributio...
@@ -1068,7 +1096,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Pound Bright"](https://wiki.tuxemon.org/File:Pound_bright.gif)
 From the Superpowers Asset Packs.
 
-* ["Pound Rock"]() adapted by JaskRendix, from the Superpowers Asset Packs (Pound Bright)
+* ["Pound Rock"](https://wiki.tuxemon.org/File:Pound_rock.gif)
+Adapted by JaskRendix, from the Superpowers Asset Packs (Pound Bright)
 
 * ["Power Arc"](https://wiki.tuxemon.org/File:Power_arc_154.gif)
 From the Superpowers Asset Packs.
@@ -1077,11 +1106,14 @@ From the Superpowers Asset Packs.
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Pulse"]() adapted by JaskRendix, from the Superpowers Asset Packs (Crystal)
+* ["Pulse"](https://wiki.tuxemon.org/File:Pulse_64.gif)
+Adapted by JaskRendix, from the Superpowers Asset Packs (Crystal)
 
-* ["Pulse Absorb"]() by JaskRendix
+* ["Pulse Absorb"](https://wiki.tuxemon.org/File:Pulse_absorb.gif)
+By JaskRendix
 
-* ["Pulse Radiate"]() by JaskRendix
+* ["Pulse Radiate"](https://wiki.tuxemon.org/File:Pulse_radiate.gif)
+By JaskRendix
 
 * ["Pushtrap Front"](https://wiki.tuxemon.org/File:Pushtrap_front.gif)
 [https://opengameart.org/content/animated-traps CC0]
@@ -1092,7 +1124,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Pushtrap Right"](https://wiki.tuxemon.org/File:Pushtrap_right.gif)
 [https://opengameart.org/content/animated-traps CC0]
 
-* ["Red Circle"]() adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
+* ["Red Circle"](https://wiki.tuxemon.org/File:Red_circle.gif)
+Adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
 
 * ["Rockfall"](https://wiki.tuxemon.org/File:Rockfall_193.gif)
 From the Superpowers Asset Packs.
@@ -1100,11 +1133,14 @@ From the Superpowers Asset Packs.
 * ["Rockfall"](https://wiki.tuxemon.org/File:Rockfall_264.gif)
 From the Superpowers Asset Packs.
 
-* ["Ruby"]() adapted by JaskRendix, from the Superpowers Asset Packs (Crystal)
+* ["Ruby"](https://wiki.tuxemon.org/File:Ruby_64.gif)
+Adapted by JaskRendix, from the Superpowers Asset Packs (Crystal)
 
-* ["Ruby Absorb"]() by JaskRendix
+* ["Ruby Absorb"](https://wiki.tuxemon.org/File:Ruby_absorb.gif)
+By JaskRendix
 
-* ["Ruby Radiate"]() by JaskRendix
+* ["Ruby Radiate"](https://wiki.tuxemon.org/File:Ruby_radiate.gif)
+By JaskRendix
 
 * ["Screen"](https://wiki.tuxemon.org/File:Screen_80.gif)
 A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
@@ -1112,7 +1148,7 @@ A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Cha
 * ["Screen"](https://wiki.tuxemon.org/File:Screen.gif)
 Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan B...
 
-* ["Shield Fire"]() adapted by Jask Rendix (Shield Ice) [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+* ["Shield Fire"](https://wiki.tuxemon.org/File:Shield_fire.gif) adapted by Jask Rendix (Shield Ice) [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
 * ["Shield Ice"](https://wiki.tuxemon.org/File:Shield_ice_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
@@ -1120,7 +1156,7 @@ Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchCh
 * ["Shield Ice"](https://wiki.tuxemon.org/File:Shield_ice.gif)
 By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
-* ["Shield Lava"]() adapted by Jask Rendix (Shield Ice) [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
+* ["Shield Lava"](https://wiki.tuxemon.org/File:Shield_lava.gif) adapted by Jask Rendix (Shield Ice) [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
 * ["Shield Rock"](https://wiki.tuxemon.org/File:Shield_rock.gif)
 By daneeklu, adapted by Sanglorian.  [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
@@ -1189,11 +1225,11 @@ By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content
 * ["Snake Up"](https://wiki.tuxemon.org/File:Snake_up_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
-* ["Sparks Blue Alt"]()	adapted by JaskRendix (Sparks Gold Alt) [http://opengameart.org/
-content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
+* ["Sparks Blue Alt"](https://wiki.tuxemon.org/File:Sparks_blue_alt.gif)
+Adapted by JaskRendix (Sparks Gold Alt) [http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
 
-* ["Sparks Blue"]() adapted by JaskRendix (Sparks Gold) [http://opengameart.org/content/
-sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
+* ["Sparks Blue"](https://wiki.tuxemon.org/File:Sparks_blue.gif)
+Adapted by JaskRendix (Sparks Gold) [http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
 
 * ["Sparks Gold Alt"](https://wiki.tuxemon.org/File:Sparks_gold_alt.gif)
 [http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
@@ -1201,11 +1237,11 @@ sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
 * ["Sparks Gold"](https://wiki.tuxemon.org/File:Sparks_gold.gif)
 [http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
 
-* ["Sparks Green Alt"]() adapted by JaskRendix (Sparks Gold Alt) [http://opengameart.org/
-content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
+* ["Sparks Green Alt"](https://wiki.tuxemon.org/File:Sparks_green_alt.gif)
+Adapted by JaskRendix (Sparks Gold Alt) [http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
 
-* ["Sparks Green"]() adapted by JaskRendix (Sparks Gold) [http://opengameart.org/content/
-sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
+* ["Sparks Green"](https://wiki.tuxemon.org/File:Sparks_green.gif)
+Adapted by JaskRendix (Sparks Gold) [http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
 
 * ["Sparks Red Alt"](https://wiki.tuxemon.org/File:Sparks_red_alt.gif)
 [http://opengameart.org/content/sparks-fire-ice-blood CC BY 3.0, on OpenGameArt]
@@ -1267,17 +1303,23 @@ From the Superpowers Asset Packs.
 * ["Triple Whammy"](https://wiki.tuxemon.org/File:Triple_whammy_80.gif)
 A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
-* ["Turquoise Circle"]() adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
+* ["Turquoise Circle"](https://wiki.tuxemon.org/File:Turquoise_circle.gif)
+Adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
 
-* ["Tux Attack"](https://commons.wikimedia.org/wiki/File:Other-linux-logo.svg) adapted by JaskRendix licensed under [Free Art License 1.3](https://artlibre.org/licence/lal/en/)
+* ["Tux Attack"](https://wiki.tuxemon.org/File:Tux_attack.gif)
+Adapted by JaskRendix licensed under [Free Art License 1.3](https://artlibre.org/licence/lal/en/)
 
-* ["Ubuntu"](https://commons.wikimedia.org/wiki/File:Ubuntu-Logo_ohne_Schriftzug.svg) adapted by JaskRendix licensed under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.en)
+* ["Ubuntu"](https://wiki.tuxemon.org/File:Ubuntu.gif)
+Adapted by JaskRendix licensed under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.en)
 
-* ["Wall Fire"]() adapted by JaskRendix (Waterfall)
+* ["Wall Fire"](https://wiki.tuxemon.org/File:Wall_fire.gif)
+Adapted by JaskRendix (Waterfall)
 
-* ["Wall Ice"]() adapted by JaskRendix (Waterfall)
+* ["Wall Ice"](https://wiki.tuxemon.org/File:Wall_ice.gif)
+Adapted by JaskRendix (Waterfall)
 
-* ["Wall Wood"]() adapted by JaskRendix (Waterfall)
+* ["Wall Wood"](https://wiki.tuxemon.org/File:Wall_wood.gif)
+Adapted by JaskRendix (Waterfall)
 
 * ["Warp"](https://wiki.tuxemon.org/File:Warp.gif)
 [https://opengameart.org/content/warp-effect-0 CC BY]
@@ -1301,7 +1343,8 @@ By ansimuz, [source link](https://opengameart.org/content/gothicvania-cemetery-p
 * ["X Attack"](https://wiki.tuxemon.org/File:X_attack.gif)
 Animation by josepharaoh99 and created for the Tuxemon project.
 
-* ["Yellow Circle"]() adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
+* ["Yellow Circle"](https://wiki.tuxemon.org/File:Yellow_circle.gif)
+Adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
 
 ### Technique Icons
 

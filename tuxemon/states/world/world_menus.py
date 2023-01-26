@@ -64,7 +64,7 @@ class WorldMenuState(PygameMenuState):
             open_dialog(local_session, [T.translate("not_implemented")])
 
         # Main Menu - Allows users to open the main menu in game.
-        menu_items_map = (
+        menu_items_map = [
             ("menu_journal", not_implemented_dialog),
             ("menu_monster", self.open_monster_menu),
             ("menu_bag", change_state("ItemMenuState")),
@@ -73,8 +73,10 @@ class WorldMenuState(PygameMenuState):
             ("menu_load", change_state("LoadMenuState")),
             ("menu_options", change_state("ControlState")),
             ("exit", exit_game),
-        )
-        add_menu_items(self.menu, menu_items_map)
+        ]
+        if local_session.player.has_item("nu_phone"):
+            menu_items_map.insert(3, ("nu_phone", change_state("NuPhone")))
+        add_menu_items(self.menu, tuple(menu_items_map))
 
     def open_monster_menu(self) -> None:
         from tuxemon.states.monster import MonsterMenuState

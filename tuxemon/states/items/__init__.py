@@ -213,7 +213,22 @@ class ItemMenuState(Menu[Item]):
 
     def initialize_items(self) -> Generator[MenuItem[Item], None, None]:
         """Get all player inventory items and add them to menu."""
-        inventory = local_session.player.inventory.values()
+        state = self.determine_state_called_from()
+        inventory = []
+        # removes by default all the items phone category
+        # shows only items with MainCombatMenuState in battless
+        if state == "MainCombatMenuState":
+            inventory = [
+                item
+                for item in local_session.player.inventory.values()
+                if State[state] in item["item"].usable_in
+            ]
+        else:
+            inventory = [
+                item
+                for item in local_session.player.inventory.values()
+                if item["item"].category != "phone"
+            ]
 
         # required because the max() below will fail if inv empty
         if not inventory:

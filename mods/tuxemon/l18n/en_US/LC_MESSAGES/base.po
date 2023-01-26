@@ -1397,6 +1397,9 @@ msgstr "{name} has too many techniques.\n"
 msgid "evolution_confirmation"
 msgstr "{name} is trying to evolve into {evolve}. Allow evolution?"
 
+msgid "no_signal_phone"
+msgstr "Unable to access E-Banking, retry in the town. We are working to expand our network!"
+
 msgid "max_moves_alert"
 msgstr "{name} has too many techniques.\n"
 "Which do you want to overwrite for learning {tech}?"
@@ -1433,6 +1436,9 @@ msgstr "Load"
 
 msgid "menu_monster"
 msgstr "Tuxemon"
+
+msgid "menu_bank"
+msgstr "E-Banking"
 
 msgid "menu_storage"
 msgstr "Pick Up Tuxemon"

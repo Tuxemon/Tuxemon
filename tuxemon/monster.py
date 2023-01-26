@@ -161,6 +161,7 @@ SHAPES = {
 }
 
 MAX_LEVEL = 999
+MAX_MOVES = 4
 MISSING_IMAGE = "gfx/sprites/battle/missing.png"
 
 
@@ -221,6 +222,7 @@ class Monster:
 
         self.status: List[Technique] = []
 
+        self.max_moves = MAX_MOVES
         self.txmn_id = 0
         self.capture = 0
         self.height = 0.0
@@ -517,17 +519,6 @@ class Monster:
         self.level += 1
         self.level = min(self.level, MAX_LEVEL)
         self.set_stats()
-
-        # Learn New Moves
-        for move in self.moveset:
-            if move.level_learned == self.level:
-                logger.info(
-                    "{} learned technique {}!".format(
-                        self.name, move.technique
-                    )
-                )
-                technique = Technique(move.technique)
-                self.learn(technique)
 
     def set_level(self, level: int = 5) -> None:
         """

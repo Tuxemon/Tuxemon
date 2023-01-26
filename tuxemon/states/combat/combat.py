@@ -1082,8 +1082,27 @@ class CombatState(CombatAnimations):
             )
             awarded_mon = monster.level * monster.money_modifier
             for winners in self._damage_map[monster]:
-                winners.give_experience(awarded_exp)
-                self._prize += awarded_mon
+                self._level_before = winners.level
+                self._level_after = winners.level
+                if self.is_trainer_battle:
+                    winners.give_experience(awarded_exp)
+                    self._prize += awarded_mon
+                    self._level_after = winners.level
+                else:
+                    awarded = (
+                        awarded_exp * monster.experience_required_modifier
+                    )
+                    winners.give_experience(awarded)
+                    self._level_after = winners.level
+                # it checks if there is a "level up"
+                if self._level_before != self._level_after:
+                    diff = self._level_after - self._level_before
+                    # checks and eventually teaches move/moves
+                    self.check_moves(winners, diff)
+                    # updates hud graphics
+                    self.build_hud(
+                        self._layout[self.players[0]]["hud"][0], winners
+                    )
 
             # Remove monster from damage map
             del self._damage_map[monster]
@@ -1186,6 +1205,32 @@ class CombatState(CombatAnimations):
         # TODO: perhaps change this to remaining "parties", or "teams",
         # instead of player/trainer
         return [p for p in self.players if not defeated(p)]
+
+    def check_moves(self, monster: Monster, levels: int) -> None:
+        for move in monster.moveset:
+            # monster levels up 1 level
+            if levels == 1:
+                if move.level_learned == monster.level:
+                    self.learn(monster, move.technique)
+            # monster levels up multiple levels
+            else:
+                level_before = monster.level - levels
+                # if there are techniques in this range
+                if level_before < move.level_learned <= monster.level:
+                    self.learn(monster, move.technique)
+
+    def learn(self, monster: Monster, tech: str) -> None:
+        technique = Technique(tech)
+        monster.learn(technique)
+        self.alert(
+            T.format(
+                "tuxemon_new_tech",
+                {
+                    "name": monster.name.upper(),
+                    "tech": technique.name.upper(),
+                },
+            )
+        )
 
     def evolve(self) -> None:
         self.client.pop_state()

@@ -138,7 +138,7 @@
   <object id="386" type="collision" x="480" y="96" width="32" height="224"/>
   <object id="387" type="collision" x="512" y="96" width="128" height="64"/>
   <object id="388" type="collision" x="576" y="160" width="64" height="96"/>
-  <object id="389" x="576" y="256" width="16" height="16"/>
+  <object id="389" type="collision" x="576" y="256" width="16" height="16"/>
   <object id="390" type="collision" x="560" y="272" width="32" height="16"/>
   <object id="391" type="collision" x="512" y="272" width="32" height="16"/>
   <object id="392" type="collision" x="544" y="256" width="16" height="16"/>

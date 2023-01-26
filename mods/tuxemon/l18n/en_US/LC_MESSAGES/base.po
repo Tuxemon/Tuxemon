@@ -99,6 +99,91 @@ msgstr "Rhincus Fossil"
 msgid "rhincus_fossil_description"
 msgstr "It looks like the skull of a toothed bird, but it's hard as stone."
 
+msgid "nu_phone"
+msgstr "Nu Phone"
+
+msgid "nu_phone_description"
+msgstr "You can do a lot with this, e.g. phone home."
+
+# TMs
+msgid "tm_avalanche"
+msgstr "TM: Avalanche"
+
+msgid "tm_avalanche_description"
+msgstr "Technique Manual that teaches a Water or Earth Tuxemon the Avalanche technique."
+
+msgid "tm_blossom"
+msgstr "TM: Blossom"
+
+msgid "tm_blossom_description"
+msgstr "Technique Manual that teaches a Wood Tuxemon the Blossom technique."
+
+msgid "tm_earth"
+msgstr "Technical Manual (Earth)"
+
+msgid "tm_earth_description"
+msgstr "Learn the particular Earth type technique in this TM."
+
+msgid "tm_fire"
+msgstr "Technical Manual (Fire)"
+
+msgid "tm_fire_description"
+msgstr "Learn the particular Fire type technique in this TM."
+
+msgid "tm_metal"
+msgstr "Technical Manual (Metal)"
+
+msgid "tm_metal_description"
+msgstr "Learn the particular Metal type technique in this TM."
+
+msgid "tm_water"
+msgstr "Technical Manual (Water)"
+
+msgid "tm_water_description"
+msgstr "Learn the particular Water type technique in this TM."
+
+msgid "tm_wood"
+msgstr "Technical Manual (Wood)"
+
+msgid "tm_wood_description"
+msgstr "Learn the particular Wood type technique in this TM."
+
+msgid "mm_earth"
+msgstr "Move Module (Earth)"
+
+msgid "mm_earth_description"
+msgstr "Learn the particular Earth type technique in this MM. Then it is consumed."
+
+msgid "mm_fire"
+msgstr "Move Module (Fire)"
+
+msgid "mm_fire_description"
+msgstr "Learn the particular Fire type technique in this MM. Then it is consumed."
+
+msgid "mm_metal"
+msgstr "Move Module (Metal)"
+
+msgid "mm_metal_description"
+msgstr "Learn the particular Metal type technique in this MM. Then it is consumed."
+
+msgid "mm_water"
+msgstr "Move Module (Water)"
+
+msgid "mm_water_description"
+msgstr "Learn the particular Water type technique in this MM. Then it is consumed."
+
+msgid "mm_wood"
+msgstr "Move Module (Wood)"
+
+msgid "mm_wood_description"
+msgstr "Learn the particular Wood type technique in this MM. Then it is consumed."
+
+msgid "aardant"
+msgstr "Aardant"
+
+msgid "aardant_description"
+msgstr ""
+
 # Boosters (items)
 msgid "greenwash_badge"
 msgstr "Badge: Greenwash"
@@ -257,19 +342,6 @@ msgstr "inside"
 
 msgid "outside"
 msgstr "outside"
-
-# TMs
-msgid "tm_avalanche"
-msgstr "TM: Avalanche"
-
-msgid "tm_avalanche_description"
-msgstr "Technique Manual that teaches a Water or Earth Tuxemon the Avalanche technique."
-
-msgid "tm_blossom"
-msgstr "TM: Blossom"
-
-msgid "tm_blossom_description"
-msgstr "Technique Manual that teaches a Wood Tuxemon the Blossom technique."
 
 msgid "item_cannot_use_here"
 msgstr "{name} cannot be used here!"
@@ -774,6 +846,9 @@ msgstr "Mudslide"
 msgid "one_two"
 msgstr "One-Two"
 
+msgid "overfeed"
+msgstr "Overfeed"
+
 msgid "overgrowth"
 msgstr "Overgrowth"
 
@@ -1119,8 +1194,8 @@ msgstr "Touch"
 msgid "tsunami"
 msgstr "Tsunami"
 
-msgid "tux"
-msgstr "Tux"
+msgid "tux_attack"
+msgstr "Tux Attack"
 
 msgid "ubuntu"
 msgstr "Ubuntu"
@@ -1312,8 +1387,19 @@ msgstr "Are you sure you would like to release {name}?"
 msgid "tuxemon_released"
 msgstr "{name} has been released."
 
+msgid "tuxemon_new_tech"
+msgstr "{name} learned technique {tech}!"
+
+msgid "new_tech_delete"
+msgstr "{name} has too many techniques.\n"
+"Which technique do you want to delete?"
+
 msgid "evolution_confirmation"
 msgstr "{name} is trying to evolve into {evolve}. Allow evolution?"
+
+msgid "max_moves_alert"
+msgstr "{name} has too many techniques.\n"
+"Which do you want to overwrite for learning {tech}?"
 
 msgid "tuxemon_stat1"
 msgstr "ID {txmn}, {type}, {doc} days ago\n"
@@ -3065,9 +3151,6 @@ msgstr "Rip"
 
 msgid "yeti"
 msgstr "Yeti"
-
-msgid "some_category_here"
-msgstr "Some category here"
 
 msgid "ex_machina"
 msgstr "Ex Machina"

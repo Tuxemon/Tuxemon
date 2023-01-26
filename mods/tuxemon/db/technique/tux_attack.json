@@ -1,7 +1,7 @@
 {
   "tech_id": 92,
   "accuracy": 0.3,
-  "animation": "tux",
+  "animation": "tux_attack",
   "effects": [
     "damage 100"
   ],
@@ -15,7 +15,7 @@
   "range": "touch",
   "recharge": 1,
   "sfx": "sfx_blaster",
-  "slug": "tux",
+  "slug": "tux_attack",
   "sort": "damage",
   "target": {
     "enemy monster": 2,

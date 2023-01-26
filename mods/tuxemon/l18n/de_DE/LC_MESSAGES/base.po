@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"PO-Revision-Date: 2023-01-19 21:49+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "de/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.15.1\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -84,7 +84,7 @@ msgstr "Heilt ein Monster um 350 HP."
 
 # Capture Device
 msgid "capture_device"
-msgstr "Einfanggerät"
+msgstr "Fanggerät"
 
 msgid "capture_device_description"
 msgstr "Fängt ein Monster ein."
@@ -918,7 +918,7 @@ msgid "bolt"
 msgstr "Bolt"
 
 msgid "bolt_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "boltnu_description"
 msgstr "Es verbringt die meiste Zeit damit einen Bau in den Boden zu graben. Die ständige Vibration und Bewegung, die sie dabei bewirken, sorgt dafür, dass ihnen dauerhaft schwindelig ist."
@@ -1248,7 +1248,10 @@ msgid "fruitera"
 msgstr "Fruitera"
 
 msgid "fruitera_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"FRUITERA ist hungrig nach Obst und trägt alles, was es kann. Als er "
+"überrascht ist, lässt er alle seine Früchte fallen, sammelt sie wieder auf "
+"und flieht dann."
 
 msgid "gectile"
 msgstr "Gectile"
@@ -1266,7 +1269,7 @@ msgid "hydrone"
 msgstr "Hydrone"
 
 msgid "hydrone_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "katacoon_description"
 msgstr ""
@@ -1334,7 +1337,7 @@ msgid "nut"
 msgstr "Nut"
 
 msgid "nut_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "onaclov"
 msgstr "Onaclov"
@@ -1346,7 +1349,7 @@ msgid "pigabyte"
 msgstr "Pigabyte"
 
 msgid "pigabyte_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "possessun"
 msgstr "Possessun"
@@ -1358,19 +1361,19 @@ msgid "propellercat"
 msgstr "Propellercat"
 
 msgid "propellercat_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "rockat"
 msgstr "Rockat"
 
 msgid "rockat_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "rockitten"
 msgstr "Rockitten"
 
 msgid "rockitten_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "sapragon"
 msgstr "Sapragon"
@@ -1382,13 +1385,13 @@ msgid "selket"
 msgstr "Selket"
 
 msgid "selket_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "selmatek"
 msgstr "Selmatek"
 
 msgid "selmatek_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "simba"
 msgstr "Simba"
@@ -1400,7 +1403,7 @@ msgid "sludgehog"
 msgstr "Sludgehog"
 
 msgid "sludgehog_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "sharpfin"
 msgstr "Sharpfin"
@@ -1418,7 +1421,7 @@ msgid "spycozeus"
 msgstr "Spycozeus"
 
 msgid "spycozeus_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "sumobug"
 msgstr "Sumobug"
@@ -1442,7 +1445,7 @@ msgid "tumbleworm"
 msgstr "Tumbleworm"
 
 msgid "tumbleworm_description"
-msgstr "<<MISSING>>"
+msgstr ""
 
 msgid "tux"
 msgstr "Tux"
@@ -1980,7 +1983,7 @@ msgstr "Warum bist du noch immer hier?"
 
 # Revive
 msgid "revive"
-msgstr "Wiederbelebung"
+msgstr "Wiederbeleben"
 
 msgid "item_no_available_target"
 msgstr "{name} kann gerade nicht mit einem deiner Tuxemon benutzt werden."
@@ -1993,7 +1996,7 @@ msgid "spyder_tunnelb_tommy1"
 msgstr "Hast du mein Sandwich gesehen?"
 
 msgid "revive_description"
-msgstr "Belebt ein Tuxemon wieder und heilt 20 KP."
+msgstr "Belebt das öhnächtige Tuxemon wieder und stellt 20 HP wieder her."
 
 msgid "spyder_greenwash_moreau1"
 msgstr "Du solltest nicht hier sein! "
@@ -2080,3 +2083,494 @@ msgstr "Ugh, es blinzelte nicht einmal, als es ohnmächtig wurde!"
 
 msgid "spyder_greenwash_clarence2"
 msgstr "Da war eine Wolke!"
+
+msgid "vivipere"
+msgstr "Vivipere"
+
+msgid "viviphyta"
+msgstr "Viviphyta"
+
+msgid "vivisource"
+msgstr "Vivisource"
+
+msgid "vividactil"
+msgstr "Vividactil"
+
+msgid "viviteel"
+msgstr "Viviteel"
+
+msgid "birdling"
+msgstr "Birdling"
+
+msgid "pythock"
+msgstr "Pythock"
+
+msgid "pipis"
+msgstr "Pipis"
+
+msgid "ouroboutlet"
+msgstr "Ouroboutlet"
+
+msgid "pilthropus"
+msgstr "Pilthropus"
+
+msgid "rosarin"
+msgstr "Rosarin"
+
+msgid "ruption"
+msgstr "Ruption"
+
+msgid "sadito"
+msgstr "Sadito"
+
+msgid "sampsack"
+msgstr "Sampsack"
+
+msgid "teddisun"
+msgstr "Teddisun"
+
+msgid "fishing_rod"
+msgstr "Angelrute"
+
+msgid "fishing_rod_description"
+msgstr "Fängt Fische."
+
+msgid "grumpi"
+msgstr "Grumpi"
+
+msgid "skwib"
+msgstr "Skwib"
+
+msgid "taba_town_sign_profhouse"
+msgstr "Haus des Professors Tuxemon"
+
+msgid "taba_town_sign_tuxemart"
+msgstr "Tuxemart - Ein Ort zum Kaufen und Verkaufen von Artikeln"
+
+msgid "taba_town_sign_tuxecenter"
+msgstr "Tuxecenter - Ein Ort, um Ihre tuxemon zu heilen"
+
+msgid "leather_town_open_air"
+msgstr "Open Air Cafe und Marktplatz"
+
+msgid "taba_town_homeplace"
+msgstr "${{name}}'s Haus"
+
+msgid "taba_town_sign_proflab"
+msgstr "Labor des Professors Tuxemon"
+
+msgid "shammer_fossil"
+msgstr "Shammer Fossil"
+
+msgid "rhincus_fossil"
+msgstr "Rhincus Fossil"
+
+msgid "drashimi"
+msgstr "Drashimi"
+
+msgid "furnursus"
+msgstr "Furnursus"
+
+msgid "ghosteeth"
+msgstr "Ghosteeth"
+
+msgid "galnec"
+msgstr "Galnec"
+
+msgid "flacono"
+msgstr "Flacono"
+
+msgid "flambear"
+msgstr "Flambear"
+
+msgid "fluoresfin"
+msgstr "Fluoresfin"
+
+msgid "foofle"
+msgstr "Foofle"
+
+msgid "fordin"
+msgstr "Fordin"
+
+msgid "forturtle"
+msgstr "Forturtle"
+
+msgid "foxfire"
+msgstr "Foxfire"
+
+msgid "frondly"
+msgstr "Frondly"
+
+msgid "furnursus_description"
+msgstr ""
+"FURNURSUS sind freundlich und vergessen oft, dass ihre Körper zu heiß sind, "
+"als dass andere sie berühren könnten."
+
+msgid "ghosteeth_description"
+msgstr "Er lächelt, weil er weiß, wie jeder, den er trifft, sterben wird."
+
+msgid "graffiki"
+msgstr "Graffiki"
+
+msgid "grimachin"
+msgstr "Grimachin"
+
+msgid "grinflare"
+msgstr "Grinflare"
+
+msgid "grintot"
+msgstr "Grintot"
+
+msgid "grintrock"
+msgstr "Grintrock"
+
+msgid "gryfix"
+msgstr "Gryfix"
+
+msgid "hampotamos"
+msgstr "Hampotamos"
+
+msgid "happito"
+msgstr "Happito"
+
+msgid "hatchling"
+msgstr "Hatchling"
+
+msgid "grintot_description"
+msgstr "Es ist ein GRINTROCK oder GRINFLARE, der Erosion erfahren hat."
+
+msgid "ignibus"
+msgstr "Ignibus"
+
+msgid "incandesfin"
+msgstr "Incandesfin"
+
+msgid "jelillow"
+msgstr "Jelillow"
+
+msgid "jemuar"
+msgstr "Jemuar"
+
+msgid "k9"
+msgstr "K9"
+
+msgid "katapill"
+msgstr "Katapill"
+
+msgid "komodraw"
+msgstr "Komodraw"
+
+msgid "lapinou"
+msgstr "Lapinou"
+
+msgid "lightmare"
+msgstr "Lightmare"
+
+msgid "loliferno"
+msgstr "Loliferno"
+
+msgid "lunight"
+msgstr "Lunight"
+
+msgid "manosting"
+msgstr "Manosting"
+
+msgid "masknake"
+msgstr "Masknake"
+
+msgid "medushock"
+msgstr "Medushock"
+
+msgid "memnomnom"
+msgstr "Memnomnom"
+
+msgid "metesaur"
+msgstr "Metesaur"
+
+msgid "miaownolith"
+msgstr "Miaownolith"
+
+msgid "mrmoswitch"
+msgstr "Mrmoswitch"
+
+msgid "mystikapi"
+msgstr "Mystikapi"
+
+msgid "narcileaf"
+msgstr "Narcileaf"
+
+msgid "neutrito"
+msgstr "Neutrito"
+
+msgid "nudiflot_female"
+msgstr "Nudiflot"
+
+msgid "nudikill"
+msgstr "Nudikill"
+
+msgid "nudimind"
+msgstr "Nudimind"
+
+msgid "nuenflu"
+msgstr "Nuenflu"
+
+msgid "octabode"
+msgstr "Octabode"
+
+msgid "pairagrim"
+msgstr "Pairagrim"
+
+msgid "nudiflot_male"
+msgstr "Nudiflot"
+
+msgid "pairagrin"
+msgstr "Pairagrin"
+
+msgid "pantherafira"
+msgstr "Pantherafira"
+
+msgid "pharfan"
+msgstr "Pharfan"
+
+msgid "picc"
+msgstr "Picc"
+
+msgid "poinchin"
+msgstr "Poinchin"
+
+msgid "polyrock"
+msgstr "Polyrock"
+
+msgid "prophetoise"
+msgstr "Prophetoise"
+
+msgid "puparmor"
+msgstr "Puparmor"
+
+msgid "pyraminx"
+msgstr "Pyraminx"
+
+msgid "pythwire"
+msgstr "Pythwire"
+
+msgid "qetzlrokilus"
+msgstr "Qetzlrokilus"
+
+msgid "rabbitosaur"
+msgstr "Rabbitosaur"
+
+msgid "rhincus"
+msgstr "Rhincus"
+
+msgid "sampsage"
+msgstr "Sampsage"
+
+msgid "sapsnap"
+msgstr "Sapsnap"
+
+msgid "saurchin"
+msgstr "Saurchin"
+
+msgid "sclairus"
+msgstr "Sclairus"
+
+msgid "seirein"
+msgstr "Seirein"
+
+msgid "shammer"
+msgstr "Shammer"
+
+msgid "shelagu"
+msgstr "Shelagu"
+
+msgid "shnark"
+msgstr "Shnark"
+
+msgid "shybulb"
+msgstr "Shybulb"
+
+msgid "snaki"
+msgstr "Snaki"
+
+msgid "snarlon"
+msgstr "Snarlon"
+
+msgid "snock"
+msgstr "Snock"
+
+msgid "snokari"
+msgstr "Snokari"
+
+msgid "sockeserp"
+msgstr "Sockeserp"
+
+msgid "solight"
+msgstr "Solight"
+
+msgid "spighter"
+msgstr "Spighter"
+
+msgid "spoilurm"
+msgstr "Spoilurm"
+
+msgid "squabbit"
+msgstr "Squabbit"
+
+msgid "statursus"
+msgstr "Statursus"
+
+msgid "strella"
+msgstr "Strella"
+
+msgid "sumchon"
+msgstr "Sumchon"
+
+msgid "tarpeur"
+msgstr "Tarpeur"
+
+msgid "taupypus"
+msgstr "Taupypus"
+
+msgid "tetrchimp"
+msgstr "Tetrchimp"
+
+msgid "tikoal"
+msgstr "Tikoal"
+
+msgid "tikorch"
+msgstr "Tikorch"
+
+msgid "tobishimi"
+msgstr "Tobishimi"
+
+msgid "toufigel"
+msgstr "Toufigel"
+
+msgid "tourbidi"
+msgstr "Tourbidi"
+
+msgid "urcine"
+msgstr "Urcine"
+
+msgid "vigueur"
+msgstr "Vigueur"
+
+msgid "vivicinder"
+msgstr "Vivicinder"
+
+msgid "vivitrans"
+msgstr "Vivitrans"
+
+msgid "vivitron"
+msgstr "Vivitron"
+
+msgid "volcoli"
+msgstr "Volcoli"
+
+msgid "trapsnap"
+msgstr "Trapsnap"
+
+msgid "tsushimi"
+msgstr "Tsushimi"
+
+msgid "tumblebee"
+msgstr "Tumblebee"
+
+msgid "tumblequill"
+msgstr "Tumblequill"
+
+msgid "turnipper"
+msgstr "Turnipper"
+
+msgid "weavifly"
+msgstr "Weavifly"
+
+msgid "windeye"
+msgstr "Windeye"
+
+msgid "chrome_robo"
+msgstr "Chrome Robo"
+
+msgid "yiinaang"
+msgstr "Yiinaang"
+
+msgid "dark_robo"
+msgstr "Dark Robo"
+
+msgid "birb_robo"
+msgstr "Birb Robo"
+
+msgid "xeon"
+msgstr "Xeon"
+
+msgid "xeon_2"
+msgstr "Xeon-2"
+
+msgid "mk01_beta"
+msgstr "Mk01 Beta"
+
+msgid "mk01_alpha"
+msgstr "MK01 Alpha"
+
+msgid "earthquake"
+msgstr "Erdbeben"
+
+msgid "evasion"
+msgstr "Umgehung"
+
+msgid "feline"
+msgstr "Katzenartig"
+
+msgid "fire_shield"
+msgstr "Feuerschild"
+
+msgid "firestorm"
+msgstr "Feuersbrunst"
+
+msgid "fledgling"
+msgstr "Küken"
+
+msgid "gold_digger"
+msgstr "Goldgräber"
+
+msgid "grinding"
+msgstr "Reibend"
+
+msgid "gust"
+msgstr "Gust"
+
+msgid "gyser"
+msgstr "Gyser"
+
+msgid "hawk"
+msgstr "Habicht"
+
+msgid "ice_storm"
+msgstr "Eissturm"
+
+msgid "insanity"
+msgstr "Wahnsinn"
+
+msgid "kraken"
+msgstr "Krake"
+
+msgid "lantern"
+msgstr "Laterne"
+
+msgid "oedipus"
+msgstr "Ödipus"
+
+msgid "glitch"
+msgstr "Glitch"
+
+msgid "aether"
+msgstr "Äther"
+
+msgid "normal"
+msgstr "Normal"
+
+msgid "demiurge"
+msgstr "Demiurg"
+
+msgid "fiery"
+msgstr "Feurig"

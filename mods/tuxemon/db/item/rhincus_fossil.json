@@ -18,6 +18,7 @@
     "own trainer": 0,
     "item": 0
   },
+  "category": "fossil",
   "type": "KeyItem",
   "usable_in": [
     "WorldState"

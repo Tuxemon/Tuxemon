@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-11 00:00+0000\n"
-"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"PO-Revision-Date: 2023-01-19 21:49+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fi/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.15.1\n"
 
 ## ITEM TRANSLATIONS ##
 # Apple
@@ -1057,3 +1057,372 @@ msgstr "Mk01 Beta"
 
 msgid "mk01_alpha"
 msgstr "MK01 Alpha"
+
+msgid "manosting"
+msgstr "Manosting"
+
+msgid "nut"
+msgstr "Nut"
+
+msgid "lapinou"
+msgstr "Lapinou"
+
+msgid "loliferno"
+msgstr "Loliferno"
+
+msgid "possessun"
+msgstr "Possessun"
+
+msgid "polyrock"
+msgstr "Polyrock"
+
+msgid "prophetoise"
+msgstr "Prophetoise"
+
+msgid "hampotamos"
+msgstr "Hampotamos"
+
+msgid "lambert"
+msgstr "Lambert"
+
+msgid "lunight"
+msgstr "Lunight"
+
+msgid "magmaturtle"
+msgstr "Magmaturtle"
+
+msgid "poinchin"
+msgstr "Poinchin"
+
+msgid "heronquak"
+msgstr "Heronquak"
+
+msgid "nudimind"
+msgstr "Nudimind"
+
+msgid "octabode"
+msgstr "Octabode"
+
+msgid "nudikill"
+msgstr "Nudikill"
+
+msgid "propellercat"
+msgstr "Propellercat"
+
+msgid "shybulb"
+msgstr "Shybulb"
+
+msgid "skwib"
+msgstr "Skwib"
+
+msgid "sludgehog"
+msgstr "Sludgehog"
+
+msgid "snaki"
+msgstr "Snaki"
+
+msgid "snarlon"
+msgstr "Snarlon"
+
+msgid "snock"
+msgstr "Snock"
+
+msgid "snokari"
+msgstr "Snokari"
+
+msgid "snowrilla"
+msgstr "Snowrilla"
+
+msgid "sockeserp"
+msgstr "Sockeserp"
+
+msgid "tumblequill"
+msgstr "Tumblequill"
+
+msgid "shnark"
+msgstr "Shnark"
+
+msgid "rhincus_fossil"
+msgstr "Rhincus Fossiili"
+
+msgid "shammer_fossil"
+msgstr "Shammer Fossiili"
+
+msgid "aardart"
+msgstr "Aardart"
+
+msgid "grintot"
+msgstr "Grintot"
+
+msgid "grintrock"
+msgstr "Grintrock"
+
+msgid "grumpi"
+msgstr "Grumpi"
+
+msgid "gryfix"
+msgstr "Gryfix"
+
+msgid "happito"
+msgstr "Happito"
+
+msgid "hatchling"
+msgstr "Hatchling"
+
+msgid "hydrone"
+msgstr "Hydrone"
+
+msgid "ignibus"
+msgstr "Ignibus"
+
+msgid "incandesfin"
+msgstr "Incandesfin"
+
+msgid "jelillow"
+msgstr "Jelillow"
+
+msgid "jemuar"
+msgstr "Jemuar"
+
+msgid "k9"
+msgstr "K9"
+
+msgid "katacoon"
+msgstr "Katacoon"
+
+msgid "katapill"
+msgstr "Katapill"
+
+msgid "komodraw"
+msgstr "Komodraw"
+
+msgid "legko"
+msgstr "Legko"
+
+msgid "lightmare"
+msgstr "Lightmare"
+
+msgid "masknake"
+msgstr "Masknake"
+
+msgid "medushock"
+msgstr "Medushock"
+
+msgid "memnomnom"
+msgstr "Memnomnom"
+
+msgid "merlicun"
+msgstr "Merlicun"
+
+msgid "metesaur"
+msgstr "Metesaur"
+
+msgid "miaownolith"
+msgstr "Miaownolith"
+
+msgid "moloch"
+msgstr "Moloch"
+
+msgid "mrmoswitch"
+msgstr "Mrmoswitch"
+
+msgid "mystikapi"
+msgstr "Mystikapi"
+
+msgid "narcileaf"
+msgstr "Narcileaf"
+
+msgid "neutrito"
+msgstr "Neutrito"
+
+msgid "noctalo"
+msgstr "Noctalo"
+
+msgid "noctula"
+msgstr "Noctula"
+
+msgid "nostray"
+msgstr "Nostray"
+
+msgid "nudiflot_female"
+msgstr "Nudiflot"
+
+msgid "nudiflot_male"
+msgstr "Nudiflot"
+
+msgid "nuenflu"
+msgstr "Nuenflu"
+
+msgid "ouroboutlet"
+msgstr "Ouroboutlet"
+
+msgid "pairagrim"
+msgstr "Pairagrim"
+
+msgid "pairagrin"
+msgstr "Pairagrin"
+
+msgid "pantherafira"
+msgstr "Pantherafira"
+
+msgid "pharfan"
+msgstr "Pharfan"
+
+msgid "picc"
+msgstr "Picc"
+
+msgid "pigabyte"
+msgstr "Pigabyte"
+
+msgid "pilthropus"
+msgstr "Pilthropus"
+
+msgid "pipis"
+msgstr "Pipis"
+
+msgid "puparmor"
+msgstr "Puparmor"
+
+msgid "pyraminx"
+msgstr "Pyraminx"
+
+msgid "pythock"
+msgstr "Pythock"
+
+msgid "pythwire"
+msgstr "Pythwire"
+
+msgid "sapragon"
+msgstr "Sapragon"
+
+msgid "qetzlrokilus"
+msgstr "Qetzlrokilus"
+
+msgid "rabbitosaur"
+msgstr "Rabbitosaur"
+
+msgid "rhincus"
+msgstr "Rhincus"
+
+msgid "rockat"
+msgstr "Rockat"
+
+msgid "rockitten"
+msgstr "Rockitten"
+
+msgid "rosarin"
+msgstr "Rosarin"
+
+msgid "ruption"
+msgstr "Ruption"
+
+msgid "sadito"
+msgstr "Sadito"
+
+msgid "sampsack"
+msgstr "Sampsack"
+
+msgid "sampsage"
+msgstr "Sampsage"
+
+msgid "sapsnap"
+msgstr "Sapsnap"
+
+msgid "saurchin"
+msgstr "Saurchin"
+
+msgid "sclairus"
+msgstr "Sclairus"
+
+msgid "seirein"
+msgstr "Seirein"
+
+msgid "selket"
+msgstr "Selket"
+
+msgid "selmatek"
+msgstr "Selmatek"
+
+msgid "shammer"
+msgstr "Shammer"
+
+msgid "sharpfin"
+msgstr "Sharpfin"
+
+msgid "shelagu"
+msgstr "Shelagu"
+
+msgid "solight"
+msgstr "Solight"
+
+msgid "spighter"
+msgstr "Spighter"
+
+msgid "spoilurm"
+msgstr "Spoilurm"
+
+msgid "spycozeus"
+msgstr "Spycozeus"
+
+msgid "squabbit"
+msgstr "Squabbit"
+
+msgid "statursus"
+msgstr "Statursus"
+
+msgid "strella"
+msgstr "Strella"
+
+msgid "sumchon"
+msgstr "Sumchon"
+
+msgid "tarpeur"
+msgstr "Tarpeur"
+
+msgid "taupypus"
+msgstr "Taupypus"
+
+msgid "teddisun"
+msgstr "Teddisun"
+
+msgid "tetrchimp"
+msgstr "Tetrchimp"
+
+msgid "tigrock"
+msgstr "Tigrock"
+
+msgid "tikoal"
+msgstr "Tikoal"
+
+msgid "tikorch"
+msgstr "Tikorch"
+
+msgid "tobishimi"
+msgstr "Tobishimi"
+
+msgid "toufigel"
+msgstr "Toufigel"
+
+msgid "tourbidi"
+msgstr "Tourbidi"
+
+msgid "trapsnap"
+msgstr "Trapsnap"
+
+msgid "tsushimi"
+msgstr "Tsushimi"
+
+msgid "tumblebee"
+msgstr "Tumblebee"
+
+msgid "tumbleworm"
+msgstr "Tumbleworm"
+
+msgid "turnipper"
+msgstr "Turnipper"
+
+msgid "taba_town_homeplace"
+msgstr "${{name}}:n talo"
+
+msgid "oedipus"
+msgstr "Oidipus"

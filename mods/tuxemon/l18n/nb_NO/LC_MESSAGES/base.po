@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-11 16:00+0000\n"
+"PO-Revision-Date: 2023-01-19 21:49+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/tuxemon/"
 "tuxemon/nb_NO/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.15.1\n"
 
 msgid "save_success"
 msgstr "Lagret!"
@@ -313,25 +313,25 @@ msgid "tux_description"
 msgstr "<<MANGLER>>"
 
 msgid "spycozeus_description"
-msgstr "<<MANGLER>>"
+msgstr ""
 
 msgid "sludgehog_description"
-msgstr "<<MANGLER>>"
+msgstr ""
 
 msgid "selket_description"
-msgstr "<<MANGLER>>"
+msgstr ""
 
 msgid "rockitten_description"
-msgstr "<<MANGLER>>"
+msgstr ""
 
 msgid "rockat_description"
-msgstr "<<MANGLER>>"
+msgstr ""
 
 msgid "propellercat_description"
-msgstr "<<MANGLER>>"
+msgstr ""
 
 msgid "nut_description"
-msgstr "<<MANGLER>>"
+msgstr ""
 
 msgid "merlicun_description"
 msgstr "<<MANGLER>>"
@@ -340,7 +340,7 @@ msgid "firomenis_description"
 msgstr "<<MANGLER>>"
 
 msgid "dune_pincher_description"
-msgstr "<<MANGLER>>"
+msgstr ""
 
 msgid "menu_fight"
 msgstr "Sloss"
@@ -1333,3 +1333,18 @@ msgstr "Mk01 Beta"
 
 msgid "mk01_alpha"
 msgstr "MK01 Alpha"
+
+msgid "shammer_fossil"
+msgstr "Shammer Fossil"
+
+msgid "rhincus_fossil"
+msgstr "Rhincus Fossil"
+
+msgid "aardart"
+msgstr "Aardart"
+
+msgid "taba_town_homeplace"
+msgstr "${{name}}s hus"
+
+msgid "oedipus"
+msgstr "Oidipus"

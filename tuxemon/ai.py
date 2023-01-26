@@ -112,7 +112,8 @@ class RandomAI(AI):
         """
         # tracks next_use NPC ai
         filter_moves = []
-        for mov in monster.moves:
+        # it choses among the last 4 moves
+        for mov in monster.moves[-monster.max_moves :]:
             if mov.next_use <= 0:
                 filter_moves.append(mov)
         if not filter_moves:

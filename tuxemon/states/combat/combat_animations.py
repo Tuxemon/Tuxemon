@@ -605,8 +605,14 @@ class CombatAnimations(ABC, Menu[None]):
             left=w,
         )
 
+        combat_back = ""
+        if player.playable:
+            combat_back = player.player_sprite + "_back.png"
+        else:
+            combat_back = player.combat_back
+
         trainer1_maybe = self.load_sprite(
-            "gfx/sprites/player/" + player.combat_back,
+            "gfx/sprites/player/" + combat_back,
             bottom=front_island.rect.centery + scale(6),
             centerx=front_island.rect.centerx,
         )

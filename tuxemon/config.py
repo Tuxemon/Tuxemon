@@ -110,7 +110,6 @@ class TuxemonConfig:
 
         # [player]
         self.player_animation_speed = cfg.getfloat("player", "animation_speed")
-        self.player_npc = cfg.get("player", "player_npc")
         self.player_walkrate = cfg.getfloat("player", "player_walkrate")
         self.player_runrate = cfg.getfloat("player", "player_runrate")
 
@@ -268,7 +267,6 @@ def get_defaults() -> Mapping[str, Any]:
                 OrderedDict(
                     (
                         ("animation_speed", 0.15),
-                        ("player_npc", "npc_red"),
                         ("player_walkrate", 3.75),
                         ("player_runrate", 7.35),
                     )

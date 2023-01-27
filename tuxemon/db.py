@@ -554,6 +554,7 @@ class PartyMemberModel(BaseModel):
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
     gender: GenderType = Field(..., description="Gender of the NPC")
+    playable: bool = Field(False, description="NPC playable true or false")
     sprite_name: str = Field(
         ..., description="Name of the overworld sprite filename"
     )

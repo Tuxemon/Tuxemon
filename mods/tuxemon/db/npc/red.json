@@ -1,6 +1,7 @@
 {
   "slug": "npc_red",
-  "gender": "male",
+  "gender": "neuter",
+  "playable": true,
   "sprite_name": "adventurer",
   "combat_front": "adventurer.png",
   "combat_back": "adventurer_back.png"

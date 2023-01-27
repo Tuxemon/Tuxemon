@@ -24,7 +24,7 @@ from typing import (
 from tuxemon import surfanim
 from tuxemon.ai import AI
 from tuxemon.compat import Rect
-from tuxemon.db import ElementType, OutputBattle, SeenStatus, db
+from tuxemon.db import ElementType, GenderType, OutputBattle, SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import (
@@ -63,6 +63,9 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+ADVENTURER = "adventurer"
+HEROINE = "heroine"
+
 
 class NPCState(TypedDict):
     current_map: str
@@ -74,6 +77,8 @@ class NPCState(TypedDict):
     inventory: Mapping[str, Optional[int]]
     monsters: Sequence[Mapping[str, Any]]
     player_name: str
+    player_gender: str
+    player_sprite: str
     monster_boxes: Dict[str, Sequence[Mapping[str, Any]]]
     item_boxes: Dict[str, Mapping[str, Optional[int]]]
     tile_pos: Tuple[int, int]
@@ -130,6 +135,10 @@ class NPC(Entity[NPCState]):
 
         # This is the NPC's name to be used in dialog
         self.name = T.translate(self.slug)
+        self.playable = npc_data.playable
+        # player gender and sprite (saved)
+        self.player_gender = ""
+        self.player_sprite = ""
 
         if sprite_name is None:
             # Try to use the sprites defined in the JSON data
@@ -248,6 +257,8 @@ class NPC(Entity[NPCState]):
             "inventory": encode_inventory(self.inventory),
             "monsters": encode_monsters(self.monsters),
             "player_name": self.name,
+            "player_gender": self.player_gender,
+            "player_sprite": self.player_sprite,
             "monster_boxes": dict(),
             "item_boxes": dict(),
             "tile_pos": self.tile_pos,
@@ -282,20 +293,34 @@ class NPC(Entity[NPCState]):
         for monster in decode_monsters(save_data.get("monsters")):
             self.add_monster(monster)
         self.name = save_data["player_name"]
+        self.player_gender = save_data["player_gender"]
+        self.player_sprite = save_data["player_sprite"]
         for monsterkey, monstervalue in save_data["monster_boxes"].items():
             self.monster_boxes[monsterkey] = decode_monsters(monstervalue)
         for itemkey, itemvalue in save_data["item_boxes"].items():
             self.item_boxes[itemkey] = decode_inventory(
                 session, self, itemvalue
             )
+        self.load_sprites()
 
     def load_sprites(self) -> None:
         """Load sprite graphics."""
         # TODO: refactor animations into renderer
         # Get all of the player's standing animation images.
+        sprite_name = ""
+        # load sprite corresponding to the gender (player)
+        if self.playable:
+            if self.player_gender == GenderType.male:
+                sprite_name = ADVENTURER
+                self.player_sprite = ADVENTURER
+            else:
+                sprite_name = HEROINE
+                self.player_sprite = HEROINE
+        else:
+            sprite_name = self.sprite_name
         self.standing = {}
         for standing_type in facing:
-            filename = f"{self.sprite_name}_{standing_type}.png"
+            filename = f"{sprite_name}_{standing_type}.png"
             path = os.path.join("sprites", filename)
             self.standing[standing_type] = load_and_scale(path)
         # The player's sprite size in pixels
@@ -310,7 +335,7 @@ class NPC(Entity[NPCState]):
         for anim_type in anim_types:
             images = [
                 "sprites/{}_{}.{}.png".format(
-                    self.sprite_name, anim_type, str(num).rjust(3, "0")
+                    sprite_name, anim_type, str(num).rjust(3, "0")
                 )
                 for num in range(4)
             ]

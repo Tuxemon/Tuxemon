@@ -12,7 +12,7 @@
   "is_area": true,
   "is_fast": false,
   "potency": 1,
-  "power": 3.0,
+  "power": 3,
   "range": "melee",
   "recharge": 3,
   "sfx": "sfx_blaster",

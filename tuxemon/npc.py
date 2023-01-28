@@ -24,7 +24,7 @@ from typing import (
 from tuxemon import surfanim
 from tuxemon.ai import AI
 from tuxemon.compat import Rect
-from tuxemon.db import ElementType, GenderType, OutputBattle, SeenStatus, db
+from tuxemon.db import ElementType, OutputBattle, SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import (
@@ -63,9 +63,6 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
-ADVENTURER = "adventurer"
-HEROINE = "heroine"
-
 
 class NPCState(TypedDict):
     current_map: str
@@ -77,7 +74,6 @@ class NPCState(TypedDict):
     inventory: Mapping[str, Optional[int]]
     monsters: Sequence[Mapping[str, Any]]
     player_name: str
-    player_gender: str
     player_sprite: str
     monster_boxes: Dict[str, Sequence[Mapping[str, Any]]]
     item_boxes: Dict[str, Mapping[str, Optional[int]]]
@@ -136,8 +132,7 @@ class NPC(Entity[NPCState]):
         # This is the NPC's name to be used in dialog
         self.name = T.translate(self.slug)
         self.playable = npc_data.playable
-        # player gender and sprite (saved)
-        self.player_gender = ""
+        # player sprite (saved)
         self.player_sprite = ""
 
         if sprite_name is None:
@@ -257,7 +252,6 @@ class NPC(Entity[NPCState]):
             "inventory": encode_inventory(self.inventory),
             "monsters": encode_monsters(self.monsters),
             "player_name": self.name,
-            "player_gender": self.player_gender,
             "player_sprite": self.player_sprite,
             "monster_boxes": dict(),
             "item_boxes": dict(),
@@ -293,7 +287,6 @@ class NPC(Entity[NPCState]):
         for monster in decode_monsters(save_data.get("monsters")):
             self.add_monster(monster)
         self.name = save_data["player_name"]
-        self.player_gender = save_data["player_gender"]
         self.player_sprite = save_data["player_sprite"]
         for monsterkey, monstervalue in save_data["monster_boxes"].items():
             self.monster_boxes[monsterkey] = decode_monsters(monstervalue)
@@ -310,12 +303,10 @@ class NPC(Entity[NPCState]):
         sprite_name = ""
         # load sprite corresponding to the gender (player)
         if self.playable:
-            if self.player_gender == GenderType.male:
-                sprite_name = ADVENTURER
-                self.player_sprite = ADVENTURER
+            if self.player_sprite == "":
+                sprite_name = self.sprite_name
             else:
-                sprite_name = HEROINE
-                self.player_sprite = HEROINE
+                sprite_name = self.player_sprite
         else:
             sprite_name = self.sprite_name
         self.standing = {}

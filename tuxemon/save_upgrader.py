@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Dict, Mapping
 
-from tuxemon.db import GenderType, SeenStatus
+from tuxemon.db import SeenStatus
 
 if TYPE_CHECKING:
     from tuxemon.save import SaveData
@@ -72,8 +72,6 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
         save_data["game_variables"]["xero_starting_money"] = "yes"
         save_data["game_variables"]["spyder_starting_money"] = "yes"
 
-    if "player_gender" not in save_data:
-        save_data["player_gender"] = GenderType.male
     if "player_sprite" not in save_data:
         save_data["player_sprite"] = "adventurer"
 

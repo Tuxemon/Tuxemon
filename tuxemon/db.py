@@ -43,6 +43,11 @@ class ItemSort(str, Enum):
     quest = "quest"
 
 
+class PCSprites(str, Enum):
+    adventurer = "adventurer"
+    heroine = "heroine"
+
+
 class GenderType(str, Enum):
     neuter = "neuter"
     male = "male"

@@ -25,6 +25,7 @@ from pygame.rect import Rect
 
 from tuxemon import audio, graphics, tools
 from tuxemon.animation import Task
+from tuxemon.db import BattleGraphicsModel, PCSprites
 from tuxemon.locale import T
 from tuxemon.menu.interface import ExpBar, HpBar
 from tuxemon.menu.menu import Menu
@@ -34,7 +35,6 @@ from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.tools import scale, scale_sequence
 
 if TYPE_CHECKING:
-    from tuxemon.db import BattleGraphicsModel
     from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
@@ -607,7 +607,11 @@ class CombatAnimations(ABC, Menu[None]):
 
         combat_back = ""
         if player.playable:
-            combat_back = player.player_sprite + "_back.png"
+            sprites = [ele.value for ele in PCSprites]
+            if player.player_sprite in sprites:
+                combat_back = player.player_sprite + "_back.png"
+            else:
+                combat_back = "default_back.png"
         else:
             combat_back = player.combat_back
 

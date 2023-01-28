@@ -3314,6 +3314,25 @@ msgstr "Capture devices. How do they make these?"
 
 # NPC dialogs
 
+msgid "xero_intro_1"
+msgstr "Welcome to the Fondent Region!\n"
+"The Fondent Region is a wonderful place filled with all sorts of wonderful people!\n"
+"You're sure to love it here!\n"
+"The Fondent Region is run by the benevolent Omnichannel Corporation.\n"
+"They make sure everyone's needs are met and that everyone is protected from the fearsome Tuxemon!"
+
+msgid "xero_intro_2"
+msgstr "The great and benevolent Omnichannel Corporation has been led by one man since its inception 25 years ago:\n"
+"Aeble Flisk! Along with the Omni-Council and the Omnigrunts.\n"
+"He has brought stability and prosperity to the Fondent Region!"
+
+msgid "xero_intro_3"
+msgstr "Thank you for visiting the Fondent Region!\n"
+"We hope you enjoy your stay, whether it's for a few days, or for a lifetime!"
+
+msgid "xero_intro_question"
+msgstr "What's your name?"
+
 msgid "karrianna_dialog1"
 msgstr "Karrianna: I've been training for the past month! Nobody has beaten me yet!"
 

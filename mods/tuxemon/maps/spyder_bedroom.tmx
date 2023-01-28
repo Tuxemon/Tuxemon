@@ -97,7 +97,6 @@
     <property name="act02" value="change_bg spyder_empty"/>
     <property name="act03" value="translated_dialog spyder_intro_question"/>
     <property name="act04" value="translated_dialog_choice no:yes,question_intro"/>
-    <property name="act05" value="change_bg end"/>
     <property name="cond1" value="not variable_set question_intro:yes"/>
     <property name="cond2" value="not variable_set question_intro:no"/>
    </properties>
@@ -122,7 +121,6 @@
     <property name="act20" value="translated_dialog spyder_intro02"/>
     <property name="act21" value="change_bg spyder_morph"/>
     <property name="act22" value="translated_dialog spyder_intro03"/>
-    <property name="act23" value="change_bg end"/>
     <property name="act25" value="set_variable spyder_intro:yes"/>
     <property name="act26" value="transition_teleport spyder_paper_mart.tmx,4,8,0.3"/>
     <property name="cond1" value="is variable_set question_intro:no"/>
@@ -131,7 +129,8 @@
   </object>
   <object id="32" name="No Intro" type="event" x="92" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable spyder_intro:yes"/>
+    <property name="act1" value="change_bg end"/>
+    <property name="act2" value="set_variable spyder_intro:yes"/>
     <property name="cond1" value="is variable_set question_intro:yes"/>
    </properties>
   </object>

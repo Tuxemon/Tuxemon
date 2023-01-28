@@ -215,18 +215,17 @@ class ItemMenuState(Menu[Item]):
         """Get all player inventory items and add them to menu."""
         state = self.determine_state_called_from()
         inventory = []
-        # removes by default all the items phone category
-        # shows only items with MainCombatMenuState in battless
+        # in battle shows only items with MainCombatMenuState (usable_in)
         if state == "MainCombatMenuState":
             inventory = [
                 item
                 for item in local_session.player.inventory.values()
                 if State[state] in item["item"].usable_in
             ]
+        # shows all items (excluded phone category)
         else:
             inventory = [
-                item
-                for item in local_session.player.inventory.values()
+                item for item in local_session.player.inventory.values()
                 if item["item"].category != "phone"
             ]
 

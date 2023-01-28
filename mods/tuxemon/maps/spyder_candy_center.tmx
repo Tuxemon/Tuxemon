@@ -70,7 +70,7 @@
   </object>
   <object id="25" name="create npcs" type="event" x="16" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc tabanurse,5,4,nurse,stand"/>
+    <property name="act1" value="create_npc tabanurse,5,4"/>
     <property name="cond1" value="not npc_exists tabanurse"/>
    </properties>
   </object>

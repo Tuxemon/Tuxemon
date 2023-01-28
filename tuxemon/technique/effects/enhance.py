@@ -4,26 +4,21 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from tuxemon import formula
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 
-class DamageEffectResult(TechEffectResult):
+class EnhanceEffectResult(TechEffectResult):
     damage: int
-    element_multiplier: float
     should_tackle: bool
 
 
 @dataclass
-class DamageEffect(TechEffect):
+class EnhanceEffect(TechEffect):
     """
-    Apply damage.
-
-    This effect applies damage to a target monster. This effect will only
-    be applied if "damage" is defined in the relevant technique's effect
-    list.
+    Apply "damage" for special range. Allows to show the animation and
+    avoids a constant failure.
 
     Parameters:
         user: The Monster object that used this technique.
@@ -34,28 +29,16 @@ class DamageEffect(TechEffect):
 
     """
 
-    name = "damage"
+    name = "enhance"
     objective: int
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> DamageEffectResult:
+    ) -> EnhanceEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
         if hit or tech.is_area:
-            tech.can_apply_status = True
-            damage, mult = formula.simple_damage_calculate(tech, user, target)
-            if not hit:
-                damage //= 2
-            target.current_hp -= damage
+            return {"damage": 0, "should_tackle": True, "success": True}
         else:
-            damage = 0
-            mult = 1
-
-        return {
-            "damage": damage,
-            "element_multiplier": mult,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
-        }
+            return {"damage": 0, "should_tackle": False, "success": False}

@@ -3,6 +3,7 @@
   "accuracy": 1,
   "animation": "drip_green",
   "effects": [
+    "enhance 100",
     "poison target"
   ],
   "flip_axes": "",

@@ -3,11 +3,12 @@
   "accuracy": 1,
   "animation": "heal_burst_120",
   "effects": [
+    "enhance 100",
     "focused target",
     "recover all"
   ],
   "flip_axes": "",
-  "healing_power": 2.0,
+  "healing_power": 2,
   "icon": "",
   "is_area": false,
   "is_fast": false,

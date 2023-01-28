@@ -144,14 +144,14 @@
   </object>
   <object id="35" name="postannouncement" type="event" x="16" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="wait 1"/>
-    <property name="act2" value="npc_face npc_mom,right"/>
-    <property name="act3" value="translated_dialog ohnoes"/>
-    <property name="act4" value="wait 0.7"/>
-    <property name="act5" value="translated_dialog ohnoes2"/>
-    <property name="act6" value="npc_face npc_mom,left"/>
-    <property name="act8" value="unlock_controls"/>
-    <property name="act9" value="set_variable can_exit_town:yes"/>
+    <property name="act01" value="wait 1"/>
+    <property name="act02" value="npc_face npc_mom,right"/>
+    <property name="act03" value="translated_dialog ohnoes"/>
+    <property name="act04" value="wait 0.7"/>
+    <property name="act05" value="translated_dialog ohnoes2"/>
+    <property name="act06" value="npc_face npc_mom,left"/>
+    <property name="act08" value="unlock_controls"/>
+    <property name="act09" value="set_variable can_exit_town:yes"/>
     <property name="act10" value="clear_variable scene"/>
     <property name="act11" value="clear_variable aeble_talk"/>
     <property name="cond1" value="is variable_set aeble_talk:2"/>
@@ -176,7 +176,7 @@
   </object>
   <object id="38" name="create mom3" type="event" x="0" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_mom,0,5,,stand"/>
+    <property name="act1" value="create_npc npc_mom,0,5"/>
     <property name="act2" value="npc_face npc_mom,right"/>
     <property name="act3" value="wait 1"/>
     <property name="cond1" value="is variable_set backhome:no"/>
@@ -225,7 +225,7 @@
   </object>
   <object id="42" name="new possibilities2" type="event" x="32" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc professor,4,6,,stand"/>
+    <property name="act1" value="create_npc professor,4,6"/>
     <property name="act2" value="npc_face professor,left"/>
     <property name="act3" value="translated_dialog iknowyou"/>
     <property name="act4" value="translated_dialog ihaveyourmoney2"/>

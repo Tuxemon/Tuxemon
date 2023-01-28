@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import random
 from dataclasses import dataclass
 from typing import Optional
 
@@ -30,7 +29,10 @@ class RecoverEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> RecoverEffectResult:
-        success = tech.potency >= random.random()
+        player = self.session.player
+        value = float(player.game_variables["random_tech_hit"])
+        potency = formula.random.random()
+        success = tech.potency >= potency and tech.accuracy >= value
         if success:
             tech = Technique("status_recover", link=user)
             user.apply_status(tech)

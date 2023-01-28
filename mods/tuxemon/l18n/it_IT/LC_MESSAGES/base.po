@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2023-01-16 12:48+0000\n"
+"PO-Revision-Date: 2023-01-19 21:49+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "it/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.15.1\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -4723,3 +4723,81 @@ msgstr "Gregorio"
 
 msgid "leather_town_open_air"
 msgstr "Caffé Open Air e Piazza del Mercato"
+
+msgid "rhincus_fossil_description"
+msgstr "Sembra il teschio di un volatile dentato, ma è duro come la pietra."
+
+msgid "shammer_fossil_description"
+msgstr "Sembra il teschio di un cane antico, ma è duro come la pietra."
+
+msgid "aether"
+msgstr "Etere"
+
+msgid "glitch"
+msgstr "Glitch"
+
+msgid "normal"
+msgstr "Normale"
+
+msgid "demiurge"
+msgstr "Demiurgo"
+
+msgid "earthquake"
+msgstr "Terremoto"
+
+msgid "evasion"
+msgstr "Evasione"
+
+msgid "feline"
+msgstr "Felino"
+
+msgid "insanity"
+msgstr "Follia"
+
+msgid "kraken"
+msgstr "Kraken"
+
+msgid "lantern"
+msgstr "Laterna"
+
+msgid "lava"
+msgstr "Lava"
+
+msgid "lineage"
+msgstr "Lignaggio"
+
+msgid "maori"
+msgstr "Maori"
+
+msgid "meltdown"
+msgstr "Fusione"
+
+msgid "mending"
+msgstr "Aggiustatura"
+
+msgid "mobbing"
+msgstr "Bullismo"
+
+msgid "muck"
+msgstr "Letame"
+
+msgid "mystic_blending"
+msgstr "Miscela Mistica"
+
+msgid "negation"
+msgstr "Negazione"
+
+msgid "nest"
+msgstr "Nido"
+
+msgid "oedipus"
+msgstr "Edipo"
+
+msgid "magma"
+msgstr "Magma"
+
+msgid "lust"
+msgstr "Desiderio"
+
+msgid "lightning_spheres"
+msgstr "Sfere di Fulmini"

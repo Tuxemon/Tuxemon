@@ -6,7 +6,7 @@
     "damage 100"
   ],
   "flip_axes": "",
-  "healing_power": 4.0,
+  "healing_power": 4,
   "icon": "",
   "is_area": false,
   "is_fast": false,

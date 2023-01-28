@@ -5,7 +5,7 @@
   "effects": [
     "poison user",
     "poison target",
-    "damage 100"
+    "damage"
   ],
   "flip_axes": "",
   "healing_power": 0,

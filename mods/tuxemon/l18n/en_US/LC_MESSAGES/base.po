@@ -1151,6 +1151,9 @@ msgstr "Webs Wind"
 
 ## MAP ##
 
+msgid "buddha_mountain"
+msgstr "Buddha Mountain"
+
 msgid "candy_town"
 msgstr "Candy"
 
@@ -1193,6 +1196,9 @@ msgstr "Route 5"
 msgid "route6"
 msgstr "Route 6"
 
+msgid "route7"
+msgstr "Route 7"
+
 msgid "routea"
 msgstr "Route A"
 
@@ -1205,6 +1211,9 @@ msgstr "Route D"
 msgid "routee"
 msgstr "Route E"
 
+msgid "sphalian_town"
+msgstr "Sphalian"
+
 msgid "taba_town"
 msgstr "Taba"
 
@@ -1215,6 +1224,9 @@ msgid "tunnel"
 msgstr "Tunnel"
 
 ## MAP DESCRIPTIONS TOWN / CITY ##
+
+msgid "buddha_mountain_description"
+msgstr "One of Fondent's Holy Mountains! Prominence 3,776 m (12,388 ft)!"
 
 msgid "candy_town_description"
 msgstr "Candy Town Slogan"
@@ -1242,6 +1254,12 @@ msgstr "The historic path!"
 
 msgid "route5_description"
 msgstr "The memorial passage to Timber Town!"
+
+msgid "route7_description"
+msgstr "The Ascension Trail on the slopes of Buddha Mountain!"
+
+msgid "sphalian_town_description"
+msgstr "The highest settlement in the Fondent Region!"
 
 msgid "taba_town_description"
 msgstr "A peaceful refuge!"
@@ -5846,3 +5864,39 @@ msgstr "Tuxecenter - A place to heal your tuxemon"
 
 msgid "leather_town_open_air"
 msgstr "Open Air Cafe and Marketplace"
+
+## Sphalian Town ##
+
+msgid "sphalian_alert_skating"
+msgstr "Always be cautious! Always bring safety gear!"
+
+msgid "sphalian_hackerchat"
+msgstr "Two weeks ago a tremendous blizzard struck ${{map_name}}."
+
+msgid "sphalian_barmaid"
+msgstr "I don't skate very well."
+
+msgid "mountain_road_interrupted"
+msgstr "Road interrupted due to landslide."
+
+msgid "sphalian_grannypiper"
+msgstr "The Great Blizzard's impact was so great that, still today, survivors met to commemorate."
+
+msgid "sphalian_monk"
+msgstr "I'm reminded of the time the Blizzard killed my friend."
+
+msgid "sphalian_granny"
+msgstr "That's, uh... heavy. I'm sorry to hear that."
+
+msgid "sphalian_shopkeeper"
+msgstr "We worship and have deep respect for the mountain, we trust it will save us from whatever comes."
+
+msgid "sphalian_maniac"
+msgstr "Climbers need to wake up and understand that climbing Buddha Mountain is extremely risky.\n"
+"They need to stop believing just because they have strong tuxemon that they will be able to climb."
+
+msgid "sphalian_beck"
+msgstr "That's not even a little bit funny, man."
+
+msgid "sphalian_tvwatch"
+msgstr "A journalist travels the globe hunting for lost civilizations."

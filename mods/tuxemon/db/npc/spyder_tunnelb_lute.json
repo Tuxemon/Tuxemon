@@ -36,6 +36,5 @@
       "gender": "female"
     }
   ],
-  "combat_front": "scientist.png",
-  "combat_back": "adventurer_back.png"
+  "template": "scientist"
 }

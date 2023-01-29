@@ -20,6 +20,5 @@
       "gender": "female"
     }
   ],
-  "combat_front": "nurse.png",
-  "combat_back": "adventurer_back.png"
+  "template": "nurse"
 }

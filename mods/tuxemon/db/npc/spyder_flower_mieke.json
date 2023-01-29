@@ -2,6 +2,5 @@
   "slug": "spyder_flower_mieke",
   "gender": "female",
   "sprite_name": "catgirl",
-  "combat_front": "yellowbelt.png",
-  "combat_back": "adventurer_back.png"
+  "template": "yellowbelt"
 }

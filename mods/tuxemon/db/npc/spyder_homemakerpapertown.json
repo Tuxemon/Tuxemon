@@ -2,6 +2,5 @@
   "slug": "spyder_homemakerpapertown",
   "gender": "female",
   "sprite_name": "homemaker",
-  "combat_front": "adventurer.png",
-  "combat_back": "adventurer_back.png"
+  "template": "homemaker"
 }

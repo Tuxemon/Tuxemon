@@ -2,6 +2,5 @@
   "slug": "professor",
   "gender": "male",
   "sprite_name": "professor",
-  "combat_front": "professor.png",
-  "combat_back": "adventurer_back.png"
+  "template": "professor"
 }

@@ -20,6 +20,5 @@
       "gender": "female"
     }
   ],
-  "combat_front": "miner.png",
-  "combat_back": "adventurer_back.png"
+  "template": "miner"
 }

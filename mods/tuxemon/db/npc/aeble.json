@@ -2,6 +2,5 @@
   "slug": "aeble",
   "gender": "male",
   "sprite_name": "ceo",
-  "combat_front": "adventurer.png",
-  "combat_back": "adventurer_back.png"
+  "template": "ceo"
 }

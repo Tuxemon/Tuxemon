@@ -2,6 +2,5 @@
   "slug": "spyder_grannypiper",
   "gender": "female",
   "sprite_name": "granny",
-  "combat_front": "adventurer.png",
-  "combat_back": "adventurer_back.png"
+  "template": "granny"
 }

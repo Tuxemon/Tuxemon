@@ -12,6 +12,5 @@
       "gender": "female"
     }
   ],
-  "combat_front": "catgirl.png",
-  "combat_back": "adventurer_back.png"
+  "template": "catgirl"
 }

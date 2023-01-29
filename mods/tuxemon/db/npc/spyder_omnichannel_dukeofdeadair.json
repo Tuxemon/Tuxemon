@@ -2,6 +2,5 @@
   "slug": "spyder_omnichannel_dukeofdeadair",
   "gender": "male",
   "sprite_name": "rogue",
-  "combat_front": "rogue.png",
-  "combat_back": "adventurer_back.png"
+  "template": "rogue"
 }

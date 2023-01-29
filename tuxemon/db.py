@@ -35,6 +35,95 @@ T.load_translator()
 # Target is a mapping of who this targets
 Target = Mapping[str, int]
 
+
+class TemplateType(str, Enum):
+    # noclass = monsters, interactive (eg logs, etc), 37707, etc
+    noclass = "noclass"
+    adventurer = "adventurer"
+    alchemist = "alchemist"
+    alien = "alien"
+    aviator = "aviator"
+    baller = "baller"
+    barmaid = "barmaid"
+    beachcomber = "beachcomber"
+    beachgoer = "beachgoer"
+    ceo = "ceo"
+    catgirl = "catgirl"
+    childactor = "childactor"
+    cooldude = "cooldude"
+    creepydoll = "creepydoll"
+    dancer = "dancer"
+    deserttrainer = "deserttrainer"
+    disciple = "disciple"
+    dragonfly = "dragonfly"
+    dragonrider = "dragonrider"
+    earthnymph = "earthnymph"
+    enforcer_agent = "enforcer_agent"
+    enforcer_boss = "enforcer_boss"
+    enforcer_rookie = "enforcer_rookie"
+    fashionista = "fashionista"
+    faun = "faun"
+    firenymph = "firenymph"
+    firefighter = "firefighter"
+    fisher = "fisher"
+    florist = "florist"
+    goth = "goth"
+    granny = "granny"
+    harpy = "harpy"
+    healer = "healer"
+    hellknight = "hellknight"
+    heroine = "heroine"
+    homemaker = "homemaker"
+    knight = "knight"
+    knightlord = "knightlord"
+    mage = "mage"
+    magician = "magician"
+    maninthemoon = "maninthemoon"
+    maniac = "maniac"
+    master = "master"
+    mermaid = "mermaid"
+    metalnymph = "metalnymph"
+    mineoverseer = "mineoverseer"
+    miner = "miner"
+    monk = "monk"
+    ninja = "ninja"
+    nurse = "nurse"
+    oracle = "oracle"
+    orc = "orc"
+    picnicker = "picnicker"
+    pirate = "pirate"
+    postboy = "postboy"
+    professor = "professor"
+    riddler = "riddler"
+    riverboatcaptain = "riverboatcaptain"
+    robot = "robot"
+    rocker = "rocker"
+    rogue = "rogue"
+    scientist = "scientist"
+    settingsun = "settingsun"
+    shiningmoon = "shiningmoon"
+    shiningsun = "shiningsun"
+    shopassistant = "shopassistant"
+    shopkeeper = "shopkeeper"
+    snugglepot = "snugglepot"
+    soldier = "soldier"
+    spinner = "spinner"
+    spyder_boss = "spyder_boss"
+    spyder_rookie = "spyder_rookie"
+    swimmer = "swimmer"
+    tennisplayer = "tennisplayer"
+    terranite = "terranite"
+    warrior = "warrior"
+    waternymph = "waternymph"
+    willowhisp = "willowhisp"
+    windnymph = "windnymph"
+    witch = "witch"
+    woodnymph = "woodnymph"
+    xerogrunt = "xerogrunt"
+    yaangyiin = "yaangyiin"
+    yellowbelt = "yellowbelt"
+
+
 # ItemSort defines the sort of item an item is.
 class ItemSort(str, Enum):
     food = "food"
@@ -558,19 +647,19 @@ class NpcModel(BaseModel):
         ..., description="Name of the overworld sprite filename"
     )
     combat_front: str = Field(
-        ..., description="Name of the battle front sprite filename"
+        "noclass", description="Name of the battle front sprite filename"
     )
-    combat_back: str = Field(
-        ..., description="Name of the battle back sprite filename"
+    template: TemplateType = Field(
+        ..., description="Name of the category / template"
     )
     monsters: Sequence[PartyMemberModel] = Field(
         [], description="List of monsters in the NPCs party"
     )
 
     # Validate resources that should exist
-    @validator("combat_front", "combat_back")
+    @validator("combat_front", "template")
     def combat_file_exists(cls, v):
-        file: str = f"gfx/sprites/player/{v}"
+        file: str = f"gfx/sprites/player/{v}.png"
         if has.file(file):
             return v
         raise ValueError(f"no resource exists with path: {file}")

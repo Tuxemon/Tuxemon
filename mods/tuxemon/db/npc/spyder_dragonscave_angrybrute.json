@@ -2,6 +2,5 @@
   "slug": "spyder_dragonscave_angrybrute",
   "gender": "male",
   "sprite_name": "knight",
-  "combat_front": "enforcer_rookie.png",
-  "combat_back": "adventurer_back.png"
+  "template": "enforcer_rookie"
 }

@@ -12,6 +12,6 @@
       "gender": "neuter"
     }
   ],
-  "combat_front": "xeon.png",
-  "combat_back": "adventurer_back.png"
+  "combat_front": "xeon",
+  "template": "noclass"
 }

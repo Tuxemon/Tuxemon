@@ -2,6 +2,6 @@
   "slug": "xerogrund2",
   "gender": "male",
   "sprite_name": "xerogrunt",
-  "combat_front": "adventurer.png",
-  "combat_back": "adventurer_back.png"
+  "combat_front": "adventurer",
+  "template": "xerogrunt"
 }

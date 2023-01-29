@@ -2,6 +2,5 @@
   "slug": "spyder_tennisplayer",
   "gender": "male",
   "sprite_name": "tennisplayer",
-  "combat_front": "adventurer.png",
-  "combat_back": "adventurer_back.png"
+  "template": "tennisplayer"
 }

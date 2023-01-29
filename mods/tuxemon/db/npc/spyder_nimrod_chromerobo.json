@@ -12,6 +12,6 @@
       "gender": "neuter"
     }
   ],
-  "combat_front": "chrome_robo.png",
-  "combat_back": "adventurer_back.png"
+  "combat_front": "chrome_robo",
+  "template": "noclass"
 }

@@ -2,6 +2,5 @@
   "slug": "knight3",
   "gender": "male",
   "sprite_name": "knight",
-  "combat_front": "knight.png",
-  "combat_back": "adventurer_back.png"
+  "template": "knight"
 }

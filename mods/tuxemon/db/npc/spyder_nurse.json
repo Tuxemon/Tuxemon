@@ -2,6 +2,5 @@
   "slug": "spyder_nurse",
   "gender": "female",
   "sprite_name": "nurse",
-  "combat_front": "nurse.png",
-  "combat_back": "adventurer_back.png"
+  "template": "nurse"
 }

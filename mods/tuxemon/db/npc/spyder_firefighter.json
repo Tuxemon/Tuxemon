@@ -2,6 +2,5 @@
   "slug": "spyder_firefighter",
   "gender": "male",
   "sprite_name": "firefighter",
-  "combat_front": "firefighter.png",
-  "combat_back": "adventurer_back.png"
+  "template": "firefighter"
 }

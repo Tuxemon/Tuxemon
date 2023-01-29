@@ -2,6 +2,6 @@
   "slug": "conworker3",
   "gender": "male",
   "sprite_name": "bob",
-  "combat_front": "adventurer.png",
-  "combat_back": "adventurer_back.png"
+  "combat_front": "adventurer",
+  "template": "noclass"
 }

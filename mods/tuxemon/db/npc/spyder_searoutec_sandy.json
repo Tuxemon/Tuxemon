@@ -28,6 +28,5 @@
       "gender": "male"
     }
   ],
-  "combat_front": "fisher.png",
-  "combat_back": "adventurer_back.png"
+  "template": "fisher"
 }

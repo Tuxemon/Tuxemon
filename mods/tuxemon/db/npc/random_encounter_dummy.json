@@ -1,7 +1,7 @@
 {
   "slug": "random_encounter_dummy",
-  "gender": "female",
+  "gender": "neuter",
   "sprite_name": "girl1",
-  "combat_front": "heroine.png",
-  "combat_back": "heroine_back.png"
+  "combat_front": "noclass",
+  "template": "noclass"
 }

@@ -20,6 +20,5 @@
       "gender": "neuter"
     }
   ],
-  "combat_front": "professor.png",
-  "combat_back": "adventurer_back.png"
+  "template": "professor"
 }

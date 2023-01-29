@@ -2,6 +2,5 @@
   "slug": "spyder_flower_sandy",
   "gender": "female",
   "sprite_name": "childactor",
-  "combat_front": "yellowbelt.png",
-  "combat_back": "adventurer_back.png"
+  "template": "childactor"
 }

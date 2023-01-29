@@ -12,6 +12,6 @@
       "gender": "female"
     }
   ],
-  "combat_front": "lapinou.png",
-  "combat_back": "adventurer_back.png"
+  "combat_front": "lapinou",
+  "template": "noclass"
 }

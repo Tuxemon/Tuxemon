@@ -2,6 +2,5 @@
   "slug": "shady_guy",
   "gender": "male",
   "sprite_name": "ninja",
-  "combat_front": "adventurer.png",
-  "combat_back": "adventurer_back.png"
+  "template": "ninja"
 }

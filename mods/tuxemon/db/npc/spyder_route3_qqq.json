@@ -12,6 +12,5 @@
       "gender": "female"
     }
   ],
-  "combat_front": "spyder_rookie.png",
-  "combat_back": "adventurer_back.png"
+  "template": "spyder_rookie"
 }

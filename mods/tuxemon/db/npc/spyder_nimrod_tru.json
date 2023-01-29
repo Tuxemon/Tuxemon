@@ -44,6 +44,5 @@
       "gender": "female"
     }
   ],
-  "combat_front": "knightlord.png",
-  "combat_back": "adventurer_back.png"
+  "template": "knightlord"
 }

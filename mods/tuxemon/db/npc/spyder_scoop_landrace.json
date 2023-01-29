@@ -12,6 +12,6 @@
       "gender": "female"
     }
   ],
-  "combat_front": "sludgehog.png",
-  "combat_back": "adventurer_back.png"
+  "combat_front": "sludgehog",
+  "template": "noclass"
 }

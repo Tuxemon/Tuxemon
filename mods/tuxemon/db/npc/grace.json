@@ -2,6 +2,5 @@
   "slug": "grace",
   "gender": "female",
   "sprite_name": "heroine",
-  "combat_front": "heroine.png",
-  "combat_back": "heroine_back.png"
+  "template": "heroine"
 }

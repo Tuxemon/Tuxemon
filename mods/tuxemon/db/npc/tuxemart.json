@@ -2,6 +2,5 @@
   "slug": "tuxemart_keeper",
   "gender": "male",
   "sprite_name": "shopassist",
-  "combat_front": "adventurer.png",
-  "combat_back": "adventurer_back.png"
+  "template": "shopassistant"
 }

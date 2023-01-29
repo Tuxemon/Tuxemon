@@ -2,6 +2,5 @@
   "slug": "spyder_greenwash_looten",
   "gender": "male",
   "sprite_name": "goth",
-  "combat_front": "goth.png",
-  "combat_back": "adventurer_back.png"
+  "template": "goth"
 }

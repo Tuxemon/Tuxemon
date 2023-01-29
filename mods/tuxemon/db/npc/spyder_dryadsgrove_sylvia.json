@@ -28,6 +28,5 @@
       "gender": "female"
     }
   ],
-  "combat_front": "woodnymph.png",
-  "combat_back": "adventurer_back.png"
+  "template": "woodnymph"
 }

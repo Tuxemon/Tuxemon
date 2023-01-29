@@ -12,6 +12,5 @@
       "gender": "female"
     }
   ],
-  "combat_front": "tennisplayer.png",
-  "combat_back": "adventurer_back.png"
+  "template": "tennisplayer"
 }

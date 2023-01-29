@@ -2,6 +2,5 @@
   "slug": "spyder_maniac",
   "gender": "male",
   "sprite_name": "maniac",
-  "combat_front": "adventurer.png",
-  "combat_back": "adventurer_back.png"
+  "template": "maniac"
 }

@@ -20,6 +20,5 @@
       "gender": "male"
     }
   ],
-  "combat_front": "soldier.png",
-  "combat_back": "adventurer_back.png"
+  "template": "soldier"
 }

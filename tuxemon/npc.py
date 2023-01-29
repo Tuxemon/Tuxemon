@@ -119,7 +119,7 @@ class NPC(Entity[NPCState]):
         *,
         sprite_name: Optional[str] = None,
         combat_front: Optional[str] = None,
-        combat_back: Optional[str] = None,
+        template: Optional[str] = None,
         world: WorldState,
     ) -> None:
 
@@ -136,13 +136,13 @@ class NPC(Entity[NPCState]):
             sprite_name = npc_data.sprite_name
         if combat_front is None:
             combat_front = npc_data.combat_front
-        if combat_back is None:
-            combat_back = npc_data.combat_back
+        if template is None:
+            template = npc_data.template
 
         # Hold on the the string so it can be sent over the network
         self.sprite_name = sprite_name
         self.combat_front = combat_front
-        self.combat_back = combat_back
+        self.template = template
 
         # general
         self.behavior: Optional[str] = "wander"  # not used for now

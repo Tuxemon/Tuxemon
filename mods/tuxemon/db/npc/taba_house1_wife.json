@@ -2,6 +2,5 @@
   "slug": "taba_house1_wife",
   "gender": "female",
   "sprite_name": "granny",
-  "combat_front": "heroine.png",
-  "combat_back": "heroine_back.png"
+  "template": "granny"
 }

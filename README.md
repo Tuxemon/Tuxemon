@@ -309,7 +309,6 @@ External links
 --------------
 
 * Official website: [tuxemon.org](https://www.tuxemon.org)
-* Official forum: [forum.tuxemon.org](https://forum.tuxemon.org/)
 * Matrix: [Tuxemon](https://matrix.to/#/!ktrcrHpgkDOGCQOlxX:matrix.org)
 * Discord: [Tuxemon](https://discord.gg/3ZffZwz)
 * Reddit: [/r/Tuxemon](https://www.reddit.com/r/tuxemon)

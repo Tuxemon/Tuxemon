@@ -153,8 +153,6 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Harpy"](https://wiki.tuxemon.org/File:Harpy_dark_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY. 
  
 * ["Healer"](https://wiki.tuxemon.org/File:Claris_64px.png). Front sprite by Svetlana Kushnariova. Resized by Sanglorian. 
- 
-* ["Hell Knight"](https://wiki.tuxemon.org/File:Dread_Knight.png) [https://opengameart.org/content/rpg-dread-knight-sheet CC0 on OGA]
 
 * ["Homemaker"](https://wiki.tuxemon.org/index.php?title=Homemaker). Overland sprites from Catch Challenger.
 

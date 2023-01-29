@@ -225,7 +225,8 @@ class ItemMenuState(Menu[Item]):
         # shows all items (excluded phone category)
         else:
             inventory = [
-                item for item in local_session.player.inventory.values()
+                item
+                for item in local_session.player.inventory.values()
                 if item["item"].category != "phone"
             ]
 

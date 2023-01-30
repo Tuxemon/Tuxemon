@@ -4,7 +4,7 @@
   "animation": "lance_ice",
   "effects": [
     "poison target",
-    "damage 100"
+    "damage"
   ],
   "flip_axes": "xy",
   "healing_power": 0,

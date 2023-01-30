@@ -3,7 +3,7 @@
   "accuracy": 0.9,
   "animation": "emerald_absorb",
   "effects": [
-    "damage 100"
+    "damage"
   ],
   "flip_axes": "",
   "healing_power": 0,

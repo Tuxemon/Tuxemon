@@ -3,7 +3,7 @@
   "accuracy": 0.9,
   "animation": "rockfall_264",
   "effects": [
-    "damage 100"
+    "damage"
   ],
   "flip_axes": "",
   "healing_power": 0,

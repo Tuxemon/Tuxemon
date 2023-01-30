@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "waterspurt",
   "effects": [
-    "enhance 100",
+    "enhance",
     "focused user"
   ],
   "flip_axes": "",

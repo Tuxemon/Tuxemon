@@ -30,7 +30,6 @@ class EnhanceEffect(TechEffect):
     """
 
     name = "enhance"
-    objective: int
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster

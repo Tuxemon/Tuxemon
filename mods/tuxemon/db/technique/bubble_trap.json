@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "bomb_bright",
   "effects": [
-    "damage 100",
+    "damage",
     "grabbed target",
     "grabbed user"
   ],

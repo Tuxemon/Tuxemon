@@ -184,7 +184,7 @@ These keyboard shortcuts are available with dev tools enabled
 
 ##### Map Editor
 
-Use *Tiled* map editor: http://www.mapeditor.org/
+Use *Tiled* map editor: https://www.mapeditor.org/
 
 
 CLI Interface
@@ -291,7 +291,7 @@ License
 -------
 
 With the exception of the lib folder which may have its own license, all
-code in this project is licenced under the GPLv3.
+code in this project is licenced under [the GPLv3](https://www.gnu.org/licenses/gpl-3.0.html).
 
 GPL v3+
 
@@ -309,7 +309,6 @@ External links
 --------------
 
 * Official website: [tuxemon.org](https://www.tuxemon.org)
-* Official forum: [forum.tuxemon.org](https://forum.tuxemon.org/)
 * Matrix: [Tuxemon](https://matrix.to/#/!ktrcrHpgkDOGCQOlxX:matrix.org)
 * Discord: [Tuxemon](https://discord.gg/3ZffZwz)
 * Reddit: [/r/Tuxemon](https://www.reddit.com/r/tuxemon)

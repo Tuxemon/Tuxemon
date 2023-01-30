@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "smokebomb",
   "effects": [
-    "damage 100",
+    "damage",
     "recover all"
   ],
   "flip_axes": "",

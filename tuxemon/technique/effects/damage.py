@@ -35,7 +35,6 @@ class DamageEffect(TechEffect):
     """
 
     name = "damage"
-    objective: int
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster

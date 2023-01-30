@@ -102,8 +102,6 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Beachgoer"](https://wiki.tuxemon.org/index.php?title=Beachgoer). Front sprites by tamashihoshi. Overland sprites by Catch Challenger. Face sprite by Superpowers Asset Packs. 
  
-* ["Birb Robo"](https://wiki.tuxemon.org/index.php?title=Birb_Robo). Front sprite by FiveAsOne. Overland sprites by Catch Challenger. 
-  
 * ["Brute"](https://wiki.tuxemon.org/index.php?title=Brute). Overland sprites from the Superpowers Asset Packs.
 
 * ["Cat Girl"](https://wiki.tuxemon.org/index.php?title=Cat_Girl). Overland sprites by Pboop. Front sprites by Sanglorian and Tamashihoshi. 
@@ -121,9 +119,9 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Desert Female"](https://wiki.tuxemon.org/File:Female-trainer-alt-egypt.png). Original design by Leo. 
  
 * ["Desert Male"](https://wiki.tuxemon.org/File:Male-trainer-alt-egypt.png). Original design by Leo. 
- 
-* ["Disciple"](https://wiki.tuxemon.org/File:Wizard.png) [https://opengameart.org/content/rpg-wizard-battle-frames CC0 on OGA]
 
+* ["Disciple"](https://wiki.tuxemon.org/File:Disciple_-_64px.png) [https://opengameart.org/content/bosses-and-monsters-spritesheets-ars-notoria CC BY 3.0 on OGA]
+ 
 * ["Dragonfly"](https://wiki.tuxemon.org/File:Dragonfly_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY. 
  
 * ["Dragonrider"](https://wiki.tuxemon.org/index.php?title=Dragonrider). Front sprite by Catch Challenger, tweaked by Sanglorian. Overland sprite by Catch Challenger.
@@ -668,7 +666,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Mk01 Alpha"](https://wiki.tuxemon.org/index.php?title=Mk01_Alpha) and ["Mk01 Beta"](https://wiki.tuxemon.org/index.php?title=Mk01_Beta) by Serpexnessie. 
 
-* ["Chrome Robo"](https://wiki.tuxemon.org/index.php?title=Chrome_Robo), ["Dark Robo"](https://wiki.tuxemon.org/index.php?title=Dark_Robo) and ["Birb Robo"](https://wiki.tuxemon.org/index.php?title=Birb_Robo) front sprite by Redshrike. Overland sprites by Catch Challenger. 
+* ["Chrome Robo"](https://wiki.tuxemon.org/index.php?title=Chrome_Robo), ["Dark Robo"](https://wiki.tuxemon.org/index.php?title=Dark_Robo) front sprite by Redshrike. Overland sprites by Catch Challenger. 
 
 * ["Xeon"](https://wiki.tuxemon.org/index.php?title=Xeon) and ["Xeon-2"](https://wiki.tuxemon.org/index.php?title=Xeon-2) by Redshrike. 
 
@@ -1272,9 +1270,6 @@ By daneeklu [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0
 
 * ["Spikes Rock"](https://wiki.tuxemon.org/File:Spikes_rock.gif)
 By daneeklu [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
-
-* ["Tentacle Metal"](https://wiki.tuxemon.org/File:Tentacle_metal.gif)
-[https://opengameart.org/content/custom-enemies OGA CC0]
 
 * ["Tentacles Water"](https://wiki.tuxemon.org/File:Tentacles_water_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]

@@ -329,3 +329,9 @@ def rematch(
     # restore hp evolved monsters
     for mon in opponent.monsters:
         mon.current_hp = mon.hp
+
+
+def sync(player: NPC, value: int, total: int) -> float:
+    percent = round((value / total) * 100, 1)
+    player.game_variables["tuxepedia_progress"] = str(percent)
+    return percent

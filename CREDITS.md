@@ -1394,6 +1394,9 @@ which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero
 * ["icon_noddingoff.png"](https://wiki.tuxemon.org/File:Sleep1.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
 
+* ["icon_overfeed.png"](https://wiki.tuxemon.org/File:S_Poison07.png)
+Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
 * ["icon_poison.png"](https://wiki.tuxemon.org/File:Poison_.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
 

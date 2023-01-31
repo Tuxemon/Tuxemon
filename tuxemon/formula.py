@@ -175,15 +175,6 @@ def simple_lifeleech(
     return damage
 
 
-def simple_overfeed(
-    technique: Technique,
-    user: Monster,
-    target: Monster,
-) -> int:
-    speed = target.speed // 2
-    return speed
-
-
 def simple_grabbed(monster: Monster) -> None:
     for move in monster.moves:
         if move.range.ranged:

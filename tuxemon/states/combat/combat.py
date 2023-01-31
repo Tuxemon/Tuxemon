@@ -1107,10 +1107,15 @@ class CombatState(CombatAnimations):
                     diff = self._level_after - self._level_before
                     # checks and eventually teaches move/moves
                     self.check_moves(winners, diff)
-                    # updates hud graphics
-                    self.build_hud(
-                        self._layout[self.players[0]]["hud"][0], winners
-                    )
+                    # updates hud graphics player and ai
+                    if winners in self.players[0].monsters:
+                        self.build_hud(
+                            self._layout[self.players[0]]["hud"][0], winners
+                        )
+                    if winners in self.players[1].monsters:
+                        self.build_hud(
+                            self._layout[self.players[1]]["hud"][0], winners
+                        )
 
             # Remove monster from damage map
             del self._damage_map[monster]

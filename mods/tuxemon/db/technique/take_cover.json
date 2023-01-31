@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "smokebomb",
   "effects": [
-    "enhance 100",
+    "enhance",
     "sniping user"
   ],
   "flip_axes": "",

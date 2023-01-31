@@ -4,7 +4,7 @@
     "is_wild_monster target"
   ],
   "effects": [
-    "capture 100"
+    "capture"
   ],
   "slug": "capture_device",
   "sort": "utility",

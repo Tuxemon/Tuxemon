@@ -1,10 +1,10 @@
 {
-  "tech_id": 0,
+  "tech_id": 173,
   "accuracy": 1,
-  "animation": "drip_green",
-  "can_apply_status": true,
+  "animation": null,
   "effects": [
-    "statchange"
+    "enhance",
+    "overfeed target"
   ],
   "flip_axes": "",
   "healing_power": 0,
@@ -13,30 +13,24 @@
   "is_fast": false,
   "potency": 1,
   "power": 0,
-  "statspeed": {
-    "value": 2, "operation":"/"
-  },
-  "stathp": {
-    "value": 0, "operation":"+", "overridetofull":true
-  },
-  "range": "melee",
-  "recharge": 8,
+  "range": "special",
+  "recharge": 5,
   "sfx": "sfx_pulse",
   "slug": "overfeed",
   "sort": "meta",
   "target": {
-    "enemy monster": 0,
+    "enemy monster": 2,
     "enemy team": 0,
     "enemy trainer": 0,
     "item": 0,
     "own monster": 0,
-    "own team": 2,
+    "own team": 0,
     "own trainer": 0
   },
   "types": [
     "wood"
   ],
   "use_failure": "combat_miss",
-  "use_success": "combat_used_x",
-  "use_tech": "combat_state_overfeed_get"
+  "use_success": null,
+  "use_tech": "combat_used_x"
 }

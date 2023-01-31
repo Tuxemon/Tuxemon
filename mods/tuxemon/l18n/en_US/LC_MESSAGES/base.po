@@ -547,7 +547,7 @@ msgid "combat_state_noddingoff_get"
 msgstr "{target} is nodding off to sleep."
 
 msgid "combat_state_overfeed_get"
-msgstr "{user} Overfed {target}."
+msgstr "{target} has been overfed."
 
 msgid "combat_state_poison_damage"
 msgstr "{name} took poison damage!"

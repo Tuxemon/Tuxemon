@@ -55,7 +55,6 @@ class Technique:
         self.tech_id = 0
         self.accuracy = 0.0
         self.animation = ""
-        self.can_apply_status = False
         self.carrier = carrier
         self.category = ""
         self.combat_state: Optional[CombatState] = None

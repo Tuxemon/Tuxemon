@@ -375,6 +375,9 @@ msgstr "Room 31, Block 2, Omnichannel Tower, Cotton Town\n"
 msgid "player_wallet"
 msgstr "${{name}}'s wallet: ${{currency}}${{money}}"
 
+msgid "wallet"
+msgstr "Wallet"
+
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
 msgid "combat_miss"
@@ -1408,6 +1411,20 @@ msgstr "ID {txmn}, {type}, {doc} days ago\n"
 
 msgid "tuxemon_stat2"
 msgstr "{desc}"
+
+# Player State
+
+msgid "tuxepedia_progress"
+msgstr "Tuxepedia: {value}%!"
+
+msgid "tuxepedia_data_seen"
+msgstr "Seen {param} out of {all} Tuxemon"
+
+msgid "tuxepedia_data_caught"
+msgstr "Caught {param} out of {all} Tuxemon"
+
+msgid "player_start_adventure"
+msgstr "The adventure began {date} days ago."
 
 # Menu notifications
 msgid "log_off"

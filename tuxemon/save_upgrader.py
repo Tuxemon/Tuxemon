@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Dict, Mapping
 
+from tuxemon import formula
 from tuxemon.db import SeenStatus
 
 if TYPE_CHECKING:
@@ -53,6 +54,10 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     """
     if "steps" not in save_data["game_variables"]:
         save_data["game_variables"]["steps"] = 0
+    if "date_start_game" not in save_data["game_variables"]:
+        save_data["game_variables"][
+            "date_start_game"
+        ] = formula.today_ordinal()
 
     save_data["battle_history"] = save_data.get("battle_history", {})
     save_data["money"] = save_data.get("money", {})

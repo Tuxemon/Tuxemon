@@ -1,0 +1,65 @@
+{
+  "slug": "route7",
+  "monsters": [
+    {
+      "monster": "pairagrim",
+      "encounter_rate": 3.5,
+      "daytime": true,
+      "exp_req_mod": 1,
+      "level_range": [
+        40,
+        50
+      ]
+    },
+    {
+      "monster": "aardart",
+      "encounter_rate": 3.5,
+      "daytime": true,
+      "exp_req_mod": 1,
+      "level_range": [
+        40,
+        50
+      ]
+    },
+    {
+      "monster": "weavifly",
+      "encounter_rate": 3.5,
+      "daytime": true,
+      "exp_req_mod": 1,
+      "level_range": [
+        40,
+        50
+      ]
+    },
+    {
+      "monster": "pairagrim",
+      "encounter_rate": 3.5,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        50,
+        60
+      ]
+    },
+    {
+      "monster": "aardart",
+      "encounter_rate": 3.5,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        50,
+        60
+      ]
+    },
+    {
+      "monster": "weavifly",
+      "encounter_rate": 3.5,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        50,
+        60
+      ]
+    }
+  ]
+}

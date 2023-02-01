@@ -4,7 +4,7 @@
   "animation": "smokebomb_puff_128",
   "effects": [
     "poison target",
-    "damage 100"
+    "damage"
   ],
   "flip_axes": "",
   "healing_power": 0,

@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import random
 from dataclasses import dataclass
 
 from tuxemon import formula
@@ -36,14 +35,14 @@ class DamageEffect(TechEffect):
     """
 
     name = "damage"
-    objective: int
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> DamageEffectResult:
-        hit = tech.accuracy >= random.random()
+        player = self.session.player
+        value = float(player.game_variables["random_tech_hit"])
+        hit = tech.accuracy >= value
         if hit or tech.is_area:
-            tech.can_apply_status = True
             damage, mult = formula.simple_damage_calculate(tech, user, target)
             if not hit:
                 damage //= 2

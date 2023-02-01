@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "sparks_gold_alt",
   "effects": [
-    "damage 100",
+    "damage",
     "recover all"
   ],
   "flip_axes": "",
@@ -12,7 +12,7 @@
   "is_area": false,
   "is_fast": false,
   "potency": 0.75,
-  "power": 3.0,
+  "power": 3,
   "range": "touch",
   "recharge": 3,
   "sfx": "sfx_blaster",

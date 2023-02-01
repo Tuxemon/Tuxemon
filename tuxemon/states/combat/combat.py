@@ -377,6 +377,10 @@ class CombatState(CombatAnimations):
 
         elif phase == "decision phase":
             self.reset_status_icons()
+            # saves random value, so we are able to reproduce
+            # inside the condition files if a tech hit or missed
+            value = formula.random.random()
+            self.players[0].game_variables["random_tech_hit"] = value
             if not self._decision_queue:
                 for player in self.human_players:
                     # tracks human players who need to choose an action
@@ -979,10 +983,14 @@ class CombatState(CombatAnimations):
                 # Track damage
                 self._damage_map[target].add(user)
 
-                element_damage_key = MULT_MAP.get(result["element_multiplier"])
-                if element_damage_key:
-                    m = T.translate(element_damage_key)
-                    message += "\n" + m
+                # allows tackle to special range techniques too
+                if technique.range != "special":
+                    element_damage_key = MULT_MAP.get(
+                        result["element_multiplier"]
+                    )
+                    if element_damage_key:
+                        m = T.translate(element_damage_key)
+                        message += "\n" + m
 
             else:  # assume this was an item used
 
@@ -1099,10 +1107,15 @@ class CombatState(CombatAnimations):
                     diff = self._level_after - self._level_before
                     # checks and eventually teaches move/moves
                     self.check_moves(winners, diff)
-                    # updates hud graphics
-                    self.build_hud(
-                        self._layout[self.players[0]]["hud"][0], winners
-                    )
+                    # updates hud graphics player and ai
+                    if winners in self.players[0].monsters:
+                        self.build_hud(
+                            self._layout[self.players[0]]["hud"][0], winners
+                        )
+                    if winners in self.players[1].monsters:
+                        self.build_hud(
+                            self._layout[self.players[1]]["hud"][0], winners
+                        )
 
             # Remove monster from damage map
             del self._damage_map[monster]

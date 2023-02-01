@@ -5,7 +5,7 @@
 	  	"status target,status_stuck"
 	],
 	"effects": [
-		"swap all"
+		"swap"
 	],
 	"flip_axes": "",
 	"icon": "",

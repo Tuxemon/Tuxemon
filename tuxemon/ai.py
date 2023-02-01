@@ -110,17 +110,19 @@ class RandomAI(AI):
         """
         Tracks next_use and recharge, if both unusable, skip.
         """
-        # tracks next_use NPC ai
-        filter_moves = []
-        # it choses among the last 4 moves
+        actions = []
+        # it chooses among the last 4 moves
         for mov in monster.moves[-monster.max_moves :]:
             if mov.next_use <= 0:
-                filter_moves.append(mov)
-        if not filter_moves:
+                for opponent in opponents:
+                    # it checks technique conditions
+                    if mov.validate(opponent):
+                        actions.append((mov, opponent))
+        if not actions:
             skip = Technique("skip")
             return skip, choice(opponents)
         else:
-            return choice(filter_moves), choice(opponents)
+            return choice(actions)
 
     def check_weakest(self, trainer: NPC, fighter: Monster) -> bool:
         """

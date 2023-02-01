@@ -26,7 +26,6 @@ class SwapEffect(TechEffect):
     """
 
     name = "swap"
-    objective: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster

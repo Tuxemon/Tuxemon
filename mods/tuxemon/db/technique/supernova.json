@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "fireball_114",
   "effects": [
-    "damage 100",
+    "damage",
     "chargedup target"
   ],
   "flip_axes": "x",
@@ -12,7 +12,7 @@
   "is_area": false,
   "is_fast": false,
   "potency": 1,
-  "power": 3.0,
+  "power": 3,
   "range": "ranged",
   "recharge": 3,
   "sfx": "sfx_blaster",

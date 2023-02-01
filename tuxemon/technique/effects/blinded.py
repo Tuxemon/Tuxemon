@@ -29,8 +29,11 @@ class BlindedEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> BlindedEffectResult:
+        player = self.session.player
+        potency = random.random()
+        value = float(player.game_variables["random_tech_hit"])
         obj = self.objective
-        success = tech.potency >= random.random()
+        success = tech.potency >= potency and tech.accuracy >= value
         if success:
             tech = Technique("status_blinded")
             if obj == "user":

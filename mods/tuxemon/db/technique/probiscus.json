@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "lance_ice",
   "effects": [
-    "damage 100",
+    "damage",
     "lifeleech all"
   ],
   "flip_axes": "xy",
@@ -12,7 +12,7 @@
   "is_area": true,
   "is_fast": false,
   "potency": 0.5,
-  "power": 1.0,
+  "power": 1,
   "range": "reach",
   "recharge": 1,
   "sfx": "sfx_blaster",

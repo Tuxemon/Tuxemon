@@ -3,7 +3,7 @@
   "accuracy": 0.7,
   "animation": "metallic_absorb",
   "effects": [
-    "damage 100"
+    "damage"
   ],
   "flip_axes": "",
   "healing_power": 0,

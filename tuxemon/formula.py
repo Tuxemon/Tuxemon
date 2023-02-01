@@ -166,17 +166,13 @@ def simple_lifeleech(
         Inflicted damage.
 
     """
-    damage = min(target.hp // 16, target.current_hp, user.hp - user.current_hp)
+    if user.current_hp <= 0:
+        damage = 0
+    else:
+        damage = min(
+            target.hp // 16, target.current_hp, user.hp - user.current_hp
+        )
     return damage
-
-
-def simple_overfeed(
-    technique: Technique,
-    user: Monster,
-    target: Monster,
-) -> int:
-    speed = target.speed // 2
-    return speed
 
 
 def simple_grabbed(monster: Monster) -> None:
@@ -333,3 +329,9 @@ def rematch(
     # restore hp evolved monsters
     for mon in opponent.monsters:
         mon.current_hp = mon.hp
+
+
+def sync(player: NPC, value: int, total: int) -> float:
+    percent = round((value / total) * 100, 1)
+    player.game_variables["tuxepedia_progress"] = str(percent)
+    return percent

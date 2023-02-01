@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "triforce_163",
   "effects": [
-    "damage 100",
+    "damage",
     "enraged user",
     "grabbed target"
   ],

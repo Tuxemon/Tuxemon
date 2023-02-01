@@ -15,6 +15,7 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.save import get_index_of_latest_save
+from tuxemon.session import local_session
 from tuxemon.state import State
 from tuxemon.states.transition.fade import FadeInTransition
 

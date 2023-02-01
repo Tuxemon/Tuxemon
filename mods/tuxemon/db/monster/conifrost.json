@@ -59,7 +59,7 @@
         "water",
         "wood"
     ],
-    "possible_genders": ["male", "female"],
+    "possible_genders": ["neuter"],
     "txmn_id": 106,
     "height": 250,
     "weight": 371,

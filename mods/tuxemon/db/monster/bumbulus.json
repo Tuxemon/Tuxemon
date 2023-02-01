@@ -58,7 +58,7 @@
     "types": [
         "water"
     ],
-    "possible_genders": ["male", "female"],
+    "possible_genders": ["neuter"],
     "txmn_id": 210,
     "height": 78,
     "weight": 1,

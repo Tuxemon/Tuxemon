@@ -6,10 +6,10 @@ import logging
 from typing import TYPE_CHECKING, Callable
 
 import pygame_menu
-from pygame_menu import baseimage, locals, widgets
+from pygame_menu import baseimage, locals
 
 from tuxemon import formula, graphics, prepare
-from tuxemon.db import SeenStatus, db
+from tuxemon.db import PCSprites, SeenStatus, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
@@ -139,9 +139,16 @@ class PlayerState(PygameMenuState):
             float=True,
         ).translate(fix_width(width, 0.45), fix_height(height, 0.10))
         # image
+        sprite = ""
+        sprites = [ele.value for ele in PCSprites]
+        if player.player_sprite in sprites:
+            sprite = player.player_sprite
+        else:
+            sprite = "default_back"
+
         new_image = pygame_menu.BaseImage(
             graphics.transform_resource_filename(
-                "gfx/sprites/player/" + player.combat_front
+                f"gfx/sprites/player/{sprite}.png"
             ),
         )
         new_image.scale(prepare.SCALE, prepare.SCALE)

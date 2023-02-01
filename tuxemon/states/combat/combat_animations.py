@@ -616,7 +616,7 @@ class CombatAnimations(ABC, Menu[None]):
             combat_back = player.combat_back
 
         trainer1_maybe = self.load_sprite(
-            "gfx/sprites/player/" + combat_back,
+            f"gfx/sprites/player/{combat_back}",
             bottom=front_island.rect.centery + scale(6),
             centerx=front_island.rect.centerx,
         )

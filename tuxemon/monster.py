@@ -283,7 +283,7 @@ class Monster:
         self.slug = results.slug
         self.name = T.translate(results.slug)
         self.description = T.translate(f"{results.slug}_description")
-        self.category = T.translate(results.category)
+        self.category = T.translate(f"cat_{results.category}")
         self.shape = results.shape or MonsterShape.landrace
         self.stage = results.stage or EvolutionStage.standalone
         types = results.types

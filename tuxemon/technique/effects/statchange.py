@@ -33,7 +33,6 @@ class StatChangeEffect(TechEffect):
     """
 
     name = "statchange"
-    objective: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster

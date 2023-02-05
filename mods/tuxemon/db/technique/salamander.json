@@ -4,7 +4,7 @@
   "animation": "whisp_fire",
   "effects": [
     "poison target",
-    "damage 100"
+    "damage"
   ],
   "flip_axes": "",
   "healing_power": 0,

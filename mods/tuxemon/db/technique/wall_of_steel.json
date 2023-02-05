@@ -4,7 +4,7 @@
   "animation": "screen",
   "effects": [
     "hardshell user",
-    "damage 100"
+    "damage"
   ],
   "flip_axes": "x",
   "healing_power": 0,

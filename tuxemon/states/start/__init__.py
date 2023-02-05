@@ -10,7 +10,7 @@ from typing import Any, Callable, Tuple, Union
 
 import pygame
 
-from tuxemon import prepare
+from tuxemon import formula, prepare
 from tuxemon.locale import T
 from tuxemon.menu.input import InputMenu
 from tuxemon.menu.interface import MenuItem
@@ -107,6 +107,9 @@ class ModChooserMenuState(PopUpMenu[StartGameObj]):
             self.client.push_state("WorldState", map_name=map_path)
             self.client.push_state(FadeInTransition())
             local_session.player.name = text
+            local_session.player.game_variables[
+                "date_start_game"
+            ] = formula.today_ordinal()
             self.client.pop_state(self)
 
         def new_game(map_name: str) -> None:

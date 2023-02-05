@@ -3,7 +3,7 @@
   "accuracy": 0.4,
   "animation": "gloop_orange",
   "effects": [
-    "damage 100"
+    "damage"
   ],
   "flip_axes": "",
   "healing_power": 0,

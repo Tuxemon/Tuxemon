@@ -68,7 +68,7 @@ class WorldMenuState(PygameMenuState):
             ("menu_journal", not_implemented_dialog),
             ("menu_monster", self.open_monster_menu),
             ("menu_bag", change_state("ItemMenuState")),
-            ("menu_player", not_implemented_dialog),
+            ("menu_player", change_state("PlayerState")),
             ("menu_save", change_state("SaveMenuState")),
             ("menu_load", change_state("LoadMenuState")),
             ("menu_options", change_state("ControlState")),

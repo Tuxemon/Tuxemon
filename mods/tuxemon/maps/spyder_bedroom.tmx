@@ -77,13 +77,6 @@
     <property name="cond2" value="is player_facing_tile"/>
    </properties>
   </object>
-  <object id="28" name="Give Starting Money" type="event" x="16" y="0" width="16" height="16">
-   <properties>
-    <property name="act30" value="set_money player,1000000"/>
-    <property name="act40" value="set_variable spyder_starting_money:yes"/>
-    <property name="cond1" value="not variable_set spyder_starting_money:yes"/>
-   </properties>
-  </object>
   <object id="29" name="Auto Healing Teleported" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_monster_health ,"/>

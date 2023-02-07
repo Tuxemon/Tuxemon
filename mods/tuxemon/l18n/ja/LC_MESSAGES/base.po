@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-19 21:49+0000\n"
+"PO-Revision-Date: 2023-02-03 04:41+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "ja/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.15.1\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 ## ITEM TRANSLATIONS ##
 # Apple
@@ -815,3 +815,26 @@ msgstr "葬儀 屋"
 
 msgid "aether"
 msgstr "エーテル"
+
+msgid "welcome_location_route"
+msgstr ""
+"${{map_name}} へようこそ: ${{map_desc}}\n"
+"北: ${{north}} / 南: ${{south}} / 西: ${{west}} / 東: ${{east}}"
+
+msgid "welcome_location_town"
+msgstr ""
+"${{map_name}} タウンへようこそ: ${{map_desc}}\n"
+"北: ${{north}} / 南: ${{south}} / 西: ${{west}} / 東: ${{east}}"
+
+msgid "kennel_label"
+msgstr "{box} ({qty})"
+
+# Money notification
+msgid "player_wallet"
+msgstr "${{name}} のウォレット: ${{currency}}${{money}}"
+
+## MAP SIGNS ##
+msgid "welcome_location_city"
+msgstr ""
+"${{map_name}} へようこそ 市区町村: ${{map_desc}}\n"
+"北: ${{north}} / 南: ${{south}} / 西: ${{west}} / 東: ${{east}}"

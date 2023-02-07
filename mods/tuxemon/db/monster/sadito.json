@@ -35,7 +35,7 @@
         "metal",
         "water"
     ],
-    "possible_genders": ["male", "female"],
+    "possible_genders": ["neuter"],
     "txmn_id": 178,
     "height": 90,
     "weight": 55,

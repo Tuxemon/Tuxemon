@@ -17,6 +17,7 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
+from tuxemon.states.journal import MonsterInfoState
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.tools import open_choice_dialog, open_dialog
 
@@ -167,16 +168,8 @@ class MonsterTakeState(PygameMenuState):
             )
 
         def description(mon: Monster) -> None:
-            open_dialog(
-                local_session,
-                [
-                    T.format(
-                        "tuxemon_stat2",
-                        {
-                            "desc": mon.description,
-                        },
-                    ),
-                ],
+            local_session.client.push_state(
+                MonsterInfoState(kwargs={"slug": mon})
             )
 
         # it prints monsters inside the screen: image + button

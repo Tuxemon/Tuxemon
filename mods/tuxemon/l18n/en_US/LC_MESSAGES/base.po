@@ -1422,14 +1422,6 @@ msgid "max_moves_alert"
 msgstr "{name} has too many techniques.\n"
 "Which do you want to overwrite for learning {tech}?"
 
-msgid "tuxemon_stat1"
-msgstr "ID {txmn}, {type}, {doc} days ago\n"
-"{exp}xp, {exp_lv}xp to Lv {lv}\n"
-"Body: {weight} {unit_weight} {height} {unit_height}"
-
-msgid "tuxemon_stat2"
-msgstr "{desc}"
-
 # Player State
 
 msgid "tuxepedia_progress"
@@ -1443,6 +1435,26 @@ msgstr "Caught {param} out of {all} Tuxemon"
 
 msgid "player_start_adventure"
 msgstr "The adventure began {date} days ago."
+
+# Tuxepedia
+
+msgid "page_tuxepedia"
+msgstr "From id {a} to id {b}"
+
+msgid "no_evolution"
+msgstr "No evolution"
+
+msgid "yes_evolution"
+msgstr "Evolution"
+
+msgid "yes_evolutions"
+msgstr "Evolutions"
+
+msgid "tuxepedia_capture"
+msgstr "Captured {doc} days ago"
+
+msgid "tuxepedia_exp"
+msgstr "{exp}xp, {exp_lv}xp to Lv {lv}"
 
 # Menu notifications
 msgid "log_off"
@@ -1462,6 +1474,9 @@ msgstr "Items"
 
 msgid "menu_journal"
 msgstr "Journal"
+
+msgid "menu_tuxepedia"
+msgstr "Tuxepedia"
 
 msgid "menu_load"
 msgstr "Load"
@@ -3070,9 +3085,6 @@ msgstr "Snout"
 msgid "false_dragon"
 msgstr "False Dragon"
 
-msgid "dragon"
-msgstr "Dragon"
-
 msgid "sprout"
 msgstr "Sprout"
 
@@ -3201,6 +3213,50 @@ msgstr "Restless"
 
 msgid "slurpy"
 msgstr "Slurpy"
+
+# SHAPES
+
+msgid "aquatic"
+msgstr "Aquatic"
+
+msgid "blob"
+msgstr "Blob"
+
+msgid "brute"
+msgstr "Brute"
+
+msgid "dragon"
+msgstr "Dragon"
+
+msgid "flier"
+msgstr "Flier"
+
+msgid "grub"
+msgstr "Grub"
+
+msgid "humanoid"
+msgstr "Humanoid"
+
+msgid "hunter"
+msgstr "Hunter"
+
+msgid "landrace"
+msgstr "Landrace"
+
+msgid "leviathan"
+msgstr "Leviathan"
+
+msgid "polliwog"
+msgstr "Polliwog"
+
+msgid "serpent"
+msgstr "Serpent"
+
+msgid "sprite"
+msgstr "Sprite"
+
+msgid "varmint"
+msgstr "Varmint"
 
 ## NPC TRANSLATIONS ##
 # NPC slugs and names

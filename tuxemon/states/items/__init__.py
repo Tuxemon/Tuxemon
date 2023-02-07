@@ -222,10 +222,12 @@ class ItemMenuState(Menu[Item]):
                 for item in local_session.player.inventory.values()
                 if State[state] in item["item"].usable_in
             ]
-        # shows all items
+        # shows all items (excluded phone category)
         else:
             inventory = [
-                item for item in local_session.player.inventory.values()
+                item
+                for item in local_session.player.inventory.values()
+                if item["item"].category != "phone"
             ]
 
         # required because the max() below will fail if inv empty

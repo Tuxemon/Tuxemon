@@ -228,10 +228,7 @@ class WorldMenuState(PygameMenuState):
             """Show techniques."""
             self.client.pop_state()
             monster = monster_menu.get_selected_item().game_object
-            self.client.push_state(TechniqueMenuState())
-            local_session.player.game_variables[
-                "open_monster_techs"
-            ] = monster.instance_id.hex
+            self.client.push_state(TechniqueMenuState(monster=monster))
 
         def open_monster_submenu(
             menu_item: MenuItem[WorldMenuGameObj],

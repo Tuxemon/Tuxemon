@@ -355,6 +355,9 @@ msgstr "{name} can only be used in a {here}!"
 msgid "item_no_available_target"
 msgstr "{name} cannot be used on any of your Tuxemon right now."
 
+msgid "technique_description"
+msgstr "ID.{id} ({types}) - Accuracy {acc}%, Potency {pot}%, Power {pow}/3, Recharge {rec} turns"
+
 msgid "reg_papers"
 msgstr "Registration Papers"
 

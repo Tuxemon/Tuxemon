@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Callable
+from typing import Callable
 
 import pygame_menu
-from pygame_menu import baseimage, locals, widgets
+from pygame_menu import baseimage, locals
 
 from tuxemon import formula, graphics, prepare
 from tuxemon.db import SeenStatus, db
@@ -16,9 +16,6 @@ from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 
 logger = logging.getLogger(__name__)
-
-if TYPE_CHECKING:
-    from tuxemon.monster import Monster
 
 
 MenuGameObj = Callable[[], object]
@@ -106,6 +103,17 @@ class PlayerState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         ).translate(fix_width(width, 0.45), fix_height(height, 0.25))
+        # bank
+        if "bank_account" not in player.money:
+            player.money["bank_account"] = 0
+        bank = player.money["bank_account"]
+        menu.add.label(
+            title=T.translate("bank") + ": " + str(bank),
+            label_id="bank",
+            font_size=15,
+            align=locals.ALIGN_LEFT,
+            float=True,
+        ).translate(fix_width(width, 0.65), fix_height(height, 0.25))
         # seen
         menu.add.label(
             title=msg_seen,

@@ -208,7 +208,10 @@
     <property name="act1" value="player_stop"/>
     <property name="act3" value="pathfind spyder_dante,29,25"/>
     <property name="act4" value="translated_dialog spyder_timber_dante2"/>
-    <property name="act5" value="pathfind spyder_dante,24,31"/>
+    <property name="act5" value="add_item app_contacts"/>
+    <property name="act6" value="add_contacts spyder_papertown_mom,000"/>
+    <property name="act7" value="add_contacts professor,111"/>
+    <property name="act8" value="pathfind spyder_dante,24,31"/>
     <property name="act9" value="set_variable timberdantewarn:yes"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="not variable_set timberdantewarn:yes"/>

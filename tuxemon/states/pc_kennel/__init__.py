@@ -168,9 +168,7 @@ class MonsterTakeState(PygameMenuState):
             )
 
         def description(mon: Monster) -> None:
-            local_session.client.push_state(
-                MonsterInfoState(kwargs={"slug": mon})
-            )
+            self.client.push_state(MonsterInfoState(monster=mon))
 
         # it prints monsters inside the screen: image + button
         for monster in items:

@@ -1392,6 +1392,15 @@ msgstr "Techniques"
 msgid "monster_menu_desc"
 msgstr "Description"
 
+msgid "monster_menu_type"
+msgstr "Type(s)"
+
+msgid "monster_menu_species"
+msgstr "Species"
+
+msgid "monster_menu_shape"
+msgstr "Body Type"
+
 msgid "monster_menu_release"
 msgstr "Release"
 
@@ -1454,7 +1463,7 @@ msgid "tuxepedia_capture"
 msgstr "Captured {doc} days ago"
 
 msgid "tuxepedia_exp"
-msgstr "{exp}xp, {exp_lv}xp to Lv {lv}"
+msgstr "{exp_lv}xp to Lv {lv}"
 
 # Menu notifications
 msgid "log_off"
@@ -3505,6 +3514,44 @@ msgstr "Glitch"
 
 msgid "normal"
 msgstr "Normal"
+
+# STAT TYPES
+
+msgid "armour"
+msgstr "Armour"
+
+msgid "dodge"
+msgstr "Dodge"
+
+msgid "hp"
+msgstr "Hit Points"
+
+msgid "melee"
+msgstr "Melee"
+
+msgid "ranged"
+msgstr "Ranged"
+
+msgid "speed"
+msgstr "Speed"
+
+msgid "short_armour"
+msgstr "AR"
+
+msgid "short_dodge"
+msgstr "DE"
+
+msgid "short_hp"
+msgstr "HP"
+
+msgid "short_melee"
+msgstr "ME"
+
+msgid "short_ranged"
+msgstr "RD"
+
+msgid "short_speed"
+msgstr "SD"
 
 # SHAPES
 

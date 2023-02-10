@@ -130,7 +130,7 @@ class WorldMenuState(PygameMenuState):
             """Show monster statistics."""
             self.client.pop_state()
             monster = monster_menu.get_selected_item().game_object
-            self.client.push_state(MonsterInfoState(kwargs={"slug": monster}))
+            self.client.push_state(MonsterInfoState(monster=monster))
 
         def positive_answer() -> None:
             success = False

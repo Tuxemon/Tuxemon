@@ -6,33 +6,33 @@
   <property name="slug" value="flower_center"/>
   <property name="types" value="center"/>
  </properties>
- <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ <tileset firstgid="3865" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYmBgYCIR8wLVk4olgHpIxQZAPaN48IYBAJ6RFXw=
+   eAE7xMzAcIhE/AGonlQsx8LAQCoO4mdgGMWDNwwApO4/ew==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYCAPMJOhjQ+qh5mVgYEXiPmAGBmAxLlYGBi4gRgd3AWKmQHlzZH01ALFQOLGQGwCxKQAczzqa4F23AbKw3A9kp2k2EEPtSB/bAPi7UCMz0/IbgGpuw/ED4jQg8/rAFUpC5g=
+   eAFjYCAPnJcnXd87qB5JIK0MxCpoZoDEreUYGGyAGB38BYo5AeWdkfTsAopZAvlRQDoaix50M5D59XjUlwLN/A2Uh+FyJDuRzRgMbJA/HgDxQyDG5ydkt4LU/QdiBqC/COm5iMfvALW/E1I=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYBgaIJwVuztxiYNU6+DQg0scuw2jorhCAACeHwEb
+   eAFjYBgaQFIeuztxiYNUW+DQg0scuw2jorhCAACUZwEf
   </data>
  </layer>
  <layer id="4" name="Above player" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYBjeYCMLA8MmJLwZyB4F1AkBALrsA48=
+   eAFjYBje4LYcA8MdJHwXyB4F1AkBAH4YBOM=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">

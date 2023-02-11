@@ -1344,6 +1344,23 @@ Animation by josepharaoh99 and created for the Tuxemon project.
 * ["Yellow Circle"](https://wiki.tuxemon.org/File:Yellow_circle.gif)
 Adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
 
+### Type Icons
+
+* ["Earth Type"](https://wiki.tuxemon.org/File:24px_Element6.png)
+[https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Fire Type"](https://wiki.tuxemon.org/File:24px_Element1.png)
+[https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Metal Type"](https://wiki.tuxemon.org/File:24px_Element5.png)
+[https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Water Type"](https://wiki.tuxemon.org/File:24px_Element2.png)
+[https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Wood Type"](https://wiki.tuxemon.org/File:I_Leaf-24.png)
+Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
 ### Technique Icons
 
 * ["icon_blinded.png"](https://wiki.tuxemon.org/File:Blind.png)

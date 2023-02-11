@@ -2,6 +2,8 @@
     "slug": "shelagu",
     "category": "unknown",
     "ai": "RandomAI",
+    "fusion1": "shel",
+    "fusion2": "agu",
     "moveset": [
         {
             "level_learned": 2,

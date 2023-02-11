@@ -2,6 +2,8 @@
     "slug": "spoilurm",
     "category": "detritus",
     "ai": "RandomAI",
+    "fusion1": "spoi",
+    "fusion2": "lurm",
     "moveset": [
         {
             "level_learned": 2,

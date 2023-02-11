@@ -2,6 +2,8 @@
     "slug": "d0llf1n",
     "category": "glitched",
     "ai": "RandomAI",
+    "fusion1": "d0ll",
+    "fusion2": "f1n",
     "moveset": [
         {
             "level_learned": 2,

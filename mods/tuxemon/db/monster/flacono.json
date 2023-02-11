@@ -2,6 +2,8 @@
     "slug": "flacono",
     "category": "horned_raptor",
     "ai": "RandomAI",
+    "fusion1": "fla",
+    "fusion2": "cono",
     "moveset": [
         {
             "level_learned": 2,

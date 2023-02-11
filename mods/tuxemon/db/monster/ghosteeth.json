@@ -2,6 +2,8 @@
     "slug": "ghosteeth",
     "category": "cheshire",
     "ai": "RandomAI",
+    "fusion1": "ghos",
+    "fusion2": "teeth",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,6 +2,8 @@
     "slug": "dandicub",
     "category": "floret",
     "ai": "RandomAI",
+    "fusion1": "dandi",
+    "fusion2": "cub",
     "moveset": [
         {
             "level_learned": 2,

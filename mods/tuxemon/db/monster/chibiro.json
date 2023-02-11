@@ -2,6 +2,8 @@
     "slug": "chibiro",
     "category": "false_turnip",
     "ai": "RandomAI",
+    "fusion1": "chi",
+    "fusion2": "biro",
     "moveset": [
         {
             "level_learned": 2,

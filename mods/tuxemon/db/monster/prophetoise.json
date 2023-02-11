@@ -2,6 +2,8 @@
     "slug": "prophetoise",
     "category": "dragon_bone",
     "ai": "RandomAI",
+    "fusion1": "prophe",
+    "fusion2": "toise",
     "moveset": [
         {
             "level_learned": 2,

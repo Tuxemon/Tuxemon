@@ -2,6 +2,8 @@
     "slug": "squabbit",
     "category": "rabbit",
     "ai": "RandomAI",
+    "fusion1": "squab",
+    "fusion2": "bit",
     "moveset": [
         {
             "level_learned": 2,

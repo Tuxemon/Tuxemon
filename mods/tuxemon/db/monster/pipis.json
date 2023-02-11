@@ -2,6 +2,8 @@
     "slug": "pipis",
     "category": "echo",
     "ai": "RandomAI",
+    "fusion1": "pi",
+    "fusion2": "pis",
     "moveset": [
         {
             "level_learned": 2,

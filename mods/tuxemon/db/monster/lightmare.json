@@ -2,6 +2,8 @@
     "slug": "lightmare",
     "category": "nightmare_fuel",
     "ai": "RandomAI",
+    "fusion1": "light",
+    "fusion2": "mare",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,6 +2,8 @@
     "slug": "agnite",
     "category": "false_dragon",
     "ai": "RandomAI",
+    "fusion1": "agni",
+    "fusion2": "nite",
     "moveset": [
         {
             "level_learned": 2,

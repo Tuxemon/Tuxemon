@@ -2,6 +2,8 @@
     "slug": "boxali",
     "category": "macropod",
     "ai": "RandomAI",
+    "fusion1": "box",
+    "fusion2": "ali",
     "moveset": [
         {
             "level_learned": 2,

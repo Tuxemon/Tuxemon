@@ -227,6 +227,8 @@ class Monster:
         self.capture = 0
         self.height = 0.0
         self.weight = 0.0
+        self.fusion1 = ""
+        self.fusion2 = ""
 
         # The multiplier for checks when a monster ball is thrown this should be a value betwen 0-255 meaning that
         # 0 is 0% capture rate and 255 has a very good chance of capture. This numbers are based on the capture system
@@ -297,6 +299,8 @@ class Monster:
         self.height = self.set_char_height(results.height)
         self.weight = self.set_char_weight(results.weight)
         self.gender = random.choice(list(results.possible_genders))
+        self.fusion1 = results.fusion1
+        self.fusion2 = results.fusion2
         self.catch_rate = (
             results.catch_rate or TuxemonConfig().default_monster_catch_rate
         )

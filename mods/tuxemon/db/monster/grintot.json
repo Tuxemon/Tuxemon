@@ -2,6 +2,8 @@
     "slug": "grintot",
     "category": "pebble",
     "ai": "RandomAI",
+    "fusion1": "grinto",
+    "fusion2": "tot",
     "moveset": [
         {
             "level_learned": 2,

@@ -116,6 +116,8 @@ class SpawnMonsterAction(EventAction):
         # continues the creation of the child.
         child = monster.Monster()
         child.load_from_db(seed)
+        if father.slug != mother.slug:
+            child.name = father.fusion1.title() + mother.fusion2
         child.set_level(5)
         child.set_capture(formula.today_ordinal())
         child.current_hp = child.hp

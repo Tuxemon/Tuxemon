@@ -2,6 +2,8 @@
     "slug": "rockat",
     "category": "sleek_boulder",
     "ai": "RandomAI",
+    "fusion1": "rocka",
+    "fusion2": "kat",
     "moveset": [
         {
             "level_learned": 2,

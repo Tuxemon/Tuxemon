@@ -2,6 +2,8 @@
     "slug": "nut",
     "category": "hardware",
     "ai": "RandomAI",
+    "fusion1": "nu",
+    "fusion2": "nut",
     "moveset": [
         {
             "level_learned": 2,

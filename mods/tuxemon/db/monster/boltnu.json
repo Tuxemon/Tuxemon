@@ -2,6 +2,8 @@
     "slug": "boltnu",
     "category": "screwdriver",
     "ai": "RandomAI",
+    "fusion1": "bolt",
+    "fusion2": "nu",
     "moveset": [
         {
             "level_learned": 2,

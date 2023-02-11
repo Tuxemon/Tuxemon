@@ -2,6 +2,8 @@
     "slug": "ignibus",
     "category": "hot_rock",
     "ai": "RandomAI",
+    "fusion1": "igni",
+    "fusion2": "bus",
     "moveset": [
         {
             "level_learned": 2,

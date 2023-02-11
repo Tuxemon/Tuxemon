@@ -2,6 +2,8 @@
     "slug": "axylightl",
     "category": "inchoate",
     "ai": "RandomAI",
+    "fusion1": "axy",
+    "fusion2": "lightl",
     "moveset": [
         {
             "level_learned": 2,

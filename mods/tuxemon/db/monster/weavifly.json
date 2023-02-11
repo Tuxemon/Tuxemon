@@ -2,6 +2,8 @@
     "slug": "weavifly",
     "category": "brood",
     "ai": "RandomAI",
+    "fusion1": "weavi",
+    "fusion2": "fly",
     "moveset": [
         {
             "level_learned": 2,

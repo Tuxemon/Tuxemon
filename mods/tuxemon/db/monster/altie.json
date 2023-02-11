@@ -2,6 +2,8 @@
     "slug": "altie",
     "category": "alien",
     "ai": "RandomAI",
+    "fusion1": "al",
+    "fusion2": "tie",
     "moveset": [
         {
             "level_learned": 2,

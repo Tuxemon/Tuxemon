@@ -2,6 +2,8 @@
     "slug": "sockeserp",
     "category": "power_socket_snake",
     "ai": "RandomAI",
+    "fusion1": "socke",
+    "fusion2": "serp",
     "moveset": [
         {
             "level_learned": 2,

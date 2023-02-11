@@ -2,6 +2,8 @@
     "slug": "narcileaf",
     "category": "gardener",
     "ai": "RandomAI",
+    "fusion1": "narci",
+    "fusion2": "leaf",
     "moveset": [
         {
             "level_learned": 2,

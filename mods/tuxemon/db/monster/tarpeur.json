@@ -2,6 +2,8 @@
     "slug": "tarpeur",
     "category": "restful",
     "ai": "RandomAI",
+    "fusion1": "tar",
+    "fusion2": "peur",
     "moveset": [
         {
             "level_learned": 2,

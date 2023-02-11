@@ -2,6 +2,8 @@
     "slug": "beenstalker",
     "category": "scarytale",
     "ai": "RandomAI",
+    "fusion1": "been",
+    "fusion2": "stalker",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,6 +2,8 @@
     "slug": "dragarbor",
     "category": "dragon",
     "ai": "RandomAI",
+    "fusion1": "dra",
+    "fusion2": "garbor",
     "moveset": [
         {
             "level_learned": 2,

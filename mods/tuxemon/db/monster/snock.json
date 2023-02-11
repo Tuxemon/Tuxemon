@@ -2,6 +2,8 @@
     "slug": "snock",
     "category": "sock",
     "ai": "RandomAI",
+    "fusion1": "s",
+    "fusion2": "nock",
     "moveset": [
         {
             "level_learned": 2,

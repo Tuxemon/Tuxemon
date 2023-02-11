@@ -2,6 +2,8 @@
     "slug": "merlicun",
     "category": "dragon_worm",
     "ai": "RandomAI",
+    "fusion1": "merl",
+    "fusion2": "icun",
     "moveset": [
         {
             "level_learned": 2,

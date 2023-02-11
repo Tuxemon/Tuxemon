@@ -2,6 +2,8 @@
     "slug": "vigueur",
     "category": "energised",
     "ai": "RandomAI",
+    "fusion1": "vi",
+    "fusion2": "gueur",
     "moveset": [
         {
             "level_learned": 2,

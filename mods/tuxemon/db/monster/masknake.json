@@ -2,6 +2,8 @@
     "slug": "masknake",
     "category": "serpent's_tooth",
     "ai": "RandomAI",
+    "fusion1": "mask",
+    "fusion2": "nake",
     "moveset": [
         {
             "level_learned": 2,

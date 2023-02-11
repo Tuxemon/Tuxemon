@@ -2,6 +2,8 @@
     "slug": "fordin",
     "category": "petrified",
     "ai": "RandomAI",
+    "fusion1": "for",
+    "fusion2": "din",
     "moveset": [
         {
             "level_learned": 2,

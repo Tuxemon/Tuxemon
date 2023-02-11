@@ -2,6 +2,8 @@
     "slug": "ruption",
     "category": "bonfire",
     "ai": "RandomAI",
+    "fusion1": "rup",
+    "fusion2": "tion",
     "moveset": [
         {
             "level_learned": 2,

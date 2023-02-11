@@ -2,6 +2,8 @@
     "slug": "propellercat",
     "category": "eureka",
     "ai": "RandomAI",
+    "fusion1": "propeller",
+    "fusion2": "cat",
     "moveset": [
         {
             "level_learned": 2,

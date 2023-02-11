@@ -2,6 +2,8 @@
     "slug": "gectile",
     "category": "climbing",
     "ai": "RandomAI",
+    "fusion1": "gec",
+    "fusion2": "tile",
     "moveset": [
         {
             "level_learned": 2,

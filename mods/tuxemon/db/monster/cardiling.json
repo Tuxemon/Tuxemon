@@ -2,6 +2,8 @@
     "slug": "cardiling",
     "category": "firebird",
     "ai": "RandomAI",
+    "fusion1": "cardi",
+    "fusion2": "ling",
     "moveset": [
         {
             "level_learned": 2,

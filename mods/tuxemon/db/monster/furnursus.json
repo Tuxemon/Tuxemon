@@ -2,6 +2,8 @@
     "slug": "furnursus",
     "category": "fireplace",
     "ai": "RandomAI",
+    "fusion1": "furn",
+    "fusion2": "ursus",
     "moveset": [
         {
             "level_learned": 2,

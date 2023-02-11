@@ -2,6 +2,8 @@
     "slug": "jelillow",
     "category": "jelly_pillow",
     "ai": "RandomAI",
+    "fusion1": "jel",
+    "fusion2": "illow",
     "moveset": [
         {
             "level_learned": 2,

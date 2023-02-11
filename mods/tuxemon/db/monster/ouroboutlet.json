@@ -2,6 +2,8 @@
     "slug": "ouroboutlet",
     "category": "infinite_energy",
     "ai": "RandomAI",
+    "fusion1": "ourobout",
+    "fusion2": "let",
     "moveset": [
         {
             "level_learned": 2,

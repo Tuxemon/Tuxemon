@@ -2,6 +2,8 @@
     "slug": "legko",
     "category": "lizard",
     "ai": "RandomAI",
+    "fusion1": "leg",
+    "fusion2": "ko",
     "moveset": [
         {
             "level_learned": 2,

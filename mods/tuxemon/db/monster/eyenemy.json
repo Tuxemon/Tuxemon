@@ -2,6 +2,8 @@
     "slug": "eyenemy",
     "category": "pupil",
     "ai": "RandomAI",
+    "fusion1": "eye",
+    "fusion2": "nemy",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,6 +2,8 @@
     "slug": "nudikill",
     "category": "dark_bishop",
     "ai": "RandomAI",
+    "fusion1": "nudi",
+    "fusion2": "kill",
     "moveset": [
         {
             "level_learned": 2,

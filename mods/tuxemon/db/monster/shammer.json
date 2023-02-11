@@ -2,6 +2,8 @@
     "slug": "shammer",
     "category": "fossil",
     "ai": "RandomAI",
+    "fusion1": "sham",
+    "fusion2": "mer",
     "moveset": [
         {
             "level_learned": 2,

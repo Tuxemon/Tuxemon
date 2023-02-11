@@ -2,6 +2,8 @@
     "slug": "snokari",
     "category": "hydra",
     "ai": "RandomAI",
+    "fusion1": "sno",
+    "fusion2": "kari",
     "moveset": [
         {
             "level_learned": 2,

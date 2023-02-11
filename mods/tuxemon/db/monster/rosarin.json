@@ -2,6 +2,8 @@
     "slug": "rosarin",
     "category": "every_thorn",
     "ai": "RandomAI",
+    "fusion1": "rosa",
+    "fusion2": "rin",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,6 +2,8 @@
     "slug": "fancair",
     "category": "",
     "ai": "RandomAI",
+    "fusion1": "fan",
+    "fusion2": "cair",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,6 +2,8 @@
     "slug": "ferricran",
     "category": "dragon",
     "ai": "RandomAI",
+    "fusion1": "ferri",
+    "fusion2": "cran",
     "moveset": [
         {
             "level_learned": 2,

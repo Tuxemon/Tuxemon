@@ -2,6 +2,8 @@
     "slug": "statursus",
     "category": "inner_fire",
     "ai": "RandomAI",
+    "fusion1": "stat",
+    "fusion2": "ursus",
     "moveset": [
         {
             "level_learned": 2,

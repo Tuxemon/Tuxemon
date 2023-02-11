@@ -2,6 +2,8 @@
     "slug": "vivisource",
     "category": "purified",
     "ai": "RandomAI",
+    "fusion1": "vivi",
+    "fusion2": "source",
     "moveset": [
         {
             "level_learned": 2,

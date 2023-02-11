@@ -2,6 +2,8 @@
     "slug": "dinoflop",
     "category": "",
     "ai": "RandomAI",
+    "fusion1": "dino",
+    "fusion2": "flop",
     "moveset": [
         {
             "level_learned": 2,

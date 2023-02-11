@@ -2,6 +2,8 @@
     "slug": "rabbitosaur",
     "category": "rabbit",
     "ai": "RandomAI",
+    "fusion1": "rabbito",
+    "fusion2": "saur",
     "moveset": [
         {
             "level_learned": 2,

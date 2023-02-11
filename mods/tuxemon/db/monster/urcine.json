@@ -2,6 +2,8 @@
     "slug": "urcine",
     "category": "temper",
     "ai": "RandomAI",
+    "fusion1": "ur",
+    "fusion2": "cine",
     "moveset": [
         {
             "level_learned": 2,

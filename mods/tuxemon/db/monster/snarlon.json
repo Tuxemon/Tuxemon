@@ -2,6 +2,8 @@
     "slug": "snarlon",
     "category": "westerly",
     "ai": "RandomAI",
+    "fusion1": "snar",
+    "fusion2": "lon",
     "moveset": [
         {
             "level_learned": 2,

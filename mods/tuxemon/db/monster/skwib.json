@@ -2,6 +2,8 @@
     "slug": "skwib",
     "category": "",
     "ai": "RandomAI",
+    "fusion1": "sk",
+    "fusion2": "wib",
     "moveset": [
         {
             "level_learned": 2,

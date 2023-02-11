@@ -2,6 +2,8 @@
     "slug": "bolt",
     "category": "hardware",
     "ai": "RandomAI",
+    "fusion1": "bol",
+    "fusion2": "olt",
     "moveset": [
         {
             "level_learned": 2,

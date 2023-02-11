@@ -312,6 +312,12 @@ class MonsterModel(BaseModel):
     )
 
     # Optional fields
+    fusion1: str = Field(
+        ..., description="If father, 1st part child's name (eg. Cat-)"
+    )
+    fusion2: str = Field(
+        ..., description="If mother, 2nd part child's name (eg. -eye)"
+    )
     sprites: Optional[MonsterSpritesModel]
     shape: MonsterShape = Field(..., description="The shape of the monster")
     types: Sequence[ElementType] = Field(

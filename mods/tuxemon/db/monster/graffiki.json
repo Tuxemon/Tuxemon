@@ -2,6 +2,8 @@
     "slug": "graffiki",
     "category": "gamut",
     "ai": "RandomAI",
+    "fusion1": "graf",
+    "fusion2": "fiki",
     "moveset": [
         {
             "level_learned": 2,

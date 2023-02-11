@@ -2,6 +2,8 @@
     "slug": "foofle",
     "category": "woolly",
     "ai": "RandomAI",
+    "fusion1": "foo",
+    "fusion2": "fle",
     "moveset": [
         {
             "level_learned": 2,

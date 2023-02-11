@@ -2,6 +2,8 @@
     "slug": "b_ver_1",
     "category": "gnawer",
     "ai": "RandomAI",
+    "fusion1": "b-",
+    "fusion2": "ver.1",
     "moveset": [
         {
             "level_learned": 2,

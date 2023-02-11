@@ -2,6 +2,8 @@
     "slug": "spighter",
     "category": "eyerachnid",
     "ai": "RandomAI",
+    "fusion1": "spigh",
+    "fusion2": "ter",
     "moveset": [
         {
             "level_learned": 2,

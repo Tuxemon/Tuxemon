@@ -2,6 +2,8 @@
     "slug": "birdling",
     "category": "bird_brain",
     "ai": "RandomAI",
+    "fusion1": "bird",
+    "fusion2": "dling",
     "moveset": [
         {
             "level_learned": 2,

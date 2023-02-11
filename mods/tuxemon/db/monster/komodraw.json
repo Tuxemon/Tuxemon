@@ -2,6 +2,8 @@
     "slug": "komodraw",
     "category": "quickdraw",
     "ai": "RandomAI",
+    "fusion1": "komo",
+    "fusion2": "draw",
     "moveset": [
         {
             "level_learned": 2,

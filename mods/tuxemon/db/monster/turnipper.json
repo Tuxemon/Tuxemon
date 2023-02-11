@@ -2,6 +2,8 @@
     "slug": "turnipper",
     "category": "scarytale",
     "ai": "RandomAI",
+    "fusion1": "tur",
+    "fusion2": "nipper",
     "moveset": [
         {
             "level_learned": 2,

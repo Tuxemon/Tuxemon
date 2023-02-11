@@ -2,6 +2,8 @@
     "slug": "baobaraffe",
     "category": "tree_giraffe ",
     "ai": "RandomAI",
+    "fusion1": "baobar",
+    "fusion2": "baraffe",
     "moveset": [
         {
             "level_learned": 2,

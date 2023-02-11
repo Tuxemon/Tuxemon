@@ -2,6 +2,8 @@
     "slug": "octabode",
     "category": "hermit",
     "ai": "RandomAI",
+    "fusion1": "octa",
+    "fusion2": "bode",
     "moveset": [
         {
             "level_learned": 2,

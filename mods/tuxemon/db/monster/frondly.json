@@ -2,6 +2,8 @@
     "slug": "frondly",
     "category": "helping_hand",
     "ai": "RandomAI",
+    "fusion1": "frond",
+    "fusion2": "ly",
     "moveset": [
         {
             "level_learned": 2,

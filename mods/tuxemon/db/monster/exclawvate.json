@@ -2,6 +2,8 @@
     "slug": "exclawvate",
     "category": "digger",
     "ai": "RandomAI",
+    "fusion1": "exclaw",
+    "fusion2": "vate",
     "moveset": [
         {
             "level_learned": 2,

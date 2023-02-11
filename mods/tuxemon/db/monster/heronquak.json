@@ -2,6 +2,8 @@
     "slug": "heronquak",
     "category": "crested",
     "ai": "RandomAI",
+    "fusion1": "heron",
+    "fusion2": "quak",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,6 +2,8 @@
     "slug": "bugnin",
     "category": "honour",
     "ai": "RandomAI",
+    "fusion1": "bug",
+    "fusion2": "nin",
     "moveset": [
         {
             "level_learned": 2,

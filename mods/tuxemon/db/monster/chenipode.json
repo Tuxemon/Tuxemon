@@ -2,6 +2,8 @@
     "slug": "chenipode",
     "category": "travel_bug",
     "ai": "RandomAI",
+    "fusion1": "cheni",
+    "fusion2": "pode",
     "moveset": [
         {
             "level_learned": 2,

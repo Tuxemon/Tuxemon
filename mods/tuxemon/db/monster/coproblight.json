@@ -2,6 +2,8 @@
     "slug": "coproblight",
     "category": "skull_poo",
     "ai": "RandomAI",
+    "fusion1": "copro",
+    "fusion2": "blight",
     "moveset": [
         {
             "level_learned": 2,

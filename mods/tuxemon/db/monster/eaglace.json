@@ -2,6 +2,8 @@
     "slug": "eaglace",
     "category": "cirrus",
     "ai": "RandomAI",
+    "fusion1": "ea",
+    "fusion2": "glace",
     "moveset": [
         {
             "level_learned": 2,

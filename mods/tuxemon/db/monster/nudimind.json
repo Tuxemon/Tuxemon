@@ -2,6 +2,8 @@
     "slug": "nudimind",
     "category": "reverie",
     "ai": "RandomAI",
+    "fusion1": "nudi",
+    "fusion2": "mind",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,6 +2,8 @@
     "slug": "tsushimi",
     "category": "dragon_roll",
     "ai": "RandomAI",
+    "fusion1": "tsu",
+    "fusion2": "ushimi",
     "moveset": [
         {
             "level_learned": 2,

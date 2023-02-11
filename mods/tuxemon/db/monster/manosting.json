@@ -2,6 +2,8 @@
     "slug": "manosting",
     "category": "balloon",
     "ai": "RandomAI",
+    "fusion1": "mano",
+    "fusion2": "sting",
     "moveset": [
         {
             "level_learned": 2,

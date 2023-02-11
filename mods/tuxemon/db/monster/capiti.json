@@ -2,6 +2,8 @@
     "slug": "capiti",
     "category": "woodwose",
     "ai": "RandomAI",
+    "fusion1": "cap",
+    "fusion2": "piti",
     "moveset": [
         {
             "level_learned": 2,

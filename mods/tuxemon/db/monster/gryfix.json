@@ -2,6 +2,8 @@
     "slug": "gryfix",
     "category": "horned_raptor",
     "ai": "RandomAI",
+    "fusion1": "gry",
+    "fusion2": "fix",
     "moveset": [
         {
             "level_learned": 2,

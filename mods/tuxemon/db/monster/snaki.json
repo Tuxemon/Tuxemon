@@ -2,6 +2,8 @@
     "slug": "snaki",
     "category": "false_serpent",
     "ai": "RandomAI",
+    "fusion1": "sna",
+    "fusion2": "ki",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,6 +2,8 @@
     "slug": "velocitile",
     "category": "restless",
     "ai": "RandomAI",
+    "fusion1": "veloci",
+    "fusion2": "tile",
     "moveset": [
         {
             "level_learned": 2,

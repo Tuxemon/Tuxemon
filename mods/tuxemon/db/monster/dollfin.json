@@ -2,6 +2,8 @@
     "slug": "dollfin",
     "category": "joyful",
     "ai": "RandomAI",
+    "fusion1": "doll",
+    "fusion2": "fin",
     "moveset": [
         {
             "level_learned": 2,

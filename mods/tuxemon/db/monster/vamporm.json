@@ -2,6 +2,8 @@
     "slug": "vamporm",
     "category": "clot",
     "ai": "RandomAI",
+    "fusion1": "vamp",
+    "fusion2": "porm",
     "moveset": [
         {
             "level_learned": 2,

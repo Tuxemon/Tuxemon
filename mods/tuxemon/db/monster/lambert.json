@@ -2,6 +2,8 @@
     "slug": "lambert",
     "category": "gumnut",
     "ai": "RandomAI",
+    "fusion1": "lam",
+    "fusion2": "bert",
     "moveset": [
         {
             "level_learned": 2,

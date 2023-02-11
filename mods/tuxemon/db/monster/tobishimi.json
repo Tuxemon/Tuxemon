@@ -2,6 +2,8 @@
     "slug": "tobishimi",
     "category": "dragon_roll",
     "ai": "RandomAI",
+    "fusion1": "tobi",
+    "fusion2": "shimi",
     "moveset": [
         {
             "level_learned": 2,

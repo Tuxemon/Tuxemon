@@ -2,6 +2,8 @@
     "slug": "budaye",
     "category": "mutual",
     "ai": "RandomAI",
+    "fusion1": "bud",
+    "fusion2": "aye",
     "moveset": [
         {
             "level_learned": 2,

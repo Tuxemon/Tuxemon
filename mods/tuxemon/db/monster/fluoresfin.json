@@ -2,6 +2,8 @@
     "slug": "fluoresfin",
     "category": "light_fin",
     "ai": "RandomAI",
+    "fusion1": "fluores",
+    "fusion2": "fin",
     "moveset": [
         {
             "level_learned": 2,

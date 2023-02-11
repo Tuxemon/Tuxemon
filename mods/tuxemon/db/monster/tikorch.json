@@ -2,6 +2,8 @@
     "slug": "tikorch",
     "category": "taboo",
     "ai": "RandomAI",
+    "fusion1": "ti",
+    "fusion2": "korch",
     "moveset": [
         {
             "level_learned": 2,

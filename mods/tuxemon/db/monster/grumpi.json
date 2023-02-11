@@ -2,6 +2,8 @@
     "slug": "grumpi",
     "category": "gummy",
     "ai": "RandomAI",
+    "fusion1": "grum",
+    "fusion2": "pi",
     "moveset": [
         {
             "level_learned": 2,

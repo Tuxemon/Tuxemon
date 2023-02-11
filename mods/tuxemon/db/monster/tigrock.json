@@ -2,6 +2,8 @@
     "slug": "tigrock",
     "category": "ex_machina",
     "ai": "RandomAI",
+    "fusion1": "tig",
+    "fusion2": "rock",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,6 +2,8 @@
     "slug": "pharfan",
     "category": "little_elephant",
     "ai": "RandomAI",
+    "fusion1": "phar",
+    "fusion2": "fan",
     "moveset": [
         {
             "level_learned": 2,

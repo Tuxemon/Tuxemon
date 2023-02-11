@@ -2,6 +2,8 @@
     "slug": "possessun",
     "category": "visitor",
     "ai": "RandomAI",
+    "fusion1": "possess",
+    "fusion2": "sun",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,6 +2,8 @@
     "slug": "anoleaf",
     "category": "sprout",
     "ai": "RandomAI",
+    "fusion1": "ano",
+    "fusion2": "leaf",
     "moveset": [
         {
             "level_learned": 2,

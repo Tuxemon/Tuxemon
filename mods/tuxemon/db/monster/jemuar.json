@@ -2,6 +2,8 @@
     "slug": "jemuar",
     "category": "precious_boulder",
     "ai": "RandomAI",
+    "fusion1": "jem",
+    "fusion2": "muar",
     "moveset": [
         {
             "level_learned": 2,

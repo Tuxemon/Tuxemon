@@ -2,6 +2,8 @@
     "slug": "moloch",
     "category": "devil",
     "ai": "RandomAI",
+    "fusion1": "mol",
+    "fusion2": "loch",
     "moveset": [
         {
             "level_learned": 2,

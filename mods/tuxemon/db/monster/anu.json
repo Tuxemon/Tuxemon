@@ -2,6 +2,8 @@
     "slug": "anu",
     "category": "dream_fox",
     "ai": "RandomAI",
+    "fusion1": "an",
+    "fusion2": "nu",
     "moveset": [
         {
             "level_learned": 2,

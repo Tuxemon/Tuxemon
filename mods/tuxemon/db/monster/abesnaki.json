@@ -2,6 +2,8 @@
     "slug": "abesnaki",
     "category": "shield-mask",
     "ai": "RandomAI",
+    "fusion1": "abe",
+    "fusion2": "snaki",
     "moveset": [
         {
             "level_learned": 2,

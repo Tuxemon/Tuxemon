@@ -2,6 +2,8 @@
     "slug": "araignee",
     "category": "weaver",
     "ai": "RandomAI",
+    "fusion1": "araig",
+    "fusion2": "nee",
     "moveset": [
         {
             "level_learned": 2,

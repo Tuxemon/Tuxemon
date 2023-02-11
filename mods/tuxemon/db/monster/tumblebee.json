@@ -2,6 +2,8 @@
     "slug": "tumblebee",
     "category": "drone",
     "ai": "RandomAI",
+    "fusion1": "tumble",
+    "fusion2": "bee",
     "moveset": [
         {
             "level_learned": 2,

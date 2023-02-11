@@ -2,6 +2,8 @@
     "slug": "bursa",
     "category": "too_hot",
     "ai": "RandomAI",
+    "fusion1": "bur",
+    "fusion2": "ursa",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,6 +2,8 @@
     "slug": "wrougon",
     "category": "dragon",
     "ai": "RandomAI",
+    "fusion1": "wrou",
+    "fusion2": "gon",
     "moveset": [
         {
             "level_learned": 2,

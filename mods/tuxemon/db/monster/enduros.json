@@ -2,6 +2,8 @@
     "slug": "enduros",
     "category": "defensive",
     "ai": "RandomAI",
+    "fusion1": "endu",
+    "fusion2": "ros",
     "moveset": [
         {
             "level_learned": 2,

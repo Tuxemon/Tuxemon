@@ -2,6 +2,8 @@
     "slug": "medushock",
     "category": "jellyfish",
     "ai": "RandomAI",
+    "fusion1": "medu",
+    "fusion2": "shock",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,6 +2,8 @@
     "slug": "pythwire",
     "category": "power_socket",
     "ai": "RandomAI",
+    "fusion1": "pyth",
+    "fusion2": "wire",
     "moveset": [
         {
             "level_learned": 2,

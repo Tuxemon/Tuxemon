@@ -2,6 +2,8 @@
     "slug": "arthrobolt",
     "category": "foreman",
     "ai": "RandomAI",
+    "fusion1": "arthro",
+    "fusion2": "bolt",
     "moveset": [
         {
             "level_learned": 2,

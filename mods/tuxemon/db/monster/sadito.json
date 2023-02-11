@@ -2,6 +2,8 @@
     "slug": "sadito",
     "category": "lamenting_emotion",
     "ai": "RandomAI",
+    "fusion1": "sad",
+    "fusion2": "dito",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,6 +2,8 @@
     "slug": "dark_robo",
     "category": "threat",
     "ai": "RandomAI",
+    "fusion1": "dark",
+    "fusion2": "robo",
     "moveset": [
         {
             "level_learned": 2,

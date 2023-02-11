@@ -2,6 +2,8 @@
     "slug": "grinflare",
     "category": "igneous",
     "ai": "RandomAI",
+    "fusion1": "grin",
+    "fusion2": "flare",
     "moveset": [
         {
             "level_learned": 2,

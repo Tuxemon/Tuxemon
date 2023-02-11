@@ -2,6 +2,8 @@
     "slug": "polyrock",
     "category": "grasshopper",
     "ai": "RandomAI",
+    "fusion1": "poly",
+    "fusion2": "rock",
     "moveset": [
         {
             "level_learned": 2,

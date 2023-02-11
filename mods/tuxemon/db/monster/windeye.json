@@ -2,6 +2,8 @@
     "slug": "windeye",
     "category": "",
     "ai": "RandomAI",
+    "fusion1": "wind",
+    "fusion2": "eye",
     "moveset": [
         {
             "level_learned": 2,

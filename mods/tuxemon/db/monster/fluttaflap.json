@@ -2,6 +2,8 @@
     "slug": "fluttaflap",
     "category": "sanguine",
     "ai": "RandomAI",
+    "fusion1": "flutta",
+    "fusion2": "flap",
     "moveset": [
         {
             "level_learned": 2,

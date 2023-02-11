@@ -2,6 +2,8 @@
     "slug": "sumchon",
     "category": "wrestling",
     "ai": "RandomAI",
+    "fusion1": "sum",
+    "fusion2": "chon",
     "moveset": [
         {
             "level_learned": 2,

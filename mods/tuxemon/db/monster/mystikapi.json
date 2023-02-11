@@ -2,6 +2,8 @@
     "slug": "mystikapi",
     "category": "prescient",
     "ai": "RandomAI",
+    "fusion1": "mysti",
+    "fusion2": "kapi",
     "moveset": [
         {
             "level_learned": 2,

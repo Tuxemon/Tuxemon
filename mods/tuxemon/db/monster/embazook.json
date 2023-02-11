@@ -2,6 +2,8 @@
     "slug": "embazook",
     "category": "gunner",
     "ai": "RandomAI",
+    "fusion1": "emba",
+    "fusion2": "zook",
     "moveset": [
         {
             "level_learned": 2,

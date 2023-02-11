@@ -2,6 +2,8 @@
     "slug": "katapill",
     "category": "beat",
     "ai": "RandomAI",
+    "fusion1": "kata",
+    "fusion2": "pill",
     "moveset": [
         {
             "level_learned": 2,

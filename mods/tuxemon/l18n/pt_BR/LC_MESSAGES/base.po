@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-18 01:47+0000\n"
+"PO-Revision-Date: 2023-02-03 04:41+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "tuxemon/tuxemon/pt_BR/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 msgid "combat_state_lifeleech_get"
 msgstr "{user} está sugando saúde de {target}."
@@ -434,7 +434,7 @@ msgstr "Agnite"
 
 msgid "allagon_description"
 msgstr ""
-"Allagon se atraem por relíquias feitas de metais deixados para trás por seus "
+"ALLAGON se atraem por relíquias feitas de metais deixados para trás por seus "
 "ancestrais e os buscam vorazmente."
 
 msgid "anoleaf_description"
@@ -568,7 +568,7 @@ msgstr "Falcono"
 
 msgid "ferricran_description"
 msgstr ""
-"Uma vez, o Ferricran tinha o corpo todo coberto com escamas de adamantina e "
+"Uma vez, o FERRICRAN tinha o corpo todo coberto com escamas de adamantina e "
 "tinha asas de mithril."
 
 msgid "ferricran"
@@ -1185,7 +1185,7 @@ msgstr "Noz"
 
 msgid "pilthropus_description"
 msgstr ""
-"Encontra-se ao lado de Tuxemons como Rhincus, Pilthropus foi um dos mais "
+"Encontra-se ao lado de Tuxemons como RHINCUS, PILTHROPUS foi um dos mais "
 "antigos Tuxemons capazes de criar suas próprias ferramentas."
 
 msgid "rockat"
@@ -1518,7 +1518,7 @@ msgstr "Instituto Xero para Pesquisa e Avanço Tuxemon à frente."
 
 msgid "teddisun_description"
 msgstr ""
-"Teddisun adora o sol - eles sempre são vistos carregando seu brinquedo solar."
+"TEDDISUN adora o sol - eles sempre são vistos carregando seu brinquedo solar."
 
 msgid "teddisun"
 msgstr "Teddisun"
@@ -1992,23 +1992,18 @@ msgstr "Banling"
 msgid "baobaraffe"
 msgstr "Baobaraffe"
 
-#, fuzzy
 msgid "birdling"
 msgstr "Birdling"
 
-#, fuzzy
 msgid "beenstalker"
 msgstr "Beenstalker"
 
-#, fuzzy
 msgid "boltnu"
 msgstr "Boltnu"
 
-#, fuzzy
 msgid "botbot"
 msgstr "Botbot"
 
-#, fuzzy
 msgid "boxali"
 msgstr "Boxali"
 
@@ -2330,3 +2325,1533 @@ msgstr "Parece o crânio de um cão antigo, mas é duro como pedra."
 
 msgid "rhincus_fossil_description"
 msgstr "Parece o crânio de um pássaro dentado, mas é duro como pedra."
+
+msgid "aether"
+msgstr "Éter"
+
+msgid "normal"
+msgstr "Normal"
+
+msgid "glitch"
+msgstr "Glitch"
+
+msgid "earthquake"
+msgstr "Terremoto"
+
+msgid "evasion"
+msgstr "Evasão"
+
+msgid "feline"
+msgstr "Felino"
+
+msgid "fiery"
+msgstr "Ardente"
+
+msgid "firestorm"
+msgstr "Tempestade de Fogo"
+
+msgid "fire_shield"
+msgstr "Escudo de Fogo"
+
+msgid "fledgling"
+msgstr "Inexperiente"
+
+msgid "grinding"
+msgstr "Esmerilhação"
+
+msgid "oedipus"
+msgstr "Édipo"
+
+msgid "demiurge"
+msgstr "Demiurgo"
+
+msgid "gold_digger"
+msgstr "Interesseira"
+
+msgid "darnitjohn"
+msgstr "Esperar... Cadê o John?"
+
+msgid "waterwater"
+msgstr "A água é gelada e deliciosa!"
+
+msgid "maamnothing"
+msgstr "Senhora...\n"
+
+msgid "knight4ispoor"
+msgstr "Certifique-se de vir me ver..."
+
+msgid "potions2"
+msgstr "Recebeu 2 poções!"
+
+msgid "hmmm3"
+msgstr "Qual é o objetivo? A Rota é quase toda grama de qualquer maneira."
+
+msgid "youneedtodothis"
+msgstr ""
+"Eu... Eu acho que você precisa olhar para isso...\n"
+"Eu não quero perdê-lo, especialmente quando estamos apenas nos acomodando."
+
+msgid "ihaveyourmoney"
+msgstr "Bem, talvez eu possa ajudar com isso."
+
+# Tuxemon Threats
+msgid "chrome_robo_description"
+msgstr "Um robô hostil."
+
+msgid "monster_menu_desc"
+msgstr "Descrição"
+
+msgid "move_to_kennel"
+msgstr "mover para {box}"
+
+msgid "kennel_label"
+msgstr "{box} ({qty})"
+
+msgid "mk01_delta_description"
+msgstr "Um robô assassino fundido com um dragão. Não nos pergunte como."
+
+msgid "mk01_proto"
+msgstr "Mk01 Proto"
+
+msgid "dark_robo_description"
+msgstr "Um robô hostil."
+
+msgid "birb_robo_description"
+msgstr "Um robô hostil."
+
+msgid "mk01_beta_description"
+msgstr "Um robô assassino fundido com um dragão. Não nos pergunte como."
+
+msgid "mk01_gamma"
+msgstr "Mk01 Gamma"
+
+msgid "mk01_alpha_description"
+msgstr "Um robô assassino fundido com um dragão. Não nos pergunte como."
+
+msgid "mk01_gamma_description"
+msgstr "Um robô assassino fundido com um dragão. Não nos pergunte como."
+
+msgid "xeon_2_description"
+msgstr "Um robô hostil."
+
+msgid "mk01_delta"
+msgstr "Mk01 Delta"
+
+msgid "mk01_omega_description"
+msgstr "Um robô assassino fundido com um dragão. Não nos pergunte como."
+
+msgid "mk01_omega"
+msgstr "Mk01 Omega"
+
+msgid "mk01_proto_description"
+msgstr "Um robô assassino fundido com um dragão. Não nos pergunte como."
+
+msgid "xeon_description"
+msgstr "Um robô hostil."
+
+# Taba Town
+msgid "maple_bedroom_sign"
+msgstr "É um calendário e o dia 27 de abril é circulado em rosa."
+
+msgid "taba_house1_sign"
+msgstr "Casa do Sr. e da Sra. Clawbrew"
+
+msgid "taba_house2_reader3a"
+msgstr "Então eu posso viver mil vidas diferentes."
+
+msgid "taba_house3_client1a"
+msgstr ""
+"Estou descansando enquanto minha irmã provavelmente está lendo alguns livros."
+
+msgid "taba_house3_client2a"
+msgstr "Pensar demais pode nos prejudicar."
+
+msgid "taba_house1_husband1"
+msgstr "Tuxemon! Eu estava entre os treinadores mais habilidosos!"
+
+msgid "taba_house2_reading3"
+msgstr "O livro é Children Without Honor de Leslie Greninza."
+
+msgid "taba_house1_reading"
+msgstr "O livro é Filosofia dos Estudos Ilusórios de Jaiden Gemrevenza."
+
+msgid "taba_house1_calendar"
+msgstr ""
+"É um calendário e o 30 de setembro e o 12 de fevereiro são circulados em "
+"vermelho."
+
+msgid "taba_house1_wife1"
+msgstr "Treinador? Meu marido está delirando."
+
+msgid "taba_house2_reading2"
+msgstr "O livro é Raised By Dreams de Louis Etrergo."
+
+msgid "taba_house2_reading4"
+msgstr "O livro é Sailing Into Eternitys, de Laurine Doprachuld."
+
+msgid "taba_house2_reader1a"
+msgstr "Sinto-me melhor à vista de um livro ou de uma livraria."
+
+msgid "taba_house2_reader2a"
+msgstr "Isso acende minha imaginação."
+
+msgid "taba_house2_reading1"
+msgstr "O livro é Visiting The King, de Manolo Qai."
+
+msgid "taba_house4_client1a"
+msgstr "Minha avó costumava fazer um prato semelhante!"
+
+msgid "taba_house4_client2a"
+msgstr "Eh? Apenas enchendo um estômago vazio."
+
+msgid "taba_house2_owner1"
+msgstr ""
+"Bem-vindo à Biblioteca Legacy! Sinta-se livre para olhar ao redor, mas "
+"calmo, por favor."
+
+msgid "taba_house2_reader4a"
+msgstr ""
+"A leitura estimula minha mente de uma maneira que a TV e os filmes nunca "
+"serão capazes de fazer."
+
+msgid "taba_house2_books"
+msgstr ""
+"000 - Ciência da computação, informação e obras gerais, 100 - Filosofia e "
+"psicologia\n"
+"200 - Religião, 300 - Ciências Sociais, 400 - Linguagem, 500 - Ciência Pura, "
+"600 - Tecnologia\n"
+"700 - Artes e recreação, 800 - Literatura, 900 - História e geografia"
+
+msgid "taba_house4_dish1"
+msgstr "É castanho, denso, mas não parece pudim..."
+
+msgid "taba_house3_client3a"
+msgstr "Isso me faz pensar na casa da minha mãe."
+
+msgid "taba_house4_client3a"
+msgstr "Felizmente eu não paguei por isso. Como você pode pagar por isso?"
+
+msgid "taba_house1_watching"
+msgstr ""
+"É um documentário sobre os Tuxemon mais estranhos e maravilhosos da região,\n"
+" bem como os comportamentos estranhos que adotaram."
+
+msgid "taba_house3_owner1"
+msgstr "Bem-vindo ao The Thoughtful Leaf Inn!"
+
+msgid "taba_house4_owner1"
+msgstr "Bem-vindo ao The Honorable Seagulls Pub!"
+
+msgid "chooseyerfateCardiling"
+msgstr ""
+"Uma escolha interessante, ele fala com a faísca dentro de você. Cardiling é "
+"um Tuxemon do tipo Fogo conhecido por roubar comida de amigos e inimigos.\n"
+"Quer escolher Cardiling?"
+
+msgid "chooseyerfateTweesher"
+msgstr ""
+"Uma ótima escolha! Tweesher é um Tuxemon do tipo Água. Sua evolução Eagleace "
+"é um dos Tuxemon mais rápidos\n"
+"Você quer escolher Tweesher?"
+
+msgid "choseCardiling2"
+msgstr ""
+"Primeiro, porém, vamos testar suas proezas de batalha com uma rápida batalha "
+"Tuxemon.\n"
+"Vejamos... Vou escolher Tweesher."
+
+msgid "gasp3"
+msgstr "Se isso é verdade, há mais para você do que eu imaginava..."
+
+msgid "gasp2"
+msgstr ""
+"O que você está fazendo aqui com isso... Criminoso?\n"
+"... .... ....\n"
+"... ... ...\n"
+"Juntando-se ao Trial? Você realmente se sujeitaria a essa bobagem?\n"
+"Se tudo o que você quer é um emprego no Omnichannel, você poderia ter me "
+"perguntado.\n"
+"Tenho certeza de que posso encontrar um... use para você... se você estiver "
+"interessado."
+
+msgid "brokethegasp2"
+msgstr "Você. Por que você está falando? Eu não permiti que você falasse."
+
+msgid "brokethegasp3"
+msgstr ""
+"Por favor, senhorita omnichannel senhora, a mãe de ${{name}} queria que eles "
+"se juntassem ao Julgamento para ver toda a região\n"
+"${{name}} não está fazendo isso pelo trabalho, eles estão fazendo isso pela "
+"experiência."
+
+msgid "bugnin_description"
+msgstr ""
+"Sua espada é, na verdade, uma antena cultivada e arrancada para esse fim."
+
+msgid "apeoro_description"
+msgstr ""
+"Os reis da antiguidade usavam poderes psíquicos para transferir suas almas "
+"para essas máquinas de computação douradas. Agora eles continuam vivos, "
+"incapazes de se comunicar, mas ainda sonhando com impérios."
+
+msgid "araignee_description"
+msgstr ""
+"Pedantes que dizem que todas as aranhas têm oito patas são estranhamente "
+"quietos no caso de ARAIGNEE."
+
+msgid "arthrobolt_description"
+msgstr ""
+"Ele se sente desconfortável comandando seus companheiros NUT e BOLT, e "
+"geralmente foge. Mas então a NUT e a BOLT não têm ninguém para instruí-los."
+
+msgid "b_ver_1_description"
+msgstr ""
+"Ele é projetado para todas as vezes que você precisa de algo para ser "
+"mordido por um robô."
+
+msgid "bolt_description"
+msgstr ""
+"A presença de um parafuso faz com que uma NUT aperte com mais força e "
+"liberte mais energia."
+
+msgid "av8r_description"
+msgstr ""
+"Se o sol estiver fora, ele pode voar tão longe ou tão alto quanto quiser."
+
+msgid "baoby_description"
+msgstr ""
+"Eles viajam de rio em rio em busca de água para beber e armazenar. As "
+"ossiconas frondosas em sua cabeça escondem pontos móveis que agem de forma "
+"semelhante a uma haste de radiestesia. Muitas criaturas seguem BAOBY em "
+"secas."
+
+msgid "birdling_description"
+msgstr ""
+"Os ignorantes acreditam que ele carrega seu próprio ovo nas costas. É a "
+"guarda para um ovo muito mais importante do que isso."
+
+msgid "banling_description"
+msgstr ""
+"Cada BANLING está esperando que um espírito sem-teto se aninhe em seus "
+"galhos."
+
+msgid "baobaraffe_description"
+msgstr ""
+"Ele armazena grandes quantidades de água em seu enorme corpo para que possa "
+"viajar longas distâncias através de desertos quentes e secos. Também "
+"compartilhará água com criaturas sedentas. Quando não tem água armazenada, é "
+"magro."
+
+msgid "beenstalker_description"
+msgstr ""
+"O que o BEENSTALKER carece de sentido e graça, compensa em puro entusiasmo e "
+"boa vontade. Ele se deleita em assustar os vermes, mas nunca prejudicá-los."
+
+msgid "botbot_description"
+msgstr "É um robô universal que pode ser adaptado para qualquer finalidade."
+
+msgid "brewdin_description"
+msgstr ""
+"Nascido em cerâmica negligenciada, outrora valorizada, e tesouros "
+"semelhantes. Rumores de concessões de desejos para aqueles que podem fazê-lo "
+"sorrir."
+
+msgid "boltnu_description"
+msgstr ""
+"Ele passa a maior parte do tempo cavando tocas no chão, permanece tonto "
+"pelas constantes vibrações e movimentos causados por eles cavando no solo."
+
+msgid "boxali_description"
+msgstr ""
+"Com sua longa capa azul, o BOXALI pode deslizar acima do solo - permitindo "
+"que ele realize acrobacias e ataques aéreos."
+
+msgid "budaye_description"
+msgstr ""
+"Pode convencer qualquer grupo a cooperar para o bem comum com alguns mewls e "
+"ondas encorajadoras."
+
+msgid "yesmaam"
+msgstr "Sim senhora."
+
+msgid "theenergy"
+msgstr "A energia desse homem é ilimitada..."
+
+msgid "youneedtodothis2"
+msgstr ""
+"Mas.. Eu sei que você está ansioso para ver a região, e esta é a sua melhor "
+"foto.\n"
+"Eu sei que você tem o impulso em si mesmo para se tornar o melhor, como "
+"ninguém nunca foi.\n"
+"Eu só não sei se podemos pagar as taxas\n"
+"\n"
+"Vamos fazer algo funcionar... De alguma forma."
+
+msgid "chosefight"
+msgstr "E... VAMOS LUTAR!"
+
+msgid "spyder_dragonscave_benden4"
+msgstr ""
+"Por favor, ${{name}}. Se você não pode parar esses vilões, tudo está perdido."
+
+msgid "hellolovelypeople5"
+msgstr ""
+"Não... Espera... Falta-nos uma pessoa...\n"
+"O único criador de Tuxemon partiu para a região de Fondent. Aquele que se "
+"chama o Professor Tuxemon"
+
+msgid "ourstuffisours"
+msgstr "Por que você está realmente aqui?"
+
+msgid "hellolovelypeople4"
+msgstr "Tenho certeza de que há casas em Cotton Town maiores do que esta..."
+
+msgid "spyder_nimrod_plaque"
+msgstr ""
+"Patrocinado por Nimrod. \"Se não os vendêssemos, outra pessoa o venderia!\""
+
+msgid "darnitjohn5"
+msgstr "Por que você ainda está aqui?"
+
+msgid "darnitjohn9"
+msgstr ""
+"VOCÊ!\n"
+"Vou dizer isso uma vez e apenas uma vez:\n"
+"IR. PROCURAR. O. CASAS."
+
+msgid "cometomepls"
+msgstr ""
+"AGORA, TODOS, POR FAVOR, VENHAM PARA O CENTRO DA CIDADE. OMNICHANNEL DESEJA "
+"SE DIRIGIR A VOCÊ!"
+
+msgid "hellolovelypeople3"
+msgstr ""
+"Você é realmente as únicas pessoas nesta cidade? Não há ninguém aqui! Esta "
+"tem que ser a menor cidade da região de Fondent."
+
+msgid "oopsie"
+msgstr "Desculpe, você teve que ver isso. Ele é tãoooo inútil às vezes."
+
+msgid "oopsie2"
+msgstr ""
+"Por que não esperamos que meus cavaleiros retornem?\n"
+"Eu odeio anunciar más notícias sozinho."
+
+msgid "itsmyduhduhduh"
+msgstr "Recebeu o endereço de Allie!"
+
+msgid "maamiexist2"
+msgstr "Havia algo de interessante?"
+
+msgid "maamiexist"
+msgstr "Senhora, Ele não está em casa."
+
+msgid "itsmyaurababe"
+msgstr "Agora, quem é você?"
+
+msgid "itsmyaurababe2"
+msgstr ""
+"Hmm, agora que eu realmente olho para você, você tem uma aura bastante "
+"misteriosa.\n"
+"...   ...   ...   ...\n"
+"Devemos conversar em algum momento. Talvez me veja em Cotton Town?"
+
+msgid "maamnothing6"
+msgstr ""
+"... ... ... ...\n"
+"... Bom. Provavelmente deveríamos voltar para a sede e informar."
+
+msgid "solongjohn"
+msgstr ""
+"John, você deve ficar aqui para manter a paz.\n"
+"Eu não quero você por perto de qualquer maneira."
+
+msgid "wherewasshe"
+msgstr "Ela não nos contou as más notícias..."
+
+msgid "announcement5"
+msgstr ""
+"Foi um longo e difícil caminho para a paz e a tranquilidade que agora reina "
+"na região de Fondent.\n"
+"No entanto, tenho o prazer de anunciar, neste dia, o 25º Aniversário da "
+"fundação da Omnichannel...\n"
+"TUXEMON SÃO CONTROLADOS!\n"
+"*gritos ensurdecedores*\n"
+"Calma! Calma! O vosso entusiasmo é contagiante, devo dizer!\n"
+"Em conjunto com o instituto Xero, tiramos sua vontade de atacar!\n"
+"Devido a isso, estamos confiantes de que liberar Tuxemon na natureza é "
+"seguro.\n"
+"No entanto, o toque de recolher ainda deve ser aplicado, afinal, não somos "
+"uma região sem lei.\n"
+"Afinal de contas... SOMOS SEGURANÇA, SOMOS ORDEM, SOMOS OMNICHANNEL!"
+
+msgid "depressedmom"
+msgstr "Por que ele faria algo assim... Achei que ele se importava..."
+
+msgid "watchmewatchme"
+msgstr ""
+"Por que você está indo para a cidade, você sabe que há um toque de recolher "
+"antecipado.\n"
+"... ... ... ...\n"
+"... ... ... ...\n"
+"Você não parece uma ameaça, então você pode ir para a cidade...\n"
+"Só não conte a nenhum desses bandidos Omnichannel que eu deixei você passar, "
+"ok?"
+
+msgid "grumble"
+msgstr ""
+"Omnichannel são um bando de bandidos, mas não temos escolha...\n"
+"Como ela sempre diz, acho que temos que trabalhar com eles..."
+
+msgid "professorexists"
+msgstr "Vou tomar 12 poções, por favor."
+
+msgid "hmmm"
+msgstr "Eu me pergunto o que eles estão fazendo lá?"
+
+msgid "professorexists4"
+msgstr ""
+"Agora, eu sei o que você está pensando, por que eles me permitiriam?\n"
+"Infelizmente para você, esse segredo é para mim e somente para mim!\n"
+"No entanto, o Omnichannel deve fazer um novo anúncio em breve e acho que "
+"você vai gostar.\n"
+"É melhor levá-lo de volta para casa e assistir ao segundo anúncio, Vamos lá!"
+
+msgid "hmmm5"
+msgstr ""
+"Max, por mais que você queira um, nós estabelecemos isso. Eles não estão "
+"fazendo, e não farão, um parque aquático."
+
+msgid "waitdontgo"
+msgstr "${{name}}! Espera! Não saia ainda!"
+
+msgid "theanthemishere"
+msgstr ""
+"Escutar! O hino está começando, nós o fizemos bem a tempo. Venha assistir!"
+
+msgid "timeforround22"
+msgstr "Ah! Você conseguiu as poções! Bom! Agora precisamos mesmo de voltar."
+
+msgid "moreannouncement"
+msgstr "ATENÇÃO, TODOS OS CIDADÃOS DA REGIÃO FONDENT!\n"
+
+msgid "moreannouncement2"
+msgstr ""
+"Lamento dar-lhe um aviso tão tardio sobre este endereço, mas eu acreditava "
+"que era importante antes que a mídia vazasse...\n"
+"Poço... Heh. Nós somos donos da mídia, então eu acho que isso não "
+"importaria, mas eu queria compartilhá-la mesmo assim.\n"
+"Depois de consultar meus conselheiros, decidimos que a melhor maneira de se "
+"sentir mais confortável com o Tuxemon, é usá-los.\n"
+"Agora, levará algum tempo até que possamos integrá-los à força de trabalho, "
+"mas, enquanto isso, como eu disse antes, vamos liberá-los na natureza.\n"
+"Eu percebo que isso é um choque para todos, além de entender que alguns de "
+"vocês podem até ter medo. Todos nós sabemos o que aconteceu antes...\n"
+"Este não é o momento de ter medo, já que o Omnichannel estará patrocinando o "
+"renascimento da antiga tradição conhecida como O Julgamento.\n"
+"Agora, para vocês que são menos versados na história da região de Fondent, "
+"há cem anos havia uma tradição em que homens e mulheres jovens pegavam e "
+"criavam Tuxemon.\n"
+"Eles então usariam esses Tuxemon para lutar contra outros e subir de posição "
+"em sua cidade, com o melhor Treinador Tuxemon ganhando status e poder.\n"
+"Estaremos criando uma versão disso para os dias modernos. Estaremos formando "
+"áreas de batalha em várias cidades em Fondent.\n"
+"Cada Área de Batalha precisará ser concluída em ordem e o treinador mais "
+"promissor, ou treinadores, poderá tentar o Campeonato.\n"
+"O Campeonato será realizado no topo da Torre Omnichannel em Cotton Town, mas "
+"apenas uma vez que um Treinador Tuxemon tenha passado por todas as Áreas de "
+"Batalha.\n"
+"O Julgamento é projetado como uma maneira de introduzir lentamente a vida "
+"pública em Tuxemon e incentivar viagens por toda a região.\n"
+"Quem melhor para demonstrar isso do que a nossa juventude?\n"
+"Cada partida será transmitida ao vivo no Omnichannel-T, a mais nova estação "
+"de televisão dedicada exclusivamente à programação relacionada ao Tuxemon!\n"
+"Não se preocupe, a adição será refletida em sua conta.\n"
+"Ah, e mais uma coisa, todos os Treinadores Tuxemon estarão isentos do toque "
+"de recolher.\n"
+"Antes disso, é claro, você precisará de um Tuxemon! Agora, nem todo mundo "
+"pode ser autorizado a se tornar um Tuxemon Trainer. Isso seria puro caos!\n"
+"Primeiro, você terá que registrar seu nome com seu representante Omnichannel "
+"local e, se for selecionado, será enviado para o treinamento Omnichannel.\n"
+"Após a conclusão bem-sucedida do seu treinamento, você receberá um Tuxemon e "
+"poderá começar a participar do The Trial!\n"
+"Estou ansioso para conhecer todos vocês! Vamos criar um novo mundo juntos!\n"
+"Afinal de contas... SOMOS SEGURANÇA, SOMOS ORDEM, SOMOS OMNICHANNEL! E agora,"
+"\n"
+"NÓS \n"
+"SOMOS \n"
+"O \n"
+"FUTURO!"
+
+msgid "ihaveyourmoney2"
+msgstr ""
+"Tenho um pouco guardado que precisa ser bem aproveitado e o Omnichannel me "
+"deve um favor.\n"
+"Tenho certeza de que algo poderia ser arranjado. Obter os documentos de "
+"qualificação é a parte fácil. Obter o seu primeiro Tuxemon é um pouco mais "
+"difícil...\n"
+"Felizmente, por acaso conheço alguém que tem acesso a vários Tuxemon "
+"diferentes...\n"
+"Me!\n"
+"Agora, eu sei que é muito para processar, então eu estarei no meu "
+"laboratório esperando por sua decisão."
+
+msgid "moverocky"
+msgstr "Vamos lá Rocky! Você pode se mover! Eu acredito!"
+
+msgid "moverocky2"
+msgstr "Bem, você se move quando estiver pronto, eu estarei aqui esperando."
+
+msgid "tuxemontime1.5"
+msgstr "Eu entendo que isso significa que você decidiu se juntar ao Julgamento?"
+
+msgid "tuxemontime"
+msgstr "Ah, você veio! Legal!"
+
+msgid "tuxemontimechoiceno"
+msgstr "Ah... Ok... Eu estarei aqui se você mudar de ideia..."
+
+msgid "tuxemontime2"
+msgstr "Agora, a primeira coisa a fazer é colocar seus papéis prontos..."
+
+msgid "tuxemontime4"
+msgstr ""
+"Agora para a parte mais importante! Escolhendo o seu Tuxemon!\n"
+"Infelizmente, a minha fonte de financiamento tornou-se... hesitante "
+"ultimamente. Isso deixa você com apenas três opções de Tuxemon, desculpe por "
+"isso.\n"
+"As três opções são Rockitten, Cardiling e Tweesher."
+
+msgid "professorexists1.5"
+msgstr "Oh olá lá!"
+
+msgid "kylekindasucks6"
+msgstr "Ah, e ${{name}}?"
+
+msgid "misaisleavingfornow2"
+msgstr "Boa sorte ${{name}}. Tenho certeza de que nos veremos novamente. "
+
+msgid "spyder_papertown_grannypiper1"
+msgstr ""
+"Oh olá ${{name}}, eu não te vi lá entre toda essa agitação e detritos!\n"
+"Mal posso esperar até que a Creche esteja instalada!"
+
+msgid "taba_greeting3"
+msgstr ""
+"Boa sorte em suas aventuras ${{name}}, e lembre-se de fazer compras no "
+"Tuxemart para todas as suas necessidades de aventura!\n"
+"...\n"
+"Desculpe o discurso de vendas, é o meu trabalho."
+
+msgid "spyder_flower_muse2"
+msgstr ""
+"Que? Você tem uma pintura. Oooh - você me deixaria comprá-lo? Eu tenho "
+"${{currency}}2.000."
+
+msgid "cotton_breeder5"
+msgstr "Hey ${{name}}, vem verificar o seu Tuxemon?"
+
+msgid "taba_greeting2b"
+msgstr ""
+"Ah! Vejo que você já tem algumas. Você tem uma boa cabeça em seus ombros "
+"${{name}}, tenho certeza que você será um campeão em pouco tempo."
+
+msgid "hmmm4"
+msgstr "Talvez eles estejam fazendo um parque aquático!"
+
+msgid "hmmm6"
+msgstr "........ Ok... Mas pode ser..."
+
+msgid "darnitjohn4"
+msgstr "S-Sim senhora?"
+
+msgid "darnitjohn6"
+msgstr "Uhh..."
+
+msgid "darnitjohn7"
+msgstr "Não tenho certeza..."
+
+msgid "darnitjohn8"
+msgstr "AAAAAGH!!!"
+
+msgid "darnitjohn10"
+msgstr "AGORA!"
+
+msgid "johnissorry"
+msgstr ""
+"Desculpe, senhora... Eu...\n"
+"Serra...\n"
+"Alguns...\n"
+"Flor..."
+
+msgid "uselessnes"
+msgstr ""
+"Você é absolutamente inútil John. Eu não posso acreditar que nós já "
+"estivemos juntos."
+
+msgid "hellolovelypeople2"
+msgstr ""
+"Eu sei que você provavelmente está se perguntando por que meus Cavaleiros "
+"Omni e eu estamos aqui.\n"
+"Espera..."
+
+msgid "maamiexist3"
+msgstr ""
+"Há um computador executando o Ubuntu.\n"
+"Eu ia confiscá-lo, mas eu sei que o Gnome não é o seu estilo..."
+
+msgid "maamiexist4"
+msgstr ""
+"Não, deixe-o. Essas pessoas, obviamente, têm um gosto terrível e desprezam a "
+"utilidade e a simplicidade...\n"
+"Verifique o laboratório agora Grant. Vou esperar pelo John."
+
+msgid "maamnothing3"
+msgstr "Eu... Eu... Não encontrei nada."
+
+msgid "maamnothing4"
+msgstr "Legal. Obrigado pelo aviso."
+
+msgid "maamnothing5"
+msgstr "Senhora, eu também não o encontrei."
+
+msgid "solongjohn2"
+msgstr "Vamos lá Grant, temos um cronograma para cumprir."
+
+msgid "seeme"
+msgstr "Certifique-se de vir me ver..."
+
+msgid "frowntime"
+msgstr ""
+"Não me importo de estar aqui...\n"
+"É apenas solitário às vezes..."
+
+msgid "ohnoes"
+msgstr "Poço... Eu não sei como me sentir sobre isso..."
+
+msgid "ohnoes2"
+msgstr ""
+"Agora que isso acabou... ainda precisamos de poções do Tuxemart.\n"
+"Certifique-se de que você está de volta antes do toque de recolher!"
+
+msgid "bobtalk"
+msgstr ""
+"Seria bom se mais pessoas como você viessem dizer Oi...\n"
+"A propósito, Olá! Tenha um ótimo dia! Hoje ou amanhã ou qualquer dia será "
+"ótimo!"
+
+msgid "professorexists2"
+msgstr ""
+"Você deve ser o filho de Callie! Eu ouvi muito sobre você de sua mãe.\n"
+"O que te traz até aqui?\n"
+".... .... ....\n"
+"Poções? Claro, você sempre precisa desses!\n"
+"Aqui, tenha alguns em casa, cortesia minha."
+
+msgid "professorexists3"
+msgstr ""
+"Ah! Desculpem minhas maneiras, eu não posso acreditar que nunca me "
+"apresentei!\n"
+"Meu nome é Kay Wren, mais conhecida como a Professor Tuxemon.\n"
+"Há anos que sou a única pessoa na região do Fondent autorizada a pesquisar "
+"Tuxemon."
+
+msgid "hmmm2"
+msgstr ""
+"Ouvi dizer que eles estavam fazendo um novo parque. Para \"Greenificar a "
+"Área\""
+
+msgid "hmmm7"
+msgstr "O tempo está bom, não é?"
+
+msgid "timeforround2"
+msgstr ""
+"${{name}}! Finalmente! Você está de volta! Eu estava com medo de que você "
+"perdesse o anúncio!"
+
+msgid "hebenice"
+msgstr ""
+"Ele é um homem legal, talvez você deva pelo menos ver o que ele tem a dizer."
+
+msgid "tuxemontime3.1"
+msgstr ""
+"Aqui estão seus documentos de registro, a primeira Área de Batalha exigirá "
+"que você os apresente em troca de um distintivo de Treinador.\n"
+"Você não precisará dos papéis depois disso.\n"
+
+msgid "obtainedpapers"
+msgstr "Documentos de Inscrição Recebidos!"
+
+msgid "chooseyerfate"
+msgstr "Qual Tuxemon você quer?"
+
+msgid "nochoiceTuxemon"
+msgstr "Ok, por que você não dá uma olhada nos outros dois?"
+
+msgid "rockitten!"
+msgstr "Obtido Rockitten!"
+
+msgid "choseCardiling"
+msgstr ""
+"Tudo bem, aqui está o seu Cardiling! Eu sei que vocês dois vão em grandes "
+"aventuras juntos!"
+
+msgid "cardiling!"
+msgstr "Obtido Cardiling!"
+
+msgid "choseTweesher"
+msgstr ""
+"Tudo bem, aqui está o seu pré-adolescente! Eu sei que vocês dois vão em "
+"grandes aventuras juntos!"
+
+msgid "choseTweesher2"
+msgstr ""
+"Primeiro, porém, vamos testar suas proezas de batalha com uma rápida batalha "
+"Tuxemon.\n"
+"Vejamos... Vou escolher Rockitten."
+
+msgid "tweesher!"
+msgstr "Obtido Tweesher!"
+
+msgid "yahaha"
+msgstr "Ah ha! Encontrei você!"
+
+msgid "brokethegasp"
+msgstr ""
+"Agora, senhorita, se me permitem, ${{name}} está fazendo isso por mais do "
+"que um trabalho."
+
+msgid "spyder_cottonart_shopkeeper"
+msgstr ""
+"Bem-vindo à Galeria de Arte de Cotton Town. Ah - Quero dizer Loja de Arte!\n"
+"Desde que cortaram nosso financiamento, tivemos que vender as obras de arte "
+"em vez de apenas exibi-las.\n"
+"A entrada é ${{currency}}50. Vai para o dividendo anual da empresa."
+
+msgid "spyder_museum_entrance1"
+msgstr ""
+"Bem-vindo ao museu de história natural! É grátis, mas depende de suas "
+"generosas doações. Você consideraria uma doação de ${{currency}}50?"
+
+msgid "greenwash_badge_description"
+msgstr ""
+"Tuxemon comprados do Greenwash exigem esse crachá para se transformarem."
+
+msgid "scoop_badge"
+msgstr "Crachá: Scoop"
+
+msgid "nimrod_badge_description"
+msgstr "Tuxemon comprados do Nimrod exigem esse crachá para se transformarem."
+
+msgid "omnichannel_badge_description"
+msgstr ""
+"Tuxemon comprados do Omnichannel exigem esse crachá para se transformarem."
+
+msgid "shaft_badge_description"
+msgstr "Tuxemon comprados do Shaft exigem esse crachá para se transformarem."
+
+msgid "shaft_badge"
+msgstr "Crachá: Shaft"
+
+msgid "scoop_badge_description"
+msgstr "Tuxemon comprados do Scoop exigem esse crachá para se transformarem."
+
+msgid "omnichannel_badge"
+msgstr "Crachá: Omnichannel"
+
+msgid "nimrod_badge"
+msgstr "Crachá: Nimrod"
+
+# Boosters (items)
+msgid "greenwash_badge"
+msgstr "Crachá: Greenwash"
+
+msgid "miaow_milk_description"
+msgstr "Os gatos adoram o sabor do Miaow Milk™!"
+
+msgid "peace_lily"
+msgstr "Lírio da Paz"
+
+msgid "combat_state_diehard_get"
+msgstr "{target} vai continuar lutando."
+
+msgid "booster_tech_description"
+msgstr ""
+"Uma tecnologia de código aberto que permite transformar o tuxemon em uma "
+"forma diferente."
+
+msgid "earth_booster"
+msgstr "Impulsionador de Terra"
+
+msgid "booster_tech"
+msgstr "Impulsionador de tecnologia"
+
+msgid "fire_booster_description"
+msgstr "Ele permite transformar um tuxemon do tipo Fogo em uma forma diferente."
+
+msgid "fire_booster"
+msgstr "Impulsionador de fogo"
+
+msgid "earth_booster_description"
+msgstr ""
+"Ele permite transformar um tuxemon do tipo Terra em uma forma diferente."
+
+msgid "flintstone"
+msgstr "Flintstone"
+
+msgid "miaow_milk"
+msgstr "Miaow Leite"
+
+msgid "lucky_bamboo_description"
+msgstr ""
+"Tecnicamente, não é bambu. Também não é particularmente sortudo. Mas faz uma "
+"boa planta de interior."
+
+msgid "lucky_bamboo"
+msgstr "Bambu da Sorte"
+
+msgid "metal_booster_description"
+msgstr "Ele permite transformar um tuxemon tipo Metal em uma forma diferente."
+
+msgid "metal_booster"
+msgstr "Impulsionador de metal"
+
+msgid "peace_lily_description"
+msgstr "Uma planta de interior resistente para alguém especial."
+
+msgid "petrified_dung"
+msgstr "Esterco Petrificado"
+
+msgid "pyramidion_description"
+msgstr "Um triângulo dourado que zumbe com o poder celestial."
+
+msgid "petrified_dung_description"
+msgstr "Parece que, bem, cocô... mas é duro como pedra."
+
+msgid "pyramidion"
+msgstr "Piramídeo"
+
+msgid "tectonic_drill"
+msgstr "Furadeira Tectônica"
+
+msgid "water_booster_description"
+msgstr "Permite transformar um tuxemon do tipo Água em uma forma diferente."
+
+msgid "sea_girdle"
+msgstr "Cinta do Mar"
+
+msgid "water_booster"
+msgstr "Impulsionador de água"
+
+msgid "shop"
+msgstr "loja"
+
+msgid "stovepipe"
+msgstr "Stovepipe"
+
+msgid "sweet_sand"
+msgstr "Areia Doce"
+
+msgid "combat_forfeit"
+msgstr ""
+"Você perdeu!\n"
+"{npc} está desapontado."
+
+## COMBAT STATE STATUSES
+msgid "combat_state_blinded_get"
+msgstr "{target} está cego."
+
+msgid "combat_state_confused_get"
+msgstr "{target} está confuso."
+
+# Map Types:
+msgid "no_type"
+msgstr "sem tipo"
+
+msgid "thunderstone"
+msgstr "Pedra do Trovão"
+
+msgid "wood_booster"
+msgstr "Impulsionador de madeira"
+
+msgid "center"
+msgstr "centro"
+
+msgid "combat_player_swap_status"
+msgstr ""
+"Não é possível trocar de monstro.\n"
+"{monster} é {status}!"
+
+msgid "wood_booster_description"
+msgstr "Permite transformar um tuxemon do tipo Madeira em uma forma diferente."
+
+msgid "combat_state_grabbed_get"
+msgstr "{target} é mantido firme."
+
+msgid "route"
+msgstr "rota"
+
+msgid "combat_player_run_status"
+msgstr ""
+"Não consigo escapar.\n"
+"{monster} é {status}!"
+
+msgid "town"
+msgstr "cidade"
+
+msgid "dungeon"
+msgstr "calabouço"
+
+msgid "combat_state_dozing_get"
+msgstr "{target} está adormecido."
+
+msgid "combat_state_enraged_get"
+msgstr "{target} está enfurecido."
+
+msgid "combat_player_forfeit_status"
+msgstr ""
+"Não pode perder a partida.\n"
+"{monster} é {status}!"
+
+msgid "cannot_use_tech_monster"
+msgstr "{name} não pode ser usado."
+
+msgid "combat_state_festering_get"
+msgstr "As feridas de {target} apodrecem."
+
+msgid "saber"
+msgstr "Sabre"
+
+msgid "touch"
+msgstr "Tocar"
+
+msgid "viper"
+msgstr "Víbora"
+
+msgid "barking"
+msgstr "Latindo"
+
+msgid "combat_skip"
+msgstr "{user} pula a vez!"
+
+msgid "combat_victory_trainer"
+msgstr ""
+"Você ganhou contra {npc}!\n"
+"Você recebe {currency}{prize}!"
+
+msgid "combat_state_chargedup_get"
+msgstr "{target} é totalmente carregado."
+
+msgid "combat_state_exhausted_get"
+msgstr "{target} está esgotado."
+
+msgid "combat_state_charging_get"
+msgstr "{target} é a potência de carregamento."
+
+msgid "combat_state_softened_get"
+msgstr "A armadura de {target} amolece."
+
+msgid "combat_state_stuck_get"
+msgstr "{target} está preso no lugar."
+
+msgid "alert_text"
+msgstr "Texto muito longo!"
+
+msgid "combat_state_noddingoff_get"
+msgstr "{target} está acenando com a cabeça para dormir."
+
+msgid "combat_state_focused_get"
+msgstr "{target} torna-se focado."
+
+msgid "combat_state_hardshell_get"
+msgstr "{target} é coberto por casca dura."
+
+msgid "combat_state_tired_get"
+msgstr "{target} está desgastado."
+
+msgid "combat_state_sniping_get"
+msgstr "{target} mira."
+
+msgid "combat_state_spyderbite_get"
+msgstr "{target} começa a sniffle."
+
+msgid "lust"
+msgstr "Luxúria"
+
+msgid "maori"
+msgstr "Maori"
+
+msgid "phantasmal_force"
+msgstr "Força Fantasmagórica"
+
+msgid "ring"
+msgstr "Anel"
+
+msgid "ruby"
+msgstr "Rubi"
+
+msgid "sword"
+msgstr "Espada"
+
+msgid "poison_courtship"
+msgstr "Namoro Venenoso"
+
+msgid "platinum"
+msgstr "Platina"
+
+msgid "radiance"
+msgstr "Brilho"
+
+msgid "shapechange"
+msgstr "Mudança de forma"
+
+msgid "torch"
+msgstr "Tocha"
+
+msgid "stonehenge"
+msgstr "Stonehenge"
+
+msgid "sylvan"
+msgstr "Sylvan"
+
+msgid "slime"
+msgstr "Lodo"
+
+msgid "stabilo"
+msgstr "Stabilo"
+
+msgid "strangulation"
+msgstr "Estrangulamento"
+
+msgid "sunburst"
+msgstr "Sol estourou"
+
+msgid "terror"
+msgstr "Terror"
+
+msgid "time_crisis"
+msgstr "Crise do Tempo"
+
+msgid "tip"
+msgstr "Ponta"
+
+msgid "ubuntu"
+msgstr "Ubuntu"
+
+msgid "walls"
+msgstr "Paredes"
+
+msgid "tsunami"
+msgstr "Tsunami"
+
+msgid "wall_ice"
+msgstr "Muro de Gelo"
+
+msgid "acid"
+msgstr "Ácido"
+
+msgid "status_stuck"
+msgstr "Preso"
+
+msgid "venom"
+msgstr "Veneno"
+
+msgid "route2_description"
+msgstr "O caminho histórico!"
+
+msgid "vorpal"
+msgstr "Vorpal"
+
+msgid "status_softened"
+msgstr "Amolecido"
+
+msgid "paper_town_description"
+msgstr "A porta de entrada para o Fondent!"
+
+msgid "taba_town_description"
+msgstr "Um refúgio pacífico!"
+
+msgid "wall_fire"
+msgstr "Muro de Fogo"
+
+msgid "webs_wind"
+msgstr "Vento das Teias"
+
+msgid "clairaudience"
+msgstr "Clariaudiência"
+
+msgid "hawk"
+msgstr "Falcão"
+
+msgid "gust"
+msgstr "Rajada"
+
+msgid "crystal"
+msgstr "Cristal"
+
+msgid "clock"
+msgstr "Relógio"
+
+msgid "gyser"
+msgstr "Gyser"
+
+msgid "chameleon"
+msgstr "Camaleão"
+
+msgid "cavity"
+msgstr "Cavidade"
+
+msgid "cat_calling"
+msgstr "Chamada de Gato"
+
+msgid "cloud_aether"
+msgstr "Éter em Nuvem"
+
+msgid "conjurer"
+msgstr "Mágico"
+
+msgid "canine"
+msgstr "Canino"
+
+msgid "breath"
+msgstr "Respiração"
+
+msgid "blood_nets"
+msgstr "Redes de Sangue"
+
+msgid "arcane_eye"
+msgstr "Olho Arcano"
+
+msgid "air_chain"
+msgstr "Corrente de Ar"
+
+msgid "assault"
+msgstr "Assalto"
+
+msgid "status_tired"
+msgstr "Cansado"
+
+msgid "status_chargedup"
+msgstr "Carregado"
+
+msgid "ants"
+msgstr "Formigas"
+
+msgid "status_eliminated"
+msgstr "Eliminado"
+
+msgid "adamantine"
+msgstr "Adamantina"
+
+msgid "status_spyderbite"
+msgstr "Mordida Spyder"
+
+msgid "status_grabbed"
+msgstr "Agarrou"
+
+msgid "status_focused"
+msgstr "Concentrado"
+
+msgid "status_exhausted"
+msgstr "Exausto"
+
+msgid "status_enraged"
+msgstr "Furioso"
+
+msgid "status_dozing"
+msgstr "Cochilando"
+
+msgid "status_confused"
+msgstr "Confuso"
+
+msgid "status_charging"
+msgstr "Carregamento"
+
+msgid "citypark_description"
+msgstr "Um Sabor da Natureza!"
+
+msgid "route1_description"
+msgstr "Se cuida!"
+
+## STATUSES
+msgid "status_blinded"
+msgstr "Cego"
+
+msgid "flower_city_description"
+msgstr "Uniformes que te guardam enquanto você dorme!"
+
+msgid "cotton_town_description"
+msgstr "Uma força crescente!"
+
+msgid "leather_town_description"
+msgstr "Prova de que beleza e mineração podem coexistir!"
+
+msgid "route5_description"
+msgstr "A passagem memorial para Timber Town!"
+
+msgid "menu_storage_monsters_full"
+msgstr "Sua festa está cheia, você não pode tirar mais do armazenamento."
+
+msgid "timber_town_description"
+msgstr "Cesta de pão do Fondant!"
+
+msgid "menu_storage_take_monster"
+msgstr "Você adicionou {name} ao seu grupo!"
+
+msgid "menu_storage_empty_kennel"
+msgstr "Este armazenamento está vazio, não há monstros para levar."
+
+msgid "menu_dropoff_no_monsters"
+msgstr "Não pode deixar o último Tuxemon em seu grupo."
+
+msgid "bumbulus_description"
+msgstr ""
+"BUMBULUS é um ser voador que produz uma nuvem de fumaça para se disfarçar "
+"como uma nuvem. Ninguém jamais viu seu verdadeiro corpo."
+
+msgid "bursa_description"
+msgstr "Ela rejeita o fogo como básico, e produz apenas o fogo da mente."
+
+msgid "omnichannelarrives"
+msgstr "PARAR!"
+
+msgid "firsts"
+msgstr ""
+"♪ Veja-me chicotear ♪\n"
+"♪ Observe-me nae nae ♪\n"
+"Essa música é muito boa, certo?"
+
+msgid "nopenotyet"
+msgstr "Desculpe, alguém se machucou na rota. Está fechado agora."
+
+msgid "bothofyou"
+msgstr ""
+"Vocês dois, venham para fora. Um representante do Omnichannel quer se "
+"dirigir à cidade."
+
+msgid "hellolovelypeople"
+msgstr "HELLOOOOO CIDADÃOS DA CIDADE DE TABA!"
+
+msgid "darnitjohn2"
+msgstr "JOHN! Saia daqui!"
+
+msgid "darnitjohn3"
+msgstr "John."
+
+msgid "whereismyhairbrush"
+msgstr "John, Grant, espalhou-se. ENCONTRE-O."
+
+msgid "itsmyaurababe3"
+msgstr "Espero que nos encontremos novamente. "
+
+msgid "maamnothing2"
+msgstr ""
+"John! Estávamos tendo um momento!\n"
+"O que você quer?"
+
+msgid "iknowyou"
+msgstr ""
+"Olá Callie, olá ${{name}}, só parei para dizer oi quando eu ouvi você "
+"falando sobre o anúncio."
+
+msgid "tuxemontimechoiceyes"
+msgstr "Esplêndido!"
+
+msgid "chooseyerfateRockitten"
+msgstr ""
+"Uma escolha sólida! Rockitten é um Tuxemon do tipo Terra. Nos tempos "
+"medievais, eles criavam Rockittens para se sentar à porta e parecer fofo.\n"
+"Quer escolher Rockitten?"
+
+msgid "choseRockitten"
+msgstr ""
+"Tudo bem, aqui está o seu Rockitten! Eu sei que vocês dois vão em grandes "
+"aventuras juntos!"
+
+msgid "choseRockitten2"
+msgstr ""
+"Primeiro, porém, vamos testar suas proezas de batalha com uma rápida batalha "
+"Tuxemon.\n"
+"Vejamos... Vou escolher Cardiling."
+
+msgid "wewnicefight"
+msgstr ""
+"Nossa, foi uma boa luta!\n"
+"Deixe-me curar o seu Tuxemon muito rápido...\n"
+"E... Ali! Tudo pronto!\n"
+"Com um pouco mais de prática e talvez mais um pouco de Tuxemon, você "
+"definitivamente será capaz de assumir o Trial.\n"
+
+msgid "gasp"
+msgstr "Esperar..."
+
+msgid "spyder_museum_entrance3"
+msgstr ""
+"Infelizmente, agora precisamos cobrar pelos ingressos. ${{currency}}100 por "
+"favor."
+
+msgid "fishing_rod_description"
+msgstr "Pesca."
+
+msgid "tuxemontime3"
+msgstr "Lá vamos nós!"
+
+msgid "flintstone_description"
+msgstr ""
+"Uma pedra escamosa usada para fazer ferramentas de pedra e iniciar "
+"incêndios. Não ao mesmo tempo."
+
+msgid "sea_girdle_description"
+msgstr "Uma corda de enfeites, macias e viscosas como algas."
+
+msgid "monster_menu_tech"
+msgstr "Técnicas"
+
+msgid "Kennel"
+msgstr "abrigo"
+
+msgid "stovepipe_description"
+msgstr "Um longo tubo de ferro. Manuseá-lo deixa suas mãos calmas e cinzas."
+
+msgid "sweet_sand_description"
+msgstr ""
+"Em partes do mundo, as pessoas se limpam com essa areia perfumada e suja."
+
+msgid "tectonic_drill_description"
+msgstr "Uma grande máquina de click-clack usada para perfurar a terra."
+
+msgid "thunderstone_description"
+msgstr "Uma velha relíquia de pedra, agora carregada para boa sorte."
+
+msgid "tux_attack"
+msgstr "Ataque Tux"
+
+msgid "abesnaki_description"
+msgstr ""
+"Cada rosto é um padrão diferente, e alguns dizem que os símbolos soletram "
+"palavras em uma língua morta."
+
+msgid "cataspike_description"
+msgstr ""
+"Aprende a lutar a partir da observação. Deixado à própria sorte, ele usa seu "
+"espigão para recolher o lixo."
+
+msgid "cateye_description"
+msgstr "Eles dizem que pisca uma vez por ano, em homenagem ao fim do verão."
+
+msgid "chenipode_description"
+msgstr "Ele morde os cadarços e as pernas das calças quando quer viajar."
+
+msgid "chibiro_description"
+msgstr ""
+"É encontrado em florestas e campos, onde muitas vezes é confundido com um "
+"nabo."
+
+msgid "chromeye_description"
+msgstr ""
+"O CHROMEYE foi criado para observar e aprender como os seres humanos pensam "
+"e sentem."
+
+msgid "cochini_description"
+msgstr ""
+"É tão inteligente e consciente quanto uma criança de três anos de idade. Tem "
+"um sabor delicioso."
+
+msgid "coleorus_description"
+msgstr "Ela existe, inalterada, há milhões de anos."
+
+msgid "professorexists1"
+msgstr "Obrigado Ben."
+
+msgid "taba_house2_sign"
+msgstr "Biblioteca Legacy"
+
+msgid "spyder_papertown_homemaker1"
+msgstr ""
+"Como você está, ${{name}}?\n"
+"Quieto e solene como sempre, vejo."
+
+msgid "spyder_hospital_billie1"
+msgstr ""
+"${{name}}, sua intromissão se tornou demais! Basta deixar que as autoridades "
+"façam o seu trabalho!"
+
+msgid "taba_greeting1"
+msgstr ""
+"Recepcionista Jaime: Ei lá ${{name}}! Ouvi dizer que você tem um Tuxemon, "
+"parabéns! Se você quiser aumentar sua festa, você precisará de Tuxeballs."
+
+msgid "earthmover_key_description"
+msgstr ""
+"Poderia ser útil se houver um terraplanador gigante bloqueando o caminho."
+
+msgid "earthmover_key"
+msgstr "Chave do Terraplanador"
+
+msgid "ice_storm"
+msgstr "Tempestade de gelo"
+
+msgid "insanity"
+msgstr "Insanidade"
+
+msgid "kraken"
+msgstr "Kraken"
+
+msgid "lantern"
+msgstr "Lanterna"
+
+msgid "lightning_spheres"
+msgstr "Esferas de relâmpago"
+
+msgid "lava"
+msgstr "Lava"
+
+msgid "lineage"
+msgstr "Linhagem"
+
+msgid "magma"
+msgstr "Magma"
+
+msgid "mending"
+msgstr "Remendar"
+
+msgid "meltdown"
+msgstr "Colapso"
+
+msgid "mobbing"
+msgstr "Mobbing"
+
+msgid "muck"
+msgstr "Lama"
+
+msgid "mystic_blending"
+msgstr "Mistura Mística"
+
+msgid "negation"
+msgstr "Negação"
+
+msgid "nest"
+msgstr "Ninho"
+
+msgid "orbs"
+msgstr "Orbs"
+
+msgid "pit"
+msgstr "Buraco"
+
+msgid "altie_description"
+msgstr ""
+"ALTIE flutuou até a terra em uma bolha. Agora que sua bolha estourou, ela "
+"não pode flutuar mais do que alguns metros no ar."
+
+msgid "angrito_description"
+msgstr ""
+"Não consegue entender por que os seres humanos sentem raiva e ódio, mas "
+"ANGRITO também sente esses impulsos."
+
+msgid "anu_description"
+msgstr ""
+"Diz-se que ela entra nos sonhos dos outros para procurar seu amor perdido."
+
+msgid "quicklyknight4"
+msgstr "Desculpe, mas eu deveria sair agora."

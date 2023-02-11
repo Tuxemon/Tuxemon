@@ -3,7 +3,7 @@
   "accuracy": 0.7,
   "animation": "claw_blue",
   "effects": [
-    "damage 100"
+    "damage"
   ],
   "flip_axes": "x",
   "healing_power": 0,

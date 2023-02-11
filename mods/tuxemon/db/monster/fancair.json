@@ -1,6 +1,6 @@
 {
     "slug": "fancair",
-    "category": "",
+    "category": "deadly_fan",
     "ai": "RandomAI",
     "fusion1": "fan",
     "fusion2": "cair",

@@ -3,6 +3,7 @@
   "accuracy": 1,
   "animation": "shield_rock",
   "effects": [
+    "enhance",
     "hardshell user"
   ],
   "flip_axes": "",
@@ -10,8 +11,8 @@
   "icon": "",
   "is_area": false,
   "is_fast": false,
-  "potency": null,
-  "power": 1.0,
+  "potency": 1,
+  "power": 1,
   "range": "special",
   "recharge": 2,
   "sfx": "sfx_crumble2",

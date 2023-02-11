@@ -285,7 +285,7 @@ class Monster:
         self.slug = results.slug
         self.name = T.translate(results.slug)
         self.description = T.translate(f"{results.slug}_description")
-        self.category = T.translate(results.category)
+        self.category = T.translate(f"cat_{results.category}")
         self.shape = results.shape or MonsterShape.landrace
         self.stage = results.stage or EvolutionStage.standalone
         types = results.types
@@ -523,17 +523,6 @@ class Monster:
         self.level += 1
         self.level = min(self.level, MAX_LEVEL)
         self.set_stats()
-
-        # Learn New Moves
-        for move in self.moveset:
-            if move.level_learned == self.level:
-                logger.info(
-                    "{} learned technique {}!".format(
-                        self.name, move.technique
-                    )
-                )
-                technique = Technique(move.technique)
-                self.learn(technique)
 
     def set_level(self, level: int = 5) -> None:
         """

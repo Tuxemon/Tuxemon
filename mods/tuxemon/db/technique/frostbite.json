@@ -4,7 +4,7 @@
   "animation": "lance_ice",
   "effects": [
     "poison target",
-    "damage 100"
+    "damage"
   ],
   "flip_axes": "xy",
   "healing_power": 0,
@@ -12,7 +12,7 @@
   "is_area": false,
   "is_fast": false,
   "potency": 0.2,
-  "power": 3.0,
+  "power": 3,
   "range": "reach",
   "recharge": 3,
   "sfx": "sfx_blaster",

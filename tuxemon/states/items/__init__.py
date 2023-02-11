@@ -164,7 +164,20 @@ class ItemMenuState(Menu[Item]):
             result = item.use(player, monster)
             self.client.pop_state()  # pop the monster screen
             self.client.pop_state()  # pop the item screen
-            tools.show_item_result_as_dialog(local_session, item, result)
+            # check effects, some don't need the show_item_result_as_dialog
+            # (eg learn_mm, etc)
+            for t in item.effects:
+                if t.name == "learn_mm" or t.name == "learn_tm":
+                    if result["success"]:
+                        player.check_max_moves(local_session, monster)
+                    else:
+                        tools.show_item_result_as_dialog(
+                            local_session, item, result
+                        )
+                else:
+                    tools.show_item_result_as_dialog(
+                        local_session, item, result
+                    )
 
         def confirm() -> None:
             self.client.pop_state()  # close the confirm dialog
@@ -200,7 +213,22 @@ class ItemMenuState(Menu[Item]):
 
     def initialize_items(self) -> Generator[MenuItem[Item], None, None]:
         """Get all player inventory items and add them to menu."""
-        inventory = local_session.player.inventory.values()
+        state = self.determine_state_called_from()
+        inventory = []
+        # in battle shows only items with MainCombatMenuState (usable_in)
+        if state == "MainCombatMenuState":
+            inventory = [
+                item
+                for item in local_session.player.inventory.values()
+                if State[state] in item["item"].usable_in
+            ]
+        # shows all items (excluded phone category)
+        else:
+            inventory = [
+                item
+                for item in local_session.player.inventory.values()
+                if item["item"].category != "phone"
+            ]
 
         # required because the max() below will fail if inv empty
         if not inventory:

@@ -1,6 +1,6 @@
 {
     "slug": "windeye",
-    "category": "",
+    "category": "tower",
     "ai": "RandomAI",
     "fusion1": "wind",
     "fusion2": "eye",

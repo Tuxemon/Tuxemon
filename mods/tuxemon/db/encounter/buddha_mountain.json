@@ -1,0 +1,25 @@
+{
+  "slug": "buddha_mountain",
+  "monsters": [
+    {
+      "monster": "snowrilla",
+      "encounter_rate": 3.5,
+      "daytime": true,
+      "exp_req_mod": 1,
+      "level_range": [
+        55,
+        65
+      ]
+    },
+    {
+      "monster": "snowrilla",
+      "encounter_rate": 3.5,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        65,
+        75
+      ]
+    }
+  ]
+}

@@ -4,6 +4,8 @@
     {
       "monster": "cairfrey",
       "encounter_rate": 3,
+      "daytime": true,
+      "exp_req_mod": 1,
       "level_range": [
         13,
         16
@@ -12,6 +14,8 @@
     {
       "monster": "polyrock",
       "encounter_rate": 3,
+      "daytime": true,
+      "exp_req_mod": 1,
       "level_range": [
         13,
         16
@@ -20,6 +24,8 @@
     {
       "monster": "djinnbo",
       "encounter_rate": 1,
+      "daytime": true,
+      "exp_req_mod": 1,
       "level_range": [
         14,
         17
@@ -28,9 +34,51 @@
     {
       "monster": "pigabyte",
       "encounter_rate": 3,
+      "daytime": true,
+      "exp_req_mod": 1,
       "level_range": [
         13,
         16
+      ]
+    },
+    {
+      "monster": "cairfrey",
+      "encounter_rate": 3,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        14,
+        18
+      ]
+    },
+    {
+      "monster": "polyrock",
+      "encounter_rate": 3,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        14,
+        18
+      ]
+    },
+    {
+      "monster": "djinnbo",
+      "encounter_rate": 1,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        14,
+        18
+      ]
+    },
+    {
+      "monster": "pigabyte",
+      "encounter_rate": 3,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        14,
+        18
       ]
     }
   ]

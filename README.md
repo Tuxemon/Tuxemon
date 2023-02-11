@@ -1,4 +1,4 @@
-Tuxemon 0.4.35
+Tuxemon
 ==============
 
 Tuxemon is a free, open source monster-fighting RPG.  It's in constant
@@ -51,8 +51,8 @@ Run:
 ```shell
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
-python -m pip install -U -r requirements.txt
-python run_tuxemon.py
+python3 -m pip install -U -r requirements.txt
+python3 run_tuxemon.py
 ```
 
 ### Windows Binary
@@ -90,11 +90,11 @@ python3 run_tuxemon.py
 
 *Not recommended* because it will change system-installed packages
 ```shell
-sudo apt install python python-pygame python-pip python-imaging git
+sudo apt install python3 python3-pygame python3-pip python3-imaging git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
-sudo pip install -U -r requirements.txt
-python run_tuxemon.py
+sudo pip3 install -U -r requirements.txt
+python3 run_tuxemon.py
 ```
 
 *Debian/Ubuntu optional rumble support*
@@ -184,7 +184,7 @@ These keyboard shortcuts are available with dev tools enabled
 
 ##### Map Editor
 
-Use *Tiled* map editor: http://www.mapeditor.org/
+Use *Tiled* map editor: https://www.mapeditor.org/
 
 
 CLI Interface
@@ -291,7 +291,7 @@ License
 -------
 
 With the exception of the lib folder which may have its own license, all
-code in this project is licenced under the GPLv3.
+code in this project is licenced under [the GPLv3](https://www.gnu.org/licenses/gpl-3.0.html).
 
 GPL v3+
 
@@ -309,7 +309,6 @@ External links
 --------------
 
 * Official website: [tuxemon.org](https://www.tuxemon.org)
-* Official forum: [forum.tuxemon.org](https://forum.tuxemon.org/)
 * Matrix: [Tuxemon](https://matrix.to/#/!ktrcrHpgkDOGCQOlxX:matrix.org)
 * Discord: [Tuxemon](https://discord.gg/3ZffZwz)
 * Reddit: [/r/Tuxemon](https://www.reddit.com/r/tuxemon)

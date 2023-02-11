@@ -157,24 +157,6 @@
     <property name="cond1" value="not variable_set nimrodchromerobo_middle:yes"/>
    </properties>
   </object>
-  <object id="22" name="Create Birb Robo" type="event" x="192" y="176" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_nimrod_birbrobo,12,11"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_birbrobo"/>
-    <property name="cond2" value="not variable_set nimrodbirbrobo_middle:yes"/>
-   </properties>
-  </object>
-  <object id="23" name="Talk Birb Robo" type="event" x="176" y="176" width="16" height="16">
-   <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_birbrobo1"/>
-    <property name="act3" value="start_battle spyder_nimrod_birbrobo"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_birbrobo2"/>
-    <property name="act6" value="set_variable nimrodbirbrobo_middle:yes"/>
-    <property name="act7" value="remove_npc spyder_nimrod_birbrobo"/>
-    <property name="behav1" value="talk spyder_nimrod_birbrobo"/>
-    <property name="cond1" value="not variable_set nimrodbirbrobo_middle:yes"/>
-   </properties>
-  </object>
   <object id="24" name="Create Xeon" type="event" x="160" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_xeon,10,15"/>
@@ -251,17 +233,6 @@
     <property name="act4" value="translated_dialog spyder_nimrod_honour2"/>
     <property name="act6" value="set_variable nimrodhonour:yes"/>
     <property name="cond1" value="not variable_set nimrodhonour:yes"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="39" name="Talk Birb Robo" type="event" x="192" y="192" width="16" height="64">
-   <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_birbrobo1"/>
-    <property name="act3" value="start_battle spyder_nimrod_birbrobo"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_birbrobo2"/>
-    <property name="act6" value="set_variable nimrodbirbrobo_middle:yes"/>
-    <property name="act7" value="remove_npc spyder_nimrod_birbrobo"/>
-    <property name="cond1" value="not variable_set nimrodbirbrobo_middle:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>

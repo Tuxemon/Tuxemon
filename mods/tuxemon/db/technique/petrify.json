@@ -2,7 +2,9 @@
   "tech_id": 37,
   "accuracy": 1,
   "animation": "shield_rock",
-  "effects": [],
+  "effects": [
+    "enhance"
+  ],
   "flip_axes": "",
   "healing_power": 0,
   "icon": "",

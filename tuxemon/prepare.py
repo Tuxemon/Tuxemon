@@ -77,7 +77,7 @@ XP_COLOR = (248, 245, 71)
 NATIVE_RESOLUTION = [240, 160]
 
 # Set the character limit for setting a player name.
-PLAYER_NAME_LIMIT = 30
+PLAYER_NAME_LIMIT = 15
 
 # Fonts
 FONT_BASIC = "PressStart2P.ttf"

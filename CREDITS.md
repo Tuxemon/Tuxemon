@@ -122,7 +122,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Desert Male"](https://wiki.tuxemon.org/File:Male-trainer-alt-egypt.png). Original design by Leo.
 
-* ["Disciple"](https://wiki.tuxemon.org/File:Wizard.png) [https://opengameart.org/content/rpg-wizard-battle-frames CC0 on OGA]
+* ["Disciple"](https://wiki.tuxemon.org/File:Disciple_-_64px.png) [https://opengameart.org/content/rpg-wizard-battle-frames CC0 on OGA]
 
 * ["Dragonfly"](https://wiki.tuxemon.org/File:Dragonfly_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY.
 
@@ -666,7 +666,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Mk01 Alpha"](https://wiki.tuxemon.org/index.php?title=Mk01_Alpha) and ["Mk01 Beta"](https://wiki.tuxemon.org/index.php?title=Mk01_Beta) by Serpexnessie.
 
-* ["Chrome Robo"](https://wiki.tuxemon.org/index.php?title=Chrome_Robo), ["Dark Robo"](https://wiki.tuxemon.org/index.php?title=Dark_Robo) and ["Birb Robo"](https://wiki.tuxemon.org/index.php?title=Birb_Robo) front sprite by Redshrike. Overland sprites by Catch Challenger.
+* ["Chrome Robo"](https://wiki.tuxemon.org/index.php?title=Chrome_Robo), ["Dark Robo"](https://wiki.tuxemon.org/index.php?title=Dark_Robo) front sprite by Redshrike. Overland sprites by Catch Challenger.
 
 * ["Xeon"](https://wiki.tuxemon.org/index.php?title=Xeon) and ["Xeon-2"](https://wiki.tuxemon.org/index.php?title=Xeon-2) by Redshrike.
 
@@ -1271,9 +1271,6 @@ By daneeklu [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0
 * ["Spikes Rock"](https://wiki.tuxemon.org/File:Spikes_rock.gif)
 By daneeklu [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
-* ["Tentacle Metal"](https://wiki.tuxemon.org/File:Tentacle_metal.gif)
-[https://opengameart.org/content/custom-enemies OGA CC0]
-
 * ["Tentacles Water"](https://wiki.tuxemon.org/File:Tentacles_water_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
@@ -1343,6 +1340,23 @@ Animation by josepharaoh99 and created for the Tuxemon project.
 
 * ["Yellow Circle"](https://wiki.tuxemon.org/File:Yellow_circle.gif)
 Adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
+
+### Type Icons
+
+* ["Earth Type"](https://wiki.tuxemon.org/File:24px_Element6.png)
+[https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Fire Type"](https://wiki.tuxemon.org/File:24px_Element1.png)
+[https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Metal Type"](https://wiki.tuxemon.org/File:24px_Element5.png)
+[https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Water Type"](https://wiki.tuxemon.org/File:24px_Element2.png)
+[https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Wood Type"](https://wiki.tuxemon.org/File:I_Leaf-24.png)
+Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
 ### Technique Icons
 

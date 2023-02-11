@@ -4,6 +4,8 @@
     {
       "monster": "elofly",
       "encounter_rate": 3,
+      "daytime": true,
+      "exp_req_mod": 1,
       "level_range": [
         11,
         14
@@ -12,6 +14,8 @@
     {
       "monster": "sapsnap",
       "encounter_rate": 1,
+      "daytime": true,
+      "exp_req_mod": 1,
       "level_range": [
         12,
         15
@@ -20,6 +24,8 @@
     {
       "monster": "aardorn",
       "encounter_rate": 3,
+      "daytime": true,
+      "exp_req_mod": 1,
       "level_range": [
         11,
         14
@@ -28,9 +34,51 @@
     {
       "monster": "katapill",
       "encounter_rate": 3,
+      "daytime": true,
+      "exp_req_mod": 1,
       "level_range": [
         11,
         14
+      ]
+    },
+    {
+      "monster": "elofly",
+      "encounter_rate": 3,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        13,
+        16
+      ]
+    },
+    {
+      "monster": "sapsnap",
+      "encounter_rate": 1,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        13,
+        16
+      ]
+    },
+    {
+      "monster": "aardorn",
+      "encounter_rate": 3,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        13,
+        16
+      ]
+    },
+    {
+      "monster": "katapill",
+      "encounter_rate": 3,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        13,
+        16
       ]
     }
   ]

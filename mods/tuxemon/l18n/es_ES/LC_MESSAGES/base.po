@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2023-01-19 21:49+0000\n"
+"PO-Revision-Date: 2023-02-03 04:41+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -707,7 +707,10 @@ msgid "agnite"
 msgstr "Agnite"
 
 msgid "allagon_description"
-msgstr "Los Allagon se ven atraídos hacia las reliquias hechas con los metales que dejaron atrás sus antepasados, y reaccionarán con violencia para recuperarlas."
+msgstr ""
+"Los ALLAGON se ven atraídos hacia las reliquias hechas con los metales que "
+"dejaron atrás sus antepasados, y reaccionarán con violencia para "
+"recuperarlas."
 
 msgid "allagon"
 msgstr "Allagon"
@@ -1605,7 +1608,8 @@ msgid "spillit3"
 msgstr "Lo que sea... Allie es mi hermana y lo significa todo para mí, así que me destrozó enterarme de que se la han llevado al cuartel general."
 
 msgid "spillit4"
-msgstr "Puede no parecer algo malo, pero lo es. ¿Sabes qué les hacen? ¿¡LO SABES!?"
+msgstr ""
+"Puede no parecer algo malo, pero lo es. ¿Sabes qué les hacen? ¿¡LO SABES!?"
 
 msgid "spillit5"
 msgstr "Porque yo tampoco... Lo único que sé es que nunca nadie ha abandonado Omnichannel después de ser reclutado."
@@ -3678,7 +3682,7 @@ msgstr ""
 
 msgid "pilthropus_description"
 msgstr ""
-"Encontrándose junto a Tuxemon como Rhincus, Pilthropus era uno de los "
+"Encontrándose junto a Tuxemon como RHINCUS, PILTHROPUS era uno de los "
 "Tuxemon más antiguos capaz de crear sus propias herramientas."
 
 msgid "spyder_route3_drag1"
@@ -4592,3 +4596,166 @@ msgstr "Cambio de Forma"
 
 msgid "slime"
 msgstr "Limo"
+
+msgid "monster_menu_tech"
+msgstr "Técnicas"
+
+msgid "move_to_kennel"
+msgstr "mover a {box}"
+
+msgid "birb_robo_description"
+msgstr "Un robot hostil."
+
+msgid "mk01_proto_description"
+msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."
+
+msgid "Kennel"
+msgstr "refugio"
+
+msgid "monster_menu_desc"
+msgstr "Descripción"
+
+msgid "kennel_label"
+msgstr "{box} ({qty})"
+
+# Tuxemon Threats
+msgid "chrome_robo_description"
+msgstr "Un robot hostil."
+
+msgid "dark_robo_description"
+msgstr "Un robot hostil."
+
+msgid "mk01_gamma"
+msgstr "Mk01 Gamma"
+
+msgid "mk01_delta_description"
+msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."
+
+msgid "mk01_alpha_description"
+msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."
+
+msgid "mk01_beta_description"
+msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."
+
+msgid "mk01_omega_description"
+msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."
+
+msgid "mk01_gamma_description"
+msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."
+
+msgid "mk01_omega"
+msgstr "Mk01 Omega"
+
+#, fuzzy
+msgid "mk01_proto"
+msgstr "Mk01 Proto"
+
+msgid "xeon_2_description"
+msgstr "Un robot hostil."
+
+msgid "xeon_description"
+msgstr "Un robot hostil."
+
+msgid "taba_house2_reader3a"
+msgstr "Así que puedo vivir mil vidas diferentes."
+
+msgid "taba_house1_husband1"
+msgstr "¡Tuxemon! ¡Estaba entre los entrenadores más hábiles!"
+
+msgid "taba_house2_sign"
+msgstr "Biblioteca Legacy"
+
+msgid "taba_house1_calendar"
+msgstr ""
+"Es un calendario y el 30 de septiembre y el 12 de febrero están marcados en "
+"rojo."
+
+msgid "taba_house1_wife1"
+msgstr "¿Entrenador? Mi esposo está delirando."
+
+msgid "taba_house1_watching"
+msgstr ""
+"Es un documental sobre los Tuxemon más extraños y maravillosos de la región,"
+"\n"
+"así como los comportamientos extraños que han adoptado."
+
+msgid "taba_house2_reading3"
+msgstr "El libro es Children Without Honor de Leslie Greninza."
+
+msgid "taba_house2_reader1a"
+msgstr "Me siento mejor al ver un libro o una librería."
+
+msgid "taba_house2_books"
+msgstr ""
+"000 - Informática, información y trabajos generales, 100 - Filosofía y "
+"psicología\n"
+"200 - Religión, 300 - Ciencias sociales, 400 - Lengua, 500 - Ciencia pura, "
+"600 - Tecnología\n"
+"700 - Arte y recreación, 800 - Literatura, 900 - Historia y geografía"
+
+msgid "taba_house3_client2a"
+msgstr "Pensar demasiado puede hacernos daño."
+
+msgid "taba_house1_reading"
+msgstr "El libro es Filosofía de los estudios ilusorios de Jaiden Gemrevenza."
+
+msgid "taba_house2_owner1"
+msgstr ""
+"¡Bienvenido a la biblioteca Legacy! Siéntase libre de mirar a su alrededor, "
+"pero tranquilo, por favor."
+
+msgid "taba_house2_reading1"
+msgstr "El libro es Visitando al Rey de Manolo Qai."
+
+msgid "taba_house2_reading2"
+msgstr "El libro es Raised By Dreams de Louis Etrergo."
+
+msgid "taba_house3_client1a"
+msgstr ""
+"Estoy descansando mientras mi hermana probablemente está leyendo algunos "
+"libros."
+
+msgid "taba_house3_client3a"
+msgstr "Me hace pensar en la casa de mi madre."
+
+msgid "taba_house2_reader2a"
+msgstr "Enciende mi imaginación."
+
+msgid "taba_house2_reading4"
+msgstr "El libro es Sailing Into Eternitys de Laurine Doprachuld."
+
+msgid "taba_house4_client2a"
+msgstr "¿Eh? Simplemente llenando un estómago vacío."
+
+msgid "taba_house4_dish1"
+msgstr "Es marrón, denso, pero no parece pudín..."
+
+msgid "taba_house2_reader4a"
+msgstr ""
+"La lectura estimula mi mente de una manera que la televisión y las películas "
+"nunca podrán hacer."
+
+msgid "taba_house4_client1a"
+msgstr "¡Mi abuela solía hacer un plato similar!"
+
+msgid "taba_house4_client3a"
+msgstr "Afortunadamente no pagué por esto. ¿Cómo puedes pagar por esto?"
+
+msgid "taba_house3_owner1"
+msgstr "¡Bienvenido a The Thoughtful Leaf Inn!"
+
+msgid "taba_house4_owner1"
+msgstr "¡Bienvenido a The Honorable Seagulls Pub!"
+
+msgid "kylekindasucks6"
+msgstr "Ah, ¿y ${{name}}?"
+
+msgid "misaisleavingfornow2"
+msgstr "Buena suerte ${{name}}. Estoy seguro de que nos volveremos a ver. "
+
+# Taba Town
+msgid "maple_bedroom_sign"
+msgstr "Es un calendario y el 27 de abril está marcado en rosa."
+
+msgid "taba_house1_sign"
+msgstr "Casa del Sr. y la Sra. Clawbrew"

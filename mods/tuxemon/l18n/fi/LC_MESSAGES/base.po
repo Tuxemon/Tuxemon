@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-11 00:00+0000\n"
-"PO-Revision-Date: 2023-01-19 21:49+0000\n"
+"PO-Revision-Date: 2023-02-03 04:41+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fi/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 ## ITEM TRANSLATIONS ##
 # Apple
@@ -1426,3 +1426,14 @@ msgstr "${{name}}:n talo"
 
 msgid "oedipus"
 msgstr "Oidipus"
+
+msgid "kennel_label"
+msgstr "{box} ({qty})"
+
+# Default mod names on selection menu
+msgid "xero_campaign"
+msgstr "Tuxemon: Xero"
+
+# Money notification
+msgid "player_wallet"
+msgstr "${{name}}:n lompakko: ${{currency}}${{money}}"

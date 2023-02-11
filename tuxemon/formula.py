@@ -335,3 +335,9 @@ def sync(player: NPC, value: int, total: int) -> float:
     percent = round((value / total) * 100, 1)
     player.game_variables["tuxepedia_progress"] = str(percent)
     return percent
+
+
+def weight_height_diff(monster: Monster, db: Monster) -> Tuple[float, float]:
+    weight = round(((monster.weight - db.weight) / db.weight) * 100, 1)
+    height = round(((monster.height - db.height) / db.height) * 100, 1)
+    return weight, height

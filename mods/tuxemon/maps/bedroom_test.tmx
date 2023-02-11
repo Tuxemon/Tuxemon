@@ -1,38 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="11" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
- <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="11" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
+ <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ <tileset firstgid="3865" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="161" name="electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
+ <tileset firstgid="7729" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
- <tileset firstgid="177" name="plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="193" name="stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
-  <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
+ <tileset firstgid="10699" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYCANMAGVE8IwEyWADEIYplYZyCCEYWr1gAx8GGQODOBTB5Kjh1qYWwjRAIbzCHI=
+   eAFjYCANHGJmYCCEYSbKsTAwEMIwtdXCDAyEMEztSqBafBhkDgzgUweSo4damFsI0QCXHibW
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYKAeYEEzqhbIb4KKxQDpOCR5fiQ2iNkJxH1APAuIS4C4DIhB4CQQnwKzEMRUKJMTSHNBMTeQvgjEl4AYGxABCopCsRg2BUhi8kC2AhQrIonTmgkAWYwJLw==
+   eAFjYKAeyNJGNStQj4EhDIhB4LsuA8NPIIaBTjS1BUB1pUA8BYhNgdgciEHAXJ2BwQKIkUE/VM6MHygPxRZAOgWoLhVNLUxfClA+FYrTgDQ+MAkoPxmKpxBQi88cUuUAPh8PYw==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYKAtWAo1fiGQXkSkVXVEqkNXdhkocAVdcAjxAeT5BA4=
+   eAFjYKAt+KcNMf8+kH4AZROyMUiPkArs8mnqDAzpQDxUAQAGtgTa
   </data>
  </layer>
  <layer id="4" name="Above player" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYKA/OAy08ggOa2vQxE8D+WfQxAaKu5EEi7ciqZUEsglhkHIAFLAF4g==
+   eAFjYKA/4FEn3k5LEtQSbyp5KqdqE69vCwlqYaYCAAaLAjM=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">

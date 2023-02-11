@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="24" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="58">
- <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="24" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="58">
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ <tileset firstgid="3865" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
- <tileset firstgid="161" name="stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
-  <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
+ <tileset firstgid="6835" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="185" name="electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
+ <tileset firstgid="10699" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="24" height="24">
   <data encoding="base64" compression="zlib">
-   eAHtUjkOg0AMXPKJ8ID0aUkNNXllSv7IGDECIR9FjITQrjTY3rEHY1xKKU2AD3gNUR3KljPg6eELXoNXIxzPE46HN3gNXo1wPFptxt1d9R/4sN8K8a1ZRXnWfFoQ0wrxLf0oz9J/gdjD0t/niH/Mq/r+HK8ynw6NCLizjLP+bw9tAXeWcbY+9y9bf0TvAuozzur/qGPFfD8tWloOY1qrPrpnPa2lT/5fW/W3ndJmyfmcaWfpblxv
+   eAHtlEEKwkAMRbPosvt2ZRcueyJdewO9kCeqp3Gn+GP5WIYkIxhBpAOfJE3yOqShIiLHTaw78pZqfUA/zxn9kfaDiKWoR3M8E/xILQotRT2a47F6M579K/+E2V27Wep7s6rVefO5gLntZ6nv8Wt1Hv/QiCzl8Zc16pd1Kz+e46/M54YdUnFnGWd93xH/NxV3lnE2n/uXzd/h7iryGWfdv+R4Md9P++7+eLzyObm0Hp/5T+3Kf+2UNUvO55v2Ae+MesM=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="24" height="24">
   <data encoding="base64" compression="zlib">
-   eAHlkskOwkAIhntxObocXa4u8Wo8ucTn8zk8+oxCM39DCci01mjiJBRm5ucr0BbFf6w+tTlINvxAy2NiTpJNf4w/yqinaf2zgHmnezYsj6910Ef+QQI2LI+vddC/8jyvLdlOiDw+dNE8BKoM9/Q8iEOPr3UipQqt76vzmvKjft7lV8UbAfej+XM6WyRbihzoonpFSmHx+d76F9vwmYU8jrGsf9HSQQ+f832h1d7jR/O6EOiqYcY+VydTZT8rulg7thFJUb1CWguPtDs5dq4pv7eR8+iqirbz6ur9HqfnXXRwfksM+BzkE4RBGE4=
+   eAHllUsKwkAMhuMpFNSdO8EXXkK9hLh1K6hX8IXX6AndmmB/CGFipqWKYCBkbP98eXRAov+wLo/ZK73/gZEXzFyWvvox/mkYN1S1/yJgPtpE4jCPb3XQR3HQIRKHeXyrg/5dlH3NWkRzdpjHhy7aBziIa2ZvMvhWh3wdU9/X5nn9Wx240Tw2ryofdVJR5rH8PQsPpR9VEnRRvyqFUnx5n7qLdfjCQp6cYam7mNJBj5jzfaG10eNH+7rx3byr+2m5+J2rg16inmfMNSaOT1X9qF/N1+czMy6OXxVf53z7rPfRVO26+2qqvsfZBv8bXl7O893opULMyXkCIu42Tw==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="24" height="24">
   <data encoding="base64" compression="zlib">
-   eAFjYICABihNCpUNVJyDpmEalA+jQVwQuwdKg/i4QC1QYjcuSSTxBiQ2PmY8UDIBSUEnkL0fiY+LCXIrOWAqOZpG9YyGwGgIjIbAaAhQLQTqyDCJHD1kWDMstcyiga9oYSY2ZwIANgULTA==
+   eAFjYICAED0ogwRKEqhHCk3fBCgfRoOMA7GLgRhZDJs1gUA1D7WxyaCKEevWX7oMDL+BGAYKQG7TgfFw0yC3kgP6ydRHrF3raGw+se4YVTcaAqMhMBoCgzUEgsgoJ8nRM1j9T293TSEjvAm5kRZmYrMTAM+hDo8=
   </data>
  </layer>
  <layer id="4" name="Above player" width="24" height="24">
   <data encoding="base64" compression="zlib">
-   eAGTZKAdkAQaDcK0AsSaj80N2MTQ3TlqPnqIoPKxhQ+2cCVXbNR8zPBGFhkNH+TQwCxriA0fVFNw89DT8aj5qGE1UsIHFu/k0MghBtOPLEZN9nAxH+YPWtAAhlwNFw==
+   eAFbrs1AM7AcaDYI0woQaz42N2ATQ3fnqPnoIYLKxxY+2MKVXLFR8zHDG1lkNHyQQwOzrCE2fFBNwc1DT8ej5qOG1UgJH1i8k0MjhxhMP7IYNdnDxXyYP2hBAwBC723t
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">

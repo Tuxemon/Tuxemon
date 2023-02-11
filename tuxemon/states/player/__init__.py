@@ -2,11 +2,10 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import logging
-from typing import TYPE_CHECKING, Callable
+from typing import Callable
 
 import pygame_menu
-from pygame_menu import baseimage, locals, widgets
+from pygame_menu import baseimage, locals
 
 from tuxemon import formula, graphics, prepare
 from tuxemon.db import SeenStatus, db
@@ -14,12 +13,6 @@ from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
-
-logger = logging.getLogger(__name__)
-
-if TYPE_CHECKING:
-    from tuxemon.monster import Monster
-
 
 MenuGameObj = Callable[[], object]
 

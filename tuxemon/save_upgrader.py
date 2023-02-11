@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Dict, Mapping
 
+from tuxemon import formula
 from tuxemon.db import SeenStatus
 
 if TYPE_CHECKING:
@@ -53,6 +54,10 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     """
     if "steps" not in save_data["game_variables"]:
         save_data["game_variables"]["steps"] = 0
+    if "date_start_game" not in save_data["game_variables"]:
+        save_data["game_variables"][
+            "date_start_game"
+        ] = formula.today_ordinal()
 
     save_data["battle_history"] = save_data.get("battle_history", {})
     save_data["money"] = save_data.get("money", {})
@@ -66,11 +71,15 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
             for monster in monsters:
                 save_data["tuxepedia"][monster["slug"]] = SeenStatus.caught
 
-    # set money old savegame and avoid getting the starter
+    # set money and phone old savegames and avoid getting the starter
     if not save_data["money"]:
         save_data["money"]["player"] = 10000
         save_data["game_variables"]["xero_starting_money"] = "yes"
         save_data["game_variables"]["spyder_starting_money"] = "yes"
+    if "visitedcottoncafe" in save_data["game_variables"]:
+        if save_data["game_variables"]["visitedcottoncafe"] == "yes":
+            if "nu_phone" not in save_data["inventory"].keys():
+                save_data["inventory"]["nu_phone"] = 1
 
     version = save_data.get("version", 0)
     for i in range(version, SAVE_VERSION):

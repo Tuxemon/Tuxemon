@@ -471,6 +471,12 @@ class MonsterModel(BaseModel):
         )
         return v or default
 
+    @validator("category")
+    def translation_exists_category(cls, v):
+        if has.translation(f"cat_{v}"):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
 
 class StatModel(BaseModel):
     value: float = Field(0.0, description="The value of the stat")

@@ -1,37 +1,45 @@
 {
     "slug": "37707_town",
-    "monsters":[
-        {
-            "encounter_rate": 0.5,
-            "level_range": [
-                1,
-                10
-            ],
-            "monster": "fruitera"
-        },
-        {
-            "encounter_rate": 0.5,
-            "level_range": [
-                1,
-                10
-            ],
-            "monster": "dollfin"
-        },
-        {
-            "encounter_rate": 0.5,
-            "level_range": [
-                1,
-                10
-            ],
-            "monster": "legko"
-        },
-        {
-            "encounter_rate": 0.5,
-            "level_range": [
-                1,
-                10
-            ],
-            "monster": "rockitten"
-        }
+    "monsters": [
+      {
+        "encounter_rate": 0.5,
+        "daytime": true,
+        "exp_req_mod": 1,
+        "level_range": [
+          1,
+          10
+        ],
+        "monster": "fruitera"
+      },
+      {
+        "encounter_rate": 0.5,
+        "daytime": true,
+        "exp_req_mod": 1,
+        "level_range": [
+          1,
+          10
+        ],
+        "monster": "dollfin"
+      },
+      {
+        "encounter_rate": 0.5,
+        "daytime": false,
+        "exp_req_mod": 1,
+        "level_range": [
+          1,
+          10
+        ],
+        "monster": "legko"
+      },
+      {
+        "encounter_rate": 0.5,
+        "daytime": false,
+        "exp_req_mod": 1,
+        "level_range": [
+          1,
+          10
+        ],
+        "monster": "rockitten"
+      }
     ]
-}
+  }

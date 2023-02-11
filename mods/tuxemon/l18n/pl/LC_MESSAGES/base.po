@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-19 21:49+0000\n"
-"Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
+"PO-Revision-Date: 2023-02-03 04:41+0000\n"
+"Last-Translator: Fancy.Dot <pankotel1o1@protonmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "pl/>\n"
 "Language: pl\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15.1\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 msgid "clamp_on"
 msgstr "Zacisk"
@@ -2526,3 +2526,101 @@ msgstr "trasa"
 
 msgid "oedipus"
 msgstr "Edyp"
+
+msgid "nudiflot_male_description"
+msgstr "Zjada i magazynuje truciznę stworzeń morskich, którymi się żywi."
+
+msgid "web"
+msgstr "Sieć"
+
+msgid "cotton_breeder7b"
+msgstr ""
+"Dobry pomysł, nowa rodzina powinna być trzymana razem na tym ważnym etapie "
+"rozwoju dziecka.\n"
+"Wracajcie teraz, słyszeliście?"
+
+msgid "nudiflot_female_description"
+msgstr "Zjada i magazynuje truciznę stworzeń morskich, którymi się żywi."
+
+msgid "spyder_mansion_drinkingbuddya2"
+msgstr "Tu jesteś stary przyjacielu! Zabierzmy cię z powrotem do rzeki."
+
+msgid "lizard"
+msgstr "Jaszczurka"
+
+# Default mod names on selection menu
+msgid "xero_campaign"
+msgstr "Tuxemon: Xero"
+
+msgid "dragon"
+msgstr "Smok"
+
+msgid "no"
+msgstr "Nie"
+
+msgid "spyder_dragonscave_cailin2"
+msgstr "Dziękuję."
+
+msgid "spyder_dragonscave_lucille2"
+msgstr "Pożałujesz tego."
+
+msgid "yestalk"
+msgstr "Naprawdę? Dzięki..."
+
+msgid "earth"
+msgstr "Ziemia"
+
+msgid "water"
+msgstr "Woda"
+
+msgid "spyder_tunnelb_greta2"
+msgstr "O nie, potrzebuję więcej!"
+
+msgid "spyder_tunnelb_tommy1"
+msgstr "Widziałeś moją kanapkę?"
+
+msgid "spyder_papertown_mom4"
+msgstr "Witamy ponownie! Spójrz na siebie, rośniesz tak szybko."
+
+msgid "kennel_label"
+msgstr "{box} ({qty})"
+
+msgid "fire"
+msgstr "Ogień"
+
+msgid "wood"
+msgstr "Drewno"
+
+msgid "devil"
+msgstr "Diabeł"
+
+msgid "spyder_nimrod_mace1"
+msgstr "Chcę odejść i zostać muzykiem."
+
+msgid "nodrink"
+msgstr "Jestem pewny, że jesteś za młody, żeby pić..."
+
+msgid "input_name"
+msgstr "Imię?"
+
+msgid "37707_sign_foreign"
+msgstr "Ten znak jest napisany w obcym języku, którego nie rozumiesz."
+
+msgid "37707_house"
+msgstr "Dziwne: jest zamknięty. Wygląda na to, że nikt nie używa tego budynku."
+
+msgid "37707_mail"
+msgstr "Jest puste i pełne pajęczyn."
+
+# Money notification
+msgid "player_wallet"
+msgstr "Portfel ${{name}}: ${{currency}}${{money}}"
+
+msgid "monster_menu_move"
+msgstr "Ruch"
+
+msgid "island"
+msgstr "Wyspa"
+
+msgid "thunderball"
+msgstr "Piorun Kulisty"

@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import logging
 from typing import Callable
 
 import pygame_menu
@@ -14,9 +13,6 @@ from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
-
-logger = logging.getLogger(__name__)
-
 
 MenuGameObj = Callable[[], object]
 
@@ -103,17 +99,6 @@ class PlayerState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         ).translate(fix_width(width, 0.45), fix_height(height, 0.25))
-        # bank
-        if "bank_account" not in player.money:
-            player.money["bank_account"] = 0
-        bank = player.money["bank_account"]
-        menu.add.label(
-            title=T.translate("bank") + ": " + str(bank),
-            label_id="bank",
-            font_size=15,
-            align=locals.ALIGN_LEFT,
-            float=True,
-        ).translate(fix_width(width, 0.65), fix_height(height, 0.25))
         # seen
         menu.add.label(
             title=msg_seen,

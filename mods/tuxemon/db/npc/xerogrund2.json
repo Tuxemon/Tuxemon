@@ -3,5 +3,5 @@
   "gender": "male",
   "sprite_name": "xerogrunt",
   "combat_front": "adventurer",
-  "template": "xerogrunt"
+  "template": "noclass"
 }

@@ -647,10 +647,10 @@ class NpcModel(BaseModel):
         ..., description="Name of the overworld sprite filename"
     )
     combat_front: str = Field(
-        "noclass", description="Name of the battle front sprite filename"
+        "noclass", description="Name of the front sprite filename"
     )
     template: TemplateType = Field(
-        ..., description="Name of the category / template"
+        ..., description="Name of the category / template of the NPC"
     )
     monsters: Sequence[PartyMemberModel] = Field(
         [], description="List of monsters in the NPCs party"

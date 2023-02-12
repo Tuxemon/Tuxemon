@@ -160,7 +160,7 @@
   </object>
   <object id="146" name="Teleport to Cotton Cathedral" type="event" x="304" y="416" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport cotton_cathedral.tmx,7,12,0.3"/>
+    <property name="act10" value="transition_teleport cotton_cathedral.tmx,6,10,0.3"/>
     <property name="act20" value="player_face up"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>

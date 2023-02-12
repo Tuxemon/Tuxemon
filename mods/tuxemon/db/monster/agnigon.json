@@ -2,8 +2,8 @@
     "slug": "agnigon",
     "category": "false_dragon",
     "ai": "RandomAI",
-    "fusion1": "agnig",
-    "fusion2": "igon",
+    "fusion1": "agni",
+    "fusion2": "gon",
     "moveset": [
         {
             "level_learned": 2,

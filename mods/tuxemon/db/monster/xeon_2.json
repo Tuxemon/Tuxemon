@@ -3,7 +3,7 @@
     "category": "threat",
     "ai": "RandomAI",
     "fusion1": "xe",
-    "fusion2": "on2",
+    "fusion2": "on",
     "moveset": [
         {
             "level_learned": 2,

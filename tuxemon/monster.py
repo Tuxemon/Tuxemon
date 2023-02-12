@@ -299,8 +299,8 @@ class Monster:
         self.height = self.set_char_height(results.height)
         self.weight = self.set_char_weight(results.weight)
         self.gender = random.choice(list(results.possible_genders))
-        self.fusion1 = results.fusion1
-        self.fusion2 = results.fusion2
+        self.fusion1 = T.translate(f"fusion_{results.fusion1}")
+        self.fusion2 = T.translate(f"fusion_{results.fusion2}")
         self.catch_rate = (
             results.catch_rate or TuxemonConfig().default_monster_catch_rate
         )

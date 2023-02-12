@@ -394,6 +394,12 @@ class MonsterModel(BaseModel):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
+    @validator("fusion1", "fusion2")
+    def translation_exists_fusion(cls, v):
+        if has.translation(f"fusion_{v}"):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
 
 class StatModel(BaseModel):
     value: float = Field(0.0, description="The value of the stat")

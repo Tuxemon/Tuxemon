@@ -641,6 +641,10 @@ class NPC(Entity[NPCState]):
             monster: The monster to add to the npc's party.
 
         """
+        # it creates the kennel
+        if KENNEL not in self.monster_boxes.keys():
+            self.monster_boxes[KENNEL] = []
+
         monster.owner = self
         if len(self.monsters) >= self.party_limit:
             self.monster_boxes[KENNEL].append(monster)

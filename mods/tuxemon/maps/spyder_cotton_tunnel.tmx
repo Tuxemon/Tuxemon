@@ -7,23 +7,18 @@
   <property name="slug" value="cotton_tunnel"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
- </tileset>
- <tileset firstgid="161" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+ <tileset firstgid="1" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
   <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
  </tileset>
- <tileset firstgid="1601" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
- </tileset>
+ <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Lowest Level" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjZGBgYBzFo2EwmgZG08BoGhhNA6NpYDQNjKaBEZkGBEfjfUTG+0C2/wHDHQMx
+   eAFbwMvAsGAUj4bBaBoYTQOjaWA0DYymgdE0MJoGRmQaODoa7yMy3gey/Q8AJiwc5A==
   </data>
  </layer>
  <layer id="2" name="Pit" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAGrZWZgqB3FFIUBAxQosjAwDDQGOQU9PmHuGyz0YHZfItto+FGaTgZz/IL8Nuo+ymJ4NPxGw4+yEKBM92j6Gznh9xPYNqUWRk831OBTy20gc6jhHnQzBrv7AM9Tosk=
+   eAG7y8TAcHcUUxQGDFDQyMzAMNAY5BT0+IS5b7DQg9l9r3hHw4/SdDKY4xfkt1H3URbDo+E3Gn6UhQBlukfT38gJv0hgm4paGD3dUINPLbeBzKGGe9DNGOzuAwBvsddN
   </data>
  </layer>
  <layer id="4" name="Wall" width="40" height="20">
@@ -33,7 +28,7 @@
  </layer>
  <layer id="8" name="Tile Layer 4" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFlIaABwsDgyIQDwbgicUddcyDwWUQN/zA4pbB5D5sITWY3DfYw48Y910ApoGLA4QLicgfNUC31QLxTypikHnEYvQ0iJ7+YO4j1jxqqxt1H/FxiS3sR8NvNPywpQt6iaGnvy/AsglUHoMAiP5KQllFCzdDXDJKjoQQAADsn8Cg
+   eAFjYBgFlIbACmYGhkYgHgxgJRZ33GMaDC6DuCFikLsPW0iNhh+2UMEuRkz8GgDTgOEA4YtEpL87wPxyF4gjgWqphUHmEYvRQxY9/cHcR6x51FY36j7i4xJb2I+G32j4YUsX9BJDT38h0LIYJA4ql0OBmF5uwWYPuvtG+cM3BADLnAbS
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">

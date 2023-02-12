@@ -9,41 +9,41 @@
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="1601" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
- </tileset>
- <tileset firstgid="1689" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
- </tileset>
- <tileset firstgid="1743" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+ <tileset firstgid="1601" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
   <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
- <tileset firstgid="3293" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
+ <tileset firstgid="3151" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
   <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
+ </tileset>
+ <tileset firstgid="5926" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="9790" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
  <layer id="1" name="Layer 1" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJyrYGNgqMCCiQHY9BGLm3FgYgAuvZRgWtvbhwM7EoFx6SUG5wNxChbahwicj4axmYOLxiUXTgROQcOk2I1LLheIkwjQtPAvITuTRv07JPwLAOpFiPc=
+   eJzr0GJg6MCCiQHY9BGLt+HAxABceinBtLb3CQ78T5MwxqWXGLxdmoGhUxqT1tEijLdLo2Js5uCicclFaRHGndKomBS7ccltBeJ2AjQt/EvIznbpUf8OBf8CACnK58w=
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjALSwHY2BoYdULyTjX72HgDadRCKD9HRXgAeRAYV
+   eJxjYBgFo2AUjALSwB5pBoa9ULxPmn72vgLa9RqK39DRXgDs5Ad5
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFpIBcDtLY1AI9HKSxiQG0cCcxgFR3DjWQx83AMIEbwhZkYmAIZoGw1YG0H5RdBaT5mVD1BYswMIQAcSgQhwFxOBBHAHGkCHH29nKT594KoPmVQFwFxNVAXAPEtUBcR2N75wLNnwfE84F4ARAvBOJFQLyYxvaSAwAHuRU7
+   eJxjYBgFpID77KSxqQX+sZPGJgbQwp3EAFLdOdTAAy4GBiZuCFuQiYEhmAXCVgfSflB2FZDmZ0LVd1SYgeEYEB8H4hNAfBKITwHxaWHi7P3PRZ57XwHNfw3Eb4D4LRC/A+L3QPyBxvbyizAwCACxIBALAbEwEIsAsagIbe0lBwAAVEcdJw==
   </data>
  </layer>
  <layer id="5" name="Above Player" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDAdwjWugXTB8AQA1rQDh
+   eJxjYBgFo2AUDAfgwTXQLhi+AAB0lgBT
   </data>
  </layer>
  <layer id="7" name="Above Player" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJztzbkNACAMwMC0vFXm4N9/NrwEKEUsXW0Rz7NZUJGIhIyCqu+/jUfHwMTCxvnw9mx2AbLLAqE=
+   eJztzccNACAMwMDskHGpo9DnxEuA8oile1vE82wWVCQiIaOg6vtv49ExMLGwcT68PZtdnp8IXg==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">

@@ -2800,6 +2800,7 @@ msgid "booster_tech"
 msgstr "Technologie Booster"
 
 # Boosters (items)
+
 msgid "greenwash_badge"
 msgstr "Abzeichen: Greenwash"
 

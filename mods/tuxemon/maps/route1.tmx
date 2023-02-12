@@ -6,7 +6,7 @@
   <property name="scenario" value="xero"/>
   <property name="slug" value="route1"/>
   <property name="types" value="route"/>
-  <property name="west" value="taba_town"/>
+  <property name="east" value="taba_town"/>
  </properties>
  <tileset firstgid="1" name="buildings" tilewidth="16" tileheight="16" tilecount="805" columns="35">
   <image source="../gfx/tilesets/buildings.png" width="575" height="381"/>

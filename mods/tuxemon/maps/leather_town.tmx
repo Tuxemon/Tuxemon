@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="94">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="97">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="route3"/>
@@ -8,9 +8,7 @@
   <property name="types" value="town"/>
   <property name="west" value="citypark"/>
  </properties>
- <tileset firstgid="1" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
@@ -34,12 +32,12 @@
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlkkKwjAUhh94AJe61ssIHsJp5bR33jgdprbVldNp9CR+XSihtLRmIZW8Hz6ahLw2/QIhIho1oAZcM3CuiFzgCje4gxmffgAhHOEE/5Z1SWQDW9jBHooUj/UcwIcAQtCoATWgBtRAsoFa8vBntF8VGcAQRjAG19MwBDSNdt7mqp53pv28aF/NdWbts/2X7Crj3uJ9u7dqVRENTDgzpjCDOSxgCVFaPNvQgS70QKMG1IAasDWQdWdJO3Oy6mzX43LdL+46Lvt9//ujLPIEzfcG1F2ys7iXtL45/gKCESw8
+   eAHtlkkKwjAUhh94AJfqStHLCB7CaeW0d944HUbrsHI6jZ5CXfl1UQmlUs1CC30/fDQJeW36BUJENGpADcTNwD4lcoAjnOAMZhz6a9jAFnYQ5dyyInd4gJdJQmQKM5jDAv6VVE4kDRnwsmQ9K3BgDRvQqAE1oAbUQLCBfPDwa7SRFmlCC9rQgbinaAgoGe1Pm+PCpzPt57n7aq4zbJ/tv2RX6ffm79u9VauiaKDLmdGDPgxgCCNwU+ZZgSrUoA4aNaAG1ICtgbA7y7szJ6zOdj1xrvvFXSfOfr1/vyRFrqD53oC6C3bm9/Kub44/AamlMCw=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -114,6 +112,7 @@
   <object id="86" type="collision" x="464" y="256" width="48" height="16"/>
   <object id="87" type="collision" x="592" y="240" width="16" height="32"/>
   <object id="88" type="collision" x="272" y="320" width="16" height="16"/>
+  <object id="95" type="collision" x="432" y="144" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Event">
   <object id="75" name="Teleport to City Park" type="event" x="0" y="512" width="16" height="16">
@@ -196,8 +195,7 @@
   </object>
   <object id="90" name="Sign: Route 3" type="event" x="544" y="16" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog spyder_route3_sign"/>
-    <property name="act20" value="translated_dialog leather_town_sign_leather_route"/>
+    <property name="act10" value="translated_dialog here_to_north"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
@@ -216,6 +214,20 @@
     <property name="act20" value="player_face left"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="94" name="Sign: Leather Town" type="event" x="48" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="96" name="Sign: Leather Scoop" type="event" x="432" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog Cotton_Mart"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

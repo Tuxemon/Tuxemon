@@ -11,9 +11,7 @@
  <tileset firstgid="1" name="Tileset" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
   <image source="../gfx/tilesets/Tileset.png" width="448" height="640"/>
  </tileset>
- <tileset firstgid="1121" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
+ <tileset firstgid="1121" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="2561" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">

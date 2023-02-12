@@ -355,6 +355,10 @@ waterfall based on https://opengameart.org/content/lpc-animated-water-and-waterf
 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Core City and Country"]
+based on Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png, by ArMM1998 (CC0)
+
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 
 ### Tuxemon

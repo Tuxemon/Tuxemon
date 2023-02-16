@@ -72,6 +72,7 @@ class StartState(PopUpMenu[StartGameObj]):
             ("menu_new_game", show_mod_menu),
             ("menu_load", change_state("LoadMenuState")),
             ("menu_options", change_state("ControlState")),
+            ("menu_minigame", change_state("MinigameState")),
             ("exit", exit_game),
         )
 

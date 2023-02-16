@@ -604,6 +604,15 @@ msgstr "It worked!"
 msgid "generic_failure"
 msgstr "It failed!"
 
+msgid "who_is_that"
+msgstr "Who's That Tuxemon?"
+
+msgid "generic_right"
+msgstr "Correct!"
+
+msgid "generic_wrong"
+msgstr "Wrong!"
+
 msgid "attempting_capture"
 msgstr "Attempting capture..."
 
@@ -1510,6 +1519,9 @@ msgstr "New Game"
 
 msgid "menu_options"
 msgstr "Options"
+
+msgid "menu_minigame"
+msgstr "Minigame"
 
 msgid "menu_player"
 msgstr "Player"

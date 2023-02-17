@@ -58,7 +58,26 @@ class RandomEncounterAction(EventAction):
 
         slug = self.encounter_slug
         encounters = db.lookup(slug, table="encounter").monsters
-        encounter = _choose_encounter(encounters, self.total_prob)
+
+        # Filter monsters based on daytime true / false
+        filtered = []
+        for ele in encounters:
+            if (
+                ele.daytime is True
+                and player.game_variables["daytime"] == "true"
+            ):
+                filtered.append(ele)
+            elif (
+                ele.daytime is False
+                and player.game_variables["daytime"] == "false"
+            ):
+                filtered.append(ele)
+
+        if filtered:
+            encounter = _choose_encounter(filtered, self.total_prob)
+        else:
+            # if no monster is set for nightime, it loads all
+            encounter = _choose_encounter(encounters, self.total_prob)
 
         # If a random encounter was successfully rolled, look up the monster
         # and start the battle.
@@ -155,8 +174,10 @@ def _create_monster_npc(
     # Set the monster's level
     current_monster.level = 1
     current_monster.set_level(level)
+    current_monster.set_moves(level)
     current_monster.set_capture(formula.today_ordinal())
     current_monster.current_hp = current_monster.hp
+    current_monster.experience_required_modifier = encounter.exp_req_mod
 
     # Create an NPC object which will be this monster's "trainer"
     npc = NPC("random_encounter_dummy", world=world)

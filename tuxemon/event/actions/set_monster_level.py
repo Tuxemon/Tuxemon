@@ -6,6 +6,8 @@ from dataclasses import dataclass
 from typing import Union, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.monster import Monster
+from tuxemon.technique.technique import Technique
 
 
 @final
@@ -34,6 +36,14 @@ class SetMonsterLevelAction(EventAction):
         if not self.session.player.monsters:
             return
 
+        def update_move(mon: Monster, level: int) -> None:
+            for move in mon.moveset:
+                if (
+                    move.technique not in (m.slug for m in mon.moves)
+                    and move.level_learned <= level
+                ):
+                    mon.learn(Technique(move.technique))
+
         monster_slot = self.slot
         monster_level = self.level
 
@@ -42,7 +52,11 @@ class SetMonsterLevelAction(EventAction):
                 return
 
             monster = self.session.player.monsters[int(monster_slot)]
-            monster.set_level(monster.level + int(monster_level))
+            new_level = monster.level + int(monster_level)
+            monster.set_level(new_level)
+            update_move(monster, new_level)
         else:
             for monster in self.session.player.monsters:
-                monster.set_level(monster.level + int(monster_level))
+                new_level = monster.level + int(monster_level)
+                monster.set_level(new_level)
+                update_move(monster, new_level)

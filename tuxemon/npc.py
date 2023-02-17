@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import os
 import uuid
+from functools import partial
 from math import hypot
 from typing import (
     TYPE_CHECKING,
@@ -26,17 +27,13 @@ from tuxemon.compat import Rect
 from tuxemon.db import ElementType, OutputBattle, SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
-from tuxemon.item.item import (
-    InventoryItem,
-    Item,
-    decode_inventory,
-    encode_inventory,
-)
+from tuxemon.item.item import MAX_TYPES_BAG, Item, decode_items, encode_items
 from tuxemon.locale import T
 from tuxemon.map import Direction, dirs2, dirs3, facing, get_direction, proj
 from tuxemon.math import Vector2
 from tuxemon.monster import (
     MAX_LEVEL,
+    MAX_MOVES,
     Monster,
     decode_monsters,
     encode_monsters,
@@ -44,9 +41,9 @@ from tuxemon.monster import (
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
 from tuxemon.states.combat.combat import EnqueuedAction
-from tuxemon.states.pc import KENNEL
+from tuxemon.states.pc import KENNEL, LOCKER
 from tuxemon.technique.technique import Technique
-from tuxemon.tools import vector2_to_tile_pos
+from tuxemon.tools import open_choice_dialog, open_dialog, vector2_to_tile_pos
 
 if TYPE_CHECKING:
     import pygame
@@ -68,8 +65,9 @@ class NPCState(TypedDict):
     game_variables: Dict[str, Any]
     battle_history: Dict[str, Tuple[OutputBattle, int]]
     tuxepedia: Dict[str, SeenStatus]
+    contacts: Dict[str, str]
     money: Dict[str, int]
-    inventory: Mapping[str, Optional[int]]
+    items: Sequence[Mapping[str, Any]]
     monsters: Sequence[Mapping[str, Any]]
     player_name: str
     monster_boxes: Dict[str, Sequence[Mapping[str, Any]]]
@@ -150,23 +148,22 @@ class NPC(Entity[NPCState]):
         ] = {}  # Tracks the battles
         # Tracks Tuxepedia (monster seen or caught)
         self.tuxepedia: Dict[str, SeenStatus] = {}
+        self.contacts: Dict[str, str] = {}
         self.money: Dict[str, int] = {}  # Tracks money
         self.interactions: Sequence[
             str
         ] = []  # List of ways player can interact with the Npc
         self.isplayer = False  # used for various tests, idk
-        self.monsters: List[
-            Monster
-        ] = []  # This is a list of tuxemon the npc has. Do not modify directly
-        self.inventory: Dict[
-            str, InventoryItem
-        ] = {}  # The Player's inventory.
+        # This is a list of tuxemon the npc has. Do not modify directly
+        self.monsters: List[Monster] = []
+        # The player's items.
+        self.items: List[Item] = []
         self.economy: Optional[Economy] = None
         # Variables for long-term item and monster storage
         # Keeping these seperate so other code can safely
         # assume that all values are lists
         self.monster_boxes: Dict[str, List[Monster]] = {}
-        self.item_boxes: Dict[str, Mapping[str, InventoryItem]] = {}
+        self.item_boxes: Dict[str, List[Item]] = {}
 
         # combat related
         self.ai: Optional[
@@ -242,8 +239,9 @@ class NPC(Entity[NPCState]):
             "game_variables": self.game_variables,
             "battle_history": self.battle_history,
             "tuxepedia": self.tuxepedia,
+            "contacts": self.contacts,
             "money": self.money,
-            "inventory": encode_inventory(self.inventory),
+            "items": encode_items(self.items),
             "monsters": encode_monsters(self.monsters),
             "player_name": self.name,
             "monster_boxes": dict(),
@@ -255,7 +253,7 @@ class NPC(Entity[NPCState]):
             state["monster_boxes"][monsterkey] = encode_monsters(monstervalue)
 
         for itemkey, itemvalue in self.item_boxes.items():
-            state["item_boxes"][itemkey] = encode_inventory(itemvalue)
+            state["item_boxes"][itemkey] = encode_items(itemvalue)
 
         return state
 
@@ -272,10 +270,11 @@ class NPC(Entity[NPCState]):
         self.game_variables = save_data["game_variables"]
         self.battle_history = save_data["battle_history"]
         self.tuxepedia = save_data["tuxepedia"]
+        self.contacts = save_data["contacts"]
         self.money = save_data["money"]
-        self.inventory = decode_inventory(
-            session, self, save_data.get("inventory", {})
-        )
+        self.items = []
+        for item in decode_items(save_data.get("items")):
+            self.add_item(item)
         self.monsters = []
         for monster in decode_monsters(save_data.get("monsters")):
             self.add_monster(monster)
@@ -283,9 +282,7 @@ class NPC(Entity[NPCState]):
         for monsterkey, monstervalue in save_data["monster_boxes"].items():
             self.monster_boxes[monsterkey] = decode_monsters(monstervalue)
         for itemkey, itemvalue in save_data["item_boxes"].items():
-            self.item_boxes[itemkey] = decode_inventory(
-                session, self, itemvalue
-            )
+            self.item_boxes[itemkey] = decode_items(itemvalue)
 
     def load_sprites(self) -> None:
         """Load sprite graphics."""
@@ -639,6 +636,10 @@ class NPC(Entity[NPCState]):
             monster: The monster to add to the npc's party.
 
         """
+        # it creates the kennel
+        if KENNEL not in self.monster_boxes.keys():
+            self.monster_boxes[KENNEL] = []
+
         monster.owner = self
         if len(self.monsters) >= self.party_limit:
             self.monster_boxes[KENNEL].append(monster)
@@ -815,11 +816,21 @@ class NPC(Entity[NPCState]):
                 npc_monster_details.exp_req_mod
             )
             monster.set_level(monster.level)
+            monster.set_moves(monster.level)
             monster.current_hp = monster.hp
             monster.gender = npc_monster_details.gender
 
             # Add our monster to the NPC's party
             self.add_monster(monster)
+
+        # load NPC bag
+        for item in self.items:
+            self.remove_item(item)
+        self.items = []
+        npc_bag = npc_details.items
+        for npc_itm_details in npc_bag:
+            itm = Item(save_data=npc_itm_details.dict())
+            itm.quantity = npc_itm_details.quantity
 
     def set_party_status(self) -> None:
         """Records important information about all monsters in the party."""
@@ -867,141 +878,168 @@ class NPC(Entity[NPCState]):
                 return True
         return False
 
+    def check_max_moves(self, session: Session, monster: Monster) -> None:
+        """
+        Checks the number of moves:
+        if monster has >= 4 moves (MAX_MOVES) -> overwrite technique
+        if monster has < 4 moves (MAX_MOVES) -> learn technique
+        """
+        overwrite_technique = session.player.game_variables[
+            "overwrite_technique"
+        ]
+
+        if len(monster.moves) >= MAX_MOVES:
+            self.overwrite_technique(session, monster, overwrite_technique)
+        else:
+            monster.learn(Technique(overwrite_technique))
+            msg = T.translate("generic_success")
+            open_dialog(session, [msg])
+
+    def overwrite_technique(
+        self, session: Session, monster: Monster, technique: str
+    ) -> None:
+        """
+        Opens the choice dialog and overwrites the technique.
+        """
+
+        def set_variable(var_value: str) -> None:
+            monster.moves.remove(var_value)
+            monster.learn(Technique(technique))
+            session.client.pop_state()
+
+        var_list = monster.moves
+        var_menu = list()
+
+        for val in var_list:
+            text = T.translate(val.slug)
+            var_menu.append((text, text, partial(set_variable, val)))
+
+        open_choice_dialog(
+            session,
+            menu=var_menu,
+        )
+        open_dialog(
+            session,
+            [
+                T.format(
+                    "max_moves_alert",
+                    {
+                        "name": monster.name.upper(),
+                        "tech": Technique(technique).name,
+                    },
+                )
+            ],
+        )
+
+    def remove_technique(
+        self,
+        session: Session,
+        monster: Monster,
+    ) -> None:
+        """
+        Opens the choice dialog and removes the technique.
+        """
+
+        def set_variable(var_value: str) -> None:
+            monster.moves.remove(var_value)
+            session.client.pop_state()
+
+        var_list = monster.moves
+        var_menu = list()
+
+        for val in var_list:
+            text = T.translate(val.slug)
+            var_menu.append((text, text, partial(set_variable, val)))
+
+        open_choice_dialog(
+            session,
+            menu=var_menu,
+        )
+        open_dialog(
+            session,
+            [
+                T.format(
+                    "new_tech_delete",
+                    {
+                        "name": monster.name.upper(),
+                    },
+                )
+            ],
+        )
+
+    ####################################################
+    #                      Items                       #
+    ####################################################
+    def add_item(self, item: Item) -> None:
+        """
+        Adds an item to the npc's bag.
+
+        If the player's bag is full, it will send the item to
+        PCState archive.
+
+        """
+        # it creates the locker
+        if LOCKER not in self.item_boxes.keys():
+            self.item_boxes[LOCKER] = []
+
+        if len(self.items) >= MAX_TYPES_BAG:
+            self.item_boxes[LOCKER].append(item)
+        else:
+            self.items.append(item)
+
+    def remove_item(self, item: Item) -> None:
+        """
+        Removes an item from this npc's bag.
+
+        """
+        if item in self.items:
+            self.items.remove(item)
+
+    def find_item(self, item_slug: str) -> Optional[Item]:
+        """
+        Finds an item in the npc's bag.
+
+        """
+        for itm in self.items:
+            if itm.slug == item_slug:
+                return itm
+
+        return None
+
+    def find_item_by_id(self, instance_id: uuid.UUID) -> Optional[Item]:
+        """
+        Finds an item in the npc's bag which has the given id.
+
+        """
+        return next(
+            (m for m in self.items if m.instance_id == instance_id), None
+        )
+
+    def find_item_in_storage(self, instance_id: uuid.UUID) -> Optional[Item]:
+        """
+        Finds an item in the npc's storage boxes which has the given id.
+
+        """
+        item = None
+        for box in self.item_boxes.values():
+            item = next((m for m in box if m.instance_id == instance_id), None)
+            if item is not None:
+                break
+
+        return item
+
+    def remove_item_from_storage(self, item: Item) -> None:
+        """
+        Removes the item from the npc's storage.
+
+        """
+        for box in self.item_boxes.values():
+            if item in box:
+                box.remove(item)
+                return
+
     def give_money(self, amount: int) -> None:
         self.money["player"] += amount
-
-    def has_item(self, item_slug: str) -> bool:
-        return self.inventory.get(item_slug) is not None
-
-    def is_item_sort(self, item_slug: str, sort_slug: str) -> bool:
-        """
-        Is the item sort "sort" (eg. potion, etc.)
-        """
-        result = db.lookup(item_slug, table="item")
-        if result.sort == sort_slug:
-            return True
-        else:
-            return False
-
-    def alter_item_quantity(
-        self, session: Session, item_slug: str, amount: int
-    ) -> bool:
-        success = True
-        item = self.inventory.get(item_slug)
-        if amount > 0:
-            if item:
-                item["quantity"] += amount
-            else:
-                self.inventory[item_slug] = {
-                    "item": Item(session, self, item_slug),
-                    "quantity": amount,
-                }
-        elif amount < 0:
-            amount = abs(amount)
-            if item is None or item.get("infinite"):
-                pass
-            elif item["quantity"] == amount:
-                del self.inventory[item_slug]
-            elif item["quantity"] > amount:
-                item["quantity"] -= amount
-            else:
-                success = False
-
-        return success
-
-    def can_buy_item(self, item_slug: str, qty: int, unit_price: int) -> bool:
-        current_money = self.money.get("player")
-        if current_money is not None:
-            return current_money >= qty * unit_price
-        # If no 'money' variable, must be an NPC. Always allow buying:
-        return True
-
-    def can_sell_item(self, item_slug: str, qty: int, unit_price: int) -> bool:
-        current_item = self.inventory.get(item_slug)
-        if current_item:
-            current_qty = current_item["quantity"]
-            return current_qty >= qty or current_item["infinite"]
-        # If they don't have the item, then they can't sell the item:
-        return False
-
-    def buy_decrease_money(
-        self,
-        session: Session,
-        seller: NPC,
-        item_slug: str,
-        qty: int,
-        unit_price: int,
-    ) -> None:
-        """
-        Decreases player money during a buy transaction.
-        """
-        # Update player's money.
-        if self.money.get("player"):
-            if not self.can_buy_item(item_slug, qty, unit_price):
-                raise Exception(
-                    f"Tried to buy item with {self.money['player']} coins "
-                    f"but not enough money:\n"
-                    f"price {unit_price} times qty {qty} is {qty * unit_price}"
-                )
-
-            # Update player's and NPC money.
-            self.money["player"] = self.money.get("player") - (
-                qty * unit_price
-            )
-
-    def sell_increase_money(
-        self,
-        session: Session,
-        buyer: NPC,
-        item_slug: str,
-        qty: int,
-        unit_price: int,
-    ) -> None:
-        """
-        Increases player money during a sell transaction.
-        """
-        current_item = self.inventory.get(item_slug)
-        if not current_item or not self.can_sell_item(
-            item_slug, qty, unit_price
-        ):
-            raise Exception(
-                f"Tried to sell item of qty {qty}, but not enough available."
-            )
-
-        # Update player's and NPC money.
-        if self.money.get("player") is not None:
-            self.money["player"] = self.money.get("player") + (
-                qty * unit_price
-            )
-
-    def buy_transaction(
-        self,
-        session: Session,
-        seller: NPC,
-        item_slug: str,
-        qty: int,
-        unit_price: int,
-    ) -> None:
-        """
-        Handles the entire buy transaction, NPC (seller) and buyer.
-        """
-        self.buy_decrease_money(session, seller, item_slug, qty, unit_price)
-        self.alter_item_quantity(session, item_slug, qty)
-        seller.alter_item_quantity(session, item_slug, -qty)
-
-    def sell_transaction(
-        self,
-        session: Session,
-        seller: NPC,
-        item_slug: str,
-        qty: int,
-        unit_price: int,
-    ) -> None:
-        """
-        Handles the entire sell transaction, NPC (buyer) and seller.
-        """
-        seller.sell_increase_money(session, self, item_slug, qty, unit_price)
-        seller.alter_item_quantity(session, item_slug, -qty)
 
     def speed_test(self, action: EnqueuedAction) -> int:
         return self.speed

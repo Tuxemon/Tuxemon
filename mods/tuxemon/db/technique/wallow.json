@@ -3,10 +3,11 @@
   "accuracy": 1,
   "animation": "waterspurt",
   "effects": [
+    "enhance",
     "focused user"
   ],
   "flip_axes": "",
-  "healing_power": 4.0,
+  "healing_power": 4,
   "icon": "",
   "is_area": false,
   "is_fast": false,

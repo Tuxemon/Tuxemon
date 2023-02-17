@@ -4,9 +4,9 @@
   "sprite_name": "scientist",
   "monsters": [
     {
-      "name": "Birb Robo",
+      "name": "Dark Robo",
       "level": 25,
-      "slug": "birb-robo",
+      "slug": "dark_robo",
       "money_mod": 10,
       "exp_req_mod": 27,
       "gender": "neuter"

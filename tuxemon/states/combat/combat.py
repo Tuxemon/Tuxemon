@@ -377,6 +377,10 @@ class CombatState(CombatAnimations):
 
         elif phase == "decision phase":
             self.reset_status_icons()
+            # saves random value, so we are able to reproduce
+            # inside the condition files if a tech hit or missed
+            value = formula.random.random()
+            self.players[0].game_variables["random_tech_hit"] = value
             if not self._decision_queue:
                 for player in self.human_players:
                     # tracks human players who need to choose an action
@@ -979,10 +983,14 @@ class CombatState(CombatAnimations):
                 # Track damage
                 self._damage_map[target].add(user)
 
-                element_damage_key = MULT_MAP.get(result["element_multiplier"])
-                if element_damage_key:
-                    m = T.translate(element_damage_key)
-                    message += "\n" + m
+                # allows tackle to special range techniques too
+                if technique.range != "special":
+                    element_damage_key = MULT_MAP.get(
+                        result["element_multiplier"]
+                    )
+                    if element_damage_key:
+                        m = T.translate(element_damage_key)
+                        message += "\n" + m
 
             else:  # assume this was an item used
 
@@ -1082,8 +1090,32 @@ class CombatState(CombatAnimations):
             )
             awarded_mon = monster.level * monster.money_modifier
             for winners in self._damage_map[monster]:
-                winners.give_experience(awarded_exp)
-                self._prize += awarded_mon
+                self._level_before = winners.level
+                self._level_after = winners.level
+                if self.is_trainer_battle:
+                    winners.give_experience(awarded_exp)
+                    self._prize += awarded_mon
+                    self._level_after = winners.level
+                else:
+                    awarded = (
+                        awarded_exp * monster.experience_required_modifier
+                    )
+                    winners.give_experience(awarded)
+                    self._level_after = winners.level
+                # it checks if there is a "level up"
+                if self._level_before != self._level_after:
+                    diff = self._level_after - self._level_before
+                    # checks and eventually teaches move/moves
+                    self.check_moves(winners, diff)
+                    # updates hud graphics player and ai
+                    if winners in self.players[0].monsters:
+                        self.build_hud(
+                            self._layout[self.players[0]]["hud"][0], winners
+                        )
+                    if winners in self.players[1].monsters:
+                        self.build_hud(
+                            self._layout[self.players[1]]["hud"][0], winners
+                        )
 
             # Remove monster from damage map
             del self._damage_map[monster]
@@ -1186,6 +1218,32 @@ class CombatState(CombatAnimations):
         # TODO: perhaps change this to remaining "parties", or "teams",
         # instead of player/trainer
         return [p for p in self.players if not defeated(p)]
+
+    def check_moves(self, monster: Monster, levels: int) -> None:
+        for move in monster.moveset:
+            # monster levels up 1 level
+            if levels == 1:
+                if move.level_learned == monster.level:
+                    self.learn(monster, move.technique)
+            # monster levels up multiple levels
+            else:
+                level_before = monster.level - levels
+                # if there are techniques in this range
+                if level_before < move.level_learned <= monster.level:
+                    self.learn(monster, move.technique)
+
+    def learn(self, monster: Monster, tech: str) -> None:
+        technique = Technique(tech)
+        monster.learn(technique)
+        self.alert(
+            T.format(
+                "tuxemon_new_tech",
+                {
+                    "name": monster.name.upper(),
+                    "tech": technique.name.upper(),
+                },
+            )
+        )
 
     def evolve(self) -> None:
         self.client.pop_state()

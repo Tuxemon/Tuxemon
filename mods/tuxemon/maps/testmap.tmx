@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="65" height="65" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="27">
- <tileset firstgid="1" name="Terrain_by_KelvinShadewing" tilewidth="32" tileheight="32" tilecount="63" columns="9">
-  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="65" height="65" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="27">
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
+  <image source="../gfx/tilesets/core_buildings.png" width="760" height="800"/>
  </tileset>
- <tileset firstgid="64" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
- </tileset>
- <tileset firstgid="1504" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285" columns="19">
-  <image source="../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
+ <tileset firstgid="5126" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="65" height="65">
   <data encoding="base64" compression="zlib">
-   eAHt0jERAAAMhDDev+nK6JIBA1xWTR4wwAADDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAAAwwwwAADrwYORPcQgg==
+   eAHt0iERAAAMxLBKfv9oMkYCaqCXVZMHDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAAAwwwwAADDDDAwKuBA4xjONo=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 2" width="65" height="65">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#ff0000" id="2" name="Collisions">

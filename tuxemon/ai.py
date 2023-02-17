@@ -7,7 +7,6 @@ from random import choice
 from typing import TYPE_CHECKING, Sequence, Tuple, Union
 
 from tuxemon.item.item import Item
-from tuxemon.session import local_session
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
@@ -78,13 +77,11 @@ class RandomAI(AI):
         Trainer battles.
         """
         if self.check_strongest(user, monster):
-            if len(user.inventory) > 0:
-                inventory = list(user.inventory)
-                for item_slug in inventory:
-                    if user.is_item_sort(item_slug, "potion"):
+            if len(user.items) > 0:
+                for itm in user.items:
+                    if itm.sort == "potion":
                         if self.need_potion(monster):
-                            item = self.item_healing(user, item_slug)
-                            return user, item, monster
+                            return user, itm, monster
         technique, target = self.track_next_use(monster, opponents)
         # send data
         return monster, technique, target
@@ -110,16 +107,19 @@ class RandomAI(AI):
         """
         Tracks next_use and recharge, if both unusable, skip.
         """
-        # tracks next_use NPC ai
-        filter_moves = []
-        for mov in monster.moves:
+        actions = []
+        # it chooses among the last 4 moves
+        for mov in monster.moves[-monster.max_moves :]:
             if mov.next_use <= 0:
-                filter_moves.append(mov)
-        if not filter_moves:
+                for opponent in opponents:
+                    # it checks technique conditions
+                    if mov.validate(opponent):
+                        actions.append((mov, opponent))
+        if not actions:
             skip = Technique("skip")
             return skip, choice(opponents)
         else:
-            return choice(filter_moves), choice(opponents)
+            return choice(actions)
 
     def check_weakest(self, trainer: NPC, fighter: Monster) -> bool:
         """
@@ -161,10 +161,3 @@ class RandomAI(AI):
             return True
         else:
             return False
-
-    def item_healing(self, trainer: NPC, item_slug: str) -> Item:
-        """
-        Apply item.
-        """
-        item = Item(local_session, trainer, item_slug)
-        return item

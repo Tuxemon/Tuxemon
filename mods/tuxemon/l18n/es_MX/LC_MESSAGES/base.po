@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2023-01-16 12:48+0000\n"
+"PO-Revision-Date: 2023-02-03 04:41+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Spanish (Mexico) <https://hosted.weblate.org/projects/tuxemon/"
 "tuxemon/es_MX/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -373,7 +373,7 @@ msgstr "Allagon"
 
 msgid "allagon_description"
 msgstr ""
-"Los Allagon se sienten atraídos por las reliquias hechas con los metales que "
+"Los ALLAGON se sienten atraídos por las reliquias hechas con los metales que "
 "dejaron sus antepasados, y actuarán con violencia para recobrarlas."
 
 msgid "anoleaf"
@@ -543,7 +543,7 @@ msgstr "Ferricran"
 
 msgid "ferricran_description"
 msgstr ""
-"Antiguamente, los Ferricran estaban cubiertos por completo de escamas de "
+"Antiguamente, los FERRICRAN estaban cubiertos por completo de escamas de "
 "adamantina y tenían alas de mithril."
 
 msgid "firomenis"
@@ -3307,3 +3307,390 @@ msgstr "Tuxecenter - Un lugar para curar tu tuxemon"
 
 msgid "leather_town_open_air"
 msgstr "Café y mercado"
+
+msgid "rhincus_fossil_description"
+msgstr "Parece el cráneo de un pájaro dentado, pero es duro como la piedra."
+
+msgid "shammer_fossil_description"
+msgstr "Parece el cráneo de un perro antiguo, pero es duro como la piedra."
+
+msgid "tux_attack"
+msgstr "Tux Ataque"
+
+msgid "aether"
+msgstr "Éter"
+
+msgid "normal"
+msgstr "Normal"
+
+msgid "glitch"
+msgstr "Glitch"
+
+msgid "demiurge"
+msgstr "Demiurgo"
+
+msgid "earthquake"
+msgstr "Terremoto"
+
+msgid "evasion"
+msgstr "Evasión"
+
+msgid "feline"
+msgstr "Felino"
+
+msgid "fiery"
+msgstr "Ardiente"
+
+msgid "fire_shield"
+msgstr "Escudo de Fuego"
+
+msgid "fledgling"
+msgstr "Volantón"
+
+msgid "gold_digger"
+msgstr "Buscador de Oro"
+
+msgid "grinding"
+msgstr "Molienda"
+
+msgid "gust"
+msgstr "Ráfaga"
+
+msgid "hawk"
+msgstr "Halcón"
+
+msgid "ice_storm"
+msgstr "Tormenta de Nieve"
+
+msgid "insanity"
+msgstr "Locura"
+
+msgid "kraken"
+msgstr "Kraken"
+
+msgid "lantern"
+msgstr "Linterna"
+
+msgid "lava"
+msgstr "Lava"
+
+msgid "lineage"
+msgstr "Linaje"
+
+msgid "lust"
+msgstr "Lujuria"
+
+msgid "magma"
+msgstr "Magma"
+
+msgid "maori"
+msgstr "Maorí"
+
+msgid "meltdown"
+msgstr "Fusión"
+
+msgid "mending"
+msgstr "Zurcidura"
+
+msgid "muck"
+msgstr "Estiércol"
+
+msgid "mystic_blending"
+msgstr "Mezcla Mística"
+
+msgid "negation"
+msgstr "Negación"
+
+msgid "orbs"
+msgstr "Orbes"
+
+msgid "phantasmal_force"
+msgstr "Fuerza Fantasmal"
+
+msgid "pit"
+msgstr "Foso"
+
+msgid "platinum"
+msgstr "Platino"
+
+msgid "poison_courtship"
+msgstr "Cortejo de Veneno"
+
+msgid "radiance"
+msgstr "Resplandor"
+
+msgid "ring"
+msgstr "Anillo"
+
+msgid "ruby"
+msgstr "Rubí"
+
+msgid "saber"
+msgstr "Sable"
+
+msgid "stabilo"
+msgstr "Stabilo"
+
+msgid "stonehenge"
+msgstr "Stonehenge"
+
+msgid "strangulation"
+msgstr "Estrangulación"
+
+msgid "sunburst"
+msgstr "Rayos de Sol"
+
+msgid "sword"
+msgstr "Espada"
+
+msgid "sylvan"
+msgstr "Silvestre"
+
+msgid "terror"
+msgstr "Terror"
+
+msgid "time_crisis"
+msgstr "Crisis del Tiempo"
+
+msgid "tip"
+msgstr "Consejo"
+
+msgid "torch"
+msgstr "Antorcha"
+
+msgid "touch"
+msgstr "Toque"
+
+msgid "tsunami"
+msgstr "Tsunami"
+
+msgid "ubuntu"
+msgstr "Ubuntu"
+
+msgid "undertaker"
+msgstr "Enterrador"
+
+msgid "venom"
+msgstr "Veneno"
+
+msgid "vorpal"
+msgstr "Vorpal"
+
+msgid "wall_fire"
+msgstr "Pared de Fuego"
+
+msgid "wall_ice"
+msgstr "Pared de Hielo"
+
+msgid "walls"
+msgstr "Paredes"
+
+msgid "oedipus"
+msgstr "Edipo"
+
+msgid "firestorm"
+msgstr "Tormenta de Fuego"
+
+msgid "lightning_spheres"
+msgstr "Esferas de Relámpagos"
+
+msgid "nest"
+msgstr "Nido"
+
+msgid "shapechange"
+msgstr "Cambio de Forma"
+
+msgid "slime"
+msgstr "Limo"
+
+msgid "viper"
+msgstr "Víbora"
+
+msgid "spyder_papertown_homemaker1"
+msgstr ""
+"¿Cómo estás, ${{name}}?\n"
+"Tranquilo y solemne como siempre, ya veo."
+
+msgid "kennel_label"
+msgstr "{box} ({qty})"
+
+msgid "Kennel"
+msgstr "refugio"
+
+msgid "dark_robo_description"
+msgstr "Un robot hostil."
+
+msgid "birb_robo_description"
+msgstr "Un robot hostil."
+
+msgid "mk01_delta_description"
+msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."
+
+msgid "mk01_alpha_description"
+msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."
+
+msgid "mk01_beta_description"
+msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."
+
+msgid "mk01_gamma_description"
+msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."
+
+# Taba Town
+msgid "maple_bedroom_sign"
+msgstr "Es un calendario y el 27 de abril está marcado en rosa."
+
+msgid "taba_house2_reading2"
+msgstr "El libro es Raised By Dreams de Louis Etrergo."
+
+msgid "taba_house2_sign"
+msgstr "Biblioteca Legacy"
+
+msgid "taba_house1_husband1"
+msgstr "¡Tuxemon! ¡Estaba entre los entrenadores más hábiles!"
+
+msgid "taba_house1_calendar"
+msgstr ""
+"Es un calendario y el 30 de septiembre y el 12 de febrero están marcados en "
+"rojo."
+
+msgid "taba_house1_wife1"
+msgstr "¿Entrenador? Mi esposo está delirando."
+
+msgid "taba_house1_reading"
+msgstr "El libro es Filosofía de los estudios ilusorios de Jaiden Gemrevenza."
+
+msgid "taba_house2_owner1"
+msgstr ""
+"¡Bienvenido a la biblioteca Legacy! Siéntase libre de mirar a su alrededor, "
+"pero tranquilo, por favor."
+
+msgid "taba_house2_reading4"
+msgstr "El libro es Sailing Into Eternitys de Laurine Doprachuld."
+
+msgid "taba_house2_reader1a"
+msgstr "Me siento mejor al ver un libro o una librería."
+
+msgid "taba_house1_watching"
+msgstr ""
+"Es un documental sobre los Tuxemon más extraños y maravillosos de la región,"
+"\n"
+"así como los comportamientos extraños que han adoptado."
+
+msgid "taba_house4_client1a"
+msgstr "¡Mi abuela solía hacer un plato similar!"
+
+msgid "taba_house3_client1a"
+msgstr ""
+"Estoy descansando mientras mi hermana probablemente está leyendo algunos "
+"libros."
+
+msgid "taba_house2_reading1"
+msgstr "El libro es Visitando al Rey de Manolo Qai."
+
+msgid "taba_house2_reader3a"
+msgstr "Así que puedo vivir mil vidas diferentes."
+
+msgid "taba_house2_reader4a"
+msgstr ""
+"La lectura estimula mi mente de una manera que la televisión y las películas "
+"nunca podrán hacer."
+
+msgid "taba_house2_reading3"
+msgstr "El libro es Children Without Honor de Leslie Greninza."
+
+msgid "taba_house3_client3a"
+msgstr "Me hace pensar en la casa de mi madre."
+
+msgid "taba_house4_client2a"
+msgstr "¿Eh? Simplemente llenando un estómago vacío."
+
+msgid "taba_house4_dish1"
+msgstr "Es marrón, denso, pero no parece pudín..."
+
+msgid "taba_house2_books"
+msgstr ""
+"000 - Informática, información y trabajos generales, 100 - Filosofía y "
+"psicología\n"
+"200 - Religión, 300 - Ciencias sociales, 400 - Lengua, 500 - Ciencia pura, "
+"600 - Tecnología\n"
+"700 - Arte y recreación, 800 - Literatura, 900 - Historia y geografía"
+
+msgid "taba_house3_client2a"
+msgstr "Pensar demasiado puede hacernos daño."
+
+msgid "taba_house4_client3a"
+msgstr "Afortunadamente no pagué por esto. ¿Cómo puedes pagar por esto?"
+
+msgid "spyder_papertown_mom1"
+msgstr ""
+"¡Buenos días sol! Descansa aquí cuando quieras.\n"
+"¿Por qué digo eso? ¡Vives aquí!"
+
+## DIALOG TRANSLATIONS ##
+# spyder dialogs
+msgid "spyder_papertown_stopthere"
+msgstr ""
+"¡Eh! ¿Qué crees que estás haciendo?\n"
+"No es seguro ir a la naturaleza a menos que tengas un Tuxemon.\n"
+"Ven a comprar uno en nuestra tienda."
+
+msgid "taba_house4_owner1"
+msgstr "¡Bienvenido a The Honorable Seagulls Pub!"
+
+msgid "taba_house3_owner1"
+msgstr "¡Bienvenido a The Thoughtful Leaf Inn!"
+
+msgid "kylekindasucks6"
+msgstr "Ah, ¿y ${{name}}?"
+
+msgid "misaisleavingfornow2"
+msgstr "Buena suerte ${{name}}. Estoy seguro de que nos volveremos a ver. "
+
+msgid "pilthropus_description"
+msgstr ""
+"Encontrándose junto a Tuxemon como RHINCUS, PILTHROPUS era uno de los "
+"Tuxemon más antiguos capaz de crear sus propias herramientas."
+
+msgid "monster_menu_tech"
+msgstr "Técnicas"
+
+msgid "monster_menu_desc"
+msgstr "Descripción"
+
+msgid "move_to_kennel"
+msgstr "mover a {box}"
+
+# Tuxemon Threats
+msgid "chrome_robo_description"
+msgstr "Un robot hostil."
+
+msgid "mk01_gamma"
+msgstr "Mk01 Gamma"
+
+msgid "mk01_omega_description"
+msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."
+
+#, fuzzy
+msgid "mk01_omega"
+msgstr "Mk01 Omega"
+
+msgid "mk01_proto_description"
+msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."
+
+msgid "mk01_proto"
+msgstr "Mk01 Proto"
+
+msgid "xeon_description"
+msgstr "Un robot hostil."
+
+msgid "xeon_2_description"
+msgstr "Un robot hostil."
+
+msgid "taba_house1_sign"
+msgstr "Casa del Sr. y la Sra. Clawbrew"
+
+msgid "taba_house2_reader2a"
+msgstr "Enciende mi imaginación."
+
+msgid "spyder_nimrod_plaque"
+msgstr "Patrocinado por Nimrod. \"Si no los vendiéramos, otro lo haría\""

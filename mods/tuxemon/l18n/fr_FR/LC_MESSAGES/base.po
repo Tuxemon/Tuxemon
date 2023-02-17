@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2023-01-16 12:48+0000\n"
+"PO-Revision-Date: 2023-02-03 04:41+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fr/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -149,7 +149,6 @@ msgstr "Un {name} sauvage apparait !"
 msgid "combat_monster_choice"
 msgstr "Que doit faire {name} ?"
 
-#, fuzzy
 msgid "combat_fainted"
 msgstr "{name} est K.O. !"
 
@@ -215,7 +214,6 @@ msgstr "Non, conserver cette sauvegarde."
 msgid "slot"
 msgstr "Emplacement"
 
-#, fuzzy
 msgid "status_faint"
 msgstr "K.O."
 
@@ -380,8 +378,8 @@ msgstr "Allagon"
 
 msgid "allagon_description"
 msgstr ""
-"Les Allagons recherchent les reliques faites des métaux de leurs ancêtres, "
-"et sont déterminés à les retrouver."
+"Les ALLAGON recherchent les reliques faites des métaux de leurs ancêtres, et "
+"sont déterminés à les retrouver."
 
 msgid "anoleaf"
 msgstr "Anoleaf"
@@ -419,6 +417,7 @@ msgstr "Bolt"
 
 msgid "bolt_description"
 msgstr ""
+"La présence d'un BOLT rend un NUT plus fort et déclenche plus d'énergie."
 
 msgid "cairfrey"
 msgstr "Cairfrey"
@@ -529,6 +528,8 @@ msgstr "Dune Pincher"
 
 msgid "dune_pincher_description"
 msgstr ""
+"Ces ermites s'envelopperont dans tout ce qui est le plus proche. Dans le "
+"désert, ce sont les linceuls funéraires des pharaons morts depuis longtemps."
 
 msgid "eaglace"
 msgstr "Eaglace"
@@ -557,7 +558,7 @@ msgstr "Ferricran"
 
 msgid "ferricran_description"
 msgstr ""
-"Autrefois, les Ferricran étaient recouverts d'écailles en adamantine sur le "
+"Autrefois, les FERRICRAN étaient recouverts d'écailles en adamantine sur le "
 "corps, et avaient des ailes en mithril."
 
 msgid "firomenis"
@@ -604,6 +605,8 @@ msgstr "Hydrone"
 
 msgid "hydrone_description"
 msgstr ""
+"Il utilise une technologie expérimentale qui crée de l'énergie à partir de "
+"l'eau."
 
 msgid "lambert"
 msgstr "Lambert"
@@ -674,6 +677,8 @@ msgstr "Nut"
 
 msgid "nut_description"
 msgstr ""
+"Dans les grands navires qui traversent les océans, des milliers de NUT et de "
+"BOLT fournissent de l'énergie et maintiennent le placage d'acier ensemble."
 
 msgid "onaclov"
 msgstr "Onaclov"
@@ -1822,9 +1827,8 @@ msgid "sumchon"
 msgstr "Sumchon"
 
 ## MENU TRANSLATIONS ##
-#, fuzzy
 msgid "menu_alphabet"
-msgstr "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
+msgstr "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.- !"
 
 msgid "xeon"
 msgstr "Xénon"
@@ -1853,7 +1857,6 @@ msgstr "Oh non ! J'en veux encore plus !"
 msgid "combat_state_overfeed_get"
 msgstr "{user} a sur-alimenté {target}."
 
-#, fuzzy
 msgid "combat_levitate_get"
 msgstr "{user} lévite haut dans les airs."
 
@@ -1903,7 +1906,6 @@ msgid "ice_claw"
 msgstr "Griffe Glaciale"
 
 ## TECHNIQUE TRANSLATIONS ##
-#, fuzzy
 msgid "all_in"
 msgstr "Tous dans"
 
@@ -2021,7 +2023,6 @@ msgstr "Langue de Bois"
 msgid "wallow"
 msgstr "Se vautrer"
 
-#, fuzzy
 msgid "wing_tip"
 msgstr "Bout de l'Aile"
 
@@ -2122,7 +2123,7 @@ msgid "spyder_scoop_orba2"
 msgstr "Qu'est-ce que je fais ici, à propos de quoi ?"
 
 msgid "spyder_scoop_landrace2"
-msgstr "Pff !"
+msgstr "Pff."
 
 msgid "spyder_scoop_cochini1"
 msgstr "Groin-groin ! "
@@ -3533,13 +3534,10 @@ msgstr ""
 "${{name}}, votre curiosité n'a plus de limite ! Laissez donc les autorités "
 "faire leur boulot !"
 
-#, fuzzy
 msgid "spyder_greenwash_looten1"
 msgstr ""
-"Comme ce jeu continue de s'étendre, ce donjon le sera sans doute aussi.\n"
-" Mais sans le code pour la Fusion, ce donjon n'a pas son principal intérêt.\n"
-" Donc voilà Aardant.\n"
-" C'est une fusion Aardorn et fourmis qui vous enverra à l'hôpital."
+"Eh bien, je suppose que la technologie de fusion n'est pas encore tout à "
+"fait là. Nous y travaillons depuis des années !"
 
 msgid "spyder_mansion_drinkingbuddya2"
 msgstr "Te voici mon vieil ami ! Retournons à la rivière."
@@ -4262,7 +4260,6 @@ msgstr "Constriction"
 msgid "invictus"
 msgstr "Invictus"
 
-#, fuzzy
 msgid "pseudopod"
 msgstr "Pseudo-gousse"
 
@@ -4673,9 +4670,8 @@ msgstr ""
 "contrairement à la Cathédrale, nous soignons les Tuxemon gratuitement ! \n"
 " Voulez-vous que je les guérisse tous maintenant ?"
 
-#, fuzzy
 msgid "spyder_leatherhouse1_radio"
-msgstr "Une chanson de R&B est jouée. Elle s'appelle \"Possessuns, partie 2\". "
+msgstr "Une chanson de R&B est jouée. Elle s'appelle \"Possessuns, partie 2\"."
 
 msgid "spyder_opal_plaque"
 msgstr ""
@@ -5758,9 +5754,9 @@ msgstr ""
 
 msgid "metesaur_description"
 msgstr ""
-"Ce tuxemon aimerait plonger dans le sol et laisser des traces. Parfois, le "
-"tuxemon jugeait mal le tir et atterrissait dans les arbres, déclenchant "
-"d'énormes et dangereux incendies de forêt."
+"Ce Tuxemon aimerait plonger dans le sol et laisser des traces. Parfois, le "
+"Tuxemon jugeait mal le tir et atterrissait dans les arbres, déclenchant "
+"d'énormes et dangereux incendies de forêt"
 
 msgid "octabode_description"
 msgstr ""
@@ -5790,7 +5786,7 @@ msgstr ""
 
 msgid "pilthropus_description"
 msgstr ""
-"Trouvé aux côtés de Tuxemon en tant que Rhincus, Pilthropus était l'un des "
+"Trouvé aux côtés de Tuxemon en tant que RHINCUS, PILTHROPUS était l'un des "
 "plus anciens Tuxemon capables de créer leurs propres outils."
 
 msgid "polyrock_description"
@@ -6503,7 +6499,7 @@ msgstr ""
 "Ils voyagent de rivière en rivière à la recherche d'eau à boire et à "
 "stocker. Le ossicones feuillu sur sa tête cache des points en mouvement qui "
 "agissent comme une tige de radiesthésie. De nombreuses créatures suivent "
-"Baoby dans les sécheresses."
+"BAOBY dans les sécheresses."
 
 msgid "birdling_description"
 msgstr ""
@@ -6563,7 +6559,7 @@ msgstr "Son épée est en fait une antenne cultivée et arrachée à cet effet."
 
 msgid "bumbulus_description"
 msgstr ""
-"Bumbulus est un être volant qui produit un nuage de fumée pour se déguiser "
+"BUMBULUS est un être volant qui produit un nuage de fumée pour se déguiser "
 "en nuage. Personne n'a jamais vu son vrai corps."
 
 msgid "bursa_description"
@@ -6650,7 +6646,7 @@ msgid "exclawvate_description"
 msgstr ""
 "Souvent vus sur les chantiers de construction, ils peuvent utiliser leurs "
 "énormes mains et leur queue pour ramasser la saleté et les gravats. Sous le "
-"tuxemon se trouvent des pneus à chenilles, ce qui leur donne un meilleur "
+"Tuxemon se trouvent des pneus à chenilles, ce qui leur donne un meilleur "
 "équilibre et une meilleure adhérence lors de l'escalade de tas de gravats."
 
 msgid "exclawvate"
@@ -6688,7 +6684,7 @@ msgstr "Flambear"
 
 msgid "fluoresfin_description"
 msgstr ""
-"Lorsqu'il est menacé, il se blottit avec d'autres Fluoresfin pour créer une "
+"Lorsqu'il est menacé, il se blottit avec d'autres FLUORESFIN pour créer une "
 "grande lumière aveuglante aux prédateurs désorientants."
 
 msgid "fluoresfin"
@@ -6799,7 +6795,7 @@ msgstr "Incandesfin"
 
 msgid "jelillow_description"
 msgstr ""
-"Lorsqu'une personne pose sa tête sur Jelillow, sa peau gélatineuse la fait "
+"Lorsqu'une personne pose sa tête sur JELILLOW, sa peau gélatineuse la fait "
 "tomber dans un sommeil profond. Si quelqu'un a des problèmes de sommeil, ce "
 "monstre sera utilisé pour l'aider."
 
@@ -7151,7 +7147,7 @@ msgstr "Taupypus"
 
 msgid "teddisun_description"
 msgstr ""
-"Teddisun vénère le soleil - on les voit toujours porter leur jouet solaire."
+"TEDDISUN vénère le soleil - on les voit toujours porter leur jouet solaire."
 
 msgid "teddisun"
 msgstr "Teddisun"
@@ -7284,7 +7280,7 @@ msgstr "Mais quiconque déteste Omnichannel est un de mes amis."
 
 msgid "soiwashearing11"
 msgstr ""
-"OK, bougez maintenant pour que je puisse parler à ces soi-disant chevaliers."
+"OK, bougez maintenant pour que je puisse parler à ces soi-disant chevaliers"
 
 msgid "taketheleft"
 msgstr "Tu prends celui de gauche et je prends les trois autres."
@@ -7354,3 +7350,482 @@ msgstr "Laboratoire du Professeur Tuxemon"
 
 msgid "taba_town_sign_tuxecenter"
 msgstr "Tuxecenter - Un endroit pour guérir votre tuxemon"
+
+msgid "flintstone_description"
+msgstr ""
+"Une pierre stratifiée utilisée pour fabriquer des outils en pierre et des "
+"feux allumés. Pas en même temps."
+
+msgid "lucky_bamboo_description"
+msgstr ""
+"Techniquement, ce n'est pas du tout du bambou. Il n'est pas particulièrement "
+"chanceux non plus. Mais cela fait une belle plante d'intérieur."
+
+msgid "peace_lily_description"
+msgstr "Une plante d'intérieur rustique pour quelqu'un de spécial."
+
+msgid "petrified_dung_description"
+msgstr "On dirait bien, merde... Mais c'est dur comme la pierre."
+
+msgid "pyramidion_description"
+msgstr "Un triangle d'or qui bourdonne de puissance céleste."
+
+msgid "sea_girdle_description"
+msgstr "Une chaîne de boules molles et visqueuses comme le varech."
+
+msgid "stovepipe_description"
+msgstr ""
+"Un long tuyau en fer. Le manipuler laisse vos mains suintées et cendrées."
+
+msgid "sweet_sand_description"
+msgstr ""
+"Dans certaines parties du monde, les gens se nettoient avec ce sable parfumé "
+"et mousseux."
+
+msgid "tectonic_drill_description"
+msgstr "Une grosse machine click-clack utilisée pour percer dans la terre."
+
+msgid "thunderstone_description"
+msgstr ""
+"Une vieille relique de pierre, maintenant transportée pour porter chance."
+
+msgid "shammer_fossil_description"
+msgstr ""
+"Il ressemble au crâne d'un chien ancien, mais il est dur comme de la pierre."
+
+msgid "rhincus_fossil_description"
+msgstr ""
+"Il ressemble au crâne d'un oiseau à dents, mais il est dur comme de la "
+"pierre."
+
+msgid "air_chain"
+msgstr "Chaîne d'Air"
+
+msgid "ants"
+msgstr "Fourmis"
+
+msgid "arcane_eye"
+msgstr "Œil Arcane"
+
+msgid "assault"
+msgstr "Assaut"
+
+msgid "barking"
+msgstr "Aboiement"
+
+msgid "blood_nets"
+msgstr "Filets de Sang"
+
+msgid "breath"
+msgstr "Haleine"
+
+msgid "canine"
+msgstr "Canine"
+
+msgid "cat_calling"
+msgstr "Appel de Chat"
+
+msgid "chameleon"
+msgstr "Caméléon"
+
+msgid "clock"
+msgstr "Horloge"
+
+msgid "cloud_aether"
+msgstr "Éther Nuageux"
+
+msgid "conjurer"
+msgstr "Conjurer"
+
+msgid "crystal"
+msgstr "Cristal"
+
+msgid "earthquake"
+msgstr "Tremblement de Terre"
+
+msgid "feline"
+msgstr "Félin"
+
+msgid "fiery"
+msgstr "Ardent"
+
+msgid "firestorm"
+msgstr "Tempête de Feu"
+
+msgid "fire_shield"
+msgstr "Bouclier de Feu"
+
+msgid "fledgling"
+msgstr "Novice"
+
+msgid "gold_digger"
+msgstr "Chercheur d'Or"
+
+msgid "grinding"
+msgstr "Broyage"
+
+msgid "gust"
+msgstr "Rafale"
+
+msgid "gyser"
+msgstr "Gyser"
+
+msgid "insanity"
+msgstr "Folie"
+
+msgid "kraken"
+msgstr "Kraken"
+
+msgid "meltdown"
+msgstr "Effondrement"
+
+msgid "mending"
+msgstr "Raccommodage"
+
+msgid "mobbing"
+msgstr "Mobbing"
+
+msgid "muck"
+msgstr "Boue"
+
+msgid "mystic_blending"
+msgstr "Mélange Mystique"
+
+msgid "negation"
+msgstr "Négation"
+
+msgid "nest"
+msgstr "Nid"
+
+msgid "oedipus"
+msgstr "Œdipe"
+
+msgid "orbs"
+msgstr "Orbes"
+
+msgid "phantasmal_force"
+msgstr "Force Fantasmatique"
+
+msgid "pit"
+msgstr "Fosse"
+
+msgid "platinum"
+msgstr "Platine"
+
+msgid "poison_courtship"
+msgstr "Parade Empoisonnée"
+
+msgid "radiance"
+msgstr "Éclat"
+
+msgid "ring"
+msgstr "Bague"
+
+msgid "ruby"
+msgstr "Rubis"
+
+msgid "saber"
+msgstr "Sabre"
+
+msgid "shapechange"
+msgstr "Changement"
+
+msgid "slime"
+msgstr "Vase"
+
+msgid "stabilo"
+msgstr "Stabilo"
+
+msgid "stonehenge"
+msgstr "Stonehenge"
+
+msgid "strangulation"
+msgstr "Strangulation"
+
+msgid "sunburst"
+msgstr "Éclat de Soleil"
+
+msgid "sword"
+msgstr "Épée"
+
+msgid "sylvan"
+msgstr "Sylvestre"
+
+msgid "terror"
+msgstr "Terreur"
+
+msgid "time_crisis"
+msgstr "Crise Temporelle"
+
+msgid "tip"
+msgstr "Pourboire"
+
+msgid "torch"
+msgstr "Torche"
+
+msgid "touch"
+msgstr "Toucher"
+
+msgid "tsunami"
+msgstr "Tsunami"
+
+msgid "ubuntu"
+msgstr "Ubuntu"
+
+msgid "undertaker"
+msgstr "Funèbres"
+
+msgid "venom"
+msgstr "Venin"
+
+msgid "viper"
+msgstr "Vipère"
+
+msgid "vorpal"
+msgstr "Vorpal"
+
+msgid "wall_fire"
+msgstr "Mur de Feu"
+
+msgid "wall_ice"
+msgstr "Mur de Glace"
+
+msgid "walls"
+msgstr "Murs"
+
+msgid "webs_wind"
+msgstr "Vent de Toiles"
+
+msgid "cavity"
+msgstr "Cavité"
+
+msgid "clairaudience"
+msgstr "Clairaudience"
+
+msgid "demiurge"
+msgstr "Démiurge"
+
+msgid "lineage"
+msgstr "Lignage"
+
+msgid "tux_attack"
+msgstr "Attaque Tux"
+
+msgid "evasion"
+msgstr "Évasion"
+
+msgid "hawk"
+msgstr "Rapace"
+
+msgid "ice_storm"
+msgstr "Verglas"
+
+msgid "lightning_spheres"
+msgstr "Sphères de Foudre"
+
+msgid "lantern"
+msgstr "Lanterne"
+
+msgid "lava"
+msgstr "Lave"
+
+msgid "magma"
+msgstr "Magma"
+
+msgid "lust"
+msgstr "Luxure"
+
+msgid "maori"
+msgstr "Maori"
+
+msgid "monster_menu_tech"
+msgstr "Techniques"
+
+msgid "Kennel"
+msgstr "abri"
+
+msgid "monster_menu_desc"
+msgstr "Description"
+
+msgid "move_to_kennel"
+msgstr "déplacer vers {box}"
+
+msgid "kennel_label"
+msgstr "{box} ({qty})"
+
+msgid "aether"
+msgstr "Aether"
+
+msgid "mk01_delta_description"
+msgstr "Un robot tueur fusionné avec un dragon. Ne nous demandez pas comment."
+
+msgid "glitch"
+msgstr "Glitch"
+
+msgid "mk01_beta_description"
+msgstr "Un robot tueur fusionné avec un dragon. Ne nous demandez pas comment."
+
+msgid "mk01_gamma"
+msgstr "Mk01 Gamma"
+
+msgid "mk01_omega"
+msgstr "Mk01 Omega"
+
+msgid "mk01_delta"
+msgstr "Mk01 Delta"
+
+msgid "mk01_gamma_description"
+msgstr "Un robot tueur fusionné avec un dragon. Ne nous demandez pas comment."
+
+msgid "xeon_2_description"
+msgstr "Un robot hostile."
+
+msgid "mk01_omega_description"
+msgstr "Un robot tueur fusionné avec un dragon. Ne nous demandez pas comment."
+
+msgid "mk01_proto_description"
+msgstr "Un robot tueur fusionné avec un dragon. Ne nous demandez pas comment."
+
+#, fuzzy
+msgid "mk01_proto"
+msgstr "Mk01 Proto"
+
+msgid "xeon_description"
+msgstr "Un robot hostile."
+
+msgid "normal"
+msgstr "Normal"
+
+# Taba Town
+msgid "maple_bedroom_sign"
+msgstr "C'est un calendrier et le 27 avril est entouré de rose."
+
+msgid "taba_house2_sign"
+msgstr "Bibliothèque Legacy"
+
+msgid "taba_house2_reader3a"
+msgstr "Je peux donc vivre mille vies différentes."
+
+msgid "taba_house2_reader2a"
+msgstr "Cela enflamme mon imagination."
+
+msgid "taba_house2_reader4a"
+msgstr ""
+"La lecture stimule mon esprit d'une manière que la télévision et les films "
+"ne pourront jamais faire."
+
+msgid "taba_house1_calendar"
+msgstr ""
+"C'est un calendrier et le 30 septembre et le 12 février sont entourés en "
+"rouge."
+
+msgid "taba_house1_husband1"
+msgstr "Tuxemon ! J'étais parmi les entraîneurs les plus qualifiés !"
+
+msgid "taba_house1_wife1"
+msgstr "Entraîneur ? Mon mari délire."
+
+msgid "taba_house1_reading"
+msgstr "Le livre est Philosophie des études illusoires de Jaiden Gemrevenza."
+
+msgid "taba_house1_watching"
+msgstr ""
+"C'est un documentaire sur les Tuxemon les plus étranges et les plus "
+"merveilleux de la région,\n"
+"ainsi que les comportements étranges qu'ils ont adoptés."
+
+msgid "taba_house2_owner1"
+msgstr ""
+"Bienvenue à la bibliothèque Legacy ! N'hésitez pas à regarder autour de "
+"vous, mais calmez-vous s'il vous plaît."
+
+msgid "taba_house2_reading1"
+msgstr "Le livre est Visiting The King de Manolo Qai."
+
+msgid "taba_house2_reading4"
+msgstr "Le livre est Sailing Into Eternitys de Laurine Doprachuld."
+
+msgid "taba_house2_reading2"
+msgstr "Le livre est Raised By Dreams de Louis Etrergo."
+
+msgid "taba_house2_reading3"
+msgstr "Le livre est Children Without Honor de Leslie Greninza."
+
+msgid "taba_house2_reader1a"
+msgstr "Je me sens mieux à la vue d'un livre ou d'une librairie."
+
+msgid "taba_house2_books"
+msgstr ""
+"000 - Informatique, information et travaux généraux, 100 - Philosophie et "
+"psychologie\n"
+"200 - Religion, 300 - Sciences sociales, 400 - Langue, 500 - Sciences pures, "
+"600 - Technologie\n"
+"700 - Arts et loisirs, 800 - Littérature, 900 - Histoire et géographie"
+
+msgid "taba_house4_dish1"
+msgstr "C'est brun, dense, mais ça ne ressemble pas à du pudding..."
+
+msgid "taba_house3_client2a"
+msgstr "Trop penser peut nous nuire."
+
+msgid "taba_house4_owner1"
+msgstr "Bienvenue au Honorable Seagulls Pub !"
+
+msgid "taba_house3_client3a"
+msgstr "Cela me fait penser à la maison de ma mère."
+
+msgid "taba_house4_client1a"
+msgstr "Ma grand-mère avait l'habitude de faire un plat similaire !"
+
+msgid "taba_house3_client1a"
+msgstr "Je me repose pendant que ma sœur lit probablement des livres."
+
+msgid "taba_house4_client2a"
+msgstr "Hein ? Juste remplir un estomac vide."
+
+msgid "taba_house4_client3a"
+msgstr ""
+"Heureusement, je n'ai pas payé pour cela. Comment pouvez-vous payer pour "
+"cela ?"
+
+msgid "taba_house3_owner1"
+msgstr "Bienvenue à The Thoughtful Leaf Inn !"
+
+msgid "hiperson"
+msgstr ""
+"Qui êtes-vous, qui est Misa et qui est Allie ? Donnez-nous les détails !"
+
+msgid "dowehavetogoin3"
+msgstr ""
+"Je dois entrer, peu importe à quel point je ne veux pas, je dois aider les "
+"gens que j'aime."
+
+msgid "dowehavetogoin5"
+msgstr ""
+"Au fait, comment vous appelez-vous ? Kyle ne semblait pas du tout s'adresser "
+"à vous."
+
+msgid "dowehavetogoin4"
+msgstr "Qui sait, peut-être que je pourrai le combattre moi-même !"
+
+msgid "hiperson2"
+msgstr "Whoa là Christie, ne les submerge pas."
+
+msgid "taba_house1_sign"
+msgstr "Maison de M. et Mme Clawbrew"
+
+# Tuxemon Threats
+msgid "chrome_robo_description"
+msgstr "Un robot hostile."
+
+msgid "dark_robo_description"
+msgstr "Un robot hostile."
+
+msgid "birb_robo_description"
+msgstr "Un robot hostile."
+
+msgid "mk01_alpha_description"
+msgstr "Un robot tueur fusionné avec un dragon. Ne nous demandez pas comment."
+
+msgid "skip"
+msgstr "Sauter"

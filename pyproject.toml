@@ -1,3 +1,49 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tuxemon"
+version = "0.4.35"
+description = "Open source monster-fighting RPG"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "William Edwards", email = "shadowapex@gmail.com"}
+]
+maintainers = [
+    {name = "Tuxemon Community"}
+]
+classifiers = [
+        "Intended Audience :: End Users/Desktop",
+        "Development Status :: 3 - Alpha",
+        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Topic :: Games/Entertainment",
+        "Topic :: Games/Entertainment :: Role-Playing"
+]
+requires-python = ">=3.8"
+dynamic = ["dependencies"]
+
+[project.urls]
+homepage = "https://www.tuxemon.org"
+source = "https://github.com/Tuxemon/Tuxemon"
+
+[project.gui-scripts]
+tuxemon = "tuxemon.__main__:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tuxemon*"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = "requirements.txt"}
+
 [tool.black]
 line-length = 79
 target-version = ["py38"]

@@ -4,25 +4,61 @@
     {
       "monster": "pairagrin",
       "encounter_rate": 3.5,
+      "daytime": true,
+      "exp_req_mod": 1,
       "level_range": [
-        1,
+        2,
         4
       ]
     },
     {
       "monster": "aardorn",
       "encounter_rate": 3.5,
+      "daytime": true,
+      "exp_req_mod": 1,
       "level_range": [
-        1,
+        2,
         4
       ]
     },
     {
       "monster": "cataspike",
       "encounter_rate": 3.5,
+      "daytime": true,
+      "exp_req_mod": 1,
       "level_range": [
-        1,
+        2,
         4
+      ]
+    },
+    {
+      "monster": "pairagrin",
+      "encounter_rate": 3.5,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        3,
+        5
+      ]
+    },
+    {
+      "monster": "aardorn",
+      "encounter_rate": 3.5,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        3,
+        5
+      ]
+    },
+    {
+      "monster": "cataspike",
+      "encounter_rate": 3.5,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        3,
+        5
       ]
     }
   ]

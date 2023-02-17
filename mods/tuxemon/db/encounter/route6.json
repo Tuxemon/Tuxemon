@@ -4,6 +4,8 @@
     {
       "monster": "dandicub",
       "encounter_rate": 10,
+      "daytime": true,
+      "exp_req_mod": 1,
       "level_range": [
         19,
         20
@@ -12,6 +14,8 @@
     {
       "monster": "dandylion",
       "encounter_rate": 5,
+      "daytime": true,
+      "exp_req_mod": 1,
       "level_range": [
         21,
         23
@@ -20,9 +24,41 @@
     {
       "monster": "capiti",
       "encounter_rate": 10,
+      "daytime": true,
+      "exp_req_mod": 1,
       "level_range": [
         19,
         22
+      ]
+    },
+    {
+      "monster": "dandicub",
+      "encounter_rate": 10,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        20,
+        24
+      ]
+    },
+    {
+      "monster": "dandylion",
+      "encounter_rate": 5,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        22,
+        24
+      ]
+    },
+    {
+      "monster": "capiti",
+      "encounter_rate": 10,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        20,
+        24
       ]
     }
   ]

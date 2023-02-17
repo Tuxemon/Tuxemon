@@ -3,7 +3,7 @@
   "accuracy": 0.2,
   "animation": "clock",
   "effects": [
-    "damage 100"
+    "damage"
   ],
   "flip_axes": "",
   "healing_power": 0,

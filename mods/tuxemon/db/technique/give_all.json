@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "firelion_front",
   "effects": [
-    "damage 100",
+    "damage",
     "exhausted user"
   ],
   "flip_axes": "",
@@ -12,7 +12,7 @@
   "is_area": false,
   "is_fast": false,
   "potency": 1,
-  "power": 3.0,
+  "power": 3,
   "range": "melee",
   "recharge": 2,
   "sfx": "sfx_blaster",

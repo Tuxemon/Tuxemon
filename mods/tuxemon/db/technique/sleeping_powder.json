@@ -3,6 +3,7 @@
   "accuracy": 1,
   "animation": "explosion_dusty_96",
   "effects": [
+    "enhance",
     "focused user"
   ],
   "flip_axes": "",

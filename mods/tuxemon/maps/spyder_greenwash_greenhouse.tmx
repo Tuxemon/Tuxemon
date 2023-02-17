@@ -6,47 +6,44 @@
   <property name="slug" value="greenwash_greenhouse"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
- </tileset>
- <tileset firstgid="55" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
-  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
- </tileset>
- <tileset firstgid="340" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+ <tileset firstgid="1" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
  </tileset>
- <tileset firstgid="2932" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+ <tileset firstgid="2593" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
- <tileset firstgid="4692" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
+ <tileset firstgid="4353" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="5140" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
+ <tileset firstgid="8217" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
+ </tileset>
+ <tileset firstgid="9767" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
  </tileset>
  <layer id="7" name="Tile Layer 1" width="32" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjEGZgYARiJiBmIMAGyRNSQ4w5hNTA7MFFE+teQvaAzEE2C2QfIT3U9j+6H0ftx5/GRsMfNc0ip19y2NQOT0LpF92No/ZTNz5Hwx9/+TGa/lDrOABDQSfT
+   eAGbpsbAMG0Uj4bBaBoYTQOjaWA0DYymgRGVBgAETXgQ
   </data>
  </layer>
  <layer id="8" name="Tile Layer 2" width="32" height="16">
   <data encoding="base64" compression="zlib">
-   eAHFk0sKQjEMRTP1A4I4UFBn6tSBoK5A3ajLcRFO3IEzwUS4eg2xH9Bn4JL0Nc1p075jR+Qy/J9Oyh+M/qer8r9ht76IKWU+x87dBN9zMf4l/6xvKifPx77gU73EXE97iHzzMPue0+PddbHivQ7XsgxmcJzivyrHkfGnNMV1a/hU4hnavnJm/CUlRfx1W2Sj2qoi+8ThvkTrjOXvP8rbKXevOlTyo7OgPuZK+CXnz71zP1/DLzm/9bpG1gfu/6olYsI9Rx57Zo9+pnwq3/cf9xx5rsNxKRtrON/zec7HWO+9z/PjsX6YqPg/R04T/JnC5qoFoOSNfwczF7Qs
+   eAHFkzsOwkAMRE3BR/T0UFBxHI7DNYALcBI+F0ECDoCAmpliFMva7CYSJJZG3sRev7U3WU/NRov+tAF/CX5fOoD/CxuuzKicxRz23AU/cvX8T/4AvZUU+TqXfG6Wis3BUT69jO9LIv/o7t/X8bVYM8b0nOPrLHWe/P2siqqmfBXJ832e1jxXych/Fvi3idkdekApq+P4uaT2scd4/6m8F7hv6NOSrxnK+9p614TfpP/Sdx7jbfhN+ues24iz4BnU/3VsRumeU15n9t7PtG6dyxdfe3XPKe/r+LX2przP09rnRb6PxbX2Rx/z4vMW/9cO8v+5crrgn8A+QxcoGvlfloJWbQ==
   </data>
  </layer>
  <layer id="9" name="Tile Layer 3" width="32" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBg8YAsXA8NWICZEg1zMBFTHDMS4gAonLhnc4keA5h0FYkI0yAQhoDphIO7iYGDoBmJ0YEKG/ehm4OMrAe1WBuJZQLtnY7Efn15qyj2SwG4aLnHsqskXxWUPLnHybcKuE5c9uMSxm4JbVB0YxxpArAnE2AAue3CJYzMDn5g50F4LILYkwf5aKqZHcvzfi8f+Gjxy2MIBr/+BYUJqOPfgsB/Zn7D4BtHI4ujuEwDKC+KIF3S15PLx+V8BaLcije0n192j+ogLAQD+UCXH
+   eAFjYBg8IJGTgSEJiAnRIBev52Bg2ADEuMBFdlwyuMULgXYXATEhGmTCfqDdB4DYHGiPBRa7HmIRw20z6TLngXZfAGJ3oD0eNLYLn+sYFbHL4hLHrpp8UVz24BIn3ybsOnHZg0scuym4Ra8A4/gqEF8DYmwAlz24xLGZgU/sCdDep0D8jAT7taiYHsnxvxUe+zXxyGELB3z+XwsME1LD2RKH/cj+hMU3iEYWR3ffXqD8Phzxgq6WXD4+/58F2n2OxvaT6+5RfcSFAACeISwG
   </data>
  </layer>
  <layer id="10" name="Tile Layer 4" width="32" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBjaoIqDgaEaiEfByAyBbnbs/l4DFCeEseskTRSX/bjESTOdgUGdi4FBA4g1gRgbwGUPLnFsZlAihsseXOKU2IVNL73swWY3SIwa9qtwMjCAMCye0WlcdsPEVwPTOikYpm+UHg0BAH2OFuo=
+   eAFjYBjaQJ2dgUEDiEfByAwBCzbs/o4EihPC2HWSJorLflzipJnOwHCFg4HhKhBfA2JsAJc9uMSxmUGJGC57cIlTYhc2vfSyB5vdIDFq2H8RWH6BMCye0WlcdsPEI4BpnRQM0zdKj4YAAPxDE8M=
   </data>
  </layer>
  <layer id="11" name="Tile Layer 5" width="32" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyFAfghUs2PXOwcoTghj10maKC77cYmTZjph1bjswSVO2ETSVOCyB5c4aaYTVk0ve3C5ZEDt52JgYATi2cC0TgrG5hd1oDkggE5DRGlPmkPtR6dpb/OoDQMZAgAd4hNR
+   eAFjYBgFoyFAfghosGHX6wkUJ4Sx6yRNFJf9uMRJM52walz24BInbCJpKnDZg0ucNNMJq6aXPbhcMpD2r+VgYFgHxB7AtE4KxuaXK0BzQACdhojSnnwCtR+dpr3NozYMZAgAACwYDtE=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">

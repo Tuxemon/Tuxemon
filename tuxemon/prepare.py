@@ -53,6 +53,9 @@ config.generate_default_config()
 # Read "tuxemon.cfg" config from disk, update and write back
 CONFIG = config.TuxemonConfig(paths.USER_CONFIG_PATH)
 
+# Starting map
+STARTING_MAP = "debug.tmx"
+
 with open(paths.USER_CONFIG_PATH, "w") as fp:
     CONFIG.cfg.write(fp)
 
@@ -77,7 +80,7 @@ XP_COLOR = (248, 245, 71)
 NATIVE_RESOLUTION = [240, 160]
 
 # Set the character limit for setting a player name.
-PLAYER_NAME_LIMIT = 30
+PLAYER_NAME_LIMIT = 15
 
 # Fonts
 FONT_BASIC = "PressStart2P.ttf"

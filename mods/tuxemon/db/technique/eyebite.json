@@ -3,6 +3,7 @@
   "accuracy": 1,
   "animation": "bite",
   "effects": [
+    "enhance",
     "exhausted target"
   ],
   "flip_axes": "",

@@ -2,13 +2,14 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Generator, Iterable, Sequence, Tuple
+from functools import partial
+from typing import TYPE_CHECKING, Generator, Sequence, Tuple
 
 import pygame
 
 from tuxemon import tools
 from tuxemon.db import State
-from tuxemon.item.item import InventoryItem, Item
+from tuxemon.item.item import INFINITE_ITEMS, Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
@@ -25,8 +26,8 @@ if TYPE_CHECKING:
 
 
 def sort_inventory(
-    inventory: Iterable[InventoryItem],
-) -> Sequence[InventoryItem]:
+    inventory: Sequence[Item],
+) -> Sequence[Item]:
     """
     Sort inventory in a usable way. Expects a iterable of inventory properties.
 
@@ -42,8 +43,7 @@ def sort_inventory(
 
     """
 
-    def rank_item(properties: InventoryItem) -> Tuple[int, str]:
-        item = properties["item"]
+    def rank_item(item: Item) -> Tuple[int, str]:
         primary_order = sort_order.index(item.sort)
         return primary_order, item.name
 
@@ -164,7 +164,20 @@ class ItemMenuState(Menu[Item]):
             result = item.use(player, monster)
             self.client.pop_state()  # pop the monster screen
             self.client.pop_state()  # pop the item screen
-            tools.show_item_result_as_dialog(local_session, item, result)
+            # check effects, some don't need the show_item_result_as_dialog
+            # (eg learn_mm, etc)
+            for t in item.effects:
+                if t.name == "learn_mm" or t.name == "learn_tm":
+                    if result["success"]:
+                        player.check_max_moves(local_session, monster)
+                    else:
+                        tools.show_item_result_as_dialog(
+                            local_session, item, result
+                        )
+                else:
+                    tools.show_item_result_as_dialog(
+                        local_session, item, result
+                    )
 
         def confirm() -> None:
             self.client.pop_state()  # close the confirm dialog
@@ -200,27 +213,30 @@ class ItemMenuState(Menu[Item]):
 
     def initialize_items(self) -> Generator[MenuItem[Item], None, None]:
         """Get all player inventory items and add them to menu."""
-        inventory = local_session.player.inventory.values()
+        state = self.determine_state_called_from()
+        inventory = []
+        # in battle shows only items with MainCombatMenuState (usable_in)
+        if state == "MainCombatMenuState":
+            inventory = [
+                item
+                for item in local_session.player.items
+                if State[state] in item.usable_in
+            ]
+        # shows all items (excluded phone category)
+        else:
+            inventory = [
+                item
+                for item in local_session.player.items
+                if item.category != "phone"
+            ]
 
         # required because the max() below will fail if inv empty
         if not inventory:
             return
 
-        name_len = 17  # TODO: dynamically get this value, maybe?
-        count_len = max(len(str(p["quantity"])) for p in inventory)
-
-        # TODO: move this and other format strings to a locale or config file
-        label_format = "{:<{name_len}} x {:>{count_len}}".format
-
-        for properties in sort_inventory(inventory):
-            obj = properties["item"]
-            formatted_name = label_format(
-                obj.name,
-                properties["quantity"],
-                name_len=name_len,
-                count_len=count_len,
-            )
-            image = self.shadow_text(formatted_name, bg=(128, 128, 128))
+        for obj in sort_inventory(inventory):
+            label = obj.name + " x " + str(obj.quantity)
+            image = self.shadow_text(label, bg=(128, 128, 128))
             yield MenuItem(image, obj.name, obj.description, obj)
 
     def on_menu_selection_change(self) -> None:
@@ -291,40 +307,26 @@ class ShopMenuState(Menu[Item]):
         inventory = []
         # when the player buys
         if self.buyer.isplayer:
-            inventory = [item for item in self.seller.inventory.values()]
+            inventory = [item for item in self.seller.items]
         # when the player sells
         if self.seller.isplayer:
             inventory = [
                 item
-                for item in self.seller.inventory.values()
+                for item in self.seller.items
                 for t in self.economy.items
-                if item["item"].slug == t.item_name
+                if item.slug == t.item_name
             ]
 
         # required because the max() below will fail if inv empty
         if not inventory:
             return
 
-        name_len = 17  # TODO: dynamically get this value, maybe?
-        count_len = max(len(str(p["quantity"])) for p in inventory)
-
-        # TODO: move this and other format strings to a locale or config file
-        label_format_1 = "{:<{name_len}} x {:>{count_len}}".format
-        label_format_2 = "{:<{name_len}}".format
-
-        for properties in sort_inventory(inventory):
-            obj = properties["item"]
-            if properties.get("infinite"):
-                label = label_format_2
+        for obj in sort_inventory(inventory):
+            if obj.quantity != INFINITE_ITEMS:
+                label = obj.name + " x " + str(obj.quantity)
             else:
-                label = label_format_1
-            formatted_name = label(
-                obj.name,
-                properties["quantity"],
-                name_len=name_len,
-                count_len=count_len,
-            )
-            image = self.shadow_text(formatted_name, bg=(128, 128, 128))
+                label = obj.name
+            image = self.shadow_text(label, bg=(128, 128, 128))
             yield MenuItem(image, obj.name, obj.description, obj)
 
     def on_menu_selection_change(self) -> None:
@@ -353,23 +355,29 @@ class ShopBuyMenuState(ShopMenuState):
             menu_item: Selected menu item.
 
         """
-        MAX_QTY = 999
         item = menu_item.game_object
 
-        def buy_item(quantity: int) -> None:
+        def buy_item(itm: Item, quantity: int) -> None:
             if not quantity:
                 return
 
-            self.buyer.buy_transaction(
-                self.client, self.seller, item.slug, quantity, price
+            existing = self.buyer.find_item(itm.slug)
+            if existing:
+                # reduces quantity only no-infinite items
+                if itm.quantity != INFINITE_ITEMS:
+                    itm.quantity -= quantity
+                existing.quantity += quantity
+            else:
+                itm.quantity = quantity
+                self.buyer.add_item(itm)
+            self.buyer.money["player"] = self.buyer.money.get("player") - (
+                quantity * price
             )
 
             self.reload_items()
-            if not self.seller.has_item(item.slug):
+            if item not in self.seller.items:
                 # We're pointing at a new item
                 self.on_menu_selection_change()
-
-        item_dict = self.seller.inventory[item.slug]
 
         price = (
             0
@@ -378,26 +386,14 @@ class ShopBuyMenuState(ShopMenuState):
             else self.economy.lookup_item_price(item.slug)
         )
         money = self.buyer.money["player"]
-        if int(price) == 0:
-            max_quantity = (
-                MAX_QTY
-                if item_dict.get("infinite")
-                else min(MAX_QTY, item_dict["quantity"])
-            )
-        else:
-            qty_can_afford = int(money / price)
-            if item_dict.get("infinite"):
-                max_quantity = min(MAX_QTY, qty_can_afford)
-            else:
-                max_quantity = min(
-                    MAX_QTY, qty_can_afford, item_dict["quantity"]
-                )
+        qty_can_afford = int(money / price)
+        max_quantity = min(item.quantity, qty_can_afford)
 
         self.client.push_state(
             QuantityAndPriceMenu(
-                callback=buy_item,
+                callback=partial(buy_item, item),
                 max_quantity=max_quantity,
-                quantity=0 if max_quantity == 0 else 1,
+                quantity=1,
                 shrink_to_items=True,
                 price=price,
             )
@@ -419,20 +415,25 @@ class ShopSellMenuState(ShopMenuState):
         """
         item = menu_item.game_object
 
-        def sell_item(quantity: int) -> None:
+        def sell_item(itm: Item, quantity: int) -> None:
             if not quantity:
                 return
 
-            self.seller.sell_transaction(
-                self.client, self.seller, item.slug, quantity, cost
-            )
+            diff = itm.quantity - quantity
+            if diff <= 0:
+                self.seller.remove_item(itm)
+            else:
+                itm.quantity = diff
+
+            if self.seller.money.get("player") is not None:
+                self.seller.money["player"] = self.seller.money.get(
+                    "player"
+                ) + (quantity * cost)
 
             self.reload_items()
-            if not self.seller.has_item(item.slug):
+            if item not in self.seller.items:
                 # We're pointing at a new item
                 self.on_menu_selection_change()
-
-        item_dict = self.seller.inventory[item.slug]
 
         cost = (
             0
@@ -440,14 +441,10 @@ class ShopSellMenuState(ShopMenuState):
             else self.economy.lookup_item_cost(item.slug)
         )
 
-        max_quantity = (
-            None if item_dict.get("infinite") else item_dict["quantity"]
-        )
-
         self.client.push_state(
             QuantityAndCostMenu(
-                callback=sell_item,
-                max_quantity=max_quantity,
+                callback=partial(sell_item, item),
+                max_quantity=item.quantity,
                 quantity=1,
                 shrink_to_items=True,
                 cost=cost,

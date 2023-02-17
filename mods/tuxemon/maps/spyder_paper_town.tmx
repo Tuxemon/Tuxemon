@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="452">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="453">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="route1"/>
@@ -34,7 +34,7 @@
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYCAMFnIyMCwC4sEKjgHddhyP+8wlGBgsgNgSiK2A2BqIaQ2O4nEPre0m1vyBCBdi3TaqbjQERkNgNAQoDQF8dZeVOKWm01Z/5iB3H219PzxNdxUizV+w9EsuTZpto6pHQ4C+IQAAgxQUEg==
+   eAFjYCAMFnIyMCwC4sEKjgHddhyP+8wlGBgsgNgSiK2A2BqIaQ2O4nEPre0m1vyBCBdi3TaqbjQERkNgNAQoDYHBXndR6r9R/UMrBFyFSHMvLP2SS5Nm26jq0RCgbwgAAFJCE0E=
   </data>
  </layer>
  <layer id="5" name="Above Player" width="40" height="20">
@@ -425,6 +425,14 @@
     <property name="act2" value="transition_teleport spyder_timber_town.tmx,8,21,0.3"/>
     <property name="act4" value="player_face up"/>
     <property name="cond1" value="is variable_set rivergoto:timber"/>
+   </properties>
+  </object>
+  <object id="452" name="Teleport to Manor" type="event" x="112" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_paper_manor.tmx,6,7,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

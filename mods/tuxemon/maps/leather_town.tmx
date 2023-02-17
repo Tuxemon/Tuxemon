@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="97">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="102">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="route3"/>
@@ -228,6 +228,36 @@
     <property name="act1" value="translated_dialog Cotton_Mart"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="98" name="Sign: Shaft 1" type="event" x="288" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_shaft1_sign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="99" name="Sign: Shaft 2" type="event" x="400" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_shaft2_sign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="100" name="Teleport to Shaft1" type="event" x="240" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport leather_shaft1.tmx,12,14,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="101" name="Teleport to Shaft2" type="event" x="352" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport leather_shaft2.tmx,4,9,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

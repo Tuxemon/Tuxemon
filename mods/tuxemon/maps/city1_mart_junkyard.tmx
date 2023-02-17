@@ -1,41 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="21" height="35" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="46">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="21" height="35" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="46">
  <tileset firstgid="1" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285" columns="19">
   <image source="../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
  </tileset>
- <tileset firstgid="286" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
- </tileset>
- <tileset firstgid="1598" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
- </tileset>
- <tileset firstgid="1686" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
- </tileset>
- <tileset firstgid="1758" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
-  <image source="../gfx/tilesets/items.png" width="160" height="160"/>
- </tileset>
- <tileset firstgid="1858" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="680" columns="20">
+ <tileset firstgid="286" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="680" columns="20">
   <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="544"/>
+ </tileset>
+ <tileset firstgid="966" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="21" height="35">
   <data encoding="base64" compression="zlib">
-   eAHTYGBg0BjFo2EwmgZG08BoGhhNA6NpYDQNjKaB0TQwmgZQ0kAYGwMDOl7NzsCwBg9eC5RbB8TrgRhdL4gPAOw6et8=
+   eAHt0rENACAMA0GzTTYlkKVxG4GY4CN9lc66kBTEBhjAAAYwgAEMYAADGGgGPMd1c0j5afm3XbnXHf8hdXk=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="21" height="35">
   <data encoding="base64" compression="zlib">
-   eAHtlU0KwkAMhYO21aN4DM8g6MoTuFLXeggvoG48gSioNxA8gK5cewqTxYMwdCapPyhoIKSdfPMypG1K9Ldf7sC8oPaCfcn+LX3YNl5/kmOgOQ3uPRU7D+zx6P6Z6h04Z0QXdsv6FZ5ZLSeqs28M3aGhuWsS7R1+YMZrJ2avRZqWvHBeE/ZmaEre0uypflgszmZxgyc1Z2o/aupo1Qfr5YT3sl7uk5oy68JzZvxthIaZCLaM0XvA6bXYtZf1clLHy8a4nHsAx7ljLPKIMQ56EmExFnmJa55TmhvxMxsn3nvNThIzTnO6XpfnBRzrml29QRN1yqKuLfnUPz1ky/RkLca1OBd6TKNsPdwr93dmRTo9
+   eAHtlcsJAkEMhscXeBdtQBBP2oIIXkVLsAB7sAQV1Brswwq0AS961wY0OfwQhskmiw9EDYTsTr75M5NhZ0P42y93YF4NvQX5kvxT+tAtP38lw0izHr17KnYKHurPvKMD+1IIB3LLWjnO+UJ6V/KGMWdg5FfFENYO3xDjtS2xx0o2zXnmvMbszdDkvKU5Ef2wWKzN4mYPak6Nb9Wq710nOI7fpMl3XbyfkTgT7Bt3ItgUAzZPj/KwqC3raM9eVuPG1AM4amgs8ogaBz2OMI1FnmONeMmd6O46Z9yJkm2KWlKTnyUnczuaA8e4ZPsv0ESdVJS1OZ/1T4/ZlB6PaVybcrFrGqnxeC6/3wGiSzWT
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="21" height="35">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgLDIQQcORgYYJha/oGZB6JHAeUhAACLTgG3
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgLDIQSWsjAwwDC1/AMzD0SPAspDAADVEwP3
   </data>
  </layer>
  <layer id="4" name="Above Player" width="21" height="35">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgL0CIFYdgaGOCAeBSM3BACfDQDK
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgL0CAFLRgYGKyAeBSM3BAD2YgB2
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">

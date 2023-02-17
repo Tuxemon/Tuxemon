@@ -75,10 +75,10 @@ class HasItemCondition(EventCondition):
         owner_slug, item_slug = condition.parameters[:2]
         npc = get_npc(session, owner_slug)
         assert npc
-        item_info = npc.inventory.get(item_slug)
-        if item_info is None:  # not found in inventory
+        itm = npc.find_item(item_slug)
+        if itm is None:  # not found in inventory
             item_quantity = 0
         else:
-            item_quantity = item_info["quantity"]
+            item_quantity = itm.quantity
 
         return op(item_quantity, q_test)

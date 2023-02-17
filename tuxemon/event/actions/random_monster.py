@@ -52,6 +52,7 @@ class RandomMonsterAction(EventAction):
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_slug)
         current_monster.set_level(self.monster_level)
+        current_monster.set_moves(self.monster_level)
         current_monster.set_capture(formula.today_ordinal())
         current_monster.current_hp = current_monster.hp
 

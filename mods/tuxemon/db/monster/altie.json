@@ -58,7 +58,7 @@
     "types": [
         "metal"
     ],
-    "possible_genders": ["male", "female"],
+    "possible_genders": ["neuter"],
     "txmn_id": 201,
     "height": 130,
     "weight": 30,

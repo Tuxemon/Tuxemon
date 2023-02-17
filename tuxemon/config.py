@@ -62,7 +62,6 @@ class TuxemonConfig:
 
         # [game]
         self.data = cfg.get("game", "data")
-        self.starting_map = cfg.get("game", "starting_map")
         self.cli = cfg.getboolean("game", "cli_enabled")
         self.net_controller_enabled = cfg.getboolean(
             "game",
@@ -236,7 +235,6 @@ def get_defaults() -> Mapping[str, Any]:
                 OrderedDict(
                     (
                         ("data", "tuxemon"),
-                        ("starting_map", "player_house_bedroom.tmx"),
                         ("skip_titlescreen", False),
                         ("cli_enabled", False),
                         ("net_controller_enabled", False),

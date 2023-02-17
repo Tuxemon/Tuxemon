@@ -557,6 +557,17 @@ class PartyMemberModel(BaseModel):
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
 
+class BagItemModel(BaseModel):
+    slug: str = Field(..., description="Slug of the item")
+    quantity: int = Field(..., description="Quantity of the item")
+
+    @validator("slug")
+    def item_exists(cls, v):
+        if has.db_entry("item", v):
+            return v
+        raise ValueError(f"the item {v} doesn't exist in the db")
+
+
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
     gender: GenderType = Field(..., description="Gender of the NPC")
@@ -571,6 +582,9 @@ class NpcModel(BaseModel):
     )
     monsters: Sequence[PartyMemberModel] = Field(
         [], description="List of monsters in the NPCs party"
+    )
+    items: Sequence[BagItemModel] = Field(
+        [], description="List of items in the NPCs bag"
     )
 
     # Validate resources that should exist

@@ -6,22 +6,15 @@
   <property name="slug" value="routee"/>
   <property name="types" value="route"/>
  </properties>
- <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAG90EEOwkAMQ9EenusUrki9eJIVdaoCEouREyf5Sbtv2/Y83l5PHu1Yz+Pw85Kn/qqYt/K7/gnPDvNTe9/VfWorDQfLTr3JPfvVVoqnP7neuSe5PrvlPROP/w0vs3g4dPL6RjfxMuM1j0fVMnc2G09vNLmZK508HIoVveKo4Znr751e8vnsbe148iYzvXrUztTeM/bs/yfPXfTX+/pbOj77T74ztd7beTM6vsMLX1/zw8HqG8Spid3Secf47U32itezmW9Gx3d53YfdnvgNAQoGYg==
-  </data>
- </layer>
- <layer id="2" width="20" height="20">
-  <data encoding="base64" compression="zlib">
-   eAHtkcEJgDAMReNR51QcRNRB1OHqFP6Dv6ShNMWLIAohiUlef9MgIicsVPoJffxmBsq3jUgHq/Uerwe7ZMN9NvV7PCU1G/JO1O/xeG4Whp/kse7xdjRaGzn8gKdGY1jSUKpFgAn0zIKafq9V9dpdqFISal5SMMlbvA067Bvl8sPo/dN/A1/bwAXOiyx4
+   eAErYGBgKCABJzIxMHxjgeBkIJsUvdjUEjLPFmgHPmyH5gZC5sHcjotG9xO9zWsH+gcdSzPjDnNC7iM1zCk1zx7oVuT4csDjdmxuA4khuwFXPIHE0eOKXua1YYkj9DgD8TvQ0iYu942KU16OjIbhwIQhAKWayqA=
   </data>
  </layer>
  <layer id="5" name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAGljrENwEAIA0mZ7L9kMkW+ueYk5MIvvU4GbJjp3nvs3/mwS5u5r5nnfJjy0l76MOWlvfQhuSZ7tvrWJ9dkfqtvfe9HM4+G1CF16P1o5tGQOqQOyTWZT7SPXDPl0LfP+a12fqvbe+xv77Hf+a12fqvbe+xv77Hf+a12fqt/VlCNEQ==
+   eAGtzkEKwzAMRFFvepfkMOn9j1Nv3maCsQsTCJ+R5C9dnzHu+V+HHPHlu2d6vvM/Zehe77KfOff/28/5vHvXz/2ydzKqozrmftm8jOqojrxJ86v6qs+bNL+qr/q5Xza/o3nM/fLOo28eeVvkbbF1F0/rLh7eFnlbbN3F07qLh7dF3hZ/cRpRAQ==
   </data>
  </layer>
  <objectgroup id="6" name="Collision">

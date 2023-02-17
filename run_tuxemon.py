@@ -30,16 +30,6 @@ if __name__ == "__main__":
         help="The index of the save file to load",
     )
     parser.add_argument(
-        "-s",
-        "--starting-map",
-        dest="starting_map",
-        metavar="map.tmx",
-        type=str,
-        nargs="?",
-        default=None,
-        help="The starting map",
-    )
-    parser.add_argument(
         "-t",
         "--test-map",
         dest="test_map",
@@ -52,10 +42,7 @@ if __name__ == "__main__":
 
     if args.mod:
         config.mods.insert(0, args.mod)
-    if args.starting_map:
-        config.starting_map = args.starting_map
     if args.test_map:
-        config.starting_map = args.test_map
         config.skip_titlescreen = True
         config.splash = False
 

@@ -113,6 +113,9 @@
     <property name="act51" value="wait 0.5"/>
     <property name="act55" value="set_variable visitedcottoncafe:yes"/>
     <property name="act56" value="add_item nu_phone"/>
+    <property name="act57" value="add_item app_banking"/>
+    <property name="act58" value="add_item app_map"/>
+    <property name="act59" value="add_item app_tuxepedia"/>
     <property name="act60" value="remove_npc spyder_florist"/>
     <property name="act61" value="remove_npc spyder_granny"/>
     <property name="act62" value="remove_npc spyder_goth"/>

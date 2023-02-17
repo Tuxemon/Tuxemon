@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="24">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="leather_shaft1"/>
+  <property name="types" value="notype"/>
+ </properties>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
+ </tileset>
+ <tileset firstgid="9279" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxzFmZgcCYCvxLCFCskEotjEZtPJBbHItbLRBwWJ0HtSNfrSoHeYgr0LqRA73DBAJE9eXE=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 2" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzNzcsRQDAUheHr2YCFXQqgBLaaoAwN6MSogqAUz06cGcmCicfIxpn5dvlviP65iBHF7FubostE27OjpxVsd9fWAVEDHFrooA+Od2TTCXID3o0wwQwLrKf2akZIZIIFNjjgAhf3fe/dHdV02kSjzRVt6d2TqzT+/dM2Dx4iAw==
+  </data>
+ </layer>
+ <layer id="4" name="Tile Layer 3" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2DgwHl58vW+o0DvYAIAxzUB/A==
+  </data>
+ </layer>
+ <layer id="5" name="Above Player" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBi6IFeLgSEPiPOBuACIC4G4SIs4vZOA6iYD8RQgngrE04B4OpF6aQFmyQ2c3biAszBufE4Yv95CYdy4iIDekQYAcZMQJQ==
+  </data>
+ </layer>
+ <objectgroup color="#ffff00" id="2" name="Events">
+  <object id="2" name="Outside" type="event" x="192" y="224" width="32" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport leather_town.tmx,15,4,0.3"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="17" name="Sign" type="event" x="160" y="160" width="16" height="32">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leathershaft1_sign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="18" name="Create NPCs" type="event" x="160" y="112" width="16" height="16">
+   <properties>
+    <property name="act11" value="create_npc spyder_miner,4,8"/>
+    <property name="act12" value="create_npc spyder_searoutec_rutherford,8,4"/>
+    <property name="act13" value="create_npc spyder_tunnelb_beryll,8,8"/>
+    <property name="act14" value="create_npc spyder_route3_surat,12,6"/>
+    <property name="act15" value="create_npc spyder_route3_roxby,4,13"/>
+    <property name="act21" value="npc_face spyder_miner,up"/>
+    <property name="act22" value="npc_face spyder_searoutec_rutherford,up"/>
+    <property name="act23" value="npc_face spyder_tunnelb_beryll,up"/>
+    <property name="act24" value="npc_face spyder_route3_surat,right"/>
+    <property name="act25" value="npc_face spyder_route3_roxby,right"/>
+    <property name="cond1" value="not npc_exists spyder_miner"/>
+    <property name="cond2" value="not npc_exists spyder_searoutec_rutherford"/>
+    <property name="cond3" value="not npc_exists spyder_tunnelb_beryll"/>
+    <property name="cond4" value="not npc_exists spyder_route3_surat"/>
+    <property name="cond5" value="not npc_exists spyder_route3_roxby"/>
+   </properties>
+  </object>
+  <object id="19" name="Guy5" type="event" x="64" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leathershaft1_roxby"/>
+    <property name="behav1" value="talk spyder_route3_roxby"/>
+   </properties>
+  </object>
+  <object id="20" name="Guy1" type="event" x="64" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leathershaft1_miner"/>
+    <property name="behav1" value="talk spyder_miner"/>
+   </properties>
+  </object>
+  <object id="21" name="Guy3" type="event" x="128" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leathershaft1_beryll"/>
+    <property name="behav1" value="talk spyder_tunnelb_beryll"/>
+   </properties>
+  </object>
+  <object id="22" name="Guy2" type="event" x="128" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leathershaft1_rutherford"/>
+    <property name="behav1" value="talk spyder_searoutec_rutherford"/>
+   </properties>
+  </object>
+  <object id="23" name="Guy4" type="event" x="192" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leathershaft1_surat"/>
+    <property name="behav1" value="talk spyder_route3_surat"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" id="6" name="Collision">
+  <object id="5" type="collision" x="0" y="32" width="240" height="16"/>
+  <object id="6" type="collision" x="160" y="48" width="16" height="144"/>
+  <object id="7" type="collision" x="0" y="176" width="128" height="16"/>
+  <object id="8" type="collision" x="32" y="80" width="96" height="48"/>
+  <object id="9" type="collision" x="128" y="112" width="16" height="16"/>
+  <object id="10" type="collision" x="128" y="48" width="32" height="16"/>
+  <object id="11" type="collision" x="176" y="48" width="64" height="48"/>
+ </objectgroup>
+</map>

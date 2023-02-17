@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="72">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="manor"/>
+  <property name="types" value="notype"/>
+ </properties>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
+ </tileset>
+ <layer id="2" name="Tile Layer 1" width="10" height="8">
+  <data encoding="base64" compression="zlib">
+   eJy7KcTAcJMIbCpMHJ7IMrIwAFo8Lus=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 2" width="10" height="8">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAOLsij8k8qMjA4KjAwOAGxMxA7KEDE38ujqnkBxAlAuUQgTgLieAVMs0Fq8IGXWOQfyDEwPJRDFeNQQuXXA+X/g9SguV0dTR0xAJsb1YBi6kCsoYhQAwBNaRGp
+  </data>
+ </layer>
+ <layer id="7" name="Tile Layer 3" width="10" height="8">
+  <data encoding="base64" compression="zlib">
+   eJxjYBga4IEcA8NDOcLq/oPUyNPcOXAAALTWAzo=
+  </data>
+ </layer>
+ <layer id="4" name="Above player" width="10" height="8">
+  <data encoding="base64" compression="zlib">
+   eJxjYBhZ4KQiddTAAAByVgHV
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collision">
+  <object id="60" type="collision" x="32" y="64" width="32" height="32"/>
+  <object id="63" type="collision" x="0" y="112" width="16" height="16"/>
+  <object id="64" type="collision" x="144" y="112" width="16" height="16"/>
+  <object id="65" type="collision" x="144" y="32" width="16" height="16"/>
+  <object id="66" type="collision" x="112" y="48" width="16" height="48"/>
+  <object id="67" type="collision" x="0" y="16" width="160" height="16"/>
+  <object id="68" type="collision" x="0" y="32" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="69" name="Go Outside" type="event" x="96" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,7,13,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="70" name="Create NPCs" type="event" x="8.88178e-16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_maniac,1,5"/>
+    <property name="act2" value="npc_face spyder_maniac,right"/>
+    <property name="cond1" value="not npc_exists spyder_maniac"/>
+   </properties>
+  </object>
+  <object id="71" name="Old Man" type="event" x="16" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_papermanor_oldman"/>
+    <property name="behav1" value="talk spyder_maniac"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

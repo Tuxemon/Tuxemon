@@ -105,6 +105,30 @@ msgstr "Nu Phone"
 msgid "nu_phone_description"
 msgstr "You can do a lot with this, e.g. phone home."
 
+msgid "app_banking"
+msgstr "Bank App"
+
+msgid "app_banking_description"
+msgstr "Access your funds here whenever you're in a town."
+
+msgid "app_contacts"
+msgstr "Contacts App"
+
+msgid "app_contacts_description"
+msgstr "Call your friends and battle the people of your choice."
+
+msgid "app_map"
+msgstr "Map App"
+
+msgid "app_map_description"
+msgstr "Use this on your phone to see where you are."
+
+msgid "app_tuxepedia"
+msgstr "Tuxepedia App"
+
+msgid "app_tuxepedia_description"
+msgstr "Keep track of information about Tuxemon here, and share it with the world."
+
 # TMs
 msgid "tm_avalanche"
 msgstr "TM: Avalanche"
@@ -380,6 +404,26 @@ msgstr "${{name}}'s wallet: ${{currency}}${{money}}"
 
 msgid "wallet"
 msgstr "Wallet"
+
+msgid "bank"
+msgstr "Bank"
+
+msgid "deposit"
+msgstr "Deposit"
+
+msgid "withdraw"
+msgstr "Withdraw"
+
+msgid "no_money_operation"
+msgstr "{operation} not possible!"
+
+# Contacts notification
+
+msgid "action_call"
+msgstr "Call"
+
+msgid "phone_no_answer"
+msgstr "Phone keeps ringing but no answer!"
 
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
@@ -1429,6 +1473,12 @@ msgstr "{name} has too many techniques.\n"
 
 msgid "evolution_confirmation"
 msgstr "{name} is trying to evolve into {evolve}. Allow evolution?"
+
+msgid "no_signal"
+msgstr "No Signal"
+
+msgid "omnichannel_mobile"
+msgstr "Omnichannel Mobile 4G"
 
 msgid "max_moves_alert"
 msgstr "{name} has too many techniques.\n"
@@ -5436,7 +5486,7 @@ msgstr "Well, might makes right."
 msgid "spyder_timber_dante1"
 msgstr "Hey buddy! Cool to see you again. "
 msgid "spyder_timber_dante2"
-msgstr "Hey buddy! \n Are you planning to break into these HQ? Cool! \n Make sure you're well prepared before you do, because it's difficult to get out once you're inside!"
+msgstr "Hey buddy! \n Are you planning to break into these HQ? Cool! \n Make sure you're well prepared before you do, because it's difficult to get out once you're inside! \n You'll need to call your mom to let her know you're safe. Use this app!"
 msgid "spyder_scoop_lanth1"
 msgstr "Look how happy the tuxemon are, living so close to one another!"
 msgid "spyder_scoop_lanth2"

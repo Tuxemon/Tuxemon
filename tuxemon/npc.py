@@ -70,6 +70,7 @@ class NPCState(TypedDict):
     game_variables: Dict[str, Any]
     battle_history: Dict[str, Tuple[OutputBattle, int]]
     tuxepedia: Dict[str, SeenStatus]
+    contacts: Dict[str, str]
     money: Dict[str, int]
     inventory: Mapping[str, Optional[int]]
     monsters: Sequence[Mapping[str, Any]]
@@ -152,6 +153,7 @@ class NPC(Entity[NPCState]):
         ] = {}  # Tracks the battles
         # Tracks Tuxepedia (monster seen or caught)
         self.tuxepedia: Dict[str, SeenStatus] = {}
+        self.contacts: Dict[str, str] = {}
         self.money: Dict[str, int] = {}  # Tracks money
         self.interactions: Sequence[
             str
@@ -244,6 +246,7 @@ class NPC(Entity[NPCState]):
             "game_variables": self.game_variables,
             "battle_history": self.battle_history,
             "tuxepedia": self.tuxepedia,
+            "contacts": self.contacts,
             "money": self.money,
             "inventory": encode_inventory(self.inventory),
             "monsters": encode_monsters(self.monsters),
@@ -274,6 +277,7 @@ class NPC(Entity[NPCState]):
         self.game_variables = save_data["game_variables"]
         self.battle_history = save_data["battle_history"]
         self.tuxepedia = save_data["tuxepedia"]
+        self.contacts = save_data["contacts"]
         self.money = save_data["money"]
         self.inventory = decode_inventory(
             session, self, save_data.get("inventory", {})

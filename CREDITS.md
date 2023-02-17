@@ -722,6 +722,14 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Nu Phone"](https://wiki.tuxemon.org/File:Item6.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Bank App"](https://wiki.tuxemon.org/File:Iridescent_item_7.png) modified by Sanglorian from original sprites by Ocean. [http://opengameart.org/content/oceans-icons CC BY 3.0]
+
+* ["Contacts App"](https://wiki.tuxemon.org/File:Greenpresentbox.png) a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Map App"](https://wiki.tuxemon.org/File:Iridescent_item_5.png) modified by Sanglorian from original sprites by Ocean. [http://opengameart.org/content/oceans-icons CC BY 3.0]
+
+* ["Tuxepedia App"](https://wiki.tuxemon.org/File:Tuxepedia.png) [https://github.com/Tuxemon/Tuxemon/issues/452 Original source]
+
 * ["Earthmover Key"](https://wiki.tuxemon.org/index.php?title=Earthmover_Key) by Catch Challenger is licensed under CC-BY 4.0.
 
 * ["Fishing Rod"](https://wiki.tuxemon.org/index.php?title=Fishing_Rod) by Catch Challenger is licensed under CC-BY 4.0.

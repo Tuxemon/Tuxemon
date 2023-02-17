@@ -1558,6 +1558,9 @@ msgstr "Multiplayer"
 msgid "menu_new_game"
 msgstr "New Game"
 
+msgid "menu_scenarios"
+msgstr "Scenarios"
+
 msgid "menu_options"
 msgstr "Options"
 

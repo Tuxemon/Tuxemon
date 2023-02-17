@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="283">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="284">
  <properties>
   <property name="east" value="route2"/>
   <property name="edges" value="clamped"/>
@@ -27,7 +27,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAFjYBh84BXn4HMTsouODnL3jYYfcmyRzh6M4feIG+GP4Zb+7GQRfoOxdAVhLMrovUjhBjJpDxqfGNNjge47jebGGALuMyIgj89eesRvIgnuewwNsydQejDmD+TwpEf4IdtHKns0/EgNMVT1gz38UF1LOU8PR16lVhlJqgvPoJWFsTjcR6iMJNXeUfWkh4AlH+l6hpuOYmB7vYQIXDpA7foZBOydAYyQmUA8i4A6WsUbIfcdAFp8kET3LQT6ZRGV/IPuvnpGBoYGIG4EYmRASvgdA7rtOBDn8SCbgGBvBbaFCPlhArS9hO6+5UB3rQDilWS4D1bmvwa67Q0Qe6K5DyYPshvmB4SrsbPQ3Xce6K4LQHyRDPcRKvOR5WF+wO4qhCi6+xAyqCxS4hdVJ2W8oeS+l2h1NzJ/oMJvLzAd7wPiA0CMDRyEyu/HIY9Nz2AVq+MarC4b/u6ClY2DNQ6Qy8aBig1TqYGxeTJaPUasK1SI0Eeu2chuAJVPyBhXWYWsB50Nay+QS6ObN9B8WPsCRtPSPeTkWVj7AkZjcx8AzGRbxw==
+   eAFjYBh84BXn4HMTsouODnL3jYYfcmyRzh6M4feIG+GP4Zb+7GQRfoOxdAVhLMrovUjhBjJpDxqfGNNjge47jebGGALuMyIgj89eesRvIgnuewwNsydQejDmD+TwpEf4IdtHKns0/EgNMVT1gz38UF1LOU+PhLxKuW2ETTiDVhbGDjL3EfbByFFhyTdy/IrLp8XA9noJEbh0gNr1MwjYOwPosZlAPIuAOlz+p1SckPsOAC04CMSkuG8h0C+LqOQfdPfVMzIwNABxIxAjA1LcdwzotuNAnMeDbAKCvRXYFiLkhwnQ9hK6+5YD3bUCiFeS4T5Yu/g10G1vgNgTzX0weZDdMD8gXI2dhe6+80B3XQDii2S4j1C7GFke5gfsrkKIorsPIYPKIiV+UXVSxhtK7nuJVncj8wcq/PYC0/E+ID4AxNjAQaj8fhzy2PQMVrE6rsHqsuHvLljZOFjjALlsHKjYMJUaGJsno9VjxLpChQh95JqN7AZQ+YSMcZVVyHrQ2bD2Ark0unkDzYe1L2A0Ld1DTp6FtS9gNDb3AQDdpFsc
   </data>
  </layer>
  <layer id="6" name="Above Player" width="40" height="40">
@@ -136,7 +136,7 @@
   <object id="241" type="collision" x="608" y="144" width="32" height="16"/>
   <object id="242" type="collision" x="368" y="16" width="96" height="144"/>
   <object id="243" type="collision" x="352" y="16" width="16" height="128"/>
-  <object id="250" type="collision" x="320" y="256" width="64" height="16"/>
+  <object id="250" type="collision" x="320" y="256" width="48" height="16"/>
   <object id="261" type="collision" x="288" y="320" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="5" name="Events">
@@ -469,6 +469,14 @@
     <property name="act1" value="translated_dialog Cotton_Mart"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="283" name="Teleport to Misa House" type="event" x="368" y="256" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport cotton_misa_house.tmx,6,11,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

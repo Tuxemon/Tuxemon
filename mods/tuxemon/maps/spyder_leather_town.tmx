@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="307">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="311">
  <properties>
   <property name="east" value="citypark"/>
   <property name="edges" value="clamped"/>
@@ -32,12 +32,12 @@
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlzlOAzEUhp/EAehSIEGR00Si4SJsbSgSyMZykrCEA4QkFTsdWw0dcAm+EXJkDbHxjJwMkd6TvtiOn9/881sz8ohoFO1AbdmtwDfnXhV3pufR55uLq0KrxXKgz35ewACGMAI7LhlfwTXcwC3Eis6C1NvQgiY0wNS+K4ncwwMUFefo6cEZnMIJGC0f6PqErwL1vaLnBZ7hCR7B6NN29g60V0Q6sA8HcAhHoKEOhDgwEqkPYQAh+ZoTz4FdntM9aEATWuCLsu7R2J61pXE3uLNq+Vex+sEFppRo72uiyx5P6ZKZytq+JQvT40zFNHlmDqzzPtmATdiCbUhCzww/PoT87kT89gi5Xtac43+uL+v9aH6xDrjOJK53iVHrWmfm57V9WxR5B9P67sOcSao5n8m863yaJs11c+rLs874ZtpJevS/MAfSHv41DqsaP2tedaV1x3fmd8VvvHFewQ==
+   eAHtlztOw0AQhkfKAegokKDgNEhpuAiPtNAE8uJxEiDAASBJRSCBjlcNHXAJPgtNtHJis7Y2MREz0ufdtWfHv/+VrbWIhTlgDvwnB66WRa6hA13ogRs3jPtwC3cwgFDRKkm1CQ2oQw209nBR5B4eoKi4RM8FnEMbzkC1fKDrE74K1PeKnhd4hid4BNVn7ewdaK6ItOAADuEIjsHCHPBxoCdS7UIHfPItJ5wDe7yn+1CDOjQgLVZtjUb2rC+Nut6dsuPfmtP3LjClRHddI13ueEq3zFTW9S2aGB9nKmbJM3Ngg+/JJmzBNlQgCtsz/Pjgc9wN+O/hc7+sOad/XF/W57H8Yh1I2pMkfUtUbdI8vT6v7duCyDtom/YcuifZyflO5p2XpmnStZOc+vLMU9+0naTHzvk5EPfwt7Ff1fBZ86orrju8M+MVvwEAYVvz
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -59,8 +59,8 @@
   <object id="206" type="collision" x="448" y="432" width="16" height="16"/>
   <object id="207" type="collision" x="272" y="432" width="48" height="16"/>
   <object id="208" type="collision" x="240" y="368" width="32" height="32"/>
-  <object id="209" type="collision" x="368" y="288" width="80" height="48"/>
-  <object id="210" type="collision" x="352" y="320" width="16" height="16"/>
+  <object id="209" type="collision" x="368" y="288" width="80" height="32"/>
+  <object id="210" type="collision" x="352" y="320" width="32" height="16"/>
   <object id="211" type="collision" x="448" y="304" width="32" height="32"/>
   <object id="212" type="collision" x="352" y="208" width="32" height="32"/>
   <object id="213" type="collision" x="384" y="192" width="16" height="48"/>
@@ -125,6 +125,7 @@
   <object id="300" type="collision" x="32" y="544" width="32" height="64"/>
   <object id="302" type="collision" x="128" y="256" width="48" height="16"/>
   <object id="305" type="collision" x="192" y="144" width="16" height="16"/>
+  <object id="310" type="collision" x="400" y="320" width="48" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="175" name="Teleport to City Park" type="event" x="624" y="512" width="16" height="16">
@@ -410,6 +411,30 @@
     <property name="act1" value="translated_dialog spyder_multi_martsign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="307" name="Teleport to Shaft2" type="event" x="384" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_leather_shaft2.tmx,4,9,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="308" name="Teleport to Shaft1" type="event" x="272" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_leather_shaft1.tmx,12,14,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="309" name="Teleport to Gym" type="event" x="384" y="320" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_leather_gym.tmx,1,10,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="422">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="424">
  <properties>
   <property name="east" value="routec"/>
   <property name="edges" value="clamped"/>
@@ -62,10 +62,9 @@
   <object id="341" type="collision" x="16" y="160" width="32" height="48"/>
   <object id="342" type="collision" x="48" y="160" width="16" height="32"/>
   <object id="343" type="collision" x="64" y="160" width="32" height="48"/>
-  <object id="344" type="collision" x="0" y="96" width="32" height="32"/>
-  <object id="345" type="collision" x="0" y="128" width="16" height="16"/>
-  <object id="346" type="collision" x="0" y="64" width="16" height="16"/>
-  <object id="347" type="collision" x="16" y="64" width="80" height="48"/>
+  <object id="344" type="collision" x="0" y="64" width="32" height="96"/>
+  <object id="346" type="collision" x="32" y="64" width="16" height="32"/>
+  <object id="347" type="collision" x="48" y="64" width="48" height="48"/>
   <object id="348" type="collision" x="128" y="96" width="48" height="16"/>
   <object id="349" type="collision" x="208" y="96" width="48" height="16"/>
   <object id="350" type="collision" x="128" y="208" width="128" height="16"/>
@@ -347,6 +346,14 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_guard"/>
     <property name="behav1" value="talk spyder_greenwash_guard"/>
+   </properties>
+  </object>
+  <object id="423" name="Teleport to Candy House 2" type="event" x="32" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_house2.tmx,6,7,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

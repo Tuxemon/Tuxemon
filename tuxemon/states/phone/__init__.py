@@ -118,8 +118,7 @@ class NuPhone(PygameMenuState):
         self.player = local_session.player
 
         menu_items_map = []
-        for items in self.player.inventory.keys():
-            itm = Item(local_session, self.player, items)
+        for itm in self.player.items:
             if (
                 itm.category == "phone"
                 and itm.slug != "nu_phone"

@@ -7,6 +7,7 @@ from typing import Optional, Union, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.item import item
 from tuxemon.npc import NPC
 
 
@@ -23,7 +24,7 @@ class AddItemAction(EventAction):
 
     Script parameters:
         item_slug: Item name to look up in the item database.
-        quantity: Quantity of the item to add. By default it is 1.
+        quantity: Quantity of the item to add or to reduce. By default it is 1.
         trainer_slug: Slug of the trainer that will receive the item. It
             defaults to the current player.
 
@@ -45,13 +46,32 @@ class AddItemAction(EventAction):
         assert trainer, "No Trainer found with slug '{}'".format(
             self.trainer_slug or "player"
         )
-        if self.quantity is None:
-            quantity = 1
-        else:
-            quantity = self.quantity
 
-        trainer.alter_item_quantity(
-            self.session,
-            self.item_slug,
-            quantity,
-        )
+        itm = item.Item()
+        itm.load(self.item_slug)
+        existing = trainer.find_item(self.item_slug)
+        if existing:
+            if self.quantity is None:
+                existing.quantity += 1
+            elif self.quantity < 0:
+                diff = existing.quantity + self.quantity
+                if diff <= 0:
+                    trainer.remove_item(existing)
+                else:
+                    existing.quantity = diff
+            elif self.quantity > 0:
+                existing.quantity += self.quantity
+            else:
+                existing.quantity += 1
+        else:
+            if self.quantity is None:
+                itm.quantity = 1
+                trainer.add_item(itm)
+            elif self.quantity > 0:
+                itm.quantity = self.quantity
+                trainer.add_item(itm)
+            elif self.quantity < 0:
+                return
+            else:
+                itm.quantity = 1
+                trainer.add_item(itm)

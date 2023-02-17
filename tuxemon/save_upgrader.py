@@ -63,6 +63,12 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     save_data["money"] = save_data.get("money", {})
     save_data["tuxepedia"] = save_data.get("tuxepedia", {})
     save_data["contacts"] = save_data.get("contacts", {})
+    save_data["items"] = save_data.get("items", [])
+
+    # trasfer data from "inventory" to "items"
+    if "inventory" in save_data:
+        for key, value in save_data["inventory"].items():
+            save_data["items"].append({"slug": key, "quantity": value})
 
     # set as captured the party monsters
     if not save_data["tuxepedia"]:
@@ -80,19 +86,29 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     # set phone old savegames
     if "visitedcottoncafe" in save_data["game_variables"]:
         if save_data["game_variables"]["visitedcottoncafe"] == "yes":
-            if "nu_phone" not in save_data["inventory"].keys():
-                save_data["inventory"]["nu_phone"] = 1
-                save_data["inventory"]["app_banking"] = 1
-                save_data["inventory"]["app_map"] = 1
-                save_data["inventory"]["app_tuxepedia"] = 1
+            if "nu_phone" not in save_data["items"]:
+                save_data["items"].append({"slug": "nu_phone", "quantity": 1})
+                save_data["items"].append(
+                    {"slug": "app_banking", "quantity": 1}
+                )
+                save_data["items"].append({"slug": "app_map", "quantity": 1})
+                save_data["items"].append(
+                    {"slug": "app_tuxepedia", "quantity": 1}
+                )
     if "timberdantewarn" in save_data["game_variables"]:
         if save_data["game_variables"]["timberdantewarn"] == "yes":
-            if "nu_phone" not in save_data["inventory"].keys():
-                save_data["inventory"]["nu_phone"] = 1
-                save_data["inventory"]["app_banking"] = 1
-                save_data["inventory"]["app_map"] = 1
-                save_data["inventory"]["app_tuxepedia"] = 1
-                save_data["inventory"]["app_contacts"] = 1
+            if "nu_phone" not in save_data["items"]:
+                save_data["items"].append({"slug": "nu_phone", "quantity": 1})
+                save_data["items"].append(
+                    {"slug": "app_banking", "quantity": 1}
+                )
+                save_data["items"].append({"slug": "app_map", "quantity": 1})
+                save_data["items"].append(
+                    {"slug": "app_tuxepedia", "quantity": 1}
+                )
+                save_data["items"].append(
+                    {"slug": "app_contacts", "quantity": 1}
+                )
 
     version = save_data.get("version", 0)
     for i in range(version, SAVE_VERSION):

@@ -1561,6 +1561,12 @@ msgstr "Pick Up Tuxemon"
 msgid "menu_dropoff"
 msgstr "Drop Off Tuxemon"
 
+msgid "menu_item_storage"
+msgstr "Pick Up Item"
+
+msgid "menu_item_dropoff"
+msgstr "Drop Off Item"
+
 msgid "menu_multiplayer"
 msgstr "Multiplayer"
 
@@ -1618,11 +1624,26 @@ msgstr "Restart your game for changes to take effect!"
 msgid "menu_storage_take_monster"
 msgstr "You added {name} into your party!"
 
+msgid "menu_storage_take_item"
+msgstr "You added {nr} {name} into your bag!"
+
 msgid "menu_storage_monsters_full"
 msgstr "Your party is full, you cannot take any more from storage."
 
+msgid "menu_storage_items_full"
+msgstr "Your bag is full, you cannot take any more from storage."
+
 msgid "menu_storage_empty_kennel"
-msgstr "This kennel is empty, there are no monsters to take."
+msgstr "This shelter is empty, there are no monsters to take."
+
+msgid "menu_storage_empty_locker"
+msgstr "This locker is empty, there are no items to take."
+
+msgid "item_menu_disband"
+msgstr "Disband"
+
+msgid "item_disbanded"
+msgstr "{nr} {name} have been disbanded."
 
 msgid "menu_dropoff_no_monsters"
 msgstr "Can't drop off the last Tuxemon in your party."
@@ -1636,8 +1657,17 @@ msgstr "move to {box}"
 msgid "Kennel"
 msgstr "shelter"
 
+msgid "Locker"
+msgstr "locker"
+
 msgid "kennel_label"
 msgstr "{box} ({qty})"
+
+msgid "locker_label_short"
+msgstr "{box} (T{qty1}-I{qty2})"
+
+msgid "locker_label_long"
+msgstr "{box} ({qty1} types - {qty2} items)"
 
 # Default mod names on selection menu
 msgid "xero_campaign"

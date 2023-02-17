@@ -8,7 +8,7 @@ from typing import Union, final
 from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.item.item import decode_inventory
+from tuxemon.item import item
 
 
 @final
@@ -36,7 +36,7 @@ class SetInventoryAction(EventAction):
         npc = get_npc(self.session, self.npc_slug)
         assert npc
         if self.inventory_slug is None:
-            npc.inventory = {}
+            npc.items = []
             return
 
         entry = db.lookup(
@@ -44,4 +44,11 @@ class SetInventoryAction(EventAction):
             table="inventory",
         ).inventory
 
-        npc.inventory = decode_inventory(self.session, npc, entry)
+        for item_slug, quantity in entry.items():
+            itm = item.Item()
+            itm.load(item_slug)
+            if quantity is None:
+                itm.quantity = item.INFINITE_ITEMS
+            else:
+                itm.quantity = quantity
+            npc.add_item(itm)

@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import logging
 from functools import partial
-from typing import Any, Callable, Tuple, Union
+from typing import Any, Callable, Union
 
 import pygame
 
@@ -17,7 +17,6 @@ from tuxemon.menu.menu import PopUpMenu
 from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
 from tuxemon.state import State
-from tuxemon.states.transition.fade import FadeInTransition
 
 logger = logging.getLogger(__name__)
 
@@ -71,6 +70,7 @@ class StartState(PopUpMenu[StartGameObj]):
             ("menu_new_game", show_mod_menu),
             ("menu_load", change_state("LoadMenuState")),
             ("menu_options", change_state("ControlState")),
+            ("menu_minigame", change_state("MinigameState")),
             ("exit", exit_game),
         )
 
@@ -94,39 +94,16 @@ class ModChooserMenuState(PopUpMenu[StartGameObj]):
 
         super().__init__()
 
-        self.map_name = prepare.CONFIG.starting_map
-
-        def new_game_callback(
-            map_name: str,
-        ) -> Callable:
-            return partial(new_game, map_name)
-
-        def new_game(map_name: str) -> None:
-            self.map_name = map_name
-            # load the starting map
-            map_path = prepare.fetch("maps", self.map_name)
+        def new_game() -> None:
+            map_path = prepare.fetch("maps", prepare.STARTING_MAP)
             self.client.push_state("WorldState", map_name=map_path)
-            self.client.push_state(FadeInTransition())
             local_session.player.game_variables[
                 "date_start_game"
             ] = formula.today_ordinal()
             self.client.pop_state(self)
 
-        # Build a menu of the default mod choices:
-        menu_items_map: Tuple[Tuple[str, Callable], ...] = tuple()
-
-        # If a different map has been passed as a parameter, show as an option:
-        if prepare.CONFIG.starting_map != "player_house_bedroom.tmx":
-            menu_items_map = menu_items_map + (
-                (
-                    str(prepare.CONFIG.starting_map),
-                    new_game_callback(prepare.CONFIG.starting_map),
-                ),
-            )
-
-        menu_items_map = menu_items_map + (
-            ("spyder_campaign", new_game_callback("spyder_bedroom.tmx")),
-            ("xero_campaign", new_game_callback("player_house_bedroom.tmx")),
+        menu_items_map = (
+            ("menu_scenarios", new_game),
             ("cancel", self.close),
         )
 

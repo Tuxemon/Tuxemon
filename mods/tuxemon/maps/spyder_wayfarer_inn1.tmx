@@ -6,36 +6,36 @@
   <property name="slug" value="wayfarer_inn1"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
-  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
- </tileset>
- <tileset firstgid="211" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+ <tileset firstgid="1" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
   <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
- <tileset firstgid="1761" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+ <tileset firstgid="1551" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="5625" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+ <tileset firstgid="5415" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
   <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
+ </tileset>
+ <tileset firstgid="8385" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAHFkr0KAkEMhFcsLGzEwkoQtbGTsxX/HkCfx9J38UWdgXxwHrn1OheGyU4y2YS7USllEhCVvbANdmzsBGrgsbSZsAiIylk4BDs2jgI18FyavcvpN27S3tKAvcRwn5c8/Mt7V2/2g9n7muQe0pj5pJj94CbRyPXNzP72Ene57d0kdUO9T3nZE5b26r7Hvf1utu8lmSXzog1lv7uK3tk38n9XO3izmd27dvBms/7Lu64NrNwHc/UoUA==
+   eAE7r8DAoKOIii+jiYH4Zeqo+CJQ7C8QdwD1ImM9ND4DkH8JqBcZ/4fq9eJiYEDGXUC1F4FiMAzSC2PDaFx6YfIwmpDerUCzcfn7CtB96HJMQPUg/4Lc2w5kI/sZxAbZhy4G4+NyM8zvIL0wNjqNrPcS1H5kNcTq1Qbage4nXSLtxebfTiL1IruVGDayf7HFESjd4QP44ghkNj4A04vNnYNVLwBPPXLI
   </data>
  </layer>
  <layer id="2" name="Tile Layer 4" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAGVkL8OAUEQxsehIdR3XkKh8ieiQk0p4TFQeAJPQOgOiY5X8AIEPdHxCBS+zd3kJnd7sib5ZWd3vm92domIigKksbFLEu2BjDo2zM32Kg/LW0uJQHmE7xTyBlWinOPtLGi68HV8793vKbWmed7v+UvvpqJV3VlURXSAt58mmooe6qwG3viDD2iIWrjHBN6tX39miF6gh71aFQON19X8oZ0lcsAM+jlYgKXOK874jexVfqaAPBzqXRycm3rZJ9cm7miBMt5ZAVXQ1tyrPDyr9JvmPKupXumGmGMkGMfMpeu5gnYt2PzhPUN7EVwNvF9VGSn3
+   eAGVkD8OAVEQxseuBgnRrSNQ6alxDZU/hQo1pYRjoHACJyB0i0THFVwA38SbZLL7lmeSL2923vebN7NE7nHziO5QUuSDz03ReNrK+ETt9YWtGbYKzxTcxLAFU1etnNO6Axv68Xa2WtxF9AA7TxNtVQ+u9aEy9qhAA3UX7bEBezX3QZaoBM3wzSdrYWFDyz9swNuEdvDvoQN0tLGqJjsKy7yohTwavJeE5K6scPoc4o0R1MkQdaEeNLa8y4zMqnnXXGZ19bNviTlWSuuEuWw9T/CelS5/sKkckafkI/8VbyRIKEc=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 5" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYKAcrGSm3IyRboIfCyQEhKE0MeFxkgS1xJg3nNQwAsOGCRo+PUC6l4SwUgCqVYSqXw2k15CgFzkMTwH1nSZBrz8JamH2AACYtgan
+   eAFjYKAcXGei3IyRbkINMyQEHKE0MeHxnQS1xJg3nNToA8PGABo+u4D0bhLCyg+o1h+q/iaQvkWCXuQw/AHU95MEvbUkqIXZAwCTIglK
   </data>
  </layer>
  <layer id="4" name="Above Player" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBgF9A6BVmZ62zhq33ANAQA8LACJ
+   eAFjYBgF9A6BzUz0tnHUvuEaAgCjiQC2
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">

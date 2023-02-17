@@ -72,6 +72,8 @@ class WorldMenuState(PygameMenuState):
             ("exit", exit_game),
         ]
         if local_session.player.has_item("nu_phone"):
+            menu_items_map.insert(3, ("nu_phone", change_state("NuPhone")))
+        if local_session.player.has_item("app_tuxepedia"):
             menu_items_map.insert(
                 0,
                 ("menu_tuxepedia", change_state("JournalChoice")),

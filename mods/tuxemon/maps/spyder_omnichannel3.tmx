@@ -6,34 +6,28 @@
   <property name="slug" value="omnichannel3"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
-  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
- </tileset>
- <tileset firstgid="211" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="1211" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
-  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
- </tileset>
- <tileset firstgid="1496" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+ <tileset firstgid="1" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
  </tileset>
- <tileset firstgid="2024" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+ <tileset firstgid="529" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
+ </tileset>
+ <tileset firstgid="2289" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAGT4mBgkIZiGSQ2SAyZj8yWBco5AbELEDtDMTFsV6DaLCDOBuIpJOBcoNpJQDyZBD0g8wdKHyw8QTS6P5HlYGyYO2FhCaLR9SHLwdgwfehqkfnYwoze+kDpBRR/yO5CZ2NzJyi9kKOP3v4bKPuGcz4CAFrUnco=
+   eAFzZmJgcIFiVyQ2SAyZj8x2A8plA3EuEOdAMTHsPKDayUA8BYj3koCnAdXuBuI9JOgBmT9Q+mDhCaLR/YksB2PD3AkLSxCNrg9ZDsaG6UNXi8zHFmb01gdKL6D4Q3YXOhubO0HphRx99PbfQNk3nPMRAApnxfw=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAG1kkkKwkAQRQuDwxkcVi71FA4rQRd6BN0I4pAzOG0FV4reQ/Bu/iL9oWwzENEPP9XTq0qqI/JbLcsiK3htvME4hNO0xf4O3hsfMD7Cabpg/+qduWF+99bScvxzr14RacCqKmItxtHu+7OHc33HdRC7MSZRKIoEMLVw3NxFrvvR587u/CmD8/M8v+SYJ289yw1LIiNYxTH73QpE2jDFda03BTNzHMfs9xjMxHBc13uIE/vt323TnU+6B3L+3Q4S+qn5VeSi2efzYd5T/znNr2wWZzPZb83D2dp5OFtbuRe4hSDC
+   eAFjYKAumMHIwDATiGch4dlA9hwgxgfWAeXXA/EGJLwRyN4ExPjAEaD8UTQ1x4H8E2hi+MygpZwrEwODGxCDgDOQdsGCIbKoZC5QXR5UXzaQzsGCYTr0eBgY9IEYBqZB9U2G0jBxdDoaqCcGSd8+qPrdBPShm/OMTH0wc0i1D1lfOZBTARWAsWHhfYGbgeEiEMMATBxkXy9QsA8qAWPDwvsvUM8/JH0wcVA8YAOw8EaPWx+oelzxANOHHrclOMITZD4IwPRBeJjkYyR3gtIcyHyQXkL6kE1C9isp+pDtJkUfst0gfQDLNC/c
   </data>
  </layer>
  <layer id="5" name="Tile Layer 3" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAFjYEAFamwMDOpAHMnOwBAFxNFIOAbIjgVibMAGqMcWiEcBZggc5ICIHQbSbMDwY8cRhjCdLkB1zkAsxAkRAdEyQD2yQAySSwPS6XjMQNZnBFRnDFVbA6Rr8eizQrIP5hZi6CQy9cHMhrkXxieWJlWfJZnuhNkDo4l1H0wdsfpAcXuDlYHhJhCDACw+QGxQ2vEAxp00kMYG3gH1vIfqg8UHSB3I7jigPlB6IgWA7C7Bk1ZwmYVsNy41xIgDACzOErw=
+   eAFjYEAF/kBuABA3MTIwNANxCxJuBbLbgBgbSAUKpmGTGBVjeMUECYQ3QFofGH4GOMIQFlS5QHU5QGzNDBEB0a5APW5ADJLrB9IT8JiBrC8aqC4GqnYpkF6GR18ykn0wtxBDd5OpD2Y2zL0wPrE0qfqSyHQnzB4YTaz7YOqI1QeKW1D0ACkwgMUHiANKO4VASReYJEQJnBQHsiSgPFh8gLggu9uB+kDpiRQAsnsunrSCyyxku3GpIUYcAGMxFos=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collision">

@@ -53,6 +53,9 @@ config.generate_default_config()
 # Read "tuxemon.cfg" config from disk, update and write back
 CONFIG = config.TuxemonConfig(paths.USER_CONFIG_PATH)
 
+# Starting map
+STARTING_MAP = "debug.tmx"
+
 with open(paths.USER_CONFIG_PATH, "w") as fp:
     CONFIG.cfg.write(fp)
 

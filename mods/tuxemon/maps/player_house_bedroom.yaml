@@ -21,17 +21,6 @@ events:
     x: 3
     y: 2
     type: "event"
-  Give Money:
-    actions:
-    - set_money player,1000000
-    - set_variable xero_starting_money:yes
-    conditions:
-    - not variable_set xero_starting_money:yes
-    height: 1
-    width: 1
-    x: 1
-    y: 0
-    type: "event"
   Player Spawn:
     height: 1
     width: 1

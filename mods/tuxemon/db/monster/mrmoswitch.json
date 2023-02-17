@@ -2,8 +2,6 @@
     "slug": "mrmoswitch",
     "category": "gremlin",
     "ai": "RandomAI",
-    "fusion1": "mrmo",
-    "fusion2": "switch",
     "moveset": [
         {
             "level_learned": 2,

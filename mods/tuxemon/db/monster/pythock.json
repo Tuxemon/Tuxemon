@@ -2,8 +2,6 @@
     "slug": "pythock",
     "category": "puppet_master",
     "ai": "RandomAI",
-    "fusion1": "pyth",
-    "fusion2": "ock",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,8 +2,6 @@
     "slug": "coleorus",
     "category": "timeless",
     "ai": "RandomAI",
-    "fusion1": "coleo",
-    "fusion2": "rus",
     "moveset": [
         {
             "level_learned": 2,

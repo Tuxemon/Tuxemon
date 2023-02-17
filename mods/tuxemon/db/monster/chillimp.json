@@ -2,8 +2,6 @@
     "slug": "chillimp",
     "category": "frost_ape",
     "ai": "RandomAI",
-    "fusion1": "chil",
-    "fusion2": "limp",
     "moveset": [
         {
             "level_learned": 2,

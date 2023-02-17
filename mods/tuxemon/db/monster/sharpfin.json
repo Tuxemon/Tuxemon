@@ -2,8 +2,6 @@
     "slug": "sharpfin",
     "category": "rip",
     "ai": "RandomAI",
-    "fusion1": "sharp",
-    "fusion2": "fin",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,8 +2,6 @@
     "slug": "lapinou",
     "category": "thlay",
     "ai": "RandomAI",
-    "fusion1": "lapi",
-    "fusion2": "nou",
     "moveset": [
         {
             "level_learned": 2,

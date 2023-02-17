@@ -2,8 +2,6 @@
     "slug": "nudiflot_male",
     "category": "flotsam",
     "ai": "RandomAI",
-    "fusion1": "nudi",
-    "fusion2": "flot",
     "moveset": [
         {
             "level_learned": 2,

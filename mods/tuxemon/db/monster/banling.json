@@ -2,8 +2,6 @@
     "slug": "banling",
     "category": "sepulchre",
     "ai": "RandomAI",
-    "fusion1": "ban",
-    "fusion2": "ling",
     "moveset": [
         {
             "level_learned": 2,

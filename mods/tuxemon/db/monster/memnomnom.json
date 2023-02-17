@@ -2,8 +2,6 @@
     "slug": "memnomnom",
     "category": "relic",
     "ai": "RandomAI",
-    "fusion1": "memnom",
-    "fusion2": "nom",
     "moveset": [
         {
             "level_learned": 2,

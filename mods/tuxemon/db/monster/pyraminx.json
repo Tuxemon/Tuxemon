@@ -2,8 +2,6 @@
     "slug": "pyraminx",
     "category": "noble",
     "ai": "RandomAI",
-    "fusion1": "pyra",
-    "fusion2": "minx",
     "moveset": [
         {
             "level_learned": 2,

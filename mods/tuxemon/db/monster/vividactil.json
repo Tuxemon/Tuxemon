@@ -2,8 +2,6 @@
     "slug": "vividactil",
     "category": "exhumed",
     "ai": "RandomAI",
-    "fusion1": "vivi",
-    "fusion2": "dactil",
     "moveset": [
         {
             "level_learned": 2,

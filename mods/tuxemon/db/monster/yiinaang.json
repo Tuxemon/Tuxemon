@@ -2,8 +2,6 @@
     "slug": "yiinaang",
     "category": "balance",
     "ai": "RandomAI",
-    "fusion1": "yiina",
-    "fusion2": "ang",
     "moveset": [
         {
             "level_learned": 2,

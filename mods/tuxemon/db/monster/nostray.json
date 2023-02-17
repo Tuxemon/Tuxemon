@@ -2,8 +2,6 @@
     "slug": "nostray",
     "category": "probiscus",
     "ai": "RandomAI",
-    "fusion1": "nos",
-    "fusion2": "tray",
     "moveset": [
         {
             "level_learned": 2,

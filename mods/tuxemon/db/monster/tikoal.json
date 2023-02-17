@@ -2,8 +2,6 @@
     "slug": "tikoal",
     "category": "taboo",
     "ai": "RandomAI",
-    "fusion1": "ti",
-    "fusion2": "koal",
     "moveset": [
         {
             "level_learned": 2,

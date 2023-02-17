@@ -2,8 +2,6 @@
     "slug": "volcoli",
     "category": "seasonal",
     "ai": "RandomAI",
-    "fusion1": "vol",
-    "fusion2": "coli",
     "moveset": [
         {
             "level_learned": 2,

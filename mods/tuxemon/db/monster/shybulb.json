@@ -2,8 +2,6 @@
     "slug": "shybulb",
     "category": "gardener",
     "ai": "RandomAI",
-    "fusion1": "shy",
-    "fusion2": "bulb",
     "moveset": [
         {
             "level_learned": 2,

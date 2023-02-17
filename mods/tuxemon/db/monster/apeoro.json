@@ -2,8 +2,6 @@
     "slug": "apeoro",
     "category": "old_block",
     "ai": "RandomAI",
-    "fusion1": "apeo",
-    "fusion2": "oro",
     "moveset": [
         {
             "level_learned": 2,

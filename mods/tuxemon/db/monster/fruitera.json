@@ -2,8 +2,6 @@
     "slug": "fruitera",
     "category": "tiny_bat",
     "ai": "RandomAI",
-    "fusion1": "fruit",
-    "fusion2": "era",
     "moveset": [
         {
             "level_learned": 2,

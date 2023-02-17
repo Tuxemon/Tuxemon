@@ -2,8 +2,6 @@
     "slug": "lunight",
     "category": "quasar",
     "ai": "RandomAI",
-    "fusion1": "lun",
-    "fusion2": "ight",
     "moveset": [
         {
             "level_learned": 2,

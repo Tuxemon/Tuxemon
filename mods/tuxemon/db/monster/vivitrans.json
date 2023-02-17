@@ -2,8 +2,6 @@
     "slug": "vivitrans",
     "category": "sublimated",
     "ai": "RandomAI",
-    "fusion1": "vivi",
-    "fusion2": "trans",
     "moveset": [
         {
             "level_learned": 2,

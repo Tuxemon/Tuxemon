@@ -2,8 +2,6 @@
     "slug": "aardart",
     "category": "anteater",
     "ai": "RandomAI",
-    "fusion1": "aar",
-    "fusion2": "dart",
     "moveset": [
         {
             "level_learned": 2,

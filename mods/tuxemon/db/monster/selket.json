@@ -2,8 +2,6 @@
     "slug": "selket",
     "category": "sand_scorpion",
     "ai": "RandomAI",
-    "fusion1": "sel",
-    "fusion2": "ket",
     "moveset": [
         {
             "level_learned": 2,

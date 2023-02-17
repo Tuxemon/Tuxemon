@@ -2,8 +2,6 @@
     "slug": "mk01_delta",
     "category": "threat",
     "ai": "RandomAI",
-    "fusion1": "mk01",
-    "fusion2": "delta",
     "moveset": [
         {
             "level_learned": 2,

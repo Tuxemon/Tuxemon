@@ -2,8 +2,6 @@
     "slug": "pilthropus",
     "category": "tool_maker",
     "ai": "RandomAI",
-    "fusion1": "pil",
-    "fusion2": "thropus",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,8 +2,6 @@
     "slug": "tweesher",
     "category": "halcyon",
     "ai": "RandomAI",
-    "fusion1": "twee",
-    "fusion2": "sher",
     "moveset": [
         {
             "level_learned": 2,

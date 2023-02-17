@@ -2,8 +2,6 @@
     "slug": "cochini",
     "category": "tasty",
     "ai": "RandomAI",
-    "fusion1": "co",
-    "fusion2": "chini",
     "moveset": [
         {
             "level_learned": 2,

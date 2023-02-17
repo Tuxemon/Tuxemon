@@ -2,8 +2,6 @@
     "slug": "bamboon",
     "category": "prehensile",
     "ai": "RandomAI",
-    "fusion1": "bam",
-    "fusion2": "boon",
     "moveset": [
         {
             "level_learned": 2,

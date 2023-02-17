@@ -2,8 +2,6 @@
     "slug": "hydrone",
     "category": "short_circuit",
     "ai": "RandomAI",
-    "fusion1": "hy",
-    "fusion2": "drone",
     "moveset": [
         {
             "level_learned": 2,

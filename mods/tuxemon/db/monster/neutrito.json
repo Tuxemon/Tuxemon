@@ -2,8 +2,6 @@
     "slug": "neutrito",
     "category": "calm_emotion",
     "ai": "RandomAI",
-    "fusion1": "neu",
-    "fusion2": "trito",
     "moveset": [
         {
             "level_learned": 2,

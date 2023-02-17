@@ -2,8 +2,6 @@
     "slug": "dracune",
     "category": "cloaked",
     "ai": "RandomAI",
-    "fusion1": "dra",
-    "fusion2": "cune",
     "moveset": [
         {
             "level_learned": 2,

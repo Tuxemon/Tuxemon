@@ -336,12 +336,6 @@ class MonsterModel(BaseModel):
     )
 
     # Optional fields
-    fusion1: str = Field(
-        ..., description="If father, 1st part child's name (eg. Cat-)"
-    )
-    fusion2: str = Field(
-        ..., description="If mother, 2nd part child's name (eg. -eye)"
-    )
     sprites: Optional[MonsterSpritesModel]
     shape: MonsterShape = Field(..., description="The shape of the monster")
     types: Sequence[ElementType] = Field(
@@ -391,12 +385,6 @@ class MonsterModel(BaseModel):
     @validator("category")
     def translation_exists_category(cls, v):
         if has.translation(f"cat_{v}"):
-            return v
-        raise ValueError(f"no translation exists with msgid: {v}")
-
-    @validator("fusion1", "fusion2")
-    def translation_exists_fusion(cls, v):
-        if has.translation(f"fusion_{v}"):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 

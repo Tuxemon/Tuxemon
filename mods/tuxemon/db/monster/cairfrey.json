@@ -2,8 +2,6 @@
     "slug": "cairfrey",
     "category": "host",
     "ai": "RandomAI",
-    "fusion1": "cair",
-    "fusion2": "frey",
     "moveset": [
         {
             "level_learned": 2,

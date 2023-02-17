@@ -2,8 +2,6 @@
     "slug": "tetrchimp",
     "category": "chip",
     "ai": "RandomAI",
-    "fusion1": "tetr",
-    "fusion2": "chimp",
     "moveset": [
         {
             "level_learned": 2,

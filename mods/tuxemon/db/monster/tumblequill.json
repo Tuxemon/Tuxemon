@@ -2,8 +2,6 @@
     "slug": "tumblequill",
     "category": "urchin",
     "ai": "RandomAI",
-    "fusion1": "tumble",
-    "fusion2": "quill",
     "moveset": [
         {
             "level_learned": 2,

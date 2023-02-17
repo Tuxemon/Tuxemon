@@ -2,8 +2,6 @@
     "slug": "drokoro",
     "category": "dragon",
     "ai": "RandomAI",
-    "fusion1": "dro",
-    "fusion2": "koro",
     "moveset": [
         {
             "level_learned": 2,

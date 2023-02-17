@@ -2,8 +2,6 @@
     "slug": "baoby",
     "category": "thirsty_okapi",
     "ai": "RandomAI",
-    "fusion1": "bao",
-    "fusion2": "aoby",
     "moveset": [
         {
             "level_learned": 2,

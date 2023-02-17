@@ -2,8 +2,6 @@
     "slug": "happito",
     "category": "ecstatic_emotion",
     "ai": "RandomAI",
-    "fusion1": "hap",
-    "fusion2": "pito",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,8 +2,6 @@
     "slug": "pairagrim",
     "category": "bird",
     "ai": "RandomAI",
-    "fusion1": "paira",
-    "fusion2": "grim",
     "moveset": [
         {
             "level_learned": 2,

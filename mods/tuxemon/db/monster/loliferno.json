@@ -2,8 +2,6 @@
     "slug": "loliferno",
     "category": "spirit_fire",
     "ai": "RandomAI",
-    "fusion1": "loli",
-    "fusion2": "ferno",
     "moveset": [
         {
             "level_learned": 2,

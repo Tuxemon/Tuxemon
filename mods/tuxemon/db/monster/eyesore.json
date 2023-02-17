@@ -2,8 +2,6 @@
     "slug": "eyesore",
     "category": "overseer",
     "ai": "RandomAI",
-    "fusion1": "eye",
-    "fusion2": "sore",
     "moveset": [
         {
             "level_learned": 2,

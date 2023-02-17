@@ -2,8 +2,6 @@
     "slug": "flambear",
     "category": "too_hot",
     "ai": "RandomAI",
-    "fusion1": "flam",
-    "fusion2": "bear",
     "moveset": [
         {
             "level_learned": 2,

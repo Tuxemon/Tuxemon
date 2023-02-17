@@ -2,8 +2,6 @@
     "slug": "nuenflu",
     "category": "snowball",
     "ai": "RandomAI",
-    "fusion1": "nuen",
-    "fusion2": "flu",
     "moveset": [
         {
             "level_learned": 2,

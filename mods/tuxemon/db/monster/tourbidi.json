@@ -2,8 +2,6 @@
     "slug": "tourbidi",
     "category": "elf_ring",
     "ai": "RandomAI",
-    "fusion1": "tour",
-    "fusion2": "bidi",
     "moveset": [
         {
             "level_learned": 2,

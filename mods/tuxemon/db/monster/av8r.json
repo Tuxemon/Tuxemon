@@ -2,8 +2,6 @@
     "slug": "av8r",
     "category": "heliotrope",
     "ai": "RandomAI",
-    "fusion1": "av",
-    "fusion2": "8r",
     "moveset": [
         {
             "level_learned": 2,

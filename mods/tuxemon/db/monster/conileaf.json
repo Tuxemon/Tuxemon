@@ -2,8 +2,6 @@
     "slug": "conileaf",
     "category": "pitcher",
     "ai": "RandomAI",
-    "fusion1": "coni",
-    "fusion2": "leaf",
     "moveset": [
         {
             "level_learned": 2,

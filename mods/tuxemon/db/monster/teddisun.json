@@ -2,8 +2,6 @@
     "slug": "teddisun",
     "category": "cute_teddy",
     "ai": "RandomAI",
-    "fusion1": "teddi",
-    "fusion2": "sun",
     "moveset": [
         {
             "level_learned": 2,

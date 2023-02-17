@@ -2,8 +2,6 @@
     "slug": "xeon",
     "category": "threat",
     "ai": "RandomAI",
-    "fusion1": "xe",
-    "fusion2": "on",
     "moveset": [
         {
             "level_learned": 2,

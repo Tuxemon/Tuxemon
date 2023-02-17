@@ -2,8 +2,6 @@
     "slug": "snowrilla",
     "category": "yeti",
     "ai": "RandomAI",
-    "fusion1": "snow",
-    "fusion2": "rilla",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,8 +2,6 @@
     "slug": "chloragon",
     "category": "dragon",
     "ai": "RandomAI",
-    "fusion1": "chlora",
-    "fusion2": "gon",
     "moveset": [
         {
             "level_learned": 2,

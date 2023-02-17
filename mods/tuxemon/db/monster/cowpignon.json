@@ -2,8 +2,6 @@
     "slug": "cowpignon",
     "category": "enhancement",
     "ai": "RandomAI",
-    "fusion1": "cowpi",
-    "fusion2": "pignon",
     "moveset": [
         {
             "level_learned": 2,

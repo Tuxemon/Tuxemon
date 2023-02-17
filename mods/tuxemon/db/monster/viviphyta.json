@@ -2,8 +2,6 @@
     "slug": "viviphyta",
     "category": "germinated",
     "ai": "RandomAI",
-    "fusion1": "vivi",
-    "fusion2": "phyta",
     "moveset": [
         {
             "level_learned": 2,

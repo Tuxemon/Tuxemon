@@ -2,8 +2,6 @@
     "slug": "cataspike",
     "category": "pointy",
     "ai": "RandomAI",
-    "fusion1": "cata",
-    "fusion2": "spike",
     "moveset": [
         {
             "level_learned": 2,

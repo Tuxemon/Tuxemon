@@ -2,8 +2,6 @@
     "slug": "galnec",
     "category": "dry_desert",
     "ai": "RandomAI",
-    "fusion1": "gal",
-    "fusion2": "nec",
     "moveset": [
         {
             "level_learned": 2,

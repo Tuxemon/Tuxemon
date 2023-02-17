@@ -2,8 +2,6 @@
     "slug": "foxfire",
     "category": "smoke",
     "ai": "RandomAI",
-    "fusion1": "fox",
-    "fusion2": "fire",
     "moveset": [
         {
             "level_learned": 2,

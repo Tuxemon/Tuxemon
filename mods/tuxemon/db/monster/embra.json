@@ -2,8 +2,6 @@
     "slug": "embra",
     "category": "flicker",
     "ai": "RandomAI",
-    "fusion1": "em",
-    "fusion2": "bra",
     "moveset": [
         {
             "level_learned": 2,

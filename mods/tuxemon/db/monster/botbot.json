@@ -2,8 +2,6 @@
     "slug": "botbot",
     "category": "socket",
     "ai": "RandomAI",
-    "fusion1": "bot",
-    "fusion2": "bot",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,8 +2,6 @@
     "slug": "elostorm",
     "category": "cloudburst",
     "ai": "RandomAI",
-    "fusion1": "elo",
-    "fusion2": "storm",
     "moveset": [
         {
             "level_learned": 2,

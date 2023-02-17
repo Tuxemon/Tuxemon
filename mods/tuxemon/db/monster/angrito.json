@@ -2,8 +2,6 @@
     "slug": "angrito",
     "category": "enraged_emotion",
     "ai": "RandomAI",
-    "fusion1": "ang",
-    "fusion2": "rito",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,8 +2,6 @@
     "slug": "pairagrin",
     "category": "bird",
     "ai": "RandomAI",
-    "fusion1": "paira",
-    "fusion2": "grin",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,8 +2,6 @@
     "slug": "poinchin",
     "category": "spiny",
     "ai": "RandomAI",
-    "fusion1": "poin",
-    "fusion2": "chin",
     "moveset": [
         {
             "level_learned": 2,

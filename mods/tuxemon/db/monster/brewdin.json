@@ -2,8 +2,6 @@
     "slug": "brewdin",
     "category": "genie",
     "ai": "RandomAI",
-    "fusion1": "brew",
-    "fusion2": "din",
     "moveset": [
         {
             "level_learned": 2,

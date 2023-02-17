@@ -2,8 +2,6 @@
     "slug": "djinnbo",
     "category": "vengeance",
     "ai": "RandomAI",
-    "fusion1": "djinn",
-    "fusion2": "bo",
     "moveset": [
         {
             "level_learned": 2,

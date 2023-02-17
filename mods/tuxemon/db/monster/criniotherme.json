@@ -2,8 +2,6 @@
     "slug": "criniotherme",
     "category": "mercury",
     "ai": "RandomAI",
-    "fusion1": "crinio",
-    "fusion2": "therme",
     "moveset": [
         {
             "level_learned": 2,

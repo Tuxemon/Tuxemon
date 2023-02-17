@@ -2,8 +2,6 @@
     "slug": "qetzlrokilus",
     "category": "long_winged",
     "ai": "RandomAI",
-    "fusion1": "qetzl",
-    "fusion2": "rokilus",
     "moveset": [
         {
             "level_learned": 2,

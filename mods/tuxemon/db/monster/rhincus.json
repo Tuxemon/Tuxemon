@@ -2,8 +2,6 @@
     "slug": "rhincus",
     "category": "missing_link",
     "ai": "RandomAI",
-    "fusion1": "rhin",
-    "fusion2": "cus",
     "moveset": [
         {
             "level_learned": 2,

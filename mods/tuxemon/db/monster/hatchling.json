@@ -2,8 +2,6 @@
     "slug": "hatchling",
     "category": "egg",
     "ai": "RandomAI",
-    "fusion1": "hatch",
-    "fusion2": "ling",
     "moveset": [
         {
             "level_learned": 2,

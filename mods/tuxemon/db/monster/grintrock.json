@@ -2,8 +2,6 @@
     "slug": "grintrock",
     "category": "thunderstone",
     "ai": "RandomAI",
-    "fusion1": "grint",
-    "fusion2": "rock",
     "moveset": [
         {
             "level_learned": 2,

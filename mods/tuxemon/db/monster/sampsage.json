@@ -2,8 +2,6 @@
     "slug": "sampsage",
     "category": "brains",
     "ai": "RandomAI",
-    "fusion1": "samp",
-    "fusion2": "sage",
     "moveset": [
         {
             "level_learned": 2,

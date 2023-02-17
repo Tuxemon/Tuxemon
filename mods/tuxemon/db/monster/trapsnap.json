@@ -2,8 +2,6 @@
     "slug": "trapsnap",
     "category": "barb",
     "ai": "RandomAI",
-    "fusion1": "trap",
-    "fusion2": "snap",
     "moveset": [
         {
             "level_learned": 2,

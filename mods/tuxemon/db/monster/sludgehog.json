@@ -2,8 +2,6 @@
     "slug": "sludgehog",
     "category": "garbage",
     "ai": "RandomAI",
-    "fusion1": "sludge",
-    "fusion2": "hog",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,8 +2,6 @@
     "slug": "seirein",
     "category": "spirit_fire",
     "ai": "RandomAI",
-    "fusion1": "sei",
-    "fusion2": "rein",
     "moveset": [
         {
             "level_learned": 2,

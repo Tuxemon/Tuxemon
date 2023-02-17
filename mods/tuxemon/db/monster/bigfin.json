@@ -2,8 +2,6 @@
     "slug": "bigfin",
     "category": "island",
     "ai": "RandomAI",
-    "fusion1": "big",
-    "fusion2": "fin",
     "moveset": [
         {
             "level_learned": 2,

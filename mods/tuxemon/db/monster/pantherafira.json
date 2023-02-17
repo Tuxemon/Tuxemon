@@ -2,8 +2,6 @@
     "slug": "pantherafira",
     "category": "mercury",
     "ai": "RandomAI",
-    "fusion1": "panthera",
-    "fusion2": "fira",
     "moveset": [
         {
             "level_learned": 2,

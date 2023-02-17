@@ -2,8 +2,6 @@
     "slug": "sapsnap",
     "category": "barbed",
     "ai": "RandomAI",
-    "fusion1": "sap",
-    "fusion2": "snap",
     "moveset": [
         {
             "level_learned": 2,

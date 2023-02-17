@@ -2,8 +2,6 @@
     "slug": "corvix",
     "category": "horned_raptor",
     "ai": "RandomAI",
-    "fusion1": "cor",
-    "fusion2": "vix",
     "moveset": [
         {
             "level_learned": 2,

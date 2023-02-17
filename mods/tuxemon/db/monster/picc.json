@@ -2,8 +2,6 @@
     "slug": "picc",
     "category": "bladder",
     "ai": "RandomAI",
-    "fusion1": "pi",
-    "fusion2": "icc",
     "moveset": [
         {
             "level_learned": 2,

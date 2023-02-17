@@ -2,8 +2,6 @@
     "slug": "dinoflop",
     "category": "volte-face",
     "ai": "RandomAI",
-    "fusion1": "dino",
-    "fusion2": "flop",
     "moveset": [
         {
             "level_learned": 2,

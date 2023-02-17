@@ -2,8 +2,6 @@
     "slug": "sclairus",
     "category": "fallow",
     "ai": "RandomAI",
-    "fusion1": "sclai",
-    "fusion2": "rus",
     "moveset": [
         {
             "level_learned": 2,

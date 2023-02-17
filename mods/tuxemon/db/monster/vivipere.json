@@ -2,8 +2,6 @@
     "slug": "vivipere",
     "category": "potentia",
     "ai": "RandomAI",
-    "fusion1": "vivi",
-    "fusion2": "pere",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,8 +2,6 @@
     "slug": "l3gk0",
     "category": "glitched",
     "ai": "RandomAI",
-    "fusion1": "l3g",
-    "fusion2": "k0",
     "moveset": [
         {
             "level_learned": 2,

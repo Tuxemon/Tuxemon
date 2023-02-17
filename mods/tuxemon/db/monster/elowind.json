@@ -2,8 +2,6 @@
     "slug": "elowind",
     "category": "cloudburst",
     "ai": "RandomAI",
-    "fusion1": "elo",
-    "fusion2": "wind",
     "moveset": [
         {
             "level_learned": 2,

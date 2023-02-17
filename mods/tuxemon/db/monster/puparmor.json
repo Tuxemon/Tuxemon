@@ -2,8 +2,6 @@
     "slug": "puparmor",
     "category": "fortified",
     "ai": "RandomAI",
-    "fusion1": "pup",
-    "fusion2": "armor",
     "moveset": [
         {
             "level_learned": 2,

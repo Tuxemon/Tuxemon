@@ -2,8 +2,6 @@
     "slug": "conifrost",
     "category": "taiga",
     "ai": "RandomAI",
-    "fusion1": "coni",
-    "fusion2": "frost",
     "moveset": [
         {
             "level_learned": 2,

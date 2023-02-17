@@ -2,8 +2,6 @@
     "slug": "bumbulus",
     "category": "veiled",
     "ai": "RandomAI",
-    "fusion1": "bum",
-    "fusion2": "bulus",
     "moveset": [
         {
             "level_learned": 2,

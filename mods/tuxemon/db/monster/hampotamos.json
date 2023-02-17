@@ -2,8 +2,6 @@
     "slug": "hampotamos",
     "category": "hungry",
     "ai": "RandomAI",
-    "fusion1": "hampo",
-    "fusion2": "tamos",
     "moveset": [
         {
             "level_learned": 2,

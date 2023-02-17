@@ -2,8 +2,6 @@
     "slug": "forturtle",
     "category": "oracle_bone",
     "ai": "RandomAI",
-    "fusion1": "for",
-    "fusion2": "turtle",
     "moveset": [
         {
             "level_learned": 2,

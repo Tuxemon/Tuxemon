@@ -2,8 +2,6 @@
     "slug": "solight",
     "category": "pulsar",
     "ai": "RandomAI",
-    "fusion1": "sol",
-    "fusion2": "light",
     "moveset": [
         {
             "level_learned": 2,

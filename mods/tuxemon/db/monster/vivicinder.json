@@ -2,8 +2,6 @@
     "slug": "vivicinder",
     "category": "lit",
     "ai": "RandomAI",
-    "fusion1": "vivi",
-    "fusion2": "cinder",
     "moveset": [
         {
             "level_learned": 2,

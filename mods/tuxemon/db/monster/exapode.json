@@ -2,8 +2,6 @@
     "slug": "exapode",
     "category": "big_frightfear",
     "ai": "RandomAI",
-    "fusion1": "exa",
-    "fusion2": "pode",
     "moveset": [
         {
             "level_learned": 2,

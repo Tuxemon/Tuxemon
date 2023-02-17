@@ -2,8 +2,6 @@
     "slug": "cardinale",
     "category": "firebird",
     "ai": "RandomAI",
-    "fusion1": "cardi",
-    "fusion2": "nale",
     "moveset": [
         {
             "level_learned": 2,

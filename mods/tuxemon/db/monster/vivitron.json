@@ -2,8 +2,6 @@
     "slug": "vivitron",
     "category": "sparked",
     "ai": "RandomAI",
-    "fusion1": "vivi",
-    "fusion2": "tron",
     "moveset": [
         {
             "level_learned": 2,

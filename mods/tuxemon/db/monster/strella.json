@@ -2,8 +2,6 @@
     "slug": "strella",
     "category": "trailing",
     "ai": "RandomAI",
-    "fusion1": "strel",
-    "fusion2": "la",
     "moveset": [
         {
             "level_learned": 2,

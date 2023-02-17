@@ -2,8 +2,6 @@
     "slug": "mk01_alpha",
     "category": "threat",
     "ai": "RandomAI",
-    "fusion1": "mk01",
-    "fusion2": "alpha",
     "moveset": [
         {
             "level_learned": 2,

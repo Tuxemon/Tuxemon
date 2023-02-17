@@ -2,8 +2,6 @@
     "slug": "viviteel",
     "category": "galvanised",
     "ai": "RandomAI",
-    "fusion1": "vivi",
-    "fusion2": "teel",
     "moveset": [
         {
             "level_learned": 2,

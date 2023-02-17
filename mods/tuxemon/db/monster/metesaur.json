@@ -2,8 +2,6 @@
     "slug": "metesaur",
     "category": "meteor",
     "ai": "RandomAI",
-    "fusion1": "mete",
-    "fusion2": "saur",
     "moveset": [
         {
             "level_learned": 2,

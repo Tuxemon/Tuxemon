@@ -2,8 +2,6 @@
     "slug": "shnark",
     "category": "disguised",
     "ai": "RandomAI",
-    "fusion1": "shn",
-    "fusion2": "ark",
     "moveset": [
         {
             "level_learned": 2,

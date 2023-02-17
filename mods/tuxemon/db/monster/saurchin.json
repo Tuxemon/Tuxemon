@@ -2,8 +2,6 @@
     "slug": "saurchin",
     "category": "spiny",
     "ai": "RandomAI",
-    "fusion1": "saur",
-    "fusion2": "chin",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,8 +2,6 @@
     "slug": "aardorn",
     "category": "snout",
     "ai": "RandomAI",
-    "fusion1": "aar",
-    "fusion2": "dorn",
     "moveset": [
         {
             "level_learned": 2,

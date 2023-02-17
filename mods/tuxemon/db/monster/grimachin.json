@@ -2,8 +2,6 @@
     "slug": "grimachin",
     "category": "spook",
     "ai": "RandomAI",
-    "fusion1": "grima",
-    "fusion2": "chin",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,8 +2,6 @@
     "slug": "tumbleworm",
     "category": "buzzkill",
     "ai": "RandomAI",
-    "fusion1": "tumble",
-    "fusion2": "worm",
     "moveset": [
         {
             "level_learned": 2,

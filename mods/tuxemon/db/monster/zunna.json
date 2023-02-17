@@ -2,8 +2,6 @@
     "slug": "zunna",
     "category": "slurpy",
     "ai": "RandomAI",
-    "fusion1": "zun",
-    "fusion2": "na",
     "moveset": [
         {
             "level_learned": 2,

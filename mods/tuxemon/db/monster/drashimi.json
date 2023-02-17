@@ -2,8 +2,6 @@
     "slug": "drashimi",
     "category": "dragon_roll",
     "ai": "RandomAI",
-    "fusion1": "dra",
-    "fusion2": "shimi",
     "moveset": [
         {
             "level_learned": 2,

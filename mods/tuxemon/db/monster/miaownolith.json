@@ -2,8 +2,6 @@
     "slug": "miaownolith",
     "category": "desolate",
     "ai": "RandomAI",
-    "fusion1": "miaow",
-    "fusion2": "nolith",
     "moveset": [
         {
             "level_learned": 2,

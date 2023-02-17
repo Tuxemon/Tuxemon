@@ -2,8 +2,6 @@
     "slug": "dandylion",
     "category": "lions_tooth",
     "ai": "RandomAI",
-    "fusion1": "dandy",
-    "fusion2": "lion",
     "moveset": [
         {
             "level_learned": 2,

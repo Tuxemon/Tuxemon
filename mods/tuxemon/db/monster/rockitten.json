@@ -2,8 +2,6 @@
     "slug": "rockitten",
     "category": "cute_boulder",
     "ai": "RandomAI",
-    "fusion1": "roc",
-    "fusion2": "kitten",
     "moveset": [
         {
             "level_learned": 2,

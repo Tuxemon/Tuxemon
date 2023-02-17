@@ -2,8 +2,6 @@
     "slug": "cateye",
     "category": "sentinel",
     "ai": "RandomAI",
-    "fusion1": "cat",
-    "fusion2": "eye",
     "moveset": [
         {
             "level_learned": 2,

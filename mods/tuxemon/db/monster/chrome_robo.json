@@ -2,8 +2,6 @@
     "slug": "chrome-robo",
     "category": "threat",
     "ai": "RandomAI",
-    "fusion1": "chrome",
-    "fusion2": "robo",
     "moveset": [
         {
             "level_learned": 2,

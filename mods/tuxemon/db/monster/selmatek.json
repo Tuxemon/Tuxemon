@@ -2,8 +2,6 @@
     "slug": "selmatek",
     "category": "sand_steed",
     "ai": "RandomAI",
-    "fusion1": "sel",
-    "fusion2": "matek",
     "moveset": [
         {
             "level_learned": 2,

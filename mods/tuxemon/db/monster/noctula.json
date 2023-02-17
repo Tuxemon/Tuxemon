@@ -2,8 +2,6 @@
     "slug": "noctula",
     "category": "nightcrawler",
     "ai": "RandomAI",
-    "fusion1": "noct",
-    "fusion2": "tula",
     "moveset": [
         {
             "level_learned": 2,

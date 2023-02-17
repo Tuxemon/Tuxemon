@@ -2,8 +2,6 @@
     "slug": "dune_pincher",
     "category": "hermit",
     "ai": "RandomAI",
-    "fusion1": "dune",
-    "fusion2": "pincher",
     "moveset": [
         {
             "level_learned": 2,

@@ -2,8 +2,6 @@
     "slug": "toufigel",
     "category": "powder",
     "ai": "RandomAI",
-    "fusion1": "tou",
-    "fusion2": "figel",
     "moveset": [
         {
             "level_learned": 2,

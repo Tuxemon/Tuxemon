@@ -2,8 +2,6 @@
     "slug": "taupypus",
     "category": "flatfoot",
     "ai": "RandomAI",
-    "fusion1": "tau",
-    "fusion2": "pypus",
     "moveset": [
         {
             "level_learned": 2,

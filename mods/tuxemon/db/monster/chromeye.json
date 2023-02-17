@@ -2,8 +2,6 @@
     "slug": "chromeye",
     "category": "mixed_emotion",
     "ai": "RandomAI",
-    "fusion1": "chrom",
-    "fusion2": "meye",
     "moveset": [
         {
             "level_learned": 2,

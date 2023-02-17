@@ -2,8 +2,6 @@
     "slug": "pigabyte",
     "category": "electric_pig",
     "ai": "RandomAI",
-    "fusion1": "piga",
-    "fusion2": "byte",
     "moveset": [
         {
             "level_learned": 2,

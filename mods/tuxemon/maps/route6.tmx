@@ -8,23 +8,16 @@
   <property name="slug" value="route6"/>
   <property name="types" value="route"/>
  </properties>
- <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
- <tileset firstgid="449" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
- </tileset>
- <tileset firstgid="780" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtVltuwkAMXL4L7SWpOAiUi5Rf6BfHCBwEJbkCM1ItWaMN3qzYio9+jOJN/BiPncAxpXQCfoAjsAV2v/jCtQcGYATMx/u3tsnJ1/jnN28OkX6rRUrvwAfwavPdY/brAnzCR/v0OxPZHeIvE9C8fv/sPYmufI80T8TJ+/eIHzI4Z/LW8CvVmbOg1ronxu+GZ9wlD98H7W/gUIANfCJdc8+ptfLzO6589Kxz6ZCPu3GVvDU6k+8crdfwj/j18OFujIDvu1TnA+JqtWY/tfw818iu1Zr8dJ5aa0o/9XvU5xytqbdHro6v9Qx+kQYdONmO+9q0H53JvQdy+5frK+Khtczf11AfPVuM3fexz+Rk+VUDf5+2nqf4veG7eYF/CyyRe0DuMcOnlB/jW6OGn33b/W9OK5v/kVQvPZ+gU6s9q6lVE/OXPdwBpekBOQ==
+   eAHtlsENwjAMRYOQAHHqBdgAdoDuAgzDCgwBIzALsArfQpaMlchOQqsicbDqNk7y/eIkbSYhNMJGsxDO87eN4W/RtoO1IkbG9+3/9X2uVy5/zW+PdT3AjgNc3yfq7z617YGYXA4yfoHclwmTceRLfrxPrCftIz1OzjvvQdqH2vQ4Jfq8nGktYqxZ3wn6qJakaX1rsNg47IYYi2usPca6psa5NlbIS+ZSwpn05rAm3nLOmM/s9fns5UxrUcqa8olpkt9S+mSM5Zey7ktfDmtd+1bu3+BnzZGqcasftfehr2aOmr6e/GsZsL4LWKbuoNrvV4xd+g/H+vS908W7PsM8/Plsl3dOV/5Q/pE8XH4l5gU1rK9R
   </data>
  </layer>
  <layer id="2" name="Obstacles" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG9lEtOQzEMRd2PhGAhlVp2ADugI2CX7IwuoGPswZGsqzifijZS5NjxvTl5Smtm9rwxe/H56+uLz7et2bvP3qCXHnL1Ws3x0Rjn4PXhbOeCDx29/53jq5Fz+B5VRMd+lf94Q8xqv6WHIUfW6oN+szfb+tz5HA28YCNSH+lhyJF1pT0618nn6wQfXspFvTqjV7/4Zu9+s3x4wBYxc7HfY2ntxe82+2jPLF/PIzx1/+rnzozRvWb5Zs6qenpvXO+lHp/+7r58fk+8P9XO5qNv0PqGh+L/T89saaMnv0PVaD7iG31D9ct51sKa2Vhnja57fHiqZiXHA1aYqJOHJ7Xs3+KjD0/yrJtd4xH9+AQT9VhTpxa9jNYb1z7N0a5GfOAhUl/xCy36FV30Pg1+P/AQV/2jP7Tob+W85dyehnvDQ4Szp33kHjxEOB/JMDormOCqONnXiDf1e+TBpFxVTp0I173zP7RumLg=
+   eAG9kzFugjEMRt2VgYm5cA4OAByjPUmHqpwNDkPHlrF2pSdZVmIntIBkOXbyfXkJ+UVELguRT42TxlnjZSnyqpH9WMsa6ug1W+MTs+2D14eyHTt86Fj73zW+MbMP99HL6Jjv1W/6P1j05lt6GHxmHH3Qf+ngW+NKI8l4wUamn0h/p2DwmXFP+/wkstbYaFQ/vCIX/UrfmrfvITvfKB8esFn2XMy3GLKefbfeJ64d5cs8zDPOrzrfX9y/OtcoX/SdqbM3Hs8VfXf67vYah4H3F7WjdXUHrTt8/+P9+3dYcVZ81R1m/l7LOT0b48wj48Mz01dzeMAKE31q86HnPVt8rMOT2utGx3jYenyMib6N6dPz3q03HtfF2utnxvjAQ6Y/42Va9DM6W7stvh94yLP+tt606G/lvGXfTMO54SHDmWkfOQcPGc5HMlR7GRNcPU7mY8ab/j1qY4pcvZo+Ga571z/QswMw
   </data>
  </layer>
  <objectgroup color="#ffff00" id="3" name="Events">

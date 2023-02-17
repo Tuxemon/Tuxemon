@@ -75,7 +75,7 @@ class PCState(PopUpMenu[MenuGameObj]):
             (
                 ("menu_storage", storage_callback),
                 ("menu_dropoff", dropoff_callback),
-                ("menu_items", change_state("ItemMenuState")),
+                ("bank", change_state("NuPhoneBanking")),
                 (
                     "menu_multiplayer",
                     not_implemented_dialog,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="57">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="58">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -189,8 +189,8 @@
  </objectgroup>
  <objectgroup id="5" name="Collisions">
   <object id="3" type="collision" x="0" y="0" width="288" height="32"/>
-  <object id="6" type="collision" x="16" y="224" width="96" height="16"/>
-  <object id="7" type="collision" x="96" y="224" width="16" height="80"/>
+  <object id="6" type="collision" x="16" y="208" width="96" height="32"/>
+  <object id="7" type="collision" x="96" y="240" width="16" height="64"/>
   <object id="8" type="collision" x="176" y="208" width="16" height="112"/>
   <object id="9" type="collision" x="192" y="208" width="80" height="32"/>
   <object id="11" type="collision" x="176" y="80" width="80" height="32"/>
@@ -204,8 +204,9 @@
   <object id="22" type="collision" x="224" y="32" width="16" height="32"/>
   <object id="23" type="collision" x="32" y="112" width="32" height="16"/>
   <object id="24" type="collision" x="96" y="112" width="32" height="16"/>
-  <object id="46" type="collision" x="0" y="80" width="16" height="144"/>
+  <object id="46" type="collision" x="0" y="80" width="16" height="160"/>
   <object id="50" type="collision" x="240" y="256" width="16" height="48"/>
   <object id="51" type="collision" x="256" y="256" width="32" height="16"/>
+  <object id="57" type="collision" x="112" y="272" width="16" height="32"/>
  </objectgroup>
 </map>

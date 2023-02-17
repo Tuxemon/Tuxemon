@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="182">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="186">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="tunnel"/>
@@ -8,73 +8,36 @@
   <property name="types" value="town"/>
   <property name="west" value="route5"/>
  </properties>
- <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
-  <tile id="839">
-   <animation>
-    <frame tileid="839" duration="200"/>
-    <frame tileid="842" duration="200"/>
-    <frame tileid="845" duration="200"/>
-    <frame tileid="848" duration="200"/>
-   </animation>
-  </tile>
-  <tile id="880">
-   <animation>
-    <frame tileid="880" duration="200"/>
-    <frame tileid="883" duration="200"/>
-    <frame tileid="886" duration="200"/>
-    <frame tileid="889" duration="200"/>
-   </animation>
-  </tile>
- </tileset>
- <tileset firstgid="1313" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
-  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
-  <tile id="255">
-   <animation>
-    <frame tileid="248" duration="150"/>
-    <frame tileid="249" duration="150"/>
-    <frame tileid="250" duration="150"/>
-    <frame tileid="251" duration="150"/>
-    <frame tileid="252" duration="150"/>
-    <frame tileid="253" duration="150"/>
-    <frame tileid="254" duration="150"/>
-    <frame tileid="255" duration="150"/>
-   </animation>
-  </tile>
- </tileset>
- <tileset firstgid="1673" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
- <tileset firstgid="3113" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
- <tileset firstgid="3561" name="Terrain_by_George" tilewidth="16" tileheight="16" tilecount="360" columns="15">
-  <image source="../gfx/tilesets/Terrain_by_George.png" width="240" height="384"/>
- </tileset>
- <tileset firstgid="3921" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
+ <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="1441" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="5521" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
+ <tileset firstgid="3041" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
+ </tileset>
+ <tileset firstgid="11233" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="14008" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="15558" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
+  <image source="../gfx/tilesets/core_buildings.png" width="760" height="800"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlklOw0AQRb1hx0E4EsfgHhi4AnumFcMdEgObwAEIwzH4JeWLr1KPjo0dKYuSq93t6tc1tVeHTfMGeYesCvUrrLveyA2eNd/G9ro/aJoHyCNE15Qy6Tdj8HXgeoa87PmK80RjMqX/nhCzXI5Oyad+iulz42O9Ws2arCFzqg/6y5hU5lK/5FuA70vkG7rmwFT9j3zmrxRDak7PofoQ/XkbPmNOiedLrbU6CM3PhY8cH+BkrWq9+vcl96+e9yhw/hr/kU9rNKWX1K/yhfQavk+cT+vT60vMGy/rOFe/p8i9NiN3mNf/q9AZ+O444H/OWc3Rv+a30B1oa2O1SYbUc9v/v13is/8I7y8/1tw6h2+XGekwH4qLxkT11L0bspPi2zZ2of0YT1/DffJvDL5YPVvdhs4zpv9KekGL/KCcQfc8fqz5R//5nNF7QHXr/eoDtZXqAZyz/TyPH6tN8sVyJpdDaosMqWdfvljO+LvA59B/8Xkfa79I6WPz3Urutj10vQdjvfQCdhnz2vjyuyGeob3N9+rj0BofO10/BBdt2N7GQ+G+ul8J3wI2liNIB5tkMkbqnu8HPcrm2ae4jmPOXbp1fB9bX/M+xeft+PEQHCeZs03NlzvzLvC9bnzs88+fzY+HiG/O5i74j2fY+++vV5Xmxj6+9T7T/l/jv1/dWD67
+   eAHtl8tNBDEMhqcOxKsAxKsDRAN7ARpAQA1AA1QBnJHoAhpAogg4c4ELHsEv/TJxYs9mNQHmYDk7SZwvfiTZ2UbXzYKyt9l1z9tfsi/t6PzU+ANhOBQ5CrKkbC2C71y4LkQuJ75B8R7Tf1e75Rwdky+Vw/pba3yo175me3kVaak+4K+eiaWV+gXfg/DdkNxKW8c++rvG+Qe+Gv7S/H+JD3Wg761W/AeOF8kr1CrXq/6u96Fjp3/f7fzM10h8wcc1mmvXyMcI3zXVJtcp2o/S3/Oijkv1uyzvpZWCrG/531dvCf9zjOBfr9/YN3jj5fS877/fxOd5R7D/3iXOpwU5k36OV6mN8wa1HL13mW/e2KVYEU9dw0PybxF8Vj2X6hZ7rek/z1nAZ8WqI1dSfDpnkDta67OfbeXOAPR54sU2Md7KmVIOsS0w5DTWQyxTmm1ivJUzuAOgdQ6xrRwX+rBeigvf2KZnPOalNNsCQ0571mOba3KPcf5G23wPWmfph9QEmKN8mFdDW2uzP6wxHBseX4MLNqy1eT1rDPOdFO6z0n1n9Vv3oOZ7cvyX73mPneN4b0Pamm+IjeicpcDexuCL7KdVvvtvH7fKBx9PfLH3M/wGPfnvf/vvE9T+hXI=
   </data>
  </layer>
- <layer id="2" width="40" height="40">
+ <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtl8ENwjAMRX1CsEAZB5gG2IEdoDt0B1ZgCtgAOgK2iCUrDZJTqihFP5KVyrWTn+ccYqL5jdtiqDnlG0aV8fQJfSlfGTXYBQRAIJfAfkV0CHbkubZRu74zM7sEayvkV1s9oQcEQAAEQAAEQAAEQGB+BDb8zt0a2znevTbntCTy5IwlIz1Dx3uoefoayWnY1iHXk/OLPskVfTI8e2mfcS2kT7Q92V5sHn2fkxAp+zvrtHdkyu9HYJBT31ifnk3WsHXXNe3/OMbG27hv/hx+WmftKUvM6Fv1dmAGgf8k8AZpjEiM
+   eAHtl9ENwkAIhlEf1B3cwRWcQjfQTlPHUadRd3AAIR4JMZiAmuau+UnoNZT/oN+1DxC1ZxunZS/mpA0S6pwqXsxJQwgEQKACAtcp0a34ndfarPb+5jOiRfElrzAQAAEQAAEQAAEQAAEQGBuBE88JZ+OXwNxgNY8JUUTzLTeZGVbGI3ONaHr2Y9FFNL/0J1rpUSxSS+eMNc8YootoXrvnr8pvz3UOyVqq3XKf9hv55/2uMNAzzrDQ/vTdZA977rqnff6eY/Nt3qd4pj89Z50ph1gxt+b/EShAoCUCT9AJOjM=
   </data>
  </layer>
- <layer id="3" width="40" height="40">
+ <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Tile Layer 4" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0sENgkAYBeH/RAu0KGIvCnYCCCqKlsYQW1gPwLxk9sBhs/lChFMgrUCTR7TU0Y16cgrsTWDgv7/Tg5400hr34t1vmuhDX3IK7E3gnEVcqKKaruQUUEABBRRQQAEFFFDgvwIHri/oSCWdaFmq77/bPBVQYOsCM6sVF2w=
+   eAHtl0kOgkAQRWvntHQ6jV5LEcT5LkbjCZxWTrfydVzXgoAJhP+TRyfV1VB56Q1migwUa+AxMnvCC97wAUUG6mbgzL2/wBVucIcqpsvcPejDAIagZDcQldzbvuTzZTde7IkGr2tCC9rQAUUGZEAGZEAGZEAGZEAGZOC/BiZjsylEMIMYQlasa9jAFnYQkrDOIYUFLCHE6//t1uOZOv98iVOPnbrXn9fiyfne0akfnLrXn3c+na+2gS/MMyKo
   </data>
  </layer>
  <objectgroup color="#ffff00" id="5" name="Events">
@@ -133,6 +96,20 @@
    </properties>
   </object>
   <object id="181" name="Player Spawn" type="event" x="560" y="48" width="16" height="16"/>
+  <object id="184" name="Sign: Timber Town" type="event" x="32" y="448" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="185" name="Sign: Timber North" type="event" x="528" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog here_to_north"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ff0000" id="6" name="Collision">
   <object id="119" type="collision" x="0" y="0" width="32" height="464"/>

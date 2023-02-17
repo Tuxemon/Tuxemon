@@ -37,7 +37,6 @@
   </object>
   <object id="8" name="Spyder" type="event" x="48" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="rename_player"/>
     <property name="act2" value="transition_teleport spyder_bedroom.tmx,4,4,0.3"/>
     <property name="act3" value="set_money player,10000"/>
     <property name="act4" value="set_variable spyder_starting_money:yes"/>
@@ -47,7 +46,6 @@
   </object>
   <object id="9" name="Xero" type="event" x="0" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="rename_player"/>
     <property name="act2" value="transition_teleport player_house_bedroom.tmx,4,4,0.3"/>
     <property name="act3" value="set_money player,10000"/>
     <property name="act4" value="set_variable xero_starting_money:yes"/>

@@ -816,6 +816,7 @@ class NPC(Entity[NPCState]):
                 npc_monster_details.exp_req_mod
             )
             monster.set_level(monster.level)
+            monster.set_moves(monster.level)
             monster.current_hp = monster.hp
             monster.gender = npc_monster_details.gender
 

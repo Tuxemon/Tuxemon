@@ -107,6 +107,7 @@
     <property name="act10" value="random_encounter route1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_moved"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="57" name="Establish hideout" type="event" x="240" y="352" width="16" height="16">
@@ -139,6 +140,7 @@
     <property name="act10" value="random_encounter route1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_moved"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="96" name="taba battle area sign" type="event" x="880" y="560" width="16" height="16">
@@ -160,6 +162,7 @@
     <property name="act10" value="random_encounter route1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_moved"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="106" name="random battle" type="event" x="688" y="128" width="32" height="48">
@@ -167,6 +170,7 @@
     <property name="act10" value="random_encounter route1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_moved"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="109" name="hi rocky" type="event" x="464" y="208" width="16" height="16">
@@ -824,6 +828,13 @@
     <property name="act32" value="unlock_controls"/>
     <property name="act33" value="set_variable christieknows:gone"/>
     <property name="cond1" value="is variable_set christieknows:stop"/>
+   </properties>
+  </object>
+  <object id="153" name="enter the battle area" type="event" x="864" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_foyer.tmx,2,9,0.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

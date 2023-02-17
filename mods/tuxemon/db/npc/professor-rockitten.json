@@ -14,7 +14,7 @@
       "level": 3,
       "slug": "rockitten",
       "money_mod": 10,
-      "exp_req_mod": 27,
+      "exp_req_mod": 60,
       "gender": "female"
     }
   ]

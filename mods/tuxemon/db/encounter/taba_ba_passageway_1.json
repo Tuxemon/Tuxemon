@@ -1,0 +1,31 @@
+{
+  "slug": "taba_ba_passageway_1",
+  "monsters": [
+    {
+      "monster": "chloragon",
+      "encounter_rate": 3.5,
+      "defense": 9,
+      "level_range": [
+        3,
+        6
+      ]
+    },
+    {
+      "monster": "aardorn",
+      "encounter_rate": 3.5,
+      "defense": 9,
+      "level_range": [
+        3,
+        6
+      ]
+    },
+    {
+      "monster": "nut",
+      "encounter_rate": 0.2,
+      "level_range": [
+        4,
+        7
+      ]
+    }
+  ]
+}

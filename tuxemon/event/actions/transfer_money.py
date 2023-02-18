@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import final
+from typing import Union, final
 
 from tuxemon.event.eventaction import EventAction
 
@@ -20,7 +20,7 @@ class MoneyMathAction(EventAction):
     Script usage:
         .. code-block::
 
-            transfer_money <transaction>,<amount>,<slug>
+            transfer_money <transaction>,<amount>[,slug]
 
     Script parameters:
         transaction: Operator symbol.
@@ -28,13 +28,14 @@ class MoneyMathAction(EventAction):
         slug: Slug name (e.g. NPC, etc.)
         eg: +,100,mom (player gets 100 from mom)
         eg: -,100,mom (mom gets 100 from player)
+        eg: +,100 (player gets 100)
 
     """
 
     name = "transfer_money"
     transaction: str
     amount: int
-    slug: str
+    slug: Union[str, None] = None
 
     def start(self) -> None:
         player = self.session.player
@@ -42,36 +43,27 @@ class MoneyMathAction(EventAction):
         # Read the parameters
         transaction = self.transaction
         amount = self.amount
-        destination = self.slug
 
-        # Data
         wallet_player = player.money.get("player")
-        wallet_slug = player.money.get(destination)
 
         # Perform the transaction on the slug
         # from the slug wallet to the player, included check if it's None
         if transaction == "+":
-            if wallet_player is None:
-                own = 0
-                player.money["player"] = int(own) + amount
-            else:
-                player.money["player"] = wallet_player + amount
-            if wallet_slug is None:
-                value = 0
-                player.money[destination] = int(value) - amount
-            else:
-                player.money[destination] = int(wallet_slug) - amount
+            player.money["player"] = wallet_player + amount
+            if self.slug is not None:
+                wallet_npc = player.money.get(self.slug)
+                if wallet_npc is None:
+                    player.money[self.slug] = amount * -1
+                else:
+                    player.money[self.slug] = wallet_npc - amount
         # from the player wallet to the slug
         elif transaction == "-":
-            if wallet_player is None:
-                own = 0
-                player.money["player"] = int(own) - amount
-            else:
-                player.money["player"] = wallet_player - amount
-            if wallet_slug is None:
-                value = 0
-                player.money[destination] = int(value) + amount
-            else:
-                player.money[destination] = int(wallet_slug) + amount
+            player.money["player"] = wallet_player - amount
+            if self.slug is not None:
+                wallet_npc = player.money.get(self.slug)
+                if wallet_npc is None:
+                    player.money[self.slug] = amount
+                else:
+                    player.money[self.slug] = wallet_npc + amount
         else:
             raise ValueError(f"invalid transaction type {transaction}")

@@ -1,7 +1,12 @@
 {
   "slug": "spyder_route3_connor",
-  "gender": "male",
-  "sprite_name": "tennisplayer",
+  "template": [
+    {
+      "sprite_name": "tennisplayer",
+      "combat_front": "tennisplayer",
+      "slug": "tennisplayer"
+    }
+  ],
   "monsters": [
     {
       "name": "Weavifly",
@@ -51,7 +56,5 @@
       "exp_req_mod": 27,
       "gender": "male"
     }
-  ],
-  "combat_front": "tennisplayer.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

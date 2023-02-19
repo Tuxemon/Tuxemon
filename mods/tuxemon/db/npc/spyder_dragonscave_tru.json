@@ -1,7 +1,12 @@
 {
   "slug": "spyder_dragonscave_tru",
-  "gender": "male",
-  "sprite_name": "knight",
+  "template": [
+    {
+      "sprite_name": "knight",
+      "combat_front": "knightlord",
+      "slug": "knightlord"
+    }
+  ],
   "monsters": [
     {
       "name": "Embazook",
@@ -27,7 +32,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "knightlord.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

@@ -1,7 +1,12 @@
 {
   "slug": "spyder_greenwash_clarence",
-  "gender": "male",
-  "sprite_name": "scientist",
+  "template": [
+    {
+      "sprite_name": "scientist",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
+  ],
   "monsters": [
     {
       "name": "Pigabyte",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "male"
     }
-  ],
-  "combat_front": "scientist.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

@@ -132,9 +132,12 @@ class PlayerState(PygameMenuState):
             float=True,
         ).translate(fix_width(width, 0.45), fix_height(height, 0.10))
         # image
+        combat_front = ""
+        for ele in player.template:
+            combat_front = ele.combat_front
         new_image = pygame_menu.BaseImage(
             graphics.transform_resource_filename(
-                "gfx/sprites/player/" + player.combat_front
+                "gfx/sprites/player/" + combat_front + ".png"
             ),
         )
         new_image.scale(prepare.SCALE, prepare.SCALE)

@@ -1,7 +1,12 @@
 {
   "slug": "spyder_nimrod_maverick",
-  "gender": "male",
-  "sprite_name": "soldier",
+  "template": [
+    {
+      "sprite_name": "soldier",
+      "combat_front": "soldier",
+      "slug": "soldier"
+    }
+  ],
   "monsters": [
     {
       "name": "AV8R",
@@ -11,7 +16,5 @@
       "exp_req_mod": 27,
       "gender": "neuter"
     }
-  ],
-  "combat_front": "soldier.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

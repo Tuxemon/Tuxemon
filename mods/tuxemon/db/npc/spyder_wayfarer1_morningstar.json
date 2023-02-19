@@ -1,7 +1,12 @@
 {
   "slug": "spyder_wayfarer1_morningstar",
-  "gender": "female",
-  "sprite_name": "nurse",
+  "template": [
+    {
+      "sprite_name": "nurse",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
+  ],
   "monsters": [
     {
       "name": "Cairfrey",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "male"
     }
-  ],
-  "combat_front": "nurse.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

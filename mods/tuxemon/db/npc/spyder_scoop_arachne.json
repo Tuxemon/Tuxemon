@@ -1,7 +1,12 @@
 {
   "slug": "spyder_scoop_arachne",
-  "gender": "female",
-  "sprite_name": "spyderboss",
+  "template": [
+    {
+      "sprite_name": "spyderboss",
+      "combat_front": "spyder_boss",
+      "slug": "spyder_boss"
+    }
+  ],
   "monsters": [
     {
       "name": "Cardiwing",
@@ -27,7 +32,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "spyder_boss.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

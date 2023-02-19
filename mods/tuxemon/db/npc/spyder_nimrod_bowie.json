@@ -1,7 +1,12 @@
 {
   "slug": "spyder_nimrod_bowie",
-  "gender": "male",
-  "sprite_name": "knight",
+  "template": [
+    {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_boss",
+      "slug": "enforcer_boss"
+    }
+  ],
   "monsters": [
     {
       "name": "Tigrock",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "enforcer_boss.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

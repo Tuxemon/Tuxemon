@@ -1,7 +1,12 @@
 {
   "slug": "spyder_scoop_cochinib",
-  "gender": "female",
-  "sprite_name": "varmint",
+  "template": [
+    {
+      "sprite_name": "varmint",
+      "combat_front": "cochini",
+      "slug": "noclass"
+    }
+  ],
   "monsters": [
     {
       "name": "Cochini",
@@ -11,7 +16,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "cochini.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

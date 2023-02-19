@@ -1,7 +1,12 @@
 {
   "slug": "spyder_route2_graf",
-  "gender": "male",
-  "sprite_name": "tennisplayer",
+  "template": [
+    {
+      "sprite_name": "tennisplayer",
+      "combat_front": "tennisplayer",
+      "slug": "tennisplayer"
+    }
+  ],
   "monsters": [
     {
       "name": "Cardiling",
@@ -27,7 +32,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "tennisplayer.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

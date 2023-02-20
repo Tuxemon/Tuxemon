@@ -1493,6 +1493,9 @@ msgid "max_moves_alert"
 msgstr "{name} has too many techniques.\n"
 "Which do you want to overwrite for learning {tech}?"
 
+msgid "uninstall_app"
+msgstr "Unable to uninstall the app."
+
 # Player State
 
 msgid "tuxepedia_progress"

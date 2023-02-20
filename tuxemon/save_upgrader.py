@@ -86,7 +86,12 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     # set phone old savegames
     if "visitedcottoncafe" in save_data["game_variables"]:
         if save_data["game_variables"]["visitedcottoncafe"] == "yes":
-            if "nu_phone" not in save_data["items"]:
+            checking = [
+                element
+                for element in save_data["items"]
+                if element["slug"] == "nu_phone"
+            ]
+            if not checking:
                 save_data["items"].append({"slug": "nu_phone", "quantity": 1})
                 save_data["items"].append(
                     {"slug": "app_banking", "quantity": 1}
@@ -97,7 +102,12 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
                 )
     if "timberdantewarn" in save_data["game_variables"]:
         if save_data["game_variables"]["timberdantewarn"] == "yes":
-            if "nu_phone" not in save_data["items"]:
+            checking = [
+                element
+                for element in save_data["items"]
+                if element["slug"] == "nu_phone"
+            ]
+            if not checking:
                 save_data["items"].append({"slug": "nu_phone", "quantity": 1})
                 save_data["items"].append(
                     {"slug": "app_banking", "quantity": 1}

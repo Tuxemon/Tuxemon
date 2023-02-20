@@ -7,7 +7,6 @@ from tuxemon.db import (
     EconomyModel,
     EncounterModel,
     EnvironmentModel,
-    InventoryModel,
     ItemModel,
     MonsterModel,
     MusicModel,
@@ -29,10 +28,6 @@ def write_json_schema(output_dir):
         os.path.join(output_dir, "environment-schema.json"), "w"
     ) as f:
         f.write(EnvironmentModel.schema_json(indent=2))
-    with open(
-        os.path.join(output_dir, "inventory-schema.json"), "w"
-    ) as f:
-        f.write(InventoryModel.schema_json(indent=2))
     with open(os.path.join(output_dir, "item-schema.json"), "w") as f:
         f.write(ItemModel.schema_json(indent=2))
     with open(os.path.join(output_dir, "monster-schema.json"), "w") as f:

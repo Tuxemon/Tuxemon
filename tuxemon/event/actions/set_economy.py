@@ -7,6 +7,7 @@ from typing import Union, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.item import item
 from tuxemon.item.economy import Economy
 
 
@@ -40,3 +41,9 @@ class SetEconomyAction(EventAction):
             return
 
         npc.economy = Economy(self.economy_slug)
+
+        for itm in npc.economy.items:
+            element = item.Item()
+            element.load(itm.item_name)
+            element.quantity = itm.inventory
+            npc.add_item(element)

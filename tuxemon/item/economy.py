@@ -100,3 +100,25 @@ class Economy:
             )
 
         return cost
+
+    def lookup_item_inventory(self, item_slug: str) -> int:
+        """Looks up the item quantity from this economy.
+
+        The item is looked up by its slug.
+        Raises a Runtime error if item's inventory is not found in this economy.
+
+        Parameters:
+            item_slug: The item slug to look up in this economy.
+
+        Returns:
+            Quantity of items for this economy.
+        """
+        inventory = self.lookup_item_field(item_slug, "inventory")
+
+        if inventory is None:
+            raise RuntimeError(
+                f"Quantity for item '{item_slug}' not found in "
+                f"economy '{self.slug}'"
+            )
+
+        return inventory

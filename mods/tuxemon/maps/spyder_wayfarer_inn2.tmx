@@ -154,12 +154,11 @@
     <property name="cond1" value="not variable_set wayfarer1james:yes"/>
    </properties>
   </object>
-  <object id="43" name="Watch TV" type="event" x="176" y="112" width="32" height="16">
+  <object id="43" name="Watch TV" type="event" x="176" y="96" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_wayfarerinn_tv1"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond3" value="is player_facing up"/>
-    <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="48" name="Environment" type="event" x="16" y="0" width="16" height="16">

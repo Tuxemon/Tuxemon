@@ -55,14 +55,13 @@
     <property name="cond10" value="not npc_exists tabanurse"/>
    </properties>
   </object>
-  <object id="26" name="hello there" type="event" x="80" y="96" width="16" height="16">
+  <object id="26" name="hello there" type="event" x="80" y="80" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog tabanurse_dialog\n"/>
     <property name="act20" value="translated_dialog_choice yes:no,chooses"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
-    <property name="cond40" value="not variable_set chooses:yes"/>
+    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="not variable_set chooses:yes"/>
    </properties>
   </object>
   <object id="27" name="Heal Tuxemon" type="event" x="80" y="96" width="16" height="16">
@@ -132,12 +131,11 @@
     <property name="cond1" value="is variable_set battle_last_result:lost"/>
    </properties>
   </object>
-  <object id="37" name="Use Computer" type="event" x="160" y="64" width="16" height="16">
+  <object id="37" name="Use Computer" type="event" x="160" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="change_state PCState"/>
-    <property name="cond1" value="is player_at 10,4"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

@@ -243,15 +243,15 @@
   <object id="84" name="Sign: Column 1" type="event" x="176" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_column1_sign"/>
+    <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is player_facing_tile"/>
    </properties>
   </object>
   <object id="85" name="Sign: Column 2" type="event" x="240" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_column2_sign"/>
+    <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is player_facing_tile"/>
    </properties>
   </object>
   <object id="97" name="random battle" type="event" x="160" y="192" width="16" height="48">

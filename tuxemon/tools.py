@@ -242,6 +242,8 @@ def number_or_variable(
     player = session.player
     if value.isdigit():
         return float(value)
+    elif value.replace('.', '', 1).isdigit():
+        return float(value)
     else:
         try:
             return float(player.game_variables[value])

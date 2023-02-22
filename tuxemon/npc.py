@@ -23,8 +23,9 @@ from typing import (
 
 from tuxemon import surfanim
 from tuxemon.ai import AI
+from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.compat import Rect
-from tuxemon.db import ElementType, OutputBattle, SeenStatus, db
+from tuxemon.db import ElementType, SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import MAX_TYPES_BAG, Item, decode_items, encode_items
@@ -63,7 +64,7 @@ class NPCState(TypedDict):
     current_map: str
     facing: Direction
     game_variables: Dict[str, Any]
-    battle_history: Dict[str, Tuple[OutputBattle, int]]
+    battles: Sequence[Mapping[str, Any]]
     tuxepedia: Dict[str, SeenStatus]
     contacts: Dict[str, str]
     money: Dict[str, int]
@@ -143,9 +144,7 @@ class NPC(Entity[NPCState]):
         # general
         self.behavior: Optional[str] = "wander"  # not used for now
         self.game_variables: Dict[str, Any] = {}  # Tracks the game state
-        self.battle_history: Dict[
-            str, Tuple[OutputBattle, int]
-        ] = {}  # Tracks the battles
+        self.battles: List[Battle] = []  # Tracks the battles
         # Tracks Tuxepedia (monster seen or caught)
         self.tuxepedia: Dict[str, SeenStatus] = {}
         self.contacts: Dict[str, str] = {}
@@ -237,7 +236,7 @@ class NPC(Entity[NPCState]):
             "current_map": session.client.get_map_name(),
             "facing": self.facing,
             "game_variables": self.game_variables,
-            "battle_history": self.battle_history,
+            "battles": encode_battle(self.battles),
             "tuxepedia": self.tuxepedia,
             "contacts": self.contacts,
             "money": self.money,
@@ -268,10 +267,12 @@ class NPC(Entity[NPCState]):
         """
         self.facing = save_data.get("facing", "down")
         self.game_variables = save_data["game_variables"]
-        self.battle_history = save_data["battle_history"]
         self.tuxepedia = save_data["tuxepedia"]
         self.contacts = save_data["contacts"]
         self.money = save_data["money"]
+        self.battles = []
+        for battle in decode_battle(save_data.get("battles")):
+            self.battles.append(battle)
         self.items = []
         for item in decode_items(save_data.get("items")):
             self.add_item(item)

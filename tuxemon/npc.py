@@ -71,7 +71,7 @@ class NPCState(TypedDict):
     monsters: Sequence[Mapping[str, Any]]
     player_name: str
     monster_boxes: Dict[str, Sequence[Mapping[str, Any]]]
-    item_boxes: Dict[str, Mapping[str, Optional[int]]]
+    item_boxes: Dict[str, Sequence[Mapping[str, Any]]]
     tile_pos: Tuple[int, int]
 
 

@@ -724,6 +724,18 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Capture Device"](https://wiki.tuxemon.org/File:Unknown-2.png) by
+[tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Capture Device Green"](https://wiki.tuxemon.org/File:Capture_device_green.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Capture Device Red"](https://wiki.tuxemon.org/File:Capture_device_red.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Capture Device Yellow"](https://wiki.tuxemon.org/File:Capture_device_yellow.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Capture Device Violet"](https://wiki.tuxemon.org/File:Capture_device_violet.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["Nu Phone"](https://wiki.tuxemon.org/File:Item6.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Bank App"](https://wiki.tuxemon.org/File:Iridescent_item_7.png) modified by Sanglorian from original sprites by Ocean. [http://opengameart.org/content/oceans-icons CC BY 3.0]

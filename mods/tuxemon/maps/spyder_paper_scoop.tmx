@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="63">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="66">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -22,7 +22,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYKAvkJIn3r49cgwMu4HYkgQ9MNOpqacUaP9voDvKsbjjJ1CcWIDPHGLNQFdHCzOR7biIxc8weQAPtAvF
+   eAFjYKAvkJIn3r49cgwMu4HYkgQ9MNOpqacUaP9voDtguBzJPT+B4sQCmDnI+onVi0sdzExsbsOlhxTxi0h+RdcHAFEJECk=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="13" height="11">
@@ -32,20 +32,20 @@
  </layer>
  <layer id="4" name="Above player" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYBhZ4LYcA8MdIL4LxJQAmDmUmIGuF2YmpW5DN5dWfACxYQfQ
+   eAFjYBhZ4LYcA8MdJHwXyCYHwMwhRy8uPTAzYe4j1224zKe2OABalQu4
   </data>
  </layer>
  <layer id="5" name="Above player" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYBhZwEuBgQGEPYGYWJAJVAvCGUBMa+ANtAOESQFZQPUgTG8AAF7EBMI=
+   eAHlzLENgCAARNFbA6HQdXASmVFxEMVBEBL+BlTY+JPXXU76V36WdhyIONFrY3PhRsKDEa38ZrwoqOgV2JhFmmDh8FUNeNsOrQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">
   <object id="11" type="collision" x="0" y="16" width="208" height="32"/>
   <object id="21" type="collision" x="32" y="48" width="16" height="64"/>
   <object id="22" type="collision" x="0" y="112" width="48" height="16"/>
-  <object id="24" type="collision" x="128" y="80" width="48" height="16"/>
-  <object id="25" type="collision" x="128" y="128" width="48" height="16"/>
+  <object id="24" type="collision" x="128" y="80" width="80" height="16"/>
+  <object id="25" type="collision" x="128" y="128" width="80" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="17" name="Go outside" type="event" x="96" y="160" width="16" height="16">
@@ -68,16 +68,30 @@
     <property name="cond1" value="not npc_exists spyder_shopkeeper"/>
    </properties>
   </object>
-  <object id="61" name="Create Dante" type="event" x="176" y="80" width="16" height="16">
+  <object id="61" name="Create Dante" type="event" x="176" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_dante,11,5"/>
+    <property name="act1" value="create_npc spyder_dante,11,6"/>
     <property name="cond1" value="not npc_exists spyder_dante"/>
    </properties>
   </object>
-  <object id="62" name="Talk Dante" type="event" x="176" y="64" width="16" height="16">
+  <object id="62" name="Talk Dante" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_danteresting"/>
     <property name="behav1" value="talk spyder_dante"/>
+   </properties>
+  </object>
+  <object id="64" name="potions" type="event" x="128" y="80" width="80" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog potions_in_shop"/>
+    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="65" name="capture devices" type="event" x="128" y="128" width="80" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog capture_devices_in_shop"/>
+    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

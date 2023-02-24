@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="151">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="routeb"/>
+  <property name="types" value="route"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="20" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0iERAAAMxLBKfv9oLoYCaqCXVZMHDDDAAAMMMMAAAwww8GDgAMjSXhA=
+  </data>
+ </layer>
+ <layer id="5" name="Tile Layer 2" width="20" height="40">
+  <data encoding="base64" compression="zlib">
+   eAGtzjERACEQBEGS9wJiHv9yuGQcdLA1Wdfub60z26j/OHemqn7lqF85uaq5qupXjvqVk6uaq6p+5ahfObmquarqV476lZOrmquqfuWoXzm5qrmq6leO+pWTq5qrqn7lqF85uaq5qupXjvqVk6uaq6p+5ahfObmquarqV476lfMAygbIAQ==
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 3" width="20" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="Collisions"/>
+ <objectgroup id="4" name="Events"/>
+</map>

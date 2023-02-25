@@ -684,10 +684,6 @@ Character created by Leo (from Discord) and released under the CC-BY-SA 4.0+ lic
 
 ### Items
 
-* ["Potions"](http://opengameart.org/content/potions-3)
-by [Programmer16](http://opengameart.org/users/programmer16) is licensed under
-[Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
-
 * ["Backpack RPG Icons"](http://opengameart.org/content/rpg-icons) by
 [DitzyDM](http://ditzydm.deviantart.com/)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
@@ -723,6 +719,22 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Yellow Key Item"](https://forum.tuxemon.org/thread.php?pid=866#p866) by
 [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Potion"](https://wiki.tuxemon.org/File:Potion.png) [http://opengameart.org/content/potions-3 CC0]
+
+* ["Imperial Potion"](https://wiki.tuxemon.org/File:Imperial_Potion.png) [http://opengameart.org/content/potions-3 CC0]
+
+* ["Mega Potion"](https://wiki.tuxemon.org/File:Potion-grade-d.png) A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Super Potion"](https://wiki.tuxemon.org/File:Super_potion.png) [http://opengameart.org/content/potions-3 CC0]
+
+* ["Ancient Tea"](https://wiki.tuxemon.org/File:Tea_7.png) [https://opengameart.org/content/infusions-icons CC0]
+
+* ["Imperial Tea"](https://wiki.tuxemon.org/File:Tea_10.png) [https://opengameart.org/content/infusions-icons CC0]
+
+* ["Mystery Tea"](https://wiki.tuxemon.org/File:Tea_2.png) [https://opengameart.org/content/infusions-icons CC0]
+
+* ["Tea"](https://wiki.tuxemon.org/File:Tea_1.png) [https://opengameart.org/content/infusions-icons CC0]
 
 * ["Capture Device"](https://wiki.tuxemon.org/File:Unknown-2.png) by
 [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)

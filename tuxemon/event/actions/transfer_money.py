@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class MoneyMathAction(EventAction):
     """
-    Perform a mathematical transaction on the player's money.
+    Performs a mathematical transaction on the player's money.
 
     Script usage:
         .. code-block::

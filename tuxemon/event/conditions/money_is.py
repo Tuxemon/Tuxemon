@@ -2,18 +2,14 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import logging
-
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
-logger = logging.getLogger(__name__)
-
 
 class MoneyIsCondition(EventCondition):
     """
-    Check to see if the player has seen or caught a monster.
+    Check to see if the player has a certain amount of money (pocket).
 
     Script usage:
         .. code-block::
@@ -31,14 +27,14 @@ class MoneyIsCondition(EventCondition):
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         """
-        Check to see if the player has seen or caught a monster.
+        Check to see if the player has a certain amount of money (pocket).
 
         Parameters:
             session: The session object
             condition: The map condition object.
 
         Returns:
-            Whether the player has seen or caught a monster.
+            Whether the player has a certain amount of money.
 
         """
         player = session.player

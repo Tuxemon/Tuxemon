@@ -1600,6 +1600,9 @@ msgstr "Caught {param} out of {all} Tuxemon"
 msgid "player_start_adventure"
 msgstr "The adventure began {date} days ago."
 
+msgid "player_battles"
+msgstr "Battles: {tot} (W{won} D{draw} L{lost})"
+
 # Tuxepedia
 
 msgid "page_tuxepedia"

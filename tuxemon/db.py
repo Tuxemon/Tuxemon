@@ -645,17 +645,11 @@ class EncounterModel(BaseModel):
     )
 
 
-class InventoryModel(BaseModel):
-    slug: str = Field(
-        ..., description="Slug uniquely identifying the inventory"
-    )
-    inventory: Mapping[str, Optional[int]] = Field(...)
-
-
 class EconomyItemModel(BaseModel):
     item_name: str = Field(..., description="Name of the item")
     price: int = Field(0, description="Price of the item")
     cost: int = Field(0, description="Cost of the item")
+    inventory: int = Field(0, description="Quantity of the item")
 
     @validator("item_name")
     def item_exists(cls, v):
@@ -683,7 +677,6 @@ TableName = Literal[
     "economy",
     "encounter",
     "environment",
-    "inventory",
     "item",
     "monster",
     "music",
@@ -696,7 +689,6 @@ DataModel = Union[
     EconomyModel,
     EncounterModel,
     EnvironmentModel,
-    InventoryModel,
     ItemModel,
     MonsterModel,
     MusicModel,
@@ -748,7 +740,6 @@ class JSONDatabase:
             "npc",
             "technique",
             "encounter",
-            "inventory",
             "environment",
             "sounds",
             "music",
@@ -882,9 +873,6 @@ class JSONDatabase:
             elif table == "environment":
                 env = EnvironmentModel(**item)
                 self.database[table][env.slug] = env
-            elif table == "inventory":
-                inventory = InventoryModel(**item)
-                self.database[table][inventory.slug] = inventory
             elif table == "item":
                 itm = ItemModel(**item)
                 self.database[table][itm.slug] = itm
@@ -932,10 +920,6 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["encounter"]) -> EncounterModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["inventory"]) -> InventoryModel:
         pass
 
     @overload

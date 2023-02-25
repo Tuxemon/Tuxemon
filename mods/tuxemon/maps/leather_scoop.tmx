@@ -69,8 +69,7 @@
    <properties>
     <property name="act10" value="create_npc tuxemart_keeper,1,5,,stand"/>
     <property name="act20" value="npc_face tuxemart_keeper,right"/>
-    <property name="act30" value="set_inventory tuxemart_keeper,leather_scoop"/>
-    <property name="act40" value="set_economy tuxemart_keeper,leather_scoop"/>
+    <property name="act30" value="set_economy tuxemart_keeper,leather_scoop"/>
     <property name="cond10" value="not npc_exists tuxemart_keeper"/>
    </properties>
   </object>

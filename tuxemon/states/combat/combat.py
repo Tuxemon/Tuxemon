@@ -26,7 +26,7 @@ from typing import (
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import audio, formula, graphics, state, tools
+from tuxemon import audio, battle, formula, graphics, state, tools
 from tuxemon.animation import Task
 from tuxemon.combat import (
     check_status,
@@ -439,13 +439,13 @@ class CombatState(CombatAnimations):
             var = self.players[0].game_variables
             var["battle_last_result"] = OutputBattle.draw
             if self.is_trainer_battle:
-                formula.battle_math(self.players[0], OutputBattle.draw)
                 var["battle_last_trainer"] = self.players[1].slug
                 # track battles against NPC
-                self.players[0].battle_history[self.players[1].slug] = (
-                    OutputBattle.draw,
-                    dt.date.today().toordinal(),
-                )
+                opponent = battle.Battle()
+                opponent.opponent = self.players[1].slug
+                opponent.outcome = OutputBattle.draw
+                opponent.date = dt.date.today().toordinal()
+                self.players[0].battles.append(opponent)
 
             # it is a draw match; both players were defeated in same round
             self.alert(T.translate("combat_draw"))
@@ -476,11 +476,11 @@ class CombatState(CombatAnimations):
                     self.players[0].give_money(self._prize)
                     var["battle_last_trainer"] = self.players[1].slug
                     # track battles against NPC
-                    formula.battle_math(self.players[0], OutputBattle.won)
-                    self.players[0].battle_history[self.players[1].slug] = (
-                        OutputBattle.won,
-                        dt.date.today().toordinal(),
-                    )
+                    opponent = battle.Battle()
+                    opponent.opponent = self.players[1].slug
+                    opponent.outcome = OutputBattle.won
+                    opponent.date = dt.date.today().toordinal()
+                    self.players[0].battles.append(opponent)
                 else:
                     self.alert(T.translate("combat_victory"))
 
@@ -489,13 +489,12 @@ class CombatState(CombatAnimations):
                 var["battle_lost_faint"] = "true"
                 self.alert(T.translate("combat_defeat"))
                 if self.is_trainer_battle:
-                    formula.battle_math(self.players[0], OutputBattle.lost)
                     var["battle_last_trainer"] = self.players[1].slug
                     # track battles against NPC
-                    self.players[0].battle_history[self.players[1].slug] = (
-                        OutputBattle.lost,
-                        dt.date.today().toordinal(),
-                    )
+                    opponent = battle.Battle()
+                    opponent.opponent = self.players[1].slug
+                    opponent.outcome = OutputBattle.lost
+                    opponent.date = dt.date.today().toordinal()
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close

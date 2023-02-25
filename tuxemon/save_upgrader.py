@@ -59,11 +59,21 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
             "date_start_game"
         ] = formula.today_ordinal()
 
-    save_data["battle_history"] = save_data.get("battle_history", {})
     save_data["money"] = save_data.get("money", {})
     save_data["tuxepedia"] = save_data.get("tuxepedia", {})
     save_data["contacts"] = save_data.get("contacts", {})
     save_data["items"] = save_data.get("items", [])
+    save_data["battles"] = save_data.get("battles", [])
+
+    print(save_data["battles"])
+
+    # trasfer data from "inventory" to "items"
+    if "battle_history" in save_data:
+        for key, value in save_data["battle_history"].items():
+            output, date = value
+            save_data["battles"].append(
+                {"opponent": key, "outcome": output, "date": date}
+            )
 
     # fix name capture device -> tuxeball
     capture_device = [

@@ -255,6 +255,8 @@ class Item:
             "should_tackle": False,
             "success": False,
         }
+        # save iid
+        user.game_variables["save_item_slug"] = self.slug
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:

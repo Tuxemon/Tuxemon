@@ -65,6 +65,24 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     save_data["contacts"] = save_data.get("contacts", {})
     save_data["items"] = save_data.get("items", [])
 
+    # fix name capture device -> tuxeball
+    capture_device = [
+        element
+        for element in save_data["items"]
+        if element["slug"] == "capture_device"
+    ]
+    if capture_device:
+        for capture in save_data["items"]:
+            if capture["slug"] == "capture_device":
+                save_data["items"].append(
+                    {
+                        "slug": "tuxeball",
+                        "quantity": capture["quantity"],
+                        "instance_id": capture["instance_id"],
+                    }
+                )
+                save_data["items"].remove(capture)
+
     # trasfer data from "inventory" to "items"
     if "inventory" in save_data:
         for key, value in save_data["inventory"].items():

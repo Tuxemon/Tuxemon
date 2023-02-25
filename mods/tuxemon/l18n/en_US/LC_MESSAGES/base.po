@@ -63,11 +63,101 @@ msgstr "Revive"
 msgid "revive_description"
 msgstr "Revives knocked out Tuxemon and restores 20 HP."
 
-msgid "capture_device"
-msgstr "Capture Device"
+msgid "tuxeball"
+msgstr "Tuxeball"
 
-msgid "capture_device_description"
+msgid "tuxeball_description"
 msgstr "Captures a monster."
+
+msgid "tuxeball_earth"
+msgstr "Earth Tuxeball"
+
+msgid "tuxeball_earth_description"
+msgstr "Captures more easily an Earth Tuxemon."
+
+msgid "tuxeball_fire"
+msgstr "Fire Tuxeball"
+
+msgid "tuxeball_fire_description"
+msgstr "Captures more easily a Fire Tuxemon."
+
+msgid "tuxeball_metal"
+msgstr "Metal Tuxeball"
+
+msgid "tuxeball_metal_description"
+msgstr "Captures more easily a Metal Tuxemon."
+
+msgid "tuxeball_water"
+msgstr "Water Tuxeball"
+
+msgid "tuxeball_water_description"
+msgstr "Captures more easily a Water Tuxemon."
+
+msgid "tuxeball_wood"
+msgstr "Wood Tuxeball"
+
+msgid "tuxeball_wood_description"
+msgstr "Captures more easily a Wood Tuxemon."
+
+msgid "tuxeball_male"
+msgstr "Male Tuxeball"
+
+msgid "tuxeball_male_description"
+msgstr "Captures more easily a Male Tuxemon."
+
+msgid "tuxeball_female"
+msgstr "Female Tuxeball"
+
+msgid "tuxeball_female_description"
+msgstr "Captures more easily a Female Tuxemon."
+
+msgid "tuxeball_neuter"
+msgstr "Neuter Tuxeball"
+
+msgid "tuxeball_neuter_description"
+msgstr "Captures more easily a Neuter Tuxemon."
+
+msgid "tuxeball_candy"
+msgstr "Candy Tuxeball"
+
+msgid "tuxeball_candy_description"
+msgstr "Captures Tuxemon and increases its level (+1) upon capture."
+
+msgid "tuxeball_lavish"
+msgstr "Lavish Tuxeball"
+
+msgid "tuxeball_lavish_description"
+msgstr "The capture has a higher chance of succeeding."
+
+msgid "tuxeball_ancient"
+msgstr "Ancient Tuxeball"
+
+msgid "tuxeball_ancient_description"
+msgstr "This Tuxeball was made a long time ago and is capable of catching any Tuxemon without fail."
+
+msgid "tuxeball_crusher"
+msgstr "Crusher Tuxeball"
+
+msgid "tuxeball_crusher_description"
+msgstr "This Tuxeball breaks through defenses and increases the catch rate the higher the opposing Tuxemon's defense is. It will fail to catch if a protection move is used."
+
+msgid "tuxeball_xero"
+msgstr "Xero Tuxeball"
+
+msgid "tuxeball_xero_description"
+msgstr "This odd Tuxeball increases the chance of succeeding if the opposing Tuxemon is a different type than yours, but has a decreased chance if they are the same type."
+
+msgid "tuxeball_omni"
+msgstr "Omni Tuxeball"
+
+msgid "tuxeball_omni_description"
+msgstr "This odd Tuxeball increases the chance of succeeding if the opposing Tuxemon is the same type as yours, but has a decreased chance if they are different types."
+
+msgid "tuxeball_hardened"
+msgstr "Hardened Tuxeball"
+
+msgid "tuxeball_hardened_description"
+msgstr "Captures Tuxemon and it doesn't break when it fails."
 
 msgid "fishing_rod"
 msgstr "Fishing Rod"
@@ -670,7 +760,7 @@ msgid "alert_text"
 msgstr "Text too long!"
 
 msgid "receive_happiness"
-msgstr "Received 5 Capture Devices!"
+msgstr "Received 5 Tuxeballs!"
 
 msgid "received_x"
 msgstr "Received {name}!"
@@ -3835,7 +3925,7 @@ msgid "potions_in_shop"
 msgstr "The display case seems to have a lot of potions, must be pretty popular around here."
 
 msgid "capture_devices_in_shop"
-msgstr "Capture devices. How do they make these?"
+msgstr "Tuxeballs. How do they make these?"
 
 # NPC dialogs
 
@@ -5127,19 +5217,19 @@ msgid "spyder_cottonart_shopkeeper"
 msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is ${{currency}}50. It goes towards the company's annual dividend."
 
 msgid "spyder_cottonscoop_shopassistant"
-msgstr "Capture Devices allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. \n Select them during battle from your Item menu."
+msgstr "Tuxeballs allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. \n Select them during battle from your Item menu."
 
 msgid "spyder_cottonscoop_deviceoffer"
-msgstr "Welcome customer. Today, we're promoting Capture Devices. Do you know what those are?"
+msgstr "Welcome customer. Today, we're promoting Tuxeballs. Do you know what those are?"
 
 msgid "spyder_cottonscoop_devicenoexplan"
-msgstr "     Okay, well here's five as a free sample. If you have any questions about how Capture Devices work, just ask my assistant!"
+msgstr "     Okay, well here's five as a free sample. If you have any questions about how Tuxeballs work, just ask my assistant!"
 
 msgid "spyder_cottonscoop_deviceexplan"
 msgstr "Let my assistant introduce you."
 
 msgid "spyder_cottonscoop_deviceexplan2"
-msgstr "Capture Devices allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. Select them during battle from your Item menu. \n Thank you for listening. Here's five Capture Devices as a free sample. "
+msgstr "Tuxeballs allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. Select them during battle from your Item menu. \n Thank you for listening. Here's five Tuxeballs as a free sample. "
 
 msgid "spyder_cotton_tuxepediaintro"
 msgstr "Currently, the only reliable information about tuxemon is from the expensive and incomplete Encyclopaedia Tuxemon! \n That's not cool; information should be freely available. That's why we're introducing Tuxepedia. \n It's open source, it's free, it's available for everyone to read, write and edit. How cool is that? \n In fact, I've installed it as an app on all your phones just now. "
@@ -5678,7 +5768,7 @@ msgstr "This is Dragon's Cave! I'm standing outside because ... uh, because I'm 
 msgid "spyder_searoutec_nigel2"
 msgstr "Okay I'm not standing guard! The other dragonriders wouldn't let me join them!"
 msgid "spyder_searoutec_river1"
-msgstr "Manosting was wrapped around me ... I couldn't swim ... My last hope ... The Capture Device I stashed in my swimming costume!"
+msgstr "Manosting was wrapped around me ... I couldn't swim ... My last hope ... The Tuxeball I stashed in my swimming costume!"
 msgid "spyder_searoutec_river2"
 msgstr "Suffice to say, it worked!"
 msgid "spyder_searoutec_wade1"

@@ -713,6 +713,17 @@ class MonsterInfoState(PygameMenuState):
         image_widget.translate(
             fix_width(width, 0.20), fix_height(height, 0.05)
         )
+        # tuxeball
+        tuxeball = pygame_menu.BaseImage(
+            graphics.transform_resource_filename(
+                f"gfx/items/{monster.capture_device}.png"
+            ),
+        )
+        capture_device = menu.add.image(image_path=tuxeball)
+        capture_device.set_float(origin_position=True)
+        capture_device.translate(
+            fix_width(width, 0.50), fix_height(height, 0.445)
+        )
 
     def __init__(self, monster: Monster) -> None:
         width, height = prepare.SCREEN_SIZE

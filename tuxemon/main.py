@@ -79,7 +79,7 @@ def main(
 
         action("add_item", ("potion",))
         action("add_item", ("cherry",))
-        action("add_item", ("capture_device",))
+        action("add_item", ("tuxeball",))
 
         for _ in range(10):
             action("add_item", ("super_potion",))

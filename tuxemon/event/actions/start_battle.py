@@ -54,10 +54,12 @@ class StartBattleAction(EventAction):
             return
 
         # Rematch
-        if self.npc_slug in player.battle_history:
-            rematch = player.battle_history[self.npc_slug]
-            for mon in npc.monsters:
-                formula.rematch(player, npc, mon, rematch[1])
+        if player.battles:
+            if npc.slug != "random_encounter_dummy":
+                for battle in player.battles:
+                    if battle.opponent == npc.slug:
+                        for mon in npc.monsters:
+                            formula.rematch(player, npc, mon, battle.date)
 
         # Lookup the environment
         env_slug = player.game_variables.get("environment", "grass")

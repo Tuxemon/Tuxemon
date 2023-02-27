@@ -65,8 +65,6 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     save_data["items"] = save_data.get("items", [])
     save_data["battles"] = save_data.get("battles", [])
 
-    print(save_data["battles"])
-
     # trasfer data from "inventory" to "items"
     if "battle_history" in save_data:
         for key, value in save_data["battle_history"].items():

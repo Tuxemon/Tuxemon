@@ -17,6 +17,8 @@ from tuxemon.db import (
     MonsterMovesetItemModel,
     MonsterShape,
     StatType,
+    TasteCold,
+    TasteWarm,
     db,
 )
 from tuxemon.locale import T
@@ -43,6 +45,8 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "capture",
     "height",
     "weight",
+    "taste_cold",
+    "taste_warm",
 )
 
 SHAPES = {
@@ -221,6 +225,8 @@ class Monster:
         self.shape = MonsterShape.landrace
 
         self.status: List[Technique] = []
+        self.taste_cold = TasteCold.tasteless
+        self.taste_warm = TasteWarm.tasteless
 
         self.max_moves = MAX_MOVES
         self.txmn_id = 0
@@ -286,6 +292,8 @@ class Monster:
         self.category = T.translate(f"cat_{results.category}")
         self.shape = results.shape or MonsterShape.landrace
         self.stage = results.stage or EvolutionStage.standalone
+        self.taste_cold = self.set_taste_cold(self.taste_cold)
+        self.taste_warm = self.set_taste_warm(self.taste_warm)
         types = results.types
         if types:
             self.type1 = results.types[0]
@@ -466,6 +474,41 @@ class Monster:
         self.melee = shape["melee"] * multiplier
         self.ranged = shape["ranged"] * multiplier
         self.speed = shape["speed"] * multiplier
+
+        # tastes
+        self.armour += formula.check_taste(self, "armour")
+        self.dodge += formula.check_taste(self, "dodge")
+        self.melee += formula.check_taste(self, "melee")
+        self.ranged += formula.check_taste(self, "ranged")
+        self.speed += formula.check_taste(self, "speed")
+
+    def set_taste_cold(self, taste_cold: TasteCold) -> TasteCold:
+        """
+        It returns the cold taste.
+        """
+        if taste_cold.tasteless:
+            values = list(TasteCold)
+            values.remove(TasteCold.tasteless)
+            result = random.choice(values)
+            self.taste_cold = result
+            return self.taste_cold
+        else:
+            return self.taste_cold
+
+    def set_taste_warm(self, taste_warm: TasteWarm) -> TasteWarm:
+        """
+        It returns the warm taste.
+        """
+        if taste_warm.tasteless:
+            values = list(TasteWarm)
+            values.remove(TasteWarm.tasteless)
+            result = random.choice(values)
+            self.taste_warm = result
+            self.set_stats()
+            return self.taste_warm
+        else:
+            self.set_stats()
+            return self.taste_warm
 
     def set_capture(self, amount: int) -> int:
         """

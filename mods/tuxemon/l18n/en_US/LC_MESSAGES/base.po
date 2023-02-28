@@ -3610,6 +3610,40 @@ msgstr "Glitch"
 msgid "normal"
 msgstr "Normal"
 
+# Monster tastes
+msgid "taste"
+msgstr "Taste"
+
+msgid "tastes"
+msgstr "Tastes"
+
+msgid "taste_mild"
+msgstr "Mild"
+
+msgid "taste_salty"
+msgstr "Salty"
+
+msgid "taste_sweet"
+msgstr "Sweet"
+
+msgid "taste_hearty"
+msgstr "Hearty"
+
+msgid "taste_soft"
+msgstr "Soft"
+
+msgid "taste_zesty"
+msgstr "Zesty"
+
+msgid "taste_flakey"
+msgstr "Flakey"
+
+msgid "taste_refined"
+msgstr "Refined"
+
+msgid "taste_dry"
+msgstr "Dry"
+
 # STAT TYPES
 
 msgid "armour"

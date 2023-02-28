@@ -593,6 +593,17 @@ class MonsterInfoState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         ).translate(fix_width(width, 0.50), fix_height(height, 0.40))
+        # taste
+        tastes = T.translate("tastes") + ": "
+        cold = T.translate("taste_" + monster.taste_cold)
+        warm = T.translate("taste_" + monster.taste_warm)
+        menu.add.label(
+            title=tastes + cold + ", " + warm,
+            label_id="taste",
+            font_size=15,
+            align=locals.ALIGN_LEFT,
+            float=True,
+        ).translate(fix_width(width, 0.50), fix_height(height, 0.45))
         # capture
         doc = formula.today_ordinal() - monster.capture
         menu.add.label(
@@ -601,7 +612,7 @@ class MonsterInfoState(PygameMenuState):
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.45))
+        ).translate(fix_width(width, 0.50), fix_height(height, 0.50))
         # hp
         menu.add.label(
             title=T.translate("short_hp") + ": " + str(monster.hp),

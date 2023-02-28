@@ -203,6 +203,52 @@ def escape(level_user: int, level_target: int, attempts: int) -> bool:
         return False
 
 
+def check_taste(monster: Monster, stat: str) -> int:
+    """
+    It checks the taste and return the value
+    """
+    positive = 0
+    negative = 0
+    if stat == "speed":
+        if monster.taste_cold == "mild":
+            negative = (monster.speed) * 10 // 100
+        if monster.taste_warm == "peppy":
+            positive = (monster.speed) * 10 // 100
+        value = positive - negative
+        return value
+    elif stat == "melee":
+        if monster.taste_cold == "sweet":
+            negative = (monster.melee) * 10 // 100
+        if monster.taste_warm == "salty":
+            positive = (monster.melee) * 10 // 100
+        value = positive - negative
+        return value
+    elif stat == "armour":
+        if monster.taste_cold == "soft":
+            negative = (monster.armour) * 10 // 100
+        if monster.taste_warm == "hearty":
+            positive = (monster.armour) * 10 // 100
+        value = positive - negative
+        return value
+    elif stat == "ranged":
+        if monster.taste_cold == "flakey":
+            negative = (monster.ranged) * 10 // 100
+        if monster.taste_warm == "zesty":
+            positive = (monster.ranged) * 10 // 100
+        value = positive - negative
+        return value
+    elif stat == "dodge":
+        if monster.taste_cold == "dry":
+            negative = (monster.dodge) * 10 // 100
+        if monster.taste_warm == "refined":
+            positive = (monster.dodge) * 10 // 100
+        value = positive - negative
+        return value
+    else:
+        value = positive
+        return value
+
+
 def today_ordinal() -> int:
     """
     It gives today's proleptic Gregorian ordinal.

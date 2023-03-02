@@ -21,13 +21,15 @@ class AddMonsterAction(EventAction):
     Script usage:
         .. code-block::
 
-            add_monster <monster_slug>,<monster_level>[,trainer_slug]
+            add_monster <monster_slug>,<monster_level>[,trainer_slug][,exp_mod][,money_mod]
 
     Script parameters:
         monster_slug: Monster slug to look up in the monster database.
         monster_level: Level of the added monster.
         trainer_slug: Slug of the trainer that will receive the monster. It
             defaults to the current player.
+        exp_mod: Experience modifier
+        money_mod: Money modifier
 
     """
 
@@ -35,6 +37,8 @@ class AddMonsterAction(EventAction):
     monster_slug: str
     monster_level: int
     trainer_slug: Union[str, None] = None
+    exp: Union[int, None] = None
+    money: Union[int, None] = None
 
     def start(self) -> None:
         trainer: Optional[NPC]
@@ -53,6 +57,10 @@ class AddMonsterAction(EventAction):
         current_monster.set_moves(self.monster_level)
         current_monster.set_capture(formula.today_ordinal())
         current_monster.current_hp = current_monster.hp
+        if self.exp is not None:
+            current_monster.experience_required_modifier = self.exp
+        if self.money is not None:
+            current_monster.money_modifier = self.money
 
         trainer.add_monster(current_monster)
         trainer.tuxepedia[self.monster_slug] = SeenStatus.caught

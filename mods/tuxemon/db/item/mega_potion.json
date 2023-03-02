@@ -5,11 +5,11 @@
     "current_hp target,>,0"
   ],
   "effects": [
-    "heal 50"
+    "heal 200"
   ],
-  "slug": "super_potion",
+  "slug": "mega_potion",
   "sort": "potion",
-  "sprite": "gfx/items/super_potion.png",
+  "sprite": "gfx/items/mega_potion.png",
   "target": {
     "enemy monster": 1,
     "enemy team": 0,

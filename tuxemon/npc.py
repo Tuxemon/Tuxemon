@@ -873,10 +873,10 @@ class NPC(Entity[NPCState]):
             type: The slug name of the type.
         """
         for mon in self.monsters:
-            if mon.type1 == element:
+            if element in mon.types:
                 return True
-            elif mon.type2 == element:
-                return True
+            else:
+                return False
         return False
 
     def check_max_moves(self, session: Session, monster: Monster) -> None:

@@ -1,19 +1,24 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
-
-from tuxemon.tools import copy_dict_with_keys, round_to_divisible, number_or_variable
-from tuxemon.session import local_session
-from tuxemon.session import Session
 from unittest import mock
 
 from tuxemon.player import Player
+from tuxemon.session import Session, local_session
+from tuxemon.tools import (
+    copy_dict_with_keys,
+    number_or_variable,
+    round_to_divisible,
+)
+
 
 def mockPlayer(self) -> None:
     self.game_variables = {"my_var": 2}
 
+
 def mockSession(self) -> None:
     self.session = local_session
+
 
 class TestRoundToDivisible(unittest.TestCase):
     def test_round_down(self):
@@ -45,10 +50,11 @@ class TestCopyDictWithKeys(unittest.TestCase):
         result = copy_dict_with_keys(source, keys)
         self.assertEqual(result, expected)
 
+
 class TestVariableMoney(unittest.TestCase):
     def test_var(self):
         with mock.patch.object(Player, "__init__", mockPlayer):
-            #session = Session()
+            # session = Session()
             player = Player()
             local_session.player = player
 

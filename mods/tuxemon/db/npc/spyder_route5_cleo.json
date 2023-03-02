@@ -1,7 +1,12 @@
 {
   "slug": "spyder_route5_cleo",
-  "gender": "female",
-  "sprite_name": "catgirl",
+  "template": [
+    {
+      "sprite_name": "catgirl",
+      "combat_front": "catgirl",
+      "slug": "catgirl"
+    }
+  ],
   "monsters": [
     {
       "name": "Memnomnom",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "catgirl.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

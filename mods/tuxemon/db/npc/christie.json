@@ -1,7 +1,10 @@
 {
   "slug": "christie",
-  "gender": "female",
-  "sprite_name": "christie",
-  "combat_front": "heroine.png",
-  "combat_back": "adventurer_back.png"
+  "template": [
+    {
+      "sprite_name": "christie",
+      "combat_front": "heroine",
+      "slug": "heroine"
+    }
+  ]
 }

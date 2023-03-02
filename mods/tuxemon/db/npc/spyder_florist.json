@@ -1,7 +1,10 @@
 {
   "slug": "spyder_florist",
-  "gender": "female",
-  "sprite_name": "florist",
-  "combat_front": "adventurer.png",
-  "combat_back": "adventurer_back.png"
+  "template": [
+    {
+      "sprite_name": "florist",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
+  ]
 }

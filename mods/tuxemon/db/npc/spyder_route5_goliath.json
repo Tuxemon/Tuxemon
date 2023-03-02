@@ -1,7 +1,12 @@
 {
   "slug": "spyder_route5_goliath",
-  "gender": "male",
-  "sprite_name": "spyderrookie",
+  "template": [
+    {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
+  ],
   "monsters": [
     {
       "name": "Spighter",
@@ -11,7 +16,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "spyder_rookie.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

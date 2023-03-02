@@ -1,7 +1,12 @@
 {
   "slug": "spyder_scoop_lanth",
-  "gender": "male",
-  "sprite_name": "professor",
+  "template": [
+    {
+      "sprite_name": "professor",
+      "combat_front": "professor",
+      "slug": "professor"
+    }
+  ],
   "monsters": [
     {
       "name": "mRmOswitch",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "neuter"
     }
-  ],
-  "combat_front": "professor.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

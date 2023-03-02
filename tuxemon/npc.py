@@ -813,9 +813,7 @@ class NPC(Entity[NPCState]):
             # npc_monsters_details, which is a PartyMemberModel, is "slug"
             monster = Monster(save_data=npc_monster_details.dict())
             monster.money_modifier = npc_monster_details.money_mod
-            monster.experience_required_modifier = (
-                npc_monster_details.exp_req_mod
-            )
+            monster.experience_modifier = npc_monster_details.exp_req_mod
             monster.set_level(monster.level)
             monster.set_moves(monster.level)
             monster.current_hp = monster.hp

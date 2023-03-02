@@ -7,6 +7,7 @@ from typing import (
     TYPE_CHECKING,
     Any,
     ClassVar,
+    List,
     Mapping,
     Optional,
     Sequence,
@@ -79,8 +80,7 @@ class Technique:
         self.sort = ""
         self.slug = ""
         self.target: Sequence[str] = []
-        self.type1 = ElementType.aether
-        self.type2: Optional[ElementType] = None
+        self.types: List[ElementType] = []
         self.usable_on = False
         self.use_item = ""
         self.use_success = ""
@@ -130,15 +130,7 @@ class Technique:
         self.icon = results.icon
         self._combat_counter = 0
         self._life_counter = 0
-
-        if results.types:
-            self.type1 = results.types[0]
-            if len(results.types) > 1:
-                self.type2 = results.types[1]
-            else:
-                self.type2 = None
-        else:
-            self.type1 = self.type2 = None
+        self.types = list(results.types)
         # technique stats
         self.accuracy = results.accuracy or self.accuracy
         self.potency = results.potency or self.potency

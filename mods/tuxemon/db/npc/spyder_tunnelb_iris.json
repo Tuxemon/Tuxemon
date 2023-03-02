@@ -1,7 +1,12 @@
 {
   "slug": "spyder_tunnelb_iris",
-  "gender": "female",
-  "sprite_name": "florist",
+  "template": [
+    {
+      "sprite_name": "florist",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
+  ],
   "monsters": [
     {
       "name": "Tourbidi",
@@ -27,7 +32,5 @@
       "exp_req_mod": 27,
       "gender": "male"
     }
-  ],
-  "combat_front": "florist.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

@@ -1,7 +1,12 @@
 {
   "slug": "spyder_wayfarer1_bravo",
-  "gender": "male",
-  "sprite_name": "knight",
+  "template": [
+    {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_agent",
+      "slug": "enforcer_agent"
+    }
+  ],
   "monsters": [
     {
       "name": "Elofly",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "male"
     }
-  ],
-  "combat_front": "enforcer_agent.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

@@ -1,7 +1,10 @@
 {
   "slug": "spyder_picnicker",
-  "gender": "female",
-  "sprite_name": "picnicker",
-  "combat_front": "adventurer.png",
-  "combat_back": "adventurer_back.png"
+  "template": [
+    {
+      "sprite_name": "picnicker",
+      "combat_front": "adventurer",
+      "slug": "picnicker"
+    }
+  ]
 }

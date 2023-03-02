@@ -1,7 +1,12 @@
 {
   "slug": "spyder_nimrod_chromerobo",
-  "gender": "neuter",
-  "sprite_name": "robot",
+  "template": [
+    {
+      "sprite_name": "robot",
+      "combat_front": "chrome_robo",
+      "slug": "robot"
+    }
+  ],
   "monsters": [
     {
       "name": "Chrome Robo",
@@ -11,7 +16,5 @@
       "exp_req_mod": 27,
       "gender": "neuter"
     }
-  ],
-  "combat_front": "chrome_robo.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

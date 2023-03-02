@@ -1,7 +1,12 @@
 {
   "slug": "spyder_wayfarer1_morton",
-  "gender": "male",
-  "sprite_name": "beachcomber",
+  "template": [
+    {
+      "sprite_name": "beachcomber",
+      "combat_front": "yellowbelt",
+      "slug": "yellowbelt"
+    }
+  ],
   "monsters": [
     {
       "name": "MRmOswitch",
@@ -11,7 +16,5 @@
       "exp_req_mod": 27,
       "gender": "neuter"
     }
-  ],
-  "combat_front": "yellowbelt.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

@@ -565,9 +565,16 @@ class CombatAnimations(ABC, Menu[None]):
             right=0,
         )
 
+        combat_front = ""
+        combat_back = ""
+        for ele in opponent.template:
+            combat_front = ele.combat_front
+        for ele in player.template:
+            combat_back = ele.combat_front
+
         if self.is_trainer_battle:
             enemy = self.load_sprite(
-                "gfx/sprites/player/" + opponent.combat_front,
+                "gfx/sprites/player/" + combat_front + ".png",
                 bottom=back_island.rect.bottom - scale(12),
                 centerx=back_island.rect.centerx,
             )
@@ -606,7 +613,7 @@ class CombatAnimations(ABC, Menu[None]):
         )
 
         trainer1_maybe = self.load_sprite(
-            "gfx/sprites/player/" + player.combat_back,
+            "gfx/sprites/player/" + combat_back + "_back.png",
             bottom=front_island.rect.centery + scale(6),
             centerx=front_island.rect.centerx,
         )

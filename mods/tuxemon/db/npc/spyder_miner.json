@@ -1,7 +1,10 @@
 {
   "slug": "spyder_miner",
-  "gender": "male",
-  "sprite_name": "miner",
-  "combat_front": "adventurer.png",
-  "combat_back": "adventurer_back.png"
+  "template": [
+    {
+      "sprite_name": "miner",
+      "combat_front": "adventurer",
+      "slug": "miner"
+    }
+  ]
 }

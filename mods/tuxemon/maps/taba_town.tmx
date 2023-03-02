@@ -423,9 +423,10 @@
     <property name="act010" value="translated_dialog cometomepls"/>
     <property name="act020" value="set_variable talkpls:yes"/>
     <property name="act030" value="player_stop"/>
+    <property name="act035" value="lock_controls"/>
     <property name="act040" value="pathfind player,37,47"/>
     <property name="act050" value="npc_face player,up"/>
-    <property name="act060" value="player_resume"/>
+    <property name="act060" value="unlock_controls"/>
     <property name="act070" value="create_npc npc_wife,33,44"/>
     <property name="act080" value="pathfind npc_wife,36,47"/>
     <property name="act090" value="npc_face npc_wife,up"/>
@@ -644,8 +645,7 @@
     <property name="act10" value="pathfind player,43,45"/>
     <property name="act12" value="unlock_controls"/>
     <property name="act15" value="set_variable comeinside:done"/>
-    <property name="act17" value="player_resume"/>
-    <property name="act18" value="transition_teleport player_house_downstairs.tmx,4,6,0.3"/>
+    <property name="act16" value="transition_teleport player_house_downstairs.tmx,4,6,0.3"/>
     <property name="cond1" value="is variable_set comeinside:yes"/>
    </properties>
   </object>
@@ -778,8 +778,7 @@
   <object id="149" name="timetogroove2" type="event" x="512" y="592" width="16" height="16">
    <properties>
     <property name="act1" value="wait 1.5"/>
-    <property name="act11" value="pathfind player,43,45"/>
-    <property name="act2" value="player_resume"/>
+    <property name="act2" value="pathfind player,43,45"/>
     <property name="act3" value="set_variable comeinside:stahp"/>
     <property name="act4" value="set_variable backhome:no"/>
     <property name="cond1" value="is variable_set comeinside:dope"/>
@@ -808,8 +807,7 @@
     <property name="act3" value="player_stop"/>
     <property name="act4" value="wait 2"/>
     <property name="act5" value="translated_dialog moverocky2"/>
-    <property name="act6" value="player_resume"/>
-    <property name="act7" value="unlock_controls"/>
+    <property name="act6" value="unlock_controls"/>
     <property name="cond1" value="is variable_set go_get_tuxemon:yes"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>

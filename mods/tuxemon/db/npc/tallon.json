@@ -1,7 +1,10 @@
 {
   "slug": "tallon",
-  "gender": "male",
-  "sprite_name": "ninja",
-  "combat_front": "adventurer.png",
-  "combat_back": "adventurer_back.png"
+  "template": [
+    {
+      "sprite_name": "ninja",
+      "combat_front": "ninja",
+      "slug": "ninja"
+    }
+  ]
 }

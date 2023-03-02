@@ -9,7 +9,7 @@ from typing import Any, Callable, Sequence
 import pygame_menu
 from pygame_menu import baseimage, locals, widgets
 
-from tuxemon import formula, graphics, prepare
+from tuxemon import graphics, prepare
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
@@ -51,6 +51,19 @@ class NuPhone(PygameMenuState):
                 [T.translate("no_signal")],
             )
 
+        def uninstall(itm: Item) -> None:
+            count = sum(
+                [1 for ele in self.player.items if ele.slug == itm.slug]
+            )
+            if count > 1:
+                self.player.remove_item(itm)
+                self.client.replace_state("NuPhone")
+            else:
+                open_dialog(
+                    local_session,
+                    [T.translate("uninstall_app")],
+                )
+
         menu._column_max_width = [
             fix_width(menu._width, 0.25),
             fix_width(menu._width, 0.25),
@@ -90,7 +103,9 @@ class NuPhone(PygameMenuState):
                 change,
                 selection_effect=widgets.HighlightSelection(),
             )
-            menu.add.label(label, font_size=15)
+            menu.add.button(
+                label, action=partial(uninstall, item), font_size=15
+            )
             menu.add.label(item.description, font_size=15, wordwrap=True)
 
     def __init__(self) -> None:
@@ -118,8 +133,7 @@ class NuPhone(PygameMenuState):
         self.player = local_session.player
 
         menu_items_map = []
-        for items in self.player.inventory.keys():
-            itm = Item(local_session, self.player, items)
+        for itm in self.player.items:
             if (
                 itm.category == "phone"
                 and itm.slug != "nu_phone"

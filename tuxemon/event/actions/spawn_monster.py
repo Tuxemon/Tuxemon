@@ -82,31 +82,31 @@ class SpawnMonsterAction(EventAction):
             )
             return
 
-        # matrix, it respects the type1, strong against weak.
+        # matrix, it respects the types[0], strong against weak.
         # Mother (Water), Father (Earth)
         # Earth > Water => Child (Earth)
-        if mother.type1.water:
-            if father.type1.earth:
+        if mother.types[0].water:
+            if father.types[0].earth:
                 seed = father.slug
             else:
                 seed = mother.slug
-        elif mother.type1.fire:
-            if father.type1.water:
+        elif mother.types[0].fire:
+            if father.types[0].water:
                 seed = father.slug
             else:
                 seed = mother.slug
-        elif mother.type1.wood:
-            if father.type1.metal:
+        elif mother.types[0].wood:
+            if father.types[0].metal:
                 seed = father.slug
             else:
                 seed = mother.slug
-        elif mother.type1.metal:
-            if father.type1.fire:
+        elif mother.types[0].metal:
+            if father.types[0].fire:
                 seed = father.slug
             else:
                 seed = mother.slug
-        elif mother.type1.earth:
-            if father.type1.wood:
+        elif mother.types[0].earth:
+            if father.types[0].wood:
                 seed = father.slug
             else:
                 seed = mother.slug
@@ -117,6 +117,7 @@ class SpawnMonsterAction(EventAction):
         child = monster.Monster()
         child.load_from_db(seed)
         child.set_level(5)
+        child.set_moves(5)
         child.set_capture(formula.today_ordinal())
         child.current_hp = child.hp
         # child gets random father's moves

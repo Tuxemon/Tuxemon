@@ -216,8 +216,7 @@ class Monster:
         self.experience_required_modifier = 1
         self.total_experience = 0
 
-        self.type1 = ElementType.aether
-        self.type2: Optional[ElementType] = None
+        self.types: List[ElementType] = []
         self.shape = MonsterShape.landrace
 
         self.status: List[Technique] = []
@@ -286,11 +285,7 @@ class Monster:
         self.category = T.translate(f"cat_{results.category}")
         self.shape = results.shape or MonsterShape.landrace
         self.stage = results.stage or EvolutionStage.standalone
-        types = results.types
-        if types:
-            self.type1 = results.types[0]
-            if len(types) > 1:
-                self.type2 = results.types[1]
+        self.types = list(results.types)
 
         self.txmn_id = results.txmn_id
         self.capture = self.set_capture(self.capture)
@@ -314,9 +309,6 @@ class Monster:
         if moveset:
             for move in moveset:
                 self.moveset.append(move)
-                if move.level_learned <= self.level:
-                    technique = Technique(move.technique)
-                    self.learn(technique)
 
         # Look up the evolutions for this monster.
         evolutions = results.evolutions
@@ -337,8 +329,8 @@ class Monster:
             self.combat_call = results.sounds.combat_call
             self.faint_call = results.sounds.faint_call
         else:
-            self.combat_call = f"sound_{self.type1}_call"
-            self.faint_call = f"sound_{self.type1}_faint"
+            self.combat_call = f"sound_{self.types[0]}_call"
+            self.faint_call = f"sound_{self.types[0]}_faint"
 
         # Load the monster AI
         # TODO: clean up AI 'core' loading and what not
@@ -520,7 +512,7 @@ class Monster:
         self.level = min(self.level, MAX_LEVEL)
         self.set_stats()
 
-    def set_level(self, level: int = 5) -> None:
+    def set_level(self, level: int) -> None:
         """
         Set monster level.
 
@@ -544,13 +536,25 @@ class Monster:
         self.total_experience = self.experience_required()
         self.set_stats()
 
-        # Update moves
+    def set_moves(self, level: int) -> None:
+        """
+        Set monster moves according to the level.
+
+        Parameters:
+            level: The level of the monster.
+
+        """
+        moves = []
         for move in self.moveset:
-            if (
-                move.technique not in (m.slug for m in self.moves)
-                and move.level_learned <= level
-            ):
-                self.learn(Technique(move.technique))
+            if move.level_learned <= level:
+                moves.append(move.technique)
+
+        if len(moves) <= MAX_MOVES:
+            for ele in moves:
+                self.learn(Technique(ele))
+        else:
+            for ele in moves[-MAX_MOVES:]:
+                self.learn(Technique(ele))
 
     def experience_required(self, level_ofs: int = 0) -> int:
         """

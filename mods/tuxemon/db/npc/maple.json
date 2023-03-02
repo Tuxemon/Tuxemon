@@ -1,9 +1,12 @@
 {
   "slug": "maple_girl",
-  "gender": "female",
-  "sprite_name": "girl1",
-  "combat_front": "heroine.png",
-  "combat_back": "heroine_back.png",
+  "template": [
+    {
+      "sprite_name": "girl1",
+      "combat_front": "heroine",
+      "slug": "heroine"
+    }
+  ],
   "monsters": [
     {
       "name": "Snowball",

@@ -69,26 +69,24 @@
   <object id="22" name="Player Spawn" type="event" x="192" y="0" width="16" height="16"/>
   <object id="25" name="Create Npc" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc tabanurse,6,4,nurse,stand"/>
+    <property name="act1" value="create_npc tabanurse,5,4"/>
     <property name="cond1" value="not npc_exists tabanurse"/>
    </properties>
   </object>
-  <object id="26" name="hello there" type="event" x="96" y="96" width="16" height="16">
+  <object id="26" name="hello there" type="event" x="80" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cotton_nurse1"/>
     <property name="act3" value="translated_dialog_choice yes:no,chooses"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="not variable_set chooses:yes"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set chooses:yes"/>
    </properties>
   </object>
-  <object id="28" name="Use Computer" type="event" x="160" y="64" width="16" height="16">
+  <object id="28" name="Use Computer" type="event" x="160" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="change_state PCState"/>
-    <property name="cond1" value="is player_at 11,6"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="29" name="Auto Healing Teleported" type="event" x="16" y="0" width="16" height="16">

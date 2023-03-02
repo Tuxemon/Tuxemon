@@ -1,7 +1,12 @@
 {
   "slug": "spyder_scoop_donald",
-  "gender": "male",
-  "sprite_name": "cooldude",
+  "template": [
+    {
+      "sprite_name": "cooldude",
+      "combat_front": "cooldude",
+      "slug": "cooldude"
+    }
+  ],
   "monsters": [
     {
       "name": "Birdling",
@@ -27,7 +32,5 @@
       "exp_req_mod": 27,
       "gender": "male"
     }
-  ],
-  "combat_front": "cooldude.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

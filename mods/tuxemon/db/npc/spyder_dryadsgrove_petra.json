@@ -1,7 +1,12 @@
 {
   "slug": "spyder_dryadsgrove_petra",
-  "gender": "female",
-  "sprite_name": "woodnymph",
+  "template": [
+    {
+      "sprite_name": "woodnymph",
+      "combat_front": "earthnymph",
+      "slug": "earthnymph"
+    }
+  ],
   "monsters": [
     {
       "name": "Vivitron",
@@ -27,7 +32,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "earthnymph.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

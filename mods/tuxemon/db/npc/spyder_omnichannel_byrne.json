@@ -1,7 +1,12 @@
 {
   "slug": "spyder_omnichannel_byrne",
-  "gender": "male",
-  "sprite_name": "professor",
+  "template": [
+    {
+      "sprite_name": "professor",
+      "combat_front": "professor",
+      "slug": "professor"
+    }
+  ],
   "monsters": [
     {
       "name": "Rockat",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "male"
     }
-  ],
-  "combat_front": "professor.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

@@ -1,7 +1,12 @@
 {
   "slug": "spyder_searoutec_gil",
-  "gender": "male",
-  "sprite_name": "swimmer",
+  "template": [
+    {
+      "sprite_name": "swimmer",
+      "combat_front": "swimmer",
+      "slug": "swimmer"
+    }
+  ],
   "monsters": [
     {
       "name": "Nudiflot",
@@ -27,7 +32,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "swimmer.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

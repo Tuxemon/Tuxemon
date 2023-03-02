@@ -1,7 +1,12 @@
 {
   "slug": "spyder_hospital_billie",
-  "gender": "female",
-  "sprite_name": "fashionista",
+  "template": [
+    {
+      "sprite_name": "fashionista",
+      "combat_front": "fashionista",
+      "slug": "fashionista"
+    }
+  ],
   "monsters": [
     {
       "name": "Viviphyta",
@@ -27,7 +32,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "fashionista.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

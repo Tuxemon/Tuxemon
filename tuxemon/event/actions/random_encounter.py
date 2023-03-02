@@ -174,6 +174,7 @@ def _create_monster_npc(
     # Set the monster's level
     current_monster.level = 1
     current_monster.set_level(level)
+    current_monster.set_moves(level)
     current_monster.set_capture(formula.today_ordinal())
     current_monster.current_hp = current_monster.hp
     current_monster.experience_required_modifier = encounter.exp_req_mod

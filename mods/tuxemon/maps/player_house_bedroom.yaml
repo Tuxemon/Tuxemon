@@ -13,13 +13,12 @@ events:
     actions:
     - change_state PCState
     conditions:
-    - is player_at 3,2
-    - is player_facing up
+    - is player_facing_tile
     - is button_pressed K_RETURN
     height: 1
     width: 1
     x: 3
-    y: 2
+    y: 1
     type: "event"
   Player Spawn:
     height: 1

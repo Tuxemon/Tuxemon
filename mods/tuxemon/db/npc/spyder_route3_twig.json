@@ -1,7 +1,12 @@
 {
   "slug": "spyder_route3_twig",
-  "gender": "male",
-  "sprite_name": "miner",
+  "template": [
+    {
+      "sprite_name": "miner",
+      "combat_front": "miner",
+      "slug": "miner"
+    }
+  ],
   "monsters": [
     {
       "name": "Aardorn",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "miner.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

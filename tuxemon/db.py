@@ -557,29 +557,60 @@ class PartyMemberModel(BaseModel):
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
 
-class NpcModel(BaseModel):
-    slug: str = Field(..., description="Slug of the name of the NPC")
-    gender: GenderType = Field(..., description="Gender of the NPC")
+class BagItemModel(BaseModel):
+    slug: str = Field(..., description="Slug of the item")
+    quantity: int = Field(..., description="Quantity of the item")
+
+    @validator("slug")
+    def item_exists(cls, v):
+        if has.db_entry("item", v):
+            return v
+        raise ValueError(f"the item {v} doesn't exist in the db")
+
+
+class NpcTemplateModel(BaseModel):
     sprite_name: str = Field(
         ..., description="Name of the overworld sprite filename"
     )
     combat_front: str = Field(
         ..., description="Name of the battle front sprite filename"
     )
-    combat_back: str = Field(
+    slug: str = Field(
         ..., description="Name of the battle back sprite filename"
+    )
+
+    @validator("combat_front")
+    def combat_file_exists(cls, v):
+        file: str = f"gfx/sprites/player/{v}.png"
+        if has.file(file):
+            return v
+        raise ValueError(f"{file} doesn't exist in the db")
+
+    @validator("sprite_name")
+    def sprite_exists(cls, v):
+        file: str = f"sprites/{v}_front.png"
+        if has.file(file):
+            return v
+        raise ValueError(f"the sprite {file} doesn't exist in the db")
+
+    @validator("slug")
+    def template_exists(cls, v):
+        if has.db_entry("template", v):
+            return v
+        raise ValueError(f"the template {v} doesn't exist in the db")
+
+
+class NpcModel(BaseModel):
+    slug: str = Field(..., description="Slug of the name of the NPC")
+    template: Sequence[NpcTemplateModel] = Field(
+        [], description="List of templates"
     )
     monsters: Sequence[PartyMemberModel] = Field(
         [], description="List of monsters in the NPCs party"
     )
-
-    # Validate resources that should exist
-    @validator("combat_front", "combat_back")
-    def combat_file_exists(cls, v):
-        file: str = f"gfx/sprites/player/{v}"
-        if has.file(file):
-            return v
-        raise ValueError(f"no resource exists with path: {file}")
+    items: Sequence[BagItemModel] = Field(
+        [], description="List of items in the NPCs bag"
+    )
 
 
 class BattleGraphicsModel(BaseModel):
@@ -631,17 +662,11 @@ class EncounterModel(BaseModel):
     )
 
 
-class InventoryModel(BaseModel):
-    slug: str = Field(
-        ..., description="Slug uniquely identifying the inventory"
-    )
-    inventory: Mapping[str, Optional[int]] = Field(...)
-
-
 class EconomyItemModel(BaseModel):
     item_name: str = Field(..., description="Name of the item")
     price: int = Field(0, description="Price of the item")
     cost: int = Field(0, description="Cost of the item")
+    inventory: int = Field(0, description="Quantity of the item")
 
     @validator("item_name")
     def item_exists(cls, v):
@@ -653,6 +678,12 @@ class EconomyItemModel(BaseModel):
 class EconomyModel(BaseModel):
     slug: str = Field(..., description="Slug uniquely identifying the economy")
     items: Sequence[EconomyItemModel]
+
+
+class TemplateModel(BaseModel):
+    slug: str = Field(
+        ..., description="Slug uniquely identifying the template"
+    )
 
 
 class MusicModel(BaseModel):
@@ -667,9 +698,9 @@ class SoundModel(BaseModel):
 
 TableName = Literal[
     "economy",
+    "template",
     "encounter",
     "environment",
-    "inventory",
     "item",
     "monster",
     "music",
@@ -680,9 +711,9 @@ TableName = Literal[
 
 DataModel = Union[
     EconomyModel,
+    TemplateModel,
     EncounterModel,
     EnvironmentModel,
-    InventoryModel,
     ItemModel,
     MonsterModel,
     MusicModel,
@@ -734,11 +765,11 @@ class JSONDatabase:
             "npc",
             "technique",
             "encounter",
-            "inventory",
             "environment",
             "sounds",
             "music",
             "economy",
+            "template",
         ]
         self.preloaded: Dict[TableName, Dict[str, Any]] = {}
         self.database: Dict[TableName, Dict[str, Any]] = {}
@@ -862,15 +893,15 @@ class JSONDatabase:
             if table == "economy":
                 economy = EconomyModel(**item)
                 self.database[table][economy.slug] = economy
+            elif table == "template":
+                template = TemplateModel(**item)
+                self.database[table][template.slug] = template
             elif table == "encounter":
                 encounter = EncounterModel(**item)
                 self.database[table][encounter.slug] = encounter
             elif table == "environment":
                 env = EnvironmentModel(**item)
                 self.database[table][env.slug] = env
-            elif table == "inventory":
-                inventory = InventoryModel(**item)
-                self.database[table][inventory.slug] = inventory
             elif table == "item":
                 itm = ItemModel(**item)
                 self.database[table][itm.slug] = itm
@@ -921,11 +952,11 @@ class JSONDatabase:
         pass
 
     @overload
-    def lookup(self, slug: str, table: Literal["inventory"]) -> InventoryModel:
+    def lookup(self, slug: str, table: Literal["economy"]) -> EconomyModel:
         pass
 
     @overload
-    def lookup(self, slug: str, table: Literal["economy"]) -> EconomyModel:
+    def lookup(self, slug: str, table: Literal["template"]) -> TemplateModel:
         pass
 
     @overload

@@ -1,7 +1,12 @@
 {
   "slug": "spyder_wayfarer1_james",
-  "gender": "male",
-  "sprite_name": "scientist",
+  "template": [
+    {
+      "sprite_name": "scientist",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
+  ],
   "monsters": [
     {
       "name": "Botbot",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "neuter"
     }
-  ],
-  "combat_front": "scientist.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

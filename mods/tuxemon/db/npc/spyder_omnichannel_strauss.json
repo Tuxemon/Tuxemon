@@ -1,7 +1,12 @@
 {
   "slug": "spyder_omnichannel_strauss",
-  "gender": "male",
-  "sprite_name": "warrior",
+  "template": [
+    {
+      "sprite_name": "warrior",
+      "combat_front": "warrior",
+      "slug": "warrior"
+    }
+  ],
   "monsters": [
     {
       "name": "Budaye",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "warrior.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

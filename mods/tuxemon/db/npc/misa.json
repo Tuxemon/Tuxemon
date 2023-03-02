@@ -1,7 +1,10 @@
 {
   "slug": "misa",
-  "gender": "female",
-  "sprite_name": "fashionista",
-  "combat_front": "heroine.png",
-  "combat_back": "heroine_back.png"
+  "template": [
+    {
+      "sprite_name": "fashionista",
+      "combat_front": "heroine",
+      "slug": "heroine"
+    }
+  ]
 }

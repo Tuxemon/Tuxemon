@@ -75,12 +75,11 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="73" name="Watch TV" type="event" x="144" y="48" width="16" height="16">
+  <object id="73" name="Watch TV" type="event" x="144" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cottonhouse1_tvwatch"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond3" value="is player_facing up"/>
-    <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

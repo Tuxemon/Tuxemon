@@ -50,12 +50,11 @@
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>
-  <object id="10" name="Use Computer" type="event" x="64" y="48" width="16" height="16">
+  <object id="10" name="Use Computer" type="event" x="64" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="change_state PCState"/>
-    <property name="cond1" value="is player_at 4,3"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="26" name="Player Spawn" type="event" x="64" y="80" width="16" height="16"/>

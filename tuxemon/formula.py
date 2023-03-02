@@ -8,7 +8,6 @@ import random
 from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 
 if TYPE_CHECKING:
-    from tuxemon.db import OutputBattle
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
     from tuxemon.technique.technique import Technique
@@ -106,8 +105,8 @@ def simple_damage_calculate(
         )
 
     mult = simple_damage_multiplier(
-        (technique.type1, technique.type2),
-        (target.type1, target.type2),
+        (technique.types),
+        (target.types),
     )
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)
@@ -274,31 +273,6 @@ def convert_mi(steps: float) -> float:
     km = convert_km(steps)
     mi = round(km * 0.6213711922, 2)
     return mi
-
-
-def battle_math(player: NPC, output: OutputBattle) -> None:
-    player = player.game_variables
-    if "battle_total" not in player:
-        player["battle_total"] = 0
-        player["battle_won"] = 0
-        player["battle_lost"] = 0
-        player["battle_draw"] = 0
-    player["battle_total"] += 1
-    if output.won:
-        player["battle_won"] += 1
-        player["percent_win"] = round(
-            (player["battle_won"] / player["battle_total"]) * 100
-        )
-    elif output.lost:
-        player["battle_lost"] += 1
-        player["percent_lose"] = round(
-            (player["battle_lost"] / player["battle_total"]) * 100
-        )
-    elif output.draw:
-        player["battle_draw"] += 1
-        player["percent_draw"] = round(
-            (player["battle_draw"] / player["battle_total"]) * 100
-        )
 
 
 def rematch(

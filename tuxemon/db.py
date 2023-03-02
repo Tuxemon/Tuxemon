@@ -547,7 +547,7 @@ class PartyMemberModel(BaseModel):
     money_mod: int = Field(
         ..., description="Modifier for money this monster gives"
     )
-    exp_req_mod: float = Field(..., description="Experience required modifier")
+    exp_req_mod: int = Field(..., description="Experience required modifier")
     gender: GenderType = Field(..., description="Gender of the monster")
 
     @validator("slug")

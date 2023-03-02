@@ -6,13 +6,14 @@ import logging
 import random
 import uuid
 from dataclasses import dataclass
-from typing import Union, final
+from typing import Optional, Union, final
 
 from tuxemon import formula, monster
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
+from tuxemon.npc import NPC
 from tuxemon.states.dialog import DialogState
-from tuxemon.states.world import WorldState
 from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
@@ -46,13 +47,12 @@ class SpawnMonsterAction(EventAction):
     npc_slug: Union[str, None] = None
 
     def start(self) -> None:
-        world = self.session.client.get_state_by_name(WorldState)
+        trainer: Optional[NPC]
 
         if self.npc_slug is None:
             trainer = self.session.player
         else:
-            npc_slug = self.npc_slug.replace("player", "npc_red")
-            trainer = world.get_entity(npc_slug)
+            trainer = get_npc(self.session, self.npc_slug)
 
         assert trainer, "No Trainer found with slug '{}'".format(
             self.npc_slug or "player"

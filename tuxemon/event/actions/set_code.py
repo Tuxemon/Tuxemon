@@ -49,11 +49,12 @@ class SetCodeAction(EventAction):
 
     def start(self) -> None:
         self.session.client.push_state(
-            state_name=InputMenu,
-            prompt=T.translate(self.question),
-            callback=self.check_setcode,
-            escape_key_exits=False,
-            char_limit=len(self.answer),
+            InputMenu(
+                prompt=T.translate(self.question),
+                callback=self.check_setcode,
+                escape_key_exits=False,
+                char_limit=len(self.answer),
+            )
         )
 
     def update(self) -> None:

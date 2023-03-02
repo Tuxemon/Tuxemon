@@ -97,7 +97,7 @@ class QuantityMenu(Menu[None]):
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)
 
-    def show_money(self) -> str:
+    def show_money(self) -> Generator[MenuItem[None], None, None]:
         # Show the money in the buying/selling menu
         count_len = 3
         label_format_money = "Money {:>{count_len}}".format
@@ -128,14 +128,15 @@ class QuantityAndPriceMenu(QuantityMenu):
         # Now, show the price:
         label_format = "$ {:>{count_len}}".format
         count_len = 3
-
         price = (
             self.price if self.quantity == 0 else self.quantity * self.price
         )
         if int(price) == 0:
-            price = T.translate("shop_buy_free")
+            price_tag = T.translate("shop_buy_free")
+        else:
+            price_tag = str(price)
 
-        formatted_name = label_format(price, count_len=count_len)
+        formatted_name = label_format(price_tag, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)
 
@@ -161,8 +162,10 @@ class QuantityAndCostMenu(QuantityMenu):
 
         cost = self.cost if self.quantity == 0 else self.quantity * self.cost
         if int(cost) == 0:
-            cost = T.translate("shop_buy_free")
+            cost_tag = T.translate("shop_buy_free")
+        else:
+            cost_tag = str(cost)
 
-        formatted_name = label_format(cost, count_len=count_len)
+        formatted_name = label_format(cost_tag, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)

@@ -12,7 +12,7 @@ from pygame_menu import baseimage, locals, widgets
 from tuxemon import graphics, prepare
 from tuxemon.item.item import Item
 from tuxemon.locale import T
-from tuxemon.menu.menu import PygameMenuState
+from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.tools import open_choice_dialog, open_dialog
@@ -156,7 +156,7 @@ class NuPhone(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
 
@@ -312,7 +312,7 @@ class NuPhoneBanking(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
 
@@ -403,7 +403,7 @@ class NuPhoneContacts(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
 
@@ -413,9 +413,8 @@ class NuPhoneMap(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-
         menu.add.label(
-            T.translate("leather_town"),
+            title=T.translate("leather_town"),
             selectable=True,
             float=True,
             selection_effect=widgets.HighlightSelection(),
@@ -427,7 +426,7 @@ class NuPhoneMap(PygameMenuState):
         )
 
         menu.add.label(
-            T.translate("cotton_town"),
+            title=T.translate("cotton_town"),
             selectable=True,
             float=True,
             selection_effect=widgets.HighlightSelection(),
@@ -439,7 +438,7 @@ class NuPhoneMap(PygameMenuState):
         )
 
         menu.add.label(
-            T.translate("paper_town"),
+            title=T.translate("paper_town"),
             selectable=True,
             float=True,
             selection_effect=widgets.HighlightSelection(),
@@ -451,7 +450,7 @@ class NuPhoneMap(PygameMenuState):
         )
 
         menu.add.label(
-            T.translate("candy_town"),
+            title=T.translate("candy_town"),
             selectable=True,
             float=True,
             selection_effect=widgets.HighlightSelection(),
@@ -463,7 +462,7 @@ class NuPhoneMap(PygameMenuState):
         )
 
         menu.add.label(
-            T.translate("timber_town"),
+            title=T.translate("timber_town"),
             selectable=True,
             float=True,
             selection_effect=widgets.HighlightSelection(),
@@ -475,7 +474,7 @@ class NuPhoneMap(PygameMenuState):
         )
 
         menu.add.label(
-            T.translate("flower_city"),
+            title=T.translate("flower_city"),
             selectable=True,
             float=True,
             selection_effect=widgets.HighlightSelection(),
@@ -486,7 +485,7 @@ class NuPhoneMap(PygameMenuState):
             fix_width(menu._width, -0.15), fix_height(menu._height, -0.15)
         )
         # menu
-        menu.set_title(T.translate("app_map")).center_content()
+        menu.set_title(title=T.translate("app_map")).center_content()
 
     def __init__(self) -> None:
         width, height = prepare.SCREEN_SIZE
@@ -524,6 +523,6 @@ class NuPhoneMap(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False

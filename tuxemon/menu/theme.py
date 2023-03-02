@@ -42,7 +42,7 @@ class TuxemonArrowSelection(Selection):
 
     def draw(
         self,
-        surface: pygame.surface.Surface,
+        surface: pygame.Surface,
         widget: Widget,
     ) -> Selection:
         """

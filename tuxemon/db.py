@@ -50,6 +50,24 @@ class GenderType(str, Enum):
     female = "female"
 
 
+class TasteWarm(str, Enum):
+    tasteless = "tasteless"
+    peppy = "peppy"
+    salty = "salty"
+    hearty = "hearty"
+    zesty = "zesty"
+    refined = "refined"
+
+
+class TasteCold(str, Enum):
+    tasteless = "tasteless"
+    mild = "mild"
+    sweet = "sweet"
+    soft = "soft"
+    flakey = "flakey"
+    dry = "dry"
+
+
 class ElementType(str, Enum):
     aether = "aether"
     wood = "wood"

@@ -6,6 +6,8 @@ import datetime as dt
 from dataclasses import dataclass
 from typing import final
 
+from tuxemon import battle
+from tuxemon.db import OutputBattle
 from tuxemon.event.eventaction import EventAction
 
 
@@ -13,12 +15,12 @@ from tuxemon.event.eventaction import EventAction
 @dataclass
 class SetBattleAction(EventAction):
     """
-    Set the key in the player.battle_history dictionary.
+    Append the element in player.battles.
 
     Script usage:
         .. code-block::
 
-            set_battle <character>:<result>
+            set_battle <character>,<result>
 
     Script parameters:
         character: Npc slug name (e.g. "npc_maple").
@@ -27,15 +29,19 @@ class SetBattleAction(EventAction):
     """
 
     name = "set_battle"
-    battle_list: str
+    battle_opponent: str
+    battle_outcome: str
 
     def start(self) -> None:
         player = self.session.player
 
-        # Split the variable into a key: value pair
-        battle_list = self.battle_list.split(":")
-        battle_key = str(battle_list[0])
-        battle_value = str(battle_list[1]), dt.date.today().toordinal()
+        new_battle = battle.Battle()
+        new_battle.opponent = self.battle_opponent
+        new_battle.outcome = self.battle_outcome
+        new_battle.date = dt.date.today().toordinal()
 
-        # set the value in battle history
-        player.battle_history[battle_key] = battle_value
+        outcomes = [otc.value for otc in OutputBattle]
+        if self.battle_outcome in outcomes:
+            player.battles.append(new_battle)
+        else:
+            return

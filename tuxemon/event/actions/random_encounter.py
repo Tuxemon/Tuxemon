@@ -177,7 +177,7 @@ def _create_monster_npc(
     current_monster.set_moves(level)
     current_monster.set_capture(formula.today_ordinal())
     current_monster.current_hp = current_monster.hp
-    current_monster.experience_required_modifier = encounter.exp_req_mod
+    current_monster.experience_modifier = encounter.exp_req_mod
 
     # Create an NPC object which will be this monster's "trainer"
     npc = NPC("random_encounter_dummy", world=world)

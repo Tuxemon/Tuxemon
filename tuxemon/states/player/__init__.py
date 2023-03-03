@@ -8,7 +8,7 @@ import pygame_menu
 from pygame_menu import baseimage, locals
 
 from tuxemon import formula, graphics, prepare
-from tuxemon.db import SeenStatus, db
+from tuxemon.db import OutputBattle, SeenStatus, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
@@ -79,6 +79,31 @@ class PlayerState(PygameMenuState):
             "player_start_adventure",
             {"date": str(date_begin)},
         )
+        tot = len(player.battles)
+        won = sum(
+            1
+            for battle in player.battles
+            if battle.outcome == OutputBattle.won
+        )
+        draw = sum(
+            1
+            for battle in player.battles
+            if battle.outcome == OutputBattle.draw
+        )
+        lost = sum(
+            1
+            for battle in player.battles
+            if battle.outcome == OutputBattle.lost
+        )
+        msg_battles = T.format(
+            "player_battles",
+            {
+                "tot": str(tot),
+                "won": str(won),
+                "draw": str(draw),
+                "lost": str(lost),
+            },
+        )
 
         # name
         menu._auto_centering = False
@@ -123,6 +148,14 @@ class PlayerState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         ).translate(fix_width(width, 0.45), fix_height(height, 0.40))
+        # battles
+        menu.add.label(
+            title=msg_battles,
+            label_id="battle",
+            font_size=15,
+            align=locals.ALIGN_LEFT,
+            float=True,
+        ).translate(fix_width(width, 0.45), fix_height(height, 0.45))
         # % tuxepedia
         menu.add.label(
             title=msg_progress,
@@ -132,9 +165,12 @@ class PlayerState(PygameMenuState):
             float=True,
         ).translate(fix_width(width, 0.45), fix_height(height, 0.10))
         # image
+        combat_front = ""
+        for ele in player.template:
+            combat_front = ele.combat_front
         new_image = pygame_menu.BaseImage(
             graphics.transform_resource_filename(
-                "gfx/sprites/player/" + player.combat_front
+                "gfx/sprites/player/" + combat_front + ".png"
             ),
         )
         new_image.scale(prepare.SCALE, prepare.SCALE)

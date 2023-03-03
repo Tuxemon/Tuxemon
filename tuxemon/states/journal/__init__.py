@@ -496,12 +496,14 @@ class MonsterInfoState(PygameMenuState):
             evo = T.translate("no_evolution")
         # types
         types = ""
-        if monster.type2 is not None:
-            types = (
-                T.translate(monster.type1) + " " + T.translate(monster.type2)
-            )
+        if len(monster.types) == 1:
+            types = T.translate(monster.types[0])
         else:
-            types = T.translate(monster.type1)
+            types = (
+                T.translate(monster.types[0])
+                + " "
+                + T.translate(monster.types[1])
+            )
         # weight and height
         results = db.lookup(monster.slug, table="monster")
         diff_weight, diff_height = formula.weight_height_diff(monster, results)

@@ -12,7 +12,7 @@ from tuxemon.monster import Monster
 @dataclass
 class TypeCondition(ItemCondition):
     """
-    Compares the target Monster's type1 and type2 against the given types.
+    Compares the target Monster's types[0] and types[1] against the given types.
 
     Returns true if either is equal to any of the listed types.
 
@@ -27,9 +27,9 @@ class TypeCondition(ItemCondition):
 
     def test(self, target: Monster) -> bool:
         ret = False
-        if target.type1 is not None:
+        if target.types[0] is not None:
             ret = any(
-                target.type1 == p
+                target.types[0] == p
                 for p in (
                     self.type1,
                     self.type2,
@@ -39,9 +39,9 @@ class TypeCondition(ItemCondition):
                 )
                 if p is not None
             )
-        if target.type2 is not None:
+        if target.types[1] is not None:
             ret = ret or any(
-                target.type2 == p
+                target.types[1] == p
                 for p in (
                     self.type1,
                     self.type2,

@@ -1,10 +1,13 @@
 {
   "slug": "professor-tweesher",
   "name": "professor",
-  "gender": "male",
-  "sprite_name": "professor",
-  "combat_front": "professor.png",
-  "combat_back": "adventurer_back.png",
+  "template": [
+    {
+      "sprite_name": "professor",
+      "combat_front": "professor",
+      "slug": "professor"
+    }
+  ],
   "monsters": [
     {
       "attack": 4,

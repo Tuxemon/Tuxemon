@@ -1,7 +1,12 @@
 {
   "slug": "spyder_greenwash_chip",
-  "gender": "male",
-  "sprite_name": "soldier",
+  "template": [
+    {
+      "sprite_name": "soldier",
+      "combat_front": "aviator",
+      "slug": "aviator"
+    }
+  ],
   "monsters": [
     {
       "name": "AV8R",
@@ -27,7 +32,5 @@
       "exp_req_mod": 27,
       "gender": "male"
     }
-  ],
-  "combat_front": "aviator.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

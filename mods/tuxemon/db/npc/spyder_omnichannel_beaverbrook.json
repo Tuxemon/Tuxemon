@@ -1,7 +1,12 @@
 {
   "slug": "spyder_omnichannel_beaverbrook",
-  "gender": "male",
-  "sprite_name": "ceo",
+  "template": [
+    {
+      "sprite_name": "ceo",
+      "combat_front": "ceo",
+      "slug": "ceo"
+    }
+  ],
   "monsters": [
     {
       "name": "Mk01 Alpha",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "neuter"
     }
-  ],
-  "combat_front": "ceo.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

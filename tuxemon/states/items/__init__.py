@@ -368,8 +368,12 @@ class ShopBuyMenuState(ShopMenuState):
                     itm.quantity -= quantity
                 existing.quantity += quantity
             else:
-                itm.quantity = quantity
-                self.buyer.add_item(itm)
+                if itm.quantity != INFINITE_ITEMS:
+                    itm.quantity -= quantity
+                new_buy = Item()
+                new_buy.load(itm.slug)
+                new_buy.quantity = quantity
+                self.buyer.add_item(new_buy)
             self.buyer.money["player"] = self.buyer.money.get("player") - (
                 quantity * price
             )
@@ -387,7 +391,11 @@ class ShopBuyMenuState(ShopMenuState):
         )
         money = self.buyer.money["player"]
         qty_can_afford = int(money / price)
-        max_quantity = min(item.quantity, qty_can_afford)
+
+        inventory = self.economy.lookup_item_inventory(item.slug)
+        if inventory == INFINITE_ITEMS:
+            inventory = 99999
+        max_quantity = min(inventory, qty_can_afford)
 
         self.client.push_state(
             QuantityAndPriceMenu(

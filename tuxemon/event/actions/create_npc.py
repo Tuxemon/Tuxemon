@@ -61,10 +61,10 @@ class CreateNpcAction(EventAction):
                 slug,
             )
         else:
-            sprite = db.lookup(slug, "npc").sprite_name
+            sprite = db.lookup(slug, "npc")
 
         # Create a new NPC object
-        npc = tuxemon.npc.NPC(slug, sprite_name=sprite, world=world)
+        npc = tuxemon.npc.NPC(slug, world=world)
         npc.set_position((self.tile_pos_x, self.tile_pos_y))
 
         # Set the NPC object's variables

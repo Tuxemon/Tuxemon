@@ -1,7 +1,12 @@
 {
   "slug": "spyder_route3_weaver",
-  "gender": "male",
-  "sprite_name": "knight",
+  "template": [
+    {
+      "sprite_name": "knight",
+      "combat_front": "knight",
+      "slug": "knight"
+    }
+  ],
   "monsters": [
     {
       "name": "Pythwire",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "knight.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

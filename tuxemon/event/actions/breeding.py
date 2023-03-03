@@ -52,7 +52,7 @@ class BreedingAction(EventAction):
         menu = self.session.client.push_state(MonsterMenuState())
         for t in self.player.monsters:
             if t.gender == self.gender:
-                menu.on_menu_selection = self.set_var
+                menu.on_menu_selection = self.set_var  # type: ignore[assignment]
 
     def update(self) -> None:
         try:

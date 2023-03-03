@@ -55,6 +55,7 @@ class BattleIsCondition(EventCondition):
                         return True
                     else:
                         return False
+                return False
             else:
                 return False
         else:

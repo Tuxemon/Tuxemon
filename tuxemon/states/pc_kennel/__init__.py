@@ -14,7 +14,7 @@ from tuxemon import graphics, prepare
 from tuxemon.db import db
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import PygameMenuState
+from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.states.journal import MonsterInfoState
@@ -46,7 +46,7 @@ class MonsterTakeState(PygameMenuState):
         items: Sequence[Monster],
     ) -> None:
         # it regroups kennel operations: pick up, move and release
-        def kennel_options(instance_id: uuid.UUID) -> None:
+        def kennel_options(instance_id: str) -> None:
             # retrieves the monster from the iid
             iid = uuid.UUID(instance_id)
             mon = self.player.find_monster_in_storage(iid)
@@ -250,7 +250,7 @@ class MonsterTakeState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
 

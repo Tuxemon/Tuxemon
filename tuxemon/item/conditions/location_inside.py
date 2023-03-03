@@ -31,3 +31,5 @@ class LocationInsideCondition(ItemCondition):
                 return False
             else:
                 return True
+        else:
+            return False

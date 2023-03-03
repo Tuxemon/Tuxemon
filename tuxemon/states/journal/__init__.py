@@ -4,20 +4,18 @@ from __future__ import annotations
 
 import math
 from functools import partial
-from typing import TYPE_CHECKING, Any, Callable, Sequence
+from typing import Any, Callable, List
 
 import pygame_menu
 from pygame_menu import baseimage, locals, widgets
 
 from tuxemon import formula, graphics, prepare
-from tuxemon.db import SeenStatus, db
+from tuxemon.db import MonsterModel, SeenStatus, db
 from tuxemon.locale import T
-from tuxemon.menu.menu import PygameMenuState
+from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.theme import get_theme
+from tuxemon.monster import Monster
 from tuxemon.session import local_session
-
-if TYPE_CHECKING:
-    from tuxemon.monster import Monster
 
 MAX_PAGE = 20
 
@@ -43,7 +41,7 @@ class JournalChoice(PygameMenuState):
     def add_menu_items(
         self,
         menu: pygame_menu.Menu,
-        monsters: Sequence[Monster],
+        monsters: List[MonsterModel],
     ) -> None:
         width = menu._width
         height = menu._height
@@ -115,7 +113,7 @@ class JournalChoice(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
 
 
@@ -125,7 +123,7 @@ class JournalState(PygameMenuState):
     def add_menu_items(
         self,
         menu: pygame_menu.Menu,
-        monsters: Sequence[Monster],
+        monsters: List[MonsterModel],
     ) -> None:
         width = menu._width
         height = menu._height
@@ -179,7 +177,7 @@ class JournalState(PygameMenuState):
 
     def __init__(self, **kwargs) -> None:
         monsters = ""
-        page = ""
+        page = 0
         for ele in kwargs.values():
             monsters = ele["monsters"]
             page = ele["page"]
@@ -200,8 +198,8 @@ class JournalState(PygameMenuState):
         columns = 2
 
         # defines range txmn_ids
-        min_txmn = ""
-        max_txmn = ""
+        min_txmn = 0
+        max_txmn = 0
         if page == 0:
             min_txmn = 0
             max_txmn = MAX_PAGE
@@ -216,7 +214,7 @@ class JournalState(PygameMenuState):
                 monster_list.append(ele)
 
         # fix columns and rows
-        num_mon = ""
+        num_mon = 0
         if len(monster_list) != MAX_PAGE:
             num_mon = len(monster_list) + 1
         else:
@@ -234,7 +232,7 @@ class JournalState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
 
 
@@ -445,7 +443,7 @@ class JournalInfoState(PygameMenuState):
         )
 
     def __init__(self, **kwargs) -> None:
-        monster = ""
+        monster = Monster()
         for ele in kwargs.values():
             monster = ele["monster"]
 
@@ -471,7 +469,7 @@ class JournalInfoState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
 
 
@@ -741,5 +739,5 @@ class MonsterInfoState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT

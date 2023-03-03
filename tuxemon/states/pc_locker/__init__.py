@@ -15,7 +15,7 @@ from tuxemon.db import db
 from tuxemon.item import item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import PygameMenuState
+from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.quantity import QuantityMenu
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
@@ -47,7 +47,7 @@ class ItemTakeState(PygameMenuState):
         items: Sequence[Item],
     ) -> None:
         # it regroups kennel operations: pick up, move and release
-        def locker_options(instance_id: uuid.UUID) -> None:
+        def locker_options(instance_id: str) -> None:
             # retrieves the item from the iid
             iid = uuid.UUID(instance_id)
             itm = self.player.find_item_in_storage(iid)
@@ -84,16 +84,17 @@ class ItemTakeState(PygameMenuState):
                 self.client.pop_state()
                 self.client.pop_state()
                 diff = itm.quantity - quantity
+                retrieve = self.player.find_item(itm.slug)
                 if diff <= 0:
                     self.player.remove_item_from_storage(itm)
-                    if self.player.find_item(itm.slug):
-                        self.player.find_item(itm.slug).quantity += quantity
+                    if retrieve is not None:
+                        retrieve.quantity += quantity
                     else:
                         self.player.add_item(itm)
                 else:
                     itm.quantity = diff
-                    if self.player.find_item(itm.slug):
-                        self.player.find_item(itm.slug).quantity += quantity
+                    if retrieve is not None:
+                        retrieve.quantity += quantity
                     else:
                         # item deposited
                         new_item = item.Item()
@@ -277,7 +278,7 @@ class ItemTakeState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
 
@@ -439,21 +440,19 @@ class ItemDropOffState(ItemMenuState):
                 for ele in box:
                     if ele.slug == itm.slug:
                         return ele
+                return None
 
             if box:
-                if find_monster_box(itm, box):
-                    if diff <= 0:
-                        stored = player.find_item_in_storage(
-                            find_monster_box(itm, box).instance_id
-                        )
-                        stored.quantity += quantity
-                        player.remove_item(itm)
-                    else:
-                        stored = player.find_item_in_storage(
-                            find_monster_box(itm, box).instance_id
-                        )
-                        stored.quantity += quantity
-                        itm.quantity = diff
+                retrieve = find_monster_box(itm, box)
+                if retrieve is not None:
+                    stored = player.find_item_in_storage(retrieve.instance_id)
+                    if stored is not None:
+                        if diff <= 0:
+                            stored.quantity += quantity
+                            player.remove_item(itm)
+                        else:
+                            stored.quantity += quantity
+                            itm.quantity = diff
                 else:
                     if diff <= 0:
                         new_item.quantity = quantity

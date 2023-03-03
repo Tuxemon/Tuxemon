@@ -35,5 +35,7 @@ class HasPartyBreederCondition(EventCondition):
         if any(t for t in player.monsters if t.gender == "male"):
             if any(t for t in player.monsters if t.gender == "female"):
                 return True
+            else:
+                return False
         else:
             return False

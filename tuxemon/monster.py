@@ -317,12 +317,15 @@ class Monster:
                 self.evolutions.append(evolution)
 
         # Look up the monster's sprite image paths
-        self.front_battle_sprite = self.get_sprite_path(
-            results.sprites.battle1
-        )
-        self.back_battle_sprite = self.get_sprite_path(results.sprites.battle2)
-        self.menu_sprite_1 = self.get_sprite_path(results.sprites.menu1)
-        self.menu_sprite_2 = self.get_sprite_path(results.sprites.menu2)
+        if results.sprites:
+            self.front_battle_sprite = self.get_sprite_path(
+                results.sprites.battle1
+            )
+            self.back_battle_sprite = self.get_sprite_path(
+                results.sprites.battle2
+            )
+            self.menu_sprite_1 = self.get_sprite_path(results.sprites.menu1)
+            self.menu_sprite_2 = self.get_sprite_path(results.sprites.menu2)
 
         # get sound slugs for this monster, defaulting to a generic type-based sound
         if results.sounds:
@@ -361,7 +364,7 @@ class Monster:
 
     def return_stat(
         self,
-        stat: StatType,
+        stat: Optional[StatType],
     ) -> int:
         """
         Returns a monster stat (eg. melee, armour, etc.).
@@ -369,6 +372,7 @@ class Monster:
         Parameters:
             stat: The stat for the monster to return.
         """
+        value = 0
         if stat == StatType.armour:
             return self.armour
         elif stat == StatType.dodge:
@@ -381,6 +385,8 @@ class Monster:
             return self.ranged
         elif stat == StatType.speed:
             return self.speed
+        else:
+            return value
 
     def give_experience(self, amount: int = 1) -> None:
         """

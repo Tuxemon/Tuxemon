@@ -122,7 +122,6 @@ class Item:
 
         # misc attributes (not translated!)
         self.sort = results.sort
-        assert self.sort
         self.category = results.category or ItemCategory.none
         self.type = results.type or ItemType.consumable
         self.sprite = results.sprite

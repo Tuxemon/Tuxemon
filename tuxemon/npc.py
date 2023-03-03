@@ -380,7 +380,7 @@ class NPC(Entity[NPCState]):
         self.pathfinding = destination
         path = self.world.pathfind(self.tile_pos, destination)
         if path:
-            self.path = path
+            self.path = list(path)
             self.next_waypoint()
 
     def check_continue(self) -> None:
@@ -867,7 +867,7 @@ class NPC(Entity[NPCState]):
         self.game_variables["party_level_highest"] = level_highest
         self.game_variables["party_level_average"] = level_average
 
-    def has_tech(self, tech: str) -> bool:
+    def has_tech(self, tech: Optional[str]) -> bool:
         """
         Returns TRUE if there is the technique in the party.
 
@@ -880,7 +880,7 @@ class NPC(Entity[NPCState]):
                     return True
         return False
 
-    def has_type(self, element: ElementType) -> bool:
+    def has_type(self, element: Optional[ElementType]) -> bool:
         """
         Returns TRUE if there is the type in the party.
 
@@ -918,7 +918,7 @@ class NPC(Entity[NPCState]):
         Opens the choice dialog and overwrites the technique.
         """
 
-        def set_variable(var_value: str) -> None:
+        def set_variable(var_value: Technique) -> None:
             monster.moves.remove(var_value)
             monster.learn(Technique(technique))
             session.client.pop_state()
@@ -956,7 +956,7 @@ class NPC(Entity[NPCState]):
         Opens the choice dialog and removes the technique.
         """
 
-        def set_variable(var_value: str) -> None:
+        def set_variable(var_value: Technique) -> None:
             monster.moves.remove(var_value)
             session.client.pop_state()
 

@@ -10,7 +10,6 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.item.economy import Economy
 from tuxemon.states.choice import ChoiceState
 from tuxemon.states.items import ShopBuyMenuState, ShopSellMenuState
-from tuxemon.tools import assert_never
 
 
 @final
@@ -89,4 +88,6 @@ class OpenShopAction(EventAction):
         elif menu == "sell":
             push_sell_menu()
         else:
-            assert_never(menu)
+            raise Exception(
+                f"The parameter {self.menu} can be only 'both', 'buy' or 'sell'."
+            )

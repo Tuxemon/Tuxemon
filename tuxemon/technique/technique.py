@@ -55,7 +55,7 @@ class Technique:
         self._life_counter = 0
         self.tech_id = 0
         self.accuracy = 0.0
-        self.animation = ""
+        self.animation = Optional[str]
         self.carrier = carrier
         self.category = ""
         self.combat_state: Optional[CombatState] = None
@@ -78,7 +78,7 @@ class Technique:
         self.repl_neg = ""
         self.sfx = ""
         self.sort = ""
-        self.slug = slug
+        self.slug = ""
         self.target: Sequence[str] = []
         self.types: List[ElementType] = []
         self.usable_on = False
@@ -119,7 +119,6 @@ class Technique:
         self.description = T.translate(f"{self.slug}_description")
 
         self.sort = results.sort
-        assert self.sort
 
         # technique use notifications (translated!)
         # NOTE: should be `self.use_tech`, but Technique and Item have

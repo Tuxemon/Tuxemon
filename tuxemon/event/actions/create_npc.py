@@ -6,10 +6,9 @@ import logging
 from dataclasses import dataclass
 from typing import Union, final
 
-import tuxemon.npc
 from tuxemon import ai
-from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
+from tuxemon.npc import NPC
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -60,11 +59,9 @@ class CreateNpcAction(EventAction):
                 "Sprites should be defined in JSON before loading.",
                 slug,
             )
-        else:
-            sprite = db.lookup(slug, "npc")
 
         # Create a new NPC object
-        npc = tuxemon.npc.NPC(slug, world=world)
+        npc = NPC(slug, world=world)
         npc.set_position((self.tile_pos_x, self.tile_pos_y))
 
         # Set the NPC object's variables

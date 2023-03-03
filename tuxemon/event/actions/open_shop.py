@@ -88,4 +88,4 @@ class OpenShopAction(EventAction):
         elif menu == "sell":
             push_sell_menu()
         else:
-            return
+            raise Exception

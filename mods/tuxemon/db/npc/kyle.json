@@ -1,7 +1,10 @@
 {
   "slug": "kyle",
-  "gender": "male",
-  "sprite_name": "cooldude",
-  "combat_front": "cooldude.png",
-  "combat_back": "adventurer_back.png"
+  "template": [
+    {
+      "sprite_name": "cooldude",
+      "combat_front": "cooldude",
+      "slug": "cooldude"
+    }
+  ]
 }

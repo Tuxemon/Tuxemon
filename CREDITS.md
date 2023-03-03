@@ -684,10 +684,6 @@ Character created by Leo (from Discord) and released under the CC-BY-SA 4.0+ lic
 
 ### Items
 
-* ["Potions"](http://opengameart.org/content/potions-3)
-by [Programmer16](http://opengameart.org/users/programmer16) is licensed under
-[Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
-
 * ["Backpack RPG Icons"](http://opengameart.org/content/rpg-icons) by
 [DitzyDM](http://ditzydm.deviantart.com/)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
@@ -724,9 +720,29 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Additional Potions"](https://imgur.com/a/MQjhCBR) by
+[ryanhanli](https://github.com/ryanhanli) with influence from [REXARD Potion Icons](https://assetstore.unity.com/packages/2d/gui/icons/potion-icons-54945)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["Tuxeball"](https://wiki.tuxemon.org/File:Unknown-2.png) by
 [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Potion"](https://wiki.tuxemon.org/File:Potion.png) [http://opengameart.org/content/potions-3 CC0]
+
+* ["Imperial Potion"](https://wiki.tuxemon.org/File:Imperial_Potion.png) [http://opengameart.org/content/potions-3 CC0]
+
+* ["Mega Potion"](https://wiki.tuxemon.org/File:Potion-grade-d.png) A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Super Potion"](https://wiki.tuxemon.org/File:Super_potion.png) [http://opengameart.org/content/potions-3 CC0]
+
+* ["Ancient Tea"](https://wiki.tuxemon.org/File:Tea_7.png) [https://opengameart.org/content/infusions-icons CC0]
+
+* ["Imperial Tea"](https://wiki.tuxemon.org/File:Tea_10.png) [https://opengameart.org/content/infusions-icons CC0]
+
+* ["Mystery Tea"](https://wiki.tuxemon.org/File:Tea_2.png) [https://opengameart.org/content/infusions-icons CC0]
+
+* ["Tea"](https://wiki.tuxemon.org/File:Tea_1.png) [https://opengameart.org/content/infusions-icons CC0]
 
 * ["Tuxeball Earth"](https://wiki.tuxemon.org/File:Capture_device_yellow.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -771,10 +787,6 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Earthmover Key"](https://wiki.tuxemon.org/index.php?title=Earthmover_Key) by Catch Challenger is licensed under CC-BY 4.0.
 
 * ["Fishing Rod"](https://wiki.tuxemon.org/index.php?title=Fishing_Rod) by Catch Challenger is licensed under CC-BY 4.0.
-
-* ["Additional Potions"](https://imgur.com/a/MQjhCBR) by
-[ryanhanli](https://github.com/ryanhanli) with influence from [REXARD Potion Icons](https://assetstore.unity.com/packages/2d/gui/icons/potion-icons-54945)
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Aardant"](https://wiki.tuxemon.org/index.php?title=Aardant) from the Aardorn sprite by Magic-Purple-Hermit. Tweaked by Sanglorian.
 

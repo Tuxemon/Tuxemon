@@ -1,7 +1,12 @@
 {
   "slug": "spyder_dragonscave_lessa",
-  "gender": "female",
-  "sprite_name": "dragonrider",
+  "template": [
+    {
+      "sprite_name": "dragonrider",
+      "combat_front": "dragonrider",
+      "slug": "dragonrider"
+    }
+  ],
   "monsters": [
     {
       "name": "Allagon",
@@ -11,7 +16,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "dragonrider.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

@@ -5,7 +5,7 @@
     "current_hp target,>,0"
   ],
   "effects": [
-    "heal 150"
+    "heal 50"
   ],
   "slug": "super_potion",
   "sort": "potion",

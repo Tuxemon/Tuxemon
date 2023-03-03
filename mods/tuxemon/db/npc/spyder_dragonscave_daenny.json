@@ -1,7 +1,12 @@
 {
   "slug": "spyder_dragonscave_daenny",
-  "gender": "male",
-  "sprite_name": "dragonrider",
+  "template": [
+    {
+      "sprite_name": "dragonrider",
+      "combat_front": "dragonrider",
+      "slug": "dragonrider"
+    }
+  ],
   "monsters": [
     {
       "name": "Eaglace",
@@ -11,7 +16,5 @@
       "exp_req_mod": 27,
       "gender": "male"
     }
-  ],
-  "combat_front": "dragonrider.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

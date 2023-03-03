@@ -1095,23 +1095,17 @@ class CombatState(CombatAnimations):
         """
         if monster in self._damage_map:
             # Award Experience
-            awarded_exp = monster.total_experience // (
-                monster.level * len(self._damage_map[monster])
-            )
+            awarded_exp = (
+                monster.total_experience
+                // (monster.level * len(self._damage_map[monster]))
+            ) * monster.experience_modifier
             awarded_mon = monster.level * monster.money_modifier
             for winners in self._damage_map[monster]:
                 self._level_before = winners.level
                 self._level_after = winners.level
+                winners.give_experience(awarded_exp)
                 if self.is_trainer_battle:
-                    winners.give_experience(awarded_exp)
                     self._prize += awarded_mon
-                    self._level_after = winners.level
-                else:
-                    awarded = (
-                        awarded_exp * monster.experience_required_modifier
-                    )
-                    winners.give_experience(awarded)
-                    self._level_after = winners.level
                 # it checks if there is a "level up"
                 if self._level_before != self._level_after:
                     diff = self._level_after - self._level_before

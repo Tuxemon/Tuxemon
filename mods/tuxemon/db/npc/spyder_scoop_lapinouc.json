@@ -1,7 +1,12 @@
 {
   "slug": "spyder_scoop_lapinouc",
-  "gender": "male",
-  "sprite_name": "varmint",
+  "template": [
+    {
+      "sprite_name": "varmint",
+      "combat_front": "lapinou",
+      "slug": "noclass"
+    }
+  ],
   "monsters": [
     {
       "name": "Lapinou",
@@ -11,7 +16,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "lapinou.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

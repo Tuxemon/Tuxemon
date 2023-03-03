@@ -1,7 +1,12 @@
 {
   "slug": "spyder_nimrod_thatcher",
-  "gender": "female",
-  "sprite_name": "knight",
+  "template": [
+    {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_agent",
+      "slug": "enforcer_agent"
+    }
+  ],
   "monsters": [
     {
       "name": "Squabbit",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "enforcer_agent.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

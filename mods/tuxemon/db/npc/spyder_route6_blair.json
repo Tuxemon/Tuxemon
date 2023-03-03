@@ -1,7 +1,12 @@
 {
   "slug": "spyder_route6_blair",
-  "gender": "male",
-  "sprite_name": "miner",
+  "template": [
+    {
+      "sprite_name": "miner",
+      "combat_front": "miner",
+      "slug": "miner"
+    }
+  ],
   "monsters": [
     {
       "name": "Grintrock",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "male"
     }
-  ],
-  "combat_front": "miner.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

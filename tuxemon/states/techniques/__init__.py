@@ -145,10 +145,14 @@ class TechniqueMenuState(Menu[Technique]):
         for tech in output:
             name = tech.name
             types = ""
-            if tech.type2 is not None:
-                types = T.translate(tech.type1) + " " + T.translate(tech.type2)
+            if len(tech.types) == 1:
+                types = T.translate(tech.types[0])
             else:
-                types = T.translate(tech.type1)
+                types = (
+                    T.translate(tech.types[0])
+                    + " "
+                    + T.translate(tech.types[1])
+                )
             image = self.shadow_text(name, bg=(128, 128, 128))
             label = T.format(
                 "technique_description",

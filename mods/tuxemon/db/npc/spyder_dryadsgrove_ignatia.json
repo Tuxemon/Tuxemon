@@ -1,7 +1,12 @@
 {
   "slug": "spyder_dryadsgrove_ignatia",
-  "gender": "female",
-  "sprite_name": "firenymph",
+  "template": [
+    {
+      "sprite_name": "firenymph",
+      "combat_front": "firenymph",
+      "slug": "firenymph"
+    }
+  ],
   "monsters": [
     {
       "name": "Vivicinder",
@@ -27,7 +32,5 @@
       "exp_req_mod": 27,
       "gender": "male"
     }
-  ],
-  "combat_front": "firenymph.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

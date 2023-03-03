@@ -1,7 +1,10 @@
 {
   "slug": "tabanurse",
-  "gender": "female",
-  "sprite_name": "nurse",
-  "combat_front": "nurse.png",
-  "combat_back": "heroine_back.png"
+  "template": [
+    {
+      "sprite_name": "nurse",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
+  ]
 }

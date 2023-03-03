@@ -1,7 +1,10 @@
 {
   "slug": "penguin",
-  "gender": "male",
-  "sprite_name": "penguin",
-  "combat_front": "adventurer.png",
-  "combat_back": "adventurer_back.png"
+  "template": [
+    {
+      "sprite_name": "penguin",
+      "combat_front": "adventurer",
+      "slug": "noclass"
+    }
+  ]
 }

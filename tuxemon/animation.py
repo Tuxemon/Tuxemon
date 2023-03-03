@@ -180,7 +180,6 @@ class Task(TaskBase):
         interval: float = 0,
         times: int = 1,
     ) -> None:
-
         if not callable(callback):
             raise ValueError
 
@@ -397,7 +396,6 @@ class Animation(pygame.sprite.Sprite):
         relative: bool = False,
         **kwargs: Any,
     ) -> None:
-
         super().__init__()
         self.callback: Callable[[], Any]
         self.update_callback: Callable[[], Any]

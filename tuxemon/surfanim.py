@@ -53,7 +53,6 @@ class SurfaceAnimation:
         frames: Sequence[Tuple[Union[str, pygame.surface.Surface], float]],
         loop: bool = True,
     ) -> None:
-
         # Obtain constant precision setting the initial value to 2^32:
         # https://randomascii.wordpress.com/2012/02/13/dont-store-that-in-a-float/
         self._internal_clock = float(2**32)
@@ -82,7 +81,6 @@ class SurfaceAnimation:
 
         # Load each frame of animation into _images
         for i in range(self.num_frames):
-
             frame = frames[i]
             assert (
                 isinstance(frame, tuple) and len(frame) == 2
@@ -405,14 +403,12 @@ class SurfaceAnimationCollection:
         return all(a.is_finished() for a in self._animations)
 
     def play(self, start_time: Optional[float] = None) -> None:
-
         for anim_obj in self._animations:
             anim_obj.play(start_time)
 
         self._state = PLAYING
 
     def pause(self, start_time: Optional[float] = None) -> None:
-
         for anim_obj in self._animations:
             anim_obj.pause(start_time)
 

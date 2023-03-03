@@ -49,7 +49,6 @@ class DialogState(PopUpMenu):
         self.next_text()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-
         if event.pressed and event.button == buttons.A:
             if self.text_area.drawing_text:
                 self.character_delay = 0.001

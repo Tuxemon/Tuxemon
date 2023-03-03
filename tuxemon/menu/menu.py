@@ -57,7 +57,6 @@ T = TypeVar("T", covariant=True)
 
 
 class PygameMenuState(state.State):
-
     transparent = True
     background_color: ColorLike = (248, 248, 248)
 
@@ -93,7 +92,6 @@ class PygameMenuState(state.State):
         self.menu._keyboard_ignore_nonphysical = False
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-
         if (
             event.button in {buttons.B, buttons.BACK, intentions.MENU_CANCEL}
             and not self.escape_key_exits
@@ -983,7 +981,6 @@ class PopUpMenu(Menu[T]):
     """Menu with "pop up" style animation."""
 
     def animate_open(self) -> Animation:
-
         # anchor the center of the popup
         rect = self.client.screen.get_rect()
         self.anchor("center", rect.center)

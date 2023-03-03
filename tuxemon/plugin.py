@@ -58,7 +58,6 @@ class PluginManager:
     def __init__(
         self,
     ) -> None:
-
         self.folders: Sequence[str] = []
         self.modules: List[str] = []
         self.file_extension = (".py", ".pyc")
@@ -144,7 +143,6 @@ class PluginManager:
         module: ModuleType,
         interface: Type[InterfaceValue],
     ) -> Iterable[Tuple[str, Type[InterfaceValue]]]:
-
         # This is required because of
         # https://github.com/python/typing/issues/822
         #

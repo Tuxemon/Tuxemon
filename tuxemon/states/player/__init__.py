@@ -38,7 +38,6 @@ class PlayerState(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-
         width = menu._width
         height = menu._height
 
@@ -181,7 +180,6 @@ class PlayerState(PygameMenuState):
         )
 
     def __init__(self, **kwargs) -> None:
-
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(

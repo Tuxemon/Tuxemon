@@ -132,11 +132,9 @@ class CombatAnimations(ABC, Menu[None]):
             self.task(partial(self.animate_trainer_leave, self.players[1]), 3)
 
     def blink(self, sprite: Sprite) -> None:
-
         self.task(partial(toggle_visible, sprite), 0.20, 8)
 
     def animate_trainer_leave(self, trainer: Monster) -> None:
-
         sprite = self._monster_sprite_map[trainer]
         if self.get_side(sprite.rect) == "left":
             x_diff = -scale(150)
@@ -282,7 +280,6 @@ class CombatAnimations(ABC, Menu[None]):
             self.animate_update_party_hud(player, layout["party"][0])
 
     def animate_sprite_take_damage(self, sprite: Sprite) -> None:
-
         original_x, original_y = sprite.rect.topleft
         animate = partial(
             self.animate,
@@ -298,7 +295,6 @@ class CombatAnimations(ABC, Menu[None]):
         ani._elapsed = 0.735
 
     def animate_hp(self, monster: Monster) -> None:
-
         value = monster.current_hp / monster.hp
         hp_bar = self._hp_bars[monster]
         self.animate(
@@ -313,12 +309,10 @@ class CombatAnimations(ABC, Menu[None]):
         monster: Monster,
         initial: int = 0,
     ) -> None:
-
         self._hp_bars[monster] = HpBar(initial)
         self.animate_hp(monster)
 
     def animate_exp(self, monster: Monster) -> None:
-
         target_previous = monster.experience_required()
         target_next = monster.experience_required(1)
         value = max(
@@ -342,7 +336,6 @@ class CombatAnimations(ABC, Menu[None]):
         monster: Monster,
         initial: int = 0,
     ) -> None:
-
         self._exp_bars[monster] = ExpBar(initial)
         self.animate_exp(monster)
 
@@ -377,7 +370,6 @@ class CombatAnimations(ABC, Menu[None]):
         return "left" if rect.centerx < scale(100) else "right"
 
     def animate_monster_leave(self, monster: Monster) -> None:
-
         sprite = self._monster_sprite_map[monster]
         if self.get_side(sprite.rect) == "left":
             x_diff = -scale(150)

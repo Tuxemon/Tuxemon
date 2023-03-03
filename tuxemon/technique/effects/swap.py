@@ -37,16 +37,20 @@ class SwapEffect(TechEffect):
 
         def swap_add() -> None:
             # TODO: make accommodations for battlefield positions
-            combat_state.add_monster_into_play(user, target)
+            combat_state.add_monster_into_play(self.session.player, target)
 
         # get the original monster to be swapped out
-        original_monster = combat_state.monsters_in_play[user][0]
+        original_monster = combat_state.monsters_in_play[self.session.player][
+            0
+        ]
 
         # rewrite actions to target the new monster.  must be done before original is removed
         combat_state.rewrite_action_queue_target(original_monster, target)
 
         # remove the old monster and all their actions
-        combat_state.remove_monster_from_play(user, original_monster)
+        combat_state.remove_monster_from_play(
+            self.session.player, original_monster
+        )
 
         # give a slight delay
         combat_state.task(swap_add, 0.75)

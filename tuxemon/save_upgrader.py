@@ -54,6 +54,8 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     """
     if "steps" not in save_data["game_variables"]:
         save_data["game_variables"]["steps"] = 0
+    if "gender_choice" not in save_data["game_variables"]:
+        save_data["game_variables"]["gender_choice"] = "gender_male"
     if "date_start_game" not in save_data["game_variables"]:
         save_data["game_variables"][
             "date_start_game"

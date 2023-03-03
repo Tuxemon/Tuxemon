@@ -3619,6 +3619,16 @@ msgid "cat_yeti"
 msgstr "Yeti"
 
 # Monster types
+msgid "gender_male"
+msgstr "Male"
+
+msgid "gender_neuter"
+msgstr "Neuter"
+
+msgid "gender_female"
+msgstr "Female"
+
+# Monster types
 msgid "aether"
 msgstr "Aether"
 
@@ -3871,6 +3881,25 @@ msgid "capture_devices_in_shop"
 msgstr "Capture devices. How do they make these?"
 
 # NPC dialogs
+
+msgid "xero_intro_1"
+msgstr "Welcome to the Fondent Region!\n"
+"The Fondent Region is a wonderful place filled with all sorts of wonderful people!\n"
+"You're sure to love it here!\n"
+"The Fondent Region is run by the benevolent Omnichannel Corporation.\n"
+"They make sure everyone's needs are met and that everyone is protected from the fearsome Tuxemon!"
+
+msgid "xero_intro_2"
+msgstr "The great and benevolent Omnichannel Corporation has been led by one man since its inception 25 years ago:\n"
+"Aeble Flisk! Along with the Omni-Council and the Omnigrunts.\n"
+"He has brought stability and prosperity to the Fondent Region!"
+
+msgid "xero_intro_3"
+msgstr "Thank you for visiting the Fondent Region!\n"
+"We hope you enjoy your stay, whether it's for a few days, or for a lifetime!"
+
+msgid "xero_intro_question"
+msgstr "What's your name?"
 
 msgid "karrianna_dialog1"
 msgstr "Karrianna: I've been training for the past month! Nobody has beaten me yet!"
@@ -5053,6 +5082,47 @@ msgid "taba_house4_dish1"
 msgstr "It's brown, dense, but it doesn't look like pudding..."
 
 ## DIALOG TRANSLATIONS ##
+# spyder intros
+
+msgid "spyder_intro_question"
+msgstr "Do you want to skip the intro?"
+
+msgid "spyder_intro00"
+msgstr "Hello, I am the CEO of Omnichannel. We run the newspapers, TV channels and radio stations for this region.\n"
+"It is my duty to inform you."
+
+msgid "spyder_intro01"
+msgstr "Tuxemon are the animals that inhabit this world.\n"
+"They love to be captured so their masters can battle them for fun and profit.\n"
+"The strongest win, just like in the world of business.\n"
+"Most monsters are found in the wild. They morph into more advanced forms when they gain experience.\n"
+"But the five Pillars that make up the Cathedral, that is, the five allied companies that operate in this region,\n"
+"have improved on nature. This season, we offer five deluxe Tuxemon!"
+
+msgid "spyder_intro02"
+msgstr "These tuxemon morph immediately when exposed to a token - that's instant gratification!\n"
+"What's more, they let you choose which form they morph into."
+
+msgid "spyder_intro03"
+msgstr "Tokens are available for a modest fee from all Pillars!\n"
+"Ahem, what was I talking about?\n"
+"Oh yes, each Pillar offers one of these exclusive Tuxemon."
+
+msgid "spyder_intro_shopkeeper1"
+msgstr "What a great presentation from our CEO! All Gold members are being offered a free tuxemon."
+
+msgid "spyder_intro_shopkeeper2"
+msgstr "Just fill in this form."
+
+msgid "spyder_intro_question_name"
+msgstr "What is your name?"
+
+msgid "spyder_intro_shopkeeper3"
+msgstr "Please, now return the form to the Shop Assistant, so we can give you the tuxemon."
+
+msgid "spyder_intro_shopkeeper4"
+msgstr "I'm sorry, you are not a Gold member. This offer is for Gold members only."
+
 # spyder dialogs
 msgid "spyder_papertown_stopthere"
 msgstr "Hey! What do you think you're doing?\n It's not safe to go into the wilds unless you have a tuxemon.\n Come buy one from our shop."

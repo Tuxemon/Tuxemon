@@ -41,6 +41,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "flairs",
     "gender",
     "capture",
+    "capture_device",
     "height",
     "weight",
 )
@@ -224,6 +225,7 @@ class Monster:
         self.max_moves = MAX_MOVES
         self.txmn_id = 0
         self.capture = 0
+        self.capture_device = "tuxeball"
         self.height = 0.0
         self.weight = 0.0
 
@@ -289,6 +291,7 @@ class Monster:
 
         self.txmn_id = results.txmn_id
         self.capture = self.set_capture(self.capture)
+        self.capture_device = self.capture_device
         self.height = self.set_char_height(results.height)
         self.weight = self.set_char_weight(results.weight)
         self.gender = random.choice(list(results.possible_genders))

@@ -19,7 +19,7 @@ class GetDefaultPriceAndCost(EconomyTestBase):
                 item_name="potion", price=20, cost=5, inventory=10
             ),
             EconomyItemModel(item_name="revive", price=100),
-            EconomyItemModel(item_name="capture_device", cost=10),
+            EconomyItemModel(item_name="tuxeball", cost=10),
         ]
 
     def test_potion_price(self):
@@ -39,7 +39,7 @@ class GetDefaultPriceAndCost(EconomyTestBase):
 
     def test_missing_price(self):
         economy = self.economy
-        price = economy.lookup_item_price("capture_device")
+        price = economy.lookup_item_price("tuxeball")
         self.assertEqual(price, 0)
 
     def test_missing_cost(self):

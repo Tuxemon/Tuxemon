@@ -692,6 +692,12 @@ class CombatState(CombatAnimations):
 
         """
         # TODO: refactor some into the combat animations
+        # save iid monster fighting
+        if self.players[0] == player:
+            self.players[0].game_variables[
+                "iid_fighting_monster"
+            ] = monster.instance_id
+
         self.animate_monster_release(player, monster)
         self.build_hud(self._layout[player]["hud"][0], monster)
         self.monsters_in_play[player].append(monster)
@@ -992,12 +998,17 @@ class CombatState(CombatAnimations):
             else:  # assume this was an item used
                 # handle the capture device
                 if result["capture"]:
+                    # retrieve tuxeball
+                    itm_slug = self.players[0].game_variables["save_item_slug"]
+                    itm = Item()
+                    itm.load(itm_slug)
                     message += "\n" + T.translate("attempting_capture")
                     action_time = result["num_shakes"] + 1.8
                     self.animate_capture_monster(
                         result["success"],
                         result["num_shakes"],
                         target,
+                        itm.slug,
                     )
 
                     # TODO: Don't end combat right away; only works with SP,

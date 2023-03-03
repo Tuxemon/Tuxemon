@@ -720,6 +720,14 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Additional Potions"](https://imgur.com/a/MQjhCBR) by
+[ryanhanli](https://github.com/ryanhanli) with influence from [REXARD Potion Icons](https://assetstore.unity.com/packages/2d/gui/icons/potion-icons-54945)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball"](https://wiki.tuxemon.org/File:Unknown-2.png) by
+[tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["Potion"](https://wiki.tuxemon.org/File:Potion.png) [http://opengameart.org/content/potions-3 CC0]
 
 * ["Imperial Potion"](https://wiki.tuxemon.org/File:Imperial_Potion.png) [http://opengameart.org/content/potions-3 CC0]
@@ -736,17 +744,35 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Tea"](https://wiki.tuxemon.org/File:Tea_1.png) [https://opengameart.org/content/infusions-icons CC0]
 
-* ["Capture Device"](https://wiki.tuxemon.org/File:Unknown-2.png) by
-[tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* ["Tuxeball Earth"](https://wiki.tuxemon.org/File:Capture_device_yellow.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Capture Device Green"](https://wiki.tuxemon.org/File:Capture_device_green.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* ["Tuxeball Fire"](https://wiki.tuxemon.org/File:Capture_device_red.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Capture Device Red"](https://wiki.tuxemon.org/File:Capture_device_red.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* ["Tuxeball Metal"](https://wiki.tuxemon.org/File:Capture_device_violet.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Capture Device Yellow"](https://wiki.tuxemon.org/File:Capture_device_yellow.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* ["Tuxeball Wood"](https://wiki.tuxemon.org/File:Capture_device_green.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Capture Device Violet"](https://wiki.tuxemon.org/File:Capture_device_violet.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* ["Tuxeball Water"](https://wiki.tuxemon.org/File:Tuxeball_water.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Female"](https://wiki.tuxemon.org/File:Tuxeball_female.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Male"](https://wiki.tuxemon.org/File:Tuxeball_male.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Neuter"](https://wiki.tuxemon.org/File:Tuxeball_neuter.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Ancient"](https://wiki.tuxemon.org/File:Tuxeball_ancient.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Candy"](https://wiki.tuxemon.org/File:Tuxeball_candy.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Crusher"](https://wiki.tuxemon.org/File:Tuxeball_crusher.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Hardened"](https://wiki.tuxemon.org/File:Tuxeball_hardened.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Lavish"](https://wiki.tuxemon.org/File:Tuxeball_lavish.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Omni"](https://wiki.tuxemon.org/File:Tuxeball_omni.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Xero"](https://wiki.tuxemon.org/File:Tuxeball_xero.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Nu Phone"](https://wiki.tuxemon.org/File:Item6.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -761,10 +787,6 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Earthmover Key"](https://wiki.tuxemon.org/index.php?title=Earthmover_Key) by Catch Challenger is licensed under CC-BY 4.0.
 
 * ["Fishing Rod"](https://wiki.tuxemon.org/index.php?title=Fishing_Rod) by Catch Challenger is licensed under CC-BY 4.0.
-
-* ["Additional Potions"](https://imgur.com/a/MQjhCBR) by
-[ryanhanli](https://github.com/ryanhanli) with influence from [REXARD Potion Icons](https://assetstore.unity.com/packages/2d/gui/icons/potion-icons-54945)
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Aardant"](https://wiki.tuxemon.org/index.php?title=Aardant) from the Aardorn sprite by Magic-Purple-Hermit. Tweaked by Sanglorian.
 

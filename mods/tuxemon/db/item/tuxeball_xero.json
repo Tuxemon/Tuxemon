@@ -4,11 +4,11 @@
     "is_wild_monster target"
   ],
   "effects": [
-    "capture"
+    "capture tuxeball_xero"
   ],
-  "slug": "capture_device",
+  "slug": "tuxeball_xero",
   "sort": "utility",
-  "sprite": "gfx/items/capture_device.png",
+  "sprite": "gfx/items/tuxeball_xero.png",
   "target": {
     "enemy monster": 2,
     "enemy team": 0,

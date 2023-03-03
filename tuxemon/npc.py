@@ -285,6 +285,11 @@ class NPC(Entity[NPCState]):
         self.sprite_name = ""
         if not self.template:
             self.sprite_name = "adventurer"
+            template = Template()
+            template.slug = self.sprite_name
+            template.sprite_name = self.sprite_name
+            template.combat_front = self.sprite_name
+            self.template.append(template)
         else:
             for tmp in self.template:
                 self.sprite_name = tmp.sprite_name

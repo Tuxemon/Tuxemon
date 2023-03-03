@@ -43,19 +43,49 @@ msgid "potion"
 msgstr "Potion"
 
 msgid "potion_description"
-msgstr "Heals a monster by 50 HP."
+msgstr "Heals a monster by 20 HP."
 
 msgid "super_potion"
 msgstr "Super Potion"
 
 msgid "super_potion_description"
-msgstr "Heals a monster by 150 HP."
+msgstr "Heals a monster by 50 HP."
 
 msgid "imperial_potion"
 msgstr "Imperial Potion"
 
 msgid "imperial_potion_description"
-msgstr "Heals a monster by 350 HP."
+msgstr "Heals a monster by 500 HP."
+
+msgid "mega_potion"
+msgstr "Imperial Potion"
+
+msgid "mega_potion_description"
+msgstr "Heals a monster by 200 HP."
+
+msgid "ancient_tea"
+msgstr "Ancient Tea"
+
+msgid "ancient_tea_description"
+msgstr "Adds 1277 to a monster's XP."
+
+msgid "imperial_tea"
+msgstr "Imperial Tea"
+
+msgid "imperial_tea_description"
+msgstr "Adds 3005 to a monster's XP."
+
+msgid "mystery_tea"
+msgstr "Mystery Tea"
+
+msgid "mystery_tea_description"
+msgstr "Adds 437 to a monster's XP."
+
+msgid "tea"
+msgstr "Tea"
+
+msgid "tea_description"
+msgstr "Adds 107 to a monster's XP."
 
 msgid "revive"
 msgstr "Revive"

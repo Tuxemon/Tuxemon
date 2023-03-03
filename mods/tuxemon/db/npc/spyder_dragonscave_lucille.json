@@ -1,7 +1,12 @@
 {
   "slug": "spyder_dragonscave_lucille",
-  "gender": "female",
-  "sprite_name": "knight",
+  "template": [
+    {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_agent",
+      "slug": "enforcer_agent"
+    }
+  ],
   "monsters": [
     {
       "name": "Coleorus",
@@ -11,7 +16,5 @@
       "exp_req_mod": 27,
       "gender": "male"
     }
-  ],
-  "combat_front": "enforcer_agent.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

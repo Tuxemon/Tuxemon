@@ -1,7 +1,12 @@
 {
   "slug": "spyder_route4_rincewind",
-  "gender": "male",
-  "sprite_name": "beachcomber",
+  "template": [
+    {
+      "sprite_name": "beachcomber",
+      "combat_front": "yellowbelt",
+      "slug": "yellowbelt"
+    }
+  ],
   "monsters": [
     {
       "name": "K9",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "neuter"
     }
-  ],
-  "combat_front": "yellowbelt.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

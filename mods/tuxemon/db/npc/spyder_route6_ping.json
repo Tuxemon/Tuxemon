@@ -1,7 +1,12 @@
 {
   "slug": "spyder_route6_ping",
-  "gender": "female",
-  "sprite_name": "picnicker",
+  "template": [
+    {
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
+    }
+  ],
   "monsters": [
     {
       "name": "Foofle",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "picnicker.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

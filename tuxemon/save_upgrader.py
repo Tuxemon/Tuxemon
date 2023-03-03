@@ -73,6 +73,17 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
                 {"opponent": key, "outcome": output, "date": date}
             )
 
+    # template
+    if "template" not in save_data:
+        save_data["template"] = save_data.get("template", [])
+        save_data["template"].append(
+            {
+                "slug": "adventurer",
+                "sprite_name": "adventurer",
+                "combat_front": "adventurer",
+            }
+        )
+
     # trasfer data from "inventory" to "items"
     if "inventory" in save_data:
         for key, value in save_data["inventory"].items():

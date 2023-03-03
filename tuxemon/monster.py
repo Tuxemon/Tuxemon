@@ -213,11 +213,10 @@ class Monster:
         self.possible_genders: List[GenderType] = []
 
         self.money_modifier = 0
-        self.experience_required_modifier = 1
+        self.experience_modifier = 1
         self.total_experience = 0
 
-        self.type1 = ElementType.aether
-        self.type2: Optional[ElementType] = None
+        self.types: List[ElementType] = []
         self.shape = MonsterShape.landrace
 
         self.status: List[Technique] = []
@@ -286,11 +285,7 @@ class Monster:
         self.category = T.translate(f"cat_{results.category}")
         self.shape = results.shape or MonsterShape.landrace
         self.stage = results.stage or EvolutionStage.standalone
-        types = results.types
-        if types:
-            self.type1 = results.types[0]
-            if len(types) > 1:
-                self.type2 = results.types[1]
+        self.types = list(results.types)
 
         self.txmn_id = results.txmn_id
         self.capture = self.set_capture(self.capture)
@@ -334,8 +329,8 @@ class Monster:
             self.combat_call = results.sounds.combat_call
             self.faint_call = results.sounds.faint_call
         else:
-            self.combat_call = f"sound_{self.type1}_call"
-            self.faint_call = f"sound_{self.type1}_faint"
+            self.combat_call = f"sound_{self.types[0]}_call"
+            self.faint_call = f"sound_{self.types[0]}_faint"
 
         # Load the monster AI
         # TODO: clean up AI 'core' loading and what not
@@ -572,9 +567,7 @@ class Monster:
             Required experience.
 
         """
-        return (
-            self.experience_required_modifier * (self.level + level_ofs) ** 3
-        )
+        return (self.level + level_ofs) ** 3
 
     def get_sprite(self, sprite: str, **kwargs: Any) -> Sprite:
         """

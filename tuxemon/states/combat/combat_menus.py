@@ -410,7 +410,6 @@ class CombatTargetMenuState(Menu[Monster]):
 
         for player, monsters in combat_state.monsters_in_play.items():
             for monster in monsters:
-
                 # TODO: more targeting classes
                 if player == self.player:
                     targeting_class = "own monster"

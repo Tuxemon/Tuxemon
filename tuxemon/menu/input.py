@@ -135,7 +135,6 @@ class InputMenu(Menu[InputMenuObj]):
         )
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-
         if event.button in (buttons.A, intentions.SELECT):
             menu_item = self.get_selected_item()
             if menu_item is None:

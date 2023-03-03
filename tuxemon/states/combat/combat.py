@@ -145,7 +145,6 @@ class WaitForInputState(state.State):
     """Just wait for input blocking everything"""
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-
         if event.pressed and event.button == buttons.A:
             self.client.pop_state(self)
 
@@ -958,7 +957,6 @@ class CombatState(CombatAnimations):
         # is synchronized with the damage shake motion
         hit_delay = 0.0
         if user:
-
             # TODO: a real check or some params to test if should tackle, etc
             if result["should_tackle"]:
                 hit_delay += 0.5
@@ -992,7 +990,6 @@ class CombatState(CombatAnimations):
                         message += "\n" + m
 
             else:  # assume this was an item used
-
                 # handle the capture device
                 if result["capture"]:
                     message += "\n" + T.translate("attempting_capture")

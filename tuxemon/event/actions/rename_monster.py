@@ -38,7 +38,6 @@ class RenameMonsterAction(EventAction):
         menu.on_menu_selection = self.prompt_for_name  # type: ignore[assignment]
 
     def update(self) -> None:
-
         missing_monster_menu = False
 
         try:

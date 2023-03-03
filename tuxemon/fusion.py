@@ -46,7 +46,6 @@ class Body:
     body_image: Image
 
     def __init__(self) -> None:
-
         # Name properties
         self.prefix = ""  # A name prefix to use when fusing sprites
         self.suffix = ""  # A name suffix to use when fusing sprites

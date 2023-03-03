@@ -255,7 +255,6 @@ def number_or_variable(
 def cast_value(
     i: Tuple[Tuple[ValidParameterTypes, str], Any],
 ) -> Any:
-
     (type_constructors, param_name), value = i
 
     if not isinstance(type_constructors, Sequence):
@@ -267,7 +266,6 @@ def cast_value(
         return None
 
     for constructor in type_constructors:
-
         if not constructor:
             continue
 

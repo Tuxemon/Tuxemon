@@ -156,7 +156,6 @@ def tiles_inside_rect(
 
 
 def snap_interval(value: float, interval: int) -> int:
-
     value = round_to_divisible(value)
     if value == interval:
         return value - 1

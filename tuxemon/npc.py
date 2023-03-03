@@ -118,7 +118,6 @@ class NPC(Entity[NPCState]):
         *,
         world: WorldState,
     ) -> None:
-
         super().__init__(slug=npc_slug, world=world)
 
         # load initial data from the npc database

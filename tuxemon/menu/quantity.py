@@ -47,7 +47,6 @@ class QuantityMenu(Menu[None]):
         self.shrink_to_items = shrink_to_items
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-
         if event.pressed:
             if event.button in (
                 buttons.B,

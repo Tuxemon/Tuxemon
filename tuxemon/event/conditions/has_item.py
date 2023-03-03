@@ -1,20 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from operator import eq, ge, gt, le, lt
-from typing import Callable, Mapping, Optional
 
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
-
-cmp_dict: Mapping[Optional[str], Callable[[object, object], bool]] = {
-    None: ge,
-    "less_than": lt,
-    "less_or_equal": le,
-    "greater_than": gt,
-    "greater_or_equal": ge,
-    "equals": eq,
-}
 
 
 class HasItemCondition(EventCondition):
@@ -31,9 +21,7 @@ class HasItemCondition(EventCondition):
         item: The item slug name (e.g. "item_cherry").
         operator: Numeric comparison operator. Accepted values are "less_than",
             "greater_than", "equals", "less_or_equal" and "greater_or_equal".
-            The default value is "greater_or_equal".
-        quantity: Quantity to compare with. Must be a non-negative integer. The
-            default value is 1.
+        quantity: Quantity to compare with.
 
     """
 
@@ -52,33 +40,32 @@ class HasItemCondition(EventCondition):
             the specified item.
 
         """
-        try:
-            raw_op: Optional[str] = condition.parameters[2].lower()
-            if raw_op == "":
-                raw_op = None
-        except (IndexError, AttributeError):
-            raw_op = None
 
-        try:
-            op = cmp_dict[raw_op]
-        except KeyError:
-            raise ValueError
+        def op(itm_qty: int, op: str, qty: int) -> bool:
+            if op == "less_than":
+                return lt(itm_qty, qty)
+            elif op == "less_or_equal":
+                return le(itm_qty, qty)
+            elif op == "greater_than":
+                return gt(itm_qty, qty)
+            elif op == "greater_or_equal":
+                return ge(itm_qty, qty)
+            else:
+                return eq(itm_qty, qty)
 
-        try:
-            q_test = int(condition.parameters[3])
-            if q_test < 0:
-                raise ValueError
-        except IndexError:
-            q_test = 1
-
-        # TODO: handle missing npc, etc
-        owner_slug, item_slug = condition.parameters[:2]
-        npc = get_npc(session, owner_slug)
-        assert npc
-        itm = npc.find_item(item_slug)
-        if itm is None:  # not found in inventory
-            item_quantity = 0
+        npc_slug, itm_slug = condition.parameters[:2]
+        npc = get_npc(session, npc_slug)
+        if npc is not None:
+            assert npc
+            itm = npc.find_item(itm_slug)
+            if itm is None:
+                return False
+            else:
+                if len(condition.parameters) > 2:
+                    operator = condition.parameters[2].lower()
+                    qty = int(condition.parameters[3])
+                    return op(itm.quantity, operator, qty)
+                else:
+                    return False
         else:
-            item_quantity = itm.quantity
-
-        return op(item_quantity, q_test)
+            raise ValueError(f"{npc_slug} doesn't exist.")

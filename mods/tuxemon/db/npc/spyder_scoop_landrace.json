@@ -1,7 +1,12 @@
 {
   "slug": "spyder_scoop_landrace",
-  "gender": "male",
-  "sprite_name": "landrace",
+  "template": [
+    {
+      "sprite_name": "landrace",
+      "combat_front": "sludgehog",
+      "slug": "noclass"
+    }
+  ],
   "monsters": [
     {
       "name": "Sludgehog",
@@ -11,7 +16,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "sludgehog.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

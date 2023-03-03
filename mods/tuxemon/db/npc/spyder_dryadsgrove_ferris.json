@@ -1,7 +1,12 @@
 {
   "slug": "spyder_dryadsgrove_ferris",
-  "gender": "female",
-  "sprite_name": "woodnymph",
+  "template": [
+    {
+      "sprite_name": "woodnymph",
+      "combat_front": "metalnymph",
+      "slug": "metalnymph"
+    }
+  ],
   "monsters": [
     {
       "name": "Viviteel",
@@ -27,7 +32,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "metalnymph.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

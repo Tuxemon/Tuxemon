@@ -1,7 +1,12 @@
 {
   "slug": "spyder_route3_wanda",
-  "gender": "female",
-  "sprite_name": "fisher",
+  "template": [
+    {
+      "sprite_name": "fisher",
+      "combat_front": "fisher",
+      "slug": "fisher"
+    }
+  ],
   "monsters": [
     {
       "name": "Nudiflot",
@@ -51,7 +56,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "fisher.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

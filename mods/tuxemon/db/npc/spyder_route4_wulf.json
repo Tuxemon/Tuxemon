@@ -1,7 +1,12 @@
 {
   "slug": "spyder_route4_wulf",
-  "gender": "male",
-  "sprite_name": "maniac",
+  "template": [
+    {
+      "sprite_name": "maniac",
+      "combat_front": "alchemist",
+      "slug": "alchemist"
+    }
+  ],
   "monsters": [
     {
       "name": "Cowpignon",
@@ -27,7 +32,5 @@
       "exp_req_mod": 27,
       "gender": "male"
     }
-  ],
-  "combat_front": "alchemist.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

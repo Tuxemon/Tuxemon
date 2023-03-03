@@ -19,5 +19,4 @@ _EVENT_MAP: Final = {
 
 
 def playerinput_to_event(event: PlayerInput) -> Optional[pygame.event.Event]:
-
     return _EVENT_MAP.get(event.button)

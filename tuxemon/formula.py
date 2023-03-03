@@ -8,6 +8,7 @@ import random
 from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 
 if TYPE_CHECKING:
+    from tuxemon.db import MonsterModel
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
     from tuxemon.technique.technique import Technique
@@ -54,13 +55,14 @@ def simple_damage_multiplier(
             continue
 
         for target_type in target_types:
-            body = TYPES.get(target_type, TYPES["aether"])
-            if body.extra_damage is None:
-                continue
-            if attack_type == body.extra_damage:
-                m *= 2
-            elif attack_type == body.resist_damage:
-                m /= 2.0
+            if target_type:
+                body = TYPES.get(target_type, TYPES["aether"])
+                if body.extra_damage is None:
+                    continue
+                if attack_type == body.extra_damage:
+                    m *= 2
+                elif attack_type == body.resist_damage:
+                    m /= 2.0
     m = min(4, m)
     m = max(0.25, m)
     return m
@@ -202,6 +204,52 @@ def escape(level_user: int, level_target: int, attempts: int) -> bool:
         return False
 
 
+def check_taste(monster: Monster, stat: str) -> int:
+    """
+    It checks the taste and return the value
+    """
+    positive = 0
+    negative = 0
+    if stat == "speed":
+        if monster.taste_cold == "mild":
+            negative = (monster.speed) * 10 // 100
+        if monster.taste_warm == "peppy":
+            positive = (monster.speed) * 10 // 100
+        value = positive - negative
+        return value
+    elif stat == "melee":
+        if monster.taste_cold == "sweet":
+            negative = (monster.melee) * 10 // 100
+        if monster.taste_warm == "salty":
+            positive = (monster.melee) * 10 // 100
+        value = positive - negative
+        return value
+    elif stat == "armour":
+        if monster.taste_cold == "soft":
+            negative = (monster.armour) * 10 // 100
+        if monster.taste_warm == "hearty":
+            positive = (monster.armour) * 10 // 100
+        value = positive - negative
+        return value
+    elif stat == "ranged":
+        if monster.taste_cold == "flakey":
+            negative = (monster.ranged) * 10 // 100
+        if monster.taste_warm == "zesty":
+            positive = (monster.ranged) * 10 // 100
+        value = positive - negative
+        return value
+    elif stat == "dodge":
+        if monster.taste_cold == "dry":
+            negative = (monster.dodge) * 10 // 100
+        if monster.taste_warm == "refined":
+            positive = (monster.dodge) * 10 // 100
+        value = positive - negative
+        return value
+    else:
+        value = positive
+        return value
+
+
 def today_ordinal() -> int:
     """
     It gives today's proleptic Gregorian ordinal.
@@ -311,7 +359,9 @@ def sync(player: NPC, value: int, total: int) -> float:
     return percent
 
 
-def weight_height_diff(monster: Monster, db: Monster) -> Tuple[float, float]:
+def weight_height_diff(
+    monster: Monster, db: MonsterModel
+) -> Tuple[float, float]:
     weight = round(((monster.weight - db.weight) / db.weight) * 100, 1)
     height = round(((monster.height - db.height) / db.height) * 100, 1)
     return weight, height

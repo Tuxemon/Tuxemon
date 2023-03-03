@@ -54,6 +54,8 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     """
     if "steps" not in save_data["game_variables"]:
         save_data["game_variables"]["steps"] = 0
+    if "gender_choice" not in save_data["game_variables"]:
+        save_data["game_variables"]["gender_choice"] = "gender_male"
     if "date_start_game" not in save_data["game_variables"]:
         save_data["game_variables"][
             "date_start_game"
@@ -72,6 +74,24 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
             save_data["battles"].append(
                 {"opponent": key, "outcome": output, "date": date}
             )
+
+    # fix name capture device -> tuxeball
+    capture_device = [
+        element
+        for element in save_data["items"]
+        if element["slug"] == "capture_device"
+    ]
+    if capture_device:
+        for capture in save_data["items"]:
+            if capture["slug"] == "capture_device":
+                save_data["items"].append(
+                    {
+                        "slug": "tuxeball",
+                        "quantity": capture["quantity"],
+                        "instance_id": capture["instance_id"],
+                    }
+                )
+                save_data["items"].remove(capture)
 
     # template
     if "template" not in save_data:

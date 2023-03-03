@@ -145,7 +145,6 @@ class WaitForInputState(state.State):
     """Just wait for input blocking everything"""
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-
         if event.pressed and event.button == buttons.A:
             self.client.pop_state(self)
 
@@ -693,6 +692,12 @@ class CombatState(CombatAnimations):
 
         """
         # TODO: refactor some into the combat animations
+        # save iid monster fighting
+        if self.players[0] == player:
+            self.players[0].game_variables[
+                "iid_fighting_monster"
+            ] = monster.instance_id
+
         self.animate_monster_release(player, monster)
         self.build_hud(self._layout[player]["hud"][0], monster)
         self.monsters_in_play[player].append(monster)
@@ -958,7 +963,6 @@ class CombatState(CombatAnimations):
         # is synchronized with the damage shake motion
         hit_delay = 0.0
         if user:
-
             # TODO: a real check or some params to test if should tackle, etc
             if result["should_tackle"]:
                 hit_delay += 0.5
@@ -992,15 +996,19 @@ class CombatState(CombatAnimations):
                         message += "\n" + m
 
             else:  # assume this was an item used
-
                 # handle the capture device
                 if result["capture"]:
+                    # retrieve tuxeball
+                    itm_slug = self.players[0].game_variables["save_item_slug"]
+                    itm = Item()
+                    itm.load(itm_slug)
                     message += "\n" + T.translate("attempting_capture")
                     action_time = result["num_shakes"] + 1.8
                     self.animate_capture_monster(
                         result["success"],
                         result["num_shakes"],
                         target,
+                        itm.slug,
                     )
 
                     # TODO: Don't end combat right away; only works with SP,
@@ -1090,9 +1098,11 @@ class CombatState(CombatAnimations):
             ) * monster.experience_modifier
             awarded_mon = monster.level * monster.money_modifier
             for winners in self._damage_map[monster]:
+                # check before giving exp
                 self._level_before = winners.level
-                self._level_after = winners.level
                 winners.give_experience(awarded_exp)
+                # check after giving exp
+                self._level_after = winners.level
                 if self.is_trainer_battle:
                     self._prize += awarded_mon
                 # it checks if there is a "level up"

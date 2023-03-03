@@ -273,7 +273,6 @@ class Scheduler:
         replace = False
 
         while scheduled_items:
-
             # get the next item to be called
             head = scheduled_items[0]
 

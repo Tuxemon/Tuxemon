@@ -53,3 +53,49 @@ events:
     x: 0
     y: 0
     type: "event"
+  Intro:
+    actions:
+    - change_bg spyder_roc
+    - translated_dialog spyder_intro_question
+    - translated_dialog_choice no:yes,question_xero
+    conditions:
+    - not variable_set question_xero:yes
+    - not variable_set question_xero:no
+    height: 1
+    width: 1
+    x: 8
+    y: 0
+    type: "event"
+  Intro Yes:
+    actions:
+    - translated_dialog xero_intro_1
+    - change_bg spyder_intro01
+    - translated_dialog xero_intro_2
+    - change_bg spyder_roc
+    - translated_dialog xero_intro_3
+    - translated_dialog xero_intro_question
+    - rename_player
+    - change_bg end
+    - set_variable xero_intro:done
+    conditions:
+    - is variable_set question_xero:no
+    - not variable_set xero_intro:done
+    height: 1
+    width: 1
+    x: 8
+    y: 1
+    type: "event"
+  Intro No:
+    actions:
+    - translated_dialog xero_intro_question
+    - rename_player
+    - change_bg end
+    - set_variable xero_intro:done
+    conditions:
+    - is variable_set question_xero:yes
+    - not variable_set xero_intro:done
+    height: 1
+    width: 1
+    x: 9
+    y: 0
+    type: "event"

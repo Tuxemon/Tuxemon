@@ -22,9 +22,10 @@ class AI(ABC):
     @abstractmethod
     def make_decision_trainer(
         self,
+        user: NPC,
         monster: Monster,
         opponents: Sequence[Monster],
-    ) -> Tuple[Technique, Monster]:
+    ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
         """
         Given a npc, and list of opponents, decide an action to take.
 
@@ -40,9 +41,10 @@ class AI(ABC):
 
     def make_decision_wild(
         self,
+        user: NPC,
         monster: Monster,
         opponents: Sequence[Monster],
-    ) -> Tuple[Technique, Monster]:
+    ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
         raise NotImplementedError
 
 
@@ -51,17 +53,19 @@ class SimpleAI(AI):
 
     def make_decision_trainer(
         self,
+        user: NPC,
         monster: Monster,
         opponents: Sequence[Monster],
-    ) -> Tuple[Technique, Monster]:
-        return monster.moves[0], opponents[0]
+    ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
+        return monster, monster.moves[0], opponents[0]
 
     def make_decision_wild(
         self,
+        user: NPC,
         monster: Monster,
         opponents: Sequence[Monster],
-    ) -> Tuple[Technique, Monster]:
-        return monster.moves[0], opponents[0]
+    ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
+        return monster, monster.moves[0], opponents[0]
 
 
 class RandomAI(AI):

@@ -820,10 +820,10 @@
     <property name="act10" value="npc_face taba_greeter,player"/>
     <property name="act20" value="translated_dialog taba_greeting1"/>
     <property name="act25" value="translated_dialog taba_greeting2a"/>
-    <property name="act30" value="add_item capture_device,5"/>
+    <property name="act30" value="add_item tuxeball,5"/>
     <property name="act40" value="translated_dialog gotfivetuxeballs"/>
     <property name="act60" value="npc_face taba_greeter,down"/>
-    <property name="cond10" value="not has_item player,capture_device"/>
+    <property name="cond10" value="not has_item player,tuxeball"/>
     <property name="cond20" value="is party_size greater_than,0"/>
     <property name="cond30" value="is player_at"/>
     <property name="cond40" value="not variable_set greeter_greets:yes"/>
@@ -836,7 +836,7 @@
     <property name="act20" value="translated_dialog taba_greeting1"/>
     <property name="act30" value="translated_dialog taba_greeting2b"/>
     <property name="act60" value="npc_face taba_greeter,down"/>
-    <property name="cond10" value="is has_item player,capture_device"/>
+    <property name="cond10" value="is has_item player,tuxeball"/>
     <property name="cond20" value="is party_size greater_than,0"/>
     <property name="cond30" value="is player_at"/>
     <property name="cond40" value="not variable_set greeter_greets:yes"/>
@@ -854,7 +854,7 @@
   <object id="135" name="secret_tuxeball" type="event" x="624" y="240" width="16" height="16">
    <properties>
     <property name="act10" value="set_variable secret_ball:found"/>
-    <property name="act20" value="add_item capture_device,5"/>
+    <property name="act20" value="add_item tuxeball,5"/>
     <property name="act25" value="translated_dialog gotfivetuxeballs"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing right"/>

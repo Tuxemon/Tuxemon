@@ -35,6 +35,7 @@ T.load_translator()
 # Target is a mapping of who this targets
 Target = Mapping[str, int]
 
+
 # ItemSort defines the sort of item an item is.
 class ItemSort(str, Enum):
     food = "food"
@@ -47,6 +48,24 @@ class GenderType(str, Enum):
     neuter = "neuter"
     male = "male"
     female = "female"
+
+
+class TasteWarm(str, Enum):
+    tasteless = "tasteless"
+    peppy = "peppy"
+    salty = "salty"
+    hearty = "hearty"
+    zesty = "zesty"
+    refined = "refined"
+
+
+class TasteCold(str, Enum):
+    tasteless = "tasteless"
+    mild = "mild"
+    sweet = "sweet"
+    soft = "soft"
+    flakey = "flakey"
+    dry = "dry"
 
 
 class ElementType(str, Enum):
@@ -547,7 +566,7 @@ class PartyMemberModel(BaseModel):
     money_mod: int = Field(
         ..., description="Modifier for money this monster gives"
     )
-    exp_req_mod: float = Field(..., description="Experience required modifier")
+    exp_req_mod: int = Field(..., description="Experience required modifier")
     gender: GenderType = Field(..., description="Gender of the monster")
 
     @validator("slug")
@@ -831,7 +850,6 @@ class JSONDatabase:
 
         """
         for json_item in os.listdir(os.path.join(self.path, directory)):
-
             # Only load .json files.
             if not json_item.endswith(".json"):
                 continue

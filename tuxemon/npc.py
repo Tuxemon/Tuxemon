@@ -118,7 +118,6 @@ class NPC(Entity[NPCState]):
         *,
         world: WorldState,
     ) -> None:
-
         super().__init__(slug=npc_slug, world=world)
 
         # load initial data from the npc database
@@ -285,6 +284,11 @@ class NPC(Entity[NPCState]):
         self.sprite_name = ""
         if not self.template:
             self.sprite_name = "adventurer"
+            template = Template()
+            template.slug = self.sprite_name
+            template.sprite_name = self.sprite_name
+            template.combat_front = self.sprite_name
+            self.template.append(template)
         else:
             for tmp in self.template:
                 self.sprite_name = tmp.sprite_name
@@ -376,7 +380,7 @@ class NPC(Entity[NPCState]):
         self.pathfinding = destination
         path = self.world.pathfind(self.tile_pos, destination)
         if path:
-            self.path = path
+            self.path = list(path)
             self.next_waypoint()
 
     def check_continue(self) -> None:
@@ -863,7 +867,7 @@ class NPC(Entity[NPCState]):
         self.game_variables["party_level_highest"] = level_highest
         self.game_variables["party_level_average"] = level_average
 
-    def has_tech(self, tech: str) -> bool:
+    def has_tech(self, tech: Optional[str]) -> bool:
         """
         Returns TRUE if there is the technique in the party.
 
@@ -876,7 +880,7 @@ class NPC(Entity[NPCState]):
                     return True
         return False
 
-    def has_type(self, element: ElementType) -> bool:
+    def has_type(self, element: Optional[ElementType]) -> bool:
         """
         Returns TRUE if there is the type in the party.
 
@@ -914,7 +918,7 @@ class NPC(Entity[NPCState]):
         Opens the choice dialog and overwrites the technique.
         """
 
-        def set_variable(var_value: str) -> None:
+        def set_variable(var_value: Technique) -> None:
             monster.moves.remove(var_value)
             monster.learn(Technique(technique))
             session.client.pop_state()
@@ -952,7 +956,7 @@ class NPC(Entity[NPCState]):
         Opens the choice dialog and removes the technique.
         """
 
-        def set_variable(var_value: str) -> None:
+        def set_variable(var_value: Technique) -> None:
             monster.moves.remove(var_value)
             session.client.pop_state()
 

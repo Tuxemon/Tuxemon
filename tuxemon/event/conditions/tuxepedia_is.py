@@ -54,3 +54,4 @@ class TuxepediaIsCondition(EventCondition):
                     return True
             else:
                 return False
+        return False

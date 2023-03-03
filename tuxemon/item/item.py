@@ -122,7 +122,6 @@ class Item:
 
         # misc attributes (not translated!)
         self.sort = results.sort
-        assert self.sort
         self.category = results.category or ItemCategory.none
         self.type = results.type or ItemType.consumable
         self.sprite = results.sprite
@@ -255,6 +254,8 @@ class Item:
             "should_tackle": False,
             "success": False,
         }
+        # save iid
+        user.game_variables["save_item_slug"] = self.slug
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:

@@ -37,22 +37,44 @@
   </object>
   <object id="8" name="Spyder" type="event" x="48" y="48" width="16" height="16">
    <properties>
-    <property name="act2" value="transition_teleport spyder_bedroom.tmx,4,4,0.3"/>
-    <property name="act3" value="set_money player,10000"/>
-    <property name="act4" value="set_variable spyder_starting_money:yes"/>
+    <property name="act1" value="change_bg choice_gender"/>
+    <property name="act2" value="translated_dialog_choice gender_female:gender_male,gender_choice"/>
+    <property name="act3" value="change_bg spyder_empty"/>
+    <property name="act4" value="transition_teleport spyder_bedroom.tmx,4,4,0.3"/>
+    <property name="act5" value="set_money player,10000"/>
+    <property name="act6" value="set_variable spyder_starting_money:yes"/>
     <property name="cond1" value="is variable_set scenario_choice:spyder_campaign"/>
     <property name="cond2" value="not variable_set spyder_starting_money:yes"/>
+    <property name="cond3" value="not variable_set gender_choice:gender_male"/>
+    <property name="cond4" value="not variable_set gender_choice:gender_female"/>
    </properties>
   </object>
   <object id="9" name="Xero" type="event" x="0" y="48" width="16" height="16">
    <properties>
-    <property name="act2" value="transition_teleport player_house_bedroom.tmx,4,4,0.3"/>
-    <property name="act3" value="set_money player,10000"/>
-    <property name="act4" value="set_variable xero_starting_money:yes"/>
+    <property name="act1" value="change_bg choice_gender"/>
+    <property name="act2" value="translated_dialog_choice gender_female:gender_male,gender_choice"/>
+    <property name="act3" value="change_bg spyder_empty"/>
+    <property name="act4" value="transition_teleport player_house_bedroom.tmx,4,4,0.3"/>
+    <property name="act5" value="set_money player,10000"/>
+    <property name="act6" value="set_variable xero_starting_money:yes"/>
     <property name="cond1" value="is variable_set scenario_choice:xero_campaign"/>
     <property name="cond2" value="not variable_set xero_starting_money:yes"/>
+    <property name="cond3" value="not variable_set gender_choice:gender_male"/>
+    <property name="cond4" value="not variable_set gender_choice:gender_female"/>
    </properties>
   </object>
   <object id="10" name="Player Spawn" type="event" x="16" y="16" width="16" height="16"/>
+  <object id="11" name="Gender Male" type="event" x="48" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_player_template adventurer,adventurer"/>
+    <property name="cond1" value="is variable_set gender_choice:gender_male"/>
+   </properties>
+  </object>
+  <object id="12" name="Gender Female" type="event" x="48" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_player_template heroine,heroine"/>
+    <property name="cond1" value="is variable_set gender_choice:gender_female"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

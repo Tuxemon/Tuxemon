@@ -3619,6 +3619,16 @@ msgid "cat_yeti"
 msgstr "Yeti"
 
 # Monster types
+msgid "gender_male"
+msgstr "Male"
+
+msgid "gender_neuter"
+msgstr "Neuter"
+
+msgid "gender_female"
+msgstr "Female"
+
+# Monster types
 msgid "aether"
 msgstr "Aether"
 

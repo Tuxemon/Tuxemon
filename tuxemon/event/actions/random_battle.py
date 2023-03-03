@@ -78,7 +78,7 @@ class RandomBattleAction(EventAction):
             current_monster.set_capture(formula.today_ordinal())
             current_monster.current_hp = current_monster.hp
             current_monster.money_modifier = level
-            current_monster.experience_required_modifier = level
+            current_monster.experience_modifier = level
             npc.add_monster(current_monster)
 
         # Don't start a battle if we don't even have monsters in our party yet.

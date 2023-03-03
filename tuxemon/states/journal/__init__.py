@@ -393,6 +393,7 @@ class JournalInfoState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         ).translate(fix_width(width, 0.01), fix_height(height, 0.76))
+
         # open evolution monster
         def change_state(state: str, monster_slug: str) -> MenuGameObj:
             element = db.lookup(monster_slug, table="monster")
@@ -668,6 +669,7 @@ class MonsterInfoState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         ).translate(fix_width(width, 0.01), fix_height(height, 0.76))
+
         # open evolution monster
         def change_state(state: str, monster_slug: str) -> MenuGameObj:
             element = db.lookup(monster_slug, table="monster")

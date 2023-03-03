@@ -103,7 +103,6 @@ class MinigameState(PygameMenuState):
             f.pack(choice, align=locals.ALIGN_CENTER)
 
     def __init__(self) -> None:
-
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(

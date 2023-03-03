@@ -166,7 +166,6 @@ class NuPhoneBanking(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-
         if "bank_account" not in self.player.money:
             self.player.money["bank_account"] = 0
         bank = self.player.money["bank_account"]

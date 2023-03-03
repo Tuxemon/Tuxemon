@@ -273,7 +273,6 @@ class MonsterBoxChooseState(PygameMenuState):
         menu: pygame_menu.Menu,
         items: Sequence[Tuple[str, MenuGameObj]],
     ) -> None:
-
         menu.add.vertical_fill()
         for key, callback in items:
             num_mons = local_session.player.monster_boxes[key]

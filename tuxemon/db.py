@@ -35,6 +35,7 @@ T.load_translator()
 # Target is a mapping of who this targets
 Target = Mapping[str, int]
 
+
 # ItemSort defines the sort of item an item is.
 class ItemSort(str, Enum):
     food = "food"
@@ -831,7 +832,6 @@ class JSONDatabase:
 
         """
         for json_item in os.listdir(os.path.join(self.path, directory)):
-
             # Only load .json files.
             if not json_item.endswith(".json"):
                 continue

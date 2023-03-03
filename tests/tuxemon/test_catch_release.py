@@ -8,7 +8,6 @@ from tuxemon.npc import NPC
 
 
 def mockNPC(self) -> None:
-
     self.monsters = []
     self.isplayer = True
     self.game_variables = {}
@@ -17,7 +16,6 @@ def mockNPC(self) -> None:
 
 
 class TestCatchTuxemon(unittest.TestCase):
-
     # Can't release Tuxemon if it is the only one in the party.
     def test_release_one(self):
         with mock.patch.object(NPC, "__init__", mockNPC):

@@ -31,7 +31,6 @@ def add_menu_items(
     menu: pygame_menu.Menu,
     items: Sequence[Tuple[str, WorldMenuGameObj]],
 ) -> None:
-
     menu.add.vertical_fill()
     for key, callback in items:
         label = T.translate(key).upper()

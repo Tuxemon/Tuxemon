@@ -301,7 +301,6 @@ class ItemBoxChooseState(PygameMenuState):
         menu: pygame_menu.Menu,
         items: Sequence[Tuple[str, MenuGameObj]],
     ) -> None:
-
         menu.add.vertical_fill()
         for key, callback in items:
             num_itms = local_session.player.item_boxes[key]

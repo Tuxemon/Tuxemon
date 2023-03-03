@@ -118,7 +118,6 @@ class NPC(Entity[NPCState]):
         *,
         world: WorldState,
     ) -> None:
-
         super().__init__(slug=npc_slug, world=world)
 
         # load initial data from the npc database
@@ -285,6 +284,11 @@ class NPC(Entity[NPCState]):
         self.sprite_name = ""
         if not self.template:
             self.sprite_name = "adventurer"
+            template = Template()
+            template.slug = self.sprite_name
+            template.sprite_name = self.sprite_name
+            template.combat_front = self.sprite_name
+            self.template.append(template)
         else:
             for tmp in self.template:
                 self.sprite_name = tmp.sprite_name

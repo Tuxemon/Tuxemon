@@ -156,7 +156,6 @@ class MonsterMenuState(Menu[Optional[Monster]]):
         """Used to render slots after their 'focus' flags change."""
 
         for index, item in enumerate(self.menu_items):
-
             monster: Optional[Monster]
             try:
                 monster = local_session.player.monsters[index]

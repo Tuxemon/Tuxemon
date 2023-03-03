@@ -91,7 +91,6 @@ class ModChooserMenuState(PopUpMenu[StartGameObj]):
         self.client.replace_state("StartState")
 
     def __init__(self) -> None:
-
         super().__init__()
 
         def new_game() -> None:

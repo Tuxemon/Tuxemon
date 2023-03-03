@@ -213,7 +213,7 @@ class Monster:
         self.possible_genders: List[GenderType] = []
 
         self.money_modifier = 0
-        self.experience_required_modifier = 1
+        self.experience_modifier = 1
         self.total_experience = 0
 
         self.types: List[ElementType] = []
@@ -573,9 +573,7 @@ class Monster:
             Required experience.
 
         """
-        return (
-            self.experience_required_modifier * (self.level + level_ofs) ** 3
-        )
+        return (self.level + level_ofs) ** 3
 
     def get_sprite(self, sprite: str, **kwargs: Any) -> Sprite:
         """

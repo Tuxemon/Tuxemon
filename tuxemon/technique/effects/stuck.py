@@ -3,18 +3,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
 
 from tuxemon import formula
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
-
-
-class StuckEffectResult(TechEffectResult):
-    damage: int
-    should_tackle: bool
-    status: Optional[Technique]
 
 
 @dataclass
@@ -28,7 +21,7 @@ class StuckEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> StuckEffectResult:
+    ) -> TechEffectResult:
         player = self.session.player
         potency = formula.random.random()
         value = float(player.game_variables["random_tech_hit"])
@@ -39,11 +32,13 @@ class StuckEffect(TechEffect):
             if obj == "user":
                 user.apply_status(tech)
                 formula.simple_stuck(user)
-            elif obj == "target":
+            else:
                 target.apply_status(tech)
                 formula.simple_stuck(target)
-            else:
-                return
-            return {"status": tech}
 
-        return {"damage": 0, "should_tackle": False, "success": False}
+        return {
+            "damage": 0,
+            "should_tackle": bool(success),
+            "success": False,
+            "element_multiplier": 0,
+        }

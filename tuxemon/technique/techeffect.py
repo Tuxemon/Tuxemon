@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, ClassVar, Optional, TypedDict
+from typing import TYPE_CHECKING, ClassVar, TypedDict
 
 from tuxemon.session import Session, local_session
 from tuxemon.tools import cast_dataclass_parameters
@@ -18,7 +18,6 @@ class TechEffectResult(TypedDict):
     element_multiplier: float
     success: bool
     should_tackle: bool
-    status: Optional[Technique]
 
 
 @dataclass

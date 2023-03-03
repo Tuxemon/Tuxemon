@@ -3,18 +3,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
 
 from tuxemon import formula
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
-
-
-class LifeLeechEffectResult(TechEffectResult):
-    damage: int
-    should_tackle: bool
-    status: Optional[Technique]
 
 
 @dataclass
@@ -36,7 +29,7 @@ class LifeLeechEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> LifeLeechEffectResult:
+    ) -> TechEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         potency = formula.random.random()
@@ -48,7 +41,6 @@ class LifeLeechEffect(TechEffect):
             if tech.slug == "blood_bond":
                 tech = Technique("status_lifeleech", carrier=user, link=target)
                 user.apply_status(tech)
-            return {"status": tech}
 
         # avoids Nonetype situation and reset the user
         if user is None:
@@ -66,4 +58,5 @@ class LifeLeechEffect(TechEffect):
             "damage": damage,
             "should_tackle": bool(damage),
             "success": bool(damage),
+            "element_multiplier": 0,
         }

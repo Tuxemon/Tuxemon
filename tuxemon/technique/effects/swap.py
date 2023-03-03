@@ -9,10 +9,6 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 
-class SwapEffectResult(TechEffectResult):
-    should_tackle: bool
-
-
 @dataclass
 class SwapEffect(TechEffect):
     """
@@ -29,7 +25,7 @@ class SwapEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> SwapEffectResult:
+    ) -> TechEffectResult:
         # TODO: implement actions as events, so that combat state can find them
         # TODO: relies on setting "combat_state" attribute.  maybe clear it up
         # later
@@ -56,4 +52,9 @@ class SwapEffect(TechEffect):
         combat_state.task(swap_add, 0.75)
         combat_state.suppress_phase_change(0.75)
 
-        return {"success": True, "should_tackle": False}
+        return {
+            "damage": 0,
+            "should_tackle": False,
+            "success": True,
+            "element_multiplier": 0,
+        }

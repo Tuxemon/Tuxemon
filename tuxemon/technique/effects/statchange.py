@@ -11,10 +11,6 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 
-class StatChangeEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class StatChangeEffect(TechEffect):
     """
@@ -36,7 +32,7 @@ class StatChangeEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> StatChangeEffectResult:
+    ) -> TechEffectResult:
         statsmaster = [
             tech.statspeed,
             tech.stathp,
@@ -82,4 +78,9 @@ class StatChangeEffect(TechEffect):
             if newstatvalue <= 0:
                 newstatvalue = 1
             setattr(target, slugdata, newstatvalue)
-        return {"success": bool(newstatvalue)}
+        return {
+            "damage": 0,
+            "should_tackle": False,
+            "success": bool(newstatvalue),
+            "element_multiplier": 0,
+        }

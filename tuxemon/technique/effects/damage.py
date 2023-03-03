@@ -10,12 +10,6 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 
-class DamageEffectResult(TechEffectResult):
-    damage: int
-    element_multiplier: float
-    should_tackle: bool
-
-
 @dataclass
 class DamageEffect(TechEffect):
     """
@@ -38,7 +32,7 @@ class DamageEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> DamageEffectResult:
+    ) -> TechEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value

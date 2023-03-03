@@ -4,17 +4,10 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import Optional
 
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
-
-
-class ChargedUpEffectResult(TechEffectResult):
-    damage: int
-    should_tackle: bool
-    status: Optional[Technique]
 
 
 @dataclass
@@ -28,7 +21,7 @@ class ChargedUpEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> ChargedUpEffectResult:
+    ) -> TechEffectResult:
         player = self.session.player
         potency = random.random()
         value = float(player.game_variables["random_tech_hit"])
@@ -38,8 +31,12 @@ class ChargedUpEffect(TechEffect):
             tech = Technique("status_chargedup")
             if obj == "user":
                 user.apply_status(tech)
-            elif obj == "target":
+            else:
                 target.apply_status(tech)
-            return {"status": tech}
 
-        return {"damage": 0, "should_tackle": False, "success": False}
+        return {
+            "damage": 0,
+            "should_tackle": bool(success),
+            "success": False,
+            "element_multiplier": 0,
+        }

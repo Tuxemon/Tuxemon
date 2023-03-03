@@ -3,18 +3,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
 
 from tuxemon import formula
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
-
-
-class PoisonEffectResult(TechEffectResult):
-    damage: int
-    should_tackle: bool
-    status: Optional[Technique]
 
 
 @dataclass
@@ -28,7 +21,7 @@ class PoisonEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> PoisonEffectResult:
+    ) -> TechEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         potency = formula.random.random()
@@ -37,9 +30,8 @@ class PoisonEffect(TechEffect):
             tech = Technique("status_poison")
             if self.objective == "user":
                 user.apply_status(tech)
-            elif self.objective == "target":
+            else:
                 target.apply_status(tech)
-            return {"status": tech}
 
         damage = formula.simple_poison(target)
         target.current_hp -= damage
@@ -48,4 +40,5 @@ class PoisonEffect(TechEffect):
             "damage": damage,
             "should_tackle": bool(damage),
             "success": bool(damage),
+            "element_multiplier": 0,
         }

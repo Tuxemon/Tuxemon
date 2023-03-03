@@ -144,7 +144,7 @@ class JournalState(PygameMenuState):
                 if player.tuxepedia[mon.slug] == SeenStatus.seen:
                     menu.add.button(
                         label,
-                        click_on=change_state(
+                        change_state(
                             "JournalInfoState", kwargs={"monster": mon}
                         ),
                         font_size=20,

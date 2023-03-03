@@ -204,7 +204,6 @@ class PygameKeyboardInput(PygameEventHandler):
     }
 
     def process_event(self, input_event: pygame.event.Event) -> None:
-
         pressed = input_event.type == pg.KEYDOWN
         released = input_event.type == pg.KEYUP
 

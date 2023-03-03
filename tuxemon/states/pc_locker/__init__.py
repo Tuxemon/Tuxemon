@@ -48,7 +48,6 @@ class ItemTakeState(PygameMenuState):
     ) -> None:
         # it regroups kennel operations: pick up, move and release
         def locker_options(instance_id: uuid.UUID) -> None:
-
             # retrieves the item from the iid
             iid = uuid.UUID(instance_id)
             itm = self.player.find_item_in_storage(iid)
@@ -301,7 +300,6 @@ class ItemBoxChooseState(PygameMenuState):
         menu: pygame_menu.Menu,
         items: Sequence[Tuple[str, MenuGameObj]],
     ) -> None:
-
         menu.add.vertical_fill()
         for key, callback in items:
             num_itms = local_session.player.item_boxes[key]

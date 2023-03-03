@@ -125,7 +125,6 @@ class MultiplayerMenu(PopUpMenu[MenuGameObj]):
         )
 
     def host_game(self) -> None:
-
         # check if server is already hosting a game
         if self.client.server.listening:
             self.client.pop_state(self)

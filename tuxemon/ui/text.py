@@ -135,7 +135,6 @@ def draw_text(
 
     # Loop through each word in the text and add it to the word list
     for word in text.split():
-
         # If there is a linebreak in this word, then split it up into a list separated by \n
         if "\\n" in word:
             w = word.split("\\n")
@@ -153,7 +152,6 @@ def draw_text(
 
         # If there's no line break, continue normally to word wrap
         else:
-
             # Append the word to the current line
             wordlist.append(word)
 

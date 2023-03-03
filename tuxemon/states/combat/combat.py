@@ -145,7 +145,6 @@ class WaitForInputState(state.State):
     """Just wait for input blocking everything"""
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-
         if event.pressed and event.button == buttons.A:
             self.client.pop_state(self)
 
@@ -958,7 +957,6 @@ class CombatState(CombatAnimations):
         # is synchronized with the damage shake motion
         hit_delay = 0.0
         if user:
-
             # TODO: a real check or some params to test if should tackle, etc
             if result["should_tackle"]:
                 hit_delay += 0.5
@@ -992,7 +990,6 @@ class CombatState(CombatAnimations):
                         message += "\n" + m
 
             else:  # assume this was an item used
-
                 # handle the capture device
                 if result["capture"]:
                     message += "\n" + T.translate("attempting_capture")
@@ -1084,23 +1081,19 @@ class CombatState(CombatAnimations):
         """
         if monster in self._damage_map:
             # Award Experience
-            awarded_exp = monster.total_experience // (
-                monster.level * len(self._damage_map[monster])
-            )
+            awarded_exp = (
+                monster.total_experience
+                // (monster.level * len(self._damage_map[monster]))
+            ) * monster.experience_modifier
             awarded_mon = monster.level * monster.money_modifier
             for winners in self._damage_map[monster]:
+                # check before giving exp
                 self._level_before = winners.level
+                winners.give_experience(awarded_exp)
+                # check after giving exp
                 self._level_after = winners.level
                 if self.is_trainer_battle:
-                    winners.give_experience(awarded_exp)
                     self._prize += awarded_mon
-                    self._level_after = winners.level
-                else:
-                    awarded = (
-                        awarded_exp * monster.experience_required_modifier
-                    )
-                    winners.give_experience(awarded)
-                    self._level_after = winners.level
                 # it checks if there is a "level up"
                 if self._level_before != self._level_after:
                     diff = self._level_after - self._level_before

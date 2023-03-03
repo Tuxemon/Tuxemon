@@ -15,7 +15,6 @@ class Economy:
     economy."""
 
     def __init__(self, slug: Optional[str] = None) -> None:
-
         # Auto-load the economy from the economy database.
         if slug:
             self.load(slug)

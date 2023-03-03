@@ -47,7 +47,6 @@ class MonsterTakeState(PygameMenuState):
     ) -> None:
         # it regroups kennel operations: pick up, move and release
         def kennel_options(instance_id: uuid.UUID) -> None:
-
             # retrieves the monster from the iid
             iid = uuid.UUID(instance_id)
             mon = self.player.find_monster_in_storage(iid)
@@ -274,7 +273,6 @@ class MonsterBoxChooseState(PygameMenuState):
         menu: pygame_menu.Menu,
         items: Sequence[Tuple[str, MenuGameObj]],
     ) -> None:
-
         menu.add.vertical_fill()
         for key, callback in items:
             num_mons = local_session.player.monster_boxes[key]

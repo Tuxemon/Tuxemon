@@ -58,15 +58,14 @@ class HasItemCondition(EventCondition):
         if npc is not None:
             assert npc
             itm = npc.find_item(itm_slug)
-            assert itm
-            if len(condition.parameters) > 2:
-                operator = condition.parameters[2].lower()
-                qty = int(condition.parameters[3])
-                return op(itm.quantity, operator, qty)
+            if itm is None:
+                return False
             else:
-                if itm is None:
-                    return False
+                if len(condition.parameters) > 2:
+                    operator = condition.parameters[2].lower()
+                    qty = int(condition.parameters[3])
+                    return op(itm.quantity, operator, qty)
                 else:
-                    return True
+                    return False
         else:
             raise ValueError(f"{npc_slug} doesn't exist.")

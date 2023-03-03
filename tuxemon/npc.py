@@ -118,7 +118,6 @@ class NPC(Entity[NPCState]):
         *,
         world: WorldState,
     ) -> None:
-
         super().__init__(slug=npc_slug, world=world)
 
         # load initial data from the npc database
@@ -285,6 +284,11 @@ class NPC(Entity[NPCState]):
         self.sprite_name = ""
         if not self.template:
             self.sprite_name = "adventurer"
+            template = Template()
+            template.slug = self.sprite_name
+            template.sprite_name = self.sprite_name
+            template.combat_front = self.sprite_name
+            self.template.append(template)
         else:
             for tmp in self.template:
                 self.sprite_name = tmp.sprite_name
@@ -813,9 +817,7 @@ class NPC(Entity[NPCState]):
             # npc_monsters_details, which is a PartyMemberModel, is "slug"
             monster = Monster(save_data=npc_monster_details.dict())
             monster.money_modifier = npc_monster_details.money_mod
-            monster.experience_required_modifier = (
-                npc_monster_details.exp_req_mod
-            )
+            monster.experience_modifier = npc_monster_details.exp_req_mod
             monster.set_level(monster.level)
             monster.set_moves(monster.level)
             monster.current_hp = monster.hp

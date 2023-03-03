@@ -58,7 +58,7 @@ class AddMonsterAction(EventAction):
         current_monster.set_capture(formula.today_ordinal())
         current_monster.current_hp = current_monster.hp
         if self.exp is not None:
-            current_monster.experience_required_modifier = self.exp
+            current_monster.experience_modifier = self.exp
         if self.money is not None:
             current_monster.money_modifier = self.money
 

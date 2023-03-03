@@ -51,7 +51,14 @@ class RandomMonsterAction(EventAction):
         )
 
         # list is required as choice expects a sequence
-        monster_slug = rd.choice(list(db.database["monster"]))
+        filters = []
+        monsters = list(db.database["monster"])
+        for mon in monsters:
+            results = db.lookup(mon, table="monster")
+            if results.txmn_id > 0:
+                filters.append(results.slug)
+
+        monster_slug = rd.choice(filters)
 
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_slug)
@@ -60,7 +67,7 @@ class RandomMonsterAction(EventAction):
         current_monster.set_capture(formula.today_ordinal())
         current_monster.current_hp = current_monster.hp
         if self.exp is not None:
-            current_monster.experience_required_modifier = self.exp
+            current_monster.experience_modifier = self.exp
         if self.money is not None:
             current_monster.money_modifier = self.money
 

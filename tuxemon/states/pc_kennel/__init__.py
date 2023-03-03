@@ -47,7 +47,6 @@ class MonsterTakeState(PygameMenuState):
     ) -> None:
         # it regroups kennel operations: pick up, move and release
         def kennel_options(instance_id: str) -> None:
-
             # retrieves the monster from the iid
             iid = uuid.UUID(instance_id)
             mon = self.player.find_monster_in_storage(iid)

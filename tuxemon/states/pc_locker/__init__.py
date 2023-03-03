@@ -48,7 +48,6 @@ class ItemTakeState(PygameMenuState):
     ) -> None:
         # it regroups kennel operations: pick up, move and release
         def locker_options(instance_id: str) -> None:
-
             # retrieves the item from the iid
             iid = uuid.UUID(instance_id)
             itm = self.player.find_item_in_storage(iid)

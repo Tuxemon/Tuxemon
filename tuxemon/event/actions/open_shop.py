@@ -88,4 +88,6 @@ class OpenShopAction(EventAction):
         elif menu == "sell":
             push_sell_menu()
         else:
-            raise Exception
+            raise Exception(
+                f"The parameter {self.menu} can be only 'both', 'buy' or 'sell'."
+            )

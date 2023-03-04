@@ -356,6 +356,7 @@ class ShopBuyMenuState(ShopMenuState):
 
         """
         item = menu_item.game_object
+        price = self.economy.lookup_item_price(item.slug)
 
         def buy_item(itm: Item, quantity: int) -> None:
             if not quantity:
@@ -374,21 +375,13 @@ class ShopBuyMenuState(ShopMenuState):
                 new_buy.load(itm.slug)
                 new_buy.quantity = quantity
                 self.buyer.add_item(new_buy)
-            self.buyer.money["player"] = self.buyer.money.get("player") - (
-                quantity * price
-            )
+            self.buyer.money["player"] -= quantity * price
 
             self.reload_items()
             if item not in self.seller.items:
                 # We're pointing at a new item
                 self.on_menu_selection_change()
 
-        price = (
-            0
-            if not self.economy
-            or not self.economy.lookup_item_price(item.slug)
-            else self.economy.lookup_item_price(item.slug)
-        )
         money = self.buyer.money["player"]
         qty_can_afford = int(money / price)
 
@@ -422,6 +415,7 @@ class ShopSellMenuState(ShopMenuState):
 
         """
         item = menu_item.game_object
+        cost = self.economy.lookup_item_cost(item.slug)
 
         def sell_item(itm: Item, quantity: int) -> None:
             if not quantity:
@@ -434,20 +428,12 @@ class ShopSellMenuState(ShopMenuState):
                 itm.quantity = diff
 
             if self.seller.money.get("player") is not None:
-                self.seller.money["player"] = self.seller.money.get(
-                    "player"
-                ) + (quantity * cost)
+                self.seller.money["player"] += quantity * cost
 
             self.reload_items()
             if item not in self.seller.items:
                 # We're pointing at a new item
                 self.on_menu_selection_change()
-
-        cost = (
-            0
-            if not self.economy or not self.economy.lookup_item_cost(item.slug)
-            else self.economy.lookup_item_cost(item.slug)
-        )
 
         self.client.push_state(
             QuantityAndCostMenu(

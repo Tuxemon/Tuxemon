@@ -54,27 +54,27 @@ class CaptureEffect(ItemEffect):
         if self.tuxeball is not None:
             # type based tuxeball
             if self.tuxeball == "tuxeball_earth":
-                if target.type1 != "earth":
+                if target.types[0] != "earth":
                     tuxeball_modifier = 0.2
                 else:
                     tuxeball_modifier = 1.5
             if self.tuxeball == "tuxeball_fire":
-                if target.type1 != "fire":
+                if target.types[0] != "fire":
                     tuxeball_modifier = 0.2
                 else:
                     tuxeball_modifier = 1.5
             if self.tuxeball == "tuxeball_metal":
-                if target.type1 != "metal":
+                if target.types[0] != "metal":
                     tuxeball_modifier = 0.2
                 else:
                     tuxeball_modifier = 1.5
             if self.tuxeball == "tuxeball_water":
-                if target.type1 != "water":
+                if target.types[0] != "water":
                     tuxeball_modifier = 0.2
                 else:
                     tuxeball_modifier = 1.5
             if self.tuxeball == "tuxeball_wood":
-                if target.type1 != "wood":
+                if target.types[0] != "wood":
                     tuxeball_modifier = 0.2
                 else:
                     tuxeball_modifier = 1.5
@@ -105,12 +105,12 @@ class CaptureEffect(ItemEffect):
                     crusher = 0.01
                 tuxeball_modifier = crusher
             if self.tuxeball == "tuxeball_xero":
-                if fighting_monster.type1 != target.type1:
+                if fighting_monster.types[0] != target.types[0]:
                     tuxeball_modifier = 1.4
                 else:
                     tuxeball_modifier = 0.3
             if self.tuxeball == "tuxeball_omni":
-                if fighting_monster.type1 != target.type1:
+                if fighting_monster.types[0] != target.types[0]:
                     tuxeball_modifier = 0.3
                 else:
                     tuxeball_modifier = 1.4

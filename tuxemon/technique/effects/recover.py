@@ -10,6 +10,11 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 
+class RecoverEffectResult(TechEffectResult):
+    damage: int
+    should_tackle: bool
+
+
 @dataclass
 class RecoverEffect(TechEffect):
     """
@@ -21,7 +26,7 @@ class RecoverEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> TechEffectResult:
+    ) -> RecoverEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         potency = formula.random.random()
@@ -29,6 +34,11 @@ class RecoverEffect(TechEffect):
         if success:
             tech = Technique("status_recover", link=user)
             user.apply_status(tech)
+            return {
+                "damage": 0,
+                "should_tackle": bool(success),
+                "success": True,
+            }
 
         # avoids Nonetype situation and reset the user
         if user is None:
@@ -44,5 +54,4 @@ class RecoverEffect(TechEffect):
             "damage": heal,
             "should_tackle": False,
             "success": bool(heal),
-            "element_multiplier": 0,
         }

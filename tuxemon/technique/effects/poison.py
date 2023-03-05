@@ -10,6 +10,11 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 
+class PoisonEffectResult(TechEffectResult):
+    damage: int
+    should_tackle: bool
+
+
 @dataclass
 class PoisonEffect(TechEffect):
     """
@@ -21,7 +26,7 @@ class PoisonEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> TechEffectResult:
+    ) -> PoisonEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         potency = formula.random.random()
@@ -30,8 +35,13 @@ class PoisonEffect(TechEffect):
             tech = Technique("status_poison")
             if self.objective == "user":
                 user.apply_status(tech)
-            else:
+            elif self.objective == "target":
                 target.apply_status(tech)
+            return {
+                "damage": 0,
+                "should_tackle": bool(success),
+                "success": True,
+            }
 
         damage = formula.simple_poison(target)
         target.current_hp -= damage
@@ -40,5 +50,4 @@ class PoisonEffect(TechEffect):
             "damage": damage,
             "should_tackle": bool(damage),
             "success": bool(damage),
-            "element_multiplier": 0,
         }

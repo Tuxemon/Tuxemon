@@ -9,6 +9,10 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 
+class EnhanceEffectResult(TechEffectResult):
+    should_tackle: bool
+
+
 @dataclass
 class EnhanceEffect(TechEffect):
     """
@@ -28,21 +32,11 @@ class EnhanceEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> TechEffectResult:
+    ) -> EnhanceEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
         if hit or tech.is_area:
-            return {
-                "damage": 0,
-                "should_tackle": True,
-                "success": True,
-                "element_multiplier": 0,
-            }
+            return {"should_tackle": True, "success": True}
         else:
-            return {
-                "damage": 0,
-                "should_tackle": False,
-                "success": False,
-                "element_multiplier": 0,
-            }
+            return {"should_tackle": False, "success": False}

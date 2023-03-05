@@ -14,10 +14,7 @@ if TYPE_CHECKING:
 
 
 class TechEffectResult(TypedDict):
-    damage: int
-    element_multiplier: float
     success: bool
-    should_tackle: bool
 
 
 @dataclass

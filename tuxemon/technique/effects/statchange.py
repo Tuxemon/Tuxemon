@@ -11,6 +11,10 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 
+class StatChangeEffectResult(TechEffectResult):
+    pass
+
+
 @dataclass
 class StatChangeEffect(TechEffect):
     """
@@ -32,7 +36,7 @@ class StatChangeEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> TechEffectResult:
+    ) -> StatChangeEffectResult:
         statsmaster = [
             tech.statspeed,
             tech.stathp,
@@ -58,11 +62,10 @@ class StatChangeEffect(TechEffect):
             operation = stat.operation
             override = stat.overridetofull
             basestatvalue = getattr(target, slugdata)
+            min_value = value - max_deviation
+            max_value = value + max_deviation
             if max_deviation:
-                value = random.randint(
-                    value - max_deviation,
-                    value + max_deviation,
-                )
+                value = random.randint(int(min_value), int(max_value))
 
             if value > 0 and override is not True:
                 ops_dict = {
@@ -78,9 +81,4 @@ class StatChangeEffect(TechEffect):
             if newstatvalue <= 0:
                 newstatvalue = 1
             setattr(target, slugdata, newstatvalue)
-        return {
-            "damage": 0,
-            "should_tackle": False,
-            "success": bool(newstatvalue),
-            "element_multiplier": 0,
-        }
+        return {"success": bool(newstatvalue)}

@@ -10,6 +10,11 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 
+class LifeLeechEffectResult(TechEffectResult):
+    damage: int
+    should_tackle: bool
+
+
 @dataclass
 class LifeLeechEffect(TechEffect):
     """
@@ -29,7 +34,7 @@ class LifeLeechEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> TechEffectResult:
+    ) -> LifeLeechEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         potency = formula.random.random()
@@ -41,6 +46,11 @@ class LifeLeechEffect(TechEffect):
             if tech.slug == "blood_bond":
                 tech = Technique("status_lifeleech", carrier=user, link=target)
                 user.apply_status(tech)
+            return {
+                "damage": 0,
+                "should_tackle": bool(success),
+                "success": True,
+            }
 
         # avoids Nonetype situation and reset the user
         if user is None:
@@ -58,5 +68,4 @@ class LifeLeechEffect(TechEffect):
             "damage": damage,
             "should_tackle": bool(damage),
             "success": bool(damage),
-            "element_multiplier": 0,
         }

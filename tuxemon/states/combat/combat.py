@@ -692,12 +692,6 @@ class CombatState(CombatAnimations):
 
         """
         # TODO: refactor some into the combat animations
-        # save iid monster fighting
-        if self.players[0] == player:
-            self.players[0].game_variables[
-                "iid_fighting_monster"
-            ] = monster.instance_id
-
         self.animate_monster_release(player, monster)
         self.build_hud(self._layout[player]["hud"][0], monster)
         self.monsters_in_play[player].append(monster)
@@ -715,6 +709,10 @@ class CombatState(CombatAnimations):
                     {"name": monster.name.upper()},
                 ),
             )
+            # save iid monster fighting
+            self.players[0].game_variables[
+                "iid_fighting_monster"
+            ] = monster.instance_id
         elif self.is_trainer_battle:
             self.alert(
                 T.format(
@@ -797,15 +795,6 @@ class CombatState(CombatAnimations):
         )
         state.rect = rect
 
-    def skip_phase_change(self) -> None:
-        """
-        Skip phase change animations.
-
-        Useful if player wants to skip a battle animation.
-        """
-        for ani in self.animations:
-            ani.finish()
-
     def enqueue_action(
         self,
         user: Union[NPC, Monster, None],
@@ -844,7 +833,6 @@ class CombatState(CombatAnimations):
 
     def remove_monster_from_play(
         self,
-        trainer: NPC,
         monster: Monster,
     ) -> None:
         """

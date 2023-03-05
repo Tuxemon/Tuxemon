@@ -10,6 +10,10 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 
+class ChargedUpEffectResult(TechEffectResult):
+    pass
+
+
 @dataclass
 class ChargedUpEffect(TechEffect):
     """
@@ -21,7 +25,7 @@ class ChargedUpEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> TechEffectResult:
+    ) -> ChargedUpEffectResult:
         player = self.session.player
         potency = random.random()
         value = float(player.game_variables["random_tech_hit"])
@@ -31,12 +35,8 @@ class ChargedUpEffect(TechEffect):
             tech = Technique("status_chargedup")
             if obj == "user":
                 user.apply_status(tech)
-            else:
+            elif obj == "target":
                 target.apply_status(tech)
+            return {"success": True}
 
-        return {
-            "damage": 0,
-            "should_tackle": bool(success),
-            "success": False,
-            "element_multiplier": 0,
-        }
+        return {"success": False}

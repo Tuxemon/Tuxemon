@@ -10,6 +10,10 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 
+class StuckEffectResult(TechEffectResult):
+    pass
+
+
 @dataclass
 class StuckEffect(TechEffect):
     """
@@ -21,7 +25,7 @@ class StuckEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> TechEffectResult:
+    ) -> StuckEffectResult:
         player = self.session.player
         potency = formula.random.random()
         value = float(player.game_variables["random_tech_hit"])
@@ -32,13 +36,9 @@ class StuckEffect(TechEffect):
             if obj == "user":
                 user.apply_status(tech)
                 formula.simple_stuck(user)
-            else:
+            elif obj == "target":
                 target.apply_status(tech)
                 formula.simple_stuck(target)
+            return {"success": True}
 
-        return {
-            "damage": 0,
-            "should_tackle": bool(success),
-            "success": False,
-            "element_multiplier": 0,
-        }
+        return {"success": False}

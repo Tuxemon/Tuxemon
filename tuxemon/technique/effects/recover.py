@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
 
 from tuxemon import formula
 from tuxemon.monster import Monster
@@ -14,7 +13,6 @@ from tuxemon.technique.technique import Technique
 class RecoverEffectResult(TechEffectResult):
     damage: int
     should_tackle: bool
-    status: Optional[Technique]
 
 
 @dataclass
@@ -36,7 +34,11 @@ class RecoverEffect(TechEffect):
         if success:
             tech = Technique("status_recover", link=user)
             user.apply_status(tech)
-            return {"status": tech}
+            return {
+                "damage": 0,
+                "should_tackle": bool(success),
+                "success": True,
+            }
 
         # avoids Nonetype situation and reset the user
         if user is None:

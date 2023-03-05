@@ -329,7 +329,6 @@ class Technique:
             "success": False,
             "should_tackle": False,
             "capture": False,
-            "statuses": [],
         }
 
         # Loop through all the effects of this technique and execute the effect's function.

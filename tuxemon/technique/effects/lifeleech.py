@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
 
 from tuxemon import formula
 from tuxemon.monster import Monster
@@ -14,7 +13,6 @@ from tuxemon.technique.technique import Technique
 class LifeLeechEffectResult(TechEffectResult):
     damage: int
     should_tackle: bool
-    status: Optional[Technique]
 
 
 @dataclass
@@ -48,7 +46,11 @@ class LifeLeechEffect(TechEffect):
             if tech.slug == "blood_bond":
                 tech = Technique("status_lifeleech", carrier=user, link=target)
                 user.apply_status(tech)
-            return {"status": tech}
+            return {
+                "damage": 0,
+                "should_tackle": bool(success),
+                "success": True,
+            }
 
         # avoids Nonetype situation and reset the user
         if user is None:

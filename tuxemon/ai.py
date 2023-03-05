@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from random import choice
-from typing import TYPE_CHECKING, Sequence, Tuple, Union
+from typing import TYPE_CHECKING, Optional, Sequence, Tuple, Union
 
 from tuxemon.item.item import Item
 from tuxemon.technique.technique import Technique
@@ -25,7 +25,12 @@ class AI(ABC):
         user: NPC,
         monster: Monster,
         opponents: Sequence[Monster],
-    ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
+    ) -> Tuple[
+        Union[Monster, NPC],
+        Optional[Technique],
+        Optional[Item],
+        Monster,
+    ]:
         """
         Given a npc, and list of opponents, decide an action to take.
 
@@ -44,7 +49,12 @@ class AI(ABC):
         user: NPC,
         monster: Monster,
         opponents: Sequence[Monster],
-    ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
+    ) -> Tuple[
+        Union[Monster, NPC],
+        Optional[Technique],
+        Optional[Item],
+        Monster,
+    ]:
         raise NotImplementedError
 
 
@@ -56,16 +66,26 @@ class SimpleAI(AI):
         user: NPC,
         monster: Monster,
         opponents: Sequence[Monster],
-    ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
-        return monster, monster.moves[0], opponents[0]
+    ) -> Tuple[
+        Union[Monster, NPC],
+        Optional[Technique],
+        Optional[Item],
+        Monster,
+    ]:
+        return monster, monster.moves[0], None, opponents[0]
 
     def make_decision_wild(
         self,
         user: NPC,
         monster: Monster,
         opponents: Sequence[Monster],
-    ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
-        return monster, monster.moves[0], opponents[0]
+    ) -> Tuple[
+        Union[Monster, NPC],
+        Optional[Technique],
+        Optional[Item],
+        Monster,
+    ]:
+        return monster, monster.moves[0], None, opponents[0]
 
 
 class RandomAI(AI):
@@ -76,7 +96,12 @@ class RandomAI(AI):
         user: NPC,
         monster: Monster,
         opponents: Sequence[Monster],
-    ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
+    ) -> Tuple[
+        Union[Monster, NPC],
+        Optional[Technique],
+        Optional[Item],
+        Monster,
+    ]:
         """
         Trainer battles.
         """
@@ -85,23 +110,28 @@ class RandomAI(AI):
                 for itm in user.items:
                     if itm.sort == "potion":
                         if self.need_potion(monster):
-                            return user, itm, monster
+                            return user, None, itm, monster
         technique, target = self.track_next_use(monster, opponents)
         # send data
-        return monster, technique, target
+        return monster, technique, None, target
 
     def make_decision_wild(
         self,
         user: NPC,
         monster: Monster,
         opponents: Sequence[Monster],
-    ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
+    ) -> Tuple[
+        Union[Monster, NPC],
+        Optional[Technique],
+        Optional[Item],
+        Monster,
+    ]:
         """
         Wild encounters.
         """
         technique, target = self.track_next_use(monster, opponents)
         # send data
-        return monster, technique, target
+        return monster, technique, None, target
 
     def track_next_use(
         self,

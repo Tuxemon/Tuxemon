@@ -76,13 +76,11 @@ class Technique:
         self.recharge_length = 0
         self.repl_pos = ""
         self.repl_neg = ""
-        self.sfx = ""
         self.sort = ""
         self.slug = ""
         self.target: Sequence[str] = []
         self.types: List[ElementType] = []
         self.usable_on = False
-        self.use_item = ""
         self.use_success = ""
         self.use_failure = ""
         self.use_tech = ""
@@ -123,7 +121,7 @@ class Technique:
         # technique use notifications (translated!)
         # NOTE: should be `self.use_tech`, but Technique and Item have
         # overlapping checks
-        self.use_item = T.maybe_translate(results.use_tech)
+        self.use_tech = T.maybe_translate(results.use_tech)
         self.use_success = T.maybe_translate(results.use_success)
         self.use_failure = T.maybe_translate(results.use_failure)
 

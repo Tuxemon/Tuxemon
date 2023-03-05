@@ -200,16 +200,6 @@ class Item:
 
         return ret
 
-    def advance_round(self) -> None:
-        """
-        Advance round for items that take many rounds to use.
-
-        * This currently has no use, and may not stay.  It is added
-          so that the Item class and Technique class are interchangeable.
-
-        """
-        return
-
     def validate(self, target: Optional[Monster]) -> bool:
         """
         Check if the target meets all conditions that the item has on it's use.

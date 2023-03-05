@@ -19,7 +19,6 @@ from typing import (
     Sequence,
     Set,
     Tuple,
-    Union,
     overload,
 )
 
@@ -76,8 +75,10 @@ CombatPhase = Literal[
 
 
 class EnqueuedAction(NamedTuple):
-    user: Union[Monster, NPC, None]
-    technique: Union[Technique, Item]
+    trainer: Optional[NPC]
+    user: Optional[Monster]
+    technique: Optional[Technique]
+    item: Optional[Item]
     target: Monster
 
 
@@ -400,7 +401,7 @@ class CombatState(CombatAnimations):
             # apply status effects to the monsters
             for monster in self.active_monsters:
                 for technique in monster.status:
-                    self.enqueue_action(None, technique, monster)
+                    self.enqueue_action(None, None, technique, None, monster)
                     # avoid multiple effect status
                     monster.set_stats()
 
@@ -523,14 +524,17 @@ class CombatState(CombatAnimations):
         opponents = self.monsters_in_play[self.players[0]]
         trainer = self.players[1]
         if self.is_trainer_battle:
-            user, technique, target = monster.ai.make_decision_trainer(
+            user, technique, item, target = monster.ai.make_decision_trainer(
                 trainer, monster, opponents
             )
         else:
-            user, technique, target = monster.ai.make_decision_wild(
+            user, technique, item, target = monster.ai.make_decision_wild(
                 trainer, monster, opponents
             )
-        return EnqueuedAction(user, technique, target)
+        if isinstance(user, Monster):
+            return EnqueuedAction(None, user, technique, item, target)
+        else:
+            return EnqueuedAction(user, None, technique, item, target)
 
     def sort_action_queue(self) -> None:
         """Sort actions in the queue according to game rules.
@@ -542,30 +546,37 @@ class CombatState(CombatAnimations):
         """
 
         def rank_action(action: EnqueuedAction) -> Tuple[int, int]:
-            sort = action.technique.sort
-            primary_order = sort_order.index(sort)
-
-            if sort == "meta":
-                # all meta items sorted together
-                # use of 0 leads to undefined sort/probably random
-                return primary_order, 0
-            elif sort == "potion":
-                return primary_order, 0
+            if action.technique is not None:
+                sort_tech = action.technique.sort
+                primary_order_tech = sort_tech_order.index(sort_tech)
+                if sort_tech == "meta":
+                    return primary_order_tech, 0
+                else:
+                    assert action.user
+                    return primary_order_tech, action.user.speed_test(action)
+            elif action.item is not None:
+                sort_item = action.item.sort
+                primary_order_item = sort_item_order.index(sort_item)
+                if sort_item == "potion":
+                    return primary_order_item, 0
+                else:
+                    assert action.trainer
+                    return primary_order_item, action.trainer.speed_test(
+                        action
+                    )
             else:
-                # TODO: determine the secondary sort element,
-                # monster speed, trainer speed, etc
-                assert action.user
-                return primary_order, action.user.speed_test(action)
+                raise Exception("Technique and item are both Nonetype")
 
         # TODO: move to mod config
-        sort_order = [
+        sort_tech_order = [
             "meta",
-            "item",
-            "utility",
-            "potion",
-            "food",
-            "heal",
             "damage",
+        ]
+        sort_item_order = [
+            "food",
+            "potion",
+            "utility",
+            "quest",
         ]
 
         # TODO: Running happens somewhere else, it should be moved here
@@ -702,34 +713,32 @@ class CombatState(CombatAnimations):
                 mon.status.clear()
 
         # TODO: not hardcode
+        message = T.format(
+            "combat_call_tuxemon",
+            {"name": monster.name.upper()},
+        )
+        m = T.format(
+            "combat_swap",
+            {
+                "target": monster.name.upper(),
+                "user": player.name.upper(),
+            },
+        )
+        message += "\n" + m
+        self.alert(message)
+        # save iid monster fighting
         if player is self.players[0]:
-            self.alert(
-                T.format(
-                    "combat_call_tuxemon",
-                    {"name": monster.name.upper()},
-                ),
-            )
-            # save iid monster fighting
             self.players[0].game_variables[
                 "iid_fighting_monster"
             ] = monster.instance_id
         elif self.is_trainer_battle:
-            self.alert(
-                T.format(
-                    "combat_swap",
-                    {
-                        "target": monster.name.upper(),
-                        "user": player.name.upper(),
-                    },
-                )
-            )
+            pass
         else:
-            self.alert(
-                T.format(
-                    "combat_wild_appeared",
-                    {"name": monster.name.upper()},
-                ),
+            message = T.format(
+                "combat_wild_appeared",
+                {"name": monster.name.upper()},
             )
+            self.alert(message)
 
     def reset_status_icons(self) -> None:
         """
@@ -797,20 +806,26 @@ class CombatState(CombatAnimations):
 
     def enqueue_action(
         self,
-        user: Union[NPC, Monster, None],
-        technique: Union[Item, Technique],
+        trainer: Optional[NPC],
+        user: Optional[Monster],
+        technique: Optional[Technique],
+        item: Optional[Item],
         target: Monster,
     ) -> None:
         """
         Add some technique or status to the action queue.
 
         Parameters:
-            user: The user of the technique.
+            player: The NPC.
+            user: The monster using the technique.
             technique: The technique used.
+            item: The item used.
             target: The target of the action.
 
         """
-        self._action_queue.append(EnqueuedAction(user, technique, target))
+        self._action_queue.append(
+            EnqueuedAction(trainer, user, technique, item, target)
+        )
 
     def rewrite_action_queue_target(
         self,
@@ -828,7 +843,13 @@ class CombatState(CombatAnimations):
         # rewrite actions in the queue to target the new monster
         for index, action in enumerate(self._action_queue):
             if action.target is original:
-                new_action = EnqueuedAction(action.user, action.technique, new)
+                new_action = EnqueuedAction(
+                    action.trainer,
+                    action.user,
+                    action.technique,
+                    action.item,
+                    new,
+                )
                 self._action_queue[index] = new_action
 
     def remove_monster_from_play(
@@ -892,8 +913,10 @@ class CombatState(CombatAnimations):
     @overload
     def perform_action(
         self,
-        user: Optional[Monster],
+        player: None,
+        user: Monster,
         technique: Technique,
+        item: None,
         target: Monster,
     ) -> None:
         pass
@@ -901,48 +924,31 @@ class CombatState(CombatAnimations):
     @overload
     def perform_action(
         self,
-        user: Optional[NPC],
-        technique: Item,
+        player: NPC,
+        user: None,
+        technique: None,
+        item: Item,
         target: Monster,
     ) -> None:
         pass
 
     def perform_action(
         self,
-        user: Union[Monster, NPC, None],
-        technique: Union[Technique, Item],
+        player: Optional[NPC],
+        user: Optional[Monster],
+        technique: Optional[Technique],
+        item: Optional[Item],
         target: Monster,
     ) -> None:
         """
         Perform the action.
-
         Parameters:
             user: Monster that does the action.
             technique: Technique or item used.
             target: Monster that receives the action.
-
         """
-        technique.advance_round()
-
         # This is the time, in seconds, that the animation takes to finish.
         action_time = 3.0
-
-        result = technique.use(user, target)
-
-        if technique.use_item:
-            # "Monster used move!"
-            context = {
-                "user": getattr(user, "name", ""),
-                "name": technique.name,
-                "target": target.name,
-            }
-            message = T.format(technique.use_item, context)
-        else:
-            message = ""
-
-        # TODO: caching sounds
-        audio.load_sound(technique.sfx).play()
-
         # action is performed, so now use sprites to animate it
         # this value will be None if the target is off screen
         target_sprite = self._monster_sprite_map.get(target, None)
@@ -950,58 +956,115 @@ class CombatState(CombatAnimations):
         # slightly delay the monster shake, so technique animation
         # is synchronized with the damage shake motion
         hit_delay = 0.0
-        if user:
-            # TODO: a real check or some params to test if should tackle, etc
-            if result["should_tackle"]:
-                hit_delay += 0.5
-                user_sprite = self._monster_sprite_map[user]
-                self.animate_sprite_tackle(user_sprite)
+        if technique:
+            technique.advance_round()
+            # TODO: caching sounds
+            audio.load_sound(technique.sfx).play()
+            result_tech = technique.use(user, target)
+            if user:
+                context = {
+                    "user": user.name,
+                    "name": technique.name,
+                    "target": target.name,
+                }
+                message = T.format(technique.use_tech, context)
+                if not result_tech["success"]:
+                    # exclude skip
+                    if technique.slug == "skip":
+                        m = ""
+                    else:
+                        m = T.translate("combat_miss")
+                    message += "\n" + m
+                # TODO: a real check or some params to test if should tackle, etc
+                if result_tech["should_tackle"]:
+                    hit_delay += 0.5
+                    user_sprite = self._monster_sprite_map[user]
+                    self.animate_sprite_tackle(user_sprite)
 
-                if target_sprite:
-                    self.task(
-                        partial(
-                            self.animate_sprite_take_damage,
-                            target_sprite,
-                        ),
-                        hit_delay + 0.2,
-                    )
-                    self.task(
-                        partial(self.blink, target_sprite),
-                        hit_delay + 0.6,
-                    )
+                    if target_sprite:
+                        self.task(
+                            partial(
+                                self.animate_sprite_take_damage,
+                                target_sprite,
+                            ),
+                            hit_delay + 0.2,
+                        )
+                        self.task(
+                            partial(self.blink, target_sprite),
+                            hit_delay + 0.6,
+                        )
 
-                # TODO: track total damage
-                # Track damage
-                self._damage_map[target].add(user)
+                    # TODO: track total damage
+                    # Track damage
+                    self._damage_map[target].add(user)
 
-                # allows tackle to special range techniques too
-                if technique.range != "special":
-                    element_damage_key = MULT_MAP.get(
-                        result["element_multiplier"]
-                    )
-                    if element_damage_key:
-                        m = T.translate(element_damage_key)
-                        message += "\n" + m
+                    # allows tackle to special range techniques too
+                    if technique.range != "special":
+                        element_damage_key = MULT_MAP.get(
+                            result_tech["element_multiplier"]
+                        )
+                        if element_damage_key:
+                            m = T.translate(element_damage_key)
+                            message += "\n" + m
+                self.alert(message)
+                self.suppress_phase_change(action_time)
+            else:
+                # status messages (eg rockitten is blind)
+                if result_tech["success"]:
+                    msg_type = "use_success"
+                else:
+                    msg_type = "use_failure"
+                context = {
+                    "name": technique.name,
+                    "target": target.name,
+                }
+                template = getattr(technique, msg_type)
+                message = T.format(template, context)
+                self.suppress_phase_change()
+                self.alert(message)
 
-            else:  # assume this was an item used
-                # handle the capture device
-                if result["capture"]:
-                    # retrieve tuxeball
-                    itm_slug = self.players[0].game_variables["save_item_slug"]
-                    itm = Item()
-                    itm.load(itm_slug)
+            is_flipped = False
+            for trainer in self.ai_players:
+                if user in self.monsters_in_play[trainer]:
+                    is_flipped = True
+                    break
+            tech_sprite = self._technique_cache.get(technique, is_flipped)
+
+            if result_tech["success"] and target_sprite and tech_sprite:
+                tech_sprite.rect.center = target_sprite.rect.center
+                assert tech_sprite.animation
+                self.task(tech_sprite.animation.play, hit_delay)
+                self.task(
+                    partial(self.sprites.add, tech_sprite, layer=50),
+                    hit_delay,
+                )
+                self.task(tech_sprite.kill, 3)
+
+        if item:
+            if player:
+                result_item = item.use(player, target)
+                context = {
+                    "user": player.name,
+                    "name": item.name,
+                    "target": target.name,
+                }
+                message = T.format(item.use_item, context)
+                if not result_item["success"]:
+                    m = T.translate("generic_failure")
+                    message += "\n" + m
+                if result_item["capture"]:
                     message += "\n" + T.translate("attempting_capture")
-                    action_time = result["num_shakes"] + 1.8
+                    action_time = result_item["num_shakes"] + 1.8
                     self.animate_capture_monster(
-                        result["success"],
-                        result["num_shakes"],
+                        result_item["success"],
+                        result_item["num_shakes"],
                         target,
-                        itm.slug,
+                        item.slug,
                     )
 
                     # TODO: Don't end combat right away; only works with SP,
                     # and 1 member parties end combat right here
-                    if result["success"]:
+                    if result_item["success"]:
                         # Tuxepedia: set monster as caught (2)
                         self.players[0].tuxepedia[
                             target.slug
@@ -1014,52 +1077,22 @@ class CombatState(CombatAnimations):
                         )
                         self._animation_in_progress = True
                         return
-
-                # generic handling of anything else
                 else:
                     msg_type = (
-                        "use_success" if result["success"] else "use_failure"
+                        "use_success"
+                        if result_item["success"]
+                        else "use_failure"
                     )
                     context = {
-                        "user": getattr(user, "name", ""),
-                        "name": technique.name,
+                        "user": player.name,
+                        "name": item.name,
                         "target": target.name,
                     }
-                    template = getattr(technique, msg_type)
+                    template = getattr(item, msg_type)
                     if template:
                         message += "\n" + T.format(template, context)
-
-            self.alert(message)
-            self.suppress_phase_change(action_time)
-
-        else:
-            if result["success"]:
-                self.suppress_phase_change()
-                msg_type = (
-                    "use_success" if result["success"] else "use_failure"
-                )
-                context = {
-                    "name": technique.name,
-                    "target": target.name,
-                }
-                template = getattr(technique, msg_type)
-                self.alert(T.format(template, context))
-
-        is_flipped = False
-        for trainer in self.ai_players:
-            if user in self.monsters_in_play[trainer]:
-                is_flipped = True
-                break
-        tech_sprite = self._technique_cache.get(technique, is_flipped)
-
-        if result["success"] and target_sprite and tech_sprite:
-            tech_sprite.rect.center = target_sprite.rect.center
-            self.task(tech_sprite.animation.play, hit_delay)
-            self.task(
-                partial(self.sprites.add, tech_sprite, layer=50),
-                hit_delay,
-            )
-            self.task(tech_sprite.kill, 3)
+                self.alert(message)
+                self.suppress_phase_change(action_time)
 
     def faint_monster(self, monster: Monster) -> None:
         """

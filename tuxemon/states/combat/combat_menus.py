@@ -27,7 +27,7 @@ from tuxemon.technique.technique import Technique
 from tuxemon.ui.draw import GraphicBox
 
 if TYPE_CHECKING:
-    from tuxemon.player import NPC, Player
+    from tuxemon.player import NPC
 
 logger = logging.getLogger(__name__)
 
@@ -206,9 +206,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                         ],
                     )
                     return
-            player = local_session.player
-            target = monster
-            combat_state.enqueue_action(player, swap, target)
+            combat_state.enqueue_action(None, None, swap, None, monster)
             self.client.pop_state()  # close technique menu
             self.client.pop_state()  # close the monster action menu
 
@@ -259,7 +257,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             # enqueue the item
             combat_state = self.client.get_state_by_name(CombatState)
             # TODO: don't hardcode to player0
-            combat_state.enqueue_action(combat_state.players[0], item, target)
+            combat_state.enqueue_action(
+                combat_state.players[0], None, None, item, target
+            )
 
             # close all the open menus
             self.client.pop_state()  # close target chooser
@@ -343,7 +343,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 return
             else:
                 combat_state = self.client.get_state_by_name(CombatState)
-                combat_state.enqueue_action(self.monster, technique, target)
+                combat_state.enqueue_action(
+                    None, self.monster, technique, None, target
+                )
                 # remove skip after using it
                 if technique.slug == "skip":
                     self.monster.moves.pop()
@@ -376,7 +378,7 @@ class CombatTargetMenuState(Menu[Monster]):
 
     def __init__(
         self,
-        player: Player,
+        player: NPC,
         user: Union[NPC, Monster],
         action: Union[Item, Technique],
     ) -> None:

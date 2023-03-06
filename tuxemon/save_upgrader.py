@@ -54,14 +54,60 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     """
     if "steps" not in save_data["game_variables"]:
         save_data["game_variables"]["steps"] = 0
+    if "gender_choice" not in save_data["game_variables"]:
+        save_data["game_variables"]["gender_choice"] = "gender_male"
     if "date_start_game" not in save_data["game_variables"]:
         save_data["game_variables"][
             "date_start_game"
         ] = formula.today_ordinal()
 
-    save_data["battle_history"] = save_data.get("battle_history", {})
     save_data["money"] = save_data.get("money", {})
     save_data["tuxepedia"] = save_data.get("tuxepedia", {})
+    save_data["contacts"] = save_data.get("contacts", {})
+    save_data["items"] = save_data.get("items", [])
+    save_data["battles"] = save_data.get("battles", [])
+
+    # trasfer data from "inventory" to "items"
+    if "battle_history" in save_data:
+        for key, value in save_data["battle_history"].items():
+            output, date = value
+            save_data["battles"].append(
+                {"opponent": key, "outcome": output, "date": date}
+            )
+
+    # fix name capture device -> tuxeball
+    capture_device = [
+        element
+        for element in save_data["items"]
+        if element["slug"] == "capture_device"
+    ]
+    if capture_device:
+        for capture in save_data["items"]:
+            if capture["slug"] == "capture_device":
+                save_data["items"].append(
+                    {
+                        "slug": "tuxeball",
+                        "quantity": capture["quantity"],
+                        "instance_id": capture["instance_id"],
+                    }
+                )
+                save_data["items"].remove(capture)
+
+    # template
+    if "template" not in save_data:
+        save_data["template"] = save_data.get("template", [])
+        save_data["template"].append(
+            {
+                "slug": "adventurer",
+                "sprite_name": "adventurer",
+                "combat_front": "adventurer",
+            }
+        )
+
+    # trasfer data from "inventory" to "items"
+    if "inventory" in save_data:
+        for key, value in save_data["inventory"].items():
+            save_data["items"].append({"slug": key, "quantity": value})
 
     # set as captured the party monsters
     if not save_data["tuxepedia"]:
@@ -71,11 +117,47 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
             for monster in monsters:
                 save_data["tuxepedia"][monster["slug"]] = SeenStatus.caught
 
-    # set money old savegame and avoid getting the starter
+    # set money old savegames and avoid getting the starter
     if not save_data["money"]:
         save_data["money"]["player"] = 10000
         save_data["game_variables"]["xero_starting_money"] = "yes"
         save_data["game_variables"]["spyder_starting_money"] = "yes"
+    # set phone old savegames
+    if "visitedcottoncafe" in save_data["game_variables"]:
+        if save_data["game_variables"]["visitedcottoncafe"] == "yes":
+            checking = [
+                element
+                for element in save_data["items"]
+                if element["slug"] == "nu_phone"
+            ]
+            if not checking:
+                save_data["items"].append({"slug": "nu_phone", "quantity": 1})
+                save_data["items"].append(
+                    {"slug": "app_banking", "quantity": 1}
+                )
+                save_data["items"].append({"slug": "app_map", "quantity": 1})
+                save_data["items"].append(
+                    {"slug": "app_tuxepedia", "quantity": 1}
+                )
+    if "timberdantewarn" in save_data["game_variables"]:
+        if save_data["game_variables"]["timberdantewarn"] == "yes":
+            checking = [
+                element
+                for element in save_data["items"]
+                if element["slug"] == "nu_phone"
+            ]
+            if not checking:
+                save_data["items"].append({"slug": "nu_phone", "quantity": 1})
+                save_data["items"].append(
+                    {"slug": "app_banking", "quantity": 1}
+                )
+                save_data["items"].append({"slug": "app_map", "quantity": 1})
+                save_data["items"].append(
+                    {"slug": "app_tuxepedia", "quantity": 1}
+                )
+                save_data["items"].append(
+                    {"slug": "app_contacts", "quantity": 1}
+                )
 
     version = save_data.get("version", 0)
     for i in range(version, SAVE_VERSION):

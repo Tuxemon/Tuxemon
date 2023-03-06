@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="54">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="55">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -53,13 +53,12 @@
     <property name="cond1" value="not npc_exists spyder_shopassistant"/>
    </properties>
   </object>
-  <object id="31" name="Talk Shop Assistant" type="event" x="112" y="96" width="16" height="16">
+  <object id="31" name="Talk Shop Assistant1" type="event" x="112" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_petshopassistant"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="not variable_set chooses:yes"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set chooses:yes"/>
    </properties>
   </object>
   <object id="38" name="Create Shop Keeper" type="event" x="32" y="80" width="16" height="16">
@@ -168,6 +167,14 @@
     <property name="cond1" value="is variable_set check_vivitron_morph:yes"/>
     <property name="cond2" value="is has_monster vivitron"/>
     <property name="cond3" value="not variable_set shows_vivitron:yes"/>
+   </properties>
+  </object>
+  <object id="54" name="Talk Shop Assistant2" type="event" x="128" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_flower_petshopassistant"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set chooses:yes"/>
    </properties>
   </object>
  </objectgroup>

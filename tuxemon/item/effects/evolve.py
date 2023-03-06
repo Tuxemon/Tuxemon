@@ -27,13 +27,12 @@ class EvolveEffect(ItemEffect):
             self.user.evolve_monster(target, evolution)
             return {"success": True}
         else:
-            for evolution in target.evolutions:
-                choices = [d for d in target.evolutions if d.item == self.item]
-                if len(choices) == 1:
-                    self.user.evolve_monster(target, choices[0].monster_slug)
-                    return {"success": True}
-                elif len(choices) > 1:
-                    evolution = random.choice(choices).monster_slug
-                    self.user.evolve_monster(target, evolution)
-                    return {"success": True}
+            choices = [d for d in target.evolutions if d.item == self.item]
+            if len(choices) == 1:
+                self.user.evolve_monster(target, choices[0].monster_slug)
+                return {"success": True}
+            elif len(choices) > 1:
+                evolution = random.choice(choices).monster_slug
+                self.user.evolve_monster(target, evolution)
+                return {"success": True}
         return {"success": False}

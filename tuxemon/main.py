@@ -62,9 +62,8 @@ def main(
         client.push_state(SplashState(parent=client.state_manager))
         client.push_state(FadeInTransition())
 
-    # TODO: rename this to "debug map" or something
     if config.skip_titlescreen:
-        map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
+        map_name = prepare.fetch("maps", prepare.STARTING_MAP)
         client.push_state(WorldState(map_name=map_name))
 
     # block of code useful for testing
@@ -80,7 +79,7 @@ def main(
 
         action("add_item", ("potion",))
         action("add_item", ("cherry",))
-        action("add_item", ("capture_device",))
+        action("add_item", ("tuxeball",))
 
         for _ in range(10):
             action("add_item", ("super_potion",))

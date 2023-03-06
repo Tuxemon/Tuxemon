@@ -1,9 +1,12 @@
 {
   "slug": "omnigrunt",
-  "gender": "male",
-  "sprite_name": "knight",
-  "combat_front": "knight.png",
-  "combat_back": "adventurer_back.png",
+  "template": [
+    {
+      "sprite_name": "knight",
+      "combat_front": "knight",
+      "slug": "knight"
+    }
+  ],
   "monsters": [
     {
       "level": 2,

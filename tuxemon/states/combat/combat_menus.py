@@ -216,7 +216,6 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         menu.on_menu_selection = swap_it  # type: ignore[assignment]
         menu.anchor("bottom", self.rect.top)
         menu.anchor("right", self.client.screen.get_rect().right)
-        menu.monster = self.monster
 
     def open_item_menu(self) -> None:
         """Open menu to choose item to use."""
@@ -410,7 +409,6 @@ class CombatTargetMenuState(Menu[Monster]):
 
         for player, monsters in combat_state.monsters_in_play.items():
             for monster in monsters:
-
                 # TODO: more targeting classes
                 if player == self.player:
                     targeting_class = "own monster"
@@ -458,7 +456,7 @@ class CombatTargetMenuState(Menu[Monster]):
         """Draw borders around sprites when selection changes."""
         # clear out the old borders
         for sprite in self.menu_items:
-            sprite.image = None
+            sprite.remove()
 
         # find the selected item and make a border for it
         item = self.get_selected_item()

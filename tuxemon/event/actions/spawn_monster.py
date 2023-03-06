@@ -6,13 +6,14 @@ import logging
 import random
 import uuid
 from dataclasses import dataclass
-from typing import Union, final
+from typing import Optional, Union, final
 
 from tuxemon import formula, monster
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
+from tuxemon.npc import NPC
 from tuxemon.states.dialog import DialogState
-from tuxemon.states.world import WorldState
 from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
@@ -46,13 +47,12 @@ class SpawnMonsterAction(EventAction):
     npc_slug: Union[str, None] = None
 
     def start(self) -> None:
-        world = self.session.client.get_state_by_name(WorldState)
+        trainer: Optional[NPC]
 
         if self.npc_slug is None:
             trainer = self.session.player
         else:
-            npc_slug = self.npc_slug.replace("player", "npc_red")
-            trainer = world.get_entity(npc_slug)
+            trainer = get_npc(self.session, self.npc_slug)
 
         assert trainer, "No Trainer found with slug '{}'".format(
             self.npc_slug or "player"
@@ -82,31 +82,31 @@ class SpawnMonsterAction(EventAction):
             )
             return
 
-        # matrix, it respects the type1, strong against weak.
+        # matrix, it respects the types[0], strong against weak.
         # Mother (Water), Father (Earth)
         # Earth > Water => Child (Earth)
-        if mother.type1.water:
-            if father.type1.earth:
+        if mother.types[0].water:
+            if father.types[0].earth:
                 seed = father.slug
             else:
                 seed = mother.slug
-        elif mother.type1.fire:
-            if father.type1.water:
+        elif mother.types[0].fire:
+            if father.types[0].water:
                 seed = father.slug
             else:
                 seed = mother.slug
-        elif mother.type1.wood:
-            if father.type1.metal:
+        elif mother.types[0].wood:
+            if father.types[0].metal:
                 seed = father.slug
             else:
                 seed = mother.slug
-        elif mother.type1.metal:
-            if father.type1.fire:
+        elif mother.types[0].metal:
+            if father.types[0].fire:
                 seed = father.slug
             else:
                 seed = mother.slug
-        elif mother.type1.earth:
-            if father.type1.wood:
+        elif mother.types[0].earth:
+            if father.types[0].wood:
                 seed = father.slug
             else:
                 seed = mother.slug
@@ -117,6 +117,7 @@ class SpawnMonsterAction(EventAction):
         child = monster.Monster()
         child.load_from_db(seed)
         child.set_level(5)
+        child.set_moves(5)
         child.set_capture(formula.today_ordinal())
         child.current_hp = child.hp
         # child gets random father's moves

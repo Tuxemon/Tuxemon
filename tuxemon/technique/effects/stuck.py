@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
 
 from tuxemon import formula
 from tuxemon.monster import Monster
@@ -12,9 +11,7 @@ from tuxemon.technique.technique import Technique
 
 
 class StuckEffectResult(TechEffectResult):
-    damage: int
-    should_tackle: bool
-    status: Optional[Technique]
+    pass
 
 
 @dataclass
@@ -42,8 +39,6 @@ class StuckEffect(TechEffect):
             elif obj == "target":
                 target.apply_status(tech)
                 formula.simple_stuck(target)
-            else:
-                return
-            return {"status": tech}
+            return {"success": True}
 
-        return {"damage": 0, "should_tackle": False, "success": False}
+        return {"success": False}

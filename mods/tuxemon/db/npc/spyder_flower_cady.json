@@ -1,7 +1,10 @@
 {
   "slug": "spyder_flower_cady",
-  "gender": "female",
-  "sprite_name": "snugglepot",
-  "combat_front": "yellowbelt.png",
-  "combat_back": "adventurer_back.png"
+  "template": [
+    {
+      "sprite_name": "snugglepot",
+      "combat_front": "yellowbelt",
+      "slug": "snugglepot"
+    }
+  ]
 }

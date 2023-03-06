@@ -5,7 +5,7 @@
     "current_hp target,>,0"
   ],
   "effects": [
-    "heal 350"
+    "heal 500"
   ],
   "slug": "imperial_potion",
   "sort": "potion",

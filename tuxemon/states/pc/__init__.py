@@ -21,6 +21,7 @@ logger = logging.getLogger(__name__)
 MenuGameObj = Callable[[], object]
 
 KENNEL = "Kennel"
+LOCKER = "Locker"
 
 
 def add_menu_items(
@@ -45,13 +46,16 @@ class PCState(PopUpMenu[MenuGameObj]):
     def __init__(self) -> None:
         super().__init__()
 
-        # it creates the kennel (new players)
+        # it creates the kennel and locker (new players)
         if KENNEL not in local_session.player.monster_boxes.keys():
             local_session.player.monster_boxes[KENNEL] = []
+        if LOCKER not in local_session.player.item_boxes.keys():
+            local_session.player.item_boxes[LOCKER] = []
 
         def change_state(state: str, **kwargs: Any) -> MenuGameObj:
             return partial(self.client.replace_state, state, **kwargs)
 
+        # monster boxes
         if len(local_session.player.monsters) == 6:
             storage_callback = partial(
                 open_dialog,
@@ -70,12 +74,26 @@ class PCState(PopUpMenu[MenuGameObj]):
         else:
             dropoff_callback = change_state("MonsterBoxChooseDropOffState")
 
+        # item boxes
+        if len(local_session.player.items) == 30:
+            storage_callback = partial(
+                open_dialog,
+                local_session,
+                [T.translate("menu_storage_items_full")],
+            )
+        else:
+            item_storage_callback = change_state("ItemBoxChooseStorageState")
+
+        item_dropoff_callback = change_state("ItemBoxChooseDropOffState")
+
         add_menu_items(
             self,
             (
                 ("menu_storage", storage_callback),
                 ("menu_dropoff", dropoff_callback),
-                ("menu_items", change_state("ItemMenuState")),
+                ("bank", change_state("NuPhoneBanking")),
+                ("menu_item_storage", item_storage_callback),
+                ("menu_item_dropoff", item_dropoff_callback),
                 (
                     "menu_multiplayer",
                     not_implemented_dialog,
@@ -107,7 +125,6 @@ class MultiplayerMenu(PopUpMenu[MenuGameObj]):
         )
 
     def host_game(self) -> None:
-
         # check if server is already hosting a game
         if self.client.server.listening:
             self.client.pop_state(self)

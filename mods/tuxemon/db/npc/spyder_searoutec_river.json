@@ -1,7 +1,12 @@
 {
   "slug": "spyder_searoutec_river",
-  "gender": "male",
-  "sprite_name": "swimmer",
+  "template": [
+    {
+      "sprite_name": "swimmer",
+      "combat_front": "swimmer",
+      "slug": "swimmer"
+    }
+  ],
   "monsters": [
     {
       "name": "Manosting",
@@ -11,7 +16,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "swimmer.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

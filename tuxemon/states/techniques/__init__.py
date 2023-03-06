@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import uuid
 from typing import Generator
 
 import pygame
@@ -25,7 +24,9 @@ class TechniqueMenuState(Menu[Technique]):
     background_filename = "gfx/ui/item/item_menu_bg.png"
     draw_borders = False
 
-    def __init__(self) -> None:
+    def __init__(self, monster: Monster) -> None:
+        self.mon = monster
+
         super().__init__()
 
         self.item_center = self.rect.width * 0.164, self.rect.height * 0.13
@@ -126,42 +127,45 @@ class TechniqueMenuState(Menu[Technique]):
     def initialize_items(
         self,
     ) -> Generator[MenuItem[Technique], None, None]:
-        """Get all player techniques, remove duplicates, sort
-        and add them to menu."""
-        trainer = local_session.player
-        mon_id = uuid.UUID(trainer.game_variables["open_monster_techs"])
-        monster = trainer.find_monster_by_id(mon_id)
-
+        """Get all player techniques."""
         # load the backpack icon
         self.backpack_center = self.rect.width * 0.16, self.rect.height * 0.45
         self.load_sprite(
-            "gfx/sprites/battle/" + monster.slug + "-front.png",
+            self.mon.front_battle_sprite,
             center=self.backpack_center,
             layer=100,
         )
 
         moveset = []
-        for moves in monster.moves:
-            moveset.insert(moves.tech_id, moves.slug)
+        for moves in self.mon.moves:
+            moveset.append(moves)
 
-        output = sorted(moveset)
+        output = sorted(moveset, key=lambda x: x.tech_id)
+
         for tech in output:
-            obj = Technique(tech)
-            type2 = ""
-            if obj.type2 is not None:
-                type2 = T.translate(obj.type2)
-            image = self.shadow_text(obj.name, bg=(128, 128, 128))
-            label = (
-                "ID: "
-                + str(obj.tech_id)
-                + " - "
-                + obj.name
-                + " ("
-                + T.translate(obj.type1)
-                + type2
-                + ")"
+            name = tech.name
+            types = ""
+            if len(tech.types) == 1:
+                types = T.translate(tech.types[0])
+            else:
+                types = (
+                    T.translate(tech.types[0])
+                    + " "
+                    + T.translate(tech.types[1])
+                )
+            image = self.shadow_text(name, bg=(128, 128, 128))
+            label = T.format(
+                "technique_description",
+                {
+                    "id": tech.tech_id,
+                    "types": types,
+                    "acc": int(tech.accuracy * 100),
+                    "pot": int(tech.potency * 100),
+                    "pow": tech.power,
+                    "rec": str(tech.recharge_length),
+                },
             )
-            yield MenuItem(image, obj.name, label, obj)
+            yield MenuItem(image, name, label, tech)
 
     def on_menu_selection_change(self) -> None:
         """Called when menu selection changes."""

@@ -31,7 +31,7 @@ class SplashState(state.State):
         width, height = prepare.SCREEN_SIZE
 
         # The space between the edge of the screen
-        splash_border = prepare.SCREEN_SIZE[0] / 20
+        splash_border = int(prepare.SCREEN_SIZE[0] / 20)
 
         # Set up the splash screen logos
         logo = self.load_sprite("gfx/ui/intro/pygame_logo.png")

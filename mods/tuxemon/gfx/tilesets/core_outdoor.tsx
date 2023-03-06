@@ -2490,6 +2490,16 @@
   <properties>
    <property name="surfable" value="1"/>
   </properties>
+  <animation>
+   <frame tileid="941" duration="150"/>
+   <frame tileid="942" duration="150"/>
+   <frame tileid="943" duration="150"/>
+   <frame tileid="944" duration="150"/>
+   <frame tileid="945" duration="150"/>
+   <frame tileid="946" duration="150"/>
+   <frame tileid="947" duration="150"/>
+   <frame tileid="948" duration="150"/>
+  </animation>
  </tile>
  <tile id="942">
   <properties>

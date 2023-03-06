@@ -7,7 +7,6 @@ from random import choice
 from typing import TYPE_CHECKING, Sequence, Tuple, Union
 
 from tuxemon.item.item import Item
-from tuxemon.session import local_session
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
@@ -23,9 +22,10 @@ class AI(ABC):
     @abstractmethod
     def make_decision_trainer(
         self,
+        user: NPC,
         monster: Monster,
         opponents: Sequence[Monster],
-    ) -> Tuple[Technique, Monster]:
+    ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
         """
         Given a npc, and list of opponents, decide an action to take.
 
@@ -41,9 +41,10 @@ class AI(ABC):
 
     def make_decision_wild(
         self,
+        user: NPC,
         monster: Monster,
         opponents: Sequence[Monster],
-    ) -> Tuple[Technique, Monster]:
+    ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
         raise NotImplementedError
 
 
@@ -52,17 +53,19 @@ class SimpleAI(AI):
 
     def make_decision_trainer(
         self,
+        user: NPC,
         monster: Monster,
         opponents: Sequence[Monster],
-    ) -> Tuple[Technique, Monster]:
-        return monster.moves[0], opponents[0]
+    ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
+        return monster, monster.moves[0], opponents[0]
 
     def make_decision_wild(
         self,
+        user: NPC,
         monster: Monster,
         opponents: Sequence[Monster],
-    ) -> Tuple[Technique, Monster]:
-        return monster.moves[0], opponents[0]
+    ) -> Tuple[Union[Monster, NPC], Union[Item, Technique], Monster]:
+        return monster, monster.moves[0], opponents[0]
 
 
 class RandomAI(AI):
@@ -78,13 +81,11 @@ class RandomAI(AI):
         Trainer battles.
         """
         if self.check_strongest(user, monster):
-            if len(user.inventory) > 0:
-                inventory = list(user.inventory)
-                for item_slug in inventory:
-                    if user.is_item_sort(item_slug, "potion"):
+            if len(user.items) > 0:
+                for itm in user.items:
+                    if itm.sort == "potion":
                         if self.need_potion(monster):
-                            item = self.item_healing(user, item_slug)
-                            return user, item, monster
+                            return user, itm, monster
         technique, target = self.track_next_use(monster, opponents)
         # send data
         return monster, technique, target
@@ -164,10 +165,3 @@ class RandomAI(AI):
             return True
         else:
             return False
-
-    def item_healing(self, trainer: NPC, item_slug: str) -> Item:
-        """
-        Apply item.
-        """
-        item = Item(local_session, trainer, item_slug)
-        return item

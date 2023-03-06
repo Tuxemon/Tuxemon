@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from tuxemon.db import OutputBattle
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -33,7 +34,7 @@ class BattleIsCondition(EventCondition):
             condition: The map condition object.
 
         Returns:
-            Whether the player has lost against character or not.
+            Whether the player has fought against a character or not.
 
         """
         player = session.player
@@ -42,10 +43,19 @@ class BattleIsCondition(EventCondition):
         character = condition.parameters[0]
         result = condition.parameters[1]
 
-        if character in player.battle_history:
-            output, date = player.battle_history[character]
-            if result == output:
-                return True
+        outcomes = [otc.value for otc in OutputBattle]
+
+        if player.battles:
+            if result in outcomes:
+                for battle in player.battles:
+                    if (
+                        battle.opponent == character
+                        and battle.outcome == result
+                    ):
+                        return True
+                    else:
+                        return False
+                return False
             else:
                 return False
         else:

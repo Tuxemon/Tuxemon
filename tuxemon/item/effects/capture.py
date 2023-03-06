@@ -6,6 +6,7 @@ import logging
 import random
 from dataclasses import dataclass
 from math import sqrt
+from typing import Union
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.monster import Monster
@@ -20,17 +21,13 @@ class CaptureEffectResult(ItemEffectResult):
 
 @dataclass
 class CaptureEffect(ItemEffect):
-    """Attempts to capture the target with 'power' capture strength."""
+    """Attempts to capture the target."""
 
     name = "capture"
+    tuxeball: Union[str, None] = None
 
     def apply(self, target: Monster) -> CaptureEffectResult:
-        # Set up variables for capture equation
-        status_modifier = 0.0
-
-        # TODO: Item power is set to 1 in order to not effect the calculations
-        # Research the proper item_powers of pokeballs to use it as a multiplier.
-        item_power = 1
+        capture_device = "tuxeball"
         # The number of shakes that a tuxemon can do to escape.
         total_shakes = 4
         # The max catch rate.
@@ -39,12 +36,89 @@ class CaptureEffect(ItemEffect):
         max_shake_rate = 65536
         # Constant used in shake_check calculations
         shake_constant = 524325
-        # Check if target has any status effects
-        if not target.status == "Normal":
-            status_modifier = 1.2
+        # Check if target has status/condition:
+        status_modifier = 1.0
+        status_category = ""
+        if target.status:
+            for status in target.status:
+                if status.category == "negative":
+                    status_category = "negative"
+                    status_modifier = 1.2
+                if status.category == "positive":
+                    status_category = "positive"
+        # retrieves monster fighting (player)
+        iid = self.user.game_variables["iid_fighting_monster"]
+        fighting_monster = self.user.find_monster_by_id(iid)
+        # Check type tuxeball and address malus/bonus
+        tuxeball_modifier = 1.0
+        if self.tuxeball is not None:
+            # type based tuxeball
+            if self.tuxeball == "tuxeball_earth":
+                if target.types[0] != "earth":
+                    tuxeball_modifier = 0.2
+                else:
+                    tuxeball_modifier = 1.5
+            if self.tuxeball == "tuxeball_fire":
+                if target.types[0] != "fire":
+                    tuxeball_modifier = 0.2
+                else:
+                    tuxeball_modifier = 1.5
+            if self.tuxeball == "tuxeball_metal":
+                if target.types[0] != "metal":
+                    tuxeball_modifier = 0.2
+                else:
+                    tuxeball_modifier = 1.5
+            if self.tuxeball == "tuxeball_water":
+                if target.types[0] != "water":
+                    tuxeball_modifier = 0.2
+                else:
+                    tuxeball_modifier = 1.5
+            if self.tuxeball == "tuxeball_wood":
+                if target.types[0] != "wood":
+                    tuxeball_modifier = 0.2
+                else:
+                    tuxeball_modifier = 1.5
+            # gender based tuxeball
+            if self.tuxeball == "tuxeball_male":
+                if target.gender != "male":
+                    tuxeball_modifier = 0.2
+                else:
+                    tuxeball_modifier = 1.5
+            if self.tuxeball == "tuxeball_female":
+                if target.gender != "female":
+                    tuxeball_modifier = 0.2
+                else:
+                    tuxeball_modifier = 1.5
+            if self.tuxeball == "tuxeball_neuter":
+                if target.gender != "neuter":
+                    tuxeball_modifier = 0.2
+                else:
+                    tuxeball_modifier = 1.5
+            # Qiangong2 tuxeball ideas
+            if self.tuxeball == "tuxeball_ancient":
+                tuxeball_modifier = 99
+            if self.tuxeball == "tuxeball_crusher":
+                crusher = ((target.armour / 5) * 0.01) + 1
+                if crusher >= 1.4:
+                    crusher = 1.4
+                if status_category == "positive":
+                    crusher = 0.01
+                tuxeball_modifier = crusher
+            if self.tuxeball == "tuxeball_xero":
+                if fighting_monster.types[0] != target.types[0]:
+                    tuxeball_modifier = 1.4
+                else:
+                    tuxeball_modifier = 0.3
+            if self.tuxeball == "tuxeball_omni":
+                if fighting_monster.types[0] != target.types[0]:
+                    tuxeball_modifier = 0.3
+                else:
+                    tuxeball_modifier = 1.4
+            # Sanglorian tuxeball ideas
+            if self.tuxeball == "tuxeball_lavish":
+                tuxeball_modifier = 1.5
 
         # TODO: debug logging this info
-
         # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
         # Specifically the catch rate and the shake_check is based on the Generation III-IV
         # The rate of which a tuxemon is caught is approximetly catch_check/255
@@ -52,8 +126,8 @@ class CaptureEffect(ItemEffect):
         catch_check = (
             (3 * target.hp - 2 * target.current_hp)
             * target.catch_rate
-            * item_power
             * status_modifier
+            * tuxeball_modifier
             / (3 * target.hp)
         )
         shake_check = shake_constant / (
@@ -72,12 +146,12 @@ class CaptureEffect(ItemEffect):
         logger.debug("--- Capture Variables ---")
         logger.debug(
             "(3*target.hp - 2*target.current_hp) "
-            "* target.catch_rate * item_power * status_modifier / (3*target.hp)"
+            "* target.catch_rate * status_modifier * tuxeball_modifier / (3*target.hp)"
         )
 
         msg = "(3 * {0.hp} - 2 * {0.current_hp}) * {0.catch_rate} * {1} * {2} / (3 * {0.hp})"
 
-        logger.debug(msg.format(target, item_power, status_modifier))
+        logger.debug(msg.format(target, status_modifier, tuxeball_modifier))
         logger.debug(
             "shake_constant/(sqrt(sqrt(max_catch_rate/catch_check))*8)"
         )
@@ -94,12 +168,27 @@ class CaptureEffect(ItemEffect):
         # 4 shakes to give monster chance to escape
         for i in range(0, total_shakes):
             random_num = random.randint(0, max_shake_rate)
-
             logger.debug(f"shake check {i}: random number {random_num}")
             if random_num > round(shake_check):
+                # check for self.tuxeball
+                if self.tuxeball is not None:
+                    if self.tuxeball == "tuxeball_hardened":
+                        tuxeball = self.user.find_item(self.tuxeball)
+                        if tuxeball:
+                            tuxeball.quantity += 1
+
                 return {"success": False, "capture": True, "num_shakes": i + 1}
 
+        if self.tuxeball is not None:
+            # it increases the level +1 upon capture
+            if self.tuxeball == "tuxeball_candy":
+                capture_device = self.tuxeball
+                target.level += 1
+            else:
+                capture_device = self.tuxeball
+
         # add creature to the player's monster list
+        target.capture_device = capture_device
         self.user.add_monster(target)
 
         # TODO: remove monster from the other party

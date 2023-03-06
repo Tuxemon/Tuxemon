@@ -1,7 +1,10 @@
 {
   "slug": "spyder_dragonscave_lazybrute",
-  "gender": "male",
-  "sprite_name": "knight",
-  "combat_front": "enforcer_rookie.png",
-  "combat_back": "adventurer_back.png"
+  "template": [
+    {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_rookie",
+      "slug": "enforcer_rookie"
+    }
+  ]
 }

@@ -15,9 +15,11 @@ class GetDefaultPriceAndCost(EconomyTestBase):
         self.economy = Economy()
         self.economy.slug = "test_economy"
         self.economy.items = [
-            EconomyItemModel(item_name="potion", price=20, cost=5),
+            EconomyItemModel(
+                item_name="potion", price=20, cost=5, inventory=10
+            ),
             EconomyItemModel(item_name="revive", price=100),
-            EconomyItemModel(item_name="capture_device", cost=10),
+            EconomyItemModel(item_name="tuxeball", cost=10),
         ]
 
     def test_potion_price(self):
@@ -30,15 +32,25 @@ class GetDefaultPriceAndCost(EconomyTestBase):
         cost = economy.lookup_item_cost("potion")
         self.assertEqual(cost, 5)
 
+    def test_potion_inventory(self):
+        economy = self.economy
+        inventory = economy.lookup_item_inventory("potion")
+        self.assertEqual(inventory, 10)
+
     def test_missing_price(self):
         economy = self.economy
-        price = economy.lookup_item_price("capture_device")
+        price = economy.lookup_item_price("tuxeball")
         self.assertEqual(price, 0)
 
     def test_missing_cost(self):
         economy = self.economy
         cost = economy.lookup_item_cost("revive")
         self.assertEqual(cost, 0)
+
+    def test_missing_inventory(self):
+        economy = self.economy
+        inventory = economy.lookup_item_inventory("revive")
+        self.assertEqual(inventory, 0)
 
     def test_unknown_item_price(self):
         economy = self.economy
@@ -49,3 +61,8 @@ class GetDefaultPriceAndCost(EconomyTestBase):
         economy = self.economy
         with self.assertRaises(RuntimeError):
             price = economy.lookup_item_price("unknown_item")
+
+    def test_unknown_item_inventory(self):
+        economy = self.economy
+        with self.assertRaises(RuntimeError):
+            inventory = economy.lookup_item_inventory("unknown_item")

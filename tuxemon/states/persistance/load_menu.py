@@ -25,7 +25,6 @@ class LoadMenuState(SaveMenuState):
     def on_menu_selection(self, menuitem: Optional[MenuItem[None]]) -> None:
         save_data = save.load(self.selected_index + 1)
         if save_data and "error" not in save_data:
-
             try:
                 old_world = self.client.get_state_by_name(WorldState)
                 # when game is loaded from world menu

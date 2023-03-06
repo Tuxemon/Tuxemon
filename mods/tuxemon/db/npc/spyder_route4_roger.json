@@ -1,7 +1,12 @@
 {
   "slug": "spyder_route4_roger",
-  "gender": "male",
-  "sprite_name": "soldier",
+  "template": [
+    {
+      "sprite_name": "soldier",
+      "combat_front": "soldier",
+      "slug": "soldier"
+    }
+  ],
   "monsters": [
     {
       "name": "Rabbitosaur",
@@ -11,7 +16,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "soldier.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

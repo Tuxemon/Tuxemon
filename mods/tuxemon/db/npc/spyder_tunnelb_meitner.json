@@ -1,7 +1,12 @@
 {
   "slug": "spyder_tunnelb_meitner",
-  "gender": "male",
-  "sprite_name": "scientist",
+  "template": [
+    {
+      "sprite_name": "scientist",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
+  ],
   "monsters": [
     {
       "name": "Masknake",
@@ -11,7 +16,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "scientist.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

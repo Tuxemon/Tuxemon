@@ -4,6 +4,18 @@
     {
       "monster": "volcoli",
       "encounter_rate": 100,
+      "daytime": true,
+      "exp_req_mod": 1,
+      "level_range": [
+        50,
+        51
+      ]
+    },
+    {
+      "monster": "volcoli",
+      "encounter_rate": 100,
+      "daytime": false,
+      "exp_req_mod": 1,
       "level_range": [
         50,
         51

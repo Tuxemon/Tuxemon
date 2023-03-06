@@ -7,50 +7,38 @@
   <property name="slug" value="professor_lab"/>
   <property name="types" value="notype"/>
  </properties>
- <tileset firstgid="1" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="73" name="electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
+ <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="89" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
-  <tile id="1042">
-   <properties>
-    <property name="act1" value="transition_teleport taba_town.tmx,43,46,0.3"/>
-    <property name="act2" value="player_face down"/>
-   </properties>
-  </tile>
- </tileset>
- <tileset firstgid="1401" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
- </tileset>
- <tileset firstgid="1489" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
-  <image source="../gfx/tilesets/items.png" width="48" height="32"/>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYECADawMDKRihG5M1m6geaRiTFMQIseA5pGKEboxWSuA5pGKMU1BiJBqFkg9PjBqHuH4GQ0/RAiMppfhnV4QMT14WACeIKEI
+   eAFjYECAZGEGBlIxQjcmayLQPFIxpikIkf1A80jFCN2YLCugEKkY0xSECKlmgdTjA6PmEY6f0fBDhMBoehne6QUR04OHBQBL0EUr
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBg6gAXoVDYgzgQysoH4KBAfAwmigUPMDAyHgZgQkAEqkANiU1YGBnMgfgc06z2aeU5A+ddAs94QYR4h+2Dy6jAGnelPaH6js/UErbMAxgEhIABUIAjEQoQUEikPSgOyQAxKB/QGoHQ3GRgnMAxKg8iAkDyyWnqwFwHdtxgJL0FzL6luWAvUvw4Jr6fQvB1A/TuR8C4KzSPVP+jq1wLjlhMoyAXE3EiStUjuQpYHqR9qAACOwBuw
+   eAFjYBg6IFaJgSEeiG/LMTDcBWJleQYGFSBGB9ZAORsgJgRmA82aC8SlQDPKgdgJiJ3RzNsINCcKiKOJMI+QfTD5nUA7BwLoo/ltINyAz04LItxXAwy7WiCuo1IYgtLAHCAGpQN6A1C6+w1MVzAMSoPIgJA8slp6sI0YGRiMkbAJkE0JSADqT0TCSRSa1wfU34+EJ1BoHiV+A+l9oQiMW2C6+gPEf5HS10WkeEaWB6kfagAATG0nSw==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBg6wBPoVC8qOleNimaNGoU9BFiAwqxAzIZdmmTRa0DDYJhkzaMaRkNgNASoGgIAVggDWg==
+   eAFjYBg6wFWBgcENiKkFdihRy6RRc3CFQCwwjOOAOJ5KYZ2lwMAAw7jsHBUfDYHREKBPCAAAc1AExA==
   </data>
  </layer>
  <layer id="4" name="Above player" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgzUETrIMVpdB3LWbCPeBlLACMdvg9gpRrssEeiYLCWej+Z+QPFGWjCoasBBoQYtPQg4hVT0h84aiPAD30Ab4
+   eAFjYBgFgzUEBOQHq8sg7pIkwn2xSgwMcUAcD8RDHdyWY2C4g4TvAtnIgJA8stpR9uALgZOKpLmJVPWkmT40VAMAt1wNgA==
   </data>
  </layer>
  <layer id="7" name="Above Player 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyFAuxC4zMrAAMO0s2XU5NEQGA2BgQgBAMuYAok=
+   eAFjYBgFoyFAuxDwVmBggGHa2TJq8mgIjIbAQIQAANz4AUI=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">
@@ -73,7 +61,7 @@
    <properties>
     <property name="act10" value="transition_teleport taba_town.tmx,44,53,0.3"/>
     <property name="act20" value="player_face down"/>
-    <property name="cond10" value="is player_at 8,17"/>
+    <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>

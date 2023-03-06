@@ -21,7 +21,7 @@ class SetMoneyAction(EventAction):
 
     Script parameters:
         slug: Slug name (e.g. player or NPC, etc.).
-        amount: amoung of money
+        amount: Amount of money
 
     """
 

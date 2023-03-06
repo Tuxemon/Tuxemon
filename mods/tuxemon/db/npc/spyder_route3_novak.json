@@ -1,7 +1,12 @@
 {
   "slug": "spyder_route3_novak",
-  "gender": "male",
-  "sprite_name": "tennisplayer",
+  "template": [
+    {
+      "sprite_name": "tennisplayer",
+      "combat_front": "tennisplayer",
+      "slug": "tennisplayer"
+    }
+  ],
   "monsters": [
     {
       "name": "Elofly",
@@ -11,7 +16,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "tennisplayer.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

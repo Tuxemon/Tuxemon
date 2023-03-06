@@ -177,19 +177,19 @@ class LocalPygameClient:
             logger.error(f"The type '{map_data.types}' doesn't exist.")
 
         # Cardinal points
-        if map_data.north_trans is None:
+        if map_data.north_trans == "None":
             self.map_north = "-"
         else:
             self.map_north = map_data.north_trans
-        if map_data.south_trans is None:
+        if map_data.south_trans == "None":
             self.map_south = "-"
         else:
             self.map_south = map_data.south_trans
-        if map_data.east_trans is None:
+        if map_data.east_trans == "None":
             self.map_east = "-"
         else:
             self.map_east = map_data.east_trans
-        if map_data.west_trans is None:
+        if map_data.west_trans == "None":
             self.map_west = "-"
         else:
             self.map_west = map_data.west_trans

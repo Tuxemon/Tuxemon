@@ -22,18 +22,22 @@ class RandomMonsterAction(EventAction):
     Script usage:
         .. code-block::
 
-            random_monster <monster_level>[,trainer_slug]
+            random_monster <monster_level>[,trainer_slug][,exp_mod][,money_mod]
 
     Script parameters:
         monster_level: Level of the added monster.
         trainer_slug: Slug of the trainer that will receive the monster. It
             defaults to the current player.
+        exp_mod: Experience modifier
+        money_mod: Money modifier
 
     """
 
     name = "random_monster"
     monster_level: int
     trainer_slug: Union[str, None] = None
+    exp: Union[int, None] = None
+    money: Union[int, None] = None
 
     def start(self) -> None:
         trainer: Optional[NPC]
@@ -47,13 +51,25 @@ class RandomMonsterAction(EventAction):
         )
 
         # list is required as choice expects a sequence
-        monster_slug = rd.choice(list(db.database["monster"]))
+        filters = []
+        monsters = list(db.database["monster"])
+        for mon in monsters:
+            results = db.lookup(mon, table="monster")
+            if results.txmn_id > 0:
+                filters.append(results.slug)
+
+        monster_slug = rd.choice(filters)
 
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_slug)
         current_monster.set_level(self.monster_level)
+        current_monster.set_moves(self.monster_level)
         current_monster.set_capture(formula.today_ordinal())
         current_monster.current_hp = current_monster.hp
+        if self.exp is not None:
+            current_monster.experience_modifier = self.exp
+        if self.money is not None:
+            current_monster.money_modifier = self.money
 
         trainer.add_monster(current_monster)
         trainer.tuxepedia[monster_slug] = SeenStatus.caught

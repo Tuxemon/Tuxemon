@@ -62,11 +62,10 @@ class StatChangeEffect(TechEffect):
             operation = stat.operation
             override = stat.overridetofull
             basestatvalue = getattr(target, slugdata)
+            min_value = value - max_deviation
+            max_value = value + max_deviation
             if max_deviation:
-                value = random.randint(
-                    value - max_deviation,
-                    value + max_deviation,
-                )
+                value = random.randint(int(min_value), int(max_value))
 
             if value > 0 and override is not True:
                 ops_dict = {

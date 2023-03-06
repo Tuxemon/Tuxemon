@@ -1,30 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="220">
  <properties>
-  <property name="east" value="tunnel"/>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route6"/>
   <property name="south" value="candy_town"/>
   <property name="types" value="route"/>
+  <property name="west" value="tunnel"/>
  </properties>
- <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
- <tileset firstgid="449" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
- </tileset>
- <tileset firstgid="609" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtlU0OgjAQhXHt3yUxHsSfi8gWXLnnAuJBDHAF30tsMk6GtBQhmLh4ybRMp19fJzRPkvIKFVA+w3iOTNIvzbddJOVmIq2xj+/eNF+LO24mUo19YvlWOFuF9WNoidr0YAgf18o++Gbs7ugX+HhuefbcM37gO+/0rvJkjaFxi9rufmUtzcZvWaQuWGfVKwLmu/gkq4uPqBejQwBHF6vk68px8zFsXLOHskDRa7cffenDlyI/VGfkkq2v6LXke2BcQexxOW/Fuofc+8F/O88q15ww7svG/FCvrZ7Wb9kT9RqohjTfDnNpoGK8tnr6hv3Io2XxSS99cYzXFl8FNkvsDe2fj0nmh3otfbb4dP/JPcaKZY9Ln+fC1777iT305/v8B4X0aB//XjgkWVc=
+   eAETYGNgEBjFVAsDUWBYitEJi5MRb1ZAPdZ0wjYUuK8VqDeBRrgN6n9K3EeOXmLzGSyOyLGDEr30cF88NE4TgTSx9pGqjpQwuMvOwEAOvgfUR6q7YOpJcd80LgYGcjAzx+B2332g+4gNd/SwJiX81IH2EIt3A9VSI6wpSeOw+gNb2c5IpvuIDWv0cAalV/S6bDWeslONxmGNLU3jqsvIKTth+RNEkxPW2NyHqw6jtPwjNqyR0zQ29yH7mV5s5DSOHM6DxX3I5cuo+0ivR0gJPwALLrEN
   </data>
  </layer>
  <layer id="2" name="Obstacles" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNlcttwzAQROn4YCSFpCQn1disJg5yS1l2ATln5/CAxYAf8SQLIIb7mdVoRNn3Usoj1v1J8fVQylusZ0X3LWzc5XIdxO7bLuLipq6DGJ3gXvq4LzpAdIL0tTC+oxq8OsMW9/RSaivvOXSA6AS9P8fxHdXg1RlmzuoeHSA6wc9jqR+xzrGYTS++Kf8TPlJnTx2kvoLoAH+NXEPXNdYl6aMX36QHTaITUwdt9KYQL0AntfR5j2I0ZXx0zmeL38vhBeh9W/WJl7UpxjdH1UbXe3w7+NVD+Cv64Kxi64zjVw+5x3ecu1usr3T+qG1B3vGod+SB+zeaQ+0vflPYz5B3O+ob6XP/enP8OTzOvHwO8Y/+3Md+pA8eCMfRn8Pj3C99xPhHP/mMI33wQHTy3KDnPc73097rHjNXvaMzDg9EJ88Net5j3SdfXveYuZnT2sMD0bmKzNa71SLGp9k89dMDN+eooXMVNQttoHL4NJunXnq016X/WnLgP086G8o=
+   eAHNlT1ORDEMhENLQbU1cA4OANyKlbjcchgogRJP8UnWKD8OzdtI1sTJjD0JecvltrWPiMuV4mf4+oq4VvR7awcN90Hu93aQveHfD5/gUf7oiw9w5/7QrJBeGZ/ucjaeux/vNVbWv6FZjdWe+3G/v62dfyK+I6jlGq2/xTfPYN7jwami+zmlPqrxeNPODxH3EdR0jfzgSRxy56HfwdUZe/569fGU0WuT9/SjtdUZq/5UP3tT7rXJtTcb7/HtcJYRot/xh2YXe2+cs4yQHq/x7l4intP7Y6+CnH/Gnd0BenBWh71T8bdLfM6Ptoczf+jBnl5r+B9h1uV36PzMYz7zV9GrDv5HSC+h/DGcz3rGmT/Xu99qnvtpvqObvXGv436rufv7r25Vx/1Wc+ry9sh39HDRClkDq+d2nmrhDdSa80Z55mquof+1zv8D6q5wNQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collision">

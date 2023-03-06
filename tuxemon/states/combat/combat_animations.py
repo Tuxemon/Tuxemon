@@ -132,11 +132,9 @@ class CombatAnimations(ABC, Menu[None]):
             self.task(partial(self.animate_trainer_leave, self.players[1]), 3)
 
     def blink(self, sprite: Sprite) -> None:
-
         self.task(partial(toggle_visible, sprite), 0.20, 8)
 
     def animate_trainer_leave(self, trainer: Monster) -> None:
-
         sprite = self._monster_sprite_map[trainer]
         if self.get_side(sprite.rect) == "left":
             x_diff = -scale(150)
@@ -153,7 +151,7 @@ class CombatAnimations(ABC, Menu[None]):
         feet_list = list(self._layout[npc]["home"][0].center)
         feet = (feet_list[0], feet_list[1] + tools.scale(11))
 
-        capdev = self.load_sprite("gfx/items/capture_device.png")
+        capdev = self.load_sprite(f"gfx/items/{monster.capture_device}.png")
         graphics.scale_sprite(capdev, 0.4)
         capdev.rect.center = feet[0], feet[1] - scale(60)
 
@@ -282,7 +280,6 @@ class CombatAnimations(ABC, Menu[None]):
             self.animate_update_party_hud(player, layout["party"][0])
 
     def animate_sprite_take_damage(self, sprite: Sprite) -> None:
-
         original_x, original_y = sprite.rect.topleft
         animate = partial(
             self.animate,
@@ -298,7 +295,6 @@ class CombatAnimations(ABC, Menu[None]):
         ani._elapsed = 0.735
 
     def animate_hp(self, monster: Monster) -> None:
-
         value = monster.current_hp / monster.hp
         hp_bar = self._hp_bars[monster]
         self.animate(
@@ -313,12 +309,10 @@ class CombatAnimations(ABC, Menu[None]):
         monster: Monster,
         initial: int = 0,
     ) -> None:
-
         self._hp_bars[monster] = HpBar(initial)
         self.animate_hp(monster)
 
     def animate_exp(self, monster: Monster) -> None:
-
         target_previous = monster.experience_required()
         target_next = monster.experience_required(1)
         value = max(
@@ -342,7 +336,6 @@ class CombatAnimations(ABC, Menu[None]):
         monster: Monster,
         initial: int = 0,
     ) -> None:
-
         self._exp_bars[monster] = ExpBar(initial)
         self.animate_exp(monster)
 
@@ -377,7 +370,6 @@ class CombatAnimations(ABC, Menu[None]):
         return "left" if rect.centerx < scale(100) else "right"
 
     def animate_monster_leave(self, monster: Monster) -> None:
-
         sprite = self._monster_sprite_map[monster]
         if self.get_side(sprite.rect) == "left":
             x_diff = -scale(150)
@@ -565,9 +557,16 @@ class CombatAnimations(ABC, Menu[None]):
             right=0,
         )
 
+        combat_front = ""
+        combat_back = ""
+        for ele in opponent.template:
+            combat_front = ele.combat_front
+        for ele in player.template:
+            combat_back = ele.combat_front
+
         if self.is_trainer_battle:
             enemy = self.load_sprite(
-                "gfx/sprites/player/" + opponent.combat_front,
+                "gfx/sprites/player/" + combat_front + ".png",
                 bottom=back_island.rect.bottom - scale(12),
                 centerx=back_island.rect.centerx,
             )
@@ -606,7 +605,7 @@ class CombatAnimations(ABC, Menu[None]):
         )
 
         trainer1_maybe = self.load_sprite(
-            "gfx/sprites/player/" + player.combat_back,
+            "gfx/sprites/player/" + combat_back + "_back.png",
             bottom=front_island.rect.centery + scale(6),
             centerx=front_island.rect.centerx,
         )
@@ -653,6 +652,7 @@ class CombatAnimations(ABC, Menu[None]):
         is_captured: bool,
         num_shakes: int,
         monster: Monster,
+        item: str,
     ) -> None:
         """
         Animation for capturing monsters.
@@ -664,7 +664,7 @@ class CombatAnimations(ABC, Menu[None]):
 
         """
         monster_sprite = self._monster_sprite_map[monster]
-        capdev = self.load_sprite("gfx/items/capture_device.png")
+        capdev = self.load_sprite(f"gfx/items/{item}.png")
         animate = partial(
             self.animate, capdev.rect, transition="in_quad", duration=1.0
         )

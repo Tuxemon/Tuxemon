@@ -242,6 +242,8 @@ def number_or_variable(
     player = session.player
     if value.isdigit():
         return float(value)
+    elif value.replace(".", "", 1).isdigit():
+        return float(value)
     else:
         try:
             return float(player.game_variables[value])
@@ -253,7 +255,6 @@ def number_or_variable(
 def cast_value(
     i: Tuple[Tuple[ValidParameterTypes, str], Any],
 ) -> Any:
-
     (type_constructors, param_name), value = i
 
     if not isinstance(type_constructors, Sequence):
@@ -265,7 +266,6 @@ def cast_value(
         return None
 
     for constructor in type_constructors:
-
         if not constructor:
             continue
 

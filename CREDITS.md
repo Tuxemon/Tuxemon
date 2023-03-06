@@ -122,7 +122,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Desert Male"](https://wiki.tuxemon.org/File:Male-trainer-alt-egypt.png). Original design by Leo.
 
-* ["Disciple"](https://wiki.tuxemon.org/File:Wizard.png) [https://opengameart.org/content/rpg-wizard-battle-frames CC0 on OGA]
+* ["Disciple"](https://wiki.tuxemon.org/File:Disciple_-_64px.png) [https://opengameart.org/content/rpg-wizard-battle-frames CC0 on OGA]
 
 * ["Dragonfly"](https://wiki.tuxemon.org/File:Dragonfly_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY.
 
@@ -355,6 +355,10 @@ waterfall based on https://opengameart.org/content/lpc-animated-water-and-waterf
 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Core City and Country"]
+based on Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png, by ArMM1998 (CC0)
+
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 
 ### Tuxemon
@@ -666,7 +670,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Mk01 Alpha"](https://wiki.tuxemon.org/index.php?title=Mk01_Alpha) and ["Mk01 Beta"](https://wiki.tuxemon.org/index.php?title=Mk01_Beta) by Serpexnessie.
 
-* ["Chrome Robo"](https://wiki.tuxemon.org/index.php?title=Chrome_Robo), ["Dark Robo"](https://wiki.tuxemon.org/index.php?title=Dark_Robo) and ["Birb Robo"](https://wiki.tuxemon.org/index.php?title=Birb_Robo) front sprite by Redshrike. Overland sprites by Catch Challenger.
+* ["Chrome Robo"](https://wiki.tuxemon.org/index.php?title=Chrome_Robo), ["Dark Robo"](https://wiki.tuxemon.org/index.php?title=Dark_Robo) front sprite by Redshrike. Overland sprites by Catch Challenger.
 
 * ["Xeon"](https://wiki.tuxemon.org/index.php?title=Xeon) and ["Xeon-2"](https://wiki.tuxemon.org/index.php?title=Xeon-2) by Redshrike.
 
@@ -679,10 +683,6 @@ back and menu sprites by ultidonki based on the design by Tricoelacanth, all rel
 Character created by Leo (from Discord) and released under the CC-BY-SA 4.0+ license. Front, back, and menu sprites drawn by ultidonki, also released under the CC-BY-SA 4.0+ license based on the design by Leo (from Discord).
 
 ### Items
-
-* ["Potions"](http://opengameart.org/content/potions-3)
-by [Programmer16](http://opengameart.org/users/programmer16) is licensed under
-[Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
 
 * ["Backpack RPG Icons"](http://opengameart.org/content/rpg-icons) by
 [DitzyDM](http://ditzydm.deviantart.com/)
@@ -720,15 +720,73 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Additional Potions"](https://imgur.com/a/MQjhCBR) by
+[ryanhanli](https://github.com/ryanhanli) with influence from [REXARD Potion Icons](https://assetstore.unity.com/packages/2d/gui/icons/potion-icons-54945)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball"](https://wiki.tuxemon.org/File:Unknown-2.png) by
+[tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Potion"](https://wiki.tuxemon.org/File:Potion.png) [http://opengameart.org/content/potions-3 CC0]
+
+* ["Imperial Potion"](https://wiki.tuxemon.org/File:Imperial_Potion.png) [http://opengameart.org/content/potions-3 CC0]
+
+* ["Mega Potion"](https://wiki.tuxemon.org/File:Potion-grade-d.png) A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Super Potion"](https://wiki.tuxemon.org/File:Super_potion.png) [http://opengameart.org/content/potions-3 CC0]
+
+* ["Ancient Tea"](https://wiki.tuxemon.org/File:Tea_7.png) [https://opengameart.org/content/infusions-icons CC0]
+
+* ["Imperial Tea"](https://wiki.tuxemon.org/File:Tea_10.png) [https://opengameart.org/content/infusions-icons CC0]
+
+* ["Mystery Tea"](https://wiki.tuxemon.org/File:Tea_2.png) [https://opengameart.org/content/infusions-icons CC0]
+
+* ["Tea"](https://wiki.tuxemon.org/File:Tea_1.png) [https://opengameart.org/content/infusions-icons CC0]
+
+* ["Tuxeball Earth"](https://wiki.tuxemon.org/File:Capture_device_yellow.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Fire"](https://wiki.tuxemon.org/File:Capture_device_red.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Metal"](https://wiki.tuxemon.org/File:Capture_device_violet.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Wood"](https://wiki.tuxemon.org/File:Capture_device_green.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Water"](https://wiki.tuxemon.org/File:Tuxeball_water.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Female"](https://wiki.tuxemon.org/File:Tuxeball_female.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Male"](https://wiki.tuxemon.org/File:Tuxeball_male.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Neuter"](https://wiki.tuxemon.org/File:Tuxeball_neuter.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Ancient"](https://wiki.tuxemon.org/File:Tuxeball_ancient.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Candy"](https://wiki.tuxemon.org/File:Tuxeball_candy.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Crusher"](https://wiki.tuxemon.org/File:Tuxeball_crusher.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Hardened"](https://wiki.tuxemon.org/File:Tuxeball_hardened.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Lavish"](https://wiki.tuxemon.org/File:Tuxeball_lavish.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Omni"](https://wiki.tuxemon.org/File:Tuxeball_omni.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Xero"](https://wiki.tuxemon.org/File:Tuxeball_xero.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["Nu Phone"](https://wiki.tuxemon.org/File:Item6.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Bank App"](https://wiki.tuxemon.org/File:Iridescent_item_7.png) modified by Sanglorian from original sprites by Ocean. [http://opengameart.org/content/oceans-icons CC BY 3.0]
+
+* ["Contacts App"](https://wiki.tuxemon.org/File:Greenpresentbox.png) a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Map App"](https://wiki.tuxemon.org/File:Iridescent_item_5.png) modified by Sanglorian from original sprites by Ocean. [http://opengameart.org/content/oceans-icons CC BY 3.0]
+
+* ["Tuxepedia App"](https://wiki.tuxemon.org/File:Tuxepedia.png) [https://github.com/Tuxemon/Tuxemon/issues/452 Original source]
 
 * ["Earthmover Key"](https://wiki.tuxemon.org/index.php?title=Earthmover_Key) by Catch Challenger is licensed under CC-BY 4.0.
 
 * ["Fishing Rod"](https://wiki.tuxemon.org/index.php?title=Fishing_Rod) by Catch Challenger is licensed under CC-BY 4.0.
-
-* ["Additional Potions"](https://imgur.com/a/MQjhCBR) by
-[ryanhanli](https://github.com/ryanhanli) with influence from [REXARD Potion Icons](https://assetstore.unity.com/packages/2d/gui/icons/potion-icons-54945)
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Aardant"](https://wiki.tuxemon.org/index.php?title=Aardant) from the Aardorn sprite by Magic-Purple-Hermit. Tweaked by Sanglorian.
 
@@ -1271,9 +1329,6 @@ By daneeklu [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0
 * ["Spikes Rock"](https://wiki.tuxemon.org/File:Spikes_rock.gif)
 By daneeklu [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
-* ["Tentacle Metal"](https://wiki.tuxemon.org/File:Tentacle_metal.gif)
-[https://opengameart.org/content/custom-enemies OGA CC0]
-
 * ["Tentacles Water"](https://wiki.tuxemon.org/File:Tentacles_water_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
@@ -1343,6 +1398,23 @@ Animation by josepharaoh99 and created for the Tuxemon project.
 
 * ["Yellow Circle"](https://wiki.tuxemon.org/File:Yellow_circle.gif)
 Adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
+
+### Type Icons
+
+* ["Earth Type"](https://wiki.tuxemon.org/File:24px_Element6.png)
+[https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Fire Type"](https://wiki.tuxemon.org/File:24px_Element1.png)
+[https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Metal Type"](https://wiki.tuxemon.org/File:24px_Element5.png)
+[https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Water Type"](https://wiki.tuxemon.org/File:24px_Element2.png)
+[https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Wood Type"](https://wiki.tuxemon.org/File:I_Leaf-24.png)
+Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
 ### Technique Icons
 

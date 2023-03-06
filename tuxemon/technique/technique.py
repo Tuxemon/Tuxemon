@@ -7,6 +7,7 @@ from typing import (
     TYPE_CHECKING,
     Any,
     ClassVar,
+    List,
     Mapping,
     Optional,
     Sequence,
@@ -54,7 +55,7 @@ class Technique:
         self._life_counter = 0
         self.tech_id = 0
         self.accuracy = 0.0
-        self.animation = ""
+        self.animation = Optional[str]
         self.carrier = carrier
         self.category = ""
         self.combat_state: Optional[CombatState] = None
@@ -77,10 +78,9 @@ class Technique:
         self.repl_neg = ""
         self.sfx = ""
         self.sort = ""
-        self.slug = slug
+        self.slug = ""
         self.target: Sequence[str] = []
-        self.type1 = ElementType.aether
-        self.type2: Optional[ElementType] = None
+        self.types: List[ElementType] = []
         self.usable_on = False
         self.use_item = ""
         self.use_success = ""
@@ -119,7 +119,6 @@ class Technique:
         self.description = T.translate(f"{self.slug}_description")
 
         self.sort = results.sort
-        assert self.sort
 
         # technique use notifications (translated!)
         # NOTE: should be `self.use_tech`, but Technique and Item have
@@ -131,15 +130,7 @@ class Technique:
         self.icon = results.icon
         self._combat_counter = 0
         self._life_counter = 0
-
-        if results.types:
-            self.type1 = results.types[0]
-            if len(results.types) > 1:
-                self.type2 = results.types[1]
-            else:
-                self.type2 = None
-        else:
-            self.type1 = self.type2 = None
+        self.types = list(results.types)
         # technique stats
         self.accuracy = results.accuracy or self.accuracy
         self.potency = results.potency or self.potency
@@ -338,7 +329,6 @@ class Technique:
             "success": False,
             "should_tackle": False,
             "capture": False,
-            "statuses": [],
         }
 
         # Loop through all the effects of this technique and execute the effect's function.

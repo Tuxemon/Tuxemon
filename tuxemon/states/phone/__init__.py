@@ -17,7 +17,7 @@ from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.tools import open_choice_dialog, open_dialog
 
-MenuGameObj = Callable[[], object]
+MenuGameObj = Callable[[], Any]
 
 
 def fix_width(screen_x: int, pos_x: float) -> int:

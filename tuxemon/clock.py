@@ -408,8 +408,8 @@ class Clock(Scheduler):
             n += 1
 
             try:
-                gradient = (n * XY - X * Y) / (n * XX - X * X)
-                offset = (Y - gradient * X) / n
+                gradient = int((n * XY - X * Y) / (n * XX - X * X))
+                offset = int((Y - gradient * X) / n)
             except ZeroDivisionError:
                 # Can happen in pathalogical case; keep current
                 # gradient/offset for now.

@@ -3747,6 +3747,9 @@ msgstr "Taste"
 msgid "tastes"
 msgstr "Tastes"
 
+msgid "taste_peppy"
+msgstr "Peppy"
+
 msgid "taste_mild"
 msgstr "Mild"
 

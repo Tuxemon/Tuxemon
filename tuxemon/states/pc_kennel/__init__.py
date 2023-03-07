@@ -17,6 +17,7 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
+from tuxemon.state import State
 from tuxemon.states.journal import MonsterInfoState
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.tools import open_choice_dialog, open_dialog
@@ -302,7 +303,7 @@ class MonsterBoxChooseState(PygameMenuState):
         """
         return []
 
-    def change_state(self, state: str, **kwargs: Any) -> Callable[[], object]:
+    def change_state(self, state: str, **kwargs: Any) -> partial[State]:
         return partial(self.client.replace_state, state, **kwargs)
 
     def update_animation_position(self) -> None:

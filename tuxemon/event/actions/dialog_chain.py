@@ -90,6 +90,7 @@ class DialogChainAction(EventAction):
                 dialog.text_queue.append(text)
             except ValueError:
                 # no, so create new dialog with this line
+                assert self.avatar
                 self.open_dialog(text, get_avatar(self.session, self.avatar))
 
     def update(self) -> None:

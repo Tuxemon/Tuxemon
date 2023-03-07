@@ -245,6 +245,7 @@ class ItemMenuState(Menu[Item]):
         if item:
             # animate item being pulled from the bag
             image = item.game_object.surface
+            assert image
             self.item_sprite.image = image
             self.item_sprite.rect = image.get_rect(center=self.backpack_center)
             self.animate(
@@ -254,7 +255,8 @@ class ItemMenuState(Menu[Item]):
             )
 
             # show item description
-            self.alert(item.description)
+            if item.description:
+                self.alert(item.description)
 
 
 class ShopMenuState(Menu[Item]):
@@ -334,12 +336,11 @@ class ShopMenuState(Menu[Item]):
         item = self.get_selected_item()
         if item:
             image = item.game_object.surface
+            assert image
             self.item_sprite.image = image
             self.item_sprite.rect = image.get_rect(center=self.image_center)
-            self.alert(item.description)
-        else:
-            self.item_sprite.image = None
-            self.alert("")
+            if item.description:
+                self.alert(item.description)
 
 
 class ShopBuyMenuState(ShopMenuState):

@@ -74,6 +74,7 @@ class DialogAction(EventAction):
             DeprecationWarning,
         )
         text = replace_text(self.session, self.text)
+        assert self.avatar
         self.open_dialog(text, get_avatar(self.session, self.avatar))
 
     def update(self) -> None:

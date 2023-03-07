@@ -302,6 +302,7 @@ class EventEngine:
             logger.debug("Executing action list")
             logger.debug(map_event)
             token = RunningEvent(map_event)
+            assert map_event.id
             self.running_events[map_event.id] = token
 
     def process_map_event(self, map_event: EventObject) -> None:

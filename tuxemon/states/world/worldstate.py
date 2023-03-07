@@ -546,6 +546,7 @@ class WorldState(state.State):
             screen_surfaces.append((s, r, l))
 
         # draw the map and sprites
+        assert self.current_map.renderer
         self.rect = self.current_map.renderer.draw(
             surface, surface.get_rect(), screen_surfaces
         )
@@ -935,6 +936,7 @@ class WorldState(state.State):
             The pixel coordinates to draw at the given tile position.
 
         """
+        assert self.current_map.renderer
         cx, cy = self.current_map.renderer.get_center_offset()
         px, py = self.project(tile_position)
         x = px + cx

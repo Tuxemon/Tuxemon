@@ -100,7 +100,7 @@
     <property name="act070" value="pathfind spyder_dante,7,7"/>
     <property name="act071" value="npc_face spyder_dante,left"/>
     <property name="act080" value="translated_dialog spyder_intro_question_name"/>
-    <property name="act081" value="rename_player"/>
+    <property name="act081" value="rename_player random"/>
     <property name="act082" value="translated_dialog spyder_papertown_myfirstmon2"/>
     <property name="act083" value="translated_dialog_choice budaye:dollfin:grintot:ignibus:memnomnom,myintrochoice"/>
     <property name="act084" value="translated_dialog spyder_intro_shopkeeper3"/>

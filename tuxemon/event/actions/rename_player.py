@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import final
+from typing import Union, final
 
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
@@ -20,11 +20,16 @@ class RenamePlayerAction(EventAction):
     Script usage:
         .. code-block::
 
-            rename_player
+            rename_player [random]
+
+    Script parameters:
+        random: Adding "random" makes appear the
+        dontcare button in the input.
 
     """
 
     name = "rename_player"
+    random: Union[str, None] = None
 
     def set_player_name(self, name: str) -> None:
         self.session.player.name = name
@@ -37,6 +42,7 @@ class RenamePlayerAction(EventAction):
                 escape_key_exits=False,
                 initial=self.session.player.name,
                 char_limit=prepare.PLAYER_NAME_LIMIT,
+                random=bool(self.random),
             )
         )
 

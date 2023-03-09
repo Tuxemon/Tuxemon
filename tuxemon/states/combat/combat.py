@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import datetime as dt
 import logging
+import random
 from collections import defaultdict
 from functools import partial
 from itertools import chain
@@ -26,7 +27,7 @@ from typing import (
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import audio, battle, formula, graphics, state, tools
+from tuxemon import audio, battle, graphics, state, tools
 from tuxemon.animation import Task
 from tuxemon.combat import (
     check_status,
@@ -378,7 +379,7 @@ class CombatState(CombatAnimations):
             self.reset_status_icons()
             # saves random value, so we are able to reproduce
             # inside the condition files if a tech hit or missed
-            value = formula.random.random()
+            value = random.random()
             self.players[0].game_variables["random_tech_hit"] = value
             if not self._decision_queue:
                 for player in self.human_players:

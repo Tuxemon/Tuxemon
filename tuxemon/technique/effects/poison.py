@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import random
 from dataclasses import dataclass
 
 from tuxemon import formula
@@ -29,7 +30,7 @@ class PoisonEffect(TechEffect):
     ) -> PoisonEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
-        potency = formula.random.random()
+        potency = random.random()
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
             tech = Technique("status_poison")

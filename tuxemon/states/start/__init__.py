@@ -10,9 +10,10 @@ from typing import Any, Callable, Union
 
 import pygame
 import pygame_menu
-from pygame_menu import baseimage, locals
+from pygame_menu import locals
+from pygame_menu.baseimage import POSITION_CENTER
 
-from tuxemon import formula, graphics, prepare
+from tuxemon import formula, prepare, tools
 from tuxemon.locale import T
 from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.theme import get_theme
@@ -110,10 +111,10 @@ class StartState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/bg_pcstate.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST

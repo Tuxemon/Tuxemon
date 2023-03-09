@@ -181,7 +181,7 @@ def _create_monster_npc(
 
     # Create an NPC object which will be this monster's "trainer"
     npc = NPC("random_encounter_dummy", world=world)
-    npc.add_monster(current_monster)
+    npc.add_monster(current_monster, len(npc.monsters))
     # NOTE: random battles are implemented as trainer battles.
     #       this is a hack. remove this once trainer/random battlers are fixed
     current_monster.owner = None

@@ -457,7 +457,7 @@ class TuxemonMap:
             tall_sprites=2,
         )
 
-    def reload_tiles(self):
+    def reload_tiles(self) -> None:
         """Reload the map tiles."""
         data = pytmx.TiledMap(
             self.data.filename,

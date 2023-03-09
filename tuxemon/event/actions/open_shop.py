@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from functools import partial
 from typing import Optional, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.economy import Economy
+from tuxemon.npc import NPC
 from tuxemon.states.choice import ChoiceState
 from tuxemon.states.items import ShopBuyMenuState, ShopSellMenuState
 
@@ -42,7 +44,7 @@ class OpenShopAction(EventAction):
         else:
             economy = Economy("default")
 
-        def push_buy_menu():
+        def push_buy_menu(npc: NPC) -> None:
             self.session.client.push_state(
                 ShopBuyMenuState(
                     buyer=self.session.player,
@@ -51,7 +53,7 @@ class OpenShopAction(EventAction):
                 )
             )
 
-        def push_sell_menu():
+        def push_sell_menu(npc: NPC) -> None:
             self.session.client.push_state(
                 ShopSellMenuState(
                     buyer=npc,
@@ -63,17 +65,17 @@ class OpenShopAction(EventAction):
         menu = self.menu or "both"
         if menu == "both":
 
-            def buy_menu() -> None:
+            def buy_menu(npc: NPC) -> None:
                 self.session.client.pop_state()
-                push_buy_menu()
+                push_buy_menu(npc)
 
-            def sell_menu() -> None:
+            def sell_menu(npc: NPC) -> None:
                 self.session.client.pop_state()
-                push_sell_menu()
+                push_sell_menu(npc)
 
             var_menu = [
-                ("Buy", "Buy", buy_menu),
-                ("Sell", "Sell", sell_menu),
+                ("Buy", "Buy", partial(buy_menu, npc)),
+                ("Sell", "Sell", partial(sell_menu, npc)),
             ]
 
             self.session.client.push_state(
@@ -84,9 +86,9 @@ class OpenShopAction(EventAction):
             )
 
         elif menu == "buy":
-            push_buy_menu()
+            push_buy_menu(npc)
         elif menu == "sell":
-            push_sell_menu()
+            push_sell_menu(npc)
         else:
             raise Exception(
                 f"The parameter {self.menu} can be only 'both', 'buy' or 'sell'."

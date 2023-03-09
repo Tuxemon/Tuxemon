@@ -44,8 +44,7 @@ def check_number(value: Any) -> float:
 
     """
     try:
-        float(value)
-        return value
+        return float(value)
     except (ValueError, TypeError):
         raise ValueError
 
@@ -710,13 +709,15 @@ class AnimationTransition:
     def in_expo(progress: float) -> float:
         if progress == 0:
             return 0.0
-        return pow(2, 10 * (progress - 1.0))
+        value = pow(2, 10 * (progress - 1.0))
+        return float(value)
 
     @staticmethod
     def out_expo(progress: float) -> float:
         if progress == 1.0:
             return 1.0
-        return -pow(2, -10 * progress) + 1.0
+        value = -pow(2, -10 * progress) + 1.0
+        return float(value)
 
     @staticmethod
     def in_out_expo(progress: float) -> float:
@@ -726,9 +727,11 @@ class AnimationTransition:
             return 1.0
         p = progress * 2
         if p < 1:
-            return 0.5 * pow(2, 10 * (p - 1.0))
+            value = 0.5 * pow(2, 10 * (p - 1.0))
+            return float(value)
         p -= 1.0
-        return 0.5 * (-pow(2, -10 * p) + 2.0)
+        value = 0.5 * (-pow(2, -10 * p) + 2.0)
+        return float(value)
 
     @staticmethod
     def in_circ(progress: float) -> float:
@@ -755,7 +758,8 @@ class AnimationTransition:
         if q == 1:
             return 1.0
         q -= 1.0
-        return -(pow(2, 10 * q) * sin((q - s) * (2 * pi) / p))
+        value = -(pow(2, 10 * q) * sin((q - s) * (2 * pi) / p))
+        return float(value)
 
     @staticmethod
     def out_elastic(progress: float) -> float:
@@ -764,7 +768,8 @@ class AnimationTransition:
         q = progress
         if q == 1:
             return 1.0
-        return pow(2, -10 * q) * sin((q - s) * (2 * pi) / p) + 1.0
+        value = pow(2, -10 * q) * sin((q - s) * (2 * pi) / p) + 1.0
+        return float(value)
 
     @staticmethod
     def in_out_elastic(progress: float) -> float:
@@ -775,10 +780,12 @@ class AnimationTransition:
             return 1.0
         if q < 1:
             q -= 1.0
-            return -0.5 * (pow(2, 10 * q) * sin((q - s) * (2.0 * pi) / p))
+            value = -0.5 * (pow(2, 10 * q) * sin((q - s) * (2.0 * pi) / p))
+            return float(value)
         else:
             q -= 1.0
-            return pow(2, -10 * q) * sin((q - s) * (2.0 * pi) / p) * 0.5 + 1.0
+            value = pow(2, -10 * q) * sin((q - s) * (2.0 * pi) / p) * 0.5 + 1.0
+            return float(value)
 
     @staticmethod
     def in_back(progress: float) -> float:

@@ -62,7 +62,7 @@ class TechCondition:
     session: Session = field(init=False, repr=False)
     _done: bool = field(default=False, init=False)
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self.session = local_session
         self.player = local_session.player
         cast_dataclass_parameters(self)

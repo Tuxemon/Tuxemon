@@ -7,7 +7,7 @@ import warnings
 from tuxemon import prepare
 
 
-def configure():
+def configure() -> None:
     """Configure logging based on the settings in the config file."""
     # Set our logging levels
     LOG_LEVELS = {

@@ -7,7 +7,7 @@ import random
 import uuid
 from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
 
-from tuxemon import ai, formula, fusion, graphics
+from tuxemon import ai, formula, fusion, graphics, tools
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import (
     ElementType,
@@ -685,7 +685,7 @@ class Monster:
         """
         try:
             path = "%s.png" % sprite
-            full_path = graphics.transform_resource_filename(path)
+            full_path = tools.transform_resource_filename(path)
             if full_path:
                 return full_path
         except OSError:

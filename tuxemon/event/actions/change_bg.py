@@ -57,7 +57,7 @@ class ChangeBgAction(EventAction):
                 return
             else:
                 self.session.client.push_state(
-                    BgState(kwargs={"background": self.background})
+                    BgState(background=self.background)
                 )
 
     def cleanup(self) -> None:

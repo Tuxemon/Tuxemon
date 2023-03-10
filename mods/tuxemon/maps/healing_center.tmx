@@ -109,7 +109,7 @@
   </object>
   <object id="33" name="Rename Player" type="event" x="128" y="128" width="16" height="16">
    <properties>
-    <property name="act10" value="rename_player"/>
+    <property name="act10" value="rename_player random"/>
     <property name="act20" value="translated_dialog shady_rename"/>
     <property name="act30" value="npc_face shady_guy,right"/>
     <property name="act40" value="set_variable shady:no"/>

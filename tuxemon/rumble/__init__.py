@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 
 class RumbleManager:
-    def __init__(self):
+    def __init__(self) -> None:
         """The Rumble Manager automatically selects an available
         rumble backend and controls controller haptic feedback.
         """

@@ -154,7 +154,7 @@ class ControlState(PopUpMenu[ControlStateObj]):
             item.enabled = button is not None
             self.add(item)
 
-    def reload_controls(self):
+    def reload_controls(self) -> None:
         with open(paths.USER_CONFIG_PATH, "w") as fp:
             tuxe_config.cfg.write(fp)
 

@@ -62,5 +62,5 @@ class AddMonsterAction(EventAction):
         if self.money is not None:
             current_monster.money_modifier = self.money
 
-        trainer.add_monster(current_monster)
+        trainer.add_monster(current_monster, len(trainer.monsters))
         trainer.tuxepedia[self.monster_slug] = SeenStatus.caught

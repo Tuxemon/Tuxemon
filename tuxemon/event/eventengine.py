@@ -91,7 +91,7 @@ class RunningEvent:
 
         return action
 
-    def advance(self):
+    def advance(self) -> None:
         self.action_index += 1
 
 

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import random
 from dataclasses import dataclass
 from typing import final
 
@@ -56,7 +57,7 @@ class RandomBattleAction(EventAction):
             if not results.monsters:
                 filters.append(results.slug)
 
-        opponent = formula.random.choice(filters)
+        opponent = random.choice(filters)
         world = self.session.client.get_state_by_name(WorldState)
         npc = NPC(opponent, world=world)
 
@@ -68,9 +69,9 @@ class RandomBattleAction(EventAction):
             if elements.txmn_id > 0:
                 filtered.append(elements.slug)
 
-        output = formula.random.sample(filtered, self.nr_txmns)
+        output = random.sample(filtered, self.nr_txmns)
         for ele in output:
-            level = formula.random.randint(self.min_level, self.max_level)
+            level = random.randint(self.min_level, self.max_level)
             current_monster = Monster()
             current_monster.load_from_db(ele)
             current_monster.set_level(level)
@@ -79,7 +80,7 @@ class RandomBattleAction(EventAction):
             current_monster.current_hp = current_monster.hp
             current_monster.money_modifier = level
             current_monster.experience_modifier = level
-            npc.add_monster(current_monster)
+            npc.add_monster(current_monster, len(npc.monsters))
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):

@@ -7,7 +7,7 @@ except:
 
 
 class Rumble:
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
     def rumble(

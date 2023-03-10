@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Generator, Sequence, Tuple, cast, final
+from typing import Any, Generator, Sequence, Tuple, cast, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -68,7 +68,7 @@ class NpcMoveAction(EventAction):
     name = "npc_move"
     raw_parameters: Sequence[str] = field(init=False)
 
-    def __init__(self, *args):
+    def __init__(self, *args: Any) -> None:
         super().__init__()
         self.raw_parameters = args
 

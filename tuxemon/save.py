@@ -250,7 +250,7 @@ def load(slot: int) -> Optional[SaveData]:
         save_data["error"] = "Save file corrupted"
         save_data["player_name"] = "BROKEN SAVE!"
         logger.error("Failed loading save file.")
-        return save_data
+        return save_data  # type: ignore[return-value]
 
 
 def get_index_of_latest_save() -> Optional[int]:

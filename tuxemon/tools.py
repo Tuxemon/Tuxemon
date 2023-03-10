@@ -325,7 +325,7 @@ def get_types_tuple(
         return (param_type,)
 
 
-def cast_dataclass_parameters(self):
+def cast_dataclass_parameters(self) -> None:
     """
     Takes a dataclass object and casts its __init__ values to the correct type
     """

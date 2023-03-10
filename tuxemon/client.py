@@ -610,14 +610,14 @@ class LocalPygameClient:
     @overload
     def replace_state(
         self,
-        state_name: Type[StateType],
+        state_name: StateType,
         **kwargs: Any,
     ) -> StateType:
         pass
 
     def replace_state(
         self,
-        state_name: Union[str, Type[State]],
+        state_name: Union[str, State],
         **kwargs: Any,
     ) -> State:
         """Replace current state with new one"""

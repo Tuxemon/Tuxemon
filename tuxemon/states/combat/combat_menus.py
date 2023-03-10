@@ -27,7 +27,7 @@ from tuxemon.technique.technique import Technique
 from tuxemon.ui.draw import GraphicBox
 
 if TYPE_CHECKING:
-    from tuxemon.player import NPC, Player
+    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
@@ -376,7 +376,7 @@ class CombatTargetMenuState(Menu[Monster]):
 
     def __init__(
         self,
-        player: Player,
+        player: NPC,
         user: Union[NPC, Monster],
         action: Union[Item, Technique],
     ) -> None:

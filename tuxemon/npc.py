@@ -265,7 +265,7 @@ class NPC(Entity[NPCState]):
             self.add_item(item)
         self.monsters = []
         for monster in decode_monsters(save_data.get("monsters")):
-            self.add_monster(monster)
+            self.add_monster(monster, len(self.monsters))
         self.template = []
         for tmp in decode_template(save_data.get("template")):
             self.template.append(tmp)
@@ -630,7 +630,7 @@ class NPC(Entity[NPCState]):
     ####################################################
     #                   Monsters                       #
     ####################################################
-    def add_monster(self, monster: Monster, slot: int = None) -> None:
+    def add_monster(self, monster: Monster, slot: int) -> None:
         """
         Adds a monster to the npc's list of monsters.
 
@@ -649,10 +649,7 @@ class NPC(Entity[NPCState]):
         if len(self.monsters) >= self.party_limit:
             self.monster_boxes[KENNEL].append(monster)
         else:
-            if slot is None:
-                self.monsters.append(monster)
-            else:
-                self.monsters.insert(slot, monster)
+            self.monsters.insert(slot, monster)
             self.set_party_status()
 
     def find_monster(self, monster_slug: str) -> Optional[Monster]:
@@ -824,7 +821,7 @@ class NPC(Entity[NPCState]):
             monster.gender = npc_monster_details.gender
 
             # Add our monster to the NPC's party
-            self.add_monster(monster)
+            self.add_monster(monster, len(npc_party))
 
         # load NPC bag
         for item in self.items:

@@ -12,6 +12,14 @@
             "technique": "blossom"
         },
         {
+            "level_learned": 6,
+            "technique": "random"
+        },
+        {
+            "level_learned": 8,
+            "technique": "random"
+        },
+        {
             "level_learned": 12,
             "technique": "petrify"
         }

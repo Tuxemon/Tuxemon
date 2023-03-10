@@ -14,6 +14,14 @@
         {
             "level_learned": 4,
             "technique": "wallow"
+        },
+        {
+            "level_learned": 6,
+            "technique": "hibernate"
+        },
+        {
+            "level_learned": 8,
+            "technique": "perfect_cut"
         }
     ],
     "evolutions": [

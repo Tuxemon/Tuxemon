@@ -28,6 +28,14 @@
             "technique": "blade"
         },
         {
+            "level_learned": 12,
+            "technique": "random"
+        },
+        {
+            "level_learned": 16,
+            "technique": "random"
+        },
+        {
             "level_learned": 20,
             "technique": "muddle"
         },

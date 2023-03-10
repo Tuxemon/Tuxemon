@@ -28,6 +28,10 @@
             "technique": "goad"
         },
         {
+            "level_learned": 16,
+            "technique": "random"
+        },
+        {
             "level_learned": 20,
             "technique": "sleeping_powder"
         },

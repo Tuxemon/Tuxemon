@@ -27,7 +27,7 @@ from tuxemon.technique.technique import Technique
 from tuxemon.ui.draw import GraphicBox
 
 if TYPE_CHECKING:
-    from tuxemon.player import NPC
+    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 

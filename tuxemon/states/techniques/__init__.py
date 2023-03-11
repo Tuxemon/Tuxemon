@@ -171,4 +171,6 @@ class TechniqueMenuState(Menu[Technique]):
         """Called when menu selection changes."""
         technique = self.get_selected_item()
         # show technique description
-        self.alert(technique.description)
+        if technique:
+            if technique.description:
+                self.alert(technique.description)

@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import random
 from dataclasses import dataclass
 
 from tuxemon import formula
@@ -27,7 +28,7 @@ class StuckEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> StuckEffectResult:
         player = self.session.player
-        potency = formula.random.random()
+        potency = random.random()
         value = float(player.game_variables["random_tech_hit"])
         obj = self.objective
         success = tech.potency >= potency and tech.accuracy >= value

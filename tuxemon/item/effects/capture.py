@@ -49,6 +49,7 @@ class CaptureEffect(ItemEffect):
         # retrieves monster fighting (player)
         iid = self.user.game_variables["iid_fighting_monster"]
         fighting_monster = self.user.find_monster_by_id(iid)
+        assert fighting_monster
         # Check type tuxeball and address malus/bonus
         tuxeball_modifier = 1.0
         if self.tuxeball is not None:
@@ -189,7 +190,7 @@ class CaptureEffect(ItemEffect):
 
         # add creature to the player's monster list
         target.capture_device = capture_device
-        self.user.add_monster(target)
+        self.user.add_monster(target, len(self.user.monsters))
 
         # TODO: remove monster from the other party
         return {"success": True, "capture": True, "num_shakes": 4}

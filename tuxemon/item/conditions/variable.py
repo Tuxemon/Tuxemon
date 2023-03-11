@@ -24,8 +24,8 @@ class VariableCondition(ItemCondition):
         expect = self.expected
 
         if type(expect) is str:
-            return self.user.game_variables[var_name] == expect
+            return bool(self.user.game_variables[var_name] == expect)
         elif type(expect) is int:
-            return self.user.game_variables[var_name] >= expect
+            return bool(self.user.game_variables[var_name] >= expect)
         else:
             return not self.user.game_variables[var_name]

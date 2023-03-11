@@ -52,7 +52,8 @@ class Economy:
         """
         for item in self.items:
             if item.item_name == item_slug and hasattr(item, field):
-                return getattr(item, field)
+                value = int(getattr(item, field))
+                return value
 
         return None
 

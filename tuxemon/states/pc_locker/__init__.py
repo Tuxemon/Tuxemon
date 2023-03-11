@@ -5,12 +5,23 @@ from __future__ import annotations
 import logging
 import uuid
 from functools import partial
-from typing import TYPE_CHECKING, Any, Callable, Optional, Sequence, Tuple
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    List,
+    Optional,
+    Sequence,
+    Tuple,
+)
 
 import pygame_menu
-from pygame_menu import baseimage, locals, widgets
+from pygame_menu import locals
+from pygame_menu.baseimage import POSITION_CENTER
+from pygame_menu.widgets.selection import HighlightSelection
+from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
-from tuxemon import graphics, prepare
+from tuxemon import prepare, tools
 from tuxemon.db import db
 from tuxemon.item import item
 from tuxemon.locale import T
@@ -19,6 +30,7 @@ from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.quantity import QuantityMenu
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
+from tuxemon.state import State
 from tuxemon.states.items import ItemMenuState
 from tuxemon.tools import open_choice_dialog, open_dialog
 
@@ -204,14 +216,14 @@ class ItemTakeState(PygameMenuState):
             iid = itm.instance_id.hex
             results = db.lookup(itm.slug, table="item").dict()
             new_image = pygame_menu.BaseImage(
-                graphics.transform_resource_filename(results["sprite"]),
-                drawing_position=baseimage.POSITION_CENTER,
+                tools.transform_resource_filename(results["sprite"]),
+                drawing_position=POSITION_CENTER,
             )
             new_image.scale(prepare.SCALE, prepare.SCALE)
             menu.add.banner(
                 new_image,
                 partial(locker_options, iid),
-                selection_effect=widgets.HighlightSelection(),
+                selection_effect=HighlightSelection(),
             )
             menu.add.label(label, selectable=True)
 
@@ -231,10 +243,10 @@ class ItemTakeState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/bg_pcstate.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -247,7 +259,7 @@ class ItemTakeState(PygameMenuState):
         theme.title_font_size = round(0.025 * width)
         theme.title_font_color = (10, 10, 10)
         theme.title_close_button = False
-        theme.title_bar_style = widgets.MENUBAR_STYLE_ADAPTIVE
+        theme.title_bar_style = MENUBAR_STYLE_ADAPTIVE
 
         columns = 3
 
@@ -334,7 +346,7 @@ class ItemBoxChooseState(PygameMenuState):
         """
         return []
 
-    def change_state(self, state: str, **kwargs: Any) -> Callable[[], object]:
+    def change_state(self, state: str, **kwargs: Any) -> partial[State]:
         return partial(self.client.replace_state, state, **kwargs)
 
     def update_animation_position(self) -> None:
@@ -436,7 +448,7 @@ class ItemDropOffState(ItemMenuState):
 
             box = player.item_boxes[self.box_name]
 
-            def find_monster_box(itm: Item, box: list) -> Optional[Item]:
+            def find_monster_box(itm: Item, box: List[Item]) -> Optional[Item]:
                 for ele in box:
                     if ele.slug == itm.slug:
                         return ele

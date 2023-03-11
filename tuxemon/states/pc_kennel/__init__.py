@@ -8,15 +8,19 @@ from functools import partial
 from typing import TYPE_CHECKING, Any, Callable, Optional, Sequence, Tuple
 
 import pygame_menu
-from pygame_menu import baseimage, locals, widgets
+from pygame_menu import locals
+from pygame_menu.baseimage import POSITION_CENTER
+from pygame_menu.widgets.selection import HighlightSelection
+from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
-from tuxemon import graphics, prepare
+from tuxemon import prepare, tools
 from tuxemon.db import db
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
+from tuxemon.state import State
 from tuxemon.states.journal import MonsterInfoState
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.tools import open_choice_dialog, open_dialog
@@ -83,7 +87,7 @@ class MonsterTakeState(PygameMenuState):
                 self.client.pop_state()
                 self.client.pop_state()
                 self.player.remove_monster_from_storage(mon)
-                self.player.add_monster(mon)
+                self.player.add_monster(mon, len(self.player.monsters))
                 open_dialog(
                     local_session,
                     [
@@ -175,16 +179,16 @@ class MonsterTakeState(PygameMenuState):
             iid = monster.instance_id.hex
             results = db.lookup(monster.slug, table="monster").dict()
             new_image = pygame_menu.BaseImage(
-                graphics.transform_resource_filename(
+                tools.transform_resource_filename(
                     results["sprites"]["menu1"] + ".png"
                 ),
-                drawing_position=baseimage.POSITION_CENTER,
+                drawing_position=POSITION_CENTER,
             )
             new_image.scale(prepare.SCALE, prepare.SCALE)
             menu.add.banner(
                 new_image,
                 partial(kennel_options, iid),
-                selection_effect=widgets.HighlightSelection(),
+                selection_effect=HighlightSelection(),
             )
             menu.add.button(label, partial(description, monster))
 
@@ -203,10 +207,10 @@ class MonsterTakeState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/bg_pcstate.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -219,7 +223,7 @@ class MonsterTakeState(PygameMenuState):
         theme.title_font_size = round(0.025 * width)
         theme.title_font_color = (10, 10, 10)
         theme.title_close_button = False
-        theme.title_bar_style = widgets.MENUBAR_STYLE_ADAPTIVE
+        theme.title_bar_style = MENUBAR_STYLE_ADAPTIVE
 
         columns = 3
 
@@ -302,7 +306,7 @@ class MonsterBoxChooseState(PygameMenuState):
         """
         return []
 
-    def change_state(self, state: str, **kwargs: Any) -> Callable[[], object]:
+    def change_state(self, state: str, **kwargs: Any) -> partial[State]:
         return partial(self.client.replace_state, state, **kwargs)
 
     def update_animation_position(self) -> None:

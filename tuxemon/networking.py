@@ -659,6 +659,7 @@ class TuxemonClient:
             event_type = "CLIENT_FACING"
 
         if not event_type in self.event_list:
+            assert event_type
             self.event_list[event_type] = 0
 
         if event_type and kb_key:

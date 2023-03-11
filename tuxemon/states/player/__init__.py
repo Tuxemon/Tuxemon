@@ -5,9 +5,10 @@ from __future__ import annotations
 from typing import Callable
 
 import pygame_menu
-from pygame_menu import baseimage, locals
+from pygame_menu import locals
+from pygame_menu.baseimage import POSITION_CENTER
 
-from tuxemon import formula, graphics, prepare
+from tuxemon import formula, prepare, tools
 from tuxemon.db import OutputBattle, SeenStatus, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
@@ -168,7 +169,7 @@ class PlayerState(PygameMenuState):
         for ele in player.template:
             combat_front = ele.combat_front
         new_image = pygame_menu.BaseImage(
-            graphics.transform_resource_filename(
+            tools.transform_resource_filename(
                 "gfx/sprites/player/" + combat_front + ".png"
             ),
         )
@@ -179,14 +180,14 @@ class PlayerState(PygameMenuState):
             fix_width(width, 0.17), fix_height(height, 0.08)
         )
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self) -> None:
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/player_info.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST

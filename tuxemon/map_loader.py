@@ -140,7 +140,7 @@ class TMXMapLoader:
 
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         # Makes mocking easier during tests
         self.image_loader = scaled_image_loader
 

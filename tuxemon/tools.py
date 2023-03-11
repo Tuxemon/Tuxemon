@@ -158,7 +158,7 @@ def open_dialog(
     session: Session,
     text: Sequence[str],
     avatar: Optional[Sprite] = None,
-    menu: Optional[Tuple[str, str, Callable[[], None]]] = None,
+    menu: Optional[Sequence[Tuple[str, str, Callable[[], None]]]] = None,
 ) -> State:
     """
     Open a dialog with the standard window size.
@@ -325,7 +325,7 @@ def get_types_tuple(
         return (param_type,)
 
 
-def cast_dataclass_parameters(self):
+def cast_dataclass_parameters(self) -> None:
     """
     Takes a dataclass object and casts its __init__ values to the correct type
     """

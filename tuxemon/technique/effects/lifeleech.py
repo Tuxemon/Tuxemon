@@ -41,11 +41,13 @@ class LifeLeechEffect(TechEffect):
         potency = random.random()
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
-            tech = Technique("status_lifeleech", carrier=target, link=user)
+            tech = Technique()
+            tech.load("status_lifeleech")
+            tech.link = user
             target.apply_status(tech)
             # exception: applies status to the user
             if tech.slug == "blood_bond":
-                tech = Technique("status_lifeleech", carrier=user, link=target)
+                tech.load("blood_bond")
                 user.apply_status(tech)
             return {
                 "damage": 0,

@@ -904,7 +904,9 @@ class NPC(Entity[NPCState]):
         if len(monster.moves) >= MAX_MOVES:
             self.overwrite_technique(session, monster, overwrite_technique)
         else:
-            monster.learn(Technique(overwrite_technique))
+            overwrite = Technique()
+            overwrite.load(overwrite_technique)
+            monster.learn(overwrite)
             msg = T.translate("generic_success")
             open_dialog(session, [msg])
 
@@ -914,10 +916,12 @@ class NPC(Entity[NPCState]):
         """
         Opens the choice dialog and overwrites the technique.
         """
+        tech = Technique()
+        tech.load(technique)
 
         def set_variable(var_value: Technique) -> None:
             monster.moves.remove(var_value)
-            monster.learn(Technique(technique))
+            monster.learn(tech)
             session.client.pop_state()
 
         var_list = monster.moves
@@ -938,7 +942,7 @@ class NPC(Entity[NPCState]):
                     "max_moves_alert",
                     {
                         "name": monster.name.upper(),
-                        "tech": Technique(technique).name,
+                        "tech": tech.name,
                     },
                 )
             ],

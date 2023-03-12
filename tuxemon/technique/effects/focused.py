@@ -32,7 +32,8 @@ class FocusedEffect(TechEffect):
         obj = self.objective
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
-            tech = Technique("status_focused")
+            tech = Technique()
+            tech.load("status_focused")
             if obj == "user":
                 user.apply_status(tech)
             elif obj == "target":

@@ -33,7 +33,8 @@ class PoisonEffect(TechEffect):
         potency = random.random()
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
-            tech = Technique("status_poison")
+            tech = Technique()
+            tech.load("status_poison")
             if self.objective == "user":
                 user.apply_status(tech)
             elif self.objective == "target":

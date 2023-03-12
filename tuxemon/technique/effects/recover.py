@@ -33,7 +33,9 @@ class RecoverEffect(TechEffect):
         potency = random.random()
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
-            tech = Technique("status_recover", link=user)
+            tech = Technique()
+            tech.load("status_recover")
+            tech.link = user
             user.apply_status(tech)
             return {
                 "damage": 0,

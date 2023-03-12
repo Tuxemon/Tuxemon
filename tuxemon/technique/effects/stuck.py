@@ -33,7 +33,8 @@ class StuckEffect(TechEffect):
         obj = self.objective
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
-            tech = Technique("status_stuck")
+            tech = Technique()
+            tech.load("status_stuck")
             if obj == "user":
                 user.apply_status(tech)
                 formula.simple_stuck(user)

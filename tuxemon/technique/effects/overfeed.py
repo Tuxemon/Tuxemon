@@ -32,7 +32,8 @@ class OverfeedEffect(TechEffect):
         obj = self.objective
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
-            tech = Technique("status_overfeed")
+            tech = Technique()
+            tech.load("status_overfeed")
             if obj == "user":
                 user.apply_status(tech)
             elif obj == "target":

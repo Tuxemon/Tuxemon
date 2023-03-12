@@ -32,7 +32,8 @@ class ExhaustedEffect(TechEffect):
         obj = self.objective
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
-            tech = Technique("status_exhausted")
+            tech = Technique()
+            tech.load("status_exhausted")
             if obj == "user":
                 user.apply_status(tech)
             elif obj == "target":

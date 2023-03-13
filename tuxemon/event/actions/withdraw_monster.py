@@ -5,10 +5,11 @@ from __future__ import annotations
 import logging
 import uuid
 from dataclasses import dataclass
-from typing import final
+from typing import Optional, Union, final
 
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.states.world.worldstate import WorldState
+from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
@@ -26,27 +27,32 @@ class WithdrawMonsterAction(EventAction):
     Script usage:
         .. code-block::
 
-            withdraw_monster <trainer>,<monster_id>
+            withdraw_monster <monster_id>[,trainer_slug]
 
     Script parameters:
-        trainer: The trainer slug.
-        monster_id: The id of the monster to pull.
+        monster_id: The id of the monster to pull (variable).
+        trainer_slug: Slug of the trainer that will receive the monster. It
+            defaults to the current player.
 
     """
 
     name = "withdraw_monster"
-    trainer: str
     monster_id: str
+    trainer: Union[str, None] = None
 
     def start(self) -> None:
-        world = self.session.client.get_state_by_name(WorldState)
+        trainer: Optional[NPC]
+        if self.trainer is None:
+            trainer = self.session.player
+        else:
+            trainer = get_npc(self.session, self.trainer)
 
-        trainer = self.trainer.replace("player", "npc_red")
-        npc = world.get_entity(trainer)
-        assert npc
-        instance_id = uuid.UUID(npc.game_variables[self.monster_id])
-        mon = npc.find_monster_in_storage(instance_id)
+        assert trainer, "No Trainer found with slug '{}'".format(
+            self.trainer or "player"
+        )
+        instance_id = uuid.UUID(trainer.game_variables[self.monster_id])
+        mon = trainer.find_monster_in_storage(instance_id)
         assert mon
 
-        npc.remove_monster_from_storage(mon)
-        npc.add_monster(mon)
+        trainer.remove_monster_from_storage(mon)
+        trainer.add_monster(mon, len(trainer.monsters))

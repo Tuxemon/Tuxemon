@@ -43,19 +43,49 @@ msgid "potion"
 msgstr "Potion"
 
 msgid "potion_description"
-msgstr "Heals a monster by 50 HP."
+msgstr "Heals a monster by 20 HP."
 
 msgid "super_potion"
 msgstr "Super Potion"
 
 msgid "super_potion_description"
-msgstr "Heals a monster by 150 HP."
+msgstr "Heals a monster by 50 HP."
 
 msgid "imperial_potion"
 msgstr "Imperial Potion"
 
 msgid "imperial_potion_description"
-msgstr "Heals a monster by 350 HP."
+msgstr "Heals a monster by 500 HP."
+
+msgid "mega_potion"
+msgstr "Imperial Potion"
+
+msgid "mega_potion_description"
+msgstr "Heals a monster by 200 HP."
+
+msgid "ancient_tea"
+msgstr "Ancient Tea"
+
+msgid "ancient_tea_description"
+msgstr "Adds 1277 to a monster's XP."
+
+msgid "imperial_tea"
+msgstr "Imperial Tea"
+
+msgid "imperial_tea_description"
+msgstr "Adds 3005 to a monster's XP."
+
+msgid "mystery_tea"
+msgstr "Mystery Tea"
+
+msgid "mystery_tea_description"
+msgstr "Adds 437 to a monster's XP."
+
+msgid "tea"
+msgstr "Tea"
+
+msgid "tea_description"
+msgstr "Adds 107 to a monster's XP."
 
 msgid "revive"
 msgstr "Revive"
@@ -63,11 +93,101 @@ msgstr "Revive"
 msgid "revive_description"
 msgstr "Revives knocked out Tuxemon and restores 20 HP."
 
-msgid "capture_device"
-msgstr "Capture Device"
+msgid "tuxeball"
+msgstr "Tuxeball"
 
-msgid "capture_device_description"
+msgid "tuxeball_description"
 msgstr "Captures a monster."
+
+msgid "tuxeball_earth"
+msgstr "Earth Tuxeball"
+
+msgid "tuxeball_earth_description"
+msgstr "Captures more easily an Earth Tuxemon."
+
+msgid "tuxeball_fire"
+msgstr "Fire Tuxeball"
+
+msgid "tuxeball_fire_description"
+msgstr "Captures more easily a Fire Tuxemon."
+
+msgid "tuxeball_metal"
+msgstr "Metal Tuxeball"
+
+msgid "tuxeball_metal_description"
+msgstr "Captures more easily a Metal Tuxemon."
+
+msgid "tuxeball_water"
+msgstr "Water Tuxeball"
+
+msgid "tuxeball_water_description"
+msgstr "Captures more easily a Water Tuxemon."
+
+msgid "tuxeball_wood"
+msgstr "Wood Tuxeball"
+
+msgid "tuxeball_wood_description"
+msgstr "Captures more easily a Wood Tuxemon."
+
+msgid "tuxeball_male"
+msgstr "Male Tuxeball"
+
+msgid "tuxeball_male_description"
+msgstr "Captures more easily a Male Tuxemon."
+
+msgid "tuxeball_female"
+msgstr "Female Tuxeball"
+
+msgid "tuxeball_female_description"
+msgstr "Captures more easily a Female Tuxemon."
+
+msgid "tuxeball_neuter"
+msgstr "Neuter Tuxeball"
+
+msgid "tuxeball_neuter_description"
+msgstr "Captures more easily a Neuter Tuxemon."
+
+msgid "tuxeball_candy"
+msgstr "Candy Tuxeball"
+
+msgid "tuxeball_candy_description"
+msgstr "Captures Tuxemon and increases its level (+1) upon capture."
+
+msgid "tuxeball_lavish"
+msgstr "Lavish Tuxeball"
+
+msgid "tuxeball_lavish_description"
+msgstr "The capture has a higher chance of succeeding."
+
+msgid "tuxeball_ancient"
+msgstr "Ancient Tuxeball"
+
+msgid "tuxeball_ancient_description"
+msgstr "This Tuxeball was made a long time ago and is capable of catching any Tuxemon without fail."
+
+msgid "tuxeball_crusher"
+msgstr "Crusher Tuxeball"
+
+msgid "tuxeball_crusher_description"
+msgstr "This Tuxeball breaks through defenses and increases the catch rate the higher the opposing Tuxemon's defense is. It will fail to catch if a protection move is used."
+
+msgid "tuxeball_xero"
+msgstr "Xero Tuxeball"
+
+msgid "tuxeball_xero_description"
+msgstr "This odd Tuxeball increases the chance of succeeding if the opposing Tuxemon is a different type than yours, but has a decreased chance if they are the same type."
+
+msgid "tuxeball_omni"
+msgstr "Omni Tuxeball"
+
+msgid "tuxeball_omni_description"
+msgstr "This odd Tuxeball increases the chance of succeeding if the opposing Tuxemon is the same type as yours, but has a decreased chance if they are different types."
+
+msgid "tuxeball_hardened"
+msgstr "Hardened Tuxeball"
+
+msgid "tuxeball_hardened_description"
+msgstr "Captures Tuxemon and it doesn't break when it fails."
 
 msgid "fishing_rod"
 msgstr "Fishing Rod"
@@ -670,7 +790,7 @@ msgid "alert_text"
 msgstr "Text too long!"
 
 msgid "receive_happiness"
-msgstr "Received 5 Capture Devices!"
+msgstr "Received 5 Tuxeballs!"
 
 msgid "received_x"
 msgstr "Received {name}!"
@@ -1447,6 +1567,64 @@ msgstr "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
 msgid "menu_alphabet_n_columns"
 msgstr "13"
 
+msgid "dont_care"
+msgstr "DON'T CARE"
+
+msgid "random_names_male"
+msgstr "Jarrod\n"
+"Edwardson\n"
+"Lothair\n"
+"Andrea\n"
+"Brady\n"
+"Demarcus\n"
+"Brady\n"
+"Farant\n"
+"Birch\n"
+"Justin\n"
+"Colbey\n"
+"Efrem\n"
+"Garnier\n"
+"Florentus\n"
+"Alvyn\n"
+"Hadden\n"
+"Julianus\n"
+"Hugh"
+
+msgid "random_names_female"
+msgstr "Robine\n"
+"Magnolia\n"
+"Svana\n"
+"Simone\n"
+"Eila\n"
+"Krimhild\n"
+"Charlot\n"
+"Yara\n"
+"Gracie\n"
+"Anke\n"
+"Theresia\n"
+"Diana\n"
+"Kathrin\n"
+"Anne\n"
+"Madita\n"
+"Slainie\n"
+"Nastasia\n"
+"Nelly"
+
+msgid "random_names"
+msgstr "Beep-beep\n"
+"Toast\n"
+"Chair\n"
+"Lizard\n"
+"Chris\n"
+"Carter\n"
+"Kyndi\n"
+"Wednesday\n"
+"Tapioca\n"
+"Pom\n"
+"Indiana\n"
+"Kansas\n"
+"Dont Care"
+
 # Monster Menu notifications
 msgid "monster_menu_info"
 msgstr "Info"
@@ -1505,6 +1683,9 @@ msgid "max_moves_alert"
 msgstr "{name} has too many techniques.\n"
 "Which do you want to overwrite for learning {tech}?"
 
+msgid "uninstall_app"
+msgstr "Unable to uninstall the app."
+
 # Player State
 
 msgid "tuxepedia_progress"
@@ -1518,6 +1699,9 @@ msgstr "Caught {param} out of {all} Tuxemon"
 
 msgid "player_start_adventure"
 msgstr "The adventure began {date} days ago."
+
+msgid "player_battles"
+msgstr "Battles: {tot} (W{won} D{draw} L{lost})"
 
 # Tuxepedia
 
@@ -1584,9 +1768,6 @@ msgstr "Multiplayer"
 
 msgid "menu_new_game"
 msgstr "New Game"
-
-msgid "menu_scenarios"
-msgstr "Scenarios"
 
 msgid "menu_options"
 msgstr "Options"
@@ -3595,6 +3776,16 @@ msgid "cat_yeti"
 msgstr "Yeti"
 
 # Monster types
+msgid "gender_male"
+msgstr "Male"
+
+msgid "gender_neuter"
+msgstr "Neuter"
+
+msgid "gender_female"
+msgstr "Female"
+
+# Monster types
 msgid "aether"
 msgstr "Aether"
 
@@ -3618,6 +3809,43 @@ msgstr "Glitch"
 
 msgid "normal"
 msgstr "Normal"
+
+# Monster tastes
+msgid "taste"
+msgstr "Taste"
+
+msgid "tastes"
+msgstr "Tastes"
+
+msgid "taste_peppy"
+msgstr "Peppy"
+
+msgid "taste_mild"
+msgstr "Mild"
+
+msgid "taste_salty"
+msgstr "Salty"
+
+msgid "taste_sweet"
+msgstr "Sweet"
+
+msgid "taste_hearty"
+msgstr "Hearty"
+
+msgid "taste_soft"
+msgstr "Soft"
+
+msgid "taste_zesty"
+msgstr "Zesty"
+
+msgid "taste_flakey"
+msgstr "Flakey"
+
+msgid "taste_refined"
+msgstr "Refined"
+
+msgid "taste_dry"
+msgstr "Dry"
 
 # STAT TYPES
 
@@ -3844,9 +4072,28 @@ msgid "potions_in_shop"
 msgstr "The display case seems to have a lot of potions, must be pretty popular around here."
 
 msgid "capture_devices_in_shop"
-msgstr "Capture devices. How do they make these?"
+msgstr "Tuxeballs. How do they make these?"
 
 # NPC dialogs
+
+msgid "xero_intro_1"
+msgstr "Welcome to the Fondent Region!\n"
+"The Fondent Region is a wonderful place filled with all sorts of wonderful people!\n"
+"You're sure to love it here!\n"
+"The Fondent Region is run by the benevolent Omnichannel Corporation.\n"
+"They make sure everyone's needs are met and that everyone is protected from the fearsome Tuxemon!"
+
+msgid "xero_intro_2"
+msgstr "The great and benevolent Omnichannel Corporation has been led by one man since its inception 25 years ago:\n"
+"Aeble Flisk! Along with the Omni-Council and the Omnigrunts.\n"
+"He has brought stability and prosperity to the Fondent Region!"
+
+msgid "xero_intro_3"
+msgstr "Thank you for visiting the Fondent Region!\n"
+"We hope you enjoy your stay, whether it's for a few days, or for a lifetime!"
+
+msgid "xero_intro_question"
+msgstr "What's your name?"
 
 msgid "karrianna_dialog1"
 msgstr "Karrianna: I've been training for the past month! Nobody has beaten me yet!"
@@ -5312,6 +5559,47 @@ msgid "taba_house4_dish1"
 msgstr "It's brown, dense, but it doesn't look like pudding..."
 
 ## DIALOG TRANSLATIONS ##
+# spyder intros
+
+msgid "spyder_intro_question"
+msgstr "Do you want to skip the intro?"
+
+msgid "spyder_intro00"
+msgstr "Hello, I am the CEO of Omnichannel. We run the newspapers, TV channels and radio stations for this region.\n"
+"It is my duty to inform you."
+
+msgid "spyder_intro01"
+msgstr "Tuxemon are the animals that inhabit this world.\n"
+"They love to be captured so their masters can battle them for fun and profit.\n"
+"The strongest win, just like in the world of business.\n"
+"Most monsters are found in the wild. They morph into more advanced forms when they gain experience.\n"
+"But the five Pillars that make up the Cathedral, that is, the five allied companies that operate in this region,\n"
+"have improved on nature. This season, we offer five deluxe Tuxemon!"
+
+msgid "spyder_intro02"
+msgstr "These tuxemon morph immediately when exposed to a token - that's instant gratification!\n"
+"What's more, they let you choose which form they morph into."
+
+msgid "spyder_intro03"
+msgstr "Tokens are available for a modest fee from all Pillars!\n"
+"Ahem, what was I talking about?\n"
+"Oh yes, each Pillar offers one of these exclusive Tuxemon."
+
+msgid "spyder_intro_shopkeeper1"
+msgstr "What a great presentation from our CEO! All Gold members are being offered a free tuxemon."
+
+msgid "spyder_intro_shopkeeper2"
+msgstr "Just fill in this form."
+
+msgid "spyder_intro_question_name"
+msgstr "What is your name?"
+
+msgid "spyder_intro_shopkeeper3"
+msgstr "Please, now return the form to the Shop Assistant, so we can give you the tuxemon."
+
+msgid "spyder_intro_shopkeeper4"
+msgstr "I'm sorry, you are not a Gold member. This offer is for Gold members only."
+
 # spyder dialogs
 msgid "spyder_papertown_stopthere"
 msgstr "Hey! What do you think you're doing?\n It's not safe to go into the wilds unless you have a tuxemon.\n Come buy one from our shop."
@@ -5419,19 +5707,19 @@ msgid "spyder_cottonart_shopkeeper"
 msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is ${{currency}}50. It goes towards the company's annual dividend."
 
 msgid "spyder_cottonscoop_shopassistant"
-msgstr "Capture Devices allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. \n Select them during battle from your Item menu."
+msgstr "Tuxeballs allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. \n Select them during battle from your Item menu."
 
 msgid "spyder_cottonscoop_deviceoffer"
-msgstr "Welcome customer. Today, we're promoting Capture Devices. Do you know what those are?"
+msgstr "Welcome customer. Today, we're promoting Tuxeballs. Do you know what those are?"
 
 msgid "spyder_cottonscoop_devicenoexplan"
-msgstr "     Okay, well here's five as a free sample. If you have any questions about how Capture Devices work, just ask my assistant!"
+msgstr "     Okay, well here's five as a free sample. If you have any questions about how Tuxeballs work, just ask my assistant!"
 
 msgid "spyder_cottonscoop_deviceexplan"
 msgstr "Let my assistant introduce you."
 
 msgid "spyder_cottonscoop_deviceexplan2"
-msgstr "Capture Devices allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. Select them during battle from your Item menu. \n Thank you for listening. Here's five Capture Devices as a free sample. "
+msgstr "Tuxeballs allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. Select them during battle from your Item menu. \n Thank you for listening. Here's five Tuxeballs as a free sample. "
 
 msgid "spyder_cotton_tuxepediaintro"
 msgstr "Currently, the only reliable information about tuxemon is from the expensive and incomplete Encyclopaedia Tuxemon! \n That's not cool; information should be freely available. That's why we're introducing Tuxepedia. \n It's open source, it's free, it's available for everyone to read, write and edit. How cool is that? \n In fact, I've installed it as an app on all your phones just now. "
@@ -5970,7 +6258,7 @@ msgstr "This is Dragon's Cave! I'm standing outside because ... uh, because I'm 
 msgid "spyder_searoutec_nigel2"
 msgstr "Okay I'm not standing guard! The other dragonriders wouldn't let me join them!"
 msgid "spyder_searoutec_river1"
-msgstr "Manosting was wrapped around me ... I couldn't swim ... My last hope ... The Capture Device I stashed in my swimming costume!"
+msgstr "Manosting was wrapped around me ... I couldn't swim ... My last hope ... The Tuxeball I stashed in my swimming costume!"
 msgid "spyder_searoutec_river2"
 msgstr "Suffice to say, it worked!"
 msgid "spyder_searoutec_wade1"

@@ -5,12 +5,13 @@ from __future__ import annotations
 from typing import Callable
 
 import pygame_menu
-from pygame_menu import baseimage, locals
+from pygame_menu import locals
+from pygame_menu.baseimage import POSITION_CENTER
 
-from tuxemon import formula, graphics, prepare
-from tuxemon.db import SeenStatus, db
+from tuxemon import formula, prepare, tools
+from tuxemon.db import OutputBattle, SeenStatus, db
 from tuxemon.locale import T
-from tuxemon.menu.menu import PygameMenuState
+from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 
@@ -38,7 +39,6 @@ class PlayerState(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-
         width = menu._width
         height = menu._height
 
@@ -78,6 +78,31 @@ class PlayerState(PygameMenuState):
         msg_begin = T.format(
             "player_start_adventure",
             {"date": str(date_begin)},
+        )
+        tot = len(player.battles)
+        won = sum(
+            1
+            for battle in player.battles
+            if battle.outcome == OutputBattle.won
+        )
+        draw = sum(
+            1
+            for battle in player.battles
+            if battle.outcome == OutputBattle.draw
+        )
+        lost = sum(
+            1
+            for battle in player.battles
+            if battle.outcome == OutputBattle.lost
+        )
+        msg_battles = T.format(
+            "player_battles",
+            {
+                "tot": str(tot),
+                "won": str(won),
+                "draw": str(draw),
+                "lost": str(lost),
+            },
         )
 
         # name
@@ -123,6 +148,14 @@ class PlayerState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         ).translate(fix_width(width, 0.45), fix_height(height, 0.40))
+        # battles
+        menu.add.label(
+            title=msg_battles,
+            label_id="battle",
+            font_size=15,
+            align=locals.ALIGN_LEFT,
+            float=True,
+        ).translate(fix_width(width, 0.45), fix_height(height, 0.45))
         # % tuxepedia
         menu.add.label(
             title=msg_progress,
@@ -132,9 +165,12 @@ class PlayerState(PygameMenuState):
             float=True,
         ).translate(fix_width(width, 0.45), fix_height(height, 0.10))
         # image
+        combat_front = ""
+        for ele in player.template:
+            combat_front = ele.combat_front
         new_image = pygame_menu.BaseImage(
-            graphics.transform_resource_filename(
-                "gfx/sprites/player/" + player.combat_front
+            tools.transform_resource_filename(
+                "gfx/sprites/player/" + combat_front + ".png"
             ),
         )
         new_image.scale(prepare.SCALE, prepare.SCALE)
@@ -144,15 +180,14 @@ class PlayerState(PygameMenuState):
             fix_width(width, 0.17), fix_height(height, 0.08)
         )
 
-    def __init__(self, **kwargs) -> None:
-
+    def __init__(self) -> None:
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/player_info.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -168,5 +203,5 @@ class PlayerState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT

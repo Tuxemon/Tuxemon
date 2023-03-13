@@ -80,7 +80,6 @@ class Vector3(Vector):
         y: float = 0,
         z: float = 0,
     ) -> None:
-
         if isinstance(x, (int, float)):
             self.x = x
             self.y = y
@@ -116,7 +115,6 @@ class Vector2(Vector):
         x: Union[float, Sequence[float]] = 0,
         y: float = 0,
     ) -> None:
-
         if isinstance(x, (int, float)):
             self.x = x
             self.y = y

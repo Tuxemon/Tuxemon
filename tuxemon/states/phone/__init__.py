@@ -7,17 +7,20 @@ from functools import partial
 from typing import Any, Callable, Sequence
 
 import pygame_menu
-from pygame_menu import baseimage, locals, widgets
+from pygame_menu import locals
+from pygame_menu.baseimage import POSITION_CENTER
+from pygame_menu.widgets.selection import HighlightSelection
+from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
-from tuxemon import formula, graphics, prepare
+from tuxemon import prepare, tools
 from tuxemon.item.item import Item
 from tuxemon.locale import T
-from tuxemon.menu.menu import PygameMenuState
+from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.tools import open_choice_dialog, open_dialog
 
-MenuGameObj = Callable[[], object]
+MenuGameObj = Callable[[], Any]
 
 
 def fix_width(screen_x: int, pos_x: float) -> int:
@@ -51,6 +54,19 @@ class NuPhone(PygameMenuState):
                 [T.translate("no_signal")],
             )
 
+        def uninstall(itm: Item) -> None:
+            count = sum(
+                [1 for ele in self.player.items if ele.slug == itm.slug]
+            )
+            if count > 1:
+                self.player.remove_item(itm)
+                self.client.replace_state("NuPhone")
+            else:
+                open_dialog(
+                    local_session,
+                    [T.translate("uninstall_app")],
+                )
+
         menu._column_max_width = [
             fix_width(menu._width, 0.25),
             fix_width(menu._width, 0.25),
@@ -81,26 +97,28 @@ class NuPhone(PygameMenuState):
             elif item.slug == "app_map":
                 change = change_state("NuPhoneMap")
             new_image = pygame_menu.BaseImage(
-                graphics.transform_resource_filename(item.sprite),
-                drawing_position=baseimage.POSITION_CENTER,
+                tools.transform_resource_filename(item.sprite),
+                drawing_position=POSITION_CENTER,
             )
             new_image.scale(prepare.SCALE, prepare.SCALE)
             menu.add.banner(
                 new_image,
                 change,
-                selection_effect=widgets.HighlightSelection(),
+                selection_effect=HighlightSelection(),
             )
-            menu.add.label(label, font_size=15)
+            menu.add.button(
+                label, action=partial(uninstall, item), font_size=15
+            )
             menu.add.label(item.description, font_size=15, wordwrap=True)
 
     def __init__(self) -> None:
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/bg_pcstate.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -113,7 +131,7 @@ class NuPhone(PygameMenuState):
         theme.title_font_size = round(0.025 * width)
         theme.title_font_color = (10, 10, 10)
         theme.title_close_button = False
-        theme.title_bar_style = widgets.MENUBAR_STYLE_ADAPTIVE
+        theme.title_bar_style = MENUBAR_STYLE_ADAPTIVE
 
         self.player = local_session.player
 
@@ -141,7 +159,7 @@ class NuPhone(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
 
@@ -151,7 +169,6 @@ class NuPhoneBanking(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-
         if "bank_account" not in self.player.money:
             self.player.money["bank_account"] = 0
         bank = self.player.money["bank_account"]
@@ -247,7 +264,7 @@ class NuPhoneBanking(PygameMenuState):
             action=choice_deposit,
             button_id="deposit",
             font_size=20,
-            selection_effect=widgets.HighlightSelection(),
+            selection_effect=HighlightSelection(),
         )
         menu.add.vertical_margin(100)
         # withdraw
@@ -256,7 +273,7 @@ class NuPhoneBanking(PygameMenuState):
             action=choice_withdraw,
             button_id="withdraw",
             font_size=20,
-            selection_effect=widgets.HighlightSelection(),
+            selection_effect=HighlightSelection(),
         )
         # menu
         menu.set_title(T.translate("app_banking")).center_content()
@@ -265,10 +282,10 @@ class NuPhoneBanking(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/bg_pcstate.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -281,7 +298,7 @@ class NuPhoneBanking(PygameMenuState):
         theme.title_font_size = round(0.025 * width)
         theme.title_font_color = (10, 10, 10)
         theme.title_close_button = False
-        theme.title_bar_style = widgets.MENUBAR_STYLE_ADAPTIVE
+        theme.title_bar_style = MENUBAR_STYLE_ADAPTIVE
 
         self.player = local_session.player
 
@@ -297,7 +314,7 @@ class NuPhoneBanking(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
 
@@ -345,7 +362,7 @@ class NuPhoneContacts(PygameMenuState):
                 action=partial(choice, slug, phone),
                 button_id=slug,
                 font_size=20,
-                selection_effect=widgets.HighlightSelection(),
+                selection_effect=HighlightSelection(),
             )
             menu.add.vertical_margin(25)
 
@@ -356,10 +373,10 @@ class NuPhoneContacts(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/bg_pcstate.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -372,7 +389,7 @@ class NuPhoneContacts(PygameMenuState):
         theme.title_font_size = round(0.025 * width)
         theme.title_font_color = (10, 10, 10)
         theme.title_close_button = False
-        theme.title_bar_style = widgets.MENUBAR_STYLE_ADAPTIVE
+        theme.title_bar_style = MENUBAR_STYLE_ADAPTIVE
 
         self.player = local_session.player
 
@@ -388,7 +405,7 @@ class NuPhoneContacts(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
 
@@ -398,12 +415,11 @@ class NuPhoneMap(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-
         menu.add.label(
-            T.translate("leather_town"),
+            title=T.translate("leather_town"),
             selectable=True,
             float=True,
-            selection_effect=widgets.HighlightSelection(),
+            selection_effect=HighlightSelection(),
             selection_color=(232, 48, 48),
             font_size=20,
             background_color=(232, 48, 48),
@@ -412,10 +428,10 @@ class NuPhoneMap(PygameMenuState):
         )
 
         menu.add.label(
-            T.translate("cotton_town"),
+            title=T.translate("cotton_town"),
             selectable=True,
             float=True,
-            selection_effect=widgets.HighlightSelection(),
+            selection_effect=HighlightSelection(),
             selection_color=(232, 48, 48),
             font_size=20,
             background_color=(232, 48, 48),
@@ -424,10 +440,10 @@ class NuPhoneMap(PygameMenuState):
         )
 
         menu.add.label(
-            T.translate("paper_town"),
+            title=T.translate("paper_town"),
             selectable=True,
             float=True,
-            selection_effect=widgets.HighlightSelection(),
+            selection_effect=HighlightSelection(),
             selection_color=(232, 48, 48),
             font_size=20,
             background_color=(232, 48, 48),
@@ -436,10 +452,10 @@ class NuPhoneMap(PygameMenuState):
         )
 
         menu.add.label(
-            T.translate("candy_town"),
+            title=T.translate("candy_town"),
             selectable=True,
             float=True,
-            selection_effect=widgets.HighlightSelection(),
+            selection_effect=HighlightSelection(),
             selection_color=(232, 48, 48),
             font_size=20,
             background_color=(232, 48, 48),
@@ -448,10 +464,10 @@ class NuPhoneMap(PygameMenuState):
         )
 
         menu.add.label(
-            T.translate("timber_town"),
+            title=T.translate("timber_town"),
             selectable=True,
             float=True,
-            selection_effect=widgets.HighlightSelection(),
+            selection_effect=HighlightSelection(),
             selection_color=(232, 48, 48),
             font_size=20,
             background_color=(232, 48, 48),
@@ -460,10 +476,10 @@ class NuPhoneMap(PygameMenuState):
         )
 
         menu.add.label(
-            T.translate("flower_city"),
+            title=T.translate("flower_city"),
             selectable=True,
             float=True,
-            selection_effect=widgets.HighlightSelection(),
+            selection_effect=HighlightSelection(),
             selection_color=(232, 48, 48),
             font_size=20,
             background_color=(232, 48, 48),
@@ -471,16 +487,16 @@ class NuPhoneMap(PygameMenuState):
             fix_width(menu._width, -0.15), fix_height(menu._height, -0.15)
         )
         # menu
-        menu.set_title(T.translate("app_map")).center_content()
+        menu.set_title(title=T.translate("app_map")).center_content()
 
     def __init__(self) -> None:
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/new_spyder_map.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -493,7 +509,7 @@ class NuPhoneMap(PygameMenuState):
         theme.title_font_size = round(0.025 * width)
         theme.title_font_color = (10, 10, 10)
         theme.title_close_button = False
-        theme.title_bar_style = widgets.MENUBAR_STYLE_ADAPTIVE
+        theme.title_bar_style = MENUBAR_STYLE_ADAPTIVE
 
         self.player = local_session.player
 
@@ -509,6 +525,6 @@ class NuPhoneMap(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False

@@ -10,7 +10,6 @@ from tuxemon.technique.technique import Technique
 
 
 class EnhanceEffectResult(TechEffectResult):
-    damage: int
     should_tackle: bool
 
 
@@ -38,6 +37,6 @@ class EnhanceEffect(TechEffect):
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
         if hit or tech.is_area:
-            return {"damage": 0, "should_tackle": True, "success": True}
+            return {"should_tackle": True, "success": True}
         else:
-            return {"damage": 0, "should_tackle": False, "success": False}
+            return {"should_tackle": False, "success": False}

@@ -7,7 +7,6 @@ from typing import Union
 
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.monster import Monster
-from tuxemon.npc import NPC
 
 
 @dataclass
@@ -18,21 +17,15 @@ class VariableCondition(ItemCondition):
 
     name = "variable"
     var_name: str
-    context: Union[NPC, Monster]
     expected: Union[str, int, None] = None
 
     def test(self, target: Monster) -> bool:
         var_name = self.var_name
         expect = self.expected
 
-        if self.context == "target":
-            context = target
-        else:
-            context = self.user
-
         if type(expect) is str:
-            return context.game_variables[var_name] == expect
+            return bool(self.user.game_variables[var_name] == expect)
         elif type(expect) is int:
-            return context.game_variables[var_name] >= expect
+            return bool(self.user.game_variables[var_name] >= expect)
         else:
-            return not context.game_variables[var_name]
+            return not self.user.game_variables[var_name]

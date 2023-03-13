@@ -70,8 +70,7 @@
    <properties>
     <property name="act1" value="create_npc spyder_shopkeeper,1,6"/>
     <property name="act2" value="npc_face spyder_shopkeeper,right"/>
-    <property name="act20" value="set_inventory spyder_shopkeeper,spyder_cotton_scoop"/>
-    <property name="act30" value="set_economy spyder_shopkeeper,spyder_cotton_scoop"/>
+    <property name="act3" value="set_economy spyder_shopkeeper,spyder_cotton_scoop"/>
     <property name="cond1" value="not npc_exists spyder_shopkeeper"/>
    </properties>
   </object>
@@ -116,11 +115,11 @@
     <property name="act20" value="pathfind spyder_shopkeeper,5,9"/>
     <property name="act22" value="translated_dialog spyder_cottonscoop_deviceoffer"/>
     <property name="act23" value="translated_dialog_choice yes:no,heardcapture"/>
-    <property name="act3" value="add_item capture_device"/>
-    <property name="act31" value="add_item capture_device"/>
-    <property name="act32" value="add_item capture_device"/>
-    <property name="act4" value="add_item capture_device"/>
-    <property name="act5" value="add_item capture_device"/>
+    <property name="act3" value="add_item tuxeball"/>
+    <property name="act31" value="add_item tuxeball"/>
+    <property name="act32" value="add_item tuxeball"/>
+    <property name="act4" value="add_item tuxeball"/>
+    <property name="act5" value="add_item tuxeball"/>
     <property name="act7" value="set_variable visitcottonmart:yes"/>
     <property name="act71" value="unlock_controls"/>
     <property name="cond4" value="not variable_set visitcottonmart:yes"/>

@@ -529,9 +529,10 @@
   <object id="134" name="spilledthebeans" type="event" x="48" y="48" width="16" height="16">
    <properties>
     <property name="act10" value="player_stop"/>
-    <property name="act20" value="wait 1"/>
-    <property name="act30" value="translated_dialog leavemealone"/>
-    <property name="act40" value="player_resume"/>
+    <property name="act20" value="lock_controls"/>
+    <property name="act30" value="wait 1"/>
+    <property name="act40" value="translated_dialog leavemealone"/>
+    <property name="act50" value="unlock_controls"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing left"/>
     <property name="cond30" value="is button_pressed K_RETURN"/>

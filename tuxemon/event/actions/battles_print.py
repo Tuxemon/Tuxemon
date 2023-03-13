@@ -3,13 +3,10 @@
 from __future__ import annotations
 
 import datetime as dt
-import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
-
-logger = logging.getLogger(__name__)
 
 
 @final
@@ -40,14 +37,20 @@ class BattlesAction(EventAction):
         player = self.session.player
         today = dt.date.today().toordinal()
 
-        if self.character in player.battle_history:
-            output, battle_date = player.battle_history[self.character]
-            diff_date = today - battle_date
-            if self.result == output:
-                print(
-                    f"{self.result} against {self.character} {diff_date} days ago"
+        for battle in player.battles:
+            if battle.opponent == self.character:
+                total = sum(
+                    1
+                    for battle in player.battles
+                    if battle.opponent == self.character
                 )
+                diff_date = today - battle.date
+                if self.result == battle.outcome:
+                    print(
+                        f"You {self.result} {total} times against {self.character}\n"
+                        f"{diff_date} days ago"
+                    )
+                else:
+                    print(f"Never {self.result} against {self.character}")
             else:
-                print(f"Never {self.result} against {self.character}")
-        else:
-            print(player.battle_history)
+                print(battle.opponent, battle.outcome, battle.date)

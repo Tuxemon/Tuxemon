@@ -9,11 +9,14 @@ from functools import partial
 from typing import Any, Callable, Union
 
 import pygame
+import pygame_menu
+from pygame_menu import locals
+from pygame_menu.baseimage import POSITION_CENTER
 
-from tuxemon import formula, prepare
+from tuxemon import formula, prepare, tools
 from tuxemon.locale import T
-from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import PopUpMenu
+from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
+from tuxemon.menu.theme import get_theme
 from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
 from tuxemon.state import State
@@ -39,16 +42,24 @@ class BackgroundState(State):
         surface.fill((0, 0, 0, 0))
 
 
-class StartState(PopUpMenu[StartGameObj]):
+class StartState(PygameMenuState):
     """The state responsible for the start menu."""
 
-    escape_key_exits = False
-    shrink_to_items = True
-
-    def __init__(self) -> None:
+    def add_menu_items(
+        self,
+        menu: pygame_menu.Menu,
+    ) -> None:
         # If there is a save, then move the cursor to "Load game" first
         index = get_index_of_latest_save()
-        super().__init__(selected_index=0 if index is None else 1)
+        self.menu._onclose = None
+
+        def new_game() -> None:
+            map_path = prepare.fetch("maps", prepare.STARTING_MAP)
+            self.client.push_state("WorldState", map_name=map_path)
+            local_session.player.game_variables[
+                "date_start_game"
+            ] = formula.today_ordinal()
+            self.client.pop_state(self)
 
         def change_state(
             state: Union[State, str],
@@ -60,56 +71,64 @@ class StartState(PopUpMenu[StartGameObj]):
                 **change_state_kwargs,
             )
 
-        def show_mod_menu() -> None:
-            self.client.replace_state("ModChooserMenuState")
-
         def exit_game() -> None:
             self.client.exit = True
 
-        menu_items_map = (
-            ("menu_new_game", show_mod_menu),
-            ("menu_load", change_state("LoadMenuState")),
-            ("menu_options", change_state("ControlState")),
-            ("menu_minigame", change_state("MinigameState")),
-            ("exit", exit_game),
+        self.menu._last_selected_type
+        if index is not None:
+            menu.add.button(
+                title=T.translate("menu_load"),
+                action=change_state("LoadMenuState"),
+                font_size=30,
+                button_id="menu_load",
+            )
+        menu.add.button(
+            title=T.translate("menu_new_game"),
+            action=new_game,
+            font_size=30,
+            button_id="menu_new_game",
         )
-
-        for key, callback in menu_items_map:
-            label = T.translate(key).upper()
-            image = self.shadow_text(label)
-            item = MenuItem(image, label, None, callback)
-            self.add(item)
-
-
-class ModChooserMenuState(PopUpMenu[StartGameObj]):
-    """This menu shows the 2 default mod campaigns at the moment."""
-
-    shrink_to_items = True
-    escape_key_exits = True
-
-    def close(self) -> None:
-        self.client.replace_state("StartState")
+        menu.add.button(
+            title=T.translate("menu_options"),
+            action=change_state("ControlState"),
+            font_size=30,
+            button_id="menu_options",
+        )
+        menu.add.button(
+            title=T.translate("menu_minigame"),
+            action=change_state("MinigameState"),
+            font_size=30,
+            button_id="menu_minigame",
+        )
+        menu.add.button(
+            title=T.translate("exit"),
+            action=exit_game,
+            font_size=30,
+            button_id="exit",
+        )
 
     def __init__(self) -> None:
+        width, height = prepare.SCREEN_SIZE
 
-        super().__init__()
-
-        def new_game() -> None:
-            map_path = prepare.fetch("maps", prepare.STARTING_MAP)
-            self.client.push_state("WorldState", map_name=map_path)
-            local_session.player.game_variables[
-                "date_start_game"
-            ] = formula.today_ordinal()
-            self.client.pop_state(self)
-
-        menu_items_map = (
-            ("menu_scenarios", new_game),
-            ("cancel", self.close),
+        background = pygame_menu.BaseImage(
+            image_path=tools.transform_resource_filename(
+                "gfx/ui/item/bg_pcstate.png"
+            ),
+            drawing_position=POSITION_CENTER,
         )
+        theme = get_theme()
+        theme.scrollarea_position = locals.POSITION_EAST
+        theme.background_color = background
+        theme.widget_alignment = locals.ALIGN_CENTER
 
-        for key, callback in menu_items_map:
-            label = T.translate(key).upper()
-            label = label.center(32)
-            image = self.shadow_text(label)
-            item = MenuItem(image, label, None, callback)
-            self.add(item)
+        super().__init__(height=height, width=width)
+
+        self.add_menu_items(self.menu)
+        self.repristinate()
+
+    def repristinate(self) -> None:
+        """Repristinate original theme (color, alignment, etc.)"""
+        theme = get_theme()
+        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
+        theme.background_color = BACKGROUND_COLOR
+        theme.widget_alignment = locals.ALIGN_LEFT

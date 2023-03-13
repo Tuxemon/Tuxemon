@@ -13,6 +13,7 @@ from tuxemon.menu.input import InputMenu
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu, PopUpMenu
 from tuxemon.session import local_session
+from tuxemon.state import State
 from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
@@ -52,7 +53,7 @@ class PCState(PopUpMenu[MenuGameObj]):
         if LOCKER not in local_session.player.item_boxes.keys():
             local_session.player.item_boxes[LOCKER] = []
 
-        def change_state(state: str, **kwargs: Any) -> MenuGameObj:
+        def change_state(state: str, **kwargs: Any) -> partial[State]:
             return partial(self.client.replace_state, state, **kwargs)
 
         # monster boxes
@@ -125,7 +126,6 @@ class MultiplayerMenu(PopUpMenu[MenuGameObj]):
         )
 
     def host_game(self) -> None:
-
         # check if server is already hosting a game
         if self.client.server.listening:
             self.client.pop_state(self)

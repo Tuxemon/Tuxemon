@@ -7,7 +7,7 @@ import warnings
 from tuxemon import prepare
 
 
-def configure():
+def configure() -> None:
     """Configure logging based on the settings in the config file."""
     # Set our logging levels
     LOG_LEVELS = {
@@ -27,12 +27,10 @@ def configure():
 
     # Set up logging if the configuration has it enabled
     if config.debug_logging:
-
         # Enable suppressed warnings
         warnings.filterwarnings("default")
 
         for logger_name in config.loggers:
-
             # Enable logging for all modules if specified.
             if logger_name == "all":
                 print("Enabling logging of all modules.")

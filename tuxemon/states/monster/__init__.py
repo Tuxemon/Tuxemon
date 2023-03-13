@@ -156,7 +156,6 @@ class MonsterMenuState(Menu[Optional[Monster]]):
         """Used to render slots after their 'focus' flags change."""
 
         for index, item in enumerate(self.menu_items):
-
             monster: Optional[Monster]
             try:
                 monster = local_session.player.monsters[index]
@@ -221,7 +220,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
             if status.icon:
                 image = graphics.load_and_scale(status.icon)
                 pos = (
-                    (rect.width * 0.45) + (index * tools.scale(6.5)),
+                    (rect.width * 0.45) + (index * tools.scale(6)),
                     rect.y + tools.scale(0),
                 )
                 surface.blit(image, pos)

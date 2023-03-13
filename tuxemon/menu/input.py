@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import random as rd
 from functools import partial
 from typing import Any, Callable, Generator, Optional
 
@@ -13,6 +14,7 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.platform.const import buttons, events, intentions
 from tuxemon.platform.events import PlayerInput
+from tuxemon.session import local_session
 from tuxemon.states.choice import ChoiceState
 from tuxemon.ui.text import TextArea
 
@@ -41,7 +43,8 @@ class InputMenu(Menu[InputMenuObj]):
         prompt: str = "",
         callback: Optional[Callable[[str], None]] = None,
         initial: str = "",
-        char_limit: int = None,
+        char_limit: int = 99,
+        random: bool = False,
         **kwargs: Any,
     ) -> None:
         """
@@ -85,10 +88,11 @@ class InputMenu(Menu[InputMenuObj]):
         self.prompt.text = prompt
         self.callback = callback
         self.char_limit = char_limit
+        self.random = random
         assert self.callback
 
     def calc_internal_rect(self) -> Rect:
-        w = self.rect.width - self.rect.width * 0.8
+        w = self.rect.width - self.rect.width * 0.95
         h = self.rect.height - self.rect.height * 0.5
         rect = self.rect.inflate(-w, -h)
         rect.top = int(self.rect.centery * 0.7)
@@ -134,8 +138,16 @@ class InputMenu(Menu[InputMenuObj]):
             InputMenuObj(self.confirm),
         )
 
-    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+        # random names
+        if self.random:
+            yield MenuItem(
+                self.shadow_text(T.translate("dont_care")),
+                None,
+                None,
+                InputMenuObj(self.dont_care),
+            )
 
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         if event.button in (buttons.A, intentions.SELECT):
             menu_item = self.get_selected_item()
             if menu_item is None:
@@ -212,3 +224,22 @@ class InputMenu(Menu[InputMenuObj]):
         assert self.callback
         self.callback(self.input_string)
         self.client.pop_state(self)
+
+    def dont_care(self) -> None:
+        """
+        Assigns the user a random name.
+        This is called when the user selects "Don't Care".
+        """
+        variables = local_session.player.game_variables
+        default_names: str
+        if "gender_choice" in variables:
+            if variables["gender_choice"] == "gender_male":
+                default_names = T.translate("random_names_male")
+            elif variables["gender_choice"] == "gender_female":
+                default_names = T.translate("random_names_female")
+            else:
+                default_names = T.translate("random_names")
+        else:
+            default_names = T.translate("random_names")
+        self.input_string = rd.choice(default_names.split("\n"))
+        self.update_text_area()

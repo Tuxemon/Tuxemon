@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class MoneyMathAction(EventAction):
     """
-    Perform a mathematical transaction on the player's money.
+    Performs a mathematical transaction on the player's money.
 
     Script usage:
         .. code-block::
@@ -45,6 +45,8 @@ class MoneyMathAction(EventAction):
         amount = self.amount
 
         wallet_player = player.money.get("player")
+        if wallet_player is None:
+            wallet_player = 0
 
         # Perform the transaction on the slug
         # from the slug wallet to the player, included check if it's None

@@ -8,7 +8,7 @@ import random
 from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 
 if TYPE_CHECKING:
-    from tuxemon.db import OutputBattle
+    from tuxemon.db import MonsterModel
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
     from tuxemon.technique.technique import Technique
@@ -55,13 +55,14 @@ def simple_damage_multiplier(
             continue
 
         for target_type in target_types:
-            body = TYPES.get(target_type, TYPES["aether"])
-            if body.extra_damage is None:
-                continue
-            if attack_type == body.extra_damage:
-                m *= 2
-            elif attack_type == body.resist_damage:
-                m /= 2.0
+            if target_type:
+                body = TYPES.get(target_type, TYPES["aether"])
+                if body.extra_damage is None:
+                    continue
+                if attack_type == body.extra_damage:
+                    m *= 2
+                elif attack_type == body.resist_damage:
+                    m /= 2.0
     m = min(4, m)
     m = max(0.25, m)
     return m
@@ -106,8 +107,8 @@ def simple_damage_calculate(
         )
 
     mult = simple_damage_multiplier(
-        (technique.type1, technique.type2),
-        (target.type1, target.type2),
+        (technique.types),
+        (target.types),
     )
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)
@@ -203,6 +204,52 @@ def escape(level_user: int, level_target: int, attempts: int) -> bool:
         return False
 
 
+def check_taste(monster: Monster, stat: str) -> int:
+    """
+    It checks the taste and return the value
+    """
+    positive = 0
+    negative = 0
+    if stat == "speed":
+        if monster.taste_cold == "mild":
+            negative = (monster.speed) * 10 // 100
+        if monster.taste_warm == "peppy":
+            positive = (monster.speed) * 10 // 100
+        value = positive - negative
+        return value
+    elif stat == "melee":
+        if monster.taste_cold == "sweet":
+            negative = (monster.melee) * 10 // 100
+        if monster.taste_warm == "salty":
+            positive = (monster.melee) * 10 // 100
+        value = positive - negative
+        return value
+    elif stat == "armour":
+        if monster.taste_cold == "soft":
+            negative = (monster.armour) * 10 // 100
+        if monster.taste_warm == "hearty":
+            positive = (monster.armour) * 10 // 100
+        value = positive - negative
+        return value
+    elif stat == "ranged":
+        if monster.taste_cold == "flakey":
+            negative = (monster.ranged) * 10 // 100
+        if monster.taste_warm == "zesty":
+            positive = (monster.ranged) * 10 // 100
+        value = positive - negative
+        return value
+    elif stat == "dodge":
+        if monster.taste_cold == "dry":
+            negative = (monster.dodge) * 10 // 100
+        if monster.taste_warm == "refined":
+            positive = (monster.dodge) * 10 // 100
+        value = positive - negative
+        return value
+    else:
+        value = positive
+        return value
+
+
 def today_ordinal() -> int:
     """
     It gives today's proleptic Gregorian ordinal.
@@ -276,31 +323,6 @@ def convert_mi(steps: float) -> float:
     return mi
 
 
-def battle_math(player: NPC, output: OutputBattle) -> None:
-    player = player.game_variables
-    if "battle_total" not in player:
-        player["battle_total"] = 0
-        player["battle_won"] = 0
-        player["battle_lost"] = 0
-        player["battle_draw"] = 0
-    player["battle_total"] += 1
-    if output.won:
-        player["battle_won"] += 1
-        player["percent_win"] = round(
-            (player["battle_won"] / player["battle_total"]) * 100
-        )
-    elif output.lost:
-        player["battle_lost"] += 1
-        player["percent_lose"] = round(
-            (player["battle_lost"] / player["battle_total"]) * 100
-        )
-    elif output.draw:
-        player["battle_draw"] += 1
-        player["percent_draw"] = round(
-            (player["battle_draw"] / player["battle_total"]) * 100
-        )
-
-
 def rematch(
     player: NPC,
     opponent: NPC,
@@ -337,7 +359,9 @@ def sync(player: NPC, value: int, total: int) -> float:
     return percent
 
 
-def weight_height_diff(monster: Monster, db: Monster) -> Tuple[float, float]:
+def weight_height_diff(
+    monster: Monster, db: MonsterModel
+) -> Tuple[float, float]:
     weight = round(((monster.weight - db.weight) / db.weight) * 100, 1)
     height = round(((monster.height - db.height) / db.height) * 100, 1)
     return weight, height

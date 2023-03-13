@@ -245,6 +245,7 @@ class ItemMenuState(Menu[Item]):
         if item:
             # animate item being pulled from the bag
             image = item.game_object.surface
+            assert image
             self.item_sprite.image = image
             self.item_sprite.rect = image.get_rect(center=self.backpack_center)
             self.animate(
@@ -254,7 +255,8 @@ class ItemMenuState(Menu[Item]):
             )
 
             # show item description
-            self.alert(item.description)
+            if item.description:
+                self.alert(item.description)
 
 
 class ShopMenuState(Menu[Item]):
@@ -334,12 +336,11 @@ class ShopMenuState(Menu[Item]):
         item = self.get_selected_item()
         if item:
             image = item.game_object.surface
+            assert image
             self.item_sprite.image = image
             self.item_sprite.rect = image.get_rect(center=self.image_center)
-            self.alert(item.description)
-        else:
-            self.item_sprite.image = None
-            self.alert("")
+            if item.description:
+                self.alert(item.description)
 
 
 class ShopBuyMenuState(ShopMenuState):
@@ -356,6 +357,7 @@ class ShopBuyMenuState(ShopMenuState):
 
         """
         item = menu_item.game_object
+        price = self.economy.lookup_item_price(item.slug)
 
         def buy_item(itm: Item, quantity: int) -> None:
             if not quantity:
@@ -368,26 +370,26 @@ class ShopBuyMenuState(ShopMenuState):
                     itm.quantity -= quantity
                 existing.quantity += quantity
             else:
-                itm.quantity = quantity
-                self.buyer.add_item(itm)
-            self.buyer.money["player"] = self.buyer.money.get("player") - (
-                quantity * price
-            )
+                if itm.quantity != INFINITE_ITEMS:
+                    itm.quantity -= quantity
+                new_buy = Item()
+                new_buy.load(itm.slug)
+                new_buy.quantity = quantity
+                self.buyer.add_item(new_buy)
+            self.buyer.money["player"] -= quantity * price
 
             self.reload_items()
             if item not in self.seller.items:
                 # We're pointing at a new item
                 self.on_menu_selection_change()
 
-        price = (
-            0
-            if not self.economy
-            or not self.economy.lookup_item_price(item.slug)
-            else self.economy.lookup_item_price(item.slug)
-        )
         money = self.buyer.money["player"]
         qty_can_afford = int(money / price)
-        max_quantity = min(item.quantity, qty_can_afford)
+
+        inventory = self.economy.lookup_item_inventory(item.slug)
+        if inventory == INFINITE_ITEMS:
+            inventory = 99999
+        max_quantity = min(inventory, qty_can_afford)
 
         self.client.push_state(
             QuantityAndPriceMenu(
@@ -414,6 +416,7 @@ class ShopSellMenuState(ShopMenuState):
 
         """
         item = menu_item.game_object
+        cost = self.economy.lookup_item_cost(item.slug)
 
         def sell_item(itm: Item, quantity: int) -> None:
             if not quantity:
@@ -426,20 +429,12 @@ class ShopSellMenuState(ShopMenuState):
                 itm.quantity = diff
 
             if self.seller.money.get("player") is not None:
-                self.seller.money["player"] = self.seller.money.get(
-                    "player"
-                ) + (quantity * cost)
+                self.seller.money["player"] += quantity * cost
 
             self.reload_items()
             if item not in self.seller.items:
                 # We're pointing at a new item
                 self.on_menu_selection_change()
-
-        cost = (
-            0
-            if not self.economy or not self.economy.lookup_item_cost(item.slug)
-            else self.economy.lookup_item_cost(item.slug)
-        )
 
         self.client.push_state(
             QuantityAndCostMenu(

@@ -209,7 +209,6 @@ class WorldState(state.State):
         self.map_animations: Dict[str, AnimationInfo] = {}
 
         if local_session.player is None:
-
             new_player = Player(prepare.CONFIG.player_npc, world=self)
             local_session.player = new_player
 
@@ -359,7 +358,6 @@ class WorldState(state.State):
 
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player.game_variables))
-        logger.debug("Battle History:" + str(self.player.battle_history))
         logger.debug("Money:" + str(self.player.money))
         logger.debug("Tuxepedia:" + str(self.player.tuxepedia))
 
@@ -548,6 +546,7 @@ class WorldState(state.State):
             screen_surfaces.append((s, r, l))
 
         # draw the map and sprites
+        assert self.current_map.renderer
         self.rect = self.current_map.renderer.draw(
             surface, surface.get_rect(), screen_surfaces
         )
@@ -937,6 +936,7 @@ class WorldState(state.State):
             The pixel coordinates to draw at the given tile position.
 
         """
+        assert self.current_map.renderer
         cx, cy = self.current_map.renderer.get_center_offset()
         px, py = self.project(tile_position)
         x = px + cx
@@ -977,7 +977,8 @@ class WorldState(state.State):
 
     def _collision_box_to_pgrect(self, box):
         """
-        Returns a Rect (in screen-coords) version of a collision box (in world-coords)."""
+        Returns a Rect (in screen-coords) version of a collision box (in world-coords).
+        """
 
         # For readability
         x, y = self.get_pos_from_tilepos(box)
@@ -1038,7 +1039,6 @@ class WorldState(state.State):
         raise RuntimeError("deprecated.  refactor!")
 
         if self.cinema_state == "turning on":
-
             self.cinema_top["position"][1] += (
                 self.cinema_speed * self.time_passed_seconds
             )
@@ -1075,7 +1075,6 @@ class WorldState(state.State):
             )
 
         elif self.cinema_state == "turning off":
-
             self.cinema_top["position"][1] -= (
                 self.cinema_speed * self.time_passed_seconds
             )

@@ -25,6 +25,5 @@ class QuitAction(EventAction):
 
     def start(self) -> None:
         # TODO: API
-        self.session.client._wants_to_exit = True
         self.session.client.exit = True
         self.session.client.done = True

@@ -7,7 +7,7 @@ import random
 import uuid
 from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
 
-from tuxemon import ai, formula, fusion, graphics
+from tuxemon import ai, formula, fusion, graphics, tools
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import (
     ElementType,
@@ -17,6 +17,8 @@ from tuxemon.db import (
     MonsterMovesetItemModel,
     MonsterShape,
     StatType,
+    TasteCold,
+    TasteWarm,
     db,
 )
 from tuxemon.locale import T
@@ -41,8 +43,11 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "flairs",
     "gender",
     "capture",
+    "capture_device",
     "height",
     "weight",
+    "taste_cold",
+    "taste_warm",
 )
 
 SHAPES = {
@@ -213,18 +218,20 @@ class Monster:
         self.possible_genders: List[GenderType] = []
 
         self.money_modifier = 0
-        self.experience_required_modifier = 1
+        self.experience_modifier = 1
         self.total_experience = 0
 
-        self.type1 = ElementType.aether
-        self.type2: Optional[ElementType] = None
+        self.types: List[ElementType] = []
         self.shape = MonsterShape.landrace
 
         self.status: List[Technique] = []
+        self.taste_cold = TasteCold.tasteless
+        self.taste_warm = TasteWarm.tasteless
 
         self.max_moves = MAX_MOVES
         self.txmn_id = 0
         self.capture = 0
+        self.capture_device = "tuxeball"
         self.height = 0.0
         self.weight = 0.0
 
@@ -286,14 +293,13 @@ class Monster:
         self.category = T.translate(f"cat_{results.category}")
         self.shape = results.shape or MonsterShape.landrace
         self.stage = results.stage or EvolutionStage.standalone
-        types = results.types
-        if types:
-            self.type1 = results.types[0]
-            if len(types) > 1:
-                self.type2 = results.types[1]
+        self.taste_cold = self.set_taste_cold(self.taste_cold)
+        self.taste_warm = self.set_taste_warm(self.taste_warm)
+        self.types = list(results.types)
 
         self.txmn_id = results.txmn_id
         self.capture = self.set_capture(self.capture)
+        self.capture_device = self.capture_device
         self.height = self.set_char_height(results.height)
         self.weight = self.set_char_weight(results.weight)
         self.gender = random.choice(list(results.possible_genders))
@@ -322,20 +328,23 @@ class Monster:
                 self.evolutions.append(evolution)
 
         # Look up the monster's sprite image paths
-        self.front_battle_sprite = self.get_sprite_path(
-            results.sprites.battle1
-        )
-        self.back_battle_sprite = self.get_sprite_path(results.sprites.battle2)
-        self.menu_sprite_1 = self.get_sprite_path(results.sprites.menu1)
-        self.menu_sprite_2 = self.get_sprite_path(results.sprites.menu2)
+        if results.sprites:
+            self.front_battle_sprite = self.get_sprite_path(
+                results.sprites.battle1
+            )
+            self.back_battle_sprite = self.get_sprite_path(
+                results.sprites.battle2
+            )
+            self.menu_sprite_1 = self.get_sprite_path(results.sprites.menu1)
+            self.menu_sprite_2 = self.get_sprite_path(results.sprites.menu2)
 
         # get sound slugs for this monster, defaulting to a generic type-based sound
         if results.sounds:
             self.combat_call = results.sounds.combat_call
             self.faint_call = results.sounds.faint_call
         else:
-            self.combat_call = f"sound_{self.type1}_call"
-            self.faint_call = f"sound_{self.type1}_faint"
+            self.combat_call = f"sound_{self.types[0]}_call"
+            self.faint_call = f"sound_{self.types[0]}_faint"
 
         # Load the monster AI
         # TODO: clean up AI 'core' loading and what not
@@ -366,7 +375,7 @@ class Monster:
 
     def return_stat(
         self,
-        stat: StatType,
+        stat: Optional[StatType],
     ) -> int:
         """
         Returns a monster stat (eg. melee, armour, etc.).
@@ -374,6 +383,7 @@ class Monster:
         Parameters:
             stat: The stat for the monster to return.
         """
+        value = 0
         if stat == StatType.armour:
             return self.armour
         elif stat == StatType.dodge:
@@ -386,6 +396,8 @@ class Monster:
             return self.ranged
         elif stat == StatType.speed:
             return self.speed
+        else:
+            return value
 
     def give_experience(self, amount: int = 1) -> None:
         """
@@ -466,6 +478,41 @@ class Monster:
         self.melee = shape["melee"] * multiplier
         self.ranged = shape["ranged"] * multiplier
         self.speed = shape["speed"] * multiplier
+
+        # tastes
+        self.armour += formula.check_taste(self, "armour")
+        self.dodge += formula.check_taste(self, "dodge")
+        self.melee += formula.check_taste(self, "melee")
+        self.ranged += formula.check_taste(self, "ranged")
+        self.speed += formula.check_taste(self, "speed")
+
+    def set_taste_cold(self, taste_cold: TasteCold) -> TasteCold:
+        """
+        It returns the cold taste.
+        """
+        if taste_cold.tasteless:
+            values = list(TasteCold)
+            values.remove(TasteCold.tasteless)
+            result = random.choice(values)
+            self.taste_cold = result
+            return self.taste_cold
+        else:
+            return self.taste_cold
+
+    def set_taste_warm(self, taste_warm: TasteWarm) -> TasteWarm:
+        """
+        It returns the warm taste.
+        """
+        if taste_warm.tasteless:
+            values = list(TasteWarm)
+            values.remove(TasteWarm.tasteless)
+            result = random.choice(values)
+            self.taste_warm = result
+            self.set_stats()
+            return self.taste_warm
+        else:
+            self.set_stats()
+            return self.taste_warm
 
     def set_capture(self, amount: int) -> int:
         """
@@ -572,9 +619,7 @@ class Monster:
             Required experience.
 
         """
-        return (
-            self.experience_required_modifier * (self.level + level_ofs) ** 3
-        )
+        return (self.level + level_ofs) ** 3
 
     def get_sprite(self, sprite: str, **kwargs: Any) -> Sprite:
         """
@@ -640,7 +685,7 @@ class Monster:
         """
         try:
             path = "%s.png" % sprite
-            full_path = graphics.transform_resource_filename(path)
+            full_path = tools.transform_resource_filename(path)
             if full_path:
                 return full_path
         except OSError:

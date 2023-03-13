@@ -82,6 +82,7 @@ class SetKeyState(PopUpMenu):
             # event.value is being compared here since sometimes the
             # value just returns an empty string and event.pressed doesn't
             # return True when a key is being pressed
+            assert self.button and pressed_key_str
             tuxe_config.cfg.set("controls", self.button, pressed_key_str)
             self.client.get_state_by_name(ControlState).initialize_items()
             self.close()
@@ -144,6 +145,7 @@ class ControlState(PopUpMenu[ControlStateObj]):
         )
 
         for key, button in key_items_map:
+            assert key
             label = f"{T.translate(key).upper()}"
             image = self.shadow_text(label)
             item = MenuItem(
@@ -152,7 +154,7 @@ class ControlState(PopUpMenu[ControlStateObj]):
             item.enabled = button is not None
             self.add(item)
 
-    def reload_controls(self):
+    def reload_controls(self) -> None:
         with open(paths.USER_CONFIG_PATH, "w") as fp:
             tuxe_config.cfg.write(fp)
 

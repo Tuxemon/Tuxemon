@@ -2,16 +2,19 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import random
 from functools import partial
 from typing import Callable
 
 import pygame_menu
-from pygame_menu import baseimage, locals, widgets
+from pygame_menu import locals
+from pygame_menu.baseimage import POSITION_CENTER
+from pygame_menu.widgets.selection import HighlightSelection
 
-from tuxemon import formula, graphics, prepare
+from tuxemon import prepare, tools
 from tuxemon.db import db
 from tuxemon.locale import T
-from tuxemon.menu.menu import PygameMenuState
+from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.monster import Monster
 from tuxemon.session import local_session
@@ -58,17 +61,17 @@ class MinigameState(PygameMenuState):
             underline=True,
         )
         # image
-        tuxemon = formula.random.choice(data)
+        tuxemon = random.choice(data)
         self.tuxemon = tuxemon
         new_image = pygame_menu.BaseImage(
-            graphics.transform_resource_filename(
+            tools.transform_resource_filename(
                 "gfx/sprites/battle/" + tuxemon.slug + "-front.png"
             ),
         )
         new_image.scale(prepare.SCALE, prepare.SCALE)
         menu.add.image(image_path=new_image.copy())
-        choice = formula.random.sample(data, 5)
-        pos = formula.random.choice(range(len(choice)))
+        choice = random.sample(data, 5)
+        pos = random.choice(range(len(choice)))
         if tuxemon not in choice:
             choice.pop()
             choice.insert(pos, tuxemon)
@@ -95,7 +98,7 @@ class MinigameState(PygameMenuState):
                 partial(checking, txmn),
                 font_size=20,
                 button_id=txmn.slug,
-                selection_effect=widgets.HighlightSelection(),
+                selection_effect=HighlightSelection(),
             )
             for txmn in choice
         ]
@@ -103,14 +106,13 @@ class MinigameState(PygameMenuState):
             f.pack(choice, align=locals.ALIGN_CENTER)
 
     def __init__(self) -> None:
-
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/bg_pcstate.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -126,5 +128,5 @@ class MinigameState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT

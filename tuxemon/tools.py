@@ -158,7 +158,7 @@ def open_dialog(
     session: Session,
     text: Sequence[str],
     avatar: Optional[Sprite] = None,
-    menu: Optional[Tuple[str, str, Callable[[], None]]] = None,
+    menu: Optional[Sequence[Tuple[str, str, Callable[[], None]]]] = None,
 ) -> State:
     """
     Open a dialog with the standard window size.
@@ -242,6 +242,8 @@ def number_or_variable(
     player = session.player
     if value.isdigit():
         return float(value)
+    elif value.replace(".", "", 1).isdigit():
+        return float(value)
     else:
         try:
             return float(player.game_variables[value])
@@ -253,7 +255,6 @@ def number_or_variable(
 def cast_value(
     i: Tuple[Tuple[ValidParameterTypes, str], Any],
 ) -> Any:
-
     (type_constructors, param_name), value = i
 
     if not isinstance(type_constructors, Sequence):
@@ -265,7 +266,6 @@ def cast_value(
         return None
 
     for constructor in type_constructors:
-
         if not constructor:
             continue
 
@@ -325,7 +325,7 @@ def get_types_tuple(
         return (param_type,)
 
 
-def cast_dataclass_parameters(self):
+def cast_dataclass_parameters(self) -> None:
     """
     Takes a dataclass object and casts its __init__ values to the correct type
     """

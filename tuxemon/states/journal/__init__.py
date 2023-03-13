@@ -4,20 +4,20 @@ from __future__ import annotations
 
 import math
 from functools import partial
-from typing import TYPE_CHECKING, Any, Callable, Sequence
+from typing import Any, Callable, List
 
 import pygame_menu
-from pygame_menu import baseimage, locals, widgets
+from pygame_menu import locals
+from pygame_menu.baseimage import POSITION_CENTER
+from pygame_menu.widgets.selection import HighlightSelection
 
-from tuxemon import formula, graphics, prepare
-from tuxemon.db import SeenStatus, db
+from tuxemon import formula, prepare, tools
+from tuxemon.db import MonsterModel, SeenStatus, db
 from tuxemon.locale import T
-from tuxemon.menu.menu import PygameMenuState
+from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.theme import get_theme
+from tuxemon.monster import Monster
 from tuxemon.session import local_session
-
-if TYPE_CHECKING:
-    from tuxemon.monster import Monster
 
 MAX_PAGE = 20
 
@@ -43,7 +43,7 @@ class JournalChoice(PygameMenuState):
     def add_menu_items(
         self,
         menu: pygame_menu.Menu,
-        monsters: Sequence[Monster],
+        monsters: List[MonsterModel],
     ) -> None:
         width = menu._width
         height = menu._height
@@ -79,10 +79,10 @@ class JournalChoice(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/tux_generic.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -115,7 +115,7 @@ class JournalChoice(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
 
 
@@ -125,7 +125,7 @@ class JournalState(PygameMenuState):
     def add_menu_items(
         self,
         menu: pygame_menu.Menu,
-        monsters: Sequence[Monster],
+        monsters: List[MonsterModel],
     ) -> None:
         width = menu._width
         height = menu._height
@@ -146,7 +146,7 @@ class JournalState(PygameMenuState):
                 if player.tuxepedia[mon.slug] == SeenStatus.seen:
                     menu.add.button(
                         label,
-                        click_on=change_state(
+                        change_state(
                             "JournalInfoState", kwargs={"monster": mon}
                         ),
                         font_size=20,
@@ -177,9 +177,9 @@ class JournalState(PygameMenuState):
                     label_id=mon.slug,
                 ).translate(fix_width(width, 0.25), fix_height(height, 0.01))
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self, **kwargs: Any) -> None:
         monsters = ""
-        page = ""
+        page = 0
         for ele in kwargs.values():
             monsters = ele["monsters"]
             page = ele["page"]
@@ -187,10 +187,10 @@ class JournalState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/tux_generic.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -200,8 +200,8 @@ class JournalState(PygameMenuState):
         columns = 2
 
         # defines range txmn_ids
-        min_txmn = ""
-        max_txmn = ""
+        min_txmn = 0
+        max_txmn = 0
         if page == 0:
             min_txmn = 0
             max_txmn = MAX_PAGE
@@ -216,7 +216,7 @@ class JournalState(PygameMenuState):
                 monster_list.append(ele)
 
         # fix columns and rows
-        num_mon = ""
+        num_mon = 0
         if len(monster_list) != MAX_PAGE:
             num_mon = len(monster_list) + 1
         else:
@@ -234,7 +234,7 @@ class JournalState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
 
 
@@ -316,13 +316,13 @@ class JournalInfoState(PygameMenuState):
             float=True,
         ).translate(fix_width(width, 0.50), fix_height(height, 0.30))
         type_image_1 = pygame_menu.BaseImage(
-            graphics.transform_resource_filename(
+            tools.transform_resource_filename(
                 f"gfx/ui/monster/{monster.types[0]}_type.png"
             ),
         )
         if len(monster.types) > 1:
             type_image_2 = pygame_menu.BaseImage(
-                graphics.transform_resource_filename(
+                tools.transform_resource_filename(
                     f"gfx/ui/monster/{monster.types[1]}_type.png"
                 ),
             )
@@ -395,6 +395,7 @@ class JournalInfoState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         ).translate(fix_width(width, 0.01), fix_height(height, 0.76))
+
         # open evolution monster
         def change_state(state: str, monster_slug: str) -> MenuGameObj:
             element = db.lookup(monster_slug, table="monster")
@@ -424,7 +425,7 @@ class JournalInfoState(PygameMenuState):
                 action=change_state("JournalInfoState", ele),
                 align=locals.ALIGN_LEFT,
                 font_size=15,
-                selection_effect=widgets.HighlightSelection(),
+                selection_effect=HighlightSelection(),
             )
             for ele in no_duplicates
         ]
@@ -432,7 +433,7 @@ class JournalInfoState(PygameMenuState):
             f.pack(no_duplicates)
         # image
         new_image = pygame_menu.BaseImage(
-            graphics.transform_resource_filename(
+            tools.transform_resource_filename(
                 f"gfx/sprites/battle/{monster.slug}-front.png"
             ),
         )
@@ -443,18 +444,18 @@ class JournalInfoState(PygameMenuState):
             fix_width(width, 0.20), fix_height(height, 0.05)
         )
 
-    def __init__(self, **kwargs) -> None:
-        monster = ""
+    def __init__(self, **kwargs: Any) -> None:
+        monster = Monster()
         for ele in kwargs.values():
             monster = ele["monster"]
 
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/tux_info.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -470,7 +471,7 @@ class JournalInfoState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
 
 
@@ -496,12 +497,14 @@ class MonsterInfoState(PygameMenuState):
             evo = T.translate("no_evolution")
         # types
         types = ""
-        if monster.type2 is not None:
-            types = (
-                T.translate(monster.type1) + " " + T.translate(monster.type2)
-            )
+        if len(monster.types) == 1:
+            types = T.translate(monster.types[0])
         else:
-            types = T.translate(monster.type1)
+            types = (
+                T.translate(monster.types[0])
+                + " "
+                + T.translate(monster.types[1])
+            )
         # weight and height
         results = db.lookup(monster.slug, table="monster")
         diff_weight, diff_height = formula.weight_height_diff(monster, results)
@@ -593,6 +596,17 @@ class MonsterInfoState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         ).translate(fix_width(width, 0.50), fix_height(height, 0.40))
+        # taste
+        tastes = T.translate("tastes") + ": "
+        cold = T.translate("taste_" + monster.taste_cold)
+        warm = T.translate("taste_" + monster.taste_warm)
+        menu.add.label(
+            title=tastes + cold + ", " + warm,
+            label_id="taste",
+            font_size=15,
+            align=locals.ALIGN_LEFT,
+            float=True,
+        ).translate(fix_width(width, 0.50), fix_height(height, 0.45))
         # capture
         doc = formula.today_ordinal() - monster.capture
         menu.add.label(
@@ -601,7 +615,7 @@ class MonsterInfoState(PygameMenuState):
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.45))
+        ).translate(fix_width(width, 0.50), fix_height(height, 0.50))
         # hp
         menu.add.label(
             title=T.translate("short_hp") + ": " + str(monster.hp),
@@ -668,6 +682,7 @@ class MonsterInfoState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         ).translate(fix_width(width, 0.01), fix_height(height, 0.76))
+
         # open evolution monster
         def change_state(state: str, monster_slug: str) -> MenuGameObj:
             element = db.lookup(monster_slug, table="monster")
@@ -697,7 +712,7 @@ class MonsterInfoState(PygameMenuState):
                 action=change_state("JournalInfoState", ele),
                 align=locals.ALIGN_LEFT,
                 font_size=15,
-                selection_effect=widgets.HighlightSelection(),
+                selection_effect=HighlightSelection(),
             )
             for ele in no_duplicates
         ]
@@ -705,7 +720,7 @@ class MonsterInfoState(PygameMenuState):
             f.pack(no_duplicates)
         # image
         new_image = pygame_menu.BaseImage(
-            graphics.transform_resource_filename(monster.front_battle_sprite),
+            tools.transform_resource_filename(monster.front_battle_sprite),
         )
         new_image.scale(prepare.SCALE, prepare.SCALE)
         image_widget = menu.add.image(image_path=new_image.copy())
@@ -713,15 +728,26 @@ class MonsterInfoState(PygameMenuState):
         image_widget.translate(
             fix_width(width, 0.20), fix_height(height, 0.05)
         )
+        # tuxeball
+        tuxeball = pygame_menu.BaseImage(
+            tools.transform_resource_filename(
+                f"gfx/items/{monster.capture_device}.png"
+            ),
+        )
+        capture_device = menu.add.image(image_path=tuxeball)
+        capture_device.set_float(origin_position=True)
+        capture_device.translate(
+            fix_width(width, 0.50), fix_height(height, 0.445)
+        )
 
     def __init__(self, monster: Monster) -> None:
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/tux_info.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -737,5 +763,5 @@ class MonsterInfoState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = PygameMenuState.background_color
+        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT

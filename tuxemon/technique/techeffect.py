@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, ClassVar, Optional, TypedDict
+from typing import TYPE_CHECKING, ClassVar, TypedDict
 
 from tuxemon.session import Session, local_session
 from tuxemon.tools import cast_dataclass_parameters
@@ -14,11 +14,7 @@ if TYPE_CHECKING:
 
 
 class TechEffectResult(TypedDict):
-    damage: int
-    element_multiplier: float
     success: bool
-    should_tackle: bool
-    status: Optional[Technique]
 
 
 @dataclass
@@ -67,7 +63,7 @@ class TechEffect:
     session: Session = field(init=False, repr=False)
     _done: bool = field(default=False, init=False)
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self.session = local_session
         cast_dataclass_parameters(self)
 

@@ -2,8 +2,8 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import random
 from dataclasses import dataclass
-from typing import Optional
 
 from tuxemon import formula
 from tuxemon.monster import Monster
@@ -14,7 +14,6 @@ from tuxemon.technique.technique import Technique
 class PoisonEffectResult(TechEffectResult):
     damage: int
     should_tackle: bool
-    status: Optional[Technique]
 
 
 @dataclass
@@ -31,7 +30,7 @@ class PoisonEffect(TechEffect):
     ) -> PoisonEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
-        potency = formula.random.random()
+        potency = random.random()
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
             tech = Technique("status_poison")
@@ -39,7 +38,11 @@ class PoisonEffect(TechEffect):
                 user.apply_status(tech)
             elif self.objective == "target":
                 target.apply_status(tech)
-            return {"status": tech}
+            return {
+                "damage": 0,
+                "should_tackle": bool(success),
+                "success": True,
+            }
 
         damage = formula.simple_poison(target)
         target.current_hp -= damage

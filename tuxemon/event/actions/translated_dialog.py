@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass, field
-from typing import Optional, Sequence, final
+from typing import Any, Optional, Sequence, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar
@@ -53,7 +53,7 @@ class TranslatedDialogAction(EventAction):
     name = "translated_dialog"
     raw_parameters: Sequence[str] = field(init=False)
 
-    def __init__(self, *args):
+    def __init__(self, *args: Any) -> None:
         super().__init__()
         self.raw_parameters = args
 

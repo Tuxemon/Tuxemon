@@ -23,8 +23,9 @@ from typing import (
 
 from tuxemon import surfanim
 from tuxemon.ai import AI
+from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.compat import Rect
-from tuxemon.db import ElementType, OutputBattle, SeenStatus, db
+from tuxemon.db import ElementType, SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import MAX_TYPES_BAG, Item, decode_items, encode_items
@@ -43,6 +44,7 @@ from tuxemon.session import Session
 from tuxemon.states.combat.combat import EnqueuedAction
 from tuxemon.states.pc import KENNEL, LOCKER
 from tuxemon.technique.technique import Technique
+from tuxemon.template import Template, decode_template, encode_template
 from tuxemon.tools import open_choice_dialog, open_dialog, vector2_to_tile_pos
 
 if TYPE_CHECKING:
@@ -63,15 +65,16 @@ class NPCState(TypedDict):
     current_map: str
     facing: Direction
     game_variables: Dict[str, Any]
-    battle_history: Dict[str, Tuple[OutputBattle, int]]
+    battles: Sequence[Mapping[str, Any]]
     tuxepedia: Dict[str, SeenStatus]
     contacts: Dict[str, str]
     money: Dict[str, int]
+    template: Sequence[Mapping[str, Any]]
     items: Sequence[Mapping[str, Any]]
     monsters: Sequence[Mapping[str, Any]]
     player_name: str
     monster_boxes: Dict[str, Sequence[Mapping[str, Any]]]
-    item_boxes: Dict[str, Mapping[str, Optional[int]]]
+    item_boxes: Dict[str, Sequence[Mapping[str, Any]]]
     tile_pos: Tuple[int, int]
 
 
@@ -113,12 +116,8 @@ class NPC(Entity[NPCState]):
         self,
         npc_slug: str,
         *,
-        sprite_name: Optional[str] = None,
-        combat_front: Optional[str] = None,
-        combat_back: Optional[str] = None,
         world: WorldState,
     ) -> None:
-
         super().__init__(slug=npc_slug, world=world)
 
         # load initial data from the npc database
@@ -127,25 +126,10 @@ class NPC(Entity[NPCState]):
         # This is the NPC's name to be used in dialog
         self.name = T.translate(self.slug)
 
-        if sprite_name is None:
-            # Try to use the sprites defined in the JSON data
-            sprite_name = npc_data.sprite_name
-        if combat_front is None:
-            combat_front = npc_data.combat_front
-        if combat_back is None:
-            combat_back = npc_data.combat_back
-
-        # Hold on the the string so it can be sent over the network
-        self.sprite_name = sprite_name
-        self.combat_front = combat_front
-        self.combat_back = combat_back
-
         # general
         self.behavior: Optional[str] = "wander"  # not used for now
         self.game_variables: Dict[str, Any] = {}  # Tracks the game state
-        self.battle_history: Dict[
-            str, Tuple[OutputBattle, int]
-        ] = {}  # Tracks the battles
+        self.battles: List[Battle] = []  # Tracks the battles
         # Tracks Tuxepedia (monster seen or caught)
         self.tuxepedia: Dict[str, SeenStatus] = {}
         self.contacts: Dict[str, str] = {}
@@ -158,6 +142,7 @@ class NPC(Entity[NPCState]):
         self.monsters: List[Monster] = []
         # The player's items.
         self.items: List[Item] = []
+        self.template: List[Template] = []
         self.economy: Optional[Economy] = None
         # Variables for long-term item and monster storage
         # Keeping these seperate so other code can safely
@@ -237,11 +222,12 @@ class NPC(Entity[NPCState]):
             "current_map": session.client.get_map_name(),
             "facing": self.facing,
             "game_variables": self.game_variables,
-            "battle_history": self.battle_history,
+            "battles": encode_battle(self.battles),
             "tuxepedia": self.tuxepedia,
             "contacts": self.contacts,
             "money": self.money,
             "items": encode_items(self.items),
+            "template": encode_template(self.template),
             "monsters": encode_monsters(self.monsters),
             "player_name": self.name,
             "monster_boxes": dict(),
@@ -268,26 +254,45 @@ class NPC(Entity[NPCState]):
         """
         self.facing = save_data.get("facing", "down")
         self.game_variables = save_data["game_variables"]
-        self.battle_history = save_data["battle_history"]
         self.tuxepedia = save_data["tuxepedia"]
         self.contacts = save_data["contacts"]
         self.money = save_data["money"]
+        self.battles = []
+        for battle in decode_battle(save_data.get("battles")):
+            self.battles.append(battle)
         self.items = []
         for item in decode_items(save_data.get("items")):
             self.add_item(item)
         self.monsters = []
         for monster in decode_monsters(save_data.get("monsters")):
-            self.add_monster(monster)
+            self.add_monster(monster, len(self.monsters))
+        self.template = []
+        for tmp in decode_template(save_data.get("template")):
+            self.template.append(tmp)
         self.name = save_data["player_name"]
         for monsterkey, monstervalue in save_data["monster_boxes"].items():
             self.monster_boxes[monsterkey] = decode_monsters(monstervalue)
         for itemkey, itemvalue in save_data["item_boxes"].items():
             self.item_boxes[itemkey] = decode_items(itemvalue)
 
+        self.load_sprites()
+
     def load_sprites(self) -> None:
         """Load sprite graphics."""
         # TODO: refactor animations into renderer
         # Get all of the player's standing animation images.
+        self.sprite_name = ""
+        if not self.template:
+            self.sprite_name = "adventurer"
+            template = Template()
+            template.slug = self.sprite_name
+            template.sprite_name = self.sprite_name
+            template.combat_front = self.sprite_name
+            self.template.append(template)
+        else:
+            for tmp in self.template:
+                self.sprite_name = tmp.sprite_name
+
         self.standing = {}
         for standing_type in facing:
             filename = f"{self.sprite_name}_{standing_type}.png"
@@ -375,7 +380,7 @@ class NPC(Entity[NPCState]):
         self.pathfinding = destination
         path = self.world.pathfind(self.tile_pos, destination)
         if path:
-            self.path = path
+            self.path = list(path)
             self.next_waypoint()
 
     def check_continue(self) -> None:
@@ -625,7 +630,7 @@ class NPC(Entity[NPCState]):
     ####################################################
     #                   Monsters                       #
     ####################################################
-    def add_monster(self, monster: Monster, slot: int = None) -> None:
+    def add_monster(self, monster: Monster, slot: int) -> None:
         """
         Adds a monster to the npc's list of monsters.
 
@@ -644,10 +649,7 @@ class NPC(Entity[NPCState]):
         if len(self.monsters) >= self.party_limit:
             self.monster_boxes[KENNEL].append(monster)
         else:
-            if slot is None:
-                self.monsters.append(monster)
-            else:
-                self.monsters.insert(slot, monster)
+            self.monsters.insert(slot, monster)
             self.set_party_status()
 
     def find_monster(self, monster_slug: str) -> Optional[Monster]:
@@ -812,16 +814,14 @@ class NPC(Entity[NPCState]):
             # npc_monsters_details, which is a PartyMemberModel, is "slug"
             monster = Monster(save_data=npc_monster_details.dict())
             monster.money_modifier = npc_monster_details.money_mod
-            monster.experience_required_modifier = (
-                npc_monster_details.exp_req_mod
-            )
+            monster.experience_modifier = npc_monster_details.exp_req_mod
             monster.set_level(monster.level)
             monster.set_moves(monster.level)
             monster.current_hp = monster.hp
             monster.gender = npc_monster_details.gender
 
             # Add our monster to the NPC's party
-            self.add_monster(monster)
+            self.add_monster(monster, len(npc_party))
 
         # load NPC bag
         for item in self.items:
@@ -831,6 +831,19 @@ class NPC(Entity[NPCState]):
         for npc_itm_details in npc_bag:
             itm = Item(save_data=npc_itm_details.dict())
             itm.quantity = npc_itm_details.quantity
+
+        # load NPC template
+        for tmp in self.template:
+            self.template.remove(tmp)
+        self.template = []
+        npc_template = npc_details.template
+        for npc_template_details in npc_template:
+            tmp = Template(save_data=npc_template_details.dict())
+            tmp.sprite_name = npc_template_details.sprite_name
+            tmp.combat_front = npc_template_details.combat_front
+            self.template.append(tmp)
+
+        self.load_sprites()
 
     def set_party_status(self) -> None:
         """Records important information about all monsters in the party."""
@@ -851,7 +864,7 @@ class NPC(Entity[NPCState]):
         self.game_variables["party_level_highest"] = level_highest
         self.game_variables["party_level_average"] = level_average
 
-    def has_tech(self, tech: str) -> bool:
+    def has_tech(self, tech: Optional[str]) -> bool:
         """
         Returns TRUE if there is the technique in the party.
 
@@ -864,7 +877,7 @@ class NPC(Entity[NPCState]):
                     return True
         return False
 
-    def has_type(self, element: ElementType) -> bool:
+    def has_type(self, element: Optional[ElementType]) -> bool:
         """
         Returns TRUE if there is the type in the party.
 
@@ -872,10 +885,10 @@ class NPC(Entity[NPCState]):
             type: The slug name of the type.
         """
         for mon in self.monsters:
-            if mon.type1 == element:
+            if element in mon.types:
                 return True
-            elif mon.type2 == element:
-                return True
+            else:
+                return False
         return False
 
     def check_max_moves(self, session: Session, monster: Monster) -> None:
@@ -902,7 +915,7 @@ class NPC(Entity[NPCState]):
         Opens the choice dialog and overwrites the technique.
         """
 
-        def set_variable(var_value: str) -> None:
+        def set_variable(var_value: Technique) -> None:
             monster.moves.remove(var_value)
             monster.learn(Technique(technique))
             session.client.pop_state()
@@ -940,7 +953,7 @@ class NPC(Entity[NPCState]):
         Opens the choice dialog and removes the technique.
         """
 
-        def set_variable(var_value: str) -> None:
+        def set_variable(var_value: Technique) -> None:
             monster.moves.remove(var_value)
             session.client.pop_state()
 

@@ -1,7 +1,12 @@
 {
   "slug": "spyder_scoop_berys",
-  "gender": "male",
-  "sprite_name": "professor",
+  "template": [
+    {
+      "sprite_name": "professor",
+      "combat_front": "professor",
+      "slug": "professor"
+    }
+  ],
   "monsters": [
     {
       "name": "Propellercat",
@@ -19,7 +24,5 @@
       "exp_req_mod": 27,
       "gender": "female"
     }
-  ],
-  "combat_front": "professor.png",
-  "combat_back": "adventurer_back.png"
+  ]
 }

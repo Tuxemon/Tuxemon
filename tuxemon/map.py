@@ -156,7 +156,6 @@ def tiles_inside_rect(
 
 
 def snap_interval(value: float, interval: int) -> int:
-
     value = round_to_divisible(value)
     if value == interval:
         return value - 1
@@ -420,14 +419,14 @@ class TuxemonMap:
         self.maps = maps
 
         # optional fields
-        self.slug = maps.get("slug")
+        self.slug = str(maps.get("slug"))
         self.name = T.translate(self.slug)
         self.description = T.translate(f"{self.slug}_description")
         # cardinal directions (towns + roads)
-        self.north = maps.get("north")
-        self.south = maps.get("south")
-        self.east = maps.get("east")
-        self.west = maps.get("west")
+        self.north = str(maps.get("north"))
+        self.south = str(maps.get("south"))
+        self.east = str(maps.get("east"))
+        self.west = str(maps.get("west"))
         # translated cardinal directions (signs)
         self.north_trans = T.translate(self.north)
         self.south_trans = T.translate(self.south)
@@ -458,7 +457,7 @@ class TuxemonMap:
             tall_sprites=2,
         )
 
-    def reload_tiles(self):
+    def reload_tiles(self) -> None:
         """Reload the map tiles."""
         data = pytmx.TiledMap(
             self.data.filename,

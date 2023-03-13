@@ -9,9 +9,9 @@ from typing import final
 from tuxemon import formula
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.combat.combat import CombatState
-from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -43,21 +43,21 @@ class StartBattleAction(EventAction):
             logger.warning("battle is not legal, won't start")
             return
 
-        world = self.session.client.get_state_by_name(WorldState)
-
-        npc = world.get_entity(self.npc_slug)
+        npc = get_npc(self.session, self.npc_slug)
         assert npc
-        if len(npc.monsters) == 0:
+        if not npc.monsters:
             logger.warning(
                 f"npc '{self.npc_slug}' has no monsters, won't start trainer battle."
             )
             return
 
         # Rematch
-        if self.npc_slug in player.battle_history:
-            rematch = player.battle_history[self.npc_slug]
-            for mon in npc.monsters:
-                formula.rematch(player, npc, mon, rematch[1])
+        if player.battles:
+            if npc.slug != "random_encounter_dummy":
+                for battle in player.battles:
+                    if battle.opponent == npc.slug:
+                        for mon in npc.monsters:
+                            formula.rematch(player, npc, mon, battle.date)
 
         # Lookup the environment
         env_slug = player.game_variables.get("environment", "grass")

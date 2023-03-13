@@ -2,8 +2,8 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import random
 from dataclasses import dataclass
-from typing import Optional
 
 from tuxemon import formula
 from tuxemon.monster import Monster
@@ -12,9 +12,7 @@ from tuxemon.technique.technique import Technique
 
 
 class StuckEffectResult(TechEffectResult):
-    damage: int
-    should_tackle: bool
-    status: Optional[Technique]
+    pass
 
 
 @dataclass
@@ -30,7 +28,7 @@ class StuckEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> StuckEffectResult:
         player = self.session.player
-        potency = formula.random.random()
+        potency = random.random()
         value = float(player.game_variables["random_tech_hit"])
         obj = self.objective
         success = tech.potency >= potency and tech.accuracy >= value
@@ -42,8 +40,6 @@ class StuckEffect(TechEffect):
             elif obj == "target":
                 target.apply_status(tech)
                 formula.simple_stuck(target)
-            else:
-                return
-            return {"status": tech}
+            return {"success": True}
 
-        return {"damage": 0, "should_tackle": False, "success": False}
+        return {"success": False}

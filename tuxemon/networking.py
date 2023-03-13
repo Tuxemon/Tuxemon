@@ -60,7 +60,6 @@ class TuxemonServer:
     """
 
     def __init__(self, game: LocalPygameClient, server_name=None):
-
         self.game = game
         if not server_name:
             self.server_name = "Default Tuxemon Server"
@@ -362,7 +361,6 @@ class TuxemonClient:
     """
 
     def __init__(self, game: LocalPygameClient):
-
         self.game = game
         # tuple = (ip, port)
         self.available_games: List[Tuple[str, int]] = []
@@ -417,7 +415,6 @@ class TuxemonClient:
         to reflect the updated information.
         """
         for euuid, event_data in self.client.event_notifies.items():
-
             if event_data["type"] == "NOTIFY_CLIENT_DISCONNECTED":
                 del self.client.registry[event_data["cuuid"]]
                 del self.client.event_notifies[euuid]
@@ -535,7 +532,6 @@ class TuxemonClient:
 
         # Logic to prevent joining your own game as a client.
         if self.client.discovered_servers:
-
             for ip, port in self.client.discovered_servers:
                 host = (ip, port)
                 host_name = self.client.discovered_servers[host][1]
@@ -663,6 +659,7 @@ class TuxemonClient:
             event_type = "CLIENT_FACING"
 
         if not event_type in self.event_list:
+            assert event_type
             self.event_list[event_type] = 0
 
         if event_type and kb_key:

@@ -1,8 +1,10 @@
 {
-    "slug": "omnigrunt5",
-    "gender": "male",
-    "sprite_name": "knight",
-    "combat_front": "adventurer.png",
-    "combat_back": "adventurer_back.png"
-  }
-  
+  "slug": "omnigrunt5",
+  "template": [
+    {
+      "sprite_name": "knight",
+      "combat_front": "knight",
+      "slug": "knight"
+    }
+  ]
+}

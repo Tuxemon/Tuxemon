@@ -5280,13 +5280,19 @@ msgid "areyoureadytorumbleno"
 msgstr "Very well, come back once you're prepared."
 
 msgid "areyoureadytorumbleyes"
-msgstr "Very well, we will fetch the Acolyte."
+msgstr "Very well, before we fetch the Acolyte, we'll heal your Tuxemon."
+
+msgid "areyoureadytorumbleyes2"
+msgstr "There, now that you actually stand a chance, we will fetch the Acolyte."
 
 msgid "uhhjason"
 msgstr "Uhh... Jason?"
 
 msgid "uhhjason2"
 msgstr "Shoot! He always does this..."
+
+msgid "uhhjason3"
+msgstr "JASON!"
 
 msgid "challenger"
 msgstr "Challenger!\n"

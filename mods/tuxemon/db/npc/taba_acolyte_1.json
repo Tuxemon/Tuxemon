@@ -1,12 +1,15 @@
 {
     "slug": "acolyte",
-    "gender": "male",
-    "sprite_name": "disciple",
-    "combat_front": "disciple.png",
-    "combat_back": "adventurer_back.png",
+    "template": [
+      {
+        "sprite_name": "disciple",
+        "combat_front": "disciple",
+        "slug": "enforcer_rookie"
+      }
+    ],
     "monsters": [
       {
-        "level": 4,
+        "level": 3,
         "slug": "chloragon",
         "money_mod": 100,
         "exp_req_mod": 80,

@@ -4,7 +4,7 @@
   <property name="edges" value="clamped"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+  <image source="../../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
    <animation>
     <frame tileid="839" duration="200"/>
@@ -23,16 +23,16 @@
   </tile>
  </tileset>
  <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+  <image source="../../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
  <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+  <image source="../../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
  <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
-  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
+  <image source="../../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
  </tileset>
  <tileset firstgid="1531" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
-  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+  <image source="../../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
   <tile id="255">
    <animation>
     <frame tileid="248" duration="150"/>
@@ -46,12 +46,12 @@
    </animation>
   </tile>
  </tileset>
- <tileset firstgid="1891" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="1891" source="../../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="3331" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
-  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
+  <image source="../../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
  </tileset>
  <tileset firstgid="3441" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
-  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
+  <image source="../../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">

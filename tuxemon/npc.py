@@ -219,7 +219,7 @@ class NPC(Entity[NPCState]):
         """
 
         state: NPCState = {
-            "current_map": session.client.get_map_name(),
+            "current_map": session.client.get_scenario_map(),
             "facing": self.facing,
             "game_variables": self.game_variables,
             "battles": encode_battle(self.battles),

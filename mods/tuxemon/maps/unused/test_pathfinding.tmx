@@ -4,7 +4,7 @@
   <property name="edges" value="clamped"/>
  </properties>
  <tileset firstgid="1" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+  <image source="../../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="15" visible="0">
   <data encoding="base64" compression="zlib">

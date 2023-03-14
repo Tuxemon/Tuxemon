@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="46" height="53" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="107">
  <tileset firstgid="1" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
-  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+  <image source="../../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
  </tileset>
- <tileset firstgid="361" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="361" source="../../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1801" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
+  <image source="../../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
  </tileset>
  <tileset firstgid="3241" name="updated_ground_tiles_by_rubberduck" tilewidth="16" tileheight="16" tilecount="1369" columns="37">
-  <image source="../gfx/tilesets/updated_ground_tiles_by_rubberduck.png" width="592" height="592"/>
+  <image source="../../gfx/tilesets/updated_ground_tiles_by_rubberduck.png" width="592" height="592"/>
  </tileset>
  <layer id="1" name="Lower_1" width="46" height="53">
   <data encoding="base64" compression="zlib">

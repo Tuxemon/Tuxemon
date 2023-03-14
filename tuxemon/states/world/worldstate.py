@@ -307,7 +307,11 @@ class WorldState(state.State):
             self.lock_controls()
 
             # check if map has changed, and if so, change it
-            map_name = prepare.fetch("maps", self.delayed_mapname)
+            folder = (
+                "maps/"
+                + local_session.player.game_variables["scenario_choice"]
+            )
+            map_name = prepare.fetch(folder, self.delayed_mapname)
 
             if map_name != self.current_map.filename:
                 self.change_map(map_name)

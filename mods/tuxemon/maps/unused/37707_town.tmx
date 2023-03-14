@@ -4,7 +4,7 @@
   <property name="edges" value="clamped"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+  <image source="../../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
    <animation>
     <frame tileid="839" duration="200"/>
@@ -23,7 +23,7 @@
   </tile>
  </tileset>
  <tileset firstgid="1313" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+  <image source="../../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="48" height="32">
   <data encoding="base64" compression="zlib">

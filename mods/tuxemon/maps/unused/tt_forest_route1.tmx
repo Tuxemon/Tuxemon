@@ -3,9 +3,9 @@
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
- <tileset firstgid="1" source="../gfx/tilesets/prototyping_outdoor.tsx"/>
- <tileset firstgid="2049" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
- <tileset firstgid="10241" source="../gfx/tilesets/core_outdoor_water.tsx"/>
+ <tileset firstgid="1" source="../../gfx/tilesets/prototyping_outdoor.tsx"/>
+ <tileset firstgid="2049" source="../../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <tileset firstgid="10241" source="../../gfx/tilesets/core_outdoor_water.tsx"/>
  <layer id="13" name="Tile Layer 1" width="28" height="40">
   <data encoding="base64" compression="zlib">
    eAF91U2SJEUQg9FcwBiZxrBj4BhcgZ9N1QE4GnAgYANsB45DvCY+zEkaFjLJJbmHVU9P1/nRcVwbz6F55sfGOWZZc6zX/o+fHsdPCz8v6IIc69Dtmac26/GwWR/n1S+f781Ovce+gbtH29fJT5uhHE988O44Plx4s6BnD9J47pqfG3q0vF5cpxmfG3Q5Ns9cj39tn+ZBPVkerk+XxbI6M6cfO5v57NOgd20utzM9HZg+3f7M0/br03V5OrzZkdd5zZfZDW6kZXZ4E+UyHRlOy/Por744ji8Xvtlcdu/z9SeuNcN9x+702+V7z1u9qweyes1lWIbPhedGvrmc5mPd+Z539fizo8vHfNCZ8/R1Z79e7J2v92fUs1v/3HdjO7JyrJ+f/r/Zv5/3QK/bdulu03Muz2/Wp5838Hn9rnjXnE+7dd1QJ78+DjIanzfudwXL3NP7L5a5VT7nvHIc9OTnBp9npmU4NMtBN8joe5f/3dvj+GGBthfrdofXbj7mX7tnpoMMZv9c8/v11h8LtKzcDPZx+/Rj4ZfzOH4d+G3psvp6MHd7z918uh0ePXNeHVngP0Y2Zz/H7+GTvz6fnr1uucdr35w3e/LmuvfZTZ/r941+nvy683Z3MOjF59Kza5Zhvbre+3Z9ts8WPl/Ir6s/cc+vlYM+1qX1Ai/9br9TT3dqN3ivsRu6MPN8e0EOuuUYdPhyOp8XZHyzDjTPDt+MQccuD/PSGOrU4z0WzDPj5evAnPXNduZePp5Z+3W7Fcvr8PTu/z/9X/34+vdn7K34frM3y19jb/Mh/aTXe90zh3909s5Lf+i61/bstIfry9PeSz/GHm/2zPI65XXKsGzmOnzsvXPncTsYXnpDu5VPy+N2efS5c/yC/fn0//aWbn/6bug8Rrdcxp+/I/39nncf6z3d+15z983uAc987RlPyM3xc2tsP+4O5tvBZmiPX4b59fN9F/hONdvF4bn7OMjcuN/Jmz1aP5j9bfYdwOs9DHKgH5v1wAy0HNJ8M57d55p7b/b5uli/WSfccz3Ib8cMfo7zO7Wu7Nwd2p557tP6oRxD/mNrfd85vt/6jtOZXR0ztjehyw/N+vVo/p1502+2l98Ojw5mHQzPMefntRPr0/LAq0/DtdFc3k6zHj176TJ87nu65tAc26X/BHn69/0=

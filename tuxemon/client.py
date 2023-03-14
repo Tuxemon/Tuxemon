@@ -538,6 +538,20 @@ class LocalPygameClient:
         # extract map name from path
         return os.path.basename(map_path)
 
+    def get_scenario_map(self) -> str:
+        """
+        Gets the name of the folder map and concatenate in a string.
+
+        Returns:
+            Scenario folder + / + current map.
+
+        """
+        folder = local_session.player.game_variables["scenario_choice"]
+        map_name = self.get_map_name()
+        path = folder + "/" + map_name
+
+        return path
+
     """
     The following methods provide an interface to the state stack
     """

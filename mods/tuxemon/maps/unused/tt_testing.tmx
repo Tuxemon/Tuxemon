@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="48" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="51">
- <tileset firstgid="1" source="../gfx/tilesets/prototyping_outdoor.tsx"/>
- <tileset firstgid="2049" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
- <tileset firstgid="10241" source="../gfx/tilesets/core_outdoor_water.tsx"/>
- <tileset firstgid="18433" source="../gfx/tilesets/core_indoor_floors.tsx"/>
- <tileset firstgid="22297" source="../gfx/tilesets/core_indoor_walls.tsx"/>
- <tileset firstgid="26161" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
+ <tileset firstgid="1" source="../../gfx/tilesets/prototyping_outdoor.tsx"/>
+ <tileset firstgid="2049" source="../../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <tileset firstgid="10241" source="../../gfx/tilesets/core_outdoor_water.tsx"/>
+ <tileset firstgid="18433" source="../../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="22297" source="../../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="26161" source="../../gfx/tilesets/core_indoor_stairs.tsx"/>
  <layer id="1" name="PTT" width="48" height="48" visible="0">
   <data encoding="base64" compression="zlib">
    eAHtllFqAzEMRHOWHqA/ofeHPVk90EemRrbLepP0YwxiZEmWxrMm5HbLigJRAAU+mzOzj5b/i816rHJwOYOr3nC/t+YzW/VR/vixvvYMb858Nafvx165q/jDHWSGcGfRZ3SP/84ffiD3YQ/2b2dURz15x6MJLfOY/J3FPJDe7B39DrM6PyOf2hG+ir/zgovHRj61I9zhP+o54kKcc+xnSK3w6EyxneW9K3/Ei9pR3uPUCt/N37lUvvPG97rw//3aXJvKR0OwqvEYdY6eP7o3pNzO8jnyfdbVvv/+ytddwv/xH6fSH82u+hb0E9KzuafX7P34LJ/HXH1/jJjQz/WaeI4zp8m3g/So0Get+HOP/kzPv5rzLP6aBZ9qLpwdqQffzb/iPYvBGxT/lT1T/xnXKgdvcMVd+awoEAWiQBSIAlEgCkSBKBAFokAUiAJRIApEgSiAAt8xvYua

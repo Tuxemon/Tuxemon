@@ -4,7 +4,7 @@
   <property name="edges" value="clamped"/>
  </properties>
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+  <image source="../../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
    <animation>
     <frame tileid="839" duration="200"/>
@@ -47,7 +47,7 @@
   </tile>
  </tileset>
  <tileset firstgid="1313" name="My_tuxemon_sheet_BW" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/My_tuxemon_sheet_BW.png" width="128" height="208"/>
+  <image source="../../gfx/tilesets/My_tuxemon_sheet_BW.png" width="128" height="208"/>
   <tile id="7">
    <animation>
     <frame tileid="7" duration="1000"/>
@@ -116,7 +116,7 @@
   </tile>
  </tileset>
  <tileset firstgid="1417" name="setPieces_glitch" tilewidth="16" tileheight="16" tilecount="84" columns="12">
-  <image source="../gfx/tilesets/setPieces_glitch.png" width="192" height="112"/>
+  <image source="../../gfx/tilesets/setPieces_glitch.png" width="192" height="112"/>
   <terraintypes>
    <terrain name="New Terrain" tile="1"/>
   </terraintypes>

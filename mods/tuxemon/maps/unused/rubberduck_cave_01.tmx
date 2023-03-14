@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="80" height="71" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="203">
  <tileset firstgid="1" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
+  <image source="../../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
  </tileset>
- <tileset firstgid="372" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="372" source="../../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1812" name="ladders" tilewidth="16" tileheight="16" tilecount="4" columns="2">
-  <image source="../gfx/tilesets/ladders.png" width="32" height="32"/>
+  <image source="../../gfx/tilesets/ladders.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="1816" name="Cave_Tiles_by_George_" tilewidth="16" tileheight="16" tilecount="154" columns="14">
-  <image source="../gfx/tilesets/Cave_Tiles_by_George_.png" width="224" height="181"/>
+  <image source="../../gfx/tilesets/Cave_Tiles_by_George_.png" width="224" height="181"/>
  </tileset>
  <layer id="1" name="base_floor" width="80" height="71">
   <data encoding="base64" compression="zlib">

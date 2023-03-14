@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="21" height="35" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="46">
  <tileset firstgid="1" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285" columns="19">
-  <image source="../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
+  <image source="../../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
  </tileset>
  <tileset firstgid="286" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="680" columns="20">
-  <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="544"/>
+  <image source="../../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="544"/>
  </tileset>
  <tileset firstgid="966" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
+  <image source="../../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="21" height="35">
   <data encoding="base64" compression="zlib">

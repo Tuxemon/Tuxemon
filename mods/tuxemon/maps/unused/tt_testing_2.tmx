@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="33" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="51">
- <tileset firstgid="1" source="../gfx/tilesets/prototyping_outdoor.tsx"/>
- <tileset firstgid="2049" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <tileset firstgid="1" source="../../gfx/tilesets/prototyping_outdoor.tsx"/>
+ <tileset firstgid="2049" source="../../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Tile Layer 1" width="33" height="20">
   <data encoding="base64" compression="zlib">
    eAHt0DEBAAAAwqD1T20Hb4hAYcCAAQMGDBgwYOAfGApQAAE=

@@ -3,7 +3,7 @@
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
- <tileset firstgid="1" source="../gfx/tilesets/prototyping_outdoor.tsx"/>
+ <tileset firstgid="1" source="../../gfx/tilesets/prototyping_outdoor.tsx"/>
  <layer id="9" name="PTT" width="40" height="22">
   <data encoding="base64" compression="zlib">
    eAGtlD1uFEEQhccL8cJiAzFzAMCsDTFwhN01pIiEHEMGAcRExg6RvHsEsEMkzx7B/IbYR+Av5Xtinmi1uj0ts8Gn6q6prnpTM12DqqouwKDQnieuDig9d9q4VWrdgFJ7PdAmnaXnThs3oEaqf4f4c4T9y8XcXqqqOwnu4tP5XN3Yn3uv3HdU7l2Ywgy22nqhZq0f4H+U4GEbn6sb+2O93ue+o2ofQANz0P7zmar6EvCVdZPQJr3W5zpddpX8qf8v7t+w1ZLSN0LPGCYtG9hU70J9ubqxP6df/Uv1JdY3pCeH6PkAH1s+YV/gT/ESv3Lk6sb+WK/3ypHqS6xPe9G01vucXen9jXedLjsgr+5vKl+qL4o7gAau0IspVmjvdWxnPKtbXK/UWr/Px7YJcvuZ9S2h74jnXRwHOVyv1Po9XHuXXNOAJljbX6NL/jnUkJuBJX7Xz1m/h+oI9aarL71I33fuww/4Cb/gN7zp/fumzv0M33OwXSaP6+es5oi1K4/0zSG+u5pvmmuOadq4NWosn62qFbgIl+AyvEeHYk9C+lw7Z3Xe2rW2vvDuerZprjmmafWNqTFEzxqsw024Ban+6azR85L+9TlzLjhnfbq7nmeebZpryq+YBuawib4ResYwgQ24B1390/OS/l2lxiuwTtUO58aUvbTIGt+PXNyM2Br8n2mdoqR/65yVRnENvsHRf3LM+ZSe2Ffav1Cfckx6ZflL5kdXjP/9nLU2WX/nEfr67MP/0u/+mH9wE57AU8jdu0X5Q31e30ef1vre1mW7habXsA07kHvvRfm30bAD1hZa97PPc/MWTe9gD/ZhUX3K5dmj9j7onpyE48K5o3mzqD7l8vwBJcUWNQ==

@@ -6,15 +6,5 @@
       "combat_front": "soldier",
       "slug": "soldier"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Rabbitosaur",
-      "level": 16,
-      "slug": "rabbitosaur",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

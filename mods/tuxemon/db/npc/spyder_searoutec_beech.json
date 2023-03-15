@@ -6,15 +6,5 @@
       "combat_front": "swimmer",
       "slug": "swimmer"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Nostray",
-      "level": 26,
-      "slug": "nostray",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

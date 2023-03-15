@@ -6,31 +6,5 @@
       "combat_front": "tennisplayer",
       "slug": "tennisplayer"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Cardiling",
-      "level": 7,
-      "slug": "cardiling",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Cataspike",
-      "level": 5,
-      "slug": "cataspike",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Cataspike",
-      "level": 5,
-      "slug": "cataspike",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

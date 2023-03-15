@@ -6,15 +6,5 @@
       "combat_front": "spyder_boss",
       "slug": "spyder_boss"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Djinnbo",
-      "level": 40,
-      "slug": "djinnbo",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

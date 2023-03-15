@@ -6,15 +6,5 @@
       "combat_front": "scientist",
       "slug": "scientist"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Ignibus",
-      "level": 30,
-      "slug": "ignibus",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

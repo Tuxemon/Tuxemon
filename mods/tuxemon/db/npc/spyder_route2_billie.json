@@ -6,31 +6,5 @@
       "combat_front": "fashionista",
       "slug": "fashionista"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Dollfin",
-      "level": 6,
-      "slug": "dollfin",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Eyenemy",
-      "level": 6,
-      "slug": "eyenemy",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Cardiling",
-      "level": 3,
-      "slug": "cardiling",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

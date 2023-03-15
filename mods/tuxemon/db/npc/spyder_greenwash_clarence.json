@@ -6,23 +6,5 @@
       "combat_front": "scientist",
       "slug": "scientist"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Pigabyte",
-      "level": 25,
-      "slug": "pigabyte",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Cochini",
-      "level": 23,
-      "slug": "cochini",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

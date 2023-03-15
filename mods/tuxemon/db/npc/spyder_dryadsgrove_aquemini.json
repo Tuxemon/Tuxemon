@@ -6,31 +6,5 @@
       "combat_front": "waternymph",
       "slug": "waternymph"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Vivitrans",
-      "level": 50,
-      "slug": "vivitrans",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Nudimind",
-      "level": 50,
-      "slug": "nudimind",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Noctalo",
-      "level": 50,
-      "slug": "noctalo",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

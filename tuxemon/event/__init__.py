@@ -64,6 +64,4 @@ def get_npc(session: Session, slug: str) -> Optional[NPC]:
 
     # Loop through the NPC list and see if the slug matches any in the list
     world = session.client.get_state_by_name(WorldState)
-
-    # logger.error("Unable to find NPC: " + slug)
     return world.get_entity(slug)

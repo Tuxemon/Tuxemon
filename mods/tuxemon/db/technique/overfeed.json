@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": null,
   "effects": [
-    "enhance",
-    "overfeed target"
+    "overfeed target",
+    "enhance"
   ],
   "flip_axes": "",
   "healing_power": 0,

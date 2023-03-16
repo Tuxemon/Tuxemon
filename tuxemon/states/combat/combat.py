@@ -1102,11 +1102,13 @@ class CombatState(CombatAnimations):
                     # updates hud graphics player and ai
                     if winners in self.players[0].monsters:
                         self.build_hud(
-                            self._layout[self.players[0]]["hud"][0], winners
+                            self._layout[self.players[0]]["hud"][0],
+                            self.monsters_in_play[self.players[0]][0],
                         )
                     if winners in self.players[1].monsters:
                         self.build_hud(
-                            self._layout[self.players[1]]["hud"][0], winners
+                            self._layout[self.players[1]]["hud"][0],
+                            self.monsters_in_play[self.players[1]][0],
                         )
 
             # Remove monster from damage map

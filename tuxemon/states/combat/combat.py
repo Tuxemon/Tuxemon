@@ -486,7 +486,6 @@ class CombatState(CombatAnimations):
 
             else:
                 var["battle_last_result"] = OutputBattle.lost
-                var["battle_lost_faint"] = "true"
                 self.alert(T.translate("combat_defeat"))
                 if self.is_trainer_battle:
                     var["battle_last_trainer"] = self.players[1].slug

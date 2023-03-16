@@ -3925,9 +3925,6 @@ msgstr "Aeble"
 msgid "allie"
 msgstr "Allie"
 
-msgid "karrianna"
-msgstr "Karrianna"
-
 msgid "knight1"
 msgstr "Knight I"
 
@@ -3947,15 +3944,6 @@ msgid "npc_wife"
 msgstr "Wife NPC"
 
 msgid "professor"
-msgstr "Professor"
-
-msgid "professor-tweesher"
-msgstr "Professor"
-
-msgid "professor-cardiling"
-msgstr "Professor"
-
-msgid "professor-rockitten"
 msgstr "Professor"
 
 msgid "npc_red"
@@ -4082,12 +4070,6 @@ msgstr "Thank you for visiting the Fondent Region!\n"
 
 msgid "xero_intro_question"
 msgstr "What's your name?"
-
-msgid "karrianna_dialog1"
-msgstr "Karrianna: I've been training for the past month! Nobody has beaten me yet!"
-
-msgid "karrianna_dialog2"
-msgstr "Well... You were the first trainer I've faced..."
 
 msgid "xero_hideout1"
 msgstr "Xero Institute for Tuxemon Research and Advancement ahead."

@@ -19,12 +19,12 @@
  </layer>
  <layer id="2" name="Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtVdEJwjAQjaBu4oftBo7gh7iBKwjqBi7jLIKzCC5gnvjo40jSS9sfwYOQa/Lu7vX1kobwt19WoJmFwFF6j7XgiG/jmtcY78V7cat5CMjdJgKauObluKt4l0Sp7NI28ivl3jvrniJuma3SbShm0S1nPeiH3Ofv0HgEefkBy/c8VsYhNmfQT401uFbDjzFjZuhUshp+9kykerhUa8heDT+LHVKvLwb9Zw39o4b7JnWOS/xw9lNm+zuF0TXbf7pnfd6LnPu+5zWSeXoOqS0kz9CPQ5ZHuzcR6iV+bWLox1EbW8JvhNNB/FxMrleoHfswh7N58dl4Z9o9Pt8j6OHgBrzW1TuN2rEPFcc6dga3S889ZWP0OfXf1LrKT/WDrzjNSX8sN+YBR56zz/3AjTgrP9UPPv51JavVjT3A2fO5lZ/Vr8Rtir2+90cN1cDqNwWHKXO8Aem5IzI=
+   eAHtVdFNQzEMDFJhk3603YAR+KBswApIwAYswyxIzILEAvVVOvVkOY7Tvp9KtRTFiR37cs/xa+0m18zA9q41juweG/Gj/872qsLzVf+q33rVGmLvggNb26tifJ64S5Cqu/Vk+LLYL8W8e/N76GY5GdTn/rTd1cDfu8VG/I8gRxUfEvCeb6bPnOuCMwP4U2EO7i2Vh/FGMzjKZAaffxNRDWe5zrHN4PO+5+QbnUH9eUH9qKDfRO84w4e3H4m+j8ju93z9ebuu2Rc5j77nl4H5qzxSTeJ08MfhTBctv4Wof9Fng4I/jtmzmf+jYHoVvXemVyvkjnXY8/Nx8dnQC7J+8GNOvwVsiK15taeRO9ah+nlMXAPb56BP0Teao/+m5lV8yh909YtiX4qNMYGR7+zYH2iwWfEpf9Dxr8tkljfWAOfK51Z8nr8M2xK20f2RQznw/C2BYckYB1+jIuk=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFletNAzEQhI0ECIlG8iiBGojohbtioBTgBzQCv6AOdpT7lMnK57soh1jJGe/T47XjW12Vso6xmsAyyFTc0v774LWLMYXwm4pb2v9+U8pHjL+S9UUpmzS2oUvk+7o8DOLk5xy+g9vPgvxYA9zuqRz9bkKTH584ujyEj3Nwe553kden3Bxzrh5Xq3TBR+N6KCZ+9G+qvjjOkbvb4yhfl/WFWfqwcca7wV/rX67vdT5ncnyJpNdhvHkBm8NBJvEQN9UX4qv1jz1QCh3E3kLqK0ZrSPp0t3MM9YWP5AT6/SOGfewrH/qOPob8F9wPP7dp3uIHD9BzsYHum5rXcs7hl/vk62t/Wg/RW9ASuHkO8fSV9052j+edIQ70949aoPff6+EHWYe9old5RhIc2b/HM6e2eu/3D7vQ+ZEHehzzmk+2LJy3/gP+3jDX20ctxY69f/DDTw6Y10XHD2IH4Yee0fNa/YMX/UVX/pjQA5BeeLzfNc5a/qfh/YEfyLpeQ/PMK+s5vqbrDPlW1fw1m3j5XWbdHMv5Zn/Wldelt9drncKRnoGqM9Y/+TinGso/V/gezIl3boqv9UP2/D2S7VR5bvRVtWr7dptiWv2T/7+F/v0CmnymPw==
+   eAHFletNAzEQhI0EiFLyqIWIXsgVA6UAP6AR+AV1sKPcpwwrn30hh1jJGe/T47XjW12Vso6x6mAZpRe3tP82eO1i9BB+vbil/a83pbzF+CtZX5SySWMbukS+j8vjIE5+zuEzuH0tyI81wO2Byo/fTWjy4xNHl7vwcQ5uz/N95A0pN8ecq8fVKvvgo3E9FhM/+terL46/EV+X9YVZhrBxxrvRP7d/1HqfyfEpEp7H8UJyQjjILB7ipvpCfLX+sQfKoYPYW0h9xWgNyZDudo6hvvCenEC/f8Swj0PlY9/Rp5D/gvvh5zbNW/zgAXouNtB9vXkt5xx+uU++vvan9RC9BS2Bm+cQT19572T3eN4Z4kB//6gFev+9Hn6QddgrepVnJMGR/Xs8c2qr937/sAudH3mgxzGv+WTLwnnrP+DvDXO9fdRS7NT7Bz/85IB5XXT8IHYQfugZPa/VP3jRX3TlTwk9AOmFx/td46zlfxjfH/iBrOs1NM+8sp7ja7rOkG9VzV+ziZffZdbNsZxv9mddefv09nqtUzjSM1B1pvonH+dUQ/nnCt+DOfHOTfG1fsiev0eynSqPjb6qVm3fblNMq3/y/7fQv2+7Z6Wz
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
@@ -478,17 +478,23 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="156" name="Billie encounter" type="event" x="32" y="32" width="16" height="16">
+  <object id="156" name="Billie encounter" type="event" x="16" y="128" width="16" height="32">
    <properties>
-    <property name="act2" value="create_npc spyder_route2_billie,3,15"/>
-    <property name="act3" value="pathfind spyder_route2_billie,1,9"/>
-    <property name="act4" value="translated_dialog spyder_route2_billie1"/>
-    <property name="act7" value="start_battle spyder_route2_billie"/>
+    <property name="act01" value="player_stop"/>
+    <property name="act02" value="lock_controls"/>
+    <property name="act03" value="create_npc spyder_route2_billie,3,15"/>
+    <property name="act04" value="pathfind spyder_route2_billie,1,10"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="npc_face player,down"/>
+    <property name="act07" value="npc_face spyder_route2_billie,up"/>
+    <property name="act08" value="translated_dialog spyder_route2_billie1"/>
+    <property name="act09" value="start_battle spyder_route2_billie"/>
     <property name="act71" value="translated_dialog spyder_route2_billie2"/>
     <property name="act75" value="pathfind spyder_route2_billie,3,15"/>
     <property name="act80" value="remove_npc spyder_route2_billie"/>
     <property name="act90" value="set_variable route2billie:yes"/>
     <property name="cond1" value="not variable_set route2billie:yes"/>
+    <property name="cond2" value="is player_at"/>
    </properties>
   </object>
   <object id="157" name="Sign: Route 2" type="event" x="16" y="112" width="16" height="16">

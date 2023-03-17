@@ -195,8 +195,8 @@
     <property name="act2" value="translated_dialog spyder_dragonscave_benden1"/>
     <property name="act3" value="start_battle spyder_dragonscave_benden"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_benden2"/>
-    <property name="act5" value="set_monster_health ,"/>
-    <property name="act7" value="set_monster_status ,"/>
+    <property name="act5" value="set_monster_health"/>
+    <property name="act7" value="set_monster_status"/>
     <property name="act8" value="set_variable dragonscavebenden:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_benden"/>
     <property name="cond1" value="not variable_set dragonscavebenden:yes"/>
@@ -389,8 +389,8 @@
     <property name="act2" value="translated_dialog spyder_dragonscave_benden1"/>
     <property name="act3" value="start_battle spyder_dragonscave_benden"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_benden2"/>
-    <property name="act5" value="set_monster_health ,"/>
-    <property name="act7" value="set_monster_status ,"/>
+    <property name="act5" value="set_monster_health"/>
+    <property name="act7" value="set_monster_status"/>
     <property name="act8" value="set_variable dragonscavebenden:yes"/>
     <property name="cond1" value="not variable_set dragonscavebenden:yes"/>
     <property name="cond2" value="is player_at"/>

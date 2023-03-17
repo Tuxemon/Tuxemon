@@ -1,6 +1,6 @@
 {
   "conditions": [
-    "type target,earth,water",
+    "type earth,water",
     "max_moves"
   ],
   "effects": [

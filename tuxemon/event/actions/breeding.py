@@ -32,27 +32,29 @@ class BreedingAction(EventAction):
     gender: str
 
     def set_var(self, menu_item: MenuItem[Monster]) -> None:
-        if self.gender == "male":
-            if menu_item.game_object.gender == self.gender:
-                self.player.game_variables[
-                    "breeding_father"
-                ] = menu_item.game_object.instance_id.hex
-                self.session.client.pop_state()
-        elif self.gender == "female":
-            if menu_item.game_object.gender == self.gender:
-                self.player.game_variables[
-                    "breeding_mother"
-                ] = menu_item.game_object.instance_id.hex
-                self.session.client.pop_state()
+        if menu_item.game_object.stage != "basic":
+            if self.gender == "male":
+                if menu_item.game_object.gender == self.gender:
+                    self.player.game_variables[
+                        "breeding_father"
+                    ] = menu_item.game_object.instance_id.hex
+                    self.session.client.pop_state()
+            elif self.gender == "female":
+                if menu_item.game_object.gender == self.gender:
+                    self.player.game_variables[
+                        "breeding_mother"
+                    ] = menu_item.game_object.instance_id.hex
+                    self.session.client.pop_state()
 
     def start(self) -> None:
         self.player = self.session.player
 
         # pull up the monster menu
-        menu = self.session.client.push_state(MonsterMenuState())
         for t in self.player.monsters:
-            if t.gender == self.gender:
-                menu.on_menu_selection = self.set_var  # type: ignore[assignment]
+            if t.stage != "basic":
+                if t.gender == self.gender:
+                    menu = self.session.client.push_state(MonsterMenuState())
+                    menu.on_menu_selection = self.set_var  # type: ignore[assignment]
 
     def update(self) -> None:
         try:

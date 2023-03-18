@@ -57,7 +57,7 @@ class Player(NPC):
         """
         var = self.game_variables
         var["hour"] = dt.datetime.now().strftime("%H")
-        var["day_of_year"] = dt.datetime.now().strftime("%-j")
+        var["day_of_year"] = dt.datetime.now().strftime("%j")
         var["year"] = dt.datetime.now().strftime("%Y")
 
         # Leap year

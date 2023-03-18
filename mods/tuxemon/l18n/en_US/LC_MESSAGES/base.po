@@ -475,8 +475,8 @@ msgstr "route"
 msgid "dungeon"
 msgstr "dungeon"
 
-msgid "center"
-msgstr "center"
+msgid "clinic"
+msgstr "clinic"
 
 msgid "shop"
 msgstr "shop"

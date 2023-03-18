@@ -41,7 +41,6 @@ logger = logging.getLogger(__name__)
 
 sprite_layer = 0
 hud_layer = 100
-monster_hud_move_in_time = 2
 
 
 def toggle_visible(sprite: Sprite) -> None:
@@ -411,7 +410,7 @@ class CombatAnimations(ABC, Menu[None]):
         text = self.build_hud_text(monster)
         animate = partial(
             self.animate,
-            duration=monster_hud_move_in_time,
+            duration=2.0,
             delay=1.3,
         )
         if self.get_side(home) == "right":

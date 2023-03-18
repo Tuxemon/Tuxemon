@@ -3,9 +3,9 @@
   "accuracy": 1,
   "animation": "disintegrate_83",
   "effects": [
-    "enhance",
     "exhausted target",
-    "hardshell user"
+    "hardshell user",
+    "enhance"
   ],
   "flip_axes": "",
   "healing_power": 0,

@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": null,
   "effects": [
-    "enhance",
-    "softened target"
+    "softened target",
+    "enhance"
   ],
   "flip_axes": "",
   "healing_power": 0,

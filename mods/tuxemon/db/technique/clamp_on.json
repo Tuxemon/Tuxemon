@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "bite",
   "effects": [
-    "enhance",
-    "grabbed target"
+    "grabbed target",
+    "enhance"
   ],
   "flip_axes": "",
   "healing_power": 0,

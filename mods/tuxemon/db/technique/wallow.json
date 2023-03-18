@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "waterspurt",
   "effects": [
-    "enhance",
-    "focused user"
+    "focused user",
+    "enhance"
   ],
   "flip_axes": "",
   "healing_power": 4,

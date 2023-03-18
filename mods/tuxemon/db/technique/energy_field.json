@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "screen",
   "effects": [
-    "enhance",
-    "exhausted target"
+    "exhausted target",
+    "enhance"
   ],
   "flip_axes": "x",
   "healing_power": 0,

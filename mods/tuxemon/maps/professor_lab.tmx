@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="125">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="125">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -16,48 +16,45 @@
  <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
   <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="20" height="20">
+ <layer id="1" name="Tile Layer 1" width="13" height="18">
   <data encoding="base64" compression="zlib">
-   eAFjYECAZGEGBlIxQjcmayLQPFIxpikIkf1A80jFCN2YLCugEKkY0xSECKlmgdTjA6PmEY6f0fBDhMBoehne6QUR04OHBQBL0EUr
+   eAFLFmZgSCYRTwSqJxXvB+ohFVsxMDCM4tEwGE0DDAwAq51FKw==
   </data>
  </layer>
- <layer id="2" name="Tile Layer 2" width="20" height="20">
+ <layer id="2" name="Tile Layer 2" width="13" height="18">
   <data encoding="base64" compression="zlib">
-   eAFjYBg6IFaJgSEeiG/LMTDcBWJleQYGFSBGB9ZAORsgJgRmA82aC8SlQDPKgdgJiJ3RzNsINCcKiKOJMI+QfTD5nUA7BwLoo/ltINyAz04LItxXAwy7WiCuo1IYgtLAHCAGpQN6A1C6+w1MVzAMSoPIgJA8slp6sI0YGRiMkbAJkE0JSADqT0TCSRSa1wfU34+EJ1BoHiV+A+l9oQiMW2C6+gPEf5HS10WkeEaWB6kfagAATG0nSw==
+   eAFjYKAPiFViYIgH4ttyDAx3gVhZnoFBBYjRgTVQzgaIQWA2UP1cIC4FqisHYicgdkbTsxGoNgqIo6F6IDoJkzuB5lIC9NHcQYlZ+PRaEGFPDdAvtUBcR4KfQGE7B4hB4UsuAMXLb2C4wzAojpABIXlktaSwjRgZGIyRsAmQTQgkANUkIuEkIvT0AdX0I+EJROgh5A6Q/AtFYJgBw/0PEP9FCv+LSOGHLA9SDwBIACdL
   </data>
  </layer>
- <layer id="3" name="Tile Layer 3" width="20" height="20">
+ <layer id="3" name="Tile Layer 3" width="13" height="18">
   <data encoding="base64" compression="zlib">
-   eAFjYBg6wFWBgcENiKkFdihRy6RRc3CFQCwwjOOAOJ5KYZ2lwMAAw7jsHBUfDYHREKBPCAAAc1AExA==
+   eAFjYKAPcFVgYHADYlLADiVSVA8PtbFAP8cBcTwJfs9SYGCA4eERCqO+QA8BAFO9BMQ=
   </data>
  </layer>
- <layer id="4" name="Above player" width="20" height="20">
+ <layer id="4" name="Above player" width="13" height="18">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgzUEBOQHq8sg7pIkwn2xSgwMcUAcD8RDHdyWY2C4g4TvAtnIgJA8stpR9uALgZOKpLmJVPWkmT40VAMAt1wNgA==
+   eAFjYBgFAvL0CQNJIuyJVWJgiAPieCCmJ7gtx8BwBwnfBbKRASF5ZLUjiX1SkTTfkqoeZjoAoCcNgA==
   </data>
  </layer>
- <layer id="7" name="Above Player 2" width="20" height="20">
+ <layer id="7" name="Above Player 2" width="13" height="18">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyFAuxDwVmBggGHa2TJq8mgIjIbAQIQAANz4AUI=
+   eAFjYBgFgykEvBUYGGB4MLlr1C0DGwIAnnoBQg==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">
-  <object id="43" type="collision" x="192" y="128" width="48" height="16"/>
-  <object id="56" type="collision" x="192" y="48" width="48" height="16"/>
-  <object id="81" type="collision" x="256" y="0" width="16" height="304"/>
-  <object id="83" type="collision" x="48" y="288" width="208" height="16"/>
-  <object id="84" type="collision" x="32" y="0" width="16" height="304"/>
-  <object id="85" type="collision" x="48" y="0" width="208" height="48"/>
-  <object id="86" type="collision" x="80" y="48" width="64" height="16"/>
-  <object id="87" type="collision" x="48" y="96" width="16" height="16"/>
-  <object id="88" type="collision" x="48" y="128" width="16" height="16"/>
-  <object id="89" type="collision" x="48" y="176" width="80" height="16"/>
-  <object id="90" type="collision" x="176" y="176" width="80" height="16"/>
-  <object id="91" type="collision" x="48" y="272" width="64" height="16"/>
-  <object id="92" type="collision" x="192" y="272" width="64" height="16"/>
+  <object id="43" type="collision" x="144" y="128" width="48" height="16"/>
+  <object id="56" type="collision" x="144" y="48" width="48" height="16"/>
+  <object id="85" type="collision" x="0" y="0" width="208" height="48"/>
+  <object id="86" type="collision" x="32" y="48" width="64" height="16"/>
+  <object id="87" type="collision" x="0" y="96" width="16" height="16"/>
+  <object id="88" type="collision" x="0" y="128" width="16" height="16"/>
+  <object id="89" type="collision" x="0" y="176" width="80" height="16"/>
+  <object id="90" type="collision" x="128" y="176" width="80" height="16"/>
+  <object id="91" type="collision" x="0" y="272" width="64" height="16"/>
+  <object id="92" type="collision" x="144" y="272" width="64" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="5" name="Events">
-  <object id="11" name="Teleport to map1" type="event" x="144" y="272" width="16" height="16">
+  <object id="11" name="Teleport to map1" type="event" x="96" y="272" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport taba_town.tmx,44,53,0.3"/>
     <property name="act20" value="player_face down"/>
@@ -65,9 +62,9 @@
     <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="69" name="Choose Rockitten" type="event" x="192" y="112" width="16" height="16">
+  <object id="69" name="Choose Rockitten" type="event" x="144" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind professor,12,9"/>
+    <property name="act1" value="pathfind professor,9,9"/>
     <property name="act2" value="npc_face professor,up"/>
     <property name="act3" value="translated_dialog chooseyerfateRockitten"/>
     <property name="act4" value="translated_dialog_choice yes:no,rockittenchoice "/>
@@ -79,9 +76,9 @@
     <property name="cond6" value="not variable_set havetuxemon:yes"/>
    </properties>
   </object>
-  <object id="74" name="Choose Cardiling" type="event" x="208" y="112" width="16" height="16">
+  <object id="74" name="Choose Cardiling" type="event" x="160" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind professor,13,9"/>
+    <property name="act1" value="pathfind professor,10,9"/>
     <property name="act2" value="npc_face professor,up"/>
     <property name="act3" value="translated_dialog chooseyerfateCardiling"/>
     <property name="act4" value="translated_dialog_choice yes:no,cardilingchoice "/>
@@ -93,9 +90,9 @@
     <property name="cond6" value="not variable_set havetuxemon:yes"/>
    </properties>
   </object>
-  <object id="75" name="Choose Tweesher" type="event" x="224" y="112" width="16" height="16">
+  <object id="75" name="Choose Tweesher" type="event" x="176" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind professor,14,9"/>
+    <property name="act1" value="pathfind professor,11,9"/>
     <property name="act2" value="npc_face professor,up"/>
     <property name="act3" value="translated_dialog chooseyerfateTweesher"/>
     <property name="act4" value="translated_dialog_choice yes:no,tweesherchoice"/>
@@ -107,24 +104,24 @@
     <property name="cond6" value="not variable_set havetuxemon:yes"/>
    </properties>
   </object>
-  <object id="93" name="Player Spawn" type="event" x="144" y="240" width="16" height="16"/>
-  <object id="95" name="createprofessor" type="event" x="48" y="192" width="16" height="16">
+  <object id="93" name="Player Spawn" type="event" x="96" y="240" width="16" height="16"/>
+  <object id="95" name="createprofessor" type="event" x="0" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc professor,7,6,,stand"/>
+    <property name="act1" value="create_npc professor,4,6,,stand"/>
     <property name="act2" value="npc_face professor,up"/>
     <property name="cond1" value="is variable_set go_get_tuxemon:yes"/>
     <property name="cond2" value="not npc_exists professor"/>
     <property name="cond3" value="not variable_set havetuxemon:yes"/>
    </properties>
   </object>
-  <object id="97" name="whyhellothere" type="event" x="144" y="272" width="16" height="16">
+  <object id="97" name="whyhellothere" type="event" x="96" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
     <property name="act2" value="lock_controls"/>
     <property name="act3" value="translated_dialog tuxemontime"/>
-    <property name="act4" value="pathfind professor,9,12"/>
+    <property name="act4" value="pathfind professor,6,12"/>
     <property name="act5" value="npc_face professor,down"/>
-    <property name="act6" value="pathfind player,9,13"/>
+    <property name="act6" value="pathfind player,6,13"/>
     <property name="act7" value="translated_dialog tuxemontime1.5"/>
     <property name="act8" value="translated_dialog_choice yes:no,startchoice"/>
     <property name="cond1" value="is player_at"/>
@@ -135,7 +132,7 @@
     <property name="cond6" value="not variable_set stoptalking:now"/>
    </properties>
   </object>
-  <object id="98" name="startchoice1" type="event" x="48" y="224" width="16" height="16">
+  <object id="98" name="startchoice1" type="event" x="0" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog tuxemontimechoiceno"/>
     <property name="act2" value="set_variable startchoice:maybe"/>
@@ -143,14 +140,14 @@
     <property name="cond1" value="is variable_set startchoice:no"/>
    </properties>
   </object>
-  <object id="99" name="startchoice2" type="event" x="48" y="224" width="16" height="16">
+  <object id="99" name="startchoice2" type="event" x="0" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog tuxemontimechoiceyes"/>
     <property name="act2" value="set_variable startchoice:continue"/>
     <property name="cond1" value="is variable_set startchoice:yes"/>
    </properties>
   </object>
-  <object id="100" name="continue" type="event" x="48" y="160" width="16" height="16">
+  <object id="100" name="continue" type="event" x="0" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog tuxemontime2"/>
     <property name="act2" value="set_variable stoptalking:now"/>
@@ -159,27 +156,27 @@
     <property name="cond2" value="not variable_set stoptalking:now"/>
    </properties>
   </object>
-  <object id="101" name="wemoving" type="event" x="48" y="144" width="16" height="16">
+  <object id="101" name="wemoving" type="event" x="0" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind professor,3,3"/>
+    <property name="act1" value="pathfind professor,0,3"/>
     <property name="act2" value="npc_face professor,up"/>
     <property name="cond1" value="is variable_set wemoving:now"/>
    </properties>
   </object>
-  <object id="102" name="wemoving2" type="event" x="48" y="144" width="16" height="16">
+  <object id="102" name="wemoving2" type="event" x="0" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="wait 0.7"/>
-    <property name="act2" value="pathfind player,5,6"/>
+    <property name="act2" value="pathfind player,2,6"/>
     <property name="act3" value="npc_face player,up"/>
     <property name="act4" value="set_variable wemoving:done"/>
     <property name="cond1" value="is variable_set wemoving:now"/>
    </properties>
   </object>
-  <object id="103" name="wemoving3" type="event" x="48" y="144" width="16" height="16">
+  <object id="103" name="wemoving3" type="event" x="0" y="144" width="16" height="16">
    <properties>
     <property name="act10" value="wait 2"/>
     <property name="act20" value="translated_dialog tuxemontime3"/>
-    <property name="act30" value="pathfind professor,5,5"/>
+    <property name="act30" value="pathfind professor,2,5"/>
     <property name="act40" value="npc_face professor,down"/>
     <property name="act50" value="translated_dialog tuxemontime3.1"/>
     <property name="act60" value="add_item reg_papers"/>
@@ -191,23 +188,23 @@
     <property name="cond2" value="not variable_set movingon:now"/>
    </properties>
   </object>
-  <object id="104" name="wemoving4" type="event" x="48" y="144" width="16" height="16">
+  <object id="104" name="wemoving4" type="event" x="0" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind professor,15,8"/>
+    <property name="act1" value="pathfind professor,12,8"/>
     <property name="act2" value="npc_face professor,left"/>
     <property name="act3" value="set_variable wemoving:completenow"/>
     <property name="act4" value="set_variable gettuxemon:now"/>
     <property name="cond1" value="is variable_set wemoving:finished"/>
    </properties>
   </object>
-  <object id="105" name="wemovingtoo" type="event" x="48" y="144" width="16" height="16">
+  <object id="105" name="wemovingtoo" type="event" x="0" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="wait 1"/>
-    <property name="act2" value="pathfind player,10,8"/>
+    <property name="act2" value="pathfind player,7,8"/>
     <property name="cond1" value="is variable_set wemoving:finished"/>
    </properties>
   </object>
-  <object id="106" name="chooseyertux" type="event" x="240" y="160" width="16" height="16">
+  <object id="106" name="chooseyertux" type="event" x="192" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog tuxemontime4"/>
     <property name="act2" value="translated_dialog chooseyerfate"/>
@@ -217,21 +214,21 @@
     <property name="cond2" value="not variable_set letmechoose:pls"/>
    </properties>
   </object>
-  <object id="107" name="rockittenYES" type="event" x="192" y="112" width="16" height="16">
+  <object id="107" name="rockittenYES" type="event" x="144" y="112" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog choseRockitten"/>
     <property name="act11" value="play_sound sound_confirm"/>
     <property name="act12" value="lock_controls"/>
     <property name="act20" value="translated_dialog rockitten!"/>
     <property name="act30" value="add_monster rockitten,5"/>
-    <property name="act40" value="pathfind professor,13,9"/>
+    <property name="act40" value="pathfind professor,10,9"/>
     <property name="act41" value="npc_face professor,up"/>
-    <property name="act42" value="add_monster cardiling,3,professor"/>
+    <property name="act42" value="add_monster cardiling,3,professor,27,40"/>
     <property name="act50" value="translated_dialog choseRockitten2"/>
     <property name="act60" value="wait 0.8"/>
-    <property name="act70" value="pathfind professor,9,7"/>
+    <property name="act70" value="pathfind professor,6,7"/>
     <property name="act71" value="npc_face professor,down"/>
-    <property name="act80" value="pathfind player,9,9"/>
+    <property name="act80" value="pathfind player,6,9"/>
     <property name="act81" value="npc_face player,up"/>
     <property name="act90" value="translated_dialog chosefight"/>
     <property name="act91" value="unlock_controls"/>
@@ -241,7 +238,7 @@
     <property name="cond1" value="is variable_set rockittenchoice:yes"/>
    </properties>
   </object>
-  <object id="108" name="rockittenNO" type="event" x="192" y="112" width="16" height="16">
+  <object id="108" name="rockittenNO" type="event" x="144" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog nochoiceTuxemon"/>
     <property name="act2" value="set_variable rockittenchoice:empty"/>
@@ -249,7 +246,7 @@
     <property name="cond1" value="is variable_set rockittenchoice:no"/>
    </properties>
   </object>
-  <object id="109" name="cardilingNO" type="event" x="208" y="112" width="16" height="16">
+  <object id="109" name="cardilingNO" type="event" x="160" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog nochoiceTuxemon"/>
     <property name="act2" value="set_variable cardilingchoice:empty"/>
@@ -257,21 +254,21 @@
     <property name="cond1" value="is variable_set cardilingchoice:no"/>
    </properties>
   </object>
-  <object id="110" name="cardilingYES" type="event" x="208" y="112" width="16" height="16">
+  <object id="110" name="cardilingYES" type="event" x="160" y="112" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog choseCardiling"/>
     <property name="act11" value="play_sound sound_confirm"/>
     <property name="act12" value="lock_controls"/>
     <property name="act20" value="translated_dialog cardiling!"/>
     <property name="act30" value="add_monster cardiling,5"/>
-    <property name="act40" value="pathfind professor,14,9"/>
+    <property name="act40" value="pathfind professor,11,9"/>
     <property name="act41" value="npc_face professor,up"/>
-    <property name="act42" value="add_monster tweesher,3,professor"/>
+    <property name="act42" value="add_monster tweesher,3,professor,27,40"/>
     <property name="act50" value="translated_dialog choseCardiling2"/>
     <property name="act60" value="wait 0.8"/>
-    <property name="act70" value="pathfind professor,9,7"/>
+    <property name="act70" value="pathfind professor,6,7"/>
     <property name="act71" value="npc_face professor,down"/>
-    <property name="act80" value="pathfind player,9,9"/>
+    <property name="act80" value="pathfind player,6,9"/>
     <property name="act81" value="npc_face player,up"/>
     <property name="act90" value="translated_dialog chosefight"/>
     <property name="act91" value="unlock_controls"/>
@@ -281,21 +278,21 @@
     <property name="cond1" value="is variable_set cardilingchoice:yes"/>
    </properties>
   </object>
-  <object id="111" name="tweesherYES" type="event" x="224" y="112" width="16" height="16">
+  <object id="111" name="tweesherYES" type="event" x="176" y="112" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog choseTweesher"/>
     <property name="act11" value="play_sound sound_confirm"/>
     <property name="act12" value="lock_controls"/>
     <property name="act20" value="translated_dialog tweesher!"/>
     <property name="act30" value="add_monster tweesher,5"/>
-    <property name="act40" value="pathfind professor,12,9"/>
+    <property name="act40" value="pathfind professor,9,9"/>
     <property name="act50" value="npc_face professor,up"/>
-    <property name="act51" value="add_monster rockitten,3,professor"/>
+    <property name="act51" value="add_monster rockitten,3,professor,27,40"/>
     <property name="act60" value="translated_dialog choseTweesher2"/>
     <property name="act61" value="wait 0.8"/>
-    <property name="act70" value="pathfind professor,9,7"/>
+    <property name="act70" value="pathfind professor,6,7"/>
     <property name="act71" value="npc_face professor,down"/>
-    <property name="act80" value="pathfind player,9,9"/>
+    <property name="act80" value="pathfind player,6,9"/>
     <property name="act81" value="npc_face player,up"/>
     <property name="act90" value="translated_dialog chosefight"/>
     <property name="act91" value="unlock_controls"/>
@@ -305,7 +302,7 @@
     <property name="cond1" value="is variable_set tweesherchoice:yes"/>
    </properties>
   </object>
-  <object id="112" name="tweesherNO" type="event" x="224" y="112" width="16" height="16">
+  <object id="112" name="tweesherNO" type="event" x="176" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog nochoiceTuxemon"/>
     <property name="act2" value="set_variable tweesherchoice:empty"/>
@@ -313,29 +310,51 @@
     <property name="cond1" value="is variable_set tweesherchoice:no"/>
    </properties>
   </object>
-  <object id="114" name="start first battle" type="event" x="240" y="48" width="16" height="16">
+  <object id="114" name="start first battle" type="event" x="192" y="48" width="16" height="16">
    <properties>
-    <property name="act4" value="start_battle professor"/>
-    <property name="act5" value="set_variable firstbattledone:yes"/>
-    <property name="act8" value="npc_face professor,down"/>
-    <property name="act9" value="translated_dialog wewnicefight"/>
-    <property name="act91" value="set_monster_health"/>
-    <property name="act92" value="set_monster_status"/>
-    <property name="act93" value="set_variable ohnotyou:itsme"/>
-    <property name="act94" value="lock_controls"/>
+    <property name="act1" value="start_battle professor"/>
+    <property name="act2" value="set_variable finishedbattle:yes"/>
     <property name="cond1" value="is variable_set startfirstbattle:yes"/>
     <property name="cond2" value="not variable_set firstbattledone:yes"/>
+    <property name="cond3" value="not variable_set finishedbattle:yes"/>
    </properties>
   </object>
-  <object id="117" name="shesarrived" type="event" x="240" y="192" width="16" height="16">
+  <object id="115" name="first battle won" type="event" x="192" y="64" width="16" height="16">
    <properties>
+    <property name="act2" value="set_variable firstbattledone:yes"/>
+    <property name="act3" value="npc_face professor,down"/>
+    <property name="act4" value="set_variable ohnotyou:itsme"/>
+    <property name="act5" value="set_variable endbattleprof:yes"/>
+    <property name="cond1" value="is variable_set finishedbattle:yes"/>
+    <property name="cond2" value="is variable_set battle_last_result:won"/>
+    <property name="cond3" value="not variable_set endbattleprof:yes"/>
+   </properties>
+  </object>
+  <object id="116" name="first battle lost" type="event" x="192" y="80" width="16" height="16">
+   <properties>
+    <property name="act2" value="transfer_money +,120"/>
+    <property name="act3" value="set_variable firstbattledone:yes"/>
+    <property name="act4" value="npc_face professor,down"/>
+    <property name="act5" value="set_variable ohnotyou:itsme"/>
+    <property name="act6" value="set_variable endbattleprof:yes"/>
+    <property name="cond1" value="is variable_set finishedbattle:yes"/>
+    <property name="cond2" value="is variable_set battle_last_result:lost"/>
+    <property name="cond3" value="not variable_set endbattleprof:yes"/>
+   </properties>
+  </object>
+  <object id="117" name="shesarrived" type="event" x="192" y="192" width="16" height="16">
+   <properties>
+    <property name="act01" value="translated_dialog wewnicefight"/>
+    <property name="act02" value="set_monster_health"/>
+    <property name="act03" value="set_monster_status"/>
+    <property name="act04" value="lock_controls"/>
     <property name="act10" value="translated_dialog yahaha"/>
-    <property name="act20" value="create_npc allie,9,15,,stand"/>
-    <property name="act30" value="pathfind allie,7,8"/>
+    <property name="act20" value="create_npc allie,6,15,,stand"/>
+    <property name="act30" value="pathfind allie,4,8"/>
     <property name="act40" value="npc_face allie, right"/>
     <property name="act50" value="wait 0.7"/>
     <property name="act60" value="translated_dialog gasp"/>
-    <property name="act70" value="pathfind allie,8,9"/>
+    <property name="act70" value="pathfind allie,5,9"/>
     <property name="act80" value="npc_face allie,right"/>
     <property name="act81" value="npc_face player,left"/>
     <property name="act90" value="translated_dialog gasp2"/>
@@ -343,7 +362,7 @@
     <property name="cond1" value="is variable_set ohnotyou:itsme"/>
    </properties>
   </object>
-  <object id="118" name="shesarrived2" type="event" x="240" y="192" width="16" height="16">
+  <object id="118" name="shesarrived2" type="event" x="192" y="192" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog brokethegasp"/>
     <property name="act20" value="npc_face allie,up"/>
@@ -361,12 +380,12 @@
     <property name="cond1" value="is variable_set ohnotyou:gasp"/>
    </properties>
   </object>
-  <object id="119" name="shesarrived3" type="event" x="240" y="192" width="16" height="16">
+  <object id="119" name="shesarrived3" type="event" x="192" y="192" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc knight1,10,15,,stand"/>
-    <property name="act20" value="create_npc knight2,10,16,,stand"/>
-    <property name="act30" value="pathfind knight1,8,7"/>
-    <property name="act40" value="pathfind knight2,10,7"/>
+    <property name="act10" value="create_npc knight1,7,15,,stand"/>
+    <property name="act20" value="create_npc knight2,7,16,,stand"/>
+    <property name="act30" value="pathfind knight1,5,7"/>
+    <property name="act40" value="pathfind knight2,7,7"/>
     <property name="act50" value="npc_face knight1,down"/>
     <property name="act60" value="npc_face knight2,down"/>
     <property name="act61" value="wait 0.7"/>
@@ -376,34 +395,34 @@
     <property name="cond1" value="is variable_set ohnotyou:gone"/>
    </properties>
   </object>
-  <object id="120" name="movin" type="event" x="144" y="48" width="16" height="16">
+  <object id="120" name="movin" type="event" x="96" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_move knight2,down 10,left 1"/>
+    <property name="act1" value="npc_move knight2,down 8,left 1"/>
     <property name="act2" value="remove_npc knight2"/>
     <property name="act3" value="set_variable timetomove:done"/>
     <property name="cond1" value="is variable_set timetomove:yes"/>
    </properties>
   </object>
-  <object id="122" name="movin2" type="event" x="144" y="48" width="16" height="16">
+  <object id="122" name="movin2" type="event" x="96" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_move knight1,right 2,down 10,left 1"/>
+    <property name="act1" value="npc_move knight1,right 2,down 8,left 1"/>
     <property name="act2" value="remove_npc knight1"/>
     <property name="act4" value="npc_face allie,right"/>
     <property name="cond1" value="is variable_set timetomove:yes"/>
    </properties>
   </object>
-  <object id="123" name="movin3" type="event" x="144" y="48" width="16" height="16">
+  <object id="123" name="movin3" type="event" x="96" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_move professor,right 1,down 10,left 1"/>
+    <property name="act1" value="npc_move professor,right 1,down 8,left 1"/>
     <property name="act2" value="remove_npc professor"/>
     <property name="cond1" value="is variable_set timetomove:yes"/>
    </properties>
   </object>
-  <object id="124" name="leavin" type="event" x="144" y="48" width="16" height="16">
+  <object id="124" name="leavin" type="event" x="96" y="48" width="16" height="16">
    <properties>
     <property name="act10" value="npc_face player,left"/>
     <property name="act20" value="translated_dialog goodbye"/>
-    <property name="act30" value="pathfind allie,9,17"/>
+    <property name="act30" value="pathfind allie,6,17"/>
     <property name="act40" value="npc_face player,down"/>
     <property name="act50" value="translated_dialog goodbye2"/>
     <property name="act60" value="remove_npc allie"/>

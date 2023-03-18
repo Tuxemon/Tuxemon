@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "level target,>=,0",
-    "has_path target,stovepipe"
+    "level >=,0",
+    "has_path stovepipe"
   ],
   "effects": [
     "evolve stovepipe"

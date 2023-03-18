@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "level target,>=,0",
-    "has_path target,metal_booster"
+    "level >=,0",
+    "has_path metal_booster"
   ],
   "effects": [
     "evolve metal_booster"

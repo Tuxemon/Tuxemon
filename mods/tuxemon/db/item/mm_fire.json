@@ -1,6 +1,6 @@
 {
   "conditions": [
-    "type target,fire",
+    "type fire",
     "max_moves"
   ],
   "effects": [

@@ -75,7 +75,7 @@ class NuPhone(PygameMenuState):
         ]
 
         # menu
-        network = ["town", "center", "shop"]
+        network = ["town", "clinic", "shop"]
         desc = T.translate("nu_phone")
         if local_session.client.map_type in network:
             desc = T.translate("omnichannel_mobile")

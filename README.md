@@ -45,7 +45,7 @@ Requires Python 3.8+ and git.
 
 Install the latest version of Python 3 from
 [here](https://www.python.org/downloads/)
-and the latest version of Git from [here](https://https://git-scm.com/downloads)
+and the latest version of Git from [here](https://git-scm.com/downloads)
 
 Run:
 ```shell

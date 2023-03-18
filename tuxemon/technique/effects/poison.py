@@ -12,8 +12,7 @@ from tuxemon.technique.technique import Technique
 
 
 class PoisonEffectResult(TechEffectResult):
-    damage: int
-    should_tackle: bool
+    pass
 
 
 @dataclass
@@ -40,16 +39,15 @@ class PoisonEffect(TechEffect):
             elif self.objective == "target":
                 target.apply_status(tech)
             return {
-                "damage": 0,
-                "should_tackle": bool(success),
                 "success": True,
             }
 
-        damage = formula.simple_poison(target)
-        target.current_hp -= damage
+        if tech.slug == "status_poison":
+            damage = formula.simple_poison(target)
+            target.current_hp -= damage
 
-        return {
-            "damage": damage,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
-        }
+            return {
+                "success": bool(damage),
+            }
+
+        return {"success": False}

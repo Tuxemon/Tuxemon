@@ -140,7 +140,7 @@ class MapType(str, Enum):
     notype = "notype"
     town = "town"
     route = "route"
-    center = "center"
+    clinic = "clinic"
     shop = "shop"
     dungeon = "dungeon"
 

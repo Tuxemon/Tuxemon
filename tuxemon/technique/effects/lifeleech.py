@@ -12,8 +12,7 @@ from tuxemon.technique.technique import Technique
 
 
 class LifeLeechEffectResult(TechEffectResult):
-    damage: int
-    should_tackle: bool
+    pass
 
 
 @dataclass
@@ -31,7 +30,6 @@ class LifeLeechEffect(TechEffect):
     """
 
     name = "lifeleech"
-    objective: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
@@ -50,25 +48,23 @@ class LifeLeechEffect(TechEffect):
                 tech.load("blood_bond")
                 user.apply_status(tech)
             return {
-                "damage": 0,
-                "should_tackle": bool(success),
                 "success": True,
             }
 
-        # avoids Nonetype situation and reset the user
-        if user is None:
-            user = tech.link
-            assert user
-            damage = formula.simple_lifeleech(user, target)
-            target.current_hp -= damage
-            user.current_hp += damage
-        else:
-            damage = formula.simple_lifeleech(user, target)
-            target.current_hp -= damage
-            user.current_hp += damage
+        if tech.slug == "status_lifeleech":
+            # avoids Nonetype situation and reset the user
+            if user is None:
+                user = tech.link
+                assert user
+                damage = formula.simple_lifeleech(user, target)
+                target.current_hp -= damage
+                user.current_hp += damage
+            else:
+                damage = formula.simple_lifeleech(user, target)
+                target.current_hp -= damage
+                user.current_hp += damage
+            return {
+                "success": bool(damage),
+            }
 
-        return {
-            "damage": damage,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
-        }
+        return {"success": False}

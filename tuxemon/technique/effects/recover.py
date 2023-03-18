@@ -12,8 +12,7 @@ from tuxemon.technique.technique import Technique
 
 
 class RecoverEffectResult(TechEffectResult):
-    damage: int
-    should_tackle: bool
+    pass
 
 
 @dataclass
@@ -23,7 +22,6 @@ class RecoverEffect(TechEffect):
     """
 
     name = "recover"
-    objective: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
@@ -38,23 +36,22 @@ class RecoverEffect(TechEffect):
             tech.link = user
             user.apply_status(tech)
             return {
-                "damage": 0,
-                "should_tackle": bool(success),
                 "success": True,
             }
 
-        # avoids Nonetype situation and reset the user
-        if user is None:
-            user = tech.link
-            assert user
-            heal = formula.simple_recover(user)
-            user.current_hp += heal
-        else:
-            heal = formula.simple_recover(user)
-            user.current_hp += heal
+        if tech.slug == "status_recover":
+            # avoids Nonetype situation and reset the user
+            if user is None:
+                user = tech.link
+                assert user
+                heal = formula.simple_recover(user)
+                user.current_hp += heal
+            else:
+                heal = formula.simple_recover(user)
+                user.current_hp += heal
 
-        return {
-            "damage": heal,
-            "should_tackle": False,
-            "success": bool(heal),
-        }
+            return {
+                "success": bool(heal),
+            }
+
+        return {"success": False}

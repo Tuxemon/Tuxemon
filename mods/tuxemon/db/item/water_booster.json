@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "level target,>=,0",
-    "has_path target,water_booster"
+    "level >=,0",
+    "has_path water_booster"
   ],
   "effects": [
     "evolve water_booster"

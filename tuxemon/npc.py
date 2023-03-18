@@ -759,6 +759,9 @@ class NPC(Entity[NPCState]):
         new_monster.instance_id = old_monster.instance_id
         new_monster.gender = old_monster.gender
         new_monster.capture = old_monster.capture
+        new_monster.capture_device = old_monster.capture_device
+        new_monster.taste_cold = old_monster.taste_cold
+        new_monster.taste_warm = old_monster.taste_warm
         self.remove_monster(old_monster)
         self.add_monster(new_monster, slot)
 

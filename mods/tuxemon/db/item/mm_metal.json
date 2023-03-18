@@ -1,6 +1,6 @@
 {
   "conditions": [
-    "type target,metal",
+    "type metal",
     "max_moves"
   ],
   "effects": [

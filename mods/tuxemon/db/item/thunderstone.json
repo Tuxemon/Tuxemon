@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "level target,>=,0",
-    "has_path target,thunderstone"
+    "level >=,0",
+    "has_path thunderstone"
   ],
   "effects": [
     "evolve thunderstone"

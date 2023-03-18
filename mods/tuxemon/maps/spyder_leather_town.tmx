@@ -255,8 +255,8 @@
   </object>
   <object id="276" name="Heal Tuxemon" type="event" x="112" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="set_monster_health ,"/>
-    <property name="act2" value="set_monster_status ,"/>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
     <property name="act20" value="translated_dialog okaythen"/>
     <property name="act30" value="npc_face spyder_barmaid,up"/>
     <property name="act40" value="wait 1"/>
@@ -400,8 +400,8 @@
   </object>
   <object id="303" name="Auto Healing Teleported" type="event" x="0" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="set_monster_health ,"/>
-    <property name="act2" value="set_monster_status ,"/>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
     <property name="act3" value="set_variable battle_last_result:none"/>
     <property name="cond1" value="is variable_set battle_last_result:lost"/>
    </properties>

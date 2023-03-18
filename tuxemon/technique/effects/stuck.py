@@ -42,5 +42,7 @@ class StuckEffect(TechEffect):
                 target.apply_status(tech)
                 formula.simple_stuck(target)
             return {"success": True}
+        if tech.slug == "status_stuck":
+            return {"success": True}
 
         return {"success": False}

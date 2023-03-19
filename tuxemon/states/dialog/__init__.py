@@ -36,7 +36,7 @@ class DialogState(PopUpMenu):
         self.text_queue = list(text)
         self.avatar = avatar
         self.menu = menu
-        self.text_area = TextArea(self.font, self.font_color)
+        self.text_area = TextArea(True)
         self.text_area.rect = self.calc_internal_rect()
         self.sprites.add(self.text_area)
 

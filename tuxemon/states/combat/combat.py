@@ -768,7 +768,7 @@ class CombatState(CombatAnimations):
         self.sprites.add(self.dialog_box, layer=100)
 
         # make a text area to show messages
-        self.text_area = TextArea(self.font, self.font_color)
+        self.text_area = TextArea(False)
         self.text_area.rect = self.dialog_box.calc_inner_rect(
             self.dialog_box.rect,
         )

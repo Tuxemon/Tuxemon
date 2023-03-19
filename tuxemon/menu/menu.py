@@ -58,6 +58,7 @@ T = TypeVar("T", covariant=True)
 
 
 BACKGROUND_COLOR = (248, 248, 248)
+FONT_COLOR = (0, 0, 0)
 
 
 class PygameMenuState(state.State):

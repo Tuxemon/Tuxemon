@@ -101,6 +101,8 @@ def get_theme() -> pygame_menu.Theme:
         title=False,
         widget_selection_effect=TuxemonArrowSelection(),
         widget_font_color=(0, 0, 0),
+        widget_font_shadow=True,
+        widget_font_shadow_color=(192, 192, 192),
         selection_color=(0, 0, 0),
         border_color=tuxemon_border,
         scrollarea_position=locals.SCROLLAREA_POSITION_NONE,

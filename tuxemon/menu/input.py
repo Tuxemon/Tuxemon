@@ -73,14 +73,14 @@ class InputMenu(Menu[InputMenuObj]):
         self.leaving_char_variant_dialog = False
 
         # area where the input will be shown
-        self.text_area = TextArea(self.font, self.font_color, (96, 96, 96))
+        self.text_area = TextArea(False)
         self.text_area.animated = False
         self.text_area.rect = Rect(tools.scale_sequence((90, 30, 80, 100)))
         self.text_area.text = self.input_string
         self.sprites.add(self.text_area)
 
         # prompt
-        self.prompt = TextArea(self.font, self.font_color, (96, 96, 96))
+        self.text_area = TextArea(False)
         self.prompt.animated = False
         self.prompt.rect = Rect(tools.scale_sequence((50, 20, 80, 100)))
         self.sprites.add(self.prompt)

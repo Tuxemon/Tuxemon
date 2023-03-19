@@ -6,6 +6,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon.graphics import ColorLike
+from tuxemon.menu.theme import get_theme
 from tuxemon.sprite import Sprite
 from tuxemon.ui import draw
 
@@ -17,21 +18,19 @@ class TextArea(Sprite):
 
     animated = True
 
-    def __init__(
-        self,
-        font: pygame.font.Font,
-        font_color: ColorLike,
-        bg: ColorLike = (192, 192, 192),
-    ) -> None:
+    def __init__(self, bg: bool) -> None:
         super().__init__()
+        theme = get_theme()
         self.rect = Rect(0, 0, 0, 0)
         self.drawing_text = False
-        self.font = font
-        self.font_color = font_color
-        self.font_bg = bg
+        self.font = pygame.font.Font(theme.widget_font, theme.widget_font_size)
+        self.font_color: ColorLike = theme.widget_font_color
+        self.font_bg: ColorLike = theme.widget_font_shadow_color
+        self.background = theme.background_color
         self._rendered_text = None
         self._text_rect = None
         self._text = ""
+        self.choice = bg
 
     def __iter__(self) -> TextArea:
         return self
@@ -74,12 +73,16 @@ class TextArea(Sprite):
     def _start_text_animation(self) -> None:
         self.drawing_text = True
         self.image = pygame.Surface(self.rect.size, pygame.SRCALPHA)
+        if self.choice is True:
+            self.output = self.image.fill(self.background)
+        else:
+            self.output = self.image.get_rect()
         self._iter = draw.iter_render_text(
             self._text,
             self.font,
             self.font_color,
             self.font_bg,
-            self.image.get_rect(),
+            self.output,
         )
 
 

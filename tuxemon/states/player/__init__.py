@@ -104,7 +104,21 @@ class PlayerState(PygameMenuState):
                 "lost": str(lost),
             },
         )
-
+        # steps
+        steps = player.game_variables["steps"]
+        if prepare.CONFIG.unit == "metric":
+            walked = formula.convert_km(steps)
+            unit_walked = "km"
+        else:
+            walked = formula.convert_mi(steps)
+            unit_walked = "mi"
+        msg_walked = T.format(
+            "player_walked",
+            {
+                "distance": str(walked),
+                "unit": unit_walked,
+            },
+        )
         # name
         menu._auto_centering = False
         menu.add.label(
@@ -148,6 +162,14 @@ class PlayerState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         ).translate(fix_width(width, 0.45), fix_height(height, 0.40))
+        # walked
+        menu.add.label(
+            title=msg_walked,
+            label_id="walked",
+            font_size=15,
+            align=locals.ALIGN_LEFT,
+            float=True,
+        ).translate(fix_width(width, 0.45), fix_height(height, 0.45))
         # battles
         menu.add.label(
             title=msg_battles,
@@ -155,7 +177,7 @@ class PlayerState(PygameMenuState):
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.45), fix_height(height, 0.45))
+        ).translate(fix_width(width, 0.45), fix_height(height, 0.50))
         # % tuxepedia
         menu.add.label(
             title=msg_progress,

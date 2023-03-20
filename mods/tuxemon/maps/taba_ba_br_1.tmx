@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="22">
+<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="25">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -136,6 +136,7 @@
     <property name="act30" value="set_variable battledone:start"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="not variable_set battledone:yes"/>
+    <property name="cond3" value="not variable_set battledone:redo"/>
    </properties>
   </object>
   <object id="20" name="start fight" type="event" x="144" y="16" width="16" height="16">
@@ -177,7 +178,46 @@
     <property name="act21" value="wait 0.2"/>
     <property name="act22" value="translated_dialog tabacongratsfirst2"/>
     <property name="act23" value="translated_dialog tabacongratsfirst3"/>
-    <property name="cond1" value="is battle_last_result:won"/>
+    <property name="act99" value="set_variable acolyte1:done"/>
+    <property name="cond1" value="not variable_set acolyte1:done"/>
+    <property name="cond2" value="is variable_set battle_last_trainer:acolyte"/>
+    <property name="cond3" value="is variable_set battle_last_result:won"/>
+    <property name="cond4" value="not variable_set redo:please"/>
+    <property name="cond5" value="is variable_set battledone:yes"/>
+   </properties>
+  </object>
+  <object id="22" name="lost battle" type="event" x="176" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog acolyte1loss"/>
+    <property name="act2" value="wait 0.5"/>
+    <property name="act3" value="teleport_faint"/>
+    <property name="act4" value="set_variable redo:please"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="cond1" value="is variable_set battle_last_result:lost"/>
+    <property name="cond2" value="is variable_set battle_last_trainer:acolyte"/>
+    <property name="cond4" value="not variable_set redo:please"/>
+    <property name="cond5" value="is variable_set battledone:yes"/>
+   </properties>
+  </object>
+  <object id="23" name="redo" type="event" x="96" y="32" width="16" height="16">
+   <properties>
+    <property name="act11" value="npc_face acolyte,right "/>
+    <property name="act12" value="set_variable battledone:redo"/>
+    <property name="cond1" value="is variable_set redo:please"/>
+    <property name="cond2" value="not npc_exists acolyte"/>
+   </properties>
+  </object>
+  <object id="24" name="move to middle redo" type="event" x="176" y="48" width="16" height="160">
+   <properties>
+    <property name="act10" value="lock_controls"/>
+    <property name="act11" value="wait 0.3"/>
+    <property name="act12" value="pathfind player,9,7"/>
+    <property name="act13" value="npc_face player,left"/>
+    <property name="act20" value="translated_dialog acolyte1redo"/>
+    <property name="act30" value="set_variable battledone:start"/>
+    <property name="act40" value="start_battle acolyte"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is variable_set battledone:redo"/>
    </properties>
   </object>
  </objectgroup>

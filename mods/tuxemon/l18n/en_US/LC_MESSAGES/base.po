@@ -5328,8 +5328,12 @@ msgid "tabacongratsfirst3"
 msgstr "The other three acolytes are more powerful than me, so you may want to try and fight the wild Tuxemon in the passageways a bit.\n"
 "Other than that, Good Luck!"
 
-msgid "tabalostfirst"
-msgstr "Ha! Some Challenger you are. You'll have to do better than that to beat me!"
+msgid "acolyte1loss"
+msgstr "Ha! Some Challenger you are. You'll have to do better than that to beat me!\n"
+"Try and level up your Tuxemon before facing me again!"
+
+msgid "acolyte1redo"
+msgstr "So, you actually crawled back... Let's see how powerful you really are!"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

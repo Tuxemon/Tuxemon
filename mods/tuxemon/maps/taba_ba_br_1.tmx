@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="25">
+<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -40,6 +40,8 @@
   <object id="6" type="collision" x="208" y="144" width="48" height="48"/>
   <object id="7" type="collision" x="208" y="192" width="16" height="16"/>
   <object id="18" type="collision" x="32" y="48" width="16" height="64"/>
+  <object id="26" type="collision" x="0" y="64" width="32" height="48"/>
+  <object id="27" type="collision" x="0" y="144" width="32" height="48"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="8" name="back to passageway" type="event" x="240" y="112" width="16" height="16">
@@ -178,6 +180,9 @@
     <property name="act21" value="wait 0.2"/>
     <property name="act22" value="translated_dialog tabacongratsfirst2"/>
     <property name="act23" value="translated_dialog tabacongratsfirst3"/>
+    <property name="act24" value="unlock_controls"/>
+    <property name="act97" value="set_variable opentwo:yes"/>
+    <property name="act98" value="set_variable close1:yes"/>
     <property name="act99" value="set_variable acolyte1:done"/>
     <property name="cond1" value="not variable_set acolyte1:done"/>
     <property name="cond2" value="is variable_set battle_last_trainer:acolyte"/>
@@ -188,11 +193,12 @@
   </object>
   <object id="22" name="lost battle" type="event" x="176" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog acolyte1loss"/>
-    <property name="act2" value="wait 0.5"/>
-    <property name="act3" value="teleport_faint"/>
-    <property name="act4" value="set_variable redo:please"/>
-    <property name="act5" value="unlock_controls"/>
+    <property name="act10" value="translated_dialog acolyte1loss"/>
+    <property name="act20" value="wait 0.5"/>
+    <property name="act21" value="screen_transition 3"/>
+    <property name="act30" value="teleport_faint"/>
+    <property name="act40" value="set_variable redo:please"/>
+    <property name="act50" value="unlock_controls"/>
     <property name="cond1" value="is variable_set battle_last_result:lost"/>
     <property name="cond2" value="is variable_set battle_last_trainer:acolyte"/>
     <property name="cond4" value="not variable_set redo:please"/>
@@ -201,7 +207,8 @@
   </object>
   <object id="23" name="redo" type="event" x="96" y="32" width="16" height="16">
    <properties>
-    <property name="act11" value="npc_face acolyte,right "/>
+    <property name="act10" value="create_npc acolyte,7,7,,stand"/>
+    <property name="act11" value="npc_face acolyte,right"/>
     <property name="act12" value="set_variable battledone:redo"/>
     <property name="cond1" value="is variable_set redo:please"/>
     <property name="cond2" value="not npc_exists acolyte"/>
@@ -214,10 +221,18 @@
     <property name="act12" value="pathfind player,9,7"/>
     <property name="act13" value="npc_face player,left"/>
     <property name="act20" value="translated_dialog acolyte1redo"/>
-    <property name="act30" value="set_variable battledone:start"/>
     <property name="act40" value="start_battle acolyte"/>
+    <property name="act98" value="set_variable redo:finished"/>
+    <property name="act99" value="set_variable battledone:yes"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is variable_set battledone:redo"/>
+   </properties>
+  </object>
+  <object id="25" name="teleport to main" type="event" x="0" y="112" width="16" height="32">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_main.tmx,1,6,1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
  </objectgroup>

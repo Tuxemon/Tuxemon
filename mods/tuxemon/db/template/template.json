@@ -1,5 +1,6 @@
 [
     {"slug": "noclass"},
+    {"slug": "acolyte"},
     {"slug": "adventurer"},
     {"slug": "alchemist"},
     {"slug": "alien"},
@@ -73,6 +74,7 @@
     {"slug": "swimmer"},
     {"slug": "tennisplayer"},
     {"slug": "terranite"},
+    {"slug": "timmy"},
     {"slug": "warrior"},
     {"slug": "waternymph"},
     {"slug": "willowhisp"},

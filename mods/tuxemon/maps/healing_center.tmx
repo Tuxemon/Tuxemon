@@ -72,6 +72,7 @@
     <property name="act40" value="npc_face tabanurse,up"/>
     <property name="act50" value="wait 3"/>
     <property name="act60" value="npc_face tabanurse,down"/>
+    <property name="act61" value="wait 0.5"/>
     <property name="act70" value="translated_dialog okaythen2"/>
     <property name="act80" value="set_variable chooses:none"/>
     <property name="act90" value="set_variable teleport_faint:healing_center.tmx 6 10"/>

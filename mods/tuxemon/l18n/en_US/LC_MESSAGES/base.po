@@ -3952,6 +3952,9 @@ msgstr "Maple"
 msgid "misa"
 msgstr "Misa"
 
+msgid "timmy"
+msgstr "Timmy"
+
 msgid "npc_wife"
 msgstr "Wife NPC"
 
@@ -4002,6 +4005,9 @@ msgstr "Team Xero Grunt IX"
 
 msgid "xerogrunt10"
 msgstr "Team Xero Grunt X"
+
+msgid "acolyte"
+msgstr "Acolyte Corren"
 
 ## DIALOG TRANSLATIONS ##
 # general dialogs
@@ -5308,7 +5314,8 @@ msgstr "I definitely wasn't expecting a performance like that. Kyle told us all 
 
 msgid "tabacongratsfirst3"
 msgstr "The other three acolytes are more powerful than me, so you may want to try and fight the wild Tuxemon in the passageways a bit.\n"
-"Other than that, Good Luck!"
+"Other than that, Good Luck!\n"
+"If you walk through the entrance behind me, you'll be teleported back to the main room."
 
 msgid "acolyte1loss"
 msgstr "Ha! Some Challenger you are. You'll have to do better than that to beat me!\n"

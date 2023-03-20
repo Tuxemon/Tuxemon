@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="19" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="41">
+<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="19" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="42">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -413,6 +413,7 @@
     <property name="cond1" value="is variable_set moveit2:now"/>
     <property name="cond2" value="not npc_exists omnigrunt7"/>
     <property name="cond3" value="not npc_exists omnigrunt8"/>
+    <property name="cond5" value="not variable_set opentwo:yes"/>
    </properties>
   </object>
   <object id="33" name="go elsewhere" type="event" x="64" y="176" width="32" height="16">
@@ -422,6 +423,7 @@
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is player_facing down"/>
     <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond5" value="not variable_set opentwo:yes"/>
    </properties>
   </object>
   <object id="34" name="go elsewhere" type="event" x="208" y="176" width="32" height="16">
@@ -476,6 +478,17 @@
     <property name="act1" value="transition_teleport taba_ba_passageway_1.tmx,17,1,0.5"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="41" name="block1" type="event" x="0" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc omnigrunt9,2,14,,stand"/>
+    <property name="act2" value="pathfind omnigrunt9,2,12"/>
+    <property name="act3" value="create_npc omnigrunt10,1,14,,stand"/>
+    <property name="act4" value="pathfind omnigrunt10,1,12"/>
+    <property name="cond1" value="is variable_set close1"/>
+    <property name="cond2" value="not npc_exists omnigrunt9"/>
+    <property name="cond3" value="not npc_exists omnigrunt10"/>
    </properties>
   </object>
  </objectgroup>

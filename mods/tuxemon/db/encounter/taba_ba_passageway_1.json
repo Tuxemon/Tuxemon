@@ -4,7 +4,6 @@
     {
       "monster": "chloragon",
       "encounter_rate": 3.5,
-      "defense": 9,
       "level_range": [
         3,
         6
@@ -13,7 +12,6 @@
     {
       "monster": "aardorn",
       "encounter_rate": 3.5,
-      "defense": 9,
       "level_range": [
         3,
         6

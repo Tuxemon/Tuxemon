@@ -6,7 +6,6 @@ import logging
 from dataclasses import dataclass
 from typing import final
 
-from tuxemon import formula
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event import get_npc
@@ -50,14 +49,6 @@ class StartBattleAction(EventAction):
                 f"npc '{self.npc_slug}' has no monsters, won't start trainer battle."
             )
             return
-
-        # Rematch
-        if player.battles:
-            if npc.slug != "random_encounter_dummy":
-                for battle in player.battles:
-                    if battle.opponent == npc.slug:
-                        for mon in npc.monsters:
-                            formula.rematch(player, npc, mon, battle.date)
 
         # Lookup the environment
         env_slug = player.game_variables.get("environment", "grass")

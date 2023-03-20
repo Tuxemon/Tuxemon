@@ -1,8 +1,8 @@
 {
   "battle_menu": "monster",
   "conditions": [
-    "current_hp target,==,0",
-    "status target,status_faint"
+    "current_hp ==,0",
+    "status status_faint"
   ],
   "effects": [
     "revive 1",

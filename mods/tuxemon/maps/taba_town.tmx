@@ -301,7 +301,7 @@
   </object>
   <object id="95" name="Go to Professor's Lab" type="event" x="704" y="832" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport professor_lab.tmx,9,17,0.3"/>
+    <property name="act10" value="transition_teleport professor_lab.tmx,6,17,0.3"/>
     <property name="cond10" value="is player_at"/>
    </properties>
   </object>
@@ -357,10 +357,8 @@
   <object id="122" name="Player Spawn" type="event" x="608" y="752" width="16" height="16"/>
   <object id="123" name="Check for Healing Center Teleport" type="event" x="208" y="0" width="16" height="16">
    <properties>
-    <property name="act10" value="set_variable battle_lost_faint:false"/>
-    <property name="act20" value="wait .4"/>
-    <property name="act30" value="teleport_faint"/>
-    <property name="cond10" value="is variable_set battle_lost_faint:true"/>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
   <object id="125" name="bring on the nurses" type="event" x="352" y="640" width="16" height="16">

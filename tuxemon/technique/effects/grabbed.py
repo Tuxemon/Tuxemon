@@ -41,5 +41,7 @@ class GrabbedEffect(TechEffect):
                 target.apply_status(tech)
                 formula.simple_grabbed(target)
             return {"success": True}
+        if tech.slug == "status_grabbed":
+            return {"success": True}
 
         return {"success": False}

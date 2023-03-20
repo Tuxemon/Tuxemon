@@ -382,6 +382,7 @@
    <properties>
     <property name="act10" value="lock_controls"/>
     <property name="act11" value="translated_dialog nobodygetsthrough"/>
+    <property name="act12" value="add_monster aardorn,2,omnigrunt,27,10"/>
     <property name="act20" value="start_battle omnigrunt"/>
     <property name="act21" value="wait 1.5"/>
     <property name="act30" value="set_variable whoartthou:done"/>

@@ -1,6 +1,6 @@
 {
   "conditions": [
-    "type target,wood",
+    "type wood",
     "max_moves"
   ],
   "effects": [

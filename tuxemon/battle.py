@@ -5,6 +5,8 @@ from __future__ import annotations
 import uuid
 from typing import Any, List, Mapping, Optional, Sequence
 
+from tuxemon.db import OutputBattle
+
 SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "opponent",
     "outcome",
@@ -23,7 +25,7 @@ class Battle:
 
         self.instance_id = uuid.uuid4()
         self.opponent = ""
-        self.outcome = ""
+        self.outcome = OutputBattle.draw
         self.date = 0
 
         self.set_state(save_data)

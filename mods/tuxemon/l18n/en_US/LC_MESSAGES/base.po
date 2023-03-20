@@ -5322,15 +5322,16 @@ msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"
 "The rest is weathered away."
 
-msgid "tabanurse_dialog\n"
-msgstr "Welcome to the ${{map_name}} Tuxecenter!\n"
+msgid "tabanurse_dialog_taba\n"
+msgstr "Welcome to the Taba Town Tuxecenter!\n"
 "Do you want to heal your Tuxemon?\n"
 
 msgid "okaythen"
-msgstr "Okay! Just give me a second and I will heal your Tuxemon!"
+msgstr "Okay! Just give me a second and I'll heal your Tuxemon!"
 
 msgid "okaythen2"
-msgstr "Well, it looks like your Tuxemon are all better now! Here they are!"
+msgstr "Well, it looks like your Tuxemon are all better now!\n"
+"Have a wonderful day!"
 
 msgid "waithere"
 msgstr "We have to wait here for now. Apparently a tree fell up ahead."

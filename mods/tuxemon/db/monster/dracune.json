@@ -35,6 +35,12 @@
             "monster_slug": "fluttaflap"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "vamporm",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "blob",
     "stage": "stage1",
     "types": [

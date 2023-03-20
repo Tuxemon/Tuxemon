@@ -23,6 +23,16 @@
             "monster_slug": "elowind"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "elowind",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "elostorm",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "flier",
     "stage": "basic",
     "types": [

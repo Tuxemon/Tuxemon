@@ -23,6 +23,16 @@
             "monster_slug": "allagon"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "allagon",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "ferricran",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "dragon",
     "stage": "basic",
     "types": [

@@ -23,6 +23,20 @@
             "monster_slug": "katacoon"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "katacoon",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "bugnin",
+            "evo_stage": "stage2"
+        },
+        {
+            "mon_slug": "sumchon",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "grub",
     "stage": "basic",
     "types": [

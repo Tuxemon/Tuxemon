@@ -23,6 +23,16 @@
             "monster_slug": "agnidon"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "agnidon",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "agnigon",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "dragon",
     "stage": "basic",
     "types": [

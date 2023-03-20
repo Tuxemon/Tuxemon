@@ -23,6 +23,16 @@
             "monster_slug": "tsushimi"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "tsushimi",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "tobishimi",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "polliwog",
     "stage": "basic",
     "types": [

@@ -35,6 +35,12 @@
             "monster_slug": "weavifly"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "cataspike",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "blob",
     "stage": "stage1",
     "types": [

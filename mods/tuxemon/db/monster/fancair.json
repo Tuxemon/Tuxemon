@@ -23,6 +23,12 @@
             "monster_slug": "windeye"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "windeye",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "sprite",
     "stage": "basic",
     "types": [

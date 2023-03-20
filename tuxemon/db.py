@@ -268,6 +268,19 @@ class MonsterMovesetItemModel(BaseModel):
         raise ValueError(f"the technique {v} doesn't exist in the db")
 
 
+class MonsterHistoryItemModel(BaseModel):
+    mon_slug: str = Field(..., description="The monster in the evolution path")
+    evo_stage: EvolutionStage = Field(
+        ..., description="The evolution stage of the monster"
+    )
+
+    @validator("mon_slug")
+    def monster_exists(cls: MonsterHistoryItemModel, v: Any) -> Any:
+        if has.db_entry("monster", v):
+            return v
+        raise ValueError(f"the monster {v} doesn't exist in the db")
+
+
 class MonsterEvolutionItemModel(BaseModel):
     path: EvolutionType = Field(..., description="Paths to evolution")
     at_level: int = Field(
@@ -372,6 +385,9 @@ class MonsterModel(BaseModel):
     )
     moveset: Sequence[MonsterMovesetItemModel] = Field(
         [], description="The moveset of this monster"
+    )
+    history: Sequence[MonsterHistoryItemModel] = Field(
+        [], description="The evolution history of this monster"
     )
     evolutions: Sequence[MonsterEvolutionItemModel] = Field(
         [], description="The evolutions this monster has"

@@ -29,6 +29,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "furnursus",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

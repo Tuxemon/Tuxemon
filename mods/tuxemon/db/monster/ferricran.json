@@ -41,6 +41,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "wrougon",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "allagon",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "dragon",
     "stage": "stage2",
     "types": [

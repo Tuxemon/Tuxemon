@@ -42,6 +42,16 @@
             "item": "peace_lily"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "bamboon",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "frondly",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "sprite",
     "stage": "basic",
     "types": [

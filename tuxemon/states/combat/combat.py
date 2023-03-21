@@ -1324,7 +1324,7 @@ class CombatState(CombatAnimations):
     def end_combat(self) -> None:
         """End the combat."""
         # TODO: End combat differently depending on winning or losing
-        for player in self.active_players:
+        for player in self.players:
             for mon in player.monsters:
                 # reset status stats
                 mon.set_stats()

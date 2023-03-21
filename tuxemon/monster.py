@@ -434,7 +434,7 @@ class Monster:
             self.status.append(status)
         else:
             # if the status exists
-            if any(t for t in self.status if t.slug == status):
+            if any(t for t in self.status if t.slug == status.slug):
                 return
             # if the status doesn't exist.
             else:

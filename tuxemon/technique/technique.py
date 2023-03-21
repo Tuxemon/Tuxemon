@@ -76,7 +76,7 @@ class Technique:
         self.is_fast = False
         self.link: Optional[Monster] = None
         self.name = ""
-        self.next_use = 0.0
+        self.next_use = 0
         self.potency = 0.0
         self.power = 1.0
         self.range = Range.melee

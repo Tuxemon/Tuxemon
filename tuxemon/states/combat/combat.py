@@ -1107,11 +1107,6 @@ class CombatState(CombatAnimations):
                             self._layout[self.players[0]]["hud"][0],
                             self.monsters_in_play[self.players[0]][0],
                         )
-                    if winners in self.players[1].monsters:
-                        self.build_hud(
-                            self._layout[self.players[1]]["hud"][0],
-                            self.monsters_in_play[self.players[1]][0],
-                        )
 
             # Remove monster from damage map
             del self._damage_map[monster]
@@ -1326,7 +1321,7 @@ class CombatState(CombatAnimations):
     def end_combat(self) -> None:
         """End the combat."""
         # TODO: End combat differently depending on winning or losing
-        for player in self.active_players:
+        for player in self.players:
             for mon in player.monsters:
                 # reset status stats
                 mon.set_stats()

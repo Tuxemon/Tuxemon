@@ -3,6 +3,7 @@
   "accuracy": 0.75,
   "animation": "explosion_small",
   "effects": [
+    "diehard",
     "damage"
   ],
   "flip_axes": "",

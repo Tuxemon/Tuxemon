@@ -6,21 +6,5 @@
       "combat_front": "heroine",
       "slug": "heroine"
     }
-  ],
-  "monsters": [
-    {
-      "level": 6,
-      "slug": "capiti",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "level": 6,
-      "slug": "aardart",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

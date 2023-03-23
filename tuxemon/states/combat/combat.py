@@ -27,8 +27,9 @@ from typing import (
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import audio, battle, graphics, state, tools
+from tuxemon import audio, graphics, state, tools
 from tuxemon.animation import Task
+from tuxemon.battle import Battle
 from tuxemon.combat import (
     check_status,
     check_status_connected,
@@ -366,7 +367,7 @@ class CombatState(CombatAnimations):
                 var = self.players[0].game_variables
                 var["battle_last_monster_name"] = monster_record.name
                 var["battle_last_monster_level"] = monster_record.level
-                var["battle_last_monster_type"] = monster_record.slug
+                var["battle_last_monster_type"] = monster_record.types[0]
                 var["battle_last_monster_category"] = monster_record.category
                 var["battle_last_monster_shape"] = monster_record.shape
                 # Avoid reset string to seen if monster has already been caught
@@ -441,11 +442,11 @@ class CombatState(CombatAnimations):
             if self.is_trainer_battle:
                 var["battle_last_trainer"] = self.players[1].slug
                 # track battles against NPC
-                opponent = battle.Battle()
-                opponent.opponent = self.players[1].slug
-                opponent.outcome = OutputBattle.draw
-                opponent.date = dt.date.today().toordinal()
-                self.players[0].battles.append(opponent)
+                battle = Battle()
+                battle.opponent = self.players[1].slug
+                battle.outcome = OutputBattle.draw
+                battle.date = dt.date.today().toordinal()
+                self.players[0].battles.append(battle)
 
             # it is a draw match; both players were defeated in same round
             self.alert(T.translate("combat_draw"))
@@ -476,25 +477,25 @@ class CombatState(CombatAnimations):
                     self.players[0].give_money(self._prize)
                     var["battle_last_trainer"] = self.players[1].slug
                     # track battles against NPC
-                    opponent = battle.Battle()
-                    opponent.opponent = self.players[1].slug
-                    opponent.outcome = OutputBattle.won
-                    opponent.date = dt.date.today().toordinal()
-                    self.players[0].battles.append(opponent)
+                    battle = Battle()
+                    battle.opponent = self.players[1].slug
+                    battle.outcome = OutputBattle.won
+                    battle.date = dt.date.today().toordinal()
+                    self.players[0].battles.append(battle)
                 else:
                     self.alert(T.translate("combat_victory"))
 
             else:
                 var["battle_last_result"] = OutputBattle.lost
-                var["battle_lost_faint"] = "true"
                 self.alert(T.translate("combat_defeat"))
                 if self.is_trainer_battle:
                     var["battle_last_trainer"] = self.players[1].slug
                     # track battles against NPC
-                    opponent = battle.Battle()
-                    opponent.opponent = self.players[1].slug
-                    opponent.outcome = OutputBattle.lost
-                    opponent.date = dt.date.today().toordinal()
+                    battle = Battle()
+                    battle.opponent = self.players[1].slug
+                    battle.outcome = OutputBattle.lost
+                    battle.date = dt.date.today().toordinal()
+                    self.players[0].battles.append(battle)
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
@@ -713,7 +714,7 @@ class CombatState(CombatAnimations):
             # save iid monster fighting
             self.players[0].game_variables[
                 "iid_fighting_monster"
-            ] = monster.instance_id
+            ] = monster.instance_id.hex
         elif self.is_trainer_battle:
             self.alert(
                 T.format(
@@ -1102,11 +1103,8 @@ class CombatState(CombatAnimations):
                     # updates hud graphics player and ai
                     if winners in self.players[0].monsters:
                         self.build_hud(
-                            self._layout[self.players[0]]["hud"][0], winners
-                        )
-                    if winners in self.players[1].monsters:
-                        self.build_hud(
-                            self._layout[self.players[1]]["hud"][0], winners
+                            self._layout[self.players[0]]["hud"][0],
+                            self.monsters_in_play[self.players[0]][0],
                         )
 
             # Remove monster from damage map
@@ -1327,7 +1325,7 @@ class CombatState(CombatAnimations):
     def end_combat(self) -> None:
         """End the combat."""
         # TODO: End combat differently depending on winning or losing
-        for player in self.active_players:
+        for player in self.players:
             for mon in player.monsters:
                 # reset status stats
                 mon.set_stats()

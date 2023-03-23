@@ -187,10 +187,11 @@ class Item:
         ret = list()
 
         for line in raw:
-            words = line.split()
-            args = "".join(words[1:]).split(",")
-            name = words[0]
-            params = args[1:]
+            name = line.split()[0]
+            if len(line.split()) > 1:
+                params = line.split()[1].split(",")
+            else:
+                params = []
             try:
                 condition = Item.conditions_classes[name]
             except KeyError:

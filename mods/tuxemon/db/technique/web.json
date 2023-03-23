@@ -3,8 +3,8 @@
   "accuracy": 0.75,
   "animation": "snake_right",
   "effects": [
-    "damage",
-    "grabbed target"
+    "grabbed target",
+    "damage"
   ],
   "flip_axes": "x",
   "healing_power": 0,

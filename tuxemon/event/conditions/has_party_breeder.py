@@ -8,7 +8,8 @@ from tuxemon.session import Session
 class HasPartyBreederCondition(EventCondition):
     """
     Check to see if the player has a male and female
-    monsters in the party.
+    monsters not basic (first evolution stage)
+    in the party.
 
     Script usage:
         .. code-block::
@@ -32,10 +33,16 @@ class HasPartyBreederCondition(EventCondition):
 
         """
         player = session.player
-        if any(t for t in player.monsters if t.gender == "male"):
-            if any(t for t in player.monsters if t.gender == "female"):
+        if any(
+            t
+            for t in player.monsters
+            if t.stage != "basic" and t.gender == "male"
+        ):
+            if any(
+                t
+                for t in player.monsters
+                if t.stage != "basic" and t.gender == "female"
+            ):
                 return True
-            else:
-                return False
-        else:
-            return False
+
+        return False

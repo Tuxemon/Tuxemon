@@ -30,7 +30,7 @@ class CurrentHitPointsCondition(ItemCondition):
     against the total hp.
 
     Example: To make an item only usable if a monster is at less than full
-    health, you would use the condition "current_hp target,<,1.0"
+    health, you would use the condition "is current_hp target,<,1.0"
 
     """
 

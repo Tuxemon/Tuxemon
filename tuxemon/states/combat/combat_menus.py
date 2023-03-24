@@ -10,7 +10,6 @@ from typing import TYPE_CHECKING, Callable, DefaultDict, Generator, List, Union
 import pygame
 
 from tuxemon import formula, graphics, tools
-from tuxemon.combat import check_status
 from tuxemon.db import ItemBattleMenu
 from tuxemon.item.item import Item
 from tuxemon.locale import T
@@ -80,22 +79,19 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         """
         forfeit = Technique("menu_forfeit")
         if not forfeit.validate(self.monster):
-            if check_status(self.monster, "status_grabbed") or check_status(
-                self.monster, "status_stuck"
-            ):
-                tools.open_dialog(
-                    local_session,
-                    [
-                        T.format(
-                            "combat_player_forfeit_status",
-                            {
-                                "monster": self.monster.name,
-                                "status": self.monster.status[0].name.lower(),
-                            },
-                        )
-                    ],
-                )
-                return
+            tools.open_dialog(
+                local_session,
+                [
+                    T.format(
+                        "combat_player_forfeit_status",
+                        {
+                            "monster": self.monster.name,
+                            "status": self.monster.status[0].name.lower(),
+                        },
+                    )
+                ],
+            )
+            return
         self.client.pop_state(self)
         combat_state = self.client.get_state_by_name(CombatState)
         # trigger forfeit
@@ -114,22 +110,19 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         # TODO: only works for player0
         run = Technique("menu_run")
         if not run.validate(self.monster):
-            if check_status(self.monster, "status_grabbed") or check_status(
-                self.monster, "status_stuck"
-            ):
-                tools.open_dialog(
-                    local_session,
-                    [
-                        T.format(
-                            "combat_player_run_status",
-                            {
-                                "monster": self.monster.name,
-                                "status": self.monster.status[0].name.lower(),
-                            },
-                        )
-                    ],
-                )
-                return
+            tools.open_dialog(
+                local_session,
+                [
+                    T.format(
+                        "combat_player_run_status",
+                        {
+                            "monster": self.monster.name,
+                            "status": self.monster.status[0].name.lower(),
+                        },
+                    )
+                ],
+            )
+            return
         self.client.pop_state(self)
         combat_state = self.client.get_state_by_name(CombatState)
         player = combat_state.monsters_in_play[combat_state.players[0]][0]
@@ -188,24 +181,19 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             swap = Technique("swap")
             swap.combat_state = combat_state
             if not swap.validate(self.monster):
-                if check_status(
-                    self.monster, "status_grabbed"
-                ) or check_status(self.monster, "status_stuck"):
-                    tools.open_dialog(
-                        local_session,
-                        [
-                            T.format(
-                                "combat_player_swap_status",
-                                {
-                                    "monster": self.monster.name,
-                                    "status": self.monster.status[
-                                        0
-                                    ].name.lower(),
-                                },
-                            )
-                        ],
-                    )
-                    return
+                tools.open_dialog(
+                    local_session,
+                    [
+                        T.format(
+                            "combat_player_swap_status",
+                            {
+                                "monster": self.monster.name,
+                                "status": self.monster.status[0].name.lower(),
+                            },
+                        )
+                    ],
+                )
+                return
             player = local_session.player
             target = monster
             combat_state.enqueue_action(player, swap, target)

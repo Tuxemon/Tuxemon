@@ -52,7 +52,7 @@ class ChangeBgAction(EventAction):
         if len(self.session.client.state_manager.active_states) > 2:
             self.session.client.pop_state()
 
-        if current_state.name != BgState:
+        if current_state.name != str(BgState):
             if self.background == "end":
                 return
             else:

@@ -975,7 +975,7 @@ class WorldState(state.State):
         for entity in self.npcs_off_map.values():
             entity.update(time_delta)
 
-    def _collision_box_to_pgrect(self, box):
+    def _collision_box_to_pgrect(self, box: Tuple[int, int]) -> Rect:
         """
         Returns a Rect (in screen-coords) version of a collision box (in world-coords).
         """
@@ -1264,5 +1264,5 @@ class WorldState(state.State):
                             },
                         }
                         self.client.server.notify_client_interaction(
-                            cuuid, event_data
+                            "cuuid", event_data
                         )

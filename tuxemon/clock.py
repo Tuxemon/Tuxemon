@@ -3,7 +3,7 @@
 import collections
 import time
 from heapq import heapify, heappop, heappush, heappushpop
-from typing import Optional
+from typing import Any, Deque, List, Optional, Union
 
 __all__ = ("ScheduledItem", "Scheduler", "Clock")
 
@@ -19,13 +19,15 @@ class ScheduledItem:
 
     __slots__ = ["func", "interval", "last_ts", "next_ts"]
 
-    def __init__(self, func, last_ts, next_ts, interval):
+    def __init__(
+        self, func: Any, last_ts: float, next_ts: float, interval: float
+    ) -> None:
         self.func = func
         self.interval = interval
         self.last_ts = last_ts
         self.next_ts = next_ts
 
-    def __lt__(self, other):
+    def __lt__(self, other: Any) -> Any:
         try:
             return self.next_ts < other.next_ts
         except AttributeError:
@@ -35,7 +37,7 @@ class ScheduledItem:
 class Scheduler:
     """Class for scheduling functions."""
 
-    def __init__(self, time_function=time.perf_counter):
+    def __init__(self, time_function: float = time.perf_counter()) -> None:
         """Initialise a Clock, with optional custom time function.
 
         :Parameters:
@@ -45,25 +47,25 @@ class Scheduler:
         """
         super().__init__()
         self._time = time_function
-        self._last_ts = -1
-        self._times = collections.deque(maxlen=10)
-        self._scheduled_items = list()
-        self._next_tick_items = list()
+        self._last_ts: float = -1
+        self._times: Deque[int] = collections.deque(maxlen=10)
+        self._scheduled_items: List[ScheduledItem] = []
+        self._next_tick_items: List[ScheduledItem] = []
         self.cumulative_time = 0.0
 
-    def _get_nearest_ts(self):
+    def _get_nearest_ts(self) -> Union[float, int]:
         """Schedule from now, unless now is sufficiently close to last_ts, in
         which case use last_ts.  This clusters together scheduled items that
         probably want to be scheduled together.
         """
         last_ts = self._last_ts
-        ts = self._time()
+        ts = self._time
         if ts - last_ts > 0.2:
             last_ts = ts
         return last_ts
 
-    def _get_soft_next_ts(self, last_ts, interval):
-        def taken(ts, e):
+    def _get_soft_next_ts(self, last_ts: float, interval: float) -> float:
+        def taken(ts: float, e: float) -> bool:
             """Return True if the given time has already got an item
             scheduled nearby.
             """
@@ -97,10 +99,10 @@ class Scheduler:
 
     def schedule(
         self,
-        func,
-        delay=0.0,
-        repeat=False,
-        soft=False,
+        func: Any,
+        delay: float = 0.0,
+        repeat: bool = False,
+        soft: bool = False,
     ) -> ScheduledItem:
         """
         Schedule a function to be run sometime in the future.
@@ -184,12 +186,12 @@ class Scheduler:
             was the first tick.
 
         """
-        delta_t = self.set_time(self._time())
-        self._times.append(delta_t)
+        delta_t = self.set_time(self._time)
+        self._times.append(int(delta_t))
         self.call_scheduled_functions(delta_t)
         return delta_t
 
-    def get_interval(self):
+    def get_interval(self) -> float:
         """Get the average amount of time passed between each tick.
 
         Useful for calculating FPS if this clock is used with the display.
@@ -337,11 +339,11 @@ class Scheduler:
 
         try:
             next_ts = self._scheduled_items[0].next_ts
-            return max(next_ts - self._time(), 0.0)
+            return max(next_ts - self._time, 0.0)
         except IndexError:
             return None
 
-    def unschedule(self, func) -> None:
+    def unschedule(self, func: Any) -> None:
         """
         Remove a function from the schedule.
 
@@ -353,7 +355,7 @@ class Scheduler:
 
         """
 
-        def remove(list_):
+        def remove(list_: List[ScheduledItem]) -> bool:
             resort = False
             remove_ = list_.remove
             for i in list(i for i in list_ if i.func is func):

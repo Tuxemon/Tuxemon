@@ -218,6 +218,7 @@
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond10" value="is player_moved"/>
     <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="71" name="Random Battle 2" type="event" x="352" y="432" width="96" height="80">
@@ -226,6 +227,7 @@
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond10" value="is player_moved"/>
     <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="72" name="Random Battle 3" type="event" x="400" y="368" width="112" height="48">
@@ -234,6 +236,7 @@
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond10" value="is player_moved"/>
     <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="73" name="Random Battle 4" type="event" x="352" y="304" width="144" height="48">
@@ -242,6 +245,7 @@
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond10" value="is player_moved"/>
     <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="74" name="Random Battle 5" type="event" x="208" y="80" width="64" height="80">
@@ -250,6 +254,7 @@
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond10" value="is player_moved"/>
     <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="75" name="Empty Grass 1" type="event" x="464" y="816" width="80" height="32">

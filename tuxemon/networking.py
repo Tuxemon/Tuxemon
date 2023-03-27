@@ -7,7 +7,16 @@ from __future__ import annotations
 import logging
 import pprint
 from datetime import datetime
-from typing import TYPE_CHECKING, Any, Dict, List, Literal, Tuple, TypedDict
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    List,
+    Literal,
+    Optional,
+    Tuple,
+    TypedDict,
+)
 
 import pygame as pg
 
@@ -82,7 +91,7 @@ class TuxemonServer:
             server_name=self.server_name,
         )
 
-    def update(self):
+    def update(self) -> Optional[bool]:
         """Updates the server state with information sent from the clients."""
         self.server_timestamp = datetime.now()
         for cuuid in self.server.registry:
@@ -100,6 +109,7 @@ class TuxemonServer:
 
             except KeyError:
                 self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
+        return None
 
     def server_event_handler(self, cuuid: str, event_data: EventData) -> None:
         """Handles events sent from the middleware that are legal.
@@ -295,7 +305,7 @@ class ControllerServer:
                 self.game.key_events.append(controller_event)
                 self.game.current_state.process_event(controller_event)
 
-    def net_controller_loop(self):
+    def net_controller_loop(self) -> Any:
         """
         Process all network events from controllers and pass them
         down to current State. All network events are converted to keyboard
@@ -494,7 +504,7 @@ class TuxemonClient:
                         sprite.direction[d] = False
                 del self.client.event_notifies[euuid]
 
-    def join_multiplayer(self, time_delta: float):
+    def join_multiplayer(self, time_delta: float) -> Optional[bool]:
         """
         Joins the client to the selected server.
 
@@ -522,8 +532,9 @@ class TuxemonClient:
             self.wait_broadcast = 0.0
         else:
             self.wait_broadcast += time_delta
+        return None
 
-    def update_multiplayer_list(self):
+    def update_multiplayer_list(self) -> Optional[bool]:
         """
         Sends a broadcast to 'ping' all servers on the local network. Once a server responds
         it will verify that the server is not hosted by the client who sent the ping. Once a
@@ -548,6 +559,7 @@ class TuxemonClient:
                 # Populate list of detected servers
                 self.available_games.append(host)
                 self.server_list.append(host_name)
+        return None
 
     def populate_player(self, event_type: str = "PUSH_SELF") -> None:
         """Sends client character to the server."""
@@ -599,7 +611,7 @@ class TuxemonClient:
         self.event_list[event_type] += 1
         self.client.event(event_data)
 
-    def set_key_condition(self, event) -> None:
+    def set_key_condition(self, event: Any) -> None:
         """Sends server information about a key condition being set or that an
         interaction has occurred.
 
@@ -685,7 +697,7 @@ class TuxemonClient:
                 self.event_list[event_type] += 1
                 self.client.event(event_data)
 
-    def update_client_map(self, cuuid: str, event_data) -> None:
+    def update_client_map(self, cuuid: str, event_data: Any) -> None:
         """Updates client's current map and location to reflect the server registry.
 
         :param cuuid: Clients unique user identification number.
@@ -704,7 +716,7 @@ class TuxemonClient:
         sprite: NPC,
         interaction: str,
         event_type: str = "CLIENT_INTERACTION",
-        response=None,
+        response: Any = None,
     ) -> None:
         """Sends client to client interaction request to the server.
 
@@ -741,7 +753,7 @@ class TuxemonClient:
         self.event_list[event_type] += 1
         self.client.event(event_data)
 
-    def route_combat(self, event):
+    def route_combat(self, event: Any) -> None:
         logger.debug(event)
 
     def client_alive(self) -> None:

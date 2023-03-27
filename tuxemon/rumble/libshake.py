@@ -254,7 +254,8 @@ class LibShakeRumble(Rumble):
         if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_RAMP):
             print("  SHAKE_EFFECT_RAMP")
 
-    def device_count(self) -> int:
+    def device_count(self) -> Any:
+        # Shake_NumOfDevices is supposed to return int
         return self.libShake.Shake_NumOfDevices()
 
     def quit(self) -> None:

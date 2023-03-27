@@ -3,7 +3,7 @@
 import collections
 import time
 from heapq import heapify, heappop, heappush, heappushpop
-from typing import Any, Deque, List, Optional, Union
+from typing import Any, Callable, Deque, List, Optional, Union
 
 __all__ = ("ScheduledItem", "Scheduler", "Clock")
 
@@ -37,9 +37,8 @@ class ScheduledItem:
 class Scheduler:
     """Class for scheduling functions."""
 
-    def __init__(self, time_function: float = time.perf_counter()) -> None:
+    def __init__(self, time_function: Callable[[], float] = time.perf_counter):
         """Initialise a Clock, with optional custom time function.
-
         :Parameters:
             `time_function` : function
                 Function to return the elapsed time of the application,
@@ -59,7 +58,7 @@ class Scheduler:
         probably want to be scheduled together.
         """
         last_ts = self._last_ts
-        ts = self._time
+        ts = self._time()
         if ts - last_ts > 0.2:
             last_ts = ts
         return last_ts
@@ -186,7 +185,7 @@ class Scheduler:
             was the first tick.
 
         """
-        delta_t = self.set_time(self._time)
+        delta_t = self.set_time(self._time())
         self._times.append(int(delta_t))
         self.call_scheduled_functions(delta_t)
         return delta_t
@@ -339,7 +338,7 @@ class Scheduler:
 
         try:
             next_ts = self._scheduled_items[0].next_ts
-            return max(next_ts - self._time, 0.0)
+            return max(next_ts - self._time(), 0.0)
         except IndexError:
             return None
 
@@ -379,7 +378,7 @@ class Clock(Scheduler):
     def _least_squares(
         gradient: int = 1,
         offset: int = 0,
-    ):
+    ) -> Any:
         """
         source: pyglet.app.App
 

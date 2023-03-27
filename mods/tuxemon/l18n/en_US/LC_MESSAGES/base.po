@@ -189,6 +189,36 @@ msgstr "Hardened Tuxeball"
 msgid "tuxeball_hardened_description"
 msgstr "Captures Tuxemon and it doesn't break when it fails."
 
+msgid "tuxeball_hearty"
+msgstr "Hearty Tuxeball"
+
+msgid "tuxeball_hearty_description"
+msgstr "Upon capture, the tuxemon's positive taste changes to hearty."
+
+msgid "tuxeball_peppy"
+msgstr "Peppy Tuxeball"
+
+msgid "tuxeball_peppy_description"
+msgstr "Upon capture, the tuxemon's positive taste changes to peppy."
+
+msgid "tuxeball_refined"
+msgstr "Refined Tuxeball"
+
+msgid "tuxeball_refined_description"
+msgstr "Upon capture, the tuxemon's positive taste changes to refined."
+
+msgid "tuxeball_salty"
+msgstr "Salty Tuxeball"
+
+msgid "tuxeball_salty_description"
+msgstr "Upon capture, the tuxemon's positive taste changes to salty."
+
+msgid "tuxeball_zesty"
+msgstr "Zesty Tuxeball"
+
+msgid "tuxeball_zesty_description"
+msgstr "Upon capture, the tuxemon's positive taste changes to zesty."
+
 msgid "fishing_rod"
 msgstr "Fishing Rod"
 

@@ -3,8 +3,8 @@
   "accuracy": 0.8,
   "animation": "slash_power",
   "effects": [
-    "damage",
-    "sniping user"
+    "sniping user",
+    "damage"
   ],
   "flip_axes": "x",
   "healing_power": 0,

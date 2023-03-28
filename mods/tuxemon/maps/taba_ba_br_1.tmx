@@ -164,6 +164,7 @@
     <property name="act42" value="wait 0.4"/>
     <property name="act43" value="translated_dialog challenger6"/>
     <property name="act50" value="translated_dialog challenger7"/>
+    <property name="act55" value="add_monster chloragon,3,acolyte,80,100"/>
     <property name="act60" value="start_battle acolyte"/>
     <property name="act99" value="set_variable battledone:yes"/>
     <property name="cond1" value="is variable_set battledone:start"/>
@@ -221,6 +222,7 @@
     <property name="act12" value="pathfind player,9,7"/>
     <property name="act13" value="npc_face player,left"/>
     <property name="act20" value="translated_dialog acolyte1redo"/>
+    <property name="act30" value="add_monster chloragon,3,acolyte,80,100"/>
     <property name="act40" value="start_battle acolyte"/>
     <property name="act98" value="set_variable redo:finished"/>
     <property name="act99" value="set_variable battledone:yes"/>

@@ -6,15 +6,6 @@
         "combat_front": "disciple",
         "slug": "disciple"
       }
-    ],
-    "monsters": [
-      {
-        "level": 3,
-        "slug": "chloragon",
-        "money_mod": 100,
-        "exp_req_mod": 80,
-        "gender": "female"
-      }
     ]
   }
   

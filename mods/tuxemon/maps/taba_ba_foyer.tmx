@@ -37,7 +37,7 @@
   </object>
   <object id="8" name="timmy is here!" type="event" x="64" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc timmy,3,3,,stand"/>
+    <property name="act1" value="create_npc timmy,3,3,stand"/>
     <property name="cond1" value="not npc_exists timmy"/>
    </properties>
   </object>

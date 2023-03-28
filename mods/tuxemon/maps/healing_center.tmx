@@ -47,10 +47,10 @@
   <object id="22" name="Player Spawn" type="event" x="96" y="128" width="16" height="16"/>
   <object id="25" name="create npcs" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc tabanurse,5,4,nurse,stand"/>
-    <property name="act20" value="create_npc shady_guy,8,8,,stand"/>
+    <property name="act10" value="create_npc tabanurse,5,4,stand"/>
+    <property name="act20" value="create_npc shady_guy,8,8,stand"/>
     <property name="act30" value="npc_face shady_guy,right"/>
-    <property name="act40" value="create_npc happy_guy,11,8,,stand"/>
+    <property name="act40" value="create_npc happy_guy,11,8,stand"/>
     <property name="act50" value="npc_face happy_guy,left"/>
     <property name="cond10" value="not npc_exists tabanurse"/>
    </properties>

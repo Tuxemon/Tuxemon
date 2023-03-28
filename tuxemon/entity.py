@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import uuid
 from typing import TYPE_CHECKING, Any, Generic, Mapping, Sequence, TypeVar
 
 from tuxemon.map import proj
@@ -39,7 +38,7 @@ class Entity(Generic[SaveDict]):
         self.slug = slug
         self.world = world
         world.add_entity(self)
-        self.instance_id = uuid.uuid4()
+        self.instance_id = None
         self.tile_pos = (0, 0)
         self.position3 = Point3(0, 0, 0)
         # not used currently

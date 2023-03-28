@@ -601,6 +601,7 @@ class WorldState(state.State):
         for npc in self.npcs:
             if npc.slug == slug:
                 return npc
+        return None
 
     def remove_entity(self, slug: str) -> None:
         """

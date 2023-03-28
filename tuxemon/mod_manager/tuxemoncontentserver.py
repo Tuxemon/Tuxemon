@@ -8,6 +8,7 @@ https://github.com/vXtreniusX/TuxemonContentServer
 import json
 import os
 import urllib.request
+from typing import Any
 
 import requests
 
@@ -15,7 +16,7 @@ from tuxemon.constants import paths
 from tuxemon.mod_manager import symlink_missing
 
 
-def update(url):
+def update(url: str) -> Any:
     """Returns the response from the server"""
     packages = requests.get(url=url)
     print(packages.text)
@@ -24,13 +25,13 @@ def update(url):
 
 def download_package(
     self,
-    name,
-    release,
-    repo=None,
-    dont_extract=False,
-    install_deps=True,
-    installed=None,
-):
+    name: str,
+    release: Any,
+    repo: Any = None,
+    dont_extract: bool = False,
+    install_deps: bool = True,
+    installed: Any = None,
+) -> None:
     """Downloads the specified package"""
     if repo is None:
         repo = self.get_package_repo(name)
@@ -78,13 +79,13 @@ def download_package(
 
 def install_dependencies(
     self,
-    name,
-    release,
-    repo,
-    dont_extract=False,
-    symlink=True,
-    done=None,
-):
+    name: str,
+    release: Any,
+    repo: Any,
+    dont_extract: bool = False,
+    symlink: bool = True,
+    done: Any = None,
+) -> None:
     """
     Same as the download_package(), but it includes dependency installing.
     When symlink is True, dependency's files will be linked.

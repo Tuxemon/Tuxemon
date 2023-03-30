@@ -225,7 +225,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             menu = self.client.push_state(ItemMenuState())
 
             # set next menu after after selection is made
-            menu.on_menu_selection = choose_target  # type: ignore[assignment]
+            menu.on_menu_selection = choose_target  # type: ignore[method-assign]
 
         def choose_target(menu_item: MenuItem[Item]) -> None:
             # open menu to choose target of item
@@ -237,7 +237,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             state: State
             if item.battle_menu == ItemBattleMenu.monster:
                 state = self.client.push_state(MonsterMenuState())
-                state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[assignment]
+                state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[method-assign]
             else:
                 state = self.client.push_state(
                     CombatTargetMenuState(
@@ -246,7 +246,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                         action=item,
                     )
                 )
-                state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[assignment]
+                state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[method-assign]
 
         def enqueue_item(item: Item, menu_item: MenuItem[Monster]) -> None:
             target = menu_item.game_object
@@ -319,7 +319,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                     action=technique,
                 )
             )
-            state.on_menu_selection = partial(enqueue_technique, technique)  # type: ignore[assignment]
+            state.on_menu_selection = partial(enqueue_technique, technique)  # type: ignore[method-assign]
 
         def enqueue_technique(
             technique: Technique,

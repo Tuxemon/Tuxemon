@@ -36,4 +36,4 @@ class Session:
 
 
 # WIP will be filled in later when game starts
-local_session = Session(None, None, None)  # ignore[arg-type]
+local_session = Session(None, None, None)  # type: ignore[arg-type]

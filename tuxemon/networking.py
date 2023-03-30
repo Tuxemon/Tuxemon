@@ -69,7 +69,9 @@ class TuxemonServer:
 
     """
 
-    def __init__(self, game: LocalPygameClient, server_name=None):
+    def __init__(
+        self, game: LocalPygameClient, server_name: Any = None
+    ) -> None:
         self.game = game
         if not server_name:
             self.server_name = "Default Tuxemon Server"
@@ -77,7 +79,7 @@ class TuxemonServer:
             self.server_name = server_name
         self.network_events: List[str] = []
         self.listening = False
-        self.interfaces = {}
+        self.interfaces: Dict[str, Any] = {}
         self.ips: List[str] = []
 
         # Handle users without networking support.
@@ -102,7 +104,7 @@ class TuxemonServer:
                 )
                 if difference.seconds > 15:
                     logger.info("Client Disconnected. CUUID: " + str(cuuid))
-                    event_data = {"type": "CLIENT_DISCONNECTED"}
+                    event_data = EventData(type="CLIENT_DISCONNECTED")
                     self.notify_client(cuuid, event_data)
                     del self.server.registry[cuuid]
                     return False
@@ -288,7 +290,7 @@ class ControllerServer:
         self.game = game
         self.network_events: List[str] = []
         self.listening = False
-        self.interfaces = {}
+        self.interfaces: Dict[str, Any] = {}
 
         # Handle users without networking support
         if not networking:
@@ -303,7 +305,8 @@ class ControllerServer:
         if controller_events:
             for controller_event in controller_events:
                 self.game.key_events.append(controller_event)
-                self.game.current_state.process_event(controller_event)
+                if self.game.current_state:
+                    self.game.current_state.process_event(controller_event)
 
     def net_controller_loop(self) -> Any:
         """
@@ -779,11 +782,11 @@ class TuxemonClient:
 class DummyNetworking:
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         """The dummy networking object is used when networking is not supported."""
-        self.registry = {}
+        self.registry: Dict[str, Any] = {}
         self.registered = False
         # {(ip, port): (client_version_number, server_name)
         self.discovered_servers: Dict[Tuple[str, int], Tuple[int, str]] = {}
-        self.event_notifies = {}
+        self.event_notifies: Dict[str, Any] = {}
 
     def event(self, *args: Any, **kwargs: Any) -> None:
         pass

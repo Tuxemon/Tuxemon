@@ -1056,7 +1056,22 @@ class JSONDatabase:
             sys.exit()
         return slug in table_entry
 
-    def log_missing_entry_and_exit(self, table: str, slug: str) -> None:
+    def log_missing_entry_and_exit(
+        self,
+        table: Literal[
+            "economy",
+            "template",
+            "encounter",
+            "environment",
+            "item",
+            "monster",
+            "music",
+            "npc",
+            "sounds",
+            "technique",
+        ],
+        slug: str,
+    ) -> None:
         options = difflib.get_close_matches(slug, self.database[table].keys())
         options = [repr(s) for s in options]
         if len(options) >= 2:

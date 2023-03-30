@@ -524,6 +524,7 @@ class CombatState(CombatAnimations):
         # TODO: parties/teams/etc to choose opponents
         opponents = self.monsters_in_play[self.players[0]]
         trainer = self.players[1]
+        assert monster.ai
         if self.is_trainer_battle:
             user, technique, target = monster.ai.make_decision_trainer(
                 trainer, monster, opponents
@@ -1056,6 +1057,7 @@ class CombatState(CombatAnimations):
 
         if result["success"] and target_sprite and tech_sprite:
             tech_sprite.rect.center = target_sprite.rect.center
+            assert tech_sprite.animation
             self.task(tech_sprite.animation.play, hit_delay)
             self.task(
                 partial(self.sprites.add, tech_sprite, layer=50),

@@ -506,6 +506,7 @@ class WorldState(state.State):
 
         # center the map on center of player sprite
         # must center map before getting sprite coordinates
+        assert self.current_map.renderer
         self.current_map.renderer.center((cx, cy))
 
         # get npc surfaces/sprites
@@ -546,7 +547,6 @@ class WorldState(state.State):
             screen_surfaces.append((s, r, l))
 
         # draw the map and sprites
-        assert self.current_map.renderer
         self.rect = self.current_map.renderer.draw(
             surface, surface.get_rect(), screen_surfaces
         )

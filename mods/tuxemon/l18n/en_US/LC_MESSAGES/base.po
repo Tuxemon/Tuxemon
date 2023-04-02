@@ -219,6 +219,72 @@ msgstr "Zesty Tuxeball"
 msgid "tuxeball_zesty_description"
 msgstr "Upon capture, the tuxemon's positive taste changes to zesty."
 
+msgid "boost_armour"
+msgstr "Boost Armour"
+
+msgid "boost_armour_description"
+msgstr "For the rest of the combat, increase Armour by 20%."
+
+msgid "boost_dodge"
+msgstr "Boost Dodge"
+
+msgid "boost_dodge_description"
+msgstr "For the rest of the combat, increase Dodge by 20%."
+
+msgid "boost_melee"
+msgstr "Boost Melee"
+
+msgid "boost_melee_description"
+msgstr "For the rest of the combat, increase Melee by 20%."
+
+msgid "boost_ranged"
+msgstr "Boost Ranged"
+
+msgid "boost_ranged_description"
+msgstr "For the rest of the combat, increase Ranged by 20%."
+
+msgid "boost_speed"
+msgstr "Boost Speed"
+
+msgid "boost_speed_description"
+msgstr "For the rest of the combat, increase Speed by 20%."
+
+msgid "raise_armour"
+msgstr "Raise Armour"
+
+msgid "raise_armour_description"
+msgstr "Learn the hardness of the diamond. Increase Armour by 5%."
+
+msgid "raise_dodge"
+msgstr "Raise Dodge"
+
+msgid "raise_dodge_description"
+msgstr "Learn the iridescence of the opal. Increase Dodge by 5%."
+
+msgid "raise_hp"
+msgstr "Raise HP"
+
+msgid "raise_hp_description"
+msgstr "Learn the bulk and abundance of quartz. Increase HP by 5%."
+
+msgid "raise_melee"
+msgstr "Raise Melee"
+
+msgid "raise_melee_description"
+msgstr "Learn the anger of the ruby. Increase Melee by 5%."
+
+msgid "raise_ranged"
+msgstr "Raise Ranged"
+
+msgid "raise_ranged_description"
+msgstr "Learn the aim of the emerald. Increase Ranged by 5%."
+
+msgid "raise_speed"
+msgstr "Raise Speed"
+
+msgid "raise_speed_description"
+msgstr "Learn the reflexes of the spinel. Increase Speed by 5%."
+
 msgid "fishing_rod"
 msgstr "Fishing Rod"
 

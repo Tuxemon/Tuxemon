@@ -728,6 +728,28 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Boost Armour"](https://wiki.tuxemon.org/File:Boost_2.png) Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Boost Dodge"](https://wiki.tuxemon.org/File:Boost_1.png) Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Boost Melee"](https://wiki.tuxemon.org/File:Boost_3.png) Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Boost Ranged"](https://wiki.tuxemon.org/File:Boost_4.png) Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Boost Speed"](https://wiki.tuxemon.org/File:Boost_5.png) Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Raise Armour"](https://wiki.tuxemon.org/File:Diamond_-_Clint_Bellanger.png) [http://opengameart.org/content/gem-icons CC BY-SA 3.0, on OpenGameArt]
+
+* ["Raise Dodge"](https://wiki.tuxemon.org/File:Opal_-_Clint_Bellanger.png) [http://opengameart.org/content/gem-icons CC BY-SA 3.0, on OpenGameArt]
+
+* ["Raise HP"](https://wiki.tuxemon.org/File:I_Crystal03_24x24.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Raise Melee"](https://wiki.tuxemon.org/File:Ruby.png) Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Raise Ranged"](https://wiki.tuxemon.org/File:Emerald_-_Clint_Bellanger.png) [http://opengameart.org/content/gem-icons CC BY-SA 3.0, on OpenGameArt]
+
+* ["Raise Speed"](https://wiki.tuxemon.org/File:Ruby_-_Clint_Bellanger.png) [http://opengameart.org/content/gem-icons CC BY-SA 3.0, on OpenGameArt]
+
 * ["Potion"](https://wiki.tuxemon.org/File:Potion.png) [http://opengameart.org/content/potions-3 CC0]
 
 * ["Imperial Potion"](https://wiki.tuxemon.org/File:Imperial_Potion.png) [http://opengameart.org/content/potions-3 CC0]

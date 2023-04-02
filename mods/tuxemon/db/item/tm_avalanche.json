@@ -1,7 +1,8 @@
 {
   "conditions": [
     "type earth,water",
-    "max_moves"
+    "max_moves",
+    "lack_tech avalanche"
   ],
   "effects": [
     "learn_tm avalanche"

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import math
 import uuid
 from functools import partial
 from typing import (
@@ -42,6 +43,13 @@ if TYPE_CHECKING:
 
 
 MenuGameObj = Callable[[], object]
+
+
+def fix_width(screen_x: int, pos_x: float) -> int:
+    """it returns the correct width based on percentage"""
+    value = round(screen_x * pos_x)
+    return value
+
 
 HIDDEN_LOCKER = "hidden_locker"
 HIDDEN_LIST_LOCKER = [HIDDEN_LOCKER]
@@ -214,9 +222,8 @@ class ItemTakeState(PygameMenuState):
             sum_total.append(itm.quantity)
             label = T.translate(itm.name).upper() + " x " + str(itm.quantity)
             iid = itm.instance_id.hex
-            results = db.lookup(itm.slug, table="item").dict()
             new_image = pygame_menu.BaseImage(
-                tools.transform_resource_filename(results["sprite"]),
+                tools.transform_resource_filename(itm.sprite),
                 drawing_position=POSITION_CENTER,
             )
             new_image.scale(prepare.SCALE, prepare.SCALE)
@@ -225,7 +232,13 @@ class ItemTakeState(PygameMenuState):
                 partial(locker_options, iid),
                 selection_effect=HighlightSelection(),
             )
-            menu.add.label(label, selectable=True)
+            menu.add.label(
+                label,
+                selectable=True,
+                font_size=20,
+                align=locals.ALIGN_CENTER,
+                selection_effect=HighlightSelection(),
+            )
 
         # menu
         menu.set_title(
@@ -267,17 +280,19 @@ class ItemTakeState(PygameMenuState):
         self.player = local_session.player
         self.box = self.player.item_boxes[self.box_name]
 
-        num_itms = len(self.box)
         # Widgets are like a pygame_menu label, image, etc.
-        num_widgets_per_item = 2
-        rows = int(num_itms * num_widgets_per_item / columns) + 1
-        # Make sure rows are divisible by num_widgets
-        while rows % num_widgets_per_item != 0:
-            rows += 1
+        num_widgets = 2
+        rows = math.ceil(len(self.box) / columns) * num_widgets
 
         super().__init__(
             height=height, width=width, columns=columns, rows=rows
         )
+
+        self.menu._column_max_width = [
+            fix_width(self.menu._width, 0.33),
+            fix_width(self.menu._width, 0.33),
+            fix_width(self.menu._width, 0.33),
+        ]
 
         menu_items_map = []
         for item in self.box:

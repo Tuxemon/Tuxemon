@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import math
 import uuid
 from functools import partial
 from typing import TYPE_CHECKING, Any, Callable, Optional, Sequence, Tuple
@@ -33,6 +34,13 @@ if TYPE_CHECKING:
 
 
 MenuGameObj = Callable[[], object]
+
+
+def fix_width(screen_x: int, pos_x: float) -> int:
+    """it returns the correct width based on percentage"""
+    value = round(screen_x * pos_x)
+    return value
+
 
 HIDDEN = "hidden_kennel"
 HIDDEN_LIST = [HIDDEN]
@@ -177,11 +185,8 @@ class MonsterTakeState(PygameMenuState):
         for monster in items:
             label = T.translate(monster.name).upper()
             iid = monster.instance_id.hex
-            results = db.lookup(monster.slug, table="monster").dict()
             new_image = pygame_menu.BaseImage(
-                tools.transform_resource_filename(
-                    results["sprites"]["menu1"] + ".png"
-                ),
+                tools.transform_resource_filename(monster.menu_sprite_1),
                 drawing_position=POSITION_CENTER,
             )
             new_image.scale(prepare.SCALE, prepare.SCALE)
@@ -190,7 +195,18 @@ class MonsterTakeState(PygameMenuState):
                 partial(kennel_options, iid),
                 selection_effect=HighlightSelection(),
             )
-            menu.add.button(label, partial(description, monster))
+            diff = round((monster.current_hp / monster.current_hp) * 100, 1)
+            level = f"Lv.{monster.level}"
+            menu.add.progress_bar(
+                level, default=diff, font_size=20, align=locals.ALIGN_CENTER
+            )
+            menu.add.button(
+                label,
+                partial(description, monster),
+                font_size=20,
+                align=locals.ALIGN_CENTER,
+                selection_effect=HighlightSelection(),
+            )
 
         # menu
         menu.set_title(
@@ -231,17 +247,19 @@ class MonsterTakeState(PygameMenuState):
         self.player = local_session.player
         self.box = self.player.monster_boxes[self.box_name]
 
-        num_mons = len(self.box)
         # Widgets are like a pygame_menu label, image, etc.
-        num_widgets_per_monster = 2
-        rows = int(num_mons * num_widgets_per_monster / columns) + 1
-        # Make sure rows are divisible by num_widgets
-        while rows % num_widgets_per_monster != 0:
-            rows += 1
+        num_widgets = 3
+        rows = math.ceil(len(self.box) / columns) * num_widgets
 
         super().__init__(
             height=height, width=width, columns=columns, rows=rows
         )
+
+        self.menu._column_max_width = [
+            fix_width(self.menu._width, 0.33),
+            fix_width(self.menu._width, 0.33),
+            fix_width(self.menu._width, 0.33),
+        ]
 
         menu_items_map = []
         for monster in self.box:

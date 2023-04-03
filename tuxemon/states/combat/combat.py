@@ -751,11 +751,12 @@ class CombatState(CombatAnimations):
                     # get the rect of the monster
                     rect = self._monster_sprite_map[monster].rect
                     # load the sprite and add it to the display
-                    self.load_sprite(
+                    icon = self.load_sprite(
                         status.icon,
                         layer=200,
                         center=rect.topleft,
                     )
+                    self._status_icons.append(icon)
 
     def show_combat_dialog(self) -> None:
         """Create and show the area where battle messages are displayed."""
@@ -990,16 +991,14 @@ class CombatState(CombatAnimations):
                 # handle the capture device
                 if result["capture"]:
                     # retrieve tuxeball
-                    itm_slug = self.players[0].game_variables["save_item_slug"]
-                    itm = Item()
-                    itm.load(itm_slug)
+                    tuxeball = technique.slug
                     message += "\n" + T.translate("attempting_capture")
                     action_time = result["num_shakes"] + 1.8
                     self.animate_capture_monster(
                         result["success"],
                         result["num_shakes"],
                         target,
-                        itm.slug,
+                        tuxeball,
                     )
 
                     # TODO: Don't end combat right away; only works with SP,

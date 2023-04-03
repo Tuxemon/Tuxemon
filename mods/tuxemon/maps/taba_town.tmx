@@ -218,6 +218,7 @@
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond10" value="is player_moved"/>
     <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="71" name="Random Battle 2" type="event" x="352" y="432" width="96" height="80">
@@ -226,6 +227,7 @@
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond10" value="is player_moved"/>
     <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="72" name="Random Battle 3" type="event" x="400" y="368" width="112" height="48">
@@ -234,6 +236,7 @@
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond10" value="is player_moved"/>
     <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="73" name="Random Battle 4" type="event" x="352" y="304" width="144" height="48">
@@ -242,6 +245,7 @@
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond10" value="is player_moved"/>
     <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="74" name="Random Battle 5" type="event" x="208" y="80" width="64" height="80">
@@ -250,6 +254,7 @@
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond10" value="is player_moved"/>
     <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="75" name="Empty Grass 1" type="event" x="464" y="816" width="80" height="32">
@@ -296,7 +301,7 @@
   </object>
   <object id="95" name="Go to Professor's Lab" type="event" x="704" y="832" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport professor_lab.tmx,9,17,0.3"/>
+    <property name="act10" value="transition_teleport professor_lab.tmx,6,17,0.3"/>
     <property name="cond10" value="is player_at"/>
    </properties>
   </object>
@@ -352,10 +357,8 @@
   <object id="122" name="Player Spawn" type="event" x="608" y="752" width="16" height="16"/>
   <object id="123" name="Check for Healing Center Teleport" type="event" x="208" y="0" width="16" height="16">
    <properties>
-    <property name="act10" value="set_variable battle_lost_faint:false"/>
-    <property name="act20" value="wait .4"/>
-    <property name="act30" value="teleport_faint"/>
-    <property name="cond10" value="is variable_set battle_lost_faint:true"/>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
   <object id="125" name="bring on the nurses" type="event" x="352" y="640" width="16" height="16">
@@ -817,7 +820,7 @@
   <object id="133" name="greeter_greets" type="event" x="480" y="192" width="16" height="16">
    <properties>
     <property name="act05" value="set_variable greeter_greets:yes"/>
-    <property name="act10" value="npc_face taba_greeter,player"/>
+    <property name="act10" value="npc_face taba_greeter,left"/>
     <property name="act20" value="translated_dialog taba_greeting1"/>
     <property name="act25" value="translated_dialog taba_greeting2a"/>
     <property name="act30" value="add_item tuxeball,5"/>
@@ -832,7 +835,7 @@
   <object id="134" name="greeter_greets2" type="event" x="480" y="192" width="16" height="16">
    <properties>
     <property name="act05" value="set_variable greeter_greets:yes"/>
-    <property name="act10" value="npc_face taba_greeter,player"/>
+    <property name="act10" value="npc_face taba_greeter,left"/>
     <property name="act20" value="translated_dialog taba_greeting1"/>
     <property name="act30" value="translated_dialog taba_greeting2b"/>
     <property name="act60" value="npc_face taba_greeter,down"/>
@@ -844,11 +847,10 @@
   </object>
   <object id="150" name="jaime3" type="event" x="456" y="176" width="16" height="16">
    <properties>
-    <property name="act0" value="npc_face taba_greeter,player"/>
     <property name="act10" value="translated_dialog taba_greeting3"/>
     <property name="act20" value="npc_face taba_greeter,down"/>
-    <property name="cond10" value="is to_talk taba_greeter"/>
-    <property name="cond20" value="is variable_set greeter_greets:yes"/>
+    <property name="behav10" value="talk taba_greeter"/>
+    <property name="cond10" value="is variable_set greeter_greets:yes"/>
    </properties>
   </object>
   <object id="135" name="secret_tuxeball" type="event" x="624" y="240" width="16" height="16">

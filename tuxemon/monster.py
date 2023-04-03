@@ -48,6 +48,12 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "weight",
     "taste_cold",
     "taste_warm",
+    "mod_armour",
+    "mod_dodge",
+    "mod_melee",
+    "mod_ranged",
+    "mod_speed",
+    "mod_hp",
 )
 
 SHAPES = {
@@ -205,6 +211,14 @@ class Monster:
         self.current_hp = 0
         self.hp = 0
         self.level = 0
+
+        # modifier values
+        self.mod_armour = 0
+        self.mod_dodge = 0
+        self.mod_melee = 0
+        self.mod_ranged = 0
+        self.mod_speed = 0
+        self.mod_hp = 0
 
         self.moves: List[Technique] = []
         self.moveset: List[MonsterMovesetItemModel] = []
@@ -434,7 +448,7 @@ class Monster:
             self.status.append(status)
         else:
             # if the status exists
-            if any(t for t in self.status if t.slug == status):
+            if any(t for t in self.status if t.slug == status.slug):
                 return
             # if the status doesn't exist.
             else:
@@ -472,12 +486,12 @@ class Monster:
 
         multiplier = level + 7
         shape = SHAPES[self.shape]
-        self.armour = shape["armour"] * multiplier
-        self.dodge = shape["dodge"] * multiplier
-        self.hp = shape["hp"] * multiplier
-        self.melee = shape["melee"] * multiplier
-        self.ranged = shape["ranged"] * multiplier
-        self.speed = shape["speed"] * multiplier
+        self.armour = (shape["armour"] * multiplier) + self.mod_armour
+        self.dodge = (shape["dodge"] * multiplier) + self.mod_dodge
+        self.hp = (shape["hp"] * multiplier) + self.mod_hp
+        self.melee = (shape["melee"] * multiplier) + self.mod_melee
+        self.ranged = (shape["ranged"] * multiplier) + self.mod_ranged
+        self.speed = (shape["speed"] * multiplier) + self.mod_speed
 
         # tastes
         self.armour += formula.check_taste(self, "armour")

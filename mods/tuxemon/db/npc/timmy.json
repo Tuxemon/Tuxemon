@@ -1,0 +1,11 @@
+{
+    "slug": "timmy",
+    "gender": "male",
+    "template": [
+        {
+          "sprite_name": "childactor",
+          "combat_front": "heroine",
+          "slug": "childactor"
+        }
+      ]
+}

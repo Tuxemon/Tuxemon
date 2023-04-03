@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "level target,>=,0",
-    "has_path target,tectonic_drill"
+    "level >=,0",
+    "has_path tectonic_drill"
   ],
   "effects": [
     "evolve tectonic_drill"

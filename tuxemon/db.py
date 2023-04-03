@@ -97,6 +97,7 @@ class ItemCategory(str, Enum):
     phone = "phone"
     fish = "fish"
     capture = "capture"
+    stats = "stats"
 
 
 class OutputBattle(str, Enum):
@@ -140,7 +141,7 @@ class MapType(str, Enum):
     notype = "notype"
     town = "town"
     route = "route"
-    center = "center"
+    clinic = "clinic"
     shop = "shop"
     dungeon = "dungeon"
 
@@ -511,12 +512,6 @@ class TechniqueModel(BaseModel):
     statdodge: Optional[StatModel] = Field(None)
     statmelee: Optional[StatModel] = Field(None)
     statranged: Optional[StatModel] = Field(None)
-    userstatspeed: Optional[StatModel] = Field(None)
-    userstathp: Optional[StatModel] = Field(None)
-    userstatarmour: Optional[StatModel] = Field(None)
-    userstatdodge: Optional[StatModel] = Field(None)
-    userstatmelee: Optional[StatModel] = Field(None)
-    userstatranged: Optional[StatModel] = Field(None)
 
     # Validate resources that should exist
     @validator("icon")
@@ -1056,7 +1051,22 @@ class JSONDatabase:
             sys.exit()
         return slug in table_entry
 
-    def log_missing_entry_and_exit(self, table: str, slug: str) -> None:
+    def log_missing_entry_and_exit(
+        self,
+        table: Literal[
+            "economy",
+            "template",
+            "encounter",
+            "environment",
+            "item",
+            "monster",
+            "music",
+            "npc",
+            "sounds",
+            "technique",
+        ],
+        slug: str,
+    ) -> None:
         options = difflib.get_close_matches(slug, self.database[table].keys())
         options = [repr(s) for s in options]
         if len(options) >= 2:

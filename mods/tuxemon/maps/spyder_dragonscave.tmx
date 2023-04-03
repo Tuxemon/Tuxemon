@@ -16,12 +16,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlEsKgDAMBSOu9Q5+76C38zZ6Ir9H8TcFF24tQq1kYOgqaXkpEfkXfSQy4IgTzrigLSu1G+54mD6xSIC2JNSmmGGOBZaoaAKagCbwVgJtKNJcdpxPudebPj5Q6R71YUxO3qh/w0nsn7601n3hfD4nN3sQRA==
+   eAHtlMkJgEAMRTN41h5ce9Du7EYrci3AItye4MGrC8wI+fCY08+EnxARtzSZd/00vkgLHfQwwAhPNeNdYIXtqBOIGHiqEG8EMSSQQgYqTUAT0AS+SqDyRMqTmveurv6jzh+U6x39w5is9Ki7YSV2pz8t9F5Yn88OFY8RLQ==
   </data>
  </layer>
  <layer id="3" name="Filler" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAFjYBgYsIKZgaERC37BCBFfCZQbBaMhMBoCpIUArnyFLa/BxJpG8xppgTyqejQERkMAHgINWOpxUNkyWofDg2iUQWEIIKcxQvUVrA4kpI5CJ41qp0IIAACvYhRA
+   eAFjYBgYsIKZgaERCwa5BiS+EohHwWgIjIYAaSGAK19hy2swsabRvEZaII+qHg2B0RCAh0ADlnp8tA6HB88ogwohgJzGCNVXsDqQkDoqOGvUCApDAADRThNX
   </data>
  </layer>
  <layer id="7" name="Above Player" width="20" height="40">
@@ -195,8 +195,8 @@
     <property name="act2" value="translated_dialog spyder_dragonscave_benden1"/>
     <property name="act3" value="start_battle spyder_dragonscave_benden"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_benden2"/>
-    <property name="act5" value="set_monster_health ,"/>
-    <property name="act7" value="set_monster_status ,"/>
+    <property name="act5" value="set_monster_health"/>
+    <property name="act7" value="set_monster_status"/>
     <property name="act8" value="set_variable dragonscavebenden:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_benden"/>
     <property name="cond1" value="not variable_set dragonscavebenden:yes"/>
@@ -389,8 +389,8 @@
     <property name="act2" value="translated_dialog spyder_dragonscave_benden1"/>
     <property name="act3" value="start_battle spyder_dragonscave_benden"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_benden2"/>
-    <property name="act5" value="set_monster_health ,"/>
-    <property name="act7" value="set_monster_status ,"/>
+    <property name="act5" value="set_monster_health"/>
+    <property name="act7" value="set_monster_status"/>
     <property name="act8" value="set_variable dragonscavebenden:yes"/>
     <property name="cond1" value="not variable_set dragonscavebenden:yes"/>
     <property name="cond2" value="is player_at"/>

@@ -464,5 +464,6 @@ class TuxemonMap:
             image_loader=scaled_image_loader,
             pixelalpha=True,
         )
+        assert self.renderer
         self.renderer.data.tmx.images = data.images
         self.renderer.redraw_tiles(self.renderer._buffer)

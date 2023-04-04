@@ -7,7 +7,7 @@ from typing import Callable
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.baseimage import POSITION_CENTER
+from pygame_menu.locals import POSITION_CENTER
 
 from tuxemon import prepare, tools
 from tuxemon.menu.menu import PygameMenuState
@@ -24,14 +24,14 @@ class BgState(PygameMenuState):
 
     def __init__(self, background: str) -> None:
         width, height = prepare.SCREEN_SIZE
-        background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
-                "gfx/ui/background/" + background + ".png"
-            ),
-            drawing_position=POSITION_CENTER,
+        image_path = tools.transform_resource_filename(
+            "gfx/ui/background/" + background + ".png"
         )
         theme = get_theme()
-        theme.background_color = background
+        theme.background_color = pygame_menu.BaseImage(
+            image_path,
+            drawing_position=POSITION_CENTER,
+        )
         theme.widget_alignment = locals.ALIGN_CENTER
 
         super().__init__(height=height, width=width)

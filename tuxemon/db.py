@@ -97,6 +97,7 @@ class ItemCategory(str, Enum):
     phone = "phone"
     fish = "fish"
     capture = "capture"
+    stats = "stats"
 
 
 class OutputBattle(str, Enum):
@@ -511,12 +512,6 @@ class TechniqueModel(BaseModel):
     statdodge: Optional[StatModel] = Field(None)
     statmelee: Optional[StatModel] = Field(None)
     statranged: Optional[StatModel] = Field(None)
-    userstatspeed: Optional[StatModel] = Field(None)
-    userstathp: Optional[StatModel] = Field(None)
-    userstatarmour: Optional[StatModel] = Field(None)
-    userstatdodge: Optional[StatModel] = Field(None)
-    userstatmelee: Optional[StatModel] = Field(None)
-    userstatranged: Optional[StatModel] = Field(None)
 
     # Validate resources that should exist
     @validator("icon")

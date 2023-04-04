@@ -8,8 +8,8 @@ from typing import Callable
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.baseimage import POSITION_CENTER
-from pygame_menu.widgets.selection import HighlightSelection
+from pygame_menu.locals import POSITION_CENTER
+from pygame_menu.widgets.selection.highlight import HighlightSelection
 
 from tuxemon import prepare, tools
 from tuxemon.db import db

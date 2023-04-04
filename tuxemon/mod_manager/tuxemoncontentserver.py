@@ -13,7 +13,7 @@ from typing import Any
 import requests
 
 from tuxemon.constants import paths
-from tuxemon.mod_manager import symlink_missing
+from tuxemon.mod_manager.symlink_missing import symlink_missing
 
 
 def update(url: str) -> Any:

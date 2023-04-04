@@ -24,7 +24,7 @@ from pytmx import pytmx
 from pytmx.pytmx import TiledMap
 
 from tuxemon import prepare
-from tuxemon.compat import ReadOnlyRect
+from tuxemon.compat.rect import ReadOnlyRect
 from tuxemon.event import EventObject
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.locale import T

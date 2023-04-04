@@ -15,7 +15,6 @@ from __future__ import annotations
 import logging
 import typing
 from dataclasses import fields
-from itertools import zip_longest
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -33,7 +32,7 @@ from typing import (
 )
 
 from tuxemon import prepare
-from tuxemon.compat import ReadOnlyRect
+from tuxemon.compat.rect import ReadOnlyRect
 from tuxemon.locale import T, replace_text
 from tuxemon.math import Vector2
 

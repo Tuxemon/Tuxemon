@@ -29,6 +29,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "turnipper",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "hunter",
     "stage": "stage1",
     "types": [

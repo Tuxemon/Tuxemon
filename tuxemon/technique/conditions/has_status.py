@@ -18,8 +18,8 @@ class HasStatusCondition(TechCondition):
 
     Example:
     "conditions": [
-        "has_status target"
-        "has_status target"
+        "is has_status status_xxx"
+        "not has_status status_xxx"
     ],
 
     """

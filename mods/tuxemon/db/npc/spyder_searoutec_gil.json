@@ -6,31 +6,5 @@
       "combat_front": "swimmer",
       "slug": "swimmer"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Nudiflot",
-      "level": 22,
-      "slug": "nudiflot_female",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Nudiflot",
-      "level": 22,
-      "slug": "nudiflot_female",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Nudimind",
-      "level": 24,
-      "slug": "nudimind",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

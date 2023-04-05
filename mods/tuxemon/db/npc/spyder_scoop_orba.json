@@ -6,23 +6,5 @@
       "combat_front": "spyder_rookie",
       "slug": "spyder_rookie"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Abesnaki",
-      "level": 30,
-      "slug": "abesnaki",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Spighter",
-      "level": 30,
-      "slug": "spighter",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

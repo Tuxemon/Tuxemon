@@ -6,31 +6,5 @@
       "combat_front": "earthnymph",
       "slug": "earthnymph"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Vivitron",
-      "level": 50,
-      "slug": "vivitron",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Sumchon",
-      "level": 50,
-      "slug": "sumchon",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Exapode",
-      "level": 50,
-      "slug": "exapode",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

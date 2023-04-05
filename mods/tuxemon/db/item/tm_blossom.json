@@ -1,8 +1,8 @@
 {
   "conditions": [
-    "type wood",
-    "max_moves",
-    "lack_tech blossom"
+    "is type wood",
+    "is max_moves",
+    "is lack_tech blossom"
   ],
   "effects": [
     "learn_tm blossom"

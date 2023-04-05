@@ -87,35 +87,40 @@ class SpawnMonsterAction(EventAction):
         # Earth > Water => Child (Earth)
         if mother.types[0].water:
             if father.types[0].earth:
-                seed = father.slug
+                seed = father
             else:
-                seed = mother.slug
+                seed = mother
         elif mother.types[0].fire:
             if father.types[0].water:
-                seed = father.slug
+                seed = father
             else:
-                seed = mother.slug
+                seed = mother
         elif mother.types[0].wood:
             if father.types[0].metal:
-                seed = father.slug
+                seed = father
             else:
-                seed = mother.slug
+                seed = mother
         elif mother.types[0].metal:
             if father.types[0].fire:
-                seed = father.slug
+                seed = father
             else:
-                seed = mother.slug
+                seed = mother
         elif mother.types[0].earth:
             if father.types[0].wood:
-                seed = father.slug
+                seed = father
             else:
-                seed = mother.slug
+                seed = mother
         else:
-            seed = mother.slug
+            seed = mother
+
+        # retrieve the basic form
+        for element in seed.history:
+            if element.evo_stage.basic:
+                seed_slug = element.mon_slug
 
         # continues the creation of the child.
         child = monster.Monster()
-        child.load_from_db(seed)
+        child.load_from_db(seed_slug)
         child.set_level(5)
         child.set_moves(5)
         child.set_capture(formula.today_ordinal())

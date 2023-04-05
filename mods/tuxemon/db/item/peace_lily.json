@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "level >=,0",
-    "has_path peace_lily"
+    "is level >=,0",
+    "is has_path peace_lily"
   ],
   "effects": [
     "evolve peace_lily"

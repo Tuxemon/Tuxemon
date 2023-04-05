@@ -23,6 +23,12 @@
             "monster_slug": "rabbitosaur"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "rabbitosaur",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "varmint",
     "stage": "basic",
     "types": [

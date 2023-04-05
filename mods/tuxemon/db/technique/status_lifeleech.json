@@ -2,7 +2,7 @@
   "animation": "drip_green",
   "category": "negative",
 	"conditions": [
-	  	"current_hp >,0"
+	  	"is current_hp >,0"
 	],
   "effects": [
     "lifeleech"

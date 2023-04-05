@@ -6,55 +6,5 @@
       "combat_front": "beachgoer",
       "slug": "swimmer"
     }
-  ],
-  "monsters": [
-    {
-      "name": "PiCC",
-      "level": 20,
-      "slug": "picc",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    },
-    {
-      "name": "PiCC",
-      "level": 20,
-      "slug": "picc",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    },
-    {
-      "name": "PiCC",
-      "level": 20,
-      "slug": "picc",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    },
-    {
-      "name": "PiCC",
-      "level": 20,
-      "slug": "picc",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    },
-    {
-      "name": "PiCC",
-      "level": 20,
-      "slug": "picc",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    },
-    {
-      "name": "PiCC",
-      "level": 20,
-      "slug": "picc",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    }
   ]
 }

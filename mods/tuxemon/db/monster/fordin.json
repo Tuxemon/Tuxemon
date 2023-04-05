@@ -53,6 +53,7 @@
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "leviathan",
     "stage": "standalone",
     "types": [

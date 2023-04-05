@@ -35,6 +35,12 @@
             "monster_slug": "eaglace"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "tweesher",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "flier",
     "stage": "stage1",
     "types": [

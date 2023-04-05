@@ -29,6 +29,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "forturtle",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

@@ -29,6 +29,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "ignibus",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "landrace",
     "stage": "stage1",
     "types": [

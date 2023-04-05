@@ -494,8 +494,8 @@ class TuxemonClient:
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_CLIENT_INTERACTION":
-                world = self.game.get_state_by_name(world.WorldState)
-                world.handle_interaction(event_data, self.client.registry)
+                _world = self.game.get_state_by_name(world.WorldState)
+                _world.handle_interaction(event_data, self.client.registry)
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_CLIENT_START_BATTLE":

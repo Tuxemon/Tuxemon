@@ -118,7 +118,7 @@
   </object>
   <object id="31" name="create npc" type="event" x="224" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc omnigrunt2,16,5,,stand"/>
+    <property name="act1" value="create_npc omnigrunt2,16,5,stand"/>
     <property name="act2" value="npc_face omnigrunt2,left"/>
     <property name="cond1" value="not npc_exists omnigrunt2"/>
    </properties>

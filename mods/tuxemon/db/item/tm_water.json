@@ -1,6 +1,6 @@
 {
   "conditions": [
-    "type water"
+    "is type water"
   ],
   "effects": [],
   "slug": "tm_water",

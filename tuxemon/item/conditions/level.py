@@ -26,7 +26,7 @@ class LevelCondition(ItemCondition):
     Compares the target Monster's level against the given value.
 
     Example: To make an item only usable if a monster is at a
-    certain level, you would use the condition "level target,<,5"
+    certain level, you would use the condition "is level target,<,5"
 
     """
 

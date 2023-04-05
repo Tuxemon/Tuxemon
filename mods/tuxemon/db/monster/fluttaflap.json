@@ -41,6 +41,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "vamporm",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "dracune",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "grub",
     "stage": "stage2",
     "types": [

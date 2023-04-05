@@ -53,6 +53,7 @@
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "serpent",
     "stage": "standalone",
     "types": [

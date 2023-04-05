@@ -30,6 +30,16 @@
             "item": "metal_booster"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "ouroboutlet",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "sockeserp",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "serpent",
     "stage": "basic",
     "types": [

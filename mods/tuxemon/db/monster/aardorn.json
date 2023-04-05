@@ -23,6 +23,12 @@
             "monster_slug": "aardart"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "aardart",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "varmint",
     "stage": "basic",
     "types": [

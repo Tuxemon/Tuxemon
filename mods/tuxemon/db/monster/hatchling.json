@@ -23,6 +23,12 @@
             "monster_slug": "birdling"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "birdling",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "flier",
     "stage": "basic",
     "types": [

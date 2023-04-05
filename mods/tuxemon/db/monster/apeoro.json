@@ -29,6 +29,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "tetrchimp",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

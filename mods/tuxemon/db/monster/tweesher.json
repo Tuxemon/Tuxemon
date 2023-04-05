@@ -23,6 +23,16 @@
             "monster_slug": "heronquak"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "heronquak",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "eaglace",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "flier",
     "stage": "basic",
     "types": [

@@ -23,6 +23,16 @@
             "monster_slug": "puparmor"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "puparmor",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "weavifly",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "grub",
     "stage": "basic",
     "types": [

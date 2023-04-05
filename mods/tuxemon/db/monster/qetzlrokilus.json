@@ -45,6 +45,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "metesaur",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "flier",
     "stage": "stage1",
     "types": [

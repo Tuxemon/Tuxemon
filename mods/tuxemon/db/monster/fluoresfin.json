@@ -31,6 +31,16 @@
             "monster_slug": "incandesfin"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "incandesfin",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "lightmare",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "aquatic",
     "stage": "basic",
     "types": [

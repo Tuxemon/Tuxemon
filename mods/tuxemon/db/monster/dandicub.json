@@ -31,6 +31,12 @@
             "monster_slug": "dandylion"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "dandylion",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "blob",
     "stage": "basic",
     "types": [

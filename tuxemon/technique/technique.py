@@ -69,7 +69,7 @@ class Technique:
         self.is_fast = False
         self.link = link
         self.name = "Pound"
-        self.next_use = 0.0
+        self.next_use = 0
         self.potency = 0.0
         self.power = 1.0
         self.range = Range.melee
@@ -229,12 +229,20 @@ class Technique:
         ret = list()
 
         for line in raw:
-            words = line.split()
-            args = "".join(words[1:]).split(",")
-            name = words[0]
-            params = args[1:]
+            op = line.split()[0]
+            name = line.split()[1]
+            if len(line.split()) > 2:
+                params = line.split()[2].split(",")
+            else:
+                params = []
             try:
                 condition = Technique.conditions_classes[name]
+                if op == "is":
+                    condition._op = True
+                elif op == "not":
+                    condition._op = False
+                else:
+                    raise ValueError(f"{op} must be 'is' or 'not'")
             except KeyError:
                 logger.error(f'Error: TechCondition "{name}" not implemented')
             else:
@@ -277,8 +285,11 @@ class Technique:
         result = True
 
         for condition in self.conditions:
-            result = result and condition.test(target)
-
+            if condition._op is True:
+                event = condition.test(target)
+            else:
+                event = not condition.test(target)
+            result = result and event
         return result
 
     def recharge(self) -> None:

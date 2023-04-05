@@ -35,6 +35,12 @@
             "monster_slug": "pairagrim"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "pairagrim",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "flier",
     "stage": "basic",
     "types": [

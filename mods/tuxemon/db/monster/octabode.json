@@ -41,6 +41,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "skwib",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "polliwog",
     "stage": "stage1",
     "types": [

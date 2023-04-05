@@ -47,6 +47,12 @@
             "monster_slug": "possessun"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "possessun",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "blob",
     "stage": "basic",
     "types": [

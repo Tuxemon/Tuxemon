@@ -41,6 +41,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "aardorn",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "varmint",
     "stage": "stage1",
     "types": [

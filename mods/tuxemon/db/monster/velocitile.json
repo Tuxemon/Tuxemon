@@ -49,6 +49,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "anoleaf",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "gectile",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "humanoid",
     "stage": "stage2",
     "types": [

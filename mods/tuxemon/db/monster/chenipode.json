@@ -31,6 +31,12 @@
             "monster_slug": "exapode"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "flambear",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "grub",
     "stage": "basic",
     "types": [

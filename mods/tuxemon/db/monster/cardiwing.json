@@ -43,6 +43,12 @@
             "monster_slug": "cardinale"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "cardiling",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "flier",
     "stage": "stage1",
     "types": [

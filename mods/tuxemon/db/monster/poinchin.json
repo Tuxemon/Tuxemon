@@ -31,6 +31,12 @@
             "monster_slug": "saurchin"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "saurchin",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "grub",
     "stage": "basic",
     "types": [

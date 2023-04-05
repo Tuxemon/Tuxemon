@@ -31,6 +31,12 @@
             "monster_slug": "apeoro"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "apeoro",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "humanoid",
     "stage": "basic",
     "types": [

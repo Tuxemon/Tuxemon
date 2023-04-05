@@ -43,6 +43,12 @@
             "monster_slug": "jemuar"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "rockitten",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "hunter",
     "stage": "stage1",
     "types": [

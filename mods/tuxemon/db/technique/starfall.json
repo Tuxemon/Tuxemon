@@ -3,8 +3,8 @@
   "accuracy": 0.7,
   "animation": "lightning_bolt_138",
   "effects": [
-    "damage",
-    "focused user"
+    "focused user",
+    "damage"
   ],
   "flip_axes": "",
   "healing_power": 0,

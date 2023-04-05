@@ -31,7 +31,7 @@ class CurrentHitPointsCondition(TechCondition):
 
     Example:
     "conditions": [
-        "current_hp target,<,1.0",
+        "is current_hp <,1.0",
     ],
 
     """

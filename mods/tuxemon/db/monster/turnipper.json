@@ -31,6 +31,12 @@
             "monster_slug": "beenstalker"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "beenstalker",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "hunter",
     "stage": "basic",
     "types": [

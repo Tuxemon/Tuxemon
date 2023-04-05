@@ -50,6 +50,16 @@
             "item": "thunderstone"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "grinflare",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "grintrock",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "brute",
     "stage": "basic",
     "types": [

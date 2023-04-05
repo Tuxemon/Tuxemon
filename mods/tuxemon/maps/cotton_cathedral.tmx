@@ -4,7 +4,7 @@
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="cotton_cathedral"/>
-  <property name="types" value="center"/>
+  <property name="types" value="clinic"/>
  </properties>
  <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
@@ -63,7 +63,7 @@
   <object id="25" name="Player Spawn" type="event" x="96" y="112" width="16" height="16"/>
   <object id="26" name="create npcs" type="event" x="32" y="0" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc tabanurse,5,4,nurse,stand"/>
+    <property name="act10" value="create_npc tabanurse,5,4,stand"/>
     <property name="cond10" value="not npc_exists tabanurse"/>
    </properties>
   </object>
@@ -92,8 +92,8 @@
   </object>
   <object id="29" name="Auto Healing Teleported" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_monster_health ,"/>
-    <property name="act2" value="set_monster_status ,"/>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
     <property name="act3" value="set_variable battle_last_result:none"/>
     <property name="cond1" value="is variable_set battle_last_result:lost"/>
    </properties>

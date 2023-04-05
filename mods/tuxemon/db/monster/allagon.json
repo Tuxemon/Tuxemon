@@ -47,6 +47,12 @@
             "monster_slug": "ferricran"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "wrougon",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "dragon",
     "stage": "stage1",
     "types": [

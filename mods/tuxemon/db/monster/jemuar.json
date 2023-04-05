@@ -49,6 +49,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "rockitten",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "rockat",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "hunter",
     "stage": "stage2",
     "types": [

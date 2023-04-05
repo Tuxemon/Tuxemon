@@ -35,6 +35,12 @@
             "monster_slug": "baobaraffe"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "baobaraffe",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "landrace",
     "stage": "basic",
     "types": [

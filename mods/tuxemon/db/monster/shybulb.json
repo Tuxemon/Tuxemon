@@ -31,6 +31,12 @@
             "monster_slug": "narcileaf"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "narcileaf",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "sprite",
     "stage": "basic",
     "types": [

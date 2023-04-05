@@ -39,7 +39,7 @@ class TypeCondition(ItemCondition):
                 )
                 if p is not None
             )
-        if target.types[1] is not None:
+        if len(target.types) > 1:
             ret = ret or any(
                 target.types[1] == p
                 for p in (

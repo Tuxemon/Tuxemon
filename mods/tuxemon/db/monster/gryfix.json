@@ -49,6 +49,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "flacono",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "corvix",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "flier",
     "stage": "stage2",
     "types": [

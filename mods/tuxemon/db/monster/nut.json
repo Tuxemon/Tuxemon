@@ -31,6 +31,16 @@
             "monster_slug": "bolt"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "bolt",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "arthrobolt",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "blob",
     "stage": "basic",
     "types": [

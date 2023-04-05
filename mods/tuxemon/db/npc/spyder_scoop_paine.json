@@ -6,23 +6,5 @@
       "combat_front": "nurse",
       "slug": "nurse"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Possessun",
-      "level": 35,
-      "slug": "possessun",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Cairfrey",
-      "level": 30,
-      "slug": "cairfrey",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

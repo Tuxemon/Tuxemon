@@ -37,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "chenipode",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "grub",
     "stage": "stage1",
     "types": [

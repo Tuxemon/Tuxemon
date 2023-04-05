@@ -49,6 +49,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "fluoresfin",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "incandesfin",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "leviathan",
     "stage": "stage2",
     "types": [

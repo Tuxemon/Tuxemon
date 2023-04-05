@@ -53,6 +53,7 @@
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "landrace",
     "stage": "standalone",
     "types": [

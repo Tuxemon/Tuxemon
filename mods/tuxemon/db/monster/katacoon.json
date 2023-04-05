@@ -44,6 +44,12 @@
             "stat2": "melee"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "katapill",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "grub",
     "stage": "stage1",
     "types": [

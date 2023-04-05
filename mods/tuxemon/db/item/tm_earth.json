@@ -1,6 +1,6 @@
 {
   "conditions": [
-    "type target,earth"
+    "is type earth"
   ],
   "effects": [],
   "slug": "tm_earth",

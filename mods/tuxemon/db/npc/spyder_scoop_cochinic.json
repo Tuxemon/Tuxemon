@@ -6,15 +6,5 @@
       "combat_front": "cochini",
       "slug": "noclass"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Cochini",
-      "level": 30,
-      "slug": "cochini",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

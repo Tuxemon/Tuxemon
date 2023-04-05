@@ -47,6 +47,12 @@
             "monster_slug": "dragarbor"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "chloragon",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "dragon",
     "stage": "stage1",
     "types": [

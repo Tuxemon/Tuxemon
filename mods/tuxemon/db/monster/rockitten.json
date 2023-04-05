@@ -31,6 +31,16 @@
             "monster_slug": "rockat"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "rockat",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "jemuar",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "hunter",
     "stage": "basic",
     "types": [

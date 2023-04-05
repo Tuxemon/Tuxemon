@@ -31,6 +31,12 @@
             "monster_slug": "shnark"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "shnark",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "aquatic",
     "stage": "basic",
     "types": [

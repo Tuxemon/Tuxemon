@@ -37,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "shybulb",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "blob",
     "stage": "stage1",
     "types": [

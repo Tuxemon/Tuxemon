@@ -43,6 +43,12 @@
             "monster_slug": "tobishimi"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "drashimi",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "dragon",
     "stage": "stage1",
     "types": [

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="taba_ba_br_1"/>
+ </properties>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYICAQlEGhnNE4mJRBgwwHyj2h0g8H4d+LTHiMC79+5iIw8j6YX66RIL+i0hhAfMTgxjx+v8j6YP5SY8E/bpIYeHCysDgzAqhidXvBFTryAqhi4C4EEoTq78AqDafFUKTY38hlvAjNf7Qw49U/TB9lKYfGEBOE4TwJSz6kdMEIcwghqlfl8i8A0trMAAAPRWdNQ==
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjFQAAAQAAAE=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjFQAAAQAAAE=
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B8cE4UgotFB9olo4AcAAAEsQJP
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collisions">
+  <object id="1" type="collision" x="32" y="0" width="192" height="48"/>
+  <object id="2" type="collision" x="208" y="48" width="16" height="64"/>
+  <object id="3" type="collision" x="224" y="64" width="32" height="48"/>
+  <object id="4" type="collision" x="32" y="144" width="16" height="112"/>
+  <object id="5" type="collision" x="48" y="208" width="176" height="48"/>
+  <object id="6" type="collision" x="208" y="144" width="48" height="48"/>
+  <object id="7" type="collision" x="208" y="192" width="16" height="16"/>
+  <object id="18" type="collision" x="32" y="48" width="16" height="64"/>
+  <object id="26" type="collision" x="0" y="64" width="32" height="48"/>
+  <object id="27" type="collision" x="0" y="144" width="32" height="48"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="8" name="back to passageway" type="event" x="240" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_passageway_1.tmx,1,16,0.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="10" name="back to passageway2" type="event" x="240" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_passageway_1.tmx,1,17,0.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="12" name="create guards" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc omnigrunt7,13,7,stand"/>
+    <property name="act2" value="create_npc omnigrunt8,13,8,stand"/>
+    <property name="act3" value="npc_face omnigrunt7,right"/>
+    <property name="act4" value="npc_face omnigrunt8,right"/>
+    <property name="cond1" value="not variable_set jason:gone"/>
+    <property name="cond2" value="not npc_exists omnigrunt7"/>
+    <property name="cond3" value="not npc_exists omnigrunt8"/>
+   </properties>
+  </object>
+  <object id="13" name="start battle?" type="event" x="224" y="112" width="16" height="32">
+   <properties>
+    <property name="act1" value="translated_dialog areyoureadytorumble"/>
+    <property name="act2" value="translated_dialog_choice yes:no,choicechosen"/>
+    <property name="act3" value="set_variable choose:chose"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not variable_set choose:chose"/>
+    <property name="cond5" value="not variable_set movealong:now"/>
+   </properties>
+  </object>
+  <object id="14" name="choice-no" type="event" x="208" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog areyoureadytorumbleno"/>
+    <property name="act2" value="set_variable choose:no"/>
+    <property name="cond1" value="is variable_set choicechosen:no"/>
+    <property name="cond2" value="not variable_set choose:no"/>
+   </properties>
+  </object>
+  <object id="15" name="choice-yes" type="event" x="208" y="16" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog areyoureadytorumbleyes"/>
+    <property name="act11" value="set_monster_health"/>
+    <property name="act12" value="set_monster_status"/>
+    <property name="act13" value="play_sound sound_confirm"/>
+    <property name="act14" value="wait 0.5"/>
+    <property name="act15" value="translated_dialog areyoureadytorumbleyes2"/>
+    <property name="act20" value="set_variable choose:yes"/>
+    <property name="act30" value="set_variable movealong:now"/>
+    <property name="cond1" value="is variable_set choicechosen:yes"/>
+    <property name="cond2" value="not variable_set movealong:now"/>
+   </properties>
+  </object>
+  <object id="16" name="get acolyte" type="event" x="112" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="lock_controls"/>
+    <property name="act20" value="npc_move omnigrunt8,left 13"/>
+    <property name="act21" value="remove_npc omnigrunt8"/>
+    <property name="act40" value="wait 3"/>
+    <property name="act50" value="npc_face omnigrunt7,left"/>
+    <property name="act60" value="wait 2"/>
+    <property name="act70" value="translated_dialog uhhjason"/>
+    <property name="act80" value="wait 2"/>
+    <property name="act90" value="npc_face omnigrunt7,down"/>
+    <property name="act91" value="wait 0.7"/>
+    <property name="act92" value="translated_dialog uhhjason2"/>
+    <property name="act93" value="wait 0.3"/>
+    <property name="act94" value="npc_move omnigrunt7,left 6"/>
+    <property name="act95" value="translated_dialog uhhjason3"/>
+    <property name="act96" value="wait 0.5"/>
+    <property name="act97" value="npc_move omnigrunt7, left 7"/>
+    <property name="act98" value="remove_npc omnigrunt7"/>
+    <property name="act99" value="unlock_controls"/>
+    <property name="act999" value="set_variable jason:gone"/>
+    <property name="cond1" value="is variable_set movealong:now"/>
+    <property name="cond2" value="not variable_set jason:gone"/>
+   </properties>
+  </object>
+  <object id="19" name="move to middle" type="event" x="176" y="48" width="16" height="160">
+   <properties>
+    <property name="act10" value="lock_controls"/>
+    <property name="act11" value="wait 0.3"/>
+    <property name="act12" value="translated_dialog challenger"/>
+    <property name="act20" value="pathfind player,9,7"/>
+    <property name="act21" value="npc_face player,left"/>
+    <property name="act30" value="set_variable battledone:start"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="not variable_set battledone:yes"/>
+    <property name="cond3" value="not variable_set battledone:redo"/>
+   </properties>
+  </object>
+  <object id="20" name="start fight" type="event" x="144" y="16" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc acolyte,0,7,stand"/>
+    <property name="act11" value="npc_face acolyte,right"/>
+    <property name="act12" value="wait 1"/>
+    <property name="act20" value="pathfind acolyte,7,7"/>
+    <property name="act21" value="translated_dialog challenger2"/>
+    <property name="act22" value="wait 0.5"/>
+    <property name="act23" value="translated_dialog challenger3"/>
+    <property name="act30" value="wait 0.3"/>
+    <property name="act31" value="npc_face acolyte,up"/>
+    <property name="act32" value="wait 0.5"/>
+    <property name="act33" value="npc_face acolyte,down"/>
+    <property name="act34" value="wait 0.5"/>
+    <property name="act35" value="npc_face acolyte,right"/>
+    <property name="act36" value="translated_dialog challenger4"/>
+    <property name="act37" value="npc_face acolyte,left"/>
+    <property name="act38" value="wait 1"/>
+    <property name="act40" value="translated_dialog challenger5"/>
+    <property name="act41" value="npc_face acolyte,right"/>
+    <property name="act42" value="wait 0.4"/>
+    <property name="act43" value="translated_dialog challenger6"/>
+    <property name="act50" value="translated_dialog challenger7"/>
+    <property name="act55" value="add_monster chloragon,3,acolyte,80,100"/>
+    <property name="act60" value="start_battle acolyte"/>
+    <property name="act99" value="set_variable battledone:yes"/>
+    <property name="cond1" value="is variable_set battledone:start"/>
+   </properties>
+  </object>
+  <object id="21" name="won battle" type="event" x="176" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="wait 0.2"/>
+    <property name="act11" value="npc_face acolyte,left"/>
+    <property name="act12" value="wait 0.6"/>
+    <property name="act13" value="translated_dialog tabacongratsfirst"/>
+    <property name="act14" value="wait 1"/>
+    <property name="act20" value="npc_face acolyte,right"/>
+    <property name="act21" value="wait 0.2"/>
+    <property name="act22" value="translated_dialog tabacongratsfirst2"/>
+    <property name="act23" value="translated_dialog tabacongratsfirst3"/>
+    <property name="act24" value="unlock_controls"/>
+    <property name="act97" value="set_variable opentwo:yes"/>
+    <property name="act98" value="set_variable close1:yes"/>
+    <property name="act99" value="set_variable acolyte1:done"/>
+    <property name="cond1" value="not variable_set acolyte1:done"/>
+    <property name="cond2" value="is variable_set battle_last_trainer:acolyte"/>
+    <property name="cond3" value="is variable_set battle_last_result:won"/>
+    <property name="cond4" value="not variable_set redo:please"/>
+    <property name="cond5" value="is variable_set battledone:yes"/>
+   </properties>
+  </object>
+  <object id="22" name="lost battle" type="event" x="176" y="16" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog acolyte1loss"/>
+    <property name="act20" value="wait 0.5"/>
+    <property name="act21" value="screen_transition 3"/>
+    <property name="act30" value="teleport_faint"/>
+    <property name="act40" value="set_variable redo:please"/>
+    <property name="act50" value="unlock_controls"/>
+    <property name="cond1" value="is variable_set battle_last_result:lost"/>
+    <property name="cond2" value="is variable_set battle_last_trainer:acolyte"/>
+    <property name="cond4" value="not variable_set redo:please"/>
+    <property name="cond5" value="is variable_set battledone:yes"/>
+   </properties>
+  </object>
+  <object id="23" name="redo" type="event" x="96" y="32" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc acolyte,7,7,stand"/>
+    <property name="act11" value="npc_face acolyte,right"/>
+    <property name="act12" value="set_variable battledone:redo"/>
+    <property name="cond1" value="is variable_set redo:please"/>
+    <property name="cond2" value="not npc_exists acolyte"/>
+   </properties>
+  </object>
+  <object id="24" name="move to middle redo" type="event" x="176" y="48" width="16" height="160">
+   <properties>
+    <property name="act10" value="lock_controls"/>
+    <property name="act11" value="wait 0.3"/>
+    <property name="act12" value="pathfind player,9,7"/>
+    <property name="act13" value="npc_face player,left"/>
+    <property name="act20" value="translated_dialog acolyte1redo"/>
+    <property name="act30" value="add_monster chloragon,3,acolyte,80,100"/>
+    <property name="act40" value="start_battle acolyte"/>
+    <property name="act98" value="set_variable redo:finished"/>
+    <property name="act99" value="set_variable battledone:yes"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is variable_set battledone:redo"/>
+   </properties>
+  </object>
+  <object id="25" name="teleport to main" type="event" x="0" y="112" width="16" height="32">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_main.tmx,1,6,1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -31,6 +31,12 @@
             "monster_slug": "statursus"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "statursus",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "humanoid",
     "stage": "basic",
     "types": [

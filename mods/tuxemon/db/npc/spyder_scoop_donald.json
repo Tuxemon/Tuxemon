@@ -6,31 +6,5 @@
       "combat_front": "cooldude",
       "slug": "cooldude"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Birdling",
-      "level": 35,
-      "slug": "birdling",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Pigabyte",
-      "level": 35,
-      "slug": "pigabyte",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Zunna",
-      "level": 35,
-      "slug": "zunna",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

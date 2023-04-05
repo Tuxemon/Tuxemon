@@ -32,6 +32,28 @@
             "monster_slug": "mk01_beta"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "mk01_alpha",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "mk01_beta",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "mk01_gamma",
+            "evo_stage": "stage2"
+        },
+        {
+            "mon_slug": "mk01_omega",
+            "evo_stage": "stage2"
+        },
+        {
+            "mon_slug": "mk01_delta",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "dragon",
     "stage": "basic",
     "types": [

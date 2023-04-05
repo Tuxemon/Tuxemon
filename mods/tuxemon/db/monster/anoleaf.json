@@ -31,6 +31,16 @@
             "monster_slug": "gectile"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "gectile",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "velocitile",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "varmint",
     "stage": "basic",
     "types": [

@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "buff_rage",
   "effects": [
-    "enhance",
-    "enraged user"
+    "enraged user",
+    "enhance"
   ],
   "flip_axes": "",
   "healing_power": 0,
@@ -19,11 +19,11 @@
   "slug": "fume",
   "sort": "damage",
   "target": {
-    "enemy monster": 2,
+    "enemy monster": 0,
     "enemy team": 0,
     "enemy trainer": 0,
     "item": 0,
-    "own monster": 0,
+    "own monster": 2,
     "own team": 0,
     "own trainer": 0
   },

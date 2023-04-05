@@ -31,6 +31,12 @@
             "monster_slug": "exclawvate"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "exclawvate",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "blob",
     "stage": "basic",
     "types": [

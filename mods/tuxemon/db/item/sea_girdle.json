@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "level target,>=,0",
-    "has_path target,sea_girdle"
+    "is level >=,0",
+    "is has_path sea_girdle"
   ],
   "effects": [
     "evolve sea_girdle"

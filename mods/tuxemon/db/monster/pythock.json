@@ -41,6 +41,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "snock",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

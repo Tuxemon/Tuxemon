@@ -43,6 +43,12 @@
             "monster_slug": "moloch"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "lambert",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

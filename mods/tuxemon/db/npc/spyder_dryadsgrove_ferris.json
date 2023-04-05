@@ -6,31 +6,5 @@
       "combat_front": "metalnymph",
       "slug": "metalnymph"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Viviteel",
-      "level": 50,
-      "slug": "viviteel",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Allagon",
-      "level": 50,
-      "slug": "allagon",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Araignee",
-      "level": 50,
-      "slug": "araignee",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

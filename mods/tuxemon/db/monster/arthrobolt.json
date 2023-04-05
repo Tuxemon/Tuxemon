@@ -41,6 +41,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "nut",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "bolt",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "humanoid",
     "stage": "stage2",
     "types": [

@@ -43,6 +43,12 @@
             "monster_slug": "velocitile"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "anoleaf",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

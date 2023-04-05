@@ -4,12 +4,12 @@ from __future__ import annotations
 
 import math
 from functools import partial
-from typing import Any, Callable, Sequence
+from typing import Any, Callable, List, Sequence
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.baseimage import POSITION_CENTER
-from pygame_menu.widgets.selection import HighlightSelection
+from pygame_menu.locals import POSITION_CENTER
+from pygame_menu.widgets.selection.highlight import HighlightSelection
 from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
 from tuxemon import prepare, tools
@@ -75,7 +75,7 @@ class NuPhone(PygameMenuState):
         ]
 
         # menu
-        network = ["town", "center", "shop"]
+        network = ["town", "clinic", "shop"]
         desc = T.translate("nu_phone")
         if local_session.client.map_type in network:
             desc = T.translate("omnichannel_mobile")
@@ -415,7 +415,7 @@ class NuPhoneMap(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-        menu.add.label(
+        lab1 = menu.add.label(
             title=T.translate("leather_town"),
             selectable=True,
             float=True,
@@ -423,11 +423,13 @@ class NuPhoneMap(PygameMenuState):
             selection_color=(232, 48, 48),
             font_size=20,
             background_color=(232, 48, 48),
-        ).translate(
+        )
+        assert not isinstance(lab1, List)
+        lab1.translate(
             fix_width(menu._width, 0.20), fix_height(menu._height, -0.03)
         )
 
-        menu.add.label(
+        lab2 = menu.add.label(
             title=T.translate("cotton_town"),
             selectable=True,
             float=True,
@@ -435,11 +437,13 @@ class NuPhoneMap(PygameMenuState):
             selection_color=(232, 48, 48),
             font_size=20,
             background_color=(232, 48, 48),
-        ).translate(
+        )
+        assert not isinstance(lab2, List)
+        lab2.translate(
             fix_width(menu._width, 0.20), fix_height(menu._height, 0.08)
         )
 
-        menu.add.label(
+        lab3 = menu.add.label(
             title=T.translate("paper_town"),
             selectable=True,
             float=True,
@@ -447,11 +451,13 @@ class NuPhoneMap(PygameMenuState):
             selection_color=(232, 48, 48),
             font_size=20,
             background_color=(232, 48, 48),
-        ).translate(
+        )
+        assert not isinstance(lab3, List)
+        lab3.translate(
             fix_width(menu._width, 0.20), fix_height(menu._height, 0.18)
         )
 
-        menu.add.label(
+        lab4 = menu.add.label(
             title=T.translate("candy_town"),
             selectable=True,
             float=True,
@@ -459,11 +465,13 @@ class NuPhoneMap(PygameMenuState):
             selection_color=(232, 48, 48),
             font_size=20,
             background_color=(232, 48, 48),
-        ).translate(
+        )
+        assert not isinstance(lab4, List)
+        lab4.translate(
             fix_width(menu._width, -0.20), fix_height(menu._height, 0.18)
         )
 
-        menu.add.label(
+        lab5 = menu.add.label(
             title=T.translate("timber_town"),
             selectable=True,
             float=True,
@@ -471,11 +479,13 @@ class NuPhoneMap(PygameMenuState):
             selection_color=(232, 48, 48),
             font_size=20,
             background_color=(232, 48, 48),
-        ).translate(
+        )
+        assert not isinstance(lab5, List)
+        lab5.translate(
             fix_width(menu._width, -0.20), fix_height(menu._height, -0.03)
         )
 
-        menu.add.label(
+        lab6 = menu.add.label(
             title=T.translate("flower_city"),
             selectable=True,
             float=True,
@@ -483,7 +493,9 @@ class NuPhoneMap(PygameMenuState):
             selection_color=(232, 48, 48),
             font_size=20,
             background_color=(232, 48, 48),
-        ).translate(
+        )
+        assert not isinstance(lab6, List)
+        lab6.translate(
             fix_width(menu._width, -0.15), fix_height(menu._height, -0.15)
         )
         # menu

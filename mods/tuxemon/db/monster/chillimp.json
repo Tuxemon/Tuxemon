@@ -31,6 +31,12 @@
             "monster_slug": "snowrilla"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "snowrilla",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "brute",
     "stage": "basic",
     "types": [

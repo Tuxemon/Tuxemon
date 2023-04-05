@@ -37,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "snaki",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

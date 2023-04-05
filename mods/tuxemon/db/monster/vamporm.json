@@ -31,6 +31,16 @@
             "monster_slug": "dracune"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "dracune",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "fluttaflap",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "grub",
     "stage": "basic",
     "types": [

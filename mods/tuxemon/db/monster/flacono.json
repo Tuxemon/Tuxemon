@@ -31,6 +31,16 @@
             "monster_slug": "corvix"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "corvix",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "gryfix",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "flier",
     "stage": "basic",
     "types": [

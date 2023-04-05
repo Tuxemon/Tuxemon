@@ -49,6 +49,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "drashimi",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "tsushimi",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "dragon",
     "stage": "stage2",
     "types": [

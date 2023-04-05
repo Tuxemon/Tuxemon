@@ -50,6 +50,16 @@
             "item": "sea_girdle"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "bigfin",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "sharpfin",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "aquatic",
     "stage": "basic",
     "types": [

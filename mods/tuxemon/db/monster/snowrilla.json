@@ -37,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "chillimp",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "brute",
     "stage": "stage1",
     "types": [

@@ -31,6 +31,12 @@
             "monster_slug": "tikorch"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "tikorch",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "blob",
     "stage": "basic",
     "types": [

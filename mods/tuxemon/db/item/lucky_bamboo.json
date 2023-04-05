@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "level target,>=,0",
-    "has_path target,lucky_bamboo"
+    "is level >=,0",
+    "is has_path lucky_bamboo"
   ],
   "effects": [
     "evolve lucky_bamboo"

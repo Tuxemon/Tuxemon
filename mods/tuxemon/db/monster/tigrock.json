@@ -41,6 +41,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "grimachin",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "hunter",
     "stage": "stage1",
     "types": [

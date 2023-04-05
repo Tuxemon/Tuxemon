@@ -53,6 +53,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "embra",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "brute",
     "stage": "stage1",
     "types": [

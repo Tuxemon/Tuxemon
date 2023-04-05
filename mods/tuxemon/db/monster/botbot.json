@@ -56,6 +56,28 @@
             "item": "booster_tech"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "b_ver_1",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "k9",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "mrmoswitch",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "picc",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "av8r",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "grub",
     "stage": "basic",
     "types": [

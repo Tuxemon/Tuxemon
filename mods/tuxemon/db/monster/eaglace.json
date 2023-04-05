@@ -49,6 +49,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "tweesher",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "heronquak",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "flier",
     "stage": "stage2",
     "types": [

@@ -35,6 +35,12 @@
             "monster_slug": "pythock"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "pythock",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "serpent",
     "stage": "basic",
     "types": [

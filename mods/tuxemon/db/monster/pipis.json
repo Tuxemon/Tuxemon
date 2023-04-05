@@ -31,6 +31,12 @@
             "monster_slug": "strella"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "strella",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "flier",
     "stage": "basic",
     "types": [

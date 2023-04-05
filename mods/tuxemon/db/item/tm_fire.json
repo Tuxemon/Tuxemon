@@ -1,6 +1,6 @@
 {
   "conditions": [
-    "type target,fire"
+    "is type fire"
   ],
   "effects": [],
   "slug": "tm_fire",

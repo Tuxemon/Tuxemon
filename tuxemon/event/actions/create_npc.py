@@ -38,7 +38,6 @@ class CreateNpcAction(EventAction):
     npc_slug: str
     tile_pos_x: int
     tile_pos_y: int
-    animations: Union[str, None] = None
     behavior: Union[str, None] = None
 
     def start(self) -> None:
@@ -51,14 +50,6 @@ class CreateNpcAction(EventAction):
         # Ensure that the NPC doesn't already exist on the map.
         if slug in world.npcs:
             return
-
-        sprite = self.animations
-        if sprite:
-            logger.warning(
-                "%s: setting npc sprites within a map is deprecated, and may be removed in the future. "
-                "Sprites should be defined in JSON before loading.",
-                slug,
-            )
 
         # Create a new NPC object
         npc = NPC(slug, world=world)

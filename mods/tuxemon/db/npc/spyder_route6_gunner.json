@@ -6,23 +6,5 @@
       "combat_front": "enforcer_rookie",
       "slug": "enforcer_rookie"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Enduros",
-      "level": 20,
-      "slug": "enduros",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Viviteel",
-      "level": 20,
-      "slug": "viviteel",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

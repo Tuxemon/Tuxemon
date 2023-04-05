@@ -238,10 +238,13 @@
   </object>
   <object id="192" name="Talk Frances" type="event" x="512" y="112" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route6_frances1"/>
-    <property name="act3" value="start_battle spyder_route6_frances"/>
-    <property name="act4" value="translated_dialog spyder_route6_frances2"/>
-    <property name="act6" value="set_variable route6frances:yes"/>
+    <property name="act1" value="translated_dialog spyder_route6_frances1"/>
+    <property name="act2" value="add_monster narcileaf,30,spyder_route6_frances,27,10"/>
+    <property name="act3" value="add_monster shybulb,30,spyder_route6_frances,27,10"/>
+    <property name="act4" value="add_monster shybulb,30,spyder_route6_frances,27,10"/>
+    <property name="act5" value="start_battle spyder_route6_frances"/>
+    <property name="act6" value="translated_dialog spyder_route6_frances2"/>
+    <property name="act7" value="set_variable route6frances:yes"/>
     <property name="behav1" value="talk spyder_route6_frances"/>
     <property name="cond1" value="not variable_set route6frances:yes"/>
    </properties>
@@ -255,9 +258,11 @@
   </object>
   <object id="194" name="Talk Ping" type="event" x="400" y="80" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route6_ping1"/>
-    <property name="act3" value="start_battle spyder_route6_ping"/>
-    <property name="act4" value="translated_dialog spyder_route6_ping2"/>
+    <property name="act1" value="translated_dialog spyder_route6_ping1"/>
+    <property name="act2" value="add_monster foofle,30,spyder_route6_ping,27,10"/>
+    <property name="act3" value="add_monster foofle,30,spyder_route6_ping,27,10"/>
+    <property name="act4" value="start_battle spyder_route6_ping"/>
+    <property name="act5" value="translated_dialog spyder_route6_ping2"/>
     <property name="act6" value="set_variable route6ping:yes"/>
     <property name="behav1" value="talk spyder_route6_ping"/>
     <property name="cond1" value="not variable_set route6ping:yes"/>
@@ -272,9 +277,11 @@
   </object>
   <object id="196" name="Talk Richard" type="event" x="416" y="160" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route6_richard1"/>
-    <property name="act3" value="start_battle spyder_route6_richard"/>
-    <property name="act4" value="translated_dialog spyder_route6_richard2"/>
+    <property name="act1" value="translated_dialog spyder_route6_richard1"/>
+    <property name="act2" value="add_monster hydrone,30,spyder_route6_richard,27,10"/>
+    <property name="act3" value="add_monster pigabyte,30,spyder_route6_richard,27,10"/>
+    <property name="act4" value="start_battle spyder_route6_richard"/>
+    <property name="act5" value="translated_dialog spyder_route6_richard2"/>
     <property name="act6" value="set_variable route6richard:yes"/>
     <property name="behav1" value="talk spyder_route6_richard"/>
     <property name="cond1" value="not variable_set route6richard:yes"/>
@@ -289,9 +296,11 @@
   </object>
   <object id="198" name="Talk Blair" type="event" x="560" y="128" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route6_blair1"/>
-    <property name="act3" value="start_battle spyder_route6_blair"/>
-    <property name="act4" value="translated_dialog spyder_route6_blair2"/>
+    <property name="act1" value="translated_dialog spyder_route6_blair1"/>
+    <property name="act2" value="add_monster grintrock,30,spyder_route6_blair,27,10"/>
+    <property name="act3" value="add_monster grinflare,30,spyder_route6_blair,27,10"/>
+    <property name="act4" value="start_battle spyder_route6_blair"/>
+    <property name="act5" value="translated_dialog spyder_route6_blair2"/>
     <property name="act6" value="set_variable route6blair:yes"/>
     <property name="behav1" value="talk spyder_route6_blair"/>
     <property name="cond1" value="not variable_set route6blair:yes"/>
@@ -306,9 +315,11 @@
   </object>
   <object id="200" name="Talk Maxwell" type="event" x="160" y="96" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route6_maxwell1"/>
-    <property name="act3" value="start_battle spyder_route6_maxwell"/>
-    <property name="act4" value="translated_dialog spyder_route6_maxwell2"/>
+    <property name="act1" value="translated_dialog spyder_route6_maxwell1"/>
+    <property name="act2" value="add_monster propellercat,30,spyder_route6_maxwell,27,10"/>
+    <property name="act3" value="add_monster birdling,30,spyder_route6_maxwell,27,10"/>
+    <property name="act4" value="start_battle spyder_route6_maxwell"/>
+    <property name="act5" value="translated_dialog spyder_route6_maxwell2"/>
     <property name="act6" value="set_variable route6maxwell:yes"/>
     <property name="behav1" value="talk spyder_route6_maxwell"/>
     <property name="cond1" value="not variable_set route6maxwell:yes"/>
@@ -323,9 +334,11 @@
   </object>
   <object id="202" name="Talk Orion" type="event" x="352" y="96" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route6_orion1"/>
-    <property name="act3" value="start_battle spyder_route6_orion"/>
-    <property name="act4" value="translated_dialog spyder_route6_orion2"/>
+    <property name="act1" value="translated_dialog spyder_route6_orion1"/>
+    <property name="act2" value="add_monster spighter,20,spyder_route6_orion,27,10"/>
+    <property name="act3" value="add_monster zunna,30,spyder_route6_orion,27,10"/>
+    <property name="act4" value="start_battle spyder_route6_orion"/>
+    <property name="act5" value="translated_dialog spyder_route6_orion2"/>
     <property name="act6" value="set_variable route6orion:yes"/>
     <property name="behav1" value="talk spyder_route6_orion"/>
     <property name="cond1" value="not variable_set route6orion:yes"/>
@@ -340,7 +353,8 @@
   </object>
   <object id="204" name="Talk Mungo" type="event" x="528" y="64" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route6_mungo1"/>
+    <property name="act1" value="translated_dialog spyder_route6_mungo1"/>
+    <property name="act2" value="add_monster noctula,20,spyder_route6_mungo,27,10"/>
     <property name="act3" value="start_battle spyder_route6_mungo"/>
     <property name="act4" value="translated_dialog spyder_route6_mungo2"/>
     <property name="act6" value="set_variable route6mungo:yes"/>
@@ -357,7 +371,8 @@
   </object>
   <object id="206" name="Talk Rigel" type="event" x="448" y="240" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route6_rigel1"/>
+    <property name="act1" value="translated_dialog spyder_route6_rigel1"/>
+    <property name="act2" value="add_monster ignibus,30,spyder_route6_rigel,27,10"/>
     <property name="act3" value="start_battle spyder_route6_rigel"/>
     <property name="act4" value="translated_dialog spyder_route6_rigel2"/>
     <property name="act6" value="set_variable route6rigel:yes"/>
@@ -374,9 +389,11 @@
   </object>
   <object id="208" name="Talk Gunner" type="event" x="464" y="272" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route6_gunner1"/>
-    <property name="act3" value="start_battle spyder_route6_gunner"/>
-    <property name="act4" value="translated_dialog spyder_route6_gunner2"/>
+    <property name="act1" value="translated_dialog spyder_route6_gunner1"/>
+    <property name="act2" value="add_monster enduros,20,spyder_route6_gunner,27,10"/>
+    <property name="act3" value="add_monster viviteel,20,spyder_route6_gunner,27,10"/>
+    <property name="act4" value="start_battle spyder_route6_gunner"/>
+    <property name="act5" value="translated_dialog spyder_route6_gunner2"/>
     <property name="act6" value="set_variable route6gunner:yes"/>
     <property name="act90" value="pathfind spyder_route6_gunner,28,17"/>
     <property name="behav1" value="talk spyder_route6_gunner"/>
@@ -413,9 +430,11 @@
   </object>
   <object id="213" name="Talk Maxwell" type="event" x="96" y="80" width="64" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route6_maxwell1"/>
-    <property name="act3" value="start_battle spyder_route6_maxwell"/>
-    <property name="act4" value="translated_dialog spyder_route6_maxwell2"/>
+    <property name="act1" value="translated_dialog spyder_route6_maxwell1"/>
+    <property name="act2" value="add_monster propellercat,30,spyder_route6_maxwell,27,10"/>
+    <property name="act3" value="add_monster birdling,30,spyder_route6_maxwell,27,10"/>
+    <property name="act4" value="start_battle spyder_route6_maxwell"/>
+    <property name="act5" value="translated_dialog spyder_route6_maxwell2"/>
     <property name="act6" value="set_variable route6maxwell:yes"/>
     <property name="cond1" value="not variable_set route6maxwell:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -423,9 +442,11 @@
   </object>
   <object id="214" name="Talk Orion" type="event" x="336" y="48" width="16" height="48">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route6_orion1"/>
-    <property name="act3" value="start_battle spyder_route6_orion"/>
-    <property name="act4" value="translated_dialog spyder_route6_orion2"/>
+    <property name="act1" value="translated_dialog spyder_route6_orion1"/>
+    <property name="act2" value="add_monster spighter,20,spyder_route6_orion,27,10"/>
+    <property name="act3" value="add_monster zunna,30,spyder_route6_orion,27,10"/>
+    <property name="act4" value="start_battle spyder_route6_orion"/>
+    <property name="act5" value="translated_dialog spyder_route6_orion2"/>
     <property name="act6" value="set_variable route6orion:yes"/>
     <property name="cond1" value="not variable_set route6orion:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -433,9 +454,11 @@
   </object>
   <object id="215" name="Talk Richard" type="event" x="432" y="176" width="64" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route6_richard1"/>
-    <property name="act3" value="start_battle spyder_route6_richard"/>
-    <property name="act4" value="translated_dialog spyder_route6_richard2"/>
+    <property name="act1" value="translated_dialog spyder_route6_richard1"/>
+    <property name="act2" value="add_monster hydrone,30,spyder_route6_richard,27,10"/>
+    <property name="act3" value="add_monster pigabyte,30,spyder_route6_richard,27,10"/>
+    <property name="act4" value="start_battle spyder_route6_richard"/>
+    <property name="act5" value="translated_dialog spyder_route6_richard2"/>
     <property name="act6" value="set_variable route6richard:yes"/>
     <property name="cond1" value="not variable_set route6richard:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -443,9 +466,11 @@
   </object>
   <object id="216" name="Talk Blair" type="event" x="496" y="144" width="64" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route6_blair1"/>
-    <property name="act3" value="start_battle spyder_route6_blair"/>
-    <property name="act4" value="translated_dialog spyder_route6_blair2"/>
+    <property name="act1" value="translated_dialog spyder_route6_blair1"/>
+    <property name="act2" value="add_monster grintrock,30,spyder_route6_blair,27,10"/>
+    <property name="act3" value="add_monster grinflare,30,spyder_route6_blair,27,10"/>
+    <property name="act4" value="start_battle spyder_route6_blair"/>
+    <property name="act5" value="translated_dialog spyder_route6_blair2"/>
     <property name="act6" value="set_variable route6blair:yes"/>
     <property name="cond1" value="not variable_set route6blair:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -453,7 +478,8 @@
   </object>
   <object id="217" name="Talk Mungo" type="event" x="464" y="48" width="48" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route6_mungo1"/>
+    <property name="act1" value="translated_dialog spyder_route6_mungo1"/>
+    <property name="act2" value="add_monster noctula,20,spyder_route6_mungo,27,10"/>
     <property name="act3" value="start_battle spyder_route6_mungo"/>
     <property name="act4" value="translated_dialog spyder_route6_mungo2"/>
     <property name="act6" value="set_variable route6mungo:yes"/>

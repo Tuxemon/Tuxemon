@@ -39,6 +39,12 @@
             "monster_slug": "qetzlrokilus"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "qetzlrokilus",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "flier",
     "stage": "basic",
     "types": [

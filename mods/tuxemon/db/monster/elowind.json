@@ -43,6 +43,12 @@
             "monster_slug": "elostorm"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "elofly",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "flier",
     "stage": "stage1",
     "types": [

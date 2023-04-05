@@ -6,55 +6,5 @@
       "combat_front": "fisher",
       "slug": "fisher"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Nudiflot",
-      "level": 8,
-      "slug": "nudiflot_male",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Nudiflot",
-      "level": 8,
-      "slug": "nudiflot_female",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Nudiflot",
-      "level": 8,
-      "slug": "nudiflot_male",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Nudiflot",
-      "level": 8,
-      "slug": "nudiflot_female",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Nudiflot",
-      "level": 8,
-      "slug": "nudiflot_male",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Nudiflot",
-      "level": 8,
-      "slug": "nudiflot_female",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

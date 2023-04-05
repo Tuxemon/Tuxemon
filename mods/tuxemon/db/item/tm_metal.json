@@ -1,6 +1,6 @@
 {
   "conditions": [
-    "type target,metal"
+    "is type metal"
   ],
   "effects": [],
   "slug": "tm_metal",

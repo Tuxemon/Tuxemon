@@ -6,15 +6,5 @@
       "combat_front": "beachgoer",
       "slug": "beachgoer"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Nudikill",
-      "level": 27,
-      "slug": "nudikill",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

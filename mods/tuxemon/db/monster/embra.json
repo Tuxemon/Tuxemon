@@ -23,6 +23,12 @@
             "monster_slug": "ruption"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "ruption",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "blob",
     "stage": "basic",
     "types": [

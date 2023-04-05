@@ -6,23 +6,5 @@
       "combat_front": "yellowbelt",
       "slug": "yellowbelt"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Elowind",
-      "level": 36,
-      "slug": "elowind",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Cardiwing",
-      "level": 36,
-      "slug": "cardiwing",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

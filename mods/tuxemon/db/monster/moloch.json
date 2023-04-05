@@ -41,6 +41,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "lambert",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "legko",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "brute",
     "stage": "stage2",
     "types": [

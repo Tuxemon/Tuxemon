@@ -23,6 +23,12 @@
             "monster_slug": "snokari"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "snokari",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "serpent",
     "stage": "basic",
     "types": [

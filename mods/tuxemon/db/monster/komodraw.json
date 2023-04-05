@@ -53,8 +53,9 @@
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "humanoid",
-    "stage": "standalone",
+    "stage": "basic",
     "types": [
         "fire"
     ],

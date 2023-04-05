@@ -25,12 +25,12 @@
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHdmEtu1EAURWtIp2GQiAniE5o5gSUwYMRPSJBdMA8dQGIhEIkZ30UAi+A3aiFYR+4VvuL2k122y24cUdLtV65yvXf8yi6Xe7ad0iloNqFNVYkcbN4D11WIdvdcen4JughdgM5D3q/zxrbii37VLnsPPHehO9Bt6BakvpNgn4HnKfQEOoSWELk+3ODvNEVzzujvwfMOegu9gV5Dovo1T+nhmT/6jbofq73NclzfojnnuB/g+Q59g75CXyD5uw42lT3U/VjtbZbj+hbPX26s85TyPajy73m+VtPmefb85eZsv7r2Gez8dEpb0Lxqy11XSR+vwxnlw3OktmiZu/tgo7qcH8d3PfZ7QXlTjnI+OK7P+TlfuT7n65MH5r7LdeRid+kr5XPfvBe3Kg29F1cL94z3GfyqtOXPOcRDy+dk6L2Y8y0+PoseN9adQzxueT+Wzjnz5L5UF5us2pusnglfu1Tvw/Yo/V3zGbtuTaRfX19ysUsYdM1DbO7+O9hJ6TG0hKYoegcoNu+/n/bufgGul9CR8b0Kz5fGjm0jm/z7M/wRXJ+gz8an8zZtfV49lvN5+6brh2fXI5w0vnW69XXZ+6bKnzOwPlb+lmFeYpzS47H4SuO3jRvCF9f+tlgl/UP4SuL1HUO+uJehj//h+Vhc6ZuN/Pk3w16BZ085v6vLJMgX8i1q3qU+v017Ru0Lh+6Vc4Rdvt2aciy/m/y2ZIzIGPe/bXz0sWlGZ/C5ZWzv43FTieOazitpdwbG8feV9+V8/0s+cmgPGvnq9v/836TPd0fuOuv6nCHmwfs4NvbX+YttRwP3D84Q43tfVz7lPnKWHjtD/P7l966XyO99dfW29VPrKG3TWup8dTG8LfK7/7p6vD73FetNvvv4iD67Hq9GeF8fAw53ho0=
+   eAHNmE1uFDEQhb1kMqAEhJAQhDDsCRyBBSv+hATcgn2YABIHgUjs+D0EcAj+ViMEe26QV0o/8aZku9t2DxNLL+V2tau+ru52ezI5HcIJaLJGG7rmOWx4F1xXIbM758OLS9A2dBG6AKmf541tyefjcpz2HnjuQneg29AtiL7jYJ+D5xn0FNqH5pBxfbxhf9fTeM8t+wfwvIfeQW+hNxCpfk9DeHjqSH/Q12OO91mbV9p4z23eT/D8gL5D36CvEONdBxvbLvp6zPE+a/NKm9YvN1d5avkedPXXOl+LjGmdtX65e/aou/YJ7PRkCBvQtBvLXVeNz65DGRlDa8Qxb61298FmGnK+nz/0WJ8F1o01ysWweSXn52LlfMpXUger/ZDryOUe4qvl09j2LG50an0WFzONjO8Z4rL11U85yGPW3pPWZzEXm3z2Lmpe31cO8qi157H2nludNBb7ZKPleMryndC1i/0Stsfh35pvuWNrosXV9SWXu4aB19xic8/f3pkQnkBzaB2N3wDmtufvl3y7X4LrFXQgfK/d+8W5Y1vPxvj6Dn8C12foi/DxvFVbva+aS/l0fNX9/bPLGY4b3zLd8rqsvnXVTxmsP1b95u6++Dy1x2Px1ebvm9fC59f+vlw1/ha+mnylc4zP72Usxv98P/5upqlb6je7ko5b47np9goWo4WvhkHnLC7rUbxvfLPIt1Tvb2rPyH1h6145TnY0OuS3W6rGjLvK35aWwzP6/W8fn8VYNaMy6L213Oqz41Tz81Ln1Ywrg+XR75X6crFjfOe2QjC1NmVgHu5B1Wd5Yvt/+79Jye+OUl5lIB9jqM/GvJ/n5exB4/5BGXx+9Q3lY+1zzCU+ZfC/f+33rjbPr75Yv2/95DpqNrWWKl8sh455fo0f6/vr01i+n4pdEsPHHHq8GOF7fQiO94fZ
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHNmEtu1EAQhnuFiJDCJGTCdi4AK8iKO7BigdjANSIIOQEcIQ8hOAWwIAkC8TgI4nEE6pf9J7+KqrY7sZi0VG67u1z1+e+HPVPK8suttVJum13WctXYVpbE937WqfKuryONqN+UnMzLGnn1POLI2shFzsxvWe3kImf0nOz7H4zIHzGQM2Ko9UX+Udv+Ril7zg7seooyVr/s2cF2aHbk7KNdn5cRucjVol/E+Mw4npr5cmxtYKSuraw1rpvz8vie2RMzn9dfg+Mk4IMf+qhr5vMhuFf1QxzP83mO1lK+9HV3df7jneul3DXbMtsOeKLIXr+vjSycH1Fs3/bQuFAe9XV3FR+hHcrY+PTj3OO1Pp+u32ietfIhF+MzH+uMg+28r3vK7qjzLFq3rXyqH/OxrnEoU3YerecWPsYlD6+nqqfi43iO5fpxpex637fX/m0b4vtpa+RVb7+S9aLzjzmjXOwbqnV94F3i9zod39fCtGHrIGNs1c8z2t59WnR9eDY4ZXzoeyO8uGaJ5p/mpB9qaru3Xsq+2YHZ2IK9eWu188b+t26a/RGmiA/ftDX9MNci1iPjOjY7GcmnbCDk/qxjHPHBN9IP7VHh+wnvqBajbozZwuf1qzH4PMzXUs9sjHf7cc30w7pl8fpxDrN/ylrZEDfj05yq3wPbE1r5kPO56THGqBvyY/+bi05j518rH+eSPjPPa3uwagf/jE/1g9/OSC2ol2qC+7UoA/bg0/eFaa7a4Z6IL3p/aPyLnivfUKyID/d4/TQO+1hrX3auY+o1yu75bWN2Q+ai+vn1G/XRR9e9+ul5pBnyf6pYxoa4Q9qwH2xDfH5NkjsbO/azxveF/+6mNvRBrRzsx7tQ29Wf55l2NX14L38/R98V9GFd04p60ldr5eOYRmz6HcbfxdH3GGJHmtT4qGd0H75JNnuLuJCPOvH3MOuabj4XNfLtiH+RQrYay5j41GiMb4tP7T+GLI7X6MWilJdml7V8M7bvZihg9/xdT9txihj8f/j+4iy3xl1L2s+8h8+YY9iz82B+1midLbo+f1xN2tVP42h7dp75a/tftqbhDg==
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -408,11 +408,15 @@
   </object>
   <object id="593" name="Zoolander Talk" type="event" x="64" y="320" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route3_zoolander1"/>
-    <property name="act3" value="start_battle spyder_route3_zoolander"/>
-    <property name="act4" value="translated_dialog spyder_route3_zoolander2"/>
-    <property name="act5" value="add_item sledgehammer"/>
-    <property name="act6" value="set_variable zoolanderdefeat:yes"/>
+    <property name="act01" value="translated_dialog spyder_route3_zoolander1"/>
+    <property name="act02" value="add_monster eruptibus,14,spyder_route3_zoolander,27,10"/>
+    <property name="act03" value="add_monster rockat,14,spyder_route3_zoolander,27,10"/>
+    <property name="act04" value="add_monster forturtle,16,spyder_route3_zoolander,27,10"/>
+    <property name="act05" value="add_monster grinflare,16,spyder_route3_zoolander,27,10"/>
+    <property name="act06" value="start_battle spyder_route3_zoolander"/>
+    <property name="act07" value="translated_dialog spyder_route3_zoolander2"/>
+    <property name="act08" value="add_item sledgehammer"/>
+    <property name="act09" value="set_variable zoolanderdefeat:yes"/>
     <property name="behav1" value="talk spyder_route3_zoolander"/>
     <property name="cond1" value="not variable_set zoolanderdefeat:yes"/>
    </properties>
@@ -426,7 +430,8 @@
   </object>
   <object id="595" name="Rookie Talk" type="event" x="80" y="0" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route3_qqq1"/>
+    <property name="act1" value="translated_dialog spyder_route3_qqq1"/>
+    <property name="act2" value="add_monster cardiling,16,spyder_route3_qqq,27,10"/>
     <property name="act3" value="start_battle spyder_route3_qqq"/>
     <property name="act4" value="translated_dialog spyder_route3_qqq2"/>
     <property name="act6" value="set_variable ambushedbyqqq:yes"/>
@@ -445,9 +450,11 @@
   </object>
   <object id="597" name="Enforcer Talk" type="event" x="256" y="128" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route3_weaver1"/>
-    <property name="act3" value="start_battle spyder_route3_weaver"/>
-    <property name="act4" value="translated_dialog spyder_route3_weaver2"/>
+    <property name="act1" value="translated_dialog spyder_route3_weaver1"/>
+    <property name="act2" value="add_monster pythwire,12,spyder_route3_weaver,27,10"/>
+    <property name="act3" value="add_monster squabbit,12,spyder_route3_weaver,27,10"/>
+    <property name="act4" value="start_battle spyder_route3_weaver"/>
+    <property name="act5" value="translated_dialog spyder_route3_weaver2"/>
     <property name="act6" value="set_variable route3weaver:yes"/>
     <property name="behav1" value="talk spyder_route3_weaver"/>
     <property name="cond1" value="not variable_set route3weaver:yes"/>
@@ -565,7 +572,8 @@
   </object>
   <object id="612" name="Novak Talk" type="event" x="160" y="416" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route3_novak1"/>
+    <property name="act1" value="translated_dialog spyder_route3_novak1"/>
+    <property name="act2" value="add_monster elofly,13,spyder_route3_novak,27,10"/>
     <property name="act3" value="start_battle spyder_route3_novak"/>
     <property name="act4" value="translated_dialog spyder_route3_novak2"/>
     <property name="act6" value="set_variable route3novak:yes"/>
@@ -581,7 +589,8 @@
   </object>
   <object id="614" name="Curie Talk" type="event" x="496" y="496" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route3_curie1"/>
+    <property name="act1" value="translated_dialog spyder_route3_curie1"/>
+    <property name="act2" value="add_monster propellercat,13,spyder_route3_curie,27,10"/>
     <property name="act3" value="start_battle spyder_route3_curie"/>
     <property name="act4" value="translated_dialog spyder_route3_curie2"/>
     <property name="act6" value="set_variable route3curie:yes"/>
@@ -597,10 +606,16 @@
   </object>
   <object id="616" name="Connor Talk" type="event" x="304" y="16" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route3_connor1"/>
-    <property name="act3" value="start_battle spyder_route3_connor"/>
-    <property name="act4" value="translated_dialog spyder_route3_connor2"/>
-    <property name="act6" value="set_variable route3connor:yes"/>
+    <property name="act00" value="translated_dialog spyder_route3_connor1"/>
+    <property name="act01" value="add_monster weavifly,12,spyder_route3_connor,27,10"/>
+    <property name="act02" value="add_monster cataspike,8,spyder_route3_connor,27,10"/>
+    <property name="act03" value="add_monster cataspike,8,spyder_route3_connor,27,10"/>
+    <property name="act04" value="add_monster cataspike,8,spyder_route3_connor,27,10"/>
+    <property name="act05" value="add_monster cataspike,8,spyder_route3_connor,27,10"/>
+    <property name="act06" value="add_monster cataspike,8,spyder_route3_connor,27,10"/>
+    <property name="act07" value="start_battle spyder_route3_connor"/>
+    <property name="act08" value="translated_dialog spyder_route3_connor2"/>
+    <property name="act09" value="set_variable route3connor:yes"/>
     <property name="behav1" value="talk spyder_route3_connor"/>
     <property name="cond1" value="not variable_set route3connor:yes"/>
    </properties>
@@ -613,11 +628,17 @@
   </object>
   <object id="618" name="Talk Wanda" type="event" x="528" y="320" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route3_wanda1"/>
-    <property name="act3" value="start_battle spyder_route3_wanda"/>
-    <property name="act4" value="translated_dialog spyder_route3_wanda2"/>
-    <property name="act5" value="add_item fishing_rod"/>
-    <property name="act6" value="set_variable route3wanda:yes"/>
+    <property name="act01" value="translated_dialog spyder_route3_wanda1"/>
+    <property name="act02" value="add_monster nudiflot_male,8,spyder_route3_wanda,27,10"/>
+    <property name="act03" value="add_monster nudiflot_female,8,spyder_route3_wanda,27,10"/>
+    <property name="act04" value="add_monster nudiflot_male,8,spyder_route3_wanda,27,10"/>
+    <property name="act05" value="add_monster nudiflot_female,8,spyder_route3_wanda,27,10"/>
+    <property name="act06" value="add_monster nudiflot_male,8,spyder_route3_wanda,27,10"/>
+    <property name="act07" value="add_monster nudiflot_female,8,spyder_route3_wanda,27,10"/>
+    <property name="act08" value="start_battle spyder_route3_wanda"/>
+    <property name="act09" value="translated_dialog spyder_route3_wanda2"/>
+    <property name="act10" value="add_item fishing_rod"/>
+    <property name="act11" value="set_variable route3wanda:yes"/>
     <property name="behav1" value="talk spyder_route3_wanda"/>
     <property name="cond1" value="not variable_set route3wanda:yes"/>
    </properties>
@@ -638,9 +659,11 @@
   </object>
   <object id="621" name="Talk Twig" type="event" x="416" y="224" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route3_twig1"/>
-    <property name="act3" value="start_battle spyder_route3_twig"/>
-    <property name="act4" value="translated_dialog spyder_route3_twig2"/>
+    <property name="act1" value="translated_dialog spyder_route3_twig1"/>
+    <property name="act2" value="add_monster aardorn,11,spyder_route3_twig,27,10"/>
+    <property name="act3" value="add_monster foofle,11,spyder_route3_twig,27,10"/>
+    <property name="act4" value="start_battle spyder_route3_twig"/>
+    <property name="act5" value="translated_dialog spyder_route3_twig2"/>
     <property name="act6" value="set_variable route3twig:yes"/>
     <property name="behav1" value="talk spyder_route3_twig"/>
     <property name="cond1" value="not variable_set route3twig:yes"/>
@@ -662,9 +685,11 @@
   </object>
   <object id="624" name="Talk Surat" type="event" x="128" y="256" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route3_surat1"/>
-    <property name="act3" value="start_battle spyder_route3_surat"/>
-    <property name="act4" value="translated_dialog spyder_route3_surat2"/>
+    <property name="act1" value="translated_dialog spyder_route3_surat1"/>
+    <property name="act2" value="add_monster rockat,12,spyder_route3_surat,27,10"/>
+    <property name="act3" value="add_monster foofle,12,spyder_route3_surat,27,10"/>
+    <property name="act4" value="start_battle spyder_route3_surat"/>
+    <property name="act5" value="translated_dialog spyder_route3_surat2"/>
     <property name="act6" value="set_variable route3surat:yes"/>
     <property name="behav1" value="talk spyder_route3_surat"/>
     <property name="cond1" value="not variable_set route3surat:yes"/>
@@ -685,9 +710,11 @@
   </object>
   <object id="627" name="Talk Roxby" type="event" x="224" y="288" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route3_roxby1"/>
-    <property name="act3" value="start_battle spyder_route3_roxby"/>
-    <property name="act4" value="translated_dialog spyder_route3_roxby2"/>
+    <property name="act1" value="translated_dialog spyder_route3_roxby1"/>
+    <property name="act2" value="add_monster rockitten,13,spyder_route3_roxby,27,10"/>
+    <property name="act3" value="add_monster ignibus,13,spyder_route3_roxby,27,10"/>
+    <property name="act4" value="start_battle spyder_route3_roxby"/>
+    <property name="act5" value="translated_dialog spyder_route3_roxby2"/>
     <property name="act6" value="set_variable route3roxby:yes"/>
     <property name="behav1" value="talk spyder_route3_roxby"/>
     <property name="cond1" value="not variable_set route3roxby:yes"/>
@@ -737,9 +764,11 @@
   </object>
   <object id="679" name="Enforcer Talk" type="event" x="272" y="144" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route3_weaver1"/>
-    <property name="act3" value="start_battle spyder_route3_weaver"/>
-    <property name="act4" value="translated_dialog spyder_route3_weaver2"/>
+    <property name="act1" value="translated_dialog spyder_route3_weaver1"/>
+    <property name="act2" value="add_monster pythwire,12,spyder_route3_weaver,27,10"/>
+    <property name="act3" value="add_monster squabbit,12,spyder_route3_weaver,27,10"/>
+    <property name="act4" value="start_battle spyder_route3_weaver"/>
+    <property name="act5" value="translated_dialog spyder_route3_weaver2"/>
     <property name="act6" value="set_variable route3weaver:yes"/>
     <property name="cond1" value="not variable_set route3weaver:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -747,9 +776,11 @@
   </object>
   <object id="680" name="Talk Twig" type="event" x="384" y="240" width="32" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route3_twig1"/>
-    <property name="act3" value="start_battle spyder_route3_twig"/>
-    <property name="act4" value="translated_dialog spyder_route3_twig2"/>
+    <property name="act1" value="translated_dialog spyder_route3_twig1"/>
+    <property name="act2" value="add_monster aardorn,11,spyder_route3_twig,27,10"/>
+    <property name="act3" value="add_monster foofle,11,spyder_route3_twig,27,10"/>
+    <property name="act4" value="start_battle spyder_route3_twig"/>
+    <property name="act5" value="translated_dialog spyder_route3_twig2"/>
     <property name="act6" value="set_variable route3twig:yes"/>
     <property name="cond1" value="not variable_set route3twig:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -757,18 +788,25 @@
   </object>
   <object id="681" name="Talk Wanda" type="event" x="512" y="288" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route3_wanda1"/>
-    <property name="act3" value="start_battle spyder_route3_wanda"/>
-    <property name="act4" value="translated_dialog spyder_route3_wanda2"/>
-    <property name="act5" value="add_item fishing_rod"/>
-    <property name="act6" value="set_variable route3wanda:yes"/>
+    <property name="act01" value="translated_dialog spyder_route3_wanda1"/>
+    <property name="act02" value="add_monster nudiflot_male,8,spyder_route3_wanda,27,10"/>
+    <property name="act03" value="add_monster nudiflot_female,8,spyder_route3_wanda,27,10"/>
+    <property name="act04" value="add_monster nudiflot_male,8,spyder_route3_wanda,27,10"/>
+    <property name="act05" value="add_monster nudiflot_female,8,spyder_route3_wanda,27,10"/>
+    <property name="act06" value="add_monster nudiflot_male,8,spyder_route3_wanda,27,10"/>
+    <property name="act07" value="add_monster nudiflot_female,8,spyder_route3_wanda,27,10"/>
+    <property name="act08" value="start_battle spyder_route3_wanda"/>
+    <property name="act09" value="translated_dialog spyder_route3_wanda2"/>
+    <property name="act10" value="add_item fishing_rod"/>
+    <property name="act11" value="set_variable route3wanda:yes"/>
     <property name="cond1" value="not variable_set route3wanda:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
   <object id="682" name="Novak Talk" type="event" x="192" y="480" width="16" height="32">
    <properties>
-    <property name="act2" value="translated_dialog spyder_route3_novak1"/>
+    <property name="act1" value="translated_dialog spyder_route3_novak1"/>
+    <property name="act2" value="add_monster elofly,13,spyder_route3_novak,27,10"/>
     <property name="act3" value="start_battle spyder_route3_novak"/>
     <property name="act4" value="translated_dialog spyder_route3_novak2"/>
     <property name="act6" value="set_variable route3novak:yes"/>
@@ -779,7 +817,7 @@
   <object id="684" name="Rookie Talk" type="event" x="16" y="48" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_route3_qqq1"/>
-    <property name="act3" value="start_battle spyder_route3_qqq"/>
+    <property name="act3" value="add_monster cardiling,16,spyder_route3_qqq,27,10"/>
     <property name="act4" value="translated_dialog spyder_route3_qqq2"/>
     <property name="act6" value="set_variable ambushedbyqqq:yes"/>
     <property name="act7" value="pathfind spyder_route3_qqq,0,2"/>

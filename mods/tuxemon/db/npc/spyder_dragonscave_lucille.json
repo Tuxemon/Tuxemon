@@ -6,15 +6,5 @@
       "combat_front": "enforcer_agent",
       "slug": "enforcer_agent"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Coleorus",
-      "level": 40,
-      "slug": "coleorus",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

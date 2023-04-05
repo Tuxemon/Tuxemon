@@ -6,15 +6,5 @@
       "combat_front": "tennisplayer",
       "slug": "tennisplayer"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Spighter",
-      "level": 8,
-      "slug": "spighter",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

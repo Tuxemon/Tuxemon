@@ -189,6 +189,102 @@ msgstr "Hardened Tuxeball"
 msgid "tuxeball_hardened_description"
 msgstr "Captures Tuxemon and it doesn't break when it fails."
 
+msgid "tuxeball_hearty"
+msgstr "Hearty Tuxeball"
+
+msgid "tuxeball_hearty_description"
+msgstr "Upon capture, the tuxemon's positive taste changes to hearty."
+
+msgid "tuxeball_peppy"
+msgstr "Peppy Tuxeball"
+
+msgid "tuxeball_peppy_description"
+msgstr "Upon capture, the tuxemon's positive taste changes to peppy."
+
+msgid "tuxeball_refined"
+msgstr "Refined Tuxeball"
+
+msgid "tuxeball_refined_description"
+msgstr "Upon capture, the tuxemon's positive taste changes to refined."
+
+msgid "tuxeball_salty"
+msgstr "Salty Tuxeball"
+
+msgid "tuxeball_salty_description"
+msgstr "Upon capture, the tuxemon's positive taste changes to salty."
+
+msgid "tuxeball_zesty"
+msgstr "Zesty Tuxeball"
+
+msgid "tuxeball_zesty_description"
+msgstr "Upon capture, the tuxemon's positive taste changes to zesty."
+
+msgid "boost_armour"
+msgstr "Boost Armour"
+
+msgid "boost_armour_description"
+msgstr "For the rest of the combat, increase Armour by 20%."
+
+msgid "boost_dodge"
+msgstr "Boost Dodge"
+
+msgid "boost_dodge_description"
+msgstr "For the rest of the combat, increase Dodge by 20%."
+
+msgid "boost_melee"
+msgstr "Boost Melee"
+
+msgid "boost_melee_description"
+msgstr "For the rest of the combat, increase Melee by 20%."
+
+msgid "boost_ranged"
+msgstr "Boost Ranged"
+
+msgid "boost_ranged_description"
+msgstr "For the rest of the combat, increase Ranged by 20%."
+
+msgid "boost_speed"
+msgstr "Boost Speed"
+
+msgid "boost_speed_description"
+msgstr "For the rest of the combat, increase Speed by 20%."
+
+msgid "raise_armour"
+msgstr "Raise Armour"
+
+msgid "raise_armour_description"
+msgstr "Learn the hardness of the diamond. Increase Armour by 5%."
+
+msgid "raise_dodge"
+msgstr "Raise Dodge"
+
+msgid "raise_dodge_description"
+msgstr "Learn the iridescence of the opal. Increase Dodge by 5%."
+
+msgid "raise_hp"
+msgstr "Raise HP"
+
+msgid "raise_hp_description"
+msgstr "Learn the bulk and abundance of quartz. Increase HP by 5%."
+
+msgid "raise_melee"
+msgstr "Raise Melee"
+
+msgid "raise_melee_description"
+msgstr "Learn the anger of the ruby. Increase Melee by 5%."
+
+msgid "raise_ranged"
+msgstr "Raise Ranged"
+
+msgid "raise_ranged_description"
+msgstr "Learn the aim of the emerald. Increase Ranged by 5%."
+
+msgid "raise_speed"
+msgstr "Raise Speed"
+
+msgid "raise_speed_description"
+msgstr "Learn the reflexes of the spinel. Increase Speed by 5%."
+
 msgid "fishing_rod"
 msgstr "Fishing Rod"
 
@@ -1471,6 +1567,18 @@ msgstr "Sphalian"
 msgid "taba_town"
 msgstr "Taba"
 
+msgid "taba_ba_br_1"
+msgstr "Taba Battle Area - Battle Room 1"
+
+msgid "taba_ba_foyer"
+msgstr "Taba Battle Area - Foyer"
+
+msgid "taba_ba_main"
+msgstr "Taba Battle Area - Main Hall"
+
+msgid "taba_ba_passageway_1"
+msgstr "Taba Battle Area - Passageway 1"
+
 msgid "timber_town"
 msgstr "Timber"
 
@@ -1687,6 +1795,9 @@ msgstr "Caught {param} out of {all} Tuxemon"
 
 msgid "player_start_adventure"
 msgstr "The adventure began {date} days ago."
+
+msgid "player_walked"
+msgstr "Walked {distance} {unit}"
 
 msgid "player_battles"
 msgstr "Battles: {tot} (W{won} D{draw} L{lost})"
@@ -3940,6 +4051,9 @@ msgstr "Maple"
 msgid "misa"
 msgstr "Misa"
 
+msgid "timmy"
+msgstr "Timmy"
+
 msgid "npc_wife"
 msgstr "Wife NPC"
 
@@ -3990,6 +4104,9 @@ msgstr "Team Xero Grunt IX"
 
 msgid "xerogrunt10"
 msgstr "Team Xero Grunt X"
+
+msgid "acolyte"
+msgstr "Acolyte Corren"
 
 ## DIALOG TRANSLATIONS ##
 # general dialogs
@@ -4543,12 +4660,12 @@ msgstr "I am sorry to give you such late notice about this address, but I believ
 "After consulting with my advisors, we have decided that the best way to become more comfortable with Tuxemon, is to use them.\n"
 "Now, it will be some time before we can integrate them into the workforce, but in the meantime, as I said before, we will be releasing them into the wild.\n"
 "I realize this is a shock for everyone, plus I understand that some of you may even be afraid. We all know what happened before...\n"
-"This is not the time to be afraid though, as Omnichannel will be sponsoring the revival of the ancient tradition known as The Trial.\n"
+"This is not the time to be afraid though, as Omnichannel will be sponsoring the revival of the ancient tradition known as The Trial!\n"
 "Now, for you who are less versed in Fondent region history, a hundred years ago there was a tradition where young men and women would catch and raise Tuxemon.\n"
-"They would then use these Tuxemon to battle others and ascend rank in their town, with the best Tuxemon Trainer gaining status and power.\n"
+"They would then use these Tuxemon to battle others and ascend rank in their town, with the best Tuxemon Trainers gaining status and power.\n"
 "We will be creating a version of this for the modern day. We will be forming battle areas in multiple cities across Fondent.\n"
 "Each Battle Area will need to be completed in order and the most promising trainer, or trainers, will be able to attempt the Championship.\n"
-"The Championship will be held on top of the Omnichannel Tower in Cotton Town, but only once a Tuxemon Trainer has made it through every Battle Area.\n"
+"The Championship will be held on top of Omnichannel Tower in Cotton Town, but only once a Tuxemon Trainer has made it through every Battle Area.\n"
 "The Trial is designed as a way to slowly introduce public life to Tuxemon and to encourage travel throughout the region.\n"
 "Who better to demonstrate this than our youth?\n"
 "Each Match will be broadcast live on Omnichannel-T, the newest television station devoted exclusively to Tuxemon-related programming!\n"
@@ -4822,7 +4939,7 @@ msgid "ohaimisa3"
 msgstr "Hi Kyle, why are you here?"
 
 msgid "ohaimisa4"
-msgstr "Why am I here? Why, I'm the head of this project! Building the model battle area for the entire region is an honor!\n"
+msgstr "Why am I here? Why, I'm the head of this project! Building the model Battle Area for the entire region is an honor!\n"
 "Although, I can see why you wouldn't have heard the news, frolicking about with your new plaything and all"
 
 msgid "ohaimisa5"
@@ -4995,7 +5112,7 @@ msgid "nobody2"
 msgstr "Fine! Keep your secrets!"
 
 msgid "somebody2"
-msgstr "Oooh. Are they special to you then? Is there a love triangle going around? C'mon! We need to know"
+msgstr "Oooh. Are they special to you then? Is there a love triangle going around? C'mon! We need to know!"
 
 msgid "stahp"
 msgstr "Hey Christie, don't interrogate them. We just met after all. \nMaybe we should head in anyways. We don't want to make Kyle angry."
@@ -5012,20 +5129,315 @@ msgstr "She means well..."
 msgid "stahp5"
 msgstr "... I think."
 
+msgid "mydadiscool"
+msgstr "My dad works in the Battle Area! He's pretty cool right?\n"
+"I have to wait out here while he works though because Tuxemon are dangerous..."
+
+msgid "mydadiscool2"
+msgstr "But... But that doesn't make him any less cool! He's brave and I'll be brave like him one day too!"
+
+msgid "welcomecontestants"
+msgstr "Welcome, Trial contestants!"
+
+msgid "itsforthefans"
+msgstr "And a huge welcome to everyone watching from home! My name is Aeble and I am the CEO of Omnichannel."
+
+msgid "itsforthefans2"
+msgstr "You've all probably been on the edge of your seat waiting to see our first Trial contestants. Well, today you get to meet them!"
+
+msgid "itsforthefans3"
+msgstr "From Flower City! The one who fought Tuxemon with his bare hands! Speck!"
+
+msgid "itsforthefans4"
+msgstr "... .... ..."
+
+msgid "itsforthefans5"
+msgstr "DARNIT! CUT!"
+
+msgid "itsforthefans6"
+msgstr "The recording has been stopped, sir."
+
+msgid "itsforthefans7"
+msgstr "Good"
+
+msgid "itsforthefans8"
+msgstr "AS FOR YOU THREE!"
+
+msgid "itsforthefans9"
+msgstr "Each of you should be stepping forward when your name is called. I won't have a bunch of insignificant kids destroying this for me.\n"
+"Alright?"
+
+msgid "itsforthefans10"
+msgstr "START THE RECORDING! We'll pick it up at the introductions."
+
+msgid "yessir"
+msgstr "Yes, Sir"
+
+msgid "itsforthefans11"
+msgstr "From Paper Town! The one and only Flower Demon, Christie!"
+
+msgid "itsforthefans12"
+msgstr "And finally, the one you've all been hearing about. The one you've been talking about!\n"
+"From Taba Town! The Grunt subduer themselves!\n"
+"${{name}}!"
+
+msgid "abouttababa"
+msgstr "Now, you are probably all wondering what this Battle Area will entail. I know our Trial contestants definitely do!\n"
+"The Taba Battle Area is the first of seven Battle Areas, culminating in the Championship battle in Cotton Town.\n"
+"Each Battle Area will have a different requirement. Some will be mind challenges, others more physical.\n"
+"This is all so that we can find the best of the best. The future of the Fondent Region and Omnichannel itself."
+
+msgid "abouttababa2"
+msgstr "Christie."
+
+msgid "abouttababa3"
+msgstr "Speck."
+
+msgid "abouttababa4"
+msgstr "${{name}}"
+
+msgid "abouttababa5"
+msgstr "The Requirement for the Taba Battle Area is...\n"
+
+msgid "abouttababa6"
+msgstr "Tuxemon Battles!"
+
+msgid "abouttababa7"
+msgstr "Now, you will have to defeat all 4 Trial acolytes before being able to face the Battle Area Master.\n"
+"Once you've defeated the Battle Area Master, you will receive your Trial medal for the Battle Area.\n"
+"Good luck to all three of you, and remember...\n"
+"WE ARE SAFETY, WE ARE ORDER, WE ARE OMNICHANNEL!"
+
+msgid "abouttababa8"
+msgstr "Oh, and one more thing you three, no matter what you might think...\n"
+"WE are Fondent. Omnichannel is Fondent. Stay in line and don't muck anything up, otherwise there could be... issues"
+
+msgid "abouttababa9"
+msgstr "Alright guys, CUT! That was great! I think we're good!"
+
+msgid "abouttababa10"
+msgstr "Just cut out the last section and it will be perfect!"
+
+msgid "buh-bye"
+msgstr "I'm heading out, but great work everyone! See you all later!"
+
+msgid "weneedhelp"
+msgstr "Uhh... are we meant to just battle each other then?"
+
+msgid "weneedhelp2"
+msgstr "I guess we'll just battle here?"
+
+msgid "weneedhelp3"
+msgstr "I guess that works, this room doesn't seem like a battle room though."
+
+msgid "weneedhelp4"
+msgstr "No, you're right, but it's not like we were given any instructions..."
+
+msgid "explainthyselfchristie"
+msgstr "By the way, why did Aeble call you the \"Flower Demon\"?\n"
+"His nicknames for ${{name}} and I at least make sense"
+
+msgid "explainthyselfchristie2"
+msgstr "Although yours, ${{name}}, sounds more interesting than mine."
+
+msgid "explainthyselfchristie3"
+msgstr "\"Flower Demon\" on the other hand sounds like more than a nickname."
+
+msgid "explainthyselfchristie4"
+msgstr "... .... ..."
+
+msgid "explainthyselfchristie5"
+msgstr "Come on, Christie. Give us something! We're all stuck here together anyways!"
+
+msgid "explainthyselfchristie6"
+msgstr "... Just like you... I have a past I'm running from..."
+
+msgid "explainthyselfchristie7"
+msgstr "Christie..."
+
+msgid "maybeabattle"
+msgstr "ENOUGH!"
+
+msgid "maybeabattle2"
+msgstr "Speck! I CHALLENGE YOU TO A BATTLE! PREPARE YOURSELF!"
+
+msgid "maybeabattle3"
+msgstr "Christie, are you sure..."
+
+msgid "maybeabattle4"
+msgstr "Oh, I see, you're just afraid to fight me huh? Maybe ${{name}} will have the guts, unlike you."
+
+msgid "maybeabattle5"
+msgstr "ARGH!"
+
+msgid "maybeabattle6"
+msgstr "If it's a battle you want, THEN FINE!"
+
+msgid "maybeabattle7"
+msgstr "Ha! That's more like it!"
+
+msgid "maybeabattle8"
+msgstr "READY YOURSELF CHRISTIE! AND... FI.."
+
+msgid "haltyourbickering"
+msgstr "HALT!"
+
+msgid "haltyourbickering2"
+msgstr "While I admire your enthusiasm, this isn't the place for battling each other.\n"
+"It's also not the point of this Battle Area."
+
+msgid "haltyourbickering3"
+msgstr "Now, gather together again like the good children you are."
+
+msgid "haltyourbickering4"
+msgstr "If we're not supposed to fight each other, then who will we fight?"
+
+msgid "haltyourbickering5"
+msgstr "Were you not listening? The acolytes of course. All 4 and then you can face the Battle Area Master.\n"
+"Honestly, I expected more from you two. I'm sure this is par for the course for the third wheel over there though."
+
+msgid "dontbemean"
+msgstr "Hey! Why are you so mean to ${{name}}? What did they do to you?"
+
+msgid "dontbemean2"
+msgstr "I don't need a reason to do my job. But in this case..."
+
+msgid "dontbemean3"
+msgstr "... I actually do have reasons."
+
+msgid "seeyalater"
+msgstr "Regardless, the 4 hallways lead to the 4 acolytes. Go and fight them or whatever."
+
+msgid "seeyalater2"
+msgstr "HEY! Aren't you going to give us that reason?"
+
+msgid "seeyalater3"
+msgstr "Ha!"
+
+msgid "seeyalater4"
+msgstr "I don't have to explain ANYTHING to you. That's what makes my job so GREAT!\n"
+"Hopefully you lot don't die. It would be bad for ratings."
+
+msgid "sorryabouthim"
+msgstr "I'm sorry he's so mean to you ${{name}}"
+
+msgid "sorryabouthim2"
+msgstr "Yeah! Just ignore him! After all, you have your girlfriends Misa and Allie watching from home! He probably has nobody!"
+
+msgid "sorryabouthim3"
+msgstr "So? When you going to introduce us to 'em? We're practically family at this point!"
+
+msgid "sorryabouthim4"
+msgstr "Christie, this is most definitely NOT the time."
+
+msgid "sorryabouthim5"
+msgstr "Oh, you're no fun!"
+
+msgid "doorchosen"
+msgstr "But I guess we better focus on the Battle Area, since we're here and all."
+
+msgid "doorchosen2"
+msgstr "I'll start with door 3! Lucky number 3 after all!"
+
+msgid "doorchosen3"
+msgstr "That girl will be the death of us."
+
+msgid "doorchosen4"
+msgstr "I'll start with door 2. Good Luck."
+
+msgid "notyettababa"
+msgstr "Only one person can challenge an Acolyte at a time. Please challenge another one."
+
+msgid "notyettababafourth"
+msgstr "This is the most powerful Acolyte before the Master, please finish challenging the others first."
+
+msgid "itslocked"
+msgstr "The doors are locked, maybe you should try defeating all 4 Acolytes first?"
+
+msgid "healspls"
+msgstr "Give me your Tuxemon."
+
+msgid "healsdone"
+msgstr "Your Tuxemon have been healed."
+
+msgid "areyoureadytorumble"
+msgstr "Are you ready to battle the Acolyte?"
+
+msgid "areyoureadytorumbleno"
+msgstr "Very well, come back once you're prepared."
+
+msgid "areyoureadytorumbleyes"
+msgstr "Very well, before we fetch the Acolyte, we'll heal your Tuxemon."
+
+msgid "areyoureadytorumbleyes2"
+msgstr "There, now that you actually stand a chance, we will fetch the Acolyte."
+
+msgid "uhhjason"
+msgstr "Uhh... Jason?"
+
+msgid "uhhjason2"
+msgstr "Shoot! He always does this..."
+
+msgid "uhhjason3"
+msgstr "JASON!"
+
+msgid "challenger"
+msgstr "Challenger!\n"
+"Step to the center and face me!"
+
+msgid "challenger2"
+msgstr "You have done well to make it this far!"
+
+msgid "challenger3"
+msgstr "... .... ..."
+
+msgid "challenger4"
+msgstr "Wait, this is your first battle?\n"
+"I was told I would be the third battle..."
+
+msgid "challenger5"
+msgstr "No matter!"
+
+msgid "challenger6"
+msgstr "This just means it will be easier to crush you!"
+
+msgid "challenger7"
+msgstr "Ready yourself Challenger! It's time... TO FIGHT!"
+
+msgid "tabacongratsfirst"
+msgstr "... ... Congrats on the win..."
+
+msgid "tabacongratsfirst2"
+msgstr "I definitely wasn't expecting a performance like that. Kyle told us all that you would be an easy win.\n"
+"I guess he meant for you and not us!"
+
+msgid "tabacongratsfirst3"
+msgstr "The other three acolytes are more powerful than me, so you may want to try and fight the wild Tuxemon in the passageways a bit.\n"
+"Other than that, Good Luck!\n"
+"If you walk through the entrance behind me, you'll be teleported back to the main room."
+
+msgid "acolyte1loss"
+msgstr "Ha! Some Challenger you are. You'll have to do better than that to beat me!\n"
+"Try and level up your Tuxemon before facing me again!"
+
+msgid "acolyte1redo"
+msgstr "So, you actually crawled back... Let's see how powerful you really are!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"
 "The rest is weathered away."
 
-msgid "tabanurse_dialog\n"
-msgstr "Welcome to the ${{map_name}} Tuxecenter!\n"
+msgid "tabanurse_dialog_taba"
+msgstr "Welcome to the Taba Town Tuxecenter!\n"
 "Do you want to heal your Tuxemon?\n"
 
 msgid "okaythen"
-msgstr "Okay! Just give me a second and I will heal your Tuxemon!"
+msgstr "Okay! Just give me a second and I'll heal your Tuxemon!"
 
 msgid "okaythen2"
-msgstr "Well, it looks like your Tuxemon are all better now! Here they are!"
+msgstr "Well, it looks like your Tuxemon are all better now!\n"
+"Have a wonderful day!"
 
 msgid "waithere"
 msgstr "We have to wait here for now. Apparently a tree fell up ahead."

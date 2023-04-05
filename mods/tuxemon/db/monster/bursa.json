@@ -23,6 +23,12 @@
             "monster_slug": "flambear"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "flambear",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "humanoid",
     "stage": "basic",
     "types": [

@@ -6,23 +6,5 @@
       "combat_front": "magician",
       "slug": "magician"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Hydrone",
-      "level": 30,
-      "slug": "hydrone",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Pigabyte",
-      "level": 30,
-      "slug": "pigabyte",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

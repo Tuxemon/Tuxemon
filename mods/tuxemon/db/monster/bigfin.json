@@ -29,6 +29,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "dollfin",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "leviathan",
     "stage": "stage1",
     "types": [

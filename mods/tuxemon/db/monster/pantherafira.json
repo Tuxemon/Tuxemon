@@ -23,6 +23,12 @@
             "monster_slug": "criniotherme"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "criniotherme",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "hunter",
     "stage": "basic",
     "types": [

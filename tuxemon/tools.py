@@ -15,7 +15,6 @@ from __future__ import annotations
 import logging
 import typing
 from dataclasses import fields
-from itertools import zip_longest
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -33,7 +32,7 @@ from typing import (
 )
 
 from tuxemon import prepare
-from tuxemon.compat import ReadOnlyRect
+from tuxemon.compat.rect import ReadOnlyRect
 from tuxemon.locale import T, replace_text
 from tuxemon.math import Vector2
 
@@ -289,33 +288,6 @@ def cast_value(
     )
 
 
-def cast_values(
-    parameters: Sequence[Any],
-    valid_parameters: Sequence[Tuple[ValidParameterTypes, str]],
-) -> Sequence[Any]:
-    """
-    Change all the string values to the expected type.
-
-    This will also check and enforce the correct parameters for actions.
-
-    Parameters:
-        parameters: Parameters passed to the scripted object.
-        valid_parameters: Allowed parameters and their types.
-
-    Returns:
-        Parameters converted to their correct type.
-
-    """
-
-    try:
-        return list(map(cast_value, zip_longest(valid_parameters, parameters)))
-    except ValueError:
-        logger.warning("Invalid parameters passed:")
-        logger.warning(f"expected: {valid_parameters}")
-        logger.warning(f"got: {parameters}")
-        raise
-
-
 def get_types_tuple(
     param_type: ValidParameterSingleType,
 ) -> Sequence[ValidParameterSingleType]:
@@ -340,19 +312,6 @@ def cast_dataclass_parameters(self) -> None:
             old_value = getattr(self, field_name)
             new_value = cast_value(((constructors, field_name), old_value))
             setattr(self, field_name, new_value)
-
-
-def cast_parameters_to_namedtuple(
-    parameters: Sequence[Any],
-    namedtuple_class: Type[NamedTupleTypeVar],
-) -> NamedTupleTypeVar:
-    valid_parameters = [
-        (get_types_tuple(typing.get_type_hints(namedtuple_class)[f]), f)
-        for f in namedtuple_class._fields
-    ]
-
-    values = cast_values(parameters, valid_parameters)
-    return namedtuple_class(*values)
 
 
 def show_item_result_as_dialog(

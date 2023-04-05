@@ -6,23 +6,5 @@
       "combat_front": "nurse",
       "slug": "nurse"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Lapinou",
-      "level": 12,
-      "slug": "lapinou",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Cairfrey",
-      "level": 12,
-      "slug": "cairfrey",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

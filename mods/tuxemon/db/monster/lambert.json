@@ -23,6 +23,16 @@
             "monster_slug": "legko"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "legko",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "moloch",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "sprite",
     "stage": "basic",
     "types": [

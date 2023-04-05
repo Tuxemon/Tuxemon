@@ -35,6 +35,12 @@
             "monster_slug": "arthrobolt"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "nut",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "blob",
     "stage": "stage1",
     "types": [

@@ -8,34 +8,34 @@
   <property name="types" value="route"/>
   <property name="west" value="flower_city"/>
  </properties>
- <tileset firstgid="1" name="Tileset" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
-  <image source="../gfx/tilesets/Tileset.png" width="448" height="640"/>
+ <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="4216" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
+  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="1121" source="../gfx/tilesets/core_city_and_country.tsx"/>
- <tileset firstgid="2561" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt0iERAAAMA7Hiqa1/VBdDAW/gL72k8oABBhhggAEGGGCAAQYeDAxDjn1Q
+   eAHt0iERAAAMA7Gi4fpXWxdDAW/gL72k8oABBhhggAEGGGCAAQYeDAxMckTB
   </data>
  </layer>
  <layer id="2" name="Long Grass" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtkl0KA0EIg+cEvf/p2quUPHwQxFGHbbsvFRb/YozDrvW3T77A67HWnV93i7RNTLhnuEVz8baOCzxcE3y2Bx75XT+rZzW4sp5qlVX7K97dnHYxF33Wq7SBx/PmGW/H4/04T84ecvnOwPjMlTjTAF/Uwu5Y9xwMHJXfva/PdPrAgnMtWSy8jLmrPuPiLu8pntgv9HGz9BDjO43o63AZN+/CrgmXY0/xUYPnHscdnle4rKdaZRW35uh7TC3zFS7rqVaZ7xBul8ee4zyucFlPtROLu05mJ1j4+Xe7GfB3+ak+7vm2zrin0/fvn73AG96fbMk=
+   eAHtks0KA0EIg+fch25fveTwQRBHHbbtXios/sUYh13rb598gddjrTu/7hZpm5hwz3CL5uJtHRd4uCb4bA888rt+Vs9qcGU91Sqr9le8uzntYi76rFdpA4/nzTPejsf7cZ6cPeTynYHxmStxpgG+qIXdse45GDgqv3tfn+n0gQXnWrJYeBlzV33GxV3eUzyxX+jjZukhxnca0dfhMm7ehV0TLsee4qMGzz2OOzyvcFlPtcoqbs3R95ha5itc1lOtMt8h3C6PPcd5XOGynmonFnedzE6w8PPvdjPg7/JTfdzzbZ1xT6fv3z97gTcKBNLS
   </data>
  </layer>
  <layer id="3" name="Path" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtVdFNQzEQyxeMUDoN6gwVM5TOULpCGQKxAmzQblNW6FnIkmXdJVHLH33S410uiX3nOKW1+/OXCiweW3uaeJexRh/u0zxzPTxdr3i9+PzQ2ilefH/iPdoYcyur7znGnmeuh+U4vbowR8xD8L0m73vkUK/jYp/nmcuwgOP9jGpjfc6j+8AJTb/iq+f2neSZ815meJRTY/JnmIqbnRn6cj9UvZJH+5zxIvbBd1V9m5jPzj3L9c4QPKhd+6w4Xb9rfKEYjFlDxos58MCb6OMtYtUS3nmJnD89TF87GgML513Vx7Mnp2qJuX1RX+Z/vQuMR34hr+uC/Xp3Ks98FvW5L6pxpotqivqgievCMfXTPaOYvcATuCf87aLX6ZcZbOpHDL1DxBv1WNXL3rmfXBgjrnyleL11iqd7PF6HRvSTfuEP1Yhc8BLndH0Wc93If16Tjncdf6hG7JfewVzly+r/drae56M1afwRPOoLj7ehFx760udvHRP/l+X+978pcAFh+7bh
+   eAHtlc1NRDEMhAMcgBpYWoAiEC1AB9DNUg5QDaIGxB2P2E87suy8J+DGRsrGcezxTyZvxziMv+zA8/EYLyvma9j4wM/16GZ4bu94M3kbsR9jan2K+ZD2OnuP6eNtZ+N6dDMst3e8Tgbz6mSMs2Jeh075Zlz5ZT26Cks4VZ1dXujBzPH9XD29C3y/t/vYZz26CmspDvHyKj/FqTBlC251Z+pf5kPuKfGI43Wu4aL8xLsuv9PoU3XvlW52h1WdXUxqoj8/4YVjIJNDFVdniiNuqo5NyN5LcefzCKT9OsPcW62ThNVxxeMgZ85chn8eYOZa/C0gL/GFuBWWv52OM7dNfuJ0rqXaV/fm9So/+VW+4nj3dhwjy9QiTgiDbxdchy9rsOkfGP6GwFuqMefHntrxJ5b2kjte4a91Zud47pPlj3gj8MlX8cN7RCxxiTO3r2TslviXc/L9RfSi44f3iHpntmt56//r3I/n5PJN5Oe8yPJ59EsDXubz3+7B/45y+P1vHfgCcymweQ==
   </data>
  </layer>
  <layer id="4" name="Gravestones" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNlj0OwjAMRiMQYmRk4AIwMzByAspl4PT8+lP7JMtqFQoViaU0TeI6L1/ctM0qpZOVpqI6mcG0Na6dFdltltK9cHnZ/DCphlN867mu461ZpHS2IvP3bU/+6hk2xkBbtbSDV3zHZT5e9LgY27Xj8/fR75O2+GQw+bz7Vr824jRX+NAQTkWvhQ8m1XD+i4+5h9TO5d/Qc1P1ez36YrK/rKO2/Nvb+/GwM4Z1wKm11JB/UVM4a+HTN0L6oVs8/yJ/rk2c6DfUH/1im/xDt1/zjzhxnqH+6Ke2X4v4aKvmXn6l8s+vJZ4vjD1tzw/dt0WspYz99brlWMb45mLlxuFDN+aWfvq36TN8+8am7ov55+culX9+jTH//Pmis7v0/ynvAPvqzxf6StfSk319A7zfhBU=
+   eAHNlksOwjAMBQ0LFqzh/rfgdwK4BEjsKVfATzDCslqlQEViKU2TuM7kxU3bLc1uXrqGanOD6ehcJy+yzcpsW7kcfH6YVMMpvrOPfWOdP3R/PRjvx8aKDFdnoK1a2sErvst8bNS332pmtvYii/fPns+u4pPBFPPuW/2eEae5woeGcCp6K3wwqYbzX3zMPaR2Kf+GnpuqP+rRF5P9ZR2t5d9ibbYL7zCcWksL+Zc1jXq3wKdvhPRDt3z+Zf5SmzjZb6g/++U2+Yduv+YfcfI8Q/3ZT+24FvHRVs29/Grtb1xLPl8Y2zv30t+d2sb+Rt1KTJ/4lmKVxuFDN+aWfvq36TN8+8am7sv5F+eulX9xjTn/4vmis7v2/ynvAPsazxf6atfSk319ALvE+4U=
   </data>
  </layer>
  <layer id="5" name="Tile Layer 8" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt0DERADAIBMF3gI3g3yA4SEG7N3MGNtFP4FXSuwgQIECAAAECBAgQuAkM+KIAcA==
+   eAHt0DERAEAIBLGr8S/qcQUOvqDNzqyBJPoJvEp6FwECBAgQIECAAAECN4EBuHoBpg==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">

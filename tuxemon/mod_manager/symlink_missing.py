@@ -4,9 +4,10 @@
 Module mainly used for the mod_manager.py
 """
 import os
+from typing import Any
 
 
-def symlink_missing(target, *sources):
+def symlink_missing(target: str, *sources: Any) -> None:
     """
     'Walks' through the specified directories, and symlinks missing files
     Parameters:

@@ -180,12 +180,15 @@ def json_load(
 
 
 def open_save_file(save_path: str) -> Optional[Dict[str, Any]]:
+    package: Dict[str, Any] = {}
     try:
         try:
             if config.compress_save is None and prepare.SAVE_METHOD == "CBOR":
-                return cbor.load(save_path)
+                package = cbor.load(save_path)
+                return package
             else:
-                return json_load(save_path)
+                package = json_load(save_path)
+                return package
         except ValueError as e:
             logger.error("Cannot decode save: %s", save_path)
             return None

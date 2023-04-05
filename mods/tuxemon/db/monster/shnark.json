@@ -29,6 +29,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "nostray",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "aquatic",
     "stage": "stage1",
     "types": [

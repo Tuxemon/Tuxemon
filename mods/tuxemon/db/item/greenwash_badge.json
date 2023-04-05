@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "level >=,0",
-    "has_path greenwash_badge"
+    "is level >=,0",
+    "is has_path greenwash_badge"
   ],
   "effects": [],
   "slug": "greenwash_badge",

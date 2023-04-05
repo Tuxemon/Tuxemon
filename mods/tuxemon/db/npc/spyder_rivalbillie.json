@@ -6,14 +6,5 @@
       "combat_front": "fashionista",
       "slug": "fashionista"
     }
-  ],
-  "monsters": [
-    {
-      "slug": "dollfin",
-      "level": 5,
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

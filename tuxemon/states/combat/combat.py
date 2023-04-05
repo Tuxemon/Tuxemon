@@ -524,6 +524,7 @@ class CombatState(CombatAnimations):
         # TODO: parties/teams/etc to choose opponents
         opponents = self.monsters_in_play[self.players[0]]
         trainer = self.players[1]
+        assert monster.ai
         if self.is_trainer_battle:
             user, technique, target = monster.ai.make_decision_trainer(
                 trainer, monster, opponents
@@ -750,11 +751,12 @@ class CombatState(CombatAnimations):
                     # get the rect of the monster
                     rect = self._monster_sprite_map[monster].rect
                     # load the sprite and add it to the display
-                    self.load_sprite(
+                    icon = self.load_sprite(
                         status.icon,
                         layer=200,
                         center=rect.topleft,
                     )
+                    self._status_icons.append(icon)
 
     def show_combat_dialog(self) -> None:
         """Create and show the area where battle messages are displayed."""
@@ -989,16 +991,14 @@ class CombatState(CombatAnimations):
                 # handle the capture device
                 if result["capture"]:
                     # retrieve tuxeball
-                    itm_slug = self.players[0].game_variables["save_item_slug"]
-                    itm = Item()
-                    itm.load(itm_slug)
+                    tuxeball = technique.slug
                     message += "\n" + T.translate("attempting_capture")
                     action_time = result["num_shakes"] + 1.8
                     self.animate_capture_monster(
                         result["success"],
                         result["num_shakes"],
                         target,
-                        itm.slug,
+                        tuxeball,
                     )
 
                     # TODO: Don't end combat right away; only works with SP,
@@ -1056,6 +1056,7 @@ class CombatState(CombatAnimations):
 
         if result["success"] and target_sprite and tech_sprite:
             tech_sprite.rect.center = target_sprite.rect.center
+            assert tech_sprite.animation
             self.task(tech_sprite.animation.play, hit_delay)
             self.task(
                 partial(self.sprites.add, tech_sprite, layer=50),

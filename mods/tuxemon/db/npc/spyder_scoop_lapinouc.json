@@ -6,15 +6,5 @@
       "combat_front": "lapinou",
       "slug": "noclass"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Lapinou",
-      "level": 30,
-      "slug": "lapinou",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

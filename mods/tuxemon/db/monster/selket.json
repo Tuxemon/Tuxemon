@@ -23,6 +23,12 @@
             "monster_slug": "selmatek"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "selmatek",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "grub",
     "stage": "basic",
     "types": [

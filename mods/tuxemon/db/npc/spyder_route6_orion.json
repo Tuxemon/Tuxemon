@@ -6,23 +6,5 @@
       "combat_front": "professor",
       "slug": "professor"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Spighter",
-      "level": 20,
-      "slug": "spighter",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Zunna",
-      "level": 30,
-      "slug": "zunna",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

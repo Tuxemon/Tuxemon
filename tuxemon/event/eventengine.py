@@ -138,7 +138,7 @@ class EventEngine:
         self.actions = plugin.load_plugins(
             paths.ACTIONS_PATH,
             "actions",
-            interface=EventAction,  # type: ignore[misc]
+            interface=EventAction,  # type: ignore[type-abstract]
         )
 
     def reset(self) -> None:

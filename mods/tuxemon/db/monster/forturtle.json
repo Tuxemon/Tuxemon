@@ -23,6 +23,12 @@
             "monster_slug": "prophetoise"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "prophetoise",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "humanoid",
     "stage": "basic",
     "types": [

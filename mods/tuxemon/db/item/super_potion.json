@@ -1,8 +1,8 @@
 {
   "battle_menu": "monster",
   "conditions": [
-    "current_hp <,1.0",
-    "current_hp >,0"
+    "is current_hp <,1.0",
+    "is current_hp >,0"
   ],
   "effects": [
     "heal 50"

@@ -6,23 +6,5 @@
       "combat_front": "miner",
       "slug": "miner"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Aardorn",
-      "level": 11,
-      "slug": "aardorn",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Foofle",
-      "level": 11,
-      "slug": "foofle",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

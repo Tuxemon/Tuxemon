@@ -23,6 +23,12 @@
             "monster_slug": "tigrock"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "tigrock",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "hunter",
     "stage": "basic",
     "types": [

@@ -65,7 +65,7 @@
   </object>
   <object id="56" name="employee" type="event" x="16" y="80" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc tuxemart_keeper,1,5,,stand"/>
+    <property name="act10" value="create_npc tuxemart_keeper,1,5,stand"/>
     <property name="act20" value="npc_face tuxemart_keeper,right"/>
     <property name="act30" value="set_economy tuxemart_keeper,tuxe_mart_taba"/>
     <property name="cond10" value="not npc_exists tuxemart_keeper"/>
@@ -102,7 +102,7 @@
    <properties>
     <property name="act10" value="lock_controls"/>
     <property name="act11" value="wait 0.7"/>
-    <property name="act20" value="create_npc professor,3,5,,stand"/>
+    <property name="act20" value="create_npc professor,3,5,stand"/>
     <property name="act30" value="npc_face professor,left"/>
     <property name="act40" value="translated_dialog professorexists"/>
     <property name="act50" value="wait 1"/>

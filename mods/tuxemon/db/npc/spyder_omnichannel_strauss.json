@@ -6,23 +6,5 @@
       "combat_front": "warrior",
       "slug": "warrior"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Budaye",
-      "level": 36,
-      "slug": "budaye",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Frondly",
-      "level": 40,
-      "slug": "frondly",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

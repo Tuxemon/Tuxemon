@@ -91,9 +91,11 @@
   </object>
   <object id="14" name="Talk Thatcher" type="event" x="32" y="144" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_thatcher1"/>
-    <property name="act3" value="start_battle spyder_nimrod_thatcher"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_thatcher2"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_thatcher1"/>
+    <property name="act2" value="add_monster squabbit,20,spyder_nimrod_thatcher,27,10"/>
+    <property name="act3" value="add_monster viviteel,25,spyder_nimrod_thatcher,27,10"/>
+    <property name="act4" value="start_battle spyder_nimrod_thatcher"/>
+    <property name="act5" value="translated_dialog spyder_nimrod_thatcher2"/>
     <property name="act6" value="set_variable nimrodthatcher:yes"/>
     <property name="behav1" value="talk spyder_nimrod_thatcher"/>
     <property name="cond1" value="not variable_set nimrodthatcher:yes"/>
@@ -108,9 +110,11 @@
   </object>
   <object id="17" name="Talk Honour" type="event" x="256" y="64" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_honour1"/>
-    <property name="act3" value="start_battle spyder_nimrod_honour"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_honour2"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_honour1"/>
+    <property name="act2" value="add_monster embazook,20,spyder_nimrod_honour,27,10"/>
+    <property name="act3" value="add_monster sharpfin,20,spyder_nimrod_honour,27,10"/>
+    <property name="act4" value="start_battle spyder_nimrod_honour"/>
+    <property name="act5" value="translated_dialog spyder_nimrod_honour2"/>
     <property name="act6" value="set_variable nimrodhonour:yes"/>
     <property name="behav1" value="talk spyder_nimrod_honour"/>
     <property name="cond1" value="not variable_set nimrodhonour:yes"/>
@@ -124,7 +128,8 @@
   </object>
   <object id="19" name="Talk Antimony" type="event" x="80" y="176" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_antimony1"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_antimony1"/>
+    <property name="act2" value="add_monster komodraw,30,spyder_nimrod_antimony,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_antimony"/>
     <property name="act4" value="translated_dialog spyder_nimrod_antimony2"/>
     <property name="act6" value="set_variable nimrodantimony:yes"/>
@@ -142,7 +147,8 @@
   </object>
   <object id="21" name="Talk Chrome Robo" type="event" x="128" y="176" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_chromerobo1"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_chromerobo1"/>
+    <property name="act2" value="add_monster chrome-robo,20,spyder_nimrod_chromerobo,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_chromerobo"/>
     <property name="act4" value="translated_dialog spyder_nimrod_chromerobo2"/>
     <property name="act6" value="set_variable nimrodchromerobo_middle:yes"/>
@@ -161,7 +167,6 @@
   </object>
   <object id="25" name="Talk Xeon" type="event" x="176" y="240" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_xeon1"/>
     <property name="act3" value="start_battle spyder_nimrod_xeon"/>
     <property name="act4" value="translated_dialog spyder_nimrod_xeon2"/>
     <property name="act6" value="set_variable nimrodxeon_middle:yes"/>
@@ -179,7 +184,8 @@
   </object>
   <object id="27" name="Talk Argon" type="event" x="192" y="144" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_argon1"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_argon1"/>
+    <property name="act2" value="add_monster chrome-robo,25,spyder_nimrod_argon,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_argon"/>
     <property name="act4" value="translated_dialog spyder_nimrod_argon2"/>
     <property name="act6" value="set_variable nimrodargon:yes"/>
@@ -196,10 +202,13 @@
   </object>
   <object id="30" name="Talk Archer" type="event" x="32" y="208" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_archer1"/>
-    <property name="act3" value="start_battle spyder_nimrod_archer"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_archer2"/>
-    <property name="act6" value="set_variable nimrodarcher:yes"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_archer1"/>
+    <property name="act2" value="add_monster sharpfin,20,spyder_nimrod_archer,27,10"/>
+    <property name="act3" value="add_monster av8r,20,spyder_nimrod_archer,27,10"/>
+    <property name="act4" value="add_monster grimachin,20,spyder_nimrod_archer,27,10"/>
+    <property name="act5" value="start_battle spyder_nimrod_archer"/>
+    <property name="act6" value="translated_dialog spyder_nimrod_archer2"/>
+    <property name="act7" value="set_variable nimrodarcher:yes"/>
     <property name="behav1" value="talk spyder_nimrod_archer"/>
     <property name="cond1" value="not variable_set nimrodarcher:yes"/>
    </properties>
@@ -212,7 +221,8 @@
   </object>
   <object id="37" name="Talk Argon" type="event" x="224" y="144" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_argon1"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_argon1"/>
+    <property name="act2" value="add_monster chrome-robo,25,spyder_nimrod_argon,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_argon"/>
     <property name="act4" value="translated_dialog spyder_nimrod_argon2"/>
     <property name="act6" value="set_variable nimrodargon:yes"/>
@@ -222,9 +232,11 @@
   </object>
   <object id="38" name="Talk Honour" type="event" x="192" y="64" width="48" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_honour1"/>
-    <property name="act3" value="start_battle spyder_nimrod_honour"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_honour2"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_honour1"/>
+    <property name="act2" value="add_monster embazook,20,spyder_nimrod_honour,27,10"/>
+    <property name="act3" value="add_monster sharpfin,20,spyder_nimrod_honour,27,10"/>
+    <property name="act4" value="start_battle spyder_nimrod_honour"/>
+    <property name="act5" value="translated_dialog spyder_nimrod_honour2"/>
     <property name="act6" value="set_variable nimrodhonour:yes"/>
     <property name="cond1" value="not variable_set nimrodhonour:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -232,7 +244,8 @@
   </object>
   <object id="40" name="Talk Xeon" type="event" x="160" y="176" width="16" height="64">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_xeon1"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_xeon1"/>
+    <property name="act2" value="add_monster xeon,20,spyder_nimrod_xeon,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_xeon"/>
     <property name="act4" value="translated_dialog spyder_nimrod_xeon2"/>
     <property name="act6" value="set_variable nimrodxeon_middle:yes"/>
@@ -243,7 +256,8 @@
   </object>
   <object id="41" name="Talk Chrome Robo" type="event" x="144" y="192" width="16" height="64">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_chromerobo1"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_chromerobo1"/>
+    <property name="act2" value="add_monster chrome-robo,20,spyder_nimrod_chromerobo,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_chromerobo"/>
     <property name="act4" value="translated_dialog spyder_nimrod_chromerobo2"/>
     <property name="act6" value="set_variable nimrodchromerobo_middle:yes"/>
@@ -254,17 +268,21 @@
   </object>
   <object id="42" name="Talk Archer" type="event" x="64" y="208" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_archer1"/>
-    <property name="act3" value="start_battle spyder_nimrod_archer"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_archer2"/>
-    <property name="act6" value="set_variable nimrodarcher:yes"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_archer1"/>
+    <property name="act2" value="add_monster sharpfin,20,spyder_nimrod_archer,27,10"/>
+    <property name="act3" value="add_monster av8r,20,spyder_nimrod_archer,27,10"/>
+    <property name="act4" value="add_monster grimachin,20,spyder_nimrod_archer,27,10"/>
+    <property name="act5" value="start_battle spyder_nimrod_archer"/>
+    <property name="act6" value="translated_dialog spyder_nimrod_archer2"/>
+    <property name="act7" value="set_variable nimrodarcher:yes"/>
     <property name="cond1" value="not variable_set nimrodarcher:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
   <object id="43" name="Talk Antimony" type="event" x="64" y="192" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_antimony1"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_antimony1"/>
+    <property name="act2" value="add_monster komodraw,30,spyder_nimrod_antimony,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_antimony"/>
     <property name="act4" value="translated_dialog spyder_nimrod_antimony2"/>
     <property name="act6" value="set_variable nimrodantimony:yes"/>

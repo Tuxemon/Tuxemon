@@ -180,9 +180,11 @@
   </object>
   <object id="47" name="Talk Lanth" type="event" x="0" y="64" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_scoop_lanth1"/>
-    <property name="act3" value="start_battle spyder_scoop_lanth"/>
-    <property name="act4" value="translated_dialog spyder_scoop_lanth2"/>
+    <property name="act1" value="translated_dialog spyder_scoop_lanth1"/>
+    <property name="act2" value="add_monster mrmoswitch,35,spyder_scoop_lanth,27,10"/>
+    <property name="act3" value="add_monster picc,35,spyder_scoop_lanth,27,10"/>
+    <property name="act4" value="start_battle spyder_scoop_lanth"/>
+    <property name="act5" value="translated_dialog spyder_scoop_lanth2"/>
     <property name="act6" value="set_variable scooplanth:yes"/>
     <property name="behav1" value="talk spyder_scoop_lanth"/>
     <property name="cond1" value="not variable_set scooplanth:yes"/>
@@ -196,9 +198,11 @@
   </object>
   <object id="50" name="Talk Paine" type="event" x="96" y="48" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_scoop_paine1"/>
-    <property name="act3" value="start_battle spyder_scoop_paine"/>
-    <property name="act4" value="translated_dialog spyder_scoop_paine2"/>
+    <property name="act1" value="translated_dialog spyder_scoop_paine1"/>
+    <property name="act2" value="add_monster possessun,35,spyder_scoop_paine,27,10"/>
+    <property name="act3" value="add_monster cairfrey,30,spyder_scoop_paine,27,10"/>
+    <property name="act4" value="start_battle spyder_scoop_paine"/>
+    <property name="act5" value="translated_dialog spyder_scoop_paine2"/>
     <property name="act6" value="set_variable scooppaine:yes"/>
     <property name="behav1" value="talk spyder_scoop_paine"/>
     <property name="cond1" value="not variable_set scooppaine:yes"/>
@@ -213,9 +217,11 @@
   </object>
   <object id="52" name="Talk Rubid" type="event" x="208" y="160" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_scoop_rubid1"/>
-    <property name="act3" value="start_battle spyder_scoop_rubid"/>
-    <property name="act4" value="translated_dialog spyder_scoop_rubid2"/>
+    <property name="act1" value="translated_dialog spyder_scoop_rubid1"/>
+    <property name="act2" value="add_monster birdling,35,spyder_scoop_rubid,27,10"/>
+    <property name="act3" value="add_monster hatchling,30,spyder_scoop_rubid,27,10"/>
+    <property name="act4" value="start_battle spyder_scoop_rubid"/>
+    <property name="act5" value="translated_dialog spyder_scoop_rubid2"/>
     <property name="act6" value="set_variable scooprubid:yes"/>
     <property name="behav1" value="talk spyder_scoop_rubid"/>
     <property name="cond1" value="not variable_set scooprubid:yes"/>
@@ -230,9 +236,11 @@
   </object>
   <object id="54" name="Talk Berys" type="event" x="304" y="80" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_scoop_berys1"/>
-    <property name="act3" value="start_battle spyder_scoop_berys"/>
-    <property name="act4" value="translated_dialog spyder_scoop_berys2"/>
+    <property name="act1" value="translated_dialog spyder_scoop_berys1"/>
+    <property name="act2" value="add_monster propellercat,40,spyder_scoop_berys,27,10"/>
+    <property name="act3" value="add_monster embazook,35,spyder_scoop_berys,27,10"/>
+    <property name="act4" value="start_battle spyder_scoop_berys"/>
+    <property name="act5" value="translated_dialog spyder_scoop_berys2"/>
     <property name="act6" value="set_variable scoopberys:yes"/>
     <property name="behav1" value="talk spyder_scoop_berys"/>
     <property name="cond1" value="not variable_set scoopberys:yes"/>
@@ -246,9 +254,11 @@
   </object>
   <object id="56" name="Talk Turner" type="event" x="16" y="144" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_scoop_turner1"/>
-    <property name="act3" value="start_battle spyder_scoop_turner"/>
-    <property name="act4" value="translated_dialog spyder_scoop_turner2"/>
+    <property name="act1" value="translated_dialog spyder_scoop_turner1"/>
+    <property name="act2" value="add_monster flacono,30,spyder_scoop_turner,27,10"/>
+    <property name="act3" value="add_monster squabbit,30,spyder_scoop_turner,27,10"/>
+    <property name="act4" value="start_battle spyder_scoop_turner"/>
+    <property name="act5" value="translated_dialog spyder_scoop_turner2"/>
     <property name="act6" value="set_variable scoopturner:yes"/>
     <property name="behav1" value="talk spyder_scoop_turner"/>
     <property name="cond1" value="not variable_set scoopturner:yes"/>
@@ -285,9 +295,11 @@
   </object>
   <object id="65" name="Talk Lanth" type="event" x="0" y="80" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_scoop_lanth1"/>
-    <property name="act3" value="start_battle spyder_scoop_lanth"/>
-    <property name="act4" value="translated_dialog spyder_scoop_lanth2"/>
+    <property name="act1" value="translated_dialog spyder_scoop_lanth1"/>
+    <property name="act2" value="add_monster mrmoswitch,35,spyder_scoop_lanth,27,10"/>
+    <property name="act3" value="add_monster picc,35,spyder_scoop_lanth,27,10"/>
+    <property name="act4" value="start_battle spyder_scoop_lanth"/>
+    <property name="act5" value="translated_dialog spyder_scoop_lanth2"/>
     <property name="act6" value="set_variable scooplanth:yes"/>
     <property name="cond1" value="not variable_set scooplanth:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -295,9 +307,11 @@
   </object>
   <object id="66" name="Talk Berys" type="event" x="272" y="64" width="32" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_scoop_berys1"/>
-    <property name="act3" value="start_battle spyder_scoop_berys"/>
-    <property name="act4" value="translated_dialog spyder_scoop_berys2"/>
+    <property name="act1" value="translated_dialog spyder_scoop_berys1"/>
+    <property name="act2" value="add_monster propellercat,40,spyder_scoop_berys,27,10"/>
+    <property name="act3" value="add_monster embazook,35,spyder_scoop_berys,27,10"/>
+    <property name="act4" value="start_battle spyder_scoop_berys"/>
+    <property name="act5" value="translated_dialog spyder_scoop_berys2"/>
     <property name="act6" value="set_variable scoopberys:yes"/>
     <property name="cond1" value="not variable_set scoopberys:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -305,9 +319,11 @@
   </object>
   <object id="67" name="Talk Turner" type="event" x="16" y="160" width="16" height="48">
    <properties>
-    <property name="act2" value="translated_dialog spyder_scoop_turner1"/>
-    <property name="act3" value="start_battle spyder_scoop_turner"/>
-    <property name="act4" value="translated_dialog spyder_scoop_turner2"/>
+    <property name="act1" value="translated_dialog spyder_scoop_turner1"/>
+    <property name="act2" value="add_monster flacono,30,spyder_scoop_turner,27,10"/>
+    <property name="act3" value="add_monster squabbit,30,spyder_scoop_turner,27,10"/>
+    <property name="act4" value="start_battle spyder_scoop_turner"/>
+    <property name="act5" value="translated_dialog spyder_scoop_turner2"/>
     <property name="act6" value="set_variable scoopturner:yes"/>
     <property name="cond1" value="not variable_set scoopturner:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -315,9 +331,11 @@
   </object>
   <object id="68" name="Talk Paine" type="event" x="96" y="64" width="16" height="32">
    <properties>
-    <property name="act2" value="translated_dialog spyder_scoop_paine1"/>
-    <property name="act3" value="start_battle spyder_scoop_paine"/>
-    <property name="act4" value="translated_dialog spyder_scoop_paine2"/>
+    <property name="act1" value="translated_dialog spyder_scoop_paine1"/>
+    <property name="act2" value="add_monster possessun,35,spyder_scoop_paine,27,10"/>
+    <property name="act3" value="add_monster cairfrey,30,spyder_scoop_paine,27,10"/>
+    <property name="act4" value="start_battle spyder_scoop_paine"/>
+    <property name="act5" value="translated_dialog spyder_scoop_paine2"/>
     <property name="act6" value="set_variable scooppaine:yes"/>
     <property name="cond1" value="not variable_set scooppaine:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -325,9 +343,11 @@
   </object>
   <object id="69" name="Talk Rubid" type="event" x="192" y="160" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_scoop_rubid1"/>
-    <property name="act3" value="start_battle spyder_scoop_rubid"/>
-    <property name="act4" value="translated_dialog spyder_scoop_rubid2"/>
+    <property name="act1" value="translated_dialog spyder_scoop_rubid1"/>
+    <property name="act2" value="add_monster birdling,35,spyder_scoop_rubid,27,10"/>
+    <property name="act3" value="add_monster hatchling,30,spyder_scoop_rubid,27,10"/>
+    <property name="act4" value="start_battle spyder_scoop_rubid"/>
+    <property name="act5" value="translated_dialog spyder_scoop_rubid2"/>
     <property name="act6" value="set_variable scooprubid:yes"/>
     <property name="cond1" value="not variable_set scooprubid:yes"/>
     <property name="cond2" value="is player_at"/>

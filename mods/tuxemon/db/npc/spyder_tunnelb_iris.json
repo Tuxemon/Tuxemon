@@ -6,31 +6,5 @@
       "combat_front": "florist",
       "slug": "florist"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Tourbidi",
-      "level": 18,
-      "slug": "tourbidi",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Tourbidi",
-      "level": 18,
-      "slug": "tourbidi",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Tourbidi",
-      "level": 18,
-      "slug": "tourbidi",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

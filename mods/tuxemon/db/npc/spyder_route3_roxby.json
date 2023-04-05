@@ -6,23 +6,5 @@
       "combat_front": "miner",
       "slug": "miner"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Rockitten",
-      "level": 13,
-      "slug": "rockitten",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Ignibus",
-      "level": 13,
-      "slug": "ignibus",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

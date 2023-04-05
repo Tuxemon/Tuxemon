@@ -6,23 +6,5 @@
       "combat_front": "professor",
       "slug": "professor"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Propellercat",
-      "level": 40,
-      "slug": "propellercat",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Embazook",
-      "level": 35,
-      "slug": "embazook",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

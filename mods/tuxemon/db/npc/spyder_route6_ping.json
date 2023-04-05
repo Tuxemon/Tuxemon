@@ -6,23 +6,5 @@
       "combat_front": "picnicker",
       "slug": "picnicker"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Foofle",
-      "level": 30,
-      "slug": "foofle",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Foofle",
-      "level": 30,
-      "slug": "foofle",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

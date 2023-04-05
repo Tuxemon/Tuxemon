@@ -6,15 +6,5 @@
       "combat_front": "soldier",
       "slug": "soldier"
     }
-  ],
-  "monsters": [
-    {
-      "name": "AV8R",
-      "level": 25,
-      "slug": "av8r",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    }
   ]
 }

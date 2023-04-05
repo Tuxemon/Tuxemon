@@ -80,7 +80,8 @@
   </object>
   <object id="31" name="Talk Maverick" type="event" x="128" y="144" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_maverick1"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_maverick1"/>
+    <property name="act2" value="add_monster av8r,25,spyder_nimrod_maverick,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_maverick"/>
     <property name="act4" value="translated_dialog spyder_nimrod_maverick2"/>
     <property name="act6" value="set_variable nimrodmaverick:yes"/>
@@ -97,9 +98,11 @@
   </object>
   <object id="33" name="Talk Justice" type="event" x="224" y="272" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_justice1"/>
-    <property name="act3" value="start_battle spyder_nimrod_justice"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_justice2"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_justice1"/>
+    <property name="act2" value="add_monster ghosteeth,16,spyder_nimrod_justice,27,10"/>
+    <property name="act3" value="add_monster ghosteeth,16,spyder_nimrod_justice,27,10"/>
+    <property name="act4" value="start_battle spyder_nimrod_justice"/>
+    <property name="act5" value="translated_dialog spyder_nimrod_justice2"/>
     <property name="act6" value="set_variable nimrodjustice:yes"/>
     <property name="behav1" value="talk spyder_nimrod_justice"/>
     <property name="cond1" value="not variable_set nimrodjustice:yes"/>
@@ -113,7 +116,8 @@
   </object>
   <object id="35" name="Talk Zircon" type="event" x="176" y="144" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_zircon1"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_zircon1"/>
+    <property name="act2" value="add_monster dark_robo,25,spyder_nimrod_zircon,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_zircon"/>
     <property name="act4" value="translated_dialog spyder_nimrod_zircon2"/>
     <property name="act6" value="set_variable nimrodzircon:yes"/>
@@ -129,9 +133,11 @@
   </object>
   <object id="40" name="Talk Justice" type="event" x="240" y="256" width="48" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_justice1"/>
-    <property name="act3" value="start_battle spyder_nimrod_justice"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_justice2"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_justice1"/>
+    <property name="act2" value="add_monster ghosteeth,16,spyder_nimrod_justice,27,10"/>
+    <property name="act3" value="add_monster ghosteeth,16,spyder_nimrod_justice,27,10"/>
+    <property name="act4" value="start_battle spyder_nimrod_justice"/>
+    <property name="act5" value="translated_dialog spyder_nimrod_justice2"/>
     <property name="act6" value="set_variable nimrodjustice:yes"/>
     <property name="cond1" value="not variable_set nimrodjustice:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -139,7 +145,8 @@
   </object>
   <object id="41" name="Talk Zircon" type="event" x="176" y="176" width="16" height="32">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_zircon1"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_zircon1"/>
+    <property name="act2" value="add_monster dark_robo,25,spyder_nimrod_zircon,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_zircon"/>
     <property name="act4" value="translated_dialog spyder_nimrod_zircon2"/>
     <property name="act6" value="set_variable nimrodzircon:yes"/>
@@ -149,7 +156,8 @@
   </object>
   <object id="42" name="Talk Maverick" type="event" x="144" y="128" width="32" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_maverick1"/>
+    <property name="act1" value="translated_dialog spyder_nimrod_maverick1"/>
+    <property name="act2" value="add_monster av8r,25,spyder_nimrod_maverick,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_maverick"/>
     <property name="act4" value="translated_dialog spyder_nimrod_maverick2"/>
     <property name="act6" value="set_variable nimrodmaverick:yes"/>

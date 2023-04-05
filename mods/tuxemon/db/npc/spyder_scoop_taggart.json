@@ -6,31 +6,5 @@
       "combat_front": "nurse",
       "slug": "nurse"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Elofly",
-      "level": 30,
-      "slug": "elofly",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Elowind",
-      "level": 35,
-      "slug": "elowind",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Lapinou",
-      "level": 30,
-      "slug": "lapinou",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

@@ -6,31 +6,5 @@
       "combat_front": "fisher",
       "slug": "fisher"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Sharpfin",
-      "level": 22,
-      "slug": "sharpfin",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Sharpfin",
-      "level": 22,
-      "slug": "sharpfin",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Bigfin",
-      "level": 22,
-      "slug": "bigfin",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

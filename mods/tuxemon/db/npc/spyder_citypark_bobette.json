@@ -6,15 +6,5 @@
       "combat_front": "catgirl",
       "slug": "catgirl"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Aardorn",
-      "level": 10,
-      "slug": "aardorn",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

@@ -23,6 +23,12 @@
             "monster_slug": "loliferno"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "loliferno",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "blob",
     "stage": "basic",
     "types": [

@@ -23,6 +23,16 @@
             "monster_slug": "sapragon"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "sapragon",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "dragarbor",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "dragon",
     "stage": "basic",
     "types": [

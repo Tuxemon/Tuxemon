@@ -53,6 +53,7 @@
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "flier",
     "stage": "standalone",
     "types": [

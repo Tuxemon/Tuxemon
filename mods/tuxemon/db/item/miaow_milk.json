@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "level >=,0",
-    "has_path miaow_milk"
+    "is level >=,0",
+    "is has_path miaow_milk"
   ],
   "effects": [
     "evolve miaow_milk"

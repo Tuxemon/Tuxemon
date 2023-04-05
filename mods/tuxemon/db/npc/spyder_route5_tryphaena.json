@@ -6,23 +6,5 @@
       "combat_front": "florist",
       "slug": "florist"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Miaownolith",
-      "level": 24,
-      "slug": "miaownolith",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Criniotherme",
-      "level": 22,
-      "slug": "criniotherme",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

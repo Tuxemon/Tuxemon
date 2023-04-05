@@ -98,9 +98,11 @@
   </object>
   <object id="25" name="Talk William" type="event" x="144" y="48" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_omnichannel_william1"/>
-    <property name="act3" value="start_battle spyder_omnichannel_william"/>
-    <property name="act4" value="translated_dialog spyder_omnichannel_william2"/>
+    <property name="act1" value="translated_dialog spyder_omnichannel_william1"/>
+    <property name="act2" value="add_monster elowind,36,spyder_omnichannel_william,27,10"/>
+    <property name="act3" value="add_monster cardiwing,36,spyder_omnichannel_william,27,10"/>
+    <property name="act4" value="start_battle spyder_omnichannel_william"/>
+    <property name="act5" value="translated_dialog spyder_omnichannel_william2"/>
     <property name="act6" value="set_variable omnichannelwilliam:yes"/>
     <property name="behav1" value="talk spyder_omnichannel_william"/>
     <property name="cond1" value="not variable_set omnichannelwilliam:yes"/>

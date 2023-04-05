@@ -1,6 +1,6 @@
 {
   "conditions": [
-    "type wood"
+    "is type wood"
   ],
   "effects": [],
   "slug": "tm_wood",

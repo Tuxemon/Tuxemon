@@ -6,15 +6,5 @@
       "combat_front": "picnicker",
       "slug": "picnicker"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Capiti",
-      "level": 20,
-      "slug": "capiti",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

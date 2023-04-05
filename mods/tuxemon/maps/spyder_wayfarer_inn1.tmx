@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="76">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="80">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -173,13 +173,13 @@
     <property name="cond1" value="is variable_set gotbotbot:yes"/>
    </properties>
   </object>
-  <object id="55" name="Create Morton" type="event" x="64" y="96" width="16" height="16">
+  <object id="55" name="Create Morton" type="event" x="80" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer1_morton,4,6"/>
     <property name="cond1" value="not npc_exists spyder_wayfarer1_morton"/>
    </properties>
   </object>
-  <object id="56" name="Talk Morton" type="event" x="48" y="96" width="16" height="16">
+  <object id="56" name="Talk Morton" type="event" x="64" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_wayfarer1_morton1"/>
     <property name="act2" value="add_monster mrmoswitch,14,spyder_wayfarer1_morton,27,10"/>
@@ -303,6 +303,42 @@
    <properties>
     <property name="act1" value="set_variable environment:interior"/>
     <property name="cond1" value="not variable_set environment:interior"/>
+   </properties>
+  </object>
+  <object id="76" name="Create Ratcher" type="event" x="96" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_wayfarer1_ratcher,6,7"/>
+    <property name="act2" value="npc_face spyder_wayfarer1_ratcher,left"/>
+    <property name="cond1" value="not npc_exists spyder_wayfarer1_ratcher"/>
+   </properties>
+  </object>
+  <object id="77" name="Talk Ratcher" type="event" x="80" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_ratcher1"/>
+    <property name="act2" value="add_monster lapinou,14,spyder_wayfarer1_ratcher,27,10"/>
+    <property name="act3" value="start_battle spyder_wayfarer1_ratcher"/>
+    <property name="act4" value="translated_dialog spyder_wayfarer1_ratcher2"/>
+    <property name="act5" value="set_variable wayfarer1ratcher:yes"/>
+    <property name="behav1" value="talk spyder_wayfarer1_ratcher"/>
+    <property name="cond1" value="not variable_set wayfarer1ratcher:yes"/>
+   </properties>
+  </object>
+  <object id="78" name="Create Bismuth" type="event" x="16" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_wayfarer1_bismuth,1,15"/>
+    <property name="act2" value="npc_face spyder_wayfarer1_bismuth,up"/>
+    <property name="cond1" value="not npc_exists spyder_wayfarer1_bismuth"/>
+   </properties>
+  </object>
+  <object id="79" name="Talk Bismuth" type="event" x="16" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_bismuth1"/>
+    <property name="act2" value="add_monster hydrone,14,spyder_wayfarer1_bismuth,27,10"/>
+    <property name="act3" value="start_battle spyder_wayfarer1_bismuth"/>
+    <property name="act4" value="translated_dialog spyder_wayfarer1_bismuth2"/>
+    <property name="act5" value="set_variable wayfarer1bismuth:yes"/>
+    <property name="behav1" value="talk spyder_wayfarer1_bismuth"/>
+    <property name="cond1" value="not variable_set wayfarer1bismuth:yes"/>
    </properties>
   </object>
  </objectgroup>

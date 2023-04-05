@@ -60,8 +60,8 @@
   </object>
   <object id="12" name="create guards" type="event" x="32" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc omnigrunt7,13,7,,stand"/>
-    <property name="act2" value="create_npc omnigrunt8,13,8,,stand"/>
+    <property name="act1" value="create_npc omnigrunt7,13,7,stand"/>
+    <property name="act2" value="create_npc omnigrunt8,13,8,stand"/>
     <property name="act3" value="npc_face omnigrunt7,right"/>
     <property name="act4" value="npc_face omnigrunt8,right"/>
     <property name="cond1" value="not variable_set jason:gone"/>
@@ -143,7 +143,7 @@
   </object>
   <object id="20" name="start fight" type="event" x="144" y="16" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc acolyte,0,7,,stand"/>
+    <property name="act10" value="create_npc acolyte,0,7,stand"/>
     <property name="act11" value="npc_face acolyte,right"/>
     <property name="act12" value="wait 1"/>
     <property name="act20" value="pathfind acolyte,7,7"/>
@@ -208,7 +208,7 @@
   </object>
   <object id="23" name="redo" type="event" x="96" y="32" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc acolyte,7,7,,stand"/>
+    <property name="act10" value="create_npc acolyte,7,7,stand"/>
     <property name="act11" value="npc_face acolyte,right"/>
     <property name="act12" value="set_variable battledone:redo"/>
     <property name="cond1" value="is variable_set redo:please"/>

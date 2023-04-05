@@ -61,16 +61,16 @@
   </object>
   <object id="17" name="create most people" type="event" x="0" y="112" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc christie,10,8,,stand"/>
+    <property name="act10" value="create_npc christie,10,8,stand"/>
     <property name="act11" value="npc_face christie,up"/>
-    <property name="act12" value="create_npc speck,8,8,,stand"/>
+    <property name="act12" value="create_npc speck,8,8,stand"/>
     <property name="act13" value="npc_face speck,up"/>
-    <property name="act14" value="create_npc aeble,9,4,,stand"/>
-    <property name="act20" value="create_npc omnigrunt2,17,2,,stand"/>
+    <property name="act14" value="create_npc aeble,9,4,stand"/>
+    <property name="act20" value="create_npc omnigrunt2,17,2,stand"/>
     <property name="act21" value="npc_face omnigrunt2,right"/>
-    <property name="act22" value="create_npc omnigrunt3,16,12,,stand"/>
+    <property name="act22" value="create_npc omnigrunt3,16,12,stand"/>
     <property name="act23" value="npc_face omnigrunt3,up"/>
-    <property name="act24" value="create_npc omnigrunt4,17,12,,stand"/>
+    <property name="act24" value="create_npc omnigrunt4,17,12,stand"/>
     <property name="act25" value="npc_face omnigrunt4,up"/>
     <property name="act30" value="set_variable moveonnow:yes"/>
     <property name="cond1" value="not variable_set moveonnow:yes"/>
@@ -395,9 +395,9 @@
   </object>
   <object id="30" name="block3" type="event" x="176" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc omnigrunt5,14,14,,stand"/>
+    <property name="act1" value="create_npc omnigrunt5,14,14,stand"/>
     <property name="act2" value="pathfind omnigrunt5,14,12"/>
-    <property name="act3" value="create_npc omnigrunt6,13,14,,stand"/>
+    <property name="act3" value="create_npc omnigrunt6,13,14,stand"/>
     <property name="act4" value="pathfind omnigrunt6,13,12"/>
     <property name="cond1" value="is variable_set moveit3:now"/>
     <property name="cond2" value="not npc_exists omnigrunt5"/>
@@ -406,9 +406,9 @@
   </object>
   <object id="32" name="block2" type="event" x="112" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc omnigrunt7,5,14,,stand"/>
+    <property name="act1" value="create_npc omnigrunt7,5,14,stand"/>
     <property name="act2" value="pathfind omnigrunt7,5,12"/>
-    <property name="act3" value="create_npc omnigrunt8,4,14,,stand"/>
+    <property name="act3" value="create_npc omnigrunt8,4,14,stand"/>
     <property name="act4" value="pathfind omnigrunt8,4,12"/>
     <property name="cond1" value="is variable_set moveit2:now"/>
     <property name="cond2" value="not npc_exists omnigrunt7"/>
@@ -455,11 +455,11 @@
   </object>
   <object id="38" name="block4" type="event" x="0" y="64" width="16" height="16">
    <properties>
-    <property name="act20" value="create_npc omnigrunt2,17,2,,stand"/>
+    <property name="act20" value="create_npc omnigrunt2,17,2,stand"/>
     <property name="act21" value="npc_face omnigrunt2,right"/>
-    <property name="act22" value="create_npc omnigrunt3,16,12,,stand"/>
+    <property name="act22" value="create_npc omnigrunt3,16,12,stand"/>
     <property name="act23" value="npc_face omnigrunt3,up"/>
-    <property name="act24" value="create_npc omnigrunt4,17,12,,stand"/>
+    <property name="act24" value="create_npc omnigrunt4,17,12,stand"/>
     <property name="act25" value="npc_face omnigrunt4,up"/>
     <property name="cond1" value="not npc_exists omnigrunt2"/>
     <property name="cond2" value="not npc_exists omnigrunt3"/>
@@ -482,9 +482,9 @@
   </object>
   <object id="41" name="block1" type="event" x="0" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc omnigrunt9,2,14,,stand"/>
+    <property name="act1" value="create_npc omnigrunt9,2,14,stand"/>
     <property name="act2" value="pathfind omnigrunt9,2,12"/>
-    <property name="act3" value="create_npc omnigrunt10,1,14,,stand"/>
+    <property name="act3" value="create_npc omnigrunt10,1,14,stand"/>
     <property name="act4" value="pathfind omnigrunt10,1,12"/>
     <property name="cond1" value="is variable_set close1"/>
     <property name="cond2" value="not npc_exists omnigrunt9"/>

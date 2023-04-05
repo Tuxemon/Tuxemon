@@ -295,6 +295,7 @@
   </object>
   <object id="65" name="Talk Lanth" type="event" x="0" y="80" width="16" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_scoop_lanth"/>
     <property name="act1" value="translated_dialog spyder_scoop_lanth1"/>
     <property name="act2" value="add_monster mrmoswitch,35,spyder_scoop_lanth,27,10"/>
     <property name="act3" value="add_monster picc,35,spyder_scoop_lanth,27,10"/>
@@ -307,6 +308,7 @@
   </object>
   <object id="66" name="Talk Berys" type="event" x="272" y="64" width="32" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_scoop_berys"/>
     <property name="act1" value="translated_dialog spyder_scoop_berys1"/>
     <property name="act2" value="add_monster propellercat,40,spyder_scoop_berys,27,10"/>
     <property name="act3" value="add_monster embazook,35,spyder_scoop_berys,27,10"/>
@@ -319,6 +321,7 @@
   </object>
   <object id="67" name="Talk Turner" type="event" x="16" y="160" width="16" height="48">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_scoop_turner"/>
     <property name="act1" value="translated_dialog spyder_scoop_turner1"/>
     <property name="act2" value="add_monster flacono,30,spyder_scoop_turner,27,10"/>
     <property name="act3" value="add_monster squabbit,30,spyder_scoop_turner,27,10"/>
@@ -331,6 +334,7 @@
   </object>
   <object id="68" name="Talk Paine" type="event" x="96" y="64" width="16" height="32">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_scoop_paine"/>
     <property name="act1" value="translated_dialog spyder_scoop_paine1"/>
     <property name="act2" value="add_monster possessun,35,spyder_scoop_paine,27,10"/>
     <property name="act3" value="add_monster cairfrey,30,spyder_scoop_paine,27,10"/>
@@ -343,6 +347,7 @@
   </object>
   <object id="69" name="Talk Rubid" type="event" x="192" y="160" width="16" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_scoop_rubid"/>
     <property name="act1" value="translated_dialog spyder_scoop_rubid1"/>
     <property name="act2" value="add_monster birdling,35,spyder_scoop_rubid,27,10"/>
     <property name="act3" value="add_monster hatchling,30,spyder_scoop_rubid,27,10"/>

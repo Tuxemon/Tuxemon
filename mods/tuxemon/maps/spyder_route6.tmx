@@ -430,6 +430,7 @@
   </object>
   <object id="213" name="Talk Maxwell" type="event" x="96" y="80" width="64" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_route6_maxwell"/>
     <property name="act1" value="translated_dialog spyder_route6_maxwell1"/>
     <property name="act2" value="add_monster propellercat,30,spyder_route6_maxwell,27,10"/>
     <property name="act3" value="add_monster birdling,30,spyder_route6_maxwell,27,10"/>
@@ -442,6 +443,7 @@
   </object>
   <object id="214" name="Talk Orion" type="event" x="336" y="48" width="16" height="48">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_route6_orion"/>
     <property name="act1" value="translated_dialog spyder_route6_orion1"/>
     <property name="act2" value="add_monster spighter,20,spyder_route6_orion,27,10"/>
     <property name="act3" value="add_monster zunna,30,spyder_route6_orion,27,10"/>
@@ -454,6 +456,7 @@
   </object>
   <object id="215" name="Talk Richard" type="event" x="432" y="176" width="64" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_route6_richard"/>
     <property name="act1" value="translated_dialog spyder_route6_richard1"/>
     <property name="act2" value="add_monster hydrone,30,spyder_route6_richard,27,10"/>
     <property name="act3" value="add_monster pigabyte,30,spyder_route6_richard,27,10"/>
@@ -466,6 +469,7 @@
   </object>
   <object id="216" name="Talk Blair" type="event" x="496" y="144" width="64" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_route6_blair"/>
     <property name="act1" value="translated_dialog spyder_route6_blair1"/>
     <property name="act2" value="add_monster grintrock,30,spyder_route6_blair,27,10"/>
     <property name="act3" value="add_monster grinflare,30,spyder_route6_blair,27,10"/>
@@ -478,6 +482,7 @@
   </object>
   <object id="217" name="Talk Mungo" type="event" x="464" y="48" width="48" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_route6_mungo"/>
     <property name="act1" value="translated_dialog spyder_route6_mungo1"/>
     <property name="act2" value="add_monster noctula,20,spyder_route6_mungo,27,10"/>
     <property name="act3" value="start_battle spyder_route6_mungo"/>

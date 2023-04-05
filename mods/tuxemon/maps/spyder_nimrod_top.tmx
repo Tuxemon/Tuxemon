@@ -133,6 +133,7 @@
   </object>
   <object id="40" name="Talk Justice" type="event" x="240" y="256" width="48" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_nimrod_justice"/>
     <property name="act1" value="translated_dialog spyder_nimrod_justice1"/>
     <property name="act2" value="add_monster ghosteeth,16,spyder_nimrod_justice,27,10"/>
     <property name="act3" value="add_monster ghosteeth,16,spyder_nimrod_justice,27,10"/>
@@ -145,6 +146,7 @@
   </object>
   <object id="41" name="Talk Zircon" type="event" x="176" y="176" width="16" height="32">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_nimrod_zircon"/>
     <property name="act1" value="translated_dialog spyder_nimrod_zircon1"/>
     <property name="act2" value="add_monster dark_robo,25,spyder_nimrod_zircon,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_zircon"/>
@@ -156,6 +158,7 @@
   </object>
   <object id="42" name="Talk Maverick" type="event" x="144" y="128" width="32" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_nimrod_maverick"/>
     <property name="act1" value="translated_dialog spyder_nimrod_maverick1"/>
     <property name="act2" value="add_monster av8r,25,spyder_nimrod_maverick,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_maverick"/>
@@ -180,6 +183,7 @@
   </object>
   <object id="45" name="Talk Mace" type="event" x="256" y="176" width="32" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_nimrod_mace"/>
     <property name="act1" value="translated_dialog spyder_nimrod_mace1"/>
     <property name="act2" value="add_monster embazook,20,spyder_nimrod_mace,27,10"/>
     <property name="act3" value="add_monster av8r,20,spyder_nimrod_mace,27,10"/>

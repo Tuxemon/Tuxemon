@@ -166,6 +166,7 @@
   </object>
   <object id="92" name="Talk Aissa" type="event" x="176" y="48" width="16" height="48">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_greenwash_aissa"/>
     <property name="act1" value="translated_dialog spyder_greenwash_aissa1"/>
     <property name="act2" value="add_monster cateye,22,spyder_greenwash_aissa,27,10"/>
     <property name="act3" value="start_battle spyder_greenwash_aissa"/>
@@ -177,6 +178,7 @@
   </object>
   <object id="93" name="Talk Dippel" type="event" x="160" y="304" width="48" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_greenwash_dippel"/>
     <property name="act1" value="translated_dialog spyder_greenwash_dippel1"/>
     <property name="act2" value="add_monster criniotherme,22,spyder_greenwash_dippel,27,10"/>
     <property name="act3" value="add_monster tikorch,22,spyder_greenwash_dippel,27,10"/>
@@ -189,6 +191,7 @@
   </object>
   <object id="94" name="Talk Moreau" type="event" x="128" y="496" width="16" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_greenwash_moreau"/>
     <property name="act1" value="translated_dialog spyder_greenwash_moreau1"/>
     <property name="act2" value="add_monster sclairus,26,spyder_greenwash_moreau,27,10"/>
     <property name="act3" value="start_battle spyder_greenwash_moreau"/>

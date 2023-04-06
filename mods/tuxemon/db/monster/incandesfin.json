@@ -35,6 +35,12 @@
             "monster_slug": "lightmare"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "fluoresfin",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "aquatic",
     "stage": "stage1",
     "types": [

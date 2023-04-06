@@ -23,6 +23,12 @@
             "monster_slug": "nudikill"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "nudikill",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "polliwog",
     "stage": "basic",
     "types": [

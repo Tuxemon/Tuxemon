@@ -53,6 +53,7 @@
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "grub",
     "stage": "standalone",
     "types": [

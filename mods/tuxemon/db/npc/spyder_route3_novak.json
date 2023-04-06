@@ -6,15 +6,5 @@
       "combat_front": "tennisplayer",
       "slug": "tennisplayer"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Elofly",
-      "level": 13,
-      "slug": "elofly",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

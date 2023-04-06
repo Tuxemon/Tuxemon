@@ -53,6 +53,7 @@
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "dragon",
     "stage": "standalone",
     "types": [

@@ -6,55 +6,5 @@
       "combat_front": "tennisplayer",
       "slug": "tennisplayer"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Weavifly",
-      "level": 12,
-      "slug": "weavifly",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Cataspike",
-      "level": 8,
-      "slug": "cataspike",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Cataspike",
-      "level": 8,
-      "slug": "cataspike",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Cataspike",
-      "level": 8,
-      "slug": "cataspike",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Cataspike",
-      "level": 8,
-      "slug": "cataspike",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Cataspike",
-      "level": 8,
-      "slug": "cataspike",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

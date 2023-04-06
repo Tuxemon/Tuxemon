@@ -14,6 +14,7 @@ from tuxemon.db import (
     EvolutionStage,
     GenderType,
     MonsterEvolutionItemModel,
+    MonsterHistoryItemModel,
     MonsterMovesetItemModel,
     MonsterShape,
     StatType,
@@ -223,6 +224,7 @@ class Monster:
         self.moves: List[Technique] = []
         self.moveset: List[MonsterMovesetItemModel] = []
         self.evolutions: List[MonsterEvolutionItemModel] = []
+        self.history: List[MonsterHistoryItemModel] = []
         self.stage = EvolutionStage.standalone
         self.flairs: Dict[str, Flair] = {}
         self.battle_cry = ""
@@ -340,6 +342,12 @@ class Monster:
         if evolutions:
             for evolution in evolutions:
                 self.evolutions.append(evolution)
+
+        # history
+        history = results.history
+        if history:
+            for element in history:
+                self.history.append(element)
 
         # Look up the monster's sprite image paths
         if results.sprites:

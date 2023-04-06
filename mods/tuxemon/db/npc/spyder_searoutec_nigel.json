@@ -6,15 +6,5 @@
       "combat_front": "dragonrider",
       "slug": "dragonrider"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Agnigon",
-      "level": 36,
-      "slug": "agnigon",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

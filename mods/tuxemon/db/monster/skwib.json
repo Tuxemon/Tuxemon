@@ -23,6 +23,12 @@
             "monster_slug": "octabode"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "octabode",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "polliwog",
     "stage": "basic",
     "types": [

@@ -53,6 +53,7 @@
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "varmint",
     "stage": "standalone",
     "types": [

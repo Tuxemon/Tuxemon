@@ -42,6 +42,16 @@
             "item": "stovepipe"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "embazook",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "eruptibus",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "polliwog",
     "stage": "basic",
     "types": [

@@ -6,15 +6,5 @@
       "combat_front": "picnicker",
       "slug": "picnicker"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Aardart",
-      "level": 20,
-      "slug": "aardart",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

@@ -41,6 +41,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "chloragon",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "sapragon",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "dragon",
     "stage": "stage2",
     "types": [

@@ -53,6 +53,7 @@
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "hunter",
     "stage": "standalone",
     "types": [

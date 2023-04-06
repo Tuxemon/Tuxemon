@@ -6,23 +6,5 @@
       "combat_front": "soldier",
       "slug": "soldier"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Embazook",
-      "level": 20,
-      "slug": "embazook",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Sharpfin",
-      "level": 20,
-      "slug": "sharpfin",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

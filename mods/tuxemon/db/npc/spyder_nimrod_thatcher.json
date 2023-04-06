@@ -6,23 +6,5 @@
       "combat_front": "enforcer_agent",
       "slug": "enforcer_agent"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Squabbit",
-      "level": 20,
-      "slug": "squabbit",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Viviteel",
-      "level": 25,
-      "slug": "viviteel",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

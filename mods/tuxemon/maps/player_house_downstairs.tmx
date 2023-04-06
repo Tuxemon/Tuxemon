@@ -89,7 +89,7 @@
   <object id="28" name="Player Spawn" type="event" x="64" y="48" width="16" height="16"/>
   <object id="29" name="create mom" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc npc_mom,8,3,,stand"/>
+    <property name="act10" value="create_npc npc_mom,8,3,stand"/>
     <property name="act20" value="npc_face npc_mom,left"/>
     <property name="act40" value="npc_wander npc_mom,3.0"/>
     <property name="cond10" value="not npc_exists npc_mom"/>
@@ -107,7 +107,7 @@
   </object>
   <object id="31" name="create mom2" type="event" x="80" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_mom,0,5,,stand"/>
+    <property name="act1" value="create_npc npc_mom,0,5,stand"/>
     <property name="act2" value="npc_face npc_mom,right"/>
     <property name="act3" value="wait 1"/>
     <property name="act4" value="translated_dialog ipausedit"/>

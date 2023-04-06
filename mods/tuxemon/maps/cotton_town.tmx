@@ -176,7 +176,7 @@
    <properties>
     <property name="act10" value="translated_dialog itslockedboi"/>
     <property name="act20" value="translated_dialog hellothere"/>
-    <property name="act30" value="create_npc aeble,14,10,,stand"/>
+    <property name="act30" value="create_npc aeble,14,10,stand"/>
     <property name="act40" value="npc_face aeble,right"/>
     <property name="act50" value="translated_dialog kmere"/>
     <property name="cond10" value="is player_at"/>
@@ -311,7 +311,7 @@
   </object>
   <object id="252" name="create allie" type="event" x="0" y="352" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc allie,22,10,,stand"/>
+    <property name="act10" value="create_npc allie,22,10,stand"/>
     <property name="cond10" value="not npc_exists allie"/>
     <property name="cond20" value="not variable_set npcs_are_created:yes"/>
    </properties>
@@ -343,7 +343,7 @@
   </object>
   <object id="259" name="Create liela" type="event" x="16" y="80" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc liela,38,17,,stand"/>
+    <property name="act10" value="create_npc liela,38,17,stand"/>
     <property name="act20" value="npc_face liela,up"/>
     <property name="cond10" value="not npc_exists liela"/>
    </properties>
@@ -456,8 +456,8 @@
   </object>
   <object id="278" name="create grace and tallon" type="event" x="0" y="368" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc grace,0,29,,stand"/>
-    <property name="act20" value="create_npc tallon,0,28,,stand"/>
+    <property name="act10" value="create_npc grace,0,29,stand"/>
+    <property name="act20" value="create_npc tallon,0,28,stand"/>
     <property name="act30" value="npc_face grace,left"/>
     <property name="act40" value="npc_face tallon,left"/>
     <property name="cond10" value="not npc_exists grace"/>

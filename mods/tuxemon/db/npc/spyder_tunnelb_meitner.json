@@ -6,15 +6,5 @@
       "combat_front": "scientist",
       "slug": "scientist"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Masknake",
-      "level": 22,
-      "slug": "masknake",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

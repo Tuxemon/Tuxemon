@@ -379,6 +379,7 @@
   </object>
   <object id="82" name="Talk Marshall" type="event" x="48" y="464" width="48" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_route4_marshall"/>
     <property name="act1" value="translated_dialog spyder_route4_marshall1"/>
     <property name="act2" value="add_monster puparmor,16,spyder_route4_marshall,27,10"/>
     <property name="act3" value="add_monster puparmor,16,spyder_route4_marshall,27,10"/>
@@ -391,6 +392,7 @@
   </object>
   <object id="83" name="Talk Beck" type="event" x="64" y="320" width="32" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_route4_beck"/>
     <property name="act1" value="translated_dialog spyder_route4_beck1"/>
     <property name="act2" value="add_monster katapill,14,spyder_route4_beck,27,10"/>
     <property name="act3" value="add_monster tumbleworm,12,spyder_route4_beck,27,10"/>
@@ -404,6 +406,7 @@
   </object>
   <object id="84" name="Talk Wulf" type="event" x="32" y="208" width="16" height="48">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_route4_wulf"/>
     <property name="act1" value="translated_dialog spyder_route4_wulf1"/>
     <property name="act2" value="add_monster cowpignon,14,spyder_route4_wulf,27,10"/>
     <property name="act3" value="add_monster cowpignon,14,spyder_route4_wulf,27,10"/>
@@ -417,6 +420,7 @@
   </object>
   <object id="85" name="Talk Rosamund" type="event" x="192" y="496" width="16" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_route4_rosamund"/>
     <property name="act1" value="translated_dialog spyder_route4_rosamund1"/>
     <property name="act2" value="add_monster foofle,18,spyder_route4_rosamund,27,10"/>
     <property name="act3" value="start_battle spyder_route4_rosamund"/>

@@ -671,6 +671,7 @@
   </object>
   <object id="220" name="Talk Aquemini" type="event" x="544" y="192" width="16" height="48">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_dryadsgrove_aquemini"/>
     <property name="act1" value="translated_dialog spyder_dryadsgrove_aquemini1"/>
     <property name="act2" value="add_monster vivitrans,50,spyder_dryadsgrove_aquemini,27,10"/>
     <property name="act3" value="add_monster nudimind,50,spyder_dryadsgrove_aquemini,27,10"/>
@@ -684,6 +685,7 @@
   </object>
   <object id="221" name="Talk Ignatia" type="event" x="400" y="128" width="48" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_dryadsgrove_ignatia"/>
     <property name="act1" value="translated_dialog spyder_dryadsgrove_ignatia1"/>
     <property name="act2" value="add_monster vivicinder,50,spyder_dryadsgrove_ignatia,27,10"/>
     <property name="act3" value="add_monster masknake,50,spyder_dryadsgrove_ignatia,27,10"/>
@@ -697,6 +699,7 @@
   </object>
   <object id="222" name="Talk Petra" type="event" x="240" y="96" width="16" height="32">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_dryadsgrove_petra"/>
     <property name="act1" value="translated_dialog spyder_dryadsgrove_petra1"/>
     <property name="act2" value="add_monster vivitron,50,spyder_dryadsgrove_petra,27,10"/>
     <property name="act3" value="add_monster sumchon,50,spyder_dryadsgrove_petra,27,10"/>
@@ -736,6 +739,7 @@
   </object>
   <object id="227" name="Talk Ferris" type="event" x="592" y="112" width="16" height="32">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_dryadsgrove_ferris"/>
     <property name="act1" value="translated_dialog spyder_dryadsgrove_ferris1"/>
     <property name="act2" value="add_monster viviteel,50,spyder_dryadsgrove_ferris,27,10"/>
     <property name="act3" value="add_monster allagon,50,spyder_dryadsgrove_ferris,27,10"/>

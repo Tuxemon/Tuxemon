@@ -779,6 +779,9 @@ msgstr "{target} is confused."
 msgid "combat_state_diehard_get"
 msgstr "{target} will keep fighting."
 
+msgid "combat_state_diehard_tech"
+msgstr "{target} fights through the pain."
+
 msgid "combat_state_dozing_get"
 msgstr "{target} is asleep."
 
@@ -790,6 +793,9 @@ msgstr "{target} is exhausted."
 
 msgid "combat_state_festering_get"
 msgstr "{target}'s wounds fester."
+
+msgid "combat_state_festering_item"
+msgstr "The healing fails. The wound festers."
 
 msgid "combat_state_focused_get"
 msgstr "{target} becomes focused."

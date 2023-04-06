@@ -37,7 +37,12 @@ from tuxemon.combat import (
     fainted,
     get_awake_monsters,
 )
-from tuxemon.db import BattleGraphicsModel, OutputBattle, SeenStatus
+from tuxemon.db import (
+    BattleGraphicsModel,
+    ItemCategory,
+    OutputBattle,
+    SeenStatus,
+)
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -1030,6 +1035,14 @@ class CombatState(CombatAnimations):
                     template = getattr(technique, msg_type)
                     if template:
                         message += "\n" + T.format(template, context)
+                    if isinstance(technique, Item):
+                        if (
+                            technique.category == ItemCategory.potion
+                            and check_status(target, "status_festering")
+                        ):
+                            message = T.translate(
+                                "combat_state_festering_item"
+                            )
 
             self.alert(message)
             self.suppress_phase_change(action_time)
@@ -1147,6 +1160,14 @@ class CombatState(CombatAnimations):
                 ):
                     monster.current_hp = 1
                     monster.status = []
+                    self.alert(
+                        T.format(
+                            "combat_state_diehard_tech",
+                            {
+                                "target": monster.name.upper(),
+                            },
+                        )
+                    )
                 if monster.current_hp <= 0 and not check_status(
                     monster, "status_faint"
                 ):

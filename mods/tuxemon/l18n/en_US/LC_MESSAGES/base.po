@@ -1952,15 +1952,6 @@ msgstr "shelter"
 msgid "Locker"
 msgstr "locker"
 
-msgid "kennel_label"
-msgstr "{box} ({qty})"
-
-msgid "locker_label_short"
-msgstr "{box} (T{qty1}-I{qty2})"
-
-msgid "locker_label_long"
-msgstr "{box} ({qty1} types - {qty2} items)"
-
 # Default mod names on selection menu
 msgid "xero_campaign"
 msgstr "Tuxemon: Xero"

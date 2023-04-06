@@ -22,8 +22,7 @@ from pygame_menu.locals import POSITION_CENTER
 from pygame_menu.widgets.selection.highlight import HighlightSelection
 from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
-from tuxemon import prepare, tools
-from tuxemon.db import db
+from tuxemon import prepare
 from tuxemon.item import item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -33,7 +32,11 @@ from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.state import State
 from tuxemon.states.items import ItemMenuState
-from tuxemon.tools import open_choice_dialog, open_dialog
+from tuxemon.tools import (
+    open_choice_dialog,
+    open_dialog,
+    transform_resource_filename,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -217,13 +220,14 @@ class ItemTakeState(PygameMenuState):
             )
 
         # it prints items inside the screen: image + button
+        _sorted = sorted(items, key=lambda x: x.slug)
         sum_total = []
-        for itm in items:
+        for itm in _sorted:
             sum_total.append(itm.quantity)
-            label = T.translate(itm.name).upper() + " x " + str(itm.quantity)
+            label = T.translate(itm.name).upper() + " x" + str(itm.quantity)
             iid = itm.instance_id.hex
             new_image = pygame_menu.BaseImage(
-                tools.transform_resource_filename(itm.sprite),
+                transform_resource_filename(itm.sprite),
                 drawing_position=POSITION_CENTER,
             )
             new_image.scale(prepare.SCALE, prepare.SCALE)
@@ -241,22 +245,15 @@ class ItemTakeState(PygameMenuState):
             )
 
         # menu
-        menu.set_title(
-            T.format(
-                "locker_label_long",
-                {
-                    "box": T.translate(self.box_name).upper(),
-                    "qty1": len(self.box),
-                    "qty2": sum(sum_total),
-                },
-            )
-        ).center_content()
+        box_label = T.translate(self.box_name).upper()
+        label = f"{box_label} ({len(self.box)} types - {sum(sum_total)} items)"
+        menu.set_title(label).center_content()
 
     def __init__(self, box_name: str) -> None:
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
+            image_path=transform_resource_filename(
                 "gfx/ui/item/bg_pcstate.png"
             ),
             drawing_position=POSITION_CENTER,
@@ -334,14 +331,8 @@ class ItemBoxChooseState(PygameMenuState):
             sum_total = []
             for ele in num_itms:
                 sum_total.append(ele.quantity)
-            label = T.format(
-                "locker_label_short",
-                {
-                    "box": T.translate(key).upper(),
-                    "qty1": len(num_itms),
-                    "qty2": sum(sum_total),
-                },
-            )
+            box_label = T.translate(key).upper()
+            label = f"{box_label} (T{len(num_itms)}-I{sum(sum_total)})"
             menu.add.button(label, callback)
             menu.add.vertical_fill()
 

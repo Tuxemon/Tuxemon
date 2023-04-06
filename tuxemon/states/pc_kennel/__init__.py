@@ -14,8 +14,7 @@ from pygame_menu.locals import POSITION_CENTER
 from pygame_menu.widgets.selection.highlight import HighlightSelection
 from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
-from tuxemon import prepare, tools
-from tuxemon.db import db
+from tuxemon import prepare
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
@@ -24,7 +23,11 @@ from tuxemon.session import local_session
 from tuxemon.state import State
 from tuxemon.states.journal import MonsterInfoState
 from tuxemon.states.monster import MonsterMenuState
-from tuxemon.tools import open_choice_dialog, open_dialog
+from tuxemon.tools import (
+    open_choice_dialog,
+    open_dialog,
+    transform_resource_filename,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -44,6 +47,7 @@ def fix_width(screen_x: int, pos_x: float) -> int:
 
 HIDDEN = "hidden_kennel"
 HIDDEN_LIST = [HIDDEN]
+MAX_BOX = 30
 
 
 class MonsterTakeState(PygameMenuState):
@@ -182,11 +186,12 @@ class MonsterTakeState(PygameMenuState):
             self.client.push_state(MonsterInfoState(monster=mon))
 
         # it prints monsters inside the screen: image + button
-        for monster in items:
+        _sorted = sorted(items, key=lambda x: x.slug)
+        for monster in _sorted:
             label = T.translate(monster.name).upper()
             iid = monster.instance_id.hex
             new_image = pygame_menu.BaseImage(
-                tools.transform_resource_filename(monster.menu_sprite_1),
+                transform_resource_filename(monster.menu_sprite_1),
                 drawing_position=POSITION_CENTER,
             )
             new_image.scale(prepare.SCALE, prepare.SCALE)
@@ -209,21 +214,16 @@ class MonsterTakeState(PygameMenuState):
             )
 
         # menu
+        box_label = T.translate(self.box_name).upper()
         menu.set_title(
-            T.format(
-                "kennel_label",
-                {
-                    "box": T.translate(self.box_name).upper(),
-                    "qty": len(self.box),
-                },
-            )
+            T.format(f"{box_label}: {len(self.box)}/{MAX_BOX}")
         ).center_content()
 
     def __init__(self, box_name: str) -> None:
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
+            image_path=transform_resource_filename(
                 "gfx/ui/item/bg_pcstate.png"
             ),
             drawing_position=POSITION_CENTER,
@@ -299,11 +299,7 @@ class MonsterBoxChooseState(PygameMenuState):
         for key, callback in items:
             num_mons = local_session.player.monster_boxes[key]
             label = T.format(
-                "kennel_label",
-                {
-                    "box": T.translate(key).upper(),
-                    "qty": len(num_mons),
-                },
+                f"{T.translate(key).upper()}: {len(num_mons)}/{MAX_BOX}"
             )
             menu.add.button(label, callback)
             menu.add.vertical_fill()

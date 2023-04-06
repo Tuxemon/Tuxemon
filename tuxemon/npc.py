@@ -43,6 +43,7 @@ from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
 from tuxemon.states.combat.combat import EnqueuedAction
 from tuxemon.states.pc import KENNEL, LOCKER
+from tuxemon.states.pc_kennel import MAX_BOX
 from tuxemon.technique.technique import Technique
 from tuxemon.template import Template, decode_template, encode_template
 from tuxemon.tools import open_choice_dialog, open_dialog, vector2_to_tile_pos
@@ -648,6 +649,14 @@ class NPC(Entity[NPCState]):
         monster.owner = self
         if len(self.monsters) >= self.party_limit:
             self.monster_boxes[KENNEL].append(monster)
+            if len(self.monster_boxes[KENNEL]) >= MAX_BOX:
+                i = sum(
+                    1
+                    for ele, mon in self.monster_boxes.items()
+                    if ele.startswith(KENNEL) and len(mon) >= MAX_BOX
+                )
+                self.monster_boxes[f"{KENNEL}{i}"] = self.monster_boxes[KENNEL]
+                self.monster_boxes[KENNEL] = []
         else:
             self.monsters.insert(slot, monster)
             self.set_party_status()

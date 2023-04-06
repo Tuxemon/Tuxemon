@@ -172,7 +172,7 @@
     <property name="act4" value="translated_dialog spyder_scoop_landrace2"/>
     <property name="act6" value="set_variable scooplandrace:yes"/>
     <property name="act61" value="remove_npc spyder_scoop_landrace"/>
-    <property name="act71" value="pathfind spyder_scoop_weaver,11,3 "/>
+    <property name="act71" value="pathfind spyder_scoop_weaver,11,3"/>
     <property name="act81" value="remove_npc spyder_scoop_weaver"/>
     <property name="act89" value="pathfind spyder_scoop_arachne,10,4"/>
     <property name="act90" value="npc_face spyder_scoop_arachne,down"/>

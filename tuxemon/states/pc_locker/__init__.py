@@ -262,6 +262,8 @@ class ItemTakeState(PygameMenuState):
         theme.scrollarea_position = locals.POSITION_EAST
         theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
+        theme.scrollbar_color = (237, 246, 248)
+        theme.scrollbar_slider_color = (197, 232, 234)
 
         # menu
         theme.title = True
@@ -305,6 +307,8 @@ class ItemTakeState(PygameMenuState):
         theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
+        theme.scrollbar_color = (235, 235, 235)
+        theme.scrollbar_slider_color = (200, 200, 200)
 
 
 class ItemBoxChooseState(PygameMenuState):

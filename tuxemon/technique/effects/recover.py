@@ -31,10 +31,10 @@ class RecoverEffect(TechEffect):
         potency = random.random()
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
-            tech = Technique()
-            tech.load("status_recover")
-            tech.link = user
-            user.apply_status(tech)
+            status = Technique()
+            status.load("status_recover")
+            status.link = user
+            user.apply_status(status)
             return {
                 "success": True,
             }
@@ -42,7 +42,7 @@ class RecoverEffect(TechEffect):
         if tech.slug == "status_recover":
             # avoids Nonetype situation and reset the user
             if user is None:
-                user = tech.link
+                user = status.link
                 assert user
                 heal = formula.simple_recover(user)
                 user.current_hp += heal

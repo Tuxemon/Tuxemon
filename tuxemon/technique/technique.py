@@ -43,12 +43,6 @@ class Technique:
     """
     Particular skill that tuxemon monsters can use in battle.
 
-    Parameters:
-        slug: Slug of the technique.
-        carrier: Monster affected by a status technique.
-        link: Additional monster linked to the effect of the status technique.
-            For example, monster that obtains life with lifeleech.
-
     """
 
     effects_classes: ClassVar[Mapping[str, Type[TechEffect[Any]]]] = {}
@@ -290,10 +284,6 @@ class Technique:
 
     def full_recharge(self) -> None:
         self.next_use = 0
-
-    def reset_counter(self) -> None:
-        """Reset the combat counter."""
-        self._counter = 0
 
     def use(self, user: Monster, target: Monster) -> TechEffectResult:
         """

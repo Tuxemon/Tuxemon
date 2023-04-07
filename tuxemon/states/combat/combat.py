@@ -36,7 +36,12 @@ from tuxemon.combat import (
     fainted,
     get_awake_monsters,
 )
-from tuxemon.db import BattleGraphicsModel, OutputBattle, SeenStatus
+from tuxemon.db import (
+    BattleGraphicsModel,
+    ItemCategory,
+    OutputBattle,
+    SeenStatus,
+)
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -717,17 +722,12 @@ class CombatState(CombatAnimations):
 
         # TODO: not hardcode
         message = T.format(
-            "combat_call_tuxemon",
-            {"name": monster.name.upper()},
-        )
-        m = T.format(
             "combat_swap",
             {
                 "target": monster.name.upper(),
                 "user": player.name.upper(),
             },
         )
-        message += "\n" + m
         self.alert(message)
         # save iid monster fighting
         if player is self.players[0]:
@@ -1024,6 +1024,12 @@ class CombatState(CombatAnimations):
                 }
                 template = getattr(technique, msg_type)
                 message = T.format(template, context)
+                # swapping monster
+                if technique.slug == "swap":
+                    message = T.format(
+                        "combat_call_tuxemon",
+                        {"name": target.name.upper()},
+                    )
                 self.suppress_phase_change()
                 self.alert(message)
 
@@ -1053,34 +1059,22 @@ class CombatState(CombatAnimations):
                     "target": target.name,
                 }
                 message = T.format(item.use_item, context)
-                if not result_item["success"]:
+                if (
+                    not result_item["success"]
+                    and item.category != ItemCategory.capture
+                ):
                     m = T.translate("generic_failure")
                     message += "\n" + m
-                if result_item["capture"]:
+                if item.category == ItemCategory.capture:
                     message += "\n" + T.translate("attempting_capture")
-                    action_time = result_item["num_shakes"] + 1.8
                     self.animate_capture_monster(
                         result_item["success"],
                         result_item["num_shakes"],
                         target,
-                        item.slug,
+                        item,
+                        player,
+                        self,
                     )
-
-                    # TODO: Don't end combat right away; only works with SP,
-                    # and 1 member parties end combat right here
-                    if result_item["success"]:
-                        # Tuxepedia: set monster as caught (2)
-                        self.players[0].tuxepedia[
-                            target.slug
-                        ] = SeenStatus.caught
-                        # Display 'Gotcha!' first.
-                        self.task(self.end_combat, action_time + 0.5)
-                        self.task(
-                            partial(self.alert, T.translate("gotcha")),
-                            action_time,
-                        )
-                        self._animation_in_progress = True
-                        return
                 else:
                     msg_type = (
                         "use_success"

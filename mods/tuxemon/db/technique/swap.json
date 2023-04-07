@@ -25,7 +25,7 @@
 	},
 	"tech_id": 0,
 	"types": [],
-	"use_failure": "generic_failure",
-	"use_success": "generic_success",
+	"use_failure": null,
+	"use_success": null,
 	"use_tech": "combat_swap"
 }

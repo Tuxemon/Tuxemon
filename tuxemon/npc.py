@@ -41,7 +41,6 @@ from tuxemon.monster import (
 )
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
-from tuxemon.states.combat.combat import EnqueuedAction
 from tuxemon.states.pc import KENNEL, LOCKER
 from tuxemon.technique.technique import Technique
 from tuxemon.template import Template, decode_template, encode_template
@@ -51,6 +50,7 @@ if TYPE_CHECKING:
     import pygame
 
     from tuxemon.item.economy import Economy
+    from tuxemon.states.combat.combat import EnqueuedAction
     from tuxemon.states.world.worldstate import WorldState
 
     SpriteMap = Union[

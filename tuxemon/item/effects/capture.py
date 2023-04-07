@@ -16,7 +16,6 @@ logger = logging.getLogger(__name__)
 
 
 class CaptureEffectResult(ItemEffectResult):
-    capture: bool
     num_shakes: int
 
 
@@ -190,7 +189,7 @@ class CaptureEffect(ItemEffect):
                         if tuxeball:
                             tuxeball.quantity += 1
 
-                return {"success": False, "capture": True, "num_shakes": i + 1}
+                return {"success": False, "num_shakes": i + 1}
 
         if self.tuxeball is not None:
             # it increases the level +1 upon capture
@@ -205,4 +204,4 @@ class CaptureEffect(ItemEffect):
         self.user.add_monster(target, len(self.user.monsters))
 
         # TODO: remove monster from the other party
-        return {"success": True, "capture": True, "num_shakes": 4}
+        return {"success": True, "num_shakes": 4}

@@ -194,9 +194,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                     ],
                 )
                 return
-            player = local_session.player
             target = monster
-            combat_state.enqueue_action(player, swap, target)
+            combat_state.enqueue_action(None, swap, target)
             self.client.pop_state()  # close technique menu
             self.client.pop_state()  # close the monster action menu
 
@@ -246,8 +245,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             # enqueue the item
             combat_state = self.client.get_state_by_name(CombatState)
-            # TODO: don't hardcode to player0
-            combat_state.enqueue_action(combat_state.players[0], item, target)
+            player = local_session.player
+            combat_state.enqueue_action(player, item, target)
 
             # close all the open menus
             self.client.pop_state()  # close target chooser

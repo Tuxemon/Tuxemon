@@ -63,7 +63,6 @@ class Item:
         self.quantity = 1
         self.images: Sequence[str] = []
         self.type = ItemType.consumable
-        self.sfx = None
         # The path to the sprite to load.
         self.sprite = ""
         self.category = ItemCategory.none
@@ -208,16 +207,6 @@ class Item:
 
         return ret
 
-    def advance_round(self) -> None:
-        """
-        Advance round for items that take many rounds to use.
-
-        * This currently has no use, and may not stay.  It is added
-          so that the Item class and Technique class are interchangeable.
-
-        """
-        return
-
     def validate(self, target: Optional[Monster]) -> bool:
         """
         Check if the target meets all conditions that the item has on it's use.
@@ -261,7 +250,6 @@ class Item:
         meta_result: ItemEffectResult = {
             "name": self.name,
             "num_shakes": 0,
-            "capture": False,
             "should_tackle": False,
             "success": False,
         }

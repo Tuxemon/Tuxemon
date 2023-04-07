@@ -413,7 +413,8 @@ class CombatState(CombatAnimations):
             self.players[0].set_party_status()
             var = self.players[0].game_variables
             if self.is_trainer_battle:
-                var["battle_last_result"] = OutputBattle.lost
+                var["battle_last_result"] = OutputBattle.forfeit
+                var["teleport_clinic"] = OutputBattle.lost
                 self.alert(
                     T.format(
                         "combat_forfeit",
@@ -439,6 +440,7 @@ class CombatState(CombatAnimations):
             self.players[0].set_party_status()
             var = self.players[0].game_variables
             var["battle_last_result"] = OutputBattle.draw
+            var["teleport_clinic"] = OutputBattle.lost
             if self.is_trainer_battle:
                 var["battle_last_trainer"] = self.players[1].slug
                 # track battles against NPC
@@ -487,6 +489,7 @@ class CombatState(CombatAnimations):
 
             else:
                 var["battle_last_result"] = OutputBattle.lost
+                var["teleport_clinic"] = OutputBattle.lost
                 self.alert(T.translate("combat_defeat"))
                 if self.is_trainer_battle:
                     var["battle_last_trainer"] = self.players[1].slug

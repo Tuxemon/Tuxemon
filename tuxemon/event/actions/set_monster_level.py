@@ -42,7 +42,9 @@ class SetMonsterLevelAction(EventAction):
                     move.technique not in (m.slug for m in mon.moves)
                     and move.level_learned <= level
                 ):
-                    mon.learn(Technique(move.technique))
+                    technique = Technique()
+                    technique.load(move.technique)
+                    mon.learn(technique)
 
         monster_slot = self.slot
         monster_level = self.level

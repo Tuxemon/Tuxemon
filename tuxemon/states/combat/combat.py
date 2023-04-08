@@ -1082,7 +1082,8 @@ class CombatState(CombatAnimations):
             monster: Monster that will faint.
 
         """
-        faint = Technique("status_faint")
+        faint = Technique()
+        faint.load("status_faint")
         monster.current_hp = 0
         monster.status = [faint]
 
@@ -1234,7 +1235,8 @@ class CombatState(CombatAnimations):
                     self.learn(monster, move.technique)
 
     def learn(self, monster: Monster, tech: str) -> None:
-        technique = Technique(tech)
+        technique = Technique()
+        technique.load(tech)
         monster.learn(technique)
         self.alert(
             T.format(

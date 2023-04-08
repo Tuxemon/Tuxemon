@@ -43,7 +43,8 @@ class SetMonsterStatusAction(EventAction):
         else:
             # TODO: own class for status effect
             # TODO: handle invalid statues
-            status = Technique(value)
+            status = Technique()
+            status.load(value)
             monster.apply_status(status)
 
     def start(self) -> None:

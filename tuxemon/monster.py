@@ -24,7 +24,7 @@ from tuxemon.db import (
 )
 from tuxemon.locale import T
 from tuxemon.sprite import Sprite
-from tuxemon.technique.technique import Technique
+from tuxemon.technique.technique import Technique, decode_moves, encode_moves
 
 if TYPE_CHECKING:
     import pygame
@@ -625,10 +625,14 @@ class Monster:
 
         if len(moves) <= MAX_MOVES:
             for ele in moves:
-                self.learn(Technique(ele))
+                tech = Technique()
+                tech.load(ele)
+                self.learn(tech)
         else:
             for ele in moves[-MAX_MOVES:]:
-                self.learn(Technique(ele))
+                tech = Technique()
+                tech.load(ele)
+                self.learn(tech)
 
     def experience_required(self, level_ofs: int = 0) -> int:
         """
@@ -750,13 +754,12 @@ class Monster:
 
         save_data["instance_id"] = self.instance_id.hex
 
-        if self.status:
-            save_data["status"] = [i.get_state() for i in self.status]
         body = self.body.get_state()
         if body:
             save_data["body"] = body
 
-        save_data["moves"] = [tech.slug for tech in self.moves]
+        save_data["status"] = encode_moves(self.status)
+        save_data["moves"] = encode_moves(self.moves)
 
         return save_data
 
@@ -773,13 +776,16 @@ class Monster:
 
         self.load_from_db(save_data["slug"])
 
+        self.moves = []
+        for move in decode_moves(save_data.get("moves")):
+            self.moves.append(move)
+        self.status = []
+        for move in decode_moves(save_data.get("status")):
+            self.status.append(move)
+
         for key, value in save_data.items():
-            if key == "status" and value:
-                self.status = [Technique(slug=i) for i in value]
-            elif key == "body" and value:
+            if key == "body" and value:
                 self.body.set_state(value)
-            elif key == "moves" and value:
-                self.moves = [Technique(slug) for slug in value]
             elif key == "instance_id" and value:
                 self.instance_id = uuid.UUID(value)
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
@@ -792,7 +798,9 @@ class Monster:
             move.full_recharge()
 
         if "status_faint" in (s.slug for s in self.status):
-            self.status = [Technique("status_faint")]
+            faint = Technique()
+            faint.load("status_faint")
+            self.status = [faint]
         else:
             self.status = []
 

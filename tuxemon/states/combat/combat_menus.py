@@ -77,7 +77,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         Cause player to forfeit from the trainer battles.
 
         """
-        forfeit = Technique("menu_forfeit")
+        forfeit = Technique()
+        forfeit.load("menu_forfeit")
         if not forfeit.validate(self.monster):
             tools.open_dialog(
                 local_session,
@@ -96,7 +97,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         combat_state = self.client.get_state_by_name(CombatState)
         # trigger forfeit
         for mon in combat_state.players[0].monsters:
-            faint = Technique("status_faint")
+            faint = Technique()
+            faint.load("status_faint")
             mon.current_hp = 0
             mon.status = [faint]
 
@@ -108,7 +110,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         """
         # TODO: only works for player0
-        run = Technique("menu_run")
+        run = Technique()
+        run.load("menu_run")
         if not run.validate(self.monster):
             tools.open_dialog(
                 local_session,
@@ -178,7 +181,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 )
                 return
             combat_state = self.client.get_state_by_name(CombatState)
-            swap = Technique("swap")
+            swap = Technique()
+            swap.load("swap")
             swap.combat_state = combat_state
             if not swap.validate(self.monster):
                 tools.open_dialog(
@@ -275,7 +279,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                     filter_moves.append(tech)
                 # add skip move if both grey
                 if len(filter_moves) == len(self.monster.moves):
-                    skip = Technique("skip")
+                    skip = Technique()
+                    skip.load("skip")
                     self.monster.moves.append(skip)
                 item = MenuItem(image, None, None, tech)
                 menu.add(item)

@@ -67,7 +67,7 @@
     <property name="act1" value="pathfind professor,9,9"/>
     <property name="act2" value="npc_face professor,up"/>
     <property name="act3" value="translated_dialog chooseyerfateRockitten"/>
-    <property name="act4" value="translated_dialog_choice yes:no,rockittenchoice "/>
+    <property name="act4" value="translated_dialog_choice yes:no,rockittenchoice"/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is player_facing down"/>
@@ -81,7 +81,7 @@
     <property name="act1" value="pathfind professor,10,9"/>
     <property name="act2" value="npc_face professor,up"/>
     <property name="act3" value="translated_dialog chooseyerfateCardiling"/>
-    <property name="act4" value="translated_dialog_choice yes:no,cardilingchoice "/>
+    <property name="act4" value="translated_dialog_choice yes:no,cardilingchoice"/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is player_facing down"/>

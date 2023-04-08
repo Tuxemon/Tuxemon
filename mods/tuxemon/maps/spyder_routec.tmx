@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="229">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="232">
  <properties>
   <property name="east" value="paper_town"/>
   <property name="edges" value="clamped"/>
@@ -110,7 +110,7 @@
   <object id="200" name="Talk Nigel" type="event" x="528" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_nigel1"/>
-    <property name="act2" value="add_monster agnigon,36,spyder_searoutec_nigel,27,10"/> 
+    <property name="act2" value="add_monster agnigon,36,spyder_searoutec_nigel,27,10"/>
     <property name="act3" value="start_battle spyder_searoutec_nigel"/>
     <property name="act4" value="translated_dialog spyder_searoutec_nigel2"/>
     <property name="act6" value="set_variable searoutecnigel:yes"/>
@@ -369,6 +369,44 @@
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="229" name="Talk More" type="event" x="528" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_more1"/>
+    <property name="act2" value="add_monster picc,26,spyder_searoutec_more,27,10"/>
+    <property name="act3" value="add_monster incandesfin,25,spyder_searoutec_more,27,10"/>
+    <property name="act4" value="add_monster nudimind,24,spyder_searoutec_more,27,10"/>
+    <property name="act5" value="add_monster nudikill,23,spyder_searoutec_more,27,10"/>
+    <property name="act6" value="add_monster bigfin,19,spyder_searoutec_more,27,10"/>
+    <property name="act7" value="start_battle spyder_searoutec_more"/>
+    <property name="act8" value="translated_dialog spyder_searoutec_more2"/>
+    <property name="act9" value="set_variable searoutecmore:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_more"/>
+    <property name="cond1" value="not variable_set searoutecmore:yes"/>
+   </properties>
+  </object>
+  <object id="230" name="Talk More" type="event" x="544" y="480" width="64" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_searoutec_more"/>
+    <property name="act1" value="translated_dialog spyder_searoutec_more1"/>
+    <property name="act2" value="add_monster picc,26,spyder_searoutec_more,27,10"/>
+    <property name="act3" value="add_monster incandesfin,25,spyder_searoutec_more,27,10"/>
+    <property name="act4" value="add_monster nudimind,24,spyder_searoutec_more,27,10"/>
+    <property name="act5" value="add_monster nudikill,23,spyder_searoutec_more,27,10"/>
+    <property name="act6" value="add_monster bigfin,19,spyder_searoutec_more,27,10"/>
+    <property name="act7" value="start_battle spyder_searoutec_more"/>
+    <property name="act8" value="translated_dialog spyder_searoutec_more2"/>
+    <property name="act9" value="set_variable searoutecmore:yes"/>
+    <property name="cond1" value="not variable_set searoutecmore:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="231" name="Create More" type="event" x="528" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_more,33,30"/>
+    <property name="act2" value="npc_face spyder_searoutec_more,right"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_more"/>
    </properties>
   </object>
  </objectgroup>

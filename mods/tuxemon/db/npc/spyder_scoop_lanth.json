@@ -6,23 +6,5 @@
       "combat_front": "professor",
       "slug": "professor"
     }
-  ],
-  "monsters": [
-    {
-      "name": "mRmOswitch",
-      "level": 35,
-      "slug": "mrmoswitch",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    },
-    {
-      "name": "PiCC",
-      "level": 35,
-      "slug": "picc",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    }
   ]
 }

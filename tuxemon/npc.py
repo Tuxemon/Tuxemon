@@ -41,8 +41,8 @@ from tuxemon.monster import (
 )
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
-from tuxemon.states.combat.combat import EnqueuedAction
 from tuxemon.states.pc import KENNEL, LOCKER
+from tuxemon.states.pc_kennel import MAX_BOX
 from tuxemon.technique.technique import Technique
 from tuxemon.template import Template, decode_template, encode_template
 from tuxemon.tools import open_choice_dialog, open_dialog, vector2_to_tile_pos
@@ -51,6 +51,7 @@ if TYPE_CHECKING:
     import pygame
 
     from tuxemon.item.economy import Economy
+    from tuxemon.states.combat.combat import EnqueuedAction
     from tuxemon.states.world.worldstate import WorldState
 
     SpriteMap = Union[
@@ -265,7 +266,7 @@ class NPC(Entity[NPCState]):
             self.add_item(item)
         self.monsters = []
         for monster in decode_monsters(save_data.get("monsters")):
-            self.add_monster(monster)
+            self.add_monster(monster, len(self.monsters))
         self.template = []
         for tmp in decode_template(save_data.get("template")):
             self.template.append(tmp)
@@ -630,7 +631,7 @@ class NPC(Entity[NPCState]):
     ####################################################
     #                   Monsters                       #
     ####################################################
-    def add_monster(self, monster: Monster, slot: int = None) -> None:
+    def add_monster(self, monster: Monster, slot: int) -> None:
         """
         Adds a monster to the npc's list of monsters.
 
@@ -648,11 +649,16 @@ class NPC(Entity[NPCState]):
         monster.owner = self
         if len(self.monsters) >= self.party_limit:
             self.monster_boxes[KENNEL].append(monster)
+            if len(self.monster_boxes[KENNEL]) >= MAX_BOX:
+                i = sum(
+                    1
+                    for ele, mon in self.monster_boxes.items()
+                    if ele.startswith(KENNEL) and len(mon) >= MAX_BOX
+                )
+                self.monster_boxes[f"{KENNEL}{i}"] = self.monster_boxes[KENNEL]
+                self.monster_boxes[KENNEL] = []
         else:
-            if slot is None:
-                self.monsters.append(monster)
-            else:
-                self.monsters.insert(slot, monster)
+            self.monsters.insert(slot, monster)
             self.set_party_status()
 
     def find_monster(self, monster_slug: str) -> Optional[Monster]:
@@ -762,6 +768,9 @@ class NPC(Entity[NPCState]):
         new_monster.instance_id = old_monster.instance_id
         new_monster.gender = old_monster.gender
         new_monster.capture = old_monster.capture
+        new_monster.capture_device = old_monster.capture_device
+        new_monster.taste_cold = old_monster.taste_cold
+        new_monster.taste_warm = old_monster.taste_warm
         self.remove_monster(old_monster)
         self.add_monster(new_monster, slot)
 
@@ -824,7 +833,7 @@ class NPC(Entity[NPCState]):
             monster.gender = npc_monster_details.gender
 
             # Add our monster to the NPC's party
-            self.add_monster(monster)
+            self.add_monster(monster, len(npc_party))
 
         # load NPC bag
         for item in self.items:
@@ -907,7 +916,9 @@ class NPC(Entity[NPCState]):
         if len(monster.moves) >= MAX_MOVES:
             self.overwrite_technique(session, monster, overwrite_technique)
         else:
-            monster.learn(Technique(overwrite_technique))
+            overwrite = Technique()
+            overwrite.load(overwrite_technique)
+            monster.learn(overwrite)
             msg = T.translate("generic_success")
             open_dialog(session, [msg])
 
@@ -917,10 +928,12 @@ class NPC(Entity[NPCState]):
         """
         Opens the choice dialog and overwrites the technique.
         """
+        tech = Technique()
+        tech.load(technique)
 
         def set_variable(var_value: Technique) -> None:
             monster.moves.remove(var_value)
-            monster.learn(Technique(technique))
+            monster.learn(tech)
             session.client.pop_state()
 
         var_list = monster.moves
@@ -941,7 +954,7 @@ class NPC(Entity[NPCState]):
                     "max_moves_alert",
                     {
                         "name": monster.name.upper(),
-                        "tech": Technique(technique).name,
+                        "tech": tech.name,
                     },
                 )
             ],

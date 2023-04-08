@@ -6,23 +6,5 @@
       "combat_front": "dragonrider",
       "slug": "dragonrider"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Dragarbor",
-      "level": 36,
-      "slug": "dragarbor",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Sapragon",
-      "level": 38,
-      "slug": "sapragon",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

@@ -24,24 +24,26 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import audio, graphics, tools
-from tuxemon.animation import Task
+from tuxemon.db import SeenStatus
 from tuxemon.locale import T
 from tuxemon.menu.interface import ExpBar, HpBar
 from tuxemon.menu.menu import Menu
-from tuxemon.monster import Monster
 from tuxemon.sprite import CaptureDeviceSprite, Sprite
 from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.tools import scale, scale_sequence
 
 if TYPE_CHECKING:
+    from tuxemon.animation import Task
     from tuxemon.db import BattleGraphicsModel
+    from tuxemon.item.item import Item
+    from tuxemon.monster import Monster
     from tuxemon.npc import NPC
+    from tuxemon.states.combat import CombatState
 
 logger = logging.getLogger(__name__)
 
 sprite_layer = 0
 hud_layer = 100
-monster_hud_move_in_time = 2
 
 
 def toggle_visible(sprite: Sprite) -> None:
@@ -411,7 +413,7 @@ class CombatAnimations(ABC, Menu[None]):
         text = self.build_hud_text(monster)
         animate = partial(
             self.animate,
-            duration=monster_hud_move_in_time,
+            duration=2.0,
             delay=1.3,
         )
         if self.get_side(home) == "right":
@@ -652,7 +654,8 @@ class CombatAnimations(ABC, Menu[None]):
         is_captured: bool,
         num_shakes: int,
         monster: Monster,
-        item: str,
+        item: Item,
+        combat: CombatState,
     ) -> None:
         """
         Animation for capturing monsters.
@@ -664,7 +667,7 @@ class CombatAnimations(ABC, Menu[None]):
 
         """
         monster_sprite = self._monster_sprite_map[monster]
-        capdev = self.load_sprite(f"gfx/items/{item}.png")
+        capdev = self.load_sprite(f"gfx/items/{item.slug}.png")
         animate = partial(
             self.animate, capdev.rect, transition="in_quad", duration=1.0
         )
@@ -725,6 +728,18 @@ class CombatAnimations(ABC, Menu[None]):
 
         if is_captured:
             self.task(kill, 2 + num_shakes)
+            action_time = num_shakes + 1.8
+            # Tuxepedia: set monster as caught (2)
+            self.players[0].tuxepedia[monster.slug] = SeenStatus.caught
+            # Display 'Gotcha!' first.
+            self.task(combat.end_combat, action_time + 0.5)
+            gotcha = T.translate("gotcha")
+            self.task(
+                partial(self.alert, gotcha),
+                action_time,
+            )
+            self._animation_in_progress = True
+            return
         else:
             breakout_delay = 1.8 + num_shakes * 1.0
             self.task(  # make the monster appear again!

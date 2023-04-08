@@ -23,6 +23,12 @@
             "monster_slug": "nudimind"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "nudimind",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "polliwog",
     "stage": "basic",
     "types": [

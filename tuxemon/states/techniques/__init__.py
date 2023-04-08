@@ -154,6 +154,10 @@ class TechniqueMenuState(Menu[Technique]):
                     + T.translate(tech.types[1])
                 )
             image = self.shadow_text(name, bg=(128, 128, 128))
+            if tech.counter == 0:
+                sus = 100
+            else:
+                sus = int((tech.counter_success / tech.counter) * 100)
             label = T.format(
                 "technique_description",
                 {
@@ -163,6 +167,7 @@ class TechniqueMenuState(Menu[Technique]):
                     "pot": int(tech.potency * 100),
                     "pow": tech.power,
                     "rec": str(tech.recharge_length),
+                    "sus": sus,
                 },
             )
             yield MenuItem(image, name, label, tech)
@@ -171,4 +176,6 @@ class TechniqueMenuState(Menu[Technique]):
         """Called when menu selection changes."""
         technique = self.get_selected_item()
         # show technique description
-        self.alert(technique.description)
+        if technique:
+            if technique.description:
+                self.alert(technique.description)

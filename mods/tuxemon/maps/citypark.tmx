@@ -388,7 +388,7 @@
   </object>
   <object id="112" name="make npcs" type="event" x="48" y="0" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc knight1,12,13,knight,stand"/>
+    <property name="act10" value="create_npc knight1,12,13,stand"/>
     <property name="act20" value="npc_face knight1,right"/>
     <property name="act30" value="set_variable firstgo:no"/>
     <property name="cond10" value="not npc_exists knight1"/>

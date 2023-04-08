@@ -6,23 +6,5 @@
       "combat_front": "enforcer_rookie",
       "slug": "enforcer_rookie"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Flacono",
-      "level": 30,
-      "slug": "flacono",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Squabbit",
-      "level": 30,
-      "slug": "squabbit",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

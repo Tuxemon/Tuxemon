@@ -7,9 +7,11 @@ from functools import partial
 from typing import Any, Callable, List
 
 import pygame_menu
-from pygame_menu import baseimage, locals, widgets
+from pygame_menu import locals
+from pygame_menu.locals import POSITION_CENTER
+from pygame_menu.widgets.selection.highlight import HighlightSelection
 
-from tuxemon import formula, graphics, prepare
+from tuxemon import formula, prepare, tools
 from tuxemon.db import MonsterModel, SeenStatus, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
@@ -77,10 +79,10 @@ class JournalChoice(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/tux_generic.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -168,14 +170,16 @@ class JournalState(PygameMenuState):
                     )
             else:
                 label = str(mon.txmn_id) + ". " + T.translate(mon.slug).upper()
-                menu.add.label(
+                lab = menu.add.label(
                     label,
                     font_size=20,
                     font_color=(105, 105, 105),
                     label_id=mon.slug,
-                ).translate(fix_width(width, 0.25), fix_height(height, 0.01))
+                )
+                assert not isinstance(lab, List)
+                lab.translate(fix_width(width, 0.25), fix_height(height, 0.01))
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self, **kwargs: Any) -> None:
         monsters = ""
         page = 0
         for ele in kwargs.values():
@@ -185,10 +189,10 @@ class JournalState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/tux_generic.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -282,45 +286,53 @@ class JournalInfoState(PygameMenuState):
             unit_height = "ft"
         # name
         menu._auto_centering = False
-        menu.add.label(
+        lab1 = menu.add.label(
             title=name,
             label_id="name",
             font_size=30,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.15))
+        )
+        assert not isinstance(lab1, List)
+        lab1.translate(fix_width(width, 0.50), fix_height(height, 0.15))
         # weight
-        menu.add.label(
+        lab2 = menu.add.label(
             title=str(mon_weight) + " " + unit_weight,
             label_id="weight",
             font_size=18,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.25))
+        )
+        assert not isinstance(lab2, List)
+        lab2.translate(fix_width(width, 0.50), fix_height(height, 0.25))
         # height
-        menu.add.label(
+        lab3 = menu.add.label(
             title=str(mon_height) + " " + unit_height,
             label_id="height",
             font_size=18,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.65), fix_height(height, 0.25))
+        )
+        assert not isinstance(lab3, List)
+        lab3.translate(fix_width(width, 0.65), fix_height(height, 0.25))
         # type
-        menu.add.label(
+        lab4 = menu.add.label(
             title=T.translate("monster_menu_type"),
             label_id="type_label",
             font_size=18,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.30))
+        )
+        assert not isinstance(lab4, List)
+        lab4.translate(fix_width(width, 0.50), fix_height(height, 0.30))
         type_image_1 = pygame_menu.BaseImage(
-            graphics.transform_resource_filename(
+            tools.transform_resource_filename(
                 f"gfx/ui/monster/{monster.types[0]}_type.png"
             ),
         )
         if len(monster.types) > 1:
             type_image_2 = pygame_menu.BaseImage(
-                graphics.transform_resource_filename(
+                tools.transform_resource_filename(
                     f"gfx/ui/monster/{monster.types[1]}_type.png"
                 ),
             )
@@ -334,65 +346,77 @@ class JournalInfoState(PygameMenuState):
             menu.add.image(type_image_1, float=True).translate(
                 fix_width(width, 0.17), fix_height(height, 0.29)
             )
-        menu.add.label(
+        lab5 = menu.add.label(
             title=types,
             label_id="type_loaded",
             font_size=18,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.35))
+        )
+        assert not isinstance(lab5, List)
+        lab5.translate(fix_width(width, 0.50), fix_height(height, 0.35))
         # shape
         shape = (
             T.translate("monster_menu_shape")
             + ": "
             + T.translate(monster.shape)
         )
-        menu.add.label(
+        lab6 = menu.add.label(
             title=shape,
             label_id="shape",
             font_size=18,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.40))
+        )
+        assert not isinstance(lab6, List)
+        lab6.translate(fix_width(width, 0.50), fix_height(height, 0.40))
         # species
         species = (
             T.translate("monster_menu_species")
             + ": "
             + T.translate(f"cat_{monster.category}")
         )
-        menu.add.label(
+        lab7 = menu.add.label(
             title=species,
             label_id="species",
             font_size=18,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.45))
+        )
+        assert not isinstance(lab7, List)
+        lab7.translate(fix_width(width, 0.50), fix_height(height, 0.45))
         # txmn_id
-        menu.add.label(
+        lab8 = menu.add.label(
             title="ID: " + str(monster.txmn_id),
             label_id="txmn_id",
             font_size=18,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.10))
+        )
+        assert not isinstance(lab8, List)
+        lab8.translate(fix_width(width, 0.50), fix_height(height, 0.10))
         # description
-        menu.add.label(
+        lab9 = menu.add.label(
             title=desc,
             label_id="description",
             font_size=18,
             wordwrap=True,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.01), fix_height(height, 0.56))
+        )
+        assert not isinstance(lab9, List)
+        lab9.translate(fix_width(width, 0.01), fix_height(height, 0.56))
         # evolution
-        menu.add.label(
+        lab10 = menu.add.label(
             title=evo,
             label_id="evolution",
             font_size=18,
             wordwrap=True,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.01), fix_height(height, 0.76))
+        )
+        assert not isinstance(lab10, List)
+        lab10.translate(fix_width(width, 0.01), fix_height(height, 0.76))
 
         # open evolution monster
         def change_state(state: str, monster_slug: str) -> MenuGameObj:
@@ -423,7 +447,7 @@ class JournalInfoState(PygameMenuState):
                 action=change_state("JournalInfoState", ele),
                 align=locals.ALIGN_LEFT,
                 font_size=15,
-                selection_effect=widgets.HighlightSelection(),
+                selection_effect=HighlightSelection(),
             )
             for ele in no_duplicates
         ]
@@ -431,7 +455,7 @@ class JournalInfoState(PygameMenuState):
             f.pack(no_duplicates)
         # image
         new_image = pygame_menu.BaseImage(
-            graphics.transform_resource_filename(
+            tools.transform_resource_filename(
                 f"gfx/sprites/battle/{monster.slug}-front.png"
             ),
         )
@@ -442,7 +466,7 @@ class JournalInfoState(PygameMenuState):
             fix_width(width, 0.20), fix_height(height, 0.05)
         )
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self, **kwargs: Any) -> None:
         monster = Monster()
         for ele in kwargs.values():
             monster = ele["monster"]
@@ -450,10 +474,10 @@ class JournalInfoState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/tux_info.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
@@ -518,34 +542,40 @@ class MonsterInfoState(PygameMenuState):
             unit_height = "ft"
         # name
         menu._auto_centering = False
-        menu.add.label(
+        lab1 = menu.add.label(
             title=str(monster.txmn_id) + ". " + monster.name.upper(),
             label_id="name",
             font_size=20,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.10))
+        )
+        assert not isinstance(lab1, List)
+        lab1.translate(fix_width(width, 0.50), fix_height(height, 0.10))
         # level + exp
         exp = monster.total_experience
-        menu.add.label(
+        lab2 = menu.add.label(
             title="Lv. " + str(monster.level) + " - " + str(exp) + "px",
             label_id="level",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.15))
+        )
+        assert not isinstance(lab2, List)
+        lab2.translate(fix_width(width, 0.50), fix_height(height, 0.15))
         # exp next level
         exp_lv = monster.experience_required(1) - monster.total_experience
         lv = monster.level + 1
-        menu.add.label(
+        lab3 = menu.add.label(
             title=T.format("tuxepedia_exp", {"exp_lv": exp_lv, "lv": lv}),
             label_id="exp",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.20))
+        )
+        assert not isinstance(lab3, List)
+        lab3.translate(fix_width(width, 0.50), fix_height(height, 0.20))
         # weight
-        menu.add.label(
+        lab4 = menu.add.label(
             title=str(mon_weight)
             + " "
             + unit_weight
@@ -556,9 +586,11 @@ class MonsterInfoState(PygameMenuState):
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.25))
+        )
+        assert not isinstance(lab4, List)
+        lab4.translate(fix_width(width, 0.50), fix_height(height, 0.25))
         # height
-        menu.add.label(
+        lab5 = menu.add.label(
             title=str(mon_height)
             + " "
             + unit_height
@@ -569,117 +601,145 @@ class MonsterInfoState(PygameMenuState):
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.30))
+        )
+        assert not isinstance(lab5, List)
+        lab5.translate(fix_width(width, 0.50), fix_height(height, 0.30))
         # type
-        menu.add.label(
+        lab6 = menu.add.label(
             title=types,
             label_id="type",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.35))
+        )
+        assert not isinstance(lab6, List)
+        lab6.translate(fix_width(width, 0.50), fix_height(height, 0.35))
         # shape
-        menu.add.label(
+        lab7 = menu.add.label(
             title=T.translate(monster.shape),
             label_id="shape",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.65), fix_height(height, 0.35))
+        )
+        assert not isinstance(lab7, List)
+        lab7.translate(fix_width(width, 0.65), fix_height(height, 0.35))
         # species
-        menu.add.label(
+        lab8 = menu.add.label(
             title=monster.category,
             label_id="species",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.40))
+        )
+        assert not isinstance(lab8, List)
+        lab8.translate(fix_width(width, 0.50), fix_height(height, 0.40))
         # taste
         tastes = T.translate("tastes") + ": "
         cold = T.translate("taste_" + monster.taste_cold)
         warm = T.translate("taste_" + monster.taste_warm)
-        menu.add.label(
+        lab9 = menu.add.label(
             title=tastes + cold + ", " + warm,
             label_id="taste",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.45))
+        )
+        assert not isinstance(lab9, List)
+        lab9.translate(fix_width(width, 0.50), fix_height(height, 0.45))
         # capture
         doc = formula.today_ordinal() - monster.capture
-        menu.add.label(
+        lab10 = menu.add.label(
             title=T.format("tuxepedia_capture", {"doc": doc}),
             label_id="capture",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.50), fix_height(height, 0.50))
+        )
+        assert not isinstance(lab10, List)
+        lab10.translate(fix_width(width, 0.50), fix_height(height, 0.50))
         # hp
-        menu.add.label(
+        lab11 = menu.add.label(
             title=T.translate("short_hp") + ": " + str(monster.hp),
             label_id="hp",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.80), fix_height(height, 0.15))
+        )
+        assert not isinstance(lab11, List)
+        lab11.translate(fix_width(width, 0.80), fix_height(height, 0.15))
         # armour
-        menu.add.label(
+        lab12 = menu.add.label(
             title=T.translate("short_armour") + ": " + str(monster.armour),
             label_id="armour",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.80), fix_height(height, 0.20))
+        )
+        assert not isinstance(lab12, List)
+        lab12.translate(fix_width(width, 0.80), fix_height(height, 0.20))
         # dodge
-        menu.add.label(
+        lab13 = menu.add.label(
             title=T.translate("short_dodge") + ": " + str(monster.dodge),
             label_id="dodge",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.80), fix_height(height, 0.25))
+        )
+        assert not isinstance(lab13, List)
+        lab13.translate(fix_width(width, 0.80), fix_height(height, 0.25))
         # melee
-        menu.add.label(
+        lab14 = menu.add.label(
             title=T.translate("short_melee") + ": " + str(monster.melee),
             label_id="melee",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.80), fix_height(height, 0.30))
+        )
+        assert not isinstance(lab14, List)
+        lab14.translate(fix_width(width, 0.80), fix_height(height, 0.30))
         # ranged
-        menu.add.label(
+        lab15 = menu.add.label(
             title=T.translate("short_ranged") + ": " + str(monster.ranged),
             label_id="ranged",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.80), fix_height(height, 0.35))
+        )
+        assert not isinstance(lab15, List)
+        lab15.translate(fix_width(width, 0.80), fix_height(height, 0.35))
         # speed
-        menu.add.label(
+        lab16 = menu.add.label(
             title=T.translate("short_speed") + ": " + str(monster.speed),
             label_id="speed",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.80), fix_height(height, 0.40))
+        )
+        assert not isinstance(lab16, List)
+        lab16.translate(fix_width(width, 0.80), fix_height(height, 0.40))
         # description
-        menu.add.label(
+        lab17 = menu.add.label(
             title=monster.description,
             label_id="description",
             font_size=18,
             wordwrap=True,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.01), fix_height(height, 0.56))
+        )
+        assert not isinstance(lab17, List)
+        lab17.translate(fix_width(width, 0.01), fix_height(height, 0.56))
         # evolution
-        menu.add.label(
+        lab18 = menu.add.label(
             title=evo,
             label_id="evolution",
             font_size=18,
             wordwrap=True,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.01), fix_height(height, 0.76))
+        )
+        assert not isinstance(lab18, List)
+        lab18.translate(fix_width(width, 0.01), fix_height(height, 0.76))
 
         # open evolution monster
         def change_state(state: str, monster_slug: str) -> MenuGameObj:
@@ -710,7 +770,7 @@ class MonsterInfoState(PygameMenuState):
                 action=change_state("JournalInfoState", ele),
                 align=locals.ALIGN_LEFT,
                 font_size=15,
-                selection_effect=widgets.HighlightSelection(),
+                selection_effect=HighlightSelection(),
             )
             for ele in no_duplicates
         ]
@@ -718,7 +778,7 @@ class MonsterInfoState(PygameMenuState):
             f.pack(no_duplicates)
         # image
         new_image = pygame_menu.BaseImage(
-            graphics.transform_resource_filename(monster.front_battle_sprite),
+            tools.transform_resource_filename(monster.front_battle_sprite),
         )
         new_image.scale(prepare.SCALE, prepare.SCALE)
         image_widget = menu.add.image(image_path=new_image.copy())
@@ -728,7 +788,7 @@ class MonsterInfoState(PygameMenuState):
         )
         # tuxeball
         tuxeball = pygame_menu.BaseImage(
-            graphics.transform_resource_filename(
+            tools.transform_resource_filename(
                 f"gfx/items/{monster.capture_device}.png"
             ),
         )
@@ -742,10 +802,10 @@ class MonsterInfoState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
+            image_path=tools.transform_resource_filename(
                 "gfx/ui/item/tux_info.png"
             ),
-            drawing_position=baseimage.POSITION_CENTER,
+            drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST

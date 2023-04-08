@@ -29,6 +29,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "selket",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "grub",
     "stage": "stage1",
     "types": [

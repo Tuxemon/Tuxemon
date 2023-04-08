@@ -55,4 +55,4 @@ class WithdrawMonsterAction(EventAction):
         assert mon
 
         trainer.remove_monster_from_storage(mon)
-        trainer.add_monster(mon)
+        trainer.add_monster(mon, len(trainer.monsters))

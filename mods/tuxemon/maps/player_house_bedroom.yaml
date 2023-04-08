@@ -30,9 +30,9 @@ events:
     - screen_transition 1
     - wait 0.5
     - translated_dialog spyder_papertown_restinbed
-    - set_monster_health ,
-    - set_monster_status ,
-    - set_variable teleport_faint:player_house_bedroom.tmx 6 5
+    - set_monster_health
+    - set_monster_status
+    - set_variable teleport_faint:player_house_bedroom.tmx 3 4
     conditions:
     - is button_pressed K_RETURN
     - is player_facing_tile
@@ -43,8 +43,8 @@ events:
     type: "event"
   Auto Healing Teleported:
     actions:
-    - set_monster_health ,
-    - set_monster_status ,
+    - set_monster_health
+    - set_monster_status
     - set_variable battle_last_result:none
     conditions:
     - is variable_set battle_last_result:lost
@@ -74,7 +74,7 @@ events:
     - change_bg spyder_roc
     - translated_dialog xero_intro_3
     - translated_dialog xero_intro_question
-    - rename_player
+    - rename_player random
     - change_bg end
     - set_variable xero_intro:done
     conditions:
@@ -88,7 +88,7 @@ events:
   Intro No:
     actions:
     - translated_dialog xero_intro_question
-    - rename_player
+    - rename_player random
     - change_bg end
     - set_variable xero_intro:done
     conditions:

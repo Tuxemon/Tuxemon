@@ -3,8 +3,8 @@
   "accuracy": 0.75,
   "animation": "fireball_114",
   "effects": [
-    "damage",
-    "chargedup target"
+    "chargedup target",
+    "damage"
   ],
   "flip_axes": "x",
   "healing_power": 0,

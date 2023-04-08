@@ -79,7 +79,7 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="15" type="event" x="160" y="304" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc maple_girl,10,6,girl1,wander"/>
+    <property name="act10" value="create_npc maple_girl,10,6,wander"/>
     <property name="cond10" value="is variable_set maple_bedroom1:true"/>
    </properties>
   </object>
@@ -144,7 +144,7 @@
   </object>
   <object id="35" type="event" x="256" y="368" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc cfanatic1,12,33,player,stand"/>
+    <property name="act10" value="create_npc cfanatic1,12,33,stand"/>
     <property name="act20" value="set_variable fanatics_in_junkyard:true"/>
     <property name="cond10" value="is variable_set maple_got_tuxemon1:true"/>
     <property name="cond20" value="not variable_set fanatics_in_junkyard:true"/>
@@ -152,7 +152,7 @@
   </object>
   <object id="36" type="event" x="64" y="368" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc cfanatic2,8,33,player,stand"/>
+    <property name="act10" value="create_npc cfanatic2,8,33,stand"/>
     <property name="act20" value="set_variable fanatics_in_junkyard:true"/>
     <property name="cond10" value="is variable_set maple_got_tuxemon1:true"/>
     <property name="cond20" value="not variable_set fanatics_in_junkyard:true"/>

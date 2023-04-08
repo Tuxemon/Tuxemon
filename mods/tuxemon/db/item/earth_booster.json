@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "level target,>=,0",
-    "has_path target,earth_booster"
+    "is level >=,0",
+    "is has_path earth_booster"
   ],
   "effects": [
     "evolve earth_booster"

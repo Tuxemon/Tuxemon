@@ -2,7 +2,7 @@
   "animation": "drip_green",
   "category": "negative",
   "effects": [
-    "poison target"
+    "poison all"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_poison.png",

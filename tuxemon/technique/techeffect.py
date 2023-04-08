@@ -61,9 +61,8 @@ class TechEffect:
 
     name: ClassVar[str]
     session: Session = field(init=False, repr=False)
-    _done: bool = field(default=False, init=False)
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self.session = local_session
         cast_dataclass_parameters(self)
 

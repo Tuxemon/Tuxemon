@@ -6,9 +6,10 @@ import logging
 from typing import Callable
 
 import pygame_menu
-from pygame_menu import baseimage, locals
+from pygame_menu import locals
+from pygame_menu.locals import POSITION_CENTER
 
-from tuxemon import graphics, prepare
+from tuxemon import prepare, tools
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 
@@ -21,20 +22,16 @@ MenuGameObj = Callable[[], object]
 class BgState(PygameMenuState):
     """Menu for the change of backgroun"""
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self, background: str) -> None:
         width, height = prepare.SCREEN_SIZE
-        bg = ""
-        for ele in kwargs.values():
-            bg = ele["background"]
-
-        background = pygame_menu.BaseImage(
-            image_path=graphics.transform_resource_filename(
-                "gfx/ui/background/" + bg + ".png"
-            ),
-            drawing_position=baseimage.POSITION_CENTER,
+        image_path = tools.transform_resource_filename(
+            "gfx/ui/background/" + background + ".png"
         )
         theme = get_theme()
-        theme.background_color = background
+        theme.background_color = pygame_menu.BaseImage(
+            image_path,
+            drawing_position=POSITION_CENTER,
+        )
         theme.widget_alignment = locals.ALIGN_CENTER
 
         super().__init__(height=height, width=width)

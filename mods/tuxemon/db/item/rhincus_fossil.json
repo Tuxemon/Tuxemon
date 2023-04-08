@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "level target,>=,0",
-    "has_path target,rhincus_fossil"
+    "is level >=,0",
+    "is has_path rhincus_fossil"
   ],
   "effects": [
     "evolve rhincus_fossil"

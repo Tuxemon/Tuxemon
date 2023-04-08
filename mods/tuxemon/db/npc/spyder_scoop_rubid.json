@@ -6,23 +6,5 @@
       "combat_front": "scientist",
       "slug": "scientist"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Birdling",
-      "level": 35,
-      "slug": "birdling",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Hatchling",
-      "level": 30,
-      "slug": "hatchling",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

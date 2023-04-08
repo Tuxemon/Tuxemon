@@ -2,10 +2,10 @@
   "animation": "drip_green",
   "category": "negative",
 	"conditions": [
-	  	"current_hp target,>,0"
+	  	"is current_hp >,0"
 	],
   "effects": [
-    "lifeleech all"
+    "lifeleech"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_lifeleech.png",

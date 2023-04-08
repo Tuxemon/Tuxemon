@@ -91,7 +91,7 @@ class RunningEvent:
 
         return action
 
-    def advance(self):
+    def advance(self) -> None:
         self.action_index += 1
 
 
@@ -138,7 +138,7 @@ class EventEngine:
         self.actions = plugin.load_plugins(
             paths.ACTIONS_PATH,
             "actions",
-            interface=EventAction,  # type: ignore[misc]
+            interface=EventAction,  # type: ignore[type-abstract]
         )
 
     def reset(self) -> None:
@@ -302,6 +302,7 @@ class EventEngine:
             logger.debug("Executing action list")
             logger.debug(map_event)
             token = RunningEvent(map_event)
+            assert map_event.id
             self.running_events[map_event.id] = token
 
     def process_map_event(self, map_event: EventObject) -> None:

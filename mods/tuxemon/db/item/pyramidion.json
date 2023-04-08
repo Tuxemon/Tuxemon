@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "level target,>=,0",
-    "has_path target,pyramidion"
+    "is level >=,0",
+    "is has_path pyramidion"
   ],
   "effects": [
     "evolve pyramidion"

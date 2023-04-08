@@ -104,20 +104,21 @@ class WorldMenuState(PygameMenuState):
 
                 # get the newly selected item.  it will be set to previous
                 # position
-                original_monster = monster_menu.get_selected_item().game_object
-                assert original_monster
+                original = monster_menu.get_selected_item()
+                if original:
+                    original_monster = original.game_object
+                    assert original_monster
+                    # get the position in the list of the cursor
+                    index = monster_list.index(original_monster)
 
-                # get the position in the list of the cursor
-                index = monster_list.index(original_monster)
+                    # set the old spot to the old monster
+                    monster_list[context["old_index"]] = original_monster
 
-                # set the old spot to the old monster
-                monster_list[context["old_index"]] = original_monster
+                    # set the current cursor position to the monster we move
+                    monster_list[index] = context["monster"]
 
-                # set the current cursor position to the monster we move
-                monster_list[index] = context["monster"]
-
-                # store the old index
-                context["old_index"] = index
+                    # store the old index
+                    context["old_index"] = index
 
             # call the super class to re-render the menu with new positions
             # TODO: maybe add more hooks to eliminate this runtime patching
@@ -187,34 +188,36 @@ class WorldMenuState(PygameMenuState):
         def open_monster_submenu(
             menu_item: MenuItem[WorldMenuGameObj],
         ) -> None:
-            monster = monster_menu.get_selected_item().game_object
-            assert monster
-            open_choice_dialog(
-                local_session,
-                menu=(
-                    (
-                        "info",
-                        T.translate("monster_menu_info").upper(),
-                        partial(open_monster_stats, monster),
+            original = monster_menu.get_selected_item()
+            if original:
+                monster = original.game_object
+                assert monster
+                open_choice_dialog(
+                    local_session,
+                    menu=(
+                        (
+                            "info",
+                            T.translate("monster_menu_info").upper(),
+                            partial(open_monster_stats, monster),
+                        ),
+                        (
+                            "tech",
+                            T.translate("monster_menu_tech").upper(),
+                            partial(open_monster_techs, monster),
+                        ),
+                        (
+                            "move",
+                            T.translate("monster_menu_move").upper(),
+                            partial(select_first_monster, monster),
+                        ),
+                        (
+                            "release",
+                            T.translate("monster_menu_release").upper(),
+                            partial(release_monster_from_party, monster),
+                        ),
                     ),
-                    (
-                        "tech",
-                        T.translate("monster_menu_tech").upper(),
-                        partial(open_monster_techs, monster),
-                    ),
-                    (
-                        "move",
-                        T.translate("monster_menu_move").upper(),
-                        partial(select_first_monster, monster),
-                    ),
-                    (
-                        "release",
-                        T.translate("monster_menu_release").upper(),
-                        partial(release_monster_from_party, monster),
-                    ),
-                ),
-                escape_key_exits=True,
-            )
+                    escape_key_exits=True,
+                )
 
         def handle_selection(menu_item: MenuItem[WorldMenuGameObj]) -> None:
             if "monster" in context:
@@ -227,7 +230,7 @@ class WorldMenuState(PygameMenuState):
         ] = dict()  # dict passed around to hold info between menus/callbacks
         monster_menu = self.client.push_state(MonsterMenuState())
         monster_menu.on_menu_selection = handle_selection  # type: ignore[assignment]
-        monster_menu.on_menu_selection_change = monster_menu_hook  # type: ignore[assignment]
+        monster_menu.on_menu_selection_change = monster_menu_hook  # type: ignore[method-assign]
 
     def update_animation_position(self) -> None:
         self.menu.translate(-self.animation_offset, 0)

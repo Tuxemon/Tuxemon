@@ -6,23 +6,5 @@
       "combat_front": "miner",
       "slug": "miner"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Grintrock",
-      "level": 30,
-      "slug": "grintrock",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Grinflare",
-      "level": 30,
-      "slug": "grinflare",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

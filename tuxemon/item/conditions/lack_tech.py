@@ -9,10 +9,19 @@ from tuxemon.monster import Monster
 
 
 @dataclass
-class IsWildMonsterCondition(ItemCondition):
-    """True if not owned by a trainer."""
+class LackTechCondition(ItemCondition):
+    """
+    Checks if the monster knows already the technique.
 
-    name = "is_wild_monster"
+    Accepts a single parameter and returns whether it is applied.
+
+    """
+
+    name = "lack_tech"
+    expected: str
 
     def test(self, target: Monster) -> bool:
-        return target.owner is None
+        if any(t for t in target.moves if t.slug == self.expected):
+            return False
+        else:
+            return True

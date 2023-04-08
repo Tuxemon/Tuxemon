@@ -23,6 +23,12 @@
             "monster_slug": "vigueur"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "vigueur",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "grub",
     "stage": "basic",
     "types": [

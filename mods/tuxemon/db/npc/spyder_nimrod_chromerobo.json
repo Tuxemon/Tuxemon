@@ -6,15 +6,5 @@
       "combat_front": "chrome_robo",
       "slug": "robot"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Chrome Robo",
-      "level": 20,
-      "slug": "chrome-robo",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    }
   ]
 }

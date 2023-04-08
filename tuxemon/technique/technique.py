@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import uuid
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -28,48 +29,48 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+SIMPLE_PERSISTANCE_ATTRIBUTES = (
+    "slug",
+    "power",
+    "potency",
+    "accuracy",
+    "counter",
+    "counter_success",
+)
+
 
 class Technique:
     """
     Particular skill that tuxemon monsters can use in battle.
-
-    Parameters:
-        slug: Slug of the technique.
-        carrier: Monster affected by a status technique.
-        link: Additional monster linked to the effect of the status technique.
-            For example, monster that obtains life with lifeleech.
 
     """
 
     effects_classes: ClassVar[Mapping[str, Type[TechEffect[Any]]]] = {}
     conditions_classes: ClassVar[Mapping[str, Type[TechCondition[Any]]]] = {}
 
-    def __init__(
-        self,
-        slug: Optional[str] = None,
-        carrier: Optional[Monster] = None,
-        link: Optional[Monster] = None,
-    ) -> None:
-        # number of turns that this technique has been active
-        self._combat_counter = 0
-        self._life_counter = 0
+    def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
+        if save_data is None:
+            save_data = dict()
+
+        self.instance_id = uuid.uuid4()
+        self.counter = 0
+        self.counter_success = 0
         self.tech_id = 0
         self.accuracy = 0.0
         self.animation = Optional[str]
-        self.carrier = carrier
         self.category = ""
         self.combat_state: Optional[CombatState] = None
         self.conditions: Sequence[TechCondition[Any]] = []
-        self.description = "None"
+        self.description = ""
         self.effects: Sequence[TechEffect[Any]] = []
         self.flip_axes = ""
         self.icon = ""
         self.images: Sequence[str] = []
         self.is_area = False
         self.is_fast = False
-        self.link = link
-        self.name = "Pound"
-        self.next_use = 0.0
+        self.link: Optional[Monster] = None
+        self.name = ""
+        self.next_use = 0
         self.potency = 0.0
         self.power = 1.0
         self.range = Range.melee
@@ -82,7 +83,6 @@ class Technique:
         self.target: Sequence[str] = []
         self.types: List[ElementType] = []
         self.usable_on = False
-        self.use_item = ""
         self.use_success = ""
         self.use_failure = ""
         self.use_tech = ""
@@ -100,9 +100,7 @@ class Technique:
                 interface=TechCondition,
             )
 
-        # If a slug of the technique was provided, autoload it.
-        if slug:
-            self.load(slug)
+        self.set_state(save_data)
 
     def load(self, slug: str) -> None:
         """
@@ -123,13 +121,13 @@ class Technique:
         # technique use notifications (translated!)
         # NOTE: should be `self.use_tech`, but Technique and Item have
         # overlapping checks
-        self.use_item = T.maybe_translate(results.use_tech)
+        self.use_tech = T.maybe_translate(results.use_tech)
         self.use_success = T.maybe_translate(results.use_success)
         self.use_failure = T.maybe_translate(results.use_failure)
 
         self.icon = results.icon
-        self._combat_counter = 0
-        self._life_counter = 0
+        self.counter = self.counter
+        self.counter_success = self.counter_success
         self.types = list(results.types)
         # technique stats
         self.accuracy = results.accuracy or self.accuracy
@@ -229,12 +227,20 @@ class Technique:
         ret = list()
 
         for line in raw:
-            words = line.split()
-            args = "".join(words[1:]).split(",")
-            name = words[0]
-            params = args[1:]
+            op = line.split()[0]
+            name = line.split()[1]
+            if len(line.split()) > 2:
+                params = line.split()[2].split(",")
+            else:
+                params = []
             try:
                 condition = Technique.conditions_classes[name]
+                if op == "is":
+                    condition._op = True
+                elif op == "not":
+                    condition._op = False
+                else:
+                    raise ValueError(f"{op} must be 'is' or 'not'")
             except KeyError:
                 logger.error(f'Error: TechCondition "{name}" not implemented')
             else:
@@ -242,21 +248,19 @@ class Technique:
 
         return ret
 
-    def advance_round(self, number: int = 1) -> None:
+    def advance_round(self) -> None:
         """
-        Advance the turn counters for this technique.
-
-        Techniques have two counters currently, a "combat counter" and a
-        "life counter".
-        Combat counters should be reset with combat begins.
-        Life counters will be set to zero when the Technique is created,
-        but will never be reset.
-
-        Calling this function will advance both counters.
+        Advance the counter for this technique if used.
 
         """
-        self._combat_counter += 1
-        self._life_counter += 1
+        self.counter += 1
+
+    def advance_counter_success(self) -> None:
+        """
+        Advance the counter for this technique if used successfully.
+
+        """
+        self.counter_success += 1
 
     def validate(self, target: Optional[Monster]) -> bool:
         """
@@ -277,8 +281,11 @@ class Technique:
         result = True
 
         for condition in self.conditions:
-            result = result and condition.test(target)
-
+            if condition._op is True:
+                event = condition.test(target)
+            else:
+                event = not condition.test(target)
+            result = result and event
         return result
 
     def recharge(self) -> None:
@@ -286,10 +293,6 @@ class Technique:
 
     def full_recharge(self) -> None:
         self.next_use = 0
-
-    def reset_combat_counter(self) -> None:
-        """Reset the combat counter."""
-        self._combat_counter = 0
 
     def use(self, user: Monster, target: Monster) -> TechEffectResult:
         """
@@ -310,8 +313,9 @@ class Technique:
 
         Examples:
 
-        >>> poison_tech = Technique("technique_poison_sting")
-        >>> bulbatux.learn(poison_tech)
+        >>> technique = Technique()
+        >>> technique.load("technique_poison_sting")
+        >>> bulbatux.learn(technique)
         >>>
         >>> bulbatux.moves[0].use(user=bulbatux, target=tuxmander)
 
@@ -328,7 +332,6 @@ class Technique:
             "name": self.name,
             "success": False,
             "should_tackle": False,
-            "capture": False,
         }
 
         # Loop through all the effects of this technique and execute the effect's function.
@@ -348,5 +351,43 @@ class Technique:
         self.potency = self.default_potency
         self.power = self.default_power
 
-    def get_state(self) -> Optional[str]:
-        return self.slug
+    def get_state(self) -> Mapping[str, Any]:
+        """
+        Prepares a dictionary of the technique to be saved to a file.
+
+        """
+        save_data = {
+            attr: getattr(self, attr)
+            for attr in SIMPLE_PERSISTANCE_ATTRIBUTES
+            if getattr(self, attr)
+        }
+
+        save_data["instance_id"] = self.instance_id.hex
+
+        return save_data
+
+    def set_state(self, save_data: Mapping[str, Any]) -> None:
+        """
+        Loads information from saved data.
+
+        """
+        if not save_data:
+            return
+
+        self.load(save_data["slug"])
+
+        for key, value in save_data.items():
+            if key == "instance_id" and value:
+                self.instance_id = uuid.UUID(value)
+            elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
+                setattr(self, key, value)
+
+
+def decode_moves(
+    json_data: Optional[Sequence[Mapping[str, Any]]],
+) -> List[Technique]:
+    return [Technique(save_data=tech) for tech in json_data or {}]
+
+
+def encode_moves(techs: Sequence[Technique]) -> Sequence[Mapping[str, Any]]:
+    return [tech.get_state() for tech in techs]

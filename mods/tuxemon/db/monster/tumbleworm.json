@@ -23,6 +23,12 @@
             "monster_slug": "tumblebee"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "tumblebee",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "grub",
     "stage": "basic",
     "types": [

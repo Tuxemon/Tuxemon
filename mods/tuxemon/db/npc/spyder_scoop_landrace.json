@@ -6,15 +6,5 @@
       "combat_front": "sludgehog",
       "slug": "noclass"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Sludgehog",
-      "level": 40,
-      "slug": "sludgehog",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

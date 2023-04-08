@@ -60,9 +60,10 @@ class ItemCondition:
 
     name: ClassVar[str]
     session: Session = field(init=False, repr=False)
-    _done: bool = field(default=False, init=False)
+    _op: bool = field(default=False, init=False)
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
+        self._op = self._op
         self.session = local_session
         self.user = local_session.player
         cast_dataclass_parameters(self)

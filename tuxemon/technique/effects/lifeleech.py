@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import random
 from dataclasses import dataclass
 
 from tuxemon import formula
@@ -11,8 +12,7 @@ from tuxemon.technique.technique import Technique
 
 
 class LifeLeechEffectResult(TechEffectResult):
-    damage: int
-    should_tackle: bool
+    pass
 
 
 @dataclass
@@ -30,42 +30,40 @@ class LifeLeechEffect(TechEffect):
     """
 
     name = "lifeleech"
-    objective: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> LifeLeechEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
-        potency = formula.random.random()
+        potency = random.random()
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
-            tech = Technique("status_lifeleech", carrier=target, link=user)
-            target.apply_status(tech)
+            status = Technique()
+            status.load("status_lifeleech")
+            status.link = user
+            target.apply_status(status)
             # exception: applies status to the user
             if tech.slug == "blood_bond":
-                tech = Technique("status_lifeleech", carrier=user, link=target)
-                user.apply_status(tech)
+                user.apply_status(status)
             return {
-                "damage": 0,
-                "should_tackle": bool(success),
                 "success": True,
             }
 
-        # avoids Nonetype situation and reset the user
-        if user is None:
-            user = tech.link
-            assert user
-            damage = formula.simple_lifeleech(user, target)
-            target.current_hp -= damage
-            user.current_hp += damage
-        else:
-            damage = formula.simple_lifeleech(user, target)
-            target.current_hp -= damage
-            user.current_hp += damage
+        if tech.slug == "status_lifeleech":
+            # avoids Nonetype situation and reset the user
+            if user is None:
+                user = tech.link
+                assert user
+                damage = formula.simple_lifeleech(user, target)
+                target.current_hp -= damage
+                user.current_hp += damage
+            else:
+                damage = formula.simple_lifeleech(user, target)
+                target.current_hp -= damage
+                user.current_hp += damage
+            return {
+                "success": bool(damage),
+            }
 
-        return {
-            "damage": damage,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
-        }
+        return {"success": False}

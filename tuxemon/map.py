@@ -24,7 +24,7 @@ from pytmx import pytmx
 from pytmx.pytmx import TiledMap
 
 from tuxemon import prepare
-from tuxemon.compat import ReadOnlyRect
+from tuxemon.compat.rect import ReadOnlyRect
 from tuxemon.event import EventObject
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.locale import T
@@ -457,12 +457,13 @@ class TuxemonMap:
             tall_sprites=2,
         )
 
-    def reload_tiles(self):
+    def reload_tiles(self) -> None:
         """Reload the map tiles."""
         data = pytmx.TiledMap(
             self.data.filename,
             image_loader=scaled_image_loader,
             pixelalpha=True,
         )
+        assert self.renderer
         self.renderer.data.tmx.images = data.images
         self.renderer.redraw_tiles(self.renderer._buffer)

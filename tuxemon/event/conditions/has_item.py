@@ -43,15 +43,15 @@ class HasItemCondition(EventCondition):
 
         def op(itm_qty: int, op: str, qty: int) -> bool:
             if op == "less_than":
-                return lt(itm_qty, qty)
+                return bool(lt(itm_qty, qty))
             elif op == "less_or_equal":
-                return le(itm_qty, qty)
+                return bool(le(itm_qty, qty))
             elif op == "greater_than":
-                return gt(itm_qty, qty)
+                return bool(gt(itm_qty, qty))
             elif op == "greater_or_equal":
-                return ge(itm_qty, qty)
+                return bool(ge(itm_qty, qty))
             else:
-                return eq(itm_qty, qty)
+                return bool(eq(itm_qty, qty))
 
         npc_slug, itm_slug = condition.parameters[:2]
         npc = get_npc(session, npc_slug)

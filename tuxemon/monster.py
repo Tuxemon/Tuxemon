@@ -7,13 +7,14 @@ import random
 import uuid
 from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
 
-from tuxemon import ai, formula, fusion, graphics
+from tuxemon import ai, formula, fusion, graphics, tools
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import (
     ElementType,
     EvolutionStage,
     GenderType,
     MonsterEvolutionItemModel,
+    MonsterHistoryItemModel,
     MonsterMovesetItemModel,
     MonsterShape,
     StatType,
@@ -23,7 +24,7 @@ from tuxemon.db import (
 )
 from tuxemon.locale import T
 from tuxemon.sprite import Sprite
-from tuxemon.technique.technique import Technique
+from tuxemon.technique.technique import Technique, decode_moves, encode_moves
 
 if TYPE_CHECKING:
     import pygame
@@ -48,6 +49,12 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "weight",
     "taste_cold",
     "taste_warm",
+    "mod_armour",
+    "mod_dodge",
+    "mod_melee",
+    "mod_ranged",
+    "mod_speed",
+    "mod_hp",
 )
 
 SHAPES = {
@@ -206,9 +213,18 @@ class Monster:
         self.hp = 0
         self.level = 0
 
+        # modifier values
+        self.mod_armour = 0
+        self.mod_dodge = 0
+        self.mod_melee = 0
+        self.mod_ranged = 0
+        self.mod_speed = 0
+        self.mod_hp = 0
+
         self.moves: List[Technique] = []
         self.moveset: List[MonsterMovesetItemModel] = []
         self.evolutions: List[MonsterEvolutionItemModel] = []
+        self.history: List[MonsterHistoryItemModel] = []
         self.stage = EvolutionStage.standalone
         self.flairs: Dict[str, Flair] = {}
         self.battle_cry = ""
@@ -327,6 +343,12 @@ class Monster:
             for evolution in evolutions:
                 self.evolutions.append(evolution)
 
+        # history
+        history = results.history
+        if history:
+            for element in history:
+                self.history.append(element)
+
         # Look up the monster's sprite image paths
         if results.sprites:
             self.front_battle_sprite = self.get_sprite_path(
@@ -434,7 +456,7 @@ class Monster:
             self.status.append(status)
         else:
             # if the status exists
-            if any(t for t in self.status if t.slug == status):
+            if any(t for t in self.status if t.slug == status.slug):
                 return
             # if the status doesn't exist.
             else:
@@ -472,12 +494,12 @@ class Monster:
 
         multiplier = level + 7
         shape = SHAPES[self.shape]
-        self.armour = shape["armour"] * multiplier
-        self.dodge = shape["dodge"] * multiplier
-        self.hp = shape["hp"] * multiplier
-        self.melee = shape["melee"] * multiplier
-        self.ranged = shape["ranged"] * multiplier
-        self.speed = shape["speed"] * multiplier
+        self.armour = (shape["armour"] * multiplier) + self.mod_armour
+        self.dodge = (shape["dodge"] * multiplier) + self.mod_dodge
+        self.hp = (shape["hp"] * multiplier) + self.mod_hp
+        self.melee = (shape["melee"] * multiplier) + self.mod_melee
+        self.ranged = (shape["ranged"] * multiplier) + self.mod_ranged
+        self.speed = (shape["speed"] * multiplier) + self.mod_speed
 
         # tastes
         self.armour += formula.check_taste(self, "armour")
@@ -603,10 +625,14 @@ class Monster:
 
         if len(moves) <= MAX_MOVES:
             for ele in moves:
-                self.learn(Technique(ele))
+                tech = Technique()
+                tech.load(ele)
+                self.learn(tech)
         else:
             for ele in moves[-MAX_MOVES:]:
-                self.learn(Technique(ele))
+                tech = Technique()
+                tech.load(ele)
+                self.learn(tech)
 
     def experience_required(self, level_ofs: int = 0) -> int:
         """
@@ -685,7 +711,7 @@ class Monster:
         """
         try:
             path = "%s.png" % sprite
-            full_path = graphics.transform_resource_filename(path)
+            full_path = tools.transform_resource_filename(path)
             if full_path:
                 return full_path
         except OSError:
@@ -728,13 +754,12 @@ class Monster:
 
         save_data["instance_id"] = self.instance_id.hex
 
-        if self.status:
-            save_data["status"] = [i.get_state() for i in self.status]
         body = self.body.get_state()
         if body:
             save_data["body"] = body
 
-        save_data["moves"] = [tech.slug for tech in self.moves]
+        save_data["status"] = encode_moves(self.status)
+        save_data["moves"] = encode_moves(self.moves)
 
         return save_data
 
@@ -751,13 +776,16 @@ class Monster:
 
         self.load_from_db(save_data["slug"])
 
+        self.moves = []
+        for move in decode_moves(save_data.get("moves")):
+            self.moves.append(move)
+        self.status = []
+        for move in decode_moves(save_data.get("status")):
+            self.status.append(move)
+
         for key, value in save_data.items():
-            if key == "status" and value:
-                self.status = [Technique(slug=i) for i in value]
-            elif key == "body" and value:
+            if key == "body" and value:
                 self.body.set_state(value)
-            elif key == "moves" and value:
-                self.moves = [Technique(slug) for slug in value]
             elif key == "instance_id" and value:
                 self.instance_id = uuid.UUID(value)
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
@@ -770,7 +798,9 @@ class Monster:
             move.full_recharge()
 
         if "status_faint" in (s.slug for s in self.status):
-            self.status = [Technique("status_faint")]
+            faint = Technique()
+            faint.load("status_faint")
+            self.status = [faint]
         else:
             self.status = []
 

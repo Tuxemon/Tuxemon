@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import random
 from dataclasses import dataclass
 
 from tuxemon import formula
@@ -11,8 +12,7 @@ from tuxemon.technique.technique import Technique
 
 
 class PoisonEffectResult(TechEffectResult):
-    damage: int
-    should_tackle: bool
+    pass
 
 
 @dataclass
@@ -29,25 +29,25 @@ class PoisonEffect(TechEffect):
     ) -> PoisonEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
-        potency = formula.random.random()
+        potency = random.random()
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
-            tech = Technique("status_poison")
+            status = Technique()
+            status.load("status_poison")
             if self.objective == "user":
-                user.apply_status(tech)
+                user.apply_status(status)
             elif self.objective == "target":
-                target.apply_status(tech)
+                target.apply_status(status)
             return {
-                "damage": 0,
-                "should_tackle": bool(success),
                 "success": True,
             }
 
-        damage = formula.simple_poison(target)
-        target.current_hp -= damage
+        if tech.slug == "status_poison":
+            damage = formula.simple_poison(target)
+            target.current_hp -= damage
 
-        return {
-            "damage": damage,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
-        }
+            return {
+                "success": bool(damage),
+            }
+
+        return {"success": False}

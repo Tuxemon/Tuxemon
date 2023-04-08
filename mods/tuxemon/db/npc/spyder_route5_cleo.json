@@ -6,23 +6,5 @@
       "combat_front": "catgirl",
       "slug": "catgirl"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Memnomnom",
-      "level": 20,
-      "slug": "memnomnom",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Memnomnom",
-      "level": 20,
-      "slug": "memnomnom",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

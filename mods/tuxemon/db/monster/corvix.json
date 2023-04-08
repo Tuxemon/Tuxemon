@@ -35,6 +35,12 @@
             "monster_slug": "gryfix"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "flacono",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "flier",
     "stage": "stage1",
     "types": [

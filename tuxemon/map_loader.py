@@ -140,7 +140,7 @@ class TMXMapLoader:
 
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         # Makes mocking easier during tests
         self.image_loader = scaled_image_loader
 
@@ -372,6 +372,8 @@ class TMXMapLoader:
         # Conditions & actions are stored as Tiled properties.
         # We need to sort them by name, so that "act1" comes before "act2" and so on..
         for key in keys:
+            if not isinstance(key, str):
+                continue
             value = properties[key]
             if key.startswith("cond"):
                 operator, cond_type, args = parse_condition_string(value)
@@ -385,12 +387,15 @@ class TMXMapLoader:
                 acts.append(action)
 
         for key in keys:
+            if not isinstance(key, str):
+                continue
             if key.startswith("behav"):
                 behav_string = properties[key]
                 behav_type, args = parse_behav_string(behav_string)
                 if behav_type == "talk":
                     conds.insert(
-                        0, MapCondition("to_talk", args, x, y, w, h, "is", key)
+                        0,
+                        MapCondition("to_talk", args, x, y, w, h, "is", key),
                     )
                     acts.insert(
                         0, MapAction("npc_face", [args[0], "player"], key)

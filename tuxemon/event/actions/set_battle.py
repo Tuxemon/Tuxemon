@@ -6,7 +6,7 @@ import datetime as dt
 from dataclasses import dataclass
 from typing import final
 
-from tuxemon import battle
+from tuxemon.battle import Battle
 from tuxemon.db import OutputBattle
 from tuxemon.event.eventaction import EventAction
 
@@ -35,13 +35,19 @@ class SetBattleAction(EventAction):
     def start(self) -> None:
         player = self.session.player
 
-        new_battle = battle.Battle()
+        new_battle = Battle()
         new_battle.opponent = self.battle_opponent
-        new_battle.outcome = self.battle_outcome
         new_battle.date = dt.date.today().toordinal()
 
-        outcomes = [otc.value for otc in OutputBattle]
-        if self.battle_outcome in outcomes:
-            player.battles.append(new_battle)
+        if self.battle_outcome == "won":
+            new_battle.outcome = OutputBattle.won
+        elif self.battle_outcome == "draw":
+            new_battle.outcome = OutputBattle.draw
+        elif self.battle_outcome == "lost":
+            new_battle.outcome = OutputBattle.lost
         else:
-            return
+            raise ValueError(
+                f"{self.battle_outcome} must be won, lost or draw.",
+            )
+
+        player.battles.append(new_battle)

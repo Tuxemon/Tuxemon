@@ -180,12 +180,15 @@ def json_load(
 
 
 def open_save_file(save_path: str) -> Optional[Dict[str, Any]]:
+    package: Dict[str, Any] = {}
     try:
         try:
             if config.compress_save is None and prepare.SAVE_METHOD == "CBOR":
-                return cbor.load(save_path)
+                package = cbor.load(save_path)
+                return package
             else:
-                return json_load(save_path)
+                package = json_load(save_path)
+                return package
         except ValueError as e:
             logger.error("Cannot decode save: %s", save_path)
             return None
@@ -250,7 +253,7 @@ def load(slot: int) -> Optional[SaveData]:
         save_data["error"] = "Save file corrupted"
         save_data["player_name"] = "BROKEN SAVE!"
         logger.error("Failed loading save file.")
-        return save_data
+        return save_data  # type: ignore[return-value]
 
 
 def get_index_of_latest_save() -> Optional[int]:

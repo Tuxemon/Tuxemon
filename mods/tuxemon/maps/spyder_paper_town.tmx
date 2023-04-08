@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="454">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="455">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="route1"/>
@@ -24,7 +24,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG9VjtOA0EMdZWPoEgDlFBwCkTN5xRATY+AUyBRIw6BOAFhFw4BdDTJIXgWPGlwxuMJu8HSk9ef8XuZnR2lGYu0QGO8OHaBvsg2BiKbBWyhZvm8eAa+OWB9TsPu+u/srYlZ3QP/wxqjRb+PuuXzYk/34tT6jOormerzeG3e012aH9Vq9Hm8Nm/1Mo40lOo1+sgTeauX8U3h/JS0ae0E7++0gDPUyBN5qz/i7lq3fFFs9Xflj9Zbviim/mjuMvVL3FdPFbhGD/k9T/3L8Ke95+acPiK+U97M3ThF7hmgv0cf+T1P3ZYn1fCX51lGn52j+sjveeq2a7vGuf1LZ7bQX7N/E3zriv/ev/mPPm/fmH8biijegb6N58ybW7N/XPsx+tbZh97ad1Fz/qjPetWbM707rhLkerycvXO0j+ff894sL693B03/b/GcrMqTq9Z/Jvp0jfe7+8q/bIsMdkSGQGQj9IyB1Fa1b5z7Cn0H4DwE9LkBWkB1q9dY8xofoecYSK2vffLmfAEbXkKy
+   eAG9VjtOQzEQ3CofQUEDlFBwCkTN5xRATY+AUyBRo5yCEwAvcAigo0kOwazCSI+Vx3bAYaXRxLv2zmRjLLqx2RToApuIS+wrxebAbCuDbdSinlrPoDcHIqc87K3/zN6FNav70M/FAepRT62V71z/Uq3Gn9KNeeW75CFXr/GndGM++uU6p1+q1fijTomjX65v10oudP0U9+ssg/M/3D+t2qZSmlesc17kNi50F+rUMv3qjstXrvBePVbgBnuor5jfY3kXixMX4Z4+YH3vuom38Qm5Z4A8wT7qK6bvqPNbvzw3S/hjjez+qK+YvnmmFafm1+89hf+a+W3gb93x3/Obf/tTc2P+bWjmeAdaB++Z6lszP579GC18tvBb+1vU3D/6i+x+U+Fvx3UPqT0qF98c38f7r1j1Unl/Oxj+/xbvyaqYWrX82fPnZ9T3bpV/2TEb7JoNgVKMsGcM9GNVc2PfV/g7hOYR4J87YAq4b2dfe97Xx9hzAvSj1ZxUny+L8kH0
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
@@ -304,7 +304,7 @@
     <property name="act71" value="add_monster dollfin,5,spyder_billie,27,10"/>
     <property name="act80" value="start_battle spyder_billie"/>
     <property name="act90" value="set_variable firstfightdue:no"/>
-    <property name="act91" value="set_variable teleport_faint:spyder_bedroom.tmx 7 6"/>
+    <property name="act91" value="set_variable teleport_faint:spyder_bedroom.tmx 3 4"/>
     <property name="act92" value="set_variable firstfightend:yes"/>
     <property name="cond1" value="is variable_set firstfightdue:yes"/>
    </properties>
@@ -434,6 +434,21 @@
     <property name="act1" value="transition_teleport spyder_paper_manor.tmx,6,7,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="454" name="Stop 2!" type="event" x="16" y="224" width="16" height="64">
+   <properties>
+    <property name="act1" value="lock_controls"/>
+    <property name="act10" value="player_stop"/>
+    <property name="act20" value="create_npc spyder_dante,19,13"/>
+    <property name="act30" value="pathfind spyder_dante,2,14"/>
+    <property name="act40" value="translated_dialog spyder_papertown_stopthere"/>
+    <property name="act50" value="pathfind player,4,12"/>
+    <property name="act60" value="pathfind spyder_dante,19,13"/>
+    <property name="act80" value="remove_npc spyder_dante"/>
+    <property name="act81" value="unlock_controls"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is party_size less_than,1"/>
    </properties>
   </object>
  </objectgroup>

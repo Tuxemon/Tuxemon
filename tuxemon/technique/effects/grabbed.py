@@ -33,12 +33,13 @@ class GrabbedEffect(TechEffect):
         obj = self.objective
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
-            tech = Technique("status_grabbed")
+            status = Technique()
+            status.load("status_grabbed")
             if obj == "user":
-                user.apply_status(tech)
+                user.apply_status(status)
                 formula.simple_grabbed(user)
             elif obj == "target":
-                target.apply_status(tech)
+                target.apply_status(status)
                 formula.simple_grabbed(target)
             return {"success": True}
         if tech.slug == "status_grabbed":

@@ -264,6 +264,7 @@
   </object>
   <object id="71" name="Talk Morningstar" type="event" x="32" y="48" width="16" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_wayfarer1_morningstar"/>
     <property name="act1" value="translated_dialog spyder_wayfarer1_morningstar1"/>
     <property name="act2" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,27,10"/>
     <property name="act3" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,27,10"/>
@@ -276,6 +277,7 @@
   </object>
   <object id="72" name="Talk Victor" type="event" x="176" y="32" width="32" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_wayfarer1_victor"/>
     <property name="act1" value="translated_dialog spyder_wayfarer1_victor1"/>
     <property name="act2" value="add_monster squabbit,14,spyder_wayfarer1_victor,27,10"/>
     <property name="act3" value="start_battle spyder_wayfarer1_victor"/>
@@ -295,8 +297,8 @@
    <properties>
     <property name="act1" value="set_monster_health"/>
     <property name="act2" value="set_monster_status"/>
-    <property name="act3" value="set_variable battle_last_result:none"/>
-    <property name="cond1" value="is variable_set battle_last_result:lost"/>
+    <property name="act3" value="set_variable teleport_clinic:none"/>
+    <property name="cond1" value="is variable_set teleport_clinic:lost"/>
    </properties>
   </object>
   <object id="75" name="Environment" type="event" x="16" y="0" width="16" height="16">

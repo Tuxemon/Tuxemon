@@ -234,6 +234,7 @@
   </object>
   <object id="89" name="Talk Gregor" type="event" x="368" y="48" width="16" height="32">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_greenwash_gregor"/>
     <property name="act1" value="translated_dialog spyder_greenwash_gregor1"/>
     <property name="act2" value="add_monster sclairus,22,spyder_greenwash_gregor,27,10"/>
     <property name="act3" value="add_monster cateye,22,spyder_greenwash_gregor,27,10"/>

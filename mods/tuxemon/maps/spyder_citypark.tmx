@@ -297,7 +297,7 @@
     <property name="cond2" value="not npc_exists spyder_citypark_frances"/>
    </properties>
   </object>
-  <object id="226" name="Talk Frances&#10;" type="event" x="448" y="368" width="16" height="16">
+  <object id="226" name="Talk Frances" type="event" x="448" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_frances1"/>
     <property name="act2" value="add_monster shybulb,8,spyder_citypark_frances,27,10"/>
@@ -542,6 +542,7 @@
   </object>
   <object id="274" name="Talk Bobette" type="event" x="208" y="272" width="48" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_citypark_bobette"/>
     <property name="act1" value="translated_dialog spyder_citypark_bobette1"/>
     <property name="act2" value="add_monster aardorn,10,spyder_citypark_bobette,27,10"/>
     <property name="act3" value="start_battle spyder_citypark_bobette"/>

@@ -221,6 +221,7 @@
   </object>
   <object id="37" name="Talk Argon" type="event" x="224" y="144" width="16" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_nimrod_argon"/>
     <property name="act1" value="translated_dialog spyder_nimrod_argon1"/>
     <property name="act2" value="add_monster chrome-robo,25,spyder_nimrod_argon,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_argon"/>
@@ -232,6 +233,7 @@
   </object>
   <object id="38" name="Talk Honour" type="event" x="192" y="64" width="48" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_nimrod_honour"/>
     <property name="act1" value="translated_dialog spyder_nimrod_honour1"/>
     <property name="act2" value="add_monster embazook,20,spyder_nimrod_honour,27,10"/>
     <property name="act3" value="add_monster sharpfin,20,spyder_nimrod_honour,27,10"/>
@@ -244,6 +246,7 @@
   </object>
   <object id="40" name="Talk Xeon" type="event" x="160" y="176" width="16" height="64">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_nimrod_xeon"/>
     <property name="act1" value="translated_dialog spyder_nimrod_xeon1"/>
     <property name="act2" value="add_monster xeon,20,spyder_nimrod_xeon,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_xeon"/>
@@ -256,6 +259,7 @@
   </object>
   <object id="41" name="Talk Chrome Robo" type="event" x="144" y="192" width="16" height="64">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_nimrod_chromerobo"/>
     <property name="act1" value="translated_dialog spyder_nimrod_chromerobo1"/>
     <property name="act2" value="add_monster chrome-robo,20,spyder_nimrod_chromerobo,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_chromerobo"/>
@@ -268,6 +272,7 @@
   </object>
   <object id="42" name="Talk Archer" type="event" x="64" y="208" width="16" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_nimrod_archer"/>
     <property name="act1" value="translated_dialog spyder_nimrod_archer1"/>
     <property name="act2" value="add_monster sharpfin,20,spyder_nimrod_archer,27,10"/>
     <property name="act3" value="add_monster av8r,20,spyder_nimrod_archer,27,10"/>
@@ -281,6 +286,7 @@
   </object>
   <object id="43" name="Talk Antimony" type="event" x="64" y="192" width="16" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_nimrod_antimony"/>
     <property name="act1" value="translated_dialog spyder_nimrod_antimony1"/>
     <property name="act2" value="add_monster komodraw,30,spyder_nimrod_antimony,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_antimony"/>

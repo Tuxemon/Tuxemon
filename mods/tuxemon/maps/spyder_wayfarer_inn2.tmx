@@ -173,6 +173,7 @@
   </object>
   <object id="49" name="Talk Bravo" type="event" x="208" y="48" width="16" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_wayfarer1_bravo"/>
     <property name="act1" value="translated_dialog spyder_wayfarer1_bravo1"/>
     <property name="act2" value="add_monster elofly,12,spyder_wayfarer1_bravo,27,10"/>
     <property name="act3" value="add_monster flacono,12,spyder_wayfarer1_bravo,27,10"/>

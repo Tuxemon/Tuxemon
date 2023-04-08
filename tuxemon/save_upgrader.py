@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, Any, Dict, Mapping
 
 from tuxemon import formula
 from tuxemon.db import SeenStatus
+from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.save import SaveData
@@ -67,7 +68,49 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     save_data["items"] = save_data.get("items", [])
     save_data["battles"] = save_data.get("battles", [])
 
-    # trasfer data from "inventory" to "items"
+    # upgrade data moves
+    for ele1 in save_data["monsters"]:
+        if ele1["moves"]:
+            backup_moves = []
+            for mov in ele1["moves"]:
+                if isinstance(mov, str):
+                    backup_moves.append(mov)
+            if backup_moves:
+                for tech in backup_moves:
+                    t = Technique()
+                    t.load(tech)
+                    ele1["moves"].remove(t.slug)
+                    ele1["moves"].append(
+                        {
+                            "slug": t.slug,
+                            "power": t.power,
+                            "potency": t.potency,
+                            "accuracy": t.accuracy,
+                        }
+                    )
+
+    for key, value in save_data["monster_boxes"].items():
+        for ele2 in value:
+            if ele2["moves"]:
+                backup_tech = []
+                for mov in ele2["moves"]:
+                    if isinstance(mov, str):
+                        backup_tech.append(mov)
+                if backup_tech:
+                    for tech in backup_tech:
+                        t = Technique()
+                        t.load(tech)
+                        ele2["moves"].remove(t.slug)
+                        ele2["moves"].append(
+                            {
+                                "slug": t.slug,
+                                "power": t.power,
+                                "potency": t.potency,
+                                "accuracy": t.accuracy,
+                            }
+                        )
+
+    # upgrade data battle_history
     if "battle_history" in save_data:
         for key, value in save_data["battle_history"].items():
             output, date = value

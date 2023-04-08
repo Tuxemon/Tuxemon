@@ -349,6 +349,7 @@
   </object>
   <object id="92" name="Talk Tomas" type="event" x="240" y="528" width="48" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_dragonscave_tomas"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_tomas1"/>
     <property name="act2" value="add_monster allagon,35,spyder_dragonscave_tomas,27,10"/>
     <property name="act3" value="start_battle spyder_dragonscave_tomas"/>
@@ -360,6 +361,7 @@
   </object>
   <object id="93" name="Talk Daenny" type="event" x="192" y="432" width="16" height="64">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_dragonscave_daenny"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_daenny1"/>
     <property name="act2" value="add_monster eaglace,37,spyder_dragonscave_daenny,27,10"/>
     <property name="act3" value="start_battle spyder_dragonscave_daenny"/>
@@ -371,6 +373,7 @@
   </object>
   <object id="94" name="Talk Cailin" type="event" x="128" y="416" width="32" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_dragonscave_cailin"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_cailin1"/>
     <property name="act2" value="add_monster dragarbor,36,spyder_dragonscave_cailin,27,10"/>
     <property name="act3" value="start_battle spyder_dragonscave_cailin"/>
@@ -382,6 +385,7 @@
   </object>
   <object id="95" name="Talk Lessa" type="event" x="256" y="336" width="16" height="48">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_dragonscave_lessa"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_lessa1"/>
     <property name="act2" value="add_monster allagon,37,spyder_dragonscave_lessa,27,10"/>
     <property name="act3" value="start_battle spyder_dragonscave_lessa"/>
@@ -393,6 +397,7 @@
   </object>
   <object id="96" name="Talk Griffin" type="event" x="112" y="528" width="16" height="80">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_dragonscave_griffin"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_griffin1"/>
     <property name="act2" value="add_monster bigfin,35,spyder_dragonscave_griffin,27,10"/>
     <property name="act3" value="start_battle spyder_dragonscave_griffin"/>
@@ -404,6 +409,7 @@
   </object>
   <object id="97" name="Talk Benden" type="event" x="80" y="240" width="16" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_dragonscave_benden"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_benden1"/>
     <property name="act2" value="add_monster dragarbor,36,spyder_dragonscave_benden,27,10"/>
     <property name="act3" value="add_monster sapragon,38,spyder_dragonscave_benden,27,10"/>
@@ -418,6 +424,7 @@
   </object>
   <object id="98" name="Talk Ray" type="event" x="288" y="144" width="16" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_dragonscave_ray"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_ray1"/>
     <property name="act2" value="add_monster ghosteeth,40,spyder_dragonscave_ray,27,10"/>
     <property name="act3" value="start_battle spyder_dragonscave_ray"/>
@@ -429,6 +436,7 @@
   </object>
   <object id="99" name="Talk Tru" type="event" x="240" y="112" width="16" height="48">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_dragonscave_tru"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_tru1"/>
     <property name="act2" value="add_monster embazook,40,spyder_dragonscave_tru,27,10"/>
     <property name="act3" value="add_monster arthrobolt,40,spyder_dragonscave_tru,27,10"/>
@@ -442,6 +450,7 @@
   </object>
   <object id="100" name="Talk Lucille" type="event" x="208" y="128" width="16" height="32">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_dragonscave_lucille"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_lucille1"/>
     <property name="act2" value="add_monster coleorus,40,spyder_dragonscave_lucille,27,10"/>
     <property name="act3" value="start_battle spyder_dragonscave_lucille"/>
@@ -453,6 +462,7 @@
   </object>
   <object id="101" name="Talk Mal" type="event" x="176" y="144" width="32" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_dragonscave_mal"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_mal1"/>
     <property name="act2" value="add_monster djinnbo,40,spyder_dragonscave_mal,27,10"/>
     <property name="act3" value="start_battle spyder_dragonscave_mal"/>

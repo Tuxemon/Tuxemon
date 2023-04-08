@@ -6,26 +6,26 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.states.world import WorldState
+from tuxemon.states.world.worldstate import WorldState
 
 
 @final
 @dataclass
-class InaccessibleAction(EventAction):
+class AddCollisionAction(EventAction):
     """
-    Area inaccessible (added to the collision zone).
+    Adds a collision.
 
     Script usage:
         .. code-block::
 
-            inaccessible <event_id>
+            add_collision <event_id>
 
     Script parameters:
         event_id: The id of the event.
 
     """
 
-    name = "inaccessible"
+    name = "add_collision"
     event_id: int
 
     def start(self) -> None:

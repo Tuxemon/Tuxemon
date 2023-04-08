@@ -81,7 +81,7 @@
     <property name="act20" value="pathfind allie,3,11"/>
     <property name="act30" value="pathfind bob,3,11"/>
     <property name="act40" value="pathfind grace,3,11"/>
-    <property name="cond10" value="is player_at 7,7 "/>
+    <property name="cond10" value="is player_at 7,7"/>
    </properties>
   </object>
   <object id="29" name="Create NPCs" type="event" x="244.428" y="53.6729" width="16" height="16">

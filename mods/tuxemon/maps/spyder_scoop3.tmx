@@ -145,6 +145,7 @@
   </object>
   <object id="26" name="Talk Alyssa" type="event" x="64" y="160" width="16" height="32">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_scoop_alyssa"/>
     <property name="act1" value="translated_dialog spyder_scoop_alyssa1"/>
     <property name="act2" value="add_monster possessun,40,spyder_scoop_alyssa,27,10"/>
     <property name="act3" value="start_battle spyder_scoop_alyssa"/>
@@ -156,6 +157,7 @@
   </object>
   <object id="27" name="Talk Taggart" type="event" x="96" y="144" width="16" height="32">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_scoop_taggart"/>
     <property name="act1" value="translated_dialog spyder_scoop_taggart1"/>
     <property name="act2" value="add_monster elofly,30,spyder_scoop_taggart,27,10"/>
     <property name="act3" value="add_monster elowind,35,spyder_scoop_taggart,27,10"/>
@@ -169,6 +171,7 @@
   </object>
   <object id="28" name="Talk Donald" type="event" x="176" y="160" width="16" height="32">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_scoop_donald"/>
     <property name="act1" value="translated_dialog spyder_scoop_donald1"/>
     <property name="act2" value="add_monster birdling,35,spyder_scoop_donald,27,10"/>
     <property name="act3" value="add_monster pigabyte,35,spyder_scoop_donald,27,10"/>

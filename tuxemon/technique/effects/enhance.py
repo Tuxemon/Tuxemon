@@ -37,6 +37,7 @@ class EnhanceEffect(TechEffect):
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
         if hit or tech.is_area:
+            tech.advance_counter_success()
             return {"success": True}
         else:
             return {"success": False}

@@ -179,7 +179,7 @@
     <property name="act4" value="translated_dialog spyder_scoop_landrace2"/>
     <property name="act6" value="set_variable scooplandrace:yes"/>
     <property name="act61" value="remove_npc spyder_scoop_landrace"/>
-    <property name="act71" value="pathfind spyder_scoop_weaver,11,3 "/>
+    <property name="act71" value="pathfind spyder_scoop_weaver,11,3"/>
     <property name="act81" value="remove_npc spyder_scoop_weaver"/>
     <property name="act89" value="pathfind spyder_scoop_arachne,10,4"/>
     <property name="act90" value="npc_face spyder_scoop_arachne,down"/>
@@ -313,6 +313,7 @@
   </object>
   <object id="55" name="Talk Orba" type="event" x="0" y="192" width="32" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_scoop_orba"/>
     <property name="act1" value="translated_dialog spyder_scoop_orba1"/>
     <property name="act2" value="add_monster abesnaki,30,spyder_scoop_orba,27,10"/>
     <property name="act3" value="add_monster spighter,30,spyder_scoop_orba,27,10"/>
@@ -325,6 +326,7 @@
   </object>
   <object id="56" name="Talk Arachne" type="event" x="128" y="128" width="32" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_scoop_arachne"/>
     <property name="act1" value="translated_dialog spyder_scoop_arachne1"/>
     <property name="act2" value="add_monster cardiwing,35,spyder_scoop_arachne,27,10"/>
     <property name="act3" value="add_monster spighter,35,spyder_scoop_arachne,27,10"/>
@@ -338,6 +340,7 @@
   </object>
   <object id="57" name="Talk Weaver" type="event" x="112" y="112" width="16" height="32">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_scoop_weaver"/>
     <property name="act1" value="translated_dialog spyder_scoop_weaver1"/>
     <property name="act2" value="add_monster cardiling,30,spyder_scoop_weaver,27,10"/>
     <property name="act3" value="add_monster spighter,30,spyder_scoop_weaver,27,10"/>

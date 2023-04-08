@@ -42,6 +42,7 @@ RegionPropertiesOptional = TypedDict(
     "RegionPropertiesOptional",
     {
         "continue": Direction,
+        "water": int,
     },
     total=False,
 )
@@ -316,6 +317,9 @@ def extract_region_properties(
             has_movement_modifier = True
         elif "continue" in key:
             new_props["continue"] = properties[key]
+            has_movement_modifier = True
+        elif "water" in key:
+            new_props["water"] = properties[key]
             has_movement_modifier = True
     # if there is an exit, but no explicit enter, then
     # allow entering from all sides except the exit side

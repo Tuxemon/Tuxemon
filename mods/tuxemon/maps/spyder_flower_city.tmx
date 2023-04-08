@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="470">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="478">
  <properties>
   <property name="east" value="route4"/>
   <property name="edges" value="clamped"/>
@@ -35,16 +35,40 @@
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlslKBDEQhktQ3J5BPYm44XYTfA6369wdFzz7Bh68il7cTu6eVdS7qM8x+gh+QQqmnR67O5O0gUnBR5F0SP39J92USLG4Hxd5yOCR513zIp1Qn7WSzuvYZa5R+zODL56PoW0U6rPq0Hkdu8x59eWtWZlIrtxe+BnbejzAfoMZDP2qmVSQHO01WevT46SCOPoPB2zvX1la4/0ry+lYx4cD5/xXL+ASruAaYrhzYG1SpArrsAGbsAUx2teB2jS9JbiIdrpfT3j2DC8p3vnsE474Jx7DCZzCGRQNH33CzbDILdxBiPGGrnf4yKnvr/PNer9uFvRAL/RBP4QUU4gx13YGZmEOQopFxCzBMqzAKriOVs7XtZaQ9quOhKSmUctu4PoaFceZsh3Y75CdsmsWrXcYsMYDC20+e540b1+l2Bn76HnSdJk59cJXblY377x64SsbHXqHbL9FX97pvkZjK9+gL+90X6PPNr4BgZJ4SA==
+   eAHtlklKRDEQhmuhOJ1BXYk44bQTPIfT1n23A669gQuv4LRydq2i7kU9R+sR/EQK+tkv76XbVBvsFHwUqYTU//6ER0Sai9sJkbsS7pnvXhDpgvqsnbSu45C5Ru/3Ej6YH0fbGNRn1aF1HYfMvvp8e65PZlfuLH6PW/V4kP2GShj+0TOrIDvad6y19DirII3+woFW71+7tKb71y6nUx8LB075r57BOVzAJaQI50BlSqQKG7AJW7ANKTrXgdoMb0sIEZ10vx7w7BGecryzfCcc8E88hCM4hhNoNizeCVcjItdwAzHGC7pe4c1TX9H5ln1fDwt6oQ/6YQBiimnEfF3bWZiDeYgplhCzDCuwCmsQOn5zvqG1xLRfdTQmNY1a9iLX16g4VZID/98ByzdPnnvPIrt5dVfN4s3j6qVeWGVXX9+6emGVfXUUrbPyTvct6u0zZ+Wd7uujwbXmE6GTcZA=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">
-  <object id="302" type="collision" x="0" y="512" width="64" height="48"/>
-  <object id="303" type="collision" x="64" y="528" width="144" height="48"/>
-  <object id="304" type="collision" x="160" y="496" width="112" height="48"/>
-  <object id="305" type="collision" x="288" y="496" width="16" height="32"/>
-  <object id="306" type="collision" x="256" y="528" width="192" height="48"/>
-  <object id="307" type="collision" x="400" y="576" width="48" height="64"/>
+  <object id="302" type="collision" x="0" y="512" width="64" height="48">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="303" type="collision" x="64" y="528" width="144" height="48">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="304" type="collision" x="160" y="496" width="112" height="48">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="305" type="collision" x="288" y="496" width="16" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="306" type="collision" x="256" y="528" width="192" height="48">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="307" type="collision" x="400" y="576" width="48" height="64">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
   <object id="308" type="collision" x="448" y="608" width="192" height="32"/>
   <object id="309" type="collision" x="592" y="544" width="48" height="64"/>
   <object id="310" type="collision" x="576" y="576" width="16" height="32"/>
@@ -517,6 +541,60 @@
     <property name="act1" value="translated_dialog spyder_multi_martsign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="470" name="Remove obstacle 1" type="event" x="16" y="496" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision water"/>
+    <property name="cond1" value="is has_tech surf"/>
+   </properties>
+  </object>
+  <object id="471" name="Teleport to Routed 1" type="event" x="400" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routed.tmx,5,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="472" name="Teleport to Routed 2" type="event" x="416" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routed.tmx,6,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="473" name="Teleport to Routed 3" type="event" x="432" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routed.tmx,7,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="474" name="Teleport to Timber Town 1" type="event" x="0" y="512" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,39,12,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="476" name="Teleport to Timber Town 2" type="event" x="0" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,39,13,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="477" name="Teleport to Timber Town 3" type="event" x="0" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,39,14,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
  </objectgroup>

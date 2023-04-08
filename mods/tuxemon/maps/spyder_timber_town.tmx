@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="361">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="369">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="route5"/>
@@ -63,11 +63,31 @@
   <object id="259" type="collision" x="128" y="240" width="32" height="64"/>
   <object id="260" type="collision" x="176" y="240" width="32" height="64"/>
   <object id="261" type="collision" x="160" y="240" width="16" height="48"/>
-  <object id="262" type="collision" x="80" y="352" width="48" height="64"/>
-  <object id="263" type="collision" x="144" y="352" width="112" height="64"/>
-  <object id="264" type="collision" x="128" y="384" width="16" height="32"/>
-  <object id="266" type="collision" x="224" y="416" width="32" height="48"/>
-  <object id="267" type="collision" x="256" y="432" width="192" height="32"/>
+  <object id="262" type="collision" x="80" y="352" width="48" height="64">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="263" type="collision" x="144" y="352" width="112" height="64">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="264" type="collision" x="128" y="384" width="16" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="266" type="collision" x="224" y="416" width="32" height="48">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="267" type="collision" x="256" y="432" width="192" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
   <object id="268" type="collision" x="0" y="192" width="32" height="32"/>
   <object id="269" type="collision" x="0" y="224" width="48" height="32"/>
   <object id="270" type="collision" x="0" y="256" width="32" height="32"/>
@@ -88,8 +108,16 @@
   <object id="286" type="collision" x="464" y="544" width="16" height="16"/>
   <object id="287" type="collision" x="368" y="544" width="16" height="16"/>
   <object id="288" type="collision" x="144" y="448" width="48" height="32"/>
-  <object id="289" type="collision" x="496" y="432" width="32" height="32"/>
-  <object id="290" type="collision" x="528" y="256" width="32" height="384"/>
+  <object id="289" type="collision" x="496" y="432" width="32" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="290" type="collision" x="528" y="256" width="32" height="384">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
   <object id="291" type="collision" x="512" y="624" width="16" height="16"/>
   <object id="292" type="collision" x="560" y="624" width="16" height="16"/>
   <object id="293" type="collision" x="576" y="608" width="64" height="32"/>
@@ -104,9 +132,21 @@
   <object id="303" type="collision" x="608" y="368" width="32" height="32"/>
   <object id="304" type="collision" x="592" y="336" width="48" height="32"/>
   <object id="305" type="collision" x="608" y="240" width="32" height="96"/>
-  <object id="306" type="collision" x="560" y="256" width="48" height="32"/>
-  <object id="307" type="collision" x="576" y="192" width="64" height="48"/>
-  <object id="308" type="collision" x="576" y="240" width="32" height="16"/>
+  <object id="306" type="collision" x="560" y="256" width="48" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="307" type="collision" x="576" y="192" width="64" height="48">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="308" type="collision" x="576" y="240" width="32" height="16">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
   <object id="309" type="collision" x="544" y="224" width="32" height="32"/>
   <object id="310" type="collision" x="448" y="128" width="32" height="96"/>
   <object id="311" type="collision" x="544" y="128" width="32" height="96"/>
@@ -315,6 +355,52 @@
     <property name="act1" value="translated_dialog spyder_multi_martsign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="361" name="Remove obstacle 1" type="event" x="512" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision water"/>
+    <property name="cond1" value="is has_tech surf"/>
+   </properties>
+  </object>
+  <object id="364" name="Teleport to Flower City 1" type="event" x="624" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_flower_city.tmx,0,32,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="365" name="Teleport to Flower City 2" type="event" x="624" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_flower_city.tmx,0,33,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="366" name="Teleport to Flower City 3" type="event" x="624" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_flower_city.tmx,0,34,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="367" name="Teleport to Routee 1" type="event" x="528" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routee.tmx,13,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="368" name="Teleport to Routee 2" type="event" x="544" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routee.tmx,14,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
  </objectgroup>

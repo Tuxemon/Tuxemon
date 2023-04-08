@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="156">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="166">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -17,11 +17,71 @@
    eAGtzkEKwzAMRFFvepfkMOn9j1Nv3maCsQsTCJ+R5C9dnzHu+V+HHPHlu2d6vvM/Zehe77KfOff/28/5vHvXz/2ydzKqozrmftm8jOqojrxJ86v6qs+bNL+qr/q5Xza/o3nM/fLOo28eeVvkbbF1F0/rLh7eFnlbbN3F07qLh7dF3hZ/cRpRAQ==
   </data>
  </layer>
- <objectgroup id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collision">
   <object id="151" type="collision" x="0" y="0" width="192" height="32"/>
   <object id="152" type="collision" x="128" y="32" width="64" height="96"/>
   <object id="153" type="collision" x="0" y="80" width="80" height="240"/>
   <object id="154" type="collision" x="80" y="160" width="240" height="160"/>
   <object id="155" type="collision" x="256" y="0" width="64" height="160"/>
+  <object id="156" type="collision" x="96" y="128" width="144" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="157" type="collision" x="0" y="48" width="128" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="158" type="collision" x="96" y="80" width="32" height="48">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="159" type="collision" x="208" y="0" width="32" height="128">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="7" name="Events">
+  <object id="161" name="Remove obstacle 1" type="event" x="176" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision water"/>
+    <property name="cond1" value="is has_tech surf"/>
+   </properties>
+  </object>
+  <object id="162" name="Teleport to Timber Town 1" type="event" x="208" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,33,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="163" name="Teleport to Timber Town 2" type="event" x="224" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,34,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="164" name="Teleport to Tunnel 1" type="event" x="0" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_tunnel.tmx,19,3,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="165" name="Teleport to Tunnel 2" type="event" x="0" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_tunnel.tmx,19,4,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

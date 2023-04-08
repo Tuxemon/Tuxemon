@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="228">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="255">
  <properties>
   <property name="east" value="cotton_town"/>
   <property name="edges" value="clamped"/>
@@ -18,7 +18,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHF2FuKVDEUheEIIqLzULR1JIo4Di8g6Ch0Bk5CR6QPvnmZg9lUf7DZ5pyqSgcrkF7JTtbKn1NUQ53WLtt+3G3t970Dw+c+ru3B7dYe9n4pxYOxcjzrbM97v5QG35/r5xfjyoH3e2eMXlutj/aER53Wmjqt59Q5Lrzhq161kcqrHly1njN4R8qHCyd/9dQ6v311HnW17M1j3j3FhfMUvz2huZlbtzaqq9lDqxcXzrrO9z90iznOxrnH57t/Cutezh4HX93j+R07+2f6H7C3t+bnc42rv9Zjjsvzq55jc5mhj++3dtV7bbF2apNnPy6c6iPlzefl2qvO9voGfHJzJi6cIy617JMVa3mc9xpv7bHOT9VDceHMa3Ucfr2uzczxyKQ5CxfOvLY3lkX39ua1/P0Kb7RRhjVcOA+O439l0lP8W/+fZIxOlYtztGdUk0n5zbNHjVozp+pZ5eLMazH+1j+D6KOWc0d+61RGzKPRw+zfedTl4rQ3NLg+3mntU+9bjPaP/NYqn/opKhdn9gTTl872dYMvn8tPc45x3q92TOXhrPuDcevZOS+Un9ac2bk8nOfkZD4+OVR9VuXgPCcHX/bIoXltZiwH50zGyCNvleIcnTVTk7dK3XOGZeSRt0rdc3TWTE3eKnXPGZaRR94qdc/RWTM1eavUPWdYRh55q9Q9R2fN1OSt0lX3XJ3j2ay65+qcR7f678LeV997Vd6LzvauP8TV916Vh8/nfK7OPiefW3x2W/2qr73v/UPvs232OXku8dlt9Zc34Jq9D99qvvjdmt+vxLviJ/1dxtPB+wwMe7qaL87yfuXX9TusN53tbe9bv2tX8v0FxW83wQ==
+   eAHF2GFqFTEUxfERRET3oWh1JUpxHa2CoKvQHbgJXZF+8JvVPTSX9oeXa2bevDT4AvEkNzkn/8xQ4c2ynLb9fPj3/C9prPrk/rI8bf1UioNWjleN7XXrp1JctHLg/dEYo9dW67094VGntaZO6zl1jgtv+KpXrafyqgdXrecM3p7y4cLJXz21zm9fnUddLXvzmHdLceHc47cnNDdz69Z6dTV7aPXiwlnX+f6HrjHH2Ti3+H4/2k+5lbPFwVf3eH6HCH7tZKz5+VzjelatxxyX51c9h+YyQ58/Xpaz1muLtb1Nnv24cKr3lDefl2sXje3yDnxycyYunD0uteyTFWt5nPcar+2xzk/VQ3HhzGt1HH69ro3M8cikOQsXzry2NZZFt/bmtfz3Fd5ovQxruHDeOA7/K5Pu8a/9/ySjd6pcnL09vZpMym+ePWrUmjlVzyoXZ16L8ff2DqL3Ws7t+a1TGTGPRm9m/86jLhenvaHB9enBsnxufY3R/p7fWuVT36NycWZPMH1tbN9W+PK5/DTnGOf9aodUHs66PxjXnp3zQvlpzRmdy8N5TE7m45ND1UdVDs5jcvBljxya10bGcnCOZPQ88mYpzt5ZIzV5s9Q9R1h6Hnmz1D17Z43U5M1S9xxh6XnkzVL37J01UpM3S91zhKXnkTdL3bN31khN3iyddc/ZOZ7NrHvOznl2r/0ubH32vWflnTe29+0hzr73rDx83vOxOvqcvLd4d2v9rK19aP1j66Nt9Dl5LvHu1vqbO3CN3odvNl/8bs3fV/60+Yv2LeNl53sGhi2dzRdn+b5ydfsN621je9f62u/amXzX5eY03g==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -34,9 +34,11 @@
   <object id="123" type="collision" x="192" y="608" width="48" height="16"/>
   <object id="124" type="collision" x="208" y="624" width="48" height="16"/>
   <object id="125" type="collision" x="32" y="16" width="480" height="32"/>
-  <object id="126" type="collision" x="512" y="0" width="32" height="16"/>
-  <object id="127" type="collision" x="544" y="16" width="16" height="16"/>
-  <object id="128" type="collision" x="528" y="32" width="16" height="16"/>
+  <object id="126" type="collision" x="528" y="0" width="32" height="80">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
   <object id="129" type="collision" x="560" y="0" width="16" height="16"/>
   <object id="131" type="collision" x="416" y="224" width="16" height="16"/>
   <object id="132" type="collision" x="400" y="240" width="16" height="16"/>
@@ -52,6 +54,126 @@
   <object id="145" type="collision" x="256" y="240" width="32" height="64"/>
   <object id="146" type="collision" x="32" y="496" width="608" height="64"/>
   <object id="210" type="collision" x="96" y="288" width="32" height="32"/>
+  <object id="229" type="collision" x="480" y="48" width="32" height="144">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="230" type="collision" x="512" y="48" width="16" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="231" type="collision" x="416" y="160" width="32" height="64">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="232" type="collision" x="448" y="160" width="32" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="233" type="collision" x="304" y="224" width="96" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="234" type="collision" x="400" y="224" width="16" height="16">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="235" type="collision" x="432" y="224" width="16" height="16">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="236" type="collision" x="416" y="240" width="32" height="16">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="237" type="collision" x="272" y="192" width="32" height="64">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="238" type="collision" x="80" y="128" width="48" height="128">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="239" type="collision" x="160" y="240" width="32" height="112">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="240" type="collision" x="48" y="304" width="32" height="144">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="241" type="collision" x="48" y="224" width="32" height="48">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="242" type="collision" x="128" y="336" width="32" height="48">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="243" type="collision" x="80" y="368" width="32" height="112">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="244" type="collision" x="112" y="352" width="16" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="245" type="collision" x="64" y="448" width="16" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="246" type="collision" x="48" y="272" width="16" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="247" type="collision" x="144" y="240" width="16" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="248" type="collision" x="128" y="240" width="16" height="16">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="249" type="collision" x="128" y="128" width="16" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="250" type="collision" x="176" y="128" width="128" height="32">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="251" type="collision" x="144" y="144" width="16" height="16">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
+  <object id="252" type="collision" x="160" y="128" width="16" height="16">
+   <properties>
+    <property name="water" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="114" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -729,7 +851,7 @@
     <property name="act1" value="translated_dialog spyder_dryadsgrove_ferris1"/>
     <property name="act2" value="add_monster viviteel,50,spyder_dryadsgrove_ferris,27,10"/>
     <property name="act3" value="add_monster allagon,50,spyder_dryadsgrove_ferris,27,10"/>
-    <property name="act4" value="add_monster araignee,50,spyder_dryadsgrove_ferris,27,10"/>  
+    <property name="act4" value="add_monster araignee,50,spyder_dryadsgrove_ferris,27,10"/>
     <property name="act5" value="start_battle spyder_dryadsgrove_ferris"/>
     <property name="act6" value="translated_dialog spyder_dryadsgrove_ferris2"/>
     <property name="act7" value="set_variable dryadsgroveferris:yes"/>
@@ -743,12 +865,34 @@
     <property name="act1" value="translated_dialog spyder_dryadsgrove_ferris1"/>
     <property name="act2" value="add_monster viviteel,50,spyder_dryadsgrove_ferris,27,10"/>
     <property name="act3" value="add_monster allagon,50,spyder_dryadsgrove_ferris,27,10"/>
-    <property name="act4" value="add_monster araignee,50,spyder_dryadsgrove_ferris,27,10"/>  
+    <property name="act4" value="add_monster araignee,50,spyder_dryadsgrove_ferris,27,10"/>
     <property name="act5" value="start_battle spyder_dryadsgrove_ferris"/>
     <property name="act6" value="translated_dialog spyder_dryadsgrove_ferris2"/>
     <property name="act7" value="set_variable dryadsgroveferris:yes"/>
     <property name="cond1" value="not variable_set dryadsgroveferris:yes"/>
     <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="228" name="Remove obstacle 1" type="event" x="496" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision water"/>
+    <property name="cond1" value="is has_tech surf"/>
+   </properties>
+  </object>
+  <object id="253" name="Teleport to Routed 1" type="event" x="528" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routed.tmx,33,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="254" name="Teleport to Routed 2" type="event" x="544" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routed.tmx,34,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

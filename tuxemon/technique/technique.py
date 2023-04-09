@@ -68,12 +68,14 @@ class Technique:
         self.images: Sequence[str] = []
         self.is_area = False
         self.is_fast = False
+        self.randomly = True
         self.link: Optional[Monster] = None
         self.name = ""
         self.next_use = 0
         self.potency = 0.0
         self.power = 1.0
         self.range = Range.melee
+        self.healing_power = 0
         self.recharge_length = 0
         self.repl_pos = ""
         self.repl_neg = ""
@@ -149,6 +151,8 @@ class Technique:
         self.repl_pos = results.repl_pos or self.repl_pos
 
         self.is_fast = results.is_fast or self.is_fast
+        self.randomly = results.randomly or self.randomly
+        self.healing_power = results.healing_power or self.healing_power
         self.recharge_length = results.recharge or self.recharge_length
         self.is_area = results.is_area or self.is_area
         self.range = results.range or Range.melee

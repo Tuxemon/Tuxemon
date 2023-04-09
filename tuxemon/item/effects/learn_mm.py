@@ -27,8 +27,9 @@ class LearnMmEffect(ItemEffect):
         filters = []
         for mov in techs:
             results = db.lookup(mov, table="technique")
-            if self.element in results.types:
-                filters.append(results.slug)
+            if results.randomly == True:
+                if self.element in results.types:
+                    filters.append(results.slug)
         # monster moves
         moves = []
         for tech in target.moves:

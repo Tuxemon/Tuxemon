@@ -9,23 +9,27 @@ from tuxemon.session import Session
 
 class MonsterPropertyCondition(EventCondition):
     """
-    Check to see if a monster property or condition is as asked.
+    Check to see if a monster in the party has one of
+    the following property.
 
     Script usage:
         .. code-block::
 
-            is monster_property <slot>,<property>,<value>
+            is monster_property <property>,<value>
 
     Script parameters:
-        slot: Position of the monster in the player monster list.
-        property: Property of the monster to check (e.g. "level"). Valid values
-            are:
-                - name
-                - level
-                - level_reached
-                - type
-                - category
-                - shape
+        property: Property of the monster to check (e.g. "level").
+        Valid values are:
+                - slug (slug, rockitten)
+                - level (level, 8)
+                - level_reached (level_reached, 8)
+                - stage (stage, standalone)
+                - shape (shape, aquatic)
+                - taste_cold (taste_cold, mild)
+                - taste_warm (taste_warm, peppy)
+                - type (type, fire)
+                - gender (gender, female)
+                - tech (tech, ram)
         value: Value to compare the property with.
 
     """
@@ -33,7 +37,9 @@ class MonsterPropertyCondition(EventCondition):
     name = "monster_property"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """Check to see if a monster property or condition is as asked
+        """
+        Check to see if a monster in the party has one of
+        the following property.
 
         Parameters:
             session: The session object
@@ -43,25 +49,50 @@ class MonsterPropertyCondition(EventCondition):
             Whether the monster property is verified.
 
         """
-        slot = int(condition.parameters[0])
-        prop = condition.parameters[1]
-        val = condition.parameters[2]
-
-        if int(slot) >= len(session.player.monsters):
-            return False
-
-        monster = session.player.monsters[slot]
-        if prop == "name":
-            return monster.name == val
-        elif prop == "level":
-            return str(monster.level) == val
-        elif prop == "level_reached":
-            return monster.level >= int(val)
-        elif prop == "type":
-            return monster.slug == val
-        elif prop == "category":
-            return monster.category == val
-        elif prop == "shape":
-            return monster.shape == val
-        else:
-            return False
+        prop = condition.parameters[0]
+        val = condition.parameters[1]
+        player = session.player
+        for mon in player.monsters:
+            # monster slug
+            if prop == "slug":
+                if mon.slug == val:
+                    return True
+            # monster level
+            elif prop == "level":
+                if str(mon.level) == val:
+                    return True
+            # monster level_reached
+            elif prop == "level_reached":
+                if str(mon.level) >= val:
+                    return True
+            # monster stage (eg. standalone, basic, etc.)
+            elif prop == "stage":
+                if mon.stage == val:
+                    return True
+            # monster shape (eg. aquatic, brute, etc.)
+            elif prop == "shape":
+                if mon.shape == val:
+                    return True
+            # monster taste_cold (eg. mild, etc.)
+            elif prop == "taste_cold":
+                if mon.taste_cold == val:
+                    return True
+            # monster taste_warm (eg peppy, etc.)
+            elif prop == "taste_warm":
+                if mon.taste_warm == val:
+                    return True
+            # monster type (eg. earth, fire, etc)
+            elif prop == "type":
+                if val in mon.types:
+                    return True
+            # monster gender (eg. male, female or neuter)
+            elif prop == "gender":
+                if mon.gender == val:
+                    return True
+            # monster tech (eg. ram, blossom, etc.)
+            elif prop == "tech":
+                if player.has_tech(val):
+                    return True
+            else:
+                raise ValueError(f"{prop} isn't among the valid values.")
+        return False

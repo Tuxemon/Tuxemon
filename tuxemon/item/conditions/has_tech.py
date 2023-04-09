@@ -9,7 +9,7 @@ from tuxemon.monster import Monster
 
 
 @dataclass
-class LackTechCondition(ItemCondition):
+class HasTechCondition(ItemCondition):
     """
     Checks if the monster knows already the technique.
 
@@ -17,11 +17,11 @@ class LackTechCondition(ItemCondition):
 
     """
 
-    name = "lack_tech"
+    name = "has_tech"
     expected: str
 
     def test(self, target: Monster) -> bool:
         if any(t for t in target.moves if t.slug == self.expected):
-            return False
-        else:
             return True
+        else:
+            return False

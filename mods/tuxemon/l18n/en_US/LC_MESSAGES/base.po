@@ -291,6 +291,12 @@ msgstr "Fishing Rod"
 msgid "fishing_rod_description"
 msgstr "Catch fish."
 
+msgid "surfboard"
+msgstr "Surfboard"
+
+msgid "surfboard_description"
+msgstr "From your Mom. It lets you travel faster."
+
 msgid "earthmover_key"
 msgstr "Earthmover Key"
 
@@ -357,6 +363,12 @@ msgstr "TM: Blossom"
 
 msgid "tm_blossom_description"
 msgstr "Technique Manual that teaches a Wood Tuxemon the Blossom technique."
+
+msgid "tm_surf"
+msgstr "TM: Surf"
+
+msgid "tm_surf_description"
+msgstr "Technique Manual that teaches a Water Tuxemon the Surf technique."
 
 msgid "tm_earth"
 msgstr "Technical Manual (Earth)"
@@ -1219,6 +1231,9 @@ msgstr "Sudden Glow"
 
 msgid "supernova"
 msgstr "Supernova"
+
+msgid "surf"
+msgstr "Surf"
 
 msgid "surge"
 msgstr "Surge"
@@ -6201,6 +6216,10 @@ msgid "spyder_route5_tryphaena1"
 msgstr "You know, we're descended from ... You've already heard it? Oh."
 msgid "spyder_route5_tryphaena2"
 msgstr "Well, might makes right."
+msgid "spyder_timber_mom1"
+msgstr "Hey bojo, your BOARD doesn't work on water. Unless you've got power."
+msgid "spyder_timber_mom2"
+msgstr "What I mean to say is, here's a Surfboard! Ride it onto the river and see what happens!"
 msgid "spyder_timber_dante1"
 msgstr "Hey buddy! Cool to see you again. "
 msgid "spyder_timber_dante2"

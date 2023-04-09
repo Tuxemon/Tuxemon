@@ -1,0 +1,34 @@
+{
+  "tech_id": 174,
+  "accuracy": 0.9,
+  "animation": "waterfall",
+  "effects": [
+    "damage"
+  ],
+  "flip_axes": "",
+  "is_area": true,
+  "is_fast": false,
+  "potency": 0.8,
+  "power": 2.6,
+  "randomly": false,
+  "range": "ranged",
+  "recharge": 3,
+  "sfx": "sfx_bubbles",
+  "slug": "surf",
+  "sort": "damage",
+  "target": {
+    "enemy monster": 2,
+    "enemy team": 2,
+    "enemy trainer": 0,
+    "item": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0
+  },
+  "types": [
+    "water"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

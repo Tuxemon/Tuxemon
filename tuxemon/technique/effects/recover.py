@@ -42,7 +42,7 @@ class RecoverEffect(TechEffect):
         if tech.slug == "status_recover":
             # avoids Nonetype situation and reset the user
             if user is None:
-                user = status.link
+                user = tech.link
                 assert user
                 heal = formula.simple_recover(user)
                 user.current_hp += heal

@@ -1237,6 +1237,11 @@ class CombatState(CombatAnimations):
     def learn(self, monster: Monster, tech: str) -> None:
         technique = Technique()
         technique.load(tech)
+        duplicate = [
+            mov for mov in monster.moves if mov.slug == technique.slug
+        ]
+        if duplicate:
+            return
         monster.learn(technique)
         self.alert(
             T.format(

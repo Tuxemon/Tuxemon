@@ -17,7 +17,14 @@ from typing import (
 
 from tuxemon import plugin, prepare
 from tuxemon.constants import paths
-from tuxemon.db import ElementType, Range, db, process_targets
+from tuxemon.db import (
+    CategoryCondition,
+    ElementType,
+    Range,
+    ResponseCondition,
+    db,
+    process_targets,
+)
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 from tuxemon.technique.techcondition import TechCondition
@@ -58,7 +65,7 @@ class Technique:
         self.tech_id = 0
         self.accuracy = 0.0
         self.animation = Optional[str]
-        self.category = ""
+        self.category: Optional[CategoryCondition] = None
         self.combat_state: Optional[CombatState] = None
         self.conditions: Sequence[TechCondition[Any]] = []
         self.description = ""
@@ -75,8 +82,8 @@ class Technique:
         self.power = 1.0
         self.range = Range.melee
         self.recharge_length = 0
-        self.repl_pos = ""
-        self.repl_neg = ""
+        self.repl_pos: Optional[ResponseCondition] = None
+        self.repl_neg: Optional[ResponseCondition] = None
         self.sfx = ""
         self.sort = ""
         self.slug = ""

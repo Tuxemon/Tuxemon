@@ -30,8 +30,9 @@ class DieHardEffect(TechEffect):
         value = float(player.game_variables["random_tech_hit"])
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
-            tech = Technique("status_diehard")
-            user.apply_status(tech)
+            status = Technique()
+            status.load("status_diehard")
+            user.apply_status(status)
             return {"success": True}
         if tech.slug == "status_diehard":
             return {"success": True}

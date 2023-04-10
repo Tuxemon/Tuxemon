@@ -30,6 +30,7 @@ from tuxemon import audio, graphics, state, tools
 from tuxemon.animation import Task
 from tuxemon.battle import Battle
 from tuxemon.combat import (
+    check_effect,
     check_status,
     check_status_connected,
     defeated,
@@ -196,6 +197,8 @@ class CombatState(CombatAnimations):
         self._animation_in_progress = False  # if true, delay phase change
         self._round = 0
         self._prize = 0
+        self._lost_status: Optional[str] = None
+        self._lost_monster: Optional[Monster] = None
 
         super().__init__(players, graphics)
         self.is_trainer_battle = combat_type == "trainer"
@@ -538,6 +541,18 @@ class CombatState(CombatAnimations):
             user, technique, target = monster.ai.make_decision_wild(
                 trainer, monster, opponents
             )
+        # check status response
+        if isinstance(user, Monster) and isinstance(technique, Technique):
+            # null action for dozing
+            if check_status(user, "status_dozing"):
+                status = Technique()
+                status.load("status_dozing")
+                technique = status
+            if self.status_response_technique(user, technique):
+                self._lost_monster = user
+        if isinstance(user, NPC) and isinstance(technique, Item):
+            if self.status_response_item(target):
+                self._lost_monster = target
         return EnqueuedAction(user, technique, target)
 
     def sort_action_queue(self) -> None:
@@ -982,6 +997,12 @@ class CombatState(CombatAnimations):
                     if element_damage_key:
                         m = T.translate(element_damage_key)
                         message += "\n" + m
+                # if the monster lost status due technique
+                if self._lost_monster == user:
+                    if self._lost_status:
+                        message += "\n" + self._lost_status
+                    self._lost_status = None
+                    self._lost_monster = None
                 else:
                     msg_type = (
                         "use_success"
@@ -994,8 +1015,9 @@ class CombatState(CombatAnimations):
                         "target": target.name,
                     }
                     template = getattr(technique, msg_type)
+                    tmpl = T.format(template, context)
                     if template:
-                        message += "\n" + T.format(template, context)
+                        message += "\n" + tmpl
 
             self.alert(message)
             self.suppress_phase_change(action_time)
@@ -1048,8 +1070,14 @@ class CombatState(CombatAnimations):
                     "target": target.name,
                 }
                 template = getattr(technique, msg_type)
+                tmpl = T.format(template, context)
+                # check status festering, potions = no healing
+                if technique.category == ItemCategory.potion and check_status(
+                    target, "status_festering"
+                ):
+                    tmpl = T.translate("combat_state_festering_item")
                 if template:
-                    message += "\n" + T.format(template, context)
+                    message += "\n" + tmpl
 
             self.alert(message)
             self.suppress_phase_change(action_time)
@@ -1153,6 +1181,22 @@ class CombatState(CombatAnimations):
         for _, party in self.monsters_in_play.items():
             for monster in party:
                 self.animate_hp(monster)
+                # check for recover (completely healed)
+                if monster.current_hp >= monster.hp and check_status(
+                    monster, "status_recover"
+                ):
+                    monster.status = []
+                    # avoid "overcome" hp bar
+                    if monster.current_hp > monster.hp:
+                        monster.current_hp = monster.hp
+                    self.alert(
+                        T.format(
+                            "combat_state_recover_failure",
+                            {
+                                "target": monster.name.upper(),
+                            },
+                        )
+                    )
                 # check for condition diehard
                 if monster.current_hp <= 0 and check_status(
                     monster, "status_diehard"
@@ -1235,6 +1279,88 @@ class CombatState(CombatAnimations):
         # TODO: perhaps change this to remaining "parties", or "teams",
         # instead of player/trainer
         return [p for p in self.players if not defeated(p)]
+
+    def status_response_item(self, monster: Monster) -> bool:
+        # change charging -> charged up
+        if check_status(monster, "status_charging"):
+            monster.status.clear()
+            status = Technique()
+            status.load("status_chargedup")
+            monster.apply_status(status)
+            return True
+        return False
+
+    def status_response_technique(
+        self, monster: Monster, technique: Technique
+    ) -> bool:
+        """Checks the technique used and its status response:
+        - eventually removes the status
+        - eventually shows a text
+        """
+        # removes enraged
+        if check_status(monster, "status_enraged") and not check_effect(
+            technique, "enraged"
+        ):
+            monster.status.clear()
+            return True
+        # removes sniping
+        if check_status(monster, "status_sniping") and not check_effect(
+            technique, "sniping"
+        ):
+            monster.status.clear()
+            return True
+        # removes dozing
+        if check_status(monster, "status_dozing"):
+            monster.status.clear()
+            return True
+        # removes tired
+        if check_status(monster, "status_tired"):
+            monster.status.clear()
+            label = T.format(
+                "combat_state_tired_end",
+                {
+                    "target": monster.name.upper(),
+                },
+            )
+            self._lost_status = label
+            return True
+        # change exhausted -> tired
+        if check_status(monster, "status_exhausted") and not check_effect(
+            technique, "exhausted"
+        ):
+            monster.status.clear()
+            status = Technique()
+            status.load("status_tired")
+            monster.apply_status(status)
+            return True
+        # change charging -> charged up
+        if check_status(monster, "status_charging") and not check_effect(
+            technique, "charging"
+        ):
+            monster.status.clear()
+            status = Technique()
+            status.load("status_chargedup")
+            monster.apply_status(status)
+            return True
+        # change charged up -> exhausted
+        if check_status(monster, "status_chargedup") and not check_effect(
+            technique, "chargedup"
+        ):
+            monster.status.clear()
+            status = Technique()
+            status.load("status_exhausted")
+            monster.apply_status(status)
+            return True
+        # change nodding off -> dozing
+        if check_status(monster, "status_noddingoff") and not check_effect(
+            technique, "chargedup"
+        ):
+            monster.status.clear()
+            status = Technique()
+            status.load("status_dozing")
+            monster.apply_status(status)
+            return True
+        return False
 
     def check_moves(self, monster: Monster, levels: int) -> None:
         for move in monster.moveset:

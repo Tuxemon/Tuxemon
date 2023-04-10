@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Callable, DefaultDict, Generator, List, Union
 
 import pygame
 
-from tuxemon import formula, graphics, tools
+from tuxemon import combat, formula, graphics, tools
 from tuxemon.db import ItemBattleMenu
 from tuxemon.item.item import Item
 from tuxemon.locale import T
@@ -251,6 +251,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             combat_state = self.client.get_state_by_name(CombatState)
             player = local_session.player
             combat_state.enqueue_action(player, item, target)
+            combat_state.status_response_item(target)
 
             # close all the open menus
             self.client.pop_state()  # close target chooser
@@ -328,14 +329,27 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 tools.open_dialog(local_session, [msg])
                 return
 
-            if "damage" in technique.effects and target == self.monster:
+            if (
+                combat.check_effect(technique, "damage")
+                and target == self.monster
+            ):
                 params = {"name": self.monster.name}
                 msg = T.format("combat_target_itself", params)
                 tools.open_dialog(local_session, [msg])
                 return
             else:
                 combat_state = self.client.get_state_by_name(CombatState)
+                # null action for dozing
+                if combat.check_status(self.monster, "status_dozing"):
+                    status = Technique()
+                    status.load("status_dozing")
+                    technique = status
                 combat_state.enqueue_action(self.monster, technique, target)
+                # check status response
+                if combat_state.status_response_technique(
+                    self.monster, technique
+                ):
+                    combat_state._lost_monster = self.monster
                 # remove skip after using it
                 if technique.slug == "skip":
                     self.monster.moves.pop()

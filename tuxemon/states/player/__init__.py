@@ -59,7 +59,7 @@ class PlayerState(PygameMenuState):
         tuxepedia = list(player.tuxepedia.values())
         caught = tuxepedia.count(SeenStatus.caught)
         seen = tuxepedia.count(SeenStatus.seen) + caught
-        percentage = formula.sync(player, seen, len(filters))
+        percentage = round((seen / len(filters)) * 100, 1)
 
         msg_progress = T.format(
             "tuxepedia_progress", {"value": str(percentage)}

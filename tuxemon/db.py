@@ -458,7 +458,7 @@ class TechSort(str, Enum):
 class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
     sort: TechSort = Field(..., description="The sort of technique this is")
-    icon: str = Field(..., description="The icon to use for the technique")
+    icon: str = Field(None, description="The icon to use for the technique")
     conditions: Sequence[str] = Field(
         [], description="Conditions that must be met"
     )
@@ -515,6 +515,10 @@ class TechniqueModel(BaseModel):
     is_area: bool = Field(
         False, description="Whether or not this is an area of effect technique"
     )
+    randomly: bool = Field(
+        True, description="Whether or not this is a fast technique"
+    )
+    healing_power: int = Field(0, description="Value of healing power.")
     recharge: int = Field(0, description="Recharge of this technique")
     range: Range = Field(..., description="The attack range of this technique")
     tech_id: int = Field(..., description="The id of this technique")

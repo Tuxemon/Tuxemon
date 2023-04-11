@@ -3,7 +3,8 @@
   "accuracy": 1,
   "animation": null,
   "effects": [
-    "enhance"
+    "enhance",
+    "healing"
   ],
   "flip_axes": "",
   "healing_power": 8,

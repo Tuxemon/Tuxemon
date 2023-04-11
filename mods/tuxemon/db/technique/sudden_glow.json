@@ -5,7 +5,8 @@
   "effects": [
     "focused target",
     "recover",
-    "enhance"
+    "enhance",
+    "healing"
   ],
   "flip_axes": "",
   "healing_power": 2,

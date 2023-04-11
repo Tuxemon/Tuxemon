@@ -66,6 +66,6 @@ class HasItemCondition(EventCondition):
                     qty = int(condition.parameters[3])
                     return op(itm.quantity, operator, qty)
                 else:
-                    return False
+                    return True
         else:
             raise ValueError(f"{npc_slug} doesn't exist.")

@@ -10,7 +10,6 @@ from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 if TYPE_CHECKING:
     from tuxemon.db import MonsterModel
     from tuxemon.monster import Monster
-    from tuxemon.npc import NPC
     from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
@@ -321,12 +320,6 @@ def convert_mi(steps: float) -> float:
     km = convert_km(steps)
     mi = round(km * 0.6213711922, 2)
     return mi
-
-
-def sync(player: NPC, value: int, total: int) -> float:
-    percent = round((value / total) * 100, 1)
-    player.game_variables["tuxepedia_progress"] = str(percent)
-    return percent
 
 
 def weight_height_diff(

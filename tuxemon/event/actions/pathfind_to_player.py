@@ -58,7 +58,7 @@ class PathfindToPlayerAction(EventAction):
             elif self.side == "right":
                 closest = (x + value, y)
                 self.npc.facing = "left"
-            if self.side == "left":
+            elif self.side == "left":
                 closest = (x - value, y)
                 self.npc.facing = "right"
             else:

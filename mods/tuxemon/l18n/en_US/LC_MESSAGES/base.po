@@ -791,8 +791,14 @@ msgstr "{target} is confused."
 msgid "combat_state_diehard_get"
 msgstr "{target} will keep fighting."
 
+msgid "combat_state_diehard_tech"
+msgstr "{target} fights through the pain."
+
 msgid "combat_state_dozing_get"
 msgstr "{target} is asleep."
+
+msgid "combat_state_dozing_end"
+msgstr "{user} dozes off!"
 
 msgid "combat_state_enraged_get"
 msgstr "{target} is enraged."
@@ -802,6 +808,9 @@ msgstr "{target} is exhausted."
 
 msgid "combat_state_festering_get"
 msgstr "{target}'s wounds fester."
+
+msgid "combat_state_festering_item"
+msgstr "The healing fails. The wound festers."
 
 msgid "combat_state_focused_get"
 msgstr "{target} becomes focused."
@@ -834,13 +843,13 @@ msgid "combat_state_poison_get"
 msgstr "{target} is poisoned."
 
 msgid "combat_state_recover_failure"
-msgstr "{user} can't heal any further."
+msgstr "{target} can't heal any further."
 
 msgid "combat_state_recover_get"
-msgstr "{target} started to recover health."
+msgstr "{target} is regenerating."
 
-msgid "combat_state_recover_success"
-msgstr "{user} recovered health!"
+msgid "combat_state_recover_end"
+msgstr "{target} recovers its lifeforce."
 
 msgid "combat_state_sniping_get"
 msgstr "{target} takes aim."
@@ -856,6 +865,9 @@ msgstr "{target} is stuck in place."
 
 msgid "combat_state_tired_get"
 msgstr "{target} is worn out."
+
+msgid "combat_state_tired_end"
+msgstr "{target} shakes off its tiredness."
 
 # Generic notifications
 msgid "empty_slot"

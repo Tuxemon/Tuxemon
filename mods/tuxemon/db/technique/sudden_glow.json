@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "heal_burst_120",
   "effects": [
-    "focused target",
-    "recover",
+    "give status_focused,target",
+    "give status_recover,user",
     "enhance",
     "healing"
   ],

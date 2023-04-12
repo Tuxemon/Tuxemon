@@ -3,8 +3,8 @@
   "accuracy": 0.8,
   "animation": "drip_green",
   "effects": [
-    "poison target",
-    "focused user",
+    "give status_poison,target",
+    "give status_focused,user",
     "damage"
   ],
   "flip_axes": "",

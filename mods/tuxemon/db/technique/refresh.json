@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "heal_burst_120",
   "effects": [
-    "recover",
+    "give status_recover,user",
     "enhance",
     "healing"
   ],

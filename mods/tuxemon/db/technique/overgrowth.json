@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": null,
   "effects": [
-    "grabbed target",
+    "give status_grabbed,target",
     "damage"
   ],
   "flip_axes": "",

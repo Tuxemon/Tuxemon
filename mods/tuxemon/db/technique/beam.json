@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "crystal",
   "effects": [
-    "blinded target",
+    "give status_blinded,target",
     "damage"
   ],
   "flip_axes": "",

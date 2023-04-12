@@ -3,6 +3,7 @@
   "accuracy": 1,
   "animation": null,
   "effects": [
+    "give status_noddingoff,user",
     "enhance"
   ],
   "flip_axes": "",

@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "drip_green",
   "effects": [
-    "poison target",
+    "give status_poison,target",
     "enhance"
   ],
   "flip_axes": "",

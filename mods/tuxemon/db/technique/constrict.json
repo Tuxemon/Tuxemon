@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "icetacle",
   "effects": [
-    "grabbed target",
+    "give status_grabbed,target",
     "damage"
   ],
   "flip_axes": "",

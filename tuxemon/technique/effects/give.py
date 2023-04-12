@@ -10,31 +10,35 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 
-class DieHardEffectResult(TechEffectResult):
+class GiveEffectResult(TechEffectResult):
     pass
 
 
 @dataclass
-class DieHardEffect(TechEffect):
+class GiveEffect(TechEffect):
     """
-    This effect has a chance to apply the diehard status effect.
+    This effect has a chance to give a status effect.
     """
 
-    name = "diehard"
+    name = "give"
+    _status: str
+    _obj: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> DieHardEffectResult:
+    ) -> GiveEffectResult:
         player = self.session.player
         potency = random.random()
         value = float(player.game_variables["random_tech_hit"])
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
             status = Technique()
-            status.load("status_diehard")
-            user.apply_status(status)
-            return {"success": True}
-        if tech.slug == "status_diehard":
+            status.load(self._status)
+            status.link = user
+            if self._obj == "user":
+                user.apply_status(status)
+            elif self._obj == "target":
+                target.apply_status(status)
             return {"success": True}
 
         return {"success": False}

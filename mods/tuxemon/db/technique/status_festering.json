@@ -1,13 +1,11 @@
 {
   "animation": "drip_green",
   "category": "negative",
-  "effects": [
-    "festering all"
-  ],
+  "effects": [],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_festering.png",
   "range": "special",
-  "repl_neg": "replace",
+  "repl_neg": "replaced",
   "sfx": "sfx_pulse",
   "slug": "status_festering",
   "sort": "meta",

@@ -3,8 +3,8 @@
   "accuracy": 0.75,
   "animation": "sparks_white",
   "effects": [
-    "focused target",
-    "focused user",
+    "give status_focused,target",
+    "give status_focused,user",
     "damage"
   ],
   "flip_axes": "",

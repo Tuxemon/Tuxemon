@@ -821,23 +821,14 @@ msgstr "{target} is held tight."
 msgid "combat_state_hardshell_get"
 msgstr "{target} is covered in hard shell."
 
-msgid "combat_state_lifeleech_failure"
-msgstr "{link} can't heal any further."
-
 msgid "combat_state_lifeleech_get"
 msgstr "{target}'s lifeforce is being leeched."
-
-msgid "combat_state_lifeleech_success"
-msgstr "{user} lost health to lifeleech!"
 
 msgid "combat_state_noddingoff_get"
 msgstr "{target} is nodding off to sleep."
 
 msgid "combat_state_overfeed_get"
 msgstr "{target} has been overfed."
-
-msgid "combat_state_poison_damage"
-msgstr "{name} took poison damage!"
 
 msgid "combat_state_poison_get"
 msgstr "{target} is poisoned."

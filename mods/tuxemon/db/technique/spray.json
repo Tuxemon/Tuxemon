@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": null,
   "effects": [
-    "poison target",
+    "give status_poison,target",
     "damage"
   ],
   "flip_axes": "",

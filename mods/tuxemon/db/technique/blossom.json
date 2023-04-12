@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "gloop_orange",
   "effects": [
-    "recover",
+    "give status_recover,user",
     "damage"
   ],
   "flip_axes": "",

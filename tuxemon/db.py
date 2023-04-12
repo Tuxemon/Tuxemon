@@ -44,6 +44,12 @@ class ItemSort(str, Enum):
     quest = "quest"
 
 
+class PlagueType(str, Enum):
+    sickless = "sickless"
+    inoculated = "inoculated"
+    infected = "infected"
+
+
 class GenderType(str, Enum):
     neuter = "neuter"
     male = "male"
@@ -638,6 +644,9 @@ class NpcTemplateModel(BaseModel):
 
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
+    plague: PlagueType = Field(
+        PlagueType.sickless, description="NPCs plague status"
+    )
     template: Sequence[NpcTemplateModel] = Field(
         [], description="List of templates"
     )

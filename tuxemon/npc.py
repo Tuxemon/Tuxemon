@@ -25,7 +25,7 @@ from tuxemon import surfanim
 from tuxemon.ai import AI
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.compat import Rect
-from tuxemon.db import ElementType, SeenStatus, db
+from tuxemon.db import ElementType, SeenStatus, db, PlagueType
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import MAX_TYPES_BAG, Item, decode_items, encode_items
@@ -145,6 +145,8 @@ class NPC(Entity[NPCState]):
         self.items: List[Item] = []
         self.template: List[Template] = []
         self.economy: Optional[Economy] = None
+        # related to spyderbite (PlagueType)
+        self.plague = PlagueType.sickless
         # Variables for long-term item and monster storage
         # Keeping these seperate so other code can safely
         # assume that all values are lists

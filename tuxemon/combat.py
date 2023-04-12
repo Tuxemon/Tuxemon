@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
     from tuxemon.player import Player
+    from tuxemon.technique.technique import Technique
 
 
 logger = logging.getLogger()
@@ -49,6 +50,10 @@ def check_battle_legal(player: Player) -> bool:
 
 def check_status(monster: Monster, status_name: str) -> bool:
     return any(t for t in monster.status if t.slug == status_name)
+
+
+def check_effect(technique: Technique, effect_name: str) -> bool:
+    return any(t for t in technique.effects if t.name == effect_name)
 
 
 def check_status_connected(monster: Monster) -> bool:

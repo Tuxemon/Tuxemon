@@ -255,6 +255,9 @@ class MonsterMovesetItemModel(BaseModel):
     technique: str = Field(
         ..., description="Name of the technique for this moveset item"
     )
+    element: Optional[ElementType] = Field(
+        None, description="Element random technique"
+    )
 
     @validator("level_learned")
     def valid_level(cls: MonsterMovesetItemModel, v: Any) -> Any:

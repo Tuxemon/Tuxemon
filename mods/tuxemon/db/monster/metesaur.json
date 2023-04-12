@@ -13,19 +13,19 @@
         },
         {
             "level_learned": 6,
-            "technique": "random"
+            "technique": "sand_spray"
         },
         {
             "level_learned": 8,
-            "technique": "random"
+            "technique": "stampede"
         },
         {
             "level_learned": 12,
-            "technique": "random"
+            "technique": "fire_shield"
         },
         {
             "level_learned": 16,
-            "technique": "random"
+            "technique": "arcane_eye"
         },
         {
             "level_learned": 20,

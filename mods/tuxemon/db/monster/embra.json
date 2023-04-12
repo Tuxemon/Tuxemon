@@ -13,15 +13,15 @@
         },
         {
             "level_learned": 6,
-            "technique": "random"
+            "technique": "fire_shield"
         },
         {
             "level_learned": 8,
-            "technique": "random"
+            "technique": "one_two"
         },
         {
             "level_learned": 12,
-            "technique": "random"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 16,
@@ -29,15 +29,15 @@
         },
         {
             "level_learned": 20,
-            "technique": "random"
+            "technique": "arcane_eye"
         },
         {
             "level_learned": 24,
-            "technique": "random"
+            "technique": "fire_claw"
         },
         {
             "level_learned": 28,
-            "technique": "random"
+            "technique": "magma"
         }
     ],
     "evolutions": [

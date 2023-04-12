@@ -3,6 +3,7 @@
   "accuracy": 1,
   "animation": "explosion_dusty_96",
   "effects": [
+    "give status_tired,user",
     "damage"
   ],
   "flip_axes": "",

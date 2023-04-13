@@ -1139,10 +1139,10 @@ class CombatState(CombatAnimations):
                 # it checks if there is a "level up"
                 if self._level_before != self._level_after:
                     diff = self._level_after - self._level_before
-                    # checks and eventually teaches move/moves
-                    self.check_moves(winners, diff)
-                    # updates hud graphics player and ai
                     if winners in self.players[0].monsters:
+                        # checks and eventually teaches move/moves
+                        self.check_moves(winners, diff)
+                        # updates hud graphics player
                         self.build_hud(
                             self._layout[self.players[0]]["hud"][0],
                             self.monsters_in_play[self.players[0]][0],

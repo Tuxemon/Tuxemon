@@ -30,7 +30,7 @@ from tuxemon import audio, graphics, state, tools
 from tuxemon.animation import Task
 from tuxemon.battle import Battle
 from tuxemon.combat import (
-    check_effect,
+    check_effect_give,
     check_status,
     check_status_connected,
     defeated,
@@ -1298,14 +1298,14 @@ class CombatState(CombatAnimations):
         - eventually shows a text
         """
         # removes enraged
-        if check_status(monster, "status_enraged") and not check_effect(
-            technique, "enraged"
+        if check_status(monster, "status_enraged") and not check_effect_give(
+            technique, "status_enraged"
         ):
             monster.status.clear()
             return True
         # removes sniping
-        if check_status(monster, "status_sniping") and not check_effect(
-            technique, "sniping"
+        if check_status(monster, "status_sniping") and not check_effect_give(
+            technique, "status_sniping"
         ):
             monster.status.clear()
             return True
@@ -1325,8 +1325,8 @@ class CombatState(CombatAnimations):
             self._lost_status = label
             return True
         # change exhausted -> tired
-        if check_status(monster, "status_exhausted") and not check_effect(
-            technique, "exhausted"
+        if check_status(monster, "status_exhausted") and not check_effect_give(
+            technique, "status_exhausted"
         ):
             monster.status.clear()
             status = Technique()
@@ -1334,8 +1334,8 @@ class CombatState(CombatAnimations):
             monster.apply_status(status)
             return True
         # change charging -> charged up
-        if check_status(monster, "status_charging") and not check_effect(
-            technique, "charging"
+        if check_status(monster, "status_charging") and not check_effect_give(
+            technique, "status_charging"
         ):
             monster.status.clear()
             status = Technique()
@@ -1343,8 +1343,8 @@ class CombatState(CombatAnimations):
             monster.apply_status(status)
             return True
         # change charged up -> exhausted
-        if check_status(monster, "status_chargedup") and not check_effect(
-            technique, "chargedup"
+        if check_status(monster, "status_chargedup") and not check_effect_give(
+            technique, "status_chargedup"
         ):
             monster.status.clear()
             status = Technique()
@@ -1352,9 +1352,9 @@ class CombatState(CombatAnimations):
             monster.apply_status(status)
             return True
         # change nodding off -> dozing
-        if check_status(monster, "status_noddingoff") and not check_effect(
-            technique, "chargedup"
-        ):
+        if check_status(
+            monster, "status_noddingoff"
+        ) and not check_effect_give(technique, "status_noddingoff"):
             monster.status.clear()
             status = Technique()
             status.load("status_dozing")

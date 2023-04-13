@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Union
 
+from tuxemon.db import CategoryCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.monster import Monster
 
@@ -15,12 +17,37 @@ class RestoreEffectResult(ItemEffectResult):
 @dataclass
 class RestoreEffect(ItemEffect):
     """
-    Remove any condition.
+    Remove status/statuses.
+
+    restore -> removes all statuses
+    restore positive -> removes all positive statuses
+    restore negative -> removes all negative statuses
 
     """
 
     name = "restore"
+    category: Union[str, None] = None
 
     def apply(self, target: Monster) -> RestoreEffectResult:
-        target.status.clear()
+        if self.category:
+            if (
+                self.category == CategoryCondition.positive
+                or self.category == CategoryCondition.negative
+            ):
+                checking = [
+                    ele
+                    for ele in target.status
+                    if ele.category == self.category
+                ]
+                if checking:
+                    return True
+                else:
+                    return False
+            else:
+                raise ValueError(
+                    f"{self.category} must be positive or negative."
+                )
+        else:
+            target.status.clear()
+
         return {"success": True}

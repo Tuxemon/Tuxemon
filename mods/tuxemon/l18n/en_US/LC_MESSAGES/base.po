@@ -364,7 +364,7 @@ msgid "p_starry_night_description"
 msgstr "Painting 'Starry, Starry, Starry Night', medium: oil on canvas. Hand-signed by the artist."
 
 msgid "p_monsters_eyes"
-msgstr "Monsters' Eyes Meet"
+msgstr "Eyes Meet"
 
 msgid "p_monsters_eyes_description"
 msgstr "Painting 'Monsters' Eyes Meet', medium: oil on canvas. Hand-signed by the artist."

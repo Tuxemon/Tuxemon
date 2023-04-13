@@ -15,7 +15,7 @@
   "category": "none",
   "type": "KeyItem",
   "usable_in": [
-    "WorldState"
+    ""
   ],
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

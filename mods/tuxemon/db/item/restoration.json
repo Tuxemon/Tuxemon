@@ -1,7 +1,7 @@
 {
   "battle_menu": "monster",
   "conditions": [
-    "is has_status negative"
+    "is has_status"
   ],
   "effects": [
     "restore"

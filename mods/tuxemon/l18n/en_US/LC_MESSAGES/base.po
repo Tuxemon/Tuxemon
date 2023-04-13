@@ -351,6 +351,42 @@ msgstr "Tuxepedia App"
 msgid "app_tuxepedia_description"
 msgstr "Keep track of information about Tuxemon here, and share it with the world."
 
+msgid "p_trepidation"
+msgstr "Trepidation"
+
+msgid "p_trepidation_description"
+msgstr "Painting 'Trepidation', medium: oil on canvas. Hand-signed by the artist."
+
+msgid "p_starry_night"
+msgstr "Starry Night"
+
+msgid "p_starry_night_description"
+msgstr "Painting 'Starry, Starry, Starry Night', medium: oil on canvas. Hand-signed by the artist."
+
+msgid "p_monsters_eyes"
+msgstr "Eyes Meet"
+
+msgid "p_monsters_eyes_description"
+msgstr "Painting 'Monsters' Eyes Meet', medium: oil on canvas. Hand-signed by the artist."
+
+msgid "ancient_egg"
+msgstr "Ancient Egg"
+
+msgid "ancient_egg_description"
+msgstr "A peculiar egg. If you plant it, maybe it will hatch."
+
+msgid "restoration"
+msgstr "Restoration"
+
+msgid "restoration_description"
+msgstr "Remove any condition currently affecting the target."
+
+msgid "cureall"
+msgstr "Cureall"
+
+msgid "cureall_description"
+msgstr "Heals your tuxemon to full health and removes any conditions."
+
 # TMs
 msgid "tm_avalanche"
 msgstr "TM: Avalanche"

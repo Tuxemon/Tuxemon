@@ -5,10 +5,11 @@
     "is current_hp >,0"
   ],
   "effects": [
-    "heal 20"
+    "heal 1.0",
+    "restore"
   ],
-  "slug": "orange",
-  "sort": "food",
+  "slug": "cureall",
+  "sort": "potion",
   "sprite": "gfx/items/orange.png",
   "target": {
     "enemy monster": 1,
@@ -19,7 +20,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "category": "edible",
+  "category": "potion",
   "type": "Consumable",
   "usable_in": [
     "MainCombatMenuState",

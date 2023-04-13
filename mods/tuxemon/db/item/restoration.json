@@ -1,14 +1,13 @@
 {
   "battle_menu": "monster",
   "conditions": [
-    "is current_hp <,1.0",
-    "is current_hp >,0"
+    "is has_status negative"
   ],
   "effects": [
-    "heal 20"
+    "restore"
   ],
-  "slug": "apple",
-  "sort": "food",
+  "slug": "restoration",
+  "sort": "potion",
   "sprite": "gfx/items/apple.png",
   "target": {
     "enemy monster": 1,
@@ -19,7 +18,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "category": "edible",
+  "category": "potion",
   "type": "Consumable",
   "usable_in": [
     "MainCombatMenuState",

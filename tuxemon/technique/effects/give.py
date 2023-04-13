@@ -10,33 +10,34 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 
-class ExhaustedEffectResult(TechEffectResult):
+class GiveEffectResult(TechEffectResult):
     pass
 
 
 @dataclass
-class ExhaustedEffect(TechEffect):
+class GiveEffect(TechEffect):
     """
-    This effect has a chance to apply the exhausted status effect.
+    This effect has a chance to give a status effect.
     """
 
-    name = "exhausted"
-    objective: str
+    name = "give"
+    _status: str
+    _obj: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> ExhaustedEffectResult:
+    ) -> GiveEffectResult:
         player = self.session.player
         potency = random.random()
         value = float(player.game_variables["random_tech_hit"])
-        obj = self.objective
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
             status = Technique()
-            status.load("status_exhausted")
-            if obj == "user":
+            status.load(self._status)
+            status.link = user
+            if self._obj == "user":
                 user.apply_status(status)
-            elif obj == "target":
+            elif self._obj == "target":
                 target.apply_status(status)
             return {"success": True}
 

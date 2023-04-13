@@ -12,6 +12,14 @@
             "technique": "fire_claw"
         },
         {
+            "level_learned": 6,
+            "technique": "gust"
+        },
+        {
+            "level_learned": 8,
+            "technique": "breathe_fire"
+        },
+        {
             "level_learned": 12,
             "technique": "all_in"
         }

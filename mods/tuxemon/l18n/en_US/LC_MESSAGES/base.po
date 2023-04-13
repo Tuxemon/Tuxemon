@@ -291,6 +291,12 @@ msgstr "Fishing Rod"
 msgid "fishing_rod_description"
 msgstr "Catch fish."
 
+msgid "surfboard"
+msgstr "Surfboard"
+
+msgid "surfboard_description"
+msgstr "From your Mom. It lets you travel faster."
+
 msgid "earthmover_key"
 msgstr "Earthmover Key"
 
@@ -393,6 +399,12 @@ msgstr "TM: Blossom"
 
 msgid "tm_blossom_description"
 msgstr "Technique Manual that teaches a Wood Tuxemon the Blossom technique."
+
+msgid "tm_surf"
+msgstr "TM: Surf"
+
+msgid "tm_surf_description"
+msgstr "Technique Manual that teaches a Water Tuxemon the Surf technique."
 
 msgid "tm_earth"
 msgstr "Technical Manual (Earth)"
@@ -815,8 +827,14 @@ msgstr "{target} is confused."
 msgid "combat_state_diehard_get"
 msgstr "{target} will keep fighting."
 
+msgid "combat_state_diehard_tech"
+msgstr "{target} fights through the pain."
+
 msgid "combat_state_dozing_get"
 msgstr "{target} is asleep."
+
+msgid "combat_state_dozing_end"
+msgstr "{user} dozes off!"
 
 msgid "combat_state_enraged_get"
 msgstr "{target} is enraged."
@@ -827,6 +845,9 @@ msgstr "{target} is exhausted."
 msgid "combat_state_festering_get"
 msgstr "{target}'s wounds fester."
 
+msgid "combat_state_festering_item"
+msgstr "The healing fails. The wound festers."
+
 msgid "combat_state_focused_get"
 msgstr "{target} becomes focused."
 
@@ -836,14 +857,8 @@ msgstr "{target} is held tight."
 msgid "combat_state_hardshell_get"
 msgstr "{target} is covered in hard shell."
 
-msgid "combat_state_lifeleech_failure"
-msgstr "{link} can't heal any further."
-
 msgid "combat_state_lifeleech_get"
 msgstr "{target}'s lifeforce is being leeched."
-
-msgid "combat_state_lifeleech_success"
-msgstr "{user} lost health to lifeleech!"
 
 msgid "combat_state_noddingoff_get"
 msgstr "{target} is nodding off to sleep."
@@ -851,20 +866,17 @@ msgstr "{target} is nodding off to sleep."
 msgid "combat_state_overfeed_get"
 msgstr "{target} has been overfed."
 
-msgid "combat_state_poison_damage"
-msgstr "{name} took poison damage!"
-
 msgid "combat_state_poison_get"
 msgstr "{target} is poisoned."
 
 msgid "combat_state_recover_failure"
-msgstr "{user} can't heal any further."
+msgstr "{target} can't heal any further."
 
 msgid "combat_state_recover_get"
-msgstr "{target} started to recover health."
+msgstr "{target} is regenerating."
 
-msgid "combat_state_recover_success"
-msgstr "{user} recovered health!"
+msgid "combat_state_recover_end"
+msgstr "{target} recovers its lifeforce."
 
 msgid "combat_state_sniping_get"
 msgstr "{target} takes aim."
@@ -880,6 +892,9 @@ msgstr "{target} is stuck in place."
 
 msgid "combat_state_tired_get"
 msgstr "{target} is worn out."
+
+msgid "combat_state_tired_end"
+msgstr "{target} shakes off its tiredness."
 
 # Generic notifications
 msgid "empty_slot"
@@ -1255,6 +1270,9 @@ msgstr "Sudden Glow"
 
 msgid "supernova"
 msgstr "Supernova"
+
+msgid "surf"
+msgstr "Surf"
 
 msgid "surge"
 msgstr "Surge"
@@ -1963,6 +1981,12 @@ msgstr "Your bag is full, you cannot take any more from storage."
 
 msgid "menu_storage_empty_kennel"
 msgstr "This shelter is empty, there are no monsters to take."
+
+msgid "menu_storage_full_kennel"
+msgstr "This shelter is full."
+
+msgid "menu_storage_hidden_kennel"
+msgstr "Unable to access the hidden storage."
 
 msgid "menu_storage_empty_locker"
 msgstr "This locker is empty, there are no items to take."
@@ -6237,6 +6261,10 @@ msgid "spyder_route5_tryphaena1"
 msgstr "You know, we're descended from ... You've already heard it? Oh."
 msgid "spyder_route5_tryphaena2"
 msgstr "Well, might makes right."
+msgid "spyder_timber_mom1"
+msgstr "Hey bojo, your BOARD doesn't work on water. Unless you've got power."
+msgid "spyder_timber_mom2"
+msgstr "What I mean to say is, here's a Surfboard! Ride it onto the river and see what happens!"
 msgid "spyder_timber_dante1"
 msgstr "Hey buddy! Cool to see you again. "
 msgid "spyder_timber_dante2"

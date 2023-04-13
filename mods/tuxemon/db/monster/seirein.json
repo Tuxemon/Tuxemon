@@ -12,6 +12,14 @@
             "technique": "chill_mist"
         },
         {
+            "level_learned": 6,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 8,
+            "technique": "invictus"
+        },
+        {
             "level_learned": 12,
             "technique": "midnight_mantle"
         }

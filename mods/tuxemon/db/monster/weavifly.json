@@ -28,6 +28,14 @@
             "technique": "blade"
         },
         {
+            "level_learned": 12,
+            "technique": "viper"
+        },
+        {
+            "level_learned": 16,
+            "technique": "lineage"
+        },
+        {
             "level_learned": 20,
             "technique": "muddle"
         },

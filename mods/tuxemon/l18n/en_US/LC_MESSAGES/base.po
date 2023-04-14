@@ -1940,6 +1940,9 @@ msgstr "Press a key to set your new input key"
 msgid "options_new_input_key1"
 msgstr "Restart your game for changes to take effect!"
 
+msgid "menu_storage_infected_monster"
+msgstr "Virus detected. For the safety of all tuxemon in our system, you cannot store an infected tuxemon."
+
 msgid "menu_storage_take_monster"
 msgstr "You added {name} into your party!"
 
@@ -6005,7 +6008,9 @@ msgstr "I can't explain it ... one moment my Cairfrey was healthy, the next it w
 msgid "spyder_wayfarer_maniac"
 msgstr "My tuxemon aren't sick! This is just an excuse to sell us medicine we don't need. \n When I was your age, we didn't have medicine. We swam in mountain streams and if you got a sniffle, well, tough! \n And anyway, I saw the Enforcers coming down Route 4 before anyone so much as sniffled, so how could \n ... \n ah ah achoo! \n ... \n That doesn't mean anything. I have an itchy nose."
 msgid "spyder_wayfarer1_maniac"
-msgstr "Hey, buddy, do you want my Botbot? \n I dunno how long I'm going to be stuck here, so it might as well get to explore with you."
+msgstr "Hey, buddy, do you want my Botbot?"
+msgid "spyder_wayfarer1_maniac1"
+msgstr "I dunno how long I'm going to be stuck here, so it might as well get to explore with you."
 msgid "spyder_wayfarer1_maniac2"
 msgstr "A little privacy, please! "
 msgid "spyder_wayfarer1_morton1"

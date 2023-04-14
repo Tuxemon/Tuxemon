@@ -354,7 +354,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                         technique = status
                         # infect mechanism
                         if (
-                            combat_state.players[1].plague == PlagueType.infected
+                            combat_state.players[1].plague
+                            == PlagueType.infected
                             or combat_state.players[1].plague
                             == PlagueType.sickless
                         ):

@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import final
+from typing import Union, final
 
-from tuxemon.event import get_npc
 from tuxemon.db import PlagueType
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
 
@@ -21,20 +21,24 @@ class NpcPlagueAttributeAction(
     Script usage:
         .. code-block::
 
-            npc_plague <npc_slug>,<value>
+            npc_plague <value>[,npc_slug]
 
     Script parameters:
-        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
         condition: Infected, inoculated or sickless
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
 
     """
 
     name = "npc_plague"
-    npc_slug: str
     value: str
+    npc_slug: Union[str, None] = None
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.npc_slug)
+        if self.npc_slug is None:
+            trainer_slug = "player"
+        else:
+            trainer_slug = self.npc_slug
+        npc = get_npc(self.session, trainer_slug)
         assert npc
         if self.value == PlagueType.infected:
             npc.plague = PlagueType.infected
@@ -43,4 +47,6 @@ class NpcPlagueAttributeAction(
         elif self.value == PlagueType.inoculated:
             npc.plague = PlagueType.inoculated
         else:
-            raise ValueError(f"{self.value} must be infected, inoculated or sickless.")
+            raise ValueError(
+                f"{self.value} must be infected, inoculated or sickless."
+            )

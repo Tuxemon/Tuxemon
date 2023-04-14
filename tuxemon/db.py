@@ -654,9 +654,6 @@ class NpcTemplateModel(BaseModel):
 
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
-    plague: PlagueType = Field(
-        PlagueType.sickless, description="NPCs plague status"
-    )
     template: Sequence[NpcTemplateModel] = Field(
         [], description="List of templates"
     )

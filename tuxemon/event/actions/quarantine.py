@@ -40,11 +40,10 @@ class QuarantineAction(EventAction):
                 player.monster_boxes["quarantine"].append(ele)
                 player.remove_monster(ele)
         elif self.value == "out":
-            box = []
-            for mon in player.monster_boxes["quarantine"]:
-                box.append(mon)
+            box = [mon for mon in player.monster_boxes["quarantine"]]
             for ele in box:
-                player.add_monster(mon, len(player.monsters))
-                player.monster_boxes["quarantine"].remove(mon)
+                ele.plague = PlagueType.inoculated
+                player.add_monster(ele, len(player.monsters))
+                player.monster_boxes["quarantine"].remove(ele)
         else:
             raise ValueError(f"{self.value} must be in or out")

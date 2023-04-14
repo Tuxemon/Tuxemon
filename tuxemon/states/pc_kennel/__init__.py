@@ -15,6 +15,7 @@ from pygame_menu.widgets.selection.highlight import HighlightSelection
 from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
 from tuxemon import prepare
+from tuxemon.db import PlagueType
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
@@ -391,8 +392,21 @@ class MonsterBoxChooseDropOffState(MonsterBoxChooseState):
         menu_items_map = []
         for box_name, monsters in player.monster_boxes.items():
             if box_name not in HIDDEN_LIST:
-                menu_callback = self.change_state(
-                    "MonsterDropOffState", box_name=box_name
+                if len(monsters) <= MAX_BOX:
+                    menu_callback = self.change_state(
+                        "MonsterDropOffState", box_name=box_name
+                    )
+                else:
+                    menu_callback = partial(
+                        open_dialog,
+                        local_session,
+                        [T.translate("menu_storage_full_kennel")],
+                    )
+            else:
+                menu_callback = partial(
+                    open_dialog,
+                    local_session,
+                    [T.translate("menu_storage_hidden_kennel")],
                 )
             menu_items_map.append((box_name, menu_callback))
         return menu_items_map
@@ -413,8 +427,12 @@ class MonsterDropOffState(MonsterMenuState):
         player = local_session.player
         monster = menu_item.game_object
         assert monster
-
-        player.monster_boxes[self.box_name].append(monster)
-        player.remove_monster(monster)
-
-        self.client.pop_state(self)
+        if monster.plague == PlagueType.infected:
+            open_dialog(
+                local_session,
+                [T.translate("menu_storage_infected_monster")],
+            )
+        else:
+            player.monster_boxes[self.box_name].append(monster)
+            player.remove_monster(monster)
+            self.client.pop_state(self)

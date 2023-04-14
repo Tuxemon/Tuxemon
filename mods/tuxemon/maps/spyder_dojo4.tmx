@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="29">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="dojo4"/>
+  <property name="types" value="dungeon"/>
+ </properties>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="3865" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
+ </tileset>
+ <tileset firstgid="6835" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eAFjYKAvOCjFwHAICVPb9vdAs6ukEZgW5h9mYWAgBxPjFpD7QWaDAIyG8PCThNTCwl0eGDbIam2AduHDMFuR9cDEkGlYuFejmQ9SQy3zQW6AYWS7sdmBLg/Th8sfyOGOrhedj+wfdDlqmo9uNohPDfOxmQsTo6X5ILPRzQcA1BozmA==
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eAFjYBhYsEKageGQFHaMLncYqI5UcA1ofhUOjC73kUjzeVkYGPhIxPxA9cSabw1Ua0MitqXAfFxhiuwGkPmy0LgiFA/o7ifW/EpoPOEKJ1i4I7uLFDYozvDFA7q78ZkN8hM2eXzxgMt8FSFMs6hpPjZ34hIjx/24zMImjm4+APBYO3Y=
+  </data>
+ </layer>
+ <layer id="3" name="Above Player" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAwIQAABIAAAQ==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collision">
+  <object id="1" type="collision" x="32" y="80" width="16" height="112"/>
+  <object id="2" type="collision" x="32" y="80" width="48" height="32"/>
+  <object id="3" type="collision" x="64" y="16" width="16" height="96"/>
+  <object id="4" type="collision" x="64" y="16" width="256" height="32"/>
+  <object id="5" type="collision" x="304" y="16" width="16" height="96"/>
+  <object id="6" type="collision" x="304" y="80" width="48" height="32"/>
+  <object id="7" type="collision" x="336" y="80" width="16" height="112"/>
+  <object id="16" type="collision-line" x="160" y="144">
+   <polyline points="0,0 -16,0"/>
+  </object>
+  <object id="17" type="collision-line" x="144" y="144">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="18" type="collision-line" x="144" y="160">
+   <polyline points="0,0 16,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="4" name="Events">
+  <object id="10" name="Teleport to Lower Floor" type="event" x="144" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_dojo3.tmx,13,9,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="19" name="Player Spawn" type="event" x="224" y="144" width="16" height="16"/>
+  <object id="20" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:interior"/>
+    <property name="cond1" value="not variable_set environment:interior"/>
+   </properties>
+  </object>
+  <object id="22" name="Exhausted" type="event" x="16" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="23" name="Create Thri" type="event" x="176" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_dojo_thri,11,3"/>
+    <property name="cond1" value="not npc_exists spyder_dojo_thri"/>
+   </properties>
+  </object>
+  <object id="24" name="Talk Thri" type="event" x="144" y="32" width="16" height="16">
+   <properties>
+    <property name="act11" value="translated_dialog spyder_dojo_thri1"/>
+    <property name="act12" value="add_monster sampsage,35,spyder_dojo_thri,27,10"/>
+    <property name="act13" value="add_monster sampsack,35,spyder_dojo_thri,27,10"/>
+    <property name="act14" value="start_battle spyder_dojo_thri"/>
+    <property name="act15" value="set_variable dojothri:yes"/>
+    <property name="act20" value="set_monster_health"/>
+    <property name="act30" value="set_monster_status"/>
+    <property name="behav1" value="talk spyder_dojo_thri"/>
+    <property name="cond7" value="not variable_set dojothri:yes"/>
+   </properties>
+  </object>
+  <object id="25" name="Talk Thri Choice" type="event" x="176" y="32" width="16" height="16">
+   <properties>
+    <property name="act11" value="translated_dialog spyder_dojo_thri2"/>
+    <property name="act12" value="translated_dialog_choice strength:strategy,thriquestion"/>
+    <property name="act15" value="set_variable dojothrichoice:yes"/>
+    <property name="act20" value="set_monster_health"/>
+    <property name="act30" value="set_monster_status"/>
+    <property name="cond1" value="is variable_set dojothri:yes"/>
+    <property name="cond2" value="not variable_set dojothrichoice:yes"/>
+   </properties>
+  </object>
+  <object id="26" name="Talk Thri Sampsack" type="event" x="128" y="32" width="16" height="16">
+   <properties>
+    <property name="act11" value="translated_dialog spyder_dojo_strength"/>
+    <property name="act15" value="set_variable dojothrimonster:yes"/>
+    <property name="act30" value="add_monster sampsack,35"/>
+    <property name="cond1" value="is variable_set thriquestion:strength"/>
+    <property name="cond2" value="not variable_set dojothrimonster:yes"/>
+    <property name="cond3" value="not variable_set thriquestion:strategy"/>
+   </properties>
+  </object>
+  <object id="27" name="Talk Thri Sampsage" type="event" x="160" y="32" width="16" height="16">
+   <properties>
+    <property name="act11" value="translated_dialog spyder_dojo_strategy"/>
+    <property name="act15" value="set_variable dojothrimonster:yes"/>
+    <property name="act30" value="add_monster sampsage,35"/>
+    <property name="cond1" value="is variable_set thriquestion:strategy"/>
+    <property name="cond2" value="not variable_set dojothrimonster:yes"/>
+    <property name="cond3" value="not variable_set thriquestion:strength"/>
+   </properties>
+  </object>
+  <object id="28" name="Billie encounter" type="event" x="80" y="96" width="224" height="16">
+   <properties>
+    <property name="act01" value="player_stop"/>
+    <property name="act02" value="lock_controls"/>
+    <property name="act03" value="create_npc spyder_dojo_billie,10,9"/>
+    <property name="act04" value="pathfind_to_player spyder_dojo_billie,down"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act08" value="translated_dialog spyder_dojo_billie1"/>
+    <property name="act20" value="add_monster eyesore,35,spyder_dojo_billie,27,10"/>
+    <property name="act21" value="add_monster cardiwing,35,spyder_dojo_billie,27,10"/>
+    <property name="act22" value="add_monster viviphyta,35,spyder_dojo_billie,27,10"/>
+    <property name="act30" value="start_battle spyder_dojo_billie"/>
+    <property name="act40" value="translated_dialog spyder_dojo_billie2"/>
+    <property name="act50" value="pathfind spyder_dojo_billie,10,9"/>
+    <property name="act60" value="npc_face spyder_dojo_billie,left"/>
+    <property name="act70" value="remove_npc spyder_dojo_billie"/>
+    <property name="act80" value="set_tuxepedia eyesore,seen"/>
+    <property name="act81" value="set_tuxepedia cardiwing,seen"/>
+    <property name="act82" value="set_tuxepedia vivipere,seen"/>
+    <property name="act83" value="set_tuxepedia viviphyta,seen"/>
+    <property name="act84" value="set_tuxepedia eyenemy,seen"/>
+    <property name="act85" value="set_tuxepedia cardiling,seen"/>
+    <property name="act90" value="set_variable dojobillie:yes"/>
+    <property name="act95" value="translated_dialog spyder_dojo_billie3"/>
+    <property name="cond1" value="not variable_set dojobillie:yes"/>
+    <property name="cond2" value="is variable_set dojothrimonster:yes"/>
+    <property name="cond3" value="is player_at"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

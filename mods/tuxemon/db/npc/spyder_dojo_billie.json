@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_dojo_billie",
+  "template": [
+    {
+      "sprite_name": "fashionista",
+      "combat_front": "fashionista",
+      "slug": "fashionista"
+    }
+  ]
+}

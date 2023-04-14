@@ -4,7 +4,6 @@
   "animation": "heal_burst_120",
   "effects": [
     "give status_recover,user",
-    "enhance",
     "healing"
   ],
   "flip_axes": "",

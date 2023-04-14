@@ -4,7 +4,6 @@
   "animation": null,
   "effects": [
     "give status_noddingoff,user",
-    "enhance",
     "healing"
   ],
   "flip_axes": "",

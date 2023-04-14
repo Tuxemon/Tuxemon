@@ -41,32 +41,32 @@
  <objectgroup color="#ff0000" id="6" name="Collision">
   <object id="302" type="collision" x="0" y="512" width="64" height="48">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="303" type="collision" x="64" y="528" width="144" height="48">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="304" type="collision" x="160" y="496" width="112" height="48">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="305" type="collision" x="288" y="496" width="16" height="32">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="306" type="collision" x="256" y="528" width="192" height="48">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="307" type="collision" x="400" y="576" width="48" height="64">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="308" type="collision" x="448" y="608" width="192" height="32"/>
@@ -546,7 +546,7 @@
   <object id="470" name="Remove obstacle 1" type="event" x="16" y="496" width="16" height="16">
    <properties>
     <property name="act1" value="remove_collision water"/>
-    <property name="cond1" value="is has_tech surf"/>
+    <property name="cond1" value="is has_item player,surfboard"/>
    </properties>
   </object>
   <object id="471" name="Teleport to Routed 1" type="event" x="400" y="624" width="16" height="16">

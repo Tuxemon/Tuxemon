@@ -48,7 +48,7 @@ region_properties = [
     "exit_from",
     "exit_to",
     "continue",
-    "water",
+    "key",
 ]
 
 

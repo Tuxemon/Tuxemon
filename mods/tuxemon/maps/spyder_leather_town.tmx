@@ -96,67 +96,67 @@
   <object id="247" type="collision" x="32" y="384" width="32" height="16"/>
   <object id="248" type="collision" x="0" y="512" width="112" height="32">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="249" type="collision" x="80" y="432" width="32" height="80">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="250" type="collision" x="112" y="432" width="48" height="32">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="251" type="collision" x="176" y="432" width="48" height="32">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="252" type="collision" x="224" y="320" width="48" height="16">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="253" type="collision" x="192" y="208" width="32" height="224">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="254" type="collision" x="224" y="208" width="48" height="96">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="255" type="collision" x="224" y="304" width="16" height="16">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="256" type="collision" x="144" y="112" width="32" height="128">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="257" type="collision" x="176" y="208" width="16" height="32">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="258" type="collision" x="48" y="112" width="96" height="32">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="259" type="collision" x="48" y="64" width="32" height="48">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="260" type="collision" x="0" y="64" width="48" height="32">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="261" type="collision" x="0" y="32" width="32" height="32"/>
@@ -492,7 +492,7 @@
   <object id="311" name="Remove obstacle 1" type="event" x="16" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="remove_collision water"/>
-    <property name="cond1" value="is has_tech surf"/>
+    <property name="cond1" value="is has_item player,surfboard"/>
    </properties>
   </object>
   <object id="312" name="Teleport to Routed 1" type="event" x="0" y="64" width="16" height="16">

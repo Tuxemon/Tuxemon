@@ -71,7 +71,7 @@
   <object id="350" type="collision" x="128" y="208" width="128" height="16"/>
   <object id="351" type="collision" x="608" y="512" width="16" height="48">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="352" type="collision" x="496" y="400" width="32" height="32"/>
@@ -86,32 +86,32 @@
   <object id="363" type="collision" x="576" y="576" width="64" height="32"/>
   <object id="364" type="collision" x="528" y="32" width="32" height="144">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="365" type="collision" x="272" y="144" width="256" height="32">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="366" type="collision" x="272" y="176" width="144" height="80">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="368" type="collision" x="192" y="240" width="112" height="224">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="369" type="collision" x="304" y="416" width="64" height="48">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="370" type="collision" x="368" y="448" width="32" height="16">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="374" type="collision-line" x="128" y="112">
@@ -142,17 +142,17 @@
   <object id="424" type="collision" x="128" y="224" width="16" height="16"/>
   <object id="429" type="collision" x="416" y="448" width="160" height="16">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="430" type="collision" x="576" y="448" width="48" height="64">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="431" type="collision" x="624" y="560" width="16" height="16">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
  </objectgroup>
@@ -411,7 +411,7 @@
   <object id="428" name="Remove obstacle 1" type="event" x="624" y="416" width="16" height="16">
    <properties>
     <property name="act1" value="remove_collision water"/>
-    <property name="cond1" value="is has_tech surf"/>
+    <property name="cond1" value="is has_item player,surfboard"/>
    </properties>
   </object>
  </objectgroup>

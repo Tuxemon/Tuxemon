@@ -633,8 +633,8 @@ class WorldState(state.State):
 
         """
         for coords, props in map.items():
-            if isinstance(props, Dict):
-                for ele in props.keys():
+            if isinstance(props, dict):
+                for ele in props.values():
                     if ele == label:
                         return coords
         return None

@@ -25,22 +25,22 @@
   <object id="155" type="collision" x="256" y="0" width="64" height="160"/>
   <object id="156" type="collision" x="96" y="128" width="144" height="32">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="157" type="collision" x="0" y="48" width="128" height="32">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="158" type="collision" x="96" y="80" width="32" height="48">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="159" type="collision" x="208" y="0" width="32" height="128">
    <properties>
-    <property name="water" value="1"/>
+    <property name="key" value="water"/>
    </properties>
   </object>
  </objectgroup>
@@ -48,7 +48,7 @@
   <object id="161" name="Remove obstacle 1" type="event" x="176" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="remove_collision water"/>
-    <property name="cond1" value="is has_tech surf"/>
+    <property name="cond1" value="is has_item player,surfboard"/>
    </properties>
   </object>
   <object id="162" name="Teleport to Timber Town 1" type="event" x="208" y="0" width="16" height="16">

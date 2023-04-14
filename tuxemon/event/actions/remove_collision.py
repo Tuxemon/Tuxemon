@@ -13,7 +13,7 @@ from tuxemon.states.world.worldstate import WorldState
 @dataclass
 class RemoveCollisionAction(EventAction):
     """
-    Adds a collision.
+    Removes a collision defined by a specific label.
 
     Script usage:
         .. code-block::
@@ -21,7 +21,7 @@ class RemoveCollisionAction(EventAction):
             remove_collision label
 
     Script parameters:
-        label: Name of the obstacle (water, etc.)
+        label: Name of the obstacle
 
     """
 

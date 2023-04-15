@@ -688,15 +688,7 @@ Character created by Leo (from Discord) and released under the CC-BY-SA 4.0+ lic
 [DitzyDM](http://ditzydm.deviantart.com/)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
-* ["Apple Item"](https://forum.tuxemon.org/thread.php?pid=874#p874) by
-[Sanglorian](https://wiki.tuxemon.org/index.php?title=Sanglorian)
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
 * ["Banana Item"](https://forum.tuxemon.org/thread.php?pid=874#p874) by
-[Sanglorian](https://wiki.tuxemon.org/index.php?title=Sanglorian)
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Orange Item"](https://forum.tuxemon.org/thread.php?pid=874#p874) by
 [Sanglorian](https://wiki.tuxemon.org/index.php?title=Sanglorian)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -727,6 +719,18 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Tuxeball"](https://wiki.tuxemon.org/File:Unknown-2.png) by
 [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Cureall"](https://wiki.tuxemon.org/File:APPLE_2.png) original sprite by josepharaoh99. Modifications by Sanglorian.  Licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Restoration"](https://wiki.tuxemon.org/File:ORANGE_2.png) original sprite by josepharaoh99. Modifications by Sanglorian. Licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Trepidation"](https://wiki.tuxemon.org/index.php?title=File:Interior_Tiles_by_ArMM1998.png) cut and resized by Jaskrendix from Interior tileset by ArMM1998. Licensed under CC0.
+
+* ["Starry Night"](https://wiki.tuxemon.org/index.php?title=File:Interior_Tiles_by_ArMM1998.png) cut and resized by Jaskrendix from Interior tileset by ArMM1998. Licensed under CC0.
+
+* ["Monsters' Eyes Meet"](https://wiki.tuxemon.org/index.php?title=File:Interior_Tiles_by_ArMM1998.png) cut and resized by Jaskrendix from Interior tileset by ArMM1998. Licensed under CC0.
+
+* ["Ancient Egg"](https://wiki.tuxemon.org/File:T7FiZjz.png) by [josepharaoh99](https://wiki.tuxemon.org/Josepharaoh99) is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Boost Armour"](https://wiki.tuxemon.org/File:Boost_2.png) Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 

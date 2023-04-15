@@ -12,8 +12,32 @@
             "technique": "refresh"
         },
         {
+            "level_learned": 6,
+            "technique": "stampede"
+        },
+        {
+            "level_learned": 8,
+            "technique": "mending"
+        },
+        {
+            "level_learned": 12,
+            "technique": "maori"
+        },
+        {
             "level_learned": 16,
             "technique": "muddle"
+        },
+        {
+            "level_learned": 20,
+            "technique": "quicksand"
+        },
+        {
+            "level_learned": 24,
+            "technique": "crystal"
+        },
+        {
+            "level_learned": 28,
+            "technique": "muck"
         },
         {
             "level_learned": 32,

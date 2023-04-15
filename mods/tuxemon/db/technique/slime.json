@@ -3,6 +3,7 @@
   "accuracy": 0.3,
   "animation": "sparks_green_alt",
   "effects": [
+    "give status_festering,target",
     "damage"
   ],
   "flip_axes": "",

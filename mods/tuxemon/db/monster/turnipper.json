@@ -12,6 +12,14 @@
             "technique": "fester"
         },
         {
+            "level_learned": 6,
+            "technique": "sylvan"
+        },
+        {
+            "level_learned": 8,
+            "technique": "pseudopod"
+        },
+        {
             "level_learned": 12,
             "technique": "one_two"
         }

@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_dojo_kataro",
+  "template": [
+    {
+      "sprite_name": "monk",
+      "combat_front": "monk",
+      "slug": "monk"
+    }
+  ]
+}

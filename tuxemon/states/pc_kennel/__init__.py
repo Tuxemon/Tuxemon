@@ -391,8 +391,21 @@ class MonsterBoxChooseDropOffState(MonsterBoxChooseState):
         menu_items_map = []
         for box_name, monsters in player.monster_boxes.items():
             if box_name not in HIDDEN_LIST:
-                menu_callback = self.change_state(
-                    "MonsterDropOffState", box_name=box_name
+                if len(monsters) <= MAX_BOX:
+                    menu_callback = self.change_state(
+                        "MonsterDropOffState", box_name=box_name
+                    )
+                else:
+                    menu_callback = partial(
+                        open_dialog,
+                        local_session,
+                        [T.translate("menu_storage_full_kennel")],
+                    )
+            else:
+                menu_callback = partial(
+                    open_dialog,
+                    local_session,
+                    [T.translate("menu_storage_hidden_kennel")],
                 )
             menu_items_map.append((box_name, menu_callback))
         return menu_items_map

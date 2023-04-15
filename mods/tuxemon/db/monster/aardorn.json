@@ -8,12 +8,24 @@
             "technique": "tonguespear"
         },
         {
-            "level_learned": 4,
+            "level_learned": 2,
             "technique": "hibernate"
+        },
+        {
+            "level_learned": 6,
+            "technique": "evasion"
         },
         {
             "level_learned": 8,
             "technique": "stampede"
+        },
+        {
+            "level_learned": 12,
+            "technique": "lantern"
+        },
+        {
+            "level_learned": 16,
+            "technique": "assault"
         }
     ],
     "evolutions": [

@@ -21,8 +21,8 @@ class GiveEffect(TechEffect):
     """
 
     name = "give"
-    _status: str
-    _obj: str
+    condition: str
+    objective: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
@@ -33,11 +33,11 @@ class GiveEffect(TechEffect):
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
             status = Technique()
-            status.load(self._status)
+            status.load(self.condition)
             status.link = user
-            if self._obj == "user":
+            if self.objective == "user":
                 user.apply_status(status)
-            elif self._obj == "target":
+            elif self.objective == "target":
                 target.apply_status(status)
             return {"success": True}
 

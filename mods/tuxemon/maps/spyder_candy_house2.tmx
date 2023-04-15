@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="72">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="76">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -42,7 +42,7 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="68" name="Go Outside" type="event" x="96" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_candy_town.tmx,4,7,0.3"/>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,2,25,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -59,6 +59,40 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_candyhouse2_captain"/>
     <property name="behav1" value="talk spyder_captain"/>
+   </properties>
+  </object>
+  <object id="72" name="Create Prof" type="event" x="64" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_professor,4,2"/>
+    <property name="cond1" value="not npc_exists spyder_professor"/>
+   </properties>
+  </object>
+  <object id="73" name="Talk Prof - No Cateye" type="event" x="80" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_prof1"/>
+    <property name="act2" value="translated_dialog spyder_candy_prof_nocateye"/>
+    <property name="behav1" value="talk spyder_professor"/>
+    <property name="cond1" value="not has_monster cateye"/>
+    <property name="cond2" value="not variable_set prof_candy_hastraded:yes"/>
+   </properties>
+  </object>
+  <object id="74" name="Talk Prof - Has Cateye" type="event" x="64" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_prof1"/>
+    <property name="act2" value="translated_dialog_choice yes:no,prof_willtrade"/>
+    <property name="behav1" value="talk spyder_professor"/>
+    <property name="cond1" value="is has_monster cateye"/>
+    <property name="cond2" value="not variable_set prof_candy_hastraded:yes"/>
+   </properties>
+  </object>
+  <object id="75" name="Talk Prof - Will Trade Cateye" type="event" x="64" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_prof_willtrade"/>
+    <property name="act2" value="trading cateye,zunna"/>
+    <property name="act3" value="set_variable prof_candy_hastraded:yes"/>
+    <property name="cond1" value="is has_monster cateye"/>
+    <property name="cond2" value="is variable_set prof_willtrade:yes"/>
+    <property name="cond3" value="not variable_set prof_candy_hastraded:yes"/>
    </properties>
   </object>
  </objectgroup>

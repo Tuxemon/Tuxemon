@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "slash_power",
   "effects": [
-    "sniping user",
+    "give status_sniping,user",
     "damage"
   ],
   "flip_axes": "x",

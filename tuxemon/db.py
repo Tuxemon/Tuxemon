@@ -255,6 +255,9 @@ class MonsterMovesetItemModel(BaseModel):
     technique: str = Field(
         ..., description="Name of the technique for this moveset item"
     )
+    element: Optional[ElementType] = Field(
+        None, description="Element random technique"
+    )
 
     @validator("level_learned")
     def valid_level(cls: MonsterMovesetItemModel, v: Any) -> Any:
@@ -455,6 +458,16 @@ class TechSort(str, Enum):
     meta = "meta"
 
 
+class CategoryCondition(str, Enum):
+    negative = "negative"
+    positive = "positive"
+
+
+class ResponseCondition(str, Enum):
+    replaced = "replaced"
+    removed = "removed"
+
+
 class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
     sort: TechSort = Field(..., description="The sort of technique this is")
@@ -480,13 +493,13 @@ class TechniqueModel(BaseModel):
     )
 
     # Optional fields
-    category: Optional[str] = Field(
+    category: Optional[CategoryCondition] = Field(
         None, description="Category status: positive or negative"
     )
-    repl_pos: Optional[str] = Field(
+    repl_pos: Optional[ResponseCondition] = Field(
         None, description="How to reply to a positive status"
     )
-    repl_neg: Optional[str] = Field(
+    repl_neg: Optional[ResponseCondition] = Field(
         None, description="How to reply to a negative status"
     )
     use_tech: Optional[str] = Field(

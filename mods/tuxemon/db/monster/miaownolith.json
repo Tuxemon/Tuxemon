@@ -12,6 +12,14 @@
             "technique": "feint"
         },
         {
+            "level_learned": 6,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 8,
+            "technique": "sword"
+        },
+        {
             "level_learned": 12,
             "technique": "sand_spray"
         },

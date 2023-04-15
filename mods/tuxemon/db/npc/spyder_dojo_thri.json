@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_dojo_thri",
+  "template": [
+    {
+      "sprite_name": "maniac",
+      "combat_front": "riddler",
+      "slug": "maniac"
+    }
+  ]
+}

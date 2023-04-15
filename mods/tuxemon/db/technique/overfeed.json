@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": null,
   "effects": [
-    "overfeed target",
+    "give status_overfeed,target",
     "enhance"
   ],
   "flip_axes": "",
@@ -26,7 +26,7 @@
     "own trainer": 0
   },
   "types": [
-    "wood"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

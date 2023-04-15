@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_dojo_fu",
+  "template": [
+    {
+      "sprite_name": "granny",
+      "combat_front": "adventurer",
+      "slug": "granny"
+    }
+  ]
+}

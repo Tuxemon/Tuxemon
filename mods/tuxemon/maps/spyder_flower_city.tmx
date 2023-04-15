@@ -244,9 +244,8 @@
   <object id="406" name="Talk Mieke - Will Trade Budaye" type="event" x="320" y="448" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_mieke_willtrade"/>
-    <property name="act2" value="remove_monster budaye"/>
-    <property name="act3" value="add_monster conileaf,10"/>
-    <property name="act4" value="set_variable mieke_hastraded:yes"/>
+    <property name="act2" value="trading budaye,conileaf"/>
+    <property name="act3" value="set_variable mieke_hastraded:yes"/>
     <property name="cond1" value="is has_monster budaye"/>
     <property name="cond2" value="is variable_set mieke_willtrade:yes"/>
     <property name="cond3" value="not variable_set mieke_hastraded:yes"/>
@@ -349,9 +348,8 @@
   <object id="430" name="Talk Fez - Will Trade Ignibus" type="event" x="352" y="400" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_fez_willtrade"/>
-    <property name="act2" value="remove_monster ignibus"/>
-    <property name="act3" value="add_monster foxfire,10"/>
-    <property name="act4" value="set_variable fez_hastraded:yes"/>
+    <property name="act2" value="trading ignibus,foxfire"/>
+    <property name="act3" value="set_variable fez_hastraded:yes"/>
     <property name="cond1" value="is has_monster ignibus"/>
     <property name="cond2" value="is variable_set fez_willtrade:yes"/>
     <property name="cond3" value="not variable_set fez_hastraded:yes"/>
@@ -384,9 +382,8 @@
   <object id="434" name="Talk Cady - Will Trade Grintot" type="event" x="448" y="496" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_cady_willtrade"/>
-    <property name="act2" value="remove_monster grintot"/>
-    <property name="act3" value="add_monster hampotamos,10"/>
-    <property name="act4" value="set_variable cady_hastraded:yes"/>
+    <property name="act2" value="trading grintot,hampotamos"/>
+    <property name="act3" value="set_variable cady_hastraded:yes"/>
     <property name="cond1" value="is has_monster grintot"/>
     <property name="cond2" value="is variable_set cady_willtrade:yes"/>
     <property name="cond3" value="not variable_set cady_hastraded:yes"/>
@@ -419,9 +416,8 @@
   <object id="438" name="Talk Sandy - Will Trade Tweesher" type="event" x="432" y="336" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_sandy_willtrade"/>
-    <property name="act2" value="remove_monster tweesher"/>
-    <property name="act3" value="add_monster pharfan,10"/>
-    <property name="act4" value="set_variable sandy_hastraded:yes"/>
+    <property name="act2" value="trading tweesher,pharfan"/>
+    <property name="act3" value="set_variable sandy_hastraded:yes"/>
     <property name="cond1" value="is has_monster tweesher"/>
     <property name="cond2" value="is variable_set sandy_willtrade:yes"/>
     <property name="cond3" value="not variable_set sandy_hastraded:yes"/>

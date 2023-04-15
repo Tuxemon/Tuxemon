@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "rockfall_193",
   "effects": [
-    "exhausted target",
+    "give status_exhausted,target",
     "damage"
   ],
   "flip_axes": "",

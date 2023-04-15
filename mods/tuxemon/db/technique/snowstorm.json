@@ -3,7 +3,7 @@
   "accuracy": 0.5,
   "animation": "explosion_ice_112",
   "effects": [
-    "exhausted target",
+    "give status_exhausted,target",
     "damage"
   ],
   "flip_axes": "",

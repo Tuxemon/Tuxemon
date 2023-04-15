@@ -1102,6 +1102,7 @@ class CombatState(CombatAnimations):
                         {"name": target.name.upper()},
                     )
                 self.alert(message)
+                self.suppress_phase_change(action_time)
 
     def faint_monster(self, monster: Monster) -> None:
         """

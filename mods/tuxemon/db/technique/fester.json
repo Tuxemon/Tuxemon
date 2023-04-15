@@ -4,7 +4,7 @@
   "animation": "drip_green",
   "effects": [
     "give status_poison,user",
-    "give status_poison,target",
+    "give status_festering,target",
     "damage"
   ],
   "flip_axes": "",

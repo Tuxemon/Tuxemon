@@ -12,6 +12,14 @@
             "technique": "blossom"
         },
         {
+            "level_learned": 6,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 8,
+            "technique": "splinter"
+        },
+        {
             "level_learned": 12,
             "technique": "boulder"
         },
@@ -41,6 +49,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "lambert",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "legko",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "brute",
     "stage": "stage2",
     "types": [

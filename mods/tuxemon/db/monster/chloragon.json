@@ -12,6 +12,18 @@
             "technique": "web"
         },
         {
+            "level_learned": 6,
+            "technique": "maori"
+        },
+        {
+            "level_learned": 8,
+            "technique": "negation"
+        },
+        {
+            "level_learned": 12,
+            "technique": "overfeed"
+        },
+        {
             "level_learned": 16,
             "technique": "hibernate"
         }
@@ -21,6 +33,16 @@
             "path": "standard",
             "at_level": 30,
             "monster_slug": "sapragon"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "sapragon",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "dragarbor",
+            "evo_stage": "stage2"
         }
     ],
     "shape": "dragon",

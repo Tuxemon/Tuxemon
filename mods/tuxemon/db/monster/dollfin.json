@@ -12,6 +12,14 @@
             "technique": "flood"
         },
         {
+            "level_learned": 6,
+            "technique": "gyser"
+        },
+        {
+            "level_learned": 8,
+            "technique": "grinding"
+        },
+        {
             "level_learned": 12,
             "technique": "flow"
         }
@@ -40,6 +48,16 @@
             "at_level": 0,
             "monster_slug": "sharpfin",
             "item": "sea_girdle"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "bigfin",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "sharpfin",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "aquatic",

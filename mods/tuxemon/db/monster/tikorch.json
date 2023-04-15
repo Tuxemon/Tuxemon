@@ -12,6 +12,14 @@
             "technique": "blossom"
         },
         {
+            "level_learned": 6,
+            "technique": "saber"
+        },
+        {
+            "level_learned": 8,
+            "technique": "gust"
+        },
+        {
             "level_learned": 12,
             "technique": "petrify"
         },
@@ -29,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "tikoal",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "blob",
     "stage": "stage1",
     "types": [

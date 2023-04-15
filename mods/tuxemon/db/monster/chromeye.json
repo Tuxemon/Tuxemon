@@ -12,6 +12,14 @@
             "technique": "shrapnel"
         },
         {
+            "level_learned": 6,
+            "technique": "blade"
+        },
+        {
+            "level_learned": 8,
+            "technique": "strike"
+        },
+        {
             "level_learned": 12,
             "technique": "wall_of_steel"
         }
@@ -40,6 +48,24 @@
             "at_level": 18,
             "monster_slug": "sadito",
             "season": "autumn"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "sadito",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "neutrito",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "happito",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "angrito",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "blob",

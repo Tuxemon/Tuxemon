@@ -10,7 +10,6 @@ from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 if TYPE_CHECKING:
     from tuxemon.db import MonsterModel
     from tuxemon.monster import Monster
-    from tuxemon.npc import NPC
     from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
@@ -321,42 +320,6 @@ def convert_mi(steps: float) -> float:
     km = convert_km(steps)
     mi = round(km * 0.6213711922, 2)
     return mi
-
-
-def rematch(
-    player: NPC,
-    opponent: NPC,
-    monster: Monster,
-    date: int,
-) -> None:
-    today = dt.date.today().toordinal()
-    diff_date = today - date
-    low = player.game_variables["party_level_highest"]
-    high = 0
-    # nr days between match and rematch
-    if diff_date == 0:
-        high = low + 1
-    elif diff_date < 10:
-        high = low + 2
-    elif diff_date < 50:
-        high = low + 3
-    else:
-        high = low + 5
-    monster.level = random.randint(low, high)
-    # check if evolves
-    for evo in monster.evolutions:
-        if evo.path == "standard":
-            if evo.at_level <= monster.level:
-                opponent.evolve_monster(monster, evo.monster_slug)
-    # restore hp evolved monsters
-    for mon in opponent.monsters:
-        mon.current_hp = mon.hp
-
-
-def sync(player: NPC, value: int, total: int) -> float:
-    percent = round((value / total) * 100, 1)
-    player.game_variables["tuxepedia_progress"] = str(percent)
-    return percent
 
 
 def weight_height_diff(

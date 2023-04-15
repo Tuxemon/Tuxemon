@@ -9,10 +9,10 @@ from tuxemon.monster import Monster
 
 
 @dataclass
-class IsWildMonsterCondition(ItemCondition):
+class WildMonsterCondition(ItemCondition):
     """True if not owned by a trainer."""
 
-    name = "is_wild_monster"
+    name = "wild_monster"
 
     def test(self, target: Monster) -> bool:
         return target.owner is None

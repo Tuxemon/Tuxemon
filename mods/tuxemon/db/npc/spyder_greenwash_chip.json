@@ -6,31 +6,5 @@
       "combat_front": "aviator",
       "slug": "aviator"
     }
-  ],
-  "monsters": [
-    {
-      "name": "AV8R",
-      "level": 22,
-      "slug": "av8r",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    },
-    {
-      "name": "Criniotherme",
-      "level": 22,
-      "slug": "criniotherme",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "tikorch",
-      "level": 22,
-      "slug": "tikorch",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

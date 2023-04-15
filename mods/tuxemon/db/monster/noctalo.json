@@ -12,6 +12,14 @@
             "technique": "rot"
         },
         {
+            "level_learned": 6,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 8,
+            "technique": "font"
+        },
+        {
             "level_learned": 12,
             "technique": "take_cover"
         },
@@ -29,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "noctula",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "flier",
     "stage": "stage1",
     "types": [

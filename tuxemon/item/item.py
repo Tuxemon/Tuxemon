@@ -63,7 +63,6 @@ class Item:
         self.quantity = 1
         self.images: Sequence[str] = []
         self.type = ItemType.consumable
-        self.sfx = None
         # The path to the sprite to load.
         self.sprite = ""
         self.category = ItemCategory.none
@@ -187,29 +186,26 @@ class Item:
         ret = list()
 
         for line in raw:
-            name = line.split()[0]
-            if len(line.split()) > 1:
-                params = line.split()[1].split(",")
+            op = line.split()[0]
+            name = line.split()[1]
+            if len(line.split()) > 2:
+                params = line.split()[2].split(",")
             else:
                 params = []
             try:
                 condition = Item.conditions_classes[name]
+                if op == "is":
+                    condition._op = True
+                elif op == "not":
+                    condition._op = False
+                else:
+                    raise ValueError(f"{op} must be 'is' or 'not'")
             except KeyError:
                 logger.error(f'Error: ItemCondition "{name}" not implemented')
             else:
                 ret.append(condition(*params))
 
         return ret
-
-    def advance_round(self) -> None:
-        """
-        Advance round for items that take many rounds to use.
-
-        * This currently has no use, and may not stay.  It is added
-          so that the Item class and Technique class are interchangeable.
-
-        """
-        return
 
     def validate(self, target: Optional[Monster]) -> bool:
         """
@@ -230,8 +226,11 @@ class Item:
         result = True
 
         for condition in self.conditions:
-            result = result and condition.test(target)
-
+            if condition._op is True:
+                event = condition.test(target)
+            else:
+                event = not condition.test(target)
+            result = result and event
         return result
 
     def use(self, user: NPC, target: Monster) -> ItemEffectResult:
@@ -251,12 +250,9 @@ class Item:
         meta_result: ItemEffectResult = {
             "name": self.name,
             "num_shakes": 0,
-            "capture": False,
             "should_tackle": False,
             "success": False,
         }
-        # save iid
-        user.game_variables["save_item_slug"] = self.slug
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:

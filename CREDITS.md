@@ -688,15 +688,7 @@ Character created by Leo (from Discord) and released under the CC-BY-SA 4.0+ lic
 [DitzyDM](http://ditzydm.deviantart.com/)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
-* ["Apple Item"](https://forum.tuxemon.org/thread.php?pid=874#p874) by
-[Sanglorian](https://wiki.tuxemon.org/index.php?title=Sanglorian)
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
 * ["Banana Item"](https://forum.tuxemon.org/thread.php?pid=874#p874) by
-[Sanglorian](https://wiki.tuxemon.org/index.php?title=Sanglorian)
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Orange Item"](https://forum.tuxemon.org/thread.php?pid=874#p874) by
 [Sanglorian](https://wiki.tuxemon.org/index.php?title=Sanglorian)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -727,6 +719,40 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Tuxeball"](https://wiki.tuxemon.org/File:Unknown-2.png) by
 [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Cureall"](https://wiki.tuxemon.org/File:APPLE_2.png) original sprite by josepharaoh99. Modifications by Sanglorian.  Licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Restoration"](https://wiki.tuxemon.org/File:ORANGE_2.png) original sprite by josepharaoh99. Modifications by Sanglorian. Licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Trepidation"](https://wiki.tuxemon.org/index.php?title=File:Interior_Tiles_by_ArMM1998.png) cut and resized by Jaskrendix from Interior tileset by ArMM1998. Licensed under CC0.
+
+* ["Starry Night"](https://wiki.tuxemon.org/index.php?title=File:Interior_Tiles_by_ArMM1998.png) cut and resized by Jaskrendix from Interior tileset by ArMM1998. Licensed under CC0.
+
+* ["Monsters' Eyes Meet"](https://wiki.tuxemon.org/index.php?title=File:Interior_Tiles_by_ArMM1998.png) cut and resized by Jaskrendix from Interior tileset by ArMM1998. Licensed under CC0.
+
+* ["Ancient Egg"](https://wiki.tuxemon.org/File:T7FiZjz.png) by [josepharaoh99](https://wiki.tuxemon.org/Josepharaoh99) is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Boost Armour"](https://wiki.tuxemon.org/File:Boost_2.png) Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Boost Dodge"](https://wiki.tuxemon.org/File:Boost_1.png) Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Boost Melee"](https://wiki.tuxemon.org/File:Boost_3.png) Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Boost Ranged"](https://wiki.tuxemon.org/File:Boost_4.png) Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Boost Speed"](https://wiki.tuxemon.org/File:Boost_5.png) Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Raise Armour"](https://wiki.tuxemon.org/File:Diamond_-_Clint_Bellanger.png) [http://opengameart.org/content/gem-icons CC BY-SA 3.0, on OpenGameArt]
+
+* ["Raise Dodge"](https://wiki.tuxemon.org/File:Opal_-_Clint_Bellanger.png) [http://opengameart.org/content/gem-icons CC BY-SA 3.0, on OpenGameArt]
+
+* ["Raise HP"](https://wiki.tuxemon.org/File:I_Crystal03_24x24.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Raise Melee"](https://wiki.tuxemon.org/File:Ruby.png) Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Raise Ranged"](https://wiki.tuxemon.org/File:Emerald_-_Clint_Bellanger.png) [http://opengameart.org/content/gem-icons CC BY-SA 3.0, on OpenGameArt]
+
+* ["Raise Speed"](https://wiki.tuxemon.org/File:Ruby_-_Clint_Bellanger.png) [http://opengameart.org/content/gem-icons CC BY-SA 3.0, on OpenGameArt]
 
 * ["Potion"](https://wiki.tuxemon.org/File:Potion.png) [http://opengameart.org/content/potions-3 CC0]
 
@@ -787,6 +813,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Earthmover Key"](https://wiki.tuxemon.org/index.php?title=Earthmover_Key) by Catch Challenger is licensed under CC-BY 4.0.
 
 * ["Fishing Rod"](https://wiki.tuxemon.org/index.php?title=Fishing_Rod) by Catch Challenger is licensed under CC-BY 4.0.
+
+* ["Surfboard"](https://wiki.tuxemon.org/File:Surfboard.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
 * ["Aardant"](https://wiki.tuxemon.org/index.php?title=Aardant) from the Aardorn sprite by Magic-Purple-Hermit. Tweaked by Sanglorian.
 

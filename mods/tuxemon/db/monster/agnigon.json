@@ -12,6 +12,14 @@
             "technique": "fire_ball"
         },
         {
+            "level_learned": 6,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 8,
+            "technique": "saber"
+        },
+        {
             "level_learned": 12,
             "technique": "fume"
         },
@@ -41,6 +49,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "agnite",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "agnidon",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "dragon",
     "stage": "stage2",
     "types": [

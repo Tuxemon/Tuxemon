@@ -12,6 +12,14 @@
             "technique": "web"
         },
         {
+            "level_learned": 6,
+            "technique": "sleep_bomb"
+        },
+        {
+            "level_learned": 8,
+            "technique": "platinum"
+        },
+        {
             "level_learned": 12,
             "technique": "constrict"
         },
@@ -29,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "tumbleworm",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "flier",
     "stage": "stage1",
     "types": [

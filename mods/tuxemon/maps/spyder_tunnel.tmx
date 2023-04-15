@@ -16,12 +16,12 @@
  </layer>
  <layer id="2" name="Obstacles" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAG1llFOAzEMRIMEiKPQ9ixUHAUJ9g8uwmngMHAOPFqemFrObthCpHTSxJ6M4ySb1n7K8WJug4zcf/dX/2+vWttFBbERwgMytsR3F1zHqCA+zud9tMOlPYVO1SnpxWa6nFu7GN9HPTBwJub4Krocc7bx9fsLPl+/iu/tprX3qJRz9X0E12fiIyaQuYSVvms3sLZyq5ziA5rJyf6r4nVbYkUX6DY+xygfPqDz+RyPEctarO5btfMcPY3EWnGoD10gdhUfecCmQnSB2FR8a9rkiy6w4uPs9849PkJ0gYy5vhFd+IFL+rbwLenbx6S6v6iHaK+VrE97UHdltQ9H9GZ9zO/rSN8IX9aH71a+/9TH96P3DVF+1nLi+qoYiR9c4/T1G+F7COIlzp4+zlq1b8TZy3VPH/Y9zYyzDmBPH/a/5RMv7wP3ha93ZzOOrgorPtl5P36c7aX9436eQ++HD8w6yYf2cn4HYQvfq33Xe3zkQz69twV8cAi1n57Dp3d3y6d6W8i34kO7xquSfTT/S8yhwp3IOzK/Jat1gI9zAdfMOP5LPuAjjqlY+xFWz4fs4WOercgaESfzbMUv+bxRag==
+   eAG1llFOAzEMRAMCxFFoexYqrsEfEvQPLsJp4DBwDjy0TwyWk91uYaV00sQej+NsNq39PNuzfR9k5u4wXv2/uWxtFQ3ERggPyNyI7za4ttFAfJzPx+iHS3sKnffnre2SXmx2F/veKubX0TZMnIg5v4ou55xtfP3+gs/Xr+J7u27tPRrPqfo+gusz8ZETSCxhpe/KDayv2qqm+IBm8mv/Vfm6LbmiC3QbjzGXDx/Q+TzGY+Qylav7Vv0co6eRXCsOjaELxK7iow7YVIguEJuKb0qbfNEFVnzSNXrv8RGiC2TO9c3RhR840reEb6RvHUF1ftE20Z96sj7tQZ2X1T6cozfrI76vI2Nz+LI+fJfy/ac+vh+9b4jqM1UT11flSP7gFKev3xy+hyAecfb08a5V+0acvVr39GHf08w86wD29GF/LJ94uR+4L3y9M5t5dFVY8cnOx/Hj3R7tH/fzGvo4fGDWST20l/M9CFv4Xu273uOjHvLp3S3gg0Oo/fQcPr07m3yqu4V8Kz60a756so/iv0QMPZyJOhdprqtaB/jEIx+4vgmP+KEe8JHHrlj7ObReD9nDR5ylyBqRJ3GW4hcMsVFM
   </data>
  </layer>
  <layer id="3" name="Obstacles 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlWEOgjAMhdFE41WEuxiv4W/xMHgYL+NFbBOavDYbbK1gNC4hrGz99lq2tWm+r502WvMZ7MtWj6Wsx0F/TfGQqWfPWynevJeecaSY2vHpYGhH/RvEC0OTXatJJnvjnOPZHMt6ufeVYtrToPXz6uN1mNmPXM4b9z25YxY25pZw7mafIcPbHyqZz8r5Xl2f9is592tqXOLfr6m/dp8tqU3dhXT2og3vrsj9IjpSvD5w7vDeeoc+1NmSwXWlC+RRzhrGzVwPE/MkNUD0epniz2/UyHZtPu05jvJYA7Ycz9ZB9JnqCy9S73Bt4dXmLadR9nZJ/cwx/t9/JwMv7zYc5Q==
+   eAHtldENwjAMRMsHiFVod0HsQhkGhukyLEJOqqWzSSB22g9QI1W1k/rl4iZx1/1eO++05ovx9ei7Nx11X47nZTIxx+PxGvuU1tTPz0AB+2TfnOtFuNUkyOg6v/FsjmW+0vua1nRIgzYuqg/zgDnOXOQNdiR3YHEDt4bzMPuMGVH77mQ+nd9HdW1xOgNr/Hs9w7qed5+tqUbdhenstTa+u1ruF9GR440N547vrSX0sc4+Oagrw8J5BDfC5DxJDRC9UabE483/Br43n/Yct/KggVuJZ+sgx3yyhddS73hu4XnzVtIoe7umfpYYW///ZOAFBnkbpA==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -150,10 +150,13 @@
   </object>
   <object id="334" name="Talk Iris" type="event" x="160" y="224" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_tunnelb_iris1"/>
-    <property name="act3" value="start_battle spyder_tunnelb_iris"/>
-    <property name="act4" value="translated_dialog spyder_tunnelb_iris2"/>
-    <property name="act6" value="set_variable tunnelbiris:yes"/>
+    <property name="act1" value="translated_dialog spyder_tunnelb_iris1"/>
+    <property name="act2" value="add_monster tourbidi,18,spyder_tunnelb_iris,27,10"/>
+    <property name="act3" value="add_monster tourbidi,18,spyder_tunnelb_iris,27,10"/>
+    <property name="act4" value="add_monster tourbidi,18,spyder_tunnelb_iris,27,10"/>
+    <property name="act5" value="start_battle spyder_tunnelb_iris"/>
+    <property name="act6" value="translated_dialog spyder_tunnelb_iris2"/>
+    <property name="act7" value="set_variable tunnelbiris:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_iris"/>
     <property name="cond1" value="not variable_set tunnelbiris:yes"/>
    </properties>
@@ -166,10 +169,16 @@
   </object>
   <object id="336" name="Talk Greta" type="event" x="208" y="544" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_tunnelb_greta1"/>
-    <property name="act3" value="start_battle spyder_tunnelb_greta"/>
-    <property name="act4" value="translated_dialog spyder_tunnelb_greta2"/>
-    <property name="act6" value="set_variable tunnelbgreta:yes"/>
+    <property name="act01" value="translated_dialog spyder_tunnelb_greta1"/>
+    <property name="act02" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act03" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act04" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act05" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act06" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act07" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act08" value="start_battle spyder_tunnelb_greta"/>
+    <property name="act09" value="translated_dialog spyder_tunnelb_greta2"/>
+    <property name="act10" value="set_variable tunnelbgreta:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_greta"/>
     <property name="cond1" value="not variable_set tunnelbgreta:yes"/>
    </properties>
@@ -183,7 +192,8 @@
   </object>
   <object id="338" name="Talk Tommy" type="event" x="224" y="80" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_tunnelb_tommy1"/>
+    <property name="act1" value="translated_dialog spyder_tunnelb_tommy1"/>
+    <property name="act2" value="add_monster zunna,22,spyder_tunnelb_tommy,27,10"/>
     <property name="act3" value="start_battle spyder_tunnelb_tommy"/>
     <property name="act4" value="translated_dialog spyder_tunnelb_tommy2"/>
     <property name="act6" value="set_variable tunnelbtommy:yes"/>
@@ -199,10 +209,17 @@
   </object>
   <object id="341" name="Talk Greta" type="event" x="208" y="576" width="16" height="32">
    <properties>
-    <property name="act2" value="translated_dialog spyder_tunnelb_greta1"/>
-    <property name="act3" value="start_battle spyder_tunnelb_greta"/>
-    <property name="act4" value="translated_dialog spyder_tunnelb_greta2"/>
-    <property name="act6" value="set_variable tunnelbgreta:yes"/>
+    <property name="act00" value="pathfind_to_player spyder_tunnelb_greta"/>
+    <property name="act01" value="translated_dialog spyder_tunnelb_greta1"/>
+    <property name="act02" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act03" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act04" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act05" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act06" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act07" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act08" value="start_battle spyder_tunnelb_greta"/>
+    <property name="act09" value="translated_dialog spyder_tunnelb_greta2"/>
+    <property name="act10" value="set_variable tunnelbgreta:yes"/>
     <property name="cond1" value="not variable_set tunnelbgreta:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>

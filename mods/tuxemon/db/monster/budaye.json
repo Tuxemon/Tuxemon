@@ -12,6 +12,14 @@
             "technique": "clamp_on"
         },
         {
+            "level_learned": 6,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 8,
+            "technique": "stabilo"
+        },
+        {
             "level_learned": 12,
             "technique": "ram"
         }
@@ -40,6 +48,16 @@
             "at_level": 0,
             "monster_slug": "frondly",
             "item": "peace_lily"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "bamboon",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "frondly",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "sprite",

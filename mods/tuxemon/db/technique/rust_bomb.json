@@ -3,12 +3,10 @@
   "accuracy": 0.5,
   "animation": "smokebomb_puff_128",
   "effects": [
-    "poison target",
+    "give status_poison,target",
     "damage"
   ],
   "flip_axes": "",
-  "healing_power": 0,
-  "icon": "",
   "is_area": true,
   "is_fast": false,
   "potency": 0.5,

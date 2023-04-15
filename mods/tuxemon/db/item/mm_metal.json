@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "type metal",
-    "max_moves"
+    "is type metal",
+    "is max_moves"
   ],
   "effects": [
     "learn_mm metal"

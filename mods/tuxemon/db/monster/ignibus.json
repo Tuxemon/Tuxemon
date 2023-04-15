@@ -12,6 +12,14 @@
             "technique": "boulder"
         },
         {
+            "level_learned": 6,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 8,
+            "technique": "fire_claw"
+        },
+        {
             "level_learned": 12,
             "technique": "static_field"
         }
@@ -40,6 +48,16 @@
             "at_level": 0,
             "monster_slug": "embazook",
             "item": "stovepipe"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "embazook",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "eruptibus",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "polliwog",

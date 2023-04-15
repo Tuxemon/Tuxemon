@@ -12,6 +12,14 @@
             "technique": "blossom"
         },
         {
+            "level_learned": 6,
+            "technique": "saber"
+        },
+        {
+            "level_learned": 8,
+            "technique": "gust"
+        },
+        {
             "level_learned": 12,
             "technique": "petrify"
         }
@@ -21,6 +29,12 @@
             "path": "standard",
             "at_level": 30,
             "monster_slug": "tikorch"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "tikorch",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "blob",

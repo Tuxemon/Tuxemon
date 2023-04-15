@@ -120,7 +120,8 @@ class RandomAI(AI):
                     if mov.validate(opponent):
                         actions.append((mov, opponent))
         if not actions:
-            skip = Technique("skip")
+            skip = Technique()
+            skip.load("skip")
             return skip, choice(opponents)
         else:
             return choice(actions)

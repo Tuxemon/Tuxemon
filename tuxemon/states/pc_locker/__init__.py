@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import math
 import uuid
 from functools import partial
 from typing import (
@@ -17,12 +18,11 @@ from typing import (
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.baseimage import POSITION_CENTER
-from pygame_menu.widgets.selection import HighlightSelection
+from pygame_menu.locals import POSITION_CENTER
+from pygame_menu.widgets.selection.highlight import HighlightSelection
 from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
-from tuxemon import prepare, tools
-from tuxemon.db import db
+from tuxemon import prepare
 from tuxemon.item import item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -32,7 +32,11 @@ from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.state import State
 from tuxemon.states.items import ItemMenuState
-from tuxemon.tools import open_choice_dialog, open_dialog
+from tuxemon.tools import (
+    open_choice_dialog,
+    open_dialog,
+    transform_resource_filename,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -42,6 +46,13 @@ if TYPE_CHECKING:
 
 
 MenuGameObj = Callable[[], object]
+
+
+def fix_width(screen_x: int, pos_x: float) -> int:
+    """it returns the correct width based on percentage"""
+    value = round(screen_x * pos_x)
+    return value
+
 
 HIDDEN_LOCKER = "hidden_locker"
 HIDDEN_LIST_LOCKER = [HIDDEN_LOCKER]
@@ -209,14 +220,14 @@ class ItemTakeState(PygameMenuState):
             )
 
         # it prints items inside the screen: image + button
+        _sorted = sorted(items, key=lambda x: x.slug)
         sum_total = []
-        for itm in items:
+        for itm in _sorted:
             sum_total.append(itm.quantity)
-            label = T.translate(itm.name).upper() + " x " + str(itm.quantity)
+            label = T.translate(itm.name).upper() + " x" + str(itm.quantity)
             iid = itm.instance_id.hex
-            results = db.lookup(itm.slug, table="item").dict()
             new_image = pygame_menu.BaseImage(
-                tools.transform_resource_filename(results["sprite"]),
+                transform_resource_filename(itm.sprite),
                 drawing_position=POSITION_CENTER,
             )
             new_image.scale(prepare.SCALE, prepare.SCALE)
@@ -225,25 +236,24 @@ class ItemTakeState(PygameMenuState):
                 partial(locker_options, iid),
                 selection_effect=HighlightSelection(),
             )
-            menu.add.label(label, selectable=True)
+            menu.add.label(
+                label,
+                selectable=True,
+                font_size=20,
+                align=locals.ALIGN_CENTER,
+                selection_effect=HighlightSelection(),
+            )
 
         # menu
-        menu.set_title(
-            T.format(
-                "locker_label_long",
-                {
-                    "box": T.translate(self.box_name).upper(),
-                    "qty1": len(self.box),
-                    "qty2": sum(sum_total),
-                },
-            )
-        ).center_content()
+        box_label = T.translate(self.box_name).upper()
+        label = f"{box_label} ({len(self.box)} types - {sum(sum_total)} items)"
+        menu.set_title(label).center_content()
 
     def __init__(self, box_name: str) -> None:
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
+            image_path=transform_resource_filename(
                 "gfx/ui/item/bg_pcstate.png"
             ),
             drawing_position=POSITION_CENTER,
@@ -252,6 +262,8 @@ class ItemTakeState(PygameMenuState):
         theme.scrollarea_position = locals.POSITION_EAST
         theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
+        theme.scrollbar_color = (237, 246, 248)
+        theme.scrollbar_slider_color = (197, 232, 234)
 
         # menu
         theme.title = True
@@ -267,17 +279,19 @@ class ItemTakeState(PygameMenuState):
         self.player = local_session.player
         self.box = self.player.item_boxes[self.box_name]
 
-        num_itms = len(self.box)
         # Widgets are like a pygame_menu label, image, etc.
-        num_widgets_per_item = 2
-        rows = int(num_itms * num_widgets_per_item / columns) + 1
-        # Make sure rows are divisible by num_widgets
-        while rows % num_widgets_per_item != 0:
-            rows += 1
+        num_widgets = 2
+        rows = math.ceil(len(self.box) / columns) * num_widgets
 
         super().__init__(
             height=height, width=width, columns=columns, rows=rows
         )
+
+        self.menu._column_max_width = [
+            fix_width(self.menu._width, 0.33),
+            fix_width(self.menu._width, 0.33),
+            fix_width(self.menu._width, 0.33),
+        ]
 
         menu_items_map = []
         for item in self.box:
@@ -293,6 +307,8 @@ class ItemTakeState(PygameMenuState):
         theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
+        theme.scrollbar_color = (235, 235, 235)
+        theme.scrollbar_slider_color = (200, 200, 200)
 
 
 class ItemBoxChooseState(PygameMenuState):
@@ -319,14 +335,8 @@ class ItemBoxChooseState(PygameMenuState):
             sum_total = []
             for ele in num_itms:
                 sum_total.append(ele.quantity)
-            label = T.format(
-                "locker_label_short",
-                {
-                    "box": T.translate(key).upper(),
-                    "qty1": len(num_itms),
-                    "qty2": sum(sum_total),
-                },
-            )
+            box_label = T.translate(key).upper()
+            label = f"{box_label} (T{len(num_itms)}-I{sum(sum_total)})"
             menu.add.button(label, callback)
             menu.add.vertical_fill()
 

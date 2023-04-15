@@ -25,12 +25,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAFjYIAACWEoY5BSn4UGqcOgzhoNP8riZyiFn4AoZX6lhe7BHn7Y/PxaBJsodcTsZCHm7GYnzjxKypdoNuLsgKk6DXRbLNR9r4h0Hyx+haBpT5CENNhFovtg7iSFpiT8SLGHXLWw8CNXP631jYYfrUN41PyBDIEz0PJuIN0wavfgCoEMcUz3LAS28xcRgRcPUH/gGNDeLAUGhmwgxgdODKD7VgHdthqI8YGBdB+yu+oZGRgagLgRiJEByH1mwD4pDCPLEcuG6QXRxAJQ/CKD5UB3rQDilVjcB1K3D08b9jzQrAtA/BiHmjnANtwXoPxXNDuR7Udno7vvPNBdF4D4Ig73oetH5sPsxuWHcqD7JIFhJwUNvzAi2pHo7kO2D5lNTPpDthtZLy52K53dh8sdlIgjh99LtDoTmU9M+FHiDlx6XwPTKqh8focjzb6Hyr/FIY/L3FFx2ofAGhLKQdq7hr42wPxOTBlGX5eh2kZMGYaqgzieuSBx6ihRZSpFiW7i9R4A1ksHiRj/CCJCDbqtxJgNq9fJpdHtpDYfVq/DaGqbT6l5sHodRpNqHiwvk6oPm3oAbzpbPg==
+   eAFjYIAACWEoY5BSn4UGqcOgzhoNP8riZyiFn4AoZX6lhe7BHn7Y/PxaBJsodcTsZCHm7GYnzjxKypdoNuLsgKk6DXRbLNR9r4h0Hyx+haBpT5CENNhFovtg7iSFpiT8SLGHXLWw8CNXP631jYYfrUN41PyBDIEz0PJuIN0wavfgCoEMcUz3LAS28xcRgRcPUH/gGNDeLAUGhmwgxgdODKD7VgHdthqI8YGBdB+yu+oZGRgagLgRiJEByH1mwD4pDCPLEcuG6QXRxAJQ/CKD5UB3rQDilVjcB1K3D08b9jzQrAtA/BiHmjnANtwXoPxXNDuR7Udno7vvPNBdF4D4Ig73oetH5sPsxuWHcqD7JIFhJwUNvzAi2pHo7kO2D5lNTPpDthtZLy52K53dh8sdlIgjh99LtDoTmU9M+FHiDlx6XwPTKqh8focjzb6Hyr/FIY/L3FFx2ofAGhLKQdq7hr42wPxOTBlGX5eh2kZMGYaqY/DwTKXo45YDwHrpIBHjH0FEqEF3MTFmw+p1cml0O6nNh9XrMJra5lNqHqxeh9GkmgfLy6Tqw6YeAJB8WvY=
   </data>
  </layer>
  <layer id="6" name="Above Player" width="40" height="40">
@@ -147,7 +147,7 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="531" name="Talk hackerintro&#10;" type="event" x="400" y="608" width="128" height="16">
+  <object id="531" name="Talk hackerintro" type="event" x="400" y="608" width="128" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
     <property name="act11" value="lock_controls"/>
@@ -214,7 +214,7 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="542" name="Create Monk&#10;" type="event" x="80" y="112" width="16" height="16">
+  <object id="542" name="Create Monk" type="event" x="80" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontown_monk,5,7"/>
     <property name="act2" value="npc_wander spyder_cottontown_monk"/>
@@ -222,13 +222,13 @@
     <property name="cond2" value="not variable_set dragonscavebenden:yes"/>
    </properties>
   </object>
-  <object id="543" name="Talk monk&#10;" type="event" x="96" y="128" width="16" height="16">
+  <object id="543" name="Talk monk" type="event" x="96" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cottontown_monk"/>
     <property name="behav1" value="talk spyder_cottontown_monk"/>
    </properties>
   </object>
-  <object id="544" name="Create Enforcer&#10;" type="event" x="272" y="160" width="16" height="16">
+  <object id="544" name="Create Enforcer" type="event" x="272" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_enforcer,17,10"/>
     <property name="cond1" value="not npc_exists spyder_omnichannel_enforcer"/>

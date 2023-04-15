@@ -3,12 +3,10 @@
   "accuracy": 0.8,
   "animation": "explosion_dusty_96",
   "effects": [
-    "blinded target",
+    "give status_blinded,target",
     "damage"
   ],
   "flip_axes": "",
-  "healing_power": 0,
-  "icon": "",
   "is_area": false,
   "is_fast": false,
   "potency": 0.2,

@@ -12,6 +12,14 @@
             "technique": "blossom"
         },
         {
+            "level_learned": 6,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 8,
+            "technique": "splinter"
+        },
+        {
             "level_learned": 12,
             "technique": "boulder"
         },
@@ -33,6 +41,12 @@
             "path": "standard",
             "at_level": 36,
             "monster_slug": "moloch"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "lambert",
+            "evo_stage": "basic"
         }
     ],
     "shape": "serpent",

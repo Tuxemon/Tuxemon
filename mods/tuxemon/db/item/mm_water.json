@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "type water",
-    "max_moves"
+    "is type water",
+    "is max_moves"
   ],
   "effects": [
     "learn_mm water"

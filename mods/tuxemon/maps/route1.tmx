@@ -107,6 +107,7 @@
     <property name="act10" value="random_encounter route1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_moved"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="57" name="Establish hideout" type="event" x="240" y="352" width="16" height="16">
@@ -139,6 +140,7 @@
     <property name="act10" value="random_encounter route1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_moved"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="96" name="taba battle area sign" type="event" x="880" y="560" width="16" height="16">
@@ -151,7 +153,7 @@
   </object>
   <object id="97" name="block the door" type="event" x="224" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc xerogrund1,12,14,,stand"/>
+    <property name="act1" value="create_npc xerogrund1,12,14,stand"/>
     <property name="cond1" value="not npc_exists xerogrund1"/>
    </properties>
   </object>
@@ -160,6 +162,7 @@
     <property name="act10" value="random_encounter route1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_moved"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="106" name="random battle" type="event" x="688" y="128" width="32" height="48">
@@ -167,12 +170,13 @@
     <property name="act10" value="random_encounter route1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_moved"/>
+    <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="109" name="hi rocky" type="event" x="464" y="208" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc rock,33,14,,stand"/>
-    <property name="act20" value="create_npc postboy,32,14,,stand"/>
+    <property name="act10" value="create_npc rock,33,14,stand"/>
+    <property name="act20" value="create_npc postboy,32,14,stand"/>
     <property name="act21" value="npc_face postboy,right"/>
     <property name="cond1" value="not npc_exists rock"/>
     <property name="cond2" value="not npc_exists postboy"/>
@@ -188,18 +192,18 @@
   </object>
   <object id="111" name="angry populace" type="event" x="432" y="320" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc omnigrunt,31,27,,stand"/>
-    <property name="act11" value="create_npc omnigrunt2,32,27,,stand"/>
-    <property name="act12" value="create_npc omnigrunt3,33,27,,stand"/>
-    <property name="act13" value="create_npc omnigrunt4,34,27,,stand"/>
+    <property name="act10" value="create_npc omnigrunt,31,27,stand"/>
+    <property name="act11" value="create_npc omnigrunt2,32,27,stand"/>
+    <property name="act12" value="create_npc omnigrunt3,33,27,stand"/>
+    <property name="act13" value="create_npc omnigrunt4,34,27,stand"/>
     <property name="act14" value="npc_face omnigrunt,up"/>
     <property name="act15" value="npc_face omnigrunt2,up"/>
     <property name="act16" value="npc_face omnigrunt3,up"/>
     <property name="act17" value="npc_face omnigrunt4,up"/>
-    <property name="act20" value="create_npc liela,31,26,,stand"/>
-    <property name="act21" value="create_npc bob,32,26,,stand"/>
-    <property name="act22" value="create_npc marissa,33,26,,stand"/>
-    <property name="act23" value="create_npc tuxemart_keeper,34,26,,stand"/>
+    <property name="act20" value="create_npc liela,31,26,stand"/>
+    <property name="act21" value="create_npc bob,32,26,stand"/>
+    <property name="act22" value="create_npc marissa,33,26,stand"/>
+    <property name="act23" value="create_npc tuxemart_keeper,34,26,stand"/>
     <property name="cond1" value="not variable_set letusthrough:no"/>
     <property name="cond2" value="not variable_set letusthrough:almost"/>
    </properties>
@@ -245,7 +249,7 @@
     <property name="act14" value="npc_face tuxemart_keeper,up"/>
     <property name="act15" value="npc_face marissa,up"/>
     <property name="act16" value="set_variable theyrehere:yes"/>
-    <property name="act17" value="create_npc misa,33,20,,stand"/>
+    <property name="act17" value="create_npc misa,33,20,stand"/>
     <property name="act18" value="npc_move misa,down 3"/>
     <property name="act98" value="set_variable letusthrough:almost"/>
     <property name="act99" value="set_variable whoartthou:florist"/>
@@ -254,7 +258,7 @@
   </object>
   <object id="114" name="xero grunt" type="event" x="432" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc xerogrunt1,34,19,,stand"/>
+    <property name="act1" value="create_npc xerogrunt1,34,19,stand"/>
     <property name="act2" value="npc_move xerogrunt1,down 3"/>
     <property name="cond1" value="is variable_set theyrehere:yes"/>
     <property name="cond2" value="not npc_exists xerogrunt1"/>
@@ -263,7 +267,7 @@
   </object>
   <object id="115" name="xero grunt2" type="event" x="432" y="288" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc xerogrunt2,32,19,,stand"/>
+    <property name="act1" value="create_npc xerogrunt2,32,19,stand"/>
     <property name="act2" value="npc_move xerogrunt2,down 3"/>
     <property name="cond1" value="is variable_set theyrehere:yes"/>
     <property name="cond2" value="not npc_exists xerogrunt2"/>
@@ -378,7 +382,7 @@
    <properties>
     <property name="act10" value="lock_controls"/>
     <property name="act11" value="translated_dialog nobodygetsthrough"/>
-    <property name="act12" value="add_monster aardorn,2,omnigrunt,27,10"/>
+    <property name="act12" value="add_monster aardorn,2,omnigrunt,80,10"/>
     <property name="act20" value="start_battle omnigrunt"/>
     <property name="act21" value="wait 1.5"/>
     <property name="act30" value="set_variable whoartthou:done"/>
@@ -417,7 +421,7 @@
     <property name="act30" value="translated_dialog ohaimisa"/>
     <property name="act31" value="npc_face player,down"/>
     <property name="act32" value="npc_face misa,down"/>
-    <property name="act33" value="create_npc kyle,32,32,,stand"/>
+    <property name="act33" value="create_npc kyle,32,32,stand"/>
     <property name="act34" value="npc_face kyle,up"/>
     <property name="act35" value="pathfind omnigrunt2,31,28"/>
     <property name="act36" value="pathfind kyle,32,27"/>
@@ -647,7 +651,7 @@
   </object>
   <object id="141" name="omnigrunt4" type="event" x="400" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc omnigrunt4,34,26,,stand"/>
+    <property name="act1" value="create_npc omnigrunt4,34,26,stand"/>
     <property name="act2" value="npc_face omnigrunt4,down"/>
     <property name="cond1" value="not npc_exists omnigrunt4"/>
    </properties>
@@ -665,10 +669,10 @@
   <object id="144" name="gym time" type="event" x="736" y="432" width="16" height="208">
    <properties>
     <property name="act10" value="lock_controls"/>
-    <property name="act11" value="create_npc christie,55,37,,stand"/>
+    <property name="act11" value="create_npc christie,55,37,stand"/>
     <property name="act12" value="npc_face christie,up"/>
-    <property name="act13" value="create_npc kyle,54,33,,stand"/>
-    <property name="act14" value="create_npc speck,54,37,,stand"/>
+    <property name="act13" value="create_npc kyle,54,33,stand"/>
+    <property name="act14" value="create_npc speck,54,37,stand"/>
     <property name="act15" value="npc_face speck,up"/>
     <property name="act16" value="translated_dialog welcometotaba"/>
     <property name="act17" value="npc_move player,right 3"/>
@@ -825,6 +829,13 @@
     <property name="act32" value="unlock_controls"/>
     <property name="act33" value="set_variable christieknows:gone"/>
     <property name="cond1" value="is variable_set christieknows:stop"/>
+   </properties>
+  </object>
+  <object id="153" name="enter the battle area" type="event" x="864" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_foyer.tmx,2,9,0.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

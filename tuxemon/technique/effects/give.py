@@ -10,33 +10,35 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 
-class FocusedEffectResult(TechEffectResult):
+class GiveEffectResult(TechEffectResult):
     pass
 
 
 @dataclass
-class FocusedEffect(TechEffect):
+class GiveEffect(TechEffect):
     """
-    This effect has a chance to apply the focused status effect.
+    This effect has a chance to give a status effect.
     """
 
-    name = "focused"
+    name = "give"
+    condition: str
     objective: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> FocusedEffectResult:
+    ) -> GiveEffectResult:
         player = self.session.player
         potency = random.random()
         value = float(player.game_variables["random_tech_hit"])
-        obj = self.objective
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
-            tech = Technique("status_focused")
-            if obj == "user":
-                user.apply_status(tech)
-            elif obj == "target":
-                target.apply_status(tech)
+            status = Technique()
+            status.load(self.condition)
+            status.link = user
+            if self.objective == "user":
+                user.apply_status(status)
+            elif self.objective == "target":
+                target.apply_status(status)
             return {"success": True}
 
         return {"success": False}

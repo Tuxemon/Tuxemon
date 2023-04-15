@@ -24,7 +24,7 @@
             "technique": "muddle"
         },
         {
-            "level_learned": 10,
+            "level_learned": 12,
             "technique": "bubble_trap"
         },
         {
@@ -41,6 +41,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "nut",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "bolt",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "humanoid",
     "stage": "stage2",
     "types": [

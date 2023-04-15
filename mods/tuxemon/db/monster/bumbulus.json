@@ -53,8 +53,9 @@
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "blob",
-    "stage": "standalone",
+    "stage": "basic",
     "types": [
         "water"
     ],

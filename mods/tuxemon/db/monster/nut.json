@@ -12,8 +12,16 @@
             "technique": "static_field"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "shuriken"
+        },
+        {
+            "level_learned": 6,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 8,
+            "technique": "muddle"
         }
     ],
     "evolutions": [
@@ -21,6 +29,16 @@
             "path": "standard",
             "at_level": 9,
             "monster_slug": "bolt"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "bolt",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "arthrobolt",
+            "evo_stage": "stage2"
         }
     ],
     "shape": "blob",

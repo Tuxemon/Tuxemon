@@ -2,11 +2,11 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Callable
+from typing import Callable, List
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.baseimage import POSITION_CENTER
+from pygame_menu.locals import POSITION_CENTER
 
 from tuxemon import formula, prepare, tools
 from tuxemon.db import OutputBattle, SeenStatus, db
@@ -59,7 +59,7 @@ class PlayerState(PygameMenuState):
         tuxepedia = list(player.tuxepedia.values())
         caught = tuxepedia.count(SeenStatus.caught)
         seen = tuxepedia.count(SeenStatus.seen) + caught
-        percentage = formula.sync(player, seen, len(filters))
+        percentage = round((seen / len(filters)) * 100, 1)
 
         msg_progress = T.format(
             "tuxepedia_progress", {"value": str(percentage)}
@@ -121,71 +121,87 @@ class PlayerState(PygameMenuState):
         )
         # name
         menu._auto_centering = False
-        menu.add.label(
+        lab1 = menu.add.label(
             title=name,
             label_id="name",
             font_size=30,
             align=locals.ALIGN_LEFT,
             underline=True,
             float=True,
-        ).translate(fix_width(width, 0.45), fix_height(height, 0.15))
+        )
+        assert not isinstance(lab1, List)
+        lab1.translate(fix_width(width, 0.45), fix_height(height, 0.15))
         # money
         money = player.money["player"]
-        menu.add.label(
+        lab2 = menu.add.label(
             title=T.translate("wallet") + ": " + str(money),
             label_id="money",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.45), fix_height(height, 0.25))
+        )
+        assert not isinstance(lab2, List)
+        lab2.translate(fix_width(width, 0.45), fix_height(height, 0.25))
         # seen
-        menu.add.label(
+        lab3 = menu.add.label(
             title=msg_seen,
             label_id="seen",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.45), fix_height(height, 0.30))
+        )
+        assert not isinstance(lab3, List)
+        lab3.translate(fix_width(width, 0.45), fix_height(height, 0.30))
         # caught
-        menu.add.label(
+        lab4 = menu.add.label(
             title=msg_caught,
             label_id="caught",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.45), fix_height(height, 0.35))
+        )
+        assert not isinstance(lab4, List)
+        lab4.translate(fix_width(width, 0.45), fix_height(height, 0.35))
         # begin adventure
-        menu.add.label(
+        lab5 = menu.add.label(
             title=msg_begin,
             label_id="begin",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.45), fix_height(height, 0.40))
+        )
+        assert not isinstance(lab5, List)
+        lab5.translate(fix_width(width, 0.45), fix_height(height, 0.40))
         # walked
-        menu.add.label(
+        lab6 = menu.add.label(
             title=msg_walked,
             label_id="walked",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.45), fix_height(height, 0.45))
+        )
+        assert not isinstance(lab6, List)
+        lab6.translate(fix_width(width, 0.45), fix_height(height, 0.45))
         # battles
-        menu.add.label(
+        lab7 = menu.add.label(
             title=msg_battles,
             label_id="battle",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.45), fix_height(height, 0.50))
+        )
+        assert not isinstance(lab7, List)
+        lab7.translate(fix_width(width, 0.45), fix_height(height, 0.50))
         # % tuxepedia
-        menu.add.label(
+        lab8 = menu.add.label(
             title=msg_progress,
             label_id="progress",
             font_size=15,
             align=locals.ALIGN_LEFT,
             float=True,
-        ).translate(fix_width(width, 0.45), fix_height(height, 0.10))
+        )
+        assert not isinstance(lab8, List)
+        lab8.translate(fix_width(width, 0.45), fix_height(height, 0.10))
         # image
         combat_front = ""
         for ele in player.template:

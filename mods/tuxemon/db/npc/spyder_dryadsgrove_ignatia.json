@@ -6,31 +6,5 @@
       "combat_front": "firenymph",
       "slug": "firenymph"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Vivicinder",
-      "level": 50,
-      "slug": "vivicinder",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Masknake",
-      "level": 50,
-      "slug": "masknake",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Criniotherme",
-      "level": 50,
-      "slug": "criniotherme",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

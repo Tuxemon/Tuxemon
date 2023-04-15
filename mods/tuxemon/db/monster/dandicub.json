@@ -12,6 +12,14 @@
             "technique": "overgrowth"
         },
         {
+            "level_learned": 6,
+            "technique": "sylvan"
+        },
+        {
+            "level_learned": 8,
+            "technique": "fester"
+        },
+        {
             "level_learned": 12,
             "technique": "sleeping_powder"
         }
@@ -21,6 +29,12 @@
             "path": "standard",
             "at_level": 18,
             "monster_slug": "dandylion"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "dandylion",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "blob",

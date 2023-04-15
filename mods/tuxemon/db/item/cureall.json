@@ -1,15 +1,16 @@
 {
   "battle_menu": "monster",
   "conditions": [
-    "current_hp <,1.0",
-    "current_hp >,0"
+    "is current_hp <,1.0",
+    "is current_hp >,0"
   ],
   "effects": [
-    "heal 20"
+    "heal 1.0",
+    "restore"
   ],
-  "slug": "apple",
-  "sort": "food",
-  "sprite": "gfx/items/apple.png",
+  "slug": "cureall",
+  "sort": "potion",
+  "sprite": "gfx/items/orange.png",
   "target": {
     "enemy monster": 1,
     "enemy team": 0,
@@ -19,7 +20,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "category": "edible",
+  "category": "potion",
   "type": "Consumable",
   "usable_in": [
     "MainCombatMenuState",

@@ -24,7 +24,7 @@
             "technique": "muddle"
         },
         {
-            "level_learned": 10,
+            "level_learned": 12,
             "technique": "bubble_trap"
         }
     ],
@@ -33,6 +33,12 @@
             "path": "standard",
             "at_level": 12,
             "monster_slug": "arthrobolt"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "nut",
+            "evo_stage": "basic"
         }
     ],
     "shape": "blob",

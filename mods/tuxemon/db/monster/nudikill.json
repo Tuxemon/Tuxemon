@@ -12,6 +12,14 @@
             "technique": "feint"
         },
         {
+            "level_learned": 6,
+            "technique": "muck"
+        },
+        {
+            "level_learned": 8,
+            "technique": "fiery"
+        },
+        {
             "level_learned": 12,
             "technique": "flood"
         },
@@ -29,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "nudiflot_male",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "polliwog",
     "stage": "stage1",
     "types": [

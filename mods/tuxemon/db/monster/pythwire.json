@@ -12,6 +12,14 @@
             "technique": "surge"
         },
         {
+            "level_learned": 6,
+            "technique": "viper"
+        },
+        {
+            "level_learned": 8,
+            "technique": "radiance"
+        },
+        {
             "level_learned": 12,
             "technique": "constrict"
         }
@@ -28,6 +36,16 @@
             "at_level": 0,
             "monster_slug": "sockeserp",
             "item": "metal_booster"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "ouroboutlet",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "sockeserp",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "serpent",

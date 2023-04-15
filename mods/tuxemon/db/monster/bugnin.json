@@ -24,8 +24,12 @@
             "technique": "peregrine"
         },
         {
-            "level_learned": 10,
+            "level_learned": 12,
             "technique": "sting"
+        },
+        {
+            "level_learned": 16,
+            "technique": "undertaker"
         },
         {
             "level_learned": 20,
@@ -41,6 +45,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "katapill",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "katacoon",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "brute",
     "stage": "stage2",
     "types": [

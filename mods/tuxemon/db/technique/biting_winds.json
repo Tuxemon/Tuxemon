@@ -3,12 +3,10 @@
   "accuracy": 0.8,
   "animation": "explosion_ice_112",
   "effects": [
-    "softened target",
+    "give status_softened,target",
     "damage"
   ],
   "flip_axes": "",
-  "healing_power": 0,
-  "icon": "",
   "is_area": false,
   "is_fast": false,
   "potency": 1,

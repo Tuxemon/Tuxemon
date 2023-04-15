@@ -6,15 +6,5 @@
       "combat_front": "nurse",
       "slug": "nurse"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Cateye",
-      "level": 22,
-      "slug": "cateye",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

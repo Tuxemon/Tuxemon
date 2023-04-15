@@ -26,6 +26,10 @@
         {
             "level_learned": 10,
             "technique": "blade"
+        },
+        {
+            "level_learned": 12,
+            "technique": "viper"
         }
     ],
     "evolutions": [
@@ -33,6 +37,12 @@
             "path": "standard",
             "at_level": 12,
             "monster_slug": "weavifly"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "cataspike",
+            "evo_stage": "basic"
         }
     ],
     "shape": "blob",

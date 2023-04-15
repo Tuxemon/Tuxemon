@@ -2,7 +2,7 @@
   "animation": "drip_green",
   "category": "negative",
 	"conditions": [
-	  	"current_hp >,0"
+	  	"is current_hp >,0"
 	],
   "effects": [
     "lifeleech"
@@ -10,8 +10,8 @@
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_lifeleech.png",
   "range": "special",
-  "repl_pos": "replace",
-  "repl_neg": "replace",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
   "sfx": "sfx_bite",
   "slug": "status_lifeleech",
   "sort": "meta",

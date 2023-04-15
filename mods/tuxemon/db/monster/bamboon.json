@@ -12,6 +12,14 @@
             "technique": "clamp_on"
         },
         {
+            "level_learned": 6,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 8,
+            "technique": "stabilo"
+        },
+        {
             "level_learned": 12,
             "technique": "ram"
         },
@@ -29,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "budaye",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "sprite",
     "stage": "stage1",
     "types": [

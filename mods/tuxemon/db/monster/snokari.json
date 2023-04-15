@@ -12,6 +12,14 @@
             "technique": "biting_winds"
         },
         {
+            "level_learned": 6,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 8,
+            "technique": "flood"
+        },
+        {
             "level_learned": 12,
             "technique": "midnight_mantle"
         },
@@ -29,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "snaki",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

@@ -67,7 +67,7 @@
     <property name="act1" value="pathfind professor,9,9"/>
     <property name="act2" value="npc_face professor,up"/>
     <property name="act3" value="translated_dialog chooseyerfateRockitten"/>
-    <property name="act4" value="translated_dialog_choice yes:no,rockittenchoice "/>
+    <property name="act4" value="translated_dialog_choice yes:no,rockittenchoice"/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is player_facing down"/>
@@ -81,7 +81,7 @@
     <property name="act1" value="pathfind professor,10,9"/>
     <property name="act2" value="npc_face professor,up"/>
     <property name="act3" value="translated_dialog chooseyerfateCardiling"/>
-    <property name="act4" value="translated_dialog_choice yes:no,cardilingchoice "/>
+    <property name="act4" value="translated_dialog_choice yes:no,cardilingchoice"/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is player_facing down"/>
@@ -107,7 +107,7 @@
   <object id="93" name="Player Spawn" type="event" x="96" y="240" width="16" height="16"/>
   <object id="95" name="createprofessor" type="event" x="0" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc professor,4,6,,stand"/>
+    <property name="act1" value="create_npc professor,4,6,stand"/>
     <property name="act2" value="npc_face professor,up"/>
     <property name="cond1" value="is variable_set go_get_tuxemon:yes"/>
     <property name="cond2" value="not npc_exists professor"/>
@@ -349,7 +349,7 @@
     <property name="act03" value="set_monster_status"/>
     <property name="act04" value="lock_controls"/>
     <property name="act10" value="translated_dialog yahaha"/>
-    <property name="act20" value="create_npc allie,6,15,,stand"/>
+    <property name="act20" value="create_npc allie,6,15,stand"/>
     <property name="act30" value="pathfind allie,4,8"/>
     <property name="act40" value="npc_face allie, right"/>
     <property name="act50" value="wait 0.7"/>
@@ -382,8 +382,8 @@
   </object>
   <object id="119" name="shesarrived3" type="event" x="192" y="192" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc knight1,7,15,,stand"/>
-    <property name="act20" value="create_npc knight2,7,16,,stand"/>
+    <property name="act10" value="create_npc knight1,7,15,stand"/>
+    <property name="act20" value="create_npc knight2,7,16,stand"/>
     <property name="act30" value="pathfind knight1,5,7"/>
     <property name="act40" value="pathfind knight2,7,7"/>
     <property name="act50" value="npc_face knight1,down"/>

@@ -12,6 +12,14 @@
             "technique": "boulder"
         },
         {
+            "level_learned": 6,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 8,
+            "technique": "assault"
+        },
+        {
             "level_learned": 12,
             "technique": "thunderball"
         },
@@ -33,6 +41,12 @@
             "path": "standard",
             "at_level": 36,
             "monster_slug": "jemuar"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "rockitten",
+            "evo_stage": "basic"
         }
     ],
     "shape": "hunter",

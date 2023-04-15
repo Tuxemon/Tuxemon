@@ -12,6 +12,14 @@
             "technique": "sand_spray"
         },
         {
+            "level_learned": 6,
+            "technique": "touch"
+        },
+        {
+            "level_learned": 8,
+            "technique": "stonehenge"
+        },
+        {
             "level_learned": 12,
             "technique": "avalanche"
         },
@@ -29,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "grintot",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "brute",
     "stage": "stage1",
     "types": [

@@ -12,6 +12,14 @@
             "technique": "biting_winds"
         },
         {
+            "level_learned": 6,
+            "technique": "shapechange"
+        },
+        {
+            "level_learned": 8,
+            "technique": "fiery"
+        },
+        {
             "level_learned": 12,
             "technique": "fume"
         },
@@ -41,6 +49,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "elofly",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "elowind",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "flier",
     "stage": "stage2",
     "types": [

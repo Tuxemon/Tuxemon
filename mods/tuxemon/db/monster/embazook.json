@@ -12,6 +12,14 @@
             "technique": "boulder"
         },
         {
+            "level_learned": 6,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 8,
+            "technique": "fire_claw"
+        },
+        {
             "level_learned": 12,
             "technique": "static_field"
         },
@@ -29,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "ignibus",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "polliwog",
     "stage": "stage1",
     "types": [

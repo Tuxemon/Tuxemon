@@ -12,6 +12,14 @@
             "technique": "shrapnel"
         },
         {
+            "level_learned": 6,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 8,
+            "technique": "muddle"
+        },
+        {
             "level_learned": 12,
             "technique": "wall_of_steel"
         }
@@ -21,6 +29,12 @@
             "path": "standard",
             "at_level": 18,
             "monster_slug": "windeye"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "windeye",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "sprite",

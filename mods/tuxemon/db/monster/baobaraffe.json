@@ -12,6 +12,18 @@
             "technique": "sting"
         },
         {
+            "level_learned": 6,
+            "technique": "negation"
+        },
+        {
+            "level_learned": 8,
+            "technique": "clairaudience"
+        },
+        {
+            "level_learned": 12,
+            "technique": "overfeed"
+        },
+        {
             "level_learned": 16,
             "technique": "invictus"
         },
@@ -29,6 +41,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "baoby",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "landrace",
     "stage": "stage1",
     "types": [

@@ -12,6 +12,18 @@
             "technique": "web"
         },
         {
+            "level_learned": 6,
+            "technique": "maori"
+        },
+        {
+            "level_learned": 8,
+            "technique": "negation"
+        },
+        {
+            "level_learned": 12,
+            "technique": "overfeed"
+        },
+        {
             "level_learned": 16,
             "technique": "hibernate"
         },
@@ -33,6 +45,12 @@
             "path": "standard",
             "at_level": 54,
             "monster_slug": "dragarbor"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "chloragon",
+            "evo_stage": "basic"
         }
     ],
     "shape": "dragon",

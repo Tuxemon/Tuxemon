@@ -6,31 +6,5 @@
       "combat_front": "fashionista",
       "slug": "fashionista"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Viviphyta",
-      "level": 40,
-      "slug": "viviphyta",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Eyesore",
-      "level": 40,
-      "slug": "eyesore",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Cardinale",
-      "level": 40,
-      "slug": "cardinale",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

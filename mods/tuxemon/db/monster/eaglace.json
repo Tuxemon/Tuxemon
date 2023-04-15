@@ -12,6 +12,14 @@
             "technique": "flow"
         },
         {
+            "level_learned": 6,
+            "technique": "orbs"
+        },
+        {
+            "level_learned": 8,
+            "technique": "poison_courtship"
+        },
+        {
             "level_learned": 12,
             "technique": "energy_field"
         },
@@ -41,6 +49,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "tweesher",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "heronquak",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "flier",
     "stage": "stage2",
     "types": [

@@ -24,7 +24,7 @@
             "technique": "peregrine"
         },
         {
-            "level_learned": 10,
+            "level_learned": 12,
             "technique": "sting"
         }
     ],
@@ -42,6 +42,12 @@
             "monster_slug": "sumchon",
             "stat1": "armour",
             "stat2": "melee"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "katapill",
+            "evo_stage": "basic"
         }
     ],
     "shape": "grub",

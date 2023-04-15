@@ -12,6 +12,14 @@
             "technique": "shadow_boxing"
         },
         {
+            "level_learned": 6,
+            "technique": "quicksand"
+        },
+        {
+            "level_learned": 8,
+            "technique": "fledgling"
+        },
+        {
             "level_learned": 12,
             "technique": "one_two"
         },
@@ -29,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "squabbit",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "varmint",
     "stage": "stage1",
     "types": [

@@ -12,6 +12,14 @@
             "technique": "fire_claw"
         },
         {
+            "level_learned": 6,
+            "technique": "gust"
+        },
+        {
+            "level_learned": 8,
+            "technique": "breathe_fire"
+        },
+        {
             "level_learned": 12,
             "technique": "all_in"
         }
@@ -21,6 +29,12 @@
             "path": "standard",
             "at_level": 18,
             "monster_slug": "criniotherme"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "criniotherme",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "hunter",

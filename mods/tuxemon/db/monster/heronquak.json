@@ -12,6 +12,14 @@
             "technique": "flow"
         },
         {
+            "level_learned": 6,
+            "technique": "orbs"
+        },
+        {
+            "level_learned": 8,
+            "technique": "poison_courtship"
+        },
+        {
             "level_learned": 12,
             "technique": "energy_field"
         },
@@ -33,6 +41,12 @@
             "path": "standard",
             "at_level": 36,
             "monster_slug": "eaglace"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "tweesher",
+            "evo_stage": "basic"
         }
     ],
     "shape": "flier",

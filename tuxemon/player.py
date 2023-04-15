@@ -51,6 +51,9 @@ class Player(NPC):
         diff_y = abs(after.y - before.y)
 
         self.game_variables["steps"] += diff_x + diff_y
+        # monster steps
+        for mon in self.monsters:
+            mon.steps += diff_x + diff_y
         """
         %H - Hour 00-23
         %j - Day number of year 001-366

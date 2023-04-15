@@ -46,6 +46,8 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "capture_device",
     "height",
     "weight",
+    "steps",
+    "bonding",
     "taste_cold",
     "taste_warm",
 )
@@ -228,6 +230,8 @@ class Monster:
         self.taste_cold = TasteCold.tasteless
         self.taste_warm = TasteWarm.tasteless
 
+        self.steps = 0.0
+        self.bonding = 25
         self.max_moves = MAX_MOVES
         self.txmn_id = 0
         self.capture = 0

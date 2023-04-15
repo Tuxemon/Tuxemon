@@ -2,7 +2,7 @@
   "slug": "spyder_dojo_yangchen",
   "template": [
     {
-      "sprite_name": "monk",
+      "sprite_name": "monk_blue",
       "combat_front": "monk",
       "slug": "monk"
     }

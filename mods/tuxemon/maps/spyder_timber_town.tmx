@@ -331,6 +331,8 @@
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
   <object id="365" name="Surfboard" type="event" x="272" y="320" width="16" height="16">
    <properties>
     <property name="act01" value="player_stop"/>

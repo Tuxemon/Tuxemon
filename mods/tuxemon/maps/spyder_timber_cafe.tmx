@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="36">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="40">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -22,7 +22,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYKAt4JJnYABhbiDmAeJ5ihD7XgHZ2IAmUByEtYBYG4j3QtVjU4tN7A4B9T+A8j+B+BcU/0ZXD+Kji2GzCCjGBFT3QI6B4SEQM+LSg2QeSP1/oFoGoL+wqSfKPCS3EDIPSSmcyafAwADC5IClQE3LgHg5VPM2oF8AtBMWHw==
+   eAFjYKAtUJZnYFABYm4g5gHieYoQ+14B2diAE1DcGYi1gFgbiPdC1WNTi03sDgH1P4DyP4H4FxT/RlcP4qOLYbMIKMYEVPdAjoHhIRAz4tKDZB5I/X+gWgagv7CpJ8o8JLcQMg9JKZzJp8DAAMLkgKVATcuAeDlU8zagXwBpAhaF
   </data>
  </layer>
  <layer id="4" name="Above Player" width="12" height="12">
@@ -65,6 +65,42 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_magician_timber"/>
     <property name="behav1" value="talk spyder_magician"/>
+   </properties>
+  </object>
+  <object id="36" name="Create Owner" type="event" x="16" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontown_barmaid,1,4"/>
+    <property name="cond1" value="not npc_exists spyder_cottontown_barmaid"/>
+   </properties>
+  </object>
+  <object id="37" name="Talk Barmaid" type="event" x="16" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cottoncafe_barmaid"/>
+    <property name="act2" value="translated_dialog_choice yes:no,chooses"/>
+    <property name="cond4" value="is player_facing_tile"/>
+    <property name="cond5" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="38" name="Heal Tuxemon" type="event" x="0" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="act20" value="translated_dialog okaythen"/>
+    <property name="act30" value="npc_face spyder_cottontown_barmaid,up"/>
+    <property name="act40" value="wait 1"/>
+    <property name="act50" value="npc_face spyder_cottontown_barmaid,down"/>
+    <property name="act60" value="translated_dialog okaythen2"/>
+    <property name="act70" value="set_variable chooses:none"/>
+    <property name="act80" value="set_variable teleport_faint:spyder_timber_cafe.tmx 1 10"/>
+    <property name="cond1" value="is variable_set chooses:yes"/>
+   </properties>
+  </object>
+  <object id="39" name="Auto Healing Teleported" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="act3" value="set_variable teleport_clinic:none"/>
+    <property name="cond1" value="is variable_set teleport_clinic:lost"/>
    </properties>
   </object>
  </objectgroup>

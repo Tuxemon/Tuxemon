@@ -7,7 +7,7 @@
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_exhausted.png",
   "range": "special",
-  "repl_neg": "replace",
+  "repl_neg": "replaced",
   "sfx": "sfx_pulse",
   "slug": "status_exhausted",
   "sort": "meta",

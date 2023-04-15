@@ -3,12 +3,10 @@
   "accuracy": 0.8,
   "animation": "constantburn",
   "effects": [
-    "enraged user",
+    "give status_enraged,user",
     "damage"
   ],
   "flip_axes": "",
-  "healing_power": 0,
-  "icon": "",
   "is_area": false,
   "is_fast": false,
   "potency": 1,

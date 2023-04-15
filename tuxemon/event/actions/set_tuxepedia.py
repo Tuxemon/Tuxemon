@@ -27,14 +27,28 @@ class SetTuxepediaAction(EventAction):
     """
 
     name = "set_tuxepedia"
-    monster_key: str
-    monster_str: str
+    monster_slug: str
+    status: str
 
     def start(self) -> None:
         player = self.session.player.tuxepedia
+        caught = []
+        seen = []
+        for key, value in player.items():
+            if value == SeenStatus.seen:
+                seen.append(key)
+            if value == SeenStatus.caught:
+                caught.append(key)
 
         # Append the tuxepedia with a key
-        if self.monster_str == "caught":
-            player[str(self.monster_key)] = SeenStatus.caught
-        elif self.monster_str == "seen":
-            player[str(self.monster_key)] = SeenStatus.seen
+        if self.status == SeenStatus.caught:
+            if self.monster_slug not in caught:
+                player[str(self.monster_slug)] = SeenStatus.caught
+        elif self.status == SeenStatus.seen:
+            # to avoid setting seen a monster caught
+            if self.monster_slug in caught:
+                return
+            else:
+                player[str(self.monster_slug)] = SeenStatus.seen
+        else:
+            raise ValueError(f"{self.status} must be caught or seen")

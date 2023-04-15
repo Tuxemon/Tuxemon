@@ -19,7 +19,7 @@ class HasStatusCondition(ItemCondition):
     Example:
     "conditions": [
         "is has_status"
-        "is has_status"
+        "is has_status status_xxx"
     ],
 
     """

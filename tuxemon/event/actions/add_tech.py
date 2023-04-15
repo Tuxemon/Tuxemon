@@ -6,6 +6,7 @@ import uuid
 from dataclasses import dataclass
 from typing import Union, final
 
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.technique.technique import Technique
 
@@ -19,7 +20,7 @@ class AddTechAction(EventAction):
     Script usage:
         .. code-block::
 
-            add_tech <monster_id>,<technique>[,power][,potency][,accuracy]
+            add_tech <monster_id>,<technique>[,power][,potency][,accuracy][,npc_slug]
 
     Script parameters:
         monster_id: Id of the monster (name of the variable).
@@ -27,6 +28,7 @@ class AddTechAction(EventAction):
         power: Power between 0.0 and 3.0
         potency: Potency between 0.0 and 1.0
         accuracy: Accuracy between 0.0 and 1.0
+        npc_slug: npc slug name (e.g. "npc_maple") - default "player"
 
     """
 
@@ -36,13 +38,20 @@ class AddTechAction(EventAction):
     power: Union[float, None] = None
     potency: Union[float, None] = None
     accuracy: Union[float, None] = None
+    npc_slug: Union[str, None] = None
 
     def start(self) -> None:
         player = self.session.player
+        if self.npc_slug is None:
+            trainer_slug = "player"
+        else:
+            trainer_slug = self.npc_slug
+        trainer = get_npc(self.session, trainer_slug)
+        assert trainer
         instance_id = uuid.UUID(
             player.game_variables[self.monster_id],
         )
-        monster = player.find_monster_by_id(instance_id)
+        monster = trainer.find_monster_by_id(instance_id)
         if monster is None:
             raise ValueError(
                 f"No monster found with instance_id {instance_id}",

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="29">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="34">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -128,9 +128,10 @@
     <property name="act04" value="pathfind_to_player spyder_dojo_billie,down"/>
     <property name="act05" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_dojo_billie1"/>
-    <property name="act20" value="add_monster eyesore,35,spyder_dojo_billie,27,10"/>
-    <property name="act21" value="add_monster cardiwing,35,spyder_dojo_billie,27,10"/>
-    <property name="act22" value="add_monster viviphyta,35,spyder_dojo_billie,27,10"/>
+    <property name="act20" value="add_monster billie_choice,35,spyder_dojo_billie,27,10"/>
+    <property name="act21" value="add_monster eyesore,35,spyder_dojo_billie,27,10"/>
+    <property name="act22" value="add_monster cardiwing,35,spyder_dojo_billie,27,10"/>
+    <property name="act23" value="add_monster viviphyta,35,spyder_dojo_billie,27,10"/>
     <property name="act30" value="start_battle spyder_dojo_billie"/>
     <property name="act40" value="translated_dialog spyder_dojo_billie2"/>
     <property name="act50" value="pathfind spyder_dojo_billie,10,9"/>
@@ -147,6 +148,36 @@
     <property name="cond1" value="not variable_set dojobillie:yes"/>
     <property name="cond2" value="is variable_set dojothrimonster:yes"/>
     <property name="cond3" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="29" name="Billie Budaye" type="event" x="0" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:bamboon"/>
+    <property name="cond1" value="is variable_set billie_choice:budaye"/>
+   </properties>
+  </object>
+  <object id="30" name="Billie Dollfin" type="event" x="16" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:bigfin"/>
+    <property name="cond1" value="is variable_set billie_choice:dollfin"/>
+   </properties>
+  </object>
+  <object id="31" name="Billie Grintot" type="event" x="32" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:grintrock"/>
+    <property name="cond1" value="is variable_set billie_choice:grintot"/>
+   </properties>
+  </object>
+  <object id="32" name="Billie Ignibus" type="event" x="48" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:eruptibus"/>
+    <property name="cond1" value="is variable_set billie_choice:ignibus"/>
+   </properties>
+  </object>
+  <object id="33" name="Billie Memnomnom" type="event" x="64" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:miaownolith"/>
+    <property name="cond1" value="is variable_set billie_choice:memnomnom"/>
    </properties>
   </object>
  </objectgroup>

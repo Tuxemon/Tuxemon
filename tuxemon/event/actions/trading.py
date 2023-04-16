@@ -37,9 +37,9 @@ class TradingAction(EventAction):
 
     def set_var(self, menu_item: MenuItem[Monster]) -> None:
         if menu_item.game_object.slug == self.remove:
-            self.player.game_variables[
-                "trading_monster"
-            ] = menu_item.game_object.instance_id.hex
+            self.player.game_variables["trading_monster"] = str(
+                menu_item.game_object.instance_id.hex
+            )
             self.switch_monster()
 
     def switch_monster(self) -> None:

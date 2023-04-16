@@ -39,10 +39,11 @@ class RestoreEffect(ItemEffect):
                     for ele in target.status
                     if ele.category == self.category
                 ]
+                # removes negative or positive statuses
                 if checking:
-                    return True
+                    target.status.clear()
                 else:
-                    return False
+                    pass
             else:
                 raise ValueError(
                     f"{self.category} must be positive or negative."

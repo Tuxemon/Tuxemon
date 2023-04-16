@@ -3,6 +3,7 @@
   "accuracy": 0.3,
   "animation": "meltdown",
   "effects": [
+    "give status_festering,target",
     "damage"
   ],
   "flip_axes": "",

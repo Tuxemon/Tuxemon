@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Union
 
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.monster import Monster
@@ -20,32 +19,15 @@ class HasStatusCondition(ItemCondition):
     Example:
     "conditions": [
         "is has_status"
-        "is has_status"
+        "is has_status status_xxx"
     ],
 
     """
 
     name = "has_status"
-    category: Union[str, None] = None
 
     def test(self, target: Monster) -> bool:
-        if self.category:
-            if self.category == "positive" or self.category == "negative":
-                checking = [
-                    ele
-                    for ele in target.status
-                    if ele.category == self.category
-                ]
-                if checking:
-                    return True
-                else:
-                    return False
-            else:
-                raise ValueError(
-                    f"{self.category} must be positive or negative"
-                )
+        if target.status:
+            return True
         else:
-            if target.status:
-                return True
-            else:
-                return False
+            return False

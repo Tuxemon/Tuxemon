@@ -38,4 +38,6 @@ class GetPartyMonsterAction(EventAction):
         assert trainer
         for mon in trainer.monsters:
             index = trainer.monsters.index(mon)
-            player.game_variables[f"iid_slot_{index}"] = mon.instance_id.hex
+            player.game_variables[f"iid_slot_{index}"] = str(
+                mon.instance_id.hex
+            )

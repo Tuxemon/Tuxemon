@@ -25,24 +25,34 @@ class HealingEffect(TechEffect):
     """
 
     name = "healing"
+    objective: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> HealingEffectResult:
+        mon: Monster
         heal: int = 0
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
+        # define user or target
+        if self.objective == "user":
+            mon = user
+        elif self.objective == "target":
+            mon = target
+        else:
+            raise ValueError(f"{self.objective} must be user or target")
+        # check healing power
         if isinstance(tech.healing_power, int):
-            heal = (7 + user.level) * tech.healing_power
-        diff = user.hp - user.current_hp
+            heal = (7 + mon.level) * tech.healing_power
+        diff = mon.hp - mon.current_hp
         if hit:
             tech.advance_counter_success()
             if diff > 0:
                 if heal >= diff:
-                    user.current_hp = user.hp
+                    mon.current_hp = mon.hp
                 else:
-                    user.current_hp += heal
+                    mon.current_hp += heal
                 return {"success": True}
             else:
                 return {"success": False}

@@ -4,7 +4,7 @@
   "animation": "disintegrate_83",
   "effects": [
     "damage",
-    "healing"
+    "healing user"
   ],
   "flip_axes": "",
   "healing_power": 4,

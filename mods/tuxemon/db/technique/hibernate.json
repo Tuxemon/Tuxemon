@@ -4,7 +4,7 @@
   "animation": null,
   "effects": [
     "give status_noddingoff,user",
-    "healing"
+    "healing user"
   ],
   "flip_axes": "",
   "healing_power": 8,

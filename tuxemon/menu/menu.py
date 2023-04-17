@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -14,6 +16,7 @@ from typing import (
     Sequence,
     Tuple,
     TypeVar,
+    Union,
 )
 
 import pygame
@@ -54,17 +57,20 @@ layout = layout_func(prepare.SCALE)
 T = TypeVar("T", covariant=True)
 
 
-class PygameMenuState(state.State):
+BACKGROUND_COLOR = (248, 248, 248)
 
+
+class PygameMenuState(state.State):
     transparent = True
 
-    def startup(
+    def __init__(
         self,
         width: int = 1,
         height: int = 1,
-        theme: Optional[pygame_menu.themes.Theme] = None,
+        theme: Optional[pygame_menu.Theme] = None,
         **kwargs: Any,
     ) -> None:
+        super().__init__()
 
         if theme is None:
             theme = get_theme()
@@ -89,7 +95,6 @@ class PygameMenuState(state.State):
         self.menu._keyboard_ignore_nonphysical = False
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-
         if (
             event.button in {buttons.B, buttons.BACK, intentions.MENU_CANCEL}
             and not self.escape_key_exits
@@ -185,13 +190,18 @@ class Menu(Generic[T], state.State):
     draw_borders = True
     background = None  # Image used to draw the background
     # The window's background color
-    background_color: ColorLike = (248, 248, 248)
+    background_color: ColorLike = BACKGROUND_COLOR
     # Font color when the action is unavailable
     unavailable_color: ColorLike = (220, 220, 220)
     # File to load for image background
     background_filename: Optional[str] = None
     menu_select_sound_filename = "sound_menu_select"
-    font_filename = "PressStart2P.ttf"
+    if prepare.CONFIG.locale == "zh_CN":
+        font_filename = prepare.FONT_CHINESE
+    elif prepare.CONFIG.locale == "ja":
+        font_filename = prepare.FONT_JAPANESE
+    else:
+        font_filename = prepare.FONT_BASIC
     borders_filename = "gfx/dialog-borders01.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = 0.20
@@ -202,14 +212,16 @@ class Menu(Generic[T], state.State):
     # if true, then menu items can be selected with the mouse/touch
     touch_aware = True
 
-    def startup(self, *, selected_index: int = 0, **kwargs: Any) -> None:
+    def __init__(self, selected_index: int = 0, **kwargs: Any) -> None:
+        super().__init__()
+
         self.rect = self.rect.copy()  # do not remove!
         self.selected_index = selected_index
         # state: closed, opening, normal, disabled, closing
         self.state: MenuState = "closed"
         self._show_contents = False
         self._needs_refresh = False
-        self._anchors: Dict[str, Tuple[int, int]] = {}
+        self._anchors: Dict[str, Union[int, Tuple[int, int]]] = {}
         self.__dict__.update(kwargs)
 
         # holds sprites representing menu items
@@ -839,7 +851,9 @@ class Menu(Generic[T], state.State):
             else:
                 self.client.pop_state()
 
-    def anchor(self, attribute: str, value: Tuple[int, int]) -> None:
+    def anchor(
+        self, attribute: str, value: Union[int, Tuple[int, int]]
+    ) -> None:
         """
         Set an anchor for the menu window.
 
@@ -972,7 +986,6 @@ class PopUpMenu(Menu[T]):
     """Menu with "pop up" style animation."""
 
     def animate_open(self) -> Animation:
-
         # anchor the center of the popup
         rect = self.client.screen.get_rect()
         self.anchor("center", rect.center)

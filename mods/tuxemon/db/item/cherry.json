@@ -1,15 +1,13 @@
 {
-  "slug": "cherry",
-  "use_item": "combat_used_x",
-  "use_success": "generic_success",
-  "use_failure": "generic_failure",
+  "battle_menu": "monster",
+  "conditions": [
+    "is current_hp <,1.0",
+    "is current_hp >,0"
+  ],
   "effects": [
     "heal 10"
   ],
-  "conditions": [
-    "current_hp target,<,1.0",
-    "current_hp target,>,0"
-  ],
+  "slug": "cherry",
   "sort": "food",
   "sprite": "gfx/items/cherry.png",
   "target": {
@@ -21,10 +19,13 @@
     "own trainer": 0,
     "item": 0
   },
+  "category": "edible",
   "type": "Consumable",
   "usable_in": [
     "MainCombatMenuState",
     "WorldState"
   ],
-  "battle_menu": "monster"
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
 }

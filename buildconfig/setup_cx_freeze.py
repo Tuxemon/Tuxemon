@@ -22,18 +22,11 @@ sys.path.append(os.getcwd())
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 os.environ["SDL_AUDIODRIVER"] = "disk"
 
-includes = ["pkg_resources"]
-includefiles = ["mods","LICENSE"]
-excludes = ["tkinter", "pyglet"]
-packages = ["pytmx", "pyscroll", "pygame", "neteria", "natsort", "tuxemon"]
-
-namespace_packages = []
 build_exe_options = {
-    "packages": packages,
-    "excludes": excludes,
-    "includes": includes,
-    "include_files": includefiles,
-    "namespace_packages": namespace_packages,
+    "packages": ["pytmx", "pyscroll", "pygame", "neteria", "natsort", "tuxemon"],
+    "excludes": ["tkinter", "pyglet"],
+    "includes": ["pkg_resources"],
+    "include_files": ["mods", "LICENSE"],
 }
 
 if __name__ == "__main__":
@@ -43,6 +36,8 @@ if __name__ == "__main__":
         options={"build_exe": build_exe_options},
         description="Open source RPG",
         executables=[
-            Executable("run_tuxemon.py", base="Win32GUI", icon="mods/tuxemon/gfx/icon.ico")
+            Executable(
+                "run_tuxemon.py", base="Win32GUI", icon="mods/tuxemon/gfx/icon.ico"
+            )
         ],
     )

@@ -1,0 +1,58 @@
+{
+    "slug": "drashimi",
+    "category": "dragon_roll",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "suck_poison"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 6,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 8,
+            "technique": "muck"
+        },
+        {
+            "level_learned": 12,
+            "technique": "flood"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "tsushimi"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "tsushimi",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "tobishimi",
+            "evo_stage": "stage2"
+        }
+    ],
+    "shape": "polliwog",
+    "stage": "basic",
+    "types": [
+        "water",
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 185,
+    "height": 38,
+    "weight": 12,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

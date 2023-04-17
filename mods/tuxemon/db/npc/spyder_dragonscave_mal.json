@@ -1,17 +1,10 @@
 {
   "slug": "spyder_dragonscave_mal",
-  "gender": "male",
-  "sprite_name": "spyderboss",
-  "monsters": [
+  "template": [
     {
-      "name": "Djinnbo",
-      "level": 40,
-      "slug": "djinnbo",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
+      "sprite_name": "spyderboss",
+      "combat_front": "spyder_boss",
+      "slug": "spyder_boss"
     }
-  ],
-  "combat_front": "spyder_boss.png",
-  "combat_back": "red_back.png"
+  ]
 }

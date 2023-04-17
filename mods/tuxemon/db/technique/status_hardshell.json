@@ -1,17 +1,20 @@
 {
   "animation": "drip_green",
-  "category": "hardshell",
+  "category": "positive",
   "effects": [
     "statchange"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_hardshell.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "removed",
   "sfx": "sfx_bite",
   "slug": "status_hardshell",
   "sort": "meta",
   "statarmour": {
     "value": 1.5,
-    "operation": "-"
+    "operation": "*"
   },
   "target": {
     "enemy monster": 0,
@@ -22,7 +25,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "tech_id": 110,
+  "tech_id": 0,
   "use_failure": "generic_failure",
   "use_success": "combat_state_hardshell_get",
   "use_tech": "combat_used_x"

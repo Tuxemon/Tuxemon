@@ -1,9 +1,12 @@
 {
   "animation": "drip_green",
-  "category": "tired",
+  "category": "negative",
   "effects": [],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_tired.png",
+  "range": "special",
+  "repl_pos": "removed",
+  "repl_neg": "replaced",
   "sfx": "sfx_pulse",
   "slug": "status_tired",
   "sort": "meta",
@@ -16,7 +19,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "tech_id": 116,
+  "tech_id": 0,
   "use_failure": "generic_failure",
   "use_success": "combat_state_tired_get",
   "use_tech": "combat_used_x"

@@ -1,29 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
 from math import cos, pi, sin
 from typing import Any, Dict, Generator, Iterator, Mapping, Optional, Tuple
@@ -164,6 +140,10 @@ class TMXMapLoader:
 
     """
 
+    def __init__(self) -> None:
+        # Makes mocking easier during tests
+        self.image_loader = scaled_image_loader
+
     def load(self, filename: str) -> TuxemonMap:
         """Load map data from a tmx map file.
 
@@ -196,7 +176,7 @@ class TMXMapLoader:
         """
         data = pytmx.TiledMap(
             filename=filename,
-            image_loader=scaled_image_loader,
+            image_loader=self.image_loader,
             pixelalpha=True,
         )
         tile_size = (data.tilewidth, data.tileheight)
@@ -206,7 +186,7 @@ class TMXMapLoader:
         interacts = list()
         collision_map: Dict[Tuple[int, int], Optional[RegionProperties]] = {}
         collision_lines_map = set()
-        edges = data.properties.get("edges")
+        maps = data.properties
 
         # get all tiles which have properties and/or collisions
         gids_with_props = dict()
@@ -228,7 +208,13 @@ class TMXMapLoader:
                 colliders = gids_with_colliders.get(gid)
                 if colliders is not None:
                     for obj in colliders:
-                        if obj.type and obj.type.lower().startswith(
+                        if obj.type is None:
+                            obj_type = getattr(
+                                obj, "class"
+                            )  # obj.class is invalid syntax
+                        else:
+                            obj_type = obj.type
+                        if obj_type and obj_type.lower().startswith(
                             "collision"
                         ):
                             if getattr(obj, "closed", True):
@@ -245,18 +231,22 @@ class TMXMapLoader:
                             collision_lines_map.add(line)
 
         for obj in data.objects:
-            if obj.type and obj.type.lower().startswith("collision"):
+            if obj.type is None:
+                obj_type = getattr(obj, "class")  # obj.class is invalid syntax
+            else:
+                obj_type = obj.type
+            if obj_type and obj_type.lower().startswith("collision"):
                 for tile_position, props in self.extract_tile_collisions(
                     obj, tile_size
                 ):
                     collision_map[tile_position] = props
                 for line in self.collision_lines_from_object(obj, tile_size):
                     collision_lines_map.add(line)
-            elif obj.type == "event":
+            elif obj_type == "event":
                 events.append(self.load_event(obj, tile_size))
-            elif obj.type == "init":
+            elif obj_type == "init":
                 inits.append(self.load_event(obj, tile_size))
-            elif obj.type == "interact":
+            elif obj_type == "interact":
                 interacts.append(self.load_event(obj, tile_size))
 
         return TuxemonMap(
@@ -266,7 +256,7 @@ class TMXMapLoader:
             collision_map,
             collision_lines_map,
             data,
-            edges,
+            maps,
             filename,
         )
 
@@ -382,6 +372,8 @@ class TMXMapLoader:
         # Conditions & actions are stored as Tiled properties.
         # We need to sort them by name, so that "act1" comes before "act2" and so on..
         for key in keys:
+            if not isinstance(key, str):
+                continue
             value = properties[key]
             if key.startswith("cond"):
                 operator, cond_type, args = parse_condition_string(value)
@@ -395,12 +387,15 @@ class TMXMapLoader:
                 acts.append(action)
 
         for key in keys:
+            if not isinstance(key, str):
+                continue
             if key.startswith("behav"):
                 behav_string = properties[key]
                 behav_type, args = parse_behav_string(behav_string)
                 if behav_type == "talk":
                     conds.insert(
-                        0, MapCondition("to_talk", args, x, y, w, h, "is", key)
+                        0,
+                        MapCondition("to_talk", args, x, y, w, h, "is", key),
                     )
                     acts.insert(
                         0, MapAction("npc_face", [args[0], "player"], key)
@@ -409,7 +404,11 @@ class TMXMapLoader:
                     raise Exception
 
         # add a player_facing_tile condition automatically
-        if obj.type == "interact":
+        if obj.type is None:
+            obj_type = getattr(obj, "class")  # obj.class is invalid syntax
+        else:
+            obj_type = obj.type
+        if obj_type == "interact":
             cond_data = MapCondition(
                 "player_facing_tile", list(), x, y, w, h, "is", None
             )

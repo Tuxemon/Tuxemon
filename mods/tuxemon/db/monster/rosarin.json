@@ -1,0 +1,70 @@
+{
+    "slug": "rosarin",
+    "category": "every_thorn",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 6,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 8,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 12,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 16,
+            "technique": "stabilo"
+        },
+        {
+            "level_learned": 20,
+            "technique": "clairaudience"
+        },
+        {
+            "level_learned": 24,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 28,
+            "technique": "radiance"
+        },
+        {
+            "level_learned": 32,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 36,
+            "technique": "hawk"
+        },
+        {
+            "level_learned": 40,
+            "technique": "ants"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "shape": "humanoid",
+    "stage": "basic",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 204,
+    "height": 48,
+    "weight": 14,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

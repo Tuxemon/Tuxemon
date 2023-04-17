@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from abc import ABC
@@ -53,7 +55,7 @@ class CLICommand(ABC):
         """
         return ()
 
-    def get_subcommand(self, ctx: InvokeContext, name) -> CLICommand:
+    def get_subcommand(self, ctx: InvokeContext, name: str) -> CLICommand:
         """
         Return a single subcommand by name.
 

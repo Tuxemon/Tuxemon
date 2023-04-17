@@ -1,33 +1,10 @@
 {
   "slug": "spyder_dryadsgrove_ignatia",
-  "gender": "female",
-  "sprite_name": "fire",
-  "monsters": [
+  "template": [
     {
-      "name": "Vivicinder",
-      "level": 50,
-      "slug": "vivicinder",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Masknake",
-      "level": 50,
-      "slug": "masknake",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Criniotherme",
-      "level": 50,
-      "slug": "criniotherme",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
+      "sprite_name": "firenymph",
+      "combat_front": "firenymph",
+      "slug": "firenymph"
     }
-  ],
-  "combat_front": "firenymph.png",
-  "combat_back": "red_back.png"
+  ]
 }

@@ -1,0 +1,70 @@
+{
+    "slug": "chibiro",
+    "category": "false_turnip",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 6,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 8,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 12,
+            "technique": "stonehenge"
+        },
+        {
+            "level_learned": 16,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 20,
+            "technique": "chameleon"
+        },
+        {
+            "level_learned": 24,
+            "technique": "sylvan"
+        },
+        {
+            "level_learned": 28,
+            "technique": "radiance"
+        },
+        {
+            "level_learned": 32,
+            "technique": "cat_calling"
+        },
+        {
+            "level_learned": 36,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 40,
+            "technique": "clairaudience"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "shape": "varmint",
+    "stage": "standalone",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 212,
+    "height": 36,
+    "weight": 3,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

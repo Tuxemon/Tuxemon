@@ -1,54 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="18" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
- <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
-  <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="18" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="mansion"/>
+  <property name="types" value="dungeon"/>
+ </properties>
+ <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
  </tileset>
- <tileset firstgid="22" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
+ <tileset firstgid="2776" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="76" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
-  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
+ <tileset firstgid="6640" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
- <tileset firstgid="286" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ <tileset firstgid="8190" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="1726" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="2726" name="Outdoor_odds_and_ends_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="50" columns="10">
-  <image source="../gfx/tilesets/Outdoor_odds_and_ends_by_Isaiah658.png" width="160" height="80"/>
- </tileset>
- <tileset firstgid="2776" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
-  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
- </tileset>
- <tileset firstgid="2860" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
-  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
- </tileset>
- <tileset firstgid="3145" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="0" columns="15"/>
- <tileset firstgid="3145" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="4145" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ <tileset firstgid="12054" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eAGzZmBgsKYyLqGSeYPNHGqH06h51E97o2E6GqaUpAEAooRLWA==
+   eAE7oMLAcIDKWFQA1cwFaHxi7UM3h1h96OqoZQ66uaN81HgeDY/R8BjqaQAAxRseLw==
   </data>
  </layer>
- <layer id="2" width="18" height="18">
+ <layer id="2" name="Tile Layer 2" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eAHFkjEOwkAMBK+j4LnwBApIS8MrgBcgIB/DU1hylr0gQAhLVmJ7b+yzrrX/22rZ2jr8W9sGYwjfCEhjKU9CtMdgnH/I2U86zgdo5+ZhXvUkar7HoYfz5Gitx2H/uzf81NnzLfJ34+jTtT5GjftW0/tnzPy1d+brVzm6A7TKcRrl1Jh/x3GamuOMszqPq+s54sviWfkJRymv7nWIvm4e5bDTOg9xtavhqAY9uXxXvJWe5gH59lpd
+   eAGlUssNAlEIpAO9+rnr2Ro0aldrJ3bhyV8NJrZgPNmCzOElMM5bo4+E7A4MA8ti1m7PQZtGtzDbubfacWZ2dl8OsxLjnM0I3NHcbOLOdYxzZUZ9OnuaL1dmBG7fPOjDXhRifNWjgx7Kiw7navNg/6cf/OVctee1734j/Or8sccv/uT8Vvyvh99l3AHecauYHzrorTjgRQPmHSAWdWoc1okY70pHcWIMNcriPCrPdcC36SfzHx1W+fZdB++r5mEd7D3OAxztLnSYAz5i5a5wKzXOG33BR/g=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eAGtk71KA2EQRaczUWt9DfUB9C0UY28pgkEsxSXaiwQrfyKKwVeQYCerIFjbqJ2Nz+C5uAPDsFFZHLjsnfm+OZkks6WZbU2ZddEyfuWP2gn3OvgSOaeLP2mZnaIzdIXWqbleJ8ze0DvaDnX1iVMwS08z4c/pHaAL9IRitMjbaBKJ4+GcIYybilNy5wE9ohxz1ObRAhLnY/pbdZzcOy7/bZ5xfbn+E6fIl8kvQ20QfC/4/L0Ow5nbIzc843msZ84nv1uTyBwx7huwMme1Zhjtagzd6fC/ryGPZ7Nd7aHvz74fhOdB8LLK92AUFUc7r77M2WDnY/Rjgld+Te+w4mjn6zj9xEmY2vQ/OJt8rnNuebdGSPkozfOSJsh55My0zWaRODlyLefHYZ5FGEsNOXcV5wsAlmGG
+   eAHFlM1KglEQhmfZSt1IIbXRtYXegtCyFnkbeg32B5HbkHaVBV1BdB2FeAuKLqpFrntGv4FhOF9FBA48nJk553095/NwyiWRo6ZIGyZFkekvmbt1QpTx6eFxDMt8hxxO4AJumTfetkXe4QO2XH+TXLUWmp+iPYNzeAQfBeoilEB9LFI+Q9bcwwPEqNPbhT1Qn6uNFSmfqM2rf9pPni72v/NpuTOb7tX1Xlxu8zrGc90k1t0leqr1/eij83+Jdfsc8L8fgkWFs8d7aHM27ofvo3UHj27mo3c+nks9B9x5H8Pgo/Ul2n7mo3c+5fMUfLxnXv4fPtf8bspnFPYz433wEWvv89kQWYD/5qaNvVg/u/1UeXtq2ftjehujLtbjzOcLB+U/DA==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgL0CoE8durYRC1zqOMa0k0poFI4kG4zfh0ApwoBYg==
+   eAFjYBgFoyEwGgL0CoFpMtSxiVrmUMc1pJsyg0rhQLrN+HUAAIAqAhk=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">

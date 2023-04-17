@@ -1,30 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Derek Clark <derekjohn.clark@gmail.com>
-#
-# networking
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """This module contains the Tuxemon server and client.
 """
 from __future__ import annotations
@@ -32,12 +7,22 @@ from __future__ import annotations
 import logging
 import pprint
 from datetime import datetime
-from typing import TYPE_CHECKING, Dict, List, Literal, Tuple, TypedDict
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    List,
+    Literal,
+    Optional,
+    Tuple,
+    TypedDict,
+)
 
 import pygame as pg
 
 from tuxemon import prepare
 from tuxemon.middleware import Controller, Multiplayer
+from tuxemon.npc import NPC
 from tuxemon.session import local_session
 from tuxemon.states import world
 
@@ -84,8 +69,9 @@ class TuxemonServer:
 
     """
 
-    def __init__(self, game: LocalPygameClient, server_name=None):
-
+    def __init__(
+        self, game: LocalPygameClient, server_name: Any = None
+    ) -> None:
         self.game = game
         if not server_name:
             self.server_name = "Default Tuxemon Server"
@@ -93,7 +79,7 @@ class TuxemonServer:
             self.server_name = server_name
         self.network_events: List[str] = []
         self.listening = False
-        self.interfaces = {}
+        self.interfaces: Dict[str, Any] = {}
         self.ips: List[str] = []
 
         # Handle users without networking support.
@@ -107,7 +93,7 @@ class TuxemonServer:
             server_name=self.server_name,
         )
 
-    def update(self):
+    def update(self) -> Optional[bool]:
         """Updates the server state with information sent from the clients."""
         self.server_timestamp = datetime.now()
         for cuuid in self.server.registry:
@@ -118,13 +104,14 @@ class TuxemonServer:
                 )
                 if difference.seconds > 15:
                     logger.info("Client Disconnected. CUUID: " + str(cuuid))
-                    event_data = {"type": "CLIENT_DISCONNECTED"}
+                    event_data = EventData(type="CLIENT_DISCONNECTED")
                     self.notify_client(cuuid, event_data)
                     del self.server.registry[cuuid]
                     return False
 
             except KeyError:
                 self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
+        return None
 
     def server_event_handler(self, cuuid: str, event_data: EventData) -> None:
         """Handles events sent from the middleware that are legal.
@@ -299,11 +286,11 @@ class ControllerServer:
 
     """
 
-    def __init__(self, game: LocalPygameClient):
+    def __init__(self, game: LocalPygameClient) -> None:
         self.game = game
         self.network_events: List[str] = []
         self.listening = False
-        self.interfaces = {}
+        self.interfaces: Dict[str, Any] = {}
 
         # Handle users without networking support
         if not networking:
@@ -311,16 +298,17 @@ class ControllerServer:
             return
         self.server = NeteriaServer(Controller(self))
 
-    def update(self):
+    def update(self) -> None:
         """Updates the server state with information sent from the clients."""
         # Loop through our network events and pass them to the current state.
         controller_events = self.net_controller_loop()
         if controller_events:
             for controller_event in controller_events:
                 self.game.key_events.append(controller_event)
-                self.game.current_state.process_event(controller_event)
+                if self.game.current_state:
+                    self.game.current_state.process_event(controller_event)
 
-    def net_controller_loop(self):
+    def net_controller_loop(self) -> Any:
         """
         Process all network events from controllers and pass them
         down to current State. All network events are converted to keyboard
@@ -386,8 +374,7 @@ class TuxemonClient:
 
     """
 
-    def __init__(self, game: LocalPygameClient):
-
+    def __init__(self, game: LocalPygameClient) -> None:
         self.game = game
         # tuple = (ip, port)
         self.available_games: List[Tuple[str, int]] = []
@@ -412,7 +399,7 @@ class TuxemonClient:
         self.client = NeteriaClient(server_port=40081)
         self.client.registry = {}
 
-    def update(self, time_delta: float):
+    def update(self, time_delta: float) -> None:
         """
         Updates the client and local game state with information sent from the server.
 
@@ -442,7 +429,6 @@ class TuxemonClient:
         to reflect the updated information.
         """
         for euuid, event_data in self.client.event_notifies.items():
-
             if event_data["type"] == "NOTIFY_CLIENT_DISCONNECTED":
                 del self.client.registry[event_data["cuuid"]]
                 del self.client.event_notifies[euuid]
@@ -508,8 +494,8 @@ class TuxemonClient:
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_CLIENT_INTERACTION":
-                world = self.game.get_state_by_name(world.WorldState)
-                world.handle_interaction(event_data, self.client.registry)
+                _world = self.game.get_state_by_name(world.WorldState)
+                _world.handle_interaction(event_data, self.client.registry)
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_CLIENT_START_BATTLE":
@@ -521,7 +507,7 @@ class TuxemonClient:
                         sprite.direction[d] = False
                 del self.client.event_notifies[euuid]
 
-    def join_multiplayer(self, time_delta: float):
+    def join_multiplayer(self, time_delta: float) -> Optional[bool]:
         """
         Joins the client to the selected server.
 
@@ -549,8 +535,9 @@ class TuxemonClient:
             self.wait_broadcast = 0.0
         else:
             self.wait_broadcast += time_delta
+        return None
 
-    def update_multiplayer_list(self):
+    def update_multiplayer_list(self) -> Optional[bool]:
         """
         Sends a broadcast to 'ping' all servers on the local network. Once a server responds
         it will verify that the server is not hosted by the client who sent the ping. Once a
@@ -560,7 +547,6 @@ class TuxemonClient:
 
         # Logic to prevent joining your own game as a client.
         if self.client.discovered_servers:
-
             for ip, port in self.client.discovered_servers:
                 host = (ip, port)
                 host_name = self.client.discovered_servers[host][1]
@@ -576,8 +562,9 @@ class TuxemonClient:
                 # Populate list of detected servers
                 self.available_games.append(host)
                 self.server_list.append(host_name)
+        return None
 
-    def populate_player(self, event_type="PUSH_SELF"):
+    def populate_player(self, event_type: str = "PUSH_SELF") -> None:
         """Sends client character to the server."""
         if not event_type in self.event_list:
             self.event_list[event_type] = 0
@@ -604,7 +591,7 @@ class TuxemonClient:
         self,
         direction: str,
         event_type: str = "CLIENT_MAP_UPDATE",
-    ):
+    ) -> None:
         """
         Sends client's current map and location to the server.
 
@@ -627,7 +614,7 @@ class TuxemonClient:
         self.event_list[event_type] += 1
         self.client.event(event_data)
 
-    def set_key_condition(self, event) -> None:
+    def set_key_condition(self, event: Any) -> None:
         """Sends server information about a key condition being set or that an
         interaction has occurred.
 
@@ -688,6 +675,7 @@ class TuxemonClient:
             event_type = "CLIENT_FACING"
 
         if not event_type in self.event_list:
+            assert event_type
             self.event_list[event_type] = 0
 
         if event_type and kb_key:
@@ -712,7 +700,7 @@ class TuxemonClient:
                 self.event_list[event_type] += 1
                 self.client.event(event_data)
 
-    def update_client_map(self, cuuid, event_data) -> None:
+    def update_client_map(self, cuuid: str, event_data: Any) -> None:
         """Updates client's current map and location to reflect the server registry.
 
         :param cuuid: Clients unique user identification number.
@@ -728,11 +716,11 @@ class TuxemonClient:
 
     def player_interact(
         self,
-        sprite,
-        interaction,
-        event_type="CLIENT_INTERACTION",
-        response=None,
-    ):
+        sprite: NPC,
+        interaction: str,
+        event_type: str = "CLIENT_INTERACTION",
+        response: Any = None,
+    ) -> None:
         """Sends client to client interaction request to the server.
 
         :param sprite: Character sprite being interacted with.
@@ -768,7 +756,7 @@ class TuxemonClient:
         self.event_list[event_type] += 1
         self.client.event(event_data)
 
-    def route_combat(self, event):
+    def route_combat(self, event: Any) -> None:
         logger.debug(event)
 
     def client_alive(self) -> None:
@@ -792,27 +780,27 @@ class TuxemonClient:
 
 
 class DummyNetworking:
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         """The dummy networking object is used when networking is not supported."""
-        self.registry = {}
+        self.registry: Dict[str, Any] = {}
         self.registered = False
         # {(ip, port): (client_version_number, server_name)
         self.discovered_servers: Dict[Tuple[str, int], Tuple[int, str]] = {}
-        self.event_notifies = {}
+        self.event_notifies: Dict[str, Any] = {}
 
-    def event(self, *args, **kwargs):
+    def event(self, *args: Any, **kwargs: Any) -> None:
         pass
 
-    def listen(self, *args, **kwargs):
+    def listen(self, *args: Any, **kwargs: Any) -> None:
         pass
 
-    def autodiscover(self, *args, **kwargs):
+    def autodiscover(self, *args: Any, **kwargs: Any) -> None:
         pass
 
-    def register(self, *args, **kwargs):
+    def register(self, *args: Any, **kwargs: Any) -> None:
         pass
 
-    def notify(self, *args, **kwargs):
+    def notify(self, *args: Any, **kwargs: Any) -> None:
         pass
 
 

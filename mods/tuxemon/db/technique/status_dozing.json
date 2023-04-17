@@ -1,9 +1,10 @@
 {
   "animation": "drip_green",
-  "category": "dozing",
+  "category": "negative",
   "effects": [],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_dozing.png",
+  "range": "special",
   "sfx": "sfx_pulse",
   "slug": "status_dozing",
   "sort": "meta",
@@ -16,8 +17,8 @@
     "own trainer": 0,
     "item": 0
   },
-  "tech_id": 103,
+  "tech_id": 0,
   "use_failure": "generic_failure",
   "use_success": "combat_state_dozing_get",
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_state_dozing_end"
 }

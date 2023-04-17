@@ -1,25 +1,10 @@
 {
   "slug": "spyder_dragonscave_benden",
-  "gender": "male",
-  "sprite_name": "dragonrider",
-  "monsters": [
+  "template": [
     {
-      "name": "Dragarbor",
-      "level": 36,
-      "slug": "dragarbor",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Sapragon",
-      "level": 38,
-      "slug": "sapragon",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
+      "sprite_name": "dragonrider",
+      "combat_front": "dragonrider",
+      "slug": "dragonrider"
     }
-  ],
-  "combat_front": "dragonrider.png",
-  "combat_back": "red_back.png"
+  ]
 }

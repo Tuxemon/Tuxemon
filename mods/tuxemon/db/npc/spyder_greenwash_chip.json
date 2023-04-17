@@ -1,33 +1,10 @@
 {
   "slug": "spyder_greenwash_chip",
-  "gender": "male",
-  "sprite_name": "soldier",
-  "monsters": [
+  "template": [
     {
-      "name": "AV8R",
-      "level": 22,
-      "slug": "av8r",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    },
-    {
-      "name": "Criniotherme",
-      "level": 22,
-      "slug": "criniotherme",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "tikorch",
-      "level": 22,
-      "slug": "tikorch",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
+      "sprite_name": "soldier",
+      "combat_front": "aviator",
+      "slug": "aviator"
     }
-  ],
-  "combat_front": "aviator.png",
-  "combat_back": "red_back.png"
+  ]
 }

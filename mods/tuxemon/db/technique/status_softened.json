@@ -1,21 +1,24 @@
 {
   "animation": "drip_green",
-  "category": "softened",
+  "category": "negative",
   "effects": [
     "statchange"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_softened.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
   "sfx": "sfx_pulse",
   "slug": "status_softened",
   "sort": "meta",
   "statarmour": {
     "value": 0.5,
-    "operation": "-"
+    "operation": "*"
   },
   "statspeed": {
     "value": 0.5,
-    "operation": "-"
+    "operation": "*"
   },
   "target": {
     "enemy monster": 0,
@@ -26,7 +29,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "tech_id": 113,
+  "tech_id": 0,
   "use_failure": "generic_failure",
   "use_success": "combat_state_softened_get",
   "use_tech": "combat_used_x"

@@ -1,17 +1,10 @@
 {
   "slug": "spyder_tunnelb_tommy",
-  "gender": "male",
-  "sprite_name": "beachcomber",
-  "monsters": [
+  "template": [
     {
-      "name": "Zunna",
-      "level": 22,
-      "slug": "zunna",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
+      "sprite_name": "beachcomber",
+      "combat_front": "yellowbelt",
+      "slug": "yellowbelt"
     }
-  ],
-  "combat_front": "yellowbelt.png",
-  "combat_back": "red_back.png"
+  ]
 }

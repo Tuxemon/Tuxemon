@@ -1,31 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-#
-#
-# prepare Prepares the game environment.
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, List
@@ -79,6 +53,9 @@ config.generate_default_config()
 # Read "tuxemon.cfg" config from disk, update and write back
 CONFIG = config.TuxemonConfig(paths.USER_CONFIG_PATH)
 
+# Starting map
+STARTING_MAP = "debug.tmx"
+
 with open(paths.USER_CONFIG_PATH, "w") as fp:
     CONFIG.cfg.write(fp)
 
@@ -103,7 +80,12 @@ XP_COLOR = (248, 245, 71)
 NATIVE_RESOLUTION = [240, 160]
 
 # Set the character limit for setting a player name.
-PLAYER_NAME_LIMIT = 30
+PLAYER_NAME_LIMIT = 15
+
+# Fonts
+FONT_BASIC = "PressStart2P.ttf"
+FONT_CHINESE = "SourceHanSerifCN-Bold.otf"
+FONT_JAPANESE = "SourceHanSerifJP-Bold.otf"
 
 # If scaling is enabled, scale the tiles based on the resolution
 if CONFIG.large_gui:
@@ -135,12 +117,10 @@ def pygame_init() -> None:
 
     import pygame as pg
 
-    # Configure locale
+    # Configure databases and locale
     from tuxemon.locale import T
 
     T.collect_languages(CONFIG.recompile_translations)
-
-    # Configure databases
     from tuxemon.db import db
 
     db.load()

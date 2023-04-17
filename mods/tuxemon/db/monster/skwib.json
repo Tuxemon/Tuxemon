@@ -1,6 +1,6 @@
 {
     "slug": "skwib",
-    "category": "",
+    "category": "naive",
     "ai": "RandomAI",
     "moveset": [
         {
@@ -12,17 +12,42 @@
             "technique": "flow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "mobbing"
+        },
+        {
+            "level_learned": 8,
+            "technique": "orbs"
+        },
+        {
+            "level_learned": 12,
+            "technique": "suck_poison"
+        },
+        {
+            "level_learned": 16,
             "technique": "font"
         }
     ],
-    "evolutions": [],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "octabode"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "octabode",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "polliwog",
+    "stage": "basic",
     "types": [
-        "Water"
+        "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 174,
+    "txmn_id": 183,
     "height": 30,
     "weight": 9,
     "catch_rate": 120.0,

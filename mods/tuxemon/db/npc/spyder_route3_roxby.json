@@ -1,25 +1,10 @@
 {
   "slug": "spyder_route3_roxby",
-  "gender": "male",
-  "sprite_name": "miner",
-  "monsters": [
+  "template": [
     {
-      "name": "Rockitten",
-      "level": 13,
-      "slug": "rockitten",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Ignibus",
-      "level": 13,
-      "slug": "ignibus",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
+      "sprite_name": "miner",
+      "combat_front": "miner",
+      "slug": "miner"
     }
-  ],
-  "combat_front": "miner.png",
-  "combat_back": "red_back.png"
+  ]
 }

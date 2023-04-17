@@ -1,34 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-# Andy Mender <andymenderunix@gmail.com>
-# Adam Chevalier <chevalieradam2@gmail.com>
-#
-# economy Economy handling module.
-#
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -44,7 +15,6 @@ class Economy:
     economy."""
 
     def __init__(self, slug: Optional[str] = None) -> None:
-
         # Auto-load the economy from the economy database.
         if slug:
             self.load(slug)
@@ -82,7 +52,8 @@ class Economy:
         """
         for item in self.items:
             if item.item_name == item_slug and hasattr(item, field):
-                return getattr(item, field)
+                value = int(getattr(item, field))
+                return value
 
         return None
 
@@ -129,3 +100,25 @@ class Economy:
             )
 
         return cost
+
+    def lookup_item_inventory(self, item_slug: str) -> int:
+        """Looks up the item quantity from this economy.
+
+        The item is looked up by its slug.
+        Raises a Runtime error if item's inventory is not found in this economy.
+
+        Parameters:
+            item_slug: The item slug to look up in this economy.
+
+        Returns:
+            Quantity of items for this economy.
+        """
+        inventory = self.lookup_item_field(item_slug, "inventory")
+
+        if inventory is None:
+            raise RuntimeError(
+                f"Quantity for item '{item_slug}' not found in "
+                f"economy '{self.slug}'"
+            )
+
+        return inventory

@@ -1,25 +1,10 @@
 {
   "slug": "spyder_omnichannel_byrne",
-  "gender": "male",
-  "sprite_name": "professor1",
-  "monsters": [
+  "template": [
     {
-      "name": "Rockat",
-      "level": 36,
-      "slug": "rockat",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Jemuar",
-      "level": 40,
-      "slug": "jemuar",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
+      "sprite_name": "professor",
+      "combat_front": "professor",
+      "slug": "professor"
     }
-  ],
-  "combat_front": "professor.png",
-  "combat_back": "red_back.png"
+  ]
 }

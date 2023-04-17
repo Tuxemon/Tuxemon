@@ -12,38 +12,61 @@
             "technique": "flood"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "gyser"
+        },
+        {
+            "level_learned": 8,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 12,
             "technique": "flow"
         }
     ],
     "evolutions": [
         {
-            "path": "water_booster",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "bigfin"
+            "monster_slug": "bigfin",
+            "item": "water_booster"
         },
         {
-            "path": "sweet_sand",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "bigfin"
+            "monster_slug": "bigfin",
+            "item": "sweet_sand"
         },
         {
-            "path": "metal_booster",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "sharpfin"
+            "monster_slug": "sharpfin",
+            "item": "metal_booster"
         },
         {
-            "path": "sea_girdle",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "sharpfin"
+            "monster_slug": "sharpfin",
+            "item": "sea_girdle"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "bigfin",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "sharpfin",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "aquatic",
+    "stage": "basic",
     "types": [
-        "Water"
+        "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 23,	
+    "txmn_id": 24,	
     "height": 250,
     "weight": 190,
     "catch_rate": 170.0,

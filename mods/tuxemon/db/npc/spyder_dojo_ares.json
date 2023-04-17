@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_dojo_ares",
+  "template": [
+    {
+      "sprite_name": "monk_black",
+      "combat_front": "monk",
+      "slug": "monk"
+    }
+  ]
+}

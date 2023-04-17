@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="86">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="candy_house3"/>
+  <property name="types" value="notype"/>
+ </properties>
+ <tileset firstgid="1" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
+ </tileset>
+ <tileset firstgid="1761" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
+ </tileset>
+ <tileset firstgid="4353" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
+ </tileset>
+ <layer id="2" name="Tile Layer 2" width="10" height="8">
+  <data encoding="base64" compression="zlib">
+   eAGzY2BgsCMCpwHVEIP7gOr6icDbgGq2E4EHuzoABJYvtw==
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="10" height="8">
+  <data encoding="base64" compression="zlib">
+   eAGlz8ENwWAcxuH/TYzDAESPJGzAtSeuTmzABmzABgxCcUfbETxNKhI38UuevE3zfYcv4lPaiNg0I7ZMmdGhS1XLtpk7t7N7FiwZMqKqZ5P6+2CPrFgzZsIv9Z0f1HdO9kzGhSs3vrv79+BJTkHJP+XeXVDy7gX9jRo3
+  </data>
+ </layer>
+ <layer id="7" name="Tile Layer 4" width="10" height="8">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgF5ITAbg4Ghj1ADAAKWAGI
+  </data>
+ </layer>
+ <layer id="4" name="Above player" width="10" height="8">
+  <data encoding="base64" compression="zlib">
+   eAFjYBg4YMXJwGANxCBwGkifAeKzQHwOiM8D8QUgpjdYzcHAsAaIiQUAEmwG9g==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collision">
+  <object id="61" type="collision" x="64" y="0" width="96" height="32"/>
+  <object id="73" type="collision" x="16" y="64" width="32" height="16"/>
+  <object id="74" type="collision" x="128" y="112" width="32" height="16"/>
+  <object id="81" type="collision" x="64" y="64" width="96" height="16"/>
+  <object id="82" type="collision" x="0" y="0" width="48" height="32"/>
+  <object id="83" type="collision" x="48" y="0" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="59" name="Go outside" type="event" x="96" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,2,7,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="75" name="Create Catgirl" type="event" x="16" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_catgirl,1,5"/>
+    <property name="act2" value="npc_face spyder_catgirl,up"/>
+    <property name="cond1" value="not npc_exists spyder_catgirl"/>
+   </properties>
+  </object>
+  <object id="76" name="Talk Catgirl - No Fossil" type="event" x="144" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_catgirl1"/>
+    <property name="act2" value="translated_dialog spyder_candy_catgirl_nofossil"/>
+    <property name="behav1" value="talk spyder_catgirl"/>
+    <property name="cond1" value="not has_monster shammer"/>
+    <property name="cond2" value="not has_monster rhincus"/>
+    <property name="cond3" value="not variable_set catgirl_candy_hastraded:yes"/>
+   </properties>
+  </object>
+  <object id="77" name="Talk Catgirl - Has Rhincus" type="event" x="128" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_catgirl1"/>
+    <property name="act2" value="translated_dialog spyder_candy_catgirl2"/>
+    <property name="act3" value="translated_dialog_choice yes:no,catgirl_candy_willtrade"/>
+    <property name="behav1" value="talk spyder_catgirl"/>
+    <property name="cond1" value="is has_monster rhincus"/>
+    <property name="cond2" value="not variable_set catgirl_candy_hastraded:yes"/>
+   </properties>
+  </object>
+  <object id="78" name="Talk Catgirl - Will Trade Rhincus" type="event" x="144" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_catgirl_willtrade"/>
+    <property name="act2" value="trading rhincus,propellercat"/>
+    <property name="act3" value="set_variable catgirl_candy_hastraded:yes"/>
+    <property name="cond1" value="is has_monster rhincus"/>
+    <property name="cond2" value="not has_monster shammer"/>
+    <property name="cond3" value="is variable_set catgirl_candy_willtrade:yes"/>
+    <property name="cond4" value="not variable_set catgirl_candy_hastraded:yes"/>
+   </properties>
+  </object>
+  <object id="79" name="Talk Catgirl - Has Shammer" type="event" x="96" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_catgirl1"/>
+    <property name="act2" value="translated_dialog spyder_candy_catgirl2"/>
+    <property name="act3" value="translated_dialog_choice yes:no,catgirl_candy_willtrade"/>
+    <property name="behav1" value="talk spyder_catgirl"/>
+    <property name="cond1" value="is has_monster shammer"/>
+    <property name="cond2" value="not variable_set catgirl_candy_hastraded:yes"/>
+   </properties>
+  </object>
+  <object id="80" name="Talk Catgirl - Will Trade Shammer" type="event" x="112" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_catgirl_willtrade"/>
+    <property name="act2" value="trading shammer,propellercat"/>
+    <property name="act3" value="set_variable catgirl_candy_hastraded:yes"/>
+    <property name="cond1" value="is has_monster shammer"/>
+    <property name="cond2" value="not has_monster rhincus"/>
+    <property name="cond3" value="is variable_set catgirl_candy_willtrade:yes"/>
+    <property name="cond4" value="not variable_set catgirl_candy_hastraded:yes"/>
+   </properties>
+  </object>
+  <object id="84" name="Go outside" type="event" x="48" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,2,3,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="85" name="Talk Catgirl - No Fossil" type="event" x="144" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_catgirl1"/>
+    <property name="behav1" value="talk spyder_catgirl"/>
+    <property name="cond1" value="is variable_set catgirl_candy_hastraded:yes"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

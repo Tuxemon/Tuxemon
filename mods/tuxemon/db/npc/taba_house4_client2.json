@@ -1,0 +1,10 @@
+{
+  "slug": "taba_house4_client2",
+  "template": [
+    {
+      "sprite_name": "shopassist_red",
+      "combat_front": "adventurer",
+      "slug": "shopassistant"
+    }
+  ]
+}

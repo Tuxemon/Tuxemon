@@ -1,33 +1,10 @@
 {
   "slug": "spyder_scoop_donald",
-  "gender": "male",
-  "sprite_name": "cooldude",
-  "monsters": [
+  "template": [
     {
-      "name": "Birdling",
-      "level": 35,
-      "slug": "birdling",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Pigabyte",
-      "level": 35,
-      "slug": "pigabyte",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Zunna",
-      "level": 35,
-      "slug": "zunna",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
+      "sprite_name": "cooldude",
+      "combat_front": "cooldude",
+      "slug": "cooldude"
     }
-  ],
-  "combat_front": "cooldude.png",
-  "combat_back": "red_back.png"
+  ]
 }

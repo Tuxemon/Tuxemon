@@ -12,25 +12,44 @@
             "technique": "blossom"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 8,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 12,
             "technique": "boulder"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 24,
             "monster_slug": "legko"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "legko",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "moloch",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "sprite",
+    "stage": "basic",
     "types": [
-        "Wood"
+        "wood"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 10,
-    "height": 0,
-    "weight": 0,
+    "height": 69,
+    "weight": 37,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

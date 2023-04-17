@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     # Command copied from flathub build process
     - name: Validate appdata file
@@ -35,7 +35,7 @@ jobs:
     name: "Flatpak"
     runs-on: ubuntu-latest
     container:
-      image: bilelmoussaoui/flatpak-github-actions:kde-5.15-21.08
+      image: bilelmoussaoui/flatpak-github-actions:kde-6.3
       options: --privileged
     steps:
     - name: Show environment variables
@@ -94,7 +94,7 @@ jobs:
       run: cat org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
 
     - name: Build package
-      uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
+      uses: flatpak/flatpak-github-actions/flatpak-builder@v5
       with:
         bundle: Tuxemon.flatpak
         manifest-path: org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
@@ -105,8 +105,8 @@ jobs:
     runs-on: windows-latest
     steps:
       # Checkout the repo
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2.2.2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
             # Version range or exact version of a Python version to use, using SemVer's version range syntax.
             python-version: 3.9 # optional, default is 3.x
@@ -126,7 +126,7 @@ jobs:
 
       - name: Install nsis
         run: |
-          Invoke-WebRequest -Uri "https://netcologne.dl.sourceforge.net/project/nsis/NSIS%203/3.06.1/nsis-3.06.1-setup.exe" -OutFile "nsis.exe"
+          Invoke-WebRequest -Uri "https://netcologne.dl.sourceforge.net/project/nsis/NSIS%203/3.08/nsis-3.08-setup.exe" -OutFile "nsis.exe"
 
       - name: Build Installer
         run: |
@@ -136,7 +136,7 @@ jobs:
           mv tuxemon-installer.exe ../dist/.
 
       - name: Upload installer
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v3
         with:
             name: tuxemon_windows_installer
             path: dist
@@ -146,9 +146,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python 3.9
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: 3.9
     - name: Install dependencies
@@ -181,7 +181,7 @@ jobs:
     if: ${{ github.ref == 'refs/heads/development' || (github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v'))  }}
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           path: artifacts
 

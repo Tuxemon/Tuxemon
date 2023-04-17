@@ -1,28 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -49,6 +26,7 @@ import pygame as pg
 from tuxemon import networking, rumble
 from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
+from tuxemon.db import MapType
 from tuxemon.event import EventObject
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.map import TuxemonMap
@@ -163,7 +141,7 @@ class LocalPygameClient:
 
         # TODO: phase these out
         self.key_events: Sequence[PlayerInput] = []
-        self.event_data = dict()
+        self.event_data: Dict[str, Any] = {}
         self.exit = False
 
     def on_state_change(self) -> None:
@@ -183,6 +161,38 @@ class LocalPygameClient:
         self.interacts = map_data.interacts
         self.event_engine.reset()
         self.event_engine.current_map = map_data
+        self.maps = map_data.maps
+
+        # Map properties
+        self.map_slug = map_data.slug
+        self.map_name = map_data.name
+        self.map_desc = map_data.description
+        self.map_inside = map_data.inside
+
+        # Check if the map type exists
+        types = [maps.value for maps in MapType]
+        if map_data.types in types:
+            self.map_type = map_data.types
+        else:
+            logger.error(f"The type '{map_data.types}' doesn't exist.")
+
+        # Cardinal points
+        if map_data.north_trans == "None":
+            self.map_north = "-"
+        else:
+            self.map_north = map_data.north_trans
+        if map_data.south_trans == "None":
+            self.map_south = "-"
+        else:
+            self.map_south = map_data.south_trans
+        if map_data.east_trans == "None":
+            self.map_east = "-"
+        else:
+            self.map_east = map_data.east_trans
+        if map_data.west_trans == "None":
+            self.map_west = "-"
+        else:
+            self.map_west = map_data.west_trans
 
     def draw_event_debug(self) -> None:
         """
@@ -580,14 +590,14 @@ class LocalPygameClient:
     @overload
     def push_state(
         self,
-        state_name: Type[StateType],
+        state_name: StateType,
         **kwargs: Any,
     ) -> StateType:
         pass
 
     def push_state(
         self,
-        state_name: Union[str, Type[StateType]],
+        state_name: Union[str, StateType],
         **kwargs: Any,
     ) -> State:
         """Push new state, by name"""
@@ -600,14 +610,14 @@ class LocalPygameClient:
     @overload
     def replace_state(
         self,
-        state_name: Type[StateType],
+        state_name: StateType,
         **kwargs: Any,
     ) -> StateType:
         pass
 
     def replace_state(
         self,
-        state_name: Union[str, Type[State]],
+        state_name: Union[str, State],
         **kwargs: Any,
     ) -> State:
         """Replace current state with new one"""

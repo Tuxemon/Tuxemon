@@ -1,50 +1,21 @@
-#
-# Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-# Andy Mender <andymenderunix@gmail.com>
-# Adam Chevalier <chevalieradam2@gmail.com>
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import NamedTuple
+from dataclasses import dataclass
 
 from tuxemon import formula
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
+from tuxemon.technique.technique import Technique
 
 
 class LifeLeechEffectResult(TechEffectResult):
-    damage: int
-    should_tackle: bool
-
-
-class LifeLeechEffectParameters(NamedTuple):
     pass
 
 
-class LifeLeechEffect(TechEffect[LifeLeechEffectParameters]):
+@dataclass
+class LifeLeechEffect(TechEffect):
     """
     This effect has a chance to apply the lifeleech status effect.
 
@@ -58,15 +29,24 @@ class LifeLeechEffect(TechEffect[LifeLeechEffectParameters]):
     """
 
     name = "lifeleech"
-    param_class = LifeLeechEffectParameters
 
-    def apply(self, user: Monster, target: Monster) -> LifeLeechEffectResult:
-        user = self.move.link
-        damage = formula.simple_lifeleech(self.move, user, target)
-        target.current_hp -= damage
-        user.current_hp += damage
-        return {
-            "damage": damage,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
-        }
+    def apply(
+        self, tech: Technique, user: Monster, target: Monster
+    ) -> LifeLeechEffectResult:
+        if tech.slug == "status_lifeleech":
+            # avoids Nonetype situation and reset the user
+            if user is None:
+                user = tech.link
+                assert user
+                damage = formula.simple_lifeleech(user, target)
+                target.current_hp -= damage
+                user.current_hp += damage
+            else:
+                damage = formula.simple_lifeleech(user, target)
+                target.current_hp -= damage
+                user.current_hp += damage
+            return {
+                "success": bool(damage),
+            }
+
+        return {"success": False}

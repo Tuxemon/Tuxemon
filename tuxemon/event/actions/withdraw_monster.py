@@ -1,46 +1,22 @@
-#
-# Tuxemon
-# Copyright (c) 2020      William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Adam Chevalier <chevalierAdam2@gmail.com>
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 import uuid
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import Optional, Union, final
 
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.states.world.worldstate import WorldState
+from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
 
-class WithdrawMonsterActionParameters(NamedTuple):
-    trainer: str
-    monster_id: str
-
-
 @final
-class WithdrawMonsterAction(EventAction[WithdrawMonsterActionParameters]):
+@dataclass
+class WithdrawMonsterAction(EventAction):
     """
     Pull a monster from the given trainer's storage and puts it in their party.
 
@@ -51,27 +27,32 @@ class WithdrawMonsterAction(EventAction[WithdrawMonsterActionParameters]):
     Script usage:
         .. code-block::
 
-            withdraw_monster <trainer>,<monster_id>
+            withdraw_monster <monster_id>[,trainer_slug]
 
     Script parameters:
-        trainer: The trainer slug.
-        monster_id: The id of the monster to pull.
+        monster_id: The id of the monster to pull (variable).
+        trainer_slug: Slug of the trainer that will receive the monster. It
+            defaults to the current player.
 
     """
 
     name = "withdraw_monster"
-    param_class = WithdrawMonsterActionParameters
+    monster_id: str
+    trainer: Union[str, None] = None
 
     def start(self) -> None:
-        trainer, monster_id = self.parameters
-        world = self.session.client.get_state_by_name(WorldState)
+        trainer: Optional[NPC]
+        if self.trainer is None:
+            trainer = self.session.player
+        else:
+            trainer = get_npc(self.session, self.trainer)
 
-        trainer = trainer.replace("player", "npc_red")
-        npc = world.get_entity(trainer)
-        assert npc
-        instance_id = uuid.UUID(npc.game_variables[monster_id])
-        mon = npc.find_monster_in_storage(instance_id)
+        assert trainer, "No Trainer found with slug '{}'".format(
+            self.trainer or "player"
+        )
+        instance_id = uuid.UUID(trainer.game_variables[self.monster_id])
+        mon = trainer.find_monster_in_storage(instance_id)
         assert mon
 
-        npc.remove_monster_from_storage(mon)
-        npc.add_monster(mon)
+        trainer.remove_monster_from_storage(mon)
+        trainer.add_monster(mon, len(trainer.monsters))

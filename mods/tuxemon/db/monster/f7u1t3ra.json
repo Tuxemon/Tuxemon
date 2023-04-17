@@ -12,15 +12,53 @@
             "technique": "sting"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
             "technique": "splinter"
+        },
+        {
+            "level_learned": 8,
+            "technique": "chameleon"
+        },
+        {
+            "level_learned": 12,
+            "technique": "spray"
+        },
+        {
+            "level_learned": 16,
+            "technique": "shadow_boxing"
+        },
+        {
+            "level_learned": 20,
+            "technique": "stabilo"
+        },
+        {
+            "level_learned": 24,
+            "technique": "walls"
+        },
+        {
+            "level_learned": 28,
+            "technique": "pseudopod"
+        },
+        {
+            "level_learned": 32,
+            "technique": "air_chain"
+        },
+        {
+            "level_learned": 36,
+            "technique": "feline"
+        },
+        {
+            "level_learned": 40,
+            "technique": "webs_wind"
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "flier",
+    "stage": "standalone",
     "types": [
-        "Glitch",
-        "Wood"
+        "glitch",
+        "wood"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 0,

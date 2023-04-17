@@ -1,32 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-#
-#
-# config Configuration parser.
-#
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from typing import Any, Dict, Mapping, Optional
@@ -89,13 +62,14 @@ class TuxemonConfig:
 
         # [game]
         self.data = cfg.get("game", "data")
-        self.starting_map = cfg.get("game", "starting_map")
         self.cli = cfg.getboolean("game", "cli_enabled")
         self.net_controller_enabled = cfg.getboolean(
             "game",
             "net_controller_enabled",
         )
         self.locale = cfg.get("game", "locale")
+        self.hemisphere = cfg.get("game", "hemisphere")
+        self.unit = cfg.get("game", "unit")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean(
             "game",
@@ -114,14 +88,6 @@ class TuxemonConfig:
         self.encounter_rate_modifier = cfg.getfloat(
             "gameplay",
             "encounter_rate_modifier",
-        )
-        self.default_monster_storage_box = cfg.get(
-            "gameplay",
-            "default_monster_storage_box",
-        )
-        self.default_item_storage_box = cfg.get(
-            "gameplay",
-            "default_item_storage_box",
         )
         self.default_monster_catch_rate = cfg.getfloat(
             "gameplay",
@@ -187,7 +153,9 @@ def get_custom_pygame_keyboard_controls(
             # used incase of multiple keys assigned to 1 method
             # pygame.locals uses all caps for constants except for letters
             each = each.lower() if len(each) == 1 else each.upper()
-            pygame_value: int = getattr(pygame.locals, "K_" + each, None)
+            pygame_value: Optional[int] = getattr(
+                pygame.locals, "K_" + each, None
+            )
             if pygame_value is not None and button_value is not None:
                 custom_controls[pygame_value] = button_value
             elif pygame_value is not None and event_value is not None:
@@ -270,11 +238,12 @@ def get_defaults() -> Mapping[str, Any]:
                 OrderedDict(
                     (
                         ("data", "tuxemon"),
-                        ("starting_map", "player_house_bedroom.tmx"),
                         ("skip_titlescreen", False),
                         ("cli_enabled", False),
                         ("net_controller_enabled", False),
                         ("locale", "en_US"),
+                        ("hemisphere", "north"),
+                        ("unit", "metric"),
                         ("dev_tools", False),
                         ("recompile_translations", True),
                         ("compress_save", None),
@@ -287,8 +256,6 @@ def get_defaults() -> Mapping[str, Any]:
                     (
                         ("items_consumed_on_failure", True),
                         ("encounter_rate_modifier", 1.0),
-                        ("default_monster_storage_box", "Kennel"),
-                        ("default_item_storage_box", "Locker"),
                         ("default_monster_catch_rate", 125),
                         ("default_upper_monster_catch_resistance", 1),
                         ("default_lower_monster_catch_resistance", 1),

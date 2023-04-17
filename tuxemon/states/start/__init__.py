@@ -1,52 +1,25 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Benjamin Bean <superman2k5@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-# Andrew Hong <novialriptide@gmail.com>
-#
-#
-# states.start Handles the start screen which loads and creates new games
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """This module contains the Start state.
 """
 from __future__ import annotations
 
 import logging
 from functools import partial
-from typing import Any, Callable, Tuple, Union
+from typing import Any, Callable, Union
 
 import pygame
+import pygame_menu
+from pygame_menu import locals
+from pygame_menu.locals import POSITION_CENTER
 
-from tuxemon import prepare
+from tuxemon import formula, prepare, tools
 from tuxemon.locale import T
-from tuxemon.menu.input import InputMenu
-from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import PopUpMenu
+from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
+from tuxemon.menu.theme import get_theme
 from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
 from tuxemon.state import State
-from tuxemon.states.transition.fade import FadeInTransition
 
 logger = logging.getLogger(__name__)
 
@@ -69,17 +42,24 @@ class BackgroundState(State):
         surface.fill((0, 0, 0, 0))
 
 
-class StartState(PopUpMenu[StartGameObj]):
+class StartState(PygameMenuState):
     """The state responsible for the start menu."""
 
-    escape_key_exits = False
-    shrink_to_items = True
-
-    def startup(self, **kwargs: Any) -> None:
+    def add_menu_items(
+        self,
+        menu: pygame_menu.Menu,
+    ) -> None:
         # If there is a save, then move the cursor to "Load game" first
         index = get_index_of_latest_save()
-        kwargs["selected_index"] = 0 if index is None else 1
-        super().startup(**kwargs)
+        self.menu._onclose = None
+
+        def new_game() -> None:
+            map_path = prepare.fetch("maps", prepare.STARTING_MAP)
+            self.client.push_state("WorldState", map_name=map_path)
+            local_session.player.game_variables[
+                "date_start_game"
+            ] = formula.today_ordinal()
+            self.client.pop_state(self)
 
         def change_state(
             state: Union[State, str],
@@ -91,86 +71,64 @@ class StartState(PopUpMenu[StartGameObj]):
                 **change_state_kwargs,
             )
 
-        def show_mod_menu() -> None:
-            self.client.replace_state("ModChooserMenuState")
-
         def exit_game() -> None:
             self.client.exit = True
 
-        menu_items_map = (
-            ("menu_new_game", show_mod_menu),
-            ("menu_load", change_state("LoadMenuState")),
-            ("menu_options", change_state("ControlState")),
-            ("exit", exit_game),
+        self.menu._last_selected_type
+        if index is not None:
+            menu.add.button(
+                title=T.translate("menu_load"),
+                action=change_state("LoadMenuState"),
+                font_size=30,
+                button_id="menu_load",
+            )
+        menu.add.button(
+            title=T.translate("menu_new_game"),
+            action=new_game,
+            font_size=30,
+            button_id="menu_new_game",
+        )
+        menu.add.button(
+            title=T.translate("menu_options"),
+            action=change_state("ControlState"),
+            font_size=30,
+            button_id="menu_options",
+        )
+        menu.add.button(
+            title=T.translate("menu_minigame"),
+            action=change_state("MinigameState"),
+            font_size=30,
+            button_id="menu_minigame",
+        )
+        menu.add.button(
+            title=T.translate("exit"),
+            action=exit_game,
+            font_size=30,
+            button_id="exit",
         )
 
-        for key, callback in menu_items_map:
-            label = T.translate(key).upper()
-            image = self.shadow_text(label)
-            item = MenuItem(image, label, None, callback)
-            self.add(item)
+    def __init__(self) -> None:
+        width, height = prepare.SCREEN_SIZE
 
-
-class ModChooserMenuState(PopUpMenu[StartGameObj]):
-    """This menu shows the 2 default mod campaigns at the moment."""
-
-    shrink_to_items = True
-    escape_key_exits = True
-
-    def close(self) -> None:
-        self.client.replace_state("StartState")
-
-    def startup(self, **kwargs: Any) -> None:
-
-        super().startup(**kwargs)
-
-        self.map_name = prepare.CONFIG.starting_map
-
-        def new_game_callback(
-            map_name: str,
-        ) -> Callable:
-            return partial(new_game, map_name)
-
-        def set_player_name(text: str) -> None:
-            map_path = prepare.fetch("maps", self.map_name)
-            self.client.push_state("WorldState", map_name=map_path)
-            self.client.push_state(FadeInTransition)
-            local_session.player.name = text
-            self.client.pop_state(self)
-
-        def new_game(map_name: str) -> None:
-            self.map_name = map_name
-            # load the starting map
-            self.client.push_state(
-                state_name=InputMenu,
-                prompt=T.translate("input_name"),
-                callback=set_player_name,
-                escape_key_exits=True,
-                char_limit=prepare.PLAYER_NAME_LIMIT,
-            )
-            self.client.push_state(FadeInTransition)
-
-        # Build a menu of the default mod choices:
-        menu_items_map: Tuple[Tuple[str, Callable], ...] = tuple()
-
-        # If a different map has been passed as a parameter, show as an option:
-        if prepare.CONFIG.starting_map != "player_house_bedroom.tmx":
-            menu_items_map = menu_items_map + (
-                (
-                    str(prepare.CONFIG.starting_map),
-                    new_game_callback(prepare.CONFIG.starting_map),
-                ),
-            )
-
-        menu_items_map = menu_items_map + (
-            ("spyder_campaign", new_game_callback("spyder_bedroom.tmx")),
-            ("xero_campaign", new_game_callback("player_house_bedroom.tmx")),
-            ("cancel", self.close),
+        background = pygame_menu.BaseImage(
+            image_path=tools.transform_resource_filename(
+                "gfx/ui/item/bg_pcstate.png"
+            ),
+            drawing_position=POSITION_CENTER,
         )
+        theme = get_theme()
+        theme.scrollarea_position = locals.POSITION_EAST
+        theme.background_color = background
+        theme.widget_alignment = locals.ALIGN_CENTER
 
-        for key, callback in menu_items_map:
-            label = T.translate(key).upper()
-            label = label.center(32)
-            image = self.shadow_text(label)
-            item = MenuItem(image, label, None, callback)
-            self.add(item)
+        super().__init__(height=height, width=width)
+
+        self.add_menu_items(self.menu)
+        self.repristinate()
+
+    def repristinate(self) -> None:
+        """Repristinate original theme (color, alignment, etc.)"""
+        theme = get_theme()
+        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
+        theme.background_color = BACKGROUND_COLOR
+        theme.widget_alignment = locals.ALIGN_LEFT

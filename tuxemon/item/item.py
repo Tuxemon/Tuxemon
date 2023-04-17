@@ -1,58 +1,35 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-# Andy Mender <andymenderunix@gmail.com>
-# Adam Chevalier <chevalieradam2@gmail.com>
-#
-# item Item handling module.
-#
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
+import uuid
 from typing import (
     TYPE_CHECKING,
     Any,
     ClassVar,
-    Dict,
+    List,
     Mapping,
     Optional,
     Sequence,
     Type,
-    TypedDict,
 )
 
 import pygame
 
 from tuxemon import graphics, plugin, prepare
 from tuxemon.constants import paths
-from tuxemon.db import ItemBattleMenu, State, db, process_targets
+from tuxemon.db import (
+    ItemBattleMenu,
+    ItemCategory,
+    ItemType,
+    State,
+    db,
+    process_targets,
+)
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.locale import T
-from tuxemon.session import Session
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -60,14 +37,13 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
-
-class InventoryItemOptional(TypedDict, total=False):
-    infinite: bool
-
-
-class InventoryItem(InventoryItemOptional):
-    item: Item
-    quantity: int
+SIMPLE_PERSISTANCE_ATTRIBUTES = (
+    "slug",
+    "quantity",
+)
+INFINITE_ITEMS = 0
+# eg 5 capture devices, 1 type and 5 items
+MAX_TYPES_BAG = 99
 
 
 class Item:
@@ -76,22 +52,20 @@ class Item:
     effects_classes: ClassVar[Mapping[str, Type[ItemEffect[Any]]]] = {}
     conditions_classes: ClassVar[Mapping[str, Type[ItemCondition[Any]]]] = {}
 
-    def __init__(
-        self,
-        session: Session,
-        user: NPC,
-        slug: str,
-    ) -> None:
-        self.session = session
-        self.user = user
-        self.slug = slug
-        self.name = "None"
-        self.description = "None"
+    def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
+        if save_data is None:
+            save_data = dict()
+
+        self.slug = ""
+        self.name = ""
+        self.description = ""
+        self.instance_id = uuid.uuid4()
+        self.quantity = 1
         self.images: Sequence[str] = []
-        self.type: Optional[str] = None
-        self.sfx = None
+        self.type = ItemType.consumable
         # The path to the sprite to load.
         self.sprite = ""
+        self.category = ItemCategory.none
         self.surface: Optional[pygame.surface.Surface] = None
         self.surface_size_original = (0, 0)
 
@@ -119,8 +93,7 @@ class Item:
                 interface=ItemCondition,
             )
 
-        # Auto-load the item from the item database.
-        self.load(slug)
+        self.set_state(save_data)
 
     def load(self, slug: str) -> None:
         """Loads and sets this items's attributes from the item.db database.
@@ -131,16 +104,15 @@ class Item:
             slug: The item slug to look up in the monster.item database.
 
         """
+        results = db.lookup(slug, table="item")
 
-        try:
-            results = db.lookup(slug, table="item")
-        except KeyError:
-            logger.error(f"Failed to find item with slug {slug}")
-            return
+        if results is None:
+            raise RuntimeError(f"item {slug} is not found")
 
         self.slug = results.slug
         self.name = T.translate(self.slug)
         self.description = T.translate(f"{self.slug}_description")
+        self.quantity = 1
 
         # item use notifications (translated!)
         self.use_item = T.translate(results.use_item)
@@ -149,8 +121,8 @@ class Item:
 
         # misc attributes (not translated!)
         self.sort = results.sort
-        assert self.sort
-        self.type = results.type
+        self.category = results.category or ItemCategory.none
+        self.type = results.type or ItemType.consumable
         self.sprite = results.sprite
         self.usable_in = results.usable_in
         self.target = process_targets(results.target)
@@ -184,13 +156,13 @@ class Item:
             if len(line.split()) > 1:
                 params = line.split()[1].split(",")
             else:
-                params = None
+                params = []
             try:
                 effect = Item.effects_classes[name]
             except KeyError:
                 logger.error(f'Error: ItemEffect "{name}" not implemented')
             else:
-                ret.append(effect(self.session, self.user, params))
+                ret.append(effect(*params))
 
         return ret
 
@@ -214,29 +186,26 @@ class Item:
         ret = list()
 
         for line in raw:
-            words = line.split()
-            args = "".join(words[1:]).split(",")
-            name = words[0]
-            context = args[0]
-            params = args[1:]
+            op = line.split()[0]
+            name = line.split()[1]
+            if len(line.split()) > 2:
+                params = line.split()[2].split(",")
+            else:
+                params = []
             try:
                 condition = Item.conditions_classes[name]
+                if op == "is":
+                    condition._op = True
+                elif op == "not":
+                    condition._op = False
+                else:
+                    raise ValueError(f"{op} must be 'is' or 'not'")
             except KeyError:
                 logger.error(f'Error: ItemCondition "{name}" not implemented')
             else:
-                ret.append(condition(context, self.session, self.user, params))
+                ret.append(condition(*params))
 
         return ret
-
-    def advance_round(self) -> None:
-        """
-        Advance round for items that take many rounds to use.
-
-        * This currently has no use, and may not stay.  It is added
-          so that the Item class and Technique class are interchangeable.
-
-        """
-        return
 
     def validate(self, target: Optional[Monster]) -> bool:
         """
@@ -257,8 +226,11 @@ class Item:
         result = True
 
         for condition in self.conditions:
-            result = result and condition.test(target)
-
+            if condition._op is True:
+                event = condition.test(target)
+            else:
+                event = not condition.test(target)
+            result = result and event
         return result
 
     def use(self, user: NPC, target: Monster) -> ItemEffectResult:
@@ -278,7 +250,6 @@ class Item:
         meta_result: ItemEffectResult = {
             "name": self.name,
             "num_shakes": 0,
-            "capture": False,
             "should_tackle": False,
             "success": False,
         }
@@ -292,59 +263,50 @@ class Item:
         if (
             prepare.CONFIG.items_consumed_on_failure or meta_result["success"]
         ) and self.type == "Consumable":
-            if user.inventory[self.slug]["quantity"] <= 1:
-                del user.inventory[self.slug]
+            if self.quantity <= 1:
+                user.remove_item(self)
             else:
-                user.inventory[self.slug]["quantity"] -= 1
+                self.quantity -= 1
 
         return meta_result
 
+    def get_state(self) -> Mapping[str, Any]:
+        """
+        Prepares a dictionary of the item to be saved to a file.
 
-def decode_inventory(
-    session: Session,
-    owner: NPC,
-    data: Mapping[str, Optional[int]],
-) -> Dict[str, InventoryItem]:
-    """
-    Reconstruct inventory from a data dict.
-
-    Parameters:
-        session: Game session.
-        owner: Inventory owner.
-        data: Save data inventory.
-
-    Returns:
-        New inventory
-
-    """
-    out = {}
-    item: InventoryItem
-    for slug, quant in data.items():
-        item = {
-            "item": Item(session, owner, slug),
-            "quantity": 1,
+        """
+        save_data = {
+            attr: getattr(self, attr)
+            for attr in SIMPLE_PERSISTANCE_ATTRIBUTES
+            if getattr(self, attr)
         }
-        if quant is None:
-            # Infinite is used for shopkeepers
-            # to ensure they don't run out of an item
-            item["infinite"] = True
-        else:
-            item["quantity"] = quant
-        out[slug] = item
-    return out
+
+        save_data["instance_id"] = str(self.instance_id.hex)
+
+        return save_data
+
+    def set_state(self, save_data: Mapping[str, Any]) -> None:
+        """
+        Loads information from saved data.
+
+        """
+        if not save_data:
+            return
+
+        self.load(save_data["slug"])
+
+        for key, value in save_data.items():
+            if key == "instance_id" and value:
+                self.instance_id = uuid.UUID(value)
+            elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
+                setattr(self, key, value)
 
 
-def encode_inventory(
-    inventory: Mapping[str, InventoryItem],
-) -> Mapping[str, Optional[int]]:
-    """
-    Construct JSON encodable dict for saving.
+def decode_items(
+    json_data: Optional[Sequence[Mapping[str, Any]]],
+) -> List[Item]:
+    return [Item(save_data=itm) for itm in json_data or {}]
 
-    Parameters:
-        inventory: the inventory of the player
 
-    Returns:
-        Inventory save_data
-
-    """
-    return {itm["item"].slug: itm["quantity"] for itm in inventory.values()}
+def encode_items(itms: Sequence[Item]) -> Sequence[Mapping[str, Any]]:
+    return [itm.get_state() for itm in itms]

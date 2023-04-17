@@ -12,25 +12,48 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "viper"
+        },
+        {
+            "level_learned": 8,
+            "technique": "insanity"
+        },
+        {
+            "level_learned": 12,
+            "technique": "undertaker"
+        },
+        {
+            "level_learned": 16,
             "technique": "strike"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 30,
             "monster_slug": "allagon"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "allagon",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "ferricran",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "dragon",
+    "stage": "basic",
     "types": [
-        "Metal"
+        "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 152,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 159,
+    "height": 120,
+    "weight": 96,
     "catch_rate": 45.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1

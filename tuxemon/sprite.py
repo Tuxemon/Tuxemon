@@ -1,29 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Leif Theden <leif.theden@gmail.com>
-#
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -88,7 +64,6 @@ class Sprite(pygame.sprite.DirtySprite):
         self._needs_update = False
 
     def update(self, time_delta: float = 0, *args: Any, **kwargs: Any) -> None:
-
         super().update(time_delta, *args, **kwargs)
 
         if self.animation is not None:
@@ -167,14 +142,12 @@ class Sprite(pygame.sprite.DirtySprite):
 
     @animation.setter
     def animation(self, animation: Optional[SurfaceAnimation]) -> None:
-
         self._animation = animation
         if animation is not None:
             self.image = None
             self.rect.size = animation.get_rect().size
 
     def update_image(self) -> None:
-
         image: Optional[pygame.surface.Surface]
         if self._original_image is not None and self._needs_rescale:
             w = self.rect.width if self._width is None else self._width
@@ -414,7 +387,6 @@ class MenuSpriteGroup(SpriteGroup[_MenuElement]):
             return 0
 
         if event.pressed and event.button in self._allowed_input():
-
             seeking_index = True
             while seeking_index:
                 index = self._advance_input(index, event.button)

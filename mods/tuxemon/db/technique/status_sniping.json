@@ -1,21 +1,24 @@
 {
   "animation": "drip_green",
-  "category": "sniping",
+  "category": "positive",
   "effects": [
     "statchange"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_sniping.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
   "sfx": "sfx_pulse",
   "slug": "status_sniping",
   "sort": "meta",
   "statmelee": {
     "value": 0.5,
-    "operation": "-"
+    "operation": "*"
   },
   "statranged": {
     "value": 2,
-    "operation": "-"
+    "operation": "*"
   },
   "target": {
     "enemy monster": 0,
@@ -26,7 +29,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "tech_id": 112,
+  "tech_id": 0,
   "use_failure": "generic_failure",
   "use_success": "combat_state_sniping_get",
   "use_tech": "combat_used_x"

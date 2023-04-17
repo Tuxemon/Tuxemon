@@ -12,25 +12,56 @@
             "technique": "refresh"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "stampede"
+        },
+        {
+            "level_learned": 8,
+            "technique": "mending"
+        },
+        {
+            "level_learned": 12,
+            "technique": "maori"
+        },
+        {
+            "level_learned": 16,
             "technique": "muddle"
+        },
+        {
+            "level_learned": 20,
+            "technique": "quicksand"
+        },
+        {
+            "level_learned": 24,
+            "technique": "crystal"
+        },
+        {
+            "level_learned": 28,
+            "technique": "muck"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 30,
             "monster_slug": "possessun"
         }
     ],
-    "shape": "blob",
-    "types": [
-        "Earth"
+    "history": [
+        {
+            "mon_slug": "possessun",
+            "evo_stage": "stage1"
+        }
     ],
-    "possible_genders": ["male", "female"],
-    "txmn_id": 70,
-    "height": 0,
-    "weight": 0,
+    "shape": "blob",
+    "stage": "basic",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 71,
+    "height": 54,
+    "weight": 10,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

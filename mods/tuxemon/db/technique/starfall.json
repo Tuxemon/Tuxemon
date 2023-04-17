@@ -1,13 +1,13 @@
 {
   "tech_id": 56,
   "accuracy": 0.7,
-  "animation": "bolt",
+  "animation": "lightning_bolt_138",
   "effects": [
+    "give status_focused,user",
+    "give status_tired,target",
     "damage"
   ],
   "flip_axes": "",
-  "healing_power": 0,
-  "icon": "",
   "is_area": false,
   "is_fast": false,
   "potency": 0.7,

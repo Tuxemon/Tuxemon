@@ -1,10 +1,13 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 Module mainly used for the mod_manager.py
 """
 import os
+from typing import Any
 
 
-def symlink_missing(target, *sources):
+def symlink_missing(target: str, *sources: Any) -> None:
     """
     'Walks' through the specified directories, and symlinks missing files
     Parameters:

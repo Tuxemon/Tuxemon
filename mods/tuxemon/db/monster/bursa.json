@@ -12,23 +12,42 @@
             "technique": "amnesia"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 8,
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 12,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 16,
             "technique": "fire_ball"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 30,
             "monster_slug": "flambear"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "flambear",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "humanoid",
+    "stage": "basic",
     "types": [
-        "Fire"
+        "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 82,
+    "txmn_id": 83,
     "height": 180,
     "weight": 110,
     "catch_rate": 170.0,

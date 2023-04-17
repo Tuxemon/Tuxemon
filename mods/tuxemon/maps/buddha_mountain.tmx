@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="45" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="271">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="scenario" value="tobedefined"/>
+  <property name="slug" value="buddha_mountain"/>
+  <property name="types" value="route"/>
+  <property name="west" value="sphalian_town"/>
+ </properties>
+ <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
+  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
+ </tileset>
+ <tileset firstgid="2776" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
+ </tileset>
+ <tileset firstgid="10968" name="core_outdoor_water" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
+  <image source="../gfx/tilesets/core_outdoor_water.png" width="1024" height="2048"/>
+ </tileset>
+ <tileset firstgid="19160" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
+ </tileset>
+ <layer id="1" name="Layer1 Mountain Terrain" width="45" height="100">
+  <data encoding="base64" compression="zlib">
+   eAHtm0mOJEUQRfMMDBKwYjpAFU0390GIdRfNiuMAa1TDxapQI7HEfna+lGHtHj5GZCBq4TKPyBiev/jumVnD248Ohzc7a38Zz9MHh8PnX6Tb4+l1HbObVsn8dgeu8ftUybwL3zzzRuZL+I5+Wz1fxHfw28u8he+c317mTXxn/I4yr+G75HeUeRXfBb+zmGf4rvU7i3mK70q/z8xjn0leffzu/Npa+ozEsy/Vkc9Rtawctwdmclpb/4/M31oWH2ze59p39rpa7nXtf3nK81aeR3L83rmVa15vNkp+8VrjmWNrffcyv+do5newgu9W5lq/uGvxzDkl363Mq/qNzyrju5a51S/Oejxzbs53LfOmfgu+S8y9fnE14plrRN8l5ov6zfjOMY/6xdEMz1wL3znmXfk9+X51Wkeemcc++5eebY3nu08Ph63bvd0zx15ifrRz/7Ycbd1uP3vnKcW+V2Yc/Znw3cv82jxch3Zj29xrVu1hvstwpK515cZQy8/Yc8crIzEfJc/RF/f4xq6VmyPaL/4ch7+mxv7HJ4fD0ryJflqZ4/kl7usCuzwe1ySrfiy+H+/ZwizHJb+pMdQ695y+38vcy8sYlp6950v1W5n1bNV6/MKrOuK6ldnfd7QvbhzcWD/lNO5LPd9SniPnrc3zpffx+8R7QLyGtj0/40hVPV+tK/4arcylXMbn6O+11BfXUvPnjjDrucmNf869zGLagll8uo93H5lLWVrKmV5jHLM835rj+H5w3kfu7Zg4r1q28TKLueXe8VhylZp3fl9qjW3N81XIb2QpbcMqltzvus6/v7KMe7/0W5l1nrhx4edfiVevk3fl9CU/0wpsMMEYK6/3fof1809MeGRMsfpnvQdm8Xqm6Cdu//Sh/d1Qov1s++KxfnvUs89JC69nSPUfE2NhfIypNxt+/b2vfN9OMbIPVnHh80v7W6mvMu3rxN9ReSatxZHL55n5xf17qjh90zW+N64fM+2HBLNn0hy7tcx6dv/6KLMc4xfuGcysZ7Df2RjYN8oMp68jzFoTtG7dOEZYqXtjFs+jZcNnAVbq3phTWRAr/vUMRtc6nwn6I9nAZayjbsVEg9PXHuarQobxfz9hbfas9HuYlWFx69nTUvMQdr8O4q+2wulrD3P8TPBka+jSPFR24G9171np9zAf1wrjoOqzWImZzLdmHU5fe5jxfPRr7GKOWVFmcnlpce1Z6fcwX1sW1I5+T8yp75UaR477+J0x8VlFPL7B6esM5l+MX879veiXMqOcL3n3rPRnMCvXue8XJWblfCnjcPo6k1m++QyuKvepfLw+rZHk5pLM5IGK++hajMc1x+qlPcNKhTm6VoaPc9DqJZnJhZ+LMGsMkZv1emtm1gveW+JcZBxkW2Mgw5di1hodub1bMqKq/WryfR3a0udVv17Q1/Vavw+K1TfP7d2yhigv4k29xjG+PtjxbMfvguKewex9e7f0ccx2a8UvVeePesY5viNTZNZ2PGZpG1bqTGZ881yVCV3f50L7Shnx2dC1Yj5mM+NcFZ+qrC3sW/Kaeg3Hqlsw41WOI3PcTvFq31bMMd/ii4yMhzypxmzEfKzp2edD9xGvZ5T3nNfUflyvzexdwwtrdJ7i9Pu2YpZruOM8ZAy5PGi/b6wfa3sWs5qcRmbvkD7H5Ora6wa8kdn7xeNDcMr+WOX6Ep5zDuN+3Kfqr/Zz8d8y7ffEz8y9v9q+z0ZkYzv3u8E3lqvalvt9Si2nP24pD+fxuMwzjtY6k9nzx77+X+vIRrW1vJWV49dk9jl4Yf/r819gxm2SfaeeYT7XAU5yobpmNs6sEzL8zPzv77paL8iv5p365/m3w2zAynNcg3dGnuHUe5j3uRbvEvMLe8Y1TfPMc/P+6/nxPqvm1o1/AEAu6lE=
+  </data>
+ </layer>
+ <layer id="2" name="Layer2 Signs, Plants, Statues" width="45" height="100">
+  <data encoding="base64" compression="zlib">
+   eAHlmkuuHEUQRRspzYTfBgDBTgwUI8RnxoaKGYw99IZYBEshQ+bKwVFEfqqzuuvJKZUjIz+Rp2/frur3/G63a7Y3n99u5bPb7VW9GI347avrcL/++B2LMW+V98d6MV6H9v8kxrxX3j/qxehXPlNv6Suenje07kpx1huP1Jv6SrdRb2j9FeJRb5ypd6av9Jr1hvY9M97rjZV69/SVTke9of3PiKu8IY2yaK8tm9P46Ou/1xuj56xc93N9Dv5Sr1//i+r/VvOX0v6qz/CX1l4Cs7whTyjOeuOr+j3xy3pt9fqhXt/X67t6+c+X9W3M5myNrbU9tnemfYj3ut4zhTq39PRrW+te4r3uqDd6+konr53vaz6KvXXGzJ+plEf1rjA2641RffXavGa+r/lWzNYf9UbrrLPnRr0xq6+4vVa+r/mRyH2z3hg54+w1PW8c1VfcXiPf1/xM1P5Rb8zUPnttyxt/fnG7/VOudZkeLW/8fWFmPUMYr6zznvy+znR+Vss8aTwtbzyL159LdjHTE8r93mf1M+bMG8/i9OdmzKX6Ofs9v9/v+1EtP7+y78+yukefKb4O+zO8I89ZX1/Ms97wNbL+DHdvrT9DzDPe8PtH+j2ekXl/jpi36ueR/wPye2f6I1ytNf4sMWfesOegmt8321eNo9GfZzVaz5SV3zeO8tq+iDnzBr9vjJzr62f9kTp+ja9j46Zz5g3q7OtkfV//jL6YS/JMOUvne16LmDNv9HSOngeeJ3svZsZ9Petba3njiM7vqq77N2POvNHTeR1ZXiljzrzxTJ3JqtxeXcsb1Nn23dt+//R9BX0eGG2FGBltrvVMoc7RfqtxRuNZyu0sY868EemsvRaj5uezfrSPY629LW/M6pydw3HyzebGrIv3j1mdyTabR+xkYk6PfFRfD5vnaM35daN91rOcTMx3/J4jqqEx42AbZYvWsZZyMjEv+N6hfaMxYhkdy84gE/MNP69kdbLxUb5oXVaTTMz3hjd0389q23jEMjqW1SUT8/KBeGNUx966TOcNfmVO3bM60XiPqTcf1bQxMjEvd3pD5/b4onntZSQT8w3vA/fP5hFbNpbVJhPzvTL7v3XN6oyOZ3zReFaTTMzLIm/48yO+aMzv8X0yMd/gjTef1O9P9WLjmZzPcu7zebaHTMx3eMO+i9rF5s+y/kzjXuVZDTIxL/CGfRe1a2UTI2N2BpmYb/BGpnNWf2ScrMqzvWRivsMbK3Tm9xQxMmbMZGJe4I0Znf3P09n5Gh/ltfVkYr7BGyt0FqePM8xkYr7DGzM6e6aVfTIxL/CGdI7u0fdy6W8xFLN6ZGK+wRvSWTGre+Y4mZjv8IZ0VjxD797rJRPzAm+YvnY/0JU9y3vnRvPyhGK0xsbIxHyDN0xf8Squ5M44/TiZmO/wBnUm9yP4ycS8wBuRzsYtVkWvy2hfnlDM9pGJ+QZvZDqTOztvxTiZmO/wRqZz5JEVfFENMjEv8EZL5yNayweKESPHyMR8gzd6Oh/hJlMvJxPzHd7o6Uxm+0y2mvRVbK3VHJmYF3hjRGdy66xHxQ3eGNHZmD33o1h1DnU3nb+tP6N+PXB9U9e8/UmV3kf5QFEzfE9X5ap/RuR7uio/g1U1d3zeV+Xm51FvRP4xv2St4PO+Kh+9b+hz6GPvu8iGz/uqfOa+EfG27tf7Sd44orP0VZQ3Vr33vTqzOovTRzGveu97dWZ09pzWZ9tP8gLrjujcYxV7Oek+wbqmM5miXFytuJ10n2Bd/b1BL/K5HLHvD/LGv8JJSQU=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collisions">
+  <object id="4" type="collision" x="400" y="1296" width="80" height="16"/>
+  <object id="8" type="collision" x="304" y="1296" width="80" height="16"/>
+  <object id="9" type="collision" x="368" y="1280" width="16" height="16"/>
+  <object id="10" type="collision" x="400" y="1280" width="16" height="16"/>
+  <object id="11" type="collision" x="368" y="1232" width="16" height="16"/>
+  <object id="12" type="collision" x="400" y="1232" width="16" height="16"/>
+  <object id="13" type="collision" x="368" y="1184" width="16" height="16"/>
+  <object id="14" type="collision" x="400" y="1184" width="16" height="16"/>
+  <object id="16" type="collision" x="320" y="1328" width="16" height="16"/>
+  <object id="17" type="collision" x="352" y="1328" width="16" height="16"/>
+  <object id="18" type="collision" x="320" y="1360" width="16" height="16"/>
+  <object id="19" type="collision" x="352" y="1360" width="16" height="16"/>
+  <object id="20" type="collision" x="272" y="1408" width="16" height="16"/>
+  <object id="21" type="collision" x="304" y="1408" width="16" height="16"/>
+  <object id="22" type="collision" x="352" y="1376" width="160" height="16"/>
+  <object id="24" type="collision" x="352" y="1344" width="144" height="16"/>
+  <object id="25" type="collision" x="288" y="1344" width="48" height="16"/>
+  <object id="26" type="collision" x="256" y="1376" width="80" height="16"/>
+  <object id="27" type="collision" x="256" y="1248" width="128" height="16"/>
+  <object id="28" type="collision" x="400" y="1248" width="64" height="16"/>
+  <object id="29" type="collision" x="224" y="1200" width="160" height="16"/>
+  <object id="31" type="collision" x="400" y="1200" width="48" height="16"/>
+  <object id="32" type="collision" x="0" y="1008" width="64" height="16"/>
+  <object id="33" type="collision" x="0" y="1040" width="32" height="16"/>
+  <object id="34" type="collision" x="32" y="1168" width="16" height="16"/>
+  <object id="35" type="collision" x="48" y="1184" width="16" height="16"/>
+  <object id="36" type="collision" x="64" y="1200" width="16" height="16"/>
+  <object id="37" type="collision" x="80" y="1216" width="16" height="16"/>
+  <object id="38" type="collision" x="96" y="1232" width="16" height="16"/>
+  <object id="39" type="collision" x="112" y="1248" width="48" height="16"/>
+  <object id="40" type="collision" x="160" y="1296" width="16" height="16"/>
+  <object id="41" type="collision" x="176" y="1328" width="16" height="16"/>
+  <object id="43" type="collision" x="192" y="1344" width="16" height="16"/>
+  <object id="44" type="collision" x="208" y="1424" width="80" height="16"/>
+  <object id="47" type="collision" x="304" y="1424" width="16" height="16"/>
+  <object id="48" type="collision" x="112" y="1200" width="80" height="16"/>
+  <object id="49" type="collision" x="160" y="1168" width="48" height="16"/>
+  <object id="50" type="collision" x="96" y="1104" width="64" height="16"/>
+  <object id="52" type="collision" x="80" y="1152" width="32" height="16"/>
+  <object id="53" type="collision" x="64" y="1072" width="16" height="16"/>
+  <object id="54" type="collision" x="192" y="1280" width="32" height="16"/>
+  <object id="55" type="collision" x="208" y="1248" width="32" height="16"/>
+  <object id="56" type="collision" x="224" y="1328" width="32" height="16"/>
+  <object id="57" type="collision" x="240" y="1312" width="48" height="16"/>
+  <object id="58" type="collision" x="368" y="816" width="112" height="16"/>
+  <object id="59" type="collision" x="448" y="880" width="16" height="16"/>
+  <object id="60" type="collision" x="464" y="848" width="32" height="16"/>
+  <object id="61" type="collision" x="496" y="832" width="112" height="16"/>
+  <object id="66" type="collision" x="272" y="256" width="16" height="192"/>
+  <object id="68" type="collision" x="0" y="432" width="272" height="16"/>
+  <object id="69" type="collision" x="320" y="256" width="16" height="192"/>
+  <object id="70" type="collision" x="336" y="432" width="272" height="16"/>
+  <object id="71" type="collision" x="336" y="256" width="112" height="16"/>
+  <object id="72" type="collision" x="432" y="240" width="16" height="16"/>
+  <object id="74" type="collision" x="160" y="256" width="112" height="16"/>
+  <object id="75" type="collision" x="160" y="176" width="16" height="96"/>
+  <object id="76" type="collision" x="160" y="176" width="32" height="16"/>
+  <object id="77" type="collision" x="208" y="176" width="16" height="16"/>
+  <object id="78" type="collision" x="240" y="176" width="16" height="16"/>
+  <object id="79" type="collision" x="272" y="176" width="16" height="16"/>
+  <object id="81" type="collision" x="320" y="176" width="16" height="16"/>
+  <object id="82" type="collision" x="352" y="176" width="16" height="16"/>
+  <object id="83" type="collision" x="384" y="176" width="16" height="16"/>
+  <object id="84" type="collision" x="416" y="176" width="16" height="16"/>
+  <object id="85" type="collision" x="160" y="160" width="288" height="16"/>
+  <object id="86" type="collision" x="432" y="176" width="16" height="32"/>
+  <object id="87" type="collision" x="448" y="144" width="32" height="16"/>
+  <object id="88" type="collision" x="448" y="288" width="16" height="16"/>
+  <object id="89" type="collision" x="464" y="240" width="16" height="64"/>
+  <object id="90" type="collision" x="464" y="160" width="16" height="48"/>
+  <object id="91" type="collision" x="480" y="112" width="16" height="16"/>
+  <object id="92" type="collision" x="496" y="112" width="16" height="96"/>
+  <object id="93" type="collision" x="464" y="128" width="16" height="16"/>
+  <object id="94" type="collision" x="512" y="80" width="16" height="16"/>
+  <object id="95" type="collision" x="528" y="80" width="16" height="128"/>
+  <object id="96" type="collision" x="496" y="240" width="16" height="96"/>
+  <object id="97" type="collision" x="480" y="320" width="16" height="16"/>
+  <object id="98" type="collision" x="464" y="304" width="16" height="16"/>
+  <object id="99" type="collision" x="528" y="240" width="16" height="144"/>
+  <object id="101" type="collision" x="512" y="352" width="16" height="16"/>
+  <object id="102" type="collision" x="544" y="384" width="16" height="16"/>
+  <object id="103" type="collision" x="560" y="240" width="16" height="176"/>
+  <object id="104" type="collision" x="576" y="416" width="16" height="16"/>
+  <object id="105" type="collision" x="592" y="240" width="128" height="192"/>
+  <object id="106" type="collision" x="544" y="48" width="16" height="16"/>
+  <object id="107" type="collision" x="528" y="64" width="16" height="16"/>
+  <object id="108" type="collision" x="560" y="48" width="16" height="160"/>
+  <object id="109" type="collision" x="560" y="32" width="16" height="16"/>
+  <object id="110" type="collision" x="576" y="16" width="16" height="16"/>
+  <object id="111" type="collision" x="592" y="16" width="128" height="192"/>
+  <object id="112" type="collision" x="144" y="864" width="32" height="80"/>
+  <object id="113" type="collision" x="16" y="512" width="464" height="32"/>
+  <object id="114" type="collision" x="480" y="528" width="32" height="16"/>
+  <object id="115" type="collision" x="192" y="544" width="320" height="16"/>
+  <object id="121" type="collision" x="240" y="560" width="272" height="16"/>
+  <object id="122" type="collision" x="256" y="576" width="272" height="16"/>
+  <object id="124" type="collision" x="288" y="592" width="240" height="16"/>
+  <object id="126" type="collision" x="304" y="608" width="224" height="32"/>
+  <object id="127" type="collision" x="320" y="640" width="208" height="16"/>
+  <object id="128" type="collision" x="368" y="656" width="144" height="16"/>
+  <object id="129" type="collision" x="16" y="544" width="80" height="16"/>
+  <object id="130" type="collision" x="16" y="560" width="80" height="16"/>
+  <object id="131" type="collision" x="0" y="576" width="64" height="16"/>
+  <object id="132" type="collision" x="0" y="592" width="64" height="16"/>
+  <object id="133" type="collision" x="0" y="608" width="48" height="16"/>
+  <object id="134" type="collision" x="0" y="624" width="32" height="16"/>
+  <object id="135" type="collision" x="80" y="688" width="112" height="80"/>
+  <object id="136" type="collision" x="96" y="768" width="96" height="16"/>
+  <object id="137" type="collision" x="192" y="752" width="128" height="48"/>
+  <object id="138" type="collision" x="272" y="736" width="240" height="16"/>
+  <object id="139" type="collision" x="336" y="752" width="16" height="16"/>
+  <object id="140" type="collision" x="320" y="752" width="16" height="16"/>
+  <object id="142" type="collision" x="144" y="784" width="48" height="32"/>
+  <object id="143" type="collision" x="144" y="816" width="32" height="16"/>
+  <object id="144" type="collision" x="16" y="880" width="48" height="96"/>
+  <object id="145" type="collision" x="64" y="896" width="32" height="96"/>
+  <object id="146" type="collision" x="96" y="912" width="48" height="32"/>
+  <object id="147" type="collision" x="96" y="944" width="32" height="96"/>
+  <object id="148" type="collision" x="32" y="976" width="32" height="16"/>
+  <object id="149" type="collision" x="128" y="992" width="32" height="48"/>
+  <object id="151" type="collision" x="160" y="1008" width="48" height="32"/>
+  <object id="153" type="collision" x="176" y="1040" width="64" height="16"/>
+  <object id="154" type="collision" x="208" y="1024" width="32" height="16"/>
+  <object id="155" type="collision" x="192" y="1056" width="64" height="48"/>
+  <object id="156" type="collision" x="256" y="1072" width="48" height="112"/>
+  <object id="157" type="collision" x="304" y="1088" width="16" height="96"/>
+  <object id="158" type="collision" x="208" y="1104" width="48" height="32"/>
+  <object id="159" type="collision" x="224" y="1136" width="32" height="16"/>
+  <object id="160" type="collision" x="256" y="1152" height="16"/>
+  <object id="161" type="collision" x="240" y="1152" width="16" height="16"/>
+  <object id="162" type="collision-line" x="608" y="448">
+   <polyline points="0,0 0,384"/>
+  </object>
+  <object id="163" type="collision-line" x="368" y="768">
+   <polyline points="0,0 0,48"/>
+  </object>
+  <object id="164" type="collision-line" x="368" y="768">
+   <polyline points="0,0 112,0"/>
+  </object>
+  <object id="165" type="collision-line" x="480" y="768">
+   <polyline points="0,0 0,48"/>
+  </object>
+  <object id="166" type="collision-line" x="464" y="864">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="167" type="collision-line" x="448" y="896">
+   <polyline points="0,0 0,304"/>
+  </object>
+  <object id="168" type="collision-line" x="464" y="896">
+   <polyline points="0,0 0,352"/>
+  </object>
+  <object id="169" type="collision-line" x="480" y="864">
+   <polyline points="0,0 0,432"/>
+  </object>
+  <object id="170" type="collision-line" x="496" y="864">
+   <polyline points="0,0 0,480"/>
+  </object>
+  <object id="171" type="collision-line" x="512" y="848">
+   <polyline points="0,0 0,528"/>
+  </object>
+  <object id="172" type="collision-line" x="304" y="1280">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="173" type="collision-line" x="256" y="1232">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="174" type="collision-line" x="224" y="1168">
+   <polyline points="0,0 0,32"/>
+  </object>
+  <object id="175" type="collision-line" x="160" y="1120">
+   <polyline points="0,0 0,48"/>
+  </object>
+  <object id="176" type="collision-line" x="64" y="1024">
+   <polyline points="0,0 0,48"/>
+  </object>
+  <object id="177" type="collision-line" x="80" y="1088">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object id="178" type="collision-line" x="112" y="1168">
+   <polyline points="0,0 0,32"/>
+  </object>
+  <object id="179" type="collision-line" x="192" y="1216">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object id="180" type="collision-line" x="208" y="1184">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object id="181" type="collision-line" x="240" y="1264">
+   <polyline points="0,0 0,48"/>
+  </object>
+  <object id="182" type="collision-line" x="224" y="1296">
+   <polyline points="0,0 0,32"/>
+  </object>
+  <object id="183" type="collision-line" x="256" y="1344">
+   <polyline points="0,0 0,32"/>
+  </object>
+  <object id="184" type="collision-line" x="288" y="1328">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="185" type="collision-line" x="32" y="1056">
+   <polyline points="0,0 0,112"/>
+  </object>
+  <object id="186" type="collision-line" x="160" y="1264">
+   <polyline points="0,0 0,32"/>
+  </object>
+  <object id="187" type="collision-line" x="176" y="1312">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="188" type="collision-line" x="208" y="1360">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object id="189" type="collision-line" x="352" y="1408">
+   <polyline points="0,0 272,0"/>
+  </object>
+  <object id="190" type="collision-line" x="352" y="1408">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object id="191" type="collision-line" x="352" y="1472">
+   <polyline points="0,0 -48,0"/>
+  </object>
+  <object id="192" type="collision-line" x="320" y="1440">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="193" type="collision-line" x="320" y="1456">
+   <polyline points="0,0 -48,0"/>
+  </object>
+  <object id="194" type="collision-line" x="272" y="1456">
+   <polyline points="0,0 0,80"/>
+  </object>
+  <object id="195" type="collision-line" x="272" y="1536">
+   <polyline points="0,0 -32,0"/>
+  </object>
+  <object id="196" type="collision-line" x="240" y="1536">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="197" type="collision-line" x="240" y="1552">
+   <polyline points="0,0 -32,0"/>
+  </object>
+  <object id="198" type="collision-line" x="208" y="1552">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="199" type="collision-line" x="208" y="1568">
+   <polyline points="0,0 -48,0"/>
+  </object>
+  <object id="200" type="collision-line" x="160" y="1568">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="201" type="collision-line" x="160" y="1584">
+   <polyline points="0,0 -160,0"/>
+  </object>
+  <object id="202" type="collision-line" x="304" y="1472">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object id="203" type="collision-line" x="304" y="1536">
+   <polyline points="0,0 -16,0"/>
+  </object>
+  <object id="204" type="collision-line" x="288" y="1536">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="205" type="collision-line" x="288" y="1552">
+   <polyline points="0,0 -16,0"/>
+  </object>
+  <object id="206" type="collision-line" x="272" y="1552">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="207" type="collision-line" x="272" y="1568">
+   <polyline points="0,0 -16,0"/>
+  </object>
+  <object id="208" type="collision-line" x="256" y="1568">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="209" type="collision-line" x="256" y="1584">
+   <polyline points="0,0 -80,0"/>
+  </object>
+  <object id="210" type="collision-line" x="176" y="1584">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="211" type="collision-line" x="0" y="0">
+   <polyline points="0,0 0,1600"/>
+  </object>
+  <object id="216" type="collision" x="0" y="1456" width="272" height="16"/>
+  <object id="217" type="collision" x="0" y="1408" width="208" height="16"/>
+  <object id="218" type="collision" x="0" y="0" width="720" height="16"/>
+  <object id="220" type="collision" x="0" y="1584" width="720" height="16"/>
+  <object id="221" type="collision" x="0" y="16" width="16" height="1584"/>
+  <object id="227" type="collision-line" x="528" y="848">
+   <polyline points="0,0 0,558.5"/>
+  </object>
+  <object id="267" type="collision" x="672" y="208" width="16" height="32"/>
+  <object id="268" type="collision" x="704" y="432" width="16" height="1168"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="4" name="Events" visible="0">
+  <object id="2" name="Welcome Sign" type="event" x="192" y="1408" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog welcome_location_route"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="3" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_adventure_begins"/>
+    <property name="cond1" value="not music_playing music_adventure_begins"/>
+   </properties>
+  </object>
+  <object id="4" name="Teleport Town" type="event" x="16" y="1424" width="16" height="32">
+   <properties>
+    <property name="act10" value="transition_teleport sphalian_town.tmx,22,14,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="5" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:snow"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="6" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_snow"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
+   </properties>
+  </object>
+  <object id="8" name="Encounters" type="event" x="16" y="448" width="576" height="48">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="7" name="Player Spawn" type="event" x="64" y="1440" width="16" height="16"/>
+  <object id="228" name="Encounters" type="event" x="352" y="688" width="192" height="32">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="229" name="Encounters" type="event" x="208" y="672" width="144" height="48">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="230" name="Encounters" type="event" x="544" y="496" width="48" height="336">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="231" name="Encounters" type="event" x="208" y="720" width="48" height="16">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="232" name="Encounters" type="event" x="496" y="496" width="48" height="16">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="233" name="Encounters" type="event" x="528" y="512" width="16" height="48">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="234" name="Encounters" type="event" x="528" y="720" width="16" height="48">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="235" name="Encounters" type="event" x="496" y="768" width="48" height="64">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="236" name="Encounters" type="event" x="80" y="608" width="192" height="64">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="238" name="Encounters" type="event" x="272" y="624" width="16" height="48">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="239" name="Encounters" type="event" x="288" y="656" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="240" name="Encounters" type="event" x="96" y="592" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="241" name="Encounters" type="event" x="224" y="592" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="242" name="Encounters" type="event" x="112" y="560" width="64" height="16">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="244" name="Encounters" type="event" x="48" y="640" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="245" name="Encounters" type="event" x="64" y="624" width="16" height="48">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="246" name="Encounters" type="event" x="112" y="576" width="112" height="32">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="248" name="Encounters" type="event" x="16" y="656" width="48" height="208">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="249" name="Encounters" type="event" x="64" y="800" width="64" height="64">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="250" name="Encounters" type="event" x="64" y="784" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="251" name="Encounters" type="event" x="112" y="880" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="252" name="Encounters" type="event" x="80" y="864" width="48" height="16">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="254" name="Encounters" type="event" x="192" y="848" width="240" height="144">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="255" name="Encounters" type="event" x="96" y="1056" width="64" height="32">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="256" name="Encounters" type="event" x="336" y="992" width="96" height="144">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="257" name="Encounters" type="event" x="208" y="816" width="144" height="32">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="258" name="Encounters" type="event" x="192" y="832" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="259" name="Encounters" type="event" x="432" y="848" width="16" height="32">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="260" name="Encounters" type="event" x="352" y="1136" width="64" height="32">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="261" name="Encounters" type="event" x="272" y="992" width="64" height="64">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="262" name="Encounters" type="event" x="320" y="1056" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="263" name="Encounters" type="event" x="224" y="992" width="48" height="16">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="264" name="Encounters" type="event" x="256" y="1008" width="16" height="32">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="265" name="Encounters" type="event" x="176" y="960" width="16" height="32">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="266" name="Encounters" type="event" x="144" y="960" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter buddha_mountain"/>
+    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="269" name="Stop" type="event" x="672" y="208" width="16" height="32">
+   <properties>
+    <property name="act1" value="translated_dialog mountain_road_interrupted"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="192" name="Exhausted" type="event" x="0" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

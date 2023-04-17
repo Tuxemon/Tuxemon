@@ -1,57 +1,10 @@
 {
   "slug": "spyder_searoutec_wade",
-  "gender": "male",
-  "sprite_name": "swimmer",
-  "monsters": [
+  "template": [
     {
-      "name": "PiCC",
-      "level": 20,
-      "slug": "picc",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    },
-    {
-      "name": "PiCC",
-      "level": 20,
-      "slug": "picc",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    },
-    {
-      "name": "PiCC",
-      "level": 20,
-      "slug": "picc",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    },
-    {
-      "name": "PiCC",
-      "level": 20,
-      "slug": "picc",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    },
-    {
-      "name": "PiCC",
-      "level": 20,
-      "slug": "picc",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    },
-    {
-      "name": "PiCC",
-      "level": 20,
-      "slug": "picc",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "neuter"
+      "sprite_name": "swimmer",
+      "combat_front": "beachgoer",
+      "slug": "swimmer"
     }
-  ],
-  "combat_front": "beachgoer.png",
-  "combat_back": "red_back.png"
+  ]
 }

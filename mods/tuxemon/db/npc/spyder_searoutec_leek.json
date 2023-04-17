@@ -1,17 +1,10 @@
 {
   "slug": "spyder_searoutec_leek",
-  "gender": "male",
-  "sprite_name": "swimmer",
-  "monsters": [
+  "template": [
     {
-      "name": "Nudikill",
-      "level": 27,
-      "slug": "nudikill",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
+      "sprite_name": "swimmer",
+      "combat_front": "beachgoer",
+      "slug": "beachgoer"
     }
-  ],
-  "combat_front": "beachgoer.png",
-  "combat_back": "red_back.png"
+  ]
 }

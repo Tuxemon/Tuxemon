@@ -1,25 +1,10 @@
 {
   "slug": "spyder_omnichannel_carnegie",
-  "gender": "male",
-  "sprite_name": "cooldude",
-  "monsters": [
+  "template": [
     {
-      "name": "Elofly",
-      "level": 38,
-      "slug": "elofly",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Elostorm",
-      "level": 38,
-      "slug": "elostorm",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
+      "sprite_name": "cooldude",
+      "combat_front": "cooldude",
+      "slug": "cooldude"
     }
-  ],
-  "combat_front": "cooldude.png",
-  "combat_back": "red_back.png"
+  ]
 }

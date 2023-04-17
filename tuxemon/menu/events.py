@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from typing import Final, Optional
 
 import pygame
@@ -17,5 +19,4 @@ _EVENT_MAP: Final = {
 
 
 def playerinput_to_event(event: PlayerInput) -> Optional[pygame.event.Event]:
-
     return _EVENT_MAP.get(event.button)

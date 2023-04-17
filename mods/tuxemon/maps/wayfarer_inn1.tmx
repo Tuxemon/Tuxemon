@@ -1,83 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="47">
- <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
-  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="47">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="wayfarer_inn1"/>
+  <property name="types" value="dungeon"/>
+ </properties>
+ <tileset firstgid="1" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
- <tileset firstgid="1601" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
+ <tileset firstgid="1551" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="3041" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ <tileset firstgid="5415" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
- <tileset firstgid="4481" name="Outdoor_odds_and_ends_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="50" columns="10">
-  <image source="../gfx/tilesets/Outdoor_odds_and_ends_by_Isaiah658.png" width="160" height="80"/>
- </tileset>
- <tileset firstgid="4531" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
-  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
- </tileset>
- <tileset firstgid="4641" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
-  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
- </tileset>
- <tileset firstgid="4926" name="Stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
-  <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
- </tileset>
- <tileset firstgid="4950" name="Plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="4966" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
- </tileset>
- <tileset firstgid="5466" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
-  <image source="../gfx/tilesets/Objects_by_ArMM1998.png" width="528" height="320"/>
- </tileset>
- <tileset firstgid="6126" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="6142" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
- </tileset>
- <tileset firstgid="6230" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="7230" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
-  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
- </tileset>
- <tileset firstgid="7440" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
- </tileset>
- <tileset firstgid="7494" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
- </tileset>
- <tileset firstgid="7566" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="7582" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
-  <image source="../gfx/tilesets/items.png" width="160" height="160"/>
- </tileset>
- <tileset firstgid="7682" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
-  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
- </tileset>
- <tileset firstgid="7766" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ <tileset firstgid="8385" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAHFkjsKAkEQROcYBu4RDE3FwFQMTEVNzERT8Yexnsf7WQX9YFyGcTIbiurt7urP7k6GKc0CSbaXvxXMYBd56sxTYS4sA9Ze5B8FMzhFnjrzQrC2675xV2ysGLAWH0Y7GqSUgzxc03ruU725D+buWyH3Uoydz/K5Dz4UYuTYOb/X74tna/H7nGs3UWetzbWt2re03Akr9ujP4zmfW7r32rgz/VrZc1fRu/SN/N/VDG1pZ/euGdrSrv/Srn/s/AGnIk3m
+   eAE7r8DAoKOIii+jiYH4Zeqo+CJQ7C8QdwD1ImM9ND4DkH8JqBcZ/4fq9eJiYEDGXUC1F4FiMAzSC2PDaFx6YfIwmpDerUCzcfn7CtB96HJMQPUg/4Lc2w5kI/sZxAbZhy4G4+NyM8zvIL0wNjqNrPcS1H5kNcTq1Qbage4nXSLtxebfTiL1IruVGDayf7HFESjd4QP44ghkNj4A04vNnYNVLwBPPXLI
   </data>
  </layer>
  <layer id="2" name="Tile Layer 4" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAGVjztOw0AQQEfAAUAUwY7tIqZKAen4FChGosVRuAG0keigcOMrIOUAnIGOq3AJilyAN7JHXq3Xihnpece783ZmRUQ2SQe/g/EYiZTgRoVr5JnUevY7aSrq02bV7xveu+d2pyLz1t3hfuJtW5c7g5GmIi4Z/35w5974ivslob1+lcgP7it9P866U927pe8zey9w582QtHPq7BV8t+4x+QkU1OuqPHiudonZs3db14jaGErOVrCGJ/DDfZfl5qpvTMn90HdZWD7WNc9dZ/TI4YA5D+EIzgN91bFZXX9sbrOOrde6C+a4dFgMzBW684raa4ebf7hLaguH+xHuH+99Jvg=
+   eAGVkD8OAVEQxseuBgnRrSNQ6alxDZU/hQo1pYRjoHACJyB0i0THFVwA38SbZLL7lmeSL2923vebN7NE7nHziO5QUuSDz03ReNrK+ETt9YWtGbYKzxTcxLAFU1etnNO6Axv68Xa2WtxF9AA7TxNtVQ+u9aEy9qhAA3UX7bEBezX3QZaoBM3wzSdrYWFDyz9swNuEdvDvoQN0tLGqJjsKy7yohTwavJeE5K6scPoc4o0R1MkQdaEeNLa8y4zMqnnXXGZ19bNviTlWSuuEuWw9T/CelS5/sKkckafkI/8VbyRIKEc=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 5" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYKAcuElSbsZINyFDFBICp0kIy4cSIz3UcPtfX46BwQCIQWASMJwmkxBWZkB95lC9u4D6dpOgF2IjhHwE1PeYBL2SUsi6iWMDADelCSA=
+   eAFjYKAcXGei3IyRbkINMyQEHKE0MeHxnQS1xJg3nNToA8PGABo+u4D0bhLCyg+o1h+q/iaQvkWCXuQw/AHU95MEvbUkqIXZAwCTIglK
   </data>
  </layer>
  <layer id="4" name="Above Player" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBgF9A4BYTl62zhq33ANAQB0LgAy
+   eAFjYBgF9A6BzUz0tnHUvuEaAgCjiQC2
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -86,7 +44,6 @@
   <object id="8" type="collision" x="32" y="176" width="96" height="16"/>
   <object id="9" type="collision" x="32" y="192" width="32" height="16"/>
   <object id="10" type="collision" x="112" y="192" width="16" height="64"/>
-  <object id="11" type="collision" x="16" y="256" width="96" height="16"/>
   <object id="12" type="collision" x="128" y="176" width="112" height="16"/>
   <object id="13" type="collision" x="224" y="0" width="16" height="176"/>
   <object id="14" type="collision" x="176" y="0" width="32" height="16"/>

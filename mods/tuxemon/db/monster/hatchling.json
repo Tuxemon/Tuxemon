@@ -12,25 +12,40 @@
             "technique": "peck"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "air_chain"
+        },
+        {
+            "level_learned": 8,
+            "technique": "webs_wind"
+        },
+        {
+            "level_learned": 12,
             "technique": "fluff_up"
         }
     ],
     "evolutions": [
         {
-            "path": "",
-            "at_level": 20,
+            "path": "standard",
+            "at_level": 18,
             "monster_slug": "birdling"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "birdling",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "flier",
+    "stage": "basic",
     "types": [
-        "Wood"
+        "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 80,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 81,
+    "height": 20,
+    "weight": 1,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

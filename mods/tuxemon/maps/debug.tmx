@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="4" height="4" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="11">
+ <properties>
+  <property name="scenario" value="debug"/>
+  <property name="slug" value="debug"/>
+  <property name="types" value="notype"/>
+ </properties>
+ <layer id="1" name="Tile Layer 1" width="4" height="4">
+  <data encoding="base64" compression="zlib">
+   eAFjYKAMAAAAQAAB
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="4" height="4">
+  <data encoding="base64" compression="zlib">
+   eAFjYKAMAAAAQAAB
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="4" height="4">
+  <data encoding="base64" compression="zlib">
+   eAFjYKAMAAAAQAAB
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="4" name="Collisions">
+  <object id="3" type="collision" x="0" y="0" width="16" height="64"/>
+  <object id="4" type="collision" x="48" y="0" width="16" height="64"/>
+  <object id="5" type="collision" x="16" y="0" width="32" height="16"/>
+  <object id="6" type="collision" x="16" y="48" width="32" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="5" name="Event">
+  <object id="7" name="Scenario" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_money player,0"/>
+    <property name="act2" value="translated_dialog_choice spyder_campaign:xero_campaign,scenario_choice"/>
+    <property name="cond1" value="not variable_set scenario_choice:spyder_campaign"/>
+    <property name="cond2" value="not variable_set scenario_choice:xero_campaign"/>
+   </properties>
+  </object>
+  <object id="8" name="Spyder" type="event" x="48" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="change_bg choice_gender"/>
+    <property name="act2" value="translated_dialog_choice gender_female:gender_male,gender_choice"/>
+    <property name="act3" value="change_bg spyder_empty"/>
+    <property name="act4" value="transition_teleport spyder_bedroom.tmx,4,4,0.3"/>
+    <property name="act5" value="set_money player,250"/>
+    <property name="act6" value="set_variable spyder_starting_money:yes"/>
+    <property name="cond1" value="is variable_set scenario_choice:spyder_campaign"/>
+    <property name="cond2" value="not variable_set spyder_starting_money:yes"/>
+    <property name="cond3" value="not variable_set gender_choice:gender_male"/>
+    <property name="cond4" value="not variable_set gender_choice:gender_female"/>
+   </properties>
+  </object>
+  <object id="9" name="Xero" type="event" x="0" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="change_bg choice_gender"/>
+    <property name="act2" value="translated_dialog_choice gender_female:gender_male,gender_choice"/>
+    <property name="act3" value="change_bg spyder_empty"/>
+    <property name="act4" value="transition_teleport player_house_bedroom.tmx,4,4,0.3"/>
+    <property name="act5" value="set_money player,500"/>
+    <property name="act6" value="set_variable xero_starting_money:yes"/>
+    <property name="cond1" value="is variable_set scenario_choice:xero_campaign"/>
+    <property name="cond2" value="not variable_set xero_starting_money:yes"/>
+    <property name="cond3" value="not variable_set gender_choice:gender_male"/>
+    <property name="cond4" value="not variable_set gender_choice:gender_female"/>
+   </properties>
+  </object>
+  <object id="10" name="Player Spawn" type="event" x="16" y="16" width="16" height="16"/>
+  <object id="11" name="Gender Male" type="event" x="48" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_player_template adventurer,adventurer"/>
+    <property name="cond1" value="is variable_set gender_choice:gender_male"/>
+   </properties>
+  </object>
+  <object id="12" name="Gender Female" type="event" x="48" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_player_template heroine,heroine"/>
+    <property name="cond1" value="is variable_set gender_choice:gender_female"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

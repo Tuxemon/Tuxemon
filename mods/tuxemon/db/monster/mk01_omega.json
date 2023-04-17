@@ -1,0 +1,78 @@
+{
+    "slug": "mk01_omega",
+    "category": "threat",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 6,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 8,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 12,
+            "technique": "battery_discharge"
+        },
+        {
+            "level_learned": 16,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 20,
+            "technique": "crystal"
+        },
+        {
+            "level_learned": 24,
+            "technique": "undertaker"
+        },
+        {
+            "level_learned": 28,
+            "technique": "lineage"
+        },
+        {
+            "level_learned": 32,
+            "technique": "sword"
+        },
+        {
+            "level_learned": 36,
+            "technique": "viper"
+        },
+        {
+            "level_learned": 40,
+            "technique": "acid"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "mk01_beta",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "mk01_proto",
+            "evo_stage": "basic"
+        }
+    ],
+    "shape": "dragon",
+    "stage": "stage2",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 0,
+    "height": 0,
+    "weight": 100,
+    "catch_rate": 120.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

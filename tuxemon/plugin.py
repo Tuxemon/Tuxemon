@@ -1,39 +1,11 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-#
-#
-# plugin Plugin architecture module.
-#
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import importlib
 import inspect
 import logging
 import os
-import re
 import sys
 from types import ModuleType
 from typing import (
@@ -86,7 +58,6 @@ class PluginManager:
     def __init__(
         self,
     ) -> None:
-
         self.folders: Sequence[str] = []
         self.modules: List[str] = []
         self.file_extension = (".py", ".pyc")
@@ -97,6 +68,7 @@ class PluginManager:
             "item.effects",
             "item.conditions",
             "technique.effects",
+            "technique.conditions",
         ]
 
     def setPluginPlaces(self, plugin_folders: Sequence[str]) -> None:
@@ -115,15 +87,12 @@ class PluginManager:
             logger.debug("searching for plugins: %s", folder)
             folder = folder.replace("\\", "/")
             # Take the plugin folder and create a base module path based on it.
-            pattern = re.compile("tuxemon/.*$")
-            matches = pattern.findall(folder)
-            if len(matches) == 0:
+            match = folder[folder.rfind("tuxemon") :]
+            if len(match) == 0:
                 raise RuntimeError(
-                    f"Unable to determine plugin module path for: %s",
-                    folder,
+                    f"Unable to determine plugin module path for: %s", folder
                 )
-            module_path = matches[0].replace("/", ".")
-
+            module_path = match.replace("/", ".")
             # Look for a ".plugin" in the plugin folder to create a list
             # of modules to import.
             modules = []
@@ -174,7 +143,6 @@ class PluginManager:
         module: ModuleType,
         interface: Type[InterfaceValue],
     ) -> Iterable[Tuple[str, Type[InterfaceValue]]]:
-
         # This is required because of
         # https://github.com/python/typing/issues/822
         #

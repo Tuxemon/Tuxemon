@@ -1,56 +1,22 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-# Adam Chevalier <chevalieradam2@gmail.com>
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    ClassVar,
-    Generic,
-    Sequence,
-    Type,
-    TypeVar,
-)
+from dataclasses import dataclass, field
+from typing import TYPE_CHECKING, ClassVar
 
-from tuxemon.session import Session
-from tuxemon.tools import NamedTupleProtocol, cast_parameters_to_namedtuple
+from tuxemon.session import Session, local_session
+from tuxemon.tools import cast_dataclass_parameters
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
-    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
-ParameterClass = TypeVar("ParameterClass", bound=NamedTupleProtocol)
 
-
-class ItemCondition(Generic[ParameterClass]):
+@dataclass
+class ItemCondition:
     """
     ItemConditions are evaluated by items.
 
@@ -92,46 +58,15 @@ class ItemCondition(Generic[ParameterClass]):
     (Monster, "monster_slug")   => a Monster instance will be created
     """
 
-    name: ClassVar[str] = "GenericCondition"
-    param_class: ClassVar[Type[ParameterClass]]
+    name: ClassVar[str]
+    session: Session = field(init=False, repr=False)
+    _op: bool = field(default=False, init=False)
 
-    def __init__(
-        self,
-        context: str,
-        session: Session,
-        user: NPC,
-        parameters: Sequence[Any],
-    ) -> None:
-
-        self.session = session
-        self.user = user
-        self.context = context
-
-        # if you need the parameters before they are processed, use this
-        self.raw_parameters = parameters
-
-        # parse parameters
-        try:
-            if self.param_class._fields:
-
-                # cast the parameters to the correct type, as defined in cls.valid_parameters
-                self.parameters = cast_parameters_to_namedtuple(
-                    parameters,
-                    self.param_class,
-                )
-            else:
-                self.parameters = parameters
-
-        except ValueError:
-            logger.error(f"error while parsing for {self.name}")
-            logger.error(f"cannot parse parameters: {parameters}")
-            logger.error(f"{self.param_class}")
-            logger.error(
-                "please check the parameters and verify they are correct"
-            )
-            self.parameters = None
-
-        self._done = False
+    def __post_init__(self) -> None:
+        self._op = self._op
+        self.session = local_session
+        self.user = local_session.player
+        cast_dataclass_parameters(self)
 
     def test(self, target: Monster) -> bool:
         """

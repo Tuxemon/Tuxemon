@@ -12,23 +12,42 @@
             "technique": "sudden_glow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 8,
+            "technique": "gyser"
+        },
+        {
+            "level_learned": 12,
             "technique": "glower"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 18,
             "monster_slug": "incandesfin"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "incandesfin",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "lightmare",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "aquatic",
+    "stage": "basic",
     "types": [
-        "Water"
+        "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 67,
+    "txmn_id": 68,
     "height": 80,
     "weight": 11,
     "catch_rate": 170.0,

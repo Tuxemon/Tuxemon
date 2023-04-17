@@ -12,25 +12,44 @@
             "technique": "static_field"
         },
         {
-            "level_learned": 2,
+            "level_learned": 4,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 6,
             "technique": "clamp_on"
+        },
+        {
+            "level_learned": 8,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 12,
+            "technique": "bubble_trap"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 12,
             "monster_slug": "arthrobolt"
         }
     ],
-    "shape": "blob",
-    "types": [
-        "Metal"
+    "history": [
+        {
+            "mon_slug": "nut",
+            "evo_stage": "basic"
+        }
     ],
-    "possible_genders": ["male", "female"],
+    "shape": "blob",
+    "stage": "stage1",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
     "txmn_id": 5,
-    "height": 0,
-    "weight": 0,
+    "height": 90,
+    "weight": 15.6,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

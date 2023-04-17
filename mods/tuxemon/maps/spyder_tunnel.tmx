@@ -1,42 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="343">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="343">
  <properties>
+  <property name="east" value="route6"/>
   <property name="edges" value="clamped"/>
+  <property name="north" value="timber_town"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="tunnel"/>
+  <property name="types" value="route"/>
  </properties>
- <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
- <tileset firstgid="449" name="Waterfall_by_George" tilewidth="16" tileheight="16" tilecount="90" columns="9">
-  <image source="../gfx/tilesets/Waterfall_by_George.png" width="144" height="160"/>
- </tileset>
- <tileset firstgid="539" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
- </tileset>
- <tileset firstgid="908" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
- <tileset firstgid="2348" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
- </tileset>
- <tileset firstgid="2508" name="Cave_Tiles_by_George_" tilewidth="16" tileheight="16" tilecount="154" columns="14">
-  <image source="../gfx/tilesets/Cave_Tiles_by_George_.png" width="224" height="181"/>
- </tileset>
- <tileset firstgid="2662" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Lowest Level" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHNlktuwkAQRBuFZZRLJJyEcBJjOEggOYidJWSVrH2CnClVkktqmZng+Sy8KPUwM37urm4QV7PhAn1B1wrrGgyfSwnvE/X0E5XwzmCdJloq7wN57qFa+b2NrCXzOMc188vlae4OyEfzQv9yeaG5WypPc9dUqpd1lvwesBe+D0d87iDNiaJ/R2w9Zam3Yqb0N8YSM7W/oRkRi7GUp76+g1XKI6uBnAdWkh/9b81MHpCvvirGeqp9PSvPyNTcMDdxFPUcex5aT3niqnZxFEMMz47xmGeXkR/ea+qlclPMqXec/SAzl0dPWmgP+VxLePLb+0kP+1E6v9cP3xuuPU8+Mi6FJx/ppVdufjF/Uni4azE9rWygavF+UPd3Yj9iuXH/FywK65v/zw84X8/U48rsBXc3EFkh3jPOeCdF//G2YL0maof743f8pt7YLMzZ/wMgvQ4u
+   eAHdlssNwkAMRM3nRgfQCr9WEA3kAiUANQC9EIqhBc7YgpGGVTaS1zlEOVi7guUxM7Y2qUSkGmgtxyKrpCJed8p6T/+rr7z5ROSservStw+yTAfnN2Qe5m6rPcC8RPxybn3nYe4ugXlhv5HcbOasF9yHjfZkXagtZaEXJcwcC0yvb84MDF6jPPR18ZvpCM9YNh+cQYSH/JEB+J67D79FZsbE3Hi1pXcdmLaWaGvjwbvHq509af7oJeuzfYnfNmYpD0x7jrHWCA85cb8tQ7wn4HvvyjzO08vB+a551m/LMS38X1/Wg87mkSqq66qsG1VXvJcya60mXuqB/aT72eir755hGT/1wH5y+zbeQ5m1s556vslr9LMPSMaS6g==
   </data>
  </layer>
  <layer id="2" name="Obstacles" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAG1lt1NAzEQhA1vQEIKAUQlSWiBFqCBE1BPHugKqmAH7hMjax07CViyds+7O579Se5K+V13s4rEco8yS3/+LGX6iI10V3CQ2DxeZ/58eVami9hIYma/yZ9dXwSHzbzXId2G/j4rq7Bfx75p+OE/KoP/1PONGuz1iRqWqOH3+gu8qGGJGjbxns/L9BT7x6OUU/m9BtZLhcdMILlLMuN31aiRequeMhNIxzukfuQKL6TjZfzc7jp48EK6j9+xjVx6uXpsptd3tGYGbhmGzqib89N5hkcfZG8t6jbCr8dNd4zw47e/bsyPcx3hJ167ASzH3Ve/kTwdS/q++t0GN/1/sZcDXGt+msFN7GwOe3zfIq7mB/9sbnp4iq35nYr3n/xWkT+1z94h6k+vJ84vqxn5I3uYXr8RPOHuw6z57SInxSxCtuZG9lavW/zwb3HGLmxfNT9s+B+Kp3i+DzwWvG3kXf9WVBPs3J/JDE9+fk6ceqLZWsbmrJYe5z308zqm5kk/VnFPPcP4gvdo73Vw8eGZfigm+7ZQrcAjRpJ5WjfyVUz2baHYDA9eSPn5qmN0P3dvQ9ds+8YmjKwO4PXycA6ZznsOPPg/JLXP4usz3nM1Hn0/VlIj6kLfj5VfYUrYFw==
+   eAG1llFOAzEMRAMCxFFoexYqrsEfEvQPLsJp4DBwDjy0TwyWk91uYaV00sQej+NsNq39PNuzfR9k5u4wXv2/uWxtFQ3ERggPyNyI7za4ttFAfJzPx+iHS3sKnffnre2SXmx2F/veKubX0TZMnIg5v4ou55xtfP3+gs/Xr+J7u27tPRrPqfo+gusz8ZETSCxhpe/KDayv2qqm+IBm8mv/Vfm6LbmiC3QbjzGXDx/Q+TzGY+Qylav7Vv0co6eRXCsOjaELxK7iow7YVIguEJuKb0qbfNEFVnzSNXrv8RGiC2TO9c3RhR840reEb6RvHUF1ftE20Z96sj7tQZ2X1T6cozfrI76vI2Nz+LI+fJfy/ac+vh+9b4jqM1UT11flSP7gFKev3xy+hyAecfb08a5V+0acvVr39GHf08w86wD29GF/LJ94uR+4L3y9M5t5dFVY8cnOx/Hj3R7tH/fzGvo4fGDWST20l/M9CFv4Xu273uOjHvLp3S3gg0Oo/fQcPr07m3yqu4V8Kz60a756so/iv0QMPZyJOhdprqtaB/jEIx+4vgmP+KEe8JHHrlj7ObReD9nDR5ylyBqRJ3GW4hcMsVFM
   </data>
  </layer>
  <layer id="3" name="Obstacles 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtVdsNwjAMDI8/Hh0C/gB1EihsABswAhPxAeuwAUtgS7V0tZo0cRBqJSpZcVr7cr40jnPDe0rnbsh6B/PXqPkN48S/jpsxbXiIKXmxYxtebK7EFVTTsrYN1Dcnfw9zie8aNSeJt9bZhac1lvV8Y1XXpPOs/HgdxjyQzchYN/Yt2mnOjBuD81T/mcaxzB+JmLfEeAunPuTEnPtf8rwMXPdzj/gXdN6kFy7Iz93HEjBy+ovwaMM7ZejH/UX61jf4Ic9trWWOjnLWsG7GtWAeQSeum3u18LViSj6PyJHnqXrqc5yLxxzw8eHpexBzQr7g5dx3uLbgperm41jR/obu4QklTn3JCe/vFMu2Ilsn5IVCEe8dCvx/i1bgA32xQAk=
+   eAHtldENwjAMRMsHiFVod0HsQhkGhukyLEJOqqWzSSB22g9QI1W1k/rl4iZx1/1eO++05ovx9ei7Nx11X47nZTIxx+PxGvuU1tTPz0AB+2TfnOtFuNUkyOg6v/FsjmW+0vua1nRIgzYuqg/zgDnOXOQNdiR3YHEDt4bzMPuMGVH77mQ+nd9HdW1xOgNr/Hs9w7qed5+tqUbdhenstTa+u1ruF9GR440N547vrSX0sc4+Oagrw8J5BDfC5DxJDRC9UabE483/Br43n/Yct/KggVuJZ+sgx3yyhddS73hu4XnzVtIoe7umfpYYW///ZOAFBnkbpA==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -165,10 +150,13 @@
   </object>
   <object id="334" name="Talk Iris" type="event" x="160" y="224" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_tunnelb_iris1"/>
-    <property name="act3" value="start_battle spyder_tunnelb_iris"/>
-    <property name="act4" value="translated_dialog spyder_tunnelb_iris2"/>
-    <property name="act6" value="set_variable tunnelbiris:yes"/>
+    <property name="act1" value="translated_dialog spyder_tunnelb_iris1"/>
+    <property name="act2" value="add_monster tourbidi,18,spyder_tunnelb_iris,27,10"/>
+    <property name="act3" value="add_monster tourbidi,18,spyder_tunnelb_iris,27,10"/>
+    <property name="act4" value="add_monster tourbidi,18,spyder_tunnelb_iris,27,10"/>
+    <property name="act5" value="start_battle spyder_tunnelb_iris"/>
+    <property name="act6" value="translated_dialog spyder_tunnelb_iris2"/>
+    <property name="act7" value="set_variable tunnelbiris:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_iris"/>
     <property name="cond1" value="not variable_set tunnelbiris:yes"/>
    </properties>
@@ -181,10 +169,16 @@
   </object>
   <object id="336" name="Talk Greta" type="event" x="208" y="544" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_tunnelb_greta1"/>
-    <property name="act3" value="start_battle spyder_tunnelb_greta"/>
-    <property name="act4" value="translated_dialog spyder_tunnelb_greta2"/>
-    <property name="act6" value="set_variable tunnelbgreta:yes"/>
+    <property name="act01" value="translated_dialog spyder_tunnelb_greta1"/>
+    <property name="act02" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act03" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act04" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act05" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act06" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act07" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act08" value="start_battle spyder_tunnelb_greta"/>
+    <property name="act09" value="translated_dialog spyder_tunnelb_greta2"/>
+    <property name="act10" value="set_variable tunnelbgreta:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_greta"/>
     <property name="cond1" value="not variable_set tunnelbgreta:yes"/>
    </properties>
@@ -198,7 +192,8 @@
   </object>
   <object id="338" name="Talk Tommy" type="event" x="224" y="80" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_tunnelb_tommy1"/>
+    <property name="act1" value="translated_dialog spyder_tunnelb_tommy1"/>
+    <property name="act2" value="add_monster zunna,22,spyder_tunnelb_tommy,27,10"/>
     <property name="act3" value="start_battle spyder_tunnelb_tommy"/>
     <property name="act4" value="translated_dialog spyder_tunnelb_tommy2"/>
     <property name="act6" value="set_variable tunnelbtommy:yes"/>
@@ -214,10 +209,17 @@
   </object>
   <object id="341" name="Talk Greta" type="event" x="208" y="576" width="16" height="32">
    <properties>
-    <property name="act2" value="translated_dialog spyder_tunnelb_greta1"/>
-    <property name="act3" value="start_battle spyder_tunnelb_greta"/>
-    <property name="act4" value="translated_dialog spyder_tunnelb_greta2"/>
-    <property name="act6" value="set_variable tunnelbgreta:yes"/>
+    <property name="act00" value="pathfind_to_player spyder_tunnelb_greta"/>
+    <property name="act01" value="translated_dialog spyder_tunnelb_greta1"/>
+    <property name="act02" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act03" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act04" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act05" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act06" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act07" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act08" value="start_battle spyder_tunnelb_greta"/>
+    <property name="act09" value="translated_dialog spyder_tunnelb_greta2"/>
+    <property name="act10" value="set_variable tunnelbgreta:yes"/>
     <property name="cond1" value="not variable_set tunnelbgreta:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>

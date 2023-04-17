@@ -1,83 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="76">
- <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
-  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="80">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="wayfarer_inn1"/>
+  <property name="types" value="dungeon"/>
+ </properties>
+ <tileset firstgid="1" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
- <tileset firstgid="1601" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
+ <tileset firstgid="1551" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="3041" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ <tileset firstgid="5415" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
- <tileset firstgid="4481" name="Outdoor_odds_and_ends_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="50" columns="10">
-  <image source="../gfx/tilesets/Outdoor_odds_and_ends_by_Isaiah658.png" width="160" height="80"/>
- </tileset>
- <tileset firstgid="4531" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
-  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
- </tileset>
- <tileset firstgid="4641" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
-  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
- </tileset>
- <tileset firstgid="4926" name="Stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
-  <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
- </tileset>
- <tileset firstgid="4950" name="Plants" tilewidth="16" tileheight="16" tilecount="2" columns="1">
-  <image source="../gfx/tilesets/plants.png" width="16" height="32"/>
- </tileset>
- <tileset firstgid="4952" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
- </tileset>
- <tileset firstgid="5452" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
-  <image source="../gfx/tilesets/Objects_by_ArMM1998.png" width="528" height="320"/>
- </tileset>
- <tileset firstgid="6112" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="6128" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
- </tileset>
- <tileset firstgid="6216" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="7216" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
-  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
- </tileset>
- <tileset firstgid="7426" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
- </tileset>
- <tileset firstgid="7480" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
- </tileset>
- <tileset firstgid="7552" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="7568" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
-  <image source="../gfx/tilesets/items.png" width="48" height="32"/>
- </tileset>
- <tileset firstgid="7574" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
-  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
- </tileset>
- <tileset firstgid="7658" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ <tileset firstgid="8385" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAHFkjsKAkEQROcGpgaKoakYmIqBqaiJmWgq/g6g4G28plXQD8ZlGCezoaje7q7+7O5kkNIskGR7+VvBDHaRp848FebCMmDtRf5RMINT5KkzLwRre8Nv3BUbKwasxYfRjvop5SAP17Se+1Bv7oO5+1bIPRVj57N87oMPhRg5ds7v9fvi2Vr8LufaTdRZa3Ntq/YtLXfCir2683jO55buvTbuTL9W9txV9C59I/93NUNb2tm9a4a2tOu/tOsfO38AsUlC9g==
+   eAE7r8DAoKOIii+jiYH4Zeqo+CJQ7C8QdwD1ImM9ND4DkH8JqBcZ/4fq9eJiYEDGXUC1F4FiMAzSC2PDaFx6YfIwmpDerUCzcfn7CtB96HJMQPUg/4Lc2w5kI/sZxAbZhy4G4+NyM8zvIL0wNjqNrPcS1H5kNcTq1Qbage4nXSLtxebfTiL1IruVGDayf7HFESjd4QP44ghkNj4A04vNnYNVLwBPPXLI
   </data>
  </layer>
  <layer id="2" name="Tile Layer 4" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAGVjzsKAjEQhgctfYJvUVA7tVMPoHfQVrDTYhtPIAgewDPYCbZ2nkAsBAtL8XUN/8EMG7JZjAPfZnYyXzIhIhpXfPAbGv0S0QDo4cEV9lVa8N6t8O2YZ74rf6fwZobr7xIdlPuEu4a3Ui7OtEYKdZ20pQ9n/oxNOdhiqwW7iI5wJ7hjWfR3uXZCbYjaCJyNGZLqn2f3wFa5EeRRcFEr51dgxg41ebfsxVCLgzt4gBd4AzP0d0kuLvtCwuLyuyQkd3XF09cs7sgZ5C33siOz6r5rLrO69nNfDXPUNRohc9nObKK3pdH+w+2gt6vRc3A/GHYqeg==
+   eAGVkD8OAVEQxseuBgnRrSNQ6alxDZU/hQo1pYRjoHACJyB0i0THFVwA38SbZLL7lmeSL2923vebN7NE7nHziO5QUuSDz03ReNrK+ETt9YWtGbYKzxTcxLAFU1etnNO6Axv68Xa2WtxF9AA7TxNtVQ+u9aEy9qhAA3UX7bEBezX3QZaoBM3wzSdrYWFDyz9swNuEdvDvoQN0tLGqJjsKy7yohTwavJeE5K6scPoc4o0R1MkQdaEeNLa8y4zMqnnXXGZ19bNviTlWSuuEuWw9T/CelS5/sKkckafkI/8VbyRIKEc=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 5" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYKAcWEhSbsZINyFKFBICe0kIy8sSQz/UpskyMEwH4hlATE1wGGjeEaiZLcBwaiUhrE4B9Z2G6l0D1LeWBL3IfrgC1HeVBL3cUsi6iWMDANwHDO4=
+   eAFjYKAcXGei3IyRbkINMyQEHKE0MeHxnQS1xJg3nNToA8PGABo+u4D0bhLCyg+o1h+q/iaQvkWCXuQw/AHU95MEvbUkqIXZAwCTIglK
   </data>
  </layer>
  <layer id="4" name="Above Player" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBgF9A6B5bL0tnHUvuEaAgDF4gDF
+   eAFjYBgF9A6BzUz0tnHUvuEaAgCjiQC2
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -161,8 +119,8 @@
   </object>
   <object id="48" name="Heal Tuxemon" type="event" x="192" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="set_monster_health ,"/>
-    <property name="act2" value="set_monster_status ,"/>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
     <property name="act20" value="translated_dialog okaythen"/>
     <property name="act30" value="npc_face spyder_shopkeeper,up"/>
     <property name="act40" value="wait 1"/>
@@ -172,14 +130,13 @@
     <property name="cond1" value="is variable_set chooses:yes"/>
    </properties>
   </object>
-  <object id="49" name="Talk Shopkeeper" type="event" x="176" y="128" width="16" height="16">
+  <object id="49" name="Talk Shopkeeper" type="event" x="176" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_wayfarer_shopkeeper"/>
     <property name="act2" value="translated_dialog_choice yes:no,chooses"/>
-    <property name="cond2" value="not variable_set chooses:yes"/>
-    <property name="cond4" value="is player_at"/>
-    <property name="cond5" value="is player_facing up"/>
-    <property name="cond6" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set chooses:yes"/>
    </properties>
   </object>
   <object id="50" name="Create Nurse" type="event" x="128" y="144" width="16" height="16">
@@ -216,15 +173,16 @@
     <property name="cond1" value="is variable_set gotbotbot:yes"/>
    </properties>
   </object>
-  <object id="55" name="Create Morton" type="event" x="64" y="96" width="16" height="16">
+  <object id="55" name="Create Morton" type="event" x="80" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer1_morton,4,6"/>
     <property name="cond1" value="not npc_exists spyder_wayfarer1_morton"/>
    </properties>
   </object>
-  <object id="56" name="Talk Morton" type="event" x="48" y="96" width="16" height="16">
+  <object id="56" name="Talk Morton" type="event" x="64" y="96" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_wayfarer1_morton1"/>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_morton1"/>
+    <property name="act2" value="add_monster mrmoswitch,14,spyder_wayfarer1_morton,27,10"/>
     <property name="act3" value="start_battle spyder_wayfarer1_morton"/>
     <property name="act4" value="translated_dialog spyder_wayfarer1_morton2"/>
     <property name="act6" value="set_variable wayfarer1morton:yes"/>
@@ -241,9 +199,11 @@
   </object>
   <object id="58" name="Talk Jessie" type="event" x="64" y="240" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_wayfarer1_jessie1"/>
-    <property name="act3" value="start_battle spyder_wayfarer1_jessie"/>
-    <property name="act4" value="translated_dialog spyder_wayfarer1_jessie2"/>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_jessie1"/>
+    <property name="act2" value="add_monster lapinou,12,spyder_wayfarer1_jessie,27,10"/>
+    <property name="act3" value="add_monster cairfrey,12,spyder_wayfarer1_jessie,27,10"/>
+    <property name="act4" value="start_battle spyder_wayfarer1_jessie"/>
+    <property name="act5" value="translated_dialog spyder_wayfarer1_jessie2"/>
     <property name="act6" value="set_variable wayfarer1jessie:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_jessie"/>
     <property name="cond1" value="not variable_set wayfarer1jessie:yes"/>
@@ -257,9 +217,11 @@
   </object>
   <object id="60" name="Talk Nightshade" type="event" x="48" y="208" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_wayfarer1_nightshade1"/>
-    <property name="act3" value="start_battle spyder_wayfarer1_nightshade"/>
-    <property name="act4" value="translated_dialog spyder_wayfarer1_nightshade2"/>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_nightshade1"/>
+    <property name="act2" value="add_monster lapinou,12,spyder_wayfarer1_nightshade,27,10"/>
+    <property name="act3" value="add_monster elofly,12,spyder_wayfarer1_nightshade,27,10"/>
+    <property name="act4" value="start_battle spyder_wayfarer1_nightshade"/>
+    <property name="act5" value="translated_dialog spyder_wayfarer1_nightshade2"/>
     <property name="act6" value="set_variable wayfarer1nightshade:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_nightshade"/>
     <property name="cond1" value="not variable_set wayfarer1nightshade:yes"/>
@@ -273,7 +235,8 @@
   </object>
   <object id="62" name="Talk Victor" type="event" x="208" y="48" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_wayfarer1_victor1"/>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_victor1"/>
+    <property name="act2" value="add_monster squabbit,14,spyder_wayfarer1_victor,27,10"/>
     <property name="act3" value="start_battle spyder_wayfarer1_victor"/>
     <property name="act4" value="translated_dialog spyder_wayfarer1_victor2"/>
     <property name="act6" value="set_variable wayfarer1victor:yes"/>
@@ -289,9 +252,11 @@
   </object>
   <object id="64" name="Talk Morningstar" type="event" x="16" y="32" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_wayfarer1_morningstar1"/>
-    <property name="act3" value="start_battle spyder_wayfarer1_morningstar"/>
-    <property name="act4" value="translated_dialog spyder_wayfarer1_morningstar2"/>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_morningstar1"/>
+    <property name="act2" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,27,10"/>
+    <property name="act3" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,27,10"/>
+    <property name="act4" value="start_battle spyder_wayfarer1_morningstar"/>
+    <property name="act5" value="translated_dialog spyder_wayfarer1_morningstar2"/>
     <property name="act6" value="set_variable wayfarer1morningstar:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_morningstar"/>
     <property name="cond1" value="not variable_set wayfarer1morningstar:yes"/>
@@ -299,9 +264,12 @@
   </object>
   <object id="71" name="Talk Morningstar" type="event" x="32" y="48" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_wayfarer1_morningstar1"/>
-    <property name="act3" value="start_battle spyder_wayfarer1_morningstar"/>
-    <property name="act4" value="translated_dialog spyder_wayfarer1_morningstar2"/>
+    <property name="act0" value="pathfind_to_player spyder_wayfarer1_morningstar"/>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_morningstar1"/>
+    <property name="act2" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,27,10"/>
+    <property name="act3" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,27,10"/>
+    <property name="act4" value="start_battle spyder_wayfarer1_morningstar"/>
+    <property name="act5" value="translated_dialog spyder_wayfarer1_morningstar2"/>
     <property name="act6" value="set_variable wayfarer1morningstar:yes"/>
     <property name="cond1" value="not variable_set wayfarer1morningstar:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -309,7 +277,9 @@
   </object>
   <object id="72" name="Talk Victor" type="event" x="176" y="32" width="32" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_wayfarer1_victor1"/>
+    <property name="act0" value="pathfind_to_player spyder_wayfarer1_victor"/>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_victor1"/>
+    <property name="act2" value="add_monster squabbit,14,spyder_wayfarer1_victor,27,10"/>
     <property name="act3" value="start_battle spyder_wayfarer1_victor"/>
     <property name="act4" value="translated_dialog spyder_wayfarer1_victor2"/>
     <property name="act6" value="set_variable wayfarer1victor:yes"/>
@@ -325,16 +295,52 @@
   </object>
   <object id="74" name="Auto Healing Teleported" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="set_monster_health ,"/>
-    <property name="act2" value="set_monster_status ,"/>
-    <property name="act3" value="set_variable battle_last_result:none"/>
-    <property name="cond1" value="is variable_set battle_last_result:lost"/>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="act3" value="set_variable teleport_clinic:none"/>
+    <property name="cond1" value="is variable_set teleport_clinic:lost"/>
    </properties>
   </object>
   <object id="75" name="Environment" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:interior"/>
     <property name="cond1" value="not variable_set environment:interior"/>
+   </properties>
+  </object>
+  <object id="76" name="Create Ratcher" type="event" x="96" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_wayfarer1_ratcher,6,7"/>
+    <property name="act2" value="npc_face spyder_wayfarer1_ratcher,left"/>
+    <property name="cond1" value="not npc_exists spyder_wayfarer1_ratcher"/>
+   </properties>
+  </object>
+  <object id="77" name="Talk Ratcher" type="event" x="80" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_ratcher1"/>
+    <property name="act2" value="add_monster lapinou,14,spyder_wayfarer1_ratcher,27,10"/>
+    <property name="act3" value="start_battle spyder_wayfarer1_ratcher"/>
+    <property name="act4" value="translated_dialog spyder_wayfarer1_ratcher2"/>
+    <property name="act5" value="set_variable wayfarer1ratcher:yes"/>
+    <property name="behav1" value="talk spyder_wayfarer1_ratcher"/>
+    <property name="cond1" value="not variable_set wayfarer1ratcher:yes"/>
+   </properties>
+  </object>
+  <object id="78" name="Create Bismuth" type="event" x="16" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_wayfarer1_bismuth,1,15"/>
+    <property name="act2" value="npc_face spyder_wayfarer1_bismuth,up"/>
+    <property name="cond1" value="not npc_exists spyder_wayfarer1_bismuth"/>
+   </properties>
+  </object>
+  <object id="79" name="Talk Bismuth" type="event" x="16" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_bismuth1"/>
+    <property name="act2" value="add_monster hydrone,14,spyder_wayfarer1_bismuth,27,10"/>
+    <property name="act3" value="start_battle spyder_wayfarer1_bismuth"/>
+    <property name="act4" value="translated_dialog spyder_wayfarer1_bismuth2"/>
+    <property name="act5" value="set_variable wayfarer1bismuth:yes"/>
+    <property name="behav1" value="talk spyder_wayfarer1_bismuth"/>
+    <property name="cond1" value="not variable_set wayfarer1bismuth:yes"/>
    </properties>
   </object>
  </objectgroup>

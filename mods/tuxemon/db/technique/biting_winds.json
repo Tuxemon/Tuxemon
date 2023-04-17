@@ -1,13 +1,12 @@
 {
   "tech_id": 24,
   "accuracy": 0.8,
-  "animation": "ice blast",
+  "animation": "explosion_ice_112",
   "effects": [
+    "give status_softened,target",
     "damage"
   ],
   "flip_axes": "",
-  "healing_power": 0,
-  "icon": "",
   "is_area": false,
   "is_fast": false,
   "potency": 1,

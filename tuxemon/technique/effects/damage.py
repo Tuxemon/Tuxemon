@@ -1,39 +1,13 @@
-#
-# Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-# Andy Mender <andymenderunix@gmail.com>
-# Adam Chevalier <chevalieradam2@gmail.com>
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import random
-from typing import NamedTuple
+from dataclasses import dataclass
 
 from tuxemon import formula
 from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
+from tuxemon.technique.technique import Technique
 
 
 class DamageEffectResult(TechEffectResult):
@@ -42,11 +16,8 @@ class DamageEffectResult(TechEffectResult):
     should_tackle: bool
 
 
-class DamageEffectParameters(NamedTuple):
-    pass
-
-
-class DamageEffect(TechEffect[DamageEffectParameters]):
+@dataclass
+class DamageEffect(TechEffect):
     """
     Apply damage.
 
@@ -64,15 +35,16 @@ class DamageEffect(TechEffect[DamageEffectParameters]):
     """
 
     name = "damage"
-    param_class = DamageEffectParameters
 
-    def apply(self, user: Monster, target: Monster) -> DamageEffectResult:
-        hit = self.move.accuracy >= random.random()
-        if hit or self.move.is_area:
-            self.move.can_apply_status = True
-            damage, mult = formula.simple_damage_calculate(
-                self.move, user, target
-            )
+    def apply(
+        self, tech: Technique, user: Monster, target: Monster
+    ) -> DamageEffectResult:
+        player = self.session.player
+        value = float(player.game_variables["random_tech_hit"])
+        hit = tech.accuracy >= value
+        if hit or tech.is_area:
+            tech.advance_counter_success()
+            damage, mult = formula.simple_damage_calculate(tech, user, target)
             if not hit:
                 damage //= 2
             target.current_hp -= damage

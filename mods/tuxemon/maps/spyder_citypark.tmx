@@ -1,53 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="277">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="277">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="citypark"/>
+  <property name="south" value="route2"/>
+  <property name="types" value="route"/>
+  <property name="west" value="leather_town"/>
  </properties>
- <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
- </tileset>
- <tileset firstgid="105" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
-  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
- </tileset>
- <tileset firstgid="465" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
- </tileset>
- <tileset firstgid="569" name="Tileset" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
+ <tileset firstgid="1" name="Tileset" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="2169" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="680" columns="20">
-  <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="544"/>
+ <tileset firstgid="1601" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="4376" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
+  <image source="../gfx/tilesets/core_buildings.png" width="760" height="800"/>
  </tileset>
- <tileset firstgid="2849" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
- </tileset>
- <tileset firstgid="3005" name="MK_buildings" tilewidth="16" tileheight="16" tilecount="896" columns="32">
-  <image source="../gfx/tilesets/MK_buildings.png" width="512" height="448"/>
- </tileset>
- <tileset firstgid="3901" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
- </tileset>
- <tileset firstgid="5213" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
+ <tileset firstgid="6726" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt2LENgDAMRNGIWSihgx0zaVgDM0OEdIhXWGmt89135NFau6qGlw4/9cHjff5/jwPrkq3vVv3tVakc1N+cf46a7Rk831Tf6WvOd/Sjn39F7l6VT/mUT/nEARzAARzAgVwOdPfp2PvUl3NzA2jMmhw=
+   eAHt1LEJgDAQheFXiaLDWDmMs6i7iAtkiuhYnkVK0UbuhL840gTyePmSVEmJoQMMYOAjA1MtzS9msT0ef9Fq5w7t82xB842NtFu2I2g+r96KpWy9XP3cjVdvJR+rz7und3rHAAYwgAEMYAADGMAABjAQz0DfxcuEk//fyQnxW2Up
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlFsKglAURU99FX3ZHCySCnrYDHoNodcQeg20nFJbcIMIer/uPUhHWJwrHtyLLRh1RIYgUpyLvsgSrMAapIA+E3glQHNu4bMDe3AAR0AfeoridYLPGVzAFdwAveippZf1RO7weYAneIE3oBc9tfzqculFT+59cPgGYszQYsZFboZJL3pWVlVukyI1n/SiZ9wVcTHCTqiLXsybInvmYO7Zj/3RqTyb/AbwSsHGs1/Zp3pu8vPdW9WlfM/vnPdTh0Zv9Cq72tka8N1A0z/Gd7br/XTjdO1rPG+DWxscNb6dK5O9cbr2NZ6HcstzQmVp9GiZ1oA1YA1YA9aANWANWAP/2cAPwu02Jg==
+   eAHtlEsKwkAQRGulC3WjO0WjN/Ag/o4RD6NX8ncff0sRsQYpyMYs0z3QAy89ZAb6TQ1J2QG2pDSshz5wJCdyJhcinx299sSyXulzI3fyIE8iH3nCaFyHwHgATEhBpmRG5CVPIz30RsCCPkuyImuyIfKSp5Xfv77ykqf2vVrAp90Mb/aqDvVO7+Ulz+o+q3nB7zSNVOUlz9+Kn6dHL+XnJ6X8TTzec0rVq1f+Nx4nqEvA8z9Gbqp157Bay8EtB0er+6vrq9xU6/ZarTXllvo01csqy+gbCUQCkUAkEAlEAr4TmHd9+4Vdngl8AW1VYws=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt1MEJwDAIAEDpq4sldM9miywXlwiScIJflRONECcLzPfk6c1OgACBvQJ+5F5f1QkQIEDgHoH/iRiZggCBGoGW99czP3dYswBdCRAgQOBagQX0qwOr
+   eAHt0LENgEAMA0AvQcOKMCniV/kZyAgUqaKz5NaSLxECBAgQIDBTYJ8zf3lFgAABAgS6Ba4avLtH7REg8FvgOZK3uqpCgAABAgQI9Al8WiQEgg==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -250,7 +236,7 @@
   </object>
   <object id="102" name="Sign: Leather Town" type="event" x="16" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_leathertown_sign"/>
+    <property name="act1" value="translated_dialog here_to_east"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -311,12 +297,14 @@
     <property name="cond2" value="not npc_exists spyder_citypark_frances"/>
    </properties>
   </object>
-  <object id="226" name="Talk Frances&#10;" type="event" x="448" y="368" width="16" height="16">
+  <object id="226" name="Talk Frances" type="event" x="448" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_frances1"/>
-    <property name="act2" value="start_battle spyder_citypark_frances"/>
-    <property name="act3" value="translated_dialog spyder_citypark_frances2"/>
-    <property name="act4" value="set_variable citypark_frances:yes"/>
+    <property name="act2" value="add_monster shybulb,8,spyder_citypark_frances,27,10"/>
+    <property name="act3" value="add_monster shybulb,8,spyder_citypark_frances,27,10"/>
+    <property name="act4" value="start_battle spyder_citypark_frances"/>
+    <property name="act5" value="translated_dialog spyder_citypark_frances2"/>
+    <property name="act6" value="set_variable citypark_frances:yes"/>
     <property name="behav1" value="talk spyder_citypark_frances"/>
     <property name="cond1" value="not variable_set citypark_frances:yes"/>
    </properties>
@@ -331,9 +319,10 @@
   <object id="231" name="Talk Bobette" type="event" x="256" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_bobette1"/>
-    <property name="act2" value="start_battle spyder_citypark_bobette"/>
-    <property name="act3" value="translated_dialog spyder_citypark_bobette2"/>
-    <property name="act4" value="set_variable citypark_bobette:yes"/>
+    <property name="act2" value="add_monster aardorn,10,spyder_citypark_bobette,27,10"/>
+    <property name="act3" value="start_battle spyder_citypark_bobette"/>
+    <property name="act4" value="translated_dialog spyder_citypark_bobette2"/>
+    <property name="act5" value="set_variable citypark_bobette:yes"/>
     <property name="behav1" value="talk spyder_citypark_bobette"/>
     <property name="cond1" value="not variable_set citypark_bobette:yes"/>
    </properties>
@@ -348,9 +337,11 @@
   <object id="233" name="Talk Edith" type="event" x="608" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_edith1"/>
-    <property name="act2" value="start_battle spyder_citypark_edith"/>
-    <property name="act3" value="translated_dialog spyder_citypark_edith2"/>
-    <property name="act4" value="set_variable citypark_edith:yes"/>
+    <property name="act2" value="add_monster squabbit,8,spyder_citypark_edith,27,10"/>
+    <property name="act3" value="add_monster squabbit,8,spyder_citypark_edith,27,10"/>
+    <property name="act4" value="start_battle spyder_citypark_edith"/>
+    <property name="act5" value="translated_dialog spyder_citypark_edith2"/>
+    <property name="act6" value="set_variable citypark_edith:yes"/>
     <property name="behav1" value="talk spyder_citypark_edith"/>
     <property name="cond1" value="not variable_set citypark_edith:yes"/>
    </properties>
@@ -551,10 +542,12 @@
   </object>
   <object id="274" name="Talk Bobette" type="event" x="208" y="272" width="48" height="16">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_citypark_bobette"/>
     <property name="act1" value="translated_dialog spyder_citypark_bobette1"/>
-    <property name="act2" value="start_battle spyder_citypark_bobette"/>
-    <property name="act3" value="translated_dialog spyder_citypark_bobette2"/>
-    <property name="act4" value="set_variable citypark_bobette:yes"/>
+    <property name="act2" value="add_monster aardorn,10,spyder_citypark_bobette,27,10"/>
+    <property name="act3" value="start_battle spyder_citypark_bobette"/>
+    <property name="act4" value="translated_dialog spyder_citypark_bobette2"/>
+    <property name="act5" value="set_variable citypark_bobette:yes"/>
     <property name="cond1" value="not variable_set citypark_bobette:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>

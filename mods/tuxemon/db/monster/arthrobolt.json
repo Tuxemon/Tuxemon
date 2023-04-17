@@ -5,23 +5,58 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 2,
+            "technique": "static_field"
+        },
+        {
+            "level_learned": 4,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 6,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 8,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 12,
+            "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 16,
             "technique": "beam"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "surge"
         },
         {
-            "level_learned": 2,
+            "level_learned": 24,
             "technique": "thunderclap"
         }
     ],
     "evolutions": [],
-    "shape": "humanoid",
-    "types": [
-        "Metal"
+    "history": [
+        {
+            "mon_slug": "nut",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "bolt",
+            "evo_stage": "stage1"
+        }
     ],
-    "possible_genders": ["male", "female"],
+    "shape": "humanoid",
+    "stage": "stage2",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
     "txmn_id": 6,
     "height": 110,
     "weight": 125,

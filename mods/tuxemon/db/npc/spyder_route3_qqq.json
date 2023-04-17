@@ -1,17 +1,10 @@
 {
   "slug": "spyder_route3_qqq",
-  "gender": "male",
-  "sprite_name": "rookie",
-  "monsters": [
+  "template": [
     {
-      "name": "Cardiling",
-      "level": 16,
-      "slug": "cardiling",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
     }
-  ],
-  "combat_front": "rookie.png",
-  "combat_back": "red_back.png"
+  ]
 }

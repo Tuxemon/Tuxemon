@@ -1,34 +1,10 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Derek Clark <derekjohn.clark@gmail.com>
-#
-# middleware
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """This module contains the Tuxemon server middleware.
 """
 
 import logging
+from typing import Any, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -46,11 +22,11 @@ class Multiplayer:
 
     """
 
-    def __init__(self, game_server=None):
+    def __init__(self, game_server: Any = None) -> None:
         self.game_server = game_server
         self.server = None
 
-    def event_legal(self, cuuid, euuid, event_data):
+    def event_legal(self, cuuid: str, euuid: str, event_data: Any) -> bool:
         if event_data["type"] == "PUSH_SELF":
             return True
         if event_data["type"] == "CLIENT_MOVE_START":
@@ -76,7 +52,7 @@ class Multiplayer:
         else:
             return False
 
-    def event_execute(self, cuuid, euuid, event_data):
+    def event_execute(self, cuuid: str, euuid: str, event_data: Any) -> None:
         self.game_server.server_event_handler(cuuid, event_data)
 
 
@@ -93,14 +69,17 @@ class Controller:
 
     """
 
-    def __init__(self, game_server=None):
+    def __init__(self, game_server: Any = None) -> None:
         self.game_server = game_server
         self.server = None
 
-    def event_legal(self, cuuid, euuid, event_data):
+    def event_legal(
+        self, cuuid: str, euuid: str, event_data: Any
+    ) -> Optional[bool]:
         if "KEYDOWN:" in event_data or "KEYUP:" in event_data:
             return True
+        return None
 
-    def event_execute(self, cuuid, euuid, event_data):
+    def event_execute(self, cuuid: str, euuid: str, event_data: Any) -> None:
         if "KEYDOWN:" in event_data or "KEYUP:" in event_data:
             self.game_server.network_events.append(event_data)

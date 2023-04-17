@@ -1,25 +1,10 @@
 {
   "slug": "spyder_route2_marion",
-  "gender": "female",
-  "sprite_name": "picnicker",
-  "monsters": [
+  "template": [
     {
-      "name": "Aardorn",
-      "level": 7,
-      "slug": "aardorn",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Aardorn",
-      "level": 7,
-      "slug": "aardorn",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
     }
-  ],
-  "combat_front": "picnicker.png",
-  "combat_back": "red_back.png"
+  ]
 }

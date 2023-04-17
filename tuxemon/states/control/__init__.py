@@ -1,31 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Andrew Hong <novialriptide@gmail.com>
-#
-#
-# states.SetKeyState Handles the input change screen
-# states.ControlState Handles the list of inputs to change screen
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """This module contains the Options state"""
 from __future__ import annotations
 
@@ -59,12 +33,12 @@ class SetKeyState(PopUpMenu):
 
     shrink_to_items = True
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self, button: Optional[str]) -> None:
         """
         Used when initializing the state
         """
-        self.button = kwargs["button"]
-        super().startup(**kwargs)
+        self.button = button
+        super().__init__()
 
         label = T.translate(T.translate("options_new_input_key0")).upper()
         image = self.shadow_text(label)
@@ -108,6 +82,7 @@ class SetKeyState(PopUpMenu):
             # event.value is being compared here since sometimes the
             # value just returns an empty string and event.pressed doesn't
             # return True when a key is being pressed
+            assert self.button and pressed_key_str
             tuxe_config.cfg.set("controls", self.button, pressed_key_str)
             self.client.get_state_by_name(ControlState).initialize_items()
             self.close()
@@ -123,11 +98,11 @@ class ControlState(PopUpMenu[ControlStateObj]):
     columns = 2
     rows = 7  # TODO: Compute it
 
-    def startup(self, **kwargs: Any) -> None:
+    def __init__(self) -> None:
         """
         Used when initializing the state.
         """
-        super().startup(**kwargs)
+        super().__init__()
         self.reload_controls()
 
     def initialize_items(
@@ -170,6 +145,7 @@ class ControlState(PopUpMenu[ControlStateObj]):
         )
 
         for key, button in key_items_map:
+            assert key
             label = f"{T.translate(key).upper()}"
             image = self.shadow_text(label)
             item = MenuItem(
@@ -178,7 +154,7 @@ class ControlState(PopUpMenu[ControlStateObj]):
             item.enabled = button is not None
             self.add(item)
 
-    def reload_controls(self):
+    def reload_controls(self) -> None:
         with open(paths.USER_CONFIG_PATH, "w") as fp:
             tuxe_config.cfg.write(fp)
 

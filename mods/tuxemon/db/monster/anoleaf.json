@@ -12,25 +12,44 @@
             "technique": "feint"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "assault"
+        },
+        {
+            "level_learned": 8,
+            "technique": "chameleon"
+        },
+        {
+            "level_learned": 12,
             "technique": "whirlwind"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 18,
             "monster_slug": "gectile"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "gectile",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "velocitile",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "varmint",
+    "stage": "basic",
     "types": [
-        "Wood"
+        "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 64,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 65,
+    "height": 33,
+    "weight": 2,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

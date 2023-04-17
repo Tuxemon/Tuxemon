@@ -12,25 +12,40 @@
             "technique": "rot"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 8,
+            "technique": "font"
+        },
+        {
+            "level_learned": 12,
             "technique": "take_cover"
         }
     ],
     "evolutions": [
         {
-            "path": "",
-            "at_level": 20,
+            "path": "standard",
+            "at_level": 18,
             "monster_slug": "noctalo"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "noctalo",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "flier",
+    "stage": "basic",
     "types": [
-        "Water"
+        "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 49,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 50,
+    "height": 50,
+    "weight": 3,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

@@ -1,13 +1,16 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
-from typing import Any, Callable, Generator, Optional
+from typing import Callable, Generator, Optional
 
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
+from tuxemon.session import local_session
 
 logger = logging.getLogger(__name__)
 
@@ -15,16 +18,14 @@ logger = logging.getLogger(__name__)
 class QuantityMenu(Menu[None]):
     """Menu used to select quantities."""
 
-    def startup(
+    def __init__(
         self,
-        *items: Any,
+        callback: Callable[[int], None],
         quantity: int = 1,
         max_quantity: Optional[int] = None,
-        callback: Optional[Callable[[int], None]] = None,
         shrink_to_items: bool = False,
         price: int = 0,
         cost: int = 0,
-        **kwargs: Any,
     ) -> None:
         """
         Initialize the quantity menu.
@@ -37,17 +38,15 @@ class QuantityMenu(Menu[None]):
             shrink_to_items: Whether to fit the border to contents.
 
         """
-        super().startup()
+        super().__init__()
         self.quantity = quantity
         self.price = price
         self.cost = cost
         self.max_quantity = max_quantity
-        assert callback
         self.callback = callback
         self.shrink_to_items = shrink_to_items
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-
         if event.pressed:
             if event.button in (
                 buttons.B,
@@ -97,6 +96,18 @@ class QuantityMenu(Menu[None]):
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)
 
+    def show_money(self) -> Generator[MenuItem[None], None, None]:
+        # Show the money in the buying/selling menu
+        count_len = 3
+        label_format_money = "Money {:>{count_len}}".format
+        money = str(local_session.player.money["player"])
+
+        formatted_name_money = label_format_money(money, count_len=count_len)
+        image_money = self.shadow_text(
+            formatted_name_money, bg=(128, 128, 128)
+        )
+        yield MenuItem(image_money, formatted_name_money, None, None)
+
 
 class QuantityAndPriceMenu(QuantityMenu):
     """Menu used to select quantities, and also shows the price of items."""
@@ -107,20 +118,24 @@ class QuantityAndPriceMenu(QuantityMenu):
         self.menu_items.arrange_menu_items()
 
     def initialize_items(self) -> Generator[MenuItem[None], None, None]:
+        # Show the money in buying menu by using the method from the parent class:
+        yield from self.show_money()
+
         # Show the quantity by using the method from the parent class:
         yield from super().initialize_items()
 
         # Now, show the price:
         label_format = "$ {:>{count_len}}".format
         count_len = 3
-
         price = (
             self.price if self.quantity == 0 else self.quantity * self.price
         )
         if int(price) == 0:
-            price = T.translate("shop_buy_free")
+            price_tag = T.translate("shop_buy_free")
+        else:
+            price_tag = str(price)
 
-        formatted_name = label_format(price, count_len=count_len)
+        formatted_name = label_format(price_tag, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)
 
@@ -134,6 +149,9 @@ class QuantityAndCostMenu(QuantityMenu):
         self.menu_items.arrange_menu_items()
 
     def initialize_items(self) -> Generator[MenuItem[None], None, None]:
+        # Show the money in selling menu by using the method from the parent class:
+        yield from self.show_money()
+
         # Show the quantity by using the method from the parent class:
         yield from super().initialize_items()
 
@@ -143,8 +161,10 @@ class QuantityAndCostMenu(QuantityMenu):
 
         cost = self.cost if self.quantity == 0 else self.quantity * self.cost
         if int(cost) == 0:
-            cost = T.translate("shop_buy_free")
+            cost_tag = T.translate("shop_buy_free")
+        else:
+            cost_tag = str(cost)
 
-        formatted_name = label_format(cost, count_len=count_len)
+        formatted_name = label_format(cost_tag, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)

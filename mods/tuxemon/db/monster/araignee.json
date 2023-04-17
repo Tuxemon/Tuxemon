@@ -12,19 +12,57 @@
             "technique": "petrify"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
             "technique": "shrapnel"
+        },
+        {
+            "level_learned": 8,
+            "technique": "beam"
+        },
+        {
+            "level_learned": 12,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 16,
+            "technique": "platinum"
+        },
+        {
+            "level_learned": 20,
+            "technique": "lineage"
+        },
+        {
+            "level_learned": 24,
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 28,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 32,
+            "technique": "meltdown"
+        },
+        {
+            "level_learned": 36,
+            "technique": "insanity"
+        },
+        {
+            "level_learned": 40,
+            "technique": "radiance"
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "grub",
+    "stage": "standalone",
     "types": [
-        "Metal"
+        "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 99,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 100,
+    "height": 68,
+    "weight": 7,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

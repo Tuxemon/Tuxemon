@@ -12,45 +12,112 @@
             "technique": "headbutt"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "quicksand"
+        },
+        {
+            "level_learned": 8,
+            "technique": "sylvan"
+        },
+        {
+            "level_learned": 12,
             "technique": "wallow"
         }
     ],
     "evolutions": [
         {
-            "path": "",
-            "at_level": 25,
-            "monster_slug": "vivicinder"
+            "path": "tech",
+            "at_level": 0,
+            "monster_slug": "vivicinder",
+            "tech": "flamethrower"
         },
         {
-            "path": "",
-            "at_level": 25,
-            "monster_slug": "viviphyta"
+            "path": "element",
+            "at_level": 0,
+            "monster_slug": "viviphyta",
+            "element": "wood"
         },
         {
-            "path": "",
+            "path": "gender",
             "at_level": 24,
-            "monster_slug": "viviteel"
+            "monster_slug": "viviteel",
+            "gender": "female"
         },
         {
-            "path": "",
-            "at_level": 25,
-            "monster_slug": "vivitrans"
+            "path": "location",
+            "at_level": 0,
+            "monster_slug": "vivitrans",
+            "inside": true
         },
         {
-            "path": "",
-            "at_level": 25,
+            "path": "standard",
+            "at_level": 30,
             "monster_slug": "vivitron"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "vividactil",
+            "item": "petrified_dung"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "vividactil",
+            "item": "shammer_fossil"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "vividactil",
+            "item": "rhincus_fossil"
+        },
+        {
+            "path": "gender",
+            "at_level": 24,
+            "monster_slug": "vivisource",
+            "gender": "male"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "vivisource",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "vividactil",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "vivitron",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "vivitrans",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "viviteel",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "viviphyta",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "vivicinder",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "serpent",
+    "stage": "basic",
     "types": [
-        "Earth"
+        "earth"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 130,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 132,
+    "height": 85,
+    "weight": 8,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

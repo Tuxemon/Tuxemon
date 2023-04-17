@@ -12,18 +12,45 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "blade"
+        },
+        {
+            "level_learned": 8,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 12,
             "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 20,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 24,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 28,
+            "technique": "flood"
         }
     ],
     "evolutions": [],
-    "shape": "blob",
-    "types": [
-        "Metal",
-        "Water"
+    "history": [
+        {
+            "mon_slug": "chromeye",
+            "evo_stage": "basic"
+        }
     ],
-    "possible_genders": ["male", "female"],
-    "txmn_id": 169,
+    "shape": "blob",
+    "stage": "stage1",
+    "types": [
+        "metal",
+        "water"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 178,
     "height": 90,
     "weight": 55,
     "catch_rate": 120.0,

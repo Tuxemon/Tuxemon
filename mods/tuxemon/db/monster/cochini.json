@@ -12,17 +12,55 @@
             "technique": "thunderball"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
             "technique": "headbutt"
+        },
+        {
+            "level_learned": 8,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 12,
+            "technique": "quicksand"
+        },
+        {
+            "level_learned": 16,
+            "technique": "blood_nets"
+        },
+        {
+            "level_learned": 20,
+            "technique": "lust"
+        },
+        {
+            "level_learned": 24,
+            "technique": "canine"
+        },
+        {
+            "level_learned": 28,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 32,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 36,
+            "technique": "sand_spray"
+        },
+        {
+            "level_learned": 40,
+            "technique": "ring"
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "varmint",
+    "stage": "standalone",
     "types": [
-        "Earth"
+        "earth"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 103,
+    "txmn_id": 104,
     "height": 80,
     "weight": 15,
     "catch_rate": 120.0,

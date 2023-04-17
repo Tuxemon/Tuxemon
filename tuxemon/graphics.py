@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 
 General "tools" code for pygame graphics operations that don't
@@ -364,6 +366,7 @@ def scale_sprite(
     sprite.rect.width = int(sprite.rect.width * ratio)
     sprite.rect.height = int(sprite.rect.height * ratio)
     sprite.rect.center = center
+    assert sprite._original_image
     sprite._original_image = pygame.transform.scale(
         sprite._original_image,
         sprite.rect.size,

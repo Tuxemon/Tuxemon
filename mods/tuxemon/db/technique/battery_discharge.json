@@ -1,13 +1,12 @@
 {
   "tech_id": 83,
   "accuracy": 0.8,
-  "animation": "disintegrate",
+  "animation": "disintegrate_83",
   "effects": [
     "damage"
   ],
   "flip_axes": "",
-  "healing_power": 4.0,
-  "icon": "",
+  "healing_power": 4,
   "is_area": false,
   "is_fast": false,
   "potency": null,

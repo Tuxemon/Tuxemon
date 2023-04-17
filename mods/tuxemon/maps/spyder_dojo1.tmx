@@ -1,86 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="31">
- <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
-  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="54">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="dojo1"/>
+  <property name="types" value="dungeon"/>
+ </properties>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="1601" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
+ <tileset firstgid="3865" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
- <tileset firstgid="3041" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ <tileset firstgid="6835" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="4481" name="Outdoor_odds_and_ends_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="50" columns="10">
-  <image source="../gfx/tilesets/Outdoor_odds_and_ends_by_Isaiah658.png" width="160" height="80"/>
- </tileset>
- <tileset firstgid="4531" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
-  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
- </tileset>
- <tileset firstgid="4641" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
-  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
- </tileset>
- <tileset firstgid="4926" name="Stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
-  <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
- </tileset>
- <tileset firstgid="4950" name="Plants" tilewidth="16" tileheight="16" tilecount="2" columns="1">
-  <image source="../gfx/tilesets/plants.png" width="16" height="32"/>
- </tileset>
- <tileset firstgid="4952" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
- </tileset>
- <tileset firstgid="5452" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
-  <image source="../gfx/tilesets/Objects_by_ArMM1998.png" width="528" height="320"/>
- </tileset>
- <tileset firstgid="6112" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="6128" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
- </tileset>
- <tileset firstgid="6216" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="7216" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
-  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
- </tileset>
- <tileset firstgid="7426" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
- </tileset>
- <tileset firstgid="7480" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
- </tileset>
- <tileset firstgid="7552" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="7568" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
-  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
- </tileset>
- <tileset firstgid="7652" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
- </tileset>
- <tileset firstgid="7808" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
+ <tileset firstgid="10699" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAGdkD0KAjEUhHMMhT2EeAGx9K/xALK2grD+9fZ6AbXRQ3gHLb2RM5AnjyGBrMWQzUzy7eT1qhAWornsmdNbVaGmcrly+rgzgNaiWvbM6X2icrlyhjhP/qgTwjhqgpX3U57np3L1jL8BcwrNoF3kq/fEP+39+D5qzk7qef4e3IPw1bP3G0tz8r3n+VtklO+v3qkbwhkyvubke68t/4X7b+gfvp//MjFLenewH1AuL51/E/l+lvSsfy7Pzf+CTteoG9YGSnnWP5frHZs/z5fo17/wfFu+71/Sh/wv0RWX7g==
+   eAGdkUsKwkAQRHsh+LtBFHGlgp+T6B08h3g5De49g27iB8TPAazCaeg0M5C4KGZSNf1SmewykUGvrEPCe2WyplK55+TgPKAN+FZglJ6Z0Tv2f0rllsH9M/CLqcgl6IqV8zHP8mO595TfnIncwL1DbezJ994b3j7oE8ljM5bfAbcLWb739PuV5XN2sp7lt5BRlu+9E/IzpHyfk2+9uvwl5ld/8u39D/Hv/f3Tm4O9gFK5n7H97b1tA9972j+Vp+5/hE7joAnWvCES87R/Kvcz2p/nq0j7VznLM3X5tn+Vd5D/BUMisEM=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYKA9uCLLwHAViJEBNjFC8oT0IOsfZY+GwGgIDP4QAADpyweN
+   eAFjYKA9iNBlYIgEYmSATYyQPCE9yPpH2aMhMBoCgz8EAIpIBC0=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgyUEVnIzMKwCYmSATYyQPC4914BmX0czH11shyxDA7L56PIgOXQxbPZhE0M2F5s8NjFs9uESQzYf3Y3E6EHWP8qmTwgAAAfXGrY=
+   eAFjYBgFgyUE6rQYGOqBGBlgEyMkj0vPXKDZ89DMRxfTFUI2nYEBXR4kiy6GzT5sYsgmY5PHJobNPlxiyOaju5EYPcj6R9n0CQEALKoXQA==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgykE5sliugZZbKMsQwO6CmR5mBw2MZDcUizmYxODmUOMHmx2YRNDNhObPDYxYuxHNhfGxuYnbGIw9aP0wIQAAIWFDTc=
+   eAFjYBgFgykEqnQwXYMiJkRAHiqNogdJy0ws5mMTQ9LCgE0eWQybXdjEkM3EJo9NDKQH2S6YGdjEYHLk6kHWP8qmTwgAAKP1C2s=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collisions" visible="0">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="3" type="collision" x="0" y="0" width="16" height="192"/>
   <object id="4" type="collision" x="0" y="0" width="384" height="32"/>
   <object id="5" type="collision" x="368" y="0" width="16" height="192"/>
@@ -112,8 +70,8 @@
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music taking_poison.ogg"/>
-    <property name="cond1" value="not music_playing taking_poison.ogg"/>
+    <property name="act1" value="play_music music_dojo_theme"/>
+    <property name="cond1" value="not music_playing music_dojo_theme"/>
    </properties>
   </object>
   <object id="2" name="Teleport to Flower City" type="event" x="176" y="176" width="32" height="16">
@@ -137,6 +95,179 @@
    <properties>
     <property name="act1" value="set_variable environment:interior"/>
     <property name="cond1" value="not variable_set environment:interior"/>
+   </properties>
+  </object>
+  <object id="31" name="Board B" type="event" x="96" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dojo_board_b"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="32" name="Board A" type="event" x="16" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dojo_board_a"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="33" name="Board D" type="event" x="304" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dojo_board_d"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="34" name="Board C" type="event" x="224" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dojo_board_c"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="36" name="Create Fu" type="event" x="48" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_dojo_fu,3,2"/>
+    <property name="cond1" value="not npc_exists spyder_dojo_fu"/>
+   </properties>
+  </object>
+  <object id="37" name="Create Yin" type="event" x="128" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_dojo_yin,8,2"/>
+    <property name="cond1" value="not npc_exists spyder_dojo_yin"/>
+   </properties>
+  </object>
+  <object id="38" name="Create Zhu" type="event" x="258" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_dojo_zhu,16,2"/>
+    <property name="cond1" value="not npc_exists spyder_dojo_zhu"/>
+   </properties>
+  </object>
+  <object id="39" name="Create Xiang" type="event" x="336" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_dojo_xiang,21,2"/>
+    <property name="cond1" value="not npc_exists spyder_dojo_xiang"/>
+   </properties>
+  </object>
+  <object id="40" name="Create Zhao" type="event" x="160" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_dojo_zhao,10,9"/>
+    <property name="act2" value="npc_face spyder_dojo_zhao,right"/>
+    <property name="cond1" value="not npc_exists spyder_dojo_zhao"/>
+   </properties>
+  </object>
+  <object id="41" name="Talk Fu1" type="event" x="0" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dojo_fu1"/>
+    <property name="act2" value="translated_dialog spyder_dojo_fu2"/>
+    <property name="act3" value="set_variable fufirsttime:yes"/>
+    <property name="behav1" value="talk spyder_dojo_fu"/>
+    <property name="cond1" value="not variable_set fufirsttime:yes"/>
+   </properties>
+  </object>
+  <object id="42" name="Talk Yin1" type="event" x="0" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dojo_yin1"/>
+    <property name="act2" value="translated_dialog spyder_dojo_yin2"/>
+    <property name="act3" value="set_variable yinfirsttime:yes"/>
+    <property name="behav1" value="talk spyder_dojo_yin"/>
+    <property name="cond1" value="not variable_set yinfirsttime:yes"/>
+   </properties>
+  </object>
+  <object id="43" name="Talk Zhu1" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dojo_zhu1"/>
+    <property name="act2" value="translated_dialog spyder_dojo_zhu2"/>
+    <property name="act3" value="set_variable zhufirsttime:yes"/>
+    <property name="behav1" value="talk spyder_dojo_zhu"/>
+    <property name="cond1" value="not variable_set zhufirsttime:yes"/>
+   </properties>
+  </object>
+  <object id="44" name="Talk Xiang1" type="event" x="0" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dojo_xiang1"/>
+    <property name="act2" value="translated_dialog spyder_dojo_xiang2"/>
+    <property name="act3" value="set_variable xiangfirsttime:yes"/>
+    <property name="behav1" value="talk spyder_dojo_xiang"/>
+    <property name="cond1" value="not variable_set xiangfirsttime:yes"/>
+   </properties>
+  </object>
+  <object id="45" name="Talk Zhao1" type="event" x="0" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dojo_zhao1"/>
+    <property name="behav1" value="talk spyder_dojo_zhao"/>
+   </properties>
+  </object>
+  <object id="46" name="Talk Fu2" type="event" x="368" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dojo_fu3"/>
+    <property name="behav1" value="talk spyder_dojo_fu"/>
+    <property name="cond1" value="is variable_set fufirsttime:yes"/>
+   </properties>
+  </object>
+  <object id="47" name="Talk Yin2" type="event" x="368" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dojo_yin2"/>
+    <property name="behav1" value="talk spyder_dojo_yin"/>
+    <property name="cond1" value="is variable_set yinfirsttime:yes"/>
+   </properties>
+  </object>
+  <object id="48" name="Talk Xiang2" type="event" x="368" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dojo_xiang3"/>
+    <property name="behav1" value="talk spyder_dojo_xiang"/>
+    <property name="cond1" value="is variable_set xiangfirsttime:yes"/>
+   </properties>
+  </object>
+  <object id="49" name="Talk Zhu YN" type="event" x="368" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dojo_zhu3"/>
+    <property name="act2" value="translated_dialog_choice yes:no,zhu_taste"/>
+    <property name="act3" value="set_variable zhu_yn:yes"/>
+    <property name="behav1" value="talk spyder_dojo_zhu"/>
+    <property name="cond1" value="is variable_set zhufirsttime:yes"/>
+    <property name="cond2" value="not variable_set zhu_yn:yes"/>
+    <property name="cond3" value="not variable_set zhu_taste:yes"/>
+    <property name="cond4" value="not variable_set zhu_taste:no"/>
+   </properties>
+  </object>
+  <object id="50" name="Talk Zhu Taste" type="event" x="368" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="get_player_monster tasteful_zhu"/>
+    <property name="act2" value="translated_dialog_choice taste_cold:taste_warm,which_taste"/>
+    <property name="act3" value="set_variable zhu_tastes_choice:yes"/>
+    <property name="act4" value="transfer_money -,50"/>
+    <property name="cond1" value="is variable_set zhu_taste:yes"/>
+    <property name="cond2" value="is variable_set zhu_yn:yes"/>
+    <property name="cond4" value="not variable_set zhu_tastes_choice:yes"/>
+   </properties>
+  </object>
+  <object id="51" name="Talk Zhu Warm" type="event" x="368" y="48" width="16" height="16">
+   <properties>
+    <property name="act2" value="change_taste tasteful_zhu,warm"/>
+    <property name="act3" value="set_variable zhu_taste_done:yes"/>
+    <property name="cond1" value="is variable_set which_taste:taste_warm"/>
+    <property name="cond3" value="is variable_set zhu_tastes_choice:yes"/>
+    <property name="cond3" value="not variable_set zhu_taste_done:yes"/>
+   </properties>
+  </object>
+  <object id="52" name="Talk Zhu Cold" type="event" x="368" y="48" width="16" height="16">
+   <properties>
+    <property name="act2" value="change_taste tasteful_zhu,cold"/>
+    <property name="act3" value="set_variable zhu_taste_done:yes"/>
+    <property name="cond1" value="is variable_set which_taste:taste_cold"/>
+    <property name="cond3" value="is variable_set zhu_tastes_choice:yes"/>
+    <property name="cond3" value="not variable_set zhu_taste_done:yes"/>
+   </properties>
+  </object>
+  <object id="53" name="Talk Zhu End" type="event" x="368" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable zhu_taste:null"/>
+    <property name="act2" value="set_variable which_taste:null"/>
+    <property name="act3" value="set_variable zhu_yn:null"/>
+    <property name="act4" value="set_variable zhu_tastes_choice:null"/>
+    <property name="act5" value="set_variable zhu_taste_done:null"/>
+    <property name="cond1" value="is variable_set zhu_taste_done:yes"/>
    </properties>
   </object>
  </objectgroup>

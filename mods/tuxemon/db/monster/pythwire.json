@@ -12,28 +12,49 @@
             "technique": "surge"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "viper"
+        },
+        {
+            "level_learned": 8,
+            "technique": "radiance"
+        },
+        {
+            "level_learned": 12,
             "technique": "constrict"
         }
     ],
     "evolutions": [
         {
-            "path": "fire_booster",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "ouroboutlet"
+            "monster_slug": "ouroboutlet",
+            "item": "fire_booster"
         },
         {
-            "path": "metal_booster",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "sockeserp"
+            "monster_slug": "sockeserp",
+            "item": "metal_booster"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "ouroboutlet",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "sockeserp",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "serpent",
+    "stage": "basic",
     "types": [
-        "Metal"
+        "metal"
     ],
     "possible_genders": ["neuter"],
-    "txmn_id": 88,
+    "txmn_id": 89,
     "height": 200,
     "weight": 4,
     "catch_rate": 170.0,

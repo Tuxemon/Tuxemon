@@ -1,25 +1,10 @@
 {
   "slug": "spyder_route6_richard",
-  "gender": "male",
-  "sprite_name": "hacker",
-  "monsters": [
+  "template": [
     {
-      "name": "Hydrone",
-      "level": 30,
-      "slug": "hydrone",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Pigabyte",
-      "level": 30,
-      "slug": "pigabyte",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
+      "sprite_name": "magician",
+      "combat_front": "magician",
+      "slug": "magician"
     }
-  ],
-  "combat_front": "hacker.png",
-  "combat_back": "red_back.png"
+  ]
 }

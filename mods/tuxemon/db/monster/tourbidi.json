@@ -12,19 +12,57 @@
             "technique": "midnight_mantle"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
             "technique": "sleeping_powder"
+        },
+        {
+            "level_learned": 8,
+            "technique": "walls"
+        },
+        {
+            "level_learned": 12,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 16,
+            "technique": "web"
+        },
+        {
+            "level_learned": 20,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 24,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 28,
+            "technique": "ants"
+        },
+        {
+            "level_learned": 32,
+            "technique": "stabilo"
+        },
+        {
+            "level_learned": 36,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 40,
+            "technique": "phantasmal_force"
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "humanoid",
+    "stage": "standalone",
     "types": [
-        "Wood"
+        "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 122,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 123,
+    "height": 42,
+    "weight": 14,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

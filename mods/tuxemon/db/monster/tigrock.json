@@ -9,22 +9,53 @@
         },
         {
             "level_learned": 2,
+            "technique": "blade"
+        },
+        {
+            "level_learned": 6,
+            "technique": "lineage"
+        },
+        {
+            "level_learned": 8,
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 12,
+            "technique": "terror"
+        },
+        {
+            "level_learned": 16,
+            "technique": "fume"
+        },
+        {
+            "level_learned": 32,
             "technique": "strike"
         },
         {
-            "level_learned": 2,
+            "level_learned": 36,
             "technique": "energy_field"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shuriken"
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "grimachin",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "hunter",
+    "stage": "stage1",
     "types": [
-        "Metal"
+        "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 93,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 94,
+    "height": 200,
+    "weight": 220,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

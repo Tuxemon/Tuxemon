@@ -1,7 +1,10 @@
 {
   "slug": "postboy",
-  "gender": "male",
-  "sprite_name": "postboy",
-  "combat_front": "red_front.png",
-  "combat_back": "red_back.png"
+  "template": [
+    {
+      "sprite_name": "postboy",
+      "combat_front": "adventurer",
+      "slug": "postboy"
+    }
+  ]
 }

@@ -12,14 +12,56 @@
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
             "technique": "shrapnel"
+        },
+        {
+            "level_learned": 8,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 12,
+            "technique": "battery_discharge"
+        },
+        {
+            "level_learned": 16,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 20,
+            "technique": "crystal"
+        },
+        {
+            "level_learned": 24,
+            "technique": "undertaker"
+        },
+        {
+            "level_learned": 28,
+            "technique": "lineage"
         }
     ],
-    "evolutions": [],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "mk01_delta"
+        },
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "mk01_omega"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "mk01_proto",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "dragon",
+    "stage": "stage1",
     "types": [
-        "Metal"
+        "metal"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 0,

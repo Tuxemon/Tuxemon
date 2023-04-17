@@ -1,38 +1,13 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-#
-#
-# save_upgrader Handle save file backwards compatability
-#
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import random
 from typing import TYPE_CHECKING, Any, Dict, Mapping
 
+from tuxemon import formula
 from tuxemon.db import SeenStatus
-from tuxemon.prepare import CONFIG
+from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.save import SaveData
@@ -79,12 +54,110 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
         Modified save data.
 
     """
+    starter = ["budaye", "dollfin", "grintot", "ignibus", "memnomnom"]
+    if "firstfightdue" in save_data["game_variables"]:
+        if "billie_choice" not in save_data["game_variables"]:
+            save_data["game_variables"]["billie_choice"] = random.choice(
+                starter
+            )
     if "steps" not in save_data["game_variables"]:
         save_data["game_variables"]["steps"] = 0
+    if "gender_choice" not in save_data["game_variables"]:
+        save_data["game_variables"]["gender_choice"] = "gender_male"
+    if "date_start_game" not in save_data["game_variables"]:
+        save_data["game_variables"][
+            "date_start_game"
+        ] = formula.today_ordinal()
 
-    save_data["battle_history"] = save_data.get("battle_history", {})
     save_data["money"] = save_data.get("money", {})
     save_data["tuxepedia"] = save_data.get("tuxepedia", {})
+    save_data["contacts"] = save_data.get("contacts", {})
+    save_data["items"] = save_data.get("items", [])
+    save_data["battles"] = save_data.get("battles", [])
+
+    # upgrade data moves
+    for ele1 in save_data["monsters"]:
+        if ele1["moves"]:
+            backup_moves = []
+            for mov in ele1["moves"]:
+                if isinstance(mov, str):
+                    backup_moves.append(mov)
+            if backup_moves:
+                for tech in backup_moves:
+                    t = Technique()
+                    t.load(tech)
+                    ele1["moves"].remove(t.slug)
+                    ele1["moves"].append(
+                        {
+                            "slug": t.slug,
+                            "power": t.power,
+                            "potency": t.potency,
+                            "accuracy": t.accuracy,
+                        }
+                    )
+
+    for key, value in save_data["monster_boxes"].items():
+        for ele2 in value:
+            if ele2["moves"]:
+                backup_tech = []
+                for mov in ele2["moves"]:
+                    if isinstance(mov, str):
+                        backup_tech.append(mov)
+                if backup_tech:
+                    for tech in backup_tech:
+                        t = Technique()
+                        t.load(tech)
+                        ele2["moves"].remove(t.slug)
+                        ele2["moves"].append(
+                            {
+                                "slug": t.slug,
+                                "power": t.power,
+                                "potency": t.potency,
+                                "accuracy": t.accuracy,
+                            }
+                        )
+
+    # upgrade data battle_history
+    if "battle_history" in save_data:
+        for key, value in save_data["battle_history"].items():
+            output, date = value
+            save_data["battles"].append(
+                {"opponent": key, "outcome": output, "date": date}
+            )
+
+    # fix name capture device -> tuxeball
+    capture_device = [
+        element
+        for element in save_data["items"]
+        if element["slug"] == "capture_device"
+    ]
+    if capture_device:
+        for capture in save_data["items"]:
+            if capture["slug"] == "capture_device":
+                save_data["items"].append(
+                    {
+                        "slug": "tuxeball",
+                        "quantity": capture["quantity"],
+                        "instance_id": capture["instance_id"],
+                    }
+                )
+                save_data["items"].remove(capture)
+
+    # template
+    if "template" not in save_data:
+        save_data["template"] = save_data.get("template", [])
+        save_data["template"].append(
+            {
+                "slug": "adventurer",
+                "sprite_name": "adventurer",
+                "combat_front": "adventurer",
+            }
+        )
+
+    # trasfer data from "inventory" to "items"
+    if "inventory" in save_data:
+        for key, value in save_data["inventory"].items():
+            save_data["items"].append({"slug": key, "quantity": value})
 
     # set as captured the party monsters
     if not save_data["tuxepedia"]:
@@ -94,11 +167,47 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
             for monster in monsters:
                 save_data["tuxepedia"][monster["slug"]] = SeenStatus.caught
 
-    # set money old savegame and avoid getting the starter
+    # set money old savegames and avoid getting the starter
     if not save_data["money"]:
         save_data["money"]["player"] = 10000
         save_data["game_variables"]["xero_starting_money"] = "yes"
         save_data["game_variables"]["spyder_starting_money"] = "yes"
+    # set phone old savegames
+    if "visitedcottoncafe" in save_data["game_variables"]:
+        if save_data["game_variables"]["visitedcottoncafe"] == "yes":
+            checking = [
+                element
+                for element in save_data["items"]
+                if element["slug"] == "nu_phone"
+            ]
+            if not checking:
+                save_data["items"].append({"slug": "nu_phone", "quantity": 1})
+                save_data["items"].append(
+                    {"slug": "app_banking", "quantity": 1}
+                )
+                save_data["items"].append({"slug": "app_map", "quantity": 1})
+                save_data["items"].append(
+                    {"slug": "app_tuxepedia", "quantity": 1}
+                )
+    if "timberdantewarn" in save_data["game_variables"]:
+        if save_data["game_variables"]["timberdantewarn"] == "yes":
+            checking = [
+                element
+                for element in save_data["items"]
+                if element["slug"] == "nu_phone"
+            ]
+            if not checking:
+                save_data["items"].append({"slug": "nu_phone", "quantity": 1})
+                save_data["items"].append(
+                    {"slug": "app_banking", "quantity": 1}
+                )
+                save_data["items"].append({"slug": "app_map", "quantity": 1})
+                save_data["items"].append(
+                    {"slug": "app_tuxepedia", "quantity": 1}
+                )
+                save_data["items"].append(
+                    {"slug": "app_contacts", "quantity": 1}
+                )
 
     version = save_data.get("version", 0)
     for i in range(version, SAVE_VERSION):
@@ -171,5 +280,5 @@ def _transfer_storage_boxes(save_data: Dict[str, Any]) -> None:
     save_data["monster_boxes"] = dict()
     save_data["item_boxes"] = dict()
 
-    save_data["monster_boxes"][CONFIG.default_monster_storage_box] = kennel
-    save_data["item_boxes"][CONFIG.default_item_storage_box] = locker
+    save_data["monster_boxes"]["Kennel"] = kennel
+    save_data["item_boxes"]["Locker"] = locker

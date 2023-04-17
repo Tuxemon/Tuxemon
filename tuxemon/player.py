@@ -1,37 +1,11 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Derek Clark <derekjohn.clark@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-#
-# player
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import datetime as dt
 import logging
 
+from tuxemon import prepare
 from tuxemon.map import proj
 from tuxemon.npc import NPC
 from tuxemon.states.world.worldstate import WorldState
@@ -82,8 +56,17 @@ class Player(NPC):
         %j - Day number of year 001-366
         """
         var = self.game_variables
-        var["hour"] = int(dt.datetime.now().strftime("%H"))
-        var["day_of_year"] = int(dt.datetime.now().strftime("%j"))
+        var["hour"] = dt.datetime.now().strftime("%H")
+        var["day_of_year"] = str(dt.datetime.now().timetuple().tm_yday)
+        var["year"] = dt.datetime.now().strftime("%Y")
+
+        # Leap year
+        if (int(var["year"]) % 400 == 0) and (int(var["year"]) % 100 == 0):
+            var["leap_year"] = "true"
+        elif (int(var["year"]) % 4 == 0) and (int(var["year"]) % 100 != 0):
+            var["leap_year"] = "true"
+        else:
+            var["leap_year"] = "false"
 
         # Day and night basic cycle (12h cycle)
         if int(var["hour"]) < 6:
@@ -106,3 +89,27 @@ class Player(NPC):
             var["stage_of_day"] = "dusk"
         else:
             var["stage_of_day"] = "night"
+
+        # Seasons
+        if prepare.CONFIG.hemisphere == "north":
+            if int(var["day_of_year"]) < 81:
+                var["season"] = "winter"
+            elif 81 <= int(var["day_of_year"]) < 173:
+                var["season"] = "spring"
+            elif 173 <= int(var["day_of_year"]) < 265:
+                var["season"] = "summer"
+            elif 265 <= int(var["day_of_year"]) < 356:
+                var["season"] = "autumn"
+            else:
+                var["season"] = "winter"
+        else:
+            if int(var["day_of_year"]) < 81:
+                var["season"] = "summer"
+            elif 81 <= int(var["day_of_year"]) < 173:
+                var["season"] = "autumn"
+            elif 173 <= int(var["day_of_year"]) < 265:
+                var["season"] = "winter"
+            elif 265 <= int(var["day_of_year"]) < 356:
+                var["season"] = "spring"
+            else:
+                var["season"] = "summer"

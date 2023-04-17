@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import configparser
 import json
 import logging
@@ -6,6 +8,7 @@ import pathlib
 import shutil
 import urllib.request
 import zipfile
+from typing import Any, Dict, List, Optional
 
 import requests
 
@@ -15,7 +18,7 @@ from tuxemon.mod_manager.symlink_missing import symlink_missing
 logger = logging.getLogger(__name__)
 
 
-def sanitize_paths(path):
+def sanitize_paths(path: str) -> str:
     """Removes path specific characters like /."""
     for char in '/\\?%*:|"<>.,;= ':
         path = path.replace(char, "_")
@@ -24,7 +27,9 @@ def sanitize_paths(path):
 
 
 class Manager:
-    def __init__(self, *other_urls, default_to_cache=True):
+    def __init__(
+        self, *other_urls: Any, default_to_cache: bool = True
+    ) -> None:
         """
         (basic) Mod managment library.
         """
@@ -35,35 +40,35 @@ class Manager:
         self.packages_path = os.path.join(paths.CACHE_DIR, "packages")
 
         self.url = other_urls
-        self.packages = []
+        self.packages: List[Any] = []
 
         if default_to_cache:
             self.packages = self.read_from_cache()
 
-    def write_to_cache(self):
+    def write_to_cache(self) -> None:
         """Writes self.packages to the cache file"""
 
         with open(self.packages_path, "w") as file:
             file.write(json.dumps(self.packages, indent=4))
 
-    def read_from_cache(self):
+    def read_from_cache(self) -> Any:
         """Read self.packages from the cache file"""
         with open(self.packages_path) as file:
             return json.loads(file.read())
 
-    def cache_to_pkglist(self):
+    def cache_to_pkglist(self) -> None:
         """
         Override self.packages with the cache.
         Uses self.packages = self.read_from_cache()
         """
         self.packages = self.read_from_cache()
 
-    def update(self, url):
+    def update(self, url: str) -> Any:
         """Returns the response from the server"""
         packages = requests.get(url + "/api/packages")
         return packages.json()
 
-    def update_all(self):
+    def update_all(self) -> None:
         """
         Updates all packages in self.package.
         It automatically clears the self.package variable, and then
@@ -79,14 +84,14 @@ class Manager:
 
     def download_package(
         self,
-        author,
-        name,
-        release=None,
-        repo=None,
-        dont_extract=False,
-        install_deps=True,
-        installed=None,
-    ):
+        author: str,
+        name: str,
+        release: Optional[float],
+        repo: Any = None,
+        dont_extract: bool = False,
+        install_deps: bool = True,
+        installed: Any = None,
+    ) -> None:
         """Downloads the specified package"""
         if repo is None:
             repo = self.get_package_repo(name)
@@ -110,13 +115,13 @@ class Manager:
         # Sanitize author, name and release
         author = sanitize_paths(author)
         name = sanitize_paths(name)
-        release = sanitize_paths(str(release))
+        release = float(sanitize_paths(str(release)))
         logger.debug(
             " ".join(
                 [
                     author,
                     name,
-                    release,
+                    str(release),
                     repo,
                     str(dont_extract),
                     str(install_deps),
@@ -126,7 +131,7 @@ class Manager:
         )
         url = (
             str(repo)
-            + f"/packages/{author}/{name}/releases/{str(release)}/download"
+            + f"/packages/{author}/{name}/releases/{release}/download"
         )
 
         filename = os.path.join(
@@ -165,7 +170,14 @@ class Manager:
             )
         logging.info("Done!")
 
-    def install_dependencies(self, author, name, repo, symlink=True, **args):
+    def install_dependencies(
+        self,
+        author: str,
+        name: str,
+        repo: Any,
+        symlink: bool = True,
+        **args: Any,
+    ) -> None:
         """Recursively resolve dependencies and symlink them"""
         logger.debug(author, name, repo)
         # Request dependencies for specified package
@@ -192,16 +204,17 @@ class Manager:
                     self.download_package(
                         package.split("/")[0],
                         package.split("/")[1],
+                        release=None,
                         repo=repo,
                         install_deps=False,
                     )
 
-    def parse_mod_conf(self, content):
+    def parse_mod_conf(self, content: Any) -> Any:
         """
         Parses the minetest's mod.conf files.
         Returns: dict
         """
-        out = {}
+        out: Dict[Any, Any] = {}
         for line in content.split("\n"):
             # Remove spaces and split into parts
             parts = line.split(" = ")
@@ -213,13 +226,13 @@ class Manager:
                 out = {**out, **{parts[0]: parts[1]}}
         return out
 
-    def get_package_info(self, author, name, repo):
+    def get_package_info(self, author: str, name: str, repo: Any) -> None:
         """Get specified package info. Always downloads the info from the server."""
         for char in '/\\?%*:|"<>.,;= ':
             name = name.replace(char, "_")
         r = requests.get(repo + "/api/packages/{author}/{name}/")
 
-    def get_package_repo(self, name):
+    def get_package_repo(self, name: str) -> Any:
         """Reads the origin of an package.
         Returns None, if key 'mods' doesn't exist"""
         for i in self.packages:
@@ -228,7 +241,7 @@ class Manager:
             else:
                 continue
 
-    def write_package_to_list(self, path_to_folder, name):
+    def write_package_to_list(self, path_to_folder: str, name: str) -> None:
         """Writes specified package to the package list"""
         # Write the absolute path to the list
         with open(paths.USER_GAME_DATA_DIR + "/package.list", "w+") as file:
@@ -241,13 +254,13 @@ class Manager:
             after = {**before, **to_append}
             file.write(json.dumps(after, indent=4))
 
-    def read_package_from_list(self, name):
+    def read_package_from_list(self, name: str) -> Any:
         """Reads path of the specified mod"""
         with open(paths.USER_GAME_DATA_DIR + "/package.list") as file:
             data = file.read()
             return json.loads(data)[name]
 
-    def remove_package_from_list(self, name):
+    def remove_package_from_list(self, name: str) -> None:
         """Removes specified package from the package list"""
         # Write the absolute path to the list
         with open(paths.USER_GAME_DATA_DIR + "/package.list", "r+") as file:
@@ -260,7 +273,7 @@ class Manager:
             del before[name]
             file.write(json.dumps(before, indent=4))
 
-    def remove_package(self, name):
+    def remove_package(self, name: str) -> None:
         """Removes the local package"""
         # Get the path
         path = self.read_package_from_list(name)
@@ -273,11 +286,11 @@ class Manager:
 
     def install_local_package(
         self,
-        filename,
-        name=None,
-        download_deps=False,
-        link_deps=False,
-    ):
+        filename: str,
+        name: str,
+        download_deps: bool = False,
+        link_deps: bool = False,
+    ) -> None:
         """
         Installs local packages.
         Based on the download_package function, but without the downloads

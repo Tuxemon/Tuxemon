@@ -3,15 +3,14 @@
   "accuracy": 0.75,
   "animation": "sparks_gold_alt",
   "effects": [
+    "give status_recover,user",
     "damage"
   ],
   "flip_axes": "",
-  "healing_power": 0,
-  "icon": "",
   "is_area": false,
   "is_fast": false,
   "potency": 0.75,
-  "power": 3.0,
+  "power": 3,
   "range": "touch",
   "recharge": 3,
   "sfx": "sfx_blaster",

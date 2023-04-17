@@ -1,18 +1,18 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import NamedTuple, final
+from dataclasses import dataclass
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.sink import SinkState
 
 
-class UnlockControlsActionParameters(NamedTuple):
-    pass
-
-
 @final
+@dataclass
 class UnlockControlsAction(
-    EventAction[UnlockControlsActionParameters],
+    EventAction,
 ):
     """
     Unlock player controls
@@ -25,8 +25,6 @@ class UnlockControlsAction(
     """
 
     name = "unlock_controls"
-
-    param_class = UnlockControlsActionParameters
 
     def start(self) -> None:
         sink_state = self.session.client.get_state_by_name(SinkState)

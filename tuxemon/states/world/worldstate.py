@@ -1,31 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-#
-# states.WorldState Handles the world map and player movement.
-#
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import itertools
@@ -129,12 +103,12 @@ class WorldState(state.State):
         buttons.BACK: intentions.WORLD_MENU,
     }
 
-    def startup(
+    def __init__(
         self,
-        *,
-        map_name: Optional[str] = None,
-        **kwargs: Any,
+        map_name: str,
     ) -> None:
+        super().__init__()
+
         from tuxemon.player import Player
 
         # Provide access to the screen surface
@@ -235,7 +209,6 @@ class WorldState(state.State):
         self.map_animations: Dict[str, AnimationInfo] = {}
 
         if local_session.player is None:
-
             new_player = Player(prepare.CONFIG.player_npc, world=self)
             local_session.player = new_player
 
@@ -385,7 +358,6 @@ class WorldState(state.State):
 
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player.game_variables))
-        logger.debug("Battle History:" + str(self.player.battle_history))
         logger.debug("Money:" + str(self.player.money))
         logger.debug("Tuxepedia:" + str(self.player.tuxepedia))
 
@@ -455,7 +427,7 @@ class WorldState(state.State):
             if event.pressed:
                 logger.info("Opening main menu!")
                 self.client.release_controls()
-                self.client.push_state(WorldMenuState)
+                self.client.push_state(WorldMenuState())
                 return None
 
         # map may not have a player registered
@@ -534,6 +506,7 @@ class WorldState(state.State):
 
         # center the map on center of player sprite
         # must center map before getting sprite coordinates
+        assert self.current_map.renderer
         self.current_map.renderer.center((cx, cy))
 
         # get npc surfaces/sprites
@@ -963,6 +936,7 @@ class WorldState(state.State):
             The pixel coordinates to draw at the given tile position.
 
         """
+        assert self.current_map.renderer
         cx, cy = self.current_map.renderer.get_center_offset()
         px, py = self.project(tile_position)
         x = px + cx
@@ -1001,9 +975,10 @@ class WorldState(state.State):
         for entity in self.npcs_off_map.values():
             entity.update(time_delta)
 
-    def _collision_box_to_pgrect(self, box):
+    def _collision_box_to_pgrect(self, box: Tuple[int, int]) -> Rect:
         """
-        Returns a Rect (in screen-coords) version of a collision box (in world-coords)."""
+        Returns a Rect (in screen-coords) version of a collision box (in world-coords).
+        """
 
         # For readability
         x, y = self.get_pos_from_tilepos(box)
@@ -1064,7 +1039,6 @@ class WorldState(state.State):
         raise RuntimeError("deprecated.  refactor!")
 
         if self.cinema_state == "turning on":
-
             self.cinema_top["position"][1] += (
                 self.cinema_speed * self.time_passed_seconds
             )
@@ -1101,7 +1075,6 @@ class WorldState(state.State):
             )
 
         elif self.cinema_state == "turning off":
-
             self.cinema_top["position"][1] -= (
                 self.cinema_speed * self.time_passed_seconds
             )
@@ -1291,5 +1264,5 @@ class WorldState(state.State):
                             },
                         }
                         self.client.server.notify_client_interaction(
-                            cuuid, event_data
+                            "cuuid", event_data
                         )

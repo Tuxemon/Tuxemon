@@ -1,29 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -115,7 +91,7 @@ class RunningEvent:
 
         return action
 
-    def advance(self):
+    def advance(self) -> None:
         self.action_index += 1
 
 
@@ -162,7 +138,7 @@ class EventEngine:
         self.actions = plugin.load_plugins(
             paths.ACTIONS_PATH,
             "actions",
-            interface=EventAction,  # type: ignore[misc]
+            interface=EventAction,  # type: ignore[type-abstract]
         )
 
     def reset(self) -> None:
@@ -205,8 +181,13 @@ class EventEngine:
             logger.warning(error)
             return None
 
-        else:
-            return action(self.session, parameters)
+        try:
+            return action(*parameters)
+        except Exception as e:
+            logger.warning(
+                f"Error running {name}. Could not instantiate {action} with parameters {parameters}: {e}"
+            )
+            return None
 
     def get_actions(self) -> List[Type[EventAction]]:
         """
@@ -321,6 +302,7 @@ class EventEngine:
             logger.debug("Executing action list")
             logger.debug(map_event)
             token = RunningEvent(map_event)
+            assert map_event.id
             self.running_events[map_event.id] = token
 
     def process_map_event(self, map_event: EventObject) -> None:

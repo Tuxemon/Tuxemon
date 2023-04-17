@@ -12,38 +12,69 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "blade"
+        },
+        {
+            "level_learned": 8,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 12,
             "technique": "wall_of_steel"
         }
     ],
     "evolutions": [
         {
-            "path": "",
-            "at_level": 20,
-            "monster_slug": "angrito"
+            "path": "season",
+            "at_level": 18,
+            "monster_slug": "angrito",
+            "season": "winter"
         },
         {
-            "path": "",
-            "at_level": 20,
-            "monster_slug": "happito"
+            "path": "season",
+            "at_level": 18,
+            "monster_slug": "happito",
+            "season": "summer"
         },
         {
-            "path": "",
-            "at_level": 20,
-            "monster_slug": "neutrito"
+            "path": "season",
+            "at_level": 18,
+            "monster_slug": "neutrito",
+            "season": "spring"
         },
         {
-            "path": "",
-            "at_level": 20,
-            "monster_slug": "sadito"
+            "path": "season",
+            "at_level": 18,
+            "monster_slug": "sadito",
+            "season": "autumn"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "sadito",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "neutrito",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "happito",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "angrito",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "blob",
+    "stage": "basic",
     "types": [
-        "Metal"
+        "metal"
     ],
-    "possible_genders": ["male", "female"],
-    "txmn_id": 165,
+    "possible_genders": ["neuter"],
+    "txmn_id": 174,
     "height": 38,
     "weight": 3.5,
     "catch_rate": 120.0,

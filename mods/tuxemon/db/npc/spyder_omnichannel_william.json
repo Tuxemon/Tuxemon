@@ -1,25 +1,10 @@
 {
   "slug": "spyder_omnichannel_william",
-  "gender": "male",
-  "sprite_name": "beachcomber",
-  "monsters": [
+  "template": [
     {
-      "name": "Elowind",
-      "level": 36,
-      "slug": "elowind",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Cardiwing",
-      "level": 36,
-      "slug": "cardiwing",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
+      "sprite_name": "beachcomber",
+      "combat_front": "yellowbelt",
+      "slug": "yellowbelt"
     }
-  ],
-  "combat_front": "yellowbelt.png",
-  "combat_back": "red_back.png"
+  ]
 }

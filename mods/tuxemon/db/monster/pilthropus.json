@@ -4,27 +4,65 @@
     "ai": "RandomAI",
     "moveset": [
         {
-            "level_learned": 1,
+            "level_learned": 2,
             "technique": "strike"
         },
         {
-            "level_learned": 1,
+            "level_learned": 2,
             "technique": "eyebite"
         },
         {
-            "level_learned": 1,
+            "level_learned": 6,
             "technique": "blade"
+        },
+        {
+            "level_learned": 8,
+            "technique": "biting_winds"
+        },
+        {
+            "level_learned": 12,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 16,
+            "technique": "crystal"
+        },
+        {
+            "level_learned": 20,
+            "technique": "platinum"
+        },
+        {
+            "level_learned": 24,
+            "technique": "lantern"
+        },
+        {
+            "level_learned": 28,
+            "technique": "battery_acid"
+        },
+        {
+            "level_learned": 32,
+            "technique": "thunderball"
+        },
+        {
+            "level_learned": 36,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 40,
+            "technique": "demiurge"
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "humanoid",
+    "stage": "standalone",
     "types": [
-        "Earth"
+        "earth"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 163,
-    "height": 0,
-    "weight": 50,
+    "txmn_id": 172,
+    "height": 154,
+    "weight": 82,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15

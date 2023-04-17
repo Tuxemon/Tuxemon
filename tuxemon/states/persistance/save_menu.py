@@ -1,45 +1,19 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Leif Theden <leif.theden@gmail.com>
-# Carlos Ramos <vnmabus@gmail.com>
-#
-#
-# states.SaveMenuState
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 import os
 from base64 import b64decode
-from typing import Any
+from typing import Optional
 
 import pygame
 from pygame import Rect
 
-from tuxemon import prepare, save
+from tuxemon import prepare, save, tools
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import Menu, PopUpMenu
+from tuxemon.menu.menu import PopUpMenu
 from tuxemon.save import get_save_path
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
@@ -54,10 +28,10 @@ class SaveMenuState(PopUpMenu[None]):
     number_of_slots = 3
     shrink_to_items = True
 
-    def startup(self, **kwargs: Any) -> None:
-        if "selected_index" not in kwargs:
-            kwargs["selected_index"] = save.slot_number or 0
-        super().startup(**kwargs)
+    def __init__(self, selected_index: Optional[int] = None) -> None:
+        if selected_index is None:
+            selected_index = save.slot_number or 0
+        super().__init__(selected_index=selected_index)
 
     def initialize_items(self) -> None:
         empty_image = None
@@ -193,25 +167,22 @@ class SaveMenuState(PopUpMenu[None]):
 
         def ask_confirmation() -> None:
             # open menu to confirm the save
-            menu = self.client.push_state(Menu)
-            menu.shrink_to_items = True
-
-            # add choices
-            yes = MenuItem(
-                self.shadow_text(T.translate("save_overwrite")),
-                None,
-                None,
-                positive_answer,
+            tools.open_choice_dialog(
+                local_session,
+                menu=(
+                    (
+                        "overwrite",
+                        T.translate("save_overwrite"),
+                        positive_answer,
+                    ),
+                    (
+                        "keep",
+                        T.translate("save_keep"),
+                        negative_answer,
+                    ),
+                ),
+                escape_key_exits=True,
             )
-            no = MenuItem(
-                self.shadow_text(T.translate("save_keep")),
-                None,
-                None,
-                negative_answer,
-            )
-
-            menu.add(yes)
-            menu.add(no)
 
         save_data = save.load(self.selected_index + 1)
         if save_data:

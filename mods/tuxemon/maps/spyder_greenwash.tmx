@@ -1,63 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="80">
- <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
-  <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
- </tileset>
- <tileset firstgid="22" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
- </tileset>
- <tileset firstgid="76" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
-  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
- </tileset>
- <tileset firstgid="286" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
- <tileset firstgid="1726" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="2726" name="Outdoor_odds_and_ends_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="50" columns="10">
-  <image source="../gfx/tilesets/Outdoor_odds_and_ends_by_Isaiah658.png" width="160" height="80"/>
- </tileset>
- <tileset firstgid="2776" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
-  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
- </tileset>
- <tileset firstgid="2860" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
-  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
- </tileset>
- <tileset firstgid="3145" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="0" columns="15"/>
- <tileset firstgid="3145" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
- </tileset>
- <tileset firstgid="3305" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
- </tileset>
- <tileset firstgid="3461" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="80">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="greenwash"/>
+  <property name="types" value="dungeon"/>
+ </properties>
+ <tileset firstgid="1" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
  </tileset>
- <tileset firstgid="3989" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+ <tileset firstgid="529" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
  </tileset>
- <tileset firstgid="6581" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+ <tileset firstgid="3121" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
+ </tileset>
+ <tileset firstgid="4881" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="8745" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
  <layer id="7" name="Tile Layer 1" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAH7LcnA8AeKtaQQbJgYOv0XqhZE/wNiZaAeFSBWBeIgEmk1oHpvIGaVZ2BgIwP7QfXrAvXqkYFH9UPCfzT8qJt+GICAmPQ4mv4GNv2B4ghU/pCb/inVDyo/KbEfVn6S636YflBZjg8vAoYRtvQM0w8q+/Hhzzj0w9K/D1DeFw/GpR9mfwlQbykerA2Uw+Z+mP2E9AdTqB/kN3z243M7SI4Y94P8gMsf+NwPALpAvEk=
+   eAEr52FgqIDiZUhsmBg6XQlVA6KrgHg+EC8A4oVAfI5EehFQ/XEgbhRkYGgiA5+C6l8J1LuKDDyqHxL+o+FH3fTDAATEpMfR9Dew6Q8UR6Dyh9z0T6l+UPlJif2w8pNc98P0g8pyfFiOF3t6hukHlf34cD4O/bD0fwKo/yQejEs/zP4PQL0f8eDlQDls+RFmPyH95ynUD/IbPvvxuR0kR4z7QX7A5Q987gcAUH99BQ==
   </data>
  </layer>
  <layer id="8" name="Tile Layer 2" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAFjYBj8wFSAgcEMiM2B2AKISQWuQD1uQOwOxB5k6A8F6gkD4nAgjiBDPynuxeZXUuynhV9JsZ8Uv46qHTwh4MfPwPCVj3z3pAD1cwMxseA7ml1VQL2KJOjnJUEtNjcpU6gf3f3Y7MAnNtDux+c2dLmbkgwMt6DYUAFdljCfUYqBgQmKmYE0qYBS/ZpAO7WgWJsM+wOBeoKgOJgM/cKkehhN/R9g2P+FYhYi7A8C1lHBQBwCratUkNyvg6YfAEFhHV0=
+   eAFjYBj8YCMTA8MmIN4MxFuAmFRwEKjnEBAfBuIjZOi/CNRzCYgvA/EVMvST4l5sfiXFflr4lRT7SfHrqNrBEwKnGBkYCoGYXPAAqLedBP3FaGq/Aflz0cTwuaWTBLXYzJlPoX5092OzA5/YQLsfn9vQ5UJ5GBjCoHitELosYX4tUG8dFNcDaVIBpfqXAu1cBsXLybD/LFDPOSg+T4b+FnFSfYyqvgJoZyUUNxBh/zlgHXUeiC9A66oFQD0w969A0w8AkEE1KA==
   </data>
  </layer>
  <layer id="9" name="Tile Layer 3" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAFjYKAeWC7AwLACiGE0qSZvB+rdAcQwmlT95Kr/yYVfpynQTWZAbA7EFkCMAbgxRFAEXIF63IDYHYg9sOlHUY3JIWg/phYUEVLsx2ZXKNDNYUAcDsQRBNxPil0ojoRySLELpr+Mn4GhHIgroLgSSH8F4m9Q/B1I4wM9QPleIO6D4n4gzQr0JxsUsxPwMzazQfphYLjrTxWH+RRBk+L/Uhz6JQUh5pETfqLA8NcAYjEgFkeKC4QLR1noISAlwcAgDcTkAi2gXm2o/lnAMJ9NQbivAupdDcTZFJhBrj9Gkj4A3t4iyg==
+   eAHtlEkOQUEQhgsbw8qGA5gOwNqdcAKcAMEFhLXhAoYLGC5gZW3a+150h3QeT3esRCXfq1S6/6rqquSJfM8yEZEsaG+buYi2BNrb6l3vJ3PvleOwyASmMAPTygH6OZoFLGHlozfzmXFQffO+GdvU96u1pucNbGEX0L9NLbNPL7appfWnkMgZLoorvkKfVUUtoOco5zGIKxL4OjQUTbyteXptv67fx/RLH97m/ccX+i7/As9c5tdi/gNoQ+dpF/eM/6/fBHpxkT642hDtSOlT7C6t9ueSL4+2AIf/7lzG97HmBtbxMl4=
   </data>
  </layer>
  <layer id="10" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwsCGQwM/AkAjESVCcDKSfAvEzKH4OpEfBaAiMhsBoCIyGAHVDAACidQYI
+   eAFjYBgFoyEwsCFwh5GB4S4Q34Pi+0A6kYmBIQmKk4H0KBgNgdEQGA2B0RCgbggAACgfBeo=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
@@ -146,10 +127,13 @@
   </object>
   <object id="70" name="Talk Chip" type="event" x="64" y="208" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_greenwash_chip1"/>
-    <property name="act3" value="start_battle spyder_greenwash_chip"/>
-    <property name="act4" value="translated_dialog spyder_greenwash_chip2"/>
-    <property name="act6" value="set_variable greenwashchip:yes"/>
+    <property name="act1" value="translated_dialog spyder_greenwash_chip1"/>
+    <property name="act2" value="add_monster av8r,22,spyder_greenwash_chip,27,10"/>
+    <property name="act3" value="add_monster criniotherme,22,spyder_greenwash_chip,27,10"/>
+    <property name="act4" value="add_monster tikorch,22,spyder_greenwash_chip,27,10"/>
+    <property name="act5" value="start_battle spyder_greenwash_chip"/>
+    <property name="act6" value="translated_dialog spyder_greenwash_chip2"/>
+    <property name="act7" value="set_variable greenwashchip:yes"/>
     <property name="behav1" value="talk spyder_greenwash_chip"/>
     <property name="cond1" value="not variable_set greenwashchip:yes"/>
    </properties>
@@ -164,9 +148,11 @@
   </object>
   <object id="72" name="Talk Clarence" type="event" x="192" y="32" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_greenwash_clarence1"/>
-    <property name="act3" value="start_battle spyder_greenwash_clarence"/>
-    <property name="act4" value="translated_dialog spyder_greenwash_clarence2"/>
+    <property name="act1" value="translated_dialog spyder_greenwash_clarence1"/>
+    <property name="act2" value="add_monster pigabyte,25,spyder_greenwash_clarence,27,10"/>
+    <property name="act3" value="add_monster cochini,23,spyder_greenwash_clarence,27,10"/>
+    <property name="act4" value="start_battle spyder_greenwash_clarence"/>
+    <property name="act5" value="translated_dialog spyder_greenwash_clarence2"/>
     <property name="act6" value="set_variable greenwashclarence:yes"/>
     <property name="behav1" value="talk spyder_greenwash_clarence"/>
     <property name="cond1" value="not variable_set greenwashclarence:yes"/>
@@ -182,7 +168,8 @@
   </object>
   <object id="74" name="Talk Louis" type="event" x="80" y="48" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_greenwash_louis1"/>
+    <property name="act1" value="translated_dialog spyder_greenwash_louis1"/>
+    <property name="act2" value="add_monster cateye,24,spyder_greenwash_louis,27,10"/>
     <property name="act3" value="start_battle spyder_greenwash_louis"/>
     <property name="act4" value="translated_dialog spyder_greenwash_louis2"/>
     <property name="act6" value="set_variable greenwashlouis:yes"/>
@@ -192,17 +179,23 @@
   </object>
   <object id="75" name="Talk Chip" type="event" x="80" y="224" width="16" height="48">
    <properties>
-    <property name="act2" value="translated_dialog spyder_greenwash_chip1"/>
-    <property name="act3" value="start_battle spyder_greenwash_chip"/>
-    <property name="act4" value="translated_dialog spyder_greenwash_chip2"/>
-    <property name="act6" value="set_variable greenwashchip:yes"/>
+    <property name="act0" value="pathfind_to_player spyder_greenwash_chip"/>
+    <property name="act1" value="translated_dialog spyder_greenwash_chip1"/>
+    <property name="act2" value="add_monster av8r,22,spyder_greenwash_chip,27,10"/>
+    <property name="act3" value="add_monster criniotherme,22,spyder_greenwash_chip,27,10"/>
+    <property name="act4" value="add_monster tikorch,22,spyder_greenwash_chip,27,10"/>
+    <property name="act5" value="start_battle spyder_greenwash_chip"/>
+    <property name="act6" value="translated_dialog spyder_greenwash_chip2"/>
+    <property name="act7" value="set_variable greenwashchip:yes"/>
     <property name="cond1" value="not variable_set greenwashchip:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
   <object id="76" name="Talk Louis" type="event" x="96" y="64" width="16" height="32">
    <properties>
-    <property name="act2" value="translated_dialog spyder_greenwash_louis1"/>
+    <property name="act0" value="pathfind_to_player spyder_greenwash_louis"/>
+    <property name="act1" value="translated_dialog spyder_greenwash_louis1"/>
+    <property name="act2" value="add_monster cateye,24,spyder_greenwash_louis,27,10"/>
     <property name="act3" value="start_battle spyder_greenwash_louis"/>
     <property name="act4" value="translated_dialog spyder_greenwash_louis2"/>
     <property name="act6" value="set_variable greenwashlouis:yes"/>
@@ -212,9 +205,12 @@
   </object>
   <object id="77" name="Talk Clarence" type="event" x="208" y="48" width="16" height="48">
    <properties>
-    <property name="act2" value="translated_dialog spyder_greenwash_clarence1"/>
-    <property name="act3" value="start_battle spyder_greenwash_clarence"/>
-    <property name="act4" value="translated_dialog spyder_greenwash_clarence2"/>
+    <property name="act0" value="pathfind_to_player spyder_greenwash_clarence"/>
+    <property name="act1" value="translated_dialog spyder_greenwash_clarence1"/>
+    <property name="act2" value="add_monster pigabyte,25,spyder_greenwash_clarence,27,10"/>
+    <property name="act3" value="add_monster cochini,23,spyder_greenwash_clarence,27,10"/>
+    <property name="act4" value="start_battle spyder_greenwash_clarence"/>
+    <property name="act5" value="translated_dialog spyder_greenwash_clarence2"/>
     <property name="act6" value="set_variable greenwashclarence:yes"/>
     <property name="cond1" value="not variable_set greenwashclarence:yes"/>
     <property name="cond2" value="is player_at"/>

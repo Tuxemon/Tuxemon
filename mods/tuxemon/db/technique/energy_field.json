@@ -2,10 +2,12 @@
   "tech_id": 22,
   "accuracy": 1,
   "animation": "screen",
-  "effects": [],
+  "effects": [
+    "give status_charging,user",
+    "give status_exhausted,target",
+    "enhance"
+  ],
   "flip_axes": "x",
-  "healing_power": 0,
-  "icon": "",
   "is_area": false,
   "is_fast": true,
   "potency": 1,
@@ -16,11 +18,11 @@
   "slug": "energy_field",
   "sort": "damage",
   "target": {
-    "enemy monster": 2,
+    "enemy monster": 1,
     "enemy team": 0,
     "enemy trainer": 0,
     "item": 0,
-    "own monster": 1,
+    "own monster": 2,
     "own team": 0,
     "own trainer": 0
   },

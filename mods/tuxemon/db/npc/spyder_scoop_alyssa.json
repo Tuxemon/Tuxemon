@@ -1,17 +1,10 @@
 {
   "slug": "spyder_scoop_alyssa",
-  "gender": "female",
-  "sprite_name": "nurse",
-  "monsters": [
+  "template": [
     {
-      "name": "Possessun",
-      "level": 40,
-      "slug": "possessun",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
+      "sprite_name": "nurse",
+      "combat_front": "nurse",
+      "slug": "nurse"
     }
-  ],
-  "combat_front": "nurse.png",
-  "combat_back": "red_back.png"
+  ]
 }

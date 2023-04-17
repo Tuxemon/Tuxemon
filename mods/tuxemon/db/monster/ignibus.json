@@ -12,40 +12,63 @@
             "technique": "boulder"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 8,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 12,
             "technique": "static_field"
         }
     ],
     "evolutions": [
         {
-            "path": "earth_booster",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "eruptibus"
+            "monster_slug": "eruptibus",
+            "item": "earth_booster"
         },
         {
-            "path": "tectonic_drill",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "eruptibus"
+            "monster_slug": "eruptibus",
+            "item": "tectonic_drill"
         },
         {
-            "path": "metal_booster",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "embazook"
+            "monster_slug": "embazook",
+            "item": "metal_booster"
         },
         {
-            "path": "stovepipe",
+            "path": "item",
             "at_level": 0,
-            "monster_slug": "embazook"
+            "monster_slug": "embazook",
+            "item": "stovepipe"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "embazook",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "eruptibus",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "polliwog",
+    "stage": "basic",
     "types": [
-        "Fire"
+        "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 29,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 30,
+    "height": 68,
+    "weight": 27,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

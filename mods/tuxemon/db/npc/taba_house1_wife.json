@@ -1,0 +1,10 @@
+{
+  "slug": "taba_house1_wife",
+  "template": [
+    {
+      "sprite_name": "granny",
+      "combat_front": "heroine",
+      "slug": "heroine"
+    }
+  ]
+}

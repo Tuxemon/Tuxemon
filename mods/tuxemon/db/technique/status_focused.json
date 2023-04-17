@@ -1,17 +1,20 @@
 {
   "animation": "drip_green",
-  "category": "focused",
+  "category": "positive",
   "effects": [
     "statchange"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_focused.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "removed",
   "sfx": "sfx_pulse",
   "slug": "status_focused",
   "sort": "meta",
   "statdodge": {
     "value": 1.5,
-    "operation": "-"
+    "operation": "*"
   },
   "target": {
     "enemy monster": 0,
@@ -22,7 +25,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "tech_id": 108,
+  "tech_id": 0,
   "use_failure": "generic_failure",
   "use_success": "combat_state_focused_get",
   "use_tech": "combat_used_x"

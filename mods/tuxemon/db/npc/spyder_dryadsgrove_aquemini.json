@@ -1,33 +1,10 @@
 {
   "slug": "spyder_dryadsgrove_aquemini",
-  "gender": "female",
-  "sprite_name": "woodnymph",
-  "monsters": [
+  "template": [
     {
-      "name": "Vivitrans",
-      "level": 50,
-      "slug": "vivitrans",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Nudimind",
-      "level": 50,
-      "slug": "nudimind",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Noctalo",
-      "level": 50,
-      "slug": "noctalo",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
+      "sprite_name": "woodnymph",
+      "combat_front": "waternymph",
+      "slug": "waternymph"
     }
-  ],
-  "combat_front": "waternymph.png",
-  "combat_back": "red_back.png"
+  ]
 }

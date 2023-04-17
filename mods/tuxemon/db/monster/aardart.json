@@ -4,29 +4,56 @@
     "ai": "RandomAI",
     "moveset": [
         {
-            "level_learned": 1,
+            "level_learned": 2,
             "technique": "tonguespear"
         },
         {
-            "level_learned": 4,
+            "level_learned": 2,
             "technique": "hibernate"
+        },
+        {
+            "level_learned": 6,
+            "technique": "evasion"
         },
         {
             "level_learned": 8,
             "technique": "stampede"
         },
+        {
+            "level_learned": 12,
+            "technique": "lantern"
+        },
+        {
+            "level_learned": 16,
+            "technique": "assault"
+        },
 	    {
-            "level_learned": 17,
+            "level_learned": 24,
             "technique": "feint"
+        },
+	    {
+            "level_learned": 28,
+            "technique": "sand_spray"
+        },
+	    {
+            "level_learned": 32,
+            "technique": "mudslide"
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "aardorn",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "varmint",
+    "stage": "stage1",
     "types": [
-        "Earth"
+        "earth"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 42,
+    "txmn_id": 43,
     "height": 185,
     "weight": 45,
     "catch_rate": 85.0,

@@ -1,28 +1,10 @@
-#
-# Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
-from typing import NamedTuple, Union, final
+from dataclasses import dataclass
+from typing import Union, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -30,13 +12,9 @@ from tuxemon.npc import NPC
 from tuxemon.states.world.worldstate import WorldState
 
 
-class NpcWanderActionParameters(NamedTuple):
-    npc_slug: str
-    frequency: Union[float, None]
-
-
 @final
-class NpcWanderAction(EventAction[NpcWanderActionParameters]):
+@dataclass
+class NpcWanderAction(EventAction):
     """
     Make an NPC wander around the map.
 
@@ -54,10 +32,11 @@ class NpcWanderAction(EventAction[NpcWanderActionParameters]):
     """
 
     name = "npc_wander"
-    param_class = NpcWanderActionParameters
+    npc_slug: str
+    frequency: Union[float, None] = None
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.npc_slug)
         world = self.session.client.get_state_by_name(WorldState)
 
         def move(world: WorldState, npc: NPC) -> None:
@@ -85,12 +64,12 @@ class NpcWanderAction(EventAction[NpcWanderActionParameters]):
             # Frequency can be set to 0 to indicate that we want to stop
             # wandering
             world.remove_animations_of(schedule)
-            if npc is None or self.parameters.frequency == 0:
+            if npc is None or self.frequency == 0:
                 return
             else:
                 frequency = 1.0
-                if self.parameters.frequency:
-                    frequency = min(5, max(0.5, self.parameters.frequency))
+                if self.frequency:
+                    frequency = min(5, max(0.5, self.frequency))
                 time = (0.5 + 0.5 * random.random()) * frequency
                 world.task(schedule, time)
 

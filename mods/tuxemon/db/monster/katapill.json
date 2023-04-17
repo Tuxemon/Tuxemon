@@ -12,26 +12,49 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 4,
             "technique": "splinter"
+        },
+        {
+            "level_learned": 6,
+            "technique": "font"
+        },
+        {
+            "level_learned": 8,
+            "technique": "peregrine"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 9,
             "monster_slug": "katacoon"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "katacoon",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "bugnin",
+            "evo_stage": "stage2"
+        },
+        {
+            "mon_slug": "sumchon",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "grub",
+    "stage": "basic",
     "types": [
-        "Metal",
-        "Wood"
+        "metal",
+        "wood"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 55,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 56,
+    "height": 32,
+    "weight": 3,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

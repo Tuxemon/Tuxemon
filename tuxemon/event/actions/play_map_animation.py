@@ -1,28 +1,10 @@
-#
-# Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
-#                         Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
-from typing import NamedTuple, Union, final
+from dataclasses import dataclass
+from typing import Union, final
 
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
@@ -32,16 +14,9 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
-class PlayMapAnimationActionParameters(NamedTuple):
-    animation_name: str
-    duration: float
-    loop: str
-    tile_pos_x: Union[int, str]
-    tile_pos_y: Union[int, None]
-
-
 @final
-class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
+@dataclass
+class PlayMapAnimationAction(EventAction):
     """
     Play a map animation at a given position in the world map.
 
@@ -63,18 +38,21 @@ class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
     """
 
     name = "play_map_animation"
-    param_class = PlayMapAnimationActionParameters
+    animation_name: str
+    duration: float
+    loop: str
+    tile_pos_x: Union[int, str]
+    tile_pos_y: Union[int, None] = None
 
     def start(self) -> None:
         # ('play_animation', 'grass,1.5,noloop,player', '1', 6)
         # "position" can be either a (x, y) tile coordinate or "player"
-        animation_name = self.parameters.animation_name
-        duration = self.parameters.duration
+        animation_name = self.animation_name
         directory = prepare.fetch("animations", "tileset")
 
-        if self.parameters.loop == "loop":
+        if self.loop == "loop":
             loop = True
-        elif self.parameters.loop == "noloop":
+        elif self.loop == "noloop":
             loop = False
         else:
             raise ValueError('animation loop value must be "loop" or "noloop"')
@@ -85,13 +63,13 @@ class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
 
         # Determine the tile position where to draw the animation.
         # TODO: unify npc/player sprites and map animations
-        if self.parameters[3] == "player":
+        if self.tile_pos_x == "player":
             position = self.session.player.tile_pos
         else:
-            assert self.parameters.tile_pos_y
+            assert self.tile_pos_y
             position = (
-                int(self.parameters.tile_pos_x),
-                int(self.parameters.tile_pos_y),
+                int(self.tile_pos_x),
+                int(self.tile_pos_y),
             )
 
         animations = world_state.map_animations
@@ -104,7 +82,7 @@ class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
             animation = load_animation_from_frames(
                 directory,
                 animation_name,
-                duration,
+                self.duration,
                 loop,
             )
 

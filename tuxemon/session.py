@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -34,4 +36,4 @@ class Session:
 
 
 # WIP will be filled in later when game starts
-local_session = Session(None, None, None)  # ignore[arg-type]
+local_session = Session(None, None, None)  # type: ignore[arg-type]

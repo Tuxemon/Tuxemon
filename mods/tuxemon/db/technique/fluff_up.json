@@ -3,11 +3,10 @@
   "accuracy": 0.75,
   "animation": "smokebomb",
   "effects": [
+    "give status_recover,user",
     "damage"
   ],
   "flip_axes": "",
-  "healing_power": 0,
-  "icon": "",
   "is_area": false,
   "is_fast": false,
   "potency": 0.5,

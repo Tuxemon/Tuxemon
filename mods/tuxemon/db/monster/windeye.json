@@ -1,6 +1,6 @@
 {
     "slug": "windeye",
-    "category": "",
+    "category": "tower",
     "ai": "RandomAI",
     "moveset": [
         {
@@ -12,17 +12,44 @@
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 8,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 12,
             "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 20,
+            "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 24,
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 28,
+            "technique": "constrict"
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "fancair",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "humanoid",
+    "stage": "stage1",
     "types": [
-        "Metal"
+        "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 171,
+    "txmn_id": 180,
     "height": 300,
     "weight": 600,
     "catch_rate": 120.0,

@@ -1,17 +1,16 @@
 {
   "tech_id": 25,
   "accuracy": 0.5,
-  "animation": "ice blast",
+  "animation": "explosion_ice_112",
   "effects": [
+    "give status_exhausted,target",
     "damage"
   ],
   "flip_axes": "",
-  "healing_power": 0,
-  "icon": "",
   "is_area": true,
   "is_fast": false,
   "potency": 1,
-  "power": 3.0,
+  "power": 3,
   "range": "melee",
   "recharge": 3,
   "sfx": "sfx_blaster",

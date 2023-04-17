@@ -1,41 +1,10 @@
 {
   "slug": "spyder_route3_zoolander",
-  "gender": "male",
-  "sprite_name": "overseer",
-  "monsters": [
+  "template": [
     {
-      "name": "Eruptibus",
-      "level": 14,
-      "slug": "eruptibus",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Rockat",
-      "level": 14,
-      "slug": "rockat",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Forturtle",
-      "level": 16,
-      "slug": "forturtle",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Grinflare",
-      "level": 16,
-      "slug": "grinflare",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "female"
+      "sprite_name": "overseer",
+      "combat_front": "overseer",
+      "slug": "mineoverseer"
     }
-  ],
-  "combat_front": "overseer.png",
-  "combat_back": "red_back.png"
+  ]
 }

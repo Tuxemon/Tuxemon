@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 Math utilities that can be used without Pygame.
 """
@@ -78,7 +80,6 @@ class Vector3(Vector):
         y: float = 0,
         z: float = 0,
     ) -> None:
-
         if isinstance(x, (int, float)):
             self.x = x
             self.y = y
@@ -114,7 +115,6 @@ class Vector2(Vector):
         x: Union[float, Sequence[float]] = 0,
         y: float = 0,
     ) -> None:
-
         if isinstance(x, (int, float)):
             self.x = x
             self.y = y

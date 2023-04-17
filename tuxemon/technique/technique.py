@@ -1,40 +1,14 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-# Andy Mender <andymenderunix@gmail.com>
-#
-#
-#
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
+import uuid
 from typing import (
     TYPE_CHECKING,
     Any,
     ClassVar,
+    List,
     Mapping,
     Optional,
     Sequence,
@@ -43,9 +17,17 @@ from typing import (
 
 from tuxemon import plugin, prepare
 from tuxemon.constants import paths
-from tuxemon.db import db, process_targets
+from tuxemon.db import (
+    CategoryCondition,
+    ElementType,
+    Range,
+    ResponseCondition,
+    db,
+    process_targets,
+)
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
+from tuxemon.technique.techcondition import TechCondition
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -54,71 +36,80 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+SIMPLE_PERSISTANCE_ATTRIBUTES = (
+    "slug",
+    "power",
+    "potency",
+    "accuracy",
+    "counter",
+    "counter_success",
+)
+
 
 class Technique:
     """
     Particular skill that tuxemon monsters can use in battle.
 
-    Parameters:
-        slug: Slug of the technique.
-        carrier: Monster affected by a status technique.
-        link: Additional monster linked to the effect of the status technique.
-            For example, monster that obtains life with lifeleech.
-
     """
 
     effects_classes: ClassVar[Mapping[str, Type[TechEffect[Any]]]] = {}
+    conditions_classes: ClassVar[Mapping[str, Type[TechCondition[Any]]]] = {}
 
-    def __init__(
-        self,
-        slug: Optional[str] = None,
-        carrier: Optional[Monster] = None,
-        link: Optional[Monster] = None,
-    ) -> None:
-        # number of turns that this technique has been active
-        self._combat_counter = 0
-        self._life_counter = 0
+    def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
+        if save_data is None:
+            save_data = dict()
+
+        self.instance_id = uuid.uuid4()
+        self.counter = 0
+        self.counter_success = 0
         self.tech_id = 0
         self.accuracy = 0.0
-        self.animation = ""
-        self.can_apply_status = False
-        self.carrier = carrier
+        self.animation = Optional[str]
+        self.category: Optional[CategoryCondition] = None
         self.combat_state: Optional[CombatState] = None
+        self.conditions: Sequence[TechCondition[Any]] = []
+        self.description = ""
         self.effects: Sequence[TechEffect[Any]] = []
         self.flip_axes = ""
         self.icon = ""
         self.images: Sequence[str] = []
         self.is_area = False
         self.is_fast = False
-        self.link = link
-        self.name = "Pound"
-        self.next_use = 0.0
+        self.randomly = True
+        self.link: Optional[Monster] = None
+        self.name = ""
+        self.next_use = 0
         self.potency = 0.0
         self.power = 1.0
-        self.range: Optional[str] = None
+        self.range = Range.melee
+        self.healing_power = 0
         self.recharge_length = 0
+        self.repl_pos: Optional[ResponseCondition] = None
+        self.repl_neg: Optional[ResponseCondition] = None
         self.sfx = ""
         self.sort = ""
-        self.slug = slug
+        self.slug = ""
         self.target: Sequence[str] = []
-        self.type1: Optional[str] = "aether"
-        self.type2: Optional[str] = None
-        self.use_item = ""
+        self.types: List[ElementType] = []
+        self.usable_on = False
         self.use_success = ""
         self.use_failure = ""
         self.use_tech = ""
 
-        # load plugins if it hasn't been done already
+        # load effect and condition plugins if it hasn't been done already
         if not Technique.effects_classes:
             Technique.effects_classes = plugin.load_plugins(
                 paths.TECH_EFFECT_PATH,
                 "effects",
                 interface=TechEffect,
             )
+            Technique.conditions_classes = plugin.load_plugins(
+                paths.TECH_CONDITION_PATH,
+                "conditions",
+                interface=TechCondition,
+            )
 
-        # If a slug of the technique was provided, autoload it.
-        if slug:
-            self.load(slug)
+        self.set_state(save_data)
 
     def load(self, slug: str) -> None:
         """
@@ -132,48 +123,52 @@ class Technique:
         results = db.lookup(slug, table="technique")
         self.slug = results.slug  # a short English identifier
         self.name = T.translate(self.slug)
+        self.description = T.translate(f"{self.slug}_description")
 
         self.sort = results.sort
-        assert self.sort
 
         # technique use notifications (translated!)
         # NOTE: should be `self.use_tech`, but Technique and Item have
         # overlapping checks
-        self.use_item = T.maybe_translate(results.use_tech)
+        self.use_tech = T.maybe_translate(results.use_tech)
         self.use_success = T.maybe_translate(results.use_success)
         self.use_failure = T.maybe_translate(results.use_failure)
 
         self.icon = results.icon
-        self._combat_counter = 0
-        self._life_counter = 0
-
-        if results.types:
-            self.type1 = results.types[0]
-            if len(results.types) > 1:
-                self.type2 = results.types[1]
-            else:
-                self.type2 = None
-        else:
-            self.type1 = self.type2 = None
-
+        self.counter = self.counter
+        self.counter_success = self.counter_success
+        self.types = list(results.types)
+        # technique stats
+        self.accuracy = results.accuracy or self.accuracy
+        self.potency = results.potency or self.potency
         self.power = results.power or self.power
 
+        self.default_potency = results.potency or self.potency
+        self.default_power = results.power or self.power
+        # monster stats
         self.statspeed = results.statspeed
         self.stathp = results.stathp
         self.statarmour = results.statarmour
         self.statmelee = results.statmelee
         self.statranged = results.statranged
         self.statdodge = results.statdodge
+        # status fields
+        self.category = results.category or self.category
+        self.repl_neg = results.repl_neg or self.repl_neg
+        self.repl_pos = results.repl_pos or self.repl_pos
 
         self.is_fast = results.is_fast or self.is_fast
+        self.randomly = results.randomly or self.randomly
+        self.healing_power = results.healing_power or self.healing_power
         self.recharge_length = results.recharge or self.recharge_length
         self.is_area = results.is_area or self.is_area
-        self.range = results.range or self.range
+        self.range = results.range or Range.melee
         self.tech_id = results.tech_id or self.tech_id
-        self.accuracy = results.accuracy or self.accuracy
-        self.potency = results.potency or self.potency
+
+        self.conditions = self.parse_conditions(results.conditions)
         self.effects = self.parse_effects(results.effects)
         self.target = process_targets(results.target)
+        self.usable_on = results.usable_on or self.usable_on
 
         # Load the animation sprites that will be used for this technique
         self.animation = results.animation
@@ -213,41 +208,102 @@ class Technique:
             if len(line.split()) > 1:
                 params = line.split()[1].split(",")
             else:
-                params = None
+                params = []
             try:
                 effect = Technique.effects_classes[name]
             except KeyError:
                 logger.error(f'Error: TechEffect "{name}" not implemented')
             else:
-                ret.append(effect(self, self.name, params))
+                ret.append(effect(*params))
 
         return ret
 
-    def advance_round(self, number: int = 1) -> None:
+    def parse_conditions(
+        self,
+        raw: Sequence[str],
+    ) -> Sequence[TechCondition[Any]]:
         """
-        Advance the turn counters for this technique.
+        Convert condition strings to condition objects.
 
-        Techniques have two counters currently, a "combat counter" and a
-        "life counter".
-        Combat counters should be reset with combat begins.
-        Life counters will be set to zero when the Technique is created,
-        but will never be reset.
+        Takes raw condition list from the technique's json and parses it into a
+        form more suitable for the engine.
 
-        Calling this function will advance both counters.
+        Parameters:
+            raw: The raw conditions list pulled from the technique's db entry.
+
+        Returns:
+            Conditions turned into a list of TechCondition objects.
 
         """
-        self._combat_counter += 1
-        self._life_counter += 1
+        ret = list()
+
+        for line in raw:
+            op = line.split()[0]
+            name = line.split()[1]
+            if len(line.split()) > 2:
+                params = line.split()[2].split(",")
+            else:
+                params = []
+            try:
+                condition = Technique.conditions_classes[name]
+                if op == "is":
+                    condition._op = True
+                elif op == "not":
+                    condition._op = False
+                else:
+                    raise ValueError(f"{op} must be 'is' or 'not'")
+            except KeyError:
+                logger.error(f'Error: TechCondition "{name}" not implemented')
+            else:
+                ret.append(condition(*params))
+
+        return ret
+
+    def advance_round(self) -> None:
+        """
+        Advance the counter for this technique if used.
+
+        """
+        self.counter += 1
+
+    def advance_counter_success(self) -> None:
+        """
+        Advance the counter for this technique if used successfully.
+
+        """
+        self.counter_success += 1
+
+    def validate(self, target: Optional[Monster]) -> bool:
+        """
+        Check if the target meets all conditions that the technique has on it's use.
+
+        Parameters:
+            target: The monster or object that we are using this technique on.
+
+        Returns:
+            Whether the technique may be used.
+
+        """
+        if not self.conditions:
+            return True
+        if not target:
+            return False
+
+        result = True
+
+        for condition in self.conditions:
+            if condition._op is True:
+                event = condition.test(target)
+            else:
+                event = not condition.test(target)
+            result = result and event
+        return result
 
     def recharge(self) -> None:
         self.next_use -= 1
 
     def full_recharge(self) -> None:
         self.next_use = 0
-
-    def reset_combat_counter(self) -> None:
-        """Reset the combat counter."""
-        self._combat_counter = 0
 
     def use(self, user: Monster, target: Monster) -> TechEffectResult:
         """
@@ -268,8 +324,9 @@ class Technique:
 
         Examples:
 
-        >>> poison_tech = Technique("technique_poison_sting")
-        >>> bulbatux.learn(poison_tech)
+        >>> technique = Technique()
+        >>> technique.load("technique_poison_sting")
+        >>> bulbatux.learn(technique)
         >>>
         >>> bulbatux.moves[0].use(user=bulbatux, target=tuxmander)
 
@@ -286,18 +343,62 @@ class Technique:
             "name": self.name,
             "success": False,
             "should_tackle": False,
-            "capture": False,
-            "statuses": [],
         }
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
-            result = effect.apply(user, target)
+            result = effect.apply(self, user, target)
             meta_result.update(result)
 
         self.next_use = self.recharge_length
 
         return meta_result
 
-    def get_state(self) -> Optional[str]:
-        return self.slug
+    def set_stats(self) -> None:
+        """
+        Reset technique stats default value.
+
+        """
+        self.potency = self.default_potency
+        self.power = self.default_power
+
+    def get_state(self) -> Mapping[str, Any]:
+        """
+        Prepares a dictionary of the technique to be saved to a file.
+
+        """
+        save_data = {
+            attr: getattr(self, attr)
+            for attr in SIMPLE_PERSISTANCE_ATTRIBUTES
+            if getattr(self, attr)
+        }
+
+        save_data["instance_id"] = str(self.instance_id.hex)
+
+        return save_data
+
+    def set_state(self, save_data: Mapping[str, Any]) -> None:
+        """
+        Loads information from saved data.
+
+        """
+        if not save_data:
+            return
+
+        self.load(save_data["slug"])
+
+        for key, value in save_data.items():
+            if key == "instance_id" and value:
+                self.instance_id = uuid.UUID(value)
+            elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
+                setattr(self, key, value)
+
+
+def decode_moves(
+    json_data: Optional[Sequence[Mapping[str, Any]]],
+) -> List[Technique]:
+    return [Technique(save_data=tech) for tech in json_data or {}]
+
+
+def encode_moves(techs: Sequence[Technique]) -> Sequence[Mapping[str, Any]]:
+    return [tech.get_state() for tech in techs]

@@ -113,6 +113,8 @@ def draw_text(
 
     """
     left, top, width, height = rect
+    _left: float = left
+    _top: float = top
 
     if not font_color:
         font_color = (0, 0, 0)
@@ -135,7 +137,6 @@ def draw_text(
 
     # Loop through each word in the text and add it to the word list
     for word in text.split():
-
         # If there is a linebreak in this word, then split it up into a list separated by \n
         if "\\n" in word:
             w = word.split("\\n")
@@ -153,7 +154,6 @@ def draw_text(
 
         # If there's no line break, continue normally to word wrap
         else:
-
             # Append the word to the current line
             wordlist.append(word)
 
@@ -178,18 +178,18 @@ def draw_text(
     # If the justification was set, handle the position of the text automatically
     if justify == "center":
         if lines:
-            left = (left + (width / 2)) - (
+            _left = (left + (width / 2)) - (
                 (len(lines[0]) * pixels_per_letter) / 2
             )
         else:
-            left = 0
+            _left = 0
 
     elif justify == "right":
         raise NotImplementedError("Needs to be implemented")
 
     # If text alignment was set, handle the position of the text automatically
     if align == "middle":
-        top = (top + (height / 2)) - (
+        _top = (top + (height / 2)) - (
             (text_surface.get_height() * len(lines)) / 2
         )
 
@@ -201,5 +201,5 @@ def draw_text(
     for item in lines:
         line = font.render(item, True, font_color)
 
-        surface.blit(line, (left, top + spacing))
+        surface.blit(line, (_left, _top + spacing))
         spacing += line.get_height()  # + self.line_spacing

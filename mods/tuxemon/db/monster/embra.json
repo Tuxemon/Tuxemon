@@ -12,25 +12,56 @@
             "technique": "refresh"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "fire_shield"
+        },
+        {
+            "level_learned": 8,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 12,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 16,
             "technique": "kindling_flame"
+        },
+        {
+            "level_learned": 20,
+            "technique": "arcane_eye"
+        },
+        {
+            "level_learned": 24,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 28,
+            "technique": "magma"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 30,
             "monster_slug": "ruption"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "ruption",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "blob",
+    "stage": "basic",
     "types": [
-        "Fire"
+        "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 74,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 75,
+    "height": 48,
+    "weight": 2,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

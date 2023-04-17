@@ -1,17 +1,10 @@
 {
   "slug": "spyder_nimrod_zircon",
-  "gender": "male",
-  "sprite_name": "scientist",
-  "monsters": [
+  "template": [
     {
-      "name": "Birb Robo",
-      "level": 25,
-      "slug": "birb-robo",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "neuter"
+      "sprite_name": "scientist",
+      "combat_front": "scientist",
+      "slug": "scientist"
     }
-  ],
-  "combat_front": "scientist.png",
-  "combat_back": "red_back.png"
+  ]
 }

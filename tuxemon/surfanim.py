@@ -1,30 +1,6 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-#
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 # Based on pyganim: A sprite animation module for Pygame.
-#
 # By Al Sweigart al@inventwithpython.com
 # http://inventwithpython.com/pyganim
 # Released under a "Simplified BSD" license
@@ -77,7 +53,6 @@ class SurfaceAnimation:
         frames: Sequence[Tuple[Union[str, pygame.surface.Surface], float]],
         loop: bool = True,
     ) -> None:
-
         # Obtain constant precision setting the initial value to 2^32:
         # https://randomascii.wordpress.com/2012/02/13/dont-store-that-in-a-float/
         self._internal_clock = float(2**32)
@@ -106,7 +81,6 @@ class SurfaceAnimation:
 
         # Load each frame of animation into _images
         for i in range(self.num_frames):
-
             frame = frames[i]
             assert (
                 isinstance(frame, tuple) and len(frame) == 2
@@ -429,14 +403,12 @@ class SurfaceAnimationCollection:
         return all(a.is_finished() for a in self._animations)
 
     def play(self, start_time: Optional[float] = None) -> None:
-
         for anim_obj in self._animations:
             anim_obj.play(start_time)
 
         self._state = PLAYING
 
     def pause(self, start_time: Optional[float] = None) -> None:
-
         for anim_obj in self._animations:
             anim_obj.pause(start_time)
 

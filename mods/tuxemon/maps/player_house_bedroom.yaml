@@ -1,67 +1,101 @@
 events:
   Go Downstairs:
     actions:
-    - transition_teleport player_house_downstairs.tmx,1,3,0.3
+    - transition_teleport player_house_downstairs.tmx,0,2,0.3
     - player_face down
     conditions:
     - is player_at
     height: 1
     width: 1
-    x: 8
-    y: 3
+    x: 7
+    y: 2
   Use Computer:
     actions:
     - change_state PCState
     conditions:
-    - is player_at 4,3
-    - is player_facing up
+    - is player_facing_tile
     - is button_pressed K_RETURN
     height: 1
     width: 1
-    x: 4
-    y: 3
-    type: "event"
-  Give Money:
-    actions:
-    - set_money player,1000000
-    - set_variable xero_starting_money:yes
-    conditions:
-    - not variable_set xero_starting_money:yes
-    height: 1
-    width: 1
-    x: 2
+    x: 3
     y: 1
     type: "event"
   Player Spawn:
     height: 1
     width: 1
-    x: 4
-    y: 5
+    x: 3
+    y: 4
   Resting in Bed:
     actions:
     - screen_transition 1
     - wait 0.5
     - translated_dialog spyder_papertown_restinbed
-    - set_monster_health ,
-    - set_monster_status ,
-    - set_variable teleport_faint:player_house_bedroom.tmx 7 6
+    - set_monster_health
+    - set_monster_status
+    - set_variable teleport_faint:player_house_bedroom.tmx 3 4
     conditions:
     - is button_pressed K_RETURN
     - is player_facing_tile
     height: 2
     width: 1
-    x: 1
-    y: 3
+    x: 0
+    y: 2
     type: "event"
   Auto Healing Teleported:
     actions:
-    - set_monster_health ,
-    - set_monster_status ,
+    - set_monster_health
+    - set_monster_status
     - set_variable battle_last_result:none
     conditions:
     - is variable_set battle_last_result:lost
     height: 1
     width: 1
     x: 0
+    y: 0
+    type: "event"
+  Intro:
+    actions:
+    - change_bg spyder_roc
+    - translated_dialog spyder_intro_question
+    - translated_dialog_choice no:yes,question_xero
+    conditions:
+    - not variable_set question_xero:yes
+    - not variable_set question_xero:no
+    height: 1
+    width: 1
+    x: 8
+    y: 0
+    type: "event"
+  Intro Yes:
+    actions:
+    - translated_dialog xero_intro_1
+    - change_bg spyder_intro01
+    - translated_dialog xero_intro_2
+    - change_bg spyder_roc
+    - translated_dialog xero_intro_3
+    - translated_dialog xero_intro_question
+    - rename_player random
+    - change_bg end
+    - set_variable xero_intro:done
+    conditions:
+    - is variable_set question_xero:no
+    - not variable_set xero_intro:done
+    height: 1
+    width: 1
+    x: 8
+    y: 1
+    type: "event"
+  Intro No:
+    actions:
+    - translated_dialog xero_intro_question
+    - rename_player random
+    - change_bg end
+    - set_variable xero_intro:done
+    conditions:
+    - is variable_set question_xero:yes
+    - not variable_set xero_intro:done
+    height: 1
+    width: 1
+    x: 9
     y: 0
     type: "event"

@@ -1,0 +1,69 @@
+{
+    "slug": "mk01_proto",
+    "category": "threat",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 6,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 8,
+            "technique": "amnesia"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 10,
+            "monster_slug": "mk01_alpha"
+        },
+        {
+            "path": "standard",
+            "at_level": 10,
+            "monster_slug": "mk01_beta"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "mk01_alpha",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "mk01_beta",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "mk01_gamma",
+            "evo_stage": "stage2"
+        },
+        {
+            "mon_slug": "mk01_omega",
+            "evo_stage": "stage2"
+        },
+        {
+            "mon_slug": "mk01_delta",
+            "evo_stage": "stage2"
+        }
+    ],
+    "shape": "dragon",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 0,
+    "height": 0,
+    "weight": 100,
+    "catch_rate": 120.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

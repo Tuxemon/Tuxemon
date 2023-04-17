@@ -1,8 +1,10 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import os
 import sys
-from typing import Iterable
+from typing import Any, Iterable
 
 from prompt_toolkit import PromptSession
 
@@ -26,7 +28,7 @@ class MetaCommand(CLICommand):
     name = "Meta Command"
     description = "Used as the primary command."
 
-    def __init__(self, commands):
+    def __init__(self, commands: Any) -> None:
         self._commands = commands
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:

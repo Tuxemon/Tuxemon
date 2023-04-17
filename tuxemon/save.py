@@ -1,32 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
-#                     Benjamin Bean <superman2k5@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-#
-#
-# save Handle save games.
-#
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import base64
@@ -207,12 +180,15 @@ def json_load(
 
 
 def open_save_file(save_path: str) -> Optional[Dict[str, Any]]:
+    package: Dict[str, Any] = {}
     try:
         try:
             if config.compress_save is None and prepare.SAVE_METHOD == "CBOR":
-                return cbor.load(save_path)
+                package = cbor.load(save_path)
+                return package
             else:
-                return json_load(save_path)
+                package = json_load(save_path)
+                return package
         except ValueError as e:
             logger.error("Cannot decode save: %s", save_path)
             return None
@@ -277,7 +253,7 @@ def load(slot: int) -> Optional[SaveData]:
         save_data["error"] = "Save file corrupted"
         save_data["player_name"] = "BROKEN SAVE!"
         logger.error("Failed loading save file.")
-        return save_data
+        return save_data  # type: ignore[return-value]
 
 
 def get_index_of_latest_save() -> Optional[int]:

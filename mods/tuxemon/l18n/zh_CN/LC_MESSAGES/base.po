@@ -1,0 +1,6868 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Tuxemon\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-01-18 01:47+0000\n"
+"Last-Translator: David Liang <2188741623@qq.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"tuxemon/tuxemon/zh_Hans/>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 4.15.1-dev\n"
+
+# # ITEM TRANSLATIONS ##
+# Apple
+msgid "apple"
+msgstr "苹果"
+
+msgid "apple_description"
+msgstr "回复一只精灵10点生命."
+
+# Berry
+msgid "berry"
+msgstr "浆果"
+
+msgid "berry_description"
+msgstr "回复一只精灵10点生命."
+
+# Cherry
+msgid "cherry"
+msgstr "樱桃"
+
+msgid "cherry_description"
+msgstr "回复一只精灵10点生命."
+
+# Orange
+msgid "orange"
+msgstr "橙子"
+
+msgid "orange_description"
+msgstr "回复一只精灵20点生命."
+
+# Potion
+msgid "potion"
+msgstr "伤药"
+
+msgid "potion_description"
+msgstr "回复一只精灵50点生命."
+
+# Super Potion
+msgid "super_potion"
+msgstr "超级伤药"
+
+msgid "super_potion_description"
+msgstr "回复一只精灵150点生命."
+
+# Imperial Potion
+msgid "imperial_potion"
+msgstr "皇室伤药"
+
+msgid "imperial_potion_description"
+msgstr "回复一只精灵350点生命."
+
+# Revive
+msgid "revive"
+msgstr "恢复"
+
+msgid "revive_description"
+msgstr "复活被击倒的精灵,恢复20点生命."
+
+# Capture Device
+msgid "capture_device"
+msgstr "捕捉设备"
+
+msgid "capture_device_description"
+msgstr "用来捕捉精灵."
+
+# TMs
+msgid "tm_avalanche"
+msgstr "招式学习器:雪崩"
+
+msgid "tm_avalanche_description"
+msgstr "教水或土系精灵雪崩招式的招式学习器."
+
+msgid "tm_blossom"
+msgstr "招式学习器:绽放"
+
+msgid "tm_blossom_description"
+msgstr "教木系精灵绽放招式的招式学习器."
+
+msgid "item_cannot_use_here"
+msgstr "{name}不能在这里使用!"
+
+msgid "item_no_available_target"
+msgstr "{name}现在不能用在你的任何精灵上."
+
+msgid "reg_papers"
+msgstr "注册文件"
+
+msgid "reg_papers_description"
+msgstr "一袋训练师大赛的注册文件."
+
+# Allie's Address
+msgid "allies_address"
+msgstr "艾莉的地址"
+
+msgid "allies_address_description"
+msgstr ""
+"棉花镇全渠道塔2栋31室\n"
+"\n"
+"地址旁边有个吻痕."
+
+# # NOTIFICATION TRANSLATIONS ##
+# Combat notifications
+msgid "combat_run"
+msgstr "{user}逃跑了!"
+
+msgid "combat_miss"
+msgstr "但是没打中..."
+
+msgid "combat_can't_run_from_trainer"
+msgstr "不能在与训练师的战斗中逃跑!"
+
+msgid "combat_player_run"
+msgstr "你成功的逃跑了!"
+
+msgid "combat_used_x"
+msgstr "{user}使用了{name}!"
+
+msgid "combat_used_x_on_y"
+msgstr "{user}使用了{name}在{target}!"
+
+msgid "combat_swap"
+msgstr "{user}派出了{target}!"
+
+msgid "combat_call_tuxemon"
+msgstr "去吧,{name}!"
+
+# TODO: similar to combat_swap - refactor!
+msgid "combat_opponent_call_tuxemon"
+msgstr "{user}派出了{name}!"
+
+msgid "combat_state_poison_get"
+msgstr "{target}中毒了!"
+
+msgid "combat_state_poison_damage"
+msgstr "{name}中了毒!"
+
+msgid "combat_state_lifeleech_get"
+msgstr "{user}从{target}那里吸取生命值."
+
+msgid "dodge_increased"
+msgstr "{user}的{stat}增强了."
+
+msgid "speed_halved"
+msgstr "{user}的速度减半."
+
+msgid "hp_restored"
+msgstr "{user}的生命值恢复了."
+
+msgid "combat_state_overfeed_get"
+msgstr "{user}过量{target}."
+
+msgid "dodge_fell"
+msgstr "{user}闪避掉了."
+
+msgid "attacks_rose"
+msgstr "{user}的攻击伤害类型上升."
+
+msgid "combat_levitate_get"
+msgstr "{user}飞到更高的空中."
+
+msgid "combat_amnesia_get"
+msgstr "{user}得了失忆."
+
+msgid "combat_state_lifeleech_success"
+msgstr "{user}失去健康的生命"
+
+msgid "combat_state_lifeleech_failure"
+msgstr "{link}不能再愈合了."
+
+msgid "combat_state_recover_get"
+msgstr "{target}开始恢复健康."
+
+msgid "combat_state_recover_success"
+msgstr "{user}恢复健康了!"
+
+msgid "combat_state_recover_failure"
+msgstr "{user}不能再愈合了."
+
+msgid "combat_status_damage"
+msgstr "{name}的{status}造成了伤害!"
+
+msgid "combat_trainer_appeared"
+msgstr "{name}想要战斗!"
+
+msgid "combat_victory"
+msgstr "你赢了!"
+
+msgid "combat_defeat"
+msgstr "你被打败了!"
+
+msgid "combat_draw"
+msgstr "大家都昏过去了!"
+
+msgid "combat_capturing_success"
+msgstr "你捉住了{name}!"
+
+msgid "combat_capturing_fail"
+msgstr "{name}冲出了捕捉设备!"
+
+msgid "combat_recharging"
+msgstr "{name}使用前需要休息一下才能再一次使用{move}..."
+
+msgid "combat_replacement"
+msgstr "选择下一个精灵!"
+
+msgid "combat_replacement_is_fainted"
+msgstr "那个精灵已经昏过去了!"
+
+msgid "combat_wild_appeared"
+msgstr "野生的{name}出现了!"
+
+msgid "combat_monster_choice"
+msgstr "要{name}做什么呢?"
+
+msgid "combat_fainted"
+msgstr "{name}昏过去了!"
+
+msgid "combat_isactive"
+msgstr "{name} 已经在战斗了."
+
+msgid "combat_target_itself"
+msgstr "{name}不应该攻击自己."
+
+msgid "attack_very_effective"
+msgstr "这次攻击造成了很多额外的破坏!"
+
+msgid "attack_effective"
+msgstr "这次攻击造成了额外的破坏!"
+
+msgid "attack_resisted"
+msgstr "攻击被抵抗了!"
+
+msgid "attack_weak"
+msgstr "这次攻击遭到了顽强的抵抗!"
+
+# Generic notifications
+msgid "empty_slot"
+msgstr "空卡槽"
+
+msgid "exit"
+msgstr "退出"
+
+msgid "item_confirm_use"
+msgstr "使用"
+
+msgid "item_confirm_cancel"
+msgstr "取消"
+
+# TODO same as generic_success and generic_failure - refactor!
+msgid "item_success"
+msgstr "它工作了!"
+
+msgid "item_failure"
+msgstr "它失败了!"
+
+msgid "generic_success"
+msgstr "它工作了!"
+
+msgid "generic_failure"
+msgstr "它失败了"
+
+msgid "attempting_capture"
+msgstr "试图捕捉……"
+
+msgid "gotcha"
+msgstr "明白了!"
+
+msgid "not_implemented"
+msgstr "该特性尚未实现."
+
+msgid "receive_happiness"
+msgstr "收到5个捕捉设备!"
+
+msgid "received_x"
+msgstr "获得了{name}!"
+
+msgid "save_success"
+msgstr "已保存!"
+
+msgid "save_failure"
+msgstr "存档有问题!"
+
+msgid "save_overwrite"
+msgstr "是的,覆盖此存档."
+
+msgid "save_keep"
+msgstr "不,不要覆盖."
+
+msgid "slot"
+msgstr "卡槽"
+
+msgid "status_faint"
+msgstr "昏倒"
+
+msgid "status_poison"
+msgstr "中毒"
+
+msgid "status_lifeleech"
+msgstr "死气沉沉"
+
+msgid "status_overfeed"
+msgstr "胡吃海塞"
+
+msgid "status_recover"
+msgstr "恢复"
+
+# # TECHNIQUE TRANSLATIONS ##
+msgid "all_in"
+msgstr "全部的"
+
+msgid "amnesia"
+msgstr "失忆"
+
+msgid "avalanche"
+msgstr "雪崩"
+
+msgid "battery_acid"
+msgstr "电解液"
+
+msgid "battery_discharge"
+msgstr "放电"
+
+msgid "beam"
+msgstr "激光束"
+
+msgid "berserk"
+msgstr "狂怒"
+
+msgid "biting_winds"
+msgstr "寒风"
+
+msgid "blade"
+msgstr "叶之刃"
+
+msgid "blood_bond"
+msgstr "血统联系"
+
+msgid "blossom"
+msgstr "绽放"
+
+msgid "boulder"
+msgstr "朽石"
+
+msgid "breathe_fire"
+msgstr "暴怒"
+
+msgid "bubble_trap"
+msgstr "气泡捕捉器"
+
+msgid "bullet"
+msgstr "高速球"
+
+msgid "chill_mist"
+msgstr "冷雾"
+
+msgid "clamp_on"
+msgstr "夹合"
+
+msgid "constrict"
+msgstr "缠绕"
+
+msgid "electrical_storm"
+msgstr "雷暴"
+
+msgid "energy_claws"
+msgstr "能源之爪"
+
+msgid "energy_field"
+msgstr "能量场"
+
+msgid "eyebite"
+msgstr "摄心目光"
+
+msgid "feint"
+msgstr "假动作"
+
+msgid "fester"
+msgstr "脓液之力"
+
+msgid "fire_ball"
+msgstr "火球"
+
+msgid "fire_claw"
+msgstr "火爪"
+
+msgid "flamethrower"
+msgstr "火焰喷射"
+
+msgid "flood"
+msgstr "洪水之力"
+
+msgid "flow"
+msgstr "水枪"
+
+msgid "fluff_up"
+msgstr "拍松"
+
+msgid "font"
+msgstr "洗礼"
+
+msgid "frostbite"
+msgstr "冻疮"
+
+msgid "fume"
+msgstr "发怒"
+
+msgid "give_all"
+msgstr "持有全部"
+
+msgid "glower"
+msgstr "热切注视"
+
+msgid "goad"
+msgstr "刺棒"
+
+msgid "headbutt"
+msgstr "头锤"
+
+msgid "hibernate"
+msgstr "冬眠"
+
+msgid "ice_claw"
+msgstr "冰爪"
+
+msgid "icicle_spear"
+msgstr "冰矛"
+
+msgid "invictus"
+msgstr "不可征服"
+
+msgid "kindling_flame"
+msgstr "烈火燃烧"
+
+msgid "levitate"
+msgstr "吹起"
+
+msgid "midnight_mantle"
+msgstr "午夜地幔"
+
+msgid "muddle"
+msgstr "捣蛋"
+
+msgid "mudslide"
+msgstr "泥石流"
+
+msgid "one_two"
+msgstr "二连击"
+
+msgid "overgrowth"
+msgstr "过度生长"
+
+msgid "peck"
+msgstr "啄"
+
+msgid "peregrine"
+msgstr "游隼"
+
+msgid "perfect_cut"
+msgstr "完美切割"
+
+msgid "petrify"
+msgstr "美杜莎之眼"
+
+msgid "probiscus"
+msgstr "普罗比斯库斯"
+
+msgid "pseudopod"
+msgstr "伪足"
+
+msgid "quicksand"
+msgstr "危险流沙"
+
+msgid "ram"
+msgstr "猛撞"
+
+msgid "refresh"
+msgstr "小憩"
+
+msgid "rock"
+msgstr "岩石"
+
+msgid "rot"
+msgstr "腐烂"
+
+msgid "rust_bomb"
+msgstr "铁锈炸弹"
+
+msgid "salamander"
+msgstr "火蜥蜴"
+
+msgid "sand_spray"
+msgstr "喷砂"
+
+msgid "shadow_boxing"
+msgstr "太极拳"
+
+msgid "shrapnel"
+msgstr "榴霰弹"
+
+msgid "shuriken"
+msgstr "手里剑"
+
+msgid "sleep_bomb"
+msgstr "催眠炸弹"
+
+msgid "sleeping_powder"
+msgstr "催眠粉"
+
+msgid "snowstorm"
+msgstr "暴风雪"
+
+msgid "splinter"
+msgstr "分裂"
+
+msgid "spray"
+msgstr "喷雾"
+
+msgid "stampede"
+msgstr "奔逃"
+
+msgid "starfall"
+msgstr "星落"
+
+msgid "static_field"
+msgstr "静态场"
+
+msgid "sting"
+msgstr "叮咬"
+
+msgid "stone_rot"
+msgstr "石头腐烂"
+
+msgid "strike"
+msgstr "罢工"
+
+msgid "suck_poison"
+msgstr "吸入毒液"
+
+msgid "sudden_glow"
+msgstr "突然发光"
+
+msgid "supernova"
+msgstr "超新星"
+
+msgid "surge"
+msgstr "飙升"
+
+msgid "take_cover"
+msgstr "隐蔽"
+
+msgid "thunderball"
+msgstr "霹雳弹"
+
+msgid "thunderclap"
+msgstr "打雷"
+
+msgid "tonguespear"
+msgstr "汲取"
+
+msgid "venomous_tentacle"
+msgstr "毒触须"
+
+msgid "wall_of_steel"
+msgstr "钢铁之墙"
+
+msgid "wallow"
+msgstr "打滚"
+
+msgid "web"
+msgstr "网络"
+
+msgid "whirlwind"
+msgstr "旋风"
+
+msgid "wing_tip"
+msgstr "翅膀攻击"
+
+# # MENU TRANSLATIONS ##
+msgid "menu_alphabet"
+msgstr "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
+
+msgid "menu_alphabet_n_columns"
+msgstr "13"
+
+# Monster Menu notifications
+msgid "monster_menu_info"
+msgstr "信息"
+
+msgid "monster_menu_move"
+msgstr "移动"
+
+msgid "monster_menu_release"
+msgstr "放生"
+
+# Release notifications
+msgid "cant_release"
+msgstr "不能在队伍中释放这只精灵."
+
+msgid "release_confirmation"
+msgstr "你确定要释放{name}吗?"
+
+msgid "tuxemon_released"
+msgstr "{name}已经被释放了."
+
+# Menu notifications
+msgid "log_off"
+msgstr "注销"
+
+msgid "menu_bag"
+msgstr "背包"
+
+msgid "menu_fight"
+msgstr "战斗"
+
+msgid "menu_item"
+msgstr "道具"
+
+msgid "menu_items"
+msgstr "道具"
+
+msgid "menu_journal"
+msgstr "期刊"
+
+msgid "menu_load"
+msgstr "加载"
+
+msgid "menu_monster"
+msgstr "精灵"
+
+# TODO: duplicate of menu_monster?
+msgid "menu_monsters"
+msgstr "精灵"
+
+msgid "menu_multiplayer"
+msgstr "多人游戏"
+
+msgid "menu_new_game"
+msgstr "新游戏"
+
+msgid "menu_options"
+msgstr "设置"
+
+msgid "menu_player"
+msgstr "玩家"
+
+msgid "menu_run"
+msgstr "逃跑"
+
+msgid "menu_save"
+msgstr "保存"
+
+msgid "menu_up_key"
+msgstr "上键"
+
+msgid "menu_left_key"
+msgstr "左键"
+
+msgid "menu_right_key"
+msgstr "右键"
+
+msgid "menu_down_key"
+msgstr "下键"
+
+msgid "menu_primary_select_key"
+msgstr "行动键"
+
+msgid "menu_secondary_select_key"
+msgstr "取消键"
+
+msgid "menu_back_key"
+msgstr "返回键"
+
+msgid "options_new_input_key0"
+msgstr "按下一个键来设置新的输入键"
+
+msgid "options_new_input_key1"
+msgstr "重新启动游戏使更改生效!"
+
+# Default mod names on selection menu
+msgid "xero_campaign"
+msgstr "自由梦: Xero"
+
+msgid "spyder_campaign"
+msgstr "自由梦: 斯派德和大教堂"
+
+# Multiplayer notifications
+msgid "multiplayer_accept"
+msgstr "接受"
+
+msgid "multiplayer_decline"
+msgstr "拒绝"
+
+msgid "multiplayer_duel"
+msgstr "{name}想要战斗!"
+
+msgid "multiplayer_host_game"
+msgstr "主机游戏"
+
+msgid "multiplayer_scan_games"
+msgstr "扫描游戏"
+
+msgid "multiplayer_join_game"
+msgstr "加入游戏"
+
+msgid "multiplayer_hosting_ready"
+msgstr "准备接受玩家!"
+
+msgid "multiplayer_already_hosting"
+msgstr "已经举办了!"
+
+msgid "multiplayer_no_servers"
+msgstr "未找到服务器..."
+
+msgid "multiplayer_join_prompt"
+msgstr "主机名或IP?"
+
+msgid "water_booster_description"
+msgstr "它允许将水系精灵变形为不同的形式."
+
+# Money notification
+msgid "player_wallet"
+msgstr "${{name}}的钱包: ${{currency}}${{money}}"
+
+msgid "combat_skip"
+msgstr "{user}跳过了本回合!"
+
+# # COMBAT STATE STATUSES
+msgid "combat_state_blinded_get"
+msgstr "{target}是盲的."
+
+msgid "combat_state_confused_get"
+msgstr "{target}是混淆的."
+
+msgid "combat_state_grabbed_get"
+msgstr "{target}被紧紧抓住."
+
+msgid "acid"
+msgstr "酸"
+
+msgid "combat_state_spyderbite_get"
+msgstr "{target}开始嗅探."
+
+msgid "status_dozing"
+msgstr "打瞌睡"
+
+msgid "status_focused"
+msgstr "集中"
+
+msgid "arcane_eye"
+msgstr "奥术之眼"
+
+msgid "blood_nets"
+msgstr "血网"
+
+msgid "clairaudience"
+msgstr "千里眼观众"
+
+msgid "feline"
+msgstr "猫的"
+
+msgid "gyser"
+msgstr "吉瑟"
+
+msgid "fishing_rod_description"
+msgstr "可以用来捕鱼."
+
+msgid "earthmover_key_description"
+msgstr "如果有一个巨大的推土机挡住了道路,可能会派上用场."
+
+msgid "nimrod_badge_description"
+msgstr "从宁录购买的精灵需要这个徽章才能变形."
+
+msgid "booster_tech_description"
+msgstr "一种开源技术,允许将精灵变形为不同的形式."
+
+msgid "earth_booster"
+msgstr "土系助推器"
+
+msgid "earth_booster_description"
+msgstr "它允许将土系精灵变形为不同的形式."
+
+msgid "miaow_milk_description"
+msgstr "猫咪喜欢妙乳™的味道!"
+
+msgid "fishing_rod"
+msgstr "鱼竿"
+
+msgid "earthmover_key"
+msgstr "推土机钥匙"
+
+msgid "sledgehammer"
+msgstr "大锤"
+
+msgid "sledgehammer_description"
+msgstr "粉碎灰色巨石."
+
+msgid "shammer_fossil"
+msgstr "沙默化石"
+
+msgid "rhincus_fossil"
+msgstr "沙默化石"
+
+# Boosters (items)
+msgid "greenwash_badge"
+msgstr "徽章：漂绿"
+
+msgid "greenwash_badge_description"
+msgstr "从漂绿购买的精灵需要此徽章才能进化."
+
+msgid "nimrod_badge"
+msgstr "徽章：宁录"
+
+msgid "omnichannel_badge"
+msgstr "徽章：全能公司"
+
+msgid "omnichannel_badge_description"
+msgstr "从全能公司购买的精灵需要此徽章才能变形."
+
+msgid "scoop_badge_description"
+msgstr "从斯考普购买的精灵需要这个徽章才能变形."
+
+msgid "scoop_badge"
+msgstr "徽章：斯考普"
+
+msgid "shaft_badge"
+msgstr "徽章：沙弗特"
+
+msgid "shaft_badge_description"
+msgstr "从沙弗特购买的燕尾服需要这个徽章才能变形."
+
+msgid "booster_tech"
+msgstr "技术助推器"
+
+msgid "fire_booster"
+msgstr "火系助推器"
+
+msgid "fire_booster_description"
+msgstr "它允许将火系精灵变形为不同的形式."
+
+msgid "flintstone"
+msgstr "打火石"
+
+msgid "lucky_bamboo"
+msgstr "幸运竹"
+
+msgid "metal_booster"
+msgstr "金系助推器"
+
+msgid "metal_booster_description"
+msgstr "它允许将金系精灵变形为不同的形式."
+
+msgid "miaow_milk"
+msgstr "妙乳"
+
+msgid "peace_lily"
+msgstr "和平百合"
+
+msgid "petrified_dung"
+msgstr "石化粪便"
+
+msgid "pyramidion"
+msgstr "金字塔"
+
+msgid "sea_girdle"
+msgstr "金字塔"
+
+msgid "stovepipe"
+msgstr "烟囱管"
+
+msgid "sweet_sand"
+msgstr "甜沙"
+
+msgid "tectonic_drill"
+msgstr "构造钻探"
+
+msgid "thunderstone"
+msgstr "雷石"
+
+msgid "water_booster"
+msgstr "水系助推器"
+
+msgid "wood_booster"
+msgstr "木系助推器"
+
+msgid "wood_booster_description"
+msgstr "它允许将木系精灵变形为不同的形式."
+
+# Map Types:
+msgid "no_type"
+msgstr "无类型"
+
+msgid "town"
+msgstr "镇"
+
+msgid "route"
+msgstr "路线"
+
+msgid "dungeon"
+msgstr "地牢"
+
+msgid "center"
+msgstr "中心"
+
+msgid "shop"
+msgstr "商店"
+
+msgid "inside"
+msgstr "内部"
+
+msgid "outside"
+msgstr "外部"
+
+msgid "item_used_wrong_location_inside"
+msgstr "{name}只能在{here}使用!"
+
+msgid "item_used_wrong_location_type"
+msgstr "{name}只能在{here}中使用!"
+
+msgid "combat_forfeit"
+msgstr ""
+"你已经放弃了!\n"
+"{npc}很失望."
+
+msgid "combat_player_run_status"
+msgstr ""
+"不能逃跑.\n"
+"{monster}是{status}!"
+
+msgid "combat_player_forfeit_status"
+msgstr ""
+"不能放弃比赛.\n"
+"{monster}是{status}!"
+
+msgid "combat_player_swap_status"
+msgstr ""
+"不能更换精灵..\n"
+"{monster}是{status}!"
+
+msgid "cannot_use_tech_monster"
+msgstr "{name}现在不能使用."
+
+msgid "combat_victory_trainer"
+msgstr ""
+"你战胜了{npc}!\n"
+" 你获得了 {currency}{prize}!"
+
+msgid "combat_state_chargedup_get"
+msgstr "{target}已充满电."
+
+msgid "combat_state_charging_get"
+msgstr "{target}正在充电."
+
+msgid "combat_state_diehard_get"
+msgstr "{target}将继续战斗."
+
+msgid "combat_state_dozing_get"
+msgstr "{target}睡着了."
+
+msgid "combat_state_enraged_get"
+msgstr "{target}被激怒了."
+
+msgid "combat_state_exhausted_get"
+msgstr "{target}已耗尽."
+
+msgid "combat_state_festering_get"
+msgstr "{target}的伤口溃烂了."
+
+msgid "combat_state_focused_get"
+msgstr "{target}成为焦点."
+
+msgid "combat_state_hardshell_get"
+msgstr "{target}被硬壳包裹."
+
+msgid "combat_state_noddingoff_get"
+msgstr "{target}正在打瞌睡."
+
+msgid "combat_state_sniping_get"
+msgstr "{target}需要瞄准."
+
+msgid "combat_state_softened_get"
+msgstr "{target}的装甲软化."
+
+msgid "combat_state_stuck_get"
+msgstr "{target}卡在原地."
+
+msgid "combat_state_tired_get"
+msgstr "{target}已磨损."
+
+msgid "alert_text"
+msgstr "文字太长!"
+
+# # STATUSES
+msgid "status_blinded"
+msgstr "蒙蔽"
+
+msgid "status_chargedup"
+msgstr "充电"
+
+msgid "status_charging"
+msgstr "充电"
+
+msgid "status_confused"
+msgstr "困惑"
+
+msgid "status_diehard"
+msgstr "虎胆龙威"
+
+msgid "status_eliminated"
+msgstr "消除"
+
+msgid "status_enraged"
+msgstr "狂暴"
+
+msgid "status_exhausted"
+msgstr "用尽"
+
+msgid "status_festering"
+msgstr "溃烂"
+
+msgid "status_grabbed"
+msgstr "抓住"
+
+msgid "status_hardshell"
+msgstr "硬壳"
+
+msgid "status_noddingoff"
+msgstr "点头离开"
+
+msgid "status_sniping"
+msgstr "狙击"
+
+msgid "status_softened"
+msgstr "软化"
+
+msgid "status_spyderbite"
+msgstr "斯皮德咬合"
+
+msgid "status_stuck"
+msgstr "卡住"
+
+msgid "status_tired"
+msgstr "疲劳"
+
+msgid "adamantine"
+msgstr "金刚合金"
+
+msgid "air_chain"
+msgstr "空气链"
+
+msgid "ants"
+msgstr "蚂蚁"
+
+msgid "assault"
+msgstr "突击"
+
+msgid "barking"
+msgstr "叫声"
+
+msgid "breath"
+msgstr "呼吸"
+
+msgid "canine"
+msgstr "犬"
+
+msgid "cat_calling"
+msgstr "猫叫"
+
+msgid "cavity"
+msgstr "腔"
+
+msgid "chameleon"
+msgstr "变色龙"
+
+msgid "clock"
+msgstr "时钟"
+
+msgid "cloud_aether"
+msgstr "云以太"
+
+msgid "conjurer"
+msgstr "魔术师"
+
+msgid "crystal"
+msgstr "晶体"
+
+msgid "demiurge"
+msgstr "德米乌尔"
+
+msgid "earthquake"
+msgstr "地震"
+
+msgid "evasion"
+msgstr "规避"
+
+msgid "fiery"
+msgstr "火热"
+
+msgid "fire_shield"
+msgstr "防火盾"
+
+msgid "firestorm"
+msgstr "风暴"
+
+msgid "fledgling"
+msgstr "雏鸟"
+
+msgid "gold_digger"
+msgstr "淘金者"
+
+msgid "grinding"
+msgstr "研磨"
+
+msgid "gust"
+msgstr "阵风"
+
+msgid "hawk"
+msgstr "鹰"
+
+msgid "ice_storm"
+msgstr "冰风暴"
+
+msgid "insanity"
+msgstr "精神错乱"
+
+msgid "kraken"
+msgstr "海妖"
+
+msgid "lantern"
+msgstr "灯笼"
+
+msgid "lava"
+msgstr "熔岩"
+
+msgid "elofly"
+msgstr "埃洛飞"
+
+msgid "elostorm"
+msgstr "埃洛斯托姆"
+
+msgid "elowind"
+msgstr "埃洛温德"
+
+msgid "enduros"
+msgstr "负重运动"
+
+msgid "exapode"
+msgstr "伊那波德"
+
+msgid "exclawvate"
+msgstr "掘地兽"
+
+msgid "ferricran"
+msgstr "费里科兰"
+
+msgid "graffiki"
+msgstr "格拉非基"
+
+msgid "grimachin"
+msgstr "玩具猫"
+
+msgid "grintot"
+msgstr "格林托特"
+
+msgid "grintrock_description"
+msgstr "它通过在雷暴中坐等被闪电击中来获取食物."
+
+msgid "grintrock"
+msgstr "格林特洛克"
+
+msgid "hatchling"
+msgstr "雏鸟"
+
+msgid "incandesfin"
+msgstr "灯笼鱼"
+
+msgid "noctula"
+msgstr "夜图拉"
+
+msgid "jemuar_description"
+msgstr ""
+"它背上的宝石是它出生时发现的类型.在钻石矿脉上方有大量的小岩猫育种设施."
+
+msgid "jemuar"
+msgstr "宝石虎"
+
+msgid "legko"
+msgstr "叶壁虎"
+
+msgid "nudimind"
+msgstr "思蛞蝓"
+
+msgid "cardinale"
+msgstr "赤焰鹰"
+
+msgid "cardiwing_description"
+msgstr "它的歌声是非凡的,但很少有人敢饲养这种爆炸性的鸣禽."
+
+msgid "cardiwing"
+msgstr "爆炎鸟"
+
+msgid "nudimind_description"
+msgstr "它梦想着其他天空下的海洋."
+
+msgid "nuenflu_description"
+msgstr "它在冬季依偎在家中,传播疾病."
+
+msgid "cateye_description"
+msgstr "他们说它每年眨一次眼,以纪念夏天的结束."
+
+msgid "cateye"
+msgstr "眼猫"
+
+msgid "torch"
+msgstr "火炬攻击"
+
+msgid "wall_fire"
+msgstr "火墙"
+
+msgid "route1_sanglorian"
+msgstr "桑格洛里安大道"
+
+msgid "route6"
+msgstr "路线 6"
+
+msgid "timber_town"
+msgstr "木材"
+
+msgid "allagon_description"
+msgstr "阿拉贡被祖先留下的金属制成的遗物所吸引,并会暴力取回它们."
+
+msgid "banling"
+msgstr "榕树灵"
+
+msgid "bursa"
+msgstr "火袋熊"
+
+msgid "lightning_spheres"
+msgstr "闪电球"
+
+msgid "lineage"
+msgstr "血统"
+
+msgid "lust"
+msgstr "欲望"
+
+msgid "magma"
+msgstr "岩浆攻击"
+
+msgid "maori"
+msgstr "毛利语"
+
+msgid "meltdown"
+msgstr "崩溃"
+
+msgid "mending"
+msgstr "修补"
+
+msgid "mobbing"
+msgstr "围攻"
+
+msgid "muck"
+msgstr "垃圾攻击"
+
+msgid "mystic_blending"
+msgstr "神秘混合"
+
+msgid "negation"
+msgstr "否定"
+
+msgid "nest"
+msgstr "筑巢"
+
+msgid "oedipus"
+msgstr "俄狄浦斯"
+
+msgid "orbs"
+msgstr "丢球"
+
+msgid "phantasmal_force"
+msgstr "幻觉力量"
+
+msgid "pit"
+msgstr "挖坑"
+
+msgid "platinum"
+msgstr "白金"
+
+msgid "poison_courtship"
+msgstr "毒物求爱"
+
+msgid "radiance"
+msgstr "光芒力量"
+
+msgid "ring"
+msgstr "戒指"
+
+msgid "ruby"
+msgstr "红宝石"
+
+msgid "shapechange"
+msgstr "变形"
+
+msgid "slime"
+msgstr "泥浆攻击"
+
+msgid "stabilo"
+msgstr "斯泰必罗"
+
+msgid "stonehenge"
+msgstr "巨石阵"
+
+msgid "strangulation"
+msgstr "缠绕"
+
+msgid "sunburst"
+msgstr "旭日子"
+
+msgid "sword"
+msgstr "剑击"
+
+msgid "sylvan"
+msgstr "塞尔万"
+
+msgid "terror"
+msgstr "惊吓"
+
+msgid "time_crisis"
+msgstr "时间危机"
+
+msgid "tip"
+msgstr "提示"
+
+msgid "saber"
+msgstr "剑客"
+
+msgid "vorpal"
+msgstr "Vorpal"
+
+msgid "touch"
+msgstr "触摸"
+
+msgid "tsunami"
+msgstr "海啸"
+
+msgid "tux"
+msgstr "小企鹅"
+
+msgid "ubuntu"
+msgstr "乌班图"
+
+msgid "undertaker"
+msgstr "承办"
+
+msgid "venom"
+msgstr "毒液"
+
+msgid "viper"
+msgstr "毒蛇攻击"
+
+msgid "wall_ice"
+msgstr "冰墙"
+
+msgid "walls"
+msgstr "墙体"
+
+msgid "webs_wind"
+msgstr "网风"
+
+msgid "citypark"
+msgstr "城市公园"
+
+msgid "cotton_town"
+msgstr "棉花"
+
+msgid "dryadsgrove"
+msgstr "树妖之林"
+
+msgid "flower_city"
+msgstr "花"
+
+msgid "leather_town"
+msgstr "皮革"
+
+msgid "paper_town"
+msgstr "纸"
+
+msgid "route1"
+msgstr "路线 1"
+
+msgid "route2"
+msgstr "路线 2"
+
+msgid "route3"
+msgstr "路线 3"
+
+msgid "route4"
+msgstr "路线 4"
+
+msgid "route5"
+msgstr "路线 5"
+
+msgid "routea"
+msgstr "路线 A"
+
+msgid "routec"
+msgstr "路线C"
+
+msgid "routed"
+msgstr "路线 D"
+
+msgid "routee"
+msgstr "路线E"
+
+msgid "taba_town"
+msgstr "塔巴"
+
+msgid "tunnel"
+msgstr "隧道"
+
+# # MAP DESCRIPTIONS TOWN / CITY ##
+msgid "candy_town_description"
+msgstr "糖果镇口号"
+
+msgid "citypark_description"
+msgstr "野性的味道!"
+
+msgid "cotton_town_description"
+msgstr "一股不断壮大的力量!"
+
+msgid "flower_city_description"
+msgstr "警卫在你睡觉时保护你!"
+
+msgid "leather_town_description"
+msgstr "证明美丽与采矿可以共存!"
+
+msgid "paper_town_description"
+msgstr "通往丰登特的门户!"
+
+msgid "route1_description"
+msgstr "当心!"
+
+msgid "route2_description"
+msgstr "历史性的道路!"
+
+msgid "taba_town_description"
+msgstr "一个宁静的避难所!"
+
+msgid "timber_town_description"
+msgstr "软糖的粮仓!"
+
+msgid "welcome_location_route"
+msgstr ""
+"』欢迎来到 ${{map_name}} : ${{map_desc}}\n"
+"北: ${{north}} / 南: ${{south}} / 西: ${{west}} / 东: ${{east}}"
+
+msgid "welcome_location_town"
+msgstr ""
+"欢迎来到 ${{map_name}} 镇: ${{map_desc}}\n"
+"北: ${{north}} / 南: ${{south}} / 西: ${{west}} / 东: ${{east}}"
+
+msgid "here_to_north"
+msgstr "从 ${{map_name}} 到 ${{north}}"
+
+msgid "here_to_south"
+msgstr "从 ${{map_name}} 到 ${{south}}"
+
+msgid "here_to_west"
+msgstr "从 ${{map_name}} 到 ${{west}}"
+
+msgid "here_to_east"
+msgstr "从 ${{map_name}} 到 ${{east}}"
+
+# # MAP ##
+msgid "candy_town"
+msgstr "糖果"
+
+msgid "shop_buy_free"
+msgstr "免费!"
+
+msgid "evolution_confirmation"
+msgstr "{name} 正试图进化成 {evolve}. 允许进化?"
+
+msgid "tuxemon_stat1"
+msgstr ""
+"编号 {txmn}, {type}, {doc} 天前\n"
+"{exp}经验, {exp_lv}还需经验到等级 {lv}\n"
+"体型: {weight} {unit_weight} {height} {unit_height}"
+
+msgid "menu_storage"
+msgstr "拾取精灵"
+
+msgid "menu_dropoff"
+msgstr "放下精灵"
+
+msgid "menu_forfeit"
+msgstr "弃权"
+
+msgid "menu_storage_take_monster"
+msgstr "你把{name}加入到了你的队伍!"
+
+msgid "menu_storage_monsters_full"
+msgstr "你的队伍已经满了,你不能再从仓库里拿任何东西了."
+
+msgid "menu_storage_empty_kennel"
+msgstr "这个仓库是空的,没有精灵可拿."
+
+msgid "menu_dropoff_no_monsters"
+msgstr "不能让你的队伍中的最后一个精灵离开."
+
+msgid "swap"
+msgstr "交换"
+
+msgid "skip"
+msgstr "跳过"
+
+# # MONSTER TRANSLATIONS ##
+# Monster details
+msgid "aardart_description"
+msgstr "它对自己吃过的每一只蚂蚁都进行计数,并庆祝重要的数字."
+
+msgid "aardart"
+msgstr "阿尔达特"
+
+msgid "aardorn_description"
+msgstr "出生后,它被放在蚁穴中,任由它自己吃下去."
+
+msgid "aardorn"
+msgstr "阿尔多恩"
+
+msgid "abesnaki_description"
+msgstr "每张脸都是不同的图案,有人说这些符号拼出的是一种死亡语言的文字."
+
+msgid "abesnaki"
+msgstr "阿贝斯纳基"
+
+msgid "agnidon"
+msgstr "炎鬣蜥"
+
+msgid "agnigon_description"
+msgstr ""
+"它被称为 \"假龙\",因为它看起来是一条龙,但实际上是从不同的古代爬行动物系列中"
+"进化而来的."
+
+msgid "agnigon"
+msgstr "焱龙鬣蜥"
+
+msgid "agnite_description"
+msgstr "它很贪玩,但必须在早期就教它控制好火候."
+
+msgid "agnite"
+msgstr "火鬣蜥"
+
+msgid "allagon"
+msgstr "阿拉贡"
+
+msgid "altie_description"
+msgstr ""
+"ALTIE在一个气泡中飘落到地球上.现在它的泡泡已经破灭,它不能在空中漂浮超过几"
+"米."
+
+msgid "altie"
+msgstr "阿尔蒂"
+
+msgid "angrito"
+msgstr "安格里托"
+
+msgid "anoleaf_description"
+msgstr "它认为生长在它附近的植物都是它的兄弟姐妹."
+
+msgid "anoleaf"
+msgstr "阿诺雷弗"
+
+msgid "anu_description"
+msgstr "据说它进入别人的梦境,寻找自己失去的爱情."
+
+msgid "anu"
+msgstr "安努"
+
+msgid "apeoro"
+msgstr "黄金猿"
+
+msgid "araignee"
+msgstr "阿莱尼"
+
+msgid "arthrobolt_description"
+msgstr ""
+"它在指挥它的同伴螺母兽和螺栓兽时感到不舒服,通常会逃跑.但是除了螺孔兽,没有"
+"精灵去指导螺母兽和螺栓兽."
+
+msgid "arthrobolt"
+msgstr "螺孔兽"
+
+msgid "av8r_description"
+msgstr "如果太阳出来了,它可以飞得很远或很高."
+
+msgid "axylightl_description"
+msgstr "它用尾巴照亮深海,为鱼儿标出一个安全的庇护所."
+
+msgid "axylightl"
+msgstr "阿克西莱特尔"
+
+msgid "bamboon_description"
+msgstr "它用竹杖作战,也用竹杖来保持平衡."
+
+msgid "bamboon"
+msgstr "竹猴"
+
+msgid "banling_description"
+msgstr "每个榕树灵都在等待一个无家可归的灵魂依偎在它的枝头."
+
+msgid "baobaraffe"
+msgstr "粽树鹿"
+
+msgid "baoby"
+msgstr "小粽树鹿"
+
+msgid "beenstalker_description"
+msgstr ""
+"跟踪豆茎在理智和优雅方面有所欠缺,但它在纯粹的热情和善意方面得到了弥补.它以"
+"吓跑害虫为乐,但从不伤害它们."
+
+msgid "beenstalker"
+msgstr "跟踪豆茎"
+
+msgid "bigfin_description"
+msgstr "整个生态系统都存在于它的背上,所以它尽量不往水下走."
+
+msgid "bigfin"
+msgstr "大鳍豚"
+
+msgid "birdling_description"
+msgstr "无知的人认为,它的背上背着自己的蛋.它是一个比它重要得多的蛋的护卫."
+
+msgid "birdling"
+msgstr "守卫鸟"
+
+msgid "bolt_description"
+msgstr "螺栓兽的存在使螺母更难夹紧,并激发更多的能量."
+
+msgid "bolt"
+msgstr "螺栓兽"
+
+msgid "boltnu_description"
+msgstr "它的大部分时间都是在草地上挖洞,由于它们在土壤中挖洞所引起的不断震动和运动,"
+"它仍然感到晕眩."
+
+msgid "boltnu"
+msgstr "双螺兽"
+
+msgid "botbot_description"
+msgstr "它是一个通用的机器人,可以适用于任何目的."
+
+msgid "botbot"
+msgstr "布布"
+
+msgid "boxali"
+msgstr "博萨里"
+
+msgid "brewdin_description"
+msgstr ""
+"诞生于被忽视的、曾经珍贵的陶器和类似的宝物.传闻它能为那些能让它微笑的人实现"
+"愿望."
+
+msgid "brewdin"
+msgstr "布鲁丁"
+
+msgid "budaye_description"
+msgstr "它可以说服任何团体为共同利益而合作,只要有一些鼓励性的喵喵叫声和浪花."
+
+msgid "budaye"
+msgstr "友友猫"
+
+msgid "bugnin"
+msgstr "武士虫"
+
+msgid "bumbulus_description"
+msgstr "它是一种会飞的生物,会产生一团烟雾来伪装成云.没有人见过它的真身."
+
+msgid "bumbulus"
+msgstr "邦布勒斯"
+
+msgid "bursa_description"
+msgstr "它基本上拒绝火,只产生心灵的火."
+
+msgid "cairfrey_description"
+msgstr "一件快乐的家具,一天早上醒来,决定去探索."
+
+msgid "cairfrey"
+msgstr "凯尔弗雷"
+
+msgid "capiti"
+msgstr "卡皮蒂"
+
+msgid "cardiling_description"
+msgstr "人们不会想到它能喷火,直到它喷火了."
+
+msgid "cardiling"
+msgstr "红火鸟"
+
+msgid "chenipode"
+msgstr "切尼波德"
+
+msgid "chibiro_description"
+msgstr "它被发现在森林和田野中,在那里它经常被误认为是萝卜."
+
+msgid "chibiro"
+msgstr "赤壁龙猫"
+
+msgid "chillimp_description"
+msgstr "据传,它生活在雪山之上,但从来没有拍摄过它的清晰照片."
+
+msgid "chillimp"
+msgstr "冰幽灵"
+
+msgid "chloragon_description"
+msgstr ""
+"当一个古老的蛋被种在肥沃的土壤中时,它就会孵化.当蛋用完时,将不再有氯边形."
+
+msgid "chloragon"
+msgstr "氯龙"
+
+msgid "chromeye_description"
+msgstr "创建Chrome之眼是为了观察和学习人类的思维和感觉."
+
+msgid "chromeye"
+msgstr "Chrome之眼"
+
+msgid "cochini_description"
+msgstr "它就像一个三岁的孩子一样聪明和有意识.它尝起来很美味."
+
+msgid "cochini"
+msgstr "胭脂虫"
+
+msgid "coleorus_description"
+msgstr "它已经存在了数百万年,没有改变."
+
+msgid "coleorus"
+msgstr "疣螨"
+
+msgid "conifrost_description"
+msgstr "如果它打喷嚏,就会发生雪崩.它会一直流鼻涕."
+
+msgid "conifrost"
+msgstr "圆锥花"
+
+msgid "conileaf_description"
+msgstr ""
+"放在其罐子里的食物被混合和腌制.它们被用来储存食物,而不至于让食物变质."
+
+msgid "conileaf"
+msgstr "圆锥叶"
+
+msgid "coproblight_description"
+msgstr "诞生于史前精灵的粪便,它利用自己体内的骨骼碎片进行防御."
+
+msgid "coproblight"
+msgstr "科普罗布赖特"
+
+msgid "corvix_description"
+msgstr "它用受害者的骨头碎片武装翅膀."
+
+msgid "corvix"
+msgstr "科维克斯"
+
+msgid "cowpignon_description"
+msgstr "有些人把它晒干,作为药用增强剂来吃."
+
+msgid "cowpignon"
+msgstr "人参兽"
+
+msgid "criniotherme_description"
+msgstr ""
+"它的鬃毛在白天闪闪发光,在日落时长得又大又红,到了晚上就像灰烬一样被吹走."
+
+msgid "criniotherme"
+msgstr "克里尼奥姆"
+
+msgid "dandicub_description"
+msgstr "出生后,它们漂流到世界各地,再也见不到它们的家人了."
+
+msgid "dandicub"
+msgstr "蒲种子"
+
+msgid "dandylion_description"
+msgstr "它一生中只生一窝孩子.然后它在世界范围内徘徊,试图找到它们."
+
+msgid "dandylion"
+msgstr "狮面花"
+
+msgid "dinoflop_description"
+msgstr ""
+"它喜欢迅速转身离开它的攻击者,这样他们的打击就会落在它有盾牌和刺的背部."
+
+msgid "dinoflop"
+msgstr "迪诺浮普"
+
+msgid "djinnbo_description"
+msgstr "人们错误地认为它是死于火灾的人类.实际上,它的亲属确实如此."
+
+msgid "djinnbo"
+msgstr "炎之魂"
+
+msgid "dollfin"
+msgstr "鳍豚"
+
+msgid "dollfin_description"
+msgstr "每个鳍豚都跟随一艘船从一个地方到另一个地方,探索世界."
+
+msgid "dracune_description"
+msgstr "它在白天是不动的,但在晚上可以扭动和咬人."
+
+msgid "dracune"
+msgstr "德古拉茧"
+
+msgid "dragarbor_description"
+msgstr ""
+"当它觉得自己的生命即将结束时,它就会前往一个墓地,在那里种植自己.它的尾巴花"
+"永远生长着."
+
+msgid "dragarbor"
+msgstr "龙乔木"
+
+msgid "drashimi"
+msgstr "德拉希米"
+
+msgid "drokoro_description"
+msgstr ""
+"曾经它有一个家庭,但它吃了它的父母,吃了它的孩子,吃了它的配偶,吃了它所有的"
+"同类."
+
+msgid "drokoro"
+msgstr "德罗科罗"
+
+msgid "dune_pincher_description"
+msgstr ""
+"这些隐士会用最接近的东西来包裹自己.在沙漠中,那就是死去已久的法老的裹尸布."
+
+msgid "dune_pincher"
+msgstr "沙丘夹子"
+
+msgid "eaglace_description"
+msgstr "当它飞翔时,云层形成.当它拍打翅膀的时候,冰雹就会落下."
+
+msgid "eaglace"
+msgstr "冰川鹰"
+
+msgid "embazook_description"
+msgstr "它被训练为用于战争,不知道如何生活."
+
+msgid "embazook"
+msgstr "炮灰犬"
+
+msgid "embra_description"
+msgstr "它吃一切可以吃的东西,以便长到足够大,成为一个火焰兽."
+
+msgid "embra"
+msgstr "火球兽"
+
+msgid "enduros_description"
+msgstr "它是一个咄咄逼人的斗士,不拉扯其打击.在赛场外,它是相当善于交际的."
+
+msgid "firomenis"
+msgstr "菲罗梅尼斯"
+
+msgid "flacono_description"
+msgstr "它完全不惧怕对手,会毫不犹豫地攻击任何规模的敌人."
+
+msgid "flacono"
+msgstr "弗拉科诺"
+
+msgid "flambear_description"
+msgstr "从它留下的煮熟的浆果丛和烤鳟鱼的痕迹可以追踪到它."
+
+msgid "flambear"
+msgstr "火焰熊"
+
+msgid "fluoresfin_description"
+msgstr "当受到威胁时,它与其他荧光鱼蜷缩在一起,形成一个巨大的刺眼的光,以迷惑捕食者"
+"."
+
+msgid "fluoresfin"
+msgstr "荧光鱼"
+
+msgid "fluttaflap_description"
+msgstr "它以杂质为食,所以它把净化的血液还给它吸食的人."
+
+msgid "fluttaflap"
+msgstr "吸血蝶"
+
+msgid "foofle_description"
+msgstr "当一个人处于危险之中时,所有的福夫勒都会听到它的哭声,无论他们在哪里."
+
+msgid "foofle"
+msgstr "福夫勒"
+
+msgid "fordin_description"
+msgstr "当受到威胁时,它就会蜷缩成一个球,然后弹开."
+
+msgid "fordin"
+msgstr "森林恐龙"
+
+msgid "forturtle_description"
+msgstr "它加热自己的外壳,从出现的裂缝中读取未来."
+
+msgid "forturtle"
+msgstr "预言龟"
+
+msgid "foxfire_description"
+msgstr "火狐的幼崽在一夜之间烧毁的大火中被发现.没有人知道它们来自哪里."
+
+msgid "fruitera_description"
+msgstr ""
+"它喜欢吃水果,能带多少就带多少.当受到惊吓时,它就把所有的果实扔掉,再把它们"
+"收集起来,然后才跑开."
+
+msgid "fruitera"
+msgstr "弗朗索拉"
+
+msgid "furnursus"
+msgstr "炉子熊"
+
+msgid "furnursus_description"
+msgstr "炉子熊很友好,而且经常忘记自己的身体太热,别人无法触摸."
+
+msgid "galnec_description"
+msgstr ""
+"加内克将自己深埋在沙漠的热沙中,只有它的石质尾巴在地上.成群结队时,它们看起"
+"来像石头的花园."
+
+msgid "galnec"
+msgstr "加内克"
+
+msgid "gectile_description"
+msgstr "它是如此快速和轻盈,以至于它可以在树叶上行走."
+
+msgid "gectile"
+msgstr "格勒"
+
+msgid "ghosteeth_description"
+msgstr "它笑了,因为它知道它遇到的每个人都会死."
+
+msgid "ghosteeth"
+msgstr "幽灵齿"
+
+msgid "hydrone_description"
+msgstr "它利用一种实验性的技术,从水中产生动力."
+
+msgid "hydrone"
+msgstr "水龙"
+
+msgid "lunight"
+msgstr "月光兽"
+
+msgid "magmaturtle"
+msgstr "镁光龟"
+
+msgid "mrmoswitch_description"
+msgstr "这些厚脸皮的机器人被用于精细的运动技能,但他们喜欢恶作剧."
+
+msgid "manosting"
+msgstr "粉紫水母"
+
+msgid "manosting_description"
+msgstr "它漂浮在城市的顶部,注视着鲨鱼."
+
+msgid "masknake"
+msgstr "面具蛇"
+
+msgid "masknake_description"
+msgstr "当受到惊吓或具有攻击性时,它的尾巴会闪现出美丽的图案."
+
+msgid "medushock"
+msgstr "美杜休克"
+
+msgid "medushock_description"
+msgstr "倾向于远离岸边,已知对人有攻击性.用刺来击晕其猎物."
+
+msgid "memnomnom"
+msgstr "门诺姆"
+
+msgid "memnomnom_description"
+msgstr "据说每个门诺姆的面具都是一个不同的死去的国王的脸."
+
+msgid "merlicun"
+msgstr "梅利昆"
+
+msgid "metesaur"
+msgstr "流星恐龙"
+
+msgid "miaownolith"
+msgstr "巨石猫"
+
+msgid "miaownolith_description"
+msgstr "它能说人类的语言,但只是说一些隐秘的谜语."
+
+msgid "moloch"
+msgstr "荆棘兽"
+
+msgid "mystikapi_description"
+msgstr "星星马的唾液可以增强精神力量.它舔自己的眼睛和耳朵以提高其感官."
+
+msgid "mystikapi"
+msgstr "星星马"
+
+msgid "narcileaf_description"
+msgstr "当小叶灯将一个花园恢复到荣耀时,它就会变形,并骄傲地为自己的工作邀功."
+
+msgid "narcileaf"
+msgstr "守叶人"
+
+msgid "neutrito_description"
+msgstr "平和兽没有感觉.完美的机器?"
+
+msgid "neutrito"
+msgstr "平和兽"
+
+msgid "noctalo"
+msgstr "诺克塔洛"
+
+msgid "nostray"
+msgstr "灵鼻兽"
+
+msgid "nudiflot_female_description"
+msgstr "它吃并储存它所捕食的海洋生物的毒素."
+
+msgid "nudiflot_male_description"
+msgstr "如果它受到攻击,它的羽毛状天线就会折断,迷惑捕食者."
+
+msgid "nuenflu"
+msgstr "纽恩菲"
+
+msgid "nut_description"
+msgstr ""
+"在漂洋过海的大船上,数以千计的螺母兽和螺栓兽提供动力,将钢板固定在一起."
+
+msgid "nut"
+msgstr "螺母兽"
+
+msgid "octabode_description"
+msgstr ""
+"怀旧章鱼以古代的器皿和文物为家,梦想着那些在他们之前使用这些文物的人的生活."
+
+msgid "octabode"
+msgstr "怀旧章鱼"
+
+msgid "ouroboutlet_description"
+msgstr "该电路集中了能量,创造了一种新的电力类型,称为 \"悲鸣闪电\"."
+
+msgid "ouroboutlet"
+msgstr "插座兽"
+
+msgid "pairagrim_description"
+msgstr "双头鸟的一个脑袋总是在寻找猎物,而另一个则专注于高速飞行."
+
+msgid "pairagrim"
+msgstr "双头鸟"
+
+msgid "pairagrin_description"
+msgstr ""
+"它是双头鸟的年轻形态,一般来说是一种快乐的生物.在两个头学会一起工作之前,它"
+"一直在努力飞行."
+
+msgid "pairagrin"
+msgstr "灰白鸟"
+
+msgid "pantherafira_description"
+msgstr ""
+"他们的每个成员都从一个共同的篝火中点燃他们的鬃毛.只要那堆火在燃烧,他们的力"
+"量就会被分享."
+
+msgid "route5_description"
+msgstr "通往木材镇的纪念通道!"
+
+msgid "baobaraffe_description"
+msgstr ""
+"它在巨大的身体里储存了大量的水,这样它就可以在炎热、干燥的沙漠中长途跋涉.它"
+"也会与口渴的生物分享水.当它没有水储存时,它就会变得很瘦."
+
+# # MAP SIGNS ##
+msgid "welcome_location_city"
+msgstr ""
+"欢迎来到 ${{map_name}} 市: ${{map_desc}}\n"
+"北: ${{north}} / 南: ${{south}} / 西: ${{west}} / 东: ${{east}}"
+
+msgid "agnidon_description"
+msgstr "它喜欢用四条腿,但也可以用两条腿站立来开门、推倒树木或拿东西."
+
+msgid "angrito_description"
+msgstr "它无法理解为什么人类会感到愤怒和仇恨,但安格里托也感受到了这些冲动."
+
+msgid "apeoro_description"
+msgstr ""
+"古代的国王们用通灵的力量将他们的灵魂转移到这些金色的计算机器中.现在他们继续"
+"活着,无法交流,但仍然梦想着帝国."
+
+msgid "araignee_description"
+msgstr "那些说所有的蜘蛛都有八条腿的学者,对阿莱尼的情况却奇怪地保持沉默."
+
+msgid "b_ver_1_description"
+msgstr "它是为所有那些你需要被机器人咬的东西的时候而设计的."
+
+msgid "baoby_description"
+msgstr "它们从一条河到另一条河,寻找可以饮用和储存的水.它头上的叶状骨隐藏着可移动的"
+"点,其作用类似于探水棒.许多生物在干旱时跟随它."
+
+msgid "boxali_description"
+msgstr ""
+"凭借其长长的蓝色披风,博萨里可以在地面上滑行--使其能够执行特技和空中攻击."
+
+msgid "bugnin_description"
+msgstr "它的剑实际上是一根天线,是为了这个目的而生长和折断的."
+
+msgid "capiti_description"
+msgstr "它看起来像一个婴儿,但有些标本已被发现有几百年的历史."
+
+msgid "cardinale_description"
+msgstr "它对所有的捕食者都恨之入骨,一有机会就与它们和它们的孩子开战."
+
+msgid "cataspike_description"
+msgstr "它通过观察学会了战斗.如果任其自生自灭,它就用它的尖刺来捡拾垃圾."
+
+msgid "cataspike"
+msgstr "尖刺虫"
+
+msgid "chenipode_description"
+msgstr "当它想旅行时,它会咬鞋带和裤腿."
+
+msgid "hatchling_description"
+msgstr "当一个蛋不想孵化并开始其下一个生命阶段时,它就成为了一个雏鸟."
+
+msgid "heronquak"
+msgstr "冰鹭"
+
+msgid "elofly_description"
+msgstr "埃洛飞自己是有耐心和智慧的,但当它大量成群结队时,就会变得暴躁和冲动."
+
+msgid "elostorm_description"
+msgstr "埃洛斯托姆是国王和王后,他们统治着他们的部族,有着巨大的野心."
+
+msgid "elowind_description"
+msgstr "埃洛飞家族的副官,埃洛温德负责羊群的放牧和集中注意力."
+
+msgid "eruptibus_description"
+msgstr "史密斯与它一起工作,在它的火山口加热金属."
+
+msgid "eruptibus"
+msgstr "火山兽"
+
+msgid "exclawvate_description"
+msgstr "经常在建筑工地上看到,它们可以用自己巨大的手和尾巴来舀起泥土和瓦砾.精灵的下"
+"面是毛毛虫的轮胎,使它们在爬上成堆的瓦砾时有更好的平衡和抓地力."
+
+msgid "exapode_description"
+msgstr "它挥舞着腿以吸引人们的注意,但大多数时候人们只是跑开."
+
+msgid "eyenemy_description"
+msgstr "它以美丽的景色和其他壮观的景象为食."
+
+msgid "eyenemy"
+msgstr "敌之眼"
+
+msgid "eyesore_description"
+msgstr "它记得它所见过的一切,但不记得见到它们的顺序."
+
+msgid "eyesore"
+msgstr "疲之眼"
+
+msgid "fancair_description"
+msgstr ""
+"如果有人在不需要的时候让他们的风扇运转,它就会活跃起来,飞出窗外,找到真正需"
+"要冷却的人."
+
+msgid "fancair"
+msgstr "风扇兽"
+
+msgid "ferricran_description"
+msgstr "曾经,费里科兰全身覆盖着金刚砂的鳞片,拥有密铁矿的翅膀."
+
+msgid "foxfire"
+msgstr "火狐"
+
+msgid "frondly_description"
+msgstr "它可以用它的无柄尾巴做任何事情,甚至握手和摘水果."
+
+msgid "frondly"
+msgstr "叶狐猴"
+
+msgid "grinflare"
+msgstr "格林弗拉尔"
+
+msgid "graffiki_description"
+msgstr "格拉非基在城市中和在丛林中一样自在,用精致的画作标记他们的领土."
+
+msgid "hampotamos_description"
+msgstr "它啃食裂缝,清除死皮、苔藓和杂草."
+
+msgid "grimachin_description"
+msgstr "它是由一家玩具公司制作的宠物,但太危险了."
+
+msgid "gryfix"
+msgstr "格里菲克斯"
+
+msgid "hampotamos"
+msgstr "罕博塔摩斯"
+
+msgid "grinflare_description"
+msgstr "据说每个都是火山行走的心脏."
+
+msgid "grintot_description"
+msgstr "这是一个经历过侵蚀的石板或石膏板."
+
+msgid "grumpi_description"
+msgstr "一旦被抓住,它那粘稠的粘性身体是不可能逃脱的."
+
+msgid "grumpi"
+msgstr "格鲁姆比"
+
+msgid "happito_description"
+msgstr ""
+"为什么人们不能永远幸福?快乐兽会给他们想要的东西,即使这不是他们所需要的."
+
+msgid "happito"
+msgstr "快乐兽"
+
+msgid "heronquak_description"
+msgstr ""
+"它胸前的水晶被偷猎者误认为是钻石.当它从冰鹭的身体中取出时,它就会融化."
+
+msgid "ignibus"
+msgstr "岩浆龟"
+
+msgid "incandesfin_description"
+msgstr "它的整个身体的大小已经大量增长.然而,它的光线仍然是完全一样的."
+
+msgid "ignibus_description"
+msgstr ""
+"当受到威胁时,它退回到它的壳中,并通过排放蒸汽急剧降温.它可能会被误认为是一"
+"块石头."
+
+msgid "jelillow_description"
+msgstr "当一个人把头靠在果冻兽上时,其果冻般的皮肤会使他们陷入深度睡眠.如果有人有睡"
+"眠问题,那么这个精灵将被用来帮助他们."
+
+msgid "jelillow"
+msgstr "果冻兽"
+
+msgid "k9_description"
+msgstr "它是一个有用的伙伴,可以拉动一吨的重量."
+
+msgid "katacoon"
+msgstr "墓穴茧"
+
+msgid "komodraw"
+msgstr "科莫多龙"
+
+msgid "lambert"
+msgstr "兰伯特"
+
+msgid "lapinou_description"
+msgstr "当松兔被当作时尚的宠物时,它们适应了家庭生活,失去了暴力的天性."
+
+msgid "legko_description"
+msgstr "长期以来,人们认为它没有腿,它的叶子实际上是退化的肢体."
+
+msgid "moloch_description"
+msgstr "它可以使自己的皮肤变硬或变软,以应对朋友和敌人."
+
+msgid "noctalo_description"
+msgstr "它只居住在被人类遗弃的地方--城堡、墓地和下水道."
+
+msgid "nudiflot_male"
+msgstr "浮蛞蝓♀"
+
+msgid "katacoon_description"
+msgstr "它的蛹保持着冥想的姿势,只在刺杀敌人时才移动."
+
+msgid "katapill"
+msgstr "墓碑毛虫"
+
+msgid "katapill_description"
+msgstr "它生来就会战斗.它必须冲出墓壳,否则就会被困住."
+
+msgid "komodraw_description"
+msgstr "它用爪子在木头上雕刻自己的火器,并利用它进行强大的远程攻击."
+
+msgid "lambert_description"
+msgstr "它被它的父母放在它的坚果里,然后父母把它送入世界."
+
+msgid "lapinou"
+msgstr "宠物兔"
+
+msgid "lightmare_description"
+msgstr "它潜伏在海洋深处,利用它的光线引诱任何毫无戒心的猎物进入它那张大嘴."
+
+msgid "lightmare"
+msgstr "噩梦鱼"
+
+msgid "loliferno"
+msgstr "罗利弗诺"
+
+msgid "metesaur_description"
+msgstr "这种精灵会喜欢潜入地下并留下痕迹.有时,这只精灵会错误地判断撞击,落在树上,"
+"引发巨大而危险的森林火灾"
+
+msgid "noctula_description"
+msgstr "它吃虫子,皮斯蝠吃水果,所以尽管生活在很近的地方,但它们并不竞争."
+
+msgid "nostray_description"
+msgstr "它能闻到海里的任何东西,无论多远."
+
+msgid "nudiflot_female"
+msgstr "浮蛞蝓♂"
+
+msgid "nudikill_description"
+msgstr "他们被称为黑暗主教,因为他们的头让人联想到主教的帽子."
+
+msgid "nudikill"
+msgstr "努迪基尔"
+
+msgid "pantherafira"
+msgstr "潘特拉菲拉"
+
+msgid "pilthropus_description"
+msgstr "与飞犀牛等精灵一起被发现,皮尔思罗普斯是最古老的精灵之一,能够创造自己的工具"
+"."
+
+msgid "pipis"
+msgstr "皮斯蝠"
+
+msgid "propellercat_description"
+msgstr "它是一个新物种,还是只是一个发明家的宠物?"
+
+msgid "puparmor_description"
+msgstr ""
+"它的茧非常坚硬,如果有一个盔甲蛹掉在他们身上,人们就会被打倒.它们曾经被装入"
+"大炮和弹射器."
+
+msgid "rosarin_description"
+msgstr "罗萨林的爱是不可思议的,他只是要求一些感情."
+
+msgid "sadito_description"
+msgstr "当一个人感到太过悲伤时,悲伤兽会替他们扛起这个负担."
+
+msgid "sampsack_description"
+msgstr "一位科学家想分离他的人格,但他分裂了他的身体."
+
+msgid "sampsage_description"
+msgstr "一位科学家服用了一种药物,使他白天变得聪明,晚上变得暴躁."
+
+msgid "saurchin_description"
+msgstr "到了晚上,索尔钦从珊瑚礁里出来,在陆地上猎取更大的猎物."
+
+msgid "sharpfin_description"
+msgstr "它在水中是看不见的,只有当它跃出水面将岸上的动物拖回深海时才会被看到."
+
+msgid "skwib_description"
+msgstr ""
+"鱿鱼兽满足地在海洋中漂浮,检查潜在的壳屋.它必须担心自己的生命,才能最终做出"
+"选择."
+
+msgid "snock_description"
+msgstr ""
+"这种蛇形生物躲在安全的袜套下.如果受到惊吓,它将甩动并非常安静地躺在地上,以"
+"避免引起注意."
+
+msgid "solight_description"
+msgstr "一个反派团队正在策划利用索莱特创造一个微型太阳,以创造一个新的星球."
+
+msgid "polyrock_description"
+msgstr "它把自己伪装成一个人类小孩,潜入道场,向武术大师学习."
+
+msgid "pythock_description"
+msgstr ""
+"使用它的皮影戏,它可以用皮影戏来与对手作战,而且非常准确和迅速.它们更加自"
+"信,有时甚至会在木偶戏中用它们的皮影戏来娱乐小孩子."
+
+msgid "seirein_description"
+msgstr ""
+"它在沼泽地里孤独地生长,所以它燃烧得很旺盛,以吸引旅行者靠近--但它很害羞,当"
+"他们接近时就会飞走."
+
+msgid "tumbleworm_description"
+msgstr "当它们已经超过了它们的蜂巢,它们就会脸朝下掉到地上."
+
+msgid "vigueur"
+msgstr "维格"
+
+msgid "urcine_description"
+msgstr "当一个火焰熊出生时,如果没有火,它会被遗弃在森林里,成为一个小棕熊."
+
+msgid "velocitile_description"
+msgstr "它可以跑过子弹,但只有在它热身后才可以."
+
+msgid "vivicinder_description"
+msgstr ""
+"它在长期燃烧的火堆中筑巢,要么是自己创造的,要么是在纪念馆、铁匠铺和玻璃厂."
+
+msgid "yiinaang"
+msgstr "两仪兽"
+
+msgid "island"
+msgstr "岛屿"
+
+msgid "vivitrans_description"
+msgstr "寒冷使维维特兰的思维集中到一个敏锐的边缘."
+
+msgid "yiinaang_description"
+msgstr "它是在一颗恒星第一次落入黑洞时诞生的."
+
+msgid "vivipere"
+msgstr "维维帕雷"
+
+msgid "viviphyta_description"
+msgstr "它是蛇中之王--或者至少认为自己是这样的."
+
+msgid "viviphyta"
+msgstr "维维弗塔"
+
+msgid "viviteel_description"
+msgstr "它把一个死去的战士的盔甲拿出来,重新用于制作炮弹."
+
+msgid "vivisource_description"
+msgstr "它选择的家的春天总是有一种奇特的洋葱味."
+
+msgid "vivisource"
+msgstr "维维源"
+
+msgid "weavifly_description"
+msgstr "当它被蛋压得很重时,它就无法飞行了."
+
+msgid "viviteel"
+msgstr "维维特尔"
+
+msgid "volcoli"
+msgstr "沃尔科利"
+
+msgid "windeye"
+msgstr "立扇兽"
+
+msgid "weavifly"
+msgstr "尖刺蜂"
+
+msgid "windeye_description"
+msgstr ""
+"像一棵强大的树,立扇兽将自己种植在山顶上,吸收阳光和风.充电后,它又离开,在"
+"天空下寻找另一个地方."
+
+msgid "no"
+msgstr "否"
+
+msgid "hey"
+msgstr "嘿!"
+
+msgid "empty_pot"
+msgstr "这是一个空盆,也许有人会在这里种植一些东西."
+
+msgid "frost_ape"
+msgstr "霜冻之猿"
+
+msgid "wrougon_description"
+msgstr "每个钢铁龙出生时都有一块比其父母的锈斑更大的锈斑."
+
+msgid "wrougon"
+msgstr "钢铁龙"
+
+msgid "prehensile"
+msgstr "可控"
+
+msgid "host"
+msgstr "宿主"
+
+msgid "woodwose"
+msgstr "兀术"
+
+# # DIALOG TRANSLATIONS ##
+# general dialogs
+msgid "haveagoodday"
+msgstr "祝你有个愉快的一天!"
+
+msgid "firebird"
+msgstr "火鸟"
+
+msgid "taiga"
+msgstr "针叶林"
+
+msgid "horned_raptor"
+msgstr "有角的猛禽"
+
+msgid "hot_rock"
+msgstr "热岩"
+
+msgid "pupil"
+msgstr "瞳孔"
+
+msgid "ex_machina"
+msgstr "前所未有"
+
+msgid "lions_tooth"
+msgstr "狮子的牙齿"
+
+msgid "vengeance"
+msgstr "复仇"
+
+msgid "joyful"
+msgstr "欢乐的"
+
+msgid "cloaked"
+msgstr "隐形的"
+
+msgid "nightcrawler"
+msgstr "夜行者"
+
+msgid "rip"
+msgstr "裂缝"
+
+msgid "some_category_here"
+msgstr "这里的一些类别"
+
+msgid "cirrus"
+msgstr "卷云"
+
+msgid "fire"
+msgstr "火"
+
+msgid "gumnut"
+msgstr "胶质"
+
+msgid "lizard"
+msgstr "蜥蜴"
+
+msgid "earth_fire"
+msgstr "土,火"
+
+msgid "flopped"
+msgstr "失败"
+
+msgid "metal"
+msgstr "金属"
+
+msgid "yeti"
+msgstr "雪人"
+
+msgid "restless"
+msgstr "不安"
+
+msgid "xerogrunt5"
+msgstr "Xero Grunt I团队"
+
+msgid "devil"
+msgstr "恶魔"
+
+msgid "visitor"
+msgstr "访客"
+
+msgid "earth"
+msgstr "土"
+
+msgid "water"
+msgstr "水"
+
+msgid "clot"
+msgstr "凝块"
+
+msgid "slurpy"
+msgstr "泥泞的"
+
+msgid "xerogrunt4"
+msgstr "Xero Grunt I团队"
+
+msgid "purple_flowers"
+msgstr "有人种下了一些香甜的紫色花朵!"
+
+msgid "xerogrunt6"
+msgstr "Xero Grunt I团队"
+
+msgid "door_problems"
+msgstr "门被卡住了,打不开..."
+
+msgid "xerogrunt2"
+msgstr "Xero Grunt I团队"
+
+msgid "xerogrunt9"
+msgstr "Xero Grunt I团队"
+
+msgid "xerogrunt3"
+msgstr "Xero Grunt I团队"
+
+msgid "cotton_town_fountain"
+msgstr "这是个喷泉.很多硬币都在底部."
+
+msgid "sure_i_do"
+msgstr "我当然知道."
+
+msgid "xerogrunt8"
+msgstr "Xero Grunt I团队"
+
+msgid "xerogrunt10"
+msgstr "Xero Grunt I团队"
+
+msgid "orange_flowers"
+msgstr "有人种下了一些美丽的橙色花朵!"
+
+msgid "37707_villager_female_2"
+msgstr "微识：请.不要进入该塔.它还没有建成."
+
+msgid "famous_statue"
+msgstr "这是一个前自由梦大师的雕像.名字已经被风化了..."
+
+msgid "famous_statue2"
+msgstr "它说.为了我们亲爱的朋友和所有的英雄,维文"
+
+msgid "tree"
+msgstr "这棵树看起来很快乐,很健康!"
+
+msgid "not_really"
+msgstr "并非如此."
+
+msgid "mistaken"
+msgstr "你错了."
+
+msgid "thats_me"
+msgstr "这就是我!"
+
+msgid "a_serious_discussion\n"
+msgstr ""
+"我已经观察你有一段时间了,我很高兴我的追随者们成功地抓住了你而没有受到伤\n"
+"害.\n"
+"哦,我的礼貌哪去了!? \n"
+"我是米萨,Xero 精灵研究和发展研究所的总理.\n"
+"你叫什么名字来着? \n"
+"....  .....  ....\n"
+"${{name}}?\n"
+"对于一个非法拥有精灵的人来说,这不是一个好名字.\n"
+
+msgid "oops\n"
+msgstr ""
+"哦.我猜你还不知道...\n"
+"你不应该害怕,有一个精灵在你身边是有史以来发生在你身上最好的事情.\n"
+
+msgid "backstory9"
+msgstr "你怎么想?你会帮助我们吗?"
+
+msgid "sorryfurthis"
+msgstr "好的选择.对不起,这只会让人感到有点刺痛."
+
+msgid "backstory\n"
+msgstr ""
+"大约三十年前,一个叫全能的团体开始控制媒体.\n"
+"不久之后,言论自由几乎变得不可能.\n"
+"于是人们决定使用精灵作为信使,解决争端. \n"
+"大约十年前,对精灵的镇压开始了.\n"
+"现在,只有经过批准的人才能拥有和饲养精灵. \n"
+"我的团体使用精灵进行研究,这就是为什么我们都拥有它们. \n"
+"你很不寻常,你没有得到全能组织的批准. \n"
+"你可能是我们一直在等待的训练师.\n"
+"全息道,虽然无情,但并不是我们这里唯一的威胁. \n"
+"还有一个叫Spyder的组织.\n"
+"你应该不用太担心他们,他们在这里并不太活跃. \n"
+"现在,我们会把你送回你的旅程. \n"
+"但前提是你必须同意帮助我们对付全能组织.\n"
+"否则,我们会亲自向全能组织举报你. \n"
+"而你将失去一切. \n"
+"我们一直在观察你.\n"
+
+msgid "mwah\n"
+msgstr ""
+"???:你想要什么?嗯,太糟糕了.即使你符合着装要求,你也不能进入这里.\n"
+"顺便说一下,我是艾莉.\n"
+"艾莉：是的,这里是全方位的,不过我只是一个低级的警卫.你是谁?\n"
+"${{name}}...\".\n"
+"嗯.一个强有力的名字.我家不远,也许......下班后......你可以向我展示你的实\n"
+"力?\n"
+"... ...不!什么叫不?除非... ...你是杰西的新男友,不是吗!她一直在耍我!\n"
+
+msgid "mwah2"
+msgstr "杰西!!!"
+
+msgid "itslockedboi"
+msgstr "艾莉把门锁在她身后……"
+
+msgid "hellothere"
+msgstr "???:你好!"
+
+msgid "kmere"
+msgstr "为什么你来到这里并同我交谈?"
+
+msgid "route2speech"
+msgstr "哎呀!!!"
+
+msgid "theinfo\n"
+msgstr ""
+"对那一幕我很抱歉,艾莉有时很难对付,不像我女儿杰西.\n"
+"哦!我的礼节呢.我的名字是艾...你知道吗?我就写吧.\n"
+"Aeble\n"
+"它的发音是ahbluh,但大家都只叫我Able.你可以这样叫我,我想...\n"
+"Aeble.我是全能公司的首席执行官,你们看到的每一个广播都是由我批准的.\n"
+"现在,我不是唯一一个做他们工作的人.全能有一个董事会,帮助管理各个地区.\n"
+"你知道吗......董事会每年都会被重新选举!\n"
+"全能公司的目标是向所有人开放世界.不过,要做到这一点,使每个人都平等,唯一的\n"
+"办法是.\n"
+"就是限制精灵.\n"
+"我们从没收开始,但大多数精灵设法逃脱.所以我们不得不采取极端措施.\n"
+"我们的姐妹组织Spyder开发了一种药物,可以改变精灵.\n"
+"它隔离了每个精灵神秘地拥有的大脑的一部分,并使其超载.\n"
+"一旦他们的大脑被超载,他们的抵抗意志就会消退,变得温顺.\n"
+"由于一些意想不到的悲惨副作用,可悲的是,有几个物种现在实际上已经灭绝了.\n"
+"特别是洛克特恩、弗鲁特拉和海德隆.\n"
+"现在,除了野外的一些散兵游勇外,这一代人只有在为我们工作时才会与精灵互动.\n"
+"出生率处于历史高位,自限制前一年以来,对全能公司的认可没有下降过.\n"
+"野生的精灵是一个无孔不入的诅咒,威胁到了人类.全能公司已经解决了这个问题,并\n"
+"强加了秩序.\n"
+"如果不加以控制,精灵是一种毁灭的力量,任何说不是的人都是在撒谎.对不起,我必\n"
+"须去工作了.\n"
+
+msgid "liela_goes_to_battle"
+msgstr "如果你要在我采摘浆果时打扰我,我只能向你挑战了!"
+
+msgid "Cotton_Mart"
+msgstr "在 \"勺子商店 \"获取独家信息!"
+
+msgid "column1"
+msgstr "一根罕见的古老圆柱.这曾经是一个寺庙的一部分."
+
+msgid "column2"
+msgstr "一根罕见的古老圆柱.在3号公路上可以找到同一文化的其他遗迹. "
+
+msgid "route2speech3\n"
+msgstr ""
+"虽然这可能不是一件坏事......\n"
+"我知道,每个人都需要我的领导,但由于发生了这么多事情...\n"
+"但你不想听我说......是吗?\n"
+
+msgid "route2speech2\n"
+msgstr ""
+"哦.只是你${{name}}...\n"
+"下次推人的时候要多考虑一下.悬崖比它看起来要高..."
+
+msgid "notalk"
+msgstr "你太不敏感了!太糟糕了,反正你也得听我的!"
+
+msgid "spillit\n"
+msgstr ""
+"你知道我是Xero研究所的领导人,我招募你来对抗他们.但你不知道别的事情.\n"
+"艾莉,你以前见过的人......什么?我告诉过你我们会观察的,你不必为此感到惊\n"
+"讶.\n"
+
+msgid "spillit3"
+msgstr ""
+"无论如何...艾莉是我的妹妹,对我来说意味着全世界,所以当我发现他把她带到总部\n"
+"时,我被摧毁了."
+
+msgid "spillit4"
+msgstr "这似乎不是一件坏事,但它是.你知道他们对自己的饼干做了什么吗?你知道吗?"
+
+msgid "spillit5"
+msgstr "因为我也不知道...我所知道的是,从来没有人在被招募后离开全能公司."
+
+msgid "nopenotyet"
+msgstr "对不起,有人在这条路上受伤了.现在已经关闭了."
+
+msgid "yestalk"
+msgstr "真的吗?谢谢..."
+
+msgid "darnitjohn5"
+msgstr "你为什么还在这里?"
+
+msgid "darnitjohn9"
+msgstr ""
+"你是个骗子!\n"
+"我只说一次,而且只说一次.\n"
+"去.寻找.房子."
+
+msgid "hellolovelypeople4"
+msgstr "我很确定在棉花镇有比这更大的房子......"
+
+msgid "hellolovelypeople2"
+msgstr ""
+"我知道你可能想知道为什么我和我的全能骑士在这里.\n"
+"等等..."
+
+msgid "maamiexist4"
+msgstr ""
+"不,离开它.这些人显然有糟糕的品味,并鄙视有用性和简单性......\n"
+"现在检查实验室,格兰特.我等着约翰."
+
+msgid "oopsie2"
+msgstr ""
+"我们为什么不等我的骑士们回来. \n"
+"我讨厌独自宣布坏消息."
+
+msgid "maamnothing4"
+msgstr "很好.谢谢你的通知."
+
+msgid "maamnothing6"
+msgstr ""
+"... ... ... ...\n"
+"...好吧.我们也许应该回总部去报告."
+
+msgid "frowntime"
+msgstr ""
+"我并不介意在这里...\n"
+"只是有时很孤独..."
+
+msgid "theanthemishere"
+msgstr "听着!国歌开始了,我们及时赶到了.快来观看吧!"
+
+msgid "announcement5"
+msgstr ""
+"芳登地区现在的和平与安宁是一条漫长而艰难的道路.\n"
+"然而,我很高兴地宣布,在这一天,即全能公司成立25周年之际,...\n"
+"精灵被控制了!\n"
+"*震耳欲聋的尖叫声*\n"
+"安静下来!安静下来!我必须说,你的热情是有感染力的!\n"
+"在与Xero研究所的合作中,我们已经剥夺了它们的攻击意志!\n"
+"由于这个原因,我们有信心将精灵释放到野外是安全的.\n"
+"然而,宵禁还是必须执行的,毕竟我们不是一个无法无天的地区.\n"
+"毕竟...我们是安全,我们是秩序,我们是全方位的!"
+
+msgid "hmmm4"
+msgstr "也许他们在做一个水上公园!"
+
+msgid "bobtalk"
+msgstr ""
+"如果有更多像你这样的人过来打招呼就好了......\n"
+"顺便说一句,你好!祝你有个愉快的一天!今天或明天或任何一天都会很好!"
+
+msgid "professorexists2"
+msgstr ""
+"你一定是凯莉的孩子!我从你妈妈那里听说了很多关于你的事情.\n"
+"什么风把你吹到这里来了?\n"
+"........ ....\n"
+"药水?当然,你总是需要那些东西!\n"
+"在这里,有一些在我家里,这是我的礼节."
+
+msgid "hmmm6"
+msgstr "........好吧...但它可能是..."
+
+msgid "ihaveyourmoney"
+msgstr "好吧,也许我可以帮上忙."
+
+msgid "chooseyerfateTweesher"
+msgstr ""
+"一个伟大的选择!镊鹭是一只水系精灵.它的进化体冰川鹰是最快的精灵之一.\n"
+"你想选择镊鹭吗?"
+
+msgid "wewnicefight"
+msgstr ""
+"哇,那是一场精彩的战斗!\n"
+"让我快速治愈你的精灵...\n"
+"然后...好了!一切就绪!\n"
+"只要再多加练习,也许再多加几只精灵,你就一定能胜任训练师工作.\n"
+
+msgid "gasp2"
+msgstr ""
+"你在这里和这个......做什么?犯罪?\n"
+"... .... ....\n"
+"... ... ...\n"
+"加入训练师阵营?你真的会让自己受制于这种无稽之谈?\n"
+"如果你只想在全能公司得到一份工作,你可以直接问我.\n"
+"如果你有兴趣,我肯定能为你找到一个......工作."
+
+msgid "heystop6"
+msgstr ""
+"我知道,但我们可以在其他地方种植新的花朵.它们仍将是特别的,因为我们会一起种\n"
+"植它们."
+
+msgid "soiwashearing5"
+msgstr "女士,我是否应该逮捕她,因为她如此无礼地称呼你?"
+
+msgid "soiwashearing7"
+msgstr "她看起来很害怕,这个可怜的东西."
+
+msgid "ohaimisa7"
+msgstr "杰克、里克、艾迪,跟我来.乔恩,你留在这里."
+
+msgid "timeforround2"
+msgstr "${{name}}!终于来了!你回来了!我还担心你会错过公告呢!"
+
+msgid "heystop3"
+msgstr "我知道,但为什么?你刚刚把我们踢出去了!"
+
+msgid "moreannouncement2"
+msgstr ""
+"我很抱歉这么晚才通知你们这个地址,但我相信在媒体泄露之前它很重要.......\n"
+"嗯...呵.我们拥有媒体,所以我想这并不重要,但我还是想分享它.\n"
+"在与我的顾问协商后,我们决定,对精灵更加熟悉的最好方法是使用它们.\n"
+"现在,我们还需要一些时间才能将它们融入到工作中,但同时,正如我之前所说,我们\n"
+"将把它们释放到野外.\n"
+"我意识到这对每个人来说都是一个冲击,另外我理解你们中的一些人甚至可能害怕.我\n"
+"们都知道之前发生了什么...\n"
+"但现在不是害怕的时候,因为全能公司将赞助恢复被称为审判的古老传统.\n"
+"现在,对于那些不太了解芳登地区历史的人来说,一百年前有一个传统,年轻的男人和\n"
+"女人会捕捉和饲养精灵.\n"
+"然后,他们会用这些精灵与其他人战斗,并在他们的镇上提升等级,最好的精灵训练师\n"
+"会获得地位和权力.\n"
+"我们将为现代社会创造一个这样的版本.我们将在整个芳登的多个城市形成战斗区\n"
+"域.\n"
+"每个战区都需要按顺序完成,最有前途的训练师将能够尝试参加锦标赛.\n"
+"冠军赛将在棉花镇的全能塔顶举行,但只有在精灵训练师通过每个战区后才能举行.\n"
+"试验的目的是将公众生活慢慢介绍给精灵,并鼓励整个地区的旅行.\n"
+"谁能比我们的年轻人更好地证明这一点呢?\n"
+"每场比赛都将在全能-精灵频道上直播,这是一个最新的电视台,专门播放与精灵有关的\n"
+"节目!\n"
+"不要担心,增加的内容会反映在你的账单上.\n"
+"哦,还有一件事,所有的精灵训练师都将免于宵禁.\n"
+"当然在这之前,你需要一个精灵!现在,不是每个人都能被允许成为精灵训练师的.那\n"
+"将是纯粹的混乱!\n"
+"首先,你必须向当地的全能代表登记你的名字,如果你被选中,你将被送入全能训\n"
+"练.\n"
+"在成功完成培训后,你将获得一只精灵,并可以开始参与试验\n"
+"我期待着与大家见面!让我们一起创造一个新的世界!\n"
+"毕竟...我们是安全,我们是秩序,我们是全能公司!\".而现在.\n"
+"我们 \n"
+"是 \n"
+"未来!"
+
+msgid "youneedtodothis2"
+msgstr ""
+"但是......我知道你一直渴望看到这个地区,而这是你最好的机会.\n"
+"我知道你有动力成为最优秀的人,这是前所未有的.\n"
+"我只是不知道我们是否能负担得起这些费用.\n"
+"\n"
+"我们会想办法解决的...某种程度上."
+
+msgid "rockywhy"
+msgstr ""
+"等等,洛基,不要停在这里!我们已经走了这么远了!\n"
+"我知道你喜欢草地,但我们必须赶到棉花镇!"
+
+msgid "soiwashearing8"
+msgstr "更不用说监狱里已经充斥着...花城事件."
+
+msgid "soiwashearing9"
+msgstr "然而,在未来..."
+
+msgid "ohaimisa"
+msgstr "看看这是谁?"
+
+msgid "ohaimisa4"
+msgstr ""
+"为什么我在这里?为什么,我是这个项目的负责人!为整个地区建立示范性的战斗区域是\n"
+"一种荣誉!\n"
+"虽然,我知道你为什么没有听到这个消息,和你的新玩物一起嬉戏,所有的一切"
+
+msgid "waityouhaveone"
+msgstr ""
+"你有一个精灵?\n"
+"那是为什么?\n"
+"... .... ... ... \n"
+"... ... .... ... \n"
+"训练师是吗?好吧,希望你能在战斗中表现出色!我很快就会治好你的精灵,然后我们再\n"
+"看看你到底有多厉害."
+
+msgid "kylekindasucks"
+msgstr ""
+"很抱歉,凯尔是我在全能公司最不喜欢的人之一.这话说得很有道理.\n"
+"我们在学院里是同班同学,从那以后他就一直是个麻烦.这可能就是为什么全能公司要\n"
+"招募他的原因.\n"
+"幸运的是,我不必像某些可怜的人那样,每天听他那刺耳的声音."
+
+msgid "misaisleavingfornow"
+msgstr "马特,朱利安,我们出去吧. "
+
+msgid "oimate"
+msgstr "嘿!这是一个禁区!没有徽章的人不得进入!"
+
+msgid "welcometotaba5"
+msgstr ""
+"无论如何,我的名字是凯尔,我是战斗区的主要设计师.\n"
+"我在这里为第一个芳登地区战斗区举行开幕式,并宣布...\n"
+"比赛已经开始了!"
+
+msgid "welcometotaba4"
+msgstr "说实话,我以为会有更多人通过评估......."
+
+msgid "welcometotaba7"
+msgstr "我不打算撒谎,我期待着第一批训练师有更多的热情."
+
+msgid "welcometotaba9"
+msgstr "你的文件似乎很有条理.就目前而言."
+
+msgid "welcometotaba8"
+msgstr ""
+"你就是那个被米萨附身的东西.你是怎么来到这里的?是她伪造了你的证件让你进来的\n"
+"吗?\n"
+"... .... ... ...\n"
+"艾莉在你的文件上签了字?有趣的是..."
+
+msgid "welcometotaba10"
+msgstr ""
+"然而,这仍然不能解释缺乏热情的问题.这是个很大的荣誉!\n"
+"你们俩和米萨的玩物在那里都代表了芳登地区最优秀和最聪明的年轻人!"
+
+msgid "dowehavetogoin2"
+msgstr ""
+"不,你不明白.唯一能让我的家人出狱的办法是,我在全能公司中达到足够高的级\n"
+"别.\n"
+"完成审核后,我的职位将仅次于首席执行官.我就能改变现状.\n"
+"如果我完成了这个,我就能拯救我的家人......"
+
+msgid "hiperson2"
+msgstr "哇,克里斯蒂,不要把他们淹没了."
+
+msgid "dowehavetogoin"
+msgstr "你知道,你不需要进去.只要通过标准培训计划,跳过审核."
+
+msgid "nobody2"
+msgstr "好吧,保持你的秘密!"
+
+msgid "stahp"
+msgstr ""
+"嘿,克里斯蒂,不要审问他们.我们毕竟刚认识. \n"
+"也许我们无论如何都应该进去.我们不想让凯尔生气."
+
+msgid "ripjimmy"
+msgstr ""
+"坟墓上写着.\n"
+"这里躺着吉米.一个朋友,一个骑士,以及......总之是个坏人.然而,......从\n"
+"未.......救命啊!...\n"
+"其余的都被风化掉了."
+
+msgid "waithere2"
+msgstr "哦,我希望没有人因为倒下的树而受伤!"
+
+msgid "37707_sign_hidden"
+msgstr "趁着你还可以,赶紧离开..."
+
+msgid "shady_guy_dialog"
+msgstr "更名者：嘿,如果你的名字上有一些...... \"麻烦\",我可以帮你解决......"
+
+msgid "37707_flower"
+msgstr ""
+"你感觉到一种温暖的能量从这朵花中散发出来.这是这个镇上唯一的东西,你的精灵似\n"
+"乎很喜欢."
+
+msgid "37707_computer"
+msgstr ""
+"开发者控制台.这只适用于Tuxemon的开发者,用于测试实验性的数据加载系统.\n"
+"现在新的加载器的变量将被启用.请报告你发现的任何问题,https://tuxemon.org\n"
+"开发者说明1：这抑制了丢失地图的崩溃.系统可能会尝试加载无效的数据!\n"
+"开发者注意2：不要在启用该功能的情况下保存游戏,它可能导致数据损坏.\n"
+"开发者注3：从切换到Python 3开始,数据似乎以一种非常不寻常的方式被聚集和组合.\n"
+"请调试这个问题!"
+
+msgid "37707_villager_male_1"
+msgstr ""
+"无名者：哼哼.你好.对不起：我们通常对外来者感到厌烦.我们只被访问过......有\n"
+"时.\n"
+"无名者.但既然你来了,也许你可以帮我一个忙.我这样问你可能听起来很奇怪,但我\n"
+"必须知道...\n"
+"无名者.你知道我是谁吗?你......见过我吗?我很好奇：我的名字,我是否有...\n"
+"无名者.对不起,我犯了一个错误.请不要告诉任何人我问你的事情.继续吧,祝你在\n"
+"这里的旅行愉快."
+
+msgid "37707_villager_female_1"
+msgstr ""
+"祝：哦......一个新来的人!你是怎么来的?我们已经很久没有看到新人了......哦,算\n"
+"了吧.\n"
+"欢迎!欢迎来到......哦,天哪.我们还没来得及给我们的镇子起个名字呢!我想,你想\n"
+"叫我们什么就叫什么吧.\n"
+"希望：请不要拘束,就像在家里一样.通常情况下,周围会有更多的人......这取决于\n"
+"种子,也许今天是个坏兆头.\n"
+"愿望：如果你需要这里存在的任何东西,请告诉我.只是不要犯和其他人一样的错误.\n"
+"我们不希望你也离开我们."
+
+msgid "37707_villager_female_3"
+msgstr ""
+"微时：不,不,不：停止这样做!你不明白它不存在吗?你不明白它不在那里吗?"
+
+msgid "spyder_papertown_myfirstmon"
+msgstr ""
+"嘿,你来了!真棒.\n"
+" 当花哨的新精灵从大教堂出来时,我们只是把所有的旧精灵都扔进了垃圾箱!\n"
+" 这似乎是一种浪费,尤其是当像你这样的孩子没有的时候!"
+
+msgid "spyder_papertown_mom1"
+msgstr ""
+"早晨的阳光!你可以在这里随时休息. \n"
+" 我为什么这么说?你住在这里!"
+
+msgid "spyder_papertown_mom2"
+msgstr ""
+"你好,亲爱的.我应该继续进行我的发明. \n"
+" 你就不能自娱自乐吗? \n"
+" 在我的时代,我们可以用任何东西来消遣自己--一根棍子、一块石头、在垃圾桶里找到\n"
+"的垃圾...... "
+
+msgid "spyder_papertown_grannypiper1"
+msgstr ""
+"哦,你好,${name}},在这么多的喧嚣和杂物中我没有看到你! \n"
+" 我迫不及待地想等到日托中心建造完毕!"
+
+msgid "spyder_cotton_tuxepediaintro"
+msgstr ""
+"目前,关于精灵的唯一可靠信息是来自昂贵而不完整的《精灵百科全书》!这并不酷,\n"
+"信息应该免费提供. \n"
+" 这并不酷；信息应该是免费提供的.这就是为什么我们要推出喂鸡精灵百科. \n"
+" 它是开源的,免费的,每个人都可以阅读、写作和编辑.这多酷啊? \n"
+" 事实上,我刚才已经把它作为一个应用程序安装在你们所有的手机上. "
+
+msgid "spyder_papertown_danteshop"
+msgstr ""
+"我在工作,老板,我在工作! \n"
+" 哦,这只是你.你知道,我们扔掉了那么多的库存. \n"
+" 这是一种可怕的浪费.这些东西都被扔到商店后面的垃圾桶里了."
+
+msgid "spyder_papertown_firstfight"
+msgstr ""
+"嘿,你在垃圾箱里翻东西干什么?太恶心了--而且这也是违反规定的! \n"
+" ... \n"
+" 什么,他们在扔掉完美的精灵吗? \n"
+" ... \n"
+" 好吧,如果它们是完全好的,他们就不会把它们扔掉,对吗? \n"
+" 它们一定比新的精灵差.来,我给你看看! "
+
+msgid "spyder_cottoncafe_barmaidintro"
+msgstr ""
+"我们称自己为芭莎团队.也许这有点自命不凡. \n"
+" 我们是一群流氓和无赖,喜欢聚在一起喝咖啡,讨论哲学,并反抗我们的企业霸主!我\n"
+"们试着互相照顾. \n"
+" 我们尝试互相照顾.例如,与大教堂不同,我们不向你收取治疗你的小精灵的费\n"
+"用. \n"
+" 你想让我现在就给它们治病吗?"
+
+msgid "spyder_cottonart_barmaid"
+msgstr ""
+"你喜欢我的套装吗? \n"
+" 它们记录了我早期作为一个专业驯兽师的日子,在我靠赢利退休之前. \n"
+"  我称它们为：\"精灵的眼睛相遇\",\"星空的夜晚 \"和 \"惶恐\".它们正在出\n"
+"售! \n"
+" 趁热打铁,买下它们!每张只有1,000元."
+
+msgid "spyder_cottonscoop_shopassistant"
+msgstr ""
+"捕获装置允许你捕获小精灵并将其作为伙伴. \n"
+" 它们在用于受伤的和低级的小精灵时最为有效. \n"
+" 在战斗中从你的物品菜单中选择它们."
+
+msgid "spyder_cottonscoop_deviceexplan2"
+msgstr ""
+"捕获装置允许你捕获小精灵并将其作为伙伴. \n"
+" 它们在用于受伤的和低级的小精灵时最为有效.在战斗中从你的物品菜单中选择它\n"
+"们. \n"
+" 谢谢你的聆听.这里有五个捕获装置作为免费样品. "
+
+msgid "spyder_route2_marion2"
+msgstr "我不吃蚂蚁."
+
+msgid "spyder_citypark_frances2"
+msgstr "你有时间一定要来看看. "
+
+msgid "spyder_museum_entrance1"
+msgstr ""
+"欢迎来到自然历史博物馆!它是免费的,但取决于您的慷慨捐赠.您是否考虑捐献\n"
+"${{currency}}50?"
+
+msgid "spyder_citypark_bobette1"
+msgstr " 我喜欢猫. 阿尔多恩基本上就是一只猫,对吗?"
+
+msgid "spyder_citypark_edith2"
+msgstr "嗯,你可能有一个观点."
+
+msgid "spyder_citypark_edith1"
+msgstr "嘿,你说我像我的精灵吗?我会为此和你战斗的!"
+
+msgid "spyder_museum_entrance2"
+msgstr "请探索我们的五个部分,并确保阅读我们的五个赞助商."
+
+msgid "spyder_museum_entrance3"
+msgstr "不幸的是,我们现在需要收取门票费用.每张100元."
+
+msgid "spyder_museum_postboy1"
+msgstr ""
+"你知道最早的眼镜是用绿宝石而不是玻璃制成的吗?\n"
+"...\n"
+"我是去年从这个博物馆的一个导游那里得知的!但现在这个地方已经没有导游了."
+
+msgid "spyder_museum_shopkeeper_chat"
+msgstr "我志愿保持博物馆的价格尽可能的合理. "
+
+msgid "spyder_museum_miner1"
+msgstr ""
+"这里曾经有一整个关于我们世界历史的部分!但当宁德成为赞助商后,他们就把它改为\n"
+"了军事历史.\n"
+"现在每个人都在编造自己的世界历史理论!"
+
+msgid "spyder_route3_sign"
+msgstr ""
+"康复工作将尽快开始.\n"
+"请不要再对我们唠叨了."
+
+msgid "spyder_leather_maniac"
+msgstr ""
+"到目前为止你的冒险如何?\n"
+" ...\n"
+" 哇,这么健谈!你真的要走出你的壳了.你真的从你的壳里出来了."
+
+msgid "spyder_wayfarer1_maniac"
+msgstr ""
+"嘿,伙计,你想要我的机器人吗? \n"
+" 我不知道我会被困在这里多久,所以它不妨和你一起去探索."
+
+msgid "spyder_wayfarer1_maniac2"
+msgstr "请给我一点隐私! "
+
+msgid "spyder_wayfarer1_morton2"
+msgstr "现在没有什么可做的了!"
+
+msgid "spyder_wayfarer1_jessie1"
+msgstr "执法者们是如此迅速和乐于助人!我猜科学家詹姆斯尽快提醒了他们."
+
+msgid "spyder_wayfarer1_bismuth2"
+msgstr "遗憾的是!"
+
+msgid "spyder_wayfarer1_ratcher1"
+msgstr "你应该让病人休息!"
+
+msgid "spyder_wayfarer1_ratcher2"
+msgstr "现在我需要休息了!"
+
+msgid "spyder_route4_marshall1"
+msgstr "我正在制作一门巨大的加农炮!"
+
+msgid "spyder_route4_marshall2"
+msgstr "它可能需要一些工作."
+
+msgid "spyder_route4_roger1"
+msgstr "我们可以从精灵身上学到很多策略."
+
+msgid "spyder_route4_roger2"
+msgstr "我可以从你那里学到很多策略!"
+
+msgid "spyder_route4_wulf1"
+msgstr "啊,只是收集一些药用补品"
+
+msgid "spyder_route4_wulf2"
+msgstr "哦,我觉得自己被阉割了!"
+
+msgid "spyder_route4_rincewind1"
+msgstr "最后,科久有了用武之地!"
+
+msgid "spyder_route4_rincewind2"
+msgstr "这并不那么有用."
+
+msgid "spyder_route4_rosamund1"
+msgstr "试图与我对抗,你会得到你应有的惩罚!"
+
+msgid "spyder_route4_rosamund2"
+msgstr "复仇最好是冷处理. "
+
+msgid "spyder_route3_roxby2"
+msgstr "滚蛋! "
+
+msgid "spyder_route3_surat2"
+msgstr "我知道你不会理解. "
+
+msgid "spyder_route3_roxby3"
+msgstr ""
+"我希望老板不要生气--她生气得太快了. \n"
+" 但她是个好人,有一颗像钻石一样的心."
+
+msgid "spyder_route3_surat1"
+msgstr ""
+" 他们称其为 \"黑暗动脉\"--土壤下的古代虎皮猫的血液和骨骼化石. \n"
+" 而我们可以把它挖出来!"
+
+msgid "spyder_route3_surat3"
+msgstr "滚!你挡住了我们的路."
+
+msgid "spyder_wayfarer_shopkeeper"
+msgstr ""
+"对不起,伙计,没有房间了. \n"
+" 执法者说一种罕见的疾病已经在一些客人的小精灵中爆发,所以我们正在进行隔\n"
+"离. \n"
+" 我可以为你治疗你的小精灵,但是?"
+
+msgid "spyder_route3_wanda2"
+msgstr ""
+"花城的鱼很好 - 但谁愿意走那么远? \n"
+" 在这里,你可以拥有我的钓鱼竿."
+
+msgid "spyder_wayfarer_nurse"
+msgstr ""
+"这栋楼里有生病的精灵.最好把它留给执法者来解决一切问题. \n"
+" 如果你继续走,我不能保证他们会如何回应. "
+
+msgid "spyder_papertown_danteresting"
+msgstr ""
+"我在工作,老板,我在工作! \n"
+" 哦,你知道,我们扔掉了那么多的库存.这是一种可怕的浪费. \n"
+" 这些东西都被扔到商店后面的垃圾桶里了."
+
+msgid "spyder_cotton_nurse1"
+msgstr ""
+"欢迎来到大教堂中心! \n"
+" 你想治疗你的精灵吗?"
+
+msgid "spyder_wayfarer_granny"
+msgstr ""
+"我无法解释......前一刻我的凯尔弗雷还很健康,后一刻它就生病了!我不知道该怎么\n"
+"办. \n"
+" 至少执法者很快就到了. "
+
+msgid "spyder_nimrod_bowie1"
+msgstr "如果有一些军事装备,我们的执法工作会容易得多,朋友......你是谁? "
+
+msgid "spyder_nimrod_tru3"
+msgstr "如果不是沙夫特的那些低能儿把我的龙弄丢了,打败你简直是小菜一碟."
+
+msgid "spyder_route5_sara2"
+msgstr "哦,好吧,今天不说了!"
+
+msgid "spyder_wayfarer_maniac"
+msgstr ""
+"我的小精灵没有生病!我的小精灵没有生病.这只是卖给我们不需要的药的一个借\n"
+"口. \n"
+" 我在你这个年龄时,我们没有药.我们在山间小溪里游泳,如果你得了鼻炎,那就很难\n"
+"受了! \n"
+" 而且,我看到执法者从4号公路下来时,任何人都还没有流鼻涕,所以怎么会 \n"
+" ... \n"
+" 啊啊啊啊啊啊! \n"
+" ... \n"
+" 这并不意味着什么.我的鼻子很痒."
+
+msgid "spyder_wayfarer1_morton1"
+msgstr ""
+"我被困在这个房间里,直到我的精灵好起来,所以除了战斗之外没有什么可做的!"
+
+msgid "spyder_flower_mieke_nobudaye"
+msgstr "哦,这并不重要--我可以看到你没有友友猫."
+
+msgid "spyder_flower_cady1"
+msgstr ""
+"哦,我真希望能有一个纪念品带回家去. \n"
+" 我很喜欢那些可爱的小格林托特.你能给我一个吗? \n"
+" 我可以把我的汉波塔莫斯送给你作为交换?"
+
+msgid "spyder_flower_petshopkeeper1"
+msgstr ""
+"我在一棵树的枝桠上发现了这些蛋,并孵化了它们!它们似乎是以前不为人知的精\n"
+"灵.\n"
+" 我叫它们维维帕雷!我想知道它们会蜕变成什么."
+
+msgid "spyder_flower_petshopkeeper4"
+msgstr ""
+"你让它进化了吗? \n"
+" ... \n"
+" 你是以这种特殊的方式做到的? \n"
+" 我明白了.嗯,我不太喜欢这种进化的样子. \n"
+" 如果我再给你一个维维帕雷,如果它曾经变形为不同的东西,你能把它带回来吗?"
+
+msgid "37707_villager_female_missing"
+msgstr ""
+"@*!^:0H...@ n3wc0m3r!H0vv p1d y0v g3t he7e? <NONE> h3llen \"T $33N %^&one \n"
+"new 1n...（）h, never n3ver m3V3t N3W37 MIIIIIIIIND\n"
+"@*!^:WElcoME!W3lcome t0...0H N/A: We never g0t ar0und to gi^ing 0ur town \n "
+"{<1}.We never g00000000 {<2}W3 neVer Bu1lt 0uR t0wN\n"
+"適湜怼沵唻説朂偅婹哋倳凊,洇潙沵湜茬潙沵哋笁莋洏笁莋"
+
+msgid "spyder_route5_granny"
+msgstr "这个公园在宁德市的建设下,将花城的暴发户挡在了门外,显得更有人情味. "
+
+# msgid "spyder_leatherhouse1_radio"
+# msgstr "An R&B song is playing. It's called \"Possessuns, Part II\". "
+msgid "spyder_leatherhouse2_tv"
+msgstr "一个绿色的小怪物正在把一艘船从沼泽地里抬出来."
+
+msgid "spyder_flowerhouse1_granny"
+msgstr "勺子公司又一次成功地削减了牛肉的价格!我不知道他们是如何做到的. "
+
+msgid "spyder_nimrod_chromerobo2"
+msgstr "咻咻咻咻咻咻"
+
+msgid "spyder_nimrod_dirk1"
+msgstr ""
+"你是来参加投资者介绍会的吗? \n"
+" 尼姆罗德公司的股票是一个很好的买点--军队总是需要武器!"
+
+msgid "spyder_nimrod_argon1"
+msgstr ""
+"我们与人类和精灵进行战争.许多人死亡,更多的人受伤. \n"
+" 使用机器人是唯一符合道德的行动方式."
+
+msgid "spyder_route5_sara1"
+msgstr "我的卡皮蒂看起来很可爱,但我等不及让它长成一个成年人了!"
+
+msgid "spyder_nimrod_berke1"
+msgstr ""
+"不要伤害我,我只是写了合同!我没有做错任何事! \n"
+" ... \n"
+" 我的意思是,没有人做错任何事.这都是合法的,光明正大的."
+
+msgid "spyder_nimrod_tru2"
+msgstr "警卫,在测试室里取回原型.至少我们可以抢救出一些东西! "
+
+msgid "spyder_route5_goliath2"
+msgstr "别再破坏我们的计划了!"
+
+msgid "spyder_timber_dante2"
+msgstr ""
+"嘿,伙计!你打算闯入这些总部吗? \n"
+"真酷啊!\n"
+" 在这之前,请确保你有充分的准备,因为一旦你进去了,就很难出来了!"
+
+msgid "spyder_scoop_turner2"
+msgstr "请记住,我们与疾病的传播没有任何关系!"
+
+msgid "spyder_scoop_paine2"
+msgstr ""
+"如果那些执法者没有进来,没有让他们的宠物精灵接触到这种疾病,它就永远不会离开"
+"这个设施."
+
+msgid "spyder_scoop_haf1"
+msgstr ""
+"我把偷了束缚器的人赶到这个房间.但后来生病的精灵进来了,现在我们都被困住了!"
+
+msgid "spyder_scoop_asta1"
+msgstr ""
+"为什么是,我是极端约束的发明者. \n"
+" 我听到你问,它们是什么? \n"
+" 只是一套强大的手铐,即使是龙也无法逃脱. \n"
+" 它们被用在隔离装置中,以确保没有一个被感染的精灵逃脱."
+
+msgid "spyder_tunnelb_lute2"
+msgstr "...但不一定是最好的斗士."
+
+msgid "spyder_tunnelb_greta2"
+msgstr "哦,不,我需要更多!"
+
+msgid "spyder_successful_log"
+msgstr "你强大的斧子将木头切成两半."
+
+msgid "spyder_tunnelb_tommy1"
+msgstr "你看到我的三明治了吗?"
+
+msgid "spyder_route6_frances1"
+msgstr "我的守叶人保持着所有土地上最好的花园."
+
+msgid "spyder_route6_orion2"
+msgstr "我希望能在我的实验融化之前回来!"
+
+msgid "spyder_tunnelb_tommy2"
+msgstr "我的饥饿感让我失去了比赛的动力!"
+
+msgid "spyder_route6_maxwell2"
+msgstr "我只希望他们不要决定把我们融合的精灵放下,这样才是最安全的!"
+
+msgid "spyder_route6_blair2"
+msgstr ""
+"我听说他们把所有的研究人员都赶出了格林沃什总部. \n"
+" 现在他们正在没收精灵,并把它们带到医院去!"
+
+msgid "spyder_route6_maxwell1"
+msgstr ""
+"我不明白!上个月,他们对融合技术如此兴奋. \n"
+" 而现在他们说他们必须关闭它,摧毁它......"
+
+msgid "spyder_route6_orion1"
+msgstr "我当时正在进行一项非常重要的实验."
+
+msgid "spyder_route6_gunner1"
+msgstr "对不起,不允许进入.所有格林沃什的员工必须呆在城外."
+
+msgid "spyder_route6_mungo1"
+msgstr ""
+"我不能相信他们把我们锁在了克林沃什总部外面.我就快找到治疗病毒的方法了!"
+
+msgid "spyder_route6_mungo2"
+msgstr "我猜老板们被最新的融合发展吓坏了."
+
+msgid "spyder_route6_rigel1"
+msgstr "我们不妨战斗--目前没有其他事情可做!"
+
+msgid "spyder_route6_rigel2"
+msgstr "现在真的没有什么可做的了."
+
+msgid "spyder_flower_artist2"
+msgstr ""
+"壮丽的!我不知道我有这个能力. \n"
+" 我不知道那些艺术家在抱怨什么--画画很容易!"
+
+msgid "spyder_flower_muse3"
+msgstr ""
+"谢谢你,他现在是个好伙伴了. \n"
+" 虽然......他说过要从事数字艺术!"
+
+msgid "spyder_searoutec_nigel1"
+msgstr ""
+"这是龙的洞穴!我站在外面是因为......呃,因为我在看守它.我站在外面是因\n"
+"为......呃,因为我在看守它."
+
+msgid "spyder_searoutec_nigel2"
+msgstr "好吧,我不是在站岗!其他龙骑士不会让我加入他们!"
+
+msgid "spyder_searoutec_rutherford2"
+msgstr "......但没有一滴可以喝."
+
+msgid "spyder_searoutec_sandy1"
+msgstr "沙芬鱼很好!但不能给一个人洗澡......"
+
+msgid "spyder_searoutec_river1"
+msgstr ""
+"我的身体被包住了......我无法游泳...我最后的希望...是我藏在游泳衣里的捕获装\n"
+"置!"
+
+msgid "spyder_searoutec_river2"
+msgstr "可以说,它起作用了!"
+
+msgid "spyder_flower_muse2"
+msgstr "什么,你有一幅画.哦--你会让我买下它吗?我有${{currency}}2,000元."
+
+msgid "spyder_searoutec_wade1"
+msgstr "我是屏住呼吸的世界纪录保持者!抓紧你的帽子..."
+
+msgid "spyder_searoutec_wade2"
+msgstr "*溅射*"
+
+msgid "spyder_searoutec_gil1"
+msgstr "如果你被粉紫水母刺伤,浮蛞蝓可以把毒吸出来."
+
+msgid "spyder_searoutec_gil2"
+msgstr "当然,吸出毒物会使浮蛞蝓本身变得有毒!"
+
+msgid "spyder_searoutec_leek1"
+msgstr "让我赢吧--不要做_贝壳鱼_!"
+
+msgid "spyder_searoutec_carstair2"
+msgstr "我无法保持我的头在水上."
+
+msgid "spyder_dragonscave_blocked"
+msgstr "隧道仍在钻探中!"
+
+msgid "spyder_searoutec_leek2"
+msgstr "我输在了_porpoise_."
+
+msgid "spyder_searoutec_beech1"
+msgstr "嘿,你在水里做了什么吗?"
+
+msgid "spyder_searoutec_beech2"
+msgstr "好吧,我相信你."
+
+msgid "spyder_searoutec_rutherford1"
+msgstr "到处都是水,真的让人想入非非!"
+
+msgid "spyder_dragonscave_lazybrute1"
+msgstr "挖了那么多隧道,我已经筋疲力尽了. "
+
+msgid "spyder_searoutec_carstair1"
+msgstr "我喜欢这个海滩!"
+
+msgid "spyder_searoutec_sandy2"
+msgstr "我接受了这个诱饵."
+
+msgid "spyder_dragonscave_angrybrute1"
+msgstr "老板们可以进去,享受所有的乐趣. "
+
+msgid "spyder_dragonscave_concernedbrute1"
+msgstr "等等,如果我们都在这里--谁在看守全能总部?"
+
+msgid "spyder_omnichannel_william1"
+msgstr "这里没有什么可看的.不,先生."
+
+msgid "spyder_omnichannel_william2"
+msgstr "我得走了!"
+
+msgid "spyder_omnichannel_carnegie1"
+msgstr "我开设了为期三周的在线自我提高课程.像埃洛斯托姆一样领导!"
+
+msgid "spyder_omnichannel_carnegie2"
+msgstr "嘿,你应该参加我的课程!"
+
+msgid "spyder_omnichannel_byrne1"
+msgstr "我的宝石虎来自一个只有石英的小镇."
+
+msgid "spyder_omnichannel_byrne2"
+msgstr "真让人失望."
+
+msgid "spyder_omnichannel_strauss1"
+msgstr "在我的工作中,我必须握很多手."
+
+msgid "spyder_omnichannel_strauss2"
+msgstr "往下走.太慢了!"
+
+msgid "spyder_omnichannel_billie1"
+msgstr ""
+"别这么快,NAME!我们不会让你进去的 \n"
+" ...一个人!我也要去. \n"
+" 当你治好了我的精灵,你让我做了一些认真的思考. \n"
+" 我们不能让他们偷了我们的精灵!"
+
+msgid "spyder_omnichannel_beaverbrook1"
+msgstr ""
+"啊哈,对你来说已经太晚了! \n"
+" 刚从分娩坑里出来的......完美的怪物们! \n"
+" 在沙夫特挖出的龙蛋中孵化的德罗科罗的基因 \n"
+" ...并与Nimrod设计的三个杀手机器人相融合. \n"
+" 团队合作的力量......就在我手中. "
+
+msgid "spyder_omnichannel_beaverbrook2"
+msgstr ""
+"不,这是不可能的. \n"
+" 两个后起之秀,还有一个用非法的精灵,打败了我完美的创作. \n"
+" 如果我能赶上我的现场广播采访,我将指挥我的执法者完成接管工作."
+
+msgid "spyder_omnichannel_radioannounce"
+msgstr ""
+"这里是FUD电台,我是DJ Worm,和我的共同主持人 \"死气沉沉的公爵\",在全能电台工\n"
+"作室进行直播. \n"
+" 我们为您准备了一整小时的棒棒糖、软摇滚和无障碍嘻哈音乐--但首先是对全能频道负\n"
+"责人的采访 \n"
+" 啊,看来比弗布鲁克爵士不能来了,但他派了一个小孩来代替.好吧,小家伙,你有什\n"
+"么要说的吗? \n"
+" ... \n"
+" 大声点!你是在电台直播中! \n"
+" ... \n"
+" 嗯,你说的是一个阴谋? \n"
+" ... \n"
+" 支柱组织将使用绿化融合技术、宁德杀手机器人和沙夫特挖出的龙....... \n"
+" 他们打算用这些融合技术来控制整个地区? \n"
+" ... \n"
+" 他们还故意用勺子的食物将病毒传播给每个人的小精灵? \n"
+" ... \n"
+" 执法者们也参与其中? \n"
+" ... \n"
+" 整个事件的背后是全能公司,利用媒体让人们感到困惑和分心? \n"
+" ... \n"
+" 你知道我们是为全能公司工作的,对吗?请告诉我你停止了广播.博士? \n"
+" ... \n"
+" 哎哟!伙计,我真希望FUD电台没有出去直播. \n"
+" 我不认为人们会对我们很满意."
+
+msgid "tuxemon_stat2"
+msgstr "{desc}"
+
+msgid "av8r"
+msgstr "艾维巴尔"
+
+msgid "b_ver_1"
+msgstr "乙-版本1"
+
+msgid "k9"
+msgstr "科久"
+
+msgid "pharfan_description"
+msgstr "在水坑里,它让它的朋友里诺切里德和汉波塔莫斯得到充足的水."
+
+msgid "pharfan"
+msgstr "法凡"
+
+msgid "picc_description"
+msgstr "它伴随着潜水员,提供急需的氧气."
+
+msgid "pigabyte_description"
+msgstr "科学家们发现,最好的计算机有有机植入物."
+
+msgid "pigabyte"
+msgstr "超算猪"
+
+msgid "mrmoswitch"
+msgstr "热敏开关"
+
+msgid "picc"
+msgstr "皮艾西西"
+
+msgid "pilthropus"
+msgstr "皮尔思罗普斯"
+
+msgid "pipis_description"
+msgstr "它的哭声被认为是一个坏兆头,但它是一种温和的生物."
+
+msgid "poinchin_description"
+msgstr "刺猬石在珊瑚中做窝,可以用面包和牛奶引诱出来."
+
+msgid "poinchin"
+msgstr "刺猬石"
+
+msgid "polyrock"
+msgstr "大力石"
+
+msgid "possessun_description"
+msgstr "这是一个居住在已死的凯尔弗雷身上的幽灵."
+
+msgid "possessun"
+msgstr "凯尔魂"
+
+msgid "propellercat"
+msgstr "飞猫"
+
+msgid "prophetoise_description"
+msgstr "它的天火是敌人很少看到的东西."
+
+msgid "prophetoise"
+msgstr "先知龟"
+
+msgid "puparmor"
+msgstr "盔甲蛹"
+
+msgid "pyraminx_description"
+msgstr "它有一个藏在土地某处的坟墓.如果它找到这个坟墓,它就可以睡觉."
+
+msgid "pyraminx"
+msgstr "金字塔猫"
+
+msgid "pythock"
+msgstr "袜子蛇"
+
+msgid "pythwire_description"
+msgstr "对野生电线兽的观察启发了第一个电源插座的发明者."
+
+msgid "pythwire"
+msgstr "电线兽"
+
+msgid "qetzlrokilus_description"
+msgstr "这种胥吏会潜入其他恐龙胥吏的群体中,烧死他们.它们还喜欢将森林点燃,并将其灰\n"
+"烬丢入水中,以破坏水的纯净度."
+
+msgid "qetzlrokilus"
+msgstr "克茨罗基尔斯"
+
+msgid "rabbitosaur_description"
+msgstr "它挖的隧道广泛而宽阔,是洞穴间巨大战争的场所."
+
+msgid "rabbitosaur"
+msgstr "恐龙兔"
+
+msgid "rhincus_description"
+msgstr "它有一些爬行动物的特性,也有一些鸟类的特性."
+
+msgid "rhincus"
+msgstr "飞犀牛"
+
+msgid "rockat_description"
+msgstr "尽管它有相当大的重量,但它的脚步声是很安静的."
+
+msgid "rockat"
+msgstr "鸡脚猫"
+
+msgid "rockitten_description"
+msgstr "它用它的小岩石耳朵来依偎主人."
+
+msgid "rockitten"
+msgstr "小岩猫"
+
+msgid "rosarin"
+msgstr "罗萨林"
+
+msgid "ruption_description"
+msgstr "一旦火球兽的火焰变得足够热,它就会吞噬它的整个身体,在这个过程中基本上取代了"
+"它."
+
+msgid "ruption"
+msgstr "火球兽"
+
+msgid "sadito"
+msgstr "悲伤兽"
+
+msgid "sampsack"
+msgstr "桑普萨克"
+
+msgid "sampsage"
+msgstr "桑普萨奇"
+
+msgid "sapragon_description"
+msgstr ""
+"在古代,每个元素都有一条强大的龙--但这些生物已经减少,在这个时代很罕见."
+
+msgid "sapragon"
+msgstr "萨普拉贡"
+
+msgid "sapsnap_description"
+msgstr "其可怕的愤怒令人不快,但它很快就会过去."
+
+msgid "sapsnap"
+msgstr "陷阱花"
+
+msgid "saurchin"
+msgstr "索尔钦"
+
+msgid "sclairus_description"
+msgstr ""
+"当庄稼没有收割时--不管是由于懒惰还是灾难--它的稻草人就会变成一个黑暗的活物."
+
+msgid "sclairus"
+msgstr "稻草兽"
+
+msgid "seirein"
+msgstr "塞雷因"
+
+msgid "selket_description"
+msgstr "埋伏在沙子下面,它们可以通过脚步的振动来感受到它们的猎物."
+
+msgid "selket"
+msgstr "瑟克特"
+
+msgid "selmatek_description"
+msgstr ""
+"由古代沙漠之王饲养的塞尔马泰克是看门狗、狩猎伙伴,现在则是抵御盗墓者的卫士."
+
+msgid "selmatek"
+msgstr "塞尔马泰克"
+
+msgid "shammer_description"
+msgstr "在古代,它在灰暗的天空下狩猎犀牛兽."
+
+msgid "shammer"
+msgstr "犀牛兽"
+
+msgid "sharpfin"
+msgstr "锋利鳍豚"
+
+msgid "shelagu"
+msgstr "薛达古"
+
+msgid "shnark_description"
+msgstr "什纳基穿上它最后一顿饭的肉作为伪装,这样它就可以接近它信任的猎物."
+
+msgid "shnark"
+msgstr "什纳基"
+
+msgid "shybulb_description"
+msgstr "当一个花园被忽视时,小叶灯就会搬进来,静静地照看那些下垂的植物."
+
+msgid "shybulb"
+msgstr "小叶灯"
+
+msgid "skwib"
+msgstr "鱿鱼兽"
+
+msgid "sludgehog_description"
+msgstr "它生活在垃圾中,也吃垃圾.它的尖刺似乎很锋利,但它可以随意软化它们."
+
+msgid "sludgehog"
+msgstr "污泥猪"
+
+msgid "snaki_description"
+msgstr "蜥蜴蛇是一条蛇,它通过研究蜥蜴和鳄鱼的运动学会了长腿."
+
+msgid "snaki"
+msgstr "蜥蜴蛇"
+
+msgid "snarlon_description"
+msgstr "它不飞,但它的脚却从不接触地面.悖论之王."
+
+msgid "snarlon"
+msgstr "咆哮雪狮"
+
+msgid "snock"
+msgstr "袜子兽"
+
+msgid "snokari_description"
+msgstr "斯诺卡里的两位首脑各自拥有巨大的智慧,但他们从未达成一致."
+
+msgid "snokari"
+msgstr "斯诺卡里"
+
+msgid "snowrilla_description"
+msgstr "它乐于在荒凉的斜坡上与滑雪者玩捉迷藏."
+
+msgid "snowrilla"
+msgstr "雪猿"
+
+msgid "sockeserp_description"
+msgstr "如果被缠住的话,它是一个很容易被打发的敌人."
+
+msgid "sockeserp"
+msgstr "索克瑟普"
+
+msgid "solight"
+msgstr "索莱特"
+
+msgid "spighter_description"
+msgstr "如此善于偷袭别人的东西,却不能偷袭自己,这是不公平的."
+
+msgid "spighter"
+msgstr "战斗蜘蛛"
+
+msgid "spoilurm_description"
+msgstr "苹果兽把自己伪装成苹果,在树上等着吃没有期待的人."
+
+msgid "spoilurm"
+msgstr "苹果兽"
+
+msgid "spycozeus_description"
+msgstr "森林的低声交流在斯皮科宙斯中被赋予物理形式,它像树木一样思考."
+
+msgid "spycozeus"
+msgstr "斯皮科宙斯"
+
+msgid "squabbit_description"
+msgstr "为了证明自己,他们会为了哪怕是最小的事情而拼命地战斗."
+
+msgid "squabbit"
+msgstr "松兔"
+
+msgid "statursus_description"
+msgstr ""
+"雕像熊已经学会了将自己的情绪转化为单一的纯净火焰.仅仅是看到它,就会让其他人\n"
+"陷入恍惚."
+
+msgid "statursus"
+msgstr "雕像熊"
+
+msgid "strella_description"
+msgstr "它的尾巴是诱饵,可以说服虫子咬住它们并被诱捕."
+
+msgid "strella"
+msgstr "斯特雷拉"
+
+msgid "sumchon_description"
+msgstr "它利用自己的重量来绊倒更大的敌人.它的密度和星星一样大."
+
+msgid "sumchon"
+msgstr "相扑瓢虫"
+
+msgid "tarpeur_description"
+msgstr ""
+"他们休息和成长.他们也在成长和休息.很少有休息而不成长或成长而不休息的情况."
+
+msgid "tarpeur"
+msgstr "塔波尔"
+
+msgid "taupypus_description"
+msgstr ""
+"鸭嘴兽一出生,其母亲就把它们的眼睛打爆.这样,当它们潜入水中时,眼睛就不会刺\n"
+"痛."
+
+msgid "taupypus"
+msgstr "鸭嘴兽"
+
+msgid "teddisun_description"
+msgstr "特迪桑崇拜太阳--人们总是看到他们带着太阳玩具."
+
+msgid "teddisun"
+msgstr "特迪桑"
+
+msgid "template_description"
+msgstr "这里的一些说明"
+
+msgid "template"
+msgstr "模板名称"
+
+msgid "tetrchimp_description"
+msgstr ""
+"他们吸收他们遇到的任何信息.他们不断的喋喋不休,将他们所学的一切依次传达给大\n"
+"家."
+
+msgid "tetrchimp"
+msgstr "特尔钦普"
+
+msgid "tigrock_description"
+msgstr "据说,它必须自己发明自己,因为它的进化并没有被设计出来."
+
+msgid "tigrock"
+msgstr "钢铁虎"
+
+msgid "tikoal_description"
+msgstr "它是森林居民的守护者,负责守卫和解决争端."
+
+msgid "tikoal"
+msgstr "提考尔"
+
+msgid "tikorch_description"
+msgstr "它是森林和火山之间、太阳和地球之间的中介."
+
+msgid "tikorch"
+msgstr "提科尔奇"
+
+msgid "tobishimi"
+msgstr "托比希米"
+
+msgid "toufigel_description"
+msgstr "它看起来是一只毛茸茸的昆虫,但实际上是一只涂着软雪的爬虫."
+
+msgid "toufigel"
+msgstr "图菲格尔"
+
+msgid "tourbidi_description"
+msgstr "如果你发现一圈蘑菇或三叶草,这就是图尔比迪跳舞的地方."
+
+msgid "tourbidi"
+msgstr "图尔比迪"
+
+msgid "trapsnap_description"
+msgstr "它的头是它身体中唯一不随年龄增长而增长的部分."
+
+msgid "trapsnap"
+msgstr "陷阱草"
+
+msgid "tsushimi"
+msgstr "鹤见"
+
+msgid "tumblebee_description"
+msgstr "它建造的蜂巢是完美的球体,里面的风滚虫只是在打滚,并发出嗡嗡的笑声."
+
+msgid "tumblebee"
+msgstr "不倒蜂"
+
+msgid "tumblequill"
+msgstr "风滚鼠"
+
+msgid "tumbleworm"
+msgstr "风滚虫"
+
+msgid "turnipper_description"
+msgstr ""
+"当一块田地被乌鸦、蝗虫和老鼠抛弃时,土拨鼠有时会把自己从地里挖出来,以保卫庄\n"
+"稼."
+
+msgid "turnipper"
+msgstr "萝卜兽"
+
+msgid "tweesher_description"
+msgstr "天气越冷,它的喙就越硬.在0度以下,它比钻石还硬."
+
+msgid "tweesher"
+msgstr "镊鹭"
+
+msgid "urcine"
+msgstr "小棕熊"
+
+msgid "vamporm_description"
+msgstr "它渴求鲜血,但必须将就着用树汁."
+
+msgid "vamporm"
+msgstr "嗜血虫"
+
+msgid "velocitile"
+msgstr "迅驰兽"
+
+msgid "vigueur_description"
+msgstr ""
+"维格竞争看谁能举起最重的石头.当他们举起太重的石头时,石头会压扁他们,并撒下\n"
+"塔普尔的种子."
+
+msgid "vividactil_description"
+msgstr "在古代,维维地尔年标志着一个更新和恢复权威的时刻."
+
+msgid "vividactil"
+msgstr "维维地尔"
+
+msgid "vivipere_description"
+msgstr "它在夏季大量孵化,但其寿命的其余部分是一个谜."
+
+msgid "vivicinder"
+msgstr "维维辛德"
+
+msgid "vivitrans"
+msgstr "维维特兰"
+
+msgid "vivitron_description"
+msgstr "早期的哲学家们将维维特隆作为证据,证明自然力量可以被驯服和控制."
+
+msgid "vivitron"
+msgstr "维维特隆"
+
+msgid "volcoli_description"
+msgstr "它是森林的精灵.它的头发随着季节的变化而变化."
+
+msgid "zunna_description"
+msgstr "欢快的祖纳把所有能找到的食物都吸进它的胃里."
+
+msgid "zunna"
+msgstr "祖纳"
+
+msgid "chrome_robo"
+msgstr "铬合金机器人"
+
+msgid "dark_robo"
+msgstr "黑暗机器人"
+
+msgid "birb_robo"
+msgstr "比尔布机器人"
+
+msgid "xeon"
+msgstr "至强"
+
+msgid "xeon_2"
+msgstr "至强-2"
+
+msgid "mk01_beta"
+msgstr "Mk01测试版"
+
+msgid "mk01_alpha"
+msgstr "MK01 阿尔法"
+
+# Monster categories
+msgid "anteater"
+msgstr "威胁"
+
+msgid "snout"
+msgstr "鼻子"
+
+msgid "false_dragon"
+msgstr "虚假的龙"
+
+msgid "dragon"
+msgstr "龙"
+
+msgid "sprout"
+msgstr "萌芽"
+
+msgid "inchoate"
+msgstr "初期"
+
+msgid "sanguine"
+msgstr "乐观"
+
+msgid "wood"
+msgstr "木头"
+
+msgid "climbing"
+msgstr "攀登"
+
+msgid "crested"
+msgstr "酷睿斯塔德"
+
+msgid "metal_water"
+msgstr "金属,水"
+
+msgid "stance"
+msgstr "荣誉"
+
+# # NPC TRANSLATIONS ##
+# NPC slugs and names
+msgid "aeble"
+msgstr "艾布尔"
+
+msgid "allie"
+msgstr "艾莉"
+
+msgid "karrianna"
+msgstr "卡里安纳"
+
+msgid "knight1"
+msgstr "骑士I"
+
+msgid "knight2"
+msgstr "骑士II"
+
+msgid "liela"
+msgstr "莉拉"
+
+msgid "maple_girl"
+msgstr "马恩"
+
+msgid "misa"
+msgstr "米萨"
+
+msgid "npc_wife"
+msgstr "妻子NPC"
+
+msgid "professor"
+msgstr "教授"
+
+msgid "professor-tweesher"
+msgstr "教授"
+
+msgid "professor-cardiling"
+msgstr "教授"
+
+msgid "professor-rockitten"
+msgstr "教授"
+
+msgid "npc_red"
+msgstr "小赤"
+
+msgid "tabanurse"
+msgstr "塔巴护士"
+
+msgid "tuxemart_keeper"
+msgstr "Tuxemart 店主"
+
+msgid "tuxemart_aide"
+msgstr "Tuxemart员工"
+
+msgid "xerogrund1"
+msgstr "Xero Grunt I团队"
+
+msgid "xerogrund2"
+msgstr "Xero Grunt I团队"
+
+msgid "xerogrunt7"
+msgstr "Xero Grunt I团队"
+
+msgid "yes"
+msgstr "是"
+
+msgid "cash_register"
+msgstr "这是一台收银机,看起来比较新."
+
+msgid "potions_in_shop"
+msgstr "展示柜里似乎有很多药水,在这里一定很受欢迎."
+
+msgid "capture_devices_in_shop"
+msgstr "这是捕捉设备.他们是如何制造这些的?"
+
+# NPC dialogs
+msgid "karrianna_dialog1"
+msgstr "过去一个月我一直在训练!还没有人打败过我!"
+
+msgid "karrianna_dialog2"
+msgstr "嗯...你是我面对的第一个训练师..."
+
+msgid "xero_hideout1"
+msgstr "Xero Tuxemon研究和促进研究所在前."
+
+msgid "cherry_found"
+msgstr "你找到了一颗樱桃."
+
+msgid "youcantleave"
+msgstr "门从外面锁上了.......是否在某处有钥匙?"
+
+msgid "discovered_a_person"
+msgstr "你找到我了!哈哈!"
+
+msgid "Cathedral_Center"
+msgstr "大教堂中心.我们活着就是为了服务."
+
+msgid "spillit6"
+msgstr "总之......这与你无关.重要的是把全能组织打倒."
+
+msgid "spillit7"
+msgstr "我很抱歉用我的问题来困扰你.当你想继续前进时,城市公园就在前面."
+
+msgid "leavemealone"
+msgstr "我们年轻时一直在这里玩..."
+
+msgid "iamknight"
+msgstr ""
+"啊!\n"
+"我以为你是别人.我很抱歉大喊大叫."
+
+msgid "iamknight2"
+msgstr "等等,你就是那个被他们窃窃私语的人吧?那个有非法精灵的人?"
+
+msgid "mistakenknight"
+msgstr ""
+"不,我不可能看错了.果然是你啊!\n"
+"别担心,我不会告诉任何人."
+
+msgid "thatsmeknight"
+msgstr ""
+"哦,精彩!我从一开始就知道一定是你\n"
+"别担心,我不会告诉任何人."
+
+msgid "quicklyknight"
+msgstr ""
+"我已经没有多少时间了.全能组织的人要来了...\n"
+"我本来是要去见一个联系人的,但你也只能这样了.他们要来了."
+
+msgid "quicklyknight2"
+msgstr "两个人控制着全能组织.董事会是一个笑话.\n"
+
+msgid "quicklyknight3"
+msgstr "艾莉.艾莉是他们不想让你知道的人."
+
+msgid "quicklyknight4"
+msgstr "对不起,我现在应该离开了."
+
+msgid "omnichannelarrives"
+msgstr "停!"
+
+msgid "yesmaam"
+msgstr "是的,女士."
+
+msgid "firsts"
+msgstr ""
+"♪A B C D E F G♪\n"
+"♪H I J K L M N♪\n"
+"这首歌很不错吧?"
+
+msgid "bothofyou"
+msgstr "你们两个都到外面来.一位全能公司的代表想在镇上讲话."
+
+msgid "hellolovelypeople"
+msgstr "塔巴镇的公民们,你们好!"
+
+msgid "darnitjohn"
+msgstr "等等...约翰在哪里?"
+
+msgid "darnitjohn2"
+msgstr "该死的,约翰!快出来!"
+
+msgid "darnitjohn3"
+msgstr "约翰."
+
+msgid "darnitjohn4"
+msgstr "是的,女士?"
+
+msgid "darnitjohn6"
+msgstr "呃......."
+
+msgid "darnitjohn7"
+msgstr "我不确定..."
+
+msgid "darnitjohn8"
+msgstr "啊啊!!!"
+
+msgid "darnitjohn10"
+msgstr "立刻!"
+
+msgid "johnissorry"
+msgstr ""
+"对不起,女士...我... \n"
+"看到... \n"
+"一些... \n"
+"鲜花..."
+
+msgid "uselessnes"
+msgstr "约翰,你绝对是个没用的人.我不相信我们曾经在一起过."
+
+msgid "cometomepls"
+msgstr "现在,各位,请到市中心来.全能公司希望向您致词!"
+
+msgid "hellolovelypeople3"
+msgstr "这个镇上真的只有你们这些人吗?这里没有人!这肯定是芳登地区最小的城镇."
+
+msgid "hellolovelypeople5"
+msgstr ""
+"不...等等....我们还缺少一个人... \n"
+"在芳登地区剩下的唯一的精灵繁殖者.那个自称是精灵教授的人"
+
+msgid "whereismyhairbrush"
+msgstr "约翰,格兰特,散开.找到他."
+
+msgid "oopsie"
+msgstr "很抱歉让你看到这些.他有时真是太无用了."
+
+msgid "ourstuffisours"
+msgstr "你究竟为什么在这里?"
+
+msgid "maamiexist"
+msgstr "女士,他不在屋里."
+
+msgid "maamiexist2"
+msgstr "有什么感兴趣的东西吗?"
+
+msgid "maamiexist3"
+msgstr ""
+"有一台电脑在运行Ubuntu.\n"
+"我本来想没收它,但我知道Gnome不是你的风格......"
+
+msgid "itsmyaurababe"
+msgstr "现在,你是谁?"
+
+msgid "itsmyaurababe2"
+msgstr ""
+"嗯,现在我真的看到了你,你有一个相当神秘的光环.\n"
+"... ... ... ...\n"
+"我们应该找个时间谈谈.也许在棉花镇见?"
+
+msgid "itsmyduhduhduh"
+msgstr "收到了艾莉的地址!"
+
+msgid "itsmyaurababe3"
+msgstr "我希望我们会再次见面. "
+
+msgid "maamnothing"
+msgstr "女士...\n"
+
+msgid "maamnothing2"
+msgstr ""
+"该死的约翰!我们迟到了!\n"
+"你想要什么?"
+
+msgid "maamnothing3"
+msgstr "我...我...没有找到任何东西."
+
+msgid "maamnothing5"
+msgstr "女士,我也没有找到他."
+
+msgid "solongjohn"
+msgstr ""
+"约翰,你应该留在这里维持和平.\n"
+"反正我也不希望你在身边."
+
+msgid "solongjohn2"
+msgstr "来吧,格兰特,我们有一个时间表要遵守."
+
+msgid "seeme"
+msgstr "一定要来见我..."
+
+msgid "knight4ispoor"
+msgstr "她真的不是一个坏人."
+
+msgid "wherewasshe"
+msgstr "她没有告诉我们这个坏消息..."
+
+msgid "waitdontgo"
+msgstr "${{name}}!等等,先别急着走!"
+
+msgid "thetvbescreamin"
+msgstr ""
+"亲爱的,等等.我打开电视,一个全渠道新闻发布会出现了.\n"
+"我们应该看一下."
+
+msgid "ipausedit"
+msgstr "我暂停了电视,请给我拿杯水,然后我们可以一起看."
+
+msgid "announcement1"
+msgstr ""
+"芳登地区的公民们,你们好!\n"
+"感谢你收听这个强制性公告."
+
+msgid "announcement2"
+msgstr "我们爱你!"
+
+msgid "announcement3"
+msgstr ""
+"谢谢你.我也爱你\n"
+"现在,说说手头的事情."
+
+msgid "announcement4"
+msgstr ""
+"对所有正在收听的丰登地区和其他地区的公民,我欢迎你们.\n"
+"我的名字是艾伯,对于那些想知道的人来说,我的名字是A-E-B-L-E,我是全能公司的首\n"
+"席执行官!\n"
+
+msgid "whythecheering"
+msgstr "那些全能公司的人为他欢呼得很厉害.我想知道为什么?"
+
+msgid "ohnoes"
+msgstr "嗯...我不知道该作何感想..."
+
+msgid "ohnoes2"
+msgstr ""
+"现在这一切都结束了......我们仍然需要从精灵商店购买药水.\n"
+"请确保你在宵禁前回来!"
+
+msgid "depressedmom"
+msgstr "他为什么要做这样的事...我以为他关心..."
+
+msgid "waterwater"
+msgstr "水是冰冷的,很好喝!"
+
+msgid "watchmewatchme"
+msgstr ""
+"你为什么要进城,你知道有一个早期的宵禁.\n"
+"... ... ... ...\n"
+"... ... ... ...\n"
+"你看起来不像是个威胁,所以你可以去镇上了... ...\n"
+"只是不要告诉那些全能公司的打手我让你过去了,好吗?"
+
+msgid "grumble"
+msgstr ""
+"全能公司是一群暴徒,但我们没有选择......\n"
+"正如她常说的,估计我们必须与他们合作......"
+
+msgid "professorexists"
+msgstr "请给我12瓶药水."
+
+msgid "professorexists1"
+msgstr "谢谢你,本."
+
+msgid "professorexists1.5"
+msgstr "为什么要向你问好!"
+
+msgid "potions2"
+msgstr "收到了2个药水!"
+
+msgid "professorexists3"
+msgstr ""
+"哦!请原谅我的举止,我不敢相信我从来没有介绍过我自己\n"
+"我的名字是凯·雷恩,被称为精灵教授.\n"
+"多年来,我一直是芳登地区唯一被允许研究精灵的人."
+
+msgid "professorexists4"
+msgstr ""
+"现在,我知道你在想什么,为什么他们会允许我?\n"
+"对你来说很不幸,这个秘密只属于我,也只属于我自己\n"
+"然而,全能公司应该很快就会有一个新的公告,我想你会喜欢它.\n"
+"我们最好让你回家看第二个公告,来吧!"
+
+msgid "theenergy"
+msgstr "那个人的能量是无限的......."
+
+msgid "hmmm"
+msgstr "我想知道他们在那边做什么?"
+
+msgid "hmmm2"
+msgstr "我听说他们正在建造一个新的公园.为了 \"绿化该地区\""
+
+msgid "hmmm3"
+msgstr "这有什么意义?反正路线上几乎都是草."
+
+msgid "hmmm5"
+msgstr ""
+"麦克斯,尽管你可能想要一个,但我们已经确定了这一点.他们不是在做,也不会做一\n"
+"个水上公园."
+
+msgid "hmmm7"
+msgstr "不过天气很好,不是吗?"
+
+msgid "timeforround22"
+msgstr "哦!你真的拿到了药水!?很好!现在我们真的需要回去了."
+
+msgid "moreannouncement"
+msgstr "芳登地区的所有公民请注意!\n"
+
+msgid "youneedtodothis"
+msgstr ""
+"我...我想你需要研究一下这个问题...\n"
+"我不想失去你,尤其是在我们刚刚安定下来的时候."
+
+msgid "iknowyou"
+msgstr ""
+"你好,凯莉,你好,${{name}},当我无意中听到你在谈论公告时,只是顺便问候一下."
+
+msgid "ihaveyourmoney2"
+msgstr ""
+"我有一些储存起来的东西需要好好利用,而且全能公司欠我一个人情.\n"
+"我确信可以安排一些事情.获得资格证书是容易的部分.获得你的第一个精灵就有点困\n"
+"难了......\n"
+"幸运的是,我碰巧认识一个人,他可以接触到多个不同的精灵......\n"
+"他就是我本人!\n"
+"现在,我知道要处理的事情很多,所以我会在我的实验室里等待你的决定."
+
+msgid "hebenice"
+msgstr "他是个好人,也许你至少应该看看他怎么说."
+
+msgid "moverocky"
+msgstr "来吧,洛基!你可以移动!我相信!"
+
+msgid "moverocky2"
+msgstr "好吧,你准备好了就行动,我在这里等你."
+
+msgid "tuxemontime"
+msgstr "啊,你来了!很好!"
+
+msgid "tuxemontime1.5"
+msgstr "我认为这意味着你已经决定加入审判?"
+
+msgid "tuxemontimechoiceyes"
+msgstr "灿烂的!"
+
+msgid "tuxemontimechoiceno"
+msgstr "哦......好吧......如果你改变主意,我就在这里..."
+
+msgid "tuxemontime2"
+msgstr "现在,要做的第一件事是把你的文件都准备好..."
+
+msgid "tuxemontime3"
+msgstr "我们走吧!"
+
+msgid "tuxemontime3.1"
+msgstr ""
+"这是你的注册文件,第一个战区会要求你出示这些文件以换取训练师徽章.\n"
+"此后你就不需要这些文件了.\n"
+
+msgid "obtainedpapers"
+msgstr "收到注册文件!"
+
+msgid "tuxemontime4"
+msgstr ""
+"现在是最重要的部分!选择你的精灵!\n"
+"不幸的是,我的资金来源最近变得...犹豫不决.这使得你只能选择三只小精灵,对此我\n"
+"很抱歉.\n"
+"这三个选择是小岩猫,、红火鸟,、镊鹭."
+
+msgid "chooseyerfate"
+msgstr "你想要哪一个精灵?"
+
+msgid "chooseyerfateRockitten"
+msgstr ""
+"一个可靠的选择!小岩猫是一种土系的精灵.在中世纪,他们饲养的小岩猫是为了坐在\n"
+"门边,看起来很可爱.\n"
+"你想选择小岩猫吗?"
+
+msgid "choseRockitten"
+msgstr "好了,这是你的小岩猫!我知道你们两个将一起进行伟大的冒险!"
+
+msgid "choseRockitten2"
+msgstr ""
+"首先,让我们用一场快速的精灵战斗来测试你的战斗能力.\n"
+" 让我们来看看...我选择红火鸟."
+
+msgid "rockitten!"
+msgstr "获得了小岩猫!"
+
+msgid "nochoiceTuxemon"
+msgstr "好吧,你为什么不看看另外两个?"
+
+msgid "chooseyerfateCardiling"
+msgstr ""
+"一个有趣的选择,它说明了你内心的火花.红火鸟是一只火系精灵,以偷取朋友和敌人\n"
+"的食物而闻名.\n"
+"你想选择红火鸟吗?"
+
+msgid "choseCardiling"
+msgstr "好了,这是你的红火鸟!我知道你们两个将一起进行伟大的冒险!"
+
+msgid "choseCardiling2"
+msgstr ""
+"首先,让我们用一场快速的精灵战斗来测试你的战斗能力.\n"
+" 让我们来看看...我选择镊鹭."
+
+msgid "chosefight"
+msgstr "还有...让我们战斗吧!"
+
+msgid "cardiling!"
+msgstr "获得了红火鸟!"
+
+msgid "choseTweesher"
+msgstr "好了,这是你的镊鹭!我知道你们两个将一起进行伟大的冒险!"
+
+msgid "choseTweesher2"
+msgstr ""
+"首先,让我们用一场快速的精灵战斗来测试你的战斗能力.\n"
+" 让我们来看看...我选择小岩猫."
+
+msgid "tweesher!"
+msgstr "获得了镊鹭!"
+
+msgid "yahaha"
+msgstr "啊哈!找到你了!"
+
+msgid "gasp"
+msgstr "等等..."
+
+msgid "brokethegasp"
+msgstr "现在,小姐,如果我可以的话,${{name}}这样做不仅仅是为了一份工作."
+
+msgid "brokethegasp2"
+msgstr "你.你为什么要说话?我没让你说话."
+
+msgid "brokethegasp3"
+msgstr ""
+"求你了,全能的女士,${{name}}的母亲想让他们参加训练师阵营,看看整个地区的情\n"
+"况\n"
+"${{name}}并不是为了工作,他们是为了体验."
+
+msgid "gasp3"
+msgstr "如果这是真的,你比我意识到的更多......"
+
+msgid "gasp4"
+msgstr ""
+"好吧,我让你的注册文件保持原样.就现在而言.\n"
+"约翰,格兰特,把所谓的精灵教授带到他的新家."
+
+msgid "goodbye"
+msgstr "不要让审判阻碍你来见我.事实上...也许我会先找到你."
+
+msgid "goodbye2"
+msgstr "再见${{name}}!祝你在审判中好运,你会需要它的."
+
+msgid "tabatownbattlearea"
+msgstr "全能公司认证战区-塔巴镇"
+
+msgid "heystop"
+msgstr "你为什么要这样做?"
+
+msgid "heystop2"
+msgstr ""
+"小姐,我们已经告诉你了.根据第3条第2款,全能公司保留根据需要关闭和维护区域的\n"
+"权利."
+
+msgid "heystop4"
+msgstr "玛丽莎,也许我们应该暂时离开,我们改天再来."
+
+msgid "heystop5"
+msgstr "但是...但是...他们挖走了我们的花.不加思索,不问自明."
+
+msgid "heystop7"
+msgstr "如果他们不是一心想要带回精灵,我们还有我们的特殊花地......"
+
+msgid "soiwashearing"
+msgstr "好吧,看起来我们终于找到了一个花商,每个人都是如此."
+
+msgid "soiwashearing2"
+msgstr "你,那个花匠,你是谁?"
+
+msgid "soiwashearing3"
+msgstr "我的名字是玛丽莎,这些... 这些...歹徒!破坏了我的花地."
+
+msgid "soiwashearing4"
+msgstr ""
+"你怎么敢...\n"
+"这就是你所说的总理!请尊重一下!"
+
+msgid "soiwashearing6"
+msgstr "不,朱利叶斯,我认为这没有必要."
+
+msgid "soiwashearing7.5"
+msgstr "但任何讨厌全能公司的人都是我的朋友."
+
+msgid "soiwashearing10"
+msgstr "我希望能得到正确的处理."
+
+msgid "y-yes"
+msgstr "是......是的.女士."
+
+msgid "soiwashearing11"
+msgstr "很好,现在跟我来,以便我可以和这些所谓的 \"骑士 \"交谈"
+
+msgid "allofyounow"
+msgstr "任何没有精灵的人都需要离开.这可能会变得很混乱."
+
+msgid "taketheleft"
+msgstr "你负责左边的那个,我负责其他三个."
+
+msgid "taketheleft2"
+msgstr "拿下左边的那个!别担心,我会拿下这三个!"
+
+msgid "nobodygetsthrough"
+msgstr "无论你带谁来,我都不会让任何人通过!"
+
+msgid "staples"
+msgstr "嗯,这很容易."
+
+msgid "higrunts"
+msgstr ""
+"这些步兵甚至没有得到适当的训练,所以他们不是我的对手.看起来你也做得不赖."
+
+msgid "higrunts2"
+msgstr "在这里,我将治愈你的精灵."
+
+msgid "ohaimisa2"
+msgstr "我听说有谢罗的暴徒在殴打我的人,但我没想到会是你,米萨!"
+
+msgid "ohaimisa3"
+msgstr "嗨,凯尔,你为什么在这里?"
+
+msgid "ohaimisa5"
+msgstr "等等,他们不是我的..."
+
+msgid "ohaimisa6"
+msgstr ""
+"啊,无所谓了.反正我有更重要的事情要做.你们两个玩得开心点,别再伤害我的人"
+"了!\n"
+
+msgid "kylekindasucks2"
+msgstr "从另一个角度看,看来凯尔是来开路的.现在看来,战斗区已经开放了."
+
+msgid "kylekindasucks3"
+msgstr ""
+"我知道你正在经历审判和所有,但请注意你的背后.全能公司的人无处不在,监视着一\n"
+"切.\n"
+"他们没有问题......处置麻烦的人."
+
+msgid "kylekindasucks4"
+msgstr "我不希望看到另一个人消失.特别是像你这样有前途的人."
+
+msgid "kylekindasucks5"
+msgstr "好了,我可能已经在这里呆得够久了.我该回去了."
+
+msgid "kylekindasucks6"
+msgstr "哦,还有 ${{name}}?"
+
+msgid "kylekindasucks7"
+msgstr ""
+"我会关注你.事实上,我甚至会支持你.\n"
+"不要让我失望,好吗?"
+
+msgid "kylekindasucks8"
+msgstr ""
+"你们四个,回家去吧.记住,你.什么都没看到.\n"
+"明白吗?\n"
+"哦,还有花匠?在某个时候来找我.我的地址就在我给你的卡片上. "
+
+msgid "misaisleavingfornow2"
+msgstr "祝你好运, ${{name}}.我相信我们会再见到对方. "
+
+msgid "imherenow"
+msgstr ""
+"我在这里是为了确保没有人不尊重全能公司!\n"
+"... .... ... ...\n"
+"我如何做到这一点?呃.......也许我会很客气地问他们?"
+
+msgid "welcometotaba"
+msgstr "有志于此的精灵训练师们,你们好!"
+
+msgid "welcometotaba2"
+msgstr ""
+"祝贺你们通过了严格的评估!\n"
+"你们是被选中成为试验中第一批参赛者的幸运群体!"
+
+msgid "welcometotaba3"
+msgstr "我们不是只有三个人吗?似乎我们几乎没有资格作为一个 \"团体\"."
+
+msgid "welcometotaba6"
+msgstr "... .... ..."
+
+msgid "welcometotaba11"
+msgstr ""
+"对不起,先生,但这怎么会是一种荣誉?我是被迫这样做的.我没有选择成为审核的一\n"
+"部分."
+
+msgid "welcometotaba12"
+msgstr ""
+"诚然,我们确实把一些有前途的全能公司新兵送进了训练师培训,所以如果是这样,我\n"
+"很抱歉."
+
+msgid "welcometotaba13"
+msgstr ""
+"不,先生,你囚禁了我的家人,强迫我和我的兄弟加入训练师阵营.\n"
+"所以请原谅我在你谈论训练师时 \"缺乏热情\"."
+
+msgid "welcometotaba14"
+msgstr "啊,你就是我经常听说的那个花城小子.\"全能公司的未来\",你叫什么名字?"
+
+msgid "welcometotaba15"
+msgstr "我的名字是斯佩克,先生."
+
+msgid "kylereallysucks"
+msgstr "好吧,斯派克,如果这能让你感到安慰的话,是我下了攻击的命令."
+
+msgid "kylereallysucks2"
+msgstr "祝大家好运!我完全期望你们没有一个人能够成功!"
+
+msgid "kylereallysucks3"
+msgstr "哦,还有斯派克?我很喜欢这些尖叫声"
+
+msgid "toodles"
+msgstr "贫民!"
+
+msgid "dowehavetogoin3"
+msgstr "我必须进去,不管我多么不愿意,我必须帮助我爱的人."
+
+msgid "dowehavetogoin4"
+msgstr "谁知道呢,也许我可以亲自和他打一场!"
+
+msgid "dowehavetogoin5"
+msgstr "顺便问一下,你叫什么名字?凯尔似乎根本就没有称呼你."
+
+msgid "hichristie"
+msgstr "哦,我的名字是克里斯蒂!对不起,我之前应该提到的."
+
+msgid "hichristie2"
+msgstr ""
+"嗨,克里斯蒂.如你所知,我是斯佩克.很高兴见到你.\n"
+"现在..."
+
+msgid "hiperson"
+msgstr "你是谁,谁是米萨,谁是艾莉?给我们介绍一下!"
+
+msgid "hiperson3"
+msgstr "我们从名字和你的家乡开始,如何?"
+
+msgid "hiperson4"
+msgstr "....... ...."
+
+msgid "hiperson5"
+msgstr "哦,所以你是来自塔巴镇的!很好!"
+
+msgid "hiperson6"
+msgstr "现在,米萨和艾莉是谁?"
+
+msgid "nobody"
+msgstr "我实际上不知道"
+
+msgid "somebody"
+msgstr "我宁愿不谈他们"
+
+msgid "somebody2"
+msgstr ""
+"呜呜呜.那么他们对你来说是特别的吗?是不是有一个三角恋?来吧!我们需要知道"
+
+msgid "stahp2"
+msgstr "....很好."
+
+msgid "stahp3"
+msgstr ""
+"但不要以为你在回避这次谈话!我很快就会把细节告诉你.我很快就会从你那里得到详\n"
+"细的资料!"
+
+msgid "stahp4"
+msgstr "她是出于好意..."
+
+msgid "stahp5"
+msgstr "...我想."
+
+msgid "tabanurse_dialog\n"
+msgstr ""
+"欢迎来到${{map_name}}的精灵中心!\n"
+"您想为您的精灵治疗吗?\n"
+
+msgid "okaythen"
+msgstr "好的!给我一点时间,我就能治好你的精灵!"
+
+msgid "okaythen2"
+msgstr "嗯,看起来你的精灵现在都好了!他们在这里!"
+
+msgid "waithere"
+msgstr "我们必须暂时在这里等待.显然,前面有棵树倒了."
+
+msgid "nodrink"
+msgstr "我很确定你太年轻了,不能喝酒......"
+
+msgid "professorswife"
+msgstr "哦,不!你刚刚错过了他.我想他已经进城了.也许去那里看看?"
+
+msgid "understand?"
+msgstr "明白了吗?"
+
+msgid "input_name"
+msgstr "名字?"
+
+msgid "input_monster_name"
+msgstr "为你的精灵命名?"
+
+msgid "happy_rename"
+msgstr "哈皮：这是个好名字!我相信你的精灵会喜欢它的 :)"
+
+msgid "happy_guy_dialog"
+msgstr "哈皮：你好!我喜欢给精灵取昵称,你想给你的精灵取个昵称吗?"
+
+msgid "shady_rename"
+msgstr "改名者：祝你的新名字好运,朋友..."
+
+msgid "37707_sign_welcome"
+msgstr "欢迎来到37707镇!我们是..."
+
+msgid "37707_sign_tower"
+msgstr "37707塔.这个塔的结构是非常不稳定的.请勿进入!"
+
+msgid "37707_sign_foreign"
+msgstr "这个标志是用一种你无法理解的外语写的."
+
+msgid "37707_house"
+msgstr "很奇怪.它是锁着的.似乎没有人在使用这栋楼."
+
+msgid "37707_mail"
+msgstr "它是空的,充满了蜘蛛网."
+
+msgid "37707_exit_missing"
+msgstr ""
+"<recovery_module>:欢迎 ${{name}}.请理解这个区域从未存在过.你遇到了一个系统\n"
+"错误.\n"
+"<recovery_module>:该故障现在已经被修复.你可以从这里继续正常游戏.请不要试图\n"
+"返回这里.\n"
+"<recovery_module>:醒来吧.忘掉一切.一切都只是一个梦..."
+
+msgid "37707_villager_male_2"
+msgstr "无名者：你不能再帮忙了.我们不允许谈论这个问题.你不能理解.离开吧."
+
+msgid "37707_villager_male_3"
+msgstr "无名者：你......你会让我们重新陷入困境.回去吧,永远不要再回来了!"
+
+msgid "37707_sign_missing_welcome"
+msgstr "歡迊唻菿措誤尒鎮!莪們苁唻莈洊茬過"
+
+msgid "37707_sign_missing_foreign"
+msgstr ""
+"PyGame - UnboundLocalError.本地变量'map_id'在赋值前被引用\n"
+"错误404.**** 资源未找到.Please notify tHe dEvEl0p#r$ @b0%t t#1# ##### "
+"###########\n"
+"01010010 01100101 01101101 01100101 01101101 01100010 01100101 01110010 "
+"00100000 01101101 01100101 00101110"
+
+msgid "37707_sign_missing_hidden_read"
+msgstr "莪們倁檤沵看菿孒適個:莪巳經檠哠過沵孒."
+
+msgid "37707_sign_missing_hidden_unread"
+msgstr "咜忲媥孒"
+
+msgid "37707_house_missing"
+msgstr "適里什庅嘟莈洧.苁唻莈洧."
+
+msgid "37707_mail_missing"
+msgstr "咜湜涳哋,沵妸姒看菿歔涳."
+
+msgid "37707_flower_missing"
+msgstr "措誤:倳件懆莋set_monster_health笣浛嘸效傪薮$.菭療葰洧棈靈."
+
+msgid "37707_tower_missing"
+msgstr "沵芣能琎叺①個芣洊茬哋踺茿粅."
+
+msgid "37707_sign_missing_tower"
+msgstr "镇N/A <undefined_structure>. Denetsil evah dluohs uoy"
+
+# # DIALOG TRANSLATIONS ##
+# spyder dialogs
+msgid "spyder_papertown_stopthere"
+msgstr ""
+"嘿,你以为你在做什么?\n"
+" 进入荒野是不安全的,除非你有一只精灵.\n"
+" 来我们店里买一个吧."
+
+msgid "spyder_papertown_homemaker1"
+msgstr ""
+"你好吗,${{name}}? \n"
+" 一如既往地安静和庄重,我看到了."
+
+msgid "spyder_papertown_mom3"
+msgstr ""
+"哦,你为自己找到了一只精灵.恭喜你! \n"
+" 为什么你不去下一个城镇探索呢?"
+
+msgid "spyder_papertown_mom4"
+msgstr "欢迎回来!看看你,长得这么快."
+
+msgid "spyder_papertown_mom5"
+msgstr ""
+"你知道吗,隔壁的佩珀奶奶已经开了她的日托中心. \n"
+" 嗯,我想,不是每个人都能成为发明家的. "
+
+msgid "spyder_papertown_mom6"
+msgstr ""
+"祝贺你!你拿下了这些公司! \n"
+" 当然,现在很多人没有工作了......但我认为你做了正确的事情."
+
+msgid "spyder_papertown_grannypiper2"
+msgstr ""
+"你知道吗,皮珀尔家族是靠托儿所生意发家的!你知道吗? \n"
+" 我已经退休十年了,我开始感到无聊了.我想重新投入其中!"
+
+msgid "spyder_papertown_myfirstmon1"
+msgstr "*翻找* *翻找* "
+
+msgid "spyder_papertown_myfirstmon2"
+msgstr "我们来了,有五只精灵!你喜欢哪个?"
+
+msgid "spyder_papertown_rockittenchosen"
+msgstr "一个很好的选择!小岩猫是一只土系的精灵."
+
+msgid "spyder_papertown_lambertchosen"
+msgstr "一个不错的选择!兰伯蒂亚是木系精灵."
+
+msgid "spyder_papertown_nutchosen"
+msgstr "一个华丽的选择!螺母兽是一只金系精灵."
+
+msgid "spyder_papertown_tweesherchosen"
+msgstr "一个有灵感的选择!镊鹭是一只水系精灵."
+
+msgid "spyder_papertown_agnitechosen"
+msgstr "一个伟大的选择!火鬣蜥是一只火系精灵."
+
+msgid "spyder_papertown_wrapup"
+msgstr ""
+"我会把剩下的这些东西送给其他错过了自己的精灵的孩子们!我也可能会为自己留一\n"
+"个. "
+
+msgid "spyder_papertown_firstfight_win"
+msgstr "哼,一定是侥幸.新精灵不可能比旧精灵更差!"
+
+msgid "spyder_papertown_firstfight_lose"
+msgstr "果然不出所料!旧精灵无法与新精灵相比!"
+
+msgid "spyder_cottontown_monk"
+msgstr ""
+"我被五行道场指派来照顾这里的雕像. \n"
+" 但全能公司正计划将其办公室扩大到这个空间. \n"
+" 我不知道当他们这样做时,这些雕像会发生什么."
+
+msgid "spyder_cottontown_hackerintro"
+msgstr ""
+"嘿,很酷的精灵!我可以看看收据吗? \n"
+" ... \n"
+" 开个玩笑,我有种感觉,你没有用官方的渠道来挑选它. \n"
+" 多年来,\"五大支柱 \"一直控制着最强的精灵.你觉得戳他们的眼镜会不会很酷? \n"
+" ... \n"
+" 很好!我有一个项目给你.在咖啡馆见我!"
+
+msgid "spyder_cottontown_stopthere"
+msgstr "嘿,这可不行!在你跑掉之前,你必须来参加我在咖啡馆的讲座!"
+
+msgid "spyder_cottontown_enforcer"
+msgstr "不要管它,孩子,这是私人财产!"
+
+msgid "37707_villager_male_missing"
+msgstr ""
+"00000: 莪苁沬炪泩\n"
+"${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} "
+"${{name}} ${{name}} ${{name}}"
+
+msgid "spyder_cottoncafe_hackerchat"
+msgstr ""
+"你能帮助精灵百科,这太酷了.\n"
+"  ... \n"
+" 添加所有的精灵有什么奖励吗? \n"
+" 只有帮助人类的满足感,伙计."
+
+msgid "spyder_cottoncafe_barmaid"
+msgstr "欢迎回来.要不要我把你的精灵放在治疗室里?"
+
+msgid "spyder_cottonart_granny"
+msgstr ""
+"我一定是开始怀念了.我几乎总是说 \n"
+" \"在我的时代,事情会更好!\""
+
+msgid "spyder_cottonart_goth"
+msgstr ""
+"我曾经喜欢每周末来这里看画. \n"
+" 现在所有最好的画都被卖掉了,而且门票也太贵了. \n"
+" 但我的祖母想来,所以......"
+
+msgid "spyder_cottonart_florist"
+msgstr ""
+"你对港口中的船舶的蓝色画作有什么看法? \n"
+" 它是印象派风格的--这意味着它试图捕捉光线的外观和行为. \n"
+" 看到沿着水波反射的小红太阳了吗?"
+
+msgid "spyder_cottonart_shopkeeper"
+msgstr ""
+"欢迎来到棉花镇艺术馆.啊--我是说艺术商店! \n"
+" 自从他们削减我们的资金后,我们不得不出售艺术品,而不仅仅是展示它们. \n"
+" 入场费为${{currency}50元.这将用于公司的年度股息."
+
+msgid "spyder_cottonscoop_deviceoffer"
+msgstr "欢迎.今天,我们正在推广采集设备.你知道这些是什么吗?"
+
+msgid "spyder_cottonscoop_devicenoexplan"
+msgstr ""
+"     好吧,这里有五个作为免费样品.如果您对采集设备的工作方式有任何疑问,请向\n"
+"我的助手询问!"
+
+msgid "spyder_cottonscoop_deviceexplan"
+msgstr "让我的助手来向你介绍."
+
+msgid "spyder_cotton_tuxepediaintro2"
+msgstr "添加信息所需要的是你抓住那个特定的精灵.这真是太酷了."
+
+msgid "spyder_cotton_tuxepediaintro3"
+msgstr "你全神贯注地阅读新条目,以至于你没有注意到人们离开."
+
+msgid "spyder_cotton_tuxepediaintro4"
+msgstr ""
+"你能来真是太酷了.还有这么多的精灵要加入--我想有一百多个. \n"
+" 你可以真正进入它,并为世界带来改变. "
+
+msgid "spyder_route2_billie1"
+msgstr "嘿,小气鬼!你还带着你偷来的精灵吗?"
+
+msgid "spyder_route2_billie2"
+msgstr "这是一种侥幸.我的精灵很贵,这意味着它们的质量很高."
+
+msgid "spyder_route2_graf1"
+msgstr "我是王者--在搏击和网球方面!"
+
+msgid "spyder_route2_marion1"
+msgstr "周围有这么多美味的蚂蚁!...对于我的阿尔多恩,我的意思是..."
+
+msgid "spyder_route2_roddick1"
+msgstr "当我被战斗蜘蛛埋伏在地牢里的时候,我感到非常惊恐."
+
+msgid "spyder_route2_roddick2"
+msgstr "嘿,你看起来一点也不惊慌失措!"
+
+msgid "spyder_citypark_maniac"
+msgstr "唷,我们大腹便便了!"
+
+msgid "spyder_citypark_granny"
+msgstr "稍作休息后,我们将走回皮革城."
+
+msgid "spyder_citypark_florist"
+msgstr "欣赏花展!它是皮革城的骄傲."
+
+msgid "spyder_citypark2_florist"
+msgstr ""
+"这些花看起来还不错,不是吗?...自从皮革城开始采矿以来,花儿们就一直处于风雨飘\n"
+"摇的状态!"
+
+msgid "spyder_route2_graf2"
+msgstr "我被招待了."
+
+msgid "spyder_citypark_frances1"
+msgstr "我有全世界最好的花园.这就是为什么这些小叶灯不断出现."
+
+msgid "spyder_citypark_bobette2"
+msgstr " 一只猫会赢得…"
+
+msgid "spyder_route3_drag1"
+msgstr ""
+"代理人：挖掘工作发生了什么?\n"
+" 我们被......打断了.被......一个孩子.\n"
+"一个孩子?\n"
+"但我们确实找到了一个...\n"
+"嘘,你知道这是最高机密.好吧,把它交出来,然后滚蛋! \n"
+"好的,给你......呃!"
+
+msgid "spyder_route3_drag2"
+msgstr "代理：什么?跟我来,你可以向总部解释这个问题!"
+
+msgid "spyder_route3_zoolander1"
+msgstr ""
+"一块巨石给旅行者带来了麻烦? \n"
+" 这是 \"我们的错\"? \n"
+" 谁在乎呢?我们有紧急的工作要做!"
+
+msgid "spyder_route3_zoolander2"
+msgstr "啊,我的大锤子掉了!"
+
+msgid "spyder_route3_qqq1"
+msgstr "啊,执法者并不打算让任何人出去!"
+
+msgid "spyder_route3_qqq2"
+msgstr ""
+"我不会透露任何关于我们的阴谋的信息!事实上,忘记我说过的关于阴谋的事情吧.事\n"
+"实上,就当我没说过什么阴谋吧!"
+
+msgid "spyder_route3_novak1"
+msgstr " 我的埃洛飞是个天才!我要尽可能多地收集."
+
+msgid "spyder_route3_novak2"
+msgstr "嗯,不够聪明......."
+
+msgid "spyder_route3_weaver1"
+msgstr "嘿,别管它了!这个矿区是属于沙夫特的!"
+
+msgid "spyder_route3_weaver2"
+msgstr "去吧,出去吧!"
+
+msgid "spyder_route3_curie1"
+msgstr "看看我的宏伟发明吧!"
+
+msgid "spyder_route3_curie2"
+msgstr "你为什么要这样做?"
+
+msgid "spyder_route3_connor1"
+msgstr "我的尖刺蜂现在正处于战斗状态--有一段时间它无法飞行."
+
+msgid "spyder_route3_connor2"
+msgstr "哦,好吧,这将是他们的一个学习经验."
+
+msgid "spyder_route3_roxby1"
+msgstr "把打桩机拿过来,快点!嘿......你看起来不像是个矿工. "
+
+msgid "spyder_route3_twig1"
+msgstr ""
+"我们挖出来的一些东西是属于博物馆的! \n"
+" 等等,你不在这里工作. "
+
+msgid "spyder_route3_twig2"
+msgstr "不要向老板提起博物馆的事,好吗?"
+
+msgid "spyder_route3_twig3"
+msgstr ""
+"我将进行更多的训练,变得像我们的老板一样强大. \n"
+" 她如此努力地成为领导者,我希望有一天能像她一样."
+
+msgid "spyder_route3_wanda1"
+msgstr "我似乎只抓到了无聊的浮蛞蝓!"
+
+msgid "spyder_wayfarer1_jessie2"
+msgstr "你不像执法者那样有帮助.也没有那么英俊. "
+
+msgid "spyder_wayfarer1_nightshade1"
+msgstr "这很令人尴尬.所有护士的精灵都生病了,但执法者的精灵却很健康!"
+
+msgid "spyder_wayfarer1_nightshade2"
+msgstr "我想我们有很多东西需要学习,关于精灵的护理."
+
+msgid "spyder_wayfarer1_victor1"
+msgstr "嘿,你不能带着可能被感染的精灵离开!"
+
+msgid "spyder_wayfarer1_victor2"
+msgstr "就在那里停下!或者,嗯..."
+
+msgid "spyder_wayfarer1_morningstar1"
+msgstr "在这里看到你,我一点也不惊讶. "
+
+msgid "spyder_wayfarer1_morningstar2"
+msgstr "以后再来找我--请下一个病人!"
+
+msgid "spyder_wayfarer1_bravo1"
+msgstr "此项执法行动由全能公司赞助.你唯一需要的新闻. "
+
+msgid "spyder_wayfarer1_bravo2"
+msgstr "请不要让我的战斗表现影响你对全能公司的看法. "
+
+msgid "spyder_wayfarer1_james1"
+msgstr "我想知道执法者怎么这么快就来了!?一定是杰西护士叫他们来的."
+
+msgid "spyder_wayfarer1_james2"
+msgstr "我很高兴杰西没有看到我这样的损失!"
+
+msgid "spyder_wayfarer1_bismuth1"
+msgstr "我希望这与勺子农场的那些生病的精灵没有关系!"
+
+msgid "spyder_route4_beck1"
+msgstr "你的发球!"
+
+msgid "spyder_route4_beck2"
+msgstr "游戏,设置,比赛."
+
+msgid "spyder_flower_mieke1"
+msgstr ""
+"对我们来说,访问芳登地区是一件令人激动的事情!你们这里有如此独特的精\n"
+"灵...... \n"
+" 嘿,你想做交易吗?用我的圆锥叶换一个我们家乡没有的生物...... \n"
+" 友友猫怎么样?"
+
+msgid "spyder_flower_mieke_willtrade"
+msgstr "嗯,很好!给你."
+
+msgid "spyder_flower_fez1"
+msgstr ""
+"我们地区的每个人都必须从同样的五种无聊的精灵中挑选一种.\n"
+" 我知道大概有一百个人有火狐......\n"
+" 嘿,你想做交易吗?用我的火狐换一个岩浆龟?"
+
+msgid "spyder_flower_fez_noignibus"
+msgstr "哦,这并不重要--我可以看到你没有岩浆龟."
+
+msgid "spyder_flower_fez_willtrade"
+msgstr "太好了!干得好."
+
+msgid "spyder_flower_cady_nogrintot"
+msgstr "哦,这并不重要--我可以看到你没有格林托特. "
+
+msgid "spyder_flower_sandy1"
+msgstr ""
+"这只法凡一直向我喷水.真麻烦! \n"
+" 嘿,你想要它吗?你得给我一个镊鹭作为回报."
+
+msgid "spyder_flower_sandy_notweesher"
+msgstr "哦,这并不重要--我可以看到你并没有镊鹭."
+
+msgid "spyder_flower_cady_willtrade"
+msgstr "嗯,很好!给你."
+
+msgid "spyder_flower_teach1"
+msgstr "哦,我的另一个学生到哪里去了?"
+
+msgid "spyder_flower_petshopassistant"
+msgstr "你好 - 我们是宠物店男孩.你有兴趣购买一只精灵吗?"
+
+msgid "spyder_flower_petshopkeeper2"
+msgstr "告诉你吧,为什么我不给你一个,你可以回来告诉我它会变成什么!"
+
+msgid "spyder_flower_petshopkeeper3"
+msgstr "你让维维帕雷进化了吗?"
+
+msgid "spyder_route1_beachcomber"
+msgstr ""
+"要奔跑,只需按住SHIFT键. \n"
+" 看!我像埃洛飞一样自由!"
+
+msgid "spyder_cottonhouse1_homemaker"
+msgstr ""
+"看到周围有这么多执法者,我感到很安全.我认为你永远不会太小心. \n"
+" 报纸上总是报道在这个地区发生的可怕的犯罪行为!"
+
+msgid "spyder_cottonhouse1_firefighter"
+msgstr ""
+"你知道精灵有可能有两个属性吗? \n"
+" 甚至一个技能可以同时属于两个属性."
+
+msgid "spyder_cottonhouse2_magician"
+msgstr ""
+"有些属性是相互克制的. \n"
+" 学习属性之间的相互作用,是成为一名自由梦大师的关键."
+
+msgid "spyder_cottonhouse2_catgirl"
+msgstr "你见过城市公园里的那个老人吗?他对打破记录很着迷!"
+
+msgid "spyder_cottonhouse2_shopkeeper"
+msgstr ""
+"我对其他地区的人没有意见. \n"
+" 只是不要来打扰我的工作,好吗?"
+
+msgid "spyder_leatherhouse1_florist"
+msgstr ""
+"以前有几家电视台和广播电台在运营,但全能频道把它们赶走了. \n"
+" 现在我们不必担心不同的记者相互矛盾了."
+
+msgid "spyder_leatherhouse2_scientist"
+msgstr ""
+"我为沙夫特工作. \n"
+" ... \n"
+" 我的头盔呢?我不需要,我从我们的办公室远程控制卡车. \n"
+" 很快,矿区的大部分工作都将实现自动化. "
+
+msgid "spyder_leatherhouse2_miner"
+msgstr ""
+"你不会相信他们在3号公路上挖出了什么. \n"
+" 我从来没有见过这么大的蛋. \n"
+" 哎呀,我说得太多了. "
+
+msgid "spyder_flowerhouse1_tv"
+msgstr "两个精灵在战斗.\"我不是你的朋友,\",一个友友猫说."
+
+msgid "spyder_flowerhouse2_soldier"
+msgstr ""
+"我在战争期间为尼姆罗德工作. \n"
+" 不是说我得到了奖章.或阅兵式. \n"
+" 他们不会把这些东西发给雇佣兵."
+
+msgid "spyder_flowerhouse2_scientist"
+msgstr ""
+"FUD电台每天早上都会叫醒我. \n"
+" 我不确定我是否关心他们的政治,但至少他们说了他们所看到的一切!"
+
+msgid "spyder_flower_florist"
+msgstr ""
+"以前这里有一个河船船长,可以带你在河上和河下航行. \n"
+" 但我已经有几天没有见到他了. "
+
+msgid "spyder_flowerhouse1_firefighter"
+msgstr "五大支柱公司是这个地区唯一的大公司.他们有很大的影响力."
+
+msgid "spyder_nimrod_birbrobo1"
+msgstr "哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔"
+
+msgid "spyder_nimrod_birbrobo2"
+msgstr "噗噗"
+
+msgid "spyder_nimrod_chromerobo1"
+msgstr "哔哔"
+
+msgid "spyder_nimrod_xeon1"
+msgstr "喔......毛刺......获得的目标"
+
+msgid "spyder_nimrod_xeon2"
+msgstr "...菊花,菊花,给我你的答案,做..."
+
+msgid "spyder_nimrod_thatcher1"
+msgstr "Woo-wee.瞧瞧这个.那些抗议者不会知道是什么袭击了他们."
+
+msgid "spyder_nimrod_thatcher2"
+msgstr "没有评论. "
+
+msgid "spyder_nimrod_honour1"
+msgstr "你敢碰那些原型!? "
+
+msgid "spyder_nimrod_honour2"
+msgstr "别管那些原型了!"
+
+msgid "spyder_nimrod_antimony1"
+msgstr "哦,上帝,你破坏了原型.我们正准备开始大规模生产."
+
+msgid "spyder_nimrod_antimony2"
+msgstr "多年的工作,在几分钟内就付诸东流了. "
+
+msgid "spyder_nimrod_rebel1"
+msgstr ""
+"大教堂派你去买那批新的....... \n"
+" 没有? \n"
+" 哦."
+
+msgid "spyder_nimrod_rebel2"
+msgstr "我问的那批货装满了……嗯……泰迪熊."
+
+msgid "spyder_nimrod_maverick1"
+msgstr "在晚上,我自己弹吉他."
+
+msgid "spyder_nimrod_maverick2"
+msgstr "我希望我认识的人可以和我一起玩音乐."
+
+msgid "spyder_nimrod_justice1"
+msgstr "不要问幽灵齿为谁而鸣!"
+
+msgid "spyder_nimrod_justice2"
+msgstr "它为我而鸣."
+
+msgid "spyder_nimrod_mace1"
+msgstr "我想辞职,成为一名音乐家."
+
+msgid "spyder_nimrod_mace2"
+msgstr "我将把我的乐队称为 \"机枪手\"."
+
+msgid "spyder_nimrod_argon2"
+msgstr "我知道我不可能说服你."
+
+msgid "spyder_nimrod_zircon1"
+msgstr "如果你真的喜欢精灵,你会支持我们在战争中用机器人取代它们."
+
+msgid "spyder_nimrod_zircon2"
+msgstr "我希望我用机器人取代了我的精灵. "
+
+msgid "spyder_nimrod_archer1"
+msgstr "核聚变技术进展如何?我们 ...等等,你不是来自格林沃什!"
+
+msgid "spyder_nimrod_archer2"
+msgstr "闭上你的嘴,好吗?"
+
+msgid "spyder_nimrod_bowie2"
+msgstr "那个军事硬件问题是假设性的,好吗?"
+
+msgid "spyder_nimrod_tru1"
+msgstr ""
+"我的武器赢得了战争,制服了世界每个角落的起义,而你认为你有机会对抗我吗?"
+
+msgid "spyder_nimrod_guard1"
+msgstr ""
+"对不起,伙计,正在进行私人会议. \n"
+" 所以,请离开吧!"
+
+msgid "spyder_route5_goliath1"
+msgstr "嘿,你不是那个路人客栈的多管闲事的孩子吗?"
+
+msgid "spyder_route5_hunter1"
+msgstr "要把一个团队凝聚在一起,需要很多东西."
+
+msgid "spyder_route5_hunter2"
+msgstr "我们会回来的."
+
+msgid "spyder_route5_edith1"
+msgstr "呜呼!我们的第100万只蚂蚁!...呃,我不认为有人会听到这个消息."
+
+msgid "spyder_route5_edith2"
+msgstr "让我们看看,在阿尔达特吃下她的第200万只蚂蚁之后,你是否还能如此狂妄!"
+
+msgid "spyder_route5_cleo1"
+msgstr "母亲说你可以将我们的血统追溯到曾经统治这个国家的国王."
+
+msgid "spyder_route5_cleo2"
+msgstr "哦,祖先,我让你失望了!"
+
+msgid "spyder_route5_tryphaena1"
+msgstr "你知道,我们的后裔是......你已经听过了?哦."
+
+msgid "spyder_route5_tryphaena2"
+msgstr "好吧,强权即正义."
+
+msgid "spyder_timber_dante1"
+msgstr "嗨朋友!很高兴再次见到你. "
+
+msgid "spyder_scoop_lanth1"
+msgstr "看,这些精灵是多么幸福啊!它们彼此之间生活得如此亲近!"
+
+msgid "spyder_scoop_lanth2"
+msgstr "典型的激进主义麻烦制造者. "
+
+msgid "spyder_scoop_paine1"
+msgstr "我感到非常可怕,因为这种疾病已经传出去了. "
+
+msgid "spyder_scoop_rubid1"
+msgstr "这实际上是最人道的饲养精灵的方法."
+
+msgid "spyder_scoop_rubid2"
+msgstr "研究表明,精灵觉得战斗比生活在这些条件下更有压力. "
+
+msgid "spyder_scoop_berys1"
+msgstr "你会注意到,这里的精灵都没有生病--它们都被关在隔离区."
+
+msgid "spyder_scoop_berys2"
+msgstr "勺子并没有释放疾病!我向你保证. "
+
+msgid "spyder_scoop_turner1"
+msgstr "其中一些人会告诉你,执法者让疾病传播出去.不要相信他们!"
+
+msgid "spyder_scoop_alyssa1"
+msgstr "一旦发现疾病,我们就把受感染的精灵移到这个隔离单元."
+
+msgid "spyder_scoop_alyssa2"
+msgstr "我告诉你,我们把疾病控制住了!"
+
+msgid "spyder_scoop_taggart1"
+msgstr "有人偷了我们发明的极端约束装置,用来把精灵关在禁闭室里!是你吗?"
+
+msgid "spyder_scoop_taggart2"
+msgstr "如果不是你偷了 \"极限约束\",那是谁偷的? "
+
+msgid "spyder_scoop_donald1"
+msgstr ""
+"我们在这里隔离的那只生病的精灵跑出来了,闯进了储藏室之外的地方!我们如何保证储\n"
+"藏室的安全?"
+
+msgid "spyder_scoop_donald2"
+msgstr "你可能只是有足够的力量来控制逃跑的精灵.请--为我们做这件事. "
+
+msgid "spyder_scoop_orba1"
+msgstr "呀!你在这里做什么?"
+
+msgid "spyder_scoop_orba2"
+msgstr "就这一点而言,我在这里做什么?"
+
+msgid "spyder_scoop_weaver1"
+msgstr ""
+"如果我知道他们会在这里追赶我们,我就不会把束缚带从那些咳嗽的精灵身上取下来!"
+
+msgid "spyder_scoop_weaver2"
+msgstr "呀!事实证明,犯罪是不需要付出代价的!"
+
+msgid "spyder_scoop_arachne1"
+msgstr "嗳!你没看到我们正处于一个反派计划中吗?"
+
+msgid "spyder_scoop_cochini1"
+msgstr "猪的叫声!猪的叫声! "
+
+msgid "spyder_scoop_arachne2"
+msgstr "太晚了!我有极端约束,你也无能为力. "
+
+msgid "spyder_scoop_landrace1"
+msgstr "格拉尔!"
+
+msgid "spyder_scoop_landrace2"
+msgstr "乌夫."
+
+msgid "spyder_scoop_landrace3"
+msgstr ""
+"谢谢你摆脱了那个挡住去路的畜生! \n"
+" 现在我们可以带着极端束缚逃跑了! "
+
+msgid "spyder_scoop_cochini2"
+msgstr "猪的叫声."
+
+msgid "spyder_scoop_lapinou1"
+msgstr "哎呀!"
+
+msgid "spyder_scoop_lapinou2"
+msgstr "姆啊!"
+
+msgid "spyder_tunnelb_beryll1"
+msgstr "我喜欢收集岩石和石头."
+
+msgid "spyder_tunnelb_beryll2"
+msgstr "啊,我打翻了我的石头收藏!"
+
+msgid "spyder_tunnelb_lute1"
+msgstr "蝙蝠是最好的宠物!"
+
+msgid "spyder_tunnelb_meitner1"
+msgstr "假面蛇是非常有趣的.只要戳一下它,它的尾巴就会上演一场灯光秀!"
+
+msgid "spyder_tunnelb_meitner2"
+msgstr "我认为你戳得太狠了."
+
+msgid "spyder_tunnelb_iris1"
+msgstr "嗳!你打断了我们的舞蹈!"
+
+msgid "spyder_tunnelb_iris2"
+msgstr "走吧.图尔比迪,请去哪里!"
+
+msgid "spyder_tunnelb_greta1"
+msgstr "当炎鬣蜥把我的宝贝福夫勒逼上绝路时,所有这些朋友都出现了!"
+
+msgid "spyder_route6_frances2"
+msgstr "你有时间一定要来看看."
+
+msgid "spyder_route6_ping1"
+msgstr "你听说了吗?执法者们正在没收糖果镇上所有人的精灵."
+
+msgid "spyder_route6_ping2"
+msgstr ""
+"他们不会就此罢休......最终他们会没收所有的精灵,如果他们认为自己可以逃脱的"
+"话."
+
+msgid "spyder_route6_richard1"
+msgstr "伙计,有一天我离开电脑去散步,就会发生这样的事!这是我的错!"
+
+msgid "spyder_route6_richard2"
+msgstr "这是我有史以来最最高的日子."
+
+msgid "spyder_route6_blair1"
+msgstr "有些事情是有蹊跷的."
+
+msgid "spyder_route6_gunner2"
+msgstr "你不是格林沃什的员工?我以前听过这句话!"
+
+msgid "spyder_flower_artist1"
+msgstr "简洁而笨拙的笔触和一个行人的主题.呸!又一块被毁坏的画布."
+
+msgid "spyder_flower_muse1"
+msgstr ""
+"他对自己很苛刻,对自己画的东西从不满意.他也是如此健忘.也许我可以买一幅画 "
+
+msgid "spyder_flower_artist_clipping"
+msgstr ""
+"墙上贴着一张剪报.它开始了. \n"
+" \"著名的艺术评论家已经收起了他的毒笔,拿起了画笔. \n"
+" 经过多年对艺术家的诋毁,他自己还能做得更好吗?\""
+
+msgid "spyder_dragonscave_mallory3"
+msgstr ""
+"德罗科罗是我们的! \n"
+" 我们让沙夫特把它从3号公路下面挖出来,如果不是那个令人生气的孩子打断了我们的\n"
+"计划,我们会保留它. \n"
+" 现在是柱子们联合起来彻底统治这个地区的时候了! \n"
+" 我们让大教堂和公众来告诉我们什么能做什么不能做,对精灵来说已经太久了. \n"
+" 当我们使用格林沃什的融合技术,将这个德罗科罗与尼姆罗德制造的杀手机器人结合起\n"
+"来,我们将是不可阻挡的! \n"
+" 而最重要的是,全能公司将告诉公众,这一切都是为了他们的最大利益--而公众也会相\n"
+"信他们的!"
+
+msgid "spyder_wayfarerinn_tv1"
+msgstr ""
+"新闻正在播放. \n"
+" 主持人说,关于感染的传言是毫无根据的."
+
+msgid "spyder_omnichannel_donald1"
+msgstr "又回来了?我应该在勺子总部把你送进绞肉机."
+
+msgid "spyder_hospital_nurse1"
+msgstr ""
+"该屏幕被设置为检测和拒绝人类和精灵. \n"
+" 它已被编码为所有已知的精灵的DNA! "
+
+msgid "spyder_dryadsgrove_petra1"
+msgstr "破解自然界的霉菌!"
+
+msgid "spyder_searoutec_nigel3"
+msgstr ""
+"对不起,在斯皮德咬伤感染仍在传播的情况下,我不能允许任何人进入神圣的洞穴."
+
+msgid "spyder_hospital_billie2"
+msgstr ""
+"等等......你的精灵没有生病! \n"
+" ... \n"
+" 就这么简单? \n"
+" 那为什么执法者要带走我们的小精灵,而不是直接把它们治好?..."
+
+msgid "spyder_leatherhouse2_snugglepot"
+msgstr "哇!我的天啊!有一天我也会像你一样成为一名训练师!"
+
+msgid "spyder_scoop_sign"
+msgstr "勺子总部.几乎好到可以吃!"
+
+msgid "spyder_route3_wanda"
+msgstr "万达"
+
+msgid "spyder_granny"
+msgstr "婆婆"
+
+msgid "spyder_route2_marion"
+msgstr "玛丽安"
+
+msgid "spyder_route3_twig"
+msgstr "小树枝"
+
+msgid "spyder_route2_graf"
+msgstr "格拉夫"
+
+msgid "spyder_route3_curie"
+msgstr "居里"
+
+msgid "spyder_route3_connor"
+msgstr "康纳"
+
+msgid "spyder_tunnelb_beryll"
+msgstr "贝里尔"
+
+msgid "spyder_route6_frances"
+msgstr "弗朗西斯"
+
+msgid "spyder_dragonscave_lessa"
+msgstr "丽莎"
+
+msgid "spyder_nimrod_guard"
+msgstr "警卫"
+
+msgid "spyder_searoutec_river"
+msgstr "河流"
+
+msgid "spyder_ruby_plaque"
+msgstr ""
+"红宝石只是任何红色刚玉的术语! \n"
+" 当刚玉有其他颜色如蓝色、粉色和透明时,它就被称为蓝宝石. \n"
+" 当精灵吃了红宝石后,它们会变得热情而有活力,使它们更善于进行物理攻击,如拍\n"
+"打、抓挠和撕咬."
+
+msgid "spyder_nimrod_berke"
+msgstr "伯克"
+
+msgid "spyder_route5_goliath"
+msgstr "歌利亚"
+
+msgid "spyder_emerald_plaque"
+msgstr ""
+"绿宝石是绿柱石的一个品种.而蓝色的绿柱石则被称为海蓝宝石. \n"
+" 一克拉的祖母绿比一克拉的钻石大,但密度小. \n"
+" 吃了绿宝石的精灵,他们的视力和直觉都会增强,使他们的远程攻击,如射击、喷洒和\n"
+"爆炸更加有力."
+
+msgid "spyder_papertown_tvwatch"
+msgstr "电视上有什么?一个舞会皇后正在把她的头饰摔成碎片,然后把它分发出去."
+
+msgid "spyder_column1_sign"
+msgstr "一根罕见的古代圆柱.这曾经是一个寺庙建筑的一部分."
+
+msgid "spyder_diamond_plaque"
+msgstr ""
+"众所周知,钻石是世界上最坚硬的宝石,在项链、订婚戒指和耳环上都有很好的表\n"
+"现! \n"
+" 如果你的未婚夫不为你买一枚沙夫特钻石戒指,那他就不爱你了! \n"
+" 把钻石喂给你的小精灵,使它们的皮肤变硬,使它们能够更好地抵御物理打击."
+
+msgid "spyder_nimrod3_plaque"
+msgstr ""
+"古代帝国的象征是艾格尼斯,因为当帝国从冰冷的北方入侵时,他们的将军和侦察兵都\n"
+"骑着艾格尼斯. \n"
+" 今天,我们强大的国家的医疗队正在用阿格尼顿进行保护和运输的训练. "
+
+msgid "spyder_omnichannel_note"
+msgstr ""
+"哈哈,傻瓜们--你们永远找不到我. \n"
+" 这是在全能公司首席执行官的信纸上."
+
+msgid "cotton_breeder0"
+msgstr ""
+"大家好,欢迎来到日托所,我在这里饲养了精灵.\n"
+"我经营这个地方是因为我非常喜欢精灵!\n"
+"如果你愿意,我可以为你繁殖两只小狐狸.请告诉我,好吗?"
+
+msgid "spyder_greenwash_guard"
+msgstr "好吧,这里没什么可看的."
+
+msgid "spyder_greenwash_gregor2"
+msgstr "唉,它晕倒的时候连眼睛都没眨一下!"
+
+msgid "spyder_greenwash_looten1"
+msgstr "好吧,我想核聚变技术还没有完全实现.我们已经在这上面工作了多年!"
+
+msgid "spyder_greenwash_looten2"
+msgstr ""
+"这是我们最接近的一次 -- 它是一只蚂蚁和一只阿尔多恩的可爱融合.这并不完全是欧\n"
+"米茄希望我们创造的终极杀人机器.我的意思是......呃!你没有从我这里听到这个."
+
+msgid "spyder_dragonscave_benden3"
+msgstr "这是什么情况?这些坏蛋想偷走德罗科罗!但为什么呢?"
+
+msgid "spyder_dragonscave_benden4"
+msgstr "求你了,${{name}}.如果你不能阻止这些恶棍,那么一切都完了."
+
+msgid "spyder_dragonscave_tomas1"
+msgstr ""
+"有一次,我们各自骑着一条龙.那是很久以前的事了.但就在最近,一条新生的龙出现\n"
+"在这个岛上方,并爬进了这个山洞."
+
+msgid "spyder_dragonscave_tomas2"
+msgstr "正如你所看到的,龙的时代已经过去.孵化的龙是我们最后的希望."
+
+msgid "spyder_dragonscave_lessa1"
+msgstr ""
+"我们守护着这只最后的龙.我们不知道它从哪里来,也不知道它为什么孵化.我们以为\n"
+"所有的龙在很久以前就已经孵化了."
+
+msgid "spyder_dragonscave_lessa2"
+msgstr "也许有人会来,他有能力打败它."
+
+msgid "spyder_dragonscave_cailin1"
+msgstr "这是我们最后的职责.龙乔木非常累."
+
+msgid "spyder_dragonscave_cailin2"
+msgstr "谢谢你."
+
+msgid "spyder_dragonscave_griffin1"
+msgstr "我想知道被龙吞掉会是什么样子......."
+
+msgid "spyder_dragonscave_griffin2"
+msgstr "哦,好吧--没有人是完美的!"
+
+msgid "spyder_dragonscave_daenny1"
+msgstr "准备好被打败吧!"
+
+msgid "spyder_dragonscave_daenny2"
+msgstr "你可能胜过我,但你永远也胜不过本顿."
+
+msgid "spyder_dragonscave_benden1"
+msgstr "我是龙骑士中最后也是最强大的一个."
+
+msgid "spyder_dragonscave_benden2"
+msgstr ""
+"你已经证明自己是德罗科罗值得尊敬的对手. \n"
+" 我将带你到神圣的内室--在我治愈你之后."
+
+msgid "spyder_dragonscave_mal1"
+msgstr "你已经挡了我们太多次的路了!"
+
+msgid "spyder_dragonscave_mal2"
+msgstr "啊哈,你正好落入了我的圈套!"
+
+msgid "spyder_dragonscave_ray1"
+msgstr "我们所要做的就是建立一个接管政府的巨型公司.这有什么错吗?"
+
+msgid "spyder_dragonscave_ray2"
+msgstr "你在夺走我的自由."
+
+msgid "spyder_dragonscave_lucille1"
+msgstr "支柱是我们在这里完成任何事情的唯一途径."
+
+msgid "spyder_dragonscave_lucille2"
+msgstr "你会后悔的."
+
+msgid "spyder_dragonscave_tru1"
+msgstr "这是为你自己好,好吗?"
+
+msgid "spyder_dragonscave_tru2"
+msgstr ""
+"随便吧.我们已经提取了DNA样本. \n"
+" 我们只是想抓住德罗科罗作为备份. \n"
+" 你永远无法阻止他们回到全能总部."
+
+msgid "spyder_dragonscave_drokoro1"
+msgstr "哼!"
+
+msgid "spyder_omnichannel_zoolander1"
+msgstr "你真的是一块璞玉,不是吗?"
+
+msgid "spyder_hospital_warning1"
+msgstr ""
+"嗞嗞.检测到生命体. \n"
+" 门仍然关闭."
+
+msgid "spyder_hospital_warning2"
+msgstr ""
+"\"Aardant \"不是一个公认的生命体. \n"
+" 门关闭了."
+
+msgid "spyder_hospital_cure1"
+msgstr ""
+"这是治疗Spyder Bite感染的方法! \n"
+" 有了这个,你就可以治愈你自己和别人的小精灵."
+
+msgid "spyder_hospital_billie1"
+msgstr "${{name}},你的插手已经变得太多!就让当局做他们的工作吧!"
+
+msgid "spyder_mansion_drinkingbuddya1"
+msgstr "我想知道我们的酒友到哪里去了? "
+
+msgid "spyder_mansion_drinkingbuddyb1"
+msgstr "我们开始唱一首古老的海誓山盟,当我们唱完的时候,船长已经不见了!"
+
+msgid "spyder_mansion_drinkingbuddya2"
+msgstr "老朋友,你在这里啊!让我们把你带回河边."
+
+msgid "spyder_mansion_captain1"
+msgstr ""
+"你好啊!谢谢你找到我! \n"
+" 我在昨晚喝酒的时候走神了,掉到了这里. \n"
+" 嘿,你能找到出口吗?找到了就大声喊出来."
+
+msgid "spyder_river_captain2"
+msgstr "喂,你在吗?你想去哪里?"
+
+msgid "spyder_dryadsgrove_volcoli1"
+msgstr "布里!布里!"
+
+msgid "spyder_dryadsgrove_aquemini1"
+msgstr "欢迎来到我们的小树林,凡人."
+
+msgid "spyder_dryadsgrove_aquemini2"
+msgstr "祈祷你在访问中幸存下来."
+
+msgid "spyder_dryadsgrove_ignatia1"
+msgstr "我们比我们的外表更重要."
+
+msgid "spyder_dryadsgrove_ignatia2"
+msgstr "你比你的外表更重要."
+
+msgid "spyder_dryadsgrove_petra2"
+msgstr "忘恩负义的人."
+
+msgid "spyder_dryadsgrove_ferris1"
+msgstr "你是否意识到你打扰了几个世纪的沉睡?"
+
+msgid "spyder_dryadsgrove_ferris2"
+msgstr "也许现在是我们走向世界的时候了."
+
+msgid "spyder_dryadsgrove_sylvia1"
+msgstr "季节随着沃尔科利的舞蹈转动."
+
+msgid "spyder_dryadsgrove_sylvia2"
+msgstr "我们仙女的力量随着季节的变化而消长."
+
+msgid "spyder_leatherhouse1_tennisplayer1"
+msgstr "冻伤是土元素的技能还是水元素的技能? "
+
+msgid "spyder_leatherhouse1_tennisplayer2"
+msgstr "棘手的问题--这两者都是!"
+
+msgid "spyder_scoop_welcome"
+msgstr "欢迎!"
+
+msgid "spyder_successful_boulder"
+msgstr "大锤子将巨石砸开."
+
+msgid "spyder_stop_dante"
+msgstr "但丁"
+
+msgid "spyder_frolicking_rockitten"
+msgstr "小岩猫"
+
+msgid "spyder_frolicking_conileaf"
+msgstr "圆锥叶"
+
+msgid "spyder_papertown_riverboatcaptain"
+msgstr "河船船长"
+
+msgid "spyder_papertown_homemaker"
+msgstr "家庭主妇"
+
+msgid "spyder_papertown_mom"
+msgstr "妈妈"
+
+msgid "spyder_papertown_grannypiper"
+msgstr "派珀奶奶"
+
+msgid "spyder_papertown_shopkeeper"
+msgstr "店主"
+
+msgid "spyder_instore_dante"
+msgstr "但丁"
+
+msgid "spyder_billie"
+msgstr "比莉"
+
+# msgid "spyder_cottontown_monk"
+# msgstr "Monk"
+msgid "spyder_cottontown_hacker"
+msgstr "黑客"
+
+msgid "spyder_omnichannel_enforcer"
+msgstr "执法者"
+
+msgid "spyder_cottontown_barmaid"
+msgstr "服务员"
+
+msgid "spyder_goth"
+msgstr "哥特"
+
+msgid "spyder_florist"
+msgstr "花商"
+
+msgid "spyder_shopkeeper"
+msgstr "店主"
+
+msgid "spyder_shopassistant"
+msgstr "店员"
+
+msgid "spyder_route2_billie"
+msgstr "比莉"
+
+msgid "spyder_route2_roddick"
+msgstr "罗迪克"
+
+msgid "spyder_maniac"
+msgstr "狂人"
+
+# msgid "spyder_citypark_florist"
+# msgstr "Florist"
+msgid "spyder_citypark_frances"
+msgstr "弗朗西斯"
+
+msgid "spyder_citypark_bobette"
+msgstr "波贝特"
+
+msgid "spyder_citypark_edith"
+msgstr "伊迪丝"
+
+msgid "spyder_miner"
+msgstr "矿工"
+
+msgid "spyder_postboy"
+msgstr "邮递员"
+
+msgid "spyder_route3_zoolander"
+msgstr "祖兰德"
+
+msgid "spyder_rookie"
+msgstr "新手"
+
+msgid "spyder_route3_weaver"
+msgstr "织工"
+
+msgid "spyder_route3_qqq"
+msgstr "???"
+
+msgid "spyder_route3_novak"
+msgstr "诺 瓦 克"
+
+msgid "spyder_route3_surat"
+msgstr "苏拉特"
+
+msgid "spyder_route3_roxby"
+msgstr "罗克斯比"
+
+msgid "spyder_wayfarer1_morton"
+msgstr "莫顿"
+
+msgid "spyder_wayfarer1_jessie"
+msgstr "杰西"
+
+msgid "spyder_wayfarer1_nightshade"
+msgstr "夜来香"
+
+msgid "spyder_wayfarer1_victor"
+msgstr "胜利者"
+
+msgid "spyder_wayfarer1_morningstar"
+msgstr "晨星"
+
+msgid "spyder_wayfarer1_bravo"
+msgstr "布拉沃"
+
+msgid "spyder_wayfarer1_james"
+msgstr "詹姆斯"
+
+msgid "spyder_wayfarer1_bismuth"
+msgstr "铋"
+
+msgid "spyder_wayfarer1_ratcher"
+msgstr "雷切尔"
+
+msgid "spyder_route4_marshall"
+msgstr "马歇尔"
+
+msgid "spyder_route4_roger"
+msgstr "罗杰"
+
+msgid "spyder_route4_wulf"
+msgstr "沃尔夫"
+
+msgid "spyder_route4_rincewind"
+msgstr "林斯风"
+
+msgid "spyder_route4_rosamund"
+msgstr "罗萨蒙德"
+
+msgid "spyder_route4_beck"
+msgstr "贝克"
+
+msgid "spyder_nimrod_birbrobo"
+msgstr "比尔布机器人"
+
+msgid "spyder_nimrod_chromerobo"
+msgstr "铬合金机器人"
+
+msgid "spyder_nimrod_xeon"
+msgstr "至强"
+
+msgid "spyder_nimrod_justice"
+msgstr "正义"
+
+msgid "spyder_nimrod_thatcher"
+msgstr "撒切尔"
+
+msgid "spyder_nimrod_mace"
+msgstr "麦斯"
+
+msgid "spyder_nimrod_honour"
+msgstr "荣誉"
+
+msgid "spyder_nimrod_argon"
+msgstr "氩气"
+
+msgid "spyder_nimrod_zircon"
+msgstr "锆石"
+
+msgid "spyder_nimrod_maverick"
+msgstr "马弗里克"
+
+msgid "spyder_nimrod_rebel"
+msgstr "叛逆者"
+
+msgid "spyder_nimrod_antimony"
+msgstr "锑"
+
+msgid "spyder_nimrod_bowie"
+msgstr "鲍伊"
+
+msgid "spyder_nimrod_archer"
+msgstr "射手"
+
+msgid "spyder_nimrod_tru"
+msgstr "特鲁"
+
+msgid "spyder_nimrod_dirk"
+msgstr "德克"
+
+msgid "spyder_route5_cleo"
+msgstr "克莱奥"
+
+msgid "spyder_route5_tryphaena"
+msgstr "特里芬纳"
+
+msgid "spyder_route5_edith"
+msgstr "伊迪丝"
+
+msgid "spyder_route5_sara"
+msgstr "萨拉"
+
+msgid "spyder_route5_hunter"
+msgstr "亨特"
+
+msgid "spyder_scoop_donald"
+msgstr "唐纳德"
+
+msgid "spyder_scoop_turner"
+msgstr "特纳"
+
+msgid "spyder_scoop_paine"
+msgstr "潘恩"
+
+msgid "spyder_scoop_taggart"
+msgstr "塔加特"
+
+msgid "spyder_scoop_alyssa"
+msgstr "艾丽莎"
+
+msgid "spyder_scoop_lanth"
+msgstr "兰特"
+
+msgid "spyder_scoop_berys"
+msgstr "贝里斯"
+
+msgid "spyder_scoop_rubid"
+msgstr "鲁比德"
+
+msgid "spyder_scoop_asta"
+msgstr "阿斯塔"
+
+msgid "spyder_scoop_haf"
+msgstr "哈夫"
+
+msgid "spyder_scoop_arachne"
+msgstr "蛛形纲"
+
+msgid "spyder_scoop_weaver"
+msgstr "织工"
+
+msgid "spyder_scoop_orba"
+msgstr "奥巴"
+
+msgid "spyder_scoop_landrace"
+msgstr "陆生"
+
+msgid "spyder_scoop_cochinia"
+msgstr "胭脂虫"
+
+msgid "spyder_scoop_cochinib"
+msgstr "胭脂虫B"
+
+msgid "spyder_scoop_cochinic"
+msgstr "胭脂虫C"
+
+msgid "spyder_tunnelb_lute"
+msgstr "鲁特"
+
+msgid "spyder_tunnelb_meitner"
+msgstr "迈特纳"
+
+msgid "spyder_tunnelb_iris"
+msgstr "鸢尾花"
+
+msgid "spyder_tunnelb_greta"
+msgstr "格雷塔"
+
+msgid "spyder_tunnelb_tommy"
+msgstr "汤米"
+
+msgid "spyder_route6_ping"
+msgstr "乒"
+
+msgid "spyder_route6_richard"
+msgstr "理查德"
+
+msgid "spyder_route6_blair"
+msgstr "布莱尔"
+
+msgid "spyder_route6_maxwell"
+msgstr "麦克斯韦"
+
+msgid "spyder_route6_orion"
+msgstr "猎户座"
+
+msgid "spyder_route6_mungo"
+msgstr "蒙戈"
+
+msgid "spyder_route6_rigel"
+msgstr "里格尔"
+
+msgid "spyder_route6_gunner"
+msgstr "炮手"
+
+msgid "spyder_searoutec_nigel"
+msgstr "奈杰尔"
+
+msgid "spyder_searoutec_wade"
+msgstr "韦德"
+
+msgid "spyder_searoutec_gil"
+msgstr "吉尔"
+
+msgid "spyder_searoutec_leek"
+msgstr "韭菜"
+
+msgid "spyder_searoutec_beech"
+msgstr "榉树"
+
+msgid "spyder_searoutec_rutherford"
+msgstr "卢瑟福"
+
+msgid "spyder_searoutec_carstair"
+msgstr "卡斯特尔"
+
+msgid "spyder_searoutec_sandy"
+msgstr "珊迪"
+
+msgid "spyder_dragonscave_tomas"
+msgstr "托马斯"
+
+msgid "spyder_dragonscave_cailin"
+msgstr "凯林"
+
+msgid "spyder_dragonscave_griffin"
+msgstr "格里芬"
+
+msgid "spyder_dragonscave_daenny"
+msgstr "戴恩尼"
+
+msgid "spyder_dragonscave_benden"
+msgstr "本登"
+
+msgid "spyder_dragonscave_mal"
+msgstr "马尔"
+
+msgid "spyder_dragonscave_ray"
+msgstr "雷"
+
+msgid "spyder_dragonscave_lucille"
+msgstr "卢 克"
+
+msgid "spyder_dragonscave_tru"
+msgstr "特鲁"
+
+msgid "spyder_flower_cady"
+msgstr "卡迪"
+
+msgid "spyder_flower_mieke"
+msgstr "迈克尔"
+
+msgid "spyder_flower_sandy"
+msgstr "桑 迪"
+
+msgid "spyder_flower_teach"
+msgstr "教导"
+
+msgid "spyder_omnichannel_william"
+msgstr "威廉"
+
+msgid "spyder_omnichannel_carnegie"
+msgstr "卡内基"
+
+msgid "spyder_omnichannel_byrne"
+msgstr "伯恩"
+
+msgid "spyder_omnichannel_strauss"
+msgstr "斯特劳斯"
+
+msgid "spyder_omnichannel_beaverbrook"
+msgstr "比弗布鲁克"
+
+msgid "spyder_omnichannel_worm"
+msgstr "虫子"
+
+msgid "spyder_omnichannel_thedukeofdeadair"
+msgstr "死气沉沉的公爵"
+
+msgid "spyder_dragonscave_angrybrute"
+msgstr "愤怒的布鲁特"
+
+msgid "spyder_dragonscave_lazybrute"
+msgstr "懒惰的布鲁特"
+
+msgid "spyder_dragonscave_concernedbrute"
+msgstr "关心的布鲁特"
+
+msgid "spyder_hospital_billie"
+msgstr "比利"
+
+msgid "spyder_greenwash_looten"
+msgstr "罗顿"
+
+msgid "spyder_riverboatcaptain"
+msgstr "河船船长"
+
+msgid "spyder_mansion_drinkingbuddya"
+msgstr "酒友A"
+
+msgid "spyder_mansion_drinkingbuddyb"
+msgstr "饮友B"
+
+msgid "spyder_dryadsgrove_aquemini"
+msgstr "阿克米尼"
+
+msgid "spyder_dryadsgrove_ignatia"
+msgstr "伊格纳蒂亚"
+
+msgid "spyder_dryadsgrove_petra"
+msgstr "彼得拉"
+
+msgid "spyder_dryadsgrove_ferris"
+msgstr "费里斯"
+
+msgid "spyder_dryadsgrove_sylvia"
+msgstr "西尔维娅"
+
+msgid "spyder_dryadsgrove_volcoli"
+msgstr "沃尔科利"
+
+# # MESSAGE TRANSLATIONS ##
+# spyder messages
+msgid "spyder_multi_underrepairs"
+msgstr "牌子上写着：“正在维修”"
+
+msgid "_chromerobo"
+msgstr "铬合金机器人"
+
+msgid "_darkrobo"
+msgstr "黑暗机器人"
+
+msgid "_birbrobo"
+msgstr "比尔布机器人"
+
+msgid "_xeon"
+msgstr "至强"
+
+msgid "_xeon-2"
+msgstr "至强-2"
+
+msgid "_mk01beta"
+msgstr "Mk01 测试版"
+
+msgid "_mk01alpha"
+msgstr "Mk01 阿尔法"
+
+msgid "spyder_multi_martsign"
+msgstr "在这里买东西"
+
+msgid "spyder_papertown_daycare1"
+msgstr "日间护理中心.正在建设中."
+
+msgid "spyder_papertown_daycare2"
+msgstr "日托中心：现已开放!"
+
+msgid "spyder_papertown_sunnyside"
+msgstr "阳光城庄园.如果我们不在家,请给我们的管家留言."
+
+msgid "spyder_papertown_home"
+msgstr "甜蜜的家!"
+
+msgid "spyder_papertown_restinbed"
+msgstr "你醒来时已经完全休息好了!"
+
+msgid "spyder_citypark_achievement"
+msgstr "成就狂人之家.关闭."
+
+msgid "spyder_column2_sign"
+msgstr "一根罕见的古柱.在3号公路上可以找到同一文化的其他遗迹. "
+
+msgid "spyder_opal_plaque"
+msgstr ""
+"蛋白石显示出闪烁的彩色光线. \n"
+" 它们形成于岩石的裂缝和凹陷处,当水蒸发后留下硅石. \n"
+" 吃了蛋白石的精灵能从它的魔法防护中受益,能更好地躲避魔法的远距离攻击,如爆\n"
+"炸、喷雾和射线."
+
+msgid "spyder_agate_plaque"
+msgstr ""
+"玛瑙是一种岩石,通常由火山形成,并常有平行线带. \n"
+" 它的特点是颜色繁多：棕色、灰色、奶油色、红色、橙色,甚至是蓝色. \n"
+" 给精灵喂食玛瑙可以提高它的速度和敏捷性,使它在战斗中反应更快."
+
+msgid "spyder_quartz_plaque"
+msgstr ""
+"石英是地球上最丰富的矿物之一. \n"
+" 一些石英品种--如玛瑙、紫水晶和红玉髓--更罕见、更珍贵. \n"
+" 石英被用于钟表,以保持非常精确的时间. \n"
+" 吃了石英的精灵会增加他们的毅力和活力,使他们在被击倒之前能够承受更多的攻\n"
+"击. "
+
+msgid "spyder_shaft_plaque"
+msgstr "由沙夫特赞助.\"我们挖掘它!\""
+
+msgid "spyder_nimrod_plaque"
+msgstr "由尼姆罗德赞助.\"如果我们不卖,别人就会卖!\""
+
+msgid "spyder_nimrod2_plaque"
+msgstr ""
+"精灵是强大的武器,自从有战争以来就与人类并肩作战. \n"
+" 在山洞里发现的岩画显示,史前人类训练鸡脚猫与野生沃尔夫斯基作战."
+
+msgid "spyder_nimrod4_plaque"
+msgstr ""
+"但很快,精灵和人类可能都会被淘汰. \n"
+" 我们的赞助商Nimrod公司正在开发机器人技术,可以使战争变得不流血. \n"
+" 同时,报名参加尼姆罗德执法者,获得高薪、免费教育和冒险的生活."
+
+msgid "spyder_shaft1_sign"
+msgstr "竖井总部.采矿部"
+
+msgid "spyder_shaft2_sign"
+msgstr "沙夫特总部.公共关系部"
+
+msgid "spyder_leathercafe_sign"
+msgstr "露天咖啡馆和市场"
+
+msgid "spyder_leathercbd_sign"
+msgstr "皮革城商业区"
+
+msgid "spyder_leatherhouse1_radio"
+msgstr "正在播放一首R&B歌曲.它被称为 \"Possessuns, Part II\"."
+
+msgid "spyder_flower_dojo_sign"
+msgstr "五行道场.主人和精灵的战斗"
+
+msgid "spyder_wayfarerinn_sign"
+msgstr "欢迎来到Wayfarer Inn! "
+
+msgid "spyder_cottonhouse1_tvwatch"
+msgstr "这是最新的真人秀节目：人们和他们的精灵在一个偏远的岛屿上完成挑战."
+
+msgid "cannot_use_item_monster"
+msgstr "这个道具不能用在这个精灵身上."
+
+msgid "cotton_breeder1"
+msgstr "你想把你的两只精灵留给我,让它们繁殖吗?"
+
+msgid "cotton_breeder2a_1"
+msgstr "好吧,哪位精灵将成为母亲?"
+
+msgid "cotton_breeder2a_2"
+msgstr "很好,那父亲呢?"
+
+msgid "cotton_breeder3"
+msgstr "好吧,你确定这是你要的那两个?"
+
+msgid "cotton_breeder4a"
+msgstr "很好!以后再来报到,我会让你知道情况如何."
+
+msgid "cotton_breeder_rejected"
+msgstr "哦,好吧.你再想一想,再来找我."
+
+msgid "cotton_breeder5"
+msgstr "嘿,${{name}},来看看你的精灵?"
+
+msgid "cotton_breeder6a"
+msgstr "他们还在逐渐熟悉,就像这样.你为什么不晚点再来?"
+
+msgid "cotton_breeder6b"
+msgstr ""
+"进展非常顺利!它们几乎是不可分割的!\n"
+"现在应该用不了多久,他们就要生孩子了."
+
+msgid "cotton_breeder6c"
+msgstr "祝贺你!他们已经有了一个孩子!给你,好好养育它."
+
+msgid "cotton_breeder_continue"
+msgstr ""
+"在他们准备好接受另一个精灵之前,还需要一段时间,但如果你愿意,我可以保留这两\n"
+"只,并再次为他们配种."
+
+msgid "cotton_breeder7a"
+msgstr "很好!你花点时间照顾孩子,我来照顾父母.以后再来看看他们吧."
+
+msgid "taba_greeting1"
+msgstr ""
+"招待员Jaime: 嗨,${{name}}!听说你得到了一只精灵,恭喜你!如果你想壮大你的队"
+"伍,你就需要精灵球."
+
+msgid "cotton_breeder7b"
+msgstr ""
+"好主意,在宝宝成长的这个重要阶段,新家庭应该保持在一起.\n"
+"你们现在回来吧,听到了吗?"
+
+msgid "taba_greeting2a"
+msgstr ""
+"该店正在做促销活动,这里有一些让你开始.你用它们来捕获精灵.如果他们先被削弱\n"
+"了,那就更容易了!"
+
+msgid "taba_greeting2b"
+msgstr ""
+"啊!我看到你已经有了一些.你有一个很好的开头, ${{name}},我相信你很快就会成\n"
+"为冠军."
+
+msgid "taba_greeting3"
+msgstr ""
+"祝你在冒险过程中好运,记得在商店购物,满足你所有的冒险需求!\n"
+"...\n"
+"对不起,我在推销,这是我的工作."
+
+msgid "gotfivetuxeballs"
+msgstr "你有5个精灵球!"
+
+msgid "got_new_tuxemon"
+msgstr "一个新的精灵诞生了!欢迎{monster_name}!"
+
+msgid "spyder_greenwash_gregor1"
+msgstr "我整天都在观察我的C眼猫--我要抓住它眨眼的机会!"
+
+msgid "spyder_greenwash_chip1"
+msgstr "我已经开发出无与伦比的计算机!"
+
+msgid "spyder_greenwash_clarence1"
+msgstr "我的精灵在阳光下是不可阻挡的!"
+
+msgid "spyder_greenwash_chip2"
+msgstr "需要更多的动力!"
+
+msgid "spyder_greenwash_clarence2"
+msgstr "有云!"
+
+msgid "spyder_greenwash_louis1"
+msgstr "这场战斗的规则是简单的自然选择法则：只有强者才能生存!"
+
+msgid "spyder_greenwash_louis2"
+msgstr "我可以向你介绍一下盖亚假说吗?"
+
+msgid "spyder_greenwash_louis"
+msgstr "路易斯"
+
+msgid "spyder_greenwash_clarence"
+msgstr "克莱伦斯"
+
+msgid "spyder_greenwash_chip"
+msgstr "芯片"
+
+msgid "spyder_greenwash_gregor"
+msgstr "格雷戈尔"
+
+msgid "spyder_greenwash_moreau1"
+msgstr "你不应该在这里! "
+
+msgid "spyder_greenwash_moreau2"
+msgstr "核聚变实验爆炸了!"
+
+msgid "spyder_greenwash_dippel1"
+msgstr "也许我们走得太远了...…"
+
+msgid "spyder_greenwash_dippel2"
+msgstr "或不够远! "
+
+msgid "spyder_greenwash_aissa1"
+msgstr "留在外面--格林沃什把这一切都控制住了."
+
+msgid "spyder_greenwash_aissa2"
+msgstr "我们都会死!"
+
+msgid "spyder_greenwash_aissa"
+msgstr "艾萨"
+
+msgid "spyder_greenwash_dippel"
+msgstr "迪佩尔"
+
+msgid "spyder_greenwash_moreau"
+msgstr "莫罗"
+
+msgid "omnichannel_sign"
+msgstr "全能公司总部.我们制造头条新闻"
+
+msgid "taba_town_homeplace"
+msgstr "${{name}}的家"
+
+msgid "taba_town_sign_profhouse"
+msgstr "精灵教授的家"
+
+msgid "taba_town_sign_proflab"
+msgstr "精灵教授的实验室"
+
+msgid "taba_town_sign_tuxemart"
+msgstr "精灵商店 - 买卖物品的地方"
+
+msgid "taba_town_sign_tuxecenter"
+msgstr "精灵中心 - 一个治疗你的精灵的地方"
+
+msgid "leather_town_open_air"
+msgstr "露天咖啡馆和市场"
+
+msgid "pick_up"
+msgstr "捡起"
+
+msgid "taba_house4_sign"
+msgstr "尊贵的海鸥酒吧"
+
+msgid "taba_house1_calendar"
+msgstr "这是一个日历,9月30日和2月12日是用红色圈出来的."
+
+msgid "taba_house1_husband1"
+msgstr "我是最熟练的训练师之一!"
+
+msgid "shammer_fossil_description"
+msgstr "它看起来像一只古代狗的头骨,但它像石头一样坚硬."
+
+msgid "rhincus_fossil_description"
+msgstr "它看起来像一只有齿鸟的头骨,但它像石头一样硬."
+
+msgid "flintstone_description"
+msgstr "一种片状的石头,用于制造石制工具和生火.不是在同一时间."
+
+msgid "lucky_bamboo_description"
+msgstr "严格来说,这根本不是竹子.它也不是特别幸运.但它是一种不错的室内植物."
+
+msgid "peace_lily_description"
+msgstr "为某个特别的人准备的坚韧的室内植物."
+
+msgid "petrified_dung_description"
+msgstr "它看起来像,嗯,便便......但它像石头一样硬."
+
+msgid "pyramidion_description"
+msgstr "嗡嗡作响的金色三角,充满天人合一的力量."
+
+msgid "sea_girdle_description"
+msgstr "一串串的小玩意,像海带一样柔软而粘稠."
+
+msgid "stovepipe_description"
+msgstr "一根长长的铁管.处理它时,你的手会变得灰头土脸."
+
+msgid "aether"
+msgstr "以太"
+
+msgid "sweet_sand_description"
+msgstr "在世界部分地区,人们用这种芬芳的、带泥土的沙子清洁自己."
+
+msgid "tectonic_drill_description"
+msgstr "用来钻探地球的大型咔哒咔哒机器."
+
+msgid "thunderstone_description"
+msgstr "一个古老的石头遗物,现在被人带着走,以图好运."
+
+msgid "tux_attack"
+msgstr "Tux攻击"
+
+msgid "monster_menu_tech"
+msgstr "技能"
+
+msgid "monster_menu_desc"
+msgstr "描述"
+
+msgid "Kennel"
+msgstr "庇护所"
+
+msgid "kennel_label"
+msgstr "{box} ({qty})"
+
+msgid "move_to_kennel"
+msgstr "移动到了{box}"
+
+msgid "mk01_beta_description"
+msgstr "一个与龙融合的杀手机器人.不要问我们怎么做."
+
+msgid "taba_house2_sign"
+msgstr "遗留图书馆"
+
+# Tuxemon Threats
+msgid "chrome_robo_description"
+msgstr "一个有敌意的机器人."
+
+msgid "dark_robo_description"
+msgstr "一个充满敌意的机器人."
+
+msgid "taba_house4_client1a"
+msgstr "我奶奶以前也做过类似的菜!"
+
+msgid "birb_robo_description"
+msgstr "一个敌对的机器人."
+
+msgid "mk01_alpha_description"
+msgstr "一个与龙融合的杀手机器人.不要问我们怎么做."
+
+msgid "mk01_delta_description"
+msgstr "一个与龙融合的杀手机器人.不要问我们如何."
+
+msgid "mk01_gamma"
+msgstr "Mk01伽玛"
+
+msgid "xeon_description"
+msgstr "一个有敌意的机器人."
+
+msgid "glitch"
+msgstr "毛刺"
+
+msgid "taba_house1_sign"
+msgstr "克劳布鲁先生和女士的房子"
+
+msgid "taba_house1_wife1"
+msgstr "训练师?我丈夫有妄想症."
+
+msgid "taba_house1_reading"
+msgstr "这本书是《幻觉研究的哲学》,作者是杰登-盖姆雷文萨."
+
+msgid "taba_house1_watching"
+msgstr ""
+"这是一部关于该地区最奇怪和最奇妙的精灵的记录片.\n"
+" 以及它们所采取的奇怪行为."
+
+msgid "mk01_delta"
+msgstr "Mk01三角洲"
+
+msgid "mk01_gamma_description"
+msgstr "一个与龙融合的杀手机器人.不要问我们怎么做."
+
+msgid "mk01_omega"
+msgstr "Mk01 欧米茄"
+
+msgid "xeon_2_description"
+msgstr "一个有敌意的机器人."
+
+msgid "taba_house3_sign"
+msgstr "周到的叶子旅馆"
+
+msgid "taba_house2_owner1"
+msgstr "欢迎来到遗留图书馆!请随意参观,但请保持安静."
+
+msgid "taba_house4_client3a"
+msgstr "幸运的是我没有为这个付钱.你怎么能为这个付钱呢?"
+
+msgid "mk01_omega_description"
+msgstr "一个与龙融合的杀手机器人.不要问我们怎么做."
+
+msgid "mk01_proto_description"
+msgstr "一个与龙融合的杀手机器人.不要问我们怎么做."
+
+msgid "mk01_proto"
+msgstr "Mk01 原型"
+
+msgid "taba_house2_reading3"
+msgstr "这本书是《没有荣誉的孩子》,作者Leslie Greninza."
+
+msgid "taba_house2_reader1a"
+msgstr "我一看到书或书店就感觉好了."
+
+msgid "taba_house2_reader3a"
+msgstr "所以我可以活出一千个不同的人生."
+
+msgid "taba_house2_reader4a"
+msgstr "阅读能刺激我的思维,这是电视和电影永远做不到的."
+
+msgid "taba_house2_books"
+msgstr ""
+"000 - 计算机科学、信息和一般工程, 100 - 哲学和心理学\n"
+"200 - 宗教, 300 - 社会科学, 400 - 语言, 500 - 纯科学, 600 - 技术\n"
+"700 - 艺术和娱乐,800 - 文学,900 - 历史和地理"
+
+msgid "taba_house3_owner1"
+msgstr "欢迎来到Thoughtful Leaf Inn!"
+
+msgid "taba_house3_client1a"
+msgstr "我在休息,而我妹妹可能在看一些书."
+
+msgid "taba_house4_client2a"
+msgstr "嗯?只是填饱了空虚的肚子."
+
+msgid "taba_house4_dish1"
+msgstr "它是棕色的,浓密的,但它看起来不像布丁......"
+
+msgid "normal"
+msgstr "正常"
+
+# Taba Town
+msgid "maple_bedroom_sign"
+msgstr "这是一个日历,4月27日是用粉红色圈出来的."
+
+msgid "taba_house2_reading1"
+msgstr "这本书是《拜访国王》,作者是马诺罗-盖."
+
+msgid "taba_house2_reader2a"
+msgstr "它点燃了我的想象力."
+
+msgid "taba_house2_reading2"
+msgstr "这本书是路易斯-埃特雷戈（Louis Etrergo）写的《被梦想养大》."
+
+msgid "taba_house2_reading4"
+msgstr "这本书是《驶向永恒》,作者是劳瑞娜-多普拉丘尔德."
+
+msgid "taba_house3_client2a"
+msgstr "想得太多会伤害我们."
+
+msgid "taba_house3_client3a"
+msgstr "这让我想到了我妈妈的房子."
+
+msgid "taba_house4_owner1"
+msgstr "欢迎来到尊贵的海鸥酒吧!"

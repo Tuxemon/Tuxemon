@@ -6,8 +6,6 @@
     "damage"
   ],
   "flip_axes": "x",
-  "healing_power": 0,
-  "icon": "",
   "is_area": true,
   "is_fast": false,
   "power": 1.5,
@@ -17,7 +15,7 @@
   "slug": "flood",
   "sort": "damage",
   "target": {
-    "enemy monster": 0,
+    "enemy monster": 2,
     "enemy team": 2,
     "enemy trainer": 0,
     "item": 0,

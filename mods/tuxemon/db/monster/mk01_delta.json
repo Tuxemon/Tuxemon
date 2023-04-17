@@ -1,0 +1,82 @@
+{
+    "slug": "mk01_delta",
+    "category": "threat",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 6,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 8,
+            "technique": "beam"
+        },
+        {
+            "level_learned": 12,
+            "technique": "blade"
+        },
+        {
+            "level_learned": 16,
+            "technique": "acid"
+        },
+        {
+            "level_learned": 20,
+            "technique": "platinum"
+        },
+        {
+            "level_learned": 24,
+            "technique": "crystal"
+        },
+        {
+            "level_learned": 28,
+            "technique": "lineage"
+        },
+        {
+            "level_learned": 32,
+            "technique": "terror"
+        },
+        {
+            "level_learned": 36,
+            "technique": "sunburst"
+        },
+        {
+            "level_learned": 40,
+            "technique": "gold_digger"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "mk01_proto",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "mk01_alpha",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "mk01_beta",
+            "evo_stage": "stage1"
+        }
+    ],
+    "shape": "dragon",
+    "stage": "stage2",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 0,
+    "height": 0,
+    "weight": 100,
+    "catch_rate": 120.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

@@ -1,0 +1,10 @@
+{
+  "slug": "taba_house2_reader1",
+  "template": [
+    {
+      "sprite_name": "heroine_brown",
+      "combat_front": "heroine",
+      "slug": "heroine"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
     "slug": "masknake",
-    "category": "serpent's_tooth",
+    "category": "serpents_tooth",
     "ai": "RandomAI",
     "moveset": [
         {
@@ -12,19 +12,57 @@
             "technique": "beam"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
             "technique": "supernova"
+        },
+        {
+            "level_learned": 8,
+            "technique": "lava"
+        },
+        {
+            "level_learned": 12,
+            "technique": "firestorm"
+        },
+        {
+            "level_learned": 16,
+            "technique": "magma"
+        },
+        {
+            "level_learned": 20,
+            "technique": "thunderclap"
+        },
+        {
+            "level_learned": 24,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 28,
+            "technique": "chameleon"
+        },
+        {
+            "level_learned": 32,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 36,
+            "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 40,
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "serpent",
+    "stage": "standalone",
     "types": [
-        "Fire"
+        "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 114,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 115,
+    "height": 112,
+    "weight": 8,
     "catch_rate": 120.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05

@@ -3,11 +3,10 @@
   "accuracy": 0.8,
   "animation": "pound",
   "effects": [
+    "give status_poison,target",
     "damage"
   ],
   "flip_axes": "",
-  "healing_power": 0,
-  "icon": "",
   "is_area": false,
   "is_fast": false,
   "potency": 0.2,

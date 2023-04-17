@@ -1,33 +1,35 @@
 {
   "animation": "drip_green",
-  "category": "chargedup",
+  "category": "positive",
   "effects": [
     "statchange"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_chargedup.png",
+  "range": "special",
+  "repl_pos": "replaced",
   "sfx": "sfx_pulse",
   "slug": "status_chargedup",
   "sort": "meta",
   "statarmour": {
     "value": 2,
-    "operation": "-"
+    "operation": "*"
   },
   "statdodge": {
     "value": 2,
-    "operation": "-"
+    "operation": "*"
   },
   "statmelee": {
     "value": 2,
-    "operation": "-"
+    "operation": "*"
   },
   "statranged": {
     "value": 2,
-    "operation": "-"
+    "operation": "*"
   },
   "statspeed": {
     "value": 2,
-    "operation": "-"
+    "operation": "*"
   },
   "target": {
     "enemy monster": 0,
@@ -38,7 +40,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "tech_id": 99,
+  "tech_id": 0,
   "use_failure": "generic_failure",
   "use_success": "combat_state_chargedup_get",
   "use_tech": "combat_used_x"

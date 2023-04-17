@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-17 23:54+0000\n"
+"PO-Revision-Date: 2023-02-03 04:41+0000\n"
 "Last-Translator: Fancy.Dot <pankotel1o1@protonmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "pl/>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 msgid "clamp_on"
 msgstr "Zacisk"
@@ -864,7 +864,6 @@ msgstr "Muddle"
 msgid "midnight_mantle"
 msgstr "Płaszcz północy"
 
-#, fuzzy
 msgid "reg_papers_description"
 msgstr "Pakiet papierów rejestracyjnych do The Trial"
 
@@ -1546,12 +1545,1082 @@ msgstr "Strike"
 msgid "suck_poison"
 msgstr "Wyssij Truciznę"
 
-#, fuzzy
 msgid "dodge_increased"
-msgstr "{stat} gracza wzrósł"
+msgstr "{stat} gracza wzrósł."
 
 msgid "sudden_glow"
 msgstr "Nagły Blask"
 
 msgid "wall_of_steel"
 msgstr "Ściana Stali"
+
+msgid "cardinale"
+msgstr "Cardinale"
+
+msgid "cairfrey"
+msgstr "Cairfrey"
+
+msgid "capiti"
+msgstr "Capiti"
+
+#, fuzzy
+msgid "anoleaf"
+msgstr "Anoleaf"
+
+msgid "bolt"
+msgstr "Bolt"
+
+msgid "dragarbor"
+msgstr "Dragarbor"
+
+msgid "bigfin"
+msgstr "Bigfin"
+
+msgid "cardiwing"
+msgstr "Cardiwing"
+
+msgid "conifrost"
+msgstr "Conifrost"
+
+msgid "corvix"
+msgstr "Corvix"
+
+msgid "birb_robo"
+msgstr "Birb Robo"
+
+msgid "mk01_beta"
+msgstr "Mk01 Beta"
+
+msgid "abesnaki"
+msgstr "Abesnaki"
+
+msgid "exclawvate"
+msgstr "Exclawvate"
+
+msgid "vivipere"
+msgstr "Vivipere"
+
+msgid "zunna"
+msgstr "Zunna"
+
+#, fuzzy
+msgid "araignee"
+msgstr "Araignee"
+
+msgid "axylightl"
+msgstr "Axylightl"
+
+#, fuzzy
+msgid "arthrobolt"
+msgstr "Arthrobolt"
+
+msgid "b_ver_1"
+msgstr "B-Ver.1"
+
+msgid "boxali"
+msgstr "Boxali"
+
+msgid "brewdin"
+msgstr "Brewdin"
+
+msgid "coleorus"
+msgstr "Coleorus"
+
+msgid "chillimp"
+msgstr "Chillimp"
+
+msgid "dandylion"
+msgstr "Dandylion"
+
+msgid "elostorm"
+msgstr "Elostorm"
+
+msgid "cardiling"
+msgstr "Cardiling"
+
+msgid "exapode"
+msgstr "Exapode"
+
+msgid "eruptibus"
+msgstr "Eruptibus"
+
+msgid "chloragon"
+msgstr "Chloragon"
+
+msgid "cochini"
+msgstr "Cochini"
+
+msgid "tweesher"
+msgstr "Tweesher"
+
+msgid "urcine"
+msgstr "Urcine"
+
+msgid "vamporm"
+msgstr "Vamporm"
+
+msgid "velocitile"
+msgstr "Velocitile"
+
+msgid "dark_robo"
+msgstr "Dark Robo"
+
+msgid "chrome_robo"
+msgstr "Chrome Robo"
+
+msgid "mk01_alpha"
+msgstr "MK01 Alpha"
+
+msgid "djinnbo"
+msgstr "Djinnbo"
+
+msgid "route1_sanglorian"
+msgstr "Aleja Sanglorian"
+
+msgid "tuxemon_stat2"
+msgstr "{desc}"
+
+msgid "allagon"
+msgstr "Allagon"
+
+#, fuzzy
+msgid "altie"
+msgstr "Altie"
+
+#, fuzzy
+msgid "angrito"
+msgstr "Angrito"
+
+#, fuzzy
+msgid "anu"
+msgstr "Anu"
+
+#, fuzzy
+msgid "apeoro"
+msgstr "Apeoro"
+
+msgid "av8r"
+msgstr "Av8r"
+
+msgid "bamboon"
+msgstr "Bamboon"
+
+msgid "banling"
+msgstr "Banling"
+
+msgid "baobaraffe"
+msgstr "Baobaraffe"
+
+msgid "baoby"
+msgstr "Baoby"
+
+msgid "beenstalker"
+msgstr "Beenstalker"
+
+msgid "birdling"
+msgstr "Birdling"
+
+msgid "boltnu"
+msgstr "Boltnu"
+
+msgid "botbot"
+msgstr "Botbot"
+
+msgid "budaye"
+msgstr "Budaye"
+
+msgid "bugnin"
+msgstr "Bugnin"
+
+msgid "bumbulus"
+msgstr "Bumbulus"
+
+msgid "bursa"
+msgstr "Bursa"
+
+msgid "cataspike"
+msgstr "Cataspike"
+
+msgid "cateye"
+msgstr "Cateye"
+
+msgid "chenipode"
+msgstr "Chenipode"
+
+msgid "chibiro"
+msgstr "Chibiro"
+
+msgid "chromeye"
+msgstr "Chromeye"
+
+msgid "conileaf"
+msgstr "Conileaf"
+
+msgid "coproblight"
+msgstr "Coproblight"
+
+msgid "cowpignon"
+msgstr "Cowpignon"
+
+msgid "criniotherme"
+msgstr "Criniotherme"
+
+msgid "dandicub"
+msgstr "Dandicub"
+
+msgid "dinoflop"
+msgstr "Dinoflop"
+
+msgid "dollfin"
+msgstr "Dollfin"
+
+msgid "dracune"
+msgstr "Dracune"
+
+msgid "drashimi"
+msgstr "Drashimi"
+
+msgid "drokoro"
+msgstr "Drokoro"
+
+msgid "dune_pincher"
+msgstr "Dune Pincher"
+
+msgid "eaglace"
+msgstr "Eaglace"
+
+msgid "elofly"
+msgstr "Elofly"
+
+msgid "elowind"
+msgstr "Elowind"
+
+msgid "embazook"
+msgstr "Embazook"
+
+msgid "embra"
+msgstr "Embra"
+
+msgid "enduros"
+msgstr "Enduros"
+
+msgid "vigueur"
+msgstr "Vigueur"
+
+msgid "vivicinder"
+msgstr "Vivicinder"
+
+msgid "vividactil"
+msgstr "Vividactil"
+
+msgid "viviphyta"
+msgstr "Viviphyta"
+
+msgid "vivisource"
+msgstr "Vivisource"
+
+msgid "viviteel"
+msgstr "Viviteel"
+
+msgid "vivitrans"
+msgstr "Vivitrans"
+
+msgid "vivitron"
+msgstr "Vivitron"
+
+msgid "volcoli"
+msgstr "Volcoli"
+
+msgid "weavifly"
+msgstr "Weavifly"
+
+msgid "windeye"
+msgstr "Windeye"
+
+msgid "wrougon"
+msgstr "Wrougon"
+
+msgid "yiinaang"
+msgstr "Yiinaang"
+
+msgid "fluttaflap"
+msgstr "Fluttaflap"
+
+msgid "lambert"
+msgstr "Lambert"
+
+msgid "nudiflot_female"
+msgstr "Nudiflot"
+
+msgid "eyenemy"
+msgstr "Eyenemy"
+
+msgid "firomenis"
+msgstr "Firomenis"
+
+msgid "fruitera"
+msgstr "Fruitera"
+
+msgid "sludgehog"
+msgstr "Sludgehog"
+
+msgid "snowrilla"
+msgstr "Snowrilla"
+
+msgid "sumchon"
+msgstr "Sumchon"
+
+msgid "tigrock"
+msgstr "Tigrock"
+
+msgid "galnec"
+msgstr "Galnec"
+
+msgid "grimachin"
+msgstr "Grimachin"
+
+msgid "nudikill"
+msgstr "Nudikill"
+
+msgid "octabode"
+msgstr "Octabode"
+
+msgid "pythock"
+msgstr "Pythock"
+
+msgid "legko"
+msgstr "Legko"
+
+msgid "lunight"
+msgstr "Lunight"
+
+msgid "magmaturtle"
+msgstr "Magmaturtle"
+
+msgid "pantherafira"
+msgstr "Pantherafira"
+
+msgid "nut"
+msgstr "Nut"
+
+msgid "ouroboutlet"
+msgstr "Ouroboutlet"
+
+msgid "pilthropus"
+msgstr "Pilthropus"
+
+msgid "poinchin"
+msgstr "Poinchin"
+
+msgid "propellercat"
+msgstr "Propellercat"
+
+msgid "pythwire"
+msgstr "Pythwire"
+
+msgid "pairagrim"
+msgstr "Pairagrim"
+
+msgid "pairagrin"
+msgstr "Pairagrin"
+
+msgid "puparmor"
+msgstr "Puparmor"
+
+msgid "qetzlrokilus"
+msgstr "Qetzlrokilus"
+
+msgid "sclairus"
+msgstr "Sclairus"
+
+msgid "pharfan"
+msgstr "Pharfan"
+
+msgid "picc"
+msgstr "Picc"
+
+msgid "pigabyte"
+msgstr "Pigabyte"
+
+msgid "pipis"
+msgstr "Pipis"
+
+msgid "rosarin"
+msgstr "Rosarin"
+
+msgid "polyrock"
+msgstr "Polyrock"
+
+msgid "possessun"
+msgstr "Possessun"
+
+msgid "prophetoise"
+msgstr "Prophetoise"
+
+msgid "pyraminx"
+msgstr "Pyraminx"
+
+msgid "rockat"
+msgstr "Rockat"
+
+msgid "rabbitosaur"
+msgstr "Rabbitosaur"
+
+msgid "rhincus"
+msgstr "Rhincus"
+
+msgid "sampsack"
+msgstr "Sampsack"
+
+msgid "sapsnap"
+msgstr "Sapsnap"
+
+msgid "rockitten"
+msgstr "Rockitten"
+
+msgid "sampsage"
+msgstr "Sampsage"
+
+msgid "sapragon"
+msgstr "Sapragon"
+
+msgid "saurchin"
+msgstr "Saurchin"
+
+msgid "sadito"
+msgstr "Sadito"
+
+msgid "ruption"
+msgstr "Ruption"
+
+msgid "sharpfin"
+msgstr "Sharpfin"
+
+msgid "spycozeus"
+msgstr "Spycozeus"
+
+msgid "rhincus_fossil"
+msgstr "Skamielina Rhincus"
+
+msgid "shammer_fossil"
+msgstr "Skamielina Shammer"
+
+msgid "agnite"
+msgstr "Agnite"
+
+msgid "eyesore"
+msgstr "Eyesore"
+
+msgid "fancair"
+msgstr "Fancair"
+
+msgid "ferricran"
+msgstr "Ferricran"
+
+msgid "flacono"
+msgstr "Flacono"
+
+msgid "flambear"
+msgstr "Flambear"
+
+msgid "fluoresfin"
+msgstr "Fluoresfin"
+
+msgid "foofle"
+msgstr "Foofle"
+
+msgid "fordin"
+msgstr "Fordin"
+
+msgid "forturtle"
+msgstr "Forturtle"
+
+msgid "foxfire"
+msgstr "Foxfire"
+
+msgid "frondly"
+msgstr "Frondly"
+
+msgid "furnursus"
+msgstr "Furnursus"
+
+msgid "gectile"
+msgstr "Gectile"
+
+msgid "ghosteeth"
+msgstr "Ghosteeth"
+
+msgid "graffiki"
+msgstr "Graffiki"
+
+msgid "grinflare"
+msgstr "Grinflare"
+
+msgid "grintot"
+msgstr "Grintot"
+
+msgid "grintrock"
+msgstr "Grintrock"
+
+msgid "grumpi"
+msgstr "Grumpi"
+
+msgid "gryfix"
+msgstr "Gryfix"
+
+msgid "hampotamos"
+msgstr "Hampotamos"
+
+msgid "happito"
+msgstr "Happito"
+
+msgid "hatchling"
+msgstr "Hatchling"
+
+msgid "heronquak"
+msgstr "Heronquak"
+
+msgid "hydrone"
+msgstr "Hydrone"
+
+msgid "ignibus"
+msgstr "Ignibus"
+
+msgid "incandesfin"
+msgstr "Incandesfin"
+
+msgid "jelillow"
+msgstr "Jelillow"
+
+msgid "jemuar"
+msgstr "Jemuar"
+
+msgid "k9"
+msgstr "K9"
+
+msgid "katacoon"
+msgstr "Katacoon"
+
+msgid "katapill"
+msgstr "Katapill"
+
+msgid "komodraw"
+msgstr "Komodraw"
+
+msgid "lapinou"
+msgstr "Lapinou"
+
+msgid "lightmare"
+msgstr "Lightmare"
+
+msgid "loliferno"
+msgstr "Loliferno"
+
+msgid "manosting"
+msgstr "Manosting"
+
+msgid "masknake"
+msgstr "Masknake"
+
+msgid "medushock"
+msgstr "Medushock"
+
+msgid "memnomnom"
+msgstr "Memnomnom"
+
+msgid "merlicun"
+msgstr "Merlicun"
+
+msgid "metesaur"
+msgstr "Metesaur"
+
+msgid "miaownolith"
+msgstr "Miaownolith"
+
+msgid "moloch"
+msgstr "Moloch"
+
+msgid "mrmoswitch"
+msgstr "Mrmoswitch"
+
+msgid "mystikapi"
+msgstr "Mystikapi"
+
+msgid "narcileaf"
+msgstr "Narcileaf"
+
+msgid "neutrito"
+msgstr "Neutrito"
+
+msgid "noctalo"
+msgstr "Noctalo"
+
+msgid "noctula"
+msgstr "Noctula"
+
+msgid "nostray"
+msgstr "Nostray"
+
+msgid "nudiflot_male"
+msgstr "Nudiflot"
+
+msgid "nudimind"
+msgstr "Nudimind"
+
+msgid "nuenflu"
+msgstr "Nuenflu"
+
+msgid "seirein"
+msgstr "Seirein"
+
+msgid "selket"
+msgstr "Selket"
+
+msgid "selmatek"
+msgstr "Selmatek"
+
+msgid "shammer"
+msgstr "Shammer"
+
+msgid "shelagu"
+msgstr "Shelagu"
+
+msgid "shnark"
+msgstr "Shnark"
+
+msgid "shybulb"
+msgstr "Shybulb"
+
+msgid "skwib"
+msgstr "Skwib"
+
+msgid "snaki"
+msgstr "Snaki"
+
+msgid "snarlon"
+msgstr "Snarlon"
+
+msgid "snock"
+msgstr "Snock"
+
+msgid "snokari"
+msgstr "Snokari"
+
+msgid "sockeserp"
+msgstr "Sockeserp"
+
+msgid "solight"
+msgstr "Solight"
+
+msgid "spighter"
+msgstr "Spighter"
+
+msgid "spoilurm"
+msgstr "Spoilurm"
+
+msgid "squabbit"
+msgstr "Squabbit"
+
+msgid "statursus"
+msgstr "Statursus"
+
+msgid "strella"
+msgstr "Strella"
+
+msgid "tarpeur"
+msgstr "Tarpeur"
+
+msgid "taupypus"
+msgstr "Taupypus"
+
+msgid "teddisun"
+msgstr "Teddisun"
+
+msgid "tetrchimp"
+msgstr "Tetrchimp"
+
+msgid "tikoal"
+msgstr "Tikoal"
+
+msgid "tikorch"
+msgstr "Tikorch"
+
+msgid "tobishimi"
+msgstr "Tobishimi"
+
+msgid "toufigel"
+msgstr "Toufigel"
+
+msgid "tourbidi"
+msgstr "Tourbidi"
+
+msgid "trapsnap"
+msgstr "Trapsnap"
+
+msgid "tsushimi"
+msgstr "Tsushimi"
+
+msgid "tumblebee"
+msgstr "Tumblebee"
+
+msgid "tumblequill"
+msgstr "Tumblequill"
+
+msgid "tumbleworm"
+msgstr "Tumbleworm"
+
+msgid "turnipper"
+msgstr "Turnipper"
+
+msgid "taba_town_homeplace"
+msgstr "Dom użytkownika ${{name}}"
+
+msgid "fishing_rod"
+msgstr "Wędka"
+
+#, fuzzy
+msgid "sledgehammer"
+msgstr "Młot kowalski"
+
+#, fuzzy
+msgid "sledgehammer_description"
+msgstr "Rozbijaj szare głazy."
+
+#, fuzzy
+msgid "lucky_bamboo_description"
+msgstr ""
+"Z praktycznego punktu widzenia, to wcale nie bambus. Nie jest też "
+"szczególnie szczęśliwy. Ale to ładna roślina domowa."
+
+#, fuzzy
+msgid "flintstone_description"
+msgstr ""
+"Łuszczący się kamień używany do wyrobu narzędzi i rozpalania ognia. Nie w "
+"tym samym czasie."
+
+#, fuzzy
+msgid "peace_lily_description"
+msgstr "Wytrzymała roślina domowa dla kogoś wyjątkowego."
+
+#, fuzzy
+msgid "sea_girdle_description"
+msgstr "Sznur bombek, miękkich i śliskich jak algi."
+
+#, fuzzy
+msgid "stovepipe_description"
+msgstr ""
+"Długa żelazna rura. Obchodzenie się z nią pozostawia ręce brudne i popielate."
+
+#, fuzzy
+msgid "pyramidion_description"
+msgstr "Złoty trójkąt, który brzęczy niebiańską mocą."
+
+#, fuzzy
+msgid "sweet_sand_description"
+msgstr ""
+"W niektórych częściach świata ludzie myją się tym pachnącym, błotnistym "
+"piaskiem."
+
+#, fuzzy
+msgid "petrified_dung_description"
+msgstr "Wygląda jak, no cóż, kupa... ale jest twarda jak kamień."
+
+#, fuzzy
+msgid "fishing_rod_description"
+msgstr "Złów rybę."
+
+#, fuzzy
+msgid "shammer_fossil_description"
+msgstr "Przypomina czaszkę starożytnego psa, ale jest twarda jak kamień."
+
+#, fuzzy
+msgid "rhincus_fossil_description"
+msgstr "Przypomina czaszkę ząbkowanego ptaka, ale jest twarda jak kamień."
+
+# Boosters (items)
+#, fuzzy
+msgid "greenwash_badge"
+msgstr "Odznaka: Greenwash"
+
+#, fuzzy
+msgid "greenwash_badge_description"
+msgstr "Tuxemon zakupiony w Greenwash wymaga tej odznaki do przemiany."
+
+#, fuzzy
+msgid "nimrod_badge"
+msgstr "Odznaka: Nimrod"
+
+#, fuzzy
+msgid "nimrod_badge_description"
+msgstr "Tuxemon kupiony od Nimroda wymaga tej odznaki do przemiany."
+
+#, fuzzy
+msgid "omnichannel_badge"
+msgstr "Odznaka: Omnichannel"
+
+#, fuzzy
+msgid "omnichannel_badge_description"
+msgstr "Tuxemon kupiony w Omnichannel wymaga tej odznaki do przemiany."
+
+#, fuzzy
+msgid "scoop_badge"
+msgstr "Odznaka: Scoop"
+
+#, fuzzy
+msgid "scoop_badge_description"
+msgstr "Tuxemon kupiony od Scoopa wymaga tej odznaki do przemiany."
+
+#, fuzzy
+msgid "shaft_badge"
+msgstr "Odznaka: Shaft"
+
+#, fuzzy
+msgid "shaft_badge_description"
+msgstr "Tuxemon kupiony w Shaft wymaga tej odznaki do przemiany."
+
+#, fuzzy
+msgid "booster_tech"
+msgstr "Wzmacniacz techniczny"
+
+#, fuzzy
+msgid "booster_tech_description"
+msgstr ""
+"Technologia open source, która pozwala przekształcić tuxemona w inną formę."
+
+#, fuzzy
+msgid "earth_booster"
+msgstr "Wzmacniacz ziemi"
+
+#, fuzzy
+msgid "earth_booster_description"
+msgstr "Pozwala przekształcać tuxemona typu ziemnego w inną formę."
+
+#, fuzzy
+msgid "fire_booster"
+msgstr "Wzmacniacz ognia"
+
+#, fuzzy
+msgid "fire_booster_description"
+msgstr "Pozwala przekształcać tuxemona typu ognistego w inną formę."
+
+#, fuzzy
+msgid "flintstone"
+msgstr "Krzemień"
+
+#, fuzzy
+msgid "lucky_bamboo"
+msgstr "Szczęśliwy bambus"
+
+#, fuzzy
+msgid "metal_booster"
+msgstr "Wzmacniacz metalu"
+
+#, fuzzy
+msgid "metal_booster_description"
+msgstr "Pozwala przekształcać tuxemona typu metalowego w inną formę."
+
+#, fuzzy
+msgid "miaow_milk"
+msgstr "Mleko Miau"
+
+#, fuzzy
+msgid "miaow_milk_description"
+msgstr "Koty uwielbiają smak mleka miau™!"
+
+#, fuzzy
+msgid "peace_lily"
+msgstr "Lilia pokoju"
+
+#, fuzzy
+msgid "petrified_dung"
+msgstr "Skamieniałe łajno"
+
+#, fuzzy
+msgid "pyramidion"
+msgstr "Pyramidion"
+
+#, fuzzy
+msgid "sea_girdle"
+msgstr "Morski pas"
+
+#, fuzzy
+msgid "stovepipe"
+msgstr "fajka"
+
+#, fuzzy
+msgid "sweet_sand"
+msgstr "Słodki piasek"
+
+#, fuzzy
+msgid "tectonic_drill"
+msgstr "Wiertło tektoniczne"
+
+#, fuzzy
+msgid "tectonic_drill_description"
+msgstr "Duża maszyna typu \"click-clack\" używana do wiercenia w ziemi."
+
+#, fuzzy
+msgid "thunderstone"
+msgstr "Kamień Gromu"
+
+#, fuzzy
+msgid "thunderstone_description"
+msgstr "Stary kamienny relikt, teraz noszony na szczęście."
+
+#, fuzzy
+msgid "water_booster"
+msgstr "Wzmacniacz wody"
+
+#, fuzzy
+msgid "water_booster_description"
+msgstr "Pozwala przekształcać tuxemona typu wodnego w inną formę."
+
+#, fuzzy
+msgid "wood_booster"
+msgstr "Wzmacniacz drewna"
+
+#, fuzzy
+msgid "wood_booster_description"
+msgstr "Pozwala na przekształcanie tuxemona typu drewnianego w inną formę."
+
+#, fuzzy
+msgid "dungeon"
+msgstr "loch"
+
+#, fuzzy
+msgid "center"
+msgstr "centrum"
+
+#, fuzzy
+msgid "shop"
+msgstr "sklep"
+
+#, fuzzy
+msgid "inside"
+msgstr "wewnątrz"
+
+#, fuzzy
+msgid "outside"
+msgstr "na zewnątrz"
+
+#, fuzzy
+msgid "item_used_wrong_location_inside"
+msgstr "{name} może być używany tylko {here}!"
+
+#, fuzzy
+msgid "item_used_wrong_location_type"
+msgstr "{name} może być użyta tylko w {here}!"
+
+# Map Types:
+#, fuzzy
+msgid "no_type"
+msgstr "brak typu"
+
+#, fuzzy
+msgid "town"
+msgstr "miasto"
+
+#, fuzzy
+msgid "route"
+msgstr "trasa"
+
+msgid "oedipus"
+msgstr "Edyp"
+
+msgid "nudiflot_male_description"
+msgstr "Zjada i magazynuje truciznę stworzeń morskich, którymi się żywi."
+
+msgid "web"
+msgstr "Sieć"
+
+msgid "cotton_breeder7b"
+msgstr ""
+"Dobry pomysł, nowa rodzina powinna być trzymana razem na tym ważnym etapie "
+"rozwoju dziecka.\n"
+"Wracajcie teraz, słyszeliście?"
+
+msgid "nudiflot_female_description"
+msgstr "Zjada i magazynuje truciznę stworzeń morskich, którymi się żywi."
+
+msgid "spyder_mansion_drinkingbuddya2"
+msgstr "Tu jesteś stary przyjacielu! Zabierzmy cię z powrotem do rzeki."
+
+msgid "lizard"
+msgstr "Jaszczurka"
+
+# Default mod names on selection menu
+msgid "xero_campaign"
+msgstr "Tuxemon: Xero"
+
+msgid "dragon"
+msgstr "Smok"
+
+msgid "no"
+msgstr "Nie"
+
+msgid "spyder_dragonscave_cailin2"
+msgstr "Dziękuję."
+
+msgid "spyder_dragonscave_lucille2"
+msgstr "Pożałujesz tego."
+
+msgid "yestalk"
+msgstr "Naprawdę? Dzięki..."
+
+msgid "earth"
+msgstr "Ziemia"
+
+msgid "water"
+msgstr "Woda"
+
+msgid "spyder_tunnelb_greta2"
+msgstr "O nie, potrzebuję więcej!"
+
+msgid "spyder_tunnelb_tommy1"
+msgstr "Widziałeś moją kanapkę?"
+
+msgid "spyder_papertown_mom4"
+msgstr "Witamy ponownie! Spójrz na siebie, rośniesz tak szybko."
+
+msgid "kennel_label"
+msgstr "{box} ({qty})"
+
+msgid "fire"
+msgstr "Ogień"
+
+msgid "wood"
+msgstr "Drewno"
+
+msgid "devil"
+msgstr "Diabeł"
+
+msgid "spyder_nimrod_mace1"
+msgstr "Chcę odejść i zostać muzykiem."
+
+msgid "nodrink"
+msgstr "Jestem pewny, że jesteś za młody, żeby pić..."
+
+msgid "input_name"
+msgstr "Imię?"
+
+msgid "37707_sign_foreign"
+msgstr "Ten znak jest napisany w obcym języku, którego nie rozumiesz."
+
+msgid "37707_house"
+msgstr "Dziwne: jest zamknięty. Wygląda na to, że nikt nie używa tego budynku."
+
+msgid "37707_mail"
+msgstr "Jest puste i pełne pajęczyn."
+
+# Money notification
+msgid "player_wallet"
+msgstr "Portfel ${{name}}: ${{currency}}${{money}}"
+
+msgid "monster_menu_move"
+msgstr "Ruch"
+
+msgid "island"
+msgstr "Wyspa"
+
+msgid "thunderball"
+msgstr "Piorun Kulisty"

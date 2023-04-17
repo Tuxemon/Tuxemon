@@ -1,9 +1,11 @@
 {
   "animation": "drip_green",
-  "category": "charging",
+  "category": "positive",
   "effects": [],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_charging.png",
+  "range": "special",
+  "repl_pos": "replaced",
   "sfx": "sfx_pulse",
   "slug": "status_charging",
   "sort": "meta",
@@ -16,7 +18,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "tech_id": 100,
+  "tech_id": 0,
   "use_failure": "generic_failure",
   "use_success": "combat_state_charging_get",
   "use_tech": "combat_used_x"

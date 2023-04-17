@@ -5,24 +5,51 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "eyebite"
-        },
-        {
-            "level_learned": 2,
-            "technique": "glower"
+            "technique": "one_two"
         },
         {
             "level_learned": 2,
             "technique": "fire_claw"
+        },
+        {
+            "level_learned": 6,
+            "technique": "gust"
+        },
+        {
+            "level_learned": 8,
+            "technique": "breathe_fire"
+        },
+        {
+            "level_learned": 12,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 24,
+            "technique": "eyebite"
+        },
+        {
+            "level_learned": 28,
+            "technique": "glower"
+        },
+        {
+            "level_learned": 32,
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "pantherafira",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "hunter",
+    "stage": "stage1",
     "types": [
-        "Fire"
+        "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 20,
+    "txmn_id": 23,
     "height": 210,
     "weight": 170,
     "catch_rate": 85.0,

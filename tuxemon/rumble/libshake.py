@@ -1,6 +1,9 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from ctypes import *
 from threading import Thread
 from time import sleep
+from typing import Any
 
 from tuxemon.rumble.tools import Rumble
 
@@ -69,7 +72,7 @@ class Shake_Effect(Structure):
 
 
 class LibShakeRumble(Rumble):
-    def __init__(self, library="libshake.so"):
+    def __init__(self, library: str = "libshake.so") -> None:
         self.libShake = cdll.LoadLibrary(library)
         self.libShake.Shake_Init()
         self.effect_type = SHAKE_EFFECT_PERIODIC
@@ -77,17 +80,17 @@ class LibShakeRumble(Rumble):
 
     def rumble(
         self,
-        target=0,
-        period=25,
-        magnitude=24576,
-        length=2,
-        delay=0,
-        attack_length=256,
-        attack_level=0,
-        fade_length=256,
-        fade_level=0,
-        direction=16384,
-    ):
+        target: float = 0,
+        period: float = 25,
+        magnitude: float = 24576,
+        length: float = 2,
+        delay: float = 0,
+        attack_length: float = 256,
+        attack_level: float = 0,
+        fade_length: float = 256,
+        fade_level: float = 0,
+        direction: float = 16384,
+    ) -> None:
         # Target -1 will target all available devices
         if target == -1:
             for i in range(self.libShake.Shake_NumOfDevices()):
@@ -119,17 +122,17 @@ class LibShakeRumble(Rumble):
 
     def _rumble_thread(
         self,
-        target=0,
-        period=25,
-        magnitude=24576,
-        length=2,
-        delay=0,
-        attack_length=256,
-        attack_level=0,
-        fade_length=256,
-        fade_level=0,
-        direction=16384,
-    ):
+        target: float = 0,
+        period: float = 25,
+        magnitude: float = 24576,
+        length: float = 2,
+        delay: float = 0,
+        attack_length: float = 256,
+        attack_level: float = 0,
+        fade_length: float = 256,
+        fade_level: float = 0,
+        direction: float = 16384,
+    ) -> None:
         if self.libShake.Shake_NumOfDevices() > 0:
             device = self.libShake.Shake_Open(target)
 
@@ -156,17 +159,17 @@ class LibShakeRumble(Rumble):
 
     def _start_thread(
         self,
-        target=0,
-        period=25,
-        magnitude=24576,
-        length=2,
-        delay=0,
-        attack_length=256,
-        attack_level=0,
-        fade_length=256,
-        fade_level=0,
-        direction=16384,
-    ):
+        target: float = 0,
+        period: float = 25,
+        magnitude: float = 24576,
+        length: float = 2,
+        delay: float = 0,
+        attack_length: float = 256,
+        attack_level: float = 0,
+        fade_length: float = 256,
+        fade_level: float = 0,
+        direction: float = 16384,
+    ) -> None:
         t = Thread(
             target=self._rumble_thread,
             args=(
@@ -185,7 +188,7 @@ class LibShakeRumble(Rumble):
         t.daemon = True
         t.start()
 
-    def device_info(self, device):
+    def device_info(self, device: Any) -> None:
         print("Device #%d" % self.libShake.Shake_DeviceId(device))
         print(" Name:", self.libShake.Shake_DeviceName(device))
         print(
@@ -251,8 +254,9 @@ class LibShakeRumble(Rumble):
         if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_RAMP):
             print("  SHAKE_EFFECT_RAMP")
 
-    def device_count(self):
+    def device_count(self) -> Any:
+        # Shake_NumOfDevices is supposed to return int
         return self.libShake.Shake_NumOfDevices()
 
-    def quit(self):
+    def quit(self) -> None:
         self.libShake.Shake_Quit()

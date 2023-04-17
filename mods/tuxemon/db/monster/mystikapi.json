@@ -1,0 +1,70 @@
+{
+    "slug": "mystikapi",
+    "category": "prescient",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "blade"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 6,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 8,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 12,
+            "technique": "insanity"
+        },
+        {
+            "level_learned": 16,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 20,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 24,
+            "technique": "sleep_bomb"
+        },
+        {
+            "level_learned": 28,
+            "technique": "undertaker"
+        },
+        {
+            "level_learned": 32,
+            "technique": "viper"
+        },
+        {
+            "level_learned": 36,
+            "technique": "constrict"
+        },
+        {
+            "level_learned": 40,
+            "technique": "whirlwind"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "shape": "landrace",
+    "stage": "standalone",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 223,
+    "height": 160,
+    "weight": 250,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

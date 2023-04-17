@@ -3,11 +3,10 @@
   "accuracy": 0.75,
   "animation": "explosion_small",
   "effects": [
+    "give status_diehard,user",
     "damage"
   ],
   "flip_axes": "",
-  "healing_power": 0,
-  "icon": "",
   "is_area": false,
   "is_fast": false,
   "potency": 1,

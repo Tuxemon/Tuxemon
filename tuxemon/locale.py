@@ -1,32 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2016, William Edwards <shadowapex@gmail.com>,
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# William Edwards <shadowapex@gmail.com>
-# Andy Mender <andymenderunix@gmail.com>
-# Leif Theden <leif.theden@gmail.com>
-#
-#
-# locale Component for handling in-game translations.
-#
-
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import dataclasses
@@ -47,7 +20,7 @@ from typing import (
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
 
-from tuxemon import prepare
+from tuxemon import formula, prepare
 from tuxemon.constants import paths
 from tuxemon.session import Session
 
@@ -244,13 +217,39 @@ def replace_text(session: Session, text: str) -> str:
         'Red is running away!'
 
     """
-    text = text.replace("${{name}}", session.player.name)
+    player = session.player
+    client = session.client
+    text = text.replace("${{name}}", player.name)
     text = text.replace("${{currency}}", "$")
     text = text.replace(r"\n", "\n")
-    text = text.replace("${{money}}", str(session.player.money["player"]))
+    text = text.replace("${{money}}", str(player.money["player"]))
+    # distance (metric / imperial)
+    if prepare.CONFIG.unit == "metric":
+        text = text.replace("${{length}}", "km")
+        text = text.replace("${{weight}}", "kg")
+        text = text.replace("${{height}}", "cm")
+        text = text.replace(
+            "${{steps}}",
+            str(formula.convert_km(player.game_variables["steps"])),
+        )
+    else:
+        text = text.replace("${{length}}", "mi")
+        text = text.replace("${{weight}}", "lb")
+        text = text.replace("${{height}}", "ft")
+        text = text.replace(
+            "${{steps}}",
+            str(formula.convert_mi(player.game_variables["steps"])),
+        )
+    # maps
+    text = text.replace("${{map_name}}", client.map_name)
+    text = text.replace("${{map_desc}}", client.map_desc)
+    text = text.replace("${{north}}", client.map_north)
+    text = text.replace("${{south}}", client.map_south)
+    text = text.replace("${{east}}", client.map_east)
+    text = text.replace("${{west}}", client.map_west)
 
-    for i in range(len(session.player.monsters)):
-        monster = session.player.monsters[i]
+    for i in range(len(player.monsters)):
+        monster = player.monsters[i]
         text = text.replace("${{monster_" + str(i) + "_name}}", monster.name)
         text = text.replace(
             "${{monster_" + str(i) + "_desc}}",

@@ -5,24 +5,51 @@
     "moveset": [
         {
             "level_learned": 2,
+            "technique": "beam"
+        },
+        {
+            "level_learned": 2,
+            "technique": "levitate"
+        },
+        {
+            "level_learned": 6,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 8,
+            "technique": "radiance"
+        },
+        {
+            "level_learned": 12,
+            "technique": "battery_discharge"
+        },
+        {
+            "level_learned": 16,
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 20,
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
-            "technique": "battery_discharge"
+            "level_learned": 24,
+            "technique": "constrict"
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "botbot",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "aquatic",
+    "stage": "stage1",
     "types": [
-        "Metal"
+        "metal"
     ],
     "possible_genders": ["neuter"],
-    "txmn_id": 126,
+    "txmn_id": 127,
     "height": 55,
     "weight": 4,
     "catch_rate": 85.0,

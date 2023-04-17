@@ -8,29 +8,48 @@
             "technique": "breathe_fire"
         },
         {
-            "level_learned": 1,
+            "level_learned": 2,
             "technique": "give_all"
         },
         {
-            "level_learned": 2,
+            "level_learned": 6,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 8,
+            "technique": "saber"
+        },
+        {
+            "level_learned": 12,
             "technique": "fire_claw"
         }
     ],
     "evolutions": [
         {
-            "path": "",
+            "path": "standard",
             "at_level": 18,
             "monster_slug": "cardiwing"
         }
     ],
+    "history": [
+        {
+            "mon_slug": "cardiwing",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "cardinale",
+            "evo_stage": "stage2"
+        }
+    ],
     "shape": "flier",
+    "stage": "basic",
     "types": [
-        "Fire"
+        "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 61,
-    "height": 0,
-    "weight": 0,
+    "txmn_id": 62,
+    "height": 30,
+    "weight": 2,
     "catch_rate": 170.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25

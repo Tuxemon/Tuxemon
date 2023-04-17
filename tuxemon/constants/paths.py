@@ -1,29 +1,5 @@
-#
-# Tuxemon
-# Copyright (C) 2018, Andy Mender <andymenderunix@gmail.com>
-#
-# This file is part of Tuxemon.
-#
-# Tuxemon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Tuxemon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Contributor(s):
-#
-# Andy Mender <andymenderunix@gmail.com>
-#
-#
-# constants.paths - Central store for local file paths
-#
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
 import os.path
 import sys
@@ -82,5 +58,6 @@ ACTIONS_PATH = os.path.join(LIBDIR, "event/actions")
 ITEM_EFFECT_PATH = os.path.join(LIBDIR, "item/effects")
 ITEM_CONDITION_PATH = os.path.join(LIBDIR, "item/conditions")
 
-# technique effects
+# technique effects/conditions
 TECH_EFFECT_PATH = os.path.join(LIBDIR, "technique/effects")
+TECH_CONDITION_PATH = os.path.join(LIBDIR, "technique/conditions")

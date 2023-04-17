@@ -1,21 +1,24 @@
 {
   "animation": "drip_green",
-  "category": "enraged",
+  "category": "positive",
   "effects": [
     "statchange"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_enraged.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
   "sfx": "sfx_pulse",
   "slug": "status_enraged",
   "sort": "meta",
   "statmelee": {
     "value": 2,
-    "operation": "-"
+    "operation": "*"
   },
   "statranged": {
     "value": 0.5,
-    "operation": "-"
+    "operation": "*"
   },
   "target": {
     "enemy monster": 0,
@@ -26,7 +29,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "tech_id": 105,
+  "tech_id": 0,
   "use_failure": "generic_failure",
   "use_success": "combat_state_enraged_get",
   "use_tech": "combat_used_x"

@@ -1,12 +1,6 @@
 {
+  "effects": [],
   "slug": "aardant",
-  "use_item": "combat_used_x",
-  "use_success": "generic_success",
-  "use_failure": "generic_failure",
-  "effects": [
-
-  ],
-  "power": 0,
   "sort": "utility",
   "sprite": "gfx/items/aardant.png",
   "target": {
@@ -18,8 +12,12 @@
     "own trainer": 0,
     "item": 0
   },
-  "type": "Consumable",
+  "category": "none",
+  "type": "KeyItem",
   "usable_in": [
     "MainCombatMenuState"
-  ]
+  ],
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
 }

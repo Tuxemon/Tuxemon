@@ -1,17 +1,10 @@
 {
   "slug": "spyder_nimrod_xeon",
-  "gender": "neuter",
-  "sprite_name": "robot",
-  "monsters": [
+  "template": [
     {
-      "name": "Xeon",
-      "level": 20,
-      "slug": "xeon",
-      "exp_give_mod": 3,
-      "exp_req_mod": 27,
-      "gender": "neuter"
+      "sprite_name": "robot",
+      "combat_front": "xeon",
+      "slug": "robot"
     }
-  ],
-  "combat_front": "xeon.png",
-  "combat_back": "red_back.png"
+  ]
 }

@@ -488,7 +488,7 @@
     <property name="act06" value="npc_face player,down"/>
     <property name="act07" value="npc_face spyder_route2_billie,up"/>
     <property name="act08" value="translated_dialog spyder_route2_billie1"/>
-    <property name="act20" value="add_monster dollfin,6,spyder_route2_billie,27,10"/>
+    <property name="act20" value="add_monster billie_choice,6,spyder_route2_billie,27,10"/>
     <property name="act21" value="add_monster eyenemy,6,spyder_route2_billie,27,10"/>
     <property name="act22" value="add_monster cardiling,3,spyder_route2_billie,27,10"/>
     <property name="act30" value="start_battle spyder_route2_billie"/>

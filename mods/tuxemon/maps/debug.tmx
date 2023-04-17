@@ -41,7 +41,7 @@
     <property name="act2" value="translated_dialog_choice gender_female:gender_male,gender_choice"/>
     <property name="act3" value="change_bg spyder_empty"/>
     <property name="act4" value="transition_teleport spyder_bedroom.tmx,4,4,0.3"/>
-    <property name="act5" value="set_money player,10000"/>
+    <property name="act5" value="set_money player,250"/>
     <property name="act6" value="set_variable spyder_starting_money:yes"/>
     <property name="cond1" value="is variable_set scenario_choice:spyder_campaign"/>
     <property name="cond2" value="not variable_set spyder_starting_money:yes"/>

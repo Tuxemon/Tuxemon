@@ -301,7 +301,7 @@
     <property name="act60" value="pathfind spyder_billie,26,12"/>
     <property name="act61" value="npc_face player,down"/>
     <property name="act70" value="translated_dialog spyder_papertown_firstfight"/>
-    <property name="act71" value="add_monster dollfin,5,spyder_billie,27,10"/>
+    <property name="act71" value="add_monster billie_choice,5,spyder_billie,27,10"/>
     <property name="act80" value="start_battle spyder_billie"/>
     <property name="act90" value="set_variable firstfightdue:no"/>
     <property name="act91" value="set_variable teleport_faint:spyder_bedroom.tmx 3 4"/>

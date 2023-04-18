@@ -2,7 +2,7 @@
   "slug": "spyder_dojo_tu",
   "template": [
     {
-      "sprite_name": "ninja",
+      "sprite_name": "ninja_red",
       "combat_front": "ninja",
       "slug": "ninja"
     }

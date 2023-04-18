@@ -233,9 +233,10 @@
    <properties>
     <property name="act01" value="player_stop"/>
     <property name="act02" value="lock_controls"/>
-    <property name="act03" value="pathfind spyder_dojo_wan,11,9"/>
-    <property name="act04" value="translated_dialog spyder_dojo_wan1"/>
-    <property name="act05" value="translated_dialog spyder_dojo_wan3"/>
+    <property name="act03" value="wait 2"/>
+    <property name="act04" value="pathfind spyder_dojo_wan,11,9"/>
+    <property name="act05" value="translated_dialog spyder_dojo_wan1"/>
+    <property name="act06" value="translated_dialog spyder_dojo_wan3"/>
     <property name="act07" value="unlock_controls"/>
     <property name="act08" value="npc_face spyder_dojo_wan,right"/>
     <property name="act09" value="pathfind spyder_dojo_wan,13,9"/>

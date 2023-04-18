@@ -44,7 +44,7 @@ class Battle:
             if getattr(self, attr)
         }
 
-        save_data["instance_id"] = self.instance_id.hex
+        save_data["instance_id"] = str(self.instance_id.hex)
 
         return save_data
 

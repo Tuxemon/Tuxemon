@@ -2,20 +2,16 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import logging
 from dataclasses import dataclass
 from typing import Union, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
-logger = logging.getLogger(__name__)
 
-
-# noinspection PyAttributeOutsideInit
 @final
 @dataclass
-class GetPlayerMonsterAction(EventAction):
+class GetPartyMonsterAction(EventAction):
     """
     Saves all the iids (party) in variables.
 
@@ -42,4 +38,6 @@ class GetPlayerMonsterAction(EventAction):
         assert trainer
         for mon in trainer.monsters:
             index = trainer.monsters.index(mon)
-            player.game_variables[f"iid_slot_{index}"] = mon.instance_id.hex
+            player.game_variables[f"iid_slot_{index}"] = str(
+                mon.instance_id.hex
+            )

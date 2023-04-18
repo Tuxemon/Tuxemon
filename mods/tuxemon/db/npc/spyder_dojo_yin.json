@@ -2,7 +2,7 @@
   "slug": "spyder_dojo_yin",
   "template": [
     {
-      "sprite_name": "maniac",
+      "sprite_name": "maniac_violet",
       "combat_front": "adventurer",
       "slug": "maniac"
     }

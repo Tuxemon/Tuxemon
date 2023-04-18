@@ -2,7 +2,7 @@
   "slug": "spyder_dojo_kataro",
   "template": [
     {
-      "sprite_name": "monk",
+      "sprite_name": "monk_orange",
       "combat_front": "monk",
       "slug": "monk"
     }

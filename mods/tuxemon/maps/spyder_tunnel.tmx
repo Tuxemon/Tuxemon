@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="350">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="351">
  <properties>
   <property name="east" value="route6"/>
   <property name="edges" value="clamped"/>
@@ -16,12 +16,12 @@
  </layer>
  <layer id="2" name="Obstacles" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAG1llFOAzEMRAMCxFFoexYqrsEfEvQPLsJp4DBwDjy0TwyWk91uYaV00sQej+NsNq39PNuzfR9k5u4wXv2/uWxtFQ3ERggPyNyI7za4ttFAfJzPx+iHS3sKnffnre2SXmx2F/veKubX0TZMnIg5v4ou55xtfP3+gs/Xr+J7u27tPRrPqfo+gusz8ZETSCxhpe/KDayv2qqm+IBm8mv/Vfm6LbmiC3QbjzGXDx/Q+TzGY+Qylav7Vv0co6eRXCsOjaELxK7iow7YVIguEJuKb0qbfNEFVnzSNXrv8RGiC2TO9c3RhR840reEb6RvHUF1ftE20Z96sj7tQZ2X1T6cozfrI76vI2Nz+LI+fJfy/ac+vh+9b4jqM1UT11flSP7gFKev3xy+hyAecfb08a5V+0acvVr39GHf08w86wD29GF/LJ94uR+4L3y9M5t5dFVY8cnOx/Hj3R7tH/fzGvo4fGDWST20l/M9CFv4Xu273uOjHvLp3S3gg0Oo/fQcPr07m3yqu4V8Kz60a756so/iv0QMPZyJOhdprqtaB/jEIx+4vgmP+KEe8JHHrlj7ObReD9nDR5ylyBqRJ3GW4hcMsVFM
+   eAG1llFOAzEMRAMCxFFoexYqrsEfEvQPLsJp4DBwDjy0TwyRvZtuYaV00sQej+NsNq39PNuzfR9k5u4wnv2/uWxtFQ3ERggPyNwU321wbaOB+Difj9EPl/YUOu/PW9t1erHZXex7q5hfR9swcSL2+WV0fc69ja/fX/D5+mV8b9etvUfjOVXfR3B9dnzkBBJLmOm7cgPrq7aqKT6gmfzaf1m+bkuu6ALdxmOM8uEDOp/HeIxc5nJ136zfx6g0kmvG4WOuT+MZH3Vwv6o/om9EG7pA4rk+6Zp67/ERogtkzvlGdOEHTulbwjelbx1BdX7RNtGfe3p92oM6L7N9OKK310d8X0fGRvh6ffgu5ftPfXw/qm+I6jNXE9eX5Uj+4Bynr98I30MQT3FW+njXsn0jzqrWlT7sK83Msw5gpQ/7Y/nEy/3AfeGrzmzm0ZVhxic7H8ePd3tq/7if19DH4QN7ndRDe7m/B2EL36t91ys+6iGf6m4BHxxC7afn8KnubPLJ7hbyzfjQrvns6X0U/yVi6OFM1LlIc13ZOsAnHvnA9U14xA/1gI88dsnaj9B6PWQPH3GWImtEnsRZil/B0lBM
   </data>
  </layer>
  <layer id="3" name="Obstacles 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtldENwjAMRMsHiFVod0HsQhkGhukyLEJOqqWzSSB22g9QI1W1k/rl4iZx1/1eO++05ovx9ei7Nx11X47nZTIxx+PxGvuU1tTPz0AB+2TfnOtFuNUkyOg6v/FsjmW+0vua1nRIgzYuqg/zgDnOXOQNdiR3YHEDt4bzMPuMGVH77mQ+nd9HdW1xOgNr/Hs9w7qed5+tqUbdhenstTa+u1ruF9GR440N547vrSX0sc4+Oagrw8J5BDfC5DxJDRC9UabE483/Br43n/Yct/KggVuJZ+sgx3yyhddS73hu4XnzVtIoe7umfpYYW///ZOAFBnkbpA==
+   eAHtldENwjAMRMsHiFVod0HsQhkGhmEZFsEn1dLFJBA77UcrIlVxmvrl7CZx162vnXep5osZp7Ofo+cxfZfjeZlMzPF4vsY+SUz99AzksBf75owX7laTIqNx/uLZHOt6pf4qMR1k0vpF9WEdMMeJi7zBjuQOLG7g1nAeZp8xI2rfncxXxfdL6IzGtxW/tefUu8+W/G/JXShnr7Xx3dVyv6iOHG+sOHfqb3u+t+bQp3zo7GWAujLMnEdwI0zOk9YA1Rtlqj96/jcYe/Npz3ErDxq4lXi2DrLPN1t5LfWO11aeN28ljbq3a+pnifF/v50MvAFlNBxG
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -58,11 +58,7 @@
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="307" type="collision" x="288" y="48" width="32" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
+  <object id="307" type="collision" x="288" y="48" width="32" height="32"/>
   <object id="308" type="collision" x="224" y="176" width="32" height="128">
    <properties>
     <property name="key" value="water"/>
@@ -131,6 +127,7 @@
   <object id="326" type="collision" x="304" y="448" width="16" height="16"/>
   <object id="328" type="collision" x="160" y="0" width="64" height="32"/>
   <object id="339" type="collision" x="304" y="32" width="16" height="16"/>
+  <object id="350" type="collision" x="272" y="192" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="197" name="Teleport to Below" type="event" x="192" y="32" width="16" height="16">

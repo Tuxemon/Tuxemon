@@ -23,5 +23,5 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions"/>
- <objectgroup id="4" name="Events"/>
+ <objectgroup color="#ffff00" id="4" name="Events"/>
 </map>

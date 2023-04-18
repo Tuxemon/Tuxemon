@@ -35,9 +35,9 @@ class GetPlayerMonsterAction(EventAction):
     variable_name: str
 
     def set_var(self, menu_item: MenuItem[Monster]) -> None:
-        self.session.player.game_variables[
-            self.variable_name
-        ] = menu_item.game_object.instance_id.hex
+        self.session.player.game_variables[self.variable_name] = str(
+            menu_item.game_object.instance_id.hex
+        )
         self.session.client.pop_state()
 
     def start(self) -> None:

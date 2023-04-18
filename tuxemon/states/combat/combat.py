@@ -749,9 +749,9 @@ class CombatState(CombatAnimations):
         self.alert(message)
         # save iid monster fighting
         if player is self.players[0]:
-            self.players[0].game_variables[
-                "iid_fighting_monster"
-            ] = monster.instance_id.hex
+            self.players[0].game_variables["iid_fighting_monster"] = str(
+                monster.instance_id.hex
+            )
         elif self.is_trainer_battle:
             pass
         else:

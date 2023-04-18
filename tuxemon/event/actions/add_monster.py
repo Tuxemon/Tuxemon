@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import Optional, Union, final
 
 from tuxemon import formula, monster
-from tuxemon.db import SeenStatus
+from tuxemon.db import SeenStatus, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
@@ -21,12 +21,13 @@ class AddMonsterAction(EventAction):
     Script usage:
         .. code-block::
 
-            add_monster <monster_slug>,<monster_level>[,trainer_slug][,exp_mod][,money_mod]
+            add_monster <mon_slug>,<mon_level>[,npc_slug][,exp_mod][,money_mod]
 
     Script parameters:
-        monster_slug: Monster slug to look up in the monster database.
-        monster_level: Level of the added monster.
-        trainer_slug: Slug of the trainer that will receive the monster. It
+        mon_slug: Monster slug to look up in the monster database or name variable
+            where it's stored the mon_slug
+        mon_level: Level of the added monster.
+        npc_slug: Slug of the trainer that will receive the monster. It
             defaults to the current player.
         exp_mod: Experience modifier
         money_mod: Money modifier
@@ -41,9 +42,10 @@ class AddMonsterAction(EventAction):
     money: Union[int, None] = None
 
     def start(self) -> None:
+        player = self.session.player
         trainer: Optional[NPC]
         if self.trainer_slug is None:
-            trainer = self.session.player
+            trainer = player
         else:
             trainer = get_npc(self.session, self.trainer_slug)
 
@@ -51,8 +53,21 @@ class AddMonsterAction(EventAction):
             self.trainer_slug or "player"
         )
 
+        # check monster existence
+        _monster: str = ""
+        verify = list(db.database["monster"])
+        if self.monster_slug not in verify:
+            if self.monster_slug in player.game_variables:
+                _monster = player.game_variables[self.monster_slug]
+            else:
+                raise ValueError(
+                    f"{self.monster_slug} doesn't exist (monster or variable)."
+                )
+        else:
+            _monster = self.monster_slug
+
         current_monster = monster.Monster()
-        current_monster.load_from_db(self.monster_slug)
+        current_monster.load_from_db(_monster)
         current_monster.set_level(self.monster_level)
         current_monster.set_moves(self.monster_level)
         current_monster.set_capture(formula.today_ordinal())
@@ -63,4 +78,4 @@ class AddMonsterAction(EventAction):
             current_monster.money_modifier = self.money
 
         trainer.add_monster(current_monster, len(trainer.monsters))
-        trainer.tuxepedia[self.monster_slug] = SeenStatus.caught
+        trainer.tuxepedia[current_monster.slug] = SeenStatus.caught

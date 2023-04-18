@@ -620,6 +620,25 @@ class WorldState(state.State):
         """
         return list(self.npcs.values())
 
+    def check_collision_zones(
+        self,
+        map: Mapping[Tuple[int, int], Optional[RegionProperties]],
+        label: str,
+    ) -> Optional[Tuple[int, int]]:
+        """
+        Returns coords (tuple) of specific collision zones.
+
+        Returns:
+            The coordinates.
+
+        """
+        for coords, props in map.items():
+            if isinstance(props, dict):
+                for ele in props.values():
+                    if ele == label:
+                        return coords
+        return None
+
     def get_collision_map(self) -> CollisionMap:
         """
         Return dictionary for collision testing.

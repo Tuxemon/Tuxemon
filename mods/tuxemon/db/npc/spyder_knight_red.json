@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_knight_red",
+  "template": [
+    {
+      "sprite_name": "knight_red",
+      "combat_front": "enforcer_rookie",
+      "slug": "enforcer_rookie"
+    }
+  ]
+}

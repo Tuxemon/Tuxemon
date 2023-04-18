@@ -691,6 +691,12 @@ msgstr "Phone keeps ringing but no answer!"
 
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
+msgid "combat_scope"
+msgstr "AR:{AR} DE:{DE} ME:{ME} RD:{RD} SD:{SD}"
+
+msgid "combat_none"
+msgstr " "
+
 msgid "combat_miss"
 msgstr "It missed..."
 
@@ -1178,6 +1184,9 @@ msgstr "Overfeed"
 msgid "overgrowth"
 msgstr "Overgrowth"
 
+msgid "panjandrum"
+msgstr "Panjandrum"
+
 msgid "peck"
 msgstr "Peck"
 
@@ -1219,6 +1228,9 @@ msgstr "Salamander"
 
 msgid "sand_spray"
 msgstr "Sand Spray"
+
+msgid "scope"
+msgstr "Scope"
 
 msgid "shadow_boxing"
 msgstr "Shadow Boxing"

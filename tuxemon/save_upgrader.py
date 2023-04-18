@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import random
 from typing import TYPE_CHECKING, Any, Dict, Mapping
 
 from tuxemon import formula
@@ -53,6 +54,12 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
         Modified save data.
 
     """
+    starter = ["budaye", "dollfin", "grintot", "ignibus", "memnomnom"]
+    if "firstfightdue" in save_data["game_variables"]:
+        if "billie_choice" not in save_data["game_variables"]:
+            save_data["game_variables"]["billie_choice"] = random.choice(
+                starter
+            )
     if "steps" not in save_data["game_variables"]:
         save_data["game_variables"]["steps"] = 0
     if "gender_choice" not in save_data["game_variables"]:

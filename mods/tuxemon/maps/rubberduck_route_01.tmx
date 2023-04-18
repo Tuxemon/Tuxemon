@@ -185,8 +185,8 @@
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="7" name="Route Music" type="event" x="64" y="16" width="16" height="16">
    <properties>
-    <property name="act10" value="play_music peasant_kingdom.ogg"/>
-    <property name="cond10" value="not music_playing peasant_kingdom.ogg"/>
+    <property name="act10" value="play_music music_the_wild_places"/>
+    <property name="cond10" value="not music_playing music_the_wild_places"/>
    </properties>
   </object>
   <object id="8" name="Teleport to map1 (lower)" type="event" x="608" y="128" width="16" height="80">

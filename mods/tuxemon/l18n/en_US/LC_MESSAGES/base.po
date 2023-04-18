@@ -5856,6 +5856,24 @@ msgstr "Welcome back. Shall I chuck your tuxemon in the healing unit?"
 msgid "spyder_cottonart_barmaid"
 msgstr "Do you like my set? \n They capture my early days as a professional tuxemon trainer, before I retired on my winnings. \n  I call them: 'Monsters' Eyes Meet', 'Starry, Starry, Starry Night' and 'Trepidation'. They're for sale! \n Get them while they're hot! Just 1,000 each."
 
+msgid "spyder_cottonart_barmaid_bundle"
+msgstr "Do you want to buy all three paintings for ${{currency}}3,000?"
+
+msgid "spyder_cottonart_barmaid_single"
+msgstr "Do you want to buy this painting for ${{currency}}1,000?"
+
+msgid "spyder_cottonart_barmaid_painting_sold"
+msgstr "The painting has been bought by ${{name}}! This is a copy!"
+
+msgid "spyder_cottonart_barmaid_painting_sold_billie"
+msgstr "The painting has been bought and donated back to the gallery by Billie!"
+
+msgid "spyder_cottonart_barmaid_bundle_sold"
+msgstr "It looks like you're my collector now! I'll replace the original with copies!"
+
+msgid "spyder_cottonart_billie"
+msgstr "I see you're trying to broaden your horizons. That's cute. Just try not to touch anything."
+
 msgid "spyder_cottonart_granny"
 msgstr "I must be getting nostalgic. I almost said \n \"Back in my day, things were better!\""
 
@@ -6433,6 +6451,8 @@ msgid "spyder_flower_muse1"
 msgstr "He's so hard on himself, never happy with something he's painted. He's so forgetful, too. Perhaps I could buy a painting "
 msgid "spyder_flower_muse2"
 msgstr "What? You have a painting. Oooh - would you let me buy it? I have ${{currency}}2,000."
+msgid "spyder_flower_muse4"
+msgstr "What? You have all the paintings. Oooh - would you let me buy it? I have ${{currency}}6,000."
 msgid "spyder_flower_artist_clipping"
 msgstr "A newspaper clipping is on the wall. It begins: \n \"The famous art critic has put away his poison pen and picked up the paint brush. \n After years of tearing down artists, can he do any better himself?\""
 msgid "spyder_flower_artist2"

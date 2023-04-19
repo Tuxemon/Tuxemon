@@ -691,6 +691,12 @@ msgstr "Phone keeps ringing but no answer!"
 
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
+msgid "combat_scope"
+msgstr "AR:{AR} DE:{DE} ME:{ME} RD:{RD} SD:{SD}"
+
+msgid "combat_none"
+msgstr " "
+
 msgid "combat_miss"
 msgstr "It missed..."
 
@@ -1187,6 +1193,9 @@ msgstr "Overfeed"
 msgid "overgrowth"
 msgstr "Overgrowth"
 
+msgid "panjandrum"
+msgstr "Panjandrum"
+
 msgid "peck"
 msgstr "Peck"
 
@@ -1228,6 +1237,9 @@ msgstr "Salamander"
 
 msgid "sand_spray"
 msgstr "Sand Spray"
+
+msgid "scope"
+msgstr "Scope"
 
 msgid "shadow_boxing"
 msgstr "Shadow Boxing"
@@ -5871,6 +5883,24 @@ msgstr "Welcome back. Shall I chuck your tuxemon in the healing unit?"
 msgid "spyder_cottonart_barmaid"
 msgstr "Do you like my set? \n They capture my early days as a professional tuxemon trainer, before I retired on my winnings. \n  I call them: 'Monsters' Eyes Meet', 'Starry, Starry, Starry Night' and 'Trepidation'. They're for sale! \n Get them while they're hot! Just 1,000 each."
 
+msgid "spyder_cottonart_barmaid_bundle"
+msgstr "Do you want to buy all three paintings for ${{currency}}3,000?"
+
+msgid "spyder_cottonart_barmaid_single"
+msgstr "Do you want to buy this painting for ${{currency}}1,000?"
+
+msgid "spyder_cottonart_barmaid_painting_sold"
+msgstr "The painting has been bought by ${{name}}! This is a copy!"
+
+msgid "spyder_cottonart_barmaid_painting_sold_billie"
+msgstr "The painting has been bought and donated back to the gallery by Billie!"
+
+msgid "spyder_cottonart_barmaid_bundle_sold"
+msgstr "It looks like you're my collector now! I'll replace the original with copies!"
+
+msgid "spyder_cottonart_billie"
+msgstr "I see you're trying to broaden your horizons. That's cute. Just try not to touch anything."
+
 msgid "spyder_cottonart_granny"
 msgstr "I must be getting nostalgic. I almost said \n \"Back in my day, things were better!\""
 
@@ -6141,6 +6171,10 @@ msgid "spyder_enforcer_candy3"
 msgstr "Ha! I mean, oh dear, your tuxemon are infected and must be quarantined.\n Hand them over now ..."
 msgid "spyder_enforcer_candy4"
 msgstr "Don't you even think of trying to steal your tuxemon back from the Hospital.\n The scanners are set up to reject all known tuxemon and human DNA!"
+msgid "spyder_route4_billie1"
+msgstr "I've got all the latest gear and the best tuxemon. What have you got?"
+msgid "spyder_route4_billie2"
+msgstr "I guess money can't buy everything, after all."
 msgid "spyder_magician_timber"
 msgstr "Hey, that's a nice phone you've got there ... Your mum made it for you? Heaps cool! \n Then you've gotta install my newest social media app. It's called Contacts App. \n It keeps track of all the people you meet and tells you what they're up to."
 msgid "spyder_candy_catgirl1"
@@ -6421,6 +6455,10 @@ msgid "spyder_tunnelb_tommy2"
 msgstr "My hunger put me off of my game!"
 msgid "spyder_successful_log"
 msgstr "Your mighty hatchet slices the log in two."
+msgid "spyder_route6_billie1"
+msgstr "Let's make it quick. I have a spa appointment in an hour."
+msgid "spyder_route6_billie2"
+msgstr "Huh. You're a better trainer than I thought."
 msgid "spyder_route6_frances1"
 msgstr "My Narcileaf keeps the finest garden in all the land."
 msgid "spyder_route6_frances2"
@@ -6463,6 +6501,8 @@ msgid "spyder_flower_muse1"
 msgstr "He's so hard on himself, never happy with something he's painted. He's so forgetful, too. Perhaps I could buy a painting "
 msgid "spyder_flower_muse2"
 msgstr "What? You have a painting. Oooh - would you let me buy it? I have ${{currency}}2,000."
+msgid "spyder_flower_muse4"
+msgstr "What? You have all the paintings. Oooh - would you let me buy it? I have ${{currency}}6,000."
 msgid "spyder_flower_artist_clipping"
 msgstr "A newspaper clipping is on the wall. It begins: \n \"The famous art critic has put away his poison pen and picked up the paint brush. \n After years of tearing down artists, can he do any better himself?\""
 msgid "spyder_flower_artist2"

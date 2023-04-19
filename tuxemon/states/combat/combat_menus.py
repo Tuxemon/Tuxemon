@@ -341,7 +341,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             else:
                 combat_state = self.client.get_state_by_name(CombatState)
                 # null action for dozing
-                if combat.check_status(self.monster, "status_dozing"):
+                if combat.has_status(self.monster, "status_dozing"):
                     status = Technique()
                     status.load("status_dozing")
                     technique = status

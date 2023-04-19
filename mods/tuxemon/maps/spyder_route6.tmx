@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="226">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="232">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -452,7 +452,7 @@
     <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
-  <object id="213" name="Talk Maxwell" type="event" x="96" y="80" width="64" height="16">
+  <object id="213" name="Talk Maxwell" type="event" x="64" y="80" width="96" height="16">
    <properties>
     <property name="act0" value="pathfind_to_player spyder_route6_maxwell"/>
     <property name="act1" value="translated_dialog spyder_route6_maxwell1"/>
@@ -465,7 +465,7 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="214" name="Talk Orion" type="event" x="336" y="48" width="16" height="48">
+  <object id="214" name="Talk Orion" type="event" x="336" y="32" width="16" height="64">
    <properties>
     <property name="act0" value="pathfind_to_player spyder_route6_orion"/>
     <property name="act1" value="translated_dialog spyder_route6_orion1"/>
@@ -478,7 +478,7 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="215" name="Talk Richard" type="event" x="432" y="176" width="64" height="16">
+  <object id="215" name="Talk Richard" type="event" x="432" y="176" width="96" height="16">
    <properties>
     <property name="act0" value="pathfind_to_player spyder_route6_richard"/>
     <property name="act1" value="translated_dialog spyder_route6_richard1"/>
@@ -491,7 +491,7 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="216" name="Talk Blair" type="event" x="496" y="144" width="64" height="16">
+  <object id="216" name="Talk Blair" type="event" x="432" y="144" width="128" height="16">
    <properties>
     <property name="act0" value="pathfind_to_player spyder_route6_blair"/>
     <property name="act1" value="translated_dialog spyder_route6_blair1"/>
@@ -522,6 +522,27 @@
     <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
+  <object id="226" name="Billie1" type="event" x="48" y="176" width="16" height="80">
+   <properties>
+    <property name="act01" value="player_stop"/>
+    <property name="act02" value="lock_controls"/>
+    <property name="act03" value="create_npc spyder_billie,8,13"/>
+    <property name="act04" value="pathfind_to_player spyder_billie"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act08" value="translated_dialog spyder_route6_billie1"/>
+    <property name="act20" value="add_monster billie_choice,34,spyder_billie,27,10"/>
+    <property name="act21" value="add_monster cardiwing,30,spyder_billie,27,10"/>
+    <property name="act22" value="add_monster eyesore,30,spyder_billie,27,10"/>
+    <property name="act23" value="add_monster viviphyta,30,spyder_billie,27,10"/>
+    <property name="act30" value="start_battle spyder_billie"/>
+    <property name="act71" value="translated_dialog spyder_route6_billie2"/>
+    <property name="act75" value="pathfind spyder_billie,8,13"/>
+    <property name="act80" value="remove_npc spyder_billie"/>
+    <property name="act90" value="set_variable route6billie:yes"/>
+    <property name="cond1" value="not variable_set route6billie:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
   <object id="221" name="Remove obstacle 1" type="event" x="0" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="remove_collision water"/>
@@ -542,6 +563,59 @@
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="226" name="Billie2" type="event" x="48" y="128" width="16" height="48">
+   <properties>
+    <property name="act01" value="player_stop"/>
+    <property name="act02" value="lock_controls"/>
+    <property name="act03" value="create_npc spyder_billie,4,3"/>
+    <property name="act04" value="pathfind spyder_billie,3,8"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="npc_face spyder_billie,down"/>
+    <property name="act07" value="npc_face player,up"/>
+    <property name="act10" value="translated_dialog spyder_route6_billie1"/>
+    <property name="act20" value="add_monster billie_choice,34,spyder_billie,27,10"/>
+    <property name="act21" value="add_monster cardiwing,30,spyder_billie,27,10"/>
+    <property name="act22" value="add_monster eyesore,30,spyder_billie,27,10"/>
+    <property name="act23" value="add_monster viviphyta,30,spyder_billie,27,10"/>
+    <property name="act30" value="start_battle spyder_billie"/>
+    <property name="act71" value="translated_dialog spyder_route6_billie2"/>
+    <property name="act75" value="pathfind spyder_billie,4,3"/>
+    <property name="act80" value="remove_npc spyder_billie"/>
+    <property name="act90" value="set_variable route6billie:yes"/>
+    <property name="cond1" value="not variable_set route6billie:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="227" name="Billie Budaye" type="event" x="0" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:bamboon"/>
+    <property name="cond1" value="is variable_set billie_choice:budaye"/>
+   </properties>
+  </object>
+  <object id="228" name="Billie Dollfin" type="event" x="16" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:bigfin"/>
+    <property name="cond1" value="is variable_set billie_choice:dollfin"/>
+   </properties>
+  </object>
+  <object id="229" name="Billie Grintot" type="event" x="32" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:grintrock"/>
+    <property name="cond1" value="is variable_set billie_choice:grintot"/>
+   </properties>
+  </object>
+  <object id="230" name="Billie Ignibus" type="event" x="48" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:eruptibus"/>
+    <property name="cond1" value="is variable_set billie_choice:ignibus"/>
+   </properties>
+  </object>
+  <object id="231" name="Billie Memnomnom" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:miaownolith"/>
+    <property name="cond1" value="is variable_set billie_choice:memnomnom"/>
    </properties>
   </object>
  </objectgroup>

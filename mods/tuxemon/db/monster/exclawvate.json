@@ -12,6 +12,14 @@
             "technique": "strike"
         },
         {
+            "level_learned": 6,
+            "technique": "time_crisis"
+        },
+        {
+            "level_learned": 8,
+            "technique": "sword"
+        },
+        {
             "level_learned": 12,
             "technique": "shrapnel"
         },
@@ -29,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "boltnu",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "dragon",
     "stage": "stage1",
     "types": [

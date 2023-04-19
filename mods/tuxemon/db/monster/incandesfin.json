@@ -12,6 +12,14 @@
             "technique": "sudden_glow"
         },
         {
+            "level_learned": 6,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 8,
+            "technique": "gyser"
+        },
+        {
             "level_learned": 12,
             "technique": "glower"
         },
@@ -33,6 +41,12 @@
             "path": "standard",
             "at_level": 36,
             "monster_slug": "lightmare"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "fluoresfin",
+            "evo_stage": "basic"
         }
     ],
     "shape": "aquatic",

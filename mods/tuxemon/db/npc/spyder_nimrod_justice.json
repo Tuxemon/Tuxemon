@@ -6,23 +6,5 @@
       "combat_front": "soldier",
       "slug": "soldier"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Ghosteeth",
-      "level": 16,
-      "slug": "ghosteeth",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Ghosteeth",
-      "level": 16,
-      "slug": "ghosteeth",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

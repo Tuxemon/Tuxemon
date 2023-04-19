@@ -6,31 +6,5 @@
       "combat_front": "spyder_boss",
       "slug": "spyder_boss"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Cardiwing",
-      "level": 35,
-      "slug": "cardiwing",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Spighter",
-      "level": 35,
-      "slug": "spighter",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Abesnaki",
-      "level": 35,
-      "slug": "abesnaki",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

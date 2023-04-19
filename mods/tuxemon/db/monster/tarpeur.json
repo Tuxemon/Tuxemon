@@ -12,6 +12,14 @@
             "technique": "sting"
         },
         {
+            "level_learned": 6,
+            "technique": "chameleon"
+        },
+        {
+            "level_learned": 8,
+            "technique": "sylvan"
+        },
+        {
             "level_learned": 12,
             "technique": "fluff_up"
         }
@@ -21,6 +29,12 @@
             "path": "standard",
             "at_level": 18,
             "monster_slug": "vigueur"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "vigueur",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "grub",

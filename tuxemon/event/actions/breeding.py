@@ -35,15 +35,15 @@ class BreedingAction(EventAction):
         if menu_item.game_object.stage != "basic":
             if self.gender == "male":
                 if menu_item.game_object.gender == self.gender:
-                    self.player.game_variables[
-                        "breeding_father"
-                    ] = menu_item.game_object.instance_id.hex
+                    self.player.game_variables["breeding_father"] = str(
+                        menu_item.game_object.instance_id.hex
+                    )
                     self.session.client.pop_state()
             elif self.gender == "female":
                 if menu_item.game_object.gender == self.gender:
-                    self.player.game_variables[
-                        "breeding_mother"
-                    ] = menu_item.game_object.instance_id.hex
+                    self.player.game_variables["breeding_mother"] = str(
+                        menu_item.game_object.instance_id.hex
+                    )
                     self.session.client.pop_state()
 
     def start(self) -> None:

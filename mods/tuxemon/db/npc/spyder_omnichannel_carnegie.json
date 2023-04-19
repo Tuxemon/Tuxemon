@@ -6,23 +6,5 @@
       "combat_front": "cooldude",
       "slug": "cooldude"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Elofly",
-      "level": 38,
-      "slug": "elofly",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Elostorm",
-      "level": 38,
-      "slug": "elostorm",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

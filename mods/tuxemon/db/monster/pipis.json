@@ -12,6 +12,14 @@
             "technique": "splinter"
         },
         {
+            "level_learned": 6,
+            "technique": "overfeed"
+        },
+        {
+            "level_learned": 8,
+            "technique": "one_two"
+        },
+        {
             "level_learned": 12,
             "technique": "take_cover"
         }
@@ -21,6 +29,12 @@
             "path": "standard",
             "at_level": 18,
             "monster_slug": "strella"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "strella",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "flier",

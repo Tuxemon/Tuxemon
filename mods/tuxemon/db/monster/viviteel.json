@@ -12,6 +12,14 @@
             "technique": "headbutt"
         },
         {
+            "level_learned": 6,
+            "technique": "quicksand"
+        },
+        {
+            "level_learned": 8,
+            "technique": "sylvan"
+        },
+        {
             "level_learned": 12,
             "technique": "wallow"
         },
@@ -29,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "vivipere",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

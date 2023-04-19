@@ -55,7 +55,7 @@ class CLICommand(ABC):
         """
         return ()
 
-    def get_subcommand(self, ctx: InvokeContext, name) -> CLICommand:
+    def get_subcommand(self, ctx: InvokeContext, name: str) -> CLICommand:
         """
         Return a single subcommand by name.
 

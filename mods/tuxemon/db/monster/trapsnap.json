@@ -12,6 +12,14 @@
             "technique": "headbutt"
         },
         {
+            "level_learned": 6,
+            "technique": "maori"
+        },
+        {
+            "level_learned": 8,
+            "technique": "assault"
+        },
+        {
             "level_learned": 12,
             "technique": "fluff_up"
         }
@@ -21,6 +29,12 @@
             "path": "standard",
             "at_level": 30,
             "monster_slug": "sapsnap"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "sapsnap",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "brute",

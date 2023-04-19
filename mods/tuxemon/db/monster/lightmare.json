@@ -12,6 +12,14 @@
             "technique": "sudden_glow"
         },
         {
+            "level_learned": 6,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 8,
+            "technique": "gyser"
+        },
+        {
             "level_learned": 12,
             "technique": "glower"
         },
@@ -41,6 +49,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "fluoresfin",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "incandesfin",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "leviathan",
     "stage": "stage2",
     "types": [

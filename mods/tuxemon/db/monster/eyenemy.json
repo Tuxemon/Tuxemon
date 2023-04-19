@@ -12,6 +12,14 @@
             "technique": "spray"
         },
         {
+            "level_learned": 6,
+            "technique": "ruby"
+        },
+        {
+            "level_learned": 8,
+            "technique": "sleep_bomb"
+        },
+        {
             "level_learned": 12,
             "technique": "glower"
         }
@@ -21,6 +29,12 @@
             "path": "standard",
             "at_level": 18,
             "monster_slug": "eyesore"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "eyesore",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "serpent",

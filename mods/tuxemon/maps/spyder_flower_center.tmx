@@ -54,7 +54,7 @@
     <property name="act50" value="npc_face tabanurse,down"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
-    <property name="act80" value="set_variable teleport_faint:spyder_flower_center.tmx 6 10"/>
+    <property name="act80" value="set_variable teleport_faint:spyder_flower_center.tmx 6 7"/>
     <property name="cond1" value="is variable_set chooses:yes"/>
    </properties>
   </object>
@@ -97,8 +97,8 @@
    <properties>
     <property name="act1" value="set_monster_health"/>
     <property name="act2" value="set_monster_status"/>
-    <property name="act3" value="set_variable battle_last_result:none"/>
-    <property name="cond1" value="is variable_set battle_last_result:lost"/>
+    <property name="act3" value="set_variable teleport_clinic:none"/>
+    <property name="cond1" value="is variable_set teleport_clinic:lost"/>
    </properties>
   </object>
  </objectgroup>

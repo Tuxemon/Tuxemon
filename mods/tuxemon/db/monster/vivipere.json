@@ -12,6 +12,14 @@
             "technique": "headbutt"
         },
         {
+            "level_learned": 6,
+            "technique": "quicksand"
+        },
+        {
+            "level_learned": 8,
+            "technique": "sylvan"
+        },
+        {
             "level_learned": 12,
             "technique": "wallow"
         }
@@ -69,6 +77,36 @@
             "at_level": 24,
             "monster_slug": "vivisource",
             "gender": "male"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "vivisource",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "vividactil",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "vivitron",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "vivitrans",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "viviteel",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "viviphyta",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "vivicinder",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "serpent",

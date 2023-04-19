@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
     from tuxemon.player import Player
+    from tuxemon.technique.technique import Technique
 
 
 logger = logging.getLogger()
@@ -48,7 +49,31 @@ def check_battle_legal(player: Player) -> bool:
 
 
 def check_status(monster: Monster, status_name: str) -> bool:
+    """
+    Checks to see if the monster has a specific status/condition.
+    """
     return any(t for t in monster.status if t.slug == status_name)
+
+
+def check_effect(technique: Technique, effect_name: str) -> bool:
+    """
+    Checks to see if the technique has a specific effect (eg ram -> damage).
+    """
+    return any(t for t in technique.effects if t.name == effect_name)
+
+
+def check_effect_give(technique: Technique, status: str) -> bool:
+    """
+    Checks to see if the give effect has the corresponding status.
+    """
+    effect_name: str = "give"
+    find: bool = False
+    for ele in technique.effects:
+        if ele.name == effect_name:
+            output = getattr(ele, "condition")
+            if output == status:
+                find = True
+    return find
 
 
 def check_status_connected(monster: Monster) -> bool:

@@ -46,8 +46,8 @@
  <objectgroup color="#ffff00" id="2" name="Events">
   <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music JRPG_docks_loop.ogg"/>
-    <property name="cond1" value="not music_playing JRPG_docks_loop.ogg"/>
+    <property name="act1" value="play_music music_omnichannel"/>
+    <property name="cond1" value="not music_playing music_omnichannel"/>
    </properties>
   </object>
   <object id="2" name="Teleport to Scoop 1" type="event" x="0" y="64" width="16" height="16">
@@ -96,8 +96,8 @@
    <properties>
     <property name="act1" value="set_monster_health"/>
     <property name="act2" value="set_monster_status"/>
-    <property name="act3" value="set_variable battle_last_result:none"/>
-    <property name="cond1" value="is variable_set battle_last_result:lost"/>
+    <property name="act3" value="set_variable teleport_clinic:none"/>
+    <property name="cond1" value="is variable_set teleport_clinic:lost"/>
    </properties>
   </object>
  </objectgroup>

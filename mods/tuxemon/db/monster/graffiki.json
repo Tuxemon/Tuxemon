@@ -53,6 +53,7 @@
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

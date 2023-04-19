@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="343">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="351">
  <properties>
   <property name="east" value="route6"/>
   <property name="edges" value="clamped"/>
@@ -16,12 +16,12 @@
  </layer>
  <layer id="2" name="Obstacles" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAG1llFOAzEMRIMEiKPQ9ixUHAUJ9g8uwmngMHAOPFqemFrObthCpHTSxJ6M4ySb1n7K8WJug4zcf/dX/2+vWttFBbERwgMytsR3F1zHqCA+zud9tMOlPYVO1SnpxWa6nFu7GN9HPTBwJub4Krocc7bx9fsLPl+/iu/tprX3qJRz9X0E12fiIyaQuYSVvms3sLZyq5ziA5rJyf6r4nVbYkUX6DY+xygfPqDz+RyPEctarO5btfMcPY3EWnGoD10gdhUfecCmQnSB2FR8a9rkiy6w4uPs9849PkJ0gYy5vhFd+IFL+rbwLenbx6S6v6iHaK+VrE97UHdltQ9H9GZ9zO/rSN8IX9aH71a+/9TH96P3DVF+1nLi+qoYiR9c4/T1G+F7COIlzp4+zlq1b8TZy3VPH/Y9zYyzDmBPH/a/5RMv7wP3ha93ZzOOrgorPtl5P36c7aX9436eQ++HD8w6yYf2cn4HYQvfq33Xe3zkQz69twV8cAi1n57Dp3d3y6d6W8i34kO7xquSfTT/S8yhwp3IOzK/Jat1gI9zAdfMOP5LPuAjjqlY+xFWz4fs4WOercgaESfzbMUv+bxRag==
+   eAG1llFOAzEMRAMCxFFoexYqrsEfEvQPLsJp4DBwDjy0TwyRvZtuYaV00sQej+NsNq39PNuzfR9k5u4wnv2/uWxtFQ3ERggPyNwU321wbaOB+Difj9EPl/YUOu/PW9t1erHZXex7q5hfR9swcSL2+WV0fc69ja/fX/D5+mV8b9etvUfjOVXfR3B9dnzkBBJLmOm7cgPrq7aqKT6gmfzaf1m+bkuu6ALdxmOM8uEDOp/HeIxc5nJ136zfx6g0kmvG4WOuT+MZH3Vwv6o/om9EG7pA4rk+6Zp67/ERogtkzvlGdOEHTulbwjelbx1BdX7RNtGfe3p92oM6L7N9OKK310d8X0fGRvh6ffgu5ftPfXw/qm+I6jNXE9eX5Uj+4Bynr98I30MQT3FW+njXsn0jzqrWlT7sK83Msw5gpQ/7Y/nEy/3AfeGrzmzm0ZVhxic7H8ePd3tq/7if19DH4QN7ndRDe7m/B2EL36t91ys+6iGf6m4BHxxC7afn8KnubPLJ7hbyzfjQrvns6X0U/yVi6OFM1LlIc13ZOsAnHvnA9U14xA/1gI88dsnaj9B6PWQPH3GWImtEnsRZil/B0lBM
   </data>
  </layer>
  <layer id="3" name="Obstacles 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlWEOgjAMhdFE41WEuxiv4W/xMHgYL+NFbBOavDYbbK1gNC4hrGz99lq2tWm+r502WvMZ7MtWj6Wsx0F/TfGQqWfPWynevJeecaSY2vHpYGhH/RvEC0OTXatJJnvjnOPZHMt6ufeVYtrToPXz6uN1mNmPXM4b9z25YxY25pZw7mafIcPbHyqZz8r5Xl2f9is592tqXOLfr6m/dp8tqU3dhXT2og3vrsj9IjpSvD5w7vDeeoc+1NmSwXWlC+RRzhrGzVwPE/MkNUD0epniz2/UyHZtPu05jvJYA7Ycz9ZB9JnqCy9S73Bt4dXmLadR9nZJ/cwx/t9/JwMv7zYc5Q==
+   eAHtldENwjAMRMsHiFVod0HsQhkGhmEZFsEn1dLFJBA77UcrIlVxmvrl7CZx162vnXep5osZp7Ofo+cxfZfjeZlMzPF4vsY+SUz99AzksBf75owX7laTIqNx/uLZHOt6pf4qMR1k0vpF9WEdMMeJi7zBjuQOLG7g1nAeZp8xI2rfncxXxfdL6IzGtxW/tefUu8+W/G/JXShnr7Xx3dVyv6iOHG+sOHfqb3u+t+bQp3zo7GWAujLMnEdwI0zOk9YA1Rtlqj96/jcYe/Npz3ErDxq4lXi2DrLPN1t5LfWO11aeN28ljbq3a+pnifF/v50MvAFlNBxG
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -53,20 +53,72 @@
   <object id="292" type="collision" x="288" y="496" width="32" height="32"/>
   <object id="304" type="collision" x="240" y="160" width="16" height="16"/>
   <object id="305" type="collision" x="256" y="176" width="16" height="16"/>
-  <object id="306" type="collision" x="256" y="48" width="32" height="160"/>
+  <object id="306" type="collision" x="256" y="48" width="32" height="160">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
   <object id="307" type="collision" x="288" y="48" width="32" height="32"/>
-  <object id="308" type="collision" x="224" y="176" width="32" height="128"/>
-  <object id="309" type="collision" x="256" y="256" width="16" height="48"/>
-  <object id="310" type="collision" x="272" y="304" width="16" height="32"/>
-  <object id="311" type="collision" x="256" y="336" width="16" height="32"/>
-  <object id="312" type="collision" x="208" y="256" width="16" height="64"/>
-  <object id="313" type="collision" x="192" y="272" width="16" height="128"/>
-  <object id="314" type="collision" x="176" y="288" width="16" height="96"/>
-  <object id="315" type="collision" x="208" y="352" width="16" height="80"/>
-  <object id="316" type="collision" x="224" y="368" width="32" height="64"/>
-  <object id="317" type="collision" x="256" y="400" width="16" height="96"/>
-  <object id="318" type="collision" x="240" y="432" width="16" height="64"/>
-  <object id="320" type="collision" x="272" y="464" width="48" height="32"/>
+  <object id="308" type="collision" x="224" y="176" width="32" height="128">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="309" type="collision" x="256" y="256" width="16" height="48">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="310" type="collision" x="272" y="272" width="16" height="64">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="311" type="collision" x="256" y="336" width="16" height="32">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="312" type="collision" x="208" y="256" width="16" height="64">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="313" type="collision" x="192" y="272" width="16" height="128">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="314" type="collision" x="176" y="288" width="16" height="96">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="315" type="collision" x="208" y="352" width="16" height="80">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="316" type="collision" x="224" y="368" width="32" height="64">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="317" type="collision" x="256" y="400" width="16" height="96">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="318" type="collision" x="240" y="432" width="16" height="64">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="320" type="collision" x="272" y="464" width="48" height="32">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
   <object id="321" type="collision" x="256" y="0" width="64" height="32"/>
   <object id="322" type="collision" x="288" y="576" width="32" height="32"/>
   <object id="323" type="collision" x="288" y="80" width="32" height="368"/>
@@ -75,6 +127,7 @@
   <object id="326" type="collision" x="304" y="448" width="16" height="16"/>
   <object id="328" type="collision" x="160" y="0" width="64" height="32"/>
   <object id="339" type="collision" x="304" y="32" width="16" height="16"/>
+  <object id="350" type="collision" x="272" y="192" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="197" name="Teleport to Below" type="event" x="192" y="32" width="16" height="16">
@@ -150,10 +203,13 @@
   </object>
   <object id="334" name="Talk Iris" type="event" x="160" y="224" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_tunnelb_iris1"/>
-    <property name="act3" value="start_battle spyder_tunnelb_iris"/>
-    <property name="act4" value="translated_dialog spyder_tunnelb_iris2"/>
-    <property name="act6" value="set_variable tunnelbiris:yes"/>
+    <property name="act1" value="translated_dialog spyder_tunnelb_iris1"/>
+    <property name="act2" value="add_monster tourbidi,18,spyder_tunnelb_iris,27,10"/>
+    <property name="act3" value="add_monster tourbidi,18,spyder_tunnelb_iris,27,10"/>
+    <property name="act4" value="add_monster tourbidi,18,spyder_tunnelb_iris,27,10"/>
+    <property name="act5" value="start_battle spyder_tunnelb_iris"/>
+    <property name="act6" value="translated_dialog spyder_tunnelb_iris2"/>
+    <property name="act7" value="set_variable tunnelbiris:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_iris"/>
     <property name="cond1" value="not variable_set tunnelbiris:yes"/>
    </properties>
@@ -166,10 +222,16 @@
   </object>
   <object id="336" name="Talk Greta" type="event" x="208" y="544" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_tunnelb_greta1"/>
-    <property name="act3" value="start_battle spyder_tunnelb_greta"/>
-    <property name="act4" value="translated_dialog spyder_tunnelb_greta2"/>
-    <property name="act6" value="set_variable tunnelbgreta:yes"/>
+    <property name="act01" value="translated_dialog spyder_tunnelb_greta1"/>
+    <property name="act02" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act03" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act04" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act05" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act06" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act07" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act08" value="start_battle spyder_tunnelb_greta"/>
+    <property name="act09" value="translated_dialog spyder_tunnelb_greta2"/>
+    <property name="act10" value="set_variable tunnelbgreta:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_greta"/>
     <property name="cond1" value="not variable_set tunnelbgreta:yes"/>
    </properties>
@@ -183,7 +245,8 @@
   </object>
   <object id="338" name="Talk Tommy" type="event" x="224" y="80" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_tunnelb_tommy1"/>
+    <property name="act1" value="translated_dialog spyder_tunnelb_tommy1"/>
+    <property name="act2" value="add_monster zunna,22,spyder_tunnelb_tommy,27,10"/>
     <property name="act3" value="start_battle spyder_tunnelb_tommy"/>
     <property name="act4" value="translated_dialog spyder_tunnelb_tommy2"/>
     <property name="act6" value="set_variable tunnelbtommy:yes"/>
@@ -199,10 +262,17 @@
   </object>
   <object id="341" name="Talk Greta" type="event" x="208" y="576" width="16" height="32">
    <properties>
-    <property name="act2" value="translated_dialog spyder_tunnelb_greta1"/>
-    <property name="act3" value="start_battle spyder_tunnelb_greta"/>
-    <property name="act4" value="translated_dialog spyder_tunnelb_greta2"/>
-    <property name="act6" value="set_variable tunnelbgreta:yes"/>
+    <property name="act00" value="pathfind_to_player spyder_tunnelb_greta"/>
+    <property name="act01" value="translated_dialog spyder_tunnelb_greta1"/>
+    <property name="act02" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act03" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act04" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act05" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act06" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act07" value="add_monster foofle,16,spyder_tunnelb_greta,27,10"/>
+    <property name="act08" value="start_battle spyder_tunnelb_greta"/>
+    <property name="act09" value="translated_dialog spyder_tunnelb_greta2"/>
+    <property name="act10" value="set_variable tunnelbgreta:yes"/>
     <property name="cond1" value="not variable_set tunnelbgreta:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
@@ -211,6 +281,44 @@
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="343" name="Remove obstacle 1" type="event" x="304" y="448" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision water"/>
+    <property name="cond1" value="is has_item player,surfboard"/>
+   </properties>
+  </object>
+  <object id="346" name="Teleport to Routee 1" type="event" x="304" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routee.tmx,0,3,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="347" name="Teleport to Routee 2" type="event" x="304" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routee.tmx,0,4,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="348" name="Teleport to Route6 1" type="event" x="304" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route6.tmx,0,9,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="349" name="Teleport to Route6 2" type="event" x="304" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route6.tmx,0,10,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
  </objectgroup>

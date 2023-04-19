@@ -488,7 +488,10 @@
     <property name="act06" value="npc_face player,down"/>
     <property name="act07" value="npc_face spyder_route2_billie,up"/>
     <property name="act08" value="translated_dialog spyder_route2_billie1"/>
-    <property name="act09" value="start_battle spyder_route2_billie"/>
+    <property name="act20" value="add_monster billie_choice,6,spyder_route2_billie,27,10"/>
+    <property name="act21" value="add_monster eyenemy,6,spyder_route2_billie,27,10"/>
+    <property name="act22" value="add_monster cardiling,3,spyder_route2_billie,27,10"/>
+    <property name="act30" value="start_battle spyder_route2_billie"/>
     <property name="act71" value="translated_dialog spyder_route2_billie2"/>
     <property name="act75" value="pathfind spyder_route2_billie,3,15"/>
     <property name="act80" value="remove_npc spyder_route2_billie"/>
@@ -510,7 +513,7 @@
     <property name="cond2" value="not npc_exists spyder_route2_roddick"/>
    </properties>
   </object>
-  <object id="159" name="Create Marion&#10;" type="event" x="208" y="32" width="16" height="16">
+  <object id="159" name="Create Marion" type="event" x="208" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_route2_marion,22,9"/>
     <property name="cond2" value="not npc_exists spyder_route2_marion"/>
@@ -522,32 +525,38 @@
     <property name="cond2" value="not npc_exists spyder_route2_graf"/>
    </properties>
   </object>
-  <object id="161" name="Talk roddick&#10;" type="event" x="192" y="48" width="16" height="16">
+  <object id="161" name="Talk roddick" type="event" x="192" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_route2_roddick1"/>
-    <property name="act2" value="start_battle spyder_route2_roddick"/>
-    <property name="act3" value="translated_dialog spyder_route2_roddick2"/>
-    <property name="act4" value="set_variable route2roddick:yes"/>
+    <property name="act2" value="add_monster spighter,8,spyder_route2_roddick,27,10"/>
+    <property name="act3" value="start_battle spyder_route2_roddick"/>
+    <property name="act4" value="translated_dialog spyder_route2_roddick2"/>
+    <property name="act5" value="set_variable route2roddick:yes"/>
     <property name="behav1" value="talk spyder_route2_roddick"/>
     <property name="cond1" value="not variable_set route2roddick:yes"/>
    </properties>
   </object>
-  <object id="162" name="Talk marion&#10;" type="event" x="208" y="48" width="16" height="16">
+  <object id="162" name="Talk marion" type="event" x="208" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_route2_marion1"/>
-    <property name="act2" value="start_battle spyder_route2_marion"/>
-    <property name="act3" value="translated_dialog spyder_route2_marion2"/>
-    <property name="act4" value="set_variable route2marion:yes"/>
+    <property name="act2" value="add_monster aardorn,7,spyder_route2_marion,27,10"/>
+    <property name="act3" value="add_monster aardorn,7,spyder_route2_marion,27,10"/>
+    <property name="act4" value="start_battle spyder_route2_marion"/>
+    <property name="act5" value="translated_dialog spyder_route2_marion2"/>
+    <property name="act6" value="set_variable route2marion:yes"/>
     <property name="behav1" value="talk spyder_route2_marion"/>
     <property name="cond1" value="not variable_set route2marion:yes"/>
    </properties>
   </object>
-  <object id="163" name="Talk graf&#10;" type="event" x="224" y="48" width="16" height="16">
+  <object id="163" name="Talk graf" type="event" x="224" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_route2_graf1"/>
-    <property name="act2" value="start_battle spyder_route2_graf"/>
-    <property name="act3" value="translated_dialog spyder_route2_graf2"/>
-    <property name="act4" value="set_variable route2graf:yes"/>
+    <property name="act2" value="add_monster cardiling,7,spyder_route2_graf,27,10"/>
+    <property name="act3" value="add_monster cataspike,5,spyder_route2_graf,27,10"/>
+    <property name="act4" value="add_monster cataspike,5,spyder_route2_graf,27,10"/>
+    <property name="act5" value="start_battle spyder_route2_graf"/>
+    <property name="act6" value="translated_dialog spyder_route2_graf2"/>
+    <property name="act7" value="set_variable route2graf:yes"/>
     <property name="behav1" value="talk spyder_route2_graf"/>
     <property name="cond1" value="not variable_set route2graf:yes"/>
    </properties>
@@ -578,32 +587,41 @@
     <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
-  <object id="188" name="Talk roddick&#10;" type="event" x="80" y="64" width="16" height="48">
+  <object id="188" name="Talk roddick" type="event" x="80" y="64" width="16" height="80">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_route2_roddick"/>
     <property name="act1" value="translated_dialog spyder_route2_roddick1"/>
-    <property name="act2" value="start_battle spyder_route2_roddick"/>
-    <property name="act3" value="translated_dialog spyder_route2_roddick2"/>
-    <property name="act4" value="set_variable route2roddick:yes"/>
+    <property name="act2" value="add_monster spighter,8,spyder_route2_roddick,27,10"/>
+    <property name="act3" value="start_battle spyder_route2_roddick"/>
+    <property name="act4" value="translated_dialog spyder_route2_roddick2"/>
+    <property name="act5" value="set_variable route2roddick:yes"/>
     <property name="cond1" value="not variable_set route2roddick:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="189" name="Talk marion&#10;" type="event" x="352" y="160" width="16" height="48">
+  <object id="189" name="Talk marion" type="event" x="352" y="160" width="16" height="64">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_route2_marion"/>
     <property name="act1" value="translated_dialog spyder_route2_marion1"/>
-    <property name="act2" value="start_battle spyder_route2_marion"/>
-    <property name="act3" value="translated_dialog spyder_route2_marion2"/>
-    <property name="act4" value="set_variable route2marion:yes"/>
+    <property name="act2" value="add_monster aardorn,7,spyder_route2_marion,27,10"/>
+    <property name="act3" value="add_monster aardorn,7,spyder_route2_marion,27,10"/>
+    <property name="act4" value="start_battle spyder_route2_marion"/>
+    <property name="act5" value="translated_dialog spyder_route2_marion2"/>
+    <property name="act6" value="set_variable route2marion:yes"/>
     <property name="cond1" value="not variable_set route2marion:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="190" name="Talk graf&#10;" type="event" x="464" y="64" width="16" height="48">
+  <object id="190" name="Talk graf" type="event" x="464" y="64" width="16" height="80">
    <properties>
+    <property name="act0" value="pathfind_to_player spyder_route2_graf"/>
     <property name="act1" value="translated_dialog spyder_route2_graf1"/>
-    <property name="act2" value="start_battle spyder_route2_graf"/>
-    <property name="act3" value="translated_dialog spyder_route2_graf2"/>
-    <property name="act4" value="set_variable route2graf:yes"/>
+    <property name="act2" value="add_monster cardiling,7,spyder_route2_graf,27,10"/>
+    <property name="act3" value="add_monster cataspike,5,spyder_route2_graf,27,10"/>
+    <property name="act4" value="add_monster cataspike,5,spyder_route2_graf,27,10"/>
+    <property name="act5" value="start_battle spyder_route2_graf"/>
+    <property name="act6" value="translated_dialog spyder_route2_graf2"/>
+    <property name="act7" value="set_variable route2graf:yes"/>
     <property name="cond1" value="not variable_set route2graf:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>

@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_dojo_orion",
+  "template": [
+    {
+      "sprite_name": "monk_green",
+      "combat_front": "monk",
+      "slug": "monk"
+    }
+  ]
+}

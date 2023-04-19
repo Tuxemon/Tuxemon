@@ -12,6 +12,14 @@
             "technique": "flow"
         },
         {
+            "level_learned": 6,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 8,
+            "technique": "muck"
+        },
+        {
             "level_learned": 12,
             "technique": "flood"
         },
@@ -33,6 +41,12 @@
             "path": "standard",
             "at_level": 36,
             "monster_slug": "tobishimi"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "drashimi",
+            "evo_stage": "basic"
         }
     ],
     "shape": "dragon",

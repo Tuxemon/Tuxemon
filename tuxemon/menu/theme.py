@@ -106,6 +106,8 @@ def get_theme() -> pygame_menu.Theme:
         selection_color=(0, 0, 0),
         border_color=tuxemon_border,
         scrollarea_position=locals.SCROLLAREA_POSITION_NONE,
+        scrollbar_color=(235, 235, 235),
+        scrollbar_slider_color=(200, 200, 200),
         widget_padding=(10, 20),
     )
 

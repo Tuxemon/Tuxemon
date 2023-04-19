@@ -6,23 +6,5 @@
       "combat_front": "yellowbelt",
       "slug": "yellowbelt"
     }
-  ],
-  "monsters": [
-    {
-      "name": "K9",
-      "level": 16,
-      "slug": "k9",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    },
-    {
-      "name": "K9",
-      "level": 16,
-      "slug": "k9",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "neuter"
-    }
   ]
 }

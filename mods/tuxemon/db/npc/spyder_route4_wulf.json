@@ -6,31 +6,5 @@
       "combat_front": "alchemist",
       "slug": "alchemist"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Cowpignon",
-      "level": 14,
-      "slug": "cowpignon",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Cowpignon",
-      "level": 14,
-      "slug": "cowpignon",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Shybulb",
-      "level": 14,
-      "slug": "shybulb",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

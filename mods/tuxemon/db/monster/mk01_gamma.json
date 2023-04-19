@@ -53,6 +53,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "mk01_alpha",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "mk01_proto",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "dragon",
     "stage": "stage2",
     "types": [

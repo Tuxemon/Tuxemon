@@ -11,7 +11,7 @@ from typing import Any, Callable, Union
 import pygame
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.baseimage import POSITION_CENTER
+from pygame_menu.locals import POSITION_CENTER
 
 from tuxemon import formula, prepare, tools
 from tuxemon.locale import T

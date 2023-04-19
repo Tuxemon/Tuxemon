@@ -12,6 +12,14 @@
             "technique": "strike"
         },
         {
+            "level_learned": 6,
+            "technique": "time_crisis"
+        },
+        {
+            "level_learned": 8,
+            "technique": "sword"
+        },
+        {
             "level_learned": 12,
             "technique": "shrapnel"
         }
@@ -21,6 +29,12 @@
             "path": "standard",
             "at_level": 18,
             "monster_slug": "exclawvate"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "exclawvate",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "blob",

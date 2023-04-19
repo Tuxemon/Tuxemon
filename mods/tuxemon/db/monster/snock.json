@@ -12,6 +12,18 @@
             "technique": "surge"
         },
         {
+            "level_learned": 6,
+            "technique": "lineage"
+        },
+        {
+            "level_learned": 8,
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 12,
+            "technique": "terror"
+        },
+        {
             "level_learned": 16,
             "technique": "frostbite"
         }
@@ -21,6 +33,12 @@
             "path": "standard",
             "at_level": 24,
             "monster_slug": "pythock"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "pythock",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "serpent",

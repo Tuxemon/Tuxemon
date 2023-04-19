@@ -12,6 +12,14 @@
             "technique": "give_all"
         },
         {
+            "level_learned": 6,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 8,
+            "technique": "saber"
+        },
+        {
             "level_learned": 12,
             "technique": "fire_claw"
         },
@@ -41,6 +49,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "cardiling",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "cardiwing",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "flier",
     "stage": "stage2",
     "types": [

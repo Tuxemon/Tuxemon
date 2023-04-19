@@ -12,6 +12,18 @@
             "technique": "whirlwind"
         },
         {
+            "level_learned": 6,
+            "technique": "assault"
+        },
+        {
+            "level_learned": 8,
+            "technique": "negation"
+        },
+        {
+            "level_learned": 12,
+            "technique": "webs_wind"
+        },
+        {
             "level_learned": 16,
             "technique": "wing_tip"
         }
@@ -21,6 +33,12 @@
             "path": "standard",
             "at_level": 30,
             "monster_slug": "pairagrim"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "pairagrim",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "flier",

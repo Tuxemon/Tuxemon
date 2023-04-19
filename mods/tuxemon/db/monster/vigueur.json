@@ -12,6 +12,14 @@
             "technique": "sting"
         },
         {
+            "level_learned": 6,
+            "technique": "chameleon"
+        },
+        {
+            "level_learned": 8,
+            "technique": "sylvan"
+        },
+        {
             "level_learned": 12,
             "technique": "fluff_up"
         },
@@ -29,6 +37,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "tarpeur",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "brute",
     "stage": "stage1",
     "types": [

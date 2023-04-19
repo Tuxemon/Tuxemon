@@ -18,8 +18,8 @@ class HasStatusCondition(ItemCondition):
 
     Example:
     "conditions": [
-        "has_status target"
-        "has_status target"
+        "is has_status"
+        "is has_status status_xxx"
     ],
 
     """

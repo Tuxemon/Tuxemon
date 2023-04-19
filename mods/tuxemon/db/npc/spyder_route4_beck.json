@@ -6,31 +6,5 @@
       "combat_front": "yellowbelt",
       "slug": "yellowbelt"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Katapill",
-      "level": 14,
-      "slug": "katapill",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Tumbleworm",
-      "level": 12,
-      "slug": "tumbleworm",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    },
-    {
-      "name": "Spighter",
-      "level": 12,
-      "slug": "spighter",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

@@ -12,6 +12,18 @@
             "technique": "flow"
         },
         {
+            "level_learned": 6,
+            "technique": "mobbing"
+        },
+        {
+            "level_learned": 8,
+            "technique": "orbs"
+        },
+        {
+            "level_learned": 12,
+            "technique": "suck_poison"
+        },
+        {
             "level_learned": 16,
             "technique": "font"
         },
@@ -29,6 +41,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "skwib",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "polliwog",
     "stage": "stage1",
     "types": [

@@ -506,6 +506,7 @@ class WorldState(state.State):
 
         # center the map on center of player sprite
         # must center map before getting sprite coordinates
+        assert self.current_map.renderer
         self.current_map.renderer.center((cx, cy))
 
         # get npc surfaces/sprites
@@ -546,7 +547,6 @@ class WorldState(state.State):
             screen_surfaces.append((s, r, l))
 
         # draw the map and sprites
-        assert self.current_map.renderer
         self.rect = self.current_map.renderer.draw(
             surface, surface.get_rect(), screen_surfaces
         )
@@ -619,6 +619,25 @@ class WorldState(state.State):
 
         """
         return list(self.npcs.values())
+
+    def check_collision_zones(
+        self,
+        map: Mapping[Tuple[int, int], Optional[RegionProperties]],
+        label: str,
+    ) -> Optional[Tuple[int, int]]:
+        """
+        Returns coords (tuple) of specific collision zones.
+
+        Returns:
+            The coordinates.
+
+        """
+        for coords, props in map.items():
+            if isinstance(props, dict):
+                for ele in props.values():
+                    if ele == label:
+                        return coords
+        return None
 
     def get_collision_map(self) -> CollisionMap:
         """
@@ -975,7 +994,7 @@ class WorldState(state.State):
         for entity in self.npcs_off_map.values():
             entity.update(time_delta)
 
-    def _collision_box_to_pgrect(self, box):
+    def _collision_box_to_pgrect(self, box: Tuple[int, int]) -> Rect:
         """
         Returns a Rect (in screen-coords) version of a collision box (in world-coords).
         """
@@ -1264,5 +1283,5 @@ class WorldState(state.State):
                             },
                         }
                         self.client.server.notify_client_interaction(
-                            cuuid, event_data
+                            "cuuid", event_data
                         )

@@ -141,7 +141,7 @@ class LocalPygameClient:
 
         # TODO: phase these out
         self.key_events: Sequence[PlayerInput] = []
-        self.event_data = dict()
+        self.event_data: Dict[str, Any] = {}
         self.exit = False
 
     def on_state_change(self) -> None:

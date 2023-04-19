@@ -6,23 +6,5 @@
       "combat_front": "enforcer_boss",
       "slug": "enforcer_boss"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Tigrock",
-      "level": 35,
-      "slug": "tigrock",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Embazook",
-      "level": 35,
-      "slug": "embazook",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

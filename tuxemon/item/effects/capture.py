@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from math import sqrt
 from typing import Union
 
+from tuxemon.db import TasteWarm
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.monster import Monster
 
@@ -15,7 +16,6 @@ logger = logging.getLogger(__name__)
 
 
 class CaptureEffectResult(ItemEffectResult):
-    capture: bool
     num_shakes: int
 
 
@@ -49,7 +49,6 @@ class CaptureEffect(ItemEffect):
         # retrieves monster fighting (player)
         iid = self.user.game_variables["iid_fighting_monster"]
         fighting_monster = self.user.find_monster_by_id(iid)
-        assert fighting_monster
         # Check type tuxeball and address malus/bonus
         tuxeball_modifier = 1.0
         if self.tuxeball is not None:
@@ -79,6 +78,17 @@ class CaptureEffect(ItemEffect):
                     tuxeball_modifier = 0.2
                 else:
                     tuxeball_modifier = 1.5
+            # flavoured based tuxeball
+            if self.tuxeball == "tuxeball_hearty":
+                target.taste_warm = TasteWarm.hearty
+            if self.tuxeball == "tuxeball_peppy":
+                target.taste_warm = TasteWarm.peppy
+            if self.tuxeball == "tuxeball_refined":
+                target.taste_warm = TasteWarm.refined
+            if self.tuxeball == "tuxeball_salty":
+                target.taste_warm = TasteWarm.salty
+            if self.tuxeball == "tuxeball_zesty":
+                target.taste_warm = TasteWarm.zesty
             # gender based tuxeball
             if self.tuxeball == "tuxeball_male":
                 if target.gender != "male":
@@ -105,6 +115,7 @@ class CaptureEffect(ItemEffect):
                 if status_category == "positive":
                     crusher = 0.01
                 tuxeball_modifier = crusher
+        if fighting_monster:
             if self.tuxeball == "tuxeball_xero":
                 if fighting_monster.types[0] != target.types[0]:
                     tuxeball_modifier = 1.4
@@ -178,7 +189,7 @@ class CaptureEffect(ItemEffect):
                         if tuxeball:
                             tuxeball.quantity += 1
 
-                return {"success": False, "capture": True, "num_shakes": i + 1}
+                return {"success": False, "num_shakes": i + 1}
 
         if self.tuxeball is not None:
             # it increases the level +1 upon capture
@@ -193,4 +204,4 @@ class CaptureEffect(ItemEffect):
         self.user.add_monster(target, len(self.user.monsters))
 
         # TODO: remove monster from the other party
-        return {"success": True, "capture": True, "num_shakes": 4}
+        return {"success": True, "num_shakes": 4}

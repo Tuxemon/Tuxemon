@@ -53,8 +53,9 @@
         }
     ],
     "evolutions": [],
+    "history": [],
     "shape": "brute",
-    "stage": "standalone",
+    "stage": "basic",
     "types": [
         "wood"
     ],

@@ -28,6 +28,14 @@
             "technique": "blade"
         },
         {
+            "level_learned": 12,
+            "technique": "viper"
+        },
+        {
+            "level_learned": 16,
+            "technique": "lineage"
+        },
+        {
             "level_learned": 20,
             "technique": "muddle"
         },
@@ -41,6 +49,16 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "cataspike",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "puparmor",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "grub",
     "stage": "stage2",
     "types": [

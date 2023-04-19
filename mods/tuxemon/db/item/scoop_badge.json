@@ -1,7 +1,7 @@
 {
   "conditions": [
-    "level >=,0",
-    "has_path scoop_badge"
+    "is level >=,0",
+    "is has_path scoop_badge"
   ],
   "effects": [],
   "slug": "scoop_badge",

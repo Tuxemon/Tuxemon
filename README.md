@@ -57,8 +57,9 @@ python3 run_tuxemon.py
 
 ### Windows Binary
 
-Check the [release page](https://github.com/Tuxemon/Tuxemon/releases)
-for binaries.
+NOTICE: Windows binaries currently do not work (see https://github.com/Tuxemon/Tuxemon/issues/1229)
+
+In the meantime please use the windows source instructions above to run Tuxemon directly from source.
 
 
 ### Flatpak

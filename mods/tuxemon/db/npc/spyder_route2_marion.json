@@ -6,23 +6,5 @@
       "combat_front": "picnicker",
       "slug": "picnicker"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Aardorn",
-      "level": 7,
-      "slug": "aardorn",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    },
-    {
-      "name": "Aardorn",
-      "level": 7,
-      "slug": "aardorn",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
-    }
   ]
 }

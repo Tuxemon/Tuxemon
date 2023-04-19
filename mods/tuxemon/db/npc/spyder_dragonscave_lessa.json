@@ -6,15 +6,5 @@
       "combat_front": "dragonrider",
       "slug": "dragonrider"
     }
-  ],
-  "monsters": [
-    {
-      "name": "Allagon",
-      "level": 37,
-      "slug": "allagon",
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "female"
-    }
   ]
 }

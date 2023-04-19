@@ -24,7 +24,7 @@ from pytmx import pytmx
 from pytmx.pytmx import TiledMap
 
 from tuxemon import prepare
-from tuxemon.compat import ReadOnlyRect
+from tuxemon.compat.rect import ReadOnlyRect
 from tuxemon.event import EventObject
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.locale import T
@@ -42,6 +42,7 @@ RegionPropertiesOptional = TypedDict(
     "RegionPropertiesOptional",
     {
         "continue": Direction,
+        "key": str,
     },
     total=False,
 )
@@ -317,6 +318,9 @@ def extract_region_properties(
         elif "continue" in key:
             new_props["continue"] = properties[key]
             has_movement_modifier = True
+        elif "key" in key:
+            new_props["key"] = properties[key]
+            has_movement_modifier = True
     # if there is an exit, but no explicit enter, then
     # allow entering from all sides except the exit side
     if exits and not enters:
@@ -464,5 +468,6 @@ class TuxemonMap:
             image_loader=scaled_image_loader,
             pixelalpha=True,
         )
+        assert self.renderer
         self.renderer.data.tmx.images = data.images
         self.renderer.redraw_tiles(self.renderer._buffer)

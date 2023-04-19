@@ -12,6 +12,14 @@
             "technique": "levitate"
         },
         {
+            "level_learned": 6,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 8,
+            "technique": "radiance"
+        },
+        {
             "level_learned": 12,
             "technique": "battery_discharge"
         }
@@ -46,6 +54,28 @@
             "at_level": 0,
             "monster_slug": "b_ver_1",
             "item": "booster_tech"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "b_ver_1",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "k9",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "mrmoswitch",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "picc",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "av8r",
+            "evo_stage": "stage1"
         }
     ],
     "shape": "grub",

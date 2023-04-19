@@ -12,8 +12,32 @@
             "technique": "refresh"
         },
         {
+            "level_learned": 6,
+            "technique": "fire_shield"
+        },
+        {
+            "level_learned": 8,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 12,
+            "technique": "fire_ball"
+        },
+        {
             "level_learned": 16,
             "technique": "kindling_flame"
+        },
+        {
+            "level_learned": 20,
+            "technique": "arcane_eye"
+        },
+        {
+            "level_learned": 24,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 28,
+            "technique": "magma"
         },
         {
             "level_learned": 32,
@@ -29,6 +53,12 @@
         }
     ],
     "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "embra",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "brute",
     "stage": "stage1",
     "types": [

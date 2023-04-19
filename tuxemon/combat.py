@@ -13,6 +13,8 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Generator, Sequence
 
+from tuxemon.locale import T
+
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
@@ -48,7 +50,7 @@ def check_battle_legal(player: Player) -> bool:
             return True
 
 
-def check_status(monster: Monster, status_name: str) -> bool:
+def has_status(monster: Monster, status_name: str) -> bool:
     """
     Checks to see if the monster has a specific status/condition.
     """
@@ -76,21 +78,21 @@ def check_effect_give(technique: Technique, status: str) -> bool:
     return find
 
 
-def check_status_connected(monster: Monster) -> bool:
+def has_status_bond(monster: Monster) -> bool:
     """
     Statuses connected are the ones where an effect is present only
     if both monsters are alive (lifeleech, grabbed).
     """
-    if check_status(monster, "status_grabbed"):
+    if has_status(monster, "status_grabbed"):
         return True
-    elif check_status(monster, "status_lifeleech"):
+    elif has_status(monster, "status_lifeleech"):
         return True
     else:
         return False
 
 
 def fainted(monster: Monster) -> bool:
-    return check_status(monster, "status_faint") or monster.current_hp <= 0
+    return has_status(monster, "status_faint") or monster.current_hp <= 0
 
 
 def get_awake_monsters(player: NPC) -> Generator[Monster, None, None]:
@@ -115,3 +117,17 @@ def fainted_party(party: Sequence[Monster]) -> bool:
 
 def defeated(player: NPC) -> bool:
     return fainted_party(player.monsters)
+
+
+def scope(monster: Monster) -> str:
+    message = T.format(
+        "combat_scope",
+        {
+            "AR": monster.armour,
+            "DE": monster.dodge,
+            "ME": monster.melee,
+            "RD": monster.ranged,
+            "SD": monster.speed,
+        },
+    )
+    return message

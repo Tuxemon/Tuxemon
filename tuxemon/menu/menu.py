@@ -585,7 +585,7 @@ class Menu(Generic[T], state.State):
 
     def set_font(
         self,
-        size: int = 5,
+        size: int = 4,
         font: Optional[str] = None,
         color: ColorLike = (10, 10, 10),
         line_spacing: int = 10,

@@ -172,12 +172,36 @@
   <object id="46" type="collision" x="368" y="64" width="32" height="32"/>
   <object id="47" type="collision" x="400" y="48" width="32" height="32"/>
   <object id="48" type="collision" x="416" y="80" width="32" height="32"/>
-  <object id="49" type="collision" x="560" y="144" width="80" height="32"/>
-  <object id="50" type="collision" x="416" y="144" width="128" height="32"/>
-  <object id="51" type="collision" x="240" y="112" width="208" height="32"/>
-  <object id="52" type="collision" x="160" y="80" width="112" height="32"/>
-  <object id="53" type="collision" x="80" y="80" width="64" height="32"/>
-  <object id="54" type="collision" x="80" y="32" width="32" height="48"/>
+  <object id="49" type="collision" x="560" y="144" width="80" height="32">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="50" type="collision" x="416" y="144" width="128" height="32">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="51" type="collision" x="240" y="112" width="208" height="32">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="52" type="collision" x="160" y="80" width="112" height="32">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="53" type="collision" x="80" y="80" width="64" height="32">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
+  <object id="54" type="collision" x="80" y="32" width="32" height="48">
+   <properties>
+    <property name="key" value="water"/>
+   </properties>
+  </object>
   <object id="55" type="collision" x="128" y="288" width="96" height="16"/>
   <object id="69" type="collision" x="480" y="96" width="16" height="16"/>
  </objectgroup>

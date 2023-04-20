@@ -1166,6 +1166,9 @@ msgstr "Kindling Flame"
 msgid "levitate"
 msgstr "Levitate"
 
+msgid "life_surge"
+msgstr "Life Surge"
+
 msgid "midnight_mantle"
 msgstr "Midnight Mantle"
 

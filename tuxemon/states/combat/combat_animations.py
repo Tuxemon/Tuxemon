@@ -268,7 +268,7 @@ class CombatAnimations(ABC, Menu[None]):
             del self.hud[monster]
 
         self.animate_monster_leave(monster)
-        self.suppress_phase_change(2)
+        self.suppress_phase_change()
         self.task(kill, 2)
 
         for monsters in self.monsters_in_play.values():

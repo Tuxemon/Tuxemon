@@ -57,14 +57,14 @@ def has_status(monster: Monster, status_name: str) -> bool:
     return any(t for t in monster.status if t.slug == status_name)
 
 
-def check_effect(technique: Technique, effect_name: str) -> bool:
+def has_effect(technique: Technique, effect_name: str) -> bool:
     """
     Checks to see if the technique has a specific effect (eg ram -> damage).
     """
     return any(t for t in technique.effects if t.name == effect_name)
 
 
-def check_effect_give(technique: Technique, status: str) -> bool:
+def has_effect_give(technique: Technique, status: str) -> bool:
     """
     Checks to see if the give effect has the corresponding status.
     """

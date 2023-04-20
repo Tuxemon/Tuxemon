@@ -330,7 +330,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 return
 
             if (
-                combat.check_effect(technique, "damage")
+                combat.has_effect(technique, "damage")
                 and target == self.monster
             ):
                 params = {"name": self.monster.name}

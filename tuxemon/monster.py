@@ -245,7 +245,7 @@ class Monster:
         self.shape = MonsterShape.landrace
 
         self.status: List[Technique] = []
-        self.plague = PlagueType.sickless
+        self.plague = PlagueType.healthy
         self.taste_cold = TasteCold.tasteless
         self.taste_warm = TasteWarm.tasteless
 

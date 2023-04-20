@@ -16,7 +16,7 @@ class NpcPlagueAttributeAction(
     EventAction,
 ):
     """
-    Set the NPC as infected, inoculated or sickless.
+    Set the NPC as infected, inoculated or healthy.
 
     Script usage:
         .. code-block::
@@ -24,7 +24,7 @@ class NpcPlagueAttributeAction(
             npc_plague <value>[,npc_slug]
 
     Script parameters:
-        condition: Infected, inoculated or sickless
+        condition: Infected, inoculated or healthy
         npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
 
     """
@@ -42,11 +42,11 @@ class NpcPlagueAttributeAction(
         assert npc
         if self.value == PlagueType.infected:
             npc.plague = PlagueType.infected
-        elif self.value == PlagueType.sickless:
-            npc.plague = PlagueType.sickless
+        elif self.value == PlagueType.healthy:
+            npc.plague = PlagueType.healthy
         elif self.value == PlagueType.inoculated:
             npc.plague = PlagueType.inoculated
         else:
             raise ValueError(
-                f"{self.value} must be infected, inoculated or sickless."
+                f"{self.value} must be infected, inoculated or healthy."
             )

@@ -21,7 +21,7 @@ class SetMonsterPlagueAction(EventAction):
             set_monster_plague condition[,slot]
 
     Script parameters:
-        condition: inoculated, sickless or infected
+        condition: inoculated, healthy or infected
         slot: Slot of the monster in the party. If no slot is specified, all
             monsters are touched by the action.
 
@@ -44,8 +44,8 @@ class SetMonsterPlagueAction(EventAction):
                     monster.plague = PlagueType.inoculated
                 elif self.condition == "infected":
                     monster.plague = PlagueType.infected
-                elif self.condition == "sickless":
-                    monster.plague = PlagueType.sickless
+                elif self.condition == "healthy":
+                    monster.plague = PlagueType.healthy
                 else:
                     raise ValueError(
                         f"{self.condition} must be infect or heal"
@@ -56,7 +56,7 @@ class SetMonsterPlagueAction(EventAction):
                 mon.plague = PlagueType.inoculated
             elif self.condition == "infected":
                 mon.plague = PlagueType.infected
-            elif self.condition == "sickless":
-                mon.plague = PlagueType.sickless
+            elif self.condition == "healthy":
+                mon.plague = PlagueType.healthy
             else:
                 raise ValueError(f"{self.condition} must be infect or heal")

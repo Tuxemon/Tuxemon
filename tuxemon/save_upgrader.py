@@ -74,7 +74,7 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     save_data["contacts"] = save_data.get("contacts", {})
     save_data["items"] = save_data.get("items", [])
     save_data["battles"] = save_data.get("battles", [])
-    save_data["plague"] = save_data.get("plague", PlagueType.sickless)
+    save_data["plague"] = save_data.get("plague", PlagueType.healthy)
 
     # upgrade data moves
     for ele1 in save_data["monsters"]:

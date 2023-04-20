@@ -357,7 +357,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                             combat_state.players[1].plague
                             == PlagueType.infected
                             or combat_state.players[1].plague
-                            == PlagueType.sickless
+                            == PlagueType.healthy
                         ):
                             target.plague = PlagueType.infected
                 # continue combat action

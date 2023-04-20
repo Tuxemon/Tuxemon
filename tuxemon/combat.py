@@ -13,6 +13,7 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Generator, Sequence
 
+from tuxemon.db import PlagueType
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
@@ -130,4 +131,23 @@ def scope(monster: Monster) -> str:
             "SD": monster.speed,
         },
     )
+    return message
+
+
+def spyderbite(monster: Monster) -> str:
+    message: str
+    if monster.plague == PlagueType.infected:
+        message = T.format(
+            "combat_state_plague3",
+            {
+                "target": monster.name.upper(),
+            },
+        )
+    else:
+        message = T.format(
+            "combat_state_plague0",
+            {
+                "target": monster.name.upper(),
+            },
+        )
     return message

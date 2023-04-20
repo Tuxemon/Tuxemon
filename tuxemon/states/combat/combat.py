@@ -37,6 +37,7 @@ from tuxemon.combat import (
     has_status,
     has_status_bond,
     scope,
+    spyderbite,
 )
 from tuxemon.db import (
     BattleGraphicsModel,
@@ -982,20 +983,7 @@ class CombatState(CombatAnimations):
                 template = getattr(technique, "use_failure")
                 m = T.format(template, context)
                 if technique.slug == "status_spyderbite":
-                    if target.plague == PlagueType.infected:
-                        m = T.format(
-                            "combat_state_plague3",
-                            {
-                                "target": target.name.upper(),
-                            },
-                        )
-                    else:
-                        m = T.format(
-                            "combat_state_plague0",
-                            {
-                                "target": target.name.upper(),
-                            },
-                        )
+                    m = spyderbite(target)
                 message += "\n" + m
             # TODO: caching sounds
             audio.load_sound(technique.sfx).play()

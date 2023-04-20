@@ -147,7 +147,7 @@ class NPC(Entity[NPCState]):
         self.template: List[Template] = []
         self.economy: Optional[Economy] = None
         # related to spyderbite (PlagueType)
-        self.plague = PlagueType.sickless
+        self.plague = PlagueType.healthy
         # Variables for long-term item and monster storage
         # Keeping these seperate so other code can safely
         # assume that all values are lists

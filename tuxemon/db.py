@@ -44,6 +44,12 @@ class ItemSort(str, Enum):
     quest = "quest"
 
 
+class PlagueType(str, Enum):
+    healthy = "healthy"
+    inoculated = "inoculated"
+    infected = "infected"
+
+
 class GenderType(str, Enum):
     neuter = "neuter"
     male = "male"

@@ -37,11 +37,13 @@ from tuxemon.combat import (
     has_status,
     has_status_bond,
     scope,
+    spyderbite,
 )
 from tuxemon.db import (
     BattleGraphicsModel,
     ItemCategory,
     OutputBattle,
+    PlagueType,
     SeenStatus,
 )
 from tuxemon.item.item import Item
@@ -370,8 +372,11 @@ class CombatState(CombatAnimations):
             # fill all battlefield positions, but on round 1, don't ask
             self.fill_battlefield_positions(ask=self._turn > 1)
 
+            # plague
             # record the useful properties of the last monster we fought
             monster_record = self.monsters_in_play[self.players[1]][0]
+            if self.players[1].plague == PlagueType.infected:
+                monster_record.plague = PlagueType.infected
             if monster_record in self.active_monsters:
                 var = self.players[0].game_variables
                 var["battle_last_monster_name"] = monster_record.name
@@ -562,6 +567,16 @@ class CombatState(CombatAnimations):
                 status = Technique()
                 status.load("status_dozing")
                 technique = status
+            # null action for plague - spyder_bite
+            if user.plague == PlagueType.infected:
+                value = random.randint(1, 8)
+                if value == 1:
+                    status = Technique()
+                    status.load("status_spyderbite")
+                    technique = status
+                    if self.players[1].plague == PlagueType.infected:
+                        target.plague = PlagueType.infected
+            # check status response
             if self.status_response_technique(user, technique):
                 self._lost_monster = user
         if isinstance(user, NPC) and isinstance(technique, Item):
@@ -992,6 +1007,8 @@ class CombatState(CombatAnimations):
             if not result_tech["success"]:
                 template = getattr(technique, "use_failure")
                 m = T.format(template, context)
+                if technique.slug == "status_spyderbite":
+                    m = spyderbite(target)
                 message += "\n" + m
                 action_time += len(message) * letter_time
             # TODO: caching sounds
@@ -1019,6 +1036,15 @@ class CombatState(CombatAnimations):
                 # Track damage
                 self._damage_map[target].add(user)
 
+                # monster infected
+                if user.plague == PlagueType.infected:
+                    m = T.format(
+                        "combat_state_plague1",
+                        {
+                            "target": user.name.upper(),
+                        },
+                    )
+                    message += "\n" + m
                 # allows tackle to special range techniques too
                 if technique.range != "special":
                     element_damage_key = MULT_MAP.get(

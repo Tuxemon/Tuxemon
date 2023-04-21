@@ -3,7 +3,7 @@
   "template": [
     {
       "sprite_name": "knight",
-      "combat_front": "adventurer",
+      "combat_front": "enforcer_rookie",
       "slug": "knight"
     }
   ]

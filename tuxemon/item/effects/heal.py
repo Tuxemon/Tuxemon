@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Union
 
-from tuxemon.combat import check_status
+from tuxemon.combat import has_status
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.monster import Monster
 
@@ -35,7 +35,7 @@ class HealEffect(ItemEffect):
     def apply(self, target: Monster) -> HealEffectResult:
         healing_amount = self.amount
         # condition festering = no healing
-        if check_status(target, "status_festering"):
+        if has_status(target, "status_festering"):
             healing_amount = 0
         if type(healing_amount) is float:
             healing_amount *= target.hp

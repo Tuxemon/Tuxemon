@@ -691,6 +691,12 @@ msgstr "Phone keeps ringing but no answer!"
 
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
+msgid "combat_scope"
+msgstr "AR:{AR} DE:{DE} ME:{ME} RD:{RD} SD:{SD}"
+
+msgid "combat_none"
+msgstr " "
+
 msgid "combat_miss"
 msgstr "It missed..."
 
@@ -884,9 +890,6 @@ msgstr "{target} takes aim."
 msgid "combat_state_softened_get"
 msgstr "{target}'s armour softens."
 
-msgid "combat_state_spyderbite_get"
-msgstr "{target} begins to sniffle."
-
 msgid "combat_state_stuck_get"
 msgstr "{target} is stuck in place."
 
@@ -895,6 +898,18 @@ msgstr "{target} is worn out."
 
 msgid "combat_state_tired_end"
 msgstr "{target} shakes off its tiredness."
+
+msgid "combat_state_plague0"
+msgstr "{target} begins to sniffle."
+
+msgid "combat_state_plague1"
+msgstr "Ah ... Ah. {target} held in a sneeze."
+
+msgid "combat_state_plague2"
+msgstr "Ah ... Ahchoo! {user} sneezed on {target}."
+
+msgid "combat_state_plague3"
+msgstr "{target} wiped it off."
 
 # Generic notifications
 msgid "empty_slot"
@@ -1160,6 +1175,9 @@ msgstr "Kindling Flame"
 msgid "levitate"
 msgstr "Levitate"
 
+msgid "life_surge"
+msgstr "Life Surge"
+
 msgid "midnight_mantle"
 msgstr "Midnight Mantle"
 
@@ -1177,6 +1195,9 @@ msgstr "Overfeed"
 
 msgid "overgrowth"
 msgstr "Overgrowth"
+
+msgid "panjandrum"
+msgstr "Panjandrum"
 
 msgid "peck"
 msgstr "Peck"
@@ -1219,6 +1240,9 @@ msgstr "Salamander"
 
 msgid "sand_spray"
 msgstr "Sand Spray"
+
+msgid "scope"
+msgstr "Scope"
 
 msgid "shadow_boxing"
 msgstr "Shadow Boxing"
@@ -1967,6 +1991,9 @@ msgstr "Press a key to set your new input key"
 msgid "options_new_input_key1"
 msgstr "Restart your game for changes to take effect!"
 
+msgid "menu_storage_infected_monster"
+msgstr "Virus detected. For the safety of all tuxemon in our system, you cannot store an infected tuxemon."
+
 msgid "menu_storage_take_monster"
 msgstr "You added {name} into your party!"
 
@@ -2011,6 +2038,9 @@ msgstr "shelter"
 
 msgid "Locker"
 msgstr "locker"
+
+msgid "quarantine"
+msgstr "Quarantine"
 
 # Default mod names on selection menu
 msgid "xero_campaign"
@@ -5856,6 +5886,24 @@ msgstr "Welcome back. Shall I chuck your tuxemon in the healing unit?"
 msgid "spyder_cottonart_barmaid"
 msgstr "Do you like my set? \n They capture my early days as a professional tuxemon trainer, before I retired on my winnings. \n  I call them: 'Monsters' Eyes Meet', 'Starry, Starry, Starry Night' and 'Trepidation'. They're for sale! \n Get them while they're hot! Just 1,000 each."
 
+msgid "spyder_cottonart_barmaid_bundle"
+msgstr "Do you want to buy all three paintings for ${{currency}}3,000?"
+
+msgid "spyder_cottonart_barmaid_single"
+msgstr "Do you want to buy this painting for ${{currency}}1,000?"
+
+msgid "spyder_cottonart_barmaid_painting_sold"
+msgstr "The painting has been bought by ${{name}}! This is a copy!"
+
+msgid "spyder_cottonart_barmaid_painting_sold_billie"
+msgstr "The painting has been bought and donated back to the gallery by Billie!"
+
+msgid "spyder_cottonart_barmaid_bundle_sold"
+msgstr "It looks like you're my collector now! I'll replace the original with copies!"
+
+msgid "spyder_cottonart_billie"
+msgstr "I see you're trying to broaden your horizons. That's cute. Just try not to touch anything."
+
 msgid "spyder_cottonart_granny"
 msgstr "I must be getting nostalgic. I almost said \n \"Back in my day, things were better!\""
 
@@ -6047,7 +6095,9 @@ msgstr "I can't explain it ... one moment my Cairfrey was healthy, the next it w
 msgid "spyder_wayfarer_maniac"
 msgstr "My tuxemon aren't sick! This is just an excuse to sell us medicine we don't need. \n When I was your age, we didn't have medicine. We swam in mountain streams and if you got a sniffle, well, tough! \n And anyway, I saw the Enforcers coming down Route 4 before anyone so much as sniffled, so how could \n ... \n ah ah achoo! \n ... \n That doesn't mean anything. I have an itchy nose."
 msgid "spyder_wayfarer1_maniac"
-msgstr "Hey, buddy, do you want my Botbot? \n I dunno how long I'm going to be stuck here, so it might as well get to explore with you."
+msgstr "Hey, buddy, do you want my Botbot?"
+msgid "spyder_wayfarer1_maniac1"
+msgstr "I dunno how long I'm going to be stuck here, so it might as well get to explore with you."
 msgid "spyder_wayfarer1_maniac2"
 msgstr "A little privacy, please! "
 msgid "spyder_wayfarer1_morton1"
@@ -6110,7 +6160,24 @@ msgid "spyder_route4_beck1"
 msgstr "Your serve!"
 msgid "spyder_route4_beck2"
 msgstr "Game, set, match."
-
+msgid "spyder_barmaid_cafe1"
+msgstr "Are you okay?\n I guess all your tuxemon were infected, so the Enforcers took them to the Hospital!"
+msgid "spyder_barmaid_cafe2"
+msgstr "You can use the PC to get out some non-infected tuxemon."
+msgid "spyder_barmaid_cafe3"
+msgstr "Oh dear, you're totally out of tuxemon.\n Well, I have this Nudiflot I don't really want."
+msgid "spyder_enforcer_candy1"
+msgstr "Stop right there!\n We are taking all infected tuxemon to the Hospital to be quarantined\n until Greenwash develops a cure for the virus."
+msgid "spyder_enforcer_candy2"
+msgstr "Wow! I guess you get to keep them all\n ... Uh ... I mean, good job keeping your tuxemon free from disease.\n You may go."
+msgid "spyder_enforcer_candy3"
+msgstr "Ha! I mean, oh dear, your tuxemon are infected and must be quarantined.\n Hand them over now ..."
+msgid "spyder_enforcer_candy4"
+msgstr "Don't you even think of trying to steal your tuxemon back from the Hospital.\n The scanners are set up to reject all known tuxemon and human DNA!"
+msgid "spyder_route4_billie1"
+msgstr "I've got all the latest gear and the best tuxemon. What have you got?"
+msgid "spyder_route4_billie2"
+msgstr "I guess money can't buy everything, after all."
 msgid "spyder_magician_timber"
 msgstr "Hey, that's a nice phone you've got there ... Your mum made it for you? Heaps cool! \n Then you've gotta install my newest social media app. It's called Contacts App. \n It keeps track of all the people you meet and tells you what they're up to."
 msgid "spyder_candy_catgirl1"
@@ -6391,6 +6458,10 @@ msgid "spyder_tunnelb_tommy2"
 msgstr "My hunger put me off of my game!"
 msgid "spyder_successful_log"
 msgstr "Your mighty hatchet slices the log in two."
+msgid "spyder_route6_billie1"
+msgstr "Let's make it quick. I have a spa appointment in an hour."
+msgid "spyder_route6_billie2"
+msgstr "Huh. You're a better trainer than I thought."
 msgid "spyder_route6_frances1"
 msgstr "My Narcileaf keeps the finest garden in all the land."
 msgid "spyder_route6_frances2"
@@ -6433,6 +6504,8 @@ msgid "spyder_flower_muse1"
 msgstr "He's so hard on himself, never happy with something he's painted. He's so forgetful, too. Perhaps I could buy a painting "
 msgid "spyder_flower_muse2"
 msgstr "What? You have a painting. Oooh - would you let me buy it? I have ${{currency}}2,000."
+msgid "spyder_flower_muse4"
+msgstr "What? You have all the paintings. Oooh - would you let me buy it? I have ${{currency}}6,000."
 msgid "spyder_flower_artist_clipping"
 msgstr "A newspaper clipping is on the wall. It begins: \n \"The famous art critic has put away his poison pen and picked up the paint brush. \n After years of tearing down artists, can he do any better himself?\""
 msgid "spyder_flower_artist2"

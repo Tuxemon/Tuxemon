@@ -9,42 +9,34 @@ from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
 
-class PartySizeCondition(EventCondition):
+class HasBoxCondition(EventCondition):
     """
-    Check the party size.
+    Check to see how many monsters are in the box.
 
     Script usage:
         .. code-block::
 
-            is party_size <operator>,<value>
+            is has_box <box>,<operator>,<value>
 
     Script parameters:
         operator: Numeric comparison operator. Accepted values are "less_than",
             "less_or_equal", "greater_than", "greater_or_equal", "equals"
             and "not_equals".
-        value: The value to compare the party size with.
+        value: The value to compare the party with.
+        box: The box name.
 
     """
 
-    name = "party_size"
+    name = "has_box"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check the party size.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Result of the comparison between the party size and the chosen
-            value.
-
-        """
-        check = str(condition.parameters[0])
-        number = int(condition.parameters[1])
-        party_size = len(session.player.monsters)
-
+        box_name = str(condition.parameters[0])
+        check = str(condition.parameters[1])
+        number = int(condition.parameters[2])
+        player = session.player
+        if box_name not in player.monster_boxes.keys():
+            raise ValueError(f"{box_name} doesn't exist.")
+        party_size = len(player.monster_boxes[box_name])
         if check == "less_than":
             return bool(lt(party_size, number))
         elif check == "less_or_equal":

@@ -25,7 +25,7 @@ from tuxemon import surfanim
 from tuxemon.ai import AI
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.compat import Rect
-from tuxemon.db import ElementType, SeenStatus, db
+from tuxemon.db import ElementType, PlagueType, SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import MAX_TYPES_BAG, Item, decode_items, encode_items
@@ -74,6 +74,7 @@ class NPCState(TypedDict):
     items: Sequence[Mapping[str, Any]]
     monsters: Sequence[Mapping[str, Any]]
     player_name: str
+    plague: PlagueType
     monster_boxes: Dict[str, Sequence[Mapping[str, Any]]]
     item_boxes: Dict[str, Sequence[Mapping[str, Any]]]
     tile_pos: Tuple[int, int]
@@ -145,6 +146,8 @@ class NPC(Entity[NPCState]):
         self.items: List[Item] = []
         self.template: List[Template] = []
         self.economy: Optional[Economy] = None
+        # related to spyderbite (PlagueType)
+        self.plague = PlagueType.healthy
         # Variables for long-term item and monster storage
         # Keeping these seperate so other code can safely
         # assume that all values are lists
@@ -234,6 +237,7 @@ class NPC(Entity[NPCState]):
             "monster_boxes": dict(),
             "item_boxes": dict(),
             "tile_pos": self.tile_pos,
+            "plague": self.plague,
         }
 
         for monsterkey, monstervalue in self.monster_boxes.items():
@@ -271,6 +275,7 @@ class NPC(Entity[NPCState]):
         for tmp in decode_template(save_data.get("template")):
             self.template.append(tmp)
         self.name = save_data["player_name"]
+        self.plague = save_data["plague"]
         for monsterkey, monstervalue in save_data["monster_boxes"].items():
             self.monster_boxes[monsterkey] = decode_monsters(monstervalue)
         for itemkey, itemvalue in save_data["item_boxes"].items():
@@ -771,6 +776,7 @@ class NPC(Entity[NPCState]):
         new_monster.capture_device = old_monster.capture_device
         new_monster.taste_cold = old_monster.taste_cold
         new_monster.taste_warm = old_monster.taste_warm
+        new_monster.plague = old_monster.plague
         self.remove_monster(old_monster)
         self.add_monster(new_monster, slot)
 

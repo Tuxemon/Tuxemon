@@ -1,28 +1,28 @@
 {
-  "tech_id": 40,
+  "tech_id": 175,
   "accuracy": 1,
   "animation": "heal_burst_120",
   "effects": [
-    "give status_recover,user",
-    "healing user"
+    "give status_chargedup,target",
+    "healing target"
   ],
   "flip_axes": "",
-  "healing_power": 4,
+  "healing_power": 2,
   "is_area": false,
   "is_fast": false,
   "potency": 1,
   "power": 0,
   "range": "special",
-  "recharge": 3,
-  "sfx": "sfx_blaster",
-  "slug": "refresh",
+  "recharge": 2,
+  "sfx": "sfx_bubbles",
+  "slug": "life_surge",
   "sort": "damage",
   "target": {
-    "enemy monster": 0,
+    "enemy monster": 2,
     "enemy team": 0,
     "enemy trainer": 0,
     "item": 0,
-    "own monster": 2,
+    "own monster": 0,
     "own team": 0,
     "own trainer": 0
   },

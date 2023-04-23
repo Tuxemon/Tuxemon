@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import Union, final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.states.pc_kennel import HIDDEN
+from tuxemon.states.pc import KENNEL
 
 
 @final
@@ -47,9 +47,7 @@ class StoreMonsterAction(EventAction):
             )
 
         if box is None:
-            if HIDDEN not in player.monster_boxes.keys():
-                player.monster_boxes[HIDDEN] = list()
-            store = HIDDEN
+            store = KENNEL
         else:
             if box not in player.monster_boxes.keys():
                 raise ValueError(

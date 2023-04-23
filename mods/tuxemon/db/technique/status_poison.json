@@ -2,13 +2,13 @@
   "animation": "drip_green",
   "category": "negative",
   "effects": [
-    "poison all"
+    "poison"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_poison.png",
   "range": "special",
-  "repl_pos": "replace",
-  "repl_neg": "replace",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
   "sfx": "sfx_pulse",
   "slug": "status_poison",
   "sort": "meta",

@@ -6,8 +6,6 @@
     "damage"
   ],
   "flip_axes": "xy",
-  "healing_power": 0,
-  "icon": "",
   "is_area": true,
   "is_fast": false,
   "potency": null,

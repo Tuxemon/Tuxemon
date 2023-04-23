@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
 from tuxemon import ai, formula, fusion, graphics, tools
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import (
+    CategoryCondition,
     ElementType,
     EvolutionStage,
     GenderType,
@@ -17,6 +18,8 @@ from tuxemon.db import (
     MonsterHistoryItemModel,
     MonsterMovesetItemModel,
     MonsterShape,
+    PlagueType,
+    ResponseCondition,
     StatType,
     TasteCold,
     TasteWarm,
@@ -55,6 +58,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "mod_ranged",
     "mod_speed",
     "mod_hp",
+    "plague",
 )
 
 SHAPES = {
@@ -241,6 +245,7 @@ class Monster:
         self.shape = MonsterShape.landrace
 
         self.status: List[Technique] = []
+        self.plague = PlagueType.healthy
         self.taste_cold = TasteCold.tasteless
         self.taste_warm = TasteWarm.tasteless
 
@@ -307,6 +312,7 @@ class Monster:
         self.name = T.translate(results.slug)
         self.description = T.translate(f"{results.slug}_description")
         self.category = T.translate(f"cat_{results.category}")
+        self.plague = self.plague
         self.shape = results.shape or MonsterShape.landrace
         self.stage = results.stage or EvolutionStage.standalone
         self.taste_cold = self.set_taste_cold(self.taste_cold)
@@ -460,20 +466,20 @@ class Monster:
                 return
             # if the status doesn't exist.
             else:
-                if self.status[0].category == "positive":
-                    if status.repl_pos == "replace":
+                if self.status[0].category == CategoryCondition.positive:
+                    if status.repl_pos == ResponseCondition.replaced:
                         self.status.clear()
                         self.status.append(status)
-                    elif status.repl_pos == "remove":
+                    elif status.repl_pos == ResponseCondition.removed:
                         self.status.clear()
                     else:
                         # noddingoff, exhausted, festering, dozing
                         return
-                elif self.status[0].category == "negative":
-                    if status.repl_neg == "replace":
+                elif self.status[0].category == CategoryCondition.negative:
+                    if status.repl_neg == ResponseCondition.replaced:
                         self.status.clear()
                         self.status.append(status)
-                    elif status.repl_pos == "remove":
+                    elif status.repl_pos == ResponseCondition.removed:
                         self.status.clear()
                     else:
                         # chargedup, charging and dozing
@@ -752,7 +758,7 @@ class Monster:
             if getattr(self, attr)
         }
 
-        save_data["instance_id"] = self.instance_id.hex
+        save_data["instance_id"] = str(self.instance_id.hex)
 
         body = self.body.get_state()
         if body:

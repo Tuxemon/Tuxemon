@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_dojo_wan",
+  "template": [
+    {
+      "sprite_name": "ninja_blue",
+      "combat_front": "ninja",
+      "slug": "ninja"
+    }
+  ]
+}

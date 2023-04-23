@@ -114,30 +114,26 @@ class ItemMenuState(Menu[Item]):
         item = menu_item.game_object
         state = self.determine_state_called_from()
 
-        if not any(
-            menu_item.game_object.validate(m)
-            for m in local_session.player.monsters
-        ):
+        if not any(item.validate(m) for m in local_session.player.monsters):
+            self.on_menu_selection_change()
             msg = T.format("item_no_available_target", {"name": item.name})
-            for i in menu_item.game_object.conditions:
+            for i in item.conditions:
                 if i.name == "location_inside":
+                    loc_inside = getattr(i, "location_inside")
                     msg = T.format(
                         "item_used_wrong_location_inside",
                         {
                             "name": item.name,
-                            "here": T.translate(
-                                i.__getattribute__("location_inside")
-                            ),
+                            "here": T.translate(loc_inside),
                         },
                     )
                 elif i.name == "location_type":
+                    loc_type = getattr(i, "location_type")
                     msg = T.format(
                         "item_used_wrong_location_type",
                         {
                             "name": item.name,
-                            "here": T.translate(
-                                i.__getattribute__("location_type")
-                            ),
+                            "here": T.translate(loc_type),
                         },
                     )
             tools.open_dialog(local_session, [msg])

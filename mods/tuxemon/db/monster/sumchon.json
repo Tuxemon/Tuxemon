@@ -24,8 +24,12 @@
             "technique": "peregrine"
         },
         {
-            "level_learned": 10,
+            "level_learned": 12,
             "technique": "sting"
+        },
+        {
+            "level_learned": 16,
+            "technique": "oedipus"
         },
         {
             "level_learned": 20,

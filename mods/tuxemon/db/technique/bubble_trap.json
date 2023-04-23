@@ -3,13 +3,11 @@
   "accuracy": 0.75,
   "animation": "bomb_bright",
   "effects": [
-    "grabbed target",
-    "grabbed user",
+    "give status_grabbed,target",
+    "give status_grabbed,user",
     "damage"
   ],
   "flip_axes": "",
-  "healing_power": 0,
-  "icon": "",
   "is_area": false,
   "is_fast": false,
   "potency": 1,

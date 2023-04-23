@@ -2,6 +2,8 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from operator import eq, ge, gt, le, lt, ne
+
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -18,8 +20,10 @@ class MoneyIsCondition(EventCondition):
 
     Script parameters:
         slug: Slug name (e.g. player or NPC, etc.).
-        operator: One of "==", "!=", ">", ">=", "<" or "<=".
-        amount: amoung of money
+        operator: Numeric comparison operator. Accepted values are "less_than",
+            "less_or_equal", "greater_than", "greater_or_equal", "equals"
+            and "not_equals".
+        amount: Amount of money
 
     """
 
@@ -46,19 +50,19 @@ class MoneyIsCondition(EventCondition):
 
         # Check if the condition is true
         if wallet in player.money:
-            if operator == "==":
-                return player.money[wallet] == int(amount)
-            elif operator == "!=":
-                return player.money[wallet] != int(amount)
-            elif operator == ">":
-                return player.money[wallet] > int(amount)
-            elif operator == ">=":
-                return player.money[wallet] >= int(amount)
-            elif operator == "<":
-                return player.money[wallet] < int(amount)
-            elif operator == "<=":
-                return player.money[wallet] <= int(amount)
+            if operator == "less_than":
+                return bool(lt(player.money[wallet], int(amount)))
+            elif operator == "less_or_equal":
+                return bool(le(player.money[wallet], int(amount)))
+            elif operator == "greater_than":
+                return bool(gt(player.money[wallet], int(amount)))
+            elif operator == "greater_or_equal":
+                return bool(ge(player.money[wallet], int(amount)))
+            elif operator == "equals":
+                return bool(eq(player.money[wallet], int(amount)))
+            elif operator == "not_equals":
+                return bool(ne(player.money[wallet], int(amount)))
             else:
-                raise ValueError(f"invalid operation type {operator}")
+                raise ValueError(f"{operator} is incorrect.")
         else:
             return False

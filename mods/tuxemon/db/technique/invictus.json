@@ -3,13 +3,11 @@
   "accuracy": 0.75,
   "animation": "triforce_163",
   "effects": [
-    "enraged user",
-    "grabbed target",
+    "give status_enraged,user",
+    "give status_grabbed,target",
     "damage"
   ],
   "flip_axes": "xy",
-  "healing_power": 0,
-  "icon": "",
   "is_area": false,
   "is_fast": false,
   "potency": 0.75,

@@ -3,11 +3,11 @@
   "accuracy": 0.8,
   "animation": "disintegrate_83",
   "effects": [
-    "damage"
+    "damage",
+    "healing user"
   ],
   "flip_axes": "",
   "healing_power": 4,
-  "icon": "",
   "is_area": false,
   "is_fast": false,
   "potency": null,

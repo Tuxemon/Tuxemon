@@ -130,12 +130,13 @@
   </object>
   <object id="40" name="Talk Bravo" type="event" x="192" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_wayfarer1_bravo1"/>
-    <property name="act2" value="add_monster elofly,12,spyder_wayfarer1_bravo,27,10"/>
-    <property name="act3" value="add_monster flacono,12,spyder_wayfarer1_bravo,27,10"/>
-    <property name="act4" value="start_battle spyder_wayfarer1_bravo"/>
-    <property name="act5" value="translated_dialog spyder_wayfarer1_bravo2"/>
-    <property name="act6" value="set_variable wayfarer1bravo:yes"/>
+    <property name="act10" value="translated_dialog spyder_wayfarer1_bravo1"/>
+    <property name="act11" value="npc_plague infected,spyder_wayfarer1_bravo"/>
+    <property name="act12" value="add_monster elofly,12,spyder_wayfarer1_bravo,27,10"/>
+    <property name="act13" value="add_monster flacono,12,spyder_wayfarer1_bravo,27,10"/>
+    <property name="act14" value="start_battle spyder_wayfarer1_bravo"/>
+    <property name="act15" value="translated_dialog spyder_wayfarer1_bravo2"/>
+    <property name="act16" value="set_variable wayfarer1bravo:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_bravo"/>
     <property name="cond1" value="not variable_set wayfarer1bravo:yes"/>
    </properties>
@@ -148,12 +149,14 @@
   </object>
   <object id="42" name="Talk James" type="event" x="128" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_wayfarer1_james1"/>
-    <property name="act2" value="add_monster botbot,12,spyder_wayfarer1_james,27,10"/>
-    <property name="act3" value="add_monster picc,12,spyder_wayfarer1_james,27,10"/>
-    <property name="act4" value="start_battle spyder_wayfarer1_james"/>
-    <property name="act5" value="translated_dialog spyder_wayfarer1_james2"/>
-    <property name="act6" value="set_variable wayfarer1james:yes"/>
+    <property name="act10" value="translated_dialog spyder_wayfarer1_james1"/>
+    <property name="act11" value="npc_plague infected,spyder_wayfarer1_james"/>
+    <property name="act12" value="add_monster botbot,12,spyder_wayfarer1_james,27,10"/>
+    <property name="act13" value="add_monster picc,12,spyder_wayfarer1_james,27,10"/>
+    <property name="act14" value="add_monster b_ver_1,12,spyder_wayfarer1_james,27,10"/>
+    <property name="act15" value="start_battle spyder_wayfarer1_james"/>
+    <property name="act16" value="translated_dialog spyder_wayfarer1_james2"/>
+    <property name="act17" value="set_variable wayfarer1james:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_james"/>
     <property name="cond1" value="not variable_set wayfarer1james:yes"/>
    </properties>
@@ -173,13 +176,13 @@
   </object>
   <object id="49" name="Talk Bravo" type="event" x="208" y="48" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_wayfarer1_bravo"/>
-    <property name="act1" value="translated_dialog spyder_wayfarer1_bravo1"/>
-    <property name="act2" value="add_monster elofly,12,spyder_wayfarer1_bravo,27,10"/>
-    <property name="act3" value="add_monster flacono,12,spyder_wayfarer1_bravo,27,10"/>
-    <property name="act4" value="start_battle spyder_wayfarer1_bravo"/>
-    <property name="act5" value="translated_dialog spyder_wayfarer1_bravo2"/>
-    <property name="act6" value="set_variable wayfarer1bravo:yes"/>
+    <property name="act10" value="pathfind_to_player spyder_wayfarer1_bravo"/>
+    <property name="act11" value="translated_dialog spyder_wayfarer1_bravo1"/>
+    <property name="act13" value="add_monster elofly,12,spyder_wayfarer1_bravo,27,10"/>
+    <property name="act14" value="add_monster flacono,12,spyder_wayfarer1_bravo,27,10"/>
+    <property name="act15" value="start_battle spyder_wayfarer1_bravo"/>
+    <property name="act16" value="translated_dialog spyder_wayfarer1_bravo2"/>
+    <property name="act17" value="set_variable wayfarer1bravo:yes"/>
     <property name="cond1" value="not variable_set wayfarer1bravo:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>

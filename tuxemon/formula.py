@@ -10,7 +10,6 @@ from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 if TYPE_CHECKING:
     from tuxemon.db import MonsterModel
     from tuxemon.monster import Monster
-    from tuxemon.npc import NPC
     from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
@@ -115,9 +114,15 @@ def simple_damage_calculate(
     return damage, mult
 
 
-def simple_poison(
-    target: Monster,
-) -> int:
+def damage_panjandrum(target: Monster) -> int:
+    """
+    The target takes damage equal to 1/4 of their maximum HP.
+    """
+    damage = target.hp * 0.25
+    return int(damage)
+
+
+def simple_poison(target: Monster) -> int:
     """
     Simple poison based on target's full hp.
 
@@ -133,9 +138,7 @@ def simple_poison(
     return damage
 
 
-def simple_recover(
-    target: Monster,
-) -> int:
+def simple_recover(target: Monster) -> int:
     """
     Simple recover based on target's full hp.
 
@@ -151,10 +154,7 @@ def simple_recover(
     return heal
 
 
-def simple_lifeleech(
-    user: Monster,
-    target: Monster,
-) -> int:
+def simple_lifeleech(user: Monster, target: Monster) -> int:
     """
     Simple lifeleech based on a few factors.
 
@@ -321,12 +321,6 @@ def convert_mi(steps: float) -> float:
     km = convert_km(steps)
     mi = round(km * 0.6213711922, 2)
     return mi
-
-
-def sync(player: NPC, value: int, total: int) -> float:
-    percent = round((value / total) * 100, 1)
-    player.game_variables["tuxepedia_progress"] = str(percent)
-    return percent
 
 
 def weight_height_diff(

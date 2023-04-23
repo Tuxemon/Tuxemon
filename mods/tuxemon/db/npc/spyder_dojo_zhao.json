@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_dojo_zhao",
+  "template": [
+    {
+      "sprite_name": "maniac_green",
+      "combat_front": "adventurer",
+      "slug": "maniac"
+    }
+  ]
+}

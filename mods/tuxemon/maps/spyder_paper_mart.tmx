@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="18">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="23">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -22,7 +22,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYKAvkJQn3r49cgwMu4HYkgQ9MNOpqacUaP9voDvKsbjjJ1CcWIDPHGLNQFdHCzOR7biIxc8weQAN6AvE
+   eAFjYKAvkJQn3r49cgwMu4HYkgQ9MNOpqacUaP9voDtguBzJPT+B4sQCmDnI+onVi0sdzExsbsOlhxTxi0h+RdcHAE89ECg=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="13" height="11">
@@ -32,12 +32,12 @@
  </layer>
  <layer id="4" name="Above player" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYBhZ4LYcA8MdIL4LxJQAmDmUmIGuF2YmpW5DN5dWfACxYQfQ
+   eAFjYBhZ4LYcA8MdJHwXyCYHwMwhRy8uPTAzYe4j1224zKe2OABalQu4
   </data>
  </layer>
  <layer id="5" name="Above player" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYBhZwEuBgQGEPYGYWJAJVAvCGUBMa+ANtAOESQFZQPUgTG8AAF7EBMI=
+   eAHlzLENgCAARNFbA6HQdXASmVFxEMVBEBL+BlTY+JPXXU76V36WdhyIONFrY3PhRsKDEa38ZrwoqOgV2JhFmmDh8FUNeNsOrQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision" visible="0">
@@ -61,7 +61,6 @@
    <properties>
     <property name="act001" value="change_bg end"/>
     <property name="act002" value="lock_controls"/>
-    <property name="act003" value="wait 1"/>
     <property name="act003" value="npc_face player,right"/>
     <property name="act004" value="create_npc spyder_shopkeeper,7,6"/>
     <property name="act005" value="npc_face spyder_shopkeeper,left"/>
@@ -83,16 +82,16 @@
     <property name="act053" value="translated_dialog spyder_intro_shopkeeper2"/>
     <property name="act054" value="pathfind spyder_dante,5,4"/>
     <property name="act055" value="npc_face spyder_dante,left"/>
-    <property name="act056" value="translated_dialog spyder_intro_shopkeeper2"/>
+    <property name="act056" value="wait 0.5"/>
     <property name="act057" value="pathfind spyder_dante,5,5"/>
     <property name="act058" value="npc_face spyder_dante,left"/>
-    <property name="act059" value="translated_dialog spyder_intro_shopkeeper2"/>
+    <property name="act059" value="wait 0.5"/>
     <property name="act060" value="pathfind spyder_dante,5,6"/>
     <property name="act061" value="npc_face spyder_dante,left"/>
-    <property name="act062" value="translated_dialog spyder_intro_shopkeeper2"/>
+    <property name="act062" value="wait 0.5"/>
     <property name="act063" value="pathfind spyder_dante,5,7"/>
     <property name="act064" value="npc_face spyder_dante,left"/>
-    <property name="act065" value="translated_dialog spyder_intro_shopkeeper2"/>
+    <property name="act065" value="wait 0.5"/>
     <property name="act066" value="pathfind spyder_dante,5,8"/>
     <property name="act067" value="npc_face spyder_dante,left"/>
     <property name="act068" value="translated_dialog spyder_intro_shopkeeper2"/>
@@ -121,14 +120,55 @@
     <property name="act104" value="remove_npc spyder_route2_graf"/>
     <property name="act105" value="pathfind player,6,7"/>
     <property name="act106" value="npc_face player,right"/>
-    <property name="act110" value="translated_dialog spyder_intro_shopkeeper4"/>
-    <property name="act111" value="pathfind player,6,10"/>
-    <property name="act112" value="transition_teleport spyder_bedroom.tmx,3,4,0.3"/>
-    <property name="act113" value="remove_npc spyder_shopkeeper"/>
-    <property name="act114" value="remove_npc spyder_dante"/>
-    <property name="act115" value="set_variable intro_scoop:done"/>
-    <property name="act116" value="unlock_controls"/>
+    <property name="act107" value="wait 0.5"/>
+    <property name="act108" value="npc_face spyder_dante,up"/>
+    <property name="act109" value="wait 0.5"/>
+    <property name="act110" value="npc_face spyder_shopkeeper,down"/>
+    <property name="act111" value="wait 0.5"/>
+    <property name="act112" value="pathfind spyder_shopkeeper,6,6"/>
+    <property name="act113" value="wait 0.5"/>
+    <property name="act114" value="npc_face spyder_shopkeeper,down"/>
+    <property name="act115" value="wait 0.5"/>
+    <property name="act116" value="npc_face player,up"/>
+    <property name="act117" value="translated_dialog spyder_intro_shopkeeper4"/>
+    <property name="act118" value="npc_face spyder_dante,down"/>
+    <property name="act121" value="pathfind player,6,10"/>
+    <property name="act122" value="transition_teleport spyder_bedroom.tmx,3,4,0.3"/>
+    <property name="act123" value="remove_npc spyder_shopkeeper"/>
+    <property name="act124" value="remove_npc spyder_dante"/>
+    <property name="act125" value="set_variable intro_scoop:done"/>
+    <property name="act126" value="unlock_controls"/>
     <property name="cond1" value="not variable_set intro_scoop:done"/>
+   </properties>
+  </object>
+  <object id="18" name="Billie Budaye" type="event" x="64" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:budaye"/>
+    <property name="cond1" value="is variable_set myintrochoice:budaye"/>
+   </properties>
+  </object>
+  <object id="19" name="Billie Dollfin" type="event" x="80" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:dollfin"/>
+    <property name="cond1" value="is variable_set myintrochoice:dollfin"/>
+   </properties>
+  </object>
+  <object id="20" name="Billie Grintot" type="event" x="96" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:grintot"/>
+    <property name="cond1" value="is variable_set myintrochoice:grintot"/>
+   </properties>
+  </object>
+  <object id="21" name="Billie Ignibus" type="event" x="112" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:ignibus"/>
+    <property name="cond1" value="is variable_set myintrochoice:ignibus"/>
+   </properties>
+  </object>
+  <object id="22" name="Billie Memnomnom" type="event" x="128" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable billie_choice:memnomnom"/>
+    <property name="cond1" value="is variable_set myintrochoice:memnomnom"/>
    </properties>
   </object>
  </objectgroup>

@@ -19,7 +19,7 @@
 	},
 	"tech_id": 0,
 	"types": [],
-	"use_failure": null,
+	"use_failure": "combat_none",
 	"use_success": null,
 	"use_tech": "combat_skip"
 }

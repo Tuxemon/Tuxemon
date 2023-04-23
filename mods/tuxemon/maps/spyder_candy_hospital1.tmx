@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="95">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="99">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -170,35 +170,10 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="77" name="Create Zekar" type="event" x="112" y="32" width="16" height="16">
+  <object id="79" name="Create Walt" type="event" x="224" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_hospital1_zekar,7,2"/>
-    <property name="cond1" value="not npc_exists spyder_hospital1_zekar"/>
-   </properties>
-  </object>
-  <object id="78" name="Talk Zekar" type="event" x="128" y="80" width="16" height="16">
-   <properties>
-    <property name="act0" value="pathfind_to_player spyder_hospital1_zekar"/>
-    <property name="act1" value="translated_dialog spyder_hospital1_zekar1"/>
-    <property name="act2" value="add_monster selket,32,spyder_hospital1_zekar,27,10"/>
-    <property name="act3" value="add_monster taupypus,32,spyder_hospital1_zekar,27,10"/>
-    <property name="act4" value="start_battle spyder_hospital1_zekar"/>
-    <property name="act5" value="translated_dialog spyder_hospital1_zekar2"/>
-    <property name="act6" value="set_variable hospital1zekar:yes"/>
-    <property name="cond1" value="not variable_set hospital1zekar:yes"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="79" name="Create Walt" type="event" x="192" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_hospital1_walt,12,2"/>
+    <property name="act1" value="create_npc spyder_hospital1_walt,14,2"/>
     <property name="cond1" value="not npc_exists spyder_hospital1_walt"/>
-   </properties>
-  </object>
-  <object id="80" name="Create Luzia" type="event" x="224" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_hospital1_luzia,14,2"/>
-    <property name="cond1" value="not npc_exists spyder_hospital1_luzia"/>
    </properties>
   </object>
   <object id="81" name="Talk Walt" type="event" x="176" y="80" width="16" height="16">
@@ -211,19 +186,6 @@
     <property name="act5" value="translated_dialog spyder_hospital1_walt2"/>
     <property name="act6" value="set_variable hospital1walt:yes"/>
     <property name="cond1" value="not variable_set hospital1walt:yes"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="82" name="Talk Luzia" type="event" x="288" y="80" width="16" height="16">
-   <properties>
-    <property name="act0" value="pathfind_to_player spyder_hospital1_luzia"/>
-    <property name="act1" value="translated_dialog spyder_hospital1_luzia1"/>
-    <property name="act2" value="add_monster galnec,36,spyder_hospital1_luzia,27,10"/>
-    <property name="act3" value="add_monster exclawvate,36,spyder_hospital1_luzia,27,10"/>
-    <property name="act4" value="start_battle spyder_hospital1_luzia"/>
-    <property name="act5" value="translated_dialog spyder_hospital1_luzia2"/>
-    <property name="act6" value="set_variable hospital1luzia:yes"/>
-    <property name="cond1" value="not variable_set hospital1luzia:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
@@ -278,18 +240,6 @@
     <property name="cond1" value="not npc_exists spyder_hospital1_pem"/>
    </properties>
   </object>
-  <object id="91" name="Create Rea" type="event" x="80" y="224" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_hospital1_rea,9,17"/>
-    <property name="cond1" value="not npc_exists spyder_hospital1_rea"/>
-   </properties>
-  </object>
-  <object id="92" name="Talk Rea" type="event" x="96" y="224" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_hospital1_rea1"/>
-    <property name="behav1" value="talk spyder_hospital1_rea"/>
-   </properties>
-  </object>
   <object id="93" name="Talk Pem" type="event" x="240" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_hospital1_pem1"/>
@@ -300,6 +250,49 @@
    <properties>
     <property name="act1" value="set_variable environment:interior"/>
     <property name="cond1" value="not variable_set environment:interior"/>
+   </properties>
+  </object>
+  <object id="95" name="Talk Fring" type="event" x="128" y="80" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_hospital1_fring"/>
+    <property name="act1" value="translated_dialog spyder_hospital1_fring1"/>
+    <property name="act2" value="add_monster anu,30,spyder_hospital1_fring,27,10"/>
+    <property name="act3" value="add_monster selket,30,spyder_hospital1_fring,27,10"/>
+    <property name="act4" value="start_battle spyder_hospital1_fring"/>
+    <property name="act5" value="translated_dialog spyder_hospital1_fring2"/>
+    <property name="act6" value="set_variable hospital1fring:yes"/>
+    <property name="cond1" value="not variable_set hospital1fring:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="96" name="Talk Walt" type="event" x="288" y="80" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_hospital1_walt"/>
+    <property name="act1" value="translated_dialog spyder_hospital1_walt1"/>
+    <property name="act2" value="add_monster Anu,34,spyder_hospital1_walt,27,10"/>
+    <property name="act3" value="add_monster Taupypus,27,spyder_hospital1_walt,27,10"/>
+    <property name="act4" value="start_battle spyder_hospital1_walt"/>
+    <property name="act5" value="translated_dialog spyder_hospital1_walt2"/>
+    <property name="act6" value="set_variable hospital1walt:yes"/>
+    <property name="cond1" value="not variable_set hospital1walt:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="97" name="Create Garvan" type="event" x="16" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scientist_brown,1,11"/>
+    <property name="cond1" value="not npc_exists spyder_scientist_brown"/>
+    <property name="cond2" value="not variable_set quarantine_garvan:yes"/>
+   </properties>
+  </object>
+  <object id="98" name="Talk Garvan" type="event" x="48" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital1_scientist1"/>
+    <property name="act2" value="translated_dialog spyder_hospital1_scientist2"/>
+    <property name="act3" value="set_variable quarantine_garvan:yes"/>
+    <property name="act4" value="quarantine out,1"/>
+    <property name="behav1" value="talk spyder_scientist_brown"/>
+    <property name="cond1" value="not variable_set quarantine_garvan:yes"/>
    </properties>
   </object>
  </objectgroup>

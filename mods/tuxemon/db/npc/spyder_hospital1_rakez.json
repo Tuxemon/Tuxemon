@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_hospital1_rakez",
+  "template": [
+    {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
+  ]
+}

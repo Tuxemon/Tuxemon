@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_hospital1_rhizome",
+  "template": [
+    {
+      "sprite_name": "professor",
+      "combat_front": "professor",
+      "slug": "professor"
+    }
+  ]
+}

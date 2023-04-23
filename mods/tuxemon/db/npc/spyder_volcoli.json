@@ -1,8 +1,8 @@
 {
-  "slug": "rock",
+  "slug": "spyder_volcoli",
   "template": [
     {
-      "sprite_name": "boulder",
+      "sprite_name": "volcoli",
       "combat_front": "noclass",
       "slug": "interactive_obj"
     }

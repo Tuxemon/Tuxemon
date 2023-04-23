@@ -282,7 +282,8 @@ class NPC(Entity[NPCState]):
         """Load sprite graphics."""
         # TODO: refactor animations into renderer
         # Get all of the player's standing animation images.
-        self.sprite_name = ""
+        self.interactive_obj: bool = False
+        self.sprite_name: str = ""
         if not self.template:
             self.sprite_name = "adventurer"
             template = Template()
@@ -293,11 +294,18 @@ class NPC(Entity[NPCState]):
         else:
             for tmp in self.template:
                 self.sprite_name = tmp.sprite_name
+                if tmp.slug == "interactive_obj":
+                    self.interactive_obj = True
 
         self.standing = {}
         for standing_type in facing:
-            filename = f"{self.sprite_name}_{standing_type}.png"
-            path = os.path.join("sprites", filename)
+            # if the template slug is interactive_obj, then it needs _front
+            if self.interactive_obj:
+                filename = f"{self.sprite_name}.png"
+                path = os.path.join("sprites_obj", filename)
+            else:
+                filename = f"{self.sprite_name}_{standing_type}.png"
+                path = os.path.join("sprites", filename)
             self.standing[standing_type] = load_and_scale(path)
         # The player's sprite size in pixels
         self.playerWidth, self.playerHeight = self.standing["front"].get_size()
@@ -309,21 +317,22 @@ class NPC(Entity[NPCState]):
         # Load all of the player's sprite animations
         anim_types = ["front_walk", "back_walk", "left_walk", "right_walk"]
         for anim_type in anim_types:
-            images = [
-                "sprites/{}_{}.{}.png".format(
-                    self.sprite_name, anim_type, str(num).rjust(3, "0")
+            if not self.interactive_obj:
+                images = [
+                    "sprites/{}_{}.{}.png".format(
+                        self.sprite_name, anim_type, str(num).rjust(3, "0")
+                    )
+                    for num in range(4)
+                ]
+
+                frames: List[Tuple[pygame.surface.Surface, float]] = []
+                for image in images:
+                    surface = load_and_scale(image)
+                    frames.append((surface, frame_duration))
+
+                self.sprite[anim_type] = surfanim.SurfaceAnimation(
+                    frames, loop=True
                 )
-                for num in range(4)
-            ]
-
-            frames: List[Tuple[pygame.surface.Surface, float]] = []
-            for image in images:
-                surface = load_and_scale(image)
-                frames.append((surface, frame_duration))
-
-            self.sprite[anim_type] = surfanim.SurfaceAnimation(
-                frames, loop=True
-            )
 
         # Have the animation objects managed by a SurfaceAnimationCollection.
         # With the SurfaceAnimationCollection, we can call play() and stop() on

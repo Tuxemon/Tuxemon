@@ -127,14 +127,14 @@
             "y": 2240
         },
         {
-            "fileName": "spyder_hospital.tmx",
+            "fileName": "spyder_candy_hospital3.tmx",
             "height": 0,
             "width": 0,
             "x": 0,
             "y": 2240
         },
         {
-            "fileName": "spyder_hospital_alt.tmx",
+            "fileName": "spyder_candy_hospital3_alt.tmx",
             "height": 0,
             "width": 0,
             "x": 0,
@@ -475,6 +475,27 @@
             "width": 160,
             "x": 1344,
             "y": 352
+        },
+        {
+            "fileName": "spyder_candy_center.tmx",
+            "height": 176,
+            "width": 320,
+            "x": -960,
+            "y": 2240
+        },
+        {
+            "fileName": "spyder_candy_hospital1.tmx",
+            "height": 320,
+            "width": 320,
+            "x": -960,
+            "y": 1600
+        },
+        {
+            "fileName": "spyder_candy_hospital2.tmx",
+            "height": 320,
+            "width": 320,
+            "x": -960,
+            "y": 1920
         }
     ],
     "onlyShowAdjacentMaps": false,

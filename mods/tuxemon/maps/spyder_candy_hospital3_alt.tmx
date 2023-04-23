@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="44">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="54">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
-  <property name="slug" value="hospital_alt"/>
+  <property name="slug" value="hospital3_alt"/>
   <property name="types" value="notype"/>
  </properties>
  <tileset firstgid="1" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
@@ -15,9 +15,6 @@
  <tileset firstgid="3121" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
- <tileset firstgid="4881" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
  <layer id="7" name="Tile Layer 1" width="12" height="20">
   <data encoding="base64" compression="zlib">
    eAGbwc/AMIMEfAColhT8Aqj+JRBvEiCOFgCqEwTim0TSG4DqtgDxViDeCMSbCfBvAOXvAPFdIIbZgY9/C6gOZCbMbEL0qPvxx8do+ONPT6SmHwAAeKat
@@ -25,7 +22,7 @@
  </layer>
  <layer id="8" name="Tile Layer 2" width="12" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFpIZADQsDQy0QjwLSQ+AJOwPDUyB+BsQwgM5HVvMFqO4rEH9DUo/Ox6YGZvZgopeLMzCsAOKVQEwMuApUdw2Ir+NRDwDY8hVI
+   eAFjYBgFpIZADQsDQy0QjwLSQ+AJOwPDUyB+BsQwgM5HVvMFqO4rEH9DUo/Ox6YGZvZQp92YGBjcgdgDiD2BGB0AAOtNEWo=
   </data>
  </layer>
  <layer id="9" name="Tile Layer 3" width="12" height="20">
@@ -63,31 +60,48 @@
     <property name="behav1" value="talk spyder_nurse"/>
    </properties>
   </object>
-  <object id="38" name="Teleport to Candy Town" type="event" x="48" y="304" width="48" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_candy_center.tmx,1,3,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
   <object id="39" name="The cure!" type="event" x="80" y="80" width="32" height="32">
    <properties>
-    <property name="act2" value="translated_dialog spyder_hospital_cure1"/>
-    <property name="act3" value="set_variable hospitalcure:yes"/>
-    <property name="act4" value="create_npc spyder_hospital_billie,4,12"/>
-    <property name="act5" value="pathfind spyder_hospital_billie,5,8"/>
-    <property name="act6" value="translated_dialog spyder_hospital_billie1"/>
+    <property name="act20" value="translated_dialog spyder_hospital_cure1"/>
+    <property name="act30" value="set_variable hospitalcure:yes"/>
+    <property name="act40" value="create_npc spyder_hospital_billie,4,12"/>
+    <property name="act45" value="pathfind spyder_hospital_billie,5,8"/>
+    <property name="act50" value="translated_dialog spyder_hospital_billie1"/>
     <property name="act51" value="add_monster billie_choice,40,spyder_hospital_billie,27,10"/>
-    <property name="act52" value="add_monster viviphyta,40,spyder_hospital_billie,27,10"/>
+    <property name="act52" value="add_monster cardinale,40,spyder_hospital_billie,27,10"/>
     <property name="act53" value="add_monster eyesore,40,spyder_hospital_billie,27,10"/>
-    <property name="act54" value="add_monster cardinale,40,spyder_hospital_billie,27,10"/>
-    <property name="act55" value="npc_plague infected,spyder_hospital_billie"/>
+    <property name="act54" value="add_monster viviphyta,40,spyder_hospital_billie,27,10"/>
     <property name="act60" value="start_battle spyder_hospital_billie"/>
     <property name="act61" value="translated_dialog spyder_hospital_billie2"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set hospitalcure:yes"/>
+   </properties>
+  </object>
+  <object id="44" name="2nd floor1" type="event" x="80" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_hospital2.tmx,17,2,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="46" name="2nd floor2" type="event" x="96" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_hospital2.tmx,18,2,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="52" name="Environment" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:interior"/>
+    <property name="cond1" value="not variable_set environment:interior"/>
+   </properties>
+  </object>
+  <object id="53" name="Route Music" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_cathedral_theme"/>
+    <property name="cond1" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
  </objectgroup>

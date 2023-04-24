@@ -204,7 +204,7 @@ class Monster:
 
         self.slug = ""
         self.name = ""
-        self.category = ""
+        self.cat = ""
         self.description = ""
         self.instance_id = uuid.uuid4()
 
@@ -311,7 +311,8 @@ class Monster:
         self.slug = results.slug
         self.name = T.translate(results.slug)
         self.description = T.translate(f"{results.slug}_description")
-        self.category = T.translate(f"cat_{results.category}")
+        self.cat = results.category
+        self.category = T.translate(f"cat_{self.cat}")
         self.plague = self.plague
         self.shape = results.shape or MonsterShape.landrace
         self.stage = results.stage or EvolutionStage.standalone

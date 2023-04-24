@@ -1,0 +1,45 @@
+{
+  "slug": "omnichannel",
+  "monsters": [
+    {
+      "monster": "dark_robo",
+      "encounter_rate": 0.5,
+      "daytime": true,
+      "exp_req_mod": 1,
+      "level_range": [
+        30,
+        31
+      ]
+    },
+    {
+      "monster": "dark_robo",
+      "encounter_rate": 0.5,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        30,
+        31
+      ]
+    },
+    {
+      "monster": "xeon_2",
+      "encounter_rate": 0.5,
+      "daytime": true,
+      "exp_req_mod": 1,
+      "level_range": [
+        30,
+        31
+      ]
+    },
+    {
+      "monster": "xeon_2",
+      "encounter_rate": 0.5,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        30,
+        31
+      ]
+    }
+  ]
+}

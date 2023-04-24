@@ -1,0 +1,70 @@
+{
+    "slug": "foxko",
+    "category": "threat",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "gust"
+        },
+        {
+            "level_learned": 2,
+            "technique": "chameleon"
+        },
+        {
+            "level_learned": 6,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 8,
+            "technique": "pseudopod"
+        },
+        {
+            "level_learned": 12,
+            "technique": "sunburst"
+        },
+        {
+            "level_learned": 16,
+            "technique": "negation"
+        },
+        {
+            "level_learned": 20,
+            "technique": "salamander"
+        },
+        {
+            "level_learned": 24,
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 28,
+            "technique": "shadow_boxing"
+        },
+        {
+            "level_learned": 32,
+            "technique": "conjurer"
+        },
+        {
+            "level_learned": 36,
+            "technique": "adamantine"
+        },
+        {
+            "level_learned": 40,
+            "technique": "supernova"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "shape": "serpent",
+    "stage": "standalone",
+    "types": [
+        "fire",
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 0,
+    "height": 71,
+    "weight": 10,
+    "catch_rate": 120.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

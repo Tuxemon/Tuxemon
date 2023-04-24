@@ -4,7 +4,7 @@
   "animation": "waterspurt",
   "effects": [
     "give status_focused,user",
-    "enhance"
+    "healing user"
   ],
   "flip_axes": "",
   "healing_power": 4,

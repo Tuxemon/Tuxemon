@@ -18,6 +18,7 @@ from tuxemon.db import (
     MonsterHistoryItemModel,
     MonsterMovesetItemModel,
     MonsterShape,
+    PlagueType,
     ResponseCondition,
     StatType,
     TasteCold,
@@ -57,6 +58,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "mod_ranged",
     "mod_speed",
     "mod_hp",
+    "plague",
 )
 
 SHAPES = {
@@ -202,7 +204,7 @@ class Monster:
 
         self.slug = ""
         self.name = ""
-        self.category = ""
+        self.cat = ""
         self.description = ""
         self.instance_id = uuid.uuid4()
 
@@ -243,6 +245,7 @@ class Monster:
         self.shape = MonsterShape.landrace
 
         self.status: List[Technique] = []
+        self.plague = PlagueType.healthy
         self.taste_cold = TasteCold.tasteless
         self.taste_warm = TasteWarm.tasteless
 
@@ -308,7 +311,9 @@ class Monster:
         self.slug = results.slug
         self.name = T.translate(results.slug)
         self.description = T.translate(f"{results.slug}_description")
-        self.category = T.translate(f"cat_{results.category}")
+        self.cat = results.category
+        self.category = T.translate(f"cat_{self.cat}")
+        self.plague = self.plague
         self.shape = results.shape or MonsterShape.landrace
         self.stage = results.stage or EvolutionStage.standalone
         self.taste_cold = self.set_taste_cold(self.taste_cold)

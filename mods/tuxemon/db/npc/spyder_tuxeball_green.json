@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_tuxeball_green",
+  "template": [
+    {
+      "sprite_name": "tuxeball_green",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
+  ]
+}

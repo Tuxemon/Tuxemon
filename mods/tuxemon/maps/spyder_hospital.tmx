@@ -68,6 +68,7 @@
    <properties>
     <property name="act2" value="translated_dialog spyder_hospital_cure1"/>
     <property name="act3" value="set_variable hospitalcure:yes"/>
+    <property name="act4" value="set_monster_plague inoculated"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

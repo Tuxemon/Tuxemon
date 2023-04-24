@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="40">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -22,12 +22,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYKAtUJZnYFABYm4g5gHieYoQ+14B2diAE1DcGYi1gFgbiPdC1WNTi03sDgH1P4DyP4H4FxT/RlcP4qOLYbMIKMYEVPdAjoHhIRAz4tKDZB5I/X+gWgagv7CpJ8o8JLcQMg9JKZzJp8DAAMLkgKVATcuAeDlU8zagXwBpAhaF
+   eAFjYKAtUJZnYFABYm4g5gHieYoQ+14B2cjAWo6BwQaInYDizkCsBcTaQLwXqh5ZLYgdBVQbDcTo4A4O9f8VICp/AOV/AvEvKP6Nrh7ERxdDtwTKZwKqewB0w0MgZsSlB8k8kPr/IDcD/YVNPVHmIbmFkHlISuFMPgUGBhAmBywFaloGxMuhmrcB/QIAi7IZSA==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYKAv2KdAmn13CajfT0D+IVAehGHgHhIbJgajHyPJPUJiw+RB9EMFhHmE1BOSB5mHDEhVj6yXGuzpcqSbAgBO3BCG
+   eAFjYKAv2KdAmn13cah/ABXfj0MeZstDoDwIw8A9JDZMDEY/RpJ7hMSGyYPohwoI8wipJyQPMg8ZkKoeWS812NPlSDcFANbLEYY=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -37,6 +37,7 @@
   <object id="5" type="collision" x="176" y="160" width="16" height="32"/>
   <object id="9" type="collision" x="64" y="128" width="32" height="32"/>
   <object id="10" type="collision" x="128" y="96" width="32" height="32"/>
+  <object id="43" type="collision" x="160" y="48" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="23" name="Play Music" type="init" x="0" y="0" width="16" height="16">
@@ -102,6 +103,6 @@
     <property name="act3" value="set_variable teleport_clinic:none"/>
     <property name="cond1" value="is variable_set teleport_clinic:lost"/>
    </properties>
-  </object>
+  </object> 
  </objectgroup>
 </map>

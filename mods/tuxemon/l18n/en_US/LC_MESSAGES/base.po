@@ -890,9 +890,6 @@ msgstr "{target} takes aim."
 msgid "combat_state_softened_get"
 msgstr "{target}'s armour softens."
 
-msgid "combat_state_spyderbite_get"
-msgstr "{target} begins to sniffle."
-
 msgid "combat_state_stuck_get"
 msgstr "{target} is stuck in place."
 
@@ -901,6 +898,18 @@ msgstr "{target} is worn out."
 
 msgid "combat_state_tired_end"
 msgstr "{target} shakes off its tiredness."
+
+msgid "combat_state_plague0"
+msgstr "{target} begins to sniffle."
+
+msgid "combat_state_plague1"
+msgstr "Ah ... Ah. {target} held in a sneeze."
+
+msgid "combat_state_plague2"
+msgstr "Ah ... Ahchoo! {user} sneezed on {target}."
+
+msgid "combat_state_plague3"
+msgstr "{target} wiped it off."
 
 # Generic notifications
 msgid "empty_slot"
@@ -1165,6 +1174,9 @@ msgstr "Kindling Flame"
 
 msgid "levitate"
 msgstr "Levitate"
+
+msgid "life_surge"
+msgstr "Life Surge"
 
 msgid "midnight_mantle"
 msgstr "Midnight Mantle"
@@ -1979,6 +1991,9 @@ msgstr "Press a key to set your new input key"
 msgid "options_new_input_key1"
 msgstr "Restart your game for changes to take effect!"
 
+msgid "menu_storage_infected_monster"
+msgstr "Virus detected. For the safety of all tuxemon in our system, you cannot store an infected tuxemon."
+
 msgid "menu_storage_take_monster"
 msgstr "You added {name} into your party!"
 
@@ -2023,6 +2038,9 @@ msgstr "shelter"
 
 msgid "Locker"
 msgstr "locker"
+
+msgid "quarantine"
+msgstr "Quarantine"
 
 # Default mod names on selection menu
 msgid "xero_campaign"
@@ -3471,6 +3489,18 @@ msgstr "Zunna"
 
 # Tuxemon Threats
 
+msgid "agnsher_description"
+msgstr "A fusion of two tuxemon."
+
+msgid "agnsher"
+msgstr "Agnsher"
+
+msgid "bearloch_description"
+msgstr "A fusion of two tuxemon."
+
+msgid "bearloch"
+msgstr "Bearloch"
+
 msgid "chrome_robo_description"
 msgstr "A hostile robot."
 
@@ -3482,6 +3512,12 @@ msgstr "A hostile robot."
 
 msgid "dark_robo"
 msgstr "Dark Robo"
+
+msgid "foxko_description"
+msgstr "A fusion of two tuxemon."
+
+msgid "foxko"
+msgstr "Foxko"
 
 msgid "mk01_alpha_description"
 msgstr "A killer robot fused with a dragon. Don't ask us how."
@@ -3518,6 +3554,12 @@ msgstr "A killer robot fused with a dragon. Don't ask us how."
 
 msgid "mk01_proto"
 msgstr "Mk01 Proto"
+
+msgid "rocktot_description"
+msgstr "A fusion of two tuxemon."
+
+msgid "rocktot"
+msgstr "Rocktot"
 
 msgid "xeon_description"
 msgstr "A hostile robot."
@@ -6077,7 +6119,9 @@ msgstr "I can't explain it ... one moment my Cairfrey was healthy, the next it w
 msgid "spyder_wayfarer_maniac"
 msgstr "My tuxemon aren't sick! This is just an excuse to sell us medicine we don't need. \n When I was your age, we didn't have medicine. We swam in mountain streams and if you got a sniffle, well, tough! \n And anyway, I saw the Enforcers coming down Route 4 before anyone so much as sniffled, so how could \n ... \n ah ah achoo! \n ... \n That doesn't mean anything. I have an itchy nose."
 msgid "spyder_wayfarer1_maniac"
-msgstr "Hey, buddy, do you want my Botbot? \n I dunno how long I'm going to be stuck here, so it might as well get to explore with you."
+msgstr "Hey, buddy, do you want my Botbot?"
+msgid "spyder_wayfarer1_maniac1"
+msgstr "I dunno how long I'm going to be stuck here, so it might as well get to explore with you."
 msgid "spyder_wayfarer1_maniac2"
 msgstr "A little privacy, please! "
 msgid "spyder_wayfarer1_morton1"
@@ -6140,11 +6184,24 @@ msgid "spyder_route4_beck1"
 msgstr "Your serve!"
 msgid "spyder_route4_beck2"
 msgstr "Game, set, match."
+msgid "spyder_barmaid_cafe1"
+msgstr "Are you okay?\n I guess all your tuxemon were infected, so the Enforcers took them to the Hospital!"
+msgid "spyder_barmaid_cafe2"
+msgstr "You can use the PC to get out some non-infected tuxemon."
+msgid "spyder_barmaid_cafe3"
+msgstr "Oh dear, you're totally out of tuxemon.\n Well, I have this Nudiflot I don't really want."
+msgid "spyder_enforcer_candy1"
+msgstr "Stop right there!\n We are taking all infected tuxemon to the Hospital to be quarantined\n until Greenwash develops a cure for the virus."
+msgid "spyder_enforcer_candy2"
+msgstr "Wow! I guess you get to keep them all\n ... Uh ... I mean, good job keeping your tuxemon free from disease.\n You may go."
+msgid "spyder_enforcer_candy3"
+msgstr "Ha! I mean, oh dear, your tuxemon are infected and must be quarantined.\n Hand them over now ..."
+msgid "spyder_enforcer_candy4"
+msgstr "Don't you even think of trying to steal your tuxemon back from the Hospital.\n The scanners are set up to reject all known tuxemon and human DNA!"
 msgid "spyder_route4_billie1"
 msgstr "I've got all the latest gear and the best tuxemon. What have you got?"
 msgid "spyder_route4_billie2"
 msgstr "I guess money can't buy everything, after all."
-
 msgid "spyder_magician_timber"
 msgstr "Hey, that's a nice phone you've got there ... Your mum made it for you? Heaps cool! \n Then you've gotta install my newest social media app. It's called Contacts App. \n It keeps track of all the people you meet and tells you what they're up to."
 msgid "spyder_candy_catgirl1"

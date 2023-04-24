@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="49">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="54">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -51,6 +51,11 @@
   <object id="27" type="collision" x="96" y="64" width="16" height="16"/>
   <object id="28" type="collision" x="160" y="64" width="16" height="16"/>
   <object id="34" type="collision" x="16" y="288" width="64" height="16"/>
+  <object id="50" type="collision" x="112" y="272" width="32" height="32">
+   <properties>
+    <property name="key" value="screen"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="18" name="Teleport to Omnichannel 3" type="event" x="16" y="144" width="16" height="16">
@@ -190,6 +195,27 @@
    <properties>
     <property name="act1" value="random_encounter omnichannel"/>
     <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
+   </properties>
+  </object>
+  <object id="49" name="Create Screen" type="event" x="112" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_screen,7,18"/>
+    <property name="cond1" value="not npc_exists spyder_screen"/>
+    <property name="cond2" value="not variable_set omnichannel1wall:yes"/>
+   </properties>
+  </object>
+  <object id="51" name="Remove Screen" type="event" x="144" y="271.333" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision screen"/>
+    <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
+   </properties>
+  </object>
+  <object id="53" name="Pass1" type="event" x="144" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_omnichannel1_screen"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set omnichannel1wall:yes"/>
    </properties>
   </object>
  </objectgroup>

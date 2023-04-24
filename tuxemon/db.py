@@ -643,10 +643,11 @@ class NpcTemplateModel(BaseModel):
 
     @validator("sprite_name")
     def sprite_exists(cls: NpcTemplateModel, v: Any) -> Any:
-        file: str = f"sprites/{v}_front.png"
-        if has.file(file):
+        sprite: str = f"sprites/{v}_front.png"
+        sprite_obj: str = f"sprites_obj/{v}.png"
+        if has.file(sprite) or has.file(sprite_obj):
             return v
-        raise ValueError(f"the sprite {file} doesn't exist in the db")
+        raise ValueError(f"the sprite {v} doesn't exist in the db")
 
     @validator("slug")
     def template_exists(cls: NpcTemplateModel, v: Any) -> Any:

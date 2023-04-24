@@ -3495,6 +3495,18 @@ msgstr "Zunna"
 
 # Tuxemon Threats
 
+msgid "agnsher_description"
+msgstr "A fusion of two tuxemon."
+
+msgid "agnsher"
+msgstr "Agnsher"
+
+msgid "bearloch_description"
+msgstr "A fusion of two tuxemon."
+
+msgid "bearloch"
+msgstr "Bearloch"
+
 msgid "chrome_robo_description"
 msgstr "A hostile robot."
 
@@ -3506,6 +3518,12 @@ msgstr "A hostile robot."
 
 msgid "dark_robo"
 msgstr "Dark Robo"
+
+msgid "foxko_description"
+msgstr "A fusion of two tuxemon."
+
+msgid "foxko"
+msgstr "Foxko"
 
 msgid "mk01_alpha_description"
 msgstr "A killer robot fused with a dragon. Don't ask us how."
@@ -3542,6 +3560,12 @@ msgstr "A killer robot fused with a dragon. Don't ask us how."
 
 msgid "mk01_proto"
 msgstr "Mk01 Proto"
+
+msgid "rocktot_description"
+msgstr "A fusion of two tuxemon."
+
+msgid "rocktot"
+msgstr "Rocktot"
 
 msgid "xeon_description"
 msgstr "A hostile robot."

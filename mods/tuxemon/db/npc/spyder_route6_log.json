@@ -3,8 +3,8 @@
   "template": [
     {
       "sprite_name": "log",
-      "combat_front": "adventurer",
-      "slug": "noclass"
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
-  "slug": "rock",
+  "slug": "tuxeball_violet",
   "template": [
     {
-      "sprite_name": "boulder",
+      "sprite_name": "tuxeball_violet",
       "combat_front": "noclass",
       "slug": "interactive_obj"
     }

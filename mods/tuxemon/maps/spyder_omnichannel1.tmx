@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="48">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="49">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -34,10 +34,10 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collision">
-  <object id="1" type="collision" x="0" y="0" width="16" height="336"/>
-  <object id="2" type="collision" x="16" y="0" width="208" height="16"/>
-  <object id="4" type="collision" x="208" y="16" width="16" height="320"/>
-  <object id="5" type="collision" x="80" y="16" width="16" height="160"/>
+  <object id="1" type="collision" x="0" y="32" width="16" height="304"/>
+  <object id="2" type="collision" x="0" y="0" width="224" height="32"/>
+  <object id="4" type="collision" x="208" y="32" width="16" height="304"/>
+  <object id="5" type="collision" x="80" y="32" width="16" height="144"/>
   <object id="6" type="collision" x="96" y="144" width="32" height="32"/>
   <object id="7" type="collision" x="160" y="144" width="48" height="32"/>
   <object id="8" type="collision" x="16" y="96" width="48" height="32"/>
@@ -47,10 +47,6 @@
   <object id="12" type="collision" x="160" y="240" width="16" height="64"/>
   <object id="13" type="collision" x="144" y="272" width="16" height="32"/>
   <object id="14" type="collision" x="96" y="272" width="16" height="64"/>
-  <object id="17" type="collision" x="16" y="16" width="192" height="16"/>
-  <object id="20" type="collision-line" x="0" y="336">
-   <polyline points="0,0 224,0 0,0"/>
-  </object>
   <object id="26" type="collision" x="96" y="80" width="80" height="16"/>
   <object id="27" type="collision" x="96" y="64" width="16" height="16"/>
   <object id="28" type="collision" x="160" y="64" width="16" height="16"/>
@@ -188,6 +184,12 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel1_spyderrookie"/>
     <property name="behav1" value="talk spyder_spyderrookie"/>
+   </properties>
+  </object>
+  <object id="48" name="Threats" type="event" x="0" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter omnichannel"/>
+    <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
    </properties>
   </object>
  </objectgroup>

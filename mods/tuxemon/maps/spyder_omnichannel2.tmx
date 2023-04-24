@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="42">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="49">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -32,15 +32,6 @@
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collision">
   <object id="1" type="collision" x="0" y="0" width="224" height="32"/>
-  <object id="2" type="collision-line" x="0" y="336">
-   <polyline points="0,0 224,0"/>
-  </object>
-  <object id="4" type="collision" x="208" y="32">
-   <polygon points="0,0 0,64 -48,64 -48,96 0,96 0,176 -48,176 -48,208 0,208 0,304 16,304 16,0 0,0"/>
-  </object>
-  <object id="5" type="collision" x="96" y="336">
-   <polygon points="0,0 0,-64 64,-64 64,-80 80,-80 80,-32 16,-32 16,0"/>
-  </object>
   <object id="16" type="collision" x="0" y="32" width="16" height="304"/>
   <object id="17" type="collision" x="112" y="48" width="16" height="128"/>
   <object id="18" type="collision" x="48" y="128" width="16" height="48"/>
@@ -50,6 +41,12 @@
   <object id="22" type="collision" x="16" y="272" width="32" height="16"/>
   <object id="23" type="collision" x="176" y="32" width="32" height="16"/>
   <object id="38" type="collision" x="32" y="48" width="64" height="16"/>
+  <object id="43" type="collision" x="96" y="272" width="80" height="32"/>
+  <object id="44" type="collision" x="96" y="304" width="16" height="32"/>
+  <object id="45" type="collision" x="160" y="256" width="16" height="16"/>
+  <object id="46" type="collision" x="208" y="32" width="16" height="304"/>
+  <object id="47" type="collision" x="160" y="208" width="48" height="32"/>
+  <object id="48" type="collision" x="160" y="96" width="48" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="6" name="Teleport to Omnichannel 3" type="event" x="16" y="144" width="16" height="16">
@@ -207,6 +204,12 @@
     <property name="act2" value="set_variable omnichannel1wall:yes"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="42" name="Threats" type="event" x="0" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter omnichannel"/>
+    <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
    </properties>
   </object>
  </objectgroup>

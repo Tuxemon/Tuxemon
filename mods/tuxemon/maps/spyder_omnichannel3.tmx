@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="50">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="51">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -17,17 +17,17 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAFzZmJgcIFiVyQ2SAyZj8x2A8plA3EuEOdAMTHsPKDayUA8BYj3koCnAdXuBuI9JOgBmT9Q+mDhCaLR/YksB2PD3AkLSxCNrg9ZDsaG6UNXi8zHFmb01gdKL6D4Q3YXOhubO0HphRx99PbfQNk3nPMRAApnxfw=
+   eAFzZmJgcIFiVyQ2SAyZj8x2A8plA3EuEOdAMTHsPKDayUA8BYj3koCnAdXuBuI9JOgBmT8Y9cHCGpkmxp2wcEamYfrwhSW2MKNUHzYzYW7AJgezD5scLfXBzMZGY3MLzJ3Y1MPEBpO+4ZyPAHoDyM0=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAFjYKAumMHIwDATiGch4dlA9hwgxgfWAeXXA/EGJLwRyN4ExPjAEaD8UTQ1x4H8E2hi+MygpZwrEwODGxCDgDOQdsGCIbKoZC5QXR5UXzaQzsGCYTr0eBgY9IEYBqZB9U2G0jBxdDoaqCcGSd8+qPrdBPShm/OMTH0wc0i1D1lfOZBTARWAsWHhfYGbgeEiEMMATBxkXy9QsA8qAWPDwvsvUM8/JH0wcVA8YAOw8EaPWx+oelzxANOHHrclOMITZD4IwPRBeJjkYyR3gtIcyHyQXkL6kE1C9isp+pDtJkUfst0gfQDLNC/c
+   eAHFks0OwUAQxwcXCc/CC7jhQLwBb4CDj4SXqItEtPUMvq7iRjhyE1fPQfwnu00mW7aVNDHJrzs7M//ZbadEydo8ReQCT+DDXwCbLZFfgbVgA38LbHZA/mjUnLA/GzFbj6Rz1TQRUwN14GTVCWX4lQ8E53eQ64JbhqgE7oCtjRjnTFSWqJAnKoIeavpgANimelW78LMJTQu4qPOAr+t3EbpwJxX5h26Eo8f6QtLn0CVHdAV74334ng7yE62TPoee0LyAaTwHm5mzbej6qDmYcx1qnfk9uX8ce4g6/ue4f1xt0F++60z0C/LfVnn2LzrZj3Vv6E4w2w==
   </data>
  </layer>
  <layer id="5" name="Tile Layer 3" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAFjYEAF/kBuABA3MTIwNANxCxJuBbLbgBgbSAUKpmGToKLYSqDdK6B4FQ53YLNuP1DtPig+QII+bGaRImYLVGwHxK+YILreAGl9oP0GBNwQDFQeAsTWzBB9INoVqMcNiHOBZvQD6QlYzMgEKs9C0xcNVBcDVbsUSC/Dog9iCwNDMpJ9MDFi6G4y9cHMhvkTxieWJlVfEpnuhNkDo3G5bzVQYg0WSUL6DgL1HAJiUNwiA1h8gMRAaacQGHcuaGqQ1cPYsPgA8UF2twP15aDpI5SXQHbPxZJWCOUlZLth7iGHBgDmnyWX
+   eAFjYEAF/kBuABA3MTIwNANxCxJuBbLbgBgbSAUKpmGToKLYSqDdK6B4FQ53YLNuP1DtPig+QII+bGZRIvaGiYFBH2i/AYlusGZmYHAF6nED4lygGf1AegIRZoD0RQPVxUDVLgXSy4jUR44/QfaRA2itLwnNXcTah64OnY/u19VAgTXogkA+IX0HgWoOATEobpFBMpK7QWmnEBh3LmhqkNXD2N1I+kB2twP15aDpI5SXQHbPxZJWCOUlZLth7iGHBgB0nSFG
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collision">
@@ -41,14 +41,11 @@
   <object id="23" type="collision" x="128" y="192" width="32" height="32"/>
   <object id="24" type="collision" x="176" y="192" width="32" height="32"/>
   <object id="25" type="collision" x="16" y="96" width="80" height="32"/>
-  <object id="26" type="collision" x="80" y="128" width="16" height="48"/>
-  <object id="28" type="collision" x="80" y="208" width="16" height="64"/>
-  <object id="29" type="collision" x="16" y="240" width="64" height="32"/>
+  <object id="26" type="collision" x="48" y="128" width="48" height="32"/>
+  <object id="28" type="collision" x="48" y="208" width="16" height="32"/>
+  <object id="29" type="collision" x="16" y="240" width="80" height="32"/>
   <object id="30" type="collision" x="112" y="32" width="16" height="16"/>
   <object id="31" type="collision" x="176" y="32" width="16" height="16"/>
-  <object id="32" type="collision-line" x="48" y="208">
-   <polyline points="0,0 0,32"/>
-  </object>
   <object id="46" type="collision" x="16" y="48" width="64" height="16"/>
   <object id="47" type="collision" x="32" y="288" width="64" height="16"/>
  </objectgroup>
@@ -170,6 +167,12 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel3_spyderrookie"/>
     <property name="behav1" value="talk spyder_spyderrookie"/>
+   </properties>
+  </object>
+  <object id="50" name="Threats" type="event" x="0" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter omnichannel"/>
+    <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
    </properties>
   </object>
  </objectgroup>

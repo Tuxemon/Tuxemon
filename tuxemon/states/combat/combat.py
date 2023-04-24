@@ -975,17 +975,7 @@ class CombatState(CombatAnimations):
         # This is the time, in seconds, that the text takes to display.
         letter_time: float = 0.02
         # This is the time, in seconds, that the animation takes to finish.
-        action_time: float
-        if isinstance(technique, Technique):
-            diff = len(technique.images) * 0.25
-            if diff < 3.0:
-                action_time = 3.0
-            elif diff > 4.0:
-                action_time = 4.0
-            else:
-                action_time = diff
-        else:
-            action_time = 3.0
+        action_time: float = 3.0
         # action is performed, so now use sprites to animate it
         # this value will be None if the target is off screen
         target_sprite = self._monster_sprite_map.get(target, None)

@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_drokoro",
+  "template": [
+    {
+      "sprite_name": "drokoro",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
+  ]
+}

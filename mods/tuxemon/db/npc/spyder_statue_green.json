@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_statue_green",
+  "template": [
+    {
+      "sprite_name": "statue_green",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
+  ]
+}

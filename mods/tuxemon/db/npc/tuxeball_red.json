@@ -1,0 +1,10 @@
+{
+  "slug": "tuxeball_red",
+  "template": [
+    {
+      "sprite_name": "tuxeball_red",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
+  ]
+}

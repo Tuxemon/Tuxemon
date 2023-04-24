@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="255">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="258">
  <properties>
   <property name="east" value="cotton_town"/>
   <property name="edges" value="clamped"/>
@@ -18,7 +18,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHF2GFqFTEUxfERRET3oWh1JUpxHa2CoKvQHbgJXZF+8JvVPTSX9oeXa2bevDT4AvEkNzkn/8xQ4c2ynLb9fPj3/C9prPrk/rI8bf1UioNWjleN7XXrp1JctHLg/dEYo9dW67094VGntaZO6zl1jgtv+KpXrafyqgdXrecM3p7y4cLJXz21zm9fnUddLXvzmHdLceHc47cnNDdz69Z6dTV7aPXiwlnX+f6HrjHH2Ti3+H4/2k+5lbPFwVf3eH6HCH7tZKz5+VzjelatxxyX51c9h+YyQ58/Xpaz1muLtb1Nnv24cKr3lDefl2sXje3yDnxycyYunD0uteyTFWt5nPcar+2xzk/VQ3HhzGt1HH69ro3M8cikOQsXzry2NZZFt/bmtfz3Fd5ovQxruHDeOA7/K5Pu8a/9/ySjd6pcnL09vZpMym+ePWrUmjlVzyoXZ16L8ff2DqL3Ws7t+a1TGTGPRm9m/86jLhenvaHB9enBsnxufY3R/p7fWuVT36NycWZPMH1tbN9W+PK5/DTnGOf9aodUHs66PxjXnp3zQvlpzRmdy8N5TE7m45ND1UdVDs5jcvBljxya10bGcnCOZPQ88mYpzt5ZIzV5s9Q9R1h6Hnmz1D17Z43U5M1S9xxh6XnkzVL37J01UpM3S91zhKXnkTdL3bN31khN3iyddc/ZOZ7NrHvOznl2r/0ubH32vWflnTe29+0hzr73rDx83vOxOvqcvLd4d2v9rK19aP1j66Nt9Dl5LvHu1vqbO3CN3odvNl/8bs3fV/60+Yv2LeNl53sGhi2dzRdn+b5ydfsN621je9f62u/amXzX5eY03g==
+   eAHF2F2KFTEQxfEWfBDdh6KjK1HEdfgBgq7GxemDb+rswRTjD4uyuufeTPAG4kkqOSf/dDPC7W27bPv+4O/5X9JY9fH9bXsy+qUUB60cLwfbq9Evpbho5cD7bTBGr63Wuz3hUae1pk7rOXWOC2/4qletU3nVg6vWcwZvp3y4cPJXT63z21fnUVfL3jzmPVJcOE/x2xOam7l1a11dzR5avbhw1nW+/6F7zHE2ziO+Xw9PpzzKOeLgq3s8v9sIfpzIWPPzucb1rFqPOS7Pr3pum8sMffZo265Gry3WTm3y7MeFU71T3nxerr0dbO/uwCc3Z+LC2XGpZZ+sWMvjvNd4b491fqoeigtnXqvj8Ot1bWaORybNWbhw5rWjsSx6tDev5b+v8EbrMqzhwnnjuP1fmfQU/97/TzK6U+Xi7PZ0NZmU3zx71Kg1c6qeVS7OvBbjr+MdRO9azu381qmMmEejN7N/51GXi9Pe0MyVx3mPcee3VvnUT1G5OLMnM+WxPflcfmpP1rw/14/G8nDWvcHVscU+54Xy05ozO5eH85yczMcnh6rPqhyc5+Tgyx45NK/NjOXgnMnoPPJWKc7urJmavFXqnjMsnUfeKnXP7qyZmrxV6p4zLJ1H3ip1z+6smZq8VeqeMyydR94qdc/urJmavFW66p6rczybVfdcnfP03vhdOPrqe6/Kez3YPo6HuPreq/Lwec/n6uxz8t7i3e31q7H2afTPo8+22efkucS72+tv7sA1ex++1XzxuzV/X7ke8+fjW8aL5nsGhiNdzRdn+b7y8883rPeD7cPoe79rV/L9BgQrMlI=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -53,7 +53,11 @@
   <object id="143" type="collision" x="288" y="336" width="64" height="32"/>
   <object id="145" type="collision" x="256" y="240" width="32" height="64"/>
   <object id="146" type="collision" x="32" y="496" width="608" height="64"/>
-  <object id="210" type="collision" x="96" y="288" width="32" height="32"/>
+  <object id="210" type="collision" x="96" y="288" width="32" height="32">
+   <properties>
+    <property name="key" value="volcoli"/>
+   </properties>
+  </object>
   <object id="229" type="collision" x="480" y="48" width="32" height="144">
    <properties>
     <property name="key" value="water"/>
@@ -710,8 +714,9 @@
   <object id="212" name="Get Volcoli" type="event" x="96" y="288" width="32" height="32">
    <properties>
     <property name="act1" value="translated_dialog spyder_dryadsgrove_volcoli1"/>
-    <property name="act10" value="random_encounter spyder_volcoli,100"/>
-    <property name="act20" value="set_variable dryadsgrovevolcoli:yes"/>
+    <property name="act2" value="wild_encounter volcoli,50"/>
+    <property name="act3" value="set_variable dryadsgrovevolcoli:yes"/>
+    <property name="act4" value="remove_npc spyder_volcoli"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set dryadsgrovevolcoli:yes"/>
@@ -893,6 +898,19 @@
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="255" name="Create Volcoli" type="event" x="80" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_volcoli,6,19"/>
+    <property name="cond1" value="not npc_exists spyder_volcoli"/>
+    <property name="cond2" value="not variable_set dryadsgrovevolcoli:yes"/>
+   </properties>
+  </object>
+  <object id="257" name="Remove Volcoli" type="event" x="16" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision volcoli"/>
+    <property name="cond1" value="is variable_set dryadsgrovevolcoli:yes"/>
    </properties>
   </object>
  </objectgroup>

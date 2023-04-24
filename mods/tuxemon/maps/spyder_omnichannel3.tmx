@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="48">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="50">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -115,7 +115,7 @@
     <property name="cond1" value="not variable_set environment:interior"/>
    </properties>
   </object>
-  <object id="35" name="Talk Strauss" type="event" x="80" y="80" width="16" height="16">
+  <object id="35" name="Talk Strauss" type="event" x="96" y="80" width="16" height="16">
    <properties>
     <property name="act0" value="pathfind_to_player spyder_omnichannel_strauss"/>
     <property name="act1" value="translated_dialog spyder_omnichannel_strauss1"/>
@@ -160,64 +160,16 @@
     <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
-  <object id="40" name="Create NPC1" type="event" x="128" y="31.75" width="16" height="16">
+  <object id="48" name="Create Spyder Rookie" type="event" x="64" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_omnichannel_npc999,8,2"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_npc999"/>
-    <property name="cond2" value="not variable_set omnichannelnpc999:yes"/>
+    <property name="act1" value="create_npc spyder_spyderrookie,12,11"/>
+    <property name="cond1" value="not npc_exists spyder_spyderrookie"/>
    </properties>
   </object>
-  <object id="41" name="Create NPC2" type="event" x="159.75" y="32.25" width="16" height="16">
+  <object id="49" name="Talk Spyder Rookie" type="event" x="64" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_omnichannel_npc999,10,2"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_npc999"/>
-    <property name="cond2" value="not variable_set omnichannelnpc999:yes"/>
-   </properties>
-  </object>
-  <object id="42" name="Talk NPC1" type="event" x="96" y="64" width="16" height="16">
-   <properties>
-    <property name="act0" value="pathfind_to_player spyder_omnichannel_npc999"/>
-    <property name="act1" value="translated_dialog spyder_omnichannel_npc9991"/>
-    <property name="act2" value="add_monster budaye,36,spyder_omnichannel_npc999,27,10"/>
-    <property name="act3" value="add_monster frondly,40,spyder_omnichannel_npc999,27,10"/>
-    <property name="act4" value="start_battle spyder_omnichannel_npc999"/>
-    <property name="act5" value="translated_dialog spyder_omnichannel_npc9992"/>
-    <property name="act6" value="set_variable omnichannelnpc999:yes"/>
-    <property name="cond1" value="not variable_set omnichannelnpc999:yes"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="43" name="Talk NPC2" type="event" x="112" y="80" width="16" height="16">
-   <properties>
-    <property name="act0" value="pathfind_to_player spyder_omnichannel_npc999"/>
-    <property name="act1" value="translated_dialog spyder_omnichannel_npc9991"/>
-    <property name="act2" value="add_monster budaye,36,spyder_omnichannel_npc999,27,10"/>
-    <property name="act3" value="add_monster frondly,40,spyder_omnichannel_npc999,27,10"/>
-    <property name="act4" value="start_battle spyder_omnichannel_npc999"/>
-    <property name="act5" value="translated_dialog spyder_omnichannel_npc9992"/>
-    <property name="act6" value="set_variable omnichannelnpc999:yes"/>
-    <property name="cond1" value="not variable_set omnichannelnpc999:yes"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="44" name="Create NPC3" type="event" x="47.375" y="272.125" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_omnichannel_npc999,3,17"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_npc999"/>
-    <property name="cond2" value="not variable_set omnichannelnpc999:yes"/>
-   </properties>
-  </object>
-  <object id="45" name="Talk NPC3" type="event" x="96" y="272" width="16" height="16">
-   <properties>
-    <property name="act0" value="pathfind_to_player spyder_omnichannel_npc999"/>
-    <property name="act1" value="translated_dialog spyder_omnichannel_npc9991"/>
-    <property name="act2" value="add_monster budaye,36,spyder_omnichannel_npc999,27,10"/>
-    <property name="act3" value="add_monster frondly,40,spyder_omnichannel_npc999,27,10"/>
-    <property name="act4" value="start_battle spyder_omnichannel_npc999"/>
-    <property name="act5" value="translated_dialog spyder_omnichannel_npc9992"/>
-    <property name="act6" value="set_variable omnichannelnpc999:yes"/>
-    <property name="cond1" value="not variable_set omnichannelnpc999:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="act1" value="translated_dialog spyder_omnichannel3_spyderrookie"/>
+    <property name="behav1" value="talk spyder_spyderrookie"/>
    </properties>
   </object>
  </objectgroup>

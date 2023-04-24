@@ -808,6 +808,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Map App"](https://wiki.tuxemon.org/File:Iridescent_item_5.png) modified by Sanglorian from original sprites by Ocean. [http://opengameart.org/content/oceans-icons CC BY 3.0]
 
+* ["Spyder Pass"](https://wiki.tuxemon.org/File:Item5.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["Tuxepedia App"](https://wiki.tuxemon.org/File:Tuxepedia.png) [https://github.com/Tuxemon/Tuxemon/issues/452 Original source]
 
 * ["Earthmover Key"](https://wiki.tuxemon.org/index.php?title=Earthmover_Key) by Catch Challenger is licensed under CC-BY 4.0.

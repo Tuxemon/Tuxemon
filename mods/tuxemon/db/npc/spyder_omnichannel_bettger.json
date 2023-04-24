@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_omnichannel_bettger",
+  "template": [
+    {
+      "sprite_name": "rogue",
+      "combat_front": "rogue",
+      "slug": "rogue"
+    }
+  ]
+}

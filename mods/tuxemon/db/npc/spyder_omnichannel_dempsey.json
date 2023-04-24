@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_omnichannel_dempsey",
+  "template": [
+    {
+      "sprite_name": "spyderboss",
+      "combat_front": "spyder_boss",
+      "slug": "spyder_boss"
+    }
+  ]
+}

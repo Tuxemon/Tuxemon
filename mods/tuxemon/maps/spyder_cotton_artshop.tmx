@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="46">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="22" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="46">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -15,28 +15,28 @@
  <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
   <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
- <layer id="1" name="Layer 1" width="20" height="11">
+ <layer id="1" name="Layer 1" width="22" height="11">
   <data encoding="base64" compression="zlib">
-   eJxLFmZgSCYR4wMThUnH9DRvvzDp+KYQbjyJhYEhhYU0ml0YNybVLBBtKowbk+O+CUCchIMmx324zEoiw6yh7j4AwaRo1g==
+   eJz7z8/AUEYilgZiQmAxUM0SErEXjcwtJeAfRgEGhotA+hKJGOQWdmHceClQfhILA0MKC2k0MeaSaiaIJuTHy2S6dwIQJxGgyXEvITOTyDBzuLoXAG32eQs=
   </data>
  </layer>
- <layer id="2" name="Layer 2" width="20" height="11">
+ <layer id="2" name="Layer 2" width="22" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2D4gOksDAwzoHgmC+XmHQWacQyKj1PBPABkRgWZ
+   eJxjYKAdyFCijbntNDKXHPAI6JbHQPwE6qYlQHopEC+j0I2MygwMTEDMrAzhHwaadwSIjw4ivw9nMJ2FgWEGFM9koZ65R4FmHYPi41Q0FwCPfw9R
   </data>
  </layer>
- <layer id="3" name="Layer 3" width="20" height="11">
+ <layer id="3" name="Layer 3" width="22" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo4A8cEGJgeGTEvXMe09FswareQBHZgU6
+   eJxjYBgFo4C+4IISA8MnJeqb+54GZg4VcwG7rgU6
   </data>
  </layer>
- <layer id="5" name="Above Player" width="20" height="11">
+ <layer id="5" name="Above Player" width="22" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYKAdaFOkrnlL0cyLVGBgiALiaCCOAWJmJQYGFiXq2jkK6AcsRkDcAQBfFgP9
+   eJxjYKA9aFOkjblL0cyNVGBgiALiaCCOAWJmJQYGFiXa2D0KBh+wGMFxDQBytQP9
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
-  <object id="19" type="collision" x="208" y="0" width="112" height="96"/>
+  <object id="19" type="collision" x="208" y="0" width="144" height="96"/>
   <object id="32" type="collision" x="0" y="0" width="208" height="64"/>
   <object id="33" type="collision" x="48" y="112" width="16" height="64"/>
   <object id="34" type="collision" x="64" y="112" width="16" height="16"/>

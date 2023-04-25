@@ -166,8 +166,6 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Mage"](https://wiki.tuxemon.org/File:Angela_64px.png). Front sprite by Svetlana Kushnariova. Resized by Sanglorian.
 
-* ["Man Moon"](https://wiki.tuxemon.org/File:Moon_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY.
-
 * ["Maniac"](https://wiki.tuxemon.org/index.php?title=Maniac). Overland sprites by Catch Challenger.
 
 * ["Mermaid"](https://wiki.tuxemon.org/File:Mermaid_64px.png). Front sprite by Svetlana Kushnariova. Resized by Sanglorian.
@@ -199,6 +197,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Riverboat Captain"](https://wiki.tuxemon.org/index.php?title=Riverboat_Captain). Overland sprites by pixelartm, adapted by Sanglorian.
 
 * ["Robot"](https://wiki.tuxemon.org/index.php?title=Robot). Overland sprites by Catch Challenger.
+
+* ["Rocker"](https://wiki.tuxemon.org/File:Moon_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY.
 
 * ["Rogue"](https://wiki.tuxemon.org/index.php?title=Rogue). Front sprite by tamashihoshi. Overland sprite by Catch Challenger, adapted by Sanglorian.
 
@@ -815,6 +815,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Fishing Rod"](https://wiki.tuxemon.org/index.php?title=Fishing_Rod) by Catch Challenger is licensed under CC-BY 4.0.
 
 * ["Surfboard"](https://wiki.tuxemon.org/File:Surfboard.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Dojo Pass"](https://wiki.tuxemon.org/File:Toll-pass.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
 * ["Aardant"](https://wiki.tuxemon.org/index.php?title=Aardant) from the Aardorn sprite by Magic-Purple-Hermit. Tweaked by Sanglorian.
 

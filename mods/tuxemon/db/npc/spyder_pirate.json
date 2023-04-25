@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_pirate",
+  "template": [
+    {
+      "sprite_name": "riverboatcaptain",
+      "combat_front": "pirate",
+      "slug": "pirate"
+    }
+  ]
+}

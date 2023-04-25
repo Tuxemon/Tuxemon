@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="481">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="485">
  <properties>
   <property name="east" value="route4"/>
   <property name="edges" value="clamped"/>
@@ -594,6 +594,34 @@
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="481" name="Create Monk no pass" type="event" x="496" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_monk_blue,34,18"/>
+    <property name="cond1" value="not npc_exists spyder_monk_blue"/>
+    <property name="cond2" value="not has_item player,dojo_pass"/>
+   </properties>
+  </object>
+  <object id="482" name="Talk Monk no pass" type="event" x="496" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_flower_monk1"/>
+    <property name="behav1" value="talk spyder_monk_blue"/>
+    <property name="cond1" value="not has_item player,dojo_pass"/>
+   </properties>
+  </object>
+  <object id="483" name="Create Monk pass" type="event" x="480" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_monk_blue,33,18"/>
+    <property name="cond1" value="not npc_exists spyder_monk_blue"/>
+    <property name="cond2" value="is has_item player,dojo_pass"/>
+   </properties>
+  </object>
+  <object id="484" name="Talk Monk pass" type="event" x="480" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_flower_monk2"/>
+    <property name="behav1" value="talk spyder_monk_blue"/>
+    <property name="cond1" value="is has_item player,dojo_pass"/>
    </properties>
   </object>
  </objectgroup>

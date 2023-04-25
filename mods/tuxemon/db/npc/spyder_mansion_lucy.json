@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_mansion_lucy",
+  "template": [
+    {
+      "sprite_name": "barmaid_red",
+      "combat_front": "barmaid",
+      "slug": "barmaid"
+    }
+  ]
+}

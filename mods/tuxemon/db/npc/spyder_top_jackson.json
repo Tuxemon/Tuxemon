@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_top_jackson",
+  "template": [
+    {
+      "sprite_name": "rogue_copper",
+      "combat_front": "rogue",
+      "slug": "rogue"
+    }
+  ]
+}

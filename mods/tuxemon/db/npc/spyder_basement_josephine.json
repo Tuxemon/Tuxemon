@@ -1,0 +1,11 @@
+{
+    "slug": "spyder_basement_josephine",
+    "template": [
+      {
+        "sprite_name": "disciple",
+        "combat_front": "healer",
+        "slug": "healer"
+      }
+    ]
+  }
+  

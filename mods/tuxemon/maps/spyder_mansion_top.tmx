@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="23" height="19" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="30">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="23" height="19" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="55">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -20,12 +20,12 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="23" height="19">
   <data encoding="base64" compression="zlib">
-   eJyzYWFgsBnFo3gUjxj8Xop4PNjMpmWYjJo9PMwGAA+fgz0=
+   eJyzYWFgsBnFo3gUj+JRPIqHAQYA7NttQQ==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 4" width="23" height="19">
   <data encoding="base64" compression="zlib">
-   eJw7KMXAICdNPj6KQ/9hoPh7IK6SJh9/wqH/I9RsSsAnHPrRzV6ng0ojA1xyxJodCNQXBMTBWMzGJacgTZzZ5IAaGpqNC4DM/kxhGjxMILwpSYMfiYxLcoAskh9WIoU9NcyuRPJDNZrZxIb3Dai+W3jCGBmQEt4wN1XiCWN0s8kByPqOQNnL0fz5hQpmw/J8pTT+9HMEiY/uDmQsL41pNj770dWhuwNb2BNj9g9BBoafgrjV4QOEzFYVYmBQEyLfbA1d7GYDAGxHc/Y=
+   eJw7KMXAIK9APj4mj138MNDcz0C5agXyMS79IHEQpgTg0o9u9jodVBoZ4JIj1uxAoL4gIA7GYjYuOUUF4swmB9TS0GxcAGTuFxxpiFh8hEB4U5oG8ZlNCVBC8sMqBeqaXaWA8EMNmtnEhvdNqL7bCrjDGBmQEt4wN4HcSYxfyQ0TZD1HpCD0CgVUf36lgtkwNnK4YyurYG7A5g5krKyA3R50+5HlPiGZje4ObGFPjNk/BBkYfgqimk0sIGS2qhADg5oQ+WZr6GIXBwC9Rn6e
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="23" height="19">
@@ -40,7 +40,7 @@
  </layer>
  <layer id="7" name="Tile Layer 5" width="23" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjALs4Kb0QLtgFIwC0gAAmmcA9Q==
+   eJxjYBgFo2AUjALsQFlpoF0wCkYBaQAAwTYARg==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -53,8 +53,8 @@
   <object id="7" type="collision" x="208" y="224" width="16" height="16"/>
   <object id="8" type="collision" x="48" y="240" width="16" height="64"/>
   <object id="9" type="collision" x="16" y="0" width="336" height="32"/>
-  <object id="10" type="collision" x="48" y="32" width="48" height="32"/>
-  <object id="11" type="collision" x="160" y="32" width="48" height="32"/>
+  <object id="10" type="collision" x="48" y="48" width="48" height="32"/>
+  <object id="11" type="collision" x="160" y="48" width="48" height="32"/>
   <object id="12" type="collision" x="256" y="32" width="16" height="64"/>
   <object id="13" type="collision" x="240" y="32" width="16" height="16"/>
   <object id="14" type="collision" x="272" y="32" width="48" height="32"/>
@@ -99,6 +99,128 @@
    <properties>
     <property name="act1" value="set_variable environment:interior"/>
     <property name="cond1" value="not variable_set environment:interior"/>
+   </properties>
+  </object>
+  <object id="32" name="Talk Mickey" type="event" x="160" y="144" width="16" height="32">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_top_mickey"/>
+    <property name="act1" value="translated_dialog spyder_top_mickey1"/>
+    <property name="act2" value="add_monster gectile,25,spyder_top_mickey,27,10"/>
+    <property name="act3" value="add_monster cardiwing,25,spyder_top_mickey,27,10"/>
+    <property name="act4" value="start_battle spyder_top_mickey"/>
+    <property name="act5" value="translated_dialog spyder_top_mickey2"/>
+    <property name="act6" value="set_variable mansiontop_mickey:yes"/>
+    <property name="cond1" value="not variable_set mansiontop_mickey:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="33" name="Create Mickey" type="event" x="48" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_top_mickey,3,9"/>
+    <property name="cond1" value="not npc_exists spyder_top_mickey"/>
+   </properties>
+  </object>
+  <object id="34" name="Create Jackson" type="event" x="240" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_top_jackson,15,9"/>
+    <property name="cond1" value="not npc_exists spyder_top_jackson"/>
+   </properties>
+  </object>
+  <object id="35" name="Create Russell" type="event" x="128" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_top_russell,8,13"/>
+    <property name="cond1" value="not npc_exists spyder_top_russell"/>
+   </properties>
+  </object>
+  <object id="36" name="Create Barmaid" type="event" x="304" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_barmaid,19,15"/>
+    <property name="cond1" value="not npc_exists spyder_barmaid"/>
+   </properties>
+  </object>
+  <object id="37" name="Create Dancer" type="event" x="320" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_barmaid_red,20,3"/>
+    <property name="cond1" value="not npc_exists spyder_barmaid_red"/>
+   </properties>
+  </object>
+  <object id="38" name="Create Ricardo" type="event" x="240" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_top_ricardo,15,3"/>
+    <property name="cond1" value="not npc_exists spyder_top_ricardo"/>
+   </properties>
+  </object>
+  <object id="41" name="Talk Russell" type="event" x="48" y="208" width="16" height="32">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_top_russell"/>
+    <property name="act1" value="translated_dialog spyder_top_russell1"/>
+    <property name="act2" value="add_monster av8r,22,spyder_top_russell,27,10"/>
+    <property name="act3" value="add_monster mrmoswitch,22,spyder_top_russell,27,10"/>
+    <property name="act4" value="add_monster k9,22,spyder_top_russell,27,10"/>
+    <property name="act5" value="start_battle spyder_top_russell"/>
+    <property name="act6" value="translated_dialog spyder_top_russell2"/>
+    <property name="act7" value="set_variable mansiontop_russell:yes"/>
+    <property name="cond1" value="not variable_set mansiontop_russell:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="45" name="Talk Ricardo" type="event" x="240" y="96" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_top_ricardo"/>
+    <property name="act1" value="translated_dialog spyder_top_ricardo1"/>
+    <property name="act2" value="add_monster lapinou,22,spyder_top_ricardo,27,10"/>
+    <property name="act3" value="add_monster squabbit,22,spyder_top_ricardo,27,10"/>
+    <property name="act4" value="start_battle spyder_top_ricardo"/>
+    <property name="act5" value="translated_dialog spyder_top_ricardo2"/>
+    <property name="act6" value="set_variable mansiontop_ricardo:yes"/>
+    <property name="cond1" value="not variable_set mansiontop_ricardo:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="48" name="Talk Jackson" type="event" x="176" y="208" width="80" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_top_jackson"/>
+    <property name="act1" value="translated_dialog spyder_top_jackson1"/>
+    <property name="act2" value="add_monster viviteel,26,spyder_top_jackson,27,10"/>
+    <property name="act4" value="start_battle spyder_top_jackson"/>
+    <property name="act5" value="translated_dialog spyder_top_jackson2"/>
+    <property name="act6" value="set_variable mansiontop_jackson:yes"/>
+    <property name="cond1" value="not variable_set mansiontop_jackson:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="49" name="Create Magician" type="event" x="80" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_magician,5,2"/>
+    <property name="cond1" value="not npc_exists spyder_magician"/>
+   </properties>
+  </object>
+  <object id="50" name="Talk Magician1" type="event" x="80" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_top_magician1"/>
+    <property name="act2" value="add_item dojo_pass"/>
+    <property name="act3" value="set_variable dojomagician:yes"/>
+    <property name="behav1" value="talk spyder_magician"/>
+    <property name="cond1" value="not variable_set dojomagician:yes"/>
+   </properties>
+  </object>
+  <object id="52" name="Talk Barmaid" type="event" x="304" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_top_barmaid"/>
+    <property name="behav1" value="talk spyder_barmaid"/>
+   </properties>
+  </object>
+  <object id="53" name="Talk Dancer" type="event" x="304" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_top_dancer"/>
+    <property name="behav1" value="talk spyder_barmaid_red"/>
+   </properties>
+  </object>
+  <object id="54" name="Talk Magician2" type="event" x="96" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_top_magician2"/>
+    <property name="behav1" value="talk spyder_magician"/>
+    <property name="cond1" value="is variable_set dojomagician:yes"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="69">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="97">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -184,6 +184,279 @@
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="69" name="Billie" type="event" x="256" y="288" width="32" height="16">
+   <properties>
+    <property name="act01" value="player_stop"/>
+    <property name="act02" value="lock_controls"/>
+    <property name="act03" value="create_npc spyder_billie,16,11"/>
+    <property name="act04" value="pathfind_to_player spyder_billie"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act08" value="translated_dialog spyder_routea_billie1"/>
+    <property name="act20" value="add_monster billie_choice,18,spyder_billie,27,10"/>
+    <property name="act21" value="add_monster cardiwing,16,spyder_billie,27,10"/>
+    <property name="act22" value="add_monster eyesore,16,spyder_billie,27,10"/>
+    <property name="act23" value="add_monster viviphyta,16,spyder_billie,27,10"/>
+    <property name="act30" value="start_battle spyder_billie"/>
+    <property name="act71" value="translated_dialog spyder_routea_billie2"/>
+    <property name="act75" value="pathfind spyder_billie,17,25"/>
+    <property name="act80" value="remove_npc spyder_billie"/>
+    <property name="act90" value="set_variable routeabillie:yes"/>
+    <property name="cond1" value="not variable_set routeabillie:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="70" name="Create Vince" type="event" x="64" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_vince,4,18"/>
+    <property name="act2" value="npc_face spyder_routea_vince,right"/>
+    <property name="cond1" value="not npc_exists spyder_routea_vince"/>
+   </properties>
+  </object>
+  <object id="71" name="Talk Vince3" type="event" x="48" y="304" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routea_vince"/>
+    <property name="act1" value="translated_dialog spyder_routea_vince3"/>
+    <property name="act2" value="add_monster sapsnap,18,spyder_routea_vince,27,10"/>
+    <property name="act4" value="start_battle spyder_routea_vince"/>
+    <property name="act5" value="translated_dialog spyder_routea_vince4"/>
+    <property name="act6" value="set_variable routeavince:yes"/>
+    <property name="behav1" value="talk spyder_routea_vince"/>
+    <property name="cond1" value="is variable_set vincefirst:yes"/>
+    <property name="cond2" value="is variable_set vincesecond:yes"/>
+    <property name="cond3" value="not variable_set routeavince:yes"/>
+   </properties>
+  </object>
+  <object id="72" name="Create Doris" type="event" x="160" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_doris,10,22"/>
+    <property name="act2" value="npc_face spyder_routea_doris,left"/>
+    <property name="cond1" value="not npc_exists spyder_routea_doris"/>
+   </properties>
+  </object>
+  <object id="73" name="Talk Doris" type="event" x="64" y="352" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routea_doris"/>
+    <property name="act1" value="translated_dialog spyder_routea_doris1"/>
+    <property name="act2" value="add_monster shybulb,12,spyder_routea_doris,27,10"/>
+    <property name="act3" value="add_monster trapsnap,14,spyder_routea_doris,27,10"/>
+    <property name="act4" value="start_battle spyder_routea_doris"/>
+    <property name="act5" value="translated_dialog spyder_routea_doris2"/>
+    <property name="act6" value="set_variable routeadoris:yes"/>
+    <property name="cond1" value="not variable_set routeadoris:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="74" name="Create Dagger" type="event" x="32" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_dagger,2,22"/>
+    <property name="act2" value="npc_face spyder_routea_dagger,left"/>
+    <property name="cond1" value="not npc_exists spyder_routea_dagger"/>
+   </properties>
+  </object>
+  <object id="75" name="Talk Dagger" type="event" x="32" y="368" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routea_dagger"/>
+    <property name="act1" value="translated_dialog spyder_routea_dagger1"/>
+    <property name="act2" value="add_monster cardiwing,16,spyder_routea_dagger,27,10"/>
+    <property name="act4" value="start_battle spyder_routea_dagger"/>
+    <property name="act5" value="translated_dialog spyder_routea_dagger2"/>
+    <property name="act6" value="set_variable routeadagger:yes"/>
+    <property name="cond1" value="not variable_set routeadagger:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="76" name="Talk Doris" type="event" x="160" y="336" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routea_doris"/>
+    <property name="act1" value="translated_dialog spyder_routea_doris1"/>
+    <property name="act2" value="add_monster shybulb,12,spyder_routea_doris,27,10"/>
+    <property name="act3" value="add_monster trapsnap,14,spyder_routea_doris,27,10"/>
+    <property name="act4" value="start_battle spyder_routea_doris"/>
+    <property name="act5" value="translated_dialog spyder_routea_doris2"/>
+    <property name="act6" value="set_variable routeadoris:yes"/>
+    <property name="cond1" value="not variable_set routeadoris:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="77" name="Talk Dagger" type="event" x="48" y="352" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routea_dagger"/>
+    <property name="act1" value="translated_dialog spyder_routea_dagger1"/>
+    <property name="act2" value="add_monster cardiwing,16,spyder_routea_dagger,27,10"/>
+    <property name="act4" value="start_battle spyder_routea_dagger"/>
+    <property name="act5" value="translated_dialog spyder_routea_dagger2"/>
+    <property name="act6" value="set_variable routeadagger:yes"/>
+    <property name="cond1" value="not variable_set routeadagger:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="78" name="Create Koan" type="event" x="32" y="592" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_koan,2,37"/>
+    <property name="act2" value="npc_face spyder_routea_koan,right"/>
+    <property name="cond1" value="not npc_exists spyder_routea_koan"/>
+   </properties>
+  </object>
+  <object id="79" name="Talk Koan" type="event" x="80" y="592" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routea_koan"/>
+    <property name="act1" value="translated_dialog spyder_routea_koan1"/>
+    <property name="act2" value="add_monster shybulb,12,spyder_routea_koan,27,10"/>
+    <property name="act3" value="add_monster budaye,12,spyder_routea_koan,27,10"/>
+    <property name="act4" value="start_battle spyder_routea_koan"/>
+    <property name="act5" value="translated_dialog spyder_routea_koan2"/>
+    <property name="act6" value="set_variable routeakoan:yes"/>
+    <property name="cond1" value="not variable_set routeakoan:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="80" name="Create Lexi" type="event" x="32" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_lexi,2,30"/>
+    <property name="cond1" value="not npc_exists spyder_routea_lexi"/>
+   </properties>
+  </object>
+  <object id="81" name="Talk Lexi" type="event" x="32" y="512" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routea_lexi"/>
+    <property name="act1" value="translated_dialog spyder_routea_lexi1"/>
+    <property name="act2" value="add_monster vamporm,14,spyder_routea_lexi,27,10"/>
+    <property name="act3" value="add_monster katapill,14,spyder_routea_lexi,27,10"/>
+    <property name="act4" value="start_battle spyder_routea_lexi"/>
+    <property name="act5" value="translated_dialog spyder_routea_lexi2"/>
+    <property name="act6" value="set_variable routealexi:yes"/>
+    <property name="cond1" value="not variable_set routealexi:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="82" name="Create Lotu" type="event" x="224" y="496" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_lotu,14,31"/>
+    <property name="act2" value="npc_face spyder_routea_lotu,up"/>
+    <property name="cond1" value="not npc_exists spyder_routea_lotu"/>
+   </properties>
+  </object>
+  <object id="83" name="Talk Lotu" type="event" x="224" y="480" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routea_lotu"/>
+    <property name="act1" value="translated_dialog spyder_routea_lotu1"/>
+    <property name="act2" value="add_monster narcileaf,14,spyder_routea_lotu,27,10"/>
+    <property name="act3" value="add_monster tarpeur,14,spyder_routea_lotu,27,10"/>
+    <property name="act4" value="start_battle spyder_routea_lotu"/>
+    <property name="act5" value="translated_dialog spyder_routea_lotu2"/>
+    <property name="act6" value="set_variable routealotu:yes"/>
+    <property name="cond1" value="not variable_set routealotu:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="84" name="Talk Connie" type="event" x="192" y="432" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routea_connie"/>
+    <property name="act1" value="translated_dialog spyder_routea_connie1"/>
+    <property name="act2" value="add_monster sharpfin,14,spyder_routea_connie,27,10"/>
+    <property name="act3" value="add_monster bigfin,14,spyder_routea_connie,27,10"/>
+    <property name="act4" value="start_battle spyder_routea_connie"/>
+    <property name="act5" value="translated_dialog spyder_routea_connie2"/>
+    <property name="act6" value="set_variable routeaconnie:yes"/>
+    <property name="cond1" value="not variable_set routeaconnie:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="85" name="Create Connie" type="event" x="192" y="416" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_connie,12,26"/>
+    <property name="cond1" value="not npc_exists spyder_routea_connie"/>
+   </properties>
+  </object>
+  <object id="86" name="Create Joe" type="event" x="192" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_joe,12,34"/>
+    <property name="cond1" value="not npc_exists spyder_routea_joe"/>
+   </properties>
+  </object>
+  <object id="87" name="Talk Joe1" type="event" x="160" y="544" width="16" height="32">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routea_joe"/>
+    <property name="act1" value="translated_dialog spyder_routea_joe1"/>
+    <property name="act2" value="add_monster katapill,16,spyder_routea_joe,27,10"/>
+    <property name="act4" value="start_battle spyder_routea_joe"/>
+    <property name="act5" value="translated_dialog spyder_routea_joe2"/>
+    <property name="act6" value="set_variable routeajoe:yes"/>
+    <property name="cond1" value="not variable_set routeajoe:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="88" name="Talk Joe2" type="event" x="224" y="544" width="16" height="32">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routea_joe"/>
+    <property name="act1" value="translated_dialog spyder_routea_joe1"/>
+    <property name="act2" value="add_monster katapill,16,spyder_routea_joe,27,10"/>
+    <property name="act4" value="start_battle spyder_routea_joe"/>
+    <property name="act5" value="translated_dialog spyder_routea_joe2"/>
+    <property name="act6" value="set_variable routeajoe:yes"/>
+    <property name="cond1" value="not variable_set routeajoe:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="89" name="Create Rosy" type="event" x="176" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_rosy,11,17"/>
+    <property name="cond1" value="not npc_exists spyder_routea_rosy"/>
+   </properties>
+  </object>
+  <object id="90" name="Talk Rosy" type="event" x="176" y="288" width="16" height="32">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routea_rosy"/>
+    <property name="act1" value="translated_dialog spyder_routea_rosy1"/>
+    <property name="act2" value="add_monster shammer,16,spyder_routea_rosy,27,10"/>
+    <property name="act4" value="start_battle spyder_routea_rosy"/>
+    <property name="act5" value="translated_dialog spyder_routea_rosy2"/>
+    <property name="act6" value="set_variable routearosy:yes"/>
+    <property name="cond1" value="not variable_set routearosy:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="91" name="Create Maniac" type="event" x="96" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_maniac,6,15"/>
+    <property name="cond1" value="not npc_exists spyder_maniac"/>
+   </properties>
+  </object>
+  <object id="92" name="Talk Maniac" type="event" x="48" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_routea_maniac"/>
+    <property name="behav1" value="talk spyder_maniac"/>
+   </properties>
+  </object>
+  <object id="93" name="Create Firefighter" type="event" x="272" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_firefighter,17,12"/>
+    <property name="cond1" value="not npc_exists spyder_firefighter"/>
+   </properties>
+  </object>
+  <object id="94" name="Talk Firefighter" type="event" x="288" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_routea_firefighter"/>
+    <property name="behav1" value="talk spyder_firefighter"/>
+   </properties>
+  </object>
+  <object id="95" name="Talk Vince1" type="event" x="48" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_routea_vince1"/>
+    <property name="act2" value="set_variable vincefirst:yes"/>
+    <property name="behav1" value="talk spyder_routea_vince"/>
+    <property name="cond1" value="not variable_set vincefirst:yes"/>
+   </properties>
+  </object>
+  <object id="96" name="Talk Vince2" type="event" x="32" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_routea_vince2"/>
+    <property name="act2" value="set_variable vincesecond:yes"/>
+    <property name="behav1" value="talk spyder_routea_vince"/>
+    <property name="cond1" value="is variable_set vincefirst:yes"/>
+    <property name="cond2" value="not variable_set vincesecond:yes"/>
    </properties>
   </object>
  </objectgroup>

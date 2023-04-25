@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_routea_doris",
+  "template": [
+    {
+      "sprite_name": "florist",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
+  ]
+}

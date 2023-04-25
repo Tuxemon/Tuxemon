@@ -2,7 +2,7 @@
   "slug": "spyder_greenwash_dempsey",
   "template": [
     {
-      "sprite_name": "rogue",
+      "sprite_name": "rogue_copper",
       "combat_front": "rogue",
       "slug": "rogue"
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="129">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="131">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -218,13 +218,14 @@
     <property name="act12" value="lock_controls"/>
     <property name="act20" value="translated_dialog rockitten!"/>
     <property name="act30" value="add_monster rockitten,5"/>
-    <property name="act31" value="remove_npc tuxeball_red"/>
+    <property name="act31" value="remove_npc tuxeball_green"/>
     <property name="act32" value="set_variable rockittenball:yes"/>
     <property name="act40" value="pathfind professor,10,9"/>
     <property name="act41" value="npc_face professor,up"/>
     <property name="act42" value="add_monster cardiling,3,professor,27,40"/>
-    <property name="act43" value="remove_npc tuxeball_yellow"/>
+    <property name="act43" value="remove_npc tuxeball_red"/>
     <property name="act44" value="set_variable cardilingball:yes"/>
+    <property name="act45" value="set_variable prof_choice:cardiling"/>
     <property name="act50" value="translated_dialog choseRockitten2"/>
     <property name="act60" value="wait 0.8"/>
     <property name="act70" value="pathfind professor,6,7"/>
@@ -262,13 +263,14 @@
     <property name="act12" value="lock_controls"/>
     <property name="act20" value="translated_dialog cardiling!"/>
     <property name="act30" value="add_monster cardiling,5"/>
-    <property name="act31" value="remove_npc tuxeball_yellow"/>
+    <property name="act31" value="remove_npc tuxeball_red"/>
     <property name="act32" value="set_variable cardilingball:yes"/>
     <property name="act40" value="pathfind professor,11,9"/>
     <property name="act41" value="npc_face professor,up"/>
     <property name="act42" value="add_monster tweesher,3,professor,27,40"/>
-    <property name="act43" value="remove_npc tuxeball_green"/>
+    <property name="act43" value="remove_npc tuxeball_yellow"/>
     <property name="act44" value="set_variable tweesherball:yes"/>
+    <property name="act45" value="set_variable prof_choice:tweesher"/>
     <property name="act50" value="translated_dialog choseCardiling2"/>
     <property name="act60" value="wait 0.8"/>
     <property name="act70" value="pathfind professor,6,7"/>
@@ -290,13 +292,14 @@
     <property name="act12" value="lock_controls"/>
     <property name="act20" value="translated_dialog tweesher!"/>
     <property name="act30" value="add_monster tweesher,5"/>
-    <property name="act31" value="remove_npc tuxeball_green"/>
+    <property name="act31" value="remove_npc tuxeball_yellow"/>
     <property name="act32" value="set_variable tweesherball:yes"/>
     <property name="act40" value="pathfind professor,9,9"/>
     <property name="act50" value="npc_face professor,up"/>
     <property name="act51" value="add_monster rockitten,3,professor,27,40"/>
-    <property name="act53" value="remove_npc tuxeball_red"/>
+    <property name="act53" value="remove_npc tuxeball_green"/>
     <property name="act54" value="set_variable rockittenball:yes"/>
+    <property name="act55" value="set_variable prof_choice:rockitten"/>
     <property name="act60" value="translated_dialog choseTweesher2"/>
     <property name="act61" value="wait 0.8"/>
     <property name="act70" value="pathfind professor,6,7"/>
@@ -444,23 +447,29 @@
   </object>
   <object id="125" name="create tuxeball rockitten" type="event" x="112" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc tuxeball_red,9,7"/>
-    <property name="cond1" value="not npc_exists tuxeball_red"/>
+    <property name="act1" value="create_npc tuxeball_green,9,7"/>
+    <property name="cond1" value="not npc_exists tuxeball_green"/>
     <property name="cond2" value="not variable_set rockittenball:yes"/>
    </properties>
   </object>
   <object id="126" name="create tuxeball tweesher" type="event" x="128" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc tuxeball_green,11,7"/>
-    <property name="cond1" value="not npc_exists tuxeball_green"/>
+    <property name="act1" value="create_npc tuxeball_yellow,11,7"/>
+    <property name="cond1" value="not npc_exists tuxeball_yellow"/>
     <property name="cond2" value="not variable_set tweesherball:yes"/>
    </properties>
   </object>
   <object id="128" name="create tuxeball cardiling" type="event" x="144" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc tuxeball_yellow,10,7"/>
-    <property name="cond1" value="not npc_exists tuxeball_yellow"/>
+    <property name="act1" value="create_npc tuxeball_red,10,7"/>
+    <property name="cond1" value="not npc_exists tuxeball_red"/>
     <property name="cond2" value="not variable_set cardilingball:yes"/>
+   </properties>
+  </object>
+  <object id="130" name="Environment" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:interior"/>
+    <property name="cond1" value="not variable_set environment:interior"/>
    </properties>
   </object>
  </objectgroup>

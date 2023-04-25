@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_basement_bobby",
+  "template": [
+    {
+      "sprite_name": "postboy",
+      "combat_front": "rocker",
+      "slug": "postboy"
+    }
+  ]
+}

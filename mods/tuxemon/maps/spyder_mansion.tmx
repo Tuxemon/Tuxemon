@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="18" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="43">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="18" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="71">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -28,12 +28,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eAGlUssNAlEIpAO9+rnr2Ro0aldrJ3bhyV8NJrZgPNmCzOElMM5bo4+E7A4MA8ti1m7PQZtGtzDbubfacWZ2dl8OsxLjnM0I3NHcbOLOdYxzZUZ9OnuaL1dmBG7fPOjDXhRifNWjgx7Kiw7navNg/6cf/OVctee1734j/Or8sccv/uT8Vvyvh99l3AHecauYHzrorTjgRQPmHSAWdWoc1okY70pHcWIMNcriPCrPdcC36SfzHx1W+fZdB++r5mEd7D3OAxztLnSYAz5i5a5wKzXOG33BR/g=
+   eAGtUksOAVEQ7BuwEInPnrUjCMGtOAkLdyASvyMgcQWxcgVVmKTSesZMRic183q6ul5Nv2dWPu6VchrTntkMSGLdMdsARWOLnj0wqL47a12zOpDkefTIbaCnJX3/1ll8/OXxQ26WH/pVnEX7JLVhhg738FiKztzV0/xw/rsCeIAbzXmE2Y8DHMFv4vsBb1+fBOd1w73U2XDNu0r/1OHeEYc8hp67nw85qsM84nidl7A8Ih0pv5aRH89hrn6ieqRzaX8z8+r0OXPiMy9V+vVfK+zr+3xOPc5U/TDXuAY6nkM+vyX3incljfMEvzRRZA==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eAHFlM1KglEQhmfZSt1IIbXRtYXegtCyFnkbeg32B5HbkHaVBV1BdB2FeAuKLqpFrntGv4FhOF9FBA48nJk553095/NwyiWRo6ZIGyZFkekvmbt1QpTx6eFxDMt8hxxO4AJumTfetkXe4QO2XH+TXLUWmp+iPYNzeAQfBeoilEB9LFI+Q9bcwwPEqNPbhT1Qn6uNFSmfqM2rf9pPni72v/NpuTOb7tX1Xlxu8zrGc90k1t0leqr1/eij83+Jdfsc8L8fgkWFs8d7aHM27ofvo3UHj27mo3c+nks9B9x5H8Pgo/Ul2n7mo3c+5fMUfLxnXv4fPtf8bspnFPYz433wEWvv89kQWYD/5qaNvVg/u/1UeXtq2ftjehujLtbjzOcLB+U/DA==
+   eAHFlM0uBFEQhWtpNTObyYiwGWuEVyCWLHgDa54BQyJsRezQJJ5AvIfIvAJhgQVrX9GVnFRu+0kkKjnpqup7vr7VubndjtnKnNkqumub3f9Qj7LOiC6cTRhb6COfIEfbaA+d8j70NG72jF7QqPR75O6N8HyAdwftokuk0aJuow5yTkSJU7HmHF2gHFP0ptEMcs7hyKdKnOxtqr/bT5Mv97/izMvM4buR3kJhVl+X5zoRT3DOpLcmHO1nTnh/+/xvzhLzLcuMY8yez2GeaVH+j7/zeh3GRs3xM5/ncuYRZ16jShyv9/Ee1Bw/8yXOVeIosyn/C84x3y1xbtN+HrgfNHKtnNdZszek/zy8uZfra9lPn7tnsr5/wh/P7Mv1sOa8A+OsPww=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="18" height="18">
@@ -58,12 +58,6 @@
   <object id="16" type="collision" x="48" y="192" width="16" height="96"/>
   <object id="17" type="collision" x="128" y="240" width="16" height="48"/>
   <object id="18" type="collision" x="192" y="240" width="16" height="48"/>
-  <object id="19" type="collision-line" x="64" y="288">
-   <polyline points="0,0 64,0"/>
-  </object>
-  <object id="20" type="collision-line" x="208" y="288">
-   <polyline points="0,0 64,0"/>
-  </object>
   <object id="21" type="collision" x="64" y="208" width="16" height="32"/>
   <object id="34" type="collision" x="64" y="32" width="64" height="16"/>
   <object id="35" type="collision" x="176" y="32" width="48" height="16"/>
@@ -147,29 +141,29 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="37" name="Create Drinking Buddy A" type="event" x="64" y="144" width="16" height="16">
+  <object id="37" name="Create Buddy A" type="event" x="48" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_mansion_drinkingbuddya,4,8"/>
-    <property name="act2" value="npc_face spyder_mansion_drinkingbuddya,left"/>
+    <property name="act1" value="create_npc spyder_mansion_drinkingbuddya,3,8"/>
+    <property name="act2" value="npc_face spyder_mansion_drinkingbuddya,down"/>
     <property name="cond1" value="not npc_exists spyder_mansion_drinkingbuddya"/>
     <property name="cond2" value="not variable_set captainreturns:yes"/>
    </properties>
   </object>
-  <object id="38" name="Talk Drinking Buddy A" type="event" x="64" y="128" width="16" height="16">
+  <object id="38" name="Talk Buddy A" type="event" x="64" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_mansion_drinkingbuddya1"/>
     <property name="behav1" value="talk spyder_mansion_drinkingbuddya"/>
    </properties>
   </object>
-  <object id="39" name="Create Drinking Buddy B" type="event" x="48" y="144" width="16" height="16">
+  <object id="39" name="Create Buddy B" type="event" x="48" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_mansion_drinkingbuddyb,3,9"/>
-    <property name="act2" value="npc_face spyder_mansion_drinkingbuddyb,right"/>
+    <property name="act2" value="npc_face spyder_mansion_drinkingbuddyb,up"/>
     <property name="cond1" value="not npc_exists spyder_mansion_drinkingbuddyb"/>
     <property name="cond2" value="not variable_set captainreturns:yes"/>
    </properties>
   </object>
-  <object id="40" name="Talk Drinking Buddy B" type="event" x="48" y="128" width="16" height="16">
+  <object id="40" name="Talk Buddy B" type="event" x="48" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_mansion_drinkingbuddyb1"/>
     <property name="behav1" value="talk spyder_mansion_drinkingbuddyb"/>
@@ -198,6 +192,131 @@
    <properties>
     <property name="act1" value="set_variable environment:interior"/>
     <property name="cond1" value="not variable_set environment:interior"/>
+   </properties>
+  </object>
+  <object id="47" name="Create Barmaid" type="event" x="240" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_barmaid,15,12"/>
+    <property name="cond1" value="not npc_exists spyder_barmaid"/>
+   </properties>
+  </object>
+  <object id="49" name="Create Picnicker" type="event" x="64" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_picnicker,4,12"/>
+    <property name="act2" value="npc_face spyder_picnicker,right"/>
+    <property name="cond1" value="not npc_exists spyder_picnicker"/>
+   </properties>
+  </object>
+  <object id="51" name="Create Lucy" type="event" x="256" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_mansion_lucy,16,5"/>
+    <property name="cond1" value="not npc_exists spyder_mansion_lucy"/>
+   </properties>
+  </object>
+  <object id="52" name="Create Magician2" type="event" x="64" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_mansion_magician,4,5"/>
+    <property name="act2" value="npc_face spyder_mansion_magician,right"/>
+    <property name="cond1" value="not npc_exists spyder_mansion_magician"/>
+   </properties>
+  </object>
+  <object id="53" name="Create Lyle" type="event" x="16" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_mansion_lyle,1,3"/>
+    <property name="cond1" value="not npc_exists spyder_mansion_lyle"/>
+   </properties>
+  </object>
+  <object id="54" name="Create Gillette" type="event" x="96" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_mansion_gillette,6,8"/>
+    <property name="cond1" value="not npc_exists spyder_mansion_gillette"/>
+   </properties>
+  </object>
+  <object id="55" name="Talk Gillette" type="event" x="128" y="128" width="16" height="32">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_mansion_gillette"/>
+    <property name="act1" value="translated_dialog spyder_mansion_gillette1"/>
+    <property name="act2" value="add_monster djinnbo,22,spyder_mansion_gillette,27,10"/>
+    <property name="act3" value="add_monster ghosteeth,22,spyder_mansion_gillette,27,10"/>
+    <property name="act4" value="start_battle spyder_mansion_gillette"/>
+    <property name="act5" value="translated_dialog spyder_mansion_gillette2"/>
+    <property name="act6" value="set_variable mansiongillette:yes"/>
+    <property name="cond1" value="not variable_set mansiongillette:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="57" name="Talk Lucy" type="event" x="240" y="112" width="32" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_mansion_lucy"/>
+    <property name="act1" value="translated_dialog spyder_mansion_lucy1"/>
+    <property name="act2" value="add_monster elofly,15,spyder_mansion_lucy,27,10"/>
+    <property name="act3" value="add_monster budaye,15,spyder_mansion_lucy,27,10"/>
+    <property name="act4" value="start_battle spyder_mansion_lucy"/>
+    <property name="act5" value="translated_dialog spyder_mansion_lucy2"/>
+    <property name="act6" value="set_variable mansionlucy:yes"/>
+    <property name="cond1" value="not variable_set mansionlucy:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="58" name="Talk Lyle" type="event" x="16" y="112" width="32" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_mansion_lyle"/>
+    <property name="act1" value="translated_dialog spyder_mansion_pirate1"/>
+    <property name="act2" value="add_monster foofle,20,spyder_mansion_lyle,27,10"/>
+    <property name="act3" value="add_monster shybulb,20,spyder_mansion_lyle,27,10"/>
+    <property name="act4" value="start_battle spyder_mansion_lyle"/>
+    <property name="act5" value="translated_dialog spyder_mansion_pirate2"/>
+    <property name="act6" value="set_variable mansionlyle:yes"/>
+    <property name="cond1" value="not variable_set mansionlyle:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="63" name="Create Magician1" type="event" x="144" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_magician,9,15"/>
+    <property name="act2" value="npc_face spyder_magician,right"/>
+    <property name="cond1" value="not npc_exists spyder_magician"/>
+   </properties>
+  </object>
+  <object id="64" name="Talk Magician1" type="event" x="128" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_magician1"/>
+    <property name="behav1" value="talk spyder_magician"/>
+   </properties>
+  </object>
+  <object id="65" name="Painting" type="event" x="176" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_painting"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="66" name="Talk Picnicker" type="event" x="80" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_picnicker"/>
+    <property name="behav1" value="talk spyder_picnicker"/>
+   </properties>
+  </object>
+  <object id="67" name="Talk Barmaid" type="event" x="240" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_barmaid"/>
+    <property name="behav1" value="talk spyder_barmaid"/>
+   </properties>
+  </object>
+  <object id="68" name="Talk Magician2" type="event" x="48" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_magician2"/>
+    <property name="behav1" value="talk spyder_mansion_magician"/>
+   </properties>
+  </object>
+  <object id="70" name="Talk Lucy Tea" type="event" x="272" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_lucy3"/>
+    <property name="act2" value="add_item mystery_tea"/>
+    <property name="act3" value="set_variable tealucy:yes"/>
+    <property name="behav1" value="talk spyder_barmaid"/>
+    <property name="cond1" value="is variable_set mansionlucy:yes"/>
+    <property name="cond2" value="not variable_set tealucy:yes"/>
    </properties>
   </object>
  </objectgroup>

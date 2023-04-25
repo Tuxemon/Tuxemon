@@ -194,10 +194,10 @@
     <property name="act04" value="pathfind_to_player spyder_billie"/>
     <property name="act05" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_routea_billie1"/>
-    <property name="act20" value="add_monster billie_choice,18,spyder_billie,27,10"/>
-    <property name="act21" value="add_monster cardiwing,16,spyder_billie,27,10"/>
-    <property name="act22" value="add_monster eyesore,16,spyder_billie,27,10"/>
-    <property name="act23" value="add_monster viviphyta,16,spyder_billie,27,10"/>
+    <property name="act20" value="add_monster billie_choice,20,spyder_billie,27,10"/>
+    <property name="act21" value="add_monster cardiwing,17,spyder_billie,27,10"/>
+    <property name="act22" value="add_monster eyesore,17,spyder_billie,27,10"/>
+    <property name="act23" value="add_monster viviphyta,17,spyder_billie,27,10"/>
     <property name="act30" value="start_battle spyder_billie"/>
     <property name="act71" value="translated_dialog spyder_routea_billie2"/>
     <property name="act75" value="pathfind spyder_billie,17,25"/>
@@ -251,7 +251,7 @@
   <object id="74" name="Create Dagger" type="event" x="32" y="352" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_routea_dagger,2,22"/>
-    <property name="act2" value="npc_face spyder_routea_dagger,left"/>
+    <property name="act2" value="npc_face spyder_routea_dagger,right"/>
     <property name="cond1" value="not npc_exists spyder_routea_dagger"/>
    </properties>
   </object>
@@ -421,6 +421,7 @@
   <object id="91" name="Create Maniac" type="event" x="96" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_maniac,6,15"/>
+    <property name="act2" value="npc_face spyder_maniac,right"/>
     <property name="cond1" value="not npc_exists spyder_maniac"/>
    </properties>
   </object>

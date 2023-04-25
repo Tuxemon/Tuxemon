@@ -2,7 +2,7 @@
   "slug": "spyder_route5_tryphaena",
   "template": [
     {
-      "sprite_name": "florist",
+      "sprite_name": "florist_blue",
       "combat_front": "florist",
       "slug": "florist"
     }

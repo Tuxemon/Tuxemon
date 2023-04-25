@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_routea_rosy",
+  "template": [
+    {
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_routea_koan",
+  "template": [
+    {
+      "sprite_name": "boss_red",
+      "combat_front": "rocker",
+      "slug": "rocker"
+    }
+  ]
+}

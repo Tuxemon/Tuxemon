@@ -1,0 +1,29 @@
+{
+  "slug": "taba_ba_passageway_1",
+  "monsters": [
+    {
+      "monster": "mystikapi",
+      "encounter_rate": 3.0,
+      "level_range": [
+        4,
+        6
+      ]
+    },
+    {
+      "monster": "aardorn",
+      "encounter_rate": 3.0,
+      "level_range": [
+        4,
+        6
+      ]
+    },
+    {
+      "monster": "nut",
+      "encounter_rate": 1.4,
+      "level_range": [
+        5,
+        8
+      ]
+    }
+  ]
+}

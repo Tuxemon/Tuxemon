@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="73">
+ <properties>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="hospital3"/>
+  <property name="types" value="notype"/>
+ </properties>
+ <tileset firstgid="1" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
+ </tileset>
+ <tileset firstgid="2593" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
+ </tileset>
+ <layer id="7" name="Tile Layer 1" width="12" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHr4GVg6CABbwCqJQXfAKq/CcSL+IijGYDqGIH4JJH0AqC6JUC8FIgXAvFiAvwTQPkzQHwWiGF24OOfAqoDmQkzmxA96n788TEa/vjTE6npBwA6uJXN
+  </data>
+ </layer>
+ <layer id="8" name="Tile Layer 2" width="12" height="20">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFMUwMDLFATCzIAarNJUE9seaOBHVXWBkYriLha0A2DGCTewKUf4qEnyGpxycHM3Oo02ZAD5gDsQUQW2LxDABAtBQh
+  </data>
+ </layer>
+ <layer id="9" name="Tile Layer 3" width="12" height="20">
+  <data encoding="base64" compression="zlib">
+   eAFjYGBgeM3EwPAGiHEBdPnfQLV/8KhHl+dmZmDgAWJcgJA8Ln2j4qMhMNJDAAAiGAfn
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="Collisions">
+  <object id="32" type="collision" x="0" y="0" width="192" height="32"/>
+  <object id="33" type="collision" x="0" y="208" width="80" height="32"/>
+  <object id="63" type="collision" x="112" y="208" width="80" height="32"/>
+  <object id="65" type="collision" x="80" y="96" width="32" height="16"/>
+  <object id="69" type="collision" x="80" y="224" width="32" height="16">
+   <properties>
+    <property name="key" value="screen"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="4" name="Events">
+  <object id="35" name="Stop!" type="event" x="80" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="player_stop"/>
+    <property name="act2" value="translated_dialog spyder_hospital_warning1"/>
+    <property name="act3" value="pathfind player,5,16"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="not has_item player,aardant"/>
+   </properties>
+  </object>
+  <object id="36" name="Create Nurse" type="event" x="160" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_nurse,10,18"/>
+    <property name="act2" value="npc_face spyder_nurse,left"/>
+    <property name="cond1" value="not npc_exists spyder_nurse"/>
+   </properties>
+  </object>
+  <object id="37" name="Talk Nurse" type="event" x="160" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital_nurse1"/>
+    <property name="behav1" value="talk spyder_nurse"/>
+   </properties>
+  </object>
+  <object id="41" name="Stop! 2" type="event" x="80" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="player_stop"/>
+    <property name="act2" value="translated_dialog spyder_hospital_warning2"/>
+    <property name="act3" value="pathfind player,5,14"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is has_item player,aardant"/>
+    <property name="cond3" value="not variable_set hospitalcure:yes"/>
+   </properties>
+  </object>
+  <object id="44" name="Stop!" type="event" x="96" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="player_stop"/>
+    <property name="act2" value="translated_dialog spyder_hospital_warning1"/>
+    <property name="act3" value="pathfind player,6,16"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="not has_item player,aardant"/>
+   </properties>
+  </object>
+  <object id="45" name="Stop! 2" type="event" x="96" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="player_stop"/>
+    <property name="act2" value="translated_dialog spyder_hospital_warning2"/>
+    <property name="act3" value="pathfind player,6,14"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is has_item player,aardant"/>
+    <property name="cond3" value="not variable_set hospitalcure:yes"/>
+   </properties>
+  </object>
+  <object id="56" name="Environment" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:interior"/>
+    <property name="cond1" value="not variable_set environment:interior"/>
+   </properties>
+  </object>
+  <object id="57" name="Music" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_cathedral_theme"/>
+    <property name="cond1" value="not music_playing music_cathedral_theme"/>
+   </properties>
+  </object>
+  <object id="58" name="2nd floor1" type="event" x="80" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_hospital2.tmx,17,2,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="59" name="2nd floor2" type="event" x="96" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_hospital2.tmx,18,2,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="61" name="Exhausted" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="62" name="The cure!" type="event" x="80" y="96" width="32" height="16">
+   <properties>
+    <property name="act20" value="translated_dialog spyder_hospital_cure1"/>
+    <property name="act30" value="set_variable hospitalcure:yes"/>
+    <property name="act40" value="create_npc spyder_hospital_billie,4,12"/>
+    <property name="act45" value="pathfind spyder_hospital_billie,5,8"/>
+    <property name="act50" value="translated_dialog spyder_hospital_billie1"/>
+    <property name="act51" value="add_monster billie_choice,40,spyder_hospital_billie,27,10"/>
+    <property name="act52" value="add_monster cardinale,40,spyder_hospital_billie,27,10"/>
+    <property name="act53" value="add_monster eyesore,40,spyder_hospital_billie,27,10"/>
+    <property name="act54" value="add_monster viviphyta,40,spyder_hospital_billie,27,10"/>
+    <property name="act60" value="start_battle spyder_hospital_billie"/>
+    <property name="act61" value="translated_dialog spyder_hospital_billie2"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set hospitalcure:yes"/>
+   </properties>
+  </object>
+  <object id="66" name="Create Screen1" type="event" x="80" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_screen,5,14"/>
+    <property name="cond1" value="not npc_exists spyder_screen"/>
+    <property name="cond2" value="not has_item player,aardant"/>
+   </properties>
+  </object>
+  <object id="67" name="Remove Screen" type="event" x="0" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision screen"/>
+    <property name="cond1" value="is has_item player,aardant"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

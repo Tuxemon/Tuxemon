@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_scientist_fiery",
+  "template": [
+    {
+      "sprite_name": "scientist_fiery",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
+  ]
+}

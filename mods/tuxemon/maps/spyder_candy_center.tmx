@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="32">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="41">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -9,33 +9,33 @@
  <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
- <tileset firstgid="3865" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+ <tileset firstgid="3865" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
   <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
- <tileset firstgid="9279" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
+ <tileset firstgid="5415" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="13" height="11">
+ <tileset firstgid="7175" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="20" height="11">
   <data encoding="base64" compression="zlib">
-   eAE7xMzAcIhE/AGonlQsx8LAQCoO4mdgGMWDNwwApO4/ew==
+   eAHrk2Bg6CMBTwGqxYdJMQukFp9ZILltJGJC5q2UZGBYDsTE0oTMYweadR6IiaUJ2b0KaNZqIIapo5R/CWjWZSCGuZFSPrHhRqw6YsONWHWUhhe6fkrDC10/ACuymHE=
   </data>
  </layer>
- <layer id="2" name="Tile Layer 2" width="13" height="11">
+ <layer id="2" name="Tile Layer 2" width="20" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYCAPnJcnTZ+6OgPDO6geSSCtDMQqaGaAxK3lGBhsgBgEQoB6YOAvUMwJKO+MpGcXUMwSyI8C0tFQPTD1hOh6POpLgWb+BsrDcDmSnYTMpbc8yB8PgPghEOPzE7K7QOr+AzED0F+E9FzE43cADAcUGw==
+   eAGbIsHAMIWKmIFEMBloNwwguwMkBuIjA0YBBgZuIOYBYmQAElfmZ2BQAWJk85DVgNjo5j0FqtcC6tVGMm8RUEwRyHcC0s5AvA/ohj4cOA/Nfej2IfPTgWaBwDOgnm048DQs5sUC3fIYqBeG45HcCjFxeJOgcDsBxCeBGBaGlPgYZMZzIH5BgXkisgwMokAsBsSkAgDtRivB
   </data>
  </layer>
- <layer id="3" name="Tile Layer 3" width="13" height="11">
+ <layer id="3" name="Tile Layer 3" width="20" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYBgaQFIeuztxiYNUW+DQg0scuw2jorhCAACUZwEf
+   eAFjYBi5gFEAu9+RxafLMTDMAOKZQDwLiNH5yCYo4DAPWXw50IwVQLwSiFcBMTof2bxR9vALAQAO5gxr
   </data>
  </layer>
- <layer id="4" name="Above player" width="13" height="11">
+ <layer id="4" name="Above player" width="20" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYBje4LYcA8MdJHwXyB4F1AkBAH4YBOM=
+   eAFjYBgF1AyBw/wMDEeQ8FEgGxmclkPwdgPZ6HyE7ChrOIYAAHvuB6Q=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -44,10 +44,8 @@
   <object id="7" type="collision" x="144" y="48" width="16" height="32"/>
   <object id="8" type="collision" x="64" y="80" width="80" height="16"/>
   <object id="9" type="collision" x="48" y="48" width="16" height="32"/>
-  <object id="11" type="collision" x="0" y="16" width="208" height="32"/>
-  <object id="30" type="collision-line" x="0" y="64">
-   <polyline points="0,0 16,0"/>
-  </object>
+  <object id="11" type="collision" x="0" y="16" width="192" height="32"/>
+  <object id="36" type="collision" x="192" y="48" width="128" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="16" name="Heal Tuxemon" type="event" x="64" y="96" width="16" height="16">
@@ -100,14 +98,6 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="29" name="Go upstairs" type="event" x="0" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_hospital.tmx,4,19,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-   </properties>
-  </object>
   <object id="31" name="Auto Healing Teleported" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="set_monster_health"/>
@@ -115,6 +105,48 @@
     <property name="act3" value="set_variable teleport_clinic:none"/>
     <property name="act4" value="variable_math cathedral_ads,+,1"/>
     <property name="cond1" value="is variable_set teleport_clinic:lost"/>
+   </properties>
+  </object>
+  <object id="32" name="Elevator1a" type="event" x="208" y="64" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog_choice 1floor:2floor:no,choice_floor"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="33" name="Elevator2a" type="event" x="272" y="64" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog_choice 1floor:2floor:no,choice_floor"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="34" name="Elevator1b" type="event" x="224" y="64" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog_choice 1floor:2floor:no,choice_floor"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="35" name="Elevator2b" type="event" x="288" y="64" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog_choice 1floor:2floor:no,choice_floor"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="37" name="Choice Floor 1st" type="event" x="224" y="16" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport spyder_candy_hospital1.tmx,7,15,0.3"/>
+    <property name="act20" value="set_variable choice_floor:null"/>
+    <property name="cond1" value="is variable_set choice_floor:1floor"/>
+   </properties>
+  </object>
+  <object id="38" name="Choice Floor 2nd" type="event" x="240" y="16" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport spyder_candy_hospital2.tmx,11,15,0.3"/>
+    <property name="act20" value="set_variable choice_floor:null"/>
+    <property name="cond1" value="is variable_set choice_floor:2floor"/>
    </properties>
   </object>
  </objectgroup>

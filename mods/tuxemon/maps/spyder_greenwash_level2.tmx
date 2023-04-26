@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="106">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="122">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -106,23 +106,11 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="86" name="Create Aissa" type="event" x="176" y="32" width="16" height="16">
+  <object id="86" name="Create Aissa" type="event" x="144" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_greenwash_aissa,11,2"/>
-    <property name="act2" value="npc_face spyder_greenwash_aissa,down"/>
+    <property name="act1" value="create_npc spyder_greenwash_aissa,9,4"/>
+    <property name="act2" value="npc_face spyder_greenwash_aissa,right"/>
     <property name="cond1" value="not npc_exists spyder_greenwash_aissa"/>
-    <property name="cond2" value="not variable_set greenwash_aissa:yes"/>
-   </properties>
-  </object>
-  <object id="87" name="Talk Aissa" type="event" x="160" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_greenwash_aissa1"/>
-    <property name="act2" value="add_monster cateye,22,spyder_greenwash_aissa,27,10"/>
-    <property name="act3" value="start_battle spyder_greenwash_aissa"/>
-    <property name="act4" value="translated_dialog spyder_greenwash_aissa2"/>
-    <property name="act6" value="set_variable greenwashaissa:yes"/>
-    <property name="behav1" value="talk spyder_greenwash_aissa"/>
-    <property name="cond1" value="not variable_set greenwashaissa:yes"/>
    </properties>
   </object>
   <object id="88" name="Create Moreau" type="event" x="128" y="480" width="16" height="16">
@@ -130,41 +118,16 @@
     <property name="act1" value="create_npc spyder_greenwash_moreau,8,30"/>
     <property name="act2" value="npc_face spyder_greenwash_moreau,down"/>
     <property name="cond1" value="not npc_exists spyder_greenwash_moreau"/>
-    <property name="cond2" value="not variable_set greenwash_moreau:yes"/>
    </properties>
   </object>
-  <object id="89" name="Talk Moreau" type="event" x="128" y="464" width="16" height="16">
+  <object id="90" name="Create Dippel" type="event" x="48" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_greenwash_moreau1"/>
-    <property name="act2" value="add_monster sclairus,26,spyder_greenwash_moreau,27,10"/>
-    <property name="act3" value="start_battle spyder_greenwash_moreau"/>
-    <property name="act4" value="translated_dialog spyder_greenwash_moreau2"/>
-    <property name="act6" value="set_variable greenwashmoreau:yes"/>
-    <property name="behav1" value="talk spyder_greenwash_moreau"/>
-    <property name="cond1" value="not variable_set greenwashmoreau:yes"/>
-   </properties>
-  </object>
-  <object id="90" name="Create Dippel" type="event" x="144" y="304" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_greenwash_dippel,9,19"/>
+    <property name="act1" value="create_npc spyder_greenwash_dippel,3,6"/>
     <property name="act2" value="npc_face spyder_greenwash_dippel,right"/>
     <property name="cond1" value="not npc_exists spyder_greenwash_dippel"/>
-    <property name="cond2" value="not variable_set greenwash_dippel:yes"/>
    </properties>
   </object>
-  <object id="91" name="Talk Dippel" type="event" x="128" y="304" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_greenwash_dippel1"/>
-    <property name="act2" value="add_monster criniotherme,22,spyder_greenwash_dippel,27,10"/>
-    <property name="act3" value="add_monster tikorch,22,spyder_greenwash_dippel,27,10"/>
-    <property name="act4" value="start_battle spyder_greenwash_dippel"/>
-    <property name="act5" value="translated_dialog spyder_greenwash_dippel2"/>
-    <property name="act6" value="set_variable greenwashdippel:yes"/>
-    <property name="behav1" value="talk spyder_greenwash_dippel"/>
-    <property name="cond1" value="not variable_set greenwashdippel:yes"/>
-   </properties>
-  </object>
-  <object id="92" name="Talk Aissa" type="event" x="176" y="48" width="16" height="48">
+  <object id="92" name="Talk Aissa" type="event" x="160" y="64" width="80" height="16">
    <properties>
     <property name="act0" value="pathfind_to_player spyder_greenwash_aissa"/>
     <property name="act1" value="translated_dialog spyder_greenwash_aissa1"/>
@@ -176,7 +139,7 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="93" name="Talk Dippel" type="event" x="160" y="304" width="48" height="16">
+  <object id="93" name="Talk Dippel" type="event" x="96" y="112" width="16" height="32">
    <properties>
     <property name="act0" value="pathfind_to_player spyder_greenwash_dippel"/>
     <property name="act1" value="translated_dialog spyder_greenwash_dippel1"/>
@@ -189,7 +152,7 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="94" name="Talk Moreau" type="event" x="128" y="496" width="16" height="16">
+  <object id="94" name="Talk Moreau" type="event" x="208" y="400" width="32" height="16">
    <properties>
     <property name="act0" value="pathfind_to_player spyder_greenwash_moreau"/>
     <property name="act1" value="translated_dialog spyder_greenwash_moreau1"/>
@@ -205,6 +168,137 @@
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="108" name="Create Dempsey" type="event" x="32" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_greenwash_dempsey,2,16"/>
+    <property name="act2" value="npc_face spyder_greenwash_dempsey,up"/>
+    <property name="cond1" value="not npc_exists spyder_greenwash_dempsey"/>
+   </properties>
+  </object>
+  <object id="109" name="Talk Dempsey" type="event" x="32" y="192" width="16" height="32">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_greenwash_dempsey"/>
+    <property name="act1" value="translated_dialog spyder_greenwash_dempsey1"/>
+    <property name="act2" value="add_monster masknake,25,spyder_greenwash_dempsey,27,10"/>
+    <property name="act3" value="start_battle spyder_greenwash_dempsey"/>
+    <property name="act4" value="translated_dialog spyder_greenwash_dempsey1"/>
+    <property name="act6" value="set_variable greenwashdempsey:yes"/>
+    <property name="cond1" value="not variable_set greenwashdempsey:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="110" name="Create Heidenstam" type="event" x="80" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_greenwash_heidenstam,5,22"/>
+    <property name="act2" value="npc_face spyder_greenwash_heidenstam,left"/>
+    <property name="cond1" value="not npc_exists spyder_greenwash_heidenstam"/>
+   </properties>
+  </object>
+  <object id="111" name="Talk Heidenstam" type="event" x="16" y="352" width="32" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_greenwash_heidenstam"/>
+    <property name="act1" value="translated_dialog spyder_greenwash_heidenstam1"/>
+    <property name="act2" value="add_monster foofle,10,spyder_greenwash_heidenstam,27,10"/>
+    <property name="act3" value="start_battle spyder_greenwash_heidenstam"/>
+    <property name="act4" value="translated_dialog spyder_greenwash_heidenstam2"/>
+    <property name="act6" value="set_variable greenwashheidenstam:yes"/>
+    <property name="cond1" value="not variable_set greenwashheidenstam:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="112" name="Create Fossilisator" type="event" x="160" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scientist,10,18"/>
+    <property name="act2" value="npc_face spyder_scientist,up"/>
+    <property name="cond1" value="not npc_exists spyder_scientist"/>
+   </properties>
+  </object>
+  <object id="113" name="Talk Fossilisator First" type="event" x="112" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator1"/>
+    <property name="act3" value="set_variable intro_fossilisator:yes"/>
+    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="cond1" value="not variable_set intro_fossilisator:yes"/>
+   </properties>
+  </object>
+  <object id="115" name="Talk Fossilisator Rhincus" type="event" x="128" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
+    <property name="act2" value="translated_dialog spyder_greenwash_fossilisator3"/>
+    <property name="act3" value="translated_dialog_choice yes:no,rhincus_choice"/>
+    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="cond1" value="is variable_set intro_fossilisator:yes"/>
+    <property name="cond2" value="is has_item player,rhincus_fossil"/>
+    <property name="cond3" value="not has_item player,shammer_fossil"/>
+    <property name="cond4" value="not variable_set got_rhincus:yes"/>
+   </properties>
+  </object>
+  <object id="116" name="Talk Fossilisator Shammer" type="event" x="144" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
+    <property name="act2" value="translated_dialog spyder_greenwash_fossilisator5"/>
+    <property name="act3" value="translated_dialog_choice yes:no,shammer_choice"/>
+    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="cond1" value="is variable_set intro_fossilisator:yes"/>
+    <property name="cond2" value="is has_item player,shammer_fossil"/>
+    <property name="cond3" value="not has_item player,rhincus_fossil"/>
+    <property name="cond4" value="not variable_set got_shammer:yes"/>
+   </properties>
+  </object>
+  <object id="117" name="Talk Fossilisator Nothing" type="event" x="160" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
+    <property name="act2" value="translated_dialog spyder_greenwash_fossilisator7"/>
+    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="cond1" value="not has_item player,rhincus_fossil"/>
+    <property name="cond2" value="not has_item player,shammer_fossil"/>
+    <property name="cond3" value="is variable_set intro_fossilisator:yes"/>
+   </properties>
+  </object>
+  <object id="118" name="Talk Got Rhincus" type="event" x="176" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator4"/>
+    <property name="act2" value="add_monster rhincus,30"/>
+    <property name="act3" value="add_item rhincus_fossil,-1"/>
+    <property name="act4" value="set_variable got_rhincus:yes"/>
+    <property name="cond1" value="is variable_set rhincus_choice:yes"/>
+    <property name="cond2" value="not variable_set got_rhincus:yes"/>
+   </properties>
+  </object>
+  <object id="119" name="Talk Got Shammer" type="event" x="192" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator6"/>
+    <property name="act2" value="add_monster shammer,30"/>
+    <property name="act3" value="add_item shammer_fossil,-1"/>
+    <property name="act4" value="set_variable got_shammer:yes"/>
+    <property name="cond1" value="is variable_set shammer_choice:yes"/>
+    <property name="cond2" value="not variable_set got_shammer:yes"/>
+   </properties>
+  </object>
+  <object id="120" name="Talk Fossilisator Both" type="event" x="128" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
+    <property name="act2" value="translated_dialog spyder_greenwash_fossilisator8"/>
+    <property name="act3" value="translated_dialog_choice yes:no,both_fossils"/>
+    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="cond1" value="is variable_set intro_fossilisator:yes"/>
+    <property name="cond2" value="is has_item player,shammer_fossil"/>
+    <property name="cond3" value="is has_item player,rhincus_fossil"/>
+    <property name="cond4" value="not variable_set got_both_fossils:yes"/>
+   </properties>
+  </object>
+  <object id="121" name="Talk Got Both" type="event" x="144" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator9"/>
+    <property name="act2" value="add_monster shammer,30"/>
+    <property name="act3" value="add_monster rhincus,30"/>
+    <property name="act4" value="add_item shammer_fossil,-1"/>
+    <property name="act5" value="add_item rhincus_fossil,-1"/>
+    <property name="act6" value="set_variable got_both_fossils:yes"/>
+    <property name="cond1" value="is variable_set both_fossils:yes"/>
+    <property name="cond2" value="not variable_set got_both_fossils:yes"/>
    </properties>
   </object>
  </objectgroup>

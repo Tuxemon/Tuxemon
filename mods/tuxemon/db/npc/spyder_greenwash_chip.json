@@ -2,9 +2,9 @@
   "slug": "spyder_greenwash_chip",
   "template": [
     {
-      "sprite_name": "soldier",
-      "combat_front": "aviator",
-      "slug": "aviator"
+      "sprite_name": "scientist",
+      "combat_front": "scientist",
+      "slug": "scientist"
     }
   ]
 }

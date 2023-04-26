@@ -3,8 +3,8 @@
   "template": [
     {
       "sprite_name": "scientist",
-      "combat_front": "scientist",
-      "slug": "scientist"
+      "combat_front": "aviator",
+      "slug": "aviator"
     }
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_top_russell",
+  "template": [
+    {
+      "sprite_name": "magician_fiery",
+      "combat_front": "mage",
+      "slug": "mage"
+    }
+  ]
+}

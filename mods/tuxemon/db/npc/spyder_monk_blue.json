@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_monk_blue",
+  "template": [
+    {
+      "sprite_name": "monk_blue",
+      "combat_front": "monk",
+      "slug": "monk"
+    }
+  ]
+}

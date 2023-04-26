@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_basement_roger",
+  "template": [
+    {
+      "sprite_name": "tennisplayer",
+      "combat_front": "tennisplayer",
+      "slug": "tennisplayer"
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="153">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="156">
  <properties>
+  <property name="east" value="taba_town"/>
   <property name="edges" value="clamped"/>
   <property name="north" value="route1_sanglorian"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="route1"/>
   <property name="types" value="route"/>
-  <property name="east" value="taba_town"/>
  </properties>
  <tileset firstgid="1" name="buildings" tilewidth="16" tileheight="16" tilecount="805" columns="35">
   <image source="../gfx/tilesets/buildings.png" width="575" height="381"/>
@@ -838,6 +838,23 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
+  <object id="153" name="Environment Day" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="154" name="Environment Night" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
+   </properties>
+  </object>
+  <object id="155" name="Default" type="event" x="16" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup id="7" name="Conditions"/>
 </map>

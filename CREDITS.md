@@ -166,8 +166,6 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Mage"](https://wiki.tuxemon.org/File:Angela_64px.png). Front sprite by Svetlana Kushnariova. Resized by Sanglorian.
 
-* ["Man Moon"](https://wiki.tuxemon.org/File:Moon_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY.
-
 * ["Maniac"](https://wiki.tuxemon.org/index.php?title=Maniac). Overland sprites by Catch Challenger.
 
 * ["Mermaid"](https://wiki.tuxemon.org/File:Mermaid_64px.png). Front sprite by Svetlana Kushnariova. Resized by Sanglorian.
@@ -199,6 +197,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Riverboat Captain"](https://wiki.tuxemon.org/index.php?title=Riverboat_Captain). Overland sprites by pixelartm, adapted by Sanglorian.
 
 * ["Robot"](https://wiki.tuxemon.org/index.php?title=Robot). Overland sprites by Catch Challenger.
+
+* ["Rocker"](https://wiki.tuxemon.org/File:Moon_64px.png). Adapted by Sanglorian from a sprite by diamonddmgirl on [https://opengameart.org/content/24x32-supernatural-creatures#comment-80898 OGA], CC BY.
 
 * ["Rogue"](https://wiki.tuxemon.org/index.php?title=Rogue). Front sprite by tamashihoshi. Overland sprite by Catch Challenger, adapted by Sanglorian.
 
@@ -248,118 +248,220 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 ### Tilesets
 
-* ["Electronics Tileset"](https://git.tuxemon.org:3000/tuxemon/tuxemon/blob/development/resources/gfx/tilesets/electronics.png)
-by [Mike Bramson](mailto:mnbramson@gmail.com) is licensed under
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-* ["Floors and Walls Tileset"](https://git.tuxemon.org:3000/tuxemon/tuxemon/blob/development/resources/gfx/tilesets/floorsandwalls.png)
-by [Mike Bramson](mailto:mnbramson@gmail.com) is licensed under
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-* ["Furniture Tileset"](https://git.tuxemon.org:3000/tuxemon/tuxemon/blob/development/resources/gfx/tilesets/furniture.png)
-by [Mike Bramson](mailto:mnbramson@gmail.com) is licensed under
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-* ["Kitchen Tileset"](https://git.tuxemon.org:3000/tuxemon/tuxemon/blob/development/resources/gfx/tilesets/kitchen.png)
-by [Mike Bramson](mailto:mnbramson@gmail.com) is licensed under
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-* ["Plants Tileset"](https://git.tuxemon.org:3000/tuxemon/tuxemon/blob/development/resources/gfx/tilesets/plants.png)
-by [Mike Bramson](mailto:mnbramson@gmail.com) is licensed under
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-* ["Stairs Tileset"](https://git.tuxemon.org:3000/tuxemon/tuxemon/blob/development/resources/gfx/tilesets/stairs.png)
-by [Mike Bramson](mailto:mnbramson@gmail.com) is licensed under
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 * ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props)
-by [Midi](http://opengameart.org/users/midi) is licensed under
-[CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+by [Midi](http://opengameart.org/users/midi)
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 * ["Sign"](https://bitbucket.org/ItsBobberson/tsc)
-by [ItsBobberson](https://bitbucket.org/ItsBobberson) is licensed under
-[Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+by [ItsBobberson](https://bitbucket.org/ItsBobberson)
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
 * ["Sign White"](https://bitbucket.org/ItsBobberson/tsc)
-by [ItsBobberson](https://bitbucket.org/ItsBobberson) is licensed under
-[Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+by [ItsBobberson](https://bitbucket.org/ItsBobberson)
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
 * ["Wood Sign"](https://bitbucket.org/ItsBobberson/tsc)
-by [ItsBobberson](https://bitbucket.org/ItsBobberson) is licensed under
-[Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
-* ["Sand n Water"](http://tuxemon.weebly.com/artwork.html)
-by [luke83](http://tuxemon.weebly.com/) is licensed under
-[CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) based on ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props)
-by [Midi](http://opengameart.org/users/midi)
-* ["Grass, Sand, Snow"](https://forum.tuxemon.org/viewtopic.php?pid=280#p280)
-by [PastTheFuture](https://forum.tuxemon.org/profile.php?id=43) is licensed under
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) based on ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props)
-by [Midi](http://opengameart.org/users/midi)
+by [ItsBobberson](https://bitbucket.org/ItsBobberson)
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
 * ["Pixel Farm and Shack"](http://opengameart.org/content/pixel-farm-and-shack) by
 [pixel32](http://opengameart.org/users/pixel32)
 is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
-* ["Kelvin Terrain"](https://forum.tuxemon.org/viewtopic.php?pid=329#p329) by
-[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
-[XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
-* ["Kelvin Buildings"](https://forum.tuxemon.org/viewtopic.php?pid=329#p329) by
-[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
-[XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
-* "Mountain Tileset" by
-[Kelvin](http://kelvinshadewing.net) and
-[josepharaoh99](https://wiki.tuxemon.org/Josepharaoh99)
+* "Mountain Tileset"
+by [Kelvin](http://kelvinshadewing.net) and [josepharaoh99](https://wiki.tuxemon.org/Josepharaoh99)
 is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
-* ["Basic Buch Tiles Compiled"](https://wiki.tuxemon.org/index.php?title=File:Basic_Buch_Tiles_Compiled.png) by Buch, commissioned by luke83, some changes and additions by luke83 and Past the Future, is licensed under CC BY-SA 3.0.
-* ["Boxfont"](https://wiki.tuxemon.org/index.php?title=File:Boxfont.png) by Mold, some changes by Sanglorian, is licensed under CC0.
-* ["Red truck"](https://wiki.tuxemon.org/index.php?title=File:Truck-red-all.png), ["Black car"](https://wiki.tuxemon.org/index.php?title=File:Car,_Black_by_Isaiah658.png) and ["Outdoor odds and ends"](https://wiki.tuxemon.org/index.php?title=File:Outdoor_odds_and_ends_by_Isaiah658.png) by Isaiah658 are licensed under CC0.
-* ["Cave tiles"](https://wiki.tuxemon.org/index.php?title=File:Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png), ["Interior tiles"](https://wiki.tuxemon.org/index.php?title=File:Interior_Tiles_by_ArMM1998.png), ["Objects"](https://wiki.tuxemon.org/index.php?title=File:Objects_by_ArMM1998.png) and ["Outdoor Tiles - City and Country"](https://wiki.tuxemon.org/index.php?title=File:Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png) by ArMM1998 are licensed under CC0.
-* ["Beach tiles"](https://wiki.tuxemon.org/index.php?title=File:Beach_Tiles_by_George_.png),
-["Cave tiles"](https://wiki.tuxemon.org/index.php?title=File:Cave_Tiles_by_George_.png),
-["Interior floors"](https://wiki.tuxemon.org/index.php?title=File:Interior_Floors_by_George.png),
-["Furniture and fittings"](https://wiki.tuxemon.org/index.php?title=File:Furniture_and_Fittings_by_George.png),
-["Interior walls"](https://wiki.tuxemon.org/index.php?title=File:Interior_Walls_by_George.png),
-["Terrain"](https://wiki.tuxemon.org/index.php?title=File:Terrain_by_George.png),
-["Vegetation and outdoor fittings"](https://wiki.tuxemon.org/index.php?title=File:Vegetation_and_Outdoor_Fittings_by_George.png) and ["Waterfall"](https://wiki.tuxemon.org/index.php?title=File:Waterfall_by_George.png) by George_ are licensed under CC BY 3.0.
-* ["Fancy house"](https://wiki.tuxemon.org/index.php?title=File:Fancy_House.png) by Kelvin Shadewing is licensed under CC BY-SA 4.0.
-* "Interiors [1](https://wiki.tuxemon.org/index.php?title=File:Interiors_2_by_Redshrike.PNG) and [2](https://wiki.tuxemon.org/index.php?title=File:Interiors_by_Redshrike.png)" by Redshrike are licensed under CC BY 3.0.
-* ["Pacheesi tiles"](https://wiki.tuxemon.org/index.php?title=File:Pacheesi_Tiles.png) by Nikkita31 and adapted by Sanglorian are under CC0.
-* ["Superpowers Assets Ninja Tilesheet"](https://wiki.tuxemon.org/index.php?title=File:Superpowers_Tilesheet.png) by Superpower Asset Packs is under CC0.
-* ["Updated Ground Tiles"](https://wiki.tuxemon.org/index.php?title=File:Updated_ground_tiles_by_rubberduck.png) by rubberduck, based on original tiles by Buch, commissioned by luke83 (changes and additions by luke83 and Past the Future), and original tiles by George_.
-* ["Factory"](https://wiki.tuxemon.org/index.php?title=File:Factory.png) by Keith Karnage is licensed under CC0.
-* ["Warmachine"](https://wiki.tuxemon.org/index.php?title=File:Warmachine_black_and_yellow.png) and ["Warmachine, demilitarised"](https://wiki.tuxemon.org/index.php?title=File:Warmachine_yellow_demilitarised.png) by Drummyfish are licensed under CC0. Demilitarised version adapted by Sanglorian.
-* ["Modern Interiors"](https://web.archive.org/web/20201101004437/https://limezu.itch.io/moderninteriors), ["Modern Office"](https://web.archive.org/web/20201126005520/https://limezu.itch.io/modernoffice) and ["Serene Village"](https://web.archive.org/web/20210720074611/https://limezu.itch.io/serenevillage) by LimeZu are licensed under CC BY. Purchased by Sanglorian.
-* ["Drokoro"](https://wiki.tuxemon.org/index.php?title=File:Drokoro_overland_update.png) adapted by Sanglorian from a CC BY sprite by CharlesGabriel.
-* ["MK Buildings"](https://wiki.tuxemon.org/index.php?title=File:MK_buildings.png) adapted by Mircea Kitsune from Buildings and Features and Doors by Kelvin Shadewing. Hospital adapted by Sanglorian.
+* ["Boxfont"](https://wiki.tuxemon.org/index.php?title=File:Boxfont.png)
+by Mold, some changes by Sanglorian
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+* ["Objects"](https://wiki.tuxemon.org/index.php?title=File:Objects_by_ArMM1998.png)
+by ArMM1998
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+* ["Beach tiles"](https://wiki.tuxemon.org/index.php?title=File:Beach_Tiles_by_George_.png), ["Vegetation and outdoor fittings"](https://wiki.tuxemon.org/index.php?title=File:Vegetation_and_Outdoor_Fittings_by_George.png)
+by George_
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+* ["Modern Interiors"](https://web.archive.org/web/20201101004437/https://limezu.itch.io/moderninteriors), ["Modern Office"](https://web.archive.org/web/20201126005520/https://limezu.itch.io/modernoffice) and ["Serene Village"](https://web.archive.org/web/20210720074611/https://limezu.itch.io/serenevillage)
+by LimeZu. Purchased by Sanglorian.
+are licensed under CC BY. 
 * Hatching Dragon adapted by Sanglorian from a CC BY sprite animation by Cabbit, ["Bat"](https://opengameart.org/content/24x32-characters-16x16-tiles).
-
 * ["GothicVania"](https://opengameart.org/content/gothicvania-town)
 adapted by ultidonki from ansimuz's GothicVania Town assets, originally released into the Public Domain.
 ultidonki's changes (brightening some of the colors, reducing some of the noisy textures to be more flat/use less colors, and changing the perspective) released under CC0 license, version 1.0 or higher.
-[CC-0](https://creativecommons.org/publicdomain/zero/1.0)
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+
+## CORES
 
 * ["Core Indoor Walls"],["Core Indoor Floors"]
 by rubberduck, based on
-Interior_Tiles_by_ArMM1998.png, by ArMM1998 (CC0),
-Interior_Walls_by_George.png, by George_ (CC BY 3.0)
-Interior_Tiles_by_Mike_Bramson.png, by Mike Bramson (CC BY-SA 4.0)
-and https://opengameart.org/content/lpc-floors by bluecarrot16 and various contributors** (CC BY-SA 4.0)
-
-(** "[LPC] Floors" by bluecarrot16, Lanea Zimmerman (Sharm), William Thompson (William.Thompsonj),Hyptosis, SpiderDave, Cougarmint, Stephen Challener (Redshrike), Bonsaiheldin, Tyler Olsen (Roots), Jetrel, jestan,
- The Open Surge team (http://opensnc.sourceforge.net), Gaurav Munjal, Reemax, Silveira Neto, bleutailfly, Casper Nilsson, NaRNeRZz, Buch, keith karnage, Arthur Carvalho, Guilherme Vieira (n2liquid), Chris Hamons (maintainer).)
-
+["Interior Walls"](https://wiki.tuxemon.org/index.php?title=File:Interior_Walls_by_George.png)
+by George_
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+["Interior floors"](https://wiki.tuxemon.org/index.php?title=File:Interior_Floors_by_George.png)
+by George_
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+["Interior Floors"](https://wiki.tuxemon.org/File:Interior_Tiles_by_Mike_Bramson.png)
+by Mike Bramson
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+["Interior Tiles"](https://wiki.tuxemon.org/index.php?title=File:Interior_Tiles_by_ArMM1998.png)
+by ArMM1998
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Pacheesi tiles"](https://wiki.tuxemon.org/index.php?title=File:Pacheesi_Tiles.png)
+by Nikkita31 and adapted by Sanglorian
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Kelvin Terrain"](https://wiki.tuxemon.org/File:Terrain_by_KelvinShadewing.png)
+by [Kelvin Shadewing](http://kelvinshadewing.net)
+is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
+["LPC Floors"](https://opengameart.org/content/lpc-floors)
+by bluecarrot16, Lanea Zimmerman (Sharm), William Thompson (William.Thompsonj),Hyptosis, SpiderDave, Cougarmint, Stephen Challener (Redshrike), Bonsaiheldin, Tyler Olsen (Roots), Jetrel, jestan, the Open Surge team (http://opensnc.sourceforge.net), Gaurav Munjal, Reemax, Silveira Neto, bleutailfly, Casper Nilsson, NaRNeRZz, Buch, keith karnage, Arthur Carvalho, Guilherme Vieira (n2liquid), Chris Hamons (maintainer).
+is licensed under CC BY-SA 4.0
 tuxemon-themed walls are based on: fruitera-front.png, rockitten-front.png and ghosteeth-front.png
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Core Indoor Stairs"]
-by rubberduck, stairs are based on:
-Interior_Tiles_by_ArMM1998.png, by ArMM1998 (CC0),
-Interior tileset by Redshrike (Interiors by Redshrike.png), (CC-BY 3.0)
+by rubberduck, based on:
+["Interior tiles"](https://wiki.tuxemon.org/index.php?title=File:Interior_Tiles_by_ArMM1998.png)
+by ArMM1998
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Interiors"](https://wiki.tuxemon.org/index.php?title=File:Interiors_by_Redshrike.png)
+by Redshrike
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+["Stairs Tileset"](https://wiki.tuxemon.org/File:Stairs.png)
+by [Mike Bramson](mailto:mnbramson@gmail.com)
+is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Core Outdoor Nature"], ["Core Outdoor Water"]
 by rubberduck, based on
-Basic_Buch_Tiles_Compiled.png and the original PastTheFuture_Grass_Sand_Snow.png (by Buch, luke83and Past the Future, CC BY-SA 3.0)
-Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png, by ArMM1998 (CC0)
-Terrain_by_George.png, by George_ (CC BY 3.0)
-waterfall based on https://opengameart.org/content/lpc-animated-water-and-waterfalls, by ZaPaper, CC BY-SA 3.0
+["Updated Ground Tiles"](https://wiki.tuxemon.org/index.php?title=File:Updated_ground_tiles_by_rubberduck.png)
+by rubberduck, based on original tiles by Buch, commissioned by luke83 (changes and additions by luke83 and Past the Future), and original tiles by George_.
+["Sand n Water"](https://wiki.tuxemon.org/File:Sand_n_water.png) 
+by [luke83](http://tuxemon.weebly.com/) based on ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props)
+by [Midi](http://opengameart.org/users/midi)
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) 
+["Grass, Sand, Snow"](https://wiki.tuxemon.org/File:PastTheFuture_Grass_Sand_Snow.png)
+by [PastTheFuture](https://forum.tuxemon.org/profile.php?id=43) based on ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props) by [Midi](http://opengameart.org/users/midi)
+is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+["Basic Buch Tiles Compiled"](https://wiki.tuxemon.org/index.php?title=File:Basic_Buch_Tiles_Compiled.png)
+by Buch, commissioned by luke83, some changes and additions by luke83 and Past the Future
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+["Outdoor Tiles - City and Country"](https://wiki.tuxemon.org/index.php?title=File:Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png)
+by ArMM1998
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Terrain"](https://wiki.tuxemon.org/index.php?title=File:Terrain_by_George.png)
+by George_
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+["Waterfall"]
+based on https://opengameart.org/content/lpc-animated-water-and-waterfalls by ZaPaper
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+["Waterfall"](https://wiki.tuxemon.org/index.php?title=File:Waterfall_by_George.png)
+by George_
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Core City and Country"]
-based on Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png, by ArMM1998 (CC0)
+based on
+["Outdoor Tiles - City and Country"](https://wiki.tuxemon.org/index.php?title=File:Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png)
+by ArMM1998
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Core Buildings"]
+based on:
+["Fancy house"](https://wiki.tuxemon.org/index.php?title=File:Fancy_House.png)
+by Kelvin Shadewing
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+["MK Buildings"](https://wiki.tuxemon.org/index.php?title=File:MK_buildings.png)
+adapted by Mircea Kitsune from Buildings and Features and Doors by Kelvin Shadewing. Hospital adapted by Sanglorian.
+["Kelvin Buildings"](https://wiki.tuxemon.org/File:Set_Pieces_by_Kelvin_Shadewing.png)
+by [Kelvin Shadewing](http://kelvinshadewing.net)
+is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license)
+["Kelvin Doors"](https://wiki.tuxemon.org/File:Doors_-_Kelvin_Shadewing.png)
+by [Kelvin Shadewing](http://kelvinshadewing.net) from https://github.com/KelvinShadewing/pixels
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+["Superpowers Assets Ninja Tilesheet"](https://wiki.tuxemon.org/index.php?title=File:Superpowers_Tilesheet.png)
+by Superpower Asset Packs
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Core Set Pieces"]
+based on:
+["Kelvin Buildings"](https://wiki.tuxemon.org/File:Set_Pieces_by_Kelvin_Shadewing.png)
+by [Kelvin Shadewing](http://kelvinshadewing.net)
+is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license)
+["Factory"](https://wiki.tuxemon.org/index.php?title=File:Factory.png)
+by Keith Karnage
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Plants Tileset"](https://wiki.tuxemon.org/File:Plants.png)
+by [Mike Bramson](mailto:mnbramson@gmail.com) 
+is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+["Floors and Walls Tileset"](https://wiki.tuxemon.org/File:Interior_Tiles_by_Mike_Bramson.png)
+by [Mike Bramson](mailto:mnbramson@gmail.com)
+is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+["Electronics Tileset"](https://wiki.tuxemon.org/File:Electronics.png)
+by [Mike Bramson](mailto:mnbramson@gmail.com)
+is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+["Furniture Tileset"](https://wiki.tuxemon.org/File:Furniture.png)
+by [Mike Bramson](mailto:mnbramson@gmail.com)
+is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+["Kitchen Tileset"](https://wiki.tuxemon.org/File:Kitchen.png)
+by [Mike Bramson](mailto:mnbramson@gmail.com)
+is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+["Interior tiles"](https://wiki.tuxemon.org/index.php?title=File:Interior_Tiles_by_ArMM1998.png)
+by ArMM1998
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Interiors"](https://wiki.tuxemon.org/index.php?title=File:Interiors_by_Redshrike.png)
+by Redshrike
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+["Furniture and fittings"](https://wiki.tuxemon.org/index.php?title=File:Furniture_and_Fittings_by_George.png)
+by George_
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+["City Tiles"](https://wiki.tuxemon.org/File:City_tiles.png)
+by [Mike Bramson](mailto:mnbramson@gmail.com)
+is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Core Outdoor"]
+based on:
+["Updated Ground Tiles"](https://wiki.tuxemon.org/index.php?title=File:Updated_ground_tiles_by_rubberduck.png) by rubberduck, based on original tiles by Buch, commissioned by luke83 (changes and additions by luke83 and Past the Future), and original tiles by George_.
+["Sand n Water"](https://wiki.tuxemon.org/File:Sand_n_water.png) 
+by [luke83](http://tuxemon.weebly.com/) based on ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props)
+by [Midi](http://opengameart.org/users/midi)
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) 
+["Grass, Sand, Snow"](https://wiki.tuxemon.org/File:PastTheFuture_Grass_Sand_Snow.png)
+by [PastTheFuture](https://forum.tuxemon.org/profile.php?id=43) based on ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props) by [Midi](http://opengameart.org/users/midi)
+is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+["Buddha Statues"](https://wiki.tuxemon.org/File:Statues,_Buddha.png)
+from http://opengameart.org/content/buddha-statues-16x16 
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Red truck"](https://wiki.tuxemon.org/index.php?title=File:Truck-red-all.png)
+by Isaiah658
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Black car"](https://wiki.tuxemon.org/index.php?title=File:Car,_Black_by_Isaiah658.png)
+by Isaiah658
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Outdoor odds and ends"](https://wiki.tuxemon.org/index.php?title=File:Outdoor_odds_and_ends_by_Isaiah658.png)
+by Isaiah658
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Warmachine"](https://wiki.tuxemon.org/index.php?title=File:Warmachine_black_and_yellow.png)
+by Drummyfish
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Warmachine, demilitarised"](https://wiki.tuxemon.org/index.php?title=File:Warmachine_yellow_demilitarised.png)
+by Drummyfish adapted by Sanglorian.
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Cave tiles"](https://wiki.tuxemon.org/index.php?title=File:Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png)
+by ArMM1998
+is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Interiors"](https://wiki.tuxemon.org/index.php?title=File:Interiors_2_by_Redshrike.PNG)
+by Redshrike
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+["Cave tiles"](https://wiki.tuxemon.org/index.php?title=File:Cave_Tiles_by_George_.png)
+by George_
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+["Drokoro"](https://wiki.tuxemon.org/index.php?title=File:Drokoro_overland_update.png)
+updated to fit Drokoro by Sanglorian, from http://opengameart.org/content/10-fantasy-rpg-enemies
+is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 ### Tuxemon
 
@@ -808,6 +910,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Map App"](https://wiki.tuxemon.org/File:Iridescent_item_5.png) modified by Sanglorian from original sprites by Ocean. [http://opengameart.org/content/oceans-icons CC BY 3.0]
 
+* ["Spyder Pass"](https://wiki.tuxemon.org/File:Item5.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["Tuxepedia App"](https://wiki.tuxemon.org/File:Tuxepedia.png) [https://github.com/Tuxemon/Tuxemon/issues/452 Original source]
 
 * ["Earthmover Key"](https://wiki.tuxemon.org/index.php?title=Earthmover_Key) by Catch Challenger is licensed under CC-BY 4.0.
@@ -815,6 +919,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Fishing Rod"](https://wiki.tuxemon.org/index.php?title=Fishing_Rod) by Catch Challenger is licensed under CC-BY 4.0.
 
 * ["Surfboard"](https://wiki.tuxemon.org/File:Surfboard.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Dojo Pass"](https://wiki.tuxemon.org/File:Toll-pass.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
 * ["Aardant"](https://wiki.tuxemon.org/index.php?title=Aardant) from the Aardorn sprite by Magic-Purple-Hermit. Tweaked by Sanglorian.
 

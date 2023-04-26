@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="179">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="181">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -898,7 +898,7 @@
     <property name="cond1" value="is variable_set moveplayer:true"/>
    </properties>
   </object>
-  <object id="160" name="Default" type="event" x="0" y="0" width="16" height="16">
+  <object id="160" name="Default" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable teleport_faint:healing_center.tmx 6 7"/>
     <property name="cond1" value="not variable_set teleport_faint"/>
@@ -958,6 +958,18 @@
     <property name="act10" value="translated_dialog taba_house4_sign"/>
     <property name="cond10" value="is player_facing_tile"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="179" name="Environment Day" type="event" x="8.88178e-16" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="180" name="Environment Night" type="event" x="16" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
  </objectgroup>

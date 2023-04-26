@@ -2,7 +2,7 @@
   "slug": "spyder_tunnelb_iris",
   "template": [
     {
-      "sprite_name": "florist",
+      "sprite_name": "florist_brown",
       "combat_front": "florist",
       "slug": "florist"
     }

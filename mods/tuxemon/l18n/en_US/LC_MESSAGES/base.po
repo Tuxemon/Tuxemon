@@ -5549,6 +5549,13 @@ msgstr "Ha! Some Challenger you are. You'll have to do better than that to beat 
 msgid "acolyte1redo"
 msgstr "So, you actually crawled back... Let's see how powerful you really are!"
 
+msgid "healspls2"
+msgstr "So, you actually made it past the first Acolyte? Good Job.\n"
+"I'll take your Tuxemon real quick and heal them for you."
+
+msgid "healsdone2"
+msgstr "And... There you go. Good Luck with the next one."
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

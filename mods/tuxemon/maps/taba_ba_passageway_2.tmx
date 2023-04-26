@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="19">
+<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="21">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -23,6 +23,11 @@
  <layer id="2" name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eJxjYGBgsFRkYBCVYGAQk4CwKQUgM5yAZjkDcTqQnYGGeUm0A9lNU4HsaWiYVDcjqz8MZB9Bw5SYR448rc1Lx6F+pR4Ek2oeehyA9IPMgZmJLc5BmAdH3KPHAbp7sMU5KXGPrgZbnJMS9zA1sPBDBuhixJoH00cN89LxmIfNbkIAX/ijxwEx5uELf1gckJs2sQFamIeNPZjM2y7OwLBDnHrmPQGa9RSLeQCrxVAr
+  </data>
+ </layer>
+ <layer id="6" name="Tile Layer 3" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApIBwAGQAAB
   </data>
  </layer>
  <layer id="3" name="Above Player" width="20" height="20">
@@ -113,6 +118,20 @@
     <property name="cond1" value="is player_facing up"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="19" name="to battle room" type="event" x="224" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_br_2.tmx,7,1,0.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="20" name="to battle room" type="event" x="240" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_br_2.tmx,8,1,0.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
  </objectgroup>

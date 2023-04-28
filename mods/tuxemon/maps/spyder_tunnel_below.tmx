@@ -95,13 +95,6 @@
    </properties>
   </object>
   <object id="41" name="Player Spawn" type="event" x="160" y="32" width="16" height="16"/>
-  <object id="42" name="encounter 3" type="event" x="16" y="0" width="304" height="640">
-   <properties>
-    <property name="act1" value="random_encounter routeb,6"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
-   </properties>
-  </object>
   <object id="43" name="Create Beryll" type="event" x="144" y="496" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_tunnelb_beryll,9,31"/>
@@ -211,6 +204,11 @@
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="42" name="Encounters" type="event" x="0" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter routeb,6"/>
    </properties>
   </object>
  </objectgroup>

@@ -5937,9 +5937,6 @@ msgstr "Do you want to buy all three paintings for ${{currency}}3,000?"
 msgid "spyder_cottonart_barmaid_single"
 msgstr "Do you want to buy this painting for ${{currency}}1,000?"
 
-msgid "spyder_cottonart_barmaid_painting_sold"
-msgstr "The painting has been bought by ${{name}}! This is a copy!"
-
 msgid "spyder_cottonart_barmaid_painting_sold_billie"
 msgstr "The painting has been bought and donated back to the gallery by Billie!"
 

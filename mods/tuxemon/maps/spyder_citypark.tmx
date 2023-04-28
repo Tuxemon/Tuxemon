@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="277">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="280">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -556,6 +556,31 @@
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="277" name="Fishing" type="event" x="32" y="128" width="144" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog fishing_time"/>
+    <property name="act2" value="translated_dialog_choice yes:no,fishing_time"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is has_item player,fishing_rod"/>
+   </properties>
+  </object>
+  <object id="278" name="Fishing" type="event" x="32" y="144" width="112" height="32">
+   <properties>
+    <property name="act1" value="translated_dialog fishing_time"/>
+    <property name="act2" value="translated_dialog_choice yes:no,fishing_time"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is has_item player,fishing_rod"/>
+   </properties>
+  </object>
+  <object id="279" name="Fishing Time" type="event" x="16" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter routea"/>
+    <property name="act2" value="set_variable fishing_time:null"/>
+    <property name="cond1" value="is variable_set fishing_time:yes"/>
    </properties>
   </object>
  </objectgroup>

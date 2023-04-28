@@ -924,6 +924,9 @@ msgid "combat_state_plague3"
 msgstr "{target} wiped it off."
 
 # Generic notifications
+msgid "fishing_time"
+msgstr "Do you want to fish?"
+
 msgid "empty_slot"
 msgstr "Empty Slot"
 

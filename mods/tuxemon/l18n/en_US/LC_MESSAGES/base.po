@@ -4227,6 +4227,13 @@ msgstr "Acolyte Corren"
 
 ## DIALOG TRANSLATIONS ##
 # general dialogs
+
+msgid "fishing_rod_failure"
+msgstr "The water ripples, but nothing bites."
+
+msgid "itsswimmingtime"
+msgstr "Do you want to swim?"
+
 msgid "haveagoodday"
 msgstr "Have a good day!"
 

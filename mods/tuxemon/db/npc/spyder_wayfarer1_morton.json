@@ -2,7 +2,7 @@
   "slug": "spyder_wayfarer1_morton",
   "template": [
     {
-      "sprite_name": "beachcomber",
+      "sprite_name": "beachcomber_fiery",
       "combat_front": "yellowbelt",
       "slug": "yellowbelt"
     }

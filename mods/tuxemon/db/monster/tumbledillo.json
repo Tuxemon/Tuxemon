@@ -1,6 +1,6 @@
 {
-    "slug": "tumblequill",
-    "category": "urchin",
+    "slug": "tumbledillo",
+    "category": "ermine",
     "ai": "RandomAI",
     "moveset": [
         {
@@ -38,32 +38,37 @@
         {
             "level_learned": 28,
             "technique": "mending"
-        }
-    ],
-    "evolutions": [
+        },
         {
-            "path": "standard",
-            "at_level": 30,
-            "monster_slug": "tumbledillo"
+            "level_learned": 32,
+            "technique": "webs_wind"
+        },
+        {
+            "level_learned": 36,
+            "technique": "touch"
+        },
+        {
+            "level_learned": 40,
+            "technique": "cloud_aether"
         }
     ],
+    "evolutions": [],
     "history": [
         {
-            "mon_slug": "tumbledillo",
-            "evo_stage": "stage1"
+            "mon_slug": "tumblequill",
+            "evo_stage": "basic"
         }
     ],
     "shape": "varmint",
-    "stage": "basic",
+    "stage": "stage1",
     "types": [
         "earth"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 220,
-    "height": 27,
-    "weight": 2,
+    "txmn_id": 231,
+    "height": 64,
+    "weight": 14,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15
 }
-

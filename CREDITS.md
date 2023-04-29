@@ -972,6 +972,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Miaow Milk"](https://wiki.tuxemon.org/File:The_king_6.png) [https://opengameart.org/content/icons-food CC0 in OGA]
 
+* ["Ox Stick"](https://wiki.tuxemon.org/index.php?title=File:Ox_stick.png) Lightly adapted by Sanglorian from the Mauai front sprite by Chairry-Art.
+
 * ["Peace Lily"](https://wiki.tuxemon.org/File:Peace_lily.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
 * ["Petrified Dung"](https://wiki.tuxemon.org/File:Coprolite.png)

@@ -48,6 +48,18 @@
             "at_level": 0,
             "monster_slug": "pyraminx",
             "item": "pyramidion"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "mauai",
+            "item": "fire_booster"
+        },
+        {
+            "path": "item",
+            "at_level": 0,
+            "monster_slug": "mauai",
+            "item": "pyramidion"
         }
     ],
     "history": [
@@ -57,6 +69,10 @@
         },
         {
             "mon_slug": "miaownolith",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "mauai",
             "evo_stage": "stage1"
         }
     ],

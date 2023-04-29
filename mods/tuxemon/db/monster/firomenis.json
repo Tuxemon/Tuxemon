@@ -1,6 +1,6 @@
 {
-    "slug": "merlicun",
-    "category": "dragon_worm",
+    "slug": "firomenis",
+    "category": "dragon_moth",
     "ai": "RandomAI",
     "moveset": [
         {
@@ -26,32 +26,45 @@
         {
             "level_learned": 16,
             "technique": "fire_claw"
-        }
-    ],
-    "evolutions": [
+        },
         {
-            "path": "standard",
-            "at_level": 20,
-            "monster_slug": "firomenis"
+            "level_learned": 24,
+            "technique": "thunderclap"
+        },
+        {
+            "level_learned": 28,
+            "technique": "sunburst"
+        },
+        {
+            "level_learned": 32,
+            "technique": "magma"
+        },
+        {
+            "level_learned": 36,
+            "technique": "arcane_eye"
+        },
+        {
+            "level_learned": 40,
+            "technique": "battery_acid"
         }
     ],
+    "evolutions": [],
     "history": [
         {
-            "mon_slug": "firomenis",
-            "evo_stage": "stage1"
+            "mon_slug": "merlicun",
+            "evo_stage": "basic"
         }
     ],
-    "shape": "varmint",
-    "stage": "basic",
+    "shape": "dragon",
+    "stage": "stage1",
     "types": [
         "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 209,
-    "height": 28,
-    "weight": 3,
+    "txmn_id": 245,
+    "height": 183,
+    "weight": 30,
     "catch_rate": 85.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15
 }
-

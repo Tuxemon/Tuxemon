@@ -1151,6 +1151,7 @@ class WorldState(state.State):
 
         self.current_map = map_data
         self.collision_map = map_data.collision_map
+        self.surfable_map = map_data.surfable_map
         self.collision_lines_map = map_data.collision_lines_map
         self.map_size = map_data.size
 

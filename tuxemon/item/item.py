@@ -233,7 +233,7 @@ class Item:
             result = result and event
         return result
 
-    def use(self, user: NPC, target: Monster) -> ItemEffectResult:
+    def use(self, user: NPC, target: Optional[Monster]) -> ItemEffectResult:
         """
         Applies this items's effects as defined in the "effect" column of
         the item database.

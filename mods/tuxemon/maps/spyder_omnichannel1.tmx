@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="31">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="54">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -12,38 +12,32 @@
  <tileset firstgid="529" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
  </tileset>
- <tileset firstgid="3121" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
-  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
- </tileset>
- <tileset firstgid="4881" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+ <tileset firstgid="3121" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
   <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
- <tileset firstgid="7851" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="11715" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ <tileset firstgid="6091" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAG7qMvAcJFEfBmo/j8ZmFEPom+ePAMDMgbZj8xHZ+PSB3IDulpkPi59tLSPGehHZDeA2LS0DzkMDKB2U2IfLF5hftiO5B8WHPEHU4tMdwLVdkH14ooHZPXY2ENJH7Z4x+YnZLGh5D/kdIbsB3xsSvwHACbf4NA=
+   eAH7K87A8JdEzCDBwFBKBq6A6ikH0sj4KxofWQ7EHtWHGl6w8EEPF1lJiDpKwhOkF1l/GFLcoNsHcwc2ug6oTw2qlxR9yGaN6iMu3pHDDB97KIUnANgJroE=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAHNUtsNAjEMC+wAf7DBHUwCA8ECPPZBjMFrD5gAHIglU7XlhPggkps2idM0qZnZsXnHJTmnflCesm7NFP3krD7fl8R538i/8lq8x3FCH1261sl+MZ76laW8zoZmc2AafezKW4CzBLbBa6LufZz9xl3Y/D0lWcHntW8khrba3Ev5fmW/DsxuwAFz4ExSzRnpnSP0ZAzcweNMUt2Tt5LL3JOMjzE5HnNr/xhPnePRp/ocf85tPrtaLcrTP+Ozq9VS4qn9017vy8U+AA6WN2g=
+   eAFjYGBg+CeOipdKoPLR5YFawEANqA4Zf0XjI8uB2LgASB85YLDqg4XXEqi/iHUnLLxg6mE0obDJ42dgyAdiWUmISmL1zQbqmQPErlB92kD3gtzOhhQfYVAxkDguEAxUA3J7KJI+mBi+eMdlHrXEBYB+EwTiZUh+gMUNjIbFEbKdtkA9dkAMCkeQ+7FhbGEMM1MXKRyQzQWxsemDmY8cfsToQ1cD4p9FshsUd/jcgqwf2V2guMPnFlz6kMUJsZHtw6YWANasPHw=
   </data>
  </layer>
  <layer id="5" name="Tile Layer 3" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAFjYMAOmJgZGJiBmFQgBNQjjEXfKUZSTYKof0Cmvm8E9LUwMTBMAWIYKEFiw8Sw0ROB6pYA8SQonkykPmxmjYoNzRAYbGl5aIYiflcDABAMCgU=
+   eAHNkjtuAjEQhicsSEC6UHIUHneAcAcCXQScACREUiXQIppchSYcIIkUIBwAkHi2+SxsyVq87BYUjPTJ43/mH1uWRUS+7kS+4QcaoCLmiXjwy34KM5jr2qlDZMl+BWvo6doDngxs2G9hB3v4BBNeTCQOCRhZuqon0VKQhnv489XNjLD1EOLrMHsAJtpWbjTX+kbfB7xr+hF9rlm3oiVC3ironlmfz55j50F+o9tz7NzUr7HmGJKHAhRB/ceJ7/7IZ1FCKcMjVED9x0UEX5XeJ6hBHdR/PEbw0XrVeHac2eCElqbpOG0cF+k6fD16XzUvDp+Shg5fQOtF+R9TICXb
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collision">
-  <object id="1" type="collision" x="0" y="0" width="16" height="336"/>
-  <object id="2" type="collision" x="16" y="0" width="208" height="16"/>
-  <object id="4" type="collision" x="208" y="16" width="16" height="320"/>
-  <object id="5" type="collision" x="80" y="16" width="16" height="160"/>
+  <object id="1" type="collision" x="0" y="32" width="16" height="304"/>
+  <object id="2" type="collision" x="0" y="0" width="224" height="32"/>
+  <object id="4" type="collision" x="208" y="32" width="16" height="304"/>
+  <object id="5" type="collision" x="80" y="32" width="16" height="144"/>
   <object id="6" type="collision" x="96" y="144" width="32" height="32"/>
   <object id="7" type="collision" x="160" y="144" width="48" height="32"/>
   <object id="8" type="collision" x="16" y="96" width="48" height="32"/>
@@ -53,13 +47,15 @@
   <object id="12" type="collision" x="160" y="240" width="16" height="64"/>
   <object id="13" type="collision" x="144" y="272" width="16" height="32"/>
   <object id="14" type="collision" x="96" y="272" width="16" height="64"/>
-  <object id="17" type="collision" x="16" y="16" width="192" height="16"/>
-  <object id="20" type="collision-line" x="0" y="336">
-   <polyline points="0,0 224,0 0,0"/>
-  </object>
   <object id="26" type="collision" x="96" y="80" width="80" height="16"/>
   <object id="27" type="collision" x="96" y="64" width="16" height="16"/>
   <object id="28" type="collision" x="160" y="64" width="16" height="16"/>
+  <object id="34" type="collision" x="16" y="288" width="64" height="16"/>
+  <object id="50" type="collision" x="112" y="272" width="32" height="32">
+   <properties>
+    <property name="key" value="screen"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="18" name="Teleport to Omnichannel 3" type="event" x="16" y="144" width="16" height="16">
@@ -118,6 +114,108 @@
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="32" name="Spot Enforcer" type="event" x="16" y="192" width="32" height="16">
+   <properties>
+    <property name="act01" value="player_stop"/>
+    <property name="act02" value="lock_controls"/>
+    <property name="act03" value="create_npc spyder_omnichannel_enforcer,8,7"/>
+    <property name="act04" value="pathfind spyder_omnichannel_enforcer,3,12"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="npc_face player,right"/>
+    <property name="act07" value="translated_dialog spyder_cottontown_enforcer"/>
+    <property name="act08" value="npc_face player,down"/>
+    <property name="act09" value="pathfind player,2,13"/>
+    <property name="act10" value="remove_npc spyder_omnichannel_enforcer"/>
+    <property name="cond1" value="not variable_set hospitalcure:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="33" name="Battle Enforcer" type="event" x="16" y="160" width="32" height="16">
+   <properties>
+    <property name="act01" value="player_stop"/>
+    <property name="act02" value="lock_controls"/>
+    <property name="act03" value="create_npc spyder_omnichannel_enforcer,4,3"/>
+    <property name="act04" value="pathfind spyder_omnichannel_enforcer,3,10"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="npc_face player,right"/>
+    <property name="act10" value="translated_dialog spyder_cottontown_enforcer1"/>
+    <property name="act20" value="add_monster rabbitosaur,35,spyder_omnichannel_enforcer,27,10"/>
+    <property name="act30" value="start_battle spyder_omnichannel_enforcer"/>
+    <property name="act50" value="translated_dialog spyder_cottontown_enforcer2"/>
+    <property name="act55" value="pathfind spyder_omnichannel_enforcer,2,12"/>
+    <property name="act60" value="remove_npc spyder_omnichannel_enforcer"/>
+    <property name="act70" value="set_variable enforceromni:yes"/>
+    <property name="cond1" value="not variable_set enforceromni:yes"/>
+    <property name="cond3" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="39" name="Create Maniac" type="event" x="32" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_maniac,2,2"/>
+    <property name="cond1" value="not npc_exists spyder_maniac"/>
+   </properties>
+  </object>
+  <object id="40" name="Talk Maniac" type="event" x="32" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_omnichannel_maniac"/>
+    <property name="behav1" value="talk spyder_maniac"/>
+   </properties>
+  </object>
+  <object id="41" name="Create Nurse" type="event" x="32" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_nurse,2,17"/>
+    <property name="cond1" value="not npc_exists spyder_nurse"/>
+   </properties>
+  </object>
+  <object id="42" name="Talk Nurse" type="event" x="32" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_omnichannel_nurse"/>
+    <property name="act2" value="add_item spyder_pass"/>
+    <property name="act3" value="set_variable nurse_spyder:yes"/>
+    <property name="behav1" value="talk spyder_nurse"/>
+    <property name="cond1" value="not variable_set nurse_spyder:yes"/>
+   </properties>
+  </object>
+  <object id="45" name="Create Spyder Rookie" type="event" x="192" y="175.75" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_spyderrookie,12,11"/>
+    <property name="act2" value="npc_face spyder_spyderrookie,left"/>
+    <property name="cond1" value="not npc_exists spyder_spyderrookie"/>
+   </properties>
+  </object>
+  <object id="46" name="Talk Spyder Rookie" type="event" x="192" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_omnichannel1_spyderrookie"/>
+    <property name="behav1" value="talk spyder_spyderrookie"/>
+   </properties>
+  </object>
+  <object id="48" name="Threats" type="event" x="0" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter omnichannel"/>
+    <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
+   </properties>
+  </object>
+  <object id="49" name="Create Screen" type="event" x="112" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_screen,7,18"/>
+    <property name="cond1" value="not npc_exists spyder_screen"/>
+    <property name="cond2" value="not variable_set omnichannel1wall:yes"/>
+   </properties>
+  </object>
+  <object id="51" name="Remove Screen" type="event" x="144" y="271.333" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision screen"/>
+    <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
+   </properties>
+  </object>
+  <object id="53" name="Pass1" type="event" x="144" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_omnichannel1_screen"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set omnichannel1wall:yes"/>
    </properties>
   </object>
  </objectgroup>

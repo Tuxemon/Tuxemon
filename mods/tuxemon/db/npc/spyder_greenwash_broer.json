@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_greenwash_broer",
+  "template": [
+    {
+      "sprite_name": "nurse",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
+  ]
+}

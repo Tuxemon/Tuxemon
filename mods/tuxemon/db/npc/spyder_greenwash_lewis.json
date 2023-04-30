@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_greenwash_lewis",
+  "template": [
+    {
+      "sprite_name": "firefighter",
+      "combat_front": "firefighter",
+      "slug": "firefighter"
+    }
+  ]
+}

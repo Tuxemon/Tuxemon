@@ -43,7 +43,7 @@
    eJxjYBgFo2AUDEWgzkicmBojRFwDixwykBFiYJATQvCV+RkYVPgJu2OKECrfGsi3RRJzAprhTIQ5owATAAAGMANx
   </data>
  </layer>
- <objectgroup id="5" name="Events">
+ <objectgroup color="#ffff00" id="5" name="Events">
   <object id="1" name="Teleport to Nimrod Middle" type="event" x="0" y="240" width="32" height="32">
    <properties>
     <property name="act1" value="transition_teleport spyder_nimrod_middle.tmx,1,19,0.3"/>
@@ -209,7 +209,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="6" name="Collisions">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="2" type="collision" x="0" y="0" width="288" height="32"/>
   <object id="3" type="collision" x="224" y="48" width="16" height="160"/>
   <object id="4" type="collision" x="272" y="208" width="16" height="32"/>

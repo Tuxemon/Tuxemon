@@ -22,6 +22,7 @@
     {"slug": "enforcer_agent"},
     {"slug": "enforcer_boss"},
     {"slug": "enforcer_rookie"},
+    {"slug": "farmer"},
     {"slug": "fashionista"},
     {"slug": "faun"},
     {"slug": "firenymph"},
@@ -38,7 +39,6 @@
     {"slug": "knightlord"},
     {"slug": "mage"},
     {"slug": "magician"},
-    {"slug": "maninthemoon"},
     {"slug": "maniac"},
     {"slug": "master"},
     {"slug": "mermaid"},
@@ -81,5 +81,6 @@
     {"slug": "woodnymph"},
     {"slug": "xerogrunt"},
     {"slug": "yaangyiin"},
-    {"slug": "yellowbelt"}
+    {"slug": "yellowbelt"},
+    {"slug": "interactive_obj"}
 ]

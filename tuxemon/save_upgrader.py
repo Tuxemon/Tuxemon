@@ -6,7 +6,7 @@ import random
 from typing import TYPE_CHECKING, Any, Dict, Mapping
 
 from tuxemon import formula
-from tuxemon.db import SeenStatus
+from tuxemon.db import PlagueType, SeenStatus
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
@@ -60,6 +60,8 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
             save_data["game_variables"]["billie_choice"] = random.choice(
                 starter
             )
+    if "cathedral_ads" not in save_data["game_variables"]:
+        save_data["game_variables"]["cathedral_ads"] = 0
     if "steps" not in save_data["game_variables"]:
         save_data["game_variables"]["steps"] = 0
     if "gender_choice" not in save_data["game_variables"]:
@@ -74,6 +76,7 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     save_data["contacts"] = save_data.get("contacts", {})
     save_data["items"] = save_data.get("items", [])
     save_data["battles"] = save_data.get("battles", [])
+    save_data["plague"] = save_data.get("plague", PlagueType.healthy)
 
     # upgrade data moves
     for ele1 in save_data["monsters"]:

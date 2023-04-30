@@ -13,6 +13,9 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Generator, Sequence
 
+from tuxemon.db import PlagueType
+from tuxemon.locale import T
+
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
@@ -48,21 +51,21 @@ def check_battle_legal(player: Player) -> bool:
             return True
 
 
-def check_status(monster: Monster, status_name: str) -> bool:
+def has_status(monster: Monster, status_name: str) -> bool:
     """
     Checks to see if the monster has a specific status/condition.
     """
     return any(t for t in monster.status if t.slug == status_name)
 
 
-def check_effect(technique: Technique, effect_name: str) -> bool:
+def has_effect(technique: Technique, effect_name: str) -> bool:
     """
     Checks to see if the technique has a specific effect (eg ram -> damage).
     """
     return any(t for t in technique.effects if t.name == effect_name)
 
 
-def check_effect_give(technique: Technique, status: str) -> bool:
+def has_effect_give(technique: Technique, status: str) -> bool:
     """
     Checks to see if the give effect has the corresponding status.
     """
@@ -76,21 +79,21 @@ def check_effect_give(technique: Technique, status: str) -> bool:
     return find
 
 
-def check_status_connected(monster: Monster) -> bool:
+def has_status_bond(monster: Monster) -> bool:
     """
     Statuses connected are the ones where an effect is present only
     if both monsters are alive (lifeleech, grabbed).
     """
-    if check_status(monster, "status_grabbed"):
+    if has_status(monster, "status_grabbed"):
         return True
-    elif check_status(monster, "status_lifeleech"):
+    elif has_status(monster, "status_lifeleech"):
         return True
     else:
         return False
 
 
 def fainted(monster: Monster) -> bool:
-    return check_status(monster, "status_faint") or monster.current_hp <= 0
+    return has_status(monster, "status_faint") or monster.current_hp <= 0
 
 
 def get_awake_monsters(player: NPC) -> Generator[Monster, None, None]:
@@ -115,3 +118,36 @@ def fainted_party(party: Sequence[Monster]) -> bool:
 
 def defeated(player: NPC) -> bool:
     return fainted_party(player.monsters)
+
+
+def scope(monster: Monster) -> str:
+    message = T.format(
+        "combat_scope",
+        {
+            "AR": monster.armour,
+            "DE": monster.dodge,
+            "ME": monster.melee,
+            "RD": monster.ranged,
+            "SD": monster.speed,
+        },
+    )
+    return message
+
+
+def spyderbite(monster: Monster) -> str:
+    message: str
+    if monster.plague == PlagueType.infected:
+        message = T.format(
+            "combat_state_plague3",
+            {
+                "target": monster.name.upper(),
+            },
+        )
+    else:
+        message = T.format(
+            "combat_state_plague0",
+            {
+                "target": monster.name.upper(),
+            },
+        )
+    return message

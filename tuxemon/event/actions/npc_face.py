@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import final
+from typing import cast, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map import dirs2, get_direction
+from tuxemon.map import Direction, dirs2, get_direction
 from tuxemon.npc import NPC
 
 
@@ -47,5 +47,5 @@ class NpcFaceAction(EventAction):
                 assert maybe_target
                 target = maybe_target
             direction = get_direction(npc.tile_pos, target.tile_pos)
-
-        npc.facing = direction
+        # Pending https://github.com/python/mypy/issues/9718
+        npc.facing = cast(Direction, direction)

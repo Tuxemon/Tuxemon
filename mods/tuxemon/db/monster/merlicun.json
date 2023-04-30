@@ -26,34 +26,21 @@
         {
             "level_learned": 16,
             "technique": "fire_claw"
-        },
-        {
-            "level_learned": 20,
-            "technique": "berserk"
-        },
-        {
-            "level_learned": 24,
-            "technique": "thunderclap"
-        },
-        {
-            "level_learned": 28,
-            "technique": "sunburst"
-        },
-        {
-            "level_learned": 32,
-            "technique": "magma"
-        },
-        {
-            "level_learned": 36,
-            "technique": "arcane_eye"
-        },
-        {
-            "level_learned": 40,
-            "technique": "battery_acid"
         }
     ],
-    "evolutions": [],
-    "history": [],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 20,
+            "monster_slug": "firomenis"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "firomenis",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "varmint",
     "stage": "basic",
     "types": [

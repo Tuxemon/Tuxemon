@@ -3799,6 +3799,34 @@
    <frame tileid="1782" duration="250"/>
   </animation>
  </tile>
+ <tile id="1892">
+  <animation>
+   <frame tileid="1859" duration="150"/>
+   <frame tileid="1893" duration="150"/>
+   <frame tileid="1894" duration="150"/>
+  </animation>
+ </tile>
+ <tile id="2003">
+  <animation>
+   <frame tileid="1970" duration="150"/>
+   <frame tileid="2004" duration="150"/>
+   <frame tileid="2005" duration="150"/>
+  </animation>
+ </tile>
+ <tile id="2114">
+  <animation>
+   <frame tileid="2081" duration="150"/>
+   <frame tileid="2115" duration="150"/>
+   <frame tileid="2116" duration="150"/>
+  </animation>
+ </tile>
+ <tile id="2225">
+  <animation>
+   <frame tileid="2192" duration="150"/>
+   <frame tileid="2226" duration="150"/>
+   <frame tileid="2227" duration="150"/>
+  </animation>
+ </tile>
  <wangsets>
   <wangset name="Rubberduck" type="corner" tile="-1"/>
  </wangsets>

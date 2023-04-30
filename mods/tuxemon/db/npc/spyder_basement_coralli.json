@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_basement_coralli",
+  "template": [
+    {
+      "sprite_name": "barmaid_blonde",
+      "combat_front": "dancer",
+      "slug": "dancer"
+    }
+  ]
+}

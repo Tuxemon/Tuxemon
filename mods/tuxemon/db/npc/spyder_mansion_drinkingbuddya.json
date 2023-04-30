@@ -3,8 +3,8 @@
   "template": [
     {
       "sprite_name": "rogue",
-      "combat_front": "enforcer_rookie",
-      "slug": "enforcer_rookie"
+      "combat_front": "rogue",
+      "slug": "rogue"
     }
   ]
 }

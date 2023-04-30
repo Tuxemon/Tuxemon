@@ -114,9 +114,15 @@ def simple_damage_calculate(
     return damage, mult
 
 
-def simple_poison(
-    target: Monster,
-) -> int:
+def damage_panjandrum(target: Monster) -> int:
+    """
+    The target takes damage equal to 1/4 of their maximum HP.
+    """
+    damage = target.hp * 0.25
+    return int(damage)
+
+
+def simple_poison(target: Monster) -> int:
     """
     Simple poison based on target's full hp.
 
@@ -132,9 +138,7 @@ def simple_poison(
     return damage
 
 
-def simple_recover(
-    target: Monster,
-) -> int:
+def simple_recover(target: Monster) -> int:
     """
     Simple recover based on target's full hp.
 
@@ -150,10 +154,7 @@ def simple_recover(
     return heal
 
 
-def simple_lifeleech(
-    user: Monster,
-    target: Monster,
-) -> int:
+def simple_lifeleech(user: Monster, target: Monster) -> int:
     """
     Simple lifeleech based on a few factors.
 

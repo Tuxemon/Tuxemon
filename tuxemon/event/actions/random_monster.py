@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import Optional, Union, final
 
 from tuxemon import formula, monster
-from tuxemon.db import SeenStatus, db
+from tuxemon.db import EvolutionStage, MonsterShape, SeenStatus, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
@@ -22,14 +22,16 @@ class RandomMonsterAction(EventAction):
     Script usage:
         .. code-block::
 
-            random_monster <monster_level>[,trainer_slug][,exp_mod][,money_mod]
+            random_monster <level>[,npc_slug][,exp][,mon][,shape][,evo]
 
     Script parameters:
-        monster_level: Level of the added monster.
-        trainer_slug: Slug of the trainer that will receive the monster. It
+        level: Level of the added monster.
+        npc_slug: Slug of the trainer that will receive the monster. It
             defaults to the current player.
-        exp_mod: Experience modifier
-        money_mod: Money modifier
+        exp: Experience modifier
+        mon: Money modifier
+        shape: Shape (eg. varmint, brute, etc.)
+        evo: Stage (eg. basic, stage1, etc.)
 
     """
 
@@ -38,6 +40,8 @@ class RandomMonsterAction(EventAction):
     trainer_slug: Union[str, None] = None
     exp: Union[int, None] = None
     money: Union[int, None] = None
+    shape: Union[str, None] = None
+    evo: Union[str, None] = None
 
     def start(self) -> None:
         trainer: Optional[NPC]
@@ -50,13 +54,49 @@ class RandomMonsterAction(EventAction):
             self.trainer_slug or "player"
         )
 
+        # check if shape is valid
+        if self.shape:
+            shapes = list(MonsterShape)
+            if self.shape not in shapes:
+                raise ValueError("{self.shape} isn't valid.")
+        # check if evolution stage is valid
+        if self.evo:
+            evos = list(EvolutionStage)
+            if self.evo not in evos:
+                raise ValueError("{self.evo} isn't valid.")
+
         # list is required as choice expects a sequence
         filters = []
         monsters = list(db.database["monster"])
         for mon in monsters:
             results = db.lookup(mon, table="monster")
             if results.txmn_id > 0:
-                filters.append(results.slug)
+                if not self.shape and not self.evo:
+                    filters.append(results.slug)
+                if self.shape and not self.evo:
+                    if results.shape == self.shape:
+                        filters.append(results.slug)
+                if self.evo and not self.shape:
+                    if results.stage == self.evo:
+                        filters.append(results.slug)
+                if self.evo and self.shape:
+                    if (
+                        results.stage == self.evo
+                        and results.shape == self.shape
+                    ):
+                        filters.append(results.slug)
+
+        if not filters:
+            if self.shape and not self.evo:
+                raise ValueError("There are no monsters shape: {self.shape}")
+            if self.evo and not self.shape:
+                raise ValueError("There are no monsters stage: {self.evo}")
+            if self.evo and self.shape:
+                raise ValueError(
+                    "There are no monsters {self.evo} ({self.shape}).\n"
+                    "Open an issue on Github, this will help us to create\n"
+                    "new monsters with above-mentioned characteristics."
+                )
 
         monster_slug = rd.choice(filters)
 

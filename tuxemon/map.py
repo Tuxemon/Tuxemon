@@ -42,6 +42,7 @@ RegionPropertiesOptional = TypedDict(
     "RegionPropertiesOptional",
     {
         "continue": Direction,
+        "key": str,
     },
     total=False,
 )
@@ -317,6 +318,9 @@ def extract_region_properties(
         elif "continue" in key:
             new_props["continue"] = properties[key]
             has_movement_modifier = True
+        elif "key" in key:
+            new_props["key"] = properties[key]
+            has_movement_modifier = True
     # if there is an exit, but no explicit enter, then
     # allow entering from all sides except the exit side
     if exits and not enters:
@@ -374,6 +378,7 @@ class TuxemonMap:
         events: Sequence[EventObject],
         inits: Sequence[EventObject],
         interacts: Sequence[EventObject],
+        surfable_map: Sequence[Tuple[int, int]],
         collision_map: Mapping[Tuple[int, int], Optional[RegionProperties]],
         collisions_lines_map: Set[Tuple[Tuple[int, int], Direction]],
         tiled_map: TiledMap,
@@ -398,6 +403,7 @@ class TuxemonMap:
             events: List of map events.
             inits: List of events to be loaded once, when map is entered.
             interacts: List of intractable spaces.
+            surfable_map: Surfable map.
             collision_map: Collision map.
             collisions_lines_map: Collision map of lines.
             tiled_map: Original tiled map.
@@ -407,6 +413,7 @@ class TuxemonMap:
         """
         self.interacts = interacts
         self.collision_map = collision_map
+        self.surfable_map = surfable_map
         self.collision_lines_map = collisions_lines_map
         self.size = tiled_map.width, tiled_map.height
         self.inits = inits

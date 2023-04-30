@@ -36,7 +36,7 @@
    eJxjYICAVnEGosA9cQjGpX4TkeZYSUAwLvUPiDSHkHobCSQ7BQmbA1OPT20GHjl0ffjU2pAgl4XGL9bH1IMuho2P7p5JQLFwJHUl+hAxdDUWULFwqDw+f5ECRs2hjzlTqWTOUADhjAwMEYyk6alTZmCoV0YVywWakUeiOauBZqxRJqyOWAAA9Dca3A==
   </data>
  </layer>
- <objectgroup id="4" name="Events">
+ <objectgroup color="#ffff00" id="4" name="Events">
   <object id="1" name="Teleport to Flower City" type="event" x="128" y="304" width="48" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,19,10,0.3"/>
@@ -205,7 +205,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="5" name="Collisions">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="3" type="collision" x="0" y="0" width="288" height="32"/>
   <object id="6" type="collision" x="16" y="208" width="96" height="32"/>
   <object id="7" type="collision" x="96" y="240" width="16" height="64"/>

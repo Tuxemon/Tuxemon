@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_greenwash_hunt",
+  "template": [
+    {
+      "sprite_name": "scientist",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
+  ]
+}

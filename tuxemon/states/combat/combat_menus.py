@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import random
 from collections import defaultdict
 from functools import partial
 from typing import TYPE_CHECKING, Callable, DefaultDict, Generator, List, Union
@@ -10,7 +11,7 @@ from typing import TYPE_CHECKING, Callable, DefaultDict, Generator, List, Union
 import pygame
 
 from tuxemon import combat, formula, graphics, tools
-from tuxemon.db import ItemBattleMenu
+from tuxemon.db import ItemBattleMenu, PlagueType
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -330,7 +331,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 return
 
             if (
-                combat.check_effect(technique, "damage")
+                combat.has_effect(technique, "damage")
                 and target == self.monster
             ):
                 params = {"name": self.monster.name}
@@ -340,10 +341,26 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             else:
                 combat_state = self.client.get_state_by_name(CombatState)
                 # null action for dozing
-                if combat.check_status(self.monster, "status_dozing"):
+                if combat.has_status(self.monster, "status_dozing"):
                     status = Technique()
                     status.load("status_dozing")
                     technique = status
+                # null action for plague - spyder_bite
+                if self.monster.plague == PlagueType.infected:
+                    value = random.randint(1, 8)
+                    if value == 1:
+                        status = Technique()
+                        status.load("status_spyderbite")
+                        technique = status
+                        # infect mechanism
+                        if (
+                            combat_state.players[1].plague
+                            == PlagueType.infected
+                            or combat_state.players[1].plague
+                            == PlagueType.healthy
+                        ):
+                            target.plague = PlagueType.infected
+                # continue combat action
                 combat_state.enqueue_action(self.monster, technique, target)
                 # check status response
                 if combat_state.status_response_technique(

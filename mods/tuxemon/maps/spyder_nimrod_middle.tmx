@@ -38,7 +38,7 @@
    eJxjYBgF9AbLmLDT+NQMd/COTIyudxSMguEEAFWiExc=
   </data>
  </layer>
- <objectgroup id="6" name="Collisions">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="3" type="collision" x="0" y="256" width="288" height="32"/>
   <object id="4" type="collision" x="32" y="112" width="224" height="16"/>
   <object id="5" type="collision" x="0" y="0" width="288" height="32"/>
@@ -59,7 +59,7 @@
   <object id="34" type="collision" x="192" y="96" width="16" height="16"/>
   <object id="35" type="collision" x="224" y="96" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="4" name="Events">
+ <objectgroup color="#ffff00" id="4" name="Events">
   <object id="1" name="Teleport to Nimrod Bottom" type="event" x="256" y="288" width="32" height="32">
    <properties>
     <property name="act1" value="transition_teleport spyder_nimrod_bottom.tmx,16,19,0.3"/>
@@ -148,7 +148,7 @@
   <object id="21" name="Talk Chrome Robo" type="event" x="128" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_chromerobo1"/>
-    <property name="act2" value="add_monster chrome-robo,20,spyder_nimrod_chromerobo,27,10"/>
+    <property name="act2" value="add_monster chrome_robo,20,spyder_nimrod_chromerobo,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_chromerobo"/>
     <property name="act4" value="translated_dialog spyder_nimrod_chromerobo2"/>
     <property name="act6" value="set_variable nimrodchromerobo_middle:yes"/>
@@ -185,7 +185,7 @@
   <object id="27" name="Talk Argon" type="event" x="192" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_argon1"/>
-    <property name="act2" value="add_monster chrome-robo,25,spyder_nimrod_argon,27,10"/>
+    <property name="act2" value="add_monster chrome_robo,25,spyder_nimrod_argon,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_argon"/>
     <property name="act4" value="translated_dialog spyder_nimrod_argon2"/>
     <property name="act6" value="set_variable nimrodargon:yes"/>
@@ -223,7 +223,7 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_nimrod_argon"/>
     <property name="act1" value="translated_dialog spyder_nimrod_argon1"/>
-    <property name="act2" value="add_monster chrome-robo,25,spyder_nimrod_argon,27,10"/>
+    <property name="act2" value="add_monster chrome_robo,25,spyder_nimrod_argon,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_argon"/>
     <property name="act4" value="translated_dialog spyder_nimrod_argon2"/>
     <property name="act6" value="set_variable nimrodargon:yes"/>
@@ -261,7 +261,7 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_nimrod_chromerobo"/>
     <property name="act1" value="translated_dialog spyder_nimrod_chromerobo1"/>
-    <property name="act2" value="add_monster chrome-robo,20,spyder_nimrod_chromerobo,27,10"/>
+    <property name="act2" value="add_monster chrome_robo,20,spyder_nimrod_chromerobo,27,10"/>
     <property name="act3" value="start_battle spyder_nimrod_chromerobo"/>
     <property name="act4" value="translated_dialog spyder_nimrod_chromerobo2"/>
     <property name="act6" value="set_variable nimrodchromerobo_middle:yes"/>

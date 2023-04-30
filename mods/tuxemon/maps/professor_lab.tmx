@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="125">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="131">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -23,26 +23,26 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="13" height="18">
   <data encoding="base64" compression="zlib">
-   eAFjYKAPiFViYIgH4ttyDAx3gVhZnoFBBYjRgTVQzgaIQWA2UP1cIC4FqisHYicgdkbTsxGoNgqIo6F6IDoJkzuB5lIC9NHcQYlZ+PRaEGFPDdAvtUBcR4KfQGE7B4hB4UsuAMXLb2C4wzAojpABIXlktaSwjRgZGIyRsAmQTQgkANUkIuEkIvT0AdX0I+EJROgh5A6Q/AtFYJgBw/0PEP9FCv+LSOGHLA9SDwBIACdL
+   eAFjYKAPiFViYIgH4ttyDAx3gVhZnoFBBYjRgTVQzgaIQWA2UP1cIC4FqisHYicgdkbTsxGoNgqIo6F6IDoJkzuB5lIC9NHcQYlZyHpB4RQHxKCwAgELIuypAaqtBeI6qB6ITvwkKGznADEofMkFoHj5DQx3GAbFETIgJI+slhS2ESMDgzESNgGyCYEEoJpEJJxEhJ4+oJp+JDyBCD2E3AGSf6EIDDNguP8B4r9I4X8RKfyQ5UHqAWW/KMs=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="13" height="18">
   <data encoding="base64" compression="zlib">
-   eAFjYKAPcFVgYHADYlLADiVSVA8PtbFAP8cBcTwJfs9SYGCA4eERCqO+QA8BAFO9BMQ=
+   eAFjYKAPcFVgYHADYlLADiVSVI+qHQ2B4RsCAC3xAaY=
   </data>
  </layer>
  <layer id="4" name="Above player" width="13" height="18">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFAvL0CQNJIuyJVWJgiAPieCCmJ7gtx8BwBwnfBbKRASF5ZLUjiX1SkTTfkqoeZjoAoCcNgA==
+   eAFjYBgFAvL0CQNJOtlDjm9uyzEw3EHCd4FsZEBIHlntSGKfVCTNt6Sqh5kOAIJoDAA=
   </data>
  </layer>
  <layer id="7" name="Above Player 2" width="13" height="18">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgykEvBUYGGB4MLlr1C0DGwIAnnoBQg==
+   eAFjYBgFoyEwGgKDPQQAA6gAAQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">
-  <object id="43" type="collision" x="144" y="128" width="48" height="16"/>
+  <object id="43" type="collision" x="144" y="112" width="48" height="32"/>
   <object id="56" type="collision" x="144" y="48" width="48" height="16"/>
   <object id="85" type="collision" x="0" y="0" width="208" height="48"/>
   <object id="86" type="collision" x="32" y="48" width="64" height="16"/>
@@ -69,8 +69,7 @@
     <property name="act3" value="translated_dialog chooseyerfateRockitten"/>
     <property name="act4" value="translated_dialog_choice yes:no,rockittenchoice"/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
-    <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is player_facing down"/>
+    <property name="cond2" value="is player_facing_tile"/>
     <property name="cond4" value="is button_pressed K_RETURN"/>
     <property name="cond5" value="is variable_set gettuxemon:now"/>
     <property name="cond6" value="not variable_set havetuxemon:yes"/>
@@ -83,8 +82,7 @@
     <property name="act3" value="translated_dialog chooseyerfateCardiling"/>
     <property name="act4" value="translated_dialog_choice yes:no,cardilingchoice"/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
-    <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is player_facing down"/>
+    <property name="cond2" value="is player_facing_tile"/>
     <property name="cond4" value="is button_pressed K_RETURN"/>
     <property name="cond5" value="is variable_set gettuxemon:now"/>
     <property name="cond6" value="not variable_set havetuxemon:yes"/>
@@ -97,8 +95,7 @@
     <property name="act3" value="translated_dialog chooseyerfateTweesher"/>
     <property name="act4" value="translated_dialog_choice yes:no,tweesherchoice"/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
-    <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is player_facing down"/>
+    <property name="cond2" value="is player_facing_tile"/>
     <property name="cond4" value="is button_pressed K_RETURN"/>
     <property name="cond5" value="is variable_set gettuxemon:now"/>
     <property name="cond6" value="not variable_set havetuxemon:yes"/>
@@ -214,16 +211,21 @@
     <property name="cond2" value="not variable_set letmechoose:pls"/>
    </properties>
   </object>
-  <object id="107" name="rockittenYES" type="event" x="144" y="112" width="16" height="16">
+  <object id="107" name="rockittenYES" type="event" x="32" y="16" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog choseRockitten"/>
     <property name="act11" value="play_sound sound_confirm"/>
     <property name="act12" value="lock_controls"/>
     <property name="act20" value="translated_dialog rockitten!"/>
     <property name="act30" value="add_monster rockitten,5"/>
+    <property name="act31" value="remove_npc tuxeball_green"/>
+    <property name="act32" value="set_variable rockittenball:yes"/>
     <property name="act40" value="pathfind professor,10,9"/>
     <property name="act41" value="npc_face professor,up"/>
     <property name="act42" value="add_monster cardiling,3,professor,27,40"/>
+    <property name="act43" value="remove_npc tuxeball_red"/>
+    <property name="act44" value="set_variable cardilingball:yes"/>
+    <property name="act45" value="set_variable prof_choice:cardiling"/>
     <property name="act50" value="translated_dialog choseRockitten2"/>
     <property name="act60" value="wait 0.8"/>
     <property name="act70" value="pathfind professor,6,7"/>
@@ -238,7 +240,7 @@
     <property name="cond1" value="is variable_set rockittenchoice:yes"/>
    </properties>
   </object>
-  <object id="108" name="rockittenNO" type="event" x="144" y="112" width="16" height="16">
+  <object id="108" name="rockittenNO" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog nochoiceTuxemon"/>
     <property name="act2" value="set_variable rockittenchoice:empty"/>
@@ -246,7 +248,7 @@
     <property name="cond1" value="is variable_set rockittenchoice:no"/>
    </properties>
   </object>
-  <object id="109" name="cardilingNO" type="event" x="160" y="112" width="16" height="16">
+  <object id="109" name="cardilingNO" type="event" x="64" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog nochoiceTuxemon"/>
     <property name="act2" value="set_variable cardilingchoice:empty"/>
@@ -254,16 +256,21 @@
     <property name="cond1" value="is variable_set cardilingchoice:no"/>
    </properties>
   </object>
-  <object id="110" name="cardilingYES" type="event" x="160" y="112" width="16" height="16">
+  <object id="110" name="cardilingYES" type="event" x="64" y="16" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog choseCardiling"/>
     <property name="act11" value="play_sound sound_confirm"/>
     <property name="act12" value="lock_controls"/>
     <property name="act20" value="translated_dialog cardiling!"/>
     <property name="act30" value="add_monster cardiling,5"/>
+    <property name="act31" value="remove_npc tuxeball_red"/>
+    <property name="act32" value="set_variable cardilingball:yes"/>
     <property name="act40" value="pathfind professor,11,9"/>
     <property name="act41" value="npc_face professor,up"/>
     <property name="act42" value="add_monster tweesher,3,professor,27,40"/>
+    <property name="act43" value="remove_npc tuxeball_yellow"/>
+    <property name="act44" value="set_variable tweesherball:yes"/>
+    <property name="act45" value="set_variable prof_choice:tweesher"/>
     <property name="act50" value="translated_dialog choseCardiling2"/>
     <property name="act60" value="wait 0.8"/>
     <property name="act70" value="pathfind professor,6,7"/>
@@ -278,16 +285,21 @@
     <property name="cond1" value="is variable_set cardilingchoice:yes"/>
    </properties>
   </object>
-  <object id="111" name="tweesherYES" type="event" x="176" y="112" width="16" height="16">
+  <object id="111" name="tweesherYES" type="event" x="48" y="16" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog choseTweesher"/>
     <property name="act11" value="play_sound sound_confirm"/>
     <property name="act12" value="lock_controls"/>
     <property name="act20" value="translated_dialog tweesher!"/>
     <property name="act30" value="add_monster tweesher,5"/>
+    <property name="act31" value="remove_npc tuxeball_yellow"/>
+    <property name="act32" value="set_variable tweesherball:yes"/>
     <property name="act40" value="pathfind professor,9,9"/>
     <property name="act50" value="npc_face professor,up"/>
     <property name="act51" value="add_monster rockitten,3,professor,27,40"/>
+    <property name="act53" value="remove_npc tuxeball_green"/>
+    <property name="act54" value="set_variable rockittenball:yes"/>
+    <property name="act55" value="set_variable prof_choice:rockitten"/>
     <property name="act60" value="translated_dialog choseTweesher2"/>
     <property name="act61" value="wait 0.8"/>
     <property name="act70" value="pathfind professor,6,7"/>
@@ -302,7 +314,7 @@
     <property name="cond1" value="is variable_set tweesherchoice:yes"/>
    </properties>
   </object>
-  <object id="112" name="tweesherNO" type="event" x="176" y="112" width="16" height="16">
+  <object id="112" name="tweesherNO" type="event" x="48" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog nochoiceTuxemon"/>
     <property name="act2" value="set_variable tweesherchoice:empty"/>
@@ -310,7 +322,7 @@
     <property name="cond1" value="is variable_set tweesherchoice:no"/>
    </properties>
   </object>
-  <object id="114" name="start first battle" type="event" x="192" y="48" width="16" height="16">
+  <object id="114" name="start first battle" type="event" x="112" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="start_battle professor"/>
     <property name="act2" value="set_variable finishedbattle:yes"/>
@@ -319,7 +331,7 @@
     <property name="cond3" value="not variable_set finishedbattle:yes"/>
    </properties>
   </object>
-  <object id="115" name="first battle won" type="event" x="192" y="64" width="16" height="16">
+  <object id="115" name="first battle won" type="event" x="128" y="0" width="16" height="16">
    <properties>
     <property name="act2" value="set_variable firstbattledone:yes"/>
     <property name="act3" value="npc_face professor,down"/>
@@ -330,7 +342,7 @@
     <property name="cond3" value="not variable_set endbattleprof:yes"/>
    </properties>
   </object>
-  <object id="116" name="first battle lost" type="event" x="192" y="80" width="16" height="16">
+  <object id="116" name="first battle lost" type="event" x="144" y="0" width="16" height="16">
    <properties>
     <property name="act2" value="transfer_money +,120"/>
     <property name="act3" value="set_variable firstbattledone:yes"/>
@@ -431,6 +443,33 @@
     <property name="act90" value="wait 1"/>
     <property name="act91" value="unlock_controls"/>
     <property name="cond1" value="is variable_set timetomove:done"/>
+   </properties>
+  </object>
+  <object id="125" name="create tuxeball rockitten" type="event" x="112" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc tuxeball_green,9,7"/>
+    <property name="cond1" value="not npc_exists tuxeball_green"/>
+    <property name="cond2" value="not variable_set rockittenball:yes"/>
+   </properties>
+  </object>
+  <object id="126" name="create tuxeball tweesher" type="event" x="128" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc tuxeball_yellow,11,7"/>
+    <property name="cond1" value="not npc_exists tuxeball_yellow"/>
+    <property name="cond2" value="not variable_set tweesherball:yes"/>
+   </properties>
+  </object>
+  <object id="128" name="create tuxeball cardiling" type="event" x="144" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc tuxeball_red,10,7"/>
+    <property name="cond1" value="not npc_exists tuxeball_red"/>
+    <property name="cond2" value="not variable_set cardilingball:yes"/>
+   </properties>
+  </object>
+  <object id="130" name="Environment" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:interior"/>
+    <property name="cond1" value="not variable_set environment:interior"/>
    </properties>
   </object>
  </objectgroup>

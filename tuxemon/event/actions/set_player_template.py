@@ -30,7 +30,7 @@ class SetPlayerTemplateAction(EventAction):
             set_player_template <sprite>[,combat_front]
 
     Script parameters:
-        sprite: must be inside mods/tuxemon/sprites,
+        sprite: must be inside mods/tuxemon/sprites (default = original)
         eg: adventurer_brown_back.png -> adventurer
         combat_front: must be inside mods/tuxemon/gfx/sprites/player
         eg: adventurer.png -> adventurer
@@ -44,7 +44,16 @@ class SetPlayerTemplateAction(EventAction):
     def start(self) -> None:
         player = self.session.player
         for ele in player.template:
-            ele.sprite_name = self.sprite
+            # repristinate default sprite (gender_choice)
+            if self.sprite == "default":
+                if player.game_variables["gender_choice"] == "gender_male":
+                    ele.sprite_name = "adventurer"
+                elif player.game_variables["gender_choice"] == "gender_female":
+                    ele.sprite_name = "heroine"
+                else:
+                    ele.sprite_name = player.game_variables["gender_choice"]
+            else:
+                ele.sprite_name = self.sprite
             if self.combat_front is not None:
                 ele.combat_front = self.combat_front
         player.load_sprites()

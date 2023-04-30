@@ -15,6 +15,7 @@ from pygame_menu.widgets.selection.highlight import HighlightSelection
 from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
 from tuxemon import prepare
+from tuxemon.db import PlagueType
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
@@ -426,8 +427,12 @@ class MonsterDropOffState(MonsterMenuState):
         player = local_session.player
         monster = menu_item.game_object
         assert monster
-
-        player.monster_boxes[self.box_name].append(monster)
-        player.remove_monster(monster)
-
-        self.client.pop_state(self)
+        if monster.plague == PlagueType.infected:
+            open_dialog(
+                local_session,
+                [T.translate("menu_storage_infected_monster")],
+            )
+        else:
+            player.monster_boxes[self.box_name].append(monster)
+            player.remove_monster(monster)
+            self.client.pop_state(self)

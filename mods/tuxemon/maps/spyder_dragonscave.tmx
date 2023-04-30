@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="103">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="105">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -16,7 +16,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlMkJgEAMRTN41h5ce9Du7EYrci3AItye4MGrC8wI+fCY08+EnxARtzSZd/00vkgLHfQwwAhPNeNdYIXtqBOIGHiqEG8EMSSQQgYqTUAT0AS+SqDyRMqTmveurv6jzh+U6x39w5is9Ki7YSV2pz8t9F5Yn88OFY8RLQ==
+   eAFjYBhc4AXj4HIPPVyjxkcPW0btGA2B0RAYKSGwgpmBoRGKVwJpUgGyfpA5QwFYjpajQyGaBsSNo2ljQIJ9UFtqNVpeDHj8AAAGxQaK
   </data>
  </layer>
  <layer id="3" name="Filler" width="20" height="40">
@@ -26,7 +26,7 @@
  </layer>
  <layer id="7" name="Above Player" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0AkNACAQxMA1gH8fHI896uIS0iY1MElvcyTFizcfvmwKKKCAAgoooIACCijwn8ADTbwEig==
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="20" height="40">
@@ -69,8 +69,16 @@
   <object id="34" type="collision" x="128" y="496" width="16" height="32"/>
   <object id="35" type="collision" x="64" y="496" width="32" height="48"/>
   <object id="36" type="collision" x="80" y="480" width="16" height="16"/>
-  <object id="37" type="collision" x="192" y="32" width="96" height="16"/>
-  <object id="38" type="collision" x="208" y="48" width="64" height="32"/>
+  <object id="37" type="collision" x="192" y="32" width="96" height="16">
+   <properties>
+    <property name="key" value="drokoro"/>
+   </properties>
+  </object>
+  <object id="38" type="collision" x="208" y="48" width="64" height="32">
+   <properties>
+    <property name="key" value="drokoro"/>
+   </properties>
+  </object>
   <object id="40" type="collision" x="288" y="304" width="16" height="16"/>
   <object id="41" type="collision" x="160" y="400" width="144" height="32"/>
   <object id="42" type="collision" x="176" y="384" width="128" height="16"/>
@@ -212,8 +220,9 @@
   <object id="74" name="Get Drokoro" type="event" x="208" y="48" width="64" height="32">
    <properties>
     <property name="act1" value="translated_dialog spyder_dragonscave_drokoro1"/>
-    <property name="act10" value="random_encounter spyder_drokoro,100"/>
-    <property name="act20" value="set_variable dragonscavedrokoro:yes"/>
+    <property name="act2" value="wild_encounter drokoro,50,,,cave"/>
+    <property name="act3" value="set_variable dragonscavedrokoro:yes"/>
+    <property name="act4" value="remove_npc spyder_drokoro"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set dragonscavedrokoro:yes"/>
@@ -221,8 +230,10 @@
   </object>
   <object id="75" name="Get Drokoro" type="event" x="192" y="32" width="96" height="16">
    <properties>
-    <property name="act1" value="random_encounter spyder_drokoro,100"/>
-    <property name="act2" value="set_variable dragonscavedrokoro:yes"/>
+    <property name="act1" value="translated_dialog spyder_dragonscave_drokoro1"/>
+    <property name="act2" value="wild_encounter drokoro,50,,,cave"/>
+    <property name="act3" value="set_variable dragonscavedrokoro:yes"/>
+    <property name="act4" value="remove_npc spyder_drokoro"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set dragonscavedrokoro:yes"/>
@@ -304,15 +315,6 @@
     <property name="cond1" value="not variable_set dragonscavetru:yes"/>
    </properties>
   </object>
-  <object id="87" name="Teleport to Cotton Tunnel" type="event" x="288" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_cotton_tunnel.tmx,3,16,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is variable_set dragonscavedrokoro:yes"/>
-   </properties>
-  </object>
   <object id="88" name="Benden Defeated" type="event" x="112" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="pathfind spyder_dragonscave_benden,17,10"/>
@@ -323,13 +325,6 @@
     <property name="act6" value="set_variable dragonscavebenden2:yes"/>
     <property name="cond1" value="is variable_set dragonscavebenden:yes"/>
     <property name="cond2" value="not variable_set dragonscavebenden2:yes"/>
-   </properties>
-  </object>
-  <object id="89" name="encounter 3" type="event" x="16" y="256" width="304" height="384">
-   <properties>
-    <property name="act1" value="random_encounter dragonscave,6"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
   <object id="90" name="Teleport to Cotton Tunnel" type="event" x="256" y="16" width="16" height="16">
@@ -476,6 +471,25 @@
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="103" name="Create Drokoro" type="event" x="192" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_drokoro,12,4"/>
+    <property name="cond1" value="not npc_exists spyder_drokoro"/>
+    <property name="cond2" value="not variable_set dragonscavedrokoro:yes"/>
+   </properties>
+  </object>
+  <object id="104" name="Remove Drokoro" type="event" x="160" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision drokoro"/>
+    <property name="cond1" value="is variable_set dragonscavedrokoro:yes"/>
+   </properties>
+  </object>
+  <object id="89" name="Encounters" type="event" x="16" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dragonscave,6"/>
+    <property name="cond1" value="not variable_set dragonscavebenden:yes"/>
    </properties>
   </object>
  </objectgroup>

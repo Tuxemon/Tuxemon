@@ -49,9 +49,10 @@ class LocalDamageEffect(TechEffect):
             # tech: panjandrum
             if tech.slug == "panjandrum":
                 damage = formula.damage_panjandrum(target)
+            target.current_hp -= damage
         else:
             damage = 0
-            mult = 1
+            mult = 1.0
 
         return {
             "damage": damage,

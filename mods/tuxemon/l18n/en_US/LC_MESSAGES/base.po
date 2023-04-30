@@ -557,6 +557,12 @@ msgstr "Miaow Milk"
 msgid "miaow_milk_description"
 msgstr "Cats love the taste of Miaow Milk™!"
 
+msgid "ox_stick"
+msgstr "Ox Stick"
+
+msgid "ox_stick_description"
+msgstr "An inspiring weapon for an ancient tuxemon."
+
 msgid "peace_lily"
 msgstr "Peace Lily"
 
@@ -2305,6 +2311,12 @@ msgstr "A jolly piece of furniture who awoke one morning and decided to explore.
 msgid "cairfrey"
 msgstr "Cairfrey"
 
+msgid "capinyah_description"
+msgstr "Only after intense training in the jungles, lifting logs and river boulders, can CAPITI graduate to become CAPINYAH."
+
+msgid "capinyah"
+msgstr "Capinyah"
+
 msgid "capiti_description"
 msgstr "It looks like a baby, but some specimens have been found that are hundreds of years old."
 
@@ -2564,7 +2576,7 @@ msgid "ferricran"
 msgstr "Ferricran"
 
 msgid "firomenis_description"
-msgstr ""
+msgstr "These tuxemon are large and tough from the many years spent as a MERLICUN. Their jaws can crush through trees and bones, and their flight is strong enough to carry people."
 
 msgid "firomenis"
 msgstr "Firomenis"
@@ -2580,6 +2592,12 @@ msgstr "It can be tracked from the trail of boiled berry bushes and roasted trou
 
 msgid "flambear"
 msgstr "Flambear"
+
+msgid "flisces_description"
+msgstr "It skims the surface of the water, evading detection until a powerful leap brings its sharp fins into play."
+
+msgid "flisces"
+msgstr "Flisces"
 
 msgid "fluoresfin_description"
 msgstr "When threatened, it huddles together with other FLUORESFIN to create a large blinding light to disorientate predators."
@@ -2634,6 +2652,18 @@ msgstr "FURNURSUS are friendly, and often forget that their bodies are too hot f
 
 msgid "furnursus"
 msgstr "Furnursus"
+
+msgid "fuzzina_description"
+msgstr "When the child that abandoned a FUZZLET needs it again, it becomes a FUZZINA, a brave protector and nurturer of the small and the weak."
+
+msgid "fuzzina"
+msgstr "Fuzzina"
+
+msgid "fuzzlet_description"
+msgstr "When a child is no longer around to play with their toys, they sometimes come to life."
+
+msgid "fuzzlet"
+msgstr "Fuzzlet"
 
 msgid "galnec_description"
 msgstr "GALNEC buries itself deep in the hot sands of the desert, only its stony tail above ground. In packs, they look like gardens of stone."
@@ -2690,7 +2720,7 @@ msgid "grumpi"
 msgstr "Grumpi"
 
 msgid "gryfix_description"
-msgstr ""
+msgstr "Bone armor protects GRYFIX from all but the most powerful of attacks."
 
 msgid "gryfix"
 msgstr "Gryfix"
@@ -2718,6 +2748,12 @@ msgstr "The crystal on its chest is mistaken for a diamond by poachers. It melts
 
 msgid "heronquak"
 msgstr "Heronquak"
+
+msgid "howl_description"
+msgstr "HOWL's foolish exterior hides deep wisdom - if only it could communicate it, but its words come out as hoots and howls."
+
+msgid "howl"
+msgstr "Howl"
 
 msgid "hydrone_description"
 msgstr "It utilises an experimental technology that creates power from water."
@@ -2748,6 +2784,12 @@ msgstr "The gems on its back are the type found when it was born. There are exte
 
 msgid "jemuar"
 msgstr "Jemuar"
+
+msgid "joulraton_description"
+msgstr "Its static coat of bristly fur attracts seeds, flowers and feathers, which it uses for food or nesting materials."
+
+msgid "joulraton"
+msgstr "Joulraton"
 
 msgid "k9_description"
 msgstr "It is a helpful companion that can pull a tonne of weight."
@@ -2791,6 +2833,12 @@ msgstr "Long thought to be legless, its leaves are actually vestigial limbs."
 msgid "legko"
 msgstr "Legko"
 
+msgid "lendos_description"
+msgstr "When two UNEYE become tangled, they form a single unified LENDOS."
+
+msgid "lendos"
+msgstr "Lendos"
+
 msgid "lightmare_description"
 msgstr "It lurks in the depths of the ocean, luring any unsuspecting prey using its light right into its large, gaping mouth."
 
@@ -2798,19 +2846,19 @@ msgid "lightmare"
 msgstr "Lightmare"
 
 msgid "loliferno_description"
-msgstr ""
+msgstr "It is said that the LOLIFERNO's fire could not be extinguished. Yet, despite its power, LOLIFERNO has a playful side, and is known to dance among the flames it creates."
 
 msgid "loliferno"
 msgstr "Loliferno"
 
 msgid "lunight_description"
-msgstr ""
+msgstr "LUNIGHT is the guardian of the night, and can control the moon and its phases."
 
 msgid "lunight"
 msgstr "Lunight"
 
 msgid "magmaturtle_description"
-msgstr ""
+msgstr "When threatened it retreats into its shell and cools down dramatically by venting steam. It could be mistaken for a rock."
 
 msgid "magmaturtle"
 msgstr "Magmaturtle"
@@ -2827,6 +2875,12 @@ msgstr "When frightened or aggressive, it flashes a beautiful pattern with its t
 msgid "masknake"
 msgstr "Masknake"
 
+msgid "mauai_description"
+msgstr "MAUAI gives itself over to the spirits of lost warriors trapped inside its weapon."
+
+msgid "mauai"
+msgstr "Mauai"
+
 msgid "medushock_description"
 msgstr "Tend to stay away from shore and known to be aggressive to people. Stingers are used to stun its prey. Swim safely."
 
@@ -2840,7 +2894,7 @@ msgid "memnomnom"
 msgstr "Memnomnom"
 
 msgid "merlicun_description"
-msgstr ""
+msgstr "Merlicun is a hardy insect that has evolved to be efficient at both attack and defense. They gather in the tree canopies of ancient forests to feed on fruits and leaves."
 
 msgid "merlicun"
 msgstr "Merlicun"
@@ -2856,6 +2910,12 @@ msgstr "It can speak the human tongue, but only to say cryptic riddles."
 
 msgid "miaownolith"
 msgstr "Miaownolith"
+
+msgid "mingdyn_description"
+msgstr "Every 12 years, a single MINGDYN egg is laid. Its discovery marks a time of renewal and upheaval across the land."
+
+msgid "mingdyn"
+msgstr "Mingdyn"
 
 msgid "moloch_description"
 msgstr "It can stiffen or soften its skin to respond to friends and foes."
@@ -2886,6 +2946,12 @@ msgstr "NEUTRITO feels nothing. The perfect machine?"
 
 msgid "neutrito"
 msgstr "Neutrito"
+
+msgid "nimbulex_description"
+msgstr "NIMBULEX dresses itself in sparks and storm clouds to protect its delicate inner core."
+
+msgid "nimbulex"
+msgstr "Nimbulex"
 
 msgid "noctalo_description"
 msgstr "It inhabits only places abandoned by humans - castles, graveyards and sewers."
@@ -3361,8 +3427,14 @@ msgstr "It builds hives that are perfect spheres, with the TUMBLEBEE inside just
 msgid "tumblebee"
 msgstr "Tumblebee"
 
+msgid "tumbledillo_description"
+msgstr "Tumbledillo have a mystical connection to a particular road, and they guard it from people who would interfere with it - even pothole repair crews!"
+
+msgid "tumbledillo"
+msgstr "Tumbledillo"
+
 msgid "tumblequill_description"
-msgstr ""
+msgstr "Tumblequill rolls along the highways, gathering up useful items for its nests from the rubbish left by the side of the road."
 
 msgid "tumblequill"
 msgstr "Tumblequill"
@@ -3390,6 +3462,24 @@ msgstr "The colder the weather, the harder its beak. At below 0 degrees, it is h
 
 msgid "tweesher"
 msgstr "Tweesher"
+
+msgid "uglip_description"
+msgstr "When it is pulled up too quick from its home in the deep waters, UGLIP becomes puffy and pained."
+
+msgid "uglip"
+msgstr "Uglip"
+
+msgid "uneye_description"
+msgstr "Uneye lurks in the shadows, and on the edge of vision."
+
+msgid "uneye"
+msgstr "Uneye"
+
+msgid "urcheedle_description"
+msgstr "It can't move or attack, so it sits still and prays that the opponent damages itself on its many needles."
+
+msgid "urcheedle"
+msgstr "Urcheedle"
 
 msgid "urcine_description"
 msgstr "When a FURNURSUS is born without the fire inside, it is abandoned in the forests as an URCINE."
@@ -3493,6 +3583,12 @@ msgstr "It was born the first time a star fell into a black hole."
 msgid "yiinaang"
 msgstr "Yiinaang"
 
+msgid "ziggurat_description"
+msgstr "No labyrinth that can contain ZIGGURAT. It decorates its nests with carvings of all the mazes it has traversed over the years."
+
+msgid "ziggurat"
+msgstr "Ziggurat"
+
 msgid "zunna_description"
 msgstr "Cheerful ZUNNA sucks up all the food it can find into its stomach."
 
@@ -3588,8 +3684,14 @@ msgstr "Xeon-2"
 # Monster categories
 msgid "cat_alien"
 msgstr "Alien"
+msgid "cat_amped"
+msgstr "Amped"
 msgid "cat_anteater"
 msgstr "Anteater"
+msgid "cat_anubis"
+msgstr "Anubis"
+msgid "cat_athena"
+msgstr "Athena"
 msgid "cat_balance"
 msgstr "Balance"
 msgid "cat_balloon"
@@ -3642,10 +3744,14 @@ msgid "cat_cute_boulder"
 msgstr "Cute Boulder"
 msgid "cat_cute_teddy"
 msgstr "Cute Teddy"
+msgid "cat_cypselurus"
+msgstr "Cypselurus"
 msgid "cat_dark_bishop"
 msgstr "Dark Bishop"
 msgid "cat_deadly_fan"
 msgstr "Deadly Fan"
+msgid "cat_deepsea"
+msgstr "Deep-Sea"
 msgid "cat_defensive"
 msgstr "Defensive"
 msgid "cat_desolate"
@@ -3662,6 +3768,8 @@ msgid "cat_dragon"
 msgstr "Dragon"
 msgid "cat_dragon_bone"
 msgstr "Dragon Bone"
+msgid "cat_dragon_moth"
+msgstr "Dragon Moth"
 msgid "cat_dragon_roll"
 msgstr "Dragon Roll"
 msgid "cat_dragon_worm"
@@ -3688,6 +3796,8 @@ msgid "cat_enhancement"
 msgstr "Enhancement"
 msgid "cat_enraged_emotion"
 msgstr "Enraged Emotion"
+msgid "cat_ermine"
+msgstr "Ermine"
 msgid "cat_eureka"
 msgstr "Eureka"
 msgid "cat_every_thorn"
@@ -3808,6 +3918,8 @@ msgid "cat_long_winged"
 msgstr "Long Winged"
 msgid "cat_macropod"
 msgstr "Macropod"
+msgid "cat_mazerunner"
+msgstr "Mazerunner"
 msgid "cat_mercury"
 msgstr "Mercury"
 msgid "cat_meteor"
@@ -3920,6 +4032,8 @@ msgid "cat_socket"
 msgstr "Socket"
 msgid "cat_sparked"
 msgstr "Sparked"
+msgid "cat_spiked"
+msgstr "Spiked"
 msgid "cat_spiny"
 msgstr "Spiny"
 msgid "cat_spirit_fire"
@@ -3958,6 +4072,8 @@ msgid "cat_tool_maker"
 msgstr "Tool Maker"
 msgid "cat_tower"
 msgstr "Tower"
+msgid "cat_toy"
+msgstr "Toy"
 msgid "cat_trailing"
 msgstr "Trailing"
 msgid "cat_travel_bug"
@@ -3972,6 +4088,8 @@ msgid "cat_veiled"
 msgstr "Veiled"
 msgid "cat_vengeance"
 msgstr "Vengeance"
+msgid "cat_vision"
+msgstr "Vision"
 msgid "cat_visitor"
 msgstr "Visitor"
 msgid "cat_volte-face"
@@ -4233,6 +4351,13 @@ msgstr "Acolyte Corren"
 
 ## DIALOG TRANSLATIONS ##
 # general dialogs
+
+msgid "fishing_rod_failure"
+msgstr "The water ripples, but nothing bites."
+
+msgid "itsswimmingtime"
+msgstr "Do you want to swim?"
+
 msgid "haveagoodday"
 msgstr "Have a good day!"
 

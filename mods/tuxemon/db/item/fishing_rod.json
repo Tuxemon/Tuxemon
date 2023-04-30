@@ -1,5 +1,10 @@
 {
-  "effects": [],
+  "conditions": [
+    "is facing_tile surfable"
+  ],
+  "effects": [
+    "fishing basic"
+  ],
   "slug": "fishing_rod",
   "sort": "utility",
   "sprite": "gfx/items/fishing_rod.png",
@@ -17,7 +22,7 @@
   "usable_in": [
     "WorldState"
   ],
-  "use_failure": "generic_failure",
+  "use_failure": "fishing_rod_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"
 }

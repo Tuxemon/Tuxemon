@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="266">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="275">
  <properties>
   <property name="east" value="paper_town"/>
   <property name="edges" value="clamped"/>
@@ -14,17 +14,17 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtV8kNAjEMjIBC9wHFQAuUAPSQEhC9sHyZeUTihTzx2uLII1qEfIwn48SZN6XMY/09B9t1KTssRQs9Pkr8Zss8j1UpV6z2n+W7h98dPmpdltivNjfkOGEdRP4Yg77RGMlDDzbio++5s7ZXjpb4naW3Xqw9emNNM/iN1mirSdUC7S/Ap/Zey5fxzeghTx3EdwzgcAntMAaxKeeXpQ9pwzPbUzdjEJd6/lg0ThvG9WjbksejG/pm5PBitPpzPzPPOiuuZtf6NPo+bvnUL7VAvSq9qubw2v+SXr1cDH9tXh98Db6+RQOY1ye8qaZPxEtsuMMmnMWL42NsvAVctWMOCMHGvWBszJ0T7kgXxsh9JUbMGmEcRGL3xEa/VGiyemJYfTlrKm9qYoNmKvYlBR/nJGXORM9V6LqirhR85FmZ5cB1KjarDobdmCneaeAJuQ7+ZA==
+   eAHtV0FOAzEMtNpe4JV7oP/gCl/oE4ArVTnlCVWvgPoKliszKpZy2U2cOFERe7CyytrO2BknzrgRGRf59zm4W4tsIRYulNhY/Ksu1/leiRwhOpczPsDuCzbWuHJ8xzonrPEEeTTmjz5o2xoj81CCjfho+1wYW5wjj+9efCvFWsI3xjQiv605qjFZuUD9F+Cz1p6u12PsUUM1cRDfrkEOPbhDH8RmOb9y6pA6PLNr4qYP4rKePzkcpw791nA7Z50a3tC2xxpTGF9vRNa3F9nje0ovd5776XnWnYHpXi7y6YBP69TrPvbGRy6Qr5Zandsbb3xcy5OvMb7VLw+Vjxw9ODmXn9S/d3DuLeKgclFHD06mMKT+xzlUXDou+NJn2pK/dI7mOMgaOUzIB+bnbK/5H/r1AW+q4RoxEhvusAFnsTs++sZboCp29AFNsHEv6Bt954A7sgpjy30lRvQazXLQEnuNb9RLACdDjY9cW/aaljc1sYEzAfvSBR/7JEufiZoL4HVAXF3wMc+WXg657ootlweL3t+9Y3vs3Q9dA+Il
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlj0KAjEQhUe9gYKFJ7GRPYg/zWLvEdKpl9HDaOFx/AZX2EIzWgQjvAePZHdC8vZjFmImiYAIiIAIiIAIiIAIiMCDwGlgdux8ZqxNWzIlQrlb5YPCd/onfoeuD5/96GPJnpyNzPbDPE/nt2LJFCc87nnCvGRPtmTbcUYkz7jBiYV9z3muJd+SLM7RfeO7fFzjWvIlsryy8gEm0IXea974yvtS+vT/KHV+tK/yRYTydfHL84mq4hcRytcb7geL4H6Q30FVERCBXxO4A4akK08=
+   eAHtlkEKwjAQRUe9g4vexIp4EKsUvIBHKCh4RY/jD6TiZmKyCI3wBj4N06G8vGYRMwoDGMAABjCAAQxgAAP/YWC3Mutj9nq2VhcxTYIKGeGThbJa0l+3MXuu07x3/dOHstVYH6L1nNrn8Sq2Wxrv8/bb46RuSO3zWMJ3Es8Q89K+wvqs1KwSvpoc3rfh88zk9fGX58mbwp9nJq+PvzxP3lTr/o66Hxx+3A+8vdHHAAbaMPAGFtwY/A==
   </data>
  </layer>
  <layer id="5" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHNWdFNw0AMPSQ+EDAHSAEGoIwAMyC+W5iCKWAGJgO6A35SnvRk5ZyW9nK2dMpdfK5f3/k5qTpclHJjA7Y9L+XW5nfj+tvWQ2f/2vJvbPwYFtirzd9s/I7r3v7h0vizkc1wluBobdg2CfGhtoDvKyE2nCV1kBUfdZAVHzhEDWbFx34CnBlN+25GfOy7GbERE3pMVuPzKys+9r+s+Nj/suIDLvS/rMb+x2s2nOx/kYbvT0pZjePBrkua9j9iRX59h34WTC/jXP3YH71jw+f9iNnVWH/EyrOmdjw+72ePqsXX/LviQ7xy5+M8Pu9vub46LeXaBr/7VK53Od/VxIbPs4mbR7r1aNiebODMIo1E6VriI3+HPEc+jD+N91pQLe2rFfJHLUQ8RT7G17Qw5699NvmDnzqu7e1xn/xF+u2BiznJX6Rf7u1xJX+H6LclbvKn+muZTz9bda33dU7+qC/1LTFn3lrvJX/AUtvTGqfvl5qP/PXWb02f5K/m1+/Sah7VIfnrrd+5OuyhXz2PqAaxj/g1Zun5XI310i94QA0if+0dQPXr69Vzv48fsVG892MNY73RT26P9duC9fKf9y1g0nj8j/AHbqeoog==
+   eAHdWVtuwjAQ9AcfqHCOVgrlJPQkQA/UnqEno3CH7kiMNFppDUlwvcKShZ3xYzLe2SRiWJWysYpyeSnl3drba/9k/aEzvrf9D1Z/jQvK0dqfVs/Xfm98WJt+VrMVnCU02hu3Q0J+iC3w+0nIDWdJH2TlRx9k5QcNEYNZ+TGfgGfGonk3Iz/m3YzcyAk5Jmvh8ysrP+a/rPyY/7LyAy/kv6yF+Y+/2Xgy/2X1sOY/coWG/h3a6+rx2js2MI/79Wp9xh+58qwj73icOSqaH+E1TophvmqnWO/266KUN6u89yl8vpdTZt03Z2fcPqzizKZ6pCU/6jfnOfJl+ul87wX10livUL/IC/edwvzv0Wgf6gecPo7G9rhO/Z7Zvy11pX5z/NuSH+NP/ddyP11bfa3XtU395vpX1xzT5r5R7qV+WDMaM2a/KWN9vtQ1qF9v/0bPV+oX4Xovrdq1OKR+vf17Kw57+FfPoxaDGEf+Oue/27dirJd/oQNiEPtH7wDqXx+vXvsxOObW5nscfRTGG3Fq+6hvC8ZL9O1Rw8FJcfyP8AdWfaS4
   </data>
  </layer>
  <layer id="6" name="Tile Layer 4" width="40" height="40">
@@ -477,6 +477,37 @@
     <property name="act6" value="set_variable searoutecmaurice:yes"/>
     <property name="behav1" value="talk spyder_searoutec_maurice"/>
     <property name="cond1" value="not variable_set searoutecmaurice:yes"/>
+   </properties>
+  </object>
+  <object id="266" name="Choice Surf" type="event" x="304" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog itsswimmingtime"/>
+    <property name="act2" value="translated_dialog_choice yes:no,swimming"/>
+    <property name="cond1" value="is has_item player,surfboard"/>
+    <property name="cond2" value="is player_facing_tile surfable"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not player_in surfable"/>
+   </properties>
+  </object>
+  <object id="267" name="surfable" type="event" x="272" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_player_template swimmer"/>
+    <property name="cond1" value="is player_in surfable"/>
+    <property name="cond2" value="not has_sprite swimmer"/>
+   </properties>
+  </object>
+  <object id="268" name="not surfable" type="event" x="256" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_player_template default"/>
+    <property name="act2" value="set_variable swimming:no"/>
+    <property name="cond1" value="not player_in surfable"/>
+    <property name="cond2" value="is has_sprite swimmer"/>
+   </properties>
+  </object>
+  <object id="269" name="Remove Obstacle" type="event" x="288" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision water"/>
+    <property name="cond1" value="is variable_set swimming:yes"/>
    </properties>
   </object>
  </objectgroup>

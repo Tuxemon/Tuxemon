@@ -149,6 +149,7 @@
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_cottontown_hacker,25,30"/>
     <property name="act30" value="pathfind spyder_cottontown_hacker,25,36"/>
+    <property name="act31" value="npc_face player,up"/>
     <property name="act40" value="translated_dialog spyder_cottontown_hackerintro"/>
     <property name="act50" value="pathfind spyder_cottontown_hacker,25,29"/>
     <property name="act60" value="remove_npc spyder_cottontown_hacker"/>

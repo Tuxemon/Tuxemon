@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="372">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="376">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="route5"/>
@@ -146,9 +146,8 @@
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="309" type="collision" x="544" y="224" width="32" height="32"/>
   <object id="310" type="collision" x="448" y="128" width="32" height="96"/>
-  <object id="311" type="collision" x="544" y="128" width="32" height="96"/>
+  <object id="311" type="collision" x="544" y="128" width="32" height="128"/>
   <object id="312" type="collision" x="592" y="144" width="32" height="32"/>
   <object id="313" type="collision" x="608" y="112" width="32" height="32"/>
   <object id="315" type="collision" x="592" y="80" width="32" height="32"/>
@@ -435,6 +434,37 @@
     <property name="act13" value="set_variable timbermom:yes"/>
     <property name="cond1" value="not variable_set timbermom:yes"/>
     <property name="cond2" value="is variable_set scooparachne:yes"/>
+   </properties>
+  </object>
+  <object id="372" name="Choice Surf" type="event" x="512" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog itsswimmingtime"/>
+    <property name="act2" value="translated_dialog_choice yes:no,swimming"/>
+    <property name="cond1" value="is has_item player,surfboard"/>
+    <property name="cond2" value="is player_facing_tile surfable"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not player_in surfable"/>
+   </properties>
+  </object>
+  <object id="373" name="surfable" type="event" x="480" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_player_template swimmer"/>
+    <property name="cond1" value="is player_in surfable"/>
+    <property name="cond2" value="not has_sprite swimmer"/>
+   </properties>
+  </object>
+  <object id="374" name="not surfable" type="event" x="464" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_player_template default"/>
+    <property name="act2" value="set_variable swimming:no"/>
+    <property name="cond1" value="not player_in surfable"/>
+    <property name="cond2" value="is has_sprite swimmer"/>
+   </properties>
+  </object>
+  <object id="375" name="Remove Obstacle" type="event" x="496" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision water"/>
+    <property name="cond1" value="is variable_set swimming:yes"/>
    </properties>
   </object>
  </objectgroup>

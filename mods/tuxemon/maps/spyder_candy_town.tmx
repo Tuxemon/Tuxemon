@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="440">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="441">
  <properties>
   <property name="east" value="routec"/>
   <property name="edges" value="clamped"/>
@@ -532,6 +532,12 @@
    <properties>
     <property name="act1" value="remove_collision water"/>
     <property name="cond1" value="is variable_set swimming:yes"/>
+   </properties>
+  </object>
+  <object id="440" name="Swim Encounters" type="event" x="624" y="400" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter routec"/>
+    <property name="cond1" value="is has_sprite swimmer"/>
    </properties>
   </object>
  </objectgroup>

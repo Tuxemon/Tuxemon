@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_searoutec_stafford",
+  "template": [
+    {
+      "sprite_name": "beachcomber_copper",
+      "combat_front": "yellowbelt",
+      "slug": "beachcomber"
+    }
+  ]
+}

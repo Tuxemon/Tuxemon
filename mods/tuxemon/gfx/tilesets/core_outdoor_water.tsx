@@ -2,6 +2,9 @@
 <tileset version="1.8" tiledversion="1.8.0" name="core_outdoor_water" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
  <image source="core_outdoor_water.png" width="1024" height="2048"/>
  <tile id="0">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="73" duration="600"/>
    <frame tileid="74" duration="600"/>
@@ -12,6 +15,9 @@
   </animation>
  </tile>
  <tile id="1">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="76" duration="600"/>
    <frame tileid="77" duration="600"/>
@@ -22,6 +28,9 @@
   </animation>
  </tile>
  <tile id="2">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="137" duration="600"/>
    <frame tileid="138" duration="600"/>
@@ -32,6 +41,9 @@
   </animation>
  </tile>
  <tile id="3">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="140" duration="600"/>
    <frame tileid="141" duration="600"/>
@@ -42,6 +54,9 @@
   </animation>
  </tile>
  <tile id="4">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="201" duration="300"/>
    <frame tileid="202" duration="300"/>
@@ -52,6 +67,9 @@
   </animation>
  </tile>
  <tile id="5">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="329" duration="300"/>
    <frame tileid="330" duration="300"/>
@@ -62,6 +80,9 @@
   </animation>
  </tile>
  <tile id="6">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="203" duration="300"/>
    <frame tileid="202" duration="300"/>
@@ -72,6 +93,9 @@
   </animation>
  </tile>
  <tile id="7">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="331" duration="300"/>
    <frame tileid="330" duration="300"/>
@@ -82,6 +106,9 @@
   </animation>
  </tile>
  <tile id="8">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="265" duration="300"/>
    <frame tileid="266" duration="300"/>
@@ -92,6 +119,9 @@
   </animation>
  </tile>
  <tile id="9">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="12" duration="300"/>
    <frame tileid="13" duration="300"/>
@@ -102,6 +132,9 @@
   </animation>
  </tile>
  <tile id="10">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="267" duration="300"/>
    <frame tileid="266" duration="300"/>
@@ -112,6 +145,9 @@
   </animation>
  </tile>
  <tile id="11">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="14" duration="300"/>
    <frame tileid="13" duration="300"/>
@@ -120,6 +156,36 @@
    <frame tileid="16" duration="300"/>
    <frame tileid="15" duration="300"/>
   </animation>
+ </tile>
+ <tile id="12">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="13">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="14">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="15">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="16">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="17">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
  </tile>
  <tile id="29">
   <animation>
@@ -168,6 +234,36 @@
    <frame tileid="51" duration="150"/>
    <frame tileid="54" duration="150"/>
   </animation>
+ </tile>
+ <tile id="73">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="74">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="75">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="76">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="77">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="78">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
  </tile>
  <tile id="93">
   <animation>
@@ -229,6 +325,46 @@
    <frame tileid="182" duration="150"/>
   </animation>
  </tile>
+ <tile id="129">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="132">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="137">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="138">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="139">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="140">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="141">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="142">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
  <tile id="157">
   <animation>
    <frame tileid="164" duration="600"/>
@@ -277,6 +413,36 @@
    <frame tileid="246" duration="150"/>
   </animation>
  </tile>
+ <tile id="201">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="202">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="203">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="204">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="205">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="206">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
  <tile id="221">
   <animation>
    <frame tileid="228" duration="600"/>
@@ -300,6 +466,36 @@
    <frame tileid="231" duration="600"/>
    <frame tileid="227" duration="600"/>
   </animation>
+ </tile>
+ <tile id="265">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="266">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="267">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="268">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="269">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="270">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
  </tile>
  <tile id="285">
   <animation>
@@ -340,6 +536,36 @@
    <frame tileid="304" duration="150"/>
    <frame tileid="306" duration="150"/>
   </animation>
+ </tile>
+ <tile id="329">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="330">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="331">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="332">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="333">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="334">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
  </tile>
  <tile id="349">
   <animation>
@@ -602,6 +828,9 @@
   </animation>
  </tile>
  <tile id="704">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="777" duration="600"/>
    <frame tileid="778" duration="600"/>
@@ -612,6 +841,9 @@
   </animation>
  </tile>
  <tile id="705">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="780" duration="600"/>
    <frame tileid="781" duration="600"/>
@@ -622,6 +854,9 @@
   </animation>
  </tile>
  <tile id="706">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="841" duration="600"/>
    <frame tileid="842" duration="600"/>
@@ -632,6 +867,9 @@
   </animation>
  </tile>
  <tile id="707">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="844" duration="600"/>
    <frame tileid="845" duration="600"/>
@@ -642,6 +880,9 @@
   </animation>
  </tile>
  <tile id="708">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="905" duration="300"/>
    <frame tileid="906" duration="300"/>
@@ -652,6 +893,9 @@
   </animation>
  </tile>
  <tile id="709">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="1033" duration="300"/>
    <frame tileid="1034" duration="300"/>
@@ -662,6 +906,9 @@
   </animation>
  </tile>
  <tile id="710">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="907" duration="300"/>
    <frame tileid="906" duration="300"/>
@@ -672,6 +919,9 @@
   </animation>
  </tile>
  <tile id="711">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="1035" duration="300"/>
    <frame tileid="1034" duration="300"/>
@@ -682,6 +932,9 @@
   </animation>
  </tile>
  <tile id="712">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="969" duration="300"/>
    <frame tileid="970" duration="300"/>
@@ -692,6 +945,9 @@
   </animation>
  </tile>
  <tile id="713">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="716" duration="300"/>
    <frame tileid="717" duration="300"/>
@@ -702,6 +958,9 @@
   </animation>
  </tile>
  <tile id="714">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="971" duration="300"/>
    <frame tileid="970" duration="300"/>
@@ -712,6 +971,9 @@
   </animation>
  </tile>
  <tile id="715">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="718" duration="300"/>
    <frame tileid="717" duration="300"/>
@@ -720,6 +982,36 @@
    <frame tileid="720" duration="300"/>
    <frame tileid="719" duration="300"/>
   </animation>
+ </tile>
+ <tile id="716">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="717">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="718">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="719">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="720">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="721">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
  </tile>
  <tile id="733">
   <animation>
@@ -760,6 +1052,36 @@
    <frame tileid="752" duration="150"/>
    <frame tileid="754" duration="150"/>
   </animation>
+ </tile>
+ <tile id="777">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="778">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="779">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="780">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="781">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="782">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
  </tile>
  <tile id="797">
   <animation>
@@ -808,6 +1130,46 @@
    <frame tileid="819" duration="150"/>
    <frame tileid="822" duration="150"/>
   </animation>
+ </tile>
+ <tile id="833">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="836">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="841">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="842">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="843">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="844">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="845">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="846">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
  </tile>
  <tile id="861">
   <animation>
@@ -869,6 +1231,36 @@
    <frame tileid="950" duration="150"/>
   </animation>
  </tile>
+ <tile id="905">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="906">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="907">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="908">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="909">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="910">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
  <tile id="925">
   <animation>
    <frame tileid="932" duration="600"/>
@@ -917,6 +1309,36 @@
    <frame tileid="1014" duration="150"/>
   </animation>
  </tile>
+ <tile id="969">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="970">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="971">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="972">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="973">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="974">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
  <tile id="989">
   <animation>
    <frame tileid="994" duration="600"/>
@@ -940,6 +1362,36 @@
    <frame tileid="995" duration="600"/>
    <frame tileid="999" duration="600"/>
   </animation>
+ </tile>
+ <tile id="1033">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1034">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1035">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1036">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1037">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1038">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
  </tile>
  <tile id="1053">
   <animation>
@@ -1154,6 +1606,9 @@
   </animation>
  </tile>
  <tile id="1408">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="1481" duration="600"/>
    <frame tileid="1482" duration="600"/>
@@ -1164,6 +1619,9 @@
   </animation>
  </tile>
  <tile id="1409">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="1484" duration="600"/>
    <frame tileid="1485" duration="600"/>
@@ -1174,6 +1632,9 @@
   </animation>
  </tile>
  <tile id="1410">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="1545" duration="600"/>
    <frame tileid="1546" duration="600"/>
@@ -1184,6 +1645,9 @@
   </animation>
  </tile>
  <tile id="1411">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="1548" duration="600"/>
    <frame tileid="1549" duration="600"/>
@@ -1194,6 +1658,9 @@
   </animation>
  </tile>
  <tile id="1412">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="1609" duration="300"/>
    <frame tileid="1610" duration="300"/>
@@ -1204,6 +1671,9 @@
   </animation>
  </tile>
  <tile id="1413">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="1737" duration="300"/>
    <frame tileid="1738" duration="300"/>
@@ -1214,6 +1684,9 @@
   </animation>
  </tile>
  <tile id="1414">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="1611" duration="300"/>
    <frame tileid="1610" duration="300"/>
@@ -1224,6 +1697,9 @@
   </animation>
  </tile>
  <tile id="1415">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="1739" duration="300"/>
    <frame tileid="1738" duration="300"/>
@@ -1234,6 +1710,9 @@
   </animation>
  </tile>
  <tile id="1416">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="1673" duration="300"/>
    <frame tileid="1674" duration="300"/>
@@ -1244,6 +1723,9 @@
   </animation>
  </tile>
  <tile id="1417">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="1420" duration="300"/>
    <frame tileid="1421" duration="300"/>
@@ -1254,6 +1736,9 @@
   </animation>
  </tile>
  <tile id="1418">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="1675" duration="300"/>
    <frame tileid="1674" duration="300"/>
@@ -1264,6 +1749,9 @@
   </animation>
  </tile>
  <tile id="1419">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="1422" duration="300"/>
    <frame tileid="1421" duration="300"/>
@@ -1272,6 +1760,36 @@
    <frame tileid="1424" duration="300"/>
    <frame tileid="1423" duration="300"/>
   </animation>
+ </tile>
+ <tile id="1420">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1421">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1422">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1423">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1424">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1425">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
  </tile>
  <tile id="1448">
   <animation>
@@ -1289,6 +1807,36 @@
    <frame tileid="1458" duration="150"/>
   </animation>
  </tile>
+ <tile id="1481">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1482">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1483">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1484">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1485">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1486">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
  <tile id="1512">
   <animation>
    <frame tileid="1515" duration="150"/>
@@ -1304,6 +1852,46 @@
    <frame tileid="1520" duration="150"/>
    <frame tileid="1522" duration="150"/>
   </animation>
+ </tile>
+ <tile id="1537">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1540">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1545">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1546">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1547">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1548">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1549">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1550">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
  </tile>
  <tile id="1576">
   <animation>
@@ -1328,6 +1916,36 @@
    <frame tileid="1587" duration="150"/>
    <frame tileid="1590" duration="150"/>
   </animation>
+ </tile>
+ <tile id="1609">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1610">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1611">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1612">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1613">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1614">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
  </tile>
  <tile id="1640">
   <animation>
@@ -1365,6 +1983,36 @@
    <frame tileid="1718" duration="150"/>
   </animation>
  </tile>
+ <tile id="1673">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1674">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1675">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1676">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1677">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1678">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
  <tile id="1704">
   <animation>
    <frame tileid="1771" duration="150"/>
@@ -1388,6 +2036,36 @@
    <frame tileid="1779" duration="150"/>
    <frame tileid="1782" duration="150"/>
   </animation>
+ </tile>
+ <tile id="1737">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1738">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1739">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1740">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1741">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1742">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
  </tile>
  <tile id="1832">
   <animation>
@@ -1422,6 +2100,9 @@
   </animation>
  </tile>
  <tile id="2112">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2185" duration="600"/>
    <frame tileid="2186" duration="600"/>
@@ -1432,6 +2113,9 @@
   </animation>
  </tile>
  <tile id="2113">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2188" duration="600"/>
    <frame tileid="2189" duration="600"/>
@@ -1442,6 +2126,9 @@
   </animation>
  </tile>
  <tile id="2114">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2249" duration="600"/>
    <frame tileid="2250" duration="600"/>
@@ -1452,6 +2139,9 @@
   </animation>
  </tile>
  <tile id="2115">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2252" duration="600"/>
    <frame tileid="2253" duration="600"/>
@@ -1462,6 +2152,9 @@
   </animation>
  </tile>
  <tile id="2116">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2313" duration="300"/>
    <frame tileid="2314" duration="300"/>
@@ -1472,6 +2165,9 @@
   </animation>
  </tile>
  <tile id="2117">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2441" duration="300"/>
    <frame tileid="2442" duration="300"/>
@@ -1482,6 +2178,9 @@
   </animation>
  </tile>
  <tile id="2118">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2315" duration="300"/>
    <frame tileid="2314" duration="300"/>
@@ -1492,6 +2191,9 @@
   </animation>
  </tile>
  <tile id="2119">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2443" duration="300"/>
    <frame tileid="2442" duration="300"/>
@@ -1502,6 +2204,9 @@
   </animation>
  </tile>
  <tile id="2120">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2377" duration="300"/>
    <frame tileid="2378" duration="300"/>
@@ -1512,6 +2217,9 @@
   </animation>
  </tile>
  <tile id="2121">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2124" duration="300"/>
    <frame tileid="2125" duration="300"/>
@@ -1522,6 +2230,9 @@
   </animation>
  </tile>
  <tile id="2122">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2379" duration="300"/>
    <frame tileid="2378" duration="300"/>
@@ -1532,6 +2243,9 @@
   </animation>
  </tile>
  <tile id="2123">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2126" duration="300"/>
    <frame tileid="2125" duration="300"/>
@@ -1541,7 +2255,200 @@
    <frame tileid="2127" duration="300"/>
   </animation>
  </tile>
+ <tile id="2124">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2125">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2126">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2127">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2128">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2129">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2185">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2186">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2187">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2188">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2189">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2190">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2241">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2244">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2249">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2250">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2251">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2252">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2253">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2254">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2313">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2314">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2315">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2316">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2317">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2318">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2377">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2378">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2379">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2380">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2381">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2382">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2441">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2442">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2443">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2444">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2445">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2446">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
  <tile id="2816">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2889" duration="600"/>
    <frame tileid="2890" duration="600"/>
@@ -1552,6 +2459,9 @@
   </animation>
  </tile>
  <tile id="2817">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2892" duration="600"/>
    <frame tileid="2893" duration="600"/>
@@ -1562,6 +2472,9 @@
   </animation>
  </tile>
  <tile id="2818">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2953" duration="600"/>
    <frame tileid="2954" duration="600"/>
@@ -1572,6 +2485,9 @@
   </animation>
  </tile>
  <tile id="2819">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2956" duration="600"/>
    <frame tileid="2957" duration="600"/>
@@ -1582,6 +2498,9 @@
   </animation>
  </tile>
  <tile id="2820">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="3017" duration="300"/>
    <frame tileid="3018" duration="300"/>
@@ -1592,6 +2511,9 @@
   </animation>
  </tile>
  <tile id="2821">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="3145" duration="300"/>
    <frame tileid="3146" duration="300"/>
@@ -1602,6 +2524,9 @@
   </animation>
  </tile>
  <tile id="2822">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="3019" duration="300"/>
    <frame tileid="3018" duration="300"/>
@@ -1612,6 +2537,9 @@
   </animation>
  </tile>
  <tile id="2823">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="3147" duration="300"/>
    <frame tileid="3146" duration="300"/>
@@ -1622,6 +2550,9 @@
   </animation>
  </tile>
  <tile id="2824">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="3081" duration="300"/>
    <frame tileid="3082" duration="300"/>
@@ -1632,6 +2563,9 @@
   </animation>
  </tile>
  <tile id="2825">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2828" duration="300"/>
    <frame tileid="2829" duration="300"/>
@@ -1642,6 +2576,9 @@
   </animation>
  </tile>
  <tile id="2826">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="3083" duration="300"/>
    <frame tileid="3082" duration="300"/>
@@ -1652,6 +2589,9 @@
   </animation>
  </tile>
  <tile id="2827">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
   <animation>
    <frame tileid="2830" duration="300"/>
    <frame tileid="2829" duration="300"/>
@@ -1660,5 +2600,195 @@
    <frame tileid="2832" duration="300"/>
    <frame tileid="2831" duration="300"/>
   </animation>
+ </tile>
+ <tile id="2828">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2829">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2830">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2831">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2832">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2833">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2889">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2890">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2891">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2892">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2893">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2894">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2945">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2948">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2953">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2954">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2955">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2956">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2957">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2958">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3017">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3018">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3019">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3020">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3021">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3022">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3081">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3082">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3083">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3084">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3085">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3086">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3145">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3146">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3147">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3148">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3149">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3150">
+  <properties>
+   <property name="surfable" value="1"/>
+  </properties>
  </tile>
 </tileset>

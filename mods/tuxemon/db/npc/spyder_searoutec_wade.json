@@ -2,8 +2,8 @@
   "slug": "spyder_searoutec_wade",
   "template": [
     {
-      "sprite_name": "swimmer",
-      "combat_front": "beachgoer",
+      "sprite_name": "swimmer_blue",
+      "combat_front": "swimmer",
       "slug": "swimmer"
     }
   ]

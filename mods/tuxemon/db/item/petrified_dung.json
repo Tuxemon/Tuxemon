@@ -4,7 +4,7 @@
     "is has_path petrified_dung"
   ],
   "effects": [
-    "evolve petrified_dung"
+    "evolve"
   ],
   "slug": "petrified_dung",
   "sort": "utility",

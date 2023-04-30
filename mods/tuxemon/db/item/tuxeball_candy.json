@@ -5,7 +5,7 @@
     "not threat"
   ],
   "effects": [
-    "capture tuxeball_candy"
+    "capture"
   ],
   "slug": "tuxeball_candy",
   "sort": "utility",

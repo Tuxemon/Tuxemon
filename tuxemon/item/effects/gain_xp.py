@@ -3,9 +3,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from tuxemon.monster import Monster
+
+if TYPE_CHECKING:
+    from tuxemon.item.item import Item
+    from tuxemon.monster import Monster
 
 
 class GainXpEffectResult(ItemEffectResult):
@@ -21,6 +25,9 @@ class GainXpEffect(ItemEffect):
     name = "gain_xp"
     amount: int
 
-    def apply(self, target: Monster) -> GainXpEffectResult:
+    def apply(
+        self, item: Item, target: Union[Monster, None]
+    ) -> GainXpEffectResult:
+        assert target
         target.give_experience(self.amount)
         return {"success": True}

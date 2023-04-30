@@ -3,9 +3,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from tuxemon.monster import Monster
+
+if TYPE_CHECKING:
+    from tuxemon.item.item import Item
+    from tuxemon.monster import Monster
 
 
 class ReviveEffectResult(ItemEffectResult):
@@ -21,7 +25,10 @@ class ReviveEffect(ItemEffect):
     name = "revive"
     hp: int
 
-    def apply(self, target: Monster) -> ReviveEffectResult:
+    def apply(
+        self, item: Item, target: Union[Monster, None]
+    ) -> ReviveEffectResult:
+        assert target
         target.status = []
         target.current_hp = self.hp
 

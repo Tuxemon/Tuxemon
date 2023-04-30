@@ -3,9 +3,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from tuxemon.monster import Monster
+
+if TYPE_CHECKING:
+    from tuxemon.item.item import Item
+    from tuxemon.monster import Monster
 
 
 class LearnTmEffectResult(ItemEffectResult):
@@ -19,7 +23,10 @@ class LearnTmEffect(ItemEffect):
     name = "learn_tm"
     technique: str
 
-    def apply(self, target: Monster) -> LearnTmEffectResult:
+    def apply(
+        self, item: Item, target: Union[Monster, None]
+    ) -> LearnTmEffectResult:
+        assert target
         # monster moves
         moves = []
         for tech in target.moves:

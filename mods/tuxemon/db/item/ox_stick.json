@@ -4,7 +4,7 @@
     "is has_path ox_stick"
   ],
   "effects": [
-    "evolve ox_stick"
+    "evolve"
   ],
   "slug": "ox_stick",
   "sort": "utility",

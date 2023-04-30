@@ -4,7 +4,7 @@
     "is has_path fire_booster"
   ],
   "effects": [
-    "evolve fire_booster"
+    "evolve"
   ],
   "slug": "fire_booster",
   "sort": "utility",

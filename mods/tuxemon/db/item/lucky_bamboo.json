@@ -4,7 +4,7 @@
     "is has_path lucky_bamboo"
   ],
   "effects": [
-    "evolve lucky_bamboo"
+    "evolve"
   ],
   "slug": "lucky_bamboo",
   "sort": "utility",

@@ -4,12 +4,13 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, ClassVar, TypedDict
+from typing import TYPE_CHECKING, ClassVar, TypedDict, Union
 
 from tuxemon.session import Session, local_session
 from tuxemon.tools import cast_dataclass_parameters
 
 if TYPE_CHECKING:
+    from tuxemon.item.item import Item
     from tuxemon.monster import Monster
 
 logger = logging.getLogger(__name__)
@@ -69,5 +70,7 @@ class ItemEffect:
         self.user = local_session.player
         cast_dataclass_parameters(self)
 
-    def apply(self, target: Monster) -> ItemEffectResult:
+    def apply(
+        self, item: Item, target: Union[Monster, None]
+    ) -> ItemEffectResult:
         pass

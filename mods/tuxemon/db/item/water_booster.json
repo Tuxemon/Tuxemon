@@ -4,7 +4,7 @@
     "is has_path water_booster"
   ],
   "effects": [
-    "evolve water_booster"
+    "evolve"
   ],
   "slug": "water_booster",
   "sort": "utility",

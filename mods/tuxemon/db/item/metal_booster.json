@@ -4,7 +4,7 @@
     "is has_path metal_booster"
   ],
   "effects": [
-    "evolve metal_booster"
+    "evolve"
   ],
   "slug": "metal_booster",
   "sort": "utility",

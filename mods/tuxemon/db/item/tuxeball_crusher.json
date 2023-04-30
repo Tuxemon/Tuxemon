@@ -5,7 +5,7 @@
     "not threat"
   ],
   "effects": [
-    "capture tuxeball_crusher"
+    "capture"
   ],
   "slug": "tuxeball_crusher",
   "sort": "utility",

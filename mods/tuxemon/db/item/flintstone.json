@@ -4,7 +4,7 @@
     "is has_path flintstone"
   ],
   "effects": [
-    "evolve flintstone"
+    "evolve"
   ],
   "slug": "flintstone",
   "sort": "utility",

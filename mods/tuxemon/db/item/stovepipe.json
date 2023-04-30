@@ -4,7 +4,7 @@
     "is has_path stovepipe"
   ],
   "effects": [
-    "evolve stovepipe"
+    "evolve"
   ],
   "slug": "stovepipe",
   "sort": "utility",

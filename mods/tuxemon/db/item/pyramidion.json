@@ -4,7 +4,7 @@
     "is has_path pyramidion"
   ],
   "effects": [
-    "evolve pyramidion"
+    "evolve"
   ],
   "slug": "pyramidion",
   "sort": "utility",

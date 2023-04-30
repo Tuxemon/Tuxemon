@@ -4,7 +4,7 @@
     "is has_path shammer_fossil"
   ],
   "effects": [
-    "evolve shammer_fossil"
+    "evolve"
   ],
   "slug": "shammer_fossil",
   "sort": "utility",

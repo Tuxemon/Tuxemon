@@ -4,11 +4,15 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.db import EvolutionStage, MonsterShape, db
 from tuxemon.event.actions.wild_encounter import WildEncounterAction
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from tuxemon.monster import Monster
+
+if TYPE_CHECKING:
+    from tuxemon.item.item import Item
+    from tuxemon.monster import Monster
 
 
 class FishingEffectResult(ItemEffectResult):
@@ -22,7 +26,9 @@ class FishingEffect(ItemEffect):
     name = "fishing"
     value: str
 
-    def apply(self, target: Monster) -> FishingEffectResult:
+    def apply(
+        self, item: Item, target: Union[Monster, None]
+    ) -> FishingEffectResult:
         # level of the rod
         levels = ["basic", "advanced", "pro"]
         if self.value not in levels:

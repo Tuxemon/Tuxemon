@@ -5,7 +5,7 @@
     "not threat"
   ],
   "effects": [
-    "capture tuxeball_female"
+    "capture"
   ],
   "slug": "tuxeball_female",
   "sort": "utility",

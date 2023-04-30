@@ -5,7 +5,7 @@
     "not threat"
   ],
   "effects": [
-    "capture tuxeball_water"
+    "capture"
   ],
   "slug": "tuxeball_water",
   "sort": "utility",

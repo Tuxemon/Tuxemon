@@ -4,7 +4,7 @@
     "is has_path sweet_sand"
   ],
   "effects": [
-    "evolve sweet_sand"
+    "evolve"
   ],
   "slug": "sweet_sand",
   "sort": "utility",

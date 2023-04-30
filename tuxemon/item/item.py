@@ -256,7 +256,7 @@ class Item:
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
-            result = effect.apply(target)
+            result = effect.apply(self, target)
             meta_result.update(result)
 
         # If this is a consumable item, remove it from the player's inventory.

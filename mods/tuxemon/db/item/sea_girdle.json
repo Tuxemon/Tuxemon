@@ -4,7 +4,7 @@
     "is has_path sea_girdle"
   ],
   "effects": [
-    "evolve sea_girdle"
+    "evolve"
   ],
   "slug": "sea_girdle",
   "sort": "utility",

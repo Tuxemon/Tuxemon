@@ -5,7 +5,7 @@
     "not threat"
   ],
   "effects": [
-    "capture tuxeball_male"
+    "capture"
   ],
   "slug": "tuxeball_male",
   "sort": "utility",

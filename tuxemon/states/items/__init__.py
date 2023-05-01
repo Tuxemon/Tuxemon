@@ -136,7 +136,7 @@ class ItemMenuState(Menu[Item]):
                             "here": T.translate(loc_type),
                         },
                     )
-                elif i.name == "facing_tile":
+                elif i.name == "facing_tile" or i.name == "facing_npc":
                     msg = T.format("item_cannot_use_here", {"name": item.name})
             tools.open_dialog(local_session, [msg])
         elif State[state] not in item.usable_in:

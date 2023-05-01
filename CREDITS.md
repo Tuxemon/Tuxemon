@@ -824,6 +824,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Cureall"](https://wiki.tuxemon.org/File:APPLE_2.png) original sprite by josepharaoh99. Modifications by Sanglorian.  Licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Revive"](https://wiki.tuxemon.org/File:Shroom3.png) Sprite by BizmasterStudios.  Licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
 * ["Restoration"](https://wiki.tuxemon.org/File:ORANGE_2.png) original sprite by josepharaoh99. Modifications by Sanglorian. Licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Trepidation"](https://wiki.tuxemon.org/index.php?title=File:Interior_Tiles_by_ArMM1998.png) cut and resized by Jaskrendix from Interior tileset by ArMM1998. Licensed under CC0.

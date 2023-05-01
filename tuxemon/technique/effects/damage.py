@@ -50,7 +50,7 @@ class DamageEffect(TechEffect):
             target.current_hp -= damage
         else:
             damage = 0
-            mult = 1
+            mult = 1.0
 
         return {
             "damage": damage,

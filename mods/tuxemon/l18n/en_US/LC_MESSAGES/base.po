@@ -291,6 +291,12 @@ msgstr "Fishing Rod"
 msgid "fishing_rod_description"
 msgstr "Catch fish."
 
+msgid "hatchet"
+msgstr "Hatchet"
+
+msgid "hatchet_description"
+msgstr "Cut down pesky logs with the Hatchet."
+
 msgid "surfboard"
 msgstr "Surfboard"
 

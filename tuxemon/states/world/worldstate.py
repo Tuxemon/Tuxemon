@@ -600,6 +600,19 @@ class WorldState(state.State):
         """
         return self.npcs.get(slug)
 
+    def get_entity_pos(self, pos: Tuple[int, int]) -> Optional[NPC]:
+        """
+        Get an entity from the world by its position.
+
+        Parameters:
+            pos: The entity position.
+
+        """
+        for npc in self.npcs.values():
+            if npc.tile_pos == pos:
+                return npc
+        return None
+
     def remove_entity(self, slug: str) -> None:
         """
         Remove an entity from the world.

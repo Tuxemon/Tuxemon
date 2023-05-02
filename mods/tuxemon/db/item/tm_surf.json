@@ -1,6 +1,7 @@
 {
   "conditions": [
     "is type water",
+    "is shape aquatic:polliwog:leviathan",
     "is max_moves",
     "not has_tech surf"
   ],

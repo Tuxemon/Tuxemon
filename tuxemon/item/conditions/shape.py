@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Union
+from typing import TYPE_CHECKING, List
 
 from tuxemon.item.itemcondition import ItemCondition
-from tuxemon.monster import Monster
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
 
 
 @dataclass
@@ -19,19 +21,15 @@ class ShapeCondition(ItemCondition):
     """
 
     name = "shape"
-    shape1: str
-    shape2: Union[str, None] = None
-    shape3: Union[str, None] = None
-    shape4: Union[str, None] = None
-    shape5: Union[str, None] = None
+    shapes: str
 
     def test(self, target: Monster) -> bool:
-        ret = False
-        if target.shape is not None:
-            ret = any(
-                target.shape.lower() == p.lower()
-                for p in self.shape1
-                if p is not None
-            )
-
-        return ret
+        shapes: List[str] = []
+        if self.shapes.find(":"):
+            shapes = self.shapes.split(":")
+        else:
+            shapes.append(self.shapes)
+        if target.shape in shapes:
+            return True
+        else:
+            return False

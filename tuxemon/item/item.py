@@ -19,14 +19,7 @@ import pygame
 
 from tuxemon import graphics, plugin, prepare
 from tuxemon.constants import paths
-from tuxemon.db import (
-    ItemBattleMenu,
-    ItemCategory,
-    ItemType,
-    State,
-    db,
-    process_targets,
-)
+from tuxemon.db import ItemCategory, ItemType, State, db, process_targets
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.locale import T
@@ -78,7 +71,6 @@ class Item:
         self.use_failure = ""
         self.usable_in: Sequence[State] = []
         self.target: Sequence[str] = []
-        self.battle_menu: Optional[ItemBattleMenu] = None
 
         # load effect and condition plugins if it hasn't been done already
         if not Item.effects_classes:
@@ -127,7 +119,6 @@ class Item:
         self.usable_in = results.usable_in
         self.target = process_targets(results.target)
         self.effects = self.parse_effects(results.effects)
-        self.battle_menu = results.battle_menu
         self.conditions = self.parse_conditions(results.conditions)
         self.surface = graphics.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()

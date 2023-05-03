@@ -1,5 +1,4 @@
 {
-  "battle_menu": "monster",
   "conditions": [
     "is current_hp <,1.0",
     "is current_hp >,0"

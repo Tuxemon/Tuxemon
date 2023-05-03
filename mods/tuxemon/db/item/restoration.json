@@ -1,5 +1,4 @@
 {
-  "battle_menu": "monster",
   "conditions": [
     "is has_status"
   ],

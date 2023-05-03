@@ -1,5 +1,4 @@
 {
-  "battle_menu": "monster",
   "conditions": [],
   "effects": [
     "increase ranged,0.05"

@@ -1,5 +1,4 @@
 {
-  "battle_menu": "monster",
   "conditions": [],
   "effects": [
     "buff dodge,0.2"

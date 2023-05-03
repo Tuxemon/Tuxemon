@@ -1,5 +1,4 @@
 {
-  "battle_menu": "combat",
   "conditions": [
     "is wild_monster",
     "not threat"

@@ -5,9 +5,9 @@
   "effects": [
     "fishing"
   ],
-  "slug": "fishing_rod",
+  "slug": "poseidon",
   "sort": "utility",
-  "sprite": "gfx/items/fishing_rod.png",
+  "sprite": "gfx/items/poseidon.png",
   "target": {
     "enemy monster": 0,
     "enemy team": 0,

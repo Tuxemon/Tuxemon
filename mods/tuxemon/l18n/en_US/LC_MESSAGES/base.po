@@ -303,6 +303,12 @@ msgstr "Neptune"
 msgid "neptune_description"
 msgstr "Advanced fishing rod."
 
+msgid "hatchet"
+msgstr "Hatchet"
+
+msgid "hatchet_description"
+msgstr "Cut down pesky logs with the Hatchet."
+
 msgid "surfboard"
 msgstr "Surfboard"
 
@@ -6558,6 +6564,8 @@ msgid "spyder_nimrod_maverick2"
 msgstr "I wish I knew someone I could play music with."
 msgid "spyder_nimrod_justice1"
 msgstr "Ask not for whom Ghosteeth tolls!"
+msgid "spyder_cotton_lazybrute"
+msgstr "Buzz off, this tunnel is still under construction."
 msgid "spyder_nimrod_justice2"
 msgstr "It tolls for me."
 msgid "spyder_nimrod_mace1"

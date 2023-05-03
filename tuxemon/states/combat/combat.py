@@ -1153,19 +1153,6 @@ class CombatState(CombatAnimations):
                 self.alert(message)
                 self.suppress_phase_change(action_time)
 
-            # effect animation
-            is_flipped = False
-            tech_sprite = self._technique_cache.get(technique, is_flipped)
-            if target_sprite and tech_sprite:
-                tech_sprite.rect.center = target_sprite.rect.center
-                assert tech_sprite.animation
-                self.task(tech_sprite.animation.play, 0.6)
-                self.task(
-                    partial(self.sprites.add, tech_sprite, layer=50),
-                    0.6,
-                )
-                self.task(tech_sprite.kill, action_time)
-
     def faint_monster(self, monster: Monster) -> None:
         """
         Instantly make the monster faint (will be removed later).

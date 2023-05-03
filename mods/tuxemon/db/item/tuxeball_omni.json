@@ -1,5 +1,4 @@
 {
-  "battle_menu": "combat",
   "conditions": [
     "is wild_monster",
     "not threat"
@@ -10,15 +9,6 @@
   "slug": "tuxeball_omni",
   "sort": "utility",
   "sprite": "gfx/items/tuxeball_omni.png",
-  "target": {
-    "enemy monster": 2,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 0,
-    "own team": 0,
-    "own trainer": 0,
-    "item": 0
-  },
   "category": "capture",
   "type": "Consumable",
   "usable_in": [

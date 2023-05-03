@@ -9,9 +9,10 @@ from functools import partial
 from typing import TYPE_CHECKING, Callable, DefaultDict, Generator, List, Union
 
 import pygame
+from pygame.rect import Rect
 
 from tuxemon import combat, formula, graphics, tools
-from tuxemon.db import ItemBattleMenu, PlagueType
+from tuxemon.db import ItemCategory, PlagueType, State
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -19,12 +20,12 @@ from tuxemon.menu.menu import Menu, PopUpMenu
 from tuxemon.monster import MAX_MOVES, Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import MenuSpriteGroup, SpriteGroup
-from tuxemon.state import State
 from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.items import ItemMenuState
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.technique.technique import Technique
 from tuxemon.ui.draw import GraphicBox
+from tuxemon.ui.text import TextArea
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
@@ -221,24 +222,19 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_target(menu_item: MenuItem[Item]) -> None:
             # open menu to choose target of item
+            combat_state = self.client.get_state_by_name(CombatState)
             item = menu_item.game_object
             self.client.pop_state()  # close the item menu
-            # TODO: don't hardcode to player0
-            combat_state = self.client.get_state_by_name(CombatState)
-
-            state: State
-            if item.battle_menu == ItemBattleMenu.monster:
-                state = self.client.push_state(MonsterMenuState())
-                state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[method-assign]
-            else:
-                state = self.client.push_state(
-                    CombatTargetMenuState(
-                        player=combat_state.players[0],
-                        user=combat_state.players[0],
-                        action=item,
-                    )
-                )
-                state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[method-assign]
+            if State["MainCombatMenuState"] in item.usable_in:
+                if item.category == ItemCategory.capture:
+                    active = combat_state.monsters_in_play
+                    enemy = active[combat_state.players[1]][0]
+                    surface = pygame.Surface(self.rect.size)
+                    mon = MenuItem(surface, None, None, enemy)
+                    enqueue_item(item, mon)
+                else:
+                    state = self.client.push_state(MonsterMenuState())
+                    state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[method-assign]
 
         def enqueue_item(item: Item, menu_item: MenuItem[Monster]) -> None:
             target = menu_item.game_object
@@ -256,7 +252,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             # close all the open menus
             self.client.pop_state()  # close target chooser
-            self.client.pop_state()  # close the monster action menu
+            if item.category != ItemCategory.capture:
+                self.client.pop_state()  # close the monster action menu
 
         choose_item()
 
@@ -306,14 +303,26 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 return
 
             combat_state = self.client.get_state_by_name(CombatState)
-            state = self.client.push_state(
-                CombatTargetMenuState(
-                    player=combat_state.players[0],
-                    user=self.monster,
-                    action=technique,
+            # allow to choose target if 1 vs 2 or 2 vs 2
+            if len(combat_state.monsters_in_play[combat_state.players[1]]) > 1:
+                state = self.client.push_state(
+                    CombatTargetMenuState(
+                        player=combat_state.players[0],
+                        user=self.monster,
+                        action=technique,
+                    )
                 )
-            )
-            state.on_menu_selection = partial(enqueue_technique, technique)  # type: ignore[method-assign]
+                state.on_menu_selection = partial(enqueue_technique, technique)  # type: ignore[method-assign]
+            else:
+                active = combat_state.monsters_in_play
+                own = active[combat_state.players[0]][0]
+                enemy = active[combat_state.players[1]][0]
+                surface = pygame.Surface(self.rect.size)
+                if "own monster" in technique.target:
+                    mon = MenuItem(surface, None, None, own)
+                else:
+                    mon = MenuItem(surface, None, None, enemy)
+                enqueue_technique(technique, mon)
 
         def enqueue_technique(
             technique: Technique,
@@ -372,7 +381,11 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                     self.monster.moves.pop()
 
                 # close all the open menus
-                self.client.pop_state()  # close target chooser
+                if (
+                    len(combat_state.monsters_in_play[combat_state.players[1]])
+                    > 1
+                ):
+                    self.client.pop_state()  # close target chooser
                 self.client.pop_state()  # close technique menu
                 self.client.pop_state()  # close the monster action menu
 
@@ -401,7 +414,7 @@ class CombatTargetMenuState(Menu[Monster]):
         self,
         player: NPC,
         user: Union[NPC, Monster],
-        action: Union[Item, Technique],
+        action: Technique,
     ) -> None:
         super().__init__()
 
@@ -409,6 +422,20 @@ class CombatTargetMenuState(Menu[Monster]):
         self.user = user
         self.action = action
         self.player = player
+
+        # creates menu
+        rect_screen = self.client.screen.get_rect()
+        rect = Rect(0, 0, rect_screen.w // 2, rect_screen.h // 4)
+        rect.bottomright = rect_screen.w, rect_screen.h
+        border = graphics.load_and_scale(self.borders_filename)
+        self.dialog_box = GraphicBox(border, None, self.background_color)
+        self.dialog_box.rect = rect
+        self.sprites.add(self.dialog_box, layer=100)
+        self.text_area = TextArea(self.font, self.font_color)
+        self.text_area.rect = self.dialog_box.calc_inner_rect(
+            self.dialog_box.rect,
+        )
+        self.sprites.add(self.text_area, layer=100)
 
         # load and scale the menu borders
         border = graphics.load_and_scale(self.borders_filename)
@@ -431,30 +458,36 @@ class CombatTargetMenuState(Menu[Monster]):
         self.targeting_map: DefaultDict[str, List[Monster]] = defaultdict(list)
 
         for player, monsters in combat_state.monsters_in_play.items():
-            for monster in monsters:
-                # TODO: more targeting classes
-                if player == self.player:
-                    targeting_class = "own monster"
-                else:
-                    targeting_class = "enemy monster"
+            if len(monsters) == 2:
+                for monster in monsters:
+                    # TODO: more targeting classes
+                    if player == self.player:
+                        targeting_class = "own monster"
+                    else:
+                        targeting_class = "enemy monster"
 
-                self.targeting_map[targeting_class].append(monster)
+                    self.targeting_map[targeting_class].append(monster)
 
-                # TODO: handle odd cases where a situation creates no valid
-                # targets if this target type is not handled by this action,
-                # then skip it
-                if targeting_class not in self.action.target:
-                    continue
+                    # TODO: handle odd cases where a situation creates no valid
+                    # targets if this target type is not handled by this action,
+                    # then skip it
+                    if targeting_class not in self.action.target:
+                        continue
 
-                # inspect the monster sprite and make a border image for it
-                sprite = combat_state._monster_sprite_map[monster]
-                item = MenuItem(None, None, None, monster)
-                item.rect = sprite.rect.copy()
-                center = item.rect.center
-                item.rect.inflate_ip(tools.scale(16), tools.scale(16))
-                item.rect.center = center
-
-                yield item
+                    # inspect the monster sprite and make a border image for it
+                    sprite = combat_state._monster_sprite_map[monster]
+                    mon1 = MenuItem(None, None, monsters[0].name, monsters[0])
+                    mon1.rect = sprite.rect.copy()
+                    right = mon1.rect.right
+                    mon1.rect.inflate_ip(tools.scale(8), tools.scale(8))
+                    mon1.rect.right = right
+                    yield mon1
+                    mon2 = MenuItem(None, None, monsters[1].name, monsters[1])
+                    mon2.rect = sprite.rect.copy()
+                    left = mon2.rect.left
+                    mon2.rect.inflate_ip(tools.scale(8), tools.scale(8))
+                    mon2.rect.left = left
+                    yield mon2
 
     def refresh_layout(self) -> None:
         """Before refreshing the layout, determine the optimal target."""
@@ -486,3 +519,7 @@ class CombatTargetMenuState(Menu[Monster]):
         if item:
             item.image = pygame.Surface(item.rect.size, pygame.SRCALPHA)
             self.border.draw(item.image)
+
+            # show item description
+            if item.description:
+                self.alert(item.description)

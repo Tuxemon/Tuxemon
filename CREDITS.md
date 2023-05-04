@@ -387,6 +387,9 @@ is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 ["Superpowers Assets Ninja Tilesheet"](https://wiki.tuxemon.org/index.php?title=File:Superpowers_Tilesheet.png)
 by Superpower Asset Packs
 is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Inspired 16x16 Tiles"](https://wiki.tuxemon.org/File:Tilemap_0.png)
+based on https://opengameart.org/content/pokemon-inspired-16x16-tiles by ["RedVoxel"](https://red-voxel.itch.io/), roofs adapted by Jaskrendix.
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 

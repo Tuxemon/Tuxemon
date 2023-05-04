@@ -4,10 +4,13 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
 
 
 class GiveEffectResult(TechEffectResult):

@@ -23,12 +23,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYKAtUJZnYFABYm4g5gHieYoQ+14B2cjAWo6BwQaInYDizkCsBcTaQLwXqh5ZLYgdBVQbDcTo4A4O9f8VICp/AOV/AvEvKP6NQz26ubj471QYGN4DMQYAmYuMoQp4VRkY+IAYGTAB1ZUpMDCUQ3EFkGbE4y6Q+qlANdOgeDoB9QxAsAWoZisUbwPS5IBDQE0wDNK/DRj+AI/hHVY=
+   eAFjYKAtUJZnYFABYm4g5gHieYrY7bOWY2CwAWInoBpnINYCYm0g3otDfRRQbTQQo4M7ONT/V4Co/AGU/wnEv6D4Nw716Obi4r9TYWB4D8QYAGQuMoYq4FVlYOADYmTABFRXpsDAUA7FFUCaEY+7QOqnAtVMg+LpBNQzAMEWoJqtULwNSJMDDgE1wTBI/zZg+AMAt9ocTQ==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBia4IECfd39EGgfMobZ7g0UB2Fk8BiND5J7BBXLAtIgjAzwqUdWR2v2dDnSbQAA3IgLrg==
+   eAFjYBia4IECfd39EGgfMsZn+2OgWnTwCIsYTA2p6mH6qE1PlyPdRAAqjQnE
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">

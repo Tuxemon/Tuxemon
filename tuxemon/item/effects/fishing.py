@@ -24,16 +24,10 @@ class FishingEffect(ItemEffect):
     """This effect triggers fishing."""
 
     name = "fishing"
-    value: str
 
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> FishingEffectResult:
-        # level of the rod
-        levels = ["basic", "advanced", "pro"]
-        if self.value not in levels:
-            raise ValueError(f"{self.value} must be bas, adv or pro")
-
         # define random encounters
         bas = []
         adv = []
@@ -67,7 +61,7 @@ class FishingEffect(ItemEffect):
 
         # bait probability
         bait = random.randint(1, 100)
-        if self.value == "basic":
+        if item.slug == "fishing_rod":
             if bait <= 35:
                 mon_slug = random.choice(bas)
                 level = random.randint(5, 15)
@@ -77,7 +71,7 @@ class FishingEffect(ItemEffect):
                 return {"success": True}
             else:
                 return {"success": False}
-        elif self.value == "advanced":
+        elif item.slug == "neptune":
             if bait <= 65:
                 mon_slug = random.choice(adv)
                 level = random.randint(15, 25)
@@ -87,7 +81,7 @@ class FishingEffect(ItemEffect):
                 return {"success": True}
             else:
                 return {"success": False}
-        elif self.value == "pro":
+        elif item.slug == "poseidon":
             if bait <= 85:
                 mon_slug = random.choice(pro)
                 level = random.randint(25, 35)

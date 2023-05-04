@@ -561,10 +561,10 @@ class CombatAnimations(ABC, Menu[None]):
 
         combat_front = ""
         combat_back = ""
-        for ele in opponent.template:
-            combat_front = ele.combat_front
-        for ele in player.template:
-            combat_back = ele.combat_front
+        for opp in opponent.template:
+            combat_front = opp.combat_front
+        for pla in player.template:
+            combat_back = pla.combat_front
 
         if self.is_trainer_battle:
             enemy = self.load_sprite(

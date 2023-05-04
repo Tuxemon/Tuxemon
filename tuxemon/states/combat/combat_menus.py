@@ -12,7 +12,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import combat, formula, graphics, tools
-from tuxemon.db import ItemBattleMenu, PlagueType
+from tuxemon.db import ItemCategory, PlagueType, State
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -20,7 +20,6 @@ from tuxemon.menu.menu import Menu, PopUpMenu
 from tuxemon.monster import MAX_MOVES, Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import MenuSpriteGroup, SpriteGroup
-from tuxemon.state import State
 from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.items import ItemMenuState
 from tuxemon.states.monster import MonsterMenuState
@@ -223,24 +222,19 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_target(menu_item: MenuItem[Item]) -> None:
             # open menu to choose target of item
+            combat_state = self.client.get_state_by_name(CombatState)
             item = menu_item.game_object
             self.client.pop_state()  # close the item menu
-            # TODO: don't hardcode to player0
-            combat_state = self.client.get_state_by_name(CombatState)
-
-            state: State
-            if item.battle_menu == ItemBattleMenu.monster:
-                state = self.client.push_state(MonsterMenuState())
-                state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[method-assign]
-            else:
-                state = self.client.push_state(
-                    CombatTargetMenuState(
-                        player=combat_state.players[0],
-                        user=combat_state.players[0],
-                        action=item,
-                    )
-                )
-                state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[method-assign]
+            if State["MainCombatMenuState"] in item.usable_in:
+                if item.category == ItemCategory.capture:
+                    active = combat_state.monsters_in_play
+                    enemy = active[combat_state.players[1]][0]
+                    surface = pygame.Surface(self.rect.size)
+                    mon = MenuItem(surface, None, None, enemy)
+                    enqueue_item(item, mon)
+                else:
+                    state = self.client.push_state(MonsterMenuState())
+                    state.on_menu_selection = partial(enqueue_item, item)  # type: ignore[method-assign]
 
         def enqueue_item(item: Item, menu_item: MenuItem[Monster]) -> None:
             target = menu_item.game_object
@@ -258,7 +252,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             # close all the open menus
             self.client.pop_state()  # close target chooser
-            self.client.pop_state()  # close the monster action menu
+            if item.category != ItemCategory.capture:
+                self.client.pop_state()  # close the monster action menu
 
         choose_item()
 

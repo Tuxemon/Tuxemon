@@ -1,5 +1,4 @@
 {
-  "battle_menu": "monster",
   "conditions": [],
   "effects": [
     "increase melee,0.05"

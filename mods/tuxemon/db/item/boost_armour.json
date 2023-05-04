@@ -1,5 +1,4 @@
 {
-  "battle_menu": "monster",
   "conditions": [],
   "effects": [
     "buff armour,0.2"

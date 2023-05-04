@@ -1,5 +1,4 @@
 {
-  "battle_menu": "monster",
   "conditions": [
     "is current_hp ==,0",
     "is status status_faint"

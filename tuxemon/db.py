@@ -200,9 +200,6 @@ class ItemModel(BaseModel):
     )
     sort: ItemSort = Field(..., description="The kind of item this is.")
     sprite: str = Field(..., description="The sprite to use")
-    target: Target = Field(
-        ..., description="Target mapping of who to use the item on"
-    )
     type: ItemType = Field(..., description="The type of item this is")
     category: ItemCategory = Field(
         ..., description="The category of item this is"

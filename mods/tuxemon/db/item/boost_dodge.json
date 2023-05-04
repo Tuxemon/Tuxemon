@@ -6,15 +6,6 @@
   "slug": "boost_dodge",
   "sort": "utility",
   "sprite": "gfx/items/boost_dodge.png",
-  "target": {
-    "enemy monster": 1,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 2,
-    "own team": 0,
-    "own trainer": 0,
-    "item": 0
-  },
   "category": "stats",
   "type": "Consumable",
   "usable_in": [

@@ -841,6 +841,8 @@ class CombatState(CombatAnimations):
         state = self.client.push_state(
             MainCombatMenuState(
                 monster=monster,
+                player=self.players[0],
+                enemy=self.players[1],
             )
         )
         state.rect = rect

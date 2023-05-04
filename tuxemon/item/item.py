@@ -19,7 +19,7 @@ import pygame
 
 from tuxemon import graphics, plugin, prepare
 from tuxemon.constants import paths
-from tuxemon.db import ItemCategory, ItemType, State, db, process_targets
+from tuxemon.db import ItemCategory, ItemType, State, db
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.locale import T
@@ -70,7 +70,6 @@ class Item:
         self.use_success = ""
         self.use_failure = ""
         self.usable_in: Sequence[State] = []
-        self.target: Sequence[str] = []
 
         # load effect and condition plugins if it hasn't been done already
         if not Item.effects_classes:
@@ -117,7 +116,6 @@ class Item:
         self.type = results.type or ItemType.consumable
         self.sprite = results.sprite
         self.usable_in = results.usable_in
-        self.target = process_targets(results.target)
         self.effects = self.parse_effects(results.effects)
         self.conditions = self.parse_conditions(results.conditions)
         self.surface = graphics.load_and_scale(self.sprite)

@@ -47,10 +47,12 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
     escape_key_exits = False
     columns = 2
 
-    def __init__(self, monster: Monster) -> None:
+    def __init__(self, monster: Monster, player: NPC, enemy: NPC) -> None:
         super().__init__()
 
         self.monster = monster
+        self.player = player
+        self.enemy = enemy
 
     def initialize_items(self) -> Generator[MenuItem[MenuGameObj], None, None]:
         combat_state = self.client.get_state_by_name(CombatState)
@@ -96,9 +98,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             )
             return
         self.client.pop_state(self)
-        combat_state = self.client.get_state_by_name(CombatState)
         # trigger forfeit
-        for mon in combat_state.players[0].monsters:
+        for mon in self.player.monsters:
             faint = Technique()
             faint.load("status_faint")
             mon.current_hp = 0
@@ -108,10 +109,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         """
         Cause player to run from the wild encounters.
 
-        TODO: only works for player0.
-
         """
-        # TODO: only works for player0
         run = Technique()
         run.load("menu_run")
         if not run.validate(self.monster):
@@ -130,20 +128,20 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             return
         self.client.pop_state(self)
         combat_state = self.client.get_state_by_name(CombatState)
-        player = combat_state.monsters_in_play[combat_state.players[0]][0]
-        target = combat_state.monsters_in_play[combat_state.players[1]][0]
-        var = combat_state.players[0].game_variables
+        player = combat_state.monsters_in_play[self.player][0]
+        enemy = combat_state.monsters_in_play[self.enemy][0]
+        var = self.player.game_variables
         # if the variable doesn't exist
         if "run_attempts" not in var:
             var["run_attempts"] = 0
         if (
-            formula.escape(player.level, target.level, var["run_attempts"])
+            formula.escape(player.level, enemy.level, var["run_attempts"])
             and combat_state._run == "on"
         ):
             var["run_attempts"] += 1
             # trigger run
-            del combat_state.monsters_in_play[combat_state.players[0]]
-            combat_state.players.remove(combat_state.players[0])
+            del combat_state.monsters_in_play[self.player]
+            combat_state.players.remove(self.player)
         else:
 
             def open_menu() -> None:
@@ -166,11 +164,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def swap_it(menuitem: MenuItem[Monster]) -> None:
             monster = menuitem.game_object
+            combat_state = self.client.get_state_by_name(CombatState)
 
-            if (
-                monster
-                in self.client.get_state_by_name(CombatState).active_monsters
-            ):
+            if monster in combat_state.active_monsters:
                 tools.open_dialog(
                     local_session,
                     [T.format("combat_isactive", {"name": monster.name})],
@@ -182,7 +178,6 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                     [T.format("combat_fainted", {"name": monster.name})],
                 )
                 return
-            combat_state = self.client.get_state_by_name(CombatState)
             swap = Technique()
             swap.load("swap")
             swap.combat_state = combat_state
@@ -228,7 +223,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             if State["MainCombatMenuState"] in item.usable_in:
                 if item.category == ItemCategory.capture:
                     active = combat_state.monsters_in_play
-                    enemy = active[combat_state.players[1]][0]
+                    enemy = active[self.enemy][0]
                     surface = pygame.Surface(self.rect.size)
                     mon = MenuItem(surface, None, None, enemy)
                     enqueue_item(item, mon)
@@ -246,8 +241,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             # enqueue the item
             combat_state = self.client.get_state_by_name(CombatState)
-            player = local_session.player
-            combat_state.enqueue_action(player, item, target)
+            combat_state.enqueue_action(self.player, item, target)
             combat_state.status_response_item(target)
 
             # close all the open menus
@@ -304,10 +298,10 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             combat_state = self.client.get_state_by_name(CombatState)
             # allow to choose target if 1 vs 2 or 2 vs 2
-            if len(combat_state.monsters_in_play[combat_state.players[1]]) > 1:
+            if len(combat_state.monsters_in_play[self.enemy]) > 1:
                 state = self.client.push_state(
                     CombatTargetMenuState(
-                        player=combat_state.players[0],
+                        player=self.player,
                         user=self.monster,
                         action=technique,
                     )
@@ -315,11 +309,11 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 state.on_menu_selection = partial(enqueue_technique, technique)  # type: ignore[method-assign]
             else:
                 active = combat_state.monsters_in_play
-                own = active[combat_state.players[0]][0]
-                enemy = active[combat_state.players[1]][0]
+                player = active[self.player][0]
+                enemy = active[self.enemy][0]
                 surface = pygame.Surface(self.rect.size)
                 if "own monster" in technique.target:
-                    mon = MenuItem(surface, None, None, own)
+                    mon = MenuItem(surface, None, None, player)
                 else:
                     mon = MenuItem(surface, None, None, enemy)
                 enqueue_technique(technique, mon)
@@ -363,10 +357,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                         technique = status
                         # infect mechanism
                         if (
-                            combat_state.players[1].plague
-                            == PlagueType.infected
-                            or combat_state.players[1].plague
-                            == PlagueType.healthy
+                            self.enemy.plague == PlagueType.infected
+                            or self.enemy.plague == PlagueType.healthy
                         ):
                             target.plague = PlagueType.infected
                 # continue combat action
@@ -381,10 +373,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                     self.monster.moves.pop()
 
                 # close all the open menus
-                if (
-                    len(combat_state.monsters_in_play[combat_state.players[1]])
-                    > 1
-                ):
+                if len(combat_state.monsters_in_play[self.enemy]) > 1:
                     self.client.pop_state()  # close target chooser
                 self.client.pop_state()  # close technique menu
                 self.client.pop_state()  # close the monster action menu
@@ -414,7 +403,7 @@ class CombatTargetMenuState(Menu[Monster]):
         self,
         player: NPC,
         user: Union[NPC, Monster],
-        action: Union[Item, Technique],
+        action: Technique,
     ) -> None:
         super().__init__()
 

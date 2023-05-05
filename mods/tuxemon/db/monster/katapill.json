@@ -1,7 +1,6 @@
 {
     "slug": "katapill",
     "category": "beat",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

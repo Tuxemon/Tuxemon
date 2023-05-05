@@ -1,7 +1,6 @@
 {
     "slug": "sludgehog",
     "category": "garbage",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

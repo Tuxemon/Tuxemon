@@ -1,7 +1,6 @@
 {
     "slug": "chrome_robo",
     "category": "threat",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

@@ -1,7 +1,6 @@
 {
     "slug": "fruitera",
     "category": "tiny_bat",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

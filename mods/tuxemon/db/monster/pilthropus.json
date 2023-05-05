@@ -1,7 +1,6 @@
 {
     "slug": "pilthropus",
     "category": "tool_maker",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

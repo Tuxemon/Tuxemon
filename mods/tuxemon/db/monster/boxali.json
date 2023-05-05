@@ -1,7 +1,6 @@
 {
     "slug": "boxali",
     "category": "macropod",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

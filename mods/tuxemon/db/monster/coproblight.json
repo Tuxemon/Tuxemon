@@ -1,7 +1,6 @@
 {
     "slug": "coproblight",
     "category": "skull_poo",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

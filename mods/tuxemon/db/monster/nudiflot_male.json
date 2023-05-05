@@ -1,7 +1,6 @@
 {
     "slug": "nudiflot_male",
     "category": "flotsam",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

@@ -1,7 +1,6 @@
 {
     "slug": "lightmare",
     "category": "nightmare_fuel",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

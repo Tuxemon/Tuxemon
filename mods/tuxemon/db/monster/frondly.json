@@ -1,7 +1,6 @@
 {
     "slug": "frondly",
     "category": "helping_hand",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

@@ -1,7 +1,6 @@
 {
     "slug": "eyenemy",
     "category": "pupil",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

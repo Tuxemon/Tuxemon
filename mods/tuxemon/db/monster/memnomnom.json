@@ -1,7 +1,6 @@
 {
     "slug": "memnomnom",
     "category": "relic",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

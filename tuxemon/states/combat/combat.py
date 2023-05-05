@@ -27,6 +27,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import audio, graphics, state, tools
+from tuxemon.ai import AI
 from tuxemon.animation import Task
 from tuxemon.battle import Battle
 from tuxemon.combat import (
@@ -403,7 +404,7 @@ class CombatState(CombatAnimations):
 
                 for trainer in self.ai_players:
                     for monster in self.monsters_in_play[trainer]:
-                        self.get_combat_decision_from_ai(monster)
+                        AI(self, monster)
                         # recharge opponent moves
                         for tech in monster.moves:
                             tech.recharge()
@@ -538,55 +539,6 @@ class CombatState(CombatAnimations):
 
         else:
             assert_never(phase)
-
-    def get_combat_decision_from_ai(self, monster: Monster) -> None:
-        """
-        Get ai action from a monster and enqueue it.
-
-        Parameters:
-            monster: Monster whose action will be decided.
-
-        Returns:
-            Enqueued action of the monster.
-
-        """
-        # TODO: parties/teams/etc to choose opponents
-        opponents = self.monsters_in_play[self.players[0]]
-        trainer = self.players[1]
-        assert monster.ai
-        if self.is_trainer_battle:
-            user, technique, target = monster.ai.make_decision_trainer(
-                trainer, monster, opponents
-            )
-        else:
-            user, technique, target = monster.ai.make_decision_wild(
-                trainer, monster, opponents
-            )
-        # check status response
-        if isinstance(user, Monster) and isinstance(technique, Technique):
-            # null action for dozing
-            if has_status(user, "status_dozing"):
-                status = Technique()
-                status.load("status_dozing")
-                technique = status
-            # null action for plague - spyder_bite
-            if user.plague == PlagueType.infected:
-                value = random.randint(1, 8)
-                if value == 1:
-                    status = Technique()
-                    status.load("status_spyderbite")
-                    technique = status
-                    if self.players[1].plague == PlagueType.infected:
-                        target.plague = PlagueType.infected
-            # check status response
-            if self.status_response_technique(user, technique):
-                self._lost_monster = user
-        if isinstance(user, NPC) and isinstance(technique, Item):
-            if self.status_response_item(target):
-                self._lost_monster = target
-        action = EnqueuedAction(user, technique, target)
-        self._action_queue.append(action)
-        self._log_action.append((self._turn, action))
 
     def sort_action_queue(self) -> None:
         """Sort actions in the queue according to game rules.
@@ -840,9 +792,8 @@ class CombatState(CombatAnimations):
 
         state = self.client.push_state(
             MainCombatMenuState(
+                cmb=self,
                 monster=monster,
-                player=self.players[0],
-                enemy=self.players[1],
             )
         )
         state.rect = rect

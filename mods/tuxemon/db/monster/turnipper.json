@@ -1,7 +1,6 @@
 {
     "slug": "turnipper",
     "category": "scarytale",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

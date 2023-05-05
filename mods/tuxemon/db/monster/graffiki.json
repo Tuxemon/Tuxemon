@@ -1,7 +1,6 @@
 {
     "slug": "graffiki",
     "category": "gamut",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

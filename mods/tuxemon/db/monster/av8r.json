@@ -1,7 +1,6 @@
 {
     "slug": "av8r",
     "category": "heliotrope",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

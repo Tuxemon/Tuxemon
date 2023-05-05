@@ -1,7 +1,6 @@
 {
     "slug": "zunna",
     "category": "slurpy",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

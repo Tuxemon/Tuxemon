@@ -1,7 +1,6 @@
 {
     "slug": "ignibus",
     "category": "hot_rock",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

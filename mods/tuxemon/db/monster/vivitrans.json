@@ -1,7 +1,6 @@
 {
     "slug": "vivitrans",
     "category": "sublimated",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

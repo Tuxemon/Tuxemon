@@ -1,7 +1,6 @@
 {
     "slug": "katacoon",
     "category": "stance",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

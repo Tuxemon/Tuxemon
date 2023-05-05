@@ -1,7 +1,6 @@
 {
     "slug": "selket",
     "category": "sand_scorpion",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

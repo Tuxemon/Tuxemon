@@ -1,7 +1,6 @@
 {
     "slug": "rhincus",
     "category": "missing_link",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

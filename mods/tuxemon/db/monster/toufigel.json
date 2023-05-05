@@ -1,7 +1,6 @@
 {
     "slug": "toufigel",
     "category": "powder",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

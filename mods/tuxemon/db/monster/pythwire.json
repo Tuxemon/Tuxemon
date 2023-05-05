@@ -1,7 +1,6 @@
 {
     "slug": "pythwire",
     "category": "power_socket",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

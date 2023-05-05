@@ -1,7 +1,6 @@
 {
     "slug": "fuzzina",
     "category": "toy",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

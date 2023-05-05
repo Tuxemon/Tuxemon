@@ -1,7 +1,6 @@
 {
     "slug": "uglip",
     "category": "deepsea",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

@@ -1,7 +1,6 @@
 {
     "slug": "ouroboutlet",
     "category": "infinite_energy",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

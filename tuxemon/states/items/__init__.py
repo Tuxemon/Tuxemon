@@ -136,7 +136,7 @@ class ItemMenuState(Menu[Item]):
                             "here": T.translate(loc_type),
                         },
                     )
-                elif i.name == "facing_tile" or i.name == "facing_npc":
+                elif i.name == "facing_tile" or i.name == "facing_sprite":
                     msg = T.format("item_cannot_use_here", {"name": item.name})
             tools.open_dialog(local_session, [msg])
         elif State[state] not in item.usable_in:
@@ -183,11 +183,14 @@ class ItemMenuState(Menu[Item]):
             result = itm.use(player, None)
             if item.category == "fish" and not result["success"]:
                 tools.show_item_result_as_dialog(local_session, item, result)
+            else:
+                tools.show_item_result_as_dialog(local_session, item, result)
 
         def confirm() -> None:
             self.client.pop_state()  # close the confirm dialog
+            categories = ["fish", "destroy"]  # not opening monster menu
 
-            if item.category == "fish":
+            if item.category in categories:
                 use_item_no_monster(item)
             else:
                 menu = self.client.push_state(MonsterMenuState())

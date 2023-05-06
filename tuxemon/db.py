@@ -92,7 +92,6 @@ class ItemType(str, Enum):
 
 class ItemCategory(str, Enum):
     none = "none"
-    edible = "edible"
     badge = "badge"
     booster = "booster"
     fossil = "fossil"
@@ -102,6 +101,7 @@ class ItemCategory(str, Enum):
     technique = "technique"
     phone = "phone"
     fish = "fish"
+    destroy = "destroy"
     capture = "capture"
     stats = "stats"
 

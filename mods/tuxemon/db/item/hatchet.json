@@ -1,5 +1,10 @@
 {
-  "effects": [],
+  "conditions": [
+    "is facing_sprite log"
+  ],
+  "effects": [
+    "remove"
+  ],
   "slug": "hatchet",
   "sort": "utility",
   "sprite": "gfx/items/hatchet.png",
@@ -12,7 +17,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "category": "none",
+  "category": "destroy",
   "type": "KeyItem",
   "usable_in": [
     "WorldState"

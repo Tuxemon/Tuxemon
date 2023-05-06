@@ -1,9 +1,14 @@
 {
-  "effects": [],
+  "conditions": [
+    "is facing_sprite boulder"
+  ],
+  "effects": [
+    "remove"
+  ],
   "slug": "sledgehammer",
   "sort": "utility",
   "sprite": "gfx/items/sledgehammer.png",
-  "category": "none",
+  "category": "destroy",
   "type": "KeyItem",
   "usable_in": [
     "WorldState"

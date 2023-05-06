@@ -43,6 +43,7 @@ if TYPE_CHECKING:
     from tuxemon.session import Session
     from tuxemon.sprite import Sprite
     from tuxemon.state import State
+    from tuxemon.technique.technique import Technique
 
 
 logger = logging.getLogger(__name__)
@@ -316,7 +317,7 @@ def cast_dataclass_parameters(self) -> None:
 
 def show_item_result_as_dialog(
     session: Session,
-    item: Item,
+    item: Union[Item, Technique],
     result: Mapping[str, Any],
 ) -> None:
     """

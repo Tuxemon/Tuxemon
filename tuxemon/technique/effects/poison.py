@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 
 from tuxemon import formula
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -26,9 +26,12 @@ class PoisonEffect(TechEffect):
     name = "poison"
 
     def apply(
-        self, tech: Technique, user: Monster, target: Monster
+        self,
+        tech: Technique,
+        user: Union[Monster, None],
+        target: Union[Monster, None],
     ) -> PoisonEffectResult:
-        if tech.slug == "status_poison":
+        if tech.slug == "status_poison" and target:
             damage = formula.simple_poison(target)
             target.current_hp -= damage
 

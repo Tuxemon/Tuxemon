@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 
 from tuxemon import formula
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -38,24 +38,35 @@ class LocalDamageEffect(TechEffect):
     name = "local_damage"
 
     def apply(
-        self, tech: Technique, user: Monster, target: Monster
+        self,
+        tech: Technique,
+        user: Union[Monster, None],
+        target: Union[Monster, None],
     ) -> LocalDamageEffectResult:
+        damage: int = 0
+        mult: float = 0.0
         player = self.session.player
-        value = float(player.game_variables["random_tech_hit"])
-        hit = tech.accuracy >= value
-        if hit or tech.is_area:
-            tech.advance_counter_success()
-            damage, mult = formula.simple_damage_calculate(tech, user, target)
-            if not hit:
-                damage //= 2
-            # land of ifs
-            # tech: panjandrum
-            if tech.slug == "panjandrum":
-                damage = formula.damage_panjandrum(target)
-            target.current_hp -= damage
-        else:
-            damage = 0
-            mult = 1.0
+        if user and target:
+            value = float(player.game_variables["random_tech_hit"])
+            hit = tech.accuracy >= value
+            if hit or tech.is_area:
+                tech.advance_counter_success()
+                damage, mult = formula.simple_damage_calculate(
+                    tech, user, target
+                )
+                if not hit:
+                    damage //= 2
+                # land of ifs
+                # tech: panjandrum
+                if tech.slug == "panjandrum":
+                    damage = formula.damage_panjandrum(target)
+                target.current_hp -= damage
+            else:
+                damage = 0
+                mult = 1.0
+        # using technique in the worldstate
+        elif not user and not target:
+            damage = 1
 
         return {
             "damage": damage,

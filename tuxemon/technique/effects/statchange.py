@@ -5,7 +5,7 @@ from __future__ import annotations
 import operator
 import random
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
@@ -38,7 +38,10 @@ class StatChangeEffect(TechEffect):
     name = "statchange"
 
     def apply(
-        self, tech: Technique, user: Monster, target: Monster
+        self,
+        tech: Technique,
+        user: Union[Monster, None],
+        target: Union[Monster, None],
     ) -> StatChangeEffectResult:
         statsmaster = [
             tech.statspeed,
@@ -57,31 +60,32 @@ class StatChangeEffect(TechEffect):
             "dodge",
         ]
         newstatvalue = 0
-        for stat, slugdata in zip(statsmaster, statslugs):
-            if not stat:
-                continue
-            value = stat.value
-            max_deviation = stat.max_deviation
-            operation = stat.operation
-            override = stat.overridetofull
-            basestatvalue = getattr(target, slugdata)
-            min_value = value - max_deviation
-            max_value = value + max_deviation
-            if max_deviation:
-                value = random.randint(int(min_value), int(max_value))
+        if target:
+            for stat, slugdata in zip(statsmaster, statslugs):
+                if not stat:
+                    continue
+                value = stat.value
+                max_deviation = stat.max_deviation
+                operation = stat.operation
+                override = stat.overridetofull
+                basestatvalue = getattr(target, slugdata)
+                min_value = value - max_deviation
+                max_value = value + max_deviation
+                if max_deviation:
+                    value = random.randint(int(min_value), int(max_value))
 
-            if value > 0 and override is not True:
-                ops_dict = {
-                    "+": operator.add,
-                    "-": operator.sub,
-                    "*": operator.mul,
-                    "/": operator.floordiv,
-                }
-                newstatvalue = ops_dict[operation](basestatvalue, value)
-            if slugdata == "current_hp":
-                if override:
-                    target.current_hp = target.hp
-            if newstatvalue <= 0:
-                newstatvalue = 1
-            setattr(target, slugdata, newstatvalue)
+                if value > 0 and override is not True:
+                    ops_dict = {
+                        "+": operator.add,
+                        "-": operator.sub,
+                        "*": operator.mul,
+                        "/": operator.floordiv,
+                    }
+                    newstatvalue = ops_dict[operation](basestatvalue, value)
+                if slugdata == "current_hp":
+                    if override:
+                        target.current_hp = target.hp
+                if newstatvalue <= 0:
+                    newstatvalue = 1
+                setattr(target, slugdata, newstatvalue)
         return {"success": bool(newstatvalue)}

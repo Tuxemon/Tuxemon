@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
@@ -31,19 +31,23 @@ class SwapEffect(TechEffect):
     name = "swap"
 
     def apply(
-        self, tech: Technique, user: Monster, target: Monster
+        self,
+        tech: Technique,
+        user: Union[Monster, None],
+        target: Union[Monster, None],
     ) -> SwapEffectResult:
         # TODO: implement actions as events, so that combat state can find them
         # TODO: relies on setting "combat_state" attribute.  maybe clear it up
         # later
         # TODO: these values are set in combat_menus.py
         player = self.session.player
-        assert tech.combat_state
+        assert tech.combat_state and target
         # TODO: find a way to pass values. this will only work for SP games with one monster party
         combat_state = tech.combat_state
 
         def swap_add() -> None:
             # TODO: make accommodations for battlefield positions
+            assert target
             combat_state.add_monster_into_play(player, target)
 
         # get the original monster to be swapped out

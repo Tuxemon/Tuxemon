@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 
 from tuxemon import formula
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -26,7 +26,10 @@ class RecoverEffect(TechEffect):
     name = "recover"
 
     def apply(
-        self, tech: Technique, user: Monster, target: Monster
+        self,
+        tech: Technique,
+        user: Union[Monster, None],
+        target: Union[Monster, None],
     ) -> RecoverEffectResult:
         if tech.slug == "status_recover":
             # avoids Nonetype situation and reset the user

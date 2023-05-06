@@ -87,18 +87,30 @@ class TechniqueMenuState(Menu[Technique]):
         """
 
         def use_technique(menu_technique: MenuItem[Monster]) -> None:
+            self.client.pop_state()  # close y/n
+            self.client.pop_state()  # close technique menu
+            self.client.pop_state()  # close world menu
             monster = menu_technique.game_object
-
             result = technique.use(monster, monster)
-            self.client.pop_state()  # pop the monster screen
-            self.client.pop_state()  # pop the technique screen
+            technique.full_recharge()
+            tools.show_item_result_as_dialog(local_session, technique, result)
+
+        def use_tech_no_monster(tech: Technique) -> None:
+            self.client.pop_state()  # close y/n
+            self.client.pop_state()  # close technique menu
+            self.client.pop_state()  # close world menu
+            tech.use(None, None)
+            tech.full_recharge()
 
         def confirm() -> None:
-            self.client.pop_state()  # close the confirm dialog
+            self.client.pop_state()
 
-            menu = self.client.push_state(MonsterMenuState())
-            menu.is_valid_entry = technique.validate  # type: ignore[assignment]
-            menu.on_menu_selection = use_technique  # type: ignore[assignment]
+            if technique.usable_on:
+                use_tech_no_monster(technique)
+            else:
+                menu = self.client.push_state(MonsterMenuState())
+                menu.is_valid_entry = technique.validate  # type: ignore[assignment]
+                menu.on_menu_selection = use_technique  # type: ignore[assignment]
 
         def cancel() -> None:
             self.client.pop_state()  # close the use/cancel menu

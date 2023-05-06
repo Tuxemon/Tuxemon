@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
@@ -31,32 +31,40 @@ class HealingEffect(TechEffect):
     objective: str
 
     def apply(
-        self, tech: Technique, user: Monster, target: Monster
+        self,
+        tech: Technique,
+        user: Union[Monster, None],
+        target: Union[Monster, None],
     ) -> HealingEffectResult:
-        mon: Monster
+        mon: Union[Monster, None]
         heal: int = 0
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
         # define user or target
         if self.objective == "user":
-            mon = user
+            if user:
+                mon = user
         elif self.objective == "target":
-            mon = target
+            if target:
+                mon = target
         else:
             raise ValueError(f"{self.objective} must be user or target")
-        # check healing power
-        if isinstance(tech.healing_power, int):
-            heal = (7 + mon.level) * tech.healing_power
-        diff = mon.hp - mon.current_hp
-        if hit:
-            tech.advance_counter_success()
-            if diff > 0:
-                if heal >= diff:
-                    mon.current_hp = mon.hp
+        if mon:
+            # check healing power
+            if isinstance(tech.healing_power, int):
+                heal = (7 + mon.level) * tech.healing_power
+            diff = mon.hp - mon.current_hp
+            if hit:
+                tech.advance_counter_success()
+                if diff > 0:
+                    if heal >= diff:
+                        mon.current_hp = mon.hp
+                    else:
+                        mon.current_hp += heal
+                    return {"success": True}
                 else:
-                    mon.current_hp += heal
-                return {"success": True}
+                    return {"success": False}
             else:
                 return {"success": False}
         else:

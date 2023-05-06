@@ -13,6 +13,7 @@ from typing import (
     Optional,
     Sequence,
     Type,
+    Union,
 )
 
 from tuxemon import plugin, prepare
@@ -273,7 +274,7 @@ class Technique:
         """
         self.counter_success += 1
 
-    def validate(self, target: Optional[Monster]) -> bool:
+    def validate(self, target: Union[Monster, None]) -> bool:
         """
         Check if the target meets all conditions that the technique has on it's use.
 
@@ -305,7 +306,9 @@ class Technique:
     def full_recharge(self) -> None:
         self.next_use = 0
 
-    def use(self, user: Monster, target: Monster) -> TechEffectResult:
+    def use(
+        self, user: Union[Monster, None], target: Union[Monster, None]
+    ) -> TechEffectResult:
         """
         Apply the technique.
 

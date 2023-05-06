@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
@@ -34,7 +34,10 @@ class EnhanceEffect(TechEffect):
     name = "enhance"
 
     def apply(
-        self, tech: Technique, user: Monster, target: Monster
+        self,
+        tech: Technique,
+        user: Union[Monster, None],
+        target: Union[Monster, None],
     ) -> EnhanceEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])

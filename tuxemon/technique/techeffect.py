@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, ClassVar, TypedDict
+from typing import TYPE_CHECKING, ClassVar, TypedDict, Union
 
 from tuxemon.session import Session, local_session
 from tuxemon.tools import cast_dataclass_parameters
@@ -67,6 +67,9 @@ class TechEffect:
         cast_dataclass_parameters(self)
 
     def apply(
-        self, tech: Technique, user: Monster, target: Monster
+        self,
+        tech: Technique,
+        user: Union[Monster, None],
+        target: Union[Monster, None],
     ) -> TechEffectResult:
         pass

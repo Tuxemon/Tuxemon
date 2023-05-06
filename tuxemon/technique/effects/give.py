@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
@@ -28,13 +28,16 @@ class GiveEffect(TechEffect):
     objective: str
 
     def apply(
-        self, tech: Technique, user: Monster, target: Monster
+        self,
+        tech: Technique,
+        user: Union[Monster, None],
+        target: Union[Monster, None],
     ) -> GiveEffectResult:
         player = self.session.player
         potency = random.random()
         value = float(player.game_variables["random_tech_hit"])
         success = tech.potency >= potency and tech.accuracy >= value
-        if success:
+        if success and target and user:
             status = Technique()
             status.load(self.condition)
             status.link = user

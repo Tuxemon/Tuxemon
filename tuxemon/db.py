@@ -524,7 +524,7 @@ class TechniqueModel(BaseModel):
         False, description="Whether or not this is an area of effect technique"
     )
     randomly: bool = Field(
-        True, description="Whether or not this is a fast technique"
+        True, description="Whether or not this can be picked randomly"
     )
     healing_power: int = Field(0, description="Value of healing power.")
     recharge: int = Field(0, description="Recharge of this technique")

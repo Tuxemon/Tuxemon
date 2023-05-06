@@ -114,12 +114,6 @@ class OutputBattle(str, Enum):
     forfeit = "forfeit"
 
 
-# ItemBattleMenu is which menu you want to use to choose the target.
-class ItemBattleMenu(str, Enum):
-    monster = "monster"
-    combat = "combat"
-
-
 class MonsterShape(str, Enum):
     aquatic = "aquatic"
     blob = "blob"
@@ -206,9 +200,6 @@ class ItemModel(BaseModel):
     )
     sort: ItemSort = Field(..., description="The kind of item this is.")
     sprite: str = Field(..., description="The sprite to use")
-    target: Target = Field(
-        ..., description="Target mapping of who to use the item on"
-    )
     type: ItemType = Field(..., description="The type of item this is")
     category: ItemCategory = Field(
         ..., description="The category of item this is"
@@ -223,11 +214,6 @@ class ItemModel(BaseModel):
     )
     effects: Sequence[str] = Field(
         [], description="Effects this item will have"
-    )
-    ## Optional fields:
-    battle_menu: Optional[ItemBattleMenu] = Field(
-        "",
-        description="Which menu should be used to choose the target of the item.",
     )
 
     class Config:

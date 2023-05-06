@@ -415,7 +415,9 @@ class CombatState(CombatAnimations):
             # apply status effects to the monsters
             for monster in self.active_monsters:
                 for technique in monster.status:
-                    self.enqueue_action(None, technique, monster)
+                    # validate status
+                    if technique.validate(monster):
+                        self.enqueue_action(None, technique, monster)
                     # avoid multiple effect status
                     monster.set_stats()
 
@@ -839,6 +841,8 @@ class CombatState(CombatAnimations):
         state = self.client.push_state(
             MainCombatMenuState(
                 monster=monster,
+                player=self.players[0],
+                enemy=self.players[1],
             )
         )
         state.rect = rect
@@ -1003,6 +1007,9 @@ class CombatState(CombatAnimations):
                 action_time += len(message) * letter_time
             # TODO: caching sounds
             audio.load_sound(technique.sfx).play()
+            # animation own monster AI NPC
+            if "own monster" in technique.target:
+                target_sprite = self._monster_sprite_map.get(user, None)
             # TODO: a real check or some params to test if should tackle, etc
             if result_tech["should_tackle"]:
                 hit_delay += 0.5
@@ -1324,6 +1331,22 @@ class CombatState(CombatAnimations):
 
         """
         return list(chain.from_iterable(self.monsters_in_play.values()))
+
+    @property
+    def remaining_monsters(self) -> Sequence[Monster]:
+        """
+        List of any non-fainted monsters in party (human).
+
+        """
+        return [p for p in self.players[0].monsters if not fainted(p)]
+
+    @property
+    def remaining_monsters_ai(self) -> Sequence[Monster]:
+        """
+        List of any non-fainted monsters in party (ai).
+
+        """
+        return [p for p in self.players[1].monsters if not fainted(p)]
 
     @property
     def remaining_players(self) -> Sequence[NPC]:

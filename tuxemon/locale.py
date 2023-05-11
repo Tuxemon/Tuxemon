@@ -224,7 +224,7 @@ def replace_text(session: Session, text: str) -> str:
     text = text.replace(r"\n", "\n")
     text = text.replace("${{money}}", str(player.money["player"]))
     # distance (metric / imperial)
-    if prepare.CONFIG.unit == "metric":
+    if player.game_variables["unit_measure"] == "Metric":
         text = text.replace("${{length}}", "km")
         text = text.replace("${{weight}}", "kg")
         text = text.replace("${{height}}", "cm")

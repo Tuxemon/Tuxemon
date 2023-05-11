@@ -2021,6 +2021,30 @@ msgstr "Cancel Key"
 msgid "menu_back_key"
 msgstr "Back Key"
 
+msgid "menu_music_volume"
+msgstr "Music Volume"
+
+msgid "menu_sound_volume"
+msgstr "Sound Volume"
+
+msgid "menu_units"
+msgstr "Unit"
+
+msgid "menu_units_metric"
+msgstr "Metric"
+
+msgid "menu_units_imperial"
+msgstr "Imperial"
+
+msgid "menu_hemisphere"
+msgstr "Hemisphere"
+
+msgid "menu_hemisphere_north"
+msgstr "Northern"
+
+msgid "menu_hemisphere_south"
+msgstr "Southern"
+
 msgid "options_new_input_key0"
 msgstr "Press a key to set your new input key"
 

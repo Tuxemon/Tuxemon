@@ -1006,7 +1006,7 @@ class CombatState(CombatAnimations):
                 message += "\n" + m
                 action_time += len(message) * letter_time
             # TODO: caching sounds
-            audio.load_sound(technique.sfx).play()
+            audio.load_sound(technique.sfx, None).play()
             # animation own monster AI NPC
             if "own monster" in technique.target:
                 target_sprite = self._monster_sprite_map.get(user, None)

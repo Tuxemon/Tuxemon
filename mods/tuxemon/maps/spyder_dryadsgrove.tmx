@@ -13,22 +13,22 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtV8tNxTAQjIAqoBV+rSAaeBceHQA1AL3waIozuyIjjYa1sUkc+/AOljcfr8cz442zm6Zp17HdnUzT19lPu7e4J5Zo7hHxXRpPV3O7PR2PP+YM2nrfQt8H8+6e2mOBl7fE92p43qi9WwzMKayM79z0fTatvb1Yizy65N6H4TlQ+7QYmB1rlJvxQVOsibXwWMezd+Hh0v56Xv9/8GEMa+Gx4uO1sXdLYnCBuWr4Ux0Ohs3bFvhUkyU1Rflj/8LH3F8E9Uv505ysBThXnlLXmuuv8fw+3h0dH7zke9l54DWoHqU1BR5hb5TUdJ77xrSO9jrnBMcp/VL3eR72h86JGoI8qXGcg2PFh7qXquW182j+pfjUq8CjPc/DHuH9Gen9NH+beE/nYvVbLT7Hxjl8fsao/Ok6a691L6XGgz/3W85ja+NL4dH7wBdpmHumeVpdRxiimjMKf46N6xZqxAj43IOKDXua904rLaO8rC+44r4Xb8Aa4QNnXs968ZbD15szYPM+4u+I7/f5nTnjWL9jUZ3m93vEqvFI+jofehbpvWd7aHScs3zPrcEVzijRf03unp4R18AS5dBzAH9zc/FWezuHIfdsdHz635nzAj+r9UWOoxbPanlvgSGXsxbfN/vwTXc=
+   eAHtV8lRBDEMnAKigFS4UqFIYD9ABkAMQC4sSfFGKqaruhpZeHYO+7EPlzWHpXa3pPHshmHYNRx3J8PwffY77s1uiSWK3SO+S+Ppahy3p/3xx5xBW5/X0PfBcveRxlNFLm+J783wvNP4MBuYS1gZ37np+2Ja+3i1EeXonHufhmdP48tsYHaskW/GB02xJ9bCbV3PuYscrp2vx/0fgg9rWAu3FR/vjXO3xgYXiDWFP9Vhb9h8bIFPNZnTU5Q/zl/kMc8XQf9S/tQnawHOlafStfr6bz2/j3d7x4dc8lp2HngPqkdtT0GOcG7U9HSOfWNaR7XOPsFxSb/SfY7D+aEx0UPgp7SOfbCt+ND3Sr18ahz1Pxef5irw6MxxOEe4PiO9n8dvE9d0Zmu+TcXn2NiHx2eMyp/uc+q11lJpPfjzfMtybGl8JTx6H/giDbNn6met6whD1HN64c+xcd9Cj+gBn+egYkNNc+2spWXkl/UFVzy34g1YI3zgzPtZK94yfK05AzafI/6O+P6e35kztvU7FvVpfr+FrRr3pK/zoWeR1jXbQqNjzPqaW4IrnFGi/5rsnp4Rl8AS+dBzAH9zM3ur2s4wZM96x6f/nVkuHPrMcyjjqPUz16g1hiy+4/sBK9NXOA==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHF2F2KFTEQxfEWfBDdh6KjK1HEdfgBgq7GxemDb+rswRTjD4uyuufeTPAG4kkqOSf/dDPC7W27bPv+4O/5X9JY9fH9bXsy+qUUB60cLwfbq9Evpbho5cD7bTBGr63Wuz3hUae1pk7rOXWOC2/4qletU3nVg6vWcwZvp3y4cPJXT63z21fnUVfL3jzmPVJcOE/x2xOam7l1a11dzR5avbhw1nW+/6F7zHE2ziO+Xw9PpzzKOeLgq3s8v9sIfpzIWPPzucb1rFqPOS7Pr3pum8sMffZo265Gry3WTm3y7MeFU71T3nxerr0dbO/uwCc3Z+LC2XGpZZ+sWMvjvNd4b491fqoeigtnXqvj8Ot1bWaORybNWbhw5rWjsSx6tDev5b+v8EbrMqzhwnnjuP1fmfQU/97/TzK6U+Xi7PZ0NZmU3zx71Kg1c6qeVS7OvBbjr+MdRO9azu381qmMmEejN7N/51GXi9Pe0MyVx3mPcee3VvnUT1G5OLMnM+WxPflcfmpP1rw/14/G8nDWvcHVscU+54Xy05ozO5eH85yczMcnh6rPqhyc5+Tgyx45NK/NjOXgnMnoPPJWKc7urJmavFXqnjMsnUfeKnXP7qyZmrxV6p4zLJ1H3ip1z+6smZq8VeqeMyydR94qdc/urJmavFW66p6rczybVfdcnfP03vhdOPrqe6/Kez3YPo6HuPreq/Lwec/n6uxz8t7i3e31q7H2afTPo8+22efkucS72+tv7sA1ex++1XzxuzV/X7ke8+fjW8aL5nsGhiNdzRdn+b7y8883rPeD7cPoe79rV/L9BgQrMlI=
+   eAHN2FuqVDEQheEWfBCdh+JtJIoD8QKCjsbB6YNvXuZwUhw/LMrau3fHYBvIWUkla+XPbvpA79Ppuu3rvd/nf0pj1Yd3T6dHo19LcdDK8WKwvRz9WoqLVg68XwZj9NpqvdsTHnVaa+q0nlPnuPCGr3rVOpVXPbhqPWfwdsqHCyd/9dQ6v311HnW17M1j3j3FhfOI357Q3MytW+vqavbQ6sWFs67z/QvdYo6zce7x/bh/nHIvZ4+Dr+7x/M4RfDvIWPPzucb1rFqPOS7Pr3rOzWWGPnlwOj0dvbZYO9rk2Y8Lp3qnvPm8XHs92N78BZ/cnIkLZ8elln2yYi2P817jrT3W+al6KC6cea2Ow6/XtZk5Hpk0Z+HCmdf2xrLo3t68lr9f4Y3WZVjDhfPWcf6vTHrEv/X/SUZ3qlyc3Z6uJpPym2ePGrVmTtWzysWZ12L8eXwG0buWczu/dSoj5tHo7ezPedTl4rQ3NHPlcd5j3PmtVT71IyoXZ/Zkpjy2J5/LT+3Jmvfn+t5YHs66N7g6ttjnvFB+WnNm5/JwXpKT+fjkUPVZlYPzkhx82SOH5rWZsRycMxmdR94qxdmdNVOTt0rdc4al88hbpe7ZnTVTk7dK3XOGpfPIW6Xu2Z01U5O3St1zhqXzyFul7tmdNVOTt0pX3XN1jmez6p6rcx7fGb8LR19971V5rwbb+/EQV997VR4+n/Oluuo5beV8GM/v4+izbdVz2sqZ5frffPG7Nb9f+Tnmz8a7jOfN+4xrsXu/8v3XO6y3g+3d6Fu/a1dy3gC/jSTo
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtkUEKgDAMBKv4/zfrZS8LRWgmuEIFCW3JdDY9rjHO5z8+qsM+97DjuKV808RSvXxOqZ6pXn+Zn3umrlPfOdXL3zHVM9Vrz88nUFtX37naP7Pv4s7uW92velb7Z95d3Nl9q/tVT/Wrrnp4H81zPrWmPMVRrfpRnKrHWz/tKR5V3/y/PldOykM8qlJeXRzlpPjiUZXy6uIoJ8UXj6qUVxeHyklzuvLSXDo3xaNzpvFW55SWY/vsCfx5AjfXEQWt
+   eAHtmEEKhTAMBevHs+hhvvc/j928TaAUmgk+QaGEtGQ6SXdue2u/vraHYgtf9AjHdql83cRcveKcXD1dvd4yv+jpmru+s6tXfEdXT1evb35xArk8+87Z+pF9FXd03+p+1jNbP/Ku4o7uW93PeqpecdUj1tG8yKdyylMcxawfxcl6zOppT/GoOPN/+lx9Uh7iUZHyquKoT4ovHhUpryqO+qT44lGR8qriUH3SnKp+aS7dN8Wj+3TjUXOacdz6ls/R/zeffbl+/+52Gfu5zu1tXjewOgbj
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="118" type="collision" x="0" y="0" width="32" height="560"/>
-  <object id="120" type="collision" x="224" y="560" width="224" height="32"/>
+  <object id="120" type="collision" x="224" y="560" width="416" height="32"/>
   <object id="121" type="collision" x="128" y="608" width="48" height="16"/>
   <object id="122" type="collision" x="144" y="624" width="48" height="16"/>
   <object id="123" type="collision" x="192" y="608" width="48" height="16"/>

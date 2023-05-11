@@ -66,7 +66,7 @@ class RandomBattleAction(EventAction):
         filtered = []
         for mon in mons:
             elements = db.lookup(mon, table="monster")
-            if elements.txmn_id > 0:
+            if elements.txmn_id > 0 and elements.randomly:
                 filtered.append(elements.slug)
 
         output = random.sample(filtered, self.nr_txmns)

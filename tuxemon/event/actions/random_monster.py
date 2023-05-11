@@ -70,7 +70,7 @@ class RandomMonsterAction(EventAction):
         monsters = list(db.database["monster"])
         for mon in monsters:
             results = db.lookup(mon, table="monster")
-            if results.txmn_id > 0:
+            if results.txmn_id > 0 and results.randomly:
                 if not self.shape and not self.evo:
                     filters.append(results.slug)
                 if self.shape and not self.evo:

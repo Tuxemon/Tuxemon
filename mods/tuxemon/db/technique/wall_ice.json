@@ -1,6 +1,6 @@
 {
   "tech_id": 172,
-  "accuracy": 0.3,
+  "accuracy": 0.6,
   "animation": "wall_ice",
   "effects": [
     "damage"

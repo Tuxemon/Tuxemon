@@ -1,6 +1,6 @@
 {
   "tech_id": 133,
-  "accuracy": 0.4,
+  "accuracy": 0.6,
   "animation": "gloop_orange",
   "effects": [
     "damage"

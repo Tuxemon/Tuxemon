@@ -1,6 +1,6 @@
 {
   "tech_id": 109,
-  "accuracy": 0.3,
+  "accuracy": 0.6,
   "animation": "bite_zombie",
   "effects": [
     "damage"

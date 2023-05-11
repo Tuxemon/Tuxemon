@@ -102,7 +102,7 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_hospital1_aurora"/>
     <property name="act1" value="translated_dialog spyder_hospital1_aurora1"/>
-    <property name="act2" value="add_monster exclawvate,40,spyder_hospital1_aurora,27,10"/>
+    <property name="act2" value="add_monster exclawvate,40,spyder_hospital1_aurora,5,10"/>
     <property name="act4" value="start_battle spyder_hospital1_aurora"/>
     <property name="act5" value="translated_dialog spyder_hospital1_aurora2"/>
     <property name="act6" value="set_variable hospital1aurora:yes"/>
@@ -120,10 +120,10 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_hospital1_eleni"/>
     <property name="act1" value="translated_dialog spyder_hospital1_eleni1"/>
-    <property name="act2" value="add_monster boltnu,30,spyder_hospital1_eleni,27,10"/>
-    <property name="act3" value="add_monster taupypus,30,spyder_hospital1_eleni,27,10"/>
-    <property name="act4" value="add_monster snaki,30,spyder_hospital1_eleni,27,10"/>
-    <property name="act5" value="add_monster galnec,30,spyder_hospital1_eleni,27,10"/>
+    <property name="act2" value="add_monster boltnu,30,spyder_hospital1_eleni,5,10"/>
+    <property name="act3" value="add_monster taupypus,30,spyder_hospital1_eleni,5,10"/>
+    <property name="act4" value="add_monster snaki,30,spyder_hospital1_eleni,5,10"/>
+    <property name="act5" value="add_monster galnec,30,spyder_hospital1_eleni,5,10"/>
     <property name="act6" value="start_battle spyder_hospital1_eleni"/>
     <property name="act7" value="translated_dialog spyder_hospital1_eleni2"/>
     <property name="act8" value="set_variable hospital1eleni:yes"/>
@@ -142,8 +142,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_hospital1_felu"/>
     <property name="act1" value="translated_dialog spyder_hospital1_felu1"/>
-    <property name="act2" value="add_monster anu,30,spyder_hospital1_felu,27,10"/>
-    <property name="act3" value="add_monster galnec,30,spyder_hospital1_felu,27,10"/>
+    <property name="act2" value="add_monster anu,30,spyder_hospital1_felu,5,10"/>
+    <property name="act3" value="add_monster galnec,30,spyder_hospital1_felu,5,10"/>
     <property name="act4" value="start_battle spyder_hospital1_felu"/>
     <property name="act5" value="translated_dialog spyder_hospital1_felu2"/>
     <property name="act6" value="set_variable hospital1felu:yes"/>
@@ -161,8 +161,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_hospital1_fring"/>
     <property name="act1" value="translated_dialog spyder_hospital1_fring1"/>
-    <property name="act2" value="add_monster anu,30,spyder_hospital1_fring,27,10"/>
-    <property name="act3" value="add_monster selket,30,spyder_hospital1_fring,27,10"/>
+    <property name="act2" value="add_monster anu,30,spyder_hospital1_fring,5,10"/>
+    <property name="act3" value="add_monster selket,30,spyder_hospital1_fring,5,10"/>
     <property name="act4" value="start_battle spyder_hospital1_fring"/>
     <property name="act5" value="translated_dialog spyder_hospital1_fring2"/>
     <property name="act6" value="set_variable hospital1fring:yes"/>
@@ -180,8 +180,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_hospital1_walt"/>
     <property name="act1" value="translated_dialog spyder_hospital1_walt1"/>
-    <property name="act2" value="add_monster Anu,34,spyder_hospital1_walt,27,10"/>
-    <property name="act3" value="add_monster Taupypus,27,spyder_hospital1_walt,27,10"/>
+    <property name="act2" value="add_monster Anu,34,spyder_hospital1_walt,5,10"/>
+    <property name="act3" value="add_monster Taupypus,27,spyder_hospital1_walt,5,10"/>
     <property name="act4" value="start_battle spyder_hospital1_walt"/>
     <property name="act5" value="translated_dialog spyder_hospital1_walt2"/>
     <property name="act6" value="set_variable hospital1walt:yes"/>
@@ -199,8 +199,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_hospital1_liane"/>
     <property name="act1" value="translated_dialog spyder_hospital1_liane1"/>
-    <property name="act2" value="add_monster boltnu,36,spyder_hospital1_liane,27,10"/>
-    <property name="act3" value="add_monster snaki,36,spyder_hospital1_liane,27,10"/>
+    <property name="act2" value="add_monster boltnu,36,spyder_hospital1_liane,5,10"/>
+    <property name="act3" value="add_monster snaki,36,spyder_hospital1_liane,5,10"/>
     <property name="act4" value="start_battle spyder_hospital1_liane"/>
     <property name="act5" value="translated_dialog spyder_hospital1_liane2"/>
     <property name="act6" value="set_variable hospital1liane:yes"/>
@@ -256,8 +256,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_hospital1_fring"/>
     <property name="act1" value="translated_dialog spyder_hospital1_fring1"/>
-    <property name="act2" value="add_monster anu,30,spyder_hospital1_fring,27,10"/>
-    <property name="act3" value="add_monster selket,30,spyder_hospital1_fring,27,10"/>
+    <property name="act2" value="add_monster anu,30,spyder_hospital1_fring,5,10"/>
+    <property name="act3" value="add_monster selket,30,spyder_hospital1_fring,5,10"/>
     <property name="act4" value="start_battle spyder_hospital1_fring"/>
     <property name="act5" value="translated_dialog spyder_hospital1_fring2"/>
     <property name="act6" value="set_variable hospital1fring:yes"/>
@@ -269,8 +269,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_hospital1_walt"/>
     <property name="act1" value="translated_dialog spyder_hospital1_walt1"/>
-    <property name="act2" value="add_monster Anu,34,spyder_hospital1_walt,27,10"/>
-    <property name="act3" value="add_monster Taupypus,27,spyder_hospital1_walt,27,10"/>
+    <property name="act2" value="add_monster Anu,34,spyder_hospital1_walt,5,10"/>
+    <property name="act3" value="add_monster Taupypus,27,spyder_hospital1_walt,5,10"/>
     <property name="act4" value="start_battle spyder_hospital1_walt"/>
     <property name="act5" value="translated_dialog spyder_hospital1_walt2"/>
     <property name="act6" value="set_variable hospital1walt:yes"/>

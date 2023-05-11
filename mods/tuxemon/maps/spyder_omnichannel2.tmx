@@ -106,8 +106,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_omnichannel_schwartz"/>
     <property name="act1" value="translated_dialog spyder_omnichannel_schwartz1"/>
-    <property name="act2" value="add_monster grinflare,35,spyder_omnichannel_schwartz,27,10"/>
-    <property name="act3" value="add_monster strella,35,spyder_omnichannel_schwartz,27,10"/>
+    <property name="act2" value="add_monster grinflare,35,spyder_omnichannel_schwartz,5,10"/>
+    <property name="act3" value="add_monster strella,35,spyder_omnichannel_schwartz,5,10"/>
     <property name="act4" value="start_battle spyder_omnichannel_schwartz"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_schwartz2"/>
     <property name="act6" value="set_variable omnichannel2schwartz:yes"/>
@@ -127,8 +127,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_omnichannel_bettger"/>
     <property name="act1" value="translated_dialog spyder_omnichannel_bettger1"/>
-    <property name="act2" value="add_monster grintrock,35,spyder_omnichannel_bettger,27,10"/>
-    <property name="act3" value="add_monster rabbitosaur,35,spyder_omnichannel_bettger,27,10"/>
+    <property name="act2" value="add_monster grintrock,35,spyder_omnichannel_bettger,5,10"/>
+    <property name="act3" value="add_monster rabbitosaur,35,spyder_omnichannel_bettger,5,10"/>
     <property name="act4" value="start_battle spyder_omnichannel_bettger"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_bettger2"/>
     <property name="act6" value="set_variable omnichannel2bettger:yes"/>
@@ -148,7 +148,7 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_omnichannel_tohei"/>
     <property name="act1" value="translated_dialog spyder_omnichannel_tohei1"/>
-    <property name="act2" value="add_monster sludgehog,40,spyder_omnichannel_tohei,27,10"/>
+    <property name="act2" value="add_monster sludgehog,40,spyder_omnichannel_tohei,5,10"/>
     <property name="act4" value="start_battle spyder_omnichannel_tohei"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_tohei2"/>
     <property name="act6" value="set_variable omnichannel2tohei:yes"/>
@@ -168,8 +168,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_omnichannel_crane"/>
     <property name="act1" value="translated_dialog spyder_omnichannel_crane1"/>
-    <property name="act2" value="add_monster cochini,35,spyder_omnichannel_crane,27,10"/>
-    <property name="act3" value="add_monster sharpfin,35,spyder_omnichannel_crane,27,10"/>
+    <property name="act2" value="add_monster cochini,35,spyder_omnichannel_crane,5,10"/>
+    <property name="act3" value="add_monster sharpfin,35,spyder_omnichannel_crane,5,10"/>
     <property name="act4" value="start_battle spyder_omnichannel_crane"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_crane2"/>
     <property name="act6" value="set_variable omnichannel2crane:yes"/>
@@ -189,8 +189,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_omnichannel_dempsey"/>
     <property name="act1" value="translated_dialog spyder_omnichannel_dempsey1"/>
-    <property name="act2" value="add_monster squabbit,20,spyder_omnichannel_dempsey,27,10"/>
-    <property name="act3" value="add_monster squabbit,20,spyder_omnichannel_dempsey,27,10"/>
+    <property name="act2" value="add_monster squabbit,20,spyder_omnichannel_dempsey,5,10"/>
+    <property name="act3" value="add_monster squabbit,20,spyder_omnichannel_dempsey,5,10"/>
     <property name="act4" value="start_battle spyder_omnichannel_dempsey"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_dempsey2"/>
     <property name="act6" value="set_variable omnichannel2dempsey:yes"/>

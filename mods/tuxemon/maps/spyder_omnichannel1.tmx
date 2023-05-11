@@ -95,8 +95,8 @@
   <object id="25" name="Talk William" type="event" x="144" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel_william1"/>
-    <property name="act2" value="add_monster elowind,36,spyder_omnichannel_william,27,10"/>
-    <property name="act3" value="add_monster cardiwing,36,spyder_omnichannel_william,27,10"/>
+    <property name="act2" value="add_monster elowind,36,spyder_omnichannel_william,5,10"/>
+    <property name="act3" value="add_monster cardiwing,36,spyder_omnichannel_william,5,10"/>
     <property name="act4" value="start_battle spyder_omnichannel_william"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_william2"/>
     <property name="act6" value="set_variable omnichannelwilliam:yes"/>
@@ -141,7 +141,7 @@
     <property name="act05" value="unlock_controls"/>
     <property name="act06" value="npc_face player,right"/>
     <property name="act10" value="translated_dialog spyder_cottontown_enforcer1"/>
-    <property name="act20" value="add_monster rabbitosaur,35,spyder_omnichannel_enforcer,27,10"/>
+    <property name="act20" value="add_monster rabbitosaur,35,spyder_omnichannel_enforcer,5,10"/>
     <property name="act30" value="start_battle spyder_omnichannel_enforcer"/>
     <property name="act50" value="translated_dialog spyder_cottontown_enforcer2"/>
     <property name="act55" value="pathfind spyder_omnichannel_enforcer,2,12"/>

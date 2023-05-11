@@ -794,13 +794,22 @@ class CombatState(CombatAnimations):
         for monster in self.active_monsters:
             for status in monster.status:
                 if status.icon:
-                    # get the rect of the monster
-                    rect = self._monster_sprite_map[monster].rect
+                    status_ico: Tuple[float, float] = (0.0, 0.0)
+                    if monster in self.players[1].monsters:
+                        status_ico = (
+                            self.rect.width * 0.06,
+                            self.rect.height * 0.12,
+                        )
+                    elif monster in self.players[0].monsters:
+                        status_ico = (
+                            self.rect.width * 0.64,
+                            self.rect.height * 0.52,
+                        )
                     # load the sprite and add it to the display
                     icon = self.load_sprite(
                         status.icon,
                         layer=200,
-                        center=rect.topleft,
+                        center=status_ico,
                     )
                     self._status_icons.append(icon)
 

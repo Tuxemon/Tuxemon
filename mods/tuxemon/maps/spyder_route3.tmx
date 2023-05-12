@@ -735,19 +735,9 @@
   </object>
   <object id="674" name="Create Boulder" type="event" x="512" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_route3_boulder,32,7"/>
-    <property name="cond1" value="not npc_exists spyder_route3_boulder"/>
-    <property name="cond2" value="not variable_set route3boulder:yes"/>
-   </properties>
-  </object>
-  <object id="675" name="Cut Boulder" type="event" x="512" y="96" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_successful_boulder"/>
-    <property name="act2" value="set_variable route3boulder:yes"/>
-    <property name="act3" value="remove_npc spyder_route3_boulder"/>
-    <property name="behav1" value="talk spyder_route3_boulder"/>
-    <property name="cond1" value="is has_item player,sledgehammer"/>
-    <property name="cond2" value="not variable_set route3boulder:yes"/>
+    <property name="act1" value="create_npc spyder_boulder,32,7"/>
+    <property name="cond1" value="not npc_exists spyder_boulder"/>
+    <property name="cond2" value="not variable_set spyder_boulder:remove"/>
    </properties>
   </object>
   <object id="676" name="Environment Day" type="event" x="16" y="0" width="16" height="16">

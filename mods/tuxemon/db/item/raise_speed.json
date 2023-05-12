@@ -1,5 +1,4 @@
 {
-  "battle_menu": "monster",
   "conditions": [],
   "effects": [
     "increase speed,0.05"
@@ -7,15 +6,6 @@
   "slug": "raise_speed",
   "sort": "utility",
   "sprite": "gfx/items/raise_speed.png",
-  "target": {
-    "enemy monster": 0,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 2,
-    "own team": 0,
-    "own trainer": 0,
-    "item": 0
-  },
   "category": "stats",
   "type": "Consumable",
   "usable_in": [

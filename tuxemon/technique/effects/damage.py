@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from tuxemon import formula
-from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
-from tuxemon.technique.technique import Technique
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
+    from tuxemon.technique.technique import Technique
 
 
 class DamageEffectResult(TechEffectResult):
@@ -50,7 +53,7 @@ class DamageEffect(TechEffect):
             target.current_hp -= damage
         else:
             damage = 0
-            mult = 1
+            mult = 1.0
 
         return {
             "damage": damage,

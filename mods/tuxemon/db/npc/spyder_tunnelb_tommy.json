@@ -2,7 +2,7 @@
   "slug": "spyder_tunnelb_tommy",
   "template": [
     {
-      "sprite_name": "beachcomber",
+      "sprite_name": "beachcomber_gray",
       "combat_front": "yellowbelt",
       "slug": "yellowbelt"
     }

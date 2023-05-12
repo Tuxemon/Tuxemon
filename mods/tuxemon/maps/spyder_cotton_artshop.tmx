@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="22" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="46">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="22" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="51">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -32,7 +32,7 @@
  </layer>
  <layer id="5" name="Above Player" width="22" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYKA9aFOkjblL0cyNVGBgiALiaCCOAWJmJQYGFiXa2D0KBh+wGMFxDQBytQP9
+   eJxjYKA9aFOkjblLaWTuKBiawEJpoF0wcAAA7bwByA==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
@@ -180,14 +180,6 @@
     <property name="cond4" value="is money_is player,greater_or_equal,1000"/>
    </properties>
   </object>
-  <object id="44" name="Player Bought Starry" type="event" x="144" y="48" width="32" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_cottonart_barmaid_painting_sold"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is has_item player,p_starry_night"/>
-   </properties>
-  </object>
   <object id="37" name="Barmaid Sell Trepidation" type="event" x="176" y="48" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog p_trepidation_description"/>
@@ -198,14 +190,6 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not has_item player,p_trepidation"/>
     <property name="cond4" value="is money_is player,greater_or_equal,1000"/>
-   </properties>
-  </object>
-  <object id="45" name="Player Bought Starry" type="event" x="176" y="48" width="32" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_cottonart_barmaid_painting_sold"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is has_item player,p_trepidation"/>
    </properties>
   </object>
   <object id="38" name="Barmaid Sell Monsters" type="event" x="112" y="48" width="32" height="16">
@@ -220,52 +204,50 @@
     <property name="cond4" value="is money_is player,greater_or_equal,1000"/>
    </properties>
   </object>
-  <object id="46" name="Player Bought Starry" type="event" x="112" y="48" width="32" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_cottonart_barmaid_painting_sold"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is has_item player,p_monsters_eyes"/>
-   </properties>
-  </object>
-  <object id="38" name="Barmaid Sell Monsters Op" type="event" x="112" y="32" width="32" height="16">
+  <object id="38" name="Barmaid Sell Monsters Op" type="event" x="112" y="16" width="32" height="16">
    <properties>
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_monsters_eyes"/>
     <property name="act3" value="set_variable bought_monsters_eyes:yes"/>
     <property name="act4" value="transfer_money -,1000"/>
+    <property name="act5" value="remove_noc p_one"/>
     <property name="cond1" value="is variable_set barmaid_monsters:yes"/>
     <property name="cond2" value="not variable_set bought_monsters_eyes:yes"/>
    </properties>
   </object>
-  <object id="39" name="Barmaid Sell Starry Op" type="event" x="144" y="32" width="32" height="16">
+  <object id="39" name="Barmaid Sell Starry Op" type="event" x="144" y="16" width="32" height="16">
    <properties>
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_starry_night"/>
     <property name="act3" value="set_variable bought_starry:yes"/>
     <property name="act4" value="transfer_money -,1000"/>
+    <property name="act5" value="remove_noc p_two"/>
     <property name="cond1" value="is variable_set barmaid_starry:yes"/>
     <property name="cond2" value="not variable_set bought_starry:yes"/>
    </properties>
   </object>
-  <object id="40" name="Barmaid Sell Trepidation Op" type="event" x="176" y="32" width="32" height="16">
+  <object id="40" name="Barmaid Sell Trepidation Op" type="event" x="176" y="16" width="32" height="16">
    <properties>
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_trepidation"/>
     <property name="act3" value="set_variable bought_trepidation:yes"/>
     <property name="act4" value="transfer_money -,1000"/>
+    <property name="act5" value="remove_noc p_three"/>
     <property name="cond1" value="is variable_set barmaid_trepidation:yes"/>
     <property name="cond2" value="not variable_set bought_trepidation:yes"/>
    </properties>
   </object>
   <object id="42" name="Barmaid Sell Bundle" type="event" x="112" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable has_sold_paintings:yes"/>
+    <property name="act05" value="set_variable has_sold_paintings:yes"/>
     <property name="act10" value="add_item p_starry_night"/>
     <property name="act11" value="add_item p_trepidation"/>
     <property name="act12" value="add_item p_monsters_eyes"/>
-    <property name="act2" value="set_variable bought_bundle:yes"/>
-    <property name="act3" value="transfer_money -,3000"/>
+    <property name="act15" value="remove_npc p_one"/>
+    <property name="act16" value="remove_npc p_two"/>
+    <property name="act17" value="remove_npc p_three"/>
+    <property name="act20" value="set_variable bought_bundle:yes"/>
+    <property name="act30" value="transfer_money -,3000"/>
     <property name="cond1" value="is variable_set barmaid_sell_bundle:yes"/>
     <property name="cond2" value="not variable_set bought_bundle:yes"/>
    </properties>
@@ -300,6 +282,42 @@
     <property name="act30" value="unlock_controls"/>
     <property name="cond1" value="not variable_set artshop_billie:yes"/>
     <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="46" name="Create Starry" type="event" x="144" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc p_two,9,2"/>
+    <property name="cond1" value="not npc_exists p_two"/>
+    <property name="cond2" value="not has_item player,p_starry_night"/>
+   </properties>
+  </object>
+  <object id="47" name="Create Monster" type="event" x="112" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc p_one,7,2"/>
+    <property name="cond1" value="not npc_exists p_one"/>
+    <property name="cond2" value="not has_item player,p_monsters_eyes"/>
+   </properties>
+  </object>
+  <object id="48" name="Create Trepidation" type="event" x="176" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc p_three,11,2"/>
+    <property name="cond1" value="not npc_exists p_three"/>
+    <property name="cond2" value="not has_item player,p_trepidation"/>
+   </properties>
+  </object>
+  <object id="49" name="Create Four" type="event" x="80" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc p_four,5,2"/>
+    <property name="cond1" value="not npc_exists p_four"/>
+    <property name="cond2" value="is has_item player,p_monsters_eyes"/>
+   </properties>
+  </object>
+  <object id="50" name="Create Five" type="event" x="80" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc p_five,9,2"/>
+    <property name="cond1" value="not npc_exists p_five"/>
+    <property name="cond2" value="is has_item player,p_trepidation"/>
+    <property name="cond3" value="is has_item player,p_starry_night"/>
    </properties>
   </object>
  </objectgroup>

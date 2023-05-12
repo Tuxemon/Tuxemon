@@ -38,22 +38,21 @@
         {
             "level_learned": 28,
             "technique": "mending"
-        },
-        {
-            "level_learned": 32,
-            "technique": "webs_wind"
-        },
-        {
-            "level_learned": 36,
-            "technique": "touch"
-        },
-        {
-            "level_learned": 40,
-            "technique": "cloud_aether"
         }
     ],
-    "evolutions": [],
-    "history": [],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "tumbledillo"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "tumbledillo",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "varmint",
     "stage": "basic",
     "types": [

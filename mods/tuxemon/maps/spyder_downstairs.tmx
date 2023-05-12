@@ -68,14 +68,6 @@
     <property name="cond4" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="40" name="Teleport Wherever" type="event" x="0" y="96" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_candy_town.tmx,7,27,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
   <object id="41" name="Create Homemaker" type="event" x="64" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_mompapertown,5,5"/>
@@ -138,7 +130,7 @@
   </object>
   <object id="56" name="Go Outside" type="event" x="64" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_paper_town.tmx,8,7,0.3"/>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,10,7,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>

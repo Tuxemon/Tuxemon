@@ -2,9 +2,9 @@
   "slug": "spyder_searoutec_carstair",
   "template": [
     {
-      "sprite_name": "beachcomber",
+      "sprite_name": "beachcomber_blue",
       "combat_front": "yellowbelt",
-      "slug": "yellowbelt"
+      "slug": "beachcomber"
     }
   ]
 }

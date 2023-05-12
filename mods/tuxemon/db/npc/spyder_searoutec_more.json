@@ -2,7 +2,7 @@
   "slug": "spyder_searoutec_more",
   "template": [
     {
-      "sprite_name": "swimmer",
+      "sprite_name": "swimmer_green",
       "combat_front": "swimmer",
       "slug": "swimmer"
     }

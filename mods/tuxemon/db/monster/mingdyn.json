@@ -1,0 +1,69 @@
+{
+    "slug": "mingdyn",
+    "category": "dragon",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 6,
+            "technique": "adamantine"
+        },
+        {
+            "level_learned": 8,
+            "technique": "surge"
+        },
+        {
+            "level_learned": 12,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 16,
+            "technique": "kindling_flame"
+        },
+        {
+            "level_learned": 20,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 24,
+            "technique": "wall_fire"
+        },
+        {
+            "level_learned": 28,
+            "technique": "gold_digger"
+        },
+        {
+            "level_learned": 32,
+            "technique": "energy_claws"
+        },
+        {
+            "level_learned": 36,
+            "technique": "arcane_eye"
+        },
+        {
+            "level_learned": 40,
+            "technique": "supernova"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "shape": "dragon",
+    "stage": "standalone",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 239,
+    "height": 274,
+    "weight": 124,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}

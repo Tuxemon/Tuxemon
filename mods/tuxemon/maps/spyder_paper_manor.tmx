@@ -47,7 +47,7 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="69" name="Go Outside" type="event" x="96" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_paper_town.tmx,7,13,0.3"/>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,10,13,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>

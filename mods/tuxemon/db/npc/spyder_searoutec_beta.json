@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_searoutec_beta",
+  "template": [
+    {
+      "sprite_name": "swimmer_orange",
+      "combat_front": "swimmer",
+      "slug": "swimmer"
+    }
+  ]
+}

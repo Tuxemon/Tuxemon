@@ -102,7 +102,7 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="56" name="Teleport to Sea Route" type="event" x="192" y="624" width="32" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_routec.tmx,33,3,0.3"/>
+    <property name="act1" value="transition_teleport spyder_routec.tmx,12,24,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -327,13 +327,6 @@
     <property name="cond2" value="not variable_set dragonscavebenden2:yes"/>
    </properties>
   </object>
-  <object id="89" name="encounter 3" type="event" x="16" y="256" width="304" height="384">
-   <properties>
-    <property name="act1" value="random_encounter dragonscave,6"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
-   </properties>
-  </object>
   <object id="90" name="Teleport to Cotton Tunnel" type="event" x="256" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_cotton_tunnel.tmx,3,16,0.3"/>
@@ -491,6 +484,12 @@
    <properties>
     <property name="act1" value="remove_collision drokoro"/>
     <property name="cond1" value="is variable_set dragonscavedrokoro:yes"/>
+   </properties>
+  </object>
+  <object id="89" name="Encounters" type="event" x="16" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dragonscave,6"/>
+    <property name="cond1" value="not variable_set dragonscavebenden:yes"/>
    </properties>
   </object>
  </objectgroup>

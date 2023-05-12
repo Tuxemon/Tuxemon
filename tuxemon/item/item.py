@@ -19,14 +19,7 @@ import pygame
 
 from tuxemon import graphics, plugin, prepare
 from tuxemon.constants import paths
-from tuxemon.db import (
-    ItemBattleMenu,
-    ItemCategory,
-    ItemType,
-    State,
-    db,
-    process_targets,
-)
+from tuxemon.db import ItemCategory, ItemType, State, db
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.locale import T
@@ -77,8 +70,6 @@ class Item:
         self.use_success = ""
         self.use_failure = ""
         self.usable_in: Sequence[State] = []
-        self.target: Sequence[str] = []
-        self.battle_menu: Optional[ItemBattleMenu] = None
 
         # load effect and condition plugins if it hasn't been done already
         if not Item.effects_classes:
@@ -125,9 +116,7 @@ class Item:
         self.type = results.type or ItemType.consumable
         self.sprite = results.sprite
         self.usable_in = results.usable_in
-        self.target = process_targets(results.target)
         self.effects = self.parse_effects(results.effects)
-        self.battle_menu = results.battle_menu
         self.conditions = self.parse_conditions(results.conditions)
         self.surface = graphics.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
@@ -233,7 +222,7 @@ class Item:
             result = result and event
         return result
 
-    def use(self, user: NPC, target: Monster) -> ItemEffectResult:
+    def use(self, user: NPC, target: Optional[Monster]) -> ItemEffectResult:
         """
         Applies this items's effects as defined in the "effect" column of
         the item database.
@@ -256,7 +245,7 @@ class Item:
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
-            result = effect.apply(target)
+            result = effect.apply(self, target)
             meta_result.update(result)
 
         # If this is a consumable item, remove it from the player's inventory.

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="232">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="275">
  <properties>
   <property name="east" value="paper_town"/>
   <property name="edges" value="clamped"/>
@@ -14,17 +14,17 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtV8sNwjAMtYCx+K2CgDtr0BUYAdgFsQvhit/BUlWlJHaKD8gHK23kZz+7z4maFkTJ0Z4zokvBTkQk5skNuc5zojXzk/yl1Zsf8m2Y44o5DnkueQ/7favld+CYR7Zaf/iVMPtBH3f8rokvvsjzZuxDice3fDFmrC7po/Rrq6xf+EHTV7bOgAf2G0fJ0bKiDxZuyAnszVhbC+cctqS3HMZzr6S3HBfUlLi/YxrNYVr2tFqA/535aWevhaMW6zFDWk59f7nzpu7hFNpBDNzHmvOrZg7hgzMbsa11IwZ4ac+fGo3DB3FbtF2Tp68Dy7NHDgsvCwbf0/Os03KUOf31fazlJf7QAvSqmVXBeq3/pFevnkUe239B9C36FhoIDYQGQgOhgdBAaCA0oNXAB+EK5K0=
+   eAHtl0GOAiEQRYnORi/lVTqZ8R5u9QoeYXTrZGbFEYxbNZ7Cdjv/R0l60w0FBcGkFwQjBbwqfkF1+2FMW2n7nNTLxpjVzreYhsfvC7ZLgT39j5kTozXu84AWjkI9rDHvjjlSv6SMJ+zxjbYRxo/7cG5uRsYhho18nLuL9E0aR599Kb35OPrGY/RGn1rEN7dGHbNUC7Tfg0+ae26/En2JHErxg3zbDDHU0A7XIJvk/grJQ9rwzk7xm2uQS3r/hGicNlw3Rdsh+6TohnNL7NHHeJgZM50/2w9+99mF/s/z1LzrbmBamWe7KvC5PNV6j7X5qAXqVZKrQ2ejzce9NPXa5Zu8dOj0yF5Dk0Px8Y2dobm/jgadFl2voUkfg2+8G0PH5fqRz3+njfHzx2hIg8yR3552wf9Dc2seQ73e4JuqqZGRbHjDGtzF6nxcG98CSb6jDsjCxrPg2qg7G7yRSYw5z5WMqDWyxSAne8rayBcLTdqUNULnstaUfFOTDZqxOJcifKyTJHUmcs5C1xZ+FeFjnCW1HGJdlC1UB6Pd+76xJc7uH7E94EM=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAFjYKAv8GNkYCgAWokPBwDVDBQoBtpdgoTZoG5lBdIw8VIk9+lwMzDoAvFAAZB7XZgYGJDdhOyWHKDbcgfQfchuGWWPhsBoCIyGwGgIjIbAaAgMjhB4wzU43IHLFa8HuftwuXtUfGiHgBQzA0M7sF09WEEy0G2gPtRgBaPuoyxmRsNvNPwoCwHKdI+mv9HwoywEKNM92NOfPbB9YDuI2weUhf6o7tEQGBkhAACGPRdr
+   eAHtlkEKwjAQRUe9g4vexIp4EKsUvIBHKCh4RY/jD6TiZmKyCI3wBj4N06G8vGYRMwoDGMAABjCAAQxgAAP/YWC3Mutj9nq2VhcxTYIKGeGThbJa0l+3MXuu07x3/dOHstVYH6L1nNrn8Sq2Wxrv8/bb46RuSO3zWMJ3Es8Q89K+wvqs1KwSvpoc3rfh88zk9fGX58mbwp9nJq+PvzxP3lTr/o66Hxx+3A+8vdHHAAbaMPAGFtwY/A==
   </data>
  </layer>
  <layer id="5" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtWVsKgzAQzEe/2nu00NqTtCfp4+J93KE76EAIGFdN3C24EDXkscNkMgY97kI4SUF8tyE08nzu6i+pHwu3t5n015vkv0t5CxbEQ56fUj5dvXR7m2W91mYA2uIa1s41Zf54H0wZX3sM90HtPHPmh594DfqJV3yx73rESN/1iI2Y4DFew7P3gbPV/+YrZ/W/6Rz+k//FWEueoeFf6Rl8DKPUH72a7zyeHehBpdu1GJlf279EP3IwNNd+E8JBytKh5eQi2K4L4xvzPrXgL96HQ+tmwR/32RA2tFvwl3pXDqcFf8BD78phQ5sFf8ir9Wsr/oBRo0Mr/oBPo0NL/oCROuzzREv+gA+R06I1fy3Cfi164C+nQy/8DemQPFvdcxq0wpTm1fhhOmapeqxB7dlwKWzME2uQZ7BGvtHzPwL7ebhzrYn5B2MKXlg=
+   eAHdmW9OAyEQxfngB6OeQ5NVT6InaeuB6hk8mX/u4Lykv2RCAuxSKRNJyMIOA4/HvGGbLrcpPVpV+blJ6cnaz6f+p/WXiXZh2tn6e6tfhkXlYO03q9+n/mz7cmf8WY1WdJYqO8O2D4hPsaUz/AiITbyhg6j40EFUfOJQMRgVH/lEOCMWn3cj4iPvRsQGJuWYqIX7Kyo+8l9UfOS/qPiEizs4IkbyH89oGMl/UTXs8x9YOfOadrZ8Y2vvqn7+LedE/IGVsy5pJ7eTo0r+JftajPLv3dvaNXrH3V+l9GCVvffM837d47XO58WwvVrVmfVqZCQ++KtpobXTo/Hn/XMteC1t1Qr8lbTQwoYd/5IWWnbmyZ/wp/foOB8zsw9//1m/I/mFv3P0OxIf8ef1N3I9P7fXtX/v2/CHvrztEm3WLeVe+BOW0pjROPN86deDv9n6Ld2v8Fey+72MatfiEP5m67cVhzP068+jFoMaB37vc+l2K8Zm6Vc8KAa1fukbwOs3j9ec+y12+db8c7v6KsQbdrj9q98WxEvP95YweX/9j/AL1/eizg==
   </data>
  </layer>
  <layer id="6" name="Tile Layer 4" width="40" height="40">
@@ -33,14 +33,11 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
-  <object id="157" type="collision" x="448" y="0" width="80" height="48"/>
-  <object id="158" type="collision" x="528" y="0" width="80" height="32"/>
-  <object id="159" type="collision" x="544" y="32" width="64" height="16"/>
-  <object id="160" type="collision" x="608" y="48" width="32" height="48"/>
+  <object id="160" type="collision" x="608" y="32" width="32" height="64"/>
   <object id="162" type="collision" x="608" y="240" width="16" height="48"/>
   <object id="163" type="collision" x="608" y="176" width="16" height="48"/>
   <object id="164" type="collision" x="608" y="112" width="16" height="48"/>
-  <object id="165" type="collision" x="0" y="0" width="448" height="16"/>
+  <object id="165" type="collision" x="0" y="0" width="640" height="16"/>
   <object id="166" type="collision" x="384" y="16" width="48" height="16"/>
   <object id="167" type="collision" x="320" y="16" width="48" height="16"/>
   <object id="168" type="collision" x="256" y="16" width="48" height="16"/>
@@ -52,38 +49,34 @@
   <object id="174" type="collision" x="16" y="288" width="32" height="16"/>
   <object id="175" type="collision" x="0" y="256" width="16" height="32"/>
   <object id="176" type="collision" x="64" y="288" width="48" height="16"/>
-  <object id="177" type="collision" x="128" y="288" width="48" height="16"/>
+  <object id="177" type="collision" x="112" y="272" width="64" height="64"/>
   <object id="178" type="collision" x="192" y="288" width="48" height="16"/>
   <object id="179" type="collision" x="256" y="288" width="48" height="16"/>
   <object id="180" type="collision" x="320" y="288" width="48" height="16"/>
   <object id="181" type="collision" x="384" y="288" width="48" height="16"/>
   <object id="182" type="collision" x="624" y="304" width="16" height="16"/>
-  <object id="185" type="collision" x="576" y="608" width="64" height="32"/>
-  <object id="186" type="collision" x="512" y="592" width="64" height="32"/>
+  <object id="186" type="collision" x="512" y="592" width="64" height="16"/>
   <object id="187" type="collision" x="512" y="496" width="32" height="96"/>
   <object id="188" type="collision" x="496" y="496" width="16" height="48"/>
   <object id="189" type="collision" x="480" y="480" width="48" height="16"/>
   <object id="190" type="collision" x="464" y="464" width="48" height="16"/>
-  <object id="191" type="collision" x="448" y="432" width="48" height="32"/>
-  <object id="192" type="collision" x="432" y="400" width="48" height="32"/>
-  <object id="193" type="collision" x="432" y="368" width="32" height="32"/>
-  <object id="194" type="collision" x="432" y="352" width="16" height="16"/>
-  <object id="195" type="collision" x="448" y="320" width="16" height="32"/>
   <object id="196" type="collision" x="544" y="544" width="16" height="48"/>
   <object id="197" type="collision" x="624" y="96" width="16" height="208"/>
   <object id="198" type="collision" x="608" y="320" width="32" height="224"/>
   <object id="219" type="collision" x="0" y="32" width="32" height="32"/>
   <object id="220" type="collision" x="0" y="64" width="16" height="64"/>
+  <object id="232" type="collision" x="0" y="608" width="640" height="32"/>
+  <object id="233" type="collision" x="256" y="368" width="240" height="32"/>
+  <object id="234" type="collision" x="448" y="16" width="48" height="16"/>
+  <object id="235" type="collision" x="512" y="16" width="48" height="16"/>
+  <object id="236" type="collision" x="576" y="16" width="48" height="16"/>
+  <object id="237" type="collision" x="0" y="320" width="32" height="288"/>
+  <object id="238" type="collision" x="144" y="336" width="112" height="32"/>
+  <object id="239" type="collision" x="144" y="368" width="48" height="16"/>
+  <object id="240" type="collision" x="208" y="368" width="48" height="16"/>
+  <object id="241" type="collision" x="112" y="336" width="32" height="16"/>
  </objectgroup>
- <objectgroup id="4" name="Events">
-  <object id="149" name="Teleport to Dragon's Cave" type="event" x="528" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_dragonscave.tmx,12,39,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-   </properties>
-  </object>
+ <objectgroup color="#ffff00" id="4" name="Events">
   <object id="155" name="Teleport to Candy Town" type="event" x="0" y="128" width="16" height="128">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_town.tmx,39,28,0.3"/>
@@ -98,25 +91,6 @@
     <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
-   </properties>
-  </object>
-  <object id="199" name="Create Nigel" type="event" x="528" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_searoutec_nigel,34,3"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_nigel"/>
-    <property name="cond3" value="is variable_set hospitalcure:yes"/>
-   </properties>
-  </object>
-  <object id="200" name="Talk Nigel" type="event" x="528" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_searoutec_nigel1"/>
-    <property name="act2" value="add_monster agnigon,36,spyder_searoutec_nigel,27,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_nigel"/>
-    <property name="act4" value="translated_dialog spyder_searoutec_nigel2"/>
-    <property name="act6" value="set_variable searoutecnigel:yes"/>
-    <property name="behav1" value="talk spyder_searoutec_nigel"/>
-    <property name="cond1" value="not variable_set searoutecnigel:yes"/>
-    <property name="cond2" value="is variable_set hospitalcure:yes"/>
    </properties>
   </object>
   <object id="201" name="Create River" type="event" x="80" y="112" width="16" height="16">
@@ -269,21 +243,6 @@
     <property name="cond1" value="not variable_set searoutecsandy:yes"/>
    </properties>
   </object>
-  <object id="217" name="Create Nigel" type="event" x="544" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_searoutec_nigel,33,3"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_nigel"/>
-    <property name="cond3" value="not variable_set hospitalcure:yes"/>
-   </properties>
-  </object>
-  <object id="218" name="Talk Nigel" type="event" x="544" y="48" width="16" height="16">
-   <properties>
-    <property name="act2" value="translated_dialog spyder_searoutec_nigel3"/>
-    <property name="behav1" value="talk spyder_searoutec_nigel"/>
-    <property name="cond1" value="not variable_set searoutecnigel:yes"/>
-    <property name="cond2" value="not variable_set hospitalcure:yes"/>
-   </properties>
-  </object>
   <object id="221" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:ocean"/>
@@ -407,6 +366,148 @@
     <property name="act1" value="create_npc spyder_searoutec_more,33,30"/>
     <property name="act2" value="npc_face spyder_searoutec_more,right"/>
     <property name="cond1" value="not npc_exists spyder_searoutec_more"/>
+   </properties>
+  </object>
+  <object id="242" name="Teleport to Dragon's Cave" type="event" x="192" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_dragonscave.tmx,12,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="243" name="Create Nigel" type="event" x="192" y="400" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_nigel,13,24"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_nigel"/>
+    <property name="cond3" value="is variable_set hospitalcure:yes"/>
+   </properties>
+  </object>
+  <object id="244" name="Talk Nigel" type="event" x="192" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_nigel1"/>
+    <property name="act2" value="add_monster agnigon,36,spyder_searoutec_nigel,27,10"/>
+    <property name="act3" value="start_battle spyder_searoutec_nigel"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_nigel2"/>
+    <property name="act6" value="set_variable searoutecnigel:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_nigel"/>
+    <property name="cond1" value="not variable_set searoutecnigel:yes"/>
+    <property name="cond2" value="is variable_set hospitalcure:yes"/>
+   </properties>
+  </object>
+  <object id="245" name="Create Nigel" type="event" x="208" y="400" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_nigel,12,24"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_nigel"/>
+    <property name="cond3" value="not variable_set hospitalcure:yes"/>
+   </properties>
+  </object>
+  <object id="246" name="Talk Nigel" type="event" x="208" y="384" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_nigel3"/>
+    <property name="behav1" value="talk spyder_searoutec_nigel"/>
+    <property name="cond1" value="not variable_set searoutecnigel:yes"/>
+    <property name="cond2" value="not variable_set hospitalcure:yes"/>
+   </properties>
+  </object>
+  <object id="255" name="Swim Encounters" type="event" x="544" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter routec"/>
+    <property name="cond1" value="is has_sprite swimmer"/>
+   </properties>
+  </object>
+  <object id="256" name="Create Swimmer2" type="event" x="480" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_alpha,30,22"/>
+    <property name="act2" value="npc_wander spyder_searoutec_alpha"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_alpha"/>
+   </properties>
+  </object>
+  <object id="257" name="Talk Swimmer2" type="event" x="480" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_swimmer2"/>
+    <property name="behav1" value="talk spyder_searoutec_alpha"/>
+   </properties>
+  </object>
+  <object id="258" name="Create Swimmer" type="event" x="240" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_beta,15,30"/>
+    <property name="act2" value="npc_wander spyder_searoutec_beta"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_beta"/>
+   </properties>
+  </object>
+  <object id="259" name="Talk Swimmer" type="event" x="240" y="496" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_swimmer1"/>
+    <property name="behav1" value="talk spyder_searoutec_beta"/>
+   </properties>
+  </object>
+  <object id="262" name="Create Stafford" type="event" x="432" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_stafford,27,33"/>
+    <property name="act2" value="npc_face spyder_searoutec_stafford,up"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_stafford"/>
+   </properties>
+  </object>
+  <object id="263" name="Talk Stafford" type="event" x="416" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_stafford1"/>
+    <property name="act2" value="add_monster medushock,22,spyder_searoutec_stafford,27,10"/>
+    <property name="act3" value="start_battle spyder_searoutec_stafford"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_stafford2"/>
+    <property name="act6" value="set_variable searoutecstafford:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_stafford"/>
+    <property name="cond1" value="not variable_set searoutecstafford:yes"/>
+   </properties>
+  </object>
+  <object id="264" name="Create Maurice" type="event" x="96" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_maurice,6,30"/>
+    <property name="act2" value="npc_face spyder_searoutec_maurice,up"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_maurice"/>
+   </properties>
+  </object>
+  <object id="265" name="Talk Maurice" type="event" x="80" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_maurice1"/>
+    <property name="act2" value="add_monster brewdin,22,spyder_searoutec_maurice,27,10"/>
+    <property name="act3" value="add_monster fancair,22,spyder_searoutec_maurice,27,10"/>
+    <property name="act4" value="start_battle spyder_searoutec_maurice"/>
+    <property name="act5" value="translated_dialog spyder_searoutec_maurice2"/>
+    <property name="act6" value="set_variable searoutecmaurice:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_maurice"/>
+    <property name="cond1" value="not variable_set searoutecmaurice:yes"/>
+   </properties>
+  </object>
+  <object id="266" name="Choice Surf" type="event" x="304" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog itsswimmingtime"/>
+    <property name="act2" value="translated_dialog_choice yes:no,swimming"/>
+    <property name="cond1" value="is has_item player,surfboard"/>
+    <property name="cond2" value="is player_facing_tile surfable"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not player_in surfable"/>
+   </properties>
+  </object>
+  <object id="267" name="surfable" type="event" x="272" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_player_template swimmer"/>
+    <property name="cond1" value="is player_in surfable"/>
+    <property name="cond2" value="not has_sprite swimmer"/>
+   </properties>
+  </object>
+  <object id="268" name="not surfable" type="event" x="256" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_player_template default"/>
+    <property name="act2" value="set_variable swimming:no"/>
+    <property name="cond1" value="not player_in surfable"/>
+    <property name="cond2" value="is has_sprite swimmer"/>
+   </properties>
+  </object>
+  <object id="269" name="Remove Obstacle" type="event" x="288" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision water"/>
+    <property name="cond1" value="is variable_set swimming:yes"/>
    </properties>
   </object>
  </objectgroup>

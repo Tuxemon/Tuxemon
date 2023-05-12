@@ -60,6 +60,8 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
             save_data["game_variables"]["billie_choice"] = random.choice(
                 starter
             )
+    if "cathedral_ads" not in save_data["game_variables"]:
+        save_data["game_variables"]["cathedral_ads"] = 0
     if "steps" not in save_data["game_variables"]:
         save_data["game_variables"]["steps"] = 0
     if "gender_choice" not in save_data["game_variables"]:

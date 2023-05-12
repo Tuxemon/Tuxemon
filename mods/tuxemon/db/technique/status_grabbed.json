@@ -1,5 +1,5 @@
 {
-  "animation": "drip_green",
+  "animation": null,
   "category": "negative",
   "effects": [
     "grabbed"
@@ -18,8 +18,7 @@
     "enemy trainer": 0,
     "own monster": 0,
     "own team": 0,
-    "own trainer": 0,
-    "item": 0
+    "own trainer": 0
   },
   "tech_id": 0,
   "use_failure": "generic_failure",

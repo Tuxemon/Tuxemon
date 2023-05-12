@@ -20,7 +20,6 @@ from typing import (
     Set,
     Tuple,
     Union,
-    overload,
 )
 
 import pygame
@@ -85,7 +84,7 @@ CombatPhase = Literal[
 
 class EnqueuedAction(NamedTuple):
     user: Union[Monster, NPC, None]
-    technique: Union[Technique, Item]
+    technique: Union[Technique, Item, None]
     target: Monster
 
 
@@ -598,6 +597,8 @@ class CombatState(CombatAnimations):
         """
 
         def rank_action(action: EnqueuedAction) -> Tuple[int, int]:
+            if action.technique is None:
+                return 0, 0
             sort = action.technique.sort
             primary_order = sort_order.index(sort)
 
@@ -859,7 +860,7 @@ class CombatState(CombatAnimations):
     def enqueue_action(
         self,
         user: Union[NPC, Monster, None],
-        technique: Union[Item, Technique],
+        technique: Union[Item, Technique, None],
         target: Monster,
     ) -> None:
         """
@@ -952,28 +953,10 @@ class CombatState(CombatAnimations):
             delay,
         )
 
-    @overload
-    def perform_action(
-        self,
-        user: Optional[Monster],
-        technique: Technique,
-        target: Monster,
-    ) -> None:
-        pass
-
-    @overload
-    def perform_action(
-        self,
-        user: Optional[NPC],
-        technique: Item,
-        target: Monster,
-    ) -> None:
-        pass
-
     def perform_action(
         self,
         user: Union[Monster, NPC, None],
-        technique: Union[Technique, Item],
+        technique: Union[Technique, Item, None],
         target: Monster,
     ) -> None:
         """

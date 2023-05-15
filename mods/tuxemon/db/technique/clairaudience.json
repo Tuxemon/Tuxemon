@@ -1,6 +1,6 @@
 {
   "tech_id": 125,
-  "accuracy": 0.3,
+  "accuracy": 0.6,
   "animation": "metallic_radiate",
   "effects": [
     "damage"

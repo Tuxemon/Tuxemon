@@ -1,6 +1,6 @@
 {
   "tech_id": 145,
-  "accuracy": 0.1,
+  "accuracy": 0.6,
   "animation": "pulse_absorb",
   "effects": [
     "damage"

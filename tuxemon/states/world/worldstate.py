@@ -12,6 +12,7 @@ from typing import (
     List,
     Literal,
     Mapping,
+    MutableMapping,
     Optional,
     Sequence,
     Set,
@@ -635,7 +636,7 @@ class WorldState(state.State):
 
     def check_collision_zones(
         self,
-        map: Mapping[Tuple[int, int], Optional[RegionProperties]],
+        map: MutableMapping[Tuple[int, int], Optional[RegionProperties]],
         label: str,
     ) -> Optional[Tuple[int, int]]:
         """

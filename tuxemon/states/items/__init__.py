@@ -183,6 +183,8 @@ class ItemMenuState(Menu[Item]):
             result = itm.use(player, None)
             if item.category == "fish" and not result["success"]:
                 tools.show_item_result_as_dialog(local_session, item, result)
+            elif item.category == "fish" and result["success"]:
+                pass
             else:
                 tools.show_item_result_as_dialog(local_session, item, result)
 

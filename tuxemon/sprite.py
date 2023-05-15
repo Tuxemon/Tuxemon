@@ -53,15 +53,16 @@ class Sprite(pygame.sprite.DirtySprite):
         animation: Optional[SurfaceAnimation] = None,
     ) -> None:
         super().__init__(*args)
-        self.visible = True
-        self._rotation = 0
+        self.visible: bool = True
+        self._rotation: int = 0
         self._rect = Rect(0, 0, 0, 0)
         self.image = image
         self.animation = animation
-        self._width = 0
-        self._height = 0
-        self._needs_rescale = False
-        self._needs_update = False
+        self._width: int = 0
+        self._height: int = 0
+        self._needs_rescale: bool = False
+        self._needs_update: bool = False
+        self.player: bool = False
 
     def update(self, time_delta: float = 0, *args: Any, **kwargs: Any) -> None:
         super().update(time_delta, *args, **kwargs)

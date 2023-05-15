@@ -73,4 +73,4 @@ class ItemEffect:
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> ItemEffectResult:
-        pass
+        return {"success": True}

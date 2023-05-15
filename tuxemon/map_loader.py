@@ -228,7 +228,11 @@ class TMXMapLoader:
                                 region_conditions = copy_dict_with_keys(
                                     obj.properties, region_properties
                                 )
-                                collision_map[(x, y)] = region_conditions
+                                collision_map[
+                                    (x, y)
+                                ] = extract_region_properties(
+                                    region_conditions
+                                )
                         for line in self.collision_lines_from_object(
                             obj, tile_size
                         ):

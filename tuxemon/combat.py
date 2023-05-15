@@ -11,7 +11,7 @@ Code here might be shared by states, actions, conditions, etc.
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Generator, Sequence
+from typing import TYPE_CHECKING, Generator, List, Sequence
 
 from tuxemon.db import PlagueType
 from tuxemon.locale import T
@@ -96,7 +96,9 @@ def fainted(monster: Monster) -> bool:
     return has_status(monster, "status_faint") or monster.current_hp <= 0
 
 
-def get_awake_monsters(player: NPC) -> Generator[Monster, None, None]:
+def get_awake_monsters(
+    player: NPC, monsters: List[Monster]
+) -> Generator[Monster, None, None]:
     """
     Iterate all non-fainted monsters in party.
 
@@ -109,7 +111,13 @@ def get_awake_monsters(player: NPC) -> Generator[Monster, None, None]:
     """
     for monster in player.monsters:
         if not fainted(monster):
-            yield monster
+            if monster not in monsters:
+                yield monster
+
+
+def alive_party(player: NPC) -> List[Monster]:
+    not_fainted = [ele for ele in player.monsters if not fainted(ele)]
+    return not_fainted
 
 
 def fainted_party(party: Sequence[Monster]) -> bool:

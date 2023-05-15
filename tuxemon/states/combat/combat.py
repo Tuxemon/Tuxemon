@@ -30,6 +30,7 @@ from tuxemon import audio, graphics, state, tools
 from tuxemon.animation import Task
 from tuxemon.battle import Battle
 from tuxemon.combat import (
+    alive_party,
     defeated,
     fainted,
     get_awake_monsters,
@@ -185,7 +186,6 @@ class CombatState(CombatAnimations):
         graphics: BattleGraphicsModel,
         combat_type: Literal["monster", "trainer"],
     ) -> None:
-        self.max_positions = 1  # TODO: make dependant on match type
         self.phase: Optional[CombatPhase] = None
         self._damage_map: MutableMapping[Monster, Set[Monster]] = defaultdict(
             set
@@ -198,9 +198,11 @@ class CombatState(CombatAnimations):
         self._status_icons: List[Sprite] = []
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self._layout = dict()  # player => home areas on screen
-        self._animation_in_progress = False  # if true, delay phase change
-        self._turn = 0
-        self._prize = 0
+        self._animation_in_progress: bool = (
+            False  # if true, delay phase change
+        )
+        self._turn: int = 0
+        self._prize: int = 0
         self._lost_status: Optional[str] = None
         self._lost_monster: Optional[Monster] = None
 
@@ -244,7 +246,10 @@ class CombatState(CombatAnimations):
         for monster, hud in self.hud.items():
             rect = Rect(0, 0, tools.scale(70), tools.scale(8))
             rect.right = hud.image.get_width() - tools.scale(8)
-            rect.top += tools.scale(12)
+            if hud.player:
+                rect.top += tools.scale(18)
+            else:
+                rect.top += tools.scale(12)
             self._hp_bars[monster].draw(hud.image, rect)
 
     def draw_exp_bars(self) -> None:
@@ -287,7 +292,9 @@ class CombatState(CombatAnimations):
         elif phase == "housekeeping phase":
             # this will wait for players to fill battleground positions
             for player in self.active_players:
-                positions_available = self.max_positions - len(
+                if len(alive_party(player)) == 1:
+                    player.max_position = 1
+                positions_available = player.max_position - len(
                     self.monsters_in_play[player]
                 )
                 if positions_available:
@@ -719,11 +726,15 @@ class CombatState(CombatAnimations):
         # TODO: integrate some values for different match types
         released = False
         for player in self.active_players:
-            positions_available = self.max_positions - len(
+            if len(alive_party(player)) == 1:
+                player.max_position = 1
+            positions_available = player.max_position - len(
                 self.monsters_in_play[player]
             )
             if positions_available:
-                available = get_awake_monsters(player)
+                available = get_awake_monsters(
+                    player, self.monsters_in_play[player]
+                )
                 for _ in range(positions_available):
                     released = True
                     if player in humans and ask:
@@ -749,8 +760,22 @@ class CombatState(CombatAnimations):
         """
         # TODO: refactor some into the combat animations
         self.animate_monster_release(player, monster)
-        self.build_hud(self._layout[player]["hud"][0], monster)
         self.monsters_in_play[player].append(monster)
+        double = len(self.monsters_in_play[player])
+        if double > 1:
+            self.build_hud(
+                self._layout[player]["hud1"][0],
+                self.monsters_in_play[player][0],
+            )
+            self.build_hud(
+                self._layout[player]["hud2"][0],
+                self.monsters_in_play[player][1],
+            )
+        else:
+            self.build_hud(
+                self._layout[player]["hud"][0],
+                self.monsters_in_play[player][0],
+            )
 
         # remove "connected" status (eg. lifeleech, etc.)
         for mon in self.monsters_in_play[self.players[0]]:
@@ -803,7 +828,7 @@ class CombatState(CombatAnimations):
                     elif monster in self.players[0].monsters:
                         status_ico = (
                             self.rect.width * 0.64,
-                            self.rect.height * 0.52,
+                            self.rect.height * 0.56,
                         )
                     # load the sprite and add it to the display
                     icon = self.load_sprite(
@@ -1224,10 +1249,20 @@ class CombatState(CombatAnimations):
                             self.monsters_in_play[self.players[0]][0], diff
                         )
                         # updates hud graphics player
-                        self.build_hud(
-                            self._layout[self.players[0]]["hud"][0],
-                            self.monsters_in_play[self.players[0]][0],
-                        )
+                        if len(self.monsters_in_play[self.players[0]]) > 1:
+                            self.build_hud(
+                                self._layout[self.players[0]]["hud1"][0],
+                                self.monsters_in_play[self.players[0]][0],
+                            )
+                            self.build_hud(
+                                self._layout[self.players[0]]["hud2"][0],
+                                self.monsters_in_play[self.players[0]][1],
+                            )
+                        else:
+                            self.build_hud(
+                                self._layout[self.players[0]]["hud"][0],
+                                self.monsters_in_play[self.players[0]][0],
+                            )
 
             # Remove monster from damage map
             del self._damage_map[monster]
@@ -1576,6 +1611,7 @@ class CombatState(CombatAnimations):
         """End the combat."""
         # TODO: End combat differently depending on winning or losing
         for player in self.players:
+            player.max_position = 1
             for mon in player.monsters:
                 # reset status stats
                 mon.set_stats()

@@ -236,8 +236,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_mansion_gillette"/>
     <property name="act1" value="translated_dialog spyder_mansion_gillette1"/>
-    <property name="act2" value="add_monster djinnbo,22,spyder_mansion_gillette,27,10"/>
-    <property name="act3" value="add_monster ghosteeth,22,spyder_mansion_gillette,27,10"/>
+    <property name="act2" value="add_monster djinnbo,22,spyder_mansion_gillette,5,10"/>
+    <property name="act3" value="add_monster ghosteeth,22,spyder_mansion_gillette,5,10"/>
     <property name="act4" value="start_battle spyder_mansion_gillette"/>
     <property name="act5" value="translated_dialog spyder_mansion_gillette2"/>
     <property name="act6" value="set_variable mansiongillette:yes"/>
@@ -249,8 +249,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_mansion_lucy"/>
     <property name="act1" value="translated_dialog spyder_mansion_lucy1"/>
-    <property name="act2" value="add_monster elofly,15,spyder_mansion_lucy,27,10"/>
-    <property name="act3" value="add_monster budaye,15,spyder_mansion_lucy,27,10"/>
+    <property name="act2" value="add_monster elofly,15,spyder_mansion_lucy,5,10"/>
+    <property name="act3" value="add_monster budaye,15,spyder_mansion_lucy,5,10"/>
     <property name="act4" value="start_battle spyder_mansion_lucy"/>
     <property name="act5" value="translated_dialog spyder_mansion_lucy2"/>
     <property name="act6" value="set_variable mansionlucy:yes"/>
@@ -262,8 +262,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_mansion_lyle"/>
     <property name="act1" value="translated_dialog spyder_mansion_pirate1"/>
-    <property name="act2" value="add_monster foofle,20,spyder_mansion_lyle,27,10"/>
-    <property name="act3" value="add_monster shybulb,20,spyder_mansion_lyle,27,10"/>
+    <property name="act2" value="add_monster foofle,20,spyder_mansion_lyle,5,10"/>
+    <property name="act3" value="add_monster shybulb,20,spyder_mansion_lyle,5,10"/>
     <property name="act4" value="start_battle spyder_mansion_lyle"/>
     <property name="act5" value="translated_dialog spyder_mansion_pirate2"/>
     <property name="act6" value="set_variable mansionlyle:yes"/>

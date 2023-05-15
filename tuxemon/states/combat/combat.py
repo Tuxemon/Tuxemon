@@ -1200,6 +1200,9 @@ class CombatState(CombatAnimations):
         Any monsters who contributed any amount of damage will be awarded.
         Experience is distributed evenly to all participants.
         """
+        message: str = ""
+        action_time: float = 3.0
+        letter_time: float = 0.02
         if monster in self._damage_map:
             # Award Experience
             awarded_exp = (
@@ -1228,6 +1231,15 @@ class CombatState(CombatAnimations):
                             self._layout[self.players[0]]["hud"][0],
                             self.monsters_in_play[self.players[0]][0],
                         )
+                if winners in self.players[0].monsters:
+                    m = T.format(
+                        "combat_gain_exp",
+                        {"name": winners.name.upper(), "xp": awarded_exp},
+                    )
+                    message += "\n" + m
+            action_time += len(message) * letter_time
+            self.alert(message)
+            self.suppress_phase_change(action_time)
 
             # Remove monster from damage map
             del self._damage_map[monster]
@@ -1306,6 +1318,7 @@ class CombatState(CombatAnimations):
                     # cause a crash
                     for monster in self.monsters_in_play[local_session.player]:
                         self.task(partial(self.animate_exp, monster), 2.5)
+                        self.suppress_phase_change()
 
     @property
     def active_players(self) -> Iterable[NPC]:
@@ -1481,15 +1494,6 @@ class CombatState(CombatAnimations):
         if duplicate:
             return
         monster.learn(technique)
-        self.alert(
-            T.format(
-                "tuxemon_new_tech",
-                {
-                    "name": monster.name.upper(),
-                    "tech": technique.name.upper(),
-                },
-            )
-        )
 
     def evolve(self) -> None:
         self.client.pop_state()

@@ -2,6 +2,8 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import random
+from datetime import date, datetime
 from typing import Callable, List
 
 import pygame_menu
@@ -11,6 +13,7 @@ from pygame_menu.locals import POSITION_CENTER
 from tuxemon import formula, prepare, tools
 from tuxemon.db import OutputBattle, SeenStatus, db
 from tuxemon.locale import T
+from tuxemon.menu.input import InputMenu
 from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
@@ -131,6 +134,73 @@ class PlayerState(PygameMenuState):
         )
         assert not isinstance(lab1, List)
         lab1.translate(fix_width(width, 0.45), fix_height(height, 0.15))
+
+        # birthday
+        def random_dob() -> None:
+            self.client.pop_state()
+            player.dob = random.randint(0, 365)
+
+        def pseudo_date(name: str) -> None:
+            dates: List[str] = []
+            if name.find("-"):
+                dates = name.split("-")
+            else:
+                raise ValueError(f"Incorrect format day-month (eg. 3-1)")
+            month: int = int(dates[0])
+            day: int = int(dates[1]) - 1
+            day_of_year = date(2020, month, day).timetuple().tm_yday
+            player.dob = day_of_year
+
+        def normal_dob() -> None:
+            self.client.pop_state()
+            self.client.push_state(
+                InputMenu(
+                    prompt=T.translate("player_birthday_extended"),
+                    callback=pseudo_date,
+                    escape_key_exits=False,
+                    numerical=True,
+                    char_limit=5,
+                )
+            )
+
+        def set_dob() -> None:
+            self.client.pop_state()
+            var_menu = []
+            var_menu.append(
+                ("random", T.translate("random").upper(), random_dob)
+            )
+            var_menu.append(
+                ("normal", T.translate("normal").upper(), normal_dob)
+            )
+            tools.open_choice_dialog(
+                local_session,
+                menu=(var_menu),
+                escape_key_exits=True,
+            )
+
+        if player.dob == 0:
+            gen1 = menu.add.button(
+                title=T.translate("set_birthday"),
+                action=set_dob,
+                button_id="generate",
+                font_size=15,
+                align=locals.ALIGN_LEFT,
+                float=True,
+            )
+            gen1.translate(fix_width(width, 0.45), fix_height(height, 0.25))
+        else:
+            day_num = str(player.dob)
+            day_num.rjust(3 + len(day_num), "0")
+            res = datetime.strptime(day_num, "%j").strftime("%m-%d")
+            lab2 = menu.add.label(
+                title=T.translate("player_birthday") + ": " + str(res),
+                label_id="dob",
+                font_size=15,
+                align=locals.ALIGN_LEFT,
+                float=True,
+            )
+            assert not isinstance(lab2, List)
+            lab2.translate(fix_width(width, 0.45), fix_height(height, 0.25))
         # money
         money = player.money["player"]
         lab2 = menu.add.label(
@@ -141,7 +211,7 @@ class PlayerState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab2, List)
-        lab2.translate(fix_width(width, 0.45), fix_height(height, 0.25))
+        lab2.translate(fix_width(width, 0.45), fix_height(height, 0.30))
         # seen
         lab3 = menu.add.label(
             title=msg_seen,
@@ -151,7 +221,7 @@ class PlayerState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab3, List)
-        lab3.translate(fix_width(width, 0.45), fix_height(height, 0.30))
+        lab3.translate(fix_width(width, 0.45), fix_height(height, 0.35))
         # caught
         lab4 = menu.add.label(
             title=msg_caught,
@@ -161,7 +231,7 @@ class PlayerState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab4, List)
-        lab4.translate(fix_width(width, 0.45), fix_height(height, 0.35))
+        lab4.translate(fix_width(width, 0.45), fix_height(height, 0.40))
         # begin adventure
         lab5 = menu.add.label(
             title=msg_begin,
@@ -171,7 +241,7 @@ class PlayerState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab5, List)
-        lab5.translate(fix_width(width, 0.45), fix_height(height, 0.40))
+        lab5.translate(fix_width(width, 0.45), fix_height(height, 0.45))
         # walked
         lab6 = menu.add.label(
             title=msg_walked,
@@ -181,7 +251,7 @@ class PlayerState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab6, List)
-        lab6.translate(fix_width(width, 0.45), fix_height(height, 0.45))
+        lab6.translate(fix_width(width, 0.45), fix_height(height, 0.50))
         # battles
         lab7 = menu.add.label(
             title=msg_battles,
@@ -191,7 +261,7 @@ class PlayerState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab7, List)
-        lab7.translate(fix_width(width, 0.45), fix_height(height, 0.50))
+        lab7.translate(fix_width(width, 0.45), fix_height(height, 0.55))
         # % tuxepedia
         lab8 = menu.add.label(
             title=msg_progress,

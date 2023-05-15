@@ -1916,6 +1916,18 @@ msgstr "Walked {distance} {unit}"
 msgid "player_battles"
 msgstr "Battles: {tot} (W{won} D{draw} L{lost})"
 
+msgid "player_birthday"
+msgstr "Birthday (m-d)"
+
+msgid "player_birthday_extended"
+msgstr "Birthday (month-day)"
+
+msgid "set_birthday"
+msgstr "Set Birthday"
+
+msgid "random"
+msgstr "Random"
+
 # Tuxepedia
 
 msgid "page_tuxepedia"

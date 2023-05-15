@@ -45,6 +45,7 @@ class InputMenu(Menu[InputMenuObj]):
         initial: str = "",
         char_limit: int = 99,
         random: bool = False,
+        numerical: bool = False,
         **kwargs: Any,
     ) -> None:
         """
@@ -60,7 +61,10 @@ class InputMenu(Menu[InputMenuObj]):
         """
         super().__init__(**kwargs)
         self.input_string = initial
-        self.chars = T.translate("menu_alphabet").replace(r"\0", "\0")
+        if numerical:
+            self.chars = "0123456789/*-+.-"
+        else:
+            self.chars = T.translate("menu_alphabet").replace(r"\0", "\0")
         self.n_columns = int(T.translate("menu_alphabet_n_columns"))
         self.char_variants = {
             s[0]: s[1:] for s in T.translate("menu_char_variants").split("\n")

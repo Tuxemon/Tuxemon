@@ -74,6 +74,7 @@ class NPCState(TypedDict):
     items: Sequence[Mapping[str, Any]]
     monsters: Sequence[Mapping[str, Any]]
     player_name: str
+    player_dob: int
     plague: PlagueType
     monster_boxes: Dict[str, Sequence[Mapping[str, Any]]]
     item_boxes: Dict[str, Sequence[Mapping[str, Any]]]
@@ -127,6 +128,8 @@ class NPC(Entity[NPCState]):
 
         # This is the NPC's name to be used in dialog
         self.name = T.translate(self.slug)
+        # date of birthday
+        self.dob: int = 0
 
         # general
         self.behavior: Optional[str] = "wander"  # not used for now
@@ -234,6 +237,7 @@ class NPC(Entity[NPCState]):
             "template": encode_template(self.template),
             "monsters": encode_monsters(self.monsters),
             "player_name": self.name,
+            "player_dob": self.dob,
             "monster_boxes": dict(),
             "item_boxes": dict(),
             "tile_pos": self.tile_pos,
@@ -275,6 +279,7 @@ class NPC(Entity[NPCState]):
         for tmp in decode_template(save_data.get("template")):
             self.template.append(tmp)
         self.name = save_data["player_name"]
+        self.dob = save_data["player_dob"]
         self.plague = save_data["plague"]
         for monsterkey, monstervalue in save_data["monster_boxes"].items():
             self.monster_boxes[monsterkey] = decode_monsters(monstervalue)

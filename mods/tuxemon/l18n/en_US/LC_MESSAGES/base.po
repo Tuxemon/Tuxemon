@@ -733,6 +733,9 @@ msgstr "AR:{AR} DE:{DE} ME:{ME} RD:{RD} SD:{SD}"
 msgid "combat_gain_exp"
 msgstr "{name} gains {xp}px"
 
+msgid "tuxemon_new_tech"
+msgstr "{name} learned technique {tech}!"
+
 msgid "combat_none"
 msgstr " "
 

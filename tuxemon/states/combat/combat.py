@@ -734,7 +734,7 @@ class CombatState(CombatAnimations):
             )
             if positions_available:
                 available = get_awake_monsters(
-                    player, self.monsters_in_play[player]
+                    player, self.monsters_in_play[player], self._turn
                 )
                 for _ in range(positions_available):
                     released = True

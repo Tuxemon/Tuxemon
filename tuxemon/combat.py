@@ -98,7 +98,7 @@ def fainted(monster: Monster) -> bool:
 
 
 def get_awake_monsters(
-    player: NPC, monsters: List[Monster]
+    player: NPC, monsters: List[Monster], turn: int
 ) -> Generator[Monster, None, None]:
     """
     Iterate all non-fainted monsters in party.
@@ -118,13 +118,14 @@ def get_awake_monsters(
     if mons:
         if len(mons) > 1:
             mon = random.choice(mons)
-            # avoid random choice filling battlefield (1st turn)
-            if player.isplayer:
+            # avoid random choice (1st turn)
+            if turn == 1:
                 yield from mons
             else:
                 yield mon
         else:
             yield mons[0]
+
 
 def alive_party(player: NPC) -> List[Monster]:
     not_fainted = [ele for ele in player.monsters if not fainted(ele)]

@@ -12,7 +12,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import combat, formula, graphics, tools
-from tuxemon.db import ItemCategory, PlagueType, State
+from tuxemon.db import ElementType, ItemCategory, PlagueType, State
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -445,11 +445,19 @@ class CombatTargetMenuState(Menu[Monster]):
         # TODO: make less duplication of game data in memory, let combat
         # state have more registers, etc
         self.targeting_map: DefaultDict[str, List[Monster]] = defaultdict(list)
+        # avoid choosing multiple targets (aether type tech)
+        if ElementType.aether in self.action.types:
+            sprite = combat_state._monster_sprite_map[self.user]
+            aet = MenuItem(None, None, self.user.name, self.user)
+            aet.rect = sprite.rect.copy()
+            aet.rect.inflate_ip(tools.scale(8), tools.scale(8))
+            yield aet
+            return
 
         for player, monsters in combat_state.monsters_in_play.items():
             if len(monsters) == 2:
                 for monster in monsters:
-                    # TODO: more targeting classes
+                    # allow choosing multiple targets
                     if player == self.player:
                         targeting_class = "own monster"
                     else:

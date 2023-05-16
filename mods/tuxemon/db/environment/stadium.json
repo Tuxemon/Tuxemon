@@ -1,8 +1,8 @@
 {
   "slug": "stadium",
   "battle_graphics": {
-    "island_back": "snow_back_island.png",
-    "island_front": "snow_front_island.png",
+    "island_back": "stadium_island.png",
+    "island_front": "stadium_island.png",
     "background": "stadium_background.png"
   },
   "battle_music": "music_battle_loop"

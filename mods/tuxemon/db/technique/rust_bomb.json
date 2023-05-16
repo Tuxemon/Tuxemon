@@ -1,6 +1,6 @@
 {
   "tech_id": 86,
-  "accuracy": 0.5,
+  "accuracy": 0.6,
   "animation": "smokebomb_puff_128",
   "effects": [
     "give status_poison,target",

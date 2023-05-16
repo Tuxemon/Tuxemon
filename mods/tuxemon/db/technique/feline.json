@@ -1,6 +1,6 @@
 {
   "tech_id": 129,
-  "accuracy": 0.2,
+  "accuracy": 0.6,
   "animation": "claws_twice_red",
   "effects": [
     "damage"

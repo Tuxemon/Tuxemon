@@ -11,6 +11,7 @@ Code here might be shared by states, actions, conditions, etc.
 from __future__ import annotations
 
 import logging
+import random
 from typing import TYPE_CHECKING, Generator, List, Sequence
 
 from tuxemon.db import PlagueType
@@ -109,11 +110,21 @@ def get_awake_monsters(
         Non-fainted monsters.
 
     """
-    for monster in player.monsters:
-        if not fainted(monster):
-            if monster not in monsters:
-                yield monster
-
+    mons = [
+        ele
+        for ele in player.monsters
+        if not fainted(ele) and ele not in monsters
+    ]
+    if mons:
+        if len(mons) > 1:
+            mon = random.choice(mons)
+            # avoid random choice filling battlefield (1st turn)
+            if player.isplayer:
+                yield from mons
+            else:
+                yield mon
+        else:
+            yield mons[0]
 
 def alive_party(player: NPC) -> List[Monster]:
     not_fainted = [ele for ele in player.monsters if not fainted(ele)]

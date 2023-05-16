@@ -5700,6 +5700,9 @@ msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"
 "The rest is weathered away."
 
+msgid "tabanurse_dialog_welcome"
+msgstr "Welcome to the Taba Town Tuxecenter!"
+
 msgid "tabanurse_dialog_taba"
 msgstr "Welcome to the Taba Town Tuxecenter!\n"
 "Do you want to heal your Tuxemon?\n"

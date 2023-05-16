@@ -1,6 +1,6 @@
 {
   "tech_id": 170,
-  "accuracy": 0.4,
+  "accuracy": 0.6,
   "animation": "waterfall",
   "effects": [
     "damage"

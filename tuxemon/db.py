@@ -92,7 +92,6 @@ class ItemType(str, Enum):
 
 class ItemCategory(str, Enum):
     none = "none"
-    edible = "edible"
     badge = "badge"
     booster = "booster"
     fossil = "fossil"
@@ -102,6 +101,7 @@ class ItemCategory(str, Enum):
     technique = "technique"
     phone = "phone"
     fish = "fish"
+    destroy = "destroy"
     capture = "capture"
     stats = "stats"
 
@@ -725,6 +725,7 @@ class TemplateModel(BaseModel):
     slug: str = Field(
         ..., description="Slug uniquely identifying the template"
     )
+    double: bool = Field(False, description="Whether triggers 2vs2 or not")
 
 
 class MusicModel(BaseModel):

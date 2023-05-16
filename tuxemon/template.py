@@ -26,9 +26,10 @@ class Template:
         if save_data is None:
             save_data = dict()
 
-        self.slug = ""
-        self.sprite_name = ""
-        self.combat_front = ""
+        self.slug: str = ""
+        self.sprite_name: str = ""
+        self.combat_front: str = ""
+        self.double: bool = False
 
         self.set_state(save_data)
 
@@ -43,6 +44,7 @@ class Template:
             raise RuntimeError(f"template {slug} is not found")
 
         self.slug = results.slug
+        self.double = results.double
 
     def get_state(self) -> Mapping[str, Any]:
         """

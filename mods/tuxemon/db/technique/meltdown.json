@@ -1,6 +1,6 @@
 {
   "tech_id": 103,
-  "accuracy": 0.3,
+  "accuracy": 0.6,
   "animation": "meltdown",
   "effects": [
     "give status_festering,target",

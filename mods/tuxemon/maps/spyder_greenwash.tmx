@@ -78,10 +78,10 @@
   <object id="45" name="Talk Looten" type="event" x="80" y="464" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_greenwash_looten1"/>
-    <property name="act11" value="add_monster bearloch,30,spyder_greenwash_looten,27,10"/>
-    <property name="act12" value="add_monster rocktot,30,spyder_greenwash_looten,27,10"/>
-    <property name="act13" value="add_monster foxko,30,spyder_greenwash_looten,27,10"/>
-    <property name="act14" value="add_monster agnsher,30,spyder_greenwash_looten,27,10"/>
+    <property name="act11" value="add_monster bearloch,30,spyder_greenwash_looten,5,10"/>
+    <property name="act12" value="add_monster rocktot,30,spyder_greenwash_looten,5,10"/>
+    <property name="act13" value="add_monster foxko,30,spyder_greenwash_looten,5,10"/>
+    <property name="act14" value="add_monster agnsher,30,spyder_greenwash_looten,5,10"/>
     <property name="act20" value="start_battle spyder_greenwash_looten"/>
     <property name="act21" value="translated_dialog spyder_greenwash_looten2"/>
     <property name="act22" value="translated_dialog spyder_greenwash_looten3"/>
@@ -143,9 +143,9 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_greenwash_chip"/>
     <property name="act1" value="translated_dialog spyder_greenwash_chip1"/>
-    <property name="act2" value="add_monster av8r,22,spyder_greenwash_chip,27,10"/>
-    <property name="act3" value="add_monster criniotherme,22,spyder_greenwash_chip,27,10"/>
-    <property name="act4" value="add_monster tikorch,22,spyder_greenwash_chip,27,10"/>
+    <property name="act2" value="add_monster av8r,22,spyder_greenwash_chip,5,10"/>
+    <property name="act3" value="add_monster criniotherme,22,spyder_greenwash_chip,5,10"/>
+    <property name="act4" value="add_monster tikorch,22,spyder_greenwash_chip,5,10"/>
     <property name="act5" value="start_battle spyder_greenwash_chip"/>
     <property name="act6" value="translated_dialog spyder_greenwash_chip2"/>
     <property name="act7" value="set_variable greenwashchip:yes"/>
@@ -157,8 +157,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_greenwash_clarence"/>
     <property name="act1" value="translated_dialog spyder_greenwash_clarence1"/>
-    <property name="act2" value="add_monster pigabyte,25,spyder_greenwash_clarence,27,10"/>
-    <property name="act3" value="add_monster cochini,23,spyder_greenwash_clarence,27,10"/>
+    <property name="act2" value="add_monster pigabyte,25,spyder_greenwash_clarence,5,10"/>
+    <property name="act3" value="add_monster cochini,23,spyder_greenwash_clarence,5,10"/>
     <property name="act4" value="start_battle spyder_greenwash_clarence"/>
     <property name="act5" value="translated_dialog spyder_greenwash_clarence2"/>
     <property name="act6" value="set_variable greenwashclarence:yes"/>
@@ -189,7 +189,7 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_greenwash_broer"/>
     <property name="act1" value="translated_dialog spyder_greenwash_broer1"/>
-    <property name="act2" value="add_monster coleorus,26,spyder_greenwash_broer,27,10"/>
+    <property name="act2" value="add_monster coleorus,26,spyder_greenwash_broer,5,10"/>
     <property name="act3" value="start_battle spyder_greenwash_broer"/>
     <property name="act4" value="translated_dialog spyder_greenwash_broer2"/>
     <property name="act5" value="add_item potion"/>
@@ -209,7 +209,7 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_greenwash_lewie"/>
     <property name="act1" value="translated_dialog spyder_greenwash_lewie1"/>
-    <property name="act2" value="add_monster agnite,26,spyder_greenwash_lewie,27,10"/>
+    <property name="act2" value="add_monster agnite,26,spyder_greenwash_lewie,5,10"/>
     <property name="act3" value="start_battle spyder_greenwash_lewie"/>
     <property name="act4" value="translated_dialog spyder_greenwash_lewie2"/>
     <property name="act6" value="set_variable greenwashlewie:yes"/>
@@ -228,8 +228,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_greenwash_morehouse"/>
     <property name="act1" value="translated_dialog spyder_greenwash_morehouse1"/>
-    <property name="act2" value="add_monster eyenemy,20,spyder_greenwash_morehouse,27,10"/>
-    <property name="act3" value="add_monster eyesore,20,spyder_greenwash_morehouse,27,10"/>
+    <property name="act2" value="add_monster eyenemy,20,spyder_greenwash_morehouse,5,10"/>
+    <property name="act3" value="add_monster eyesore,20,spyder_greenwash_morehouse,5,10"/>
     <property name="act4" value="start_battle spyder_greenwash_morehouse"/>
     <property name="act5" value="translated_dialog spyder_greenwash_morehouse2"/>
     <property name="act6" value="set_variable greenwashmorehouse:yes"/>

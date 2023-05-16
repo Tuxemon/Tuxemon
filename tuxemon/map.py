@@ -10,6 +10,7 @@ from typing import (
     List,
     Literal,
     Mapping,
+    MutableMapping,
     Optional,
     Sequence,
     Set,
@@ -379,7 +380,9 @@ class TuxemonMap:
         inits: Sequence[EventObject],
         interacts: Sequence[EventObject],
         surfable_map: Sequence[Tuple[int, int]],
-        collision_map: Mapping[Tuple[int, int], Optional[RegionProperties]],
+        collision_map: MutableMapping[
+            Tuple[int, int], Optional[RegionProperties]
+        ],
         collisions_lines_map: Set[Tuple[Tuple[int, int], Direction]],
         tiled_map: TiledMap,
         maps: dict,

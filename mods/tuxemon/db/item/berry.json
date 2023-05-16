@@ -9,7 +9,7 @@
   "slug": "berry",
   "sort": "food",
   "sprite": "gfx/items/berry.png",
-  "category": "edible",
+  "category": "potion",
   "type": "Consumable",
   "usable_in": [
     "MainCombatMenuState",

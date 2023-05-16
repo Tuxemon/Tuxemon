@@ -19,22 +19,22 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtllEKwjAMhguCik++OK/gGdS7qIdxR/AQeib1KiawH0LWpFZblLGH0DUZy7d/+cs28xCW0+HEit6l6WLtvNeOalbU1GMr+u5HvuzZG4p+NWfMe7bU70rzx165dTOJvecb79mpmvQmPKpXsFje5LznmxRDqu711bUzsRwjcaJcqs+ndWaI9USupTo4a+pk8XNvq8Z5OX8jX1+rf9Pvsugzvvt9cZ5Ij5c+W5gvh1HOH3wi19IzCT693mchyHjQnnU9UMDLsbX02aK5rP3kR/+JFo/OP4lP6olr6OrN7Dc1zZG7r61rLo++vzbfCzxGizk=
+   eAHtll0KAjEMhAuCik++qFfwDOpd1MPoETyEnkm9ihNwIMQ2UrbBH/YhdNN2t1+nk7LLcUrT4f/EDHuZP2Ph7GuNsVJE6rFS6256vmrv/bJ+9Kbny0jvybe1fmfkrBVpLwipCc+XXfi4f72mfSZDqTYj+WRv3rp27ID5u0zs0ddFJ+9dYcityb4jxskZdY7v+Lxx7b+e79UncnbfpN9p4vNYVn2+9n6RWm999wlfDaPmY53otrUnyWfb6yglHTfkouUWwVrOta3vFstVygcf+k8s8dj+O/i0nnymrtanrXLLUZtH61rLY+dH8z0ALe2K3A==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG9VjtOQzEQ3CofQUEDlFBwCkTN5xRATY+AUyBRo5yCEwAvcAigo0kOwazCSI+Vx3bAYaXRxLv2zmRjLLqx2RToApuIS+wrxebAbCuDbdSinlrPoDcHIqc87K3/zN6FNav70M/FAepRT62V71z/Uq3Gn9KNeeW75CFXr/GndGM++uU6p1+q1fijTomjX65v10oudP0U9+ssg/M/3D+t2qZSmlesc17kNi50F+rUMv3qjstXrvBePVbgBnuor5jfY3kXixMX4Z4+YH3vuom38Qm5Z4A8wT7qK6bvqPNbvzw3S/hjjez+qK+YvnmmFafm1+89hf+a+W3gb93x3/Obf/tTc2P+bWjmeAdaB++Z6lszP579GC18tvBb+1vU3D/6i+x+U+Fvx3UPqT0qF98c38f7r1j1Unl/Oxj+/xbvyaqYWrX82fPnZ9T3bpV/2TEb7JoNgVKMsGcM9GNVc2PfV/g7hOYR4J87YAq4b2dfe97Xx9hzAvSj1ZxUny+L8kH0
+   eAG9VjtOQzEQ3CofQUEDlFBwCkTN5xZQ0yPgFEjUiFNwAuA9OATQ0SSHYFZhpMfKYzvgsNJo4l17Z7IxFt3UrAe6wCbiAvtKsTky28pgG7Wop9Yz6M2ByCkPe+s/s7dhzeo+9HNxgHrUU2vlO9e/VKvxp3RjXvkuecjVa/wp3ZiPfrnO6ZdqNf6oU+Lol+ubtZILXff7f5rB2R/un1ZtUynNK9Y5L3IbF7oLdWqZfnXH5SuXeK8eK3CNPdRXzO+xvIvFifNwTx+wvnPdxNv4hNwzQL7HPuorpu+o81u/PDdL+GON7P6or5i+eaYVp+Y37N3Df838NvC37vjv+c2//am5Mf82NnO8A62D90z1rZkfz35MFj5b+K39LWruH/1Fdr+p8LfjaoDUHpWLb47v4/1XrHqpvL8dDP9/i/dkVUytWv4c+PMz6nu3yr/smI12zcZAKSbYMwWGsaq5se8r/B1C8wjwzx3QA+7b2dee9/Ux9pwAw2g1J9XnCwB0Qaw=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNljlOAzEUhk0DJKGhgFBBzoEQdJBbAA370rCFAqXhCGxhkUDs2xFAkULYJRD7dgGgBkq+kWLFcuyQRKMJI32y/c/ze789zkyEMF+jPiEiBkKV6XhbzAjz4jBkYBgtn2uZ+BXQW1uOJsWfE3MtRNQWa9JjKX96PdvYlEPXPsj5mcqr33PGgzUiOgD90Ae9YIpzNOnPdl/Xbb7fs/jRcyzhZxEWYB5ioMfIsfRnq6vrcp6p7aFON3RBJ3SAHuc870v0CziHMziFOOs7MHCYx7qdWja/4YAQc9SZhRmYhinQ/TnjqlIhqiEI8prwy166veKs6vX+GqdnZ/ZO8HMMSTiCBOi/j8xZ7irSv7tZc88m69taNVO98nxUvZh96dvxIP1NeuhT1re16t5Ifw34G+esRWAMRmEEhkGNl/39oIjuwS7swDbIe262qr8tvGzCBqzDGqyCqd4bfl7hBZ7hCUxxJs22b1JP8j46Tr2TVH+PeHmAe7iDW7iBRu37Vsa4Aj0AfvBBOZi8FKKp365WnmsbtP/T8/fFAr/hp5CFejCntkSIOghBLpfp/1c2Tc+Z4FzJc2Zr1Tn5+lPnetFvZt9aIJzj/jmebOt2S/di3cWs4dY+2fL8AjT41K8=
+   eAHNlssuw0EUh8cGVZFYEQu8hvsOb4Ed6rKhxUK68QxokRD32yOQJoIWCXG/vQC22tr5Jumkk+mMtkmVk3yZmTNnzvzmzL+DEHYLeISYtNBYnY53xfhZF4ExC+P48rFl4lfAbGWOqjoRNHN1aPrk3JXIjDHX6ONQSp+5n2usrzX7TXVCNEMLtEIb2Gy0VgRHYBiGwAe2OOlT+lzzpt+l+41z9qNnAAbBB0Ngs1CtEGFYgEVYApcpfa59Tb8rj/TPomcO5iEEYTBN3ncUPTE4g3O4gAjnO7BwmLpfM49r7NLb7RXiGD0ncApRiEGuNl2RGXnJt2rul22cmSXt+URPHBKQhC8wfx/p6N/pKf2/kz17VrW/q9UzNJfqo//RV7qlGqVvpog61f6uVq+S0teKvinesEmYgAD4YRz0eNXfrxHBPdiFHdgGNVfIVte3yhuxBuuwAZuwBTZ7Rc8LPMMTPIItzuZz1U35j3mPTlJvkq7vGi03cAt3cA8P0G78fStjXEldvSDfPg9tuaPONn3ZfO9o+0jp6+Fee6Hvn35/cQ6TgGS2Q/3RfH2JEA3QCLmY7f+vn3xmziPuTX1nrlZfk68+fW0x+p3UrQu6c6yf1OQ6d6H8xTj3X+5RqDq58nwDyPXIFg==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYCAMFnIyMCwC4sEKjgHddhyP+8wlGBgsgNgSiK2A2BqIaQ2O4nEPre0m1vyBCBdi3TaqbjQERkNgNAQoDYHBXndR6r9R/UMrBFyFSHMvLP2SS5Nm26jq0RCgbwgAAFJCE0E=
+   eAFjYBi6gEuKgYEbiHmAmBeIhYEYGzCXYGCwAGJLILYCYmsgpjU4yklrG0bNHw2B0RAYDYHREMAXAguB5fCi0bIYXxCNytExBFyFSLMMln7JpUmzbVT1aAjQNwQAM1MPew==
   </data>
  </layer>
  <layer id="5" name="Above Player" width="40" height="20">
@@ -49,7 +49,7 @@
   <object id="333" type="collision" x="192" y="240" width="336" height="80"/>
   <object id="364" type="collision" x="512" y="0" width="128" height="320"/>
   <object id="365" type="collision" x="432" y="80" width="80" height="16"/>
-  <object id="366" type="collision" x="304" y="0" width="48" height="80"/>
+  <object id="366" type="collision" x="336" y="0" width="16" height="80"/>
   <object id="367" type="collision" x="448" y="96" width="64" height="32"/>
   <object id="368" type="collision" x="336" y="128" width="176" height="16"/>
   <object id="369" type="collision" x="432" y="144" width="64" height="16"/>
@@ -59,32 +59,31 @@
   <object id="374" type="collision" x="272" y="160" width="80" height="32"/>
   <object id="375" type="collision" x="320" y="192" width="32" height="16"/>
   <object id="378" type="collision" x="256" y="192" width="48" height="16"/>
-  <object id="379" type="collision" x="240" y="0" width="64" height="16"/>
-  <object id="380" type="collision" x="256" y="16" width="48" height="16"/>
-  <object id="381" type="collision" x="272" y="32" width="32" height="32"/>
-  <object id="382" type="collision" x="256" y="64" width="32" height="16"/>
+  <object id="379" type="collision" x="240" y="0" width="16" height="16"/>
+  <object id="380" type="collision" x="256" y="16" width="16" height="16"/>
+  <object id="381" type="collision" x="272" y="32" width="64" height="32"/>
+  <object id="382" type="collision" x="256" y="64" width="64" height="16"/>
   <object id="383" type="collision" x="192" y="16" width="16" height="16"/>
   <object id="386" type="collision" x="112" y="64" width="80" height="32"/>
-  <object id="387" type="collision" x="144" y="96" width="64" height="16"/>
-  <object id="388" type="collision" x="112" y="96" width="16" height="16"/>
+  <object id="387" type="collision" x="176" y="96" width="32" height="16"/>
+  <object id="388" type="collision" x="112" y="96" width="48" height="16"/>
   <object id="389" type="collision" x="0" y="0" width="208" height="16"/>
-  <object id="390" type="collision" x="144" y="16" width="32" height="32"/>
   <object id="391" type="collision" x="0" y="16" width="96" height="80"/>
-  <object id="392" type="collision" x="96" y="32" width="16" height="32"/>
+  <object id="392" type="collision" x="96" y="32" width="96" height="32"/>
   <object id="393" type="collision" x="0" y="96" width="64" height="32"/>
   <object id="394" type="collision" x="0" y="128" width="32" height="64"/>
   <object id="395" type="collision" x="96" y="160" width="96" height="32"/>
   <object id="397" type="collision" x="64" y="240" width="16" height="16"/>
   <object id="399" type="collision" x="0" y="304" width="192" height="16"/>
   <object id="401" type="collision" x="176" y="288" width="16" height="16"/>
-  <object id="402" type="collision" x="128" y="192" width="80" height="16"/>
+  <object id="402" type="collision" x="176" y="192" width="32" height="16"/>
   <object id="425" type="collision" x="0" y="192" width="32" height="32"/>
   <object id="427" type="collision" x="0" y="288" width="48" height="16"/>
   <object id="431" type="collision" x="336" y="144" width="16" height="16"/>
   <object id="447" type="collision" x="352" y="64" width="112" height="16"/>
   <object id="448" type="collision" x="352" y="0" width="112" height="16"/>
   <object id="449" type="collision" x="464" y="0" width="16" height="80"/>
-  <object id="453" type="collision" x="96" y="192" width="16" height="16"/>
+  <object id="453" type="collision" x="96" y="192" width="64" height="16"/>
   <object id="456" type="collision" x="96" y="256" width="64" height="16">
    <properties>
     <property name="key" value="water"/>
@@ -125,7 +124,7 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="336" name="Teleport to Protagonist House" type="event" x="128" y="96" width="16" height="16">
+  <object id="336" name="Teleport to Protagonist House" type="event" x="160" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_downstairs.tmx,4,6,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -179,7 +178,7 @@
     <property name="cond3" value="is variable_set firstfightdue:no"/>
    </properties>
   </object>
-  <object id="345" name="Teleport to Daycare" type="event" x="288" y="64" width="16" height="16">
+  <object id="345" name="Teleport to Daycare" type="event" x="320" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_daycare.tmx,3,8,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -265,7 +264,7 @@
     <property name="act30" value="pathfind spyder_dante,26,12"/>
     <property name="act31" value="npc_face player,down"/>
     <property name="act40" value="translated_dialog spyder_papertown_myfirstmon"/>
-    <property name="act45" value="pathfind spyder_dante,27,10"/>
+    <property name="act45" value="pathfind spyder_dante,5,10"/>
     <property name="act46" value="npc_face player,right"/>
     <property name="act47" value="translated_dialog spyder_papertown_myfirstmon1"/>
     <property name="act48" value="npc_face spyder_dante,left"/>
@@ -332,7 +331,7 @@
     <property name="act60" value="pathfind spyder_billie,26,12"/>
     <property name="act61" value="npc_face player,down"/>
     <property name="act70" value="translated_dialog spyder_papertown_firstfight"/>
-    <property name="act71" value="add_monster billie_choice,5,spyder_billie,27,10"/>
+    <property name="act71" value="add_monster billie_choice,5,spyder_billie,5,10"/>
     <property name="act80" value="start_battle spyder_billie"/>
     <property name="act90" value="set_variable firstfightdue:no"/>
     <property name="act91" value="set_variable teleport_faint:spyder_bedroom.tmx 3 4"/>
@@ -460,7 +459,7 @@
     <property name="cond1" value="is variable_set rivergoto:timber"/>
    </properties>
   </object>
-  <object id="452" name="Teleport to Manor" type="event" x="112" y="192" width="16" height="16">
+  <object id="452" name="Teleport to Manor" type="event" x="160" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_paper_manor.tmx,6,7,0.3"/>
     <property name="act2" value="player_face up"/>

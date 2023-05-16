@@ -69,4 +69,4 @@ class TechEffect:
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        pass
+        return {"success": True}

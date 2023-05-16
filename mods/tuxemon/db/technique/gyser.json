@@ -1,6 +1,6 @@
 {
   "tech_id": 91,
-  "accuracy": 0.1,
+  "accuracy": 0.6,
   "animation": "smokebomb_plume",
   "effects": [
     "damage"

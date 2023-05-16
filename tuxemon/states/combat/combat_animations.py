@@ -436,15 +436,20 @@ class CombatAnimations(ABC, Menu[None]):
 
         """
         if self.get_side(home) == "left":
-            tray = self.load_sprite(
-                "gfx/ui/combat/opponent_party_tray.png",
-                bottom=home.bottom,
-                right=0,
-                layer=hud_layer,
-            )
-            self.animate(tray.rect, right=home.right, duration=2, delay=1.5)
-            centerx = home.right - scale(13)
-            offset = scale(8)
+            if self.is_trainer_battle:
+                tray = self.load_sprite(
+                    "gfx/ui/combat/opponent_party_tray.png",
+                    bottom=home.bottom,
+                    right=0,
+                    layer=hud_layer,
+                )
+                self.animate(
+                    tray.rect, right=home.right, duration=2, delay=1.5
+                )
+                centerx = home.right - scale(13)
+                offset = scale(8)
+            else:
+                pass
 
         else:
             tray = self.load_sprite(

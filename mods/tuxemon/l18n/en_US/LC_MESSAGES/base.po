@@ -730,6 +730,9 @@ msgstr "Phone keeps ringing but no answer!"
 msgid "combat_scope"
 msgstr "AR:{AR} DE:{DE} ME:{ME} RD:{RD} SD:{SD}"
 
+msgid "combat_gain_exp"
+msgstr "{name} gains {xp}px"
+
 msgid "combat_none"
 msgstr " "
 
@@ -1872,9 +1875,6 @@ msgstr "Are you sure you would like to release {name}?"
 
 msgid "tuxemon_released"
 msgstr "{name} has been released."
-
-msgid "tuxemon_new_tech"
-msgstr "{name} learned technique {tech}!"
 
 msgid "new_tech_delete"
 msgstr "{name} has too many techniques.\n"

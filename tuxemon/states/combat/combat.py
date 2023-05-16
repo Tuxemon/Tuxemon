@@ -30,6 +30,7 @@ from tuxemon.animation import Task
 from tuxemon.battle import Battle
 from tuxemon.combat import (
     alive_party,
+    check_moves,
     defeated,
     fainted,
     get_awake_monsters,
@@ -96,6 +97,11 @@ MULT_MAP = {
     0.5: "attack_resisted",
     0.25: "attack_weak",
 }
+
+# This is the time, in seconds, that the text takes to display.
+LETTER_TIME: float = 0.02
+# This is the time, in seconds, that the animation takes to finish.
+ACTION_TIME: float = 3.0
 
 
 class TechniqueAnimationCache:
@@ -366,8 +372,8 @@ class CombatState(CombatAnimations):
             phase: Name of phase to transition to.
 
         """
-        letter_time: float = 0.02
-        action_time: float = 3.0
+        letter_time = LETTER_TIME
+        action_time = ACTION_TIME
         if phase == "begin" or phase == "ready" or phase == "pre action phase":
             pass
 
@@ -993,10 +999,8 @@ class CombatState(CombatAnimations):
             target: Monster that receives the action.
 
         """
-        # This is the time, in seconds, that the text takes to display.
-        letter_time: float = 0.02
-        # This is the time, in seconds, that the animation takes to finish.
-        action_time: float = 3.0
+        letter_time = LETTER_TIME
+        action_time = ACTION_TIME
         # action is performed, so now use sprites to animate it
         # this value will be None if the target is off screen
         target_sprite = self._monster_sprite_map.get(target, None)
@@ -1209,8 +1213,8 @@ class CombatState(CombatAnimations):
         Experience is distributed evenly to all participants.
         """
         message: str = ""
-        action_time: float = 3.0
-        letter_time: float = 0.02
+        action_time = ACTION_TIME
+        letter_time = LETTER_TIME
         if monster in self._damage_map:
             # Award Experience
             awarded_exp = (
@@ -1231,9 +1235,12 @@ class CombatState(CombatAnimations):
                     diff = self._level_after - self._level_before
                     if winners in self.players[0].monsters:
                         # checks and eventually teaches move/moves
-                        self.check_moves(
+                        mex = check_moves(
                             self.monsters_in_play[self.players[0]][0], diff
                         )
+                        if mex:
+                            message += "\n" + mex
+                            action_time += len(message) * letter_time
                         # updates hud graphics player
                         if len(self.monsters_in_play[self.players[0]]) > 1:
                             self.build_hud(
@@ -1489,29 +1496,6 @@ class CombatState(CombatAnimations):
             monster.apply_status(status)
             return True
         return False
-
-    def check_moves(self, monster: Monster, levels: int) -> None:
-        for move in monster.moveset:
-            # monster levels up 1 level
-            if levels == 1:
-                if move.level_learned == monster.level:
-                    self.learn(monster, move.technique)
-            # monster levels up multiple levels
-            else:
-                level_before = monster.level - levels
-                # if there are techniques in this range
-                if level_before < move.level_learned <= monster.level:
-                    self.learn(monster, move.technique)
-
-    def learn(self, monster: Monster, tech: str) -> None:
-        technique = Technique()
-        technique.load(tech)
-        duplicate = [
-            mov for mov in monster.moves if mov.slug == technique.slug
-        ]
-        if duplicate:
-            return
-        monster.learn(technique)
 
     def evolve(self) -> None:
         self.client.pop_state()

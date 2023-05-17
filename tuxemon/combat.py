@@ -174,24 +174,25 @@ def spyderbite(monster: Monster) -> str:
 
 
 def check_moves(monster: Monster, levels: int) -> Union[str, None]:
+    tech: Union[Technique, None] = None
     for move in monster.moveset:
         # monster levels up 1 level
         if levels == 1:
             if move.level_learned == monster.level:
-                technique = learn(monster, move.technique)
+                tech = learn(monster, move.technique)
         # monster levels up multiple levels
         else:
             level_before = monster.level - levels
             # if there are techniques in this range
             if level_before < move.level_learned <= monster.level:
-                technique = learn(monster, move.technique)
-    if technique:
-        monster.learn(technique)
+                tech = learn(monster, move.technique)
+    if tech:
+        monster.learn(tech)
         message = T.format(
             "tuxemon_new_tech",
             {
                 "name": monster.name.upper(),
-                "tech": technique.name.upper(),
+                "tech": tech.name.upper(),
             },
         )
         return message
@@ -205,4 +206,5 @@ def learn(monster: Monster, tech: str) -> Union[Technique, None]:
     duplicate = [mov for mov in monster.moves if mov.slug == technique.slug]
     if duplicate:
         return None
-    return technique
+    else:
+        return technique

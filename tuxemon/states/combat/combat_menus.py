@@ -12,7 +12,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import combat, formula, graphics, tools
-from tuxemon.db import ElementType, ItemCategory, PlagueType, State
+from tuxemon.db import ElementType, ItemCategory, PlagueType, State, TechSort
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -446,7 +446,10 @@ class CombatTargetMenuState(Menu[Monster]):
         # state have more registers, etc
         self.targeting_map: DefaultDict[str, List[Monster]] = defaultdict(list)
         # avoid choosing multiple targets (aether type tech)
-        if ElementType.aether in self.action.types:
+        if (
+            ElementType.aether in self.action.types
+            or self.action.sort == TechSort.meta
+        ):
             sprite = combat_state._monster_sprite_map[self.user]
             aet = MenuItem(None, None, self.user.name, self.user)
             aet.rect = sprite.rect.copy()

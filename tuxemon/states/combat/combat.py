@@ -45,6 +45,7 @@ from tuxemon.db import (
     ItemCategory,
     OutputBattle,
     PlagueType,
+    Range,
     SeenStatus,
 )
 from tuxemon.item.item import Item
@@ -771,11 +772,11 @@ class CombatState(CombatAnimations):
         double = len(self.monsters_in_play[player])
         if double > 1:
             self.build_hud(
-                self._layout[player]["hud1"][0],
+                self._layout[player]["hud0"][0],
                 self.monsters_in_play[player][0],
             )
             self.build_hud(
-                self._layout[player]["hud2"][0],
+                self._layout[player]["hud1"][0],
                 self.monsters_in_play[player][1],
             )
         else:
@@ -785,7 +786,7 @@ class CombatState(CombatAnimations):
             )
 
         # remove "connected" status (eg. lifeleech, etc.)
-        for mon in self.monsters_in_play[self.players[0]]:
+        for mon in self.monsters_in_play_human:
             if has_status_bond(mon):
                 mon.status.clear()
 
@@ -827,16 +828,40 @@ class CombatState(CombatAnimations):
             for status in monster.status:
                 if status.icon:
                     status_ico: Tuple[float, float] = (0.0, 0.0)
-                    if monster in self.players[1].monsters:
-                        status_ico = (
-                            self.rect.width * 0.06,
-                            self.rect.height * 0.12,
-                        )
-                    elif monster in self.players[0].monsters:
-                        status_ico = (
-                            self.rect.width * 0.64,
-                            self.rect.height * 0.56,
-                        )
+                    if self.players[1].max_position > 1:
+                        if monster == self.monsters_in_play_ai[0]:
+                            status_ico = (
+                                self.rect.width * 0.06,
+                                self.rect.height * 0.12,
+                            )
+                        elif monster == self.monsters_in_play_ai[1]:
+                            status_ico = (
+                                self.rect.width * 0.06,
+                                self.rect.height * 0.26,
+                            )
+                    else:
+                        if monster == self.monsters_in_play_ai[0]:
+                            status_ico = (
+                                self.rect.width * 0.06,
+                                self.rect.height * 0.12,
+                            )
+                    if self.players[0].max_position > 1:
+                        if monster == self.monsters_in_play_human[0]:
+                            status_ico = (
+                                self.rect.width * 0.64,
+                                self.rect.height * 0.42,
+                            )
+                        elif monster == self.monsters_in_play_human[1]:
+                            status_ico = (
+                                self.rect.width * 0.64,
+                                self.rect.height * 0.56,
+                            )
+                    else:
+                        if monster == self.monsters_in_play_human[0]:
+                            status_ico = (
+                                self.rect.width * 0.64,
+                                self.rect.height * 0.56,
+                            )
                     # load the sprite and add it to the display
                     icon = self.load_sprite(
                         status.icon,
@@ -1010,6 +1035,9 @@ class CombatState(CombatAnimations):
         # monster uses move
         if isinstance(technique, Technique) and isinstance(user, Monster):
             technique.advance_round()
+            for ele in technique.effects:
+                if ele.name == "area":
+                    technique.combat_state = self
             result_tech = technique.use(user, target)
             context = {
                 "user": user.name,
@@ -1028,8 +1056,8 @@ class CombatState(CombatAnimations):
                 action_time += len(message) * letter_time
             # TODO: caching sounds
             audio.load_sound(technique.sfx).play()
-            # animation own monster AI NPC
-            if "own monster" in technique.target:
+            # animation special range AI
+            if technique.range == Range.special:
                 target_sprite = self._monster_sprite_map.get(user, None)
             # TODO: a real check or some params to test if should tackle, etc
             if result_tech["should_tackle"]:
@@ -1235,26 +1263,24 @@ class CombatState(CombatAnimations):
                     diff = self._level_after - self._level_before
                     if winners in self.players[0].monsters:
                         # checks and eventually teaches move/moves
-                        mex = check_moves(
-                            self.monsters_in_play[self.players[0]][0], diff
-                        )
+                        mex = check_moves(winners, diff)
                         if mex:
                             message += "\n" + mex
                             action_time += len(message) * letter_time
                         # updates hud graphics player
-                        if len(self.monsters_in_play[self.players[0]]) > 1:
+                        if len(self.monsters_in_play_human) > 1:
                             self.build_hud(
-                                self._layout[self.players[0]]["hud1"][0],
-                                self.monsters_in_play[self.players[0]][0],
+                                self._layout[self.players[0]]["hud0"][0],
+                                self.monsters_in_play_human[0],
                             )
                             self.build_hud(
-                                self._layout[self.players[0]]["hud2"][0],
-                                self.monsters_in_play[self.players[0]][1],
+                                self._layout[self.players[0]]["hud1"][0],
+                                self.monsters_in_play_human[1],
                             )
                         else:
                             self.build_hud(
                                 self._layout[self.players[0]]["hud"][0],
-                                self.monsters_in_play[self.players[0]][0],
+                                self.monsters_in_play_human[0],
                             )
                 if winners in self.players[0].monsters:
                     m = T.format(
@@ -1315,6 +1341,7 @@ class CombatState(CombatAnimations):
                             },
                         )
                     )
+                    return
                 # check for condition diehard
                 if monster.current_hp <= 0 and has_status(
                     monster, "status_diehard"
@@ -1329,6 +1356,7 @@ class CombatState(CombatAnimations):
                             },
                         )
                     )
+                    return
                 if monster.current_hp <= 0 and not has_status(
                     monster, "status_faint"
                 ):
@@ -1380,20 +1408,20 @@ class CombatState(CombatAnimations):
         return list(chain.from_iterable(self.monsters_in_play.values()))
 
     @property
-    def remaining_monsters(self) -> Sequence[Monster]:
+    def monsters_in_play_human(self) -> Sequence[Monster]:
         """
-        List of any non-fainted monsters in party (human).
+        List of any monsters in battle (ai).
 
         """
-        return [p for p in self.players[0].monsters if not fainted(p)]
+        return self.monsters_in_play[self.players[0]]
 
     @property
-    def remaining_monsters_ai(self) -> Sequence[Monster]:
+    def monsters_in_play_ai(self) -> Sequence[Monster]:
         """
-        List of any non-fainted monsters in party (ai).
+        List of any monsters in battle (ai).
 
         """
-        return [p for p in self.players[1].monsters if not fainted(p)]
+        return self.monsters_in_play[self.players[1]]
 
     @property
     def remaining_players(self) -> Sequence[NPC]:

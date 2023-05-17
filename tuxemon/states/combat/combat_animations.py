@@ -91,15 +91,15 @@ class CombatAnimations(ABC, Menu[None]):
         player = dict()
         player["home"] = ((0, 62, 95, 70),)
         player["hud"] = ((145, 45, 110, 50),)
-        player["hud1"] = ((145, 25, 110, 50),)  # 1st spot 2 vs 2
-        player["hud2"] = ((145, 45, 110, 50),)  # 2nd spot 2 vs 2
+        player["hud0"] = ((145, 25, 110, 50),)  # 1st spot 2 vs 2
+        player["hud1"] = ((145, 45, 110, 50),)  # 2nd spot 2 vs 2
         player["party"] = ((145, 57, 110, 50),)
 
         opponent = dict()
         opponent["home"] = ((140, 10, 95, 70),)
         opponent["hud"] = ((18, 0, 85, 30),)
-        opponent["hud1"] = ((18, 0, 85, 30),)  # 1st spot 2 vs 2
-        opponent["hud2"] = ((18, 20, 85, 30),)  # 2nd spot 2 vs 2
+        opponent["hud0"] = ((18, 0, 85, 30),)  # 1st spot 2 vs 2
+        opponent["hud1"] = ((18, 20, 85, 30),)  # 2nd spot 2 vs 2
         opponent["party"] = ((18, 12, 85, 30),)
 
         # convert the list/tuple of coordinates to Rects
@@ -130,7 +130,10 @@ class CombatAnimations(ABC, Menu[None]):
         self.animate_parties_in()
 
         for player, layout in self._layout.items():
-            self.animate_party_hud_in(player, layout["party"][0])
+            if not player.isplayer and player.max_position > 1:
+                pass
+            else:
+                self.animate_party_hud_in(player, layout["party"][0])
 
         self.task(partial(self.animate_trainer_leave, self.players[0]), 3)
 

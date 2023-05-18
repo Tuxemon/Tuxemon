@@ -16,20 +16,35 @@ logger = logging.getLogger(__name__)
 
 
 class TypeChart(NamedTuple):
-    strong_attack: Optional[str]
-    weak_attack: Optional[str]
-    extra_damage: Optional[str]
-    resist_damage: Optional[str]
+    earth: float
+    fire: float
+    frost: float
+    heroic: float
+    lightning: float
+    magic: float
+    metal: float
+    normal: float
+    shadow: float
+    sky: float
+    venom: float
+    water: float
+    wood: float
 
 
 TYPES = {
-    "aether": TypeChart(None, None, None, None),
-    "normal": TypeChart(None, None, None, None),
-    "wood": TypeChart("earth", "fire", "metal", "water"),
-    "fire": TypeChart("metal", "earth", "water", "wood"),
-    "earth": TypeChart("water", "metal", "wood", "fire"),
-    "metal": TypeChart("wood", "water", "fire", "earth"),
-    "water": TypeChart("fire", "wood", "earth", "metal"),
+    "earth": TypeChart(1, 2, 0, 0, 2, 0, 0, 0, 0, 0.5, 0, 0, 0.5),
+    "fire": TypeChart(0.5, 0.5, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0.5, 2),
+    "frost": TypeChart(2, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 2, 0, 0.5, 2),
+    "heroic": TypeChart(0, 0, 2, 1, 0, 0.5, 0, 2, 2, 0, 0.5, 0, 0),
+    "lightning": TypeChart(0.5, 0, 0, 0, 0.5, 0, 2, 0, 0, 2, 0, 2, 0.5),
+    "magic": TypeChart(0, 0, 0, 2, 0, 1, 0, 0, 0.5, 0, 2, 0, 0),
+    "metal": TypeChart(2, 0.5, 0, 0, 0, 2, 0.5, 0, 0, 0, 0, 0.5, 0),
+    "normal": TypeChart(0, 0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0),
+    "shadow": TypeChart(0, 0, 0, 0.5, 0, 2, 0, 0, 1, 0, 0, 0, 0),
+    "sky": TypeChart(2, 0.5, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 2),
+    "venom": TypeChart(0.5, 0, 0, 0, 0, 0, 0.5, 2, 0, 0, 0.5, 0, 2),
+    "water": TypeChart(0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5),
+    "wood": TypeChart(2, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 2, 0.5),
 }
 
 
@@ -55,13 +70,15 @@ def simple_damage_multiplier(
 
         for target_type in target_types:
             if target_type:
-                body = TYPES.get(target_type, TYPES["aether"])
-                if body.extra_damage is None:
-                    continue
-                if attack_type == body.extra_damage:
-                    m *= 2
-                elif attack_type == body.resist_damage:
-                    m /= 2.0
+                if attack_type == "aether" or target_type == "aether":
+                    pass
+                body = TYPES.get(target_type)
+                value = float(getattr(body, attack_type))
+                if value == 0:
+                    m = 1.0
+                else:
+                    m *= value
+
     m = min(4, m)
     m = max(0.25, m)
     return m

@@ -83,6 +83,13 @@ class ElementType(str, Enum):
     water = "water"
     normal = "normal"
     glitch = "glitch"
+    frost = "frost"
+    heroic = "heroic"
+    lightning = "lightning"
+    magic = "magic"
+    shadow = "shadow"
+    sky = "sky"
+    venom = "venom"
 
 
 class ItemType(str, Enum):

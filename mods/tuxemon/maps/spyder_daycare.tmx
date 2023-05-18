@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="23">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="daycare"/>
@@ -51,7 +52,7 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="14" name="Teleport to Cotton Town" type="event" x="32" y="128" width="32" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_paper_town.tmx,18,5,0.3"/>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,20,5,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>

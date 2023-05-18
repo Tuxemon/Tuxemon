@@ -1,8 +1,8 @@
 {
   "slug": "night_sea",
   "battle_graphics": {
-    "island_back": "rain_back_island.png",
-    "island_front": "rain_front_island.png",
+    "island_back": "water_island.png",
+    "island_front": "water_island.png",
     "background": "night_sea_background.png"
   },
   "battle_music": "music_battle_loop"

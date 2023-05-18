@@ -149,7 +149,9 @@ def calc_dialog_rect(screen_rect: pygame.rect.Rect) -> pygame.rect.Rect:
         rect.height //= 4
         rect.width *= 8
         rect.width //= 10
-        rect.center = screen_rect.centerx, screen_rect.bottom - rect.height
+        rect.center = screen_rect.centerx, screen_rect.bottom - (
+            rect.height // 2
+        )
     return rect
 
 

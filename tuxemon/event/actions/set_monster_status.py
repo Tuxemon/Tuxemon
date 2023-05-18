@@ -52,6 +52,8 @@ class SetMonsterStatusAction(EventAction):
             return
 
         if self.slot is None:
+            if not self.session.player.monsters:
+                return
             for monster in self.session.player.monsters:
                 self.set_status(monster, self.status)
         else:

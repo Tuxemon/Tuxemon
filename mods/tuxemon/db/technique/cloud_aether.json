@@ -1,6 +1,6 @@
 {
   "tech_id": 126,
-  "accuracy": 0.2,
+  "accuracy": 0.6,
   "animation": "sparks_blue_alt",
   "effects": [
     "damage"

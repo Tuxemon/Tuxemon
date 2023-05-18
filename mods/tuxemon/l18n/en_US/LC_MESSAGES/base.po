@@ -730,6 +730,12 @@ msgstr "Phone keeps ringing but no answer!"
 msgid "combat_scope"
 msgstr "AR:{AR} DE:{DE} ME:{ME} RD:{RD} SD:{SD}"
 
+msgid "combat_gain_exp"
+msgstr "{name} gains {xp}px"
+
+msgid "tuxemon_new_tech"
+msgstr "{name} learned technique {tech}!"
+
 msgid "combat_none"
 msgstr " "
 
@@ -1872,9 +1878,6 @@ msgstr "Are you sure you would like to release {name}?"
 
 msgid "tuxemon_released"
 msgstr "{name} has been released."
-
-msgid "tuxemon_new_tech"
-msgstr "{name} learned technique {tech}!"
 
 msgid "new_tech_delete"
 msgstr "{name} has too many techniques.\n"
@@ -5720,6 +5723,9 @@ msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"
 "The rest is weathered away."
+
+msgid "tabanurse_dialog_welcome"
+msgstr "Welcome to the Taba Town Tuxecenter!"
 
 msgid "tabanurse_dialog_taba"
 msgstr "Welcome to the Taba Town Tuxecenter!\n"

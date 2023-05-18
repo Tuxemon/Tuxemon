@@ -254,6 +254,22 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Yellow Belt"](https://wiki.tuxemon.org/index.php?title=Yellow_Belt). Created by Sanglorian from the [https://telles0808.itch.io/isometric-template Isometric Template] template by KinGabe.
 
+### Pair Character Front Sprites
+
+* ["Business Pair"](https://wiki.tuxemon.org/File:Business_pair.gif) Overland sprite by Catch Challenger.
+
+* ["Battle Pair"](https://wiki.tuxemon.org/File:Battle_pair.gif) Dragonrider adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Enthusiast Pair"](https://wiki.tuxemon.org/File:Enthusiast_pair.png) Dragonrider adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Little Pair"](https://wiki.tuxemon.org/File:Little_pair.png) Overland sprite by Catch Challenger.
+
+* ["Med Pair"](https://wiki.tuxemon.org/File:Med_pair.png) Scientist adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule. Nurse based loosely on [http://momokahimari.deviantart.com/art/Base-boy-pokemon-trainer-sprite-277503155 MomokaHirami's template]
+
+* ["Spyder Pair"](https://wiki.tuxemon.org/File:Spyder_pair.gif) Overland sprite by Catch Challenger.
+
+* ["Villain Pair"](https://wiki.tuxemon.org/File:Villain_pair.png) Spyder Boss based loosely on [http://momokahimari.deviantart.com/art/Base-boy-pokemon-trainer-sprite-277503155 MomokaHirami's template]
+
 ### Tilesets
 
 * ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props)

@@ -42,8 +42,9 @@ class AddCollisionAction(EventAction):
                 "key": self.label,
             }
         else:
-            world.collision_map[coords] = {
-                "enter": [],
-                "exit": [],
-                "key": self.label,
-            }
+            if coords:
+                world.collision_map[coords] = {
+                    "enter": [],
+                    "exit": [],
+                    "key": self.label,
+                }

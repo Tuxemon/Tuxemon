@@ -11,7 +11,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import combat, formula, graphics, tools
-from tuxemon.db import ItemCategory, State
+from tuxemon.db import ElementType, ItemCategory, State, TechSort
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem

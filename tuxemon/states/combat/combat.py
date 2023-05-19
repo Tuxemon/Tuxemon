@@ -1039,9 +1039,7 @@ class CombatState(CombatAnimations):
         # monster uses move
         if isinstance(technique, Technique) and isinstance(user, Monster):
             technique.advance_round()
-            for ele in technique.effects:
-                if ele.name == "area":
-                    technique.combat_state = self
+            technique.combat_state = self
             result_tech = technique.use(user, target)
             context = {
                 "user": user.name,

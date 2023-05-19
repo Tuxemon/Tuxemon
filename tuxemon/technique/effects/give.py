@@ -30,6 +30,7 @@ class GiveEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> GiveEffectResult:
+        done: bool = False
         player = self.session.player
         potency = random.random()
         value = float(player.game_variables["random_tech_hit"])
@@ -38,7 +39,8 @@ class GiveEffect(TechEffect):
             status = Technique()
             status.load(self.condition)
             # 2 vs 2, give status both monsters
-            if player.max_position > 1:
+            area = [ele for ele in tech.effects if ele.name == "area"]
+            if player.max_position > 1 and area:
                 monsters: Sequence[Monster] = []
                 assert tech.combat_state
                 combat = tech.combat_state
@@ -60,13 +62,14 @@ class GiveEffect(TechEffect):
                         monsters = human
                 for mon in monsters:
                     mon.apply_status(status)
-                return {"success": True}
+                    done = True
             else:
                 status.link = user
                 if self.objective == "user":
                     user.apply_status(status)
+                    done = True
                 elif self.objective == "target":
                     target.apply_status(status)
-                return {"success": True}
+                    done = True
 
-        return {"success": False}
+        return {"success": done}

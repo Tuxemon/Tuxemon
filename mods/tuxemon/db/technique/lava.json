@@ -3,7 +3,7 @@
   "accuracy": 0.6,
   "animation": "shield_lava",
   "effects": [
-    "damage"
+    "area"
   ],
   "flip_axes": "",
   "is_fast": false,

@@ -517,9 +517,6 @@ class TechniqueModel(BaseModel):
     is_fast: bool = Field(
         False, description="Whether or not this is a fast technique"
     )
-    is_area: bool = Field(
-        False, description="Whether or not this is an area of effect technique"
-    )
     randomly: bool = Field(
         True, description="Whether or not this is a fast technique"
     )

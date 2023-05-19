@@ -4,10 +4,9 @@
   "animation": "smokebomb_puff_128",
   "effects": [
     "give status_poison,target",
-    "damage"
+    "splash"
   ],
   "flip_axes": "",
-  "is_area": true,
   "is_fast": false,
   "potency": 0.5,
   "power": 2.25,

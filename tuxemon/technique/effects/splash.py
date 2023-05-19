@@ -13,51 +13,39 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class DamageEffectResult(TechEffectResult):
+class SplashEffectResult(TechEffectResult):
     damage: int
     element_multiplier: float
     should_tackle: bool
 
 
 @dataclass
-class DamageEffect(TechEffect):
+class SplashEffect(TechEffect):
     """
-    Apply damage.
-
-    This effect applies damage to a target monster. This effect will only
-    be applied if "damage" is defined in the relevant technique's effect
-    list.
-
-    Parameters:
-        user: The Monster object that used this technique.
-        target: The Monster object that we are using this technique on.
-
-    Returns:
-        Dict summarizing the result.
+    Apply splash.
 
     """
 
-    name = "damage"
+    name = "splash"
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> DamageEffectResult:
+    ) -> SplashEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
+        damage, mult = formula.simple_damage_calculate(tech, user, target)
+        tech.advance_counter_success()
         if hit:
             tech.hit = True
-            tech.advance_counter_success()
-            damage, mult = formula.simple_damage_calculate(tech, user, target)
             target.current_hp -= damage
         else:
-            tech.hit = False
-            damage = 0
-            mult = 1.0
-
+            tech.hit = True
+            damage //= 2
+            target.current_hp -= damage
         return {
-            "damage": damage,
-            "element_multiplier": mult,
-            "should_tackle": bool(damage),
             "success": bool(damage),
+            "damage": damage,
+            "should_tackle": bool(damage),
+            "element_multiplier": mult,
         }

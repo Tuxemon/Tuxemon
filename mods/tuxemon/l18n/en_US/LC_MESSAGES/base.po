@@ -872,6 +872,9 @@ msgstr "{target} is charging power."
 msgid "combat_state_confused_get"
 msgstr "{target} is confused."
 
+msgid "combat_state_confused_tech"
+msgstr "{target} gets muddled and uses {name} instead!"
+
 msgid "combat_state_diehard_get"
 msgstr "{target} will keep fighting."
 

@@ -52,6 +52,52 @@ def check_battle_legal(player: Player) -> bool:
             return True
 
 
+def pre_checking(
+    monster: Monster,
+    technique: Technique,
+    target: Monster,
+    player: NPC,
+    enemy: NPC,
+) -> Technique:
+    """
+    Pre checking allows to check if there are statuses
+    or other conditions that change the choosen technique.
+    """
+    status = Technique()
+    if has_status(monster, "status_dozing"):
+        status.load("status_dozing")
+        technique = status
+    if has_status(monster, "status_confused"):
+        confusion = random.randint(1, 2)
+        if confusion == 1:
+            player.game_variables["status_confused"] = "on"
+            confused = [
+                ele
+                for ele in monster.moves
+                if ele.next_use <= 0
+                and not has_effect_give(ele, "status_confused")
+            ]
+            if confused:
+                technique = random.choice(confused)
+            else:
+                status.load("skip")
+                technique = status
+        else:
+            player.game_variables["status_confused"] = "off"
+    if monster.plague == PlagueType.infected:
+        value = random.randint(1, 8)
+        if value == 1:
+            status.load("status_spyderbite")
+            technique = status
+            # infect mechanism
+            if (
+                enemy.plague == PlagueType.infected
+                or enemy.plague == PlagueType.healthy
+            ):
+                target.plague = PlagueType.infected
+    return technique
+
+
 def has_status(monster: Monster, status_name: str) -> bool:
     """
     Checks to see if the monster has a specific status/condition.
@@ -168,25 +214,37 @@ def spyderbite(monster: Monster) -> str:
     return message
 
 
+def confused(monster: Monster, technique: Technique) -> str:
+    message = T.format(
+        "combat_state_confused_tech",
+        {
+            "target": monster.name.upper(),
+            "name": technique.name.upper(),
+        },
+    )
+    return message
+
+
 def check_moves(monster: Monster, levels: int) -> Union[str, None]:
+    tech: Union[Technique, None] = None
     for move in monster.moveset:
         # monster levels up 1 level
         if levels == 1:
             if move.level_learned == monster.level:
-                technique = learn(monster, move.technique)
+                tech = learn(monster, move.technique)
         # monster levels up multiple levels
         else:
             level_before = monster.level - levels
             # if there are techniques in this range
             if level_before < move.level_learned <= monster.level:
-                technique = learn(monster, move.technique)
-    if technique:
-        monster.learn(technique)
+                tech = learn(monster, move.technique)
+    if tech:
+        monster.learn(tech)
         message = T.format(
             "tuxemon_new_tech",
             {
                 "name": monster.name.upper(),
-                "tech": technique.name.upper(),
+                "tech": tech.name.upper(),
             },
         )
         return message

@@ -30,6 +30,7 @@ from tuxemon.animation import Task
 from tuxemon.battle import Battle
 from tuxemon.combat import (
     check_moves,
+    confused,
     defeated,
     fainted,
     get_awake_monsters,
@@ -422,6 +423,7 @@ class CombatState(CombatAnimations):
                 for technique in monster.status:
                     # validate status
                     if technique.validate(monster):
+                        technique.combat_state = self
                         self.enqueue_action(None, technique, monster)
                     # avoid multiple effect status
                     monster.set_stats()
@@ -976,6 +978,7 @@ class CombatState(CombatAnimations):
             target: Monster that receives the action.
 
         """
+        _player = local_session.player
         letter_time = LETTER_TIME
         action_time = ACTION_TIME
         # action is performed, so now use sprites to animate it
@@ -994,8 +997,23 @@ class CombatState(CombatAnimations):
                 "target": target.name,
             }
             message = T.format(technique.use_tech, context)
+            # scope technique
             if technique.slug == "scope":
                 message = scope(target)
+            # swapping monster
+            if technique.slug == "swap":
+                message = T.format(
+                    "combat_call_tuxemon",
+                    {"name": target.name.upper()},
+                )
+            # confused status
+            if (
+                has_status(user, "status_confused")
+                and "status_confused" in _player.game_variables
+            ):
+                if _player.game_variables["status_confused"] == "on":
+                    message = confused(user, technique)
+            # not successful techniques
             if not result_tech["success"]:
                 template = getattr(technique, "use_failure")
                 m = T.format(template, context)
@@ -1149,12 +1167,6 @@ class CombatState(CombatAnimations):
                 }
                 template = getattr(technique, msg_type)
                 message = T.format(template, context)
-                # swapping monster
-                if technique.slug == "swap":
-                    message = T.format(
-                        "combat_call_tuxemon",
-                        {"name": target.name.upper()},
-                    )
                 self.alert(message)
                 self.suppress_phase_change(action_time)
 

@@ -4,10 +4,9 @@
   "animation": "explosion_ice_112",
   "effects": [
     "give status_exhausted,target",
-    "damage"
+    "splash"
   ],
   "flip_axes": "",
-  "is_area": true,
   "is_fast": false,
   "potency": 1,
   "power": 3,

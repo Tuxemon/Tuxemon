@@ -50,6 +50,7 @@ class HealingEffect(TechEffect):
             heal = (7 + mon.level) * tech.healing_power
         diff = mon.hp - mon.current_hp
         if hit:
+            tech.hit = True
             tech.advance_counter_success()
             if diff > 0:
                 if heal >= diff:
@@ -60,4 +61,5 @@ class HealingEffect(TechEffect):
             else:
                 return {"success": False}
         else:
+            tech.hit = False
             return {"success": False}

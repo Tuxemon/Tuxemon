@@ -1045,8 +1045,17 @@ msgstr "Exhausted"
 msgid "status_faint"
 msgstr "Faint"
 
+msgid "status_feedback"
+msgstr "Feedback"
+
 msgid "status_festering"
 msgstr "Festering"
+
+msgid "status_flameshield"
+msgstr "Flame Shield"
+
+msgid "status_flinching"
+msgstr "Flinching"
 
 msgid "status_focused"
 msgstr "Focused"
@@ -1057,8 +1066,14 @@ msgstr "Grabbed"
 msgid "status_hardshell"
 msgstr "Hard Shell"
 
+msgid "status_harpooned"
+msgstr "Harpooned"
+
 msgid "status_lifeleech"
 msgstr "Lifeleech"
+
+msgid "status_lockdown"
+msgstr "Lockdown"
 
 msgid "status_noddingoff"
 msgstr "Nodding Off"
@@ -1068,6 +1083,9 @@ msgstr "Overfeed"
 
 msgid "status_poison"
 msgstr "Poison"
+
+msgid "status_prickly"
+msgstr "Prickly"
 
 msgid "status_recover"
 msgstr "Recover"
@@ -1086,6 +1104,12 @@ msgstr "Stuck"
 
 msgid "status_tired"
 msgstr "Tired"
+
+msgid "status_wasting"
+msgstr "Wasting"
+
+msgid "status_wild"
+msgstr "Wild"
 
 ## TECHNIQUE TRANSLATIONS ##
 msgid "all_in"

@@ -1,30 +1,29 @@
 {
   "tech_id": 152,
-  "accuracy": 0.6,
+  "accuracy": 1,
   "animation": "x_attack",
   "effects": [
-    "damage"
+    "enhance"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
-  "potency": 0.9,
-  "power": 1.4,
-  "range": "reach",
+  "potency": 1,
+  "power": 1,
+  "range": "special",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "undertaker",
   "sort": "damage",
   "target": {
-    "enemy monster": 2,
+    "enemy monster": 0,
     "enemy team": 0,
     "enemy trainer": 0,
-    "own monster": 0,
+    "own monster": 2,
     "own team": 0,
     "own trainer": 0
   },
   "types": [
-    "metal"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

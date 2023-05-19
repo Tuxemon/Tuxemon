@@ -73,12 +73,13 @@ class Technique:
         self.flip_axes = ""
         self.icon = ""
         self.images: Sequence[str] = []
-        self.is_area = False
+        self.hit = False
         self.is_fast = False
         self.randomly = True
         self.link: Optional[Monster] = None
         self.name = ""
         self.next_use = 0
+        self.nr_turn = 0
         self.potency = 0.0
         self.power = 1.0
         self.range = Range.melee
@@ -157,11 +158,11 @@ class Technique:
         self.repl_neg = results.repl_neg or self.repl_neg
         self.repl_pos = results.repl_pos or self.repl_pos
 
+        self.hit = self.hit
         self.is_fast = results.is_fast or self.is_fast
         self.randomly = results.randomly or self.randomly
         self.healing_power = results.healing_power or self.healing_power
         self.recharge_length = results.recharge or self.recharge_length
-        self.is_area = results.is_area or self.is_area
         self.range = results.range or Range.melee
         self.tech_id = results.tech_id or self.tech_id
 

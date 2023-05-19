@@ -1,0 +1,25 @@
+{
+  "animation": null,
+  "category": "negative",
+  "effects": [],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_poison.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "status_harpooned",
+  "sort": "meta",
+  "target": {
+    "enemy monster": 0,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0
+  },
+  "tech_id": 0,
+  "use_failure": "generic_failure",
+  "use_success": "combat_state_poison_get",
+  "use_tech": "combat_used_x"
+}

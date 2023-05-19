@@ -1,0 +1,64 @@
+{
+    "slug": "tadcool",
+    "category": "alarm",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 6,
+            "technique": "gyser"
+        },
+        {
+            "level_learned": 8,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 12,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 16,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 20,
+            "technique": "font"
+        },
+        {
+            "level_learned": 24,
+            "technique": "starfall"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "fribbit"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "fribbit",
+            "evo_stage": "stage1"
+        }
+    ],
+    "shape": "polliwog",
+    "stage": "basic",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 268,
+    "height": 25,
+    "weight": 1,
+    "catch_rate": 120.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

@@ -42,6 +42,7 @@ from tuxemon.combat import (
 )
 from tuxemon.db import (
     BattleGraphicsModel,
+    EvolutionType,
     ItemCategory,
     OutputBattle,
     PlagueType,
@@ -1482,36 +1483,43 @@ class CombatState(CombatAnimations):
             for evolution in monster.evolutions:
                 evolved = Monster()
                 evolved.load_from_db(evolution.monster_slug)
-                if evolution.path == "standard":
+                if evolution.path == EvolutionType.standard:
                     if evolution.at_level <= monster.level:
                         self.question_evolution(monster, evolved)
-                elif evolution.path == "gender":
+                elif evolution.path == EvolutionType.gender:
                     if evolution.at_level <= monster.level:
                         if evolution.gender == monster.gender:
                             self.question_evolution(monster, evolved)
-                elif evolution.path == "element":
+                elif evolution.path == EvolutionType.element:
                     if evolution.at_level <= monster.level:
                         if self.players[0].has_type(evolution.element):
                             self.question_evolution(monster, evolved)
-                elif evolution.path == "tech":
+                elif evolution.path == EvolutionType.tech:
                     if evolution.at_level <= monster.level:
                         if self.players[0].has_tech(evolution.tech):
                             self.question_evolution(monster, evolved)
-                elif evolution.path == "location":
+                elif evolution.path == EvolutionType.location:
                     if evolution.at_level <= monster.level:
                         if evolution.inside == self.client.map_inside:
                             self.question_evolution(monster, evolved)
-                elif evolution.path == "stat":
+                elif evolution.path == EvolutionType.stat:
                     if evolution.at_level <= monster.level:
                         if monster.return_stat(
                             evolution.stat1
                         ) >= monster.return_stat(evolution.stat2):
                             self.question_evolution(monster, evolved)
-                elif evolution.path == "season":
+                elif evolution.path == EvolutionType.season:
                     if evolution.at_level <= monster.level:
                         if (
                             evolution.season
                             == self.players[0].game_variables["season"]
+                        ):
+                            self.question_evolution(monster, evolved)
+                elif evolution.path == EvolutionType.daytime:
+                    if evolution.at_level <= monster.level:
+                        if (
+                            evolution.daytime
+                            == self.players[0].game_variables["daytime"]
                         ):
                             self.question_evolution(monster, evolved)
 

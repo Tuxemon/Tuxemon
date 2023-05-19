@@ -49,7 +49,7 @@
             "evo_stage": "basic"
         }
     ],
-    "shape": "aquatic",
+    "shape": "piscine",
     "stage": "stage1",
     "types": [
         "water"

@@ -1,0 +1,77 @@
+{
+    "slug": "glombroc",
+    "category": "aggregate",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 6,
+            "technique": "sylvan"
+        },
+        {
+            "level_learned": 8,
+            "technique": "stonehenge"
+        },
+        {
+            "level_learned": 12,
+            "technique": "clairaudience"
+        },
+        {
+            "level_learned": 16,
+            "technique": "negation"
+        },
+        {
+            "level_learned": 20,
+            "technique": "maori"
+        },
+        {
+            "level_learned": 28,
+            "technique": "breath"
+        },
+        {
+            "level_learned": 32,
+            "technique": "lantern"
+        },
+        {
+            "level_learned": 34,
+            "technique": "surge"
+        },
+        {
+            "level_learned": 38,
+            "technique": "mudslide"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 50,
+            "monster_slug": "conglolem"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "slichen",
+            "evo_stage": "basic"
+        }
+    ],
+    "shape": "blob",
+    "stage": "stage1",
+    "types": [
+        "earth",
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 273,
+    "height": 87,
+    "weight": 35,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}

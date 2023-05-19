@@ -56,10 +56,6 @@ class TuxemonConfig:
         self.hide_mouse = cfg.getboolean("display", "hide_mouse")
         self.window_caption = cfg.get("display", "window_caption")
 
-        # [sound]
-        self.sound_volume = cfg.getfloat("sound", "sound_volume")
-        self.music_volume = cfg.getfloat("sound", "music_volume")
-
         # [game]
         self.data = cfg.get("game", "data")
         self.cli = cfg.getboolean("game", "cli_enabled")
@@ -68,8 +64,6 @@ class TuxemonConfig:
             "net_controller_enabled",
         )
         self.locale = cfg.get("game", "locale")
-        self.hemisphere = cfg.get("game", "hemisphere")
-        self.unit = cfg.get("game", "unit")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean(
             "game",
@@ -225,15 +219,6 @@ def get_defaults() -> Mapping[str, Any]:
                 ),
             ),
             (
-                "sound",
-                OrderedDict(
-                    (
-                        ("sound_volume", 0.3),
-                        ("music_volume", 1.0),
-                    )
-                ),
-            ),
-            (
                 "game",
                 OrderedDict(
                     (
@@ -242,8 +227,6 @@ def get_defaults() -> Mapping[str, Any]:
                         ("cli_enabled", False),
                         ("net_controller_enabled", False),
                         ("locale", "en_US"),
-                        ("hemisphere", "north"),
-                        ("unit", "metric"),
                         ("dev_tools", False),
                         ("recompile_translations", True),
                         ("compress_save", None),

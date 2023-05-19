@@ -31,6 +31,7 @@ from tuxemon.battle import Battle
 from tuxemon.combat import (
     alive_party,
     check_moves,
+    confused,
     defeated,
     fainted,
     get_awake_monsters,
@@ -42,6 +43,7 @@ from tuxemon.combat import (
 )
 from tuxemon.db import (
     BattleGraphicsModel,
+    EvolutionType,
     ItemCategory,
     OutputBattle,
     PlagueType,
@@ -430,6 +432,7 @@ class CombatState(CombatAnimations):
                 for technique in monster.status:
                     # validate status
                     if technique.validate(monster):
+                        technique.combat_state = self
                         self.enqueue_action(None, technique, monster)
                     # avoid multiple effect status
                     monster.set_stats()
@@ -1024,6 +1027,7 @@ class CombatState(CombatAnimations):
             target: Monster that receives the action.
 
         """
+        _player = local_session.player
         letter_time = LETTER_TIME
         action_time = ACTION_TIME
         # action is performed, so now use sprites to animate it
@@ -1045,8 +1049,23 @@ class CombatState(CombatAnimations):
                 "target": target.name,
             }
             message = T.format(technique.use_tech, context)
+            # scope technique
             if technique.slug == "scope":
                 message = scope(target)
+            # swapping monster
+            if technique.slug == "swap":
+                message = T.format(
+                    "combat_call_tuxemon",
+                    {"name": target.name.upper()},
+                )
+            # confused status
+            if (
+                has_status(user, "status_confused")
+                and "status_confused" in _player.game_variables
+            ):
+                if _player.game_variables["status_confused"] == "on":
+                    message = confused(user, technique)
+            # not successful techniques
             if not result_tech["success"]:
                 template = getattr(technique, "use_failure")
                 m = T.format(template, context)
@@ -1055,7 +1074,7 @@ class CombatState(CombatAnimations):
                 message += "\n" + m
                 action_time += len(message) * letter_time
             # TODO: caching sounds
-            audio.load_sound(technique.sfx).play()
+            audio.load_sound(technique.sfx, None).play()
             # animation special range AI
             if technique.range == Range.special:
                 target_sprite = self._monster_sprite_map.get(user, None)
@@ -1200,12 +1219,6 @@ class CombatState(CombatAnimations):
                 }
                 template = getattr(technique, msg_type)
                 message = T.format(template, context)
-                # swapping monster
-                if technique.slug == "swap":
-                    message = T.format(
-                        "combat_call_tuxemon",
-                        {"name": target.name.upper()},
-                    )
                 self.alert(message)
                 self.suppress_phase_change(action_time)
 
@@ -1531,36 +1544,43 @@ class CombatState(CombatAnimations):
             for evolution in monster.evolutions:
                 evolved = Monster()
                 evolved.load_from_db(evolution.monster_slug)
-                if evolution.path == "standard":
+                if evolution.path == EvolutionType.standard:
                     if evolution.at_level <= monster.level:
                         self.question_evolution(monster, evolved)
-                elif evolution.path == "gender":
+                elif evolution.path == EvolutionType.gender:
                     if evolution.at_level <= monster.level:
                         if evolution.gender == monster.gender:
                             self.question_evolution(monster, evolved)
-                elif evolution.path == "element":
+                elif evolution.path == EvolutionType.element:
                     if evolution.at_level <= monster.level:
                         if self.players[0].has_type(evolution.element):
                             self.question_evolution(monster, evolved)
-                elif evolution.path == "tech":
+                elif evolution.path == EvolutionType.tech:
                     if evolution.at_level <= monster.level:
                         if self.players[0].has_tech(evolution.tech):
                             self.question_evolution(monster, evolved)
-                elif evolution.path == "location":
+                elif evolution.path == EvolutionType.location:
                     if evolution.at_level <= monster.level:
                         if evolution.inside == self.client.map_inside:
                             self.question_evolution(monster, evolved)
-                elif evolution.path == "stat":
+                elif evolution.path == EvolutionType.stat:
                     if evolution.at_level <= monster.level:
                         if monster.return_stat(
                             evolution.stat1
                         ) >= monster.return_stat(evolution.stat2):
                             self.question_evolution(monster, evolved)
-                elif evolution.path == "season":
+                elif evolution.path == EvolutionType.season:
                     if evolution.at_level <= monster.level:
                         if (
                             evolution.season
                             == self.players[0].game_variables["season"]
+                        ):
+                            self.question_evolution(monster, evolved)
+                elif evolution.path == EvolutionType.daytime:
+                    if evolution.at_level <= monster.level:
+                        if (
+                            evolution.daytime
+                            == self.players[0].game_variables["daytime"]
                         ):
                             self.question_evolution(monster, evolved)
 

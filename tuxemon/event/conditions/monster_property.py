@@ -24,7 +24,7 @@ class MonsterPropertyCondition(EventCondition):
                 - level (level, 8)
                 - level_reached (level_reached, 8)
                 - stage (stage, standalone)
-                - shape (shape, aquatic)
+                - shape (shape, piscine)
                 - taste_cold (taste_cold, mild)
                 - taste_warm (taste_warm, peppy)
                 - type (type, fire)
@@ -69,7 +69,7 @@ class MonsterPropertyCondition(EventCondition):
             elif prop == "stage":
                 if mon.stage == val:
                     return True
-            # monster shape (eg. aquatic, brute, etc.)
+            # monster shape (eg. piscine, brute, etc.)
             elif prop == "shape":
                 if mon.shape == val:
                     return True

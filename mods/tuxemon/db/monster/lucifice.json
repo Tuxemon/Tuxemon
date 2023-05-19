@@ -1,0 +1,70 @@
+{
+    "slug": "lucifice",
+    "category": "ninth_circle",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 6,
+            "technique": "torch"
+        },
+        {
+            "level_learned": 8,
+            "technique": "orbs"
+        },
+        {
+            "level_learned": 12,
+            "technique": "muck"
+        },
+        {
+            "level_learned": 28,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 34,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 44,
+            "technique": "tsunami"
+        },
+        {
+            "level_learned": 48,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 52,
+            "technique": "wall_ice"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "waysprite",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "demosnow",
+            "evo_stage": "stage1"
+        }
+    ],
+    "shape": "sprite",
+    "stage": "stage2",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 265,
+    "height": 180,
+    "weight": 90,
+    "catch_rate": 45.0,
+    "lower_catch_resistance": 0.85,
+    "upper_catch_resistance": 1.1
+}

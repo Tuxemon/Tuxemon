@@ -54,6 +54,8 @@ class SetMonsterHealthAction(EventAction):
         monster_health = self.health
 
         if monster_slot is None:
+            if not self.session.player.monsters:
+                return
             for monster in self.session.player.monsters:
                 self.set_health(monster, monster_health)
         else:

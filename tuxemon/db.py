@@ -115,7 +115,6 @@ class OutputBattle(str, Enum):
 
 
 class MonsterShape(str, Enum):
-    aquatic = "aquatic"
     blob = "blob"
     brute = "brute"
     dragon = "dragon"
@@ -125,6 +124,7 @@ class MonsterShape(str, Enum):
     hunter = "hunter"
     landrace = "landrace"
     leviathan = "leviathan"
+    piscine = "piscine"
     polliwog = "polliwog"
     serpent = "serpent"
     sprite = "sprite"
@@ -152,6 +152,7 @@ class EvolutionType(str, Enum):
     item = "item"
     location = "location"
     season = "season"
+    daytime = "daytime"
     standard = "standard"
     stat = "stat"
     tech = "tech"
@@ -297,6 +298,7 @@ class MonsterEvolutionItemModel(BaseModel):
         description="Location parameter: inside true or inside false (outside).",
     )
     season: Optional[str] = Field(None, description="Season parameter.")
+    daytime: Optional[str] = Field(None, description="Daytime parameter.")
     stat1: Optional[StatType] = Field(
         None, description="Stat parameter stat1 >= stat2."
     )
@@ -361,6 +363,10 @@ class MonsterModel(BaseModel):
     weight: float = Field(..., description="The weight of the monster")
     stage: EvolutionStage = Field(
         ..., description="The evolution stage of the monster"
+    )
+    randomly: bool = Field(
+        True,
+        description="Whether or not this monster will be picked by random",
     )
 
     # Optional fields
@@ -516,9 +522,6 @@ class TechniqueModel(BaseModel):
     power: float = Field(0, description="Power of the technique")
     is_fast: bool = Field(
         False, description="Whether or not this is a fast technique"
-    )
-    is_area: bool = Field(
-        False, description="Whether or not this is an area of effect technique"
     )
     randomly: bool = Field(
         True, description="Whether or not this is a fast technique"

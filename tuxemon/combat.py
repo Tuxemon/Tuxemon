@@ -52,6 +52,52 @@ def check_battle_legal(player: Player) -> bool:
             return True
 
 
+def pre_checking(
+    monster: Monster,
+    technique: Technique,
+    target: Monster,
+    player: NPC,
+    enemy: NPC,
+) -> Technique:
+    """
+    Pre checking allows to check if there are statuses
+    or other conditions that change the choosen technique.
+    """
+    status = Technique()
+    if has_status(monster, "status_dozing"):
+        status.load("status_dozing")
+        technique = status
+    if has_status(monster, "status_confused"):
+        confusion = random.randint(1, 2)
+        if confusion == 1:
+            player.game_variables["status_confused"] = "on"
+            confused = [
+                ele
+                for ele in monster.moves
+                if ele.next_use <= 0
+                and not has_effect_give(ele, "status_confused")
+            ]
+            if confused:
+                technique = random.choice(confused)
+            else:
+                status.load("skip")
+                technique = status
+        else:
+            player.game_variables["status_confused"] = "off"
+    if monster.plague == PlagueType.infected:
+        value = random.randint(1, 8)
+        if value == 1:
+            status.load("status_spyderbite")
+            technique = status
+            # infect mechanism
+            if (
+                enemy.plague == PlagueType.infected
+                or enemy.plague == PlagueType.healthy
+            ):
+                target.plague = PlagueType.infected
+    return technique
+
+
 def has_status(monster: Monster, status_name: str) -> bool:
     """
     Checks to see if the monster has a specific status/condition.
@@ -170,6 +216,17 @@ def spyderbite(monster: Monster) -> str:
                 "target": monster.name.upper(),
             },
         )
+    return message
+
+
+def confused(monster: Monster, technique: Technique) -> str:
+    message = T.format(
+        "combat_state_confused_tech",
+        {
+            "target": monster.name.upper(),
+            "name": technique.name.upper(),
+        },
+    )
     return message
 
 

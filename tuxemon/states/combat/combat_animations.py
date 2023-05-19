@@ -230,7 +230,7 @@ class CombatAnimations(ABC, Menu[None]):
         self.task(partial(self.sprites.add, sprite), delay)
 
         # attempt to load and queue up combat_call
-        call_sound = audio.load_sound(monster.combat_call)
+        call_sound = audio.load_sound(monster.combat_call, None)
         if call_sound:
             self.task(call_sound.play, delay)
 
@@ -390,7 +390,7 @@ class CombatAnimations(ABC, Menu[None]):
             if monster.current_hp > 0
             else monster.faint_call
         )
-        sound = audio.load_sound(cry)
+        sound = audio.load_sound(cry, None)
         sound.play()
         self.animate(sprite.rect, x=x_diff, relative=True, duration=2)
 
@@ -633,7 +633,9 @@ class CombatAnimations(ABC, Menu[None]):
         self.task(flip, 1.5)
 
         if not self.is_trainer_battle:
-            self.task(audio.load_sound(opp_mon.combat_call).play, 1.5)
+            self.task(
+                audio.load_sound(right_monster.combat_call, None).play, 1.5
+            )
 
         animate = partial(
             self.animate, transition="out_quad", duration=duration
@@ -759,7 +761,7 @@ class CombatAnimations(ABC, Menu[None]):
                 breakout_delay,
             )
             self.task(
-                audio.load_sound(monster.combat_call).play,
+                audio.load_sound(monster.combat_call, None).play,
                 breakout_delay,
             )
             self.task(tech.play, breakout_delay)

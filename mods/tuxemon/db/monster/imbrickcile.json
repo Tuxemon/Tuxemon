@@ -1,7 +1,6 @@
 {
     "slug": "imbrickcile",
     "category": "brick",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

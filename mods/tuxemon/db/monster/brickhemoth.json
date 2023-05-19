@@ -1,7 +1,6 @@
 {
     "slug": "brickhemoth",
     "category": "brick_wall",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

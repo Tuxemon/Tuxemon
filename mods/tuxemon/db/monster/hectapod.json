@@ -1,7 +1,6 @@
 {
     "slug": "hectapod",
     "category": "sea_storm",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

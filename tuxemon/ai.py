@@ -5,8 +5,8 @@ from __future__ import annotations
 import random
 from typing import TYPE_CHECKING, Tuple
 
-from tuxemon.combat import has_status
-from tuxemon.db import ItemCategory, PlagueType
+from tuxemon.combat import pre_checking
+from tuxemon.db import ItemCategory
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
@@ -116,20 +116,9 @@ class AI:
         """
         Send action tech.
         """
-        # null action for dozing
-        if has_status(self.monster, "status_dozing"):
-            status = Technique()
-            status.load("status_dozing")
-            technique = status
-        # null action for plague - spyder_bite
-        if self.monster.plague == PlagueType.infected:
-            value = random.randint(1, 8)
-            if value == 1:
-                status = Technique()
-                status.load("status_spyderbite")
-                technique = status
-                if self.monster.plague == PlagueType.infected:
-                    target.plague = PlagueType.infected
+        technique = pre_checking(
+            self.monster, technique, target, self.user, self.human
+        )
         # check status response
         if self.combat.status_response_technique(self.monster, technique):
             self._lost_monster = self.monster

@@ -1,7 +1,6 @@
 {
     "slug": "potturney",
     "category": "pottery",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

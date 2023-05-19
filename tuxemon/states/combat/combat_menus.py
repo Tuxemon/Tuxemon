@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import logging
-import random
 from collections import defaultdict
 from functools import partial
 from typing import TYPE_CHECKING, Callable, DefaultDict, Generator, List
@@ -162,18 +161,18 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         """Open menus to swap monsters in party."""
 
         def swap_it(menuitem: MenuItem[Monster]) -> None:
-            monster = menuitem.game_object
+            added = menuitem.game_object
 
-            if monster in self.combat.active_monsters:
+            if added in self.combat.active_monsters:
                 tools.open_dialog(
                     local_session,
-                    [T.format("combat_isactive", {"name": monster.name})],
+                    [T.format("combat_isactive", {"name": added.name})],
                 )
                 return
-            elif monster.current_hp < 1:
+            elif added.current_hp < 1:
                 tools.open_dialog(
                     local_session,
-                    [T.format("combat_fainted", {"name": monster.name})],
+                    [T.format("combat_fainted", {"name": added.name})],
                 )
                 return
             swap = Technique()
@@ -193,8 +192,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                     ],
                 )
                 return
-            target = monster
-            self.combat.enqueue_action(None, swap, target)
+            self.combat.enqueue_action(self.monster, swap, added)
             self.client.pop_state()  # close technique menu
             self.client.pop_state()  # close the monster action menu
 
@@ -335,25 +333,10 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 tools.open_dialog(local_session, [msg])
                 return
             else:
-                # null action for dozing
-                if combat.has_status(self.monster, "status_dozing"):
-                    status = Technique()
-                    status.load("status_dozing")
-                    technique = status
-                # null action for plague - spyder_bite
-                if self.monster.plague == PlagueType.infected:
-                    value = random.randint(1, 8)
-                    if value == 1:
-                        status = Technique()
-                        status.load("status_spyderbite")
-                        technique = status
-                        # infect mechanism
-                        if (
-                            self.enemy.plague == PlagueType.infected
-                            or self.enemy.plague == PlagueType.healthy
-                        ):
-                            target.plague = PlagueType.infected
-                # continue combat action
+                # pre checking (look for null actions)
+                technique = combat.pre_checking(
+                    self.monster, technique, target, self.player, self.enemy
+                )
                 self.combat.enqueue_action(self.monster, technique, target)
                 # check status response
                 if self.combat.status_response_technique(

@@ -9,8 +9,8 @@ from typing import Optional, Protocol
 import pygame
 from pygame import mixer
 
-from tuxemon import prepare
 from tuxemon.db import db
+from tuxemon.session import local_session
 from tuxemon.tools import transform_resource_filename
 
 logger = logging.getLogger(__name__)
@@ -53,7 +53,7 @@ def get_sound_filename(slug: Optional[str]) -> Optional[str]:
     return filename
 
 
-def load_sound(slug: Optional[str]) -> SoundProtocol:
+def load_sound(slug: Optional[str], value: Optional[float]) -> SoundProtocol:
     """
     Load a sound from disk, identified by it's slug in the db.
 
@@ -69,10 +69,16 @@ def load_sound(slug: Optional[str]) -> SoundProtocol:
     filename = get_sound_filename(slug)
     if filename is None:
         return DummySound()
-
+    volume: float = 0.3
+    if value is None:
+        if local_session.player:
+            player = local_session.player
+            volume = float(player.game_variables["sound_volume"])
+    else:
+        volume = value
     try:
         sound = mixer.Sound(filename)
-        mixer.Sound.set_volume(sound, prepare.CONFIG.sound_volume)
+        mixer.Sound.set_volume(sound, volume)
         return sound
     except MemoryError:
         # raised on some systems if there is no mixer

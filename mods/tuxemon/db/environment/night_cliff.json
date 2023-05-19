@@ -1,8 +1,8 @@
 {
   "slug": "night_cliff",
   "battle_graphics": {
-    "island_back": "granite_back_island.png",
-    "island_front": "granite_front_island.png",
+    "island_back": "grass_island.png",
+    "island_front": "grass_island.png",
     "background": "night_cliff_background.png"
   },
   "battle_music": "music_battle_loop"

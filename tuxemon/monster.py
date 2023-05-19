@@ -62,14 +62,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
 )
 
 SHAPES = {
-    MonsterShape.aquatic: {
-        "armour": 8,
-        "dodge": 4,
-        "hp": 8,
-        "melee": 6,
-        "ranged": 6,
-        "speed": 4,
-    },
     MonsterShape.blob: {
         "armour": 8,
         "dodge": 4,
@@ -137,6 +129,14 @@ SHAPES = {
     MonsterShape.leviathan: {
         "armour": 8,
         "dodge": 4,
+        "hp": 8,
+        "melee": 6,
+        "ranged": 6,
+        "speed": 4,
+    },
+    MonsterShape.piscine: {
+        "armour": 6,
+        "dodge": 6,
         "hp": 8,
         "melee": 6,
         "ranged": 6,
@@ -242,6 +242,7 @@ class Monster:
 
         self.types: List[ElementType] = []
         self.shape = MonsterShape.landrace
+        self.randomly = True
 
         self.status: List[Technique] = []
         self.plague = PlagueType.healthy
@@ -318,6 +319,7 @@ class Monster:
         self.taste_cold = self.set_taste_cold(self.taste_cold)
         self.taste_warm = self.set_taste_warm(self.taste_warm)
         self.types = list(results.types)
+        self.randomly = results.randomly or self.randomly
 
         self.txmn_id = results.txmn_id
         self.capture = self.set_capture(self.capture)

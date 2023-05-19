@@ -43,17 +43,17 @@ class LocalDamageEffect(TechEffect):
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
-        if hit or tech.is_area:
+        if hit:
+            tech.hit = True
             tech.advance_counter_success()
             damage, mult = formula.simple_damage_calculate(tech, user, target)
-            if not hit:
-                damage //= 2
             # land of ifs
             # tech: panjandrum
             if tech.slug == "panjandrum":
                 damage = formula.damage_panjandrum(target)
             target.current_hp -= damage
         else:
+            tech.hit = False
             damage = 0
             mult = 1.0
 

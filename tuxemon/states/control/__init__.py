@@ -4,109 +4,150 @@
 from __future__ import annotations
 
 from functools import partial
-from typing import Any, Callable, Generator, Optional, Union
+from typing import Any, Callable, List, Optional, Tuple, Union
 
 import pygame
+import pygame_menu
+from pygame_menu import locals
+from pygame_menu.locals import POSITION_CENTER
 
-from tuxemon import config, prepare
+from tuxemon import config, prepare, tools
 from tuxemon.constants import paths
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.locale import T
-from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import PopUpMenu
+from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
+from tuxemon.menu.theme import get_theme
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.platform_pygame.events import PygameKeyboardInput
 from tuxemon.session import local_session
 from tuxemon.state import State
 
-ControlStateObj = Callable[[], object]
 tuxe_config = config.TuxemonConfig(paths.USER_CONFIG_PATH)
 pre_config = prepare.CONFIG
 
+METRIC = "Metric"
+IMPERIAL = "Imperial"
+NORTHERN = "Northern"
+SOUTHERN = "Southern"
 
-class SetKeyState(PopUpMenu):
+
+class SetKeyState(PygameMenuState):
     """
     This state is responsible for setting the input keys.
     This only works for pygame events.
     """
 
-    shrink_to_items = True
-
     def __init__(self, button: Optional[str]) -> None:
         """
         Used when initializing the state
         """
-        self.button = button
-        super().__init__()
+        width, height = prepare.SCREEN_SIZE
 
-        label = T.translate(T.translate("options_new_input_key0")).upper()
-        image = self.shadow_text(label)
-        item = MenuItem(image, label, None, None)
-        self.add(item)
+        theme = get_theme()
+        theme.scrollarea_position = locals.POSITION_EAST
+        theme.widget_alignment = locals.ALIGN_CENTER
+
+        width = int(0.8 * width)
+        height = int(0.2 * height)
+        super().__init__(height=height, width=width)
+
+        self.menu.add.label(T.translate("options_new_input_key0").upper())
+        self.button = button
+        self.repristinate()
+
+    def repristinate(self) -> None:
+        """Repristinate original theme (color, alignment, etc.)"""
+        theme = get_theme()
+        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
+        theme.widget_alignment = locals.ALIGN_LEFT
+        theme.title = False
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         # must use get_pressed because the events do not contain references to pygame events
-        pressed_key = None
-        arrow_keys = [
-            [pygame.K_UP, "up"],
-            [pygame.K_DOWN, "down"],
-            [pygame.K_RIGHT, "right"],
-            [pygame.K_LEFT, "left"],
-        ]
+        pressed_key: Optional[int] = None
         for k in range(len(pygame.key.get_pressed())):
             if pygame.key.get_pressed()[k]:
                 pressed_key = k
 
-        for key in arrow_keys:
-            if pygame.key.get_pressed()[key[0]]:
-                pressed_key = key[1]
-
         # to prevent a KeyError from happening, the game won't let you
         # input a key if that key has already been set a value
-        invalid_keys = []
-        pressed_key_str = None
-        for key, value in tuxe_config.cfg.items("controls"):
-            invalid_keys.append(value)
-
-        if isinstance(pressed_key, str):
-            pressed_key_str = pressed_key
-        if isinstance(pressed_key, int):
-            pressed_key_str = pygame.key.name(pressed_key)
+        invalid_keys: List[int] = []
+        invalid_keys = [
+            pygame.K_UP,
+            pygame.K_DOWN,
+            pygame.K_RIGHT,
+            pygame.K_LEFT,
+            pygame.K_RSHIFT,
+            pygame.K_LSHIFT,
+            pygame.K_RETURN,
+            pygame.K_ESCAPE,
+            pygame.K_BACKSPACE,
+        ]
 
         is_pressed = (
             event.pressed or event.value == ""
-        ) and pressed_key_str is not None
-        if is_pressed and pressed_key_str not in invalid_keys:
+        ) and pressed_key is not None
+        if (
+            isinstance(pressed_key, int)
+            and is_pressed
+            and pressed_key not in invalid_keys
+        ):
             # TODO: fix or rewrite PlayerInput
             # event.value is being compared here since sometimes the
             # value just returns an empty string and event.pressed doesn't
             # return True when a key is being pressed
-            assert self.button and pressed_key_str
-            tuxe_config.cfg.set("controls", self.button, pressed_key_str)
-            self.client.get_state_by_name(ControlState).initialize_items()
-            self.close()
+            assert self.button and pressed_key
+            local_session.client.pop_state()
+            pressed_key_str = pygame.key.name(pressed_key)
+            if event.value == pressed_key_str:
+                return event
+            else:
+                return None
+        else:
+            return None
 
 
-class ControlState(PopUpMenu[ControlStateObj]):
+class ControlState(PygameMenuState):
     """
     This state is responsible for the option menu.
     """
-
-    escape_key_exits = True
-    shrink_to_items = True
-    columns = 2
-    rows = 7  # TODO: Compute it
 
     def __init__(self) -> None:
         """
         Used when initializing the state.
         """
-        super().__init__()
+        width, height = prepare.SCREEN_SIZE
+
+        background = pygame_menu.BaseImage(
+            image_path=tools.transform_resource_filename(
+                "gfx/ui/item/bg_pcstate.png"
+            ),
+            drawing_position=POSITION_CENTER,
+        )
+        theme = get_theme()
+        theme.scrollarea_position = locals.POSITION_EAST
+        theme.background_color = background
+        theme.widget_alignment = locals.ALIGN_CENTER
+
+        width = int(0.8 * width)
+        height = int(0.8 * height)
+        super().__init__(height=height, width=width)
+        self.initialize_items(self.menu)
         self.reload_controls()
+        self.repristinate()
+
+    def repristinate(self) -> None:
+        """Repristinate original theme (color, alignment, etc.)"""
+        theme = get_theme()
+        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
+        theme.background_color = BACKGROUND_COLOR
+        theme.widget_alignment = locals.ALIGN_LEFT
+        theme.title = False
 
     def initialize_items(
         self,
+        menu: pygame_menu.Menu,
     ) -> None:
         def change_state(
             state: Union[State, str], **change_state_kwargs: Any
@@ -122,37 +163,161 @@ class ControlState(PopUpMenu[ControlStateObj]):
         for k, v in key_names.items():
             display_buttons[v] = k
 
-        self.clear()
-
-        # TODO: add a message that says "go back to the
-        #       start menu to update controls" after changes
-        #       are made
-        key_items_map = (
-            ("menu_up_key", "up"),
-            (display_buttons[buttons.UP], None),
-            ("menu_left_key", "left"),
-            (display_buttons[buttons.LEFT], None),
-            ("menu_right_key", "right"),
-            (display_buttons[buttons.RIGHT], None),
-            ("menu_down_key", "down"),
-            (display_buttons[buttons.DOWN], None),
-            ("menu_primary_select_key", "a"),
-            (display_buttons[buttons.A], None),
-            ("menu_secondary_select_key", "b"),
-            (display_buttons[buttons.B], None),
-            ("menu_back_key", "back"),
-            (display_buttons[buttons.BACK], None),
+        menu.add.button(
+            title=T.translate("menu_up_key").upper(),
+            action=change_state(
+                "SetKeyState", button=display_buttons[buttons.UP]
+            ),
+            font_size=20,
+        )
+        menu.add.button(
+            title=T.translate("menu_left_key").upper(),
+            action=change_state(
+                "SetKeyState", button=display_buttons[buttons.LEFT]
+            ),
+            font_size=20,
+        )
+        menu.add.button(
+            title=T.translate("menu_right_key").upper(),
+            action=change_state(
+                "SetKeyState", button=display_buttons[buttons.RIGHT]
+            ),
+            font_size=20,
+        )
+        menu.add.button(
+            title=T.translate("menu_down_key").upper(),
+            action=change_state(
+                "SetKeyState", button=display_buttons[buttons.DOWN]
+            ),
+            font_size=20,
+        )
+        menu.add.button(
+            title=T.translate("menu_primary_select_key").upper(),
+            action=change_state(
+                "SetKeyState", button=display_buttons[buttons.A]
+            ),
+            font_size=20,
+        )
+        menu.add.button(
+            title=T.translate("menu_secondary_select_key").upper(),
+            action=change_state(
+                "SetKeyState", button=display_buttons[buttons.B]
+            ),
+            font_size=20,
+        )
+        menu.add.button(
+            title=T.translate("menu_back_key").upper(),
+            action=change_state(
+                "SetKeyState", button=display_buttons[buttons.BACK]
+            ),
+            font_size=20,
         )
 
-        for key, button in key_items_map:
-            assert key
-            label = f"{T.translate(key).upper()}"
-            image = self.shadow_text(label)
-            item = MenuItem(
-                image, label, None, change_state("SetKeyState", button=button)
+        default_music: int = 50
+        default_sound: int = 20
+        default_unit: int = 0
+        default_hemi: int = 0
+        if local_session.player:
+            default_music = int(
+                float(local_session.player.game_variables["music_volume"])
+                * 100
             )
-            item.enabled = button is not None
-            self.add(item)
+            default_sound = int(
+                float(local_session.player.game_variables["sound_volume"])
+                * 100
+            )
+            if local_session.player.game_variables["unit_measure"] == METRIC:
+                default_unit = 0
+            elif (
+                local_session.player.game_variables["unit_measure"] == IMPERIAL
+            ):
+                default_unit = 1
+            if local_session.player.game_variables["hemisphere"] == NORTHERN:
+                default_hemi = 0
+            elif local_session.player.game_variables["hemisphere"] == SOUTHERN:
+                default_hemi = 1
+
+        music = menu.add.range_slider(
+            title=T.translate("menu_music_volume").upper(),
+            default=default_music,
+            range_values=(0, 100),
+            increment=10,
+            rangeslider_id="menu_music_volume",
+            value_format=lambda x: str(int(x)),
+            font_size=20,
+        )
+        sound = menu.add.range_slider(
+            title=T.translate("menu_sound_volume").upper(),
+            default=default_sound,
+            range_values=(0, 100),
+            increment=10,
+            rangeslider_id="menu_sound_volume",
+            value_format=lambda x: str(int(x)),
+            font_size=20,
+        )
+
+        def on_change_music(val: int) -> None:
+            """
+            Updates the value.
+            """
+            if local_session.player:
+                local_session.player.game_variables["music_volume"] = round(
+                    val / 100, 1
+                )
+
+        def on_change_sound(val: int) -> None:
+            """
+            Updates the value.
+            """
+            if local_session.player:
+                local_session.player.game_variables["sound_volume"] = round(
+                    val / 100, 1
+                )
+
+        music.set_onchange(on_change_music)
+        sound.set_onchange(on_change_sound)
+
+        def on_change_units(value: Any, label: str) -> None:
+            """
+            Updates the value.
+            """
+            if local_session.player:
+                local_session.player.game_variables["unit_measure"] = label
+
+        metric = T.translate("menu_units_metric")
+        imperial = T.translate("menu_units_imperial")
+        units: List[Tuple[Any, ...]] = []
+        units = [(metric, metric), (imperial, imperial)]
+        menu.add.selector(
+            title=T.translate("menu_units").upper(),
+            items=units,
+            selector_id="unit",
+            default=default_unit,
+            style="fancy",
+            onchange=on_change_units,
+            font_size=20,
+        )
+
+        def on_change_hemisphere(value: Any, label: str) -> None:
+            """
+            Updates the value.
+            """
+            if local_session.player:
+                local_session.player.game_variables["hemisphere"] = label
+
+        north_hemi = T.translate("menu_hemisphere_north")
+        south_hemi = T.translate("menu_hemisphere_south")
+        hemispheres: List[Tuple[Any, ...]] = []
+        hemispheres = [(north_hemi, north_hemi), (south_hemi, south_hemi)]
+        menu.add.selector(
+            title=T.translate("menu_hemisphere").upper(),
+            items=hemispheres,
+            selector_id="hemisphere",
+            default=default_hemi,
+            style="fancy",
+            onchange=on_change_hemisphere,
+            font_size=20,
+        )
 
     def reload_controls(self) -> None:
         with open(paths.USER_CONFIG_PATH, "w") as fp:

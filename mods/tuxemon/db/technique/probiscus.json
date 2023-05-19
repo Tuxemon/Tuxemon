@@ -4,10 +4,9 @@
   "animation": "lance_ice",
   "effects": [
     "give status_lifeleech,target",
-    "damage"
+    "splash"
   ],
   "flip_axes": "xy",
-  "is_area": true,
   "is_fast": false,
   "potency": 0.5,
   "power": 1,

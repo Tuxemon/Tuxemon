@@ -1,8 +1,8 @@
 {
   "slug": "night_grass",
   "battle_graphics": {
-    "island_back": "grass_back_island.png",
-    "island_front": "grass_front_island.png",
+    "island_back": "grass_island.png",
+    "island_front": "grass_island.png",
     "background": "night_grass_background.png"
   },
   "battle_music": "music_battle_loop"

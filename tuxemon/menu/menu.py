@@ -466,7 +466,7 @@ class Menu(Generic[T], state.State):
     def reload_sounds(self) -> None:
         """Reload sounds."""
         self.menu_select_sound = audio.load_sound(
-            self.menu_select_sound_filename,
+            self.menu_select_sound_filename, None
         )
 
     def shadow_text(

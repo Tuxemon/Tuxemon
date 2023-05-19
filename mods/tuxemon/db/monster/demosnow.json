@@ -1,0 +1,56 @@
+{
+    "slug": "demosnow",
+    "category": "tempted",
+    "ai": "RandomAI",	
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 6,
+            "technique": "torch"
+        },
+        {
+            "level_learned": 8,
+            "technique": "orbs"
+        },
+        {
+            "level_learned": 12,
+            "technique": "muck"
+        },
+        {
+            "level_learned": 28,
+            "technique": "chill_mist"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 32,
+            "monster_slug": "lucifice"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "waysprite",
+            "evo_stage": "basic"
+        }
+    ],
+    "shape": "sprite",
+    "stage": "stage1",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 264,
+    "height": 120,
+    "weight": 35,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}

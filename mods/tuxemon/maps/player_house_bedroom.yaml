@@ -1,4 +1,13 @@
 events:
+  Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    height: 1
+    width: 1
+    x: 7
+    y: 0
   Go Downstairs:
     actions:
     - transition_teleport player_house_downstairs.tmx,0,2,0.3

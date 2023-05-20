@@ -1,19 +1,19 @@
 {
-  "tech_id": 3,
-  "accuracy": 0.7,
-  "animation": "slash_power",
+  "tech_id": 178,
+  "accuracy": 1,
+  "animation": null,
   "effects": [
     "give status_burn,target",
-    "damage"
+    "enhance"
   ],
-  "flip_axes": "x",
+  "flip_axes": "",
   "is_fast": false,
-  "potency": 0.2,
-  "power": 1.75,
-  "range": "melee",
-  "recharge": 2,
-  "sfx": "sfx_flames1",
-  "slug": "fire_claw",
+  "potency": 1,
+  "power": 0,
+  "range": "special",
+  "recharge": 1,
+  "sfx": "sfx_blaster",
+  "slug": "tinder",
   "sort": "damage",
   "target": {
     "enemy monster": 2,
@@ -24,7 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "fire"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

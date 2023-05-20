@@ -13,22 +13,22 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class PoisonEffectResult(TechEffectResult):
+class BurnEffectResult(TechEffectResult):
     pass
 
 
 @dataclass
-class PoisonEffect(TechEffect):
+class BurnEffect(TechEffect):
     """
-    This effect has a chance to apply the poison status effect.
+    This effect has a chance to apply the burn status effect.
     """
 
-    name = "poison"
+    name = "burn"
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> PoisonEffectResult:
-        if tech.slug == "status_poison":
+    ) -> BurnEffectResult:
+        if tech.slug == "status_burn":
             damage = formula.damage_full_hp(target, 8)
             target.current_hp -= damage
 

@@ -3,11 +3,12 @@
   "accuracy": 0.8,
   "animation": "firelion_right",
   "effects": [
+    "give status_burn,target",
     "damage"
   ],
   "flip_axes": "x",
   "is_fast": false,
-  "potency": null,
+  "potency": 0.5,
   "power": 2.25,
   "range": "reach",
   "recharge": 3,

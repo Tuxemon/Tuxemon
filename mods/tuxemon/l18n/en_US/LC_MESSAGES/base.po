@@ -863,6 +863,12 @@ msgstr "The attack was strongly resisted!"
 msgid "combat_state_blinded_get"
 msgstr "{target} is blinded."
 
+msgid "combat_state_burn_end"
+msgstr "{target} takes damage from burns."
+
+msgid "combat_state_burn_get"
+msgstr "{target} is burned."
+
 msgid "combat_state_chargedup_get"
 msgstr "{target} is fully charged."
 
@@ -1020,6 +1026,9 @@ msgstr "Slot"
 ## STATUSES
 msgid "status_blinded"
 msgstr "Blinded"
+
+msgid "status_burn"
+msgstr "Burn"
 
 msgid "status_chargedup"
 msgstr "Charged Up"
@@ -1579,6 +1588,9 @@ msgstr "Terror"
 
 msgid "time_crisis"
 msgstr "Time Crisis"
+
+msgid "tinder"
+msgstr "Tinder"
 
 msgid "tip"
 msgstr "Tip"

@@ -94,6 +94,7 @@ class ItemCategory(str, Enum):
     none = "none"
     badge = "badge"
     booster = "booster"
+    elements = "elements"
     fossil = "fossil"
     morph = "morph"
     revive = "revive"

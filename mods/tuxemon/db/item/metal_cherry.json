@@ -1,19 +1,17 @@
 {
   "conditions": [
-    "is current_hp <,1.0",
-    "is current_hp >,0"
+    "not type metal"
   ],
   "effects": [
-    "heal 10"
+    "switch metal"
   ],
-  "slug": "cherry",
-  "sort": "food",
+  "slug": "metal_cherry",
+  "sort": "utility",
   "sprite": "gfx/items/cherry.png",
-  "category": "potion",
+  "category": "elements",
   "type": "Consumable",
   "usable_in": [
-    "MainCombatMenuState",
-    "WorldState"
+    "MainCombatMenuState"
   ],
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

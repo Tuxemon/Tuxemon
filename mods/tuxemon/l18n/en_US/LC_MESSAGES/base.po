@@ -15,29 +15,17 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 ## ITEM TRANSLATIONS ##
-msgid "apple"
-msgstr "Apple"
+msgid "fire_berry"
+msgstr "Fire Berry"
 
-msgid "apple_description"
-msgstr "Heals a monster by 10 HP."
+msgid "fire_berry_description"
+msgstr "It changes monster type into fire."
 
-msgid "berry"
-msgstr "Berry"
+msgid "metal_cherry"
+msgstr "Metal Cherry"
 
-msgid "berry_description"
-msgstr "Heals a monster by 10 HP."
-
-msgid "cherry"
-msgstr "Cherry"
-
-msgid "cherry_description"
-msgstr "Heals a monster by 10 HP."
-
-msgid "orange"
-msgstr "Orange"
-
-msgid "orange_description"
-msgstr "Heals a monster by 20 HP."
+msgid "metal_cherry_description"
+msgstr "It changes monster type into metal."
 
 msgid "potion"
 msgstr "Potion"

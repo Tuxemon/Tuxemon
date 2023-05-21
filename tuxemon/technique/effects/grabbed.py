@@ -28,8 +28,8 @@ class GrabbedEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> GrabbedEffectResult:
+        done: bool = False
         if tech.slug == "status_grabbed":
             formula.simple_grabbed(target)
-            return {"success": True}
-
-        return {"success": False}
+            done = True
+        return {"success": done}

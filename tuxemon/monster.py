@@ -241,6 +241,7 @@ class Monster:
         self.total_experience = 0
 
         self.types: List[ElementType] = []
+        self._types: List[ElementType] = []
         self.shape = MonsterShape.landrace
         self.randomly = True
 
@@ -319,6 +320,9 @@ class Monster:
         self.taste_cold = self.set_taste_cold(self.taste_cold)
         self.taste_warm = self.set_taste_warm(self.taste_warm)
         self.types = list(results.types)
+        # backup types
+        self._types = list(results.types)
+
         self.randomly = results.randomly or self.randomly
 
         self.txmn_id = results.txmn_id
@@ -395,6 +399,12 @@ class Monster:
 
         self.moves.append(technique)
 
+    def return_types(self) -> None:
+        """
+        Returns a monster types.
+        """
+        self.types = self._types
+
     def return_stat(
         self,
         stat: Optional[StatType],
@@ -460,6 +470,8 @@ class Monster:
                 return
             # if the status doesn't exist.
             else:
+                # start counting nr turns
+                status.nr_turn = 1
                 if self.status[0].category == CategoryCondition.positive:
                     if status.repl_pos == ResponseCondition.replaced:
                         self.status.clear()

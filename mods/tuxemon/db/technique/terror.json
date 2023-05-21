@@ -1,15 +1,16 @@
 {
   "tech_id": 149,
-  "accuracy": 0.6,
+  "accuracy": 1,
   "animation": "x_attack",
   "effects": [
-    "damage"
+    "give status_lockdown,target",
+    "enhance"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.1,
-  "power": 2.9,
-  "range": "reach",
+  "potency": 1,
+  "power": 0,
+  "range": "special",
   "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "terror",
@@ -23,7 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "metal"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

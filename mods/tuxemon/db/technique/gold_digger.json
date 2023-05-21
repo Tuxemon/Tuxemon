@@ -1,15 +1,15 @@
 {
   "tech_id": 99,
-  "accuracy": 0.6,
+  "accuracy": 0.5,
   "animation": "sparks_gold_alt",
   "effects": [
-    "damage"
+    "money"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.4,
-  "power": 2.8,
-  "range": "reach",
+  "potency": 1,
+  "power": 1,
+  "range": "special",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "gold_digger",
@@ -23,8 +23,7 @@
     "own trainer": 0
   },
   "types": [
-    "metal",
-    "fire"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

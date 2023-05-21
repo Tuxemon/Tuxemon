@@ -1588,6 +1588,10 @@ Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel
 * ["icon_blinded.png"](https://wiki.tuxemon.org/File:Blind.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
 
+* ["icon_burn.png"](https://wiki.tuxemon.org/File:Burn2.png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+
 * ["icon_chargedup.png"](https://wiki.tuxemon.org/File:Glowing-large.png)
 Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
 which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
@@ -1605,6 +1609,10 @@ which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero
 * ["icon_dozing.png"](https://wiki.tuxemon.org/File:Sleep.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
 
+* ["icon_elementalshield.png"](https://wiki.tuxemon.org/File:Flameshield.png)
+Adapted by Sanglorian from a sprite by ["Catch Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack),
+is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
 * ["icon_eliminated.png"](https://wiki.tuxemon.org/File:Alert.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
 
@@ -1614,8 +1622,16 @@ which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero
 * ["icon_exhausted.png"](https://wiki.tuxemon.org/File:Exhausted.png)
 [https://opengameart.org/content/smoke-fire-animated-particle-16x16 CC BY in OGA]
 
+* ["icon_feedback.png"](https://wiki.tuxemon.org/File:Tamashihoshi_frozen2.png)
+by [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["icon_festering.png"](https://wiki.tuxemon.org/File:Festering.png)
 [https://opengameart.org/content/various-icons CC0 on OGA]
+
+* ["icon_flinching.png"](https://wiki.tuxemon.org/File:Tamashihoshi_stunned.png)
+by [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["icon_focused.png"](https://wiki.tuxemon.org/File:Eagle_eye.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
@@ -1626,21 +1642,33 @@ which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero
 * ["icon_hardshell.png"](https://wiki.tuxemon.org/File:Shield_.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
 
+* ["icon_harpooned.png"](https://wiki.tuxemon.org/File:Harpooned.png)
+Adapted by Sanglorian from a sprite by ["Catch Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack),
+is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
 * ["icon_lifeleech.png"](https://wiki.tuxemon.org/File:Dark-type.png)
 Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
 which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
 
+* ["icon_lockdown.png"](https://wiki.tuxemon.org/File:Tamashihoshi_grabbed.png)
+by [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["icon_noddingoff.png"](https://wiki.tuxemon.org/File:Sleep1.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
-
-* ["icon_overfeed.png"](https://wiki.tuxemon.org/File:S_Poison07.png)
-Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
 * ["icon_poison.png"](https://wiki.tuxemon.org/File:Poison_.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
 
+* ["icon_prickly.png"](https://wiki.tuxemon.org/File:Spikey.png)
+Adapted by Sanglorian from a sprite by ["Catch Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack),
+is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
 * ["icon_recover.png"](https://wiki.tuxemon.org/File:Various15all7.png)
 [https://opengameart.org/content/various-icons CC0 on OGA]
+
+* ["icon_slow.png"](https://wiki.tuxemon.org/File:S_Poison07.png)
+Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
 * ["icon_sniping.png"](https://wiki.tuxemon.org/File:Aim.png)
 [https://opengameart.org/content/pixel-icons-0 CC0 on OGA]
@@ -1656,6 +1684,14 @@ Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel
 
 * ["icon_tired.png"](https://wiki.tuxemon.org/File:Tired.png)
 [https://opengameart.org/content/smoke-fire-animated-particle-16x16 CC BY in OGA]
+
+* ["icon_wasting.png"](https://wiki.tuxemon.org/File:Poison-icon.png)
+Unknown artist. Found in Tuxemon code. 
+
+* ["icon_wild.png"](https://wiki.tuxemon.org/File:Tamashihoshi_confusion.png)
+by [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 
 ### Battle Backgrounds
 

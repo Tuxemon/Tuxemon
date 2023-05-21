@@ -274,7 +274,8 @@ class JournalInfoState(PygameMenuState):
                 + T.translate(monster.types[1])
             )
         # weight and height
-        if prepare.CONFIG.unit == "metric":
+        unit = local_session.player.game_variables["unit_measure"]
+        if unit == "Metric":
             mon_weight = monster.weight
             mon_height = monster.height
             unit_weight = "kg"
@@ -530,7 +531,8 @@ class MonsterInfoState(PygameMenuState):
         # weight and height
         results = db.lookup(monster.slug, table="monster")
         diff_weight, diff_height = formula.weight_height_diff(monster, results)
-        if prepare.CONFIG.unit == "metric":
+        unit = local_session.player.game_variables["unit_measure"]
+        if unit == "Metric":
             mon_weight = monster.weight
             mon_height = monster.height
             unit_weight = "kg"

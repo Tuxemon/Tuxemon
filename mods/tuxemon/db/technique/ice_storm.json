@@ -1,12 +1,11 @@
 {
   "tech_id": 171,
-  "accuracy": 0.4,
+  "accuracy": 0.6,
   "animation": "ice_storm",
   "effects": [
     "damage"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
   "potency": 0.5,
   "power": 2.2,

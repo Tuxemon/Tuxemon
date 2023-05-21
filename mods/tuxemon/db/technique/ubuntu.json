@@ -1,12 +1,11 @@
 {
   "tech_id": 95,
-  "accuracy": 0.4,
+  "accuracy": 0.6,
   "animation": "ubuntu",
   "effects": [
     "damage"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
   "potency": 0.6,
   "power": 1.5,

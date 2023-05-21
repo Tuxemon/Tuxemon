@@ -11,16 +11,17 @@ Code here might be shared by states, actions, conditions, etc.
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Generator, Sequence
+import random
+from typing import TYPE_CHECKING, Generator, List, Sequence, Union
 
 from tuxemon.db import PlagueType
 from tuxemon.locale import T
+from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
     from tuxemon.player import Player
-    from tuxemon.technique.technique import Technique
 
 
 logger = logging.getLogger()
@@ -49,6 +50,52 @@ def check_battle_legal(player: Player) -> bool:
             return False
         else:
             return True
+
+
+def pre_checking(
+    monster: Monster,
+    technique: Technique,
+    target: Monster,
+    player: NPC,
+    enemy: NPC,
+) -> Technique:
+    """
+    Pre checking allows to check if there are statuses
+    or other conditions that change the choosen technique.
+    """
+    status = Technique()
+    if has_status(monster, "status_dozing"):
+        status.load("status_dozing")
+        technique = status
+    if has_status(monster, "status_confused"):
+        confusion = random.randint(1, 2)
+        if confusion == 1:
+            player.game_variables["status_confused"] = "on"
+            confused = [
+                ele
+                for ele in monster.moves
+                if ele.next_use <= 0
+                and not has_effect_give(ele, "status_confused")
+            ]
+            if confused:
+                technique = random.choice(confused)
+            else:
+                status.load("skip")
+                technique = status
+        else:
+            player.game_variables["status_confused"] = "off"
+    if monster.plague == PlagueType.infected:
+        value = random.randint(1, 8)
+        if value == 1:
+            status.load("status_spyderbite")
+            technique = status
+            # infect mechanism
+            if (
+                enemy.plague == PlagueType.infected
+                or enemy.plague == PlagueType.healthy
+            ):
+                target.plague = PlagueType.infected
+    return technique
 
 
 def has_status(monster: Monster, status_name: str) -> bool:
@@ -96,7 +143,9 @@ def fainted(monster: Monster) -> bool:
     return has_status(monster, "status_faint") or monster.current_hp <= 0
 
 
-def get_awake_monsters(player: NPC) -> Generator[Monster, None, None]:
+def get_awake_monsters(
+    player: NPC, monsters: List[Monster]
+) -> Generator[Monster, None, None]:
     """
     Iterate all non-fainted monsters in party.
 
@@ -107,9 +156,21 @@ def get_awake_monsters(player: NPC) -> Generator[Monster, None, None]:
         Non-fainted monsters.
 
     """
-    for monster in player.monsters:
-        if not fainted(monster):
-            yield monster
+    mons = [
+        ele
+        for ele in player.monsters
+        if not fainted(ele) and ele not in monsters
+    ]
+    if mons:
+        if len(mons) > 1:
+            mon = random.choice(mons)
+            # avoid random choice filling battlefield (1st turn)
+            if player.isplayer:
+                yield from mons
+            else:
+                yield mon
+        else:
+            yield mons[0]
 
 
 def fainted_party(party: Sequence[Monster]) -> bool:
@@ -151,3 +212,50 @@ def spyderbite(monster: Monster) -> str:
             },
         )
     return message
+
+
+def confused(monster: Monster, technique: Technique) -> str:
+    message = T.format(
+        "combat_state_confused_tech",
+        {
+            "target": monster.name.upper(),
+            "name": technique.name.upper(),
+        },
+    )
+    return message
+
+
+def check_moves(monster: Monster, levels: int) -> Union[str, None]:
+    tech: Union[Technique, None] = None
+    for move in monster.moveset:
+        # monster levels up 1 level
+        if levels == 1:
+            if move.level_learned == monster.level:
+                tech = learn(monster, move.technique)
+        # monster levels up multiple levels
+        else:
+            level_before = monster.level - levels
+            # if there are techniques in this range
+            if level_before < move.level_learned <= monster.level:
+                tech = learn(monster, move.technique)
+    if tech:
+        monster.learn(tech)
+        message = T.format(
+            "tuxemon_new_tech",
+            {
+                "name": monster.name.upper(),
+                "tech": tech.name.upper(),
+            },
+        )
+        return message
+    else:
+        return None
+
+
+def learn(monster: Monster, tech: str) -> Union[Technique, None]:
+    technique = Technique()
+    technique.load(tech)
+    duplicate = [mov for mov in monster.moves if mov.slug == technique.slug]
+    if duplicate:
+        return None
+    return technique

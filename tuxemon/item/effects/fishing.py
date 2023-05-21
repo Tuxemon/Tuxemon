@@ -39,7 +39,7 @@ class FishingEffect(ItemEffect):
                 if results.stage == EvolutionStage.basic:
                     if (
                         results.shape == MonsterShape.polliwog
-                        or results.shape == MonsterShape.aquatic
+                        or results.shape == MonsterShape.piscine
                     ):
                         bas.append(results.slug)
                 if (
@@ -48,13 +48,13 @@ class FishingEffect(ItemEffect):
                 ):
                     if (
                         results.shape == MonsterShape.polliwog
-                        or results.shape == MonsterShape.aquatic
+                        or results.shape == MonsterShape.piscine
                     ):
                         adv.append(results.slug)
                 if results.stage != EvolutionStage.basic:
                     if (
                         results.shape == MonsterShape.polliwog
-                        or results.shape == MonsterShape.aquatic
+                        or results.shape == MonsterShape.piscine
                         or results.shape == MonsterShape.leviathan
                     ):
                         pro.append(results.slug)

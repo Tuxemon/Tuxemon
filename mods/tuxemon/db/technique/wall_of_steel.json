@@ -7,7 +7,6 @@
     "damage"
   ],
   "flip_axes": "x",
-  "is_area": false,
   "is_fast": true,
   "potency": 1,
   "power": 1.25,

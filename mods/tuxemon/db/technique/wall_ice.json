@@ -1,12 +1,11 @@
 {
   "tech_id": 172,
-  "accuracy": 0.3,
+  "accuracy": 0.6,
   "animation": "wall_ice",
   "effects": [
     "damage"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
   "potency": 0.8,
   "power": 2.5,

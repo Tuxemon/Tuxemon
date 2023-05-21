@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="47">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="nimrod_top"/>
@@ -81,7 +82,7 @@
   <object id="31" name="Talk Maverick" type="event" x="128" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_maverick1"/>
-    <property name="act2" value="add_monster av8r,25,spyder_nimrod_maverick,27,10"/>
+    <property name="act2" value="add_monster av8r,25,spyder_nimrod_maverick,5,10"/>
     <property name="act3" value="start_battle spyder_nimrod_maverick"/>
     <property name="act4" value="translated_dialog spyder_nimrod_maverick2"/>
     <property name="act6" value="set_variable nimrodmaverick:yes"/>
@@ -99,8 +100,8 @@
   <object id="33" name="Talk Justice" type="event" x="224" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_justice1"/>
-    <property name="act2" value="add_monster ghosteeth,16,spyder_nimrod_justice,27,10"/>
-    <property name="act3" value="add_monster ghosteeth,16,spyder_nimrod_justice,27,10"/>
+    <property name="act2" value="add_monster ghosteeth,16,spyder_nimrod_justice,5,10"/>
+    <property name="act3" value="add_monster ghosteeth,16,spyder_nimrod_justice,5,10"/>
     <property name="act4" value="start_battle spyder_nimrod_justice"/>
     <property name="act5" value="translated_dialog spyder_nimrod_justice2"/>
     <property name="act6" value="set_variable nimrodjustice:yes"/>
@@ -117,7 +118,7 @@
   <object id="35" name="Talk Zircon" type="event" x="176" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_zircon1"/>
-    <property name="act2" value="add_monster dark_robo,25,spyder_nimrod_zircon,27,10"/>
+    <property name="act2" value="add_monster dark_robo,25,spyder_nimrod_zircon,5,10"/>
     <property name="act3" value="start_battle spyder_nimrod_zircon"/>
     <property name="act4" value="translated_dialog spyder_nimrod_zircon2"/>
     <property name="act6" value="set_variable nimrodzircon:yes"/>
@@ -135,8 +136,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_nimrod_justice"/>
     <property name="act1" value="translated_dialog spyder_nimrod_justice1"/>
-    <property name="act2" value="add_monster ghosteeth,16,spyder_nimrod_justice,27,10"/>
-    <property name="act3" value="add_monster ghosteeth,16,spyder_nimrod_justice,27,10"/>
+    <property name="act2" value="add_monster ghosteeth,16,spyder_nimrod_justice,5,10"/>
+    <property name="act3" value="add_monster ghosteeth,16,spyder_nimrod_justice,5,10"/>
     <property name="act4" value="start_battle spyder_nimrod_justice"/>
     <property name="act5" value="translated_dialog spyder_nimrod_justice2"/>
     <property name="act6" value="set_variable nimrodjustice:yes"/>
@@ -148,7 +149,7 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_nimrod_zircon"/>
     <property name="act1" value="translated_dialog spyder_nimrod_zircon1"/>
-    <property name="act2" value="add_monster dark_robo,25,spyder_nimrod_zircon,27,10"/>
+    <property name="act2" value="add_monster dark_robo,25,spyder_nimrod_zircon,5,10"/>
     <property name="act3" value="start_battle spyder_nimrod_zircon"/>
     <property name="act4" value="translated_dialog spyder_nimrod_zircon2"/>
     <property name="act6" value="set_variable nimrodzircon:yes"/>
@@ -160,7 +161,7 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_nimrod_maverick"/>
     <property name="act1" value="translated_dialog spyder_nimrod_maverick1"/>
-    <property name="act2" value="add_monster av8r,25,spyder_nimrod_maverick,27,10"/>
+    <property name="act2" value="add_monster av8r,25,spyder_nimrod_maverick,5,10"/>
     <property name="act3" value="start_battle spyder_nimrod_maverick"/>
     <property name="act4" value="translated_dialog spyder_nimrod_maverick2"/>
     <property name="act6" value="set_variable nimrodmaverick:yes"/>
@@ -185,9 +186,9 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_nimrod_mace"/>
     <property name="act1" value="translated_dialog spyder_nimrod_mace1"/>
-    <property name="act2" value="add_monster embazook,20,spyder_nimrod_mace,27,10"/>
-    <property name="act3" value="add_monster av8r,20,spyder_nimrod_mace,27,10"/>
-    <property name="act4" value="add_monster komodraw,25,spyder_nimrod_mace,27,10"/>   
+    <property name="act2" value="add_monster embazook,20,spyder_nimrod_mace,5,10"/>
+    <property name="act3" value="add_monster av8r,20,spyder_nimrod_mace,5,10"/>
+    <property name="act4" value="add_monster komodraw,25,spyder_nimrod_mace,5,10"/>   
     <property name="act5" value="start_battle spyder_nimrod_mace"/>
     <property name="act6" value="translated_dialog spyder_nimrod_mace2"/>
     <property name="act7" value="set_variable nimrodmace:yes"/>
@@ -198,9 +199,9 @@
   <object id="46" name="Talk Mace" type="event" x="240" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_mace1"/>
-    <property name="act2" value="add_monster embazook,20,spyder_nimrod_mace,27,10"/>
-    <property name="act3" value="add_monster av8r,20,spyder_nimrod_mace,27,10"/>
-    <property name="act4" value="add_monster komodraw,25,spyder_nimrod_mace,27,10"/>   
+    <property name="act2" value="add_monster embazook,20,spyder_nimrod_mace,5,10"/>
+    <property name="act3" value="add_monster av8r,20,spyder_nimrod_mace,5,10"/>
+    <property name="act4" value="add_monster komodraw,25,spyder_nimrod_mace,5,10"/>   
     <property name="act5" value="start_battle spyder_nimrod_mace"/>
     <property name="act6" value="translated_dialog spyder_nimrod_mace2"/>
     <property name="act7" value="set_variable nimrodmace:yes"/>

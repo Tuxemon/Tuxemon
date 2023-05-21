@@ -1,12 +1,11 @@
 {
   "tech_id": 160,
-  "accuracy": 0.2,
+  "accuracy": 0.6,
   "animation": "x_attack",
   "effects": [
     "damage"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
   "potency": 0.7,
   "power": 1.1,

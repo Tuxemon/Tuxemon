@@ -1,13 +1,12 @@
 {
   "tech_id": 96,
-  "accuracy": 0.3,
+  "accuracy": 0.6,
   "animation": "sparks_green_alt",
   "effects": [
     "give status_festering,target",
     "damage"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
   "potency": 0.1,
   "power": 1.1,

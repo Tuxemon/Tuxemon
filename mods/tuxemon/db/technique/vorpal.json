@@ -1,12 +1,11 @@
 {
   "tech_id": 155,
-  "accuracy": 0.4,
+  "accuracy": 0.6,
   "animation": "amethyst_radiate",
   "effects": [
     "damage"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
   "potency": 0.9,
   "power": 2.7,

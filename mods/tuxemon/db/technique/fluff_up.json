@@ -1,16 +1,16 @@
 {
   "tech_id": 71,
-  "accuracy": 0.75,
+  "accuracy": 1,
   "animation": "smokebomb",
   "effects": [
     "give status_recover,user",
-    "damage"
+    "enhance"
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 0.5,
-  "power": 2.25,
-  "range": "melee",
+  "power": 0,
+  "range": "special",
   "recharge": 3,
   "sfx": "sfx_blaster",
   "slug": "fluff_up",
@@ -24,7 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "wood"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

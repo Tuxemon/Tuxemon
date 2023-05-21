@@ -1,16 +1,17 @@
 {
   "tech_id": 91,
-  "accuracy": 0.6,
+  "accuracy": 1,
   "animation": "smokebomb_plume",
   "effects": [
-    "damage"
+    "switch target,water",
+    "enhance"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.2,
-  "power": 2.5,
-  "range": "ranged",
-  "recharge": 3,
+  "potency": 1,
+  "power": 0,
+  "range": "special",
+  "recharge": 4,
   "sfx": "sfx_blaster",
   "slug": "gyser",
   "sort": "damage",
@@ -23,9 +24,9 @@
     "own trainer": 0
   },
   "types": [
-    "water"
+    "aether"
   ],
   "use_failure": "combat_miss",
-  "use_success": null,
+  "use_success": "combat_none",
   "use_tech": "combat_used_x"
 }

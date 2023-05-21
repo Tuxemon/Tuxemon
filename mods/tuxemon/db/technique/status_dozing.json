@@ -17,7 +17,7 @@
     "own trainer": 0
   },
   "tech_id": 0,
-  "use_failure": "combat_state_dozing_get",
-  "use_success": "combat_state_dozing_get",
-  "use_tech": "combat_state_dozing_end"
+  "use_failure": "combat_none",
+  "use_success": "combat_state_dozing_end",
+	"use_tech": "combat_state_dozing_get"
 }

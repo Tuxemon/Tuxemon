@@ -1,7 +1,7 @@
 {
   "tech_id": 172,
   "accuracy": 0.6,
-  "animation": "ice_shield",
+  "animation": "wall_ice",
   "effects": [
     "give status_elementalshield,user",
     "give status_slow,target",

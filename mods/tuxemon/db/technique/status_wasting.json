@@ -5,7 +5,7 @@
     "wasting"
   ],
   "flip_axes": "",
-  "icon": "gfx/ui/icons/status/icon_grabbed.png",
+  "icon": "gfx/ui/icons/status/icon_wasting.png",
   "range": "special",
   "repl_pos": "replaced",
   "repl_neg": "replaced",
@@ -21,7 +21,7 @@
     "own trainer": 0
   },
   "tech_id": 0,
-  "use_failure": "generic_failure",
-  "use_success": "combat_state_grabbed_get",
-  "use_tech": "combat_used_x"
+  "use_failure": "combat_none",
+  "use_success": "combat_state_wasting_end",
+  "use_tech": "combat_state_wasting_get"
 }

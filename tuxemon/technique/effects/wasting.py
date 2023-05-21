@@ -28,12 +28,10 @@ class WastingEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> WastingEffectResult:
+        done: bool = False
         if tech.slug == "status_wasting":
-            damage = (target.hp // 16) * tech.nr_turn
-            target.current_hp -= damage
-
-            return {
-                "success": bool(damage),
-            }
-
-        return {"success": False}
+            if target.current_hp > 0:
+                damage = (target.hp // 16) * tech.nr_turn
+                target.current_hp -= damage
+                done = True
+        return {"success": done}

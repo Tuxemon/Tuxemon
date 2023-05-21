@@ -28,6 +28,10 @@ class BounceBackEffect(TechEffect):
     Each time you are hit by a Special move
     the attacker takes 1/8th your maximum HP in damage
 
+    Elemental Shield:
+    Each time you are hit by a Special move
+    the attacker takes 1/16th your maximum HP in damage
+
     """
 
     name = "bounce_back"
@@ -36,6 +40,7 @@ class BounceBackEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> BounceBackEffectResult:
+        done: bool = False
         assert tech.combat_state
         combat = tech.combat_state
         log = combat._log_action
@@ -53,16 +58,23 @@ class BounceBackEffect(TechEffect):
                     and isinstance(action.user, Monster)
                     and method.hit
                 ):
-                    if (
-                        self.objective == "feedback"
-                        and method.range == Range.special
+                    if self.objective == "feedback" and (
+                        method.range == Range.ranged
+                        or method.range == Range.reach
+                    ):
+                        if action.target.instance_id == target.instance_id:
+                            attacker = action.user
+                            hit = True
+                    elif self.objective == "prickly" and (
+                        method.range == Range.touch
+                        or method.range == Range.melee
                     ):
                         if action.target.instance_id == target.instance_id:
                             attacker = action.user
                             hit = True
                     elif (
-                        self.objective == "prickly"
-                        and method.range != Range.special
+                        self.objective == "elemental_shield"
+                        and method.range == Range.special
                     ):
                         if action.target.instance_id == target.instance_id:
                             attacker = action.user
@@ -72,10 +84,10 @@ class BounceBackEffect(TechEffect):
             if attacker and hit:
                 if attacker.current_hp > 0:
                     attacker.current_hp -= target.hp // 8
-                    return {"success": True}
-                else:
-                    return {"success": False}
-            else:
-                return {"success": False}
-        else:
-            return {"success": False}
+                    done = True
+        if tech.slug == "status_elementalshield":
+            if attacker and hit:
+                if attacker.current_hp > 0:
+                    attacker.current_hp -= target.hp // 16
+                    done = True
+        return {"success": done}

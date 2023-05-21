@@ -5,12 +5,12 @@
     "statchange"
   ],
   "flip_axes": "",
-  "icon": "gfx/ui/icons/status/icon_overfeed.png",
+  "icon": "gfx/ui/icons/status/icon_slow.png",
   "range": "special",
   "repl_pos": "replaced",
   "repl_neg": "replaced",
   "sfx": "sfx_pulse",
-  "slug": "status_overfeed",
+  "slug": "status_slow",
   "sort": "meta",
   "statspeed": {
     "value": 0.5,
@@ -25,7 +25,7 @@
     "own trainer": 0
   },
   "tech_id": 0,
-  "use_failure": "generic_failure",
-  "use_success": "combat_state_overfeed_get",
-  "use_tech": "combat_used_x"
+  "use_failure": "combat_none",
+  "use_success": "combat_state_slow_get",
+  "use_tech": "combat_none"
 }

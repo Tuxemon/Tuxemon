@@ -3,22 +3,23 @@
   "accuracy": 1,
   "animation": "metallic_absorb",
   "effects": [
-    "enhance"
+    "switch target,random",
+    "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 1,
-  "power": 1,
-  "range": "special",
+  "power": 2,
+  "range": "ranged",
   "recharge": 3,
   "sfx": "sfx_blaster",
   "slug": "orbs",
   "sort": "damage",
   "target": {
-    "enemy monster": 0,
+    "enemy monster": 2,
     "enemy team": 0,
     "enemy trainer": 0,
-    "own monster": 2,
+    "own monster": 0,
     "own team": 0,
     "own trainer": 0
   },

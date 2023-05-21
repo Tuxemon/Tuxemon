@@ -875,6 +875,15 @@ msgstr "{target} is confused."
 msgid "combat_state_confused_tech"
 msgstr "{target} gets muddled and uses {name} instead!"
 
+msgid "combat_state_gold"
+msgstr "{name} gets {symbol}{gold}!"
+
+msgid "combat_state_switch"
+msgstr "{target} is {types} type!"
+
+msgid "combat_state_switch_both"
+msgstr "{user} is {type1} type, while {target} is {type2} type!"
+
 msgid "combat_state_diehard_get"
 msgstr "{target} will keep fighting."
 
@@ -885,7 +894,7 @@ msgid "combat_state_dozing_get"
 msgstr "{target} is asleep."
 
 msgid "combat_state_dozing_end"
-msgstr "{user} dozes off!"
+msgstr "{target} dozes off!"
 
 msgid "combat_state_enraged_get"
 msgstr "{target} is enraged."
@@ -911,14 +920,20 @@ msgstr "{target} is covered in hard shell."
 msgid "combat_state_lifeleech_get"
 msgstr "{target}'s lifeforce is being leeched."
 
+msgid "combat_state_lifeleech_end"
+msgstr "{target} is having their lifeforce stolen."
+
 msgid "combat_state_noddingoff_get"
 msgstr "{target} is nodding off to sleep."
 
-msgid "combat_state_overfeed_get"
-msgstr "{target} has been overfed."
+msgid "combat_state_slow_get"
+msgstr "{target} has been slowed down."
 
 msgid "combat_state_poison_get"
 msgstr "{target} is poisoned."
+
+msgid "combat_state_poison_end"
+msgstr "{target} takes damage from the poison."
 
 msgid "combat_state_recover_failure"
 msgstr "{target} can't heal any further."
@@ -955,6 +970,36 @@ msgstr "Ah ... Ahchoo! {user} sneezed on {target}."
 
 msgid "combat_state_plague3"
 msgstr "{target} wiped it off."
+
+msgid "combat_state_lockdown_get"
+msgstr "Items will not affect {target}."
+
+msgid "combat_state_wasting_get"
+msgstr "{target} is afflicted by a wasting condition."
+
+msgid "combat_state_wasting_end"
+msgstr "{target} is wasting away."
+
+msgid "combat_state_flinching_get"
+msgstr "{target} flinches and may not act."
+
+msgid "combat_state_wild_get"
+msgstr "{target} has gone wild."
+
+msgid "combat_state_wild_end"
+msgstr "{target} is still wild."
+
+msgid "combat_state_harpooned_get"
+msgstr "{target} risks injury if it backs away."
+
+msgid "combat_state_elemental_shield_get"
+msgstr "{target} puts up a flame shield."
+
+msgid "combat_state_prickly_get"
+msgstr "{target} is harmful to make contact with."
+
+msgid "combat_state_feedback_get"
+msgstr "{target} is turning ranged attacks back on the attacker."
 
 # Generic notifications
 msgid "empty_slot"
@@ -1036,6 +1081,9 @@ msgstr "Die Hard"
 msgid "status_dozing"
 msgstr "Dozing"
 
+msgid "status_elementalshield"
+msgstr "Elemental Shield"
+
 msgid "status_eliminated"
 msgstr "Eliminated"
 
@@ -1053,9 +1101,6 @@ msgstr "Feedback"
 
 msgid "status_festering"
 msgstr "Festering"
-
-msgid "status_flameshield"
-msgstr "Flame Shield"
 
 msgid "status_flinching"
 msgstr "Flinching"
@@ -1081,9 +1126,6 @@ msgstr "Lockdown"
 msgid "status_noddingoff"
 msgstr "Nodding Off"
 
-msgid "status_overfeed"
-msgstr "Overfeed"
-
 msgid "status_poison"
 msgstr "Poison"
 
@@ -1092,6 +1134,9 @@ msgstr "Prickly"
 
 msgid "status_recover"
 msgstr "Recover"
+
+msgid "status_slow"
+msgstr "Slow"
 
 msgid "status_sniping"
 msgstr "Sniping"
@@ -1460,6 +1505,9 @@ msgstr "Demiurge"
 msgid "earthquake"
 msgstr "Earthquake"
 
+msgid "electroplate"
+msgstr "Electroplate"
+
 msgid "evasion"
 msgstr "Evasion"
 
@@ -1492,6 +1540,9 @@ msgstr "Gyser"
 
 msgid "hawk"
 msgstr "Hawk"
+
+msgid "ice_shield"
+msgstr "Ice Shield"
 
 msgid "ice_storm"
 msgstr "Ice Storm"
@@ -1610,9 +1661,6 @@ msgstr "Tip"
 msgid "torch"
 msgstr "Torch"
 
-msgid "touch"
-msgstr "Touch"
-
 msgid "tsunami"
 msgstr "Tsunami"
 
@@ -1636,9 +1684,6 @@ msgstr "Vorpal"
 
 msgid "wall_fire"
 msgstr "Wall Fire"
-
-msgid "wall_ice"
-msgstr "Wall Ice"
 
 msgid "walls"
 msgstr "Walls"
@@ -4494,6 +4539,9 @@ msgstr "Ranged"
 
 msgid "speed"
 msgstr "Speed"
+
+msgid "touch"
+msgstr "Touch"
 
 msgid "short_armour"
 msgstr "AR"

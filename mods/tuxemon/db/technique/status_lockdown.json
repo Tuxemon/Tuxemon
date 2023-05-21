@@ -1,9 +1,11 @@
 {
   "animation": null,
   "category": "negative",
-  "effects": [],
+  "effects": [
+    "default"
+  ],
   "flip_axes": "",
-  "icon": "gfx/ui/icons/status/icon_grabbed.png",
+  "icon": "gfx/ui/icons/status/icon_lockdown.png",
   "range": "special",
   "repl_pos": "replaced",
   "repl_neg": "replaced",
@@ -19,7 +21,7 @@
     "own trainer": 0
   },
   "tech_id": 0,
-  "use_failure": "generic_failure",
-  "use_success": "combat_state_grabbed_get",
-  "use_tech": "combat_used_x"
+  "use_failure": "combat_none",
+  "use_success": "combat_state_lockdown_get",
+  "use_tech": "combat_none"
 }

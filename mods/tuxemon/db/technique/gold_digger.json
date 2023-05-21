@@ -1,9 +1,9 @@
 {
   "tech_id": 99,
-  "accuracy": 1,
+  "accuracy": 0.5,
   "animation": "sparks_gold_alt",
   "effects": [
-    "enhance"
+    "money"
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,10 +15,10 @@
   "slug": "gold_digger",
   "sort": "damage",
   "target": {
-    "enemy monster": 0,
+    "enemy monster": 2,
     "enemy team": 0,
     "enemy trainer": 0,
-    "own monster": 2,
+    "own monster": 0,
     "own team": 0,
     "own trainer": 0
   },

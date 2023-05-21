@@ -236,6 +236,10 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 msg = T.format("cannot_use_item_monster", {"name": item.name})
                 tools.open_dialog(local_session, [msg])
                 return
+            if combat.has_status(target, "status_lockdown"):
+                msg = T.format("cannot_use_item_monster", {"name": item.name})
+                tools.open_dialog(local_session, [msg])
+                return
 
             # enqueue the item
             combat_state = self.client.get_state_by_name(CombatState)

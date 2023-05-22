@@ -1730,6 +1730,12 @@ msgstr ""
 msgid "nest"
 msgstr "Nest"
 
+msgid "neutralize_description"
+msgstr "The battlefield is reset, with all conditions and other changes cleared."
+
+msgid "neutralize"
+msgstr "Neutralize"
+
 msgid "oedipus_description"
 msgstr ""
 

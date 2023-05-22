@@ -997,6 +997,7 @@ class CombatState(CombatAnimations):
                 "name": technique.name,
                 "target": target.name,
             }
+            message: str = ""
             message = T.format(technique.use_tech, context)
             # scope technique
             if technique.slug == "scope":
@@ -1014,31 +1015,30 @@ class CombatState(CombatAnimations):
             # not successful techniques + statuses
             if not result_tech["success"]:
                 template = getattr(technique, "use_failure")
-                m: str = ""
+                m: Union[str, None] = None
                 if template:
                     m = T.format(template, context)
                     if technique.slug == "spyderbite":
                         m = spyderbite(target)
                     if has_effect(technique, "money"):
                         m = generic(user, technique, target, _player)
+                if m:
                     message += "\n" + m
                     action_time += len(message) * letter_time
             # successful techniques + statuses
             if result_tech["success"]:
                 template = getattr(technique, "use_success")
-                q: str = ""
+                q: Union[str, None] = None
                 if template:
                     q = T.format(template, context)
-                    message += "\n" + q
-                    action_time += len(message) * letter_time
-                if not template and technique.slug == "empty":
-                    if "status_dozing" in _player.game_variables:
-                        if _player.game_variables["status_dozing"] == "on":
-                            q = generic(user, technique, target, _player)
-                        else:
-                            pass
-                    else:
-                        pass
+                else:
+                    if has_effect(technique, "switch"):
+                        q = generic(user, technique, target, _player)
+                    if technique.slug == "empty":
+                        if "status_dozing" in _player.game_variables:
+                            if _player.game_variables["status_dozing"] == "on":
+                                q = generic(user, technique, target, _player)
+                if q:
                     message += "\n" + q
                     action_time += len(message) * letter_time
             # TODO: caching sounds
@@ -1094,25 +1094,6 @@ class CombatState(CombatAnimations):
                         action_time += len(message) * letter_time
                     self._lost_status = None
                     self._lost_monster = None
-                else:
-                    msg_type = (
-                        "use_success"
-                        if result_tech["success"]
-                        else "use_failure"
-                    )
-                    context = {
-                        "user": getattr(user, "name", ""),
-                        "name": technique.name,
-                        "target": target.name,
-                    }
-                    template = getattr(technique, msg_type)
-                    tmpl = T.format(template, context)
-                    # related to switch effect
-                    if has_effect(technique, "switch"):
-                        tmpl = generic(user, technique, target, _player)
-                    if template:
-                        message += "\n" + tmpl
-                        action_time += len(message) * letter_time
 
             self.alert(message)
             self.suppress_phase_change(action_time)
@@ -1189,7 +1170,8 @@ class CombatState(CombatAnimations):
         faint = Technique()
         faint.load("status_faint")
         monster.current_hp = 0
-        monster.status[0].nr_turn = 1
+        if monster.status:
+            monster.status[0].nr_turn = 0
         monster.status = [faint]
 
         """

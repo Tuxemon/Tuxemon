@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": null,
   "effects": [
-    "give status_sniping,target",
-    "give status_sniping,user",
+    "give status_sniping,both",
     "enhance"
   ],
   "flip_axes": "",
@@ -28,6 +27,6 @@
     "aether"
   ],
   "use_failure": "combat_miss",
-  "use_success": "combat_levitate_get",
+  "use_success": null,
   "use_tech": "combat_used_x"
 }

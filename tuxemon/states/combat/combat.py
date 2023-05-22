@@ -30,7 +30,6 @@ from tuxemon.animation import Task
 from tuxemon.battle import Battle
 from tuxemon.combat import (
     check_moves,
-    confused,
     defeated,
     fainted,
     generic,
@@ -39,7 +38,7 @@ from tuxemon.combat import (
     has_effect_param,
     has_status,
     has_status_bond,
-    scope,
+    pre_checking,
     spyderbite,
 )
 from tuxemon.db import (
@@ -429,7 +428,7 @@ class CombatState(CombatAnimations):
                         technique.combat_state = self
                         # update counter nr turns
                         technique.nr_turn += 1
-                        self.enqueue_action(None, technique, monster)
+                        self.enqueue_action(technique.link, technique, monster)
                     # avoid multiple effect status
                     monster.set_stats()
 
@@ -576,20 +575,9 @@ class CombatState(CombatAnimations):
             )
         # check status response
         if isinstance(user, Monster) and isinstance(technique, Technique):
-            # null action for dozing
-            if has_status(user, "status_dozing"):
-                status = Technique()
-                status.load("skip")
-                technique = status
-            # null action for plague - spyder_bite
-            if user.plague == PlagueType.infected:
-                value = random.randint(1, 8)
-                if value == 1:
-                    status = Technique()
-                    status.load("status_spyderbite")
-                    technique = status
-                    if self.players[1].plague == PlagueType.infected:
-                        target.plague = PlagueType.infected
+            technique = pre_checking(
+                user, technique, target, self.players[0], self.players[0]
+            )
             # check status response
             if self.status_response_technique(user, technique):
                 self._lost_monster = user
@@ -770,7 +758,7 @@ class CombatState(CombatAnimations):
         self.monsters_in_play[player].append(monster)
 
         # remove "connected" status (eg. lifeleech, etc.)
-        for mon in self.monsters_in_play[self.players[0]]:
+        for mon in self.active_monsters:
             if has_status_bond(mon):
                 mon.status.clear()
 
@@ -1012,38 +1000,47 @@ class CombatState(CombatAnimations):
             message = T.format(technique.use_tech, context)
             # scope technique
             if technique.slug == "scope":
-                message = scope(target)
+                message = generic(user, technique, target, _player)
             # swapping monster
             if technique.slug == "swap":
-                message = T.format(
-                    "combat_call_tuxemon",
-                    {"name": target.name.upper()},
-                )
-            # null action dozing monster
-            if technique.slug == "skip" and has_status(user, "status_dozing"):
-                message = T.format(
-                    "combat_state_dozing_end",
-                    {
-                        "target": user.name.upper(),
-                    },
-                )
+                message = generic(user, technique, target, _player)
             # confused status
             if (
                 has_status(user, "status_confused")
                 and "status_confused" in _player.game_variables
             ):
                 if _player.game_variables["status_confused"] == "on":
-                    message = confused(user, technique)
-            # not successful techniques
+                    message = generic(user, technique, target, _player)
+            # not successful techniques + statuses
             if not result_tech["success"]:
                 template = getattr(technique, "use_failure")
-                m = T.format(template, context)
-                if technique.slug == "status_spyderbite":
-                    m = spyderbite(target)
-                if has_effect(technique, "money"):
-                    m = generic(user, technique, target, _player)
-                message += "\n" + m
-                action_time += len(message) * letter_time
+                m: str = ""
+                if template:
+                    m = T.format(template, context)
+                    if technique.slug == "spyderbite":
+                        m = spyderbite(target)
+                    if has_effect(technique, "money"):
+                        m = generic(user, technique, target, _player)
+                    message += "\n" + m
+                    action_time += len(message) * letter_time
+            # successful techniques + statuses
+            if result_tech["success"]:
+                template = getattr(technique, "use_success")
+                q: str = ""
+                if template:
+                    q = T.format(template, context)
+                    message += "\n" + q
+                    action_time += len(message) * letter_time
+                if not template and technique.slug == "empty":
+                    if "status_dozing" in _player.game_variables:
+                        if _player.game_variables["status_dozing"] == "on":
+                            q = generic(user, technique, target, _player)
+                        else:
+                            pass
+                    else:
+                        pass
+                    message += "\n" + q
+                    action_time += len(message) * letter_time
             # TODO: caching sounds
             audio.load_sound(technique.sfx, None).play()
             # animation own monster AI NPC
@@ -1180,41 +1177,6 @@ class CombatState(CombatAnimations):
 
             self.alert(message)
             self.suppress_phase_change(action_time)
-        # statuses / conditions
-        if user is None and isinstance(technique, Technique):
-            result = technique.use(None, target)
-            if result["success"]:
-                msg_type = (
-                    "use_success" if result["success"] else "use_failure"
-                )
-                context = {
-                    "name": technique.name,
-                    "target": target.name,
-                }
-                template = getattr(technique, msg_type)
-                message = T.format(template, context)
-                # first turn status
-                mex: str = " "
-                msg_type = "use_tech"
-                template = getattr(technique, msg_type)
-                if technique.nr_turn == 1 and template != mex:
-                    message = mex + "\n" + message
-                action_time += len(message) * letter_time
-                self.alert(message)
-                self.suppress_phase_change(action_time)
-
-            # effect animation
-            is_flipped = False
-            tech_sprite = self._technique_cache.get(technique, is_flipped)
-            if target_sprite and tech_sprite:
-                tech_sprite.rect.center = target_sprite.rect.center
-                assert tech_sprite.animation
-                self.task(tech_sprite.animation.play, 0.6)
-                self.task(
-                    partial(self.sprites.add, tech_sprite, layer=50),
-                    0.6,
-                )
-                self.task(tech_sprite.kill, action_time)
 
     def faint_monster(self, monster: Monster) -> None:
         """
@@ -1227,6 +1189,7 @@ class CombatState(CombatAnimations):
         faint = Technique()
         faint.load("status_faint")
         monster.current_hp = 0
+        monster.status[0].nr_turn = 1
         monster.status = [faint]
 
         """

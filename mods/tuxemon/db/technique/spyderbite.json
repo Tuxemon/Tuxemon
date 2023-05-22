@@ -5,7 +5,7 @@
   "icon": "gfx/ui/icons/status/icon_spyderbite.png",
   "range": "special",
   "sfx": "sfx_pulse",
-  "slug": "status_spyderbite",
+  "slug": "spyderbite",
   "sort": "meta",
   "target": {
     "enemy monster": 0,
@@ -16,7 +16,7 @@
     "own trainer": 0
   },
   "tech_id": 0,
-  "use_failure": "combat_none",
-  "use_success": "combat_none",
+  "use_failure": "combat_miss",
+  "use_success": null,
   "use_tech": "combat_state_plague2"
 }

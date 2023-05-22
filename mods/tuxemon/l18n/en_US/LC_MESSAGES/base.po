@@ -766,9 +766,6 @@ msgstr "{name} can't be used."
 msgid "combat_used_x"
 msgstr "{user} used {name}!"
 
-msgid "combat_used_x_on_y"
-msgstr "{user} used {name} on {target}!"
-
 msgid "combat_swap"
 msgstr "{user} sent out {target}!"
 
@@ -777,27 +774,6 @@ msgstr "{user} skips the turn!"
 
 msgid "combat_call_tuxemon"
 msgstr "Go {name}!"
-
-msgid "dodge_increased"
-msgstr "{user}'s {stat} increased."
-
-msgid "speed_halved"
-msgstr "{user}'s speed was halved."
-
-msgid "hp_restored"
-msgstr "{user}'s hp was restored."
-
-msgid "dodge_fell"
-msgstr "{user}'s dodge fell."
-
-msgid "attacks_rose"
-msgstr "{user}'s attack damage types rose."
-
-msgid "combat_levitate_get"
-msgstr "{user} rose higher into the air."
-
-msgid "combat_amnesia_get"
-msgstr "{user} has gotten amnesia."
 
 msgid "combat_status_damage"
 msgstr "{name} took {status} damage!"
@@ -1153,8 +1129,11 @@ msgstr "Sniping"
 msgid "status_softened"
 msgstr "Softened"
 
-msgid "status_spyderbite"
+msgid "spyderbite"
 msgstr "Spyder Bite"
+
+msgid "status_stuck"
+msgstr "Stuck"
 
 msgid "status_stuck"
 msgstr "Stuck"
@@ -2232,6 +2211,9 @@ msgstr "Swap"
 
 msgid "skip"
 msgstr "Skip"
+
+msgid "empty"
+msgstr "Empty"
 
 ## MONSTER TRANSLATIONS ##
 # Monster details

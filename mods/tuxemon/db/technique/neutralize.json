@@ -1,19 +1,21 @@
 {
-  "tech_id": 91,
+  "tech_id": 179,
   "accuracy": 1,
-  "animation": "smokebomb_plume",
+  "animation": null,
   "effects": [
-    "switch target,water",
+    "remove all,user",
+    "remove all,target",
+    "reverse both",
     "enhance"
   ],
   "flip_axes": "",
-  "is_fast": false,
+  "is_fast": true,
   "potency": 1,
   "power": 0,
   "range": "special",
-  "recharge": 4,
+  "recharge": 1,
   "sfx": "sfx_blaster",
-  "slug": "gyser",
+  "slug": "neutralize",
   "sort": "damage",
   "target": {
     "enemy monster": 2,

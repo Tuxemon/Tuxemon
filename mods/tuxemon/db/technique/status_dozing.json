@@ -1,7 +1,9 @@
 {
   "animation": null,
   "category": "negative",
-  "effects": [],
+  "effects": [
+    "default"
+  ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_dozing.png",
   "range": "special",
@@ -18,6 +20,6 @@
   },
   "tech_id": 0,
   "use_failure": "combat_none",
-  "use_success": "combat_state_dozing_end",
+  "use_success": null,
 	"use_tech": "combat_state_dozing_get"
 }

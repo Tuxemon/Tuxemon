@@ -38,9 +38,6 @@ logger = logging.getLogger(__name__)
 
 SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "slug",
-    "power",
-    "potency",
-    "accuracy",
     "counter",
     "counter_success",
 )
@@ -129,8 +126,6 @@ class Technique:
         self.sort = results.sort
 
         # technique use notifications (translated!)
-        # NOTE: should be `self.use_tech`, but Technique and Item have
-        # overlapping checks
         self.use_tech = T.maybe_translate(results.use_tech)
         self.use_success = T.maybe_translate(results.use_success)
         self.use_failure = T.maybe_translate(results.use_failure)

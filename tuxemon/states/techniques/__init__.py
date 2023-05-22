@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Generator
+from typing import Generator, List
 
 import pygame
 
@@ -136,10 +136,8 @@ class TechniqueMenuState(Menu[Technique]):
             layer=100,
         )
 
-        moveset = []
-        for moves in self.mon.moves:
-            moveset.append(moves)
-
+        moveset: List[Technique] = []
+        moveset = self.mon.moves
         output = sorted(moveset, key=lambda x: x.tech_id)
 
         for tech in output:
@@ -170,6 +168,10 @@ class TechniqueMenuState(Menu[Technique]):
                     "sus": sus,
                 },
             )
+            desc: str = ""
+            if tech.description != f"{tech.slug}_description":
+                desc = tech.description
+                label = f"{label} - {desc}"
             yield MenuItem(image, name, label, tech)
 
     def on_menu_selection_change(self) -> None:

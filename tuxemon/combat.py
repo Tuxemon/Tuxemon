@@ -65,18 +65,19 @@ def pre_checking(
     """
     status = Technique()
     if has_status(monster, "status_dozing"):
-        status.load("skip")
+        status.load("empty")
         technique = status
+        player.game_variables["status_dozing"] = "on"
     if has_status(monster, "status_flinching"):
         fli = random.randint(1, 2)
         if fli == 1:
-            status.load("skip")
+            status.load("empty")
             technique = status
             monster.status.clear()
     if has_status(monster, "status_wild"):
         wild = random.randint(1, 4)
         if wild == 1:
-            status.load("skip")
+            status.load("empty")
             technique = status
             monster.current_hp -= monster.hp // 8
     if has_status(monster, "status_confused"):
@@ -94,14 +95,14 @@ def pre_checking(
             if confused:
                 technique = random.choice(confused)
             else:
-                status.load("skip")
+                status.load("empty")
                 technique = status
         else:
             player.game_variables["status_confused"] = "off"
     if monster.plague == PlagueType.infected:
         value = random.randint(1, 8)
         if value == 1:
-            status.load("status_spyderbite")
+            status.load("spyderbite")
             technique = status
             # infect mechanism
             if (
@@ -196,20 +197,6 @@ def defeated(player: NPC) -> bool:
     return fainted_party(player.monsters)
 
 
-def scope(monster: Monster) -> str:
-    message = T.format(
-        "combat_scope",
-        {
-            "AR": monster.armour,
-            "DE": monster.dodge,
-            "ME": monster.melee,
-            "RD": monster.ranged,
-            "SD": monster.speed,
-        },
-    )
-    return message
-
-
 def spyderbite(monster: Monster) -> str:
     message: str
     if monster.plague == PlagueType.infected:
@@ -229,21 +216,34 @@ def spyderbite(monster: Monster) -> str:
     return message
 
 
-def confused(monster: Monster, technique: Technique) -> str:
-    message = T.format(
-        "combat_state_confused_tech",
-        {
-            "target": monster.name.upper(),
-            "name": technique.name.upper(),
-        },
-    )
-    return message
-
-
 def generic(
     attacker: Monster, tech: Technique, defender: Monster, player: NPC
 ) -> str:
     message: str = ""
+    if tech.slug == "empty" and "status_dozing" in player.game_variables:
+        message = T.format(
+            "combat_state_dozing_end",
+            {
+                "target": attacker.name.upper(),
+            },
+        )
+        player.game_variables["status_dozing"] = "off"
+    if tech.slug == "scope":
+        message = T.format(
+            "combat_scope",
+            {
+                "AR": defender.armour,
+                "DE": defender.dodge,
+                "ME": defender.melee,
+                "RD": defender.ranged,
+                "SD": defender.speed,
+            },
+        )
+    if tech.slug == "swap":
+        message = T.format(
+            "combat_call_tuxemon",
+            {"name": defender.name.upper()},
+        )
     if has_effect(tech, "money"):
         gold = str(player.game_variables["gold_digger"])
         message = T.format(
@@ -281,6 +281,17 @@ def generic(
                     "types": _type,
                 },
             )
+    if (
+        has_status(attacker, "status_confused")
+        and "status_confused" in player.game_variables
+    ):
+        message = T.format(
+            "combat_state_confused_tech",
+            {
+                "target": defender.name.upper(),
+                "name": tech.name.upper(),
+            },
+        )
     return message
 
 

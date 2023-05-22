@@ -3,8 +3,7 @@
   "accuracy": 0.75,
   "animation": "sparks_gold_alt",
   "effects": [
-    "give status_exhausted,target",
-    "give status_exhausted,user",
+    "give status_exhausted,both",
     "damage"
   ],
   "flip_axes": "",
@@ -29,6 +28,6 @@
     "metal"
   ],
   "use_failure": "combat_miss",
-  "use_success": "combat_amnesia_get",
+  "use_success": null,
   "use_tech": "combat_used_x"
 }

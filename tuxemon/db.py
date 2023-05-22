@@ -647,6 +647,7 @@ class NpcTemplateModel(BaseModel):
 
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
+    forfeit: bool = Field(True, description="Whether you can forfeit or not")
     template: Sequence[NpcTemplateModel] = Field(
         [], description="List of templates"
     )

@@ -256,21 +256,23 @@
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
-  <object id="418" name="My First Mon" type="event" x="368" y="160" width="144" height="32">
+  <object id="418" name="My First Mon" type="event" x="368" y="176" width="144" height="16">
    <properties>
-    <property name="act1" value="player_stop"/>
+    <property name="act10" value="player_stop"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_dante,18,14"/>
-    <property name="act30" value="pathfind spyder_dante,26,12"/>
+    <property name="act30" value="pathfind_to_player spyder_dante,down"/>
     <property name="act31" value="npc_face player,down"/>
     <property name="act40" value="translated_dialog spyder_papertown_myfirstmon"/>
-    <property name="act45" value="pathfind spyder_dante,5,10"/>
-    <property name="act46" value="npc_face player,right"/>
-    <property name="act47" value="translated_dialog spyder_papertown_myfirstmon1"/>
-    <property name="act48" value="npc_face spyder_dante,left"/>
-    <property name="act49" value="translated_dialog spyder_papertown_myfirstmon2"/>
-    <property name="act50" value="translated_dialog_choice rockitten:nut:tweesher:agnite:lambert,mymonchoice"/>
-    <property name="act51" value="unlock_controls"/>
+    <property name="act45" value="pathfind spyder_dante,26,9"/>
+    <property name="act46" value="npc_face spyder_dante,right"/>
+    <property name="act47" value="npc_face player,up"/>
+    <property name="act48" value="translated_dialog spyder_papertown_myfirstmon1"/>
+    <property name="act49" value="pathfind player,26,10"/>
+    <property name="act50" value="translated_dialog spyder_papertown_myfirstmon2"/>
+    <property name="act55" value="npc_face spyder_dante,down"/>
+    <property name="act60" value="translated_dialog_choice rockitten:nut:tweesher:agnite:lambert,mymonchoice"/>
+    <property name="act70" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is party_size less_than,1"/>
    </properties>

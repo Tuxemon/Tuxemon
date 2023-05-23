@@ -197,9 +197,11 @@
     <property name="act1" value="lock_controls"/>
     <property name="act10" value="player_stop"/>
     <property name="act20" value="create_npc spyder_dante,15,8"/>
-    <property name="act30" value="pathfind spyder_dante,14,2"/>
+    <property name="act30" value="pathfind_to_player spyder_dante,right"/>
+    <property name="act35" value="npc_face spyder_dante,left"/>
     <property name="act40" value="translated_dialog spyder_papertown_stopthere"/>
     <property name="act50" value="pathfind player,13,3"/>
+    <property name="act55" value="npc_face player,down"/>
     <property name="act60" value="pathfind spyder_dante,13,14"/>
     <property name="act80" value="remove_npc spyder_dante"/>
     <property name="act81" value="unlock_controls"/>
@@ -269,7 +271,8 @@
     <property name="act47" value="npc_face player,up"/>
     <property name="act48" value="translated_dialog spyder_papertown_myfirstmon1"/>
     <property name="act49" value="pathfind player,26,10"/>
-    <property name="act50" value="translated_dialog spyder_papertown_myfirstmon2"/>
+    <property name="act50" value="npc_face player,up"/>
+    <property name="act51" value="translated_dialog spyder_papertown_myfirstmon2"/>
     <property name="act55" value="npc_face spyder_dante,down"/>
     <property name="act60" value="translated_dialog_choice rockitten:nut:tweesher:agnite:lambert,mymonchoice"/>
     <property name="act70" value="unlock_controls"/>
@@ -344,10 +347,16 @@
   <object id="425" name="First Fight - Win" type="event" x="384" y="144" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_papertown_firstfight_win"/>
+    <property name="act11" value="pathfind spyder_billie,25,14"/>
+    <property name="act12" value="wait 1.0"/>
+    <property name="act13" value="pathfind_to_player spyder_billie,down"/>
+    <property name="act15" value="translated_dialog spyder_papertown_firstfight_after"/>
     <property name="act20" value="pathfind spyder_billie,15,14"/>
     <property name="act30" value="remove_npc spyder_billie"/>
     <property name="act40" value="set_variable firstfightend:no"/>
     <property name="act50" value="unlock_controls"/>
+    <property name="act60" value="set_monster_health"/>
+    <property name="act70" value="set_monster_status"/>
     <property name="cond1" value="is variable_set battle_last_result:won"/>
     <property name="cond2" value="is variable_set firstfightend:yes"/>
    </properties>
@@ -355,10 +364,16 @@
   <object id="426" name="First Fight - Lose" type="event" x="416" y="144" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_papertown_firstfight_lose"/>
+    <property name="act11" value="pathfind spyder_billie,25,14"/>
+    <property name="act12" value="wait 1.0"/>
+    <property name="act13" value="pathfind_to_player spyder_billie,down"/>
+    <property name="act15" value="translated_dialog spyder_papertown_firstfight_after"/>
     <property name="act20" value="pathfind spyder_billie,15,14"/>
     <property name="act30" value="remove_npc spyder_billie"/>
     <property name="act40" value="set_variable firstfightend:no"/>
     <property name="act50" value="unlock_controls"/>
+    <property name="act60" value="set_monster_health"/>
+    <property name="act70" value="set_monster_status"/>
     <property name="cond1" value="is variable_set battle_last_result:lost"/>
     <property name="cond2" value="is variable_set firstfightend:yes"/>
    </properties>

@@ -26,7 +26,7 @@
  </layer>
  <layer id="2" name="Tile Layer 5" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYCAdlCsh9BBiK8szMKgAMTcQ8wDxPEWI3llQGsSDiSVqMzA4AdU4A7EWEGsD8V6ouu9A+icU/4aKtQHVo4M7UDl0cRgfZgaMhpkFk2cA6Ucyo14OIgOj4eqADCagugdA+YdAzIikB1kNsnkg9f9B5gH9hU09UeYhGU7IPCSlRDMTcfkDaMJZJgaG80B8DohB4AVQLQAoWyER
+   eAFjYCAdlCsh9BBiK8szMKgAMTcQ8wDxPEWEXnRWojYDgxNQjTMQawGxNhDvxaO+DageHdzBox6k9idQHhn/RlcP4iOJ1ctBbIDREB6EZAKqewCUfwjEjEh6kNWAzYLKgdT/B5kH9Bc29USZh2Q4IfOQlFKFeZaJgeE8EJ8DYhB4AfQPAIy4Gq0=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 4" width="12" height="12">
@@ -43,7 +43,6 @@
   <object id="1" type="collision" x="0" y="80" width="80" height="16"/>
   <object id="2" type="collision" x="64" y="48" width="16" height="48"/>
   <object id="3" type="collision" x="0" y="0" width="192" height="48"/>
-  <object id="4" type="collision" x="96" y="0" width="64" height="64"/>
   <object id="5" type="collision" x="176" y="32" width="16" height="32"/>
   <object id="9" type="collision" x="64" y="128" width="32" height="32"/>
   <object id="10" type="collision" x="128" y="96" width="32" height="32"/>

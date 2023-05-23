@@ -23,7 +23,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYKAt4JJnYABhbiDmAeJ5ihD7XgHZ2IAmUByEtYBYG4j3QtVjU4tN7A4B9T+A8j+B+BcU/0ZXD+Kji2GzCCjGBFT3QI6B4SEQM+LSg2QeSP1/oFoGoL+wqSfKPCS3EDIPSSmcyafAwADC5IBIZgaGKCCOBmIQ2Ab0CwCmWhVE
+   eAFjYKAt4JJnYABhbiDmAeJ5ivjt0wSqAWEtINYG4r0E1KObdoeA+h9A+Z9A/AuKf6OrB/HRxdAtgfKZgOoeyDEwPARiRlx6kMwDqf8PVMsA9Bc29USZh+QWQuYhKYUz+RQYGECYHBDJzMAQBcTRQAwC24B+AQDOUxQ7
   </data>
  </layer>
  <layer id="4" name="Above Player" width="12" height="12">

@@ -6902,6 +6902,9 @@ msgstr "Huh, must be a fluke. There's no way the new model would be worse than t
 msgid "spyder_papertown_firstfight_lose"
 msgstr "As expected! Old models can't compare to new ones!"
 
+msgid "spyder_papertown_firstfight_after"
+msgstr "I'll heal you up this time, but I'm not a charity. Rest up at home next time your monsters get worn out."
+
 msgid "spyder_cottontown_monk"
 msgstr "I am assigned by the Dojo of the Five Elements to tend the statues here. \n But Omnichannel is planning to expand its offices into this space. \n I don't know what will happen to the statues when they do."
 

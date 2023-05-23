@@ -1,16 +1,16 @@
 {
   "tech_id": 113,
-  "accuracy": 0.9,
+  "accuracy": 1,
   "animation": "drip_red_alt",
   "effects": [
-    "damage"
+    "give status_poison,target",
+    "enhance"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
-  "potency": 0.7,
-  "power": 2.1,
-  "range": "touch",
+  "potency": 1,
+  "power": 0,
+  "range": "special",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "poison_courtship",
@@ -24,8 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "water",
-    "wood"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

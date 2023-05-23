@@ -1,0 +1,56 @@
+{
+    "slug": "potturmeist",
+    "category": "pottery",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 6,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 8,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 12,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 16,
+            "technique": "lineage"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "potturney"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "potturney",
+            "evo_stage": "stage1"
+        }
+    ],
+    "shape": "blob",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 257,
+    "height": 48,
+    "weight": 2.5,
+    "catch_rate": 120.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

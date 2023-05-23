@@ -52,6 +52,66 @@ def check_battle_legal(player: Player) -> bool:
             return True
 
 
+def pre_checking(
+    monster: Monster,
+    technique: Technique,
+    target: Monster,
+    player: NPC,
+    enemy: NPC,
+) -> Technique:
+    """
+    Pre checking allows to check if there are statuses
+    or other conditions that change the choosen technique.
+    """
+    status = Technique()
+    if has_status(monster, "status_dozing"):
+        status.load("skip")
+        technique = status
+    if has_status(monster, "status_flinching"):
+        fli = random.randint(1, 2)
+        if fli == 1:
+            status.load("skip")
+            technique = status
+            monster.status.clear()
+    if has_status(monster, "status_wild"):
+        wild = random.randint(1, 4)
+        if wild == 1:
+            status.load("skip")
+            technique = status
+            monster.current_hp -= monster.hp // 8
+    if has_status(monster, "status_confused"):
+        confusion = random.randint(1, 2)
+        if confusion == 1:
+            player.game_variables["status_confused"] = "on"
+            confused = [
+                ele
+                for ele in monster.moves
+                if ele.next_use <= 0
+                and not has_effect_param(
+                    ele, "status_confused", "give", "condition"
+                )
+            ]
+            if confused:
+                technique = random.choice(confused)
+            else:
+                status.load("skip")
+                technique = status
+        else:
+            player.game_variables["status_confused"] = "off"
+    if monster.plague == PlagueType.infected:
+        value = random.randint(1, 8)
+        if value == 1:
+            status.load("status_spyderbite")
+            technique = status
+            # infect mechanism
+            if (
+                enemy.plague == PlagueType.infected
+                or enemy.plague == PlagueType.healthy
+            ):
+                target.plague = PlagueType.infected
+    return technique
+
+
 def has_status(monster: Monster, status_name: str) -> bool:
     """
     Checks to see if the monster has a specific status/condition.
@@ -66,15 +126,16 @@ def has_effect(technique: Technique, effect_name: str) -> bool:
     return any(t for t in technique.effects if t.name == effect_name)
 
 
-def has_effect_give(technique: Technique, status: str) -> bool:
+def has_effect_param(
+    tech: Technique, effect: str, status: str, param: str
+) -> bool:
     """
-    Checks to see if the give effect has the corresponding status.
+    Checks to see if the effect has the corresponding parameter.
     """
-    effect_name: str = "give"
     find: bool = False
-    for ele in technique.effects:
-        if ele.name == effect_name:
-            output = getattr(ele, "condition")
+    for ele in tech.effects:
+        if ele.name == effect:
+            output = getattr(ele, param)
             if output == status:
                 find = True
     return find
@@ -165,6 +226,61 @@ def spyderbite(monster: Monster) -> str:
                 "target": monster.name.upper(),
             },
         )
+    return message
+
+
+def confused(monster: Monster, technique: Technique) -> str:
+    message = T.format(
+        "combat_state_confused_tech",
+        {
+            "target": monster.name.upper(),
+            "name": technique.name.upper(),
+        },
+    )
+    return message
+
+
+def generic(
+    attacker: Monster, tech: Technique, defender: Monster, player: NPC
+) -> str:
+    message: str = ""
+    if has_effect(tech, "money"):
+        gold = str(player.game_variables["gold_digger"])
+        message = T.format(
+            "combat_state_gold",
+            {
+                "name": attacker.name,
+                "symbol": "$",
+                "gold": gold,
+            },
+        )
+    if has_effect(tech, "switch"):
+        _type: str = ""
+        monster: str = ""
+        if has_effect_param(tech, "switch", "both", "objective"):
+            message = T.format(
+                "combat_state_switch_both",
+                {
+                    "user": attacker.name.upper(),
+                    "type1": T.translate(attacker.types[0]),
+                    "target": defender.name.upper(),
+                    "type2": T.translate(defender.types[0]),
+                },
+            )
+        else:
+            if has_effect_param(tech, "switch", "target", "objective"):
+                monster = defender.name.upper()
+                _type = T.translate(defender.types[0])
+            if has_effect_param(tech, "switch", "user", "objective"):
+                monster = attacker.name.upper()
+                _type = T.translate(attacker.types[0])
+            message = T.format(
+                "combat_state_switch",
+                {
+                    "target": monster,
+                    "types": _type,
+                },
+            )
     return message
 
 

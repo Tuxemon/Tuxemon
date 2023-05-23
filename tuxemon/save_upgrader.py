@@ -64,6 +64,14 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
         save_data["game_variables"]["cathedral_ads"] = 0
     if "steps" not in save_data["game_variables"]:
         save_data["game_variables"]["steps"] = 0
+    if "music_volume" not in save_data["game_variables"]:
+        save_data["game_variables"]["music_volume"] = 0.5
+    if "sound_volume" not in save_data["game_variables"]:
+        save_data["game_variables"]["sound_volume"] = 0.2
+    if "unit_measure" not in save_data["game_variables"]:
+        save_data["game_variables"]["unit_measure"] = "Metric"
+    if "hemisphere" not in save_data["game_variables"]:
+        save_data["game_variables"]["hemisphere"] = "Northern"
     if "gender_choice" not in save_data["game_variables"]:
         save_data["game_variables"]["gender_choice"] = "gender_male"
     if "date_start_game" not in save_data["game_variables"]:

@@ -7,10 +7,9 @@
     "enhance"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
   "potency": 1,
-  "power": 1,
+  "power": 0,
   "range": "special",
   "recharge": 2,
   "sfx": "sfx_crumble2",

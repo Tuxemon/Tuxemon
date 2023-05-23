@@ -3,14 +3,14 @@
   "accuracy": 1,
   "animation": "pound_bright",
   "effects": [
-    "damage"
+    "give status_confused,target",
+    "enhance"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
-  "potency": 0.2,
-  "power": 1.4,
-  "range": "ranged",
+  "potency": 1,
+  "power": 0,
+  "range": "special",
   "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "conjurer",
@@ -24,7 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "fire"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

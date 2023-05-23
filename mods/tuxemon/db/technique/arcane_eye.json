@@ -1,31 +1,30 @@
 {
   "tech_id": 158,
-  "accuracy": 0.8,
+  "accuracy": 1,
   "animation": "crystal_absorb",
   "effects": [
-    "damage"
+    "give status_elementalshield,user",
+    "enhance"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
-  "potency": 0.1,
-  "power": 2.9,
-  "range": "reliable",
+  "potency": 1,
+  "power": 0,
+  "range": "special",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "arcane_eye",
   "sort": "damage",
   "target": {
-    "enemy monster": 2,
+    "enemy monster": 0,
     "enemy team": 0,
     "enemy trainer": 0,
-    "own monster": 0,
+    "own monster": 2,
     "own team": 0,
     "own trainer": 0
   },
   "types": [
-    "metal",
-    "fire"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

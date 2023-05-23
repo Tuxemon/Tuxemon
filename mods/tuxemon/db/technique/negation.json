@@ -1,16 +1,16 @@
 {
   "tech_id": 140,
-  "accuracy": 0.8,
+  "accuracy": 1,
   "animation": "skull_fire",
   "effects": [
-    "damage"
+    "give status_confused,target",
+    "enhance"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
-  "potency": 0.7,
-  "power": 2.9,
-  "range": "ranged",
+  "potency": 1,
+  "power": 0,
+  "range": "special",
   "recharge": 3,
   "sfx": "sfx_blaster",
   "slug": "negation",
@@ -24,7 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "wood"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

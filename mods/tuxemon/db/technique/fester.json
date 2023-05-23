@@ -5,10 +5,9 @@
   "effects": [
     "give status_poison,user",
     "give status_festering,target",
-    "damage"
+    "area"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
   "potency": 0.8,
   "power": 2.25,

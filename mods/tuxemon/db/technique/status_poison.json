@@ -21,7 +21,7 @@
     "own trainer": 0
   },
   "tech_id": 0,
-  "use_failure": "generic_failure",
-  "use_success": "combat_state_poison_get",
-  "use_tech": "combat_used_x"
+  "use_failure": "combat_none",
+  "use_success": "combat_state_poison_end",
+  "use_tech": "combat_state_poison_get"
 }

@@ -3,11 +3,10 @@
   "accuracy": 1,
   "animation": null,
   "effects": [
-    "give status_overfeed,target",
+    "give status_slow,target",
     "enhance"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
   "potency": 1,
   "power": 0,
@@ -17,10 +16,10 @@
   "slug": "overfeed",
   "sort": "meta",
   "target": {
-    "enemy monster": 0,
+    "enemy monster": 2,
     "enemy team": 0,
     "enemy trainer": 0,
-    "own monster": 2,
+    "own monster": 0,
     "own team": 0,
     "own trainer": 0
   },

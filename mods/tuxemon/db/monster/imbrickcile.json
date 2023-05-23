@@ -1,0 +1,56 @@
+{
+    "slug": "imbrickcile",
+    "category": "brick",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "ram"
+        },
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 6,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 8,
+            "technique": "assault"
+        },
+        {
+            "level_learned": 12,
+            "technique": "thunderball"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 18,
+            "monster_slug": "bricgard"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "bricgard",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "brickhemoth",
+            "evo_stage": "stage2"
+        }
+    ],
+    "shape": "sprite",
+    "stage": "basic",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 259,
+    "height": 35,
+    "weight": 2,
+    "catch_rate": 170.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.25
+}

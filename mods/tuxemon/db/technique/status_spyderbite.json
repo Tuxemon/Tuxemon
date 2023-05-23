@@ -16,7 +16,7 @@
     "own trainer": 0
   },
   "tech_id": 0,
-  "use_failure": "generic_failure",
-  "use_success": "generic_success",
+  "use_failure": "combat_none",
+  "use_success": "combat_none",
   "use_tech": "combat_state_plague2"
 }

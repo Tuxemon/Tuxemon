@@ -5,10 +5,10 @@ from __future__ import annotations
 import datetime as dt
 import logging
 import random
-from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
+from typing import TYPE_CHECKING, NamedTuple, Sequence, Tuple
 
 if TYPE_CHECKING:
-    from tuxemon.db import MonsterModel
+    from tuxemon.db import ElementType, MonsterModel
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
 
@@ -32,25 +32,25 @@ class TypeChart(NamedTuple):
 
 
 TYPES = {
-    "earth": TypeChart(1, 2, 0, 0, 2, 0, 0, 0, 0, 0.5, 0, 0, 0.5),
-    "fire": TypeChart(0.5, 0.5, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0.5, 2),
-    "frost": TypeChart(2, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 2, 0, 0.5, 2),
-    "heroic": TypeChart(0, 0, 2, 1, 0, 0.5, 0, 2, 2, 0, 0.5, 0, 0),
-    "lightning": TypeChart(0.5, 0, 0, 0, 0.5, 0, 2, 0, 0, 2, 0, 2, 0.5),
-    "magic": TypeChart(0, 0, 0, 2, 0, 1, 0, 0, 0.5, 0, 2, 0, 0),
-    "metal": TypeChart(2, 0.5, 0, 0, 0, 2, 0.5, 0, 0, 0, 0, 0.5, 0),
-    "normal": TypeChart(0, 0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0),
-    "shadow": TypeChart(0, 0, 0, 0.5, 0, 2, 0, 0, 1, 0, 0, 0, 0),
-    "sky": TypeChart(2, 0.5, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 2),
-    "venom": TypeChart(0.5, 0, 0, 0, 0, 0, 0.5, 2, 0, 0, 0.5, 0, 2),
-    "water": TypeChart(0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5),
-    "wood": TypeChart(2, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 2, 0.5),
+    "earth": TypeChart(1, 2, 1, 1, 2, 1, 1, 1, 1, 0.5, 1, 1, 0.5),
+    "fire": TypeChart(0.5, 0.5, 0.5, 1, 1, 1, 2, 1, 1, 1, 2, 0.5, 2),
+    "frost": TypeChart(2, 1, 0.5, 1, 1, 1, 0.5, 1, 0.5, 2, 1, 0.5, 2),
+    "heroic": TypeChart(1, 1, 2, 1, 1, 0.5, 1, 2, 2, 1, 0.5, 1, 1),
+    "lightning": TypeChart(0.5, 1, 1, 1, 0.5, 1, 2, 1, 1, 2, 1, 2, 0.5),
+    "cosmic": TypeChart(1, 1, 1, 2, 1, 1, 1, 1, 0.5, 1, 2, 1, 1),
+    "metal": TypeChart(2, 0.5, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 0.5, 1),
+    "normal": TypeChart(1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 1, 1, 1),
+    "shadow": TypeChart(0.5, 1, 1, 0.5, 1, 2, 1, 1, 1, 2, 1, 1, 1),
+    "sky": TypeChart(2, 0.5, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2),
+    "venom": TypeChart(0.5, 1, 1, 1, 1, 1, 0.5, 2, 1, 1, 0.5, 0.5, 2),
+    "water": TypeChart(1, 2, 0.5, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0.5),
+    "wood": TypeChart(2, 0.5, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 2, 0.5),
 }
 
 
 def simple_damage_multiplier(
-    attack_types: Sequence[Optional[str]],
-    target_types: Sequence[Optional[str]],
+    attack_types: Sequence[ElementType],
+    target_types: Sequence[ElementType],
 ) -> float:
     """
     Calculates damage multiplier based on strengths and weaknesses.
@@ -65,19 +65,13 @@ def simple_damage_multiplier(
     """
     m = 1.0
     for attack_type in attack_types:
-        if attack_type is None:
-            continue
-
         for target_type in target_types:
             if target_type:
                 if attack_type == "aether" or target_type == "aether":
-                    pass
-                body = TYPES.get(target_type)
-                value = float(getattr(body, attack_type))
-                if value == 0:
-                    m = 1.0
-                else:
-                    m *= value
+                    continue
+                body = TYPES.get(attack_type)
+                value = float(getattr(body, target_type))
+                m = value
 
     m = min(4, m)
     m = max(0.25, m)

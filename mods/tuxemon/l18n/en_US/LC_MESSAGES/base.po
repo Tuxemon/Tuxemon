@@ -4174,8 +4174,8 @@ msgstr "Frost"
 msgid "heroic"
 msgstr "Heroic"
 
-msgid "magic"
-msgstr "Magic"
+msgid "cosmic"
+msgstr "Cosmic"
 
 msgid "shadow"
 msgstr "Shadow"

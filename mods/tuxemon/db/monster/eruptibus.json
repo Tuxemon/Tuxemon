@@ -46,7 +46,7 @@
     "shape": "landrace",
     "stage": "stage1",
     "types": [
-        "fire"
+        "fire", "earth"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 32,

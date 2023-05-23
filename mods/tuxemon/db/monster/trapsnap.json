@@ -40,7 +40,7 @@
     "shape": "brute",
     "stage": "basic",
     "types": [
-        "wood"
+        "shadow", "wood"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 85,

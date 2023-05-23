@@ -46,7 +46,7 @@
     "shape": "humanoid",
     "stage": "stage1",
     "types": [
-        "metal"
+        "cosmic", "lightning"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 197,

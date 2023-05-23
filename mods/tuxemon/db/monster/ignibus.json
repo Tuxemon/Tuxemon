@@ -63,7 +63,7 @@
     "shape": "polliwog",
     "stage": "basic",
     "types": [
-        "fire"
+        "fire", "earth"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 30,

@@ -46,7 +46,7 @@
     "shape": "varmint",
     "stage": "stage1",
     "types": [
-        "metal"
+        "metal", "wood"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 130,

@@ -57,8 +57,7 @@
     "shape": "sprite",
     "stage": "standalone",
     "types": [
-        "fire",
-        "metal"
+        "cosmic", "fire"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 230,

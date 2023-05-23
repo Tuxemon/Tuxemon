@@ -57,7 +57,7 @@
     "shape": "dragon",
     "stage": "standalone",
     "types": [
-        "fire"
+        "fire", "sky"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 239,

@@ -46,7 +46,7 @@
     "shape": "sprite",
     "stage": "stage1",
     "types": [
-        "wood"
+        "wood", "cosmic"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 29,

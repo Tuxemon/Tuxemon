@@ -62,7 +62,7 @@
     "shape": "blob",
     "stage": "stage1",
     "types": [
-        "water"
+        "sky", "lightning"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 233,

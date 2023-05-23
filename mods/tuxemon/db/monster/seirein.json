@@ -40,8 +40,7 @@
     "shape": "blob",
     "stage": "basic",
     "types": [
-        "fire",
-        "water"
+        "shadow", "fire"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 162,

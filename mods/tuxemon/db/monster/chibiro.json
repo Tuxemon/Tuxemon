@@ -57,7 +57,7 @@
     "shape": "varmint",
     "stage": "standalone",
     "types": [
-        "wood"
+        "normal", "wood"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 212,

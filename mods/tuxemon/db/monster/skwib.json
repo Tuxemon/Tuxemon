@@ -44,7 +44,7 @@
     "shape": "polliwog",
     "stage": "basic",
     "types": [
-        "water"
+        "normal"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 183,

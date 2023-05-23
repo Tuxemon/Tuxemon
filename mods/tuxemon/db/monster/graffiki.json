@@ -57,7 +57,7 @@
     "shape": "humanoid",
     "stage": "standalone",
     "types": [
-        "metal"
+        "normal"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 205,

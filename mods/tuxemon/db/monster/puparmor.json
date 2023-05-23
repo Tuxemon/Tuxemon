@@ -48,7 +48,7 @@
     "shape": "blob",
     "stage": "stage1",
     "types": [
-        "metal"
+        "venom", "metal"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 34,

@@ -57,7 +57,7 @@
     "shape": "dragon",
     "stage": "standalone",
     "types": [
-        "earth"
+        "earth"	
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 166,

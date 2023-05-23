@@ -40,7 +40,7 @@
     "shape": "flier",
     "stage": "basic",
     "types": [
-        "water"
+        "shadow", "sky"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 50,

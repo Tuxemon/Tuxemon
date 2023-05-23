@@ -50,7 +50,7 @@
     "shape": "serpent",
     "stage": "stage1",
     "types": [
-        "metal"
+        "normal", "shadow"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 226,

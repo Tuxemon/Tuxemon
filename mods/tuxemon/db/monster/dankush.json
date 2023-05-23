@@ -57,8 +57,7 @@
     "shape": "sprite",
     "stage": "standalone",
     "types": [
-        "fire",
-        "wood"
+        "wood", "fire"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 247,

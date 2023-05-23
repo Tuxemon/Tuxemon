@@ -57,7 +57,7 @@
     "shape": "blob",
     "stage": "standalone",
     "types": [
-        "water"
+        "earth", "venom"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 243,

@@ -40,7 +40,7 @@
     "shape": "serpent",
     "stage": "basic",
     "types": [
-        "water"
+        "normal"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 227,

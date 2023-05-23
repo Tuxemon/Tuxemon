@@ -58,7 +58,7 @@
     "shape": "dragon",
     "stage": "stage1",
     "types": [
-        "fire"
+        "metal", "cosmic"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 245,

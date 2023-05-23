@@ -40,7 +40,7 @@
     "shape": "polliwog",
     "stage": "basic",
     "types": [
-        "water"
+        "cosmic", "water"
     ],
     "possible_genders": ["female"],
     "txmn_id": 54,

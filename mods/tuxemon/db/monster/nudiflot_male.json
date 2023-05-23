@@ -40,7 +40,7 @@
     "shape": "polliwog",
     "stage": "basic",
     "types": [
-        "water"
+        "venom", "water"
     ],
     "possible_genders": ["male"],
     "txmn_id": 52,

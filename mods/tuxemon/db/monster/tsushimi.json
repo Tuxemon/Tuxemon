@@ -52,7 +52,7 @@
     "shape": "dragon",
     "stage": "stage1",
     "types": [
-        "water"
+        "wood"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 186,

@@ -46,7 +46,7 @@
     "shape": "dragon",
     "stage": "stage1",
     "types": [
-        "water"
+        "venom"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 165,

@@ -44,7 +44,7 @@
     "shape": "flier",
     "stage": "basic",
     "types": [
-        "metal"
+        "sky"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 156,

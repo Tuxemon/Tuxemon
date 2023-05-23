@@ -64,7 +64,7 @@
     "shape": "blob",
     "stage": "basic",
     "types": [
-        "metal"
+        "shadow", "cosmic"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 240,

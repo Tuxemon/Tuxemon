@@ -44,7 +44,7 @@
     "shape": "flier",
     "stage": "basic",
     "types": [
-        "water"
+        "frost"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 7,

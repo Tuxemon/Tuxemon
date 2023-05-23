@@ -44,7 +44,7 @@
     "shape": "flier",
     "stage": "basic",
     "types": [
-        "fire"
+        "fire", "sky"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 62,

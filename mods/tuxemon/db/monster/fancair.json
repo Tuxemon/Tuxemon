@@ -40,7 +40,7 @@
     "shape": "sprite",
     "stage": "basic",
     "types": [
-        "metal"
+        "metal", "lightning"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 179,

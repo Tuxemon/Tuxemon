@@ -74,7 +74,7 @@
     "shape": "humanoid",
     "stage": "stage1",
     "types": [
-        "wood"
+        "heroic"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 234,

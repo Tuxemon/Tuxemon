@@ -79,7 +79,7 @@
     "shape": "hunter",
     "stage": "basic",
     "types": [
-        "metal"
+        "normal"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 19,

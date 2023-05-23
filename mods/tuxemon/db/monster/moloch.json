@@ -62,7 +62,7 @@
     "shape": "brute",
     "stage": "stage2",
     "types": [
-        "wood"
+        "wood", "heroic"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 12,

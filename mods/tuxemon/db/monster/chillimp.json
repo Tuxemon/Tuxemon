@@ -40,8 +40,7 @@
     "shape": "brute",
     "stage": "basic",
     "types": [
-        "water",
-        "earth"
+        "frost", "heroic"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 154,

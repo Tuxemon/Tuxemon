@@ -57,7 +57,7 @@
     "shape": "humanoid",
     "stage": "standalone",
     "types": [
-        "fire"
+        "wood", "cosmic"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 124,

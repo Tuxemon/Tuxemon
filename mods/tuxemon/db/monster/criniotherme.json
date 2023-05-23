@@ -46,7 +46,7 @@
     "shape": "hunter",
     "stage": "stage1",
     "types": [
-        "fire"
+        "normal", "fire"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 23,

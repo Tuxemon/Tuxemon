@@ -46,8 +46,7 @@
     "shape": "brute",
     "stage": "stage1",
     "types": [
-        "earth",
-        "fire"
+        "earth", "fire"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 17,

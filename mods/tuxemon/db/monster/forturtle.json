@@ -40,7 +40,7 @@
     "shape": "humanoid",
     "stage": "basic",
     "types": [
-        "earth"
+        "cosmic"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 87,

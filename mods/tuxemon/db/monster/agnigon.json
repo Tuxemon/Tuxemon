@@ -62,7 +62,7 @@
     "shape": "dragon",
     "stage": "stage2",
     "types": [
-        "fire"
+        "fire", "shadow"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 15,

@@ -46,7 +46,7 @@
     "shape": "sprite",
     "stage": "stage1",
     "types": [
-        "metal"
+        "metal", "lightning"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 128,

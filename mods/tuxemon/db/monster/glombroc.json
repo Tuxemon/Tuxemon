@@ -64,8 +64,7 @@
     "shape": "blob",
     "stage": "stage1",
     "types": [
-        "earth",
-        "wood"
+        "wood", "earth"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 273,

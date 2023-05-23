@@ -46,7 +46,7 @@
     "shape": "flier",
     "stage": "stage1",
     "types": [
-        "metal"
+        "metal", "sky"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 126,

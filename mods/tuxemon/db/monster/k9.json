@@ -46,7 +46,7 @@
     "shape": "hunter",
     "stage": "stage1",
     "types": [
-        "metal"
+        "metal", "heroic"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 129,

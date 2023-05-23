@@ -62,7 +62,7 @@
     "shape": "leviathan",
     "stage": "stage2",
     "types": [
-        "water"
+        "water", "lightning"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 70,

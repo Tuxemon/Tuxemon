@@ -58,8 +58,7 @@
     "shape": "brute",
     "stage": "stage2",
     "types": [
-        "metal",
-        "wood"
+        "metal", "heroic"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 59,

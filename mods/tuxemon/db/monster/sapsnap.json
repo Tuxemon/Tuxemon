@@ -46,7 +46,7 @@
     "shape": "brute",
     "stage": "stage1",
     "types": [
-        "wood"
+        "shadow", "wood"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 86,

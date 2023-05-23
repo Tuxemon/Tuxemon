@@ -46,8 +46,7 @@
     "shape": "piscine",
     "stage": "stage1",
     "types": [
-        "water",
-        "wood"
+        "water", "heroic"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 26,

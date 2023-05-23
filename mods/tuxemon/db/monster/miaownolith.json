@@ -46,8 +46,7 @@
     "shape": "hunter",
     "stage": "stage1",
     "types": [
-        "metal",
-        "earth"
+        "normal", "earth"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 20,

@@ -57,7 +57,7 @@
     "shape": "varmint",
     "stage": "standalone",
     "types": [
-        "water"
+        "normal", "water"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 219,

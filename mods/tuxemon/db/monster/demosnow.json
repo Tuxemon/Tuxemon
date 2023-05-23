@@ -44,7 +44,7 @@
     "shape": "sprite",
     "stage": "stage1",
     "types": [
-        "water"
+        "frost", "shadow"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 264,

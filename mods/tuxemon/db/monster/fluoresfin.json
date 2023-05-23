@@ -44,7 +44,7 @@
     "shape": "piscine",
     "stage": "basic",
     "types": [
-        "water"
+        "water", "lightning"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 68,

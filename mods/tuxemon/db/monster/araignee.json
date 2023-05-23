@@ -57,7 +57,7 @@
     "shape": "grub",
     "stage": "standalone",
     "types": [
-        "metal"
+        "venom"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 100,

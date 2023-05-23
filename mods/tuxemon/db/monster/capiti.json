@@ -68,7 +68,7 @@
     "shape": "sprite",
     "stage": "basic",
     "types": [
-        "wood"
+        "normal"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 102,

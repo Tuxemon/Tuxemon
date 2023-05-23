@@ -57,7 +57,7 @@
     "shape": "grub",
     "stage": "standalone",
     "types": [
-        "metal"
+        "metal", "cosmic"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 267,

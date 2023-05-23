@@ -44,7 +44,7 @@
     "shape": "blob",
     "stage": "stage1",
     "types": [
-        "water"
+        "venom", "shadow"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 37,

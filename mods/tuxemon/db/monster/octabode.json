@@ -50,7 +50,7 @@
     "shape": "polliwog",
     "stage": "stage1",
     "types": [
-        "water"
+        "normal", "earth"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 184,

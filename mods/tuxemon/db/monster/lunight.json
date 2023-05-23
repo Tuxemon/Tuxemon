@@ -57,8 +57,7 @@
     "shape": "sprite",
     "stage": "standalone",
     "types": [
-        "metal",
-        "water"
+        "cosmic", "shadow"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 229,

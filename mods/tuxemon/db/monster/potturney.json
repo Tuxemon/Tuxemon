@@ -54,7 +54,7 @@
     "shape": "blob",
     "stage": "stage1",
     "types": [
-        "metal"
+        "earth", "shadow"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 258,

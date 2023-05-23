@@ -52,7 +52,7 @@
     "shape": "polliwog",
     "stage": "basic",
     "types": [
-        "water"
+        "water", "frost"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 268,

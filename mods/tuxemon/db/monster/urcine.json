@@ -57,7 +57,7 @@
     "shape": "brute",
     "stage": "standalone",
     "types": [
-        "wood"
+        "heroic", "shadow"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 216,

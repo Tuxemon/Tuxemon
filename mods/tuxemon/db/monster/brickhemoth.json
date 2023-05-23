@@ -62,7 +62,7 @@
     "shape": "brute",
     "stage": "stage2",
     "types": [
-        "earth"
+        "earth", "heroic"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 261,

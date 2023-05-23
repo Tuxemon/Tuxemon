@@ -56,7 +56,7 @@
     "shape": "blob",
     "stage": "basic",
     "types": [
-        "earth"
+        "normal", "cosmic"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 236,

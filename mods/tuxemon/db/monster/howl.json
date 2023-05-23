@@ -57,7 +57,7 @@
     "shape": "flier",
     "stage": "standalone",
     "types": [
-        "earth"
+        "normal", "sky"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 235,

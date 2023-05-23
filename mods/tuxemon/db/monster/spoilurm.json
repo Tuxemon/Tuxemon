@@ -57,7 +57,7 @@
     "shape": "serpent",
     "stage": "standalone",
     "types": [
-        "wood"
+        "venom"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 214,

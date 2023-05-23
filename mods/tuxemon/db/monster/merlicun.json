@@ -44,7 +44,7 @@
     "shape": "varmint",
     "stage": "basic",
     "types": [
-        "fire"
+        "normal", "cosmic"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 209,

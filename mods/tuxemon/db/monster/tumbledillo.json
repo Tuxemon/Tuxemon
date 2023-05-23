@@ -62,7 +62,7 @@
     "shape": "varmint",
     "stage": "stage1",
     "types": [
-        "earth"
+        "normal", "earth"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 231,

@@ -57,8 +57,7 @@
     "shape": "blob",
     "stage": "standalone",
     "types": [
-        "fire",
-        "water"
+        "cosmic", "shadow"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 146,

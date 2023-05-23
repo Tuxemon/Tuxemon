@@ -57,8 +57,7 @@
     "shape": "blob",
     "stage": "standalone",
     "types": [
-        "water",
-        "wood"
+        "wood", "frost"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 106,

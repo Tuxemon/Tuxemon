@@ -58,7 +58,7 @@
     "shape": "grub",
     "stage": "stage2",
     "types": [
-        "water"
+        "shadow", "sky"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 38,

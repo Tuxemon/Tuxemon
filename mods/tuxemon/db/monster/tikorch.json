@@ -46,8 +46,7 @@
     "shape": "blob",
     "stage": "stage1",
     "types": [
-        "fire",
-        "wood"
+        "wood", "fire"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 80,

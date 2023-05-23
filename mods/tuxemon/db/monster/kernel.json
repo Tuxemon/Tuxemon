@@ -57,7 +57,7 @@
     "shape": "sprite",
     "stage": "standalone",
     "types": [
-        "metal"
+        "metal", "lightning"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 253,

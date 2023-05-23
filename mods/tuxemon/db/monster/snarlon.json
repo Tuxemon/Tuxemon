@@ -57,7 +57,7 @@
     "shape": "hunter",
     "stage": "standalone",
     "types": [
-        "earth"
+        "normal", "shadow"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 147,

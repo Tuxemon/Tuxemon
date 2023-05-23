@@ -46,8 +46,7 @@
     "shape": "serpent",
     "stage": "stage1",
     "types": [
-        "metal",
-        "fire"
+        "metal", "lightning"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 90,

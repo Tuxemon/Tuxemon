@@ -62,7 +62,7 @@
     "shape": "grub",
     "stage": "stage2",
     "types": [
-        "metal"
+        "metal", "sky"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 35,

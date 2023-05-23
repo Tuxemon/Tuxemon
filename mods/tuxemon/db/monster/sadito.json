@@ -46,8 +46,7 @@
     "shape": "blob",
     "stage": "stage1",
     "types": [
-        "metal",
-        "water"
+        "metal", "cosmic"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 178,

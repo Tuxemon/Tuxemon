@@ -57,7 +57,7 @@
     "shape": "piscine",
     "stage": "standalone",
     "types": [
-        "water"
+        "water", "sky"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 238,

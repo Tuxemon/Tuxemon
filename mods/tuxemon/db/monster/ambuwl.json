@@ -57,7 +57,7 @@
     "shape": "sprite",
     "stage": "standalone",
     "types": [
-        "earth"
+        "cosmic"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 249,

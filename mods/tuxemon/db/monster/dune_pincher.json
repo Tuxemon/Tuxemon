@@ -57,7 +57,7 @@
     "shape": "grub",
     "stage": "standalone",
     "types": [
-        "water"
+        "normal"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 109,

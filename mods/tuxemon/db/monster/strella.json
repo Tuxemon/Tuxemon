@@ -46,7 +46,7 @@
     "shape": "flier",
     "stage": "stage1",
     "types": [
-        "wood"
+        "normal", "sky"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 49,

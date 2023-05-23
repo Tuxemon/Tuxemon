@@ -57,8 +57,7 @@
     "shape": "brute",
     "stage": "standalone",
     "types": [
-        "earth",
-        "water"
+        "normal"
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 206,

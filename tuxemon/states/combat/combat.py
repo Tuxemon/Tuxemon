@@ -39,6 +39,7 @@ from tuxemon.combat import (
     has_effect_param,
     has_status,
     has_status_bond,
+    pre_checking,
     scope,
     spyderbite,
 )
@@ -576,20 +577,9 @@ class CombatState(CombatAnimations):
             )
         # check status response
         if isinstance(user, Monster) and isinstance(technique, Technique):
-            # null action for dozing
-            if has_status(user, "status_dozing"):
-                status = Technique()
-                status.load("skip")
-                technique = status
-            # null action for plague - spyder_bite
-            if user.plague == PlagueType.infected:
-                value = random.randint(1, 8)
-                if value == 1:
-                    status = Technique()
-                    status.load("status_spyderbite")
-                    technique = status
-                    if self.players[1].plague == PlagueType.infected:
-                        target.plague = PlagueType.infected
+            technique = pre_checking(
+                user, technique, target, self.players[0], self.players[0]
+            )
             # check status response
             if self.status_response_technique(user, technique):
                 self._lost_monster = user
@@ -770,7 +760,7 @@ class CombatState(CombatAnimations):
         self.monsters_in_play[player].append(monster)
 
         # remove "connected" status (eg. lifeleech, etc.)
-        for mon in self.monsters_in_play[self.players[0]]:
+        for mon in self.active_monsters:
             if has_status_bond(mon):
                 mon.status.clear()
 

@@ -13,27 +13,30 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class PoisonEffectResult(TechEffectResult):
+class DrainEffectResult(TechEffectResult):
     pass
 
 
 @dataclass
-class PoisonEffect(TechEffect):
+class DrainEffect(TechEffect):
     """
-    This effect has a chance to apply the poison status effect.
+    This effect has a chance to apply the drain status effect.
+    Like poison, burn, etc.
     """
 
-    name = "poison"
+    name = "drain"
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> PoisonEffectResult:
+    ) -> DrainEffectResult:
+        drained: bool = False
         if tech.slug == "status_poison":
-            damage = formula.simple_poison(target)
+            damage = formula.damage_full_hp(target, 8)
             target.current_hp -= damage
+            drained = True
+        if tech.slug == "status_burn":
+            damage = formula.damage_full_hp(target, 8)
+            target.current_hp -= damage
+            drained = True
 
-            return {
-                "success": bool(damage),
-            }
-
-        return {"success": False}
+        return {"success": drained}

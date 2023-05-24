@@ -313,9 +313,10 @@ class TMXMapLoader:
     ]:
         """Identify the tiles on either side of the line and block movement along it."""
         if len(line.points) < 2:
-            raise ValueError(
-                "Error: collision lines must be at least 2 points"
+            logger.error(
+                f"Error '{line.points}: collision lines must be at least 2 points"
             )
+            raise ValueError()
         for point_0, point_1 in zip(line.points, line.points[1:]):
             p0 = point_to_grid(point_0, tile_size)
             p1 = point_to_grid(point_1, tile_size)

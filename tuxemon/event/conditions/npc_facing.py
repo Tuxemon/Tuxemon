@@ -2,9 +2,13 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
+
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+
+logger = logging.getLogger(__name__)
 
 
 class NPCFacingCondition(EventCondition):
@@ -41,4 +45,9 @@ class NPCFacingCondition(EventCondition):
             return False
         facing = condition.parameters[1]
 
-        return player.facing == facing
+        directions = ["up", "down", "left", "right"]
+        if facing not in directions:
+            logger.error(f"{facing} must be 'up', 'down', 'left' or 'right'")
+            raise ValueError()
+        else:
+            return player.facing == facing

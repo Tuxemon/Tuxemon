@@ -2,11 +2,14 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import final
 
 from tuxemon import formula
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -43,3 +46,4 @@ class SetVariableAction(EventAction):
             var_value = str(formula.today_ordinal())
         # Append the game_variables dictionary with the key: value pair
         player.game_variables[var_key] = var_value
+        logger.info(f"Set game variable {var_key} with value {var_value}")

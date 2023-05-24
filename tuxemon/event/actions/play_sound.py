@@ -2,11 +2,14 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import Union, final
 
 from tuxemon import audio
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -45,8 +48,7 @@ class PlaySoundAction(EventAction):
                     player.game_variables["sound_volume"]
                 )
             else:
-                raise ValueError(
-                    f"{self.volume} must be between 0.0 and 1.0",
-                )
+                logger.error(f"{self.volume} must be between 0.0 and 1.0")
+                raise ValueError()
         sound = audio.load_sound(self.filename, volume)
         sound.play()

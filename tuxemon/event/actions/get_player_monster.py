@@ -38,6 +38,7 @@ class GetPlayerMonsterAction(EventAction):
         self.session.player.game_variables[self.variable_name] = str(
             menu_item.game_object.instance_id.hex
         )
+        logger.info(f"Monster iid has been stored in: '{self.variable_name}'")
         self.session.client.pop_state()
 
     def start(self) -> None:

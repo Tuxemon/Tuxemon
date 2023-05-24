@@ -52,8 +52,6 @@ class WildEncounterAction(EventAction):
         if not check_battle_legal(player):
             return
 
-        logger.info("Starting wild encounter!")
-
         current_monster = monster.Monster()
         current_monster.load_from_db(self.monster_slug)
         current_monster.level = self.monster_level
@@ -85,6 +83,7 @@ class WildEncounterAction(EventAction):
 
         # Set the NPC object's AI model.
         npc.ai = ai.RandomAI()
+        logger.info(f"Starting wild encounter against {npc.monsters[0].name}!")
         self.session.client.queue_state(
             "CombatState",
             players=(player, npc),

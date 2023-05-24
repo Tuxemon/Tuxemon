@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import bisect
 import itertools
+import logging
 from typing import (
     Any,
     Final,
@@ -27,6 +28,7 @@ import pygame
 # setting up constants
 from pygame.rect import Rect
 
+logger = logging.getLogger(__name__)
 PLAYING: Final = "playing"
 PAUSED: Final = "paused"
 STOPPED: Final = "stopped"
@@ -235,7 +237,8 @@ class SurfaceAnimation:
     def rate(self, rate: float) -> None:
         rate = float(rate)
         if rate < 0:
-            raise ValueError("rate must be greater than 0.")
+            logger.error(f"{rate} must be greater than 0.")
+            raise ValueError()
         self._rate = rate
 
     @property
@@ -263,10 +266,10 @@ class SurfaceAnimation:
     @state.setter
     def state(self, state: State) -> None:
         if state not in (PLAYING, PAUSED, STOPPED):
-            raise ValueError(
-                "state must be one of surfanim.PLAYING, surfanim.PAUSED, or "
-                "surfanim.STOPPED",
+            logger.error(
+                f"state must be one among {PLAYING}, {PAUSED} or {STOPPED}"
             )
+            raise ValueError()
         if state == PLAYING:
             self.play()
         elif state == PAUSED:

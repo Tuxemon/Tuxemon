@@ -60,6 +60,7 @@ class SetMonsterStatusAction(EventAction):
             try:
                 monster = self.session.player.monsters[self.slot]
             except IndexError:
-                logger.error("invalid monster slot")
+                logger.error(f"{self.slot} is an invalid monster slot")
+                raise ValueError()
             else:
                 self.set_status(monster, self.status)

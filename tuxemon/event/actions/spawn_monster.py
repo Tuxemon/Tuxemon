@@ -131,6 +131,7 @@ class SpawnMonsterAction(EventAction):
         child.moves[replace_tech] = father.moves[
             random.randrange(0, father_moves - 1)
         ]
+        logger.info(f"{child.name} is born")
         trainer.add_monster(child, len(trainer.monsters))
 
         msg = T.format("got_new_tuxemon", {"monster_name": child.name})

@@ -54,5 +54,6 @@ class WithdrawMonsterAction(EventAction):
         mon = trainer.find_monster_in_storage(instance_id)
         assert mon
 
+        logger.info(f"{mon.name} has been withdrawn from storage box")
         trainer.remove_monster_from_storage(mon)
         trainer.add_monster(mon, len(trainer.monsters))

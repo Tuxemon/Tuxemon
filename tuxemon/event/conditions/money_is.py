@@ -2,11 +2,14 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from operator import eq, ge, gt, le, lt, ne
 
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+
+logger = logging.getLogger(__name__)
 
 
 class MoneyIsCondition(EventCondition):
@@ -63,6 +66,7 @@ class MoneyIsCondition(EventCondition):
             elif operator == "not_equals":
                 return bool(ne(player.money[wallet], int(amount)))
             else:
-                raise ValueError(f"{operator} is incorrect.")
+                logger.error(f"{operator} is incorrect.")
+                raise ValueError()
         else:
             return False

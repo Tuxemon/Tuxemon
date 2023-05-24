@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 import uuid
 from dataclasses import dataclass
 from typing import Union, final
@@ -9,6 +10,8 @@ from typing import Union, final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.technique.technique import Technique
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -53,30 +56,26 @@ class AddTechAction(EventAction):
         )
         monster = trainer.find_monster_by_id(instance_id)
         if monster is None:
-            raise ValueError(
-                f"No monster found with instance_id {instance_id}",
-            )
+            logger.error(f"No monster found with instance_id {instance_id}")
+            raise ValueError()
         tech = Technique()
         tech.load(self.technique)
         if self.power:
             if 0.0 <= self.power <= 3.0:
                 tech.power = self.power
             else:
-                raise ValueError(
-                    f"{self.power} must be between 0.0 and 3.0",
-                )
+                logger.error(f"{self.power} must be between 0.0 and 3.0")
+                raise ValueError()
         if self.potency:
             if 0.0 <= self.potency <= 1.0:
                 tech.potency = self.potency
             else:
-                raise ValueError(
-                    f"{self.potency} must be between 0.0 and 1.0",
-                )
+                logger.error(f"{self.potency} must be between 0.0 and 1.0")
+                raise ValueError()
         if self.accuracy:
             if 0.0 <= self.accuracy <= 1.0:
                 tech.accuracy = self.accuracy
             else:
-                raise ValueError(
-                    f"{self.accuracy} must be between 0.0 and 1.0",
-                )
+                logger.error(f"{self.accuracy} must be between 0.0 and 1.0")
+                raise ValueError()
         monster.learn(tech)

@@ -1,8 +1,12 @@
 from __future__ import annotations
 
+import logging
+
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+
+logger = logging.getLogger(__name__)
 
 
 class HasPartyBreederCondition(EventCondition):
@@ -45,4 +49,5 @@ class HasPartyBreederCondition(EventCondition):
             ):
                 return True
 
+        logger.info(f"No breeding monsters available")
         return False

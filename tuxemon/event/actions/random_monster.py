@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 import random as rd
 from dataclasses import dataclass
 from typing import Optional, Union, final
@@ -11,6 +12,8 @@ from tuxemon.db import EvolutionStage, MonsterShape, SeenStatus, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -58,12 +61,14 @@ class RandomMonsterAction(EventAction):
         if self.shape:
             shapes = list(MonsterShape)
             if self.shape not in shapes:
-                raise ValueError("{self.shape} isn't valid.")
+                logger.error(f"{self.shape} isn't valid.")
+                raise ValueError()
         # check if evolution stage is valid
         if self.evo:
             evos = list(EvolutionStage)
             if self.evo not in evos:
-                raise ValueError("{self.evo} isn't valid.")
+                logger.error(f"{self.evo} isn't valid.")
+                raise ValueError()
 
         # list is required as choice expects a sequence
         filters = []
@@ -88,15 +93,18 @@ class RandomMonsterAction(EventAction):
 
         if not filters:
             if self.shape and not self.evo:
-                raise ValueError("There are no monsters shape: {self.shape}")
+                logger.error(f"There are no monsters shape: {self.shape}")
+                raise ValueError()
             if self.evo and not self.shape:
-                raise ValueError("There are no monsters stage: {self.evo}")
+                logger.error(f"There are no monsters stage: {self.evo}")
+                raise ValueError()
             if self.evo and self.shape:
-                raise ValueError(
-                    "There are no monsters {self.evo} ({self.shape}).\n"
+                logger.error(
+                    f"There are no monsters {self.evo} ({self.shape}).\n"
                     "Open an issue on Github, this will help us to create\n"
                     "new monsters with above-mentioned characteristics."
                 )
+                raise ValueError()
 
         monster_slug = rd.choice(filters)
 

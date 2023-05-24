@@ -50,9 +50,8 @@ class PlayMusicAction(EventAction):
                     player.game_variables["music_volume"]
                 )
             else:
-                raise ValueError(
-                    f"{self.volume} must be between 0.0 and 1.0",
-                )
+                logger.error(f"{self.volume} must be between 0.0 and 1.0")
+                raise ValueError()
         try:
             path = prepare.fetch(
                 "music", db.lookup_file("music", self.filename)
@@ -62,7 +61,7 @@ class PlayMusicAction(EventAction):
             mixer.music.play(-1)
         except Exception as e:
             logger.error(e)
-            logger.error("unable to play music")
+            logger.error(f"unable to play music")
 
         # Keep track of what song we're currently playing
         if self.session.client.current_music["song"]:

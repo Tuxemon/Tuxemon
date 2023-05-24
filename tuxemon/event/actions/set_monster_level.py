@@ -2,12 +2,15 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import Union, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
 from tuxemon.technique.technique import Technique
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -55,10 +58,16 @@ class SetMonsterLevelAction(EventAction):
 
             monster = self.session.player.monsters[int(monster_slot)]
             new_level = monster.level + int(monster_level)
+            logger.info(
+                f"{monster.name} level goes from {monster.level} to {new_level}"
+            )
             monster.set_level(new_level)
             update_move(monster, new_level)
         else:
             for monster in self.session.player.monsters:
                 new_level = monster.level + int(monster_level)
+                logger.info(
+                    f"{monster.name} level goes from {monster.level} to {new_level}"
+                )
                 monster.set_level(new_level)
                 update_move(monster, new_level)

@@ -60,6 +60,9 @@ class ChangeTasteAction(EventAction):
             warm.remove(TasteWarm.tasteless)
             warm.remove(monster.taste_warm)
             r_warm = random.choice(warm)
+            logger.info(
+                f"{monster.name} taste {monster.taste_warm} has been changed into {r_warm}"
+            )
             monster.taste_warm = r_warm
             monster.set_stats()
         elif self.taste == "cold":
@@ -67,7 +70,11 @@ class ChangeTasteAction(EventAction):
             cold.remove(TasteCold.tasteless)
             cold.remove(monster.taste_cold)
             r_cold = random.choice(cold)
+            logger.info(
+                f"{monster.name} taste {monster.taste_cold} has been changed into {r_cold}"
+            )
             monster.taste_cold = r_cold
             monster.set_stats()
         else:
-            raise ValueError(f"{self.taste} must be warm or cold")
+            logger.error(f"{self.taste} must be warm or cold")
+            raise ValueError()

@@ -398,6 +398,9 @@ class CombatState(CombatAnimations):
                     self.players[0].tuxepedia[
                         monster_record.slug
                     ] = SeenStatus.seen
+                    logger.info(
+                        f"{monster_record.name} has been added to Tuxepedia as {SeenStatus.seen}"
+                    )
 
         elif phase == "decision phase":
             self.reset_status_icons()
@@ -469,6 +472,7 @@ class CombatState(CombatAnimations):
         elif phase == "draw match":
             self.players[0].set_party_status()
             var = self.players[0].game_variables
+            logger.info(f"Combat has been {OutputBattle.draw}")
             var["battle_last_result"] = OutputBattle.draw
             var["teleport_clinic"] = OutputBattle.lost
             if self.is_trainer_battle:
@@ -499,6 +503,7 @@ class CombatState(CombatAnimations):
             self.players[0].set_party_status()
             var = self.players[0].game_variables
             if self.remaining_players[0] == self.players[0]:
+                logger.info(f"Combat has been {OutputBattle.won}")
                 var["battle_last_result"] = OutputBattle.won
                 if self.is_trainer_battle:
                     message = T.format(
@@ -521,6 +526,7 @@ class CombatState(CombatAnimations):
                     message = T.translate("combat_victory")
 
             else:
+                logger.info(f"Combat has been {OutputBattle.lost}")
                 var["battle_last_result"] = OutputBattle.lost
                 var["teleport_clinic"] = OutputBattle.lost
                 message = T.translate("combat_defeat")

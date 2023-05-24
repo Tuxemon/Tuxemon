@@ -1,10 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+import logging
 from operator import eq, ge, gt, le, lt
 
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+
+logger = logging.getLogger(__name__)
 
 
 class HasItemCondition(EventCondition):
@@ -68,4 +71,5 @@ class HasItemCondition(EventCondition):
                 else:
                     return True
         else:
-            raise ValueError(f"{npc_slug} doesn't exist.")
+            logger.error(f"{npc_slug} doesn't exist.")
+            raise ValueError()

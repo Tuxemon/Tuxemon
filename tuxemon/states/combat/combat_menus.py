@@ -100,6 +100,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         combat_state = self.client.get_state_by_name(CombatState)
         enemy = combat_state.players[1]
         if not enemy.forfeit:
+            logger.info(f"Unable to forfeit against {enemy.name}")
 
             def open_menu() -> None:
                 combat_state.task(
@@ -116,6 +117,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             )
         else:
             # trigger forfeit
+            logger.info(f"Forfeit against {enemy.name}")
             for mon in self.player.monsters:
                 faint = Technique()
                 faint.load("status_faint")
@@ -155,11 +157,13 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             formula.escape(player.level, enemy.level, var["run_attempts"])
             and combat_state._run == "on"
         ):
+            logger.info(f"Run from {enemy.name}")
             var["run_attempts"] += 1
             # trigger run
             del combat_state.monsters_in_play[self.player]
             combat_state.players.remove(self.player)
         else:
+            logger.info(f"Unable to run from {enemy.name}")
 
             def open_menu() -> None:
                 combat_state.task(
@@ -212,6 +216,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                     ],
                 )
                 return
+            logger.info(f"Swapped {swap.name} with {added.name}")
             combat_state.enqueue_action(self.monster, swap, added)
             self.client.pop_state()  # close technique menu
             self.client.pop_state()  # close the monster action menu

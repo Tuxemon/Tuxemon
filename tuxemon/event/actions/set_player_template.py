@@ -2,10 +2,13 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import Union, final
 
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -54,6 +57,10 @@ class SetPlayerTemplateAction(EventAction):
                     ele.sprite_name = player.game_variables["gender_choice"]
             else:
                 ele.sprite_name = self.sprite
+                logger.info(f"{player.name} sprite is: {self.sprite}")
             if self.combat_front is not None:
                 ele.combat_front = self.combat_front
+                logger.info(
+                    f"{player.name} combat_front is: {self.combat_front}"
+                )
         player.load_sprites()

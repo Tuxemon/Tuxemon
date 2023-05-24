@@ -2,10 +2,13 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -38,10 +41,12 @@ class AddContactsAction(EventAction):
 
         if len(phone) == 3:
             if contact not in player:
+                logger.info(
+                    f"{contact} has been added in Contacts (Phone) with {phone}"
+                )
                 player[str(contact)] = phone
             else:
                 return
         else:
-            raise ValueError(
-                f"{phone} must be 3 digits.",
-            )
+            logger.error(f"{phone} must be 3 digits.")
+            raise ValueError()

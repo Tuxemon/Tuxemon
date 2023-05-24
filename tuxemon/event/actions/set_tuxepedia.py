@@ -2,11 +2,14 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import final
 
 from tuxemon.db import SeenStatus
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -43,12 +46,19 @@ class SetTuxepediaAction(EventAction):
         # Append the tuxepedia with a key
         if self.status == SeenStatus.caught:
             if self.monster_slug not in caught:
+                logger.info(
+                    f"{self.monster_slug} has been added as {SeenStatus.caught} in Tuxepedia"
+                )
                 player[str(self.monster_slug)] = SeenStatus.caught
         elif self.status == SeenStatus.seen:
             # to avoid setting seen a monster caught
             if self.monster_slug in caught:
                 return
             else:
+                logger.info(
+                    f"{self.monster_slug} has been added as {SeenStatus.seen} in Tuxepedia"
+                )
                 player[str(self.monster_slug)] = SeenStatus.seen
         else:
-            raise ValueError(f"{self.status} must be caught or seen")
+            logger.error(f"{self.status} must be caught or seen")
+            raise ValueError()

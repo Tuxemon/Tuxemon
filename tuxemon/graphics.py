@@ -441,7 +441,7 @@ def scaled_image_loader(
             try:
                 tile = image.subsurface(rect)
             except ValueError:
-                logger.error("Tile bounds outside bounds of tileset image")
+                logger.error(f"Tile bounds outside bounds of tileset image")
                 raise
         else:
             tile = image.copy()

@@ -92,7 +92,7 @@ class RandomBattleAction(EventAction):
         env = db.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
-        logger.info("Starting battle with '{self.npc_slug}'!")
+        logger.info(f"Starting random battle against {npc.slug}!")
         self.session.client.push_state(
             CombatState(
                 players=(player, npc),

@@ -97,5 +97,5 @@ class TranslatedDialogChainAction(
         pages: Sequence[str],
         avatar: Optional[Sprite],
     ) -> None:
-        logger.info("Opening chain dialog window")
+        logger.info(f"Opening chain dialog window")
         open_dialog(self.session, pages, avatar)

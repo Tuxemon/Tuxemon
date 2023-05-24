@@ -2,11 +2,14 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import Union, final
 
 from tuxemon.db import PlagueType
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -47,9 +50,11 @@ class SetMonsterPlagueAction(EventAction):
                 elif self.condition == "healthy":
                     monster.plague = PlagueType.healthy
                 else:
-                    raise ValueError(
-                        f"{self.condition} must be infect or heal"
+                    logger.error(
+                        f"{self.condition} must be inoculated, infected or healthy"
                     )
+                    raise ValueError()
+                logger.info(f"{monster.name} is {self.condition}")
         else:
             mon = self.session.player.monsters[monster_slot]
             if self.condition == "inoculated":
@@ -59,4 +64,8 @@ class SetMonsterPlagueAction(EventAction):
             elif self.condition == "healthy":
                 mon.plague = PlagueType.healthy
             else:
-                raise ValueError(f"{self.condition} must be infect or heal")
+                logger.error(
+                    f"{self.condition} must be inoculated, infected or healthy"
+                )
+                raise ValueError()
+            logger.info(f"{mon.name} is {self.condition}")

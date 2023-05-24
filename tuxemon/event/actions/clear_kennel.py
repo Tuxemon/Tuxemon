@@ -2,11 +2,14 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.pc import KENNEL
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -43,9 +46,8 @@ class ClearKennelAction(EventAction):
         transfer = self.transfer
 
         if kennel == KENNEL:
-            raise ValueError(
-                f"{kennel} cannot be cleared.",
-            )
+            logger.error(f"{kennel} cannot be cleared.")
+            raise ValueError()
         else:
             if kennel in player.monster_boxes:
                 monsters_kennel = player.monster_boxes[kennel]

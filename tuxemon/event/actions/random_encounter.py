@@ -82,8 +82,6 @@ class RandomEncounterAction(EventAction):
         # If a random encounter was successfully rolled, look up the monster
         # and start the battle.
         if encounter:
-            logger.info("Starting random encounter!")
-
             self.world = self.session.client.get_state_by_name(WorldState)
             npc = _create_monster_npc(encounter, world=self.world)
 
@@ -96,6 +94,9 @@ class RandomEncounterAction(EventAction):
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack
             # is popped (or replaced)
+            logger.info(
+                f"Starting random encounter against {npc.monsters[0].name}!"
+            )
             self.session.client.queue_state(
                 "CombatState",
                 players=(player, npc),

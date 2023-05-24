@@ -2,10 +2,14 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
+
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.platform.const import intentions
 from tuxemon.session import Session
+
+logger = logging.getLogger(__name__)
 
 
 class ButtonPressedCondition(EventCondition):
@@ -45,7 +49,8 @@ class ButtonPressedCondition(EventCondition):
         if button == "K_RETURN":
             button_id = intentions.INTERACT
         else:
-            raise ValueError(f"Cannot support key type: {button}")
+            logger.error(f"Cannot support key type: {button}")
+            raise ValueError()
 
         # Loop through each event
         for event in session.client.key_events:

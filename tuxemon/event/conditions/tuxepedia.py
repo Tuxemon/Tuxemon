@@ -2,8 +2,10 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from operator import eq, ge, gt, le, lt, ne
 
+logger = logging.getLogger(__name__)
 from tuxemon.db import SeenStatus, db
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
@@ -62,9 +64,8 @@ class TuxepediaCondition(EventCondition):
         if 0.0 <= value <= 1.0:
             amount = value
         else:
-            raise ValueError(
-                f"{value} must be between 0.0 and 1.0",
-            )
+            logger.error(f"{value} must be between 0.0 and 1.0")
+            raise ValueError()
         # Check if the condition is true
         if operator == "less_than":
             return bool(lt(percentage, amount))
@@ -79,4 +80,5 @@ class TuxepediaCondition(EventCondition):
         elif operator == "not_equals":
             return bool(ne(percentage, amount))
         else:
-            raise ValueError(f"{operator} is incorrect.")
+            logger.error(f"{operator} is incorrect.")
+            raise ValueError()

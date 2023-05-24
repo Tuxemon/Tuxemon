@@ -2,6 +2,9 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
+
+logger = logging.getLogger(__name__)
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
@@ -51,9 +54,8 @@ class RestoreEffect(ItemEffect):
                 else:
                     pass
             else:
-                raise ValueError(
-                    f"{self.category} must be positive or negative."
-                )
+                logger.error(f"{self.category} must be positive or negative.")
+                raise ValueError()
         else:
             target.status.clear()
 

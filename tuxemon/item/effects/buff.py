@@ -2,9 +2,11 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
+logger = logging.getLogger(__name__)
 from tuxemon.db import StatType
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
@@ -31,6 +33,7 @@ class BuffEffect(ItemEffect):
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> BuffEffectResult:
+        value: float = 0.0
         assert target
         if self.stat == StatType.hp:
             value = target.hp * self.amount
@@ -51,6 +54,10 @@ class BuffEffect(ItemEffect):
             value = target.speed * self.amount
             target.speed += int(value)
         else:
-            raise ValueError(f"{self.stat} must be a stat.")
+            logger.error(f"{self.stat} must be a stat.")
+            raise ValueError()
 
+        logger.info(
+            f"{target.name} {self.stat} has been increase by {int(value)}"
+        )
         return {"success": True}

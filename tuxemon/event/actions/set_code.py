@@ -2,12 +2,15 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.menu.input import InputMenu
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -43,8 +46,10 @@ class SetCodeAction(EventAction):
     def check_setcode(self, name: str) -> None:
         player = self.session.player
         if self.answer == name:
+            logger.info(f"{self.variable} is right")
             player.game_variables[self.variable] = "right"
         else:
+            logger.info(f"{self.variable} is wrong")
             player.game_variables[self.variable] = "wrong"
 
     def start(self) -> None:

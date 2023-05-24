@@ -2,12 +2,15 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 import math
 from dataclasses import dataclass
 from typing import Union, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -41,9 +44,10 @@ class PathfindToPlayerAction(EventAction):
             value = 1
         else:
             if self.distance == 0:
-                raise ValueError(
-                    f"{self.distance} cannot be 0 (player coordinates).",
+                logger.error(
+                    f"{self.distance} cannot be 0 (player coordinates)."
                 )
+                raise ValueError()
             else:
                 value = self.distance
         if self.side is not None:
@@ -62,9 +66,8 @@ class PathfindToPlayerAction(EventAction):
                 closest = (x - value, y)
                 self.npc.facing = "right"
             else:
-                raise ValueError(
-                    f"{self.side} must be up, down, left or right.",
-                )
+                logger.error(f"{self.side} must be up, down, left or right.")
+                raise ValueError()
         else:
             target = self.npc.tile_pos
             destination = [

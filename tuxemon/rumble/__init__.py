@@ -34,5 +34,5 @@ class RumbleManager:
             self.backend = "libShake"
             self.rumbler = LibShakeRumble(lib_shake)
         else:
-            logger.error("No rumble backends available.")
+            logger.error(f"No rumble backends available.")
             self.rumbler = Rumble()

@@ -11,6 +11,10 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class HealingEffectResult(TechEffectResult):
     pass
@@ -45,7 +49,8 @@ class HealingEffect(TechEffect):
         elif self.objective == "target":
             mon = target
         else:
-            raise ValueError(f"{self.objective} must be user or target")
+            logger.error(f"{self.objective} must be user or target")
+            raise ValueError()
         # check healing power
         if isinstance(tech.healing_power, int):
             heal = (7 + mon.level) * tech.healing_power

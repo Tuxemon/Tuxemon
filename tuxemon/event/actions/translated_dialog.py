@@ -87,5 +87,5 @@ class TranslatedDialogAction(EventAction):
         pages: Sequence[str],
         avatar: Optional[Sprite],
     ) -> None:
-        logger.info("Opening dialog window")
+        logger.info(f"Opening dialog window")
         open_dialog(self.session, pages, avatar)

@@ -31,5 +31,5 @@ class StopCinemaModeAction(EventAction):
         world = self.session.client.current_state
         assert isinstance(world, WorldState)
         if world.cinema_state == "on":
-            logger.info("Turning off cinema mode")
+            logger.info(f"Turning off cinema mode")
             world.cinema_state = "turning off"

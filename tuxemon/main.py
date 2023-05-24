@@ -68,7 +68,7 @@ def main(
 
     # block of code useful for testing
     if config.collision_map:
-        logger.info("********* DEBUG OPTIONS ENABLED *********")
+        logger.info(f"********* DEBUG OPTIONS ENABLED *********")
 
         logging.basicConfig(level=logging.DEBUG)
 

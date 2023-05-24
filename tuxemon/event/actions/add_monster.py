@@ -2,6 +2,9 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
+
+logger = logging.getLogger(__name__)
 from dataclasses import dataclass
 from typing import Optional, Union, final
 
@@ -60,9 +63,10 @@ class AddMonsterAction(EventAction):
             if self.monster_slug in player.game_variables:
                 _monster = player.game_variables[self.monster_slug]
             else:
-                raise ValueError(
+                logger.error(
                     f"{self.monster_slug} doesn't exist (monster or variable)."
                 )
+                raise ValueError()
         else:
             _monster = self.monster_slug
 

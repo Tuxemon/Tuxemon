@@ -2,9 +2,13 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
+
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+
+logger = logging.getLogger(__name__)
 
 
 class HasTechCondition(EventCondition):
@@ -38,6 +42,8 @@ class HasTechCondition(EventCondition):
         player = session.player
         tech = condition.parameters[0]
         if player.has_tech(tech):
+            logger.info(f"Someone in the party has {tech}")
             return True
         else:
+            logger.info(f"No monster in the party has {tech}")
             return False

@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import final
 
@@ -12,6 +13,8 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.monster import Monster
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.states.world.worldstate import WorldState
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -52,6 +55,7 @@ class RenameMonsterAction(EventAction):
                 self.stop()
 
     def set_monster_name(self, name: str) -> None:
+        logger.info(f"{self.monster.name} has been changed into {name}")
         self.monster.name = name
         monster_menu_state = self.session.client.get_state_by_name(
             MonsterMenuState,

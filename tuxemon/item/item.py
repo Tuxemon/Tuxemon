@@ -188,9 +188,11 @@ class Item:
                 elif op == "not":
                     condition._op = False
                 else:
-                    raise ValueError(f"{op} must be 'is' or 'not'")
+                    logger.error(f"{op} must be 'is' or 'not'")
+                    raise ValueError()
             except KeyError:
-                logger.error(f'Error: ItemCondition "{name}" not implemented')
+                logger.error(f"Error: ItemCondition {name} not implemented")
+                raise ValueError()
             else:
                 ret.append(condition(*params))
 
@@ -242,6 +244,10 @@ class Item:
             "should_tackle": False,
             "success": False,
         }
+        if target:
+            logger.info(f"{user.name} uses {self.name} on {target.name}")
+        else:
+            logger.info(f"{self.name} uses {self.name}")
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:

@@ -2,11 +2,14 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from typing import Optional
 
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+
+logger = logging.getLogger(__name__)
 
 
 class VariableSetCondition(EventCondition):
@@ -54,4 +57,5 @@ class VariableSetCondition(EventCondition):
         if value is None:
             return exists
         else:
+            logger.info(f"Game variable {key} has value: {value}")
             return exists and player.game_variables[key] == value

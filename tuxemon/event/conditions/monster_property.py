@@ -2,9 +2,13 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
+
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+
+logger = logging.getLogger(__name__)
 
 
 class MonsterPropertyCondition(EventCondition):
@@ -94,5 +98,6 @@ class MonsterPropertyCondition(EventCondition):
                 if player.has_tech(val):
                     return True
             else:
-                raise ValueError(f"{prop} isn't among the valid values.")
+                logger.error(f"{prop} isn't among the valid values.")
+                raise ValueError()
         return False

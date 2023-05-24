@@ -42,8 +42,9 @@ class SetMonsterHealthAction(EventAction):
             monster.current_hp = monster.hp
         else:
             if not 0 <= value <= 1:
-                raise ValueError("monster health must between 0 and 1")
-
+                logger.error(f"{value} must between 0 and 1")
+                raise ValueError()
+            logger.info(f"{monster.name} has been healed")
             monster.current_hp = int(monster.hp * value)
 
     def start(self) -> None:
@@ -62,6 +63,7 @@ class SetMonsterHealthAction(EventAction):
             try:
                 monster = self.session.player.monsters[monster_slot]
             except IndexError:
-                logger.error("invalid monster slot")
+                logger.error(f"{monster_slot} is an invalid monster slot")
+                raise ValueError()
             else:
                 self.set_health(monster, monster_health)

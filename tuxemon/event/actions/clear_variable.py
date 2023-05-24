@@ -35,3 +35,4 @@ class ClearVariableAction(EventAction):
         player = self.session.player
         key = self.variable
         player.game_variables.pop(key, None)
+        logger.info(f"Game variable '{key}' has been deleted")

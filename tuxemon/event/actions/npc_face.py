@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import cast, final
 
@@ -9,6 +10,8 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import Direction, dirs2, get_direction
 from tuxemon.npc import NPC
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -48,4 +51,5 @@ class NpcFaceAction(EventAction):
                 target = maybe_target
             direction = get_direction(npc.tile_pos, target.tile_pos)
         # Pending https://github.com/python/mypy/issues/9718
+        logger.info(f"{npc.name} turns towards {direction}")
         npc.facing = cast(Direction, direction)

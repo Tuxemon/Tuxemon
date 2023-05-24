@@ -664,6 +664,9 @@ class NPC(Entity[NPCState]):
         monster.owner = self
         if len(self.monsters) >= self.party_limit:
             self.monster_boxes[KENNEL].append(monster)
+            logger.info(
+                f"{monster.name} lv {monster.level} has been sent in the storage box: {KENNEL}"
+            )
             if len(self.monster_boxes[KENNEL]) >= MAX_BOX:
                 i = sum(
                     1
@@ -673,6 +676,9 @@ class NPC(Entity[NPCState]):
                 self.monster_boxes[f"{KENNEL}{i}"] = self.monster_boxes[KENNEL]
                 self.monster_boxes[KENNEL] = []
         else:
+            logger.info(
+                f"{monster.name} lv {monster.level} has been added in the party (slot: {slot})"
+            )
             self.monsters.insert(slot, monster)
             self.set_party_status()
 
@@ -745,6 +751,7 @@ class NPC(Entity[NPCState]):
         if monster in self.monsters:
             self.monsters.remove(monster)
             self.set_party_status()
+            logger.info(f"{monster.name} has been released")
             return True
         else:
             return False
@@ -759,6 +766,7 @@ class NPC(Entity[NPCState]):
         """
         if monster in self.monsters:
             self.monsters.remove(monster)
+            logger.info(f"{monster.name} has been removed from the party")
             self.set_party_status()
 
     def evolve_monster(self, old_monster: Monster, evolution: str) -> None:
@@ -787,6 +795,7 @@ class NPC(Entity[NPCState]):
         new_monster.taste_cold = old_monster.taste_cold
         new_monster.taste_warm = old_monster.taste_warm
         new_monster.plague = old_monster.plague
+        logger.info(f"{old_monster.name} evolved into {new_monster.name}")
         self.remove_monster(old_monster)
         self.add_monster(new_monster, slot)
 
@@ -1029,8 +1038,12 @@ class NPC(Entity[NPCState]):
             self.item_boxes[LOCKER] = []
 
         if len(self.items) >= MAX_TYPES_BAG:
+            logger.info(
+                f"{item.quantity} {item.name} has/have been sent in the storage box: {LOCKER}"
+            )
             self.item_boxes[LOCKER].append(item)
         else:
+            logger.info(f"{item.name} has been added to the bag")
             self.items.append(item)
 
     def remove_item(self, item: Item) -> None:
@@ -1039,6 +1052,9 @@ class NPC(Entity[NPCState]):
 
         """
         if item in self.items:
+            logger.info(
+                f"{item.quantity} {item.name} has/have been removed from the bag"
+            )
             self.items.remove(item)
 
     def find_item(self, item_slug: str) -> Optional[Item]:

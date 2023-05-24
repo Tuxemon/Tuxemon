@@ -2,12 +2,15 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 import uuid
 from dataclasses import dataclass
 from typing import Union, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.pc import KENNEL
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -42,19 +45,18 @@ class StoreMonsterAction(EventAction):
         box = self.box
         monster = player.find_monster_by_id(instance_id)
         if monster is None:
-            raise ValueError(
-                f"No monster found with instance_id {instance_id}",
-            )
+            logger.error(f"No monster found with instance_id {instance_id}")
+            raise ValueError()
 
         if box is None:
             store = KENNEL
         else:
             if box not in player.monster_boxes.keys():
-                raise ValueError(
-                    f"No box found with name {box}",
-                )
+                logger.error(f"No box found with name {box}")
+                raise ValueError()
             else:
                 store = box
 
+        logger.info(f"{monster.name} has been added to storage box {store}")
         player.monster_boxes[store].append(monster)
         player.remove_monster(monster)

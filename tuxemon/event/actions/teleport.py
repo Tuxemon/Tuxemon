@@ -2,12 +2,15 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -61,6 +64,7 @@ class TeleportAction(EventAction):
                 world.change_map(map_path)
 
             elif map_path != world.current_map.filename:
+                logger.info(f"{player.name} has been teleported to {map_path}")
                 world.change_map(map_path)
 
             # Stop the player's movement so they don't continue their move

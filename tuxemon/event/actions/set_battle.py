@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 import datetime as dt
+import logging
 from dataclasses import dataclass
 from typing import final
 
 from tuxemon.battle import Battle
 from tuxemon.db import OutputBattle
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -46,8 +49,7 @@ class SetBattleAction(EventAction):
         elif self.battle_outcome == "lost":
             new_battle.outcome = OutputBattle.lost
         else:
-            raise ValueError(
-                f"{self.battle_outcome} must be won, lost or draw.",
-            )
+            logger.error(f"{self.battle_outcome} must be won, lost or draw.")
+            raise ValueError()
 
         player.battles.append(new_battle)

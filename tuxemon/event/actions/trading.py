@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 import uuid
 from dataclasses import dataclass
 from typing import final
@@ -12,6 +13,8 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.interface import MenuItem
 from tuxemon.monster import Monster
 from tuxemon.states.monster import MonsterMenuState
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -46,9 +49,10 @@ class TradingAction(EventAction):
         trading_id = uuid.UUID(self.player.game_variables["trading_monster"])
         trading = self.player.find_monster_by_id(trading_id)
         if trading is None:
-            raise ValueError(
+            logger.error(
                 f"Could not find monster with instance id {trading_id}"
             )
+            raise ValueError()
         slot = self.player.monsters.index(trading)
         new = Monster()
         new.load_from_db(self.add)
@@ -56,6 +60,7 @@ class TradingAction(EventAction):
         new.set_moves(trading.level)
         new.set_capture(formula.today_ordinal())
         new.current_hp = new.hp
+        logger.info(f"{trading.name} has been traded for {new.name}")
         self.player.remove_monster(trading)
         self.player.add_monster(new, slot)
         self.player.tuxepedia[self.add] = SeenStatus.caught
@@ -70,11 +75,12 @@ class TradingAction(EventAction):
             menu = self.session.client.push_state(MonsterMenuState())
             menu.on_menu_selection = self.set_var  # type: ignore[assignment]
         else:
-            raise ValueError(
+            logger.error(
                 f"{self.remove} isn't in your party.\n"
                 "Advice: use the condition has_monster\n"
                 "or monster_property to avoid issues."
             )
+            raise ValueError()
 
     def update(self) -> None:
         try:

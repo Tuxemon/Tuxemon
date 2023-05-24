@@ -82,7 +82,7 @@ def load_sound(slug: Optional[str], value: Optional[float]) -> SoundProtocol:
         return sound
     except MemoryError:
         # raised on some systems if there is no mixer
-        logger.error("memoryerror, unable to load sound")
+        logger.error(f"memoryerror, unable to load sound: {sound}")
         return DummySound()
     except pygame.error as e:
         # pick one:
@@ -90,5 +90,5 @@ def load_sound(slug: Optional[str], value: Optional[float]) -> SoundProtocol:
         # * sound has invalid path
         # * mixer has no output (device ok, no speakers)
         logger.error(e)
-        logger.error("unable to load sound")
+        logger.error(f"unable to load sound: {sound}")
         return DummySound()

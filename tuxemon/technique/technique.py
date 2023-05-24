@@ -250,9 +250,10 @@ class Technique:
                 elif op == "not":
                     condition._op = False
                 else:
-                    raise ValueError(f"{op} must be 'is' or 'not'")
+                    logger.error(f"{op} must be 'is' or 'not'")
+                    raise ValueError()
             except KeyError:
-                logger.error(f'Error: TechCondition "{name}" not implemented')
+                logger.error(f"Error: TechCondition {name} not implemented")
             else:
                 ret.append(condition(*params))
 
@@ -343,6 +344,11 @@ class Technique:
             "success": False,
             "should_tackle": False,
         }
+
+        if user:
+            logger.info(f"{user.name} uses {self.name} on {target.name}")
+        else:
+            logger.info(f"{self.name} on {target.name}")
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:

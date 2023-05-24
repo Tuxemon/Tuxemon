@@ -84,5 +84,5 @@ class DialogAction(EventAction):
             self.stop()
 
     def open_dialog(self, initial_text: str, avatar: Optional[Sprite]) -> None:
-        logger.info("Opening dialog window")
+        logger.info(f"Opening dialog window")
         open_dialog(self.session, [initial_text], avatar)

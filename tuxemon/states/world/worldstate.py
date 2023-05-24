@@ -216,7 +216,8 @@ class WorldState(state.State):
         if map_name:
             self.change_map(map_name)
         else:
-            raise ValueError("You must pass the map name to load")
+            logger.error(f"You must pass the map name to load")
+            raise ValueError()
 
     def resume(self) -> None:
         """Called after returning focus to this state"""
@@ -426,7 +427,7 @@ class WorldState(state.State):
 
         if event.button == intentions.WORLD_MENU:
             if event.pressed:
-                logger.info("Opening main menu!")
+                logger.info(f"Opening main menu!")
                 self.client.release_controls()
                 self.client.push_state(WorldMenuState())
                 return None
@@ -1246,7 +1247,7 @@ class WorldState(state.State):
                             int(round(npc.tile_pos[1])),
                         )
                         if tile_pos == tile:
-                            logger.info("Opening interaction menu!")
+                            logger.info(f"Opening interaction menu!")
                             self.client.push_state("InteractionMenu")
                             return True
                         else:

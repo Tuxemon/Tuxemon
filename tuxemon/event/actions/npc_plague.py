@@ -2,12 +2,15 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import Union, final
 
 from tuxemon.db import PlagueType
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -47,6 +50,7 @@ class NpcPlagueAttributeAction(
         elif self.value == PlagueType.inoculated:
             npc.plague = PlagueType.inoculated
         else:
-            raise ValueError(
+            logger.error(
                 f"{self.value} must be infected, inoculated or healthy."
             )
+            raise ValueError()

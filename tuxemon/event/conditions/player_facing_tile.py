@@ -54,6 +54,9 @@ class PlayerFacingTileCondition(EventCondition):
             prop = condition.parameters[0]
             if prop == "surfable":
                 tiles = list(world.surfable_map)
+            else:
+                logger.error(f"{prop} doesn't exist")
+                raise ValueError()
 
         # Next, we check the player position and see if we're one tile
         # away from the tile.

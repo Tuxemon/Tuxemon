@@ -21,7 +21,7 @@ class FlashTransition(State):
 
     def __init__(self) -> None:
         super().__init__()
-        logger.info("Initializing battle transition")
+        logger.info(f"Initializing battle transition")
         self.flash_time = 0.2  # Time in seconds between flashes
         self.flash_state = "up"
         self.transition_alpha = 0.0
@@ -41,7 +41,7 @@ class FlashTransition(State):
             time_delta: Time since last update in seconds
 
         """
-        logger.info("Battle transition!")
+        logger.info(f"Battle transition!")
 
         # self.battle_transition_alpha
         if self.flash_state == "up":

@@ -35,7 +35,7 @@ try:
 
     networking = True
 except ImportError:
-    logger.info("Neteria networking unavailable")
+    logger.info(f"Neteria networking unavailable")
     networking = False
 
 if TYPE_CHECKING:
@@ -103,7 +103,7 @@ class TuxemonServer:
                     - self.server.registry[cuuid]["ping_timestamp"]
                 )
                 if difference.seconds > 15:
-                    logger.info("Client Disconnected. CUUID: " + str(cuuid))
+                    logger.info(f"Client Disconnected. CUUID: {str(cuuid)}")
                     event_data = EventData(type="CLIENT_DISCONNECTED")
                     self.notify_client(cuuid, event_data)
                     del self.server.registry[cuuid]
@@ -554,7 +554,7 @@ class TuxemonClient:
                     for ipa, porta in self.available_games:
                         hosta = (ipa, porta)
                         if hosta == host:
-                            logger.info("Game already in list, skipping.")
+                            logger.info(f"Game already in list, skipping.")
                             return False
                 except KeyError:
                     pass

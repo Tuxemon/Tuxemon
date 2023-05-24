@@ -2,11 +2,14 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import Union, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -40,4 +43,7 @@ class GetPartyMonsterAction(EventAction):
             index = trainer.monsters.index(mon)
             player.game_variables[f"iid_slot_{index}"] = str(
                 mon.instance_id.hex
+            )
+            logger.info(
+                f"Monsters iids have been stored in: 'iid_slot_{index}'"
             )

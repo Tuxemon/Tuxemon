@@ -225,20 +225,23 @@ class ItemModel(BaseModel):
     def translation_exists(cls: ItemModel, v: Any) -> Any:
         if has.translation(v):
             return v
-        raise ValueError(f"no translation exists with msgid: {v}")
+        logger.error(f"no translation exists with msgid: {v}")
+        raise ValueError()
 
     @validator("slug")
     def translation_exists_item(cls: ItemModel, v: Any) -> Any:
         if has.translation(v):
             return v
-        raise ValueError(f"no translation exists with msgid: {v}")
+        logger.error(f"no translation exists with msgid: {v}")
+        raise ValueError()
 
     # Validate resources that should exist
     @validator("sprite")
     def file_exists(cls: ItemModel, v: Any) -> Any:
         if has.file(v):
             return v
-        raise ValueError(f"the sprite {v} doesn't exist in the db")
+        logger.error(f"the sprite {v} doesn't exist in the db")
+        raise ValueError()
 
 
 class MonsterMovesetItemModel(BaseModel):
@@ -255,14 +258,16 @@ class MonsterMovesetItemModel(BaseModel):
     @validator("level_learned")
     def valid_level(cls: MonsterMovesetItemModel, v: Any) -> Any:
         if v < 0:
-            raise ValueError(f"invalid level learned: {v}")
+            logger.error(f"invalid level learned: {v}")
+            raise ValueError()
         return v
 
     @validator("technique")
     def technique_exists(cls: MonsterMovesetItemModel, v: Any) -> Any:
         if has.db_entry("technique", v):
             return v
-        raise ValueError(f"the technique {v} doesn't exist in the db")
+        logger.error(f"the technique {v} doesn't exist in the db")
+        raise ValueError()
 
 
 class MonsterHistoryItemModel(BaseModel):
@@ -275,7 +280,8 @@ class MonsterHistoryItemModel(BaseModel):
     def monster_exists(cls: MonsterHistoryItemModel, v: Any) -> Any:
         if has.db_entry("monster", v):
             return v
-        raise ValueError(f"the monster {v} doesn't exist in the db")
+        logger.error(f"the monster {v} doesn't exist in the db")
+        raise ValueError()
 
 
 class MonsterEvolutionItemModel(BaseModel):
@@ -311,19 +317,22 @@ class MonsterEvolutionItemModel(BaseModel):
     def technique_exists(cls: MonsterEvolutionItemModel, v: Any) -> Any:
         if has.db_entry("technique", v):
             return v
-        raise ValueError(f"the technique {v} doesn't exist in the db")
+        logger.error(f"the technique {v} doesn't exist in the db")
+        raise ValueError()
 
     @validator("monster_slug")
     def monster_exists(cls: MonsterEvolutionItemModel, v: Any) -> Any:
         if has.db_entry("monster", v):
             return v
-        raise ValueError(f"the monster {v} doesn't exist in the db")
+        logger.error(f"the monster {v} doesn't exist in the db")
+        raise ValueError()
 
     @validator("item")
     def item_exists(cls: MonsterEvolutionItemModel, v: Any) -> Any:
         if has.db_entry("item", v):
             return v
-        raise ValueError(f"the item {v} doesn't exist in the db")
+        logger.error(f"the item {v} doesn't exist in the db")
+        raise ValueError()
 
 
 class MonsterFlairItemModel(BaseModel):
@@ -342,7 +351,8 @@ class MonsterSpritesModel(BaseModel):
     def file_exists(cls: MonsterSpritesModel, v: Any) -> Any:
         if has.file(f"{v}.png"):
             return v
-        raise ValueError(f"no resource exists with path: {v}")
+        logger.error(f"no resource exists with path: {v}")
+        raise ValueError()
 
 
 class MonsterSoundsModel(BaseModel):
@@ -425,7 +435,8 @@ class MonsterModel(BaseModel):
     def translation_exists_category(cls: MonsterModel, v: Any) -> Any:
         if has.translation(f"cat_{v}"):
             return v
-        raise ValueError(f"no translation exists with msgid: {v}")
+        logger.error(f"no translation exists with msgid: {v}")
+        raise ValueError()
 
 
 class StatModel(BaseModel):
@@ -546,7 +557,8 @@ class TechniqueModel(BaseModel):
     def file_exists(cls: TechniqueModel, v: Any) -> Any:
         if has.file(v):
             return v
-        raise ValueError(f"the icon {v} doesn't exist in the db")
+        logger.error(f"the icon {v} doesn't exist in the db")
+        raise ValueError()
 
     # Validate fields that refer to translated text
     @validator("use_tech", "use_success", "use_failure")
@@ -556,22 +568,25 @@ class TechniqueModel(BaseModel):
             return v
         if has.translation(v):
             return v
-        raise ValueError(f"no translation exists with msgid: {v}")
+        logger.error(f"no translation exists with msgid: {v}")
+        raise ValueError()
 
     @validator("slug")
     def translation_exists_tech(cls: TechniqueModel, v: Any) -> Any:
         if has.translation(v):
             return v
-        raise ValueError(f"no translation exists with msgid: {v}")
+        logger.error(f"no translation exists with msgid: {v}")
+        raise ValueError()
 
     # Custom validation for range
     @validator("range")
     def range_validation(cls: TechniqueModel, v: Any, values: Any) -> Any:
         # Special indicates that we are not doing damage
         if v == Range.special and "damage" in values["effects"]:
-            raise ValueError(
-                '"special" range cannot be used with effect "damage"'
+            logger.error(
+                f"{Range.special} cannot be used with effect 'damage'"
             )
+            raise ValueError()
 
         return v
 
@@ -582,7 +597,8 @@ class TechniqueModel(BaseModel):
             return v
         if has.file(file):
             return v
-        raise ValueError(f"the animation {v} doesn't exist in the db")
+        logger.error(f"the animation {v} doesn't exist in the db")
+        raise ValueError()
 
 
 class PartyMemberModel(BaseModel):
@@ -598,7 +614,8 @@ class PartyMemberModel(BaseModel):
     def monster_exists(cls: PartyMemberModel, v: Any) -> Any:
         if has.db_entry("monster", v):
             return v
-        raise ValueError(f"the monster {v} doesn't exist in the db")
+        logger.error(f"the monster {v} doesn't exist in the db")
+        raise ValueError()
 
 
 class BagItemModel(BaseModel):
@@ -609,7 +626,8 @@ class BagItemModel(BaseModel):
     def item_exists(cls: BagItemModel, v: Any) -> Any:
         if has.db_entry("item", v):
             return v
-        raise ValueError(f"the item {v} doesn't exist in the db")
+        logger.error(f"the item {v} doesn't exist in the db")
+        raise ValueError()
 
 
 class NpcTemplateModel(BaseModel):
@@ -628,7 +646,8 @@ class NpcTemplateModel(BaseModel):
         file: str = f"gfx/sprites/player/{v}.png"
         if has.file(file):
             return v
-        raise ValueError(f"{file} doesn't exist in the db")
+        logger.error(f"{file} doesn't exist in the db")
+        raise ValueError()
 
     @validator("sprite_name")
     def sprite_exists(cls: NpcTemplateModel, v: Any) -> Any:
@@ -636,13 +655,15 @@ class NpcTemplateModel(BaseModel):
         sprite_obj: str = f"sprites_obj/{v}.png"
         if has.file(sprite) or has.file(sprite_obj):
             return v
-        raise ValueError(f"the sprite {v} doesn't exist in the db")
+        logger.error(f"the sprite {v} doesn't exist in the db")
+        raise ValueError()
 
     @validator("slug")
     def template_exists(cls: NpcTemplateModel, v: Any) -> Any:
         if has.db_entry("template", v):
             return v
-        raise ValueError(f"the template {v} doesn't exist in the db")
+        logger.error(f"the template {v} doesn't exist in the db")
+        raise ValueError()
 
 
 class NpcModel(BaseModel):
@@ -670,7 +691,8 @@ class BattleGraphicsModel(BaseModel):
         file: str = f"gfx/ui/combat/{v}"
         if has.file(file):
             return v
-        raise ValueError(f"no resource exists with path: {file}")
+        logger.error(f"no resource exists with path: {file}")
+        raise ValueError()
 
 
 class EnvironmentModel(BaseModel):
@@ -696,7 +718,8 @@ class EncounterItemModel(BaseModel):
     def monster_exists(cls: EncounterItemModel, v: Any) -> Any:
         if has.db_entry("monster", v):
             return v
-        raise ValueError(f"the monster {v} doesn't exist in the db")
+        logger.error(f"the monster {v} doesn't exist in the db")
+        raise ValueError()
 
 
 class EncounterModel(BaseModel):
@@ -718,7 +741,8 @@ class EconomyItemModel(BaseModel):
     def item_exists(cls: EconomyItemModel, v: Any) -> Any:
         if has.db_entry("item", v):
             return v
-        raise ValueError(f"the item {v} doesn't exist in the db")
+        logger.error(f"the item {v} doesn't exist in the db")
+        raise ValueError()
 
 
 class EconomyModel(BaseModel):
@@ -887,7 +911,7 @@ class JSONDatabase:
                 try:
                     item = json.load(fp)
                 except ValueError:
-                    logger.error("invalid JSON " + json_item)
+                    logger.error(f"invalid JSON {json_item}")
                     raise
 
             if type(item) is list:
@@ -967,7 +991,8 @@ class JSONDatabase:
                 teq = TechniqueModel(**item)
                 self.database[table][teq.slug] = teq
             else:
-                raise ValueError(f"Unexpected {table =}")
+                logger.error(f"Unexpected {table =}")
+                raise ValueError()
         except (ValidationError, ValueError) as e:
             logger.error(f"validation failed for '{item['slug']}': {e}")
             if validate:

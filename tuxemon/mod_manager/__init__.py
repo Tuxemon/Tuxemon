@@ -185,9 +185,10 @@ class Manager:
             f"{repo}/api/packages/{author}/{name}/dependencies/?only_hard=1"
         )
         if r.status_code != 200:
-            raise ValueError(
+            logger.error(
                 f"Requested {r.url}, received status code {r.status_code}"
             )
+            raise ValueError()
         logger.debug(r.text, author, name)
         dep_list = r.json()
         # Resolve dependencies
@@ -268,7 +269,8 @@ class Manager:
             if not len(data) == 0:
                 before = json.loads(data)
             else:
-                raise ValueError("The package.list is empty.")
+                logger.error(f"The package.list is empty.")
+                raise ValueError()
 
             del before[name]
             file.write(json.dumps(before, indent=4))
@@ -280,7 +282,8 @@ class Manager:
         if os.path.isabs(path):
             raise OSError("Path is absolute")
         if path != sanitize_paths(path):
-            raise ValueError("Detected incorrect characters in path")
+            logger.error(f"Detected incorrect characters in path")
+            raise ValueError()
         shutil.rmtree(path, ignore_errors=True)
         self.remove_package_from_list(name)
 

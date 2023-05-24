@@ -2,12 +2,15 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 import random
 from dataclasses import dataclass
 from typing import Union, final
 
 from tuxemon.db import PlagueType
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -48,6 +51,7 @@ class QuarantineAction(EventAction):
                 if ele.plague == PlagueType.infected
             ]
             for ele in infected:
+                logger.info(f"{ele.name} has been added to quarantine box")
                 player.monster_boxes["quarantine"].append(ele)
                 player.remove_monster(ele)
         elif self.value == "out":
@@ -57,12 +61,19 @@ class QuarantineAction(EventAction):
                 for ele in box:
                     ele.plague = PlagueType.inoculated
                     player.add_monster(ele, len(player.monsters))
+                    logger.info(
+                        f"{ele.name} has been removed from quarantine box"
+                    )
                     player.monster_boxes["quarantine"].remove(ele)
             else:
                 sample = random.sample(box, self.amount)
                 for sam in sample:
                     sam.plague = PlagueType.inoculated
                     player.add_monster(sam, len(player.monsters))
+                    logger.info(
+                        f"{sam.name} has been removed from quarantine box"
+                    )
                     player.monster_boxes["quarantine"].remove(sam)
         else:
-            raise ValueError(f"{self.value} must be in or out")
+            logger.error(f"{self.value} must be in or out")
+            raise ValueError()

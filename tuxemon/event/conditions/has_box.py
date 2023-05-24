@@ -2,11 +2,14 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from operator import eq, ge, gt, le, lt, ne
 
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+
+logger = logging.getLogger(__name__)
 
 
 class HasBoxCondition(EventCondition):
@@ -35,7 +38,8 @@ class HasBoxCondition(EventCondition):
         number = int(condition.parameters[2])
         player = session.player
         if box_name not in player.monster_boxes.keys():
-            raise ValueError(f"{box_name} doesn't exist.")
+            logger.error(f"{box_name} doesn't exist.")
+            raise ValueError()
         party_size = len(player.monster_boxes[box_name])
         if check == "less_than":
             return bool(lt(party_size, number))
@@ -50,4 +54,5 @@ class HasBoxCondition(EventCondition):
         elif check == "not_equals":
             return bool(ne(party_size, number))
         else:
-            raise ValueError(f"{check} is incorrect.")
+            logger.error(f"{check} is incorrect.")
+            raise ValueError()

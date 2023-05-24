@@ -38,3 +38,4 @@ class CopyVariableAction(EventAction):
         first = self.var1
         second = self.var2
         player.game_variables[first] = player.game_variables[second]
+        logger.info(f"Game variable '{first}' has been copied in '{second}'")

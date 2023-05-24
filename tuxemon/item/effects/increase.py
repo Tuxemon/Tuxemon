@@ -2,6 +2,9 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
+
+logger = logging.getLogger(__name__)
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
@@ -51,6 +54,10 @@ class IncreaseEffect(ItemEffect):
             value = target.speed * self.amount
             target.mod_speed += int(value)
         else:
-            raise ValueError(f"{self.stat} must be a stat.")
+            logger.error(f"{self.stat} must be a stat.")
+            raise ValueError()
         target.set_stats()
+        logger.info(
+            f"{target.name} {self.stat} has been increase by {int(value)}"
+        )
         return {"success": True}

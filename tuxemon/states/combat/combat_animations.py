@@ -738,6 +738,9 @@ class CombatAnimations(ABC, Menu[None]):
             action_time = num_shakes + 1.8
             # Tuxepedia: set monster as caught (2)
             self.players[0].tuxepedia[monster.slug] = SeenStatus.caught
+            logger.info(
+                f"{monster.name} has been added to Tuxepedia as {SeenStatus.caught}"
+            )
             # Display 'Gotcha!' first.
             self.task(combat.end_combat, action_time + 0.5)
             gotcha = T.translate("gotcha")

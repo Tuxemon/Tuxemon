@@ -405,7 +405,7 @@ class Monster:
         >>> bulbatux.moves[0].use(bulbatux, target=tuxmander)
 
         """
-
+        logger.info(f"{self.name} learns {technique.name}")
         self.moves.append(technique)
 
     def return_types(self) -> None:
@@ -455,6 +455,7 @@ class Monster:
         >>> bulbatux.give_experience(20)
 
         """
+        logger.info(f"{self.name} gains {amount}px")
         self.total_experience += amount
 
         # Level up worthy monsters
@@ -472,6 +473,7 @@ class Monster:
         """
         count_status = len(self.status)
         if count_status == 0:
+            logger.info(f"{self.name} has {status.name} condition")
             self.status.append(status)
         else:
             # if the status exists
@@ -483,18 +485,30 @@ class Monster:
                 status.nr_turn = 1
                 if self.status[0].category == CategoryCondition.positive:
                     if status.repl_pos == ResponseCondition.replaced:
+                        logger.info(
+                            f"{self.name}: {self.status[0].name} replaced by {status.name}"
+                        )
                         self.status.clear()
                         self.status.append(status)
                     elif status.repl_pos == ResponseCondition.removed:
+                        logger.info(
+                            f"{self.name}: {self.status[0].name} has been removed"
+                        )
                         self.status.clear()
                     else:
                         # noddingoff, exhausted, festering, dozing
                         return
                 elif self.status[0].category == CategoryCondition.negative:
                     if status.repl_neg == ResponseCondition.replaced:
+                        logger.info(
+                            f"{self.name}: {self.status[0].name} replaced by {status.name}"
+                        )
                         self.status.clear()
                         self.status.append(status)
                     elif status.repl_pos == ResponseCondition.removed:
+                        logger.info(
+                            f"{self.name}: {self.status[0].name} has been removed"
+                        )
                         self.status.clear()
                     else:
                         # chargedup, charging and dozing
@@ -599,8 +613,7 @@ class Monster:
 
         """
         logger.info(
-            "Leveling %s from %i to %i!"
-            % (self.name, self.level, self.level + 1)
+            f"{self.name} levelled up from {self.level} to {self.level + 1}!"
         )
         # Increase Level and stats
         self.level += 1
@@ -692,7 +705,8 @@ class Monster:
                 [self.menu_sprite_1, self.menu_sprite_2], 0.25
             )
         else:
-            raise ValueError(f"Cannot find sprite for: {sprite}")
+            logger.error(f"Cannot find sprite for: {sprite}")
+            raise ValueError()
 
         # Apply flairs to the monster sprite
         for flair in self.flairs.values():

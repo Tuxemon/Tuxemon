@@ -190,7 +190,7 @@ def open_save_file(save_path: str) -> Optional[Dict[str, Any]]:
                 package = json_load(save_path)
                 return package
         except ValueError as e:
-            logger.error("Cannot decode save: %s", save_path)
+            logger.error(f"Cannot decode save: {save_path}")
             return None
     except OSError as e:
         logger.info(e)
@@ -218,7 +218,7 @@ def save(
         "separators": (",", ": "),
     }
 
-    logger.info("Saving data to save file: %s", save_path)
+    logger.info(f"Saving data to save file: {save_path}")
     if config.compress_save is None and prepare.SAVE_METHOD == "CBOR":
         cbor.dump(save_data, save_path_tmp)
     else:
@@ -252,7 +252,7 @@ def load(slot: int) -> Optional[SaveData]:
     else:
         save_data["error"] = "Save file corrupted"
         save_data["player_name"] = "BROKEN SAVE!"
-        logger.error("Failed loading save file.")
+        logger.error(f"Failed loading save file: {save_path}")
         return save_data  # type: ignore[return-value]
 
 

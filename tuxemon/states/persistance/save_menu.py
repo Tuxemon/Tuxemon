@@ -137,7 +137,7 @@ class SaveMenuState(PopUpMenu[None]):
         return slot_image
 
     def save(self) -> None:
-        logger.info("Saving!")
+        logger.info(f"Saving!")
         try:
             save_data = save.get_save_data(
                 local_session,
@@ -149,7 +149,7 @@ class SaveMenuState(PopUpMenu[None]):
             save.slot_number = self.selected_index
         except Exception as e:
             raise
-            logger.error("Unable to save game!!")
+            logger.error(f"Unable to save game!!")
             logger.error(e)
             open_dialog(local_session, [T.translate("save_failure")])
         else:

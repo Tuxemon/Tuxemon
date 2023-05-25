@@ -6900,7 +6900,7 @@ msgid "spyder_papertown_agnitechosen"
 msgstr "A great choice! Agnite is a Fire tuxemon."
 
 msgid "spyder_papertown_wrapup"
-msgstr "I'll give the rest of these to other kids who missed out on their own tuxemon! And I might keep one for myself. "
+msgstr "I'll give the rest of these to other kids who missed out on their own tuxemon! \n And I might keep one for myself. "
 
 msgid "spyder_papertown_firstfight"
 msgstr "Hey, what are you doing rummaging in bins? That's gross - and it's against the rules! \n ... \n What, they were throwing out perfectly good tuxemon? \n ... \n Well, if they were perfectly good, they wouldn't throw them out, would they? \n They must be inferior to the new models. Here, I'll show you! "
@@ -6918,7 +6918,7 @@ msgid "spyder_cottontown_monk"
 msgstr "I am assigned by the Dojo of the Five Elements to tend the statues here. \n But Omnichannel is planning to expand its offices into this space. \n I don't know what will happen to the statues when they do."
 
 msgid "spyder_cottontown_hackerintro"
-msgstr "Hey, cool tuxemon! Can I see the receipt? \n ... \n Just kidding, I had a feeling you hadn't picked it up using, ah, official channels. \n For years, the Five Pillars have controlled the strongest tuxemon. Do you think it'd be cool to poke them in the eye? \n ... \n Good! I have a project for you. Meet me in the Cafe!"
+msgstr "Hey, cool tuxemon! Can I see the receipt? \n ... \n Just kidding, I had a feeling you hadn't picked it up using, ah, official channels. \n For years, the Five Pillars have controlled the strongest tuxemon. \n Do you think it'd be cool to poke them in the eye? \n ... \n Good! I have a project for you. Meet me in the Cafe!"
 
 msgid "spyder_cottontown_stopthere"
 msgstr "Hey, that's not cool! You have to come to my talk at the cafe before you run off!"
@@ -6981,7 +6981,7 @@ msgid "spyder_cottonscoop_deviceoffer"
 msgstr "Welcome customer. Today, we're promoting Tuxeballs. Do you know what those are?"
 
 msgid "spyder_cottonscoop_devicenoexplan"
-msgstr "     Okay, well here's five as a free sample. If you have any questions about how Tuxeballs work, just ask my assistant!"
+msgstr "     Okay, well here's five as a free sample. \n If you have any questions about how Tuxeballs work, just ask my assistant!"
 
 msgid "spyder_cottonscoop_deviceexplan"
 msgstr "Let my assistant introduce you."

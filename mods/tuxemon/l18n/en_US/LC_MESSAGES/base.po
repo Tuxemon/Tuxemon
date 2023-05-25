@@ -745,8 +745,8 @@ msgstr "It missed..."
 msgid "combat_forfeit"
 msgstr "You have forfeited!\n{npc} is disappointed."
 
-msgid "combat_can't_run_from_trainer"
-msgstr "Can't run!"
+msgid "combat_cannot_run_away"
+msgstr "But can't run away!"
 
 msgid "combat_forfeit_trainer"
 msgstr "Can't forfeit!"

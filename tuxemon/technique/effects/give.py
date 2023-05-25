@@ -30,6 +30,7 @@ class GiveEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> GiveEffectResult:
+        done: bool = False
         player = self.session.player
         potency = random.random()
         value = float(player.game_variables["random_tech_hit"])
@@ -40,8 +41,12 @@ class GiveEffect(TechEffect):
             status.link = user
             if self.objective == "user":
                 user.apply_status(status)
+                done = True
             elif self.objective == "target":
                 target.apply_status(status)
-            return {"success": True}
-
-        return {"success": False}
+                done = True
+            elif self.objective == "both":
+                user.apply_status(status)
+                target.apply_status(status)
+                done = True
+        return {"success": done}

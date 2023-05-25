@@ -1,7 +1,9 @@
 {
   "animation": null,
   "category": "negative",
-  "effects": [],
+  "effects": [
+    "default"
+  ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_dozing.png",
   "range": "special",

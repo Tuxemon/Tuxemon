@@ -4,35 +4,27 @@
   <property name="east" value="???"/>
   <property name="edges" value="clamped"/>
   <property name="north" value="sphalian_town"/>
-  <property name="types" value="route"/>
   <property name="scenario" value="tobedefined"/>
   <property name="slug" value="route7"/>
+  <property name="types" value="route"/>
  </properties>
- <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2294" columns="37">
-  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1000"/>
- </tileset>
- <tileset firstgid="2295" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
-  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
- </tileset>
- <tileset firstgid="10487" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="744" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="384"/>
- </tileset>
- <tileset firstgid="11231" name="core_outdoor_water" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
-  <image source="../gfx/tilesets/core_outdoor_water.png" width="1024" height="2048"/>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <tileset firstgid="8193" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0qENADAIBEBkZbv/oNimAxAkoidQCD7P5YrIodknopupbO9ul+3t5as70F/dzaQbt/2FAQYYYIABBhhggAEGGGCAAQYYYIABBn4wcAEc6hMV
+   eAHt0rENACAIBMC3cwb3H9QwALGk8AoqCj7PrSRraM5OXjOVre6+stVevr4D/fXdTLpx218YYIABBhhggAEGGGCAAQYYYIABBhhg4AcDF+koDA4=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="6" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0DENADAMA8HQKeoyKbYy8JpIOa9eXlfVv3v6G1LBG96X2n0ECBAgQIAAAQIECBAgQIAAAQIECBAgQGCjwAfDagGw
+   eAHt0DENADAMA8FAKf0yKawy8JpIOa9eXlfVv3v6G1LBG96X2n0ECBAgQIAAAQIECBAgQIAAAQIECBAgQGCjwAfz1AGy
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
@@ -92,7 +84,7 @@
   <object id="215" type="collision" x="256" y="0" width="112" height="32"/>
   <object id="216" type="collision" x="528" y="16" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="4" name="Events">
+ <objectgroup color="#ffff00" id="4" name="Events">
   <object id="4" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music music_chibi_ninja"/>

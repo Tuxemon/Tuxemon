@@ -53,6 +53,8 @@ class GiveEffect(TechEffect):
                             status.link = m
                     elif self.objective == "target":
                         monsters = opponent
+                    else:
+                        pass
                 else:
                     if self.objective == "user":
                         monsters = opponent
@@ -60,6 +62,8 @@ class GiveEffect(TechEffect):
                             status.link = m
                     elif self.objective == "target":
                         monsters = human
+                    else:
+                        pass
                 for mon in monsters:
                     mon.apply_status(status)
                     done = True
@@ -71,5 +75,8 @@ class GiveEffect(TechEffect):
                 elif self.objective == "target":
                     target.apply_status(status)
                     done = True
-
+                elif self.objective == "both":
+                    user.apply_status(status)
+                    target.apply_status(status)
+                    done = True
         return {"success": done}

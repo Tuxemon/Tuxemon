@@ -1,15 +1,16 @@
 {
   "tech_id": 164,
-  "accuracy": 0.6,
+  "accuracy": 1,
   "animation": "ruby_radiate",
   "effects": [
-    "damage"
+    "give status_lifeleech,target",
+    "enhance"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.3,
-  "power": 1.7,
-  "range": "touch",
+  "potency": 1,
+  "power": 0,
+  "range": "special",
   "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "blood_nets",
@@ -23,7 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "earth"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

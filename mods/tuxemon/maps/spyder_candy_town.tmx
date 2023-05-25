@@ -24,7 +24,7 @@
  </layer>
  <layer id="2" name="Tile Layer 4" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="3" name="Tile Layer 2" width="40" height="40">
@@ -34,7 +34,7 @@
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlktOAkEURV+ME2dq4hjFESIjPs4AgU24CH6yAYbqLnAT6AIUXIYkwjY4k0oqnU5RoaWrQ7+bnFR15XXX7Vu8NCKqY0+gcClyDTdQhFtQ+SfwfuZfG6JykWF/M7xlPT/fM1udyvQXfOv/q65/ITKAIYxgDKrjT+C7ILKAJYSSq3//8LWGTYr+aiehkvDbN87f1znnaPHDPJTi/IXyErfvof29kP3rDt4c5/N04N/fnL0/dvDp8BfN1NW/0do8XW/4hpYtXO9e4v/yHZThHiqg0gTSSED7N3nKVfq1BnVowAMYNa9EWtC2xkfmHehaa6amx1qa6rPfAIbWOGI+hmdrzdRMWFNlJwHt32RnYfIzY7Kn5e9uk1t0zF8S+71xNDdzvd/T9K6sJbAFWFRBVQ==
+   eAHtlklOw0AQRUuITXaAxDoMKwisEsKOIYTpCBwi8wBLlsAtyCVCLkC4RpBIrsHbtNQyjmPZxG3F9aWntttl9/e3S7aIatUTyG+J7MAu7ME+qMInMMiFr3VROU6xv3e8pT2/sM/se12eJxC2/r/qapsidWhAE1qgWv0EPvMiY/gCVwrq3x98TWGWoL/S2t8krrdFbuAW7uAeXMnPXxc/PejDIzyBK/n5c+XFb91l+3vZEHldwBvH5+nB5/2bVxtlfsjaHwsYBfjzrhnUv97aLO3P+IYWLILu/YD/5UMowBEcg0oTSCIB7d/4KRfp1xKcQBlOweiMb/E5XFjjJdsVuLLmTE2VuSRVY706NKyxyXYL2tacqekwp0pPAtq/8Z6Fyc+M8a6WvbNNbt4xe0lEu2NvbmY/2tX0rLQl8AtVvEGl
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -57,7 +57,7 @@
   <object id="331" type="collision" x="0" y="480" width="32" height="96"/>
   <object id="334" type="collision" x="0" y="288" width="32" height="32"/>
   <object id="335" type="collision" x="0" y="320" width="16" height="16"/>
-  <object id="336" type="collision" x="16" y="256" width="80" height="32"/>
+  <object id="336" type="collision" x="16" y="240" width="80" height="48"/>
   <object id="338" type="collision" x="0" y="192" width="32" height="32"/>
   <object id="339" type="collision" x="0" y="224" width="16" height="16"/>
   <object id="341" type="collision" x="16" y="160" width="32" height="48"/>
@@ -156,8 +156,8 @@
    </properties>
   </object>
   <object id="427" type="collision" x="48" y="384" width="48" height="16"/>
-  <object id="434" type="collision" x="64" y="288" width="32" height="16"/>
-  <object id="435" type="collision" x="32" y="288" width="16" height="16"/>
+  <object id="434" type="collision" x="80" y="288" width="16" height="16"/>
+  <object id="435" type="collision" x="32" y="288" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="295" name="Teleport to Route 6" type="event" x="480" y="0" width="16" height="16">
@@ -495,7 +495,7 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="433" name="Teleport to Candy Cafe" type="event" x="48" y="288" width="16" height="16">
+  <object id="433" name="Teleport to Candy Cafe" type="event" x="64" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_cafe.tmx,8,11,0.3"/>
     <property name="act2" value="player_face up"/>

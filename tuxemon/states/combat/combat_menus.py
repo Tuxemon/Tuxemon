@@ -97,12 +97,30 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             )
             return
         self.client.pop_state(self)
-        # trigger forfeit
-        for mon in self.player.monsters:
-            faint = Technique()
-            faint.load("status_faint")
-            mon.current_hp = 0
-            mon.status = [faint]
+        combat_state = self.client.get_state_by_name(CombatState)
+        enemy = combat_state.players[1]
+        if not enemy.forfeit:
+
+            def open_menu() -> None:
+                combat_state.task(
+                    partial(
+                        combat_state.show_monster_action_menu,
+                        self.monster,
+                    ),
+                    1,
+                )
+
+            combat_state.alert(
+                T.translate("combat_forfeit_trainer"),
+                open_menu,
+            )
+        else:
+            # trigger forfeit
+            for mon in self.player.monsters:
+                faint = Technique()
+                faint.load("status_faint")
+                mon.current_hp = 0
+                mon.status = [faint]
 
     def run(self) -> None:
         """
@@ -233,6 +251,10 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             target = menu_item.game_object
             # is the item valid to use?
             if not item.validate(target):
+                msg = T.format("cannot_use_item_monster", {"name": item.name})
+                tools.open_dialog(local_session, [msg])
+                return
+            if combat.has_status(target, "status_lockdown"):
                 msg = T.format("cannot_use_item_monster", {"name": item.name})
                 tools.open_dialog(local_session, [msg])
                 return

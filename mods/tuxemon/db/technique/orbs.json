@@ -1,15 +1,16 @@
 {
   "tech_id": 141,
-  "accuracy": 0.7,
+  "accuracy": 1,
   "animation": "metallic_absorb",
   "effects": [
+    "switch target,random",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.7,
-  "power": 2.8,
-  "range": "melee",
+  "potency": 1,
+  "power": 2,
+  "range": "ranged",
   "recharge": 3,
   "sfx": "sfx_blaster",
   "slug": "orbs",
@@ -23,8 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "wood",
-    "water"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

@@ -28,8 +28,8 @@ class StuckEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> StuckEffectResult:
+        done: bool = False
         if tech.slug == "status_stuck":
             formula.simple_stuck(target)
-            return {"success": True}
-
-        return {"success": False}
+            done = True
+        return {"success": done}

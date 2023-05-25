@@ -1,16 +1,17 @@
 {
   "tech_id": 148,
-  "accuracy": 0.6,
+  "accuracy": 1,
   "animation": "emerald",
   "effects": [
-    "damage"
+    "switch target,wood",
+    "enhance"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.4,
-  "power": 2.3,
-  "range": "melee",
-  "recharge": 2,
+  "potency": 1,
+  "power": 0,
+  "range": "special",
+  "recharge": 4,
   "sfx": "sfx_blaster",
   "slug": "sylvan",
   "sort": "damage",
@@ -23,8 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "wood",
-    "earth"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

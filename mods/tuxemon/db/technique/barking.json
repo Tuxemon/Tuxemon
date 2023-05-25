@@ -1,15 +1,16 @@
 {
   "tech_id": 112,
-  "accuracy": 0.6,
+  "accuracy": 1,
   "animation": "pound",
   "effects": [
-    "damage"
+    "give status_flinching,target",
+    "enhance"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.6,
-  "power": 2.7,
-  "range": "ranged",
+  "potency": 1,
+  "power": 0,
+  "range": "special",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "barking",
@@ -23,7 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "wood"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

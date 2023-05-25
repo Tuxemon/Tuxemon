@@ -1,18 +1,19 @@
 {
   "tech_id": 151,
-  "accuracy": 0.7,
+  "accuracy": 1,
   "animation": "pound",
   "effects": [
-    "damage"
+    "switch target,metal",
+    "enhance"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.9,
-  "power": 1.8,
-  "range": "melee",
-  "recharge": 2,
+  "potency": 1,
+  "power": 0,
+  "range": "special",
+  "recharge": 4,
   "sfx": "sfx_blaster",
-  "slug": "touch",
+  "slug": "electroplate",
   "sort": "damage",
   "target": {
     "enemy monster": 2,
@@ -23,7 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "earth"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

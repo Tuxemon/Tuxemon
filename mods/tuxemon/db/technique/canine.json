@@ -1,15 +1,16 @@
 {
   "tech_id": 123,
-  "accuracy": 0.6,
+  "accuracy": 1,
   "animation": "claws_twice_blue",
   "effects": [
-    "damage"
+    "give status_wild,target",
+    "enhance"
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 1,
-  "power": 1,
-  "range": "reliable",
+  "power": 0,
+  "range": "special",
   "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "canine",
@@ -23,7 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "earth"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

@@ -3,6 +3,8 @@
   "accuracy": 0.6,
   "animation": "wall_ice",
   "effects": [
+    "give status_elementalshield,user",
+    "give status_slow,target",
     "damage"
   ],
   "flip_axes": "",
@@ -12,7 +14,7 @@
   "range": "reach",
   "recharge": 3,
   "sfx": "sfx_blaster",
-  "slug": "wall_ice",
+  "slug": "ice_shield",
   "sort": "damage",
   "target": {
     "enemy monster": 2,

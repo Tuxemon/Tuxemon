@@ -1,7 +1,9 @@
 {
   "animation": null,
   "category": "positive",
-  "effects": [],
+  "effects": [
+    "default"
+  ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_diehard.png",
   "range": "special",
@@ -19,7 +21,7 @@
     "own trainer": 0
   },
   "tech_id": 0,
-  "use_failure": "generic_failure",
+  "use_failure": "combat_none",
   "use_success": "combat_state_diehard_get",
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_none"
 }

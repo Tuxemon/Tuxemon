@@ -56,35 +56,35 @@
   </object>
   <object id="29" name="Create Maniac" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_maniac,8,5"/>
-    <property name="cond1" value="not npc_exists spyder_maniac"/>
+    <property name="act1" value="create_npc sphalian_maniac_green,8,5"/>
+    <property name="cond1" value="not npc_exists sphalian_maniac_green"/>
    </properties>
   </object>
   <object id="34" name="Create Granny" type="event" x="96" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_granny,10,6"/>
-    <property name="act2" value="npc_face spyder_granny,left"/>
-    <property name="cond1" value="not npc_exists spyder_granny"/>
+    <property name="act1" value="create_npc sphalian_granny,10,6"/>
+    <property name="act2" value="npc_face sphalian_granny,left"/>
+    <property name="cond1" value="not npc_exists sphalian_granny"/>
    </properties>
   </object>
   <object id="35" name="Create Beck" type="event" x="112" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_cottontown_monk,7,7"/>
-    <property name="act2" value="npc_face spyder_cottontown_monk,right"/>
-    <property name="cond1" value="not npc_exists spyder_cottontown_monk"/>
+    <property name="act1" value="create_npc sphalian_monk_orange,7,7"/>
+    <property name="act2" value="npc_face sphalian_monk_orange,right"/>
+    <property name="cond1" value="not npc_exists sphalian_monk_orange"/>
    </properties>
   </object>
   <object id="36" name="Create Monk" type="event" x="128" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_route4_beck,7,6"/>
-    <property name="act2" value="npc_face spyder_route4_beck,right"/>
-    <property name="cond1" value="not npc_exists spyder_route4_beck"/>
+    <property name="act1" value="create_npc sphalian_tennisplayer,7,6"/>
+    <property name="act2" value="npc_face sphalian_tennisplayer,right"/>
+    <property name="cond1" value="not npc_exists sphalian_tennisplayer"/>
    </properties>
   </object>
   <object id="37" name="Create ShopKeeper" type="event" x="144" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_shopkeeper,2,4"/>
-    <property name="cond1" value="not npc_exists spyder_shopkeeper"/>
+    <property name="act1" value="create_npc sphalian_shopkeeper,2,4"/>
+    <property name="cond1" value="not npc_exists sphalian_shopkeeper"/>
    </properties>
   </object>
   <object id="38" name="Talk ShopKeeper" type="event" x="32" y="96" width="16" height="16">
@@ -98,25 +98,25 @@
   <object id="30" name="Talk Maniac" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog sphalian_maniac"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk sphalian_maniac_green"/>
    </properties>
   </object>
   <object id="31" name="Talk Granny" type="event" x="48" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog sphalian_granny"/>
-    <property name="behav1" value="talk spyder_granny"/>
+    <property name="behav1" value="talk sphalian_granny"/>
    </properties>
   </object>
   <object id="32" name="Talk Beck" type="event" x="64" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog sphalian_beck"/>
-    <property name="behav1" value="talk spyder_route4_beck"/>
+    <property name="behav1" value="talk sphalian_tennisplayer"/>
    </properties>
   </object>
   <object id="33" name="Talk Monk" type="event" x="80" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog sphalian_monk"/>
-    <property name="behav1" value="talk spyder_cottontown_monk"/>
+    <property name="behav1" value="talk sphalian_monk_orange"/>
    </properties>
   </object>
   <object id="28" name="Player Spawn" type="event" x="176" y="0" width="16" height="16"/>

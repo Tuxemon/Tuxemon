@@ -11,9 +11,7 @@
  <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
   <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
  </tileset>
- <tileset firstgid="2776" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
-  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
- </tileset>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <tileset firstgid="10968" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
   <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
@@ -30,12 +28,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="23" height="25">
   <data encoding="base64" compression="zlib">
-   eAG1lL1OFGEUhk9FxY8LCHIJihZiNFABLmqDP8TCy1BA7SBcAcZeWbQ16IWoEFtLFX867RTU+LzJvvFkMjMwJHzJkzM7O/Ocd89+M739Eb3HxDze4yJn/nAx4iN8gl34DHcGonTl+6qOc+bWpYhBGIJhOAlVbt23e57+8AW+wjfIPveUYwbXLFyGNsxBlVvnhyfoDyMwCqfAPlX30bV3cd2DRViCZahzt3HNwRW4CtfAPlX5hdYGrg5swjN4DlVLPZdwLcN9eAAPwT7V+S5Vjqbn7VOVX/T1RfQnBjg+AS1YG2/WwU75xfexiF+DET+oU0P/WcDdaei20z2y2/6f9HqM+yhLXveQWy5nl1/HTd2en7w5t92qzv6um1v7omo/5t/l+bV7ynNPduet2krulemI1QaU5c7uhTTvF3ibrOK8NY/szvPO7jX6vD+AnFtOo32oY89bebN7C+9t/gNRtmYK89a+EDm35637y9xlXp1zZlXvb+d1rZq3ctctz1rV+/uw887uJxMRT2EDOrAJObffJ3qP6L3i90ndvJ37Na438Ba2YQdybl9XV4vz9jO4h2sffsMf+As5t565dfI+Svu5+Lno9jN4+kLEGRiHs3AOcm65t/HuJLc/+3kvuut+o3Jfhxs13OQ7cQtepb3xkuPivfla5f4HL/e/VQ==
+   eAG1lc1OE1EYhs+KVaEWUDSKXoArSSS6olKERApK2Al4C2JREsASrgDjDYiyJeqdSNi6VPFnpzvd+byhb/gy6UyZBSd58p2Wmee883HmtDKQUuWcaOI9L2LmL7dT+grf4Bi+w2IldR3xvrx5zFwbT2kQhmAYLkKeW/cd32J9+AE/4RdEn9eUo47rHkxCA6Ygz63vh8dYHy7BCFwG+1S9jq59imsVnkEL1qDI3cA1BfdhGmbAPlX5hcYbXHvwFt7BPuQNrdnCtQbP4QWsg32qzQ55jrLf26cqv+jvT2kgUGV+AWqwc/PsK+h57JRf/L6S0r/BlP5Q7w6dsoB7r6TbTq8R3fb/Za3XuMsOZ/cacsvl7PJrXtat/sktb8xtt6qzH3Vy63rRa7h/jb7TfRJz3+n0W7UW3O2JlLZL0C13dC+Efh/gLTOy/VY/ojv2O7p3WOdzD2JuOY32oebut/JG93u8i9UTuj1LPdNv7QsRc7vfee5uXn3nzKre387rmtdv5S4a7rWq98lZ+x3dVznTrsEoXIcbEHP7PNE5onPF50lRv537Aa5ZaMIczGtOXuPrimr2f+kzbAPXJmzBS2hDzK13bpe8r8J+zn7Ouv0OPuZ3dQmWYQWegDOryv0J72Fw+7Pf96y76BmVew7mC3jI38Qj+Bj2xgfm2Xvjtcr7H4bmug0=
   </data>
  </layer>
  <layer id="11" name="Above Player" width="23" height="25">
   <data encoding="base64" compression="zlib">
-   eAHt0EkRAAAIw8CaQjmXPaqCVzITAyv9lCGVbz9+PSGAAAIIIIAAAt8CBxnsBJM=
+   eAHt1LsNgDAQBNFtypVjQ+RfP4BdgqcEAkSAdqWXXjDBSd9sC1JEwo4Dngu4gAu4wH8LZP58QUVDx1s7uXXhxsCE5wJPCyz+ig8G
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -147,34 +145,34 @@
   </object>
   <object id="51" name="Create Hacker" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_cottontown_hacker,15,7"/>
-    <property name="cond1" value="not npc_exists spyder_cottontown_hacker"/>
+    <property name="act1" value="create_npc sphalian_magician_fiery,15,7"/>
+    <property name="cond1" value="not npc_exists sphalian_magician_fiery"/>
    </properties>
   </object>
   <object id="57" name="Create Barmaid" type="event" x="0" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_cottontown_barmaid,9,13"/>
-    <property name="act2" value="npc_face spyder_cottontown_barmaid,left"/>
-    <property name="cond1" value="not npc_exists spyder_cottontown_barmaid"/>
+    <property name="act1" value="create_npc sphalian_barmaid,9,13"/>
+    <property name="act2" value="npc_face sphalian_barmaid,left"/>
+    <property name="cond1" value="not npc_exists sphalian_barmaid"/>
    </properties>
   </object>
   <object id="58" name="Create Homemaker" type="event" x="0" y="96" width="16" height="16">
    <properties>
-    <property name="act3" value="create_npc spyder_homemaker,4,12"/>
-    <property name="act4" value="npc_wander spyder_homemaker"/>
-    <property name="cond3" value="not npc_exists spyder_homemaker"/>
+    <property name="act3" value="create_npc sphalian_homemaker,4,12"/>
+    <property name="act4" value="npc_wander sphalian_homemaker"/>
+    <property name="cond3" value="not npc_exists sphalian_homemaker"/>
    </properties>
   </object>
   <object id="52" name="Talk Hacker" type="event" x="0" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog sphalian_hackerchat"/>
-    <property name="behav1" value="talk spyder_cottontown_hacker"/>
+    <property name="behav1" value="talk sphalian_magician_fiery"/>
    </properties>
   </object>
   <object id="56" name="Talk Barmaid" type="event" x="0" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog sphalian_barmaid"/>
-    <property name="behav1" value="talk spyder_cottontown_barmaid"/>
+    <property name="behav1" value="talk sphalian_barmaid"/>
    </properties>
   </object>
  </objectgroup>

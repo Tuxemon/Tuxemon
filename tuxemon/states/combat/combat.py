@@ -1024,6 +1024,15 @@ class CombatState(CombatAnimations):
             ):
                 if _player.game_variables["status_confused"] == "on":
                     message = confused(user, technique)
+            # successful techniques
+            if result_tech["success"]:
+                m: Union[str, None] = None
+                # related to switch effect
+                if has_effect(technique, "switch"):
+                    m = generic(user, technique, target, _player)
+                if m:
+                    message += "\n" + m
+                    action_time += len(message) * letter_time
             # not successful techniques
             if not result_tech["success"]:
                 template = getattr(technique, "use_failure")
@@ -1031,6 +1040,9 @@ class CombatState(CombatAnimations):
                 if technique.slug == "status_spyderbite":
                     m = spyderbite(target)
                 if has_effect(technique, "money"):
+                    m = generic(user, technique, target, _player)
+                # related to healing effect
+                if has_effect(technique, "healing"):
                     m = generic(user, technique, target, _player)
                 message += "\n" + m
                 action_time += len(message) * letter_time
@@ -1100,9 +1112,6 @@ class CombatState(CombatAnimations):
                     }
                     template = getattr(technique, msg_type)
                     tmpl = T.format(template, context)
-                    # related to switch effect
-                    if has_effect(technique, "switch"):
-                        tmpl = generic(user, technique, target, _player)
                     if template:
                         message += "\n" + tmpl
                         action_time += len(message) * letter_time

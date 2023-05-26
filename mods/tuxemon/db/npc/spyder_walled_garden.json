@@ -1,0 +1,124 @@
+[
+  {
+    "slug": "spyder_walled_crassus",
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_alexander",
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_rufus",
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_vanderbilt",
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_astor",
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_ford",
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_girard",
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_augustus",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_fugger",
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_carnegie",
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_osman",
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_musa",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  }
+]

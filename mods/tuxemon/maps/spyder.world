@@ -496,6 +496,20 @@
             "width": 320,
             "x": -960,
             "y": 1920
+        },
+        {
+            "fileName": "spyder_timber_walledgarden2.tmx",
+            "height": 320,
+            "width": 256,
+            "x": -288,
+            "y": 1728
+        },
+        {
+            "fileName": "spyder_timber_walledgarden1.tmx",
+            "height": 192,
+            "width": 256,
+            "x": -288,
+            "y": 2048
         }
     ],
     "onlyShowAdjacentMaps": false,

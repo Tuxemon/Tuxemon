@@ -40,7 +40,6 @@ from tuxemon.combat import (
     has_effect_param,
     has_status,
     has_status_bond,
-    pre_checking,
     scope,
     spyderbite,
 )

@@ -27,6 +27,6 @@
     "aether"
   ],
   "use_failure": "combat_miss",
-  "use_success": "combat_none",
+  "use_success": null,
   "use_tech": "combat_used_x"
 }

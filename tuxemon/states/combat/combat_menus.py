@@ -97,12 +97,30 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             )
             return
         self.client.pop_state(self)
-        # trigger forfeit
-        for mon in self.player.monsters:
-            faint = Technique()
-            faint.load("status_faint")
-            mon.current_hp = 0
-            mon.status = [faint]
+        combat_state = self.client.get_state_by_name(CombatState)
+        enemy = combat_state.players[1]
+        if not enemy.forfeit:
+
+            def open_menu() -> None:
+                combat_state.task(
+                    partial(
+                        combat_state.show_monster_action_menu,
+                        self.monster,
+                    ),
+                    1,
+                )
+
+            combat_state.alert(
+                T.translate("combat_forfeit_trainer"),
+                open_menu,
+            )
+        else:
+            # trigger forfeit
+            for mon in self.player.monsters:
+                faint = Technique()
+                faint.load("status_faint")
+                mon.current_hp = 0
+                mon.status = [faint]
 
     def run(self) -> None:
         """
@@ -137,25 +155,14 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             and self.combat._run == "on"
         ):
             var["run_attempts"] += 1
+            # clean up
+            combat_state.clean_combat()
             # trigger run
             del self.combat.monsters_in_play[self.player]
             self.combat.players.remove(self.player)
         else:
-
-            def open_menu() -> None:
-                self.combat.task(
-                    partial(
-                        self.combat.show_monster_action_menu,
-                        self.monster,
-                    ),
-                    1,
-                )
-
-            self.combat.alert(
-                T.translate("combat_can't_run_from_trainer"),
-                open_menu,
-            )
             self.combat._run = "off"
+            self.combat.enqueue_action(player, run, enemy)
 
     def open_swap_menu(self) -> None:
         """Open menus to swap monsters in party."""

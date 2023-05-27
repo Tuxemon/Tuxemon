@@ -118,6 +118,8 @@ class TuxemonConfig:
         self.loggers = loggers_str.replace(" ", "").split(",")
         self.debug_logging = cfg.getboolean("logging", "debug_logging")
         self.debug_level = cfg.get("logging", "debug_level")
+        self.log_to_file = cfg.getboolean("logging", "dump_to_file")
+        self.log_keep_max = cfg.getint("logging", "file_keep_max")
 
         # input config (None means use default for the platform)
         self.gamepad_deadzone = 0.25
@@ -264,6 +266,8 @@ def get_defaults() -> Mapping[str, Any]:
                         ("loggers", "all"),
                         ("debug_logging", True),
                         ("debug_level", "error"),
+                        ("dump_to_file", False),
+                        ("file_keep_max", 5),
                     )
                 ),
             ),

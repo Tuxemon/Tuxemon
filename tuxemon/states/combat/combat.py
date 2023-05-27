@@ -40,6 +40,7 @@ from tuxemon.combat import (
     has_effect_param,
     has_status,
     has_status_bond,
+    pre_checking,
     scope,
     spyderbite,
 )
@@ -722,7 +723,7 @@ class CombatState(CombatAnimations):
         self.monsters_in_play[player].append(monster)
 
         # remove "connected" status (eg. lifeleech, etc.)
-        for mon in self.monsters_in_play[self.players[0]]:
+        for mon in self.active_monsters:
             if has_status_bond(mon):
                 mon.status.clear()
 
@@ -985,6 +986,15 @@ class CombatState(CombatAnimations):
             ):
                 if _player.game_variables["status_confused"] == "on":
                     message = confused(user, technique)
+            # successful techniques
+            if result_tech["success"]:
+                m: Union[str, None] = None
+                # related to switch effect
+                if has_effect(technique, "switch"):
+                    m = generic(user, technique, target, _player)
+                if m:
+                    message += "\n" + m
+                    action_time += len(message) * letter_time
             # not successful techniques
             if not result_tech["success"]:
                 template = getattr(technique, "use_failure")
@@ -992,6 +1002,9 @@ class CombatState(CombatAnimations):
                 if technique.slug == "status_spyderbite":
                     m = spyderbite(target)
                 if has_effect(technique, "money"):
+                    m = generic(user, technique, target, _player)
+                # related to healing effect
+                if has_effect(technique, "healing"):
                     m = generic(user, technique, target, _player)
                 message += "\n" + m
                 action_time += len(message) * letter_time
@@ -1061,9 +1074,6 @@ class CombatState(CombatAnimations):
                     }
                     template = getattr(technique, msg_type)
                     tmpl = T.format(template, context)
-                    # related to switch effect
-                    if has_effect(technique, "switch"):
-                        tmpl = generic(user, technique, target, _player)
                     if template:
                         message += "\n" + tmpl
                         action_time += len(message) * letter_time
@@ -1548,9 +1558,8 @@ class CombatState(CombatAnimations):
         self.client.pop_state()
         self.client.pop_state()
 
-    def end_combat(self) -> None:
-        """End the combat."""
-        # TODO: End combat differently depending on winning or losing
+    def clean_combat(self) -> None:
+        """Clean combat."""
         for player in self.players:
             for mon in player.monsters:
                 # reset status stats
@@ -1565,6 +1574,10 @@ class CombatState(CombatAnimations):
         # clear action queue
         self._action_queue = list()
         self._log_action = list()
+
+    def end_combat(self) -> None:
+        """End the combat."""
+        self.clean_combat()
 
         # fade music out
         self.client.event_engine.execute_action("fadeout_music", [1000])

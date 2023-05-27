@@ -742,11 +742,17 @@ msgstr " "
 msgid "combat_miss"
 msgstr "It missed..."
 
+msgid "combat_full_health"
+msgstr "But it's already at full health."
+
 msgid "combat_forfeit"
 msgstr "You have forfeited!\n{npc} is disappointed."
 
-msgid "combat_can't_run_from_trainer"
-msgstr "Can't run!"
+msgid "combat_cannot_run_away"
+msgstr "But can't run away!"
+
+msgid "combat_forfeit_trainer"
+msgstr "Can't forfeit!"
 
 msgid "combat_player_run"
 msgstr "You have run away!"
@@ -862,6 +868,12 @@ msgstr "The attack was strongly resisted!"
 ## COMBAT STATE STATUSES
 msgid "combat_state_blinded_get"
 msgstr "{target} is blinded."
+
+msgid "combat_state_burn_end"
+msgstr "{target} takes damage from burns."
+
+msgid "combat_state_burn_get"
+msgstr "{target} is burned."
 
 msgid "combat_state_chargedup_get"
 msgstr "{target} is fully charged."
@@ -1066,6 +1078,9 @@ msgstr "Slot"
 msgid "status_blinded"
 msgstr "Blinded"
 
+msgid "status_burn"
+msgstr "Burn"
+
 msgid "status_chargedup"
 msgstr "Charged Up"
 
@@ -1160,536 +1175,1073 @@ msgid "status_wild"
 msgstr "Wild"
 
 ## TECHNIQUE TRANSLATIONS ##
-msgid "all_in"
-msgstr "All In"
-
-msgid "amnesia"
-msgstr "Amnesia"
-
-msgid "avalanche"
-msgstr "Avalanche"
-
-msgid "battery_acid"
-msgstr "Battery Acid"
-
-msgid "battery_discharge"
-msgstr "Battery Discharge"
-
-msgid "beam"
-msgstr "Beam"
-
-msgid "berserk"
-msgstr "Berserk"
-
-msgid "biting_winds"
-msgstr "Biting Winds"
-
-msgid "blade"
-msgstr "Blade"
-
-msgid "blood_bond"
-msgstr "Blood Bond"
-
-msgid "blossom"
-msgstr "Blossom"
-
-msgid "boulder"
-msgstr "Boulder"
-
-msgid "breathe_fire"
-msgstr "Breathe Fire"
-
-msgid "bubble_trap"
-msgstr "Bubble Trap"
-
-msgid "bullet"
-msgstr "Bullet"
-
-msgid "chill_mist"
-msgstr "Chill Mist"
-
-msgid "clamp_on"
-msgstr "Clamp On"
-
-msgid "constrict"
-msgstr "Constrict"
-
-msgid "electrical_storm"
-msgstr "Electrical Storm"
-
-msgid "energy_claws"
-msgstr "Energy Claws"
-
-msgid "energy_field"
-msgstr "Energy Field"
-
-msgid "eyebite"
-msgstr "Eyebite"
-
-msgid "feint"
-msgstr "Feint"
-
-msgid "fester"
-msgstr "Fester"
-
-msgid "fire_ball"
-msgstr "Fire Ball"
-
-msgid "fire_claw"
-msgstr "Fire Claw"
-
-msgid "flamethrower"
-msgstr "Flamethrower"
-
-msgid "flood"
-msgstr "Flood"
-
-msgid "flow"
-msgstr "Flow"
-
-msgid "fluff_up"
-msgstr "Fluff Up"
-
-msgid "font"
-msgstr "Font"
-
-msgid "frostbite"
-msgstr "Frostbite"
-
-msgid "fume"
-msgstr "Fume"
-
-msgid "give_all"
-msgstr "Give All"
-
-msgid "glower"
-msgstr "Glower"
-
-msgid "goad"
-msgstr "Goad"
-
-msgid "headbutt"
-msgstr "Headbutt"
-
-msgid "hibernate"
-msgstr "Hibernate"
-
-msgid "ice_claw"
-msgstr "Ice Claw"
-
-msgid "icicle_spear"
-msgstr "Icicle Spear"
-
-msgid "invictus"
-msgstr "Invictus"
-
-msgid "kindling_flame"
-msgstr "Kindling Flame"
-
-msgid "levitate"
-msgstr "Levitate"
-
-msgid "life_surge"
-msgstr "Life Surge"
-
-msgid "midnight_mantle"
-msgstr "Midnight Mantle"
-
-msgid "muddle"
-msgstr "Muddle"
-
-msgid "mudslide"
-msgstr "Mudslide"
-
-msgid "one_two"
-msgstr "One-Two"
-
-msgid "overfeed"
-msgstr "Overfeed"
-
-msgid "overgrowth"
-msgstr "Overgrowth"
-
-msgid "panjandrum"
-msgstr "Panjandrum"
-
-msgid "peck"
-msgstr "Peck"
-
-msgid "peregrine"
-msgstr "Peregrine"
-
-msgid "perfect_cut"
-msgstr "Perfect Cut"
-
-msgid "petrify"
-msgstr "Petrify"
-
-msgid "probiscus"
-msgstr "Probiscus"
-
-msgid "pseudopod"
-msgstr "Pseudopod"
-
-msgid "quicksand"
-msgstr "Quicksand"
-
-msgid "ram"
-msgstr "Ram"
-
-msgid "refresh"
-msgstr "Refresh"
-
-msgid "rock"
-msgstr "Rock"
-
-msgid "rot"
-msgstr "Rot"
-
-msgid "rust_bomb"
-msgstr "Rust Bomb"
-
-msgid "salamander"
-msgstr "Salamander"
-
-msgid "sand_spray"
-msgstr "Sand Spray"
-
-msgid "scope"
-msgstr "Scope"
-
-msgid "shadow_boxing"
-msgstr "Shadow Boxing"
-
-msgid "shrapnel"
-msgstr "Shrapnel"
-
-msgid "shuriken"
-msgstr "Shuriken"
-
-msgid "sleep_bomb"
-msgstr "Sleep Bomb"
-
-msgid "sleeping_powder"
-msgstr "Sleeping Powder"
-
-msgid "snowstorm"
-msgstr "Snowstorm"
-
-msgid "splinter"
-msgstr "Splinter"
-
-msgid "spray"
-msgstr "Spray"
-
-msgid "stampede"
-msgstr "Stampede"
-
-msgid "starfall"
-msgstr "Starfall"
-
-msgid "static_field"
-msgstr "Static Field"
-
-msgid "sting"
-msgstr "Sting"
-
-msgid "stone_rot"
-msgstr "Stone Rot"
-
-msgid "strike"
-msgstr "Strike"
-
-msgid "suck_poison"
-msgstr "Suck Poison"
-
-msgid "sudden_glow"
-msgstr "Sudden Glow"
-
-msgid "supernova"
-msgstr "Supernova"
-
-msgid "surf"
-msgstr "Surf"
-
-msgid "surge"
-msgstr "Surge"
-
-msgid "take_cover"
-msgstr "Take Cover"
-
-msgid "thunderball"
-msgstr "Thunderball"
-
-msgid "thunderclap"
-msgstr "Thunderclap"
-
-msgid "tonguespear"
-msgstr "Tonguespear"
-
-msgid "venomous_tentacle"
-msgstr "Venomous Tentacle"
-
-msgid "wall_of_steel"
-msgstr "Wall of Steel"
-
-msgid "wallow"
-msgstr "Wallow"
-
-msgid "web"
-msgstr "Web"
-
-msgid "whirlwind"
-msgstr "Whirlwind"
-
-msgid "wing_tip"
-msgstr "Wing Tip"
+msgid "acid_description"
+msgstr ""
 
 msgid "acid"
 msgstr "Acid"
 
+msgid "adamantine_description"
+msgstr ""
+
 msgid "adamantine"
 msgstr "Adamantine"
+
+msgid "air_chain_description"
+msgstr ""
 
 msgid "air_chain"
 msgstr "Air Chain"
 
+msgid "all_in_description"
+msgstr "The user draws on their last ounce of strength, striking hard and getting their second wind."
+
+msgid "all_in"
+msgstr "All In"
+
+msgid "amnesia_description"
+msgstr "The combatants' minds touch, leaving both befuddled."
+
+msgid "amnesia"
+msgstr "Amnesia"
+
+msgid "ants_description"
+msgstr ""
+
 msgid "ants"
 msgstr "Ants"
+
+msgid "arcane_eye_description"
+msgstr "An arcane veil lashes at those that would curse the user."
 
 msgid "arcane_eye"
 msgstr "Arcane Eye"
 
+msgid "assault_description"
+msgstr ""
+
 msgid "assault"
 msgstr "Assault"
+
+msgid "avalanche_description"
+msgstr ""
+
+msgid "avalanche"
+msgstr "Avalanche"
+
+msgid "barking_description"
+msgstr ""
 
 msgid "barking"
 msgstr "Barking"
 
+msgid "battery_acid_description"
+msgstr ""
+
+msgid "battery_acid"
+msgstr "Battery Acid"
+
+msgid "battery_discharge_description"
+msgstr ""
+
+msgid "battery_discharge"
+msgstr "Battery Discharge"
+
+msgid "beam_description"
+msgstr ""
+
+msgid "beam"
+msgstr "Beam"
+
+msgid "berserk_description"
+msgstr ""
+
+msgid "berserk"
+msgstr "Berserk"
+
+msgid "biting_winds_description"
+msgstr "A chill wind leaves the target weak and exposed."
+
+msgid "biting_winds"
+msgstr "Biting Winds"
+
+msgid "blade_description"
+msgstr "A lightning-fast cut."
+
+msgid "blade"
+msgstr "Blade"
+
+msgid "blood_bond_description"
+msgstr "The user sucks the target's blood, but leaves something of themselves behind."
+
+msgid "blood_bond"
+msgstr "Blood Bond"
+
+msgid "blood_nets_description"
+msgstr ""
+
 msgid "blood_nets"
 msgstr "Blood Nets"
+
+msgid "blossom_description"
+msgstr "Carnivorous plants grow around the target, drawing away nutrients for the user's benefit."
+
+msgid "blossom"
+msgstr "Blossom"
+
+msgid "boulder_description"
+msgstr "The user shelters beneath a rocky shell."
+
+msgid "boulder"
+msgstr "Boulder"
+
+msgid "breath_description"
+msgstr ""
 
 msgid "breath"
 msgstr "Breath"
 
+msgid "breathe_fire_description"
+msgstr "Fire bursts from the user's mouth, scorching the target."
+
+msgid "breathe_fire"
+msgstr "Breathe Fire"
+
+msgid "bubble_trap_description"
+msgstr ""
+
+msgid "bubble_trap"
+msgstr "Bubble Trap"
+
+msgid "bullet_description"
+msgstr "A piece of metal is flung at the target with great alacrity."
+
+msgid "bullet"
+msgstr "Bullet"
+
+msgid "canine_description"
+msgstr ""
+
 msgid "canine"
 msgstr "Canine"
+
+msgid "cat_calling_description"
+msgstr ""
 
 msgid "cat_calling"
 msgstr "Cat Calling"
 
+msgid "cavity_description"
+msgstr ""
+
 msgid "cavity"
 msgstr "Cavity"
+
+msgid "chameleon_description"
+msgstr ""
 
 msgid "chameleon"
 msgstr "Chameleon"
 
+msgid "chill_mist_description"
+msgstr ""
+
+msgid "chill_mist"
+msgstr "Chill Mist"
+
+msgid "clairaudience_description"
+msgstr ""
+
 msgid "clairaudience"
 msgstr "Clairaudience"
+
+msgid "clamp_on_description"
+msgstr ""
+
+msgid "clamp_on"
+msgstr "Clamp On"
+
+msgid "clock_description"
+msgstr ""
 
 msgid "clock"
 msgstr "Clock"
 
+msgid "cloud_aether_description"
+msgstr ""
+
 msgid "cloud_aether"
 msgstr "Cloud Aether"
+
+msgid "conjurer_description"
+msgstr ""
 
 msgid "conjurer"
 msgstr "Conjurer"
 
+msgid "constrict_description"
+msgstr ""
+
+msgid "constrict"
+msgstr "Constrict"
+
+msgid "crystal_description"
+msgstr ""
+
 msgid "crystal"
 msgstr "Crystal"
+
+msgid "demiurge_description"
+msgstr ""
 
 msgid "demiurge"
 msgstr "Demiurge"
 
+msgid "earthquake_description"
+msgstr ""
+
 msgid "earthquake"
 msgstr "Earthquake"
+
+msgid "electrical_storm_description"
+msgstr ""
+
+msgid "electrical_storm"
+msgstr "Electrical Storm"
+
+msgid "electroplate_description"
+msgstr ""
 
 msgid "electroplate"
 msgstr "Electroplate"
 
+msgid "energy_claws_description"
+msgstr ""
+
+msgid "energy_claws"
+msgstr "Energy Claws"
+
+msgid "energy_field_description"
+msgstr "The device saps the target's energy, empowering the user."
+
+msgid "energy_field"
+msgstr "Energy Field"
+
+msgid "evasion_description"
+msgstr ""
+
 msgid "evasion"
 msgstr "Evasion"
+
+msgid "eyebite_description"
+msgstr "A glance from the user saps the target of its vim and vigor."
+
+msgid "eyebite"
+msgstr "Eyebite"
+
+msgid "feint_description"
+msgstr ""
+
+msgid "feint"
+msgstr "Feint"
+
+msgid "feline_description"
+msgstr ""
 
 msgid "feline"
 msgstr "Feline"
 
+msgid "fester_description"
+msgstr "A foul smell washes across the battlefield, hindering the recovery of all combatants."
+
+msgid "fester"
+msgstr "Fester"
+
+msgid "fiery_description"
+msgstr ""
+
 msgid "fiery"
 msgstr "Fiery"
+
+msgid "fire_ball_description"
+msgstr "An orb of scorching fire is flung at the target."
+
+msgid "fire_ball"
+msgstr "Fire Ball"
+
+msgid "fire_claw_description"
+msgstr ""
+
+msgid "fire_claw"
+msgstr "Fire Claw"
+
+msgid "fire_shield_description"
+msgstr ""
 
 msgid "fire_shield"
 msgstr "Fire Shield"
 
+msgid "firestorm_description"
+msgstr ""
+
 msgid "firestorm"
 msgstr "Firestorm"
+
+msgid "flamethrower_description"
+msgstr ""
+
+msgid "flamethrower"
+msgstr "Flamethrower"
+
+msgid "fledgling_description"
+msgstr ""
 
 msgid "fledgling"
 msgstr "Fledgling"
 
+msgid "flood_description"
+msgstr ""
+
+msgid "flood"
+msgstr "Flood"
+
+msgid "flow_description"
+msgstr ""
+
+msgid "flow"
+msgstr "Flow"
+
+msgid "fluff_up_description"
+msgstr ""
+
+msgid "fluff_up"
+msgstr "Fluff Up"
+
+msgid "font_description"
+msgstr ""
+
+msgid "font"
+msgstr "Font"
+
+msgid "frostbite_description"
+msgstr ""
+
+msgid "frostbite"
+msgstr "Frostbite"
+
+msgid "fume_description"
+msgstr ""
+
+msgid "fume"
+msgstr "Fume"
+
+msgid "give_all_description"
+msgstr ""
+
+msgid "give_all"
+msgstr "Give All"
+
+msgid "glower_description"
+msgstr "At the user's glare, the target grows weak and vulnerable."
+
+msgid "glower"
+msgstr "Glower"
+
+msgid "goad_description"
+msgstr ""
+
+msgid "goad"
+msgstr "Goad"
+
+msgid "gold_digger_description"
+msgstr ""
+
 msgid "gold_digger"
 msgstr "Gold Digger"
+
+msgid "grinding_description"
+msgstr ""
 
 msgid "grinding"
 msgstr "Grinding"
 
+msgid "gust_description"
+msgstr ""
+
 msgid "gust"
 msgstr "Gust"
+
+msgid "gyser_description"
+msgstr ""
 
 msgid "gyser"
 msgstr "Gyser"
 
+msgid "hawk_description"
+msgstr ""
+
 msgid "hawk"
 msgstr "Hawk"
+
+msgid "headbutt_description"
+msgstr ""
+
+msgid "headbutt"
+msgstr "Headbutt"
+
+msgid "hibernate_description"
+msgstr "The user falls into a restorative sleep."
+
+msgid "hibernate"
+msgstr "Hibernate"
+
+msgid "ice_claw_description"
+msgstr ""
+
+msgid "ice_claw"
+msgstr "Ice Claw"
+
+msgid "ice_shield_description"
+msgstr ""
 
 msgid "ice_shield"
 msgstr "Ice Shield"
 
+msgid "ice_storm_description"
+msgstr ""
+
 msgid "ice_storm"
 msgstr "Ice Storm"
+
+msgid "icicle_spear_description"
+msgstr ""
+
+msgid "icicle_spear"
+msgstr "Icicle Spear"
+
+msgid "insanity_description"
+msgstr ""
 
 msgid "insanity"
 msgstr "Insanity"
 
+msgid "invictus_description"
+msgstr ""
+
+msgid "invictus"
+msgstr "Invictus"
+
+msgid "kindling_flame_description"
+msgstr ""
+
+msgid "kindling_flame"
+msgstr "Kindling Flame"
+
+msgid "kraken_description"
+msgstr ""
+
 msgid "kraken"
 msgstr "Kraken"
+
+msgid "lantern_description"
+msgstr ""
 
 msgid "lantern"
 msgstr "Lantern"
 
+msgid "lava_description"
+msgstr ""
+
 msgid "lava"
 msgstr "Lava"
+
+msgid "levitate_description"
+msgstr "Combatants float into the air, giving them a vantage point but leaving both struggling to connect with their hand-to-hand attacks."
+
+msgid "levitate"
+msgstr "Levitate"
+
+msgid "life_surge_description"
+msgstr "An eruption of life charges the monster, but at the expense of healing its opponent."
+
+msgid "life_surge"
+msgstr "Life Surge"
+
+msgid "lightning_spheres_description"
+msgstr ""
 
 msgid "lightning_spheres"
 msgstr "Lightning Spheres"
 
+msgid "lineage_description"
+msgstr ""
+
 msgid "lineage"
 msgstr "Lineage"
+
+msgid "lust_description"
+msgstr ""
 
 msgid "lust"
 msgstr "Lust"
 
+msgid "magma_description"
+msgstr ""
+
 msgid "magma"
 msgstr "Magma"
+
+msgid "maori_description"
+msgstr ""
 
 msgid "maori"
 msgstr "Maori"
 
+msgid "meltdown_description"
+msgstr ""
+
 msgid "meltdown"
 msgstr "Meltdown"
+
+msgid "mending_description"
+msgstr ""
 
 msgid "mending"
 msgstr "Mending"
 
+msgid "midnight_mantle_description"
+msgstr ""
+
+msgid "midnight_mantle"
+msgstr "Midnight Mantle"
+
+msgid "mobbing_description"
+msgstr ""
+
 msgid "mobbing"
 msgstr "Mobbing"
+
+msgid "muck_description"
+msgstr ""
 
 msgid "muck"
 msgstr "Muck"
 
+msgid "muddle_description"
+msgstr "A haze over the battlefield makes it harder for attacks to connect."
+
+msgid "muddle"
+msgstr "Muddle"
+
+msgid "mudslide_description"
+msgstr ""
+
+msgid "mudslide"
+msgstr "Mudslide"
+
+msgid "mystic_blending_description"
+msgstr ""
+
 msgid "mystic_blending"
 msgstr "Mystic Blending"
+
+msgid "negation_description"
+msgstr ""
 
 msgid "negation"
 msgstr "Negation"
 
+msgid "nest_description"
+msgstr ""
+
 msgid "nest"
 msgstr "Nest"
+
+msgid "oedipus_description"
+msgstr ""
 
 msgid "oedipus"
 msgstr "Oedipus"
 
+msgid "one_two_description"
+msgstr "Two decisive strikes bring the target to its knees."
+
+msgid "one_two"
+msgstr "One-Two"
+
+msgid "orbs_description"
+msgstr "The user undergoes a magical transformation, firing off an energy ball of a random element."
+
 msgid "orbs"
 msgstr "Orbs"
+
+msgid "overfeed_description"
+msgstr ""
+
+msgid "overfeed"
+msgstr "Overfeed"
+
+msgid "overgrowth_description"
+msgstr "Vines lash the target, locking them in place."
+
+msgid "overgrowth"
+msgstr "Overgrowth"
+
+msgid "panjandrum_description"
+msgstr "A reliable technique that hurts any monster in proportion to its HP."
+
+msgid "panjandrum"
+msgstr "Panjandrum"
+
+msgid "peck_description"
+msgstr ""
+
+msgid "peck"
+msgstr "Peck"
+
+msgid "peregrine_description"
+msgstr ""
+
+msgid "peregrine"
+msgstr "Peregrine"
+
+msgid "perfect_cut_description"
+msgstr ""
+
+msgid "perfect_cut"
+msgstr "Perfect Cut"
+
+msgid "petrify_description"
+msgstr ""
+
+msgid "petrify"
+msgstr "Petrify"
+
+msgid "phantasmal_force_description"
+msgstr ""
 
 msgid "phantasmal_force"
 msgstr "Phantasmal Force"
 
+msgid "pit_description"
+msgstr ""
+
 msgid "pit"
 msgstr "Pit"
+
+msgid "platinum_description"
+msgstr ""
 
 msgid "platinum"
 msgstr "Platinum"
 
+msgid "poison_courtship_description"
+msgstr ""
+
 msgid "poison_courtship"
 msgstr "Poison Courtship"
+
+msgid "probiscus_description"
+msgstr ""
+
+msgid "probiscus"
+msgstr "Probiscus"
+
+msgid "pseudopod_description"
+msgstr ""
+
+msgid "pseudopod"
+msgstr "Pseudopod"
+
+msgid "quicksand_description"
+msgstr ""
+
+msgid "quicksand"
+msgstr "Quicksand"
+
+msgid "radiance_description"
+msgstr ""
 
 msgid "radiance"
 msgstr "Radiance"
 
+msgid "ram_description"
+msgstr ""
+
+msgid "ram"
+msgstr "Ram"
+
+msgid "refresh_description"
+msgstr ""
+
+msgid "refresh"
+msgstr "Refresh"
+
+msgid "ring_description"
+msgstr ""
+
 msgid "ring"
 msgstr "Ring"
+
+msgid "rock_description"
+msgstr "A heavy rock falls on the target."
+
+msgid "rock"
+msgstr "Rock"
+
+msgid "rot_description"
+msgstr "A sickness befalls the target."
+
+msgid "rot"
+msgstr "Rot"
+
+msgid "ruby_description"
+msgstr ""
 
 msgid "ruby"
 msgstr "Ruby"
 
+msgid "rust_bomb_description"
+msgstr ""
+
+msgid "rust_bomb"
+msgstr "Rust Bomb"
+
+msgid "saber_description"
+msgstr ""
+
 msgid "saber"
 msgstr "Saber"
+
+msgid "salamander_description"
+msgstr "A bite brimming with heat and lashing pain."
+
+msgid "salamander"
+msgstr "Salamander"
+
+msgid "sand_spray_description"
+msgstr ""
+
+msgid "sand_spray"
+msgstr "Sand Spray"
+
+msgid "scope_description"
+msgstr "Identifies an opponent's strengths and weaknesses."
+
+msgid "scope"
+msgstr "Scope"
+
+msgid "shadow_boxing_description"
+msgstr "A flurry of punches strikes the target."
+
+msgid "shadow_boxing"
+msgstr "Shadow Boxing"
+
+msgid "shapechange_description"
+msgstr ""
 
 msgid "shapechange"
 msgstr "Shapechange"
 
+msgid "shrapnel_description"
+msgstr ""
+
+msgid "shrapnel"
+msgstr "Shrapnel"
+
+msgid "shuriken_description"
+msgstr ""
+
+msgid "shuriken"
+msgstr "Shuriken"
+
+msgid "sleep_bomb_description"
+msgstr "A violent explosion of sleeping powder threatens to send both combatants into a doze."
+
+msgid "sleep_bomb"
+msgstr "Sleep Bomb"
+
+msgid "sleeping_powder_description"
+msgstr ""
+
+msgid "sleeping_powder"
+msgstr "Sleeping Powder"
+
+msgid "slime_description"
+msgstr ""
+
 msgid "slime"
 msgstr "Slime"
+
+msgid "snowstorm_description"
+msgstr ""
+
+msgid "snowstorm"
+msgstr "Snowstorm"
+
+msgid "splinter_description"
+msgstr ""
+
+msgid "splinter"
+msgstr "Splinter"
+
+msgid "spray_description"
+msgstr "Liquid death sprays from the user's venom sacs."
+
+msgid "spray"
+msgstr "Spray"
+
+msgid "stabilo_description"
+msgstr ""
 
 msgid "stabilo"
 msgstr "Stabilo"
 
+msgid "stampede_description"
+msgstr ""
+
+msgid "stampede"
+msgstr "Stampede"
+
+msgid "starfall_description"
+msgstr ""
+
+msgid "starfall"
+msgstr "Starfall"
+
+msgid "static_field_description"
+msgstr ""
+
+msgid "static_field"
+msgstr "Static Field"
+
+msgid "sting_description"
+msgstr ""
+
+msgid "sting"
+msgstr "Sting"
+
+msgid "stone_rot_description"
+msgstr "A sickness quickly befalls the target."
+
+msgid "stone_rot"
+msgstr "Stone Rot"
+
+msgid "stonehenge_description"
+msgstr ""
+
 msgid "stonehenge"
 msgstr "Stonehenge"
+
+msgid "strangulation_description"
+msgstr ""
 
 msgid "strangulation"
 msgstr "Strangulation"
 
+msgid "strike_description"
+msgstr ""
+
+msgid "strike"
+msgstr "Strike"
+
+msgid "suck_poison_description"
+msgstr ""
+
+msgid "suck_poison"
+msgstr "Suck Poison"
+
+msgid "sudden_glow_description"
+msgstr ""
+
+msgid "sudden_glow"
+msgstr "Sudden Glow"
+
+msgid "sunburst_description"
+msgstr ""
+
 msgid "sunburst"
 msgstr "Sunburst"
+
+msgid "supernova_description"
+msgstr ""
+
+msgid "supernova"
+msgstr "Supernova"
+
+msgid "surf_description"
+msgstr ""
+
+msgid "surf"
+msgstr "Surf"
+
+msgid "surge_description"
+msgstr ""
+
+msgid "surge"
+msgstr "Surge"
+
+msgid "sword_description"
+msgstr ""
 
 msgid "sword"
 msgstr "Sword"
 
+msgid "sylvan_description"
+msgstr ""
+
 msgid "sylvan"
 msgstr "Sylvan"
+
+msgid "take_cover_description"
+msgstr ""
+
+msgid "take_cover"
+msgstr "Take Cover"
+
+msgid "terror_description"
+msgstr ""
 
 msgid "terror"
 msgstr "Terror"
 
+msgid "thunderball_description"
+msgstr ""
+
+msgid "thunderball"
+msgstr "Thunderball"
+
+msgid "thunderclap_description"
+msgstr ""
+
+msgid "thunderclap"
+msgstr "Thunderclap"
+
+msgid "time_crisis_description"
+msgstr ""
+
 msgid "time_crisis"
 msgstr "Time Crisis"
+
+msgid "tinder_description"
+msgstr "The target is set alight."
+
+msgid "tinder"
+msgstr "Tinder"
+
+msgid "tip_description"
+msgstr ""
 
 msgid "tip"
 msgstr "Tip"
 
+msgid "tonguespear_description"
+msgstr "The tongue is jabbed into the opponent, and their blood drained."
+
+msgid "tonguespear"
+msgstr "Tonguespear"
+
+msgid "torch_description"
+msgstr ""
+
 msgid "torch"
 msgstr "Torch"
+
+msgid "tsunami_description"
+msgstr ""
 
 msgid "tsunami"
 msgstr "Tsunami"
 
+msgid "tux_attack_description"
+msgstr ""
+
 msgid "tux_attack"
 msgstr "Tux Attack"
+
+msgid "ubuntu_description"
+msgstr ""
 
 msgid "ubuntu"
 msgstr "Ubuntu"
 
+msgid "undertaker_description"
+msgstr ""
+
 msgid "undertaker"
 msgstr "Undertaker"
+
+msgid "venom_description"
+msgstr ""
 
 msgid "venom"
 msgstr "Venom"
 
+msgid "venomous_tentacle_description"
+msgstr ""
+
+msgid "venomous_tentacle"
+msgstr "Venomous Tentacle"
+
+msgid "viper_description"
+msgstr ""
+
 msgid "viper"
 msgstr "Viper"
+
+msgid "vorpal_description"
+msgstr ""
 
 msgid "vorpal"
 msgstr "Vorpal"
 
+msgid "wall_fire_description"
+msgstr ""
+
 msgid "wall_fire"
 msgstr "Wall Fire"
+
+msgid "wall_of_steel_description"
+msgstr "The user spins about, creating a biting, shielding wall of steel."
+
+msgid "wall_of_steel"
+msgstr "Wall of Steel"
+
+msgid "wallow_description"
+msgstr ""
+
+msgid "wallow"
+msgstr "Wallow"
+
+msgid "walls_description"
+msgstr ""
 
 msgid "walls"
 msgstr "Walls"
 
+msgid "web_description"
+msgstr ""
+
+msgid "web"
+msgstr "Web"
+
+msgid "webs_wind_description"
+msgstr ""
+
 msgid "webs_wind"
 msgstr "Webs Wind"
+
+msgid "whirlwind_description"
+msgstr ""
+
+msgid "whirlwind"
+msgstr "Whirlwind"
+
+msgid "wing_tip_description"
+msgstr ""
+
+msgid "wing_tip"
+msgstr "Wing Tip"
 
 ## MAP ##
 
@@ -6361,6 +6913,9 @@ msgstr "Huh, must be a fluke. There's no way the new model would be worse than t
 
 msgid "spyder_papertown_firstfight_lose"
 msgstr "As expected! Old models can't compare to new ones!"
+
+msgid "spyder_papertown_firstfight_after"
+msgstr "I'll heal you up this time, but I'm not a charity. Rest up at home next time your monsters get worn out."
 
 msgid "spyder_cottontown_monk"
 msgstr "I am assigned by the Dojo of the Five Elements to tend the statues here. \n But Omnichannel is planning to expand its offices into this space. \n I don't know what will happen to the statues when they do."

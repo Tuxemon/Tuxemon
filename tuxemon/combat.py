@@ -254,6 +254,8 @@ def generic(
                 "gold": gold,
             },
         )
+    if has_effect(tech, "healing"):
+        message = T.translate("combat_full_health")
     if has_effect(tech, "switch"):
         _type: str = ""
         monster: str = ""

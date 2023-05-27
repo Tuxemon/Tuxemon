@@ -742,6 +742,9 @@ msgstr " "
 msgid "combat_miss"
 msgstr "It missed..."
 
+msgid "combat_full_health"
+msgstr "But it's already at full health."
+
 msgid "combat_forfeit"
 msgstr "You have forfeited!\n{npc} is disappointed."
 

@@ -742,11 +742,14 @@ msgstr " "
 msgid "combat_miss"
 msgstr "It missed..."
 
+msgid "combat_full_health"
+msgstr "But it's already at full health."
+
 msgid "combat_forfeit"
 msgstr "You have forfeited!\n{npc} is disappointed."
 
-msgid "combat_can't_run_from_trainer"
-msgstr "Can't run!"
+msgid "combat_cannot_run_away"
+msgstr "But can't run away!"
 
 msgid "combat_forfeit_trainer"
 msgstr "Can't forfeit!"
@@ -865,6 +868,12 @@ msgstr "The attack was strongly resisted!"
 ## COMBAT STATE STATUSES
 msgid "combat_state_blinded_get"
 msgstr "{target} is blinded."
+
+msgid "combat_state_burn_end"
+msgstr "{target} takes damage from burns."
+
+msgid "combat_state_burn_get"
+msgstr "{target} is burned."
 
 msgid "combat_state_chargedup_get"
 msgstr "{target} is fully charged."
@@ -1068,6 +1077,9 @@ msgstr "Slot"
 ## STATUSES
 msgid "status_blinded"
 msgstr "Blinded"
+
+msgid "status_burn"
+msgstr "Burn"
 
 msgid "status_chargedup"
 msgstr "Charged Up"

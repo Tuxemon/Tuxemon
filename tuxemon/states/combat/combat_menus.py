@@ -159,26 +159,15 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         ):
             logger.info(f"Run from {enemy.name}")
             var["run_attempts"] += 1
+            # clean up
+            combat_state.clean_combat()
             # trigger run
             del combat_state.monsters_in_play[self.player]
             combat_state.players.remove(self.player)
         else:
             logger.info(f"Unable to run from {enemy.name}")
-
-            def open_menu() -> None:
-                combat_state.task(
-                    partial(
-                        combat_state.show_monster_action_menu,
-                        self.monster,
-                    ),
-                    1,
-                )
-
-            combat_state.alert(
-                T.translate("combat_can't_run_from_trainer"),
-                open_menu,
-            )
             combat_state._run = "off"
+            combat_state.enqueue_action(player, run, enemy)
 
     def open_swap_menu(self) -> None:
         """Open menus to swap monsters in party."""

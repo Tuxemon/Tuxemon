@@ -10,13 +10,8 @@
  <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
   <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
  </tileset>
- <tileset firstgid="2776" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
-  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
- </tileset>
- <tileset firstgid="10968" name="core_outdoor_water" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
-  <image source="../gfx/tilesets/core_outdoor_water.png" width="1024" height="2048"/>
- </tileset>
- <tileset firstgid="19160" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+ <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <tileset firstgid="10968" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
   <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
  <layer id="1" name="Layer1 Mountain Terrain" width="45" height="100">
@@ -26,7 +21,7 @@
  </layer>
  <layer id="2" name="Layer2 Signs, Plants, Statues" width="45" height="100">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -321,7 +316,7 @@
   <object id="267" type="collision" x="672" y="208" width="16" height="32"/>
   <object id="268" type="collision" x="704" y="432" width="16" height="1168"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="4" name="Events" visible="0">
+ <objectgroup color="#ffff00" id="4" name="Events">
   <object id="2" name="Welcome Sign" type="event" x="192" y="1408" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog welcome_location_route"/>

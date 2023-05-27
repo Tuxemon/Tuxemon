@@ -2942,7 +2942,7 @@ msgstr "Text ist zu lang!"
 msgid "status_eliminated"
 msgstr "Beseitigt"
 
-msgid "status_spyderbite"
+msgid "spyderbite"
 msgstr "Spinnenbiss"
 
 msgid "status_tired"

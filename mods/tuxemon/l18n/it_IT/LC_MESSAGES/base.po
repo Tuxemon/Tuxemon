@@ -3348,7 +3348,7 @@ msgstr "{target} è usurato."
 msgid "alert_text"
 msgstr "Testo troppo lungo!"
 
-msgid "status_spyderbite"
+msgid "spyderbite"
 msgstr "Morso Spyder"
 
 msgid "status_tired"

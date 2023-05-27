@@ -778,6 +778,8 @@ class CombatState(CombatAnimations):
                 faint = Technique()
                 faint.load("status_faint")
                 monster.current_hp = 0
+                if monster.status:
+                    monster.status[0].nr_turn = 0
                 monster.status = [faint]
         self.alert(message)
         # save iid monster fighting
@@ -1010,7 +1012,7 @@ class CombatState(CombatAnimations):
                     {"name": target.name.upper()},
                 )
             # null action dozing monster
-            if technique.slug == "skip" and has_status(user, "status_dozing"):
+            if technique.slug == "empty" and has_status(user, "status_dozing"):
                 message = T.format(
                     "combat_state_dozing_end",
                     {
@@ -1037,7 +1039,7 @@ class CombatState(CombatAnimations):
             if not result_tech["success"]:
                 template = getattr(technique, "use_failure")
                 m = T.format(template, context)
-                if technique.slug == "status_spyderbite":
+                if technique.slug == "spyderbite":
                     m = spyderbite(target)
                 if has_effect(technique, "money"):
                     m = generic(user, technique, target, _player)
@@ -1226,6 +1228,8 @@ class CombatState(CombatAnimations):
         faint = Technique()
         faint.load("status_faint")
         monster.current_hp = 0
+        if monster.status:
+            monster.status[0].nr_turn = 0
         monster.status = [faint]
 
         """

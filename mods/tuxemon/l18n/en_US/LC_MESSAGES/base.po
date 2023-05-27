@@ -1159,7 +1159,7 @@ msgstr "Sniping"
 msgid "status_softened"
 msgstr "Softened"
 
-msgid "status_spyderbite"
+msgid "spyderbite"
 msgstr "Spyder Bite"
 
 msgid "status_stuck"
@@ -1756,6 +1756,12 @@ msgstr ""
 
 msgid "nest"
 msgstr "Nest"
+
+msgid "neutralize_description"
+msgstr "The battlefield is reset, with all conditions and other changes cleared."
+
+msgid "neutralize"
+msgstr "Neutralize"
 
 msgid "oedipus_description"
 msgstr ""
@@ -2772,6 +2778,9 @@ msgstr "Swap"
 
 msgid "skip"
 msgstr "Skip"
+
+msgid "empty"
+msgstr "Empty"
 
 ## MONSTER TRANSLATIONS ##
 # Monster details

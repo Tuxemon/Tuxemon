@@ -1046,7 +1046,7 @@ msgstr "狙击"
 msgid "status_softened"
 msgstr "软化"
 
-msgid "status_spyderbite"
+msgid "spyderbite"
 msgstr "斯皮德咬合"
 
 msgid "status_stuck"

@@ -6317,7 +6317,7 @@ msgstr "Sniping"
 msgid "status_softened"
 msgstr "Ramolli"
 
-msgid "status_spyderbite"
+msgid "spyderbite"
 msgstr "Morsure Spyder"
 
 msgid "status_stuck"

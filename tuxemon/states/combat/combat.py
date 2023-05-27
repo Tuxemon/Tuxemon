@@ -579,14 +579,14 @@ class CombatState(CombatAnimations):
             # null action for dozing
             if has_status(user, "status_dozing"):
                 status = Technique()
-                status.load("skip")
+                status.load("empty")
                 technique = status
             # null action for plague - spyder_bite
             if user.plague == PlagueType.infected:
                 value = random.randint(1, 8)
                 if value == 1:
                     status = Technique()
-                    status.load("status_spyderbite")
+                    status.load("spyderbite")
                     technique = status
                     if self.players[1].plague == PlagueType.infected:
                         target.plague = PlagueType.infected
@@ -788,6 +788,8 @@ class CombatState(CombatAnimations):
                 faint = Technique()
                 faint.load("status_faint")
                 monster.current_hp = 0
+                if monster.status:
+                    monster.status[0].nr_turn = 0
                 monster.status = [faint]
         self.alert(message)
         # save iid monster fighting
@@ -1020,7 +1022,7 @@ class CombatState(CombatAnimations):
                     {"name": target.name.upper()},
                 )
             # null action dozing monster
-            if technique.slug == "skip" and has_status(user, "status_dozing"):
+            if technique.slug == "empty" and has_status(user, "status_dozing"):
                 message = T.format(
                     "combat_state_dozing_end",
                     {
@@ -1038,7 +1040,7 @@ class CombatState(CombatAnimations):
             if not result_tech["success"]:
                 template = getattr(technique, "use_failure")
                 m = T.format(template, context)
-                if technique.slug == "status_spyderbite":
+                if technique.slug == "spyderbite":
                     m = spyderbite(target)
                 if has_effect(technique, "money"):
                     m = generic(user, technique, target, _player)
@@ -1227,6 +1229,8 @@ class CombatState(CombatAnimations):
         faint = Technique()
         faint.load("status_faint")
         monster.current_hp = 0
+        if monster.status:
+            monster.status[0].nr_turn = 0
         monster.status = [faint]
 
         """

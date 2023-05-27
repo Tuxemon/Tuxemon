@@ -1587,9 +1587,8 @@ class CombatState(CombatAnimations):
         self.client.pop_state()
         self.client.pop_state()
 
-    def end_combat(self) -> None:
-        """End the combat."""
-        # TODO: End combat differently depending on winning or losing
+    def clean_combat(self) -> None:
+        """Clean combat."""
         for player in self.players:
             for mon in player.monsters:
                 # reset status stats
@@ -1604,6 +1603,10 @@ class CombatState(CombatAnimations):
         # clear action queue
         self._action_queue = list()
         self._log_action = list()
+
+    def end_combat(self) -> None:
+        """End the combat."""
+        self.clean_combat()
 
         # fade music out
         self.client.event_engine.execute_action("fadeout_music", [1000])

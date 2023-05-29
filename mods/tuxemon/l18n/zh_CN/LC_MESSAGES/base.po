@@ -5970,7 +5970,7 @@ msgstr "欢迎!"
 msgid "spyder_successful_boulder"
 msgstr "大锤子将巨石砸开."
 
-msgid "spyder_stop_dante"
+msgid "spyder_dante"
 msgstr "但丁"
 
 msgid "spyder_frolicking_rockitten"

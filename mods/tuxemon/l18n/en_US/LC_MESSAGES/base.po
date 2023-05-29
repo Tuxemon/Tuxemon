@@ -8093,7 +8093,7 @@ msgstr "Wow! One day I'm going to be a trainer just like you!"
 msgid "spyder_successful_boulder"
 msgstr "The sledgehammer smashes the boulder apart."
 
-msgid "spyder_stop_dante"
+msgid "spyder_dante"
 msgstr "Dante"
 
 msgid "spyder_frolicking_rockitten"
@@ -8959,6 +8959,26 @@ msgstr "Tuxecenter - A place to heal your tuxemon"
 
 msgid "leather_town_open_air"
 msgstr "Open Air Cafe and Marketplace"
+
+msgid "xero_citypark_achievement"
+msgstr "Achievement Maniac's House: Closed."
+
+msgid "xero_shaft1_sign"
+msgstr "Shaft Headquarters: Mining Division"
+msgid "xero_shaft2_sign"
+msgstr "Shaft Headquarters: Public Relations Division"
+
+msgid "xero_taba_tvwatch"
+msgstr "What's on TV? A prom queen is breaking her tiara into pieces and handing it out."
+
+msgid "xero_taba_poster"
+msgstr "Home sweet home!"
+
+msgid "xero_taba_restinbed"
+msgstr "You awake fully rested!"
+
+msgid "xero_skip_question"
+msgstr "Do you want to skip the intro?"
 
 ## Sphalian Town ##
 

@@ -156,8 +156,8 @@
   </object>
   <object id="30" name="Create The Duke of Dead Air" type="event" x="128" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_omnichannel_dukeofdeadair,8,2"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_dukeofdeadair"/>
+    <property name="act1" value="create_npc spyder_omnichannel_thedukeofdeadair,8,2"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_thedukeofdeadair"/>
    </properties>
   </object>
   <object id="31" name="Stop!" type="event" x="16" y="80" width="208" height="16">

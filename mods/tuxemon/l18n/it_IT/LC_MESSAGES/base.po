@@ -2802,7 +2802,7 @@ msgstr "Eccoti qui vecchio amico! Lascia che ti riporti al fiume."
 msgid "spyder_dryadsgrove_volcoli1"
 msgstr "Bree! Bree!"
 
-msgid "spyder_stop_dante"
+msgid "spyder_dante"
 msgstr "Dante"
 
 msgid "spyder_granny"

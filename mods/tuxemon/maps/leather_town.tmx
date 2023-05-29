@@ -281,14 +281,14 @@
   </object>
   <object id="98" name="Sign: Shaft 1" type="event" x="288" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_shaft1_sign"/>
+    <property name="act1" value="translated_dialog xero_shaft1_sign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="99" name="Sign: Shaft 2" type="event" x="400" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_shaft2_sign"/>
+    <property name="act1" value="translated_dialog xero_shaft2_sign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

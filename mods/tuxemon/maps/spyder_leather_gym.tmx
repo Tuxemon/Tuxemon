@@ -68,61 +68,61 @@
   <object id="43" name="Bradfort" type="event" x="192" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathergym_bradfort"/>
-    <property name="behav1" value="talk spyder_postboy"/>
+    <property name="behav1" value="talk spyder_leathergym_bradfort"/>
    </properties>
   </object>
   <object id="44" name="Chad" type="event" x="144" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathergym_chad"/>
-    <property name="behav1" value="talk spyder_rookie"/>
+    <property name="behav1" value="talk spyder_leathergym_chad"/>
    </properties>
   </object>
   <object id="45" name="Brad" type="event" x="240" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathergym_brad"/>
-    <property name="behav1" value="talk spyder_miner"/>
+    <property name="behav1" value="talk spyder_leathergym_brad"/>
    </properties>
   </object>
   <object id="56" name="Chardfort" type="event" x="96" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathergym_chadfort"/>
-    <property name="behav1" value="talk spyder_soldier"/>
+    <property name="behav1" value="talk spyder_leathergym_chadfort"/>
    </properties>
   </object>
   <object id="57" name="Gigachad" type="event" x="288" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathergym_gigachad"/>
-    <property name="behav1" value="talk spyder_magician"/>
+    <property name="behav1" value="talk spyder_leathergym_gigachad"/>
    </properties>
   </object>
   <object id="58" name="Virgin" type="event" x="352" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathergym_virgin"/>
-    <property name="behav1" value="talk spyder_goth"/>
+    <property name="behav1" value="talk spyder_leathergym_virgin"/>
    </properties>
   </object>
   <object id="63" name="Create NPCs" type="event" x="304" y="-0.25" width="16" height="16">
    <properties>
-    <property name="act11" value="create_npc spyder_cottontown_barmaid,5,9"/>
-    <property name="act12" value="create_npc spyder_soldier,6,4"/>
-    <property name="act13" value="create_npc spyder_rookie,9,9"/>
-    <property name="act14" value="create_npc spyder_postboy,12,9"/>
-    <property name="act15" value="create_npc spyder_miner,15,9"/>
-    <property name="act16" value="create_npc spyder_magician,18,6"/>
-    <property name="act17" value="create_npc spyder_goth,22,5"/>
-    <property name="act21" value="npc_face spyder_cottontown_barmaid,up"/>
-    <property name="act22" value="npc_face spyder_magician,left"/>
-    <property name="act23" value="npc_face spyder_goth,up"/>
-    <property name="act24" value="npc_face spyder_rookie,up"/>
-    <property name="act25" value="npc_face spyder_miner,up"/>
-    <property name="act26" value="npc_face spyder_postboy,up"/>
-    <property name="cond1" value="not npc_exists spyder_cottontown_barmaid"/>
-    <property name="cond2" value="not npc_exists spyder_soldier"/>
-    <property name="cond3" value="not npc_exists spyder_rookie"/>
-    <property name="cond4" value="not npc_exists spyder_postboy"/>
-    <property name="cond5" value="not npc_exists spyder_miner"/>
-    <property name="cond6" value="not npc_exists spyder_magician"/>
-    <property name="cond7" value="not npc_exists spyder_goth"/>
+    <property name="act11" value="create_npc spyder_leathergym_chadine,5,9"/>
+    <property name="act12" value="create_npc spyder_leathergym_chadfort,6,4"/>
+    <property name="act13" value="create_npc spyder_leathergym_chad,9,9"/>
+    <property name="act14" value="create_npc spyder_leathergym_bradfort,12,9"/>
+    <property name="act15" value="create_npc spyder_leathergym_brad,15,9"/>
+    <property name="act16" value="create_npc spyder_leathergym_gigachad,18,6"/>
+    <property name="act17" value="create_npc spyder_leathergym_virgin,22,5"/>
+    <property name="act21" value="npc_face spyder_leathergym_chadine,up"/>
+    <property name="act22" value="npc_face spyder_leathergym_gigachad,left"/>
+    <property name="act23" value="npc_face spyder_leathergym_virgin,up"/>
+    <property name="act24" value="npc_face spyder_leathergym_chad,up"/>
+    <property name="act25" value="npc_face spyder_leathergym_brad,up"/>
+    <property name="act26" value="npc_face spyder_leathergym_bradfort,up"/>
+    <property name="cond1" value="not npc_exists spyder_leathergym_chadine"/>
+    <property name="cond2" value="not npc_exists spyder_leathergym_chadfort"/>
+    <property name="cond3" value="not npc_exists spyder_leathergym_chad"/>
+    <property name="cond4" value="not npc_exists spyder_leathergym_bradfort"/>
+    <property name="cond5" value="not npc_exists spyder_leathergym_brad"/>
+    <property name="cond6" value="not npc_exists spyder_leathergym_gigachad"/>
+    <property name="cond7" value="not npc_exists spyder_leathergym_virgin"/>
    </properties>
   </object>
   <object id="64" name="Chadine" type="event" x="80" y="128" width="16" height="16">

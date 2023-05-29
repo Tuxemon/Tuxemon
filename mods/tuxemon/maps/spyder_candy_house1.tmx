@@ -59,28 +59,28 @@
   </object>
   <object id="68" name="Create Maniac" type="event" x="48" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_maniac,3,5"/>
-    <property name="act2" value="npc_face spyder_maniac,up"/>
-    <property name="cond1" value="not npc_exists spyder_maniac"/>
+    <property name="act1" value="create_npc spyder_candyhouse1_sawyer,3,5"/>
+    <property name="act2" value="npc_face spyder_candyhouse1_sawyer,up"/>
+    <property name="cond1" value="not npc_exists spyder_candyhouse1_sawyer"/>
    </properties>
   </object>
   <object id="69" name="Talk Maniac Before" type="event" x="48" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_artist1"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk spyder_candyhouse1_sawyer"/>
     <property name="cond1" value="not variable_set muse_bought:yes"/>
    </properties>
   </object>
   <object id="70" name="Create Picnicker" type="event" x="128" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_picnicker,8,5"/>
-    <property name="cond1" value="not npc_exists spyder_picnicker"/>
+    <property name="act1" value="create_npc spyder_candyhouse1_tillie,8,5"/>
+    <property name="cond1" value="not npc_exists spyder_candyhouse1_tillie"/>
    </properties>
   </object>
   <object id="71" name="Talk Picnicker" type="event" x="112" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_muse1"/>
-    <property name="behav1" value="talk spyder_picnicker"/>
+    <property name="behav1" value="talk spyder_candyhouse1_tillie"/>
     <property name="cond1" value="not has_item player,p_starry_night"/>
     <property name="cond2" value="not has_item player,p_trepidation"/>
     <property name="cond3" value="not has_item player,p_monsters_eyes"/>
@@ -92,7 +92,7 @@
     <property name="act1" value="translated_dialog spyder_flower_muse1"/>
     <property name="act2" value="translated_dialog spyder_flower_muse2"/>
     <property name="act3" value="translated_dialog_choice yes:no,muse_starry"/>
-    <property name="behav1" value="talk spyder_picnicker"/>
+    <property name="behav1" value="talk spyder_candyhouse1_tillie"/>
     <property name="cond1" value="is has_item player,p_starry_night"/>
     <property name="cond2" value="not has_item player,p_trepidation"/>
     <property name="cond3" value="not has_item player,p_monsters_eyes"/>
@@ -104,7 +104,7 @@
     <property name="act1" value="translated_dialog spyder_flower_muse1"/>
     <property name="act2" value="translated_dialog spyder_flower_muse2"/>
     <property name="act3" value="translated_dialog_choice yes:no,muse_trepidation"/>
-    <property name="behav1" value="talk spyder_picnicker"/>
+    <property name="behav1" value="talk spyder_candyhouse1_tillie"/>
     <property name="cond1" value="is has_item player,p_trepidation"/>
     <property name="cond2" value="not has_item player,p_starry_night"/>
     <property name="cond3" value="not has_item player,p_monsters_eyes"/>
@@ -116,7 +116,7 @@
     <property name="act1" value="translated_dialog spyder_flower_muse1"/>
     <property name="act2" value="translated_dialog spyder_flower_muse2"/>
     <property name="act3" value="translated_dialog_choice yes:no,muse_monsters"/>
-    <property name="behav1" value="talk spyder_picnicker"/>
+    <property name="behav1" value="talk spyder_candyhouse1_tillie"/>
     <property name="cond1" value="is has_item player,p_monsters_eyes"/>
     <property name="cond2" value="not has_item player,p_starry_night"/>
     <property name="cond3" value="not has_item player,p_trepidation"/>
@@ -164,7 +164,7 @@
     <property name="act1" value="translated_dialog spyder_flower_muse1"/>
     <property name="act2" value="translated_dialog spyder_flower_muse4"/>
     <property name="act3" value="translated_dialog_choice yes:no,muse_bundle"/>
-    <property name="behav1" value="talk spyder_picnicker"/>
+    <property name="behav1" value="talk spyder_candyhouse1_tillie"/>
     <property name="cond1" value="is has_item player,p_starry_night"/>
     <property name="cond2" value="is has_item player,p_trepidation"/>
     <property name="cond3" value="is has_item player,p_monsters_eyes"/>
@@ -188,7 +188,7 @@
   <object id="81" name="Talk Picnicker Sold" type="event" x="96" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_muse3"/>
-    <property name="behav1" value="talk spyder_picnicker"/>
+    <property name="behav1" value="talk spyder_candyhouse1_tillie"/>
     <property name="cond1" value="not has_item player,p_starry_night"/>
     <property name="cond2" value="not has_item player,p_trepidation"/>
     <property name="cond3" value="not has_item player,p_monsters_eyes"/>
@@ -198,7 +198,7 @@
   <object id="82" name="Talk Maniac After" type="event" x="32" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_artist2"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk spyder_candyhouse1_sawyer"/>
     <property name="cond1" value="is variable_set muse_bought:yes"/>
    </properties>
   </object>

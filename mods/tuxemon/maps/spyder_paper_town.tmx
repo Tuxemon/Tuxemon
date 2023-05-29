@@ -235,19 +235,14 @@
   </object>
   <object id="362" name="Create Homemaker" type="event" x="160" y="224" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_florist,10,14"/>
-    <property name="cond2" value="not npc_exists spyder_florist"/>
+    <property name="act1" value="create_npc spyder_papertown_silver,10,14"/>
+    <property name="cond2" value="not npc_exists spyder_papertown_silver"/>
    </properties>
   </object>
   <object id="363" name="Talk homemaker" type="event" x="400" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_homemaker1"/>
-    <property name="behav1" value="talk spyder_florist"/>
-   </properties>
-  </object>
-  <object id="416" name="Homemaker Wander" type="event" x="304" y="96" width="16" height="16">
-   <properties>
-    <property name="act1" value="npc_move spyder_homemakerpapertown, down 1, right 1, up 1, left 1"/>
+    <property name="behav1" value="talk spyder_papertown_silver"/>
    </properties>
   </object>
   <object id="417" name="Teleport to Sea Route" type="event" x="0" y="224" width="16" height="64">

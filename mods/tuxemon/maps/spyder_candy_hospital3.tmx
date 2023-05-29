@@ -51,15 +51,15 @@
   </object>
   <object id="36" name="Create Nurse" type="event" x="160" y="288" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_nurse,10,18"/>
-    <property name="act2" value="npc_face spyder_nurse,left"/>
-    <property name="cond1" value="not npc_exists spyder_nurse"/>
+    <property name="act1" value="create_npc spyder_hospital1_audie,10,18"/>
+    <property name="act2" value="npc_face spyder_hospital1_audie,left"/>
+    <property name="cond1" value="not npc_exists spyder_hospital1_audie"/>
    </properties>
   </object>
   <object id="37" name="Talk Nurse" type="event" x="160" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_hospital_nurse1"/>
-    <property name="behav1" value="talk spyder_nurse"/>
+    <property name="behav1" value="talk spyder_hospital1_audie"/>
    </properties>
   </object>
   <object id="41" name="Stop! 2" type="event" x="80" y="240" width="16" height="16">

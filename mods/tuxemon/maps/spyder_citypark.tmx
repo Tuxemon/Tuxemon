@@ -243,38 +243,38 @@
   </object>
   <object id="217" name="Create Maniac" type="event" x="128" y="576" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_maniac,8,36"/>
-    <property name="cond1" value="not npc_exists spyder_maniac"/>
+    <property name="act1" value="create_npc spyder_citypark_mack,8,36"/>
+    <property name="cond1" value="not npc_exists spyder_citypark_mack"/>
    </properties>
   </object>
   <object id="218" name="Create Granny" type="event" x="144" y="576" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_granny,9,36"/>
-    <property name="cond1" value="not npc_exists spyder_granny"/>
+    <property name="act1" value="create_npc spyder_citypark_magdalene,9,36"/>
+    <property name="cond1" value="not npc_exists spyder_citypark_magdalene"/>
    </properties>
   </object>
   <object id="219" name="Create Florist" type="event" x="464" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_florist,29,11"/>
-    <property name="cond1" value="not npc_exists spyder_florist"/>
+    <property name="act1" value="create_npc spyder_citypark_prue,29,11"/>
+    <property name="cond1" value="not npc_exists spyder_citypark_prue"/>
    </properties>
   </object>
   <object id="220" name="Talk Granny" type="event" x="144" y="560" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_granny"/>
-    <property name="behav1" value="talk spyder_granny"/>
+    <property name="behav1" value="talk spyder_citypark_magdalene"/>
    </properties>
   </object>
   <object id="221" name="Talk Maniac" type="event" x="128" y="560" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_maniac"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk spyder_citypark_mack"/>
    </properties>
   </object>
   <object id="222" name="Talk Florist" type="event" x="464" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_florist"/>
-    <property name="behav1" value="talk spyder_florist"/>
+    <property name="behav1" value="talk spyder_citypark_prue"/>
    </properties>
   </object>
   <object id="223" name="Create Florist2" type="event" x="144" y="352" width="16" height="16">

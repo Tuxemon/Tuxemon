@@ -56,29 +56,29 @@
   </object>
   <object id="34" name="Create Dirk" type="event" x="64" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_enforcer_rookie,4,19"/>
-    <property name="act2" value="npc_face spyder_enforcer_rookie,up"/>
-    <property name="cond1" value="not npc_exists spyder_enforcer_rookie"/>
+    <property name="act1" value="create_npc spyder_nimrod_dirk,4,19"/>
+    <property name="act2" value="npc_face spyder_nimrod_dirk,up"/>
+    <property name="cond1" value="not npc_exists spyder_nimrod_dirk"/>
    </properties>
   </object>
   <object id="35" name="Talk Dirk" type="event" x="48" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_dirk1"/>
-    <property name="behav1" value="talk spyder_enforcer_rookie"/>
+    <property name="behav1" value="talk spyder_nimrod_dirk"/>
    </properties>
   </object>
   <object id="38" name="Create Guard" type="event" x="112" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_soldier,7,19"/>
-    <property name="act2" value="npc_face spyder_soldier,right"/>
-    <property name="cond1" value="not npc_exists spyder_soldier"/>
+    <property name="act1" value="create_npc spyder_nimrod_jake,7,19"/>
+    <property name="act2" value="npc_face spyder_nimrod_jake,right"/>
+    <property name="cond1" value="not npc_exists spyder_nimrod_jake"/>
     <property name="cond2" value="not variable_set nimrodtru:yes"/>
    </properties>
   </object>
   <object id="39" name="Talk Guard" type="event" x="96" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_guard1"/>
-    <property name="behav1" value="talk spyder_soldier"/>
+    <property name="behav1" value="talk spyder_nimrod_jake"/>
    </properties>
   </object>
   <object id="40" name="Create Rebel" type="event" x="192" y="240" width="16" height="16">
@@ -135,8 +135,8 @@
     <property name="act07" value="start_battle spyder_nimrod_tru"/>
     <property name="act08" value="translated_dialog spyder_nimrod_tru2"/>
     <property name="act09" value="set_variable nimrodtru:yes"/>
-    <property name="act10" value="pathfind spyder_soldier,0,17"/>
-    <property name="act11" value="remove_npc spyder_soldier"/>
+    <property name="act10" value="pathfind spyder_nimrod_jake,0,17"/>
+    <property name="act11" value="remove_npc spyder_nimrod_jake"/>
     <property name="behav1" value="talk spyder_nimrod_tru"/>
     <property name="cond1" value="not variable_set nimrodtru:yes"/>
    </properties>
@@ -180,8 +180,8 @@
     <property name="act07" value="start_battle spyder_nimrod_tru"/>
     <property name="act08" value="translated_dialog spyder_nimrod_tru2"/>
     <property name="act09" value="set_variable nimrodtru:yes"/>
-    <property name="act10" value="pathfind spyder_soldier,0,17"/>
-    <property name="act11" value="remove_npc spyder_soldier"/>
+    <property name="act10" value="pathfind spyder_nimrod_jake,0,17"/>
+    <property name="act11" value="remove_npc spyder_nimrod_jake"/>
     <property name="cond1" value="not variable_set nimrodtru:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>

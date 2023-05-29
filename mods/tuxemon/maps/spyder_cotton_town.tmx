@@ -381,17 +381,17 @@
    <properties>
     <property name="act11" value="player_stop"/>
     <property name="act12" value="lock_controls"/>
-    <property name="act13" value="create_npc spyder_mompapertown,23,23"/>
-    <property name="act14" value="pathfind spyder_mompapertown,28,18"/>
+    <property name="act13" value="create_npc spyder_papertown_mom,23,23"/>
+    <property name="act14" value="pathfind spyder_papertown_mom,28,18"/>
     <property name="act15" value="unlock_controls"/>
     <property name="act16" value="npc_face player,down"/>
     <property name="act20" value="translated_dialog spyder_cottontown_mom"/>
     <property name="act25" value="add_item nu_phone"/>
     <property name="act30" value="add_item app_banking"/>
     <property name="act35" value="add_item app_map"/>
-    <property name="act40" value="pathfind spyder_mompapertown,23,23"/>
+    <property name="act40" value="pathfind spyder_papertown_mom,23,23"/>
     <property name="act41" value="set_variable spokenmomcotton:yes"/>
-    <property name="act42" value="remove_npc spyder_mompapertown"/>
+    <property name="act42" value="remove_npc spyder_papertown_mom"/>
     <property name="cond1" value="not variable_set spokenmomcotton:yes"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="not has_item player,nu_phone"/>

@@ -311,15 +311,15 @@
   </object>
   <object id="425" name="Create Florist" type="event" x="240" y="480" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_florist,15,30"/>
-    <property name="cond1" value="not npc_exists spyder_florist"/>
+    <property name="act1" value="create_npc spyder_flower_lissa,15,30"/>
+    <property name="cond1" value="not npc_exists spyder_flower_lissa"/>
     <property name="cond2" value="not variable_set captainreturns:yes"/>
    </properties>
   </object>
   <object id="426" name="Talk Florist" type="event" x="256" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_florist"/>
-    <property name="behav1" value="talk spyder_florist"/>
+    <property name="behav1" value="talk spyder_flower_lissa"/>
    </properties>
   </object>
   <object id="427" name="Create Fez" type="event" x="352" y="448" width="16" height="16">
@@ -596,29 +596,29 @@
   </object>
   <object id="481" name="Create Monk no pass" type="event" x="496" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_monk_blue,34,18"/>
-    <property name="cond1" value="not npc_exists spyder_monk_blue"/>
+    <property name="act1" value="create_npc spyder_flower_monk,34,18"/>
+    <property name="cond1" value="not npc_exists spyder_flower_monk"/>
     <property name="cond2" value="not has_item player,dojo_pass"/>
    </properties>
   </object>
   <object id="482" name="Talk Monk no pass" type="event" x="496" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_monk1"/>
-    <property name="behav1" value="talk spyder_monk_blue"/>
+    <property name="behav1" value="talk spyder_flower_monk"/>
     <property name="cond1" value="not has_item player,dojo_pass"/>
    </properties>
   </object>
   <object id="483" name="Create Monk pass" type="event" x="480" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_monk_blue,33,18"/>
-    <property name="cond1" value="not npc_exists spyder_monk_blue"/>
+    <property name="act1" value="create_npc spyder_flower_monk,33,18"/>
+    <property name="cond1" value="not npc_exists spyder_flower_monk"/>
     <property name="cond2" value="is has_item player,dojo_pass"/>
    </properties>
   </object>
   <object id="484" name="Talk Monk pass" type="event" x="480" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_monk2"/>
-    <property name="behav1" value="talk spyder_monk_blue"/>
+    <property name="behav1" value="talk spyder_flower_monk"/>
     <property name="cond1" value="is has_item player,dojo_pass"/>
    </properties>
   </object>

@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "spyder_route4_beck",
+    "template": [
+      {
+        "sprite_name": "tennisplayer",
+        "combat_front": "yellowbelt",
+        "slug": "yellowbelt"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_route4_marshall",
+    "template": [
+      {
+        "sprite_name": "soldier",
+        "combat_front": "soldier",
+        "slug": "soldier"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_route4_rincewind",
+    "template": [
+      {
+        "sprite_name": "beachcomber_blue",
+        "combat_front": "yellowbelt",
+        "slug": "yellowbelt"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_route4_roger",
+    "template": [
+      {
+        "sprite_name": "soldier",
+        "combat_front": "soldier",
+        "slug": "soldier"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_route4_wulf",
+    "template": [
+      {
+        "sprite_name": "maniac",
+        "combat_front": "alchemist",
+        "slug": "alchemist"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_route4_rosamund",
+    "template": [
+      {
+        "sprite_name": "picnicker",
+        "combat_front": "picnicker",
+        "slug": "picnicker"
+      }
+    ]
+  }
+]

@@ -51,8 +51,8 @@ Run:
 ```shell
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
-python3 -m pip install -U -r requirements.txt
-python3 run_tuxemon.py
+py -3 -m pip install -U -r requirements.txt
+py -3 run_tuxemon.py
 ```
 
 ### Windows Binary

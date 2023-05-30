@@ -3162,7 +3162,7 @@ msgstr "Crachá: Omnichannel"
 msgid "nimrod_badge"
 msgstr "Crachá: Nimrod"
 
-# Boosters (items)
+# Boosters
 msgid "greenwash_badge"
 msgstr "Crachá: Greenwash"
 

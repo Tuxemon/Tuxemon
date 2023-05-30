@@ -814,7 +814,7 @@ msgstr "沙默化石"
 msgid "rhincus_fossil"
 msgstr "沙默化石"
 
-# Boosters (items)
+# Boosters
 msgid "greenwash_badge"
 msgstr "徽章：漂绿"
 

@@ -2,10 +2,9 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Any, Dict, Mapping, Optional
-
 import configparser
 from collections import OrderedDict
+from typing import Any, Dict, Mapping, Optional
 
 from tuxemon.animation import Animation
 from tuxemon.platform.const import buttons, events

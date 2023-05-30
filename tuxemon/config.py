@@ -4,9 +4,6 @@ from __future__ import annotations
 
 from typing import Any, Dict, Mapping, Optional
 
-"""
-NOTE: REWRITE WHEN py2.7 SUPPORT IS DROPPED!
-"""
 import configparser
 from collections import OrderedDict
 
@@ -32,7 +29,6 @@ class TuxemonConfig:
         if config_path:
             temp = configparser.ConfigParser()
             temp.read(config_path)
-            populate_config(cfg, temp._sections)
 
         # [display]
         resolution_x = cfg.getint("display", "resolution_x")
@@ -204,18 +200,18 @@ def get_defaults() -> Mapping[str, Any]:
                 "display",
                 OrderedDict(
                     (
-                        ("resolution_x", 1280),
-                        ("resolution_y", 720),
-                        ("splash", True),
-                        ("fullscreen", False),
-                        ("fps", 60),
-                        ("show_fps", False),
-                        ("scaling", True),
-                        ("collision_map", False),
-                        ("large_gui", False),
-                        ("controller_overlay", False),
-                        ("controller_transparency", 45),
-                        ("hide_mouse", True),
+                        ("resolution_x", "1280"),
+                        ("resolution_y", "720"),
+                        ("splash", "True"),
+                        ("fullscreen", "False"),
+                        ("fps", "60"),
+                        ("show_fps", "False"),
+                        ("scaling", "True"),
+                        ("collision_map", "False"),
+                        ("large_gui", "False"),
+                        ("controller_overlay", "False"),
+                        ("controller_transparency", "45"),
+                        ("hide_mouse", "True"),
                         ("window_caption", "Tuxemon"),
                     )
                 ),
@@ -225,13 +221,13 @@ def get_defaults() -> Mapping[str, Any]:
                 OrderedDict(
                     (
                         ("data", "tuxemon"),
-                        ("skip_titlescreen", False),
-                        ("cli_enabled", False),
-                        ("net_controller_enabled", False),
+                        ("skip_titlescreen", "False"),
+                        ("cli_enabled", "False"),
+                        ("net_controller_enabled", "False"),
                         ("locale", "en_US"),
-                        ("dev_tools", False),
-                        ("recompile_translations", True),
-                        ("compress_save", None),
+                        ("dev_tools", "False"),
+                        ("recompile_translations", "True"),
+                        ("compress_save", "None"),
                     )
                 ),
             ),
@@ -239,11 +235,11 @@ def get_defaults() -> Mapping[str, Any]:
                 "gameplay",
                 OrderedDict(
                     (
-                        ("items_consumed_on_failure", True),
-                        ("encounter_rate_modifier", 1.0),
-                        ("default_monster_catch_rate", 125),
-                        ("default_upper_monster_catch_resistance", 1),
-                        ("default_lower_monster_catch_resistance", 1),
+                        ("items_consumed_on_failure", "True"),
+                        ("encounter_rate_modifier", "1.0"),
+                        ("default_monster_catch_rate", "125"),
+                        ("default_upper_monster_catch_resistance", "1"),
+                        ("default_lower_monster_catch_resistance", "1"),
                         ("dialog_speed", "slow"),
                     )
                 ),
@@ -252,10 +248,10 @@ def get_defaults() -> Mapping[str, Any]:
                 "player",
                 OrderedDict(
                     (
-                        ("animation_speed", 0.15),
+                        ("animation_speed", "0.15"),
                         ("player_npc", "npc_red"),
-                        ("player_walkrate", 3.75),
-                        ("player_runrate", 7.35),
+                        ("player_walkrate", "3.75"),
+                        ("player_runrate", "7.35"),
                     )
                 ),
             ),
@@ -264,10 +260,10 @@ def get_defaults() -> Mapping[str, Any]:
                 OrderedDict(
                     (
                         ("loggers", "all"),
-                        ("debug_logging", True),
+                        ("debug_logging", "True"),
                         ("debug_level", "error"),
-                        ("dump_to_file", False),
-                        ("file_keep_max", 5),
+                        ("dump_to_file", "False"),
+                        ("file_keep_max", "5"),
                     )
                 ),
             ),
@@ -293,31 +289,5 @@ def get_defaults() -> Mapping[str, Any]:
 def generate_default_config() -> configparser.ConfigParser:
     """Get new config file from defaults."""
     cfg = configparser.ConfigParser()
-    populate_config(cfg, get_defaults())
+    cfg.read_dict(get_defaults())
     return cfg
-
-
-def populate_config(
-    config: configparser.ConfigParser,
-    data: Mapping[str, Any],
-) -> None:
-    """
-    Workaround awful configparser defaults.
-
-    Parameters:
-        config: The configuration object.
-        data: New defaults.
-
-    """
-    # ConfigParser py2.7 'defaults' is absolutely braindead, half-baked,
-    # dumb. WTF's all over.
-    # So we fill in values manually, because they won't be read or written
-    # otherwise.
-    for k, v in data.items():
-        try:
-            config.add_section(k)
-        except configparser.DuplicateSectionError:
-            pass
-        for option, value in v.items():
-            # Yes. All values must be stored as a string.
-            config.set(k, option, str(value))

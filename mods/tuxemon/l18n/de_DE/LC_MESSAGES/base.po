@@ -2799,8 +2799,7 @@ msgstr ""
 msgid "booster_tech"
 msgstr "Technologie Booster"
 
-# Boosters (items)
-
+# Boosters
 msgid "greenwash_badge"
 msgstr "Abzeichen: Greenwash"
 

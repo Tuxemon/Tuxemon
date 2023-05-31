@@ -502,7 +502,7 @@ msgstr "Aardant"
 msgid "aardant_description"
 msgstr ""
 
-# Boosters (items)
+# Boosters
 msgid "greenwash_badge"
 msgstr "Badge: Greenwash"
 

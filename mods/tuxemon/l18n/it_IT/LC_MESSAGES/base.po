@@ -3167,7 +3167,7 @@ msgstr "Forse siamo andati troppo oltre …"
 msgid "spyder_greenwash_dippel2"
 msgstr "Oppure non abbastanza! "
 
-# Boosters (items)
+# Boosters
 msgid "greenwash_badge"
 msgstr "Medaglia: Greenwash"
 

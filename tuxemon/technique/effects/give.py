@@ -44,6 +44,7 @@ class GiveEffect(TechEffect):
                 monsters: Sequence[Monster] = []
                 assert tech.combat_state
                 combat = tech.combat_state
+                both = combat.active_monsters
                 human = combat.monsters_in_play_human
                 opponent = combat.monsters_in_play_ai
                 if player.isplayer:
@@ -54,7 +55,7 @@ class GiveEffect(TechEffect):
                     elif self.objective == "target":
                         monsters = opponent
                     else:
-                        pass
+                        monsters = both
                 else:
                     if self.objective == "user":
                         monsters = opponent
@@ -63,7 +64,7 @@ class GiveEffect(TechEffect):
                     elif self.objective == "target":
                         monsters = human
                     else:
-                        pass
+                        monsters = both
                 for mon in monsters:
                     mon.apply_status(status)
                     done = True

@@ -435,6 +435,9 @@ class CombatTargetMenuState(Menu[Monster]):
         border = graphics.load_and_scale(self.borders_filename)
         self.border = GraphicBox(border, None, None)
 
+        rect = Rect((0, 0), self.rect.size)
+        self.surface = pygame.Surface(rect.size, pygame.SRCALPHA)
+
     def initialize_items(self) -> Generator[MenuItem[Monster], None, None]:
         # get a ref to the combat state
         combat_state = self.client.get_state_by_name(CombatState)
@@ -454,9 +457,9 @@ class CombatTargetMenuState(Menu[Monster]):
         if (
             ElementType.aether in self.action.types
             or self.action.sort == TechSort.meta
-        ):
+        ) and isinstance(self.user, Monster):
             sprite = combat_state._monster_sprite_map[self.user]
-            aet = MenuItem(None, None, self.user.name, self.user)
+            aet = MenuItem(self.surface, None, self.user.name, self.user)
             aet.rect = sprite.rect.copy()
             aet.rect.inflate_ip(tools.scale(8), tools.scale(8))
             yield aet
@@ -481,13 +484,17 @@ class CombatTargetMenuState(Menu[Monster]):
 
                     # inspect the monster sprite and make a border image for it
                     sprite = combat_state._monster_sprite_map[monster]
-                    mon1 = MenuItem(None, None, monsters[0].name, monsters[0])
+                    mon1 = MenuItem(
+                        self.surface, None, monsters[0].name, monsters[0]
+                    )
                     mon1.rect = sprite.rect.copy()
                     right = mon1.rect.right
                     mon1.rect.inflate_ip(tools.scale(8), tools.scale(8))
                     mon1.rect.right = right
                     yield mon1
-                    mon2 = MenuItem(None, None, monsters[1].name, monsters[1])
+                    mon2 = MenuItem(
+                        self.surface, None, monsters[1].name, monsters[1]
+                    )
                     mon2.rect = sprite.rect.copy()
                     left = mon2.rect.left
                     mon2.rect.inflate_ip(tools.scale(8), tools.scale(8))

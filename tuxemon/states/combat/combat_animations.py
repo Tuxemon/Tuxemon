@@ -633,9 +633,7 @@ class CombatAnimations(ABC, Menu[None]):
         self.task(flip, 1.5)
 
         if not self.is_trainer_battle:
-            self.task(
-                audio.load_sound(right_monster.combat_call, None).play, 1.5
-            )
+            self.task(audio.load_sound(opp_mon.combat_call, None).play, 1.5)
 
         animate = partial(
             self.animate, transition="out_quad", duration=duration

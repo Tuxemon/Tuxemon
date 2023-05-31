@@ -50,7 +50,6 @@ from tuxemon.db import (
     ItemCategory,
     OutputBattle,
     PlagueType,
-    Range,
     SeenStatus,
 )
 from tuxemon.item.item import Item
@@ -1085,8 +1084,8 @@ class CombatState(CombatAnimations):
                 action_time += len(message) * letter_time
             # TODO: caching sounds
             audio.load_sound(technique.sfx, None).play()
-            # animation special range AI
-            if technique.range == Range.special:
+            # animation own monster AI NPC
+            if "own monster" in technique.target:
                 target_sprite = self._monster_sprite_map.get(user, None)
             # TODO: a real check or some params to test if should tackle, etc
             if result_tech["should_tackle"]:

@@ -8483,6 +8483,9 @@ msgstr "Sunnyside Manor: If we are not home leave a message with our housekeeper
 msgid "spyder_papertown_home"
 msgstr "Home sweet home!"
 
+msgid "spyder_papertown_rival"
+msgstr "Billie's House"
+
 msgid "spyder_papertown_restinbed"
 msgstr "You awake fully rested!"
 

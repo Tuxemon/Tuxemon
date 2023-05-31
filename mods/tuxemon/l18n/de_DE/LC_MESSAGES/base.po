@@ -2799,8 +2799,7 @@ msgstr ""
 msgid "booster_tech"
 msgstr "Technologie Booster"
 
-# Boosters (items)
-
+# Boosters
 msgid "greenwash_badge"
 msgstr "Abzeichen: Greenwash"
 
@@ -2942,7 +2941,7 @@ msgstr "Text ist zu lang!"
 msgid "status_eliminated"
 msgstr "Beseitigt"
 
-msgid "status_spyderbite"
+msgid "spyderbite"
 msgstr "Spinnenbiss"
 
 msgid "status_tired"

@@ -72,7 +72,7 @@
   <object id="219" type="collision" x="208" y="112" width="32" height="48"/>
   <object id="220" type="collision" x="240" y="112" width="16" height="32"/>
   <object id="221" type="collision" x="256" y="112" width="32" height="48"/>
-  <object id="222" type="collision" x="272" y="0" width="16" height="64"/>
+  <object id="222" type="collision" x="272" y="0" width="16" height="48"/>
   <object id="224" type="collision" x="64" y="144" width="80" height="48"/>
   <object id="225" type="collision" x="0" y="96" width="32" height="416"/>
   <object id="226" type="collision" x="16" y="608" width="64" height="32"/>
@@ -172,7 +172,7 @@
   <object id="284" type="collision" x="464" y="400" width="16" height="48"/>
   <object id="285" type="collision" x="480" y="400" width="80" height="32"/>
   <object id="286" type="collision" x="496" y="432" width="64" height="16"/>
-  <object id="297" type="collision" x="384" y="0" width="16" height="64"/>
+  <object id="297" type="collision" x="384" y="0" width="16" height="48"/>
   <object id="299" type="collision" x="32" y="480" width="32" height="32"/>
   <object id="300" type="collision" x="0" y="544" width="64" height="64"/>
   <object id="302" type="collision" x="128" y="256" width="48" height="16"/>

@@ -65,18 +65,18 @@ def pre_checking(
     """
     status = Technique()
     if has_status(monster, "status_dozing"):
-        status.load("skip")
+        status.load("empty")
         technique = status
     if has_status(monster, "status_flinching"):
         fli = random.randint(1, 2)
         if fli == 1:
-            status.load("skip")
+            status.load("empty")
             technique = status
             monster.status.clear()
     if has_status(monster, "status_wild"):
         wild = random.randint(1, 4)
         if wild == 1:
-            status.load("skip")
+            status.load("empty")
             technique = status
             monster.current_hp -= monster.hp // 8
     if has_status(monster, "status_confused"):
@@ -94,14 +94,14 @@ def pre_checking(
             if confused:
                 technique = random.choice(confused)
             else:
-                status.load("skip")
+                status.load("empty")
                 technique = status
         else:
             player.game_variables["status_confused"] = "off"
     if monster.plague == PlagueType.infected:
         value = random.randint(1, 8)
         if value == 1:
-            status.load("status_spyderbite")
+            status.load("spyderbite")
             technique = status
             # infect mechanism
             if (
@@ -254,6 +254,8 @@ def generic(
                 "gold": gold,
             },
         )
+    if has_effect(tech, "healing"):
+        message = T.translate("combat_full_health")
     if has_effect(tech, "switch"):
         _type: str = ""
         monster: str = ""

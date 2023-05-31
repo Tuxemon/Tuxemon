@@ -502,7 +502,7 @@ msgstr "Aardant"
 msgid "aardant_description"
 msgstr ""
 
-# Boosters (items)
+# Boosters
 msgid "greenwash_badge"
 msgstr "Badge: Greenwash"
 
@@ -742,11 +742,14 @@ msgstr " "
 msgid "combat_miss"
 msgstr "It missed..."
 
+msgid "combat_full_health"
+msgstr "But it's already at full health."
+
 msgid "combat_forfeit"
 msgstr "You have forfeited!\n{npc} is disappointed."
 
-msgid "combat_can't_run_from_trainer"
-msgstr "Can't run!"
+msgid "combat_cannot_run_away"
+msgstr "But can't run away!"
 
 msgid "combat_forfeit_trainer"
 msgstr "Can't forfeit!"
@@ -1156,7 +1159,7 @@ msgstr "Sniping"
 msgid "status_softened"
 msgstr "Softened"
 
-msgid "status_spyderbite"
+msgid "spyderbite"
 msgstr "Spyder Bite"
 
 msgid "status_stuck"
@@ -1753,6 +1756,12 @@ msgstr ""
 
 msgid "nest"
 msgstr "Nest"
+
+msgid "neutralize_description"
+msgstr "The battlefield is reset, with all conditions and other changes cleared."
+
+msgid "neutralize"
+msgstr "Neutralize"
 
 msgid "oedipus_description"
 msgstr ""
@@ -2769,6 +2778,9 @@ msgstr "Swap"
 
 msgid "skip"
 msgstr "Skip"
+
+msgid "empty"
+msgstr "Empty"
 
 ## MONSTER TRANSLATIONS ##
 # Monster details
@@ -6900,7 +6912,7 @@ msgid "spyder_papertown_agnitechosen"
 msgstr "A great choice! Agnite is a Fire tuxemon."
 
 msgid "spyder_papertown_wrapup"
-msgstr "I'll give the rest of these to other kids who missed out on their own tuxemon! And I might keep one for myself. "
+msgstr "I'll give the rest of these to other kids who missed out on their own tuxemon! \n And I might keep one for myself. "
 
 msgid "spyder_papertown_firstfight"
 msgstr "Hey, what are you doing rummaging in bins? That's gross - and it's against the rules! \n ... \n What, they were throwing out perfectly good tuxemon? \n ... \n Well, if they were perfectly good, they wouldn't throw them out, would they? \n They must be inferior to the new models. Here, I'll show you! "
@@ -6918,7 +6930,7 @@ msgid "spyder_cottontown_monk"
 msgstr "I am assigned by the Dojo of the Five Elements to tend the statues here. \n But Omnichannel is planning to expand its offices into this space. \n I don't know what will happen to the statues when they do."
 
 msgid "spyder_cottontown_hackerintro"
-msgstr "Hey, cool tuxemon! Can I see the receipt? \n ... \n Just kidding, I had a feeling you hadn't picked it up using, ah, official channels. \n For years, the Five Pillars have controlled the strongest tuxemon. Do you think it'd be cool to poke them in the eye? \n ... \n Good! I have a project for you. Meet me in the Cafe!"
+msgstr "Hey, cool tuxemon! Can I see the receipt? \n ... \n Just kidding, I had a feeling you hadn't picked it up using, ah, official channels. \n For years, the Five Pillars have controlled the strongest tuxemon. \n Do you think it'd be cool to poke them in the eye? \n ... \n Good! I have a project for you. Meet me in the Cafe!"
 
 msgid "spyder_cottontown_stopthere"
 msgstr "Hey, that's not cool! You have to come to my talk at the cafe before you run off!"
@@ -6981,7 +6993,7 @@ msgid "spyder_cottonscoop_deviceoffer"
 msgstr "Welcome customer. Today, we're promoting Tuxeballs. Do you know what those are?"
 
 msgid "spyder_cottonscoop_devicenoexplan"
-msgstr "     Okay, well here's five as a free sample. If you have any questions about how Tuxeballs work, just ask my assistant!"
+msgstr "     Okay, well here's five as a free sample. \n If you have any questions about how Tuxeballs work, just ask my assistant!"
 
 msgid "spyder_cottonscoop_deviceexplan"
 msgstr "Let my assistant introduce you."
@@ -8763,8 +8775,16 @@ msgstr "Open Air Cafe and Marketplace"
 msgid "spyder_leathercbd_sign"
 msgstr "Leather Town Business District"
 
+msgid "spyder_leatherhouse1_radio_morning"
+msgstr "An R&B song is playing. It's called \"Possessuns, Part I\"."
 msgid "spyder_leatherhouse1_radio"
 msgstr "An R&B song is playing. It's called \"Possessuns, Part II\"."
+msgid "spyder_leatherhouse1_radio_dusk"
+msgstr "An Electronic song is playing. It's called \"Beats Of BotBot\"."
+msgid "spyder_leatherhouse1_radio_dawn"
+msgstr "A Country song is playing. It's called \"Heavyhearted At Losing My Rockat\"."
+msgid "spyder_leatherhouse1_radio_night"
+msgstr "A song is playing. It's called \"Fondent Tango\"."
 msgid "spyder_flower_dojo_sign"
 msgstr "Dojo of the Five Elements: Master Tuxemon Battle"
 
@@ -9203,6 +9223,26 @@ msgstr "Tuxecenter - A place to heal your tuxemon"
 
 msgid "leather_town_open_air"
 msgstr "Open Air Cafe and Marketplace"
+
+msgid "xero_citypark_achievement"
+msgstr "Achievement Maniac's House: Closed."
+
+msgid "xero_shaft1_sign"
+msgstr "Shaft Headquarters: Mining Division"
+msgid "xero_shaft2_sign"
+msgstr "Shaft Headquarters: Public Relations Division"
+
+msgid "xero_taba_tvwatch"
+msgstr "What's on TV? A prom queen is breaking her tiara into pieces and handing it out."
+
+msgid "xero_taba_poster"
+msgstr "Home sweet home!"
+
+msgid "xero_taba_restinbed"
+msgstr "You awake fully rested!"
+
+msgid "xero_skip_question"
+msgstr "Do you want to skip the intro?"
 
 ## Sphalian Town ##
 

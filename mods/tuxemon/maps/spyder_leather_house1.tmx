@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="70">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="30">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -43,46 +43,79 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
-  <object id="59" type="collision" x="0" y="0" width="160" height="32"/>
-  <object id="60" type="collision" x="112" y="80" width="32" height="32"/>
-  <object id="65" type="collision" x="16" y="32" width="32" height="16"/>
-  <object id="66" type="collision" x="112" y="32" width="32" height="16"/>
+  <object id="19" type="collision" x="0" y="0" width="160" height="32"/>
+  <object id="20" type="collision" x="112" y="80" width="32" height="32"/>
+  <object id="25" type="collision" x="16" y="32" width="32" height="16"/>
+  <object id="26" type="collision" x="112" y="32" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="62" name="Go outside" type="event" x="64" y="112" width="32" height="16">
+  <object id="22" name="Go outside" type="event" x="64" y="112" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_leather_town.tmx,19,35,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="63" name="Create Florist" type="event" x="16" y="80" width="16" height="16">
+  <object id="23" name="Create Florist" type="event" x="16" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_leatherhouse1_gail,1,5"/>
     <property name="cond1" value="not npc_exists spyder_leatherhouse1_gail"/>
    </properties>
   </object>
-  <object id="64" name="Talk Florist" type="event" x="16" y="64" width="16" height="16">
+  <object id="24" name="Talk Florist" type="event" x="16" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leatherhouse1_florist"/>
     <property name="behav1" value="talk spyder_leatherhouse1_gail"/>
    </properties>
   </object>
-  <object id="67" name="Radio" type="event" x="112" y="80" width="16" height="32">
+  <object id="15" name="Radio Dawn" type="event" x="112" y="80" width="16" height="32">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leatherhouse1_radio_dawn"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is variable_set stage_of_day:dawn"/>
+   </properties>
+  </object>
+  <object id="16" name="Radio Dusk" type="event" x="112" y="80" width="16" height="32">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leatherhouse1_radio_dusk"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is variable_set stage_of_day:dusk"/>
+   </properties>
+  </object>
+  <object id="17" name="Radio Afternoon" type="event" x="112" y="80" width="16" height="32">
    <properties>
     <property name="act1" value="translated_dialog spyder_leatherhouse1_radio"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is variable_set stage_of_day:afternoon"/>
    </properties>
   </object>
-  <object id="68" name="Create Tennis Player" type="event" x="144" y="48" width="16" height="16">
+  <object id="18" name="Radio Night" type="event" x="112" y="80" width="16" height="32">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leatherhouse1_radio_night"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is variable_set stage_of_day:night"/>
+   </properties>
+  </object>
+  <object id="27" name="Radio Morning" type="event" x="112" y="80" width="16" height="32">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leatherhouse1_radio_morning"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is variable_set stage_of_day:morning"/>
+   </properties>
+  </object>
+  <object id="28" name="Create Tennis Player" type="event" x="144" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_leatherhouse1_roger,9,3"/>
     <property name="act2" value="npc_wander spyder_leatherhouse1_roger"/>
     <property name="cond1" value="not npc_exists spyder_leatherhouse1_roger"/>
    </properties>
   </object>
-  <object id="69" name="Talk Tennis Player" type="event" x="144" y="32" width="16" height="16">
+  <object id="29" name="Talk Tennis Player" type="event" x="144" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leatherhouse1_tennisplayer1"/>
     <property name="act2" value="translated_dialog_choice earth:water,frostbitetype"/>

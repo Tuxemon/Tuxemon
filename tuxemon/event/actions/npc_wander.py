@@ -36,6 +36,7 @@ class NpcWanderAction(EventAction):
     frequency: Union[float, None] = None
 
     def start(self) -> None:
+        player = self.session.player
         npc = get_npc(self.session, self.npc_slug)
         world = self.session.client.get_state_by_name(WorldState)
 
@@ -45,18 +46,30 @@ class NpcWanderAction(EventAction):
                 return
 
             # Suspend wandering if a dialog window is open
-            # TODO: this should only be done for the NPC the player is
-            # conversing with, not everyone
+            coords = (0, 0)
             for state in self.session.client.active_states:
                 if state.name == "DialogState":
+                    # retrieve NPC talking to
+                    if player.facing == "down":
+                        coords = (player.tile_pos[0], player.tile_pos[1] + 1)
+                    elif player.facing == "up":
+                        coords = (player.tile_pos[0], player.tile_pos[1] - 1)
+                    elif player.facing == "left":
+                        coords = (player.tile_pos[0] - 1, player.tile_pos[1])
+                    elif player.facing == "right":
+                        coords = (player.tile_pos[0] + 1, player.tile_pos[1])
+                elif state.name == "WorldMenuState":
                     return
 
             # Choose a random direction that is free and walk toward it
             origin = (int(npc.tile_pos[0]), int(npc.tile_pos[1]))
             exits = world.get_exits(origin)
             if exits:
-                npc.path = [random.choice(exits)]
-                npc.next_waypoint()
+                if origin != coords:
+                    npc.path = [random.choice(exits)]
+                    npc.next_waypoint()
+                else:
+                    return
 
         def schedule() -> None:
             # The timer is randomized between 0.5 and 1.0 of the frequency

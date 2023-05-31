@@ -1,0 +1,10 @@
+{
+  "slug": "cotton_misa_bro",
+  "template": [
+    {
+      "sprite_name": "childactor",
+      "combat_front": "yellowbelt",
+      "slug": "childactor"
+    }
+  ]
+}

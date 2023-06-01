@@ -223,7 +223,7 @@ class CombatAnimations(ABC, Menu[None]):
         self.task(partial(self.sprites.add, sprite), delay)
 
         # attempt to load and queue up combat_call
-        call_sound = audio.load_sound(monster.combat_call)
+        call_sound = audio.load_sound(monster.combat_call, None)
         if call_sound:
             self.task(call_sound.play, delay)
 
@@ -383,7 +383,7 @@ class CombatAnimations(ABC, Menu[None]):
             if monster.current_hp > 0
             else monster.faint_call
         )
-        sound = audio.load_sound(cry)
+        sound = audio.load_sound(cry, None)
         sound.play()
         self.animate(sprite.rect, x=x_diff, relative=True, duration=2)
 
@@ -436,15 +436,20 @@ class CombatAnimations(ABC, Menu[None]):
 
         """
         if self.get_side(home) == "left":
-            tray = self.load_sprite(
-                "gfx/ui/combat/opponent_party_tray.png",
-                bottom=home.bottom,
-                right=0,
-                layer=hud_layer,
-            )
-            self.animate(tray.rect, right=home.right, duration=2, delay=1.5)
-            centerx = home.right - scale(13)
-            offset = scale(8)
+            if self.is_trainer_battle:
+                tray = self.load_sprite(
+                    "gfx/ui/combat/opponent_party_tray.png",
+                    bottom=home.bottom,
+                    right=0,
+                    layer=hud_layer,
+                )
+                self.animate(
+                    tray.rect, right=home.right, duration=2, delay=1.5
+                )
+                centerx = home.right - scale(13)
+                offset = scale(8)
+            else:
+                pass
 
         else:
             tray = self.load_sprite(
@@ -561,10 +566,10 @@ class CombatAnimations(ABC, Menu[None]):
 
         combat_front = ""
         combat_back = ""
-        for ele in opponent.template:
-            combat_front = ele.combat_front
-        for ele in player.template:
-            combat_back = ele.combat_front
+        for opp in opponent.template:
+            combat_front = opp.combat_front
+        for pla in player.template:
+            combat_back = pla.combat_front
 
         if self.is_trainer_battle:
             enemy = self.load_sprite(
@@ -623,7 +628,9 @@ class CombatAnimations(ABC, Menu[None]):
         self.task(flip, 1.5)
 
         if not self.is_trainer_battle:
-            self.task(audio.load_sound(right_monster.combat_call).play, 1.5)
+            self.task(
+                audio.load_sound(right_monster.combat_call, None).play, 1.5
+            )
 
         animate = partial(
             self.animate, transition="out_quad", duration=duration
@@ -747,7 +754,7 @@ class CombatAnimations(ABC, Menu[None]):
                 breakout_delay,
             )
             self.task(
-                audio.load_sound(monster.combat_call).play,
+                audio.load_sound(monster.combat_call, None).play,
                 breakout_delay,
             )
             self.task(tech.play, breakout_delay)

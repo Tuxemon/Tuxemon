@@ -92,7 +92,6 @@ class ItemType(str, Enum):
 
 class ItemCategory(str, Enum):
     none = "none"
-    edible = "edible"
     badge = "badge"
     booster = "booster"
     fossil = "fossil"
@@ -102,6 +101,7 @@ class ItemCategory(str, Enum):
     technique = "technique"
     phone = "phone"
     fish = "fish"
+    destroy = "destroy"
     capture = "capture"
     stats = "stats"
 
@@ -114,14 +114,7 @@ class OutputBattle(str, Enum):
     forfeit = "forfeit"
 
 
-# ItemBattleMenu is which menu you want to use to choose the target.
-class ItemBattleMenu(str, Enum):
-    monster = "monster"
-    combat = "combat"
-
-
 class MonsterShape(str, Enum):
-    aquatic = "aquatic"
     blob = "blob"
     brute = "brute"
     dragon = "dragon"
@@ -131,6 +124,7 @@ class MonsterShape(str, Enum):
     hunter = "hunter"
     landrace = "landrace"
     leviathan = "leviathan"
+    piscine = "piscine"
     polliwog = "polliwog"
     serpent = "serpent"
     sprite = "sprite"
@@ -158,6 +152,7 @@ class EvolutionType(str, Enum):
     item = "item"
     location = "location"
     season = "season"
+    daytime = "daytime"
     standard = "standard"
     stat = "stat"
     tech = "tech"
@@ -206,9 +201,6 @@ class ItemModel(BaseModel):
     )
     sort: ItemSort = Field(..., description="The kind of item this is.")
     sprite: str = Field(..., description="The sprite to use")
-    target: Target = Field(
-        ..., description="Target mapping of who to use the item on"
-    )
     type: ItemType = Field(..., description="The type of item this is")
     category: ItemCategory = Field(
         ..., description="The category of item this is"
@@ -223,11 +215,6 @@ class ItemModel(BaseModel):
     )
     effects: Sequence[str] = Field(
         [], description="Effects this item will have"
-    )
-    ## Optional fields:
-    battle_menu: Optional[ItemBattleMenu] = Field(
-        "",
-        description="Which menu should be used to choose the target of the item.",
     )
 
     class Config:
@@ -311,6 +298,7 @@ class MonsterEvolutionItemModel(BaseModel):
         description="Location parameter: inside true or inside false (outside).",
     )
     season: Optional[str] = Field(None, description="Season parameter.")
+    daytime: Optional[str] = Field(None, description="Daytime parameter.")
     stat1: Optional[StatType] = Field(
         None, description="Stat parameter stat1 >= stat2."
     )
@@ -375,6 +363,10 @@ class MonsterModel(BaseModel):
     weight: float = Field(..., description="The weight of the monster")
     stage: EvolutionStage = Field(
         ..., description="The evolution stage of the monster"
+    )
+    randomly: bool = Field(
+        True,
+        description="Whether or not this monster will be picked by random",
     )
 
     # Optional fields
@@ -531,9 +523,6 @@ class TechniqueModel(BaseModel):
     is_fast: bool = Field(
         False, description="Whether or not this is a fast technique"
     )
-    is_area: bool = Field(
-        False, description="Whether or not this is an area of effect technique"
-    )
     randomly: bool = Field(
         True, description="Whether or not this is a fast technique"
     )
@@ -658,6 +647,7 @@ class NpcTemplateModel(BaseModel):
 
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
+    forfeit: bool = Field(True, description="Whether you can forfeit or not")
     template: Sequence[NpcTemplateModel] = Field(
         [], description="List of templates"
     )
@@ -740,6 +730,7 @@ class TemplateModel(BaseModel):
     slug: str = Field(
         ..., description="Slug uniquely identifying the template"
     )
+    double: bool = Field(False, description="Whether triggers 2vs2 or not")
 
 
 class MusicModel(BaseModel):

@@ -185,6 +185,7 @@ class TMXMapLoader:
         events = list()
         inits = list()
         interacts = list()
+        surfable_map = list()
         collision_map: Dict[Tuple[int, int], Optional[RegionProperties]] = {}
         collision_lines_map = set()
         maps = data.properties
@@ -192,12 +193,16 @@ class TMXMapLoader:
         # get all tiles which have properties and/or collisions
         gids_with_props = dict()
         gids_with_colliders = dict()
+        gids_with_surfable = dict()
         for gid, props in data.tile_properties.items():
             conds = extract_region_properties(props)
             gids_with_props[gid] = conds if conds else None
             colliders = props.get("colliders")
             if colliders is not None:
                 gids_with_colliders[gid] = colliders
+            surfable = props.get("surfable")
+            if surfable is not None:
+                gids_with_surfable[gid] = surfable
 
         # for each tile, apply the properties and collisions for the tile location
         for layer in data.visible_tile_layers:
@@ -206,6 +211,7 @@ class TMXMapLoader:
                 tile_props = gids_with_props.get(gid)
                 if tile_props is not None:
                     collision_map[(x, y)] = tile_props
+                # colliders
                 colliders = gids_with_colliders.get(gid)
                 if colliders is not None:
                     for obj in colliders:
@@ -222,7 +228,11 @@ class TMXMapLoader:
                                 region_conditions = copy_dict_with_keys(
                                     obj.properties, region_properties
                                 )
-                                collision_map[(x, y)] = region_conditions
+                                collision_map[
+                                    (x, y)
+                                ] = extract_region_properties(
+                                    region_conditions
+                                )
                         for line in self.collision_lines_from_object(
                             obj, tile_size
                         ):
@@ -230,6 +240,10 @@ class TMXMapLoader:
                             lx, ly = coords
                             line = (lx + x, ly + y), direction
                             collision_lines_map.add(line)
+                # surfable
+                surfable = gids_with_surfable.get(gid)
+                if surfable is not None:
+                    surfable_map.append((x, y))
 
         for obj in data.objects:
             if obj.type is None:
@@ -243,6 +257,8 @@ class TMXMapLoader:
                     collision_map[tile_position] = props
                 for line in self.collision_lines_from_object(obj, tile_size):
                     collision_lines_map.add(line)
+            elif obj_type and obj_type.lower().startswith("surfable"):
+                surfable_map.append(tile_size)
             elif obj_type == "event":
                 events.append(self.load_event(obj, tile_size))
             elif obj_type == "init":
@@ -254,6 +270,7 @@ class TMXMapLoader:
             events,
             inits,
             interacts,
+            surfable_map,
             collision_map,
             collision_lines_map,
             data,

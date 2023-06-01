@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="18" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="mansion"/>

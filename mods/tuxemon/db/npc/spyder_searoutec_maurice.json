@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_searoutec_maurice",
+  "template": [
+    {
+      "sprite_name": "fisher_fiery",
+      "combat_front": "fisher",
+      "slug": "fisher"
+    }
+  ]
+}

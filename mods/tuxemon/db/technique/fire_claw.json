@@ -3,12 +3,12 @@
   "accuracy": 0.7,
   "animation": "slash_power",
   "effects": [
+    "give status_burn,target",
     "damage"
   ],
   "flip_axes": "x",
-  "is_area": false,
   "is_fast": false,
-  "potency": null,
+  "potency": 0.2,
   "power": 1.75,
   "range": "melee",
   "recharge": 2,
@@ -19,7 +19,6 @@
     "enemy monster": 2,
     "enemy team": 0,
     "enemy trainer": 0,
-    "item": 0,
     "own monster": 0,
     "own team": 0,
     "own trainer": 0

@@ -1,0 +1,10 @@
+{
+  "slug": "cotton_misa_gramps",
+  "template": [
+    {
+      "sprite_name": "granny",
+      "combat_front": "heroine",
+      "slug": "granny"
+    }
+  ]
+}

@@ -1,13 +1,12 @@
 {
   "tech_id": 103,
-  "accuracy": 0.3,
+  "accuracy": 0.6,
   "animation": "meltdown",
   "effects": [
     "give status_festering,target",
     "damage"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
   "potency": 0.1,
   "power": 2.8,
@@ -20,7 +19,6 @@
     "enemy monster": 2,
     "enemy team": 0,
     "enemy trainer": 0,
-    "item": 0,
     "own monster": 0,
     "own team": 0,
     "own trainer": 0

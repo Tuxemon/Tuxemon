@@ -6,7 +6,6 @@
     "damage"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
   "potency": 0.6,
   "power": 1,
@@ -19,7 +18,6 @@
     "enemy monster": 2,
     "enemy team": 0,
     "enemy trainer": 0,
-    "item": 0,
     "own monster": 0,
     "own team": 0,
     "own trainer": 0

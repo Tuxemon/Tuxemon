@@ -3,10 +3,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.db import StatType
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from tuxemon.monster import Monster
+
+if TYPE_CHECKING:
+    from tuxemon.item.item import Item
+    from tuxemon.monster import Monster
 
 
 class BuffEffectResult(ItemEffectResult):
@@ -24,7 +28,10 @@ class BuffEffect(ItemEffect):
     stat: StatType
     amount: float
 
-    def apply(self, target: Monster) -> BuffEffectResult:
+    def apply(
+        self, item: Item, target: Union[Monster, None]
+    ) -> BuffEffectResult:
+        assert target
         if self.stat == StatType.hp:
             value = target.hp * self.amount
             target.hp += int(value)

@@ -5,7 +5,6 @@ from __future__ import annotations
 import datetime as dt
 import logging
 
-from tuxemon import prepare
 from tuxemon.map import proj
 from tuxemon.npc import NPC
 from tuxemon.states.world.worldstate import WorldState
@@ -91,7 +90,7 @@ class Player(NPC):
             var["stage_of_day"] = "night"
 
         # Seasons
-        if prepare.CONFIG.hemisphere == "north":
+        if var["hemisphere"] == "Northern":
             if int(var["day_of_year"]) < 81:
                 var["season"] = "winter"
             elif 81 <= int(var["day_of_year"]) < 173:

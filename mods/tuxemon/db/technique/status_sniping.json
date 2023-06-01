@@ -1,5 +1,5 @@
 {
-  "animation": "drip_green",
+  "animation": null,
   "category": "positive",
   "effects": [
     "statchange"
@@ -26,11 +26,10 @@
     "enemy trainer": 0,
     "own monster": 0,
     "own team": 0,
-    "own trainer": 0,
-    "item": 0
+    "own trainer": 0
   },
   "tech_id": 0,
-  "use_failure": "generic_failure",
+  "use_failure": "combat_none",
   "use_success": "combat_state_sniping_get",
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_none"
 }

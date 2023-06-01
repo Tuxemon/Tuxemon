@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="9" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="downstairs"/>
@@ -54,7 +55,7 @@
   </object>
   <object id="24" name="Watch TV" type="event" x="16" y="80" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog spyder_papertown_tvwatch"/>
+    <property name="act10" value="translated_dialog xero_taba_tvwatch"/>
     <property name="cond10" value="is party_size greater_than,0"/>
     <property name="cond20" value="is player_at"/>
     <property name="cond30" value="is player_facing up"/>
@@ -62,9 +63,9 @@
     <property name="cond50" value="not variable_set scene:yes"/>
    </properties>
   </object>
-  <object id="25" name="Read Sign" type="event" x="16" y="32" width="16" height="16">
+  <object id="25" name="Read Sign" type="event" x="16" y="16" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog spyder_papertown_home"/>
+    <property name="act10" value="translated_dialog xero_taba_poster"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -162,12 +163,11 @@
     <property name="cond2" value="not variable_set backhome:no"/>
    </properties>
   </object>
-  <object id="37" name="water" type="event" x="96" y="32" width="16" height="16">
+  <object id="37" name="water" type="event" x="96" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog waterwater"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is player_facing up"/>
    </properties>
   </object>
   <object id="38" name="create mom3" type="event" x="0" y="64" width="16" height="16">

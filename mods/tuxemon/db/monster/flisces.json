@@ -1,0 +1,69 @@
+{
+    "slug": "flisces",
+    "category": "cypselurus",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "probiscus"
+        },
+        {
+            "level_learned": 6,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 8,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 12,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 16,
+            "technique": "blood_bond"
+        },
+        {
+            "level_learned": 20,
+            "technique": "gyser"
+        },
+        {
+            "level_learned": 24,
+            "technique": "tonguespear"
+        },
+        {
+            "level_learned": 28,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 32,
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 36,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 40,
+            "technique": "kraken"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "shape": "piscine",
+    "stage": "standalone",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 238,
+    "height": 28,
+    "weight": 1.5,
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}

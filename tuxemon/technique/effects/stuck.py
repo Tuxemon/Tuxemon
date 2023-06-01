@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from tuxemon import formula
-from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
-from tuxemon.technique.technique import Technique
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
+    from tuxemon.technique.technique import Technique
 
 
 class StuckEffectResult(TechEffectResult):
@@ -25,8 +28,8 @@ class StuckEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> StuckEffectResult:
+        done: bool = False
         if tech.slug == "status_stuck":
             formula.simple_stuck(target)
-            return {"success": True}
-
-        return {"success": False}
+            done = True
+        return {"success": done}

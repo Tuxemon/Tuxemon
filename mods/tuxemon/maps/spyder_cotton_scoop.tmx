@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="32">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="cotton_scoop"/>
@@ -113,6 +114,7 @@
     <property name="act1" value="player_stop"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="pathfind spyder_shopkeeper,5,9"/>
+    <property name="act21" value="npc_face spyder_shopkeeper,down"/>
     <property name="act22" value="translated_dialog spyder_cottonscoop_deviceoffer"/>
     <property name="act23" value="translated_dialog_choice yes:no,heardcapture"/>
     <property name="act3" value="add_item tuxeball"/>

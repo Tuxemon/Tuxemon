@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="51">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="omnichannel3"/>
@@ -116,8 +117,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_omnichannel_strauss"/>
     <property name="act1" value="translated_dialog spyder_omnichannel_strauss1"/>
-    <property name="act2" value="add_monster budaye,36,spyder_omnichannel_strauss,27,10"/>
-    <property name="act3" value="add_monster frondly,40,spyder_omnichannel_strauss,27,10"/>
+    <property name="act2" value="add_monster budaye,36,spyder_omnichannel_strauss,5,10"/>
+    <property name="act3" value="add_monster frondly,40,spyder_omnichannel_strauss,5,10"/>
     <property name="act4" value="start_battle spyder_omnichannel_strauss"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_strauss2"/>
     <property name="act6" value="set_variable omnichannelstrauss:yes"/>
@@ -129,8 +130,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_omnichannel_carnegie"/>
     <property name="act1" value="translated_dialog spyder_omnichannel_carnegie1"/>
-    <property name="act2" value="add_monster elofly,38,spyder_omnichannel_carnegie,27,10"/>
-    <property name="act3" value="add_monster elostorm,38,spyder_omnichannel_carnegie,27,10"/>
+    <property name="act2" value="add_monster elofly,38,spyder_omnichannel_carnegie,5,10"/>
+    <property name="act3" value="add_monster elostorm,38,spyder_omnichannel_carnegie,5,10"/>
     <property name="act4" value="start_battle spyder_omnichannel_carnegie"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_carnegie2"/>
     <property name="act6" value="set_variable omnichannelcarnegie:yes"/>
@@ -142,8 +143,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_omnichannel_byrne"/>
     <property name="act1" value="translated_dialog spyder_omnichannel_byrne1"/>
-    <property name="act2" value="add_monster rockat,36,spyder_omnichannel_byrne,27,10"/>
-    <property name="act3" value="add_monster jemuar,40,spyder_omnichannel_byrne,27,10"/>
+    <property name="act2" value="add_monster rockat,36,spyder_omnichannel_byrne,5,10"/>
+    <property name="act3" value="add_monster jemuar,40,spyder_omnichannel_byrne,5,10"/>
     <property name="act4" value="start_battle spyder_omnichannel_byrne"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_byrne2"/>
     <property name="act6" value="set_variable omnichannelbyrne:yes"/>

@@ -1,12 +1,11 @@
 {
   "tech_id": 10,
-  "accuracy": 0.5,
+  "accuracy": 0.6,
   "animation": "watershot",
   "effects": [
-    "damage"
+    "splash"
   ],
   "flip_axes": "x",
-  "is_area": true,
   "is_fast": false,
   "power": 1.5,
   "range": "ranged",
@@ -18,7 +17,6 @@
     "enemy monster": 2,
     "enemy team": 2,
     "enemy trainer": 0,
-    "item": 0,
     "own monster": 0,
     "own team": 0,
     "own trainer": 0

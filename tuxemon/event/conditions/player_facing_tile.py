@@ -7,6 +7,7 @@ import logging
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +19,10 @@ class PlayerFacingTileCondition(EventCondition):
     Script usage:
         .. code-block::
 
-            is player_facing_tile
+            is player_facing_tile [value]
+
+    Script parameters:
+        value: value (eg surfable) inside the tileset.
 
     """
 
@@ -43,6 +47,13 @@ class PlayerFacingTileCondition(EventCondition):
             for h in range(0, condition.height)
         ]
         tile_location = None
+
+        # check if the NPC is facing a specific set of tiles
+        world = session.client.get_state_by_name(WorldState)
+        if condition.parameters:
+            prop = condition.parameters[0]
+            if prop == "surfable":
+                tiles = list(world.surfable_map)
 
         # Next, we check the player position and see if we're one tile
         # away from the tile.

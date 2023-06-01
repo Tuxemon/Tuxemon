@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Union
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.combat import has_status
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from tuxemon.monster import Monster
+
+if TYPE_CHECKING:
+    from tuxemon.item.item import Item
+    from tuxemon.monster import Monster
 
 
 class HealEffectResult(ItemEffectResult):
@@ -32,7 +35,10 @@ class HealEffect(ItemEffect):
     name = "heal"
     amount: Union[int, float]
 
-    def apply(self, target: Monster) -> HealEffectResult:
+    def apply(
+        self, item: Item, target: Union[Monster, None]
+    ) -> HealEffectResult:
+        assert target
         healing_amount = self.amount
         # condition festering = no healing
         if has_status(target, "status_festering"):

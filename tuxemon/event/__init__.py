@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from collections import namedtuple
-from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence
+from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
 
 from tuxemon.session import Session
 
@@ -67,3 +67,20 @@ def get_npc(session: Session, slug: str) -> Optional[NPC]:
 
     # logger.error("Unable to find NPC: " + slug)
     return world.get_entity(slug)
+
+
+def get_npc_pos(session: Session, pos: Tuple[int, int]) -> Optional[NPC]:
+    """
+    Gets an NPC object by its position.
+
+    """
+    from tuxemon.states.world.worldstate import WorldState
+
+    player = session.player
+    if player.tile_pos == pos:
+        return session.player
+
+    # Loop through the NPC list and see if the slug matches any in the list
+    world = session.client.get_state_by_name(WorldState)
+
+    return world.get_entity_pos(pos)

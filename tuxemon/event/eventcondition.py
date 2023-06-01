@@ -26,6 +26,7 @@ class EventCondition:
             Value of the condition.
 
         """
+        return True
 
     def get_persist(self, session: Session) -> Dict[str, Any]:
         """

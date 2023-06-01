@@ -3,8 +3,8 @@
   "template": [
     {
       "sprite_name": "swimmer",
-      "combat_front": "beachgoer",
-      "slug": "beachgoer"
+      "combat_front": "swimmer",
+      "slug": "swimmer"
     }
   ]
 }

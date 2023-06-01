@@ -116,6 +116,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Cool Dude"](https://wiki.tuxemon.org/index.php?title=Cool_Dude). Front sprite by Sanglorian. Overland sprite by Catch Challenger.
 
+* ["Coach"](https://wiki.tuxemon.org/index.php?title=File:Glasses_trainer.png). Commissioned from tnguyn606 by Sanglorian from [https://wiki.tuxemon.org/index.php?title=File:Handball-characters.png CC BY art by David Revoy].
+
 * ["Dancer"](https://wiki.tuxemon.org/index.php?title=File:Dancer_-_from_ansimuz.png). Adapted by Sanglorian from a CC0 sprite by ansimuz [https://opengameart.org/content/dancing-girl-sprites on OGA]
 
 * ["Desert Female"](https://wiki.tuxemon.org/File:Female-trainer-alt-egypt.png). Original design by Leo.
@@ -143,6 +145,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Fisher"](https://wiki.tuxemon.org/index.php?title=Fisher). Main sprite by Sanglorian. Overland sprite by Sanglorian, hat based on a Catch Challenger sprite.
 
 * ["Florist"](https://wiki.tuxemon.org/index.php?title=Florist). Main sprite by Sanglorian. Overland sprites by Catch Challenger.
+
+* ["Goalkeeper"](https://wiki.tuxemon.org/index.php?title=File:Blonde_trainer.png). Commissioned from tnguyn606 by Sanglorian from [https://wiki.tuxemon.org/index.php?title=File:Handball-characters.png CC BY art by David Revoy].
 
 * ["Goth"](https://wiki.tuxemon.org/index.php?title=Goth). Front sprite by Catch Challenger, tweaked by Sanglorian. Overland sprite by Catch Challenger.
 
@@ -192,6 +196,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Postboy"](https://wiki.tuxemon.org/index.php?title=Postboy). Overland sprites by Catch Challenger, palette changed by Sanglorian.
 
+* ["Pro"](https://wiki.tuxemon.org/index.php?title=File:Tuxemon.png). Commissioned from DOGMATICAL by Sanglorian from [https://wiki.tuxemon.org/index.php?title=File:Handball-characters.png CC BY art by David Revoy].
+
 * ["Riddler"](https://wiki.tuxemon.org/File:Snarlon_gijinka.gif).
 
 * ["Riverboat Captain"](https://wiki.tuxemon.org/index.php?title=Riverboat_Captain). Overland sprites by pixelartm, adapted by Sanglorian.
@@ -238,6 +244,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Wind Nymph"](https://wiki.tuxemon.org/File:Wind_M_(Feng)_64px.png) Front sprite by Svetlana Kushnariova. Resized by Sanglorian.
 
+* ["Winger"](https://wiki.tuxemon.org/index.php?title=File:Bennie.png). Commissioned from tnguyn606 by Sanglorian from [https://wiki.tuxemon.org/index.php?title=File:Handball-characters.png CC BY art by David Revoy].
+
 * ["Witch"](https://wiki.tuxemon.org/File:World01_006_Witch_-_64px.png) [https://opengameart.org/content/js-monster-pack-4-ascent CC BY-SA 3.0] Minor changes by Sanglorian.
 
 * ["Wood Nymph"](https://wiki.tuxemon.org/index.php?title=Wood_Nymph). Front sprites by JosephSeraph. Overland sprites by Catch Challenger.
@@ -245,6 +253,22 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Yaangyiin"](https://wiki.tuxemon.org/File:Yaanyiin.gif) [http://opengameart.org/content/js-monster-set-elementals OGA CC BY]
 
 * ["Yellow Belt"](https://wiki.tuxemon.org/index.php?title=Yellow_Belt). Created by Sanglorian from the [https://telles0808.itch.io/isometric-template Isometric Template] template by KinGabe.
+
+### Pair Character Front Sprites
+
+* ["Business Pair"](https://wiki.tuxemon.org/File:Business_pair.gif) Overland sprite by Catch Challenger.
+
+* ["Battle Pair"](https://wiki.tuxemon.org/File:Battle_pair.gif) Dragonrider adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Enthusiast Pair"](https://wiki.tuxemon.org/File:Enthusiast_pair.png) Dragonrider adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Little Pair"](https://wiki.tuxemon.org/File:Little_pair.png) Overland sprite by Catch Challenger.
+
+* ["Med Pair"](https://wiki.tuxemon.org/File:Med_pair.png) Scientist adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule. Nurse based loosely on [http://momokahimari.deviantart.com/art/Base-boy-pokemon-trainer-sprite-277503155 MomokaHirami's template]
+
+* ["Spyder Pair"](https://wiki.tuxemon.org/File:Spyder_pair.gif) Overland sprite by Catch Challenger.
+
+* ["Villain Pair"](https://wiki.tuxemon.org/File:Villain_pair.png) Spyder Boss based loosely on [http://momokahimari.deviantart.com/art/Base-boy-pokemon-trainer-sprite-277503155 MomokaHirami's template]
 
 ### Tilesets
 
@@ -379,6 +403,9 @@ is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 ["Superpowers Assets Ninja Tilesheet"](https://wiki.tuxemon.org/index.php?title=File:Superpowers_Tilesheet.png)
 by Superpower Asset Packs
 is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+["Inspired 16x16 Tiles"](https://wiki.tuxemon.org/File:Tilemap_0.png)
+based on https://opengameart.org/content/pokemon-inspired-16x16-tiles by ["RedVoxel"](https://red-voxel.itch.io/), roofs adapted by Jaskrendix.
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -824,6 +851,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Cureall"](https://wiki.tuxemon.org/File:APPLE_2.png) original sprite by josepharaoh99. Modifications by Sanglorian.  Licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Revive"](https://wiki.tuxemon.org/File:Shroom3.png) Sprite by BizmasterStudios.  Licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
 * ["Restoration"](https://wiki.tuxemon.org/File:ORANGE_2.png) original sprite by josepharaoh99. Modifications by Sanglorian. Licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Trepidation"](https://wiki.tuxemon.org/index.php?title=File:Interior_Tiles_by_ArMM1998.png) cut and resized by Jaskrendix from Interior tileset by ArMM1998. Licensed under CC0.
@@ -832,7 +861,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Monsters' Eyes Meet"](https://wiki.tuxemon.org/index.php?title=File:Interior_Tiles_by_ArMM1998.png) cut and resized by Jaskrendix from Interior tileset by ArMM1998. Licensed under CC0.
 
-* ["Ancient Egg"](https://wiki.tuxemon.org/File:T7FiZjz.png) by [josepharaoh99](https://wiki.tuxemon.org/Josepharaoh99) is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* ["Ancient Egg"](https://wiki.tuxemon.org/File:T7FiZjz.png) Lightly adapted by Sanglorian from the original coconut sprite by josepharaoh99.
 
 * ["Boost Armour"](https://wiki.tuxemon.org/File:Boost_2.png) Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
@@ -916,6 +945,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Earthmover Key"](https://wiki.tuxemon.org/index.php?title=Earthmover_Key) by Catch Challenger is licensed under CC-BY 4.0.
 
+* ["Hatchet"](https://wiki.tuxemon.org/index.php?title=File:Hatchet.png) [https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
 * ["Fishing Rod"](https://wiki.tuxemon.org/index.php?title=Fishing_Rod) by Catch Challenger is licensed under CC-BY 4.0.
 
 * ["Surfboard"](https://wiki.tuxemon.org/File:Surfboard.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
@@ -971,6 +1002,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Metal Booster"](https://wiki.tuxemon.org/File:Metal_b.png) Colours tweaked by Sanglorian. [https://opengameart.org/content/icons-items-1 CC0 on OGA]
 
 * ["Miaow Milk"](https://wiki.tuxemon.org/File:The_king_6.png) [https://opengameart.org/content/icons-food CC0 in OGA]
+
+* ["Ox Stick"](https://wiki.tuxemon.org/index.php?title=File:Ox_stick.png) Lightly adapted by Sanglorian from the Mauai front sprite by Chairry-Art.
 
 * ["Peace Lily"](https://wiki.tuxemon.org/File:Peace_lily.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
@@ -1555,6 +1588,10 @@ Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel
 * ["icon_blinded.png"](https://wiki.tuxemon.org/File:Blind.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
 
+* ["icon_burn.png"](https://wiki.tuxemon.org/File:Burn2.png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+
 * ["icon_chargedup.png"](https://wiki.tuxemon.org/File:Glowing-large.png)
 Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
 which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
@@ -1572,6 +1609,10 @@ which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero
 * ["icon_dozing.png"](https://wiki.tuxemon.org/File:Sleep.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
 
+* ["icon_elementalshield.png"](https://wiki.tuxemon.org/File:Flameshield.png)
+Adapted by Sanglorian from a sprite by ["Catch Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack),
+is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
 * ["icon_eliminated.png"](https://wiki.tuxemon.org/File:Alert.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
 
@@ -1581,8 +1622,16 @@ which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero
 * ["icon_exhausted.png"](https://wiki.tuxemon.org/File:Exhausted.png)
 [https://opengameart.org/content/smoke-fire-animated-particle-16x16 CC BY in OGA]
 
+* ["icon_feedback.png"](https://wiki.tuxemon.org/File:Tamashihoshi_frozen2.png)
+by [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["icon_festering.png"](https://wiki.tuxemon.org/File:Festering.png)
 [https://opengameart.org/content/various-icons CC0 on OGA]
+
+* ["icon_flinching.png"](https://wiki.tuxemon.org/File:Tamashihoshi_stunned.png)
+by [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["icon_focused.png"](https://wiki.tuxemon.org/File:Eagle_eye.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
@@ -1593,21 +1642,33 @@ which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero
 * ["icon_hardshell.png"](https://wiki.tuxemon.org/File:Shield_.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
 
+* ["icon_harpooned.png"](https://wiki.tuxemon.org/File:Harpooned.png)
+Adapted by Sanglorian from a sprite by ["Catch Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack),
+is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
 * ["icon_lifeleech.png"](https://wiki.tuxemon.org/File:Dark-type.png)
 Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
 which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
 
+* ["icon_lockdown.png"](https://wiki.tuxemon.org/File:Tamashihoshi_grabbed.png)
+by [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["icon_noddingoff.png"](https://wiki.tuxemon.org/File:Sleep1.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
-
-* ["icon_overfeed.png"](https://wiki.tuxemon.org/File:S_Poison07.png)
-Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
 * ["icon_poison.png"](https://wiki.tuxemon.org/File:Poison_.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
 
+* ["icon_prickly.png"](https://wiki.tuxemon.org/File:Spikey.png)
+Adapted by Sanglorian from a sprite by ["Catch Challenger"](https://github.com/alphaonex86/CatchChallenger-datapack),
+is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
 * ["icon_recover.png"](https://wiki.tuxemon.org/File:Various15all7.png)
 [https://opengameart.org/content/various-icons CC0 on OGA]
+
+* ["icon_slow.png"](https://wiki.tuxemon.org/File:S_Poison07.png)
+Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
 * ["icon_sniping.png"](https://wiki.tuxemon.org/File:Aim.png)
 [https://opengameart.org/content/pixel-icons-0 CC0 on OGA]
@@ -1623,6 +1684,14 @@ Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel
 
 * ["icon_tired.png"](https://wiki.tuxemon.org/File:Tired.png)
 [https://opengameart.org/content/smoke-fire-animated-particle-16x16 CC BY in OGA]
+
+* ["icon_wasting.png"](https://wiki.tuxemon.org/File:Poison-icon.png)
+Unknown artist. Found in Tuxemon code. 
+
+* ["icon_wild.png"](https://wiki.tuxemon.org/File:Tamashihoshi_confusion.png)
+by [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 
 ### Battle Backgrounds
 

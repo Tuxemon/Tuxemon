@@ -3989,7 +3989,7 @@ msgstr "Vous êtes dans nos pattes depuis bien trop longtemps !"
 msgid "spyder_dryadsgrove_ferris2"
 msgstr "Il est peut-être temps qu'on retourne dans le monde réel."
 
-msgid "spyder_stop_dante"
+msgid "spyder_dante"
 msgstr "Dante"
 
 msgid "spyder_dragonscave_mal2"
@@ -6071,7 +6071,7 @@ msgstr ""
 msgid "frondly"
 msgstr "Frondly"
 
-# Boosters (items)
+# Boosters
 msgid "greenwash_badge"
 msgstr "Badge : Greenwash"
 
@@ -6317,7 +6317,7 @@ msgstr "Sniping"
 msgid "status_softened"
 msgstr "Ramolli"
 
-msgid "status_spyderbite"
+msgid "spyderbite"
 msgstr "Morsure Spyder"
 
 msgid "status_stuck"

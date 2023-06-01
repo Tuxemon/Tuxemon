@@ -45,7 +45,7 @@
         },
         {
             "level_learned": 36,
-            "technique": "wall_ice"
+            "technique": "ice_shield"
         },
         {
             "level_learned": 40,
@@ -54,7 +54,7 @@
     ],
     "evolutions": [],
     "history": [],
-    "shape": "aquatic",
+    "shape": "leviathan",
     "stage": "standalone",
     "types": [
         "glitch",

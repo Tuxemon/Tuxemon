@@ -1,0 +1,69 @@
+{
+    "slug": "urcheedle",
+    "category": "spiked",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "tonguespear"
+        },
+        {
+            "level_learned": 2,
+            "technique": "torch"
+        },
+        {
+            "level_learned": 6,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 8,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 12,
+            "technique": "mobbing"
+        },
+        {
+            "level_learned": 16,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 20,
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 24,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 28,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 32,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 36,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 40,
+            "technique": "orbs"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "shape": "blob",
+    "stage": "standalone",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 243,
+    "height": 30,
+    "weight": 0.5,
+    "catch_rate": 120.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

@@ -3,12 +3,10 @@
   "accuracy": 0.75,
   "animation": "bomb_bright",
   "effects": [
-    "give status_grabbed,target",
-    "give status_grabbed,user",
+    "give status_grabbed,both",
     "damage"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
   "potency": 1,
   "power": 2.25,
@@ -21,7 +19,6 @@
     "enemy monster": 2,
     "enemy team": 0,
     "enemy trainer": 0,
-    "item": 0,
     "own monster": 0,
     "own team": 0,
     "own trainer": 0

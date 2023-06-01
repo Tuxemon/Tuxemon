@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Union
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.db import CategoryCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from tuxemon.monster import Monster
+
+if TYPE_CHECKING:
+    from tuxemon.item.item import Item
+    from tuxemon.monster import Monster
 
 
 class RestoreEffectResult(ItemEffectResult):
@@ -28,7 +31,10 @@ class RestoreEffect(ItemEffect):
     name = "restore"
     category: Union[str, None] = None
 
-    def apply(self, target: Monster) -> RestoreEffectResult:
+    def apply(
+        self, item: Item, target: Union[Monster, None]
+    ) -> RestoreEffectResult:
+        assert target
         if self.category:
             if (
                 self.category == CategoryCondition.positive

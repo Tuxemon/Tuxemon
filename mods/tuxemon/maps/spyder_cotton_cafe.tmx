@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="29">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="cotton_cafe"/>
@@ -25,7 +26,7 @@
  </layer>
  <layer id="2" name="Tile Layer 5" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYCAduLMg9BBifwYq/QLEt4H4DhDnMQMJIMiC0iA2TMyQl4FBiJGBQRiIfwHFfwNxL1TdcSB9AohPAfFpqFgYUD06WAOVQxeH8UFmgPBJIEY2CyZ/gYmBAYRhwB/KgNEwcRB9CahuA5DeCMQXkfSA5GAA2TyQ+vNAiQtAjE09MebBzAXRhMxDVksNdinQ/WVAXA716w5gGAIATdQj6A==
+   eAFjYCAduLMg9BBifwYq/QLEt4H4DhDnMQMJHMCQl4FBiJGBQRiIfwHV/AbiXjzqw4Dq0cEaPOpBak8A5UH4JBCfAuLTQIwMLjAxMIAwDPhDGTAaJg6iLwHVbQDSG4H4IpIekBwMIJsHUn8eKHEBiLGpJ8Y8mLkgmpB5yGqpwS4Fur8MiMuhft0BDDsAxhUf2g==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 4" width="12" height="12">
@@ -50,7 +51,7 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="13" name="Teleport to Cotton Town" type="event" x="112" y="176" width="48" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,28,17,0.3"/>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,31,17,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>

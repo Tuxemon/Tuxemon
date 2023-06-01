@@ -89,12 +89,6 @@ class StartState(PygameMenuState):
             button_id="menu_new_game",
         )
         menu.add.button(
-            title=T.translate("menu_options"),
-            action=change_state("ControlState"),
-            font_size=30,
-            button_id="menu_options",
-        )
-        menu.add.button(
             title=T.translate("menu_minigame"),
             action=change_state("MinigameState"),
             font_size=30,

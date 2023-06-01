@@ -3,9 +3,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from tuxemon.item.itemcondition import ItemCondition
-from tuxemon.monster import Monster
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
 
 
 @dataclass

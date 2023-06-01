@@ -12,6 +12,7 @@ from typing import (
     List,
     Literal,
     Mapping,
+    MutableMapping,
     Optional,
     Sequence,
     Set,
@@ -600,6 +601,19 @@ class WorldState(state.State):
         """
         return self.npcs.get(slug)
 
+    def get_entity_pos(self, pos: Tuple[int, int]) -> Optional[NPC]:
+        """
+        Get an entity from the world by its position.
+
+        Parameters:
+            pos: The entity position.
+
+        """
+        for npc in self.npcs.values():
+            if npc.tile_pos == pos:
+                return npc
+        return None
+
     def remove_entity(self, slug: str) -> None:
         """
         Remove an entity from the world.
@@ -622,7 +636,7 @@ class WorldState(state.State):
 
     def check_collision_zones(
         self,
-        map: Mapping[Tuple[int, int], Optional[RegionProperties]],
+        map: MutableMapping[Tuple[int, int], Optional[RegionProperties]],
         label: str,
     ) -> Optional[Tuple[int, int]]:
         """
@@ -1151,6 +1165,7 @@ class WorldState(state.State):
 
         self.current_map = map_data
         self.collision_map = map_data.collision_map
+        self.surfable_map = map_data.surfable_map
         self.collision_lines_map = map_data.collision_lines_map
         self.map_size = map_data.size
 

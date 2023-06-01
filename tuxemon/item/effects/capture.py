@@ -6,12 +6,14 @@ import logging
 import random
 from dataclasses import dataclass
 from math import sqrt
-from typing import Union
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.db import TasteWarm
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from tuxemon.monster import Monster
 
+if TYPE_CHECKING:
+    from tuxemon.item.item import Item
+    from tuxemon.monster import Monster
 logger = logging.getLogger(__name__)
 
 
@@ -24,9 +26,11 @@ class CaptureEffect(ItemEffect):
     """Attempts to capture the target."""
 
     name = "capture"
-    tuxeball: Union[str, None] = None
 
-    def apply(self, target: Monster) -> CaptureEffectResult:
+    def apply(
+        self, item: Item, target: Union[Monster, None]
+    ) -> CaptureEffectResult:
+        assert target
         capture_device = "tuxeball"
         # The number of shakes that a tuxemon can do to escape.
         total_shakes = 4
@@ -51,83 +55,82 @@ class CaptureEffect(ItemEffect):
         fighting_monster = self.user.find_monster_by_id(iid)
         # Check type tuxeball and address malus/bonus
         tuxeball_modifier = 1.0
-        if self.tuxeball is not None:
-            # type based tuxeball
-            if self.tuxeball == "tuxeball_earth":
-                if target.types[0] != "earth":
-                    tuxeball_modifier = 0.2
-                else:
-                    tuxeball_modifier = 1.5
-            if self.tuxeball == "tuxeball_fire":
-                if target.types[0] != "fire":
-                    tuxeball_modifier = 0.2
-                else:
-                    tuxeball_modifier = 1.5
-            if self.tuxeball == "tuxeball_metal":
-                if target.types[0] != "metal":
-                    tuxeball_modifier = 0.2
-                else:
-                    tuxeball_modifier = 1.5
-            if self.tuxeball == "tuxeball_water":
-                if target.types[0] != "water":
-                    tuxeball_modifier = 0.2
-                else:
-                    tuxeball_modifier = 1.5
-            if self.tuxeball == "tuxeball_wood":
-                if target.types[0] != "wood":
-                    tuxeball_modifier = 0.2
-                else:
-                    tuxeball_modifier = 1.5
-            # flavoured based tuxeball
-            if self.tuxeball == "tuxeball_hearty":
-                target.taste_warm = TasteWarm.hearty
-            if self.tuxeball == "tuxeball_peppy":
-                target.taste_warm = TasteWarm.peppy
-            if self.tuxeball == "tuxeball_refined":
-                target.taste_warm = TasteWarm.refined
-            if self.tuxeball == "tuxeball_salty":
-                target.taste_warm = TasteWarm.salty
-            if self.tuxeball == "tuxeball_zesty":
-                target.taste_warm = TasteWarm.zesty
-            # gender based tuxeball
-            if self.tuxeball == "tuxeball_male":
-                if target.gender != "male":
-                    tuxeball_modifier = 0.2
-                else:
-                    tuxeball_modifier = 1.5
-            if self.tuxeball == "tuxeball_female":
-                if target.gender != "female":
-                    tuxeball_modifier = 0.2
-                else:
-                    tuxeball_modifier = 1.5
-            if self.tuxeball == "tuxeball_neuter":
-                if target.gender != "neuter":
-                    tuxeball_modifier = 0.2
-                else:
-                    tuxeball_modifier = 1.5
-            # Qiangong2 tuxeball ideas
-            if self.tuxeball == "tuxeball_ancient":
-                tuxeball_modifier = 99
-            if self.tuxeball == "tuxeball_crusher":
-                crusher = ((target.armour / 5) * 0.01) + 1
-                if crusher >= 1.4:
-                    crusher = 1.4
-                if status_category == "positive":
-                    crusher = 0.01
-                tuxeball_modifier = crusher
+        # type based tuxeball
+        if item.slug == "tuxeball_earth":
+            if target.types[0] != "earth":
+                tuxeball_modifier = 0.2
+            else:
+                tuxeball_modifier = 1.5
+        if item.slug == "tuxeball_fire":
+            if target.types[0] != "fire":
+                tuxeball_modifier = 0.2
+            else:
+                tuxeball_modifier = 1.5
+        if item.slug == "tuxeball_metal":
+            if target.types[0] != "metal":
+                tuxeball_modifier = 0.2
+            else:
+                tuxeball_modifier = 1.5
+        if item.slug == "tuxeball_water":
+            if target.types[0] != "water":
+                tuxeball_modifier = 0.2
+            else:
+                tuxeball_modifier = 1.5
+        if item.slug == "tuxeball_wood":
+            if target.types[0] != "wood":
+                tuxeball_modifier = 0.2
+            else:
+                tuxeball_modifier = 1.5
+        # flavoured based tuxeball
+        if item.slug == "tuxeball_hearty":
+            target.taste_warm = TasteWarm.hearty
+        if item.slug == "tuxeball_peppy":
+            target.taste_warm = TasteWarm.peppy
+        if item.slug == "tuxeball_refined":
+            target.taste_warm = TasteWarm.refined
+        if item.slug == "tuxeball_salty":
+            target.taste_warm = TasteWarm.salty
+        if item.slug == "tuxeball_zesty":
+            target.taste_warm = TasteWarm.zesty
+        # gender based tuxeball
+        if item.slug == "tuxeball_male":
+            if target.gender != "male":
+                tuxeball_modifier = 0.2
+            else:
+                tuxeball_modifier = 1.5
+        if item.slug == "tuxeball_female":
+            if target.gender != "female":
+                tuxeball_modifier = 0.2
+            else:
+                tuxeball_modifier = 1.5
+        if item.slug == "tuxeball_neuter":
+            if target.gender != "neuter":
+                tuxeball_modifier = 0.2
+            else:
+                tuxeball_modifier = 1.5
+        # Qiangong2 tuxeball ideas
+        if item.slug == "tuxeball_ancient":
+            tuxeball_modifier = 99
+        if item.slug == "tuxeball_crusher":
+            crusher = ((target.armour / 5) * 0.01) + 1
+            if crusher >= 1.4:
+                crusher = 1.4
+            if status_category == "positive":
+                crusher = 0.01
+            tuxeball_modifier = crusher
         if fighting_monster:
-            if self.tuxeball == "tuxeball_xero":
+            if item.slug == "tuxeball_xero":
                 if fighting_monster.types[0] != target.types[0]:
                     tuxeball_modifier = 1.4
                 else:
                     tuxeball_modifier = 0.3
-            if self.tuxeball == "tuxeball_omni":
+            if item.slug == "tuxeball_omni":
                 if fighting_monster.types[0] != target.types[0]:
                     tuxeball_modifier = 0.3
                 else:
                     tuxeball_modifier = 1.4
             # Sanglorian tuxeball ideas
-            if self.tuxeball == "tuxeball_lavish":
+            if item.slug == "tuxeball_lavish":
                 tuxeball_modifier = 1.5
 
         # TODO: debug logging this info
@@ -182,22 +185,19 @@ class CaptureEffect(ItemEffect):
             random_num = random.randint(0, max_shake_rate)
             logger.debug(f"shake check {i}: random number {random_num}")
             if random_num > round(shake_check):
-                # check for self.tuxeball
-                if self.tuxeball is not None:
-                    if self.tuxeball == "tuxeball_hardened":
-                        tuxeball = self.user.find_item(self.tuxeball)
-                        if tuxeball:
-                            tuxeball.quantity += 1
+                if item.slug == "tuxeball_hardened":
+                    tuxeball = self.user.find_item(item.slug)
+                    if tuxeball:
+                        tuxeball.quantity += 1
 
                 return {"success": False, "num_shakes": i + 1}
 
-        if self.tuxeball is not None:
-            # it increases the level +1 upon capture
-            if self.tuxeball == "tuxeball_candy":
-                capture_device = self.tuxeball
-                target.level += 1
-            else:
-                capture_device = self.tuxeball
+        # it increases the level +1 upon capture
+        if item.slug == "tuxeball_candy":
+            capture_device = item.slug
+            target.level += 1
+        else:
+            capture_device = item.slug
 
         # add creature to the player's monster list
         target.capture_device = capture_device

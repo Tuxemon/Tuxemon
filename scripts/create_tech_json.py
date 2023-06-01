@@ -29,7 +29,6 @@ DataRow = namedtuple("DataRow", [
     "power",
     "healing_power",
     "is_fast",
-    "is_area"
 ])
 
 axes_flip_mapping = {
@@ -72,7 +71,6 @@ def create_json(data_row):
         "effects": effects,
         "flip_axes": get_animation_flip_axes(data_row.animation),
         "healing_power": float(data_row.healing_power) if data_row.healing_power else 0,
-        "is_area": bool(data_row.is_area),
         "is_fast": bool(data_row.is_fast),
         "potency": data_row.potency,
         "power": float(data_row.power) if data_row.power else 0,

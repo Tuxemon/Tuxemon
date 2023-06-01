@@ -1,4 +1,13 @@
 events:
+  Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    height: 1
+    width: 1
+    x: 7
+    y: 0
   Go Downstairs:
     actions:
     - transition_teleport player_house_downstairs.tmx,0,2,0.3
@@ -29,7 +38,7 @@ events:
     actions:
     - screen_transition 1
     - wait 0.5
-    - translated_dialog spyder_papertown_restinbed
+    - translated_dialog xero_taba_restinbed
     - set_monster_health
     - set_monster_status
     - set_variable teleport_faint:player_house_bedroom.tmx 3 4
@@ -56,7 +65,7 @@ events:
   Intro:
     actions:
     - change_bg spyder_roc
-    - translated_dialog spyder_intro_question
+    - translated_dialog xero_skip_question
     - translated_dialog_choice no:yes,question_xero
     conditions:
     - not variable_set question_xero:yes

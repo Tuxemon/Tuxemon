@@ -510,6 +510,20 @@
             "width": 256,
             "x": -288,
             "y": 2048
+        },
+        {
+            "fileName": "spyder_flower_house2.tmx",
+            "height": 128,
+            "width": 160,
+            "x": 1280,
+            "y": 512
+        },
+        {
+            "fileName": "spyder_flower_house1.tmx",
+            "height": 128,
+            "width": 160,
+            "x": 1440,
+            "y": 512
         }
     ],
     "onlyShowAdjacentMaps": false,

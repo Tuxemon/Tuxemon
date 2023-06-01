@@ -61,10 +61,10 @@ jobs:
     # Create development branch at https://github.com/flathub/org.tuxemon.Tuxemon and
     # update the requirements as described in the Readme. Turn it off again when the requirements in the
     # master branch on flathub are aligned again with the Tuxemon requirements
-    # - name: Checkout development branch
-      # run: |
-        # cd org.tuxemon.Tuxemon
-        # git checkout development
+    - name: Checkout development branch
+      run: |
+        cd org.tuxemon.Tuxemon
+        git checkout development
 
     - name: Replace git tag by the commit id on which it runs
       if: github.ref_type != 'tag'

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="65">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="mansion_basement"/>
@@ -158,8 +159,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_basement_coralli"/>
     <property name="act1" value="translated_dialog spyder_basement_coralli1"/>
-    <property name="act2" value="add_monster tumbleworm,22,spyder_basement_coralli,27,10"/>
-    <property name="act3" value="add_monster elofly,22,spyder_basement_coralli,27,10"/>
+    <property name="act2" value="add_monster tumbleworm,22,spyder_basement_coralli,5,10"/>
+    <property name="act3" value="add_monster elofly,22,spyder_basement_coralli,5,10"/>
     <property name="act4" value="start_battle spyder_basement_coralli"/>
     <property name="act5" value="translated_dialog spyder_basement_coralli2"/>
     <property name="act6" value="set_variable basementcoralli:yes"/>
@@ -171,7 +172,7 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_basement_bobby"/>
     <property name="act1" value="translated_dialog spyder_basement_bobby1"/>
-    <property name="act2" value="add_monster capiti,26,spyder_basement_bobby,27,10"/>
+    <property name="act2" value="add_monster capiti,26,spyder_basement_bobby,5,10"/>
     <property name="act4" value="start_battle spyder_basement_bobby"/>
     <property name="act5" value="translated_dialog spyder_basement_bobby2"/>
     <property name="act6" value="set_variable basementbobby:yes"/>
@@ -183,7 +184,7 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_basement_roger"/>
     <property name="act1" value="translated_dialog spyder_basement_roger1"/>
-    <property name="act2" value="add_monster polyrock,22,spyder_basement_roger,27,10"/>
+    <property name="act2" value="add_monster polyrock,22,spyder_basement_roger,5,10"/>
     <property name="act4" value="start_battle spyder_basement_roger"/>
     <property name="act5" value="translated_dialog spyder_basement_roger2"/>
     <property name="act6" value="set_variable basementroger:yes"/>
@@ -195,8 +196,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_basement_catholi"/>
     <property name="act1" value="translated_dialog spyder_basement_catholi1"/>
-    <property name="act2" value="add_monster foofle,20,spyder_basement_catholi,27,10"/>
-    <property name="act3" value="add_monster rosarin,24,spyder_basement_catholi,27,10"/>
+    <property name="act2" value="add_monster foofle,20,spyder_basement_catholi,5,10"/>
+    <property name="act3" value="add_monster rosarin,24,spyder_basement_catholi,5,10"/>
     <property name="act4" value="start_battle spyder_basement_catholi"/>
     <property name="act5" value="translated_dialog spyder_basement_catholi2"/>
     <property name="act6" value="set_variable basementcatholi:yes"/>

@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from tuxemon import formula
-from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
-from tuxemon.technique.technique import Technique
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
+    from tuxemon.technique.technique import Technique
 
 
 class LocalDamageEffectResult(TechEffectResult):
@@ -40,18 +43,19 @@ class LocalDamageEffect(TechEffect):
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
-        if hit or tech.is_area:
+        if hit:
+            tech.hit = True
             tech.advance_counter_success()
             damage, mult = formula.simple_damage_calculate(tech, user, target)
-            if not hit:
-                damage //= 2
             # land of ifs
             # tech: panjandrum
             if tech.slug == "panjandrum":
-                damage = formula.damage_panjandrum(target)
+                damage = formula.damage_full_hp(target, 4)
+            target.current_hp -= damage
         else:
+            tech.hit = False
             damage = 0
-            mult = 1
+            mult = 1.0
 
         return {
             "damage": damage,

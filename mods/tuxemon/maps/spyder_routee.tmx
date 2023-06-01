@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="170">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="187">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -7,51 +7,55 @@
   <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAErYGBgKCABJzIxMHxjgeBkIJsUvdjUEjLPFmgHPmyH5gZC5sHcjotG9xO9zWsH+gcdSzPjDnNC7iM1zCk1zx7oVuT4csDjdmxuA4khuwFXPIHE0eOKXua1YYkj9DgD8TvQ0iYu942KU16OjIbhwIQhAKWayqA=
+   eAErYGBgKCABJzIxMHxjgeBkIJsUvdjUEjLPFmgHPmyH5gZC5sHcjotG9xO9zWsH+gcdSzPjDnNC7iM1zCk1zx7oVuT4csDjdmxuA4khuwFXPIHE0eOKXua1YYkj9DgD8TvQ0iYu94HES4G4DIjLgRifOmLlZgHNmQ3Ec0aYeVyMkHAEhSUhjC+sYeEHCkNiMb6w3g805wCJ+CBQPbHxPVDqAPmY0yI=
   </data>
  </layer>
  <layer id="5" name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAGtzkEKwzAMRFFvepfkMOn9j1Nv3maCsQsTCJ+R5C9dnzHu+V+HHPHlu2d6vvM/Zehe77KfOff/28/5vHvXz/2ydzKqozrmftm8jOqojrxJ86v6qs+bNL+qr/q5Xza/o3nM/fLOo28eeVvkbbF1F0/rLh7eFnlbbN3F07qLh7dF3hZ/cRpRAQ==
+   eAGtlEEKwkAMRbNQN649glCvIuipPJY3EDyAehF3pujbPAnT0Q6E159kfkKhHZYRu4xhIkPH9w7pc8yYStl93XPd2vN76+733q2656O5h4bkIXno+Wj60ZA8JA/xNemv8lUdX5P+Kl/VPR9Nf4v0Q89Ht3yo0w/xNem/ryO2i+nfD74mfrf026ef65X2Xmj8HjPvN/rNvd91FXHK4Gw+z2Oec8l/yniq9/CuRjxzv3NH8L5M/HrZ2q/Xz3v9q6v9fs2/AETBUR0=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">
-  <object id="151" type="collision" x="0" y="0" width="192" height="32"/>
-  <object id="152" type="collision" x="128" y="32" width="64" height="96"/>
-  <object id="153" type="collision" x="0" y="80" width="80" height="240"/>
-  <object id="154" type="collision" x="80" y="160" width="240" height="160"/>
-  <object id="155" type="collision" x="256" y="0" width="64" height="160"/>
-  <object id="156" type="collision" x="96" y="128" width="144" height="32">
+  <object id="51" type="collision" x="0" y="0" width="192" height="32"/>
+  <object id="52" type="collision" x="128" y="32" width="64" height="96"/>
+  <object id="53" type="collision" x="0" y="80" width="96" height="240"/>
+  <object id="54" type="collision" x="128" y="160" width="192" height="96"/>
+  <object id="55" type="collision" x="256" y="0" width="64" height="160"/>
+  <object id="56" type="collision" x="96" y="128" width="144" height="32">
    <properties>
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="157" type="collision" x="0" y="48" width="128" height="32">
+  <object id="57" type="collision" x="0" y="48" width="128" height="32">
    <properties>
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="158" type="collision" x="96" y="80" width="32" height="48">
+  <object id="58" type="collision" x="96" y="80" width="32" height="48">
    <properties>
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="159" type="collision" x="208" y="0" width="32" height="128">
+  <object id="59" type="collision" x="208" y="0" width="32" height="128">
    <properties>
     <property name="key" value="water"/>
    </properties>
   </object>
+  <object id="70" type="collision" x="96" y="288" width="224" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
-  <object id="161" name="Remove obstacle 1" type="event" x="176" y="112" width="16" height="16">
+  <object id="61" name="Remove obstacle 1" type="event" x="176" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="remove_collision water"/>
     <property name="cond1" value="is has_item player,surfboard"/>
    </properties>
   </object>
-  <object id="162" name="Teleport to Timber Town 1" type="event" x="208" y="0" width="16" height="16">
+  <object id="62" name="Teleport to Timber Town 1" type="event" x="208" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_town.tmx,33,39,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -59,7 +63,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="163" name="Teleport to Timber Town 2" type="event" x="224" y="0" width="16" height="16">
+  <object id="63" name="Teleport to Timber Town 2" type="event" x="224" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_town.tmx,34,39,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -67,7 +71,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="164" name="Teleport to Tunnel 1" type="event" x="0" y="48" width="16" height="16">
+  <object id="64" name="Teleport to Tunnel 1" type="event" x="0" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_tunnel.tmx,19,3,0.3"/>
     <property name="act2" value="player_face left"/>
@@ -75,7 +79,7 @@
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
-  <object id="165" name="Teleport to Tunnel 2" type="event" x="0" y="64" width="16" height="16">
+  <object id="65" name="Teleport to Tunnel 2" type="event" x="0" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_tunnel.tmx,19,4,0.3"/>
     <property name="act2" value="player_face left"/>
@@ -83,7 +87,7 @@
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
-  <object id="166" name="Choice Surf" type="event" x="176" y="0" width="16" height="16">
+  <object id="66" name="Choice Surf" type="event" x="176" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog itsswimmingtime"/>
     <property name="act2" value="translated_dialog_choice yes:no,swimming"/>
@@ -93,14 +97,14 @@
     <property name="cond4" value="not player_in surfable"/>
    </properties>
   </object>
-  <object id="167" name="surfable" type="event" x="144" y="0" width="16" height="16">
+  <object id="67" name="surfable" type="event" x="144" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_player_template swimmer"/>
     <property name="cond1" value="is player_in surfable"/>
     <property name="cond2" value="not has_sprite swimmer"/>
    </properties>
   </object>
-  <object id="168" name="not surfable" type="event" x="128" y="0" width="16" height="16">
+  <object id="68" name="not surfable" type="event" x="128" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_player_template default"/>
     <property name="act2" value="set_variable swimming:no"/>
@@ -108,10 +112,94 @@
     <property name="cond2" value="is has_sprite swimmer"/>
    </properties>
   </object>
-  <object id="169" name="Remove Obstacle" type="event" x="160" y="0" width="16" height="16">
+  <object id="69" name="Remove Obstacle" type="event" x="160" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="remove_collision water"/>
     <property name="cond1" value="is variable_set swimming:yes"/>
+   </properties>
+  </object>
+  <object id="71" name="Teleport to Side Route B 1" type="event" x="304" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routeb.tmx,0,36,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="72" name="Teleport to Side Route B 2" type="event" x="304" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routeb.tmx,0,37,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="77" name="Play Music" type="event" x="0" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_mystic_island"/>
+    <property name="cond1" value="not music_playing music_mystic_island"/>
+   </properties>
+  </object>
+  <object id="78" name="Environment Day" type="event" x="16" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="79" name="Environment Night" type="event" x="32" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
+   </properties>
+  </object>
+  <object id="80" name="Exhausted" type="event" x="0" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="83" name="Create Calliope" type="event" x="96" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routee_calliope,6,12"/>
+    <property name="act2" value="npc_face spyder_routee_calliope,up"/>
+    <property name="cond1" value="not npc_exists spyder_routee_calliope"/>
+   </properties>
+  </object>
+  <object id="84" name="Talk Calliope" type="event" x="96" y="160" width="32" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routee_calliope,down"/>
+    <property name="act1" value="translated_dialog spyder_routee_calliope1"/>
+    <property name="act2" value="add_monster boltnu,30,spyder_routee_calliope,5,10"/>
+    <property name="act3" value="add_monster taupypus,30,spyder_routee_calliope,5,10"/>
+    <property name="act4" value="add_monster snaki,30,spyder_routee_calliope,5,10"/>
+    <property name="act5" value="add_monster galnec,30,spyder_routee_calliope,5,10"/>
+    <property name="act6" value="start_battle spyder_routee_calliope"/>
+    <property name="act7" value="translated_dialog spyder_routee_calliope2"/>
+    <property name="act8" value="set_variable routeecalliope:yes"/>
+    <property name="cond1" value="not variable_set routeecalliope:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="85" name="Create Aiolos" type="event" x="128" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routee_aiolos,8,16"/>
+    <property name="act2" value="npc_face spyder_routee_aiolos,left"/>
+    <property name="cond1" value="not npc_exists spyder_routee_aiolos"/>
+   </properties>
+  </object>
+  <object id="86" name="Talk Aiolos" type="event" x="96" y="256" width="32" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routee_aiolos"/>
+    <property name="act1" value="translated_dialog spyder_routee_aiolos1"/>
+    <property name="act2" value="add_monster boltnu,30,spyder_routee_aiolos,5,10"/>
+    <property name="act3" value="add_monster taupypus,30,spyder_routee_aiolos,5,10"/>
+    <property name="act4" value="add_monster snaki,30,spyder_routee_aiolos,5,10"/>
+    <property name="act5" value="add_monster galnec,30,spyder_routee_aiolos,5,10"/>
+    <property name="act6" value="start_battle spyder_routee_aiolos"/>
+    <property name="act7" value="translated_dialog spyder_routee_aiolos2"/>
+    <property name="act8" value="set_variable routeeaiolos:yes"/>
+    <property name="cond1" value="not variable_set routeeaiolos:yes"/>
+    <property name="cond2" value="is player_at"/>
    </properties>
   </object>
  </objectgroup>

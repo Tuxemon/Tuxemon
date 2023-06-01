@@ -67,37 +67,37 @@
   </object>
   <object id="43" name="Bradfort" type="event" x="192" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_leathergym_bradfort"/>
+    <property name="act1" value="translated_dialog spyder_leathergym_bradfort1"/>
     <property name="behav1" value="talk spyder_leathergym_bradfort"/>
    </properties>
   </object>
   <object id="44" name="Chad" type="event" x="144" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_leathergym_chad"/>
+    <property name="act1" value="translated_dialog spyder_leathergym_chad1"/>
     <property name="behav1" value="talk spyder_leathergym_chad"/>
    </properties>
   </object>
   <object id="45" name="Brad" type="event" x="240" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_leathergym_brad"/>
+    <property name="act1" value="translated_dialog spyder_leathergym_brad1"/>
     <property name="behav1" value="talk spyder_leathergym_brad"/>
    </properties>
   </object>
   <object id="56" name="Chardfort" type="event" x="96" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_leathergym_chadfort"/>
+    <property name="act1" value="translated_dialog spyder_leathergym_chadfort1"/>
     <property name="behav1" value="talk spyder_leathergym_chadfort"/>
    </properties>
   </object>
   <object id="57" name="Gigachad" type="event" x="288" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_leathergym_gigachad"/>
+    <property name="act1" value="translated_dialog spyder_leathergym_gigachad1"/>
     <property name="behav1" value="talk spyder_leathergym_gigachad"/>
    </properties>
   </object>
   <object id="58" name="Virgin" type="event" x="352" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_leathergym_virgin"/>
+    <property name="act1" value="translated_dialog spyder_leathergym_virgin1"/>
     <property name="behav1" value="talk spyder_leathergym_virgin"/>
    </properties>
   </object>
@@ -127,7 +127,7 @@
   </object>
   <object id="64" name="Chadine" type="event" x="80" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_leathergym_chadine"/>
+    <property name="act1" value="translated_dialog spyder_leathergym_chadine1"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

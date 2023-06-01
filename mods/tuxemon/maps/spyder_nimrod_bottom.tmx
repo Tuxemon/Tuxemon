@@ -134,9 +134,10 @@
     <property name="act06" value="add_monster embazook,25,spyder_nimrod_tru,5,10"/>
     <property name="act07" value="start_battle spyder_nimrod_tru"/>
     <property name="act08" value="translated_dialog spyder_nimrod_tru2"/>
-    <property name="act09" value="set_variable nimrodtru:yes"/>
-    <property name="act10" value="pathfind spyder_nimrod_jake,0,17"/>
-    <property name="act11" value="remove_npc spyder_nimrod_jake"/>
+    <property name="act09" value="translated_dialog spyder_nimrod_tru3"/>
+    <property name="act10" value="set_variable nimrodtru:yes"/>
+    <property name="act11" value="pathfind spyder_nimrod_jake,0,17"/>
+    <property name="act12" value="remove_npc spyder_nimrod_jake"/>
     <property name="behav1" value="talk spyder_nimrod_tru"/>
     <property name="cond1" value="not variable_set nimrodtru:yes"/>
    </properties>
@@ -179,9 +180,10 @@
     <property name="act06" value="add_monster embazook,25,spyder_nimrod_tru,5,10"/>
     <property name="act07" value="start_battle spyder_nimrod_tru"/>
     <property name="act08" value="translated_dialog spyder_nimrod_tru2"/>
-    <property name="act09" value="set_variable nimrodtru:yes"/>
-    <property name="act10" value="pathfind spyder_nimrod_jake,0,17"/>
-    <property name="act11" value="remove_npc spyder_nimrod_jake"/>
+    <property name="act09" value="translated_dialog spyder_nimrod_tru3"/>
+    <property name="act10" value="set_variable nimrodtru:yes"/>
+    <property name="act11" value="pathfind spyder_nimrod_jake,0,17"/>
+    <property name="act12" value="remove_npc spyder_nimrod_jake"/>
     <property name="cond1" value="not variable_set nimrodtru:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>

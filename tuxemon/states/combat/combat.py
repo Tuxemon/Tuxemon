@@ -778,6 +778,8 @@ class CombatState(CombatAnimations):
                 faint = Technique()
                 faint.load("status_faint")
                 monster.current_hp = 0
+                if monster.status:
+                    monster.status[0].nr_turn = 0
                 monster.status = [faint]
         self.alert(message)
         # save iid monster fighting
@@ -1010,7 +1012,7 @@ class CombatState(CombatAnimations):
                     {"name": target.name.upper()},
                 )
             # null action dozing monster
-            if technique.slug == "skip" and has_status(user, "status_dozing"):
+            if technique.slug == "empty" and has_status(user, "status_dozing"):
                 message = T.format(
                     "combat_state_dozing_end",
                     {
@@ -1024,13 +1026,25 @@ class CombatState(CombatAnimations):
             ):
                 if _player.game_variables["status_confused"] == "on":
                     message = confused(user, technique)
+            # successful techniques
+            if result_tech["success"]:
+                m: Union[str, None] = None
+                # related to switch effect
+                if has_effect(technique, "switch"):
+                    m = generic(user, technique, target, _player)
+                if m:
+                    message += "\n" + m
+                    action_time += len(message) * letter_time
             # not successful techniques
             if not result_tech["success"]:
                 template = getattr(technique, "use_failure")
                 m = T.format(template, context)
-                if technique.slug == "status_spyderbite":
+                if technique.slug == "spyderbite":
                     m = spyderbite(target)
                 if has_effect(technique, "money"):
+                    m = generic(user, technique, target, _player)
+                # related to healing effect
+                if has_effect(technique, "healing"):
                     m = generic(user, technique, target, _player)
                 message += "\n" + m
                 action_time += len(message) * letter_time
@@ -1100,9 +1114,6 @@ class CombatState(CombatAnimations):
                     }
                     template = getattr(technique, msg_type)
                     tmpl = T.format(template, context)
-                    # related to switch effect
-                    if has_effect(technique, "switch"):
-                        tmpl = generic(user, technique, target, _player)
                     if template:
                         message += "\n" + tmpl
                         action_time += len(message) * letter_time
@@ -1217,6 +1228,8 @@ class CombatState(CombatAnimations):
         faint = Technique()
         faint.load("status_faint")
         monster.current_hp = 0
+        if monster.status:
+            monster.status[0].nr_turn = 0
         monster.status = [faint]
 
         """
@@ -1587,9 +1600,8 @@ class CombatState(CombatAnimations):
         self.client.pop_state()
         self.client.pop_state()
 
-    def end_combat(self) -> None:
-        """End the combat."""
-        # TODO: End combat differently depending on winning or losing
+    def clean_combat(self) -> None:
+        """Clean combat."""
         for player in self.players:
             for mon in player.monsters:
                 # reset status stats
@@ -1604,6 +1616,10 @@ class CombatState(CombatAnimations):
         # clear action queue
         self._action_queue = list()
         self._log_action = list()
+
+    def end_combat(self) -> None:
+        """End the combat."""
+        self.clean_combat()
 
         # fade music out
         self.client.event_engine.execute_action("fadeout_music", [1000])

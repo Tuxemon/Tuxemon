@@ -135,14 +135,14 @@
   </object>
   <object id="36" name="Create Barmaid" type="event" x="304" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_barmaid,19,15"/>
-    <property name="cond1" value="not npc_exists spyder_barmaid"/>
+    <property name="act1" value="create_npc spyder_top_maura,19,15"/>
+    <property name="cond1" value="not npc_exists spyder_top_maura"/>
    </properties>
   </object>
   <object id="37" name="Create Dancer" type="event" x="320" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_barmaid_red,20,3"/>
-    <property name="cond1" value="not npc_exists spyder_barmaid_red"/>
+    <property name="act1" value="create_npc spyder_top_penelope,20,3"/>
+    <property name="cond1" value="not npc_exists spyder_top_penelope"/>
    </properties>
   </object>
   <object id="38" name="Create Ricardo" type="event" x="240" y="48" width="16" height="16">
@@ -192,8 +192,8 @@
   </object>
   <object id="49" name="Create Magician" type="event" x="80" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_magician,5,2"/>
-    <property name="cond1" value="not npc_exists spyder_magician"/>
+    <property name="act1" value="create_npc spyder_top_lenny,5,2"/>
+    <property name="cond1" value="not npc_exists spyder_top_lenny"/>
    </properties>
   </object>
   <object id="50" name="Talk Magician1" type="event" x="80" y="16" width="16" height="16">
@@ -201,26 +201,26 @@
     <property name="act1" value="translated_dialog spyder_top_magician1"/>
     <property name="act2" value="add_item dojo_pass"/>
     <property name="act3" value="set_variable dojomagician:yes"/>
-    <property name="behav1" value="talk spyder_magician"/>
+    <property name="behav1" value="talk spyder_top_lenny"/>
     <property name="cond1" value="not variable_set dojomagician:yes"/>
    </properties>
   </object>
   <object id="52" name="Talk Barmaid" type="event" x="304" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_top_barmaid"/>
-    <property name="behav1" value="talk spyder_barmaid"/>
+    <property name="behav1" value="talk spyder_top_maura"/>
    </properties>
   </object>
   <object id="53" name="Talk Dancer" type="event" x="304" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_top_dancer"/>
-    <property name="behav1" value="talk spyder_barmaid_red"/>
+    <property name="behav1" value="talk spyder_top_penelope"/>
    </properties>
   </object>
   <object id="54" name="Talk Magician2" type="event" x="96" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_top_magician2"/>
-    <property name="behav1" value="talk spyder_magician"/>
+    <property name="behav1" value="talk spyder_top_lenny"/>
     <property name="cond1" value="is variable_set dojomagician:yes"/>
    </properties>
   </object>

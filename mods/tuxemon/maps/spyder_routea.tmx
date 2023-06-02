@@ -420,27 +420,27 @@
   </object>
   <object id="91" name="Create Maniac" type="event" x="96" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_maniac,6,15"/>
-    <property name="act2" value="npc_face spyder_maniac,right"/>
-    <property name="cond1" value="not npc_exists spyder_maniac"/>
+    <property name="act1" value="create_npc spyder_routea_john,6,15"/>
+    <property name="act2" value="npc_face spyder_routea_john,right"/>
+    <property name="cond1" value="not npc_exists spyder_routea_john"/>
    </properties>
   </object>
   <object id="92" name="Talk Maniac" type="event" x="48" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_routea_maniac"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk spyder_routea_john"/>
    </properties>
   </object>
   <object id="93" name="Create Firefighter" type="event" x="272" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_firefighter,17,12"/>
-    <property name="cond1" value="not npc_exists spyder_firefighter"/>
+    <property name="act1" value="create_npc spyder_routea_jarod,17,12"/>
+    <property name="cond1" value="not npc_exists spyder_routea_jarod"/>
    </properties>
   </object>
   <object id="94" name="Talk Firefighter" type="event" x="288" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_routea_firefighter"/>
-    <property name="behav1" value="talk spyder_firefighter"/>
+    <property name="behav1" value="talk spyder_routea_jarod"/>
    </properties>
   </object>
   <object id="95" name="Talk Vince1" type="event" x="48" y="288" width="16" height="16">

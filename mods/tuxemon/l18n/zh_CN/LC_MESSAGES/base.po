@@ -814,7 +814,7 @@ msgstr "沙默化石"
 msgid "rhincus_fossil"
 msgstr "沙默化石"
 
-# Boosters (items)
+# Boosters
 msgid "greenwash_badge"
 msgstr "徽章：漂绿"
 
@@ -1046,7 +1046,7 @@ msgstr "狙击"
 msgid "status_softened"
 msgstr "软化"
 
-msgid "status_spyderbite"
+msgid "spyderbite"
 msgstr "斯皮德咬合"
 
 msgid "status_stuck"
@@ -5970,7 +5970,7 @@ msgstr "欢迎!"
 msgid "spyder_successful_boulder"
 msgstr "大锤子将巨石砸开."
 
-msgid "spyder_stop_dante"
+msgid "spyder_dante"
 msgstr "但丁"
 
 msgid "spyder_frolicking_rockitten"

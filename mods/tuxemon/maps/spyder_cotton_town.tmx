@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="591">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="591">
  <properties>
   <property name="east" value="route2"/>
   <property name="edges" value="clamped"/>
@@ -25,7 +25,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
@@ -381,17 +381,17 @@
    <properties>
     <property name="act11" value="player_stop"/>
     <property name="act12" value="lock_controls"/>
-    <property name="act13" value="create_npc spyder_mompapertown,23,23"/>
-    <property name="act14" value="pathfind spyder_mompapertown,28,18"/>
+    <property name="act13" value="create_npc spyder_papertown_mom,23,23"/>
+    <property name="act14" value="pathfind spyder_papertown_mom,28,18"/>
     <property name="act15" value="unlock_controls"/>
     <property name="act16" value="npc_face player,down"/>
     <property name="act20" value="translated_dialog spyder_cottontown_mom"/>
     <property name="act25" value="add_item nu_phone"/>
     <property name="act30" value="add_item app_banking"/>
     <property name="act35" value="add_item app_map"/>
-    <property name="act40" value="pathfind spyder_mompapertown,23,23"/>
+    <property name="act40" value="pathfind spyder_papertown_mom,23,23"/>
     <property name="act41" value="set_variable spokenmomcotton:yes"/>
-    <property name="act42" value="remove_npc spyder_mompapertown"/>
+    <property name="act42" value="remove_npc spyder_papertown_mom"/>
     <property name="cond1" value="not variable_set spokenmomcotton:yes"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="not has_item player,nu_phone"/>

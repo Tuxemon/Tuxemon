@@ -343,15 +343,15 @@
   </object>
   <object id="104" name="Create Firefighter" type="event" x="48" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_firefighter,3,10"/>
-    <property name="act2" value="npc_face spyder_firefighter,right"/>
-    <property name="cond1" value="not npc_exists spyder_firefighter"/>
+    <property name="act1" value="create_npc spyder_greenwash_norton,3,10"/>
+    <property name="act2" value="npc_face spyder_greenwash_norton,right"/>
+    <property name="cond1" value="not npc_exists spyder_greenwash_norton"/>
    </properties>
   </object>
   <object id="105" name="Talk Firefighter" type="event" x="1.66667e-05" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_firefighter"/>
-    <property name="behav1" value="talk spyder_firefighter"/>
+    <property name="behav1" value="talk spyder_greenwash_norton"/>
    </properties>
   </object>
   <object id="106" name="Create Gluck" type="event" x="480" y="224" width="16" height="16">

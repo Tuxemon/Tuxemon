@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "spyder_dryadsgrove_aquemini",
+    "template": [
+      {
+        "sprite_name": "woodnymph",
+        "combat_front": "waternymph",
+        "slug": "waternymph"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_dryadsgrove_ferris",
+    "template": [
+      {
+        "sprite_name": "woodnymph",
+        "combat_front": "metalnymph",
+        "slug": "metalnymph"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_dryadsgrove_ignatia",
+    "template": [
+      {
+        "sprite_name": "firenymph",
+        "combat_front": "firenymph",
+        "slug": "firenymph"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_dryadsgrove_petra",
+    "template": [
+      {
+        "sprite_name": "woodnymph",
+        "combat_front": "earthnymph",
+        "slug": "earthnymph"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_dryadsgrove_sylvia",
+    "template": [
+      {
+        "sprite_name": "woodnymph",
+        "combat_front": "woodnymph",
+        "slug": "woodnymph"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_volcoli",
+    "template": [
+      {
+        "sprite_name": "volcoli",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  }
+]

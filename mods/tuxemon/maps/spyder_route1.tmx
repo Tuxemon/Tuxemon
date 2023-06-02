@@ -232,16 +232,16 @@
   </object>
   <object id="187" name="Create Beachcomber" type="event" x="208" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_beachcomber,13,11"/>
-    <property name="act2" value="npc_wander spyder_beachcomber"/>
-    <property name="cond1" value="not npc_exists spyder_beachcomber"/>
+    <property name="act1" value="create_npc spyder_route1_bjorn,13,11"/>
+    <property name="act2" value="npc_wander spyder_route1_bjorn"/>
+    <property name="cond1" value="not npc_exists spyder_route1_bjorn"/>
    </properties>
   </object>
   <object id="188" name="Talk Beachcomber" type="event" x="208" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_route1_beachcomber"/>
-    <property name="act2" value="npc_run spyder_beachcomber"/>
-    <property name="behav1" value="talk spyder_beachcomber"/>
+    <property name="act2" value="npc_run spyder_route1_bjorn"/>
+    <property name="behav1" value="talk spyder_route1_bjorn"/>
    </properties>
   </object>
   <object id="190" name="Environment Day" type="event" x="16" y="0" width="16" height="16">

@@ -85,15 +85,15 @@
   </object>
   <object id="72" name="Create NPCs" type="event" x="16" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_maniac,7,7"/>
-    <property name="act2" value="npc_face spyder_maniac,up"/>
-    <property name="cond1" value="not npc_exists spyder_maniac"/>
+    <property name="act1" value="create_npc spyder_leathershaft2_colin,7,7"/>
+    <property name="act2" value="npc_face spyder_leathershaft2_colin,up"/>
+    <property name="cond1" value="not npc_exists spyder_leathershaft2_colin"/>
    </properties>
   </object>
   <object id="73" name="Skeptic" type="event" x="112" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathershaft2_skeptic"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk spyder_leathershaft2_colin"/>
    </properties>
   </object>
  </objectgroup>

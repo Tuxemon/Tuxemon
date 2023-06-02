@@ -51,8 +51,8 @@
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="29" name="Create Shop Assistant" type="event" x="112" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_shopassistant,7,4"/>
-    <property name="cond1" value="not npc_exists spyder_shopassistant"/>
+    <property name="act1" value="create_npc spyder_flowerpetshop_titus,7,4"/>
+    <property name="cond1" value="not npc_exists spyder_flowerpetshop_titus"/>
    </properties>
   </object>
   <object id="31" name="Talk Shop Assistant1" type="event" x="112" y="80" width="16" height="16">
@@ -65,8 +65,8 @@
   </object>
   <object id="38" name="Create Shop Keeper" type="event" x="32" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_shopkeeper,2,5"/>
-    <property name="cond1" value="not npc_exists spyder_shopkeeper"/>
+    <property name="act1" value="create_npc spyder_flowerpetshop_denzel,2,5"/>
+    <property name="cond1" value="not npc_exists spyder_flowerpetshop_denzel"/>
    </properties>
   </object>
   <object id="39" name="Talk Shop Keeper - First Time" type="event" x="32" y="16" width="16" height="16">
@@ -75,7 +75,7 @@
     <property name="act2" value="translated_dialog spyder_flower_petshopkeeper2"/>
     <property name="act3" value="add_monster vivipere,5"/>
     <property name="act4" value="set_variable flower_talkedpetshop:yes"/>
-    <property name="behav1" value="talk spyder_shopkeeper"/>
+    <property name="behav1" value="talk spyder_flowerpetshop_denzel"/>
     <property name="cond1" value="not variable_set flower_talkedpetshop:yes"/>
    </properties>
   </object>
@@ -83,7 +83,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_petshopkeeper3"/>
     <property name="act2" value="set_variable check_vivipere_morph:yes"/>
-    <property name="behav1" value="talk spyder_shopkeeper"/>
+    <property name="behav1" value="talk spyder_flowerpetshop_denzel"/>
     <property name="cond1" value="is variable_set flower_talkedpetshop:yes"/>
    </properties>
   </object>

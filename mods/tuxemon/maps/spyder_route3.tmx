@@ -382,16 +382,16 @@
     <property name="act11" value="lock_controls"/>
     <property name="act14" value="remove_npc spyder_route3_zoolander"/>
     <property name="act15" value="create_npc spyder_route3_zoolander,6,11"/>
-    <property name="act20" value="create_npc spyder_rookie,16,10"/>
-    <property name="act30" value="pathfind spyder_rookie,9,8"/>
+    <property name="act20" value="create_npc spyder_route3_ryland,16,10"/>
+    <property name="act30" value="pathfind spyder_route3_ryland,9,8"/>
     <property name="act40" value="pathfind spyder_route3_zoolander,7,8"/>
     <property name="act50" value="translated_dialog spyder_route3_drag1"/>
     <property name="act60" value="play_map_animation dragonbirth,0.1,noloop,6,8"/>
     <property name="act61" value="wait 5.0"/>
     <property name="act73" value="translated_dialog spyder_route3_drag2"/>
-    <property name="act74" value="pathfind spyder_rookie,17,10"/>
+    <property name="act74" value="pathfind spyder_route3_ryland,17,10"/>
     <property name="act75" value="pathfind spyder_route3_zoolander,16,10"/>
-    <property name="act81" value="remove_npc spyder_rookie"/>
+    <property name="act81" value="remove_npc spyder_route3_ryland"/>
     <property name="act82" value="remove_npc spyder_route3_zoolander"/>
     <property name="act83" value="set_variable shaftscheme:yes"/>
     <property name="act84" value="unlock_controls"/>

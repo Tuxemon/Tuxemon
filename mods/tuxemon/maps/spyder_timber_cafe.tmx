@@ -58,15 +58,15 @@
   <object id="28" name="Player Spawn" type="event" x="176" y="0" width="16" height="16"/>
   <object id="34" name="Create Magician" type="event" x="80" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_magician,5,7"/>
-    <property name="act2" value="npc_face spyder_magician,down"/>
-    <property name="cond1" value="not npc_exists spyder_magician"/>
+    <property name="act1" value="create_npc spyder_timbercafe_grady,5,7"/>
+    <property name="act2" value="npc_face spyder_timbercafe_grady,down"/>
+    <property name="cond1" value="not npc_exists spyder_timbercafe_grady"/>
    </properties>
   </object>
   <object id="35" name="Talk Magician" type="event" x="80" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_magician_timber"/>
-    <property name="behav1" value="talk spyder_magician"/>
+    <property name="behav1" value="talk spyder_timbercafe_grady"/>
    </properties>
   </object>
   <object id="36" name="Create Owner" type="event" x="16" y="64" width="16" height="16">

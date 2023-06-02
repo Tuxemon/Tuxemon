@@ -1,0 +1,43 @@
+[
+  {
+    "slug": "spyder_route2_billie",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "fashionista",
+        "combat_front": "fashionista",
+        "slug": "fashionista"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_route2_marion",
+    "template": [
+      {
+        "sprite_name": "picnicker",
+        "combat_front": "picnicker",
+        "slug": "picnicker"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_route2_graf",
+    "template": [
+      {
+        "sprite_name": "tennisplayer",
+        "combat_front": "tennisplayer",
+        "slug": "tennisplayer"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_route2_roddick",
+    "template": [
+      {
+        "sprite_name": "tennisplayer",
+        "combat_front": "tennisplayer",
+        "slug": "tennisplayer"
+      }
+    ]
+  }
+]

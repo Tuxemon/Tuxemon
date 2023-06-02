@@ -7375,6 +7375,8 @@ msgstr "Welcome master."
 
 msgid "spyder_flower_petshopassistant"
 msgstr "Hello - we are the Pet Shop Boys. Are you interested in buying a tuxemon?"
+msgid "spyder_flower_petshopassistant1"
+msgstr "Each for ${{currency}}500"
 msgid "spyder_flower_petshopkeeper1"
 msgstr "I found these eggs in the bough of a tree, and hatched them! \n They appear to be a previously unknown tuxemon. \n I call them Vivipere! I wonder what they morph into."
 msgid "spyder_flower_petshopkeeper2"

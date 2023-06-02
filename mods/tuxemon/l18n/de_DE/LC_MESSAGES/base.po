@@ -267,12 +267,6 @@ msgstr "Es hat funktioniert!"
 msgid "item_failure"
 msgstr "Es hat nicht funktioniert!"
 
-msgid "generic_success"
-msgstr "Es hat geklappt!"
-
-msgid "generic_failure"
-msgstr "Es ist fehlgeschlagen!"
-
 msgid "attempting_capture"
 msgstr "Versuche zu fangen..."
 
@@ -1615,9 +1609,6 @@ msgstr "Teufel"
 
 msgid "nightcrawler"
 msgstr "Nachtfalter"
-
-msgid "probiscus"
-msgstr "Probiscus"
 
 msgid "flopped"
 msgstr "Flopped"

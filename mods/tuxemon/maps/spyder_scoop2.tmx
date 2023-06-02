@@ -77,14 +77,14 @@
   </object>
   <object id="15" name="Create Asta" type="event" x="32" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scientist,2,3"/>
-    <property name="cond1" value="not npc_exists spyder_scientist"/>
+    <property name="act1" value="create_npc spyder_scoop_reese,2,3"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_reese"/>
    </properties>
   </object>
   <object id="16" name="Talk Asta" type="event" x="32" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_asta1"/>
-    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="behav1" value="talk spyder_scoop_reese"/>
    </properties>
   </object>
   <object id="17" name="Environment" type="event" x="16" y="0" width="16" height="16">

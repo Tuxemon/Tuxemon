@@ -46,8 +46,8 @@
             "fileName": "spyder_flower_petshop.tmx",
             "height": 144,
             "width": 224,
-            "x": 1344,
-            "y": 80
+            "x": 1280,
+            "y": 496
         },
         {
             "fileName": "spyder_timber_town.tmx",
@@ -200,8 +200,8 @@
             "fileName": "spyder_wayfarer_inn1.tmx",
             "height": 256,
             "width": 240,
-            "x": 1664,
-            "y": 256
+            "x": 1904,
+            "y": 0
         },
         {
             "fileName": "spyder_wayfarer_inn2.tmx",
@@ -445,8 +445,8 @@
             "fileName": "spyder_candy_house2.tmx",
             "height": 128,
             "width": 160,
-            "x": 1344,
-            "y": 224
+            "x": 1824,
+            "y": 512
         },
         {
             "fileName": "spyder_leather_gym.tmx",
@@ -473,8 +473,8 @@
             "fileName": "spyder_paper_manor.tmx",
             "height": 128,
             "width": 160,
-            "x": 1344,
-            "y": 352
+            "x": 1664,
+            "y": 512
         },
         {
             "fileName": "spyder_candy_center.tmx",
@@ -515,15 +515,57 @@
             "fileName": "spyder_flower_house2.tmx",
             "height": 128,
             "width": 160,
-            "x": 1280,
+            "x": 1504,
             "y": 512
         },
         {
             "fileName": "spyder_flower_house1.tmx",
             "height": 128,
             "width": 160,
-            "x": 1440,
+            "x": 1984,
             "y": 512
+        },
+        {
+            "fileName": "spyder_route7.tmx",
+            "height": 640,
+            "width": 640,
+            "x": 960,
+            "y": -640
+        },
+        {
+            "fileName": "spyder_lion_mountain.tmx",
+            "height": 1600,
+            "width": 720,
+            "x": 1600,
+            "y": -2240
+        },
+        {
+            "fileName": "sphalian_town.tmx",
+            "height": 400,
+            "width": 368,
+            "x": 1232,
+            "y": -1040
+        },
+        {
+            "fileName": "sphalian_town_cafe.tmx",
+            "height": 192,
+            "width": 192,
+            "x": 1408,
+            "y": -1232
+        },
+        {
+            "fileName": "sphalian_town_house.tmx",
+            "height": 128,
+            "width": 144,
+            "x": 1456,
+            "y": -1360
+        },
+        {
+            "fileName": "sphalian_center.tmx",
+            "height": 176,
+            "width": 208,
+            "x": 1200,
+            "y": -1216
         }
     ],
     "onlyShowAdjacentMaps": false,

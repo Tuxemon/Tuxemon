@@ -51,9 +51,9 @@
     <property name="act2" value="set_monster_status"/>
     <property name="act3" value="variable_math cathedral_ads,+,1"/>
     <property name="act20" value="translated_dialog okaythen"/>
-    <property name="act30" value="npc_face tabanurse,up"/>
+    <property name="act30" value="npc_face spyder_timbercenter_luciana,up"/>
     <property name="act40" value="wait 1"/>
-    <property name="act50" value="npc_face tabanurse,down"/>
+    <property name="act50" value="npc_face spyder_timbercenter_luciana,down"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
     <property name="act80" value="set_variable teleport_faint:spyder_timber_center.tmx 6 7"/>
@@ -69,8 +69,8 @@
   </object>
   <object id="25" name="create npcs" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc tabanurse,5,4"/>
-    <property name="cond1" value="not npc_exists tabanurse"/>
+    <property name="act1" value="create_npc spyder_timbercenter_luciana,5,4"/>
+    <property name="cond1" value="not npc_exists spyder_timbercenter_luciana"/>
    </properties>
   </object>
   <object id="26" name="hello there" type="event" x="80" y="80" width="16" height="16">

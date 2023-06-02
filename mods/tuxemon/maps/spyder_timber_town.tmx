@@ -421,16 +421,16 @@
    <properties>
     <property name="act01" value="player_stop"/>
     <property name="act02" value="lock_controls"/>
-    <property name="act03" value="create_npc spyder_mompapertown,26,23"/>
-    <property name="act04" value="pathfind spyder_mompapertown,17,21"/>
+    <property name="act03" value="create_npc spyder_papertown_mom,26,23"/>
+    <property name="act04" value="pathfind spyder_papertown_mom,17,21"/>
     <property name="act05" value="unlock_controls"/>
     <property name="act06" value="npc_face player,down"/>
-    <property name="act07" value="npc_face spyder_mompapertown,up"/>
+    <property name="act07" value="npc_face spyder_papertown_mom,up"/>
     <property name="act08" value="translated_dialog spyder_timber_mom1"/>
     <property name="act09" value="add_item surfboard"/>
     <property name="act10" value="translated_dialog spyder_timber_mom2"/>
-    <property name="act11" value="pathfind spyder_mompapertown,26,23"/>
-    <property name="act12" value="remove_npc spyder_mompapertown"/>
+    <property name="act11" value="pathfind spyder_papertown_mom,26,23"/>
+    <property name="act12" value="remove_npc spyder_papertown_mom"/>
     <property name="act13" value="set_variable timbermom:yes"/>
     <property name="cond1" value="not variable_set timbermom:yes"/>
     <property name="cond2" value="is variable_set scooparachne:yes"/>

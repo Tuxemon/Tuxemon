@@ -260,11 +260,11 @@
    <properties>
     <property name="act01" value="player_stop"/>
     <property name="act02" value="lock_controls"/>
-    <property name="act03" value="create_npc spyder_knight_red,35,10"/>
-    <property name="act04" value="pathfind_to_player spyder_knight_red"/>
+    <property name="act03" value="create_npc spyder_candy_henrik,35,10"/>
+    <property name="act04" value="pathfind_to_player spyder_candy_henrik"/>
     <property name="act05" value="unlock_controls"/>
     <property name="act06" value="wait 0.5"/>
-    <property name="act07" value="npc_face spyder_knight_red,up"/>
+    <property name="act07" value="npc_face spyder_candy_henrik,up"/>
     <property name="act08" value="wait 0.5"/>
     <property name="act10" value="translated_dialog spyder_enforcer_candy1"/>
     <property name="act19" value="set_variable seencandy:yes"/>
@@ -283,7 +283,7 @@
     <property name="act30" value="transition_teleport spyder_candy_cafe.tmx,5,3,0.3"/>
     <property name="act40" value="set_variable party_all_sick:yes"/>
     <property name="act50" value="set_variable confiscation_done:yes"/>
-    <property name="act60" value="remove_npc spyder_knight_red"/>
+    <property name="act60" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
     <property name="cond2" value="not variable_set party_all_sick:yes"/>
     <property name="cond3" value="is party_infected all"/>
@@ -296,9 +296,9 @@
     <property name="act10" value="translated_dialog spyder_enforcer_candy2"/>
     <property name="act15" value="wait 0.5"/>
     <property name="act20" value="set_variable party_healthy:yes"/>
-    <property name="act30" value="pathfind spyder_knight_red,35,10"/>
+    <property name="act30" value="pathfind spyder_candy_henrik,35,10"/>
     <property name="act40" value="set_variable confiscation_done:yes"/>
-    <property name="act50" value="remove_npc spyder_knight_red"/>
+    <property name="act50" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
     <property name="cond2" value="not variable_set party_healthy:yes"/>
     <property name="cond3" value="is party_infected none"/>
@@ -315,9 +315,9 @@
     <property name="act25" value="wait 1"/>
     <property name="act30" value="quarantine in"/>
     <property name="act40" value="set_variable party_sick:yes"/>
-    <property name="act45" value="pathfind spyder_knight_red,35,10"/>
+    <property name="act45" value="pathfind spyder_candy_henrik,35,10"/>
     <property name="act50" value="set_variable confiscation_done:yes"/>
-    <property name="act60" value="remove_npc spyder_knight_red"/>
+    <property name="act60" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
     <property name="cond2" value="not variable_set party_sick:yes"/>
     <property name="cond3" value="is party_infected some"/>

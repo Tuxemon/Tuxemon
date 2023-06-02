@@ -6586,6 +6586,10 @@ msgid "tabanurse_dialog_taba"
 msgstr "Welcome to the Taba Town Tuxecenter!\n"
 "Do you want to heal your Tuxemon?"
 
+msgid "tabanurse_dialog_cotton"
+msgstr "Welcome to the Cotton Town Tuxecenter!\n"
+"Do you want to heal your Tuxemon?"
+
 msgid "okaythen"
 msgstr "Okay! Just give me a second and I'll heal your Tuxemon!"
 

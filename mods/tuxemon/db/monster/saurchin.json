@@ -1,7 +1,6 @@
 {
     "slug": "saurchin",
     "category": "spiny",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

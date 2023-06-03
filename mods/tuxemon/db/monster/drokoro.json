@@ -1,7 +1,6 @@
 {
     "slug": "drokoro",
     "category": "dragon",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

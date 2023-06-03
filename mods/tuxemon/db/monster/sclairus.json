@@ -1,7 +1,6 @@
 {
     "slug": "sclairus",
     "category": "fallow",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

@@ -1,7 +1,6 @@
 {
     "slug": "possessun",
     "category": "visitor",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

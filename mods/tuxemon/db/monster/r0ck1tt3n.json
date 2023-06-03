@@ -1,7 +1,6 @@
 {
     "slug": "r0ck1tt3n",
     "category": "glitched",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

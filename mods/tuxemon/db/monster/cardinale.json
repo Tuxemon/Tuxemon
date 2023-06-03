@@ -1,7 +1,6 @@
 {
     "slug": "cardinale",
     "category": "firebird",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

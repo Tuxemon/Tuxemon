@@ -1,7 +1,6 @@
 {
     "slug": "apeoro",
     "category": "old_block",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

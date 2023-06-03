@@ -63,6 +63,10 @@ def pre_checking(
     Pre checking allows to check if there are statuses
     or other conditions that change the choosen technique.
     """
+    if player.isplayer:
+        local = player
+    else:
+        local = enemy
     status = Technique()
     if has_status(monster, "status_dozing"):
         status.load("empty")
@@ -82,7 +86,7 @@ def pre_checking(
     if has_status(monster, "status_confused"):
         confusion = random.randint(1, 2)
         if confusion == 1:
-            player.game_variables["status_confused"] = "on"
+            local.game_variables["status_confused"] = "on"
             confused = [
                 ele
                 for ele in monster.moves
@@ -97,7 +101,7 @@ def pre_checking(
                 status.load("empty")
                 technique = status
         else:
-            player.game_variables["status_confused"] = "off"
+            local.game_variables["status_confused"] = "off"
     if monster.plague == PlagueType.infected:
         value = random.randint(1, 8)
         if value == 1:

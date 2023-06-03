@@ -1,7 +1,6 @@
 {
     "slug": "exapode",
     "category": "big_frightfear",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

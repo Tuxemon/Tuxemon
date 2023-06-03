@@ -1,7 +1,6 @@
 {
     "slug": "tadcool",
     "category": "alarm",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

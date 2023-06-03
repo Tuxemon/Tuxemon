@@ -1,7 +1,6 @@
 {
     "slug": "gryfix",
     "category": "horned_raptor",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

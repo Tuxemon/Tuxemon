@@ -1,7 +1,6 @@
 {
     "slug": "lapinou",
     "category": "thlay",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

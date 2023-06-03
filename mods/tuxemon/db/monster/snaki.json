@@ -1,7 +1,6 @@
 {
     "slug": "snaki",
     "category": "false_serpent",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

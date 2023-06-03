@@ -1,7 +1,6 @@
 {
     "slug": "angrito",
     "category": "enraged_emotion",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

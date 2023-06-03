@@ -1,7 +1,6 @@
 {
     "slug": "dune_pincher",
     "category": "hermit",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

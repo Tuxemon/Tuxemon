@@ -1,7 +1,6 @@
 {
     "slug": "komodraw",
     "category": "quickdraw",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

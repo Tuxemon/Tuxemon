@@ -1,7 +1,6 @@
 {
     "slug": "strella",
     "category": "trailing",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

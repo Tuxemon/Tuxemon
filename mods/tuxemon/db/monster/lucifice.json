@@ -1,7 +1,6 @@
 {
     "slug": "lucifice",
     "category": "ninth_circle",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

@@ -1,7 +1,6 @@
 {
     "slug": "seirein",
     "category": "spirit_fire",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

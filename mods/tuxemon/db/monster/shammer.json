@@ -1,7 +1,6 @@
 {
     "slug": "shammer",
     "category": "fossil",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

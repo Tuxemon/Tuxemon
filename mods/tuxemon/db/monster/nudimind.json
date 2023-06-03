@@ -1,7 +1,6 @@
 {
     "slug": "nudimind",
     "category": "reverie",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

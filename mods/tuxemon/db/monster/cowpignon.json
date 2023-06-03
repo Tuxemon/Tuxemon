@@ -1,7 +1,6 @@
 {
     "slug": "cowpignon",
     "category": "enhancement",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

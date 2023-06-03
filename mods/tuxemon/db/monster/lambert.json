@@ -1,7 +1,6 @@
 {
     "slug": "lambert",
     "category": "gumnut",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

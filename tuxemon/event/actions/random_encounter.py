@@ -7,7 +7,7 @@ import random
 from dataclasses import dataclass
 from typing import Optional, Sequence, Union, final
 
-from tuxemon import ai, formula, monster, prepare
+from tuxemon import formula, monster, prepare
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import EncounterItemModel, db
 from tuxemon.event.eventaction import EventAction
@@ -187,6 +187,4 @@ def _create_monster_npc(
     current_monster.owner = None
     npc.party_limit = 0
 
-    # Set the NPC object's AI model.
-    npc.ai = ai.RandomAI()
     return npc

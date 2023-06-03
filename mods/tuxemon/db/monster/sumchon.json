@@ -1,7 +1,6 @@
 {
     "slug": "sumchon",
     "category": "wrestling",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

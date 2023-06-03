@@ -1,7 +1,6 @@
 {
     "slug": "cairfrey",
     "category": "host",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

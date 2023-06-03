@@ -1,7 +1,6 @@
 {
     "slug": "mk01_delta",
     "category": "threat",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

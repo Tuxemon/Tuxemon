@@ -1,7 +1,6 @@
 {
     "slug": "dollfin",
     "category": "joyful",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

@@ -22,7 +22,6 @@ from typing import (
 )
 
 from tuxemon import surfanim
-from tuxemon.ai import AI
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.compat import Rect
 from tuxemon.db import ElementType, PlagueType, SeenStatus, db
@@ -156,11 +155,6 @@ class NPC(Entity[NPCState]):
         self.item_boxes: Dict[str, List[Item]] = {}
         # nr tuxemon fight
         self.max_position: int = 1
-
-        # combat related
-        self.ai: Optional[
-            AI
-        ] = None  # Whether or not this player has AI associated with it
         self.speed = 10  # To determine combat order (not related to movement!)
         self.moves: Sequence[Technique] = []  # list of techniques
 

@@ -1,7 +1,6 @@
 {
     "slug": "viviteel",
     "category": "galvanised",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

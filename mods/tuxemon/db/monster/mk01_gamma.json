@@ -1,7 +1,6 @@
 {
     "slug": "mk01_gamma",
     "category": "threat",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

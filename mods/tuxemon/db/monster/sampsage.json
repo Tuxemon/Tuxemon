@@ -1,7 +1,6 @@
 {
     "slug": "sampsage",
     "category": "brains",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

@@ -12,7 +12,6 @@ from pygame.rect import Rect
 
 from tuxemon import combat, formula, graphics, tools
 from tuxemon.db import ElementType, ItemCategory, State, TechSort
-from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu, PopUpMenu
@@ -98,20 +97,18 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             )
             return
         self.client.pop_state(self)
-        combat_state = self.client.get_state_by_name(CombatState)
-        enemy = combat_state.players[1]
-        if not enemy.forfeit:
+        if not self.enemy.forfeit:
 
             def open_menu() -> None:
-                combat_state.task(
+                self.combat.task(
                     partial(
-                        combat_state.show_monster_action_menu,
+                        self.combat.show_monster_action_menu,
                         self.monster,
                     ),
                     1,
                 )
 
-            combat_state.alert(
+            self.combat.alert(
                 T.translate("combat_forfeit_trainer"),
                 open_menu,
             )
@@ -157,7 +154,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         ):
             var["run_attempts"] += 1
             # clean up
-            combat_state.clean_combat()
+            self.combat.clean_combat()
             # trigger run
             del self.combat.monsters_in_play[self.player]
             self.combat.players.remove(self.player)
@@ -436,11 +433,11 @@ class CombatTargetMenuState(Menu[Monster]):
         self.targeting_map: DefaultDict[str, List[Monster]] = defaultdict(list)
         # avoid choosing multiple targets (aether type tech)
         if (
-            ElementType.aether in self.action.types
-            or self.action.sort == TechSort.meta
-        ) and isinstance(self.user, Monster):
-            sprite = combat_state._monster_sprite_map[self.user]
-            aet = MenuItem(self.surface, None, self.user.name, self.user)
+            ElementType.aether in self.tech.types
+            or self.tech.sort == TechSort.meta
+        ):
+            sprite = self.combat._monster_sprite_map[self.monster]
+            aet = MenuItem(self.surface, None, self.monster.name, self.monster)
             aet.rect = sprite.rect.copy()
             aet.rect.inflate_ip(tools.scale(8), tools.scale(8))
             yield aet

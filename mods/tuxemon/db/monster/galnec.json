@@ -1,7 +1,6 @@
 {
     "slug": "galnec",
     "category": "dry_desert",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

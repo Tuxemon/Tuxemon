@@ -38,7 +38,7 @@ if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
-    from tuxemon.states.combat import CombatState
+    from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
 
@@ -91,11 +91,15 @@ class CombatAnimations(ABC, Menu[None]):
         player = dict()
         player["home"] = ((0, 62, 95, 70),)
         player["hud"] = ((145, 45, 110, 50),)
-        player["party"] = ((152, 57, 110, 50),)
+        player["hud0"] = ((145, 25, 110, 50),)  # 1st spot 2 vs 2
+        player["hud1"] = ((145, 45, 110, 50),)  # 2nd spot 2 vs 2
+        player["party"] = ((145, 57, 110, 50),)
 
         opponent = dict()
         opponent["home"] = ((140, 10, 95, 70),)
         opponent["hud"] = ((18, 0, 85, 30),)
+        opponent["hud0"] = ((18, 0, 85, 30),)  # 1st spot 2 vs 2
+        opponent["hud1"] = ((18, 20, 85, 30),)  # 2nd spot 2 vs 2
         opponent["party"] = ((18, 12, 85, 30),)
 
         # convert the list/tuple of coordinates to Rects
@@ -126,7 +130,10 @@ class CombatAnimations(ABC, Menu[None]):
         self.animate_parties_in()
 
         for player, layout in self._layout.items():
-            self.animate_party_hud_in(player, layout["party"][0])
+            if not player.isplayer and player.max_position > 1:
+                pass
+            else:
+                self.animate_party_hud_in(player, layout["party"][0])
 
         self.task(partial(self.animate_trainer_leave, self.players[0]), 3)
 
@@ -404,7 +411,7 @@ class CombatAnimations(ABC, Menu[None]):
                 "gfx/ui/combat/hp_player_nohp.png",
                 layer=hud_layer,
             )
-            hud.image.blit(text, scale_sequence((12, 4)))
+            hud.image.blit(text, scale_sequence((12, 11)))
             hud.rect.bottomleft = home.right, home.bottom
             hud.player = True
             animate(hud.rect, left=home.left)
@@ -539,27 +546,24 @@ class CombatAnimations(ABC, Menu[None]):
                 dev.animate_capture(animate)
 
     def animate_parties_in(self) -> None:
-        # TODO: break out functions here for each
-        left_trainer, right_trainer = self.players
-        right_monster = right_trainer.monsters[0]
-
         surface = pygame.display.get_surface()
         x, y, w, h = surface.get_rect()
 
         # Get background image if passed in
         self.background = self.load_sprite(
-            "gfx/ui/combat/" + self.graphics.background
+            f"gfx/ui/combat/{self.graphics.background}"
         )
+        assert self.background
 
-        # TODO: not hardcode this
         player, opponent = self.players
+        opp_mon = opponent.monsters[0]
         player_home = self._layout[player]["home"][0]
         opp_home = self._layout[opponent]["home"][0]
         y_mod = scale(50)
         duration = 3
 
         back_island = self.load_sprite(
-            "gfx/ui/combat/" + self.graphics.island_back,
+            f"gfx/ui/combat/{self.graphics.island_back}",
             bottom=opp_home.bottom + y_mod,
             right=0,
         )
@@ -573,20 +577,20 @@ class CombatAnimations(ABC, Menu[None]):
 
         if self.is_trainer_battle:
             enemy = self.load_sprite(
-                "gfx/sprites/player/" + combat_front + ".png",
+                f"gfx/sprites/player/{combat_front}.png",
                 bottom=back_island.rect.bottom - scale(12),
                 centerx=back_island.rect.centerx,
             )
             self._monster_sprite_map[opponent] = enemy
         else:
-            enemy = right_monster.get_sprite(
+            enemy = opp_mon.get_sprite(
                 "front",
                 bottom=back_island.rect.bottom - scale(12),
                 centerx=back_island.rect.centerx,
             )
-            self._monster_sprite_map[right_monster] = enemy
-            self.monsters_in_play[opponent].append(right_monster)
-            self.build_hud(self._layout[opponent]["hud"][0], right_monster)
+            self._monster_sprite_map[opp_mon] = enemy
+            self.monsters_in_play[opponent].append(opp_mon)
+            self.build_hud(self._layout[opponent]["hud"][0], opp_mon)
 
         self.sprites.add(enemy)
 
@@ -601,36 +605,35 @@ class CombatAnimations(ABC, Menu[None]):
             self.alert(
                 T.format(
                     "combat_wild_appeared",
-                    {"name": right_monster.name.upper()},
+                    {"name": opp_mon.name.upper()},
                 ),
             )
 
         front_island = self.load_sprite(
-            "gfx/ui/combat/" + self.graphics.island_front,
+            f"gfx/ui/combat/{self.graphics.island_front}",
             bottom=player_home.bottom - y_mod,
             left=w,
         )
 
-        trainer1_maybe = self.load_sprite(
-            "gfx/sprites/player/" + combat_back + "_back.png",
+        player_back = self.load_sprite(
+            f"gfx/sprites/player/{combat_back}_back.png",
             bottom=front_island.rect.centery + scale(6),
             centerx=front_island.rect.centerx,
         )
-        assert trainer1_maybe
-        trainer1 = trainer1_maybe
-        self._monster_sprite_map[left_trainer] = trainer1
+        assert player_back
+        self._monster_sprite_map[player] = player_back
 
         def flip() -> None:
             enemy.image = pygame.transform.flip(enemy.image, True, False)
-            trainer1.image = pygame.transform.flip(trainer1.image, True, False)
+            player_back.image = pygame.transform.flip(
+                player_back.image, True, False
+            )
 
         flip()
         self.task(flip, 1.5)
 
         if not self.is_trainer_battle:
-            self.task(
-                audio.load_sound(right_monster.combat_call, None).play, 1.5
-            )
+            self.task(audio.load_sound(opp_mon.combat_call, None).play, 1.5)
 
         animate = partial(
             self.animate, transition="out_quad", duration=duration
@@ -647,9 +650,11 @@ class CombatAnimations(ABC, Menu[None]):
         )
 
         # bottom trainer
-        animate(trainer1.rect, front_island.rect, centerx=player_home.centerx)
         animate(
-            trainer1.rect,
+            player_back.rect, front_island.rect, centerx=player_home.centerx
+        )
+        animate(
+            player_back.rect,
             front_island.rect,
             y=y_mod,
             transition="out_back",

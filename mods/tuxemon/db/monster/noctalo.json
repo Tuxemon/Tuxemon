@@ -1,7 +1,6 @@
 {
     "slug": "noctalo",
     "category": "nightcrawler",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

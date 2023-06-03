@@ -1,7 +1,6 @@
 {
     "slug": "nudiflot_female",
     "category": "flopped",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

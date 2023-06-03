@@ -1,7 +1,6 @@
 {
     "slug": "b_ver_1",
     "category": "gnawer",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

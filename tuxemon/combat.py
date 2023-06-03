@@ -63,26 +63,30 @@ def pre_checking(
     Pre checking allows to check if there are statuses
     or other conditions that change the choosen technique.
     """
+    if player.isplayer:
+        local = player
+    else:
+        local = enemy
     status = Technique()
     if has_status(monster, "status_dozing"):
-        status.load("skip")
+        status.load("empty")
         technique = status
     if has_status(monster, "status_flinching"):
         fli = random.randint(1, 2)
         if fli == 1:
-            status.load("skip")
+            status.load("empty")
             technique = status
             monster.status.clear()
     if has_status(monster, "status_wild"):
         wild = random.randint(1, 4)
         if wild == 1:
-            status.load("skip")
+            status.load("empty")
             technique = status
             monster.current_hp -= monster.hp // 8
     if has_status(monster, "status_confused"):
         confusion = random.randint(1, 2)
         if confusion == 1:
-            player.game_variables["status_confused"] = "on"
+            local.game_variables["status_confused"] = "on"
             confused = [
                 ele
                 for ele in monster.moves
@@ -94,14 +98,14 @@ def pre_checking(
             if confused:
                 technique = random.choice(confused)
             else:
-                status.load("skip")
+                status.load("empty")
                 technique = status
         else:
-            player.game_variables["status_confused"] = "off"
+            local.game_variables["status_confused"] = "off"
     if monster.plague == PlagueType.infected:
         value = random.randint(1, 8)
         if value == 1:
-            status.load("status_spyderbite")
+            status.load("spyderbite")
             technique = status
             # infect mechanism
             if (
@@ -159,7 +163,7 @@ def fainted(monster: Monster) -> bool:
 
 
 def get_awake_monsters(
-    player: NPC, monsters: List[Monster]
+    player: NPC, monsters: List[Monster], turn: int
 ) -> Generator[Monster, None, None]:
     """
     Iterate all non-fainted monsters in party.
@@ -179,13 +183,18 @@ def get_awake_monsters(
     if mons:
         if len(mons) > 1:
             mon = random.choice(mons)
-            # avoid random choice filling battlefield (1st turn)
-            if player.isplayer:
+            # avoid random choice (1st turn)
+            if turn == 1:
                 yield from mons
             else:
                 yield mon
         else:
             yield mons[0]
+
+
+def alive_party(player: NPC) -> List[Monster]:
+    not_fainted = [ele for ele in player.monsters if not fainted(ele)]
+    return not_fainted
 
 
 def fainted_party(party: Sequence[Monster]) -> bool:
@@ -254,6 +263,8 @@ def generic(
                 "gold": gold,
             },
         )
+    if has_effect(tech, "healing"):
+        message = T.translate("combat_full_health")
     if has_effect(tech, "switch"):
         _type: str = ""
         monster: str = ""
@@ -317,4 +328,5 @@ def learn(monster: Monster, tech: str) -> Union[Technique, None]:
     duplicate = [mov for mov in monster.moves if mov.slug == technique.slug]
     if duplicate:
         return None
-    return technique
+    else:
+        return technique

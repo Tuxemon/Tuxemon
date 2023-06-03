@@ -56,8 +56,8 @@ def simple_damage_multiplier(
     Calculates damage multiplier based on strengths and weaknesses.
 
     Parameters:
-        attack_types: The names of the types of the technique.
-        target_types: The names of the types of the target.
+        attack_types: The types of the technique.
+        target_types: The types of the target.
 
     Returns:
         The attack multiplier.
@@ -125,27 +125,19 @@ def simple_damage_calculate(
     return damage, mult
 
 
-def damage_panjandrum(target: Monster) -> int:
+def damage_full_hp(target: Monster, value: int) -> int:
     """
-    The target takes damage equal to 1/4 of their maximum HP.
-    """
-    damage = target.hp * 0.25
-    return int(damage)
-
-
-def simple_poison(target: Monster) -> int:
-    """
-    Simple poison based on target's full hp.
+    Damage based on target's full hp.
 
     Parameters:
-        technique: The technique causing poison.
         target: The one the technique is being used on.
+        value: Numerical value (target.hp // value).
 
     Returns:
         Inflicted damage.
 
     """
-    damage = target.hp // 8
+    damage = target.hp // value
     return damage
 
 

@@ -1,7 +1,6 @@
 {
     "slug": "bumbulus",
     "category": "veiled",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

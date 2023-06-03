@@ -1,7 +1,6 @@
 {
     "slug": "spoilurm",
     "category": "detritus",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

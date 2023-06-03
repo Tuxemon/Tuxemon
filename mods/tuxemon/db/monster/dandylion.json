@@ -1,7 +1,6 @@
 {
     "slug": "dandylion",
     "category": "lions_tooth",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

@@ -1,7 +1,6 @@
 {
     "slug": "vivipere",
     "category": "potentia",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

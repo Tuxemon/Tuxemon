@@ -1,7 +1,6 @@
 {
     "slug": "chibiro",
     "category": "false_turnip",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

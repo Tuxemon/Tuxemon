@@ -1,7 +1,6 @@
 {
     "slug": "conifrost",
     "category": "taiga",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

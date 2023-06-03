@@ -1,7 +1,6 @@
 {
     "slug": "neutrito",
     "category": "calm_emotion",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

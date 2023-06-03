@@ -1,7 +1,6 @@
 {
     "slug": "conileaf",
     "category": "pitcher",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

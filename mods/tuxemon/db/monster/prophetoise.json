@@ -1,7 +1,6 @@
 {
     "slug": "prophetoise",
     "category": "dragon_bone",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

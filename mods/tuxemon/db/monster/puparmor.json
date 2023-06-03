@@ -1,7 +1,6 @@
 {
     "slug": "puparmor",
     "category": "fortified",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

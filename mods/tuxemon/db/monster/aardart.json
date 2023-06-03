@@ -1,7 +1,6 @@
 {
     "slug": "aardart",
     "category": "anteater",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

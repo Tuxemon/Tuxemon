@@ -1,7 +1,6 @@
 {
     "slug": "waysprite",
     "category": "wavering",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

@@ -1,7 +1,6 @@
 {
     "slug": "foofle",
     "category": "woolly",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

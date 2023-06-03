@@ -1,7 +1,6 @@
 {
     "slug": "anu",
     "category": "dream_fox",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

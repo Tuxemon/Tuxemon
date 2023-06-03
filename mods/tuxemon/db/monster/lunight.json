@@ -1,7 +1,6 @@
 {
     "slug": "lunight",
     "category": "quasar",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

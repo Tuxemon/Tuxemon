@@ -1,7 +1,6 @@
 {
     "slug": "agnite",
     "category": "false_dragon",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

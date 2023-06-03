@@ -1,7 +1,6 @@
 {
     "slug": "weavifly",
     "category": "brood",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

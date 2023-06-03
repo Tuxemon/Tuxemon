@@ -1,7 +1,6 @@
 {
     "slug": "snowrilla",
     "category": "yeti",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

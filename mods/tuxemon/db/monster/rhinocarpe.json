@@ -1,7 +1,6 @@
 {
     "slug": "rhinocarpe",
     "category": "big_head",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

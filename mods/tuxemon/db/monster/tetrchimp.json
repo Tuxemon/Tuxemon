@@ -1,7 +1,6 @@
 {
     "slug": "tetrchimp",
     "category": "chip",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

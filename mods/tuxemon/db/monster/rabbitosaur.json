@@ -1,7 +1,6 @@
 {
     "slug": "rabbitosaur",
     "category": "rabbit",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

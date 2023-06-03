@@ -1,7 +1,6 @@
 {
     "slug": "pantherafira",
     "category": "mercury",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

@@ -211,16 +211,16 @@
   </object>
   <object id="112" name="Create Fossilisator" type="event" x="160" y="288" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scientist,10,18"/>
-    <property name="act2" value="npc_face spyder_scientist,up"/>
-    <property name="cond1" value="not npc_exists spyder_scientist"/>
+    <property name="act1" value="create_npc spyder_greenwash_selby,10,18"/>
+    <property name="act2" value="npc_face spyder_greenwash_selby,up"/>
+    <property name="cond1" value="not npc_exists spyder_greenwash_selby"/>
    </properties>
   </object>
   <object id="113" name="Talk Fossilisator First" type="event" x="112" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator1"/>
     <property name="act3" value="set_variable intro_fossilisator:yes"/>
-    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="behav1" value="talk spyder_greenwash_selby"/>
     <property name="cond1" value="not variable_set intro_fossilisator:yes"/>
    </properties>
   </object>
@@ -229,7 +229,7 @@
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
     <property name="act2" value="translated_dialog spyder_greenwash_fossilisator3"/>
     <property name="act3" value="translated_dialog_choice yes:no,rhincus_choice"/>
-    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="behav1" value="talk spyder_greenwash_selby"/>
     <property name="cond1" value="is variable_set intro_fossilisator:yes"/>
     <property name="cond2" value="is has_item player,rhincus_fossil"/>
     <property name="cond3" value="not has_item player,shammer_fossil"/>
@@ -241,7 +241,7 @@
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
     <property name="act2" value="translated_dialog spyder_greenwash_fossilisator5"/>
     <property name="act3" value="translated_dialog_choice yes:no,shammer_choice"/>
-    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="behav1" value="talk spyder_greenwash_selby"/>
     <property name="cond1" value="is variable_set intro_fossilisator:yes"/>
     <property name="cond2" value="is has_item player,shammer_fossil"/>
     <property name="cond3" value="not has_item player,rhincus_fossil"/>
@@ -252,7 +252,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
     <property name="act2" value="translated_dialog spyder_greenwash_fossilisator7"/>
-    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="behav1" value="talk spyder_greenwash_selby"/>
     <property name="cond1" value="not has_item player,rhincus_fossil"/>
     <property name="cond2" value="not has_item player,shammer_fossil"/>
     <property name="cond3" value="is variable_set intro_fossilisator:yes"/>
@@ -283,7 +283,7 @@
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
     <property name="act2" value="translated_dialog spyder_greenwash_fossilisator8"/>
     <property name="act3" value="translated_dialog_choice yes:no,both_fossils"/>
-    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="behav1" value="talk spyder_greenwash_selby"/>
     <property name="cond1" value="is variable_set intro_fossilisator:yes"/>
     <property name="cond2" value="is has_item player,shammer_fossil"/>
     <property name="cond3" value="is has_item player,rhincus_fossil"/>

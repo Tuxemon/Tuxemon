@@ -1,7 +1,6 @@
 {
     "slug": "statursus",
     "category": "inner_fire",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

@@ -1,7 +1,6 @@
 {
     "slug": "qetzlrokilus",
     "category": "long_winged",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

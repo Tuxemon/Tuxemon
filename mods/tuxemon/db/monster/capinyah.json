@@ -1,7 +1,6 @@
 {
     "slug": "capinyah",
     "category": "woodwose",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

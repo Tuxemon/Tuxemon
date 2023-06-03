@@ -71,12 +71,14 @@
   <object id="11" name="Gender Male" type="event" x="48" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_player_template adventurer,adventurer"/>
+    <property name="act2" value="set_player_name m_default1:m_default2:m_default3"/>
     <property name="cond1" value="is variable_set gender_choice:gender_male"/>
    </properties>
   </object>
   <object id="12" name="Gender Female" type="event" x="48" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="set_player_template heroine,heroine"/>
+    <property name="act2" value="set_player_name f_default1:f_default2:f_default3"/>
     <property name="cond1" value="is variable_set gender_choice:gender_female"/>
    </properties>
   </object>

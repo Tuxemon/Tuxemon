@@ -50,7 +50,7 @@
   </object>
   <object id="29" name="Go Outside" type="event" x="128" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_candy_town.tmx,3,19,0.3"/>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,4,19,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -100,8 +100,8 @@
     <property name="act11" value="npc_face player,right"/>
     <property name="act12" value="player_stop"/>
     <property name="act13" value="lock_controls"/>
-    <property name="act14" value="create_npc spyder_barmaid_red,6,3"/>
-    <property name="act15" value="npc_face spyder_barmaid_red,left"/>
+    <property name="act14" value="create_npc spyder_candycafe_nora,6,3"/>
+    <property name="act15" value="npc_face spyder_candycafe_nora,left"/>
     <property name="act20" value="translated_dialog spyder_barmaid_cafe1"/>
     <property name="act50" value="set_variable cafe_confiscation:yes"/>
     <property name="cond1" value="is variable_set confiscation_done:yes"/>
@@ -115,8 +115,8 @@
     <property name="act40" value="add_monster nudiflot_male,10"/>
     <property name="act50" value="set_variable cafe_done:yes"/>
     <property name="act55" value="unlock_controls"/>
-    <property name="act60" value="pathfind spyder_barmaid_red,8,10"/>
-    <property name="act65" value="remove_npc spyder_barmaid_red"/>
+    <property name="act60" value="pathfind spyder_candycafe_nora,8,10"/>
+    <property name="act65" value="remove_npc spyder_candycafe_nora"/>
     <property name="cond1" value="is has_box Kennel,less_than,1"/>
     <property name="cond2" value="is variable_set cafe_confiscation:yes"/>
     <property name="cond3" value="not variable_set cafe_done:yes"/>
@@ -127,8 +127,8 @@
     <property name="act10" value="translated_dialog spyder_barmaid_cafe2"/>
     <property name="act50" value="set_variable cafe_done:yes"/>
     <property name="act55" value="unlock_controls"/>
-    <property name="act60" value="pathfind spyder_barmaid_red,8,10"/>
-    <property name="act65" value="remove_npc spyder_barmaid_red"/>
+    <property name="act60" value="pathfind spyder_candycafe_nora,8,10"/>
+    <property name="act65" value="remove_npc spyder_candycafe_nora"/>
     <property name="cond1" value="is has_box Kennel,greater_or_equal,1"/>
     <property name="cond2" value="is variable_set cafe_confiscation:yes"/>
     <property name="cond3" value="not variable_set cafe_done:yes"/>

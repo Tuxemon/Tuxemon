@@ -1,7 +1,6 @@
 {
     "slug": "tikorch",
     "category": "taboo",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

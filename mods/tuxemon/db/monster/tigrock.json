@@ -1,7 +1,6 @@
 {
     "slug": "tigrock",
     "category": "ex_machina",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

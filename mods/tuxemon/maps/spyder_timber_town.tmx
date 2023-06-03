@@ -27,7 +27,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtl1sKwjAQRQfF15/+uwXfG3ARgq9/dRdW/ddl+FqAuhp1J96BBgapRW0NI8zAYdpkmtzeppAQ/S5qFaI6cPl3M6U7cpcoeB4xqu25xtf9LEJfVJsvPf80zzlGbFxfzGOpdjkNnCU8ietLdcIvB2Mt+RxRAWjS5V6HNdWhraFU3z1DwS3kiux0a8na9ZWyFBRDCshafDMd5sAnDjRQ3AQt0AYdoCn6EDMAQzACY6Ap5hATgAVYghXwEUXsa9+JLYp2YA8O4Ah8BO+5LcwBc8AcMAdeO3DB3vssOCnbi/M+vCrQdlZgfewua+SsUd8U2iahhxr1ye/bx1lGrsek10nXs1t/0sMNvFyHfr5qlzX8frKO711/0u8hz4HuPJhmtrMl/9UW5oA/B3plf3M9ANRGd7M=
+   eAHtl0tOwzAQhkcgaLuDPQta2LZcgRvwlLgBcAoaOAAch7LldQ3gCLz2fCPF0qgKUSGpNYgZ6dMktmP/+eNIHpH5xXBVZAQpz2+ldmfeFimmZ6xqmx6T6/60Ql9VWy49f2mdSY3Yur6ax1rtSho0W3SR1Nfqgr+cTLUsL4l0wJOu9DqqaYS2Laf6XhakeC55IifdXrJ3fb1FKbolHbIX30JHOPATB277IndwDw/wCJ7iFT1v8A4f8AmeYn0g0ocBbMAm5Igu59pZYgc9u7AH+3AAOULP3LPEGXrGUMA5XEBEOBAOhAP/wYEbzt4Tw7Wzs7iew9cM3moF1af7RDVq9qjvBG3HpYce9dnve0QtY/dj0+um+zntP+vhFV5eln5+127H6PvZcXqf+pt+D1sHpnqwzRy1pf7VEeFAPgcOV/Kt9QUyP3/J
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
@@ -42,7 +42,7 @@
  </layer>
  <layer id="4" name="Tile Layer 4" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0zsOgkAUheHToViqmJioiStyNwo27stX5RM2gm7Cv6QgNiY6Gc9NvmYKuPMTJM8/FjhNpDMuuOIGjwu4wPsCW/6THfY44IhvTJ/3DDBEhhGac8+kEhVCnJq9HngGul+IzbzT5wUSHtFBFyl68LiAC7iAC7iAC7iAC7iAC8RRYDmVVshRYI25tGk7X4yltvM4SsR3ixnfMb5b+Ua/LPACgMEaBQ==
+   eAHt00sOwVAYhuFvD6hEgrAiu3GbdA8tFuM2oqXdCDbhHRo0JhJOju9PnsmZ9D/vSSXPPxY49aUzCpS4wOMCLvC+wJb/ZIc9DjjiG9PiO210kKCL17kmUoUaIc6Nve54BLpfiM280+cFspGUY4U1NvC4gAu4gAu4gAu4gAu4gAvEUWA6kGaYY4ElxlLadD7pSU3ncZSI7xZD3jG+W/lGvyzwBOReHWY=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">
@@ -60,9 +60,9 @@
   <object id="256" type="collision" x="96" y="64" width="32" height="48"/>
   <object id="257" type="collision" x="128" y="64" width="48" height="32"/>
   <object id="258" type="collision" x="144" y="96" width="32" height="16"/>
-  <object id="259" type="collision" x="128" y="240" width="32" height="64"/>
-  <object id="260" type="collision" x="176" y="240" width="32" height="64"/>
-  <object id="261" type="collision" x="160" y="240" width="16" height="48"/>
+  <object id="259" type="collision" x="128" y="240" width="48" height="64"/>
+  <object id="260" type="collision" x="192" y="240" width="16" height="64"/>
+  <object id="261" type="collision" x="176" y="240" width="16" height="48"/>
   <object id="262" type="collision" x="80" y="352" width="48" height="64">
    <properties>
     <property name="key" value="water"/>
@@ -401,7 +401,7 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="370" name="Teleport to Timber Cafe" type="event" x="160" y="288" width="16" height="16">
+  <object id="370" name="Teleport to Timber Cafe" type="event" x="176" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_cafe.tmx,8,11,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -421,16 +421,16 @@
    <properties>
     <property name="act01" value="player_stop"/>
     <property name="act02" value="lock_controls"/>
-    <property name="act03" value="create_npc spyder_mompapertown,26,23"/>
-    <property name="act04" value="pathfind spyder_mompapertown,17,21"/>
+    <property name="act03" value="create_npc spyder_papertown_mom,26,23"/>
+    <property name="act04" value="pathfind spyder_papertown_mom,17,21"/>
     <property name="act05" value="unlock_controls"/>
     <property name="act06" value="npc_face player,down"/>
-    <property name="act07" value="npc_face spyder_mompapertown,up"/>
+    <property name="act07" value="npc_face spyder_papertown_mom,up"/>
     <property name="act08" value="translated_dialog spyder_timber_mom1"/>
     <property name="act09" value="add_item surfboard"/>
     <property name="act10" value="translated_dialog spyder_timber_mom2"/>
-    <property name="act11" value="pathfind spyder_mompapertown,26,23"/>
-    <property name="act12" value="remove_npc spyder_mompapertown"/>
+    <property name="act11" value="pathfind spyder_papertown_mom,26,23"/>
+    <property name="act12" value="remove_npc spyder_papertown_mom"/>
     <property name="act13" value="set_variable timbermom:yes"/>
     <property name="cond1" value="not variable_set timbermom:yes"/>
     <property name="cond2" value="is variable_set scooparachne:yes"/>

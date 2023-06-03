@@ -1,7 +1,6 @@
 {
     "slug": "angesnow",
-    "category": "driven_snow",
-    "ai": "RandomAI",	
+    "category": "driven_snow",	
     "moveset": [
         {
             "level_learned": 2,

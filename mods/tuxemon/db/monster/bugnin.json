@@ -1,7 +1,6 @@
 {
     "slug": "bugnin",
     "category": "honour",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

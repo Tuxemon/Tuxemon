@@ -1,7 +1,6 @@
 {
     "slug": "tux",
     "category": "penguin",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

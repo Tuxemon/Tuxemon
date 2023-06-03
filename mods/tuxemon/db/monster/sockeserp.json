@@ -1,7 +1,6 @@
 {
     "slug": "sockeserp",
     "category": "power_socket_snake",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

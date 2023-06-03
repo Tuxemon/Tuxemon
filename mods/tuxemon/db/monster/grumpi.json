@@ -1,7 +1,6 @@
 {
     "slug": "grumpi",
     "category": "gummy",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

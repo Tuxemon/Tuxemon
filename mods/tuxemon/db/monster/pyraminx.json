@@ -1,7 +1,6 @@
 {
     "slug": "pyraminx",
     "category": "noble",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

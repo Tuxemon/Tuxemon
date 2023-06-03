@@ -1,7 +1,6 @@
 {
     "slug": "hampotamos",
     "category": "hungry",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

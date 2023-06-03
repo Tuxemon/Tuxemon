@@ -1,7 +1,6 @@
 {
     "slug": "masknake",
     "category": "serpents_tooth",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

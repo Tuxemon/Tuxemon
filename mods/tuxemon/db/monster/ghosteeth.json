@@ -1,7 +1,6 @@
 {
     "slug": "ghosteeth",
     "category": "cheshire",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

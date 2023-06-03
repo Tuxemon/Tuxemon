@@ -7,7 +7,7 @@ import random
 import uuid
 from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
 
-from tuxemon import ai, formula, fusion, graphics, tools
+from tuxemon import formula, fusion, graphics, tools
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import (
     CategoryCondition,
@@ -233,7 +233,6 @@ class Monster:
         self.flairs: Dict[str, Flair] = {}
         self.battle_cry = ""
         self.faint_cry = ""
-        self.ai: Optional[ai.AI] = None
         self.owner: Optional[NPC] = None
         self.possible_genders: List[GenderType] = []
 
@@ -380,14 +379,6 @@ class Monster:
         else:
             self.combat_call = f"sound_{self.types[0]}_call"
             self.faint_call = f"sound_{self.types[0]}_faint"
-
-        # Load the monster AI
-        # TODO: clean up AI 'core' loading and what not
-        ai_result = results.ai
-        if ai_result == "SimpleAI":
-            self.ai = ai.SimpleAI()
-        elif ai_result == "RandomAI":
-            self.ai = ai.RandomAI()
 
     def learn(
         self,

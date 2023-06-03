@@ -1,7 +1,6 @@
 {
     "slug": "cochini",
     "category": "tasty",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

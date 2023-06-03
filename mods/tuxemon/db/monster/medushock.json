@@ -1,7 +1,6 @@
 {
     "slug": "medushock",
     "category": "jellyfish",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

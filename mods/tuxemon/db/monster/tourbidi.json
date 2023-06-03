@@ -1,7 +1,6 @@
 {
     "slug": "tourbidi",
     "category": "elf_ring",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

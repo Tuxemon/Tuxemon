@@ -1,0 +1,92 @@
+[
+  {
+    "slug": "spyder_candy_henrik",
+    "template": [
+      {
+        "sprite_name": "knight_red",
+        "combat_front": "enforcer_rookie",
+        "slug": "enforcer_rookie"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candycafe_nora",
+    "template": [
+      {
+        "sprite_name": "barmaid_red",
+        "combat_front": "barmaid",
+        "slug": "barmaid"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candyhouse2_indiana",
+    "template": [
+      {
+        "sprite_name": "professor",
+        "combat_front": "professor",
+        "slug": "professor"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candyhouse2_barney",
+    "template": [
+      {
+        "sprite_name": "riverboatcaptain",
+        "combat_front": "enforcer_rookie",
+        "slug": "riverboatcaptain"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candyhouse3_joanie",
+    "template": [
+      {
+        "sprite_name": "catgirl",
+        "combat_front": "catgirl",
+        "slug": "catgirl"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candyhouse1_tillie",
+    "template": [
+      {
+        "sprite_name": "picnicker",
+        "combat_front": "picnicker",
+        "slug": "picnicker"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candyhouse1_sawyer",
+    "template": [
+      {
+        "sprite_name": "maniac_yellow",
+        "combat_front": "adventurer",
+        "slug": "maniac"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candycenter_diamond",
+    "template": [
+      {
+        "sprite_name": "nurse",
+        "combat_front": "nurse",
+        "slug": "nurse"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candyscoop_clint",
+    "template": [
+      {
+        "sprite_name": "shopkeeper",
+        "combat_front": "adventurer",
+        "slug": "shopkeeper"
+      }
+    ]
+  }
+]

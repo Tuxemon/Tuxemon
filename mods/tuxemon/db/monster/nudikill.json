@@ -1,7 +1,6 @@
 {
     "slug": "nudikill",
     "category": "dark_bishop",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

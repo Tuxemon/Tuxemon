@@ -1,7 +1,6 @@
 {
     "slug": "rosarin",
     "category": "every_thorn",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

@@ -1,7 +1,6 @@
 {
     "slug": "shelagu",
     "category": "sheltering",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

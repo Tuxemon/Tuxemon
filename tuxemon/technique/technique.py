@@ -38,9 +38,6 @@ logger = logging.getLogger(__name__)
 
 SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "slug",
-    "power",
-    "potency",
-    "accuracy",
     "counter",
     "counter_success",
 )

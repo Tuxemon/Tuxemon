@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="97">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="99">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="north" value="route7"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="routea"/>
   <property name="south" value="flower_city"/>
@@ -168,19 +169,19 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="66" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
+  <object id="66" name="Environment Day" type="event" x="96" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="is variable_set daytime:true"/>
    </properties>
   </object>
-  <object id="68" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+  <object id="68" name="Environment Night" type="event" x="80" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
-  <object id="67" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
+  <object id="67" name="Exhausted" type="event" x="112" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>
@@ -420,27 +421,27 @@
   </object>
   <object id="91" name="Create Maniac" type="event" x="96" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_maniac,6,15"/>
-    <property name="act2" value="npc_face spyder_maniac,right"/>
-    <property name="cond1" value="not npc_exists spyder_maniac"/>
+    <property name="act1" value="create_npc spyder_routea_john,6,15"/>
+    <property name="act2" value="npc_face spyder_routea_john,right"/>
+    <property name="cond1" value="not npc_exists spyder_routea_john"/>
    </properties>
   </object>
   <object id="92" name="Talk Maniac" type="event" x="48" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_routea_maniac"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk spyder_routea_john"/>
    </properties>
   </object>
   <object id="93" name="Create Firefighter" type="event" x="272" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_firefighter,17,12"/>
-    <property name="cond1" value="not npc_exists spyder_firefighter"/>
+    <property name="act1" value="create_npc spyder_routea_jarod,17,12"/>
+    <property name="cond1" value="not npc_exists spyder_routea_jarod"/>
    </properties>
   </object>
   <object id="94" name="Talk Firefighter" type="event" x="288" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_routea_firefighter"/>
-    <property name="behav1" value="talk spyder_firefighter"/>
+    <property name="behav1" value="talk spyder_routea_jarod"/>
    </properties>
   </object>
   <object id="95" name="Talk Vince1" type="event" x="48" y="288" width="16" height="16">
@@ -458,6 +459,22 @@
     <property name="behav1" value="talk spyder_routea_vince"/>
     <property name="cond1" value="is variable_set vincefirst:yes"/>
     <property name="cond2" value="not variable_set vincesecond:yes"/>
+   </properties>
+  </object>
+  <object id="97" name="Teleport Route7" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route7.tmx,1,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="98" name="Teleport Route7" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route7.tmx,1,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

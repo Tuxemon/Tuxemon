@@ -1,7 +1,6 @@
 {
     "slug": "foxfire",
     "category": "smoke",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

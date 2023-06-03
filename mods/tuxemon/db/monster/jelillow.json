@@ -1,7 +1,6 @@
 {
     "slug": "jelillow",
     "category": "jelly_pillow",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

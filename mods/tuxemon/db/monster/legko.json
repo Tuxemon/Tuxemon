@@ -1,7 +1,6 @@
 {
     "slug": "legko",
     "category": "lizard",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

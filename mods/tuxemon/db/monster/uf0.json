@@ -1,7 +1,6 @@
 {
     "slug": "uf0",
     "category": "space_cutie",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

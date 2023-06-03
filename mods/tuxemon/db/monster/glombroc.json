@@ -1,7 +1,6 @@
 {
     "slug": "glombroc",
     "category": "aggregate",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

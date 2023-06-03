@@ -1,7 +1,6 @@
 {
     "slug": "arthrobolt",
     "category": "foreman",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

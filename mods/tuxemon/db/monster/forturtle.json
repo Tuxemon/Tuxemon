@@ -1,7 +1,6 @@
 {
     "slug": "forturtle",
     "category": "oracle_bone",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

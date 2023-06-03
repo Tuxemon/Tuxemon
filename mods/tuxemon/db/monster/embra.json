@@ -1,7 +1,6 @@
 {
     "slug": "embra",
     "category": "flicker",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

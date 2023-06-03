@@ -55,16 +55,16 @@
   </object>
   <object id="30" name="Create Firefighter" type="event" x="16" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_firefighter,1,5"/>
-    <property name="act2" value="npc_face spyder_firefighter,right"/>
-    <property name="cond1" value="not npc_exists spyder_firefighter"/>
+    <property name="act1" value="create_npc spyder_timberhouse_zed,1,5"/>
+    <property name="act2" value="npc_face spyder_timberhouse_zed,right"/>
+    <property name="cond1" value="not npc_exists spyder_timberhouse_zed"/>
    </properties>
   </object>
   <object id="31" name="Talk Firefighter - No Chillimp" type="event" x="80" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_timber_firefighter1"/>
     <property name="act2" value="translated_dialog spyder_timber_firefighter_nochillimp"/>
-    <property name="behav1" value="talk spyder_firefighter"/>
+    <property name="behav1" value="talk spyder_timberhouse_zed"/>
     <property name="cond1" value="not has_monster chillimp"/>
     <property name="cond2" value="not variable_set fire_timber_hastraded:yes"/>
    </properties>
@@ -73,7 +73,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_timber_firefighter1"/>
     <property name="act2" value="translated_dialog_choice yes:no,fire_timber_willtrade"/>
-    <property name="behav1" value="talk spyder_firefighter"/>
+    <property name="behav1" value="talk spyder_timberhouse_zed"/>
     <property name="cond1" value="is has_monster chillimp"/>
     <property name="cond2" value="not variable_set fire_timber_hastraded:yes"/>
    </properties>

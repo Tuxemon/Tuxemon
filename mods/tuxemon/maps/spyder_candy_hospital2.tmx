@@ -107,15 +107,15 @@
   </object>
   <object id="91" name="Create Scientist" type="event" x="16" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scientist,1,17"/>
-    <property name="act2" value="npc_face spyder_scientist,up"/>
-    <property name="cond1" value="not npc_exists spyder_scientist"/>
+    <property name="act1" value="create_npc spyder_hospital1_lesley,1,17"/>
+    <property name="act2" value="npc_face spyder_hospital1_lesley,up"/>
+    <property name="cond1" value="not npc_exists spyder_hospital1_lesley"/>
    </properties>
   </object>
   <object id="92" name="Talk Scientist" type="event" x="0" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_hospital1_scientist1"/>
-    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="behav1" value="talk spyder_hospital1_lesley"/>
    </properties>
   </object>
   <object id="93" name="Environment" type="event" x="16" y="0" width="16" height="16">
@@ -231,8 +231,8 @@
   </object>
   <object id="107" name="Create Scientist" type="event" x="64" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scientist_black,1,17"/>
-    <property name="cond1" value="not npc_exists spyder_scientist_black"/>
+    <property name="act1" value="create_npc spyder_hospital1_trafford,1,17"/>
+    <property name="cond1" value="not npc_exists spyder_hospital1_trafford"/>
     <property name="cond2" value="not variable_set quarantine_qua2:yes"/>
    </properties>
   </object>
@@ -241,20 +241,20 @@
     <property name="act1" value="translated_dialog spyder_hospital2_scientist2"/>
     <property name="act2" value="set_variable quarantine_qua2:yes"/>
     <property name="act3" value="quarantine out,1"/>
-    <property name="behav1" value="talk spyder_scientist_black"/>
+    <property name="behav1" value="talk spyder_hospital1_trafford"/>
     <property name="cond1" value="not variable_set quarantine_qua2:yes"/>
    </properties>
   </object>
   <object id="109" name="Create Nurse" type="event" x="224" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_nurse,1,17"/>
-    <property name="cond1" value="not npc_exists spyder_nurse"/>
+    <property name="act1" value="create_npc spyder_hospital1_melanie,1,17"/>
+    <property name="cond1" value="not npc_exists spyder_hospital1_melanie"/>
    </properties>
   </object>
   <object id="110" name="Talk Nurse" type="event" x="224" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_hospital2_nurse1"/>
-    <property name="behav1" value="talk spyder_nurse"/>
+    <property name="behav1" value="talk spyder_hospital1_melanie"/>
    </properties>
   </object>
  </objectgroup>

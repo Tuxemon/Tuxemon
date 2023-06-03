@@ -68,10 +68,10 @@
   </object>
   <object id="20" name="Create Shopkeeper" type="event" x="16" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_shopkeeper,1,6"/>
-    <property name="act2" value="npc_face spyder_shopkeeper,right"/>
-    <property name="act3" value="set_economy spyder_shopkeeper,spyder_candy_scoop"/>
-    <property name="cond1" value="not npc_exists spyder_shopkeeper"/>
+    <property name="act1" value="create_npc spyder_candyscoop_clint,1,6"/>
+    <property name="act2" value="npc_face spyder_candyscoop_clint,right"/>
+    <property name="act3" value="set_economy spyder_candyscoop_clint,spyder_candy_scoop"/>
+    <property name="cond1" value="not npc_exists spyder_candyscoop_clint"/>
    </properties>
   </object>
   <object id="28" name="Route Music" type="event" x="0" y="0" width="16" height="16">
@@ -82,18 +82,18 @@
   </object>
   <object id="29" name="Open Shop" type="event" x="32" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_face spyder_shopkeeper,right"/>
+    <property name="act1" value="npc_face spyder_candyscoop_clint,right"/>
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
-    <property name="act3" value="open_shop spyder_shopkeeper"/>
+    <property name="act3" value="open_shop spyder_candyscoop_clint"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="30" name="Open Shop" type="event" x="16" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_face spyder_shopkeeper,down"/>
+    <property name="act1" value="npc_face spyder_candyscoop_clint,down"/>
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
-    <property name="act3" value="open_shop spyder_shopkeeper"/>
+    <property name="act3" value="open_shop spyder_candyscoop_clint"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -101,8 +101,8 @@
   <object id="31" name="Talk/Open Shop" type="event" x="0" y="80" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
-    <property name="act3" value="open_shop spyder_shopkeeper"/>
-    <property name="behav1" value="talk spyder_shopkeeper"/>
+    <property name="act3" value="open_shop spyder_candyscoop_clint"/>
+    <property name="behav1" value="talk spyder_candyscoop_clint"/>
    </properties>
   </object>
  </objectgroup>

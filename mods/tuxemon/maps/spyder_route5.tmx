@@ -228,14 +228,14 @@
   </object>
   <object id="45" name="Create Granny" type="event" x="416" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_granny,26,5"/>
-    <property name="cond1" value="not npc_exists spyder_granny"/>
+    <property name="act1" value="create_npc spyder_route5_lexia,26,5"/>
+    <property name="cond1" value="not npc_exists spyder_route5_lexia"/>
    </properties>
   </object>
   <object id="46" name="Talk Granny" type="event" x="416" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_route5_granny"/>
-    <property name="behav1" value="talk spyder_granny"/>
+    <property name="behav1" value="talk spyder_route5_lexia"/>
    </properties>
   </object>
   <object id="47" name="Create Sara" type="event" x="368" y="128" width="16" height="16">

@@ -153,6 +153,8 @@ class NPC(Entity[NPCState]):
         # assume that all values are lists
         self.monster_boxes: Dict[str, List[Monster]] = {}
         self.item_boxes: Dict[str, List[Item]] = {}
+        # nr tuxemon fight
+        self.max_position: int = 1
         self.speed = 10  # To determine combat order (not related to movement!)
         self.moves: Sequence[Technique] = []  # list of techniques
 

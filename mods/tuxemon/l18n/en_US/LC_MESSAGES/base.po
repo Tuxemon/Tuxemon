@@ -1033,7 +1033,7 @@ msgid "generic_failure"
 msgstr "It failed!"
 
 msgid "who_is_that"
-msgstr "Who's That Tuxemon?"
+msgstr "Name That Tuxemon"
 
 msgid "generic_right"
 msgstr "Correct!"

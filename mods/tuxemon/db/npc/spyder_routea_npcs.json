@@ -108,5 +108,15 @@
         "slug": "maniac"
       }
     ]
+  },
+  {
+    "slug": "spyder_routea_little",
+    "template": [
+      {
+        "sprite_name": "knight_red",
+        "combat_front": "knight",
+        "slug": "knight"
+      }
+    ]
   }
 ]

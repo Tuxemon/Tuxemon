@@ -5201,6 +5201,24 @@ msgstr "Professor"
 msgid "npc_red"
 msgstr "Red"
 
+msgid "m_default1"
+msgstr "Jimmy"
+
+msgid "m_default2"
+msgstr "Linus"
+
+msgid "m_default3"
+msgstr "Richard"
+
+msgid "f_default1"
+msgstr "Ada"
+
+msgid "f_default2"
+msgstr "Christine"
+
+msgid "f_default3"
+msgstr "Hawthorn"
+
 msgid "tabanurse"
 msgstr "Taba Nurse"
 

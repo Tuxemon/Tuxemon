@@ -24,7 +24,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import audio, graphics, tools
-from tuxemon.db import SeenStatus
+from tuxemon.db import GenderType, SeenStatus
 from tuxemon.locale import T
 from tuxemon.menu.interface import ExpBar, HpBar
 from tuxemon.menu.menu import Menu
@@ -364,18 +364,17 @@ class CombatAnimations(ABC, Menu[None]):
         """
         tuxepedia = self.players[0].tuxepedia
         icon: str = ""
-        if monster.gender == "male":
-            icon = "♂"
-        elif monster.gender == "female":
-            icon = "♀"
+        symbol: str = ""
+        if monster.gender == GenderType.male:
+            icon += "♂"
+        if monster.gender == GenderType.female:
+            icon += "♀"
+        # shows captured symbol (wild encounter)
         if not self.is_trainer_battle and monster.slug in tuxepedia and source:
-            if (
-                tuxepedia[monster.slug] == SeenStatus.seen
-                or tuxepedia[monster.slug] == SeenStatus.caught
-            ):
-                icon += "◉"
+            if tuxepedia[monster.slug] == SeenStatus.caught:
+                symbol += "◉"
         return self.shadow_text(
-            f"{monster.name+icon: <11}Lv.{monster.level: >2}"
+            f"{monster.name}{icon} Lv.{monster.level}{symbol}"
         )
 
     def get_side(self, rect: Rect) -> Literal["left", "right"]:

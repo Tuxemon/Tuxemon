@@ -81,8 +81,6 @@ class ElementType(str, Enum):
     earth = "earth"
     metal = "metal"
     water = "water"
-    normal = "normal"
-    glitch = "glitch"
 
 
 class ItemType(str, Enum):
@@ -523,7 +521,8 @@ class TechniqueModel(BaseModel):
         False, description="Whether or not this is a fast technique"
     )
     randomly: bool = Field(
-        True, description="Whether or not this is a fast technique"
+        True,
+        description="Whether or not this technique will be picked by random",
     )
     healing_power: int = Field(0, description="Value of healing power.")
     recharge: int = Field(0, description="Recharge of this technique")
@@ -707,6 +706,18 @@ class EncounterModel(BaseModel):
     )
 
 
+class ElementItemModel(BaseModel):
+    against: ElementType = Field(..., description="Name of the type")
+    multiplier: float = Field(1.0, description="Multiplier against the type")
+
+
+class ElementModel(BaseModel):
+    slug: ElementType = Field(
+        ..., description="Slug uniquely identifying the type"
+    )
+    types: Sequence[ElementItemModel]
+
+
 class EconomyItemModel(BaseModel):
     item_name: str = Field(..., description="Name of the item")
     price: int = Field(0, description="Price of the item")
@@ -744,6 +755,7 @@ class SoundModel(BaseModel):
 
 TableName = Literal[
     "economy",
+    "element",
     "template",
     "encounter",
     "environment",
@@ -757,6 +769,7 @@ TableName = Literal[
 
 DataModel = Union[
     EconomyModel,
+    ElementModel,
     TemplateModel,
     EncounterModel,
     EnvironmentModel,
@@ -815,6 +828,7 @@ class JSONDatabase:
             "sounds",
             "music",
             "economy",
+            "element",
             "template",
         ]
         self.preloaded: Dict[TableName, Dict[str, Any]] = {}
@@ -938,6 +952,9 @@ class JSONDatabase:
             if table == "economy":
                 economy = EconomyModel(**item)
                 self.database[table][economy.slug] = economy
+            elif table == "element":
+                element = ElementModel(**item)
+                self.database[table][element.slug] = element
             elif table == "template":
                 template = TemplateModel(**item)
                 self.database[table][template.slug] = template
@@ -998,6 +1015,10 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["economy"]) -> EconomyModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["element"]) -> ElementModel:
         pass
 
     @overload
@@ -1085,6 +1106,7 @@ class JSONDatabase:
         self,
         table: Literal[
             "economy",
+            "element",
             "template",
             "encounter",
             "environment",

@@ -433,7 +433,7 @@ class CombatTargetMenuState(Menu[Monster]):
         self.targeting_map: DefaultDict[str, List[Monster]] = defaultdict(list)
         # avoid choosing multiple targets (aether type tech)
         if (
-            ElementType.aether in self.tech.types
+            self.tech.has_type(ElementType.aether)
             or self.tech.sort == TechSort.meta
         ):
             sprite = self.combat._monster_sprite_map[self.monster]

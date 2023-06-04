@@ -398,7 +398,7 @@ class CombatState(CombatAnimations):
                 var = self.players[0].game_variables
                 var["battle_last_monster_name"] = monster_record.name
                 var["battle_last_monster_level"] = monster_record.level
-                var["battle_last_monster_type"] = monster_record.types[0]
+                var["battle_last_monster_type"] = monster_record.types[0].slug
                 var["battle_last_monster_category"] = monster_record.category
                 var["battle_last_monster_shape"] = monster_record.shape
                 # Avoid reset string to seen if monster has already been caught

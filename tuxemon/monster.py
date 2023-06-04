@@ -25,6 +25,7 @@ from tuxemon.db import (
     TasteWarm,
     db,
 )
+from tuxemon.element import Element
 from tuxemon.locale import T
 from tuxemon.sprite import Sprite
 from tuxemon.technique.technique import Technique, decode_moves, encode_moves
@@ -240,8 +241,8 @@ class Monster:
         self.experience_modifier = 1
         self.total_experience = 0
 
-        self.types: List[ElementType] = []
-        self._types: List[ElementType] = []
+        self.types: List[Element] = []
+        self._types: List[Element] = []
         self.shape = MonsterShape.landrace
         self.randomly = True
 
@@ -319,9 +320,11 @@ class Monster:
         self.stage = results.stage or EvolutionStage.standalone
         self.taste_cold = self.set_taste_cold(self.taste_cold)
         self.taste_warm = self.set_taste_warm(self.taste_warm)
-        self.types = list(results.types)
-        # backup types
-        self._types = list(results.types)
+        # types
+        for _ele in results.types:
+            _element = Element(_ele)
+            self.types.append(_element)
+            self._types.append(_element)
 
         self.randomly = results.randomly or self.randomly
 
@@ -377,8 +380,8 @@ class Monster:
             self.combat_call = results.sounds.combat_call
             self.faint_call = results.sounds.faint_call
         else:
-            self.combat_call = f"sound_{self.types[0]}_call"
-            self.faint_call = f"sound_{self.types[0]}_faint"
+            self.combat_call = f"sound_{self.types[0].slug}_call"
+            self.faint_call = f"sound_{self.types[0].slug}_faint"
 
     def learn(
         self,
@@ -430,6 +433,17 @@ class Monster:
             return self.speed
         else:
             return value
+
+    def has_type(self, element: Optional[ElementType]) -> bool:
+        """
+        Returns TRUE if there is the type among the types.
+        """
+        ret: bool = False
+        if element:
+            eles = [ele for ele in self.types if ele.slug == element]
+            if eles:
+                ret = True
+        return ret
 
     def give_experience(self, amount: int = 1) -> None:
         """

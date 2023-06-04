@@ -56,7 +56,7 @@
     "shape": "sprite",
     "stage": "standalone",
     "types": [
-        "normal"
+        "lightning", "wood"  
     ],
     "possible_genders": ["male", "female"],
     "txmn_id": 105,

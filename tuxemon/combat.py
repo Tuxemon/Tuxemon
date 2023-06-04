@@ -273,18 +273,18 @@ def generic(
                 "combat_state_switch_both",
                 {
                     "user": attacker.name.upper(),
-                    "type1": T.translate(attacker.types[0]),
+                    "type1": T.translate(attacker.types[0].slug),
                     "target": defender.name.upper(),
-                    "type2": T.translate(defender.types[0]),
+                    "type2": T.translate(defender.types[0].slug),
                 },
             )
         else:
             if has_effect_param(tech, "switch", "target", "objective"):
                 monster = defender.name.upper()
-                _type = T.translate(defender.types[0])
+                _type = T.translate(defender.types[0].slug)
             if has_effect_param(tech, "switch", "user", "objective"):
                 monster = attacker.name.upper()
-                _type = T.translate(attacker.types[0])
+                _type = T.translate(attacker.types[0].slug)
             message = T.format(
                 "combat_state_switch",
                 {

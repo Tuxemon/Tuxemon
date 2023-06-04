@@ -56,7 +56,6 @@
     "shape": "leviathan",
     "stage": "standalone",
     "types": [
-        "glitch",
         "water"
     ],
     "possible_genders": ["neuter"],

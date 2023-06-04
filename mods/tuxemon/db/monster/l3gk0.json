@@ -56,7 +56,6 @@
     "shape": "serpent",
     "stage": "standalone",
     "types": [
-        "glitch",
         "wood"
     ],
     "possible_genders": ["neuter"],

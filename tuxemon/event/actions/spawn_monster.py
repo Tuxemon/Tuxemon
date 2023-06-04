@@ -85,28 +85,28 @@ class SpawnMonsterAction(EventAction):
         # matrix, it respects the types[0], strong against weak.
         # Mother (Water), Father (Earth)
         # Earth > Water => Child (Earth)
-        if mother.types[0].water:
-            if father.types[0].earth:
+        if mother.types[0].slug.water:
+            if father.types[0].slug.earth:
                 seed = father
             else:
                 seed = mother
-        elif mother.types[0].fire:
-            if father.types[0].water:
+        elif mother.types[0].slug.fire:
+            if father.types[0].slug.water:
                 seed = father
             else:
                 seed = mother
-        elif mother.types[0].wood:
-            if father.types[0].metal:
+        elif mother.types[0].slug.wood:
+            if father.types[0].slug.metal:
                 seed = father
             else:
                 seed = mother
-        elif mother.types[0].metal:
-            if father.types[0].fire:
+        elif mother.types[0].slug.metal:
+            if father.types[0].slug.fire:
                 seed = father
             else:
                 seed = mother
-        elif mother.types[0].earth:
-            if father.types[0].wood:
+        elif mother.types[0].slug.earth:
+            if father.types[0].slug.wood:
                 seed = father
             else:
                 seed = mother

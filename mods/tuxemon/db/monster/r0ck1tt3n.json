@@ -56,7 +56,6 @@
     "shape": "hunter",
     "stage": "standalone",
     "types": [
-        "glitch",
         "earth"
     ],
     "possible_genders": ["neuter"],

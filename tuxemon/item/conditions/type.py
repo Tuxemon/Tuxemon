@@ -31,6 +31,6 @@ class TypeCondition(ItemCondition):
         else:
             elements.append(self.elements)
         for ele in target.types:
-            if ele in elements:
+            if ele.slug in elements:
                 ret = True
         return ret

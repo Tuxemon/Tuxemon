@@ -266,12 +266,12 @@ class JournalInfoState(PygameMenuState):
         # types
         types = ""
         if len(monster.types) == 1:
-            types = T.translate(monster.types[0])
+            types = T.translate(monster.types[0].name)
         else:
             types = (
-                T.translate(monster.types[0])
+                T.translate(monster.types[0].name)
                 + " "
-                + T.translate(monster.types[1])
+                + T.translate(monster.types[1].name)
             )
         # weight and height
         unit = local_session.player.game_variables["unit_measure"]
@@ -521,12 +521,12 @@ class MonsterInfoState(PygameMenuState):
         # types
         types = ""
         if len(monster.types) == 1:
-            types = T.translate(monster.types[0])
+            types = T.translate(monster.types[0].slug)
         else:
             types = (
-                T.translate(monster.types[0])
+                T.translate(monster.types[0].slug)
                 + " "
-                + T.translate(monster.types[1])
+                + T.translate(monster.types[1].slug)
             )
         # weight and height
         results = db.lookup(monster.slug, table="monster")

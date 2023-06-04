@@ -104,9 +104,9 @@
   <object id="5" name="Teleport Route" type="event" x="16" y="624" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_routea.tmx,1,0,0.3"/>
-    <property name="act2" value="player_face up"/>
+    <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
   <object id="7" name="Environment Day" type="event" x="16" y="0" width="16" height="16">

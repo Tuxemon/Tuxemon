@@ -5,52 +5,20 @@ from __future__ import annotations
 import datetime as dt
 import logging
 import random
-from typing import TYPE_CHECKING, NamedTuple, Sequence, Tuple
+from typing import TYPE_CHECKING, Sequence, Tuple
 
 if TYPE_CHECKING:
-    from tuxemon.db import ElementType, MonsterModel
+    from tuxemon.db import MonsterModel
+    from tuxemon.element import Element
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
 
 
-class TypeChart(NamedTuple):
-    earth: float
-    fire: float
-    frost: float
-    heroic: float
-    lightning: float
-    magic: float
-    metal: float
-    normal: float
-    shadow: float
-    sky: float
-    venom: float
-    water: float
-    wood: float
-
-
-TYPES = {
-    "earth": TypeChart(1, 2, 1, 1, 2, 1, 1, 1, 1, 0.5, 1, 1, 0.5),
-    "fire": TypeChart(0.5, 0.5, 0.5, 1, 1, 1, 2, 1, 1, 1, 2, 0.5, 2),
-    "frost": TypeChart(2, 1, 0.5, 1, 1, 1, 0.5, 1, 0.5, 2, 1, 0.5, 2),
-    "heroic": TypeChart(1, 1, 2, 1, 1, 0.5, 1, 2, 2, 1, 0.5, 1, 1),
-    "lightning": TypeChart(0.5, 1, 1, 1, 0.5, 1, 2, 1, 1, 2, 1, 2, 0.5),
-    "cosmic": TypeChart(1, 1, 1, 2, 1, 1, 1, 1, 0.5, 1, 2, 1, 1),
-    "metal": TypeChart(2, 0.5, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 0.5, 1),
-    "normal": TypeChart(1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 1, 1, 1),
-    "shadow": TypeChart(0.5, 1, 1, 0.5, 1, 2, 1, 1, 1, 2, 1, 1, 1),
-    "sky": TypeChart(2, 0.5, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2),
-    "venom": TypeChart(0.5, 1, 1, 1, 1, 1, 0.5, 2, 1, 1, 0.5, 0.5, 2),
-    "water": TypeChart(1, 2, 0.5, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0.5),
-    "wood": TypeChart(2, 0.5, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 2, 0.5),
-}
-
-
 def simple_damage_multiplier(
-    attack_types: Sequence[ElementType],
-    target_types: Sequence[ElementType],
+    attack_types: Sequence[Element],
+    target_types: Sequence[Element],
 ) -> float:
     """
     Calculates damage multiplier based on strengths and weaknesses.
@@ -67,11 +35,12 @@ def simple_damage_multiplier(
     for attack_type in attack_types:
         for target_type in target_types:
             if target_type:
-                if attack_type == "aether" or target_type == "aether":
+                if (
+                    attack_type.slug == "aether"
+                    or target_type.slug == "aether"
+                ):
                     continue
-                body = TYPES.get(attack_type)
-                value = float(getattr(body, target_type))
-                m = value
+                m = attack_type.lookup_multiplier(target_type.slug)
 
     m = min(4, m)
     m = max(0.25, m)

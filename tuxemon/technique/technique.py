@@ -25,6 +25,7 @@ from tuxemon.db import (
     db,
     process_targets,
 )
+from tuxemon.element import Element
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 from tuxemon.technique.techcondition import TechCondition
@@ -88,7 +89,7 @@ class Technique:
         self.sort = ""
         self.slug = ""
         self.target: Sequence[str] = []
-        self.types: List[ElementType] = []
+        self.types: List[Element] = []
         self.usable_on = False
         self.use_success = ""
         self.use_failure = ""
@@ -133,7 +134,10 @@ class Technique:
         self.icon = results.icon
         self.counter = self.counter
         self.counter_success = self.counter_success
-        self.types = list(results.types)
+        # types
+        for _ele in results.types:
+            _element = Element(_ele)
+            self.types.append(_element)
         # technique stats
         self.accuracy = results.accuracy or self.accuracy
         self.potency = results.potency or self.potency
@@ -349,6 +353,17 @@ class Technique:
         self.next_use = self.recharge_length
 
         return meta_result
+
+    def has_type(self, element: Optional[ElementType]) -> bool:
+        """
+        Returns TRUE if there is the type among the types.
+        """
+        ret: bool = False
+        if element:
+            eles = [ele for ele in self.types if ele.slug == element]
+            if eles:
+                ret = True
+        return ret
 
     def set_stats(self) -> None:
         """

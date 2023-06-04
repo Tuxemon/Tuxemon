@@ -1,0 +1,29 @@
+{
+  "slug": "metal",
+  "types": [
+    {
+      "against": "aether",
+      "multiplier": 1
+    },
+    {
+      "against": "earth",
+      "multiplier": 1
+    },
+    {
+      "against": "fire",
+      "multiplier": 1
+    },
+    {
+      "against": "metal",
+      "multiplier": 1
+    },
+    {
+      "against": "water",
+      "multiplier": 0.5
+    },
+    {
+      "against": "wood",
+      "multiplier": 2
+    }
+  ]
+}

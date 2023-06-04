@@ -59,7 +59,7 @@
     "txmn_id": 251,
     "height": 2040,
     "weight": 204,
-    "catch_rate": 120.0,
+    "catch_rate": 70.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05
 }

@@ -24,7 +24,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import audio, graphics, tools
-from tuxemon.db import SeenStatus
+from tuxemon.db import GenderType, SeenStatus
 from tuxemon.locale import T
 from tuxemon.menu.interface import ExpBar, HpBar
 from tuxemon.menu.menu import Menu
@@ -348,25 +348,33 @@ class CombatAnimations(ABC, Menu[None]):
         self._exp_bars[monster] = ExpBar(initial)
         self.animate_exp(monster)
 
-    def build_hud_text(self, monster: Monster) -> pygame.surface.Surface:
+    def build_hud_text(
+        self, monster: Monster, source: bool
+    ) -> pygame.surface.Surface:
         """
         Return the text image for use on the callout of the monster.
 
         Parameters:
             monster: The monster whose name and level will be printed.
+            source: True (opponent), False (Player)
 
         Returns:
             Surface with the name and level of the monster written.
 
         """
-        if monster.gender == "male":
-            icon = "♂"
-        elif monster.gender == "female":
-            icon = "♀"
-        else:
-            icon = ""
+        tuxepedia = self.players[0].tuxepedia
+        icon: str = ""
+        symbol: str = ""
+        if monster.gender == GenderType.male:
+            icon += "♂"
+        if monster.gender == GenderType.female:
+            icon += "♀"
+        # shows captured symbol (wild encounter)
+        if not self.is_trainer_battle and monster.slug in tuxepedia and source:
+            if tuxepedia[monster.slug] == SeenStatus.caught:
+                symbol += "◉"
         return self.shadow_text(
-            f"{monster.name+icon: <11}Lv.{monster.level: >2}"
+            f"{monster.name}{icon} Lv.{monster.level}{symbol}"
         )
 
     def get_side(self, rect: Rect) -> Literal["left", "right"]:
@@ -400,6 +408,7 @@ class CombatAnimations(ABC, Menu[None]):
                 "gfx/ui/combat/hp_opponent_nohp.png",
                 layer=hud_layer,
             )
+            text = self.build_hud_text(monster, True)
             hud.image.blit(text, scale_sequence((5, 5)))
             hud.rect.bottomright = 0, home.bottom
             hud.player = False
@@ -411,13 +420,13 @@ class CombatAnimations(ABC, Menu[None]):
                 "gfx/ui/combat/hp_player_nohp.png",
                 layer=hud_layer,
             )
+            text = self.build_hud_text(monster, False)
             hud.image.blit(text, scale_sequence((12, 11)))
             hud.rect.bottomleft = home.right, home.bottom
             hud.player = True
             animate(hud.rect, left=home.left)
             return hud
 
-        text = self.build_hud_text(monster)
         animate = partial(
             self.animate,
             duration=2.0,

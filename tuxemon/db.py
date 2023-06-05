@@ -715,7 +715,20 @@ class ElementModel(BaseModel):
     slug: ElementType = Field(
         ..., description="Slug uniquely identifying the type"
     )
+    icon: str = Field(..., description="The icon to use for the type")
     types: Sequence[ElementItemModel]
+
+    @validator("slug")
+    def translation_exists_element(cls: ElementModel, v: Any) -> Any:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @validator("icon")
+    def file_exists(cls: ElementModel, v: Any) -> Any:
+        if has.file(v):
+            return v
+        raise ValueError(f"the icon {v} doesn't exist in the db")
 
 
 class EconomyItemModel(BaseModel):

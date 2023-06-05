@@ -14,6 +14,8 @@ class Element:
     """An Element holds a list of types and multipliers."""
 
     def __init__(self, slug: Union[str, None] = None) -> None:
+        self.name: str = ""
+        self.icon: str = ""
         if slug:
             self.load(slug)
 
@@ -28,6 +30,7 @@ class Element:
         self.slug = results.slug
         self.name = results.slug.name
         self.types = results.types
+        self.icon = results.icon
 
     def lookup_field(
         self, element: ElementType, field: str

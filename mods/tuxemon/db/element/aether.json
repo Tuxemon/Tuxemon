@@ -1,5 +1,6 @@
 {
   "slug": "aether",
+  "icon": "gfx/ui/icons/element/aether_type.png",
   "types": [
     {
       "against": "aether",

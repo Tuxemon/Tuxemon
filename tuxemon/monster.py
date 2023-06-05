@@ -27,6 +27,7 @@ from tuxemon.db import (
 )
 from tuxemon.element import Element
 from tuxemon.locale import T
+from tuxemon.shape import Shape
 from tuxemon.sprite import Sprite
 from tuxemon.technique.technique import Technique, decode_moves, encode_moves
 
@@ -61,121 +62,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "mod_hp",
     "plague",
 )
-
-SHAPES = {
-    MonsterShape.blob: {
-        "armour": 8,
-        "dodge": 4,
-        "hp": 8,
-        "melee": 4,
-        "ranged": 8,
-        "speed": 4,
-    },
-    MonsterShape.brute: {
-        "armour": 7,
-        "dodge": 5,
-        "hp": 7,
-        "melee": 8,
-        "ranged": 4,
-        "speed": 5,
-    },
-    MonsterShape.dragon: {
-        "armour": 7,
-        "dodge": 5,
-        "hp": 6,
-        "melee": 6,
-        "ranged": 6,
-        "speed": 6,
-    },
-    MonsterShape.flier: {
-        "armour": 5,
-        "dodge": 7,
-        "hp": 4,
-        "melee": 8,
-        "ranged": 4,
-        "speed": 8,
-    },
-    MonsterShape.grub: {
-        "armour": 7,
-        "dodge": 5,
-        "hp": 7,
-        "melee": 4,
-        "ranged": 8,
-        "speed": 5,
-    },
-    MonsterShape.humanoid: {
-        "armour": 5,
-        "dodge": 7,
-        "hp": 4,
-        "melee": 4,
-        "ranged": 8,
-        "speed": 8,
-    },
-    MonsterShape.hunter: {
-        "armour": 4,
-        "dodge": 8,
-        "hp": 5,
-        "melee": 8,
-        "ranged": 4,
-        "speed": 7,
-    },
-    MonsterShape.landrace: {
-        "armour": 8,
-        "dodge": 4,
-        "hp": 8,
-        "melee": 8,
-        "ranged": 4,
-        "speed": 4,
-    },
-    MonsterShape.leviathan: {
-        "armour": 8,
-        "dodge": 4,
-        "hp": 8,
-        "melee": 6,
-        "ranged": 6,
-        "speed": 4,
-    },
-    MonsterShape.piscine: {
-        "armour": 6,
-        "dodge": 6,
-        "hp": 8,
-        "melee": 6,
-        "ranged": 6,
-        "speed": 4,
-    },
-    MonsterShape.polliwog: {
-        "armour": 4,
-        "dodge": 8,
-        "hp": 5,
-        "melee": 4,
-        "ranged": 8,
-        "speed": 7,
-    },
-    MonsterShape.serpent: {
-        "armour": 6,
-        "dodge": 6,
-        "hp": 6,
-        "melee": 4,
-        "ranged": 8,
-        "speed": 6,
-    },
-    MonsterShape.sprite: {
-        "armour": 6,
-        "dodge": 6,
-        "hp": 4,
-        "melee": 6,
-        "ranged": 6,
-        "speed": 8,
-    },
-    MonsterShape.varmint: {
-        "armour": 6,
-        "dodge": 6,
-        "hp": 6,
-        "melee": 8,
-        "ranged": 4,
-        "speed": 6,
-    },
-}
 
 MAX_LEVEL = 999
 MAX_MOVES = 4
@@ -243,7 +129,7 @@ class Monster:
 
         self.types: List[Element] = []
         self._types: List[Element] = []
-        self.shape = MonsterShape.landrace
+        self.shape = MonsterShape.default
         self.randomly = True
 
         self.status: List[Technique] = []
@@ -316,7 +202,7 @@ class Monster:
         self.cat = results.category
         self.category = T.translate(f"cat_{self.cat}")
         self.plague = self.plague
-        self.shape = results.shape or MonsterShape.landrace
+        self.shape = results.shape or MonsterShape.default
         self.stage = results.stage or EvolutionStage.standalone
         self.taste_cold = self.set_taste_cold(self.taste_cold)
         self.taste_warm = self.set_taste_warm(self.taste_warm)
@@ -519,14 +405,13 @@ class Monster:
         level = self.level
 
         multiplier = level + 7
-        shape = SHAPES[self.shape]
-        self.armour = (shape["armour"] * multiplier) + self.mod_armour
-        self.dodge = (shape["dodge"] * multiplier) + self.mod_dodge
-        self.hp = (shape["hp"] * multiplier) + self.mod_hp
-        self.melee = (shape["melee"] * multiplier) + self.mod_melee
-        self.ranged = (shape["ranged"] * multiplier) + self.mod_ranged
-        self.speed = (shape["speed"] * multiplier) + self.mod_speed
-
+        shape = Shape(self.shape)
+        self.armour = (shape.armour * multiplier) + self.mod_armour
+        self.dodge = (shape.dodge * multiplier) + self.mod_dodge
+        self.hp = (shape.hp * multiplier) + self.mod_hp
+        self.melee = (shape.melee * multiplier) + self.mod_melee
+        self.ranged = (shape.ranged * multiplier) + self.mod_ranged
+        self.speed = (shape.speed * multiplier) + self.mod_speed
         # tastes
         self.armour += formula.check_taste(self, "armour")
         self.dodge += formula.check_taste(self, "dodge")

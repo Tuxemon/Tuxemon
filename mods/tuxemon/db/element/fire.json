@@ -1,5 +1,6 @@
 {
   "slug": "fire",
+  "icon": "gfx/ui/icons/element/fire_type.png",
   "types": [
     {
       "against": "aether",

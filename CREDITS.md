@@ -1568,6 +1568,9 @@ Adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/cont
 
 ### Type Icons
 
+* ["Aether Type"](https://wiki.tuxemon.org/File:Aether.png)
+[https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
+
 * ["Earth Type"](https://wiki.tuxemon.org/File:24px_Element6.png)
 [https://opengameart.org/content/icons-items-1 CC0 on OGA]
 
@@ -1581,6 +1584,31 @@ Adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/cont
 [https://opengameart.org/content/icons-items-1 CC0 on OGA]
 
 * ["Wood Type"](https://wiki.tuxemon.org/File:I_Leaf-24.png)
+Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Frost Type"](https://wiki.tuxemon.org/File:Ice-cube.png)
+A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Heroic Type"](https://wiki.tuxemon.org/index.php?title=File:S_Light01.png)
+Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Cosmic Type"](https://wiki.tuxemon.org/index.php?title=File:I_Sapphire.png)
+Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Lightning Type"](https://wiki.tuxemon.org/File:24px_Element3.png)
+[https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["Normal Type"](https://wiki.tuxemon.org/File:Tusk.png)
+A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Shadow Type"](https://wiki.tuxemon.org/index.php?title=File:S_Light03.png)
+Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Sky Type"](https://wiki.tuxemon.org/File:Feather_.png)
+Adapted by Sanglorian from a sprite from the ["Superpowers Asset Packs"](https://github.com/sparklinlabs/superpowers-asset-packs),
+which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["Venom Type"](https://wiki.tuxemon.org/index.php?title=File:S_Poison01.png)
 Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
 ### Technique Icons

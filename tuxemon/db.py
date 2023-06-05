@@ -113,6 +113,7 @@ class OutputBattle(str, Enum):
 
 
 class MonsterShape(str, Enum):
+    default = "default"
     blob = "blob"
     brute = "brute"
     dragon = "dragon"
@@ -237,6 +238,22 @@ class ItemModel(BaseModel):
         if has.file(v):
             return v
         raise ValueError(f"the sprite {v} doesn't exist in the db")
+
+
+class ShapeModel(BaseModel):
+    slug: MonsterShape = Field(..., description="Slug of the shape")
+    armour: int = Field(..., description="Armour value")
+    dodge: int = Field(..., description="Dodge value")
+    hp: int = Field(..., description="HP value")
+    melee: int = Field(..., description="Melee value")
+    ranged: int = Field(..., description="Ranged value")
+    speed: int = Field(..., description="Speed value")
+
+    @validator("slug")
+    def translation_exists_shape(cls: ShapeModel, v: Any) -> Any:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
 
 
 class MonsterMovesetItemModel(BaseModel):
@@ -756,6 +773,7 @@ class SoundModel(BaseModel):
 TableName = Literal[
     "economy",
     "element",
+    "shape",
     "template",
     "encounter",
     "environment",
@@ -770,6 +788,7 @@ TableName = Literal[
 DataModel = Union[
     EconomyModel,
     ElementModel,
+    ShapeModel,
     TemplateModel,
     EncounterModel,
     EnvironmentModel,
@@ -829,6 +848,7 @@ class JSONDatabase:
             "music",
             "economy",
             "element",
+            "shape",
             "template",
         ]
         self.preloaded: Dict[TableName, Dict[str, Any]] = {}
@@ -955,6 +975,9 @@ class JSONDatabase:
             elif table == "element":
                 element = ElementModel(**item)
                 self.database[table][element.slug] = element
+            elif table == "shape":
+                shape = ShapeModel(**item)
+                self.database[table][shape.slug] = shape
             elif table == "template":
                 template = TemplateModel(**item)
                 self.database[table][template.slug] = template
@@ -1019,6 +1042,10 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["element"]) -> ElementModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["shape"]) -> ShapeModel:
         pass
 
     @overload
@@ -1107,6 +1134,7 @@ class JSONDatabase:
         table: Literal[
             "economy",
             "element",
+            "shape",
             "template",
             "encounter",
             "environment",

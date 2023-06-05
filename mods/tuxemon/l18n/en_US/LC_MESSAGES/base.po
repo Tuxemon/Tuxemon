@@ -5056,9 +5056,6 @@ msgstr "Shadow"
 msgid "sky"
 msgstr "Sky"
 
-msgid "venom"
-msgstr "Venom"
-
 # Monster tastes
 msgid "taste"
 msgstr "Taste"

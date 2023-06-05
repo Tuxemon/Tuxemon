@@ -1,5 +1,5 @@
 {
-  "slug": "water",
+  "slug": "heroic",
   "types": [
     {
       "against": "aether",
@@ -11,11 +11,11 @@
     },
     {
       "against": "fire",
-      "multiplier": 2
+      "multiplier": 1
     },
     {
       "against": "frost",
-      "multiplier": 0.5
+      "multiplier": 2
     },
     {
       "against": "heroic",
@@ -27,7 +27,7 @@
     },
     {
       "against": "cosmic",
-      "multiplier": 1
+      "multiplier": 0.5
     },
     {
       "against": "metal",
@@ -35,11 +35,11 @@
     },
     {
       "against": "normal",
-      "multiplier": 1
+      "multiplier": 2
     },
     {
       "against": "shadow",
-      "multiplier": 1
+      "multiplier": 2
     },
     {
       "against": "sky",
@@ -47,15 +47,15 @@
     },
     {
       "against": "venom",
-      "multiplier": 1
+      "multiplier": 0.5
     },
     {
       "against": "water",
-      "multiplier": 0.5
+      "multiplier": 1
     },
     {
       "against": "wood",
-      "multiplier": 0.5
+      "multiplier": 1
     }
   ]
 }

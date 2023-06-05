@@ -1,5 +1,5 @@
 {
-  "slug": "water",
+  "slug": "venom",
   "types": [
     {
       "against": "aether",
@@ -7,15 +7,15 @@
     },
     {
       "against": "earth",
-      "multiplier": 1
+      "multiplier": 0.5
     },
     {
       "against": "fire",
-      "multiplier": 2
+      "multiplier": 1
     },
     {
       "against": "frost",
-      "multiplier": 0.5
+      "multiplier": 1
     },
     {
       "against": "heroic",
@@ -31,11 +31,11 @@
     },
     {
       "against": "metal",
-      "multiplier": 1
+      "multiplier": 0.5
     },
     {
       "against": "normal",
-      "multiplier": 1
+      "multiplier": 2
     },
     {
       "against": "shadow",
@@ -47,7 +47,7 @@
     },
     {
       "against": "venom",
-      "multiplier": 1
+      "multiplier": 0.5
     },
     {
       "against": "water",
@@ -55,7 +55,7 @@
     },
     {
       "against": "wood",
-      "multiplier": 0.5
+      "multiplier": 2
     }
   ]
 }

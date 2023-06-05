@@ -1,5 +1,5 @@
 {
-  "slug": "water",
+  "slug": "lightning",
   "types": [
     {
       "against": "aether",
@@ -7,15 +7,15 @@
     },
     {
       "against": "earth",
-      "multiplier": 1
+      "multiplier": 0.5
     },
     {
       "against": "fire",
-      "multiplier": 2
+      "multiplier": 1
     },
     {
       "against": "frost",
-      "multiplier": 0.5
+      "multiplier": 1
     },
     {
       "against": "heroic",
@@ -23,7 +23,7 @@
     },
     {
       "against": "lightning",
-      "multiplier": 1
+      "multiplier": 0.5
     },
     {
       "against": "cosmic",
@@ -31,7 +31,7 @@
     },
     {
       "against": "metal",
-      "multiplier": 1
+      "multiplier": 2
     },
     {
       "against": "normal",
@@ -43,7 +43,7 @@
     },
     {
       "against": "sky",
-      "multiplier": 1
+      "multiplier": 2
     },
     {
       "against": "venom",
@@ -51,7 +51,7 @@
     },
     {
       "against": "water",
-      "multiplier": 0.5
+      "multiplier": 2
     },
     {
       "against": "wood",

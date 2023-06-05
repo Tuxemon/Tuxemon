@@ -1,5 +1,5 @@
 {
-  "slug": "water",
+  "slug": "normal",
   "types": [
     {
       "against": "aether",
@@ -11,11 +11,11 @@
     },
     {
       "against": "fire",
-      "multiplier": 2
+      "multiplier": 1
     },
     {
       "against": "frost",
-      "multiplier": 0.5
+      "multiplier": 1
     },
     {
       "against": "heroic",
@@ -35,7 +35,7 @@
     },
     {
       "against": "normal",
-      "multiplier": 1
+      "multiplier": 0.5
     },
     {
       "against": "shadow",
@@ -51,11 +51,11 @@
     },
     {
       "against": "water",
-      "multiplier": 0.5
+      "multiplier": 1
     },
     {
       "against": "wood",
-      "multiplier": 0.5
+      "multiplier": 1
     }
   ]
 }

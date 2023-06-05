@@ -60,7 +60,7 @@
     "shape": "dragon",
     "stage": "stage1",
     "types": [
-        "metal"
+        "metal", "shadow"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 0,

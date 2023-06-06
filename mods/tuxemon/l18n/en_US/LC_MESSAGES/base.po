@@ -6957,6 +6957,9 @@ msgstr "Hey, cool tuxemon! Can I see the receipt? \n ... \n Just kidding, I had 
 msgid "spyder_cottontown_stopthere"
 msgstr "Hey, that's not cool! You have to come to my talk at the cafe before you run off!"
 
+msgid "spyder_cottontown_followme"
+msgstr "The Cafe is located on the other side of these houses."
+
 msgid "spyder_cottontown_mom"
 msgstr "Well hello stranger! What are you doing going into a Cafe? \n You know caffeine is bad for you. I'm kidding! \n You're a grown up of 12 years old, you can do whatever you like! ... No alcohol .... \n But you should call home more often. I want someone to tell about my inventions. \n ... Oh, I forget, you haven't got a phone yet. Here's one I invented. I call it the Nu Phone! \n You can install all sorts of apps on it. It already has the Map App, so you'll never get lost!"
 

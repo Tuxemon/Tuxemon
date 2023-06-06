@@ -6912,6 +6912,9 @@ msgstr "I'm working, boss, I'm working! \n Oh, it's just you. You know, we throw
 msgid "spyder_papertown_myfirstmon"
 msgstr "Hey, you came! That's great.\n When the fancy new tuxemon come through from the Cathedral, we just threw all our old ones in the bin!\n It seems like such a waste, especially when kids like you don't have any!"
 
+msgid "spyder_papertown_myfirstmon_notmet"
+msgstr "I recognize you, you're the kid who hasn't got a Gold Pass. \n You know, I might be able to help you out. \n When the fancy new tuxemon come through from the Cathedral, we just threw all our old ones in the bin!\n It seems like such a waste, especially when kids like you don't have any!"
+
 msgid "spyder_papertown_myfirstmon1"
 msgstr "*rummages* *rumages* "
 

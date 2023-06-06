@@ -78,6 +78,7 @@
   <object id="62" name="Talk Dante" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_danteresting"/>
+    <property name="act2" value="set_variable dantefirst:yes"/>
     <property name="behav1" value="talk spyder_dante"/>
    </properties>
   </object>

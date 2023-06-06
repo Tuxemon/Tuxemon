@@ -177,7 +177,7 @@ class WorldMenuState(PygameMenuState):
                         partial(positive_answer, monster),
                     ),
                 ),
-                escape_key_exits=True,
+                escape_key_exits=False,
             )
 
         def open_monster_techs(monster: Monster) -> None:
@@ -191,33 +191,33 @@ class WorldMenuState(PygameMenuState):
             original = monster_menu.get_selected_item()
             if original:
                 monster = original.game_object
-                assert monster
-                open_choice_dialog(
-                    local_session,
-                    menu=(
-                        (
-                            "info",
-                            T.translate("monster_menu_info").upper(),
-                            partial(open_monster_stats, monster),
+                if monster:
+                    open_choice_dialog(
+                        local_session,
+                        menu=(
+                            (
+                                "info",
+                                T.translate("monster_menu_info").upper(),
+                                partial(open_monster_stats, monster),
+                            ),
+                            (
+                                "tech",
+                                T.translate("monster_menu_tech").upper(),
+                                partial(open_monster_techs, monster),
+                            ),
+                            (
+                                "move",
+                                T.translate("monster_menu_move").upper(),
+                                partial(select_first_monster, monster),
+                            ),
+                            (
+                                "release",
+                                T.translate("monster_menu_release").upper(),
+                                partial(release_monster_from_party, monster),
+                            ),
                         ),
-                        (
-                            "tech",
-                            T.translate("monster_menu_tech").upper(),
-                            partial(open_monster_techs, monster),
-                        ),
-                        (
-                            "move",
-                            T.translate("monster_menu_move").upper(),
-                            partial(select_first_monster, monster),
-                        ),
-                        (
-                            "release",
-                            T.translate("monster_menu_release").upper(),
-                            partial(release_monster_from_party, monster),
-                        ),
-                    ),
-                    escape_key_exits=True,
-                )
+                        escape_key_exits=True,
+                    )
 
         def handle_selection(menu_item: MenuItem[WorldMenuGameObj]) -> None:
             if "monster" in context:

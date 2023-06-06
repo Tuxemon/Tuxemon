@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Callable
+from typing import Callable, Optional
 
 import pygame_menu
 from pygame_menu import locals
@@ -12,6 +12,7 @@ from pygame_menu.locals import POSITION_CENTER
 from tuxemon import prepare, tools
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
+from tuxemon.platform.events import PlayerInput
 
 logger = logging.getLogger(__name__)
 
@@ -20,7 +21,10 @@ MenuGameObj = Callable[[], object]
 
 
 class BgState(PygameMenuState):
-    """Menu for the change of backgroun"""
+    """Menu for the change of background"""
+
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+        return None
 
     def __init__(self, background: str) -> None:
         width, height = prepare.SCREEN_SIZE

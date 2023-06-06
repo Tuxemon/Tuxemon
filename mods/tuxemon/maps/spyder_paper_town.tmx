@@ -273,6 +273,7 @@
     <property name="act70" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is party_size less_than,1"/>
+    <property name="cond3" value="is variable_set dantefirst:yes"/>
    </properties>
   </object>
   <object id="219" name="Chosen - Rockitten" type="event" x="512" y="128" width="16" height="16">

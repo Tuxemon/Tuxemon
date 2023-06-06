@@ -456,12 +456,14 @@
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond2" value="not has_sprite swimmer"/>
    </properties>
   </object>
   <object id="251" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond2" value="not has_sprite swimmer"/>
    </properties>
   </object>
   <object id="250" name="Destination - Timber" type="event" x="240" y="256" width="16" height="16">
@@ -525,10 +527,20 @@
     <property name="cond1" value="is variable_set swimming:yes"/>
    </properties>
   </object>
-  <object id="271" name="Swim Encounters" type="event" x="176" y="288" width="16" height="16">
+  <object id="271" name="Swim Encounters Day" type="event" x="176" y="288" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter routec"/>
+    <property name="act1" value="set_variable environment:sea"/>
+    <property name="act2" value="random_encounter routec"/>
     <property name="cond1" value="is has_sprite swimmer"/>
+    <property name="cond2" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="234" name="Swim Encounters Night" type="event" x="176" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_sea"/>
+    <property name="act2" value="random_encounter routec"/>
+    <property name="cond1" value="is has_sprite swimmer"/>
+    <property name="cond2" value="is variable_set daytime:false"/>
    </properties>
   </object>
   <object id="272" name="Teleport to Daycare Back" type="event" x="352" y="48" width="16" height="16">

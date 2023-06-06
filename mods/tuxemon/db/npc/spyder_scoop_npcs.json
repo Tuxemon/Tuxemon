@@ -123,7 +123,7 @@
     "slug": "spyder_scoop_donald",
     "template": [
       {
-        "sprite_name": "cooldude",
+        "sprite_name": "cooldude_fiery",
         "combat_front": "cooldude",
         "slug": "cooldude"
       }

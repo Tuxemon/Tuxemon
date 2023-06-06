@@ -19,7 +19,7 @@
  <tileset firstgid="8116" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtmE9KBTEMxkcEFXXxNuoFRD2DegFPoa4Fb6FrQfAQunajNxH/3UQTfB/zUZJp2pl5jPAWpWle2/ySpp2+ztaaZrbgciz2TqScSlnZaJqHzb+yKvKiWSx7ffn2t8f1oy+f5bOle9tq/bgu8Kkv347kxe6I5Unm7pN/8E/nGLPU7g/w3QjfRUW5nfuVG38p/Wr2L/jUP827H8ozKw9T3bmMUb/Ufvpb2h6CL52T2+/rTfPRo3xXnH9p/JgH8tl8v7L/OGdr6+j5HOED51T4nikH+fyO8r3IOh5mylHw+zZG/KJrh3XpqnN8VxTLaPwWwWftVd5/XftC+e7IL46Pp+c+LHvxi8bK4rTi1/XNRiyYCzLzleyFrj0QzX0wIBZoc818rMcYKz6qs2LE40tk2LLGLPni3+Vc/PhugJgv17e9d+Xix78v49fmJWLB8YHM+5fPdowpyT+eC/NHatiy+npzYozH9yXfML6rfsq91ZvLsss62GIdZG9OjPH4Ur2e1yV3fdjXGrZYB9njOxB7r1JSDq+dxpNjm5Nx7wAT1x6f9lFGvWeWcHr8ET1zQe7iQx9w5u7EJb9bPsMe1xE+7j+UjJzjuFpzD8mHt5K9wv/CYBybr8RX5Ayv85T4wMLrDB3XJT7zuFTW/6Q1c0X5HiVn+r6z8Vtayu+1+Zy1+sDnId/W9K3pvuANE4wWH75JNW9r3pjIW1bKouuc6qbU/g98v1M/dCY=
+   eAHtmE9KBTEMxkcEFXXxNuoFRD2DegFPoa4Fb6FrQfAQunajNxH/3UQTfB/zUZJp2pl5jPAWpWle0/6Spp2+ztaaZrbgcizznUg5lbKy0TQPm39lVeRFs1jz9eXb3x7Xj758ls+W7m2r9eO6wKe+fDuSF7sjlicZu0/+wT8dY8xSuz/AdyN8FxXldu5Xzv5S+tXsX/Cpf5p3P5RnVh6munOxUb90/vS3tD0EXzomt9/Xm+ajR/muOP/S+DEP5LP5fmX/cc7W1tHzOcIHzqnwPVMO8vkd5XuRdTzMlKPg922M+EXXDuvSVef4riiW0fgtgs/aq7z/uvaF8t2RXxwfT899WPbiF42VxWnFr+ubjVgwF2TmK9kLXXsgmvtgQCzQ5pr5WA8bKz6qs2LE9iUy5rJslnzx73Iufnw3QMyX69veu3Lx49+X8WvzErHg+EDm/ctnO2xK8o/HwviRGnNZfb0xYePxfck3jO+qn3Jv9cay5mUd5mIdZG9M2Hh8qV7P65K7PubXGnOxDrLHdyDzvUpJObx2Gk+ObU7GvQNMXHt82kcZ9Z5Zwql2ng85PXNB7uJDH3Dm7sQlv1s+Yz6uI3zcfygZOccxtcYekg9vJXuF/4XBODZfia/IGV7nKfGBhdcZOq5LfGa7VNb/pDVjRfkeJWf6vrPxW1rK77X5nLX6wOch39b0rem+4A0TjBYfvkk1b2ueTeQtK2XRdU51U2r/B75ffe9znA==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 4" width="40" height="40">
@@ -38,129 +38,129 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
-  <object id="308" type="collision" x="96" y="0" width="128" height="64"/>
-  <object id="309" type="collision" x="320" y="0" width="160" height="64"/>
-  <object id="310" type="collision" x="496" y="0" width="32" height="32"/>
-  <object id="311" type="collision" x="576" y="0" width="64" height="192"/>
-  <object id="313" type="collision" x="416" y="368" width="64" height="16"/>
-  <object id="315" type="collision" x="320" y="304" width="160" height="64"/>
-  <object id="316" type="collision" x="464" y="384" width="128" height="16"/>
-  <object id="317" type="collision" x="576" y="320" width="16" height="64"/>
-  <object id="318" type="collision" x="464" y="192" width="128" height="16"/>
-  <object id="319" type="collision" x="576" y="208" width="16" height="80"/>
-  <object id="320" type="collision" x="528" y="528" width="48" height="32"/>
-  <object id="325" type="collision" x="16" y="448" width="48" height="48"/>
-  <object id="326" type="collision" x="80" y="480" width="16" height="32"/>
-  <object id="327" type="collision" x="16" y="352" width="80" height="32"/>
-  <object id="329" type="collision" x="0" y="384" width="32" height="32"/>
-  <object id="330" type="collision" x="0" y="416" width="16" height="16"/>
-  <object id="331" type="collision" x="0" y="480" width="32" height="96"/>
-  <object id="334" type="collision" x="0" y="288" width="32" height="32"/>
-  <object id="335" type="collision" x="0" y="320" width="16" height="16"/>
-  <object id="336" type="collision" x="16" y="240" width="80" height="48"/>
-  <object id="338" type="collision" x="0" y="192" width="32" height="32"/>
-  <object id="339" type="collision" x="0" y="224" width="16" height="16"/>
-  <object id="341" type="collision" x="16" y="160" width="32" height="48"/>
-  <object id="342" type="collision" x="48" y="160" width="16" height="32"/>
-  <object id="343" type="collision" x="64" y="160" width="32" height="48"/>
-  <object id="344" type="collision" x="0" y="0" width="32" height="160"/>
-  <object id="346" type="collision" x="32" y="64" width="16" height="32"/>
-  <object id="347" type="collision" x="48" y="64" width="48" height="48"/>
-  <object id="348" type="collision" x="128" y="96" width="48" height="16"/>
-  <object id="349" type="collision" x="208" y="96" width="48" height="16"/>
-  <object id="350" type="collision" x="128" y="208" width="128" height="16"/>
-  <object id="351" type="collision" x="608" y="512" width="16" height="48">
+  <object id="108" type="collision" x="96" y="0" width="128" height="64"/>
+  <object id="109" type="collision" x="320" y="0" width="160" height="64"/>
+  <object id="110" type="collision" x="496" y="0" width="32" height="32"/>
+  <object id="111" type="collision" x="576" y="0" width="64" height="192"/>
+  <object id="113" type="collision" x="416" y="368" width="64" height="16"/>
+  <object id="115" type="collision" x="320" y="304" width="160" height="64"/>
+  <object id="116" type="collision" x="464" y="384" width="128" height="16"/>
+  <object id="117" type="collision" x="576" y="320" width="16" height="64"/>
+  <object id="118" type="collision" x="464" y="192" width="128" height="16"/>
+  <object id="119" type="collision" x="576" y="208" width="16" height="80"/>
+  <object id="120" type="collision" x="528" y="528" width="48" height="32"/>
+  <object id="125" type="collision" x="16" y="448" width="48" height="48"/>
+  <object id="126" type="collision" x="80" y="480" width="16" height="32"/>
+  <object id="127" type="collision" x="16" y="352" width="80" height="32"/>
+  <object id="129" type="collision" x="0" y="384" width="32" height="32"/>
+  <object id="130" type="collision" x="0" y="416" width="16" height="16"/>
+  <object id="131" type="collision" x="0" y="480" width="32" height="96"/>
+  <object id="134" type="collision" x="0" y="288" width="32" height="32"/>
+  <object id="135" type="collision" x="0" y="320" width="16" height="16"/>
+  <object id="136" type="collision" x="16" y="240" width="80" height="48"/>
+  <object id="138" type="collision" x="0" y="192" width="32" height="32"/>
+  <object id="139" type="collision" x="0" y="224" width="16" height="16"/>
+  <object id="141" type="collision" x="16" y="160" width="32" height="48"/>
+  <object id="142" type="collision" x="48" y="160" width="16" height="32"/>
+  <object id="143" type="collision" x="64" y="160" width="32" height="48"/>
+  <object id="144" type="collision" x="0" y="0" width="32" height="160"/>
+  <object id="146" type="collision" x="32" y="64" width="16" height="32"/>
+  <object id="147" type="collision" x="48" y="64" width="48" height="48"/>
+  <object id="148" type="collision" x="128" y="96" width="48" height="16"/>
+  <object id="149" type="collision" x="208" y="96" width="48" height="16"/>
+  <object id="150" type="collision" x="128" y="208" width="128" height="16"/>
+  <object id="151" type="collision" x="608" y="512" width="16" height="48">
    <properties>
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="352" type="collision" x="496" y="400" width="32" height="32"/>
-  <object id="353" type="collision" x="528" y="400" width="32" height="32"/>
-  <object id="355" type="collision" x="0" y="576" width="96" height="64"/>
-  <object id="356" type="collision" x="96" y="608" width="80" height="32"/>
-  <object id="357" type="collision" x="176" y="624" width="32" height="16"/>
-  <object id="358" type="collision" x="208" y="608" width="16" height="32"/>
-  <object id="359" type="collision" x="224" y="624" width="16" height="16"/>
-  <object id="360" type="collision" x="240" y="608" width="400" height="32"/>
-  <object id="361" type="collision" x="448" y="576" width="64" height="32"/>
-  <object id="363" type="collision" x="576" y="576" width="64" height="32"/>
-  <object id="364" type="collision" x="528" y="32" width="32" height="144">
+  <object id="152" type="collision" x="496" y="400" width="32" height="32"/>
+  <object id="153" type="collision" x="528" y="400" width="32" height="32"/>
+  <object id="155" type="collision" x="0" y="576" width="96" height="64"/>
+  <object id="156" type="collision" x="96" y="608" width="80" height="32"/>
+  <object id="157" type="collision" x="176" y="624" width="32" height="16"/>
+  <object id="158" type="collision" x="208" y="608" width="16" height="32"/>
+  <object id="159" type="collision" x="224" y="624" width="16" height="16"/>
+  <object id="160" type="collision" x="240" y="608" width="400" height="32"/>
+  <object id="161" type="collision" x="448" y="576" width="64" height="32"/>
+  <object id="163" type="collision" x="576" y="576" width="64" height="32"/>
+  <object id="164" type="collision" x="528" y="32" width="32" height="144">
    <properties>
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="365" type="collision" x="272" y="144" width="256" height="32">
+  <object id="165" type="collision" x="272" y="144" width="256" height="32">
    <properties>
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="366" type="collision" x="272" y="176" width="144" height="80">
+  <object id="166" type="collision" x="272" y="176" width="144" height="80">
    <properties>
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="368" type="collision" x="192" y="240" width="112" height="224">
+  <object id="168" type="collision" x="192" y="240" width="112" height="224">
    <properties>
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="369" type="collision" x="304" y="416" width="64" height="48">
+  <object id="169" type="collision" x="304" y="416" width="64" height="48">
    <properties>
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="370" type="collision" x="368" y="448" width="32" height="16">
+  <object id="170" type="collision" x="368" y="448" width="32" height="16">
    <properties>
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="374" type="collision-line" x="128" y="112">
+  <object id="174" type="collision-line" x="128" y="112">
    <polyline points="0,0 0,96"/>
   </object>
-  <object id="375" type="collision-line" x="256" y="112">
+  <object id="175" type="collision-line" x="256" y="112">
    <polyline points="0,0 0,93"/>
   </object>
-  <object id="376" type="collision" x="128" y="464" width="208" height="80"/>
-  <object id="377" type="collision" x="128" y="544" width="96" height="16"/>
-  <object id="378" type="collision" x="240" y="544" width="96" height="16"/>
-  <object id="387" type="collision" x="224" y="16" width="96" height="16">
+  <object id="176" type="collision" x="128" y="464" width="208" height="80"/>
+  <object id="177" type="collision" x="128" y="544" width="96" height="16"/>
+  <object id="178" type="collision" x="240" y="544" width="96" height="16"/>
+  <object id="187" type="collision" x="224" y="16" width="96" height="16">
    <properties>
     <property name="continue" value="down"/>
     <property name="enter_from" value="up"/>
     <property name="exit_to" value="down"/>
    </properties>
   </object>
-  <object id="405" type="collision" x="176" y="144" width="32" height="32"/>
-  <object id="406" type="collision" x="32" y="544" width="32" height="32"/>
-  <object id="407" type="collision" x="64" y="448" width="32" height="32"/>
-  <object id="408" type="collision" x="608" y="192" width="32" height="64"/>
-  <object id="410" type="collision" x="624" y="256" width="16" height="192"/>
-  <object id="415" type="collision" x="320" y="368" width="80" height="16"/>
-  <object id="418" type="collision" x="464" y="192" width="16" height="112"/>
-  <object id="419" type="collision" x="480" y="288" width="64" height="48"/>
-  <object id="420" type="collision" x="496" y="336" width="48" height="16"/>
-  <object id="424" type="collision" x="128" y="224" width="16" height="16"/>
-  <object id="429" type="collision" x="416" y="448" width="160" height="16">
+  <object id="205" type="collision" x="176" y="144" width="32" height="32"/>
+  <object id="206" type="collision" x="32" y="544" width="32" height="32"/>
+  <object id="207" type="collision" x="64" y="448" width="32" height="32"/>
+  <object id="208" type="collision" x="608" y="192" width="32" height="64"/>
+  <object id="210" type="collision" x="624" y="256" width="16" height="192"/>
+  <object id="215" type="collision" x="320" y="368" width="80" height="16"/>
+  <object id="218" type="collision" x="464" y="192" width="16" height="112"/>
+  <object id="219" type="collision" x="480" y="288" width="64" height="48"/>
+  <object id="220" type="collision" x="496" y="336" width="48" height="16"/>
+  <object id="224" type="collision" x="128" y="224" width="16" height="16"/>
+  <object id="229" type="collision" x="416" y="448" width="160" height="16">
    <properties>
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="430" type="collision" x="576" y="448" width="48" height="64">
+  <object id="230" type="collision" x="576" y="448" width="48" height="64">
    <properties>
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="431" type="collision" x="624" y="560" width="16" height="16">
+  <object id="231" type="collision" x="624" y="560" width="16" height="16">
    <properties>
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="427" type="collision" x="48" y="384" width="48" height="16"/>
-  <object id="434" type="collision" x="80" y="288" width="16" height="16"/>
-  <object id="435" type="collision" x="32" y="288" width="32" height="16"/>
+  <object id="227" type="collision" x="48" y="384" width="48" height="16"/>
+  <object id="234" type="collision" x="80" y="288" width="16" height="16"/>
+  <object id="235" type="collision" x="32" y="288" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="295" name="Teleport to Route 6" type="event" x="480" y="0" width="16" height="16">
+  <object id="95" name="Teleport to Route 6" type="event" x="480" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route6.tmx,30,19,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -168,7 +168,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="300" name="Teleport to Sea Route" type="event" x="624" y="448" width="16" height="128">
+  <object id="100" name="Teleport to Sea Route" type="event" x="624" y="448" width="16" height="128">
    <properties>
     <property name="act1" value="transition_teleport spyder_routec.tmx,0,8,0.3"/>
     <property name="act2" value="player_face right"/>
@@ -176,7 +176,7 @@
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="302" name="Teleport to Route 6" type="event" x="224" y="0" width="16" height="16">
+  <object id="102" name="Teleport to Route 6" type="event" x="224" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route6.tmx,14,19,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -184,7 +184,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="303" name="Teleport to Route 6" type="event" x="240" y="0" width="16" height="16">
+  <object id="103" name="Teleport to Route 6" type="event" x="240" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route6.tmx,15,19,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -192,7 +192,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="304" name="Teleport to Route 6" type="event" x="256" y="0" width="16" height="16">
+  <object id="104" name="Teleport to Route 6" type="event" x="256" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route6.tmx,16,19,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -200,7 +200,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="305" name="Teleport to Route 6" type="event" x="272" y="0" width="16" height="16">
+  <object id="105" name="Teleport to Route 6" type="event" x="272" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route6.tmx,17,19,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -208,7 +208,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="306" name="Teleport to Route 6" type="event" x="288" y="0" width="16" height="16">
+  <object id="106" name="Teleport to Route 6" type="event" x="288" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route6.tmx,18,19,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -216,7 +216,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="307" name="Teleport to Route 6" type="event" x="304" y="0" width="16" height="16">
+  <object id="107" name="Teleport to Route 6" type="event" x="304" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route6.tmx,19,19,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -224,7 +224,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="379" name="encounter 3" type="event" x="256" y="0" width="32" height="16">
+  <object id="179" name="encounter 3" type="event" x="256" y="0" width="32" height="16">
    <properties>
     <property name="act1" value="random_encounter route6,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -232,7 +232,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="380" name="Teleport to Candy House 1" type="event" x="64" y="480" width="16" height="16">
+  <object id="180" name="Teleport to Candy House 1" type="event" x="64" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_house1.tmx,6,7,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -240,7 +240,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="382" name="Teleport to Hospital" type="event" x="224" y="544" width="16" height="16">
+  <object id="182" name="Teleport to Hospital" type="event" x="224" y="544" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_center.tmx,6,10,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -248,7 +248,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="383" name="Teleport to Greenwash" type="event" x="400" y="368" width="16" height="16">
+  <object id="183" name="Teleport to Greenwash" type="event" x="400" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_greenwash.tmx,6,31,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -256,7 +256,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="384" name="Seen Candy + Enter" type="event" x="480" y="16" width="96" height="16">
+  <object id="184" name="Seen Candy + Enter" type="event" x="480" y="16" width="96" height="16">
    <properties>
     <property name="act01" value="player_stop"/>
     <property name="act02" value="lock_controls"/>
@@ -273,7 +273,7 @@
     <property name="cond2" value="not variable_set confiscation_candy:yes"/>
    </properties>
   </object>
-  <object id="430" name="Seen Candy + Infected All" type="event" x="576" y="16" width="16" height="16">
+  <object id="186" name="Seen Candy + Infected All" type="event" x="576" y="16" width="16" height="16">
    <properties>
     <property name="act05" value="wait 0.5"/>
     <property name="act10" value="translated_dialog spyder_enforcer_candy3"/>
@@ -290,7 +290,7 @@
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
    </properties>
   </object>
-  <object id="431" name="Seen Candy + Not Infected" type="event" x="576" y="0" width="16" height="16">
+  <object id="190" name="Seen Candy + Not Infected" type="event" x="576" y="0" width="16" height="16">
    <properties>
     <property name="act05" value="wait 0.5"/>
     <property name="act10" value="translated_dialog spyder_enforcer_candy2"/>
@@ -306,7 +306,7 @@
     <property name="cond5" value="not variable_set party_sick:yes"/>
    </properties>
   </object>
-  <object id="432" name="Seen Candy + Infected" type="event" x="576" y="16" width="16" height="16">
+  <object id="191" name="Seen Candy + Infected" type="event" x="576" y="16" width="16" height="16">
    <properties>
     <property name="act05" value="wait 0.5"/>
     <property name="act10" value="translated_dialog spyder_enforcer_candy3"/>
@@ -324,20 +324,20 @@
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
    </properties>
   </object>
-  <object id="385" name="Seen Candy" type="event" x="224" y="16" width="96" height="16">
+  <object id="185" name="Seen Candy" type="event" x="224" y="16" width="96" height="16">
    <properties>
     <property name="act2" value="set_variable seencandy:yes"/>
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>
-  <object id="388" name="Create Captain" type="event" x="384" y="464" width="16" height="16">
+  <object id="188" name="Create Captain" type="event" x="384" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_captain,24,29"/>
     <property name="cond1" value="not npc_exists spyder_captain"/>
     <property name="cond2" value="is variable_set captainreturns:yes"/>
    </properties>
   </object>
-  <object id="389" name="Talk Captain - Flower" type="event" x="448" y="576" width="16" height="16">
+  <object id="189" name="Talk Captain - Flower" type="event" x="448" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
     <property name="act2" value="translated_dialog_choice paper:leather:flower,rivergoto"/>
@@ -345,7 +345,7 @@
     <property name="cond1" value="not variable_set seentimber:yes"/>
    </properties>
   </object>
-  <object id="393" name="Talk Captain - Timber" type="event" x="448" y="592" width="16" height="16">
+  <object id="193" name="Talk Captain - Timber" type="event" x="448" y="592" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
     <property name="act2" value="translated_dialog_choice paper:leather:flower:timber,rivergoto"/>
@@ -353,7 +353,7 @@
     <property name="cond1" value="not variable_set seencandy:yes"/>
    </properties>
   </object>
-  <object id="396" name="Talk Captain - Candy" type="event" x="464" y="592" width="16" height="16">
+  <object id="196" name="Talk Captain - Candy" type="event" x="464" y="592" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
     <property name="act2" value="translated_dialog_choice paper:leather:flower:timber:candy,rivergoto"/>
@@ -361,7 +361,7 @@
     <property name="cond1" value="is variable_set seencandy:yes"/>
    </properties>
   </object>
-  <object id="397" name="Teleport to Candy Scoop" type="event" x="48" y="192" width="16" height="16">
+  <object id="197" name="Teleport to Candy Scoop" type="event" x="48" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_scoop.tmx,5,10,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -369,7 +369,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="398" name="Destination - Flower" type="event" x="496" y="592" width="16" height="16">
+  <object id="198" name="Destination - Flower" type="event" x="496" y="592" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act4" value="player_face up"/>
@@ -377,7 +377,7 @@
     <property name="cond1" value="is variable_set rivergoto:flower"/>
    </properties>
   </object>
-  <object id="399" name="Destination - Leather" type="event" x="464" y="576" width="16" height="16">
+  <object id="199" name="Destination - Leather" type="event" x="464" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_leather_town.tmx,17,19,0.3"/>
@@ -385,7 +385,7 @@
     <property name="cond1" value="is variable_set rivergoto:leather"/>
    </properties>
   </object>
-  <object id="400" name="Destination - Paper" type="event" x="480" y="592" width="16" height="16">
+  <object id="200" name="Destination - Paper" type="event" x="480" y="592" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_paper_town.tmx,4,13,0.3"/>
@@ -393,7 +393,7 @@
     <property name="cond1" value="is variable_set rivergoto:paper"/>
    </properties>
   </object>
-  <object id="402" name="Destination - Candy" type="event" x="480" y="576" width="16" height="16">
+  <object id="202" name="Destination - Candy" type="event" x="480" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_candy_town.tmx,26,29,0.3"/>
@@ -401,7 +401,7 @@
     <property name="cond1" value="is variable_set rivergoto:candy"/>
    </properties>
   </object>
-  <object id="403" name="Teleport to Route 6" type="event" x="528" y="0" width="16" height="16">
+  <object id="203" name="Teleport to Route 6" type="event" x="528" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route6.tmx,33,19,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -409,7 +409,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="404" name="Teleport to Route 6" type="event" x="544" y="0" width="16" height="16">
+  <object id="204" name="Teleport to Route 6" type="event" x="544" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route6.tmx,34,19,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -417,19 +417,21 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="412" name="Environment Day" type="event" x="112" y="0" width="16" height="16">
+  <object id="212" name="Environment Day" type="event" x="112" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond2" value="not has_sprite swimmer"/>
    </properties>
   </object>
-  <object id="421" name="Environment Night" type="event" x="96" y="0" width="16" height="16">
+  <object id="221" name="Environment Night" type="event" x="96" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond2" value="not has_sprite swimmer"/>
    </properties>
   </object>
-  <object id="413" name="Destination - Timber" type="event" x="496" y="576" width="16" height="16">
+  <object id="213" name="Destination - Timber" type="event" x="496" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_timber_town.tmx,8,21,0.3"/>
@@ -437,7 +439,7 @@
     <property name="cond1" value="is variable_set rivergoto:timber"/>
    </properties>
   </object>
-  <object id="414" name="Teleport to Greenwash" type="event" x="480" y="336" width="16" height="16">
+  <object id="214" name="Teleport to Greenwash" type="event" x="480" y="336" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_greenwash_greenhouse.tmx,25,15,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -445,20 +447,20 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="416" name="Create Guard" type="event" x="400" y="384" width="16" height="16">
+  <object id="216" name="Create Guard" type="event" x="400" y="384" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_guard,25,24"/>
     <property name="cond1" value="not npc_exists spyder_greenwash_guard"/>
     <property name="cond2" value="not variable_set gotaardant:yes"/>
    </properties>
   </object>
-  <object id="417" name="Talk Guard" type="event" x="384" y="384" width="16" height="16">
+  <object id="217" name="Talk Guard" type="event" x="384" y="384" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_guard"/>
     <property name="behav1" value="talk spyder_greenwash_guard"/>
    </properties>
   </object>
-  <object id="423" name="Teleport to Candy House 3" type="event" x="32" y="96" width="16" height="16">
+  <object id="223" name="Teleport to Candy House 3" type="event" x="32" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_house3.tmx,6,7,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -466,20 +468,20 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="426" name="Mart Sign" type="event" x="128" y="224" width="16" height="16">
+  <object id="226" name="Mart Sign" type="event" x="128" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_multi_martsign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="433" name="Remove obstacle 1" type="event" x="624" y="416" width="16" height="16">
+  <object id="233" name="Remove obstacle 1" type="event" x="624" y="416" width="16" height="16">
    <properties>
     <property name="act1" value="remove_collision water"/>
     <property name="cond1" value="is has_item player,surfboard"/>
    </properties>
   </object>
-  <object id="428" name="Teleport to Candy House 2" type="event" x="32" y="384" width="16" height="16">
+  <object id="228" name="Teleport to Candy House 2" type="event" x="32" y="384" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_house2.tmx,6,7,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -487,7 +489,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="429" name="Teleport to Candy House Back" type="event" x="32" y="48" width="16" height="16">
+  <object id="209" name="Teleport to Candy House Back" type="event" x="32" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_house3.tmx,3,2,0.3"/>
     <property name="act2" value="player_face down"/>
@@ -495,7 +497,7 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="433" name="Teleport to Candy Cafe" type="event" x="64" y="288" width="16" height="16">
+  <object id="201" name="Teleport to Candy Cafe" type="event" x="64" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_cafe.tmx,8,11,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -503,7 +505,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="436" name="Choice Surf" type="event" x="624" y="576" width="16" height="16">
+  <object id="236" name="Choice Surf" type="event" x="624" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog itsswimmingtime"/>
     <property name="act2" value="translated_dialog_choice yes:no,swimming"/>
@@ -513,14 +515,14 @@
     <property name="cond4" value="not player_in surfable"/>
    </properties>
   </object>
-  <object id="437" name="surfable" type="event" x="592" y="576" width="16" height="16">
+  <object id="237" name="surfable" type="event" x="592" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="set_player_template swimmer"/>
     <property name="cond1" value="is player_in surfable"/>
     <property name="cond2" value="not has_sprite swimmer"/>
    </properties>
   </object>
-  <object id="438" name="not surfable" type="event" x="576" y="576" width="16" height="16">
+  <object id="238" name="not surfable" type="event" x="576" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="set_player_template default"/>
     <property name="act2" value="set_variable swimming:no"/>
@@ -528,16 +530,26 @@
     <property name="cond2" value="is has_sprite swimmer"/>
    </properties>
   </object>
-  <object id="439" name="Remove Obstacle" type="event" x="608" y="576" width="16" height="16">
+  <object id="239" name="Remove Obstacle" type="event" x="608" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="remove_collision water"/>
     <property name="cond1" value="is variable_set swimming:yes"/>
    </properties>
   </object>
-  <object id="440" name="Swim Encounters" type="event" x="624" y="400" width="16" height="16">
+  <object id="240" name="Swim Encounters Day" type="event" x="624" y="400" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter routec"/>
+    <property name="act1" value="set_variable environment:sea"/>
+    <property name="act2" value="random_encounter routec"/>
     <property name="cond1" value="is has_sprite swimmer"/>
+    <property name="cond2" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="225" name="Swim Encounters Night" type="event" x="624" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_sea"/>
+    <property name="act2" value="random_encounter routec"/>
+    <property name="cond1" value="is has_sprite swimmer"/>
+    <property name="cond2" value="is variable_set daytime:false"/>
    </properties>
   </object>
  </objectgroup>

@@ -12,7 +12,7 @@
  <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAETYGNgEBjFVAsDUWBYitEJi5MRb1ZAPdZ0wjYUuK8VqDeBRrgN6n9K3EeOXmLzGSyOyLGDEr30cF88NE4TgTSx9pGqjpQwuMvOwEAOvgfUR6q7YOpJcd80LgYGcjAzx+B2332g+4gNd/SwJiX81IH2EIt3A9VSI6wpSeOw+gNb2c5IpvuIDWv0cAalV/S6bDWeslONxmGNLU3jqsvIKTth+RNEkxPW2NyHqw6jtPwjNqyR0zQ29yH7mV5s5DSOHM6DxX3I5cuo+0ivR0gJPwALLrEN
+   eAETYGNgEBjFVAsDUWBYitEJi5MRb1ZAPdZ0wjYUuK8VqDeBRrgN6n9K3EeOXmLzGSyOyLGDEr30cF88NE4TgTSx9pGqjpQwuMvOwEAOvgfUR6q7YOpJcd80LgYGdAwyB10Mnc/MMbjddx/oPmLDHT2sSQk/daA9xOLdQLXo4UgMHz2sKUnjsPoDW9nOSKb7iA1r9HAGpTP0umw1UAxUf2Arm9SoGNbY0jh6OIPU4KrLsLkPpJ5YTCisiXUfrjqM0vKP2LBGTtPYwo/Y8KCmOuQ0jhzOg8V9yOXLqPuIzzOwNEJK+AEALQmu5Q==
   </data>
  </layer>
  <layer id="2" name="Obstacles" width="40" height="20">

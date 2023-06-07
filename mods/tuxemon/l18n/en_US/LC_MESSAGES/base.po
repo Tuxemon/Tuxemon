@@ -6957,6 +6957,18 @@ msgstr "I am assigned by the Dojo of the Five Elements to tend the statues here.
 msgid "spyder_cottontown_hackerintro"
 msgstr "Hey, cool tuxemon! Can I see the receipt? \n ... \n Just kidding, I had a feeling you hadn't picked it up using, ah, official channels. \n For years, the Five Pillars have controlled the strongest tuxemon. \n Do you think it'd be cool to poke them in the eye? \n ... \n Good! I have a project for you. Meet me in the Cafe!"
 
+msgid "spyder_cotton_cafegranny"
+msgstr "Hmm, I'm not sure I fancy this coffee."
+
+msgid "spyder_cotton_cafeassistant"
+msgstr "Do you collect tuxemon? I'd like to start but I'm afraid to leave the city."
+
+msgid "spyder_cotton_homemaker1"
+msgstr "Are you here for the talk? I'm so excited for the launch."
+
+msgid "spyder_cotton_homemaker2"
+msgstr "Tuxepedia is great, isn't it? I'm one of the programmers. Tell me if you find any bugs."
+
 msgid "spyder_cottontown_stopthere"
 msgstr "Hey, that's not cool! You have to come to my talk at the cafe before you run off!"
 
@@ -7029,6 +7041,9 @@ msgstr "Let my assistant introduce you."
 msgid "spyder_cottonscoop_deviceexplan2"
 msgstr "Tuxeballs allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. Select them during battle from your Item menu. \n Thank you for listening. Here's five Tuxeballs as a free sample. "
 
+msgid "spyder_cotton_tuxepediaahem"
+msgstr "Ahem."
+
 msgid "spyder_cotton_tuxepediaintro"
 msgstr "Currently, the only reliable information about tuxemon is from the expensive and incomplete Encyclopaedia Tuxemon! \n That's not cool; information should be freely available. That's why we're introducing Tuxepedia. \n It's open source, it's free, it's available for everyone to read, write and edit. How cool is that? \n In fact, I've installed it as an app on all your phones just now. "
 
@@ -7040,6 +7055,15 @@ msgstr "You are so engrossed reading the new entries, that you don't notice peop
 
 msgid "spyder_cotton_tuxepediaintro4"
 msgstr "It's so cool that you came. There's still so many tuxemon to be added - over a hundred, I think. \n You could really get into it, and make a difference to the world. "
+
+msgid "spyder_cotton_cafegoth"
+msgstr "Don't look at me. I'm just here for the free canapes."
+
+msgid "spyder_cotton_cafeflorist1"
+msgstr "Shhh, it's about to begin."
+
+msgid "spyder_cotton_cafeflorist2"
+msgstr "I can't wait to fact-check everyone else's entries. \n You better make sure you have good sources!"
 
 msgid "spyder_route2_billie1"
 msgstr "Hey cheapskate! Still got your stolen tuxemon?"

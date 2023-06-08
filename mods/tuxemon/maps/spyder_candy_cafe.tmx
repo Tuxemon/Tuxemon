@@ -139,6 +139,15 @@
     <property name="act1" value="change_state PCState"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set postgame:kernel"/>
+   </properties>
+  </object>
+  <object id="35" name="Use Computer Kernel" type="event" x="48" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_pc_alert"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is variable_set postgame:kernel"/>
    </properties>
   </object>
  </objectgroup>

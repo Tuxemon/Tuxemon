@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="591">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="592">
  <properties>
   <property name="east" value="route2"/>
   <property name="edges" value="clamped"/>
@@ -439,6 +439,41 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_cotton_lazybrute1"/>
     <property name="behav1" value="talk spyder_cotton_lazybrute"/>
+   </properties>
+  </object>
+  <object id="591" name="Kernel Quest" type="event" x="320" y="432" width="16" height="16">
+   <properties>
+    <property name="act11" value="player_stop"/>
+    <property name="act12" value="lock_controls"/>
+    <property name="act13" value="create_npc spyder_papertown_mom,18,33"/>
+    <property name="act14" value="create_npc spyder_cottontown_hacker,24,33"/>
+    <property name="act15" value="pathfind_to_player spyder_papertown_mom,down"/>
+    <property name="act16" value="pathfind_to_player spyder_cottontown_hacker,right"/>
+    <property name="act19" value="wait 0.5"/>
+    <property name="act20" value="translated_dialog spyder_cottontown_mom1"/>
+    <property name="act21" value="wait 0.5"/>
+    <property name="act22" value="npc_face player,right"/>
+    <property name="act23" value="wait 0.5"/>
+    <property name="act24" value="translated_dialog spyder_cottontown_hacker1"/>
+    <property name="act25" value="wait 0.5"/>
+    <property name="act26" value="npc_face player,down"/>
+    <property name="act27" value="wait 0.5"/>
+    <property name="act28" value="translated_dialog spyder_cottontown_mom2"/>
+    <property name="act29" value="wait 0.5"/>
+    <property name="act30" value="npc_face player,right"/>
+    <property name="act31" value="wait 0.5"/>
+    <property name="act32" value="translated_dialog spyder_cottontown_hacker2"/>
+    <property name="act33" value="wait 0.5"/>
+    <property name="act34" value="npc_face player,down"/>
+    <property name="act35" value="pathfind spyder_papertown_mom,18,33"/>
+    <property name="act36" value="pathfind spyder_cottontown_hacker,24,33"/>
+    <property name="act41" value="set_variable kernelquestbegin:yes"/>
+    <property name="act42" value="remove_npc spyder_papertown_mom"/>
+    <property name="act43" value="remove_npc spyder_cottontown_hacker"/>
+    <property name="act99" value="unlock_controls"/>
+    <property name="cond1" value="not variable_set kernelquestbegin:yes"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is variable_set bumpintomom:yes"/>
    </properties>
   </object>
  </objectgroup>

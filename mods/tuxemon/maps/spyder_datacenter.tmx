@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="91">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="103">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -195,13 +195,14 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_datacenter_fermi"/>
     <property name="act1" value="translated_dialog spyder_datacenter_fermi1"/>
-    <property name="act2" value="add_monster boltnu,30,spyder_datacenter_fermi,5,10"/>
-    <property name="act3" value="add_monster taupypus,30,spyder_datacenter_fermi,5,10"/>
-    <property name="act4" value="add_monster snaki,30,spyder_datacenter_fermi,5,10"/>
-    <property name="act5" value="add_monster galnec,30,spyder_datacenter_fermi,5,10"/>
-    <property name="act6" value="start_battle spyder_datacenter_fermi"/>
-    <property name="act7" value="translated_dialog spyder_datacenter_fermi2"/>
-    <property name="act8" value="set_variable datacenterfermi:yes"/>
+    <property name="act2" value="add_monster chromeye,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act3" value="add_monster angrito,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act4" value="add_monster sadito,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act5" value="add_monster happito,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act6" value="add_monster neutrito,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act7" value="start_battle spyder_datacenter_fermi"/>
+    <property name="act8" value="translated_dialog spyder_datacenter_fermi2"/>
+    <property name="act9" value="set_variable datacenterfermi:yes"/>
     <property name="cond1" value="not variable_set datacenterfermi:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
@@ -217,10 +218,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_datacenter_onnes"/>
     <property name="act1" value="translated_dialog spyder_datacenter_onnes1"/>
-    <property name="act2" value="add_monster boltnu,30,spyder_datacenter_onnes,5,10"/>
-    <property name="act3" value="add_monster taupypus,30,spyder_datacenter_onnes,5,10"/>
-    <property name="act4" value="add_monster snaki,30,spyder_datacenter_onnes,5,10"/>
-    <property name="act5" value="add_monster galnec,30,spyder_datacenter_onnes,5,10"/>
+    <property name="act2" value="add_monster ouroboutlet,45,spyder_datacenter_onnes,5,10"/>
+    <property name="act3" value="add_monster angrito,40,spyder_datacenter_onnes,5,10"/>
     <property name="act6" value="start_battle spyder_datacenter_onnes"/>
     <property name="act7" value="translated_dialog spyder_datacenter_onnes2"/>
     <property name="act8" value="set_variable datacenteronnes:yes"/>
@@ -239,10 +238,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_datacenter_bayliss"/>
     <property name="act1" value="translated_dialog spyder_datacenter_bayliss1"/>
-    <property name="act2" value="add_monster boltnu,30,spyder_datacenter_bayliss,5,10"/>
-    <property name="act3" value="add_monster taupypus,30,spyder_datacenter_bayliss,5,10"/>
-    <property name="act4" value="add_monster snaki,30,spyder_datacenter_bayliss,5,10"/>
-    <property name="act5" value="add_monster galnec,30,spyder_datacenter_bayliss,5,10"/>
+    <property name="act2" value="add_monster sockeserp,45,spyder_datacenter_bayliss,5,10"/>
+    <property name="act3" value="add_monster sadito,40,spyder_datacenter_bayliss,5,10"/>
     <property name="act6" value="start_battle spyder_datacenter_bayliss"/>
     <property name="act7" value="translated_dialog spyder_datacenter_bayliss2"/>
     <property name="act8" value="set_variable datacenterbayliss:yes"/>
@@ -261,10 +258,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_datacenter_chomsky"/>
     <property name="act1" value="translated_dialog spyder_datacenter_chomsky1"/>
-    <property name="act2" value="add_monster boltnu,30,spyder_datacenter_chomsky,5,10"/>
-    <property name="act3" value="add_monster taupypus,30,spyder_datacenter_chomsky,5,10"/>
-    <property name="act4" value="add_monster snaki,30,spyder_datacenter_chomsky,5,10"/>
-    <property name="act5" value="add_monster galnec,30,spyder_datacenter_chomsky,5,10"/>
+    <property name="act2" value="add_monster fancair,45,spyder_datacenter_chomsky,5,10"/>
+    <property name="act3" value="add_monster happito,40,spyder_datacenter_chomsky,5,10"/>
     <property name="act6" value="start_battle spyder_datacenter_chomsky"/>
     <property name="act7" value="translated_dialog spyder_datacenter_chomsky2"/>
     <property name="act8" value="set_variable datacenterchomsky:yes"/>
@@ -283,15 +278,89 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_datacenter_lagrange"/>
     <property name="act1" value="translated_dialog spyder_datacenter_lagrange1"/>
-    <property name="act2" value="add_monster boltnu,30,spyder_datacenter_lagrange,5,10"/>
-    <property name="act3" value="add_monster taupypus,30,spyder_datacenter_lagrange,5,10"/>
-    <property name="act4" value="add_monster snaki,30,spyder_datacenter_lagrange,5,10"/>
-    <property name="act5" value="add_monster galnec,30,spyder_datacenter_lagrange,5,10"/>
+    <property name="act2" value="add_monster windeye,45,spyder_datacenter_lagrange,5,10"/>
+    <property name="act3" value="add_monster neutrito,45,spyder_datacenter_lagrange,5,10"/>
     <property name="act6" value="start_battle spyder_datacenter_lagrange"/>
     <property name="act7" value="translated_dialog spyder_datacenter_lagrange2"/>
     <property name="act8" value="set_variable datacenterlagrange:yes"/>
     <property name="cond1" value="not variable_set datacenterlagrange:yes"/>
     <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="91" name="Create Gold Pass" type="event" x="144" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_box_goldpass,9,18"/>
+    <property name="cond1" value="not npc_exists spyder_box_goldpass"/>
+    <property name="cond2" value="not has_item player,gold_pass"/>
+   </properties>
+  </object>
+  <object id="92" name="Open Box" type="event" x="144" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_box_goldpass1"/>
+    <property name="act2" value="add_item gold_pass"/>
+    <property name="act3" value="remove_npc spyder_box_goldpass"/>
+    <property name="behav1" value="talk spyder_box_goldpass"/>
+   </properties>
+  </object>
+  <object id="93" name="Create Screen1" type="event" x="32" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_datacenter_s1,2,17"/>
+    <property name="cond1" value="not npc_exists spyder_datacenter_s1"/>
+    <property name="cond2" value="not variable_set datascreen1:yes"/>
+   </properties>
+  </object>
+  <object id="94" name="Create Screen2" type="event" x="128" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_datacenter_s2,8,17"/>
+    <property name="cond1" value="not npc_exists spyder_datacenter_s2"/>
+    <property name="cond2" value="not variable_set datascreen2:yes"/>
+   </properties>
+  </object>
+  <object id="95" name="Create Screen3" type="event" x="224" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_datacenter_s3,14,17"/>
+    <property name="cond1" value="not npc_exists spyder_datacenter_s3"/>
+    <property name="cond2" value="not variable_set datascreen3:yes"/>
+   </properties>
+  </object>
+  <object id="96" name="Create Screen6" type="event" x="80" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_datacenter_s6,5,12"/>
+    <property name="cond1" value="not npc_exists spyder_datacenter_s6"/>
+    <property name="cond2" value="not variable_set datascreen6:yes"/>
+   </properties>
+  </object>
+  <object id="98" name="Create Screen4" type="event" x="272" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_datacenter_s4,17,12"/>
+    <property name="cond1" value="not npc_exists spyder_datacenter_s4"/>
+    <property name="cond2" value="not variable_set datascreen4:yes"/>
+   </properties>
+  </object>
+  <object id="99" name="Create Screen5" type="event" x="224" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_datacenter_s5,14,7"/>
+    <property name="cond1" value="not npc_exists spyder_datacenter_s5"/>
+    <property name="cond2" value="not variable_set datascreen5:yes"/>
+   </properties>
+  </object>
+  <object id="100" name="Create Screen8" type="event" x="128" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_datacenter_s8,8,7"/>
+    <property name="cond1" value="not npc_exists spyder_datacenter_s8"/>
+    <property name="cond2" value="not variable_set datascreen8:yes"/>
+   </properties>
+  </object>
+  <object id="101" name="Create Screen7" type="event" x="32" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_datacenter_s7,2,7"/>
+    <property name="cond1" value="not npc_exists spyder_datacenter_s7"/>
+    <property name="cond2" value="not variable_set datascreen7:yes"/>
+   </properties>
+  </object>
+  <object id="102" name="Wild" type="event" x="304" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter datacenter"/>
    </properties>
   </object>
  </objectgroup>

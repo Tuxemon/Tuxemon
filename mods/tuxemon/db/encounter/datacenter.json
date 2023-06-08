@@ -1,0 +1,35 @@
+{
+  "slug": "datacenter",
+  "monsters": [
+    {
+      "monster": "pythwire",
+      "encounter_rate": 0.5,
+      "daytime": true,
+      "exp_req_mod": 1,
+      "level_range": [
+        45,
+        50
+      ]
+    },
+    {
+      "monster": "ouroboutlet",
+      "encounter_rate": 0.5,
+      "daytime": false,
+      "exp_req_mod": 1,
+      "level_range": [
+        45,
+        50
+      ]
+    },
+    {
+      "monster": "sockeserp",
+      "encounter_rate": 0.5,
+      "daytime": true,
+      "exp_req_mod": 1,
+      "level_range": [
+        40,
+        45
+      ]
+    }
+  ]
+}

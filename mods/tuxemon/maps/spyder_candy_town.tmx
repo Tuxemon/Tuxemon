@@ -37,7 +37,7 @@
    eAHtlklOw0AQRUuITXaAxDoMKwisEsKOIYTpCBwi8wBLlsAtyCVCLkC4RpBIrsHbtNQyjmPZxG3F9aWntttl9/e3S7aIatUTyG+J7MAu7ME+qMInMMiFr3VROU6xv3e8pT2/sM/se12eJxC2/r/qapsidWhAE1qgWv0EPvMiY/gCVwrq3x98TWGWoL/S2t8krrdFbuAW7uAeXMnPXxc/PejDIzyBK/n5c+XFb91l+3vZEHldwBvH5+nB5/2bVxtlfsjaHwsYBfjzrhnUv97aLO3P+IYWLILu/YD/5UMowBEcg0oTSCIB7d/4KRfp1xKcQBlOweiMb/E5XFjjJdsVuLLmTE2VuSRVY706NKyxyXYL2tacqekwp0pPAtq/8Z6Fyc+M8a6WvbNNbt4xe0lEu2NvbmY/2tX0rLQl8AtVvEGl
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="108" type="collision" x="96" y="0" width="128" height="64"/>
   <object id="109" type="collision" x="320" y="0" width="160" height="64"/>
   <object id="110" type="collision" x="496" y="0" width="32" height="32"/>
@@ -420,14 +420,14 @@
   <object id="212" name="Environment Day" type="event" x="112" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
     <property name="cond2" value="not has_sprite swimmer"/>
    </properties>
   </object>
   <object id="221" name="Environment Night" type="event" x="96" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
-    <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
     <property name="cond2" value="not has_sprite swimmer"/>
    </properties>
   </object>
@@ -541,7 +541,7 @@
     <property name="act1" value="set_variable environment:sea"/>
     <property name="act2" value="random_encounter routec"/>
     <property name="cond1" value="is has_sprite swimmer"/>
-    <property name="cond2" value="is variable_set daytime:true"/>
+    <property name="cond2" value="not variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="225" name="Swim Encounters Night" type="event" x="624" y="384" width="16" height="16">
@@ -549,7 +549,7 @@
     <property name="act1" value="set_variable environment:night_sea"/>
     <property name="act2" value="random_encounter routec"/>
     <property name="cond1" value="is has_sprite swimmer"/>
-    <property name="cond2" value="is variable_set daytime:false"/>
+    <property name="cond2" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
  </objectgroup>

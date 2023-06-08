@@ -61,7 +61,7 @@
   </object>
   <object id="19" name="Player Spawn" type="event" x="192" y="160" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="1" type="collision" x="32" y="80" width="16" height="112"/>
   <object id="2" type="collision" x="32" y="80" width="48" height="32"/>
   <object id="3" type="collision" x="64" y="16" width="16" height="96"/>

@@ -38,7 +38,7 @@
    eAHtlktKA0EQhmuh+MgZjCsR88DXTvAcvrbZJ5qQa7jwCmpcqfGxVlEvoJ4jeoR8QQoyGXVm0t2xYbrgo6ieTteff5qhRLLFQ1nkMYEnnk9viUzBcNZOuq61zdyj92cCXzwvoW0FhrPq0HWtbea0+tL2rFWiO9vb3/W4Hi9wXjGBxZGeUQXR6uSXvS49jioI1X84MO79m5TWcP8m5XTo48KBS76rV3ANXbiBEPYcqFdFGnAIR9CEFoTIrwO9NWZLsBF5ul/PePYCrz9453JOOOWbeAbn0IELyBou5oTbJZE7uAcf4w1d7/CRUt9f7zfp/82wYRbmYB4K4FOsImZwbddhAzbBp9hBzC7swT4cgO0web+2tfh0XmPZJzVxLcee64srDivBgeBAnhzQ+c9VNvVS5z9X2VTf4PeuvNNzTTW68k7PNdHXB5B/bvw=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="302" type="collision" x="0" y="512" width="64" height="48">
    <properties>
     <property name="key" value="water"/>
@@ -524,13 +524,13 @@
   <object id="466" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="467" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
-    <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="468" name="Sign: Flower Scoop" type="event" x="352" y="368" width="16" height="16">

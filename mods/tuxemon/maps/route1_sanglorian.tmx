@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="161">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="163">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="cotton_town"/>
@@ -246,6 +246,18 @@
     <property name="act20" value="player_face down"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="161" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:grass"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
+   </properties>
+  </object>
+  <object id="162" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
  </objectgroup>

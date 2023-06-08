@@ -61,6 +61,7 @@ from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
+from tuxemon.states.journal import MonsterInfoState
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.states.transition.fade import FadeOutTransition
 from tuxemon.surfanim import SurfaceAnimation
@@ -213,6 +214,9 @@ class CombatState(CombatAnimations):
         )
         self._turn: int = 0
         self._prize: int = 0
+        self._captured: bool = False
+        self._captured_mon: Optional[Monster] = None
+        self._new_tuxepedia: bool = False
         self._lost_status: Optional[str] = None
         self._lost_monster: Optional[Monster] = None
 
@@ -1010,7 +1014,14 @@ class CombatState(CombatAnimations):
                 "name": technique.name,
                 "target": target.name,
             }
-            message = T.format(technique.use_tech, context)
+            message: str = ""
+            # attempt failed of capture
+            if self._captured_mon and not self._captured:
+                if self._captured_mon == user:
+                    message += "\n" + T.translate("captured_failed")
+                    self._captured_mon = None
+                    action_time += len(message) * letter_time
+            message += "\n" + T.format(technique.use_tech, context)
             # scope technique
             if technique.slug == "scope":
                 message = scope(target)
@@ -1648,4 +1659,11 @@ class CombatState(CombatAnimations):
         while self.client.current_state is not self:
             self.client.pop_state()
 
-        self.client.push_state(FadeOutTransition(caller=self))
+        # open Tuxepedia if monster is captured
+        if self._captured and self._captured_mon and self._new_tuxepedia:
+            self.client.pop_state()
+            self.client.push_state(
+                MonsterInfoState(monster=self._captured_mon)
+            )
+        else:
+            self.client.push_state(FadeOutTransition(caller=self))

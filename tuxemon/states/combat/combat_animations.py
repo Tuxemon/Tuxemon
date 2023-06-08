@@ -747,20 +747,38 @@ class CombatAnimations(ABC, Menu[None]):
             # leave a 0.6s wait between each shake
             shake_ball(1.8 + i * 1.0)
 
+        combat._captured_mon = monster
         if is_captured:
             self.task(kill, 2 + num_shakes)
             action_time = num_shakes + 1.8
             # Tuxepedia: set monster as caught (2)
+            if self.players[0].tuxepedia[monster.slug] == SeenStatus.seen:
+                combat._new_tuxepedia = True
             self.players[0].tuxepedia[monster.slug] = SeenStatus.caught
             # Display 'Gotcha!' first.
-            self.task(combat.end_combat, action_time + 0.5)
+            self.task(combat.end_combat, action_time + 4)
             gotcha = T.translate("gotcha")
+            combat._captured = True
+            info = None
+            # if party
+            if len(combat.players[0].monsters) >= 6:
+                info = T.format(
+                    "gotcha_kennel",
+                    {"name": monster.name.upper()},
+                )
+            else:
+                info = T.format(
+                    "gotcha_team",
+                    {"name": monster.name.upper()},
+                )
+            if info:
+                gotcha += "\n" + info
+                action_time += len(gotcha) * 0.02
             self.task(
                 partial(self.alert, gotcha),
                 action_time,
             )
             self._animation_in_progress = True
-            return
         else:
             breakout_delay = 1.8 + num_shakes * 1.0
             self.task(  # make the monster appear again!

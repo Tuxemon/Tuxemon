@@ -556,6 +556,19 @@ class WorldState(state.State):
         if prepare.CONFIG.collision_map:
             self.debug_drawing(surface)
 
+        # If triggers night color only at night (2200-0400) outside
+        game_variable = self.player.game_variables
+        if not self.client.map_inside:
+            if (
+                game_variable["stage_of_day"] == "night"
+                and game_variable["change_day_night"] == "Enable"
+            ):
+                game_surf = pygame.surface.Surface(
+                    surface.get_size(), pygame.SRCALPHA
+                )
+                game_surf.fill([0, 0, 128, 128])
+                surface.blit(game_surf, (0, 0))
+
     ####################################################
     #            Pathfinding and Collisions            #
     ####################################################

@@ -2663,6 +2663,15 @@ msgstr "Cancel Key"
 msgid "menu_back_key"
 msgstr "Back Key"
 
+msgid "menu_music_daynight"
+msgstr "Day / Night"
+
+msgid "enable"
+msgstr "Enable"
+
+msgid "disable"
+msgstr "Disable"
+
 msgid "menu_music_volume"
 msgstr "Music Volume"
 

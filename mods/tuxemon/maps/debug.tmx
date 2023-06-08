@@ -42,6 +42,7 @@
     <property name="act4" value="transition_teleport spyder_bedroom.tmx,4,4,0.3"/>
     <property name="act5" value="set_money player,250"/>
     <property name="act6" value="set_variable spyder_starting_money:yes"/>
+    <property name="act7" value="set_variable change_day_night:Enable"/>
     <property name="cond1" value="is variable_set scenario_choice:spyder_campaign"/>
     <property name="cond2" value="not variable_set spyder_starting_money:yes"/>
     <property name="cond3" value="not variable_set gender_choice:gender_male"/>
@@ -56,6 +57,7 @@
     <property name="act4" value="transition_teleport player_house_bedroom.tmx,4,4,0.3"/>
     <property name="act5" value="set_money player,500"/>
     <property name="act6" value="set_variable xero_starting_money:yes"/>
+    <property name="act7" value="set_variable change_day_night:Disable"/>
     <property name="cond1" value="is variable_set scenario_choice:xero_campaign"/>
     <property name="cond2" value="not variable_set xero_starting_money:yes"/>
     <property name="cond3" value="not variable_set gender_choice:gender_male"/>

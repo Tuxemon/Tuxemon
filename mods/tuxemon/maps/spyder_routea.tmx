@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="113">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="119">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="route7"/>
@@ -510,6 +510,54 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_routea_little1"/>
     <property name="behav1" value="talk spyder_routea_little"/>
+   </properties>
+  </object>
+  <object id="113" name="Create Super Potion" type="event" x="160" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_super,10,6"/>
+    <property name="cond1" value="not npc_exists spyder_routea_super"/>
+    <property name="cond2" value="not variable_set routea_super:yes"/>
+   </properties>
+  </object>
+  <object id="114" name="Super Potion" type="event" x="144" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog super_potion"/>
+    <property name="act2" value="add_item super_potion"/>
+    <property name="act3" value="remove_npc spyder_routea_super"/>
+    <property name="act4" value="set_variable routea_super:yes"/>
+    <property name="behav1" value="talk spyder_routea_super"/>
+   </properties>
+  </object>
+  <object id="115" name="Create Tea" type="event" x="224" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_tea,14,24"/>
+    <property name="cond1" value="not npc_exists spyder_routea_tea"/>
+    <property name="cond2" value="not variable_set routea_tea:yes"/>
+   </properties>
+  </object>
+  <object id="116" name="Tea" type="event" x="224" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tea"/>
+    <property name="act2" value="add_item tea"/>
+    <property name="act3" value="remove_npc spyder_routea_tea"/>
+    <property name="act4" value="set_variable routea_tea:yes"/>
+    <property name="behav1" value="talk spyder_routea_tea"/>
+   </properties>
+  </object>
+  <object id="117" name="Create Cureall" type="event" x="64" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_cureall,4,30"/>
+    <property name="cond1" value="not npc_exists spyder_routea_cureall"/>
+    <property name="cond2" value="not variable_set routea_cureall:yes"/>
+   </properties>
+  </object>
+  <object id="118" name="Cureall" type="event" x="64" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog cureall"/>
+    <property name="act2" value="add_item cureall"/>
+    <property name="act3" value="remove_npc spyder_routea_cureall"/>
+    <property name="act4" value="set_variable routea_cureall:yes"/>
+    <property name="behav1" value="talk spyder_routea_cureall"/>
    </properties>
   </object>
  </objectgroup>

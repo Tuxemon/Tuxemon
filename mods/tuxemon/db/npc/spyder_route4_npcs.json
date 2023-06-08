@@ -58,5 +58,25 @@
         "slug": "picnicker"
       }
     ]
+  },
+  {
+    "slug": "spyder_route4_super",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_route4_boost",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
   }
 ]

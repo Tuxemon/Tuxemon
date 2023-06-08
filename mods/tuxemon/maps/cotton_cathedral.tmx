@@ -36,7 +36,7 @@
    eAFjYBje4LYcA8MdJHwXyB4F1AkBAH4YBOM=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="5" type="collision" x="32" y="112" width="32" height="32"/>
   <object id="6" type="collision" x="160" y="48" width="32" height="16"/>
   <object id="7" type="collision" x="144" y="48" width="16" height="32"/>

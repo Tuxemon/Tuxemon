@@ -26,7 +26,7 @@
    eAHFUkkKAkEQyxf0qAe96JP0LS43/Yv4DEXfI4gHvZkWAiEM2jMoFhRdRVd6UskAwHHQLgl5xXIItEnhvn2eyL9LXH+Ek57n0PVm39tRO82Ju7QsvFSX03kuTHPhZn1gzvS5cpe95nVuiNkyx3zTI3u/83oduOx99h/1vQc8mIfwYW+8m3yYUJMp8xI+rAzX5IP8HNlczd7y2t9PXO0/nrvWcnm3a3LxvuC6xCfcE1CRRWE=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="3" name="Collision">
+ <objectgroup color="#ff0000" id="3" name="Collisions">
   <object id="1" type="collision" x="0" y="0" width="224" height="32"/>
   <object id="2" type="collision-line" x="0" y="336">
    <polyline points="0,0 224,0"/>

@@ -45,7 +45,7 @@
    eAHt00sOwVAYhuFvD6hEgrAiu3GbdA8tFuM2oqXdCDbhHRo0JhJOju9PnsmZ9D/vSSXPPxY49aUzCpS4wOMCLvC+wJb/ZIc9DjjiG9PiO210kKCL17kmUoUaIc6Nve54BLpfiM280+cFspGUY4U1NvC4gAu4gAu4gAu4gAu4gAvEUWA6kGaYY4ElxlLadD7pSU3ncZSI7xZD3jG+W/lGvyzwBOReHWY=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="245" type="collision" x="288" y="16" width="144" height="224"/>
   <object id="246" type="collision" x="96" y="0" width="192" height="32"/>
   <object id="247" type="collision" x="80" y="0" width="16" height="16"/>
@@ -331,13 +331,13 @@
   <object id="357" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="358" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
-    <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="356" name="Destination - Timber" type="event" x="80" y="288" width="16" height="16">

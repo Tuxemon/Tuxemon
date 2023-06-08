@@ -35,7 +35,7 @@
    eAHtWMFtwzAM9L/JLk0nawdKt+mnnaK/jFEeigMMArTJgFTEwAIEmhJ1dzpLcJDLeVku0m+n//gmz+hfkp8lztpeRRs6dCNiD9CNfOYGnfSWPp9kbGav4Sc1Qj99n9lnaoNW+IxI3zk3c4Rm9tnP9NpHnI9uZwT6O91F7Xen80Htne4iNSN29Bq6Z/++QOPM7f1lWT6kH22MA4ffY3wmy+E3nThixIFf+b3XqXU951f59nw2/P58i+afhro7neln09r1jnZ8D/Taih33tKeZe92rq5gntxUrOB+NqfdarUfzbeURLRonsnZk7Widmm8rj/qgsaLrq+u1PuYVvMSOxKgOC9vCYb01nz1OPh2zeYCnOTx5VIeFGcWpqB+tzeLbGo/s28KJYGTVUgvxmOvI+YqouTy5V8celhenos7SVsG1xrR4t8bX663nrfX4z5rz1vrqcfLrmMmrse/NPZq82B6srJr1e7b0ZXBZ2PeOezR5sT1YWTUj/PbuO1Ln2b8Xz4OVVfPMfmd5lInzBy03vY0=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="1" type="collision" x="128" y="640" width="176" height="208"/>
   <object id="4" type="collision" x="608" y="208" width="96" height="640"/>
   <object id="5" type="collision" x="64" y="240" width="80" height="400"/>

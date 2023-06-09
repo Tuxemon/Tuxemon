@@ -21,12 +21,9 @@ class Element:
 
     def load(self, slug: str) -> None:
         """Loads an element."""
-
-        try:
-            results = db.lookup(slug, table="element")
-        except KeyError:
-            raise RuntimeError(f"Failed to find element with slug {slug}")
-
+        results = db.lookup(slug, table="element")
+        if results is None:
+            raise RuntimeError(f"element {slug} is not found")
         self.slug = results.slug
         self.name = results.slug.name
         self.types = results.types

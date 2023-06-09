@@ -34,6 +34,8 @@ class Shape:
             pass
         else:
             results = db.lookup(slug, table="shape")
+            if results is None:
+                raise RuntimeError(f"shape {slug} is not found")
 
         self.slug = results.slug or self.slug
         self.armour = results.armour or self.armour

@@ -38,7 +38,7 @@
    eAHtkkFuQzEIRP8RerjkMO1h2qvWWczmKcQYcCyqRorQYOYxtLl9XNd9fG+H6oXP58jxNb7eCvtLeepG7WU49XfUHUzP70T/N96qvrfS/0qfuvV7/E5/xtf66H1WLf+z/qlbn2XZ3ZvdGtk/Yz7eT3xmuSoycUcFM8JgDuoIk54dTO7waOag9jA4Q4al6dutrRzqV+wXS7WCGWFov1UjTHrI5vu7NHNQV+QgU7qCvcLQXquusKxZsq05q0//Lm3tX+kz24q3cpY5qCt2kSldwV5haK9VV1jWLNnW3O4+c1BX7M8y6V/VumHm01ymWjsyzIjXyqF+hEmPWKp8n2n5olX8mV9zmcodGVbGyxzUGba8ZErr3aqay1bxZxzNZSp3ZFgZL3NQZ9jyrjI5v6q1l3XG4XxEWzsirIzHyqF+hi2vWKrqs+o9W8mVnnE1l6nckWFlvMxBnWHLS6a03t9VtdeqFTnIrmBGGMxBHWHSs4PJHR7NHNQeRpcZ3kbd5Q5PTt5G7WF0meFt1F3u8OTkbdQeRpcZ3kbd5Q5PTt5G7WF0meFt1F3u8OTkbdQeRpcZ3kbd5Q5PTt7WVXtu/Z/5m3+BX7PEMNw=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="656" y="272" width="96" height="160"/>
   <object id="2" type="collision" x="720" y="128" width="48" height="48"/>
   <object id="3" type="collision" x="592" y="128" width="16" height="208"/>
@@ -841,13 +841,13 @@
   <object id="153" name="Environment Day" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="154" name="Environment Night" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
-    <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="155" name="Default" type="event" x="16" y="16" width="16" height="16">

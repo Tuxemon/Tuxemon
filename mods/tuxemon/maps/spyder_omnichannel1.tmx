@@ -34,7 +34,7 @@
    eAHNkjtuAjEQhicsSEC6UHIUHneAcAcCXQScACREUiXQIppchSYcIIkUIBwAkHi2+SxsyVq87BYUjPTJ43/mH1uWRUS+7kS+4QcaoCLmiXjwy34KM5jr2qlDZMl+BWvo6doDngxs2G9hB3v4BBNeTCQOCRhZuqon0VKQhnv489XNjLD1EOLrMHsAJtpWbjTX+kbfB7xr+hF9rlm3oiVC3ironlmfz55j50F+o9tz7NzUr7HmGJKHAhRB/ceJ7/7IZ1FCKcMjVED9x0UEX5XeJ6hBHdR/PEbw0XrVeHac2eCElqbpOG0cF+k6fD16XzUvDp+Shg5fQOtF+R9TICXb
   </data>
  </layer>
- <objectgroup color="#ff0000" id="3" name="Collision">
+ <objectgroup color="#ff0000" id="3" name="Collisions">
   <object id="1" type="collision" x="0" y="32" width="16" height="304"/>
   <object id="2" type="collision" x="0" y="0" width="224" height="32"/>
   <object id="4" type="collision" x="208" y="32" width="16" height="304"/>

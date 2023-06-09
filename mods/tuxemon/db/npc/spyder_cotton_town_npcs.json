@@ -208,6 +208,65 @@
         "slug": "shopassistant"
       }
     ]
-  }
-  
+  },
+  {
+    "slug": "spyder_cottontunnel_box1",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottontunnel_box2",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottontunnel_box3",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottontunnel_box4",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottontunnel_box5",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottontunnel_box6",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  }  
 ]

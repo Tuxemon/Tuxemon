@@ -12,7 +12,7 @@
  <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAETYGNgEBjFVAsDUWBYitEJi5MRb1ZAPdZ0wjYUuK8VqDeBRrgN6n9K3EeOXmLzGSyOyLGDEr30cF88NE4TgTSx9pGqjpQwuMvOwEAOvgfUR6q7YOpJcd80LgYGcjAzx+B2332g+4gNd/SwJiX81IH2EIt3A9VSI6wpSeOw+gNb2c5IpvuIDWv0cAalV/S6bDWeslONxmGNLU3jqsvIKTth+RNEkxPW2NyHqw6jtPwjNqyR0zQ29yH7mV5s5DSOHM6DxX3I5cuo+0ivR0gJPwALLrEN
+   eAETYGNgEBjFVAsDUWBYitEJi5MRb1ZAPdZ0wjYUuK8VqDeBRrgN6n9K3EeOXmLzGSyOyLGDEr30cF88NE4TgTSx9pGqjpQwuMvOwEAOvgfUR6q7YOpJcd80LgYGdAwyB10Mnc/MMbjddx/oPmLDHT2sSQk/daA9xOLdQLXo4UgMHz2sKUnjsPoDW9nOSKb7iA1r9HAGpTP0umw1UAxUf2Arm9SoGNbY0jh6OIPU4KrLsLkPpJ5YTCisiXUfrjqM0vKP2LBGTtPYwo/Y8KCmOuQ0jhzOg8V9yOXLqPuIzzOwNEJK+AEALQmu5Q==
   </data>
  </layer>
  <layer id="2" name="Obstacles" width="40" height="20">
@@ -20,7 +20,7 @@
    eAHNlT1ORDEMhENLQbU1cA4OANyKlbjcchgogRJP8UnWKD8OzdtI1sTJjD0JecvltrWPiMuV4mf4+oq4VvR7awcN90Hu93aQveHfD5/gUf7oiw9w5/7QrJBeGZ/ucjaeux/vNVbWv6FZjdWe+3G/v62dfyK+I6jlGq2/xTfPYN7jwami+zmlPqrxeNPODxH3EdR0jfzgSRxy56HfwdUZe/569fGU0WuT9/SjtdUZq/5UP3tT7rXJtTcb7/HtcJYRot/xh2YXe2+cs4yQHq/x7l4intP7Y6+CnH/Gnd0BenBWh71T8bdLfM6Ptoczf+jBnl5r+B9h1uV36PzMYz7zV9GrDv5HSC+h/DGcz3rGmT/Xu99qnvtpvqObvXGv436rufv7r25Vx/1Wc+ry9sh39HDRClkDq+d2nmrhDdSa80Z55mquof+1zv8D6q5wNQ==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="4" name="Collision">
+ <objectgroup color="#ff0000" id="4" name="Collisions">
   <object id="145" type="collision" x="0" y="0" width="64" height="128"/>
   <object id="146" type="collision" x="64" y="0" width="576" height="32"/>
   <object id="147" type="collision" x="544" y="32" width="32" height="32"/>
@@ -433,13 +433,13 @@
   <object id="212" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="219" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
-    <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="213" name="Talk Maxwell" type="event" x="64" y="80" width="96" height="16">

@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.db import ElementType
+from tuxemon.element import Element
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -39,8 +40,8 @@ class SwitchEffect(TechEffect):
     ) -> SwitchEffectResult:
         done: bool = False
         elements = list(ElementType)
-        if self.element in elements:
-            ele = ElementType(self.element)
+        if self.element != "random":
+            ele = Element(self.element)
             if ele not in target.types:
                 if self.objective == "user":
                     user.types = [ele]
@@ -52,17 +53,19 @@ class SwitchEffect(TechEffect):
                     user.types = [ele]
                     target.types = [ele]
                     done = True
-        if self.element == "random":
+        else:
             _user = random.choice(elements)
             _target = random.choice(elements)
+            ele_u = Element(_user)
+            ele_t = Element(_target)
             if self.objective == "user":
-                user.types = [_user]
+                user.types = [ele_u]
                 done = True
             elif self.objective == "target":
-                target.types = [_target]
+                target.types = [ele_t]
                 done = True
             elif self.objective == "both":
-                user.types = [_user]
-                target.types = [_target]
+                user.types = [ele_u]
+                target.types = [ele_t]
                 done = True
         return {"success": done}

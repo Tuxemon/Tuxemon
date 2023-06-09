@@ -1,7 +1,6 @@
 {
     "slug": "ignibus",
     "category": "hot_rock",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -69,7 +68,7 @@
     "txmn_id": 30,
     "height": 68,
     "weight": 27,
-    "catch_rate": 170.0,
+    "catch_rate": 100.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25
 }

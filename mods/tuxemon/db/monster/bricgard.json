@@ -1,7 +1,6 @@
 {
     "slug": "bricgard",
-    "category": "brick_wall",
-    "ai": "RandomAI",	
+    "category": "brick_wall",	
     "moveset": [
         {
             "level_learned": 2,
@@ -58,7 +57,7 @@
     "txmn_id": 260,
     "height": 50,
     "weight": 35,
-    "catch_rate": 85.0,
+    "catch_rate": 70.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15
 }

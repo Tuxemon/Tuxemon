@@ -144,12 +144,12 @@ class TechniqueMenuState(Menu[Technique]):
             name = tech.name
             types = ""
             if len(tech.types) == 1:
-                types = T.translate(tech.types[0])
+                types = T.translate(tech.types[0].slug)
             else:
                 types = (
-                    T.translate(tech.types[0])
+                    T.translate(tech.types[0].slug)
                     + " "
-                    + T.translate(tech.types[1])
+                    + T.translate(tech.types[1].slug)
                 )
             image = self.shadow_text(name, bg=(128, 128, 128))
             if tech.counter == 0:

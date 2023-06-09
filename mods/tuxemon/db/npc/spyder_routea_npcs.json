@@ -108,5 +108,45 @@
         "slug": "maniac"
       }
     ]
+  },
+  {
+    "slug": "spyder_routea_little",
+    "template": [
+      {
+        "sprite_name": "knight_red",
+        "combat_front": "knight",
+        "slug": "knight"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_routea_super",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_routea_cureall",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_routea_tea",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
   }
 ]

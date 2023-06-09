@@ -72,7 +72,6 @@ class TuxepediaWebExtractor:
                 monsters[name] = {
                     "slug": safe_name,
                     "category": fix_name(self.get_monster_category(monster_row).lower()),
-                    "ai": "RandomAI",
                     # "blurp": self.get_monster_blurp(monster_row),
                     # "call": self.get_monster_call(monster_row),
                     # "moveset": [],

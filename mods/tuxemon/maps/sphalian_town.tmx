@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="23" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="59">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="23" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="60">
  <properties>
-  <property name="east" value="buddha_mountain"/>
+  <property name="east" value="lion_mountain"/>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="tobedefined"/>
   <property name="slug" value="sphalian_town"/>
@@ -28,7 +28,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="23" height="25">
   <data encoding="base64" compression="zlib">
-   eAG1lc1OE1EYhs+KVaEWUDSKXoArSSS6olKERApK2Al4C2JREsASrgDjDYiyJeqdSNi6VPFnpzvd+byhb/gy6UyZBSd58p2Wmee883HmtDKQUuWcaOI9L2LmL7dT+grf4Bi+w2IldR3xvrx5zFwbT2kQhmAYLkKeW/cd32J9+AE/4RdEn9eUo47rHkxCA6Ygz63vh8dYHy7BCFwG+1S9jq59imsVnkEL1qDI3cA1BfdhGmbAPlX5hcYbXHvwFt7BPuQNrdnCtQbP4QWsg32qzQ55jrLf26cqv+jvT2kgUGV+AWqwc/PsK+h57JRf/L6S0r/BlP5Q7w6dsoB7r6TbTq8R3fb/Za3XuMsOZ/cacsvl7PJrXtat/sktb8xtt6qzH3Vy63rRa7h/jb7TfRJz3+n0W7UW3O2JlLZL0C13dC+Efh/gLTOy/VY/ojv2O7p3WOdzD2JuOY32oebut/JG93u8i9UTuj1LPdNv7QsRc7vfee5uXn3nzKre387rmtdv5S4a7rWq98lZ+x3dVznTrsEoXIcbEHP7PNE5onPF50lRv537Aa5ZaMIczGtOXuPrimr2f+kzbAPXJmzBS2hDzK13bpe8r8J+zn7Ouv0OPuZ3dQmWYQWegDOryv0J72Fw+7Pf96y76BmVew7mC3jI38Qj+Bj2xgfm2Xvjtcr7H4bmug0=
+   eAG1lc1OFEEURmvFagAHEDUqPoArSTSwEh3ERHtQgmwAfQX5TxRJiG6NhhcQn0jjKyj4s9Od7jxfnC/cVLpmRhM7OblVPVWnbt+urmkMpdT4T7zEayra/eI5/caPV1P6BEdwDJ9hsZFqr36dGldB81pKIzAKY3AaSm6NP77C+vAFvsI3qFtTjhlcN+AmtGAWSm7dH5tkfRiHM3AWSu7HuNZgHTZgE7q5W7hm4RbMwW2oc6uob3Adwlt4cD2lJShFrbmBaxO2YBt2oOSOL+053hdQivmanlvxHnL/4GBKQ4Fh2qegCfuXPbO8lkfoeXL393Mp/RpJ6QdxevSEBdyHNW678ih3nnt02/+TtQ5wx8s1ivfydp673HI5d/nVzt2uc+5zX/Xr5tYazv1DJ2+NF73ydv1iXWLeU516KzaDW7n1ytv5twZO3mnJvVCot9eoi77n/WK36hHzLtXbtamLvhfdchrtQ7Vdbz+r56m/OPwH/xbjTFYT7QsR83a9Pc/Pq77cpasRvk/VRF7n61iqd8np+66H4t/W2w7F85xtF+AiTMAliG6fJzpHdK74POlWb/vv4LoLFbRhHqLb43rFWG+fYU9wPYVdeAZ7EN365l6R7+uwn/O+1o37xN/gMv+rK7AKD+ERyF11kPsd3vfB7b6/d7mdt/833Fd0W+PkbsM83IP7/9jXPD9Pm9zUV86/Aflm7SE=
   </data>
  </layer>
  <layer id="11" name="Above Player" width="23" height="25">
@@ -36,7 +36,7 @@
    eAHt1LsNgDAQBNFtypVjQ+RfP4BdgqcEAkSAdqWXXjDBSd9sC1JEwo4Dngu4gAu4wH8LZP58QUVDx1s7uXXhxsCE5wJPCyz+ig8G
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="12" type="collision" x="272" y="304" width="48" height="64"/>
   <object id="14" type="collision" x="240" y="352" width="16" height="16"/>
   <object id="15" type="collision" x="336" y="304" width="16" height="64"/>
@@ -48,13 +48,13 @@
   <object id="23" type="collision" x="240" y="96" width="32" height="16"/>
   <object id="24" type="collision" x="288" y="96" width="32" height="16"/>
   <object id="25" type="collision" x="352" y="256" width="16" height="16"/>
-  <object id="26" type="collision" x="352" y="192" width="16" height="16"/>
-  <object id="30" type="collision" x="0" y="384" width="176" height="16"/>
+  <object id="26" type="collision" x="352" y="192" width="16" height="32"/>
+  <object id="30" type="collision" x="0" y="384" width="288" height="16"/>
   <object id="31" type="collision" x="352" y="272" width="16" height="128"/>
   <object id="32" type="collision" x="320" y="96" width="48" height="32"/>
   <object id="33" type="collision" x="336" y="128" width="32" height="32"/>
   <object id="34" type="collision" x="352" y="160" width="16" height="32"/>
-  <object id="38" type="collision" x="240" y="384" width="112" height="16"/>
+  <object id="38" type="collision" x="320" y="384" width="32" height="16"/>
   <object id="39" type="collision" x="48" y="352" width="32" height="32"/>
   <object id="41" type="collision" x="0" y="64" width="32" height="320"/>
   <object id="45" type="collision" x="112" y="352" width="32" height="32"/>
@@ -68,17 +68,17 @@
   <object id="57" type="collision" x="144" y="144" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="3" name="Events">
-  <object id="3" name="Teleport Route1" type="event" x="176" y="384" width="32" height="16">
+  <object id="3" name="Teleport Route7" type="event" x="288" y="384" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route7.tmx,35,1,0.3"/>
+    <property name="act1" value="transition_teleport spyder_route7.tmx,35,0,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="4" name="Teleport Route2" type="event" x="208" y="384" width="32" height="16">
+  <object id="4" name="Teleport Route7" type="event" x="304" y="384" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route7.tmx,36,1,0.3"/>
+    <property name="act1" value="transition_teleport spyder_route7.tmx,36,0,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -106,9 +106,9 @@
     <property name="cond1" value="not music_playing music_town_theme"/>
    </properties>
   </object>
-  <object id="7" name="Buddha Mountain" type="event" x="352" y="208" width="16" height="48">
+  <object id="7" name="Lion Mountain" type="event" x="352" y="224" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport buddha_mountain.tmx,2,90,0.3"/>
+    <property name="act1" value="transition_teleport lion_mountain.tmx,0,89,0.3"/>
     <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
@@ -173,6 +173,14 @@
    <properties>
     <property name="act1" value="translated_dialog sphalian_barmaid"/>
     <property name="behav1" value="talk sphalian_barmaid"/>
+   </properties>
+  </object>
+  <object id="59" name="Lion Mountain" type="event" x="352" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport lion_mountain.tmx,0,90,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
  </objectgroup>

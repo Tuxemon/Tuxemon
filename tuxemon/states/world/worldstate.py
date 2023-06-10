@@ -10,7 +10,6 @@ from typing import (
     Any,
     Dict,
     List,
-    Literal,
     Mapping,
     MutableMapping,
     Optional,
@@ -59,8 +58,6 @@ direction_map: Mapping[int, Direction] = {
     intentions.RIGHT: "right",
 }
 
-CinemaState = Literal["off", "on", "turning on", "turning off"]
-
 
 class EntityCollision(TypedDict):
     entity: Entity[Any]
@@ -70,13 +67,6 @@ class AnimationInfo(TypedDict):
     animation: SurfaceAnimation
     position: Tuple[int, int]
     layer: int
-
-
-class CinemaSurfaceInfo(TypedDict):
-    surface: pygame.surface.Surface
-    on_position: List[int]
-    off_position: List[int]
-    position: List[int]
 
 
 CollisionDict = Dict[
@@ -158,55 +148,6 @@ class WorldState(state.State):
         #                       Fullscreen Animations                        #
         ######################################################################
 
-        # The cinema bars are used for cinematic moments.
-        # The cinema state can be: "off", "on", "turning on" or "turning off"
-        self.cinema_state: CinemaState = "off"
-        # Pixels per second speed of the animation.
-        self.cinema_speed = 15 * prepare.SCALE
-
-        # Create a surface that we'll use as black bars for a cinematic
-        # experience
-        top_surface = pygame.Surface(
-            (self.resolution[0], self.resolution[1] / 6)
-        )
-        bottom_surface = pygame.Surface(
-            (self.resolution[0], self.resolution[1] / 6)
-        )
-
-        # Fill our empty surface with black
-        top_surface.fill((0, 0, 0))
-        bottom_surface.fill((0, 0, 0))
-
-        # When cinema mode is off, this will be the position we'll draw the
-        # black bar.
-        top_off_position = [
-            0,
-            -top_surface.get_height(),
-        ]
-        bottom_off_position = [0, self.resolution[1]]
-        top_position = list(top_off_position)
-        bottom_position = list(bottom_off_position)
-
-        # When cinema mode is ON, this will be the position we'll draw the
-        # black bar.
-        top_on_position = [0, 0]
-        bottom_on_position = [
-            0,
-            self.resolution[1] - bottom_surface.get_height(),
-        ]
-
-        self.cinema_top: CinemaSurfaceInfo = {
-            "surface": top_surface,
-            "on_position": top_on_position,
-            "off_position": top_off_position,
-            "position": top_position,
-        }
-        self.cinema_bottom: CinemaSurfaceInfo = {
-            "surface": bottom_surface,
-            "on_position": bottom_on_position,
-            "off_position": bottom_off_position,
-            "position": bottom_position,
-        }
         self.map_animations: Dict[str, AnimationInfo] = {}
 
         if local_session.player is None:
@@ -568,6 +509,20 @@ class WorldState(state.State):
                 )
                 game_surf.fill([0, 0, 128, 128])
                 surface.blit(game_surf, (0, 0))
+
+        if "cinema_mode" in game_variable:
+            if game_variable["cinema_mode"] == "on":
+                top_bar = pygame.Surface(
+                    (self.resolution[0], self.resolution[1] / 6)
+                )
+                bottom_bar = pygame.Surface(
+                    (self.resolution[0], self.resolution[1] / 6)
+                )
+                top_bar.fill((0, 0, 0))
+                bottom_bar.fill((0, 0, 0))
+                surface.blit(top_bar, (0, 0))
+                bottom = surface.get_rect().bottom - self.resolution[1] / 6
+                surface.blit(bottom_bar, (0, bottom))
 
     ####################################################
     #            Pathfinding and Collisions            #
@@ -1071,84 +1026,6 @@ class WorldState(state.State):
         pygame.draw.line(surface, (255, 50, 50), (0, cy), (w, cy))
 
         surface.unlock()
-
-    def midscreen_animations(self, surface: pygame.surface.Surface) -> None:
-        """
-        Handles midscreen animations that will be drawn UNDER menus and dialog.
-
-        NOTE: BROKEN
-
-        Parameters:
-            surface: Surface to draw on.
-
-        """
-        raise RuntimeError("deprecated.  refactor!")
-
-        if self.cinema_state == "turning on":
-            self.cinema_top["position"][1] += (
-                self.cinema_speed * self.time_passed_seconds
-            )
-            self.cinema_bottom["position"][1] -= (
-                self.cinema_speed * self.time_passed_seconds
-            )
-
-            # If we've reached our target position, stop the animation.
-            if self.cinema_top["position"] >= self.cinema_top["on_position"]:
-                self.cinema_top["position"] = list(
-                    self.cinema_top["on_position"]
-                )
-                self.cinema_bottom["position"] = list(
-                    self.cinema_bottom["on_position"]
-                )
-
-                self.cinema_state = "on"
-
-            # Draw the cinema bars
-            surface.blit(
-                self.cinema_top["surface"], self.cinema_top["position"]
-            )
-            surface.blit(
-                self.cinema_bottom["surface"], self.cinema_bottom["position"]
-            )
-
-        elif self.cinema_state == "on":
-            # Draw the cinema bars
-            surface.blit(
-                self.cinema_top["surface"], self.cinema_top["position"]
-            )
-            surface.blit(
-                self.cinema_bottom["surface"], self.cinema_bottom["position"]
-            )
-
-        elif self.cinema_state == "turning off":
-            self.cinema_top["position"][1] -= (
-                self.cinema_speed * self.time_passed_seconds
-            )
-            self.cinema_bottom["position"][1] += (
-                self.cinema_speed * self.time_passed_seconds
-            )
-
-            # If we've reached our target position, stop the animation.
-            if (
-                self.cinema_top["position"][1]
-                <= self.cinema_top["off_position"][1]
-            ):
-                self.cinema_top["position"] = list(
-                    self.cinema_top["off_position"]
-                )
-                self.cinema_bottom["position"] = list(
-                    self.cinema_bottom["off_position"]
-                )
-
-                self.cinema_state = "off"
-
-            # Draw the cinema bars
-            surface.blit(
-                self.cinema_top["surface"], self.cinema_top["position"]
-            )
-            surface.blit(
-                self.cinema_bottom["surface"], self.cinema_bottom["position"]
-            )
 
     ####################################################
     #         Full Screen Animations Functions         #

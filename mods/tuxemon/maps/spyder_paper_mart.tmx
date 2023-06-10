@@ -130,15 +130,18 @@
     <property name="act113" value="wait 0.5"/>
     <property name="act114" value="npc_face spyder_paperscoop_santino,down"/>
     <property name="act115" value="wait 0.5"/>
-    <property name="act116" value="npc_face player,up"/>
-    <property name="act117" value="translated_dialog spyder_intro_shopkeeper4"/>
-    <property name="act118" value="npc_face spyder_dante,down"/>
-    <property name="act121" value="pathfind player,6,10"/>
-    <property name="act122" value="transition_teleport spyder_bedroom.tmx,3,4,0.3"/>
-    <property name="act123" value="remove_npc spyder_paperscoop_santino"/>
-    <property name="act124" value="remove_npc spyder_dante"/>
-    <property name="act125" value="set_variable intro_scoop:done"/>
-    <property name="act126" value="unlock_controls"/>
+    <property name="act116" value="npc_face spyder_dante,left"/>
+    <property name="act117" value="wait 0.5"/>
+    <property name="act118" value="npc_face player,up"/>
+    <property name="act119" value="translated_dialog spyder_intro_shopkeeper4"/>
+    <property name="act120" value="wait 0.5"/>
+    <property name="act121" value="npc_face spyder_dante,down"/>
+    <property name="act130" value="pathfind player,6,10"/>
+    <property name="act132" value="transition_teleport spyder_bedroom.tmx,3,4,0.3"/>
+    <property name="act133" value="remove_npc spyder_paperscoop_santino"/>
+    <property name="act134" value="remove_npc spyder_dante"/>
+    <property name="act135" value="set_variable intro_scoop:done"/>
+    <property name="act136" value="unlock_controls"/>
     <property name="cond1" value="not variable_set intro_scoop:done"/>
    </properties>
   </object>

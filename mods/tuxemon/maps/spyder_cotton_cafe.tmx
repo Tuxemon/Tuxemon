@@ -26,7 +26,7 @@
  </layer>
  <layer id="2" name="Tile Layer 5" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYCAduLMg9BBifwYq/QLEt4H4DhDnMQMJIMiC0iA2TMyQl4FBiJGBQRiIfwHFfwNxL1TdcSB9AohPAfFpqFgYUD06WAOVQxeH8UFmgPBJIEY2CyZ/gYmBAYRhwB/KgNEwcRB9CahuA5DeCMQXkfSA5GAA2TyQ+vNAiQtAjE09MebBzAXRhMxDVksNdinQ/WVAXA716w5gGAIATdQj6A==
+   eAFjYCAduLMg9BBifwYq/QLEt4H4DhDnMQMJHMCQl4FBiJGBQRiIfwHV/AbiXjzqw4Dq0cEaPOpBak8A5UH4JBCfAuLTQIwMLjAxMIAwDPhDGTAaJg6iLwHVbQDSG4H4IpIekBwMIJsHUn8eKHEBiLGpJ8Y8mLkgmpB5yGqpwS4Fur8MiMuhft0BDDsAxhUf2g==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 4" width="12" height="12">
@@ -51,7 +51,7 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="13" name="Teleport to Cotton Town" type="event" x="112" y="176" width="48" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,28,17,0.3"/>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,31,17,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -102,22 +102,22 @@
     <property name="act11" value="lock_controls"/>
     <property name="act15" value="pathfind spyder_cottontown_hacker,7,3"/>
     <property name="act20" value="npc_face spyder_cottontown_hacker,down"/>
-    <property name="act21" value="npc_face spyder_florist,up"/>
-    <property name="act22" value="npc_face spyder_granny,up"/>
-    <property name="act23" value="npc_face spyder_goth,up"/>
-    <property name="act24" value="npc_face spyder_shopassistant,up"/>
-    <property name="act25" value="npc_face spyder_homemaker,up"/>
+    <property name="act21" value="npc_face spyder_cottoncafe_hillary,up"/>
+    <property name="act22" value="npc_face spyder_cottoncafe_lotus,up"/>
+    <property name="act23" value="npc_face spyder_cottoncafe_cayden,up"/>
+    <property name="act24" value="npc_face spyder_cottoncafe_wilford,up"/>
+    <property name="act25" value="npc_face spyder_cottoncafe_juliana,up"/>
     <property name="act30" value="translated_dialog spyder_cotton_tuxepediaintro"/>
     <property name="act40" value="translated_dialog spyder_cotton_tuxepediaintro2"/>
     <property name="act50" value="screen_transition 0.5"/>
     <property name="act51" value="wait 0.5"/>
     <property name="act52" value="set_variable visitedcottoncafe:yes"/>
     <property name="act53" value="add_item app_tuxepedia"/>
-    <property name="act60" value="remove_npc spyder_florist"/>
-    <property name="act61" value="remove_npc spyder_granny"/>
-    <property name="act62" value="remove_npc spyder_goth"/>
-    <property name="act63" value="remove_npc spyder_shopassistant"/>
-    <property name="act64" value="remove_npc spyder_homemaker"/>
+    <property name="act60" value="remove_npc spyder_cottoncafe_hillary"/>
+    <property name="act61" value="remove_npc spyder_cottoncafe_lotus"/>
+    <property name="act62" value="remove_npc spyder_cottoncafe_cayden"/>
+    <property name="act63" value="remove_npc spyder_cottoncafe_wilford"/>
+    <property name="act64" value="remove_npc spyder_cottoncafe_juliana"/>
     <property name="act77" value="pathfind spyder_cottontown_hacker,7,5"/>
     <property name="act88" value="translated_dialog spyder_cotton_tuxepediaintro4"/>
     <property name="act90" value="unlock_controls"/>
@@ -127,38 +127,38 @@
   </object>
   <object id="21" name="Create Homemaker (1st)" type="event" x="128" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_homemaker,8,9"/>
-    <property name="cond1" value="not npc_exists spyder_homemaker"/>
+    <property name="act1" value="create_npc spyder_cottoncafe_juliana,8,9"/>
+    <property name="cond1" value="not npc_exists spyder_cottoncafe_juliana"/>
     <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>
   <object id="22" name="Create Granny (1st)" type="event" x="48" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_granny,3,7"/>
-    <property name="act2" value="npc_face spyder_granny,right"/>
-    <property name="cond1" value="not npc_exists spyder_granny"/>
+    <property name="act1" value="create_npc spyder_cottoncafe_lotus,3,7"/>
+    <property name="act2" value="npc_face spyder_cottoncafe_lotus,right"/>
+    <property name="cond1" value="not npc_exists spyder_cottoncafe_lotus"/>
     <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>
   <object id="23" name="Create Goth (1st)" type="event" x="32" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_goth,2,6"/>
-    <property name="cond1" value="not npc_exists spyder_goth"/>
+    <property name="act1" value="create_npc spyder_cottoncafe_cayden,2,6"/>
+    <property name="cond1" value="not npc_exists spyder_cottoncafe_cayden"/>
     <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>
   <object id="24" name="Create Assistant (1st)" type="event" x="160" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_shopassistant,10,7"/>
-    <property name="cond1" value="not npc_exists spyder_shopassistant"/>
+    <property name="act1" value="create_npc spyder_cottoncafe_wilford,10,7"/>
+    <property name="cond1" value="not npc_exists spyder_cottoncafe_wilford"/>
     <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>
   <object id="25" name="Create Florist (1st)" type="event" x="176" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_florist,11,6"/>
-    <property name="act2" value="npc_face spyder_florist,left"/>
-    <property name="cond1" value="not npc_exists spyder_florist"/>
+    <property name="act1" value="create_npc spyder_cottoncafe_hillary,11,6"/>
+    <property name="act2" value="npc_face spyder_cottoncafe_hillary,left"/>
+    <property name="cond1" value="not npc_exists spyder_cottoncafe_hillary"/>
     <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>

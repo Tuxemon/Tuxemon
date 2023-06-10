@@ -1,7 +1,6 @@
 {
     "slug": "wrougon",
     "category": "dragon",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -54,7 +53,7 @@
     "txmn_id": 159,
     "height": 120,
     "weight": 96,
-    "catch_rate": 45.0,
+    "catch_rate": 100.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1
 }

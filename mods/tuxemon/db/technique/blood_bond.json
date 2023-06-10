@@ -3,8 +3,7 @@
   "accuracy": 0.8,
   "animation": "sparks_red",
   "effects": [
-    "give status_lifeleech,user",
-    "give status_lifeleech,target",
+    "give status_lifeleech,both",
     "damage"
   ],
   "flip_axes": "",

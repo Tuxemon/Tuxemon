@@ -33,6 +33,7 @@ class HealingEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> HealingEffectResult:
+        done: bool = False
         mon: Monster
         heal: int = 0
         player = self.session.player
@@ -57,9 +58,7 @@ class HealingEffect(TechEffect):
                     mon.current_hp = mon.hp
                 else:
                     mon.current_hp += heal
-                return {"success": True}
-            else:
-                return {"success": False}
+                done = True
         else:
             tech.hit = False
-            return {"success": False}
+        return {"success": done}

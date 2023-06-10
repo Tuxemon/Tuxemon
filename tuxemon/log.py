@@ -1,10 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
+import os
 import sys
+import time
 import warnings
+from operator import itemgetter
 
 from tuxemon import prepare
+from tuxemon.constants import paths
 
 
 def configure() -> None:
@@ -40,15 +44,41 @@ def configure() -> None:
                 logger = logging.getLogger(logger_name)
 
             # Enable logging
-            logger.setLevel(log_level)
-            log_hdlr = logging.StreamHandler(sys.stdout)
-            log_hdlr.setLevel(log_level)
-            log_hdlr.setFormatter(
-                logging.Formatter(
-                    "%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"
-                )
+            log_formatter = logging.Formatter(
+                "[%(asctime)s] %(name)s - %(levelname)s - %(message)s"
             )
-            logger.addHandler(log_hdlr)
+            logger.setLevel(log_level)
+            log_strm = logging.StreamHandler(sys.stdout)
+            log_strm.setLevel(log_level)
+            log_strm.setFormatter(log_formatter)
+            logger.addHandler(log_strm)
+
+            # Enable logging to file
+            if config.log_to_file:
+                log_dir = os.path.realpath(f"{paths.USER_STORAGE_DIR}/logs")
+                if not os.path.exists(log_dir):
+                    os.makedirs(log_dir)
+                if config.log_keep_max > 0:
+                    log_dir_files = {}
+                    for entry in os.listdir(log_dir):
+                        log_dir_files[entry] = os.stat(
+                            f"{log_dir}/{entry}"
+                        ).st_mtime
+                    sorted_files = sorted(
+                        log_dir_files.items(), key=itemgetter(1), reverse=True
+                    )
+                    log_dir_files.clear()
+                    if len(sorted_files) > config.log_keep_max:
+                        for x in range(
+                            config.log_keep_max - 1, len(sorted_files)
+                        ):
+                            os.remove(f"{log_dir}/{sorted_files[x][0]}")
+                log_file = logging.FileHandler(
+                    f'{log_dir}/{time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}.log'
+                )
+                log_file.setFormatter(log_formatter)
+                log_file.setLevel(log_level)
+                logger.addHandler(log_file)
 
             loggers[logger_name] = logger
 

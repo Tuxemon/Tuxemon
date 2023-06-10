@@ -50,7 +50,7 @@ class LocalDamageEffect(TechEffect):
             # land of ifs
             # tech: panjandrum
             if tech.slug == "panjandrum":
-                damage = formula.damage_panjandrum(target)
+                damage = formula.damage_full_hp(target, 4)
             target.current_hp -= damage
         else:
             tech.hit = False

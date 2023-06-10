@@ -17,7 +17,7 @@
    eAGtzkEKwzAMRFFvepfkMOn9j1Nv3maCsQsTCJ+R5C9dnzHu+V+HHPHlu2d6vvM/Zehe77KfOff/28/5vHvXz/2ydzKqozrmftm8jOqojrxJ86v6qs+bNL+qr/q5Xza/o3nM/fLOo28eeVvkbbF1F0/rLh7eFnlbbN3F07qLh7dF3hZ/cRpRAQ==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="151" type="collision" x="0" y="0" width="192" height="32"/>
   <object id="152" type="collision" x="128" y="32" width="64" height="96"/>
   <object id="153" type="collision" x="0" y="80" width="80" height="240"/>

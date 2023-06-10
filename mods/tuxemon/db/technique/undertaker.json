@@ -1,15 +1,16 @@
 {
   "tech_id": 152,
-  "accuracy": 0.6,
+  "accuracy": 1,
   "animation": "x_attack",
   "effects": [
-    "damage"
+    "give status_prickly,target",
+    "enhance"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.9,
-  "power": 1.4,
-  "range": "reach",
+  "potency": 1,
+  "power": 0,
+  "range": "special",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "undertaker",
@@ -23,7 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "metal"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

@@ -36,7 +36,7 @@
    eJxjYBhZ4KQiddTAAAByVgHV
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="60" type="collision" x="32" y="64" width="32" height="32"/>
   <object id="63" type="collision" x="0" y="112" width="16" height="16"/>
   <object id="64" type="collision" x="144" y="112" width="16" height="16"/>
@@ -56,15 +56,15 @@
   </object>
   <object id="70" name="Create NPCs" type="event" x="8.88178e-16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_maniac,1,5"/>
-    <property name="act2" value="npc_face spyder_maniac,right"/>
-    <property name="cond1" value="not npc_exists spyder_maniac"/>
+    <property name="act1" value="create_npc spyder_papermanor_princeton,1,5"/>
+    <property name="act2" value="npc_face spyder_papermanor_princeton,right"/>
+    <property name="cond1" value="not npc_exists spyder_papermanor_princeton"/>
    </properties>
   </object>
   <object id="71" name="Old Man" type="event" x="16" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papermanor_oldman"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk spyder_papermanor_princeton"/>
    </properties>
   </object>
  </objectgroup>

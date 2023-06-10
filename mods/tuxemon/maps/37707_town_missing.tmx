@@ -302,7 +302,7 @@
    eAHt0LENACAMA8E0DA/UwLpkjURn6XvrIowAAQIECBAgQKCjwBwRK9tZxZ38fbNX9H9Fc58JECBAgAABAgQIEOgl8AHnqwN/
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <properties>
    <property name="Collision" value=""/>
   </properties>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="590">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="591">
  <properties>
   <property name="east" value="route2"/>
   <property name="edges" value="clamped"/>
@@ -25,17 +25,17 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAFjYIAACWEoY5BSn4UGqcOgzhoNP8riZzT8hnf4UeY70nXbyUL07GYnTi89y5fTQLfFQt33ikj3jeYP4uIRl6rR8MMVMsSJD/bwI84Xo6oGKgTOQMu7gbJ/1N7BFwIZ4phuWghs5y8iAi8eoP7AMaC9WQoMDNlAjA+cGED3rQK6bTUQ4wMD6T5kd9UzMjA0AHEjECMDkPvMgH1SGEaWI5YN0wuiiQWg+EUGy4HuWgHEK7G4D6RunwiyalT2eaBZF4D4MQ41c0QZGL4A5b+i2YlqCioP3X3nge66AMQXcbgPVTcqD2Y3Lj+UA90nCQw7KWj4hbGh6sfGQ3cfNjUgMWLSH7LduMxBFm+ls/uQ7aYWGzn8XqLVmch8YsKPWm5CNuc1MK2Cyud3ONLse6j8WxzyyGaNsukbAmtIKAfp6zLa2wbzOzFlGO1dg9sGYsow3LoHVsZUij72HwDWSweBmBAIIkINuhnEmA2r18ml0e2kNh9Wr8NoaptPqXmweh1Gk2oeLC+Tqg+begDwN1iU
+   eAHtV8suBUEQLRv2HsFF4idY+ggLO3vhAyyx8Bc2WHj+gUTYiAS51zdYIVh4bZ3J7UoqbWrU3Jnb05GupNLd0/U4faanuoeoKxMjrhNp8z4cKTAHK/FX7f0k/v43f9VWV957YabrczZk8w1ZX26AbdnhezLiS9+H7T1qVok/jRnb89j5s62id6sv3I++I74jTY0STUNjlVvUuztX82LFmHCFZWBl/He+Xdzz9wy639D/wBXyrs4SrUGL5LpBfMfAdgItkibxSVwbA0Sb0C2olAzfPOotq5yz9tk3a62SvV8pB8B1CD3KwZfZnRfU3DZidaAPis3OGNEH5j+9nDK/3/fxtYGrA71X8Pn+csy5tTWsA98kuGs5/pYGpXd+38eXb0Vk2X8ytxZHPt8OjE/mrqsv+Xv0zks5tvBXFyYZ5xl7NavPr8qefXPzL8q8jJX6YRk4LVEHwyLrfzZeu6WG9R+NnsFSw3TvZmfmWmHyX+BcuoT+JYsGGz+GJTaf6722fs66x3yuc1t3/Krx+Fzntmw8/pbL+uXZ/wDECFvw
   </data>
  </layer>
  <layer id="6" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlk1OwzAQhWcFe1gFqffhp0cAWgrlSEC74u8QbY/Apt213AP2fVk8ybHiuInjZCAZ6ZMzTux5fqmmWZ+IbIAZa2vOzs1nm7ymjh/o+wWuvA1NaU3qSk5FzoArb1KfWYu6OGfn9JP3mxjbqBnrXFXOcn4scgEuwRUYAsY1rm/ALRiBMfjPUcW/UD/aqBmqWdP6Mv6VeVbTGWNqyfOEc/ZIHZw3e4erh3CNtjGvr92hv03APXgAU/AIfEE/fCP34XPM+1GvA/27Cns3of6ZPcb+PkmV+b5RfOvDThd/dah/8RXqrlCXf69HIm/gHXyAT2CG63fG+q775h51X7N2yL517BFS/6+vLfLva5A9nZ1n73YzK/Kvm460d+pDetgT+uIzeAEzMAd9+B1YJCJLsAIaYwtdO/CtVJ9Gz3pN+hzg/4k91qXU3teX7wF273iX
+   eAHtlk1uwjAQhWdFpS5hRSXu00KP0B9OQGkP078VUA4BHKGbdEd7j3bPY/EkY+G4ie3YbTzSJ2ec2PPmBZkUXZEPoEahzem5+myT19TxDX0/wJTH0LSvSV39nsgZMOVN6lNrURfn9Jx+8n4TY4yaofqq08v5icgFGIIRuASMK1xfgxtwC8bgP0cd/1z9iFHTVXNK66v4V+XZlHoMqeWYJ5zTR+rgvHp2mM4QruE4ORW5A1NwDx5AjPB5rtEP28g++RzzPKbrQH5Xbu/G1T/1jNG/T/bKbN8otvVu3YVf7epfeIVpV/Dl36wjMgcL8AaWQA3T74z1TffVPXxfs7bLvj72cKn/19eW+fc+OOxOzw/vtjMr86+djsTr+jdn2CPOxSfwDF7AK8hhd2DVF1mDDUgxttD1Cb4S1ZeiZ1lTeg7w/0QffSnV97XlOxN/eHo=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
@@ -98,10 +98,9 @@
   <object id="506" type="collision" x="208" y="144" width="64" height="16"/>
   <object id="507" type="collision" x="288" y="144" width="80" height="16"/>
   <object id="508" type="collision" x="240" y="208" width="112" height="48"/>
-  <object id="509" type="collision" x="352" y="224" width="64" height="48"/>
-  <object id="512" type="collision" x="416" y="256" width="32" height="16"/>
-  <object id="513" type="collision" x="432" y="224" width="96" height="32"/>
-  <object id="514" type="collision" x="464" y="256" width="64" height="16"/>
+  <object id="509" type="collision" x="352" y="224" width="144" height="48"/>
+  <object id="513" type="collision" x="496" y="224" width="32" height="32"/>
+  <object id="514" type="collision" x="512" y="256" width="16" height="16"/>
   <object id="515" type="collision" x="432" y="560" width="16" height="16"/>
   <object id="549" type="collision" x="240" y="256" width="16" height="16"/>
   <object id="550" type="collision" x="272" y="256" width="80" height="16"/>
@@ -118,6 +117,7 @@
   <object id="576" type="collision" x="400" y="96" width="16" height="32"/>
   <object id="579" type="collision" x="464" y="128" width="32" height="16"/>
   <object id="581" type="collision" x="80" y="464" width="32" height="16"/>
+  <object id="590" type="collision" x="448" y="208" width="80" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="528" name="Teleport to Route 1" type="event" x="352" y="624" width="16" height="16">
@@ -174,7 +174,7 @@
     <property name="cond3" value="is player_facing_tile"/>
    </properties>
   </object>
-  <object id="534" name="Teleport to Cafe" type="event" x="448" y="256" width="16" height="16">
+  <object id="534" name="Teleport to Cafe" type="event" x="496" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_cotton_cafe.tmx,8,11,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -243,18 +243,22 @@
   </object>
   <object id="548" name="Stop! Cotton" type="event" x="608" y="448" width="16" height="32">
    <properties>
-    <property name="act1" value="player_stop"/>
+    <property name="act10" value="player_stop"/>
     <property name="act11" value="lock_controls"/>
-    <property name="act20" value="create_npc spyder_cottontown_hacker,35,35"/>
-    <property name="act21" value="pathfind spyder_cottontown_hacker,35,29"/>
-    <property name="act30" value="pathfind spyder_cottontown_hacker,36,29"/>
+    <property name="act20" value="create_npc spyder_cottontown_hacker,23,23"/>
+    <property name="act30" value="pathfind_to_player spyder_cottontown_hacker,left"/>
     <property name="act40" value="translated_dialog spyder_cottontown_stopthere"/>
-    <property name="act50" value="pathfind player,36,28"/>
-    <property name="act60" value="pathfind spyder_cottontown_hacker,35,35"/>
+    <property name="act50" value="pathfind player,33,29"/>
+    <property name="act51" value="wait 0.5"/>
+    <property name="act52" value="pathfind_to_player spyder_cottontown_hacker,left"/>
+    <property name="act53" value="wait 0.5"/>
+    <property name="act54" value="translated_dialog spyder_cottontown_followme"/>
+    <property name="act55" value="wait 0.5"/>
+    <property name="act60" value="pathfind spyder_cottontown_hacker,23,23"/>
     <property name="act80" value="remove_npc spyder_cottontown_hacker"/>
     <property name="act90" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond3" value="not variable_set visitedcottoncafe:yes"/>
+    <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>
   <object id="551" name="Teleport to Art Shop" type="event" x="256" y="256" width="16" height="16">
@@ -368,30 +372,30 @@
   <object id="580" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="582" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
-    <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
-  <object id="587" name="Nu Phone Mom" type="event" x="448" y="272" width="16" height="16">
+  <object id="587" name="Nu Phone Mom" type="event" x="496" y="272" width="16" height="16">
    <properties>
     <property name="act11" value="player_stop"/>
     <property name="act12" value="lock_controls"/>
-    <property name="act13" value="create_npc spyder_mompapertown,23,23"/>
-    <property name="act14" value="pathfind spyder_mompapertown,28,18"/>
+    <property name="act13" value="create_npc spyder_papertown_mom,23,23"/>
+    <property name="act14" value="pathfind spyder_papertown_mom,28,18"/>
     <property name="act15" value="unlock_controls"/>
     <property name="act16" value="npc_face player,down"/>
     <property name="act20" value="translated_dialog spyder_cottontown_mom"/>
     <property name="act25" value="add_item nu_phone"/>
     <property name="act30" value="add_item app_banking"/>
     <property name="act35" value="add_item app_map"/>
-    <property name="act40" value="pathfind spyder_mompapertown,23,23"/>
+    <property name="act40" value="pathfind spyder_papertown_mom,23,23"/>
     <property name="act41" value="set_variable spokenmomcotton:yes"/>
-    <property name="act42" value="remove_npc spyder_mompapertown"/>
+    <property name="act42" value="remove_npc spyder_papertown_mom"/>
     <property name="cond1" value="not variable_set spokenmomcotton:yes"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="not has_item player,nu_phone"/>

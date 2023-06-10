@@ -3162,7 +3162,7 @@ msgstr "Crachá: Omnichannel"
 msgid "nimrod_badge"
 msgstr "Crachá: Nimrod"
 
-# Boosters (items)
+# Boosters
 msgid "greenwash_badge"
 msgstr "Crachá: Greenwash"
 
@@ -3543,7 +3543,7 @@ msgstr "Eliminado"
 msgid "adamantine"
 msgstr "Adamantina"
 
-msgid "status_spyderbite"
+msgid "spyderbite"
 msgstr "Mordida Spyder"
 
 msgid "status_grabbed"

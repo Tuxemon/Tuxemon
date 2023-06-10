@@ -2317,7 +2317,7 @@ msgstr "Conileaf"
 msgid "spyder_frolicking_rockitten"
 msgstr "Rockitten"
 
-msgid "spyder_stop_dante"
+msgid "spyder_dante"
 msgstr "Dante"
 
 msgid "spyder_cotton_nurse1"

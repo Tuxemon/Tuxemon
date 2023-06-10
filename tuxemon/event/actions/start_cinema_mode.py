@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.states.world.worldstate import WorldState
 
 
 @final
@@ -25,7 +24,5 @@ class StartCinemaModeAction(EventAction):
     name = "start_cinema_mode"
 
     def start(self) -> None:
-        world = self.session.client.current_state
-        assert isinstance(world, WorldState)
-        if world.cinema_state == "off":
-            world.cinema_state = "turning on"
+        player = self.session.player
+        player.game_variables["cinema_mode"] = "on"

@@ -4,11 +4,12 @@ from __future__ import annotations
 
 import logging
 import random
+import uuid
 from dataclasses import dataclass
 from math import sqrt
 from typing import TYPE_CHECKING, Union
 
-from tuxemon.db import TasteWarm
+from tuxemon.db import ElementType, GenderType, TasteWarm
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
 if TYPE_CHECKING:
@@ -51,33 +52,33 @@ class CaptureEffect(ItemEffect):
                 if status.category == "positive":
                     status_category = "positive"
         # retrieves monster fighting (player)
-        iid = self.user.game_variables["iid_fighting_monster"]
+        iid = uuid.UUID(self.user.game_variables["iid_fighting_monster"])
         fighting_monster = self.user.find_monster_by_id(iid)
         # Check type tuxeball and address malus/bonus
         tuxeball_modifier = 1.0
         # type based tuxeball
         if item.slug == "tuxeball_earth":
-            if target.types[0] != "earth":
+            if target.types[0].slug != ElementType.earth:
                 tuxeball_modifier = 0.2
             else:
                 tuxeball_modifier = 1.5
         if item.slug == "tuxeball_fire":
-            if target.types[0] != "fire":
+            if target.types[0].slug != ElementType.fire:
                 tuxeball_modifier = 0.2
             else:
                 tuxeball_modifier = 1.5
         if item.slug == "tuxeball_metal":
-            if target.types[0] != "metal":
+            if target.types[0].slug != ElementType.metal:
                 tuxeball_modifier = 0.2
             else:
                 tuxeball_modifier = 1.5
         if item.slug == "tuxeball_water":
-            if target.types[0] != "water":
+            if target.types[0].slug != ElementType.water:
                 tuxeball_modifier = 0.2
             else:
                 tuxeball_modifier = 1.5
         if item.slug == "tuxeball_wood":
-            if target.types[0] != "wood":
+            if target.types[0].slug != ElementType.wood:
                 tuxeball_modifier = 0.2
             else:
                 tuxeball_modifier = 1.5
@@ -94,17 +95,17 @@ class CaptureEffect(ItemEffect):
             target.taste_warm = TasteWarm.zesty
         # gender based tuxeball
         if item.slug == "tuxeball_male":
-            if target.gender != "male":
+            if target.gender != GenderType.male:
                 tuxeball_modifier = 0.2
             else:
                 tuxeball_modifier = 1.5
         if item.slug == "tuxeball_female":
-            if target.gender != "female":
+            if target.gender != GenderType.female:
                 tuxeball_modifier = 0.2
             else:
                 tuxeball_modifier = 1.5
         if item.slug == "tuxeball_neuter":
-            if target.gender != "neuter":
+            if target.gender != GenderType.neuter:
                 tuxeball_modifier = 0.2
             else:
                 tuxeball_modifier = 1.5
@@ -120,12 +121,12 @@ class CaptureEffect(ItemEffect):
             tuxeball_modifier = crusher
         if fighting_monster:
             if item.slug == "tuxeball_xero":
-                if fighting_monster.types[0] != target.types[0]:
+                if fighting_monster.types[0].slug != target.types[0].slug:
                     tuxeball_modifier = 1.4
                 else:
                     tuxeball_modifier = 0.3
             if item.slug == "tuxeball_omni":
-                if fighting_monster.types[0] != target.types[0]:
+                if fighting_monster.types[0].slug != target.types[0].slug:
                     tuxeball_modifier = 0.3
                 else:
                     tuxeball_modifier = 1.4

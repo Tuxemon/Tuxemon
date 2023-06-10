@@ -36,7 +36,7 @@
    eAFjYBg4YMXJwGANxCBwGkifAeKzQHwOiM8D8QUgpjdYzcHAsAaIiQUAEmwG9g==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="61" type="collision" x="64" y="0" width="96" height="32"/>
   <object id="73" type="collision" x="16" y="64" width="32" height="16"/>
   <object id="74" type="collision" x="128" y="112" width="32" height="16"/>
@@ -54,16 +54,16 @@
   </object>
   <object id="75" name="Create Catgirl" type="event" x="16" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_catgirl,1,5"/>
-    <property name="act2" value="npc_face spyder_catgirl,up"/>
-    <property name="cond1" value="not npc_exists spyder_catgirl"/>
+    <property name="act1" value="create_npc spyder_candyhouse3_joanie,1,5"/>
+    <property name="act2" value="npc_face spyder_candyhouse3_joanie,up"/>
+    <property name="cond1" value="not npc_exists spyder_candyhouse3_joanie"/>
    </properties>
   </object>
   <object id="76" name="Talk Catgirl - No Fossil" type="event" x="144" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_catgirl1"/>
     <property name="act2" value="translated_dialog spyder_candy_catgirl_nofossil"/>
-    <property name="behav1" value="talk spyder_catgirl"/>
+    <property name="behav1" value="talk spyder_candyhouse3_joanie"/>
     <property name="cond1" value="not has_monster shammer"/>
     <property name="cond2" value="not has_monster rhincus"/>
     <property name="cond3" value="not variable_set catgirl_candy_hastraded:yes"/>
@@ -74,7 +74,7 @@
     <property name="act1" value="translated_dialog spyder_candy_catgirl1"/>
     <property name="act2" value="translated_dialog spyder_candy_catgirl2"/>
     <property name="act3" value="translated_dialog_choice yes:no,catgirl_candy_willtrade"/>
-    <property name="behav1" value="talk spyder_catgirl"/>
+    <property name="behav1" value="talk spyder_candyhouse3_joanie"/>
     <property name="cond1" value="is has_monster rhincus"/>
     <property name="cond2" value="not variable_set catgirl_candy_hastraded:yes"/>
    </properties>
@@ -95,7 +95,7 @@
     <property name="act1" value="translated_dialog spyder_candy_catgirl1"/>
     <property name="act2" value="translated_dialog spyder_candy_catgirl2"/>
     <property name="act3" value="translated_dialog_choice yes:no,catgirl_candy_willtrade"/>
-    <property name="behav1" value="talk spyder_catgirl"/>
+    <property name="behav1" value="talk spyder_candyhouse3_joanie"/>
     <property name="cond1" value="is has_monster shammer"/>
     <property name="cond2" value="not variable_set catgirl_candy_hastraded:yes"/>
    </properties>
@@ -121,7 +121,7 @@
   <object id="85" name="Talk Catgirl - No Fossil" type="event" x="144" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_catgirl1"/>
-    <property name="behav1" value="talk spyder_catgirl"/>
+    <property name="behav1" value="talk spyder_candyhouse3_joanie"/>
     <property name="cond1" value="is variable_set catgirl_candy_hastraded:yes"/>
    </properties>
   </object>

@@ -7,7 +7,8 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
 from tuxemon.db import ElementType
-from tuxemon.item.item import ItemEffect, ItemEffectResult
+from tuxemon.element import Element
+from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -38,13 +39,15 @@ class SwitchEffect(ItemEffect):
     ) -> SwitchEffectResult:
         done: bool = False
         elements = list(ElementType)
-        if self.element in elements:
-            ele = ElementType(self.element)
-            if ele not in target.types:
+        if target:
+            if self.element != "random":
+                ele = Element(self.element)
+                if ele not in target.types:
+                    target.types = [ele]
+                    done = True
+            else:
+                _target = random.choice(elements)
+                ele = Element(_target)
                 target.types = [ele]
                 done = True
-        if self.element == "random":
-            _target = random.choice(elements)
-            target.types = [_target]
-            done = True
         return {"success": done}

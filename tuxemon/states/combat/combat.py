@@ -766,10 +766,10 @@ class CombatState(CombatAnimations):
             if removed.current_hp <= 0:
                 faint = Technique()
                 faint.load("status_faint")
-                monster.current_hp = 0
-                if monster.status:
-                    monster.status[0].nr_turn = 0
-                monster.status = [faint]
+                removed.current_hp = 0
+                if removed.status:
+                    removed.status[0].nr_turn = 0
+                removed.status = [faint]
         self.alert(message)
         # save iid monster fighting
         if player is self.players[0]:

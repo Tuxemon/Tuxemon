@@ -7380,6 +7380,19 @@ msgid "spyder_candy_prof_nocateye"
 msgstr "I wish I could trade it for a nice quite tuxemon, like a CATEYE."
 msgid "spyder_candy_prof_willtrade"
 msgstr "I'm the luckiest professor in the region of Fondent."
+
+msgid "spyder_candy_eliane1"
+msgstr "Welcome to my market garden.\n I grow plants.\n Would you like me to harvest some crops for you?"
+
+msgid "spyder_candy_eliane2"
+msgstr "How did you enjoy the fruits of my labours?"
+
+msgid "spyder_candy_eliane3"
+msgstr "Here, you have it."
+
+msgid "spyder_candy_eliane4"
+msgstr "It may be important."
+
 msgid "spyder_timber_firefighter1"
 msgstr "Hey, do you treat your tuxemon with proper respect?! \n Sorry, I can be very blunt. \n But you wouldn't believe the damage that tuxemon can do if they aren't taken proper care of."        
 msgid "spyder_timber_firefighter_nochillimp"
@@ -8580,6 +8593,8 @@ msgid "spyder_flower_monk"
 msgstr "Bao"
 msgid "spyder_candy_henrik"
 msgstr "Henrik"
+msgid "spyder_candy_eliane"
+msgstr "Eliane"
 msgid "spyder_cottonhouse1_rodger"
 msgstr "Rodger"
 msgid "spyder_greenwash_norton"

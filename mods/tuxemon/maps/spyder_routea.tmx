@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="99">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="119">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="route7"/>
@@ -17,17 +17,17 @@
  </layer>
  <layer id="2" name="Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHFljlOA0EQRRuEENjOgZwTIHLskCNgO8cWhyBhCTEigUtAhFiicc4qJCBjuQeI/8V8US51ezyWJUr67umuqje91HgmhP+zvekQ9qEKVHWqoV/WXpDzCq1EclcjYwu4wWJCSxg/Rc5ZCd4acuoJNTB+DJ1AnN92ZVCx+RXxMrD60MaEeEAFnckk5keezoQ8mrjjrJf5ZXibiO8k1CUMJt5v7+/Xz+8ergOol9Bhnjoqj+EX0GWu+kwIDUj9K4xfQ6pBXA6Ynx+db9B7rg5YXUj9D4x/QqpBXA5YjMeAuam45jFegTLE9BnoTLzzqnMkulqn6s+HkbdlWKk45ck/6nno/sr3rfyj8nx+qi+u92v//Pi4/TK85VrxXcrwimkhTIoX+3+JvQ9ic3pwg6ohMu38LO8JOXqmGP+ci+815onBOFs7MZ5iM8TymWJtfOfie4g8Wy9FPPm1J7H2EfeRib2O84/Nz/NukHhrdCdQ3mpf2I3xdD+Xluxm8Oi/xvO0Np9sz8SeDeO037z2PLs2uy7uwZc5F54Pz4am/eG153FMZutMOZy/7Ch//uTjeIqnNWj9yrE8ceUbxtOZWN4u1se9Y03rTHnfHYjfWymeYsViS76t6QzJttZV57H1KpYc1q24uEyaYmI8Jslv9zEJM/EpnnK1j7aO9KywnpqzIbRytdEW8cT1bc+8E63P8prY85aT/b7m97f3+34bMcOM36Aye62xVPsDv5TFPw==
+   eAHdlr1uU0EQhTcoisB2H+h5gaD0cco8Qmz32OIhkCIgZYxokpdIKkTSOX1AICSgAx6EiHPkPTdHk70/Rq5Y6Xj37sx8+zfre3cepKrsWLvqXLHxzBjeLmHewPcY6kH9oAGeWUaoj3L7MNdLy/3fc9gvoNK4uxa7jdAh9LiDnsCnjbcHn2FH7Wfey15KLp/f/8rD0qs1r2O9dbznMEw7aga/tvM9gc+8o9524H2Az2XQcDOlfSj2X3Xg/YTPr6ApWDMo9v+GX+ke+XnApSoPN1Iq6RH6e5DucBWQG+K970dL+Vl39zvu6Q+7q/Im74Wx6saVv+xNPPmy1vje523Zu/I8tqktbvTR/sX+f31ehfd00D7KKrx2Wkrr4uk/1Xml+12a0+fQqRwis473FTGn0BlE/29ZfK8xTgz6ee6UePJdwPcaYm7cZvG9Rp7nSxtPdu1Jqf6CcVTEPsD5l+YXeTcI/Gj6JFCutS98LPE0XgirfVzAwn1hiTytbWm9+/Uz8bOhh/ab7cjztfm6uAd/7Fx4PjwbFu0P25HHPhXPM8Vw/irv8v2Tjf11PK1B61eM88SVrYmnM3Hea6yPe8ec1ply3FeQ/qtL85OvWKzJ95xeYDKe68rzEk++5DBvxUWztsinxGOQ7L6PtTDzr+MpVvvoeaS7wnwabaU0zpqgbuOJG+u5vRPd5jx+Q4+D9H3NGH5/R3t8nsCnqfg3hbebYmj7C3z/x28=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtkcsNg1AQA40EIqQBQjVAEZB0EKiGUA2EZvhUEnPdE2LJzZbmsAf7SfOA/ybl/MOQOZ7M2S0MpWPvzW5jaB17HbsfQ+/YG9gdDV/e08nNmb3FsPLeyJnEAXAzJLzvRDluoAiBklyVhlutc2//2z1VBNTkSV5EkQEZkAEZkAEZkAGPgR8R8BYm
+   eAFjYKAtEAcaL4GGJSmw0h6o1wENO5Jh3kFWiKZ0IJWBhjPJMA+mpR/ImICGJ8IkyaC3A/XsQMM7gfxdZJgF0nIfiB+g4YdA/iMgJgewMzIwcKBhTiCfC4hHAfEh4MDCwOAIxNQCGUCzMik0DxS3IBAKzCthQBwOxBHQfAORGSVHQ2A0BEZDYDQERkNgNARGQ4D0EAAA/ZMW7A==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlEEKAjEMRaM4oHMXwRncexDdC95CF7p3qXfQO+g5dNSlXsKfhVBKmjYwIGI/fAhp80j/iET/p7JLtILbUt0ii3fyeQtnUbd22mrp87a4fe8RPWCurfJ5PD8oiEpYUxXISeJVYNUR3tjA0/b6nKXyLsjtCjfwDQ4phTfBfOG8s4+ae5JSeHPMDh3eCDX3JGm8NbLdBPJllnSu8Q5gHRWedT/pfqyn7Reblc413qlDdIYt0ng7sPY/wFviG08TPQv8Hvj/4Im3vozvtWSd7+YEcgI5gZzAdxN4A5X0H64=
+   eAFjYBgFgz0EspAciMxGEiaJOQmo+iELA8MjIAaxqQE4WRkYuIAYHzBkwieLKmcINMuIgHkmJJiHajp2HrHm3QWG2z0gvg/ED4AYFyDGPHugflYkf3IA2SAxbIAY89KBenWRzDMAskFi2AAu80Dx1AbE7XjCF5s8LvOMgOasA+L1eMwjxX0g88gB+NxHbfMOMTIwHAZiUgA+980CmjV7CJjXCIybaCJxDI54BMXvK6BfX5PoX1LCelTtaAiMhsBoCIyGwMCGAADOxx1J
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">
@@ -41,23 +41,21 @@
   <object id="10" type="collision" x="112" y="368" width="64" height="32"/>
   <object id="11" type="collision" x="64" y="320" width="192" height="16"/>
   <object id="12" type="collision" x="240" y="112" width="16" height="208"/>
-  <object id="13" type="collision" x="192" y="16" width="32" height="272"/>
-  <object id="14" type="collision" x="224" y="16" width="80" height="16"/>
+  <object id="13" type="collision" x="192" y="272" width="32" height="16"/>
+  <object id="14" type="collision" x="208" y="16" width="96" height="16"/>
   <object id="16" type="collision" x="288" y="32" width="16" height="592"/>
-  <object id="17" type="collision" x="16" y="48" width="16" height="576"/>
+  <object id="17" type="collision" x="16" y="160" width="16" height="464"/>
   <object id="18" type="collision" x="32" y="608" width="80" height="16"/>
   <object id="19" type="collision" x="224" y="608" width="64" height="16"/>
   <object id="21" type="collision" x="224" y="624" width="16" height="16"/>
-  <object id="22" type="collision" x="32" y="48" width="160" height="16"/>
-  <object id="23" type="collision" x="48" y="64" width="128" height="112"/>
-  <object id="24" type="collision" x="64" y="16" width="96" height="32"/>
+  <object id="24" type="collision" x="64" y="16" width="96" height="80"/>
   <object id="25" type="collision" x="32" y="272" width="32" height="80"/>
   <object id="26" type="collision" x="112" y="416" width="80" height="16"/>
   <object id="27" type="collision" x="32" y="464" width="64" height="16"/>
   <object id="28" type="collision" x="128" y="576" width="96" height="16"/>
   <object id="30" type="collision" x="64" y="496" width="32" height="32"/>
   <object id="31" type="collision" x="80" y="368" width="32" height="32"/>
-  <object id="32" type="collision" x="160" y="208" width="32" height="64"/>
+  <object id="32" type="collision" x="160" y="160" width="64" height="112"/>
   <object id="34" type="collision" x="192" y="368" width="32" height="32"/>
   <object id="35" type="collision" x="96" y="560" width="32" height="32"/>
   <object id="36" type="collision" x="48" y="528" width="32" height="32"/>
@@ -68,8 +66,8 @@
   <object id="41" type="collision" x="224" y="368" width="16" height="16"/>
   <object id="42" type="collision" x="64" y="368" width="16" height="16"/>
   <object id="49" type="collision" x="32" y="208" width="32" height="64"/>
-  <object id="50" type="collision" x="48" y="176" width="48" height="32"/>
-  <object id="51" type="collision" x="128" y="176" width="48" height="32"/>
+  <object id="50" type="collision" x="32" y="160" width="64" height="48"/>
+  <object id="51" type="collision" x="128" y="160" width="32" height="48"/>
   <object id="57" type="collision" x="144" y="608" width="80" height="32"/>
   <object id="58" type="collision" x="96" y="624" width="16" height="16"/>
   <object id="59" type="collision" x="224" y="576" width="64" height="16">
@@ -79,6 +77,15 @@
     <property name="exit_to" value="down"/>
    </properties>
   </object>
+  <object id="99" type="collision" x="96" y="160" width="32" height="32"/>
+  <object id="100" type="collision" x="96" y="96" width="32" height="48"/>
+  <object id="101" type="collision" x="144" y="96" width="16" height="16"/>
+  <object id="102" type="collision" x="64" y="96" width="16" height="16"/>
+  <object id="103" type="collision" x="160" y="32" width="64" height="16"/>
+  <object id="105" type="collision" x="48" y="0" width="16" height="48"/>
+  <object id="106" type="collision" x="0" y="0" width="16" height="160"/>
+  <object id="107" type="collision" x="16" y="32" width="16" height="16"/>
+  <object id="108" type="collision" x="208" y="48" width="16" height="112"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="44" name="Teleport to Flower City" type="event" x="112" y="624" width="16" height="16">
@@ -172,13 +179,13 @@
   <object id="66" name="Environment Day" type="event" x="96" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="68" name="Environment Night" type="event" x="80" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
-    <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="67" name="Exhausted" type="event" x="112" y="0" width="16" height="16">
@@ -475,6 +482,82 @@
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="109" name="Teleport to Top" type="event" x="80" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_mansion_top.tmx,7,18,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="110" name="Teleport to Top" type="event" x="128" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_mansion_top.tmx,10,18,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="111" name="Create Guard" type="event" x="32" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_little,2,3"/>
+    <property name="cond1" value="not npc_exists spyder_routea_little"/>
+   </properties>
+  </object>
+  <object id="112" name="Talk Guard" type="event" x="0" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_routea_little1"/>
+    <property name="behav1" value="talk spyder_routea_little"/>
+   </properties>
+  </object>
+  <object id="113" name="Create Super Potion" type="event" x="160" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_super,10,6"/>
+    <property name="cond1" value="not npc_exists spyder_routea_super"/>
+    <property name="cond2" value="not variable_set routea_super:yes"/>
+   </properties>
+  </object>
+  <object id="114" name="Super Potion" type="event" x="144" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog super_potion"/>
+    <property name="act2" value="add_item super_potion"/>
+    <property name="act3" value="remove_npc spyder_routea_super"/>
+    <property name="act4" value="set_variable routea_super:yes"/>
+    <property name="behav1" value="talk spyder_routea_super"/>
+   </properties>
+  </object>
+  <object id="115" name="Create Tea" type="event" x="224" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_tea,14,24"/>
+    <property name="cond1" value="not npc_exists spyder_routea_tea"/>
+    <property name="cond2" value="not variable_set routea_tea:yes"/>
+   </properties>
+  </object>
+  <object id="116" name="Tea" type="event" x="224" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tea"/>
+    <property name="act2" value="add_item tea"/>
+    <property name="act3" value="remove_npc spyder_routea_tea"/>
+    <property name="act4" value="set_variable routea_tea:yes"/>
+    <property name="behav1" value="talk spyder_routea_tea"/>
+   </properties>
+  </object>
+  <object id="117" name="Create Cureall" type="event" x="64" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routea_cureall,4,30"/>
+    <property name="cond1" value="not npc_exists spyder_routea_cureall"/>
+    <property name="cond2" value="not variable_set routea_cureall:yes"/>
+   </properties>
+  </object>
+  <object id="118" name="Cureall" type="event" x="64" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog cureall"/>
+    <property name="act2" value="add_item cureall"/>
+    <property name="act3" value="remove_npc spyder_routea_cureall"/>
+    <property name="act4" value="set_variable routea_cureall:yes"/>
+    <property name="behav1" value="talk spyder_routea_cureall"/>
    </properties>
   </object>
  </objectgroup>

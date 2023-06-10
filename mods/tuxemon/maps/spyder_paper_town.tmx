@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="276">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="274">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="route1"/>
@@ -42,7 +42,7 @@
    eAHt06sNgEAQRdFXAiiQVMO3JH4eaARokitJFhSIFW+SY3bM5CYreVzgvUCRvu+8CQu4V9jEL/8XKHOpQo0GLTo8TZ9JA0ZMmBHDLIm0YkMsc/+/O3cdOCO6L5ZOvsMFXMAFvha4ALfJCbo=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <properties>
    <property name="Collision" value=""/>
   </properties>
@@ -274,6 +274,7 @@
     <property name="act70" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is party_size less_than,1"/>
+    <property name="cond3" value="is variable_set dantefirst:yes"/>
    </properties>
   </object>
   <object id="219" name="Chosen - Rockitten" type="event" x="512" y="128" width="16" height="16">
@@ -387,7 +388,7 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="232" name="Create Captain" type="event" x="64" y="224" width="16" height="16">
+  <object id="200" name="Create Captain" type="event" x="64" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_captain,4,14"/>
     <property name="act2" value="npc_face spyder_captain,up"/>
@@ -395,7 +396,7 @@
     <property name="cond2" value="is variable_set captainreturns:yes"/>
    </properties>
   </object>
-  <object id="233" name="Talk Captain - Flower" type="event" x="208" y="240" width="16" height="16">
+  <object id="203" name="Talk Captain - Flower" type="event" x="208" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
     <property name="act2" value="translated_dialog_choice paper:leather:flower,rivergoto"/>
@@ -403,7 +404,7 @@
     <property name="cond1" value="not variable_set seentimber:yes"/>
    </properties>
   </object>
-  <object id="237" name="Talk Captain - Timber" type="event" x="240" y="240" width="16" height="16">
+  <object id="204" name="Talk Captain - Timber" type="event" x="240" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
     <property name="act2" value="translated_dialog_choice paper:leather:flower:timber,rivergoto"/>
@@ -412,7 +413,7 @@
     <property name="cond2" value="is variable_set seentimber:yes"/>
    </properties>
   </object>
-  <object id="240" name="Talk Captain - Candy" type="event" x="224" y="240" width="16" height="16">
+  <object id="205" name="Talk Captain - Candy" type="event" x="224" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
     <property name="act2" value="translated_dialog_choice paper:leather:flower:timber:candy,rivergoto"/>
@@ -420,7 +421,7 @@
     <property name="cond1" value="is variable_set seencandy:yes"/>
    </properties>
   </object>
-  <object id="241" name="Destination - Flower" type="event" x="208" y="256" width="16" height="16">
+  <object id="206" name="Destination - Flower" type="event" x="208" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act4" value="player_face up"/>
@@ -428,7 +429,7 @@
     <property name="cond1" value="is variable_set rivergoto:flower"/>
    </properties>
   </object>
-  <object id="242" name="Destination - Leather" type="event" x="224" y="256" width="16" height="16">
+  <object id="207" name="Destination - Leather" type="event" x="224" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_leather_town.tmx,17,19,0.3"/>
@@ -436,7 +437,7 @@
     <property name="cond1" value="is variable_set rivergoto:leather"/>
    </properties>
   </object>
-  <object id="243" name="Destination - Paper" type="event" x="192" y="256" width="16" height="16">
+  <object id="208" name="Destination - Paper" type="event" x="192" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_paper_town.tmx,4,13,0.3"/>
@@ -444,7 +445,7 @@
     <property name="cond1" value="is variable_set rivergoto:paper"/>
    </properties>
   </object>
-  <object id="245" name="Destination - Candy" type="event" x="192" y="240" width="16" height="16">
+  <object id="209" name="Destination - Candy" type="event" x="192" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_candy_town.tmx,26,29,0.3"/>
@@ -452,19 +453,21 @@
     <property name="cond1" value="is variable_set rivergoto:candy"/>
    </properties>
   </object>
-  <object id="246" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
+  <object id="210" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
+    <property name="cond2" value="not has_sprite swimmer"/>
    </properties>
   </object>
-  <object id="251" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+  <object id="211" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
-    <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
+    <property name="cond2" value="not has_sprite swimmer"/>
    </properties>
   </object>
-  <object id="250" name="Destination - Timber" type="event" x="240" y="256" width="16" height="16">
+  <object id="212" name="Destination - Timber" type="event" x="240" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_timber_town.tmx,8,21,0.3"/>
@@ -472,14 +475,14 @@
     <property name="cond1" value="is variable_set rivergoto:timber"/>
    </properties>
   </object>
-  <object id="252" name="Teleport to Manor" type="event" x="160" y="192" width="16" height="16">
+  <object id="213" name="Teleport to Manor" type="event" x="160" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_paper_manor.tmx,6,7,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>
-  <object id="254" name="Stop 2!" type="event" x="16" y="240" width="16" height="48">
+  <object id="214" name="Stop 2!" type="event" x="16" y="240" width="16" height="48">
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act10" value="player_stop"/>
@@ -494,7 +497,7 @@
     <property name="cond2" value="is party_size less_than,1"/>
    </properties>
   </object>
-  <object id="265" name="Choice Surf" type="event" x="160" y="304" width="16" height="16">
+  <object id="215" name="Choice Surf" type="event" x="160" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog itsswimmingtime"/>
     <property name="act2" value="translated_dialog_choice yes:no,swimming"/>
@@ -504,14 +507,14 @@
     <property name="cond4" value="not player_in surfable"/>
    </properties>
   </object>
-  <object id="266" name="surfable" type="event" x="128" y="304" width="16" height="16">
+  <object id="216" name="surfable" type="event" x="128" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="set_player_template swimmer"/>
     <property name="cond1" value="is player_in surfable"/>
     <property name="cond2" value="not has_sprite swimmer"/>
    </properties>
   </object>
-  <object id="267" name="not surfable" type="event" x="112" y="304" width="16" height="16">
+  <object id="229" name="not surfable" type="event" x="112" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="set_player_template default"/>
     <property name="act2" value="set_variable swimming:no"/>
@@ -519,19 +522,29 @@
     <property name="cond2" value="is has_sprite swimmer"/>
    </properties>
   </object>
-  <object id="268" name="Remove Obstacle" type="event" x="144" y="304" width="16" height="16">
+  <object id="235" name="Remove Obstacle" type="event" x="144" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="remove_collision water"/>
     <property name="cond1" value="is variable_set swimming:yes"/>
    </properties>
   </object>
-  <object id="271" name="Swim Encounters" type="event" x="176" y="288" width="16" height="16">
+  <object id="236" name="Swim Encounters Day" type="event" x="176" y="288" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter routec"/>
+    <property name="act1" value="set_variable environment:sea"/>
+    <property name="act2" value="random_encounter routec"/>
     <property name="cond1" value="is has_sprite swimmer"/>
+    <property name="cond2" value="not variable_set stage_of_day:night"/>
    </properties>
   </object>
-  <object id="272" name="Teleport to Daycare Back" type="event" x="336" y="48" width="16" height="16">
+  <object id="234" name="Swim Encounters Night" type="event" x="176" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_sea"/>
+    <property name="act2" value="random_encounter routec"/>
+    <property name="cond1" value="is has_sprite swimmer"/>
+    <property name="cond2" value="is variable_set stage_of_day:night"/>
+   </properties>
+  </object>
+  <object id="244" name="Teleport to Daycare Back" type="event" x="336" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_daycare.tmx,13,7,0.3"/>
     <property name="act2" value="player_face left"/>
@@ -539,18 +552,41 @@
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
-  <object id="273" name="Teleport to Rival" type="event" x="512" y="80" width="16" height="16">
+  <object id="238" name="Teleport to Rival" type="event" x="512" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_paper_rival_downstairs.tmx,1,11,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>
-  <object id="274" name="Sign for Rival House" type="event" x="448" y="80" width="16" height="16">
+  <object id="239" name="Sign for Rival House" type="event" x="448" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_rival"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="273" name="My First Mon - Not Met" type="event" x="368" y="176" width="144" height="16">
+   <properties>
+    <property name="act10" value="player_stop"/>
+    <property name="act11" value="lock_controls"/>
+    <property name="act20" value="create_npc spyder_dante,18,14"/>
+    <property name="act30" value="pathfind_to_player spyder_dante,down"/>
+    <property name="act31" value="npc_face player,down"/>
+    <property name="act40" value="translated_dialog spyder_papertown_myfirstmon_notmet"/>
+    <property name="act45" value="pathfind spyder_dante,26,9"/>
+    <property name="act46" value="npc_face spyder_dante,right"/>
+    <property name="act47" value="npc_face player,up"/>
+    <property name="act48" value="translated_dialog spyder_papertown_myfirstmon1"/>
+    <property name="act49" value="pathfind player,26,10"/>
+    <property name="act50" value="npc_face player,up"/>
+    <property name="act51" value="translated_dialog spyder_papertown_myfirstmon2"/>
+    <property name="act55" value="npc_face spyder_dante,down"/>
+    <property name="act60" value="translated_dialog_choice rockitten:nut:tweesher:agnite:lambert,mymonchoice"/>
+    <property name="act70" value="unlock_controls"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is party_size less_than,1"/>
+    <property name="cond3" value="not variable_set dantefirst:yes"/>
    </properties>
   </object>
  </objectgroup>

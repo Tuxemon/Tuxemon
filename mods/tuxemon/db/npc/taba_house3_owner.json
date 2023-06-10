@@ -2,7 +2,7 @@
   "slug": "taba_house3_owner",
   "template": [
     {
-      "sprite_name": "girl3",
+      "sprite_name": "christie_black",
       "combat_front": "heroine",
       "slug": "heroine"
     }

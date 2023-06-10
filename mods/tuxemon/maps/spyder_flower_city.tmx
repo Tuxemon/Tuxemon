@@ -20,7 +20,7 @@
  <tileset firstgid="13533" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtV9FNAzEMvTEK7RoI+KhYoD/QDSgzALtQhqEjMARsQH/rSH1SZJLw7LtLTug+rNyljt/zi+NcN1ddt5lt1uAf18C95PbgsG0lTZ4F58Vhr5X5fQje3mDvlfnV0sPaL7G/LfnhDKRqegr8wOFLakZzxG8t9XsTXgexcE4Dx7iffJ/nW/ILNQmdcr1kKvxyfaRWv8idX+jXWifww5lFrU2lzsAPeul6s+qHPPW5B453DGc2dV9Z6wx5WvPy8raum/n1+w8zhn5D1vQY/IaMOWQs1D4bk9GZjQVsZmRjMn6MD8Mp9kFM/a2ieyz8Sr2N8YmxmWfE1HeH5svceYhVyqHECTWEezaMwNX8cu8l7L78sD6HHc97vq1wT1rvRWiK9am7Vs95MYDlGRfXXXdB2KX4eOKX1mjcFMZacD9v/7a7Efhp3OXNb61WMqf9Uu+ptUz+Jf1SOGPOWTX2cPmRfdyJHcl9jzGs/AIOjMUDBluXffjFe/8YcQXn1PgkfmEd469zRm4xbstnrfHMz9aD++p3AmyejJk=
+   eAHtV9FNAzEMvTEKdA0E/UAs0B9gA9oZKLtQhmlHYAjYAH6xJZ4UGSe1fXfJqboPK72c4/f84jjX9XXXrWebNTjjGnig3B4D9lRJkxfC2QXstTK/A+HtHfZemV8tPbz9Evvbkh/OgFbTU+AHDp9UM5Ij3rXU7414Hcn4nDLHtJ98/c235Mc1CZ1yvWQq/HJ9pFa/yJ1f6NdaJ/DDmUWtTaXOwA96yXrz6oc85bkHTnTkM6vdV946Q57evKK8vetmfv3+w4yh35A1PQa/IWMOGQu1b41p0dkaC9iW0RrT4mfxsXBKfRBTfqvIHgu/Um+z+KTYlt+IKe8Oyddy5yFWKYcSJ9QQ7lkegSv55Z5L2H35YX0OO52PfFvhnvTei9AU67W7Vs5FMYAVGRc3XXdhsEvyicQvrZG4GsYd4X6s8sbx+f39CPwk7tXtf62WNCf9tGdtrSX/kn4azphzXo0jXL5pHzdkPyf2XYvt5cc4MCseME7V5RD80r1/TriCszZuyY/XWfxlzsgtxW35W2o88/P14L76/QKI3YwP
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
@@ -38,7 +38,7 @@
    eAHtlktKA0EQhmuh+MgZjCsR88DXTvAcvrbZJ5qQa7jwCmpcqfGxVlEvoJ4jeoR8QQoyGXVm0t2xYbrgo6ieTteff5qhRLLFQ1nkMYEnnk9viUzBcNZOuq61zdyj92cCXzwvoW0FhrPq0HWtbea0+tL2rFWiO9vb3/W4Hi9wXjGBxZGeUQXR6uSXvS49jioI1X84MO79m5TWcP8m5XTo48KBS76rV3ANXbiBEPYcqFdFGnAIR9CEFoTIrwO9NWZLsBF5ul/PePYCrz9453JOOOWbeAbn0IELyBou5oTbJZE7uAcf4w1d7/CRUt9f7zfp/82wYRbmYB4K4FOsImZwbddhAzbBp9hBzC7swT4cgO0web+2tfh0XmPZJzVxLcee64srDivBgeBAnhzQ+c9VNvVS5z9X2VTf4PeuvNNzTTW68k7PNdHXB5B/bvw=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="302" type="collision" x="0" y="512" width="64" height="48">
    <properties>
     <property name="key" value="water"/>
@@ -524,13 +524,13 @@
   <object id="466" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="467" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
-    <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="468" name="Sign: Flower Scoop" type="event" x="352" y="368" width="16" height="16">

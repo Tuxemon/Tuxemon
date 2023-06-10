@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from tuxemon.db import ElementType
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -83,7 +84,8 @@ class MonsterPropertyCondition(EventCondition):
                     return True
             # monster type (eg. earth, fire, etc)
             elif prop == "type":
-                if val in mon.types:
+                ele = ElementType(val)
+                if mon.has_type(ele):
                     return True
             # monster gender (eg. male, female or neuter)
             elif prop == "gender":

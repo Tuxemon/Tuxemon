@@ -48,7 +48,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="5" type="collision" x="0" y="32" width="240" height="16"/>
   <object id="6" type="collision" x="160" y="48" width="16" height="144"/>
   <object id="7" type="collision" x="0" y="176" width="128" height="16"/>

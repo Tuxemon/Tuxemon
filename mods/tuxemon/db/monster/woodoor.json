@@ -1,7 +1,6 @@
 {
     "slug": "woodoor",
     "category": "portal",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -58,7 +57,7 @@
     "txmn_id": 250,
     "height": 2040,
     "weight": 46,
-    "catch_rate": 120.0,
+    "catch_rate": 100.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05
 }

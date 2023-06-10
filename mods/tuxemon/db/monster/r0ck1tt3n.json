@@ -1,7 +1,6 @@
 {
     "slug": "r0ck1tt3n",
     "category": "glitched",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -57,14 +56,13 @@
     "shape": "hunter",
     "stage": "standalone",
     "types": [
-        "glitch",
         "earth"
     ],
     "possible_genders": ["neuter"],
     "txmn_id": 0,
     "height": 0,
     "weight": 25,
-    "catch_rate": 120.0,
+    "catch_rate": 100.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05
 }

@@ -6,7 +6,6 @@ import logging
 from dataclasses import dataclass
 from typing import Union, final
 
-from tuxemon import ai
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
 from tuxemon.states.world.worldstate import WorldState
@@ -57,5 +56,4 @@ class CreateNpcAction(EventAction):
 
         # Set the NPC object's variables
         npc.behavior = self.behavior
-        npc.ai = ai.RandomAI()
         npc.load_party()

@@ -23,11 +23,12 @@ class LearnMmEffect(ItemEffect):
     """This effect teaches the target a random type technique."""
 
     name = "learn_mm"
-    element: ElementType
+    element: str
 
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> LearnMmEffectResult:
+        ele = ElementType(self.element)
         assert target
         techs = list(db.database["technique"])
         # type moves
@@ -35,7 +36,7 @@ class LearnMmEffect(ItemEffect):
         for mov in techs:
             results = db.lookup(mov, table="technique")
             if results.randomly:
-                if self.element in results.types:
+                if ele in results.types:
                     filters.append(results.slug)
         # monster moves
         moves = []

@@ -328,13 +328,13 @@ class JournalInfoState(PygameMenuState):
         lab4.translate(fix_width(width, 0.50), fix_height(height, 0.30))
         type_image_1 = pygame_menu.BaseImage(
             tools.transform_resource_filename(
-                f"gfx/ui/icons/element/{monster.types[0]}_type.png"
+                f"gfx/ui/icons/element/{monster.types[0].name}_type.png"
             ),
         )
         if len(monster.types) > 1:
             type_image_2 = pygame_menu.BaseImage(
                 tools.transform_resource_filename(
-                    f"gfx/ui/icons/element/{monster.types[1]}_type.png"
+                    f"gfx/ui/icons/element/{monster.types[1].name}_type.png"
                 ),
             )
             menu.add.image(type_image_1, float=True).translate(

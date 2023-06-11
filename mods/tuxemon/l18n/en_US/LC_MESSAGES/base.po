@@ -1912,6 +1912,32 @@ msgstr "Captured {doc} days ago"
 msgid "tuxepedia_exp"
 msgstr "{exp_lv}xp to Lv {lv}"
 
+# Menu loading screen
+
+msgid "cathedral_ads_1"
+msgstr "Friends are for eating! Doctors buy Scoop cereal 'for the bits'. (from: Scoop)"
+
+msgid "cathedral_ads_2"
+msgstr "Omnichannel TV: You watch us and we'll watch you. (from: Omnichannel)"
+
+msgid "cathedral_ads_3"
+msgstr "Radio FUD: Because reading is for nerds. (from: Omnichannel)"
+
+msgid "cathedral_ads_4"
+msgstr "The Nimrod gun-car: For safety. (from: Omnichannel)"
+
+msgid "cathedral_ads_5"
+msgstr "On the morning commute, the only road rage you should have to deal with is your own. The Nimrod attachable car-gun. (from: Nimrod)"
+
+msgid "cathedral_ads_6"
+msgstr "Work is fun when you bring it to the beach. (from: Omnichannel)"
+
+msgid "cathedral_ads_7"
+msgstr "Visit the Dojo of the Five Elements and reach a higher level of understanding. Or just learn to fight better. (from: Nimrod)"
+
+msgid "cathedral_ads_8"
+msgstr "Fill the void inside with rubies. (from: Shaft)"
+
 # Menu notifications
 msgid "log_off"
 msgstr "Log Off"

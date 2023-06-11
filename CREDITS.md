@@ -784,6 +784,24 @@ back and menu sprites by ultidonki based on the design by Tricoelacanth, all rel
 * ["Teddisun"](https://www.github.com/Tuxemon/Tuxemon/tree/development/mods/tuxemon/gfx/sprites/battle/teddisun-front.png)
 Character created by Leo (from Discord) and released under the CC-BY-SA 4.0+ license. Front, back, and menu sprites drawn by ultidonki, also released under the CC-BY-SA 4.0+ license based on the design by Leo (from Discord).
 
+### Loading screens
+
+* ["Cathedral Ads 1"](https://wiki.tuxemon.org/index.php?title=File:Friendsareforeating.png) AI art, prompted by Sanglorian
+
+* ["Cathedral Ads 2"](https://wiki.tuxemon.org/index.php?title=File:Omnichannel-letswatcheachother.png) AI art, prompted by Sanglorian
+
+* ["Cathedral Ads 3"](https://wiki.tuxemon.org/index.php?title=File:Radio-becausereadingisfornerds.png) AI art, prompted by Sanglorian
+
+* ["Cathedral Ads 4"](https://wiki.tuxemon.org/index.php?title=File:Theguncar-forsafety.png) AI art, prompted by Sanglorian
+
+* ["Cathedral Ads 5"](https://wiki.tuxemon.org/index.php?title=File:Myothercarisatank.png) AI art, prompted by Sanglorian
+
+* ["Cathedral Ads 6"](https://wiki.tuxemon.org/index.php?title=File:Workisfunwhenyoubringitothebeach.png) AI art, prompted by Sanglorian
+
+* ["Cathedral Ads 7"](https://wiki.tuxemon.org/index.php?title=File:Visitdojo.png) AI art, prompted by Sanglorian
+
+* ["Cathedral Ads 8"](https://wiki.tuxemon.org/File:Rubiesfillthevoid.png) AI art, prompted by Sanglorian
+
 ### Items
 
 * ["Backpack RPG Icons"](http://opengameart.org/content/rpg-icons) by

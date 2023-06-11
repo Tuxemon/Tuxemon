@@ -401,13 +401,18 @@ class ShopBuyMenuState(ShopMenuState):
         inventory = self.economy.lookup_item_inventory(item.slug)
         if inventory == INFINITE_ITEMS:
             inventory = 99999
+
+        quantity: int = 1
         max_quantity = min(inventory, qty_can_afford)
+        if item.quantity == 0:
+            quantity = 0
+            max_quantity = 0
 
         self.client.push_state(
             QuantityAndPriceMenu(
                 callback=partial(buy_item, item),
                 max_quantity=max_quantity,
-                quantity=1,
+                quantity=quantity,
                 shrink_to_items=True,
                 price=price,
             )

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="29">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -58,18 +58,10 @@
    </properties>
   </object>
   <object id="14" name="Player Spawn" type="event" x="112" y="144" width="16" height="16"/>
-  <object id="15" name="Create Hacker" type="event" x="16" y="64" width="16" height="16">
+  <object id="15" name="Create Hacker" type="event" x="160" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontown_hacker,10,4"/>
     <property name="cond1" value="not npc_exists spyder_cottontown_hacker"/>
-   </properties>
-  </object>
-  <object id="16" name="Talk Barmaid Intro" type="event" x="160" y="144" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_cottoncafe_barmaidintro"/>
-    <property name="act2" value="set_variable introdcottoncafe:yes"/>
-    <property name="behav1" value="talk spyder_cottontown_barmaid"/>
-    <property name="cond1" value="not variable_set introdcottoncafe:yes"/>
    </properties>
   </object>
   <object id="17" name="Create Barmaid" type="event" x="0" y="64" width="16" height="16">
@@ -78,13 +70,13 @@
     <property name="cond1" value="not npc_exists spyder_cottontown_barmaid"/>
    </properties>
   </object>
-  <object id="18" name="Talk Hacker" type="event" x="144" y="144" width="16" height="16">
+  <object id="18" name="Talk Hacker" type="event" x="144" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cottoncafe_hackerchat"/>
     <property name="behav1" value="talk spyder_cottontown_hacker"/>
    </properties>
   </object>
-  <object id="19" name="Talk Barmaid" type="event" x="0" y="96" width="16" height="16">
+  <object id="19" name="Talk Barmaid" type="event" x="0" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cottoncafe_barmaid"/>
     <property name="act2" value="translated_dialog_choice yes:no,chooses"/>
@@ -95,41 +87,39 @@
     <property name="cond5" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="20" name="First Visit to Cotton Cafe" type="event" x="80" y="96" width="112" height="16">
+  <object id="20" name="First Visit to Cotton Cafe" type="event" x="160" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="wait 0.1"/>
     <property name="act10" value="player_stop"/>
     <property name="act11" value="lock_controls"/>
     <property name="act15" value="pathfind spyder_cottontown_hacker,7,3"/>
     <property name="act20" value="npc_face spyder_cottontown_hacker,down"/>
-    <property name="act21" value="npc_face spyder_cottoncafe_hillary,up"/>
+    <property name="act21" value="translated_dialog spyder_cotton_tuxepediaahem"/>
     <property name="act22" value="npc_face spyder_cottoncafe_lotus,up"/>
     <property name="act23" value="npc_face spyder_cottoncafe_cayden,up"/>
     <property name="act24" value="npc_face spyder_cottoncafe_wilford,up"/>
     <property name="act25" value="npc_face spyder_cottoncafe_juliana,up"/>
+    <property name="act26" value="npc_face spyder_cottoncafe_hillary,up"/>
     <property name="act30" value="translated_dialog spyder_cotton_tuxepediaintro"/>
     <property name="act40" value="translated_dialog spyder_cotton_tuxepediaintro2"/>
     <property name="act50" value="screen_transition 0.5"/>
     <property name="act51" value="wait 0.5"/>
     <property name="act52" value="set_variable visitedcottoncafe:yes"/>
     <property name="act53" value="add_item app_tuxepedia"/>
-    <property name="act60" value="remove_npc spyder_cottoncafe_hillary"/>
     <property name="act61" value="remove_npc spyder_cottoncafe_lotus"/>
-    <property name="act62" value="remove_npc spyder_cottoncafe_cayden"/>
     <property name="act63" value="remove_npc spyder_cottoncafe_wilford"/>
     <property name="act64" value="remove_npc spyder_cottoncafe_juliana"/>
     <property name="act77" value="pathfind spyder_cottontown_hacker,7,5"/>
     <property name="act88" value="translated_dialog spyder_cotton_tuxepediaintro4"/>
     <property name="act90" value="unlock_controls"/>
+    <property name="behav1" value="talk spyder_cottontown_hacker"/>
     <property name="cond1" value="not variable_set visitedcottoncafe:yes"/>
-    <property name="cond2" value="is player_at"/>
    </properties>
   </object>
   <object id="21" name="Create Homemaker (1st)" type="event" x="128" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottoncafe_juliana,8,9"/>
     <property name="cond1" value="not npc_exists spyder_cottoncafe_juliana"/>
-    <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>
   <object id="22" name="Create Granny (1st)" type="event" x="48" y="112" width="16" height="16">
@@ -137,21 +127,18 @@
     <property name="act1" value="create_npc spyder_cottoncafe_lotus,3,7"/>
     <property name="act2" value="npc_face spyder_cottoncafe_lotus,right"/>
     <property name="cond1" value="not npc_exists spyder_cottoncafe_lotus"/>
-    <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>
   <object id="23" name="Create Goth (1st)" type="event" x="32" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottoncafe_cayden,2,6"/>
     <property name="cond1" value="not npc_exists spyder_cottoncafe_cayden"/>
-    <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>
   <object id="24" name="Create Assistant (1st)" type="event" x="160" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottoncafe_wilford,10,7"/>
     <property name="cond1" value="not npc_exists spyder_cottoncafe_wilford"/>
-    <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>
   <object id="25" name="Create Florist (1st)" type="event" x="176" y="96" width="16" height="16">
@@ -159,7 +146,6 @@
     <property name="act1" value="create_npc spyder_cottoncafe_hillary,11,6"/>
     <property name="act2" value="npc_face spyder_cottoncafe_hillary,left"/>
     <property name="cond1" value="not npc_exists spyder_cottoncafe_hillary"/>
-    <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>
   <object id="26" name="Heal Tuxemon" type="event" x="0" y="128" width="16" height="16">
@@ -195,6 +181,58 @@
     <property name="act2" value="set_monster_status"/>
     <property name="act3" value="set_variable teleport_clinic:none"/>
     <property name="cond1" value="is variable_set teleport_clinic:lost"/>
+   </properties>
+  </object>
+  <object id="29" name="Cayden Talk" type="event" x="48" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cotton_cafegoth"/>
+    <property name="behav1" value="talk spyder_cottoncafe_cayden"/>
+   </properties>
+  </object>
+  <object id="30" name="Hillary Talk" type="event" x="176" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cotton_cafeflorist1"/>
+    <property name="behav1" value="talk spyder_cottoncafe_hillary"/>
+    <property name="cond1" value="not variable_set visitedcottoncafe:yes"/>
+   </properties>
+  </object>
+  <object id="31" name="Hillary Talk 2" type="event" x="176" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cotton_cafeflorist2"/>
+    <property name="behav1" value="talk spyder_cottoncafe_hillary"/>
+    <property name="cond2" value="is variable_set visitedcottoncafe:yes"/>
+   </properties>
+  </object>
+  <object id="32" name="Lotus Talk" type="event" x="32" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cotton_cafegranny"/>
+    <property name="behav1" value="talk spyder_cottoncafe_lotus"/>
+   </properties>
+  </object>
+  <object id="33" name="Wilford Talk" type="event" x="160" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cotton_cafeassistant"/>
+    <property name="behav1" value="talk spyder_cottoncafe_wilford"/>
+   </properties>
+  </object>
+  <object id="34" name="Juliana Talk 2" type="event" x="160" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cotton_homemaker2"/>
+    <property name="behav1" value="talk spyder_cottoncafe_juliana"/>
+    <property name="cond1" value="is variable_set visitedcottoncafe:yes"/>
+   </properties>
+  </object>
+  <object id="35" name="Juliana Talk" type="event" x="144" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cotton_homemaker1"/>
+    <property name="behav1" value="talk spyder_cottoncafe_juliana"/>
+    <property name="cond1" value="not variable_set visitedcottoncafe:yes"/>
+   </properties>
+  </object>
+  <object id="36" name="Route Music" type="event" x="80" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_cathedral_theme"/>
+    <property name="cond1" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
  </objectgroup>

@@ -12,7 +12,7 @@ _EVENT_MAP: Final = {
     buttons.DOWN: pygame.event.Event(pygame.KEYDOWN, key=pygame.K_DOWN),
     buttons.LEFT: pygame.event.Event(pygame.KEYDOWN, key=pygame.K_LEFT),
     buttons.RIGHT: pygame.event.Event(pygame.KEYDOWN, key=pygame.K_RIGHT),
-    buttons.BACK: pygame.event.Event(pygame.KEYDOWN, key=pygame.K_ESCAPE),
+    buttons.BACK: pygame.event.Event(pygame.KEYDOWN, key=pygame.NOEVENT),
     buttons.A: pygame.event.Event(pygame.KEYDOWN, key=pygame.K_RETURN),
     buttons.B: pygame.event.Event(pygame.KEYDOWN, key=pygame.K_ESCAPE),
 }

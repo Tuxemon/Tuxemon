@@ -566,7 +566,7 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="273" name="My First Mon - Not Met" type="event" x="400" y="208" width="112" height="16">
+  <object id="240" name="My First Mon - Not Met" type="event" x="400" y="208" width="112" height="16">
    <properties>
     <property name="act10" value="player_stop"/>
     <property name="act11" value="lock_controls"/>
@@ -592,7 +592,7 @@
     <property name="cond4" value="not variable_set dantebin:yes"/>
    </properties>
   </object>
-  <object id="274" name="Rockitten" type="event" x="352" y="144" width="16" height="32">
+  <object id="241" name="Rockitten" type="event" x="352" y="144" width="16" height="32">
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,rockitten"/>
@@ -604,7 +604,7 @@
     <property name="cond3" value="is party_size less_than,1"/>
    </properties>
   </object>
-  <object id="275" name="Lambert" type="event" x="352" y="176" width="16" height="32">
+  <object id="242" name="Lambert" type="event" x="352" y="176" width="16" height="32">
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,lambert"/>
@@ -616,7 +616,7 @@
     <property name="cond3" value="is party_size less_than,1"/>
    </properties>
   </object>
-  <object id="276" name="Nut" type="event" x="432" y="144" width="32" height="16">
+  <object id="243" name="Nut" type="event" x="432" y="144" width="32" height="16">
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,nut"/>
@@ -628,7 +628,7 @@
     <property name="cond3" value="is party_size less_than,1"/>
    </properties>
   </object>
-  <object id="277" name="Tweesher" type="event" x="464" y="144" width="32" height="16">
+  <object id="245" name="Tweesher" type="event" x="464" y="144" width="32" height="16">
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,tweesher"/>
@@ -640,7 +640,7 @@
     <property name="cond3" value="is party_size less_than,1"/>
    </properties>
   </object>
-  <object id="278" name="Agnite" type="event" x="480" y="176" width="16" height="32">
+  <object id="246" name="Agnite" type="event" x="480" y="176" width="16" height="32">
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,agnite"/>
@@ -652,7 +652,7 @@
     <property name="cond3" value="is party_size less_than,1"/>
    </properties>
   </object>
-  <object id="279" name="Trash" type="event" x="368" y="208" width="32" height="16">
+  <object id="250" name="Trash" type="event" x="368" y="208" width="32" height="16">
    <properties>
     <property name="act25" value="translated_dialog spyder_papertown_trash"/>
     <property name="cond1" value="is player_facing_tile"/>

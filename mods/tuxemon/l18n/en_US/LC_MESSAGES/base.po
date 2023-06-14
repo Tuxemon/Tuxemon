@@ -8267,46 +8267,49 @@ msgid "spyder_datacenter_fermi"
 msgstr "Fermi"
 
 msgid "spyder_datacenter_fermi1"
-msgstr "dialogue1"
+msgstr "The vulnerabilities were discovered by me."
 
 msgid "spyder_datacenter_fermi2"
-msgstr "dialogue2"
+msgstr "Omnichannel took advantage."
 
 msgid "spyder_datacenter_onnes"
 msgstr "Onnes"
 
 msgid "spyder_datacenter_onnes1"
-msgstr "dialogue1"
+msgstr "Omnichannel claimed that encryption keys purportedly belonging to them."
 
 msgid "spyder_datacenter_onnes2"
-msgstr "dialogue2"
+msgstr "Fake news."
 
 msgid "spyder_datacenter_bayliss"
 msgstr "Bayliss"
 
 msgid "spyder_datacenter_bayliss1"
-msgstr "dialogue1"
+msgstr "You could do a lot of work in the kernel."
 
 msgid "spyder_datacenter_bayliss2"
-msgstr "dialogue2"
+msgstr "But it would again be a security issue."
 
 msgid "spyder_datacenter_chomsky"
 msgstr "Chomsky"
 
 msgid "spyder_datacenter_chomsky1"
-msgstr "dialogue1"
+msgstr "The kernel will be rebased."
 
 msgid "spyder_datacenter_chomsky2"
-msgstr "dialogue2"
+msgstr "New long-term stable releases."
 
 msgid "spyder_datacenter_lagrange"
 msgstr "Lagrange"
 
 msgid "spyder_datacenter_lagrange1"
-msgstr "dialogue1"
+msgstr "Kernel vulnerability?"
 
 msgid "spyder_datacenter_lagrange2"
-msgstr "dialogue2"
+msgstr "The kernel vulnerability was fixed in a supplemental update for OmniOS 6.20.4."
+
+msgid "spyder_datacenter_billie1"
+msgstr "Great job, ${{name}}. Looks like Omnichannel let their AI out just to spite us.\n You know, you're making quite a habit of saving the region.\n You should take a break for a change.\n I hear there's a new walking trail that has opened up behind the old Mansion outside Flower City.\n Might be worth checking out.\n Me? I'm going to be a little busy over the next while.\n Let's just say they've finally let me into an exclusive club.\n Come on, you're not going to make me give up all my perks, are you?"
 
 msgid "spyder_box_goldpass1"
 msgstr "It looks like someone has lost this.\n Obtained Gold Pass."
@@ -8314,30 +8317,29 @@ msgstr "It looks like someone has lost this.\n Obtained Gold Pass."
 msgid "spyder_datacenter_sign"
 msgstr "Welcome to the GoodChat data center. An Omnichannel subsidiary."
 
-msgid "spyder_data_pc01"
-msgstr "XXX"
 msgid "spyder_data_pc02"
-msgstr "XXX"
-msgid "spyder_data_pc03"
-msgstr "XXX"
+msgstr "Pid: 0, comm: swapper Tainted: T   U\n       ----------------  \n 6.9.20-0420.el6.x86_64 #1\n Call Trace:"
+
 msgid "spyder_data_pc04"
-msgstr "XXX"
+msgstr "Which is the lightest monster?"
+
 msgid "spyder_data_pc05"
-msgstr "XXX"
+msgstr "10010000"
+
 msgid "spyder_data_pc06"
-msgstr "XXX"
+msgstr "1001101"
+
 msgid "spyder_data_pc07"
-msgstr "XXX"
+msgstr "Which is the tallest monster?"
+
 msgid "spyder_data_pc08"
-msgstr "XXX"
+msgstr "Which is the smallest monster?"
+
 msgid "spyder_data_pc09"
-msgstr "XXX"
+msgstr "Which is the heaviest monster?"
+
 msgid "spyder_data_pc10"
-msgstr "XXX"
-msgid "spyder_data_pc11"
-msgstr "XXX"
-msgid "spyder_data_pc12"
-msgstr "XXX"
+msgstr "11000001"
 
 msgid "spyder_scoop_welcome"
 msgstr "Welcome!"

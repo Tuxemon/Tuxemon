@@ -47,9 +47,9 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="16" name="Heal Tuxemon" type="event" x="80" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="set_monster_health"/>
-    <property name="act2" value="set_monster_status"/>
-    <property name="act3" value="variable_math cathedral_ads,+,1"/>
+    <property name="act11" value="set_monster_health"/>
+    <property name="act12" value="set_monster_status"/>
+    <property name="act15" value="variable_math cathedral_ads,+,1"/>
     <property name="act20" value="translated_dialog okaythen"/>
     <property name="act30" value="npc_face spyder_leathercenter_sofia,up"/>
     <property name="act40" value="wait 1"/>
@@ -94,7 +94,7 @@
     <property name="act1" value="change_state PCState"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="not variable_set postgame:kernel"/>
+    <property name="cond3" value="not variable_set kernelquest:yes"/>
    </properties>
   </object>
   <object id="24" name="Use Computer Kernel" type="event" x="48" y="16" width="16" height="16">
@@ -102,7 +102,7 @@
     <property name="act1" value="translated_dialog spyder_pc_alert"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is variable_set postgame:kernel"/>
+    <property name="cond3" value="is variable_set kernelquest:yes"/>
    </properties>
   </object>
   <object id="29" name="Auto Healing Teleported" type="event" x="16" y="-3.55271e-15" width="16" height="16">

@@ -128,15 +128,5 @@
         "slug": "interactive_obj"
       }
     ]
-  },
-  {
-    "slug": "spyder_datacenter_s8",
-    "template": [
-      {
-        "sprite_name": "screen_small",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-    ]
   }
 ]

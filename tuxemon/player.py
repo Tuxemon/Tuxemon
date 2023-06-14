@@ -50,6 +50,21 @@ class Player(NPC):
         diff_y = abs(after.y - before.y)
 
         self.game_variables["steps"] += diff_x + diff_y
+
+        # check variables with steps
+        result: float = 0.0
+        save_key: str = ""
+        for ele in self.game_variables.keys():
+            if ele.endswith("_steps"):
+                save_key = ele
+                output = float(self.game_variables[ele])
+                result = self.game_variables["steps"] - output
+
+        if save_key in self.game_variables:
+            splitted = save_key.split("_")
+            if result >= float(splitted[0]):
+                del self.game_variables[ele]
+
         """
         %H - Hour 00-23
         %j - Day number of year 001-366

@@ -266,8 +266,8 @@ class Monster:
             self.combat_call = results.sounds.combat_call
             self.faint_call = results.sounds.faint_call
         else:
-            self.combat_call = f"sound_{self.types[0].slug}_call"
-            self.faint_call = f"sound_{self.types[0].slug}_faint"
+            self.combat_call = f"sound_{self.types[0].name}_call"
+            self.faint_call = f"sound_{self.types[0].name}_faint"
 
     def learn(
         self,

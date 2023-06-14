@@ -6928,25 +6928,28 @@ msgid "spyder_papertown_myfirstmon1"
 msgstr "*rummages* *rumages* "
 
 msgid "spyder_papertown_myfirstmon2"
-msgstr "Here we go, five tuxemon! Which would you like?"
+msgstr "Here we go, looks like there's monsters in most of these bins. \n Sounds like my boss is calling. Good luck!"
 
-msgid "spyder_papertown_rockittenchosen"
-msgstr "An excellent choice! Rockitten is an Earth tuxemon."
+msgid "spyder_papertown_thereis"
+msgstr "There is something here..."
 
-msgid "spyder_papertown_lambertchosen"
-msgstr "A fine choice! Lambert is a Wood tuxemon."
+msgid "spyder_papertown_trash"
+msgstr "Just trash"
 
-msgid "spyder_papertown_nutchosen"
-msgstr "A magnificent choice! Nut is a Metal tuxemon."
+msgid "spyder_papertown_rockitten"
+msgstr "Do you want ROCKITTEN?"
 
-msgid "spyder_papertown_tweesherchosen"
-msgstr "An inspired choice! Tweesher is a Water tuxemon."
+msgid "spyder_papertown_lambert"
+msgstr "Do you want LAMBERT?"
 
-msgid "spyder_papertown_agnitechosen"
-msgstr "A great choice! Agnite is a Fire tuxemon."
+msgid "spyder_papertown_nut"
+msgstr "Do you want NUT?"
 
-msgid "spyder_papertown_wrapup"
-msgstr "I'll give the rest of these to other kids who missed out on their own tuxemon! \n And I might keep one for myself. "
+msgid "spyder_papertown_tweesher"
+msgstr "Do you want TWEESHER?"
+
+msgid "spyder_papertown_agnite"
+msgstr "Do you want AGNITE?"
 
 msgid "spyder_papertown_firstfight"
 msgstr "Hey, what are you doing rummaging in bins? That's gross - and it's against the rules! \n ... \n What, they were throwing out perfectly good tuxemon? \n ... \n Well, if they were perfectly good, they wouldn't throw them out, would they? \n They must be inferior to the new models. Here, I'll show you! "

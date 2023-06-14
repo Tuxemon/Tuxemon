@@ -752,7 +752,8 @@ class EconomyItemModel(BaseModel):
     item_name: str = Field(..., description="Name of the item")
     price: int = Field(0, description="Price of the item")
     cost: int = Field(0, description="Cost of the item")
-    inventory: int = Field(0, description="Quantity of the item")
+    inventory: int = Field(-1, description="Quantity of the item")
+    variable: Optional[str] = Field(None, description="Variable of the item")
 
     @validator("item_name")
     def item_exists(cls: EconomyItemModel, v: Any) -> Any:

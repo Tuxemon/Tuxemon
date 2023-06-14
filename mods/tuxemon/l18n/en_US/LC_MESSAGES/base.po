@@ -2508,6 +2508,9 @@ msgstr "Release"
 msgid "shop_buy_free"
 msgstr "FREE!"
 
+msgid "shop_buy_soldout"
+msgstr "Sold Out!"
+
 #Release notifications
 msgid "cant_release"
 msgstr "Can't release only Tuxemon in party."

@@ -50,7 +50,7 @@ class GetDefaultPriceAndCost(EconomyTestBase):
     def test_missing_inventory(self):
         economy = self.economy
         inventory = economy.lookup_item_inventory("revive")
-        self.assertEqual(inventory, 0)
+        self.assertEqual(inventory, -1)
 
     def test_unknown_item_price(self):
         economy = self.economy

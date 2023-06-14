@@ -26,8 +26,7 @@ class TuxemonConfig:
 
         # update with customized values
         if config_path:
-            temp = configparser.ConfigParser()
-            temp.read(config_path)
+            cfg.read(config_path)
 
         # [display]
         resolution_x = cfg.getint("display", "resolution_x")

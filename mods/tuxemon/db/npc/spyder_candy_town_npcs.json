@@ -10,6 +10,16 @@
     ]
   },
   {
+    "slug": "spyder_candy_eliane",
+    "template": [
+      {
+        "sprite_name": "florist_fiery",
+        "combat_front": "florist",
+        "slug": "florist"
+      }
+    ]
+  },
+  {
     "slug": "spyder_candycafe_nora",
     "template": [
       {

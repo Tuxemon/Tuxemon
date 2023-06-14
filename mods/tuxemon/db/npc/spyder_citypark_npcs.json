@@ -68,5 +68,55 @@
         "slug": "maniac"
       }
     ]
+  },
+  {
+    "slug": "spyder_citypark_cd1",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_citypark_cd2",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_citypark_restoration",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_citypark_potion1",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_citypark_potion2",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
   }
 ]

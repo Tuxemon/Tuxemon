@@ -180,6 +180,16 @@
     ]
   },
   {
+    "slug": "spyder_cottoncenter_ada",
+    "template": [
+      {
+        "sprite_name": "nurse",
+        "combat_front": "nurse",
+        "slug": "nurse"
+      }
+    ]
+  },
+  {
     "slug": "spyder_cottonscoop_joe",
     "template": [
       {
@@ -198,6 +208,65 @@
         "slug": "shopassistant"
       }
     ]
-  }
-  
+  },
+  {
+    "slug": "spyder_cottontunnel_box1",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottontunnel_box2",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottontunnel_box3",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottontunnel_box4",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottontunnel_box5",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottontunnel_box6",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  }  
 ]

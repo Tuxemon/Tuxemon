@@ -5,10 +5,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional, Union, final
 
-from tuxemon import formula, monster
+from tuxemon import formula
 from tuxemon.db import SeenStatus, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.monster import Monster
 from tuxemon.npc import NPC
 
 
@@ -66,7 +67,7 @@ class AddMonsterAction(EventAction):
         else:
             _monster = self.monster_slug
 
-        current_monster = monster.Monster()
+        current_monster = Monster()
         current_monster.load_from_db(_monster)
         current_monster.set_level(self.monster_level)
         current_monster.set_moves(self.monster_level)

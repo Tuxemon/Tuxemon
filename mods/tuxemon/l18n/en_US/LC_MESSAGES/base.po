@@ -15,29 +15,17 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 ## ITEM TRANSLATIONS ##
-msgid "apple"
-msgstr "Apple"
+msgid "fire_berry"
+msgstr "Fire Berry"
 
-msgid "apple_description"
-msgstr "Heals a monster by 10 HP."
+msgid "fire_berry_description"
+msgstr "It changes monster type into fire."
 
-msgid "berry"
-msgstr "Berry"
+msgid "metal_cherry"
+msgstr "Metal Cherry"
 
-msgid "berry_description"
-msgstr "Heals a monster by 10 HP."
-
-msgid "cherry"
-msgstr "Cherry"
-
-msgid "cherry_description"
-msgstr "Heals a monster by 10 HP."
-
-msgid "orange"
-msgstr "Orange"
-
-msgid "orange_description"
-msgstr "Heals a monster by 20 HP."
+msgid "metal_cherry_description"
+msgstr "It changes monster type into metal."
 
 msgid "potion"
 msgstr "Potion"
@@ -1039,7 +1027,7 @@ msgid "generic_failure"
 msgstr "It failed!"
 
 msgid "who_is_that"
-msgstr "Who's That Tuxemon?"
+msgstr "Name That Tuxemon"
 
 msgid "generic_right"
 msgstr "Correct!"
@@ -1050,8 +1038,17 @@ msgstr "Wrong!"
 msgid "attempting_capture"
 msgstr "Attempting capture..."
 
+msgid "captured_failed"
+msgstr "Not this time! The capture failed!"
+
 msgid "gotcha"
 msgstr "Gotcha!"
+
+msgid "gotcha_kennel"
+msgstr "{name} has been put in the kennel!"
+
+msgid "gotcha_team"
+msgstr "{name} has joined the team!"
 
 msgid "not_implemented"
 msgstr "This feature is not yet implemented."
@@ -2505,6 +2502,9 @@ msgstr "Release"
 msgid "shop_buy_free"
 msgstr "FREE!"
 
+msgid "shop_buy_soldout"
+msgstr "Sold Out!"
+
 #Release notifications
 msgid "cant_release"
 msgstr "Can't release only Tuxemon in party."
@@ -2659,6 +2659,15 @@ msgstr "Cancel Key"
 
 msgid "menu_back_key"
 msgstr "Back Key"
+
+msgid "menu_music_daynight"
+msgstr "Day / Night"
+
+msgid "enable"
+msgstr "Enable"
+
+msgid "disable"
+msgstr "Disable"
 
 msgid "menu_music_volume"
 msgstr "Music Volume"
@@ -5207,6 +5216,24 @@ msgstr "Professor"
 msgid "npc_red"
 msgstr "Red"
 
+msgid "m_default1"
+msgstr "Jimmy"
+
+msgid "m_default2"
+msgstr "Linus"
+
+msgid "m_default3"
+msgstr "Richard"
+
+msgid "f_default1"
+msgstr "Ada"
+
+msgid "f_default2"
+msgstr "Christine"
+
+msgid "f_default3"
+msgstr "Hawthorn"
+
 msgid "tabanurse"
 msgstr "Taba Nurse"
 
@@ -6900,29 +6927,35 @@ msgstr "I'm working, boss, I'm working! \n Oh, it's just you. You know, we throw
 msgid "spyder_papertown_myfirstmon"
 msgstr "Hey, you came! That's great.\n When the fancy new tuxemon come through from the Cathedral, we just threw all our old ones in the bin!\n It seems like such a waste, especially when kids like you don't have any!"
 
+msgid "spyder_papertown_myfirstmon_notmet"
+msgstr "I recognize you, you're the kid who hasn't got a Gold Pass. \n You know, I might be able to help you out. \n When the fancy new tuxemon come through from the Cathedral, we just threw all our old ones in the bin!\n It seems like such a waste, especially when kids like you don't have any!"
+
 msgid "spyder_papertown_myfirstmon1"
 msgstr "*rummages* *rumages* "
 
 msgid "spyder_papertown_myfirstmon2"
-msgstr "Here we go, five tuxemon! Which would you like?"
+msgstr "Here we go, looks like there's monsters in most of these bins. \n Sounds like my boss is calling. Good luck!"
 
-msgid "spyder_papertown_rockittenchosen"
-msgstr "An excellent choice! Rockitten is an Earth tuxemon."
+msgid "spyder_papertown_thereis"
+msgstr "There is something here..."
 
-msgid "spyder_papertown_lambertchosen"
-msgstr "A fine choice! Lambert is a Wood tuxemon."
+msgid "spyder_papertown_trash"
+msgstr "Just trash"
 
-msgid "spyder_papertown_nutchosen"
-msgstr "A magnificent choice! Nut is a Metal tuxemon."
+msgid "spyder_papertown_rockitten"
+msgstr "Do you want ROCKITTEN?"
 
-msgid "spyder_papertown_tweesherchosen"
-msgstr "An inspired choice! Tweesher is a Water tuxemon."
+msgid "spyder_papertown_lambert"
+msgstr "Do you want LAMBERT?"
 
-msgid "spyder_papertown_agnitechosen"
-msgstr "A great choice! Agnite is a Fire tuxemon."
+msgid "spyder_papertown_nut"
+msgstr "Do you want NUT?"
 
-msgid "spyder_papertown_wrapup"
-msgstr "I'll give the rest of these to other kids who missed out on their own tuxemon! \n And I might keep one for myself. "
+msgid "spyder_papertown_tweesher"
+msgstr "Do you want TWEESHER?"
+
+msgid "spyder_papertown_agnite"
+msgstr "Do you want AGNITE?"
 
 msgid "spyder_papertown_firstfight"
 msgstr "Hey, what are you doing rummaging in bins? That's gross - and it's against the rules! \n ... \n What, they were throwing out perfectly good tuxemon? \n ... \n Well, if they were perfectly good, they wouldn't throw them out, would they? \n They must be inferior to the new models. Here, I'll show you! "
@@ -6942,11 +6975,41 @@ msgstr "I am assigned by the Dojo of the Five Elements to tend the statues here.
 msgid "spyder_cottontown_hackerintro"
 msgstr "Hey, cool tuxemon! Can I see the receipt? \n ... \n Just kidding, I had a feeling you hadn't picked it up using, ah, official channels. \n For years, the Five Pillars have controlled the strongest tuxemon. \n Do you think it'd be cool to poke them in the eye? \n ... \n Good! I have a project for you. Meet me in the Cafe!"
 
+msgid "spyder_cotton_cafegranny"
+msgstr "Hmm, I'm not sure I fancy this coffee."
+
+msgid "spyder_cotton_cafeassistant"
+msgstr "Do you collect tuxemon? I'd like to start but I'm afraid to leave the city."
+
+msgid "spyder_cotton_homemaker1"
+msgstr "Are you here for the talk? I'm so excited for the launch."
+
+msgid "spyder_cotton_homemaker2"
+msgstr "Tuxepedia is great, isn't it? I'm one of the programmers. Tell me if you find any bugs."
+
 msgid "spyder_cottontown_stopthere"
 msgstr "Hey, that's not cool! You have to come to my talk at the cafe before you run off!"
 
+msgid "spyder_cottontown_followme"
+msgstr "The Cafe is located on the other side of these houses."
+
 msgid "spyder_cottontown_mom"
 msgstr "Well hello stranger! What are you doing going into a Cafe? \n You know caffeine is bad for you. I'm kidding! \n You're a grown up of 12 years old, you can do whatever you like! ... No alcohol .... \n But you should call home more often. I want someone to tell about my inventions. \n ... Oh, I forget, you haven't got a phone yet. Here's one I invented. I call it the Nu Phone! \n You can install all sorts of apps on it. It already has the Map App, so you'll never get lost!"
+
+msgid "spyder_cottontown_mom1"
+msgstr "Talk about a parting shot!\n Omnichannel seems to have pulled the plug on the region's computer network.\n At least, I hope it's nothing more serious than that."
+
+msgid "spyder_cottontown_hacker1"
+msgstr "Great work on Tuxepedia, my friend.\n You're our top contributor."
+
+msgid "spyder_cottontown_mom2"
+msgstr "!!!"
+
+msgid "spyder_cottontown_hacker2"
+msgstr "Right, right!\n There's a data center along the river to the north-east of Timber Town.\n If Omnichannel's done anything to the computer network, they would have done it there."
+
+msgid "spyder_pc_alert"
+msgstr "Kernel panic - not syncing: Fatal Machine check"
 
 msgid "spyder_cottontown_enforcer"
 msgstr "Butt out of it, kid, this is private property!"
@@ -7011,8 +7074,11 @@ msgstr "Let my assistant introduce you."
 msgid "spyder_cottonscoop_deviceexplan2"
 msgstr "Tuxeballs allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. Select them during battle from your Item menu. \n Thank you for listening. Here's five Tuxeballs as a free sample. "
 
+msgid "spyder_cotton_tuxepediaahem"
+msgstr "Ahem."
+
 msgid "spyder_cotton_tuxepediaintro"
-msgstr "Currently, the only reliable information about tuxemon is from the expensive and incomplete Encyclopaedia Tuxemon! \n That's not cool; information should be freely available. That's why we're introducing Tuxepedia. \n It's open source, it's free, it's available for everyone to read, write and edit. How cool is that? \n In fact, I've installed it as an app on all your phones just now. "
+msgstr "Currently, the only reliable information about tuxemon is from the expensive and incomplete Encyclopaedia Tuxemon! \n That's not cool; information should be freely available. That's why we're introducing Tuxepedia. \n It's open source, it's free, it's available for everyone to read, write and edit. How cool is that? \n You can open Tuxepedia from the menu. "
 
 msgid "spyder_cotton_tuxepediaintro2"
 msgstr "All it takes to add information is for you to catch that particular tuxemon. It's so cool."
@@ -7022,6 +7088,15 @@ msgstr "You are so engrossed reading the new entries, that you don't notice peop
 
 msgid "spyder_cotton_tuxepediaintro4"
 msgstr "It's so cool that you came. There's still so many tuxemon to be added - over a hundred, I think. \n You could really get into it, and make a difference to the world. "
+
+msgid "spyder_cotton_cafegoth"
+msgstr "Don't look at me. I'm just here for the free canapes."
+
+msgid "spyder_cotton_cafeflorist1"
+msgstr "Shhh, it's about to begin."
+
+msgid "spyder_cotton_cafeflorist2"
+msgstr "I can't wait to fact-check everyone else's entries. \n You better make sure you have good sources!"
 
 msgid "spyder_route2_billie1"
 msgstr "Hey cheapskate! Still got your stolen tuxemon?"
@@ -7323,6 +7398,8 @@ msgid "spyder_routea_vince4"
 msgstr "Oh golly, my spine is broken! On my book, I mean."
 msgid "spyder_routea_maniac"
 msgstr "It's funny\n I come to the park to get away from people\n but I always end up running into someone I know!"
+msgid "spyder_routea_little1"
+msgstr "The access is blocked. A landslide damaged the route."
 msgid "spyder_routea_firefighter"
 msgstr "It's so quiet here.\n It's a nice break from the noise of the city."
 
@@ -7342,6 +7419,19 @@ msgid "spyder_candy_prof_nocateye"
 msgstr "I wish I could trade it for a nice quite tuxemon, like a CATEYE."
 msgid "spyder_candy_prof_willtrade"
 msgstr "I'm the luckiest professor in the region of Fondent."
+
+msgid "spyder_candy_eliane1"
+msgstr "Welcome to my market garden.\n I grow plants.\n Would you like me to harvest some crops for you?"
+
+msgid "spyder_candy_eliane2"
+msgstr "How did you enjoy the fruits of my labours?"
+
+msgid "spyder_candy_eliane3"
+msgstr "Here, you have it."
+
+msgid "spyder_candy_eliane4"
+msgstr "It may be important."
+
 msgid "spyder_timber_firefighter1"
 msgstr "Hey, do you treat your tuxemon with proper respect?! \n Sorry, I can be very blunt. \n But you wouldn't believe the damage that tuxemon can do if they aren't taken proper care of."        
 msgid "spyder_timber_firefighter_nochillimp"
@@ -7381,6 +7471,8 @@ msgstr "Welcome master."
 
 msgid "spyder_flower_petshopassistant"
 msgstr "Hello - we are the Pet Shop Boys. Are you interested in buying a tuxemon?"
+msgid "spyder_flower_petshopassistant1"
+msgstr "Each for ${{currency}}500"
 msgid "spyder_flower_petshopkeeper1"
 msgstr "I found these eggs in the bough of a tree, and hatched them! \n They appear to be a previously unknown tuxemon. \n I call them Vivipere! I wonder what they morph into."
 msgid "spyder_flower_petshopkeeper2"
@@ -7653,6 +7745,52 @@ msgid "spyder_route6_gunner1"
 msgstr "Excuse me, no entrance permitted. All Greenwash employees must stay outside of the city."
 msgid "spyder_route6_gunner2"
 msgstr "You're not a Greenwash employee? I've heard that one before!"
+msgid "spyder_route7_arnold1"
+msgstr "Did you hear about the new tuxemon discovered in the Archipelago?"
+msgid "spyder_route7_sylvester1"
+msgstr "The sea is a long way from here."
+msgid "spyder_route7_fritz1"
+msgstr "A typical Sphalian breakfast consists of white sausage, wheat beer and pretzels."
+msgid "spyder_route7_statius1"
+msgstr "What would you change about yourself if you could change one thing?"
+msgid "spyder_route7_statius2"
+msgstr "Probably my party, monsters party."
+msgid "spyder_route7_jacopo1"
+msgstr "Are you interested to download an app?"
+msgid "spyder_route7_jacopo2"
+msgstr "The app matches zombies with victims."
+msgid "spyder_route7_pia1"
+msgstr "Are you really going to ignore me?"
+msgid "spyder_route7_pia2"
+msgstr "After everything that happened during this fight?"
+msgid "spyder_route7_penitent1"
+msgstr "The chocolate chip cookies smelled so good that I ate one without asking."
+msgid "spyder_route7_penitent2"
+msgstr "Please, don't tell anyone!"
+msgid "spyder_route7_nino1"
+msgstr "I enjoyed the peacefulness of nature on the mountain bushwalk."
+msgid "spyder_route7_nino2"
+msgstr "Not so peaceful!"
+msgid "spyder_route7_hugh1"
+msgstr "Do you mind if I smoke?"
+msgid "spyder_route7_hugh2"
+msgstr "How to quit?"
+msgid "spyder_route7_arnaut1"
+msgstr "The bad thing about inferiority complexes is that the wrong people have them."
+msgid "spyder_route7_arnaut2"
+msgstr "Oops!"
+msgid "spyder_route7_conrad1"
+msgstr "The Lion Mountain got snow, and all the tourists are very excited."
+msgid "spyder_route7_conrad2"
+msgstr "Too many tourists."
+msgid "spyder_route7_manfred1"
+msgstr "Do you think our lives will ever go back to normal?"
+msgid "spyder_route7_manfred2"
+msgstr "I mean... after Cotton Town."
+msgid "spyder_route7_sordello1"
+msgstr "If you could buy anything you wanted, what would you buy?"
+msgid "spyder_route7_sordello2"
+msgstr "Probably a couple of revives and some potions."
 msgid "spyder_flower_artist1"
 msgstr "Simplistic and clumsy brushstrokes and a pedestrian theme. Bah! Another ruined canvas."
 msgid "spyder_flower_muse1"
@@ -8093,6 +8231,153 @@ msgstr "Is Frostbite an Earth element technique or a Water element technique? "
 msgid "spyder_leatherhouse1_tennisplayer2"
 msgstr "Trick question - it's both!"
 
+msgid "spyder_routee_calliope"
+msgstr "Calliope"
+
+msgid "spyder_routee_calliope0"
+msgstr "Stop right there! This place is off limits."
+
+msgid "spyder_routee_calliope1"
+msgstr "So you're the little squirt who crashed Omnichannel and blew up all our plans?"
+
+msgid "spyder_routee_calliope2"
+msgstr "Mercy, please!"
+
+msgid "spyder_routee_aiolos"
+msgstr "Aiolos"
+
+msgid "spyder_routee_aiolos1"
+msgstr "I was just about to start eating."
+
+msgid "spyder_routee_aiolos2"
+msgstr "My lunchtime is gone!"
+
+msgid "spyder_routeb_billie1"
+msgstr "So you noticed the computer system is down too?\n Fancy a battle to pass the time? ...\n I guess there are more important things."
+
+msgid "spyder_routeb_electra"
+msgstr "Electra"
+
+msgid "spyder_routeb_electra1"
+msgstr "I'm much stronger."
+
+msgid "spyder_routeb_electra2"
+msgstr "Twice the pride, double the fall."
+
+msgid "spyder_routeb_cytherea"
+msgstr "Cytherea"
+
+msgid "spyder_routeb_cytherea1"
+msgstr "It's a glitch. A bug. A snafu. It's practically a feature."
+
+msgid "spyder_routeb_cytherea2"
+msgstr "At least we developed the technology before anyone else."
+
+msgid "spyder_routeb_nephthys"
+msgstr "Nephthys"
+
+msgid "spyder_routeb_nephthys1"
+msgstr "Nothing to see here. Scram!"
+
+msgid "spyder_routeb_nephthys2"
+msgstr "We've lost control. Please, you might just be powerful enough to help!"
+
+msgid "spyder_routeb_sedna"
+msgstr "Sedna"
+
+msgid "spyder_routeb_sedna1"
+msgstr "Get out of here!"
+
+msgid "spyder_routeb_sedna2"
+msgstr "I mean it, you've got to get out of here!"
+
+msgid "spyder_routeb_calypso"
+msgstr "Calypso"
+
+msgid "spyder_routeb_calypso1"
+msgstr "Why you?"
+
+msgid "spyder_routeb_calypso2"
+msgstr "I admire you."
+
+msgid "spyder_datacenter_fermi"
+msgstr "Fermi"
+
+msgid "spyder_datacenter_fermi1"
+msgstr "The vulnerabilities were discovered by me."
+
+msgid "spyder_datacenter_fermi2"
+msgstr "Omnichannel took advantage."
+
+msgid "spyder_datacenter_onnes"
+msgstr "Onnes"
+
+msgid "spyder_datacenter_onnes1"
+msgstr "Omnichannel claimed that encryption keys purportedly belonging to them."
+
+msgid "spyder_datacenter_onnes2"
+msgstr "Fake news."
+
+msgid "spyder_datacenter_bayliss"
+msgstr "Bayliss"
+
+msgid "spyder_datacenter_bayliss1"
+msgstr "You could do a lot of work in the kernel."
+
+msgid "spyder_datacenter_bayliss2"
+msgstr "But it would again be a security issue."
+
+msgid "spyder_datacenter_chomsky"
+msgstr "Chomsky"
+
+msgid "spyder_datacenter_chomsky1"
+msgstr "The kernel will be rebased."
+
+msgid "spyder_datacenter_chomsky2"
+msgstr "New long-term stable releases."
+
+msgid "spyder_datacenter_lagrange"
+msgstr "Lagrange"
+
+msgid "spyder_datacenter_lagrange1"
+msgstr "Kernel vulnerability?"
+
+msgid "spyder_datacenter_lagrange2"
+msgstr "The kernel vulnerability was fixed in a supplemental update for OmniOS 6.20.4."
+
+msgid "spyder_datacenter_billie1"
+msgstr "Great job, ${{name}}. Looks like Omnichannel let their AI out just to spite us.\n You know, you're making quite a habit of saving the region.\n You should take a break for a change.\n I hear there's a new walking trail that has opened up behind the old Mansion outside Flower City.\n Might be worth checking out.\n Me? I'm going to be a little busy over the next while.\n Let's just say they've finally let me into an exclusive club.\n Come on, you're not going to make me give up all my perks, are you?"
+
+msgid "spyder_box_goldpass1"
+msgstr "It looks like someone has lost this.\n Obtained Gold Pass."
+
+msgid "spyder_datacenter_sign"
+msgstr "Welcome to the GoodChat data center. An Omnichannel subsidiary."
+
+msgid "spyder_data_pc02"
+msgstr "Pid: 0, comm: swapper Tainted: T   U\n       ----------------  \n 6.9.20-0420.el6.x86_64 #1\n Call Trace:"
+
+msgid "spyder_data_pc04"
+msgstr "Which is the lightest monster?"
+
+msgid "spyder_data_pc05"
+msgstr "10010000"
+
+msgid "spyder_data_pc06"
+msgstr "1001101"
+
+msgid "spyder_data_pc07"
+msgstr "Which is the tallest monster?"
+
+msgid "spyder_data_pc08"
+msgstr "Which is the smallest monster?"
+
+msgid "spyder_data_pc09"
+msgstr "Which is the heaviest monster?"
+
+msgid "spyder_data_pc10"
+msgstr "11000001"
+
 msgid "spyder_scoop_welcome"
 msgstr "Welcome!"
 
@@ -8372,6 +8657,32 @@ msgid "spyder_route6_rigel"
 msgstr "Rigel"
 msgid "spyder_route6_gunner"
 msgstr "Gunner"
+msgid "spyder_route7_arnold"
+msgstr "Arnold"
+msgid "spyder_route7_sylvester"
+msgstr "Sylvester"
+msgid "spyder_route7_fritz"
+msgstr "Fritz"
+msgid "spyder_route7_statius"
+msgstr "Statius"
+msgid "spyder_route7_jacopo"
+msgstr "Jacopo"
+msgid "spyder_route7_pia"
+msgstr "Pia"
+msgid "spyder_route7_penitent"
+msgstr "Penitent"
+msgid "spyder_route7_nino"
+msgstr "Nino"
+msgid "spyder_route7_hugh"
+msgstr "Hugh"
+msgid "spyder_route7_arnaut"
+msgstr "Arnaut"
+msgid "spyder_route7_conrad"
+msgstr "Conrad"
+msgid "spyder_route7_manfred"
+msgstr "Manfred"
+msgid "spyder_route7_sordello"
+msgstr "Sordello"
 msgid "spyder_searoutec_nigel"
 msgstr "Nigel"
 msgid "spyder_searoutec_river"
@@ -8468,6 +8779,8 @@ msgid "spyder_flower_monk"
 msgstr "Bao"
 msgid "spyder_candy_henrik"
 msgstr "Henrik"
+msgid "spyder_candy_eliane"
+msgstr "Eliane"
 msgid "spyder_cottonhouse1_rodger"
 msgstr "Rodger"
 msgid "spyder_greenwash_norton"
@@ -8488,10 +8801,14 @@ msgid "spyder_cottoncafe_juliana"
 msgstr "Juliana"
 msgid "spyder_cottoncafe_lotus"
 msgstr "Lotus"
+msgid "spyder_cottoncafe_lotus1"
+msgstr "This never happened while Omnichannel was in charge."
 msgid "spyder_cottoncafe_hillary"
 msgstr "Hillary"
 msgid "spyder_cottoncafe_cayden"
 msgstr "Cayden"
+msgid "spyder_cottoncafe_cayden1"
+msgstr "Hey, aren't you the guy who stopped the Spyder plot? Can't you do something?"
 msgid "spyder_cottoncafe_wilford"
 msgstr "Wilford"
 msgid "spyder_leathergym_chadine"
@@ -8576,6 +8893,8 @@ msgid "spyder_candyhouse3_joanie"
 msgstr "Joanie"
 msgid "spyder_cottonartshop_luvinia"
 msgstr "Luvinia"
+msgid "spyder_cottonartshop_luvinia1"
+msgstr "What are we supposed to do?"
 msgid "spyder_leatherhouse1_gail"
 msgstr "Gail"
 msgid "spyder_flower_lissa"
@@ -8634,6 +8953,8 @@ msgid "spyder_wayfarer2_kim"
 msgstr "Kim"
 msgid "spyder_routea_john"
 msgstr "John"
+msgid "spyder_routea_little"
+msgstr "Little"
 msgid "spyder_candyhouse1_sawyer"
 msgstr "Sawyer"
 msgid "spyder_leathermuseum_giles"
@@ -8654,6 +8975,8 @@ msgid "spyder_flowerpetshop_titus"
 msgstr "Titus"
 msgid "spyder_cottonhouse2_davis"
 msgstr "Davis"
+msgid "spyder_cottonhouse2_davis1"
+msgstr "I left my best monster in the storage!"
 msgid "spyder_cottonartshop_carter"
 msgstr "Carter"
 msgid "spyder_wayfarer1_norm"
@@ -8664,6 +8987,10 @@ msgid "spyder_candycenter_diamond"
 msgstr "Diamond"
 msgid "spyder_cottoncenter_krystal"
 msgstr "Krystal"
+msgid "spyder_cottoncenter_ada"
+msgstr "Ada"
+msgid "spyder_cottoncenter_ada1"
+msgstr "The computer system is experiencing technical difficulties.\n Withdrawing and depositing monsters and items is currently unavailable.\n Thank you for your patience."
 msgid "spyder_leathercenter_sofia"
 msgstr "Sofia"
 msgid "spyder_candyscoop_clint"

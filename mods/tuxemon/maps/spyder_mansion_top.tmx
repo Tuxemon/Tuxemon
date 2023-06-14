@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="23" height="19" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="55">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="23" height="19" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="60">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -26,7 +26,7 @@
  </layer>
  <layer id="2" name="Tile Layer 4" width="23" height="19">
   <data encoding="base64" compression="zlib">
-   eJw7KMXAIK9APj4mj138MNDcz0C5agXyMS79IHEQpgTg0o9u9jodVBoZ4JIj1uxAoL4gIA7GYjYuOUUF4swmB9TS0GxcAGTuFxxpiFh8hEB4U5oG8ZlNCVBC8sMqBeqaXaWA8EMNmtnEhvdNqL7bCrjDGBmQEt4wN4HcSYxfyQ0TZD1HpCD0CgVUf36lgtkwNnK4YyurYG7A5g5krKyA3R50+5HlPiGZje4ObGFPjNk/BBkYfgqimk0sIGS2qhADg5oQ+WZr6GIXBwC9Rn6e
+   eJw7KMXAIK9APj4mj138MNDcz0C5agXyMS79IHEQpgTg0o9u9jodVBoZ4JIj1uxAoL4gIA7GYjYuOUUF4swmB9TS0GxcAGTuFxxpiFh8hEB4U5oG8ZlNCVBC8sMqBeqaXaWA8EMNmtnEhvdNqL7bCrjDGBmQEt4wN4HcSYxfyQ0TZD1HpCD0CgVUf36lgtkwNnK4YyurYG7A5g5krKyA3R50+5HlPiGZje4ObGFPjNk/BBkYfgqimk0sIGS2qhADg5oQptnZ2tjZ6GZo6GIXBwAA93/K
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="23" height="19">
@@ -44,7 +44,7 @@
    eJxjYBgFo2AUjALsQFlpoF0wCkYBaQAAwTYARg==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="0" y="0" width="16" height="304"/>
   <object id="2" type="collision" x="352" y="0" width="16" height="304"/>
   <object id="3" type="collision" x="16" y="176" width="160" height="32"/>
@@ -68,9 +68,6 @@
   <object id="21" type="collision" x="272" y="288" width="16" height="16"/>
   <object id="22" type="collision" x="320" y="240" width="32" height="16"/>
   <object id="23" type="collision" x="336" y="256" width="16" height="16"/>
-  <object id="24" type="collision-line" x="64" y="304">
-   <polyline points="0,0 288,0"/>
-  </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="25" name="Teleport to Middle" type="event" x="16" y="272" width="16" height="16">
@@ -222,6 +219,22 @@
     <property name="act1" value="translated_dialog spyder_top_magician2"/>
     <property name="behav1" value="talk spyder_top_lenny"/>
     <property name="cond1" value="is variable_set dojomagician:yes"/>
+   </properties>
+  </object>
+  <object id="58" name="Teleport to Middle" type="event" x="112" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routea.tmx,5,7,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="59" name="Teleport to Middle" type="event" x="160" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routea.tmx,8,7,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
  </objectgroup>

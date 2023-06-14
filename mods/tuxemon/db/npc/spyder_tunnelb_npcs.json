@@ -58,5 +58,25 @@
         "slug": "yellowbelt"
       }
     ]
+  },
+  {
+    "slug": "spyder_tunnelb_rhincus",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_tunnelb_shammer",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
   }
 ]

@@ -52,7 +52,7 @@
   </object>
   <object id="29" name="Player Spawn" type="event" x="160" y="320" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ff0000" id="7" name="Collision">
+ <objectgroup color="#ff0000" id="7" name="Collisions">
   <object id="4" type="collision" x="0" y="0" width="192" height="48"/>
   <object id="5" type="collision" x="112" y="160" width="80" height="16"/>
   <object id="7" type="collision-line" x="0" y="352">

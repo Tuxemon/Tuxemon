@@ -26,6 +26,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import audio, graphics, state, tools
+from tuxemon.ai import AI
 from tuxemon.animation import Task
 from tuxemon.battle import Battle
 from tuxemon.combat import (
@@ -40,7 +41,6 @@ from tuxemon.combat import (
     has_effect_param,
     has_status,
     has_status_bond,
-    pre_checking,
     scope,
     spyderbite,
 )
@@ -61,6 +61,7 @@ from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
+from tuxemon.states.journal import MonsterInfoState
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.states.transition.fade import FadeOutTransition
 from tuxemon.surfanim import SurfaceAnimation
@@ -213,6 +214,9 @@ class CombatState(CombatAnimations):
         )
         self._turn: int = 0
         self._prize: int = 0
+        self._captured: bool = False
+        self._captured_mon: Optional[Monster] = None
+        self._new_tuxepedia: bool = False
         self._lost_status: Optional[str] = None
         self._lost_monster: Optional[Monster] = None
 
@@ -398,7 +402,7 @@ class CombatState(CombatAnimations):
                 var = self.players[0].game_variables
                 var["battle_last_monster_name"] = monster_record.name
                 var["battle_last_monster_level"] = monster_record.level
-                var["battle_last_monster_type"] = monster_record.types[0]
+                var["battle_last_monster_type"] = monster_record.types[0].slug
                 var["battle_last_monster_category"] = monster_record.category
                 var["battle_last_monster_shape"] = monster_record.shape
                 # Avoid reset string to seen if monster has already been caught
@@ -420,7 +424,7 @@ class CombatState(CombatAnimations):
 
                 for trainer in self.ai_players:
                     for monster in self.monsters_in_play[trainer]:
-                        self.get_combat_decision_from_ai(monster)
+                        AI(self, monster)
                         # recharge opponent moves
                         for tech in monster.moves:
                             tech.recharge()
@@ -558,44 +562,6 @@ class CombatState(CombatAnimations):
 
         else:
             assert_never(phase)
-
-    def get_combat_decision_from_ai(self, monster: Monster) -> None:
-        """
-        Get ai action from a monster and enqueue it.
-
-        Parameters:
-            monster: Monster whose action will be decided.
-
-        Returns:
-            Enqueued action of the monster.
-
-        """
-        # TODO: parties/teams/etc to choose opponents
-        opponents = self.monsters_in_play[self.players[0]]
-        trainer = self.players[1]
-        assert monster.ai
-        if self.is_trainer_battle:
-            user, technique, target = monster.ai.make_decision_trainer(
-                trainer, monster, opponents
-            )
-        else:
-            user, technique, target = monster.ai.make_decision_wild(
-                trainer, monster, opponents
-            )
-        # check status response
-        if isinstance(user, Monster) and isinstance(technique, Technique):
-            technique = pre_checking(
-                user, technique, target, self.players[0], self.players[0]
-            )
-            # check status response
-            if self.status_response_technique(user, technique):
-                self._lost_monster = user
-        if isinstance(user, NPC) and isinstance(technique, Item):
-            if self.status_response_item(target):
-                self._lost_monster = target
-        action = EnqueuedAction(user, technique, target)
-        self._action_queue.append(action)
-        self._log_action.append((self._turn, action))
 
     def sort_action_queue(self) -> None:
         """Sort actions in the queue according to game rules.
@@ -800,10 +766,10 @@ class CombatState(CombatAnimations):
             if removed.current_hp <= 0:
                 faint = Technique()
                 faint.load("status_faint")
-                monster.current_hp = 0
-                if monster.status:
-                    monster.status[0].nr_turn = 0
-                monster.status = [faint]
+                removed.current_hp = 0
+                if removed.status:
+                    removed.status[0].nr_turn = 0
+                removed.status = [faint]
         self.alert(message)
         # save iid monster fighting
         if player is self.players[0]:
@@ -912,9 +878,8 @@ class CombatState(CombatAnimations):
 
         state = self.client.push_state(
             MainCombatMenuState(
+                cmb=self,
                 monster=monster,
-                player=self.players[0],
-                enemy=self.players[1],
             )
         )
         state.rect = rect
@@ -1049,7 +1014,14 @@ class CombatState(CombatAnimations):
                 "name": technique.name,
                 "target": target.name,
             }
-            message = T.format(technique.use_tech, context)
+            message: str = ""
+            # attempt failed of capture
+            if self._captured_mon and not self._captured:
+                if self._captured_mon == user:
+                    message += "\n" + T.translate("captured_failed")
+                    self._captured_mon = None
+                    action_time += len(message) * letter_time
+            message += "\n" + T.format(technique.use_tech, context)
             # scope technique
             if technique.slug == "scope":
                 message = scope(target)
@@ -1687,4 +1659,11 @@ class CombatState(CombatAnimations):
         while self.client.current_state is not self:
             self.client.pop_state()
 
-        self.client.push_state(FadeOutTransition(caller=self))
+        # open Tuxepedia if monster is captured
+        if self._captured and self._captured_mon and self._new_tuxepedia:
+            self.client.pop_state()
+            self.client.push_state(
+                MonsterInfoState(monster=self._captured_mon)
+            )
+        else:
+            self.client.push_state(FadeOutTransition(caller=self))

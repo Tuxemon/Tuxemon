@@ -156,6 +156,7 @@ class ControlState(PygameMenuState):
                 self.client.push_state, state, **change_state_kwargs
             )
 
+        player = local_session.player
         display_buttons = {}
         key_names = config.get_custom_pygame_keyboard_controls_names(
             tuxe_config.cfg
@@ -217,25 +218,26 @@ class ControlState(PygameMenuState):
         default_sound: int = 20
         default_unit: int = 0
         default_hemi: int = 0
-        if local_session.player:
+        default_dn: int = 0
+        if player:
             default_music = int(
-                float(local_session.player.game_variables["music_volume"])
-                * 100
+                float(player.game_variables["music_volume"]) * 100
             )
             default_sound = int(
-                float(local_session.player.game_variables["sound_volume"])
-                * 100
+                float(player.game_variables["sound_volume"]) * 100
             )
-            if local_session.player.game_variables["unit_measure"] == METRIC:
+            if player.game_variables["unit_measure"] == METRIC:
                 default_unit = 0
-            elif (
-                local_session.player.game_variables["unit_measure"] == IMPERIAL
-            ):
+            elif player.game_variables["unit_measure"] == IMPERIAL:
                 default_unit = 1
-            if local_session.player.game_variables["hemisphere"] == NORTHERN:
+            if player.game_variables["hemisphere"] == NORTHERN:
                 default_hemi = 0
-            elif local_session.player.game_variables["hemisphere"] == SOUTHERN:
+            elif player.game_variables["hemisphere"] == SOUTHERN:
                 default_hemi = 1
+            if player.game_variables["change_day_night"] == "Disable":
+                default_dn = 0
+            elif player.game_variables["change_day_night"] == "Enable":
+                default_dn = 1
 
         music = menu.add.range_slider(
             title=T.translate("menu_music_volume").upper(),
@@ -260,19 +262,15 @@ class ControlState(PygameMenuState):
             """
             Updates the value.
             """
-            if local_session.player:
-                local_session.player.game_variables["music_volume"] = round(
-                    val / 100, 1
-                )
+            if player:
+                player.game_variables["music_volume"] = round(val / 100, 1)
 
         def on_change_sound(val: int) -> None:
             """
             Updates the value.
             """
-            if local_session.player:
-                local_session.player.game_variables["sound_volume"] = round(
-                    val / 100, 1
-                )
+            if player:
+                player.game_variables["sound_volume"] = round(val / 100, 1)
 
         music.set_onchange(on_change_music)
         sound.set_onchange(on_change_sound)
@@ -281,8 +279,8 @@ class ControlState(PygameMenuState):
             """
             Updates the value.
             """
-            if local_session.player:
-                local_session.player.game_variables["unit_measure"] = label
+            if player:
+                player.game_variables["unit_measure"] = label
 
         metric = T.translate("menu_units_metric")
         imperial = T.translate("menu_units_imperial")
@@ -302,8 +300,8 @@ class ControlState(PygameMenuState):
             """
             Updates the value.
             """
-            if local_session.player:
-                local_session.player.game_variables["hemisphere"] = label
+            if player:
+                player.game_variables["hemisphere"] = label
 
         north_hemi = T.translate("menu_hemisphere_north")
         south_hemi = T.translate("menu_hemisphere_south")
@@ -316,6 +314,27 @@ class ControlState(PygameMenuState):
             default=default_hemi,
             style="fancy",
             onchange=on_change_hemisphere,
+            font_size=20,
+        )
+
+        def on_change_daynight(value: Any, label: str) -> None:
+            """
+            Updates the value.
+            """
+            if player:
+                player.game_variables["change_day_night"] = label
+
+        off = T.translate("disable")
+        on = T.translate("enable")
+        dayandnight: List[Tuple[Any, ...]] = []
+        dayandnight = [(off, off), (on, on)]
+        menu.add.selector(
+            title=T.translate("menu_music_daynight").upper(),
+            items=dayandnight,
+            selector_id="dayandnight",
+            default=default_dn,
+            style="fancy",
+            onchange=on_change_daynight,
             font_size=20,
         )
 

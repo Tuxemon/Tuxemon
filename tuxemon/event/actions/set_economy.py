@@ -7,8 +7,8 @@ from typing import Union, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.item import item
 from tuxemon.item.economy import Economy
+from tuxemon.item.item import Item
 
 
 @final
@@ -33,6 +33,7 @@ class SetEconomyAction(EventAction):
     economy_slug: Union[str, None] = None
 
     def start(self) -> None:
+        player = self.session.player
         npc = get_npc(self.session, self.npc_slug)
         assert npc
         if self.economy_slug is None:
@@ -40,10 +41,30 @@ class SetEconomyAction(EventAction):
 
             return
 
+        def variable(var: str) -> bool:
+            ret: bool = False
+            if var.find(":"):
+                variables = var.split(":")
+                key = variables[0]
+                value = variables[1]
+                if player.game_variables[key] == value:
+                    ret = True
+            else:
+                raise RuntimeError(
+                    f"'{itm.variable}' must be in the 'key:variable' format"
+                )
+            return ret
+
         npc.economy = Economy(self.economy_slug)
 
         for itm in npc.economy.items:
-            element = item.Item()
-            element.load(itm.item_name)
-            element.quantity = itm.inventory
-            npc.add_item(element)
+            element = Item()
+            if itm.variable:
+                if variable(itm.variable):
+                    element.load(itm.item_name)
+                    element.quantity = itm.inventory
+                    npc.add_item(element)
+            else:
+                element.load(itm.item_name)
+                element.quantity = itm.inventory
+                npc.add_item(element)

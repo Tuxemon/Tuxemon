@@ -63,6 +63,10 @@ def pre_checking(
     Pre checking allows to check if there are statuses
     or other conditions that change the choosen technique.
     """
+    if player.isplayer:
+        local = player
+    else:
+        local = enemy
     status = Technique()
     if has_status(monster, "status_dozing"):
         status.load("empty")
@@ -82,7 +86,7 @@ def pre_checking(
     if has_status(monster, "status_confused"):
         confusion = random.randint(1, 2)
         if confusion == 1:
-            player.game_variables["status_confused"] = "on"
+            local.game_variables["status_confused"] = "on"
             confused = [
                 ele
                 for ele in monster.moves
@@ -97,7 +101,7 @@ def pre_checking(
                 status.load("empty")
                 technique = status
         else:
-            player.game_variables["status_confused"] = "off"
+            local.game_variables["status_confused"] = "off"
     if monster.plague == PlagueType.infected:
         value = random.randint(1, 8)
         if value == 1:
@@ -269,18 +273,18 @@ def generic(
                 "combat_state_switch_both",
                 {
                     "user": attacker.name.upper(),
-                    "type1": T.translate(attacker.types[0]),
+                    "type1": T.translate(attacker.types[0].slug),
                     "target": defender.name.upper(),
-                    "type2": T.translate(defender.types[0]),
+                    "type2": T.translate(defender.types[0].slug),
                 },
             )
         else:
             if has_effect_param(tech, "switch", "target", "objective"):
                 monster = defender.name.upper()
-                _type = T.translate(defender.types[0])
+                _type = T.translate(defender.types[0].slug)
             if has_effect_param(tech, "switch", "user", "objective"):
                 monster = attacker.name.upper()
-                _type = T.translate(attacker.types[0])
+                _type = T.translate(attacker.types[0].slug)
             message = T.format(
                 "combat_state_switch",
                 {

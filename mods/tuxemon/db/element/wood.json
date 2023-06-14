@@ -1,0 +1,30 @@
+{
+  "slug": "wood",
+  "icon": "gfx/ui/icons/element/wood_type.png",
+  "types": [
+    {
+      "against": "aether",
+      "multiplier": 1
+    },
+    {
+      "against": "earth",
+      "multiplier": 2
+    },
+    {
+      "against": "fire",
+      "multiplier": 0.5
+    },
+    {
+      "against": "metal",
+      "multiplier": 1
+    },
+    {
+      "against": "water",
+      "multiplier": 1
+    },
+    {
+      "against": "wood",
+      "multiplier": 1
+    }
+  ]
+}

@@ -315,6 +315,12 @@ msgstr "Surfboard"
 msgid "surfboard_description"
 msgstr "From your Mom. It lets you travel faster."
 
+msgid "gold_pass"
+msgstr "Gold Pass"
+
+msgid "gold_pass_description"
+msgstr "Enjoy the Cathedral's deluxe services."
+
 msgid "dojo_pass"
 msgstr "Dojo Pass"
 
@@ -8963,54 +8969,82 @@ msgstr "Midas"
 
 msgid "spyder_walled_osman1"
 msgstr "Do you want to buy Tuxcoin?"
+
 msgid "spyder_walled_osman2"
 msgstr "I wish I have bought Tuxcoin ten years ago."
+
 msgid "spyder_walled_musa1"
 msgstr "Why do you keep asking such obvious questions?"
+
 msgid "spyder_walled_musa2"
 msgstr "Let's skip it."
+
 msgid "spyder_walled_augustus1"
 msgstr "I wrote nine academic papers!"
+
 msgid "spyder_walled_augustus2"
 msgstr "But I'm unable to win a match!"
+
 msgid "spyder_walled_fugger1"
 msgstr "My new movie was not as good as I thought it would be."
+
 msgid "spyder_walled_fugger2"
 msgstr "Too many fight scenes."
+
 msgid "spyder_walled_rufus1"
 msgstr "Do you really want to play this game with me?"
+
 msgid "spyder_walled_rufus2"
 msgstr "You have won."
+
 msgid "spyder_walled_alexander1"
 msgstr "Do you mind waiting an extra hour so I can read more of my book?"
+
 msgid "spyder_walled_alexander2"
 msgstr "Lasted less than thirty seconds."
+
 msgid "spyder_walled_carnegie1"
 msgstr "I often wish I was born in a time before social media."
+
 msgid "spyder_walled_carnegie2"
 msgstr "Let me update my status!"
+
 msgid "spyder_walled_crassus1"
 msgstr "I'm going to buy an island."
+
 msgid "spyder_walled_crassus2"
 msgstr "But which one?"
+
 msgid "spyder_walled_girard1"
 msgstr "Why not go back to them and tell them you changed your mind?"
+
 msgid "spyder_walled_girard2"
 msgstr "Who popped up in your mind?"
+
 msgid "spyder_walled_vanderbilt1"
 msgstr "People have justifications for hurting others, but they are rarely good justifications."
+
 msgid "spyder_walled_vanderbilt2"
 msgstr "What's your justification?"
+
 msgid "spyder_walled_ford1"
 msgstr "Did you hear about the big earthquake in ocean?"
+
 msgid "spyder_walled_ford2"
 msgstr "There was a tsunami alert!"
+
 msgid "spyder_walled_astor1"
 msgstr "What should you do if you find a spider on your bed?"
+
 msgid "spyder_walled_astor2"
 msgstr "Capture and sell!"
+
+msgid "spyder_walled_billie1"
+msgstr "Well hello, ${{name}}. You scrub up alright. Don't worry, I'm not going to battle you. I don't want my win rate to get any worse."
+
 msgid "spyder_walled_midas1"
 msgstr "I guess they're just giving out Gold Passes to everyone these days."
+
 msgid "spyder_walled_midas2"
 msgstr "... ... ...\n I founded the Walled Garden as a sanctuary for the better class of person to hone their battle skills and network with fellow members of the elite.\n But seeing you, a...\n what is the word?\n I want to say 'hoi polloi'? 'Villein'?\n Seeing a pleb like you triumph has made me reconsider.\n From this day on, I am going to open the Walled Garden to all comers.\n Anyone who wants to test their mettle can do so here."
 

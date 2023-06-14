@@ -1284,21 +1284,6 @@ class CombatState(CombatAnimations):
                         if mex:
                             message += "\n" + mex
                             action_time += len(message) * letter_time
-                        # updates hud graphics player
-                        if len(self.monsters_in_play_human) > 1:
-                            self.build_hud(
-                                self._layout[self.players[0]]["hud0"][0],
-                                self.monsters_in_play_human[0],
-                            )
-                            self.build_hud(
-                                self._layout[self.players[0]]["hud1"][0],
-                                self.monsters_in_play_human[1],
-                            )
-                        else:
-                            self.build_hud(
-                                self._layout[self.players[0]]["hud"][0],
-                                self.monsters_in_play_human[0],
-                            )
                 if winners in self.players[0].monsters:
                     m = T.format(
                         "combat_gain_exp",

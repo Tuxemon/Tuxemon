@@ -7054,7 +7054,7 @@ msgid "spyder_cotton_tuxepediaahem"
 msgstr "Ahem."
 
 msgid "spyder_cotton_tuxepediaintro"
-msgstr "Currently, the only reliable information about tuxemon is from the expensive and incomplete Encyclopaedia Tuxemon! \n That's not cool; information should be freely available. That's why we're introducing Tuxepedia. \n It's open source, it's free, it's available for everyone to read, write and edit. How cool is that? \n In fact, I've installed it as an app on all your phones just now. "
+msgstr "Currently, the only reliable information about tuxemon is from the expensive and incomplete Encyclopaedia Tuxemon! \n That's not cool; information should be freely available. That's why we're introducing Tuxepedia. \n It's open source, it's free, it's available for everyone to read, write and edit. How cool is that? \n You can open Tuxepedia from the menu. "
 
 msgid "spyder_cotton_tuxepediaintro2"
 msgstr "All it takes to add information is for you to catch that particular tuxemon. It's so cool."

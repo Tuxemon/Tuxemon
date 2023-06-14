@@ -372,11 +372,10 @@ class JournalInfoState(PygameMenuState):
         assert not isinstance(lab6, List)
         lab6.translate(fix_width(width, 0.50), fix_height(height, 0.40))
         # species
-        species = (
-            T.translate("monster_menu_species")
-            + ": "
-            + T.translate(f"cat_{monster.category}")
-        )
+        spec = T.translate(f"cat_{monster.category}")
+        if monster.category:
+            spec = T.translate(monster.category)
+        species = T.translate("monster_menu_species") + ": " + spec
         lab7 = menu.add.label(
             title=species,
             label_id="species",

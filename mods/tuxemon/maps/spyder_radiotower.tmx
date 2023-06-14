@@ -121,6 +121,7 @@
     <property name="act4" value="start_battle spyder_omnichannel_beaverbrook"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_beaverbrook2"/>
     <property name="act6" value="set_variable omnichannelbeaverbrook:yes"/>
+    <property name="act7" value="set_variable kernelquest:yes"/>
     <property name="behav1" value="talk spyder_omnichannel_beaverbrook"/>
     <property name="cond1" value="not variable_set omnichannelbeaverbrook:yes"/>
    </properties>
@@ -143,7 +144,8 @@
     <property name="act90" value="start_battle spyder_omnichannel_beaverbrook"/>
     <property name="act91" value="translated_dialog spyder_omnichannel_beaverbrook2"/>
     <property name="act92" value="set_variable omnichannelbeaverbrook:yes"/>
-    <property name="act93" value="unlock_controls"/>
+    <property name="act93" value="set_variable kernelquest:yes"/>
+    <property name="act94" value="unlock_controls"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
    </properties>

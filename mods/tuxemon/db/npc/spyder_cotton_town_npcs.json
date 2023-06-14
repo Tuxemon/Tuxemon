@@ -180,6 +180,16 @@
     ]
   },
   {
+    "slug": "spyder_cottoncenter_ada",
+    "template": [
+      {
+        "sprite_name": "nurse",
+        "combat_front": "nurse",
+        "slug": "nurse"
+      }
+    ]
+  },
+  {
     "slug": "spyder_cottonscoop_joe",
     "template": [
       {

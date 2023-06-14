@@ -303,6 +303,12 @@ msgstr "Surfboard"
 msgid "surfboard_description"
 msgstr "From your Mom. It lets you travel faster."
 
+msgid "gold_pass"
+msgstr "Gold Pass"
+
+msgid "gold_pass_description"
+msgstr "Enjoy the Cathedral's deluxe services."
+
 msgid "dojo_pass"
 msgstr "Dojo Pass"
 

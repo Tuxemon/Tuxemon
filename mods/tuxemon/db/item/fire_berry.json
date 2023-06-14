@@ -1,19 +1,17 @@
 {
   "conditions": [
-    "is current_hp <,1.0",
-    "is current_hp >,0"
+    "not type fire"
   ],
   "effects": [
-    "heal 10"
+    "switch fire"
   ],
-  "slug": "berry",
-  "sort": "food",
+  "slug": "fire_berry",
+  "sort": "utility",
   "sprite": "gfx/items/berry.png",
-  "category": "potion",
+  "category": "elements",
   "type": "Consumable",
   "usable_in": [
-    "MainCombatMenuState",
-    "WorldState"
+    "MainCombatMenuState"
   ],
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

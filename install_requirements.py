@@ -5,7 +5,7 @@ import os
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
     
-#os.chdir(os.path.realpath("Tuxemon-development"))
+os.path.split(os.path.realpath(__file__))[0]
 
 req = open("requirements.txt", "r")
 reqtemp = req.read()

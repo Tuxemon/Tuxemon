@@ -1,7 +1,6 @@
 {
     "slug": "drokoro",
     "category": "dragon",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -63,7 +62,7 @@
     "txmn_id": 145,
     "height": 1200,
     "weight": 10000,
-    "catch_rate": 3.0,
+    "catch_rate": 5.0,
     "lower_catch_resistance": 0.8,
     "upper_catch_resistance": 1.05
 }

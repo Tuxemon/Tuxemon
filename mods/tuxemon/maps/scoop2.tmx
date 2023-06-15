@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="5" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="15">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="scoop2"/>
@@ -58,7 +59,7 @@
   </object>
   <object id="14" name="Player Spawn" type="event" x="32" y="64" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ff0000" id="3" name="Collision">
+ <objectgroup color="#ff0000" id="3" name="Collisions">
   <object id="4" type="collision" x="0" y="16" width="32" height="48"/>
   <object id="5" type="collision" x="32" y="0" width="48" height="48"/>
   <object id="6" type="collision" x="80" y="16" width="32" height="48"/>

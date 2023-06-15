@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="51">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="wayfarer_inn2"/>
@@ -99,27 +100,27 @@
   <object id="32" name="Player Spawn" type="event" x="80" y="32" width="16" height="16"/>
   <object id="35" name="Create Granny" type="event" x="80" y="224" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_granny,4,15"/>
-    <property name="act2" value="npc_face spyder_granny,up"/>
-    <property name="cond1" value="not npc_exists spyder_granny"/>
+    <property name="act1" value="create_npc spyder_wayfarer2_gae,4,15"/>
+    <property name="act2" value="npc_face spyder_wayfarer2_gae,up"/>
+    <property name="cond1" value="not npc_exists spyder_wayfarer2_gae"/>
    </properties>
   </object>
   <object id="36" name="Talk Granny" type="event" x="64" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_wayfarer_granny"/>
-    <property name="behav1" value="talk spyder_granny"/>
+    <property name="behav1" value="talk spyder_wayfarer2_gae"/>
    </properties>
   </object>
   <object id="37" name="Create Maniac" type="event" x="80" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_maniac,5,6"/>
-    <property name="cond1" value="not npc_exists spyder_maniac"/>
+    <property name="act1" value="create_npc spyder_wayfarer2_kim,5,6"/>
+    <property name="cond1" value="not npc_exists spyder_wayfarer2_kim"/>
    </properties>
   </object>
   <object id="38" name="Talk Maniac" type="event" x="80" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_wayfarer_maniac"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk spyder_wayfarer2_kim"/>
    </properties>
   </object>
   <object id="39" name="Create Bravo" type="event" x="208" y="32" width="16" height="16">
@@ -132,8 +133,8 @@
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_bravo1"/>
     <property name="act11" value="npc_plague infected,spyder_wayfarer1_bravo"/>
-    <property name="act12" value="add_monster elofly,12,spyder_wayfarer1_bravo,27,10"/>
-    <property name="act13" value="add_monster flacono,12,spyder_wayfarer1_bravo,27,10"/>
+    <property name="act12" value="add_monster elofly,12,spyder_wayfarer1_bravo,5,10"/>
+    <property name="act13" value="add_monster flacono,12,spyder_wayfarer1_bravo,5,10"/>
     <property name="act14" value="start_battle spyder_wayfarer1_bravo"/>
     <property name="act15" value="translated_dialog spyder_wayfarer1_bravo2"/>
     <property name="act16" value="set_variable wayfarer1bravo:yes"/>
@@ -151,9 +152,9 @@
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_james1"/>
     <property name="act11" value="npc_plague infected,spyder_wayfarer1_james"/>
-    <property name="act12" value="add_monster botbot,12,spyder_wayfarer1_james,27,10"/>
-    <property name="act13" value="add_monster picc,12,spyder_wayfarer1_james,27,10"/>
-    <property name="act14" value="add_monster b_ver_1,12,spyder_wayfarer1_james,27,10"/>
+    <property name="act12" value="add_monster botbot,12,spyder_wayfarer1_james,5,10"/>
+    <property name="act13" value="add_monster picc,12,spyder_wayfarer1_james,5,10"/>
+    <property name="act14" value="add_monster b_ver_1,12,spyder_wayfarer1_james,5,10"/>
     <property name="act15" value="start_battle spyder_wayfarer1_james"/>
     <property name="act16" value="translated_dialog spyder_wayfarer1_james2"/>
     <property name="act17" value="set_variable wayfarer1james:yes"/>
@@ -178,8 +179,8 @@
    <properties>
     <property name="act10" value="pathfind_to_player spyder_wayfarer1_bravo"/>
     <property name="act11" value="translated_dialog spyder_wayfarer1_bravo1"/>
-    <property name="act13" value="add_monster elofly,12,spyder_wayfarer1_bravo,27,10"/>
-    <property name="act14" value="add_monster flacono,12,spyder_wayfarer1_bravo,27,10"/>
+    <property name="act13" value="add_monster elofly,12,spyder_wayfarer1_bravo,5,10"/>
+    <property name="act14" value="add_monster flacono,12,spyder_wayfarer1_bravo,5,10"/>
     <property name="act15" value="start_battle spyder_wayfarer1_bravo"/>
     <property name="act16" value="translated_dialog spyder_wayfarer1_bravo2"/>
     <property name="act17" value="set_variable wayfarer1bravo:yes"/>

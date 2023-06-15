@@ -1,7 +1,6 @@
 {
     "slug": "nudiflot_male",
     "category": "flotsam",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -46,7 +45,7 @@
     "txmn_id": 52,
     "height": 36,
     "weight": 3,
-    "catch_rate": 170.0,
+    "catch_rate": 100.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25
 }

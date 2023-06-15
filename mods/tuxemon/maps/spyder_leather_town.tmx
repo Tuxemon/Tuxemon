@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="316">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="320">
  <properties>
   <property name="east" value="citypark"/>
   <property name="edges" value="clamped"/>
@@ -22,7 +22,7 @@
  </tileset>
  <layer id="1" name="Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtWLtNBEEM3QIQv5hfJwjRwCVAAwioAWiAKoAYiS4gRkKiCIhJIMGW9kkPY5vZ29nbO0RgeWfu8L3xe7ZnmSw1zeSP2fH6Yp/paa0e/s3lprG2JXvzwvnLatNY2w/w7c6I1yv6HYtN1xG+MXJ6KrlS+xQD1u2Vn5yrBmrx/j6FPvcIH3BaP2Ze5x3fieQPXLNn3sfMX9RzOa9j4otqc5HwZXV9IDP8UOxoxrOc82frGWvl/VxwXYhd/uP7Nnu5rrmWkTv1nL9XyZ/ybG0I3nkOav1EXDM+5dizUt773H0yfNeC60bsscX30K51T+1WLOoRtfYzfKjfN8ExRJ0gPnTj6SXDh/oFt6V8luauJH6Gz/I7Nr4Pmtdn8ow84Jxcxx4X+L71tibxOeJ6/Ny19zXOn53F+I6NU0uLNq7HT4bPnpPrt0btQj9ZP+iCzzsfzjCUnwd8G6J1+76J9Y68l2CuWf0hJ9DJNPmLagOx1XOOgMXzQ+BjHNFzH3z6Xob8cX9Bz498l/7D+LjH8TuJPnPP43cD4EOfKvFdtMD4wCFmX8k5bR9AP/A87hIZPmgf3qsB5CSLE+kl20fcSAuaD0/72EP+EGcofJEG9PeAxfOzwsezhnWgc8fqnteogSx/mLsZj9FnWdzob7x9xIl0EvWN3/b73GXv6X9wwBfppO9+X1136Rmsn9LnGvcbj/fae8/EWe3YQ8X7AoiqvFs=
+   eAHtWMtNxEAMnQIQvzO/ThCigb0ADSCgBqABqgDOSNsFnJGQKALOXOCCLeVJDzN2kk0mySIOljOTjfPi9+yZ2dlKSrM/Zqeby/1Nzxv94d9eTcnajsxNhfPX9ZSsHTr49gfi9YbeY7Hp2MM3Rk7PJVdqX2LAurv2m3PVQF+8fyygzwPCB5zWj5nXqeM7k/yBa/bM+5j583ou53VMfF5tLhO+qK6PZA0/FjsZeC3n/Nl6xlh5vxRcV2LX//h+rL1c11zLyJ16zt+b5E95tlaCd14HtX48rhmfcpyzprx32ftE+G4F153YU4XvsRrrnNq9mNcj+pqP8KF+3wVHiTpBfOgmpxeLD9+d47cpn4hR59EfoJ1cfIsPNaL4LL+55+swRPfb4vuk9fpCrhEbcbiOc1zg99bbmsR9xM3l76Har3H+NGd4Vj1+Y+P0pUUbN8dPhA9YEYfrt4/ahX6iftAGX+778A2l/BTwbYmu7HkT4z05l3DN5vIAfhfJn1cb/B7OEbCo19/w2NYHYnTBhxiR74JPz2XAx/0FPd/zbfoP4+Mex2cSveaex2cD4EOfauLbaIHxgUOsfU2+0/YB9IOcx14iwgftw+dqADmJ4kSa8e4hrqcFzQdr3l4jf4hTCp+nAX2fxcTjofDxWsM60HXH6p7HqIEof1h3PQ6j+Shu9Jy9hzieTry+UTffZS87p//ggM/TSdf5rrpu0zNYP02v+9jfWM5LjF+IsxLxS8T8BmKoujM=
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
@@ -72,7 +72,7 @@
   <object id="219" type="collision" x="208" y="112" width="32" height="48"/>
   <object id="220" type="collision" x="240" y="112" width="16" height="32"/>
   <object id="221" type="collision" x="256" y="112" width="32" height="48"/>
-  <object id="222" type="collision" x="272" y="0" width="16" height="64"/>
+  <object id="222" type="collision" x="272" y="0" width="16" height="48"/>
   <object id="224" type="collision" x="64" y="144" width="80" height="48"/>
   <object id="225" type="collision" x="0" y="96" width="32" height="416"/>
   <object id="226" type="collision" x="16" y="608" width="64" height="32"/>
@@ -172,7 +172,7 @@
   <object id="284" type="collision" x="464" y="400" width="16" height="48"/>
   <object id="285" type="collision" x="480" y="400" width="80" height="32"/>
   <object id="286" type="collision" x="496" y="432" width="64" height="16"/>
-  <object id="297" type="collision" x="384" y="0" width="16" height="64"/>
+  <object id="297" type="collision" x="384" y="0" width="16" height="48"/>
   <object id="299" type="collision" x="32" y="480" width="32" height="32"/>
   <object id="300" type="collision" x="0" y="544" width="64" height="64"/>
   <object id="302" type="collision" x="128" y="256" width="48" height="16"/>
@@ -289,20 +289,20 @@
   </object>
   <object id="272" name="Make Scout" type="event" x="304" y="224" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_maniac,18,15"/>
-    <property name="cond1" value="not npc_exists spyder_maniac"/>
+    <property name="act1" value="create_npc spyder_leather_filbur,18,15"/>
+    <property name="cond1" value="not npc_exists spyder_leather_filbur"/>
    </properties>
   </object>
   <object id="273" name="Scout Talk" type="event" x="304" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leather_maniac"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk spyder_leather_filbur"/>
    </properties>
   </object>
   <object id="274" name="Make Barmaid" type="event" x="96" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_barmaid,6,10"/>
-    <property name="cond1" value="not npc_exists spyder_barmaid"/>
+    <property name="act1" value="create_npc spyder_leather_eula,6,10"/>
+    <property name="cond1" value="not npc_exists spyder_leather_eula"/>
    </properties>
   </object>
   <object id="276" name="Heal Tuxemon" type="event" x="112" y="160" width="16" height="16">
@@ -310,9 +310,9 @@
     <property name="act1" value="set_monster_health"/>
     <property name="act2" value="set_monster_status"/>
     <property name="act20" value="translated_dialog okaythen"/>
-    <property name="act30" value="npc_face spyder_barmaid,up"/>
+    <property name="act30" value="npc_face spyder_leather_eula,up"/>
     <property name="act40" value="wait 1"/>
-    <property name="act50" value="npc_face spyder_barmaid,down"/>
+    <property name="act50" value="npc_face spyder_leather_eula,down"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
     <property name="act80" value="set_variable teleport_faint:spyder_leather_town.tmx 4 14"/>
@@ -441,13 +441,13 @@
   <object id="301" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="304" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
-    <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="303" name="Auto Healing Teleported" type="event" x="0" y="16" width="16" height="16">
@@ -525,6 +525,37 @@
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="316" name="Choice Surf" type="event" x="64" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog itsswimmingtime"/>
+    <property name="act2" value="translated_dialog_choice yes:no,swimming"/>
+    <property name="cond1" value="is has_item player,surfboard"/>
+    <property name="cond2" value="is player_facing_tile surfable"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not player_in surfable"/>
+   </properties>
+  </object>
+  <object id="317" name="surfable" type="event" x="32" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_player_template swimmer"/>
+    <property name="cond1" value="is player_in surfable"/>
+    <property name="cond2" value="not has_sprite swimmer"/>
+   </properties>
+  </object>
+  <object id="318" name="not surfable" type="event" x="16" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_player_template default"/>
+    <property name="act2" value="set_variable swimming:no"/>
+    <property name="cond1" value="not player_in surfable"/>
+    <property name="cond2" value="is has_sprite swimmer"/>
+   </properties>
+  </object>
+  <object id="319" name="Remove Obstacle" type="event" x="48" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision water"/>
+    <property name="cond1" value="is variable_set swimming:yes"/>
    </properties>
   </object>
  </objectgroup>

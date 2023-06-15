@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="9" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="33">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="9" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="34">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="bedroom"/>
@@ -38,7 +39,7 @@
    eAFjYCAffBEnrFdRgrAaaquYqk3YxC1ANQAM/gLk
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="0" y="16" width="144" height="16"/>
   <object id="5" type="collision" x="0" y="32" width="16" height="32"/>
   <object id="6" type="collision" x="96" y="48" width="32" height="16"/>
@@ -58,6 +59,15 @@
     <property name="act1" value="change_state PCState"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set kernelquest:yes"/>
+   </properties>
+  </object>
+  <object id="11" name="Use Computer Kernel" type="event" x="48" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_pc_alert"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is variable_set kernelquest:yes"/>
    </properties>
   </object>
   <object id="26" name="Player Spawn" type="event" x="48" y="64" width="16" height="16"/>
@@ -81,15 +91,15 @@
     <property name="cond1" value="is variable_set teleport_clinic:lost"/>
    </properties>
   </object>
-  <object id="30" name="intro question" type="event" x="60" y="0" width="16" height="16">
+  <object id="30" name="intro question" type="event" x="64" y="0" width="16" height="16">
    <properties>
     <property name="act01" value="translated_dialog spyder_intro_question"/>
     <property name="act02" value="translated_dialog_choice no:yes,question_intro"/>
     <property name="cond1" value="not variable_set question_intro:yes"/>
     <property name="cond2" value="not variable_set question_intro:no"/>
    </properties>
-  </object>  
-  <object id="31" name="Spyder Intro" type="event" x="76" y="0" width="16" height="16">
+  </object>
+  <object id="31" name="Spyder Intro" type="event" x="80" y="0" width="16" height="16">
    <properties>
     <property name="act05" value="change_bg spyder_intro01"/>
     <property name="act06" value="translated_dialog spyder_intro00"/>
@@ -115,12 +125,18 @@
     <property name="cond2" value="not variable_set spyder_intro:yes"/>
    </properties>
   </object>
-  <object id="32" name="No Intro" type="event" x="92" y="0" width="16" height="16">
+  <object id="32" name="No Intro" type="event" x="96" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable spyder_intro:yes"/>
     <property name="act2" value="transition_teleport spyder_paper_mart.tmx,4,8,0.3"/>
     <property name="cond1" value="is variable_set question_intro:yes"/>
     <property name="cond2" value="not variable_set spyder_intro:yes"/>
+   </properties>
+  </object>
+  <object id="33" name="Play Music" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="play_music music_home"/>
+    <property name="cond10" value="not music_playing music_home"/>
    </properties>
   </object>
  </objectgroup>

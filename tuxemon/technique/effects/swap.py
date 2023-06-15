@@ -3,10 +3,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from functools import partial
+from typing import TYPE_CHECKING
 
-from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
-from tuxemon.technique.technique import Technique
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
+    from tuxemon.technique.technique import Technique
 
 
 class SwapEffectResult(TechEffectResult):
@@ -39,9 +43,9 @@ class SwapEffect(TechEffect):
         # TODO: find a way to pass values. this will only work for SP games with one monster party
         combat_state = tech.combat_state
 
-        def swap_add() -> None:
+        def swap_add(removed: Monster) -> None:
             # TODO: make accommodations for battlefield positions
-            combat_state.add_monster_into_play(player, target)
+            combat_state.add_monster_into_play(player, target, removed)
 
         # get the original monster to be swapped out
         original_monster = combat_state.monsters_in_play[player][0]
@@ -53,7 +57,7 @@ class SwapEffect(TechEffect):
         combat_state.remove_monster_from_play(original_monster)
 
         # give a slight delay
-        combat_state.task(swap_add, 0.75)
+        combat_state.task(partial(swap_add, original_monster), 0.75)
         combat_state.suppress_phase_change(0.75)
 
         return {"success": True}

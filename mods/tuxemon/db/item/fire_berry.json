@@ -1,0 +1,19 @@
+{
+  "conditions": [
+    "not type fire"
+  ],
+  "effects": [
+    "switch fire"
+  ],
+  "slug": "fire_berry",
+  "sort": "utility",
+  "sprite": "gfx/items/berry.png",
+  "category": "elements",
+  "type": "Consumable",
+  "usable_in": [
+    "MainCombatMenuState"
+  ],
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
+}

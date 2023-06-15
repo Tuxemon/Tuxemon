@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="51">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="omnichannel3"/>
@@ -30,7 +31,7 @@
    eAFjYEAF/kBuABA3MTIwNANxCxJuBbLbgBgbSAUKpmGToKLYSqDdK6B4FQ53YLNuP1DtPig+QII+bGZRIvaGiYFBH2i/AYlusGZmYHAF6nED4lygGf1AegIRZoD0RQPVxUDVLgXSy4jUR44/QfaRA2itLwnNXcTah64OnY/u19VAgTXogkA+IX0HgWoOATEobpFBMpK7QWmnEBh3LmhqkNXD2N1I+kB2twP15aDpI5SXQHbPxZJWCOUlZLth7iGHBgB0nSFG
   </data>
  </layer>
- <objectgroup color="#ff0000" id="4" name="Collision">
+ <objectgroup color="#ff0000" id="4" name="Collisions">
   <object id="15" type="collision" x="0" y="0" width="16" height="336"/>
   <object id="16" type="collision" x="16" y="0" width="208" height="32"/>
   <object id="17" type="collision" x="208" y="32" width="16" height="304"/>
@@ -116,8 +117,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_omnichannel_strauss"/>
     <property name="act1" value="translated_dialog spyder_omnichannel_strauss1"/>
-    <property name="act2" value="add_monster budaye,36,spyder_omnichannel_strauss,27,10"/>
-    <property name="act3" value="add_monster frondly,40,spyder_omnichannel_strauss,27,10"/>
+    <property name="act2" value="add_monster budaye,36,spyder_omnichannel_strauss,5,10"/>
+    <property name="act3" value="add_monster frondly,40,spyder_omnichannel_strauss,5,10"/>
     <property name="act4" value="start_battle spyder_omnichannel_strauss"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_strauss2"/>
     <property name="act6" value="set_variable omnichannelstrauss:yes"/>
@@ -129,8 +130,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_omnichannel_carnegie"/>
     <property name="act1" value="translated_dialog spyder_omnichannel_carnegie1"/>
-    <property name="act2" value="add_monster elofly,38,spyder_omnichannel_carnegie,27,10"/>
-    <property name="act3" value="add_monster elostorm,38,spyder_omnichannel_carnegie,27,10"/>
+    <property name="act2" value="add_monster elofly,38,spyder_omnichannel_carnegie,5,10"/>
+    <property name="act3" value="add_monster elostorm,38,spyder_omnichannel_carnegie,5,10"/>
     <property name="act4" value="start_battle spyder_omnichannel_carnegie"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_carnegie2"/>
     <property name="act6" value="set_variable omnichannelcarnegie:yes"/>
@@ -142,8 +143,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_omnichannel_byrne"/>
     <property name="act1" value="translated_dialog spyder_omnichannel_byrne1"/>
-    <property name="act2" value="add_monster rockat,36,spyder_omnichannel_byrne,27,10"/>
-    <property name="act3" value="add_monster jemuar,40,spyder_omnichannel_byrne,27,10"/>
+    <property name="act2" value="add_monster rockat,36,spyder_omnichannel_byrne,5,10"/>
+    <property name="act3" value="add_monster jemuar,40,spyder_omnichannel_byrne,5,10"/>
     <property name="act4" value="start_battle spyder_omnichannel_byrne"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_byrne2"/>
     <property name="act6" value="set_variable omnichannelbyrne:yes"/>
@@ -159,14 +160,14 @@
   </object>
   <object id="48" name="Create Spyder Rookie" type="event" x="64" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_spyderrookie,12,11"/>
-    <property name="cond1" value="not npc_exists spyder_spyderrookie"/>
+    <property name="act1" value="create_npc spyder_omnichannel_gore,12,11"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_gore"/>
    </properties>
   </object>
   <object id="49" name="Talk Spyder Rookie" type="event" x="64" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel3_spyderrookie"/>
-    <property name="behav1" value="talk spyder_spyderrookie"/>
+    <property name="behav1" value="talk spyder_omnichannel_gore"/>
    </properties>
   </object>
   <object id="50" name="Threats" type="event" x="0" y="32" width="16" height="16">

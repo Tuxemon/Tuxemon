@@ -25,6 +25,7 @@ from tuxemon.db import (
     db,
     process_targets,
 )
+from tuxemon.element import Element
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 from tuxemon.technique.techcondition import TechCondition
@@ -38,9 +39,6 @@ logger = logging.getLogger(__name__)
 
 SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "slug",
-    "power",
-    "potency",
-    "accuracy",
     "counter",
     "counter_success",
 )
@@ -73,12 +71,13 @@ class Technique:
         self.flip_axes = ""
         self.icon = ""
         self.images: Sequence[str] = []
-        self.is_area = False
+        self.hit = False
         self.is_fast = False
         self.randomly = True
         self.link: Optional[Monster] = None
         self.name = ""
         self.next_use = 0
+        self.nr_turn = 0
         self.potency = 0.0
         self.power = 1.0
         self.range = Range.melee
@@ -90,7 +89,7 @@ class Technique:
         self.sort = ""
         self.slug = ""
         self.target: Sequence[str] = []
-        self.types: List[ElementType] = []
+        self.types: List[Element] = []
         self.usable_on = False
         self.use_success = ""
         self.use_failure = ""
@@ -128,8 +127,6 @@ class Technique:
         self.sort = results.sort
 
         # technique use notifications (translated!)
-        # NOTE: should be `self.use_tech`, but Technique and Item have
-        # overlapping checks
         self.use_tech = T.maybe_translate(results.use_tech)
         self.use_success = T.maybe_translate(results.use_success)
         self.use_failure = T.maybe_translate(results.use_failure)
@@ -137,7 +134,10 @@ class Technique:
         self.icon = results.icon
         self.counter = self.counter
         self.counter_success = self.counter_success
-        self.types = list(results.types)
+        # types
+        for _ele in results.types:
+            _element = Element(_ele)
+            self.types.append(_element)
         # technique stats
         self.accuracy = results.accuracy or self.accuracy
         self.potency = results.potency or self.potency
@@ -157,11 +157,11 @@ class Technique:
         self.repl_neg = results.repl_neg or self.repl_neg
         self.repl_pos = results.repl_pos or self.repl_pos
 
+        self.hit = self.hit
         self.is_fast = results.is_fast or self.is_fast
         self.randomly = results.randomly or self.randomly
         self.healing_power = results.healing_power or self.healing_power
         self.recharge_length = results.recharge or self.recharge_length
-        self.is_area = results.is_area or self.is_area
         self.range = results.range or Range.melee
         self.tech_id = results.tech_id or self.tech_id
 
@@ -353,6 +353,17 @@ class Technique:
         self.next_use = self.recharge_length
 
         return meta_result
+
+    def has_type(self, element: Optional[ElementType]) -> bool:
+        """
+        Returns TRUE if there is the type among the types.
+        """
+        ret: bool = False
+        if element:
+            eles = [ele for ele in self.types if ele.slug == element]
+            if eles:
+                ret = True
+        return ret
 
     def set_stats(self) -> None:
         """

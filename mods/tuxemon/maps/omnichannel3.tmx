@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="9">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="omnichannel3"/>
@@ -25,7 +26,7 @@
    eAG1UUsKQkEMyxV0qQhu9Eh6Fj+7513EYyh6HkFd6M5UWwiPN2/GAQOdFkraTgIAp1E6Lh09Uj5Yj4FU3Mhr94LXl6ecWYNtIe/Mu2pg/ymF6vkQ3pG19qKOuaqX7ruSp72og7cYAkuGQfUzXh8acnbOU/1yvNTMWt7ddTm4h3tm0yaH0GXjvBWzaRN4DoAXw6C+5+6cUZO569L24Tut+w0/LavvuX3hp+Vf9ukV6vuEc+yGEj3V99Avpafu+3f9Bv8oR8c=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="4" name="Collision">
+ <objectgroup color="#ff0000" id="4" name="Collisions">
   <object id="1" type="collision" x="0" y="336">
    <polygon points="0,0 0,-336 224,-336 224,0 208,0 208,-32 176,-32 176,-64 208,-64 208,-128 176,-128 176,-160 208,-160 208,-208 128,-208 128,-160 160,-160 160,-128 128,-128 128,-64 160,-64 160,-32 112,-32 112,-240 208,-240 208,-304 144,-304 144,-272 128,-272 128,-304 16,-304 16,-240 64,-240 64,-272 80,-272 80,-176 64,-176 64,-208 48,-208 16,-208 16,-96 64,-96 64,-128 80,-128 80,-32 64,-32 64,-64 16,-64 16,0 0,0"/>
   </object>

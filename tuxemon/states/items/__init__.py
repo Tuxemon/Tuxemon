@@ -136,6 +136,8 @@ class ItemMenuState(Menu[Item]):
                             "here": T.translate(loc_type),
                         },
                     )
+                elif i.name == "facing_tile" or i.name == "facing_sprite":
+                    msg = T.format("item_cannot_use_here", {"name": item.name})
             tools.open_dialog(local_session, [msg])
         elif State[state] not in item.usable_in:
             msg = T.format("item_cannot_use_here", {"name": item.name})
@@ -175,13 +177,27 @@ class ItemMenuState(Menu[Item]):
                         local_session, item, result
                     )
 
+        def use_item_no_monster(itm: Item) -> None:
+            player = local_session.player
+            self.client.pop_state()
+            result = itm.use(player, None)
+            if item.category == "fish" and not result["success"]:
+                tools.show_item_result_as_dialog(local_session, item, result)
+            elif item.category == "fish" and result["success"]:
+                pass
+            else:
+                tools.show_item_result_as_dialog(local_session, item, result)
+
         def confirm() -> None:
             self.client.pop_state()  # close the confirm dialog
-            # TODO: allow items to be used on player or "in general"
+            categories = ["fish", "destroy"]  # not opening monster menu
 
-            menu = self.client.push_state(MonsterMenuState())
-            menu.is_valid_entry = item.validate  # type: ignore[assignment]
-            menu.on_menu_selection = use_item  # type: ignore[assignment]
+            if item.category in categories:
+                use_item_no_monster(item)
+            else:
+                menu = self.client.push_state(MonsterMenuState())
+                menu.is_valid_entry = item.validate  # type: ignore[assignment]
+                menu.on_menu_selection = use_item  # type: ignore[assignment]
 
         def cancel() -> None:
             self.client.pop_state()  # close the use/cancel menu
@@ -385,13 +401,18 @@ class ShopBuyMenuState(ShopMenuState):
         inventory = self.economy.lookup_item_inventory(item.slug)
         if inventory == INFINITE_ITEMS:
             inventory = 99999
+
+        quantity: int = 1
         max_quantity = min(inventory, qty_can_afford)
+        if item.quantity == 0:
+            quantity = 0
+            max_quantity = 0
 
         self.client.push_state(
             QuantityAndPriceMenu(
                 callback=partial(buy_item, item),
                 max_quantity=max_quantity,
-                quantity=1,
+                quantity=quantity,
                 shrink_to_items=True,
                 price=price,
             )

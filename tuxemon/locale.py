@@ -20,8 +20,9 @@ from typing import (
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
 
-from tuxemon import formula, prepare
+from tuxemon import prepare
 from tuxemon.constants import paths
+from tuxemon.formula import convert_km, convert_mi
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
@@ -224,13 +225,13 @@ def replace_text(session: Session, text: str) -> str:
     text = text.replace(r"\n", "\n")
     text = text.replace("${{money}}", str(player.money["player"]))
     # distance (metric / imperial)
-    if prepare.CONFIG.unit == "metric":
+    if player.game_variables["unit_measure"] == "Metric":
         text = text.replace("${{length}}", "km")
         text = text.replace("${{weight}}", "kg")
         text = text.replace("${{height}}", "cm")
         text = text.replace(
             "${{steps}}",
-            str(formula.convert_km(player.game_variables["steps"])),
+            str(convert_km(player.game_variables["steps"])),
         )
     else:
         text = text.replace("${{length}}", "mi")
@@ -238,7 +239,7 @@ def replace_text(session: Session, text: str) -> str:
         text = text.replace("${{height}}", "ft")
         text = text.replace(
             "${{steps}}",
-            str(formula.convert_mi(player.game_variables["steps"])),
+            str(convert_mi(player.game_variables["steps"])),
         )
     # maps
     text = text.replace("${{map_name}}", client.map_name)

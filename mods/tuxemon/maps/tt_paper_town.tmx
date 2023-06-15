@@ -14,7 +14,7 @@
    eAFjYBgFgzEErgEdhQvT273lzAwMFUi4EsjGBcQYcckMDnFquo+UcCHW99R0H7F2YlOHK+2BxEcyMB7k6Xskxw0pfkfPu6DyDV+5RorZpKgVIEXxAKg1GAA7SbXSkgQNA5F/SXEfCV4ZVTqEQgCUzwci7REbRIM5n4PyTyQQRxHrmRGkDgC7VBYk
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <properties>
    <property name="Collision" value=""/>
   </properties>

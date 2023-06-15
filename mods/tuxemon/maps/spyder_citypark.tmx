@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="277">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="287">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -36,7 +36,7 @@
    eAHt0LENgEAMA0AvQcOKMCniV/kZyAgUqaKz5NaSLxECBAgQIDBTYJ8zf3lFgAABAgS6Ba4avLtH7REg8FvgOZK3uqpCgAABAgQI9Al8WiQEgg==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="177" type="collision" x="0" y="224" width="32" height="416"/>
   <object id="178" type="collision" x="32" y="0" width="496" height="32"/>
   <object id="179" type="collision" x="64" y="32" width="192" height="32"/>
@@ -131,7 +131,7 @@
   <object id="272" type="collision" x="16" y="192" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="33" name="random encounter 1" type="event" x="208" y="176" width="128" height="32">
+  <object id="30" name="random encounter 1" type="event" x="208" y="176" width="128" height="32">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -139,7 +139,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="34" name="encounter 2" type="event" x="144" y="144" width="16" height="48">
+  <object id="31" name="encounter 2" type="event" x="144" y="144" width="16" height="48">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -147,7 +147,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="35" name="encounter 3" type="event" x="32" y="176" width="112" height="16">
+  <object id="32" name="encounter 3" type="event" x="32" y="176" width="112" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -155,7 +155,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="60" name="encounter" type="event" x="480" y="496" width="96" height="16">
+  <object id="33" name="encounter" type="event" x="480" y="496" width="96" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -163,7 +163,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="61" name="encounter" type="event" x="464" y="512" width="128" height="32">
+  <object id="34" name="encounter" type="event" x="464" y="512" width="128" height="32">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -171,7 +171,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="83" name="encounter" type="event" x="576" y="336" width="16" height="16">
+  <object id="35" name="encounter" type="event" x="576" y="336" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -179,7 +179,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="84" name="encounter" type="event" x="592" y="320" width="16" height="16">
+  <object id="36" name="encounter" type="event" x="592" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -187,7 +187,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="85" name="encounter" type="event" x="560" y="320" width="16" height="16">
+  <object id="37" name="encounter" type="event" x="560" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -195,7 +195,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="86" name="Teleport to Route 2" type="event" x="176" y="624" width="16" height="16">
+  <object id="38" name="Teleport to Route 2" type="event" x="176" y="624" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route2.tmx,11,0,0.3"/>
     <property name="act2" value="player_face down"/>
@@ -203,7 +203,7 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="87" name="Teleport to Route 2" type="event" x="160" y="624" width="16" height="16">
+  <object id="39" name="Teleport to Route 2" type="event" x="160" y="624" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route2.tmx,10,0,0.3"/>
     <property name="act2" value="player_face down"/>
@@ -211,7 +211,7 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="89" name="Teleport to Leather Town" type="event" x="0" y="192" width="16" height="16">
+  <object id="40" name="Teleport to Leather Town" type="event" x="0" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_leather_town.tmx,39,32,0.3"/>
     <property name="act2" value="player_face left"/>
@@ -219,7 +219,7 @@
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
-  <object id="90" name="Teleport to Leather Town" type="event" x="0" y="208" width="16" height="16">
+  <object id="41" name="Teleport to Leather Town" type="event" x="0" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_leather_town.tmx,39,33,0.3"/>
     <property name="act2" value="player_face left"/>
@@ -227,81 +227,81 @@
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
-  <object id="101" name="Sign: Achievement Maniac's House" type="event" x="512" y="48" width="16" height="16">
+  <object id="42" name="Sign: Achievement Maniac's House" type="event" x="512" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_achievement"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="102" name="Sign: Leather Town" type="event" x="16" y="192" width="16" height="16">
+  <object id="43" name="Sign: Leather Town" type="event" x="16" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog here_to_east"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="217" name="Create Maniac" type="event" x="128" y="576" width="16" height="16">
+  <object id="44" name="Create Maniac" type="event" x="128" y="576" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_maniac,8,36"/>
-    <property name="cond1" value="not npc_exists spyder_maniac"/>
+    <property name="act1" value="create_npc spyder_citypark_mack,8,36"/>
+    <property name="cond1" value="not npc_exists spyder_citypark_mack"/>
    </properties>
   </object>
-  <object id="218" name="Create Granny" type="event" x="144" y="576" width="16" height="16">
+  <object id="45" name="Create Granny" type="event" x="144" y="576" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_granny,9,36"/>
-    <property name="cond1" value="not npc_exists spyder_granny"/>
+    <property name="act1" value="create_npc spyder_citypark_magdalene,9,36"/>
+    <property name="cond1" value="not npc_exists spyder_citypark_magdalene"/>
    </properties>
   </object>
-  <object id="219" name="Create Florist" type="event" x="464" y="176" width="16" height="16">
+  <object id="46" name="Create Florist" type="event" x="464" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_florist,29,11"/>
-    <property name="cond1" value="not npc_exists spyder_florist"/>
+    <property name="act1" value="create_npc spyder_citypark_prue,29,11"/>
+    <property name="cond1" value="not npc_exists spyder_citypark_prue"/>
    </properties>
   </object>
-  <object id="220" name="Talk Granny" type="event" x="144" y="560" width="16" height="16">
+  <object id="47" name="Talk Granny" type="event" x="144" y="560" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_granny"/>
-    <property name="behav1" value="talk spyder_granny"/>
+    <property name="behav1" value="talk spyder_citypark_magdalene"/>
    </properties>
   </object>
-  <object id="221" name="Talk Maniac" type="event" x="128" y="560" width="16" height="16">
+  <object id="48" name="Talk Maniac" type="event" x="128" y="560" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_maniac"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk spyder_citypark_mack"/>
    </properties>
   </object>
-  <object id="222" name="Talk Florist" type="event" x="464" y="160" width="16" height="16">
+  <object id="49" name="Talk Florist" type="event" x="464" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_florist"/>
-    <property name="behav1" value="talk spyder_florist"/>
+    <property name="behav1" value="talk spyder_citypark_prue"/>
    </properties>
   </object>
-  <object id="223" name="Create Florist2" type="event" x="144" y="352" width="16" height="16">
+  <object id="50" name="Create Florist2" type="event" x="144" y="352" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_citypark_florist,9,21"/>
     <property name="act2" value="npc_face spyder_citypark_florist,right"/>
     <property name="cond1" value="not npc_exists spyder_citypark_florist"/>
    </properties>
   </object>
-  <object id="224" name="Talk Florist2" type="event" x="144" y="336" width="16" height="16">
+  <object id="51" name="Talk Florist2" type="event" x="144" y="336" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark2_florist"/>
     <property name="behav1" value="talk spyder_citypark_florist"/>
    </properties>
   </object>
-  <object id="225" name="Create Frances" type="event" x="448" y="384" width="16" height="16">
+  <object id="52" name="Create Frances" type="event" x="448" y="384" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_citypark_frances,28,24"/>
     <property name="act2" value="npc_face spyder_citypark_frances,left"/>
     <property name="cond2" value="not npc_exists spyder_citypark_frances"/>
    </properties>
   </object>
-  <object id="226" name="Talk Frances" type="event" x="448" y="368" width="16" height="16">
+  <object id="53" name="Talk Frances" type="event" x="448" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_frances1"/>
-    <property name="act2" value="add_monster shybulb,8,spyder_citypark_frances,27,10"/>
-    <property name="act3" value="add_monster shybulb,8,spyder_citypark_frances,27,10"/>
+    <property name="act2" value="add_monster shybulb,8,spyder_citypark_frances,5,10"/>
+    <property name="act3" value="add_monster shybulb,8,spyder_citypark_frances,5,10"/>
     <property name="act4" value="start_battle spyder_citypark_frances"/>
     <property name="act5" value="translated_dialog spyder_citypark_frances2"/>
     <property name="act6" value="set_variable citypark_frances:yes"/>
@@ -309,17 +309,17 @@
     <property name="cond1" value="not variable_set citypark_frances:yes"/>
    </properties>
   </object>
-  <object id="230" name="Create Bobette" type="event" x="256" y="272" width="16" height="16">
+  <object id="54" name="Create Bobette" type="event" x="256" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_citypark_bobette,16,17"/>
     <property name="act2" value="npc_face spyder_citypark_bobette,left"/>
     <property name="cond2" value="not npc_exists spyder_citypark_bobette"/>
    </properties>
   </object>
-  <object id="231" name="Talk Bobette" type="event" x="256" y="256" width="16" height="16">
+  <object id="55" name="Talk Bobette" type="event" x="256" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_bobette1"/>
-    <property name="act2" value="add_monster aardorn,10,spyder_citypark_bobette,27,10"/>
+    <property name="act2" value="add_monster aardorn,10,spyder_citypark_bobette,5,10"/>
     <property name="act3" value="start_battle spyder_citypark_bobette"/>
     <property name="act4" value="translated_dialog spyder_citypark_bobette2"/>
     <property name="act5" value="set_variable citypark_bobette:yes"/>
@@ -327,18 +327,18 @@
     <property name="cond1" value="not variable_set citypark_bobette:yes"/>
    </properties>
   </object>
-  <object id="232" name="Create Edith" type="event" x="560" y="272" width="16" height="16">
+  <object id="56" name="Create Edith" type="event" x="560" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_citypark_edith,35,17"/>
     <property name="act2" value="npc_face spyder_citypark_edith,left"/>
     <property name="cond2" value="not npc_exists spyder_citypark_edith"/>
    </properties>
   </object>
-  <object id="233" name="Talk Edith" type="event" x="608" y="272" width="16" height="16">
+  <object id="57" name="Talk Edith" type="event" x="608" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_edith1"/>
-    <property name="act2" value="add_monster squabbit,8,spyder_citypark_edith,27,10"/>
-    <property name="act3" value="add_monster squabbit,8,spyder_citypark_edith,27,10"/>
+    <property name="act2" value="add_monster squabbit,8,spyder_citypark_edith,5,10"/>
+    <property name="act3" value="add_monster squabbit,8,spyder_citypark_edith,5,10"/>
     <property name="act4" value="start_battle spyder_citypark_edith"/>
     <property name="act5" value="translated_dialog spyder_citypark_edith2"/>
     <property name="act6" value="set_variable citypark_edith:yes"/>
@@ -346,7 +346,7 @@
     <property name="cond1" value="not variable_set citypark_edith:yes"/>
    </properties>
   </object>
-  <object id="234" name="encounter" type="event" x="304" y="304" width="128" height="128">
+  <object id="58" name="encounter" type="event" x="304" y="304" width="128" height="128">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -354,13 +354,13 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="235" name="Route Music" type="event" x="0" y="0" width="16" height="16">
+  <object id="59" name="Route Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music music_city_park"/>
     <property name="cond1" value="not music_playing music_city_park"/>
    </properties>
   </object>
-  <object id="236" name="encounter" type="event" x="576" y="304" width="16" height="16">
+  <object id="60" name="encounter" type="event" x="576" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -368,7 +368,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="237" name="encounter" type="event" x="592" y="288" width="16" height="16">
+  <object id="61" name="encounter" type="event" x="592" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -376,7 +376,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="238" name="encounter" type="event" x="560" y="288" width="16" height="16">
+  <object id="62" name="encounter" type="event" x="560" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -384,7 +384,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="242" name="encounter" type="event" x="576" y="272" width="16" height="16">
+  <object id="63" name="encounter" type="event" x="576" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -392,7 +392,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="243" name="encounter" type="event" x="592" y="256" width="16" height="16">
+  <object id="64" name="encounter" type="event" x="592" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -400,7 +400,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="244" name="encounter" type="event" x="560" y="256" width="16" height="16">
+  <object id="65" name="encounter" type="event" x="560" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -408,7 +408,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="245" name="encounter" type="event" x="576" y="240" width="16" height="16">
+  <object id="66" name="encounter" type="event" x="576" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -416,7 +416,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="246" name="encounter" type="event" x="592" y="224" width="16" height="16">
+  <object id="67" name="encounter" type="event" x="592" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -424,7 +424,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="247" name="encounter" type="event" x="560" y="224" width="16" height="16">
+  <object id="68" name="encounter" type="event" x="560" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -432,7 +432,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="248" name="encounter" type="event" x="576" y="208" width="16" height="16">
+  <object id="69" name="encounter" type="event" x="576" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -440,7 +440,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="249" name="encounter" type="event" x="592" y="192" width="16" height="16">
+  <object id="70" name="encounter" type="event" x="592" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -448,7 +448,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="250" name="encounter" type="event" x="560" y="192" width="16" height="16">
+  <object id="71" name="encounter" type="event" x="560" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -456,7 +456,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="251" name="encounter" type="event" x="576" y="112" width="16" height="16">
+  <object id="72" name="encounter" type="event" x="576" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -464,7 +464,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="252" name="encounter" type="event" x="592" y="96" width="16" height="16">
+  <object id="73" name="encounter" type="event" x="592" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -472,7 +472,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="253" name="encounter" type="event" x="560" y="96" width="16" height="16">
+  <object id="74" name="encounter" type="event" x="560" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -480,7 +480,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="254" name="encounter" type="event" x="576" y="144" width="16" height="16">
+  <object id="75" name="encounter" type="event" x="576" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -488,7 +488,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="255" name="encounter" type="event" x="592" y="128" width="16" height="16">
+  <object id="76" name="encounter" type="event" x="592" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -496,7 +496,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="256" name="encounter" type="event" x="560" y="128" width="16" height="16">
+  <object id="77" name="encounter" type="event" x="560" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -504,7 +504,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="257" name="encounter" type="event" x="576" y="176" width="16" height="16">
+  <object id="78" name="encounter" type="event" x="576" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -512,7 +512,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="258" name="encounter" type="event" x="592" y="160" width="16" height="16">
+  <object id="79" name="encounter" type="event" x="592" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -520,7 +520,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="259" name="encounter" type="event" x="560" y="160" width="16" height="16">
+  <object id="80" name="encounter" type="event" x="560" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -528,23 +528,23 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="273" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
+  <object id="81" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
    </properties>
   </object>
-  <object id="276" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+  <object id="82" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
-    <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
-  <object id="274" name="Talk Bobette" type="event" x="208" y="272" width="48" height="16">
+  <object id="83" name="Talk Bobette" type="event" x="208" y="272" width="48" height="16">
    <properties>
     <property name="act0" value="pathfind_to_player spyder_citypark_bobette"/>
     <property name="act1" value="translated_dialog spyder_citypark_bobette1"/>
-    <property name="act2" value="add_monster aardorn,10,spyder_citypark_bobette,27,10"/>
+    <property name="act2" value="add_monster aardorn,10,spyder_citypark_bobette,5,10"/>
     <property name="act3" value="start_battle spyder_citypark_bobette"/>
     <property name="act4" value="translated_dialog spyder_citypark_bobette2"/>
     <property name="act5" value="set_variable citypark_bobette:yes"/>
@@ -552,10 +552,90 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="275" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
+  <object id="84" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="teleport_faint"/>
     <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="85" name="Create Box1" type="event" x="256" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_citypark_potion1,16,3"/>
+    <property name="cond1" value="not npc_exists spyder_citypark_potion1"/>
+    <property name="cond2" value="not variable_set citypark_potion1:yes"/>
+   </properties>
+  </object>
+  <object id="86" name="Box1" type="event" x="240" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog potion"/>
+    <property name="act2" value="add_item potion"/>
+    <property name="act3" value="remove_npc spyder_citypark_potion1"/>
+    <property name="act4" value="set_variable citypark_potion1:yes"/>
+    <property name="behav1" value="talk spyder_citypark_potion1"/>
+   </properties>
+  </object>
+  <object id="87" name="Create Box2" type="event" x="304" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_citypark_potion2,19,15"/>
+    <property name="cond1" value="not npc_exists spyder_citypark_potion2"/>
+    <property name="cond2" value="not variable_set citypark_potion2:yes"/>
+   </properties>
+  </object>
+  <object id="88" name="Box2" type="event" x="288" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog potion"/>
+    <property name="act2" value="add_item potion"/>
+    <property name="act3" value="remove_npc spyder_citypark_potion2"/>
+    <property name="act4" value="set_variable citypark_potion2:yes"/>
+    <property name="behav1" value="talk spyder_citypark_potion2"/>
+   </properties>
+  </object>
+  <object id="89" name="Create Box3" type="event" x="32" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_citypark_restoration,2,6"/>
+    <property name="cond1" value="not npc_exists spyder_citypark_restoration"/>
+    <property name="cond2" value="not variable_set citypark_restoration:yes"/>
+   </properties>
+  </object>
+  <object id="90" name="Box3" type="event" x="16" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog restoration"/>
+    <property name="act2" value="add_item restoration"/>
+    <property name="act3" value="remove_npc spyder_citypark_restoration"/>
+    <property name="act4" value="set_variable citypark_restoration:yes"/>
+    <property name="behav1" value="talk spyder_citypark_restoration"/>
+   </properties>
+  </object>
+  <object id="91" name="Create Box4" type="event" x="32" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_citypark_cd1,2,16"/>
+    <property name="cond1" value="not npc_exists spyder_citypark_cd1"/>
+    <property name="cond2" value="not variable_set citypark_cd1:yes"/>
+   </properties>
+  </object>
+  <object id="92" name="Box4" type="event" x="16" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tuxeball"/>
+    <property name="act2" value="add_item tuxeball"/>
+    <property name="act3" value="remove_npc spyder_citypark_cd1"/>
+    <property name="act4" value="set_variable citypark_cd1:yes"/>
+    <property name="behav1" value="talk spyder_citypark_cd1"/>
+   </properties>
+  </object>
+  <object id="93" name="Create Box5" type="event" x="112" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_citypark_cd2,7,24"/>
+    <property name="cond1" value="not npc_exists spyder_citypark_cd2"/>
+    <property name="cond2" value="not variable_set citypark_cd2:yes"/>
+   </properties>
+  </object>
+  <object id="94" name="Box5" type="event" x="96" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tuxeball"/>
+    <property name="act2" value="add_item tuxeball"/>
+    <property name="act3" value="remove_npc spyder_citypark_cd2"/>
+    <property name="act4" value="set_variable citypark_cd2:yes"/>
+    <property name="behav1" value="talk spyder_citypark_cd2"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,0 +1,69 @@
+{
+    "slug": "seraphice",
+    "category": "carol",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 6,
+            "technique": "torch"
+        },
+        {
+            "level_learned": 8,
+            "technique": "orbs"
+        },
+        {
+            "level_learned": 12,
+            "technique": "muck"
+        },
+        {
+            "level_learned": 28,
+            "technique": "fiery"
+        },
+        {
+            "level_learned": 34,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 44,
+            "technique": "blood_bond"
+        },
+        {
+            "level_learned": 48,
+            "technique": "kraken"
+        },
+        {
+            "level_learned": 52,
+            "technique": "tsunami"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "waysprite",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "angesnow",
+            "evo_stage": "stage1"
+        }
+    ],
+    "shape": "humanoid",
+    "stage": "stage2",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 266,
+    "height": 180,
+    "weight": 85,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.85,
+    "upper_catch_resistance": 1.1
+}

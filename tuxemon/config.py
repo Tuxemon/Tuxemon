@@ -2,13 +2,9 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Any, Dict, Mapping, Optional
-
-"""
-NOTE: REWRITE WHEN py2.7 SUPPORT IS DROPPED!
-"""
 import configparser
 from collections import OrderedDict
+from typing import Any, Dict, Mapping, Optional
 
 from tuxemon.animation import Animation
 from tuxemon.platform.const import buttons, events
@@ -30,9 +26,7 @@ class TuxemonConfig:
 
         # update with customized values
         if config_path:
-            temp = configparser.ConfigParser()
-            temp.read(config_path)
-            populate_config(cfg, temp._sections)
+            cfg.read(config_path)
 
         # [display]
         resolution_x = cfg.getint("display", "resolution_x")
@@ -56,10 +50,6 @@ class TuxemonConfig:
         self.hide_mouse = cfg.getboolean("display", "hide_mouse")
         self.window_caption = cfg.get("display", "window_caption")
 
-        # [sound]
-        self.sound_volume = cfg.getfloat("sound", "sound_volume")
-        self.music_volume = cfg.getfloat("sound", "music_volume")
-
         # [game]
         self.data = cfg.get("game", "data")
         self.cli = cfg.getboolean("game", "cli_enabled")
@@ -68,8 +58,6 @@ class TuxemonConfig:
             "net_controller_enabled",
         )
         self.locale = cfg.get("game", "locale")
-        self.hemisphere = cfg.get("game", "hemisphere")
-        self.unit = cfg.get("game", "unit")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean(
             "game",
@@ -124,6 +112,8 @@ class TuxemonConfig:
         self.loggers = loggers_str.replace(" ", "").split(",")
         self.debug_logging = cfg.getboolean("logging", "debug_logging")
         self.debug_level = cfg.get("logging", "debug_level")
+        self.log_to_file = cfg.getboolean("logging", "dump_to_file")
+        self.log_keep_max = cfg.getint("logging", "file_keep_max")
 
         # input config (None means use default for the platform)
         self.gamepad_deadzone = 0.25
@@ -208,28 +198,19 @@ def get_defaults() -> Mapping[str, Any]:
                 "display",
                 OrderedDict(
                     (
-                        ("resolution_x", 1280),
-                        ("resolution_y", 720),
-                        ("splash", True),
-                        ("fullscreen", False),
-                        ("fps", 60),
-                        ("show_fps", False),
-                        ("scaling", True),
-                        ("collision_map", False),
-                        ("large_gui", False),
-                        ("controller_overlay", False),
-                        ("controller_transparency", 45),
-                        ("hide_mouse", True),
+                        ("resolution_x", "1280"),
+                        ("resolution_y", "720"),
+                        ("splash", "True"),
+                        ("fullscreen", "False"),
+                        ("fps", "60"),
+                        ("show_fps", "False"),
+                        ("scaling", "True"),
+                        ("collision_map", "False"),
+                        ("large_gui", "False"),
+                        ("controller_overlay", "False"),
+                        ("controller_transparency", "45"),
+                        ("hide_mouse", "True"),
                         ("window_caption", "Tuxemon"),
-                    )
-                ),
-            ),
-            (
-                "sound",
-                OrderedDict(
-                    (
-                        ("sound_volume", 0.3),
-                        ("music_volume", 1.0),
                     )
                 ),
             ),
@@ -238,15 +219,13 @@ def get_defaults() -> Mapping[str, Any]:
                 OrderedDict(
                     (
                         ("data", "tuxemon"),
-                        ("skip_titlescreen", False),
-                        ("cli_enabled", False),
-                        ("net_controller_enabled", False),
+                        ("skip_titlescreen", "False"),
+                        ("cli_enabled", "False"),
+                        ("net_controller_enabled", "False"),
                         ("locale", "en_US"),
-                        ("hemisphere", "north"),
-                        ("unit", "metric"),
-                        ("dev_tools", False),
-                        ("recompile_translations", True),
-                        ("compress_save", None),
+                        ("dev_tools", "False"),
+                        ("recompile_translations", "True"),
+                        ("compress_save", "None"),
                     )
                 ),
             ),
@@ -254,11 +233,11 @@ def get_defaults() -> Mapping[str, Any]:
                 "gameplay",
                 OrderedDict(
                     (
-                        ("items_consumed_on_failure", True),
-                        ("encounter_rate_modifier", 1.0),
-                        ("default_monster_catch_rate", 125),
-                        ("default_upper_monster_catch_resistance", 1),
-                        ("default_lower_monster_catch_resistance", 1),
+                        ("items_consumed_on_failure", "True"),
+                        ("encounter_rate_modifier", "1.0"),
+                        ("default_monster_catch_rate", "125"),
+                        ("default_upper_monster_catch_resistance", "1"),
+                        ("default_lower_monster_catch_resistance", "1"),
                         ("dialog_speed", "slow"),
                     )
                 ),
@@ -267,10 +246,10 @@ def get_defaults() -> Mapping[str, Any]:
                 "player",
                 OrderedDict(
                     (
-                        ("animation_speed", 0.15),
+                        ("animation_speed", "0.15"),
                         ("player_npc", "npc_red"),
-                        ("player_walkrate", 3.75),
-                        ("player_runrate", 7.35),
+                        ("player_walkrate", "3.75"),
+                        ("player_runrate", "7.35"),
                     )
                 ),
             ),
@@ -279,8 +258,10 @@ def get_defaults() -> Mapping[str, Any]:
                 OrderedDict(
                     (
                         ("loggers", "all"),
-                        ("debug_logging", True),
+                        ("debug_logging", "True"),
                         ("debug_level", "error"),
+                        ("dump_to_file", "False"),
+                        ("file_keep_max", "5"),
                     )
                 ),
             ),
@@ -306,31 +287,5 @@ def get_defaults() -> Mapping[str, Any]:
 def generate_default_config() -> configparser.ConfigParser:
     """Get new config file from defaults."""
     cfg = configparser.ConfigParser()
-    populate_config(cfg, get_defaults())
+    cfg.read_dict(get_defaults())
     return cfg
-
-
-def populate_config(
-    config: configparser.ConfigParser,
-    data: Mapping[str, Any],
-) -> None:
-    """
-    Workaround awful configparser defaults.
-
-    Parameters:
-        config: The configuration object.
-        data: New defaults.
-
-    """
-    # ConfigParser py2.7 'defaults' is absolutely braindead, half-baked,
-    # dumb. WTF's all over.
-    # So we fill in values manually, because they won't be read or written
-    # otherwise.
-    for k, v in data.items():
-        try:
-            config.add_section(k)
-        except configparser.DuplicateSectionError:
-            pass
-        for option, value in v.items():
-            # Yes. All values must be stored as a string.
-            config.set(k, option, str(value))

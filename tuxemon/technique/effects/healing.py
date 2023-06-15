@@ -3,10 +3,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
-from tuxemon.technique.technique import Technique
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
+    from tuxemon.technique.technique import Technique
 
 
 class HealingEffectResult(TechEffectResult):
@@ -30,6 +33,7 @@ class HealingEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> HealingEffectResult:
+        done: bool = False
         mon: Monster
         heal: int = 0
         player = self.session.player
@@ -47,14 +51,14 @@ class HealingEffect(TechEffect):
             heal = (7 + mon.level) * tech.healing_power
         diff = mon.hp - mon.current_hp
         if hit:
+            tech.hit = True
             tech.advance_counter_success()
             if diff > 0:
                 if heal >= diff:
                     mon.current_hp = mon.hp
                 else:
                     mon.current_hp += heal
-                return {"success": True}
-            else:
-                return {"success": False}
+                done = True
         else:
-            return {"success": False}
+            tech.hit = False
+        return {"success": done}

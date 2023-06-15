@@ -3,24 +3,18 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-from tuxemon.monster import Monster
 from tuxemon.technique.techcondition import TechCondition
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
 
 
 @dataclass
 class StatusCondition(TechCondition):
     """
     Checks against the creature's current statuses.
-
-    Parameters:
-    status: Slug of the status
-
-    Example:
-    "conditions": [
-        "is status status_xxx"
-        "not status status_xxx"
-    ],
 
     """
 

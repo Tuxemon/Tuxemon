@@ -81,8 +81,6 @@ class ElementType(str, Enum):
     earth = "earth"
     metal = "metal"
     water = "water"
-    normal = "normal"
-    glitch = "glitch"
 
 
 class ItemType(str, Enum):
@@ -92,9 +90,9 @@ class ItemType(str, Enum):
 
 class ItemCategory(str, Enum):
     none = "none"
-    edible = "edible"
     badge = "badge"
     booster = "booster"
+    elements = "elements"
     fossil = "fossil"
     morph = "morph"
     revive = "revive"
@@ -102,6 +100,7 @@ class ItemCategory(str, Enum):
     technique = "technique"
     phone = "phone"
     fish = "fish"
+    destroy = "destroy"
     capture = "capture"
     stats = "stats"
 
@@ -114,14 +113,8 @@ class OutputBattle(str, Enum):
     forfeit = "forfeit"
 
 
-# ItemBattleMenu is which menu you want to use to choose the target.
-class ItemBattleMenu(str, Enum):
-    monster = "monster"
-    combat = "combat"
-
-
 class MonsterShape(str, Enum):
-    aquatic = "aquatic"
+    default = "default"
     blob = "blob"
     brute = "brute"
     dragon = "dragon"
@@ -131,6 +124,7 @@ class MonsterShape(str, Enum):
     hunter = "hunter"
     landrace = "landrace"
     leviathan = "leviathan"
+    piscine = "piscine"
     polliwog = "polliwog"
     serpent = "serpent"
     sprite = "sprite"
@@ -158,6 +152,7 @@ class EvolutionType(str, Enum):
     item = "item"
     location = "location"
     season = "season"
+    daytime = "daytime"
     standard = "standard"
     stat = "stat"
     tech = "tech"
@@ -206,9 +201,6 @@ class ItemModel(BaseModel):
     )
     sort: ItemSort = Field(..., description="The kind of item this is.")
     sprite: str = Field(..., description="The sprite to use")
-    target: Target = Field(
-        ..., description="Target mapping of who to use the item on"
-    )
     type: ItemType = Field(..., description="The type of item this is")
     category: ItemCategory = Field(
         ..., description="The category of item this is"
@@ -223,11 +215,6 @@ class ItemModel(BaseModel):
     )
     effects: Sequence[str] = Field(
         [], description="Effects this item will have"
-    )
-    ## Optional fields:
-    battle_menu: Optional[ItemBattleMenu] = Field(
-        "",
-        description="Which menu should be used to choose the target of the item.",
     )
 
     class Config:
@@ -252,6 +239,22 @@ class ItemModel(BaseModel):
         if has.file(v):
             return v
         raise ValueError(f"the sprite {v} doesn't exist in the db")
+
+
+class ShapeModel(BaseModel):
+    slug: MonsterShape = Field(..., description="Slug of the shape")
+    armour: int = Field(..., description="Armour value")
+    dodge: int = Field(..., description="Dodge value")
+    hp: int = Field(..., description="HP value")
+    melee: int = Field(..., description="Melee value")
+    ranged: int = Field(..., description="Ranged value")
+    speed: int = Field(..., description="Speed value")
+
+    @validator("slug")
+    def translation_exists_shape(cls: ShapeModel, v: Any) -> Any:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
 
 
 class MonsterMovesetItemModel(BaseModel):
@@ -311,6 +314,7 @@ class MonsterEvolutionItemModel(BaseModel):
         description="Location parameter: inside true or inside false (outside).",
     )
     season: Optional[str] = Field(None, description="Season parameter.")
+    daytime: Optional[str] = Field(None, description="Daytime parameter.")
     stat1: Optional[StatType] = Field(
         None, description="Stat parameter stat1 >= stat2."
     )
@@ -369,12 +373,15 @@ class MonsterSoundsModel(BaseModel):
 class MonsterModel(BaseModel):
     slug: str = Field(..., description="The slug of the monster")
     category: str = Field(..., description="The category of monster")
-    ai: str = Field(..., description="The AI to use for this monster")
     txmn_id: int = Field(..., description="The id of the monster")
     height: float = Field(..., description="The height of the monster")
     weight: float = Field(..., description="The weight of the monster")
     stage: EvolutionStage = Field(
         ..., description="The evolution stage of the monster"
+    )
+    randomly: bool = Field(
+        True,
+        description="Whether or not this monster will be picked by random",
     )
 
     # Optional fields
@@ -531,11 +538,9 @@ class TechniqueModel(BaseModel):
     is_fast: bool = Field(
         False, description="Whether or not this is a fast technique"
     )
-    is_area: bool = Field(
-        False, description="Whether or not this is an area of effect technique"
-    )
     randomly: bool = Field(
-        True, description="Whether or not this is a fast technique"
+        True,
+        description="Whether or not this technique will be picked by random",
     )
     healing_power: int = Field(0, description="Value of healing power.")
     recharge: int = Field(0, description="Recharge of this technique")
@@ -658,6 +663,7 @@ class NpcTemplateModel(BaseModel):
 
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
+    forfeit: bool = Field(True, description="Whether you can forfeit or not")
     template: Sequence[NpcTemplateModel] = Field(
         [], description="List of templates"
     )
@@ -718,11 +724,37 @@ class EncounterModel(BaseModel):
     )
 
 
+class ElementItemModel(BaseModel):
+    against: ElementType = Field(..., description="Name of the type")
+    multiplier: float = Field(1.0, description="Multiplier against the type")
+
+
+class ElementModel(BaseModel):
+    slug: ElementType = Field(
+        ..., description="Slug uniquely identifying the type"
+    )
+    icon: str = Field(..., description="The icon to use for the type")
+    types: Sequence[ElementItemModel]
+
+    @validator("slug")
+    def translation_exists_element(cls: ElementModel, v: Any) -> Any:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @validator("icon")
+    def file_exists(cls: ElementModel, v: Any) -> Any:
+        if has.file(v):
+            return v
+        raise ValueError(f"the icon {v} doesn't exist in the db")
+
+
 class EconomyItemModel(BaseModel):
     item_name: str = Field(..., description="Name of the item")
     price: int = Field(0, description="Price of the item")
     cost: int = Field(0, description="Cost of the item")
-    inventory: int = Field(0, description="Quantity of the item")
+    inventory: int = Field(-1, description="Quantity of the item")
+    variable: Optional[str] = Field(None, description="Variable of the item")
 
     @validator("item_name")
     def item_exists(cls: EconomyItemModel, v: Any) -> Any:
@@ -740,6 +772,7 @@ class TemplateModel(BaseModel):
     slug: str = Field(
         ..., description="Slug uniquely identifying the template"
     )
+    double: bool = Field(False, description="Whether triggers 2vs2 or not")
 
 
 class MusicModel(BaseModel):
@@ -754,6 +787,8 @@ class SoundModel(BaseModel):
 
 TableName = Literal[
     "economy",
+    "element",
+    "shape",
     "template",
     "encounter",
     "environment",
@@ -767,6 +802,8 @@ TableName = Literal[
 
 DataModel = Union[
     EconomyModel,
+    ElementModel,
+    ShapeModel,
     TemplateModel,
     EncounterModel,
     EnvironmentModel,
@@ -825,6 +862,8 @@ class JSONDatabase:
             "sounds",
             "music",
             "economy",
+            "element",
+            "shape",
             "template",
         ]
         self.preloaded: Dict[TableName, Dict[str, Any]] = {}
@@ -948,6 +987,12 @@ class JSONDatabase:
             if table == "economy":
                 economy = EconomyModel(**item)
                 self.database[table][economy.slug] = economy
+            elif table == "element":
+                element = ElementModel(**item)
+                self.database[table][element.slug] = element
+            elif table == "shape":
+                shape = ShapeModel(**item)
+                self.database[table][shape.slug] = shape
             elif table == "template":
                 template = TemplateModel(**item)
                 self.database[table][template.slug] = template
@@ -1008,6 +1053,14 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["economy"]) -> EconomyModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["element"]) -> ElementModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["shape"]) -> ShapeModel:
         pass
 
     @overload
@@ -1095,6 +1148,8 @@ class JSONDatabase:
         self,
         table: Literal[
             "economy",
+            "element",
+            "shape",
             "template",
             "encounter",
             "environment",

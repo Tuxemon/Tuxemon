@@ -1,0 +1,128 @@
+[
+    {
+      "slug": "blob",
+      "armour": 8,
+      "dodge": 4,
+      "hp": 8,
+      "melee": 4,
+      "ranged": 8,
+      "speed": 4
+    },
+    {
+      "slug": "brute",
+      "armour": 7,
+      "dodge": 5,
+      "hp": 7,
+      "melee": 8,
+      "ranged": 4,
+      "speed": 5
+    },
+    {
+      "slug": "dragon",
+      "armour": 7,
+      "dodge": 5,
+      "hp": 6,
+      "melee": 6,
+      "ranged": 6,
+      "speed": 6
+    },
+    {
+      "slug": "flier",
+      "armour": 5,
+      "dodge": 7,
+      "hp": 4,
+      "melee": 8,
+      "ranged": 4,
+      "speed": 8
+    },
+    {
+      "slug": "grub",
+      "armour": 7,
+      "dodge": 5,
+      "hp": 7,
+      "melee": 4,
+      "ranged": 8,
+      "speed": 5
+    },
+    {
+      "slug": "humanoid",
+      "armour": 5,
+      "dodge": 7,
+      "hp": 4,
+      "melee": 4,
+      "ranged": 8,
+      "speed": 8
+    },
+    {
+      "slug": "hunter",
+      "armour": 4,
+      "dodge": 8,
+      "hp": 5,
+      "melee": 8,
+      "ranged": 4,
+      "speed": 7
+    },
+    {
+      "slug": "landrace",
+      "armour": 8,
+      "dodge": 4,
+      "hp": 8,
+      "melee": 8,
+      "ranged": 4,
+      "speed": 4
+    },
+    {
+      "slug": "leviathan",
+      "armour": 8,
+      "dodge": 4,
+      "hp": 8,
+      "melee": 6,
+      "ranged": 6,
+      "speed": 4
+    },
+    {
+      "slug": "piscine",
+      "armour": 6,
+      "dodge": 6,
+      "hp": 8,
+      "melee": 6,
+      "ranged": 6,
+      "speed": 4
+    },
+    {
+      "slug": "polliwog",
+      "armour": 4,
+      "dodge": 8,
+      "hp": 5,
+      "melee": 4,
+      "ranged": 8,
+      "speed": 7
+    },
+    {
+      "slug": "serpent",
+      "armour": 6,
+      "dodge": 6,
+      "hp": 6,
+      "melee": 4,
+      "ranged": 8,
+      "speed": 6
+    },
+    {
+      "slug": "sprite",
+      "armour": 6,
+      "dodge": 6,
+      "hp": 4,
+      "melee": 6,
+      "ranged": 6,
+      "speed": 8
+    },
+    {
+      "slug": "varmint",
+      "armour": 6,
+      "dodge": 6,
+      "hp": 6,
+      "melee": 8,
+      "ranged": 4,
+      "speed": 6
+    }
+  ]

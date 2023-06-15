@@ -4,10 +4,14 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.db import ElementType, db
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from tuxemon.monster import Monster
+
+if TYPE_CHECKING:
+    from tuxemon.item.item import Item
+    from tuxemon.monster import Monster
 
 
 class LearnMmEffectResult(ItemEffectResult):
@@ -19,16 +23,20 @@ class LearnMmEffect(ItemEffect):
     """This effect teaches the target a random type technique."""
 
     name = "learn_mm"
-    element: ElementType
+    element: str
 
-    def apply(self, target: Monster) -> LearnMmEffectResult:
+    def apply(
+        self, item: Item, target: Union[Monster, None]
+    ) -> LearnMmEffectResult:
+        ele = ElementType(self.element)
+        assert target
         techs = list(db.database["technique"])
         # type moves
         filters = []
         for mov in techs:
             results = db.lookup(mov, table="technique")
-            if results.randomly == True:
-                if self.element in results.types:
+            if results.randomly:
+                if ele in results.types:
                     filters.append(results.slug)
         # monster moves
         moves = []

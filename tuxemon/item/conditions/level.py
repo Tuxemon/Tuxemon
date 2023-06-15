@@ -4,10 +4,12 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from operator import eq, ge, gt, le, lt
-from typing import Callable, Mapping, Optional
+from typing import TYPE_CHECKING, Callable, Mapping, Optional
 
 from tuxemon.item.itemcondition import ItemCondition
-from tuxemon.monster import Monster
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
 
 cmp_dict: Mapping[Optional[str], Callable[[float, float], bool]] = {
     None: ge,

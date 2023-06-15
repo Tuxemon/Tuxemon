@@ -3,10 +3,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-from tuxemon.monster import Monster
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
-from tuxemon.technique.technique import Technique
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
+    from tuxemon.technique.technique import Technique
 
 
 class EnhanceEffectResult(TechEffectResult):
@@ -36,8 +39,10 @@ class EnhanceEffect(TechEffect):
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
-        if hit or tech.is_area:
+        if hit:
+            tech.hit = True
             tech.advance_counter_success()
             return {"success": True}
         else:
+            tech.hit = False
             return {"success": False}

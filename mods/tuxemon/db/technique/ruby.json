@@ -1,17 +1,16 @@
 {
   "tech_id": 146,
-  "accuracy": 0.5,
+  "accuracy": 0.6,
   "animation": "ruby",
   "effects": [
     "damage"
   ],
   "flip_axes": "",
-  "is_area": false,
   "is_fast": false,
   "potency": 0.6,
-  "power": 3,
+  "power": 2.2,
   "range": "reach",
-  "recharge": 1,
+  "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "ruby",
   "sort": "damage",
@@ -19,7 +18,6 @@
     "enemy monster": 2,
     "enemy team": 0,
     "enemy trainer": 0,
-    "item": 0,
     "own monster": 0,
     "own team": 0,
     "own trainer": 0

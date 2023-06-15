@@ -1,0 +1,63 @@
+{
+    "slug": "woodoor",
+    "category": "portal",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 6,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 8,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 12,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 16,
+            "technique": "lineage"
+        },
+        {
+            "level_learned": 20,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 24,
+            "technique": "terror"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 25,
+            "monster_slug": "blasdoor"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "blasdoor",
+            "evo_stage": "stage1"
+        }
+    ],
+    "shape": "sprite",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 250,
+    "height": 2040,
+    "weight": 46,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

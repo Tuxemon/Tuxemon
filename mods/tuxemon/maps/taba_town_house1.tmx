@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="46">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="taba_town_house1"/>
@@ -35,7 +36,7 @@
    eAFjYBgF1AwBAAFQAAE=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="28" type="collision" x="160" y="48" width="16" height="16"/>
   <object id="29" type="collision" x="128" y="96" width="16" height="16"/>
   <object id="30" type="collision" x="32" y="64" width="48" height="32"/>

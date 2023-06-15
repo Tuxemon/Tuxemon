@@ -1,7 +1,6 @@
 {
     "slug": "bumbulus",
     "category": "veiled",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -37,23 +36,22 @@
         },
         {
             "level_learned": 28,
-            "technique": "wall_ice"
-        },
-        {
-            "level_learned": 32,
-            "technique": "shapechange"
-        },
-        {
-            "level_learned": 36,
-            "technique": "chill_mist"
-        },
-        {
-            "level_learned": 40,
-            "technique": "tsunami"
+            "technique": "ice_shield"
         }
     ],
-    "evolutions": [],
-    "history": [],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "nimbulex"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "nimbulex",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "blob",
     "stage": "basic",
     "types": [
@@ -63,7 +61,7 @@
     "txmn_id": 210,
     "height": 78,
     "weight": 1,
-    "catch_rate": 85.0,
+    "catch_rate": 100.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15
 }

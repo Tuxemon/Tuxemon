@@ -3,12 +3,12 @@
   "accuracy": 0.8,
   "animation": "firelion_right",
   "effects": [
+    "give status_burn,target",
     "damage"
   ],
   "flip_axes": "x",
-  "is_area": false,
   "is_fast": false,
-  "potency": null,
+  "potency": 0.5,
   "power": 2.25,
   "range": "reach",
   "recharge": 3,
@@ -19,7 +19,6 @@
     "enemy monster": 2,
     "enemy team": 0,
     "enemy trainer": 0,
-    "item": 0,
     "own monster": 0,
     "own team": 0,
     "own trainer": 0

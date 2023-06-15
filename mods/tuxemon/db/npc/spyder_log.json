@@ -1,0 +1,10 @@
+{
+  "slug": "spyder_log",
+  "template": [
+    {
+      "sprite_name": "log",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
+  ]
+}

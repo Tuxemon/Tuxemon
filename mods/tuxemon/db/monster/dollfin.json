@@ -1,7 +1,6 @@
 {
     "slug": "dollfin",
     "category": "joyful",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -60,7 +59,7 @@
             "evo_stage": "stage1"
         }
     ],
-    "shape": "aquatic",
+    "shape": "leviathan",
     "stage": "basic",
     "types": [
         "water"
@@ -69,7 +68,7 @@
     "txmn_id": 24,	
     "height": 250,
     "weight": 190,
-    "catch_rate": 170.0,
+    "catch_rate": 100.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25
 }

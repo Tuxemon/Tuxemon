@@ -1,0 +1,81 @@
+{
+    "slug": "conglolem",
+    "category": "golem",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 6,
+            "technique": "sylvan"
+        },
+        {
+            "level_learned": 8,
+            "technique": "stonehenge"
+        },
+        {
+            "level_learned": 12,
+            "technique": "clairaudience"
+        },
+        {
+            "level_learned": 16,
+            "technique": "negation"
+        },
+        {
+            "level_learned": 20,
+            "technique": "maori"
+        },
+        {
+            "level_learned": 28,
+            "technique": "breath"
+        },
+        {
+            "level_learned": 32,
+            "technique": "lantern"
+        },
+        {
+            "level_learned": 34,
+            "technique": "surge"
+        },
+        {
+            "level_learned": 38,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 52,
+            "technique": "earthquake"
+        },
+        {
+            "level_learned": 56,
+            "technique": "thunderball"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "slichen",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "glombroc",
+            "evo_stage": "stage1"
+        }
+    ],
+    "shape": "brute",
+    "stage": "stage2",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 274,
+    "height": 245,
+    "weight": 197,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.85,
+    "upper_catch_resistance": 1.1
+}

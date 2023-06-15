@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="71">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="leather_house2"/>
@@ -35,7 +36,7 @@
    eAFjYBgFlIQAAAFAAAE=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="60" type="collision" x="0" y="0" width="160" height="32"/>
   <object id="61" type="collision" x="32" y="64" width="48" height="16"/>
   <object id="70" type="collision" x="48" y="32" width="32" height="16"/>
@@ -57,38 +58,38 @@
   </object>
   <object id="64" name="Create Scientist" type="event" x="96" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scientist,6,6"/>
-    <property name="cond1" value="not npc_exists spyder_scientist"/>
+    <property name="act1" value="create_npc spyder_leatherhouse2_gabe,6,6"/>
+    <property name="cond1" value="not npc_exists spyder_leatherhouse2_gabe"/>
    </properties>
   </object>
   <object id="65" name="Talk Scientist" type="event" x="96" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leatherhouse2_scientist"/>
-    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="behav1" value="talk spyder_leatherhouse2_gabe"/>
    </properties>
   </object>
   <object id="66" name="Create Miner" type="event" x="0" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_miner,0,4"/>
-    <property name="cond1" value="not npc_exists spyder_miner"/>
+    <property name="act1" value="create_npc spyder_leatherhouse2_memphis,0,4"/>
+    <property name="cond1" value="not npc_exists spyder_leatherhouse2_memphis"/>
    </properties>
   </object>
   <object id="67" name="Talk Miner" type="event" x="0" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leatherhouse2_miner"/>
-    <property name="behav1" value="talk spyder_miner"/>
+    <property name="behav1" value="talk spyder_leatherhouse2_memphis"/>
    </properties>
   </object>
   <object id="68" name="Create Snugglepot" type="event" x="144" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_snugglepot,9,4"/>
-    <property name="cond1" value="not npc_exists spyder_snugglepot"/>
+    <property name="act1" value="create_npc spyder_leatherhouse2_elias,9,4"/>
+    <property name="cond1" value="not npc_exists spyder_leatherhouse2_elias"/>
    </properties>
   </object>
   <object id="69" name="Talk Snugglepot" type="event" x="144" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leatherhouse2_snugglepot"/>
-    <property name="behav1" value="talk spyder_snugglepot"/>
+    <property name="behav1" value="talk spyder_leatherhouse2_elias"/>
    </properties>
   </object>
  </objectgroup>

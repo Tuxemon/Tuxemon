@@ -1,7 +1,6 @@
 {
     "slug": "tumblequill",
     "category": "urchin",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -38,22 +37,21 @@
         {
             "level_learned": 28,
             "technique": "mending"
-        },
-        {
-            "level_learned": 32,
-            "technique": "webs_wind"
-        },
-        {
-            "level_learned": 36,
-            "technique": "touch"
-        },
-        {
-            "level_learned": 40,
-            "technique": "cloud_aether"
         }
     ],
-    "evolutions": [],
-    "history": [],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "tumbledillo"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "tumbledillo",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "varmint",
     "stage": "basic",
     "types": [
@@ -63,7 +61,7 @@
     "txmn_id": 220,
     "height": 27,
     "weight": 2,
-    "catch_rate": 85.0,
+    "catch_rate": 100.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15
 }

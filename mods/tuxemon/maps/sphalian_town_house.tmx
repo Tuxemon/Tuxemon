@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="9" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="30">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="tobedefined"/>
   <property name="slug" value="sphalian_town_house"/>
@@ -35,7 +36,7 @@
    eAFjYBh8wEGOgcERiOkB7OUZGByAGBcAAHyqAXs=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="96" y="80" width="32" height="32"/>
   <object id="2" type="collision" x="0" y="32" width="144" height="16"/>
   <object id="4" type="collision" x="16" y="112" width="32" height="16"/>
@@ -65,14 +66,15 @@
   </object>
   <object id="30" name="Create NPCs" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_grannypiper,8,3"/>
-    <property name="cond1" value="not npc_exists spyder_grannypiper"/>
+    <property name="act1" value="create_npc sphalian_granny,8,3"/>
+    <property name="act2" value="npc_wander sphalian_granny"/>
+    <property name="cond1" value="not npc_exists sphalian_granny"/>
    </properties>
   </object>
   <object id="31" name="Talk NPC" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog sphalian_grannypiper"/>
-    <property name="behav1" value="talk spyder_grannypiper"/>
+    <property name="behav1" value="talk sphalian_granny"/>
    </properties>
   </object>
   <object id="28" name="Player Spawn" type="event" x="128" y="0" width="16" height="16"/>

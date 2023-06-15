@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="30" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="55">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="leather_museum"/>
@@ -73,41 +74,41 @@
   </object>
   <object id="17" name="Make Miner" type="event" x="416" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_miner,23,9"/>
-    <property name="act2" value="npc_wander spyder_miner"/>
-    <property name="cond1" value="not npc_exists spyder_miner"/>
+    <property name="act1" value="create_npc spyder_leathermuseum_davie,23,9"/>
+    <property name="act2" value="npc_wander spyder_leathermuseum_davie"/>
+    <property name="cond1" value="not npc_exists spyder_leathermuseum_davie"/>
    </properties>
   </object>
   <object id="21" name="Make Postboy" type="event" x="192" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_postboy,12,10"/>
-    <property name="act2" value="npc_wander spyder_postboy"/>
-    <property name="cond1" value="not npc_exists spyder_postboy"/>
+    <property name="act1" value="create_npc spyder_leathermuseum_kasey,12,10"/>
+    <property name="act2" value="npc_wander spyder_leathermuseum_kasey"/>
+    <property name="cond1" value="not npc_exists spyder_leathermuseum_kasey"/>
    </properties>
   </object>
   <object id="22" name="Postboy Talk" type="event" x="208" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_museum_postboy1"/>
-    <property name="behav1" value="talk spyder_postboy"/>
+    <property name="behav1" value="talk spyder_leathermuseum_kasey"/>
    </properties>
   </object>
   <object id="26" name="Miner Talk" type="event" x="400" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_museum_miner1"/>
-    <property name="behav1" value="talk spyder_miner"/>
+    <property name="behav1" value="talk spyder_leathermuseum_davie"/>
    </properties>
   </object>
   <object id="27" name="Make Shopkeeper" type="event" x="32" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_maniac,2,9"/>
-    <property name="act2" value="npc_face spyder_maniac,left"/>
-    <property name="cond1" value="not npc_exists spyder_maniac"/>
+    <property name="act1" value="create_npc spyder_leathermuseum_giles,2,9"/>
+    <property name="act2" value="npc_face spyder_leathermuseum_giles,left"/>
+    <property name="cond1" value="not npc_exists spyder_leathermuseum_giles"/>
    </properties>
   </object>
   <object id="28" name="Shopkeeper Talk" type="event" x="80" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_museum_shopkeeper_chat"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk spyder_leathermuseum_giles"/>
    </properties>
   </object>
   <object id="29" name="Pay Option" type="event" x="16" y="144" width="16" height="16">
@@ -149,7 +150,7 @@
     <property name="act10" value="player_stop"/>
     <property name="act11" value="lock_controls"/>
     <property name="act14" value="translated_dialog spyder_museum_entrance3"/>
-    <property name="act15" value="npc_face spyder_maniac,up"/>
+    <property name="act15" value="npc_face spyder_leathermuseum_giles,up"/>
     <property name="act16" value="translated_dialog player_wallet"/>
     <property name="act20" value="translated_dialog_choice yes:no,paymuseum"/>
     <property name="act90" value="unlock_controls"/>

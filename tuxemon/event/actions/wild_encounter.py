@@ -6,7 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import Union, final
 
-from tuxemon import ai, monster
+from tuxemon import monster
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
@@ -83,8 +83,6 @@ class WildEncounterAction(EventAction):
 
         env = db.lookup(environment, table="environment")
 
-        # Set the NPC object's AI model.
-        npc.ai = ai.RandomAI()
         self.session.client.queue_state(
             "CombatState",
             players=(player, npc),

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="72">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="manor"/>
@@ -35,7 +36,7 @@
    eJxjYBhZ4KQiddTAAAByVgHV
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="60" type="collision" x="32" y="64" width="32" height="32"/>
   <object id="63" type="collision" x="0" y="112" width="16" height="16"/>
   <object id="64" type="collision" x="144" y="112" width="16" height="16"/>
@@ -47,7 +48,7 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="69" name="Go Outside" type="event" x="96" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_paper_town.tmx,7,13,0.3"/>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,10,13,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -55,15 +56,15 @@
   </object>
   <object id="70" name="Create NPCs" type="event" x="8.88178e-16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_maniac,1,5"/>
-    <property name="act2" value="npc_face spyder_maniac,right"/>
-    <property name="cond1" value="not npc_exists spyder_maniac"/>
+    <property name="act1" value="create_npc spyder_papermanor_princeton,1,5"/>
+    <property name="act2" value="npc_face spyder_papermanor_princeton,right"/>
+    <property name="cond1" value="not npc_exists spyder_papermanor_princeton"/>
    </properties>
   </object>
   <object id="71" name="Old Man" type="event" x="16" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papermanor_oldman"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk spyder_papermanor_princeton"/>
    </properties>
   </object>
  </objectgroup>

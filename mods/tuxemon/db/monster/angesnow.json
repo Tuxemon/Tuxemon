@@ -1,0 +1,55 @@
+{
+    "slug": "angesnow",
+    "category": "driven_snow",	
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 6,
+            "technique": "torch"
+        },
+        {
+            "level_learned": 8,
+            "technique": "orbs"
+        },
+        {
+            "level_learned": 12,
+            "technique": "muck"
+        },
+        {
+            "level_learned": 28,
+            "technique": "fiery"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 32,
+            "monster_slug": "seraphice"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "waysprite",
+            "evo_stage": "basic"
+        }
+    ],
+    "shape": "humanoid",
+    "stage": "stage1",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 263,
+    "height": 120,
+    "weight": 30,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}

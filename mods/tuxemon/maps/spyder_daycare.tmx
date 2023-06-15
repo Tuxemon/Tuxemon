@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="23">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="24">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="daycare"/>
@@ -15,24 +16,24 @@
  <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
   <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
- <layer id="1" name="Layer 1" width="12" height="9">
+ <layer id="1" name="Layer 1" width="14" height="9">
   <data encoding="base64" compression="zlib">
-   eAG7JcTAcIsEzCHMwEAKNgOqJwVPYmBgGMW4wwAAITE40Q==
+   eAG7JcTAcIsMzCHMwEAONgPqIwdPYmBgGMXUCwMAEChCSQ==
   </data>
  </layer>
- <layer id="2" name="Layer 2" width="12" height="9">
+ <layer id="2" name="Layer 2" width="14" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYBhcgIuFgYGbSMwDVGcBxJZEYqtBqD4N6KZ0InEGUB0Aw0ERKQ==
+   eAFjYBgagIuFgYGbSMwDVAcDFkC2JZHYagD0TQfaOQOISXXnUaCeY0CcBsTpROIMoLrPQPwFiAFKRhXi
   </data>
  </layer>
- <layer id="3" name="Layer 3" width="12" height="9">
+ <layer id="3" name="Layer 3" width="14" height="9">
   <data encoding="base64" compression="zlib">
-   eAGNj0EKwjAUBV/BK0i30VtqD6L1ItWlaNN9Be/RgsWdTuAvosTGgeEt/lAaKU/vpBvGnFfSBVMMThox5krrv/o7TTDFi7ZYf14eTgr+w4Zua1bsHBP3PdbmgX3iL5b8W8P9aJ7YMnrbbsH3zJrN0dJ4s8v0b7KzHdQ=
+   eAGVj0EKwjAQRX/BK0i30VuqB9F6kepS1LpX8B4KFnf6BmYWRrDxweOT4U9IpG/OSbpgkJ9jbrmbSHs0bkm6Y5CfY255YKfzvZhfk2T+4sVONf1sPJJk/sOM/txdkCX09FbYuGvyiUOMeXNLb+NuyTr7u92xHHG/25ClHOl27qlw7w1n+yHc
   </data>
  </layer>
- <layer id="4" name="Above Player" width="12" height="9" opacity="0.97">
+ <layer id="4" name="Above Player" width="14" height="9" opacity="0.97">
   <data encoding="base64" compression="zlib">
-   eAFjYBh+4LoCwk9CihD2TSQxhCwqS1mJgaEQqh5Vhna8Piz2rcUiBnMBAH/wBHg=
+   eAFjYBh54LoCws9CihD2TSQxhCx2lrISA0MhVB92FfQT7cPijrVYxNBdBAD8eAR4
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -42,7 +43,7 @@
   <object id="4" type="collision" x="16" y="144">
    <polygon points="0,0 0,-16 -16,-16 -16,0 0,0"/>
   </object>
-  <object id="8" type="collision" x="0" y="0" width="192" height="48"/>
+  <object id="8" type="collision" x="0" y="0" width="224" height="48"/>
   <object id="12" type="collision" x="160" y="80" width="16" height="16"/>
   <object id="13" type="collision" x="80" y="80" width="16" height="16"/>
   <object id="16" type="collision" x="112" y="48" width="32" height="16"/>
@@ -51,7 +52,7 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="14" name="Teleport to Cotton Town" type="event" x="32" y="128" width="32" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_paper_town.tmx,18,5,0.3"/>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,20,5,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -84,6 +85,14 @@
     <property name="act2" value="set_variable spokengrannypiper:yes"/>
     <property name="behav1" value="talk spyder_grannypiper"/>
     <property name="cond2" value="is variable_set spokengrannypiper:yes"/>
+   </properties>
+  </object>
+  <object id="23" name="Teleport to Back" type="event" x="208" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,22,3,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
  </objectgroup>

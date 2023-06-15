@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="65">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="mansion_basement"/>
@@ -39,7 +40,7 @@
    eAFjYBgFwyEE5IGeAGGl4eCZUT+MhsBoCIyGwDALgeFYNgMAj/oAgw==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="0" y="0" width="16" height="224"/>
   <object id="2" type="collision" x="16" y="0" width="368" height="32"/>
   <object id="3" type="collision" x="368" y="32" width="16" height="320"/>
@@ -105,8 +106,8 @@
   </object>
   <object id="40" name="Create Captain" type="event" x="48" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_captain,3,4"/>
-    <property name="cond1" value="not npc_exists spyder_captain"/>
+    <property name="act1" value="create_npc spyder_basement_flick,3,4"/>
+    <property name="cond1" value="not npc_exists spyder_basement_flick"/>
     <property name="cond2" value="not variable_set captainreturns:yes"/>
    </properties>
   </object>
@@ -114,7 +115,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_mansion_captain1"/>
     <property name="act2" value="set_variable foundcaptain:yes"/>
-    <property name="behav1" value="talk spyder_captain"/>
+    <property name="behav1" value="talk spyder_basement_flick"/>
    </properties>
   </object>
   <object id="42" name="Environment" type="event" x="16" y="0" width="16" height="16">
@@ -125,9 +126,9 @@
   </object>
   <object id="43" name="Create Rogue" type="event" x="224" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_rogue,14,8"/>
-    <property name="act2" value="npc_face spyder_rogue,left"/>
-    <property name="cond1" value="not npc_exists spyder_rogue"/>
+    <property name="act1" value="create_npc spyder_basement_garret,14,8"/>
+    <property name="act2" value="npc_face spyder_basement_garret,left"/>
+    <property name="cond1" value="not npc_exists spyder_basement_garret"/>
    </properties>
   </object>
   <object id="46" name="Create Roger" type="event" x="336" y="224" width="16" height="16">
@@ -158,8 +159,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_basement_coralli"/>
     <property name="act1" value="translated_dialog spyder_basement_coralli1"/>
-    <property name="act2" value="add_monster tumbleworm,22,spyder_basement_coralli,27,10"/>
-    <property name="act3" value="add_monster elofly,22,spyder_basement_coralli,27,10"/>
+    <property name="act2" value="add_monster tumbleworm,22,spyder_basement_coralli,5,10"/>
+    <property name="act3" value="add_monster elofly,22,spyder_basement_coralli,5,10"/>
     <property name="act4" value="start_battle spyder_basement_coralli"/>
     <property name="act5" value="translated_dialog spyder_basement_coralli2"/>
     <property name="act6" value="set_variable basementcoralli:yes"/>
@@ -171,7 +172,7 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_basement_bobby"/>
     <property name="act1" value="translated_dialog spyder_basement_bobby1"/>
-    <property name="act2" value="add_monster capiti,26,spyder_basement_bobby,27,10"/>
+    <property name="act2" value="add_monster capiti,26,spyder_basement_bobby,5,10"/>
     <property name="act4" value="start_battle spyder_basement_bobby"/>
     <property name="act5" value="translated_dialog spyder_basement_bobby2"/>
     <property name="act6" value="set_variable basementbobby:yes"/>
@@ -183,7 +184,7 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_basement_roger"/>
     <property name="act1" value="translated_dialog spyder_basement_roger1"/>
-    <property name="act2" value="add_monster polyrock,22,spyder_basement_roger,27,10"/>
+    <property name="act2" value="add_monster polyrock,22,spyder_basement_roger,5,10"/>
     <property name="act4" value="start_battle spyder_basement_roger"/>
     <property name="act5" value="translated_dialog spyder_basement_roger2"/>
     <property name="act6" value="set_variable basementroger:yes"/>
@@ -195,8 +196,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_basement_catholi"/>
     <property name="act1" value="translated_dialog spyder_basement_catholi1"/>
-    <property name="act2" value="add_monster foofle,20,spyder_basement_catholi,27,10"/>
-    <property name="act3" value="add_monster rosarin,24,spyder_basement_catholi,27,10"/>
+    <property name="act2" value="add_monster foofle,20,spyder_basement_catholi,5,10"/>
+    <property name="act3" value="add_monster rosarin,24,spyder_basement_catholi,5,10"/>
     <property name="act4" value="start_battle spyder_basement_catholi"/>
     <property name="act5" value="translated_dialog spyder_basement_catholi2"/>
     <property name="act6" value="set_variable basementcatholi:yes"/>
@@ -206,21 +207,21 @@
   </object>
   <object id="58" name="Create Baller" type="event" x="336" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_baller,21,11"/>
-    <property name="act2" value="npc_face spyder_baller,left"/>
-    <property name="cond1" value="not npc_exists spyder_baller"/>
+    <property name="act1" value="create_npc spyder_basement_josh,21,11"/>
+    <property name="act2" value="npc_face spyder_basement_josh,left"/>
+    <property name="cond1" value="not npc_exists spyder_basement_josh"/>
    </properties>
   </object>
   <object id="59" name="Talk Baller" type="event" x="352" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_basement_baller"/>
-    <property name="behav1" value="talk spyder_baller"/>
+    <property name="behav1" value="talk spyder_basement_josh"/>
    </properties>
   </object>
   <object id="60" name="Talk Rogue" type="event" x="240" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_basement_rogue"/>
-    <property name="behav1" value="talk spyder_rogue"/>
+    <property name="behav1" value="talk spyder_basement_garret"/>
    </properties>
   </object>
   <object id="61" name="Create Josephine" type="event" x="192" y="320" width="16" height="16">

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="34">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="dojo4"/>
@@ -30,7 +31,7 @@
    eAFjYBgFoyEwGgKjITAwIQAABIAAAQ==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="32" y="80" width="16" height="112"/>
   <object id="2" type="collision" x="32" y="80" width="48" height="32"/>
   <object id="3" type="collision" x="64" y="16" width="16" height="96"/>
@@ -79,8 +80,8 @@
   <object id="24" name="Talk Thri" type="event" x="144" y="32" width="16" height="16">
    <properties>
     <property name="act11" value="translated_dialog spyder_dojo_thri1"/>
-    <property name="act12" value="add_monster sampsage,35,spyder_dojo_thri,27,10"/>
-    <property name="act13" value="add_monster sampsack,35,spyder_dojo_thri,27,10"/>
+    <property name="act12" value="add_monster sampsage,35,spyder_dojo_thri,5,10"/>
+    <property name="act13" value="add_monster sampsack,35,spyder_dojo_thri,5,10"/>
     <property name="act14" value="start_battle spyder_dojo_thri"/>
     <property name="act15" value="set_variable dojothri:yes"/>
     <property name="act20" value="set_monster_health"/>
@@ -128,10 +129,10 @@
     <property name="act04" value="pathfind_to_player spyder_dojo_billie,down"/>
     <property name="act05" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_dojo_billie1"/>
-    <property name="act20" value="add_monster billie_choice,35,spyder_dojo_billie,27,10"/>
-    <property name="act21" value="add_monster eyesore,35,spyder_dojo_billie,27,10"/>
-    <property name="act22" value="add_monster cardiwing,35,spyder_dojo_billie,27,10"/>
-    <property name="act23" value="add_monster viviphyta,35,spyder_dojo_billie,27,10"/>
+    <property name="act20" value="add_monster billie_choice,35,spyder_dojo_billie,5,10"/>
+    <property name="act21" value="add_monster eyesore,35,spyder_dojo_billie,5,10"/>
+    <property name="act22" value="add_monster cardiwing,35,spyder_dojo_billie,5,10"/>
+    <property name="act23" value="add_monster viviphyta,35,spyder_dojo_billie,5,10"/>
     <property name="act30" value="start_battle spyder_dojo_billie"/>
     <property name="act40" value="translated_dialog spyder_dojo_billie2"/>
     <property name="act50" value="pathfind spyder_dojo_billie,10,9"/>

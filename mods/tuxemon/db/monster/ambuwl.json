@@ -1,0 +1,68 @@
+{
+    "slug": "ambuwl",
+    "category": "restorative",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 2,
+            "technique": "ram"
+        },
+        {
+            "level_learned": 6,
+            "technique": "rock"
+        },
+        {
+            "level_learned": 8,
+            "technique": "stampede"
+        },
+        {
+            "level_learned": 12,
+            "technique": "evasion"
+        },
+        {
+            "level_learned": 16,
+            "technique": "lantern"
+        },
+        {
+            "level_learned": 20,
+            "technique": "mending"
+        },
+        {
+            "level_learned": 24,
+            "technique": "breath"
+        },
+        {
+            "level_learned": 28,
+            "technique": "sylvan"
+        },
+        {
+            "level_learned": 32,
+            "technique": "fledgling"
+        },
+        {
+            "level_learned": 36,
+            "technique": "tip"
+        },
+        {
+            "level_learned": 40,
+            "technique": "earthquake"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "shape": "sprite",
+    "stage": "standalone",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 249,
+    "height": 98,
+    "weight": 38,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

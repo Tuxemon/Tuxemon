@@ -1,0 +1,70 @@
+{
+    "slug": "waysprite",
+    "category": "wavering",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 6,
+            "technique": "torch"
+        },
+        {
+            "level_learned": 8,
+            "technique": "orbs"
+        },
+        {
+            "level_learned": 12,
+            "technique": "muck"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "daytime",
+            "at_level": 16,
+            "monster_slug": "angesnow",
+            "daytime": "true"
+        },
+        {
+            "path": "daytime",
+            "at_level": 16,
+            "monster_slug": "demosnow",
+            "daytime": "false"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "angesnow",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "demosnow",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "lucifice",
+            "evo_stage": "stage2"
+        },
+        {
+            "mon_slug": "seraphice",
+            "evo_stage": "stage2"
+        }
+    ],
+    "shape": "sprite",
+    "stage": "basic",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 262,
+    "height": 15,
+    "weight": 1,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.25
+}

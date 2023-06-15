@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="candy_cafe"/>
@@ -23,12 +24,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYKAtUJZnYFABYm4g5gHieYoQ+14B2cjAWo6BwQaInYDizkCsBcTaQLwXqh5ZLYgdBVQbDcTo4A4O9f8VICp/AOV/AvEvKP6NQz26ubj471QYGN4DMQYAmYuMoQp4VRkY+IAYGTAB1ZUpMDCUQ3EFkGbE4y6Q+qlANdOgeDoB9QxAsAWoZisUbwPS5IBDQE0wDNK/DRj+AI/hHVY=
+   eAFjYKAtUJZnYFABYm4g5gHieYrY7bOWY2CwAWInoBpnINYCYm0g3otDfRRQbTQQo4M7ONT/V4Co/AGU/wnEv6D4Nw716Obi4r9TYWB4D8QYAGQuMoYq4FVlYOADYmTABFRXpsDAUA7FFUCaEY+7QOqnAtVMg+LpBNQzAMEWoJqtULwNSJMDDgE1wTBI/zZg+AMAt9ocTQ==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBia4IECfd39EGgfMobZ7g0UB2Fk8BiND5J7BBXLAtIgjAzwqUdWR2v2dDnSbQAA3IgLrg==
+   eAFjYBia4IECfd39EGgfMsZn+2OgWnTwCIsYTA2p6mH6qE1PlyPdRAAqjQnE
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -49,7 +50,7 @@
   </object>
   <object id="29" name="Go Outside" type="event" x="128" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_candy_town.tmx,3,19,0.3"/>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,4,19,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -99,8 +100,8 @@
     <property name="act11" value="npc_face player,right"/>
     <property name="act12" value="player_stop"/>
     <property name="act13" value="lock_controls"/>
-    <property name="act14" value="create_npc spyder_barmaid_red,6,3"/>
-    <property name="act15" value="npc_face spyder_barmaid_red,left"/>
+    <property name="act14" value="create_npc spyder_candycafe_nora,6,3"/>
+    <property name="act15" value="npc_face spyder_candycafe_nora,left"/>
     <property name="act20" value="translated_dialog spyder_barmaid_cafe1"/>
     <property name="act50" value="set_variable cafe_confiscation:yes"/>
     <property name="cond1" value="is variable_set confiscation_done:yes"/>
@@ -114,8 +115,8 @@
     <property name="act40" value="add_monster nudiflot_male,10"/>
     <property name="act50" value="set_variable cafe_done:yes"/>
     <property name="act55" value="unlock_controls"/>
-    <property name="act60" value="pathfind spyder_barmaid_red,8,10"/>
-    <property name="act65" value="remove_npc spyder_barmaid_red"/>
+    <property name="act60" value="pathfind spyder_candycafe_nora,8,10"/>
+    <property name="act65" value="remove_npc spyder_candycafe_nora"/>
     <property name="cond1" value="is has_box Kennel,less_than,1"/>
     <property name="cond2" value="is variable_set cafe_confiscation:yes"/>
     <property name="cond3" value="not variable_set cafe_done:yes"/>
@@ -126,8 +127,8 @@
     <property name="act10" value="translated_dialog spyder_barmaid_cafe2"/>
     <property name="act50" value="set_variable cafe_done:yes"/>
     <property name="act55" value="unlock_controls"/>
-    <property name="act60" value="pathfind spyder_barmaid_red,8,10"/>
-    <property name="act65" value="remove_npc spyder_barmaid_red"/>
+    <property name="act60" value="pathfind spyder_candycafe_nora,8,10"/>
+    <property name="act65" value="remove_npc spyder_candycafe_nora"/>
     <property name="cond1" value="is has_box Kennel,greater_or_equal,1"/>
     <property name="cond2" value="is variable_set cafe_confiscation:yes"/>
     <property name="cond3" value="not variable_set cafe_done:yes"/>
@@ -138,6 +139,15 @@
     <property name="act1" value="change_state PCState"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set kernelquest:yes"/>
+   </properties>
+  </object>
+  <object id="35" name="Use Computer Kernel" type="event" x="48" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_pc_alert"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is variable_set kernelquest:yes"/>
    </properties>
   </object>
  </objectgroup>

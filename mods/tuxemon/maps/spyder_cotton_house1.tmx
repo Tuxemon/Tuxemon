@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="74">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="cotton_house1"/>
@@ -35,7 +36,7 @@
    eAFjYBgFlIQAAAFAAAE=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="63" type="collision" x="0" y="0" width="160" height="32"/>
   <object id="64" type="collision" x="96" y="48" width="32" height="32"/>
   <object id="66" type="collision" x="0" y="96" width="16" height="32"/>
@@ -45,27 +46,27 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="59" name="Create Homemaker" type="event" x="48" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_homemaker,3,5"/>
-    <property name="act2" value="npc_wander spyder_homemaker"/>
-    <property name="cond1" value="not npc_exists spyder_homemaker"/>
+    <property name="act1" value="create_npc spyder_cottoncafe_juliana,3,5"/>
+    <property name="act2" value="npc_wander spyder_cottoncafe_juliana"/>
+    <property name="cond1" value="not npc_exists spyder_cottoncafe_juliana"/>
    </properties>
   </object>
   <object id="60" name="Talk Homemaker" type="event" x="48" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cottonhouse1_homemaker"/>
-    <property name="behav1" value="talk spyder_homemaker"/>
+    <property name="behav1" value="talk spyder_cottoncafe_juliana"/>
    </properties>
   </object>
   <object id="61" name="Create Firefighter" type="event" x="112" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_firefighter,7,2"/>
-    <property name="cond1" value="not npc_exists spyder_firefighter"/>
+    <property name="act1" value="create_npc spyder_cottonhouse1_rodger,7,2"/>
+    <property name="cond1" value="not npc_exists spyder_cottonhouse1_rodger"/>
    </properties>
   </object>
   <object id="62" name="Talk Firefighter" type="event" x="112" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cottonhouse1_firefighter"/>
-    <property name="behav1" value="talk spyder_firefighter"/>
+    <property name="behav1" value="talk spyder_cottonhouse1_rodger"/>
    </properties>
   </object>
   <object id="70" name="Go outside" type="event" x="96" y="112" width="32" height="16">

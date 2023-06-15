@@ -1,7 +1,6 @@
 {
     "slug": "incandesfin",
     "category": "light_fin",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -49,7 +48,7 @@
             "evo_stage": "basic"
         }
     ],
-    "shape": "aquatic",
+    "shape": "piscine",
     "stage": "stage1",
     "types": [
         "water"
@@ -58,7 +57,7 @@
     "txmn_id": 69,
     "height": 250,
     "weight": 150,
-    "catch_rate": 85.0,
+    "catch_rate": 70.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15
 }

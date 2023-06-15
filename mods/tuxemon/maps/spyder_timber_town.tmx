@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="372">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="376">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="route5"/>
@@ -22,12 +22,12 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtV8tNw0AQdQGI3zHi1wlCNJAL0AACagAaoArgnDqgAaQUAWcucGFW8iMvo9mfvQlr5MNo7F17/Wbee7vJdKNppm2cST6XuKAxzNWQbwXXncT9iO+Xsxxe/lP/HnYXus3pQddnL+V7Q+nfu/jD+RhRi5/RP+dhjlr8/Ci4niheW5y14NPaRT9HfN32Al//VnUO7m02zb4K5hTfhW8/Wv1pP2O8NO8ngm2+vRyMD/1i74au++Kb7SzzGsMH/8K3L+Rl9jWun2We6+t7HcOH9dHHWH8+Vf14Pyez5o62Ftx+CdfXEtZaqfisd3PHrJ45DZ56sLlzv2Z8rn7g075dxTnM/QOnjtcbT/8Yn/ZuTI+53LrnGZ+PU70ufAyfIpf2axd87Ce9l1v3BwEedN3WfW7/+Hm9l1v3mhN9BuEs0hla5u/ptWL1WHj0mF4T3tLa1ffQ8rrx+bQLDSNDy+vGZ3ESGsvFdyV6d/tPKL5lHjwfyplk+SZ1jM80rZVQXaE5rhk4S+Sh43tL/M+dooGQPniOtVKqf47740gtk8g89MNaKYkP6/fNIz77N25qX0v0r8TveB/eEvh8a5cYH/H9vf5K8OhbY+j8/gDyn6wq
+   eAHtV8tNw0AQdQGI3xHx6wQhGsiF0AACagAaoArgTB3QABJFwDmX5MKM5EdeRvu1N7BGPozW3rXHb+a9t5tMNppm0sa5jFOJC5rDWg3jreC6k7gf8f1wlsPLf+rfw+5Stzk96PrspXxvKP37FH+ojxG1+Bn9Uw9z1OLnR8H1RPHW4qwFn9Uu+jni67YX+Pq3rnNwf7NpDkwwp/gufPvV6s/6GfOleT8VbB/bq8H40C/2bui6L76XnVVeY/jgX/j2lbzMvsb1s6xzfX2vY/iQH32M9Wdm6sf7OSNr7nhrye1cuL6WcOVKxed6N3fO1TPV4JkHm577NePT+oHP+nYd5zD3D5wqrzee/jE+692YHnO51ecZn49Tmxc+hk8xlvZrF3zsJ7uXu+4PAzzYul33uf3j59VHmtPu6XxvObFnEM4iO0LL/D2bK1ZPF3zwltWuvYeW++LjXrmubc0+7ULDGKHl38bn4iQ0l4vvSvSu+08oFrKOXh7JmeTyTeocn2mWi1BdoTWuGThTR85r3xk6vvfE/9wpGgjpg9dYK6X6pxydRGrZi6yDZ9ZKSXzI33cc8bl/46b2tUT/SvyO9+Etgc+Xu8T8iO/v9VeCR1+OofP7DXrip9o=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtl1sKwjAQRQfF15/+uwXfG3ARgq9/dRdW/ddl+FqAuhp1J96BBgapRW0NI8zAYdpkmtzeppAQ/S5qFaI6cPl3M6U7cpcoeB4xqu25xtf9LEJfVJsvPf80zzlGbFxfzGOpdjkNnCU8ietLdcIvB2Mt+RxRAWjS5V6HNdWhraFU3z1DwS3kiux0a8na9ZWyFBRDCshafDMd5sAnDjRQ3AQt0AYdoCn6EDMAQzACY6Ap5hATgAVYghXwEUXsa9+JLYp2YA8O4Ah8BO+5LcwBc8AcMAdeO3DB3vssOCnbi/M+vCrQdlZgfewua+SsUd8U2iahhxr1ye/bx1lGrsek10nXs1t/0sMNvFyHfr5qlzX8frKO711/0u8hz4HuPJhmtrMl/9UW5oA/B3plf3M9ANRGd7M=
+   eAHtl0tOwzAQhkcgaLuDPQta2LZcgRvwlLgBcAoaOAAch7LldQ3gCLz2fCPF0qgKUSGpNYgZ6dMktmP/+eNIHpH5xXBVZAQpz2+ldmfeFimmZ6xqmx6T6/60Ql9VWy49f2mdSY3Yur6ax1rtSho0W3SR1Nfqgr+cTLUsL4l0wJOu9DqqaYS2Laf6XhakeC55IifdXrJ3fb1FKbolHbIX30JHOPATB277IndwDw/wCJ7iFT1v8A4f8AmeYn0g0ocBbMAm5Igu59pZYgc9u7AH+3AAOULP3LPEGXrGUMA5XEBEOBAOhAP/wYEbzt4Tw7Wzs7iew9cM3moF1af7RDVq9qjvBG3HpYce9dnve0QtY/dj0+um+zntP+vhFV5eln5+127H6PvZcXqf+pt+D1sHpnqwzRy1pf7VEeFAPgcOV/Kt9QUyP3/J
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
@@ -42,10 +42,10 @@
  </layer>
  <layer id="4" name="Tile Layer 4" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0zsOgkAUheHToViqmJioiStyNwo27stX5RM2gm7Cv6QgNiY6Gc9NvmYKuPMTJM8/FjhNpDMuuOIGjwu4wPsCW/6THfY44IhvTJ/3DDBEhhGac8+kEhVCnJq9HngGul+IzbzT5wUSHtFBFyl68LiAC7iAC7iAC7iAC7iAC8RRYDmVVshRYI25tGk7X4yltvM4SsR3ixnfMb5b+Ua/LPACgMEaBQ==
+   eAHt00sOwVAYhuFvD6hEgrAiu3GbdA8tFuM2oqXdCDbhHRo0JhJOju9PnsmZ9D/vSSXPPxY49aUzCpS4wOMCLvC+wJb/ZIc9DjjiG9PiO210kKCL17kmUoUaIc6Nve54BLpfiM280+cFspGUY4U1NvC4gAu4gAu4gAu4gAu4gAvEUWA6kGaYY4ElxlLadD7pSU3ncZSI7xZD3jG+W/lGvyzwBOReHWY=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="245" type="collision" x="288" y="16" width="144" height="224"/>
   <object id="246" type="collision" x="96" y="0" width="192" height="32"/>
   <object id="247" type="collision" x="80" y="0" width="16" height="16"/>
@@ -60,9 +60,9 @@
   <object id="256" type="collision" x="96" y="64" width="32" height="48"/>
   <object id="257" type="collision" x="128" y="64" width="48" height="32"/>
   <object id="258" type="collision" x="144" y="96" width="32" height="16"/>
-  <object id="259" type="collision" x="128" y="240" width="32" height="64"/>
-  <object id="260" type="collision" x="176" y="240" width="32" height="64"/>
-  <object id="261" type="collision" x="160" y="240" width="16" height="48"/>
+  <object id="259" type="collision" x="128" y="240" width="48" height="64"/>
+  <object id="260" type="collision" x="192" y="240" width="16" height="64"/>
+  <object id="261" type="collision" x="176" y="240" width="16" height="48"/>
   <object id="262" type="collision" x="80" y="352" width="48" height="64">
    <properties>
     <property name="key" value="water"/>
@@ -146,9 +146,8 @@
     <property name="key" value="water"/>
    </properties>
   </object>
-  <object id="309" type="collision" x="544" y="224" width="32" height="32"/>
   <object id="310" type="collision" x="448" y="128" width="32" height="96"/>
-  <object id="311" type="collision" x="544" y="128" width="32" height="96"/>
+  <object id="311" type="collision" x="544" y="128" width="32" height="128"/>
   <object id="312" type="collision" x="592" y="144" width="32" height="32"/>
   <object id="313" type="collision" x="608" y="112" width="32" height="32"/>
   <object id="315" type="collision" x="592" y="80" width="32" height="32"/>
@@ -332,13 +331,13 @@
   <object id="357" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="358" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
-    <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="356" name="Destination - Timber" type="event" x="80" y="288" width="16" height="16">
@@ -402,7 +401,7 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="370" name="Teleport to Timber Cafe" type="event" x="160" y="288" width="16" height="16">
+  <object id="370" name="Teleport to Timber Cafe" type="event" x="176" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_cafe.tmx,8,11,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -422,19 +421,50 @@
    <properties>
     <property name="act01" value="player_stop"/>
     <property name="act02" value="lock_controls"/>
-    <property name="act03" value="create_npc spyder_mompapertown,26,23"/>
-    <property name="act04" value="pathfind spyder_mompapertown,17,21"/>
+    <property name="act03" value="create_npc spyder_papertown_mom,26,23"/>
+    <property name="act04" value="pathfind spyder_papertown_mom,17,21"/>
     <property name="act05" value="unlock_controls"/>
     <property name="act06" value="npc_face player,down"/>
-    <property name="act07" value="npc_face spyder_mompapertown,up"/>
+    <property name="act07" value="npc_face spyder_papertown_mom,up"/>
     <property name="act08" value="translated_dialog spyder_timber_mom1"/>
     <property name="act09" value="add_item surfboard"/>
     <property name="act10" value="translated_dialog spyder_timber_mom2"/>
-    <property name="act11" value="pathfind spyder_mompapertown,26,23"/>
-    <property name="act12" value="remove_npc spyder_mompapertown"/>
+    <property name="act11" value="pathfind spyder_papertown_mom,26,23"/>
+    <property name="act12" value="remove_npc spyder_papertown_mom"/>
     <property name="act13" value="set_variable timbermom:yes"/>
     <property name="cond1" value="not variable_set timbermom:yes"/>
     <property name="cond2" value="is variable_set scooparachne:yes"/>
+   </properties>
+  </object>
+  <object id="372" name="Choice Surf" type="event" x="512" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog itsswimmingtime"/>
+    <property name="act2" value="translated_dialog_choice yes:no,swimming"/>
+    <property name="cond1" value="is has_item player,surfboard"/>
+    <property name="cond2" value="is player_facing_tile surfable"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not player_in surfable"/>
+   </properties>
+  </object>
+  <object id="373" name="surfable" type="event" x="480" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_player_template swimmer"/>
+    <property name="cond1" value="is player_in surfable"/>
+    <property name="cond2" value="not has_sprite swimmer"/>
+   </properties>
+  </object>
+  <object id="374" name="not surfable" type="event" x="464" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_player_template default"/>
+    <property name="act2" value="set_variable swimming:no"/>
+    <property name="cond1" value="not player_in surfable"/>
+    <property name="cond2" value="is has_sprite swimmer"/>
+   </properties>
+  </object>
+  <object id="375" name="Remove Obstacle" type="event" x="496" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision water"/>
+    <property name="cond1" value="is variable_set swimming:yes"/>
    </properties>
   </object>
  </objectgroup>

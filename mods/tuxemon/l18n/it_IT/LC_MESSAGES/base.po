@@ -161,9 +161,6 @@ msgid "combat_capturing_fail"
 msgstr "{name} si è liberato!"
 
 msgid "combat_recharging"
-msgstr "{name} ha bisogno di riposare prima di usare ancora ${move}..."
-
-msgid "combat_recharging"
 msgstr "{name} ha bisogno di riposare prima di usare ancora {move}..."
 
 msgid "combat_replacement"
@@ -2802,7 +2799,7 @@ msgstr "Eccoti qui vecchio amico! Lascia che ti riporti al fiume."
 msgid "spyder_dryadsgrove_volcoli1"
 msgstr "Bree! Bree!"
 
-msgid "spyder_stop_dante"
+msgid "spyder_dante"
 msgstr "Dante"
 
 msgid "spyder_granny"
@@ -3167,7 +3164,7 @@ msgstr "Forse siamo andati troppo oltre …"
 msgid "spyder_greenwash_dippel2"
 msgstr "Oppure non abbastanza! "
 
-# Boosters (items)
+# Boosters
 msgid "greenwash_badge"
 msgstr "Medaglia: Greenwash"
 
@@ -3348,7 +3345,7 @@ msgstr "{target} è usurato."
 msgid "alert_text"
 msgstr "Testo troppo lungo!"
 
-msgid "status_spyderbite"
+msgid "spyderbite"
 msgstr "Morso Spyder"
 
 msgid "status_tired"

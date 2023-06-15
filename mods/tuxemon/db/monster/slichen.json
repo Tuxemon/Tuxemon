@@ -1,0 +1,63 @@
+{
+    "slug": "slichen",
+    "category": "gel",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 6,
+            "technique": "sylvan"
+        },
+        {
+            "level_learned": 8,
+            "technique": "stonehenge"
+        },
+        {
+            "level_learned": 12,
+            "technique": "clairaudience"
+        },
+        {
+            "level_learned": 16,
+            "technique": "negation"
+        },
+        {
+            "level_learned": 20,
+            "technique": "maori"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 25,
+            "monster_slug": "glombroc"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "glombroc",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "conglolem",
+            "evo_stage": "stage2"
+        }
+    ],
+    "shape": "blob",
+    "stage": "basic",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 272,
+    "height": 37,
+    "weight": 1,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.25
+}

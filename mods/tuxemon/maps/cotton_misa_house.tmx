@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="13" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="58">
  <properties>
+  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="cotton_misa_house"/>
@@ -68,17 +69,17 @@
   <object id="53" name="Granny" type="event" x="32" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog cotton_misa_granny"/>
-    <property name="behav1" value="talk taba_house1_wife"/>
+    <property name="behav1" value="talk cotton_misa_gramps"/>
    </properties>
   </object>
   <object id="54" name="Create NPCs" type="event" x="96" y="0" width="16" height="16">
    <properties>
-    <property name="act11" value="create_npc taba_house1_wife,2,4"/>
-    <property name="act12" value="create_npc spyder_flower_sandy,9,3"/>
-    <property name="act21" value="npc_face taba_house1_wife,down"/>
-    <property name="act22" value="npc_face spyder_flower_sandy,right"/>
-    <property name="cond1" value="not npc_exists taba_house1_wife"/>
-    <property name="cond2" value="not npc_exists spyder_flower_sandy"/>
+    <property name="act11" value="create_npc cotton_misa_gramps,2,4"/>
+    <property name="act12" value="create_npc cotton_misa_bro,9,3"/>
+    <property name="act21" value="npc_face cotton_misa_gramps,down"/>
+    <property name="act22" value="npc_face cotton_misa_bro,right"/>
+    <property name="cond1" value="not npc_exists cotton_misa_gramps"/>
+    <property name="cond2" value="not npc_exists cotton_misa_bro"/>
    </properties>
   </object>
   <object id="55" name="TV" type="event" x="16" y="144" width="32" height="16">
@@ -91,7 +92,7 @@
   <object id="57" name="LittleBro" type="event" x="144" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog cotton_misa_littlebro"/>
-    <property name="behav1" value="talk spyder_flower_sandy"/>
+    <property name="behav1" value="talk cotton_misa_bro"/>
    </properties>
   </object>
  </objectgroup>

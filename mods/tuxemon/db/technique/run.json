@@ -7,7 +7,7 @@
 	"effects": [],
 	"flip_axes": "",
 	"icon": "",
-	"power": 50,
+	"is_fast": true,
 	"range": "special",
 	"sfx": "sfx_blaster",
 	"slug": "menu_run",
@@ -18,11 +18,10 @@
 		"enemy trainer": 0,
 		"own monster": 0,
 		"own team": 0,
-		"own trainer": 0,
-		"item": 0
+		"own trainer": 0
 	},
 	"tech_id": 0,
-	"use_failure": "generic_failure",
+	"use_failure": "combat_cannot_run_away",
 	"use_success": "generic_success",
 	"use_tech": "combat_used_x"
 }

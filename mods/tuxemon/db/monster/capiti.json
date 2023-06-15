@@ -1,7 +1,6 @@
 {
     "slug": "capiti",
     "category": "woodwose",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -52,8 +51,19 @@
             "technique": "blossom"
         }
     ],
-    "evolutions": [],
-    "history": [],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "capinyah"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "capinyah",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "sprite",
     "stage": "basic",
     "types": [
@@ -63,7 +73,7 @@
     "txmn_id": 102,
     "height": 100,
     "weight": 20,
-    "catch_rate": 170.0,
+    "catch_rate": 100.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25
 }

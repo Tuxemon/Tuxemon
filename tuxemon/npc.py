@@ -22,7 +22,6 @@ from typing import (
 )
 
 from tuxemon import surfanim
-from tuxemon.ai import AI
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.compat import Rect
 from tuxemon.db import ElementType, PlagueType, SeenStatus, db
@@ -132,6 +131,7 @@ class NPC(Entity[NPCState]):
         self.behavior: Optional[str] = "wander"  # not used for now
         self.game_variables: Dict[str, Any] = {}  # Tracks the game state
         self.battles: List[Battle] = []  # Tracks the battles
+        self.forfeit: bool = True
         # Tracks Tuxepedia (monster seen or caught)
         self.tuxepedia: Dict[str, SeenStatus] = {}
         self.contacts: Dict[str, str] = {}
@@ -139,7 +139,7 @@ class NPC(Entity[NPCState]):
         self.interactions: Sequence[
             str
         ] = []  # List of ways player can interact with the Npc
-        self.isplayer = False  # used for various tests, idk
+        self.isplayer: bool = False  # used for various tests, idk
         # This is a list of tuxemon the npc has. Do not modify directly
         self.monsters: List[Monster] = []
         # The player's items.
@@ -153,11 +153,8 @@ class NPC(Entity[NPCState]):
         # assume that all values are lists
         self.monster_boxes: Dict[str, List[Monster]] = {}
         self.item_boxes: Dict[str, List[Item]] = {}
-
-        # combat related
-        self.ai: Optional[
-            AI
-        ] = None  # Whether or not this player has AI associated with it
+        # nr tuxemon fight
+        self.max_position: int = 1
         self.speed = 10  # To determine combat order (not related to movement!)
         self.moves: Sequence[Technique] = []  # list of techniques
 
@@ -835,6 +832,7 @@ class NPC(Entity[NPCState]):
 
         # Look up the NPC's details from our NPC database
         npc_details = db.lookup(self.slug, "npc")
+        self.forfeit = npc_details.forfeit
         npc_party = npc_details.monsters
         for npc_monster_details in npc_party:
             # This seems slightly wrong. The only useable element in
@@ -907,16 +905,15 @@ class NPC(Entity[NPCState]):
     def has_type(self, element: Optional[ElementType]) -> bool:
         """
         Returns TRUE if there is the type in the party.
-
-        Parameters:
-            type: The slug name of the type.
         """
-        for mon in self.monsters:
-            if element in mon.types:
-                return True
-            else:
-                return False
-        return False
+        ret: bool = False
+        if element:
+            eles = []
+            for mon in self.monsters:
+                eles = [ele for ele in mon.types if ele.slug == element]
+            if eles:
+                ret = True
+        return ret
 
     def check_max_moves(self, session: Session, monster: Monster) -> None:
         """

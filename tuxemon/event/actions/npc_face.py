@@ -42,6 +42,9 @@ class NpcFaceAction(EventAction):
         if direction not in dirs2:
             if direction == "player":
                 target = self.session.player
+                # the player looks at the NPC
+                inverse = get_direction(target.tile_pos, npc.tile_pos)
+                target.facing = cast(Direction, inverse)
             else:
                 maybe_target = get_npc(self.session, direction)
                 assert maybe_target

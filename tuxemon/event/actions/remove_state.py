@@ -5,7 +5,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Union, final
 
+from pygame_menu import locals
+
 from tuxemon.event.eventaction import EventAction
+from tuxemon.menu.menu import BACKGROUND_COLOR
+from tuxemon.menu.theme import get_theme
 
 
 @final
@@ -39,3 +43,8 @@ class RemoveStateAction(EventAction):
                     self.session.client.remove_state(ele)
         if current_state.name == self.state_name:
             self.session.client.pop_state()
+
+    def cleanup(self) -> None:
+        theme = get_theme()
+        theme.background_color = BACKGROUND_COLOR
+        theme.widget_alignment = locals.ALIGN_LEFT

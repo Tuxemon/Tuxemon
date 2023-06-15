@@ -8,6 +8,7 @@ from typing import Union, final
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
 from tuxemon.states.journal import MonsterInfoState
+from tuxemon.states.loading import LoadingState
 
 
 @final
@@ -51,6 +52,11 @@ class ChangeStateAction(EventAction):
                     mon.load_from_db(self.optional)
                     self.session.client.push_state(
                         MonsterInfoState(monster=mon)
+                    )
+            elif self.state_name == "LoadingState":
+                if self.optional:
+                    self.session.client.push_state(
+                        LoadingState(background=self.optional)
                     )
             else:
                 self.session.client.push_state(self.state_name)

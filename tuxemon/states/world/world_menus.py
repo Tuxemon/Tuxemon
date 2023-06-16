@@ -58,7 +58,7 @@ class WorldMenuState(PygameMenuState):
         self.animation_offset = 0
 
         def change_state(state: str, **kwargs: Any) -> Callable[[], object]:
-            return partial(self.client.replace_state, state, **kwargs)
+            return partial(self.client.push_state, state, **kwargs)
 
         def exit_game() -> None:
             self.client.event_engine.execute_action("quit")

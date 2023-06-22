@@ -85,6 +85,9 @@ class CombatAnimations(ABC, Menu[None]):
         self.capdevs: List[CaptureDeviceSprite] = []
         self._hp_bars: MutableMapping[Monster, HpBar] = {}
         self._exp_bars: MutableMapping[Monster, ExpBar] = {}
+        self._status_icons: defaultdict[Monster, List[Sprite]] = defaultdict(
+            list
+        )
 
         # eventually store in a config somewhere
         # is a tuple because more areas is needed for multi monster, etc
@@ -271,6 +274,9 @@ class CombatAnimations(ABC, Menu[None]):
         def kill() -> None:
             self._monster_sprite_map[monster].kill()
             self.hud[monster].kill()
+            for sprite in self._status_icons[monster]:
+                sprite.kill()
+            self._status_icons[monster].clear()
             del self._monster_sprite_map[monster]
             del self.hud[monster]
 
@@ -401,6 +407,8 @@ class CombatAnimations(ABC, Menu[None]):
         sound = audio.load_sound(cry, None)
         sound.play()
         self.animate(sprite.rect, x=x_diff, relative=True, duration=2)
+        for sprite in self._status_icons[monster]:
+            self.animate(sprite.image, initial=255, set_alpha=0, duration=2)
 
     def build_hud(self, home: Rect, monster: Monster) -> None:
         def build_left_hud() -> Sprite:

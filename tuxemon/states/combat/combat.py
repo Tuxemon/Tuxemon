@@ -2,6 +2,39 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+""" 
+
+General guidelines of the combat module
+=======================================
+
+- Animations and sprite changes should go in combat_animations.py
+- Menus go in combat_menus.py
+- This file should be uncoupled and to specific techniques and status
+
+Actions where are dependant on specific techniques or actions should be
+handled in an abstract way.  We should not be adding code, which for
+example, is (pseudo code):
+
+if monster.status == "confused":
+    message("Monster is confused!")
+    
+Interactions like this should be handled in an abstract way.  If we keep
+adding highly specific behaviours in this class, then it will be really
+hard to modify and will conflict with the JSON files.
+
+If you are faced with a situation where the best way is to add code like
+this, then there is a lacking of structure that needs to be addressed.
+In other words, it may be necessary to implement new functions to the
+technique/status/combat classes that can do the needful without polluting
+the class with hardcoded references to techniques/statuses.
+
+There is already existing code like this, but it is not a validation to
+add new code like it.  Consider it a priority to remove it when you are
+able to. 
+
+"""
+
+
 import datetime as dt
 import logging
 import random
@@ -205,8 +238,6 @@ class CombatState(CombatAnimations):
         self._decision_queue: List[Monster] = []
         self._action_queue: List[EnqueuedAction] = []
         self._log_action: List[Tuple[int, EnqueuedAction]] = []
-        # list of sprites that are status icons
-        self._status_icons: List[Sprite] = []
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self._layout = dict()  # player => home areas on screen
         self._animation_in_progress: bool = (
@@ -792,8 +823,9 @@ class CombatState(CombatAnimations):
         TODO: caching, etc
         """
         # remove all status icons
-        for s in self._status_icons:
+        for s in self._status_icons.values():
             self.sprites.remove(s)
+        self._status_icons.clear()
 
         # add status icons
         for monster in self.active_monsters:
@@ -840,7 +872,7 @@ class CombatState(CombatAnimations):
                         layer=200,
                         center=status_ico,
                     )
-                    self._status_icons.append(icon)
+                    self._status_icons[monster].append(icon)
 
     def show_combat_dialog(self) -> None:
         """Create and show the area where battle messages are displayed."""

@@ -385,7 +385,7 @@ class MonsterModel(BaseModel):
     )
 
     # Optional fields
-    sprites: Optional[MonsterSpritesModel]
+    sprites: Optional[MonsterSpritesModel] = None
     shape: MonsterShape = Field(..., description="The shape of the monster")
     types: Sequence[ElementType] = Field(
         [], description="The type(s) of this monster"

@@ -149,7 +149,7 @@ class NPC(Entity[NPCState]):
         # related to spyderbite (PlagueType)
         self.plague = PlagueType.healthy
         # Variables for long-term item and monster storage
-        # Keeping these seperate so other code can safely
+        # Keeping these separate so other code can safely
         # assume that all values are lists
         self.monster_boxes: Dict[str, List[Monster]] = {}
         self.item_boxes: Dict[str, List[Item]] = {}
@@ -452,8 +452,8 @@ class NPC(Entity[NPCState]):
         """
         Stop moving, cancel paths, and reset tile position to center.
 
-        The tile postion will be truncated, so even if there is another
-        closer tile, it will always return the the tile where movement
+        The tile position will be truncated, so even if there is another
+        closer tile, it will always return the tile where movement
         started.
 
         This is a useful method if you want to abort a path movement
@@ -541,7 +541,7 @@ class NPC(Entity[NPCState]):
             tile: Coordinates of the tile.
 
         Returns:
-            If the tile can me moved into.
+            If the tile can be moved into.
 
         """
         return (
@@ -711,7 +711,7 @@ class NPC(Entity[NPCState]):
         Finds a monster in the npc's storage boxes which has the given id.
 
         Parameters:
-            instance_id: The insance_id of the monster.
+            instance_id: The instance_id of the monster.
 
         Returns:
             Monster found, or None.
@@ -835,7 +835,7 @@ class NPC(Entity[NPCState]):
         self.forfeit = npc_details.forfeit
         npc_party = npc_details.monsters
         for npc_monster_details in npc_party:
-            # This seems slightly wrong. The only useable element in
+            # This seems slightly wrong. The only usable element in
             # npc_monsters_details, which is a PartyMemberModel, is "slug"
             monster = Monster(save_data=npc_monster_details.dict())
             monster.money_modifier = npc_monster_details.money_mod

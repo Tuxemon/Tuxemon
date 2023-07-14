@@ -14,7 +14,7 @@ output_folder: The folder that the changed json files will appear
 variable_name: The name of the variable you want to introduce or change
 variable_value: The value of the variable tou want to introduce or change
 
-E.g if we want to introduce the new catch_rate and give it the value 125 to all files i will run
+E.g. if we want to introduce the new catch_rate and give it the value 125 to all files I will run
 python modify_json input_file output_file catch_rate 125
 The new json files will be located at the output file
 

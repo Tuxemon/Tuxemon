@@ -189,7 +189,7 @@ class TuxepediaWebExtractor:
         if len(types) == 0:
             return ["Untyped"]
 
-        # extract tyoe names
+        # extract type names
         return [el.text_content() for el in types]
 
     def get_complete_monster_sprites(self, monster_row):

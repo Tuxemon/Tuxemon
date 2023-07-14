@@ -64,7 +64,7 @@ def get_system_storage_dirs() -> Sequence[str]:
 
     Should be immutable storage for things like system installed code/mods.
 
-    Android storage is still WIP.  should be immutable, but its not...
+    Android storage is still WIP.  should be immutable, but it's not...
 
     The primary user of this storage are packages for operating systems
     that will install the mods into a folder like /usr/share/tuxemon.

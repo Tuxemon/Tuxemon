@@ -275,7 +275,7 @@ class Technique:
 
     def validate(self, target: Optional[Monster]) -> bool:
         """
-        Check if the target meets all conditions that the technique has on it's use.
+        Check if the target meets all conditions that the technique has on its use.
 
         Parameters:
             target: The monster or object that we are using this technique on.

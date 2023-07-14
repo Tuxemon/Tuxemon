@@ -29,7 +29,7 @@ def sort_inventory(
     inventory: Sequence[Item],
 ) -> Sequence[Item]:
     """
-    Sort inventory in a usable way. Expects a iterable of inventory properties.
+    Sort inventory in a usable way. Expects an iterable of inventory properties.
 
     * Group items by category
     * Sort in groups by name
@@ -63,7 +63,7 @@ class ItemMenuState(Menu[Item]):
         super().__init__()
 
         # this sprite is used to display the item
-        # its also animated to pop out of the backpack
+        # it's also animated to pop out of the backpack
         self.item_center = self.rect.width * 0.164, self.rect.height * 0.13
         self.item_sprite = Sprite()
         self.sprites.add(self.item_sprite)
@@ -163,7 +163,7 @@ class ItemMenuState(Menu[Item]):
             self.client.pop_state()  # pop the monster screen
             self.client.pop_state()  # pop the item screen
             # check effects, some don't need the show_item_result_as_dialog
-            # (eg learn_mm, etc)
+            # (e.g. learn_mm, etc)
             for t in item.effects:
                 if t.name == "learn_mm" or t.name == "learn_tm":
                     if result["success"]:

@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class RandomEncounterAction(EventAction):
     """
-    Randomly start a encounter.
+    Randomly start an encounter.
 
     Randomly starts a battle with a monster defined in the "encounter" table
     in the "monster.db" database. The chance that this will start a battle
@@ -76,7 +76,7 @@ class RandomEncounterAction(EventAction):
         if filtered:
             encounter = _choose_encounter(filtered, self.total_prob)
         else:
-            # if no monster is set for nightime, it loads all
+            # if no monster is set for nighttime, it loads all
             encounter = _choose_encounter(encounters, self.total_prob)
 
         # If a random encounter was successfully rolled, look up the monster

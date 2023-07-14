@@ -37,7 +37,7 @@ class LifeLeechEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> LifeLeechEffectResult:
         if tech.slug == "status_lifeleech":
-            # avoids Nonetype situation and reset the user
+            # avoids NoneType situation and reset the user
             if user is None:
                 user = tech.link
                 assert user

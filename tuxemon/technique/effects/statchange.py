@@ -28,7 +28,7 @@ class StatChangeEffect(TechEffect):
             negative to subtract.
         dividing: Set this to True to divide instead of adding or
             subtracting the value.
-        overridetofull: In most cases you wont need this. If ``True`` it
+        overridetofull: In most cases you won't need this. If ``True`` it
             will set the stat to its original value rather than the
             specified value, but due to the way the
             game is coded, it currently only works on hp.

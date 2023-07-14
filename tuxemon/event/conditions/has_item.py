@@ -36,7 +36,7 @@ class HasItemCondition(EventCondition):
             condition: The map condition object.
 
         Returns:
-            Whether the target character has the desired quantity of a
+            Whether the target character has the desired quantity of
             the specified item.
 
         """

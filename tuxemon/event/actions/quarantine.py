@@ -18,7 +18,7 @@ class QuarantineAction(EventAction):
     Amount works only for "out", it takes out
     the amount in a random way.
 
-    Eg. box contains 30 monster
+    E.g. box contains 30 monster
     quarantine out,5
     5 monsters by random
 

@@ -55,7 +55,7 @@ def get_sound_filename(slug: Optional[str]) -> Optional[str]:
 
 def load_sound(slug: Optional[str], value: Optional[float]) -> SoundProtocol:
     """
-    Load a sound from disk, identified by it's slug in the db.
+    Load a sound from disk, identified by its slug in the db.
 
     Parameters:
         slug: Slug for the file record to load.

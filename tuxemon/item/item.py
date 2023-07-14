@@ -87,7 +87,7 @@ class Item:
         self.set_state(save_data)
 
     def load(self, slug: str) -> None:
-        """Loads and sets this items's attributes from the item.db database.
+        """Loads and sets this item's attributes from the item.db database.
 
         The item is looked up in the database by slug.
 
@@ -224,7 +224,7 @@ class Item:
 
     def use(self, user: NPC, target: Optional[Monster]) -> ItemEffectResult:
         """
-        Applies this items's effects as defined in the "effect" column of
+        Applies this item's effects as defined in the "effect" column of
         the item database.
 
         Parameters:

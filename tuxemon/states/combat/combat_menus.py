@@ -213,7 +213,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             # open menu to choose item
             menu = self.client.push_state(ItemMenuState())
 
-            # set next menu after after selection is made
+            # set next menu after the selection is made
             menu.on_menu_selection = choose_target  # type: ignore[method-assign]
 
         def choose_target(menu_item: MenuItem[Item]) -> None:
@@ -284,7 +284,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             menu.anchor("bottom", self.rect.top)
             menu.anchor("right", self.client.screen.get_rect().right)
 
-            # set next menu after after selection is made
+            # set next menu after the selection is made
             menu.on_menu_selection = choose_target  # type: ignore[assignment]
 
         def choose_target(menu_item: MenuItem[Technique]) -> None:

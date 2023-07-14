@@ -144,14 +144,14 @@ class Monster:
         self.height = 0.0
         self.weight = 0.0
 
-        # The multiplier for checks when a monster ball is thrown this should be a value betwen 0-255 meaning that
+        # The multiplier for checks when a monster ball is thrown this should be a value between 0-255 meaning that
         # 0 is 0% capture rate and 255 has a very good chance of capture. This numbers are based on the capture system
         # calculations. This is inspired by the calculations which can be found at:
         # https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_catch_rate
         self.catch_rate = TuxemonConfig().default_monster_catch_rate
 
         # The catch_resistance value is calculated during the capture. The upper and lower catch_resistance
-        # set the span on which the catch_resistance will be. For more imformation check capture.py
+        # set the span on which the catch_resistance will be. For more information check capture.py
         self.upper_catch_resistance = (
             TuxemonConfig().default_upper_monster_catch_resistance
         )

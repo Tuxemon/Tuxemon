@@ -23,7 +23,7 @@ class ChangeStateAction(EventAction):
 
     Script parameters:
         state_name: The state name to switch to (e.g. PCState).
-        optional: Variable related to specific states (eg slug for MonsterInfo).
+        optional: Variable related to specific states (e.g. slug for MonsterInfo).
 
     """
 

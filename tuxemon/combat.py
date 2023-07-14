@@ -61,7 +61,7 @@ def pre_checking(
 ) -> Technique:
     """
     Pre checking allows to check if there are statuses
-    or other conditions that change the choosen technique.
+    or other conditions that change the chosen technique.
     """
     if player.isplayer:
         local = player

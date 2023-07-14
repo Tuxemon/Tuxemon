@@ -42,5 +42,5 @@ class TrainerBattleCommand(CLICommand):
                 action("create_npc", (trainer, 7, 6))
                 action("start_battle", npc_slug=trainer)
                 action("remove_npc", (trainer,))
-            except:
+            except Exception:
                 traceback.print_exc()

@@ -22,7 +22,7 @@ from tuxemon.sprite import Sprite
 
 logger = logging.getLogger(__name__)
 
-__all__ = ("GraphicBox", "draw_text")
+__all__ = ("GraphicBox",)
 
 
 def create_layout(

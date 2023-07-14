@@ -1,8 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-from __future__ import annotations
-
-""" 
+"""
 
 General guidelines of the combat module
 =======================================
@@ -33,7 +31,7 @@ add new code like it.  Consider it a priority to remove it when you are
 able to. 
 
 """
-
+from __future__ import annotations
 
 import datetime as dt
 import logging

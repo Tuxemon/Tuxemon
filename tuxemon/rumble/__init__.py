@@ -4,7 +4,7 @@ import logging
 
 try:
     from ctypes import cdll
-except:
+except ImportError:
     cdll = None
 from tuxemon.rumble.tools import *
 

@@ -90,7 +90,7 @@ class PluginManager:
             match = folder[folder.rfind("tuxemon") :]
             if len(match) == 0:
                 raise RuntimeError(
-                    f"Unable to determine plugin module path for: %s", folder
+                    "Unable to determine plugin module path for: %s", folder
                 )
             module_path = match.replace("/", ".")
             # Look for a ".plugin" in the plugin folder to create a list

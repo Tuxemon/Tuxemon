@@ -39,7 +39,7 @@ class PlayerDefeatedCondition(EventCondition):
 
         if player.monsters:
             for mon in player.monsters:
-                if not "status_faint" in (s.slug for s in mon.status):
+                if "status_faint" not in (s.slug for s in mon.status):
                     return False
 
             return True

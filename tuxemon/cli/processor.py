@@ -107,8 +107,8 @@ class CommandProcessor:
                         )
 
             except KeyboardInterrupt:
-                print(f"Got KeyboardInterrupt")
-                print(f"Press CTRL-D to quit.")
+                print("Got KeyboardInterrupt")
+                print("Press CTRL-D to quit.")
 
         event_engine = self.session.client.event_engine
         event_engine.execute_action("quit")

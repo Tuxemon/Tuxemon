@@ -1,17 +1,15 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, List
-
 """This module initializes the display and creates dictionaries of resources.
 It contains all the static and dynamic variables used throughout the game such
 as display resolution, scale, etc.
 """
+from __future__ import annotations
 
 import logging
 import os.path
 import re
+from typing import TYPE_CHECKING, List
 
 from tuxemon import config
 from tuxemon.constants import paths

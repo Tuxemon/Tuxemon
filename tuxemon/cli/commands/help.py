@@ -38,7 +38,7 @@ class HelpCommand(CLICommand):
         if names:
             names.sort()
             if isinstance(command, MetaCommand):
-                footer = f"Enter 'help [command]' for more info."
+                footer = "Enter 'help [command]' for more info."
             else:
                 footer = f"Enter 'help {command.name} [option]' for more info."
             ctx.formatter.print_table("Available Options", names, footer)

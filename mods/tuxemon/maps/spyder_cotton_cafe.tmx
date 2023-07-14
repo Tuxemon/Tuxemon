@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -91,7 +91,6 @@
    <properties>
     <property name="act1" value="wait 0.1"/>
     <property name="act10" value="player_stop"/>
-    <property name="act11" value="lock_controls"/>
     <property name="act15" value="pathfind spyder_cottontown_hacker,7,3"/>
     <property name="act20" value="npc_face spyder_cottontown_hacker,down"/>
     <property name="act21" value="translated_dialog spyder_cotton_tuxepediaahem"/>
@@ -111,7 +110,6 @@
     <property name="act64" value="remove_npc spyder_cottoncafe_juliana"/>
     <property name="act77" value="pathfind spyder_cottontown_hacker,7,5"/>
     <property name="act88" value="translated_dialog spyder_cotton_tuxepediaintro4"/>
-    <property name="act90" value="unlock_controls"/>
     <property name="behav1" value="talk spyder_cottontown_hacker"/>
     <property name="cond1" value="not variable_set visitedcottoncafe:yes"/>
    </properties>

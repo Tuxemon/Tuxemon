@@ -74,6 +74,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_cottoncafe_hackerchat"/>
     <property name="behav1" value="talk spyder_cottontown_hacker"/>
+    <property name="cond1" value="is variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>
   <object id="19" name="Talk Barmaid" type="event" x="0" y="80" width="16" height="16">

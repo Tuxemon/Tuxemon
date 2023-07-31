@@ -72,7 +72,6 @@ class TuxepediaWebExtractor:
                 monsters[name] = {
                     "slug": safe_name,
                     "category": fix_name(self.get_monster_category(monster_row).lower()),
-                    "ai": "RandomAI",
                     # "blurp": self.get_monster_blurp(monster_row),
                     # "call": self.get_monster_call(monster_row),
                     # "moveset": [],
@@ -190,7 +189,7 @@ class TuxepediaWebExtractor:
         if len(types) == 0:
             return ["Untyped"]
 
-        # extract tyoe names
+        # extract type names
         return [el.text_content() for el in types]
 
     def get_complete_monster_sprites(self, monster_row):

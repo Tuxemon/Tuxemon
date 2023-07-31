@@ -1,15 +1,16 @@
 {
   "tech_id": 105,
-  "accuracy": 0.6,
+  "accuracy": 1,
   "animation": "clock",
   "effects": [
-    "damage"
+    "give status_confused,target",
+    "enhance"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.1,
-  "power": 2,
-  "range": "reach",
+  "potency": 1,
+  "power": 0,
+  "range": "special",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "clock",
@@ -23,7 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "wood"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

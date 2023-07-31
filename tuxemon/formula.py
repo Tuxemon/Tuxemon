@@ -5,44 +5,27 @@ from __future__ import annotations
 import datetime as dt
 import logging
 import random
-from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
+from typing import TYPE_CHECKING, Sequence, Tuple
 
 if TYPE_CHECKING:
     from tuxemon.db import MonsterModel
+    from tuxemon.element import Element
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
 
 
-class TypeChart(NamedTuple):
-    strong_attack: Optional[str]
-    weak_attack: Optional[str]
-    extra_damage: Optional[str]
-    resist_damage: Optional[str]
-
-
-TYPES = {
-    "aether": TypeChart(None, None, None, None),
-    "normal": TypeChart(None, None, None, None),
-    "wood": TypeChart("earth", "fire", "metal", "water"),
-    "fire": TypeChart("metal", "earth", "water", "wood"),
-    "earth": TypeChart("water", "metal", "wood", "fire"),
-    "metal": TypeChart("wood", "water", "fire", "earth"),
-    "water": TypeChart("fire", "wood", "earth", "metal"),
-}
-
-
 def simple_damage_multiplier(
-    attack_types: Sequence[Optional[str]],
-    target_types: Sequence[Optional[str]],
+    attack_types: Sequence[Element],
+    target_types: Sequence[Element],
 ) -> float:
     """
     Calculates damage multiplier based on strengths and weaknesses.
 
     Parameters:
-        attack_types: The names of the types of the technique.
-        target_types: The names of the types of the target.
+        attack_types: The types of the technique.
+        target_types: The types of the target.
 
     Returns:
         The attack multiplier.
@@ -50,18 +33,15 @@ def simple_damage_multiplier(
     """
     m = 1.0
     for attack_type in attack_types:
-        if attack_type is None:
-            continue
-
         for target_type in target_types:
             if target_type:
-                body = TYPES.get(target_type, TYPES["aether"])
-                if body.extra_damage is None:
+                if (
+                    attack_type.slug == "aether"
+                    or target_type.slug == "aether"
+                ):
                     continue
-                if attack_type == body.extra_damage:
-                    m *= 2
-                elif attack_type == body.resist_damage:
-                    m /= 2.0
+                m = attack_type.lookup_multiplier(target_type.slug)
+
     m = min(4, m)
     m = max(0.25, m)
     return m
@@ -114,27 +94,19 @@ def simple_damage_calculate(
     return damage, mult
 
 
-def damage_panjandrum(target: Monster) -> int:
+def damage_full_hp(target: Monster, value: int) -> int:
     """
-    The target takes damage equal to 1/4 of their maximum HP.
-    """
-    damage = target.hp * 0.25
-    return int(damage)
-
-
-def simple_poison(target: Monster) -> int:
-    """
-    Simple poison based on target's full hp.
+    Damage based on target's full hp.
 
     Parameters:
-        technique: The technique causing poison.
         target: The one the technique is being used on.
+        value: Numerical value (target.hp // value).
 
     Returns:
         Inflicted damage.
 
     """
-    damage = target.hp // 8
+    damage = target.hp // value
     return damage
 
 

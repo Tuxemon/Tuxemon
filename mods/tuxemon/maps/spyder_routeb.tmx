@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="151">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="185">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -7,21 +7,213 @@
   <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
+ </tileset>
+ <tileset firstgid="4326" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
+  <image source="../gfx/tilesets/core_buildings.png" width="760" height="800"/>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0iERAAAMxLBKfv9oLoYCaqCXVZMHDDDAAAMMMMAAAwww8GDgAMjSXhA=
+   eAHtVEESgzAIxKv9bC7Vv7T+RfsY+47igSmDS5Lh4EUOzBggGwd2txBRybj9DJ7MgcmJOcCPF995O7EE8Fa+s5n48vl4I4KHOC//nHgxT8j5/edW05Ons8fg81lm62mqlkd81ni70dXWOH+4bvWj8dB7tr91vjPeyDzwOILyyJ/1/GrcQDW0P+S/LZ6kP5910uK9rssO0T50X+934hFFfFk0h/xZZop01JvT+43ozOoQ+XMvR67u+wF1W4U8
   </data>
  </layer>
  <layer id="5" name="Tile Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAGtzjERACEQBEGS9wJiHv9yuGQcdLA1Wdfub60z26j/OHemqn7lqF85uaq5qupXjvqVk6uaq6p+5ahfObmquarqV476lZOrmquqfuWoXzm5qrmq6leO+pWTq5qrqn7lqF85uaq5qupXjvqVk6uaq6p+5ahfObmquarqV476lfMAygbIAQ==
+   eAHVlktKA0EQhlvQuHDlwiMIuvYFHkHQQ/g6iRfwETd6Ac/gCL52ggeQbNQLCK7EjX/hfKFTTNIWk0Vs+PkzPV1fdXVqJunNpYGxMp/SqrQmrUsb0uJ0SkszKS1LJf8Sr8q0q/g9aV86kA6lLfG2xdqRSk6+65p5rPgT6VQ6k7rSUae8Lzjk64n3qspvFX8n3UsP0qP0pnnWlRyu8S6nBo6yf3GhedaVnHwlHutKTj7jdbSPc+3K9F67fZ4dsm/d6g845HsRr82AA9f3TSV+STfZHuDAtb19qL/8yOesbxhPWmtnxIADN+rGyXnEw4265xEPN+pW+yTvz9dLfdQd9WdXL/FwLZ+tsbEgt34w2aBnPuv7v7Ojz4/3VamH8/vfI/ov/67IH3HqpO62PDhwPY/5qMP1POajTn7PYz7q5Pc85qNOfs+LfLe2Fg75/9v7OX8X8xxuZs+bPYP5GVEndUfdziznEQ836p5HPNyoX6n2Sd6fr5f6qDvq/veIeMvT1Bs2z6BfuMabzq/6w/+KYWua3s/kauucX1sO8Zwf3HE53HH5D8YC2pA=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 3" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+   eAFjYBgFQyUE6rmp69J5VDaPuq4bNW00BEZDYDQERkNgNARGQ2A0BEZDYDiGAADUigE0
   </data>
  </layer>
- <objectgroup color="#ff0000" id="3" name="Collisions"/>
- <objectgroup color="#ffff00" id="4" name="Events"/>
+ <objectgroup color="#ff0000" id="3" name="Collisions">
+  <object id="53" type="collision" x="0" y="416" width="256" height="160"/>
+  <object id="54" type="collision" x="0" y="608" width="320" height="32"/>
+  <object id="55" type="collision" x="96" y="320" width="224" height="64"/>
+  <object id="56" type="collision" x="0" y="128" width="256" height="160"/>
+  <object id="57" type="collision" x="144" y="0" width="176" height="96"/>
+  <object id="58" type="collision" x="0" y="0" width="48" height="128"/>
+  <object id="59" type="collision" x="0" y="288" width="48" height="128"/>
+  <object id="60" type="collision" x="288" y="384" width="32" height="224"/>
+  <object id="61" type="collision" x="288" y="96" width="32" height="224"/>
+  <object id="62" type="collision" x="48" y="0" width="96" height="48"/>
+  <object id="63" type="collision" x="48" y="48" width="16" height="48"/>
+  <object id="64" type="collision" x="64" y="48" width="32" height="16"/>
+  <object id="65" type="collision" x="112" y="48" width="32" height="16"/>
+  <object id="66" type="collision" x="48" y="96" width="48" height="16"/>
+  <object id="67" type="collision" x="112" y="96" width="48" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="4" name="Events">
+  <object id="51" name="Teleport to Side Route E 1" type="event" x="0" y="576" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routee.tmx,19,16,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="52" name="Teleport to Side Route E 2" type="event" x="0" y="592" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routee.tmx,19,17,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="68" name="Teleport to Datacenter" type="event" x="96" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_datacenter.tmx,2,19,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="69" name="Sign: Datacenter" type="event" x="112" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_datacenter_sign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="70" name="Create Electra" type="event" x="256" y="560" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routeb_electra,16,35"/>
+    <property name="cond1" value="not npc_exists spyder_routeb_electra"/>
+   </properties>
+  </object>
+  <object id="71" name="Talk Electra" type="event" x="256" y="576" width="16" height="32">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routeb_electra"/>
+    <property name="act1" value="translated_dialog spyder_routeb_electra1"/>
+    <property name="act2" value="add_monster dracune,35,spyder_routeb_electra,5,10"/>
+    <property name="act3" value="add_monster pantherafira,45,spyder_routeb_electra,5,10"/>
+    <property name="act4" value="add_monster tumbleworm,40,spyder_routeb_electra,5,10"/>
+    <property name="act6" value="start_battle spyder_routeb_electra"/>
+    <property name="act7" value="translated_dialog spyder_routeb_electra2"/>
+    <property name="act8" value="set_variable routebelectra:yes"/>
+    <property name="cond1" value="not variable_set routebelectra:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="72" name="Create Cytherea" type="event" x="240" y="400" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routeb_cytherea,15,25"/>
+    <property name="act2" value="npc_face spyder_routeb_cytherea,right"/>
+    <property name="cond1" value="not npc_exists spyder_routeb_cytherea"/>
+   </properties>
+  </object>
+  <object id="73" name="Talk Cytherea" type="event" x="256" y="400" width="32" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routeb_cytherea"/>
+    <property name="act1" value="translated_dialog spyder_routeb_cytherea1"/>
+    <property name="act2" value="add_monster fluttaflap,35,spyder_routeb_cytherea,5,10"/>
+    <property name="act3" value="add_monster criniotherme,35,spyder_routeb_cytherea,5,10"/>
+    <property name="act4" value="add_monster tumblebee,40,spyder_routeb_cytherea,5,10"/>
+    <property name="act6" value="start_battle spyder_routeb_cytherea"/>
+    <property name="act7" value="translated_dialog spyder_routeb_cytherea2"/>
+    <property name="act8" value="set_variable routebcytherea:yes"/>
+    <property name="cond1" value="not variable_set routebcytherea:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="74" name="Create Nephthys" type="event" x="80" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routeb_nephthys,5,23"/>
+    <property name="cond1" value="not npc_exists spyder_routeb_nephthys"/>
+   </properties>
+  </object>
+  <object id="75" name="Talk Nephthys" type="event" x="80" y="384" width="16" height="32">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routeb_nephthys"/>
+    <property name="act1" value="translated_dialog spyder_routeb_nephthys1"/>
+    <property name="act2" value="add_monster conifrost,45,spyder_routeb_nephthys,5,10"/>
+    <property name="act3" value="add_monster djinnbo,45,spyder_routeb_nephthys,5,10"/>
+    <property name="act6" value="start_battle spyder_routeb_nephthys"/>
+    <property name="act7" value="translated_dialog spyder_routeb_nephthys2"/>
+    <property name="act8" value="set_variable routebnephthys:yes"/>
+    <property name="cond1" value="not variable_set routebnephthys:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="76" name="Create Sedna" type="event" x="256" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routeb_sedna,16,17"/>
+    <property name="cond1" value="not npc_exists spyder_routeb_sedna"/>
+   </properties>
+  </object>
+  <object id="77" name="Talk Sedna" type="event" x="256" y="288" width="16" height="32">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routeb_sedna"/>
+    <property name="act1" value="translated_dialog spyder_routeb_sedna1"/>
+    <property name="act2" value="add_monster squabbit,40,spyder_routeb_sedna,5,10"/>
+    <property name="act6" value="start_battle spyder_routeb_sedna"/>
+    <property name="act7" value="translated_dialog spyder_routeb_sedna2"/>
+    <property name="act8" value="set_variable routebsedna:yes"/>
+    <property name="cond1" value="not variable_set routebsedna:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="78" name="Create Calypso" type="event" x="48" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_routeb_calypso,3,7"/>
+    <property name="act2" value="npc_face spyder_routeb_calypso,right"/>
+    <property name="cond1" value="not npc_exists spyder_routeb_calypso"/>
+   </properties>
+  </object>
+  <object id="79" name="Talk Calypso" type="event" x="96" y="112" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_routeb_calypso"/>
+    <property name="act1" value="translated_dialog spyder_routeb_calypso1"/>
+    <property name="act2" value="add_monster ruption,40,spyder_routeb_calypso,5,10"/>
+    <property name="act3" value="add_monster puparmor,35,spyder_routeb_calypso,5,10"/>
+    <property name="act4" value="add_monster sumchon,40,spyder_routeb_calypso,5,10"/>
+    <property name="act6" value="start_battle spyder_routeb_calypso"/>
+    <property name="act7" value="translated_dialog spyder_routeb_calypso2"/>
+    <property name="act8" value="set_variable routebcalypso:yes"/>
+    <property name="cond1" value="not variable_set routebcalypso:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="80" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_mystic_island"/>
+    <property name="cond1" value="not music_playing music_mystic_island"/>
+   </properties>
+  </object>
+  <object id="81" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:grass"/>
+    <property name="cond1" value="is variable_set daytime:true"/>
+   </properties>
+  </object>
+  <object id="82" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_grass"/>
+    <property name="cond1" value="is variable_set daytime:false"/>
+   </properties>
+  </object>
+  <object id="83" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="184" name="Billie" type="event" x="48" y="576" width="16" height="32">
+   <properties>
+    <property name="act01" value="player_stop"/>
+    <property name="act02" value="lock_controls"/>
+    <property name="act03" value="create_npc spyder_billie,17,37"/>
+    <property name="act04" value="pathfind_to_player spyder_billie,right"/>
+    <property name="act10" value="translated_dialog spyder_routeb_billie1"/>
+    <property name="act75" value="pathfind spyder_billie,0,37"/>
+    <property name="act80" value="remove_npc spyder_billie"/>
+    <property name="act90" value="set_variable routebbillie:yes"/>
+    <property name="act99" value="unlock_controls"/>
+    <property name="cond1" value="not variable_set routebbillie:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

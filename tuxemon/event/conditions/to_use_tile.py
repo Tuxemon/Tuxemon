@@ -13,7 +13,7 @@ from tuxemon.session import Session
 
 class ToUseTileCondition(EventCondition):
     """
-    Check if we are attempting interact with a map condition tile.
+    Check if we are attempting to interact with a map condition tile.
 
     Script usage:
         .. code-block::
@@ -26,7 +26,7 @@ class ToUseTileCondition(EventCondition):
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         """
-        Check if we are attempting interact with a map condition tile.
+        Check if we are attempting to interact with a map condition tile.
 
         Parameters:
             session: The session object

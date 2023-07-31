@@ -20,25 +20,25 @@
  <tileset firstgid="13533" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtV9FNAzEMvTEK7RoI+KhYoD/QDSgzALtQhqEjMARsQH/rSH1SZJLw7LtLTug+rNyljt/zi+NcN1ddt5lt1uAf18C95PbgsG0lTZ4F58Vhr5X5fQje3mDvlfnV0sPaL7G/LfnhDKRqegr8wOFLakZzxG8t9XsTXgexcE4Dx7iffJ/nW/ILNQmdcr1kKvxyfaRWv8idX+jXWifww5lFrU2lzsAPeul6s+qHPPW5B453DGc2dV9Z6wx5WvPy8raum/n1+w8zhn5D1vQY/IaMOWQs1D4bk9GZjQVsZmRjMn6MD8Mp9kFM/a2ieyz8Sr2N8YmxmWfE1HeH5svceYhVyqHECTWEezaMwNX8cu8l7L78sD6HHc97vq1wT1rvRWiK9am7Vs95MYDlGRfXXXdB2KX4eOKX1mjcFMZacD9v/7a7Efhp3OXNb61WMqf9Uu+ptUz+Jf1SOGPOWTX2cPmRfdyJHcl9jzGs/AIOjMUDBluXffjFe/8YcQXn1PgkfmEd469zRm4xbstnrfHMz9aD++p3AmyejJk=
+   eAHtV9FNAzEMvTEKdA0E/UAs0B9gA9oZKLtQhmlHYAjYAH6xJZ4UGSe1fXfJqboPK72c4/f84jjX9XXXrWebNTjjGnig3B4D9lRJkxfC2QXstTK/A+HtHfZemV8tPbz9Evvbkh/OgFbTU+AHDp9UM5Ij3rXU7414Hcn4nDLHtJ98/c235Mc1CZ1yvWQq/HJ9pFa/yJ1f6NdaJ/DDmUWtTaXOwA96yXrz6oc85bkHTnTkM6vdV946Q57evKK8vetmfv3+w4yh35A1PQa/IWMOGQu1b41p0dkaC9iW0RrT4mfxsXBKfRBTfqvIHgu/Um+z+KTYlt+IKe8Oyddy5yFWKYcSJ9QQ7lkegSv55Z5L2H35YX0OO52PfFvhnvTei9AU67W7Vs5FMYAVGRc3XXdhsEvyicQvrZG4GsYd4X6s8sbx+f39CPwk7tXtf62WNCf9tGdtrSX/kn4azphzXo0jXL5pHzdkPyf2XYvt5cc4MCseME7V5RD80r1/TriCszZuyY/XWfxlzsgtxW35W2o88/P14L76/QKI3YwP
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtkrtKBEEQRUvQRA00VnyEPj5ABFMVX/gzK/jCjdUvUz9FEwM1MLBkPTA0W1T3dk/PBDYU16marnv2OiL9OtO7IjNaaL/oRDaUbVML7RsfPOSH0u+Lkh8ay/W6JfLm1LvOuzpL2yLLTq3rvPS5XxB5MOpR+5xS+fFdWYof+qQMz0a9NPhK5cd3ZSlcaCzfkf7vjsfUifZOtc60zrW8Y+UW9tkTy3ep3ldj6lp7N1q3Wnda3rFyC/vsieXj/Vwlp3APfZR5bT5ywh+lj8JZmw9fuFD6KJy1+fCFC6WPwlmbD1+4UPoonLOLInNGzWu/9ME33EsfDee1nsnH8vPm1r1SfS8f5l1xer7M4SyVS+wez9ebx/q09R75tbU/dy/59ZUTLjhzf2/p+3DBWXp/7j644MzdV/o+XHBa+793rEle3/NlDmeeW/ptz5c5nOkOeTcsX/oonHlu6bctX/oonOkOoxtfIsNPrQ+tlB34egpnyu7mu2tTMlzVWtFq9r2/8fXU2+PND5XrQGs/kY+9Xn6815W2nV/u7/rPLy1BL69wnrZ98rcv9kZ3ve8tnE/uGH9z8Mf2yxjm4z3Hu5R5M8zHe/4BKrPD9A==
+   eAHNkssuBUEQhkvCBgvWxGUjcXkAkdgibjkvQ+IWZ43H4GXwKGwssLBQcnzJpHMq1Z3u6ZlOKr+pmq7/O78R6deZ3BGZ0kL7RSeyrmwbWmjf+OAhP5R+X5T80Fiut02Rd6c+dN7VWdgSWXRqVeelz92cyL1RD9rnlMqP78pS/NBnZXgx6rXBVyo/vitL4UJj+Q71f3c0po61d6J1qjXQ8o6VW9hnTyzfhXpfjqkr7V1r3WjdannHyi3ssyeWj/dzlZzCPfRR5rX5yAl/lD4KZ20+fOFC6aNw1ubDFy6UPgpnbT584ULpo3BOz4vMGDWr/dIH33AvfTSc13omH8vPm1v3SvW9fJh3xen5MoezVC6xezxfbx7r09Z75NfW/ty95NdXTrjgzP29pe/DBWfp/bn74IIzd1/p+3DBae3/2bYmeX3PlzmceW7ptz1f5nCmO+TdsHzpo3DmuaXftnzpo3CmO4xufIsMv7Q+tVJ24OspnCm7m++uTMhwWWtJq9n3/sbXU2+PNz9Qrn2tvUQ+9nr58V5X2nZ+ub/Ly+9xLdch776X31NlPi+vcF6L73x3lLOXVzivwXf2z/bHGObjPdfga36hYT7e8y+WXsfq
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlrlvFDEUhw1kOSKO0KRPAwIRWAKRgBCoEYf4ExASEBo6Gg5lCaKhDkcFhBRhd5GAlpZLQlwJIVzi+heSgASE4xutntby2jOeiZNiNU/6ZPvZ8/zzG3vGStWsZYdSBRDT21KXUsbMtjzeqUp9cAyOwhEwY8qc69C2Hsz2yV6lpC8qQ9pV9FyBy3AJBsGML3OL32yLP0vZsT3+qSfoeQyP4CE8gD1r4p+J673YFtfb2DexrdGne36g5ztMwxRMQl9KfZWeesSngfXVI7trst/cI+o9ravrdZ9aUv58Ysh+O5wyrz6xQ+hLkz8fTfqYEPokf3pcV/3EWleP3R9Cnz1yozettl+c3d8J5zea5cAmVdoP+2AvmDOneb9pNZpz2dpn0XQGTsMpiz7f9zsX2iK9t9FUhQqULfpsa3L55kJjKH2mtk8blPoMX+ArfIMs9pGcfYD38C5g/pZ3KrUCVsIqaIMs5ps/yU9SKRp60LMTemEX7AbdhvmX3oQhuAHX4RroY6J6Uv708+urzZzD1h5Dyyi8gpfwAp6DOdbUd9C48+jn91nA+92CjWiBf2j6C39gxqKvtahKy2ApLAFTf7O2ffeXrP+Cdk8TX5ryDv+iuwnc0/5XvvvLR8NkUakpmIZ2xzrGtbldMfX/vc/+es03cRzewAS8haym67tvnCGJqesTX1y5kG/OImiBAiyGrKbrc8VIo6/IfXczerpgC2yFbrCZ/n5t/ZHPR5/r2fnwR/oOOfbmfMyfNMdP9EV3SpN+HizBORiA8xDafN6va84ROm5BGSpQhWY117et2dY7EvCe0Gy5ydeTZyDPQJ6BPAO1DPwH2Wvcqw==
+   eAHtlstPFTEUh4uCChHFDXs3GIzo9ZWoiK6NQvwTjImKG3duFOMV48a1gisBXSAXE3XL1ldCfIv4IKD+CzxMBF/fxJzcpred6YyFXG84yZe2p53TX8+0M1Xqr1XvU6oGxPS21KWUMf9anm5R+U44BSfhBJgxZc5mtG0Gs322TSnpi8qQdgM9vdAD1+EamPFlbvGbbfFnKTfujX/qKXqewGN4BA/hUFP8M3G9Vxviekv7xveU+nTPN/TMwSzMwDR0ptRXaC1GHA2srxjZXZP95h5R7KnbUKz71JLy5xND9tvxlHn1iR1CX5r8+WjSx4TQJ/nT47rqZza5euz+EPrskUu9abXNc3YXEs5vNEvHNpVvhyNwGMyZ07zftBrNuWztC2jqgvNwzqLP9/0uhrZI7100DUMBhiz6bGty+RZDYyh9prbJLUpNwWf4Al8hi02Qs0/wET4EzN/aFqXqYR2shwbIYr75k/wklaKhFT37oQ0OwEHQ7Tb/0lswAP3QBzdBHxPVk/Knn19fbeYctvYbtLyGV/ASXsBzMMea+o4adx79/D4LeL+r2ooW+I2mX/ATflj01eVUvhbWwGow9Vdq23d/yfqvaPc08aUp7/Evup/AA+1/5bu/fDRM55SagVlodKxjTJvbFVP/3/vsr7d8E8fgHYzDe8hqur4R4wxJTF2f+OLKFXxzVkI11MAqyGq6PleMNPpy3He3o2cH7IRdsBtspr9fW3/k89HnenYp/JG+Y469uRTzJ83xHX3RndLkIg/m4RJ0w2UIbT7v1zXnIB13YAgKMAyVaq5vW6WtdzDgPaHScrO8nuUMlFsGqhz3lXLR2VTm+solT/+jjj8Z091E
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlktKA0EQhmuh+MgZjCsR88DXTvAcvrbZJ5qQa7jwCmpcqfGxVlEvoJ4jeoR8QQoyGXVm0t2xYbrgo6ieTteff5qhRLLFQ1nkMYEnnk9viUzBcNZOuq61zdyj92cCXzwvoW0FhrPq0HWtbea0+tL2rFWiO9vb3/W4Hi9wXjGBxZGeUQXR6uSXvS49jioI1X84MO79m5TWcP8m5XTo48KBS76rV3ANXbiBEPYcqFdFGnAIR9CEFoTIrwO9NWZLsBF5ul/PePYCrz9453JOOOWbeAbn0IELyBou5oTbJZE7uAcf4w1d7/CRUt9f7zfp/82wYRbmYB4K4FOsImZwbddhAzbBp9hBzC7swT4cgO0web+2tfh0XmPZJzVxLcee64srDivBgeBAnhzQ+c9VNvVS5z9X2VTf4PeuvNNzTTW68k7PNdHXB5B/bvw=
+   eAHtlktOAkEQhmsBEfAMysoQRSPKjoRziLp1z0PjNVx4BV8rH6BrIegF1HOAR+AzphNmAGdgarCT6Uq+VKqn0/XPP51JicwXr0WRbgA9nqcrIikYz6aTWTe1Zh7QexjAN8+30LYJ49noMOum1sxh9YXtebLt3Xle/a0X9XiN89YDyPt6ehV4q8sZe+P02KvAVf/hwKL3b1la3f1bltOuTxwO3PNffYBHeII2uNBzoL4j0oAmtOAUzsBFch0YlJgtQSOSdL/6ePYG71O8i3NOuOKfeA03cAt3MG/EMSd0NkSe4QVsjA90fcJXSH1/fd+g91thQwaykINVsCl2EfNzbfdgH8pgUxwgpgaHcATHoB1Rvq+2FpvOaxRsUjOp5cJyfZOK3YpzwDmQRAfMHKidtbw0c6B21tCn7Zn/vKgatT3znxdF3wjmJm24
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="302" type="collision" x="0" y="512" width="64" height="48">
    <properties>
     <property name="key" value="water"/>
@@ -311,15 +311,15 @@
   </object>
   <object id="425" name="Create Florist" type="event" x="240" y="480" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_florist,15,30"/>
-    <property name="cond1" value="not npc_exists spyder_florist"/>
+    <property name="act1" value="create_npc spyder_flower_lissa,15,30"/>
+    <property name="cond1" value="not npc_exists spyder_flower_lissa"/>
     <property name="cond2" value="not variable_set captainreturns:yes"/>
    </properties>
   </object>
   <object id="426" name="Talk Florist" type="event" x="256" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_florist"/>
-    <property name="behav1" value="talk spyder_florist"/>
+    <property name="behav1" value="talk spyder_flower_lissa"/>
    </properties>
   </object>
   <object id="427" name="Create Fez" type="event" x="352" y="448" width="16" height="16">
@@ -524,13 +524,13 @@
   <object id="466" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="is variable_set daytime:true"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="467" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
-    <property name="cond1" value="is variable_set daytime:false"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
   <object id="468" name="Sign: Flower Scoop" type="event" x="352" y="368" width="16" height="16">
@@ -596,29 +596,29 @@
   </object>
   <object id="481" name="Create Monk no pass" type="event" x="496" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_monk_blue,34,18"/>
-    <property name="cond1" value="not npc_exists spyder_monk_blue"/>
+    <property name="act1" value="create_npc spyder_flower_monk,34,18"/>
+    <property name="cond1" value="not npc_exists spyder_flower_monk"/>
     <property name="cond2" value="not has_item player,dojo_pass"/>
    </properties>
   </object>
   <object id="482" name="Talk Monk no pass" type="event" x="496" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_monk1"/>
-    <property name="behav1" value="talk spyder_monk_blue"/>
+    <property name="behav1" value="talk spyder_flower_monk"/>
     <property name="cond1" value="not has_item player,dojo_pass"/>
    </properties>
   </object>
   <object id="483" name="Create Monk pass" type="event" x="480" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_monk_blue,33,18"/>
-    <property name="cond1" value="not npc_exists spyder_monk_blue"/>
+    <property name="act1" value="create_npc spyder_flower_monk,33,18"/>
+    <property name="cond1" value="not npc_exists spyder_flower_monk"/>
     <property name="cond2" value="is has_item player,dojo_pass"/>
    </properties>
   </object>
   <object id="484" name="Talk Monk pass" type="event" x="480" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_monk2"/>
-    <property name="behav1" value="talk spyder_monk_blue"/>
+    <property name="behav1" value="talk spyder_flower_monk"/>
     <property name="cond1" value="is has_item player,dojo_pass"/>
    </properties>
   </object>

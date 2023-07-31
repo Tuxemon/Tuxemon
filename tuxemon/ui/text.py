@@ -164,7 +164,7 @@ def draw_text(
             if len(" ".join(wordlist)) * pixels_per_letter > width:
                 # If the size exceeds the width of the menu, then append the line to the
                 # list of lines, but stripping off the last word we added (because this
-                # was the word that made us exceed the menubox's size.
+                # was the word that made us exceed the menubox's size).
                 lines.append(" ".join(wordlist[:-1]))
 
                 # Reset the wordlist for the next line and add the word we stripped off
@@ -196,7 +196,7 @@ def draw_text(
     elif align == "bottom":
         raise NotImplementedError("Needs to be implemented")
 
-    # Set a spacing variable that we will add to to space each line.
+    # Set a spacing variable that we will add to space each line.
     spacing = 0
     for item in lines:
         line = font.render(item, True, font_color)

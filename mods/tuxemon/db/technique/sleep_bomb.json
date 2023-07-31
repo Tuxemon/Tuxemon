@@ -3,8 +3,7 @@
   "accuracy": 0.75,
   "animation": "sparks_white",
   "effects": [
-    "give status_noddingoff,user",
-    "give status_noddingoff,target",
+    "give status_noddingoff,both",
     "damage"
   ],
   "flip_axes": "",

@@ -36,7 +36,7 @@
    eAFjYBh84KXi4HMTLhcBALPXAQs=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="60" type="collision" x="0" y="0" width="160" height="32"/>
   <object id="61" type="collision" x="0" y="32" width="16" height="16"/>
   <object id="62" type="collision" x="144" y="32" width="16" height="16"/>
@@ -55,27 +55,27 @@
   </object>
   <object id="70" name="Create Soldier" type="event" x="64" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_soldier,4,5"/>
-    <property name="cond1" value="not npc_exists spyder_soldier"/>
+    <property name="act1" value="create_npc spyder_flowerhouse2_pip,4,5"/>
+    <property name="cond1" value="not npc_exists spyder_flowerhouse2_pip"/>
    </properties>
   </object>
   <object id="71" name="Talk Soldier" type="event" x="64" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flowerhouse2_soldier"/>
-    <property name="behav1" value="talk spyder_soldier"/>
+    <property name="behav1" value="talk spyder_flowerhouse2_pip"/>
    </properties>
   </object>
   <object id="72" name="Create Scientist" type="event" x="16" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scientist,1,2"/>
-    <property name="act2" value="npc_face spyder_scientist,up"/>
-    <property name="cond1" value="not npc_exists spyder_soldier"/>
+    <property name="act1" value="create_npc spyder_flowerhouse2_bruce,1,2"/>
+    <property name="act2" value="npc_face spyder_flowerhouse2_bruce,up"/>
+    <property name="cond1" value="not npc_exists spyder_flowerhouse2_bruce"/>
    </properties>
   </object>
   <object id="73" name="Talk Scientist" type="event" x="128" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flowerhouse2_scientist"/>
-    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="behav1" value="talk spyder_flowerhouse2_bruce"/>
    </properties>
   </object>
  </objectgroup>

@@ -42,7 +42,7 @@
    eAFjYBgFwykEFIeTZwahX0Za+AIAb2AAQw==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="7" name="Collision">
+ <objectgroup color="#ff0000" id="7" name="Collisions">
   <object id="4" type="collision" x="0" y="0" width="192" height="48"/>
   <object id="5" type="collision" x="112" y="160" width="80" height="16"/>
   <object id="7" type="collision-line" x="0" y="352">
@@ -116,14 +116,14 @@
   </object>
   <object id="32" name="Create Haf" type="event" x="176" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scientist,11,12"/>
-    <property name="cond1" value="not npc_exists spyder_scientist"/>
+    <property name="act1" value="create_npc spyder_scoop_nash,11,12"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_nash"/>
    </properties>
   </object>
   <object id="33" name="Talk Haf" type="event" x="176" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_haf1"/>
-    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="behav1" value="talk spyder_scoop_nash"/>
    </properties>
   </object>
   <object id="34" name="Create Weaver" type="event" x="128" y="96" width="16" height="16">

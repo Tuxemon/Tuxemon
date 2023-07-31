@@ -1,7 +1,6 @@
 {
     "slug": "dune_pincher",
     "category": "hermit",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -25,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "wall_ice"
+            "technique": "ice_shield"
         },
         {
             "level_learned": 20,
@@ -63,7 +62,7 @@
     "txmn_id": 109,
     "height": 37,
     "weight": 7,
-    "catch_rate": 85.0,
+    "catch_rate": 100.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15
 }

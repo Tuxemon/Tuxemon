@@ -12,7 +12,7 @@ from pygame_menu.locals import POSITION_CENTER
 from pygame_menu.widgets.selection.highlight import HighlightSelection
 
 from tuxemon import prepare, tools
-from tuxemon.db import db
+from tuxemon.db import MonsterModel, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.theme import get_theme
@@ -53,14 +53,16 @@ class MinigameState(PygameMenuState):
                 data.append(results)
 
         # name
+        name = T.translate("who_is_that")
         menu.add.label(
-            title=T.translate("who_is_that"),
+            title=f"{name}",
             label_id="question",
             font_size=30,
             align=locals.ALIGN_CENTER,
             underline=True,
         )
         # image
+        tuxemon: MonsterModel
         tuxemon = random.choice(data)
         self.tuxemon = tuxemon
         new_image = pygame_menu.BaseImage(
@@ -79,7 +81,6 @@ class MinigameState(PygameMenuState):
         def checking(mon: Monster) -> None:
             if mon.slug == self.tuxemon.slug:
                 self.client.replace_state("MinigameState")
-                open_dialog(local_session, [T.translate("generic_right")])
             else:
                 open_dialog(local_session, [T.translate("generic_wrong")])
 

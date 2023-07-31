@@ -63,18 +63,18 @@
     <property name="act001" value="change_bg end"/>
     <property name="act002" value="lock_controls"/>
     <property name="act003" value="npc_face player,right"/>
-    <property name="act004" value="create_npc spyder_shopkeeper,7,6"/>
-    <property name="act005" value="npc_face spyder_shopkeeper,left"/>
+    <property name="act004" value="create_npc spyder_paperscoop_santino,7,6"/>
+    <property name="act005" value="npc_face spyder_paperscoop_santino,left"/>
     <property name="act006" value="create_npc spyder_dante,7,7"/>
     <property name="act007" value="npc_face spyder_dante,left"/>
-    <property name="act020" value="create_npc spyder_route2_graf,4,7"/>
-    <property name="act021" value="npc_face spyder_route2_graf,right"/>
-    <property name="act022" value="create_npc spyder_route2_marion,4,6"/>
-    <property name="act023" value="npc_face spyder_route2_marion,right"/>
+    <property name="act020" value="create_npc spyder_papermart_miles,4,7"/>
+    <property name="act021" value="npc_face spyder_papermart_miles,right"/>
+    <property name="act022" value="create_npc spyder_papermart_shirley,4,6"/>
+    <property name="act023" value="npc_face spyder_papermart_shirley,right"/>
     <property name="act024" value="create_npc spyder_route2_roddick,4,5"/>
     <property name="act025" value="npc_face spyder_route2_roddick,right"/>
-    <property name="act026" value="create_npc spyder_beachcomber,4,4"/>
-    <property name="act027" value="npc_face spyder_beachcomber,right"/>
+    <property name="act026" value="create_npc spyder_papermart_harith,4,4"/>
+    <property name="act027" value="npc_face spyder_papermart_harith,right"/>
     <property name="act028" value="create_npc spyder_billie,4,3"/>
     <property name="act029" value="npc_face spyder_billie,right"/>
     <property name="act050" value="translated_dialog spyder_intro_shopkeeper1"/>
@@ -107,38 +107,41 @@
     <property name="act090" value="pathfind spyder_billie,6,7"/>
     <property name="act091" value="pathfind spyder_billie,6,10"/>
     <property name="act092" value="remove_npc spyder_billie"/>
-    <property name="act093" value="pathfind spyder_beachcomber,6,7"/>
-    <property name="act094" value="pathfind spyder_beachcomber,6,10"/>
-    <property name="act095" value="remove_npc spyder_beachcomber"/>
+    <property name="act093" value="pathfind spyder_papermart_harith,6,7"/>
+    <property name="act094" value="pathfind spyder_papermart_harith,6,10"/>
+    <property name="act095" value="remove_npc spyder_papermart_harith"/>
     <property name="act096" value="pathfind spyder_route2_roddick,6,7"/>
     <property name="act097" value="pathfind spyder_route2_roddick,6,10"/>
     <property name="act098" value="remove_npc spyder_route2_roddick"/>
-    <property name="act099" value="pathfind spyder_route2_marion,6,7"/>
-    <property name="act100" value="pathfind spyder_route2_marion,6,10"/>
-    <property name="act101" value="remove_npc spyder_route2_marion"/>
-    <property name="act102" value="pathfind spyder_route2_graf,6,7"/>
-    <property name="act103" value="pathfind spyder_route2_graf,6,10"/>
-    <property name="act104" value="remove_npc spyder_route2_graf"/>
+    <property name="act099" value="pathfind spyder_papermart_shirley,6,7"/>
+    <property name="act100" value="pathfind spyder_papermart_shirley,6,10"/>
+    <property name="act101" value="remove_npc spyder_papermart_shirley"/>
+    <property name="act102" value="pathfind spyder_papermart_miles,6,7"/>
+    <property name="act103" value="pathfind spyder_papermart_miles,6,10"/>
+    <property name="act104" value="remove_npc spyder_papermart_miles"/>
     <property name="act105" value="pathfind player,6,7"/>
     <property name="act106" value="npc_face player,right"/>
     <property name="act107" value="wait 0.5"/>
     <property name="act108" value="npc_face spyder_dante,up"/>
     <property name="act109" value="wait 0.5"/>
-    <property name="act110" value="npc_face spyder_shopkeeper,down"/>
+    <property name="act110" value="npc_face spyder_paperscoop_santino,down"/>
     <property name="act111" value="wait 0.5"/>
-    <property name="act112" value="pathfind spyder_shopkeeper,6,6"/>
+    <property name="act112" value="pathfind spyder_paperscoop_santino,6,6"/>
     <property name="act113" value="wait 0.5"/>
-    <property name="act114" value="npc_face spyder_shopkeeper,down"/>
+    <property name="act114" value="npc_face spyder_paperscoop_santino,down"/>
     <property name="act115" value="wait 0.5"/>
-    <property name="act116" value="npc_face player,up"/>
-    <property name="act117" value="translated_dialog spyder_intro_shopkeeper4"/>
-    <property name="act118" value="npc_face spyder_dante,down"/>
-    <property name="act121" value="pathfind player,6,10"/>
-    <property name="act122" value="transition_teleport spyder_bedroom.tmx,3,4,0.3"/>
-    <property name="act123" value="remove_npc spyder_shopkeeper"/>
-    <property name="act124" value="remove_npc spyder_dante"/>
-    <property name="act125" value="set_variable intro_scoop:done"/>
-    <property name="act126" value="unlock_controls"/>
+    <property name="act116" value="npc_face spyder_dante,left"/>
+    <property name="act117" value="wait 0.5"/>
+    <property name="act118" value="npc_face player,up"/>
+    <property name="act119" value="translated_dialog spyder_intro_shopkeeper4"/>
+    <property name="act120" value="wait 0.5"/>
+    <property name="act121" value="npc_face spyder_dante,down"/>
+    <property name="act130" value="pathfind player,6,10"/>
+    <property name="act132" value="transition_teleport spyder_bedroom.tmx,3,4,0.3"/>
+    <property name="act133" value="remove_npc spyder_paperscoop_santino"/>
+    <property name="act134" value="remove_npc spyder_dante"/>
+    <property name="act135" value="set_variable intro_scoop:done"/>
+    <property name="act136" value="unlock_controls"/>
     <property name="cond1" value="not variable_set intro_scoop:done"/>
    </properties>
   </object>

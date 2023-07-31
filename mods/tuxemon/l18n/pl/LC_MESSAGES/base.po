@@ -2337,7 +2337,7 @@ msgstr "Przypomina czaszkę starożytnego psa, ale jest twarda jak kamień."
 msgid "rhincus_fossil_description"
 msgstr "Przypomina czaszkę ząbkowanego ptaka, ale jest twarda jak kamień."
 
-# Boosters (items)
+# Boosters
 #, fuzzy
 msgid "greenwash_badge"
 msgstr "Odznaka: Greenwash"

@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Tuxemon
 Name[de_AT]=Tuxemon
-GenericName=c
+GenericName=Open source monster-fighting RPG
 GenericName[de]=Tuxemon
 Comment=
 Exec=org.tuxemon.Tuxemon

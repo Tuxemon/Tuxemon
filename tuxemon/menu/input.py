@@ -68,7 +68,7 @@ class InputMenu(Menu[InputMenuObj]):
         self.all_chars = self.chars + "".join(
             v for v in self.char_variants.values()
         )
-        # The following is necessary to prevent writting a char immediately
+        # The following is necessary to prevent writing a char immediately
         # after leaving the char variant dialog.
         self.leaving_char_variant_dialog = False
 

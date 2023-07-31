@@ -33,7 +33,7 @@
    eJxjYBgFlAAAAUAAAQ==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="62" type="collision" x="32" y="80" width="32" height="32"/>
   <object id="63" type="collision" x="96" y="64" width="32" height="32"/>
   <object id="64" type="collision" x="0" y="16" width="160" height="16"/>
@@ -51,28 +51,28 @@
   </object>
   <object id="69" name="Create NPCs" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_captain,8,4"/>
-    <property name="act2" value="npc_face spyder_captain,left"/>
-    <property name="cond1" value="not npc_exists spyder_captain"/>
+    <property name="act1" value="create_npc spyder_candyhouse2_barney,8,4"/>
+    <property name="act2" value="npc_face spyder_candyhouse2_barney,left"/>
+    <property name="cond1" value="not npc_exists spyder_candyhouse2_barney"/>
    </properties>
   </object>
   <object id="70" name="Captain" type="event" x="144" y="80" width="16" height="16" rotation="180">
    <properties>
     <property name="act1" value="translated_dialog spyder_candyhouse2_captain"/>
-    <property name="behav1" value="talk spyder_captain"/>
+    <property name="behav1" value="talk spyder_candyhouse2_barney"/>
    </properties>
   </object>
   <object id="72" name="Create Prof" type="event" x="64" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_professor,4,2"/>
-    <property name="cond1" value="not npc_exists spyder_professor"/>
+    <property name="act1" value="create_npc spyder_candyhouse2_indiana,4,2"/>
+    <property name="cond1" value="not npc_exists spyder_candyhouse2_indiana"/>
    </properties>
   </object>
   <object id="73" name="Talk Prof - No Cateye" type="event" x="80" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_prof1"/>
     <property name="act2" value="translated_dialog spyder_candy_prof_nocateye"/>
-    <property name="behav1" value="talk spyder_professor"/>
+    <property name="behav1" value="talk spyder_candyhouse2_indiana"/>
     <property name="cond1" value="not has_monster cateye"/>
     <property name="cond2" value="not variable_set prof_candy_hastraded:yes"/>
    </properties>
@@ -81,7 +81,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_prof1"/>
     <property name="act2" value="translated_dialog_choice yes:no,prof_willtrade"/>
-    <property name="behav1" value="talk spyder_professor"/>
+    <property name="behav1" value="talk spyder_candyhouse2_indiana"/>
     <property name="cond1" value="is has_monster cateye"/>
     <property name="cond2" value="not variable_set prof_candy_hastraded:yes"/>
    </properties>

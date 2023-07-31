@@ -34,7 +34,7 @@
    eAHNkjtuAjEQhicsSEC6UHIUHneAcAcCXQScACREUiXQIppchSYcIIkUIBwAkHi2+SxsyVq87BYUjPTJ43/mH1uWRUS+7kS+4QcaoCLmiXjwy34KM5jr2qlDZMl+BWvo6doDngxs2G9hB3v4BBNeTCQOCRhZuqon0VKQhnv489XNjLD1EOLrMHsAJtpWbjTX+kbfB7xr+hF9rlm3oiVC3ironlmfz55j50F+o9tz7NzUr7HmGJKHAhRB/ceJ7/7IZ1FCKcMjVED9x0UEX5XeJ6hBHdR/PEbw0XrVeHac2eCElqbpOG0cF+k6fD16XzUvDp+Shg5fQOtF+R9TICXb
   </data>
  </layer>
- <objectgroup color="#ff0000" id="3" name="Collision">
+ <objectgroup color="#ff0000" id="3" name="Collisions">
   <object id="1" type="collision" x="0" y="32" width="16" height="304"/>
   <object id="2" type="collision" x="0" y="0" width="224" height="32"/>
   <object id="4" type="collision" x="208" y="32" width="16" height="304"/>
@@ -154,20 +154,20 @@
   </object>
   <object id="39" name="Create Maniac" type="event" x="32" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_maniac,2,2"/>
-    <property name="cond1" value="not npc_exists spyder_maniac"/>
+    <property name="act1" value="create_npc spyder_omnichannel_ethan,2,2"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_ethan"/>
    </properties>
   </object>
   <object id="40" name="Talk Maniac" type="event" x="32" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel_maniac"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk spyder_omnichannel_ethan"/>
    </properties>
   </object>
   <object id="41" name="Create Nurse" type="event" x="32" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_nurse,2,17"/>
-    <property name="cond1" value="not npc_exists spyder_nurse"/>
+    <property name="act1" value="create_npc spyder_omnichannel_danita,2,17"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_danita"/>
    </properties>
   </object>
   <object id="42" name="Talk Nurse" type="event" x="32" y="256" width="16" height="16">
@@ -175,21 +175,21 @@
     <property name="act1" value="translated_dialog spyder_omnichannel_nurse"/>
     <property name="act2" value="add_item spyder_pass"/>
     <property name="act3" value="set_variable nurse_spyder:yes"/>
-    <property name="behav1" value="talk spyder_nurse"/>
+    <property name="behav1" value="talk spyder_omnichannel_danita"/>
     <property name="cond1" value="not variable_set nurse_spyder:yes"/>
    </properties>
   </object>
   <object id="45" name="Create Spyder Rookie" type="event" x="192" y="175.75" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_spyderrookie,12,11"/>
-    <property name="act2" value="npc_face spyder_spyderrookie,left"/>
-    <property name="cond1" value="not npc_exists spyder_spyderrookie"/>
+    <property name="act1" value="create_npc spyder_omnichannel_talbot,12,11"/>
+    <property name="act2" value="npc_face spyder_omnichannel_talbot,left"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_talbot"/>
    </properties>
   </object>
   <object id="46" name="Talk Spyder Rookie" type="event" x="192" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel1_spyderrookie"/>
-    <property name="behav1" value="talk spyder_spyderrookie"/>
+    <property name="behav1" value="talk spyder_omnichannel_talbot"/>
    </properties>
   </object>
   <object id="48" name="Threats" type="event" x="0" y="32" width="16" height="16">

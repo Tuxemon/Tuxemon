@@ -1,7 +1,6 @@
 {
     "slug": "seraphice",
     "category": "carol",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -64,7 +63,7 @@
     "txmn_id": 266,
     "height": 180,
     "weight": 85,
-    "catch_rate": 45.0,
+    "catch_rate": 35.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1
 }

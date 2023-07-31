@@ -6,7 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import final
 
-from tuxemon.combat import check_battle_legal
+from tuxemon.combat import alive_party, check_battle_legal
 from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -53,6 +53,12 @@ class StartBattleAction(EventAction):
         # Lookup the environment
         env_slug = player.game_variables.get("environment", "grass")
         env = db.lookup(env_slug, table="environment")
+
+        # trigger 2 vs 2
+        if npc.template[0].double:
+            npc.max_position = 2
+            if len(alive_party(player)) > 1:
+                player.max_position = 2
 
         # Add our players and setup combat
         logger.info("Starting battle with '{self.npc_slug}'!")

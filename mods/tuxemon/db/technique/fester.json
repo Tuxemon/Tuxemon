@@ -5,7 +5,7 @@
   "effects": [
     "give status_poison,user",
     "give status_festering,target",
-    "damage"
+    "area"
   ],
   "flip_axes": "",
   "is_fast": false,

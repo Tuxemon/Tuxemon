@@ -36,7 +36,7 @@
    eAHt2EkOgkAUANHvuBGXxpuoeAv1Xk6ndFqJunIqr2AQbVM/eUvopOiGhIjfmFo3oo4GmmihDccCZRRwf5VR0Xt8qsAmi9hihz0OcCyQQoFJJ2L6hhnX/MsMOK9DjJBjDMcCFkijwJx30QJLrLCGYwELpFHgyPe2wAlnXOBYwAJpFLhyXm+44/E6u/77q/zB9XuVL+mCFvhqgSczIxjC
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="118" type="collision" x="0" y="416" width="80" height="224"/>
   <object id="119" type="collision" x="224" y="624" width="416" height="16"/>
   <object id="120" type="collision" x="32" y="0" width="384" height="32"/>

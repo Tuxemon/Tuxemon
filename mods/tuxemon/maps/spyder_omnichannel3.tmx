@@ -31,7 +31,7 @@
    eAFjYEAF/kBuABA3MTIwNANxCxJuBbLbgBgbSAUKpmGToKLYSqDdK6B4FQ53YLNuP1DtPig+QII+bGZRIvaGiYFBH2i/AYlusGZmYHAF6nED4lygGf1AegIRZoD0RQPVxUDVLgXSy4jUR44/QfaRA2itLwnNXcTah64OnY/u19VAgTXogkA+IX0HgWoOATEobpFBMpK7QWmnEBh3LmhqkNXD2N1I+kB2twP15aDpI5SXQHbPxZJWCOUlZLth7iGHBgB0nSFG
   </data>
  </layer>
- <objectgroup color="#ff0000" id="4" name="Collision">
+ <objectgroup color="#ff0000" id="4" name="Collisions">
   <object id="15" type="collision" x="0" y="0" width="16" height="336"/>
   <object id="16" type="collision" x="16" y="0" width="208" height="32"/>
   <object id="17" type="collision" x="208" y="32" width="16" height="304"/>
@@ -160,14 +160,14 @@
   </object>
   <object id="48" name="Create Spyder Rookie" type="event" x="64" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_spyderrookie,12,11"/>
-    <property name="cond1" value="not npc_exists spyder_spyderrookie"/>
+    <property name="act1" value="create_npc spyder_omnichannel_gore,12,11"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_gore"/>
    </properties>
   </object>
   <object id="49" name="Talk Spyder Rookie" type="event" x="64" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel3_spyderrookie"/>
-    <property name="behav1" value="talk spyder_spyderrookie"/>
+    <property name="behav1" value="talk spyder_omnichannel_gore"/>
    </properties>
   </object>
   <object id="50" name="Threats" type="event" x="0" y="32" width="16" height="16">

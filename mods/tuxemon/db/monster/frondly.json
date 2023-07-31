@@ -1,7 +1,6 @@
 {
     "slug": "frondly",
     "category": "helping_hand",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -52,7 +51,7 @@
     "txmn_id": 29,
     "height": 160,
     "weight": 60,
-    "catch_rate": 3.0,
+    "catch_rate": 70.0,
     "lower_catch_resistance": 0.8,
     "upper_catch_resistance": 1.05
 }

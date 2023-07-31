@@ -266,12 +266,12 @@ class JournalInfoState(PygameMenuState):
         # types
         types = ""
         if len(monster.types) == 1:
-            types = T.translate(monster.types[0])
+            types = T.translate(monster.types[0].name)
         else:
             types = (
-                T.translate(monster.types[0])
+                T.translate(monster.types[0].name)
                 + " "
-                + T.translate(monster.types[1])
+                + T.translate(monster.types[1].name)
             )
         # weight and height
         unit = local_session.player.game_variables["unit_measure"]
@@ -328,13 +328,13 @@ class JournalInfoState(PygameMenuState):
         lab4.translate(fix_width(width, 0.50), fix_height(height, 0.30))
         type_image_1 = pygame_menu.BaseImage(
             tools.transform_resource_filename(
-                f"gfx/ui/monster/{monster.types[0]}_type.png"
+                f"gfx/ui/icons/element/{monster.types[0].name}_type.png"
             ),
         )
         if len(monster.types) > 1:
             type_image_2 = pygame_menu.BaseImage(
                 tools.transform_resource_filename(
-                    f"gfx/ui/monster/{monster.types[1]}_type.png"
+                    f"gfx/ui/icons/element/{monster.types[1].name}_type.png"
                 ),
             )
             menu.add.image(type_image_1, float=True).translate(
@@ -372,11 +372,10 @@ class JournalInfoState(PygameMenuState):
         assert not isinstance(lab6, List)
         lab6.translate(fix_width(width, 0.50), fix_height(height, 0.40))
         # species
-        species = (
-            T.translate("monster_menu_species")
-            + ": "
-            + T.translate(f"cat_{monster.category}")
-        )
+        spec = T.translate(f"cat_{monster.category}")
+        if monster.category:
+            spec = T.translate(monster.category)
+        species = T.translate("monster_menu_species") + ": " + spec
         lab7 = menu.add.label(
             title=species,
             label_id="species",
@@ -521,12 +520,12 @@ class MonsterInfoState(PygameMenuState):
         # types
         types = ""
         if len(monster.types) == 1:
-            types = T.translate(monster.types[0])
+            types = T.translate(monster.types[0].slug)
         else:
             types = (
-                T.translate(monster.types[0])
+                T.translate(monster.types[0].slug)
                 + " "
-                + T.translate(monster.types[1])
+                + T.translate(monster.types[1].slug)
             )
         # weight and height
         results = db.lookup(monster.slug, table="monster")

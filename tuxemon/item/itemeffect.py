@@ -47,7 +47,7 @@ class ItemEffect:
 
     * the type may be any valid python type, or even a python class or function
     * type may be a single type, or a tuple of types
-    * type, if a tuple, may include None is indicate the parameter is optional
+    * type, if a tuple, may include None to indicate the parameter is optional
     * name must be a valid python string
 
     After parsing the parameters of the Item, the parameter's value

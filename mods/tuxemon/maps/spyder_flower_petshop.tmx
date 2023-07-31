@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="57">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="54">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -15,12 +15,12 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="14" height="9">
   <data encoding="base64" compression="zlib">
-   eAFr52VgyCIBZwPVdgHxeiCeRAKeDFS7CYivA/EuIN5NAr4FVPsfiB8B8WMSMEhfFx95+l6SaZ8TmfoyydC3B6hnJ5n6AI67Z6g=
+   eAFr52VgyCIBZwPVdgHxeiCeRAKeDFS7CYivA/EuIN5NAr4FVPsfiB8B8WMSMEhfFx95+l6SaR/IfeS405ebdH17gHbtJMM+kD4A60VoKw==
   </data>
  </layer>
  <layer id="6" name="Tile Layer 2" width="14" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYMAEm9gxxbCJLGZkYFgCxKeB+AwQH0LTBxOHqYOZsRmodgsQ3wbiO0CMDmDiMHXo8jC+NJAhA8WyMEEiaG2gGh0o1iVCPUyJNZBhA8W2MEEiaG+gGh8o9iVCPS4lLcwMDK1ATCqYAtQzFU0fACM2Ewk=
+   eAFjYMAEm9gxxbCJLGZkYFgCxKeB+AwQH0LTBxOHqYOZsRmodgsQ3wbiO0AsDZSQgWJZIA0Th6mD6UOntYECOlCsiy6Jhw/SBwOk6LMGarKBYluYAUTQ3kA1PlDsS4R6XEpamBkYWoGYVDAFqGcqmj4AuXoTYQ==
   </data>
  </layer>
  <layer id="7" name="Tile Layer 3" width="14" height="9">
@@ -30,7 +30,7 @@
  </layer>
  <layer id="8" name="Tile Layer 4" width="14" height="9">
   <data encoding="base64" compression="zlib">
-   eAFjYBh4wA10Ag8U8w68c0aECwBGjAAx
+   eAFjYKAe4AYaxQPFvNQzdtQkGoQAAFEMADE=
   </data>
  </layer>
  <layer id="9" name="Tile Layer 5" width="14" height="9">
@@ -38,56 +38,56 @@
    eAFjYBgFIzEEAAH4AAE=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="3" name="Collision">
-  <object id="24" type="collision" x="0" y="0" width="224" height="32"/>
-  <object id="25" type="collision" x="0" y="32" width="16" height="64"/>
-  <object id="26" type="collision" x="208" y="32" width="16" height="112"/>
-  <object id="34" type="collision" x="80" y="80" width="64" height="16"/>
-  <object id="35" type="collision" x="80" y="48" width="16" height="32"/>
-  <object id="36" type="collision" x="128" y="48" width="16" height="32"/>
-  <object id="37" type="collision" x="96" y="48" width="32" height="16"/>
-  <object id="55" type="collision" x="0" y="112" width="16" height="32"/>
+ <objectgroup color="#ff0000" id="3" name="Collisions">
+  <object id="14" type="collision" x="0" y="32" width="224" height="16"/>
+  <object id="15" type="collision" x="0" y="48" width="16" height="48"/>
+  <object id="16" type="collision" x="208" y="32" width="16" height="112"/>
+  <object id="24" type="collision" x="80" y="80" width="64" height="16"/>
+  <object id="25" type="collision" x="80" y="48" width="16" height="32"/>
+  <object id="26" type="collision" x="128" y="48" width="16" height="32"/>
+  <object id="45" type="collision" x="0" y="112" width="16" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
-  <object id="29" name="Create Shop Assistant" type="event" x="112" y="64" width="16" height="16">
+  <object id="19" name="Create Shop Assistant" type="event" x="112" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_shopassistant,7,4"/>
-    <property name="cond1" value="not npc_exists spyder_shopassistant"/>
+    <property name="act1" value="create_npc spyder_flowerpetshop_titus,7,4"/>
+    <property name="cond1" value="not npc_exists spyder_flowerpetshop_titus"/>
    </properties>
   </object>
-  <object id="31" name="Talk Shop Assistant1" type="event" x="112" y="80" width="16" height="16">
+  <object id="21" name="Talk Shop Assistant1" type="event" x="112" y="80" width="16" height="16">
    <properties>
+    <property name="act0" value="npc_face spyder_flowerpetshop_titus,down"/>
     <property name="act1" value="translated_dialog spyder_flower_petshopassistant"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="not variable_set chooses:yes"/>
+    <property name="cond3" value="not money_is player,greater_or_equal,500"/>
    </properties>
   </object>
-  <object id="38" name="Create Shop Keeper" type="event" x="32" y="80" width="16" height="16">
+  <object id="28" name="Create Shop Keeper" type="event" x="32" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_shopkeeper,2,5"/>
-    <property name="cond1" value="not npc_exists spyder_shopkeeper"/>
+    <property name="act1" value="create_npc spyder_flowerpetshop_denzel,2,5"/>
+    <property name="cond1" value="not npc_exists spyder_flowerpetshop_denzel"/>
    </properties>
   </object>
-  <object id="39" name="Talk Shop Keeper - First Time" type="event" x="32" y="16" width="16" height="16">
+  <object id="29" name="Talk Shop Keeper - First Time" type="event" x="32" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_petshopkeeper1"/>
     <property name="act2" value="translated_dialog spyder_flower_petshopkeeper2"/>
     <property name="act3" value="add_monster vivipere,5"/>
     <property name="act4" value="set_variable flower_talkedpetshop:yes"/>
-    <property name="behav1" value="talk spyder_shopkeeper"/>
+    <property name="behav1" value="talk spyder_flowerpetshop_denzel"/>
     <property name="cond1" value="not variable_set flower_talkedpetshop:yes"/>
    </properties>
   </object>
-  <object id="40" name="Talk Shop Keeper - Later Times" type="event" x="48" y="16" width="16" height="16">
+  <object id="30" name="Talk Shop Keeper - Later Times" type="event" x="48" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_petshopkeeper3"/>
     <property name="act2" value="set_variable check_vivipere_morph:yes"/>
-    <property name="behav1" value="talk spyder_shopkeeper"/>
+    <property name="behav1" value="talk spyder_flowerpetshop_denzel"/>
     <property name="cond1" value="is variable_set flower_talkedpetshop:yes"/>
    </properties>
   </object>
-  <object id="41" name="Talk Shop Keeper - Check Vivicinder" type="event" x="0" y="0" width="16" height="16">
+  <object id="31" name="Talk Shop Keeper - Check Vivicinder" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_petshopkeeper4"/>
     <property name="act2" value="add_monster vivipere,5"/>
@@ -98,7 +98,7 @@
     <property name="cond3" value="not variable_set shows_vivicinder:yes"/>
    </properties>
   </object>
-  <object id="42" name="Go outside" type="event" x="144" y="128" width="32" height="16">
+  <object id="32" name="Go outside" type="event" x="144" y="128" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,10,28,0.3"/>
     <property name="act2" value="set_variable check_vivipere_morph:no"/>
@@ -106,7 +106,7 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="43" name="Talk Shop Keeper - Check Vividactil" type="event" x="16" y="0" width="16" height="16">
+  <object id="33" name="Talk Shop Keeper - Check Vividactil" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_petshopkeeper4"/>
     <property name="act2" value="add_monster vivipere,5"/>
@@ -117,7 +117,7 @@
     <property name="cond3" value="not variable_set shows_vividactil:yes"/>
    </properties>
   </object>
-  <object id="44" name="Talk Shop Keeper - Check Viviphyta" type="event" x="32" y="0" width="16" height="16">
+  <object id="34" name="Talk Shop Keeper - Check Viviphyta" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_petshopkeeper4"/>
     <property name="act2" value="add_monster vivipere,5"/>
@@ -128,7 +128,7 @@
     <property name="cond3" value="not variable_set shows_viviphyta:yes"/>
    </properties>
   </object>
-  <object id="45" name="Talk Shop Keeper - Check Vivisource" type="event" x="48" y="0" width="16" height="16">
+  <object id="35" name="Talk Shop Keeper - Check Vivisource" type="event" x="48" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_petshopkeeper4"/>
     <property name="act2" value="add_monster vivipere,5"/>
@@ -138,7 +138,7 @@
     <property name="cond3" value="not variable_set shows_vivisource:yes"/>
    </properties>
   </object>
-  <object id="46" name="Talk Shop Keeper - Check Viviteel" type="event" x="64" y="0" width="16" height="16">
+  <object id="36" name="Talk Shop Keeper - Check Viviteel" type="event" x="64" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_petshopkeeper4"/>
     <property name="act2" value="add_monster vivipere,5"/>
@@ -149,7 +149,7 @@
     <property name="cond3" value="not variable_set shows_viviteel:yes"/>
    </properties>
   </object>
-  <object id="47" name="Talk Shop Keeper - Check Vivitrans" type="event" x="80" y="0" width="16" height="16">
+  <object id="37" name="Talk Shop Keeper - Check Vivitrans" type="event" x="80" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_petshopkeeper4"/>
     <property name="act2" value="add_monster vivipere,5"/>
@@ -160,7 +160,7 @@
     <property name="cond3" value="not variable_set shows_vivitrans:yes"/>
    </properties>
   </object>
-  <object id="48" name="Talk Shop Keeper - Check Vivitron" type="event" x="96" y="0" width="16" height="16">
+  <object id="38" name="Talk Shop Keeper - Check Vivitron" type="event" x="96" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_petshopkeeper4"/>
     <property name="act2" value="add_monster vivipere,5"/>
@@ -171,19 +171,91 @@
     <property name="cond3" value="not variable_set shows_vivitron:yes"/>
    </properties>
   </object>
-  <object id="54" name="Talk Shop Assistant2" type="event" x="128" y="64" width="16" height="16">
+  <object id="44" name="Talk Shop Assistant2" type="event" x="128" y="64" width="16" height="16">
    <properties>
+    <property name="act0" value="npc_face spyder_flowerpetshop_titus,right"/>
     <property name="act1" value="translated_dialog spyder_flower_petshopassistant"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="not variable_set chooses:yes"/>
+    <property name="cond3" value="not money_is player,greater_or_equal,500"/>
    </properties>
   </object>
-  <object id="56" name="Go outside" type="event" x="0" y="96" width="16" height="16">
+  <object id="46" name="Go outside" type="event" x="0" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,7,25,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="47" name="Talk Shop Assistant1" type="event" x="112" y="80" width="16" height="16">
+   <properties>
+    <property name="act0" value="npc_face spyder_flowerpetshop_titus,down"/>
+    <property name="act1" value="translated_dialog spyder_flower_petshopassistant"/>
+    <property name="act2" value="translated_dialog spyder_flower_petshopassistant1"/>
+    <property name="act3" value="translated_dialog player_wallet"/>
+    <property name="act4" value="translated_dialog_choice ziggurat:woodoor:fuzzlet:potturmeist:squink:no,petshopbuy"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set chooses:yes"/>
+    <property name="cond4" value="is money_is player,greater_or_equal,500"/>
+   </properties>
+  </object>
+  <object id="48" name="Talk Shop Assistant2" type="event" x="128" y="64" width="16" height="16">
+   <properties>
+    <property name="act0" value="npc_face spyder_flowerpetshop_titus,right"/>
+    <property name="act1" value="translated_dialog spyder_flower_petshopassistant"/>
+    <property name="act2" value="translated_dialog spyder_flower_petshopassistant1"/>
+    <property name="act3" value="translated_dialog player_wallet"/>
+    <property name="act4" value="translated_dialog_choice ziggurat:woodoor:fuzzlet:potturmeist:squink:no,petshopbuy"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set chooses:yes"/>
+    <property name="cond4" value="is money_is player,greater_or_equal,500"/>
+   </properties>
+  </object>
+  <object id="49" name="Buy squink" type="event" x="112" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog squink"/>
+    <property name="act2" value="add_monster squink,10"/>
+    <property name="act3" value="clear_variable petshopbuy"/>
+    <property name="act4" value="transfer_money -,500"/>
+    <property name="cond1" value="is variable_set petshopbuy:squink"/>
+   </properties>
+  </object>
+  <object id="50" name="Buy potturmeist" type="event" x="128" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog potturmeist"/>
+    <property name="act2" value="add_monster potturmeist,10"/>
+    <property name="act3" value="clear_variable petshopbuy"/>
+    <property name="act4" value="transfer_money -,500"/>
+    <property name="cond1" value="is variable_set petshopbuy:potturmeist"/>
+   </properties>
+  </object>
+  <object id="51" name="Buy fuzzlet" type="event" x="144" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog fuzzlet"/>
+    <property name="act2" value="add_monster fuzzlet,10"/>
+    <property name="act3" value="clear_variable petshopbuy"/>
+    <property name="act4" value="transfer_money -,500"/>
+    <property name="cond1" value="is variable_set petshopbuy:fuzzlet"/>
+   </properties>
+  </object>
+  <object id="52" name="Buy woodoor" type="event" x="160" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog woodoor"/>
+    <property name="act2" value="add_monster woodoor,10"/>
+    <property name="act3" value="clear_variable petshopbuy"/>
+    <property name="act4" value="transfer_money -,500"/>
+    <property name="cond1" value="is variable_set petshopbuy:woodoor"/>
+   </properties>
+  </object>
+  <object id="53" name="Buy ziggurat" type="event" x="176" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog ziggurat"/>
+    <property name="act2" value="add_monster ziggurat,10"/>
+    <property name="act3" value="clear_variable petshopbuy"/>
+    <property name="act4" value="transfer_money -,500"/>
+    <property name="cond1" value="is variable_set petshopbuy:ziggurat"/>
    </properties>
   </object>
  </objectgroup>

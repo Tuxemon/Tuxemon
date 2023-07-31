@@ -55,14 +55,14 @@
   </object>
   <object id="14" name="Create Berke" type="event" x="144" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scientist,9,15"/>
-    <property name="cond1" value="not npc_exists spyder_scientist"/>
+    <property name="act1" value="create_npc spyder_nimrod_jervis,9,15"/>
+    <property name="cond1" value="not npc_exists spyder_nimrod_jervis"/>
    </properties>
   </object>
   <object id="15" name="Talk Berke" type="event" x="128" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_berke1"/>
-    <property name="behav1" value="talk spyder_scientist"/>
+    <property name="behav1" value="talk spyder_nimrod_jervis"/>
    </properties>
   </object>
   <object id="27" name="Teleport to Nimrod Middle" type="event" x="48" y="80" width="16" height="16">

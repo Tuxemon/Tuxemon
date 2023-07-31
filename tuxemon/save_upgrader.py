@@ -70,6 +70,8 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
         save_data["game_variables"]["sound_volume"] = 0.2
     if "unit_measure" not in save_data["game_variables"]:
         save_data["game_variables"]["unit_measure"] = "Metric"
+    if "change_day_night" not in save_data["game_variables"]:
+        save_data["game_variables"]["change_day_night"] = "Disable"
     if "hemisphere" not in save_data["game_variables"]:
         save_data["game_variables"]["hemisphere"] = "Northern"
     if "gender_choice" not in save_data["game_variables"]:

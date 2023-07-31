@@ -1,0 +1,12 @@
+[
+  {
+    "slug": "spyder_route1_bjorn",
+    "template": [
+      {
+        "sprite_name": "beachcomber",
+        "combat_front": "adventurer",
+        "slug": "beachcomber"
+      }
+    ]
+  }
+]

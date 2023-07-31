@@ -29,7 +29,7 @@ class RecoverEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> RecoverEffectResult:
         if tech.slug == "status_recover":
-            # avoids Nonetype situation and reset the user
+            # avoids NoneType situation and reset the user
             if user is None:
                 user = tech.link
                 assert user

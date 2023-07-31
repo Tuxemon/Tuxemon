@@ -37,7 +37,7 @@ class TeleportFaintAction(EventAction):
             teleport = player.game_variables["teleport_faint"].split(" ")
         else:
             logger.error(
-                f"Teleport_faint action failed, because the teleport_faint variable has not been set."
+                "Teleport_faint action failed, because the teleport_faint variable has not been set."
             )
             return
 

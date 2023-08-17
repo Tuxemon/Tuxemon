@@ -282,8 +282,9 @@ class CombatState(CombatAnimations):
         * update the new phase, or the current one
         """
         super().update(time_delta)
-        if not self._animation_in_progress and all(map(self.is_task_finished,
-                                                       self.animations)):
+        if not self._animation_in_progress and all(
+            map(self.is_task_finished, self.animations)
+        ):
             new_phase = self.determine_phase(self.phase)
             if new_phase:
                 self.phase = new_phase
@@ -684,6 +685,7 @@ class CombatState(CombatAnimations):
             self.perform_action(*action)
             self.task(self.check_party_hp, 1)
             self.task(self.animate_party_status, 3)
+            self.task(self.animate_xp_message, 3)
 
     def ask_player_for_monster(self, player: NPC) -> None:
         """
@@ -1014,9 +1016,14 @@ class CombatState(CombatAnimations):
         animating elements of the phase, call this to prevent player
         input as well as phase changes.
 
+        Delay will be extended in case of multiple calls in a row, assuming
+        they are related to different animations.
+
         Parameters:
             delay: Amount of seconds to delay phase changes.
 
+        Returns:
+            The task scheduled to allow back the phase changing
         """
         if self._animation_in_progress:
             self._post_animation_task.reset_delay(delay)
@@ -1354,9 +1361,7 @@ class CombatState(CombatAnimations):
                         {"name": winners.name.upper(), "xp": awarded_exp},
                     )
                     message += "\n" + m
-            action_time += len(message) * letter_time
-            self.alert(message)
-            self.suppress_phase_change(action_time)
+            self._xp_message = message
 
             # Remove monster from damage map
             del self._damage_map[monster]
@@ -1380,6 +1385,16 @@ class CombatState(CombatAnimations):
                     )
                     self.animate_monster_faint(monster)
                     self.suppress_phase_change()
+
+    def animate_xp_message(self) -> None:
+        if self._xp_message is not None:
+            self.task(self._alert_xp, 2)
+
+    def _alert_xp(self) -> None:
+        action_time = ACTION_TIME + len(self._xp_message) * LETTER_TIME
+        self.alert(self._xp_message)
+        self.suppress_phase_change(action_time)
+        self._xp_message = None
 
     def check_party_hp(self) -> None:
         """

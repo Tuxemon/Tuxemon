@@ -137,7 +137,7 @@ MULT_MAP = {
 # This is the time, in seconds, that the text takes to display.
 LETTER_TIME: float = 0.02
 # This is the time, in seconds, that the animation takes to finish.
-ACTION_TIME: float = 3.0
+ACTION_TIME: float = 2.0
 
 
 class TechniqueAnimationCache:
@@ -1007,7 +1007,7 @@ class CombatState(CombatAnimations):
 
     def suppress_phase_change(
         self,
-        delay: float = 3.0,
+        delay: float = 2.0,
     ) -> Optional[Task]:
         """
         Prevent the combat phase from changing for a limited time.

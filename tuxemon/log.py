@@ -73,8 +73,10 @@ def configure() -> None:
                             config.log_keep_max - 1, len(sorted_files)
                         ):
                             os.remove(f"{log_dir}/{sorted_files[x][0]}")
+                formatted_time = time.strftime("%Y-%m-%d_%Hh%Mm%Ss",
+                                               time.localtime())
                 log_file = logging.FileHandler(
-                    f'{log_dir}/{time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}.log'
+                    f'{log_dir}/{formatted_time}.log'
                 )
                 log_file.setFormatter(log_formatter)
                 log_file.setLevel(log_level)

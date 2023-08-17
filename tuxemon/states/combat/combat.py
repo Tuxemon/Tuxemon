@@ -247,6 +247,7 @@ class CombatState(CombatAnimations):
         self._new_tuxepedia: bool = False
         self._lost_status: Optional[str] = None
         self._lost_monster: Optional[Monster] = None
+        self._post_animation_task: Optional[Task] = None
 
         super().__init__(players, graphics)
         self.is_trainer_battle = combat_type == "trainer"
@@ -1018,14 +1019,15 @@ class CombatState(CombatAnimations):
 
         """
         if self._animation_in_progress:
-            logger.debug("double suppress: bug?")
-            return None
+            self._post_animation_task.reset_delay(delay)
+            return self._post_animation_task
 
         self._animation_in_progress = True
-        return self.task(
+        self._post_animation_task: Task = self.task(
             partial(setattr, self, "_animation_in_progress", False),
             delay,
         )
+        return self._post_animation_task
 
     def perform_action(
         self,

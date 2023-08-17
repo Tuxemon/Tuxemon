@@ -248,6 +248,7 @@ class CombatState(CombatAnimations):
         self._lost_status: Optional[str] = None
         self._lost_monster: Optional[Monster] = None
         self._post_animation_task: Optional[Task] = None
+        self._xp_message = None
 
         super().__init__(players, graphics)
         self.is_trainer_battle = combat_type == "trainer"

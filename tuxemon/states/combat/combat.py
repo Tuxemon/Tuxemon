@@ -58,7 +58,7 @@ from pygame.rect import Rect
 
 from tuxemon import audio, graphics, state, tools
 from tuxemon.ai import AI
-from tuxemon.animation import Task
+from tuxemon.animation import Task, Animation
 from tuxemon.battle import Battle
 from tuxemon.combat import (
     alive_party,
@@ -100,7 +100,6 @@ from tuxemon.technique.technique import Technique
 from tuxemon.tools import assert_never
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
-
 from .combat_animations import CombatAnimations
 
 logger = logging.getLogger(__name__)
@@ -255,6 +254,23 @@ class CombatState(CombatAnimations):
         self.transition_phase("begin")
         self.task(partial(setattr, self, "phase", "ready"), 3)
 
+    @staticmethod
+    def is_task_finished(task: Union[Task, Animation]) -> bool:
+        """
+        Check if the task is finished or not.
+        In case the task is in fact an animation, it's considered as finished
+        by default since it should not be blocking.
+
+        Parameters:
+            task: the task (or animation) to be checked
+
+        Returns:
+            False if the task is a task and not finished
+        """
+        if isinstance(task, Task):
+            return task.is_finish()
+        return True
+
     def update(self, time_delta: float) -> None:
         """
         Update the combat state.  State machine is checked.
@@ -265,7 +281,8 @@ class CombatState(CombatAnimations):
         * update the new phase, or the current one
         """
         super().update(time_delta)
-        if not self._animation_in_progress:
+        if not self._animation_in_progress and all(map(self.is_task_finished,
+                                                       self.animations)):
             new_phase = self.determine_phase(self.phase)
             if new_phase:
                 self.phase = new_phase

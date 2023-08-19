@@ -58,7 +58,7 @@ from pygame.rect import Rect
 
 from tuxemon import audio, graphics, state, tools
 from tuxemon.ai import AI
-from tuxemon.animation import Task, Animation
+from tuxemon.animation import Animation, Task
 from tuxemon.battle import Battle
 from tuxemon.combat import (
     alive_party,
@@ -100,6 +100,7 @@ from tuxemon.technique.technique import Technique
 from tuxemon.tools import assert_never
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
+
 from .combat_animations import CombatAnimations
 
 logger = logging.getLogger(__name__)

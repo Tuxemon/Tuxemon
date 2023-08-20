@@ -53,7 +53,7 @@
     "slug": "spyder_route6_blair",
     "template": [
       {
-        "sprite_name": "miner",
+        "sprite_name": "miner_yellow",
         "combat_front": "miner",
         "slug": "miner"
       }

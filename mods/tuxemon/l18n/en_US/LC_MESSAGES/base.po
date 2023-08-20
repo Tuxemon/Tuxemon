@@ -2344,7 +2344,7 @@ msgid "lion_mountain_description"
 msgstr "One of Fondent's Holy Mountains! Prominence 3,776 m (12,388 ft)!"
 
 msgid "candy_town_description"
-msgstr "Candy Town Slogan"
+msgstr "Pushing the bounds of possibility - with biology!"
 
 msgid "citypark_description"
 msgstr "A Taste of the Wild!"
@@ -2361,14 +2361,29 @@ msgstr "Proof that beauty and mining can co-exist!"
 msgid "paper_town_description"
 msgstr "The gateway to Fondent!"
 
+msgid "routea_description"
+msgstr "A private grotto given over to the wilds!"
+
+msgid "routec_description"
+msgstr "Home is just over the horizon!"
+
 msgid "route1_description"
 msgstr "Take care!"
 
 msgid "route2_description"
 msgstr "The historic path!"
 
+msgid "route3_description"
+msgstr "Enjoy the scenic beauty of this 'artificial canyon'."
+
+msgid "route4_description"
+msgstr "Up and down the road again!"
+
 msgid "route5_description"
 msgstr "The memorial passage to Timber Town!"
+
+msgid "route6_description"
+msgstr "A playful meander along the river!"
 
 msgid "route7_description"
 msgstr "The Ascension Trail on the slopes of Lion Mountain!"
@@ -2381,6 +2396,9 @@ msgstr "A peaceful refuge!"
 
 msgid "timber_town_description"
 msgstr "Breadbasket of Fondant!"
+
+msgid "tunnel_description"
+msgstr "The dark expanse - watch your step!"
 
 ## MAP SIGNS ##
 
@@ -3221,7 +3239,7 @@ msgid "dragarbor"
 msgstr "Dragarbor"
 
 msgid "drashimi_description"
-msgstr ""
+msgstr "It lies on the ground, smelling delicious and tempting monsters to take a bite - but when they approach, it bites them first."
 
 msgid "drashimi"
 msgstr "Drashimi"
@@ -4055,7 +4073,7 @@ msgid "sharpfin"
 msgstr "Sharpfin"
 
 msgid "shelagu_description"
-msgstr ""
+msgstr "It wards off attackers by poisoning its spiky shell with goo spat from its mouth."
 
 msgid "shelagu"
 msgstr "Shelagu"
@@ -4229,7 +4247,7 @@ msgid "tikorch"
 msgstr "Tikorch"
 
 msgid "tobishimi_description"
-msgstr ""
+msgstr "TOBISHIMI spawn eggs in vast numbers, and carry them about under their chins for safekeeping until the next full moon - when they hatch."
 
 msgid "tobishimi"
 msgstr "Tobishimi"
@@ -4253,7 +4271,7 @@ msgid "trapsnap"
 msgstr "Trapsnap"
 
 msgid "tsushimi_description"
-msgstr ""
+msgstr "While sometimes referred to as its armor, the fleshy plates on TSUSHIMI are softer than its skin. Their purpose remains unknown."
 
 msgid "tsushimi"
 msgstr "Tsushimi"

@@ -83,7 +83,7 @@
     "slug": "spyder_leatherhouse2_memphis",
     "template": [
       {
-        "sprite_name": "miner",
+        "sprite_name": "miner_blue",
         "combat_front": "miner",
         "slug": "miner"
       }
@@ -93,7 +93,7 @@
     "slug": "spyder_leathermuseum_davie",
     "template": [
       {
-        "sprite_name": "miner",
+        "sprite_name": "miner_green",
         "combat_front": "miner",
         "slug": "miner"
       }
@@ -103,7 +103,7 @@
     "slug": "spyder_leathershaft1_cole",
     "template": [
       {
-        "sprite_name": "miner",
+        "sprite_name": "miner_red",
         "combat_front": "miner",
         "slug": "miner"
       }
@@ -133,7 +133,7 @@
     "slug": "spyder_leathershaft1_surat",
     "template": [
       {
-        "sprite_name": "miner",
+        "sprite_name": "miner_yellow",
         "combat_front": "miner",
         "slug": "miner"
       }

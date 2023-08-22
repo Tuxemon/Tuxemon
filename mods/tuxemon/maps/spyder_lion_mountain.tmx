@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="45" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="419">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="45" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="448">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -408,6 +408,260 @@
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="421" name="Create Nurse" type="event" x="160" y="1424" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_lionmountain_nurse,10,89"/>
+    <property name="cond1" value="not npc_exists spyder_lionmountain_nurse"/>
+   </properties>
+  </object>
+  <object id="422" name="Talk Nurse" type="event" x="160" y="1408" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_nurse1"/>
+    <property name="behav1" value="talk spyder_lionmountain_nurse"/>
+   </properties>
+  </object>
+  <object id="423" name="Create Enforcer" type="event" x="576" y="848" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_lionmountain_enforcer,36,53"/>
+    <property name="cond1" value="not npc_exists spyder_lionmountain_enforcer"/>
+   </properties>
+  </object>
+  <object id="424" name="Talk Enforcer" type="event" x="576" y="832" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_enforcer1"/>
+    <property name="act2" value="translated_dialog spyder_lionmountain_enforcer2"/>
+    <property name="act3" value="translated_dialog spyder_lionmountain_enforcer3"/>
+    <property name="act4" value="translated_dialog spyder_lionmountain_enforcer4"/>
+    <property name="act5" value="set_variable lionmountainenforcer:yes"/>
+    <property name="act6" value="add_monster chromeye,15"/>
+    <property name="act7" value="change_state JournalInfoState,chromeye"/>
+    <property name="act8" value="remove_state"/>
+    <property name="behav1" value="talk spyder_lionmountain_enforcer"/>
+    <property name="cond1" value="not variable_set lionmountainenforcer:yes"/>
+   </properties>
+  </object>
+  <object id="425" name="Create Scientist" type="event" x="192" y="1136" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_lionmountain_scientist,12,71"/>
+    <property name="act2" value="npc_face spyder_lionmountain_scientist,left"/>
+    <property name="cond1" value="not npc_exists spyder_lionmountain_scientist"/>
+   </properties>
+  </object>
+  <object id="426" name="Talk Scientist" type="event" x="176" y="1168" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_scientist1"/>
+    <property name="behav1" value="talk spyder_lionmountain_scientist"/>
+   </properties>
+  </object>
+  <object id="427" name="Talk Enforcer 2" type="event" x="592" y="832" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_enforcer4"/>
+    <property name="behav1" value="talk spyder_lionmountain_enforcer"/>
+    <property name="cond1" value="is variable_set lionmountainenforcer:yes"/>
+   </properties>
+  </object>
+  <object id="428" name="Create Jacques" type="event" x="48" y="1072" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_lionmountain_jacques,3,67"/>
+    <property name="cond1" value="not npc_exists spyder_lionmountain_jacques"/>
+   </properties>
+  </object>
+  <object id="429" name="Talk Jacques" type="event" x="48" y="1152" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_lionmountain_jacques"/>
+    <property name="act1" value="translated_dialog spyder_lionmountain_jacques1"/>
+    <property name="act2" value="add_monster jemuar,60,spyder_lionmountain_jacques,5,10"/>
+    <property name="act3" value="add_monster heronquak,55,spyder_lionmountain_jacques,5,10"/>
+    <property name="act4" value="start_battle spyder_lionmountain_jacques"/>
+    <property name="act5" value="translated_dialog spyder_lionmountain_jacques2"/>
+    <property name="act6" value="set_variable lionmountainjacques:yes"/>
+    <property name="cond1" value="not variable_set lionmountainjacques:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="430" name="Create Adam" type="event" x="32" y="912" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_lionmountain_adam,2,57"/>
+    <property name="cond1" value="not npc_exists spyder_lionmountain_adam"/>
+   </properties>
+  </object>
+  <object id="431" name="Talk Adam" type="event" x="32" y="992" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_lionmountain_adam"/>
+    <property name="act1" value="translated_dialog spyder_lionmountain_adam1"/>
+    <property name="act2" value="add_monster tikoal,50,spyder_lionmountain_adam,5,10"/>
+    <property name="act3" value="add_monster tikorch,55,spyder_lionmountain_adam,5,10"/>
+    <property name="act4" value="add_monster loliferno,55,spyder_lionmountain_adam,5,10"/>
+    <property name="act5" value="start_battle spyder_lionmountain_adam"/>
+    <property name="act6" value="translated_dialog spyder_lionmountain_adam2"/>
+    <property name="act7" value="set_variable lionmountainadam:yes"/>
+    <property name="cond1" value="not variable_set lionmountainadam:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="432" name="Create Emilio" type="event" x="432" y="1472" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_lionmountain_emilio,27,92"/>
+    <property name="cond1" value="not npc_exists spyder_lionmountain_emilio"/>
+   </properties>
+  </object>
+  <object id="433" name="Talk Emilio" type="event" x="432" y="1552" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_lionmountain_emilio"/>
+    <property name="act1" value="translated_dialog spyder_lionmountain_emilio1"/>
+    <property name="act2" value="add_monster bumbulus,50,spyder_lionmountain_emilio,5,10"/>
+    <property name="act3" value="add_monster glombroc,50,spyder_lionmountain_emilio,5,10"/>
+    <property name="act4" value="add_monster tikorch,30,spyder_lionmountain_emilio,5,10"/>
+    <property name="act5" value="start_battle spyder_lionmountain_emilio"/>
+    <property name="act6" value="translated_dialog spyder_lionmountain_emilio2"/>
+    <property name="act7" value="set_variable lionmountainemilio:yes"/>
+    <property name="cond1" value="not variable_set lionmountainemilio:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="434" name="Create Chhurim" type="event" x="672" y="848" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_lionmountain_chhurim,42,53"/>
+    <property name="cond1" value="not npc_exists spyder_lionmountain_chhurim"/>
+   </properties>
+  </object>
+  <object id="435" name="Talk Chhurim" type="event" x="672" y="896" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_lionmountain_chhurim"/>
+    <property name="act1" value="translated_dialog spyder_lionmountain_chhurim1"/>
+    <property name="act2" value="add_monster fribbit,50,spyder_lionmountain_chhurim,5,10"/>
+    <property name="act3" value="add_monster propellercat,50,spyder_lionmountain_chhurim,5,10"/>
+    <property name="act4" value="add_monster agnigon,50,spyder_lionmountain_chhurim,5,10"/>
+    <property name="act5" value="start_battle spyder_lionmountain_chhurim"/>
+    <property name="act6" value="translated_dialog spyder_lionmountain_chhurim2"/>
+    <property name="act7" value="set_variable lionmountainchhurim:yes"/>
+    <property name="cond1" value="not variable_set lionmountainchhurim:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="436" name="Create Tom" type="event" x="496" y="1168" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_lionmountain_tom,31,73"/>
+    <property name="act2" value="npc_face spyder_lionmountain_tom,up"/>
+    <property name="cond1" value="not npc_exists spyder_lionmountain_tom"/>
+   </properties>
+  </object>
+  <object id="437" name="Talk Tom" type="event" x="496" y="1088" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind_to_player spyder_lionmountain_tom"/>
+    <property name="act2" value="translated_dialog spyder_lionmountain_tom1"/>
+    <property name="act3" value="add_monster vivicinder,50,spyder_lionmountain_tom,5,10"/>
+    <property name="act4" value="start_battle spyder_lionmountain_tom"/>
+    <property name="act5" value="translated_dialog spyder_lionmountain_tom2"/>
+    <property name="act6" value="set_variable lionmountaintom:yes"/>
+    <property name="cond1" value="not variable_set lionmountaintom:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="438" name="Create Conrad" type="event" x="416" y="416" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_lionmountain_conrad,26,26"/>
+    <property name="cond1" value="not npc_exists spyder_lionmountain_conrad"/>
+   </properties>
+  </object>
+  <object id="439" name="Talk Conrad" type="event" x="416" y="496" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_lionmountain_conrad"/>
+    <property name="act1" value="translated_dialog spyder_lionmountain_conrad1"/>
+    <property name="act2" value="add_monster cardinale,50,spyder_lionmountain_conrad,5,10"/>
+    <property name="act3" value="add_monster snaki,50,spyder_lionmountain_conrad,5,10"/>
+    <property name="act4" value="add_monster slichen,50,spyder_lionmountain_conrad,5,10"/>
+    <property name="act5" value="start_battle spyder_lionmountain_conrad"/>
+    <property name="act6" value="translated_dialog spyder_lionmountain_conrad2"/>
+    <property name="act7" value="set_variable lionmountainconrad:yes"/>
+    <property name="cond1" value="not variable_set lionmountainconrad:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="440" name="Create Kurt" type="event" x="496" y="640" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_lionmountain_kurt,27,92"/>
+    <property name="act2" value="npc_face spyder_lionmountain_kurt,left"/>
+    <property name="cond1" value="not npc_exists spyder_lionmountain_kurt"/>
+   </properties>
+  </object>
+  <object id="441" name="Talk Kurt" type="event" x="416" y="640" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_lionmountain_kurt"/>
+    <property name="act1" value="translated_dialog spyder_lionmountain_kurt1"/>
+    <property name="act2" value="add_monster rosarin,50,spyder_lionmountain_kurt,5,10"/>
+    <property name="act3" value="add_monster anu,50,spyder_lionmountain_kurt,5,10"/>
+    <property name="act4" value="add_monster cardinale,50,spyder_lionmountain_kurt,5,10"/>
+    <property name="act5" value="start_battle spyder_lionmountain_kurt"/>
+    <property name="act6" value="translated_dialog spyder_lionmountain_kurt2"/>
+    <property name="act7" value="set_variable lionmountainkurt:yes"/>
+    <property name="cond1" value="not variable_set lionmountainkurt:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="442" name="Create Arlene" type="event" x="80" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_lionmountain_arlene,5,16"/>
+    <property name="act2" value="npc_face spyder_lionmountain_arlene,right"/>
+    <property name="cond1" value="not npc_exists spyder_lionmountain_arlene"/>
+   </properties>
+  </object>
+  <object id="443" name="Talk Arlene" type="event" x="176" y="256" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_lionmountain_arlene"/>
+    <property name="act1" value="translated_dialog spyder_lionmountain_arlene1"/>
+    <property name="act2" value="add_monster tadcool,45,spyder_lionmountain_arlene,5,10"/>
+    <property name="act3" value="add_monster fribbit,55,spyder_lionmountain_arlene,5,10"/>
+    <property name="act4" value="add_monster fribbit,55,spyder_lionmountain_arlene,5,10"/>
+    <property name="act5" value="start_battle spyder_lionmountain_arlene"/>
+    <property name="act6" value="translated_dialog spyder_lionmountain_arlene2"/>
+    <property name="act7" value="set_variable lionmountainarlene:yes"/>
+    <property name="cond1" value="not variable_set lionmountainarlene:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="444" name="Create David" type="event" x="16" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_lionmountain_david,1,10"/>
+    <property name="act2" value="npc_face spyder_lionmountain_david,right"/>
+    <property name="cond1" value="not npc_exists spyder_lionmountain_david"/>
+   </properties>
+  </object>
+  <object id="445" name="Talk David" type="event" x="64" y="160" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_lionmountain_david"/>
+    <property name="act1" value="translated_dialog spyder_lionmountain_david1"/>
+    <property name="act2" value="add_monster polyrock,55,spyder_lionmountain_david,5,10"/>
+    <property name="act3" value="add_monster slichen,50,spyder_lionmountain_david,5,10"/>
+    <property name="act4" value="add_monster glombroc,55,spyder_lionmountain_david,5,10"/>
+    <property name="act5" value="start_battle spyder_lionmountain_david"/>
+    <property name="act6" value="translated_dialog spyder_lionmountain_david2"/>
+    <property name="act7" value="set_variable lionmountaindavid:yes"/>
+    <property name="cond1" value="not variable_set lionmountaindavid:yes"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="446" name="Create Alexander" type="event" x="16" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_lionmountain_alexander,1,29"/>
+    <property name="act2" value="npc_face spyder_lionmountain_alexander,right"/>
+    <property name="cond1" value="not npc_exists spyder_lionmountain_alexander"/>
+   </properties>
+  </object>
+  <object id="447" name="Talk Alexander" type="event" x="48" y="464" width="16" height="16">
+   <properties>
+    <property name="act0" value="pathfind_to_player spyder_lionmountain_alexander"/>
+    <property name="act1" value="translated_dialog spyder_lionmountain_alexander1"/>
+    <property name="act2" value="add_monster weavifly,50,spyder_lionmountain_alexander,5,10"/>
+    <property name="act3" value="add_monster bumbulus,50,spyder_lionmountain_alexander,5,10"/>
+    <property name="act4" value="add_monster nimbulex,55,spyder_lionmountain_alexander,5,10"/>
+    <property name="act5" value="start_battle spyder_lionmountain_alexander"/>
+    <property name="act6" value="translated_dialog spyder_lionmountain_alexander2"/>
+    <property name="act7" value="set_variable lionmountainalex:yes"/>
+    <property name="cond1" value="not variable_set lionmountainalex:yes"/>
+    <property name="cond2" value="is player_at"/>
    </properties>
   </object>
  </objectgroup>

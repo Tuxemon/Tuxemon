@@ -755,7 +755,7 @@ msgid "combat_forfeit_trainer"
 msgstr "Can't forfeit!"
 
 msgid "combat_player_run"
-msgstr "You have run away!"
+msgstr "Run away!"
 
 msgid "combat_player_run_status"
 msgstr "Can't escape.\n{monster} is {status}!"

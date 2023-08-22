@@ -217,6 +217,7 @@ class CombatState(CombatAnimations):
         self._captured: bool = False
         self._captured_mon: Optional[Monster] = None
         self._new_tuxepedia: bool = False
+        self._run: bool = False
         self._lost_status: Optional[str] = None
         self._lost_monster: Optional[Monster] = None
 
@@ -348,7 +349,10 @@ class CombatState(CombatAnimations):
             if remaining == 0:
                 return "draw match"
             elif remaining == 1:
-                return "has winner"
+                if self._run:
+                    return "ran away"
+                else:
+                    return "has winner"
             else:
                 return "housekeeping phase"
 
@@ -388,8 +392,6 @@ class CombatState(CombatAnimations):
 
         elif phase == "housekeeping phase":
             self._turn += 1
-            # reset run for the next turn
-            self._run = "on"
             # fill all battlefield positions, but on round 1, don't ask
             self.fill_battlefield_positions(ask=self._turn > 1)
 
@@ -449,6 +451,7 @@ class CombatState(CombatAnimations):
             pass
 
         elif phase == "ran away":
+            message = None
             self.players[0].set_party_status()
             var = self.players[0].game_variables
             if self.is_trainer_battle:
@@ -461,17 +464,18 @@ class CombatState(CombatAnimations):
                     },
                 )
             else:
+                action_time = 0
                 # remove monsters still around
-                for mon in self.ai_players:
+                for mon in self.active_players:
                     mon.monsters.pop()
                 var["battle_last_result"] = OutputBattle.ran
-                message = T.translate("combat_player_run")
 
             # push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
             # if you run in PvP, you need "defeated message"
-            self.alert(message)
-            action_time += len(message) * letter_time
+            if message:
+                self.alert(message)
+                action_time += len(message) * letter_time
             self.task(
                 partial(self.client.push_state, WaitForInputState()),
                 action_time,
@@ -1049,6 +1053,16 @@ class CombatState(CombatAnimations):
             # successful techniques
             if result_tech["success"]:
                 m: Union[str, None] = None
+                # running monster
+                if technique.slug == "menu_run":
+                    template = getattr(technique, "use_success")
+                    m = T.format(template, context)
+                    self._run = True
+                    # trigger run
+                    for remove in self.players:
+                        self.clean_combat()
+                        del self.monsters_in_play[remove]
+                        self.players.remove(remove)
                 # related to switch effect
                 if has_effect(technique, "switch"):
                     m = generic(user, technique, target, _player)

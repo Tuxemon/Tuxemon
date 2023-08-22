@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING, Callable, DefaultDict, Generator, List
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import combat, formula, graphics, tools
+from tuxemon import combat, graphics, tools
 from tuxemon.db import ElementType, ItemCategory, State, TechSort
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -127,6 +127,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         """
         run = Technique()
         run.load("menu_run")
+        run.combat_state = self.combat
         if not run.validate(self.monster):
             tools.open_dialog(
                 local_session,
@@ -144,23 +145,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         self.client.pop_state(self)
         player = self.party[0]
         enemy = self.opponents[0]
-        var = self.player.game_variables
-        # if the variable doesn't exist
-        if "run_attempts" not in var:
-            var["run_attempts"] = 0
-        if (
-            formula.escape(player.level, enemy.level, var["run_attempts"])
-            and self.combat._run == "on"
-        ):
-            var["run_attempts"] += 1
-            # clean up
-            self.combat.clean_combat()
-            # trigger run
-            del self.combat.monsters_in_play[self.player]
-            self.combat.players.remove(self.player)
-        else:
-            self.combat._run = "off"
-            self.combat.enqueue_action(player, run, enemy)
+        self.combat.enqueue_action(player, run, enemy)
 
     def open_swap_menu(self) -> None:
         """Open menus to swap monsters in party."""

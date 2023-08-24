@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="379">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="385">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="route5"/>
@@ -481,6 +481,64 @@
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="379" name="Create Rogue no pass" type="event" x="464" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_outsidewalled_rogue,33,14"/>
+    <property name="cond1" value="not npc_exists spyder_outsidewalled_rogue"/>
+    <property name="cond2" value="not has_item player,gold_pass"/>
+   </properties>
+  </object>
+  <object id="380" name="Talk Rogue no pass" type="event" x="464" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_outsidewalled_rogue1"/>
+    <property name="act2" value="translated_dialog spyder_outsidewalled_rogue2"/>
+    <property name="behav1" value="talk spyder_outsidewalled_rogue"/>
+    <property name="cond1" value="not has_item player,gold_pass"/>
+   </properties>
+  </object>
+  <object id="381" name="Create Rogue pass" type="event" x="448" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_outsidewalled_rogue,30,10"/>
+    <property name="act2" value="npc_face spyder_outsidewalled_rogue,right"/>
+    <property name="cond1" value="not npc_exists spyder_outsidewalled_rogue"/>
+    <property name="cond2" value="is has_item player,gold_pass"/>
+   </properties>
+  </object>
+  <object id="382" name="Talk Rogue pass" type="event" x="448" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_outsidewalled_rogue1"/>
+    <property name="act2" value="translated_dialog spyder_outsidewalled_rogue3"/>
+    <property name="behav1" value="talk spyder_outsidewalled_rogue"/>
+    <property name="cond1" value="is has_item player,gold_pass"/>
+    <property name="cond2" value="not variable_set walledmidas:yes"/>
+   </properties>
+  </object>
+  <object id="383" name="Talk Rogue pass" type="event" x="448" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_outsidewalled_rogue1"/>
+    <property name="act2" value="translated_dialog spyder_outsidewalled_rogue3"/>
+    <property name="act3" value="translated_dialog spyder_outsidewalled_rogue4"/>
+    <property name="behav1" value="talk spyder_outsidewalled_rogue"/>
+    <property name="cond1" value="is has_item player,gold_pass"/>
+    <property name="cond2" value="is variable_set walledmidas:yes"/>
+   </properties>
+  </object>
+  <object id="384" name="Create Midas" type="event" x="544" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_outsidewalled_midas,33,8"/>
+    <property name="cond1" value="not npc_exists spyder_outsidewalled_midas"/>
+    <property name="cond2" value="is has_item player,gold_pass"/>
+    <property name="cond3" value="is variable_set walledmidas:yes"/>
+   </properties>
+  </object>
+  <object id="385" name="Talk Midas" type="event" x="544" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_outsidewalled_midas1"/>
+    <property name="behav1" value="talk spyder_outsidewalled_midas"/>
+    <property name="cond1" value="is has_item player,gold_pass"/>
+    <property name="cond2" value="is variable_set walledmidas:yes"/>
    </properties>
   </object>
  </objectgroup>

@@ -73,7 +73,7 @@
     "slug": "spyder_mansion_drinkingbuddya",
     "template": [
       {
-        "sprite_name": "rogue",
+        "sprite_name": "rogue_green",
         "combat_front": "rogue",
         "slug": "rogue"
       }
@@ -233,7 +233,7 @@
     "slug": "spyder_basement_garret",
     "template": [
       {
-        "sprite_name": "rogue",
+        "sprite_name": "rogue_green",
         "combat_front": "rogue",
         "slug": "rogue"
       }

@@ -137,10 +137,12 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_walled_fugger"/>
     <property name="act1" value="translated_dialog spyder_walled_fugger1"/>
-    <property name="act2" value="add_monster coleorus,26,spyder_walled_fugger,27,10"/>
-    <property name="act3" value="start_battle spyder_walled_fugger"/>
-    <property name="act4" value="translated_dialog spyder_walled_fugger2"/>
-    <property name="act6" value="set_variable walledfugger:yes"/>
+    <property name="act2" value="add_monster polyrock,50,spyder_walled_fugger,5,10"/>
+    <property name="act3" value="add_monster sampsage,50,spyder_walled_fugger,5,10"/>
+    <property name="act4" value="add_monster sampsack,50,spyder_walled_fugger,5,10"/>
+    <property name="act5" value="start_battle spyder_walled_fugger"/>
+    <property name="act6" value="translated_dialog spyder_walled_fugger2"/>
+    <property name="act7" value="set_variable walledfugger:yes"/>
     <property name="cond1" value="not variable_set walledfugger:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
@@ -156,9 +158,10 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_walled_carnegie"/>
     <property name="act1" value="translated_dialog spyder_walled_carnegie1"/>
-    <property name="act2" value="add_monster coleorus,26,spyder_walled_carnegie,27,10"/>
-    <property name="act3" value="start_battle spyder_walled_carnegie"/>
-    <property name="act4" value="translated_dialog spyder_walled_carnegie2"/>
+    <property name="act2" value="add_monster tetrchimp,45,spyder_walled_carnegie,5,10"/>
+    <property name="act3" value="add_monster apeoro,55,spyder_walled_carnegie,5,10"/>
+    <property name="act4" value="start_battle spyder_walled_carnegie"/>
+    <property name="act5" value="translated_dialog spyder_walled_carnegie2"/>
     <property name="act6" value="set_variable walledcarnegie:yes"/>
     <property name="cond1" value="not variable_set walledcarnegie:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -175,10 +178,12 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_walled_ford"/>
     <property name="act1" value="translated_dialog spyder_walled_ford1"/>
-    <property name="act2" value="add_monster coleorus,26,spyder_walled_ford,27,10"/>
-    <property name="act3" value="start_battle spyder_walled_ford"/>
-    <property name="act4" value="translated_dialog spyder_walled_ford2"/>
-    <property name="act6" value="set_variable walledford:yes"/>
+    <property name="act2" value="add_monster drashimi,50,spyder_walled_ford,5,10"/>
+    <property name="act3" value="add_monster mingdyn,50,spyder_walled_ford,5,10"/>
+    <property name="act4" value="add_monster firomenis,50,spyder_walled_ford,5,10"/>
+    <property name="act5" value="start_battle spyder_walled_ford"/>
+    <property name="act6" value="translated_dialog spyder_walled_ford2"/>
+    <property name="act7" value="set_variable walledford:yes"/>
     <property name="cond1" value="not variable_set walledford:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
@@ -194,10 +199,12 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_walled_girard"/>
     <property name="act1" value="translated_dialog spyder_walled_girard1"/>
-    <property name="act2" value="add_monster coleorus,26,spyder_walled_girard,27,10"/>
-    <property name="act3" value="start_battle spyder_walled_girard"/>
-    <property name="act4" value="translated_dialog spyder_walled_girard2"/>
-    <property name="act6" value="set_variable walledgirard:yes"/>
+    <property name="act2" value="add_monster tigrock,50,spyder_walled_girard,5,10"/>
+    <property name="act3" value="add_monster anu,50,spyder_walled_girard,5,10"/>
+    <property name="act4" value="add_monster komodraw,50,spyder_walled_girard,5,10"/>
+    <property name="act5" value="start_battle spyder_walled_girard"/>
+    <property name="act6" value="translated_dialog spyder_walled_girard2"/>
+    <property name="act7" value="set_variable walledgirard:yes"/>
     <property name="cond1" value="not variable_set walledgirard:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
@@ -213,10 +220,12 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_walled_vanderbilt"/>
     <property name="act1" value="translated_dialog spyder_walled_vanderbilt1"/>
-    <property name="act2" value="add_monster coleorus,26,spyder_walled_vanderbilt,27,10"/>
-    <property name="act3" value="start_battle spyder_walled_vanderbilt"/>
-    <property name="act4" value="translated_dialog spyder_walled_vanderbilt"/>
-    <property name="act6" value="set_variable walledvanderbilt:yes"/>
+    <property name="act2" value="add_monster angesnow,50,spyder_walled_vanderbilt,5,10"/>
+    <property name="act3" value="add_monster cowpignon,50,spyder_walled_vanderbilt,5,10"/>
+    <property name="act4" value="add_monster narcileaf,50,spyder_walled_vanderbilt,5,10"/>
+    <property name="act5" value="start_battle spyder_walled_vanderbilt"/>
+    <property name="act6" value="translated_dialog spyder_walled_vanderbilt"/>
+    <property name="act7" value="set_variable walledvanderbilt:yes"/>
     <property name="cond1" value="not variable_set walledvanderbilt:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
@@ -225,10 +234,12 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_walled_ford"/>
     <property name="act1" value="translated_dialog spyder_walled_ford1"/>
-    <property name="act2" value="add_monster coleorus,26,spyder_walled_ford,27,10"/>
-    <property name="act3" value="start_battle spyder_walled_ford"/>
-    <property name="act4" value="translated_dialog spyder_walled_ford2"/>
-    <property name="act6" value="set_variable walledford:yes"/>
+    <property name="act2" value="add_monster drashimi,50,spyder_walled_ford,5,10"/>
+    <property name="act3" value="add_monster mingdyn,50,spyder_walled_ford,5,10"/>
+    <property name="act4" value="add_monster firomenis,50,spyder_walled_ford,5,10"/>
+    <property name="act5" value="start_battle spyder_walled_ford"/>
+    <property name="act6" value="translated_dialog spyder_walled_ford2"/>
+    <property name="act7" value="set_variable walledford:yes"/>
     <property name="cond1" value="not variable_set walledford:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
@@ -237,10 +248,12 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_walled_vanderbilt"/>
     <property name="act1" value="translated_dialog spyder_walled_vanderbilt1"/>
-    <property name="act2" value="add_monster coleorus,26,spyder_walled_vanderbilt,27,10"/>
-    <property name="act3" value="start_battle spyder_walled_vanderbilt"/>
-    <property name="act4" value="translated_dialog spyder_walled_vanderbilt"/>
-    <property name="act6" value="set_variable walledvanderbilt:yes"/>
+    <property name="act2" value="add_monster angesnow,50,spyder_walled_vanderbilt,5,10"/>
+    <property name="act3" value="add_monster cowpignon,50,spyder_walled_vanderbilt,5,10"/>
+    <property name="act4" value="add_monster narcileaf,50,spyder_walled_vanderbilt,5,10"/>
+    <property name="act5" value="start_battle spyder_walled_vanderbilt"/>
+    <property name="act6" value="translated_dialog spyder_walled_vanderbilt"/>
+    <property name="act7" value="set_variable walledvanderbilt:yes"/>
     <property name="cond1" value="not variable_set walledvanderbilt:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
@@ -256,10 +269,12 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_walled_astor"/>
     <property name="act1" value="translated_dialog spyder_walled_astor1"/>
-    <property name="act2" value="add_monster coleorus,26,spyder_walled_astor,27,10"/>
-    <property name="act3" value="start_battle spyder_walled_astor"/>
-    <property name="act4" value="translated_dialog spyder_walled_astor2"/>
-    <property name="act6" value="set_variable walledastor:yes"/>
+    <property name="act2" value="add_monster araignee,50,spyder_walled_astor,5,10"/>
+    <property name="act3" value="add_monster spighter,50,spyder_walled_astor,5,10"/>
+    <property name="act4" value="add_monster selket,50,spyder_walled_astor,5,10"/>
+    <property name="act5" value="start_battle spyder_walled_astor"/>
+    <property name="act6" value="translated_dialog spyder_walled_astor2"/>
+    <property name="act7" value="set_variable walledastor:yes"/>
     <property name="cond1" value="not variable_set walledastor:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>

@@ -566,6 +566,13 @@
             "width": 208,
             "x": 1200,
             "y": -1216
+        },
+        {
+            "fileName": "spyder_datacenter.tmx",
+            "height": 320,
+            "width": 320,
+            "x": -640,
+            "y": 2240
         }
     ],
     "onlyShowAdjacentMaps": false,

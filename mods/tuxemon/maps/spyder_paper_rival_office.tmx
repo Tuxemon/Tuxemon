@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="7" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="rival_office"/>
+  <property name="types" value="notype"/>
+ </properties>
+ <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="3865" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
+ </tileset>
+ <tileset firstgid="9279" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="7" height="7">
+  <data encoding="base64" compression="zlib">
+   eAEzYGJgWM6IiY2A4leA4lex4GtAMSagPDMWzAIUeyZAXwwAX0oklA==
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="7" height="7">
+  <data encoding="base64" compression="zlib">
+   eAFjYCAMdqpA1GxURah1hrLPQ+WOI8lFIrFBOu5C+fwKEP3PgfxnUPwCTe1fIP8PFP8D0spqDAwqQIwNWALFrYAYAPWbD7I=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="7" height="7">
+  <data encoding="base64" compression="zlib">
+   eAFjYKA/qFdlYHAF4qsqEJpSFwAAtRkCcg==
+  </data>
+ </layer>
+ <layer id="4" name="Above player" width="7" height="7">
+  <data encoding="base64" compression="zlib">
+   eAFjYKANyFRlYMgC4v0q2M1vAMpRCwAA/9kCpg==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collision">
+  <object id="1" type="collision" x="0" y="0" width="112" height="48"/>
+  <object id="5" type="collision" x="80" y="80" width="32" height="32"/>
+  <object id="6" type="collision" x="16" y="64" width="64" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="9" name="Go Downstairs" type="event" x="96" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_paper_rival_downstairs.tmx,0,3,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="33" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="play_music music_home"/>
+    <property name="cond10" value="not music_playing music_home"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

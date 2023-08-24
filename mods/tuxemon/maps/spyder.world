@@ -512,6 +512,27 @@
             "y": 512
         },
         {
+            "fileName": "spyder_paper_rival_downstairs.tmx",
+            "height": 208,
+            "width": 176,
+            "x": 1584,
+            "y": 3312
+        },
+        {
+            "fileName": "spyder_paper_rival_bedroom.tmx",
+            "height": 128,
+            "width": 128,
+            "x": 1760,
+            "y": 3312
+        },
+        {
+            "fileName": "spyder_paper_rival_office.tmx",
+            "height": 112,
+            "width": 112,
+            "x": 1472,
+            "y": 3312
+        },
+        {
             "fileName": "spyder_route7.tmx",
             "height": 640,
             "width": 640,

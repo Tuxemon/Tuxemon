@@ -33,7 +33,7 @@
     "slug": "spyder_candyhouse2_indiana",
     "template": [
       {
-        "sprite_name": "professor",
+        "sprite_name": "professor_green",
         "combat_front": "professor",
         "slug": "professor"
       }

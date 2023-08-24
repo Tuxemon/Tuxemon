@@ -73,7 +73,7 @@
     "slug": "spyder_route7_nino",
     "template": [
       {
-        "sprite_name": "professor",
+        "sprite_name": "professor_lapi",
         "combat_front": "professor",
         "slug": "professor"
       }

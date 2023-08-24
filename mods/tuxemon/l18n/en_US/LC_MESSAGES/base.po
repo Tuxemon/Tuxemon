@@ -2305,6 +2305,9 @@ msgstr "Route 7"
 msgid "routea"
 msgstr "Route A"
 
+msgid "routeb"
+msgstr "Route B"
+
 msgid "routec"
 msgstr "Route C"
 
@@ -2364,8 +2367,14 @@ msgstr "The gateway to Fondent!"
 msgid "routea_description"
 msgstr "A private grotto given over to the wilds!"
 
+msgid "routeb_description"
+msgstr "The winding path to instantaneous communication!"
+
 msgid "routec_description"
 msgstr "Home is just over the horizon!"
+
+msgid "routee_description"
+msgstr "Do not swim downstream of the pump site!"
 
 msgid "route1_description"
 msgstr "Take care!"
@@ -7038,6 +7047,18 @@ msgstr "I told you before - scram!"
 msgid "spyder_cottontown_enforcer2"
 msgstr "It is I who must scram!"
 
+msgid "spyder_cottontunnel_professor1"
+msgstr "Drat this infernal maze of tunnels... \n Oh, hello child... \n Me, lost?...  \n Not at all. I know exactly where I am."
+
+msgid "spyder_cottontunnel_shopassistant1"
+msgstr "I hope the professor is okay. He said he saw a fossil and ran off!"
+
+msgid "spyder_cottontunnel_carlos1"
+msgstr "I fell down a crack in the Dragon's Cave and wound up here somehow.\n Show me out of here, peasant!"
+
+msgid "spyder_cottontunnel_carlos2"
+msgstr "Hmm, perhaps I could have phrased that more nicely."
+
 msgid "spyder_cottoncafe_hackerchat"
 msgstr "It's so cool that you're helping with Tuxepedia.\n  ... \n Is there a prize for adding all the tuxemon? \n Only the satisfaction of helping the human race, man."
 
@@ -8507,6 +8528,9 @@ msgstr "Marciano"
 
 msgid "spyder_cottontown_barmaid"
 msgstr "Barmaid"
+
+msgid "spyder_cottontunnel_carlos"
+msgstr "Carlos"
 
 msgid "spyder_granny"
 msgstr "Granny"

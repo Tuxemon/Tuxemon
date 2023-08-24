@@ -83,7 +83,7 @@
     "slug": "sphalian_shopkeeper",
     "template": [
       {
-        "sprite_name": "shopassist",
+        "sprite_name": "shopassist_black",
         "combat_front": "shopassist",
         "slug": "shopassistant"
       }

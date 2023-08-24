@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="96">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="102">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -229,6 +229,55 @@
     <property name="act3" value="remove_npc spyder_cottontunnel_box6"/>
     <property name="act4" value="set_variable cottontunnel_melee:yes"/>
     <property name="behav1" value="talk spyder_cottontunnel_box6"/>
+   </properties>
+  </object>
+  <object id="96" name="Create Professor" type="event" x="0" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontunnel_professor,0,19"/>
+    <property name="act2" value="npc_face spyder_cottontunnel_professor,left"/>
+    <property name="cond1" value="not npc_exists spyder_cottontunnel_professor"/>
+    <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
+   </properties>
+  </object>
+  <object id="97" name="Talk Professor" type="event" x="0" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cottontunnel_professor1"/>
+    <property name="behav1" value="talk spyder_cottontunnel_professor"/>
+   </properties>
+  </object>
+  <object id="98" name="Create ShopAssistant" type="event" x="352" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontunnel_shopassistant,22,15"/>
+    <property name="act2" value="npc_face spyder_cottontunnel_shopassistant,up"/>
+    <property name="cond1" value="not npc_exists spyder_cottontunnel_shopassistant"/>
+    <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
+   </properties>
+  </object>
+  <object id="99" name="Talk ShopAssistant" type="event" x="352" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cottontunnel_shopassistant1"/>
+    <property name="behav1" value="talk spyder_cottontunnel_shopassistant"/>
+   </properties>
+  </object>
+  <object id="100" name="Create Carlos" type="event" x="592" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontunnel_carlos,37,9"/>
+    <property name="cond1" value="not npc_exists spyder_cottontunnel_carlos"/>
+    <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
+   </properties>
+  </object>
+  <object id="101" name="Talk Carlos" type="event" x="592" y="224" width="16" height="16">
+   <properties>
+    <property name="act10" value="pathfind_to_player spyder_cottontunnel_carlos"/>
+    <property name="act11" value="translated_dialog spyder_cottontunnel_carlos1"/>
+    <property name="act12" value="add_monster agnidon,35,spyder_cottontunnel_carlos,5,10"/>
+    <property name="act13" value="add_monster legko,35,spyder_cottontunnel_carlos,5,10"/>
+    <property name="act15" value="start_battle spyder_cottontunnel_carlos"/>
+    <property name="act16" value="translated_dialog spyder_cottontunnel_carlos2"/>
+    <property name="act17" value="set_variable cottontunnelcarlos:yes"/>
+    <property name="cond1" value="not variable_set cottontunnelcarlos:yes"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
  </objectgroup>

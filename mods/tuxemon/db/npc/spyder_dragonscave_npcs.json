@@ -13,7 +13,7 @@
     "slug": "spyder_dragonscave_benden",
     "template": [
       {
-        "sprite_name": "dragonrider",
+        "sprite_name": "dragonrider_black",
         "combat_front": "dragonrider",
         "slug": "dragonrider"
       }
@@ -23,7 +23,7 @@
     "slug": "spyder_dragonscave_cailin",
     "template": [
       {
-        "sprite_name": "dragonrider",
+        "sprite_name": "dragonrider_blue",
         "combat_front": "dragonrider",
         "slug": "dragonrider"
       }
@@ -53,7 +53,7 @@
     "slug": "spyder_dragonscave_griffin",
     "template": [
       {
-        "sprite_name": "dragonrider",
+        "sprite_name": "dragonrider_fiery",
         "combat_front": "dragonrider",
         "slug": "dragonrider"
       }
@@ -73,7 +73,7 @@
     "slug": "spyder_dragonscave_lessa",
     "template": [
       {
-        "sprite_name": "dragonrider",
+        "sprite_name": "dragonrider_black",
         "combat_front": "dragonrider",
         "slug": "dragonrider"
       }
@@ -113,7 +113,7 @@
     "slug": "spyder_dragonscave_tomas",
     "template": [
       {
-        "sprite_name": "dragonrider",
+        "sprite_name": "dragonrider_green",
         "combat_front": "dragonrider",
         "slug": "dragonrider"
       }

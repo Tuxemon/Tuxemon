@@ -268,5 +268,35 @@
         "slug": "interactive_obj"
       }
     ]
-  }  
+  },
+  {
+    "slug": "spyder_cottontunnel_professor",
+    "template": [
+      {
+        "sprite_name": "professor_fiery",
+        "combat_front": "professor",
+        "slug": "professor"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottontunnel_shopassistant",
+    "template": [
+      {
+        "sprite_name": "shopassist_black",
+        "combat_front": "shopassist",
+        "slug": "shopassistant"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottontunnel_carlos",
+    "template": [
+      {
+        "sprite_name": "dragonrider_black",
+        "combat_front": "dragonrider",
+        "slug": "dragonrider"
+      }
+    ]
+  }
 ]

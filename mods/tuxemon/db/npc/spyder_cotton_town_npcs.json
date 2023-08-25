@@ -43,7 +43,7 @@
     "slug": "spyder_cottonhouse1_lila",
     "template": [
       {
-        "sprite_name": "homemaker",
+        "sprite_name": "homemaker_blonde",
         "combat_front": "adventurer",
         "slug": "homemaker"
       }
@@ -123,7 +123,7 @@
     "slug": "spyder_cottonhouse2_sidney",
     "template": [
       {
-        "sprite_name": "catgirl",
+        "sprite_name": "catgirl_fiery",
         "combat_front": "catgirl",
         "slug": "catgirl"
       }
@@ -183,7 +183,7 @@
     "slug": "spyder_cottoncenter_ada",
     "template": [
       {
-        "sprite_name": "nurse",
+        "sprite_name": "nurse_green",
         "combat_front": "nurse",
         "slug": "nurse"
       }

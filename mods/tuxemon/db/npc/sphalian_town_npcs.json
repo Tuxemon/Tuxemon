@@ -13,7 +13,7 @@
     "slug": "sphalian_homemaker",
     "template": [
       {
-        "sprite_name": "homemaker",
+        "sprite_name": "homemaker_fiery",
         "combat_front": "heroine",
         "slug": "homemaker"
       }

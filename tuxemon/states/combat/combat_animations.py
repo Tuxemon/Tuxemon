@@ -17,7 +17,7 @@ from typing import (
     Literal,
     MutableMapping,
     Optional,
-    Tuple,
+    Tuple, Callable,
 )
 
 import pygame
@@ -44,6 +44,7 @@ logger = logging.getLogger(__name__)
 
 sprite_layer = 0
 hud_layer = 100
+TimedCallable = tuple[Callable, float]
 
 
 def toggle_visible(sprite: Sprite) -> None:
@@ -83,6 +84,8 @@ class CombatAnimations(ABC, Menu[None]):
         self.hud: MutableMapping[Monster, Sprite] = {}
         self.is_trainer_battle = False
         self.capdevs: List[CaptureDeviceSprite] = []
+        self.text_animations_queue: List[TimedCallable] = []
+        self._text_animation_time_left: float = 0
         self._hp_bars: MutableMapping[Monster, HpBar] = {}
         self._exp_bars: MutableMapping[Monster, ExpBar] = {}
         self._status_icons: defaultdict[Monster, List[Sprite]] = defaultdict(

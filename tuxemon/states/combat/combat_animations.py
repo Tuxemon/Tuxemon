@@ -121,13 +121,6 @@ class CombatAnimations(ABC, Menu[None]):
             player: layout[index] for index, player in enumerate(self.players)
         }
 
-    @abstractmethod
-    def suppress_phase_change(
-        self,
-        delay: float = 3.0,
-    ) -> Optional[Task]:
-        raise NotImplementedError
-
     def animate_open(self) -> None:
         self.transition_none_normal()
 
@@ -284,7 +277,6 @@ class CombatAnimations(ABC, Menu[None]):
             del self.hud[monster]
 
         self.animate_monster_leave(monster)
-        self.suppress_phase_change()
         self.task(kill, 2)
 
         for monsters in self.monsters_in_play.values():
@@ -789,7 +781,6 @@ class CombatAnimations(ABC, Menu[None]):
                 partial(self.alert, gotcha),
                 action_time,
             )
-            self._animation_in_progress = True
         else:
             breakout_delay = 1.8 + num_shakes * 1.0
             self.task(  # make the monster appear again!

@@ -238,9 +238,6 @@ class CombatState(CombatAnimations):
         self._log_action: List[Tuple[int, EnqueuedAction]] = []
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self._layout = dict()  # player => home areas on screen
-        self._animation_in_progress: bool = (
-            False  # if true, delay phase change
-        )
         self._turn: int = 0
         self._prize: int = 0
         self._captured: bool = False
@@ -291,8 +288,7 @@ class CombatState(CombatAnimations):
                 0)
             next_animation()
 
-        if (not self._animation_in_progress and
-            self._text_animation_time_left <= 0 and
+        if (self._text_animation_time_left <= 0 and
             all(map(self.is_task_finished, self.animations))):
             new_phase = self.determine_phase(self.phase)
             if new_phase:
@@ -752,7 +748,6 @@ class CombatState(CombatAnimations):
         humans = list(self.human_players)
 
         # TODO: integrate some values for different match types
-        released = False
         for player in self.active_players:
             if len(alive_party(player)) == 1:
                 player.max_position = 1
@@ -764,14 +759,10 @@ class CombatState(CombatAnimations):
                     player, self.monsters_in_play[player], self._turn
                 )
                 for _ in range(positions_available):
-                    released = True
                     if player in humans and ask:
                         self.ask_player_for_monster(player)
                     else:
                         self.add_monster_into_play(player, next(available))
-
-        if released:
-            self.suppress_phase_change()
 
     def add_monster_into_play(
         self,
@@ -1016,37 +1007,6 @@ class CombatState(CombatAnimations):
 
         for action in to_remove:
             self._action_queue.remove(action)
-
-    def suppress_phase_change(
-        self,
-        delay: float = ACTION_TIME,
-    ) -> Optional[Task]:
-        """
-        Prevent the combat phase from changing for a limited time.
-
-        Use this function to prevent the phase from changing.  When
-        animating elements of the phase, call this to prevent player
-        input as well as phase changes.
-
-        Delay will be extended in case of multiple calls in a row, assuming
-        they are related to different animations.
-
-        Parameters:
-            delay: Amount of seconds to delay phase changes.
-
-        Returns:
-            The task scheduled to allow back the phase changing
-        """
-        if self._animation_in_progress:
-            self._post_animation_task.reset_delay(delay)
-            return self._post_animation_task
-
-        self._animation_in_progress = True
-        self._post_animation_task: Task = self.task(
-            partial(setattr, self, "_animation_in_progress", False),
-            delay,
-        )
-        return self._post_animation_task
 
     def perform_action(
         self,

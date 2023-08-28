@@ -90,27 +90,25 @@
   </object>
   <object id="20" name="First Visit to Cotton Cafe" type="event" x="160" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="wait 0.1"/>
+    <property name="act01" value="wait 0.1"/>
     <property name="act10" value="player_stop"/>
     <property name="act11" value="lock_controls"/>
     <property name="act15" value="pathfind spyder_cottontown_hacker,7,3"/>
     <property name="act20" value="npc_face spyder_cottontown_hacker,down"/>
     <property name="act21" value="translated_dialog spyder_cotton_tuxepediaahem"/>
-    <property name="act22" value="npc_face spyder_cottoncafe_lotus,up"/>
-    <property name="act23" value="npc_face spyder_cottoncafe_cayden,up"/>
-    <property name="act24" value="npc_face spyder_cottoncafe_wilford,up"/>
-    <property name="act25" value="npc_face spyder_cottoncafe_juliana,up"/>
-    <property name="act26" value="npc_face spyder_cottoncafe_hillary,up"/>
+    <property name="act22" value="pathfind player,7,5"/>
+    <property name="act23" value="npc_face player,up"/>
+    <property name="act24" value="npc_face spyder_cottoncafe_lotus,up"/>
+    <property name="act25" value="npc_face spyder_cottoncafe_cayden,up"/>
+    <property name="act26" value="npc_face spyder_cottoncafe_wilford,up"/>
+    <property name="act27" value="npc_face spyder_cottoncafe_juliana,up"/>
+    <property name="act28" value="npc_face spyder_cottoncafe_hillary,up"/>
     <property name="act30" value="translated_dialog spyder_cotton_tuxepediaintro"/>
     <property name="act40" value="translated_dialog spyder_cotton_tuxepediaintro2"/>
     <property name="act50" value="screen_transition 0.5"/>
     <property name="act51" value="wait 0.5"/>
     <property name="act52" value="set_variable visitedcottoncafe:yes"/>
     <property name="act53" value="add_item app_tuxepedia"/>
-    <property name="act61" value="remove_npc spyder_cottoncafe_lotus"/>
-    <property name="act63" value="remove_npc spyder_cottoncafe_wilford"/>
-    <property name="act64" value="remove_npc spyder_cottoncafe_juliana"/>
-    <property name="act77" value="pathfind spyder_cottontown_hacker,7,5"/>
     <property name="act88" value="translated_dialog spyder_cotton_tuxepediaintro4"/>
     <property name="act90" value="unlock_controls"/>
     <property name="behav1" value="talk spyder_cottontown_hacker"/>

@@ -247,13 +247,15 @@
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_cottontown_hacker,23,23"/>
     <property name="act30" value="pathfind_to_player spyder_cottontown_hacker,left"/>
+    <property name="act31" value="npc_face spyder_cottontown_hacker,right"/>
     <property name="act40" value="translated_dialog spyder_cottontown_stopthere"/>
     <property name="act50" value="pathfind player,33,29"/>
     <property name="act51" value="wait 0.5"/>
     <property name="act52" value="pathfind_to_player spyder_cottontown_hacker,left"/>
-    <property name="act53" value="wait 0.5"/>
-    <property name="act54" value="translated_dialog spyder_cottontown_followme"/>
-    <property name="act55" value="wait 0.5"/>
+    <property name="act53" value="npc_face spyder_cottontown_hacker,right"/>
+    <property name="act54" value="wait 0.5"/>
+    <property name="act55" value="translated_dialog spyder_cottontown_followme"/>
+    <property name="act56" value="wait 0.5"/>
     <property name="act60" value="pathfind spyder_cottontown_hacker,23,23"/>
     <property name="act80" value="remove_npc spyder_cottontown_hacker"/>
     <property name="act90" value="unlock_controls"/>

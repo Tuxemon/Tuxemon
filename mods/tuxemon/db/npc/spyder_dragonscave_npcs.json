@@ -93,7 +93,7 @@
     "slug": "spyder_dragonscave_mal",
     "template": [
       {
-        "sprite_name": "spyderboss",
+        "sprite_name": "spyderboss_fiery",
         "combat_front": "spyder_boss",
         "slug": "spyder_boss"
       }

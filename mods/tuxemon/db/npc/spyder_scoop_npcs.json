@@ -3,7 +3,7 @@
     "slug": "spyder_scoop_alyssa",
     "template": [
       {
-        "sprite_name": "nurse",
+        "sprite_name": "nurse_blonde",
         "combat_front": "nurse",
         "slug": "nurse"
       }
@@ -13,7 +13,7 @@
     "slug": "spyder_scoop_paine",
     "template": [
       {
-        "sprite_name": "nurse",
+        "sprite_name": "nurse_green",
         "combat_front": "nurse",
         "slug": "nurse"
       }
@@ -63,7 +63,7 @@
     "slug": "spyder_scoop_taggart",
     "template": [
       {
-        "sprite_name": "nurse",
+        "sprite_name": "nurse_red",
         "combat_front": "nurse",
         "slug": "nurse"
       }
@@ -73,7 +73,7 @@
     "slug": "spyder_scoop_arachne",
     "template": [
       {
-        "sprite_name": "spyderboss",
+        "sprite_name": "spyderboss_blonde",
         "combat_front": "spyder_boss",
         "slug": "spyder_boss"
       }

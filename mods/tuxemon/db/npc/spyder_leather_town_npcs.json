@@ -33,7 +33,7 @@
     "slug": "spyder_leathergym_bradfort",
     "template": [
       {
-        "sprite_name": "postboy",
+        "sprite_name": "postboy_green",
         "combat_front": "adventurer",
         "slug": "postboy"
       }
@@ -173,7 +173,7 @@
     "slug": "spyder_leathermuseum_kasey",
     "template": [
       {
-        "sprite_name": "postboy",
+        "sprite_name": "postboy_red",
         "combat_front": "adventurer",
         "slug": "postboy"
       }

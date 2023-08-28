@@ -3,7 +3,7 @@
     "slug": "spyder_route5_cleo",
     "template": [
       {
-        "sprite_name": "catgirl",
+        "sprite_name": "catgirl_blonde",
         "combat_front": "catgirl",
         "slug": "catgirl"
       }

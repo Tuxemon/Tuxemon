@@ -1573,7 +1573,6 @@ class CombatState(CombatAnimations):
         return False
 
     def evolve(self) -> None:
-        self.client.pop_state()
         for monster in self.players[0].monsters:
             for evolution in monster.evolutions:
                 evolved = Monster()
@@ -1696,4 +1695,5 @@ class CombatState(CombatAnimations):
                 MonsterInfoState(monster=self._captured_mon)
             )
         else:
+            self.phase = None
             self.client.push_state(FadeOutTransition(caller=self))

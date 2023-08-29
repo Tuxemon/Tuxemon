@@ -17,7 +17,8 @@ from typing import (
     Literal,
     MutableMapping,
     Optional,
-    Tuple, Callable,
+    Tuple,
+    Callable,
 )
 
 import pygame

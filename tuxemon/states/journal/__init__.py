@@ -264,15 +264,7 @@ class JournalInfoState(PygameMenuState):
         else:
             evo = T.translate("no_evolution")
         # types
-        types = ""
-        if len(monster.types) == 1:
-            types = T.translate(monster.types[0].name)
-        else:
-            types = (
-                T.translate(monster.types[0].name)
-                + " "
-                + T.translate(monster.types[1].name)
-            )
+        types = " ".join(map(lambda s: T.translate(s.name), monster.types))
         # weight and height
         unit = local_session.player.game_variables["unit_measure"]
         if unit == "Metric":
@@ -518,15 +510,7 @@ class MonsterInfoState(PygameMenuState):
         else:
             evo = T.translate("no_evolution")
         # types
-        types = ""
-        if len(monster.types) == 1:
-            types = T.translate(monster.types[0].slug)
-        else:
-            types = (
-                T.translate(monster.types[0].slug)
-                + " "
-                + T.translate(monster.types[1].slug)
-            )
+        types = " ".join(map(lambda s: T.translate(s.slug), monster.types))
         # weight and height
         results = db.lookup(monster.slug, table="monster")
         diff_weight, diff_height = formula.weight_height_diff(monster, results)

@@ -8,7 +8,7 @@ notably, the use of self.game
 from __future__ import annotations
 
 import logging
-from abc import ABC, abstractmethod
+from abc import ABC
 from collections import defaultdict
 from functools import partial
 from typing import (
@@ -34,7 +34,6 @@ from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.tools import scale, scale_sequence
 
 if TYPE_CHECKING:
-    from tuxemon.animation import Task
     from tuxemon.db import BattleGraphicsModel
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster

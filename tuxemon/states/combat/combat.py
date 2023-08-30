@@ -297,7 +297,7 @@ class CombatState(CombatAnimations):
         self._text_animation_time_left -= time_delta
         if (
             self.no_ongoing_text_animation()
-            and len(self.text_animations_queue) > 0
+            and self.text_animations_queue
         ):
             (
                 next_animation,

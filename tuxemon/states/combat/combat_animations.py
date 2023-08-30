@@ -13,12 +13,12 @@ from collections import defaultdict
 from functools import partial
 from typing import (
     TYPE_CHECKING,
+    Callable,
     List,
     Literal,
     MutableMapping,
     Optional,
     Tuple,
-    Callable,
 )
 
 import pygame

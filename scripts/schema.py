@@ -19,29 +19,29 @@ from tuxemon.db import (
 def write_json_schema(output_dir):
     print(f"Writing JSON schemas to '{output_dir}'...")
     with open(os.path.join(output_dir, "economy-schema.json"), "w") as f:
-        f.write(EconomyModel.schema_json(indent=2))
+        f.write(EconomyModel.model_json_schema(indent=2))
     with open(
         os.path.join(output_dir, "encounter-schema.json"), "w"
     ) as f:
-        f.write(EncounterModel.schema_json(indent=2))
+        f.write(EncounterModel.model_json_schema(indent=2))
     with open(
         os.path.join(output_dir, "environment-schema.json"), "w"
     ) as f:
-        f.write(EnvironmentModel.schema_json(indent=2))
+        f.write(EnvironmentModel.model_json_schema(indent=2))
     with open(os.path.join(output_dir, "item-schema.json"), "w") as f:
-        f.write(ItemModel.schema_json(indent=2))
+        f.write(ItemModel.model_json_schema(indent=2))
     with open(os.path.join(output_dir, "monster-schema.json"), "w") as f:
-        f.write(MonsterModel.schema_json(indent=2))
+        f.write(MonsterModel.model_json_schema(indent=2))
     with open(os.path.join(output_dir, "music-schema.json"), "w") as f:
-        f.write(MusicModel.schema_json(indent=2))
+        f.write(MusicModel.model_json_schema(indent=2))
     with open(os.path.join(output_dir, "npc-schema.json"), "w") as f:
-        f.write(NpcModel.schema_json(indent=2))
+        f.write(NpcModel.model_json_schema(indent=2))
     with open(os.path.join(output_dir, "sound-schema.json"), "w") as f:
-        f.write(SoundModel.schema_json(indent=2))
+        f.write(SoundModel.model_json_schema(indent=2))
     with open(
         os.path.join(output_dir, "technique-schema.json"), "w"
     ) as f:
-        f.write(TechniqueModel.schema_json(indent=2))
+        f.write(TechniqueModel.model_json_schema(indent=2))
 
 
 if __name__ == "__main__":

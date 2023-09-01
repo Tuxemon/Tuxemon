@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
 
 sprite_layer = 0
 hud_layer = 100
-TimedCallable = tuple[Callable, float]
+TimedCallable = Tuple[Callable, float]
 
 
 def toggle_visible(sprite: Sprite) -> None:

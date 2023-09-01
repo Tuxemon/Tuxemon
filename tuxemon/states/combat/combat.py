@@ -295,10 +295,7 @@ class CombatState(CombatAnimations):
         """
         super().update(time_delta)
         self._text_animation_time_left -= time_delta
-        if (
-            self.no_ongoing_text_animation()
-            and self.text_animations_queue
-        ):
+        if self.no_ongoing_text_animation() and self.text_animations_queue:
             (
                 next_animation,
                 self._text_animation_time_left,
@@ -1339,9 +1336,7 @@ class CombatState(CombatAnimations):
                         mex = check_moves(winners, diff)
                         if mex:
                             message += "\n" + mex
-                            action_time += compute_text_animation_time(
-                                message
-                            )
+                            action_time += compute_text_animation_time(message)
                         # updates hud graphics player
                         if len(self.monsters_in_play_human) > 1:
                             self.build_hud(

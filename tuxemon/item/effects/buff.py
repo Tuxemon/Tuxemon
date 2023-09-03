@@ -53,4 +53,4 @@ class BuffEffect(ItemEffect):
         else:
             raise ValueError(f"{self.stat} must be a stat.")
 
-        return {"success": True}
+        return {"success": True, "num_shakes": 0, "extra": None}

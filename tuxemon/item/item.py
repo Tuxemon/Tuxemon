@@ -239,8 +239,8 @@ class Item:
         meta_result: ItemEffectResult = {
             "name": self.name,
             "num_shakes": 0,
-            "should_tackle": False,
             "success": False,
+            "extra": None,
         }
 
         # Loop through all the effects of this technique and execute the effect's function.

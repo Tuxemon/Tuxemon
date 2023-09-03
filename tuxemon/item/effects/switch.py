@@ -50,4 +50,4 @@ class SwitchEffect(ItemEffect):
                 ele = Element(_target)
                 target.types = [ele]
                 done = True
-        return {"success": done}
+        return {"success": done, "num_shakes": 0, "extra": None}

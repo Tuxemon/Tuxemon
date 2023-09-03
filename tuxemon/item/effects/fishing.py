@@ -29,6 +29,7 @@ class FishingEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> FishingEffectResult:
         # define random encounters
+        fishing: bool = False
         bas = []
         adv = []
         pro = []
@@ -68,9 +69,7 @@ class FishingEffect(ItemEffect):
                 WildEncounterAction(
                     monster_slug=mon_slug, monster_level=level, env="ocean"
                 ).start()
-                return {"success": True}
-            else:
-                return {"success": False}
+                fishing = True
         elif item.slug == "neptune":
             if bait <= 65:
                 mon_slug = random.choice(adv)
@@ -78,9 +77,7 @@ class FishingEffect(ItemEffect):
                 WildEncounterAction(
                     monster_slug=mon_slug, monster_level=level, env="ocean"
                 ).start()
-                return {"success": True}
-            else:
-                return {"success": False}
+                fishing = True
         elif item.slug == "poseidon":
             if bait <= 85:
                 mon_slug = random.choice(pro)
@@ -88,7 +85,5 @@ class FishingEffect(ItemEffect):
                 WildEncounterAction(
                     monster_slug=mon_slug, monster_level=level, env="ocean"
                 ).start()
-                return {"success": True}
-            else:
-                return {"success": False}
-        return {"success": False}
+                fishing = True
+        return {"success": fishing, "num_shakes": 0, "extra": None}

@@ -2305,6 +2305,9 @@ msgstr "Route 7"
 msgid "routea"
 msgstr "Route A"
 
+msgid "routeb"
+msgstr "Route B"
+
 msgid "routec"
 msgstr "Route C"
 
@@ -2347,7 +2350,7 @@ msgid "lion_mountain_description"
 msgstr "One of Fondent's Holy Mountains! Prominence 3,776 m (12,388 ft)!"
 
 msgid "candy_town_description"
-msgstr "Candy Town Slogan"
+msgstr "Pushing the bounds of possibility - with biology!"
 
 msgid "citypark_description"
 msgstr "A Taste of the Wild!"
@@ -2364,14 +2367,35 @@ msgstr "Proof that beauty and mining can co-exist!"
 msgid "paper_town_description"
 msgstr "The gateway to Fondent!"
 
+msgid "routea_description"
+msgstr "A private grotto given over to the wilds!"
+
+msgid "routeb_description"
+msgstr "The winding path to instantaneous communication!"
+
+msgid "routec_description"
+msgstr "Home is just over the horizon!"
+
+msgid "routee_description"
+msgstr "Do not swim downstream of the pump site!"
+
 msgid "route1_description"
 msgstr "Take care!"
 
 msgid "route2_description"
 msgstr "The historic path!"
 
+msgid "route3_description"
+msgstr "Enjoy the scenic beauty of this 'artificial canyon'."
+
+msgid "route4_description"
+msgstr "Up and down the road again!"
+
 msgid "route5_description"
 msgstr "The memorial passage to Timber Town!"
+
+msgid "route6_description"
+msgstr "A playful meander along the river!"
 
 msgid "route7_description"
 msgstr "The Ascension Trail on the slopes of Lion Mountain!"
@@ -2384,6 +2408,9 @@ msgstr "A peaceful refuge!"
 
 msgid "timber_town_description"
 msgstr "Breadbasket of Fondant!"
+
+msgid "tunnel_description"
+msgstr "The dark expanse - watch your step!"
 
 ## MAP SIGNS ##
 
@@ -3224,7 +3251,7 @@ msgid "dragarbor"
 msgstr "Dragarbor"
 
 msgid "drashimi_description"
-msgstr ""
+msgstr "It lies on the ground, smelling delicious and tempting monsters to take a bite - but when they approach, it bites them first."
 
 msgid "drashimi"
 msgstr "Drashimi"
@@ -4058,7 +4085,7 @@ msgid "sharpfin"
 msgstr "Sharpfin"
 
 msgid "shelagu_description"
-msgstr ""
+msgstr "It wards off attackers by poisoning its spiky shell with goo spat from its mouth."
 
 msgid "shelagu"
 msgstr "Shelagu"
@@ -4232,7 +4259,7 @@ msgid "tikorch"
 msgstr "Tikorch"
 
 msgid "tobishimi_description"
-msgstr ""
+msgstr "TOBISHIMI spawn eggs in vast numbers, and carry them about under their chins for safekeeping until the next full moon - when they hatch."
 
 msgid "tobishimi"
 msgstr "Tobishimi"
@@ -4256,7 +4283,7 @@ msgid "trapsnap"
 msgstr "Trapsnap"
 
 msgid "tsushimi_description"
-msgstr ""
+msgstr "While sometimes referred to as its armor, the fleshy plates on TSUSHIMI are softer than its skin. Their purpose remains unknown."
 
 msgid "tsushimi"
 msgstr "Tsushimi"
@@ -7068,6 +7095,18 @@ msgstr "I told you before - scram!"
 msgid "spyder_cottontown_enforcer2"
 msgstr "It is I who must scram!"
 
+msgid "spyder_cottontunnel_professor1"
+msgstr "Drat this infernal maze of tunnels... \n Oh, hello child... \n Me, lost?...  \n Not at all. I know exactly where I am."
+
+msgid "spyder_cottontunnel_shopassistant1"
+msgstr "I hope the professor is okay. He said he saw a fossil and ran off!"
+
+msgid "spyder_cottontunnel_carlos1"
+msgstr "I fell down a crack in the Dragon's Cave and wound up here somehow.\n Show me out of here, peasant!"
+
+msgid "spyder_cottontunnel_carlos2"
+msgstr "Hmm, perhaps I could have phrased that more nicely."
+
 msgid "spyder_cottoncafe_hackerchat"
 msgstr "It's so cool that you're helping with Tuxepedia.\n  ... \n Is there a prize for adding all the tuxemon? \n Only the satisfaction of helping the human race, man."
 
@@ -7657,6 +7696,16 @@ msgid "spyder_route5_tryphaena2"
 msgstr "Well, might makes right."
 msgid "spyder_timber_mom1"
 msgstr "Hey bojo, your BOARD doesn't work on water. Unless you've got power."
+msgid "spyder_outsidewalled_rogue1"
+msgstr "Welcome to the Walled Garden. Gold Pass, please."
+msgid "spyder_outsidewalled_rogue2"
+msgstr "Oh, I see. \n This is an exclusive venue for elite battlers. No amateurs."
+msgid "spyder_outsidewalled_rogue3"
+msgstr "Please, come in. Let me take your coat."
+msgid "spyder_outsidewalled_rogue4"
+msgstr "Yeah, yeah, let a thousand cheap flowers bloom. In you go."
+msgid "spyder_outsidewalled_midas1"
+msgstr "Welcome one and all to the Public Garden. \n Lovers of tuxemon and the sport of tuxemon battling are our honored guests."
 msgid "spyder_timber_mom2"
 msgstr "What I mean to say is, here's a Surfboard! Ride it onto the river and see what happens!"
 msgid "spyder_timber_dante1"
@@ -7839,6 +7888,65 @@ msgid "spyder_route7_sordello1"
 msgstr "If you could buy anything you wanted, what would you buy?"
 msgid "spyder_route7_sordello2"
 msgstr "Probably a couple of revives and some potions."
+
+msgid "spyder_lionmountain_jacques1"
+msgstr "I've never been that high before \n and it's very very strenuous to climb ice like that."
+msgid "spyder_lionmountain_jacques2"
+msgstr "Not only is it technically difficult and unstable and frightening \n but your heart goes like crazy because of the altitude."
+msgid "spyder_lionmountain_adam1"
+msgstr "I was up, it was windy."
+msgid "spyder_lionmountain_adam2"
+msgstr "Then it started snowing."
+msgid "spyder_lionmountain_arlene1"
+msgstr "No anchors at any point."
+msgid "spyder_lionmountain_arlene2"
+msgstr "It was physically very, very tiring, full-body climbing really."
+msgid "spyder_lionmountain_david1"
+msgstr "It took me the best part of five or six hours to climb about the last piece."
+msgid "spyder_lionmountain_david2"
+msgstr "Carried on way after it got dark."
+msgid "spyder_lionmountain_alexander1"
+msgstr "Already the clouds are coming in from the east. Big clouds."
+msgid "spyder_lionmountain_alexander2"
+msgstr "I expect this ridge to be quite ... Brace yourself."
+msgid "spyder_lionmountain_emilio1"
+msgstr "Half an hour to an hour after leaving the summit, I was lost."
+msgid "spyder_lionmountain_emilio2"
+msgstr "I was in the wild, I couldn't see anything."
+msgid "spyder_lionmountain_chhurim1"
+msgstr "I'm going to make the summit, I can actually make the summit."
+msgid "spyder_lionmountain_chhurim2"
+msgstr "Will there be anyone there?"
+msgid "spyder_lionmountain_tom1"
+msgstr "I don't know entirely what happened for the rest of that night."
+msgid "spyder_lionmountain_tom2"
+msgstr "I stopped looking at the watch, and everything just started to go apart."
+msgid "spyder_lionmountain_conrad1"
+msgstr "I remember smelling something."
+msgid "spyder_lionmountain_conrad2"
+msgstr "It was a really strong smell."
+msgid "spyder_lionmountain_kurt1"
+msgstr "I'm not capable of going any further."
+msgid "spyder_lionmountain_kurt2"
+msgstr "I made the mistake of having a little bit of hope."
+msgid "spyder_lionmountain_snarlon1"
+msgstr "Graar!"
+msgid "spyder_lionmountain_snarlon2"
+msgstr "Ufff."
+
+msgid "spyder_lionmountain_nurse1"
+msgstr "To be honest with you, I am older than you think."
+msgid "spyder_lionmountain_scientist1"
+msgstr "That's the biggest grasshopper I've ever seen."
+msgid "spyder_lionmountain_enforcer1"
+msgstr "So the incident at the Datacenter has been resolved?"
+msgid "spyder_lionmountain_enforcer2"
+msgstr "It could have been so much worse.\n Omnichannel was developing a tuxemon that can control human emotion.\n If Kernel had gotten access to Chromeye, there would have been no stopping it."
+msgid "spyder_lionmountain_enforcer3"
+msgstr "So when the breakdown occurred, I retreated here."
+msgid "spyder_lionmountain_enforcer4"
+msgstr "It looks like you can handle this. Maybe you are the only one who can."
+
 msgid "spyder_flower_artist1"
 msgstr "Simplistic and clumsy brushstrokes and a pedestrian theme. Bah! Another ruined canvas."
 msgid "spyder_flower_muse1"
@@ -8483,6 +8591,9 @@ msgstr "Marciano"
 msgid "spyder_cottontown_barmaid"
 msgstr "Barmaid"
 
+msgid "spyder_cottontunnel_carlos"
+msgstr "Carlos"
+
 msgid "spyder_granny"
 msgstr "Granny"
 
@@ -8731,6 +8842,30 @@ msgid "spyder_route7_manfred"
 msgstr "Manfred"
 msgid "spyder_route7_sordello"
 msgstr "Sordello"
+
+msgid "spyder_lionmountain_jacques"
+msgstr "Jacques"
+msgid "spyder_lionmountain_adam"
+msgstr "Adam"
+msgid "spyder_lionmountain_arlene"
+msgstr "Arlene"
+msgid "spyder_lionmountain_david"
+msgstr "David"
+msgid "spyder_lionmountain_alexander"
+msgstr "Alexander"
+msgid "spyder_lionmountain_emilio"
+msgstr "Emilio"
+msgid "spyder_lionmountain_chhurim"
+msgstr "Chhurim"
+msgid "spyder_lionmountain_tom"
+msgstr "Tom"
+msgid "spyder_lionmountain_conrad"
+msgstr "Conrad"
+msgid "spyder_lionmountain_kurt"
+msgstr "Kurt"
+msgid "spyder_lionmountain_snarlon"
+msgstr "Snarlon"
+
 msgid "spyder_searoutec_nigel"
 msgstr "Nigel"
 msgid "spyder_searoutec_river"
@@ -9106,6 +9241,30 @@ msgstr "Sunnyside Manor: If we are not home leave a message with our housekeeper
 msgid "spyder_papertown_home"
 msgstr "Home sweet home!"
 
+msgid "spyder_papertown_rival"
+msgstr "Billie's House"
+
+msgid "spyder_rivalbedroom_radio_morning"
+msgstr "Morning: A Pop song is playing. It's called \"Omni Love: A Journey Through Channels of the Heart\"."
+
+msgid "spyder_rivalbedroom_radio_afternoon"
+msgstr "Afternoon: A Rock song is playing. It's called \"Rise to Dominate: The Ultimate Trainer's Anthem\"."
+
+msgid "spyder_rivalbedroom_radio_dusk"
+msgstr "Dusk: A Country song is playing. It's called \"Breaking Chains, Finding Strength: From Fear to Enforcer\"."
+
+msgid "spyder_rivalbedroom_radio_dawn"
+msgstr "Dawn: A Metal song is playing. It's called \"Dragon's Roar: Percussive Fury\"."
+
+msgid "spyder_rivalbedroom_radio_night"
+msgstr "Night: A Techno song is playing. It's called \"Bot Revolution: Rise of the Botbots\"."
+
+msgid "spyder_rivaldownstairs_tv"
+msgstr "A group of schoolboys stranded on a deserted island, and of their struggles to overcome adversity."
+
+msgid "spyder_rivaloffice_haiku"
+msgstr "It's a haiku: From Rock to Kitten, Evolution's dance unfolds, Transformation blooms."
+
 msgid "spyder_papertown_restinbed"
 msgstr "You awake fully rested!"
 
@@ -9314,6 +9473,114 @@ msgid "spyder_wayfarerinn_sign"
 msgstr "Welcome to the Wayfarer Inn! "
 msgid "spyder_omnichannel_note"
 msgstr "Haha, suckers - you'll never find me. \n It's on the Omnichannel CEO's letterhead."
+
+msgid "spyder_walled_osman"
+msgstr "Osman"
+msgid "spyder_walled_musa"
+msgstr "Musa"
+msgid "spyder_walled_augustus"
+msgstr "Augustus"
+msgid "spyder_walled_fugger"
+msgstr "Fugger"
+msgid "spyder_walled_rufus"
+msgstr "Rufus"
+msgid "spyder_walled_alexander"
+msgstr "Alexander"
+msgid "spyder_walled_carnegie"
+msgstr "Carnegie"
+msgid "spyder_walled_crassus"
+msgstr "Crassus"
+msgid "spyder_walled_girard"
+msgstr "Girard"
+msgid "spyder_walled_vanderbilt"
+msgstr "Vanderbilt"
+msgid "spyder_walled_ford"
+msgstr "Ford"
+msgid "spyder_walled_astor"
+msgstr "Astor"
+msgid "spyder_walled_midas"
+msgstr "Midas"
+
+msgid "spyder_walled_osman1"
+msgstr "Do you want to buy Tuxcoin?"
+
+msgid "spyder_walled_osman2"
+msgstr "I wish I have bought Tuxcoin ten years ago."
+
+msgid "spyder_walled_musa1"
+msgstr "Why do you keep asking such obvious questions?"
+
+msgid "spyder_walled_musa2"
+msgstr "Let's skip it."
+
+msgid "spyder_walled_augustus1"
+msgstr "I wrote nine academic papers!"
+
+msgid "spyder_walled_augustus2"
+msgstr "But I'm unable to win a match!"
+
+msgid "spyder_walled_fugger1"
+msgstr "My new movie was not as good as I thought it would be."
+
+msgid "spyder_walled_fugger2"
+msgstr "Too many fight scenes."
+
+msgid "spyder_walled_rufus1"
+msgstr "Do you really want to play this game with me?"
+
+msgid "spyder_walled_rufus2"
+msgstr "You have won."
+
+msgid "spyder_walled_alexander1"
+msgstr "Do you mind waiting an extra hour so I can read more of my book?"
+
+msgid "spyder_walled_alexander2"
+msgstr "Lasted less than thirty seconds."
+
+msgid "spyder_walled_carnegie1"
+msgstr "I often wish I was born in a time before social media."
+
+msgid "spyder_walled_carnegie2"
+msgstr "Let me update my status!"
+
+msgid "spyder_walled_crassus1"
+msgstr "I'm going to buy an island."
+
+msgid "spyder_walled_crassus2"
+msgstr "But which one?"
+
+msgid "spyder_walled_girard1"
+msgstr "Why not go back to them and tell them you changed your mind?"
+
+msgid "spyder_walled_girard2"
+msgstr "Who popped up in your mind?"
+
+msgid "spyder_walled_vanderbilt1"
+msgstr "People have justifications for hurting others, but they are rarely good justifications."
+
+msgid "spyder_walled_vanderbilt2"
+msgstr "What's your justification?"
+
+msgid "spyder_walled_ford1"
+msgstr "Did you hear about the big earthquake in ocean?"
+
+msgid "spyder_walled_ford2"
+msgstr "There was a tsunami alert!"
+
+msgid "spyder_walled_astor1"
+msgstr "What should you do if you find a spider on your bed?"
+
+msgid "spyder_walled_astor2"
+msgstr "Capture and sell!"
+
+msgid "spyder_walled_billie1"
+msgstr "Well hello, ${{name}}.\n You scrub up alright.\n Don't worry, I'm not going to battle you.\n I don't want my win rate to get any worse."
+
+msgid "spyder_walled_midas1"
+msgstr "I guess they're just giving out Gold Passes to everyone these days."
+
+msgid "spyder_walled_midas2"
+msgstr "... ... ...\n I founded the Walled Garden as a sanctuary for the better class of person\n to hone their battle skills and network with fellow members of the elite.\n But seeing you, a...\n what is the word?\n I want to say 'hoi polloi'? 'Villein'?\n Seeing a pleb like you triumph has made me reconsider.\n From this day on, I am going to open the Walled Garden to all comers.\n Anyone who wants to test their mettle can do so here."
 
 msgid "spyder_cottonhouse1_tvwatch"
 msgstr "It's the latest reality show: people and their tuxemon complete challenges on a remote island."

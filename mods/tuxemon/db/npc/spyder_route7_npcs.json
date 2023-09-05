@@ -43,7 +43,7 @@
     "slug": "spyder_route7_jacopo",
     "template": [
       {
-        "sprite_name": "magician_fiery",
+        "sprite_name": "magician_blonde",
         "combat_front": "magician",
         "slug": "magician"
       }
@@ -73,7 +73,7 @@
     "slug": "spyder_route7_nino",
     "template": [
       {
-        "sprite_name": "professor",
+        "sprite_name": "professor_lapi",
         "combat_front": "professor",
         "slug": "professor"
       }
@@ -113,7 +113,7 @@
     "slug": "spyder_route7_manfred",
     "template": [
       {
-        "sprite_name": "postboy",
+        "sprite_name": "postboy_green",
         "combat_front": "cooldude",
         "slug": "postboy"
       }
@@ -123,7 +123,7 @@
     "slug": "spyder_route7_sordello",
     "template": [
       {
-        "sprite_name": "tennisplayer",
+        "sprite_name": "tennisplayer_green",
         "combat_front": "coach",
         "slug": "coach"
       }

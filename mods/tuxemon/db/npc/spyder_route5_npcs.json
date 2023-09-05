@@ -3,7 +3,7 @@
     "slug": "spyder_route5_cleo",
     "template": [
       {
-        "sprite_name": "catgirl",
+        "sprite_name": "catgirl_blonde",
         "combat_front": "catgirl",
         "slug": "catgirl"
       }
@@ -63,7 +63,7 @@
     "slug": "spyder_route5_lexia",
     "template": [
       {
-        "sprite_name": "granny",
+        "sprite_name": "granny_lapi",
         "combat_front": "adventurer",
         "slug": "granny"
       }

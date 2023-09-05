@@ -23,7 +23,7 @@
     "slug": "spyder_searoutec_nigel",
     "template": [
       {
-        "sprite_name": "dragonrider",
+        "sprite_name": "dragonrider_blue",
         "combat_front": "dragonrider",
         "slug": "dragonrider"
       }

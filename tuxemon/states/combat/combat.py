@@ -58,7 +58,7 @@ from pygame.rect import Rect
 
 from tuxemon import audio, graphics, state, tools
 from tuxemon.ai import AI
-from tuxemon.animation import Task
+from tuxemon.animation import Animation, Task
 from tuxemon.battle import Battle
 from tuxemon.combat import (
     alive_party,
@@ -138,7 +138,7 @@ MULT_MAP = {
 # This is the time, in seconds, that the text takes to display.
 LETTER_TIME: float = 0.02
 # This is the time, in seconds, that the animation takes to finish.
-ACTION_TIME: float = 3.0
+ACTION_TIME: float = 2.0
 
 
 class TechniqueAnimationCache:
@@ -248,12 +248,31 @@ class CombatState(CombatAnimations):
         self._new_tuxepedia: bool = False
         self._lost_status: Optional[str] = None
         self._lost_monster: Optional[Monster] = None
+        self._post_animation_task: Optional[Task] = None
+        self._xp_message = None
 
         super().__init__(players, graphics)
         self.is_trainer_battle = combat_type == "trainer"
         self.show_combat_dialog()
         self.transition_phase("begin")
         self.task(partial(setattr, self, "phase", "ready"), 3)
+
+    @staticmethod
+    def is_task_finished(task: Union[Task, Animation]) -> bool:
+        """
+        Check if the task is finished or not.
+        In case the task is in fact an animation, it's considered as finished
+        by default since it should not be blocking.
+
+        Parameters:
+            task: the task (or animation) to be checked
+
+        Returns:
+            False if the task is a task and not finished
+        """
+        if isinstance(task, Task):
+            return task.is_finish()
+        return True
 
     def update(self, time_delta: float) -> None:
         """
@@ -265,7 +284,9 @@ class CombatState(CombatAnimations):
         * update the new phase, or the current one
         """
         super().update(time_delta)
-        if not self._animation_in_progress:
+        if not self._animation_in_progress and all(
+            map(self.is_task_finished, self.animations)
+        ):
             new_phase = self.determine_phase(self.phase)
             if new_phase:
                 self.phase = new_phase
@@ -666,6 +687,7 @@ class CombatState(CombatAnimations):
             self.perform_action(*action)
             self.task(self.check_party_hp, 1)
             self.task(self.animate_party_status, 3)
+            self.task(self.animate_xp_message, 3)
 
     def ask_player_for_monster(self, player: NPC) -> None:
         """
@@ -987,7 +1009,7 @@ class CombatState(CombatAnimations):
 
     def suppress_phase_change(
         self,
-        delay: float = 3.0,
+        delay: float = 2.0,
     ) -> Optional[Task]:
         """
         Prevent the combat phase from changing for a limited time.
@@ -996,19 +1018,25 @@ class CombatState(CombatAnimations):
         animating elements of the phase, call this to prevent player
         input as well as phase changes.
 
+        Delay will be extended in case of multiple calls in a row, assuming
+        they are related to different animations.
+
         Parameters:
             delay: Amount of seconds to delay phase changes.
 
+        Returns:
+            The task scheduled to allow back the phase changing
         """
         if self._animation_in_progress:
-            logger.debug("double suppress: bug?")
-            return None
+            self._post_animation_task.reset_delay(delay)
+            return self._post_animation_task
 
         self._animation_in_progress = True
-        return self.task(
+        self._post_animation_task: Task = self.task(
             partial(setattr, self, "_animation_in_progress", False),
             delay,
         )
+        return self._post_animation_task
 
     def perform_action(
         self,
@@ -1335,9 +1363,7 @@ class CombatState(CombatAnimations):
                         {"name": winners.name.upper(), "xp": awarded_exp},
                     )
                     message += "\n" + m
-            action_time += len(message) * letter_time
-            self.alert(message)
-            self.suppress_phase_change(action_time)
+            self._xp_message = message
 
             # Remove monster from damage map
             del self._damage_map[monster]
@@ -1361,6 +1387,16 @@ class CombatState(CombatAnimations):
                     )
                     self.animate_monster_faint(monster)
                     self.suppress_phase_change()
+
+    def animate_xp_message(self) -> None:
+        if self._xp_message is not None:
+            self.task(self._alert_xp, 2)
+
+    def _alert_xp(self) -> None:
+        action_time = ACTION_TIME + len(self._xp_message) * LETTER_TIME
+        self.alert(self._xp_message)
+        self.suppress_phase_change(action_time)
+        self._xp_message = None
 
     def check_party_hp(self) -> None:
         """

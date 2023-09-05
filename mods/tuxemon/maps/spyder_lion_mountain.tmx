@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="45" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="448">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="45" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="450">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -306,7 +306,7 @@
   </object>
   <object id="4" name="Teleport Town" type="event" x="0" y="1424" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport sphalian_town.tmx,22,14,0.3"/>
+    <property name="act10" value="transition_teleport spyder_sphalian_town.tmx,22,14,0.3"/>
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
@@ -404,7 +404,7 @@
   </object>
   <object id="313" name="Teleport Town" type="event" x="0" y="1440" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport sphalian_town.tmx,22,15,0.3"/>
+    <property name="act10" value="transition_teleport spyder_sphalian_town.tmx,22,15,0.3"/>
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
@@ -662,6 +662,26 @@
     <property name="act7" value="set_variable lionmountainalex:yes"/>
     <property name="cond1" value="not variable_set lionmountainalex:yes"/>
     <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="448" name="Create Snarlon" type="event" x="64" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_lionmountain_snarlon,4,5"/>
+    <property name="act2" value="npc_face spyder_lionmountain_snarlon,right"/>
+    <property name="cond1" value="not npc_exists spyder_lionmountain_snarlon"/>
+    <property name="cond2" value="not variable_set snarlonmountain:yes"/>
+    <property name="cond3" value="is variable_set hour:0"/>
+   </properties>
+  </object>
+  <object id="449" name="Talk Snarlon" type="event" x="32" y="48" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_lionmountain_snarlon1"/>
+    <property name="act3" value="wild_encounter snarlon,60,,,night_snowplain"/>
+    <property name="act4" value="translated_dialog spyder_lionmountain_snarlon2"/>
+    <property name="act6" value="set_variable snarlonmountain:yes"/>
+    <property name="act7" value="remove_npc spyder_lionmountain_snarlon"/>
+    <property name="behav1" value="talk spyder_lionmountain_snarlon"/>
+    <property name="cond1" value="not variable_set snarlonmountain:yes"/>
    </properties>
   </object>
  </objectgroup>

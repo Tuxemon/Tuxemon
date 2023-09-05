@@ -63,7 +63,7 @@
     "slug": "spyder_route5_lexia",
     "template": [
       {
-        "sprite_name": "granny",
+        "sprite_name": "granny_lapi",
         "combat_front": "adventurer",
         "slug": "granny"
       }

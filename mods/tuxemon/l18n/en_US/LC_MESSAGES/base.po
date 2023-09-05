@@ -7881,6 +7881,10 @@ msgid "spyder_lionmountain_kurt1"
 msgstr "I'm not capable of going any further."
 msgid "spyder_lionmountain_kurt2"
 msgstr "I made the mistake of having a little bit of hope."
+msgid "spyder_lionmountain_snarlon1"
+msgstr "Graar!"
+msgid "spyder_lionmountain_snarlon2"
+msgstr "Ufff."
 
 msgid "spyder_lionmountain_nurse1"
 msgstr "To be honest with you, I am older than you think."
@@ -8811,6 +8815,8 @@ msgid "spyder_lionmountain_conrad"
 msgstr "Conrad"
 msgid "spyder_lionmountain_kurt"
 msgstr "Kurt"
+msgid "spyder_lionmountain_snarlon"
+msgstr "Snarlon"
 
 msgid "spyder_searoutec_nigel"
 msgstr "Nigel"
@@ -9189,6 +9195,27 @@ msgstr "Home sweet home!"
 
 msgid "spyder_papertown_rival"
 msgstr "Billie's House"
+
+msgid "spyder_rivalbedroom_radio_morning"
+msgstr "Morning: A Pop song is playing. It's called \"Omni Love: A Journey Through Channels of the Heart\"."
+
+msgid "spyder_rivalbedroom_radio_afternoon"
+msgstr "Afternoon: A Rock song is playing. It's called \"Rise to Dominate: The Ultimate Trainer's Anthem\"."
+
+msgid "spyder_rivalbedroom_radio_dusk"
+msgstr "Dusk: A Country song is playing. It's called \"Breaking Chains, Finding Strength: From Fear to Enforcer\"."
+
+msgid "spyder_rivalbedroom_radio_dawn"
+msgstr "Dawn: A Metal song is playing. It's called \"Dragon's Roar: Percussive Fury\"."
+
+msgid "spyder_rivalbedroom_radio_night"
+msgstr "Night: A Techno song is playing. It's called \"Bot Revolution: Rise of the Botbots\"."
+
+msgid "spyder_rivaldownstairs_tv"
+msgstr "A group of schoolboys stranded on a deserted island, and of their struggles to overcome adversity."
+
+msgid "spyder_rivaloffice_haiku"
+msgstr "It's a haiku: From Rock to Kitten, Evolution's dance unfolds, Transformation blooms."
 
 msgid "spyder_papertown_restinbed"
 msgstr "You awake fully rested!"

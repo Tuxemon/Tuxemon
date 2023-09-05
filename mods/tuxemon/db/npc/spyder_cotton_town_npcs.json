@@ -93,7 +93,7 @@
     "slug": "spyder_cottoncafe_lotus",
     "template": [
       {
-        "sprite_name": "granny",
+        "sprite_name": "granny_lapi",
         "combat_front": "adventurer",
         "slug": "granny"
       }
@@ -113,7 +113,7 @@
     "slug": "spyder_cottonartshop_philis",
     "template": [
       {
-        "sprite_name": "granny",
+        "sprite_name": "granny_green",
         "combat_front": "adventurer",
         "slug": "granny"
       }

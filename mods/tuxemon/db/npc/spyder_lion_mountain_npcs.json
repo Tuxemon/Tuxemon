@@ -128,5 +128,15 @@
         "slug": "nurse"
       }
     ]
+  },
+  {
+    "slug": "spyder_lionmountain_snarlon",
+    "template": [
+      {
+        "sprite_name": "landrace",
+        "combat_front": "sludgehog",
+        "slug": "noclass"
+      }
+    ]
   }
 ]

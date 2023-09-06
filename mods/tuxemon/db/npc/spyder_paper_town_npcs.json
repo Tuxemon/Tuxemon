@@ -3,7 +3,7 @@
     "slug": "spyder_grannypiper",
     "template": [
       {
-        "sprite_name": "granny",
+        "sprite_name": "granny_yellow",
         "combat_front": "adventurer",
         "slug": "granny"
       }

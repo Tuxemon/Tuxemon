@@ -1667,6 +1667,12 @@ is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 * ["icon_recover.png"](https://wiki.tuxemon.org/File:Various15all7.png)
 [https://opengameart.org/content/various-icons CC0 on OGA]
 
+* ["icon_retaliate.png"](https://wiki.tuxemon.org/File:Retaliate.png)
+Adapted by Sanglorian from [https://opengameart.org/content/140-military-icons-set-fixed CC BY 3.0]
+
+* ["icon_revenge.png"](https://wiki.tuxemon.org/File:Revenge.png)
+Adapted by Sanglorian from [https://opengameart.org/content/140-military-icons-set-fixed CC BY 3.0]
+
 * ["icon_slow.png"](https://wiki.tuxemon.org/File:S_Poison07.png)
 Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 

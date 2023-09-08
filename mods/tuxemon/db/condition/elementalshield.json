@@ -1,0 +1,27 @@
+{
+  "animation": null,
+  "category": "positive",
+  "effects": [
+    "elemental_shield"
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_elementalshield.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "status_elementalshield",
+  "sort": "meta",
+  "target": {
+    "enemy monster": 0,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0
+  },
+  "cond_id": 28,
+  "use_failure": null,
+  "use_success": "combat_state_elemental_shield_get",
+  "gain_cond": null
+}

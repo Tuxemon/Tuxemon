@@ -1,0 +1,26 @@
+{
+  "animation": null,
+  "category": "negative",
+  "effects": [
+    "default"
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_noddingoff.png",
+  "range": "special",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "status_noddingoff",
+  "sort": "meta",
+  "target": {
+    "enemy monster": 0,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0
+  },
+  "cond_id": 6,
+  "use_failure": null,
+  "use_success": "combat_state_noddingoff_get",
+  "gain_cond": null
+}

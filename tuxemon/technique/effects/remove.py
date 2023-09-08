@@ -55,4 +55,10 @@ class RemoveEffect(TechEffect):
                     if has_status(target, self.condition):
                         done = True
                         target.status.clear()
-        return {"success": done}
+        return {
+            "success": done,
+            "damage": 0,
+            "element_multiplier": 0.0,
+            "should_tackle": False,
+            "extra": None,
+        }

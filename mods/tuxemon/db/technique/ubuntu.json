@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "ubuntu",
   "effects": [
-    "switch target,random",
-    "enhance"
+    "enhance",
+    "switch target,random"
   ],
   "flip_axes": "",
   "is_fast": false,

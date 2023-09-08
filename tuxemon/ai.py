@@ -116,18 +116,12 @@ class AI:
         """
         Send action tech.
         """
-        technique = pre_checking(
-            self.monster, technique, target, self.user, self.human
-        )
-        # check status response
-        if self.combat.status_response_technique(self.monster, technique):
-            self._lost_monster = self.monster
+        self.human.game_variables["action_tech"] = technique.slug
+        technique = pre_checking(self.monster, technique, target)
         self.combat.enqueue_action(self.monster, technique, target)
 
     def action_item(self, item: Item) -> None:
         """
         Send action item.
         """
-        if self.combat.status_response_item(self.monster):
-            self._lost_monster = self.monster
         self.combat.enqueue_action(self.user, item, self.monster)

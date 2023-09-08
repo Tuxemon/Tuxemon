@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "pound_bright",
   "effects": [
-    "switch target,fire",
-    "enhance"
+    "enhance",
+    "switch target,fire"
   ],
   "flip_axes": "",
   "is_fast": false,

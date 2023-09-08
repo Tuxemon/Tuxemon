@@ -879,7 +879,7 @@ msgid "combat_state_confused_get"
 msgstr "{target} is confused."
 
 msgid "combat_state_confused_tech"
-msgstr "{target} gets muddled and uses {name} instead!"
+msgstr "{target} gets muddled and not {name}!"
 
 msgid "combat_state_gold"
 msgstr "{name} gets {symbol}{gold}!"
@@ -895,6 +895,9 @@ msgstr "{target} will keep fighting."
 
 msgid "combat_state_diehard_tech"
 msgstr "{target} fights through the pain."
+
+msgid "combat_state_diehard_end"
+msgstr "{target} is too injured to gain Diehard."
 
 msgid "combat_state_dozing_get"
 msgstr "{target} is asleep."

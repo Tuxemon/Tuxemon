@@ -4,10 +4,11 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from tuxemon.db import ElementType
 from tuxemon.element import Element
+from tuxemon.locale import T
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -38,6 +39,7 @@ class SwitchEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> SwitchEffectResult:
+        extra: Optional[str] = None
         done: bool = False
         elements = list(ElementType)
         if self.element != "random":
@@ -68,4 +70,37 @@ class SwitchEffect(TechEffect):
                 user.types = [ele_u]
                 target.types = [ele_t]
                 done = True
-        return {"success": done}
+        if done:
+            _type: str = ""
+            _monster: str = ""
+            if self.objective == "both":
+                extra = T.format(
+                    "combat_state_switch_both",
+                    {
+                        "user": user.name.upper(),
+                        "type1": T.translate(user.types[0].slug),
+                        "target": target.name.upper(),
+                        "type2": T.translate(target.types[0].slug),
+                    },
+                )
+            else:
+                if self.objective == "target":
+                    _monster = target.name.upper()
+                    _type = T.translate(target.types[0].slug)
+                if self.objective == "user":
+                    _monster = user.name.upper()
+                    _type = T.translate(user.types[0].slug)
+                extra = T.format(
+                    "combat_state_switch",
+                    {
+                        "target": _monster,
+                        "types": _type,
+                    },
+                )
+        return {
+            "success": done,
+            "damage": 0,
+            "element_multiplier": 0.0,
+            "should_tackle": False,
+            "extra": extra,
+        }

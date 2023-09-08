@@ -506,15 +506,6 @@ class TechniqueModel(BaseModel):
     )
 
     # Optional fields
-    category: Optional[CategoryCondition] = Field(
-        None, description="Category status: positive or negative"
-    )
-    repl_pos: Optional[ResponseCondition] = Field(
-        None, description="How to reply to a positive status"
-    )
-    repl_neg: Optional[ResponseCondition] = Field(
-        None, description="How to reply to a negative status"
-    )
     use_tech: Optional[str] = Field(
         None,
         description="Slug of what string to display when technique is used",
@@ -550,12 +541,6 @@ class TechniqueModel(BaseModel):
     potency: Optional[float] = Field(
         None, description="How potent the technique is"
     )
-    statspeed: Optional[StatModel] = Field(None)
-    stathp: Optional[StatModel] = Field(None)
-    statarmour: Optional[StatModel] = Field(None)
-    statdodge: Optional[StatModel] = Field(None)
-    statmelee: Optional[StatModel] = Field(None)
-    statranged: Optional[StatModel] = Field(None)
 
     # Validate resources that should exist
     @validator("icon")
@@ -599,6 +584,108 @@ class TechniqueModel(BaseModel):
         if has.file(file):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
+
+
+class ConditionModel(BaseModel):
+    slug: str = Field(..., description="The slug of the condition")
+    sort: TechSort = Field(..., description="The sort of condition this is")
+    icon: str = Field(None, description="The icon to use for the condition")
+    conditions: Sequence[str] = Field(
+        [], description="Conditions that must be met"
+    )
+    effects: Sequence[str] = Field(
+        [], description="Effects this condition uses"
+    )
+    flip_axes: Literal["", "x", "y", "xy"] = Field(
+        ...,
+        description="Axes along which condition animation should be flipped",
+    )
+    target: Target = Field(
+        ..., description="Target mapping of who this condition is used on"
+    )
+    animation: Optional[str] = Field(
+        None, description="Animation to play for this condition"
+    )
+    sfx: str = Field(
+        ..., description="Sound effect to play when this condition is used"
+    )
+
+    # Optional fields
+    category: Optional[CategoryCondition] = Field(
+        None, description="Category status: positive or negative"
+    )
+    repl_pos: Optional[ResponseCondition] = Field(
+        None, description="How to reply to a positive status"
+    )
+    repl_neg: Optional[ResponseCondition] = Field(
+        None, description="How to reply to a negative status"
+    )
+    repl_tech: Optional[str] = Field(
+        None,
+        description="With which status reply after a tech used",
+    )
+    repl_item: Optional[str] = Field(
+        None,
+        description="With which status reply after an item used",
+    )
+    gain_cond: Optional[str] = Field(
+        None,
+        description="Slug of what string to display when condition is gained",
+    )
+    use_success: Optional[str] = Field(
+        None,
+        description="Slug of what string to display when condition succeeds",
+    )
+    use_failure: Optional[str] = Field(
+        None,
+        description="Slug of what string to display when condition fails",
+    )
+    range: Range = Field(..., description="The attack range of this condition")
+    cond_id: int = Field(..., description="The id of this condition")
+    statspeed: Optional[StatModel] = Field(None)
+    stathp: Optional[StatModel] = Field(None)
+    statarmour: Optional[StatModel] = Field(None)
+    statdodge: Optional[StatModel] = Field(None)
+    statmelee: Optional[StatModel] = Field(None)
+    statranged: Optional[StatModel] = Field(None)
+
+    # Validate resources that should exist
+    @validator("icon")
+    def file_exists(cls: ConditionModel, v: Any) -> Any:
+        if has.file(v):
+            return v
+        raise ValueError(f"the icon {v} doesn't exist in the db")
+
+    # Validate fields that refer to translated text
+    @validator("gain_cond", "use_success", "use_failure")
+    def translation_exists(cls: ConditionModel, v: Any) -> Any:
+        # None is ok here
+        if not v:
+            return v
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @validator("slug")
+    def translation_exists_cond(cls: ConditionModel, v: Any) -> Any:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @validator("animation")
+    def animation_exists(cls: ConditionModel, v: Any) -> Any:
+        file: str = f"animations/technique/{v}_00.png"
+        if not v:
+            return v
+        if has.file(file):
+            return v
+        raise ValueError(f"the animation {v} doesn't exist in the db")
+
+    @validator("repl_tech", "repl_item")
+    def status_exists(cls: ConditionModel, v: Any) -> Any:
+        if has.db_entry("condition", v):
+            return v
+        raise ValueError(f"the status {v} doesn't exist in the db")
 
 
 class PartyMemberModel(BaseModel):
@@ -797,6 +884,7 @@ TableName = Literal[
     "music",
     "npc",
     "sounds",
+    "condition",
     "technique",
 ]
 
@@ -812,6 +900,7 @@ DataModel = Union[
     MusicModel,
     NpcModel,
     SoundModel,
+    ConditionModel,
     TechniqueModel,
 ]
 
@@ -856,6 +945,7 @@ class JSONDatabase:
             "item",
             "monster",
             "npc",
+            "condition",
             "technique",
             "encounter",
             "environment",
@@ -1017,6 +1107,9 @@ class JSONDatabase:
             elif table == "sounds":
                 sfx = SoundModel(**item)
                 self.database[table][sfx.slug] = sfx
+            elif table == "condition":
+                cond = ConditionModel(**item)
+                self.database[table][cond.slug] = cond
             elif table == "technique":
                 teq = TechniqueModel(**item)
                 self.database[table][teq.slug] = teq
@@ -1033,6 +1126,10 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["monster"]) -> MonsterModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["condition"]) -> ConditionModel:
         pass
 
     @overload
@@ -1158,6 +1255,7 @@ class JSONDatabase:
             "music",
             "npc",
             "sounds",
+            "condition",
             "technique",
         ],
         slug: str,

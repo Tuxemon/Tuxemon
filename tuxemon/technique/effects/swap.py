@@ -60,4 +60,10 @@ class SwapEffect(TechEffect):
         combat_state.task(partial(swap_add, original_monster), 0.75)
         combat_state.suppress_phase_change(0.75)
 
-        return {"success": True}
+        return {
+            "success": True,
+            "damage": 0,
+            "element_multiplier": 0.0,
+            "should_tackle": False,
+            "extra": None,
+        }

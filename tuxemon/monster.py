@@ -8,6 +8,11 @@ import uuid
 from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
 
 from tuxemon import formula, fusion, graphics, tools
+from tuxemon.condition.condition import (
+    Condition,
+    decode_condition,
+    encode_condition,
+)
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import (
     CategoryCondition,
@@ -44,7 +49,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "level",
     "name",
     "slug",
-    "status",
     "total_experience",
     "flairs",
     "gender",
@@ -132,7 +136,7 @@ class Monster:
         self.shape = MonsterShape.default
         self.randomly = True
 
-        self.status: List[Technique] = []
+        self.status: List[Condition] = []
         self.plague = PlagueType.healthy
         self.taste_cold = TasteCold.tasteless
         self.taste_warm = TasteWarm.tasteless
@@ -352,13 +356,13 @@ class Monster:
         while self.total_experience >= self.experience_required(1):
             self.level_up()
 
-    def apply_status(self, status: Technique) -> None:
+    def apply_status(self, status: Condition) -> None:
         """
         Apply a status to the monster by replacing or removing
         the previous status.
 
         Parameters:
-            status: The status technique.
+            status: The status condition.
 
         """
         count_status = len(self.status)
@@ -669,7 +673,7 @@ class Monster:
         if body:
             save_data["body"] = body
 
-        save_data["status"] = encode_moves(self.status)
+        save_data["condition"] = encode_condition(self.status)
         save_data["moves"] = encode_moves(self.moves)
 
         return save_data
@@ -691,8 +695,8 @@ class Monster:
         for move in decode_moves(save_data.get("moves")):
             self.moves.append(move)
         self.status = []
-        for move in decode_moves(save_data.get("status")):
-            self.status.append(move)
+        for cond in decode_condition(save_data.get("condition")):
+            self.status.append(cond)
 
         for key, value in save_data.items():
             if key == "body" and value:
@@ -709,7 +713,7 @@ class Monster:
             move.full_recharge()
 
         if "status_faint" in (s.slug for s in self.status):
-            faint = Technique()
+            faint = Condition()
             faint.load("status_faint")
             self.status = [faint]
         else:

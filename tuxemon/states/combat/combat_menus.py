@@ -11,6 +11,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import combat, formula, graphics, tools
+from tuxemon.condition.condition import Condition
 from tuxemon.db import ElementType, ItemCategory, State, TechSort
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -115,7 +116,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         else:
             # trigger forfeit
             for mon in self.player.monsters:
-                faint = Technique()
+                faint = Condition()
                 faint.load("status_faint")
                 mon.current_hp = 0
                 mon.status = [faint]
@@ -244,7 +245,6 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             # enqueue the item
             self.combat.enqueue_action(self.player, item, target)
-            self.combat.status_response_item(target)
 
             # close all the open menus
             self.client.pop_state()  # close target chooser
@@ -342,16 +342,12 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 tools.open_dialog(local_session, [msg])
                 return
             else:
+                self.player.game_variables["action_tech"] = technique.slug
                 # pre checking (look for null actions)
                 technique = combat.pre_checking(
-                    self.monster, technique, target, self.player, self.enemy
+                    self.monster, technique, target
                 )
                 self.combat.enqueue_action(self.monster, technique, target)
-                # check status response
-                if self.combat.status_response_technique(
-                    self.monster, technique
-                ):
-                    self.combat._lost_monster = self.monster
                 # remove skip after using it
                 if technique.slug == "skip":
                     self.monster.moves.pop()

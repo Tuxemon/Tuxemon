@@ -10,4 +10,4 @@ natsort
 PyYAML>=5.4.1
 prompt_toolkit
 pygame-menu-ce>=4.4.1
-pydantic>=1.9.1
+pydantic>=2.3

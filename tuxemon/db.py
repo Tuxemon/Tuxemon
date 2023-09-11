@@ -21,7 +21,14 @@ from typing import (
     overload,
 )
 
-from pydantic import BaseModel, Field, ValidationError, validator
+from pydantic import (
+    BaseModel,
+    Field,
+    FieldValidationInfo,
+    ValidationError,
+    field_validator,
+)
+from typing_extensions import Annotated
 
 from tuxemon import prepare
 from tuxemon.locale import T
@@ -221,20 +228,20 @@ class ItemModel(BaseModel):
         title = "Item"
 
     # Validate fields that refer to translated text
-    @validator("use_item", "use_success", "use_failure")
+    @field_validator("use_item", "use_success", "use_failure")
     def translation_exists(cls: ItemModel, v: Any) -> Any:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
-    @validator("slug")
+    @field_validator("slug")
     def translation_exists_item(cls: ItemModel, v: Any) -> Any:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
     # Validate resources that should exist
-    @validator("sprite")
+    @field_validator("sprite")
     def file_exists(cls: ItemModel, v: Any) -> Any:
         if has.file(v):
             return v
@@ -250,7 +257,7 @@ class ShapeModel(BaseModel):
     ranged: int = Field(..., description="Ranged value")
     speed: int = Field(..., description="Speed value")
 
-    @validator("slug")
+    @field_validator("slug")
     def translation_exists_shape(cls: ShapeModel, v: Any) -> Any:
         if has.translation(v):
             return v
@@ -268,13 +275,13 @@ class MonsterMovesetItemModel(BaseModel):
         None, description="Element random technique"
     )
 
-    @validator("level_learned")
+    @field_validator("level_learned")
     def valid_level(cls: MonsterMovesetItemModel, v: Any) -> Any:
         if v < 0:
             raise ValueError(f"invalid level learned: {v}")
         return v
 
-    @validator("technique")
+    @field_validator("technique")
     def technique_exists(cls: MonsterMovesetItemModel, v: Any) -> Any:
         if has.db_entry("technique", v):
             return v
@@ -287,7 +294,7 @@ class MonsterHistoryItemModel(BaseModel):
         ..., description="The evolution stage of the monster"
     )
 
-    @validator("mon_slug")
+    @field_validator("mon_slug")
     def monster_exists(cls: MonsterHistoryItemModel, v: Any) -> Any:
         if has.db_entry("monster", v):
             return v
@@ -323,19 +330,19 @@ class MonsterEvolutionItemModel(BaseModel):
     )
     tech: Optional[str] = Field(None, description="Technique parameter.")
 
-    @validator("tech")
+    @field_validator("tech")
     def technique_exists(cls: MonsterEvolutionItemModel, v: Any) -> Any:
         if has.db_entry("technique", v):
             return v
         raise ValueError(f"the technique {v} doesn't exist in the db")
 
-    @validator("monster_slug")
+    @field_validator("monster_slug")
     def monster_exists(cls: MonsterEvolutionItemModel, v: Any) -> Any:
         if has.db_entry("monster", v):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
-    @validator("item")
+    @field_validator("item")
     def item_exists(cls: MonsterEvolutionItemModel, v: Any) -> Any:
         if has.db_entry("item", v):
             return v
@@ -354,7 +361,7 @@ class MonsterSpritesModel(BaseModel):
     menu2: str = Field(..., description="The menu2 sprite")
 
     # Validate resources that should exist
-    @validator("battle1", "battle2", "menu1", "menu2")
+    @field_validator("battle1", "battle2", "menu1", "menu2")
     def file_exists(cls: MonsterSpritesModel, v: Any) -> Any:
         if has.file(f"{v}.png"):
             return v
@@ -385,7 +392,9 @@ class MonsterModel(BaseModel):
     )
 
     # Optional fields
-    sprites: Optional[MonsterSpritesModel] = None
+    sprites: Annotated[
+        Optional[MonsterSpritesModel], Field(validate_default=True)
+    ] = None
     shape: MonsterShape = Field(..., description="The shape of the monster")
     types: Sequence[ElementType] = Field(
         [], description="The type(s) of this monster"
@@ -423,11 +432,11 @@ class MonsterModel(BaseModel):
 
     # Set the default sprites based on slug. Specifying 'always' is needed
     # because by default pydantic doesn't validate null fields.
-    @validator("sprites", always=True)
+    @field_validator("sprites")
     def set_default_sprites(
-        cls: MonsterModel, v: Any, values: Any
+        cls: MonsterModel, v: Any, info: FieldValidationInfo
     ) -> Union[Any, MonsterSpritesModel]:
-        slug = values["slug"]
+        slug = info.data.get("slug")
         default = MonsterSpritesModel(
             battle1=f"gfx/sprites/battle/{slug}-front",
             battle2=f"gfx/sprites/battle/{slug}-back",
@@ -436,7 +445,7 @@ class MonsterModel(BaseModel):
         )
         return v or default
 
-    @validator("category")
+    @field_validator("category")
     def translation_exists_category(cls: MonsterModel, v: Any) -> Any:
         if has.translation(f"cat_{v}"):
             return v
@@ -558,14 +567,14 @@ class TechniqueModel(BaseModel):
     statranged: Optional[StatModel] = Field(None)
 
     # Validate resources that should exist
-    @validator("icon")
+    @field_validator("icon")
     def file_exists(cls: TechniqueModel, v: Any) -> Any:
         if has.file(v):
             return v
         raise ValueError(f"the icon {v} doesn't exist in the db")
 
     # Validate fields that refer to translated text
-    @validator("use_tech", "use_success", "use_failure")
+    @field_validator("use_tech", "use_success", "use_failure")
     def translation_exists(cls: TechniqueModel, v: Any) -> Any:
         # None is ok here
         if not v:
@@ -574,24 +583,26 @@ class TechniqueModel(BaseModel):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
-    @validator("slug")
+    @field_validator("slug")
     def translation_exists_tech(cls: TechniqueModel, v: Any) -> Any:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
     # Custom validation for range
-    @validator("range")
-    def range_validation(cls: TechniqueModel, v: Any, values: Any) -> Any:
+    @field_validator("range")
+    def range_validation(
+        cls: TechniqueModel, v: Any, info: FieldValidationInfo
+    ) -> Any:
         # Special indicates that we are not doing damage
-        if v == Range.special and "damage" in values["effects"]:
+        if v == Range.special and "damage" in info.data["effects"]:
             raise ValueError(
                 '"special" range cannot be used with effect "damage"'
             )
 
         return v
 
-    @validator("animation")
+    @field_validator("animation")
     def animation_exists(cls: TechniqueModel, v: Any) -> Any:
         file: str = f"animations/technique/{v}_00.png"
         if not v:
@@ -610,7 +621,7 @@ class PartyMemberModel(BaseModel):
     exp_req_mod: int = Field(..., description="Experience required modifier")
     gender: GenderType = Field(..., description="Gender of the monster")
 
-    @validator("slug")
+    @field_validator("slug")
     def monster_exists(cls: PartyMemberModel, v: Any) -> Any:
         if has.db_entry("monster", v):
             return v
@@ -621,7 +632,7 @@ class BagItemModel(BaseModel):
     slug: str = Field(..., description="Slug of the item")
     quantity: int = Field(..., description="Quantity of the item")
 
-    @validator("slug")
+    @field_validator("slug")
     def item_exists(cls: BagItemModel, v: Any) -> Any:
         if has.db_entry("item", v):
             return v
@@ -639,14 +650,14 @@ class NpcTemplateModel(BaseModel):
         ..., description="Name of the battle back sprite filename"
     )
 
-    @validator("combat_front")
+    @field_validator("combat_front")
     def combat_file_exists(cls: NpcTemplateModel, v: Any) -> Any:
         file: str = f"gfx/sprites/player/{v}.png"
         if has.file(file):
             return v
         raise ValueError(f"{file} doesn't exist in the db")
 
-    @validator("sprite_name")
+    @field_validator("sprite_name")
     def sprite_exists(cls: NpcTemplateModel, v: Any) -> Any:
         sprite: str = f"sprites/{v}_front.png"
         sprite_obj: str = f"sprites_obj/{v}.png"
@@ -654,7 +665,7 @@ class NpcTemplateModel(BaseModel):
             return v
         raise ValueError(f"the sprite {v} doesn't exist in the db")
 
-    @validator("slug")
+    @field_validator("slug")
     def template_exists(cls: NpcTemplateModel, v: Any) -> Any:
         if has.db_entry("template", v):
             return v
@@ -681,7 +692,7 @@ class BattleGraphicsModel(BaseModel):
     background: str = Field(..., description="Sprite used for background")
 
     # Validate resources that should exist
-    @validator("island_back", "island_front", "background")
+    @field_validator("island_back", "island_front", "background")
     def file_exists(cls: BattleGraphicsModel, v: Any) -> Any:
         file: str = f"gfx/ui/combat/{v}"
         if has.file(file):
@@ -708,7 +719,7 @@ class EncounterItemModel(BaseModel):
     )
     exp_req_mod: int = Field(1, description="Exp modifier wild monster")
 
-    @validator("monster")
+    @field_validator("monster")
     def monster_exists(cls: EncounterItemModel, v: Any) -> Any:
         if has.db_entry("monster", v):
             return v
@@ -736,13 +747,13 @@ class ElementModel(BaseModel):
     icon: str = Field(..., description="The icon to use for the type")
     types: Sequence[ElementItemModel]
 
-    @validator("slug")
+    @field_validator("slug")
     def translation_exists_element(cls: ElementModel, v: Any) -> Any:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
-    @validator("icon")
+    @field_validator("icon")
     def file_exists(cls: ElementModel, v: Any) -> Any:
         if has.file(v):
             return v
@@ -756,7 +767,7 @@ class EconomyItemModel(BaseModel):
     inventory: int = Field(-1, description="Quantity of the item")
     variable: Optional[str] = Field(None, description="Variable of the item")
 
-    @validator("item_name")
+    @field_validator("item_name")
     def item_exists(cls: EconomyItemModel, v: Any) -> Any:
         if has.db_entry("item", v):
             return v

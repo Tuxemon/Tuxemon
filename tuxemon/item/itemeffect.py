@@ -18,6 +18,8 @@ logger = logging.getLogger(__name__)
 
 class ItemEffectResult(TypedDict):
     success: bool
+    num_shakes: int
+    extra: Union[str, None]
 
 
 @dataclass
@@ -73,4 +75,4 @@ class ItemEffect:
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> ItemEffectResult:
-        return {"success": True}
+        return {"success": True, "num_shakes": 0, "extra": None}

@@ -661,14 +661,14 @@ class ConditionModel(BaseModel):
     statranged: Optional[StatModel] = Field(None)
 
     # Validate resources that should exist
-    @validator("icon")
+    @field_validator("icon")
     def file_exists(cls: ConditionModel, v: Any) -> Any:
         if has.file(v):
             return v
         raise ValueError(f"the icon {v} doesn't exist in the db")
 
     # Validate fields that refer to translated text
-    @validator("gain_cond", "use_success", "use_failure")
+    @field_validator("gain_cond", "use_success", "use_failure")
     def translation_exists(cls: ConditionModel, v: Any) -> Any:
         # None is ok here
         if not v:
@@ -677,13 +677,13 @@ class ConditionModel(BaseModel):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
-    @validator("slug")
+    @field_validator("slug")
     def translation_exists_cond(cls: ConditionModel, v: Any) -> Any:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
-    @validator("animation")
+    @field_validator("animation")
     def animation_exists(cls: ConditionModel, v: Any) -> Any:
         file: str = f"animations/technique/{v}_00.png"
         if not v:
@@ -692,7 +692,7 @@ class ConditionModel(BaseModel):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
-    @validator("repl_tech", "repl_item")
+    @field_validator("repl_tech", "repl_item")
     def status_exists(cls: ConditionModel, v: Any) -> Any:
         if has.db_entry("condition", v):
             return v

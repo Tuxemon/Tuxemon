@@ -26,6 +26,7 @@ class LearnTmEffect(ItemEffect):
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> LearnTmEffectResult:
+        learn: bool = False
         assert target
         # monster moves
         moves = []
@@ -36,12 +37,9 @@ class LearnTmEffect(ItemEffect):
         res = list(set_moves)
         # continue operation
         if res:
-            if self.technique in res:
-                return {"success": False}
-            else:
+            if self.technique not in res:
                 self.user.game_variables[
                     "overwrite_technique"
                 ] = self.technique
-                return {"success": True}
-        else:
-            return {"success": False}
+                learn = True
+        return {"success": learn, "num_shakes": 0, "extra": None}

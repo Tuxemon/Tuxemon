@@ -7884,6 +7884,10 @@ msgid "spyder_lionmountain_kurt1"
 msgstr "I'm not capable of going any further."
 msgid "spyder_lionmountain_kurt2"
 msgstr "I made the mistake of having a little bit of hope."
+msgid "spyder_lionmountain_snarlon1"
+msgstr "Graar!"
+msgid "spyder_lionmountain_snarlon2"
+msgstr "Ufff."
 
 msgid "spyder_lionmountain_nurse1"
 msgstr "To be honest with you, I am older than you think."
@@ -8814,6 +8818,8 @@ msgid "spyder_lionmountain_conrad"
 msgstr "Conrad"
 msgid "spyder_lionmountain_kurt"
 msgstr "Kurt"
+msgid "spyder_lionmountain_snarlon"
+msgstr "Snarlon"
 
 msgid "spyder_searoutec_nigel"
 msgstr "Nigel"
@@ -9192,6 +9198,27 @@ msgstr "Home sweet home!"
 
 msgid "spyder_papertown_rival"
 msgstr "Billie's House"
+
+msgid "spyder_rivalbedroom_radio_morning"
+msgstr "Morning: A Pop song is playing. It's called \"Omni Love: A Journey Through Channels of the Heart\"."
+
+msgid "spyder_rivalbedroom_radio_afternoon"
+msgstr "Afternoon: A Rock song is playing. It's called \"Rise to Dominate: The Ultimate Trainer's Anthem\"."
+
+msgid "spyder_rivalbedroom_radio_dusk"
+msgstr "Dusk: A Country song is playing. It's called \"Breaking Chains, Finding Strength: From Fear to Enforcer\"."
+
+msgid "spyder_rivalbedroom_radio_dawn"
+msgstr "Dawn: A Metal song is playing. It's called \"Dragon's Roar: Percussive Fury\"."
+
+msgid "spyder_rivalbedroom_radio_night"
+msgstr "Night: A Techno song is playing. It's called \"Bot Revolution: Rise of the Botbots\"."
+
+msgid "spyder_rivaldownstairs_tv"
+msgstr "A group of schoolboys stranded on a deserted island, and of their struggles to overcome adversity."
+
+msgid "spyder_rivaloffice_haiku"
+msgstr "It's a haiku: From Rock to Kitten, Evolution's dance unfolds, Transformation blooms."
 
 msgid "spyder_papertown_restinbed"
 msgstr "You awake fully rested!"
@@ -9818,36 +9845,36 @@ msgstr "Do you want to skip the intro?"
 
 ## Sphalian Town ##
 
-msgid "sphalian_alert_skating"
+msgid "spyder_sphalian_alert_skating"
 msgstr "Always be cautious! Always bring safety gear!"
 
-msgid "sphalian_hackerchat"
+msgid "spyder_sphalian_hackerchat"
 msgstr "Two weeks ago a tremendous blizzard struck ${{map_name}}."
 
-msgid "sphalian_barmaid"
+msgid "spyder_sphalian_barmaid"
 msgstr "I don't skate very well."
 
-msgid "mountain_road_interrupted"
+msgid "spyder_mountain_road_interrupted"
 msgstr "Road blocked due to landslide."
 
-msgid "sphalian_grannypiper"
+msgid "spyder_sphalian_grannypiper"
 msgstr "The Great Blizzard's impact was so great that, still today, survivors met to commemorate."
 
-msgid "sphalian_monk"
+msgid "spyder_sphalian_monk"
 msgstr "I'm reminded of the time the blizzard killed my friend."
 
-msgid "sphalian_granny"
+msgid "spyder_sphalian_granny"
 msgstr "That's, uh... heavy. I'm sorry to hear that."
 
-msgid "sphalian_shopkeeper"
+msgid "spyder_sphalian_shopkeeper"
 msgstr "We worship and have deep respect for the mountain, we trust it will save us from whatever comes."
 
-msgid "sphalian_maniac"
+msgid "spyder_sphalian_maniac"
 msgstr "Climbers need to wake up and understand that climbing Lion Mountain is extremely risky.\n"
 "They need to stop believing just because they have strong tuxemon that they will be able to climb."
 
-msgid "sphalian_beck"
+msgid "spyder_sphalian_beck"
 msgstr "That's not even a little bit funny, man."
 
-msgid "sphalian_tvwatch"
+msgid "spyder_sphalian_tvwatch"
 msgstr "A journalist travels the globe hunting for lost civilizations."

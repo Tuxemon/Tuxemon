@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
 import os
+import subprocess
 import sys
 import time
 import warnings
@@ -35,6 +36,17 @@ def configure() -> None:
         warnings.filterwarnings("default")
 
         for logger_name in config.loggers:
+            # Get the current git hash
+            try:
+                githash = (
+                    subprocess.check_output(["git", "describe", "--always"])
+                    .strip()
+                    .decode()
+                )
+                print(f"Git Hash: {githash}")
+            except:
+                print("No Git Hash")
+
             # Enable logging for all modules if specified.
             if logger_name == "all":
                 print("Enabling logging of all modules.")

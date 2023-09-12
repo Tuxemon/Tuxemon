@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="7" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="7" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="38">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -66,6 +66,46 @@
    <properties>
     <property name="act10" value="play_music music_home"/>
     <property name="cond10" value="not music_playing music_home"/>
+   </properties>
+  </object>
+  <object id="37" name="Radio Dawn" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_rivalbedroom_radio_dawn"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is variable_set stage_of_day:night"/>
+   </properties>
+  </object>
+  <object id="38" name="Radio Dusk" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_rivalbedroom_radio_dusk"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is variable_set stage_of_day:dusk"/>
+   </properties>
+  </object>
+  <object id="39" name="Radio Afternoon" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_rivalbedroom_radio_afternoon"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is variable_set stage_of_day:afternoon"/>
+   </properties>
+  </object>
+  <object id="40" name="Radio Night" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_rivalbedroom_radio_night"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is variable_set stage_of_day:night"/>
+   </properties>
+  </object>
+  <object id="41" name="Radio Morning" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_rivalbedroom_radio_morning"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is variable_set stage_of_day:morning"/>
    </properties>
   </object>
  </objectgroup>

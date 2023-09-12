@@ -53,4 +53,4 @@ class HealEffect(ItemEffect):
         if target.current_hp > target.hp:
             target.current_hp = target.hp
 
-        return {"success": True}
+        return {"success": True, "num_shakes": 0, "extra": None}

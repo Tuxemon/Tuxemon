@@ -29,6 +29,7 @@ class RemoveEffect(ItemEffect):
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> RemoveEffectResult:
+        remove: bool = False
         coords: Tuple[int, int] = (0, 0)
         player = self.session.player
         facing = player.facing
@@ -51,6 +52,5 @@ class RemoveEffect(ItemEffect):
         if npc:
             RemoveNpcAction(npc_slug=npc.slug).start()
             self.session.player.game_variables[npc.slug] = self.name
-            return {"success": True}
-        else:
-            return {"success": False}
+            remove = True
+        return {"success": remove, "num_shakes": 0, "extra": None}

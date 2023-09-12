@@ -561,28 +561,28 @@
             "y": -2240
         },
         {
-            "fileName": "sphalian_town.tmx",
+            "fileName": "spyder_sphalian_town.tmx",
             "height": 400,
             "width": 368,
             "x": 1232,
             "y": -1040
         },
         {
-            "fileName": "sphalian_town_cafe.tmx",
+            "fileName": "spyder_sphalian_town_cafe.tmx",
             "height": 192,
             "width": 192,
             "x": 1408,
             "y": -1232
         },
         {
-            "fileName": "sphalian_town_house.tmx",
+            "fileName": "spyder_sphalian_town_house.tmx",
             "height": 128,
             "width": 144,
             "x": 1456,
             "y": -1360
         },
         {
-            "fileName": "sphalian_center.tmx",
+            "fileName": "spyder_sphalian_center.tmx",
             "height": 176,
             "width": 208,
             "x": 1200,

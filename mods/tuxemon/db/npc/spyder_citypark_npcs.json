@@ -3,7 +3,7 @@
     "slug": "spyder_citypark_bobette",
     "template": [
       {
-        "sprite_name": "catgirl",
+        "sprite_name": "catgirl_green",
         "combat_front": "catgirl",
         "slug": "catgirl"
       }

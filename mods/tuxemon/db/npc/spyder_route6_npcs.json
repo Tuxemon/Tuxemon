@@ -43,7 +43,7 @@
     "slug": "spyder_route6_richard",
     "template": [
       {
-        "sprite_name": "magician_fiery",
+        "sprite_name": "magician_grey",
         "combat_front": "magician",
         "slug": "magician"
       }

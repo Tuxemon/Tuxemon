@@ -2,7 +2,7 @@
   "slug": "cotton_misa_bro",
   "template": [
     {
-      "sprite_name": "childactor",
+      "sprite_name": "childactor_fiery",
       "combat_front": "yellowbelt",
       "slug": "childactor"
     }

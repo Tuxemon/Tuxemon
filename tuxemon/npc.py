@@ -838,7 +838,7 @@ class NPC(Entity[NPCState]):
         for npc_monster_details in npc_party:
             # This seems slightly wrong. The only usable element in
             # npc_monsters_details, which is a PartyMemberModel, is "slug"
-            monster = Monster(save_data=npc_monster_details.dict())
+            monster = Monster(save_data=npc_monster_details.model_dump())
             monster.money_modifier = npc_monster_details.money_mod
             monster.experience_modifier = npc_monster_details.exp_req_mod
             monster.set_level(monster.level)
@@ -855,7 +855,7 @@ class NPC(Entity[NPCState]):
         self.items = []
         npc_bag = npc_details.items
         for npc_itm_details in npc_bag:
-            itm = Item(save_data=npc_itm_details.dict())
+            itm = Item(save_data=npc_itm_details.model_dump())
             itm.quantity = npc_itm_details.quantity
 
         # load NPC template
@@ -864,7 +864,7 @@ class NPC(Entity[NPCState]):
         self.template = []
         npc_template = npc_details.template
         for npc_template_details in npc_template:
-            tmp = Template(save_data=npc_template_details.dict())
+            tmp = Template(save_data=npc_template_details.model_dump())
             tmp.sprite_name = npc_template_details.sprite_name
             tmp.combat_front = npc_template_details.combat_front
             self.template.append(tmp)

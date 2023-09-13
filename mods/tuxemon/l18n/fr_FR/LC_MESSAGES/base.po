@@ -420,7 +420,7 @@ msgstr ""
 "La présence d'un BOLT rend un NUT plus fort et relâche plus d'énergie."
 
 msgid "cairfrey"
-msgstr "Cairfrey"
+msgstr "Canhappy"
 
 msgid "cairfrey_description"
 msgstr "Un meuble joyeux qui s'est réveillé un matin et a décidé d'explorer."
@@ -701,7 +701,7 @@ msgid "possessun"
 msgstr "Possessun"
 
 msgid "possessun_description"
-msgstr "C'est un fantôme qui occupe la carcasse d'un Cairfrey."
+msgstr "C'est un fantôme qui occupe la carcasse d'un Canhappy."
 
 msgid "propellercat"
 msgstr "Félice"
@@ -3054,7 +3054,7 @@ msgstr ""
 
 msgid "spyder_wayfarer_granny"
 msgstr ""
-"Je ne peux expliquer... à un moment, mon Cairfrey était en forme, et peu "
+"Je ne peux expliquer... à un moment, mon Canhappy était en forme, et peu "
 "après, il était malade !\n"
 " Au moins, les Enforces sont arrivés assez tôt. "
 

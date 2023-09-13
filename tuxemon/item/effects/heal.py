@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING, Optional, Union
 
 from tuxemon.combat import has_status
+from tuxemon.db import ItemCategory
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+from tuxemon.locale import T
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -38,11 +40,16 @@ class HealEffect(ItemEffect):
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> HealEffectResult:
+        extra: Optional[str] = None
         assert target
         healing_amount = self.amount
         # condition festering = no healing
-        if has_status(target, "status_festering"):
+        if (
+            has_status(target, "status_festering")
+            and item.category == ItemCategory.potion
+        ):
             healing_amount = 0
+            extra = T.translate("combat_state_festering_item")
         if type(healing_amount) is float:
             healing_amount *= target.hp
 
@@ -53,4 +60,4 @@ class HealEffect(ItemEffect):
         if target.current_hp > target.hp:
             target.current_hp = target.hp
 
-        return {"success": True, "num_shakes": 0, "extra": None}
+        return {"success": True, "num_shakes": 0, "extra": extra}

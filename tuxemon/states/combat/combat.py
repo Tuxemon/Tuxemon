@@ -1216,19 +1216,9 @@ class CombatState(CombatAnimations):
                 }
                 template = getattr(technique, msg_type)
                 tmpl = T.format(template, context)
-                # check status festering, potions = no healing
-                if technique.category == ItemCategory.potion and has_status(
-                    target, "status_festering"
-                ):
-                    tmpl = T.translate("combat_state_festering_item")
-                # check statuses
-                if target.status:
-                    target.status[0].phase = "perform_action_item"
-                    result_status = target.status[0].use(target)
-                    if result_status["extra"]:
-                        message += "\n" + result_status["extra"]
-                    if result_status["condition"]:
-                        target.apply_status(result_status["condition"])
+                # extra output
+                if result_item["extra"]:
+                    tmpl = T.translate(result_item["extra"])
                 if template:
                     message += "\n" + tmpl
                     action_time += len(message) * letter_time

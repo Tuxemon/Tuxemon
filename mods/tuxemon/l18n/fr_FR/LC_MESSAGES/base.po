@@ -95,7 +95,7 @@ msgid "combat_used_x"
 msgstr "{user} utilise {name} !"
 
 msgid "combat_run"
-msgstr "{user} s'est enfuit !"
+msgstr "{user} s'est enfui !"
 
 msgid "combat_player_run"
 msgstr "Tu as pris la fuite !"
@@ -225,7 +225,7 @@ msgid "bite"
 msgstr "Morsure"
 
 msgid "fire_explosion"
-msgstr "Fire Explosion"
+msgstr "Explosion de feu"
 
 msgid "poison_string"
 msgstr "Dard-Venin"
@@ -243,7 +243,7 @@ msgid "whirlwind"
 msgstr "Tourbillon"
 
 msgid "run"
-msgstr "Run"
+msgstr "Course"
 
 ## MENU TRANSLATIONS ##
 # Monster Menu notifications
@@ -296,7 +296,7 @@ msgid "menu_player"
 msgstr "Joueur"
 
 msgid "menu_run"
-msgstr "Fuire"
+msgstr "Fuir"
 
 msgid "menu_save"
 msgstr "Sauvegarder"
@@ -312,7 +312,7 @@ msgid "multiplayer_duel"
 msgstr "{name} veut un Duel !"
 
 msgid "multiplayer_host_game"
-msgstr "Jeu hôte"
+msgstr "Héberger une partie"
 
 msgid "multiplayer_scan_games"
 msgstr "Rechercher des parties"
@@ -339,39 +339,39 @@ msgstr "Aardart"
 
 msgid "aardart_description"
 msgstr ""
-"Ça compte le nombre de fourmis que vous avez mangés, et récompense les "
-"nombres importants."
+"Compte combien de fourmis vous avez mangé, et vous récompense si vous"
+"en avez beaucoup mangé."
 
 msgid "aardorn"
 msgstr "Aardorn"
 
 msgid "aardorn_description"
 msgstr ""
-"À sa naissance, il est placé dans une fourmilière et doit en manger pour "
-"survivre."
+"À sa naissance, il est livré à lui-même dans une fourmilière et doit"
+"en manger les parois pour assurer sa survie."
 
 msgid "agnidon"
 msgstr "Agnidon"
 
 msgid "agnidon_description"
 msgstr ""
-"Je préfère à quatre pattes, mais qui peut se tenir sur deux pour ouvrir les "
-"portes, poussés des arbres, ou tenir des objets."
+"Il préfère marcher à quatre pattes, mais peut se tenir debout sur seulement"
+"deux pour ouvrir des portes, pousser des arbres ou porter des objets."
 
 msgid "agnigon"
 msgstr "Agnigon"
 
 msgid "agnigon_description"
 msgstr ""
-"C'est appelé un \"faux dragon' parce que ça ressemble à un dragon, mais en "
-"réalité, ça tient ses origines d'anciens reptiles."
+"On le surnomme \"faux dragon' car on dirait un dragon, mais en "
+"fait, il descend d'une lignée préhistorique de reptiles."
 
 msgid "agnite"
 msgstr "Agnite"
 
 msgid "agnite_description"
 msgstr ""
-"Il est joueur, mais il faut lui apprendre très jeune à maîtriser son ardeur."
+"Il est joueur, mais il faut lui apprendre à calmer ses ardeur quand il est petit."
 
 msgid "allagon"
 msgstr "Allagon"
@@ -389,7 +389,7 @@ msgstr ""
 "Il estime que les plantes qui poussent près de lui sont ses frères et sœurs."
 
 msgid "axylightl"
-msgstr "Axylightl"
+msgstr "Axolumière"
 
 msgid "axylightl_description"
 msgstr ""
@@ -397,7 +397,7 @@ msgstr ""
 "poissons."
 
 msgid "bamboon"
-msgstr "Bamboon"
+msgstr "Bambouin"
 
 msgid "bamboon_description"
 msgstr ""
@@ -417,7 +417,7 @@ msgstr "Bolt"
 
 msgid "bolt_description"
 msgstr ""
-"La présence d'un BOLT rend un NUT plus fort et déclenche plus d'énergie."
+"La présence d'un BOLT rend un NUT plus fort et relâche plus d'énergie."
 
 msgid "cairfrey"
 msgstr "Cairfrey"
@@ -445,8 +445,8 @@ msgstr "Cardinale"
 
 msgid "cardinale_description"
 msgstr ""
-"Il porte une haine sans limite pour ses prédateurs, qu'il attaque, eux et "
-"leurs juvéniles, dès qu'il le peut."
+"Il voue une haine sans limite pour ses prédateurs, qu'il attaque, eux et "
+"leurs petits, dès qu'il le peut."
 
 msgid "cardiwing"
 msgstr "Cardiwing"
@@ -457,12 +457,12 @@ msgstr ""
 "chanteur explosif."
 
 msgid "chillimp"
-msgstr "Chillimp"
+msgstr "Frissinge"
 
 msgid "chillimp_description"
 msgstr ""
-"Il parait qu'il vit dans la sommets enneigés des montagnes, mais aucune "
-"photo nette n'a jamais été prise."
+"Il vivrait sur les pics enneigés, mais personne "
+"n'a jamais pu en prendre de photo nette pour le confirmer."
 
 msgid "chloragon"
 msgstr "Chloragon"
@@ -470,15 +470,15 @@ msgstr "Chloragon"
 msgid "chloragon_description"
 msgstr ""
 "Il éclot quand un ancien œuf est planté dans un sol fertile. Quand il n'y "
-"aura plus d'œufs, tous les Chloragon disparaitront."
+"a plus d'œufs, tous les Chloragon disparaissent."
 
 msgid "conifrost"
-msgstr "Conifrost"
+msgstr "Conifroid"
 
 msgid "conifrost_description"
 msgstr ""
-"Il peut provoquer une avalanche avec un seul de ses éternuements. Alors il "
-"renifle en permanence."
+"Il peut provoquer une avalanche avec un seul de ses éternuements. "
+"Manque de chance, il renifle tout le temps..."
 
 msgid "corvix"
 msgstr "Corvix"
@@ -520,11 +520,10 @@ msgstr "Dragarbor"
 msgid "dragarbor_description"
 msgstr ""
 "Quand il sent venir sa fin, il recherche un cimetière pour aller s'y "
-"planter. Alors sa queue se transforme en fleur qui n'arrêtera jamais de "
-"pousser."
+"planter. Alors sa queue se transforme en fleur qui pousse constamment."
 
 msgid "dune_pincher"
-msgstr "Dune Pincher"
+msgstr "Pince-Dune"
 
 msgid "dune_pincher_description"
 msgstr ""
@@ -532,15 +531,15 @@ msgstr ""
 "désert, ce sont les linceuls funéraires des pharaons morts depuis longtemps."
 
 msgid "eaglace"
-msgstr "Eaglace"
+msgstr "Aiglace"
 
 msgid "eaglace_description"
 msgstr ""
-"Quand il s'envole, des nuages se forment. Et quand il bat des ailes, la "
-"grêle tombe."
+"Quand il s'envole, des nuages se forment. Et quand il bat des ailes, "
+"il se met à grêler."
 
 msgid "eyenemy"
-msgstr "Eyenemy"
+msgstr "Oeilnnemi"
 
 msgid "eyenemy_description"
 msgstr "Il se nourrit de magnifiques paysages et autres lieux exceptionnels."
@@ -565,24 +564,24 @@ msgid "firomenis"
 msgstr "Firomenis"
 
 msgid "firomenis_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"Les années passées sous forme de MERLICUN ont endurci et élargi ces tuxemon
+aux mâchoires si puissantes qu'elles peuvent casser en deux les arbres comme les os."
 
 msgid "fluttaflap"
 msgstr "Fluttaflap"
 
 msgid "fluttaflap_description"
 msgstr ""
-"Il se nourrit d'impuretés, qu'il prend dans le sang de ces ennemis, pour en "
-"rejeter le sang pur."
+"Il se nourrit d'impuretés, et nettoie donc le sang de ceux qu'il pique."
 
 msgid "fruitera"
 msgstr "Fruitera"
 
 msgid "fruitera_description"
 msgstr ""
-"FRUITERA a faim de fruits et en transporte autant qu'il le peut. Lorsqu'il "
-"est surpris, il laisse tomber tous ses fruits, les ramasse à nouveau puis "
-"s'enfuit."
+"FRUITERA aime les fruits et en transporte autant que possible. Lorsqu'il "
+"est surpris, il lâche tous ses fruits, les ramasse puis fuit."
 
 msgid "gectile"
 msgstr "Gectile"
@@ -889,7 +888,7 @@ msgid "firebird"
 msgstr "Oiseau de flamme"
 
 msgid "frost_ape"
-msgstr "Singe congelé"
+msgstr "Singelé"
 
 msgid "taiga"
 msgstr "Taïga"

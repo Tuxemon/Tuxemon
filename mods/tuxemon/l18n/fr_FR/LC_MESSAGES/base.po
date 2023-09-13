@@ -623,16 +623,20 @@ msgstr ""
 "résidus de l'évolution."
 
 msgid "magmaturtle"
-msgstr "Magmaturtle"
+msgstr "Magmortue"
 
 msgid "magmaturtle_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"Quand elle se sent menacée, elle se cache dans sa carapace et "
+"se refroidit très vite en expulsant de la vapeur. On pourrait la prendre pour un caillou."
 
 msgid "merlicun"
 msgstr "Merlicun"
 
 msgid "merlicun_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"Ces tuxemon adorent creuser dans le sol en laissant des traces. Il arrive qu'ils "
+"calculent mal leur position et causent des feux de forêt en essayent de creuser dans des arbres."
 
 msgid "moloch"
 msgstr "Moloch"
@@ -647,7 +651,7 @@ msgstr "Noctalo"
 
 msgid "noctalo_description"
 msgstr ""
-"Il ne peuple que les lieux abandonnés par les humaines, comme les châteaux, "
+"Il ne vit que dans les lieux abandonnés par les humains, comme les châteaux, "
 "les cimetières et les égouts."
 
 msgid "noctula"
@@ -669,7 +673,7 @@ msgid "nudiflot"
 msgstr "Nudiflot"
 
 msgid "nudiflot_description"
-msgstr "It eats and stores the poison of the sea creatures that it feeds upon."
+msgstr "ll mange et stocke le poison des proies qu'il trouve dans la mer."
 
 msgid "nut"
 msgstr "Nut"
@@ -686,7 +690,7 @@ msgid "onaclov_description"
 msgstr "<<MISSING>>"
 
 msgid "pigabyte"
-msgstr "Pigabyte"
+msgstr "Cochoctet"
 
 msgid "pigabyte_description"
 msgstr ""
@@ -700,20 +704,20 @@ msgid "possessun_description"
 msgstr "C'est un fantôme qui occupe la carcasse d'un Cairfrey."
 
 msgid "propellercat"
-msgstr "Propellercat"
+msgstr "Félice"
 
 msgid "propellercat_description"
 msgstr ""
 "Est-ce une nouvelle espèce, ou juste l'animal de compagnie d'un inventeur?"
 
 msgid "rockat"
-msgstr "Rockat"
+msgstr "Chaillou"
 
 msgid "rockat_description"
 msgstr "Malgré son poids considérable, ses pas sont silencieux."
 
 msgid "rockitten"
-msgstr "Rockitten"
+msgstr "Ptichaillou"
 
 msgid "rockitten_description"
 msgstr "Il utilise ses minuscules oreilles rocheuses pour se blottir."
@@ -750,24 +754,24 @@ msgid "simba_description"
 msgstr "<<MISSING>>"
 
 msgid "sludgehog"
-msgstr "Sludgehog"
+msgstr "Bourisson"
 
 msgid "sludgehog_description"
 msgstr ""
-"Il vit dans les ordures et les mange aussi. Ses pointes semblent pointues, "
-"mais il peut les adoucir à volonté."
+"Il vit dans les ordures et les mange aussi. Ses épines peuvent faire mal, "
+"mais il peut aussi les détendre à volonté."
 
 msgid "sharpfin"
 msgstr "Sharpfin"
 
 msgid "sharpfin_description"
 msgstr ""
-"Il est invisible dans l'eau, on ne peut l'apercevoir uniquement quand il "
+"Il est invisible dans l'eau, on ne peut l'apercevoir que lorsqu'il "
 "bondit hors de l'eau pour attraper un animal sur la berge et l’entraîner "
 "dans les profondeurs."
 
 msgid "snowrilla"
-msgstr "Snowrilla"
+msgstr "Skorille"
 
 msgid "snowrilla_description"
 msgstr ""
@@ -786,14 +790,16 @@ msgid "sumobug"
 msgstr "Sumobug"
 
 msgid "sumobug_description"
-msgstr "It uses its weight to trip much larger enemies. It is as dense as a star."
+msgstr ""
+"Il se sert de son poids pour mettre des adversaires bien plus grands que lui "
+"à terre. Il est aussi dense qu'une étoile."
 
 msgid "tigrock"
-msgstr "Tigrock"
+msgstr "Tigroc"
 
 msgid "tigrock_description"
 msgstr ""
-"Il est dit qu'il a dû s'inventer lui-même car aucune évolution n'était "
+"Selon la rumeur, il a dû s'inventer lui-même car aucune évolution n'était "
 "prévue pour lui."
 
 msgid "tumblecoon"
@@ -814,7 +820,8 @@ msgid "tux"
 msgstr "Tux"
 
 msgid "tux_description"
-msgstr "<<MISSING>>"
+msgstr "Plus à l'aise dans les climats polaires, les TUX chassent leurs faibles proies en leur "
+"sautant dessus, et les plus résistantes en les faisant glisser droit dans de la roche pour briser leur coquille."
 
 msgid "tweesher"
 msgstr "Tweesher"
@@ -870,7 +877,7 @@ msgid "sprout"
 msgstr "Germe"
 
 msgid "inchoate"
-msgstr "Inchoate"
+msgstr "Inachevé"
 
 msgid "prehensile"
 msgstr "Préhensile"
@@ -919,13 +926,13 @@ msgid "fire"
 msgstr "Feu"
 
 msgid "sanguine"
-msgstr "Sanguine"
+msgstr "Sanguin"
 
 msgid "wood"
 msgstr "Bois"
 
 msgid "climbing"
-msgstr "Grimper"
+msgstr "Grimpeur"
 
 msgid "crested"
 msgstr "Crête"
@@ -1117,12 +1124,12 @@ msgstr "Pas vraiment."
 
 # NPC dialogs
 msgid "professor_dialog\n"
-msgstr "Professor:\n"
-"Ah, yes. The very person I've been wanting to meet.\n"
-"I've heard that you want to learn about Tuxemon.\n"
-"Tuxemon are little animals, some call them monsters, that we befriend and use to battle other Tuxemon.\n"
-"I was wondering, I just received three new Tuxemon for research and I would like to give you one.\n"
-"Which one would you like?\n"
+msgstr "Professeur:\n"
+"Tu es celui que j'attendais.\n"
+"On m'a dit que tu voulais découvrir les Tuxemon.\n"
+"Les Tuxemon sont des petits animaux (ou \"monstres\"), que l'on amadoue et que l'on fait se battre contre d'autres Tuxemon.\n"
+"Au fait, je viens de recevoir trois nouveaux Tuxemon pour mes recherches et je voudrais t'en donner un.\n"
+"Lequel veux-tu?\n"
 
 msgid "professor_dialog6.1"
 msgstr "Professor: An excellent choice! Hydrone is a water Tuxemon."

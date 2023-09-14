@@ -363,15 +363,15 @@ msgstr "Agnigon"
 
 msgid "agnigon_description"
 msgstr ""
-"On le surnomme \"faux dragon' car on dirait un dragon, mais en "
-"fait, il descend d'une lignée préhistorique de reptiles."
+"On le surnomme \"faux dragon' car il ressemble à un dragon, mais en "
+"réalité, il descend d'une lignée préhistorique de reptiles."
 
 msgid "agnite"
 msgstr "Agnite"
 
 msgid "agnite_description"
 msgstr ""
-"Il est joueur, mais il faut lui apprendre à calmer ses ardeur quand il est petit."
+"Il est joueur, mais il faut lui apprendre à calmer son ardeur quand il est petit."
 
 msgid "allagon"
 msgstr "Allagon"
@@ -539,7 +539,7 @@ msgstr ""
 "il se met à grêler."
 
 msgid "eyenemy"
-msgstr "Oeilnnemi"
+msgstr "Œilnnemi"
 
 msgid "eyenemy_description"
 msgstr "Il se nourrit de magnifiques paysages et autres lieux exceptionnels."
@@ -628,12 +628,16 @@ msgstr "Magmortue"
 msgid "magmaturtle_description"
 msgstr ""
 "Quand elle se sent menacée, elle se cache dans sa carapace et "
-"se refroidit très vite en expulsant de la vapeur. On pourrait la prendre pour un caillou."
+"se refroidit très vite en expulsant de la vapeur. On pourrait la prendre pour un rocher."
 
 msgid "merlicun"
 msgstr "Merlicun"
 
 msgid "merlicun_description"
+msgstr "Les MERLICUN sont hardis et assez évolués pour exceller aussi bien en attaque "
+"qu'en défense. Ils se regroupent dans les canopées pour manger des feuilles et des fruits."
+
+msgid "metesaur_description"
 msgstr ""
 "Ces tuxemon adorent creuser dans le sol en laissant des traces. Il arrive qu'ils "
 "calculent mal leur position et causent des feux de forêt en essayent de creuser dans des arbres."
@@ -803,7 +807,7 @@ msgstr ""
 "prévue pour lui."
 
 msgid "tumblecoon"
-msgstr "Tumblecoon"
+msgstr "Ratombe"
 
 msgid "tumblecoon_description"
 msgstr "<<MISSING>>"
@@ -813,8 +817,8 @@ msgstr "Tumbleworm"
 
 msgid "tumbleworm_description"
 msgstr ""
-"Lorsqu'ils ont dépassé leurs œufs en nid d'abeille, ils tombent au sol face "
-"en premier."
+"Lorsqu'ils sont plus grands que leurs œufs, ils tombent vers le sol, la tête"
+"la première."
 
 msgid "tux"
 msgstr "Tux"
@@ -832,7 +836,7 @@ msgstr ""
 "résistant qu'un diamant."
 
 msgid "vamporm"
-msgstr "Vamporm"
+msgstr "Verpire"
 
 msgid "vamporm_description"
 msgstr "Il a soif de sang, mais doit se contenter de la sève des arbres."
@@ -841,7 +845,7 @@ msgid "velocitile"
 msgstr "Velocitile"
 
 msgid "velocitile_description"
-msgstr "Il peut dépassé une balle, mais seulement après s'être échauffé."
+msgstr "Il peut aller plus vite qu'une balle, mais seulement après s'être échauffé."
 
 msgid "wrougon"
 msgstr "Wrougon"
@@ -1101,7 +1105,7 @@ msgstr "Quelqu'un a planté des fleurs oranges si belles !"
 
 msgid "famous_statue"
 msgstr ""
-"C'est la statue d'un ancien Maître Tuxemon. Son nom a été effacé par le "
+"C'est la statue d'un ancien Maître Tuxemon. Son nom a disparu avec le "
 "temps..."
 
 msgid "famous_statue2"
@@ -1145,7 +1149,7 @@ msgstr "Professor: I hope to see you around! I'm about to head on a journey, so 
 
 msgid "karrianna_dialog1"
 msgstr ""
-"Karrianna : Je m'entraine depuis un mois ! Et personne ne m'a encore battu !"
+"Karrianna : Je m'entraîne depuis un mois ! Et personne ne m'a encore battu !"
 
 msgid "karrianna_dialog2"
 msgstr "Eh bien… Tu es le premier entraîneur que j'ai affronté…"
@@ -1157,19 +1161,19 @@ msgid "cherry_found"
 msgstr "Vous avez trouvé une cerise."
 
 msgid "xero_grunts_block"
-msgstr "This area is under construction, it should be done soon."
+msgstr "Cette zone est encore en travaux, elle devrait être prête bientôt."
 
 msgid "waiting_for_misa"
-msgstr "Our leader would like to talk with you. When you are ready, talk to my friend next to me."
+msgstr "Notre chef voudrait vous parler. Quand vous êtes disponibles, parlez à mon ami juste à côté de moi."
 
 msgid "teleport?"
-msgstr "Are you ready to meet our leader?"
+msgstr "Prêt à rencontrer notre chef?"
 
 msgid "ouch"
-msgstr "Sorry, but this may hurt a bit..."
+msgstr "Attention, ça va faire mal..."
 
 msgid "maybe_sometime_again?"
-msgstr "Okay, I'll be here when you are ready."
+msgstr "D'accord. Si vous me cherchez, je suis là."
 
 msgid "youcantleave"
 msgstr ""

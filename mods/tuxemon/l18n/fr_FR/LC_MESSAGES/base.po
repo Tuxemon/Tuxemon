@@ -817,7 +817,7 @@ msgstr "Tumbleworm"
 
 msgid "tumbleworm_description"
 msgstr ""
-"Lorsqu'ils sont plus grands que leurs œufs, ils tombent vers le sol, la tête"
+"Lorsqu'ils sont plus grands que leurs œufs, ils tombent vers le sol la tête"
 "la première."
 
 msgid "tux"
@@ -1164,10 +1164,10 @@ msgid "xero_grunts_block"
 msgstr "Cette zone est encore en travaux, elle devrait être prête bientôt."
 
 msgid "waiting_for_misa"
-msgstr "Notre chef voudrait vous parler. Quand vous êtes disponibles, parlez à mon ami juste à côté de moi."
+msgstr "Notre chef voudrait vous parler. Quand vous êtes disponible, parlez à mon ami juste à côté de moi."
 
 msgid "teleport?"
-msgstr "Prêt à rencontrer notre chef?"
+msgstr "Prêt à rencontrer notre chef ?"
 
 msgid "ouch"
 msgstr "Attention, ça va faire mal..."

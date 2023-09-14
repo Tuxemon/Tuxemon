@@ -95,7 +95,7 @@ msgid "combat_used_x"
 msgstr "{user} utilise {name} !"
 
 msgid "combat_run"
-msgstr "{user} s'est enfuit !"
+msgstr "{user} s'est enfui !"
 
 msgid "combat_player_run"
 msgstr "Tu as pris la fuite !"
@@ -225,7 +225,7 @@ msgid "bite"
 msgstr "Morsure"
 
 msgid "fire_explosion"
-msgstr "Fire Explosion"
+msgstr "Explosion de feu"
 
 msgid "poison_string"
 msgstr "Dard-Venin"
@@ -243,7 +243,7 @@ msgid "whirlwind"
 msgstr "Tourbillon"
 
 msgid "run"
-msgstr "Run"
+msgstr "Course"
 
 ## MENU TRANSLATIONS ##
 # Monster Menu notifications
@@ -296,7 +296,7 @@ msgid "menu_player"
 msgstr "Joueur"
 
 msgid "menu_run"
-msgstr "Fuire"
+msgstr "Fuir"
 
 msgid "menu_save"
 msgstr "Sauvegarder"
@@ -312,7 +312,7 @@ msgid "multiplayer_duel"
 msgstr "{name} veut un Duel !"
 
 msgid "multiplayer_host_game"
-msgstr "Jeu hôte"
+msgstr "Héberger une partie"
 
 msgid "multiplayer_scan_games"
 msgstr "Rechercher des parties"
@@ -339,39 +339,39 @@ msgstr "Aardart"
 
 msgid "aardart_description"
 msgstr ""
-"Ça compte le nombre de fourmis que vous avez mangés, et récompense les "
-"nombres importants."
+"Compte combien de fourmis vous avez mangé, et vous récompense si vous"
+"en avez beaucoup mangé."
 
 msgid "aardorn"
 msgstr "Aardorn"
 
 msgid "aardorn_description"
 msgstr ""
-"À sa naissance, il est placé dans une fourmilière et doit en manger pour "
-"survivre."
+"À sa naissance, il est livré à lui-même dans une fourmilière et doit"
+"en manger les parois pour assurer sa survie."
 
 msgid "agnidon"
 msgstr "Agnidon"
 
 msgid "agnidon_description"
 msgstr ""
-"Je préfère à quatre pattes, mais qui peut se tenir sur deux pour ouvrir les "
-"portes, poussés des arbres, ou tenir des objets."
+"Il préfère marcher à quatre pattes, mais peut se tenir debout sur seulement"
+"deux pour ouvrir des portes, pousser des arbres ou porter des objets."
 
 msgid "agnigon"
 msgstr "Agnigon"
 
 msgid "agnigon_description"
 msgstr ""
-"C'est appelé un \"faux dragon' parce que ça ressemble à un dragon, mais en "
-"réalité, ça tient ses origines d'anciens reptiles."
+"On le surnomme \"faux dragon' car il ressemble à un dragon, mais en "
+"réalité, il descend d'une lignée préhistorique de reptiles."
 
 msgid "agnite"
 msgstr "Agnite"
 
 msgid "agnite_description"
 msgstr ""
-"Il est joueur, mais il faut lui apprendre très jeune à maîtriser son ardeur."
+"Il est joueur, mais il faut lui apprendre à calmer son ardeur quand il est petit."
 
 msgid "allagon"
 msgstr "Allagon"
@@ -389,7 +389,7 @@ msgstr ""
 "Il estime que les plantes qui poussent près de lui sont ses frères et sœurs."
 
 msgid "axylightl"
-msgstr "Axylightl"
+msgstr "Axolumière"
 
 msgid "axylightl_description"
 msgstr ""
@@ -397,7 +397,7 @@ msgstr ""
 "poissons."
 
 msgid "bamboon"
-msgstr "Bamboon"
+msgstr "Bambouin"
 
 msgid "bamboon_description"
 msgstr ""
@@ -417,10 +417,10 @@ msgstr "Bolt"
 
 msgid "bolt_description"
 msgstr ""
-"La présence d'un BOLT rend un NUT plus fort et déclenche plus d'énergie."
+"La présence d'un BOLT rend un NUT plus fort et relâche plus d'énergie."
 
 msgid "cairfrey"
-msgstr "Cairfrey"
+msgstr "Canhappy"
 
 msgid "cairfrey_description"
 msgstr "Un meuble joyeux qui s'est réveillé un matin et a décidé d'explorer."
@@ -445,8 +445,8 @@ msgstr "Cardinale"
 
 msgid "cardinale_description"
 msgstr ""
-"Il porte une haine sans limite pour ses prédateurs, qu'il attaque, eux et "
-"leurs juvéniles, dès qu'il le peut."
+"Il voue une haine sans limite pour ses prédateurs, qu'il attaque, eux et "
+"leurs petits, dès qu'il le peut."
 
 msgid "cardiwing"
 msgstr "Cardiwing"
@@ -457,12 +457,12 @@ msgstr ""
 "chanteur explosif."
 
 msgid "chillimp"
-msgstr "Chillimp"
+msgstr "Frissinge"
 
 msgid "chillimp_description"
 msgstr ""
-"Il parait qu'il vit dans la sommets enneigés des montagnes, mais aucune "
-"photo nette n'a jamais été prise."
+"Il vivrait sur les pics enneigés, mais personne "
+"n'a jamais pu en prendre de photo nette pour le confirmer."
 
 msgid "chloragon"
 msgstr "Chloragon"
@@ -470,15 +470,15 @@ msgstr "Chloragon"
 msgid "chloragon_description"
 msgstr ""
 "Il éclot quand un ancien œuf est planté dans un sol fertile. Quand il n'y "
-"aura plus d'œufs, tous les Chloragon disparaitront."
+"a plus d'œufs, tous les Chloragon disparaissent."
 
 msgid "conifrost"
-msgstr "Conifrost"
+msgstr "Conifroid"
 
 msgid "conifrost_description"
 msgstr ""
-"Il peut provoquer une avalanche avec un seul de ses éternuements. Alors il "
-"renifle en permanence."
+"Il peut provoquer une avalanche avec un seul de ses éternuements. "
+"Manque de chance, il renifle tout le temps..."
 
 msgid "corvix"
 msgstr "Corvix"
@@ -520,11 +520,10 @@ msgstr "Dragarbor"
 msgid "dragarbor_description"
 msgstr ""
 "Quand il sent venir sa fin, il recherche un cimetière pour aller s'y "
-"planter. Alors sa queue se transforme en fleur qui n'arrêtera jamais de "
-"pousser."
+"planter. Alors sa queue se transforme en fleur qui pousse constamment."
 
 msgid "dune_pincher"
-msgstr "Dune Pincher"
+msgstr "Pince-Dune"
 
 msgid "dune_pincher_description"
 msgstr ""
@@ -532,15 +531,15 @@ msgstr ""
 "désert, ce sont les linceuls funéraires des pharaons morts depuis longtemps."
 
 msgid "eaglace"
-msgstr "Eaglace"
+msgstr "Aiglace"
 
 msgid "eaglace_description"
 msgstr ""
-"Quand il s'envole, des nuages se forment. Et quand il bat des ailes, la "
-"grêle tombe."
+"Quand il s'envole, des nuages se forment. Et quand il bat des ailes, "
+"il se met à grêler."
 
 msgid "eyenemy"
-msgstr "Eyenemy"
+msgstr "Œilnnemi"
 
 msgid "eyenemy_description"
 msgstr "Il se nourrit de magnifiques paysages et autres lieux exceptionnels."
@@ -565,24 +564,24 @@ msgid "firomenis"
 msgstr "Firomenis"
 
 msgid "firomenis_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"Les années passées sous forme de MERLICUN ont endurci et élargi ces tuxemon
+aux mâchoires si puissantes qu'elles peuvent casser en deux les arbres comme les os."
 
 msgid "fluttaflap"
 msgstr "Fluttaflap"
 
 msgid "fluttaflap_description"
 msgstr ""
-"Il se nourrit d'impuretés, qu'il prend dans le sang de ces ennemis, pour en "
-"rejeter le sang pur."
+"Il se nourrit d'impuretés, et nettoie donc le sang de ceux qu'il pique."
 
 msgid "fruitera"
 msgstr "Fruitera"
 
 msgid "fruitera_description"
 msgstr ""
-"FRUITERA a faim de fruits et en transporte autant qu'il le peut. Lorsqu'il "
-"est surpris, il laisse tomber tous ses fruits, les ramasse à nouveau puis "
-"s'enfuit."
+"FRUITERA aime les fruits et en transporte autant que possible. Lorsqu'il "
+"est surpris, il lâche tous ses fruits, les ramasse puis fuit."
 
 msgid "gectile"
 msgstr "Gectile"
@@ -624,16 +623,24 @@ msgstr ""
 "résidus de l'évolution."
 
 msgid "magmaturtle"
-msgstr "Magmaturtle"
+msgstr "Magmortue"
 
 msgid "magmaturtle_description"
-msgstr "<<MISSING>>"
+msgstr ""
+"Quand elle se sent menacée, elle se cache dans sa carapace et "
+"se refroidit très vite en expulsant de la vapeur. On pourrait la prendre pour un rocher."
 
 msgid "merlicun"
 msgstr "Merlicun"
 
 msgid "merlicun_description"
-msgstr "<<MISSING>>"
+msgstr "Les MERLICUN sont hardis et assez évolués pour exceller aussi bien en attaque "
+"qu'en défense. Ils se regroupent dans les canopées pour manger des feuilles et des fruits."
+
+msgid "metesaur_description"
+msgstr ""
+"Ces tuxemon adorent creuser dans le sol en laissant des traces. Il arrive qu'ils "
+"calculent mal leur position et causent des feux de forêt en essayent de creuser dans des arbres."
 
 msgid "moloch"
 msgstr "Moloch"
@@ -648,7 +655,7 @@ msgstr "Noctalo"
 
 msgid "noctalo_description"
 msgstr ""
-"Il ne peuple que les lieux abandonnés par les humaines, comme les châteaux, "
+"Il ne vit que dans les lieux abandonnés par les humains, comme les châteaux, "
 "les cimetières et les égouts."
 
 msgid "noctula"
@@ -670,7 +677,7 @@ msgid "nudiflot"
 msgstr "Nudiflot"
 
 msgid "nudiflot_description"
-msgstr "It eats and stores the poison of the sea creatures that it feeds upon."
+msgstr "ll mange et stocke le poison des proies qu'il trouve dans la mer."
 
 msgid "nut"
 msgstr "Nut"
@@ -687,7 +694,7 @@ msgid "onaclov_description"
 msgstr "<<MISSING>>"
 
 msgid "pigabyte"
-msgstr "Pigabyte"
+msgstr "Cochoctet"
 
 msgid "pigabyte_description"
 msgstr ""
@@ -698,23 +705,23 @@ msgid "possessun"
 msgstr "Possessun"
 
 msgid "possessun_description"
-msgstr "C'est un fantôme qui occupe la carcasse d'un Cairfrey."
+msgstr "C'est un fantôme qui occupe la carcasse d'un Canhappy."
 
 msgid "propellercat"
-msgstr "Propellercat"
+msgstr "Félice"
 
 msgid "propellercat_description"
 msgstr ""
 "Est-ce une nouvelle espèce, ou juste l'animal de compagnie d'un inventeur?"
 
 msgid "rockat"
-msgstr "Rockat"
+msgstr "Chaillou"
 
 msgid "rockat_description"
 msgstr "Malgré son poids considérable, ses pas sont silencieux."
 
 msgid "rockitten"
-msgstr "Rockitten"
+msgstr "Ptichaillou"
 
 msgid "rockitten_description"
 msgstr "Il utilise ses minuscules oreilles rocheuses pour se blottir."
@@ -751,24 +758,24 @@ msgid "simba_description"
 msgstr "<<MISSING>>"
 
 msgid "sludgehog"
-msgstr "Sludgehog"
+msgstr "Bourisson"
 
 msgid "sludgehog_description"
 msgstr ""
-"Il vit dans les ordures et les mange aussi. Ses pointes semblent pointues, "
-"mais il peut les adoucir à volonté."
+"Il vit dans les ordures et les mange aussi. Ses épines peuvent faire mal, "
+"mais il peut aussi les détendre à volonté."
 
 msgid "sharpfin"
 msgstr "Sharpfin"
 
 msgid "sharpfin_description"
 msgstr ""
-"Il est invisible dans l'eau, on ne peut l'apercevoir uniquement quand il "
+"Il est invisible dans l'eau, on ne peut l'apercevoir que lorsqu'il "
 "bondit hors de l'eau pour attraper un animal sur la berge et l’entraîner "
 "dans les profondeurs."
 
 msgid "snowrilla"
-msgstr "Snowrilla"
+msgstr "Skorille"
 
 msgid "snowrilla_description"
 msgstr ""
@@ -783,22 +790,24 @@ msgstr ""
 "Les communications chuchotées de la forêt prennent une forme physique dans "
 "SPYCOZEUS, qui pense comme les arbres."
 
-msgid "sumobug"
-msgstr "Sumobug"
+msgid "sumchon"
+msgstr "Sumchon"
 
-msgid "sumobug_description"
-msgstr "It uses its weight to trip much larger enemies. It is as dense as a star."
+msgid "sumchon_description"
+msgstr ""
+"Il se sert de son poids pour mettre des adversaires bien plus grands que lui "
+"à terre. Il est aussi dense qu'une étoile."
 
 msgid "tigrock"
-msgstr "Tigrock"
+msgstr "Tigroc"
 
 msgid "tigrock_description"
 msgstr ""
-"Il est dit qu'il a dû s'inventer lui-même car aucune évolution n'était "
+"Selon la rumeur, il a dû s'inventer lui-même car aucune évolution n'était "
 "prévue pour lui."
 
 msgid "tumblecoon"
-msgstr "Tumblecoon"
+msgstr "Ratombe"
 
 msgid "tumblecoon_description"
 msgstr "<<MISSING>>"
@@ -808,14 +817,15 @@ msgstr "Tumbleworm"
 
 msgid "tumbleworm_description"
 msgstr ""
-"Lorsqu'ils ont dépassé leurs œufs en nid d'abeille, ils tombent au sol face "
-"en premier."
+"Lorsqu'ils sont plus grands que leurs œufs, ils tombent vers le sol la tête"
+"la première."
 
 msgid "tux"
 msgstr "Tux"
 
 msgid "tux_description"
-msgstr "<<MISSING>>"
+msgstr "Plus à l'aise dans les climats polaires, les TUX chassent leurs faibles proies en leur "
+"sautant dessus, et les plus résistantes en les faisant glisser droit dans de la roche pour briser leur coquille."
 
 msgid "tweesher"
 msgstr "Tweesher"
@@ -826,7 +836,7 @@ msgstr ""
 "résistant qu'un diamant."
 
 msgid "vamporm"
-msgstr "Vamporm"
+msgstr "Verpire"
 
 msgid "vamporm_description"
 msgstr "Il a soif de sang, mais doit se contenter de la sève des arbres."
@@ -835,7 +845,7 @@ msgid "velocitile"
 msgstr "Velocitile"
 
 msgid "velocitile_description"
-msgstr "Il peut dépassé une balle, mais seulement après s'être échauffé."
+msgstr "Il peut aller plus vite qu'une balle, mais seulement après s'être échauffé."
 
 msgid "wrougon"
 msgstr "Wrougon"
@@ -871,7 +881,7 @@ msgid "sprout"
 msgstr "Germe"
 
 msgid "inchoate"
-msgstr "Inchoate"
+msgstr "Inachevé"
 
 msgid "prehensile"
 msgstr "Préhensile"
@@ -889,7 +899,7 @@ msgid "firebird"
 msgstr "Oiseau de flamme"
 
 msgid "frost_ape"
-msgstr "Singe congelé"
+msgstr "Singelé"
 
 msgid "taiga"
 msgstr "Taïga"
@@ -920,13 +930,13 @@ msgid "fire"
 msgstr "Feu"
 
 msgid "sanguine"
-msgstr "Sanguine"
+msgstr "Sanguin"
 
 msgid "wood"
 msgstr "Bois"
 
 msgid "climbing"
-msgstr "Grimper"
+msgstr "Grimpeur"
 
 msgid "crested"
 msgstr "Crête"
@@ -1095,7 +1105,7 @@ msgstr "Quelqu'un a planté des fleurs oranges si belles !"
 
 msgid "famous_statue"
 msgstr ""
-"C'est la statue d'un ancien Maître Tuxemon. Son nom a été effacé par le "
+"C'est la statue d'un ancien Maître Tuxemon. Son nom a disparu avec le "
 "temps..."
 
 msgid "famous_statue2"
@@ -1118,12 +1128,12 @@ msgstr "Pas vraiment."
 
 # NPC dialogs
 msgid "professor_dialog\n"
-msgstr "Professor:\n"
-"Ah, yes. The very person I've been wanting to meet.\n"
-"I've heard that you want to learn about Tuxemon.\n"
-"Tuxemon are little animals, some call them monsters, that we befriend and use to battle other Tuxemon.\n"
-"I was wondering, I just received three new Tuxemon for research and I would like to give you one.\n"
-"Which one would you like?\n"
+msgstr "Professeur:\n"
+"Tu es celui que j'attendais.\n"
+"On m'a dit que tu voulais découvrir les Tuxemon.\n"
+"Les Tuxemon sont des petits animaux (ou \"monstres\"), que l'on amadoue et que l'on fait se battre contre d'autres Tuxemon.\n"
+"Au fait, je viens de recevoir trois nouveaux Tuxemon pour mes recherches et je voudrais t'en donner un.\n"
+"Lequel veux-tu?\n"
 
 msgid "professor_dialog6.1"
 msgstr "Professor: An excellent choice! Hydrone is a water Tuxemon."
@@ -1139,7 +1149,7 @@ msgstr "Professor: I hope to see you around! I'm about to head on a journey, so 
 
 msgid "karrianna_dialog1"
 msgstr ""
-"Karrianna : Je m'entraine depuis un mois ! Et personne ne m'a encore battu !"
+"Karrianna : Je m'entraîne depuis un mois ! Et personne ne m'a encore battu !"
 
 msgid "karrianna_dialog2"
 msgstr "Eh bien… Tu es le premier entraîneur que j'ai affronté…"
@@ -1151,19 +1161,19 @@ msgid "cherry_found"
 msgstr "Vous avez trouvé une cerise."
 
 msgid "xero_grunts_block"
-msgstr "This area is under construction, it should be done soon."
+msgstr "Cette zone est encore en travaux, elle devrait être prête bientôt."
 
 msgid "waiting_for_misa"
-msgstr "Our leader would like to talk with you. When you are ready, talk to my friend next to me."
+msgstr "Notre chef voudrait vous parler. Quand vous êtes disponible, parlez à mon ami juste à côté de moi."
 
 msgid "teleport?"
-msgstr "Are you ready to meet our leader?"
+msgstr "Prêt à rencontrer notre chef ?"
 
 msgid "ouch"
-msgstr "Sorry, but this may hurt a bit..."
+msgstr "Attention, ça va faire mal..."
 
 msgid "maybe_sometime_again?"
-msgstr "Okay, I'll be here when you are ready."
+msgstr "D'accord. Si vous me cherchez, je suis là."
 
 msgid "youcantleave"
 msgstr ""
@@ -3048,7 +3058,7 @@ msgstr ""
 
 msgid "spyder_wayfarer_granny"
 msgstr ""
-"Je ne peux expliquer... à un moment, mon Cairfrey était en forme, et peu "
+"Je ne peux expliquer... à un moment, mon Canhappy était en forme, et peu "
 "après, il était malade !\n"
 " Au moins, les Enforces sont arrivés assez tôt. "
 

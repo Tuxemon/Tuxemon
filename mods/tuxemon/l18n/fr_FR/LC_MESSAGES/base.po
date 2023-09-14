@@ -790,10 +790,10 @@ msgstr ""
 "Les communications chuchotées de la forêt prennent une forme physique dans "
 "SPYCOZEUS, qui pense comme les arbres."
 
-msgid "sumobug"
-msgstr "Sumobug"
+msgid "sumchon"
+msgstr "Sumchon"
 
-msgid "sumobug_description"
+msgid "sumchon_description"
 msgstr ""
 "Il se sert de son poids pour mettre des adversaires bien plus grands que lui "
 "à terre. Il est aussi dense qu'une étoile."

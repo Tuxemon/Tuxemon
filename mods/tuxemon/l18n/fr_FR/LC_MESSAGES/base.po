@@ -117,7 +117,7 @@ msgid "combat_state_poison_damage"
 msgstr "{name} souffre du poison !"
 
 msgid "combat_status_damage"
-msgstr "{name} prend des dégâts de {status} !"
+msgstr "{name} subit des dégâts de {status} !"
 
 msgid "combat_victory"
 msgstr "Tu as gagné !"
@@ -138,13 +138,13 @@ msgid "combat_recharging"
 msgstr "{name} a besoin d'une pause avant d'utiliser {move} à nouveau..."
 
 msgid "combat_replacement"
-msgstr "Choisis un remplacement !"
+msgstr "Choisis un remplaçant !"
 
 msgid "combat_replacement_is_fainted"
 msgstr "Ce monstre s'est déjà évanoui !"
 
 msgid "combat_wild_appeared"
-msgstr "Un {name} sauvage apparait !"
+msgstr "Un {name} sauvage apparaît !"
 
 msgid "combat_monster_choice"
 msgstr "Que doit faire {name} ?"
@@ -218,7 +218,7 @@ msgid "status_faint"
 msgstr "K.O."
 
 msgid "status_poison"
-msgstr "Poison"
+msgstr "Empoisonné"
 
 ## TECHNIQUE TRANSLATIONS ##
 msgid "bite"
@@ -1391,22 +1391,22 @@ msgstr "What are you doing here? You know that only knights are allowed through 
 "I'm sure we can lend you one. Are you up for the challenge?\n"
 
 msgid "sorry"
-msgstr "Okay, well... when you're ready, I'll still be here..."
+msgstr "D'accord... Si tu me cherches, je suis là..."
 
 msgid "splendid\n"
 msgstr "You will? Splendid! Now, to find you a suitable Tuxemon...\n"
 "... ... You already have a Tuxemon? Well, I'm sure that you'd be able to handle yourself well...\n"
 
 msgid "cottonnurse_dialog"
-msgstr "Bienvenue au Tuxecentre de Contonville !"
+msgstr "Bienvenue au Tuxecentre de Cottonville !"
 
 msgid "tabanurse_dialog\n"
 msgstr ""
-"Bienvenue au Tuxecenter de ${{map_name}} !\n"
+"Bienvenue au Tuxecentre de ${{map_name}} !\n"
 "Voulez-vous soigner votre Tuxemon ?\n"
 
 msgid "okaythen"
-msgstr "D'accord ! Donnez-moi juste un instant et je soignerais votre Tuxemon !"
+msgstr "D'accord ! Donnez-moi juste un instant et je soignerai votre Tuxemon !"
 
 msgid "okaythen2"
 msgstr "Voilà, il semble que vos Tuxemon sont en bonne forme ! Ils arrivent !"
@@ -1588,7 +1588,7 @@ msgid "blade"
 msgstr "Lame"
 
 msgid "berserk"
-msgstr "Furie Berserk"
+msgstr "Rage Incontrôlable"
 
 msgid "beam"
 msgstr "Rayon"
@@ -1698,7 +1698,7 @@ msgid "reg_papers"
 msgstr "Documents d'inscription"
 
 msgid "status_recover"
-msgstr "Récupérer"
+msgstr "Régén."
 
 msgid "maamnothing"
 msgstr "M'dame...\n"
@@ -1719,10 +1719,10 @@ msgid "dodge_increased"
 msgstr "{stat} de {user} augmenté."
 
 msgid "attack_resisted"
-msgstr "L'attaque a résisté !"
+msgstr "L'adversaire a résisté à l'attaque !"
 
 msgid "status_overfeed"
-msgstr "Sur-alimenter"
+msgstr "Trop mangé"
 
 msgid "feint"
 msgstr "Feindre"
@@ -3058,7 +3058,7 @@ msgstr ""
 
 msgid "spyder_wayfarer_granny"
 msgstr ""
-"Je ne peux expliquer... à un moment, mon Canhappy était en forme, et peu "
+"Je ne comprends pas... à un moment, mon Canhappy était en forme, et peu "
 "après, il était malade !\n"
 " Au moins, les Enforces sont arrivés assez tôt. "
 
@@ -4598,7 +4598,7 @@ msgstr ""
 " Merci pour votre attention. Voici cinq Appareils de Capture en échantillon. "
 
 msgid "status_lifeleech"
-msgstr "Absorbeur de Vie"
+msgstr "Vol de Vie"
 
 msgid "spyder_route3_qqq1"
 msgstr ""
@@ -6292,10 +6292,10 @@ msgid "status_confused"
 msgstr "Confus"
 
 msgid "status_diehard"
-msgstr "Die Hard"
+msgstr "Déterminé"
 
 msgid "status_dozing"
-msgstr "Somnolé"
+msgstr "Assoupi"
 
 msgid "status_eliminated"
 msgstr "Éliminé"

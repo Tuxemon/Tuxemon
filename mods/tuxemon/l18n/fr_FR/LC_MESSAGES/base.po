@@ -1704,13 +1704,13 @@ msgid "maamnothing"
 msgstr "M'dame...\n"
 
 msgid "spyder_route6_frances2"
-msgstr "Vous devriez nous rendre visite parfois."
+msgstr "Vous devriez nous rendre visite de temps en temps."
 
 msgid "spyder_route6_orion1"
 msgstr "J'étais au beau milieu d'une expérience extrêmement importante."
 
 msgid "mk01_beta"
-msgstr "Mk01 Béta"
+msgstr "Mk01 Bêta"
 
 msgid "flow"
 msgstr "Flux"
@@ -1722,7 +1722,7 @@ msgid "attack_resisted"
 msgstr "L'adversaire a résisté à l'attaque !"
 
 msgid "status_overfeed"
-msgstr "Trop mangé"
+msgstr "Repu"
 
 msgid "feint"
 msgstr "Feindre"
@@ -1793,7 +1793,7 @@ msgstr "Ouais ! Il s'avère que le crime ne paye pas !"
 
 msgid "spyder_scoop_donald2"
 msgstr ""
-"Vous êtes certainement assez fort pour maitriser ces Tuxemon évades. Je vous "
+"Vous êtes certainement assez fort pour maitriser ces Tuxemon évadés. Je vous "
 "en supplie – faites-le pour nous. "
 
 msgid "spyder_scoop_alyssa1"
@@ -1802,7 +1802,7 @@ msgstr ""
 "quarantaine dans l'unité de confinement."
 
 msgid "spyder_scoop_taggart2"
-msgstr "Si vous n'avez pas volé les Extreme Restraints, qui donc ? "
+msgstr "Si vous n'avez pas volé les Extrêmes Conteneurs, qui donc ? "
 
 msgid "spyder_scoop_arachne1"
 msgstr ""
@@ -1813,18 +1813,18 @@ msgid "spyder_scoop_landrace3"
 msgstr ""
 "Merci de nous avoir débarrassé de cette brute qui nous bloquait le passage !"
 "\n"
-"On peut maintenant nous échapper avec les Extrême Conteneurs ! "
+"On peut maintenant s'échapper avec les Extrêmes Conteneurs ! "
 
 msgid "spyder_route6_richard1"
 msgstr ""
-"Mec, le seul jour où je délaisse mon ordi pour aller faire un tour, tout ça "
-"arrive !"
+"Mec, le seul jour où je laisse mon ordi pour aller faire un tour, y'a tout ça qui"
+"se produit !"
 
 msgid "icicle_spear"
-msgstr "Lance Glacée"
+msgstr "Lance de Stalactite"
 
 msgid "starfall"
-msgstr "Pluie d'Étoile"
+msgstr "Pluie d'Étoiles"
 
 msgid "nudiflot_female_description"
 msgstr ""
@@ -1856,7 +1856,7 @@ msgid "spyder_tunnelb_lute1"
 msgstr "Les chauve-souris sont les meilleurs compagnons !"
 
 msgid "spyder_tunnelb_lute2"
-msgstr "... mais pas toujours les meilleurs combattants."
+msgstr "... mais pas les meilleurs combattants."
 
 msgid "spyder_tunnelb_meitner2"
 msgstr "Je pense que vous venez de taper trop fort."
@@ -1865,13 +1865,13 @@ msgid "spyder_tunnelb_greta2"
 msgstr "Oh non ! J'en veux encore plus !"
 
 msgid "combat_state_overfeed_get"
-msgstr "{user} a sur-alimenté {target}."
+msgstr "{user} a donné trop de nourriture à {target}."
 
 msgid "combat_levitate_get"
 msgstr "{user} lévite haut dans les airs."
 
 msgid "combat_amnesia_get"
-msgstr "{user} est atteint d'amnésie."
+msgstr "{user} souffre d'amnésie."
 
 msgid "speed_halved"
 msgstr "Vitesse de {user} réduite de moitié."
@@ -1883,7 +1883,7 @@ msgid "dodge_fell"
 msgstr "L'esquive de {user} à échoué."
 
 msgid "attack_weak"
-msgstr "L'attaque a fortement résisté !"
+msgstr "L'adversaire encaisse l'attaque sans broncher !"
 
 msgid "biting_winds"
 msgstr "Vents mordants"
@@ -1892,7 +1892,7 @@ msgid "blossom"
 msgstr "Éclore"
 
 msgid "breathe_fire"
-msgstr "Souffler du Feu"
+msgstr "Cracher du Feu"
 
 msgid "bullet"
 msgstr "Balle"
@@ -1917,7 +1917,7 @@ msgstr "Griffe Glaciale"
 
 ## TECHNIQUE TRANSLATIONS ##
 msgid "all_in"
-msgstr "Tous dans"
+msgstr "Dernier Recours"
 
 msgid "boulder"
 msgstr "Rocher"
@@ -1938,7 +1938,7 @@ msgid "fume"
 msgstr "Fumée"
 
 msgid "perfect_cut"
-msgstr "Coupure Net"
+msgstr "Coupure Nette"
 
 msgid "ram"
 msgstr "Foncer"
@@ -1953,7 +1953,7 @@ msgid "rot"
 msgstr "Pourrir"
 
 msgid "rust_bomb"
-msgstr "Bombe Rouillée"
+msgstr "Bombe de Rouille"
 
 msgid "salamander"
 msgstr "Salamandre"
@@ -1998,13 +1998,13 @@ msgid "muddle"
 msgstr "Brouillard"
 
 msgid "mudslide"
-msgstr "Glissement"
+msgstr "Glissade"
 
 msgid "overgrowth"
 msgstr "Gigantisme"
 
 msgid "peck"
-msgstr "Picorer"
+msgstr "Coud'Bec"
 
 msgid "peregrine"
 msgstr "Faucon"
@@ -2013,13 +2013,13 @@ msgid "splinter"
 msgstr "Éclat"
 
 msgid "stampede"
-msgstr "Stupeur"
+msgstr "Débâcle"
 
 msgid "sting"
 msgstr "Dard"
 
 msgid "suck_poison"
-msgstr "Sucer le Poison"
+msgstr "Aspire-Poison"
 
 msgid "surge"
 msgstr "Décharge"
@@ -2052,7 +2052,7 @@ msgid "mk01_alpha"
 msgstr "Mk01 Alpha"
 
 msgid "hot_rock"
-msgstr "Pierre Chaude"
+msgstr "Rochaude"
 
 msgid "sumchon_description"
 msgstr ""
@@ -7433,7 +7433,7 @@ msgid "canine"
 msgstr "Canine"
 
 msgid "cat_calling"
-msgstr "Appel de Chat"
+msgstr "Chappel"
 
 msgid "chameleon"
 msgstr "Caméléon"
@@ -7493,7 +7493,7 @@ msgid "mending"
 msgstr "Raccommodage"
 
 msgid "mobbing"
-msgstr "Mobbing"
+msgstr "Harcèlement"
 
 msgid "muck"
 msgstr "Boue"
@@ -7538,7 +7538,7 @@ msgid "saber"
 msgstr "Sabre"
 
 msgid "shapechange"
-msgstr "Changement"
+msgstr "Métamorphose"
 
 msgid "slime"
 msgstr "Vase"
@@ -7553,7 +7553,7 @@ msgid "strangulation"
 msgstr "Strangulation"
 
 msgid "sunburst"
-msgstr "Éclat de Soleil"
+msgstr "Éclat Solaire"
 
 msgid "sword"
 msgstr "Épée"
@@ -7595,10 +7595,10 @@ msgid "vorpal"
 msgstr "Vorpal"
 
 msgid "wall_fire"
-msgstr "Mur de Feu"
+msgstr "Mur Ardent"
 
 msgid "wall_ice"
-msgstr "Mur de Glace"
+msgstr "Mur Gelé"
 
 msgid "walls"
 msgstr "Murs"

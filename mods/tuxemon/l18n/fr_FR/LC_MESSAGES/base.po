@@ -6240,34 +6240,37 @@ msgstr ""
 
 ## COMBAT STATE STATUSES
 msgid "combat_state_blinded_get"
-msgstr "{target} est aveuglé."
+msgstr "{target} ne voit plus rien."
 
 msgid "combat_state_chargedup_get"
 msgstr "{target} est complètement chargé."
 
 msgid "combat_state_charging_get"
-msgstr "{target} augmente la puissance."
+msgstr "{target} augmente son attaque."
 
 msgid "combat_state_confused_get"
 msgstr "{target} est confus."
 
 msgid "combat_state_diehard_get"
-msgstr "{target} continuera à se battre."
+msgstr "{target} se battra jusqu'au bout."
+
+msgid "combat_state_diehard_tech"
+msgstr "{target} se bat malgré la douleur."
 
 msgid "combat_state_dozing_get"
 msgstr "{target} est endormi."
 
 msgid "combat_state_enraged_get"
-msgstr "{target} est furieux."
+msgstr "{target} bouillit de rage."
 
 msgid "combat_state_exhausted_get"
 msgstr "{target} est épuisé."
 
 msgid "combat_state_festering_get"
-msgstr "Les blessures de {target} s'enveniment."
+msgstr "Les blessures de {target} s'infectent."
 
 msgid "combat_state_focused_get"
-msgstr "{target} devient ciblé."
+msgstr "{target} se concentre."
 
 msgid "combat_state_grabbed_get"
 msgstr "{target} est serré."
@@ -6292,7 +6295,7 @@ msgid "status_confused"
 msgstr "Confus"
 
 msgid "status_diehard"
-msgstr "Déterminé"
+msgstr "Tenace"
 
 msgid "status_dozing"
 msgstr "Assoupi"

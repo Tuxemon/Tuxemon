@@ -6261,7 +6261,7 @@ msgid "combat_state_dozing_get"
 msgstr "{target} est endormi."
 
 msgid "combat_state_enraged_get"
-msgstr "{target} bouillit de rage."
+msgstr "{target} bout de rage."
 
 msgid "combat_state_exhausted_get"
 msgstr "{target} est épuisé."

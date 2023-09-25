@@ -9,9 +9,9 @@
   "icon": "gfx/ui/icons/status/icon_chargedup.png",
   "range": "special",
   "repl_pos": "replaced",
-  "repl_tech": "status_exhausted",
+  "repl_tech": "exhausted",
   "sfx": "sfx_pulse",
-  "slug": "status_chargedup",
+  "slug": "chargedup",
   "sort": "meta",
   "statarmour": {
     "value": 2,

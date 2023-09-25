@@ -29,7 +29,7 @@ class ChargingEffect(CondEffect):
         player = self.session.player
         cond: Optional[Condition] = None
         if tech.phase == "perform_action_tech":
-            if tech.slug == "status_charging":
+            if tech.slug == "charging":
                 target.status.clear()
                 if tech.repl_tech:
                     cond = Condition()
@@ -37,7 +37,7 @@ class ChargingEffect(CondEffect):
                     cond.steps = player.game_variables["steps"]
                     cond.link = target
         if tech.phase == "perform_action_item":
-            if tech.slug == "status_charging":
+            if tech.slug == "charging":
                 target.status.clear()
                 if tech.repl_item:
                     cond = Condition()

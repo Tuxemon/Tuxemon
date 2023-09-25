@@ -55,7 +55,7 @@ class ElementalShieldBackEffect(CondEffect):
                             hit = True
 
         if tech.phase == "perform_action_status":
-            if tech.slug == "status_elementalshield":
+            if tech.slug == "elementalshield":
                 if attacker and hit:
                     if attacker.current_hp > 0:
                         attacker.current_hp -= target.hp // 16

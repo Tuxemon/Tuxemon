@@ -30,7 +30,7 @@ class WildEffect(CondEffect):
     def apply(self, tech: Condition, target: Monster) -> WildEffectResult:
         skip: Optional[Technique] = None
         if tech.phase == "pre_checking":
-            if tech.slug == "status_wild":
+            if tech.slug == "wild":
                 wild = random.randint(1, 4)
                 if wild == 1:
                     user = tech.link

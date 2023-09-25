@@ -13,7 +13,7 @@
   "repl_pos": "replaced",
   "repl_neg": "replaced",
   "sfx": "sfx_bite",
-  "slug": "status_lifeleech",
+  "slug": "lifeleech",
   "sort": "meta",
   "target": {
     "enemy monster": 0,

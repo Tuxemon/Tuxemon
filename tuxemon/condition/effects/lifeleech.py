@@ -36,7 +36,7 @@ class LifeLeechEffect(CondEffect):
     def apply(self, tech: Condition, target: Monster) -> LifeLeechEffectResult:
         lifeleech: bool = False
         if tech.phase == "perform_action_status":
-            if tech.slug == "status_lifeleech":
+            if tech.slug == "lifeleech":
                 user = tech.link
                 assert user
                 damage = formula.simple_lifeleech(user, target)

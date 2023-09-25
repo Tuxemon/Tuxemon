@@ -10,7 +10,7 @@
   "repl_pos": "replaced",
   "repl_neg": "removed",
   "sfx": "sfx_pulse",
-  "slug": "status_focused",
+  "slug": "focused",
   "sort": "meta",
   "statdodge": {
     "value": 1.5,

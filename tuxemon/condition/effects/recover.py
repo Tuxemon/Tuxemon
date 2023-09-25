@@ -30,14 +30,14 @@ class RecoverEffect(CondEffect):
         extra: Optional[str] = None
         healing: bool = False
         if tech.phase == "perform_action_status":
-            if tech.slug == "status_recover":
+            if tech.slug == "recover":
                 user = tech.link
                 assert user
                 heal = formula.simple_recover(user)
                 user.current_hp += heal
                 healing = bool(heal)
         if tech.phase == "check_party_hp":
-            if tech.slug == "status_recover":
+            if tech.slug == "recover":
                 # check for recover (completely healed)
                 if target.current_hp >= target.hp:
                     target.status.clear()

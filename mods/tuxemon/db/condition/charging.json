@@ -9,10 +9,10 @@
   "icon": "gfx/ui/icons/status/icon_charging.png",
   "range": "special",
   "repl_pos": "replaced",
-  "repl_tech": "status_chargedup",
-  "repl_item": "status_chargedup",
+  "repl_tech": "chargedup",
+  "repl_item": "chargedup",
   "sfx": "sfx_pulse",
-  "slug": "status_charging",
+  "slug": "charging",
   "sort": "meta",
   "target": {
     "enemy monster": 0,

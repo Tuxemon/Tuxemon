@@ -29,7 +29,7 @@ class TiredEffect(CondEffect):
     def apply(self, tech: Condition, target: Monster) -> TiredEffectResult:
         extra: Optional[str] = None
         if tech.phase == "perform_action_tech":
-            if tech.slug == "status_tired":
+            if tech.slug == "tired":
                 extra = T.format(
                     "combat_state_tired_end",
                     {

@@ -1081,103 +1081,103 @@ msgid "slot"
 msgstr "Slot"
 
 ## STATUSES
-msgid "status_blinded"
+msgid "blinded"
 msgstr "Blinded"
 
-msgid "status_burn"
+msgid "burn"
 msgstr "Burn"
 
-msgid "status_chargedup"
+msgid "chargedup"
 msgstr "Charged Up"
 
-msgid "status_charging"
+msgid "charging"
 msgstr "Charging"
 
-msgid "status_confused"
+msgid "confused"
 msgstr "Confused"
 
-msgid "status_diehard"
+msgid "diehard"
 msgstr "Die Hard"
 
-msgid "status_dozing"
+msgid "dozing"
 msgstr "Dozing"
 
-msgid "status_elementalshield"
+msgid "elementalshield"
 msgstr "Elemental Shield"
 
-msgid "status_eliminated"
+msgid "eliminated"
 msgstr "Eliminated"
 
-msgid "status_enraged"
+msgid "enraged"
 msgstr "Berserk"
 
-msgid "status_exhausted"
+msgid "exhausted"
 msgstr "Exhausted"
 
-msgid "status_faint"
+msgid "faint"
 msgstr "Faint"
 
-msgid "status_feedback"
+msgid "feedback"
 msgstr "Feedback"
 
-msgid "status_festering"
+msgid "festering"
 msgstr "Festering"
 
-msgid "status_flinching"
+msgid "flinching"
 msgstr "Flinching"
 
-msgid "status_focused"
+msgid "focused"
 msgstr "Focused"
 
-msgid "status_grabbed"
+msgid "grabbed"
 msgstr "Grabbed"
 
-msgid "status_hardshell"
+msgid "hardshell"
 msgstr "Hard Shell"
 
-msgid "status_harpooned"
+msgid "harpooned"
 msgstr "Harpooned"
 
-msgid "status_lifeleech"
+msgid "lifeleech"
 msgstr "Lifeleech"
 
-msgid "status_lockdown"
+msgid "lockdown"
 msgstr "Lockdown"
 
-msgid "status_noddingoff"
+msgid "noddingoff"
 msgstr "Nodding Off"
 
-msgid "status_poison"
+msgid "poison"
 msgstr "Poison"
 
-msgid "status_prickly"
+msgid "prickly"
 msgstr "Prickly"
 
-msgid "status_recover"
+msgid "recover"
 msgstr "Recover"
 
-msgid "status_slow"
+msgid "slow"
 msgstr "Slow"
 
-msgid "status_sniping"
+msgid "sniping"
 msgstr "Sniping"
 
-msgid "status_softened"
+msgid "softened"
 msgstr "Softened"
 
 msgid "spyderbite"
 msgstr "Spyder Bite"
 
-msgid "status_stuck"
+msgid "stuck"
 msgstr "Stuck"
 
-msgid "status_tired"
+msgid "tired"
 msgstr "Tired"
 
-msgid "status_wasting"
+msgid "wasting"
 msgstr "Wasting"
 
-msgid "status_wild"
+msgid "wild"
 msgstr "Wild"
 
 ## TECHNIQUE TRANSLATIONS ##

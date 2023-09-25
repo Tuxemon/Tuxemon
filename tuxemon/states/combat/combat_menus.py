@@ -117,7 +117,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             # trigger forfeit
             for mon in self.player.monsters:
                 faint = Condition()
-                faint.load("status_faint")
+                faint.load("faint")
                 mon.current_hp = 0
                 mon.status = [faint]
 
@@ -238,7 +238,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 msg = T.format("cannot_use_item_monster", {"name": item.name})
                 tools.open_dialog(local_session, [msg])
                 return
-            if combat.has_status(target, "status_lockdown"):
+            if combat.has_status(target, "lockdown"):
                 msg = T.format("cannot_use_item_monster", {"name": item.name})
                 tools.open_dialog(local_session, [msg])
                 return

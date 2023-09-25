@@ -29,7 +29,7 @@ class ChargedUpEffect(CondEffect):
         player = self.session.player
         cond: Optional[Condition] = None
         if tech.phase == "perform_action_tech":
-            if tech.slug == "status_chargedup":
+            if tech.slug == "chargedup":
                 target.status.clear()
                 if tech.repl_tech:
                     cond = Condition()

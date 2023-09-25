@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "calling",
   "effects": [
-    "give status_noddingoff,target",
+    "give noddingoff,target",
     "enhance"
   ],
   "flip_axes": "",

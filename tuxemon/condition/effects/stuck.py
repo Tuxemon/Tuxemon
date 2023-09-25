@@ -28,7 +28,7 @@ class StuckEffect(CondEffect):
     def apply(self, tech: Condition, target: Monster) -> StuckEffectResult:
         done: bool = False
         if tech.phase == "perform_action_status":
-            if tech.slug == "status_stuck":
+            if tech.slug == "stuck":
                 formula.simple_stuck(target)
                 done = True
         return {

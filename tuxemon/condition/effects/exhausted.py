@@ -29,7 +29,7 @@ class ExhaustedEffect(CondEffect):
         player = self.session.player
         cond: Optional[Condition] = None
         if tech.phase == "perform_action_tech":
-            if tech.slug == "status_exhausted":
+            if tech.slug == "exhausted":
                 target.status.clear()
                 if tech.repl_tech:
                     cond = Condition()

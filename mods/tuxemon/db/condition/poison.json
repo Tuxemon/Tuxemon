@@ -10,7 +10,7 @@
   "repl_pos": "replaced",
   "repl_neg": "replaced",
   "sfx": "sfx_pulse",
-  "slug": "status_poison",
+  "slug": "poison",
   "sort": "meta",
   "target": {
     "enemy monster": 0,

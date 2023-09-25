@@ -4,7 +4,7 @@
   "flip_axes": "",
   "power": 10,
   "sfx": "sfx_faint",
-  "slug": "status_faint",
+  "slug": "faint",
   "range": "special",
   "sort": "meta",
   "target": {

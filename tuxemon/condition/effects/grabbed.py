@@ -28,7 +28,7 @@ class GrabbedEffect(CondEffect):
     def apply(self, tech: Condition, target: Monster) -> GrabbedEffectResult:
         done: bool = False
         if tech.phase == "perform_action_status":
-            if tech.slug == "status_grabbed":
+            if tech.slug == "grabbed":
                 formula.simple_grabbed(target)
                 done = True
         return {

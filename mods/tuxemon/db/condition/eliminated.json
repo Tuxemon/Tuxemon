@@ -5,7 +5,7 @@
   "icon": "gfx/ui/icons/status/icon_eliminated.png",
   "range": "special",
   "sfx": "sfx_pulse",
-  "slug": "status_eliminated",
+  "slug": "eliminated",
   "sort": "meta",
   "target": {
     "enemy monster": 0,

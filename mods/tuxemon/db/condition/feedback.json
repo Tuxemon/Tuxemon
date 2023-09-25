@@ -10,7 +10,7 @@
   "repl_pos": "replaced",
   "repl_neg": "replaced",
   "sfx": "sfx_pulse",
-  "slug": "status_feedback",
+  "slug": "feedback",
   "sort": "meta",
   "target": {
     "enemy monster": 0,

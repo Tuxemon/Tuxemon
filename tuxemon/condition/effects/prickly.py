@@ -58,7 +58,7 @@ class PricklyBackEffect(CondEffect):
                             hit = True
 
         if tech.phase == "perform_action_status":
-            if tech.slug == "status_prickly":
+            if tech.slug == "prickly":
                 if attacker and hit:
                     if attacker.current_hp > 0:
                         attacker.current_hp -= target.hp // 8

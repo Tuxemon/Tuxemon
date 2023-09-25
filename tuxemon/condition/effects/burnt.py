@@ -28,7 +28,7 @@ class BurntEffect(CondEffect):
     def apply(self, tech: Condition, target: Monster) -> BurntEffectResult:
         burnt: bool = False
         if tech.phase == "perform_action_status":
-            if tech.slug == "status_burn":
+            if tech.slug == "burn":
                 damage = formula.damage_full_hp(target, 8)
                 target.current_hp -= damage
                 burnt = True

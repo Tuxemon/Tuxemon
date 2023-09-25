@@ -31,11 +31,11 @@ class DozingEffect(CondEffect):
         extra: Optional[str] = None
         skip: Optional[Technique] = None
         if tech.phase == "pre_checking":
-            if tech.slug == "status_dozing":
+            if tech.slug == "dozing":
                 skip = Technique()
                 skip.load("empty")
         if tech.phase == "perform_action_tech":
-            if tech.slug == "status_dozing":
+            if tech.slug == "dozing":
                 extra = T.format(
                     "combat_state_dozing_end",
                     {

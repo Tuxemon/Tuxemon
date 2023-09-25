@@ -208,10 +208,10 @@ msgstr "¡Hubo un problema al guardar!"
 msgid "slot"
 msgstr "Ranura"
 
-msgid "status_faint"
+msgid "faint"
 msgstr "Desmayado"
 
-msgid "status_poison"
+msgid "poison"
 msgstr "Envenenado"
 
 ## TECHNIQUE TRANSLATIONS ##
@@ -1563,10 +1563,10 @@ msgstr "¡El ataque fue resistido con fuerza!"
 msgid "save_keep"
 msgstr "No, mantén este punto de guardado."
 
-msgid "status_lifeleech"
+msgid "lifeleech"
 msgstr "Absorbe-vidas"
 
-msgid "status_recover"
+msgid "recover"
 msgstr "Recuperar"
 
 ## TECHNIQUE TRANSLATIONS ##
@@ -1588,7 +1588,7 @@ msgstr "Descarga de Batería"
 msgid "beam"
 msgstr "Viga"
 
-msgid "status_overfeed"
+msgid "overfeed"
 msgstr "Sobrealimentado"
 
 msgid "biting_winds"

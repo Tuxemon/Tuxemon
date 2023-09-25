@@ -712,9 +712,9 @@ class Monster:
         for move in self.moves:
             move.full_recharge()
 
-        if "status_faint" in (s.slug for s in self.status):
+        if "faint" in (s.slug for s in self.status):
             faint = Condition()
-            faint.load("status_faint")
+            faint.load("faint")
             self.status = [faint]
         else:
             self.status = []

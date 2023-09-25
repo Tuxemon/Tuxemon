@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "green_circle",
   "effects": [
-    "give status_softened,target",
+    "give softened,target",
     "enhance"
   ],
   "flip_axes": "",

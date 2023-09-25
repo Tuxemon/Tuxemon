@@ -29,7 +29,7 @@ class DieHardEffect(CondEffect):
     def apply(self, tech: Condition, target: Monster) -> DieHardEffectResult:
         extra: Optional[str] = None
         if tech.phase == "check_party_hp":
-            if tech.slug == "status_diehard":
+            if tech.slug == "diehard":
                 if target.current_hp <= 0:
                     target.current_hp = 1
                     target.status.clear()

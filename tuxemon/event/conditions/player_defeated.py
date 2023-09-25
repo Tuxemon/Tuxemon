@@ -41,12 +41,12 @@ class PlayerDefeatedCondition(EventCondition):
 
         if player.monsters:
             for mon in player.monsters:
-                if mon.current_hp <= 0 and not has_status(mon, "status_faint"):
+                if mon.current_hp <= 0 and not has_status(mon, "faint"):
                     mon.status = list()
                     fainted = Condition()
-                    fainted.load("status_faint")
+                    fainted.load("faint")
                     mon.status = [fainted]
-                if "status_faint" not in (s.slug for s in mon.status):
+                if "faint" not in (s.slug for s in mon.status):
                     return False
             return True
         return False

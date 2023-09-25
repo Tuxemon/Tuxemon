@@ -492,7 +492,7 @@ class CombatAnimations(ABC, Menu[None]):
                 pos = index
             if len(player.monsters) > index:
                 monster = player.monsters[index]
-                if any(t for t in monster.status if t.slug == "status_faint"):
+                if any(t for t in monster.status if t.slug == "faint"):
                     status = "faint"
                     sprite = self.load_sprite(
                         "gfx/ui/icons/party/party_icon03.png",

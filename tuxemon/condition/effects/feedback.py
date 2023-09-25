@@ -56,7 +56,7 @@ class FeedBackEffect(CondEffect):
                             hit = True
 
         if tech.phase == "perform_action_status":
-            if tech.slug == "status_feedback":
+            if tech.slug == "feedback":
                 if attacker and hit:
                     if attacker.current_hp > 0:
                         attacker.current_hp -= target.hp // 8

@@ -34,18 +34,18 @@ class ConfusedEffect(CondEffect):
         skip: Optional[Technique] = None
         player = self.session.player
         if tech.phase == "pre_checking":
-            if tech.slug == "status_confused":
+            if tech.slug == "confused":
                 confusion = random.randint(1, 1)
                 if confusion == 1:
                     user = tech.link
                     assert user
-                    player.game_variables["status_confused"] = "on"
+                    player.game_variables["confused"] = "on"
                     confused = [
                         ele
                         for ele in user.moves
                         if ele.next_use <= 0
                         and not has_effect_param(
-                            ele, "status_confused", "give", "condition"
+                            ele, "confused", "give", "condition"
                         )
                     ]
                     if confused:
@@ -54,11 +54,11 @@ class ConfusedEffect(CondEffect):
                         skip = Technique()
                         skip.load("empty")
                 else:
-                    player.game_variables["status_confused"] = "off"
+                    player.game_variables["confused"] = "off"
         if tech.phase == "perform_action_tech":
-            if tech.slug == "status_confused":
-                if "status_confused" in player.game_variables:
-                    if player.game_variables["status_confused"] == "on":
+            if tech.slug == "confused":
+                if "confused" in player.game_variables:
+                    if player.game_variables["confused"] == "on":
                         _tech = Technique()
                         _tech.load(player.game_variables["action_tech"])
                         extra = T.format(

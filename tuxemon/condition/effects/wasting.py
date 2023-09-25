@@ -28,7 +28,7 @@ class WastingEffect(CondEffect):
     def apply(self, tech: Condition, target: Monster) -> WastingEffectResult:
         done: bool = False
         if tech.phase == "perform_action_status":
-            if tech.slug == "status_wasting":
+            if tech.slug == "wasting":
                 if target.current_hp > 0:
                     damage = (target.hp // 16) * tech.nr_turn
                     target.current_hp -= damage

@@ -9,9 +9,9 @@
   "icon": "gfx/ui/icons/status/icon_exhausted.png",
   "range": "special",
   "repl_neg": "replaced",
-  "repl_tech": "status_tired",
+  "repl_tech": "tired",
   "sfx": "sfx_pulse",
-  "slug": "status_exhausted",
+  "slug": "exhausted",
   "sort": "meta",
   "statmelee": {
     "value": 0.5,

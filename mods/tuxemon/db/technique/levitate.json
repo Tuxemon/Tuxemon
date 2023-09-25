@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": null,
   "effects": [
-    "give status_sniping,both",
+    "give sniping,both",
     "enhance"
   ],
   "flip_axes": "",

@@ -303,19 +303,19 @@ msgstr "不,不要覆盖."
 msgid "slot"
 msgstr "卡槽"
 
-msgid "status_faint"
+msgid "faint"
 msgstr "昏倒"
 
-msgid "status_poison"
+msgid "poison"
 msgstr "中毒"
 
-msgid "status_lifeleech"
+msgid "lifeleech"
 msgstr "死气沉沉"
 
-msgid "status_overfeed"
+msgid "overfeed"
 msgstr "胡吃海塞"
 
-msgid "status_recover"
+msgid "recover"
 msgstr "恢复"
 
 # # TECHNIQUE TRANSLATIONS ##
@@ -788,10 +788,10 @@ msgstr "酸"
 msgid "combat_state_spyderbite_get"
 msgstr "{target}开始嗅探."
 
-msgid "status_dozing"
+msgid "dozing"
 msgstr "打瞌睡"
 
-msgid "status_focused"
+msgid "focused"
 msgstr "集中"
 
 msgid "arcane_eye"
@@ -1038,55 +1038,55 @@ msgid "alert_text"
 msgstr "文字太长!"
 
 # # STATUSES
-msgid "status_blinded"
+msgid "blinded"
 msgstr "蒙蔽"
 
-msgid "status_chargedup"
+msgid "chargedup"
 msgstr "充电"
 
-msgid "status_charging"
+msgid "charging"
 msgstr "充电"
 
-msgid "status_confused"
+msgid "confused"
 msgstr "困惑"
 
-msgid "status_diehard"
+msgid "diehard"
 msgstr "虎胆龙威"
 
-msgid "status_eliminated"
+msgid "eliminated"
 msgstr "消除"
 
-msgid "status_enraged"
+msgid "enraged"
 msgstr "狂暴"
 
-msgid "status_exhausted"
+msgid "exhausted"
 msgstr "用尽"
 
-msgid "status_festering"
+msgid "festering"
 msgstr "溃烂"
 
-msgid "status_grabbed"
+msgid "grabbed"
 msgstr "抓住"
 
-msgid "status_hardshell"
+msgid "hardshell"
 msgstr "硬壳"
 
-msgid "status_noddingoff"
+msgid "noddingoff"
 msgstr "点头离开"
 
-msgid "status_sniping"
+msgid "sniping"
 msgstr "狙击"
 
-msgid "status_softened"
+msgid "softened"
 msgstr "软化"
 
 msgid "spyderbite"
 msgstr "斯皮德咬合"
 
-msgid "status_stuck"
+msgid "stuck"
 msgstr "卡住"
 
-msgid "status_tired"
+msgid "tired"
 msgstr "疲劳"
 
 msgid "adamantine"

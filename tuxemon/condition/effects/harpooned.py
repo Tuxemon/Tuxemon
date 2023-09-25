@@ -28,11 +28,11 @@ class HarpoonedEffect(CondEffect):
     def apply(self, tech: Condition, target: Monster) -> HarpoonedEffectResult:
         player = self.session.player
         if tech.phase == "add_monster_into_play":
-            if tech.slug == "status_harpooned":
+            if tech.slug == "harpooned":
                 target.current_hp -= target.hp // 8
                 if target.current_hp <= 0:
                     faint = Condition()
-                    faint.load("status_faint")
+                    faint.load("faint")
                     faint.link = target
                     faint.steps = player.game_variables["steps"]
                     target.current_hp = 0

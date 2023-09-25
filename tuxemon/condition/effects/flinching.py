@@ -30,7 +30,7 @@ class FlinchingEffect(CondEffect):
     def apply(self, tech: Condition, target: Monster) -> FlinchingEffectResult:
         skip: Optional[Technique] = None
         if tech.phase == "pre_checking":
-            if tech.slug == "status_flinching":
+            if tech.slug == "flinching":
                 fli = random.randint(1, 2)
                 if fli == 1:
                     user = tech.link

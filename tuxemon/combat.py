@@ -110,16 +110,16 @@ def has_status_bond(monster: Monster) -> bool:
     Statuses connected are the ones where an effect is present only
     if both monsters are alive (lifeleech, grabbed).
     """
-    if has_status(monster, "status_grabbed"):
+    if has_status(monster, "grabbed"):
         return True
-    elif has_status(monster, "status_lifeleech"):
+    elif has_status(monster, "lifeleech"):
         return True
     else:
         return False
 
 
 def fainted(monster: Monster) -> bool:
-    return has_status(monster, "status_faint") or monster.current_hp <= 0
+    return has_status(monster, "faint") or monster.current_hp <= 0
 
 
 def get_awake_monsters(

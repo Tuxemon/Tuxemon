@@ -22,7 +22,7 @@ class RemoveEffectResult(TechEffectResult):
 class RemoveEffect(TechEffect):
     """
     This effect has a chance to remove a status effect.
-    "remove status_xxx,target" removes only status_xxx
+    "remove xxx,target" removes only xxx
     "remove all, target" removes everything
     """
 

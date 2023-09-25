@@ -1272,7 +1272,7 @@ class CombatState(CombatAnimations):
 
         """
         faint = Condition()
-        faint.load("status_faint")
+        faint.load("faint")
         monster.current_hp = 0
         if monster.status:
             monster.status[0].nr_turn = 0
@@ -1390,7 +1390,7 @@ class CombatState(CombatAnimations):
                             (partial(self.alert, extra), action_time)
                         )
                 if monster.current_hp <= 0 and not has_status(
-                    monster, "status_faint"
+                    monster, "faint"
                 ):
                     self.remove_monster_actions_from_queue(monster)
                     self.faint_monster(monster)

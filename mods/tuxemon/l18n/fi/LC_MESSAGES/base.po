@@ -106,7 +106,7 @@ msgstr "Sainpas!"
 msgid "save_overwrite"
 msgstr "Kyllä vain, ylikirjoita tämä tallennus."
 
-msgid "status_lifeleech"
+msgid "lifeleech"
 msgstr "Elokuppaaja"
 
 msgid "bullet"
@@ -363,16 +363,16 @@ msgstr "Ei, säilytä tämä tallennus."
 msgid "slot"
 msgstr "Lokero"
 
-msgid "status_faint"
+msgid "faint"
 msgstr "Pyörry"
 
-msgid "status_poison"
+msgid "poison"
 msgstr "Myrkky"
 
-msgid "status_overfeed"
+msgid "overfeed"
 msgstr "Ylisyötä"
 
-msgid "status_recover"
+msgid "recover"
 msgstr "Pelasta"
 
 ## TECHNIQUE TRANSLATIONS ##

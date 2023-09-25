@@ -9,7 +9,7 @@
   "range": "special",
   "repl_neg": "replaced",
   "sfx": "sfx_pulse",
-  "slug": "status_noddingoff",
+  "slug": "noddingoff",
   "sort": "meta",
   "target": {
     "enemy monster": 0,

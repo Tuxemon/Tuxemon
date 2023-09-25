@@ -1,7 +1,7 @@
 {
   "conditions": [
     "is current_hp ==,0",
-    "is status status_faint"
+    "is status faint"
   ],
   "effects": [
     "revive 1",

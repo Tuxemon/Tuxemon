@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "disintegrate_83",
   "effects": [
-    "give status_exhausted,target",
-    "give status_hardshell,user",
+    "give exhausted,target",
+    "give hardshell,user",
     "enhance"
   ],
   "flip_axes": "",

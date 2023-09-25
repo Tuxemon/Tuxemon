@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "firelion_right",
   "effects": [
-    "give status_burn,target",
+    "give burn,target",
     "damage"
   ],
   "flip_axes": "x",

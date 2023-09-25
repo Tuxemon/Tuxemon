@@ -208,10 +208,10 @@ msgstr "Problemo okazis dum konservado!"
 msgid "slot"
 msgstr "Ujo"
 
-msgid "status_faint"
+msgid "faint"
 msgstr "Svenite"
 
-msgid "status_poison"
+msgid "poison"
 msgstr "veneno"
 
 ## TECHNIQUE TRANSLATIONS ##

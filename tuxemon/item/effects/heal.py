@@ -45,7 +45,7 @@ class HealEffect(ItemEffect):
         healing_amount = self.amount
         # condition festering = no healing
         if (
-            has_status(target, "status_festering")
+            has_status(target, "festering")
             and item.category == ItemCategory.potion
         ):
             healing_amount = 0

@@ -27,7 +27,7 @@ class EnragedEffect(CondEffect):
 
     def apply(self, tech: Condition, target: Monster) -> EnragedEffectResult:
         if tech.phase == "perform_action_tech":
-            if tech.slug == "status_enraged":
+            if tech.slug == "enraged":
                 target.status.clear()
         return {
             "success": True,

@@ -4210,6 +4210,12 @@ msgstr "It uses its weight to trip much larger enemies. It is as dense as a star
 msgid "sumchon"
 msgstr "Sumchon"
 
+msgid "sumobug"
+msgstr "Sumobug"
+
+msgid "sumobug_description"
+msgstr "It uses its weight to trip much larger enemies. It is as dense as a star."
+
 msgid "tadcool_description"
 msgstr "It croaks to warn people when they are walking near thin ice."
 

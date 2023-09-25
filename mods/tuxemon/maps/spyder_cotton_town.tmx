@@ -388,7 +388,7 @@
     <property name="act11" value="player_stop"/>
     <property name="act12" value="lock_controls"/>
     <property name="act13" value="create_npc spyder_papertown_mom,23,23"/>
-    <property name="act14" value="pathfind spyder_papertown_mom,28,18"/>
+    <property name="act14" value="pathfind spyder_papertown_mom,31,18"/>
     <property name="act15" value="unlock_controls"/>
     <property name="act16" value="npc_face player,down"/>
     <property name="act20" value="translated_dialog spyder_cottontown_mom"/>

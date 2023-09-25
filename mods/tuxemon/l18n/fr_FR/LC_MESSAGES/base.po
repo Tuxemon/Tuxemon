@@ -214,10 +214,10 @@ msgstr "Non, conserver cette sauvegarde."
 msgid "slot"
 msgstr "Emplacement"
 
-msgid "faint"
+msgid "status_faint"
 msgstr "K.O."
 
-msgid "poison"
+msgid "status_poison"
 msgstr "Empoisonné"
 
 ## TECHNIQUE TRANSLATIONS ##
@@ -1697,7 +1697,7 @@ msgstr "Les PV de {user} sont aspirés !"
 msgid "reg_papers"
 msgstr "Documents d'inscription"
 
-msgid "recover"
+msgid "status_recover"
 msgstr "Régén."
 
 msgid "maamnothing"
@@ -1721,7 +1721,7 @@ msgstr "{stat} de {user} augmenté."
 msgid "attack_resisted"
 msgstr "L'adversaire a résisté à l'attaque !"
 
-msgid "overfeed"
+msgid "status_overfeed"
 msgstr "Repu"
 
 msgid "feint"
@@ -4597,7 +4597,7 @@ msgstr ""
 "combats pour les utiliser.\n"
 " Merci pour votre attention. Voici cinq Appareils de Capture en échantillon. "
 
-msgid "lifeleech"
+msgid "status_lifeleech"
 msgstr "Vol de Vie"
 
 msgid "spyder_route3_qqq1"
@@ -6282,61 +6282,61 @@ msgid "alert_text"
 msgstr "Texte trop long !"
 
 ## STATUSES
-msgid "blinded"
+msgid "status_blinded"
 msgstr "Aveuglé"
 
-msgid "chargedup"
+msgid "status_chargedup"
 msgstr "Chargé"
 
-msgid "charging"
+msgid "status_charging"
 msgstr "En Charge"
 
-msgid "confused"
+msgid "status_confused"
 msgstr "Confus"
 
-msgid "diehard"
+msgid "status_diehard"
 msgstr "Tenace"
 
-msgid "dozing"
+msgid "status_dozing"
 msgstr "Assoupi"
 
-msgid "eliminated"
+msgid "status_eliminated"
 msgstr "Éliminé"
 
-msgid "enraged"
+msgid "status_enraged"
 msgstr "Furieux"
 
-msgid "exhausted"
+msgid "status_exhausted"
 msgstr "Épuisé"
 
-msgid "festering"
+msgid "status_festering"
 msgstr "Purulente"
 
-msgid "focused"
+msgid "status_focused"
 msgstr "Concentré"
 
-msgid "grabbed"
+msgid "status_grabbed"
 msgstr "Empoigné"
 
-msgid "hardshell"
+msgid "status_hardshell"
 msgstr "Coquille"
 
-msgid "noddingoff"
+msgid "status_noddingoff"
 msgstr "Hochant"
 
-msgid "sniping"
+msgid "status_sniping"
 msgstr "Sniping"
 
-msgid "softened"
+msgid "status_softened"
 msgstr "Ramolli"
 
 msgid "spyderbite"
 msgstr "Morsure Spyder"
 
-msgid "stuck"
+msgid "status_stuck"
 msgstr "Coincé"
 
-msgid "tired"
+msgid "status_tired"
 msgstr "Fatigué"
 
 msgid "acid"

@@ -214,10 +214,10 @@ msgstr "Non, conserver cette sauvegarde."
 msgid "slot"
 msgstr "Emplacement"
 
-msgid "status_faint"
+msgid "faint"
 msgstr "K.O."
 
-msgid "status_poison"
+msgid "poison"
 msgstr "Empoisonné"
 
 ## TECHNIQUE TRANSLATIONS ##
@@ -565,8 +565,8 @@ msgstr "Firomenis"
 
 msgid "firomenis_description"
 msgstr ""
-"Les années passées sous forme de MERLICUN ont endurci et élargi ces tuxemon
-aux mâchoires si puissantes qu'elles peuvent casser en deux les arbres comme les os."
+"Les années passées sous forme de MERLICUN ont endurci et élargi ces tuxemon"
+"aux mâchoires si puissantes qu'elles peuvent casser en deux les arbres comme les os."
 
 msgid "fluttaflap"
 msgstr "Fluttaflap"
@@ -1697,7 +1697,7 @@ msgstr "Les PV de {user} sont aspirés !"
 msgid "reg_papers"
 msgstr "Documents d'inscription"
 
-msgid "status_recover"
+msgid "recover"
 msgstr "Régén."
 
 msgid "maamnothing"
@@ -1721,7 +1721,7 @@ msgstr "{stat} de {user} augmenté."
 msgid "attack_resisted"
 msgstr "L'adversaire a résisté à l'attaque !"
 
-msgid "status_overfeed"
+msgid "overfeed"
 msgstr "Repu"
 
 msgid "feint"
@@ -4597,7 +4597,7 @@ msgstr ""
 "combats pour les utiliser.\n"
 " Merci pour votre attention. Voici cinq Appareils de Capture en échantillon. "
 
-msgid "status_lifeleech"
+msgid "lifeleech"
 msgstr "Vol de Vie"
 
 msgid "spyder_route3_qqq1"
@@ -6282,61 +6282,61 @@ msgid "alert_text"
 msgstr "Texte trop long !"
 
 ## STATUSES
-msgid "status_blinded"
+msgid "blinded"
 msgstr "Aveuglé"
 
-msgid "status_chargedup"
+msgid "chargedup"
 msgstr "Chargé"
 
-msgid "status_charging"
+msgid "charging"
 msgstr "En Charge"
 
-msgid "status_confused"
+msgid "confused"
 msgstr "Confus"
 
-msgid "status_diehard"
+msgid "diehard"
 msgstr "Tenace"
 
-msgid "status_dozing"
+msgid "dozing"
 msgstr "Assoupi"
 
-msgid "status_eliminated"
+msgid "eliminated"
 msgstr "Éliminé"
 
-msgid "status_enraged"
+msgid "enraged"
 msgstr "Furieux"
 
-msgid "status_exhausted"
+msgid "exhausted"
 msgstr "Épuisé"
 
-msgid "status_festering"
+msgid "festering"
 msgstr "Purulente"
 
-msgid "status_focused"
+msgid "focused"
 msgstr "Concentré"
 
-msgid "status_grabbed"
+msgid "grabbed"
 msgstr "Empoigné"
 
-msgid "status_hardshell"
+msgid "hardshell"
 msgstr "Coquille"
 
-msgid "status_noddingoff"
+msgid "noddingoff"
 msgstr "Hochant"
 
-msgid "status_sniping"
+msgid "sniping"
 msgstr "Sniping"
 
-msgid "status_softened"
+msgid "softened"
 msgstr "Ramolli"
 
 msgid "spyderbite"
 msgstr "Morsure Spyder"
 
-msgid "status_stuck"
+msgid "stuck"
 msgstr "Coincé"
 
-msgid "status_tired"
+msgid "tired"
 msgstr "Fatigué"
 
 msgid "acid"

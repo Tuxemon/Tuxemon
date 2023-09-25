@@ -1245,9 +1245,9 @@ class CombatState(CombatAnimations):
                 if technique.use_failure:
                     template = getattr(technique, "use_failure")
                     cond_mex = T.format(template, context)
-            action_time += compute_text_animation_time(message)
+            action_time += compute_text_animation_time(cond_mex)
             self.text_animations_queue.append(
-                (partial(self.alert, message), action_time)
+                (partial(self.alert, cond_mex), action_time)
             )
 
             # effect animation

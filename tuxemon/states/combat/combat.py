@@ -1039,7 +1039,6 @@ class CombatState(CombatAnimations):
 
         """
         action_time = 0.0
-        _player = local_session.player
         # action is performed, so now use sprites to animate it
         # this value will be None if the target is off screen
         target_sprite = self._monster_sprite_map.get(target, None)
@@ -1104,8 +1103,9 @@ class CombatState(CombatAnimations):
             # TODO: a real check or some params to test if should tackle, etc
             if result_tech["should_tackle"]:
                 hit_delay += 0.5
-                user_sprite = self._monster_sprite_map[user]
-                self.animate_sprite_tackle(user_sprite)
+                user_sprite = self._monster_sprite_map.get(user, None)
+                if user_sprite:
+                    self.animate_sprite_tackle(user_sprite)
 
                 if target_sprite:
                     self.task(

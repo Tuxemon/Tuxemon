@@ -1038,7 +1038,7 @@ class CombatState(CombatAnimations):
             target: Monster that receives the action.
 
         """
-        action_time = 0
+        action_time = 0.0
         _player = local_session.player
         # action is performed, so now use sprites to animate it
         # this value will be None if the target is off screen
@@ -1247,9 +1247,9 @@ class CombatState(CombatAnimations):
                     cond_mex = T.format(template, context)
             action_time += compute_text_animation_time(message)
             self.text_animations_queue.append(
-                    (partial(self.alert, message), action_time)
-                )
-                
+                (partial(self.alert, message), action_time)
+            )
+
             # effect animation
             is_flipped = False
             tech_sprite = self._technique_cache.get(technique, is_flipped)
@@ -1284,7 +1284,7 @@ class CombatState(CombatAnimations):
         Experience is distributed evenly to all participants.
         """
         message: str = ""
-        action_time = 0
+        action_time = 0.0
         if monster in self._damage_map:
             # Award Experience
             awarded_exp = (
@@ -1385,7 +1385,7 @@ class CombatState(CombatAnimations):
                     result_status = monster.status[0].use(monster)
                     if result_status["extra"]:
                         extra = result_status["extra"]
-                        action_time += compute_text_animation_time(extra)
+                        action_time = compute_text_animation_time(extra)
                         self.text_animations_queue.append(
                             (partial(self.alert, extra), action_time)
                         )

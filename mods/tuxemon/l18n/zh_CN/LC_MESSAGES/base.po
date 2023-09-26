@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tuxemon\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-18 01:47+0000\n"
+"PO-Revision-Date: 2023-09-27 08:59+0000\n"
 "Last-Translator: David Liang <2188741623@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "tuxemon/tuxemon/zh_Hans/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 # # ITEM TRANSLATIONS ##
 # Apple
@@ -161,7 +161,7 @@ msgid "hp_restored"
 msgstr "{user}的生命值恢复了。"
 
 msgid "combat_state_overfeed_get"
-msgstr "{user} 过量 {target}."
+msgstr "{target}吃得太多了."
 
 msgid "dodge_fell"
 msgstr "{user}闪避掉了。"
@@ -6866,3 +6866,160 @@ msgstr "这让我想到了我妈妈的房子。"
 
 msgid "taba_house4_owner1"
 msgstr "欢迎来到尊贵的海鸥酒吧!"
+
+## Sphalian Town ##
+msgid "sphalian_alert_skating"
+msgstr "永远要小心!一定要带上安全装备!"
+
+msgid "tm_water"
+msgstr "招式手册(水系)"
+
+msgid "tuxepedia_data_caught"
+msgstr "捕获了{param} 只精灵,共有{all}只精灵"
+
+msgid "player_start_adventure"
+msgstr "冒险始于{date}天前."
+
+msgid "aardant"
+msgstr "阿丹特"
+
+msgid "mm_water"
+msgstr "招式模块(水系)"
+
+msgid "new_tech_delete"
+msgstr ""
+"{name}有太多的招式了.\n"
+"您想要删除哪个招式?"
+
+msgid "sphalian_grannypiper"
+msgstr "大暴雪的影响是如此之大,以至于直到今天,幸存者还会聚集在一起纪念."
+
+msgid "sphalian_tvwatch"
+msgstr "一名记者走遍全球寻找失落的文明."
+
+msgid "tm_metal_description"
+msgstr "在该招式手册中学习特定于金系的招式。"
+
+msgid "tuxemon_new_tech"
+msgstr "{name}学会了招式{tech}!"
+
+msgid "tm_wood"
+msgstr "招式手册(木系)"
+
+msgid "max_moves_alert"
+msgstr ""
+"{name}有太多的招式了,\n"
+"为了学习，你想覆盖哪一个 {tech}?"
+
+msgid "sphalian_monk"
+msgstr "这让我想起了暴雪杀死我朋友的时刻."
+
+msgid "sphalian_shopkeeper"
+msgstr "我们崇拜和尊敬这座山,我们相信无论发生什么,它都会拯救我们."
+
+msgid "mm_wood_description"
+msgstr "在这个模块中学习特定的木系招式。然后它会被消耗掉。"
+
+msgid "tuxepedia_data_seen"
+msgstr "发现了{param} 只精灵,共有{all}只精灵"
+
+## MAP ##
+msgid "buddha_mountain"
+msgstr "狮子山"
+
+msgid "mountain_road_interrupted"
+msgstr "道路因滑坡而中断."
+
+msgid "mm_metal"
+msgstr "招式模块(金系)"
+
+## MAP DESCRIPTIONS TOWN / CITY ##
+msgid "buddha_mountain_description"
+msgstr "丰登特的一座圣山!海拔3776米(12388英尺)!"
+
+msgid "tm_fire"
+msgstr "招式手册(火系)"
+
+msgid "overfeed"
+msgstr "胡吃海塞"
+
+msgid "mm_metal_description"
+msgstr "在这个模块中学习特定的金系招式。然后它会被消耗掉。"
+
+msgid "tm_metal"
+msgstr "招式手册(金系)"
+
+msgid "sphalian_beck"
+msgstr "这一点都不好笑,伙计."
+
+msgid "mm_water_description"
+msgstr "在这个模块中学习特定的水系招式。然后它会被消耗掉。"
+
+msgid "sphalian_town_description"
+msgstr "丰登特地区最高的定居点!"
+
+msgid "sphalian_barmaid"
+msgstr "我滑得不太好."
+
+msgid "tm_wood_description"
+msgstr "在该招式手册中学习特定于木系的招式。"
+
+msgid "mm_earth_description"
+msgstr "在这个模块中学习特定的土系招式。然后它会被消耗掉。"
+
+msgid "sphalian_hackerchat"
+msgstr "两周前,一场巨大的暴风雪袭击了${{map_name}}."
+
+msgid "sphalian_granny"
+msgstr "这是,呃…一个沉重的消息.听到这个消息我很难过."
+
+msgid "nu_phone_description"
+msgstr "你可以用它做很多事情，比如打电话回家。"
+
+# Player State
+msgid "tuxepedia_progress"
+msgstr "精灵百科完成度: {value}%!"
+
+msgid "tm_earth_description"
+msgstr "在该招式手册中学习特定于土系的招式。"
+
+msgid "tm_fire_description"
+msgstr "在该招式手册中学习特定于火系的招式。"
+
+msgid "nu_phone"
+msgstr "手机"
+
+msgid "wallet"
+msgstr "钱包"
+
+msgid "mm_wood"
+msgstr "招式模块(木系)"
+
+msgid "tm_water_description"
+msgstr "在该招式手册中学习特定于水系的招式。"
+
+msgid "route7_description"
+msgstr "狮子山斜坡上的升天步道!"
+
+msgid "mm_fire_description"
+msgstr "在这个模块中学习特定的火系招式。然后它会被消耗掉。"
+
+msgid "route7"
+msgstr "7号道路"
+
+msgid "sphalian_maniac"
+msgstr ""
+"登山者需要清醒过来,明白爬狮子山是非常危险的.\n"
+"他们需要停止仅仅因为他们有强大的精灵就相信他们能够攀登."
+
+msgid "mm_earth"
+msgstr "招式模块(土系)"
+
+msgid "tm_earth"
+msgstr "招式手册(土系)"
+
+msgid "mm_fire"
+msgstr "技能模块(火系)"
+
+msgid "sphalian_town"
+msgstr "斯帕利安"

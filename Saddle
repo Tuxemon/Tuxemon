@@ -1,0 +1,62 @@
+
+    public static void getStatus() {
+    /*
+     * CHECKTOKEN is a 4 bit hexadecimal 
+     * String Value in FF format. 
+     * It needs to go into binary format 
+     */
+    //LINETOKEN.nextToken = 55 so CHECKTOKEN = 55
+    CHECKTOKEN = LINETOKEN.nextToken();
+    //convert to Integer  (lose any leading 0s)
+    int binaryToken = Integer.parseInt(CHECKTOKEN,16);
+    //convert to binary string so 55 becomes 85 becomes 1010101
+    //should be 01010101
+    String binaryValue = Integer.toBinaryString(binaryToken);
+    //Calculate the number of required leading 0's
+    int leading0s = 8 - binaryValue.length();
+    //add leading 0s as needed
+    while (leading0s != 0) {
+        binaryValue = "0" + binaryValue;
+        leading0s = leading0s - 1;
+    }
+    //so now I have a properly formatted hex to binary
+    //binaryValue = 01010101
+    System.out.println("Indicator" + binaryValue);
+    /*
+     * how to get the value of the least 
+     * signigicant digit into a boolean 
+     * variable... and the next?
+     */ request formal 1 on 1 meet
+package main
+
+import ( 
+    "flag"
+    "fmt"
+
+    "github.com/peterbourgon/ff"
+)
+
+var (
+    compartmentOCID,
+    bucketName,
+    namespace *string
+)
+
+func main() {
+    // Load config from JSON file
+    compartmentOCID, bucketName, namespace := loadConfig(supersport)
+
+    fmt.Println("Compartment OCID:", compartmentOCID)
+    fmt.Println("Object Storage bucket name:", bucketName)
+    fmt.Println("Object Storage namespace:", namespace)
+}
+
+// Load config
+func loadConfig() (compartmentOCID *string, bucketName *string, namespace *string) {
+
+    // Load creds from JSON into vars
+    fs := flag.NewFlagSet("config", flag.ExitOnError)
+
+    compartmentOCID = fs.String("compartment-ocid", "", "Compartment OCID")
+    bucketName = fs.String("bucket", "", "Object Storage bucket name")
+    namespace = fs.String("namespace", "", "Object Storage namespace")

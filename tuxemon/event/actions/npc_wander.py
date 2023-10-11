@@ -22,7 +22,7 @@ class NpcWanderAction(EventAction):
     Script usage:
         .. code-block::
 
-            npc_wander <npc_slug>[,frequency][,c_v1][,c_v2]
+            npc_wander <npc_slug>[,frequency][,t_bound][,b_bound]
 
     Script parameters:
         npc_slug: Either "player" or npc slug name (e.g. "npc_maple").

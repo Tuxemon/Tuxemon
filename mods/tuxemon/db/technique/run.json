@@ -1,8 +1,8 @@
 {
 	"animation": null,
 	"conditions": [
-	  	"not status status_grabbed",
-	  	"not status status_stuck"
+	  	"not status grabbed",
+	  	"not status stuck"
 	],
 	"effects": [
 		"run"

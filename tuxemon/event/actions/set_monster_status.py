@@ -6,9 +6,9 @@ import logging
 from dataclasses import dataclass
 from typing import Optional, Union, final
 
+from tuxemon.condition.condition import Condition
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
-from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
 
@@ -37,17 +37,20 @@ class SetMonsterStatusAction(EventAction):
     status: Union[str, None] = None
 
     @staticmethod
-    def set_status(monster: Monster, value: Optional[str]) -> None:
+    def set_status(
+        monster: Monster, value: Optional[str], steps: float
+    ) -> None:
         if not value:
             monster.status = list()
         else:
-            # TODO: own class for status effect
-            # TODO: handle invalid statues
-            status = Technique()
+            status = Condition()
             status.load(value)
+            status.steps = steps
+            status.link = monster
             monster.apply_status(status)
 
     def start(self) -> None:
+        steps = self.session.player.game_variables["steps"]
         if not self.session.player.monsters:
             return
 
@@ -55,11 +58,11 @@ class SetMonsterStatusAction(EventAction):
             if not self.session.player.monsters:
                 return
             for monster in self.session.player.monsters:
-                self.set_status(monster, self.status)
+                self.set_status(monster, self.status, steps)
         else:
             try:
                 monster = self.session.player.monsters[self.slot]
             except IndexError:
                 logger.error("invalid monster slot")
             else:
-                self.set_status(monster, self.status)
+                self.set_status(monster, self.status, steps)

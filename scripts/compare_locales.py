@@ -50,7 +50,7 @@ for lc in glob.glob(locale_glob):
 
     # this will check the master locale against the master_set
     # it could take some effort to skip it, mangling paths
-    # so i'm not going to bother for now
+    # so I'm not going to bother for now
     if keys == master_keys:
         print(lc, ": ok")
 

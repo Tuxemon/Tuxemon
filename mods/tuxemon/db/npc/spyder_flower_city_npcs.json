@@ -23,7 +23,7 @@
     "slug": "spyder_flower_mieke",
     "template": [
       {
-        "sprite_name": "catgirl",
+        "sprite_name": "catgirl_blue",
         "combat_front": "catgirl",
         "slug": "catgirl"
       }

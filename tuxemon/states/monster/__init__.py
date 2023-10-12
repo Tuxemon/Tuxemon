@@ -144,7 +144,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
         Used to determine if a given monster should be selectable.
 
         When other code creates a MonsterMenu, it should overwrite this method
-        to suit it's needs.
+        to suit its needs.
 
         Parameters:
             monster: The monster corresponding to the menu item, if any.

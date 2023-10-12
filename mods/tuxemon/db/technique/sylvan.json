@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "emerald",
   "effects": [
-    "switch target,wood",
-    "enhance"
+    "enhance",
+    "switch target,wood"
   ],
   "flip_axes": "",
   "is_fast": false,

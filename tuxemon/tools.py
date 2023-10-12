@@ -327,7 +327,7 @@ def show_item_result_as_dialog(
     Parameters:
         session: Game session.
         item: Item object.
-        result: A dict with a ``success`` key indicating sucess or failure.
+        result: A dict with a ``success`` key indicating success or failure.
 
     """
     msg_type = "use_success" if result["success"] else "use_failure"

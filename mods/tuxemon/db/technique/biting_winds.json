@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "explosion_ice_112",
   "effects": [
-    "give status_softened,target",
+    "give softened,target",
     "damage"
   ],
   "flip_axes": "",

@@ -42,7 +42,7 @@ class PlayerMovedCondition(EventCondition):
     * If it collides, wait until destination changes
     * Become True after collides and destination has changed
 
-    These rules ensure that the event is true once player in in the tile
+    These rules ensure that the event is true once player in the tile
     and is only true once.  Could possibly be better, IDK.
 
     Script usage:

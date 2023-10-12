@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, ClassVar, TypedDict
+from typing import TYPE_CHECKING, ClassVar, TypedDict, Union
 
 from tuxemon.session import Session, local_session
 from tuxemon.tools import cast_dataclass_parameters
@@ -15,6 +15,10 @@ if TYPE_CHECKING:
 
 class TechEffectResult(TypedDict):
     success: bool
+    damage: int
+    element_multiplier: float
+    should_tackle: bool
+    extra: Union[str, None]
 
 
 @dataclass
@@ -44,7 +48,7 @@ class TechEffect:
 
     * the type may be any valid python type, or even a python class or function
     * type may be a single type, or a tuple of types
-    * type, if a tuple, may include None is indicate the parameter is optional
+    * type, if a tuple, may include None to indicate the parameter is optional
     * name must be a valid python string
 
     After parsing the parameters of the Technique, the parameter's value
@@ -69,4 +73,10 @@ class TechEffect:
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        return {"success": True}
+        return {
+            "success": True,
+            "damage": 0,
+            "element_multiplier": 0.0,
+            "should_tackle": False,
+            "extra": None,
+        }

@@ -43,7 +43,7 @@
     "slug": "spyder_cottonhouse1_lila",
     "template": [
       {
-        "sprite_name": "homemaker",
+        "sprite_name": "homemaker_blonde",
         "combat_front": "adventurer",
         "slug": "homemaker"
       }
@@ -93,7 +93,7 @@
     "slug": "spyder_cottoncafe_lotus",
     "template": [
       {
-        "sprite_name": "granny",
+        "sprite_name": "granny_lapi",
         "combat_front": "adventurer",
         "slug": "granny"
       }
@@ -113,7 +113,7 @@
     "slug": "spyder_cottonartshop_philis",
     "template": [
       {
-        "sprite_name": "granny",
+        "sprite_name": "granny_green",
         "combat_front": "adventurer",
         "slug": "granny"
       }
@@ -123,7 +123,7 @@
     "slug": "spyder_cottonhouse2_sidney",
     "template": [
       {
-        "sprite_name": "catgirl",
+        "sprite_name": "catgirl_fiery",
         "combat_front": "catgirl",
         "slug": "catgirl"
       }
@@ -174,6 +174,16 @@
     "template": [
       {
         "sprite_name": "nurse",
+        "combat_front": "nurse",
+        "slug": "nurse"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottoncenter_ada",
+    "template": [
+      {
+        "sprite_name": "nurse_green",
         "combat_front": "nurse",
         "slug": "nurse"
       }
@@ -258,5 +268,35 @@
         "slug": "interactive_obj"
       }
     ]
-  }  
+  },
+  {
+    "slug": "spyder_cottontunnel_professor",
+    "template": [
+      {
+        "sprite_name": "professor_fiery",
+        "combat_front": "professor",
+        "slug": "professor"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottontunnel_shopassistant",
+    "template": [
+      {
+        "sprite_name": "shopassist_black",
+        "combat_front": "shopassist",
+        "slug": "shopassistant"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cottontunnel_carlos",
+    "template": [
+      {
+        "sprite_name": "dragonrider_black",
+        "combat_front": "dragonrider",
+        "slug": "dragonrider"
+      }
+    ]
+  }
 ]

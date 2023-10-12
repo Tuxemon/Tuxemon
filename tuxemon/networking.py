@@ -121,10 +121,10 @@ class TuxemonServer:
 
         """
         # Only respond to the latest message of a given type
-        if not "event_list" in self.server.registry[cuuid]:
+        if "event_list" not in self.server.registry[cuuid]:
             self.server.registry[cuuid]["event_list"] = {}
         elif (
-            not event_data["type"] in self.server.registry[cuuid]["event_list"]
+            event_data["type"] not in self.server.registry[cuuid]["event_list"]
         ):
             self.server.registry[cuuid]["event_list"][event_data["type"]] = -1
 
@@ -434,7 +434,7 @@ class TuxemonClient:
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_PUSH_SELF":
-                if not event_data["cuuid"] in self.client.registry:
+                if event_data["cuuid"] not in self.client.registry:
                     self.client.registry[str(event_data["cuuid"])] = {}
                 sprite = populate_client(
                     event_data["cuuid"],
@@ -566,7 +566,7 @@ class TuxemonClient:
 
     def populate_player(self, event_type: str = "PUSH_SELF") -> None:
         """Sends client character to the server."""
-        if not event_type in self.event_list:
+        if event_type not in self.event_list:
             self.event_list[event_type] = 0
         pd = local_session.player.__dict__
         map_name = self.game.get_map_name()
@@ -600,7 +600,7 @@ class TuxemonClient:
             event_type: Event type sent to server used for event_legal() and event_execute() functions in middleware.
 
         """
-        if not event_type in self.event_list:
+        if event_type not in self.event_list:
             self.event_list[event_type] = 0
         pd = local_session.player.__dict__
         map_name = self.game.get_map_name()
@@ -674,7 +674,7 @@ class TuxemonClient:
         ):
             event_type = "CLIENT_FACING"
 
-        if not event_type in self.event_list:
+        if event_type not in self.event_list:
             assert event_type
             self.event_list[event_type] = 0
 
@@ -733,7 +733,7 @@ class TuxemonClient:
         :returns: None
 
         """
-        if not event_type in self.event_list:
+        if event_type not in self.event_list:
             self.event_list[event_type] = 1
         cuuid = None
 
@@ -766,7 +766,7 @@ class TuxemonClient:
 
         """
         event_type = "PING"
-        if not event_type in self.event_list:
+        if event_type not in self.event_list:
             self.event_list[event_type] = 1
         else:
             self.event_list[event_type] += 1

@@ -134,6 +134,8 @@ class QuantityAndPriceMenu(QuantityMenu):
             price_tag = T.translate("shop_buy_free")
         else:
             price_tag = str(price)
+            if self.quantity == 0:
+                price_tag = T.translate("shop_buy_soldout")
 
         formatted_name = label_format(price_tag, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))

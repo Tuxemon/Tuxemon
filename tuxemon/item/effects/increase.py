@@ -53,4 +53,4 @@ class IncreaseEffect(ItemEffect):
         else:
             raise ValueError(f"{self.stat} must be a stat.")
         target.set_stats()
-        return {"success": True}
+        return {"success": True, "num_shakes": 0, "extra": None}

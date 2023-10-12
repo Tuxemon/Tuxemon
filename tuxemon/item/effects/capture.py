@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 class CaptureEffectResult(ItemEffectResult):
-    num_shakes: int
+    pass
 
 
 @dataclass
@@ -137,7 +137,7 @@ class CaptureEffect(ItemEffect):
         # TODO: debug logging this info
         # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
         # Specifically the catch rate and the shake_check is based on the Generation III-IV
-        # The rate of which a tuxemon is caught is approximetly catch_check/255
+        # The rate of which a tuxemon is caught is approximately catch_check/255
 
         catch_check = (
             (3 * target.hp - 2 * target.current_hp)
@@ -151,7 +151,7 @@ class CaptureEffect(ItemEffect):
         )
         # Catch_resistance is a randomly generated number between the lower and upper catch_resistance of a tuxemon.
         # This value is used to slightly increase or decrease the chance of a tuxemon being caught. The value changes
-        # Every time a new caprute device is thrown.
+        # Every time a new capture device is thrown.
         catch_resistance = random.uniform(
             target.lower_catch_resistance, target.upper_catch_resistance
         )
@@ -191,7 +191,7 @@ class CaptureEffect(ItemEffect):
                     if tuxeball:
                         tuxeball.quantity += 1
 
-                return {"success": False, "num_shakes": i + 1}
+                return {"success": False, "num_shakes": i + 1, "extra": None}
 
         # it increases the level +1 upon capture
         if item.slug == "tuxeball_candy":
@@ -205,4 +205,4 @@ class CaptureEffect(ItemEffect):
         self.user.add_monster(target, len(self.user.monsters))
 
         # TODO: remove monster from the other party
-        return {"success": True, "num_shakes": 4}
+        return {"success": True, "num_shakes": 4, "extra": None}

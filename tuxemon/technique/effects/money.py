@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from tuxemon import formula
+from tuxemon.locale import T
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -31,12 +32,12 @@ class MoneyEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> MoneyEffectResult:
+        extra: Optional[str] = None
         done: bool = False
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         damage, mult = formula.simple_damage_calculate(tech, user, target)
-        hit = tech.accuracy >= 5
-        print(tech.accuracy, value)
+        hit = tech.accuracy >= value
         if hit:
             done = True
             user.current_hp -= damage
@@ -45,5 +46,18 @@ class MoneyEffect(TechEffect):
             tech.advance_counter_success()
             amount = int(damage * mult)
             player.give_money(amount)
-            player.game_variables["gold_digger"] = damage
-        return {"success": done}
+            extra = T.format(
+                "combat_state_gold",
+                {
+                    "name": user.name,
+                    "symbol": "$",
+                    "gold": damage,
+                },
+            )
+        return {
+            "success": done,
+            "damage": 0,
+            "element_multiplier": 0.0,
+            "should_tackle": False,
+            "extra": extra,
+        }

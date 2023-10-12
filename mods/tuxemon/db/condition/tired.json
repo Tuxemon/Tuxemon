@@ -1,0 +1,27 @@
+{
+  "animation": null,
+  "category": "negative",
+  "effects": [
+    "tired"
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_tired.png",
+  "range": "special",
+  "repl_pos": "removed",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "tired",
+  "sort": "meta",
+  "target": {
+    "enemy monster": 0,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0
+  },
+  "cond_id": 10,
+  "use_failure": null,
+  "use_success": "combat_state_tired_get",
+  "gain_cond": null
+}

@@ -3,8 +3,8 @@
   "accuracy": 0.6,
   "animation": "wall_ice",
   "effects": [
-    "give status_elementalshield,user",
-    "give status_slow,target",
+    "give elementalshield,user",
+    "give slow,target",
     "damage"
   ],
   "flip_axes": "",

@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": null,
   "effects": [
-    "give status_slow,target",
+    "give slow,target",
     "enhance"
   ],
   "flip_axes": "",

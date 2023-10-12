@@ -388,7 +388,7 @@ class TMXMapLoader:
         properties = obj.properties
         keys = natsorted(properties.keys())
         # Conditions & actions are stored as Tiled properties.
-        # We need to sort them by name, so that "act1" comes before "act2" and so on..
+        # We need to sort them by name, so that "act1" comes before "act2" and so on...
         for key in keys:
             if not isinstance(key, str):
                 continue

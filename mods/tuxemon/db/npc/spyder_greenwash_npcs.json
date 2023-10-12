@@ -3,7 +3,7 @@
     "slug": "spyder_greenwash_aissa",
     "template": [
       {
-        "sprite_name": "nurse",
+        "sprite_name": "nurse_red",
         "combat_front": "nurse",
         "slug": "nurse"
       }
@@ -23,7 +23,7 @@
     "slug": "spyder_greenwash_broer",
     "template": [
       {
-        "sprite_name": "nurse",
+        "sprite_name": "nurse_lapi",
         "combat_front": "nurse",
         "slug": "nurse"
       }
@@ -103,7 +103,7 @@
     "slug": "spyder_greenwash_heidenstam",
     "template": [
       {
-        "sprite_name": "postboy",
+        "sprite_name": "postboy_red",
         "combat_front": "cooldude",
         "slug": "postboy"
       }

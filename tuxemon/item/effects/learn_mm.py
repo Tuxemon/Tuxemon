@@ -28,6 +28,7 @@ class LearnMmEffect(ItemEffect):
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> LearnMmEffectResult:
+        learn: bool = False
         ele = ElementType(self.element)
         assert target
         techs = list(db.database["technique"])
@@ -51,6 +52,6 @@ class LearnMmEffect(ItemEffect):
             self.user.game_variables["overwrite_technique"] = random.choice(
                 res
             )
-            return {"success": True}
-        else:
-            return {"success": False}
+            learn = True
+
+        return {"success": learn, "num_shakes": 0, "extra": None}

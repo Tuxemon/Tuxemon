@@ -25,12 +25,13 @@
  <objectgroup color="#ffff00" id="5" name="Event">
   <object id="7" name="Scenario" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_money player,0"/>
-    <property name="act2" value="set_variable unit_measure:Metric"/>
-    <property name="act3" value="set_variable hemisphere:Northern"/>
-    <property name="act4" value="set_variable music_volume:0.5"/>
-    <property name="act5" value="set_variable sound_volume:0.3"/>
-    <property name="act6" value="translated_dialog_choice spyder_campaign:xero_campaign,scenario_choice"/>
+    <property name="act11" value="set_money player,0"/>
+    <property name="act12" value="set_variable unit_measure:Metric"/>
+    <property name="act13" value="set_variable hemisphere:Northern"/>
+    <property name="act14" value="set_variable music_volume:0.5"/>
+    <property name="act15" value="set_variable sound_volume:0.3"/>
+    <property name="act16" value="set_variable cathedral_ads:0"/>
+    <property name="act20" value="translated_dialog_choice spyder_campaign:xero_campaign,scenario_choice"/>
     <property name="cond1" value="not variable_set scenario_choice:spyder_campaign"/>
     <property name="cond2" value="not variable_set scenario_choice:xero_campaign"/>
    </properties>

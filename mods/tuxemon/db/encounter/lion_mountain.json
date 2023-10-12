@@ -32,7 +32,7 @@
       ]
     },
     {
-      "monster": "tadcool",
+      "monster": "bumbulus",
       "encounter_rate": 3.5,
       "daytime": false,
       "exp_req_mod": 1,
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "monster": "chillimp",
+      "monster": "bumbulus",
       "encounter_rate": 3.5,
       "daytime": false,
       "exp_req_mod": 1,

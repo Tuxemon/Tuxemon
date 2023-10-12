@@ -43,4 +43,10 @@ class ReverseEffect(TechEffect):
             user.return_types()
             target.return_types()
             done = True
-        return {"success": done}
+        return {
+            "success": done,
+            "damage": 0,
+            "element_multiplier": 0.0,
+            "should_tackle": False,
+            "extra": None,
+        }

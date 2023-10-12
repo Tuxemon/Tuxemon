@@ -14,9 +14,7 @@ if TYPE_CHECKING:
 
 
 class DamageEffectResult(TechEffectResult):
-    damage: int
-    element_multiplier: float
-    should_tackle: bool
+    pass
 
 
 @dataclass
@@ -60,4 +58,5 @@ class DamageEffect(TechEffect):
             "element_multiplier": mult,
             "should_tackle": bool(damage),
             "success": bool(damage),
+            "extra": None,
         }

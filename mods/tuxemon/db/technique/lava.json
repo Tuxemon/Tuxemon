@@ -3,7 +3,7 @@
   "accuracy": 0.6,
   "animation": "shield_lava",
   "effects": [
-    "give status_burn,both",
+    "give burn,both",
     "area"
   ],
   "flip_axes": "",

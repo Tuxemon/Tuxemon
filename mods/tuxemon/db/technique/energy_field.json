@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "screen",
   "effects": [
-    "give status_charging,user",
-    "give status_exhausted,target",
+    "give charging,user",
+    "give exhausted,target",
     "enhance"
   ],
   "flip_axes": "x",

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="441">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="443">
  <properties>
   <property name="east" value="routec"/>
   <property name="edges" value="clamped"/>
@@ -550,6 +550,66 @@
     <property name="act2" value="random_encounter routec"/>
     <property name="cond1" value="is has_sprite swimmer"/>
     <property name="cond2" value="is variable_set stage_of_day:night"/>
+   </properties>
+  </object>
+  <object id="211" name="Create Eliane" type="event" x="80" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_candy_eliane,5,1"/>
+    <property name="act2" value="npc_face spyder_candy_eliane,left"/>
+    <property name="cond1" value="not npc_exists spyder_candy_eliane"/>
+   </properties>
+  </object>
+  <object id="222" name="Talk Eliane 1" type="event" x="96" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_eliane1"/>
+    <property name="act2" value="set_variable elianeflower:today"/>
+    <property name="act3" value="set_random_variable elianeoutput,cureall:restoration:potion:tea"/>
+    <property name="act4" value="random_integer luckgiveegg,1,10"/>
+    <property name="behav1" value="talk spyder_candy_eliane"/>
+    <property name="cond1" value="is once 1,elianeflower"/>
+   </properties>
+  </object>
+  <object id="195" name="Talk Eliane 2" type="event" x="96" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_eliane2"/>
+    <property name="behav1" value="talk spyder_candy_eliane"/>
+    <property name="cond1" value="not once 1,elianeflower"/>
+   </properties>
+  </object>
+  <object id="194" name="Get cureall" type="event" x="144" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
+    <property name="act2" value="translated_dialog cureall"/>
+    <property name="act3" value="add_item elianeoutput"/>
+    <property name="act4" value="set_variable elianeoutput:none"/>
+    <property name="cond1" value="is variable_set elianeoutput:cureall"/>
+   </properties>
+  </object>
+  <object id="192" name="Get restoration" type="event" x="128" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
+    <property name="act2" value="translated_dialog restoration"/>
+    <property name="act3" value="add_item elianeoutput"/>
+    <property name="act4" value="set_variable elianeoutput:none"/>
+    <property name="cond1" value="is variable_set elianeoutput:restoration"/>
+   </properties>
+  </object>
+  <object id="173" name="Get potion" type="event" x="112" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
+    <property name="act2" value="translated_dialog potion"/>
+    <property name="act3" value="add_item elianeoutput"/>
+    <property name="act4" value="set_variable elianeoutput:none"/>
+    <property name="cond1" value="is variable_set elianeoutput:potion"/>
+   </properties>
+  </object>
+  <object id="181" name="Get tea" type="event" x="96" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
+    <property name="act2" value="translated_dialog tea"/>
+    <property name="act3" value="add_item elianeoutput"/>
+    <property name="act4" value="set_variable elianeoutput:none"/>
+    <property name="cond1" value="is variable_set elianeoutput:tea"/>
    </properties>
   </object>
  </objectgroup>

@@ -114,7 +114,7 @@
     "slug": "spyder_omnichannel_byrne",
     "template": [
       {
-        "sprite_name": "professor",
+        "sprite_name": "professor_green",
         "combat_front": "professor",
         "slug": "professor"
       }

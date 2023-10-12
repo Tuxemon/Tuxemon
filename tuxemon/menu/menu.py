@@ -325,7 +325,7 @@ class Menu(Generic[T], state.State):
         Write a message to the first available text area.
 
         Generally, a state will have just one, if any, text area.
-        The first one found will be use to display the message.
+        The first one found will be used to display the message.
         If no text area is found, a RuntimeError will be raised.
 
         Parameters:
@@ -594,7 +594,7 @@ class Menu(Generic[T], state.State):
         Set the font properties that the menu uses.
 
         The size and line_spacing parameters will be adjusted the
-        the screen scale.  You should pass the original, unscaled values.
+        screen scale.  You should pass the original, unscaled values.
 
         Parameters:
             size: The font size in pixels.

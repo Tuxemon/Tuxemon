@@ -53,7 +53,7 @@
     "slug": "spyder_routea_lexi",
     "template": [
       {
-        "sprite_name": "catgirl",
+        "sprite_name": "catgirl_violet",
         "combat_front": "catgirl",
         "slug": "catgirl"
       }

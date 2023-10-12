@@ -1,0 +1,27 @@
+{
+  "animation": null,
+  "category": "positive",
+  "effects": [
+    "feedback"
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_feedback.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "feedback",
+  "sort": "meta",
+  "target": {
+    "enemy monster": 0,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0
+  },
+  "cond_id": 30,
+  "use_failure": null,
+  "use_success": "combat_state_feedback_get",
+  "gain_cond": null
+}

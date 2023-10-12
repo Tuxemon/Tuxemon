@@ -11,6 +11,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import combat, graphics, tools
+from tuxemon.condition.condition import Condition
 from tuxemon.db import ElementType, ItemCategory, State, TechSort
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -115,8 +116,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         else:
             # trigger forfeit
             for mon in self.player.monsters:
-                faint = Technique()
-                faint.load("status_faint")
+                faint = Condition()
+                faint.load("faint")
                 mon.current_hp = 0
                 mon.status = [faint]
 
@@ -198,7 +199,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             # open menu to choose item
             menu = self.client.push_state(ItemMenuState())
 
-            # set next menu after after selection is made
+            # set next menu after the selection is made
             menu.on_menu_selection = choose_target  # type: ignore[method-assign]
 
         def choose_target(menu_item: MenuItem[Item]) -> None:
@@ -222,14 +223,13 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 msg = T.format("cannot_use_item_monster", {"name": item.name})
                 tools.open_dialog(local_session, [msg])
                 return
-            if combat.has_status(target, "status_lockdown"):
+            if combat.has_status(target, "lockdown"):
                 msg = T.format("cannot_use_item_monster", {"name": item.name})
                 tools.open_dialog(local_session, [msg])
                 return
 
             # enqueue the item
             self.combat.enqueue_action(self.player, item, target)
-            self.combat.status_response_item(target)
 
             # close all the open menus
             self.client.pop_state()  # close target chooser
@@ -269,7 +269,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             menu.anchor("bottom", self.rect.top)
             menu.anchor("right", self.client.screen.get_rect().right)
 
-            # set next menu after after selection is made
+            # set next menu after the selection is made
             menu.on_menu_selection = choose_target  # type: ignore[assignment]
 
         def choose_target(menu_item: MenuItem[Technique]) -> None:
@@ -327,16 +327,12 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 tools.open_dialog(local_session, [msg])
                 return
             else:
+                self.player.game_variables["action_tech"] = technique.slug
                 # pre checking (look for null actions)
                 technique = combat.pre_checking(
-                    self.monster, technique, target, self.player, self.enemy
+                    self.monster, technique, target
                 )
                 self.combat.enqueue_action(self.monster, technique, target)
-                # check status response
-                if self.combat.status_response_technique(
-                    self.monster, technique
-                ):
-                    self.combat._lost_monster = self.monster
                 # remove skip after using it
                 if technique.slug == "skip":
                     self.monster.moves.pop()

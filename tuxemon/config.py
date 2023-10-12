@@ -26,8 +26,7 @@ class TuxemonConfig:
 
         # update with customized values
         if config_path:
-            temp = configparser.ConfigParser()
-            temp.read(config_path)
+            cfg.read(config_path)
 
         # [display]
         resolution_x = cfg.getint("display", "resolution_x")
@@ -108,7 +107,7 @@ class TuxemonConfig:
         #   Some available loggers:
         #     states.combat, states.world, event,
         #     neteria.server, neteria.client, neteria.core
-        # Comma-seperated list of which modules to enable logging on
+        # Comma-separated list of which modules to enable logging on
         loggers_str = cfg.get("logging", "loggers")
         self.loggers = loggers_str.replace(" ", "").split(",")
         self.debug_logging = cfg.getboolean("logging", "debug_logging")
@@ -141,7 +140,7 @@ def get_custom_pygame_keyboard_controls(
         button_value: Optional[int] = getattr(buttons, key, None)
         event_value: Optional[int] = getattr(events, key, None)
         for each in values.split(", "):
-            # used incase of multiple keys assigned to 1 method
+            # used in case of multiple keys assigned to 1 method
             # pygame.locals uses all caps for constants except for letters
             each = each.lower() if len(each) == 1 else each.upper()
             pygame_value: Optional[int] = getattr(

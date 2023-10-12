@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "bomb_bright",
   "effects": [
-    "give status_grabbed,both",
+    "give grabbed,both",
     "damage"
   ],
   "flip_axes": "",

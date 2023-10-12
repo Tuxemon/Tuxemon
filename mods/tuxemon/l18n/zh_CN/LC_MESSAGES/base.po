@@ -303,19 +303,19 @@ msgstr "不,不要覆盖."
 msgid "slot"
 msgstr "卡槽"
 
-msgid "status_faint"
+msgid "faint"
 msgstr "昏倒"
 
-msgid "status_poison"
+msgid "poison"
 msgstr "中毒"
 
-msgid "status_lifeleech"
+msgid "lifeleech"
 msgstr "死气沉沉"
 
-msgid "status_overfeed"
+msgid "overfeed"
 msgstr "胡吃海塞"
 
-msgid "status_recover"
+msgid "recover"
 msgstr "恢复"
 
 # # TECHNIQUE TRANSLATIONS ##
@@ -353,13 +353,13 @@ msgid "blossom"
 msgstr "绽放"
 
 msgid "boulder"
-msgstr "朽石"
+msgstr "岩石护罩"
 
 msgid "breathe_fire"
 msgstr "暴怒"
 
 msgid "bubble_trap"
-msgstr "气泡捕捉器"
+msgstr "气泡捕捉"
 
 msgid "bullet"
 msgstr "高速球"
@@ -401,7 +401,7 @@ msgid "flamethrower"
 msgstr "火焰喷射"
 
 msgid "flood"
-msgstr "洪水之力"
+msgstr "洪流"
 
 msgid "flow"
 msgstr "水枪"
@@ -690,12 +690,46 @@ msgstr "按下一个键来设置新的输入键"
 msgid "options_new_input_key1"
 msgstr "重新启动游戏使更改生效!"
 
+msgid "menu_music_daynight"
+msgstr "昼/夜"
+
+msgid "enable"
+msgstr "启用"
+
+msgid "disable"
+msgstr "禁用"
+
+msgid "menu_music_volume"
+msgstr "音乐音量"
+
+msgid "menu_sound_volume"
+msgstr "音效音量"
+
+msgid "menu_units"
+msgstr "单位"
+
+msgid "menu_units_metric"
+msgstr "公制"
+
+msgid "menu_units_imperial"
+msgstr "英制"
+
+msgid "menu_hemisphere"
+msgstr "半球"
+
+msgid "menu_hemisphere_north"
+msgstr "北部"
+
+msgid "menu_hemisphere_south"
+msgstr "南部"
+
+
 # Default mod names on selection menu
 msgid "xero_campaign"
-msgstr "自由梦: Xero"
+msgstr "自由小精灵: Xero"
 
 msgid "spyder_campaign"
-msgstr "自由梦: 斯派德和大教堂"
+msgstr "自由小精灵: 斯派德和大教堂"
 
 # Multiplayer notifications
 msgid "multiplayer_accept"
@@ -754,10 +788,10 @@ msgstr "酸"
 msgid "combat_state_spyderbite_get"
 msgstr "{target}开始嗅探."
 
-msgid "status_dozing"
+msgid "dozing"
 msgstr "打瞌睡"
 
-msgid "status_focused"
+msgid "focused"
 msgstr "集中"
 
 msgid "arcane_eye"
@@ -1004,55 +1038,55 @@ msgid "alert_text"
 msgstr "文字太长!"
 
 # # STATUSES
-msgid "status_blinded"
+msgid "blinded"
 msgstr "蒙蔽"
 
-msgid "status_chargedup"
+msgid "chargedup"
 msgstr "充电"
 
-msgid "status_charging"
+msgid "charging"
 msgstr "充电"
 
-msgid "status_confused"
+msgid "confused"
 msgstr "困惑"
 
-msgid "status_diehard"
+msgid "diehard"
 msgstr "虎胆龙威"
 
-msgid "status_eliminated"
+msgid "eliminated"
 msgstr "消除"
 
-msgid "status_enraged"
+msgid "enraged"
 msgstr "狂暴"
 
-msgid "status_exhausted"
+msgid "exhausted"
 msgstr "用尽"
 
-msgid "status_festering"
+msgid "festering"
 msgstr "溃烂"
 
-msgid "status_grabbed"
+msgid "grabbed"
 msgstr "抓住"
 
-msgid "status_hardshell"
+msgid "hardshell"
 msgstr "硬壳"
 
-msgid "status_noddingoff"
+msgid "noddingoff"
 msgstr "点头离开"
 
-msgid "status_sniping"
+msgid "sniping"
 msgstr "狙击"
 
-msgid "status_softened"
+msgid "softened"
 msgstr "软化"
 
 msgid "spyderbite"
 msgstr "斯皮德咬合"
 
-msgid "status_stuck"
+msgid "stuck"
 msgstr "卡住"
 
-msgid "status_tired"
+msgid "tired"
 msgstr "疲劳"
 
 msgid "adamantine"
@@ -1237,7 +1271,7 @@ msgid "route6"
 msgstr "路线 6"
 
 msgid "timber_town"
-msgstr "木材"
+msgstr "粽木"
 
 msgid "allagon_description"
 msgstr "阿拉贡被祖先留下的金属制成的遗物所吸引,并会暴力取回它们."
@@ -1384,19 +1418,19 @@ msgid "citypark"
 msgstr "城市公园"
 
 msgid "cotton_town"
-msgstr "棉花"
+msgstr "暖棉"
 
 msgid "dryadsgrove"
 msgstr "树妖之林"
 
 msgid "flower_city"
-msgstr "花"
+msgstr "彩花"
 
 msgid "leather_town"
 msgstr "皮革"
 
 msgid "paper_town"
-msgstr "纸"
+msgstr "方絮"
 
 msgid "route1"
 msgstr "路线 1"
@@ -1464,29 +1498,29 @@ msgstr "软糖的粮仓!"
 
 msgid "welcome_location_route"
 msgstr ""
-"』欢迎来到 ${{map_name}} : ${{map_desc}}\n"
+"』欢迎来到${{map_name}}:${{map_desc}}\n"
 "北: ${{north}} / 南: ${{south}} / 西: ${{west}} / 东: ${{east}}"
 
 msgid "welcome_location_town"
 msgstr ""
-"欢迎来到 ${{map_name}} 镇: ${{map_desc}}\n"
+"欢迎来到${{map_name}}镇: ${{map_desc}}\n"
 "北: ${{north}} / 南: ${{south}} / 西: ${{west}} / 东: ${{east}}"
 
 msgid "here_to_north"
-msgstr "从 ${{map_name}} 到 ${{north}}"
+msgstr "从${{map_name}}到${{north}}"
 
 msgid "here_to_south"
-msgstr "从 ${{map_name}} 到 ${{south}}"
+msgstr "从${{map_name}}到${{south}}"
 
 msgid "here_to_west"
-msgstr "从 ${{map_name}} 到 ${{west}}"
+msgstr "从${{map_name}}到${{west}}"
 
 msgid "here_to_east"
-msgstr "从 ${{map_name}} 到 ${{east}}"
+msgstr "从${{map_name}}到${{east}}"
 
 # # MAP ##
 msgid "candy_town"
-msgstr "糖果"
+msgstr "甜饴"
 
 msgid "shop_buy_free"
 msgstr "免费!"
@@ -3108,7 +3142,7 @@ msgid "spyder_cotton_tuxepediaintro"
 msgstr ""
 "目前,关于精灵的唯一可靠信息是来自昂贵而不完整的《精灵百科全书》!这并不酷,\n"
 "信息应该免费提供. \n"
-" 这并不酷；信息应该是免费提供的.这就是为什么我们要推出喂鸡精灵百科. \n"
+" 这并不酷；信息应该是免费提供的.这就是为什么我们要推出社区精灵百科. \n"
 " 它是开源的,免费的,每个人都可以阅读、写作和编辑.这多酷啊? \n"
 " 事实上,我刚才已经把它作为一个应用程序安装在你们所有的手机上. "
 
@@ -3124,7 +3158,7 @@ msgstr ""
 " ... \n"
 " 什么,他们在扔掉完美的精灵吗? \n"
 " ... \n"
-" 好吧,如果它们是完全好的,他们就不会把它们扔掉,对吗? \n"
+" 好吧,如果它们是完美的,他们就不会把它们扔掉,对吗? \n"
 " 它们一定比新的精灵差.来,我给你看看! "
 
 msgid "spyder_cottoncafe_barmaidintro"
@@ -6723,7 +6757,7 @@ msgid "monster_menu_desc"
 msgstr "描述"
 
 msgid "Kennel"
-msgstr "庇护所"
+msgstr "仓库"
 
 msgid "kennel_label"
 msgstr "{box} ({qty})"
@@ -6866,3 +6900,228 @@ msgstr "这让我想到了我妈妈的房子."
 
 msgid "taba_house4_owner1"
 msgstr "欢迎来到尊贵的海鸥酒吧!"
+
+msgid "menu_minigame"
+msgstr "迷你游戏"
+
+msgid "who_is_that"
+msgstr "这只精灵的名字?"
+
+msgid "generic_wrong"
+msgstr "猜错了!"
+
+msgid "gender_male"
+msgstr "男"
+
+msgid "gender_female"
+msgstr "女"
+
+## DIALOG TRANSLATIONS ##
+# spyder intros
+
+msgid "spyder_intro_question"
+msgstr "你要跳过介绍吗?"
+
+msgid "spyder_intro00"
+msgstr "您好,我是全能公司的首席执行官,我们为该地区经营报纸,电视频道和广播电台.\n"
+"我有责任通知你."
+
+msgid "spyder_intro01"
+msgstr "精灵是栖息在这个世界上的一种生物.\n"
+"他们喜欢被俘虏,这样他们的主人就可以与他们争夺乐趣和利润.\n"
+"最强的胜利，就像在商业世界中一样.\n"
+"大多数精灵都是在野外发现的,当他们获得经验时,他们会变成更高级的形式.\n"
+"但是构成大教堂的五大支柱,即在该地区运营的五家盟国公司,\n"
+"改善了自然.本季,我们提供五款豪华精灵!"
+
+msgid "spyder_intro02"
+msgstr "这些精灵在接触到令牌时会立即进化 - 这是即时满足!\n"
+"更重要的是,它们让你选择它们变成哪种形式."
+
+msgid "spyder_intro03"
+msgstr "代币可从所有支柱收取适度费用!\n"
+"咳咳，我在说什么?\n"
+"哦,是的,每个支柱都提供这些独家精灵之一."
+
+msgid "spyder_intro_shopkeeper1"
+msgstr "我们首席执行官的演讲真是太棒了!所有金卡会员都将获得免费的精灵."
+
+msgid "spyder_intro_shopkeeper2"
+msgstr "只需填写此表格."
+
+msgid "spyder_intro_question_name"
+msgstr "你叫什么名字?"
+
+msgid "spyder_intro_shopkeeper3"
+msgstr "请现在将表格退还给店员,以便我们为您提供精灵."
+
+msgid "spyder_intro_shopkeeper4"
+msgstr "对不起,您不是金卡会员,此优惠仅适用于金卡会员."
+
+msgid "bank"
+msgstr "银行"
+
+msgid "wallet"
+msgstr "钱包"
+
+msgid "deposit"
+msgstr "存款"
+
+msgid "withdraw"
+msgstr "取款"
+
+msgid "no_money_operation"
+msgstr "{operation}不可能!"
+
+msgid "menu_item_storage"
+msgstr "取出道具"
+
+msgid "menu_item_dropoff"
+msgstr "放入道具"
+
+msgid "no_signal"
+msgstr "无信号"
+
+msgid "omnichannel_mobile"
+msgstr "全能通讯4G"
+
+msgid "app_banking"
+msgstr "手机银行"
+
+msgid "app_banking_description"
+msgstr "随时随地在此处访问您的资金, 当您信号充足时, 都可以在此处访问您的资金."
+
+msgid "app_contacts"
+msgstr "电话溥"
+
+msgid "app_contacts_description"
+msgstr "打电话给你的朋友, 与你选择的人战斗."
+
+msgid "app_map"
+msgstr "手机地图"
+
+msgid "app_map_description"
+msgstr "在手机上使用它来查看您的位置."
+
+msgid "app_tuxepedia"
+msgstr "精灵百科"
+
+msgid "app_tuxepedia_description"
+msgstr "在这里跟踪有关精灵的信息, 并与世界分享."
+
+# Player State
+
+msgid "tuxepedia_progress"
+msgstr "精灵百科完成度: {value}%!"
+
+msgid "tuxepedia_data_seen"
+msgstr "看到了{param}只精灵,共有{all}只精灵"
+
+msgid "tuxepedia_data_caught"
+msgstr "捉住了{param}只精灵,共有{all}只精灵"
+
+msgid "player_start_adventure"
+msgstr "冒险开始了{date}天."
+
+msgid "player_walked"
+msgstr "行走的路程 {distance} {unit}"
+
+msgid "player_battles"
+msgstr "战斗: {tot} (胜利{won} 平局{draw} 失败{lost})"
+
+# Contacts notification
+
+msgid "action_call"
+msgstr "拨号"
+
+msgid "phone_no_answer"
+msgstr "对不起,您呼叫的用户暂时无人接听!"
+
+# Tuxepedia
+
+msgid "page_tuxepedia"
+msgstr "从编号{a}到编号{b}"
+
+msgid "no_evolution"
+msgstr "没有进化型"
+
+msgid "yes_evolution"
+msgstr "有进化型"
+
+msgid "yes_evolutions"
+msgstr "进化型"
+
+msgid "tuxepedia_capture"
+msgstr "捕获了{doc}天"
+
+msgid "tuxepedia_exp"
+msgstr "需要{exp_lv}经验到等级{lv}"
+
+msgid "menu_tuxepedia"
+msgstr "精灵百科"
+
+msgid "monster_menu_type"
+msgstr "属性"
+
+msgid "monster_menu_species"
+msgstr "种类"
+
+msgid "monster_menu_shape"
+msgstr "体型"
+
+
+#========================================
+msgid "spyder_papertown_firstfight_after"
+msgstr "这次我会治愈你,但我不是慈善机构,下次你的精灵疲惫不堪时在家休息."
+
+msgid "spyder_papermanor_oldman"
+msgstr "我有两个儿子和一个侄女,第一个是水手,去年他去了群岛.\n"
+"第二个是船长,他开客船,我的侄女在外面玩."
+
+msgid "spyder_cottontown_mom"
+msgstr "陌生人你好!你进咖啡馆干什么? \n 你知道咖啡因对你有害......我开玩笑的! \n 你已经12岁了,你可以做任何你喜欢的事情!...但不要吸烟和喝酒 .... \n 但你应该更频繁地打电话回家,我希望有人讲述我的发明. \n ... 哦,我忘了,你还没有手机,这是我发明的,我称之为NuPhone! \n您可以在其上安装各种应用程序,它已经有地图应用程序,所以你永远不会迷路!"
+
+msgid "spyder_cotton_homemaker1"
+msgstr "你是来演讲的吗?我对发布感到非常兴奋."
+
+msgid "spyder_cotton_homemaker2"
+msgstr "精灵百科很棒,不是吗?我是程序员之一,告诉我你是否发现任何错误."
+
+msgid "spyder_cotton_cafegranny"
+msgstr "嗯,我不确定我是否喜欢这种咖啡."
+
+msgid "spyder_cotton_cafeassistant"
+msgstr "你收集精灵吗?我想开始,但我害怕离开这座城市."
+
+msgid "spyder_cotton_cafegoth"
+msgstr "别看我,我只是来这里吃免费的小吃."
+
+msgid "spyder_cotton_cafeflorist1"
+msgstr "嘘,演讲要开始了."
+
+msgid "spyder_cotton_cafeflorist2"
+msgstr "我迫不及待地想对其他人的条目进行事实核查. \n 你最好确保你有好的来源!"
+
+msgid "spyder_papertown_myfirstmon_notmet"
+msgstr "我认得你,你就是那个没有金卡会员的孩子. \n 你知道,我也许能帮你. \n 当花哨的新精灵从大教堂出来时,我们只是把所有的旧精灵都扔进了垃圾箱!\n 这似乎是一种浪费,尤其是当像你这样的孩子没有任何东西时!"
+
+msgid "spyder_papertown_thereis"
+msgstr "这里有东西..."
+
+msgid "spyder_papertown_trash"
+msgstr "只是垃圾"
+
+msgid "spyder_papertown_rockitten"
+msgstr "你想要小岩猫吗?"
+
+msgid "spyder_papertown_lambert"
+msgstr "你想要兰伯特吗?"
+
+msgid "spyder_papertown_nut"
+msgstr "你想要螺母兽吗?"
+
+msgid "spyder_papertown_tweesher"
+msgstr "你想要镊鹭吗?"
+
+msgid "spyder_papertown_agnite"
+msgstr "你想要AGNITE吗?"

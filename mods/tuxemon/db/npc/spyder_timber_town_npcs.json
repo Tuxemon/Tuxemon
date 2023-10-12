@@ -38,5 +38,25 @@
         "slug": "shopkeeper"
       }
     ]
+  },
+  {
+    "slug": "spyder_outsidewalled_rogue",
+    "template": [
+      {
+        "sprite_name": "rogue_green",
+        "combat_front": "rogue",
+        "slug": "rogue"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_outsidewalled_midas",
+    "template": [
+      {
+        "sprite_name": "picnicker",
+        "combat_front": "picnicker",
+        "slug": "picnicker"
+      }
+    ]
   }
 ]

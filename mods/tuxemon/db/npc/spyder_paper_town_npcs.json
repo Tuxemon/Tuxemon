@@ -3,7 +3,7 @@
     "slug": "spyder_grannypiper",
     "template": [
       {
-        "sprite_name": "granny",
+        "sprite_name": "granny_yellow",
         "combat_front": "adventurer",
         "slug": "granny"
       }
@@ -43,7 +43,7 @@
     "slug": "spyder_papermart_miles",
     "template": [
       {
-        "sprite_name": "tennisplayer",
+        "sprite_name": "tennisplayer_fiery",
         "combat_front": "tennisplayer",
         "slug": "tennisplayer"
       }
@@ -63,7 +63,7 @@
     "slug": "spyder_papermart_rafael",
     "template": [
       {
-        "sprite_name": "tennisplayer",
+        "sprite_name": "tennisplayer_lapi",
         "combat_front": "tennisplayer",
         "slug": "tennisplayer"
       }

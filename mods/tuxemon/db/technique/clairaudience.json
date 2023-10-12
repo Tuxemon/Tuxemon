@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "metallic_radiate",
   "effects": [
-    "give status_feedback,user",
+    "give feedback,user",
     "enhance"
   ],
   "flip_axes": "",

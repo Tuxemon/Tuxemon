@@ -953,6 +953,12 @@ msgstr "{target} is regenerating."
 msgid "combat_state_recover_end"
 msgstr "{target} recovers its lifeforce."
 
+msgid "combat_state_retaliate_get"
+msgstr "{target} will retaliate on its next attack."
+
+msgid "combat_state_revenge_get"
+msgstr "When attacked,{target} will take revenge."
+
 msgid "combat_state_sniping_get"
 msgstr "{target} takes aim."
 
@@ -1155,6 +1161,12 @@ msgstr "Prickly"
 
 msgid "recover"
 msgstr "Recover"
+
+msgid "retaliate"
+msgstr "Retaliate"
+
+msgid "revenge"
+msgstr "Revenge"
 
 msgid "slow"
 msgstr "Slow"

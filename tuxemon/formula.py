@@ -168,14 +168,6 @@ def simple_stuck(monster: Monster) -> None:
             move.power = move.default_power * 0.5
 
 
-def escape(level_user: int, level_target: int, attempts: int) -> bool:
-    escape = 0.4 + (0.15 * (attempts + level_user - level_target))
-    if random.random() <= escape:
-        return True
-    else:
-        return False
-
-
 def check_taste(monster: Monster, stat: str) -> int:
     """
     It checks the taste and return the value

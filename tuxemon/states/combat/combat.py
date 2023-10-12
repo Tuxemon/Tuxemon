@@ -253,6 +253,7 @@ class CombatState(CombatAnimations):
         self._captured: bool = False
         self._captured_mon: Optional[Monster] = None
         self._new_tuxepedia: bool = False
+        self._run: bool = False
         self._post_animation_task: Optional[Task] = None
         self._xp_message = None
 
@@ -421,7 +422,10 @@ class CombatState(CombatAnimations):
             if remaining == 0:
                 return "draw match"
             elif remaining == 1:
-                return "has winner"
+                if self._run:
+                    return "ran away"
+                else:
+                    return "has winner"
             else:
                 return "housekeeping phase"
 
@@ -459,8 +463,6 @@ class CombatState(CombatAnimations):
 
         elif phase == "housekeeping phase":
             self._turn += 1
-            # reset run for the next turn
-            self._run = "on"
             # fill all battlefield positions, but on round 1, don't ask
             self.fill_battlefield_positions(ask=self._turn > 1)
 
@@ -521,34 +523,6 @@ class CombatState(CombatAnimations):
 
         elif phase == "ran away":
             self.players[0].set_party_status()
-            var = self.players[0].game_variables
-            if self.is_trainer_battle:
-                var["battle_last_result"] = OutputBattle.forfeit
-                var["teleport_clinic"] = OutputBattle.lost
-                message = T.format(
-                    "combat_forfeit",
-                    {
-                        "npc": self.players[1].name,
-                    },
-                )
-            else:
-                # remove monsters still around
-                for mon in self.ai_players:
-                    mon.monsters.pop()
-                var["battle_last_result"] = OutputBattle.ran
-                message = T.translate("combat_player_run")
-
-            # push a state that blocks until enter is pressed
-            # after the state is popped, the combat state will clean up and close
-            # if you run in PvP, you need "defeated message"
-            action_time = compute_text_animation_time(message)
-            self.text_animations_queue.append(
-                (partial(self.alert, message), action_time)
-            )
-            self.task(
-                partial(self.client.push_state, WaitForInputState()),
-                action_time,
-            )
 
         elif phase == "draw match":
             self.players[0].set_party_status()

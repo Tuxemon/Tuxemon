@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
+from tuxemon.db import OutputBattle
+from tuxemon.locale import T
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -29,6 +31,7 @@ class RunEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> RunEffectResult:
+        extra: Optional[str] = None
         ran: bool = False
         combat = tech.combat_state
         assert combat
@@ -41,13 +44,31 @@ class RunEffect(TechEffect):
             return escaping
 
         var = self.session.player.game_variables
+        if "run_attempts" not in var:
+            var["run_attempts"] = 0
+        # monster in the player party
         if user in combat.monsters_in_play_human:
-            if "run_attempts" not in var:
-                var["run_attempts"] = 0
             if escape(user.level, target.level, var["run_attempts"]):
                 var["run_attempts"] += 1
                 ran = True
+        # monster in the NPC party
         elif user in combat.monsters_in_play_ai:
             ran = True
 
-        return {"success": ran}
+        # trigger run
+        if ran:
+            combat._run = True
+            extra = T.translate("combat_player_run")
+            var["battle_last_result"] = OutputBattle.ran
+            for remove in combat.players:
+                combat.clean_combat()
+                del combat.monsters_in_play[remove]
+                combat.players.remove(remove)
+
+        return {
+            "success": ran,
+            "damage": 0,
+            "element_multiplier": 0.0,
+            "should_tackle": False,
+            "extra": extra,
+        }

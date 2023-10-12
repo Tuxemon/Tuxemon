@@ -24,6 +24,6 @@
 	},
 	"tech_id": 0,
 	"use_failure": "combat_cannot_run_away",
-	"use_success": "combat_player_run",
+	"use_success": null,
 	"use_tech": "combat_used_x"
 }

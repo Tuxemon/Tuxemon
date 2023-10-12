@@ -534,26 +534,20 @@ class CombatState(CombatAnimations):
                         "npc": self.players[1].name,
                     },
                 )
-            else:
-                action_time = 0
-                # remove monsters still around
-                for mon in self.active_players:
-                    mon.monsters.pop()
-                var["battle_last_result"] = OutputBattle.ran
 
             # push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
             # if you run in PvP, you need "defeated message"
             if message:
-              action_time = compute_text_animation_time(message)
-              self.text_animations_queue.append(
-                  (partial(self.alert, message), action_time)
-              )
+                action_time = compute_text_animation_time(message)
+                self.text_animations_queue.append(
+                    (partial(self.alert, message), action_time)
+                )
 
-            self.task(
-                partial(self.client.push_state, WaitForInputState()),
-                action_time,
-            )
+                self.task(
+                    partial(self.client.push_state, WaitForInputState()),
+                    action_time,
+                )
 
         elif phase == "draw match":
             self.players[0].set_party_status()
@@ -1085,16 +1079,6 @@ class CombatState(CombatAnimations):
             # successful techniques
             if result_tech["success"]:
                 m: Union[str, None] = None
-                # running monster
-                if technique.slug == "menu_run":
-                    template = getattr(technique, "use_success")
-                    m = T.format(template, context)
-                    self._run = True
-                    # trigger run
-                    for remove in self.players:
-                        self.clean_combat()
-                        del self.monsters_in_play[remove]
-                        self.players.remove(remove)
                 # extra output
                 if result_tech["extra"]:
                     m = T.translate(result_tech["extra"])

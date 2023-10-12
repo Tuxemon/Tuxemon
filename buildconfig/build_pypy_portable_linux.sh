@@ -2,21 +2,7 @@
 
 ###############  NOTICE  ################
 # Tested with a debian bookworm container
-
-if ![ -x "$(command -v chmod)" ] || ![ -x "$(command -v cat)" ] || ![ -x "$(command -v mkdir)" ] || ![ -x "$(command -v mv)" ] || ![ -x "$(command -v  dirname)" || ![ -x "$(command -v  readlink)" ]]; then
-  echo "Install coreutils\n"
-  exit 1
-fi
-
-if ![ -x "$(command -v tar)" ]; then
-  echo "Install tar\n"
-  exit 1
-fi
-
-if ![ -x "$(command -v curl)" ]; then
-  echo "Install curl\n"
-  exit 1
-fi
+# Depends on coreutils, curl and tar
 
 download () {
   command curl -L -o $1 $2

@@ -12,20 +12,19 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class DefaultEffectResult(CondEffectResult):
+class LockdownEffectResult(CondEffectResult):
     pass
 
 
 @dataclass
-class DefaultEffect(CondEffect):
+class LockdownEffect(CondEffect):
     """
-    Default allows conditions without effects to manifest.
-
+    This effect has a chance to apply the lockdown status effect.
     """
 
-    name = "default"
+    name = "lockdown"
 
-    def apply(self, tech: Condition, target: Monster) -> DefaultEffectResult:
+    def apply(self, tech: Condition, target: Monster) -> LockdownEffectResult:
         return {
             "success": True,
             "condition": None,

@@ -2,7 +2,6 @@
   "animation": null,
   "category": "positive",
   "effects": [
-    "default",
     "charging"
   ],
   "flip_axes": "",

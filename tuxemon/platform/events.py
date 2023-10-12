@@ -82,7 +82,7 @@ class InputHandler(ABC, Generic[_InputEventType]):
     @abstractmethod
     def process_event(self, input_event: _InputEventType) -> None:
         """
-        Process a input event, such as a Pygame event.
+        Process an input event, such as a Pygame event.
 
         Parameters:
             input_event: Input event to process.
@@ -106,7 +106,7 @@ class InputHandler(ABC, Generic[_InputEventType]):
 
     def get_events(self) -> Generator[PlayerInput, None, None]:
         """
-        Update the input state (holding time, etc) and return player inputs.
+        Update the input state (holding time, etc.) and return player inputs.
 
         Yields:
             Player inputs (before updating their state).

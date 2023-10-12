@@ -1,0 +1,145 @@
+[
+  {
+    "slug": "spyder_walled_crassus",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_alexander",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_rufus",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "cooldude",
+        "combat_front": "cooldude",
+        "slug": "cooldude"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_vanderbilt",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_astor",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "cooldude",
+        "combat_front": "cooldude",
+        "slug": "cooldude"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_ford",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "picnicker",
+        "combat_front": "picnicker",
+        "slug": "picnicker"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_girard",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_augustus",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_fugger",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_carnegie",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_osman",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "cooldude",
+        "combat_front": "cooldude",
+        "slug": "cooldude"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_musa",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "ceo",
+        "combat_front": "ceo",
+        "slug": "ceo"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_walled_midas",
+    "forfeit": false,
+    "template": [
+      {
+        "sprite_name": "picnicker",
+        "combat_front": "picnicker",
+        "slug": "picnicker"
+      }
+    ]
+  }
+]

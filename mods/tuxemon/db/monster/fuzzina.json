@@ -1,7 +1,6 @@
 {
     "slug": "fuzzina",
     "category": "toy",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -68,7 +67,7 @@
     "txmn_id": 237,
     "height": 50,
     "weight": 1,
-    "catch_rate": 85.0,
+    "catch_rate": 70.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15
 }

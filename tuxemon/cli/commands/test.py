@@ -82,7 +82,7 @@ class TestConditionCommand(CLICommand):
         try:
             result = ctx.session.client.event_engine.check_condition(cond)
             print(result)
-        except Exception as exc:
+        except Exception:
             traceback.print_exc()
             print(
                 "Cannot test condition. Check the input and try again.",

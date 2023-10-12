@@ -38,7 +38,7 @@
    eAHNWElOAzEQdBA7EnBGkOQKF7Y/AC8g24n1J3DmxCbEL4ATPwGJwB+AI9VKSrHM2HjJELdU6rHd7W5XSs4kSik1vqTUBGAzc51j3dtyzXmpwzxZ05/N8Wq/J/Frjv7MdY51b/ZhG0sd5r3WBs/sk2sc08t+Eq/b/qQ+KveZfbEKx/Sc1/3ZP/an1+WzcJezCXe5GnVHn1uf1B19bv1JP6PQ392iPxPCnete9t8pLNKnR+rOdS+HVfWL9ulNdqLucuVPehQOy+CvMaVUE2gBbaAD0Hz5k/ic9Xex0DtRKH8H4OIQOAKOgRPgFLBZw/iODOFP9ixbf+dGf1KTPdq8xNCEP/O9hWs+PvYdx9Yb53m/mPy9zSrVBXytrHcc3i+h+vur71B9uvYjhxLzAM4egacA7lx7D2ONHIbsdQm9XwHXwA1wC7gsVp/kztSfq1bRWndeqXfgAyiyWH2SO+ov+vPFPVoBxvr3aVGPsXPkMDY/NE+u8WlgBhCZzwEuI4eumGGurWOzDWAT2AK2AZuRO+ov+vO1FSiYb2CuCbSANtABbEbuqD9b3CjnyWFKD/cB7+uhdchhaJ4e/1xSf+SO+tNr5vBM7srQ3ycO+AV8Jx6UHCZu8yu9WlGqBtSBFCOHKXsU5e6gr11gL7G/F/yflqv+Vuq9k5ehP5PTWB1V0eN/8BejI/7mEP5izyc8MbcsLzVCzsdzLdclc5DLPYbtpYbv2dkbteublxrne2Y5i26+eSlxP45tYoE=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="120" type="collision" x="0" y="608" width="640" height="32"/>
   <object id="121" type="collision" x="0" y="96" width="32" height="32"/>
   <object id="122" type="collision" x="0" y="128" width="16" height="480"/>

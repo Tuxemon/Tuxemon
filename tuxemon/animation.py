@@ -281,6 +281,26 @@ class Task(TaskBase):
             self._execute_chain()
             self._cleanup()
 
+    def is_finish(self) -> bool:
+        """
+        Returns:
+            Whether the task is finished or not.
+        """
+        return self._state is ANIMATION_FINISHED
+
+    def reset_delay(self, new_delay: float) -> None:
+        """
+        Reset the delay before starting task to make sure time left is
+        equal or bigger to the provided value
+
+        Parameters:
+            new_delay: the updated delay that should be respected
+        """
+        time_left = self._interval - self._duration
+        if new_delay > time_left:
+            self._interval = new_delay
+            self._duration = 0
+
     def abort(self) -> None:
         """Force task to finish, without executing callbacks."""
         self._state = ANIMATION_FINISHED

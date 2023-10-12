@@ -34,7 +34,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "slug",
     "quantity",
 )
-INFINITE_ITEMS = 0
+INFINITE_ITEMS = -1
 # eg 5 capture devices, 1 type and 5 items
 MAX_TYPES_BAG = 99
 
@@ -87,7 +87,7 @@ class Item:
         self.set_state(save_data)
 
     def load(self, slug: str) -> None:
-        """Loads and sets this items's attributes from the item.db database.
+        """Loads and sets this item's attributes from the item.db database.
 
         The item is looked up in the database by slug.
 
@@ -224,7 +224,7 @@ class Item:
 
     def use(self, user: NPC, target: Optional[Monster]) -> ItemEffectResult:
         """
-        Applies this items's effects as defined in the "effect" column of
+        Applies this item's effects as defined in the "effect" column of
         the item database.
 
         Parameters:
@@ -239,8 +239,8 @@ class Item:
         meta_result: ItemEffectResult = {
             "name": self.name,
             "num_shakes": 0,
-            "should_tackle": False,
             "success": False,
+            "extra": None,
         }
 
         # Loop through all the effects of this technique and execute the effect's function.

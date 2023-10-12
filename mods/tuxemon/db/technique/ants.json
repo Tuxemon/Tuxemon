@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "slash_power",
   "effects": [
-    "switch target,earth",
-    "enhance"
+    "enhance",
+    "switch target,earth"
   ],
   "flip_axes": "",
   "is_fast": false,

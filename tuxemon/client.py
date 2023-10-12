@@ -247,7 +247,7 @@ class LocalPygameClient:
         The event engine also can keep or return the event.
         All unused events will be added to Client.key_events each frame.
 
-        Conditions in the the event system can then check that list.
+        Conditions in the event system can then check that list.
         States can "keep" events by simply returning None from
         State.process_event
 
@@ -463,7 +463,7 @@ class LocalPygameClient:
 
         Returns:
             Updated values of ``fps_timer`` and ``frames``. They will be the
-            same as the valued passed unless the FPS are printed, in wich case
+            same as the valued passed unless the FPS are printed, in which case
             they are reset to 0.
 
         """

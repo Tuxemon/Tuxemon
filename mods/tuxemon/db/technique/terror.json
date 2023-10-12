@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "x_attack",
   "effects": [
-    "give status_lockdown,target",
+    "give lockdown,target",
     "enhance"
   ],
   "flip_axes": "",

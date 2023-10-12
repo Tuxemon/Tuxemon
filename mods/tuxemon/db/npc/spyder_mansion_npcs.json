@@ -73,7 +73,7 @@
     "slug": "spyder_mansion_drinkingbuddya",
     "template": [
       {
-        "sprite_name": "rogue",
+        "sprite_name": "rogue_green",
         "combat_front": "rogue",
         "slug": "rogue"
       }
@@ -83,7 +83,7 @@
     "slug": "spyder_mansion_wayne",
     "template": [
       {
-        "sprite_name": "magician",
+        "sprite_name": "magician_black",
         "combat_front": "magician",
         "slug": "magician"
       }
@@ -213,7 +213,7 @@
     "slug": "spyder_basement_roger",
     "template": [
       {
-        "sprite_name": "tennisplayer",
+        "sprite_name": "tennisplayer_lapi",
         "combat_front": "tennisplayer",
         "slug": "tennisplayer"
       }
@@ -233,7 +233,7 @@
     "slug": "spyder_basement_garret",
     "template": [
       {
-        "sprite_name": "rogue",
+        "sprite_name": "rogue_green",
         "combat_front": "rogue",
         "slug": "rogue"
       }

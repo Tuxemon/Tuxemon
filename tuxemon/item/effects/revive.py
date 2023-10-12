@@ -32,4 +32,4 @@ class ReviveEffect(ItemEffect):
         target.status = []
         target.current_hp = self.hp
 
-        return {"success": True}
+        return {"success": True, "num_shakes": 0, "extra": None}

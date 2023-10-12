@@ -3,7 +3,7 @@
     "slug": "spyder_citypark_bobette",
     "template": [
       {
-        "sprite_name": "catgirl",
+        "sprite_name": "catgirl_green",
         "combat_front": "catgirl",
         "slug": "catgirl"
       }
@@ -66,6 +66,56 @@
         "sprite_name": "maniac_green",
         "combat_front": "adventurer",
         "slug": "maniac"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_citypark_cd1",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_citypark_cd2",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_citypark_restoration",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_citypark_potion1",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_citypark_potion2",
+    "template": [
+      {
+        "sprite_name": "box",
+        "combat_front": "noclass",
+        "slug": "interactive_obj"
       }
     ]
   }

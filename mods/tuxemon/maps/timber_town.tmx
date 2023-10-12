@@ -40,78 +40,7 @@
    eAHtl0kOgkAQRWvntHQ6jV5LEcT5LkbjCZxWTrfydVzXgoAJhP+TRyfV1VB56Q1migwUa+AxMnvCC97wAUUG6mbgzL2/wBVucIcqpsvcPejDAIagZDcQldzbvuTzZTde7IkGr2tCC9rQAUUGZEAGZEAGZEAGZEAGZOC/BiZjsylEMIMYQlasa9jAFnYQkrDOIYUFLCHE6//t1uOZOv98iVOPnbrXn9fiyfne0akfnLrXn3c+na+2gS/MMyKo
   </data>
  </layer>
- <objectgroup color="#ffff00" id="5" name="Events">
-  <object id="118" name="Teleport to Route 5" type="event" x="0" y="464" width="16" height="16">
-   <properties>
-    <property name="act10" value="transition_teleport route5.tmx,39,9,0.3"/>
-    <property name="act20" value="player_face left"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing left"/>
-   </properties>
-  </object>
-  <object id="172" name="Teleport to Tunnel" type="event" x="528" y="0" width="16" height="16">
-   <properties>
-    <property name="act10" value="transition_teleport tunnel.tmx,13,39,0.3"/>
-    <property name="act20" value="player_face up"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
-   </properties>
-  </object>
-  <object id="173" name="Teleport to Tunnel" type="event" x="544" y="0" width="16" height="16">
-   <properties>
-    <property name="act10" value="transition_teleport tunnel.tmx,14,39,0.3"/>
-    <property name="act20" value="player_face up"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
-   </properties>
-  </object>
-  <object id="174" name="Teleport to Tunnel" type="event" x="560" y="0" width="16" height="16">
-   <properties>
-    <property name="act10" value="transition_teleport tunnel.tmx,15,39,0.3"/>
-    <property name="act20" value="player_face up"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
-   </properties>
-  </object>
-  <object id="175" name="Teleport to Tunnel" type="event" x="576" y="0" width="16" height="16">
-   <properties>
-    <property name="act10" value="transition_teleport tunnel.tmx,16,39,0.3"/>
-    <property name="act20" value="player_face up"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
-   </properties>
-  </object>
-  <object id="176" name="Play Music" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act10" value="play_music music_town_theme"/>
-    <property name="cond10" value="not music_playing music_town_theme"/>
-   </properties>
-  </object>
-  <object id="180" name="Teleport to Scoop" type="event" x="160" y="352" width="16" height="16">
-   <properties>
-    <property name="act10" value="transition_teleport scoop1.tmx,0,3,0.3"/>
-    <property name="act20" value="player_face right"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
-   </properties>
-  </object>
-  <object id="181" name="Player Spawn" type="event" x="560" y="48" width="16" height="16"/>
-  <object id="184" name="Sign: Timber Town" type="event" x="32" y="448" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog welcome_location_town"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="185" name="Sign: Timber North" type="event" x="528" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog here_to_north"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="119" type="collision" x="0" y="0" width="32" height="464"/>
   <object id="120" type="collision" x="0" y="608" width="640" height="32"/>
   <object id="121" type="collision" x="608" y="0" width="32" height="608"/>
@@ -205,5 +134,76 @@
   <object id="177" type="collision" x="32" y="448" width="16" height="16"/>
   <object id="178" type="collision" x="208" y="16" width="16" height="16"/>
   <object id="179" type="collision" x="144" y="368" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="5" name="Events">
+  <object id="118" name="Teleport to Route 5" type="event" x="0" y="464" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport route5.tmx,39,9,0.3"/>
+    <property name="act20" value="player_face left"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="172" name="Teleport to Tunnel" type="event" x="528" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport tunnel.tmx,13,39,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="173" name="Teleport to Tunnel" type="event" x="544" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport tunnel.tmx,14,39,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="174" name="Teleport to Tunnel" type="event" x="560" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport tunnel.tmx,15,39,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="175" name="Teleport to Tunnel" type="event" x="576" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport tunnel.tmx,16,39,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="176" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="play_music music_town_theme"/>
+    <property name="cond10" value="not music_playing music_town_theme"/>
+   </properties>
+  </object>
+  <object id="180" name="Teleport to Scoop" type="event" x="160" y="352" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport scoop1.tmx,0,3,0.3"/>
+    <property name="act20" value="player_face right"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="181" name="Player Spawn" type="event" x="560" y="48" width="16" height="16"/>
+  <object id="184" name="Sign: Timber Town" type="event" x="32" y="448" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="185" name="Sign: Timber North" type="event" x="528" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog here_to_north"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

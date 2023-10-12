@@ -1,7 +1,6 @@
 {
     "slug": "pyraminx",
     "category": "noble",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -52,7 +51,7 @@
     "txmn_id": 21,
     "height": 210,
     "weight": 190,
-    "catch_rate": 45.0,
+    "catch_rate": 70.0,
     "lower_catch_resistance": 0.85,
     "upper_catch_resistance": 1.1
 }

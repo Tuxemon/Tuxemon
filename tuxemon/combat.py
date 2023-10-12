@@ -56,59 +56,23 @@ def pre_checking(
     monster: Monster,
     technique: Technique,
     target: Monster,
-    player: NPC,
-    enemy: NPC,
 ) -> Technique:
     """
     Pre checking allows to check if there are statuses
-    or other conditions that change the choosen technique.
+    or other conditions that change the chosen technique.
     """
+    if monster.status:
+        monster.status[0].phase = "pre_checking"
+        result_status = monster.status[0].use(target)
+        if result_status["technique"]:
+            technique = result_status["technique"]
+
     status = Technique()
-    if has_status(monster, "status_dozing"):
-        status.load("empty")
-        technique = status
-    if has_status(monster, "status_flinching"):
-        fli = random.randint(1, 2)
-        if fli == 1:
-            status.load("empty")
-            technique = status
-            monster.status.clear()
-    if has_status(monster, "status_wild"):
-        wild = random.randint(1, 4)
-        if wild == 1:
-            status.load("empty")
-            technique = status
-            monster.current_hp -= monster.hp // 8
-    if has_status(monster, "status_confused"):
-        confusion = random.randint(1, 2)
-        if confusion == 1:
-            player.game_variables["status_confused"] = "on"
-            confused = [
-                ele
-                for ele in monster.moves
-                if ele.next_use <= 0
-                and not has_effect_param(
-                    ele, "status_confused", "give", "condition"
-                )
-            ]
-            if confused:
-                technique = random.choice(confused)
-            else:
-                status.load("empty")
-                technique = status
-        else:
-            player.game_variables["status_confused"] = "off"
     if monster.plague == PlagueType.infected:
         value = random.randint(1, 8)
         if value == 1:
             status.load("spyderbite")
             technique = status
-            # infect mechanism
-            if (
-                enemy.plague == PlagueType.infected
-                or enemy.plague == PlagueType.healthy
-            ):
-                target.plague = PlagueType.infected
     return technique
 
 
@@ -146,20 +110,20 @@ def has_status_bond(monster: Monster) -> bool:
     Statuses connected are the ones where an effect is present only
     if both monsters are alive (lifeleech, grabbed).
     """
-    if has_status(monster, "status_grabbed"):
+    if has_status(monster, "grabbed"):
         return True
-    elif has_status(monster, "status_lifeleech"):
+    elif has_status(monster, "lifeleech"):
         return True
     else:
         return False
 
 
 def fainted(monster: Monster) -> bool:
-    return has_status(monster, "status_faint") or monster.current_hp <= 0
+    return has_status(monster, "faint") or monster.current_hp <= 0
 
 
 def get_awake_monsters(
-    player: NPC, monsters: List[Monster]
+    player: NPC, monsters: List[Monster], turn: int
 ) -> Generator[Monster, None, None]:
     """
     Iterate all non-fainted monsters in party.
@@ -179,13 +143,18 @@ def get_awake_monsters(
     if mons:
         if len(mons) > 1:
             mon = random.choice(mons)
-            # avoid random choice filling battlefield (1st turn)
-            if player.isplayer:
+            # avoid random choice (1st turn)
+            if turn == 1:
                 yield from mons
             else:
                 yield mon
         else:
             yield mons[0]
+
+
+def alive_party(player: NPC) -> List[Monster]:
+    not_fainted = [ele for ele in player.monsters if not fainted(ele)]
+    return not_fainted
 
 
 def fainted_party(party: Sequence[Monster]) -> bool:
@@ -194,96 +163,6 @@ def fainted_party(party: Sequence[Monster]) -> bool:
 
 def defeated(player: NPC) -> bool:
     return fainted_party(player.monsters)
-
-
-def scope(monster: Monster) -> str:
-    message = T.format(
-        "combat_scope",
-        {
-            "AR": monster.armour,
-            "DE": monster.dodge,
-            "ME": monster.melee,
-            "RD": monster.ranged,
-            "SD": monster.speed,
-        },
-    )
-    return message
-
-
-def spyderbite(monster: Monster) -> str:
-    message: str
-    if monster.plague == PlagueType.infected:
-        message = T.format(
-            "combat_state_plague3",
-            {
-                "target": monster.name.upper(),
-            },
-        )
-    else:
-        message = T.format(
-            "combat_state_plague0",
-            {
-                "target": monster.name.upper(),
-            },
-        )
-    return message
-
-
-def confused(monster: Monster, technique: Technique) -> str:
-    message = T.format(
-        "combat_state_confused_tech",
-        {
-            "target": monster.name.upper(),
-            "name": technique.name.upper(),
-        },
-    )
-    return message
-
-
-def generic(
-    attacker: Monster, tech: Technique, defender: Monster, player: NPC
-) -> str:
-    message: str = ""
-    if has_effect(tech, "money"):
-        gold = str(player.game_variables["gold_digger"])
-        message = T.format(
-            "combat_state_gold",
-            {
-                "name": attacker.name,
-                "symbol": "$",
-                "gold": gold,
-            },
-        )
-    if has_effect(tech, "healing"):
-        message = T.translate("combat_full_health")
-    if has_effect(tech, "switch"):
-        _type: str = ""
-        monster: str = ""
-        if has_effect_param(tech, "switch", "both", "objective"):
-            message = T.format(
-                "combat_state_switch_both",
-                {
-                    "user": attacker.name.upper(),
-                    "type1": T.translate(attacker.types[0]),
-                    "target": defender.name.upper(),
-                    "type2": T.translate(defender.types[0]),
-                },
-            )
-        else:
-            if has_effect_param(tech, "switch", "target", "objective"):
-                monster = defender.name.upper()
-                _type = T.translate(defender.types[0])
-            if has_effect_param(tech, "switch", "user", "objective"):
-                monster = attacker.name.upper()
-                _type = T.translate(attacker.types[0])
-            message = T.format(
-                "combat_state_switch",
-                {
-                    "target": monster,
-                    "types": _type,
-                },
-            )
-    return message
 
 
 def check_moves(monster: Monster, levels: int) -> Union[str, None]:
@@ -319,4 +198,5 @@ def learn(monster: Monster, tech: str) -> Union[Technique, None]:
     duplicate = [mov for mov in monster.moves if mov.slug == technique.slug]
     if duplicate:
         return None
-    return technique
+    else:
+        return technique

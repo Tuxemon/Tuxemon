@@ -33,7 +33,7 @@
     "slug": "spyder_wayfarer1_nightshade",
     "template": [
       {
-        "sprite_name": "nurse",
+        "sprite_name": "nurse_blue",
         "combat_front": "nurse",
         "slug": "nurse"
       }
@@ -53,7 +53,7 @@
     "slug": "spyder_wayfarer1_jessie",
     "template": [
       {
-        "sprite_name": "nurse",
+        "sprite_name": "nurse_red",
         "combat_front": "nurse",
         "slug": "nurse"
       }
@@ -63,7 +63,7 @@
     "slug": "spyder_wayfarer1_morningstar",
     "template": [
       {
-        "sprite_name": "nurse",
+        "sprite_name": "nurse_lapi",
         "combat_front": "nurse",
         "slug": "nurse"
       }
@@ -103,7 +103,7 @@
     "slug": "spyder_wayfarer1_addy",
     "template": [
       {
-        "sprite_name": "nurse",
+        "sprite_name": "nurse_green",
         "combat_front": "nurse",
         "slug": "nurse"
       }

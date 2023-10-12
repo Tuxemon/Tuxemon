@@ -34,7 +34,7 @@
    eAHtlNENwjAMRCuxEDANMA0wDWwDG+ETnHocdpoiJH4aKaSJk2f74rBfDcP+D33oaHPiOkQOrbabmePCe1dz0a/9Tm5RX5uib2N9rn6t2kdtVrz3W+ufVTz4Whd5Vfli/R49y6EVe7Z/au2XvEvEfI5+jH4t4p+Kh3ay9Aa+ZWYs3EmlMWLwxrgwQjNtGUvt+IYubK6P87yWsvjJ4qhn8JbwZtCy2OgPNtYg9z9Pfb4PnlE/0IKxuZ/eGJRHFmLQdWoPZvU2GJ/eKdc8NvJaI856DOT5eotDm/M0V2qejTzvo/NU74yDNa87ZToPNuZb8Somc3N/PTFmTMaR3WMvU+8MvIxFPdQf3wdGfSPO0zk40OD06nj7mT/6Qc56Hus6p57Yh5ax/L70vPp5EsbfjDVax69enu6jDvrfB6L7vEW+qu3odVqH6v8gY7pf1cVtrAUdwdR6uMfc7cijh6XnWt9eC773AXz85d8=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="2" type="collision" x="240" y="336">
    <polygon points="0,0 0,16 16,16 16,0"/>
   </object>

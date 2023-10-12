@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
@@ -33,6 +33,7 @@ class HealingEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> HealingEffectResult:
+        extra: Optional[str] = None
         done: bool = False
         mon: Monster
         heal: int = 0
@@ -59,6 +60,14 @@ class HealingEffect(TechEffect):
                 else:
                     mon.current_hp += heal
                 done = True
+            else:
+                extra = "combat_full_health"
         else:
             tech.hit = False
-        return {"success": done}
+        return {
+            "success": done,
+            "damage": 0,
+            "element_multiplier": 0.0,
+            "should_tackle": False,
+            "extra": extra,
+        }

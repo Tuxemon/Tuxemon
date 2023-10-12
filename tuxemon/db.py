@@ -21,7 +21,14 @@ from typing import (
     overload,
 )
 
-from pydantic import BaseModel, Field, ValidationError, validator
+from pydantic import (
+    BaseModel,
+    Field,
+    FieldValidationInfo,
+    ValidationError,
+    field_validator,
+)
+from typing_extensions import Annotated
 
 from tuxemon import prepare
 from tuxemon.locale import T
@@ -81,8 +88,6 @@ class ElementType(str, Enum):
     earth = "earth"
     metal = "metal"
     water = "water"
-    normal = "normal"
-    glitch = "glitch"
 
 
 class ItemType(str, Enum):
@@ -94,6 +99,7 @@ class ItemCategory(str, Enum):
     none = "none"
     badge = "badge"
     booster = "booster"
+    elements = "elements"
     fossil = "fossil"
     morph = "morph"
     revive = "revive"
@@ -115,6 +121,7 @@ class OutputBattle(str, Enum):
 
 
 class MonsterShape(str, Enum):
+    default = "default"
     blob = "blob"
     brute = "brute"
     dragon = "dragon"
@@ -221,24 +228,40 @@ class ItemModel(BaseModel):
         title = "Item"
 
     # Validate fields that refer to translated text
-    @validator("use_item", "use_success", "use_failure")
+    @field_validator("use_item", "use_success", "use_failure")
     def translation_exists(cls: ItemModel, v: Any) -> Any:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
-    @validator("slug")
+    @field_validator("slug")
     def translation_exists_item(cls: ItemModel, v: Any) -> Any:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
     # Validate resources that should exist
-    @validator("sprite")
+    @field_validator("sprite")
     def file_exists(cls: ItemModel, v: Any) -> Any:
         if has.file(v):
             return v
         raise ValueError(f"the sprite {v} doesn't exist in the db")
+
+
+class ShapeModel(BaseModel):
+    slug: MonsterShape = Field(..., description="Slug of the shape")
+    armour: int = Field(..., description="Armour value")
+    dodge: int = Field(..., description="Dodge value")
+    hp: int = Field(..., description="HP value")
+    melee: int = Field(..., description="Melee value")
+    ranged: int = Field(..., description="Ranged value")
+    speed: int = Field(..., description="Speed value")
+
+    @field_validator("slug")
+    def translation_exists_shape(cls: ShapeModel, v: Any) -> Any:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
 
 
 class MonsterMovesetItemModel(BaseModel):
@@ -252,13 +275,13 @@ class MonsterMovesetItemModel(BaseModel):
         None, description="Element random technique"
     )
 
-    @validator("level_learned")
+    @field_validator("level_learned")
     def valid_level(cls: MonsterMovesetItemModel, v: Any) -> Any:
         if v < 0:
             raise ValueError(f"invalid level learned: {v}")
         return v
 
-    @validator("technique")
+    @field_validator("technique")
     def technique_exists(cls: MonsterMovesetItemModel, v: Any) -> Any:
         if has.db_entry("technique", v):
             return v
@@ -271,7 +294,7 @@ class MonsterHistoryItemModel(BaseModel):
         ..., description="The evolution stage of the monster"
     )
 
-    @validator("mon_slug")
+    @field_validator("mon_slug")
     def monster_exists(cls: MonsterHistoryItemModel, v: Any) -> Any:
         if has.db_entry("monster", v):
             return v
@@ -307,19 +330,19 @@ class MonsterEvolutionItemModel(BaseModel):
     )
     tech: Optional[str] = Field(None, description="Technique parameter.")
 
-    @validator("tech")
+    @field_validator("tech")
     def technique_exists(cls: MonsterEvolutionItemModel, v: Any) -> Any:
         if has.db_entry("technique", v):
             return v
         raise ValueError(f"the technique {v} doesn't exist in the db")
 
-    @validator("monster_slug")
+    @field_validator("monster_slug")
     def monster_exists(cls: MonsterEvolutionItemModel, v: Any) -> Any:
         if has.db_entry("monster", v):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
-    @validator("item")
+    @field_validator("item")
     def item_exists(cls: MonsterEvolutionItemModel, v: Any) -> Any:
         if has.db_entry("item", v):
             return v
@@ -338,7 +361,7 @@ class MonsterSpritesModel(BaseModel):
     menu2: str = Field(..., description="The menu2 sprite")
 
     # Validate resources that should exist
-    @validator("battle1", "battle2", "menu1", "menu2")
+    @field_validator("battle1", "battle2", "menu1", "menu2")
     def file_exists(cls: MonsterSpritesModel, v: Any) -> Any:
         if has.file(f"{v}.png"):
             return v
@@ -357,7 +380,6 @@ class MonsterSoundsModel(BaseModel):
 class MonsterModel(BaseModel):
     slug: str = Field(..., description="The slug of the monster")
     category: str = Field(..., description="The category of monster")
-    ai: str = Field(..., description="The AI to use for this monster")
     txmn_id: int = Field(..., description="The id of the monster")
     height: float = Field(..., description="The height of the monster")
     weight: float = Field(..., description="The weight of the monster")
@@ -370,7 +392,9 @@ class MonsterModel(BaseModel):
     )
 
     # Optional fields
-    sprites: Optional[MonsterSpritesModel]
+    sprites: Annotated[
+        Optional[MonsterSpritesModel], Field(validate_default=True)
+    ] = None
     shape: MonsterShape = Field(..., description="The shape of the monster")
     types: Sequence[ElementType] = Field(
         [], description="The type(s) of this monster"
@@ -408,11 +432,11 @@ class MonsterModel(BaseModel):
 
     # Set the default sprites based on slug. Specifying 'always' is needed
     # because by default pydantic doesn't validate null fields.
-    @validator("sprites", always=True)
+    @field_validator("sprites")
     def set_default_sprites(
-        cls: MonsterModel, v: Any, values: Any
+        cls: MonsterModel, v: Any, info: FieldValidationInfo
     ) -> Union[Any, MonsterSpritesModel]:
-        slug = values["slug"]
+        slug = info.data.get("slug")
         default = MonsterSpritesModel(
             battle1=f"gfx/sprites/battle/{slug}-front",
             battle2=f"gfx/sprites/battle/{slug}-back",
@@ -421,7 +445,7 @@ class MonsterModel(BaseModel):
         )
         return v or default
 
-    @validator("category")
+    @field_validator("category")
     def translation_exists_category(cls: MonsterModel, v: Any) -> Any:
         if has.translation(f"cat_{v}"):
             return v
@@ -491,15 +515,6 @@ class TechniqueModel(BaseModel):
     )
 
     # Optional fields
-    category: Optional[CategoryCondition] = Field(
-        None, description="Category status: positive or negative"
-    )
-    repl_pos: Optional[ResponseCondition] = Field(
-        None, description="How to reply to a positive status"
-    )
-    repl_neg: Optional[ResponseCondition] = Field(
-        None, description="How to reply to a negative status"
-    )
     use_tech: Optional[str] = Field(
         None,
         description="Slug of what string to display when technique is used",
@@ -524,7 +539,8 @@ class TechniqueModel(BaseModel):
         False, description="Whether or not this is a fast technique"
     )
     randomly: bool = Field(
-        True, description="Whether or not this is a fast technique"
+        True,
+        description="Whether or not this technique will be picked by random",
     )
     healing_power: int = Field(0, description="Value of healing power.")
     recharge: int = Field(0, description="Recharge of this technique")
@@ -532,24 +548,18 @@ class TechniqueModel(BaseModel):
     tech_id: int = Field(..., description="The id of this technique")
     accuracy: float = Field(0, description="The accuracy of the technique")
     potency: Optional[float] = Field(
-        None, description="How potetent the technique is"
+        None, description="How potent the technique is"
     )
-    statspeed: Optional[StatModel] = Field(None)
-    stathp: Optional[StatModel] = Field(None)
-    statarmour: Optional[StatModel] = Field(None)
-    statdodge: Optional[StatModel] = Field(None)
-    statmelee: Optional[StatModel] = Field(None)
-    statranged: Optional[StatModel] = Field(None)
 
     # Validate resources that should exist
-    @validator("icon")
+    @field_validator("icon")
     def file_exists(cls: TechniqueModel, v: Any) -> Any:
         if has.file(v):
             return v
         raise ValueError(f"the icon {v} doesn't exist in the db")
 
     # Validate fields that refer to translated text
-    @validator("use_tech", "use_success", "use_failure")
+    @field_validator("use_tech", "use_success", "use_failure")
     def translation_exists(cls: TechniqueModel, v: Any) -> Any:
         # None is ok here
         if not v:
@@ -558,24 +568,26 @@ class TechniqueModel(BaseModel):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
-    @validator("slug")
+    @field_validator("slug")
     def translation_exists_tech(cls: TechniqueModel, v: Any) -> Any:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
     # Custom validation for range
-    @validator("range")
-    def range_validation(cls: TechniqueModel, v: Any, values: Any) -> Any:
+    @field_validator("range")
+    def range_validation(
+        cls: TechniqueModel, v: Any, info: FieldValidationInfo
+    ) -> Any:
         # Special indicates that we are not doing damage
-        if v == Range.special and "damage" in values["effects"]:
+        if v == Range.special and "damage" in info.data["effects"]:
             raise ValueError(
                 '"special" range cannot be used with effect "damage"'
             )
 
         return v
 
-    @validator("animation")
+    @field_validator("animation")
     def animation_exists(cls: TechniqueModel, v: Any) -> Any:
         file: str = f"animations/technique/{v}_00.png"
         if not v:
@@ -583,6 +595,108 @@ class TechniqueModel(BaseModel):
         if has.file(file):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
+
+
+class ConditionModel(BaseModel):
+    slug: str = Field(..., description="The slug of the condition")
+    sort: TechSort = Field(..., description="The sort of condition this is")
+    icon: str = Field(None, description="The icon to use for the condition")
+    conditions: Sequence[str] = Field(
+        [], description="Conditions that must be met"
+    )
+    effects: Sequence[str] = Field(
+        [], description="Effects this condition uses"
+    )
+    flip_axes: Literal["", "x", "y", "xy"] = Field(
+        ...,
+        description="Axes along which condition animation should be flipped",
+    )
+    target: Target = Field(
+        ..., description="Target mapping of who this condition is used on"
+    )
+    animation: Optional[str] = Field(
+        None, description="Animation to play for this condition"
+    )
+    sfx: str = Field(
+        ..., description="Sound effect to play when this condition is used"
+    )
+
+    # Optional fields
+    category: Optional[CategoryCondition] = Field(
+        None, description="Category status: positive or negative"
+    )
+    repl_pos: Optional[ResponseCondition] = Field(
+        None, description="How to reply to a positive status"
+    )
+    repl_neg: Optional[ResponseCondition] = Field(
+        None, description="How to reply to a negative status"
+    )
+    repl_tech: Optional[str] = Field(
+        None,
+        description="With which status reply after a tech used",
+    )
+    repl_item: Optional[str] = Field(
+        None,
+        description="With which status reply after an item used",
+    )
+    gain_cond: Optional[str] = Field(
+        None,
+        description="Slug of what string to display when condition is gained",
+    )
+    use_success: Optional[str] = Field(
+        None,
+        description="Slug of what string to display when condition succeeds",
+    )
+    use_failure: Optional[str] = Field(
+        None,
+        description="Slug of what string to display when condition fails",
+    )
+    range: Range = Field(..., description="The attack range of this condition")
+    cond_id: int = Field(..., description="The id of this condition")
+    statspeed: Optional[StatModel] = Field(None)
+    stathp: Optional[StatModel] = Field(None)
+    statarmour: Optional[StatModel] = Field(None)
+    statdodge: Optional[StatModel] = Field(None)
+    statmelee: Optional[StatModel] = Field(None)
+    statranged: Optional[StatModel] = Field(None)
+
+    # Validate resources that should exist
+    @field_validator("icon")
+    def file_exists(cls: ConditionModel, v: Any) -> Any:
+        if has.file(v):
+            return v
+        raise ValueError(f"the icon {v} doesn't exist in the db")
+
+    # Validate fields that refer to translated text
+    @field_validator("gain_cond", "use_success", "use_failure")
+    def translation_exists(cls: ConditionModel, v: Any) -> Any:
+        # None is ok here
+        if not v:
+            return v
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @field_validator("slug")
+    def translation_exists_cond(cls: ConditionModel, v: Any) -> Any:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @field_validator("animation")
+    def animation_exists(cls: ConditionModel, v: Any) -> Any:
+        file: str = f"animations/technique/{v}_00.png"
+        if not v:
+            return v
+        if has.file(file):
+            return v
+        raise ValueError(f"the animation {v} doesn't exist in the db")
+
+    @field_validator("repl_tech", "repl_item")
+    def status_exists(cls: ConditionModel, v: Any) -> Any:
+        if has.db_entry("condition", v):
+            return v
+        raise ValueError(f"the status {v} doesn't exist in the db")
 
 
 class PartyMemberModel(BaseModel):
@@ -594,7 +708,7 @@ class PartyMemberModel(BaseModel):
     exp_req_mod: int = Field(..., description="Experience required modifier")
     gender: GenderType = Field(..., description="Gender of the monster")
 
-    @validator("slug")
+    @field_validator("slug")
     def monster_exists(cls: PartyMemberModel, v: Any) -> Any:
         if has.db_entry("monster", v):
             return v
@@ -605,7 +719,7 @@ class BagItemModel(BaseModel):
     slug: str = Field(..., description="Slug of the item")
     quantity: int = Field(..., description="Quantity of the item")
 
-    @validator("slug")
+    @field_validator("slug")
     def item_exists(cls: BagItemModel, v: Any) -> Any:
         if has.db_entry("item", v):
             return v
@@ -623,14 +737,14 @@ class NpcTemplateModel(BaseModel):
         ..., description="Name of the battle back sprite filename"
     )
 
-    @validator("combat_front")
+    @field_validator("combat_front")
     def combat_file_exists(cls: NpcTemplateModel, v: Any) -> Any:
         file: str = f"gfx/sprites/player/{v}.png"
         if has.file(file):
             return v
         raise ValueError(f"{file} doesn't exist in the db")
 
-    @validator("sprite_name")
+    @field_validator("sprite_name")
     def sprite_exists(cls: NpcTemplateModel, v: Any) -> Any:
         sprite: str = f"sprites/{v}_front.png"
         sprite_obj: str = f"sprites_obj/{v}.png"
@@ -638,7 +752,7 @@ class NpcTemplateModel(BaseModel):
             return v
         raise ValueError(f"the sprite {v} doesn't exist in the db")
 
-    @validator("slug")
+    @field_validator("slug")
     def template_exists(cls: NpcTemplateModel, v: Any) -> Any:
         if has.db_entry("template", v):
             return v
@@ -665,7 +779,7 @@ class BattleGraphicsModel(BaseModel):
     background: str = Field(..., description="Sprite used for background")
 
     # Validate resources that should exist
-    @validator("island_back", "island_front", "background")
+    @field_validator("island_back", "island_front", "background")
     def file_exists(cls: BattleGraphicsModel, v: Any) -> Any:
         file: str = f"gfx/ui/combat/{v}"
         if has.file(file):
@@ -692,7 +806,7 @@ class EncounterItemModel(BaseModel):
     )
     exp_req_mod: int = Field(1, description="Exp modifier wild monster")
 
-    @validator("monster")
+    @field_validator("monster")
     def monster_exists(cls: EncounterItemModel, v: Any) -> Any:
         if has.db_entry("monster", v):
             return v
@@ -708,13 +822,39 @@ class EncounterModel(BaseModel):
     )
 
 
+class ElementItemModel(BaseModel):
+    against: ElementType = Field(..., description="Name of the type")
+    multiplier: float = Field(1.0, description="Multiplier against the type")
+
+
+class ElementModel(BaseModel):
+    slug: ElementType = Field(
+        ..., description="Slug uniquely identifying the type"
+    )
+    icon: str = Field(..., description="The icon to use for the type")
+    types: Sequence[ElementItemModel]
+
+    @field_validator("slug")
+    def translation_exists_element(cls: ElementModel, v: Any) -> Any:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @field_validator("icon")
+    def file_exists(cls: ElementModel, v: Any) -> Any:
+        if has.file(v):
+            return v
+        raise ValueError(f"the icon {v} doesn't exist in the db")
+
+
 class EconomyItemModel(BaseModel):
     item_name: str = Field(..., description="Name of the item")
     price: int = Field(0, description="Price of the item")
     cost: int = Field(0, description="Cost of the item")
-    inventory: int = Field(0, description="Quantity of the item")
+    inventory: int = Field(-1, description="Quantity of the item")
+    variable: Optional[str] = Field(None, description="Variable of the item")
 
-    @validator("item_name")
+    @field_validator("item_name")
     def item_exists(cls: EconomyItemModel, v: Any) -> Any:
         if has.db_entry("item", v):
             return v
@@ -745,6 +885,8 @@ class SoundModel(BaseModel):
 
 TableName = Literal[
     "economy",
+    "element",
+    "shape",
     "template",
     "encounter",
     "environment",
@@ -753,11 +895,14 @@ TableName = Literal[
     "music",
     "npc",
     "sounds",
+    "condition",
     "technique",
 ]
 
 DataModel = Union[
     EconomyModel,
+    ElementModel,
+    ShapeModel,
     TemplateModel,
     EncounterModel,
     EnvironmentModel,
@@ -766,6 +911,7 @@ DataModel = Union[
     MusicModel,
     NpcModel,
     SoundModel,
+    ConditionModel,
     TechniqueModel,
 ]
 
@@ -810,12 +956,15 @@ class JSONDatabase:
             "item",
             "monster",
             "npc",
+            "condition",
             "technique",
             "encounter",
             "environment",
             "sounds",
             "music",
             "economy",
+            "element",
+            "shape",
             "template",
         ]
         self.preloaded: Dict[TableName, Dict[str, Any]] = {}
@@ -939,6 +1088,12 @@ class JSONDatabase:
             if table == "economy":
                 economy = EconomyModel(**item)
                 self.database[table][economy.slug] = economy
+            elif table == "element":
+                element = ElementModel(**item)
+                self.database[table][element.slug] = element
+            elif table == "shape":
+                shape = ShapeModel(**item)
+                self.database[table][shape.slug] = shape
             elif table == "template":
                 template = TemplateModel(**item)
                 self.database[table][template.slug] = template
@@ -963,6 +1118,9 @@ class JSONDatabase:
             elif table == "sounds":
                 sfx = SoundModel(**item)
                 self.database[table][sfx.slug] = sfx
+            elif table == "condition":
+                cond = ConditionModel(**item)
+                self.database[table][cond.slug] = cond
             elif table == "technique":
                 teq = TechniqueModel(**item)
                 self.database[table][teq.slug] = teq
@@ -979,6 +1137,10 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["monster"]) -> MonsterModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["condition"]) -> ConditionModel:
         pass
 
     @overload
@@ -999,6 +1161,14 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["economy"]) -> EconomyModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["element"]) -> ElementModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["shape"]) -> ShapeModel:
         pass
 
     @overload
@@ -1086,6 +1256,8 @@ class JSONDatabase:
         self,
         table: Literal[
             "economy",
+            "element",
+            "shape",
             "template",
             "encounter",
             "environment",
@@ -1094,6 +1266,7 @@ class JSONDatabase:
             "music",
             "npc",
             "sounds",
+            "condition",
             "technique",
         ],
         slug: str,

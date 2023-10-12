@@ -74,7 +74,7 @@ class ActionCommand(CLICommand):
         name, args = parse_action_string(line)
         try:
             ctx.session.client.event_engine.execute_action(name, args)
-        except Exception as exc:
+        except Exception:
             traceback.print_exc()
             print(
                 "Cannot execute action. Check the input and try again.",

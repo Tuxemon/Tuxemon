@@ -1,7 +1,6 @@
 {
     "slug": "possessun",
     "category": "visitor",
-    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
@@ -68,7 +67,7 @@
     "txmn_id": 72,
     "height": 69,
     "weight": 0,
-    "catch_rate": 85.0,
+    "catch_rate": 70.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15
 }

@@ -17,14 +17,8 @@ from typing import (
 
 from tuxemon import plugin, prepare
 from tuxemon.constants import paths
-from tuxemon.db import (
-    CategoryCondition,
-    ElementType,
-    Range,
-    ResponseCondition,
-    db,
-    process_targets,
-)
+from tuxemon.db import ElementType, Range, db, process_targets
+from tuxemon.element import Element
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 from tuxemon.technique.techcondition import TechCondition
@@ -62,7 +56,6 @@ class Technique:
         self.tech_id = 0
         self.accuracy = 0.0
         self.animation = Optional[str]
-        self.category: Optional[CategoryCondition] = None
         self.combat_state: Optional[CombatState] = None
         self.conditions: Sequence[TechCondition[Any]] = []
         self.description = ""
@@ -73,7 +66,6 @@ class Technique:
         self.hit = False
         self.is_fast = False
         self.randomly = True
-        self.link: Optional[Monster] = None
         self.name = ""
         self.next_use = 0
         self.nr_turn = 0
@@ -82,13 +74,11 @@ class Technique:
         self.range = Range.melee
         self.healing_power = 0
         self.recharge_length = 0
-        self.repl_pos: Optional[ResponseCondition] = None
-        self.repl_neg: Optional[ResponseCondition] = None
         self.sfx = ""
         self.sort = ""
         self.slug = ""
         self.target: Sequence[str] = []
-        self.types: List[ElementType] = []
+        self.types: List[Element] = []
         self.usable_on = False
         self.use_success = ""
         self.use_failure = ""
@@ -133,7 +123,10 @@ class Technique:
         self.icon = results.icon
         self.counter = self.counter
         self.counter_success = self.counter_success
-        self.types = list(results.types)
+        # types
+        for _ele in results.types:
+            _element = Element(_ele)
+            self.types.append(_element)
         # technique stats
         self.accuracy = results.accuracy or self.accuracy
         self.potency = results.potency or self.potency
@@ -141,17 +134,6 @@ class Technique:
 
         self.default_potency = results.potency or self.potency
         self.default_power = results.power or self.power
-        # monster stats
-        self.statspeed = results.statspeed
-        self.stathp = results.stathp
-        self.statarmour = results.statarmour
-        self.statmelee = results.statmelee
-        self.statranged = results.statranged
-        self.statdodge = results.statdodge
-        # status fields
-        self.category = results.category or self.category
-        self.repl_neg = results.repl_neg or self.repl_neg
-        self.repl_pos = results.repl_pos or self.repl_pos
 
         self.hit = self.hit
         self.is_fast = results.is_fast or self.is_fast
@@ -271,7 +253,7 @@ class Technique:
 
     def validate(self, target: Optional[Monster]) -> bool:
         """
-        Check if the target meets all conditions that the technique has on it's use.
+        Check if the target meets all conditions that the technique has on its use.
 
         Parameters:
             target: The monster or object that we are using this technique on.
@@ -339,6 +321,9 @@ class Technique:
             "name": self.name,
             "success": False,
             "should_tackle": False,
+            "damage": 0,
+            "element_multiplier": 0.0,
+            "extra": None,
         }
 
         # Loop through all the effects of this technique and execute the effect's function.
@@ -349,6 +334,17 @@ class Technique:
         self.next_use = self.recharge_length
 
         return meta_result
+
+    def has_type(self, element: Optional[ElementType]) -> bool:
+        """
+        Returns TRUE if there is the type among the types.
+        """
+        ret: bool = False
+        if element:
+            eles = [ele for ele in self.types if ele.slug == element]
+            if eles:
+                ret = True
+        return ret
 
     def set_stats(self) -> None:
         """

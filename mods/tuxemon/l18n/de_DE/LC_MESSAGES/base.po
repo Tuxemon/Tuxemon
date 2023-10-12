@@ -291,19 +291,19 @@ msgstr "Fehler beim Speichervorgang!"
 msgid "slot"
 msgstr "Slot"
 
-msgid "status_faint"
+msgid "faint"
 msgstr "K.O."
 
-msgid "status_poison"
+msgid "poison"
 msgstr "Gift"
 
-msgid "status_lifeleech"
+msgid "lifeleech"
 msgstr "Energieabsorbtion"
 
-msgid "status_overfeed"
+msgid "overfeed"
 msgstr "Übersättigt"
 
-msgid "status_recover"
+msgid "recover"
 msgstr "Erholung"
 
 msgid "attack_very_effective"
@@ -2848,7 +2848,7 @@ msgstr ""
 "Ein langes Eisenrohr. Nachdem du es in die Hand genommen hast sind deine "
 "Hände voll Ruß und Asche."
 
-msgid "status_chargedup"
+msgid "chargedup"
 msgstr "Aufgeladen"
 
 msgid "tectonic_drill_description"
@@ -2862,10 +2862,10 @@ msgstr ""
 "Du hast gegen {npc} gewonnen!\n"
 "Du erhältst {currency}{prize}!"
 
-msgid "status_exhausted"
+msgid "exhausted"
 msgstr "Erschöpft"
 
-msgid "status_focused"
+msgid "focused"
 msgstr "Fokussiert"
 
 msgid "spyder_citypark_edith1"
@@ -2929,47 +2929,47 @@ msgstr "{target} zielt."
 msgid "alert_text"
 msgstr "Text ist zu lang!"
 
-msgid "status_eliminated"
+msgid "eliminated"
 msgstr "Beseitigt"
 
 msgid "spyderbite"
 msgstr "Spinnenbiss"
 
-msgid "status_tired"
+msgid "tired"
 msgstr "Müde"
 
 msgid "save_overwrite"
 msgstr "Ja, Speicherung überschreiben."
 
-msgid "status_dozing"
+msgid "dozing"
 msgstr "Dösen"
 
-msgid "status_enraged"
+msgid "enraged"
 msgstr "Berserker"
 
-msgid "status_festering"
+msgid "festering"
 msgstr "Eiterig"
 
-msgid "status_grabbed"
+msgid "grabbed"
 msgstr "Geschnappt"
 
 ## STATUSES
-msgid "status_blinded"
+msgid "blinded"
 msgstr "Geblendet"
 
-msgid "status_charging"
+msgid "charging"
 msgstr "Aufladen"
 
-msgid "status_diehard"
+msgid "diehard"
 msgstr "Stirb langsam"
 
-msgid "status_noddingoff"
+msgid "noddingoff"
 msgstr "Einnickend"
 
-msgid "status_confused"
+msgid "confused"
 msgstr "Verwirrt"
 
-msgid "status_hardshell"
+msgid "hardshell"
 msgstr "Harte Schale"
 
 msgid "stabilo"
@@ -3779,13 +3779,13 @@ msgstr "{target} bleibt an Ort und Stelle hängen."
 msgid "combat_state_tired_get"
 msgstr "{target} ist abgenutzt."
 
-msgid "status_sniping"
+msgid "sniping"
 msgstr "Wegputzend"
 
-msgid "status_softened"
+msgid "softened"
 msgstr "Aufgeweicht"
 
-msgid "status_stuck"
+msgid "stuck"
 msgstr "Eingeklemmt"
 
 msgid "lust"

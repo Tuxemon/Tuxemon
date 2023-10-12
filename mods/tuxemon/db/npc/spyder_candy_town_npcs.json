@@ -10,6 +10,16 @@
     ]
   },
   {
+    "slug": "spyder_candy_eliane",
+    "template": [
+      {
+        "sprite_name": "florist_fiery",
+        "combat_front": "florist",
+        "slug": "florist"
+      }
+    ]
+  },
+  {
     "slug": "spyder_candycafe_nora",
     "template": [
       {
@@ -23,7 +33,7 @@
     "slug": "spyder_candyhouse2_indiana",
     "template": [
       {
-        "sprite_name": "professor",
+        "sprite_name": "professor_green",
         "combat_front": "professor",
         "slug": "professor"
       }

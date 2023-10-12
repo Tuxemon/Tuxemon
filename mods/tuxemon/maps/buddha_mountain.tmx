@@ -1,29 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="45" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="271">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="227">
  <properties>
   <property name="edges" value="clamped"/>
-  <property name="scenario" value="tobedefined"/>
-  <property name="slug" value="buddha_mountain"/>
-  <property name="types" value="route"/>
-  <property name="west" value="sphalian_town"/>
  </properties>
- <tileset firstgid="1" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
-  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
+ <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
- <tileset firstgid="10968" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
+ <tileset firstgid="105" name="signs" tilewidth="16" tileheight="16" tilecount="3" columns="3">
+  <image source="../gfx/tilesets/signs.png" width="48" height="16"/>
  </tileset>
- <layer id="1" name="Layer1 Mountain Terrain" width="45" height="100">
+ <tileset firstgid="108" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
+  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
+ </tileset>
+ <tileset firstgid="118" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="222" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285" columns="19">
+  <image source="../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
+ </tileset>
+ <layer id="1" name="Layer1 Mountain Terrain" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   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
+   eAHtm72u7DQUhUeCCw0cisuPEAiJhgZEx8PRUsLLcLtLi6Dg5xZABbwM3uJ8ypp9HNuJMzPJeBeW7cSOnfV5bSc5c56fTqdPdpbeTfP5ctD0+Q7v+4sdzula6wMez5MGt/YJvggepxNcrrUOcuPAgTzX5t6PwYH8Fj7xvggekz/gcs11iP4+v+Yc9jIW+vv8Gj6Z8wVc9qLRNefhOfj6JeeC7nP5Jcfe67W9/r5+CZ/UfAGfvWp2yXl5/efqW84BvWv5lmMe5Vpz+vvjW/ik1RdwOoqGW87T616r94yNzq15z1hH7VvT35/vuc9WDrTrGeuofb3etXrPfX76+F2qNe8Z66h9a/r78z332cqBdj1jHbWv17tW77lP4lBr3jPWUfvW9Pfne+6zlQPtesY6al+v91z9oxT7PyukD9M5S6U2H6fzphN61/Kjatoz7zn9/fGeMXzfGgfO+34j1L3uvl7zBX5o8QdtW30ygv7+Hr3+vu7bb1nHB3P5lmMd5Vpef+qtvmDNL/EHfWo+OYqGW84T/X2+5Ri1a4U/pt/TeA5LfcFaX+MP+s75pMbxHs97Hre8R++TW87lVmPDY60vWOM9/uAa3ie30uSW48LjlnPwY+MTf3yEeq8vWNtb+INr4ZMR9D/CPb7z+F3lCHMdYY7BY3r+3QPv0Xn8muLDtdNvhZg0Mo8/ki5/3iD9/rgGclyCx22Y2Dr4KyUfI4PHUx4/JZ3+cennVN/aS8HjfD2+mtE4p9PfwqeVDVzn2lvc8jFrZH/49Y5+/yadfBzRurGZ01ivaVx/TKm0T3n2wWOKQ14bZeDL+KXEhX17zoe5PSR4/M/DvFHzhWdi9VavqG+07NdA8Did1rKATykeqfa5cvCY9gaeodb4Aha9HgkeEw/VtLfMfmKMS3uKeiTny5HjlWfwS9Ky9O3EP5v6/tSVDR7M5eZLe/6in+XBY9Kjtg/42KI6lsqmeSlp3+CR5/F90tDW9IuUiDFreZjewWPSWddfqaz+MO1NQ39M+9fiWyn22TmLfzaGXjP8Memh2r9MOplmP6SEP3i/Q+fSex59SjnMg8fEQLVQHiUda+f47pLbw/VY7jk7/DGx6X3XhoPp/CylNzLpzXRM14AvB49zffRZtfU9Ar+w33+VNH97Rvea3rXznt9IdR+/WP8ac7Ss8Sd4nK/zLdaN8si9S5fGeC/54/1M+mDGN1wr/DHPUWOXrn20W5u/luEEuxqvtWPeQz99v2j9VlK6bziY5uGDvA94l+D9TPXUeMVereeXlo2BpqX977296m3PSLzv4QU938vDvIEvYHLv+i69P9WbZ1blou/fvTxgoPnS+d57e3jkvh0qHysHj3y833KNwMO09t8Og8fl9fcs4ZH7dmg89P2v93lX4xRlP5/R6/DwXqDeG6NUXxhoruejXP+tjn/e6tFMOVDuud699tV3cPsWlfuGCJfcO0qrLjDQvLXvKO34RkH+euJRi2Gw4R2lVSvlQLm176jt7JtsjcfavQUGmo+q89x98w3WfGFtjIePX6UYtsQjyoHy3LxGP87fKsj9bwyMUe++AgPNR9d97v7hYH7BK75tLY7ZvlLyi3Kg7MeI+hSn0AI21MlrPGxfKb2vwEBzrh35+bcAZWDlb1P6TtLXqZyLWby/v0jng8e5pj1rzPPw1+K894j/7hX+2IYJehsHLcOFY94jfPd6Ff4o/oYJHVtz9Lb2/hnYjul5z4T3kYhX23gDBv65ShnAyN7jbS+xlHv+jXh1OSbKQ31mx79JyXyiv72ycumbvD5XUdbrRvkpS33/UE/o9y3j4Z+/9FmMtpY/pETd/+3cmASDugbKxOtlLOZ849vm6viCPNcmjj1lNMfE87B9ZIl+cCBf0nf0thqv2OuNB8ftWC5uEZ98vLK6j1mja7z2/olR5HYdLS+5Lt6wfEm/aDvphfbqDY6hU2vsCh6Trmi3NPf7ibHwPDR2EbMeUjvKlttzmMaspfOI9hNL1d/KeMV0Zn9p1QuPtLaPdhMHtFCPwAIOyor2pTx4PNW3pNfcOWVibeAAH/PKQ0oao4hT+s5IzJobJ46384KB8lijXzxftWte0ld5qC/wxEODP6yteaQ0Tpxr00d5hGZtml1SpxYez9Laz/3v+ZJjl7yHe7p2KUatfd66J332dC94h3xPcxtlLhqb3nrco4PH7fYVtM9xGWVN7uk+4UG+p7mNOBc4kI+owZ7uGQ7ke5rbSHNhv7A93Mrs5SNpsId7VQ42n2Bx/WcpGNj7tfogWGzLovX7BTHJt1c2e/Du0efwH4wlh8M=
   </data>
  </layer>
- <layer id="2" name="Layer2 Signs, Plants, Statues" width="45" height="100">
+ <layer id="2" name="Layer2 Signs, Plants, Statues" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
+ <layer id="3" name="Layer3 Extra Mountain" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eAHt2zFuwgAUREHSBO5/PZooVwj0cfqs24fEWHK1xYd5tS8XDwECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECZwL3s9FGgAABAgQIECBAgAABAgQIJAJfx9Xrx//vd/KL3vvoz/H3H+N9vjdN8u/1SNjnUT0mTTLokbDPo3pMmmTQI2GfR/WYNMmgR8I+j+oxaZJBj4R9HtVj0iSDHgn7PKrHpEkGPRL2eVSPSZMMeiTs86gekyYZ9EjY51E9Jk0y6JGwz6N6TJpk0CNhn0f1mDTJoEfCPo/qMWmSQY+EfR7VY9Ikgx4J+zyqx6RJBj0S9nlUj0mTDHok7POoHpMmGT7Ht1F/30zdjtdDgAABAgQIECBAgAABAgQIECBAgMBrCPwCN9n+rg==
+  </data>
+ </layer>
+ <objectgroup color="#ffff00" id="4" name="Events">
+  <object id="2" name="Welcome Sign" type="event" x="176" y="1440" width="16" height="16">
+   <properties>
+    <property name="act10" value="dialog Welcome to Buddha Mountain!"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="3" name="Play Music" type="event" x="0" y="1584" width="16" height="16">
+   <properties>
+    <property name="act10" value="play_music music_adventure_begins"/>
+    <property name="cond10" value="not music_playing music_adventure_begins"/>
+   </properties>
+  </object>
+  <object id="225" name="Teleport to map1" type="event" x="32" y="1424" width="16" height="32">
+   <properties>
+    <property name="act10" value="transition_teleport sphalian_town.tmx,22,14,1.5"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="226" name="Player Spawn" type="event" x="64" y="1440" width="16" height="16"/>
+ </objectgroup>
  <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="4" type="collision" x="400" y="1296" width="80" height="16"/>
   <object id="8" type="collision" x="304" y="1296" width="80" height="16"/>
@@ -108,13 +141,13 @@
   <object id="102" type="collision" x="544" y="384" width="16" height="16"/>
   <object id="103" type="collision" x="560" y="240" width="16" height="176"/>
   <object id="104" type="collision" x="576" y="416" width="16" height="16"/>
-  <object id="105" type="collision" x="592" y="240" width="128" height="192"/>
+  <object id="105" type="collision" x="592" y="240" width="16" height="192"/>
   <object id="106" type="collision" x="544" y="48" width="16" height="16"/>
   <object id="107" type="collision" x="528" y="64" width="16" height="16"/>
   <object id="108" type="collision" x="560" y="48" width="16" height="160"/>
   <object id="109" type="collision" x="560" y="32" width="16" height="16"/>
   <object id="110" type="collision" x="576" y="16" width="16" height="16"/>
-  <object id="111" type="collision" x="592" y="16" width="128" height="192"/>
+  <object id="111" type="collision" x="592" y="16" width="16" height="192"/>
   <object id="112" type="collision" x="144" y="864" width="32" height="80"/>
   <object id="113" type="collision" x="16" y="512" width="464" height="32"/>
   <object id="114" type="collision" x="480" y="528" width="32" height="16"/>
@@ -305,352 +338,12 @@
   <object id="211" type="collision-line" x="0" y="0">
    <polyline points="0,0 0,1600"/>
   </object>
+  <object id="214" type="collision" x="176" y="1424" width="16" height="16"/>
   <object id="216" type="collision" x="0" y="1456" width="272" height="16"/>
   <object id="217" type="collision" x="0" y="1408" width="208" height="16"/>
-  <object id="218" type="collision" x="0" y="0" width="720" height="16"/>
-  <object id="220" type="collision" x="0" y="1584" width="720" height="16"/>
-  <object id="221" type="collision" x="0" y="16" width="16" height="1584"/>
-  <object id="227" type="collision-line" x="528" y="848">
-   <polyline points="0,0 0,558.5"/>
-  </object>
-  <object id="267" type="collision" x="672" y="208" width="16" height="32"/>
-  <object id="268" type="collision" x="704" y="432" width="16" height="1168"/>
- </objectgroup>
- <objectgroup color="#ffff00" id="4" name="Events">
-  <object id="2" name="Welcome Sign" type="event" x="192" y="1408" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog welcome_location_route"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="3" name="Play Music" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_music music_adventure_begins"/>
-    <property name="cond1" value="not music_playing music_adventure_begins"/>
-   </properties>
-  </object>
-  <object id="4" name="Teleport Town" type="event" x="16" y="1424" width="16" height="32">
-   <properties>
-    <property name="act10" value="transition_teleport sphalian_town.tmx,22,14,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-   </properties>
-  </object>
-  <object id="5" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable environment:snow"/>
-    <property name="cond1" value="is variable_set daytime:true"/>
-   </properties>
-  </object>
-  <object id="6" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable environment:night_snow"/>
-    <property name="cond1" value="is variable_set daytime:false"/>
-   </properties>
-  </object>
-  <object id="8" name="Encounters" type="event" x="16" y="448" width="576" height="48">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="7" name="Player Spawn" type="event" x="64" y="1440" width="16" height="16"/>
-  <object id="228" name="Encounters" type="event" x="352" y="688" width="192" height="32">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="229" name="Encounters" type="event" x="208" y="672" width="144" height="48">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="230" name="Encounters" type="event" x="544" y="496" width="48" height="336">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="231" name="Encounters" type="event" x="208" y="720" width="48" height="16">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="232" name="Encounters" type="event" x="496" y="496" width="48" height="16">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="233" name="Encounters" type="event" x="528" y="512" width="16" height="48">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="234" name="Encounters" type="event" x="528" y="720" width="16" height="48">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="235" name="Encounters" type="event" x="496" y="768" width="48" height="64">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="236" name="Encounters" type="event" x="80" y="608" width="192" height="64">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="238" name="Encounters" type="event" x="272" y="624" width="16" height="48">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="239" name="Encounters" type="event" x="288" y="656" width="16" height="16">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="240" name="Encounters" type="event" x="96" y="592" width="16" height="16">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="241" name="Encounters" type="event" x="224" y="592" width="16" height="16">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="242" name="Encounters" type="event" x="112" y="560" width="64" height="16">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="244" name="Encounters" type="event" x="48" y="640" width="16" height="16">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="245" name="Encounters" type="event" x="64" y="624" width="16" height="48">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="246" name="Encounters" type="event" x="112" y="576" width="112" height="32">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="248" name="Encounters" type="event" x="16" y="656" width="48" height="208">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="249" name="Encounters" type="event" x="64" y="800" width="64" height="64">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="250" name="Encounters" type="event" x="64" y="784" width="16" height="16">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="251" name="Encounters" type="event" x="112" y="880" width="16" height="16">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="252" name="Encounters" type="event" x="80" y="864" width="48" height="16">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="254" name="Encounters" type="event" x="192" y="848" width="240" height="144">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="255" name="Encounters" type="event" x="96" y="1056" width="64" height="32">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="256" name="Encounters" type="event" x="336" y="992" width="96" height="144">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="257" name="Encounters" type="event" x="208" y="816" width="144" height="32">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="258" name="Encounters" type="event" x="192" y="832" width="16" height="16">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="259" name="Encounters" type="event" x="432" y="848" width="16" height="32">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="260" name="Encounters" type="event" x="352" y="1136" width="64" height="32">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="261" name="Encounters" type="event" x="272" y="992" width="64" height="64">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="262" name="Encounters" type="event" x="320" y="1056" width="16" height="16">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="263" name="Encounters" type="event" x="224" y="992" width="48" height="16">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="264" name="Encounters" type="event" x="256" y="1008" width="16" height="32">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="265" name="Encounters" type="event" x="176" y="960" width="16" height="32">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="266" name="Encounters" type="event" x="144" y="960" width="32" height="16">
-   <properties>
-    <property name="act1" value="random_encounter buddha_mountain"/>
-    <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="269" name="Stop" type="event" x="672" y="208" width="16" height="32">
-   <properties>
-    <property name="act1" value="translated_dialog mountain_road_interrupted"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="192" name="Exhausted" type="event" x="0" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
+  <object id="218" type="collision" x="-32" y="-32" width="1664" height="32"/>
+  <object id="219" type="collision" x="1600" y="0" width="32" height="1600"/>
+  <object id="220" type="collision" x="-32" y="1600" width="1664" height="32"/>
+  <object id="221" type="collision" x="-32" y="0" width="48" height="1600"/>
  </objectgroup>
 </map>

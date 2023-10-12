@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="66">
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="102">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -16,25 +16,38 @@
  </layer>
  <layer id="2" name="Pit" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG7y8TAcHcUUxQGDFDQyMzAMNAY5BT0+IS5b7DQg9l9r3hHw4/SdDKY4xfkt1H3URbDo+E3Gn6UhQBlukfT38gJv0hgm4paGD3dUINPLbeBzKGGe9DNGOzuAwBvsddN
+   eAG7y8TAcHcUUxQGDFDQyMzAMNAY5BT0+IS5b7DQg9l9r3hHw4/SdDKY4xfkt8HuPnQ3UhoftNCPHIa0MJ9SM0fdR1kIDvbwg/kO5M7BDAaj+5DdhMweLOGI7KZIYJsKG0Z3K0gNJQBkJzLGZRZMDS55YsSx+QckBjObGJoYe8hVQ0/3AQAWxp4X
   </data>
  </layer>
- <layer id="4" name="Wall" width="40" height="20">
+ <layer id="8" name="Walls" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
-  </data>
- </layer>
- <layer id="8" name="Tile Layer 4" width="40" height="20">
-  <data encoding="base64" compression="zlib">
-   eAFjYBgFlIbACmYGhkYgHgxgJRZ33GMaDC6DuCFikLsPW0iNhh+2UMEuRkz8GgDTgOEA4YtEpL87wPxyF4gjgWqphUHmEYvRQxY9/cHcR6x51FY36j7i4xJb2I+G32j4YUsX9BJDT38h0LIYJA4ql0OBmF5uwWYPuvtG+cM3BADLnAbS
+   eAHdlVFKBEEMRAe9kHoWBfU06mncfw/i/qtnMQ8pKEJldmdVBANNz3Z3UpVKundZ/rfdnW/L7/1sWRhb7LkwHjfiEH9XPvDD/5ARn/PiN/lwpttH5fNS47L20rgKPsS4rXX43Q/7HYfz4jf5cKYb/N5qgJXGWqyf5te58Rt+0uKv+U36ncLvofSmr55CTZIOYJxa3zV+rxU39aXW6M+LI850fslnX3G6qb7KTXOqdVqjP9fyU492ftKfGvjod3jip3fHfdM39XVs5eezctDaVBNqQSy3iV+6t6km1Jm6CDvNnV86w5rOdX6utd7RnqNym2KvrYPrGL0Owpz4OV/ewoQl37R3aK3nqrvF7HkLw/lQX7ff4LfGX5w4w7d01j3p/LTfa3DMPRAPv1uqnfb67PykszRFt85vugPy6fHTbzBlW+82fuLM93XFog8w5psaE+akbdL6K2J+e1xf6kJc6Yyf81Mcn91ffYDPpK33e//el18311d7/u6Jn/NwDfw/VZqp/xTvO3PiJxx4CEv92HOefictTuF5DC5Yn8/HE3s=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="58" type="collision" x="96" y="128" width="544" height="192"/>
-  <object id="59" type="collision" x="0" y="272" width="96" height="48"/>
+  <object id="58" type="collision" x="48" y="128" width="224" height="32"/>
+  <object id="59" type="collision" x="0" y="272" width="96" height="32"/>
   <object id="60" type="collision" x="0" y="0" width="16" height="272"/>
   <object id="61" type="collision" x="16" y="0" width="624" height="48"/>
-  <object id="62" type="collision" x="592" y="48" width="48" height="80"/>
+  <object id="62" type="collision" x="592" y="48" width="48" height="96"/>
+  <object id="66" type="collision" x="96" y="256" width="80" height="32"/>
+  <object id="67" type="collision" x="160" y="288" width="16" height="16"/>
+  <object id="68" type="collision" x="96" y="192" width="80" height="48"/>
+  <object id="69" type="collision" x="48" y="160" width="64" height="32"/>
+  <object id="70" type="collision" x="48" y="64" width="96" height="64"/>
+  <object id="71" type="collision" x="256" y="48" width="16" height="64"/>
+  <object id="72" type="collision" x="208" y="288" width="208" height="32"/>
+  <object id="73" type="collision" x="208" y="176" width="144" height="96"/>
+  <object id="74" type="collision" x="352" y="128" width="64" height="112"/>
+  <object id="75" type="collision" x="304" y="128" width="48" height="48"/>
+  <object id="76" type="collision" x="416" y="208" width="64" height="112"/>
+  <object id="77" type="collision" x="448" y="48" width="32" height="144"/>
+  <object id="78" type="collision" x="480" y="208" width="48" height="64"/>
+  <object id="79" type="collision" x="480" y="160" width="96" height="32"/>
+  <object id="80" type="collision" x="560" y="192" width="16" height="80"/>
+  <object id="81" type="collision" x="576" y="239.5" width="32" height="64"/>
+  <object id="82" type="collision" x="608" y="144" width="32" height="80"/>
+  <object id="83" type="collision" x="512" y="128" width="80" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="49" name="Teleport to Cotton Town" type="event" x="576" y="64" width="16" height="16">
@@ -120,6 +133,151 @@
   <object id="65" name="Encounters" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter cotton_tunnel,11"/>
+   </properties>
+  </object>
+  <object id="84" name="Create Petrified Dung" type="event" x="384" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontunnel_box1,24,15"/>
+    <property name="cond1" value="not npc_exists spyder_cottontunnel_box1"/>
+    <property name="cond2" value="not variable_set cottontunnel_dung:yes"/>
+   </properties>
+  </object>
+  <object id="85" name="Petrified Dung" type="event" x="384" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog petrified_dung"/>
+    <property name="act2" value="add_item petrified_dung"/>
+    <property name="act3" value="remove_npc spyder_cottontunnel_box1"/>
+    <property name="act4" value="set_variable cottontunnel_dung:yes"/>
+    <property name="behav1" value="talk spyder_cottontunnel_box1"/>
+   </properties>
+  </object>
+  <object id="86" name="Create Candy Tuxeball" type="event" x="112" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontunnel_box2,7,18"/>
+    <property name="cond1" value="not npc_exists spyder_cottontunnel_box2"/>
+    <property name="cond2" value="not variable_set cottontunnel_candy:yes"/>
+   </properties>
+  </object>
+  <object id="87" name="Candy Tuxeball" type="event" x="112" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tuxeball_candy"/>
+    <property name="act2" value="add_item tuxeball_candy"/>
+    <property name="act3" value="remove_npc spyder_cottontunnel_box2"/>
+    <property name="act4" value="set_variable cottontunnel_candy:yes"/>
+    <property name="behav1" value="talk spyder_cottontunnel_box2"/>
+   </properties>
+  </object>
+  <object id="88" name="Create Imperial Tea" type="event" x="496" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontunnel_box3,31,17"/>
+    <property name="cond1" value="not npc_exists spyder_cottontunnel_box3"/>
+    <property name="cond2" value="not variable_set cottontunnel_tea:yes"/>
+   </properties>
+  </object>
+  <object id="89" name="Imperial Tea" type="event" x="496" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog imperial_tea"/>
+    <property name="act2" value="add_item imperial_tea"/>
+    <property name="act3" value="remove_npc spyder_cottontunnel_box3"/>
+    <property name="act4" value="set_variable cottontunnel_tea:yes"/>
+    <property name="behav1" value="talk spyder_cottontunnel_box3"/>
+   </properties>
+  </object>
+  <object id="90" name="Create Imperial Potion" type="event" x="128" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontunnel_box4,8,10"/>
+    <property name="cond1" value="not npc_exists spyder_cottontunnel_box4"/>
+    <property name="cond2" value="not variable_set cottontunnel_potion:yes"/>
+   </properties>
+  </object>
+  <object id="91" name="Imperial Potion" type="event" x="128" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog imperial_potion"/>
+    <property name="act2" value="add_item imperial_potion"/>
+    <property name="act3" value="remove_npc spyder_cottontunnel_box4"/>
+    <property name="act4" value="set_variable cottontunnel_potion:yes"/>
+    <property name="behav1" value="talk spyder_cottontunnel_box4"/>
+   </properties>
+  </object>
+  <object id="92" name="Create Cureall" type="event" x="512" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontunnel_box5,32,3"/>
+    <property name="cond1" value="not npc_exists spyder_cottontunnel_box5"/>
+    <property name="cond2" value="not variable_set cottontunnel_cureall:yes"/>
+   </properties>
+  </object>
+  <object id="93" name="Cureall" type="event" x="512" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog cureall"/>
+    <property name="act2" value="add_item cureall"/>
+    <property name="act3" value="remove_npc spyder_cottontunnel_box5"/>
+    <property name="act4" value="set_variable cottontunnel_cureall:yes"/>
+    <property name="behav1" value="talk spyder_cottontunnel_box5"/>
+   </properties>
+  </object>
+  <object id="94" name="Create Raise Melee" type="event" x="16" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontunnel_box6,1,3"/>
+    <property name="cond1" value="not npc_exists spyder_cottontunnel_box6"/>
+    <property name="cond2" value="not variable_set cottontunnel_melee:yes"/>
+   </properties>
+  </object>
+  <object id="95" name="Raise Melee" type="event" x="16" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog raise_melee"/>
+    <property name="act2" value="add_item raise_melee"/>
+    <property name="act3" value="remove_npc spyder_cottontunnel_box6"/>
+    <property name="act4" value="set_variable cottontunnel_melee:yes"/>
+    <property name="behav1" value="talk spyder_cottontunnel_box6"/>
+   </properties>
+  </object>
+  <object id="96" name="Create Professor" type="event" x="0" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontunnel_professor,0,19"/>
+    <property name="act2" value="npc_face spyder_cottontunnel_professor,left"/>
+    <property name="cond1" value="not npc_exists spyder_cottontunnel_professor"/>
+    <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
+   </properties>
+  </object>
+  <object id="97" name="Talk Professor" type="event" x="0" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cottontunnel_professor1"/>
+    <property name="behav1" value="talk spyder_cottontunnel_professor"/>
+   </properties>
+  </object>
+  <object id="98" name="Create ShopAssistant" type="event" x="352" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontunnel_shopassistant,22,15"/>
+    <property name="act2" value="npc_face spyder_cottontunnel_shopassistant,up"/>
+    <property name="cond1" value="not npc_exists spyder_cottontunnel_shopassistant"/>
+    <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
+   </properties>
+  </object>
+  <object id="99" name="Talk ShopAssistant" type="event" x="352" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cottontunnel_shopassistant1"/>
+    <property name="behav1" value="talk spyder_cottontunnel_shopassistant"/>
+   </properties>
+  </object>
+  <object id="100" name="Create Carlos" type="event" x="592" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontunnel_carlos,37,9"/>
+    <property name="cond1" value="not npc_exists spyder_cottontunnel_carlos"/>
+    <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
+   </properties>
+  </object>
+  <object id="101" name="Talk Carlos" type="event" x="592" y="224" width="16" height="16">
+   <properties>
+    <property name="act10" value="pathfind_to_player spyder_cottontunnel_carlos"/>
+    <property name="act11" value="translated_dialog spyder_cottontunnel_carlos1"/>
+    <property name="act12" value="add_monster agnidon,35,spyder_cottontunnel_carlos,5,10"/>
+    <property name="act13" value="add_monster legko,35,spyder_cottontunnel_carlos,5,10"/>
+    <property name="act15" value="start_battle spyder_cottontunnel_carlos"/>
+    <property name="act16" value="translated_dialog spyder_cottontunnel_carlos2"/>
+    <property name="act17" value="set_variable cottontunnelcarlos:yes"/>
+    <property name="cond1" value="not variable_set cottontunnelcarlos:yes"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
  </objectgroup>

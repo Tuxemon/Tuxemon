@@ -42,7 +42,7 @@
    eAFjYCAeNHIyMDQBMSEwEahmEhHqCJkzFOQBRCICSw==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="19" type="collision" x="0" y="0" width="160" height="32"/>
   <object id="20" type="collision" x="112" y="80" width="32" height="32"/>
   <object id="25" type="collision" x="16" y="32" width="32" height="16"/>

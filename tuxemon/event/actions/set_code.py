@@ -25,7 +25,7 @@ class SetCodeAction(EventAction):
 
     Script parameters:
         question: The question the player needs to reply.
-                  (eg. "access_code")
+                  (e.g. "access_code")
                   then you create the msgid "access_code"
                   inside the English PO file, as follows:
                   msgid "access_code"

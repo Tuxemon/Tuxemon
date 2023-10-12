@@ -30,4 +30,4 @@ class GainXpEffect(ItemEffect):
     ) -> GainXpEffectResult:
         assert target
         target.give_experience(self.amount)
-        return {"success": True}
+        return {"success": True, "num_shakes": 0, "extra": None}

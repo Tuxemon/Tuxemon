@@ -7,7 +7,12 @@ import random
 import uuid
 from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
 
-from tuxemon import ai, formula, fusion, graphics, tools
+from tuxemon import formula, fusion, graphics, tools
+from tuxemon.condition.condition import (
+    Condition,
+    decode_condition,
+    encode_condition,
+)
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import (
     CategoryCondition,
@@ -25,7 +30,9 @@ from tuxemon.db import (
     TasteWarm,
     db,
 )
+from tuxemon.element import Element
 from tuxemon.locale import T
+from tuxemon.shape import Shape
 from tuxemon.sprite import Sprite
 from tuxemon.technique.technique import Technique, decode_moves, encode_moves
 
@@ -42,7 +49,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "level",
     "name",
     "slug",
-    "status",
     "total_experience",
     "flairs",
     "gender",
@@ -60,121 +66,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "mod_hp",
     "plague",
 )
-
-SHAPES = {
-    MonsterShape.blob: {
-        "armour": 8,
-        "dodge": 4,
-        "hp": 8,
-        "melee": 4,
-        "ranged": 8,
-        "speed": 4,
-    },
-    MonsterShape.brute: {
-        "armour": 7,
-        "dodge": 5,
-        "hp": 7,
-        "melee": 8,
-        "ranged": 4,
-        "speed": 5,
-    },
-    MonsterShape.dragon: {
-        "armour": 7,
-        "dodge": 5,
-        "hp": 6,
-        "melee": 6,
-        "ranged": 6,
-        "speed": 6,
-    },
-    MonsterShape.flier: {
-        "armour": 5,
-        "dodge": 7,
-        "hp": 4,
-        "melee": 8,
-        "ranged": 4,
-        "speed": 8,
-    },
-    MonsterShape.grub: {
-        "armour": 7,
-        "dodge": 5,
-        "hp": 7,
-        "melee": 4,
-        "ranged": 8,
-        "speed": 5,
-    },
-    MonsterShape.humanoid: {
-        "armour": 5,
-        "dodge": 7,
-        "hp": 4,
-        "melee": 4,
-        "ranged": 8,
-        "speed": 8,
-    },
-    MonsterShape.hunter: {
-        "armour": 4,
-        "dodge": 8,
-        "hp": 5,
-        "melee": 8,
-        "ranged": 4,
-        "speed": 7,
-    },
-    MonsterShape.landrace: {
-        "armour": 8,
-        "dodge": 4,
-        "hp": 8,
-        "melee": 8,
-        "ranged": 4,
-        "speed": 4,
-    },
-    MonsterShape.leviathan: {
-        "armour": 8,
-        "dodge": 4,
-        "hp": 8,
-        "melee": 6,
-        "ranged": 6,
-        "speed": 4,
-    },
-    MonsterShape.piscine: {
-        "armour": 6,
-        "dodge": 6,
-        "hp": 8,
-        "melee": 6,
-        "ranged": 6,
-        "speed": 4,
-    },
-    MonsterShape.polliwog: {
-        "armour": 4,
-        "dodge": 8,
-        "hp": 5,
-        "melee": 4,
-        "ranged": 8,
-        "speed": 7,
-    },
-    MonsterShape.serpent: {
-        "armour": 6,
-        "dodge": 6,
-        "hp": 6,
-        "melee": 4,
-        "ranged": 8,
-        "speed": 6,
-    },
-    MonsterShape.sprite: {
-        "armour": 6,
-        "dodge": 6,
-        "hp": 4,
-        "melee": 6,
-        "ranged": 6,
-        "speed": 8,
-    },
-    MonsterShape.varmint: {
-        "armour": 6,
-        "dodge": 6,
-        "hp": 6,
-        "melee": 8,
-        "ranged": 4,
-        "speed": 6,
-    },
-}
 
 MAX_LEVEL = 999
 MAX_MOVES = 4
@@ -233,7 +124,6 @@ class Monster:
         self.flairs: Dict[str, Flair] = {}
         self.battle_cry = ""
         self.faint_cry = ""
-        self.ai: Optional[ai.AI] = None
         self.owner: Optional[NPC] = None
         self.possible_genders: List[GenderType] = []
 
@@ -241,12 +131,12 @@ class Monster:
         self.experience_modifier = 1
         self.total_experience = 0
 
-        self.types: List[ElementType] = []
-        self._types: List[ElementType] = []
-        self.shape = MonsterShape.landrace
+        self.types: List[Element] = []
+        self._types: List[Element] = []
+        self.shape = MonsterShape.default
         self.randomly = True
 
-        self.status: List[Technique] = []
+        self.status: List[Condition] = []
         self.plague = PlagueType.healthy
         self.taste_cold = TasteCold.tasteless
         self.taste_warm = TasteWarm.tasteless
@@ -258,14 +148,14 @@ class Monster:
         self.height = 0.0
         self.weight = 0.0
 
-        # The multiplier for checks when a monster ball is thrown this should be a value betwen 0-255 meaning that
+        # The multiplier for checks when a monster ball is thrown this should be a value between 0-255 meaning that
         # 0 is 0% capture rate and 255 has a very good chance of capture. This numbers are based on the capture system
         # calculations. This is inspired by the calculations which can be found at:
         # https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_catch_rate
         self.catch_rate = TuxemonConfig().default_monster_catch_rate
 
         # The catch_resistance value is calculated during the capture. The upper and lower catch_resistance
-        # set the span on which the catch_resistance will be. For more imformation check capture.py
+        # set the span on which the catch_resistance will be. For more information check capture.py
         self.upper_catch_resistance = (
             TuxemonConfig().default_upper_monster_catch_resistance
         )
@@ -316,13 +206,15 @@ class Monster:
         self.cat = results.category
         self.category = T.translate(f"cat_{self.cat}")
         self.plague = self.plague
-        self.shape = results.shape or MonsterShape.landrace
+        self.shape = results.shape or MonsterShape.default
         self.stage = results.stage or EvolutionStage.standalone
         self.taste_cold = self.set_taste_cold(self.taste_cold)
         self.taste_warm = self.set_taste_warm(self.taste_warm)
-        self.types = list(results.types)
-        # backup types
-        self._types = list(results.types)
+        # types
+        for _ele in results.types:
+            _element = Element(_ele)
+            self.types.append(_element)
+            self._types.append(_element)
 
         self.randomly = results.randomly or self.randomly
 
@@ -378,16 +270,8 @@ class Monster:
             self.combat_call = results.sounds.combat_call
             self.faint_call = results.sounds.faint_call
         else:
-            self.combat_call = f"sound_{self.types[0]}_call"
-            self.faint_call = f"sound_{self.types[0]}_faint"
-
-        # Load the monster AI
-        # TODO: clean up AI 'core' loading and what not
-        ai_result = results.ai
-        if ai_result == "SimpleAI":
-            self.ai = ai.SimpleAI()
-        elif ai_result == "RandomAI":
-            self.ai = ai.RandomAI()
+            self.combat_call = f"sound_{self.types[0].name}_call"
+            self.faint_call = f"sound_{self.types[0].name}_faint"
 
     def learn(
         self,
@@ -440,6 +324,17 @@ class Monster:
         else:
             return value
 
+    def has_type(self, element: Optional[ElementType]) -> bool:
+        """
+        Returns TRUE if there is the type among the types.
+        """
+        ret: bool = False
+        if element:
+            eles = [ele for ele in self.types if ele.slug == element]
+            if eles:
+                ret = True
+        return ret
+
     def give_experience(self, amount: int = 1) -> None:
         """
         Increase experience.
@@ -461,13 +356,13 @@ class Monster:
         while self.total_experience >= self.experience_required(1):
             self.level_up()
 
-    def apply_status(self, status: Technique) -> None:
+    def apply_status(self, status: Condition) -> None:
         """
         Apply a status to the monster by replacing or removing
         the previous status.
 
         Parameters:
-            status: The status technique.
+            status: The status condition.
 
         """
         count_status = len(self.status)
@@ -514,14 +409,13 @@ class Monster:
         level = self.level
 
         multiplier = level + 7
-        shape = SHAPES[self.shape]
-        self.armour = (shape["armour"] * multiplier) + self.mod_armour
-        self.dodge = (shape["dodge"] * multiplier) + self.mod_dodge
-        self.hp = (shape["hp"] * multiplier) + self.mod_hp
-        self.melee = (shape["melee"] * multiplier) + self.mod_melee
-        self.ranged = (shape["ranged"] * multiplier) + self.mod_ranged
-        self.speed = (shape["speed"] * multiplier) + self.mod_speed
-
+        shape = Shape(self.shape)
+        self.armour = (shape.armour * multiplier) + self.mod_armour
+        self.dodge = (shape.dodge * multiplier) + self.mod_dodge
+        self.hp = (shape.hp * multiplier) + self.mod_hp
+        self.melee = (shape.melee * multiplier) + self.mod_melee
+        self.ranged = (shape.ranged * multiplier) + self.mod_ranged
+        self.speed = (shape.speed * multiplier) + self.mod_speed
         # tastes
         self.armour += formula.check_taste(self, "armour")
         self.dodge += formula.check_taste(self, "dodge")
@@ -779,7 +673,7 @@ class Monster:
         if body:
             save_data["body"] = body
 
-        save_data["status"] = encode_moves(self.status)
+        save_data["condition"] = encode_condition(self.status)
         save_data["moves"] = encode_moves(self.moves)
 
         return save_data
@@ -801,8 +695,8 @@ class Monster:
         for move in decode_moves(save_data.get("moves")):
             self.moves.append(move)
         self.status = []
-        for move in decode_moves(save_data.get("status")):
-            self.status.append(move)
+        for cond in decode_condition(save_data.get("condition")):
+            self.status.append(cond)
 
         for key, value in save_data.items():
             if key == "body" and value:
@@ -818,9 +712,9 @@ class Monster:
         for move in self.moves:
             move.full_recharge()
 
-        if "status_faint" in (s.slug for s in self.status):
-            faint = Technique()
-            faint.load("status_faint")
+        if "faint" in (s.slug for s in self.status):
+            faint = Condition()
+            faint.load("faint")
             self.status = [faint]
         else:
             self.status = []

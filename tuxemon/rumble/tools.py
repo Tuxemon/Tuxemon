@@ -4,7 +4,7 @@ from typing import List, Optional
 
 try:
     from ctypes import cdll
-except:
+except ImportError:
     cdll = None
 
 
@@ -33,7 +33,7 @@ def find_library(locations: List[str]) -> Optional[str]:
         try:
             lib = cdll.LoadLibrary(path)
             library = path
-        except OSError as e:
+        except OSError:
             lib_shake = None
             library = None
         if library:

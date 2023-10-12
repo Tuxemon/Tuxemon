@@ -5,9 +5,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional, Union, final
 
+from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.item import item
+from tuxemon.item.item import Item
 from tuxemon.npc import NPC
 
 
@@ -36,10 +37,10 @@ class AddItemAction(EventAction):
     trainer_slug: Union[str, None] = None
 
     def start(self) -> None:
+        player = self.session.player
         trainer: Optional[NPC]
-
         if self.trainer_slug is None:
-            trainer = self.session.player
+            trainer = player
         else:
             trainer = get_npc(self.session, self.trainer_slug)
 
@@ -47,9 +48,22 @@ class AddItemAction(EventAction):
             self.trainer_slug or "player"
         )
 
-        itm = item.Item()
-        itm.load(self.item_slug)
-        existing = trainer.find_item(self.item_slug)
+        # check item existence
+        _item: str = ""
+        verify = list(db.database["item"])
+        if self.item_slug not in verify:
+            if self.item_slug in player.game_variables:
+                _item = player.game_variables[self.item_slug]
+            else:
+                raise ValueError(
+                    f"{self.item_slug} doesn't exist (item or variable)."
+                )
+        else:
+            _item = self.item_slug
+
+        itm = Item()
+        itm.load(_item)
+        existing = trainer.find_item(_item)
         if existing:
             if self.quantity is None:
                 existing.quantity += 1

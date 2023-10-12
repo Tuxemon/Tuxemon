@@ -352,7 +352,7 @@ class ItemBoxChooseState(PygameMenuState):
     def get_menu_items_map(self) -> Sequence[Tuple[str, MenuGameObj]]:
         """
         Return a list of menu options and callbacks, to be overridden by
-        class descendents.
+        class descendants.
         """
         return []
 

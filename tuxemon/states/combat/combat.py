@@ -522,32 +522,7 @@ class CombatState(CombatAnimations):
             pass
 
         elif phase == "ran away":
-            message = None
             self.players[0].set_party_status()
-            var = self.players[0].game_variables
-            if self.is_trainer_battle:
-                var["battle_last_result"] = OutputBattle.forfeit
-                var["teleport_clinic"] = OutputBattle.lost
-                message = T.format(
-                    "combat_forfeit",
-                    {
-                        "npc": self.players[1].name,
-                    },
-                )
-
-            # push a state that blocks until enter is pressed
-            # after the state is popped, the combat state will clean up and close
-            # if you run in PvP, you need "defeated message"
-            if message:
-                action_time = compute_text_animation_time(message)
-                self.text_animations_queue.append(
-                    (partial(self.alert, message), action_time)
-                )
-
-                self.task(
-                    partial(self.client.push_state, WaitForInputState()),
-                    action_time,
-                )
 
         elif phase == "draw match":
             self.players[0].set_party_status()

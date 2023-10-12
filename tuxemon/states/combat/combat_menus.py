@@ -11,7 +11,6 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import combat, graphics, tools
-from tuxemon.condition.condition import Condition
 from tuxemon.db import ElementType, ItemCategory, State, TechSort
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -83,6 +82,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         """
         forfeit = Technique()
         forfeit.load("menu_forfeit")
+        forfeit.combat_state = self.combat
         if not forfeit.validate(self.monster):
             tools.open_dialog(
                 local_session,
@@ -114,12 +114,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 open_menu,
             )
         else:
-            # trigger forfeit
-            for mon in self.player.monsters:
-                faint = Condition()
-                faint.load("faint")
-                mon.current_hp = 0
-                mon.status = [faint]
+            player = self.party[0]
+            enemy = self.opponents[0]
+            self.combat.enqueue_action(player, forfeit, enemy)
 
     def run(self) -> None:
         """

@@ -58,9 +58,8 @@ class NpcWanderAction(EventAction):
         if self.b_bound_x is not None and self.b_bound_y is not None:
             bottom_bound = (self.b_bound_x, self.b_bound_y)
         if top_bound and bottom_bound:
-            v = [top_bound, bottom_bound]
-            x_coords = [x for x in range(v[0][0], v[1][0] + 1)]
-            y_coords = [y for y in range(v[0][1], v[1][1] + 1)]
+            x_coords = [x for x in range(top_bound[0], bottom_bound[0] + 1)]
+            y_coords = [y for y in range(top_bound[1], bottom_bound[1] + 1)]
             output = list(itertools.product(x_coords, y_coords))
 
         def move(world: WorldState, npc: NPC) -> None:
@@ -93,10 +92,6 @@ class NpcWanderAction(EventAction):
                     if not output or path in output:
                         npc.path = [path]
                         npc.next_waypoint()
-                    else:
-                        return
-                else:
-                    return
 
         def schedule() -> None:
             # The timer is randomized between 0.5 and 1.0 of the frequency

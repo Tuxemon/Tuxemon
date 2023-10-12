@@ -221,19 +221,19 @@ msgstr "O ataque causou muito dano extra!"
 msgid "exit"
 msgstr "Sair"
 
-msgid "status_faint"
+msgid "faint"
 msgstr "Desmaio"
 
 msgid "slot"
 msgstr "Encaixe"
 
-msgid "status_poison"
+msgid "poison"
 msgstr "Envenenamento"
 
-msgid "status_lifeleech"
+msgid "lifeleech"
 msgstr "Sanguessuga"
 
-msgid "status_recover"
+msgid "recover"
 msgstr "Recuperação"
 
 # # TECHNIQUE TRANSLATIONS ##
@@ -751,7 +751,7 @@ msgstr "Salvo!"
 msgid "save_overwrite"
 msgstr "Sim, sobrescrever esse jogo salvo."
 
-msgid "status_overfeed"
+msgid "overfeed"
 msgstr "Sobrealimentado"
 
 msgid "beam"
@@ -3450,7 +3450,7 @@ msgstr "Muro de Gelo"
 msgid "acid"
 msgstr "Ácido"
 
-msgid "status_stuck"
+msgid "stuck"
 msgstr "Preso"
 
 msgid "venom"
@@ -3462,7 +3462,7 @@ msgstr "O caminho histórico!"
 msgid "vorpal"
 msgstr "Vorpal"
 
-msgid "status_softened"
+msgid "softened"
 msgstr "Amolecido"
 
 msgid "paper_town_description"
@@ -3528,16 +3528,16 @@ msgstr "Corrente de Ar"
 msgid "assault"
 msgstr "Assalto"
 
-msgid "status_tired"
+msgid "tired"
 msgstr "Cansado"
 
-msgid "status_chargedup"
+msgid "chargedup"
 msgstr "Carregado"
 
 msgid "ants"
 msgstr "Formigas"
 
-msgid "status_eliminated"
+msgid "eliminated"
 msgstr "Eliminado"
 
 msgid "adamantine"
@@ -3546,25 +3546,25 @@ msgstr "Adamantina"
 msgid "spyderbite"
 msgstr "Mordida Spyder"
 
-msgid "status_grabbed"
+msgid "grabbed"
 msgstr "Agarrou"
 
-msgid "status_focused"
+msgid "focused"
 msgstr "Concentrado"
 
-msgid "status_exhausted"
+msgid "exhausted"
 msgstr "Exausto"
 
-msgid "status_enraged"
+msgid "enraged"
 msgstr "Furioso"
 
-msgid "status_dozing"
+msgid "dozing"
 msgstr "Cochilando"
 
-msgid "status_confused"
+msgid "confused"
 msgstr "Confuso"
 
-msgid "status_charging"
+msgid "charging"
 msgstr "Carregamento"
 
 msgid "citypark_description"
@@ -3574,7 +3574,7 @@ msgid "route1_description"
 msgstr "Se cuida!"
 
 ## STATUSES
-msgid "status_blinded"
+msgid "blinded"
 msgstr "Cego"
 
 msgid "flower_city_description"

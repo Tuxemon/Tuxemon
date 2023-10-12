@@ -6,6 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Sequence
 
+from tuxemon.condition.condition import Condition
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
@@ -36,8 +37,9 @@ class GiveEffect(TechEffect):
         value = float(player.game_variables["random_tech_hit"])
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
-            status = Technique()
+            status = Condition()
             status.load(self.condition)
+            status.steps = player.game_variables["steps"]
             # 2 vs 2, give status both monsters
             area = [ele for ele in tech.effects if ele.name == "area"]
             if player.max_position > 1 and area:
@@ -80,4 +82,10 @@ class GiveEffect(TechEffect):
                     user.apply_status(status)
                     target.apply_status(status)
                     done = True
-        return {"success": done}
+        return {
+            "success": done,
+            "damage": 0,
+            "element_multiplier": 0.0,
+            "should_tackle": False,
+            "extra": None,
+        }

@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "constantburn",
   "effects": [
-    "give status_enraged,user",
+    "give enraged,user",
     "damage"
   ],
   "flip_axes": "",

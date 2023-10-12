@@ -776,6 +776,7 @@ class NPC(Entity[NPCState]):
         new_monster.set_level(old_monster.level)
         new_monster.current_hp = min(old_monster.current_hp, new_monster.hp)
         new_monster.moves = old_monster.moves
+        new_monster.status = old_monster.status
         new_monster.instance_id = old_monster.instance_id
         new_monster.gender = old_monster.gender
         new_monster.capture = old_monster.capture

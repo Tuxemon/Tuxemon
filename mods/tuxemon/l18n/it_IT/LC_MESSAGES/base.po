@@ -243,10 +243,10 @@ msgstr "C'è stato un problema durante il salvataggio!"
 msgid "slot"
 msgstr "Spazio"
 
-msgid "status_faint"
+msgid "faint"
 msgstr "K.O."
 
-msgid "status_poison"
+msgid "poison"
 msgstr "Avvelenamento"
 
 ## TECHNIQUE TRANSLATIONS ##
@@ -1632,10 +1632,10 @@ msgstr "Riporta in vita un Tuxemon dandogli 20 PV."
 msgid "revive"
 msgstr "Revitalizzatore"
 
-msgid "status_recover"
+msgid "recover"
 msgstr "Ripresa"
 
-msgid "status_lifeleech"
+msgid "lifeleech"
 msgstr "Succhiavita"
 
 msgid "save_keep"
@@ -1785,7 +1785,7 @@ msgstr ""
 msgid "darnitjohn4"
 msgstr "S-Sissignora?"
 
-msgid "status_overfeed"
+msgid "overfeed"
 msgstr "Sovralimentazione"
 
 ## MENU TRANSLATIONS ##
@@ -2850,10 +2850,10 @@ msgstr ""
 "Sta andando molto bene! Sono praticamente inseparabili!\n"
 "Non dovrebbe passare molto tempo prima di avere un cucciolo."
 
-msgid "status_softened"
+msgid "softened"
 msgstr "Rammollito"
 
-msgid "status_exhausted"
+msgid "exhausted"
 msgstr "Esausto"
 
 msgid "menu_storage_empty_kennel"
@@ -3348,29 +3348,29 @@ msgstr "Testo troppo lungo!"
 msgid "spyderbite"
 msgstr "Morso Spyder"
 
-msgid "status_tired"
+msgid "tired"
 msgstr "Affaticato"
 
-msgid "status_stuck"
+msgid "stuck"
 msgstr "Bloccato"
 
-msgid "status_hardshell"
+msgid "hardshell"
 msgstr "Guscio"
 
-msgid "status_grabbed"
+msgid "grabbed"
 msgstr "Afferrato"
 
-msgid "status_focused"
+msgid "focused"
 msgstr "Concentrato"
 
-msgid "status_confused"
+msgid "confused"
 msgstr "Confuso"
 
-msgid "status_enraged"
+msgid "enraged"
 msgstr "Furioso"
 
 ## STATUSES
-msgid "status_blinded"
+msgid "blinded"
 msgstr "Accecato"
 
 msgid "taba_town"
@@ -4329,10 +4329,10 @@ msgstr "Eyesore"
 msgid "hampotamos"
 msgstr "Hampotamos"
 
-msgid "status_diehard"
+msgid "diehard"
 msgstr "Duro a Morire"
 
-msgid "status_eliminated"
+msgid "eliminated"
 msgstr "Eliminato"
 
 msgid "acid"

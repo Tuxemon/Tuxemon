@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "lightning_bolt_138",
   "effects": [
-    "give status_focused,user",
-    "give status_tired,target",
+    "give focused,user",
+    "give tired,target",
     "damage"
   ],
   "flip_axes": "",

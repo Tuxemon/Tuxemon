@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "bite",
   "effects": [
-    "give status_diehard,user",
-    "give status_grabbed,target",
+    "give diehard,user",
+    "give grabbed,target",
     "enhance"
   ],
   "flip_axes": "",

@@ -127,7 +127,7 @@ msgstr "Batteriutladning"
 msgid "battery_acid"
 msgstr "Batterisyre"
 
-msgid "status_poison"
+msgid "poison"
 msgstr "Gift"
 
 msgid "generic_failure"

@@ -22,7 +22,7 @@ class RemoveEffectResult(TechEffectResult):
 class RemoveEffect(TechEffect):
     """
     This effect has a chance to remove a status effect.
-    "remove status_xxx,target" removes only status_xxx
+    "remove xxx,target" removes only xxx
     "remove all, target" removes everything
     """
 
@@ -55,4 +55,10 @@ class RemoveEffect(TechEffect):
                     if has_status(target, self.condition):
                         done = True
                         target.status.clear()
-        return {"success": done}
+        return {
+            "success": done,
+            "damage": 0,
+            "element_multiplier": 0.0,
+            "should_tackle": False,
+            "extra": None,
+        }

@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "heal_burst_120",
   "effects": [
-    "give status_focused,target",
-    "give status_recover,user",
+    "give focused,target",
+    "give recover,user",
     "healing user"
   ],
   "flip_axes": "",

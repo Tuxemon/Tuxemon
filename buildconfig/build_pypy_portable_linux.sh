@@ -1,13 +1,26 @@
 #!/bin/bash
 
-#############  NOTICE  ##############
-# Tested in a debian stable container
+###############  NOTICE  ################
+# Tested with a debian bookworm container
+
+if ![ -x "$(command -v chmod)" ] || ![ -x "$(command -v cat)" ] || ![ -x "$(command -v mkdir)" ] || ![ -x "$(command -v mv)" ] || ![ -x "$(command -v  dirname)" || ![ -x "$(command -v  readlink)" ]]; then
+  echo "Install coreutils\n"
+  exit 1
+fi
+
+if ![ -x "$(command -v tar)" ]; then
+  echo "Install tar\n"
+  exit 1
+fi
+
+if ![ -x "$(command -v curl)" ]; then
+  echo "Install curl\n"
+  exit 1
+fi
 
 download () {
   command curl -L -o $1 $2
 }
-
-apt install -y curl coreutils
 
 root_folder="$(dirname $(readlink -f $0))/../"
 pypy_vers="pypy3.9"

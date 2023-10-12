@@ -2,15 +2,15 @@
   "animation": null,
   "category": "positive",
   "effects": [
-    "revenge"
+    "retaliate"
   ],
   "flip_axes": "",
-  "icon": "gfx/ui/icons/status/icon_revenge.png",
+  "icon": "gfx/ui/icons/status/icon_retaliate.png",
   "range": "special",
   "repl_pos": "replaced",
   "repl_neg": "replaced",
   "sfx": "sfx_pulse",
-  "slug": "revenge",
+  "slug": "retaliate",
   "sort": "meta",
   "target": {
     "enemy monster": 0,
@@ -20,8 +20,8 @@
     "own team": 0,
     "own trainer": 0
   },
-  "tech_id": 0,
-  "use_failure": "combat_none",
-  "use_success": "combat_state_revenge_get",
-  "use_tech": "combat_none"
+  "cond_id": 31,
+  "use_failure": null,
+  "use_success": "combat_state_retaliate_get",
+  "gain_cond": null
 }

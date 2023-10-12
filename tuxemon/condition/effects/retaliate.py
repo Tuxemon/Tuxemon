@@ -3,35 +3,37 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Union
+from typing import TYPE_CHECKING, Union
 
+from tuxemon.condition.condeffect import CondEffect, CondEffectResult
+from tuxemon.condition.condition import Condition
 from tuxemon.db import Range
 from tuxemon.formula import simple_damage_calculate
 from tuxemon.monster import Monster
-from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
+if TYPE_CHECKING:
+    from tuxemon.condition.condition import Condition
 
-class RevengeEffectResult(TechEffectResult):
+
+class RetaliateEffectResult(CondEffectResult):
     pass
 
 
 @dataclass
-class RevengeEffect(TechEffect):
+class RetaliateEffect(CondEffect):
     """
 
-    Revenge:
-    The next time you are attacked, your enemy takes
-    the same amount of damage that you do. You heal as
-    much damage as you dealt.
+    Retaliate:
+    Keep track of all damage you take between entering
+    this state and next doing damage. You do additional
+    damage equal to damage taken.
 
     """
 
-    name = "revenge"
+    name = "retaliate"
 
-    def apply(
-        self, tech: Technique, user: Monster, target: Monster
-    ) -> RevengeEffectResult:
+    def apply(self, tech: Condition, target: Monster) -> RetaliateEffectResult:
         done: bool = False
         assert tech.combat_state
         combat = tech.combat_state
@@ -62,10 +64,15 @@ class RevengeEffect(TechEffect):
                         )
                         damage = dam
 
-        if tech.slug == "revenge":
-            if attacker and hit:
-                if attacker.current_hp > 0:
-                    attacker.current_hp -= damage
-                    target.current_hp += damage
-                    done = True
-        return {"success": done, "extra": None}
+        if tech.phase == "perform_action_status":
+            if tech.slug == "retaliate":
+                if attacker and hit:
+                    if attacker.current_hp > 0:
+                        attacker.current_hp -= damage
+                        done = True
+        return {
+            "success": done,
+            "condition": None,
+            "technique": None,
+            "extra": None,
+        }

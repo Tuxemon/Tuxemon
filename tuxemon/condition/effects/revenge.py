@@ -3,35 +3,36 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Union
+from typing import TYPE_CHECKING, Union
 
+from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.db import Range
 from tuxemon.formula import simple_damage_calculate
 from tuxemon.monster import Monster
-from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
+if TYPE_CHECKING:
+    from tuxemon.condition.condition import Condition
 
-class RetaliateEffectResult(TechEffectResult):
+
+class RevengeEffectResult(CondEffectResult):
     pass
 
 
 @dataclass
-class RetaliateEffect(TechEffect):
+class RevengeEffect(CondEffect):
     """
 
-    Retaliate:
-    Keep track of all damage you take between entering
-    this state and next doing damage. You do additional
-    damage equal to damage taken.
+    Revenge:
+    The next time you are attacked, your enemy takes
+    the same amount of damage that you do. You heal as
+    much damage as you dealt.
 
     """
 
-    name = "retaliate"
+    name = "revenge"
 
-    def apply(
-        self, tech: Technique, user: Monster, target: Monster
-    ) -> RetaliateEffectResult:
+    def apply(self, tech: Condition, target: Monster) -> RevengeEffectResult:
         done: bool = False
         assert tech.combat_state
         combat = tech.combat_state
@@ -62,9 +63,16 @@ class RetaliateEffect(TechEffect):
                         )
                         damage = dam
 
-        if tech.slug == "retaliate":
-            if attacker and hit:
-                if attacker.current_hp > 0:
-                    attacker.current_hp -= damage
-                    done = True
-        return {"success": done, "extra": None}
+        if tech.phase == "perform_action_status":
+            if tech.slug == "revenge":
+                if attacker and hit:
+                    if attacker.current_hp > 0:
+                        attacker.current_hp -= damage
+                        target.current_hp += damage
+                        done = True
+        return {
+            "success": done,
+            "condition": None,
+            "technique": None,
+            "extra": None,
+        }

@@ -2,7 +2,7 @@
   "animation": null,
   "category": "negative",
   "effects": [
-    "default"
+    "lockdown"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_lockdown.png",

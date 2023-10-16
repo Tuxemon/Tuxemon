@@ -56,6 +56,7 @@ class Condition:
 
         self.instance_id = uuid.uuid4()
         self.steps = 0.0
+        self.bond = False
         self.counter = 0
         self.cond_id = 0
         self.animation = Optional[str]
@@ -132,6 +133,7 @@ class Condition:
         self.statranged = results.statranged
         self.statdodge = results.statdodge
         # status fields
+        self.bond = results.bond or self.bond
         self.category = results.category or self.category
         self.repl_neg = results.repl_neg or self.repl_neg
         self.repl_pos = results.repl_pos or self.repl_pos

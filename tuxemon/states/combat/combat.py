@@ -66,7 +66,6 @@ from tuxemon.combat import (
     defeated,
     fainted,
     get_awake_monsters,
-    has_status,
     has_status_bond,
 )
 from tuxemon.condition.condition import Condition
@@ -1363,9 +1362,7 @@ class CombatState(CombatAnimations):
                         self.text_animations_queue.append(
                             (partial(self.alert, extra), action_time)
                         )
-                if monster.current_hp <= 0 and not has_status(
-                    monster, "faint"
-                ):
+                if monster.current_hp <= 0:
                     self.remove_monster_actions_from_queue(monster)
                     self.faint_monster(monster)
 

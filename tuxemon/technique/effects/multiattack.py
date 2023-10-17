@@ -58,7 +58,10 @@ class MultiAttackEffect(TechEffect):
         if _track == self.times:
             done = False
 
-        if done:
+        # check if technique hits
+        hit = tech.accuracy >= value
+
+        if done and hit:
             combat.enqueue_action(user, tech, target)
 
         return {

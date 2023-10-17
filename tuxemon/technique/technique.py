@@ -55,7 +55,7 @@ class Technique:
         self.counter_success = 0
         self.tech_id = 0
         self.accuracy = 0.0
-        self.animation = Optional[str]
+        self.animation: Optional[str] = None
         self.combat_state: Optional[CombatState] = None
         self.conditions: Sequence[TechCondition[Any]] = []
         self.description = ""

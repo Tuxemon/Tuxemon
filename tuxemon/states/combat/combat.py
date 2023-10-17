@@ -793,7 +793,7 @@ class CombatState(CombatAnimations):
 
         # remove "bond" status (eg. lifeleech, etc.)
         for mon in self.active_monsters:
-            if any(t for t in monster.status if t.bond):
+            if any(sta.bond for sta in monster.status):
                 mon.status.clear()
 
         # TODO: not hardcode

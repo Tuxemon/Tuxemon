@@ -59,7 +59,7 @@ class Condition:
         self.bond = False
         self.counter = 0
         self.cond_id = 0
-        self.animation = Optional[str]
+        self.animation: Optional[str] = None
         self.category: Optional[CategoryCondition] = None
         self.combat_state: Optional[CombatState] = None
         self.conditions: Sequence[CondCondition[Any]] = []

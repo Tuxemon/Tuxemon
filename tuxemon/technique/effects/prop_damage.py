@@ -40,7 +40,6 @@ class PropDamageEffect(TechEffect):
     ) -> PropDamageEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
-        mult = 1.0
         hit = tech.accuracy >= value
         if hit:
             tech.hit = True
@@ -54,7 +53,7 @@ class PropDamageEffect(TechEffect):
 
         return {
             "damage": damage,
-            "element_multiplier": mult,
+            "element_multiplier": 0.0,
             "should_tackle": bool(damage),
             "success": bool(damage),
             "extra": None,

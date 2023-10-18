@@ -53,7 +53,7 @@ class PropDamageEffect(TechEffect):
             damage = 0
 
         return {
-            "damage": int(damage),
+            "damage": damage,
             "element_multiplier": mult,
             "should_tackle": bool(damage),
             "success": bool(damage),

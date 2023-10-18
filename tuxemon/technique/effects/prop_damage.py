@@ -43,14 +43,11 @@ class PropDamageEffect(TechEffect):
         mult = 1.0
         hit = tech.accuracy >= value
         if hit:
-            damage = None
             tech.hit = True
             tech.advance_counter_success()
-            if self.objective == "target":
-                damage = target.hp * self.proportional
-            else:
-                damage = user.hp * self.proportional
-            target.current_hp -= int(damage)
+            reference_hp = target.hp if self.objective == "target" else user.hp
+            damage = int(reference_hp * self.proportional)
+            target.current_hp -= damage
         else:
             tech.hit = False
             damage = 0

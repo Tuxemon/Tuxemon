@@ -112,7 +112,7 @@ class ItemMenuState(Menu[Item]):
 
         """
         item = menu_item.game_object
-        state = self.determine_state_called_from()
+        states = [a.name for a in self.client.active_states]
 
         if not any(item.validate(m) for m in local_session.player.monsters):
             self.on_menu_selection_change()
@@ -139,7 +139,7 @@ class ItemMenuState(Menu[Item]):
                 elif i.name == "facing_tile" or i.name == "facing_sprite":
                     msg = T.format("item_cannot_use_here", {"name": item.name})
             tools.open_dialog(local_session, [msg])
-        elif State[state] not in item.usable_in:
+        elif not any(state.name in states for state in item.usable_in):
             msg = T.format("item_cannot_use_here", {"name": item.name})
             tools.open_dialog(local_session, [msg])
         else:

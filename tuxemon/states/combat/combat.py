@@ -151,10 +151,12 @@ def compute_text_animation_time(message: str) -> float:
 
 class TechniqueAnimationCache:
     def __init__(self) -> None:
-        self._sprites: Dict[Union[Technique, Condition], Optional[Sprite]] = {}
+        self._sprites: Dict[
+            Union[Technique, Condition, Item], Optional[Sprite]
+        ] = {}
 
     def get(
-        self, technique: Union[Technique, Condition], is_flipped: bool
+        self, technique: Union[Technique, Condition, Item], is_flipped: bool
     ) -> Optional[Sprite]:
         """
         Return a sprite usable as a technique animation.
@@ -176,13 +178,13 @@ class TechniqueAnimationCache:
 
     @staticmethod
     def load_technique_animation(
-        technique: Union[Technique, Condition], is_flipped: bool
+        technique: Union[Technique, Condition, Item], is_flipped: bool
     ) -> Optional[Sprite]:
         """
-        Return animated sprite from a technique.
+        Return animated sprite from a technique, condition or item.
 
         Parameters:
-            technique: Technique whose sprite is requested.
+            technique: Whose sprite is requested.
             is_flipped: Flag to determine whether animation frames should be flipped.
 
         Returns:
@@ -773,8 +775,11 @@ class CombatState(CombatAnimations):
             monster: Added monster.
 
         """
-        # TODO: refactor some into the combat animations
-        self.animate_monster_release(player, monster)
+        item = Item()
+        item.load(monster.capture_device)
+        sprite = self._technique_cache.get(item, False)
+        assert sprite
+        self.animate_monster_release(player, monster, sprite)
         self.monsters_in_play[player].append(monster)
         double = len(self.monsters_in_play[player])
         if double > 1:
@@ -1154,6 +1159,7 @@ class CombatState(CombatAnimations):
 
         # player uses item
         if isinstance(technique, Item) and isinstance(user, NPC):
+            technique.combat_state = self
             result_item = technique.use(user, target)
             context = {
                 "user": user.name,
@@ -1161,8 +1167,10 @@ class CombatState(CombatAnimations):
                 "target": target.name,
             }
             message = T.format(technique.use_item, context)
+            # animation sprite
+            item_sprite = self._technique_cache.get(technique, False)
             # handle the capture device
-            if technique.category == ItemCategory.capture:
+            if technique.category == ItemCategory.capture and item_sprite:
                 # retrieve tuxeball
                 message += "\n" + T.translate("attempting_capture")
                 action_time = result_item["num_shakes"] + 1.8
@@ -1171,7 +1179,7 @@ class CombatState(CombatAnimations):
                     result_item["num_shakes"],
                     target,
                     technique,
-                    self,
+                    item_sprite,
                 )
             else:
                 msg_type = (
@@ -1190,6 +1198,17 @@ class CombatState(CombatAnimations):
                 if template:
                     message += "\n" + tmpl
                     action_time += compute_text_animation_time(message)
+
+                # item animation
+                if target_sprite and item_sprite:
+                    item_sprite.rect.center = target_sprite.rect.center
+                    assert item_sprite.animation
+                    self.task(item_sprite.animation.play, 0.6)
+                    self.task(
+                        partial(self.sprites.add, item_sprite, layer=50),
+                        0.6,
+                    )
+                    self.task(item_sprite.kill, action_time)
 
             self.text_animations_queue.append(
                 (partial(self.alert, message), action_time)

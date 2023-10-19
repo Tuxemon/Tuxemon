@@ -20,6 +20,7 @@ import pygame
 from tuxemon import graphics, plugin, prepare
 from tuxemon.constants import paths
 from tuxemon.db import ItemCategory, ItemType, State, db
+from tuxemon.graphics import animation_frame_files
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.locale import T
@@ -27,6 +28,7 @@ from tuxemon.locale import T
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
+    from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
 
@@ -56,6 +58,8 @@ class Item:
         self.quantity = 1
         self.images: Sequence[str] = []
         self.type = ItemType.consumable
+        self.animation = Optional[str]
+        self.flip_axes = ""
         # The path to the sprite to load.
         self.sprite = ""
         self.category = ItemCategory.none
@@ -64,6 +68,7 @@ class Item:
 
         self.effects: Sequence[ItemEffect[Any]] = []
         self.conditions: Sequence[ItemCondition[Any]] = []
+        self.combat_state: Optional[CombatState] = None
 
         self.sort = ""
         self.use_item = ""
@@ -120,6 +125,17 @@ class Item:
         self.conditions = self.parse_conditions(results.conditions)
         self.surface = graphics.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
+
+        # Load the animation sprites that will be used for this technique
+        self.animation = results.animation
+        if self.animation:
+            directory = prepare.fetch("animations", "technique")
+            self.images = animation_frame_files(directory, self.animation)
+            if self.animation and not self.images:
+                logger.error(
+                    f"Cannot find animation frames for: {self.animation}",
+                )
+        self.flip_axes = results.flip_axes
 
     def parse_effects(
         self,

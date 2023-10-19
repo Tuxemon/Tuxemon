@@ -223,6 +223,13 @@ class ItemModel(BaseModel):
     effects: Sequence[str] = Field(
         [], description="Effects this item will have"
     )
+    flip_axes: Literal["", "x", "y", "xy"] = Field(
+        "",
+        description="Axes along which technique animation should be flipped",
+    )
+    animation: Optional[str] = Field(
+        None, description="Animation to play for this technique"
+    )
 
     class Config:
         title = "Item"

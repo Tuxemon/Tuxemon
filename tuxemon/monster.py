@@ -135,6 +135,8 @@ class Monster:
         self._types: List[Element] = []
         self.shape = MonsterShape.default
         self.randomly = True
+        self.got_experience = False
+        self.levelling_up = False
 
         self.status: List[Condition] = []
         self.plague = PlagueType.healthy
@@ -217,6 +219,8 @@ class Monster:
             self._types.append(_element)
 
         self.randomly = results.randomly or self.randomly
+        self.got_experience = self.got_experience
+        self.levelling_up = self.levelling_up
 
         self.txmn_id = results.txmn_id
         self.capture = self.set_capture(self.capture)
@@ -350,6 +354,7 @@ class Monster:
         >>> bulbatux.give_experience(20)
 
         """
+        self.got_experience = True
         self.total_experience += amount
 
         # Level up worthy monsters
@@ -497,6 +502,7 @@ class Monster:
             % (self.name, self.level, self.level + 1)
         )
         # Increase Level and stats
+        self.levelling_up = True
         self.level += 1
         self.level = min(self.level, MAX_LEVEL)
         self.set_stats()

@@ -77,7 +77,6 @@ from tuxemon.db import (
     PlagueType,
     SeenStatus,
 )
-from tuxemon.event.actions.evolution import EvolutionAction
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -1485,4 +1484,3 @@ class CombatState(CombatAnimations):
         else:
             self.phase = None
             self.client.push_state(FadeOutTransition(caller=self))
-            EvolutionAction().start()

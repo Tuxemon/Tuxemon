@@ -31,6 +31,8 @@ class MonsterPropertyCondition(EventCondition):
                 - type (type, fire)
                 - gender (gender, female)
                 - tech (tech, ram)
+                - level_up (level_up, true)
+                - got_exp (fought, true)
         value: Value to compare the property with.
 
     """
@@ -94,6 +96,14 @@ class MonsterPropertyCondition(EventCondition):
             # monster tech (eg. ram, blossom, etc.)
             elif prop == "tech":
                 if player.has_tech(val):
+                    return True
+            # monster levelling up
+            elif prop == "level_up":
+                if mon.levelling_up and val == "true":
+                    return True
+            # monster got experience (fight or item)
+            elif prop == "got_exp":
+                if mon.got_experience and val == "true":
                     return True
             else:
                 raise ValueError(f"{prop} isn't among the valid values.")

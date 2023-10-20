@@ -40,6 +40,8 @@ class EvolutionAction(EventAction):
             self.session.client.pop_state()
 
         def question_evolution(monster: Monster, evolved: Monster) -> None:
+            monster.got_experience = False
+            monster.levelling_up = False
             open_dialog(
                 self.session,
                 [

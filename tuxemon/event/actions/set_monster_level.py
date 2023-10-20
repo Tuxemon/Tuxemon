@@ -49,7 +49,7 @@ class SetMonsterLevelAction(EventAction):
         monster_slot = self.slot
         monster_level = self.level
 
-        if monster_slot:
+        if monster_slot is not None:
             if len(self.session.player.monsters) < int(monster_slot):
                 return
 

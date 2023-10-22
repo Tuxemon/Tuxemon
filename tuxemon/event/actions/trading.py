@@ -56,6 +56,7 @@ class TradingAction(EventAction):
         new.set_moves(trading.level)
         new.set_capture(formula.today_ordinal())
         new.current_hp = new.hp
+        new.traded = True
         self.player.remove_monster(trading)
         self.player.add_monster(new, slot)
         self.player.tuxepedia[self.add] = SeenStatus.caught

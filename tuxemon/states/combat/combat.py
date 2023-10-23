@@ -1268,36 +1268,32 @@ class CombatState(CombatAnimations):
             awarded_mon = monster.level * monster.money_modifier
             for winners in self._damage_map[monster]:
                 # check before giving exp
-                self._level_before = winners.level
-                winners.give_experience(awarded_exp)
+                levels = winners.give_experience(awarded_exp)
                 # check after giving exp
-                self._level_after = winners.level
                 if self.is_trainer_battle:
                     self._prize += awarded_mon
                 # it checks if there is a "level up"
-                if self._level_before != self._level_after:
-                    diff = self._level_after - self._level_before
-                    if winners in self.players[0].monsters:
-                        # checks and eventually teaches move/moves
-                        mex = check_moves(winners, diff)
-                        if mex:
-                            message += "\n" + mex
-                            action_time += compute_text_animation_time(message)
-                        # updates hud graphics player
-                        if len(self.monsters_in_play_human) > 1:
-                            self.build_hud(
-                                self._layout[self.players[0]]["hud0"][0],
-                                self.monsters_in_play_human[0],
-                            )
-                            self.build_hud(
-                                self._layout[self.players[0]]["hud1"][0],
-                                self.monsters_in_play_human[1],
-                            )
-                        else:
-                            self.build_hud(
-                                self._layout[self.players[0]]["hud"][0],
-                                self.monsters_in_play_human[0],
-                            )
+                if levels >= 1 and winners in self.players[0].monsters:
+                    # checks and eventually teaches move/moves
+                    mex = check_moves(winners, levels)
+                    if mex:
+                        message += "\n" + mex
+                        action_time += compute_text_animation_time(message)
+                    # updates hud graphics player
+                    if len(self.monsters_in_play_human) > 1:
+                        self.build_hud(
+                            self._layout[self.players[0]]["hud0"][0],
+                            self.monsters_in_play_human[0],
+                        )
+                        self.build_hud(
+                            self._layout[self.players[0]]["hud1"][0],
+                            self.monsters_in_play_human[1],
+                        )
+                    else:
+                        self.build_hud(
+                            self._layout[self.players[0]]["hud"][0],
+                            self.monsters_in_play_human[0],
+                        )
                 if winners in self.players[0].monsters:
                     m = T.format(
                         "combat_gain_exp",

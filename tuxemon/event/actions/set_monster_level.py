@@ -3,11 +3,9 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Union, final
+from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.monster import Monster
-from tuxemon.technique.technique import Technique
 
 
 @final
@@ -19,46 +17,35 @@ class SetMonsterLevelAction(EventAction):
     Script usage:
         .. code-block::
 
-            set_monster_level [level][,slot]
+            set_monster_level [levels_added][,slot]
 
     Script parameters:
-        level: Number of levels to add. Negative numbers are allowed.
+        levels_added: Number of levels to add. Negative numbers are allowed.
         slot: Slot of the monster in the party. If no slot is specified, all
             monsters are leveled.
 
     """
 
     name = "set_monster_level"
-    level: int
-    slot: Union[int, None] = None
+    levels_added: int
+    slot: Optional[int] = None
 
     def start(self) -> None:
-        if not self.session.player.monsters:
+        player = self.session.player
+        if not player.monsters:
             return
 
-        def update_move(mon: Monster, level: int) -> None:
-            for move in mon.moveset:
-                if (
-                    move.technique not in (m.slug for m in mon.moves)
-                    and move.level_learned <= level
-                ):
-                    technique = Technique()
-                    technique.load(move.technique)
-                    mon.learn(technique)
-
-        monster_slot = self.slot
-        monster_level = self.level
-
-        if monster_slot is not None:
-            if len(self.session.player.monsters) < int(monster_slot):
+        if self.slot is not None:
+            # check if it's inserted the wrong value
+            if self.slot > len(player.monsters):
                 return
 
-            monster = self.session.player.monsters[int(monster_slot)]
-            new_level = monster.level + int(monster_level)
+            monster = player.monsters[self.slot]
+            new_level = monster.level + self.levels_added
             monster.set_level(new_level)
-            update_move(monster, new_level)
+            monster.update_moves(self.levels_added)
         else:
-            for monster in self.session.player.monsters:
-                new_level = monster.level + int(monster_level)
+            for monster in player.monsters:
+                new_level = monster.level + self.levels_added
                 monster.set_level(new_level)
-                update_move(monster, new_level)
+                monster.update_moves(self.levels_added)

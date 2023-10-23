@@ -4,13 +4,13 @@
   "animation": "x_attack",
   "effects": [
     "give prickly,target",
-    "enhance"
+    "sacrifice 2"
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 1,
-  "power": 0,
-  "range": "special",
+  "power": 1,
+  "range": "melee",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "undertaker",
@@ -24,7 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "aether"
+    "earth"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

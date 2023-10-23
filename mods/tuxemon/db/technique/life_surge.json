@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "heal_burst_120",
   "effects": [
-    "give status_chargedup,target",
+    "give chargedup,target",
     "healing target"
   ],
   "flip_axes": "",

@@ -42,4 +42,4 @@ class EvolveEffect(ItemEffect):
                 evolution = random.choice(choices).monster_slug
                 self.user.evolve_monster(target, evolution)
                 evolve = True
-        return {"success": evolve}
+        return {"success": evolve, "num_shakes": 0, "extra": None}

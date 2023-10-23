@@ -138,41 +138,41 @@
   </object>
   <object id="50" name="Town Frozen Lake" type="event" x="144" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog sphalian_alert_skating"/>
+    <property name="act1" value="translated_dialog spyder_sphalian_alert_skating"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="51" name="Create Hacker" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc sphalian_magician_fiery,15,7"/>
-    <property name="cond1" value="not npc_exists sphalian_magician_fiery"/>
+    <property name="act1" value="create_npc spyder_sphalian_magician_fiery,15,7"/>
+    <property name="cond1" value="not npc_exists spyder_sphalian_magician_fiery"/>
    </properties>
   </object>
   <object id="57" name="Create Barmaid" type="event" x="0" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc sphalian_barmaid,9,13"/>
-    <property name="act2" value="npc_face sphalian_barmaid,left"/>
-    <property name="cond1" value="not npc_exists sphalian_barmaid"/>
+    <property name="act1" value="create_npc spyder_sphalian_barmaid,9,13"/>
+    <property name="act2" value="npc_face spyder_sphalian_barmaid,left"/>
+    <property name="cond1" value="not npc_exists spyder_sphalian_barmaid"/>
    </properties>
   </object>
   <object id="58" name="Create Homemaker" type="event" x="0" y="96" width="16" height="16">
    <properties>
-    <property name="act3" value="create_npc sphalian_homemaker,4,12"/>
-    <property name="act4" value="npc_wander sphalian_homemaker"/>
-    <property name="cond3" value="not npc_exists sphalian_homemaker"/>
+    <property name="act3" value="create_npc spyder_sphalian_homemaker,4,12"/>
+    <property name="act4" value="npc_wander spyder_sphalian_homemaker"/>
+    <property name="cond3" value="not npc_exists spyder_sphalian_homemaker"/>
    </properties>
   </object>
   <object id="52" name="Talk Hacker" type="event" x="0" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog sphalian_hackerchat"/>
-    <property name="behav1" value="talk sphalian_magician_fiery"/>
+    <property name="act1" value="translated_dialog spyder_sphalian_hackerchat"/>
+    <property name="behav1" value="talk spyder_sphalian_magician_fiery"/>
    </properties>
   </object>
   <object id="56" name="Talk Barmaid" type="event" x="0" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog sphalian_barmaid"/>
-    <property name="behav1" value="talk sphalian_barmaid"/>
+    <property name="act1" value="translated_dialog spyder_sphalian_barmaid"/>
+    <property name="behav1" value="talk spyder_sphalian_barmaid"/>
    </properties>
   </object>
   <object id="59" name="Lion Mountain" type="event" x="352" y="240" width="16" height="16">

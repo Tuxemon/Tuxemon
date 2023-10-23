@@ -287,16 +287,16 @@ msgstr "¡Ha habido un problema al guardar la partida!"
 msgid "slot"
 msgstr "Ranura"
 
-msgid "status_faint"
+msgid "faint"
 msgstr "Debilitado"
 
-msgid "status_poison"
+msgid "poison"
 msgstr "Envenenado"
 
-msgid "status_lifeleech"
+msgid "lifeleech"
 msgstr "Chupavidas"
 
-msgid "status_recover"
+msgid "recover"
 msgstr "Recuperado"
 
 ## TECHNIQUE TRANSLATIONS ##
@@ -3548,7 +3548,7 @@ msgstr "La salud de {user} ha sido restaurada."
 msgid "combat_amnesia_get"
 msgstr "{user} ha tenido amnesia."
 
-msgid "status_overfeed"
+msgid "overfeed"
 msgstr "Sobrealimentar"
 
 msgid "spyder_papertown_myfirstmon1"

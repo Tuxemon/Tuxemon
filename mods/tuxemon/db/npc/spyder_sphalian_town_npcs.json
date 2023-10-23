@@ -1,6 +1,6 @@
 [
   {
-    "slug": "sphalian_magician_fiery",
+    "slug": "spyder_sphalian_magician_fiery",
     "template": [
       {
         "sprite_name": "magician_fiery",
@@ -10,7 +10,7 @@
     ]
   },
   {
-    "slug": "sphalian_homemaker",
+    "slug": "spyder_sphalian_homemaker",
     "template": [
       {
         "sprite_name": "homemaker_fiery",
@@ -20,7 +20,7 @@
     ]
   },
   {
-    "slug": "sphalian_barmaid",
+    "slug": "spyder_sphalian_barmaid",
     "template": [
       {
         "sprite_name": "barmaid_red",
@@ -30,7 +30,7 @@
     ]
   },
   {
-    "slug": "sphalian_granny",
+    "slug": "spyder_sphalian_granny",
     "template": [
       {
         "sprite_name": "granny",
@@ -40,7 +40,7 @@
     ]
   },
   {
-    "slug": "sphalian_nurse",
+    "slug": "spyder_sphalian_nurse",
     "template": [
       {
         "sprite_name": "nurse",
@@ -50,7 +50,7 @@
     ]
   },
   {
-    "slug": "sphalian_maniac_green",
+    "slug": "spyder_sphalian_maniac_green",
     "template": [
       {
         "sprite_name": "maniac_green",
@@ -60,7 +60,7 @@
     ]
   },
   {
-    "slug": "sphalian_monk_orange",
+    "slug": "spyder_sphalian_monk_orange",
     "template": [
       {
         "sprite_name": "monk_orange",
@@ -70,7 +70,7 @@
     ]
   },
   {
-    "slug": "sphalian_tennisplayer",
+    "slug": "spyder_sphalian_tennisplayer",
     "template": [
       {
         "sprite_name": "tennisplayer",
@@ -80,7 +80,7 @@
     ]
   },
   {
-    "slug": "sphalian_shopkeeper",
+    "slug": "spyder_sphalian_shopkeeper",
     "template": [
       {
         "sprite_name": "shopassist_black",

@@ -1,13 +1,15 @@
 {
 	"animation": null,
 	"conditions": [
-	  	"not status status_grabbed",
-	  	"not status status_stuck"
+	  	"not status grabbed",
+	  	"not status stuck"
 	],
-	"effects": [],
+	"effects": [
+		"forfeit"
+	],
 	"flip_axes": "",
 	"icon": "",
-	"power": 50,
+	"is_fast": true,
 	"range": "special",
 	"sfx": "sfx_blaster",
 	"slug": "menu_forfeit",
@@ -22,6 +24,6 @@
 	},
 	"tech_id": 0,
 	"use_failure": "generic_failure",
-	"use_success": "generic_success",
+	"use_success": null,
 	"use_tech": "combat_used_x"
 }

@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "explosion_small",
   "effects": [
-    "give status_diehard,user",
+    "give diehard,user",
     "damage"
   ],
   "flip_axes": "",

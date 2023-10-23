@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "sparks_blue_alt",
   "effects": [
-    "switch both,random",
-    "enhance"
+    "enhance",
+    "switch both,random"
   ],
   "flip_axes": "",
   "is_fast": false,

@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING, Callable, DefaultDict, Generator, List
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import combat, formula, graphics, tools
+from tuxemon import combat, graphics, tools
 from tuxemon.db import ElementType, ItemCategory, State, TechSort
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -82,6 +82,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         """
         forfeit = Technique()
         forfeit.load("menu_forfeit")
+        forfeit.combat_state = self.combat
         if not forfeit.validate(self.monster):
             tools.open_dialog(
                 local_session,
@@ -113,12 +114,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 open_menu,
             )
         else:
-            # trigger forfeit
-            for mon in self.player.monsters:
-                faint = Technique()
-                faint.load("status_faint")
-                mon.current_hp = 0
-                mon.status = [faint]
+            player = self.party[0]
+            enemy = self.opponents[0]
+            self.combat.enqueue_action(player, forfeit, enemy)
 
     def run(self) -> None:
         """
@@ -127,6 +125,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         """
         run = Technique()
         run.load("menu_run")
+        run.combat_state = self.combat
         if not run.validate(self.monster):
             tools.open_dialog(
                 local_session,
@@ -144,23 +143,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         self.client.pop_state(self)
         player = self.party[0]
         enemy = self.opponents[0]
-        var = self.player.game_variables
-        # if the variable doesn't exist
-        if "run_attempts" not in var:
-            var["run_attempts"] = 0
-        if (
-            formula.escape(player.level, enemy.level, var["run_attempts"])
-            and self.combat._run == "on"
-        ):
-            var["run_attempts"] += 1
-            # clean up
-            self.combat.clean_combat()
-            # trigger run
-            del self.combat.monsters_in_play[self.player]
-            self.combat.players.remove(self.player)
-        else:
-            self.combat._run = "off"
-            self.combat.enqueue_action(player, run, enemy)
+        self.combat.enqueue_action(player, run, enemy)
 
     def open_swap_menu(self) -> None:
         """Open menus to swap monsters in party."""
@@ -237,14 +220,13 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 msg = T.format("cannot_use_item_monster", {"name": item.name})
                 tools.open_dialog(local_session, [msg])
                 return
-            if combat.has_status(target, "status_lockdown"):
+            if combat.has_status(target, "lockdown"):
                 msg = T.format("cannot_use_item_monster", {"name": item.name})
                 tools.open_dialog(local_session, [msg])
                 return
 
             # enqueue the item
             self.combat.enqueue_action(self.player, item, target)
-            self.combat.status_response_item(target)
 
             # close all the open menus
             self.client.pop_state()  # close target chooser
@@ -342,16 +324,12 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 tools.open_dialog(local_session, [msg])
                 return
             else:
+                self.player.game_variables["action_tech"] = technique.slug
                 # pre checking (look for null actions)
                 technique = combat.pre_checking(
-                    self.monster, technique, target, self.player, self.enemy
+                    self.monster, technique, target
                 )
                 self.combat.enqueue_action(self.monster, technique, target)
-                # check status response
-                if self.combat.status_response_technique(
-                    self.monster, technique
-                ):
-                    self.combat._lost_monster = self.monster
                 # remove skip after using it
                 if technique.slug == "skip":
                     self.monster.moves.pop()

@@ -391,7 +391,7 @@
   </object>
   <object id="269" name="Stop" type="event" x="672" y="208" width="16" height="32">
    <properties>
-    <property name="act1" value="translated_dialog mountain_road_interrupted"/>
+    <property name="act1" value="translated_dialog spyder_mountain_road_interrupted"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

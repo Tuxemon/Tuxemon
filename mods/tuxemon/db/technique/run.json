@@ -1,10 +1,12 @@
 {
 	"animation": null,
 	"conditions": [
-	  	"not status status_grabbed",
-	  	"not status status_stuck"
+	  	"not status grabbed",
+	  	"not status stuck"
 	],
-	"effects": [],
+	"effects": [
+		"run"
+	],
 	"flip_axes": "",
 	"icon": "",
 	"is_fast": true,
@@ -22,6 +24,6 @@
 	},
 	"tech_id": 0,
 	"use_failure": "combat_cannot_run_away",
-	"use_success": "generic_success",
+	"use_success": null,
 	"use_tech": "combat_used_x"
 }

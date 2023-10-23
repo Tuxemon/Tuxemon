@@ -14,9 +14,7 @@ if TYPE_CHECKING:
 
 
 class SplashEffectResult(TechEffectResult):
-    damage: int
-    element_multiplier: float
-    should_tackle: bool
+    pass
 
 
 @dataclass
@@ -48,4 +46,5 @@ class SplashEffect(TechEffect):
             "damage": damage,
             "should_tackle": bool(damage),
             "element_multiplier": mult,
+            "extra": None,
         }

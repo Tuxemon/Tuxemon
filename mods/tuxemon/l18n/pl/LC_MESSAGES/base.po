@@ -90,10 +90,10 @@ msgstr "Kwas akumulatorowy"
 msgid "amnesia"
 msgstr "Amnezja"
 
-msgid "status_recover"
+msgid "recover"
 msgstr "Odzyskaj"
 
-msgid "status_lifeleech"
+msgid "lifeleech"
 msgstr "Lifeleech"
 
 msgid "slot"
@@ -182,10 +182,10 @@ msgstr "Lawina"
 msgid "all_in"
 msgstr "Wszystko w"
 
-msgid "status_poison"
+msgid "poison"
 msgstr "Zatruty"
 
-msgid "status_faint"
+msgid "faint"
 msgstr "Pokonany"
 
 msgid "save_keep"
@@ -1531,7 +1531,7 @@ msgstr "hp {user} zostało przywrócone"
 msgid "combat_amnesia_get"
 msgstr "{user} dostał amnezji."
 
-msgid "status_overfeed"
+msgid "overfeed"
 msgstr "Przekarmiony"
 
 msgid "take_cover"

@@ -8,11 +8,12 @@ notably, the use of self.game
 from __future__ import annotations
 
 import logging
-from abc import ABC, abstractmethod
+from abc import ABC
 from collections import defaultdict
 from functools import partial
 from typing import (
     TYPE_CHECKING,
+    Callable,
     List,
     Literal,
     MutableMapping,
@@ -33,7 +34,6 @@ from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.tools import scale, scale_sequence
 
 if TYPE_CHECKING:
-    from tuxemon.animation import Task
     from tuxemon.db import BattleGraphicsModel
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
@@ -44,6 +44,7 @@ logger = logging.getLogger(__name__)
 
 sprite_layer = 0
 hud_layer = 100
+TimedCallable = Tuple[Callable, float]
 
 
 def toggle_visible(sprite: Sprite) -> None:
@@ -83,6 +84,8 @@ class CombatAnimations(ABC, Menu[None]):
         self.hud: MutableMapping[Monster, Sprite] = {}
         self.is_trainer_battle = False
         self.capdevs: List[CaptureDeviceSprite] = []
+        self.text_animations_queue: List[TimedCallable] = []
+        self._text_animation_time_left: float = 0
         self._hp_bars: MutableMapping[Monster, HpBar] = {}
         self._exp_bars: MutableMapping[Monster, ExpBar] = {}
         self._status_icons: defaultdict[Monster, List[Sprite]] = defaultdict(
@@ -117,13 +120,6 @@ class CombatAnimations(ABC, Menu[None]):
         self._layout = {
             player: layout[index] for index, player in enumerate(self.players)
         }
-
-    @abstractmethod
-    def suppress_phase_change(
-        self,
-        delay: float = 3.0,
-    ) -> Optional[Task]:
-        raise NotImplementedError
 
     def animate_open(self) -> None:
         self.transition_none_normal()
@@ -281,7 +277,6 @@ class CombatAnimations(ABC, Menu[None]):
             del self.hud[monster]
 
         self.animate_monster_leave(monster)
-        self.suppress_phase_change()
         self.task(kill, 2)
 
         for monsters in self.monsters_in_play.values():
@@ -497,7 +492,7 @@ class CombatAnimations(ABC, Menu[None]):
                 pos = index
             if len(player.monsters) > index:
                 monster = player.monsters[index]
-                if any(t for t in monster.status if t.slug == "status_faint"):
+                if any(t for t in monster.status if t.slug == "faint"):
                     status = "faint"
                     sprite = self.load_sprite(
                         "gfx/ui/icons/party/party_icon03.png",
@@ -786,7 +781,6 @@ class CombatAnimations(ABC, Menu[None]):
                 partial(self.alert, gotcha),
                 action_time,
             )
-            self._animation_in_progress = True
         else:
             breakout_delay = 1.8 + num_shakes * 1.0
             self.task(  # make the monster appear again!

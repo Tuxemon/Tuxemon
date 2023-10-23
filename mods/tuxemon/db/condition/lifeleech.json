@@ -1,0 +1,30 @@
+{
+  "animation": null,
+  "category": "negative",
+	"conditions": [
+	  	"is current_hp >,0"
+	],
+  "effects": [
+    "lifeleech"
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_lifeleech.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_bite",
+  "slug": "lifeleech",
+  "sort": "meta",
+  "target": {
+    "enemy monster": 0,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0
+  },
+  "cond_id": 3,
+  "use_failure": null,
+  "use_success": "combat_state_lifeleech_end",
+  "gain_cond": "combat_state_lifeleech_get"
+}

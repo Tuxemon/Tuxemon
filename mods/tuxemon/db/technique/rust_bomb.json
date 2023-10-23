@@ -3,7 +3,7 @@
   "accuracy": 0.6,
   "animation": "smokebomb_puff_128",
   "effects": [
-    "give status_poison,target",
+    "give poison,target",
     "splash"
   ],
   "flip_axes": "",

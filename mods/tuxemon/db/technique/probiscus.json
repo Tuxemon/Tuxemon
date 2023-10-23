@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "lance_ice",
   "effects": [
-    "give status_lifeleech,target",
+    "give lifeleech,target",
     "splash"
   ],
   "flip_axes": "xy",

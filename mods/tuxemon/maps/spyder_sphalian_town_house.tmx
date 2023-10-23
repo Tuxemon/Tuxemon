@@ -51,7 +51,7 @@
   </object>
   <object id="24" name="Watch TV" type="event" x="16" y="80" width="32" height="16">
    <properties>
-    <property name="act1" value="translated_dialog sphalian_tvwatch"/>
+    <property name="act1" value="translated_dialog spyder_sphalian_tvwatch"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -66,15 +66,15 @@
   </object>
   <object id="30" name="Create NPCs" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc sphalian_granny,8,3"/>
-    <property name="act2" value="npc_wander sphalian_granny"/>
-    <property name="cond1" value="not npc_exists sphalian_granny"/>
+    <property name="act1" value="create_npc spyder_sphalian_granny,8,3"/>
+    <property name="act2" value="npc_wander spyder_sphalian_granny"/>
+    <property name="cond1" value="not npc_exists spyder_sphalian_granny"/>
    </properties>
   </object>
   <object id="31" name="Talk NPC" type="event" x="32" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog sphalian_grannypiper"/>
-    <property name="behav1" value="talk sphalian_granny"/>
+    <property name="act1" value="translated_dialog spyder_sphalian_grannypiper"/>
+    <property name="behav1" value="talk spyder_sphalian_granny"/>
    </properties>
   </object>
   <object id="28" name="Player Spawn" type="event" x="128" y="0" width="16" height="16"/>

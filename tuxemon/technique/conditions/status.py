@@ -19,9 +19,9 @@ class StatusCondition(TechCondition):
     """
 
     name = "status"
-    status: str
+    expected: str
 
     def test(self, target: Monster) -> bool:
-        return self.status in [
+        return self.expected in [
             x.slug for x in target.status if hasattr(x, "slug")
         ]

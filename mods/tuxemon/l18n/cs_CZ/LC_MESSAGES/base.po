@@ -208,10 +208,10 @@ msgstr "Při ukládání došlo k chybě!"
 msgid "slot"
 msgstr "Místo"
 
-msgid "status_faint"
+msgid "faint"
 msgstr "Bezvědomý"
 
-msgid "status_poison"
+msgid "poison"
 msgstr "Otrava"
 
 ## TECHNIQUE TRANSLATIONS ##

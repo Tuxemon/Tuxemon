@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "skull_fire",
   "effects": [
-    "give status_confused,target",
+    "give confused,target",
     "enhance"
   ],
   "flip_axes": "",

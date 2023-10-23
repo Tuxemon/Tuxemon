@@ -9,7 +9,7 @@
   "is_fast": false,
   "potency": 1,
   "power": 1,
-  "range": "special",
+  "range": "melee",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "gold_digger",

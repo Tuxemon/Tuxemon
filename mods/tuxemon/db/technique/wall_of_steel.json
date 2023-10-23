@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "screen",
   "effects": [
-    "give status_hardshell,user",
+    "give hardshell,user",
     "damage"
   ],
   "flip_axes": "x",

@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "sparks_gold_alt",
   "effects": [
-    "give status_exhausted,both",
+    "give exhausted,both",
     "damage"
   ],
   "flip_axes": "",

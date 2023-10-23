@@ -1,0 +1,28 @@
+{
+  "animation": null,
+  "category": "positive",
+  "effects": [
+    "charging"
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_charging.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_tech": "chargedup",
+  "repl_item": "chargedup",
+  "sfx": "sfx_pulse",
+  "slug": "charging",
+  "sort": "meta",
+  "target": {
+    "enemy monster": 0,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0
+  },
+  "cond_id": 8,
+  "use_failure": null,
+  "use_success": "combat_state_charging_get",
+  "gain_cond": null
+}

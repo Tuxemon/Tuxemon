@@ -307,6 +307,9 @@ class Monster:
 
         Parameters:
             stat: The stat for the monster to return.
+
+        Returns:
+            int: The value of the requested stat.
         """
         value = 0
         if stat == StatType.armour:

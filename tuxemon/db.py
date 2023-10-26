@@ -254,6 +254,13 @@ class ItemModel(BaseModel):
             return v
         raise ValueError(f"the sprite {v} doesn't exist in the db")
 
+    @field_validator("animation")
+    def animation_exists(cls: ItemModel, v: Optional[str]) -> Optional[str]:
+        file: str = f"animations/item/{v}_00.png"
+        if not v or has.file(file):
+            return v
+        raise ValueError(f"the animation {v} doesn't exist in the db")
+
 
 class ShapeModel(BaseModel):
     slug: MonsterShape = Field(..., description="Slug of the shape")

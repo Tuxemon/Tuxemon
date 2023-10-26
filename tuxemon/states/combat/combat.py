@@ -149,58 +149,58 @@ def compute_text_animation_time(message: str) -> float:
     return ACTION_TIME + LETTER_TIME * len(message)
 
 
-class TechniqueAnimationCache:
+class MethodAnimationCache:
     def __init__(self) -> None:
         self._sprites: Dict[
             Union[Technique, Condition, Item], Optional[Sprite]
         ] = {}
 
     def get(
-        self, technique: Union[Technique, Condition, Item], is_flipped: bool
+        self, method: Union[Technique, Condition, Item], is_flipped: bool
     ) -> Optional[Sprite]:
         """
-        Return a sprite usable as a technique animation.
+        Return a sprite usable as a method (technique, item, condition) animation.
 
         Parameters:
-            technique: Technique whose sprite is requested.
+            method: Whose sprite is requested.
             is_flipped: Flag to determine whether animation frames should be flipped.
 
         Returns:
-            Sprite associated with the technique animation.
+            Sprite associated with the animation.
 
         """
         try:
-            return self._sprites[technique]
+            return self._sprites[method]
         except KeyError:
-            sprite = self.load_technique_animation(technique, is_flipped)
-            self._sprites[technique] = sprite
+            sprite = self.load_method_animation(method, is_flipped)
+            self._sprites[method] = sprite
             return sprite
 
     @staticmethod
-    def load_technique_animation(
-        technique: Union[Technique, Condition, Item], is_flipped: bool
+    def load_method_animation(
+        method: Union[Technique, Condition, Item], is_flipped: bool
     ) -> Optional[Sprite]:
         """
         Return animated sprite from a technique, condition or item.
 
         Parameters:
-            technique: Whose sprite is requested.
+            method: Whose sprite is requested.
             is_flipped: Flag to determine whether animation frames should be flipped.
 
         Returns:
-            Sprite associated with the technique animation.
+            Sprite associated with the animation.
 
         """
-        if not technique.images:
+        if not method.images:
             return None
         frame_time = 0.09
         images = list()
-        for fn in technique.images:
+        for fn in method.images:
             image = graphics.load_and_scale(fn)
             images.append((image, frame_time))
         tech = SurfaceAnimation(images, False)
         if is_flipped:
-            tech.flip(technique.flip_axes)
+            tech.flip(method.flip_axes)
         return Sprite(animation=tech)
 
 
@@ -244,7 +244,7 @@ class CombatState(CombatAnimations):
         self._damage_map: MutableMapping[Monster, Set[Monster]] = defaultdict(
             set
         )
-        self._technique_cache = TechniqueAnimationCache()
+        self._method_cache = MethodAnimationCache()
         self._decision_queue: List[Monster] = []
         self._action_queue: List[EnqueuedAction] = []
         self._log_action: List[Tuple[int, EnqueuedAction]] = []
@@ -777,7 +777,7 @@ class CombatState(CombatAnimations):
         """
         item = Item()
         item.load(monster.capture_device)
-        sprite = self._technique_cache.get(item, False)
+        sprite = self._method_cache.get(item, False)
         assert sprite
         self.animate_monster_release(player, monster, sprite)
         self.monsters_in_play[player].append(monster)
@@ -1005,7 +1005,7 @@ class CombatState(CombatAnimations):
     def perform_action(
         self,
         user: Union[Monster, NPC, None],
-        technique: Union[Technique, Item, Condition, None],
+        method: Union[Technique, Item, Condition, None],
         target: Monster,
     ) -> None:
         """
@@ -1013,7 +1013,7 @@ class CombatState(CombatAnimations):
 
         Parameters:
             user: Monster that does the action.
-            technique: Technique or item or condition used.
+            method: Technique or item or condition used.
             target: Monster that receives the action.
 
         """
@@ -1025,13 +1025,13 @@ class CombatState(CombatAnimations):
         # is synchronized with the damage shake motion
         hit_delay = 0.0
         # monster uses move
-        if isinstance(technique, Technique) and isinstance(user, Monster):
-            technique.advance_round()
-            technique.combat_state = self
-            result_tech = technique.use(user, target)
+        if isinstance(method, Technique) and isinstance(user, Monster):
+            method.advance_round()
+            method.combat_state = self
+            result_tech = method.use(user, target)
             context = {
                 "user": user.name,
-                "name": technique.name,
+                "name": method.name,
                 "target": target.name,
             }
             message: str = ""
@@ -1041,9 +1041,9 @@ class CombatState(CombatAnimations):
                     message += "\n" + T.translate("captured_failed")
                     self._captured_mon = None
                     action_time += compute_text_animation_time(message)
-            message += "\n" + T.format(technique.use_tech, context)
+            message += "\n" + T.format(method.use_tech, context)
             # swapping monster
-            if technique.slug == "swap":
+            if method.slug == "swap":
                 message = T.format(
                     "combat_call_tuxemon",
                     {"name": target.name.upper()},
@@ -1067,7 +1067,7 @@ class CombatState(CombatAnimations):
                     action_time += compute_text_animation_time(message)
             # not successful techniques
             if not result_tech["success"]:
-                template = getattr(technique, "use_failure")
+                template = getattr(method, "use_failure")
                 m = T.format(template, context)
                 # extra output
                 if result_tech["extra"]:
@@ -1075,9 +1075,9 @@ class CombatState(CombatAnimations):
                 message += "\n" + m
                 action_time += compute_text_animation_time(message)
             # TODO: caching sounds
-            audio.load_sound(technique.sfx, None).play()
+            audio.load_sound(method.sfx, None).play()
             # animation own monster AI NPC
-            if "own monster" in technique.target:
+            if "own monster" in method.target:
                 target_sprite = self._monster_sprite_map.get(user, None)
             # TODO: a real check or some params to test if should tackle, etc
             if result_tech["should_tackle"]:
@@ -1112,7 +1112,7 @@ class CombatState(CombatAnimations):
                     )
                     message += "\n" + m
                 # allows tackle to special range techniques too
-                if technique.range != "special":
+                if method.range != "special":
                     element_damage_key = MULT_MAP.get(
                         result_tech["element_multiplier"]
                     )
@@ -1128,10 +1128,10 @@ class CombatState(CombatAnimations):
                     )
                     context = {
                         "user": getattr(user, "name", ""),
-                        "name": technique.name,
+                        "name": method.name,
                         "target": target.name,
                     }
-                    template = getattr(technique, msg_type)
+                    template = getattr(method, msg_type)
                     tmpl = T.format(template, context)
                     if template:
                         message += "\n" + tmpl
@@ -1145,7 +1145,7 @@ class CombatState(CombatAnimations):
                 if user in self.monsters_in_play[trainer]:
                     is_flipped = True
                     break
-            tech_sprite = self._technique_cache.get(technique, is_flipped)
+            tech_sprite = self._method_cache.get(method, is_flipped)
 
             if result_tech["success"] and target_sprite and tech_sprite:
                 tech_sprite.rect.center = target_sprite.rect.center
@@ -1158,19 +1158,19 @@ class CombatState(CombatAnimations):
                 self.task(tech_sprite.kill, action_time)
 
         # player uses item
-        if isinstance(technique, Item) and isinstance(user, NPC):
-            technique.combat_state = self
-            result_item = technique.use(user, target)
+        if isinstance(method, Item) and isinstance(user, NPC):
+            method.combat_state = self
+            result_item = method.use(user, target)
             context = {
                 "user": user.name,
-                "name": technique.name,
+                "name": method.name,
                 "target": target.name,
             }
-            message = T.format(technique.use_item, context)
+            message = T.format(method.use_item, context)
             # animation sprite
-            item_sprite = self._technique_cache.get(technique, False)
+            item_sprite = self._method_cache.get(method, False)
             # handle the capture device
-            if technique.category == ItemCategory.capture and item_sprite:
+            if method.category == ItemCategory.capture and item_sprite:
                 # retrieve tuxeball
                 message += "\n" + T.translate("attempting_capture")
                 action_time = result_item["num_shakes"] + 1.8
@@ -1178,7 +1178,7 @@ class CombatState(CombatAnimations):
                     result_item["success"],
                     result_item["num_shakes"],
                     target,
-                    technique,
+                    method,
                     item_sprite,
                 )
             else:
@@ -1187,10 +1187,10 @@ class CombatState(CombatAnimations):
                 )
                 context = {
                     "user": getattr(user, "name", ""),
-                    "name": technique.name,
+                    "name": method.name,
                     "target": target.name,
                 }
-                template = getattr(technique, msg_type)
+                template = getattr(method, msg_type)
                 tmpl = T.format(template, context)
                 # extra output
                 if result_item["extra"]:
@@ -1214,29 +1214,29 @@ class CombatState(CombatAnimations):
                 (partial(self.alert, message), action_time)
             )
         # statuses / conditions
-        if isinstance(technique, Condition):
-            technique.phase = "perform_action_status"
-            technique.advance_round()
-            result = technique.use(target)
+        if isinstance(method, Condition):
+            method.phase = "perform_action_status"
+            method.advance_round()
+            result = method.use(target)
             context = {
-                "name": technique.name,
+                "name": method.name,
                 "target": target.name,
             }
             cond_mex: str = ""
             # successful conditions
             if result["success"]:
-                if technique.use_success:
-                    template = getattr(technique, "use_success")
+                if method.use_success:
+                    template = getattr(method, "use_success")
                     cond_mex = T.format(template, context)
                 # first turn status
-                if technique.nr_turn == 1 and technique.gain_cond:
-                    first_turn = getattr(technique, "gain_cond")
+                if method.nr_turn == 1 and method.gain_cond:
+                    first_turn = getattr(method, "gain_cond")
                     first = T.format(first_turn, context)
                     cond_mex = first + "\n" + cond_mex
             # not successful conditions
             if not result["success"]:
-                if technique.use_failure:
-                    template = getattr(technique, "use_failure")
+                if method.use_failure:
+                    template = getattr(method, "use_failure")
                     cond_mex = T.format(template, context)
             action_time += compute_text_animation_time(cond_mex)
             self.text_animations_queue.append(
@@ -1245,7 +1245,7 @@ class CombatState(CombatAnimations):
 
             # effect animation
             is_flipped = False
-            tech_sprite = self._technique_cache.get(technique, is_flipped)
+            tech_sprite = self._method_cache.get(method, is_flipped)
             if target_sprite and tech_sprite:
                 tech_sprite.rect.center = target_sprite.rect.center
                 assert tech_sprite.animation

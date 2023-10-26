@@ -58,7 +58,7 @@ class Item:
         self.quantity = 1
         self.images: Sequence[str] = []
         self.type = ItemType.consumable
-        self.animation = Optional[str]
+        self.animation: Optional[str] = None
         self.flip_axes = ""
         # The path to the sprite to load.
         self.sprite = ""
@@ -129,7 +129,7 @@ class Item:
         # Load the animation sprites that will be used for this technique
         self.animation = results.animation
         if self.animation:
-            directory = prepare.fetch("animations", "technique")
+            directory = prepare.fetch("animations", "item")
             self.images = animation_frame_files(directory, self.animation)
             if self.animation and not self.images:
                 logger.error(

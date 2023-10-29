@@ -7,6 +7,7 @@ import gettext
 import logging
 import os
 import os.path
+import re
 from typing import (
     Any,
     Callable,
@@ -227,6 +228,15 @@ def replace_text(session: Session, text: str) -> str:
     # replace variables
     for key, value in player.game_variables.items():
         text = text.replace("${{var:" + str(key) + "}}", str(value))
+    # replace translations
+    trans = None
+    m = re.search(r"\{\{[^{}]*\}\}", text)
+    if m:
+        trans = m.group().replace("{", "").replace("}", "").split(":")
+    if trans:
+        text = text.replace(
+            "${{trans:" + str(trans[1]) + "}}", T.translate(trans[1])
+        )
     # distance (metric / imperial)
     if player.game_variables["unit_measure"] == "Metric":
         text = text.replace("${{length}}", "km")

@@ -721,6 +721,9 @@ msgstr "Phone keeps ringing but no answer!"
 
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
+msgid "combat_fly"
+msgstr "{name} flies up high!"
+
 msgid "combat_scope"
 msgstr "AR:{AR} DE:{DE} ME:{ME} RD:{RD} SD:{SD}"
 

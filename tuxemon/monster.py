@@ -135,6 +135,7 @@ class Monster:
         self._types: List[Element] = []
         self.shape = MonsterShape.default
         self.randomly = True
+        self.out_of_range = False
 
         self.status: List[Condition] = []
         self.plague = PlagueType.healthy
@@ -709,6 +710,8 @@ class Monster:
         self.load_sprites()
 
     def end_combat(self) -> None:
+        self.out_of_range = False
+
         for move in self.moves:
             move.full_recharge()
 

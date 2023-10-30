@@ -255,7 +255,7 @@ class CombatState(CombatAnimations):
         self._new_tuxepedia: bool = False
         self._run: bool = False
         self._post_animation_task: Optional[Task] = None
-        self._xp_message = None
+        self._xp_message: Optional[str] = None
 
         super().__init__(players, graphics)
         self.is_trainer_battle = combat_type == "trainer"

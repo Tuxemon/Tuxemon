@@ -42,6 +42,7 @@ class TradingAction(EventAction):
         added.set_moves(removed.level)
         added.set_capture(formula.today_ordinal())
         added.current_hp = added.hp
+        added.traded = True
         # switch
         self.player.remove_monster(removed)
         self.player.add_monster(added, slot)

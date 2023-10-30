@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon import formula
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -13,51 +12,48 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class LocalDamageEffectResult(TechEffectResult):
+class PropDamageEffectResult(TechEffectResult):
     pass
 
 
 @dataclass
-class LocalDamageEffect(TechEffect):
+class PropDamageEffect(TechEffect):
     """
-    Apply damage, but it allows different output depending on the
-    technique used. Originally "particular_damage", but it was
-    too verbose.
+    Proportional Damage:
+    This effect does damage to the enemy equal
+    to % of the target's / user's maximum HP.
 
     Parameters:
-        user: The Monster object that used this technique.
-        target: The Monster object that we are using this technique on.
+        objective: User HP or target HP.
+        proportional: The percentage of the max HP
 
-    Returns:
-        Dict summarizing the result.
+    eg prop_damage target,0.25 (1/4 max enemy HP)
 
     """
 
-    name = "local_damage"
+    name = "prop_damage"
+    objective: str
+    proportional: float
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> LocalDamageEffectResult:
+    ) -> PropDamageEffectResult:
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
         if hit:
             tech.hit = True
             tech.advance_counter_success()
-            damage, mult = formula.simple_damage_calculate(tech, user, target)
-            # land of ifs
-            # tech: panjandrum
-            if tech.slug == "panjandrum":
-                damage = formula.damage_full_hp(target, 4)
+            reference_hp = target.hp if self.objective == "target" else user.hp
+            damage = int(reference_hp * self.proportional)
             target.current_hp -= damage
         else:
             tech.hit = False
             damage = 0
-            mult = 1.0
 
         return {
             "damage": damage,
-            "element_multiplier": mult,
+            "element_multiplier": 0.0,
             "should_tackle": bool(damage),
             "success": bool(damage),
             "extra": None,

@@ -48,7 +48,7 @@ class AreaEffect(TechEffect):
                     monsters = human
                 for mon in monsters:
                     mon.current_hp -= damage
-                    combat._damage_map[mon].add(user)
+                    combat.enqueue_damage(user, mon, damage)
             else:
                 target.current_hp -= damage
         else:

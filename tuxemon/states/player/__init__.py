@@ -75,9 +75,10 @@ class PlayerState(PygameMenuState):
         date_begin = formula.today_ordinal() - int(
             player.game_variables["date_start_game"]
         )
-        msg_begin = T.format(
-            "player_start_adventure",
-            {"date": str(date_begin)},
+        msg_begin = (
+            T.format("player_start_adventure", {"date": date_begin})
+            if date_begin >= 1
+            else T.translate("player_start_adventure_today")
         )
         tot = len(player.battles)
         won = sum(

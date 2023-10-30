@@ -6,6 +6,7 @@
   "effects": [
     "capture"
   ],
+  "animation": "capture_1",
   "slug": "tuxeball_ancient",
   "sort": "utility",
   "sprite": "gfx/items/tuxeball_ancient.png",

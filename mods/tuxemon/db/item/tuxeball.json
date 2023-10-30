@@ -6,6 +6,7 @@
   "effects": [
     "capture"
   ],
+  "animation": "tuxeball",
   "slug": "tuxeball",
   "sort": "utility",
   "sprite": "gfx/items/tuxeball.png",

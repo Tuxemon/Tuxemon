@@ -75,6 +75,24 @@ msgstr "Tea"
 msgid "tea_description"
 msgstr "Adds 107 to a monster's XP."
 
+msgid "doll_apeoro"
+msgstr "Doll Apeoro"
+
+msgid "doll_apeoro_description"
+msgstr "A small figure representing Apeoro."
+
+msgid "doll_pairagrin"
+msgstr "Doll Pairagrin"
+
+msgid "doll_pairagrin_description"
+msgstr "A small figure representing Pairagrin."
+
+msgid "lemon"
+msgstr "Lemon"
+
+msgid "lemon_description"
+msgstr "Description."
+
 msgid "revive"
 msgstr "Revive"
 
@@ -128,6 +146,12 @@ msgstr "Female Tuxeball"
 
 msgid "tuxeball_female_description"
 msgstr "Captures more easily a Female Tuxemon."
+
+msgid "tuxeball_park"
+msgstr "Park Tuxeball"
+
+msgid "tuxeball_park_description"
+msgstr "Official Park capture device. It works only inside the Park."
 
 msgid "tuxeball_neuter"
 msgstr "Neuter Tuxeball"
@@ -837,6 +861,9 @@ msgstr "A wild {name} appeared!"
 
 msgid "combat_monster_choice"
 msgstr "What will {name} do?"
+
+msgid "combat_player_choice"
+msgstr "What will {name} throw?"
 
 msgid "combat_fainted"
 msgstr "{name} fainted!"
@@ -2678,6 +2705,21 @@ msgstr "Run"
 msgid "menu_forfeit"
 msgstr "Forfeit"
 
+msgid "menu_ball"
+msgstr "Ball"
+
+msgid "menu_park_captured"
+msgstr "Captured"
+
+msgid "menu_park_encountered"
+msgstr "Come across"
+
+msgid "menu_food"
+msgstr "Food"
+
+msgid "menu_doll"
+msgstr "Doll"
+
 msgid "menu_save"
 msgstr "Save"
 
@@ -2838,6 +2880,9 @@ msgstr "Skip"
 
 msgid "empty"
 msgstr "Empty"
+
+msgid "park"
+msgstr "Park"
 
 ## MONSTER TRANSLATIONS ##
 # Monster details

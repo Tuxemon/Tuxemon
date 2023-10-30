@@ -1,0 +1,20 @@
+{
+  "conditions": [
+    "is wild_monster"
+  ],
+  "effects": [
+    "park_capture"
+  ],
+  "animation": "capture_1",
+  "slug": "tuxeball_park",
+  "sort": "utility",
+  "sprite": "gfx/items/tuxeball_park.png",
+  "category": "capture",
+  "type": "Consumable",
+  "usable_in": [
+    ""
+  ],
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
+}

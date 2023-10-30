@@ -110,6 +110,8 @@ class ItemCategory(str, Enum):
     destroy = "destroy"
     capture = "capture"
     stats = "stats"
+    doll = "doll"
+    food = "food"
 
 
 class OutputBattle(str, Enum):
@@ -223,6 +225,13 @@ class ItemModel(BaseModel):
     effects: Sequence[str] = Field(
         [], description="Effects this item will have"
     )
+    flip_axes: Literal["", "x", "y", "xy"] = Field(
+        "",
+        description="Axes along which technique animation should be flipped",
+    )
+    animation: Optional[str] = Field(
+        None, description="Animation to play for this technique"
+    )
 
     class Config:
         title = "Item"
@@ -246,6 +255,13 @@ class ItemModel(BaseModel):
         if has.file(v):
             return v
         raise ValueError(f"the sprite {v} doesn't exist in the db")
+
+    @field_validator("animation")
+    def animation_exists(cls: ItemModel, v: Optional[str]) -> Optional[str]:
+        file: str = f"animations/item/{v}_00.png"
+        if not v or has.file(file):
+            return v
+        raise ValueError(f"the animation {v} doesn't exist in the db")
 
 
 class ShapeModel(BaseModel):

@@ -901,6 +901,24 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Tea"](https://wiki.tuxemon.org/File:Tea_1.png) [https://opengameart.org/content/infusions-icons CC0]
 
+* ["Black Pepper"](https://wiki.tuxemon.org/File:I_C_BlackPepper.png) Adapted and recolored by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Blue Pepper"](https://wiki.tuxemon.org/File:I_C_BluePepper.png) Adapted and recolored by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Green Pepper"](https://wiki.tuxemon.org/File:I_C_GreenPepper.png) Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Lemon"](https://wiki.tuxemon.org/File:I_C_Lemon.png) Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Pink Pepper"](https://wiki.tuxemon.org/File:I_C_PinkPepper.png) Adapted and recolored by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Red Pepper"](https://wiki.tuxemon.org/File:I_C_RedPepper.png) Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Turquoise Pepper"](https://wiki.tuxemon.org/File:I_C_TurquoisePepper.png) Adapted and recolored by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Violet Pepper"](https://wiki.tuxemon.org/File:I_C_VioletPepper.png) Adapted and recolored by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Yellow Pepper"](https://wiki.tuxemon.org/File:I_C_YellowPepper.png) Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
 * ["Tuxeball Earth"](https://wiki.tuxemon.org/File:Capture_device_yellow.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Tuxeball Fire"](https://wiki.tuxemon.org/File:Capture_device_red.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
@@ -912,6 +930,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Tuxeball Water"](https://wiki.tuxemon.org/File:Tuxeball_water.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Tuxeball Female"](https://wiki.tuxemon.org/File:Tuxeball_female.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Park"](https://wiki.tuxemon.org/File:Tuxeball_park.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Tuxeball Male"](https://wiki.tuxemon.org/File:Tuxeball_male.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -1025,6 +1045,14 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Wood Booster"](https://wiki.tuxemon.org/File:2nd_the_king_8.png) [https://opengameart.org/content/icons-items-1 CC0 on OGA]
 
+### Item Animations
+
+* ["Capture 1"](https://wiki.tuxemon.org/File:Capture_1.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
+
+* ["Tuxeball"](https://wiki.tuxemon.org/File:Tuxeball.gif)
+Adapted by JaskRendix, from Animation by Tamashihoshi and created for the Tuxemon project.
+
 ### Technique Animations
 
 * ["Extended LPC Magic Pack"](http://opengameart.org/content/extended-lpc-magic-pack) by
@@ -1088,9 +1116,6 @@ By JaskRendix
 
 * ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.
-
-* ["Capture 1"](https://wiki.tuxemon.org/File:Capture_1.gif)
-Animation by Tamashihoshi and created for the Tuxemon project.
 
 * ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.

@@ -6,6 +6,7 @@
   "effects": [
     "capture"
   ],
+  "animation": "capture_1",
   "slug": "tuxeball_wood",
   "sort": "utility",
   "sprite": "gfx/items/tuxeball_wood.png",

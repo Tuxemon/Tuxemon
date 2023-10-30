@@ -12,7 +12,6 @@ from tuxemon.combat import check_battle_legal
 from tuxemon.db import EncounterItemModel, db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
-from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.transition.flash import FlashTransition
 from tuxemon.states.world.worldstate import WorldState
 
@@ -36,24 +35,32 @@ class RandomEncounterAction(EventAction):
     Script usage:
         .. code-block::
 
-            random_encounter <encounter_slug>[,total_prob]
+            random_encounter <encounter_slug>[,total_prob][,state]
 
     Script parameters:
         encounter_slug: Slug of the encounter list.
         total_prob: Total sum of the probabilities.
+        state: default CombatState.
 
     """
 
     name = "random_encounter"
     encounter_slug: str
     total_prob: Union[float, None] = None
+    state: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
         self.world = None
 
+        if self.state is None:
+            self.state = "CombatState"
+
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
+            return
+        # Don't start a park session without park tuxeball.
+        if self.state == "ParkState" and not player.find_item("tuxeball_park"):
             return
 
         slug = self.encounter_slug
@@ -96,12 +103,22 @@ class RandomEncounterAction(EventAction):
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack
             # is popped (or replaced)
-            self.session.client.queue_state(
-                "CombatState",
-                players=(player, npc),
-                combat_type="monster",
-                graphics=env.battle_graphics,
-            )
+            if self.state == "ParkState":
+                if "menu_park_encountered" not in player.game_variables:
+                    player.game_variables["menu_park_encountered"] = 0
+                player.game_variables["menu_park_encountered"] += 1
+                self.session.client.queue_state(
+                    "ParkState",
+                    players=(player, npc),
+                    graphics=env.battle_graphics,
+                )
+            else:
+                self.session.client.queue_state(
+                    self.state,
+                    players=(player, npc),
+                    combat_type="monster",
+                    graphics=env.battle_graphics,
+                )
 
             # stop the player
             self.world.lock_controls()
@@ -118,12 +135,14 @@ class RandomEncounterAction(EventAction):
             )
 
     def update(self) -> None:
+        if self.state is None:
+            self.state = "CombatState"
         # If state is not queued, AND state is not active, then stop.
         try:
-            self.session.client.get_queued_state_by_name("CombatState")
+            self.session.client.get_queued_state_by_name(self.state)
         except ValueError:
             try:
-                self.session.client.get_state_by_name(CombatState)
+                self.session.client.get_state_by_name(self.state)
             except ValueError:
                 self.stop()
 

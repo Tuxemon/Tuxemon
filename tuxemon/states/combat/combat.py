@@ -66,7 +66,6 @@ from tuxemon.combat import (
     defeated,
     fainted,
     get_awake_monsters,
-    has_status,
 )
 from tuxemon.condition.condition import Condition
 from tuxemon.db import (

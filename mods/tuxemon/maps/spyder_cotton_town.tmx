@@ -443,8 +443,8 @@
   </object>
   <object id="589" name="Talk Brute" type="event" x="32" y="576" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_cotton_lazybrute1"/>
-    <property name="behav1" value="talk spyder_cotton_lazybrute"/>
+    <property name="act1" value="translated_dialog spyder_cotton_lazybrute"/>
+    <property name="behav1" value="talk spyder_dragonscave_lazybrute"/>
    </properties>
   </object>
   <object id="591" name="Kernel Quest" type="event" x="320" y="432" width="16" height="16">

@@ -634,8 +634,20 @@ class MonsterInfoState(PygameMenuState):
         lab9.translate(fix_width(width, 0.50), fix_height(height, 0.45))
         # capture
         doc = formula.today_ordinal() - monster.capture
+        if doc >= 1:
+            ref = (
+                T.format("tuxepedia_trade", {"doc": doc})
+                if monster.traded
+                else T.format("tuxepedia_capture", {"doc": doc})
+            )
+        else:
+            ref = (
+                T.translate("tuxepedia_trade_today")
+                if monster.traded
+                else T.translate("tuxepedia_capture_today")
+            )
         lab10 = menu.add.label(
-            title=T.format("tuxepedia_capture", {"doc": doc}),
+            title=ref,
             label_id="capture",
             font_size=15,
             align=locals.ALIGN_LEFT,

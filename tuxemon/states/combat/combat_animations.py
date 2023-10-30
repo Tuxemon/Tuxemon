@@ -681,7 +681,7 @@ class CombatAnimations(ABC, Menu[None]):
 
         """
         monster_sprite = self._monster_sprite_map[monster]
-        capdev = self.load_sprite(f"gfx/items/{item.slug}.png")
+        capdev = self.load_sprite(item.sprite)
         animate = partial(
             self.animate, capdev.rect, transition="in_quad", duration=1.0
         )
@@ -777,3 +777,7 @@ class CombatAnimations(ABC, Menu[None]):
             )
             self.task(sprite.animation.play, breakout_delay)
             self.task(capdev.kill, breakout_delay)
+            self.task(
+                partial(self.blink, sprite),
+                breakout_delay + 0.5,
+            )

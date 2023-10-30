@@ -29,5 +29,6 @@ class GainXpEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> GainXpEffectResult:
         assert target
-        target.give_experience(self.amount)
+        levels = target.give_experience(self.amount)
+        target.update_moves(levels)
         return {"success": True, "num_shakes": 0, "extra": None}

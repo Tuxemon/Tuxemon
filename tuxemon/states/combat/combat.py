@@ -71,12 +71,12 @@ from tuxemon.combat import (
 from tuxemon.condition.condition import Condition
 from tuxemon.db import (
     BattleGraphicsModel,
-    EvolutionType,
     ItemCategory,
     OutputBattle,
     PlagueType,
     SeenStatus,
 )
+from tuxemon.event.actions.evolution import EvolutionAction
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -607,7 +607,6 @@ class CombatState(CombatAnimations):
         elif phase == "end combat":
             self.players[0].set_party_status()
             self.end_combat()
-            self.evolve()
 
         else:
             assert_never(phase)
@@ -1464,93 +1463,6 @@ class CombatState(CombatAnimations):
         # instead of player/trainer
         return [p for p in self.players if not defeated(p)]
 
-    def evolve(self) -> None:
-        for monster in self.players[0].monsters:
-            for evolution in monster.evolutions:
-                evolved = Monster()
-                evolved.load_from_db(evolution.monster_slug)
-                if evolution.path == EvolutionType.standard:
-                    if evolution.at_level <= monster.level:
-                        self.question_evolution(monster, evolved)
-                elif evolution.path == EvolutionType.gender:
-                    if evolution.at_level <= monster.level:
-                        if evolution.gender == monster.gender:
-                            self.question_evolution(monster, evolved)
-                elif evolution.path == EvolutionType.element:
-                    if evolution.at_level <= monster.level:
-                        if self.players[0].has_type(evolution.element):
-                            self.question_evolution(monster, evolved)
-                elif evolution.path == EvolutionType.tech:
-                    if evolution.at_level <= monster.level:
-                        if self.players[0].has_tech(evolution.tech):
-                            self.question_evolution(monster, evolved)
-                elif evolution.path == EvolutionType.location:
-                    if evolution.at_level <= monster.level:
-                        if evolution.inside == self.client.map_inside:
-                            self.question_evolution(monster, evolved)
-                elif evolution.path == EvolutionType.stat:
-                    if evolution.at_level <= monster.level:
-                        if monster.return_stat(
-                            evolution.stat1
-                        ) >= monster.return_stat(evolution.stat2):
-                            self.question_evolution(monster, evolved)
-                elif evolution.path == EvolutionType.season:
-                    if evolution.at_level <= monster.level:
-                        if (
-                            evolution.season
-                            == self.players[0].game_variables["season"]
-                        ):
-                            self.question_evolution(monster, evolved)
-                elif evolution.path == EvolutionType.daytime:
-                    if evolution.at_level <= monster.level:
-                        if (
-                            evolution.daytime
-                            == self.players[0].game_variables["daytime"]
-                        ):
-                            self.question_evolution(monster, evolved)
-
-    def question_evolution(self, monster: Monster, evolved: Monster) -> None:
-        tools.open_dialog(
-            local_session,
-            [
-                T.format(
-                    "evolution_confirmation",
-                    {
-                        "name": monster.name.upper(),
-                        "evolve": evolved.name.upper(),
-                    },
-                )
-            ],
-        )
-        tools.open_choice_dialog(
-            local_session,
-            menu=(
-                (
-                    "yes",
-                    T.translate("yes"),
-                    partial(
-                        self.positive_answer,
-                        monster,
-                        evolved,
-                    ),
-                ),
-                (
-                    "no",
-                    T.translate("no"),
-                    self.negative_answer,
-                ),
-            ),
-        )
-
-    def positive_answer(self, monster: Monster, evolved: Monster) -> None:
-        self.client.pop_state()
-        self.client.pop_state()
-        self.players[0].evolve_monster(monster, evolved.slug)
-
-    def negative_answer(self) -> None:
-        self.client.pop_state()
-        self.client.pop_state()
-
     def clean_combat(self) -> None:
         """Clean combat."""
         for player in self.players:
@@ -1589,3 +1501,4 @@ class CombatState(CombatAnimations):
         else:
             self.phase = None
             self.client.push_state(FadeOutTransition(caller=self))
+            EvolutionAction().start()

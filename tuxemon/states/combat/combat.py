@@ -945,10 +945,8 @@ class CombatState(CombatAnimations):
         self._action_queue.append(action)
         self._log_action.append((self._turn, action))
 
-    def rewrite_action_queue_target(
-        self,
-        original: Monster,
-        new: Monster,
+    def rewrite_action_queue(
+        self, original: Monster, new: Monster, tech: Optional[Technique]
     ) -> None:
         """
         Used for swapping monsters.
@@ -956,12 +954,16 @@ class CombatState(CombatAnimations):
         Parameters:
             original: Original targeted monster.
             new: New monster.
+            tech: New technique.
 
         """
         # rewrite actions in the queue to target the new monster
         for index, action in enumerate(self._action_queue):
             if action.target is original:
                 new_action = EnqueuedAction(action.user, action.technique, new)
+                self._action_queue[index] = new_action
+            if action.target is new and tech:
+                new_action = EnqueuedAction(action.user, tech, action.target)
                 self._action_queue[index] = new_action
 
     def remove_monster_from_play(
@@ -1154,6 +1156,7 @@ class CombatState(CombatAnimations):
 
         # player uses item
         if isinstance(technique, Item) and isinstance(user, NPC):
+            technique.combat_state = self
             result_item = technique.use(user, target)
             context = {
                 "user": user.name,

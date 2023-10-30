@@ -224,6 +224,7 @@ class Monster:
         self.height = self.set_char_height(results.height)
         self.weight = self.set_char_weight(results.weight)
         self.gender = random.choice(list(results.possible_genders))
+        self.escape_rate = results.escape_rate
         self.catch_rate = (
             results.catch_rate or TuxemonConfig().default_monster_catch_rate
         )

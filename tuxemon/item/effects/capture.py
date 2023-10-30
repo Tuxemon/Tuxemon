@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING, Union
 
 from tuxemon.db import ElementType, GenderType, TasteWarm
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -32,6 +33,7 @@ class CaptureEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> CaptureEffectResult:
         assert target
+        combat_state = item.combat_state
         capture_device = "tuxeball"
         # The number of shakes that a tuxemon can do to escape.
         total_shakes = 4
@@ -191,6 +193,15 @@ class CaptureEffect(ItemEffect):
                     if tuxeball:
                         tuxeball.quantity += 1
 
+                # escape monster
+                if random.random() <= target.escape_rate:
+                    esc = Technique()
+                    esc.load("menu_run")
+                    if combat_state and fighting_monster:
+                        esc.combat_state = combat_state
+                        combat_state.rewrite_action_queue(
+                            target, fighting_monster, esc
+                        )
                 return {"success": False, "num_shakes": i + 1, "extra": None}
 
         # it increases the level +1 upon capture

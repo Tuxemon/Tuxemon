@@ -51,7 +51,7 @@ class SwapEffect(TechEffect):
         original_monster = combat_state.monsters_in_play[player][0]
 
         # rewrite actions to target the new monster.  must be done before original is removed
-        combat_state.rewrite_action_queue_target(original_monster, target)
+        combat_state.rewrite_action_queue(original_monster, target, None)
 
         # remove the old monster and all their actions
         combat_state.remove_monster_from_play(original_monster)

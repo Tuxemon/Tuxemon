@@ -27,6 +27,7 @@ from tuxemon.locale import T
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
+    from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
 
@@ -64,6 +65,7 @@ class Item:
 
         self.effects: Sequence[ItemEffect[Any]] = []
         self.conditions: Sequence[ItemCondition[Any]] = []
+        self.combat_state: Optional[CombatState] = None
 
         self.sort = ""
         self.use_item = ""

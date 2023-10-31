@@ -9,6 +9,7 @@
   "range": "special",
   "repl_pos": "replaced",
   "repl_neg": "replaced",
+  "bond": true,
   "sfx": "sfx_pulse",
   "slug": "grabbed",
   "sort": "meta",

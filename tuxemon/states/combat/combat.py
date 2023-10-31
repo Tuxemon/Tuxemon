@@ -66,7 +66,6 @@ from tuxemon.combat import (
     defeated,
     fainted,
     get_awake_monsters,
-    has_status_bond,
 )
 from tuxemon.condition.condition import Condition
 from tuxemon.db import (
@@ -795,9 +794,9 @@ class CombatState(CombatAnimations):
                 self.monsters_in_play[player][0],
             )
 
-        # remove "connected" status (eg. lifeleech, etc.)
+        # remove "bond" status (eg. lifeleech, etc.)
         for mon in self.active_monsters:
-            if has_status_bond(mon):
+            if any(sta.bond for sta in monster.status):
                 mon.status.clear()
 
         # TODO: not hardcode

@@ -634,6 +634,10 @@ class ConditionModel(BaseModel):
     sfx: str = Field(
         ..., description="Sound effect to play when this condition is used"
     )
+    bond: bool = Field(
+        False,
+        description="Whether or not there is a bond between attacker and defender",
+    )
 
     # Optional fields
     category: Optional[CategoryCondition] = Field(

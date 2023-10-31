@@ -3,12 +3,13 @@
   "accuracy": 0.6,
   "animation": "triforce_163",
   "effects": [
+    "multiattack 3",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 0.8,
-  "power": 2.2,
+  "power": 0.8,
   "range": "reach",
   "recharge": 1,
   "sfx": "sfx_blaster",

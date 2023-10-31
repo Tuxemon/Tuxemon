@@ -158,8 +158,7 @@ class EvolutionType(str, Enum):
     gender = "gender"
     item = "item"
     location = "location"
-    season = "season"
-    daytime = "daytime"
+    variable = "variable"
     standard = "standard"
     stat = "stat"
     tech = "tech"
@@ -334,8 +333,9 @@ class MonsterEvolutionItemModel(BaseModel):
         None,
         description="Location parameter: inside true or inside false (outside).",
     )
-    season: Optional[str] = Field(None, description="Season parameter.")
-    daytime: Optional[str] = Field(None, description="Daytime parameter.")
+    variable: Optional[str] = Field(
+        None, description="Variable parameter based on game variables."
+    )
     stat1: Optional[StatType] = Field(
         None, description="Stat parameter stat1 >= stat2."
     )
@@ -345,22 +345,34 @@ class MonsterEvolutionItemModel(BaseModel):
     tech: Optional[str] = Field(None, description="Technique parameter.")
 
     @field_validator("tech")
-    def technique_exists(cls: MonsterEvolutionItemModel, v: Any) -> Any:
-        if has.db_entry("technique", v):
+    def technique_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        if not v or has.db_entry("technique", v):
             return v
         raise ValueError(f"the technique {v} doesn't exist in the db")
 
     @field_validator("monster_slug")
-    def monster_exists(cls: MonsterEvolutionItemModel, v: Any) -> Any:
+    def monster_exists(cls: MonsterEvolutionItemModel, v: str) -> str:
         if has.db_entry("monster", v):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
     @field_validator("item")
-    def item_exists(cls: MonsterEvolutionItemModel, v: Any) -> Any:
-        if has.db_entry("item", v):
+    def item_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        if not v or has.db_entry("item", v):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
+
+    @field_validator("variable")
+    def variable_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        if not v or v.find(":") > 1:
+            return v
+        raise ValueError(f"the variable {v} isn't formatted correctly")
 
 
 class MonsterFlairItemModel(BaseModel):

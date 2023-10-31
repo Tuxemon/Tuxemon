@@ -1025,6 +1025,14 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Wood Booster"](https://wiki.tuxemon.org/File:2nd_the_king_8.png) [https://opengameart.org/content/icons-items-1 CC0 on OGA]
 
+### Item Animations
+
+* ["Capture 1"](https://wiki.tuxemon.org/File:Capture_1.gif)
+Animation by Tamashihoshi and created for the Tuxemon project.
+
+* ["Tuxeball"](https://wiki.tuxemon.org/File:Tuxeball.gif)
+Adapted by JaskRendix, from Animation by Tamashihoshi and created for the Tuxemon project.
+
 ### Technique Animations
 
 * ["Extended LPC Magic Pack"](http://opengameart.org/content/extended-lpc-magic-pack) by
@@ -1088,9 +1096,6 @@ By JaskRendix
 
 * ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.
-
-* ["Capture 1"](https://wiki.tuxemon.org/File:Capture_1.gif)
-Animation by Tamashihoshi and created for the Tuxemon project.
 
 * ["Claw Blue"](https://wiki.tuxemon.org/File:Claw_blue.gif)
 Adapted by Sanglorian from the Superpowers Asset Packs.

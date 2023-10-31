@@ -58,6 +58,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "weight",
     "taste_cold",
     "taste_warm",
+    "traded",
     "mod_armour",
     "mod_dodge",
     "mod_melee",
@@ -135,6 +136,7 @@ class Monster:
         self._types: List[Element] = []
         self.shape = MonsterShape.default
         self.randomly = True
+        self.traded = False
 
         self.status: List[Condition] = []
         self.plague = PlagueType.healthy
@@ -217,6 +219,7 @@ class Monster:
             self._types.append(_element)
 
         self.randomly = results.randomly or self.randomly
+        self.traded = self.traded
 
         self.txmn_id = results.txmn_id
         self.capture = self.set_capture(self.capture)

@@ -2588,6 +2588,9 @@ msgstr "Seen {param} out of {all} Tuxemon"
 msgid "tuxepedia_data_caught"
 msgstr "Caught {param} out of {all} Tuxemon"
 
+msgid "player_start_adventure_today"
+msgstr "The adventure began today."
+
 msgid "player_start_adventure"
 msgstr "The adventure began {date} days ago."
 
@@ -2611,8 +2614,17 @@ msgstr "Evolution"
 msgid "yes_evolutions"
 msgstr "Evolutions"
 
+msgid "tuxepedia_capture_today"
+msgstr "Captured today"
+
+msgid "tuxepedia_trade_today"
+msgstr "Traded today"
+
 msgid "tuxepedia_capture"
 msgstr "Captured {doc} days ago"
+
+msgid "tuxepedia_trade"
+msgstr "Traded {doc} days ago"
 
 msgid "tuxepedia_exp"
 msgstr "{exp_lv}xp to Lv {lv}"

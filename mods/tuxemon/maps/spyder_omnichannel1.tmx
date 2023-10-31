@@ -194,7 +194,7 @@
   </object>
   <object id="48" name="Threats" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter omnichannel"/>
+    <property name="act1" value="random_encounter omnichannel,6"/>
     <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
    </properties>
   </object>
@@ -217,6 +217,13 @@
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set omnichannel1wall:yes"/>
+   </properties>
+  </object>
+  <object id="16" name="Evolution" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="evolution"/>
+    <property name="cond1" value="is monster_property level_up,true"/>
+    <property name="cond2" value="is monster_property got_exp,true"/>
    </properties>
   </object>
  </objectgroup>

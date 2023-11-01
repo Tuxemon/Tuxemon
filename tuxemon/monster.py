@@ -58,6 +58,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "weight",
     "taste_cold",
     "taste_warm",
+    "traded",
     "mod_armour",
     "mod_dodge",
     "mod_melee",
@@ -136,6 +137,7 @@ class Monster:
         self.shape = MonsterShape.default
         self.randomly = True
         self.out_of_range = False
+        self.traded = False
 
         self.status: List[Condition] = []
         self.plague = PlagueType.healthy
@@ -218,6 +220,7 @@ class Monster:
             self._types.append(_element)
 
         self.randomly = results.randomly or self.randomly
+        self.traded = self.traded
 
         self.txmn_id = results.txmn_id
         self.capture = self.set_capture(self.capture)
@@ -336,7 +339,7 @@ class Monster:
                 ret = True
         return ret
 
-    def give_experience(self, amount: int = 1) -> None:
+    def give_experience(self, amount: int = 1) -> int:
         """
         Increase experience.
 
@@ -346,16 +349,22 @@ class Monster:
         Parameters:
             amount: The amount of experience to add to the monster.
 
+        Returns:
+            int: the amount of levels earned.
+
         Example:
 
         >>> bulbatux.give_experience(20)
 
         """
+        levels = 0
         self.total_experience += amount
 
         # Level up worthy monsters
         while self.total_experience >= self.experience_required(1):
             self.level_up()
+            levels += 1
+        return levels
 
     def apply_status(self, status: Condition) -> None:
         """
@@ -549,6 +558,32 @@ class Monster:
                 tech = Technique()
                 tech.load(ele)
                 self.learn(tech)
+
+    def update_moves(self, levels_earned: int) -> Optional[Technique]:
+        """
+        Set monster moves according to the levels increased.
+        Excludes the moves already learned.
+
+        Parameters:
+            levels_earned: Number of levels earned.
+
+        Returns:
+            technique: if there is a technique, then it returns
+            a technique, otherwise none
+
+        """
+        technique = None
+        for move in self.moveset:
+            if (
+                move.technique not in (m.slug for m in self.moves)
+                and (self.level - levels_earned)
+                < move.level_learned
+                <= self.level
+            ):
+                technique = Technique()
+                technique.load(move.technique)
+                self.learn(technique)
+        return technique
 
     def experience_required(self, level_ofs: int = 0) -> int:
         """

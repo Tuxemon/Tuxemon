@@ -13,7 +13,6 @@ from collections import defaultdict
 from functools import partial
 from typing import (
     TYPE_CHECKING,
-    Callable,
     List,
     Literal,
     MutableMapping,
@@ -30,7 +29,6 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import ExpBar, HpBar
 from tuxemon.menu.menu import Menu
 from tuxemon.sprite import CaptureDeviceSprite, Sprite
-from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.tools import scale, scale_sequence
 
 if TYPE_CHECKING:
@@ -38,13 +36,12 @@ if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
-    from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
 
 sprite_layer = 0
 hud_layer = 100
-TimedCallable = Tuple[Callable, float]
+TimedCallable = Tuple[partial[None], float]
 
 
 def toggle_visible(sprite: Sprite) -> None:
@@ -155,6 +152,7 @@ class CombatAnimations(ABC, Menu[None]):
         self,
         npc: NPC,
         monster: Monster,
+        sprite: Sprite,
     ) -> None:
         feet_list = list(self._layout[npc]["home"][0].center)
         feet = (feet_list[0], feet_list[1] + tools.scale(11))
@@ -214,24 +212,15 @@ class CombatAnimations(ABC, Menu[None]):
         )
 
         # capdev opening animation
-        images = list()
-        # TODO: Use a technique JSON for 'capture' instead of hardcoding it here
-        for fn in ["capture_1_%02d.png" % i for i in range(1, 7)]:
-            fn = "animations/technique/" + fn
-            image = graphics.load_and_scale(fn)
-            images.append((image, 0.07))
-
-        delay = 1.3
-        tech = SurfaceAnimation(images, False)
-        sprite = Sprite(animation=tech)
+        assert sprite.animation
         sprite.rect.midbottom = feet
-        self.task(tech.play, delay)
-        self.task(partial(self.sprites.add, sprite), delay)
+        self.task(sprite.animation.play, 1.3)
+        self.task(partial(self.sprites.add, sprite), 1.3)
 
         # attempt to load and queue up combat_call
         call_sound = audio.load_sound(monster.combat_call, None)
         if call_sound:
-            self.task(call_sound.play, delay)
+            self.task(call_sound.play, 1.3)
 
     def animate_sprite_spin(self, sprite: Sprite) -> None:
         self.animate(
@@ -679,7 +668,7 @@ class CombatAnimations(ABC, Menu[None]):
         num_shakes: int,
         monster: Monster,
         item: Item,
-        combat: CombatState,
+        sprite: Sprite,
     ) -> None:
         """
         Animation for capturing monsters.
@@ -691,7 +680,7 @@ class CombatAnimations(ABC, Menu[None]):
 
         """
         monster_sprite = self._monster_sprite_map[monster]
-        capdev = self.load_sprite(f"gfx/items/{item.slug}.png")
+        capdev = self.load_sprite(item.sprite)
         animate = partial(
             self.animate, capdev.rect, transition="in_quad", duration=1.0
         )
@@ -708,16 +697,8 @@ class CombatAnimations(ABC, Menu[None]):
             del self.hud[monster]
 
         # TODO: cache this sprite from the first time it's used.
-        # also, should loading animated sprites be more convenient?
-        images = list()
-        for fn in ["capture_1_%02d.png" % i for i in range(1, 8)]:
-            fn = "animations/technique/" + fn
-            image = graphics.load_and_scale(fn)
-            images.append((image, 0.07))
-
-        tech = SurfaceAnimation(images, False)
-        sprite = Sprite(animation=tech)
-        self.task(tech.play, 1.0)
+        assert sprite.animation
+        self.task(sprite.animation.play, 1.0)
         self.task(partial(self.sprites.add, sprite), 1.0)
         sprite.rect.midbottom = monster_sprite.rect.midbottom
 
@@ -750,6 +731,8 @@ class CombatAnimations(ABC, Menu[None]):
             # leave a 0.6s wait between each shake
             shake_ball(1.8 + i * 1.0)
 
+        combat = item.combat_state
+        assert combat
         combat._captured_mon = monster
         if is_captured:
             self.task(kill, 2 + num_shakes)
@@ -791,5 +774,9 @@ class CombatAnimations(ABC, Menu[None]):
                 audio.load_sound(monster.combat_call, None).play,
                 breakout_delay,
             )
-            self.task(tech.play, breakout_delay)
+            self.task(sprite.animation.play, breakout_delay)
             self.task(capdev.kill, breakout_delay)
+            self.task(
+                partial(self.blink, sprite),
+                breakout_delay + 0.5,
+            )

@@ -25,16 +25,16 @@
     ],
     "evolutions": [
         {
-            "path": "daytime",
+            "path": "variable",
             "at_level": 16,
             "monster_slug": "angesnow",
-            "daytime": "true"
+            "variable": "daytime:true"
         },
         {
-            "path": "daytime",
+            "path": "variable",
             "at_level": 16,
             "monster_slug": "demosnow",
-            "daytime": "false"
+            "variable": "daytime:false"
         }
     ],
     "history": [

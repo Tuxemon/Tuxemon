@@ -101,14 +101,14 @@ class EvolutionAction(EventAction):
                             evolution.stat1
                         ) >= monster.return_stat(evolution.stat2):
                             question_evolution(monster, evolved)
-                elif evolution.path == EvolutionType.season:
-                    if evolution.at_level <= monster.level:
-                        if evolution.season == player.game_variables["season"]:
-                            question_evolution(monster, evolved)
-                elif evolution.path == EvolutionType.daytime:
-                    if evolution.at_level <= monster.level:
-                        if (
-                            evolution.daytime
-                            == player.game_variables["daytime"]
-                        ):
+                elif evolution.path == EvolutionType.variable:
+                    if (
+                        evolution.at_level <= monster.level
+                        and evolution.variable
+                    ):
+                        parts = evolution.variable.split(":")
+                        key = parts[0]
+                        value = parts[1]
+                        exists = key in player.game_variables
+                        if exists and player.game_variables[key] == value:
                             question_evolution(monster, evolved)

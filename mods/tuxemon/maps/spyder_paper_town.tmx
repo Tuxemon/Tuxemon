@@ -661,8 +661,7 @@
   <object id="14" name="Evolution" type="event" x="0" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="evolution"/>
-    <property name="cond1" value="is monster_property level_up,true"/>
-    <property name="cond2" value="is monster_property got_exp,true"/>
+    <property name="cond1" value="is check_evolution standard"/>
    </properties>
   </object>
  </objectgroup>

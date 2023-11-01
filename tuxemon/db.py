@@ -509,6 +509,7 @@ class TechSort(str, Enum):
 class CategoryCondition(str, Enum):
     negative = "negative"
     positive = "positive"
+    neutral = "neutral"
 
 
 class ResponseCondition(str, Enum):

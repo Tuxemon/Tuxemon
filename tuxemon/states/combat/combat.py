@@ -1261,12 +1261,7 @@ class CombatState(CombatAnimations):
             monster: Monster that will faint.
 
         """
-        faint = Condition()
-        faint.load("faint")
-        monster.current_hp = 0
-        if monster.status:
-            monster.status[0].nr_turn = 0
-        monster.status = [faint]
+        monster.faint()
 
         """
         Experience is earned when the target monster is fainted.

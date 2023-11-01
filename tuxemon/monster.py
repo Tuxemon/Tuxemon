@@ -384,6 +384,7 @@ class Monster:
             # if the status doesn't exist.
             else:
                 # start counting nr turns
+                self.status[0].nr_turn = 0
                 status.nr_turn = 1
                 if self.status[0].category == CategoryCondition.positive:
                     if status.repl_pos == ResponseCondition.replaced:
@@ -404,7 +405,7 @@ class Monster:
                         # chargedup, charging and dozing
                         return
                 else:
-                    # spyderbite and eliminated
+                    self.status.clear()
                     self.status.append(status)
 
     def set_stats(self) -> None:
@@ -743,14 +744,24 @@ class Monster:
 
         self.load_sprites()
 
+    def faint(self) -> None:
+        """
+        Kills the monster, sets 0 HP and applies faint status.
+        """
+        faint = Condition()
+        faint.load("faint")
+        self.current_hp = 0
+        self.apply_status(faint)
+
     def end_combat(self) -> None:
+        """
+        Ends combat, recharges all moves and heals statuses.
+        """
         for move in self.moves:
             move.full_recharge()
 
         if "faint" in (s.slug for s in self.status):
-            faint = Condition()
-            faint.load("faint")
-            self.status = [faint]
+            self.faint()
         else:
             self.status = []
 

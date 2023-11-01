@@ -13,7 +13,6 @@ from collections import defaultdict
 from functools import partial
 from typing import (
     TYPE_CHECKING,
-    Callable,
     List,
     Literal,
     MutableMapping,
@@ -42,7 +41,7 @@ logger = logging.getLogger(__name__)
 
 sprite_layer = 0
 hud_layer = 100
-TimedCallable = Tuple[Callable, float]
+TimedCallable = Tuple[partial[None], float]
 
 
 def toggle_visible(sprite: Sprite) -> None:

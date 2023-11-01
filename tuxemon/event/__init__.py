@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import logging
-from collections import namedtuple
-from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
+from collections.abc import Sequence
+from typing import TYPE_CHECKING, NamedTuple, Optional
 
 from tuxemon.session import Session
 
@@ -69,7 +69,7 @@ def get_npc(session: Session, slug: str) -> Optional[NPC]:
     return world.get_entity(slug)
 
 
-def get_npc_pos(session: Session, pos: Tuple[int, int]) -> Optional[NPC]:
+def get_npc_pos(session: Session, pos: tuple[int, int]) -> Optional[NPC]:
     """
     Gets an NPC object by its position.
 

@@ -4,16 +4,8 @@ from __future__ import annotations
 
 import logging
 import uuid
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    ClassVar,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    Type,
-)
+from collections.abc import Mapping, Sequence
+from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 from tuxemon import plugin, prepare
 from tuxemon.condition.condcondition import CondCondition
@@ -47,8 +39,8 @@ class Condition:
 
     """
 
-    effects_classes: ClassVar[Mapping[str, Type[CondEffect[Any]]]] = {}
-    conditions_classes: ClassVar[Mapping[str, Type[CondCondition[Any]]]] = {}
+    effects_classes: ClassVar[Mapping[str, type[CondEffect[Any]]]] = {}
+    conditions_classes: ClassVar[Mapping[str, type[CondCondition[Any]]]] = {}
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         if save_data is None:
@@ -332,7 +324,7 @@ class Condition:
 
 def decode_condition(
     json_data: Optional[Sequence[Mapping[str, Any]]],
-) -> List[Condition]:
+) -> list[Condition]:
     return [Condition(save_data=cond) for cond in json_data or {}]
 
 

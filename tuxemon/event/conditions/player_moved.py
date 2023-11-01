@@ -2,8 +2,6 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Tuple
-
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.npc import NPC
@@ -11,7 +9,7 @@ from tuxemon.session import Session
 
 
 # TODO: move to some other place?
-def collide(condition: MapCondition, tile_position: Tuple[int, int]) -> bool:
+def collide(condition: MapCondition, tile_position: tuple[int, int]) -> bool:
     """
     Check collision of a tile position with the map condition position.
 

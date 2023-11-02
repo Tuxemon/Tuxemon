@@ -36,20 +36,10 @@ from __future__ import annotations
 import datetime as dt
 import logging
 import random
+from collections.abc import Iterable, MutableMapping, Sequence
 from functools import partial
 from itertools import chain
-from typing import (
-    Dict,
-    Iterable,
-    List,
-    Literal,
-    MutableMapping,
-    NamedTuple,
-    Optional,
-    Sequence,
-    Tuple,
-    Union,
-)
+from typing import Literal, NamedTuple, Optional, Union
 
 import pygame
 from pygame.rect import Rect
@@ -153,7 +143,7 @@ def compute_text_animation_time(message: str) -> float:
 
 class MethodAnimationCache:
     def __init__(self) -> None:
-        self._sprites: Dict[
+        self._sprites: dict[
             Union[Technique, Condition, Item], Optional[Sprite]
         ] = {}
 
@@ -238,16 +228,16 @@ class CombatState(CombatAnimations):
 
     def __init__(
         self,
-        players: Tuple[NPC, NPC],
+        players: tuple[NPC, NPC],
         graphics: BattleGraphicsModel,
         combat_type: Literal["monster", "trainer"],
     ) -> None:
         self.phase: Optional[CombatPhase] = None
-        self._damage_map: List[DamageMap] = []
+        self._damage_map: list[DamageMap] = []
         self._method_cache = MethodAnimationCache()
-        self._decision_queue: List[Monster] = []
-        self._action_queue: List[EnqueuedAction] = []
-        self._log_action: List[Tuple[int, EnqueuedAction]] = []
+        self._decision_queue: list[Monster] = []
+        self._action_queue: list[EnqueuedAction] = []
+        self._log_action: list[tuple[int, EnqueuedAction]] = []
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self._layout = dict()  # player => home areas on screen
         self._turn: int = 0
@@ -621,7 +611,7 @@ class CombatState(CombatAnimations):
 
         """
 
-        def rank_action(action: EnqueuedAction) -> Tuple[int, int]:
+        def rank_action(action: EnqueuedAction) -> tuple[int, int]:
             if action.technique is None:
                 return 0, 0
             sort = action.technique.sort
@@ -845,7 +835,7 @@ class CombatState(CombatAnimations):
         for monster in self.active_monsters:
             for status in monster.status:
                 if status.icon:
-                    status_ico: Tuple[float, float] = (0.0, 0.0)
+                    status_ico: tuple[float, float] = (0.0, 0.0)
                     if self.players[1].max_position > 1:
                         if monster == self.monsters_in_play_ai[0]:
                             status_ico = (
@@ -1299,10 +1289,6 @@ class CombatState(CombatAnimations):
         winners = {
             ele.attack for ele in self._damage_map if ele.defense == monster
         }
-        # total damage took from all monsters
-        tot_damage_all = sum(
-            [ele.damage for ele in self._damage_map if ele.defense == monster]
-        )
 
         if hits:
             # Award experience
@@ -1312,14 +1298,6 @@ class CombatState(CombatAnimations):
             # Award money
             awarded_mon = monster.level * monster.money_modifier
             for winner in winners:
-                # total damage inflicted by a monster (winner)
-                tot_damage_mon = sum(
-                    [
-                        ele.damage
-                        for ele in self._damage_map
-                        if ele.defense == monster and ele.attack == winner
-                    ]
-                )
                 # check before giving exp
                 levels = winner.give_experience(awarded_exp)
                 # check after giving exp

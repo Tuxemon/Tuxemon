@@ -10,15 +10,9 @@ from __future__ import annotations
 import logging
 from abc import ABC
 from collections import defaultdict
+from collections.abc import MutableMapping
 from functools import partial
-from typing import (
-    TYPE_CHECKING,
-    List,
-    Literal,
-    MutableMapping,
-    Optional,
-    Tuple,
-)
+from typing import TYPE_CHECKING, Literal, Optional
 
 import pygame
 from pygame.rect import Rect
@@ -41,14 +35,14 @@ logger = logging.getLogger(__name__)
 
 sprite_layer = 0
 hud_layer = 100
-TimedCallable = Tuple[partial[None], float]
+TimedCallable = tuple[partial[None], float]
 
 
 def toggle_visible(sprite: Sprite) -> None:
     sprite.visible = not sprite.visible
 
 
-def scale_area(area: Tuple[int, int, int, int]) -> Rect:
+def scale_area(area: tuple[int, int, int, int]) -> Rect:
     return Rect(tools.scale_sequence(area))
 
 
@@ -67,7 +61,7 @@ class CombatAnimations(ABC, Menu[None]):
 
     def __init__(
         self,
-        players: Tuple[NPC, NPC],
+        players: tuple[NPC, NPC],
         graphics: BattleGraphicsModel,
     ) -> None:
         super().__init__()
@@ -75,17 +69,17 @@ class CombatAnimations(ABC, Menu[None]):
         self.graphics = graphics
 
         self.monsters_in_play: MutableMapping[
-            NPC, List[Monster]
+            NPC, list[Monster]
         ] = defaultdict(list)
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self.hud: MutableMapping[Monster, Sprite] = {}
         self.is_trainer_battle = False
-        self.capdevs: List[CaptureDeviceSprite] = []
-        self.text_animations_queue: List[TimedCallable] = []
+        self.capdevs: list[CaptureDeviceSprite] = []
+        self.text_animations_queue: list[TimedCallable] = []
         self._text_animation_time_left: float = 0
         self._hp_bars: MutableMapping[Monster, HpBar] = {}
         self._exp_bars: MutableMapping[Monster, ExpBar] = {}
-        self._status_icons: defaultdict[Monster, List[Sprite]] = defaultdict(
+        self._status_icons: defaultdict[Monster, list[Sprite]] = defaultdict(
             list
         )
 

@@ -10,6 +10,7 @@ from typing import final
 from tuxemon import formula
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
+from tuxemon.event.actions.play_music import PlayMusicAction
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
@@ -103,10 +104,7 @@ class RandomBattleAction(EventAction):
 
         # Start some music!
         filename = env.battle_music
-        self.session.client.event_engine.execute_action(
-            "play_music",
-            [filename],
-        )
+        PlayMusicAction(filename=filename).start()
 
     def update(self) -> None:
         try:

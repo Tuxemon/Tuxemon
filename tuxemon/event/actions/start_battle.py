@@ -9,6 +9,7 @@ from typing import final
 from tuxemon.combat import alive_party, check_battle_legal
 from tuxemon.db import db
 from tuxemon.event import get_npc
+from tuxemon.event.actions.play_music import PlayMusicAction
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.combat.combat import CombatState
 
@@ -72,10 +73,7 @@ class StartBattleAction(EventAction):
 
         # Start some music!
         filename = env.battle_music
-        self.session.client.event_engine.execute_action(
-            "play_music",
-            [filename],
-        )
+        PlayMusicAction(filename=filename).start()
 
     def update(self) -> None:
         try:

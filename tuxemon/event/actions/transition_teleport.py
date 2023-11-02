@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional, final
 
+from tuxemon.event.actions.delayed_teleport import DelayedTeleportAction
 from tuxemon.event.actions.screen_transition import ScreenTransitionAction
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
@@ -48,7 +49,7 @@ class TransitionTeleportAction(EventAction):
 
         # Start the screen transition
         self.transition = ScreenTransitionAction(
-            self.transition_time, self.rgb
+            transition_time=self.transition_time, rgb=self.rgb
         )
         self.transition.start()
 
@@ -63,8 +64,7 @@ class TransitionTeleportAction(EventAction):
         if self.transition.done:
             self.transition.cleanup()
             # set the delayed teleport
-            self.session.client.event_engine.execute_action(
-                "delayed_teleport",
-                (self.map_name, self.x, self.y),
-            )
+            DelayedTeleportAction(
+                map_name=self.map_name, position_x=self.x, position_y=self.y
+            ).start()
             self.stop()

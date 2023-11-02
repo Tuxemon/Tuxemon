@@ -6,7 +6,9 @@ import logging
 from dataclasses import dataclass
 from typing import final
 
+from tuxemon.event.actions.teleport import TeleportAction
 from tuxemon.event.eventaction import EventAction
+from tuxemon.event.actions.screen_transition import ScreenTransitionAction
 
 logger = logging.getLogger(__name__)
 
@@ -34,7 +36,7 @@ class TeleportFaintAction(EventAction):
 
         # If game variable exists, then teleport:
         if "teleport_faint" in player.game_variables:
-            teleport = player.game_variables["teleport_faint"].split(" ")
+            teleport = str(player.game_variables["teleport_faint"]).split(" ")
         else:
             logger.error(
                 "Teleport_faint action failed, because the teleport_faint variable has not been set."
@@ -42,7 +44,8 @@ class TeleportFaintAction(EventAction):
             return
 
         # Start the screen transition
-        # self.game.event_engine.execute_action("screen_transition", [.3])
-
+        ScreenTransitionAction(transition_time=0.3).start()
         # Call the teleport action
-        self.session.client.event_engine.execute_action("teleport", teleport)
+        TeleportAction(
+            map_name=teleport[0], x=int(teleport[1]), y=int(teleport[2])
+        ).start()

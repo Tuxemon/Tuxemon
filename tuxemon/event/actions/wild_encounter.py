@@ -4,12 +4,13 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import Union, final
+from typing import Optional, final
 
 from tuxemon import monster
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
+from tuxemon.graphics import ColorLike, string_to_colorlike
 from tuxemon.npc import NPC
 from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.transition.flash import FlashTransition
@@ -27,23 +28,25 @@ class WildEncounterAction(EventAction):
     Script usage:
         .. code-block::
 
-            wild_encounter <monster_slug>,<monster_level>[,exp_mod][,mon_mod][,env]
+            wild_encounter <monster_slug>,<monster_level>[,exp_mod][,mon_mod][,env][,rgb]
 
     Script parameters:
-        monster_slug: Monster slug, if missing, then random.
-        monster_level: Level of the added monster.
-        exp_mod: Experience modifier
-        mon_mod: Money modifier
+        monster_slug: Monster slug.
+        monster_level: Level of monster.
+        exp_mod: Experience modifier.
+        mon_mod: Money modifier.
         env: Environment (grass default)
+        rgb: color (eg red > 255,0,0 > 255:0:0) - default rgb(255,255,255)
 
     """
 
     name = "wild_encounter"
     monster_slug: str
     monster_level: int
-    exp: Union[int, None] = None
-    money: Union[int, None] = None
-    env: Union[str, None] = None
+    exp: Optional[int] = None
+    money: Optional[int] = None
+    env: Optional[str] = None
+    rgb: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
@@ -95,7 +98,10 @@ class WildEncounterAction(EventAction):
         self.world.stop_player()
 
         # flash the screen
-        self.session.client.push_state(FlashTransition())
+        rgb: ColorLike = (255, 255, 255)
+        if self.rgb:
+            rgb = string_to_colorlike(self.rgb)
+        self.session.client.push_state(FlashTransition(rgb))
 
         # Start some music!
         filename = env.battle_music

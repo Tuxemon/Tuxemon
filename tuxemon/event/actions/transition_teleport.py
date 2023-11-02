@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.actions.screen_transition import ScreenTransitionAction
@@ -22,13 +22,14 @@ class TransitionTeleportAction(EventAction):
     Script usage:
         .. code-block::
 
-            transition_teleport <map_name>,<x>,<y>,<transition_time>
+            transition_teleport <map_name>,<x>,<y>[,transition_time][,rgb]
 
     Script parameters:
         map_name: Name of the map to teleport to.
         x: X coordinate of the map to teleport to.
         y: Y coordinate of the map to teleport to.
-        transition_time: Transition time in seconds.
+        transition_time: Transition time in seconds - default 2
+        rgb: color (eg red > 255,0,0 > 255:0:0) - default rgb(0,0,0)
 
     """
 
@@ -37,9 +38,7 @@ class TransitionTeleportAction(EventAction):
     x: int
     y: int
     transition_time: Optional[float] = None
-    transition: Optional[ScreenTransitionAction] = field(
-        default=None, init=False
-    )
+    rgb: Optional[str] = None
 
     def start(self) -> None:
         world = self.session.client.get_state_by_name(WorldState)
@@ -48,11 +47,9 @@ class TransitionTeleportAction(EventAction):
             return
 
         # Start the screen transition
-        self.transition = self.session.client.event_engine.get_action(
-            "screen_transition",
-            [self.transition_time],
+        self.transition = ScreenTransitionAction(
+            self.transition_time, self.rgb
         )
-        assert self.transition
         self.transition.start()
 
     def update(self) -> None:

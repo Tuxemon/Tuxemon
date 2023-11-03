@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import random
-from typing import TYPE_CHECKING, Tuple
+from typing import TYPE_CHECKING
 
 from tuxemon.combat import pre_checking
 from tuxemon.db import ItemCategory
@@ -52,7 +52,7 @@ class AI:
         # send data
         self.action_tech(technique, target)
 
-    def track_next_use(self) -> Tuple[Technique, Monster]:
+    def track_next_use(self) -> tuple[Technique, Monster]:
         """
         Tracks next_use and recharge, if both unusable, skip.
         """

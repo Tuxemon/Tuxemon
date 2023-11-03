@@ -8,23 +8,9 @@ import os.path
 import sys
 import warnings
 from abc import ABCMeta
+from collections.abc import Callable, Generator, Mapping, Sequence
 from importlib import import_module
-from typing import (
-    Any,
-    Callable,
-    Dict,
-    Generator,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    Set,
-    Tuple,
-    Type,
-    TypeVar,
-    Union,
-    overload,
-)
+from typing import Any, Optional, TypeVar, Union, overload
 
 import pygame
 from pygame.rect import Rect
@@ -282,10 +268,10 @@ class StateManager:
         self.package = package
         # TODO: consider API for handling hooks
         self._on_state_change_hook = on_state_change
-        self._state_queue: List[Tuple[str, Mapping[str, Any]]] = list()
-        self._state_stack: List[State] = list()
-        self._state_dict: Dict[str, Type[State]] = dict()
-        self._resume_set: Set[State] = set()
+        self._state_queue: list[tuple[str, Mapping[str, Any]]] = list()
+        self._state_stack: list[State] = list()
+        self._state_dict: dict[str, type[State]] = dict()
+        self._resume_set: set[State] = set()
 
     def auto_state_discovery(self) -> None:
         """
@@ -303,7 +289,7 @@ class StateManager:
             for state in self.collect_states_from_path(folder):
                 self.register_state(state)
 
-    def register_state(self, state: Type[State]) -> None:
+    def register_state(self, state: type[State]) -> None:
         """
         Add a state class.
 
@@ -332,7 +318,7 @@ class StateManager:
     @staticmethod
     def collect_states_from_module(
         import_name: str,
-    ) -> Generator[Type[State], None, None]:
+    ) -> Generator[type[State], None, None]:
         """
         Given a module, return all classes in it that are a game state.
 
@@ -355,7 +341,7 @@ class StateManager:
     def collect_states_from_path(
         self,
         folder: str,
-    ) -> Generator[Type[State], None, None]:
+    ) -> Generator[type[State], None, None]:
         """
         Load states from disk, but do not register it.
 
@@ -410,7 +396,7 @@ class StateManager:
             self._resume_set.remove(state)
             state.resume()
 
-    def query_all_states(self) -> Mapping[str, Type[State]]:
+    def query_all_states(self) -> Mapping[str, type[State]]:
         """
         Return a dictionary of all loaded states.
 
@@ -637,7 +623,7 @@ class StateManager:
         return self._state_stack[:]
 
     @property
-    def queued_states(self) -> Sequence[Tuple[str, Mapping[str, Any]]]:
+    def queued_states(self) -> Sequence[tuple[str, Mapping[str, Any]]]:
         """
         Sequence of states that are queued.
 
@@ -654,13 +640,13 @@ class StateManager:
     @overload
     def get_state_by_name(
         self,
-        state_name: Type[StateType],
+        state_name: type[StateType],
     ) -> StateType:
         pass
 
     def get_state_by_name(
         self,
-        state_name: Union[str, Type[State]],
+        state_name: Union[str, type[State]],
     ) -> State:
         """
         Query the state stack for a state by the name supplied.
@@ -684,7 +670,7 @@ class StateManager:
     def get_queued_state_by_name(
         self,
         state_name: str,
-    ) -> Tuple[str, Mapping[str, Any]]:
+    ) -> tuple[str, Mapping[str, Any]]:
         """
         Query the queued state stack for a state by the name supplied.
 

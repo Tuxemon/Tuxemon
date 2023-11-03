@@ -5,17 +5,11 @@ from __future__ import annotations
 import itertools
 import logging
 import os
+from collections.abc import Mapping, MutableMapping, Sequence
 from typing import (
     TYPE_CHECKING,
     Any,
-    Dict,
-    List,
-    Mapping,
-    MutableMapping,
     Optional,
-    Sequence,
-    Set,
-    Tuple,
     TypedDict,
     Union,
     no_type_check,
@@ -65,17 +59,17 @@ class EntityCollision(TypedDict):
 
 class AnimationInfo(TypedDict):
     animation: SurfaceAnimation
-    position: Tuple[int, int]
+    position: tuple[int, int]
     layer: int
 
 
-CollisionDict = Dict[
-    Tuple[int, int],
+CollisionDict = dict[
+    tuple[int, int],
     Union[EntityCollision, RegionProperties, None],
 ]
 
 CollisionMap = Mapping[
-    Tuple[int, int],
+    tuple[int, int],
     Union[EntityCollision, RegionProperties, None],
 ]
 
@@ -112,8 +106,8 @@ class WorldState(state.State):
         #                           Player Details                           #
         ######################################################################
 
-        self.npcs: Dict[str, NPC] = {}
-        self.npcs_off_map: Dict[str, NPC] = {}
+        self.npcs: dict[str, NPC] = {}
+        self.npcs_off_map: dict[str, NPC] = {}
         self.wants_to_move_player: Optional[Direction] = None
         self.allow_player_movement = True
 
@@ -148,7 +142,7 @@ class WorldState(state.State):
         #                       Fullscreen Animations                        #
         ######################################################################
 
-        self.map_animations: Dict[str, AnimationInfo] = {}
+        self.map_animations: dict[str, AnimationInfo] = {}
 
         if local_session.player is None:
             new_player = Player(prepare.CONFIG.player_npc, world=self)
@@ -431,8 +425,8 @@ class WorldState(state.State):
         # TODO: move all drawing into a "WorldView" widget
         # interlace player sprites with tiles surfaces.
         # eventually, maybe use pygame sprites or something similar
-        world_surfaces: List[
-            Tuple[pygame.surface.Surface, Vector2, int]
+        world_surfaces: list[
+            tuple[pygame.surface.Surface, Vector2, int]
         ] = list()
 
         # temporary
@@ -569,7 +563,7 @@ class WorldState(state.State):
         """
         return self.npcs.get(slug)
 
-    def get_entity_pos(self, pos: Tuple[int, int]) -> Optional[NPC]:
+    def get_entity_pos(self, pos: tuple[int, int]) -> Optional[NPC]:
         """
         Get an entity from the world by its position.
 
@@ -604,9 +598,9 @@ class WorldState(state.State):
 
     def check_collision_zones(
         self,
-        map: MutableMapping[Tuple[int, int], Optional[RegionProperties]],
+        map: MutableMapping[tuple[int, int], Optional[RegionProperties]],
         label: str,
-    ) -> Optional[Tuple[int, int]]:
+    ) -> Optional[tuple[int, int]]:
         """
         Returns coords (tuple) of specific collision zones.
 
@@ -651,9 +645,9 @@ class WorldState(state.State):
 
     def pathfind(
         self,
-        start: Tuple[int, int],
-        dest: Tuple[int, int],
-    ) -> Optional[Sequence[Tuple[int, int]]]:
+        start: tuple[int, int],
+        dest: tuple[int, int],
+    ) -> Optional[Sequence[tuple[int, int]]]:
         """
         Pathfind.
 
@@ -695,9 +689,9 @@ class WorldState(state.State):
 
     def pathfind_r(
         self,
-        dest: Tuple[int, int],
-        queue: List[PathfindNode],
-        known_nodes: Set[Tuple[int, int]],
+        dest: tuple[int, int],
+        queue: list[PathfindNode],
+        known_nodes: set[tuple[int, int]],
     ) -> Optional[PathfindNode]:
         """
         Breadth first search algorithm.
@@ -732,10 +726,10 @@ class WorldState(state.State):
 
     def get_explicit_tile_exits(
         self,
-        position: Tuple[int, int],
+        position: tuple[int, int],
         tile: Union[RegionProperties, EntityCollision],
-        skip_nodes: Optional[Set[Tuple[int, int]]] = None,
-    ) -> Optional[Sequence[Tuple[int, int]]]:
+        skip_nodes: Optional[set[tuple[int, int]]] = None,
+    ) -> Optional[Sequence[tuple[int, int]]]:
         """
         Check for exits from tile which are defined in the map.
 
@@ -776,10 +770,10 @@ class WorldState(state.State):
 
     def get_exits(
         self,
-        position: Tuple[int, int],
+        position: tuple[int, int],
         collision_map: Optional[CollisionMap] = None,
-        skip_nodes: Optional[Set[Tuple[int, int]]] = None,
-    ) -> Sequence[Tuple[int, int]]:
+        skip_nodes: Optional[set[tuple[int, int]]] = None,
+    ) -> Sequence[tuple[int, int]]:
         """
         Return list of tiles which can be moved into.
 
@@ -923,8 +917,8 @@ class WorldState(state.State):
 
     def get_pos_from_tilepos(
         self,
-        tile_position: Tuple[int, int],
-    ) -> Tuple[int, int]:
+        tile_position: tuple[int, int],
+    ) -> tuple[int, int]:
         """
         Returns the map pixel coordinate based on tile position.
 
@@ -947,7 +941,7 @@ class WorldState(state.State):
     def project(
         self,
         position: Sequence[float],
-    ) -> Tuple[int, int]:
+    ) -> tuple[int, int]:
         return (
             int(position[0] * self.tile_size[0]),
             int(position[1] * self.tile_size[1]),
@@ -976,7 +970,7 @@ class WorldState(state.State):
         for entity in self.npcs_off_map.values():
             entity.update(time_delta)
 
-    def _collision_box_to_pgrect(self, box: Tuple[int, int]) -> Rect:
+    def _collision_box_to_pgrect(self, box: tuple[int, int]) -> Rect:
         """
         Returns a Rect (in screen-coords) version of a collision box (in world-coords).
         """

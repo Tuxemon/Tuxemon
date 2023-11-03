@@ -5,21 +5,10 @@ from __future__ import annotations
 import logging
 import os
 import uuid
+from collections.abc import Iterable, Mapping, Sequence
 from functools import partial
 from math import hypot
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Dict,
-    Iterable,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    Tuple,
-    TypedDict,
-    Union,
-)
+from typing import TYPE_CHECKING, Any, Optional, TypedDict, Union
 
 from tuxemon import surfanim
 from tuxemon.battle import Battle, decode_battle, encode_battle
@@ -64,19 +53,19 @@ logger = logging.getLogger(__name__)
 class NPCState(TypedDict):
     current_map: str
     facing: Direction
-    game_variables: Dict[str, Any]
+    game_variables: dict[str, Any]
     battles: Sequence[Mapping[str, Any]]
-    tuxepedia: Dict[str, SeenStatus]
-    contacts: Dict[str, str]
-    money: Dict[str, int]
+    tuxepedia: dict[str, SeenStatus]
+    contacts: dict[str, str]
+    money: dict[str, int]
     template: Sequence[Mapping[str, Any]]
     items: Sequence[Mapping[str, Any]]
     monsters: Sequence[Mapping[str, Any]]
     player_name: str
     plague: PlagueType
-    monster_boxes: Dict[str, Sequence[Mapping[str, Any]]]
-    item_boxes: Dict[str, Sequence[Mapping[str, Any]]]
-    tile_pos: Tuple[int, int]
+    monster_boxes: dict[str, Sequence[Mapping[str, Any]]]
+    item_boxes: dict[str, Sequence[Mapping[str, Any]]]
+    tile_pos: tuple[int, int]
 
 
 # reference direction and movement states to animation names
@@ -129,38 +118,38 @@ class NPC(Entity[NPCState]):
 
         # general
         self.behavior: Optional[str] = "wander"  # not used for now
-        self.game_variables: Dict[str, Any] = {}  # Tracks the game state
-        self.battles: List[Battle] = []  # Tracks the battles
+        self.game_variables: dict[str, Any] = {}  # Tracks the game state
+        self.battles: list[Battle] = []  # Tracks the battles
         self.forfeit: bool = True
         # Tracks Tuxepedia (monster seen or caught)
-        self.tuxepedia: Dict[str, SeenStatus] = {}
-        self.contacts: Dict[str, str] = {}
-        self.money: Dict[str, int] = {}  # Tracks money
+        self.tuxepedia: dict[str, SeenStatus] = {}
+        self.contacts: dict[str, str] = {}
+        self.money: dict[str, int] = {}  # Tracks money
         self.interactions: Sequence[
             str
-        ] = []  # List of ways player can interact with the Npc
+        ] = []  # list of ways player can interact with the Npc
         self.isplayer: bool = False  # used for various tests, idk
         # This is a list of tuxemon the npc has. Do not modify directly
-        self.monsters: List[Monster] = []
+        self.monsters: list[Monster] = []
         # The player's items.
-        self.items: List[Item] = []
-        self.template: List[Template] = []
+        self.items: list[Item] = []
+        self.template: list[Template] = []
         self.economy: Optional[Economy] = None
         # related to spyderbite (PlagueType)
         self.plague = PlagueType.healthy
         # Variables for long-term item and monster storage
         # Keeping these separate so other code can safely
         # assume that all values are lists
-        self.monster_boxes: Dict[str, List[Monster]] = {}
-        self.item_boxes: Dict[str, List[Item]] = {}
+        self.monster_boxes: dict[str, list[Monster]] = {}
+        self.item_boxes: dict[str, list[Item]] = {}
         # nr tuxemon fight
         self.max_position: int = 1
         self.speed = 10  # To determine combat order (not related to movement!)
         self.moves: Sequence[Technique] = []  # list of techniques
 
         # pathfinding and waypoint related
-        self.pathfinding: Optional[Tuple[int, int]] = None
-        self.path: List[Tuple[int, int]] = []
+        self.pathfinding: Optional[tuple[int, int]] = None
+        self.path: list[tuple[int, int]] = []
         self.final_move_dest = [
             0,
             0,
@@ -170,7 +159,7 @@ class NPC(Entity[NPCState]):
         # If entity falls off of map due to a bug, it can be returned to this value.
         # When moving to a waypoint, this is used to detect if movement has overshot
         # the destination due to speed issues or framerate jitters.
-        self.path_origin: Optional[Tuple[int, int]] = None
+        self.path_origin: Optional[tuple[int, int]] = None
 
         # movement related
         self.move_direction: Optional[
@@ -190,10 +179,10 @@ class NPC(Entity[NPCState]):
         # TODO: move sprites into renderer so class can be used headless
         self.playerHeight = 0
         self.playerWidth = 0
-        self.standing: Dict[
+        self.standing: dict[
             str, pygame.surface.Surface
         ] = {}  # Standing animation frames
-        self.sprite: Dict[
+        self.sprite: dict[
             str, surfanim.SurfaceAnimation
         ] = {}  # Moving animation frames
         self.surface_animations = surfanim.SurfaceAnimationCollection()
@@ -327,7 +316,7 @@ class NPC(Entity[NPCState]):
                     for num in range(4)
                 ]
 
-                frames: List[Tuple[pygame.surface.Surface, float]] = []
+                frames: list[tuple[pygame.surface.Surface, float]] = []
                 for image in images:
                     surface = load_and_scale(image)
                     frames.append((surface, frame_duration))
@@ -344,7 +333,7 @@ class NPC(Entity[NPCState]):
 
     def get_sprites(
         self, layer: int
-    ) -> Sequence[Tuple[pygame.surface.Surface, Vector2, int]]:
+    ) -> Sequence[tuple[pygame.surface.Surface, Vector2, int]]:
         """
         Get the surfaces and layers for the sprite.
 
@@ -373,7 +362,7 @@ class NPC(Entity[NPCState]):
         state = animation_mapping[self.moving][self.facing]
         return [(get_frame(frame_dict, state), proj(self.position3), layer)]
 
-    def pathfind(self, destination: Tuple[int, int]) -> None:
+    def pathfind(self, destination: tuple[int, int]) -> None:
         """
         Find a path and also start it.
 
@@ -530,7 +519,7 @@ class NPC(Entity[NPCState]):
             vector2_to_tile_pos(Vector2(self.tile_pos) + dirs2[direction])
         )
 
-    def valid_movement(self, tile: Tuple[int, int]) -> bool:
+    def valid_movement(self, tile: tuple[int, int]) -> bool:
         """
         Check the game map to determine if a tile can be moved into.
 
@@ -550,7 +539,7 @@ class NPC(Entity[NPCState]):
         )
 
     @property
-    def move_destination(self) -> Optional[Tuple[int, int]]:
+    def move_destination(self) -> Optional[tuple[int, int]]:
         """Only used for the player_moved condition."""
         if self.path:
             return self.path[-1]

@@ -4,20 +4,9 @@ from __future__ import annotations
 
 import logging
 import math
+from collections.abc import Callable, Iterable, Sequence
 from functools import partial
-from typing import (
-    Any,
-    Callable,
-    Dict,
-    Generic,
-    Iterable,
-    Literal,
-    Optional,
-    Sequence,
-    Tuple,
-    TypeVar,
-    Union,
-)
+from typing import Any, Generic, Literal, Optional, TypeVar, Union
 
 import pygame
 import pygame_menu
@@ -221,7 +210,7 @@ class Menu(Generic[T], state.State):
         self.state: MenuState = "closed"
         self._show_contents = False
         self._needs_refresh = False
-        self._anchors: Dict[str, Union[int, Tuple[int, int]]] = {}
+        self._anchors: dict[str, Union[int, tuple[int, int]]] = {}
         self.__dict__.update(kwargs)
 
         # holds sprites representing menu items
@@ -852,7 +841,7 @@ class Menu(Generic[T], state.State):
                 self.client.pop_state()
 
     def anchor(
-        self, attribute: str, value: Union[int, Tuple[int, int]]
+        self, attribute: str, value: Union[int, tuple[int, int]]
     ) -> None:
         """
         Set an anchor for the menu window.

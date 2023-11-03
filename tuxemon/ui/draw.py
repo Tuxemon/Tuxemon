@@ -2,16 +2,9 @@ from __future__ import annotations
 
 import logging
 import math
+from collections.abc import Callable, Generator, Iterable, Sequence
 from itertools import product
-from typing import (
-    Callable,
-    Generator,
-    Iterable,
-    List,
-    Optional,
-    Sequence,
-    Tuple,
-)
+from typing import Optional
 
 import pygame
 from pygame.rect import Rect
@@ -61,7 +54,7 @@ class GraphicBox(Sprite):
         self._background = background
         self._color = color
         self._fill_tiles = fill_tiles
-        self._tiles: List[pygame.surface.Surface] = []
+        self._tiles: list[pygame.surface.Surface] = []
         self._tile_size = 0, 0
 
         if border:
@@ -134,7 +127,7 @@ class GraphicBox(Sprite):
             tw, th = self._tile_size
 
             # draw top and bottom tiles
-            area: Optional[Tuple[int, int, int, int]]
+            area: Optional[tuple[int, int, int, int]]
 
             for x in range(inner.left, inner.right, tw):
                 if x + tw >= inner.right:
@@ -169,7 +162,7 @@ def guest_font_height(font: pygame.font.Font) -> int:
 def guess_rendered_text_size(
     text: str,
     font: pygame.font.Font,
-) -> Tuple[int, int]:
+) -> tuple[int, int]:
     return font.size(text)
 
 
@@ -197,7 +190,7 @@ def iter_render_text(
     fg: ColorLike,
     bg: ColorLike,
     rect: Rect,
-) -> Generator[Tuple[Rect, pygame.surface.Surface], None, None]:
+) -> Generator[tuple[Rect, pygame.surface.Surface], None, None]:
     line_height = guest_font_height(font)
     for line_index, line in enumerate(constrain_width(text, font, rect.width)):
         top = rect.top + line_index * line_height
@@ -259,7 +252,7 @@ def iterate_word_lines(text: str) -> Generator[Iterable[str], None, None]:
 def blit_alpha(
     target: pygame.surface.Surface,
     source: pygame.surface.Surface,
-    location: Tuple[int, int],
+    location: tuple[int, int],
     opacity: int,
 ) -> None:
     """

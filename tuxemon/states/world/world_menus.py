@@ -14,7 +14,7 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
-from tuxemon.states.journal import MonsterInfoState
+from tuxemon.states.monster_info import MonsterInfoState
 from tuxemon.states.techniques import TechniqueMenuState
 from tuxemon.tools import open_choice_dialog, open_dialog
 
@@ -134,7 +134,9 @@ class WorldMenuState(PygameMenuState):
         def open_monster_stats(monster: Monster) -> None:
             """Show monster statistics."""
             self.client.pop_state()
-            self.client.push_state(MonsterInfoState(monster=monster))
+            self.client.push_state(
+                MonsterInfoState(monster=monster, source=self.name)
+            )
 
         def positive_answer(monster: Monster) -> None:
             success = False

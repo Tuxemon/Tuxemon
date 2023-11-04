@@ -2,7 +2,8 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Any, Callable, Optional, Sequence, Tuple
+from collections.abc import Callable, Sequence
+from typing import Any, Optional
 
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.platform.const import buttons
@@ -29,7 +30,7 @@ class DialogState(PopUpMenu):
         self,
         text: Sequence[str] = (),
         avatar: Optional[Sprite] = None,
-        menu: Optional[Sequence[Tuple[str, str, Callable[[], None]]]] = None,
+        menu: Optional[Sequence[tuple[str, str, Callable[[], None]]]] = None,
         **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)

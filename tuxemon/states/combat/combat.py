@@ -36,22 +36,10 @@ from __future__ import annotations
 import datetime as dt
 import logging
 import random
-from collections import defaultdict
+from collections.abc import Iterable, MutableMapping, Sequence
 from functools import partial
 from itertools import chain
-from typing import (
-    Dict,
-    Iterable,
-    List,
-    Literal,
-    MutableMapping,
-    NamedTuple,
-    Optional,
-    Sequence,
-    Set,
-    Tuple,
-    Union,
-)
+from typing import Literal, NamedTuple, Optional, Union
 
 import pygame
 from pygame.rect import Rect
@@ -75,7 +63,6 @@ from tuxemon.db import (
     PlagueType,
     SeenStatus,
 )
-from tuxemon.event.actions.evolution import EvolutionAction
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -120,6 +107,12 @@ class EnqueuedAction(NamedTuple):
     target: Monster
 
 
+class DamageMap(NamedTuple):
+    attack: Monster
+    defense: Monster
+    damage: int
+
+
 # TODO: move to mod config
 MULT_MAP = {
     4: "attack_very_effective",
@@ -149,7 +142,7 @@ def compute_text_animation_time(message: str) -> float:
 
 class MethodAnimationCache:
     def __init__(self) -> None:
-        self._sprites: Dict[
+        self._sprites: dict[
             Union[Technique, Condition, Item], Optional[Sprite]
         ] = {}
 
@@ -234,19 +227,17 @@ class CombatState(CombatAnimations):
 
     def __init__(
         self,
-        players: Tuple[NPC, NPC],
+        players: tuple[NPC, NPC],
         graphics: BattleGraphicsModel,
         combat_type: Literal["monster", "trainer"],
     ) -> None:
         self.phase: Optional[CombatPhase] = None
-        self._damage_map: MutableMapping[Monster, Set[Monster]] = defaultdict(
-            set
-        )
+        self._damage_map: list[DamageMap] = []
         self._method_cache = MethodAnimationCache()
-        self._decision_queue: List[Monster] = []
-        self._action_queue: List[EnqueuedAction] = []
-        self._pending_queue: List[EnqueuedAction] = []
-        self._log_action: List[Tuple[int, EnqueuedAction]] = []
+        self._decision_queue: list[Monster] = []
+        self._action_queue: list[EnqueuedAction] = []
+        self._pending_queue: list[EnqueuedAction] = []
+        self._log_action: list[tuple[int, EnqueuedAction]] = []
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self._layout = dict()  # player => home areas on screen
         self._turn: int = 0
@@ -629,7 +620,7 @@ class CombatState(CombatAnimations):
 
         """
 
-        def rank_action(action: EnqueuedAction) -> Tuple[int, int]:
+        def rank_action(action: EnqueuedAction) -> tuple[int, int]:
             if action.technique is None:
                 return 0, 0
             sort = action.technique.sort
@@ -853,7 +844,7 @@ class CombatState(CombatAnimations):
         for monster in self.active_monsters:
             for status in monster.status:
                 if status.icon:
-                    status_ico: Tuple[float, float] = (0.0, 0.0)
+                    status_ico: tuple[float, float] = (0.0, 0.0)
                     if self.players[1].max_position > 1:
                         if monster == self.monsters_in_play_ai[0]:
                             status_ico = (
@@ -937,6 +928,21 @@ class CombatState(CombatAnimations):
             )
         )
         state.rect = rect
+
+    def enqueue_damage(
+        self, attacker: Monster, defender: Monster, damage: int
+    ) -> None:
+        """
+        Add damages to damage map.
+
+        Parameters:
+            attacker: Monster.
+            defender: Monster.
+            damage: Quantity of damage.
+
+        """
+        damage_map = DamageMap(attacker, defender, damage)
+        self._damage_map.append(damage_map)
 
     def enqueue_action(
         self,
@@ -1106,9 +1112,9 @@ class CombatState(CombatAnimations):
                         hit_delay + 0.6,
                     )
 
-                # TODO: track total damage
                 # Track damage
-                self._damage_map[target].add(user)
+                self.enqueue_damage(user, target, result_tech["damage"])
+
                 # monster infected
                 if user.plague == PlagueType.infected:
                     m = T.format(
@@ -1271,12 +1277,7 @@ class CombatState(CombatAnimations):
             monster: Monster that will faint.
 
         """
-        faint = Condition()
-        faint.load("faint")
-        monster.current_hp = 0
-        if monster.status:
-            monster.status[0].nr_turn = 0
-        monster.status = [faint]
+        monster.faint()
 
         """
         Experience is earned when the target monster is fainted.
@@ -1285,23 +1286,31 @@ class CombatState(CombatAnimations):
         """
         message: str = ""
         action_time = 0.0
-        if monster in self._damage_map:
-            # Award Experience
+
+        # nr times fainted monster got damaged
+        hits = len([ele for ele in self._damage_map if ele.defense == monster])
+        # all monsters that hit fainted monster
+        winners = {
+            ele.attack for ele in self._damage_map if ele.defense == monster
+        }
+
+        if hits:
+            # Award experience
             awarded_exp = (
-                monster.total_experience
-                // (monster.level * len(self._damage_map[monster]))
+                monster.total_experience // (monster.level * hits)
             ) * monster.experience_modifier
+            # Award money
             awarded_mon = monster.level * monster.money_modifier
-            for winners in self._damage_map[monster]:
+            for winner in winners:
                 # check before giving exp
-                levels = winners.give_experience(awarded_exp)
+                levels = winner.give_experience(awarded_exp)
                 # check after giving exp
                 if self.is_trainer_battle:
                     self._prize += awarded_mon
                 # it checks if there is a "level up"
-                if levels >= 1 and winners in self.players[0].monsters:
+                if levels >= 1 and winner in self.players[0].monsters:
                     # checks and eventually teaches move/moves
-                    mex = check_moves(winners, levels)
+                    mex = check_moves(winner, levels)
                     if mex:
                         message += "\n" + mex
                         action_time += compute_text_animation_time(message)
@@ -1320,16 +1329,18 @@ class CombatState(CombatAnimations):
                             self._layout[self.players[0]]["hud"][0],
                             self.monsters_in_play_human[0],
                         )
-                if winners in self.players[0].monsters:
+                if winner in self.players[0].monsters:
                     m = T.format(
                         "combat_gain_exp",
-                        {"name": winners.name.upper(), "xp": awarded_exp},
+                        {"name": winner.name.upper(), "xp": awarded_exp},
                     )
                     message += "\n" + m
             self._xp_message = message
 
             # Remove monster from damage map
-            del self._damage_map[monster]
+            for element in self._damage_map:
+                if element.defense == monster or element.attack == monster:
+                    self._damage_map.remove(element)
 
     def animate_party_status(self) -> None:
         """
@@ -1486,6 +1497,7 @@ class CombatState(CombatAnimations):
         self._action_queue = list()
         self._pending_queue = list()
         self._log_action = list()
+        self._damage_map = list()
 
     def end_combat(self) -> None:
         """End the combat."""
@@ -1507,4 +1519,3 @@ class CombatState(CombatAnimations):
         else:
             self.phase = None
             self.client.push_state(FadeOutTransition(caller=self))
-            EvolutionAction().start()

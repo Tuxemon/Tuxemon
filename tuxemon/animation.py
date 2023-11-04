@@ -4,18 +4,9 @@ from __future__ import annotations
 
 import logging
 from collections import defaultdict
+from collections.abc import Callable, Mapping, Sequence
 from math import cos, pi, sin, sqrt
-from typing import (
-    Any,
-    Callable,
-    DefaultDict,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    Tuple,
-    Union,
-)
+from typing import Any, DefaultDict, Optional, Union
 
 import pygame
 
@@ -72,7 +63,7 @@ class TaskBase(pygame.sprite.Sprite):
         super().__init__()
         self._callbacks: DefaultDict[
             str,
-            List[ScheduledFunction],
+            list[ScheduledFunction],
         ] = defaultdict(list)
 
     def schedule(
@@ -189,7 +180,7 @@ class Task(TaskBase):
         self._interval = interval
         self._loops = times
         self._duration: float = 0
-        self._chain: List[Task] = list()
+        self._chain: list[Task] = list()
         self._state = ANIMATION_RUNNING
         self.schedule(callback)
 
@@ -419,8 +410,8 @@ class Animation(pygame.sprite.Sprite):
         self.callback: Callable[[], Any]
         self.update_callback: Callable[[], Any]
 
-        self.targets: List[
-            Tuple[object, Mapping[str, Tuple[float, float]]]
+        self.targets: list[
+            tuple[object, Mapping[str, tuple[float, float]]]
         ] = list()
         self._targets: Sequence[object] = list()
         self.delay = delay

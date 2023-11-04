@@ -11,17 +11,8 @@ from __future__ import annotations
 import logging
 import os
 import re
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Generator,
-    Iterable,
-    Optional,
-    Protocol,
-    Sequence,
-    Tuple,
-    Union,
-)
+from collections.abc import Generator, Iterable, Sequence
+from typing import TYPE_CHECKING, Any, Optional, Protocol, Union
 
 import pygame
 from pytmx.pytmx import TileFlags
@@ -42,15 +33,15 @@ logger = logging.getLogger(__name__)
 ColorLike = Union[
     pygame.color.Color,
     str,
-    Tuple[int, int, int],
-    Tuple[int, int, int, int],
+    tuple[int, int, int],
+    tuple[int, int, int, int],
 ]
 
 
 class LoaderProtocol(Protocol):
     def __call__(
         self,
-        rect: Optional[Tuple[int, int, int, int]] = None,
+        rect: Optional[tuple[int, int, int, int]] = None,
         flags: Optional[TileFlags] = None,
     ) -> pygame.surface.Surface:
         pass
@@ -58,8 +49,8 @@ class LoaderProtocol(Protocol):
 
 def strip_from_sheet(
     sheet: pygame.surface.Surface,
-    start: Tuple[int, int],
-    size: Tuple[int, int],
+    start: tuple[int, int],
+    size: tuple[int, int],
     columns: int,
     rows: int = 1,
 ) -> Sequence[pygame.surface.Surface]:
@@ -87,8 +78,8 @@ def strip_from_sheet(
 
 def strip_coords_from_sheet(
     sheet: pygame.surface.Surface,
-    coords: Sequence[Tuple[int, int]],
-    size: Tuple[int, int],
+    coords: Sequence[tuple[int, int]],
+    size: tuple[int, int],
 ) -> Sequence[pygame.surface.Surface]:
     """
     Strip specific coordinates from a sprite sheet.
@@ -432,7 +423,7 @@ def scaled_image_loader(
     image = pygame.transform.scale(image, scaled_size)
 
     def load_image(
-        rect: Optional[Tuple[int, int, int, int]] = None,
+        rect: Optional[tuple[int, int, int, int]] = None,
         flags: Optional[TileFlags] = None,
     ) -> pygame.surface.Surface:
         if rect:
@@ -517,3 +508,26 @@ def get_avatar(
         except KeyError:
             logger.debug("invalid avatar monster name")
             return None
+
+
+def string_to_colorlike(
+    color: str,
+) -> ColorLike:
+    """
+    It converts a string into a ColorLike.
+
+    Parameters:
+        color: string (eg: 255:255:255).
+
+    Returns:
+        The ColorLike.
+
+    """
+    rgb: ColorLike = (0, 0, 0)
+    part = color.split(":")
+    rgb = (
+        (int(part[0]), int(part[1]), int(part[2]), int(part[3]))
+        if len(part) == 4
+        else (int(part[0]), int(part[1]), int(part[2]))
+    )
+    return rgb

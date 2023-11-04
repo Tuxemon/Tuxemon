@@ -5,8 +5,9 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable, Generator, Sequence
 from functools import partial
-from typing import Any, Callable, Generator, Sequence, Tuple
+from typing import Any
 
 from tuxemon.locale import T
 from tuxemon.menu.input import InputMenu
@@ -27,7 +28,7 @@ LOCKER = "Locker"
 
 def add_menu_items(
     state: Menu[MenuGameObj],
-    items: Sequence[Tuple[str, MenuGameObj]],
+    items: Sequence[tuple[str, MenuGameObj]],
 ) -> None:
     for key, callback in items:
         label = T.translate(key).upper()

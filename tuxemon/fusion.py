@@ -11,7 +11,8 @@
 # serve only as examples of potential fusions.
 from __future__ import annotations
 
-from typing import Any, Mapping, Optional, Tuple
+from collections.abc import Mapping
+from typing import Any, Optional
 
 try:
     from PIL import Image
@@ -95,7 +96,7 @@ class Body:
             (0, 0, 0),
         ]  # 5 tertiary colors of the sprite
 
-    def get_face_size(self) -> Tuple[int, int]:
+    def get_face_size(self) -> tuple[int, int]:
         """
         Obtains the size of the face image in pixels.
 
@@ -207,8 +208,8 @@ class Body:
 
 def replace_color(
     image: Image,
-    original_color: Tuple[int, int, int],
-    replacement_color: Tuple[int, int, int],
+    original_color: tuple[int, int, int],
+    replacement_color: tuple[int, int, int],
 ) -> Image:
     """
     Replaces an RGB color in an image with a different RGB _color.

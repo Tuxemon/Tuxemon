@@ -4,16 +4,8 @@ from __future__ import annotations
 
 import logging
 import uuid
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    ClassVar,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    Type,
-)
+from collections.abc import Mapping, Sequence
+from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 from tuxemon import plugin, prepare
 from tuxemon.constants import paths
@@ -43,8 +35,8 @@ class Technique:
 
     """
 
-    effects_classes: ClassVar[Mapping[str, Type[TechEffect[Any]]]] = {}
-    conditions_classes: ClassVar[Mapping[str, Type[TechCondition[Any]]]] = {}
+    effects_classes: ClassVar[Mapping[str, type[TechEffect[Any]]]] = {}
+    conditions_classes: ClassVar[Mapping[str, type[TechCondition[Any]]]] = {}
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         if save_data is None:
@@ -78,7 +70,7 @@ class Technique:
         self.sort = ""
         self.slug = ""
         self.target: Sequence[str] = []
-        self.types: List[Element] = []
+        self.types: list[Element] = []
         self.usable_on = False
         self.use_success = ""
         self.use_failure = ""
@@ -388,7 +380,7 @@ class Technique:
 
 def decode_moves(
     json_data: Optional[Sequence[Mapping[str, Any]]],
-) -> List[Technique]:
+) -> list[Technique]:
     return [Technique(save_data=tech) for tech in json_data or {}]
 
 

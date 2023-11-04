@@ -209,6 +209,12 @@
     <property name="cond1" value="not variable_set nimrodmace:yes"/>
    </properties>
   </object>
+  <object id="16" name="Evolution" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="evolution"/>
+    <property name="cond1" value="is check_evolution standard"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="2" type="collision" x="0" y="0" width="288" height="32"/>

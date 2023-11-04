@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING
 
 from tuxemon.item.itemcondition import ItemCondition
 
@@ -24,7 +24,7 @@ class ShapeCondition(ItemCondition):
     shapes: str
 
     def test(self, target: Monster) -> bool:
-        shapes: List[str] = []
+        shapes: list[str] = []
         if self.shapes.find(":"):
             shapes = self.shapes.split(":")
         else:

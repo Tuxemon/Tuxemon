@@ -3,8 +3,9 @@
 """This module contains the Options state"""
 from __future__ import annotations
 
+from collections.abc import Callable
 from functools import partial
-from typing import Any, Callable, List, Optional, Tuple, Union
+from typing import Any, Optional, Union
 
 import pygame
 import pygame_menu
@@ -72,7 +73,7 @@ class SetKeyState(PygameMenuState):
 
         # to prevent a KeyError from happening, the game won't let you
         # input a key if that key has already been set a value
-        invalid_keys: List[int] = []
+        invalid_keys: list[int] = []
         invalid_keys = [
             pygame.K_UP,
             pygame.K_DOWN,
@@ -284,7 +285,7 @@ class ControlState(PygameMenuState):
 
         metric = T.translate("menu_units_metric")
         imperial = T.translate("menu_units_imperial")
-        units: List[Tuple[Any, ...]] = []
+        units: list[tuple[Any, ...]] = []
         units = [(metric, metric), (imperial, imperial)]
         menu.add.selector(
             title=T.translate("menu_units").upper(),
@@ -305,7 +306,7 @@ class ControlState(PygameMenuState):
 
         north_hemi = T.translate("menu_hemisphere_north")
         south_hemi = T.translate("menu_hemisphere_south")
-        hemispheres: List[Tuple[Any, ...]] = []
+        hemispheres: list[tuple[Any, ...]] = []
         hemispheres = [(north_hemi, north_hemi), (south_hemi, south_hemi)]
         menu.add.selector(
             title=T.translate("menu_hemisphere").upper(),
@@ -326,7 +327,7 @@ class ControlState(PygameMenuState):
 
         off = T.translate("disable")
         on = T.translate("enable")
-        dayandnight: List[Tuple[Any, ...]] = []
+        dayandnight: list[tuple[Any, ...]] = []
         dayandnight = [(off, off), (on, on)]
         menu.add.selector(
             title=T.translate("menu_music_daynight").upper(),

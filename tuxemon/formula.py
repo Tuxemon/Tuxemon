@@ -5,7 +5,8 @@ from __future__ import annotations
 import datetime as dt
 import logging
 import random
-from typing import TYPE_CHECKING, Sequence, Tuple
+from collections.abc import Sequence
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from tuxemon.db import MonsterModel
@@ -51,7 +52,7 @@ def simple_damage_calculate(
     technique: Technique,
     user: Monster,
     target: Monster,
-) -> Tuple[int, float]:
+) -> tuple[int, float]:
     """
     Calculates the damage of a technique based on stats and multiplier.
 
@@ -289,7 +290,7 @@ def convert_mi(steps: float) -> float:
 
 def weight_height_diff(
     monster: Monster, db: MonsterModel
-) -> Tuple[float, float]:
+) -> tuple[float, float]:
     weight = round(((monster.weight - db.weight) / db.weight) * 100, 1)
     height = round(((monster.height - db.height) / db.height) * 100, 1)
     return weight, height

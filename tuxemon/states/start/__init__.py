@@ -5,8 +5,9 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable
 from functools import partial
-from typing import Any, Callable, Union
+from typing import Any, Union
 
 import pygame
 import pygame_menu

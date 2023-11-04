@@ -81,8 +81,9 @@
   <object id="33" name="Talk Firefighter - Will Trade Chillimp" type="event" x="64" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_timber_firefighter_willtrade"/>
-    <property name="act2" value="trading chillimp,tikoal"/>
-    <property name="act3" value="set_variable fire_timber_hastraded:yes"/>
+    <property name="act2" value="get_player_monster chillimp,slug,chillimp"/>
+    <property name="act3" value="trading chillimp,tikoal"/>
+    <property name="act4" value="set_variable fire_timber_hastraded:yes"/>
     <property name="cond1" value="is has_monster chillimp"/>
     <property name="cond2" value="is variable_set fire_timber_willtrade:yes"/>
     <property name="cond3" value="not variable_set fire_timber_hastraded:yes"/>

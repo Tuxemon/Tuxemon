@@ -8,18 +8,8 @@ from __future__ import annotations
 
 import bisect
 import itertools
-from typing import (
-    Any,
-    Final,
-    List,
-    Literal,
-    Mapping,
-    Optional,
-    Sequence,
-    Tuple,
-    TypeVar,
-    Union,
-)
+from collections.abc import Mapping, Sequence
+from typing import Any, Final, Literal, Optional, TypeVar, Union
 
 # TODO: Feature idea: if the same image file is specified, re-use the Surface
 import pygame
@@ -50,7 +40,7 @@ class SurfaceAnimation:
 
     def __init__(
         self,
-        frames: Sequence[Tuple[Union[str, pygame.surface.Surface], float]],
+        frames: Sequence[tuple[Union[str, pygame.surface.Surface], float]],
         loop: bool = True,
     ) -> None:
         # Obtain constant precision setting the initial value to 2^32:
@@ -190,7 +180,7 @@ class SurfaceAnimation:
             for image in self._images
         ]
 
-    def _get_max_size(self) -> Tuple[int, int]:
+    def _get_max_size(self) -> tuple[int, int]:
         """
         Get the maximum size of the animation.
 
@@ -363,7 +353,7 @@ class SurfaceAnimationCollection:
             Mapping[Any, SurfaceAnimation],
         ],
     ) -> None:
-        self._animations: List[SurfaceAnimation] = []
+        self._animations: list[SurfaceAnimation] = []
         if animations:
             self.add(*animations)
         self._state: State = STOPPED

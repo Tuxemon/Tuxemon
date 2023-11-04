@@ -261,5 +261,11 @@
     <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
+  <object id="39" name="Evolution" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="evolution"/>
+    <property name="cond1" value="is check_evolution standard"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

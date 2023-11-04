@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import List, final
+from typing import final
 
 from tuxemon import formula
 from tuxemon.event.eventaction import EventAction
@@ -38,7 +38,7 @@ class SetRandomVariableAction(EventAction):
 
         # Split the values
         value: str = ""
-        values: List[str] = []
+        values: list[str] = []
         if self.var_value.find(":"):
             values = self.var_value.split(":")
             value = random.choice(values)

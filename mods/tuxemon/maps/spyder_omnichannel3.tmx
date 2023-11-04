@@ -172,8 +172,14 @@
   </object>
   <object id="50" name="Threats" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter omnichannel"/>
+    <property name="act1" value="random_encounter omnichannel,6"/>
     <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
+   </properties>
+  </object>
+  <object id="14" name="Evolution" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="evolution"/>
+    <property name="cond1" value="is check_evolution standard"/>
    </properties>
   </object>
  </objectgroup>

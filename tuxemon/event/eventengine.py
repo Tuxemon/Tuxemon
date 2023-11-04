@@ -3,20 +3,10 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Generator, Iterable, Sequence
 from contextlib import contextmanager
 from textwrap import dedent
-from typing import (
-    Any,
-    Dict,
-    Generator,
-    Iterable,
-    List,
-    Optional,
-    Sequence,
-    Tuple,
-    Type,
-    Union,
-)
+from typing import Any, Optional, Union
 
 from tuxemon import plugin, prepare
 from tuxemon.constants import paths
@@ -63,7 +53,7 @@ class RunningEvent:
 
     def __init__(self, map_event: EventObject) -> None:
         self.map_event = map_event
-        self.context: Dict[str, Any] = dict()
+        self.context: dict[str, Any] = dict()
         self.action_index = 0
         self.current_action: Optional[EventAction[Any]] = None
         self.current_map_action = None
@@ -115,7 +105,7 @@ class EventEngine:
     def __init__(self, session: Session) -> None:
         self.session = session
 
-        self.running_events: Dict[int, RunningEvent] = dict()
+        self.running_events: dict[int, RunningEvent] = dict()
         self.name = "Event"
         self.current_map: Optional[TuxemonMap] = None
         self.timer = 0.0
@@ -123,7 +113,7 @@ class EventEngine:
         self.button = None
 
         # debug
-        self.partial_events: List[Sequence[Tuple[bool, MapCondition]]] = list()
+        self.partial_events: list[Sequence[tuple[bool, MapCondition]]] = list()
 
         self.conditions = plugin.load_plugins(
             paths.CONDITIONS_PATH,
@@ -189,7 +179,7 @@ class EventEngine:
             )
             return None
 
-    def get_actions(self) -> List[Type[EventAction]]:
+    def get_actions(self) -> list[type[EventAction]]:
         """
         Return list of EventActions.
 
@@ -224,7 +214,7 @@ class EventEngine:
         else:
             return condition()
 
-    def get_conditions(self) -> List[Type[EventCondition]]:
+    def get_conditions(self) -> list[type[EventCondition]]:
         """
         Return list of EventConditions.
 

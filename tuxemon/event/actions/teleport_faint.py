@@ -33,6 +33,10 @@ class TeleportFaintAction(EventAction):
 
     def start(self) -> None:
         player = self.session.player
+        client = self.session.client
+        # this function cleans up the previous state without crashing
+        if len(client.state_manager.active_states) > 2:
+            return
 
         # If game variable exists, then teleport:
         if "teleport_faint" in player.game_variables:

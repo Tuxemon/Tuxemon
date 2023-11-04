@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import logging
 import warnings
+from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import Any, Optional, Sequence, final
+from typing import Any, Optional, final
 
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction

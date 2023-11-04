@@ -7,19 +7,10 @@ import json
 import logging
 import os
 import sys
+from collections.abc import Mapping, Sequence
 from enum import Enum
 from operator import itemgetter
-from typing import (
-    Any,
-    Dict,
-    List,
-    Literal,
-    Mapping,
-    Optional,
-    Sequence,
-    Union,
-    overload,
-)
+from typing import Any, Literal, Optional, Union, overload
 
 from pydantic import (
     BaseModel,
@@ -509,6 +500,7 @@ class TechSort(str, Enum):
 class CategoryCondition(str, Enum):
     negative = "negative"
     positive = "positive"
+    neutral = "neutral"
 
 
 class ResponseCondition(str, Enum):
@@ -982,7 +974,7 @@ class JSONDatabase:
     """
 
     def __init__(self, dir: str = "all") -> None:
-        self._tables: List[TableName] = [
+        self._tables: list[TableName] = [
             "item",
             "monster",
             "npc",
@@ -997,8 +989,8 @@ class JSONDatabase:
             "shape",
             "template",
         ]
-        self.preloaded: Dict[TableName, Dict[str, Any]] = {}
-        self.database: Dict[TableName, Dict[str, Any]] = {}
+        self.preloaded: dict[TableName, dict[str, Any]] = {}
+        self.database: dict[TableName, dict[str, Any]] = {}
         self.path = ""
         for table in self._tables:
             self.preloaded[table] = {}

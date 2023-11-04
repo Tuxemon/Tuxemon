@@ -9,7 +9,6 @@ from typing import Optional, final
 from tuxemon import monster
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
-from tuxemon.event.actions.play_music import PlayMusicAction
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import ColorLike, string_to_colorlike
 from tuxemon.npc import NPC
@@ -106,7 +105,10 @@ class WildEncounterAction(EventAction):
 
         # Start some music!
         filename = env.battle_music
-        PlayMusicAction(filename=filename).start()
+        self.session.client.event_engine.execute_action(
+            "play_music",
+            [filename],
+        )
 
     def update(self) -> None:
         # If state is not queued, AND state is not active, then stop.

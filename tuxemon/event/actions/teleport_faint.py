@@ -6,9 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import final
 
-from tuxemon.event.actions.teleport import TeleportAction
 from tuxemon.event.eventaction import EventAction
-from tuxemon.event.actions.screen_transition import ScreenTransitionAction
 
 logger = logging.getLogger(__name__)
 
@@ -48,8 +46,9 @@ class TeleportFaintAction(EventAction):
             return
 
         # Start the screen transition
-        ScreenTransitionAction(transition_time=0.3).start()
+        client.event_engine.get_action(
+            "screen_transition",
+            [0.3],
+        )
         # Call the teleport action
-        TeleportAction(
-            map_name=teleport[0], x=int(teleport[1]), y=int(teleport[2])
-        ).start()
+        client.event_engine.execute_action("teleport", teleport)

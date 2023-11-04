@@ -136,6 +136,8 @@ class Monster:
         self._types: List[Element] = []
         self.shape = MonsterShape.default
         self.randomly = True
+        self.got_experience = False
+        self.levelling_up = False
         self.traded = False
 
         self.status: List[Condition] = []
@@ -219,6 +221,8 @@ class Monster:
             self._types.append(_element)
 
         self.randomly = results.randomly or self.randomly
+        self.got_experience = self.got_experience
+        self.levelling_up = self.levelling_up
         self.traded = self.traded
 
         self.txmn_id = results.txmn_id
@@ -356,6 +360,7 @@ class Monster:
         >>> bulbatux.give_experience(20)
 
         """
+        self.got_experience = True
         levels = 0
         self.total_experience += amount
 
@@ -506,6 +511,7 @@ class Monster:
             % (self.name, self.level, self.level + 1)
         )
         # Increase Level and stats
+        self.levelling_up = True
         self.level += 1
         self.level = min(self.level, MAX_LEVEL)
         self.set_stats()

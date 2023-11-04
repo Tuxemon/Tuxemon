@@ -1,8 +1,8 @@
 {
   "animation": null,
+  "category": "neutral",
   "effects": [],
   "flip_axes": "",
-  "power": 10,
   "sfx": "sfx_faint",
   "slug": "faint",
   "range": "special",

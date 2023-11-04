@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING
 
 from tuxemon.item.itemcondition import ItemCondition
 
@@ -26,7 +26,7 @@ class CategoryCondition(ItemCondition):
     cat: str
 
     def test(self, target: Monster) -> bool:
-        categories: List[str] = []
+        categories: list[str] = []
         if self.cat.find(":"):
             categories = self.cat.split(":")
         else:

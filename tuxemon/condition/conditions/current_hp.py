@@ -2,9 +2,10 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from operator import eq, ge, gt, le, lt
-from typing import TYPE_CHECKING, Callable, Mapping, Optional, Union
+from typing import TYPE_CHECKING, Optional, Union
 
 from tuxemon.condition.condcondition import CondCondition
 

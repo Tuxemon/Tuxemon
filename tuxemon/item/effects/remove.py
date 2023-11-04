@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Tuple, Union
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.event import get_npc_pos
 from tuxemon.event.actions.remove_npc import RemoveNpcAction
@@ -30,7 +30,7 @@ class RemoveEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> RemoveEffectResult:
         remove: bool = False
-        coords: Tuple[int, int] = (0, 0)
+        coords: tuple[int, int] = (0, 0)
         player = self.session.player
         facing = player.facing
         player_x = player.tile_pos[0]

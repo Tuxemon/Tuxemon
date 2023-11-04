@@ -5,21 +5,10 @@ from __future__ import annotations
 import logging
 import random
 from collections import defaultdict
+from collections.abc import Iterable, MutableMapping, Sequence
 from functools import partial
 from itertools import chain
-from typing import (
-    Dict,
-    Iterable,
-    List,
-    Literal,
-    MutableMapping,
-    NamedTuple,
-    Optional,
-    Sequence,
-    Set,
-    Tuple,
-    Union,
-)
+from typing import Literal, NamedTuple, Optional, Union
 
 import pygame
 from pygame.rect import Rect
@@ -88,7 +77,7 @@ def compute_text_animation_time(message: str) -> float:
 
 class MethodAnimationCache:
     def __init__(self) -> None:
-        self._sprites: Dict[Union[Technique, Item], Optional[Sprite]] = {}
+        self._sprites: dict[Union[Technique, Item], Optional[Sprite]] = {}
 
     def get(
         self, method: Union[Technique, Item], is_flipped: bool
@@ -167,17 +156,17 @@ class ParkState(ParkAnimations):
 
     def __init__(
         self,
-        players: Tuple[NPC, NPC],
+        players: tuple[NPC, NPC],
         graphics: BattleGraphicsModel,
     ) -> None:
         self.phase: Optional[ParkPhase] = None
-        self._damage_map: MutableMapping[Monster, Set[Monster]] = defaultdict(
+        self._damage_map: MutableMapping[Monster, set[Monster]] = defaultdict(
             set
         )
         self._method_cache = MethodAnimationCache()
-        self._decision_queue: List[Monster] = []
-        self._action_queue: List[EnqueuedAction] = []
-        self._log_action: List[Tuple[int, EnqueuedAction]] = []
+        self._decision_queue: list[Monster] = []
+        self._action_queue: list[EnqueuedAction] = []
+        self._log_action: list[tuple[int, EnqueuedAction]] = []
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self._layout = dict()  # player => home areas on screen
         self._turn: int = 0
@@ -441,7 +430,7 @@ class ParkState(ParkAnimations):
 
         """
 
-        def rank_action(action: EnqueuedAction) -> Tuple[int, int]:
+        def rank_action(action: EnqueuedAction) -> tuple[int, int]:
             if action.method is None:
                 return 0, 0
             sort = action.method.sort

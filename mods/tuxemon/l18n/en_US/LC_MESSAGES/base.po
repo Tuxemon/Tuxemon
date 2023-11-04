@@ -87,11 +87,11 @@ msgstr "Doll Pairagrin"
 msgid "doll_pairagrin_description"
 msgstr "A small figure representing Pairagrin."
 
-msgid "lemon"
-msgstr "Lemon"
+msgid "doll_rockitten"
+msgstr "Doll Rockitten"
 
-msgid "lemon_description"
-msgstr "Description."
+msgid "doll_rockitten_description"
+msgstr "A small figure representing Rockitten."
 
 msgid "revive"
 msgstr "Revive"
@@ -2383,6 +2383,9 @@ msgstr "Timber"
 msgid "tunnel"
 msgstr "Tunnel"
 
+msgid "park"
+msgstr "Park"
+
 ## MAP DESCRIPTIONS TOWN / CITY ##
 
 msgid "lion_mountain_description"
@@ -2450,6 +2453,9 @@ msgstr "Breadbasket of Fondant!"
 
 msgid "tunnel_description"
 msgstr "The dark expanse - watch your step!"
+
+msgid "park_description"
+msgstr "Description"
 
 ## MAP SIGNS ##
 
@@ -2892,9 +2898,6 @@ msgstr "Skip"
 
 msgid "empty"
 msgstr "Empty"
-
-msgid "park"
-msgstr "Park"
 
 ## MONSTER TRANSLATIONS ##
 # Monster details
@@ -8170,6 +8173,24 @@ msgid "spyder_dragonscave_tru2"
 msgstr "Whatever. We already took the DNA sample. \n We just wanted to capture Drokoro as a backup. \n You'll never stop them back at Omnichannel HQ."
 msgid "spyder_dragonscave_drokoro1"
 msgstr "Rawr!"
+
+msgid "spyder_park_welcome"
+msgstr "Welcome to the Park XXX. Entry is ${{currency}}50. You'll get 25 Park Tuxeball. Are you ready?"
+
+msgid "spyder_park_assistant"
+msgstr "Welcome!"
+
+msgid "spyder_park_guardian1"
+msgstr "Do you want to interrupt your experience?"
+
+msgid "spyder_park_nomoney"
+msgstr "Unfortunately you don't have enough money!"
+
+msgid "spyder_park_yesmoney"
+msgstr "Enjoy your experience!"
+
+msgid "spyder_cottonart_steps100"
+msgstr "You still have ${{var:steps_park}} steps left!"
 
 msgid "0floor"
 msgstr "Ground Floor"

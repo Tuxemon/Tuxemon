@@ -1,14 +1,12 @@
 {
-  "conditions": [
-    "is park level,more_than,10"
-  ],
+  "conditions": [],
   "effects": [
-    "park_method -0.2,0.7,0"
+    "park_method"
   ],
-  "slug": "lemon",
+  "slug": "doll_rockitten",
   "sort": "utility",
-  "sprite": "gfx/items/lemon.png",
-  "category": "food",
+  "sprite": "gfx/sprites//battle/rockitten-menu01.png",
+  "category": "doll",
   "type": "Consumable",
   "usable_in": [
     ""

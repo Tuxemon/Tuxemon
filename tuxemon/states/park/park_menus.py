@@ -2,7 +2,8 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Callable, Generator, Optional
+from collections.abc import Callable, Generator
+from typing import TYPE_CHECKING, Optional
 
 from tuxemon.db import ItemCategory
 from tuxemon.graphics import ColorLike
@@ -94,9 +95,9 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
         return category
 
     def throw_tuxeball(self) -> None:
-        tuxeball = Item()
-        tuxeball.load("tuxeball_park")
-        self.deliver_action(tuxeball)
+        tuxeball = self.player.find_item("tuxeball_park")
+        if tuxeball:
+            self.deliver_action(tuxeball)
 
     def open_item_menu(self) -> None:
         """Open menu to choose item to use."""

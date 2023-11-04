@@ -9,15 +9,9 @@ from __future__ import annotations
 
 from abc import ABC
 from collections import defaultdict
+from collections.abc import Callable, MutableMapping
 from functools import partial
-from typing import (
-    TYPE_CHECKING,
-    Callable,
-    List,
-    Literal,
-    MutableMapping,
-    Tuple,
-)
+from typing import TYPE_CHECKING, Literal
 
 import pygame
 from pygame.rect import Rect
@@ -40,14 +34,14 @@ if TYPE_CHECKING:
 
 sprite_layer = 0
 hud_layer = 100
-TimedCallable = Tuple[Callable[[], None], float]
+TimedCallable = tuple[Callable[[], None], float]
 
 
 def toggle_visible(sprite: Sprite) -> None:
     sprite.visible = not sprite.visible
 
 
-def scale_area(area: Tuple[int, int, int, int]) -> Rect:
+def scale_area(area: tuple[int, int, int, int]) -> Rect:
     return Rect(tools.scale_sequence(area))
 
 
@@ -66,7 +60,7 @@ class ParkAnimations(ABC, Menu[None]):
 
     def __init__(
         self,
-        players: Tuple[NPC, NPC],
+        players: tuple[NPC, NPC],
         graphics: BattleGraphicsModel,
     ) -> None:
         super().__init__()
@@ -74,11 +68,11 @@ class ParkAnimations(ABC, Menu[None]):
         self.graphics = graphics
 
         self.monsters_in_play: MutableMapping[
-            NPC, List[Monster]
+            NPC, list[Monster]
         ] = defaultdict(list)
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self.hud: MutableMapping[Monster, Sprite] = {}
-        self.text_animations_queue: List[TimedCallable] = []
+        self.text_animations_queue: list[TimedCallable] = []
         self._text_animation_time_left: float = 0
         self._hp_bars: MutableMapping[Monster, HpBar] = {}
 
@@ -206,7 +200,7 @@ class ParkAnimations(ABC, Menu[None]):
         text = f"{monster.name}{icon} Lv.{monster.level}{symbol}"
         return self.shadow_text(text)
 
-    def build_text_right(self) -> Tuple[Surface, Surface]:
+    def build_text_right(self) -> tuple[Surface, Surface]:
         """
         Return the text image for use on the callout of the monster.
 
@@ -218,8 +212,6 @@ class ParkAnimations(ABC, Menu[None]):
 
         """
         player = self.players[0]
-        if "menu_park_captured" not in player.game_variables:
-            player.game_variables["menu_park_captured"] = 0
         encountered = T.format("menu_park_encountered")
         nr_enc = player.game_variables["menu_park_encountered"]
         captured = T.format("menu_park_captured")
@@ -461,7 +453,9 @@ class ParkAnimations(ABC, Menu[None]):
 
         combat._captured_mon = monster
         if is_captured:
-            self.players[0].game_variables["menu_park_captured"] += 1
+            value = int(self.players[0].game_variables["menu_park_captured"])
+            value += 1
+            self.players[0].game_variables["menu_park_captured"] = value
             self.task(kill, 2 + num_shakes)
             action_time = num_shakes + 1.8
             # Tuxepedia: set monster as caught (2)

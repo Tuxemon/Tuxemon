@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="45" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="450">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="45" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="452">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -14,6 +14,7 @@
  <tileset firstgid="10968" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
   <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
+ <tileset firstgid="12518" source="../gfx/tilesets/core_buildings.tsx"/>
  <layer id="1" name="Layer1 Mountain Terrain" width="45" height="100">
   <data encoding="base64" compression="zlib">
    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
@@ -21,7 +22,7 @@
  </layer>
  <layer id="2" name="Layer2 Signs, Plants, Statues" width="45" height="100">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -79,10 +80,10 @@
   <object id="159" type="collision" x="240" y="1264" width="16" height="48"/>
   <object id="160" type="collision" x="256" y="1152" height="16"/>
   <object id="161" type="collision" x="208" y="1184" width="16" height="64"/>
-  <object id="216" type="collision" x="0" y="1456" width="288" height="112"/>
+  <object id="216" type="collision" x="0" y="1456" width="96" height="144"/>
   <object id="217" type="collision" x="16" y="1408" width="192" height="16"/>
   <object id="218" type="collision" x="0" y="0" width="720" height="16"/>
-  <object id="220" type="collision" x="272" y="1568" width="448" height="32"/>
+  <object id="220" type="collision" x="288" y="1568" width="432" height="32"/>
   <object id="221" type="collision" x="0" y="16" width="16" height="1408"/>
   <object id="267" type="collision" x="672" y="208" width="16" height="32"/>
   <object id="271" type="collision" x="144" y="1200" width="48" height="16"/>
@@ -289,6 +290,7 @@
   <object id="416" type="collision" x="544" y="432" width="64" height="48"/>
   <object id="417" type="collision" x="496" y="544" width="16" height="16"/>
   <object id="418" type="collision" x="432" y="608" width="64" height="16"/>
+  <object id="450" type="collision" x="144" y="1456" width="144" height="144"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="2" name="Welcome Sign" type="event" x="192" y="1408" width="16" height="16">
@@ -682,6 +684,14 @@
     <property name="act7" value="remove_npc spyder_lionmountain_snarlon"/>
     <property name="behav1" value="talk spyder_lionmountain_snarlon"/>
     <property name="cond1" value="not variable_set snarlonmountain:yes"/>
+   </properties>
+  </object>
+  <object id="451" name="Teleport Park" type="event" x="96" y="1584" width="48" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport spyder_park_entrance.tmx,4,3,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="35" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="312">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="park_cave"/>
+  <property name="types" value="dungeon"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="35" height="13">
+  <data encoding="base64" compression="zlib">
+   eAFj4GBgYBjFo2EwmgZG0wAN04AqDc0eLb9GVhlOy7SEbDYAGCkOqA==
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="35" height="13">
+  <data encoding="base64" compression="zlib">
+   eAGtk9ENwkAMQ/sH/LAKZQLGAKaBbWBMYoknWVZzaqVWOoXmHMeJy3yepledx+C8627+n8T63RLG71Xr7+A9Xgszei6mJbHcucan8XGvfqr1d9fAb/gPhT3GkcZv5RzrOLjF4XnxLNWChy8jWhKnWW9FKP/Yrc/m99oF9eyIWvx3TGrgvdNCXvPRx7V8qr/vkf1lHszJ9NI7Iz3pxz35Tgu4tdHn6GromVqYT1qYeQ2f98Ev+SSP7nXwjIj/quu0wOO+r/HctYg7v2n3zHeuOs2vh9nhYi/UEhMHfimO9tjtYIlnj9yeWvAJb7fGkadb9wK+8xzfRrHzFO78z3R+dN9Sh9+ST+4fRNlzCA==
+  </data>
+ </layer>
+ <layer id="6" name="Tile Layer 3" width="35" height="13">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCyCEAAAccAAE=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="Collisions">
+  <object id="172" type="collision" x="128" y="144" width="96" height="32"/>
+  <object id="179" type="collision" x="176" y="16" width="16" height="112"/>
+  <object id="220" type="collision" x="0" y="0" width="560" height="16"/>
+  <object id="279" type="collision" x="0" y="16" width="16" height="192"/>
+  <object id="281" type="collision" x="16" y="144" width="112" height="64"/>
+  <object id="282" type="collision" x="64" y="48" width="48" height="96"/>
+  <object id="288" type="collision" x="544" y="16" width="16" height="192"/>
+  <object id="293" type="collision" x="160" y="16" width="16" height="48"/>
+  <object id="294" type="collision" x="272" y="16" width="16" height="48"/>
+  <object id="295" type="collision" x="224" y="80" width="160" height="96"/>
+  <object id="296" type="collision" x="224" y="48" width="16" height="32"/>
+  <object id="297" type="collision" x="176" y="192" width="320" height="16"/>
+  <object id="298" type="collision" x="464" y="16" width="80" height="96"/>
+  <object id="299" type="collision" x="416" y="128" width="80" height="64"/>
+  <object id="300" type="collision" x="384" y="80" width="48" height="32"/>
+  <object id="301" type="collision" x="400" y="16" width="32" height="48"/>
+  <object id="302" type="collision" x="288" y="16" width="48" height="16"/>
+  <object id="303" type="collision" x="320" y="48" width="48" height="16"/>
+  <object id="304" type="collision" x="240" y="48" width="16" height="16"/>
+  <object id="305" type="collision" x="320" y="64" width="16" height="16"/>
+  <object id="306" type="collision" x="384" y="48" width="16" height="16"/>
+  <object id="307" type="collision" x="112" y="48" width="16" height="16"/>
+  <object id="308" type="collision" x="144" y="48" width="16" height="16"/>
+  <object id="309" type="collision" x="112" y="112" width="32" height="16"/>
+  <object id="310" type="collision" x="160" y="112" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="4" name="Events">
+  <object id="4" name="Play Music" type="event" x="80" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_chibi_ninja"/>
+    <property name="cond1" value="not music_playing music_chibi_ninja"/>
+   </properties>
+  </object>
+  <object id="7" name="Environment Day" type="event" x="80" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:cliff"/>
+    <property name="cond1" value="not variable_set stage_of_day:night"/>
+   </properties>
+  </object>
+  <object id="8" name="Environment Night" type="event" x="80" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:night_cliff"/>
+    <property name="cond1" value="is variable_set stage_of_day:night"/>
+   </properties>
+  </object>
+  <object id="11" name="Exhausted" type="event" x="96" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint"/>
+    <property name="cond1" value="is player_defeated"/>
+   </properties>
+  </object>
+  <object id="272" name="Steps" type="event" x="96" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_park_entrance.tmx,5,4,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="act3" value="add_item tuxeball_park,-25"/>
+    <property name="act4" value="clear_variable park_out"/>
+    <property name="act5" value="clear_variable menu_park_captured"/>
+    <property name="cond1" value="is variable_is steps_park,equals,0.0"/>
+   </properties>
+  </object>
+  <object id="273" name="Alert 100" type="event" x="96" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cottonart_steps100"/>
+    <property name="cond1" value="is variable_is steps_park,greater_than,100.0"/>
+    <property name="cond2" value="is variable_is steps_park,less_than,101.0"/>
+   </properties>
+  </object>
+  <object id="290" name="Teleport 1" type="event" x="512" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_park.tmx,41,13,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="291" name="Teleport 2" type="event" x="144" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_park.tmx,18,13,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="292" name="Teleport 3" type="event" x="32" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_park.tmx,11,9,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="311" name="Tuxeball" type="event" x="80" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_park_entrance.tmx,5,4,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="act4" value="clear_variable park_out"/>
+    <property name="act5" value="clear_variable menu_park_captured"/>
+    <property name="cond1" value="not has_item player,tuxeball_park"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

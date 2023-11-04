@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "spyder_park_elroy",
+    "template": [
+      {
+        "sprite_name": "magician_grey",
+        "combat_front": "magician",
+        "slug": "magician"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_park_emily",
+    "template": [
+      {
+        "sprite_name": "florist_fiery",
+        "combat_front": "florist",
+        "slug": "florist"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_park_guardian",
+    "template": [
+      {
+        "sprite_name": "magician_fiery",
+        "combat_front": "magician",
+        "slug": "magician"
+      }
+    ]
+  }
+]

@@ -229,6 +229,13 @@ class ItemModel(BaseModel):
     animation: Optional[str] = Field(
         None, description="Animation to play for this technique"
     )
+    menu: tuple[int, str, str] = Field(
+        None,
+        description="Item has a menu (position, label -inside the PO -,state, eg. 3:nu_phone:PhoneState)",
+    )
+    visible: bool = Field(
+        True, description="Whether or not this item is visible."
+    )
 
     class Config:
         title = "Item"

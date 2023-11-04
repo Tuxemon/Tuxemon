@@ -116,6 +116,8 @@ class Item:
         self.use_failure = T.translate(results.use_failure)
 
         # misc attributes (not translated!)
+        self.visible = results.visible
+        self.menu = results.menu
         self.sort = results.sort
         self.category = results.category or ItemCategory.none
         self.type = results.type or ItemType.consumable

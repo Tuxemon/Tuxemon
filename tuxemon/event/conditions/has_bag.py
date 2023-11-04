@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from operator import eq, ge, gt, le, lt, ne
 
-from tuxemon.db import ItemCategory
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -35,8 +34,7 @@ class HasBagCondition(EventCondition):
         player = session.player
         sum_total = []
         for itm in player.items:
-            # excludes the phone + apps
-            if itm.category != ItemCategory.phone:
+            if itm.visible:
                 sum_total.append(itm.quantity)
         bag_size = sum(sum_total)
         if check == "less_than":

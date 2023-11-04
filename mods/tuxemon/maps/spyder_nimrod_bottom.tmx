@@ -207,6 +207,12 @@
     <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
+  <object id="19" name="Evolution" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="evolution"/>
+    <property name="cond1" value="is check_evolution standard"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="3" type="collision" x="0" y="0" width="288" height="32"/>

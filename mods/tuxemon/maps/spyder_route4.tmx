@@ -489,5 +489,11 @@
     <property name="behav1" value="talk spyder_route4_boost"/>
    </properties>
   </object>
+  <object id="18" name="Evolution" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="evolution"/>
+    <property name="cond1" value="is check_evolution standard"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

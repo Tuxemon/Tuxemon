@@ -18,13 +18,12 @@ classifiers = [
         "Intended Audience :: End Users/Desktop",
         "Development Status :: 3 - Alpha",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Topic :: Games/Entertainment",
         "Topic :: Games/Entertainment :: Role-Playing"
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dynamic = ["dependencies"]
 
 [project.urls]

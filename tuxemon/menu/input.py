@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import random as rd
+from collections.abc import Callable, Generator
 from functools import partial
-from typing import Any, Callable, Generator, Optional
+from typing import Any, Optional
 
 from pygame.rect import Rect
 

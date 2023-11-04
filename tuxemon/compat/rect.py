@@ -3,15 +3,8 @@
 from __future__ import annotations
 
 from abc import abstractmethod
-from typing import (
-    Protocol,
-    Sequence,
-    Tuple,
-    TypeVar,
-    Union,
-    cast,
-    runtime_checkable,
-)
+from collections.abc import Sequence
+from typing import Protocol, TypeVar, Union, cast, runtime_checkable
 
 SelfRectType = TypeVar("SelfRectType", bound="ReadOnlyRect")
 RectType = TypeVar("RectType", bound="ReadOnlyRect", covariant=True)
@@ -26,8 +19,8 @@ class HasRectAttribute(Protocol[RectType]):
 
 RectLike = Union[
     SelfRectType,
-    Tuple[int, int, int, int],
-    Tuple[Tuple[int, int], Tuple[int, int]],
+    tuple[int, int, int, int],
+    tuple[tuple[int, int], tuple[int, int]],
 ]
 
 
@@ -89,7 +82,7 @@ class ReadOnlyRect(Protocol):
 
     def collidepoint(
         self,
-        __point: Tuple[int, int],
+        __point: tuple[int, int],
     ) -> bool:
         x, y = __point
         return self.left <= x < self.right and self.top <= y < self.bottom
@@ -136,39 +129,39 @@ class ReadOnlyRect(Protocol):
         return self.x + self.w
 
     @property
-    def topleft(self) -> Tuple[int, int]:
+    def topleft(self) -> tuple[int, int]:
         return self.x, self.y
 
     @property
-    def bottomleft(self) -> Tuple[int, int]:
+    def bottomleft(self) -> tuple[int, int]:
         return self.x, self.y + self.h
 
     @property
-    def topright(self) -> Tuple[int, int]:
+    def topright(self) -> tuple[int, int]:
         return self.x + self.w, self.y
 
     @property
-    def bottomright(self) -> Tuple[int, int]:
+    def bottomright(self) -> tuple[int, int]:
         return self.x + self.w, self.y + self.h
 
     @property
-    def midtop(self) -> Tuple[int, int]:
+    def midtop(self) -> tuple[int, int]:
         return self.centerx, self.y
 
     @property
-    def midleft(self) -> Tuple[int, int]:
+    def midleft(self) -> tuple[int, int]:
         return self.x, self.centery
 
     @property
-    def midbottom(self) -> Tuple[int, int]:
+    def midbottom(self) -> tuple[int, int]:
         return self.centerx, self.y + self.h
 
     @property
-    def midright(self) -> Tuple[int, int]:
+    def midright(self) -> tuple[int, int]:
         return self.x + self.w, self.centery
 
     @property
-    def center(self) -> Tuple[int, int]:
+    def center(self) -> tuple[int, int]:
         return self.centerx, self.centery
 
     @property
@@ -180,7 +173,7 @@ class ReadOnlyRect(Protocol):
         return self.y + self.h // 2
 
     @property
-    def size(self) -> Tuple[int, int]:
+    def size(self) -> tuple[int, int]:
         return self.w, self.h
 
     @property
@@ -249,11 +242,11 @@ class Rect(ReadOnlyRect):
             self._h = arg.h
         elif isinstance(arg, (list, tuple)):
             if len(arg) == 2:
-                arg = cast(Tuple[Tuple[int, int], Tuple[int, int]], arg)
+                arg = cast(tuple[tuple[int, int], tuple[int, int]], arg)
                 self._x, self._y = arg[0]
                 self._w, self._h = arg[1]
             elif len(arg) == 4:
-                arg = cast(Tuple[int, int, int, int], arg)
+                arg = cast(tuple[int, int, int, int], arg)
                 self._x, self._y, self._w, self._h = arg
         else:
             self._x, self._y, self._w, self._h = arg

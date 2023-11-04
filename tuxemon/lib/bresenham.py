@@ -26,7 +26,7 @@ THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import Generator, Tuple
+from collections.abc import Generator
 
 
 def bresenham(
@@ -35,7 +35,7 @@ def bresenham(
     x1: int,
     y1: int,
     include_end: bool = True,
-) -> Generator[Tuple[int, int], None, None]:
+) -> Generator[tuple[int, int], None, None]:
     """Yield integer coordinates on the line from (x0, y0) to (x1, y1).
     Input coordinates should be integers.
     The result will contain both the start and the end point.

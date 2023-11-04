@@ -5,8 +5,9 @@ from __future__ import annotations
 import logging
 import math
 import uuid
+from collections.abc import Callable, Sequence
 from functools import partial
-from typing import TYPE_CHECKING, Any, Callable, Optional, Sequence, Tuple
+from typing import TYPE_CHECKING, Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
@@ -298,7 +299,7 @@ class MonsterBoxChooseState(PygameMenuState):
     def add_menu_items(
         self,
         menu: pygame_menu.Menu,
-        items: Sequence[Tuple[str, MenuGameObj]],
+        items: Sequence[tuple[str, MenuGameObj]],
     ) -> None:
         menu.add.vertical_fill()
         for key, callback in items:
@@ -318,7 +319,7 @@ class MonsterBoxChooseState(PygameMenuState):
             position=(width + b_width, b_height, False),
         )
 
-    def get_menu_items_map(self) -> Sequence[Tuple[str, MenuGameObj]]:
+    def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         """
         Return a list of menu options and callbacks, to be overridden by
         class descendants.
@@ -365,7 +366,7 @@ class MonsterBoxChooseState(PygameMenuState):
 class MonsterBoxChooseStorageState(MonsterBoxChooseState):
     """Menu to choose a box, which you can then take a tuxemon from."""
 
-    def get_menu_items_map(self) -> Sequence[Tuple[str, MenuGameObj]]:
+    def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         player = local_session.player
         menu_items_map = []
         for box_name, monsters in player.monster_boxes.items():
@@ -387,7 +388,7 @@ class MonsterBoxChooseStorageState(MonsterBoxChooseState):
 class MonsterBoxChooseDropOffState(MonsterBoxChooseState):
     """Menu to choose a box, which you can then drop off a tuxemon into."""
 
-    def get_menu_items_map(self) -> Sequence[Tuple[str, MenuGameObj]]:
+    def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         player = local_session.player
         menu_items_map = []
         for box_name, monsters in player.monster_boxes.items():

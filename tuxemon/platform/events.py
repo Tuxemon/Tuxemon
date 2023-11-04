@@ -3,16 +3,8 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import (
-    Any,
-    ClassVar,
-    Generator,
-    Generic,
-    Mapping,
-    Optional,
-    Sequence,
-    TypeVar,
-)
+from collections.abc import Generator, Mapping, Sequence
+from typing import Any, ClassVar, Generic, Optional, TypeVar
 
 _InputEventType = TypeVar("_InputEventType", contravariant=True)
 

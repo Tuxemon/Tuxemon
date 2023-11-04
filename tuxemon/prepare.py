@@ -9,7 +9,7 @@ from __future__ import annotations
 import logging
 import os.path
 import re
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING
 
 from tuxemon import config
 from tuxemon.constants import paths
@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
     SCREEN: pg.surface.Surface
     SCREEN_RECT: pg.rect.Rect
-    JOYSTICKS: List[pg.joystick.Joystick]
+    JOYSTICKS: list[pg.joystick.Joystick]
 
 logger = logging.getLogger(__name__)
 

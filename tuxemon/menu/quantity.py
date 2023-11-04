@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import logging
-from typing import Callable, Generator, Optional
+from collections.abc import Callable, Generator
+from typing import Optional
 
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem

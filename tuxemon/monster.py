@@ -5,7 +5,8 @@ from __future__ import annotations
 import logging
 import random
 import uuid
-from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
+from collections.abc import Mapping, Sequence
+from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon import formula, fusion, graphics, tools
 from tuxemon.condition.condition import (
@@ -117,30 +118,30 @@ class Monster:
         self.mod_speed = 0
         self.mod_hp = 0
 
-        self.moves: List[Technique] = []
-        self.moveset: List[MonsterMovesetItemModel] = []
-        self.evolutions: List[MonsterEvolutionItemModel] = []
-        self.history: List[MonsterHistoryItemModel] = []
+        self.moves: list[Technique] = []
+        self.moveset: list[MonsterMovesetItemModel] = []
+        self.evolutions: list[MonsterEvolutionItemModel] = []
+        self.history: list[MonsterHistoryItemModel] = []
         self.stage = EvolutionStage.standalone
-        self.flairs: Dict[str, Flair] = {}
+        self.flairs: dict[str, Flair] = {}
         self.battle_cry = ""
         self.faint_cry = ""
         self.owner: Optional[NPC] = None
-        self.possible_genders: List[GenderType] = []
+        self.possible_genders: list[GenderType] = []
 
         self.money_modifier = 0
         self.experience_modifier = 1
         self.total_experience = 0
 
-        self.types: List[Element] = []
-        self._types: List[Element] = []
+        self.types: list[Element] = []
+        self._types: list[Element] = []
         self.shape = MonsterShape.default
         self.randomly = True
         self.got_experience = False
         self.levelling_up = False
         self.traded = False
 
-        self.status: List[Condition] = []
+        self.status: list[Condition] = []
         self.plague = PlagueType.healthy
         self.taste_cold = TasteCold.tasteless
         self.taste_warm = TasteWarm.tasteless
@@ -177,7 +178,7 @@ class Monster:
         self.body = fusion.Body()
 
         # Set up our sprites.
-        self.sprites: Dict[str, pygame.surface.Surface] = {}
+        self.sprites: dict[str, pygame.surface.Surface] = {}
         self.front_battle_sprite = ""
         self.back_battle_sprite = ""
         self.menu_sprite_1 = ""
@@ -782,7 +783,7 @@ class Monster:
 
 def decode_monsters(
     json_data: Optional[Sequence[Mapping[str, Any]]],
-) -> List[Monster]:
+) -> list[Monster]:
     return [Monster(save_data=mon) for mon in json_data or {}]
 
 

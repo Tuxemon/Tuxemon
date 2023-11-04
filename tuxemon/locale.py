@@ -7,15 +7,8 @@ import gettext
 import logging
 import os
 import os.path
-from typing import (
-    Any,
-    Callable,
-    Generator,
-    Iterable,
-    Mapping,
-    Optional,
-    Sequence,
-)
+from collections.abc import Callable, Generator, Iterable, Mapping, Sequence
+from typing import Any, Optional
 
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po

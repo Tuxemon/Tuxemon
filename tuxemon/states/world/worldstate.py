@@ -168,7 +168,7 @@ class WorldState(state.State):
         self.lock_controls()
         self.stop_player()
 
-    def fade_and_teleport(self, duration: float = 2) -> None:
+    def fade_and_teleport(self, duration: float, color: ColorLike) -> None:
         """
         Fade out, teleport, fade in.
 
@@ -181,7 +181,7 @@ class WorldState(state.State):
             self.in_transition = False
 
         def fade_in() -> None:
-            self.trigger_fade_in(duration)
+            self.trigger_fade_in(duration, color)
             self.task(cleanup, duration)
 
         # cancel any fades that may be going one
@@ -191,12 +191,12 @@ class WorldState(state.State):
         self.stop_and_reset_player()
 
         self.in_transition = True
-        self.trigger_fade_out(duration)
+        self.trigger_fade_out(duration, color)
 
         task = self.task(self.handle_delayed_teleport, duration)
         task.chain(fade_in, duration + 0.5)
 
-    def trigger_fade_in(self, duration: float = 2) -> None:
+    def trigger_fade_in(self, duration: float, color: ColorLike) -> None:
         """
         World state has own fade code b/c moving maps doesn't change state.
 
@@ -204,7 +204,7 @@ class WorldState(state.State):
             duration: Duration of the fade in.
 
         """
-        self.set_transition_surface()
+        self.set_transition_surface(color)
         self.animate(
             self,
             transition_alpha=0,
@@ -214,7 +214,7 @@ class WorldState(state.State):
         )
         self.task(self.unlock_controls, duration - 0.5)
 
-    def trigger_fade_out(self, duration: float = 2) -> None:
+    def trigger_fade_out(self, duration: float, color: ColorLike) -> None:
         """
         World state has own fade code b/c moving maps doesn't change state.
 
@@ -224,7 +224,7 @@ class WorldState(state.State):
             duration: Duration of the fade out.
 
         """
-        self.set_transition_surface()
+        self.set_transition_surface(color)
         self.animate(
             self,
             transition_alpha=255,
@@ -262,8 +262,10 @@ class WorldState(state.State):
 
             self.delayed_teleport = False
 
-    def set_transition_surface(self, color: ColorLike = (0, 0, 0)) -> None:
-        self.transition_surface = pygame.Surface(self.client.screen.get_size())
+    def set_transition_surface(self, color: ColorLike) -> None:
+        self.transition_surface = pygame.Surface(
+            self.client.screen.get_size(), pygame.SRCALPHA
+        )
         self.transition_surface.fill(color)
 
     def broadcast_player_teleport_change(self) -> None:

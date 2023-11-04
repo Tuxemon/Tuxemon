@@ -38,7 +38,7 @@ class TeleportFaintAction(EventAction):
 
         # If game variable exists, then teleport:
         if "teleport_faint" in player.game_variables:
-            teleport = player.game_variables["teleport_faint"].split(" ")
+            teleport = str(player.game_variables["teleport_faint"]).split(" ")
         else:
             logger.error(
                 "Teleport_faint action failed, because the teleport_faint variable has not been set."
@@ -46,7 +46,9 @@ class TeleportFaintAction(EventAction):
             return
 
         # Start the screen transition
-        # self.game.event_engine.execute_action("screen_transition", [.3])
-
+        client.event_engine.get_action(
+            "screen_transition",
+            [0.3],
+        )
         # Call the teleport action
         client.event_engine.execute_action("teleport", teleport)

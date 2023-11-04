@@ -8,6 +8,7 @@ from typing import Optional
 import pygame
 
 from tuxemon import prepare
+from tuxemon.graphics import ColorLike
 from tuxemon.platform.events import PlayerInput
 from tuxemon.state import State
 
@@ -19,7 +20,7 @@ class FlashTransition(State):
 
     force_draw = True
 
-    def __init__(self) -> None:
+    def __init__(self, color: ColorLike = (255, 255, 255)) -> None:
         super().__init__()
         logger.info("Initializing battle transition")
         self.flash_time = 0.2  # Time in seconds between flashes
@@ -28,10 +29,11 @@ class FlashTransition(State):
         self.max_flash_count = 7
         self.flash_count = 0
         self.client.rumble.rumble(-1, length=1.5)
+        self.color = color
 
     def resume(self) -> None:
         self.transition_surface = pygame.Surface(prepare.SCREEN_SIZE)
-        self.transition_surface.fill((255, 255, 255))
+        self.transition_surface.fill(self.color)
 
     def update(self, time_delta: float) -> None:
         """

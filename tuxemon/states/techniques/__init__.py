@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Generator, List
+from collections.abc import Generator
 
 import pygame
 
@@ -136,7 +136,7 @@ class TechniqueMenuState(Menu[Technique]):
             layer=100,
         )
 
-        moveset: List[Technique] = []
+        moveset: list[Technique] = []
         moveset = self.mon.moves
         output = sorted(moveset, key=lambda x: x.tech_id)
 

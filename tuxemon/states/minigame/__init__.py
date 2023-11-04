@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import random
+from collections.abc import Callable
 from functools import partial
-from typing import Callable
 
 import pygame_menu
 from pygame_menu import locals

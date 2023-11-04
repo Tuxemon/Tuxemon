@@ -2,7 +2,8 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Generator, Optional
+from collections.abc import Generator
+from typing import Optional
 
 import pygame
 from pygame.rect import Rect

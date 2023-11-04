@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import math
+from collections.abc import Callable, Sequence
 from functools import partial
-from typing import Any, Callable, List, Sequence
+from typing import Any
 
 import pygame_menu
 from pygame_menu import locals
@@ -424,7 +425,7 @@ class NuPhoneMap(PygameMenuState):
             font_size=20,
             background_color=(232, 48, 48),
         )
-        assert not isinstance(lab1, List)
+        assert not isinstance(lab1, list)
         lab1.translate(
             fix_width(menu._width, 0.20), fix_height(menu._height, -0.03)
         )
@@ -438,7 +439,7 @@ class NuPhoneMap(PygameMenuState):
             font_size=20,
             background_color=(232, 48, 48),
         )
-        assert not isinstance(lab2, List)
+        assert not isinstance(lab2, list)
         lab2.translate(
             fix_width(menu._width, 0.20), fix_height(menu._height, 0.08)
         )
@@ -452,7 +453,7 @@ class NuPhoneMap(PygameMenuState):
             font_size=20,
             background_color=(232, 48, 48),
         )
-        assert not isinstance(lab3, List)
+        assert not isinstance(lab3, list)
         lab3.translate(
             fix_width(menu._width, 0.20), fix_height(menu._height, 0.18)
         )
@@ -466,7 +467,7 @@ class NuPhoneMap(PygameMenuState):
             font_size=20,
             background_color=(232, 48, 48),
         )
-        assert not isinstance(lab4, List)
+        assert not isinstance(lab4, list)
         lab4.translate(
             fix_width(menu._width, -0.20), fix_height(menu._height, 0.18)
         )
@@ -480,7 +481,7 @@ class NuPhoneMap(PygameMenuState):
             font_size=20,
             background_color=(232, 48, 48),
         )
-        assert not isinstance(lab5, List)
+        assert not isinstance(lab5, list)
         lab5.translate(
             fix_width(menu._width, -0.20), fix_height(menu._height, -0.03)
         )
@@ -494,7 +495,7 @@ class NuPhoneMap(PygameMenuState):
             font_size=20,
             background_color=(232, 48, 48),
         )
-        assert not isinstance(lab6, List)
+        assert not isinstance(lab6, list)
         lab6.translate(
             fix_width(menu._width, -0.15), fix_height(menu._height, -0.15)
         )

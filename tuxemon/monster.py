@@ -137,6 +137,8 @@ class Monster:
         self._types: list[Element] = []
         self.shape = MonsterShape.default
         self.randomly = True
+        self.got_experience = False
+        self.levelling_up = False
         self.traded = False
 
         self.status: list[Condition] = []
@@ -220,6 +222,8 @@ class Monster:
             self._types.append(_element)
 
         self.randomly = results.randomly or self.randomly
+        self.got_experience = self.got_experience
+        self.levelling_up = self.levelling_up
         self.traded = self.traded
 
         self.txmn_id = results.txmn_id
@@ -357,6 +361,7 @@ class Monster:
         >>> bulbatux.give_experience(20)
 
         """
+        self.got_experience = True
         levels = 0
         self.total_experience += amount
 
@@ -385,6 +390,7 @@ class Monster:
             # if the status doesn't exist.
             else:
                 # start counting nr turns
+                self.status[0].nr_turn = 0
                 status.nr_turn = 1
                 if self.status[0].category == CategoryCondition.positive:
                     if status.repl_pos == ResponseCondition.replaced:
@@ -405,7 +411,7 @@ class Monster:
                         # chargedup, charging and dozing
                         return
                 else:
-                    # spyderbite and eliminated
+                    self.status.clear()
                     self.status.append(status)
 
     def set_stats(self) -> None:
@@ -507,6 +513,7 @@ class Monster:
             % (self.name, self.level, self.level + 1)
         )
         # Increase Level and stats
+        self.levelling_up = True
         self.level += 1
         self.level = min(self.level, MAX_LEVEL)
         self.set_stats()
@@ -744,14 +751,24 @@ class Monster:
 
         self.load_sprites()
 
+    def faint(self) -> None:
+        """
+        Kills the monster, sets 0 HP and applies faint status.
+        """
+        faint = Condition()
+        faint.load("faint")
+        self.current_hp = 0
+        self.apply_status(faint)
+
     def end_combat(self) -> None:
+        """
+        Ends combat, recharges all moves and heals statuses.
+        """
         for move in self.moves:
             move.full_recharge()
 
         if "faint" in (s.slug for s in self.status):
-            faint = Condition()
-            faint.load("faint")
-            self.status = [faint]
+            self.faint()
         else:
             self.status = []
 

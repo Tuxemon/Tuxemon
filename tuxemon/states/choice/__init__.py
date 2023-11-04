@@ -2,7 +2,8 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Any, Callable, Sequence, Tuple
+from collections.abc import Callable, Sequence
+from typing import Any
 
 from tuxemon.animation import Animation
 from tuxemon.menu.menu import PygameMenuState
@@ -22,7 +23,7 @@ class ChoiceState(PygameMenuState):
 
     def __init__(
         self,
-        menu: Sequence[Tuple[str, str, Callable[[], None]]] = (),
+        menu: Sequence[tuple[str, str, Callable[[], None]]] = (),
         escape_key_exits: bool = False,
         **kwargs: Any,
     ) -> None:

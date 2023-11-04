@@ -4,16 +4,8 @@ from __future__ import annotations
 
 import logging
 import uuid
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    ClassVar,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    Type,
-)
+from collections.abc import Mapping, Sequence
+from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 import pygame
 
@@ -44,8 +36,8 @@ MAX_TYPES_BAG = 99
 class Item:
     """An item object is an item that can be used either in or out of combat."""
 
-    effects_classes: ClassVar[Mapping[str, Type[ItemEffect[Any]]]] = {}
-    conditions_classes: ClassVar[Mapping[str, Type[ItemCondition[Any]]]] = {}
+    effects_classes: ClassVar[Mapping[str, type[ItemEffect[Any]]]] = {}
+    conditions_classes: ClassVar[Mapping[str, type[ItemCondition[Any]]]] = {}
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         if save_data is None:
@@ -116,6 +108,8 @@ class Item:
         self.use_failure = T.translate(results.use_failure)
 
         # misc attributes (not translated!)
+        self.visible = results.visible
+        self.menu = results.menu
         self.sort = results.sort
         self.category = results.category or ItemCategory.none
         self.type = results.type or ItemType.consumable
@@ -309,7 +303,7 @@ class Item:
 
 def decode_items(
     json_data: Optional[Sequence[Mapping[str, Any]]],
-) -> List[Item]:
+) -> list[Item]:
     return [Item(save_data=itm) for itm in json_data or {}]
 
 

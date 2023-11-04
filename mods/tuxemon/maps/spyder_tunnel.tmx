@@ -358,5 +358,11 @@
     <property name="cond1" value="not variable_set stage_of_day:night"/>
    </properties>
   </object>
+  <object id="9" name="Evolution" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="evolution"/>
+    <property name="cond1" value="is check_evolution standard"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

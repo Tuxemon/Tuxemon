@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import Any, Optional, Sequence, final
+from typing import Any, Optional, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar

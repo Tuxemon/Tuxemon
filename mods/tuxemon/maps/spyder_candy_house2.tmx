@@ -89,8 +89,9 @@
   <object id="75" name="Talk Prof - Will Trade Cateye" type="event" x="64" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_prof_willtrade"/>
-    <property name="act2" value="trading cateye,zunna"/>
-    <property name="act3" value="set_variable prof_candy_hastraded:yes"/>
+    <property name="act2" value="get_player_monster cateye,slug,cateye"/>
+    <property name="act3" value="trading cateye,zunna"/>
+    <property name="act4" value="set_variable prof_candy_hastraded:yes"/>
     <property name="cond1" value="is has_monster cateye"/>
     <property name="cond2" value="is variable_set prof_willtrade:yes"/>
     <property name="cond3" value="not variable_set prof_candy_hastraded:yes"/>

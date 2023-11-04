@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import logging
 import random
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Optional, Sequence, Union, final
+from typing import Optional, Union, final
 
 from tuxemon import formula, monster, prepare
 from tuxemon.combat import check_battle_legal

@@ -83,6 +83,7 @@ class EventAction(ABC):
     name: ClassVar[str]
     session: Session = field(init=False, repr=False)
     _done: bool = field(default=False, init=False)
+    _skip: bool = field(default=False, init=False)
 
     def __post_init__(self) -> None:
         self.session = local_session
@@ -145,7 +146,10 @@ class EventAction(ABC):
 
         """
         while not self.done:
-            self.update()
+            if self._skip:
+                return
+            else:
+                self.update()
 
     @property
     def done(self) -> bool:

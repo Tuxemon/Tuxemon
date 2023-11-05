@@ -111,7 +111,7 @@
   </object>
   <object id="10" name="Encounters" type="event" x="32" y="224" width="80" height="80">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -126,7 +126,7 @@
   <object id="6" name="Player Spawn" type="event" x="112" y="64" width="16" height="16"/>
   <object id="201" name="Encounters" type="event" x="32" y="112" width="112" height="64">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -134,7 +134,7 @@
   </object>
   <object id="202" name="Encounters" type="event" x="16" y="352" width="32" height="160">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -142,7 +142,7 @@
   </object>
   <object id="203" name="Encounters" type="event" x="368" y="240" width="80" height="64">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -150,7 +150,7 @@
   </object>
   <object id="205" name="Encounters" type="event" x="368" y="336" width="96" height="96">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -158,7 +158,7 @@
   </object>
   <object id="206" name="Encounters" type="event" x="208" y="272" width="128" height="112">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -166,7 +166,7 @@
   </object>
   <object id="207" name="Encounters" type="event" x="112" y="576" width="448" height="32">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -174,7 +174,7 @@
   </object>
   <object id="209" name="Encounters" type="event" x="208" y="48" width="64" height="48">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -182,7 +182,7 @@
   </object>
   <object id="229" name="Encounters" type="event" x="592" y="288" width="64" height="64">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -190,7 +190,7 @@
   </object>
   <object id="230" name="Encounters" type="event" x="160" y="480" width="80" height="48">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -207,7 +207,7 @@
   </object>
   <object id="261" name="Encounters" type="event" x="560" y="464" width="80" height="32">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -215,7 +215,7 @@
   </object>
   <object id="262" name="Encounters" type="event" x="640" y="528" width="64" height="80">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -263,7 +263,7 @@
   </object>
   <object id="283" name="Encounters" type="event" x="160" y="160" width="32" height="32">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -271,7 +271,7 @@
   </object>
   <object id="284" name="Encounters" type="event" x="304" y="208" width="64" height="16">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -279,7 +279,7 @@
   </object>
   <object id="285" name="Encounters" type="event" x="256" y="208" width="32" height="16">
    <properties>
-    <property name="act1" value="random_encounter park,,ParkState"/>
+    <property name="act1" value="random_encounter park,,,ParkState"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>

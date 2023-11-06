@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Callable, List
+from collections.abc import Callable
 
 import pygame_menu
 from pygame_menu import locals
@@ -75,9 +75,10 @@ class PlayerState(PygameMenuState):
         date_begin = formula.today_ordinal() - int(
             player.game_variables["date_start_game"]
         )
-        msg_begin = T.format(
-            "player_start_adventure",
-            {"date": str(date_begin)},
+        msg_begin = (
+            T.format("player_start_adventure", {"date": date_begin})
+            if date_begin >= 1
+            else T.translate("player_start_adventure_today")
         )
         tot = len(player.battles)
         won = sum(
@@ -130,7 +131,7 @@ class PlayerState(PygameMenuState):
             underline=True,
             float=True,
         )
-        assert not isinstance(lab1, List)
+        assert not isinstance(lab1, list)
         lab1.translate(fix_width(width, 0.45), fix_height(height, 0.15))
         # money
         money = player.money["player"]
@@ -141,7 +142,7 @@ class PlayerState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        assert not isinstance(lab2, List)
+        assert not isinstance(lab2, list)
         lab2.translate(fix_width(width, 0.45), fix_height(height, 0.25))
         # seen
         lab3 = menu.add.label(
@@ -151,7 +152,7 @@ class PlayerState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        assert not isinstance(lab3, List)
+        assert not isinstance(lab3, list)
         lab3.translate(fix_width(width, 0.45), fix_height(height, 0.30))
         # caught
         lab4 = menu.add.label(
@@ -161,7 +162,7 @@ class PlayerState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        assert not isinstance(lab4, List)
+        assert not isinstance(lab4, list)
         lab4.translate(fix_width(width, 0.45), fix_height(height, 0.35))
         # begin adventure
         lab5 = menu.add.label(
@@ -171,7 +172,7 @@ class PlayerState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        assert not isinstance(lab5, List)
+        assert not isinstance(lab5, list)
         lab5.translate(fix_width(width, 0.45), fix_height(height, 0.40))
         # walked
         lab6 = menu.add.label(
@@ -181,7 +182,7 @@ class PlayerState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        assert not isinstance(lab6, List)
+        assert not isinstance(lab6, list)
         lab6.translate(fix_width(width, 0.45), fix_height(height, 0.45))
         # battles
         lab7 = menu.add.label(
@@ -191,7 +192,7 @@ class PlayerState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        assert not isinstance(lab7, List)
+        assert not isinstance(lab7, list)
         lab7.translate(fix_width(width, 0.45), fix_height(height, 0.50))
         # % tuxepedia
         lab8 = menu.add.label(
@@ -201,7 +202,7 @@ class PlayerState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        assert not isinstance(lab8, List)
+        assert not isinstance(lab8, list)
         lab8.translate(fix_width(width, 0.45), fix_height(height, 0.10))
         # image
         combat_front = ""

@@ -2,8 +2,9 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from collections.abc import Generator, Sequence
 from functools import partial
-from typing import TYPE_CHECKING, Generator, Sequence, Tuple
+from typing import TYPE_CHECKING
 
 import pygame
 
@@ -43,7 +44,7 @@ def sort_inventory(
 
     """
 
-    def rank_item(item: Item) -> Tuple[int, str]:
+    def rank_item(item: Item) -> tuple[int, str]:
         primary_order = sort_order.index(item.sort)
         return primary_order, item.name
 
@@ -112,7 +113,7 @@ class ItemMenuState(Menu[Item]):
 
         """
         item = menu_item.game_object
-        state = self.determine_state_called_from()
+        active_state_names = [a.name for a in self.client.active_states]
 
         if not any(item.validate(m) for m in local_session.player.monsters):
             self.on_menu_selection_change()
@@ -139,7 +140,7 @@ class ItemMenuState(Menu[Item]):
                 elif i.name == "facing_tile" or i.name == "facing_sprite":
                     msg = T.format("item_cannot_use_here", {"name": item.name})
             tools.open_dialog(local_session, [msg])
-        elif State[state] not in item.usable_in:
+        elif not any(s.name in active_state_names for s in item.usable_in):
             msg = T.format("item_cannot_use_here", {"name": item.name})
             tools.open_dialog(local_session, [msg])
         else:
@@ -234,12 +235,10 @@ class ItemMenuState(Menu[Item]):
                 for item in local_session.player.items
                 if State[state] in item.usable_in
             ]
-        # shows all items (excluded phone category)
+        # shows all items (only visible)
         else:
             inventory = [
-                item
-                for item in local_session.player.items
-                if item.category != "phone"
+                item for item in local_session.player.items if item.visible
             ]
 
         # required because the max() below will fail if inv empty

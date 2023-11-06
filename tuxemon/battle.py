@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import uuid
-from typing import Any, List, Mapping, Optional, Sequence
+from collections.abc import Mapping, Sequence
+from typing import Any, Optional
 
 from tuxemon.db import OutputBattle
 
@@ -68,7 +69,7 @@ class Battle:
 
 def decode_battle(
     json_data: Optional[Sequence[Mapping[str, Any]]],
-) -> List[Battle]:
+) -> list[Battle]:
     return [Battle(save_data=battle) for battle in json_data or {}]
 
 

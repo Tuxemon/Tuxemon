@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Literal, Optional, Tuple, Union
+from typing import Literal, Optional, Union
 
 import pygame
 from pygame.rect import Rect
@@ -86,7 +86,7 @@ class TextArea(Sprite):
 def draw_text(
     surface: pygame.surface.Surface,
     text: str,
-    rect: Union[Rect, Tuple[int, int, int, int]],
+    rect: Union[Rect, tuple[int, int, int, int]],
     *,
     justify: Literal["left", "center", "right"] = "left",
     align: Literal["top", "middle", "bottom"] = "top",
@@ -132,8 +132,8 @@ def draw_text(
 
     # Create a list of the lines of text as well as a list of the
     # individual words so we can check each line's length in pixels
-    lines: List[str] = []
-    wordlist: List[str] = []
+    lines: list[str] = []
+    wordlist: list[str] = []
 
     # Loop through each word in the text and add it to the word list
     for word in text.split():

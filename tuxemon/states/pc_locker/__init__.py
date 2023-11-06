@@ -5,16 +5,9 @@ from __future__ import annotations
 import logging
 import math
 import uuid
+from collections.abc import Callable, Sequence
 from functools import partial
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Callable,
-    List,
-    Optional,
-    Sequence,
-    Tuple,
-)
+from typing import TYPE_CHECKING, Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
@@ -327,7 +320,7 @@ class ItemBoxChooseState(PygameMenuState):
     def add_menu_items(
         self,
         menu: pygame_menu.Menu,
-        items: Sequence[Tuple[str, MenuGameObj]],
+        items: Sequence[tuple[str, MenuGameObj]],
     ) -> None:
         menu.add.vertical_fill()
         for key, callback in items:
@@ -349,7 +342,7 @@ class ItemBoxChooseState(PygameMenuState):
             position=(width + b_width, b_height, False),
         )
 
-    def get_menu_items_map(self) -> Sequence[Tuple[str, MenuGameObj]]:
+    def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         """
         Return a list of menu options and callbacks, to be overridden by
         class descendants.
@@ -396,7 +389,7 @@ class ItemBoxChooseState(PygameMenuState):
 class ItemBoxChooseStorageState(ItemBoxChooseState):
     """Menu to choose a box, which you can then take an item from."""
 
-    def get_menu_items_map(self) -> Sequence[Tuple[str, MenuGameObj]]:
+    def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         player = local_session.player
         menu_items_map = []
         for box_name, items in player.item_boxes.items():
@@ -418,7 +411,7 @@ class ItemBoxChooseStorageState(ItemBoxChooseState):
 class ItemBoxChooseDropOffState(ItemBoxChooseState):
     """Menu to choose a box, which you can then drop off an item into."""
 
-    def get_menu_items_map(self) -> Sequence[Tuple[str, MenuGameObj]]:
+    def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         player = local_session.player
         menu_items_map = []
         for box_name, items in player.item_boxes.items():
@@ -458,7 +451,7 @@ class ItemDropOffState(ItemMenuState):
 
             box = player.item_boxes[self.box_name]
 
-            def find_monster_box(itm: Item, box: List[Item]) -> Optional[Item]:
+            def find_monster_box(itm: Item, box: list[Item]) -> Optional[Item]:
                 for ele in box:
                     if ele.slug == itm.slug:
                         return ele

@@ -2,7 +2,7 @@ Tools to get/manipulate game files or config should go here.
 
 * Scripts should have documentation at the top of the file
 * Do not add script dependencies to requirements.txt or setup.py
-* New python scripts should be written for python 3.8+
+* New python scripts should be written for python 3.9+
 * Scripts do not require unit testing
 * Do not modify project if your script requires another language/runtime
 

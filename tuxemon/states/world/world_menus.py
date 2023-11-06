@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable, Sequence
 from functools import partial
-from typing import TYPE_CHECKING, Any, Callable, Dict, Sequence, Tuple
+from typing import TYPE_CHECKING, Any
 
 import pygame_menu
 
@@ -29,7 +30,7 @@ WorldMenuGameObj = Callable[[], object]
 
 def add_menu_items(
     menu: pygame_menu.Menu,
-    items: Sequence[Tuple[str, WorldMenuGameObj]],
+    items: Sequence[tuple[str, WorldMenuGameObj]],
 ) -> None:
     menu.add.vertical_fill()
     for key, callback in items:
@@ -73,13 +74,12 @@ class WorldMenuState(PygameMenuState):
             ("menu_options", change_state("ControlState")),
             ("exit", exit_game),
         ]
-        if local_session.player.find_item("nu_phone"):
-            menu_items_map.insert(3, ("nu_phone", change_state("NuPhone")))
-        if local_session.player.find_item("app_tuxepedia"):
-            menu_items_map.insert(
-                0,
-                ("menu_tuxepedia", change_state("JournalChoice")),
-            )
+        player = local_session.player
+        for itm in player.items:
+            if itm.menu:
+                menu_items_map.insert(
+                    itm.menu[0], (itm.menu[1], change_state(itm.menu[2]))
+                )
         add_menu_items(self.menu, tuple(menu_items_map))
 
     def open_monster_menu(self) -> None:
@@ -225,7 +225,7 @@ class WorldMenuState(PygameMenuState):
             else:
                 open_monster_submenu(menu_item)
 
-        context: Dict[
+        context: dict[
             str, Any
         ] = dict()  # dict passed around to hold info between menus/callbacks
         monster_menu = self.client.push_state(MonsterMenuState())

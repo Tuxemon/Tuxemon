@@ -12,7 +12,8 @@ from __future__ import annotations
 
 import logging
 import random
-from typing import TYPE_CHECKING, Generator, List, Sequence, Union
+from collections.abc import Generator, Sequence
+from typing import TYPE_CHECKING, Optional
 
 from tuxemon.db import PlagueType
 from tuxemon.locale import T
@@ -105,25 +106,12 @@ def has_effect_param(
     return find
 
 
-def has_status_bond(monster: Monster) -> bool:
-    """
-    Statuses connected are the ones where an effect is present only
-    if both monsters are alive (lifeleech, grabbed).
-    """
-    if has_status(monster, "grabbed"):
-        return True
-    elif has_status(monster, "lifeleech"):
-        return True
-    else:
-        return False
-
-
 def fainted(monster: Monster) -> bool:
     return has_status(monster, "faint") or monster.current_hp <= 0
 
 
 def get_awake_monsters(
-    player: NPC, monsters: List[Monster], turn: int
+    player: NPC, monsters: list[Monster], turn: int
 ) -> Generator[Monster, None, None]:
     """
     Iterate all non-fainted monsters in party.
@@ -152,7 +140,7 @@ def get_awake_monsters(
             yield mons[0]
 
 
-def alive_party(player: NPC) -> List[Monster]:
+def alive_party(player: NPC) -> list[Monster]:
     not_fainted = [ele for ele in player.monsters if not fainted(ele)]
     return not_fainted
 
@@ -165,21 +153,9 @@ def defeated(player: NPC) -> bool:
     return fainted_party(player.monsters)
 
 
-def check_moves(monster: Monster, levels: int) -> Union[str, None]:
-    tech: Union[Technique, None] = None
-    for move in monster.moveset:
-        # monster levels up 1 level
-        if levels == 1:
-            if move.level_learned == monster.level:
-                tech = learn(monster, move.technique)
-        # monster levels up multiple levels
-        else:
-            level_before = monster.level - levels
-            # if there are techniques in this range
-            if level_before < move.level_learned <= monster.level:
-                tech = learn(monster, move.technique)
+def check_moves(monster: Monster, levels: int) -> Optional[str]:
+    tech = monster.update_moves(levels)
     if tech:
-        monster.learn(tech)
         message = T.format(
             "tuxemon_new_tech",
             {
@@ -188,15 +164,4 @@ def check_moves(monster: Monster, levels: int) -> Union[str, None]:
             },
         )
         return message
-    else:
-        return None
-
-
-def learn(monster: Monster, tech: str) -> Union[Technique, None]:
-    technique = Technique()
-    technique.load(tech)
-    duplicate = [mov for mov in monster.moves if mov.slug == technique.slug]
-    if duplicate:
-        return None
-    else:
-        return technique
+    return None

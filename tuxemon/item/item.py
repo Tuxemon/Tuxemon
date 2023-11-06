@@ -4,22 +4,15 @@ from __future__ import annotations
 
 import logging
 import uuid
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    ClassVar,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    Type,
-)
+from collections.abc import Mapping, Sequence
+from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 import pygame
 
 from tuxemon import graphics, plugin, prepare
 from tuxemon.constants import paths
 from tuxemon.db import ItemCategory, ItemType, State, db
+from tuxemon.graphics import animation_frame_files
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.locale import T
@@ -27,6 +20,7 @@ from tuxemon.locale import T
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
+    from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
 
@@ -42,8 +36,8 @@ MAX_TYPES_BAG = 99
 class Item:
     """An item object is an item that can be used either in or out of combat."""
 
-    effects_classes: ClassVar[Mapping[str, Type[ItemEffect[Any]]]] = {}
-    conditions_classes: ClassVar[Mapping[str, Type[ItemCondition[Any]]]] = {}
+    effects_classes: ClassVar[Mapping[str, type[ItemEffect[Any]]]] = {}
+    conditions_classes: ClassVar[Mapping[str, type[ItemCondition[Any]]]] = {}
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         if save_data is None:
@@ -56,6 +50,8 @@ class Item:
         self.quantity = 1
         self.images: Sequence[str] = []
         self.type = ItemType.consumable
+        self.animation: Optional[str] = None
+        self.flip_axes = ""
         # The path to the sprite to load.
         self.sprite = ""
         self.category = ItemCategory.none
@@ -64,6 +60,7 @@ class Item:
 
         self.effects: Sequence[ItemEffect[Any]] = []
         self.conditions: Sequence[ItemCondition[Any]] = []
+        self.combat_state: Optional[CombatState] = None
 
         self.sort = ""
         self.use_item = ""
@@ -111,6 +108,8 @@ class Item:
         self.use_failure = T.translate(results.use_failure)
 
         # misc attributes (not translated!)
+        self.visible = results.visible
+        self.menu = results.menu
         self.sort = results.sort
         self.category = results.category or ItemCategory.none
         self.type = results.type or ItemType.consumable
@@ -120,6 +119,17 @@ class Item:
         self.conditions = self.parse_conditions(results.conditions)
         self.surface = graphics.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
+
+        # Load the animation sprites that will be used for this technique
+        self.animation = results.animation
+        if self.animation:
+            directory = prepare.fetch("animations", "item")
+            self.images = animation_frame_files(directory, self.animation)
+            if self.animation and not self.images:
+                logger.error(
+                    f"Cannot find animation frames for: {self.animation}",
+                )
+        self.flip_axes = results.flip_axes
 
     def parse_effects(
         self,
@@ -293,7 +303,7 @@ class Item:
 
 def decode_items(
     json_data: Optional[Sequence[Mapping[str, Any]]],
-) -> List[Item]:
+) -> list[Item]:
     return [Item(save_data=itm) for itm in json_data or {}]
 
 

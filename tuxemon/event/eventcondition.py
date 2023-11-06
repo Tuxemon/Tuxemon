@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Any, ClassVar, Dict
+from typing import Any, ClassVar
 
 from tuxemon.event import MapCondition
 from tuxemon.session import Session
@@ -28,7 +28,7 @@ class EventCondition:
         """
         return True
 
-    def get_persist(self, session: Session) -> Dict[str, Any]:
+    def get_persist(self, session: Session) -> dict[str, Any]:
         """
         Return dictionary for this event class's data.
 
@@ -44,7 +44,7 @@ class EventCondition:
         try:
             return session.client.event_persist[self.name]
         except KeyError:
-            persist: Dict[str, Any] = {}
+            persist: dict[str, Any] = {}
             session.client.event_persist[self.name] = persist
             return persist
 

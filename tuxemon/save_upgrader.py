@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import random
-from typing import TYPE_CHECKING, Any, Dict, Mapping
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any
 
 from tuxemon import formula
 from tuxemon.db import PlagueType, SeenStatus
@@ -41,7 +42,7 @@ MAP_RENAMES: Mapping[int, Mapping[str, str]] = {
 }
 
 
-def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
+def upgrade_save(save_data: dict[str, Any]) -> SaveData:
     """
     Updates savegame if necessary.
 
@@ -233,7 +234,7 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     return save_data  # type: ignore[return-value]
 
 
-def _update_current_map(version: int, save_data: Dict[str, Any]) -> None:
+def _update_current_map(version: int, save_data: dict[str, Any]) -> None:
     """
     Updates current map if necessary.
 
@@ -248,7 +249,7 @@ def _update_current_map(version: int, save_data: Dict[str, Any]) -> None:
             save_data["current_map"] = new_name
 
 
-def _remove_slug_prefixes(save_data: Dict[str, Any]) -> None:
+def _remove_slug_prefixes(save_data: dict[str, Any]) -> None:
     """
     Fixes slug names in old saves.
 
@@ -261,7 +262,7 @@ def _remove_slug_prefixes(save_data: Dict[str, Any]) -> None:
 
     """
 
-    def fix_items(data: Dict[str, Any]) -> Dict[str, Any]:
+    def fix_items(data: dict[str, Any]) -> dict[str, Any]:
         return {key.partition("_")[2]: num for key, num in data.items()}
 
     chest = save_data.get("storage", {})
@@ -273,7 +274,7 @@ def _remove_slug_prefixes(save_data: Dict[str, Any]) -> None:
             mon["slug"] = mon["slug"].partition("_")[2]
 
 
-def _transfer_storage_boxes(save_data: Dict[str, Any]) -> None:
+def _transfer_storage_boxes(save_data: dict[str, Any]) -> None:
     """
     Fixes storage boxes in old saves.
 

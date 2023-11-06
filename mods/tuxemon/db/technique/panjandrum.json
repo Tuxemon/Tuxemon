@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "explosion_mushroom_128",
   "effects": [
-    "local_damage"
+    "prop_damage target,0.25"
   ],
   "flip_axes": "",
   "is_fast": false,

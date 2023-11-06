@@ -106,7 +106,7 @@ class PlayerState(PygameMenuState):
             },
         )
         # steps
-        steps = player.game_variables["steps"]
+        steps = player.steps
         unit = player.game_variables["unit_measure"]
         if unit == "Metric":
             walked = formula.convert_km(steps)

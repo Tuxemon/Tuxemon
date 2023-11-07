@@ -233,12 +233,6 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="90" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="93" name="Create Alex" type="event" x="80" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_alex,5,14"/>
@@ -383,12 +377,6 @@
     <property name="act6" value="set_variable greenwashgluck:yes"/>
     <property name="cond1" value="not variable_set greenwashgluck:yes"/>
     <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="13" name="Evolution" type="event" x="0" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="evolution"/>
-    <property name="cond1" value="is check_evolution standard"/>
    </properties>
   </object>
  </objectgroup>

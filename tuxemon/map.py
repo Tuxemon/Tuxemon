@@ -433,7 +433,7 @@ class TuxemonMap:
         # inside (true), outside (none)
         self.inside = bool(maps.get("inside"))
         # scenario: spyder, xero or none
-        self.scenario = maps.get("scenario")
+        self.scenario = str(maps.get("scenario"))
         # check type of location
         self.types = maps.get("types")
 

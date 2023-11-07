@@ -33,8 +33,9 @@ class TeleportFaintAction(EventAction):
         player = self.session.player
         client = self.session.client
         # this function cleans up the previous state without crashing
-        if len(client.state_manager.active_states) > 2:
-            return
+        assert client.current_state
+        if client.current_state.name == "DialogState":
+            client.pop_state()
 
         # If game variable exists, then teleport:
         if "teleport_faint" in player.game_variables:
@@ -45,10 +46,5 @@ class TeleportFaintAction(EventAction):
             )
             return
 
-        # Start the screen transition
-        client.event_engine.get_action(
-            "screen_transition",
-            [0.3],
-        )
         # Call the teleport action
         client.event_engine.execute_action("teleport", teleport)

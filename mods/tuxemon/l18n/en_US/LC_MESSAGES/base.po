@@ -725,7 +725,7 @@ msgid "combat_scope"
 msgstr "AR:{AR} DE:{DE} ME:{ME} RD:{RD} SD:{SD}"
 
 msgid "combat_gain_exp"
-msgstr "{name} gains {xp}px"
+msgstr "{name} gains {xp}xp"
 
 msgid "tuxemon_new_tech"
 msgstr "{name} learned technique {tech}!"
@@ -743,13 +743,13 @@ msgid "combat_forfeit"
 msgstr "You have forfeited!\n{npc} is disappointed."
 
 msgid "combat_cannot_run_away"
-msgstr "But can't run away!"
+msgstr "You can't run away!"
 
 msgid "combat_forfeit_trainer"
 msgstr "Can't forfeit!"
 
 msgid "combat_player_run"
-msgstr "Run away!"
+msgstr "You ran away!"
 
 msgid "combat_player_run_status"
 msgstr "Can't escape.\n{monster} is {status}!"
@@ -2448,7 +2448,7 @@ msgid "here_to_south"
 msgstr "From ${{map_name}} to ${{south}}"
 
 msgid "here_to_west"
-msgstr "From ${{map_name}} to ${{west}}"
+msgstr "Route 17"
 
 msgid "here_to_east"
 msgstr "From ${{map_name}} to ${{east}}"
@@ -5821,7 +5821,7 @@ msgid "waterwater"
 msgstr "The water is ice cold and delicious!"
 
 msgid "watchmewatchme"
-msgstr "Why are you heading into town, You know there's an early curfew.\n"
+msgstr "What are you doing? Don't you know there's an early curfew?\n"
 "... ... ... ...\n"
 "... ... ... ...\n"
 "You don't seem like a threat, so you can head on to town...\n"
@@ -6244,11 +6244,11 @@ msgid "oimate"
 msgstr "Hey! This is a restricted area! No one without a badge is allowed in!"
 
 msgid "welcometotaba"
-msgstr "Hello aspiring Tuxemon Trainers!"
+msgstr "Hello, aspiring Tuxemon Trainers!"
 
 msgid "welcometotaba2"
-msgstr "Congratulations on passing the strict evaluation!\n"
-"You are the lucky group that has been chosen to be the first contestants in the trial!"
+msgstr "Congratulations on passing the strict Omnichannel evaluation!\n"
+"Your lucky group has been designated by Omnichannel to be the first contestants in the Trial!"
 
 msgid "welcometotaba3"
 msgstr "Aren't there only three of us? Seems like we barely qualify as a \"group\"."

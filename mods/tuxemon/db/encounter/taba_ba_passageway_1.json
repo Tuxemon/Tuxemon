@@ -4,14 +4,16 @@
     {
       "monster": "chloragon",
       "encounter_rate": 3.5,
+      "exp_req_mod": 15,
       "level_range": [
-        3,
-        6
+        2,
+        5
       ]
     },
     {
       "monster": "aardorn",
       "encounter_rate": 3.5,
+      "exp_req_mod": 15,
       "level_range": [
         3,
         6

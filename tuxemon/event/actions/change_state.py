@@ -8,7 +8,6 @@ from typing import Union, final
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
-from tuxemon.states.journal.journal_info import JournalInfoState
 from tuxemon.states.monster_info import MonsterInfoState
 
 
@@ -44,7 +43,7 @@ class ChangeStateAction(EventAction):
                 if self.optional:
                     journal = db.lookup(self.optional, table="monster")
                     self.session.client.push_state(
-                        JournalInfoState(monster=journal)
+                        self.state_name, kwargs={"monster": journal}
                     )
             elif self.state_name == "MonsterInfoState":
                 if self.optional:

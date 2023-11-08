@@ -5,13 +5,13 @@ from __future__ import annotations
 from collections.abc import Callable, Sequence
 from typing import TYPE_CHECKING, Any, Optional
 
+from tuxemon.graphics import load_and_scale
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.platform.const import buttons
 from tuxemon.states.choice import ChoiceState
 from tuxemon.ui.text import TextArea
 
 if TYPE_CHECKING:
-    from tuxemon.graphics import ColorLike
     from tuxemon.platform.events import PlayerInput
     from tuxemon.sprite import Sprite
 
@@ -34,25 +34,35 @@ class DialogState(PopUpMenu[None]):
         text: Sequence[str] = (),
         avatar: Optional[Sprite] = None,
         menu: Optional[Sequence[tuple[str, str, Callable[[], None]]]] = None,
-        bg: Optional[ColorLike] = None,
-        font_color: Optional[ColorLike] = None,
-        font_shadow: Optional[ColorLike] = None,
+        colors: dict[str, Any] = {},
         **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
         self.text_queue = list(text)
         self.avatar = avatar
         self.menu = menu
-        if bg is None:
-            bg = (248, 248, 248)
-        if font_color is None:
-            font_color = (10, 10, 10)
-        if font_shadow is None:
-            font_shadow = (192, 192, 192)
+
+        bg_color = self.background_color
+        font_color = self.font_color
+        font_shadow = self.font_shadow_color
+        border = self.borders_filename
+
+        if colors["bg_color"] != "":
+            bg_color = colors["bg_color"]
+        if colors["font_color"] != "":
+            font_color = colors["font_color"]
+        if colors["font_shadow"] != "":
+            font_shadow = colors["font_shadow"]
+        if colors["border"] != "":
+            border = colors["border"]
+
+        _border = load_and_scale(border)
+        self.window._set_border(_border)
+
         self.text_area = TextArea(self.font, font_color, font_shadow)
         self.text_area.rect = self.calc_internal_rect()
         self.sprites.add(self.text_area)
-        self.window._color = bg
+        self.window._color = bg_color
 
         if self.avatar:
             avatar_rect = self.calc_final_rect()

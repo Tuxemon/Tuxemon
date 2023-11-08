@@ -78,7 +78,9 @@ def get_theme() -> pygame_menu.Theme:
     else:
         font_filename = prepare.fetch("font", prepare.FONT_BASIC)
     tuxemon_border = pygame_menu.BaseImage(
-        image_path=transform_resource_filename("gfx/dialog-borders01.png"),
+        image_path=transform_resource_filename(
+            "gfx/borders/dialog-borders.png"
+        ),
     ).scale(5, 5, smooth=False)
 
     tuxemon_background_center_rect = tuxemon_border.get_rect()
@@ -100,7 +102,9 @@ def get_theme() -> pygame_menu.Theme:
         widget_font_size=26,
         title=False,
         widget_selection_effect=TuxemonArrowSelection(),
-        widget_font_color=(0, 0, 0),
+        widget_font_color=(10, 10, 10),
+        widget_font_shadow=True,
+        widget_font_shadow_color=(192, 192, 192),
         selection_color=(0, 0, 0),
         border_color=tuxemon_border,
         scrollarea_position=locals.SCROLLAREA_POSITION_NONE,

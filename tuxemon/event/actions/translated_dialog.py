@@ -7,8 +7,9 @@ from collections.abc import Sequence
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Optional, final
 
+from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
-from tuxemon.graphics import ColorLike, get_avatar, string_to_colorlike
+from tuxemon.graphics import get_avatar, string_to_colorlike
 from tuxemon.locale import process_translate_text
 from tuxemon.states.dialog import DialogState
 from tuxemon.tools import open_dialog
@@ -42,7 +43,7 @@ class TranslatedDialogAction(EventAction):
     Script usage:
         .. code-block::
 
-            translated_dialog <text>,<avatar>,<bg>,<font_color><font_shadow>
+            translated_dialog <text>,<avatar>,<bg>,<font_color>,<font_shadow>,<border>
             translated_dialog <text>[,var1=value1]...
 
     Script parameters:
@@ -50,9 +51,7 @@ class TranslatedDialogAction(EventAction):
         avatar: Monster avatar. If it is a number, the monster is the
             corresponding monster slot in the player's party.
             If it is a string, we're referring to a monster by name.
-        rgb: color (eg red > 255,0,0 > 255:0:0) - default rgb(248,248,248)
-        font_color: color (eg red > 255,0,0 > 255:0:0) - default rgb(10,10,10)
-        font_shadow: color (eg red > 255,0,0 > 255:0:0) - default rgb(192,192,192)
+        style: a predefined style in db/dialogue/dialogue.json
 
     """
 
@@ -67,35 +66,36 @@ class TranslatedDialogAction(EventAction):
         key = self.raw_parameters[0]
         replace = []
         avatar = None
-        if len(self.raw_parameters) == 2:
+        if len(self.raw_parameters) >= 2:
             for param in self.raw_parameters[1]:
                 if "=" in param:
                     replace.append(param)
                 else:
                     avatar = get_avatar(self.session, param)
 
-        bg = None
-        if len(self.raw_parameters) == 3:
-            bg = string_to_colorlike(self.raw_parameters[2])
+        dialogue = "default"
 
-        font_color = None
-        if len(self.raw_parameters) == 4:
-            font_color = string_to_colorlike(self.raw_parameters[3])
+        if len(self.raw_parameters) >= 3:
+            if len(self.raw_parameters[2]) > 0:
+                dialogue = self.raw_parameters[2]
 
-        font_shadow = None
-        if len(self.raw_parameters) == 5:
-            font_shadow = string_to_colorlike(self.raw_parameters[4])
+        style = db.lookup(dialogue, table="dialogue")
+
+        colors: dict[str, Any] = {
+            "bg_color": string_to_colorlike(style.bg_color),
+            "font_color": string_to_colorlike(style.font_color),
+            "font_shadow": string_to_colorlike(style.font_shadow_color),
+            "border": style.border_path,
+        }
 
         self.open_dialog(
-            process_translate_text(
+            pages=process_translate_text(
                 self.session,
                 key,
                 replace,
             ),
-            avatar,
-            bg,
-            font_color,
-            font_shadow,
+            avatar=avatar,
+            colors=colors,
         )
 
     def update(self) -> None:
@@ -108,16 +108,9 @@ class TranslatedDialogAction(EventAction):
         self,
         pages: Sequence[str],
         avatar: Optional[Sprite],
-        bg: Optional[ColorLike],
-        font_color: Optional[ColorLike],
-        font_shadow: Optional[ColorLike],
+        colors: dict[str, str],
     ) -> None:
         logger.info("Opening dialog window")
         open_dialog(
-            self.session,
-            pages,
-            avatar,
-            bg=bg,
-            font_color=font_color,
-            font_shadow=font_shadow,
+            session=self.session, text=pages, avatar=avatar, colors=colors
         )

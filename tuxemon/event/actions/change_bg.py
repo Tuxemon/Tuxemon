@@ -7,8 +7,8 @@ from typing import final
 
 from pygame_menu import locals
 
+from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
-from tuxemon.menu.menu import BACKGROUND_COLOR
 from tuxemon.menu.theme import get_theme
 from tuxemon.states.bg import BgState
 
@@ -62,5 +62,5 @@ class ChangeBgAction(EventAction):
 
     def cleanup(self) -> None:
         theme = get_theme()
-        theme.background_color = BACKGROUND_COLOR
+        theme.background_color = prepare.BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT

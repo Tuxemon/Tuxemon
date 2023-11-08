@@ -46,10 +46,10 @@ layout = layout_func(prepare.SCALE)
 T = TypeVar("T", covariant=True)
 
 
-BACKGROUND_COLOR = (248, 248, 248)
-
-
 class PygameMenuState(state.State):
+    background_color = prepare.BACKGROUND_COLOR
+    font_color = prepare.FONT_COLOR
+    font_shadow_color = prepare.FONT_SHADOW_COLOR
     transparent = True
 
     def __init__(
@@ -179,7 +179,9 @@ class Menu(Generic[T], state.State):
     draw_borders = True
     background = None  # Image used to draw the background
     # The window's background color
-    background_color: ColorLike = BACKGROUND_COLOR
+    background_color: ColorLike = prepare.BACKGROUND_COLOR
+    font_color: ColorLike = prepare.FONT_COLOR
+    font_shadow_color: ColorLike = prepare.FONT_SHADOW_COLOR
     # Font color when the action is unavailable
     unavailable_color: ColorLike = (220, 220, 220)
     # File to load for image background
@@ -191,7 +193,7 @@ class Menu(Generic[T], state.State):
         font_filename = prepare.FONT_JAPANESE
     else:
         font_filename = prepare.FONT_BASIC
-    borders_filename = "gfx/dialog-borders01.png"
+    borders_filename = "gfx/borders/dialog-borders.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = 0.20
     default_character_delay = 0.05

@@ -23,8 +23,8 @@ from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.state import State
-from tuxemon.states.journal import MonsterInfoState
 from tuxemon.states.monster import MonsterMenuState
+from tuxemon.states.monster_info import MonsterInfoState
 from tuxemon.tools import (
     open_choice_dialog,
     open_dialog,
@@ -185,7 +185,9 @@ class MonsterTakeState(PygameMenuState):
             )
 
         def description(mon: Monster) -> None:
-            self.client.push_state(MonsterInfoState(monster=mon))
+            self.client.push_state(
+                MonsterInfoState(monster=mon, source=self.name)
+            )
 
         # it prints monsters inside the screen: image + button
         _sorted = sorted(items, key=lambda x: x.slug)

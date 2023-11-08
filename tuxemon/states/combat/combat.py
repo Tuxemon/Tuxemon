@@ -72,8 +72,8 @@ from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
-from tuxemon.states.journal import MonsterInfoState
 from tuxemon.states.monster import MonsterMenuState
+from tuxemon.states.monster_info import MonsterInfoState
 from tuxemon.states.transition.fade import FadeOutTransition
 from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.technique.technique import Technique
@@ -1503,7 +1503,7 @@ class CombatState(CombatAnimations):
         if self._captured and self._captured_mon and self._new_tuxepedia:
             self.client.pop_state()
             self.client.push_state(
-                MonsterInfoState(monster=self._captured_mon)
+                MonsterInfoState(monster=self._captured_mon, source=self.name)
             )
         else:
             self.phase = None

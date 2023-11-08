@@ -472,16 +472,16 @@ class WorldState(state.State):
             s, c, l = frame
 
             # project to pixel/screen coords
-            c = self.get_pos_from_tilepos(c)
+            _c = self.get_pos_from_tilepos(c)
 
             # TODO: better handling of tall sprites
             # handle tall sprites
             h = s.get_height()
             if h > prepare.TILE_SIZE[1]:
                 # offset for center and image height
-                c = (c[0], c[1] - h // 2)
+                _c = (_c[0], _c[1] - h // 2)
 
-            r = Rect(c, s.get_size())
+            r = Rect(_c, s.get_size())
             screen_surfaces.append((s, r, l))
 
         # draw the map and sprites
@@ -731,7 +731,7 @@ class WorldState(state.State):
         position: tuple[int, int],
         tile: Union[RegionProperties, EntityCollision],
         skip_nodes: Optional[set[tuple[int, int]]] = None,
-    ) -> Optional[Sequence[tuple[int, int]]]:
+    ) -> Optional[list[tuple[float, ...]]]:
         """
         Check for exits from tile which are defined in the map.
 
@@ -760,7 +760,7 @@ class WorldState(state.State):
             adjacent_tiles = list()
             for direction in tile["exit"]:
                 exit_tile = tuple(dirs2[direction] + position)
-                if exit_tile in skip_nodes:
+                if skip_nodes and exit_tile in skip_nodes:
                     continue
 
                 adjacent_tiles.append(exit_tile)
@@ -919,7 +919,7 @@ class WorldState(state.State):
 
     def get_pos_from_tilepos(
         self,
-        tile_position: tuple[int, int],
+        tile_position: Vector2,
     ) -> tuple[int, int]:
         """
         Returns the map pixel coordinate based on tile position.
@@ -978,7 +978,7 @@ class WorldState(state.State):
         """
 
         # For readability
-        x, y = self.get_pos_from_tilepos(box)
+        x, y = self.get_pos_from_tilepos(Vector2(box))
         tw, th = self.tile_size
 
         return Rect(x, y, tw, th)
@@ -998,7 +998,8 @@ class WorldState(state.State):
 
         # draw events
         for event in self.client.events:
-            topleft = self.get_pos_from_tilepos((event.x, event.y))
+            vector = Vector2(event.x, event.y)
+            topleft = self.get_pos_from_tilepos(vector)
             size = self.project((event.w, event.h))
             rect = topleft, size
             box(surface, rect, (0, 255, 0, 128))

@@ -62,6 +62,7 @@ class NPCState(TypedDict):
     items: Sequence[Mapping[str, Any]]
     monsters: Sequence[Mapping[str, Any]]
     player_name: str
+    player_steps: float
     plague: PlagueType
     monster_boxes: dict[str, Sequence[Mapping[str, Any]]]
     item_boxes: dict[str, Sequence[Mapping[str, Any]]]
@@ -147,6 +148,7 @@ class NPC(Entity[NPCState]):
         self.max_position: int = 1
         self.speed = 10  # To determine combat order (not related to movement!)
         self.moves: Sequence[Technique] = []  # list of techniques
+        self.steps: float = 0.0
 
         # pathfinding and waypoint related
         self.pathfinding: Optional[tuple[int, int]] = None
@@ -221,6 +223,7 @@ class NPC(Entity[NPCState]):
             "template": encode_template(self.template),
             "monsters": encode_monsters(self.monsters),
             "player_name": self.name,
+            "player_steps": self.steps,
             "monster_boxes": dict(),
             "item_boxes": dict(),
             "tile_pos": self.tile_pos,
@@ -262,6 +265,7 @@ class NPC(Entity[NPCState]):
         for tmp in decode_template(save_data.get("template")):
             self.template.append(tmp)
         self.name = save_data["player_name"]
+        self.steps = save_data["player_steps"]
         self.plague = save_data["plague"]
         for monsterkey, monstervalue in save_data["monster_boxes"].items():
             self.monster_boxes[monsterkey] = decode_monsters(monstervalue)

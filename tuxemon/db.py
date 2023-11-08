@@ -475,6 +475,12 @@ class MonsterModel(BaseModel):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
+    @field_validator("weight", "height")
+    def check_weight_and_height(cls: MonsterModel, v: float) -> float:
+        if v > 0.0:
+            return v
+        raise ValueError(f"The weight or height cannot be {v}. Use 0.1!")
+
 
 class StatModel(BaseModel):
     value: float = Field(0.0, description="The value of the stat")

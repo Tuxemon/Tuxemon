@@ -63,8 +63,6 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
             )
     if "cathedral_ads" not in save_data["game_variables"]:
         save_data["game_variables"]["cathedral_ads"] = 0
-    if "steps" not in save_data["game_variables"]:
-        save_data["game_variables"]["steps"] = 0
     if "music_volume" not in save_data["game_variables"]:
         save_data["game_variables"]["music_volume"] = 0.5
     if "sound_volume" not in save_data["game_variables"]:
@@ -180,6 +178,12 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
         for monsters in save_data.get("monster_boxes", {}).values():
             for monster in monsters:
                 save_data["tuxepedia"][monster["slug"]] = SeenStatus.caught
+
+    # move steps from variable to field
+    if "steps" in save_data["game_variables"]:
+        steps = save_data["game_variables"]["steps"]
+        save_data["player_steps"] = save_data.get("player_steps", steps)
+        del save_data["game_variables"]["steps"]
 
     # set money old savegames and avoid getting the starter
     if not save_data["money"]:

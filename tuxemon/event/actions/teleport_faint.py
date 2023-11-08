@@ -46,5 +46,7 @@ class TeleportFaintAction(EventAction):
             )
             return
 
+        # Start the screen transition
+        client.event_engine.execute_action("screen_transition", [0.3], True)
         # Call the teleport action
-        client.event_engine.execute_action("teleport", teleport)
+        client.event_engine.execute_action("teleport", teleport, True)

@@ -254,6 +254,7 @@ class EventEngine:
         self,
         action_name: str,
         parameters: Optional[Sequence[Any]] = None,
+        skip: bool = False,
     ) -> None:
         """
         Load and execute an action.
@@ -273,6 +274,8 @@ class EventEngine:
             error_msg = f'Map action "{action_name}" is not loaded'
             logger.warning(error_msg)
             raise ValueError(error_msg)
+
+        action._skip = skip
 
         return action.execute()
 

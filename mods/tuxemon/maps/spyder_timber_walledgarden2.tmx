@@ -98,12 +98,6 @@
     <property name="cond1" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
-  <object id="59" name="Exhausted" type="event" x="48" y="96" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="60" name="Create osman" type="event" x="176" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_walled_osman,11,10"/>
@@ -258,12 +252,6 @@
     <property name="act99" value="unlock_controls"/>
     <property name="cond1" value="is variable_set walledmidas:yes"/>
     <property name="cond2" value="not variable_set walledbillie:yes"/>
-   </properties>
-  </object>
-  <object id="13" name="Evolution" type="event" x="0" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="evolution"/>
-    <property name="cond1" value="is check_evolution standard"/>
    </properties>
   </object>
  </objectgroup>

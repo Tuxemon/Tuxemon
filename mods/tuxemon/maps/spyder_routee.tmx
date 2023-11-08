@@ -152,12 +152,6 @@
     <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
-  <object id="80" name="Exhausted" type="event" x="0" y="224" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="83" name="Create Calliope" type="event" x="96" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_routee_calliope,6,14"/>
@@ -211,12 +205,6 @@
     <property name="act8" value="set_variable routeeaiolos:yes"/>
     <property name="cond1" value="not variable_set routeeaiolos:yes"/>
     <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="15" name="Evolution" type="event" x="0" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="evolution"/>
-    <property name="cond1" value="is check_evolution standard"/>
    </properties>
   </object>
  </objectgroup>

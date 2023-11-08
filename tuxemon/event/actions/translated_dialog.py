@@ -5,14 +5,16 @@ from __future__ import annotations
 import logging
 from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import Any, Optional, final
+from typing import TYPE_CHECKING, Any, Optional, final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.graphics import get_avatar
+from tuxemon.graphics import ColorLike, get_avatar, string_to_colorlike
 from tuxemon.locale import process_translate_text
-from tuxemon.sprite import Sprite
 from tuxemon.states.dialog import DialogState
 from tuxemon.tools import open_dialog
+
+if TYPE_CHECKING:
+    from tuxemon.sprite import Sprite
 
 logger = logging.getLogger(__name__)
 
@@ -40,7 +42,7 @@ class TranslatedDialogAction(EventAction):
     Script usage:
         .. code-block::
 
-            translated_dialog <text>,<avatar>
+            translated_dialog <text>,<avatar>,<bg>,<font_color><font_shadow>
             translated_dialog <text>[,var1=value1]...
 
     Script parameters:
@@ -48,6 +50,9 @@ class TranslatedDialogAction(EventAction):
         avatar: Monster avatar. If it is a number, the monster is the
             corresponding monster slot in the player's party.
             If it is a string, we're referring to a monster by name.
+        rgb: color (eg red > 255,0,0 > 255:0:0) - default rgb(248,248,248)
+        font_color: color (eg red > 255,0,0 > 255:0:0) - default rgb(10,10,10)
+        font_shadow: color (eg red > 255,0,0 > 255:0:0) - default rgb(192,192,192)
 
     """
 
@@ -62,11 +67,24 @@ class TranslatedDialogAction(EventAction):
         key = self.raw_parameters[0]
         replace = []
         avatar = None
-        for param in self.raw_parameters[1:]:
-            if "=" in param:
-                replace.append(param)
-            else:
-                avatar = get_avatar(self.session, param)
+        if len(self.raw_parameters) == 2:
+            for param in self.raw_parameters[1]:
+                if "=" in param:
+                    replace.append(param)
+                else:
+                    avatar = get_avatar(self.session, param)
+
+        bg = None
+        if len(self.raw_parameters) == 3:
+            bg = string_to_colorlike(self.raw_parameters[2])
+
+        font_color = None
+        if len(self.raw_parameters) == 4:
+            font_color = string_to_colorlike(self.raw_parameters[3])
+
+        font_shadow = None
+        if len(self.raw_parameters) == 5:
+            font_shadow = string_to_colorlike(self.raw_parameters[4])
 
         self.open_dialog(
             process_translate_text(
@@ -75,6 +93,9 @@ class TranslatedDialogAction(EventAction):
                 replace,
             ),
             avatar,
+            bg,
+            font_color,
+            font_shadow,
         )
 
     def update(self) -> None:
@@ -87,6 +108,16 @@ class TranslatedDialogAction(EventAction):
         self,
         pages: Sequence[str],
         avatar: Optional[Sprite],
+        bg: Optional[ColorLike],
+        font_color: Optional[ColorLike],
+        font_shadow: Optional[ColorLike],
     ) -> None:
         logger.info("Opening dialog window")
-        open_dialog(self.session, pages, avatar)
+        open_dialog(
+            self.session,
+            pages,
+            avatar,
+            bg=bg,
+            font_color=font_color,
+            font_shadow=font_shadow,
+        )

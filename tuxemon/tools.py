@@ -34,6 +34,7 @@ from tuxemon.math import Vector2
 if TYPE_CHECKING:
     import pygame
 
+    from tuxemon.graphics import ColorLike
     from tuxemon.item.item import Item
     from tuxemon.session import Session
     from tuxemon.sprite import Sprite
@@ -155,6 +156,9 @@ def open_dialog(
     text: Sequence[str],
     avatar: Optional[Sprite] = None,
     menu: Optional[Sequence[tuple[str, str, Callable[[], None]]]] = None,
+    bg: Optional[ColorLike] = None,
+    font_color: Optional[ColorLike] = None,
+    font_shadow: Optional[ColorLike] = None,
 ) -> State:
     """
     Open a dialog with the standard window size.
@@ -178,6 +182,9 @@ def open_dialog(
             avatar=avatar,
             rect=rect,
             menu=menu,
+            bg=bg,
+            font_color=font_color,
+            font_shadow=font_shadow,
         )
     )
 

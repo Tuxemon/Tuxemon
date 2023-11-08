@@ -21,14 +21,14 @@ class TextArea(Sprite):
         self,
         font: pygame.font.Font,
         font_color: ColorLike,
-        bg: ColorLike = (192, 192, 192),
+        font_shadow: ColorLike = (192, 192, 192),
     ) -> None:
         super().__init__()
         self.rect = Rect(0, 0, 0, 0)
         self.drawing_text = False
         self.font = font
         self.font_color = font_color
-        self.font_bg = bg
+        self.font_shadow = font_shadow
         self._rendered_text = None
         self._text_rect = None
         self._text = ""
@@ -54,7 +54,7 @@ class TextArea(Sprite):
             self.image = draw.shadow_text(
                 self.font,
                 self.font_color,
-                self.font_bg,
+                self.font_shadow,
                 self._text,
             )
 
@@ -78,7 +78,7 @@ class TextArea(Sprite):
             self._text,
             self.font,
             self.font_color,
-            self.font_bg,
+            self.font_shadow,
             self.image.get_rect(),
         )
 

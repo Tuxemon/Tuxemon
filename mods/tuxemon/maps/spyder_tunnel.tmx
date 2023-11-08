@@ -271,12 +271,6 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="342" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="343" name="Remove obstacle 1" type="event" x="304" y="448" width="16" height="16">
    <properties>
     <property name="act1" value="remove_collision water"/>
@@ -356,12 +350,6 @@
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="not variable_set stage_of_day:night"/>
-   </properties>
-  </object>
-  <object id="9" name="Evolution" type="event" x="0" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="evolution"/>
-    <property name="cond1" value="is check_evolution standard"/>
    </properties>
   </object>
  </objectgroup>

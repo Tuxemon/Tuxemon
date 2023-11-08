@@ -630,12 +630,11 @@ class CombatState(CombatAnimations):
 
         # TODO: move to mod config
         sort_order = [
-            "meta",
-            "item",
-            "utility",
             "potion",
+            "utility",
             "food",
-            "heal",
+            "quest",
+            "meta",
             "damage",
         ]
 

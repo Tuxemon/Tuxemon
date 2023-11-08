@@ -24,9 +24,6 @@ class Player(NPC):
         super().__init__(npc_slug, world=world)
         self.isplayer = True
 
-        # Game variables for use with events
-        self.game_variables = {"steps": 0}
-
     def update(self, time_delta: float) -> None:
         """
         Update the player movement around the game world.
@@ -49,7 +46,7 @@ class Player(NPC):
         diff_x = abs(after.x - before.x)
         diff_y = abs(after.y - before.y)
 
-        self.game_variables["steps"] += diff_x + diff_y
+        self.steps += diff_x + diff_y
 
         for key, value in self.game_variables.items():
             if key.startswith("steps_"):

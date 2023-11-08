@@ -137,12 +137,6 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="11" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="6" name="Player Spawn" type="event" x="0" y="32" width="16" height="16"/>
   <object id="201" name="Encounters" type="event" x="32" y="112" width="112" height="64">
    <properties>
@@ -506,12 +500,6 @@
     <property name="act17" value="set_variable route7conrad:yes"/>
     <property name="cond1" value="not variable_set route7conrad:yes"/>
     <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="19" name="Evolution" type="event" x="0" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="evolution"/>
-    <property name="cond1" value="is check_evolution standard"/>
    </properties>
   </object>
  </objectgroup>

@@ -7,7 +7,6 @@ from dataclasses import dataclass
 from typing import Union, final
 
 from tuxemon.db import EvolutionStage, MonsterShape, db
-from tuxemon.event.actions.add_monster import AddMonsterAction
 from tuxemon.event.eventaction import EventAction
 
 
@@ -88,10 +87,14 @@ class RandomMonsterAction(EventAction):
 
         monster_slug = rd.choice(filters)
 
-        AddMonsterAction(
-            monster_slug=monster_slug,
-            monster_level=self.monster_level,
-            trainer_slug=self.trainer_slug,
-            exp=self.exp,
-            money=self.money,
-        ).start()
+        self.session.client.event_engine.execute_action(
+            "add_monster",
+            [
+                monster_slug,
+                self.monster_level,
+                self.trainer_slug,
+                self.exp,
+                self.money,
+            ],
+            True,
+        )

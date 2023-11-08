@@ -104,14 +104,5 @@
     <property name="cond3" value="is variable_set kernelquest:yes"/>
    </properties>
   </object>
-  <object id="29" name="Auto Healing Teleported" type="event" x="16" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_monster_health"/>
-    <property name="act2" value="set_monster_status"/>
-    <property name="act3" value="set_variable teleport_clinic:none"/>
-    <property name="act4" value="variable_math cathedral_ads,+,1"/>
-    <property name="cond1" value="is variable_set teleport_clinic:lost"/>
-   </properties>
-  </object>
  </objectgroup>
 </map>

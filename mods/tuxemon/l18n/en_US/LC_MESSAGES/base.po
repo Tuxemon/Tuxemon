@@ -9908,3 +9908,29 @@ msgstr "That's not even a little bit funny, man."
 
 msgid "spyder_sphalian_tvwatch"
 msgstr "A journalist travels the globe hunting for lost civilizations."
+
+## JUNKYARD ##
+
+msgid "junkyard_01"
+msgstr "Hey, ${{name}}! I found some Tuxballs in this junkyard!"
+
+msgid "junkyard_02"
+msgstr "You can have one. I'll take the other"
+
+msgid "junkyard_03"
+msgstr "GARY: Well, well, well. Look who we have here!"
+
+msgid "junkyard_04"
+msgstr "CARY: You know you're stealing those Tuxballs without signing the End User License Agreement, right?"
+
+msgid "junkyard_05"
+msgstr "MAPLE: These are trash! You don't have to sign the EULA for trash!"
+
+msgid "junkyard_06"
+msgstr "GARY: That's what you think. But you're gonna have to pay."
+
+msgid "junkyard_07"
+msgstr "GARY: People like you shouldn't be able to get Tuxemon like this!"
+
+msgid "junkyard_08"
+msgstr "CARY: It's your own fault. Let's get them, Gary."

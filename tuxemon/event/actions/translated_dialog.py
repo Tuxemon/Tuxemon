@@ -3,9 +3,8 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Sequence
-from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, Any, Optional, final
+from dataclasses import dataclass
+from typing import Any, Optional, Union, final
 
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
@@ -13,9 +12,6 @@ from tuxemon.graphics import get_avatar, string_to_colorlike
 from tuxemon.locale import process_translate_text
 from tuxemon.states.dialog import DialogState
 from tuxemon.tools import open_dialog
-
-if TYPE_CHECKING:
-    from tuxemon.sprite import Sprite
 
 logger = logging.getLogger(__name__)
 
@@ -28,23 +24,10 @@ class TranslatedDialogAction(EventAction):
     translation key. Parameters passed to the translation string will also
     be checked if a translation key exists.
 
-    You may also use special variables in dialog events. Here is a list
-    of available variables:
-
-    * ${{name}} - The current player's name.
-
-    Parameters following the translation name may represent one of two things:
-    If a parameter is var1=value1, it represents a value replacement.
-    If it's a single value (an integer or a string), it will be used as an
-    avatar image.
-    TODO: This is a hack and should be fixed later on, ideally without
-    overloading the parameters.
-
     Script usage:
         .. code-block::
 
-            translated_dialog <text>,<avatar>,<bg>,<font_color>,<font_shadow>,<border>
-            translated_dialog <text>[,var1=value1]...
+            translated_dialog <text>,<avatar>,<bg>,<style>
 
     Script parameters:
         text: Text of the dialog.
@@ -56,28 +39,20 @@ class TranslatedDialogAction(EventAction):
     """
 
     name = "translated_dialog"
-    raw_parameters: Sequence[str] = field(init=False)
-
-    def __init__(self, *args: Any) -> None:
-        super().__init__()
-        self.raw_parameters = args
+    raw_parameters: str
+    avatar: Union[int, str, None] = None
+    style: Optional[str] = None
 
     def start(self) -> None:
-        key = self.raw_parameters[0]
-        replace = []
+        key = process_translate_text(self.session, self.raw_parameters, [])
+
         avatar = None
-        if len(self.raw_parameters) >= 2:
-            for param in self.raw_parameters[1]:
-                if "=" in param:
-                    replace.append(param)
-                else:
-                    avatar = get_avatar(self.session, param)
+        if self.avatar:
+            avatar = get_avatar(self.session, self.avatar)
 
         dialogue = "default"
-
-        if len(self.raw_parameters) >= 3:
-            if len(self.raw_parameters[2]) > 0:
-                dialogue = self.raw_parameters[2]
+        if self.style:
+            dialogue = self.style
 
         style = db.lookup(dialogue, table="dialogue")
 
@@ -88,12 +63,9 @@ class TranslatedDialogAction(EventAction):
             "border": style.border_path,
         }
 
-        self.open_dialog(
-            pages=process_translate_text(
-                self.session,
-                key,
-                replace,
-            ),
+        open_dialog(
+            session=self.session,
+            text=key,
             avatar=avatar,
             colors=colors,
         )
@@ -103,14 +75,3 @@ class TranslatedDialogAction(EventAction):
             self.session.client.get_state_by_name(DialogState)
         except ValueError:
             self.stop()
-
-    def open_dialog(
-        self,
-        pages: Sequence[str],
-        avatar: Optional[Sprite],
-        colors: dict[str, str],
-    ) -> None:
-        logger.info("Opening dialog window")
-        open_dialog(
-            session=self.session, text=pages, avatar=avatar, colors=colors
-        )

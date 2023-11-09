@@ -5,9 +5,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Union, final
 
+from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
-from tuxemon.states.journal import MonsterInfoState
+from tuxemon.states.monster_info import MonsterInfoState
 
 
 @final
@@ -40,17 +41,16 @@ class ChangeStateAction(EventAction):
         if current_state.name != self.state_name:
             if self.state_name == "JournalInfoState":
                 if self.optional:
-                    mon = Monster()
-                    mon.load_from_db(self.optional)
+                    journal = db.lookup(self.optional, table="monster")
                     self.session.client.push_state(
-                        self.state_name, kwargs={"monster": mon}
+                        self.state_name, kwargs={"monster": journal}
                     )
             elif self.state_name == "MonsterInfoState":
                 if self.optional:
-                    mon = Monster()
-                    mon.load_from_db(self.optional)
+                    mon_info = Monster()
+                    mon_info.load_from_db(self.optional)
                     self.session.client.push_state(
-                        MonsterInfoState(monster=mon)
+                        MonsterInfoState(monster=mon_info, source=self.name)
                     )
             else:
                 self.session.client.push_state(self.state_name)

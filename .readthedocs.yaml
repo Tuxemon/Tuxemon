@@ -9,8 +9,8 @@ version: 2
 sphinx:
   configuration: docs/conf.py
 
-# 3.8 is required, anything lower will fail to build the actions
+# 3.9 is required, anything lower will fail to build the actions
 python:
-    version: 3.8
+    version: 3.9
     install:
     - requirements: docs/requirements.txt

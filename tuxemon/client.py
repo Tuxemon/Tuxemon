@@ -5,21 +5,9 @@ from __future__ import annotations
 import logging
 import os.path
 import time
+from collections.abc import Generator, Iterable, Mapping, Sequence
 from threading import Thread
-from typing import (
-    Any,
-    Dict,
-    Generator,
-    Iterable,
-    Mapping,
-    Optional,
-    Sequence,
-    Tuple,
-    Type,
-    TypeVar,
-    Union,
-    overload,
-)
+from typing import Any, Optional, TypeVar, Union, overload
 
 import pygame as pg
 
@@ -115,7 +103,7 @@ class LocalPygameClient:
         # Set up our game's event engine which executes actions based on
         # conditions defined in map files.
         self.event_engine = EventEngine(local_session)
-        self.event_persist: Dict[str, Dict[str, Any]] = {}
+        self.event_persist: dict[str, dict[str, Any]] = {}
 
         # Set up a variable that will keep track of currently playing music.
         self.current_music = {
@@ -141,7 +129,7 @@ class LocalPygameClient:
 
         # TODO: phase these out
         self.key_events: Sequence[PlayerInput] = []
-        self.event_data: Dict[str, Any] = {}
+        self.event_data: dict[str, Any] = {}
         self.exit = False
 
     def on_state_change(self) -> None:
@@ -444,7 +432,7 @@ class LocalPygameClient:
         clock_tick: float,
         fps_timer: float,
         frames: int,
-    ) -> Tuple[float, int]:
+    ) -> tuple[float, int]:
         """
         Compute and print the frames per second.
 
@@ -549,13 +537,13 @@ class LocalPygameClient:
     @overload
     def get_state_by_name(
         self,
-        state_name: Type[StateType],
+        state_name: type[StateType],
     ) -> StateType:
         pass
 
     def get_state_by_name(
         self,
-        state_name: Union[str, Type[State]],
+        state_name: Union[str, type[State]],
     ) -> State:
         """
         Query the state stack for a state by the name supplied.
@@ -565,7 +553,7 @@ class LocalPygameClient:
     def get_queued_state_by_name(
         self,
         state_name: str,
-    ) -> Tuple[str, Mapping[str, Any]]:
+    ) -> tuple[str, Mapping[str, Any]]:
         """
         Query the state stack for a state by the name supplied.
         """

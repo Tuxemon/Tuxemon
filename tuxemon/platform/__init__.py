@@ -5,8 +5,7 @@ from __future__ import annotations
 
 import logging
 import os.path
-import types
-from typing import Optional, Sequence
+from collections.abc import Sequence
 
 import pygame
 

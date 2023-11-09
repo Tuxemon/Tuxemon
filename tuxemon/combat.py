@@ -12,7 +12,8 @@ from __future__ import annotations
 
 import logging
 import random
-from typing import TYPE_CHECKING, Generator, List, Optional, Sequence
+from collections.abc import Generator, Sequence
+from typing import TYPE_CHECKING, Optional
 
 from tuxemon.db import PlagueType
 from tuxemon.locale import T
@@ -105,25 +106,12 @@ def has_effect_param(
     return find
 
 
-def has_status_bond(monster: Monster) -> bool:
-    """
-    Statuses connected are the ones where an effect is present only
-    if both monsters are alive (lifeleech, grabbed).
-    """
-    if has_status(monster, "grabbed"):
-        return True
-    elif has_status(monster, "lifeleech"):
-        return True
-    else:
-        return False
-
-
 def fainted(monster: Monster) -> bool:
     return has_status(monster, "faint") or monster.current_hp <= 0
 
 
 def get_awake_monsters(
-    player: NPC, monsters: List[Monster], turn: int
+    player: NPC, monsters: list[Monster], turn: int
 ) -> Generator[Monster, None, None]:
     """
     Iterate all non-fainted monsters in party.
@@ -152,7 +140,7 @@ def get_awake_monsters(
             yield mons[0]
 
 
-def alive_party(player: NPC) -> List[Monster]:
+def alive_party(player: NPC) -> list[Monster]:
     not_fainted = [ele for ele in player.monsters if not fainted(ele)]
     return not_fainted
 

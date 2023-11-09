@@ -312,20 +312,6 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="73" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_wayfarer_inn1.tmx,9,6,0.3"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
-  <object id="74" name="Auto Healing Teleported" type="event" x="0" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_monster_health"/>
-    <property name="act2" value="set_monster_status"/>
-    <property name="act3" value="set_variable teleport_clinic:none"/>
-    <property name="cond1" value="is variable_set teleport_clinic:lost"/>
-   </properties>
-  </object>
   <object id="75" name="Environment" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:interior"/>

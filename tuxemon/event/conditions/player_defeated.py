@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from tuxemon.combat import has_status
-from tuxemon.condition.condition import Condition
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -42,10 +41,7 @@ class PlayerDefeatedCondition(EventCondition):
         if player.monsters:
             for mon in player.monsters:
                 if mon.current_hp <= 0 and not has_status(mon, "faint"):
-                    mon.status = list()
-                    fainted = Condition()
-                    fainted.load("faint")
-                    mon.status = [fainted]
+                    mon.faint()
                 if "faint" not in (s.slug for s in mon.status):
                     return False
             return True

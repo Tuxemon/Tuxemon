@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import logging
-from typing import Any, List, Mapping, Optional, Sequence
+from collections.abc import Mapping, Sequence
+from typing import Any, Optional
 
 from tuxemon.db import db
 
@@ -76,7 +77,7 @@ class Template:
 
 def decode_template(
     json_data: Optional[Sequence[Mapping[str, Any]]],
-) -> List[Template]:
+) -> list[Template]:
     return [Template(save_data=tmp) for tmp in json_data or {}]
 
 

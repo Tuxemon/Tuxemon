@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.condition.condition import Condition
 from tuxemon.db import OutputBattle
 from tuxemon.locale import T
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -51,10 +50,7 @@ class ForfeitEffect(TechEffect):
             combat.players.remove(remove)
         # kill monsters -> teleport center
         for mon in player.monsters:
-            faint = Condition()
-            faint.load("faint")
-            mon.current_hp = 0
-            mon.status = [faint]
+            mon.faint()
 
         return {
             "success": True,

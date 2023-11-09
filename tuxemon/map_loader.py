@@ -1,8 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
+from collections.abc import Generator, Iterator, Mapping
 from math import cos, pi, sin
-from typing import Any, Dict, Generator, Iterator, Mapping, Optional, Tuple
+from typing import Any, Optional
 
 import pytmx
 import yaml
@@ -34,8 +35,8 @@ from tuxemon.tools import copy_dict_with_keys
 
 logger = logging.getLogger(__name__)
 
-RegionTile = Tuple[
-    Tuple[int, int],
+RegionTile = tuple[
+    tuple[int, int],
     Optional[Mapping[str, Any]],
 ]
 
@@ -186,7 +187,7 @@ class TMXMapLoader:
         inits = list()
         interacts = list()
         surfable_map = list()
-        collision_map: Dict[Tuple[int, int], Optional[RegionProperties]] = {}
+        collision_map: dict[tuple[int, int], Optional[RegionProperties]] = {}
         collision_lines_map = set()
         maps = data.properties
 
@@ -281,7 +282,7 @@ class TMXMapLoader:
     def extract_tile_collisions(
         self,
         tiled_object: pytmx.TiledObject,
-        tile_size: Tuple[int, int],
+        tile_size: tuple[int, int],
     ) -> Generator[RegionTile, None, None]:
         if getattr(tiled_object, "closed", True):
             yield from self.region_tiles(tiled_object, tile_size)
@@ -289,8 +290,8 @@ class TMXMapLoader:
     def collision_lines_from_object(
         self,
         tiled_object: pytmx.TiledObject,
-        tile_size: Tuple[int, int],
-    ) -> Generator[Tuple[Tuple[int, int], Direction], None, None]:
+        tile_size: tuple[int, int],
+    ) -> Generator[tuple[tuple[int, int], Direction], None, None]:
         # TODO: test dropping "collision_lines_map" and replacing with "enter/exit" tiles
         if not getattr(tiled_object, "closed", True):
             for item in self.process_line(tiled_object, tile_size):
@@ -307,9 +308,9 @@ class TMXMapLoader:
     def process_line(
         self,
         line: pytmx.TiledObject,
-        tile_size: Tuple[int, int],
+        tile_size: tuple[int, int],
     ) -> Generator[
-        Tuple[Tuple[int, int], Tuple[int, int], Orientation], None, None
+        tuple[tuple[int, int], tuple[int, int], Orientation], None, None
     ]:
         """Identify the tiles on either side of the line and block movement along it."""
         if len(line.points) < 2:
@@ -332,7 +333,7 @@ class TMXMapLoader:
     @staticmethod
     def region_tiles(
         region: pytmx.TiledObject,
-        grid_size: Tuple[int, int],
+        grid_size: tuple[int, int],
     ) -> Generator[RegionTile, None, None]:
         """
         Apply region properties to individual tiles.
@@ -365,7 +366,7 @@ class TMXMapLoader:
     def load_event(
         self,
         obj: pytmx.TiledObject,
-        tile_size: Tuple[int, int],
+        tile_size: tuple[int, int],
     ) -> EventObject:
         """
         Load an Event from the map.

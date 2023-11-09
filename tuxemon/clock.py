@@ -2,8 +2,9 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import collections
 import time
+from collections.abc import Callable
 from heapq import heapify, heappop, heappush, heappushpop
-from typing import Any, Callable, Deque, List, Optional, Union
+from typing import Any, Deque, Optional, Union
 
 __all__ = ("ScheduledItem", "Scheduler", "Clock")
 
@@ -48,8 +49,8 @@ class Scheduler:
         self._time = time_function
         self._last_ts: float = -1
         self._times: Deque[int] = collections.deque(maxlen=10)
-        self._scheduled_items: List[ScheduledItem] = []
-        self._next_tick_items: List[ScheduledItem] = []
+        self._scheduled_items: list[ScheduledItem] = []
+        self._next_tick_items: list[ScheduledItem] = []
         self.cumulative_time = 0.0
 
     def _get_nearest_ts(self) -> Union[float, int]:
@@ -354,7 +355,7 @@ class Scheduler:
 
         """
 
-        def remove(list_: List[ScheduledItem]) -> bool:
+        def remove(list_: list[ScheduledItem]) -> bool:
             resort = False
             remove_ = list_.remove
             for i in list(i for i in list_ if i.func is func):

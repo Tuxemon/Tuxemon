@@ -3,10 +3,9 @@
 from __future__ import annotations
 
 import shlex
-from typing import List, Tuple
 
 
-def parse(text: str) -> List[str]:
+def parse(text: str) -> list[str]:
     """
     Default parser for text input on the prompt.
 
@@ -17,7 +16,7 @@ def parse(text: str) -> List[str]:
     return shlex.split(text)
 
 
-def split(line: str) -> Tuple[str, str]:
+def split(line: str) -> tuple[str, str]:
     """
     Split text into head, tail tokens.  Text is split after 1st space.
 

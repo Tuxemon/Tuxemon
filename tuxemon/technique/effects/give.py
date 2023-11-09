@@ -39,7 +39,7 @@ class GiveEffect(TechEffect):
         if success:
             status = Condition()
             status.load(self.condition)
-            status.steps = player.game_variables["steps"]
+            status.steps = player.steps
             # 2 vs 2, give status both monsters
             area = [ele for ele in tech.effects if ele.name == "area"]
             if player.max_position > 1 and area:

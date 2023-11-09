@@ -8,7 +8,7 @@ import pathlib
 import shutil
 import urllib.request
 import zipfile
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 import requests
 
@@ -40,7 +40,7 @@ class Manager:
         self.packages_path = os.path.join(paths.CACHE_DIR, "packages")
 
         self.url = other_urls
-        self.packages: List[Any] = []
+        self.packages: list[Any] = []
 
         if default_to_cache:
             self.packages = self.read_from_cache()
@@ -214,7 +214,7 @@ class Manager:
         Parses the minetest's mod.conf files.
         Returns: dict
         """
-        out: Dict[Any, Any] = {}
+        out: dict[Any, Any] = {}
         for line in content.split("\n"):
             # Remove spaces and split into parts
             parts = line.split(" = ")

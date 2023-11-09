@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import re
-from typing import Sequence, Tuple
+from collections.abc import Sequence
 
 
 def split_escaped(
@@ -31,7 +31,7 @@ def split_escaped(
     return split_list
 
 
-def parse_action_string(text: str) -> Tuple[str, Sequence[str]]:
+def parse_action_string(text: str) -> tuple[str, Sequence[str]]:
     words = text.split(" ", 1)
     act_type = words[0]
     if len(words) > 1:
@@ -41,7 +41,7 @@ def parse_action_string(text: str) -> Tuple[str, Sequence[str]]:
     return act_type, args
 
 
-def parse_condition_string(text: str) -> Tuple[str, str, Sequence[str]]:
+def parse_condition_string(text: str) -> tuple[str, str, Sequence[str]]:
     words = text.split(" ", 2)
     operator, cond_type = words[0:2]
     if len(words) > 2:
@@ -51,7 +51,7 @@ def parse_condition_string(text: str) -> Tuple[str, str, Sequence[str]]:
     return operator, cond_type, args
 
 
-def parse_behav_string(behav_string: str) -> Tuple[str, Sequence[str]]:
+def parse_behav_string(behav_string: str) -> tuple[str, Sequence[str]]:
     words = behav_string.split(" ", 1)
     behav_type = words[0]
     if len(words) > 1:

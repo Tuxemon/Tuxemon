@@ -111,12 +111,6 @@
     <property name="cond1" value="not variable_set environment:interior"/>
    </properties>
   </object>
-  <object id="30" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="32" name="Spot Enforcer" type="event" x="16" y="192" width="32" height="16">
    <properties>
     <property name="act01" value="player_stop"/>
@@ -194,7 +188,7 @@
   </object>
   <object id="48" name="Threats" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter omnichannel"/>
+    <property name="act1" value="random_encounter omnichannel,6"/>
     <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
    </properties>
   </object>

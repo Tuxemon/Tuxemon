@@ -12,6 +12,7 @@
   "range": "special",
   "repl_pos": "replaced",
   "repl_neg": "replaced",
+  "bond": true,
   "sfx": "sfx_bite",
   "slug": "lifeleech",
   "sort": "meta",

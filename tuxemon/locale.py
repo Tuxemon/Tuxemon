@@ -7,15 +7,8 @@ import gettext
 import logging
 import os
 import os.path
-from typing import (
-    Any,
-    Callable,
-    Generator,
-    Iterable,
-    Mapping,
-    Optional,
-    Sequence,
-)
+from collections.abc import Callable, Generator, Iterable, Mapping, Sequence
+from typing import Any, Optional
 
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
@@ -224,6 +217,9 @@ def replace_text(session: Session, text: str) -> str:
     text = text.replace("${{currency}}", "$")
     text = text.replace(r"\n", "\n")
     text = text.replace("${{money}}", str(player.money["player"]))
+    # replace variables
+    for key, value in player.game_variables.items():
+        text = text.replace("${{var:" + str(key) + "}}", str(value))
     # distance (metric / imperial)
     if player.game_variables["unit_measure"] == "Metric":
         text = text.replace("${{length}}", "km")
@@ -231,7 +227,7 @@ def replace_text(session: Session, text: str) -> str:
         text = text.replace("${{height}}", "cm")
         text = text.replace(
             "${{steps}}",
-            str(convert_km(player.game_variables["steps"])),
+            str(convert_km(player.steps)),
         )
     else:
         text = text.replace("${{length}}", "mi")
@@ -239,7 +235,7 @@ def replace_text(session: Session, text: str) -> str:
         text = text.replace("${{height}}", "ft")
         text = text.replace(
             "${{steps}}",
-            str(convert_mi(player.game_variables["steps"])),
+            str(convert_mi(player.steps)),
         )
     # maps
     text = text.replace("${{map_name}}", client.map_name)

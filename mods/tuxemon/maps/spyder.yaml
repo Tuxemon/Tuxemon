@@ -1,0 +1,58 @@
+events:
+  Teleport Faint:
+    actions:
+    - teleport_faint
+    conditions:
+    - is player_defeated
+    - not location_type clinic
+    - not location_name wayfarer_inn1:wayfarer_inn2:scoop3:scoop4:paper_town
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"
+  Auto healing teleported:
+    actions:
+    - set_monster_health
+    - set_monster_status
+    - set_variable teleport_clinic:none
+    - variable_math cathedral_ads,+,1
+    conditions:
+    - is variable_set teleport_clinic:lost
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"
+  Teleport Exception 1:
+    actions:
+    - transition_teleport spyder_wayfarer_inn1.tmx,9,6,0.3
+    conditions:
+    - is player_defeated
+    - is location_name wayfarer_inn1:wayfarer_inn2
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"
+  Teleport Exception 2:
+    actions:
+    - transition_teleport spyder_scoop2.tmx,9,6,0.3
+    conditions:
+    - is player_defeated
+    - is location_name scoop3:scoop4
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"
+  Evolution all:
+    actions:
+    - evolution
+    conditions:
+    - is check_evolution all
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"

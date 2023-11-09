@@ -3,22 +3,10 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Generator, Mapping, MutableMapping, Sequence
 from itertools import product
 from math import atan2, pi
-from typing import (
-    Generator,
-    List,
-    Literal,
-    Mapping,
-    MutableMapping,
-    Optional,
-    Sequence,
-    Set,
-    Tuple,
-    TypedDict,
-    TypeVar,
-    Union,
-)
+from typing import Literal, Optional, TypedDict, TypeVar, Union
 
 import pyscroll
 from pytmx import pytmx
@@ -79,8 +67,8 @@ facing = "front", "back", "left", "right"
 
 def translate_short_path(
     path: str,
-    position: Tuple[int, int] = (0, 0),
-) -> Generator[Tuple[int, int], None, None]:
+    position: tuple[int, int] = (0, 0),
+) -> Generator[tuple[int, int], None, None]:
     """
     Translate condensed path strings into coordinate pairs.
 
@@ -102,8 +90,8 @@ def translate_short_path(
 
 
 def get_direction(
-    base: Union[Vector2, Tuple[int, int]],
-    target: Union[Vector2, Tuple[int, int]],
+    base: Union[Vector2, tuple[int, int]],
+    target: Union[Vector2, tuple[int, int]],
 ) -> Direction:
     y_offset = base[1] - target[1]
     x_offset = base[0] - target[0]
@@ -134,8 +122,8 @@ def proj(point: Vector3) -> Vector2:
 
 def tiles_inside_rect(
     rect: ReadOnlyRect,
-    grid_size: Tuple[int, int],
-) -> Generator[Tuple[int, int], None, None]:
+    grid_size: tuple[int, int],
+) -> Generator[tuple[int, int], None, None]:
     """
     Iterate all tile positions within this rect.
 
@@ -165,9 +153,9 @@ def snap_interval(value: float, interval: int) -> int:
 
 
 def snap_outer_point(
-    point: Tuple[int, int],
-    grid_size: Tuple[int, int],
-) -> Tuple[int, int]:
+    point: tuple[int, int],
+    grid_size: tuple[int, int],
+) -> tuple[int, int]:
     """
     Snap point to nearest grid intersection.
 
@@ -188,9 +176,9 @@ def snap_outer_point(
 
 
 def snap_point(
-    point: Tuple[int, int],
-    grid_size: Tuple[int, int],
-) -> Tuple[int, int]:
+    point: tuple[int, int],
+    grid_size: tuple[int, int],
+) -> tuple[int, int]:
     """
     Snap point to nearest grid intersection.
 
@@ -209,9 +197,9 @@ def snap_point(
 
 
 def point_to_grid(
-    point: Tuple[int, int],
-    grid_size: Tuple[int, int],
-) -> Tuple[int, int]:
+    point: tuple[int, int],
+    grid_size: tuple[int, int],
+) -> tuple[int, int]:
     """
     Snap pixel coordinate to grid, then convert to tile coords.
 
@@ -228,8 +216,8 @@ def point_to_grid(
 
 
 def angle_of_points(
-    point0: Tuple[int, int],
-    point1: Tuple[int, int],
+    point0: tuple[int, int],
+    point1: tuple[int, int],
 ) -> float:
     """
     Find angle between two points.
@@ -249,7 +237,7 @@ def angle_of_points(
 
 def snap_rect(
     rect: RectTypeVar,
-    grid_size: Tuple[int, int],
+    grid_size: tuple[int, int],
 ) -> RectTypeVar:
     """
     Align all vertices to the nearest point.
@@ -302,8 +290,8 @@ def extract_region_properties(
 
     """
     # this could use a rewrite or re-thinking...
-    enters: List[Direction] = []
-    exits: List[Direction] = []
+    enters: list[Direction] = []
+    exits: list[Direction] = []
     new_props: RegionProperties = {
         "enter": enters,
         "exit": exits,
@@ -337,7 +325,7 @@ class PathfindNode:
 
     def __init__(
         self,
-        value: Tuple[int, int],
+        value: tuple[int, int],
         parent: Optional[PathfindNode] = None,
     ) -> None:
         self.parent = parent
@@ -354,7 +342,7 @@ class PathfindNode:
         self.parent = parent
         self.depth = parent.depth + 1
 
-    def get_value(self) -> Tuple[int, int]:
+    def get_value(self) -> tuple[int, int]:
         return self.value
 
     def get_depth(self) -> int:
@@ -379,11 +367,11 @@ class TuxemonMap:
         events: Sequence[EventObject],
         inits: Sequence[EventObject],
         interacts: Sequence[EventObject],
-        surfable_map: Sequence[Tuple[int, int]],
+        surfable_map: Sequence[tuple[int, int]],
         collision_map: MutableMapping[
-            Tuple[int, int], Optional[RegionProperties]
+            tuple[int, int], Optional[RegionProperties]
         ],
-        collisions_lines_map: Set[Tuple[Tuple[int, int], Direction]],
+        collisions_lines_map: set[tuple[tuple[int, int], Direction]],
         tiled_map: TiledMap,
         maps: dict,
         filename: str,
@@ -445,7 +433,7 @@ class TuxemonMap:
         # inside (true), outside (none)
         self.inside = bool(maps.get("inside"))
         # scenario: spyder, xero or none
-        self.scenario = maps.get("scenario")
+        self.scenario = str(maps.get("scenario"))
         # check type of location
         self.types = maps.get("types")
 

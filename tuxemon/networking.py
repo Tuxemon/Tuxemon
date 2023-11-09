@@ -7,16 +7,7 @@ from __future__ import annotations
 import logging
 import pprint
 from datetime import datetime
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Dict,
-    List,
-    Literal,
-    Optional,
-    Tuple,
-    TypedDict,
-)
+from typing import TYPE_CHECKING, Any, Literal, Optional, TypedDict
 
 import pygame as pg
 
@@ -43,7 +34,7 @@ if TYPE_CHECKING:
 
 
 class CharDict(TypedDict):
-    tile_pos: Tuple[int, int]
+    tile_pos: tuple[int, int]
     name: str
     facing: Literal["front", "back", "left", "right"]
 
@@ -77,10 +68,10 @@ class TuxemonServer:
             self.server_name = "Default Tuxemon Server"
         else:
             self.server_name = server_name
-        self.network_events: List[str] = []
+        self.network_events: list[str] = []
         self.listening = False
-        self.interfaces: Dict[str, Any] = {}
-        self.ips: List[str] = []
+        self.interfaces: dict[str, Any] = {}
+        self.ips: list[str] = []
 
         # Handle users without networking support.
         if not networking:
@@ -288,9 +279,9 @@ class ControllerServer:
 
     def __init__(self, game: LocalPygameClient) -> None:
         self.game = game
-        self.network_events: List[str] = []
+        self.network_events: list[str] = []
         self.listening = False
-        self.interfaces: Dict[str, Any] = {}
+        self.interfaces: dict[str, Any] = {}
 
         # Handle users without networking support
         if not networking:
@@ -377,8 +368,8 @@ class TuxemonClient:
     def __init__(self, game: LocalPygameClient) -> None:
         self.game = game
         # tuple = (ip, port)
-        self.available_games: List[Tuple[str, int]] = []
-        self.server_list: List[str] = []
+        self.available_games: list[tuple[str, int]] = []
+        self.server_list: list[str] = []
         self.selected_game = None
         self.enable_join_multiplayer = False
         self.wait_broadcast = 0.0  # Used to delay autodiscover broadcast.
@@ -388,7 +379,7 @@ class TuxemonClient:
         )
         self.populated = False
         self.listening = False
-        self.event_list: Dict[str, int] = {}
+        self.event_list: dict[str, int] = {}
         self.ping_time = 2.0
 
         # Handle users without networking support.
@@ -782,11 +773,11 @@ class TuxemonClient:
 class DummyNetworking:
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         """The dummy networking object is used when networking is not supported."""
-        self.registry: Dict[str, Any] = {}
+        self.registry: dict[str, Any] = {}
         self.registered = False
         # {(ip, port): (client_version_number, server_name)
-        self.discovered_servers: Dict[Tuple[str, int], Tuple[int, str]] = {}
-        self.event_notifies: Dict[str, Any] = {}
+        self.discovered_servers: dict[tuple[str, int], tuple[int, str]] = {}
+        self.event_notifies: dict[str, Any] = {}
 
     def event(self, *args: Any, **kwargs: Any) -> None:
         pass

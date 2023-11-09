@@ -152,12 +152,6 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="38" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="48" name="Create Spyder Rookie" type="event" x="64" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_gore,12,11"/>
@@ -172,7 +166,7 @@
   </object>
   <object id="50" name="Threats" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter omnichannel"/>
+    <property name="act1" value="random_encounter omnichannel,6"/>
     <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
    </properties>
   </object>

@@ -165,12 +165,6 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="105" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="108" name="Create Dempsey" type="event" x="32" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_dempsey,2,16"/>

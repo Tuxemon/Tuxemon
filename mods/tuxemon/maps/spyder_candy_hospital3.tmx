@@ -117,12 +117,6 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="61" name="Exhausted" type="event" x="32" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="62" name="The cure!" type="event" x="80" y="96" width="32" height="16">
    <properties>
     <property name="act20" value="translated_dialog spyder_hospital_cure1"/>
@@ -152,12 +146,6 @@
    <properties>
     <property name="act1" value="remove_collision screen"/>
     <property name="cond1" value="is has_item player,aardant"/>
-   </properties>
-  </object>
-  <object id="16" name="Evolution" type="event" x="0" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="evolution"/>
-    <property name="cond1" value="is check_evolution standard"/>
    </properties>
   </object>
  </objectgroup>

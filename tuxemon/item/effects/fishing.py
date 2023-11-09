@@ -7,7 +7,6 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
 from tuxemon.db import EvolutionStage, MonsterShape, db
-from tuxemon.event.actions.wild_encounter import WildEncounterAction
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
 if TYPE_CHECKING:
@@ -29,10 +28,12 @@ class FishingEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> FishingEffectResult:
         # define random encounters
+        mon_slug: str = ""
+        level: int = 0
         fishing: bool = False
-        bas = []
-        adv = []
-        pro = []
+        bas: list[str] = []
+        adv: list[str] = []
+        pro: list[str] = []
         monsters = list(db.database["monster"])
         for mon in monsters:
             results = db.lookup(mon, table="monster")
@@ -66,24 +67,30 @@ class FishingEffect(ItemEffect):
             if bait <= 35:
                 mon_slug = random.choice(bas)
                 level = random.randint(5, 15)
-                WildEncounterAction(
-                    monster_slug=mon_slug, monster_level=level, env="ocean"
-                ).start()
                 fishing = True
         elif item.slug == "neptune":
             if bait <= 65:
                 mon_slug = random.choice(adv)
                 level = random.randint(15, 25)
-                WildEncounterAction(
-                    monster_slug=mon_slug, monster_level=level, env="ocean"
-                ).start()
                 fishing = True
         elif item.slug == "poseidon":
             if bait <= 85:
                 mon_slug = random.choice(pro)
                 level = random.randint(25, 35)
-                WildEncounterAction(
-                    monster_slug=mon_slug, monster_level=level, env="ocean"
-                ).start()
                 fishing = True
+
+        client = self.session.client
+        player = self.session.player
+        environment = (
+            "night_ocean"
+            if player.game_variables["stage_of_day"] == "night"
+            else "ocean"
+        )
+        rgb = "0:105:148"
+        if fishing:
+            client.event_engine.execute_action(
+                "wild_encounter",
+                [mon_slug, level, None, None, environment, rgb],
+                True,
+            )
         return {"success": fishing, "num_shakes": 0, "extra": None}

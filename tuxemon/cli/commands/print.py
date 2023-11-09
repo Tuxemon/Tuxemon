@@ -14,7 +14,7 @@ class PrintCommand(CLICommand):
 
     name = "print"
     description = "Print values of variables set using map actions and events."
-    example = "print steps"
+    example = "print name_variable"
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:
         """

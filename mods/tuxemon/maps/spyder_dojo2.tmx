@@ -224,12 +224,6 @@
     <property name="cond1" value="not variable_set dojotoph:yes"/>
    </properties>
   </object>
-  <object id="29" name="Exhausted" type="event" x="16" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="30" name="Encounter" type="event" x="160" y="144" width="16" height="16">
    <properties>
     <property name="act01" value="player_stop"/>
@@ -269,12 +263,6 @@
     <property name="cond5" value="is variable_set dojosokka:yes"/>
     <property name="cond6" value="is variable_set dojotoph:yes"/>
     <property name="cond7" value="not variable_set dojowan:yes"/>
-   </properties>
-  </object>
-  <object id="13" name="Evolution" type="event" x="0" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="evolution"/>
-    <property name="cond1" value="is check_evolution standard"/>
    </properties>
   </object>
  </objectgroup>

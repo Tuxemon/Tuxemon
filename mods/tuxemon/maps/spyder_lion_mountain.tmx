@@ -398,12 +398,6 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="192" name="Exhausted" type="event" x="0" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="313" name="Teleport Town" type="event" x="0" y="1440" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport spyder_sphalian_town.tmx,22,15,0.3"/>
@@ -692,12 +686,6 @@
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="13" name="Evolution" type="event" x="0" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="evolution"/>
-    <property name="cond1" value="is check_evolution standard"/>
    </properties>
   </object>
  </objectgroup>

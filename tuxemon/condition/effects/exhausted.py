@@ -34,7 +34,7 @@ class ExhaustedEffect(CondEffect):
                 if tech.repl_tech:
                     cond = Condition()
                     cond.load(tech.repl_tech)
-                    cond.steps = player.game_variables["steps"]
+                    cond.steps = player.steps
                     cond.link = target
         return {
             "success": True,

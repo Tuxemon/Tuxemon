@@ -34,7 +34,7 @@ class ChargingEffect(CondEffect):
                 if tech.repl_tech:
                     cond = Condition()
                     cond.load(tech.repl_tech)
-                    cond.steps = player.game_variables["steps"]
+                    cond.steps = player.steps
                     cond.link = target
         if tech.phase == "perform_action_item":
             if tech.slug == "charging":
@@ -42,7 +42,7 @@ class ChargingEffect(CondEffect):
                 if tech.repl_item:
                     cond = Condition()
                     cond.load(tech.repl_item)
-                    cond.steps = player.game_variables["steps"]
+                    cond.steps = player.steps
                     cond.link = target
         return {
             "success": True,

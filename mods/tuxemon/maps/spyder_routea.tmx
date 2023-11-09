@@ -188,12 +188,6 @@
     <property name="cond1" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
-  <object id="67" name="Exhausted" type="event" x="112" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="69" name="Billie" type="event" x="256" y="288" width="32" height="16">
    <properties>
     <property name="act01" value="player_stop"/>
@@ -558,12 +552,6 @@
     <property name="act3" value="remove_npc spyder_routea_cureall"/>
     <property name="act4" value="set_variable routea_cureall:yes"/>
     <property name="behav1" value="talk spyder_routea_cureall"/>
-   </properties>
-  </object>
-  <object id="15" name="Evolution" type="event" x="0" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="evolution"/>
-    <property name="cond1" value="is check_evolution standard"/>
    </properties>
   </object>
  </objectgroup>

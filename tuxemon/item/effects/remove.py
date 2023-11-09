@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
 from tuxemon.event import get_npc_pos
-from tuxemon.event.actions.remove_npc import RemoveNpcAction
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
 if TYPE_CHECKING:
@@ -50,7 +49,9 @@ class RemoveEffect(ItemEffect):
 
         npc = get_npc_pos(self.session, coords)
         if npc:
-            RemoveNpcAction(npc_slug=npc.slug).start()
+            self.session.client.event_engine.execute_action(
+                "remove_npc", [npc.slug], True
+            )
             self.session.player.game_variables[npc.slug] = self.name
             remove = True
         return {"success": remove, "num_shakes": 0, "extra": None}

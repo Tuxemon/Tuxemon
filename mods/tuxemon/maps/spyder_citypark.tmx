@@ -552,12 +552,6 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="84" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="85" name="Create Box1" type="event" x="256" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_citypark_potion1,16,3"/>
@@ -636,12 +630,6 @@
     <property name="act3" value="remove_npc spyder_citypark_cd2"/>
     <property name="act4" value="set_variable citypark_cd2:yes"/>
     <property name="behav1" value="talk spyder_citypark_cd2"/>
-   </properties>
-  </object>
-  <object id="13" name="Evolution" type="event" x="0" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="evolution"/>
-    <property name="cond1" value="is check_evolution standard"/>
    </properties>
   </object>
  </objectgroup>

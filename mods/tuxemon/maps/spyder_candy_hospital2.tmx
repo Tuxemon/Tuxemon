@@ -99,12 +99,6 @@
     <property name="cond1" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
-  <object id="90" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="91" name="Create Scientist" type="event" x="16" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_hospital1_lesley,1,17"/>
@@ -255,12 +249,6 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_hospital2_nurse1"/>
     <property name="behav1" value="talk spyder_hospital1_melanie"/>
-   </properties>
-  </object>
-  <object id="13" name="Evolution" type="event" x="0" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="evolution"/>
-    <property name="cond1" value="is check_evolution standard"/>
    </properties>
   </object>
  </objectgroup>

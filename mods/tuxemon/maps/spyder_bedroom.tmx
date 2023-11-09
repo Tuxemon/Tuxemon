@@ -83,14 +83,6 @@
     <property name="cond2" value="is player_facing_tile"/>
    </properties>
   </object>
-  <object id="29" name="Auto Healing Teleported" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_monster_health"/>
-    <property name="act2" value="set_monster_status"/>
-    <property name="act3" value="set_variable teleport_clinic:none"/>
-    <property name="cond1" value="is variable_set teleport_clinic:lost"/>
-   </properties>
-  </object>
   <object id="30" name="intro question" type="event" x="64" y="0" width="16" height="16">
    <properties>
     <property name="act01" value="translated_dialog spyder_intro_question"/>

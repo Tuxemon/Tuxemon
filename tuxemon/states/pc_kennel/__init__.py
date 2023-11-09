@@ -23,8 +23,8 @@ from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.state import State
-from tuxemon.states.journal import MonsterInfoState
 from tuxemon.states.monster import MonsterMenuState
+from tuxemon.states.monster_info import MonsterInfoState
 from tuxemon.tools import (
     open_choice_dialog,
     open_dialog,
@@ -185,7 +185,9 @@ class MonsterTakeState(PygameMenuState):
             )
 
         def description(mon: Monster) -> None:
-            self.client.push_state(MonsterInfoState(monster=mon))
+            self.client.push_state(
+                MonsterInfoState(monster=mon, source=self.name)
+            )
 
         # it prints monsters inside the screen: image + button
         _sorted = sorted(items, key=lambda x: x.slug)
@@ -193,16 +195,16 @@ class MonsterTakeState(PygameMenuState):
             label = T.translate(monster.name).upper()
             iid = monster.instance_id.hex
             new_image = pygame_menu.BaseImage(
-                transform_resource_filename(monster.menu_sprite_1),
+                transform_resource_filename(monster.front_battle_sprite),
                 drawing_position=POSITION_CENTER,
             )
-            new_image.scale(prepare.SCALE, prepare.SCALE)
+            new_image.scale(prepare.SCALE * 0.5, prepare.SCALE * 0.5)
             menu.add.banner(
                 new_image,
                 partial(kennel_options, iid),
                 selection_effect=HighlightSelection(),
             )
-            diff = round((monster.current_hp / monster.current_hp) * 100, 1)
+            diff = round((monster.current_hp / monster.hp) * 100, 1)
             level = f"Lv.{monster.level}"
             menu.add.progress_bar(
                 level, default=diff, font_size=20, align=locals.ALIGN_CENTER

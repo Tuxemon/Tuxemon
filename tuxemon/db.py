@@ -414,19 +414,16 @@ class MonsterModel(BaseModel):
         [], description="The type(s) of this monster"
     )
     catch_rate: float = Field(
-        0, description="The catch rate of the monster (max 255)"
+        0.0, description="The catch rate of the monster (max 100)"
     )
     possible_genders: Sequence[GenderType] = Field(
         [], description="Valid genders for the monster"
     )
     lower_catch_resistance: float = Field(
-        0, description="The lower catch resistance of the monster"
+        0.0, description="The lower catch resistance of the monster"
     )
     upper_catch_resistance: float = Field(
-        0, description="The upper catch resistance of the monster"
-    )
-    escape_rate: float = Field(
-        0, description="The escape rate of the monster (max 1)."
+        0.0, description="The upper catch resistance of the monster"
     )
     moveset: Sequence[MonsterMovesetItemModel] = Field(
         [], description="The moveset of this monster"
@@ -470,17 +467,17 @@ class MonsterModel(BaseModel):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
+    @field_validator("weight", "height")
+    def check_weight_and_height(cls: MonsterModel, v: float) -> float:
+        if v > 0.0:
+            return v
+        raise ValueError(f"The weight or height cannot be {v}. Use 0.1!")
+
     @field_validator("catch_rate")
     def check_catch_rate(cls: MonsterModel, v: float) -> float:
-        if 0 <= v <= 255:
+        if 0 <= v <= 100:
             return v
-        raise ValueError(f"the catch rate is between 0 and 255 ({v})")
-
-    @field_validator("escape_rate")
-    def check_escape_rate(cls: MonsterModel, v: float) -> float:
-        if 0 <= v <= 1:
-            return v
-        raise ValueError(f"the escape rate is between 0.0 and 1.0 ({v})")
+        raise ValueError(f"the catch rate is between 0 and 100 ({v})")
 
 
 class StatModel(BaseModel):

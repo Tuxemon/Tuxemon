@@ -77,9 +77,9 @@ class TuxemonConfig:
             "gameplay",
             "encounter_rate_modifier",
         )
-        self.default_monster_catch_rate = cfg.getfloat(
+        self.default_catch_rate = cfg.getfloat(
             "gameplay",
-            "default_monster_catch_rate",
+            "default_catch_rate",
         )
         self.default_upper_monster_catch_resistance = cfg.getfloat(
             "gameplay",
@@ -235,7 +235,7 @@ def get_defaults() -> Mapping[str, Any]:
                     (
                         ("items_consumed_on_failure", "True"),
                         ("encounter_rate_modifier", "1.0"),
-                        ("default_monster_catch_rate", "125"),
+                        ("default_catch_rate", "100"),
                         ("default_upper_monster_catch_resistance", "1"),
                         ("default_lower_monster_catch_resistance", "1"),
                         ("dialog_speed", "slow"),

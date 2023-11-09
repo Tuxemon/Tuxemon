@@ -194,7 +194,7 @@ class CaptureEffect(ItemEffect):
                         tuxeball.quantity += 1
 
                 # escape monster
-                if random.random() <= target.escape_rate:
+                if random.randint(0, 100) <= target.escape_rate:
                     esc = Technique()
                     esc.load("menu_run")
                     if combat_state and fighting_monster:

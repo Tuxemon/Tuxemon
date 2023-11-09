@@ -45,7 +45,7 @@ class RevengeEffect(CondEffect):
         for ele in log:
             _turn, action = ele
             if _turn == turn:
-                method = action.technique
+                method = action.method
                 # progress
                 if (
                     isinstance(method, Technique)

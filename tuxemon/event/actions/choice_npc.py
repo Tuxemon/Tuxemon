@@ -12,31 +12,31 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T, replace_text
 from tuxemon.npc import NPC
-from tuxemon.states.choice.choice_monster import ChoiceMonster
+from tuxemon.states.choice.choice_npc import ChoiceNpc
 
 logger = logging.getLogger(__name__)
 
 
 @final
 @dataclass
-class ChoiceMonsterAction(EventAction):
+class ChoiceNpcAction(EventAction):
     """
-    Ask the player to make a choice among monsters.
+    Ask the player to make a choice among NPCs.
 
     Script usage:
         .. code-block::
 
-            choice_monster <choices>,<variable>
+            choice_npc <choices>,<variable>
 
     Script parameters:
         choices: List of possible choices
-            (monster slugs eg: rockitten:apeoro),
+            (item slugs eg: maple:billie),
             separated by a colon ":".
         variable: Variable to store the result of the choice.
 
     """
 
-    name = "choice_monster"
+    name = "choice_npc"
 
     choices: str
     variable: str
@@ -60,13 +60,13 @@ class ChoiceMonsterAction(EventAction):
             var_menu.append((text, val, partial(_set_variable, val, player)))
 
         self.session.client.push_state(
-            ChoiceMonster(
+            ChoiceNpc(
                 menu=var_menu,
             )
         )
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(ChoiceMonster)
+            self.session.client.get_state_by_name(ChoiceNpc)
         except ValueError:
             self.stop()

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import math
 from collections.abc import Callable, Sequence
-from functools import partial
 from typing import Any
 
 import pygame_menu
@@ -13,7 +12,7 @@ from pygame_menu.widgets.selection.highlight import HighlightSelection
 
 from tuxemon import prepare
 from tuxemon.animation import Animation
-from tuxemon.db import MonsterModel, db
+from tuxemon.db import db
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.tools import transform_resource_filename
@@ -21,9 +20,14 @@ from tuxemon.tools import transform_resource_filename
 ChoiceMenuGameObj = Callable[[], None]
 
 
-class ChoiceMonster(PygameMenuState):
+def fix_measure(measure: int, percentage: float) -> int:
+    """it returns the correct measure based on percentage"""
+    return round(measure * percentage)
+
+
+class ChoiceNpc(PygameMenuState):
     """
-    Game state with a graphic box and monsters (images) + labels.
+    Game state with a graphic box and NPCs (images) + labels.
 
     """
 
@@ -34,42 +38,39 @@ class ChoiceMonster(PygameMenuState):
         **kwargs: Any,
     ) -> None:
         theme = get_theme()
-        if len(menu) > 15:
+        if len(menu) > 12:
             theme.scrollarea_position = POSITION_EAST
 
-        columns = 5
+        columns = 4
         num_widgets = 3
         rows = math.ceil(len(menu) / columns) * num_widgets
+
         super().__init__(columns=columns, rows=rows, **kwargs)
 
-        def open_journal(monster: MonsterModel) -> None:
-            self.client.push_state(
-                "JournalInfoState", kwargs={"monster": monster}
-            )
-
         for name, slug, callback in menu:
-            monster = db.lookup(slug, table="monster")
+            npc = db.lookup(slug, table="npc")
             new_image = pygame_menu.BaseImage(
                 transform_resource_filename(
-                    f"gfx/sprites/battle/{monster.slug}-front.png"
+                    f"gfx/sprites/player/{npc.template[0].combat_front}.png"
                 ),
                 drawing_position=POSITION_CENTER,
             )
             new_image.scale(prepare.SCALE * 0.4, prepare.SCALE * 0.4)
-            self.menu.add.banner(
+            self.menu.add.image(
                 new_image,
-                partial(open_journal, monster),
                 align=ALIGN_CENTER,
-                selection_effect=HighlightSelection(),
             )
+            # replace slug not translated
+            if name == slug:
+                name = "???"
             self.menu.add.button(
                 name,
                 callback,
-                font_size=20,
+                font_size=15,
                 align=ALIGN_CENTER,
                 selection_effect=HighlightSelection(),
             )
-            self.menu.add.vertical_fill(15)
+            self.menu.add.vertical_fill(10)
 
         self.animation_size = 0.0
         self.escape_key_exits = escape_key_exits

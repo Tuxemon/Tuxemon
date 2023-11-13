@@ -97,26 +97,13 @@ class YAMLEventLoader:
                 conds.append(condition)
             for value in event_data.get("behav", []):
                 behav_type, args = parse_behav_string(value)
-                if behav_type == "talk":
-                    condition = MapCondition(
-                        type="to_talk",
-                        parameters=args,
-                        x=x,
-                        y=y,
-                        width=w,
-                        height=h,
-                        operator="is",
-                        name="",
-                    )
-                    conds.insert(0, condition)
-                    action = MapAction(
-                        type="npc_face",
-                        parameters=[args[0], "player"],
-                        name="",
-                    )
-                    acts.insert(0, action)
-                else:
-                    raise Exception
+                _args = list(args)
+                _args.insert(0, behav_type)
+                conds.insert(
+                    0,
+                    MapCondition("behav", _args, x, y, w, h, "is", ""),
+                )
+                acts.insert(0, MapAction("behav", _args, ""))
             if event_type == "interact":
                 cond_data = MapCondition(
                     "player_facing_tile",
@@ -411,16 +398,13 @@ class TMXMapLoader:
             if key.startswith("behav"):
                 behav_string = properties[key]
                 behav_type, args = parse_behav_string(behav_string)
-                if behav_type == "talk":
-                    conds.insert(
-                        0,
-                        MapCondition("to_talk", args, x, y, w, h, "is", key),
-                    )
-                    acts.insert(
-                        0, MapAction("npc_face", [args[0], "player"], key)
-                    )
-                else:
-                    raise Exception
+                _args = list(args)
+                _args.insert(0, behav_type)
+                conds.insert(
+                    0,
+                    MapCondition("behav", _args, x, y, w, h, "is", key),
+                )
+                acts.insert(0, MapAction("behav", _args, key))
 
         # add a player_facing_tile condition automatically
         if obj.type is None:

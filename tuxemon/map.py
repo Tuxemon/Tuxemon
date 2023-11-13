@@ -365,8 +365,6 @@ class TuxemonMap:
     def __init__(
         self,
         events: Sequence[EventObject],
-        inits: Sequence[EventObject],
-        interacts: Sequence[EventObject],
         surfable_map: Sequence[tuple[int, int]],
         collision_map: MutableMapping[
             tuple[int, int], Optional[RegionProperties]
@@ -392,8 +390,6 @@ class TuxemonMap:
 
         Parameters:
             events: List of map events.
-            inits: List of events to be loaded once, when map is entered.
-            interacts: List of intractable spaces.
             surfable_map: Surfable map.
             collision_map: Collision map.
             collisions_lines_map: Collision map of lines.
@@ -402,12 +398,10 @@ class TuxemonMap:
             filename: Path of the map.
 
         """
-        self.interacts = interacts
         self.collision_map = collision_map
         self.surfable_map = surfable_map
         self.collision_lines_map = collisions_lines_map
         self.size = tiled_map.width, tiled_map.height
-        self.inits = inits
         self.events = events
         self.renderer: Optional[pyscroll.BufferedRenderer] = None
         self.edges = maps.get("edges")

@@ -117,18 +117,6 @@ class YAMLEventLoader:
                     acts.insert(0, action)
                 else:
                     raise Exception
-            if event_type == "interact":
-                cond_data = MapCondition(
-                    "player_facing_tile",
-                    list(),
-                    x,
-                    y,
-                    w,
-                    h,
-                    "is",
-                    None,
-                )
-                conds.append(cond_data)
 
             yield EventObject(name, name, x, y, w, h, conds, acts)
 
@@ -184,8 +172,6 @@ class TMXMapLoader:
         tile_size = (data.tilewidth, data.tileheight)
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
         events = list()
-        inits = list()
-        interacts = list()
         surfable_map = list()
         collision_map: dict[tuple[int, int], Optional[RegionProperties]] = {}
         collision_lines_map = set()
@@ -216,12 +202,7 @@ class TMXMapLoader:
                 colliders = gids_with_colliders.get(gid)
                 if colliders is not None:
                     for obj in colliders:
-                        if obj.type is None:
-                            obj_type = getattr(
-                                obj, "class"
-                            )  # obj.class is invalid syntax
-                        else:
-                            obj_type = obj.type
+                        obj_type = obj.type
                         if obj_type and obj_type.lower().startswith(
                             "collision"
                         ):
@@ -247,10 +228,7 @@ class TMXMapLoader:
                     surfable_map.append((x, y))
 
         for obj in data.objects:
-            if obj.type is None:
-                obj_type = getattr(obj, "class")  # obj.class is invalid syntax
-            else:
-                obj_type = obj.type
+            obj_type = obj.type
             if obj_type and obj_type.lower().startswith("collision"):
                 for tile_position, props in self.extract_tile_collisions(
                     obj, tile_size
@@ -262,15 +240,9 @@ class TMXMapLoader:
                 surfable_map.append(tile_size)
             elif obj_type == "event":
                 events.append(self.load_event(obj, tile_size))
-            elif obj_type == "init":
-                inits.append(self.load_event(obj, tile_size))
-            elif obj_type == "interact":
-                interacts.append(self.load_event(obj, tile_size))
 
         return TuxemonMap(
             events,
-            inits,
-            interacts,
             surfable_map,
             collision_map,
             collision_lines_map,
@@ -421,17 +393,5 @@ class TMXMapLoader:
                     )
                 else:
                     raise Exception
-
-        # add a player_facing_tile condition automatically
-        if obj.type is None:
-            obj_type = getattr(obj, "class")  # obj.class is invalid syntax
-        else:
-            obj_type = obj.type
-        if obj_type == "interact":
-            cond_data = MapCondition(
-                "player_facing_tile", list(), x, y, w, h, "is", None
-            )
-            logger.debug(cond_data)
-            conds.append(cond_data)
 
         return EventObject(obj.id, obj.name, x, y, w, h, conds, acts)

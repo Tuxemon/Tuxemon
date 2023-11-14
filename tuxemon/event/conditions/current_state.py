@@ -43,4 +43,3 @@ class CurrentStateCondition(EventCondition):
         assert current_state
         states = condition.parameters[0].split(":")
         return current_state.name in states
-        return state

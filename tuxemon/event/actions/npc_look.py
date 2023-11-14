@@ -2,10 +2,9 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import itertools
 import random
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import Optional, cast, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -52,22 +51,22 @@ class NpcLookAction(EventAction):
             self.limit_direction = self.directions.split(":")
 
         def _look(npc: NPC) -> None:
+            directions: list[str] = ["up", "down", "right", "left"]
             # Suspend looking around if a dialog window is open
             for state in self.session.client.active_states:
                 if state.name == "DialogState":
                     # retrieve NPC talking to
-                    if player.facing in ("down", "up", "left", "right"):
+                    if player.facing in directions:
                         return
                 elif state.name == "WorldMenuState":
                     return
 
             # Choose a random direction
-            directions: list[Direction] = ["up", "down", "right", "left"]
             if self.limit_direction:
                 directions = self.limit_direction
             direction = random.choice(directions)
             if direction != npc.facing:
-                npc.facing = direction
+                npc.facing = cast(Direction, direction)
 
         def schedule() -> None:
             # The timer is randomized between 0.5 and 1.0 of the frequency

@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
+import uuid
 from collections.abc import Generator, Iterator, Mapping
 from math import cos, pi, sin
 from typing import Any, Optional
@@ -379,6 +380,7 @@ class TMXMapLoader:
             Loaded event.
 
         """
+        _id = uuid.uuid4().int
         conds = []
         acts = []
         x = int(obj.x / tile_size[0])
@@ -434,4 +436,4 @@ class TMXMapLoader:
             logger.debug(cond_data)
             conds.append(cond_data)
 
-        return EventObject(obj.id, obj.name, x, y, w, h, conds, acts)
+        return EventObject(_id, obj.name, x, y, w, h, conds, acts)

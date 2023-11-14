@@ -42,5 +42,5 @@ class CurrentStateCondition(EventCondition):
         current_state = session.client.current_state
         assert current_state
         states = condition.parameters[0].split(":")
-        state = True if current_state.name in states else False
+        return current_state.name in states
         return state

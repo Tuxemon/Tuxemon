@@ -56,13 +56,7 @@ class NpcLookAction(EventAction):
             for state in self.session.client.active_states:
                 if state.name == "DialogState":
                     # retrieve NPC talking to
-                    if player.facing == "down":
-                        return
-                    elif player.facing == "up":
-                        return
-                    elif player.facing == "left":
-                        return
-                    elif player.facing == "right":
+                    if player.facing in ("down", "up", "left", "right"):
                         return
                 elif state.name == "WorldMenuState":
                     return

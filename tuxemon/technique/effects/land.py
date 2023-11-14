@@ -34,15 +34,13 @@ class LandEffect(TechEffect):
 
         # make land the user
         user_sprite = combat._monster_sprite_map.get(user, None)
-        assert user_sprite
-        if not user_sprite.visible:
+        if user_sprite and not user_sprite.visible:
             user_sprite.visible = True
             user.out_of_range = False
 
         # check if the enemy isn't flying
         target_sprite = combat._monster_sprite_map.get(target, None)
-        assert target_sprite
-        if not target_sprite.visible:
+        if target_sprite and not target_sprite.visible:
             done = False
 
         return {

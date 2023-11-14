@@ -1220,6 +1220,12 @@ msgstr "The user draws on their last ounce of strength, striking hard and gettin
 msgid "all_in"
 msgstr "All In"
 
+msgid "altitude_description"
+msgstr ""
+
+msgid "altitude"
+msgstr "Altitude"
+
 msgid "amnesia_description"
 msgstr "The combatants' minds touch, leaving both befuddled."
 

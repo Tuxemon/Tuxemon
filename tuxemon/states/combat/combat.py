@@ -236,6 +236,7 @@ class CombatState(CombatAnimations):
         self._method_cache = MethodAnimationCache()
         self._decision_queue: list[Monster] = []
         self._action_queue: list[EnqueuedAction] = []
+        self._pending_queue: list[EnqueuedAction] = []
         self._log_action: list[tuple[int, EnqueuedAction]] = []
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self._layout = dict()  # player => home areas on screen
@@ -482,10 +483,10 @@ class CombatState(CombatAnimations):
             value = random.random()
             self.players[0].game_variables["random_tech_hit"] = value
             if not self._decision_queue:
+                # tracks human players who need to choose an action
                 for player in self.human_players:
-                    # tracks human players who need to choose an action
                     self._decision_queue.extend(self.monsters_in_play[player])
-
+                # tracks ai players who need to choose an action
                 for trainer in self.ai_players:
                     for monster in self.monsters_in_play[trainer]:
                         AI(self, monster)
@@ -499,6 +500,15 @@ class CombatState(CombatAnimations):
         elif phase == "post action phase":
             # apply condition effects to the monsters
             for monster in self.active_monsters:
+                # check if there are pending actions (eg. counterattacks)
+                if self._pending_queue:
+                    pend = None
+                    for pending in self._pending_queue:
+                        pend = pending
+                    if pend:
+                        self._action_queue.append(pend)
+                        self._log_action.append((self._turn, pend))
+                        self._pending_queue.remove(pend)
                 for condition in monster.status:
                     # validate condition
                     if condition.validate(monster):
@@ -1484,6 +1494,7 @@ class CombatState(CombatAnimations):
 
         # clear action queue
         self._action_queue = list()
+        self._pending_queue = list()
         self._log_action = list()
         self._damage_map = list()
 

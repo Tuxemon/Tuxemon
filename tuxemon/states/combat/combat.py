@@ -506,8 +506,9 @@ class CombatState(CombatAnimations):
                     for pending in self._pending_queue:
                         pend = pending
                     if pend:
-                        self._action_queue.append(pend)
-                        self._log_action.append((self._turn, pend))
+                        self.enqueue_action(
+                            pend.user, pend.method, pend.target
+                        )
                         self._pending_queue.remove(pend)
                 for condition in monster.status:
                     # validate condition

@@ -30,12 +30,16 @@ WorldMenuGameObj = Callable[[], object]
 
 def add_menu_items(
     menu: pygame_menu.Menu,
-    items: Sequence[tuple[str, WorldMenuGameObj]],
+    items: Sequence[tuple[Any, WorldMenuGameObj]],
 ) -> None:
+    key: tuple[str, bool] = ("", True)
     menu.add.vertical_fill()
     for key, callback in items:
-        label = T.translate(key).upper()
-        menu.add.button(label, callback)
+        label = T.translate(key[0]).upper()
+        if key[1]:
+            menu.add.button(label, callback)
+        else:
+            menu.add.label(label, font_color=(220, 220, 220))
         menu.add.vertical_fill()
 
     width, height = prepare.SCREEN_SIZE
@@ -64,21 +68,44 @@ class WorldMenuState(PygameMenuState):
         def exit_game() -> None:
             self.client.event_engine.execute_action("quit")
 
+        player = local_session.player
         # Main Menu - Allows users to open the main menu in game.
         menu_items_map = [
-            ("menu_monster", self.open_monster_menu),
-            ("menu_bag", change_state("ItemMenuState")),
-            ("menu_player", change_state("PlayerState")),
-            ("menu_save", change_state("SaveMenuState")),
-            ("menu_load", change_state("LoadMenuState")),
-            ("menu_options", change_state("ControlState")),
-            ("exit", exit_game),
+            (
+                (
+                    "menu_monster",
+                    bool(player.menu_monsters and player.monsters),
+                ),
+                self.open_monster_menu,
+            ),
+            (
+                ("menu_bag", bool(player.menu_bag and player.items)),
+                change_state("ItemMenuState"),
+            ),
+            (
+                ("menu_player", bool(player.menu_player)),
+                change_state("PlayerState"),
+            ),
+            (
+                ("menu_save", bool(player.menu_save)),
+                change_state("SaveMenuState"),
+            ),
+            (
+                ("menu_load", bool(player.menu_load)),
+                change_state("LoadMenuState"),
+            ),
+            (
+                ("menu_options", True),
+                change_state("ControlState"),
+            ),
+            (("exit", True), exit_game),
         ]
         player = local_session.player
         for itm in player.items:
             if itm.menu:
                 menu_items_map.insert(
-                    itm.menu[0], (itm.menu[1], change_state(itm.menu[2]))
+                    itm.menu[0],
+                    ((itm.menu[1], True), change_state(itm.menu[2])),
                 )
         add_menu_items(self.menu, tuple(menu_items_map))
 

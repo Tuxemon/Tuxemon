@@ -273,7 +273,7 @@ class LocalPygameClient:
         """
         for state in self.active_states:
             maybe_game_event = state.process_event(game_event)
-            return maybe_game_event
+            return state.process_event(game_event)
         return None
 
     def main(self) -> None:

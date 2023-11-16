@@ -9863,7 +9863,7 @@ msgid "leather_town_open_air"
 msgstr "Open Air Cafe and Marketplace"
 
 msgid "xero_citypark_achievement"
-msgstr "Achievement Maniac's House: Closed."
+msgstr "Achievement Maniac's House"
 
 msgid "xero_shaft1_sign"
 msgstr "Shaft Headquarters: Mining Division"

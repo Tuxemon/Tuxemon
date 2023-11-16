@@ -272,9 +272,10 @@ class LocalPygameClient:
 
         """
         for state in self.active_states:
-            maybe_game_event = state.process_event(game_event)
-            return state.process_event(game_event)
-        return None
+            game_event = state.process_event(game_event)
+            if game_event is None:
+                break
+        return game_event
 
     def main(self) -> None:
         """

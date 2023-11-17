@@ -5540,6 +5540,16 @@ msgstr "Cathedral Center: We Live to Serve."
 msgid "Cotton_Mart"
 msgstr "Get the scoop at the Scoop Store!"
 
+msgid "Cotton_Town_Sign\n"
+msgstr "Welcome to Cotton Town: A Growing Force\n" 
+"↑ Cotton Town --- Route 1 ↓\n"
+
+msgid "taba_town_sign"
+msgstr "Taba Town - A peaceful refuge"
+
+msgid "taba_town_route20"
+msgstr "Route 20"
+
 msgid "column1"
 msgstr "A rare and ancient column. This used to be part of a temple."
 

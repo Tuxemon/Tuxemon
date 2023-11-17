@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Callable, Sequence
+from collections.abc import Callable
 from functools import partial
 from typing import TYPE_CHECKING, Any
 
@@ -30,16 +30,12 @@ WorldMenuGameObj = Callable[[], object]
 
 def add_menu_items(
     menu: pygame_menu.Menu,
-    items: Sequence[tuple[Any, WorldMenuGameObj]],
+    items: list[tuple[str, WorldMenuGameObj]],
 ) -> None:
-    key: tuple[str, bool] = ("", True)
     menu.add.vertical_fill()
     for key, callback in items:
-        label = T.translate(key[0]).upper()
-        if key[1]:
-            menu.add.button(label, callback)
-        else:
-            menu.add.label(label, font_color=(220, 220, 220))
+        label = T.translate(key).upper()
+        menu.add.button(label, callback)
         menu.add.vertical_fill()
 
     width, height = prepare.SCREEN_SIZE
@@ -62,52 +58,36 @@ class WorldMenuState(PygameMenuState):
 
         self.animation_offset = 0
 
-        def change_state(state: str, **kwargs: Any) -> Callable[[], object]:
+        def change(state: str, **kwargs: Any) -> Callable[[], object]:
             return partial(self.client.push_state, state, **kwargs)
 
         def exit_game() -> None:
             self.client.event_engine.execute_action("quit")
 
-        player = local_session.player
         # Main Menu - Allows users to open the main menu in game.
-        menu_items_map = [
-            (
-                (
-                    "menu_monster",
-                    bool(player.menu_monsters and player.monsters),
-                ),
-                self.open_monster_menu,
-            ),
-            (
-                ("menu_bag", bool(player.menu_bag and player.items)),
-                change_state("ItemMenuState"),
-            ),
-            (
-                ("menu_player", bool(player.menu_player)),
-                change_state("PlayerState"),
-            ),
-            (
-                ("menu_save", bool(player.menu_save)),
-                change_state("SaveMenuState"),
-            ),
-            (
-                ("menu_load", bool(player.menu_load)),
-                change_state("LoadMenuState"),
-            ),
-            (
-                ("menu_options", True),
-                change_state("ControlState"),
-            ),
-            (("exit", True), exit_game),
-        ]
         player = local_session.player
+        menu: list[tuple[str, WorldMenuGameObj]] = []
+        if player.monsters and player.menu_monsters:
+            menu.append(("menu_monster", self.open_monster_menu))
+        if player.items and player.menu_bag:
+            menu.append(("menu_bag", change("ItemMenuState")))
+        if player.menu_player:
+            menu.append(("menu_player", change("PlayerState")))
+        if player.missions:
+            menu.append(("menu_missions", change("MissionState")))
+        if player.menu_save:
+            menu.append(("menu_save", change("SaveMenuState")))
+        if player.menu_load:
+            menu.append(("menu_load", change("LoadMenuState")))
+        menu.append(("menu_options", change("ControlState")))
+        menu.append(("exit", exit_game))
         for itm in player.items:
             if itm.menu:
-                menu_items_map.insert(
+                menu.insert(
                     itm.menu[0],
-                    ((itm.menu[1], True), change_state(itm.menu[2])),
+                    (itm.menu[1], change(itm.menu[2])),
                 )
-        add_menu_items(self.menu, tuple(menu_items_map))
+        add_menu_items(self.menu, menu)
 
     def open_monster_menu(self) -> None:
         from tuxemon.states.monster import MonsterMenuState

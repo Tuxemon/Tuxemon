@@ -84,6 +84,7 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
     save_data["tuxepedia"] = save_data.get("tuxepedia", {})
     save_data["contacts"] = save_data.get("contacts", {})
     save_data["items"] = save_data.get("items", [])
+    save_data["missions"] = save_data.get("missions", [])
     save_data["battles"] = save_data.get("battles", [])
     save_data["plague"] = save_data.get("plague", PlagueType.healthy)
 

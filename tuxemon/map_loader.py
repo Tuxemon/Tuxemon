@@ -84,7 +84,7 @@ class YAMLEventLoader:
                 event_data.get("actions", []), start=1
             ):
                 act_type, args = parse_action_string(value)
-                action = MapAction(act_type, args, f"act{str(key).zfill(2)}")
+                action = MapAction(act_type, args, f"act{str(key*10)}")
                 acts.append(action)
             for key, value in enumerate(
                 event_data.get("conditions", []), start=1
@@ -98,7 +98,7 @@ class YAMLEventLoader:
                     width=w,
                     height=h,
                     operator=operator,
-                    name=f"cond{str(key).zfill(2)}",
+                    name=f"cond{str(key*10)}",
                 )
                 conds.append(condition)
             for key, value in enumerate(event_data.get("behav", []), start=1):
@@ -112,13 +112,13 @@ class YAMLEventLoader:
                         width=w,
                         height=h,
                         operator="is",
-                        name=f"behav{str(key).zfill(2)}",
+                        name=f"behav{str(key*10)}",
                     )
                     conds.insert(0, condition)
                     action = MapAction(
                         type="npc_face",
                         parameters=[args[0], "player"],
-                        name=f"behav{str(key).zfill(2)}",
+                        name=f"behav{str(key*10)}",
                     )
                     acts.insert(0, action)
                 else:

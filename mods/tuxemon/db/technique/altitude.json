@@ -1,19 +1,22 @@
 {
-  "tech_id": 111,
-  "accuracy": 1,
-  "animation": "slash_power",
-  "effects": [
-    "land",
-    "damage"
-  ],
+  "tech_id": 180,
+  "accuracy": 0.8,
+	"animation": null,
+	"conditions": [
+	  	"not status grabbed",
+	  	"not status stuck"
+	],
+	"effects": [
+		"fly_off hawk"
+	],
   "flip_axes": "",
-  "is_fast": false,
-  "potency": null,
-  "power": 1.5,
+  "is_fast": true,
+  "potency": 1,
+  "power": 1,
   "range": "touch",
-  "recharge": 1,
+  "recharge": 4,
   "sfx": "sfx_blaster",
-  "slug": "hawk",
+  "slug": "altitude",
   "sort": "damage",
   "target": {
     "enemy monster": 2,

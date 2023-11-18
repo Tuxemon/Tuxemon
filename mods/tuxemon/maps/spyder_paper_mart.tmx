@@ -60,7 +60,7 @@
   </object>
   <object id="18" name="intro storekeeper" type="event" x="32" y="0" width="16" height="16">
    <properties>
-    <property name="act001" value="change_bg end"/>
+    <property name="act001" value="change_bg"/>
     <property name="act002" value="lock_controls"/>
     <property name="act003" value="npc_face player,right"/>
     <property name="act004" value="create_npc spyder_paperscoop_santino,7,6"/>
@@ -101,9 +101,8 @@
     <property name="act071" value="npc_face spyder_dante,left"/>
     <property name="act080" value="translated_dialog spyder_intro_question_name"/>
     <property name="act081" value="rename_player random"/>
-    <property name="act082" value="translated_dialog spyder_papertown_myfirstmon2"/>
-    <property name="act083" value="translated_dialog_choice budaye:dollfin:grintot:ignibus:memnomnom,myintrochoice"/>
-    <property name="act084" value="translated_dialog spyder_intro_shopkeeper3"/>
+    <property name="act082" value="choice_monster budaye:dollfin:grintot:ignibus:memnomnom,myintrochoice"/>
+    <property name="act083" value="translated_dialog spyder_intro_shopkeeper3"/>
     <property name="act090" value="pathfind spyder_billie,6,7"/>
     <property name="act091" value="pathfind spyder_billie,6,10"/>
     <property name="act092" value="remove_npc spyder_billie"/>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="76">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="citypark_house1"/>
+  <property name="types" value="notype"/>
+ </properties>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
+  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
+ </tileset>
+ <layer id="2" name="Tile Layer 2" width="10" height="8">
+  <data encoding="base64" compression="zlib">
+   eAFbzc/AsJoIfBOohhhsxMDAMJIwAG+1HA0=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="10" height="8">
+  <data encoding="base64" compression="zlib">
+   eAFjYCAenJVjYDgHxL1KDAx9QDwdyJ4ApacB2TDwBsh+C8RrgHJrgXgbkL0eSm8Fsl/IQ1SugtIwfeg0uwJEZCmQWgbEyyFcnORloMwVIL6KUwVEgpGRgYEJiJmBmBSwAqh4JRCvQtIEACjTFW4=
+  </data>
+ </layer>
+ <layer id="7" name="Tile Layer 4" width="10" height="8">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFlIQAAAFAAAE=
+  </data>
+ </layer>
+ <layer id="4" name="Above player" width="10" height="8">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFlIQAAAFAAAE=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collisions">
+  <object id="63" type="collision" x="0" y="0" width="160" height="32"/>
+  <object id="64" type="collision" x="16" y="32" width="128" height="16"/>
+  <object id="71" type="collision" x="144" y="32" width="16" height="32"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="70" name="Go outside" type="event" x="96" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport citypark.tmx,36,4,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

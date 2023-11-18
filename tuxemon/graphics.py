@@ -32,7 +32,6 @@ logger = logging.getLogger(__name__)
 
 ColorLike = Union[
     pygame.color.Color,
-    str,
     tuple[int, int, int],
     tuple[int, int, int, int],
 ]

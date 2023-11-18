@@ -42,12 +42,6 @@ class VariableIsCondition(EventCondition):
             Result of the operation over the variable.
 
         """
-        game_variables = session.player.game_variables
-        if condition.parameters[0] not in game_variables:
-            return False
-        if condition.parameters[2] not in game_variables:
-            return False
-
         # Read the parameters
         operand1 = number_or_variable(session, condition.parameters[0])
         operation = condition.parameters[1]

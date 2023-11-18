@@ -84,7 +84,7 @@ events:
     - translated_dialog xero_intro_3
     - translated_dialog xero_intro_question
     - rename_player random
-    - change_bg end
+    - change_bg
     - set_variable xero_intro:done
     conditions:
     - is variable_set question_xero:no
@@ -98,7 +98,7 @@ events:
     actions:
     - translated_dialog xero_intro_question
     - rename_player random
-    - change_bg end
+    - change_bg
     - set_variable xero_intro:done
     conditions:
     - is variable_set question_xero:yes

@@ -478,8 +478,8 @@ class LocalPygameClient:
 
         """
         world = self.get_state_by_name(WorldState)
-        world.npcs = {}
-        world.npcs_off_map = {}
+        world.npcs = []
+        world.npcs_off_map = []
         for client in registry:
             if "sprite" in registry[client]:
                 sprite = registry[client]["sprite"]
@@ -488,17 +488,17 @@ class LocalPygameClient:
 
                 # Add the player to the screen if they are on the same map.
                 if client_map == current_map:
-                    if sprite.slug not in world.npcs:
-                        world.npcs[sprite.slug] = sprite
-                    if sprite.slug in world.npcs_off_map:
-                        del world.npcs_off_map[sprite.slug]
+                    if sprite not in world.npcs:
+                        world.npcs.append(sprite)
+                    if sprite in world.npcs_off_map:
+                        world.npcs_off_map.remove(sprite)
 
                 # Remove player from the map if they have changed maps.
                 elif client_map != current_map:
-                    if sprite.slug not in world.npcs_off_map:
-                        world.npcs_off_map[sprite.slug] = sprite
-                    if sprite.slug in world.npcs:
-                        del world.npcs[sprite]
+                    if sprite not in world.npcs_off_map:
+                        world.npcs_off_map.append(sprite)
+                    if sprite in world.npcs:
+                        world.npcs.remove(sprite)
 
     def get_map_filepath(self) -> Optional[str]:
         """

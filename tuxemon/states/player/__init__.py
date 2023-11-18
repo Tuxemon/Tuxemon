@@ -18,16 +18,9 @@ from tuxemon.session import local_session
 MenuGameObj = Callable[[], object]
 
 
-def fix_width(screen_x: int, pos_x: float) -> int:
-    """it returns the correct width based on percentage"""
-    value = round(screen_x * pos_x)
-    return value
-
-
-def fix_height(screen_y: int, pos_y: float) -> int:
-    """it returns the correct height based on percentage"""
-    value = round(screen_y * pos_y)
-    return value
+def fix_measure(measure: int, percentage: float) -> int:
+    """it returns the correct measure based on percentage"""
+    return round(measure * percentage)
 
 
 class PlayerState(PygameMenuState):
@@ -132,7 +125,7 @@ class PlayerState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab1, list)
-        lab1.translate(fix_width(width, 0.45), fix_height(height, 0.15))
+        lab1.translate(fix_measure(width, 0.45), fix_measure(height, 0.15))
         # money
         money = player.money["player"]
         lab2 = menu.add.label(
@@ -143,7 +136,7 @@ class PlayerState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab2, list)
-        lab2.translate(fix_width(width, 0.45), fix_height(height, 0.25))
+        lab2.translate(fix_measure(width, 0.45), fix_measure(height, 0.25))
         # seen
         lab3 = menu.add.label(
             title=msg_seen,
@@ -153,7 +146,7 @@ class PlayerState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab3, list)
-        lab3.translate(fix_width(width, 0.45), fix_height(height, 0.30))
+        lab3.translate(fix_measure(width, 0.45), fix_measure(height, 0.30))
         # caught
         lab4 = menu.add.label(
             title=msg_caught,
@@ -163,7 +156,7 @@ class PlayerState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab4, list)
-        lab4.translate(fix_width(width, 0.45), fix_height(height, 0.35))
+        lab4.translate(fix_measure(width, 0.45), fix_measure(height, 0.35))
         # begin adventure
         lab5 = menu.add.label(
             title=msg_begin,
@@ -173,7 +166,7 @@ class PlayerState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab5, list)
-        lab5.translate(fix_width(width, 0.45), fix_height(height, 0.40))
+        lab5.translate(fix_measure(width, 0.45), fix_measure(height, 0.40))
         # walked
         lab6 = menu.add.label(
             title=msg_walked,
@@ -183,7 +176,7 @@ class PlayerState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab6, list)
-        lab6.translate(fix_width(width, 0.45), fix_height(height, 0.45))
+        lab6.translate(fix_measure(width, 0.45), fix_measure(height, 0.45))
         # battles
         lab7 = menu.add.label(
             title=msg_battles,
@@ -193,7 +186,7 @@ class PlayerState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab7, list)
-        lab7.translate(fix_width(width, 0.45), fix_height(height, 0.50))
+        lab7.translate(fix_measure(width, 0.45), fix_measure(height, 0.50))
         # % tuxepedia
         lab8 = menu.add.label(
             title=msg_progress,
@@ -203,7 +196,7 @@ class PlayerState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab8, list)
-        lab8.translate(fix_width(width, 0.45), fix_height(height, 0.10))
+        lab8.translate(fix_measure(width, 0.45), fix_measure(height, 0.10))
         # image
         combat_front = ""
         for ele in player.template:
@@ -217,7 +210,7 @@ class PlayerState(PygameMenuState):
         image_widget = menu.add.image(image_path=new_image.copy())
         image_widget.set_float(origin_position=True)
         image_widget.translate(
-            fix_width(width, 0.17), fix_height(height, 0.08)
+            fix_measure(width, 0.17), fix_measure(height, 0.08)
         )
 
     def __init__(self) -> None:

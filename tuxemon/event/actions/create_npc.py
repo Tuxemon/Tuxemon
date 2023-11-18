@@ -47,8 +47,9 @@ class CreateNpcAction(EventAction):
         slug = self.npc_slug
 
         # Ensure that the NPC doesn't already exist on the map.
-        if slug in world.npcs:
-            return
+        for element in world.npcs:
+            if element.slug == slug:
+                return
 
         # Create a new NPC object
         npc = NPC(slug, world=world)

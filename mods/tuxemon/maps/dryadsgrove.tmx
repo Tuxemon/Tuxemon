@@ -5,7 +5,6 @@
   <property name="scenario" value="xero"/>
   <property name="slug" value="dryadsgrove"/>
   <property name="types" value="route"/>
-  <property name="west" value="cotton_town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" name="core_outdoor_water" tilewidth="16" tileheight="16" tilecount="8192" columns="64">

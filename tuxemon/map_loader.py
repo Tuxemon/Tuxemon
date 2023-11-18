@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
+import uuid
 from collections.abc import Generator, Iterator, Mapping
 from math import cos, pi, sin
 from typing import Any, Optional
@@ -70,6 +71,7 @@ class YAMLEventLoader:
             yaml_data = yaml.load(fp.read(), Loader=yaml.SafeLoader)
 
         for name, event_data in yaml_data["events"].items():
+            _id = uuid.uuid4().int
             conds = []
             acts = []
             x = event_data.get("x")
@@ -78,11 +80,15 @@ class YAMLEventLoader:
             h = event_data.get("height")
             event_type = event_data.get("type")
 
-            for value in event_data.get("actions", []):
+            for key, value in enumerate(
+                event_data.get("actions", []), start=1
+            ):
                 act_type, args = parse_action_string(value)
-                action = MapAction(act_type, args, None)
+                action = MapAction(act_type, args, f"act{str(key*10)}")
                 acts.append(action)
-            for value in event_data.get("conditions", []):
+            for key, value in enumerate(
+                event_data.get("conditions", []), start=1
+            ):
                 operator, cond_type, args = parse_condition_string(value)
                 condition = MapCondition(
                     type=cond_type,
@@ -92,18 +98,18 @@ class YAMLEventLoader:
                     width=w,
                     height=h,
                     operator=operator,
-                    name="",
+                    name=f"cond{str(key*10)}",
                 )
                 conds.append(condition)
-            for value in event_data.get("behav", []):
+            for key, value in enumerate(event_data.get("behav", []), start=1):
                 behav_type, args = parse_behav_string(value)
                 _args = list(args)
                 _args.insert(0, behav_type)
                 conds.insert(
                     0,
-                    MapCondition("behav", _args, x, y, w, h, "is", ""),
+                    MapCondition("behav", _args, x, y, w, h, "is", f"behav{str(key*10)}"),
                 )
-                acts.insert(0, MapAction("behav", _args, ""))
+                acts.insert(0, MapAction("behav", _args, f"behav{str(key*10)}"))
             if event_type == "interact":
                 cond_data = MapCondition(
                     "player_facing_tile",
@@ -117,7 +123,7 @@ class YAMLEventLoader:
                 )
                 conds.append(cond_data)
 
-            yield EventObject(name, name, x, y, w, h, conds, acts)
+            yield EventObject(_id, name, x, y, w, h, conds, acts)
 
 
 class TMXMapLoader:
@@ -366,6 +372,7 @@ class TMXMapLoader:
             Loaded event.
 
         """
+        _id = uuid.uuid4().int
         conds = []
         acts = []
         x = int(obj.x / tile_size[0])
@@ -418,4 +425,4 @@ class TMXMapLoader:
             logger.debug(cond_data)
             conds.append(cond_data)
 
-        return EventObject(obj.id, obj.name, x, y, w, h, conds, acts)
+        return EventObject(_id, obj.name, x, y, w, h, conds, acts)

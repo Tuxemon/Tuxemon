@@ -387,6 +387,7 @@ class TMXMapLoader:
             Loaded event.
 
         """
+        _id = uuid.uuid4().int
         conds = []
         acts = []
         x = int(obj.x / tile_size[0])
@@ -442,4 +443,4 @@ class TMXMapLoader:
             logger.debug(cond_data)
             conds.append(cond_data)
 
-        return EventObject(obj.id, obj.name, x, y, w, h, conds, acts)
+        return EventObject(_id, obj.name, x, y, w, h, conds, acts)

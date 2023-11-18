@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="210">
  <properties>
-  <property name="east" value="route5"/>
   <property name="edges" value="clamped"/>
-  <property name="north" value="routea"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="flower_city"/>
   <property name="types" value="town"/>
-  <property name="west" value="route4"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
@@ -222,14 +219,15 @@
   </object>
   <object id="208" name="Sign: Flower City" type="event" x="32" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog welcome_location_town"/>
+    <property name="act10" value="translated_dialog cotton_town"/>
+    <property name="act20" value="translated_dialog cotton_town_description"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="209" name="Sign: Flower East" type="event" x="608" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog here_to_east"/>
+    <property name="act1" value="translated_dialog route5"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

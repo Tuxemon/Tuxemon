@@ -10,7 +10,7 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.economy import Economy
 from tuxemon.npc import NPC
-from tuxemon.states.choice import ChoiceState
+from tuxemon.states.choice.choice_state import ChoiceState
 from tuxemon.states.items.shop_menu import ShopBuyMenuState, ShopSellMenuState
 
 
